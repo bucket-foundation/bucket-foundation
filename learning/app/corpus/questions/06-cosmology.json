@@ -8,10 +8,10 @@
    "kind": "pick",
    "prompt": "In a small sealed elevator, which situation feels identical to standing at rest on Earth's surface?",
    "options": [
-    "Drifting far from any mass",
-    "Falling freely toward Earth",
+    "Drifting weightless in deep space, far from any mass",
+    "Falling freely toward Earth in a sealed box",
     "Accelerating upward at 9.8 m/s^2 in deep space",
-    "Moving at constant speed in deep space"
+    "Coasting at constant velocity in deep space"
    ],
    "answer": 2
   },
@@ -80,10 +80,10 @@
    "kind": "pick",
    "prompt": "In general relativity, what does gravitational attraction come from?",
    "options": [
-    "A force carried through flat space",
-    "Magnetic fields around masses",
+    "A force transmitted instantly through flat empty space",
+    "Magnetic fields that surround every massive object",
     "Objects following the straightest paths in curved spacetime",
-    "Friction with the vacuum"
+    "Friction between moving masses and the vacuum"
    ],
    "answer": 2
   },
@@ -135,6 +135,14 @@
     {
      "term": "Curvature",
      "meaning": "Tells matter how to move"
+    },
+    {
+     "term": "Geodesic",
+     "meaning": "Straightest path through curved spacetime"
+    },
+    {
+     "term": "Einstein field equations",
+     "meaning": "Link curvature to stress-energy"
     }
    ]
   },
@@ -144,10 +152,10 @@
    "kind": "pick",
    "prompt": "What does the metric tensor g_{mu nu} do?",
    "options": [
-    "Counts the particles in a region",
+    "Counts the particles inside a region of spacetime",
     "Turns coordinate differences into physical distances and times",
-    "Measures electric charge",
-    "Sets the speed of sound"
+    "Measures the electric charge carried by each worldline",
+    "Sets the local speed of sound in the cosmic fluid"
    ],
    "answer": 1
   },
@@ -288,10 +296,10 @@
    "kind": "pick",
    "prompt": "What is the source of gravity in general relativity?",
    "options": [
-    "Electric charge only",
-    "Rest mass only",
+    "Electric charge and current only",
+    "Rest mass of ordinary matter only",
     "The stress-energy tensor T_{mu nu}",
-    "The speed of light"
+    "The vacuum speed of light alone"
    ],
    "answer": 2
   },
@@ -360,10 +368,10 @@
    "kind": "pick",
    "prompt": "In G_{mu nu} + Lambda g_{mu nu} = (8 pi G / c^4) T_{mu nu}, what does the left side describe?",
    "options": [
-    "The matter content",
+    "The matter and energy content",
     "The geometry of spacetime",
-    "The speed of light",
-    "The temperature"
+    "The temperature of the vacuum",
+    "The speed of light in matter"
    ],
    "answer": 1
   },
@@ -433,9 +441,9 @@
    "prompt": "On scales of hundreds of millions of light-years, the universe is described as which pair?",
    "options": [
     "Homogeneous and isotropic",
-    "Clumpy and rotating",
-    "Static and eternal",
-    "Flat and empty"
+    "Clumpy and slowly rotating",
+    "Static and unchanging",
+    "Hot and contracting"
    ],
    "answer": 0
   },
@@ -487,6 +495,14 @@
     {
      "term": "Isotropic",
      "meaning": "Same in every direction"
+    },
+    {
+     "term": "Large-scale structure",
+     "meaning": "Clumping that averages out above about 100 Mpc"
+    },
+    {
+     "term": "CMB uniformity",
+     "meaning": "Evidence for isotropy to 1 part in 100,000"
     }
    ]
   },
@@ -784,10 +800,10 @@
    "kind": "pick",
    "prompt": "The Friedmann equation gives which quantity?",
    "options": [
-    "The temperature of the CMB",
+    "The temperature of the microwave sky",
     "The square of the expansion rate H",
-    "The mass of the proton",
-    "The age of stars"
+    "The mass of the proton in the early universe",
+    "The age of stars in the Milky Way"
    ],
    "answer": 1
   },
@@ -930,8 +946,8 @@
    "options": [
     "4.6 billion years",
     "13.8 billion years",
-    "100 billion years",
-    "6,000 years"
+    "13.8 million years",
+    "100 billion years"
    ],
    "answer": 1
   },
@@ -1073,9 +1089,9 @@
    "prompt": "Which problems does inflation address?",
    "options": [
     "Flatness, uniformity and the seed fluctuations",
-    "Planet formation",
-    "The age of the Sun",
-    "Dark matter halos only"
+    "The origin of planets around young stars",
+    "How dark matter halos first formed",
+    "Why the Sun has burned for billions of years"
    ],
    "answer": 0
   },
@@ -1144,10 +1160,10 @@
    "kind": "pick",
    "prompt": "What does baryogenesis try to explain?",
    "options": [
-    "Why stars shine",
+    "Why stars burn hydrogen for so long",
     "Why matter outnumbers antimatter",
-    "Why the CMB is cold",
-    "Why light bends"
+    "Why the CMB is so cold today",
+    "Why light bends near masses"
    ],
    "answer": 1
   },
@@ -1216,10 +1232,10 @@
    "kind": "pick",
    "prompt": "When did Big Bang nucleosynthesis happen?",
    "options": [
-    "Within the first second",
+    "Within the first millisecond of expansion",
     "Between about one second and a few minutes",
-    "At 380,000 years",
-    "At 1 billion years"
+    "At 380,000 years, as atoms formed",
+    "At 1 billion years, as galaxies formed"
    ],
    "answer": 1
   },
@@ -1360,7 +1376,7 @@
    "kind": "pick",
    "prompt": "What is the temperature of the CMB today?",
    "options": [
-    "0 K",
+    "27.25 K",
     "300 K",
     "3000 K",
     "2.725 K"
@@ -1576,10 +1592,10 @@
    "kind": "pick",
    "prompt": "What slows the growth of density lumps in our universe?",
    "options": [
-    "Photon decay",
+    "Photon pressure decaying away over time",
     "The Hubble expansion pulling matter apart",
-    "Magnetic pressure in voids",
-    "Dark matter repulsion"
+    "Magnetic pressure in cosmic voids",
+    "Repulsion between dark matter particles"
    ],
    "answer": 1
   },
@@ -1720,10 +1736,10 @@
    "kind": "pick",
    "prompt": "Why did dark matter begin clumping before ordinary matter?",
    "options": [
-    "It is heavier per particle",
+    "It is heavier per particle, so it sinks into potential wells much sooner",
     "It ignores light, so radiation pressure did not hold it smooth",
-    "It formed later and cooled faster",
-    "It is repelled by baryons"
+    "It formed later and cooled faster than the baryons",
+    "Baryons repelled it into the denser regions of the early universe"
    ],
    "answer": 1
   },
@@ -1936,10 +1952,10 @@
    "kind": "pick",
    "prompt": "What makes an object a standard candle?",
    "options": [
-    "It sits at a known distance",
+    "It sits at a distance known in advance",
     "Its intrinsic luminosity is known in advance",
-    "It never changes brightness",
-    "It has no redshift"
+    "It never changes brightness over time",
+    "Its spectrum shows no redshift"
    ],
    "answer": 1
   },
@@ -2008,10 +2024,10 @@
    "kind": "pick",
    "prompt": "What does each galaxy spectrum give a redshift survey?",
    "options": [
-    "The galaxy's mass",
+    "The galaxy's mass, from its rotation speed",
     "The galaxy's redshift, which converts to distance",
-    "The galaxy's age",
-    "The galaxy's dark matter fraction"
+    "The galaxy's age, from its stellar colors",
+    "The galaxy's dark matter fraction, from lensing"
    ],
    "answer": 1
   },
@@ -2080,10 +2096,10 @@
    "kind": "pick",
    "prompt": "What did the 1998 supernova teams find?",
    "options": [
-    "Distant supernovae were brighter than expected",
+    "Distant supernovae were brighter than a coasting universe allows",
     "Distant supernovae were dimmer than a slowing universe allows",
-    "Supernovae are not standard candles",
-    "Expansion had stopped"
+    "Supernovae turned out not to be usable standard candles",
+    "Expansion had stopped and begun to reverse"
    ],
    "answer": 1
   },
@@ -2439,10 +2455,10 @@
    "kind": "pick",
    "prompt": "Why is lensing a strong probe of dark matter?",
    "options": [
-    "It responds only to stars",
+    "It responds only to stars and visible gas",
     "It responds to all mass, shining or not",
-    "It measures temperature",
-    "It needs no theory of gravity"
+    "It measures the gas temperature directly",
+    "It needs no theory of gravity at all"
    ],
    "answer": 1
   },
@@ -2655,10 +2671,10 @@
    "kind": "pick",
    "prompt": "What CMB pattern would primordial gravitational waves imprint?",
    "options": [
-    "E-modes only",
+    "A gradient pattern called E-modes",
     "A curl pattern called B-modes",
-    "Acoustic peaks",
-    "Hot spots of 1 part in 10"
+    "Acoustic peaks at small angles",
+    "Hot spots of one part in ten"
    ],
    "answer": 1
   },
@@ -2727,10 +2743,10 @@
    "kind": "pick",
    "prompt": "What is the measure problem?",
    "options": [
-    "Measuring CMB temperature",
+    "Measuring the CMB temperature to many decimal places across the sky",
     "Assigning probabilities across infinitely many pocket universes",
-    "Calibrating Cepheids",
-    "Weighing dark matter halos"
+    "Calibrating Cepheid distances across nearby galaxies",
+    "Weighing dark matter halos using weak lensing shear data"
    ],
    "answer": 1
   },
@@ -2799,10 +2815,10 @@
    "kind": "pick",
    "prompt": "If dark energy is a true constant, what future awaits?",
    "options": [
-    "Big Crunch",
-    "Big Rip",
+    "A Big Crunch as expansion reverses",
+    "A Big Rip that shreds all structure",
     "Endless acceleration toward heat death",
-    "Static universe"
+    "A static universe frozen at fixed size"
    ],
    "answer": 2
   },
@@ -2998,6 +3014,14 @@
     {
      "term": "Radiation",
      "meaning": "a^-4"
+    },
+    {
+     "term": "Cosmological constant",
+     "meaning": "a^0"
+    },
+    {
+     "term": "Curvature term",
+     "meaning": "a^-2"
     }
    ]
   },
@@ -3062,6 +3086,14 @@
     {
      "term": "Gravity",
      "meaning": "Drives collapse"
+    },
+    {
+     "term": "Jeans length",
+     "meaning": "Scale above which collapse wins"
+    },
+    {
+     "term": "Sound speed",
+     "meaning": "Sets how fast pressure responds"
     }
    ]
   },
@@ -3143,10 +3175,10 @@
    "kind": "pick",
    "prompt": "Why do Type Ia supernovae serve as standard candles?",
    "options": [
-    "They occur only in spiral galaxies",
+    "They occur only in spiral galaxies rich in young blue stars",
     "The trigger mass near 1.4 solar masses is nearly universal",
-    "They emit no hydrogen",
-    "They last exactly one year"
+    "They emit no hydrogen lines of any kind in their spectra",
+    "They last exactly one year before fading"
    ],
    "answer": 1
   },
@@ -3217,9 +3249,9 @@
    "prompt": "What sets the Silk scale?",
    "options": [
     "Photon diffusion by random walk before recombination",
-    "The horizon at equality",
-    "Neutrino free streaming",
-    "Galaxy peculiar velocities"
+    "The horizon size at matter-radiation equality",
+    "Neutrino free streaming after decoupling",
+    "Galaxy peculiar velocities after recombination"
    ],
    "answer": 0
   },
@@ -3271,6 +3303,14 @@
     {
      "term": "Random walk",
      "meaning": "Repeated scattering path"
+    },
+    {
+     "term": "Damping tail",
+     "meaning": "Suppressed power at high multipoles"
+    },
+    {
+     "term": "Mean free path",
+     "meaning": "Distance between photon scatterings"
     }
    ]
   },
@@ -3335,6 +3375,14 @@
     {
      "term": "Time dilation",
      "meaning": "Makes the spot hotter"
+    },
+    {
+     "term": "Large angular scales",
+     "meaning": "Where the plateau shows"
+    },
+    {
+     "term": "Potential well",
+     "meaning": "Region where photons start deeper"
     }
    ]
   },
@@ -3416,10 +3464,10 @@
    "kind": "pick",
    "prompt": "What reionized the intergalactic medium?",
    "options": [
-    "Recombination",
+    "Recombination of electrons and protons",
     "Ionizing UV from the first stars and quasars",
-    "Neutrino decoupling",
-    "The CMB itself"
+    "Neutrino decoupling in the first seconds",
+    "The CMB photons themselves heating the gas"
    ],
    "answer": 1
   },
@@ -3471,6 +3519,14 @@
     {
      "term": "After reionization",
      "meaning": "Ionized"
+    },
+    {
+     "term": "Before recombination",
+     "meaning": "Ionized plasma"
+    },
+    {
+     "term": "First stars and galaxies",
+     "meaning": "Source of ionizing photons"
     }
    ]
   },
@@ -3535,6 +3591,14 @@
     {
      "term": "Fingers of God",
      "meaning": "Stretching in clusters"
+    },
+    {
+     "term": "Growth rate f",
+     "meaning": "What the Kaiser squashing measures"
+    },
+    {
+     "term": "Line of sight",
+     "meaning": "Direction peculiar velocities distort"
     }
    ]
   },
@@ -3544,10 +3608,10 @@
    "kind": "pick",
    "prompt": "CMB photons crossing hot cluster gas do what on average?",
    "options": [
-    "Lose energy",
+    "Lose energy by scattering off cold gas",
     "Gain energy by inverse Compton scattering",
-    "Get absorbed",
-    "Become polarized only"
+    "Get absorbed and re-emitted as X-rays",
+    "Become polarized only, with no energy change"
    ],
    "answer": 1
   },
@@ -3599,6 +3663,14 @@
     {
      "term": "Above about 217 GHz",
      "meaning": "Increment"
+    },
+    {
+     "term": "Near 217 GHz",
+     "meaning": "Null"
+    },
+    {
+     "term": "Hot cluster electrons",
+     "meaning": "Scatter CMB photons to higher energy"
     }
    ]
   },
@@ -3663,6 +3735,14 @@
     {
      "term": "Shape noise",
      "meaning": "Intrinsic ellipticity scatter"
+    },
+    {
+     "term": "Convergence",
+     "meaning": "Magnification from projected mass"
+    },
+    {
+     "term": "Galaxy averaging",
+     "meaning": "Beats down shape noise"
     }
    ]
   },
@@ -3672,10 +3752,10 @@
    "kind": "pick",
    "prompt": "What critical overdensity does spherical collapse give?",
    "options": [
-    "1.0",
+    "1.168",
     "1.686",
-    "3.0",
-    "0.5"
+    "0.686",
+    "3.686"
    ],
    "answer": 1
   },
@@ -3744,10 +3824,10 @@
    "kind": "pick",
    "prompt": "What law yields the fluid equation?",
    "options": [
-    "Newton's third law",
+    "Newton's third law of motion",
     "First law of thermodynamics",
-    "Hubble's law",
-    "Ohm's law"
+    "Hubble's law of expansion",
+    "Ohm's law for plasmas"
    ],
    "answer": 1
   },
@@ -3943,6 +4023,14 @@
     {
      "term": "4 pi G rho delta",
      "meaning": "Gravitational driving"
+    },
+    {
+     "term": "Growth factor D(a)",
+     "meaning": "Tracks linear amplitude over time"
+    },
+    {
+     "term": "Lambda era",
+     "meaning": "Growth slows and stalls"
     }
    ]
   },
@@ -4007,6 +4095,14 @@
     {
      "term": "n_s < 1",
      "meaning": "Red tilt"
+    },
+    {
+     "term": "n_s > 1",
+     "meaning": "Blue tilt"
+    },
+    {
+     "term": "Planck n_s",
+     "meaning": "About 0.965"
     }
    ]
   },
@@ -4143,6 +4239,14 @@
     {
      "term": "B-modes",
      "meaning": "Gravitational waves or lensing"
+    },
+    {
+     "term": "Thomson scattering",
+     "meaning": "Makes polarization from a quadrupole"
+    },
+    {
+     "term": "Reionization bump",
+     "meaning": "Large-scale polarization signal"
     }
    ]
   }

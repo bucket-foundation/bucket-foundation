@@ -76,22 +76,74 @@ test("calculate accepts tolerance, relative tolerance and written forms", () => 
 test("order gives partial credit by pairwise agreement and rejects bad permutations", () => {
   const q: Question = { id: "o", atom: "a", kind: "order", prompt: "?", steps: ["1", "2", "3", "4"] };
   const swap = gradeQuestion(q, { kind: "order", order: [0, 1, 3, 2] });
-  assert.equal(swap.score, 5 / 6);
+  assert.ok(Math.abs(swap.score - 2 / 3) < 1e-9);
   assert.equal(swap.rating, 2);
   assert.equal(gradeQuestion(q, { kind: "order", order: [3, 2, 1, 0] }).rating, 1);
   assert.equal(gradeQuestion(q, { kind: "order", order: [0, 0, 1, 2] }).score, 0);
 });
 
-test("match scores the share of right pairs", () => {
-  const q: Question = { id: "m", atom: "a", kind: "match", prompt: "?", pairs: [{ term: "a", meaning: "1" }, { term: "b", meaning: "2" }] };
-  assert.equal(gradeQuestion(q, { kind: "match", pairs: { a: "1", b: "1" } }).score, 0.5);
+test("match scores right pairs above the one a guess gets", () => {
+  const q: Question = { id: "m", atom: "a", kind: "match", prompt: "?", pairs: [{ term: "a", meaning: "1" }, { term: "b", meaning: "2" }, { term: "c", meaning: "3" }] };
+  assert.equal(gradeQuestion(q, { kind: "match", pairs: { a: "1", b: "3", c: "2" } }).score, 0);
+  assert.ok(gradeQuestion(q, { kind: "match", pairs: { a: "1", b: "2", c: "3" } }).correct);
+  assert.ok(validateQuestion({ ...q, pairs: q.pairs.slice(0, 2) }).length > 0);
   assert.ok(validateQuestion({ ...q, pairs: [{ term: "a", meaning: "1" }, { term: "a", meaning: "2" }] }).length > 0);
 });
 
-test("present shuffles deterministically and never leaves the key in place", () => {
+test("present shuffles deterministically per learner", () => {
   const q: Question = { id: "p", atom: "a", kind: "pick", prompt: "?", options: ["w", "x", "y", "z"], answer: 0 };
   const a = present(q, "learner-1");
   assert.deepEqual(a.order, present(q, "learner-1").order);
   assert.deepEqual([...a.order].sort(), [0, 1, 2, 3]);
-  assert.notDeepEqual(a.order, [0, 1, 2, 3]);
+  assert.notDeepEqual(a.order, present(q, "learner-2").order);
 });
+
+function permutations(n: number): number[][] {
+  if (n === 1) return [[0]];
+  return permutations(n - 1).flatMap((p) => Array.from({ length: n }, (_, i) => [...p.slice(0, i), n - 1, ...p.slice(i)]));
+}
+
+test("order: chance-level orderings earn no credit on average", () => {
+  for (const n of [3, 4, 5]) {
+    const q: Question = { id: "o", atom: "a", kind: "order", prompt: "?", steps: Array.from({ length: n }, (_, i) => `s${i}`) };
+    const all = permutations(n).map((order) => gradeQuestion(q, { kind: "order", order }));
+    const mean = all.reduce((t, g) => t + g.score, 0) / all.length;
+    assert.ok(mean < 0.2, `n=${n} mean ${mean}`);
+    assert.equal(all.filter((g) => g.correct).length, 1);
+    assert.ok(all.filter((g) => g.rating > 1).length / all.length < 0.25);
+  }
+});
+
+test("match: chance-level pairings earn no credit on average", () => {
+  for (const n of [3, 4, 5]) {
+    const pairs = Array.from({ length: n }, (_, i) => ({ term: `t${i}`, meaning: `m${i}` }));
+    const q: Question = { id: "m", atom: "a", kind: "match", prompt: "?", pairs };
+    const all = permutations(n).map((perm) => gradeQuestion(q, { kind: "match", pairs: Object.fromEntries(perm.map((j, i) => [`t${i}`, `m${j}`])) }));
+    const mean = all.reduce((t, g) => t + g.score, 0) / all.length;
+    assert.ok(mean < 0.2, `n=${n} mean ${mean}`);
+    assert.equal(all.filter((g) => g.correct).length, 1);
+  }
+});
+
+for (const { branch, raw } of decks) {
+  const picks = (raw.questions as Question[]).filter((q): q is Extract<Question, { kind: "pick" }> => q.kind === "pick");
+
+  test(`${branch}: displayed position of the correct option is near uniform`, () => {
+    const counts = [0, 0, 0, 0];
+    for (let i = 0; i < 64; i++) {
+      const seed = `s${i}`;
+      for (const q of picks) counts[present(q, seed).order.indexOf(q.answer)]++;
+    }
+    const total = counts.reduce((a, b) => a + b, 0);
+    for (const c of counts) assert.ok(Math.abs(c / total - 0.25) < 0.05, `${branch} positions ${counts}`);
+  });
+
+  test(`${branch}: the correct option is not systematically the longest or shortest`, () => {
+    const strictly = (q: (typeof picks)[number], pick: (a: number, b: number) => boolean) =>
+      q.options.every((o, i) => i === q.answer || pick(q.options[q.answer].length, o.length));
+    const longest = picks.filter((q) => strictly(q, (a, b) => a > b)).length / picks.length;
+    const shortest = picks.filter((q) => strictly(q, (a, b) => a < b)).length / picks.length;
+    assert.ok(longest <= 0.3, `${branch} longest ${longest}`);
+    assert.ok(shortest <= 0.35, `${branch} shortest ${shortest}`);
+  });
+}

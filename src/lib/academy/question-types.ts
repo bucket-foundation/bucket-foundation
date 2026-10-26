@@ -107,7 +107,7 @@ export function validateQuestion(q: Question, atomIds?: Set<string>): string[] {
       if (!nonEmpty(q.fix)) at("spot-error needs a fix");
       break;
     case "match":
-      if (!Array.isArray(q.pairs) || q.pairs.length < 2) at("match needs 2+ pairs");
+      if (!Array.isArray(q.pairs) || q.pairs.length < 3) at("match needs 3+ pairs");
       else {
         if (!q.pairs.every((p) => nonEmpty(p.term) && nonEmpty(p.meaning))) at("match pair is empty");
         else if (!distinct(q.pairs.map((p) => p.term)) || !distinct(q.pairs.map((p) => p.meaning))) at("match terms or meanings repeat");
@@ -160,7 +160,6 @@ export function shuffledIndices(n: number, seed: string): number[] {
     const j = Math.floor(r() * (i + 1));
     [idx[i], idx[j]] = [idx[j], idx[i]];
   }
-  if (n > 1 && idx.every((v, i) => v === i)) idx.push(idx.shift()!);
   return idx;
 }
 
@@ -209,13 +208,14 @@ function gradeOrder(q: OrderQuestion, order: number[]): GradeResult {
       pairs++;
       if (order[i] < order[j]) good++;
     }
-  return result(good / pairs);
+  const tau = 2 * (good / pairs) - 1;
+  return result(tau >= 0.5 ? tau : 0);
 }
 
 function gradeMatch(q: MatchQuestion, given: Record<string, string>): GradeResult {
   if (!given || typeof given !== "object") return result(0);
   const hits = q.pairs.filter((p) => given[p.term] === p.meaning).length;
-  return result(hits / q.pairs.length);
+  return result((hits - 1) / (q.pairs.length - 1));
 }
 
 export function gradeQuestion(q: Question, r: Response): GradeResult {
