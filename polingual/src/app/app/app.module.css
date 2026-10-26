@@ -20,3 +20,24 @@
 .ghost{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:12px;border:1.5px solid var(--tyrian);background:transparent;color:var(--tyrian);font-family:"Fredoka",sans-serif;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none}
 .link{background:none;border:0;padding:6px 0;color:var(--lapis);font:inherit;font-weight:700;font-size:15px;text-decoration:underline;text-underline-offset:4px;cursor:pointer;align-self:flex-start}
 .error{margin:12px 0 0;color:#9B2414;font-weight:700}
+.page{--basalt:var(--ink);--basalt-2:var(--ink-2);--basalt-3:#6F665F;--bone:#fff8ea;--bone-2:var(--parchment-2);--gold:var(--ochre);--gold-deep:var(--tyrian);--aegean-deep:var(--lapis);--crimson:#9B2414;--hairline:rgba(35,31,32,.14)}
+.page :global(.small-caps){font-variant:all-small-caps;font-family:"Space Mono",monospace}
+.page :global(.font-display){font-family:"Fredoka",sans-serif}
+.stack{display:flex;flex-direction:column;gap:20px;max-width:880px;width:100%;margin:16px auto 0}
+.stackSm{display:flex;flex-direction:column;gap:8px}
+.wide{max-width:720px}
+.grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.tile{background:#fff8ea;border:1px solid var(--hair);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 4px 0 rgba(35,31,32,.08)}
+.tileTitle{font-family:"Fredoka",sans-serif!important;font-weight:700;font-size:24px;color:var(--tyrian);margin:0}
+.small{font-size:14px;color:var(--ink-2);margin:0}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chips{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--hair);border-radius:999px;padding:4px 12px;font-weight:700;font-size:14px;background:#fff}
+.level{font-family:"Space Mono",monospace;font-weight:400;font-size:12px;color:var(--ink-2);margin-left:4px}
+.fieldLabel{font-weight:700;font-size:14px;margin:0}
+.preset,.pick{font:inherit;font-weight:700;font-size:15px;min-height:44px;padding:6px 14px;border-radius:12px;border:1.5px solid var(--hair);background:#fff;color:var(--ink);cursor:pointer}
+.preset[aria-pressed=true],.pick[aria-pressed=true]{background:var(--lapis);border-color:var(--lapis);color:var(--parchment)}
+.preset[aria-pressed=true] .level{color:var(--parchment)}
+.preset:focus-visible,.pick:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+.bands{margin:0 0 16px;padding-left:20px;font-size:15px;color:var(--ink-2)}
+.exercise{margin:12px 0}
