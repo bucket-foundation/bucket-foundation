@@ -70,6 +70,10 @@ public struct BucketAPI: Sendable {
         try await cached("academy-app/\(entry.file)")
     }
 
+    public func questionDeck(_ branch: String) async throws -> QuestionDeck {
+        try await cached("academy-app/corpus/questions/\(branch).json")
+    }
+
     func cacheURL(_ path: String) -> URL? {
         guard let dir = cacheDir else { return nil }
         return dir.appending(path: path.replacingOccurrences(of: "/", with: "_"))

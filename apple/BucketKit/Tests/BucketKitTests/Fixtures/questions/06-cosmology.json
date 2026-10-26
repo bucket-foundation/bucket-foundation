@@ -1,0 +1,4254 @@
+{
+ "branch": "06-cosmology",
+ "version": "0.1.0",
+ "questions": [
+  {
+   "id": "equivalence-principle.pick",
+   "atom": "equivalence-principle",
+   "kind": "pick",
+   "prompt": "In a small sealed elevator, which situation feels identical to standing at rest on Earth's surface?",
+   "options": [
+    "Drifting weightless in deep space, far from any mass",
+    "Falling freely toward Earth in a sealed box",
+    "Accelerating upward at 9.8 m/s^2 in deep space",
+    "Coasting at constant velocity in deep space"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "equivalence-principle.calculate",
+   "atom": "equivalence-principle",
+   "kind": "calculate",
+   "prompt": "An elevator in deep space accelerates upward at 9.8 m/s^2. A 70 kg passenger stands on a scale. What force does the scale read?",
+   "answer": 686,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "equivalence-principle.order",
+   "atom": "equivalence-principle",
+   "kind": "order",
+   "prompt": "Order the reasoning behind the equivalence principle.",
+   "steps": [
+    "Notice that all objects fall with the same acceleration",
+    "Compare a sealed box at rest on Earth with one accelerating in space",
+    "Find that no local experiment tells the two apart",
+    "Conclude that gravity and acceleration are locally equivalent"
+   ]
+  },
+  {
+   "id": "equivalence-principle.spot-error",
+   "atom": "equivalence-principle",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A free-falling astronaut feels a strong downward force",
+    "Inside the falling cabin, dropped objects float beside her",
+    "So free fall is the state closest to no force at all",
+    "So gravity's local effects vanish inside a falling cabin"
+   ],
+   "error": 0,
+   "fix": "A free-falling astronaut feels weightless."
+  },
+  {
+   "id": "equivalence-principle.match",
+   "atom": "equivalence-principle",
+   "kind": "match",
+   "prompt": "Match each situation to what a local observer feels.",
+   "pairs": [
+    {
+     "term": "Free fall near Earth",
+     "meaning": "Weightlessness"
+    },
+    {
+     "term": "Rocket accelerating in space",
+     "meaning": "Weight pressing toward the floor"
+    },
+    {
+     "term": "Standing on Earth's surface",
+     "meaning": "Weight pressing toward the floor, same as the rocket"
+    },
+    {
+     "term": "Coasting far from all mass",
+     "meaning": "Weightlessness, same as free fall"
+    }
+   ]
+  },
+  {
+   "id": "spacetime-curvature.pick",
+   "atom": "spacetime-curvature",
+   "kind": "pick",
+   "prompt": "In general relativity, what does gravitational attraction come from?",
+   "options": [
+    "A force transmitted instantly through flat empty space",
+    "Magnetic fields that surround every massive object",
+    "Objects following the straightest paths in curved spacetime",
+    "Friction between moving masses and the vacuum"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "spacetime-curvature.calculate",
+   "atom": "spacetime-curvature",
+   "kind": "calculate",
+   "prompt": "Spacetime has three space directions plus time. How many dimensions does it have?",
+   "answer": 4,
+   "unit": "dimensions",
+   "tol": 0
+  },
+  {
+   "id": "spacetime-curvature.order",
+   "atom": "spacetime-curvature",
+   "kind": "order",
+   "prompt": "Order the general relativity loop that explains an orbit.",
+   "steps": [
+    "Matter and energy sit in a region",
+    "They curve the surrounding spacetime",
+    "A nearby body follows the straightest path in that curved geometry",
+    "Seen from outside, that path looks like an orbit"
+   ]
+  },
+  {
+   "id": "spacetime-curvature.spot-error",
+   "atom": "spacetime-curvature",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The Sun's mass curves spacetime around it",
+    "Earth is pushed off course by a force through flat space",
+    "That path closes into a near-ellipse",
+    "So an orbit is a straightest path in curved spacetime"
+   ],
+   "error": 1,
+   "fix": "Earth feels no force; it follows the straightest available path in curved spacetime."
+  },
+  {
+   "id": "spacetime-curvature.match",
+   "atom": "spacetime-curvature",
+   "kind": "match",
+   "prompt": "Match each idea to its role.",
+   "pairs": [
+    {
+     "term": "Matter and energy",
+     "meaning": "Tell spacetime how to curve"
+    },
+    {
+     "term": "Curvature",
+     "meaning": "Tells matter how to move"
+    },
+    {
+     "term": "Geodesic",
+     "meaning": "Straightest path through curved spacetime"
+    },
+    {
+     "term": "Einstein field equations",
+     "meaning": "Link curvature to stress-energy"
+    }
+   ]
+  },
+  {
+   "id": "metric.pick",
+   "atom": "metric",
+   "kind": "pick",
+   "prompt": "What does the metric tensor g_{mu nu} do?",
+   "options": [
+    "Counts the particles inside a region of spacetime",
+    "Turns coordinate differences into physical distances and times",
+    "Measures the electric charge carried by each worldline",
+    "Sets the local speed of sound in the cosmic fluid"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "metric.calculate",
+   "atom": "metric",
+   "kind": "calculate",
+   "prompt": "In flat 2D space with metric ds^2 = dx^2 + dy^2, find ds for dx = 3 and dy = 4.",
+   "answer": 5,
+   "unit": "units",
+   "tol": 0
+  },
+  {
+   "id": "metric.order",
+   "atom": "metric",
+   "kind": "order",
+   "prompt": "Order the steps to get a physical interval from the metric.",
+   "steps": [
+    "Pick two nearby points",
+    "Write their coordinate differences dx",
+    "Combine them with the metric components g_{mu nu}",
+    "Take ds^2 as the physical interval"
+   ]
+  },
+  {
+   "id": "metric.spot-error",
+   "atom": "metric",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step for a flat 2D grid, ds^2 = dx^2 + dy^2.",
+   "steps": [
+    "Take dx = 6 and dy = 8",
+    "Square them: 36 and 64",
+    "Add: ds^2 = 48",
+    "So ds = 10"
+   ],
+   "error": 2,
+   "fix": "36 plus 64 is 100, so ds^2 = 100."
+  },
+  {
+   "id": "metric.match",
+   "atom": "metric",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "g_{mu nu}",
+     "meaning": "Metric tensor that encodes gravity"
+    },
+    {
+     "term": "dx^mu",
+     "meaning": "Coordinate difference between nearby points"
+    },
+    {
+     "term": "ds^2",
+     "meaning": "Squared spacetime interval"
+    },
+    {
+     "term": "Tensor",
+     "meaning": "Table of numbers that transforms correctly between viewpoints"
+    }
+   ]
+  },
+  {
+   "id": "geodesics.pick",
+   "atom": "geodesics",
+   "kind": "pick",
+   "prompt": "What path does a free-falling body follow in curved spacetime?",
+   "options": [
+    "A geodesic",
+    "A spiral set by its engine",
+    "A path of least proper time always",
+    "A straight line in coordinate space"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "geodesics.calculate",
+   "atom": "geodesics",
+   "kind": "calculate",
+   "prompt": "A geodesic equation in 4D spacetime has one equation per coordinate index mu. How many equations are there?",
+   "answer": 4,
+   "unit": "equations",
+   "tol": 0
+  },
+  {
+   "id": "geodesics.order",
+   "atom": "geodesics",
+   "kind": "order",
+   "prompt": "Order the logic of a geodesic.",
+   "steps": [
+    "Remove every non-gravitational push",
+    "Let the body move under gravity alone",
+    "Its path extremizes the proper time on its own clock",
+    "That path is a geodesic"
+   ]
+  },
+  {
+   "id": "geodesics.spot-error",
+   "atom": "geodesics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A satellite fires its engine continuously",
+    "Only gravity acts on it",
+    "It follows a geodesic",
+    "Its clock path extremizes proper time"
+   ],
+   "error": 0,
+   "fix": "The satellite coasts with engines off, so only gravity acts."
+  },
+  {
+   "id": "geodesics.match",
+   "atom": "geodesics",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Geodesic",
+     "meaning": "Straightest possible path in curved spacetime"
+    },
+    {
+     "term": "Proper time",
+     "meaning": "Time on a clock carried along the path"
+    },
+    {
+     "term": "Christoffel symbol",
+     "meaning": "Term in the geodesic equation that encodes curvature of the coordinates"
+    },
+    {
+     "term": "Free fall",
+     "meaning": "Motion with nothing but gravity acting"
+    }
+   ]
+  },
+  {
+   "id": "stress-energy.pick",
+   "atom": "stress-energy",
+   "kind": "pick",
+   "prompt": "What is the source of gravity in general relativity?",
+   "options": [
+    "Electric charge and current only",
+    "Rest mass of ordinary matter only",
+    "The stress-energy tensor T_{mu nu}",
+    "The vacuum speed of light alone"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "stress-energy.calculate",
+   "atom": "stress-energy",
+   "kind": "calculate",
+   "prompt": "T_{mu nu} is a 4 by 4 table. How many entries does it hold?",
+   "answer": 16,
+   "unit": "entries",
+   "tol": 0
+  },
+  {
+   "id": "stress-energy.order",
+   "atom": "stress-energy",
+   "kind": "order",
+   "prompt": "Order these from narrowest to broadest source of gravity.",
+   "steps": [
+    "Rest mass alone",
+    "Rest mass plus energy",
+    "Energy plus momentum",
+    "Energy, momentum, pressure and stress"
+   ]
+  },
+  {
+   "id": "stress-energy.spot-error",
+   "atom": "stress-energy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "T_{mu nu} records energy density",
+    "Pressure does not gravitate, so it drops out of the source",
+    "It records momentum flux",
+    "Energy, momentum, pressure and stress all source gravity"
+   ],
+   "error": 1,
+   "fix": "Pressure is part of T_{mu nu} and gravitates."
+  },
+  {
+   "id": "stress-energy.match",
+   "atom": "stress-energy",
+   "kind": "match",
+   "prompt": "Match each quantity to its description.",
+   "pairs": [
+    {
+     "term": "Density",
+     "meaning": "Amount per unit volume"
+    },
+    {
+     "term": "Flux",
+     "meaning": "Amount flowing through a surface per unit time"
+    },
+    {
+     "term": "Pressure",
+     "meaning": "Push spread over an area"
+    },
+    {
+     "term": "T_{mu nu}",
+     "meaning": "4 by 4 table of energy and momentum density and flow"
+    }
+   ]
+  },
+  {
+   "id": "einstein-field-equations.pick",
+   "atom": "einstein-field-equations",
+   "kind": "pick",
+   "prompt": "In G_{mu nu} + Lambda g_{mu nu} = (8 pi G / c^4) T_{mu nu}, what does the left side describe?",
+   "options": [
+    "The matter and energy content",
+    "The geometry of spacetime",
+    "The temperature of the vacuum",
+    "The speed of light in matter"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "einstein-field-equations.calculate",
+   "atom": "einstein-field-equations",
+   "kind": "calculate",
+   "prompt": "The coupling constant is 8 pi G / c^4. Using G = 6.674e-11 and c = 3.0e8 in SI units, compute it.",
+   "answer": 2.07e-43,
+   "unit": "s^2/(kg m)",
+   "relTol": 0.02
+  },
+  {
+   "id": "einstein-field-equations.order",
+   "atom": "einstein-field-equations",
+   "kind": "order",
+   "prompt": "Order the steps to use Einstein's equations.",
+   "steps": [
+    "List the matter and energy in T_{mu nu}",
+    "Write G_{mu nu} from the unknown metric",
+    "Set the two sides equal, with any Lambda term",
+    "Solve for the metric that describes spacetime"
+   ]
+  },
+  {
+   "id": "einstein-field-equations.spot-error",
+   "atom": "einstein-field-equations",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The left side is geometry",
+    "The right side is the stress-energy content",
+    "The factor 8 pi G / c^4 is huge",
+    "So enormous energy densities are needed for noticeable curvature"
+   ],
+   "error": 2,
+   "fix": "8 pi G / c^4 is tiny, about 2e-43 in SI units."
+  },
+  {
+   "id": "einstein-field-equations.match",
+   "atom": "einstein-field-equations",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "G_{mu nu}",
+     "meaning": "Einstein tensor built from curvature"
+    },
+    {
+     "term": "Lambda",
+     "meaning": "Cosmological constant"
+    },
+    {
+     "term": "T_{mu nu}",
+     "meaning": "Stress-energy of the contents"
+    },
+    {
+     "term": "8 pi G / c^4",
+     "meaning": "Coupling between geometry and contents"
+    }
+   ]
+  },
+  {
+   "id": "cosmological-principle.pick",
+   "atom": "cosmological-principle",
+   "kind": "pick",
+   "prompt": "On scales of hundreds of millions of light-years, the universe is described as which pair?",
+   "options": [
+    "Homogeneous and isotropic",
+    "Clumpy and slowly rotating",
+    "Static and unchanging",
+    "Hot and contracting"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "cosmological-principle.calculate",
+   "atom": "cosmological-principle",
+   "kind": "calculate",
+   "prompt": "A light-year is the distance light travels in a year. Using c = 3.0e5 km/s and 3.156e7 s per year, how many kilometers is one light-year?",
+   "answer": 9470000000000.0,
+   "unit": "km",
+   "relTol": 0.02
+  },
+  {
+   "id": "cosmological-principle.order",
+   "atom": "cosmological-principle",
+   "kind": "order",
+   "prompt": "Order the scales from smallest to largest.",
+   "steps": [
+    "A galaxy",
+    "A galaxy cluster",
+    "A supercluster",
+    "Scales where the universe averages out uniform"
+   ]
+  },
+  {
+   "id": "cosmological-principle.spot-error",
+   "atom": "cosmological-principle",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Isotropic means the same at every location",
+    "Homogeneous means the same at every location",
+    "The principle holds after averaging over huge volumes",
+    "Below those scales, matter is clumpy"
+   ],
+   "error": 0,
+   "fix": "Isotropic means the same in every direction."
+  },
+  {
+   "id": "cosmological-principle.match",
+   "atom": "cosmological-principle",
+   "kind": "match",
+   "prompt": "Match each word to its meaning.",
+   "pairs": [
+    {
+     "term": "Homogeneous",
+     "meaning": "Same at every location"
+    },
+    {
+     "term": "Isotropic",
+     "meaning": "Same in every direction"
+    },
+    {
+     "term": "Large-scale structure",
+     "meaning": "Clumping that averages out above about 100 Mpc"
+    },
+    {
+     "term": "CMB uniformity",
+     "meaning": "Evidence for isotropy to 1 part in 100,000"
+    }
+   ]
+  },
+  {
+   "id": "frw-metric.pick",
+   "atom": "frw-metric",
+   "kind": "pick",
+   "prompt": "In the FRW metric, which value of k describes a flat universe?",
+   "options": [
+    "k = +1",
+    "k = -1",
+    "k = 2",
+    "k = 0"
+   ],
+   "answer": 3
+  },
+  {
+   "id": "frw-metric.calculate",
+   "atom": "frw-metric",
+   "kind": "calculate",
+   "prompt": "In the FRW metric, comoving distances scale with a(t). If a doubles from 0.5 to 1, by what factor do physical distances between comoving galaxies grow?",
+   "answer": 2,
+   "unit": "x",
+   "tol": 0
+  },
+  {
+   "id": "frw-metric.order",
+   "atom": "frw-metric",
+   "kind": "order",
+   "prompt": "Order the steps that give the FRW metric.",
+   "steps": [
+    "Accept the cosmological principle",
+    "Demand the space part be homogeneous and isotropic",
+    "Allow only a curvature constant k and a scale factor a(t)",
+    "Write ds^2 = -c^2 dt^2 + a^2 [dr^2/(1-kr^2) + r^2 dOmega^2]"
+   ]
+  },
+  {
+   "id": "frw-metric.spot-error",
+   "atom": "frw-metric",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The term -c^2 dt^2 is the time part",
+    "a(t) multiplies the time part, stretching cosmic time",
+    "The bracket holds the space part",
+    "k sets whether space is flat, open, or closed"
+   ],
+   "error": 1,
+   "fix": "a(t) multiplies only the space part."
+  },
+  {
+   "id": "frw-metric.match",
+   "atom": "frw-metric",
+   "kind": "match",
+   "prompt": "Match each k to its geometry.",
+   "pairs": [
+    {
+     "term": "k = 0",
+     "meaning": "Flat"
+    },
+    {
+     "term": "k = +1",
+     "meaning": "Closed, like a sphere"
+    },
+    {
+     "term": "k = -1",
+     "meaning": "Open, like a saddle"
+    },
+    {
+     "term": "a(t)",
+     "meaning": "Overall size of space at time t"
+    }
+   ]
+  },
+  {
+   "id": "scale-factor.pick",
+   "atom": "scale-factor",
+   "kind": "pick",
+   "prompt": "By convention, what is the scale factor today?",
+   "options": [
+    "0",
+    "1",
+    "13.8",
+    "70"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "scale-factor.calculate",
+   "atom": "scale-factor",
+   "kind": "calculate",
+   "prompt": "Two comoving galaxies are 500 Mpc apart today (a = 1). How far apart were they when a = 0.25?",
+   "answer": 125,
+   "unit": "Mpc",
+   "relTol": 0.02
+  },
+  {
+   "id": "scale-factor.order",
+   "atom": "scale-factor",
+   "kind": "order",
+   "prompt": "Order these epochs by increasing scale factor.",
+   "steps": [
+    "Big Bang nucleosynthesis",
+    "Recombination",
+    "Formation of the first galaxies",
+    "Today, a = 1"
+   ]
+  },
+  {
+   "id": "scale-factor.spot-error",
+   "atom": "scale-factor",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Today a = 1",
+    "Comoving separation stays fixed",
+    "Physical distance equals a divided by comoving distance",
+    "At a = 0.5, galaxies were half as far apart as today"
+   ],
+   "error": 2,
+   "fix": "Physical distance equals a times comoving distance."
+  },
+  {
+   "id": "scale-factor.match",
+   "atom": "scale-factor",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "a(t)",
+     "meaning": "How stretched the universe is at time t"
+    },
+    {
+     "term": "Comoving object",
+     "meaning": "Drifts along with cosmic expansion"
+    },
+    {
+     "term": "t_0",
+     "meaning": "Today"
+    },
+    {
+     "term": "Expansion",
+     "meaning": "Growth of a(t) with time"
+    }
+   ]
+  },
+  {
+   "id": "cosmological-redshift.pick",
+   "atom": "cosmological-redshift",
+   "kind": "pick",
+   "prompt": "Light emitted when the scale factor was a = 0.5 arrives today with what redshift?",
+   "options": [
+    "z = 0.5",
+    "z = 2",
+    "z = 1",
+    "z = 0"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "cosmological-redshift.calculate",
+   "atom": "cosmological-redshift",
+   "kind": "calculate",
+   "prompt": "A line emitted at 121.6 nm is observed at 486.4 nm. What is the redshift z?",
+   "answer": 3,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "cosmological-redshift.order",
+   "atom": "cosmological-redshift",
+   "kind": "order",
+   "prompt": "Order the steps to find when light was emitted.",
+   "steps": [
+    "Measure the observed wavelength",
+    "Divide by the known emitted wavelength to get 1 + z",
+    "Subtract 1 to get z",
+    "Take a = 1/(1+z) at emission"
+   ]
+  },
+  {
+   "id": "cosmological-redshift.spot-error",
+   "atom": "cosmological-redshift",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step for a galaxy at z = 4.",
+   "steps": [
+    "1 + z = 4",
+    "a at emission = 1/5",
+    "So a = 0.2",
+    "So the universe was 5 times smaller then"
+   ],
+   "error": 0,
+   "fix": "For z = 4, 1 + z = 5."
+  },
+  {
+   "id": "cosmological-redshift.match",
+   "atom": "cosmological-redshift",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "z",
+     "meaning": "Fractional growth of wavelength"
+    },
+    {
+     "term": "lambda_obs",
+     "meaning": "Wavelength measured today"
+    },
+    {
+     "term": "lambda_emit",
+     "meaning": "Wavelength at the source"
+    },
+    {
+     "term": "1/(1+z)",
+     "meaning": "Scale factor at emission"
+    }
+   ]
+  },
+  {
+   "id": "hubble-law.pick",
+   "atom": "hubble-law",
+   "kind": "pick",
+   "prompt": "Hubble's law says recession velocity is proportional to what?",
+   "options": [
+    "Galaxy mass",
+    "Distance",
+    "Brightness",
+    "Age"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "hubble-law.calculate",
+   "atom": "hubble-law",
+   "kind": "calculate",
+   "prompt": "With H_0 = 70 km/s/Mpc, how fast does a galaxy 200 Mpc away recede?",
+   "answer": 14000,
+   "unit": "km/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "hubble-law.order",
+   "atom": "hubble-law",
+   "kind": "order",
+   "prompt": "Order the steps to measure H_0.",
+   "steps": [
+    "Measure each galaxy's distance",
+    "Measure each galaxy's redshift to get velocity",
+    "Plot velocity against distance",
+    "Read H_0 from the slope of the line"
+   ]
+  },
+  {
+   "id": "hubble-law.spot-error",
+   "atom": "hubble-law",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step with H_0 = 70 km/s/Mpc.",
+   "steps": [
+    "A galaxy sits at 50 Mpc",
+    "v = d / H_0",
+    "v = 70 times 50",
+    "v = 3500 km/s"
+   ],
+   "error": 1,
+   "fix": "Hubble's law is v = H_0 d."
+  },
+  {
+   "id": "hubble-law.match",
+   "atom": "hubble-law",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "H_0",
+     "meaning": "Hubble constant today, about 70 km/s/Mpc"
+    },
+    {
+     "term": "H",
+     "meaning": "Expansion rate a-dot over a"
+    },
+    {
+     "term": "Mpc",
+     "meaning": "About 3.26 million light-years"
+    },
+    {
+     "term": "v",
+     "meaning": "Recession velocity"
+    }
+   ]
+  },
+  {
+   "id": "friedmann-equations.pick",
+   "atom": "friedmann-equations",
+   "kind": "pick",
+   "prompt": "The Friedmann equation gives which quantity?",
+   "options": [
+    "The temperature of the microwave sky",
+    "The square of the expansion rate H",
+    "The mass of the proton in the early universe",
+    "The age of stars in the Milky Way"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "friedmann-equations.calculate",
+   "atom": "friedmann-equations",
+   "kind": "calculate",
+   "prompt": "For a flat universe with Lambda = 0, H^2 = (8 pi G / 3) rho. If rho is multiplied by 4, by what factor does H change?",
+   "answer": 2,
+   "unit": "x",
+   "tol": 0
+  },
+  {
+   "id": "friedmann-equations.order",
+   "atom": "friedmann-equations",
+   "kind": "order",
+   "prompt": "Order the derivation of the Friedmann equations.",
+   "steps": [
+    "Assume the cosmological principle",
+    "Write the FRW metric",
+    "Feed it into Einstein's field equations",
+    "Get equations for how a(t) evolves"
+   ]
+  },
+  {
+   "id": "friedmann-equations.spot-error",
+   "atom": "friedmann-equations",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "H^2 holds a density term 8 pi G rho / 3",
+    "It holds a curvature term -k c^2 / a^2",
+    "The Lambda term is Lambda c^2 / 3 divided by a^2",
+    "A larger density makes H^2 larger"
+   ],
+   "error": 2,
+   "fix": "The Lambda term is Lambda c^2 / 3 with no a^2 factor."
+  },
+  {
+   "id": "friedmann-equations.match",
+   "atom": "friedmann-equations",
+   "kind": "match",
+   "prompt": "Match each term to its role.",
+   "pairs": [
+    {
+     "term": "8 pi G rho / 3",
+     "meaning": "Density of matter and radiation"
+    },
+    {
+     "term": "-k c^2 / a^2",
+     "meaning": "Spatial curvature"
+    },
+    {
+     "term": "Lambda c^2 / 3",
+     "meaning": "Cosmological constant, dark energy"
+    },
+    {
+     "term": "H = a-dot / a",
+     "meaning": "Fractional growth rate of the scale factor"
+    }
+   ]
+  },
+  {
+   "id": "critical-density.pick",
+   "atom": "critical-density",
+   "kind": "pick",
+   "prompt": "If Omega is greater than 1, what is the spatial geometry?",
+   "options": [
+    "Open",
+    "Flat",
+    "Closed",
+    "Undefined"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "critical-density.calculate",
+   "atom": "critical-density",
+   "kind": "calculate",
+   "prompt": "With H = 2.27e-18 s^-1 (70 km/s/Mpc) and G = 6.674e-11, compute rho_c = 3H^2/(8 pi G).",
+   "answer": 9.2e-27,
+   "unit": "kg/m^3",
+   "relTol": 0.03
+  },
+  {
+   "id": "critical-density.order",
+   "atom": "critical-density",
+   "kind": "order",
+   "prompt": "Order the steps to classify geometry.",
+   "steps": [
+    "Measure the expansion rate H",
+    "Compute rho_c = 3H^2/(8 pi G)",
+    "Measure the actual density rho",
+    "Compare Omega = rho/rho_c with 1"
+   ]
+  },
+  {
+   "id": "critical-density.spot-error",
+   "atom": "critical-density",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Omega = rho_c / rho",
+    "Measurements give Omega close to 1",
+    "So the universe is close to flat",
+    "So k is close to 0"
+   ],
+   "error": 0,
+   "fix": "Omega = rho / rho_c."
+  },
+  {
+   "id": "critical-density.match",
+   "atom": "critical-density",
+   "kind": "match",
+   "prompt": "Match each Omega to its geometry.",
+   "pairs": [
+    {
+     "term": "Omega = 1",
+     "meaning": "Flat"
+    },
+    {
+     "term": "Omega > 1",
+     "meaning": "Closed"
+    },
+    {
+     "term": "Omega < 1",
+     "meaning": "Open"
+    },
+    {
+     "term": "rho_c",
+     "meaning": "Density that makes space exactly flat"
+    }
+   ]
+  },
+  {
+   "id": "big-bang.pick",
+   "atom": "big-bang",
+   "kind": "pick",
+   "prompt": "About how old is the universe in the Big Bang model?",
+   "options": [
+    "4.6 billion years",
+    "13.8 billion years",
+    "13.8 million years",
+    "100 billion years"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "big-bang.calculate",
+   "atom": "big-bang",
+   "kind": "calculate",
+   "prompt": "The CMB is 2.725 K today. Since T scales as 1/a, what was T at a = 0.001?",
+   "answer": 2725,
+   "unit": "K",
+   "relTol": 0.02
+  },
+  {
+   "id": "big-bang.order",
+   "atom": "big-bang",
+   "kind": "order",
+   "prompt": "Order these from earliest to latest.",
+   "steps": [
+    "Hot dense early state",
+    "Light elements form",
+    "Atoms form and the CMB is released",
+    "Galaxies form"
+   ]
+  },
+  {
+   "id": "big-bang.spot-error",
+   "atom": "big-bang",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Run expansion backward",
+    "a(t) grows",
+    "The universe gets hotter and denser",
+    "The Big Bang is that hot dense early state"
+   ],
+   "error": 1,
+   "fix": "Running expansion backward, a(t) shrinks."
+  },
+  {
+   "id": "big-bang.match",
+   "atom": "big-bang",
+   "kind": "match",
+   "prompt": "Match each pillar of evidence to its observation.",
+   "pairs": [
+    {
+     "term": "Hubble expansion",
+     "meaning": "Galaxies recede with distance"
+    },
+    {
+     "term": "CMB",
+     "meaning": "Uniform microwave glow from every direction"
+    },
+    {
+     "term": "Light-element abundances",
+     "meaning": "Hydrogen, helium and lithium ratios match prediction"
+    },
+    {
+     "term": "Hot dense origin",
+     "meaning": "State the three pillars all point to"
+    }
+   ]
+  },
+  {
+   "id": "thermal-history.pick",
+   "atom": "thermal-history",
+   "kind": "pick",
+   "prompt": "If the scale factor doubles, what happens to the radiation temperature?",
+   "options": [
+    "It doubles",
+    "It stays the same",
+    "It halves",
+    "It quadruples"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "thermal-history.calculate",
+   "atom": "thermal-history",
+   "kind": "calculate",
+   "prompt": "Recombination happened at z = 1100. With T_0 = 2.725 K, what was T then? Use T = T_0 (1+z).",
+   "answer": 3000,
+   "unit": "K",
+   "relTol": 0.02
+  },
+  {
+   "id": "thermal-history.order",
+   "atom": "thermal-history",
+   "kind": "order",
+   "prompt": "Order these from hottest to coolest.",
+   "steps": [
+    "Inflation",
+    "Nucleosynthesis",
+    "Recombination",
+    "Today"
+   ]
+  },
+  {
+   "id": "thermal-history.spot-error",
+   "atom": "thermal-history",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step for z = 9.",
+   "steps": [
+    "1 + z = 10",
+    "T scales as 1 + z",
+    "T = 2.725 divided by 10",
+    "T = 27.25 K"
+   ],
+   "error": 2,
+   "fix": "T = 2.725 times 10."
+  },
+  {
+   "id": "thermal-history.match",
+   "atom": "thermal-history",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "T",
+     "meaning": "Temperature of cosmic radiation"
+    },
+    {
+     "term": "K",
+     "meaning": "Kelvin scale from absolute zero"
+    },
+    {
+     "term": "T proportional to 1/a",
+     "meaning": "Cooling as space expands"
+    },
+    {
+     "term": "1 + z",
+     "meaning": "Factor by which space grew since emission"
+    }
+   ]
+  },
+  {
+   "id": "inflation.pick",
+   "atom": "inflation",
+   "kind": "pick",
+   "prompt": "Which problems does inflation address?",
+   "options": [
+    "Flatness, uniformity and the seed fluctuations",
+    "The origin of planets around young stars",
+    "How dark matter halos first formed",
+    "Why the Sun has burned for billions of years"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "inflation.calculate",
+   "atom": "inflation",
+   "kind": "calculate",
+   "prompt": "During inflation a grows as e^{Ht}. How many e-folds give a growth factor of e^60? Take ln.",
+   "answer": 60,
+   "unit": "e-folds",
+   "tol": 0
+  },
+  {
+   "id": "inflation.order",
+   "atom": "inflation",
+   "kind": "order",
+   "prompt": "Order the inflation story.",
+   "steps": [
+    "A scalar field holds energy spread through space",
+    "That energy drives exponential expansion",
+    "The field decays and reheats the universe",
+    "Ordinary hot Big Bang expansion follows"
+   ]
+  },
+  {
+   "id": "inflation.spot-error",
+   "atom": "inflation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Inflation stretches any curvature",
+    "So space ends up nearly flat",
+    "Quantum fluctuations get stretched to cosmic size",
+    "Those fluctuations erase all structure"
+   ],
+   "error": 3,
+   "fix": "The stretched fluctuations seed structure such as galaxies."
+  },
+  {
+   "id": "inflation.match",
+   "atom": "inflation",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Scalar field",
+     "meaning": "Energy spread evenly through space that drives inflation"
+    },
+    {
+     "term": "e-fold",
+     "meaning": "Growth by a factor of e"
+    },
+    {
+     "term": "Reheating",
+     "meaning": "Field energy turning into hot particles"
+    },
+    {
+     "term": "Horizon problem",
+     "meaning": "Why distant regions share one temperature"
+    }
+   ]
+  },
+  {
+   "id": "baryogenesis.pick",
+   "atom": "baryogenesis",
+   "kind": "pick",
+   "prompt": "What does baryogenesis try to explain?",
+   "options": [
+    "Why stars burn hydrogen for so long",
+    "Why matter outnumbers antimatter",
+    "Why the CMB is so cold today",
+    "Why light bends near masses"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "baryogenesis.calculate",
+   "atom": "baryogenesis",
+   "kind": "calculate",
+   "prompt": "For every 10^9 antibaryons there were 10^9 + 1 baryons. After annihilation, how many baryons survive per 10^9 annihilations?",
+   "answer": 1,
+   "unit": "baryons",
+   "tol": 0
+  },
+  {
+   "id": "baryogenesis.order",
+   "atom": "baryogenesis",
+   "kind": "order",
+   "prompt": "Order the history.",
+   "steps": [
+    "Matter and antimatter form in nearly equal amounts",
+    "An unknown process leaves a slight matter excess",
+    "Particles and antiparticles annihilate into radiation",
+    "The small excess remains as today's matter"
+   ]
+  },
+  {
+   "id": "baryogenesis.spot-error",
+   "atom": "baryogenesis",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A proton is a baryon",
+    "Particle meets antiparticle and they annihilate",
+    "Annihilation produces radiation",
+    "With exact balance, today's matter would still exist"
+   ],
+   "error": 3,
+   "fix": "With exact balance everything would annihilate, leaving only radiation."
+  },
+  {
+   "id": "baryogenesis.match",
+   "atom": "baryogenesis",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Baryon",
+     "meaning": "Heavy particle like a proton or neutron"
+    },
+    {
+     "term": "Antimatter",
+     "meaning": "Counterpart of matter with opposite charge"
+    },
+    {
+     "term": "Annihilation",
+     "meaning": "Particle and antiparticle turning into radiation"
+    },
+    {
+     "term": "Asymmetry",
+     "meaning": "Slight excess of matter over antimatter"
+    }
+   ]
+  },
+  {
+   "id": "bbn.pick",
+   "atom": "bbn",
+   "kind": "pick",
+   "prompt": "When did Big Bang nucleosynthesis happen?",
+   "options": [
+    "Within the first millisecond of expansion",
+    "Between about one second and a few minutes",
+    "At 380,000 years, as atoms formed",
+    "At 1 billion years, as galaxies formed"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "bbn.calculate",
+   "atom": "bbn",
+   "kind": "calculate",
+   "prompt": "With 1 neutron per 7 protons, helium-4 takes all neutrons. Mass fraction of helium Y = 2n/(n+p). Compute Y.",
+   "answer": 0.25,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "bbn.order",
+   "atom": "bbn",
+   "kind": "order",
+   "prompt": "Order the steps of nucleosynthesis.",
+   "steps": [
+    "The universe is hot and dense with protons and neutrons",
+    "It cools enough for deuterium to survive",
+    "Deuterium fuses into helium-4",
+    "Expansion and cooling stop fusion"
+   ]
+  },
+  {
+   "id": "bbn.spot-error",
+   "atom": "bbn",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Fusion joins small nuclei into larger ones",
+    "BBN made hydrogen, helium and a little lithium",
+    "About a quarter of baryon mass became helium",
+    "BBN made most of the carbon and iron we see"
+   ],
+   "error": 3,
+   "fix": "Carbon and iron came later from stars."
+  },
+  {
+   "id": "bbn.match",
+   "atom": "bbn",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Nucleosynthesis",
+     "meaning": "Building atomic nuclei"
+    },
+    {
+     "term": "Nucleus",
+     "meaning": "Dense core of protons and neutrons"
+    },
+    {
+     "term": "Fusion",
+     "meaning": "Small nuclei joining into bigger ones"
+    },
+    {
+     "term": "Deuterium",
+     "meaning": "Hydrogen nucleus with one neutron"
+    }
+   ]
+  },
+  {
+   "id": "recombination.pick",
+   "atom": "recombination",
+   "kind": "pick",
+   "prompt": "About when did recombination happen?",
+   "options": [
+    "3 minutes",
+    "380,000 years",
+    "1 billion years",
+    "13.8 billion years"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "recombination.calculate",
+   "atom": "recombination",
+   "kind": "calculate",
+   "prompt": "Recombination occurred near 3000 K. The CMB is 2.725 K today. By what factor has the universe expanded since? Give 1 + z.",
+   "answer": 1101,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "recombination.order",
+   "atom": "recombination",
+   "kind": "order",
+   "prompt": "Order these events.",
+   "steps": [
+    "Free electrons scatter photons in a hot plasma",
+    "The universe cools to about 3000 K",
+    "Electrons bind to nuclei to form atoms",
+    "Photons travel freely as the CMB"
+   ]
+  },
+  {
+   "id": "recombination.spot-error",
+   "atom": "recombination",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Before recombination, electrons roamed free",
+    "Free electrons scatter photons",
+    "So the early universe was opaque",
+    "After atoms formed, scattering increased"
+   ],
+   "error": 3,
+   "fix": "After atoms formed, scattering dropped and the universe became transparent."
+  },
+  {
+   "id": "recombination.match",
+   "atom": "recombination",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Plasma",
+     "meaning": "Hot soup with free electrons"
+    },
+    {
+     "term": "Opaque",
+     "meaning": "Light cannot pass through"
+    },
+    {
+     "term": "Transparent",
+     "meaning": "Light travels freely"
+    },
+    {
+     "term": "Recombination",
+     "meaning": "Electrons binding to nuclei to form atoms"
+    }
+   ]
+  },
+  {
+   "id": "cmb-origin.pick",
+   "atom": "cmb-origin",
+   "kind": "pick",
+   "prompt": "What is the temperature of the CMB today?",
+   "options": [
+    "27.25 K",
+    "300 K",
+    "3000 K",
+    "2.725 K"
+   ],
+   "answer": 3
+  },
+  {
+   "id": "cmb-origin.calculate",
+   "atom": "cmb-origin",
+   "kind": "calculate",
+   "prompt": "Wien's law gives peak wavelength = 2.898e-3 / T meters. For T = 2.725 K, find the peak in mm.",
+   "answer": 1.063,
+   "unit": "mm",
+   "relTol": 0.02
+  },
+  {
+   "id": "cmb-origin.order",
+   "atom": "cmb-origin",
+   "kind": "order",
+   "prompt": "Order the history of CMB light.",
+   "steps": [
+    "Light scatters in the hot plasma",
+    "Recombination frees the light",
+    "Expansion stretches its wavelength",
+    "It arrives as microwaves at 2.725 K"
+   ]
+  },
+  {
+   "id": "cmb-origin.spot-error",
+   "atom": "cmb-origin",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The CMB was released at recombination",
+    "It was about 3000 K then",
+    "Expansion has stretched it by about 1100 times",
+    "So it is now hotter than at release"
+   ],
+   "error": 3,
+   "fix": "Stretching cools it, to 2.725 K."
+  },
+  {
+   "id": "cmb-origin.match",
+   "atom": "cmb-origin",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "CMB",
+     "meaning": "Relic light from last scattering"
+    },
+    {
+     "term": "Blackbody",
+     "meaning": "Spectrum set only by temperature"
+    },
+    {
+     "term": "Microwave",
+     "meaning": "Wave band the CMB sits in today"
+    },
+    {
+     "term": "Last scattering",
+     "meaning": "Final interaction of CMB photons with matter"
+    }
+   ]
+  },
+  {
+   "id": "cmb-anisotropies.pick",
+   "atom": "cmb-anisotropies",
+   "kind": "pick",
+   "prompt": "How large are the CMB temperature variations after removing the shift from our own motion?",
+   "options": [
+    "About 1 part in 100",
+    "About 1 part in 1,000",
+    "About 1 part in 100,000",
+    "About 1 part in 10 billion"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "cmb-anisotropies.calculate",
+   "atom": "cmb-anisotropies",
+   "kind": "calculate",
+   "prompt": "The CMB averages 2.725 K. A fluctuation of 1 part in 100,000 is how many microkelvin?",
+   "answer": 27.25,
+   "unit": "µK",
+   "relTol": 0.02
+  },
+  {
+   "id": "cmb-anisotropies.order",
+   "atom": "cmb-anisotropies",
+   "kind": "order",
+   "prompt": "Order the story of a CMB warm spot.",
+   "steps": [
+    "Inflation seeds a slight density excess",
+    "The denser region is slightly hotter at recombination",
+    "Light escapes at recombination carrying the pattern",
+    "Telescopes today see a warm spot on the sky"
+   ]
+  },
+  {
+   "id": "cmb-anisotropies.spot-error",
+   "atom": "cmb-anisotropies",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step in this CMB analysis.",
+   "steps": [
+    "Assume the CMB sky starts perfectly uniform, with no ripples to find",
+    "Measure the sky temperature in every direction",
+    "Subtract the smooth shift from our motion through space",
+    "Read the leftover ripples as seeds of structure"
+   ],
+   "error": 0,
+   "fix": "The sky still varies by about 1 part in 100,000; those ripples are the anisotropies."
+  },
+  {
+   "id": "cmb-anisotropies.match",
+   "atom": "cmb-anisotropies",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Anisotropy",
+     "meaning": "Different in different directions"
+    },
+    {
+     "term": "Warm spot",
+     "meaning": "A slightly denser region at recombination"
+    },
+    {
+     "term": "Recombination",
+     "meaning": "When the CMB light was released"
+    },
+    {
+     "term": "Density fluctuation",
+     "meaning": "A small excess or deficit of matter"
+    }
+   ]
+  },
+  {
+   "id": "acoustic-peaks.pick",
+   "atom": "acoustic-peaks",
+   "kind": "pick",
+   "prompt": "What two effects drove sound waves through the early plasma?",
+   "options": [
+    "Magnetic fields and neutrino drag",
+    "Photon pressure and gravity",
+    "Dark energy and rotation",
+    "Nuclear fusion and turbulence"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "acoustic-peaks.calculate",
+   "atom": "acoustic-peaks",
+   "kind": "calculate",
+   "prompt": "A 150 Mpc sound horizon sits about 14,000 Mpc away. What angle does it span on the sky in degrees?",
+   "answer": 0.614,
+   "unit": "degrees",
+   "relTol": 0.03
+  },
+  {
+   "id": "acoustic-peaks.order",
+   "atom": "acoustic-peaks",
+   "kind": "order",
+   "prompt": "Order the history of the acoustic peaks.",
+   "steps": [
+    "Gravity and photon pressure set the plasma oscillating",
+    "Sound waves travel up to the sound horizon",
+    "Recombination freezes the waves in place",
+    "The angular power spectrum shows a series of peaks"
+   ]
+  },
+  {
+   "id": "acoustic-peaks.spot-error",
+   "atom": "acoustic-peaks",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step about the sound horizon.",
+   "steps": [
+    "Sound waves ran through the baryon-photon plasma",
+    "They stopped at recombination",
+    "The distance they reached is the sound horizon",
+    "That distance varies at random, so it cannot serve as a ruler"
+   ],
+   "error": 3,
+   "fix": "The sound horizon is a fixed, known length."
+  },
+  {
+   "id": "acoustic-peaks.match",
+   "atom": "acoustic-peaks",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Sound horizon",
+     "meaning": "Farthest a sound wave traveled before recombination"
+    },
+    {
+     "term": "Angular power spectrum",
+     "meaning": "Variation plotted against angular size"
+    },
+    {
+     "term": "Baryon-photon plasma",
+     "meaning": "The early soup of ordinary matter and light"
+    },
+    {
+     "term": "Photon pressure",
+     "meaning": "The push of light on the plasma"
+    }
+   ]
+  },
+  {
+   "id": "gravitational-instability.pick",
+   "atom": "gravitational-instability",
+   "kind": "pick",
+   "prompt": "What slows the growth of density lumps in our universe?",
+   "options": [
+    "Photon pressure decaying away over time",
+    "The Hubble expansion pulling matter apart",
+    "Magnetic pressure in cosmic voids",
+    "Repulsion between dark matter particles"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "gravitational-instability.calculate",
+   "atom": "gravitational-instability",
+   "kind": "calculate",
+   "prompt": "In the matter era density contrast grows in proportion to the scale factor. By what factor does it grow from a = 0.001 to a = 0.1?",
+   "answer": 100,
+   "unit": "x",
+   "tol": 0.5
+  },
+  {
+   "id": "gravitational-instability.order",
+   "atom": "gravitational-instability",
+   "kind": "order",
+   "prompt": "Order the runaway of gravitational instability.",
+   "steps": [
+    "A region is slightly overdense",
+    "Its extra gravity pulls in surrounding matter",
+    "Its density contrast rises",
+    "Its gravity grows stronger still"
+   ]
+  },
+  {
+   "id": "gravitational-instability.spot-error",
+   "atom": "gravitational-instability",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Small overdensities exist after inflation",
+    "Expansion makes them grow explosively, faster than in a static universe",
+    "Gravity of each overdensity attracts nearby matter",
+    "Over billions of years they become galaxies and clusters"
+   ],
+   "error": 1,
+   "fix": "Expansion pulls matter apart, so growth is slower than in a static universe."
+  },
+  {
+   "id": "gravitational-instability.match",
+   "atom": "gravitational-instability",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Density contrast",
+     "meaning": "How much denser a region is than average"
+    },
+    {
+     "term": "Overdense region",
+     "meaning": "A patch with extra matter"
+    },
+    {
+     "term": "Hubble expansion",
+     "meaning": "Stretching that slows collapse"
+    },
+    {
+     "term": "Gravitational instability",
+     "meaning": "Runaway growth of small lumps"
+    }
+   ]
+  },
+  {
+   "id": "dark-matter-evidence.pick",
+   "atom": "dark-matter-evidence",
+   "kind": "pick",
+   "prompt": "What do galaxy rotation curves show far from the center?",
+   "options": [
+    "Speeds drop to zero",
+    "Speeds stay flat",
+    "Speeds reverse direction",
+    "Speeds follow visible mass exactly"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "dark-matter-evidence.calculate",
+   "atom": "dark-matter-evidence",
+   "kind": "calculate",
+   "prompt": "Visible mass predicts Keplerian speeds that fall as 1 over the square root of radius. A star orbits at 200 km/s at 5 kpc. What speed does visible mass predict at 20 kpc?",
+   "answer": 100,
+   "unit": "km/s",
+   "tol": 0.5
+  },
+  {
+   "id": "dark-matter-evidence.order",
+   "atom": "dark-matter-evidence",
+   "kind": "order",
+   "prompt": "Order the rotation curve argument.",
+   "steps": [
+    "Measure star speeds at many radii",
+    "Plot speed against distance from the center",
+    "See the curve stay flat far out",
+    "Infer unseen mass in the outskirts"
+   ]
+  },
+  {
+   "id": "dark-matter-evidence.spot-error",
+   "atom": "dark-matter-evidence",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Rotation curves stay flat at large radius",
+    "Cluster galaxies move too fast to stay bound by visible mass",
+    "So the extra mass must be glowing gas we missed",
+    "Lensing is stronger than visible mass allows"
+   ],
+   "error": 2,
+   "fix": "The extra mass gives off no light; it is dark matter."
+  },
+  {
+   "id": "dark-matter-evidence.match",
+   "atom": "dark-matter-evidence",
+   "kind": "match",
+   "prompt": "Match each clue to what it reveals.",
+   "pairs": [
+    {
+     "term": "Flat rotation curves",
+     "meaning": "Unseen mass in galaxy outskirts"
+    },
+    {
+     "term": "Fast cluster galaxies",
+     "meaning": "Extra mass holding clusters together"
+    },
+    {
+     "term": "Strong lensing",
+     "meaning": "More total mass bending light"
+    },
+    {
+     "term": "Visible stars and gas",
+     "meaning": "Too little mass to explain the data"
+    }
+   ]
+  },
+  {
+   "id": "dark-matter-halos.pick",
+   "atom": "dark-matter-halos",
+   "kind": "pick",
+   "prompt": "Why did dark matter begin clumping before ordinary matter?",
+   "options": [
+    "It is heavier per particle, so it sinks into potential wells much sooner",
+    "It ignores light, so radiation pressure did not hold it smooth",
+    "It formed later and cooled faster than the baryons",
+    "Baryons repelled it into the denser regions of the early universe"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "dark-matter-halos.calculate",
+   "atom": "dark-matter-halos",
+   "kind": "calculate",
+   "prompt": "ΛCDM has about 27% dark matter and 5% ordinary matter. How many times more dark matter than ordinary matter is there?",
+   "answer": 5.4,
+   "unit": "x",
+   "relTol": 0.02
+  },
+  {
+   "id": "dark-matter-halos.order",
+   "atom": "dark-matter-halos",
+   "kind": "order",
+   "prompt": "Order galaxy formation in a halo.",
+   "steps": [
+    "Dark matter collapses into a halo",
+    "The halo forms a potential well",
+    "Gas falls into the well and cools",
+    "Stars form and a galaxy lights up"
+   ]
+  },
+  {
+   "id": "dark-matter-halos.spot-error",
+   "atom": "dark-matter-halos",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Ordinary gas collapsed first because radiation pressure helped it clump",
+    "Dark matter ignored light and was free to collapse",
+    "Gas fell into dark matter wells and cooled",
+    "Galaxies formed inside dark matter halos"
+   ],
+   "error": 0,
+   "fix": "Radiation pressure kept ordinary gas smooth; dark matter collapsed first."
+  },
+  {
+   "id": "dark-matter-halos.match",
+   "atom": "dark-matter-halos",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Halo",
+     "meaning": "Large roughly spherical cloud of dark matter"
+    },
+    {
+     "term": "Potential well",
+     "meaning": "A gravitational valley"
+    },
+    {
+     "term": "Baryons",
+     "meaning": "Ordinary matter"
+    },
+    {
+     "term": "Radiation pressure",
+     "meaning": "Push of light that kept baryons smooth"
+    }
+   ]
+  },
+  {
+   "id": "large-scale-structure.pick",
+   "atom": "large-scale-structure",
+   "kind": "pick",
+   "prompt": "Where do dense galaxy clusters sit in the cosmic web?",
+   "options": [
+    "Inside voids",
+    "Where filaments cross",
+    "At random isolated points",
+    "At the edge of the observable universe"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "large-scale-structure.calculate",
+   "atom": "large-scale-structure",
+   "kind": "calculate",
+   "prompt": "A void spans 30 Mpc. With 1 Mpc about 3.26 million light-years, how many million light-years across is it?",
+   "answer": 97.8,
+   "unit": "million ly",
+   "relTol": 0.02
+  },
+  {
+   "id": "large-scale-structure.order",
+   "atom": "large-scale-structure",
+   "kind": "order",
+   "prompt": "Order structure growth from small to large outcome.",
+   "steps": [
+    "Faint density seeds",
+    "Gravitational instability amplifies them",
+    "Matter drains into sheets and filaments",
+    "Clusters form where filaments meet and voids empty"
+   ]
+  },
+  {
+   "id": "large-scale-structure.spot-error",
+   "atom": "large-scale-structure",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Redshift surveys map galaxy positions",
+    "Galaxies line up in filaments and sheets",
+    "Clusters sit at filament crossings",
+    "Voids are dense regions packed with galaxies"
+   ],
+   "error": 3,
+   "fix": "Voids are huge, nearly empty regions."
+  },
+  {
+   "id": "large-scale-structure.match",
+   "atom": "large-scale-structure",
+   "kind": "match",
+   "prompt": "Match each structure to its description.",
+   "pairs": [
+    {
+     "term": "Filament",
+     "meaning": "Long thread of galaxies"
+    },
+    {
+     "term": "Sheet",
+     "meaning": "Wall of galaxies"
+    },
+    {
+     "term": "Void",
+     "meaning": "Huge nearly empty region"
+    },
+    {
+     "term": "Cluster",
+     "meaning": "Dense knot where filaments cross"
+    }
+   ]
+  },
+  {
+   "id": "baryon-acoustic-oscillations.pick",
+   "atom": "baryon-acoustic-oscillations",
+   "kind": "pick",
+   "prompt": "About what comoving separation do galaxies slightly prefer because of BAO?",
+   "options": [
+    "15 Mpc",
+    "150 Mpc",
+    "1,500 Mpc",
+    "15,000 Mpc"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "baryon-acoustic-oscillations.calculate",
+   "atom": "baryon-acoustic-oscillations",
+   "kind": "calculate",
+   "prompt": "The BAO scale is 150 Mpc. At 3.26 million light-years per Mpc, how many million light-years is that?",
+   "answer": 489,
+   "unit": "million ly",
+   "tol": 0.5
+  },
+  {
+   "id": "baryon-acoustic-oscillations.order",
+   "atom": "baryon-acoustic-oscillations",
+   "kind": "order",
+   "prompt": "Order how BAO gives a distance.",
+   "steps": [
+    "Early sound waves set the sound horizon",
+    "The scale is imprinted in matter",
+    "Surveys find a bump in the galaxy correlation function",
+    "Comparing apparent and true size gives distance"
+   ]
+  },
+  {
+   "id": "baryon-acoustic-oscillations.spot-error",
+   "atom": "baryon-acoustic-oscillations",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Sound waves stamped a preferred distance in matter",
+    "Its true length is unknown, so it gives only relative sizes",
+    "It shows as a bump in the galaxy correlation function",
+    "Its apparent size yields distance and expansion history"
+   ],
+   "error": 1,
+   "fix": "Its true length is known, which makes it a standard ruler."
+  },
+  {
+   "id": "baryon-acoustic-oscillations.match",
+   "atom": "baryon-acoustic-oscillations",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Comoving",
+     "meaning": "Measured in today's stretched units"
+    },
+    {
+     "term": "Correlation function",
+     "meaning": "Pair counts against separation"
+    },
+    {
+     "term": "Standard ruler",
+     "meaning": "Object of known length"
+    },
+    {
+     "term": "Sound horizon",
+     "meaning": "The BAO length of about 150 Mpc"
+    }
+   ]
+  },
+  {
+   "id": "standard-candles.pick",
+   "atom": "standard-candles",
+   "kind": "pick",
+   "prompt": "What makes an object a standard candle?",
+   "options": [
+    "It sits at a distance known in advance",
+    "Its intrinsic luminosity is known in advance",
+    "It never changes brightness over time",
+    "Its spectrum shows no redshift"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "standard-candles.calculate",
+   "atom": "standard-candles",
+   "kind": "calculate",
+   "prompt": "A standard candle is moved 3 times farther away. How many times dimmer does it appear?",
+   "answer": 9,
+   "unit": "x",
+   "tol": 0.5
+  },
+  {
+   "id": "standard-candles.order",
+   "atom": "standard-candles",
+   "kind": "order",
+   "prompt": "Order the standard candle method.",
+   "steps": [
+    "Identify an object of known luminosity",
+    "Measure its apparent brightness",
+    "Apply the inverse-square law",
+    "Compute its distance"
+   ]
+  },
+  {
+   "id": "standard-candles.spot-error",
+   "atom": "standard-candles",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Cepheids pulse in size and brightness",
+    "The pulse period reveals luminosity",
+    "Twice as far looks twice as dim",
+    "Compare luminosity with apparent brightness to get distance"
+   ],
+   "error": 2,
+   "fix": "Twice as far looks four times dimmer under the inverse-square law."
+  },
+  {
+   "id": "standard-candles.match",
+   "atom": "standard-candles",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Luminosity",
+     "meaning": "Intrinsic brightness"
+    },
+    {
+     "term": "Inverse-square law",
+     "meaning": "Brightness falls as 1 over distance squared"
+    },
+    {
+     "term": "Cepheid variable",
+     "meaning": "Pulsing star whose period gives luminosity"
+    },
+    {
+     "term": "Type Ia supernova",
+     "meaning": "Bright explosion used for great distances"
+    }
+   ]
+  },
+  {
+   "id": "redshift-surveys.pick",
+   "atom": "redshift-surveys",
+   "kind": "pick",
+   "prompt": "What does each galaxy spectrum give a redshift survey?",
+   "options": [
+    "The galaxy's mass, from its rotation speed",
+    "The galaxy's redshift, which converts to distance",
+    "The galaxy's age, from its stellar colors",
+    "The galaxy's dark matter fraction, from lensing"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "redshift-surveys.calculate",
+   "atom": "redshift-surveys",
+   "kind": "calculate",
+   "prompt": "A galaxy has z = 0.02. Using v = cz and H0 = 70 km/s/Mpc, how far away is it in Mpc?",
+   "answer": 85.7,
+   "unit": "Mpc",
+   "relTol": 0.02
+  },
+  {
+   "id": "redshift-surveys.order",
+   "atom": "redshift-surveys",
+   "kind": "order",
+   "prompt": "Order a redshift survey.",
+   "steps": [
+    "Record spectra of many galaxies",
+    "Measure each redshift",
+    "Convert redshifts to distances",
+    "Plot galaxies in a 3D map"
+   ]
+  },
+  {
+   "id": "redshift-surveys.spot-error",
+   "atom": "redshift-surveys",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Sky position alone gives a full 3D map",
+    "Take a spectrum of each galaxy",
+    "Read the redshift from the spectrum",
+    "Extract the galaxy power spectrum from the 3D map"
+   ],
+   "error": 0,
+   "fix": "The redshift supplies the distance, the third dimension."
+  },
+  {
+   "id": "redshift-surveys.match",
+   "atom": "redshift-surveys",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Spectrum",
+     "meaning": "Rainbow breakdown of light"
+    },
+    {
+     "term": "Redshift",
+     "meaning": "Stretch of light that maps to distance"
+    },
+    {
+     "term": "SDSS",
+     "meaning": "Survey that mapped millions of galaxies"
+    },
+    {
+     "term": "Galaxy power spectrum",
+     "meaning": "Clustering strength against scale"
+    }
+   ]
+  },
+  {
+   "id": "dark-energy.pick",
+   "atom": "dark-energy",
+   "kind": "pick",
+   "prompt": "What did the 1998 supernova teams find?",
+   "options": [
+    "Distant supernovae were brighter than a coasting universe allows",
+    "Distant supernovae were dimmer than a slowing universe allows",
+    "Supernovae turned out not to be usable standard candles",
+    "Expansion had stopped and begun to reverse"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "dark-energy.calculate",
+   "atom": "dark-energy",
+   "kind": "calculate",
+   "prompt": "Acceleration needs an equation of state w below what value? Give the number to three decimals.",
+   "answer": -0.333,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "dark-energy.order",
+   "atom": "dark-energy",
+   "kind": "order",
+   "prompt": "Order the discovery of acceleration.",
+   "steps": [
+    "Measure distant Type Ia supernovae",
+    "Find them dimmer than expected",
+    "Infer they are farther away",
+    "Conclude expansion is speeding up"
+   ]
+  },
+  {
+   "id": "dark-energy.spot-error",
+   "atom": "dark-energy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Supernovae looked dimmer than predicted",
+    "So they are farther than a slowing universe allows",
+    "Expansion is therefore accelerating",
+    "Acceleration needs a component with positive pressure"
+   ],
+   "error": 3,
+   "fix": "Acceleration needs strongly negative pressure, near p = -ρc²."
+  },
+  {
+   "id": "dark-energy.match",
+   "atom": "dark-energy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Dark energy",
+     "meaning": "Repulsive component driving acceleration"
+    },
+    {
+     "term": "Negative pressure",
+     "meaning": "Pressure that pulls inward yet drives expansion"
+    },
+    {
+     "term": "Accelerating expansion",
+     "meaning": "Expansion speeding up"
+    },
+    {
+     "term": "Friedmann equations",
+     "meaning": "Equations linking contents to expansion"
+    }
+   ]
+  },
+  {
+   "id": "cosmological-constant.pick",
+   "atom": "cosmological-constant",
+   "kind": "pick",
+   "prompt": "What is the equation of state w of a cosmological constant?",
+   "options": [
+    "0",
+    "1/3",
+    "-1/3",
+    "-1"
+   ],
+   "answer": 3
+  },
+  {
+   "id": "cosmological-constant.calculate",
+   "atom": "cosmological-constant",
+   "kind": "calculate",
+   "prompt": "The universe doubles in size. Matter density falls as a⁻³ while Λ stays fixed. By what factor does the Λ to matter ratio grow?",
+   "answer": 8,
+   "unit": "x",
+   "tol": 0.5
+  },
+  {
+   "id": "cosmological-constant.order",
+   "atom": "cosmological-constant",
+   "kind": "order",
+   "prompt": "Order the rise of Λ over cosmic time.",
+   "steps": [
+    "Matter dominates the young universe",
+    "Expansion dilutes matter",
+    "Λ density stays constant",
+    "Λ comes to dominate and expansion accelerates"
+   ]
+  },
+  {
+   "id": "cosmological-constant.spot-error",
+   "atom": "cosmological-constant",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Λ is a uniform energy of empty space",
+    "It dilutes as fast as matter",
+    "Its density stays constant as space expands",
+    "It has w = -1"
+   ],
+   "error": 1,
+   "fix": "Λ does not dilute; only matter and radiation do."
+  },
+  {
+   "id": "cosmological-constant.match",
+   "atom": "cosmological-constant",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Λ",
+     "meaning": "Einstein's cosmological constant"
+    },
+    {
+     "term": "Vacuum energy",
+     "meaning": "Energy built into empty space"
+    },
+    {
+     "term": "w",
+     "meaning": "Ratio of pressure to energy density"
+    },
+    {
+     "term": "w = -1",
+     "meaning": "Hallmark of a true constant"
+    }
+   ]
+  },
+  {
+   "id": "lambda-cdm.pick",
+   "atom": "lambda-cdm",
+   "kind": "pick",
+   "prompt": "What is the rough ΛCDM mix?",
+   "options": [
+    "68% atoms, 27% dark matter, 5% dark energy",
+    "5% atoms, 27% dark matter, 68% dark energy",
+    "27% atoms, 5% dark matter, 68% dark energy",
+    "50% atoms, 50% dark matter"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "lambda-cdm.calculate",
+   "atom": "lambda-cdm",
+   "kind": "calculate",
+   "prompt": "Ordinary matter is about 5% of ΛCDM. What percent is dark matter plus dark energy?",
+   "answer": 95,
+   "unit": "%",
+   "tol": 0.5
+  },
+  {
+   "id": "lambda-cdm.order",
+   "atom": "lambda-cdm",
+   "kind": "order",
+   "prompt": "Order the ΛCDM components from smallest to largest share.",
+   "steps": [
+    "Ordinary matter",
+    "Cold dark matter",
+    "Dark energy"
+   ]
+  },
+  {
+   "id": "lambda-cdm.spot-error",
+   "atom": "lambda-cdm",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "ΛCDM is the standard model of cosmology",
+    "Λ stands for the cosmological constant",
+    "CDM is fast-moving hot dark matter",
+    "The universe in ΛCDM is spatially flat"
+   ],
+   "error": 2,
+   "fix": "CDM is cold dark matter, which moves slowly so fine structure can form."
+  },
+  {
+   "id": "lambda-cdm.match",
+   "atom": "lambda-cdm",
+   "kind": "match",
+   "prompt": "Match each label to its meaning.",
+   "pairs": [
+    {
+     "term": "Λ",
+     "meaning": "Dark energy as a cosmological constant"
+    },
+    {
+     "term": "CDM",
+     "meaning": "Slow-moving cold dark matter"
+    },
+    {
+     "term": "Concordance model",
+     "meaning": "Name for agreement among datasets"
+    },
+    {
+     "term": "Flat",
+     "meaning": "Spatial geometry of ΛCDM"
+    }
+   ]
+  },
+  {
+   "id": "cosmic-distance-ladder.pick",
+   "atom": "cosmic-distance-ladder",
+   "kind": "pick",
+   "prompt": "What is the bottom rung of the distance ladder?",
+   "options": [
+    "Type Ia supernovae",
+    "Cepheids",
+    "Parallax",
+    "Redshift"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "cosmic-distance-ladder.calculate",
+   "atom": "cosmic-distance-ladder",
+   "kind": "calculate",
+   "prompt": "A star shows a parallax of 0.01 arcseconds. Using d = 1/p, how many parsecs away is it?",
+   "answer": 100,
+   "unit": "pc",
+   "tol": 0.5
+  },
+  {
+   "id": "cosmic-distance-ladder.order",
+   "atom": "cosmic-distance-ladder",
+   "kind": "order",
+   "prompt": "Order the rungs of the ladder.",
+   "steps": [
+    "Parallax",
+    "Cepheid variables",
+    "Type Ia supernovae",
+    "Hubble flow distances"
+   ]
+  },
+  {
+   "id": "cosmic-distance-ladder.spot-error",
+   "atom": "cosmic-distance-ladder",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Supernovae calibrate Cepheids",
+    "Parallax gives nearby star distances by geometry",
+    "Cepheids in host galaxies calibrate supernovae",
+    "Supernovae reach far galaxies"
+   ],
+   "error": 0,
+   "fix": "Parallax calibrates Cepheids; supernovae do not calibrate Cepheids."
+  },
+  {
+   "id": "cosmic-distance-ladder.match",
+   "atom": "cosmic-distance-ladder",
+   "kind": "match",
+   "prompt": "Match each rung to its role.",
+   "pairs": [
+    {
+     "term": "Parallax",
+     "meaning": "Geometric shift from Earth's orbit"
+    },
+    {
+     "term": "Cepheids",
+     "meaning": "Pulsing stars calibrated by parallax"
+    },
+    {
+     "term": "Type Ia supernovae",
+     "meaning": "Bright rung for distant galaxies"
+    },
+    {
+     "term": "Calibration",
+     "meaning": "Each rung setting the next"
+    }
+   ]
+  },
+  {
+   "id": "observable-universe.pick",
+   "atom": "observable-universe",
+   "kind": "pick",
+   "prompt": "Why is the observable radius larger than 13.8 billion light-years?",
+   "options": [
+    "Light moves faster in space",
+    "Space kept expanding while the light traveled",
+    "The universe is older than 13.8 billion years",
+    "Gravity bends light outward"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "observable-universe.calculate",
+   "atom": "observable-universe",
+   "kind": "calculate",
+   "prompt": "The comoving radius is 46 billion ly and the age is 13.8 billion years. What is their ratio?",
+   "answer": 3.33,
+   "unit": "x",
+   "relTol": 0.02
+  },
+  {
+   "id": "observable-universe.order",
+   "atom": "observable-universe",
+   "kind": "order",
+   "prompt": "Order the reasoning.",
+   "steps": [
+    "The universe has a finite age",
+    "Light has traveled for a finite time",
+    "This sets a particle horizon",
+    "Expansion makes the comoving radius about 46 billion ly"
+   ]
+  },
+  {
+   "id": "observable-universe.spot-error",
+   "atom": "observable-universe",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The universe is about 13.8 billion years old",
+    "Light from beyond the particle horizon has not reached us",
+    "Space expanded while that light traveled",
+    "Expansion leaves the comoving radius at 13.8 billion ly"
+   ],
+   "error": 3,
+   "fix": "Because of expansion the comoving radius is about 46 billion ly."
+  },
+  {
+   "id": "observable-universe.match",
+   "atom": "observable-universe",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Particle horizon",
+     "meaning": "Greatest distance light could reach us from"
+    },
+    {
+     "term": "Observable universe",
+     "meaning": "Everything inside the horizon"
+    },
+    {
+     "term": "Comoving radius",
+     "meaning": "Distance in today's stretched units"
+    },
+    {
+     "term": "Age",
+     "meaning": "About 13.8 billion years"
+    }
+   ]
+  },
+  {
+   "id": "gravitational-lensing.pick",
+   "atom": "gravitational-lensing",
+   "kind": "pick",
+   "prompt": "Why is lensing a strong probe of dark matter?",
+   "options": [
+    "It responds only to stars and visible gas",
+    "It responds to all mass, shining or not",
+    "It measures the gas temperature directly",
+    "It needs no theory of gravity at all"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "gravitational-lensing.calculate",
+   "atom": "gravitational-lensing",
+   "kind": "calculate",
+   "prompt": "Lensing shows a cluster mass of 1.0e15 solar masses; visible matter is 1.5e14. What is the ratio of total to visible mass?",
+   "answer": 6.67,
+   "unit": "x",
+   "relTol": 0.02
+  },
+  {
+   "id": "gravitational-lensing.order",
+   "atom": "gravitational-lensing",
+   "kind": "order",
+   "prompt": "Order a lensing measurement.",
+   "steps": [
+    "A foreground cluster sits in front of a galaxy",
+    "Its mass bends the background light",
+    "Arcs and multiple images appear",
+    "Modeling the distortion maps total mass"
+   ]
+  },
+  {
+   "id": "gravitational-lensing.spot-error",
+   "atom": "gravitational-lensing",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Mass curves spacetime",
+    "Only luminous mass bends light",
+    "Light follows that curvature",
+    "Lensing maps the total mass"
+   ],
+   "error": 1,
+   "fix": "All mass bends light, including dark matter."
+  },
+  {
+   "id": "gravitational-lensing.match",
+   "atom": "gravitational-lensing",
+   "kind": "match",
+   "prompt": "Match each effect to its meaning.",
+   "pairs": [
+    {
+     "term": "Arc",
+     "meaning": "Stretched image of a background galaxy"
+    },
+    {
+     "term": "Multiple images",
+     "meaning": "Several copies of one source"
+    },
+    {
+     "term": "Magnification",
+     "meaning": "Background source made brighter"
+    },
+    {
+     "term": "Lens",
+     "meaning": "Foreground mass bending light"
+    }
+   ]
+  },
+  {
+   "id": "hubble-tension.pick",
+   "atom": "hubble-tension",
+   "kind": "pick",
+   "prompt": "Which pair matches method to H0 value?",
+   "options": [
+    "Distance ladder 67.4, CMB 73",
+    "Distance ladder 73, CMB 67.4",
+    "Both near 70",
+    "Distance ladder 50, CMB 100"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "hubble-tension.calculate",
+   "atom": "hubble-tension",
+   "kind": "calculate",
+   "prompt": "By what percent does 73 exceed 67.4 km/s/Mpc?",
+   "answer": 8.31,
+   "unit": "%",
+   "relTol": 0.02
+  },
+  {
+   "id": "hubble-tension.order",
+   "atom": "hubble-tension",
+   "kind": "order",
+   "prompt": "Order the distance-ladder route to H0.",
+   "steps": [
+    "Parallax",
+    "Cepheids",
+    "Type Ia supernovae",
+    "H0 near 73 km/s/Mpc"
+   ]
+  },
+  {
+   "id": "hubble-tension.spot-error",
+   "atom": "hubble-tension",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "SH0ES measures H0 from the local ladder",
+    "Planck infers H0 from the CMB with ΛCDM",
+    "The two agree within errors",
+    "The gap may signal a crack in ΛCDM"
+   ],
+   "error": 2,
+   "fix": "They disagree at about 5 sigma."
+  },
+  {
+   "id": "hubble-tension.match",
+   "atom": "hubble-tension",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "H0",
+     "meaning": "Expansion rate today"
+    },
+    {
+     "term": "SH0ES",
+     "meaning": "Local distance-ladder project"
+    },
+    {
+     "term": "Planck",
+     "meaning": "CMB satellite reading H0 via ΛCDM"
+    },
+    {
+     "term": "5σ",
+     "meaning": "Five times the expected scatter"
+    }
+   ]
+  },
+  {
+   "id": "dark-energy-equation-of-state.pick",
+   "atom": "dark-energy-equation-of-state",
+   "kind": "pick",
+   "prompt": "What w does a true cosmological constant have?",
+   "options": [
+    "0",
+    "-1/3",
+    "-1",
+    "1"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "dark-energy-equation-of-state.calculate",
+   "atom": "dark-energy-equation-of-state",
+   "kind": "calculate",
+   "prompt": "Dark energy density scales as a^(-3(1+w)). With w = -0.9, by what factor does it change when the universe doubles in size?",
+   "answer": 0.812,
+   "unit": "x",
+   "relTol": 0.02
+  },
+  {
+   "id": "dark-energy-equation-of-state.order",
+   "atom": "dark-energy-equation-of-state",
+   "kind": "order",
+   "prompt": "Order the test of w.",
+   "steps": [
+    "Combine supernovae, BAO and weak lensing",
+    "Fit the expansion history",
+    "Measure w and any drift",
+    "Compare with w = -1"
+   ]
+  },
+  {
+   "id": "dark-energy-equation-of-state.spot-error",
+   "atom": "dark-energy-equation-of-state",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Any dark energy must have w exactly -1",
+    "w is pressure over energy density",
+    "Λ has w fixed at -1",
+    "Surveys test whether w drifts"
+   ],
+   "error": 0,
+   "fix": "A dynamical field can have w other than -1 or a w that changes."
+  },
+  {
+   "id": "dark-energy-equation-of-state.match",
+   "atom": "dark-energy-equation-of-state",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "w",
+     "meaning": "Pressure divided by energy density"
+    },
+    {
+     "term": "w = -1",
+     "meaning": "Cosmological constant"
+    },
+    {
+     "term": "Dynamical field",
+     "meaning": "Evolving dark energy"
+    },
+    {
+     "term": "Weak lensing",
+     "meaning": "Survey probe of growth and w"
+    }
+   ]
+  },
+  {
+   "id": "primordial-gravitational-waves.pick",
+   "atom": "primordial-gravitational-waves",
+   "kind": "pick",
+   "prompt": "What CMB pattern would primordial gravitational waves imprint?",
+   "options": [
+    "A gradient pattern called E-modes",
+    "A curl pattern called B-modes",
+    "Acoustic peaks at small angles",
+    "Hot spots of one part in ten"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "primordial-gravitational-waves.calculate",
+   "atom": "primordial-gravitational-waves",
+   "kind": "calculate",
+   "prompt": "Inflation's energy scale goes as r to the 1/4 power. If r drops by a factor of 16, by what factor does the energy scale drop?",
+   "answer": 2,
+   "unit": "x",
+   "tol": 0.5
+  },
+  {
+   "id": "primordial-gravitational-waves.order",
+   "atom": "primordial-gravitational-waves",
+   "kind": "order",
+   "prompt": "Order the chain from inflation to detection.",
+   "steps": [
+    "Inflation rearranges mass-energy violently",
+    "Primordial gravitational waves form",
+    "They polarize the CMB in a curl pattern",
+    "Telescopes search for B-modes"
+   ]
+  },
+  {
+   "id": "primordial-gravitational-waves.spot-error",
+   "atom": "primordial-gravitational-waves",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Inflation should produce gravitational waves",
+    "Their strength is given by r",
+    "They leave B-mode polarization",
+    "r tells us the age of the universe"
+   ],
+   "error": 3,
+   "fix": "r encodes the energy scale of inflation."
+  },
+  {
+   "id": "primordial-gravitational-waves.match",
+   "atom": "primordial-gravitational-waves",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "r",
+     "meaning": "Tensor-to-scalar ratio"
+    },
+    {
+     "term": "B-modes",
+     "meaning": "Curl pattern in polarization"
+    },
+    {
+     "term": "Polarization",
+     "meaning": "Preferred orientation of light waves"
+    },
+    {
+     "term": "Gravitational wave",
+     "meaning": "Ripple in spacetime"
+    }
+   ]
+  },
+  {
+   "id": "multiverse-inflation-debate.pick",
+   "atom": "multiverse-inflation-debate",
+   "kind": "pick",
+   "prompt": "What is the measure problem?",
+   "options": [
+    "Measuring the CMB temperature to many decimal places across the sky",
+    "Assigning probabilities across infinitely many pocket universes",
+    "Calibrating Cepheid distances across nearby galaxies",
+    "Weighing dark matter halos using weak lensing shear data"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "multiverse-inflation-debate.calculate",
+   "atom": "multiverse-inflation-debate",
+   "kind": "calculate",
+   "prompt": "Suppose 10^500 vacua exist and 1 in 10^120 allows a small Λ. What power of 10 counts the suitable vacua?",
+   "answer": 380,
+   "unit": "",
+   "tol": 0.5
+  },
+  {
+   "id": "multiverse-inflation-debate.order",
+   "atom": "multiverse-inflation-debate",
+   "kind": "order",
+   "prompt": "Order the eternal inflation picture.",
+   "steps": [
+    "Quantum jitters keep some regions inflating",
+    "Other regions stop and settle",
+    "Pocket universes form",
+    "Constants may differ between pockets"
+   ]
+  },
+  {
+   "id": "multiverse-inflation-debate.spot-error",
+   "atom": "multiverse-inflation-debate",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Eternal inflation follows from many inflation models",
+    "The measure problem is solved",
+    "Pocket universes may have different constants",
+    "Critics question testability"
+   ],
+   "error": 1,
+   "fix": "The measure problem remains open."
+  },
+  {
+   "id": "multiverse-inflation-debate.match",
+   "atom": "multiverse-inflation-debate",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Eternal inflation",
+     "meaning": "Inflation that never stops everywhere"
+    },
+    {
+     "term": "Pocket universe",
+     "meaning": "Region that stopped inflating"
+    },
+    {
+     "term": "String landscape",
+     "meaning": "Huge set of possible vacua"
+    },
+    {
+     "term": "Measure problem",
+     "meaning": "Difficulty assigning probabilities"
+    }
+   ]
+  },
+  {
+   "id": "cosmic-fate.pick",
+   "atom": "cosmic-fate",
+   "kind": "pick",
+   "prompt": "If dark energy is a true constant, what future awaits?",
+   "options": [
+    "A Big Crunch as expansion reverses",
+    "A Big Rip that shreds all structure",
+    "Endless acceleration toward heat death",
+    "A static universe frozen at fixed size"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "cosmic-fate.calculate",
+   "atom": "cosmic-fate",
+   "kind": "calculate",
+   "prompt": "With Λ the expansion rate approaches about 56 km/s/Mpc, so 1/H is about 17.5 Gyr. Distances double every ln 2 / H. How many Gyr is that?",
+   "answer": 12.1,
+   "unit": "Gyr",
+   "relTol": 0.03
+  },
+  {
+   "id": "cosmic-fate.order",
+   "atom": "cosmic-fate",
+   "kind": "order",
+   "prompt": "Order the Λ future.",
+   "steps": [
+    "Expansion accelerates",
+    "Distant galaxies leave our event horizon",
+    "Star formation stops",
+    "The universe fades to heat death"
+   ]
+  },
+  {
+   "id": "cosmic-fate.spot-error",
+   "atom": "cosmic-fate",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Λ has w = -1",
+    "Expansion accelerates without end",
+    "Distant galaxies stay visible forever",
+    "Everything fades toward heat death"
+   ],
+   "error": 2,
+   "fix": "Distant galaxies cross our event horizon and their light no longer reaches us."
+  },
+  {
+   "id": "cosmic-fate.match",
+   "atom": "cosmic-fate",
+   "kind": "match",
+   "prompt": "Match each fate to its trigger.",
+   "pairs": [
+    {
+     "term": "Heat death",
+     "meaning": "w = -1 constant dark energy"
+    },
+    {
+     "term": "Big Rip",
+     "meaning": "w below -1"
+    },
+    {
+     "term": "Event horizon",
+     "meaning": "Boundary past which light never reaches us"
+    },
+    {
+     "term": "Big Crunch",
+     "meaning": "Dark energy that turns attractive"
+    }
+   ]
+  },
+  {
+   "id": "cosmic-history-synthesis.pick",
+   "atom": "cosmic-history-synthesis",
+   "kind": "pick",
+   "prompt": "Which event released the CMB, about 380,000 years after the Big Bang?",
+   "options": [
+    "Reionization",
+    "Big Bang nucleosynthesis",
+    "Recombination",
+    "Inflation"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "cosmic-history-synthesis.calculate",
+   "atom": "cosmic-history-synthesis",
+   "kind": "calculate",
+   "prompt": "Recombination happened about 380,000 years after the Big Bang. The universe is 13.8 billion years old. What fraction of cosmic history, in parts per million, had passed at recombination?",
+   "answer": 27.5,
+   "unit": "ppm",
+   "relTol": 0.02
+  },
+  {
+   "id": "cosmic-history-synthesis.order",
+   "atom": "cosmic-history-synthesis",
+   "kind": "order",
+   "prompt": "Put these epochs of cosmic history in time order.",
+   "steps": [
+    "Inflation stretches quantum fluctuations",
+    "Big Bang nucleosynthesis forges light elements",
+    "Recombination releases the CMB",
+    "Reionization by the first stars and quasars"
+   ]
+  },
+  {
+   "id": "cosmic-history-synthesis.spot-error",
+   "atom": "cosmic-history-synthesis",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step in this cosmic timeline.",
+   "steps": [
+    "Reionization releases the CMB at 380,000 years",
+    "Inflation seeds fluctuations in the first instant",
+    "Nucleosynthesis forms light elements in the first few minutes",
+    "Structure grows by gravity into galaxies"
+   ],
+   "error": 0,
+   "fix": "Recombination releases the CMB at about 380,000 years; reionization comes later, at z of 6 to 10."
+  },
+  {
+   "id": "cosmic-history-synthesis.match",
+   "atom": "cosmic-history-synthesis",
+   "kind": "match",
+   "prompt": "Match each epoch to its product.",
+   "pairs": [
+    {
+     "term": "Inflation",
+     "meaning": "Seed density fluctuations"
+    },
+    {
+     "term": "Nucleosynthesis",
+     "meaning": "Light element abundances"
+    },
+    {
+     "term": "Recombination",
+     "meaning": "The CMB"
+    },
+    {
+     "term": "Baryogenesis",
+     "meaning": "A small surplus of matter over antimatter"
+    }
+   ]
+  },
+  {
+   "id": "matter-radiation-equality.pick",
+   "atom": "matter-radiation-equality",
+   "kind": "pick",
+   "prompt": "How does radiation energy density scale with scale factor a?",
+   "options": [
+    "a^-3",
+    "a^-2",
+    "a^-4",
+    "a^0"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "matter-radiation-equality.calculate",
+   "atom": "matter-radiation-equality",
+   "kind": "calculate",
+   "prompt": "Radiation density goes as a^-4 and matter as a^-3. If the universe expands by a factor of 10, by what factor does the ratio of radiation to matter density drop?",
+   "answer": 10,
+   "unit": "",
+   "tol": 0.01
+  },
+  {
+   "id": "matter-radiation-equality.order",
+   "atom": "matter-radiation-equality",
+   "kind": "order",
+   "prompt": "Order the steps for finding the scale factor of matter-radiation equality.",
+   "steps": [
+    "Write radiation density as rho_r0 a^-4",
+    "Write matter density as rho_m0 a^-3",
+    "Set the two equal",
+    "Solve a_eq = rho_r0 / rho_m0"
+   ]
+  },
+  {
+   "id": "matter-radiation-equality.spot-error",
+   "atom": "matter-radiation-equality",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Matter dilutes as a^-3 from volume alone",
+    "Radiation dilutes as a^-5 from volume and redshift",
+    "Each photon loses energy as its wavelength stretches",
+    "Radiation therefore dominated early and matter later"
+   ],
+   "error": 1,
+   "fix": "Radiation dilutes as a^-4: three powers from volume and one from redshift."
+  },
+  {
+   "id": "matter-radiation-equality.match",
+   "atom": "matter-radiation-equality",
+   "kind": "match",
+   "prompt": "Match each component to its density scaling.",
+   "pairs": [
+    {
+     "term": "Matter",
+     "meaning": "a^-3"
+    },
+    {
+     "term": "Radiation",
+     "meaning": "a^-4"
+    },
+    {
+     "term": "Cosmological constant",
+     "meaning": "a^0"
+    },
+    {
+     "term": "Curvature term",
+     "meaning": "a^-2"
+    }
+   ]
+  },
+  {
+   "id": "jeans-instability.pick",
+   "atom": "jeans-instability",
+   "kind": "pick",
+   "prompt": "A region collapses under gravity when which holds?",
+   "options": [
+    "Sound crossing time is shorter than free-fall time",
+    "Sound crossing time is longer than free-fall time",
+    "Pressure exceeds gravity at every scale",
+    "The region is smaller than the Jeans length"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "jeans-instability.calculate",
+   "atom": "jeans-instability",
+   "kind": "calculate",
+   "prompt": "The Jeans length scales as c_s/sqrt(G rho). If density rises by a factor of 4 at fixed sound speed, by what factor does the Jeans length change?",
+   "answer": 0.5,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "jeans-instability.order",
+   "atom": "jeans-instability",
+   "kind": "order",
+   "prompt": "Order the reasoning behind the Jeans criterion.",
+   "steps": [
+    "Estimate the sound crossing time lambda/c_s",
+    "Estimate the collapse time 1/sqrt(G rho)",
+    "Compare the two times",
+    "Regions larger than the Jeans length collapse"
+   ]
+  },
+  {
+   "id": "jeans-instability.spot-error",
+   "atom": "jeans-instability",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Pressure smooths bumps with sound waves",
+    "Gravity pulls matter together",
+    "The Jeans length grows with sound speed",
+    "Regions smaller than the Jeans length collapse"
+   ],
+   "error": 3,
+   "fix": "Regions larger than the Jeans length collapse; smaller ones oscillate as sound waves."
+  },
+  {
+   "id": "jeans-instability.match",
+   "atom": "jeans-instability",
+   "kind": "match",
+   "prompt": "Match each force to its role.",
+   "pairs": [
+    {
+     "term": "Pressure",
+     "meaning": "Resists collapse"
+    },
+    {
+     "term": "Gravity",
+     "meaning": "Drives collapse"
+    },
+    {
+     "term": "Jeans length",
+     "meaning": "Scale above which collapse wins"
+    },
+    {
+     "term": "Sound speed",
+     "meaning": "Sets how fast pressure responds"
+    }
+   ]
+  },
+  {
+   "id": "matter-power-spectrum.pick",
+   "atom": "matter-power-spectrum",
+   "kind": "pick",
+   "prompt": "In the matter power spectrum, large wavenumber k corresponds to what?",
+   "options": [
+    "Large scales",
+    "Small scales",
+    "Early times",
+    "High redshift only"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "matter-power-spectrum.calculate",
+   "atom": "matter-power-spectrum",
+   "kind": "calculate",
+   "prompt": "Wavelength relates to wavenumber as lambda = 2 pi / k. What wavelength in Mpc matches k = 0.1 per Mpc?",
+   "answer": 62.8,
+   "unit": "Mpc",
+   "relTol": 0.02
+  },
+  {
+   "id": "matter-power-spectrum.order",
+   "atom": "matter-power-spectrum",
+   "kind": "order",
+   "prompt": "Order the steps to compute P(k).",
+   "steps": [
+    "Take the density contrast field delta(x)",
+    "Fourier transform it into modes",
+    "Square the mode amplitudes",
+    "Average over modes at each k"
+   ]
+  },
+  {
+   "id": "matter-power-spectrum.spot-error",
+   "atom": "matter-power-spectrum",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Fourier transform the density contrast",
+    "P(k) is the variance of modes at each k",
+    "Small k means small scales",
+    "Inflation predicts a nearly scale-invariant primordial input"
+   ],
+   "error": 2,
+   "fix": "Small k means large scales; large k means small scales."
+  },
+  {
+   "id": "matter-power-spectrum.match",
+   "atom": "matter-power-spectrum",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "k",
+     "meaning": "Wavenumber"
+    },
+    {
+     "term": "delta",
+     "meaning": "Density contrast"
+    },
+    {
+     "term": "P(k)",
+     "meaning": "Variance of modes at k"
+    },
+    {
+     "term": "n_s",
+     "meaning": "Primordial spectral index"
+    }
+   ]
+  },
+  {
+   "id": "type-ia-supernovae.pick",
+   "atom": "type-ia-supernovae",
+   "kind": "pick",
+   "prompt": "Why do Type Ia supernovae serve as standard candles?",
+   "options": [
+    "They occur only in spiral galaxies rich in young blue stars",
+    "The trigger mass near 1.4 solar masses is nearly universal",
+    "They emit no hydrogen lines of any kind in their spectra",
+    "They last exactly one year before fading"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "type-ia-supernovae.calculate",
+   "atom": "type-ia-supernovae",
+   "kind": "calculate",
+   "prompt": "Two standardized Type Ia supernovae differ by 5 magnitudes in apparent brightness. By what factor do their luminosity distances differ?",
+   "answer": 10,
+   "unit": "",
+   "tol": 0.01
+  },
+  {
+   "id": "type-ia-supernovae.order",
+   "atom": "type-ia-supernovae",
+   "kind": "order",
+   "prompt": "Order the path to a Type Ia supernova distance.",
+   "steps": [
+    "A white dwarf accretes matter",
+    "It nears the Chandrasekhar mass and detonates",
+    "Measure peak brightness and fade rate",
+    "Correct the peak with the Phillips relation",
+    "Compare to apparent brightness for distance"
+   ]
+  },
+  {
+   "id": "type-ia-supernovae.spot-error",
+   "atom": "type-ia-supernovae",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Peak brightness needs no correction across explosions",
+    "The trigger mass is about 1.4 solar masses",
+    "Brighter explosions fade more slowly",
+    "Distant ones looked fainter than expected, pointing to acceleration"
+   ],
+   "error": 0,
+   "fix": "Apply the Phillips relation: use the fade rate to standardize every peak brightness."
+  },
+  {
+   "id": "type-ia-supernovae.match",
+   "atom": "type-ia-supernovae",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Chandrasekhar mass",
+     "meaning": "About 1.4 solar masses"
+    },
+    {
+     "term": "Phillips relation",
+     "meaning": "Brighter explosions fade more slowly"
+    },
+    {
+     "term": "Standard candle",
+     "meaning": "Source of known luminosity"
+    },
+    {
+     "term": "Dimming of distant SNe",
+     "meaning": "Evidence for accelerating expansion"
+    }
+   ]
+  },
+  {
+   "id": "silk-damping.pick",
+   "atom": "silk-damping",
+   "kind": "pick",
+   "prompt": "What sets the Silk scale?",
+   "options": [
+    "Photon diffusion by random walk before recombination",
+    "The horizon size at matter-radiation equality",
+    "Neutrino free streaming after decoupling",
+    "Galaxy peculiar velocities after recombination"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "silk-damping.calculate",
+   "atom": "silk-damping",
+   "kind": "calculate",
+   "prompt": "In a random walk the diffusion distance grows as the square root of the number of steps. If photons take 100 times more scatterings, by what factor does the diffusion length grow?",
+   "answer": 10,
+   "unit": "",
+   "tol": 0.01
+  },
+  {
+   "id": "silk-damping.order",
+   "atom": "silk-damping",
+   "kind": "order",
+   "prompt": "Order the Silk damping process.",
+   "steps": [
+    "Photons scatter repeatedly off electrons",
+    "They random walk over a diffusion length",
+    "Small-scale density variations smear out",
+    "High multipole CMB peaks are damped"
+   ]
+  },
+  {
+   "id": "silk-damping.spot-error",
+   "atom": "silk-damping",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Photons random walk before recombination",
+    "Variations larger than the Silk length are erased",
+    "The Silk length is the photon diffusion distance",
+    "The CMB spectrum falls at high multipoles"
+   ],
+   "error": 1,
+   "fix": "Variations smaller than the Silk length are erased."
+  },
+  {
+   "id": "silk-damping.match",
+   "atom": "silk-damping",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Silk scale",
+     "meaning": "Photon diffusion length"
+    },
+    {
+     "term": "Random walk",
+     "meaning": "Repeated scattering path"
+    },
+    {
+     "term": "Damping tail",
+     "meaning": "Suppressed power at high multipoles"
+    },
+    {
+     "term": "Mean free path",
+     "meaning": "Distance between photon scatterings"
+    }
+   ]
+  },
+  {
+   "id": "sachs-wolfe-effect.pick",
+   "atom": "sachs-wolfe-effect",
+   "kind": "pick",
+   "prompt": "On large scales, an overdense region appears how in the CMB?",
+   "options": [
+    "Hotter",
+    "Colder",
+    "Unchanged",
+    "Polarized only"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "sachs-wolfe-effect.calculate",
+   "atom": "sachs-wolfe-effect",
+   "kind": "calculate",
+   "prompt": "The Sachs-Wolfe result is delta T/T = Phi/(3c^2). For Phi/c^2 = -3e-5, what is delta T/T in units of 1e-5?",
+   "answer": -1,
+   "unit": "1e-5",
+   "tol": 0.01
+  },
+  {
+   "id": "sachs-wolfe-effect.order",
+   "atom": "sachs-wolfe-effect",
+   "kind": "order",
+   "prompt": "Order the physics of the Sachs-Wolfe effect.",
+   "steps": [
+    "A photon sits in a potential well at last scattering",
+    "It loses energy climbing out",
+    "Time dilation shows an earlier, hotter epoch",
+    "The net shift is one third of the potential"
+   ]
+  },
+  {
+   "id": "sachs-wolfe-effect.spot-error",
+   "atom": "sachs-wolfe-effect",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Photons climbing out of wells redshift",
+    "Clocks run slower in the well",
+    "The net result is delta T/T = Phi/3c^2",
+    "The two effects add with equal sign"
+   ],
+   "error": 3,
+   "fix": "The time dilation effect partly cancels the redshift, leaving one third."
+  },
+  {
+   "id": "sachs-wolfe-effect.match",
+   "atom": "sachs-wolfe-effect",
+   "kind": "match",
+   "prompt": "Match each effect to its sign on the temperature.",
+   "pairs": [
+    {
+     "term": "Gravitational redshift",
+     "meaning": "Makes the spot colder"
+    },
+    {
+     "term": "Time dilation",
+     "meaning": "Makes the spot hotter"
+    },
+    {
+     "term": "Large angular scales",
+     "meaning": "Where the plateau shows"
+    },
+    {
+     "term": "Potential well",
+     "meaning": "Region where photons start deeper"
+    }
+   ]
+  },
+  {
+   "id": "cosmic-neutrino-background.pick",
+   "atom": "cosmic-neutrino-background",
+   "kind": "pick",
+   "prompt": "At about what temperature did neutrinos decouple?",
+   "options": [
+    "1 eV",
+    "1 MeV",
+    "1 GeV",
+    "1 keV"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "cosmic-neutrino-background.calculate",
+   "atom": "cosmic-neutrino-background",
+   "kind": "calculate",
+   "prompt": "The neutrino temperature is (4/11)^(1/3) times the photon temperature. With T_gamma = 2.725 K, what is T_nu?",
+   "answer": 1.95,
+   "unit": "K",
+   "relTol": 0.02
+  },
+  {
+   "id": "cosmic-neutrino-background.order",
+   "atom": "cosmic-neutrino-background",
+   "kind": "order",
+   "prompt": "Order the history of the neutrino background.",
+   "steps": [
+    "Weak interactions keep neutrinos in equilibrium",
+    "Neutrinos decouple near 1 MeV",
+    "Electron-positron pairs annihilate and heat photons",
+    "Neutrinos end colder than photons"
+   ]
+  },
+  {
+   "id": "cosmic-neutrino-background.spot-error",
+   "atom": "cosmic-neutrino-background",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Neutrinos decouple at about one second",
+    "Photons end warmer than neutrinos",
+    "Electron-positron annihilation heats the neutrinos",
+    "T_nu/T_gamma = (4/11)^(1/3)"
+   ],
+   "error": 2,
+   "fix": "Annihilation heats the photons; neutrinos had already decoupled."
+  },
+  {
+   "id": "cosmic-neutrino-background.match",
+   "atom": "cosmic-neutrino-background",
+   "kind": "match",
+   "prompt": "Match each quantity to its value.",
+   "pairs": [
+    {
+     "term": "Decoupling energy",
+     "meaning": "About 1 MeV"
+    },
+    {
+     "term": "T_nu today",
+     "meaning": "About 1.95 K"
+    },
+    {
+     "term": "T_gamma today",
+     "meaning": "About 2.725 K"
+    },
+    {
+     "term": "Decoupling time",
+     "meaning": "About one second"
+    }
+   ]
+  },
+  {
+   "id": "reionization.pick",
+   "atom": "reionization",
+   "kind": "pick",
+   "prompt": "What reionized the intergalactic medium?",
+   "options": [
+    "Recombination of electrons and protons",
+    "Ionizing UV from the first stars and quasars",
+    "Neutrino decoupling in the first seconds",
+    "The CMB photons themselves heating the gas"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "reionization.calculate",
+   "atom": "reionization",
+   "kind": "calculate",
+   "prompt": "Reionization spans z of 6 to 10. What is the ratio of the scale factor at z = 6 to that at z = 10?",
+   "answer": 1.571,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "reionization.order",
+   "atom": "reionization",
+   "kind": "order",
+   "prompt": "Order these events.",
+   "steps": [
+    "Recombination leaves the IGM neutral",
+    "First stars and quasars form",
+    "UV photons ionize the hydrogen",
+    "Gunn-Peterson troughs vanish below z of 6"
+   ]
+  },
+  {
+   "id": "reionization.spot-error",
+   "atom": "reionization",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Reionization runs over z of 1 to 2",
+    "The first stars emit ionizing UV",
+    "Recombination leaves hydrogen neutral",
+    "Quasar spectra trace the end of the process"
+   ],
+   "error": 0,
+   "fix": "Reionization runs over roughly z of 6 to 10."
+  },
+  {
+   "id": "reionization.match",
+   "atom": "reionization",
+   "kind": "match",
+   "prompt": "Match each epoch to the IGM state.",
+   "pairs": [
+    {
+     "term": "After recombination",
+     "meaning": "Neutral"
+    },
+    {
+     "term": "After reionization",
+     "meaning": "Ionized"
+    },
+    {
+     "term": "Before recombination",
+     "meaning": "Ionized plasma"
+    },
+    {
+     "term": "First stars and galaxies",
+     "meaning": "Source of ionizing photons"
+    }
+   ]
+  },
+  {
+   "id": "redshift-space-distortions.pick",
+   "atom": "redshift-space-distortions",
+   "kind": "pick",
+   "prompt": "What does the Kaiser effect do to structures on large scales?",
+   "options": [
+    "Stretches them along the line of sight",
+    "Squashes them along the line of sight",
+    "Rotates them",
+    "Leaves them unchanged"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "redshift-space-distortions.calculate",
+   "atom": "redshift-space-distortions",
+   "kind": "calculate",
+   "prompt": "The Kaiser boost of the monopole is 1 + 2beta/3 + beta^2/5. For beta = 0.5, what is it?",
+   "answer": 1.383,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "redshift-space-distortions.order",
+   "atom": "redshift-space-distortions",
+   "kind": "order",
+   "prompt": "Order the origin of redshift-space distortions.",
+   "steps": [
+    "Galaxies have peculiar velocities",
+    "Redshift mixes expansion and peculiar motion",
+    "Distances inferred from redshift shift",
+    "Clustering looks anisotropic"
+   ]
+  },
+  {
+   "id": "redshift-space-distortions.spot-error",
+   "atom": "redshift-space-distortions",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Peculiar velocity adds to cosmic redshift",
+    "Random motions in clusters squash them along the line of sight",
+    "Coherent infall squashes large structures along the line of sight",
+    "The distortion measures the growth rate"
+   ],
+   "error": 1,
+   "fix": "Random motions in clusters stretch them into fingers of God."
+  },
+  {
+   "id": "redshift-space-distortions.match",
+   "atom": "redshift-space-distortions",
+   "kind": "match",
+   "prompt": "Match each effect to its shape.",
+   "pairs": [
+    {
+     "term": "Kaiser effect",
+     "meaning": "Squashing on large scales"
+    },
+    {
+     "term": "Fingers of God",
+     "meaning": "Stretching in clusters"
+    },
+    {
+     "term": "Growth rate f",
+     "meaning": "What the Kaiser squashing measures"
+    },
+    {
+     "term": "Line of sight",
+     "meaning": "Direction peculiar velocities distort"
+    }
+   ]
+  },
+  {
+   "id": "sunyaev-zeldovich-effect.pick",
+   "atom": "sunyaev-zeldovich-effect",
+   "kind": "pick",
+   "prompt": "CMB photons crossing hot cluster gas do what on average?",
+   "options": [
+    "Lose energy by scattering off cold gas",
+    "Gain energy by inverse Compton scattering",
+    "Get absorbed and re-emitted as X-rays",
+    "Become polarized only, with no energy change"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "sunyaev-zeldovich-effect.calculate",
+   "atom": "sunyaev-zeldovich-effect",
+   "kind": "calculate",
+   "prompt": "The SZ null sits near 217 GHz. A map at 150 GHz sits how many GHz below it?",
+   "answer": 67,
+   "unit": "GHz",
+   "tol": 0.5
+  },
+  {
+   "id": "sunyaev-zeldovich-effect.order",
+   "atom": "sunyaev-zeldovich-effect",
+   "kind": "order",
+   "prompt": "Order the SZ effect.",
+   "steps": [
+    "CMB photons enter the intracluster medium",
+    "They inverse Compton scatter off hot electrons",
+    "They gain energy on average",
+    "The spectrum shows a low-frequency decrement and high-frequency increment"
+   ]
+  },
+  {
+   "id": "sunyaev-zeldovich-effect.spot-error",
+   "atom": "sunyaev-zeldovich-effect",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The gas is about 1e7 to 1e8 K",
+    "Photons gain energy from electrons",
+    "The signal does not dim with redshift",
+    "Below the crossover the CMB shows an increment"
+   ],
+   "error": 3,
+   "fix": "Below the crossover the CMB shows a decrement."
+  },
+  {
+   "id": "sunyaev-zeldovich-effect.match",
+   "atom": "sunyaev-zeldovich-effect",
+   "kind": "match",
+   "prompt": "Match each frequency band to its signal.",
+   "pairs": [
+    {
+     "term": "Below about 217 GHz",
+     "meaning": "Decrement"
+    },
+    {
+     "term": "Above about 217 GHz",
+     "meaning": "Increment"
+    },
+    {
+     "term": "Near 217 GHz",
+     "meaning": "Null"
+    },
+    {
+     "term": "Hot cluster electrons",
+     "meaning": "Scatter CMB photons to higher energy"
+    }
+   ]
+  },
+  {
+   "id": "weak-lensing-shear.pick",
+   "atom": "weak-lensing-shear",
+   "kind": "pick",
+   "prompt": "How large is the typical cosmic shear distortion?",
+   "options": [
+    "About 1 percent",
+    "About 50 percent",
+    "About 0.0001 percent",
+    "About 10 times"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "weak-lensing-shear.calculate",
+   "atom": "weak-lensing-shear",
+   "kind": "calculate",
+   "prompt": "Shape noise per galaxy is 0.3. Averaging N galaxies cuts it by sqrt(N). How many galaxies bring the noise down to 0.01?",
+   "answer": 900,
+   "unit": "",
+   "tol": 1
+  },
+  {
+   "id": "weak-lensing-shear.order",
+   "atom": "weak-lensing-shear",
+   "kind": "order",
+   "prompt": "Order a cosmic shear measurement.",
+   "steps": [
+    "Image many background galaxies",
+    "Measure each ellipticity",
+    "Average to cancel intrinsic shapes",
+    "Recover the coherent shear"
+   ]
+  },
+  {
+   "id": "weak-lensing-shear.spot-error",
+   "atom": "weak-lensing-shear",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Matter deflects light from distant galaxies",
+    "Images are sheared by about 1 percent",
+    "One galaxy's shape gives the shear directly",
+    "Averaging many galaxies removes random shapes"
+   ],
+   "error": 2,
+   "fix": "Intrinsic ellipticity swamps the shear in one galaxy; averaging is needed."
+  },
+  {
+   "id": "weak-lensing-shear.match",
+   "atom": "weak-lensing-shear",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Cosmic shear",
+     "meaning": "Coherent distortion from all matter"
+    },
+    {
+     "term": "Shape noise",
+     "meaning": "Intrinsic ellipticity scatter"
+    },
+    {
+     "term": "Convergence",
+     "meaning": "Magnification from projected mass"
+    },
+    {
+     "term": "Galaxy averaging",
+     "meaning": "Beats down shape noise"
+    }
+   ]
+  },
+  {
+   "id": "halo-mass-function.pick",
+   "atom": "halo-mass-function",
+   "kind": "pick",
+   "prompt": "What critical overdensity does spherical collapse give?",
+   "options": [
+    "1.168",
+    "1.686",
+    "0.686",
+    "3.686"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "halo-mass-function.calculate",
+   "atom": "halo-mass-function",
+   "kind": "calculate",
+   "prompt": "A Gaussian field has sigma(M) = 0.843 on some mass scale. What is nu = delta_c/sigma with delta_c = 1.686?",
+   "answer": 2,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "halo-mass-function.order",
+   "atom": "halo-mass-function",
+   "kind": "order",
+   "prompt": "Order the Press-Schechter construction.",
+   "steps": [
+    "Assume a Gaussian density field",
+    "Smooth it on mass scale M",
+    "Find the fraction above delta_c",
+    "Differentiate with respect to M"
+   ]
+  },
+  {
+   "id": "halo-mass-function.spot-error",
+   "atom": "halo-mass-function",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Larger M gives larger sigma(M)",
+    "Count fraction of space above 1.686",
+    "Smooth the field on mass scale M",
+    "Massive halos are rare"
+   ],
+   "error": 0,
+   "fix": "Larger M gives smaller sigma(M), so massive halos are rarer."
+  },
+  {
+   "id": "halo-mass-function.match",
+   "atom": "halo-mass-function",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "delta_c",
+     "meaning": "Collapse threshold of 1.686"
+    },
+    {
+     "term": "sigma(M)",
+     "meaning": "RMS overdensity on scale M"
+    },
+    {
+     "term": "nu",
+     "meaning": "delta_c over sigma"
+    },
+    {
+     "term": "dn/dM",
+     "meaning": "Halo number density per mass"
+    }
+   ]
+  },
+  {
+   "id": "fluid-equation.pick",
+   "atom": "fluid-equation",
+   "kind": "pick",
+   "prompt": "What law yields the fluid equation?",
+   "options": [
+    "Newton's third law of motion",
+    "First law of thermodynamics",
+    "Hubble's law of expansion",
+    "Ohm's law for plasmas"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "fluid-equation.calculate",
+   "atom": "fluid-equation",
+   "kind": "calculate",
+   "prompt": "With rho proportional to a^-3(1+w), what is the exponent of a for radiation, w = 1/3?",
+   "answer": -4,
+   "unit": "",
+   "tol": 0.01
+  },
+  {
+   "id": "fluid-equation.order",
+   "atom": "fluid-equation",
+   "kind": "order",
+   "prompt": "Order the derivation.",
+   "steps": [
+    "Take a comoving volume V proportional to a^3",
+    "Apply dE = -p dV",
+    "Divide by time to get rho dot + 3H(rho+p) = 0",
+    "Insert p = w rho and integrate"
+   ]
+  },
+  {
+   "id": "fluid-equation.spot-error",
+   "atom": "fluid-equation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Volume grows as a^3",
+    "rho dot + 3H(rho - p) = 0 follows from energy conservation",
+    "Energy conservation reads dE = -p dV",
+    "rho scales as a^-3(1+w)"
+   ],
+   "error": 1,
+   "fix": "The equation is rho dot + 3H(rho + p) = 0."
+  },
+  {
+   "id": "fluid-equation.match",
+   "atom": "fluid-equation",
+   "kind": "match",
+   "prompt": "Match each w to its scaling.",
+   "pairs": [
+    {
+     "term": "w = 0",
+     "meaning": "a^-3"
+    },
+    {
+     "term": "w = 1/3",
+     "meaning": "a^-4"
+    },
+    {
+     "term": "w = -1",
+     "meaning": "Constant"
+    },
+    {
+     "term": "w = 1",
+     "meaning": "a^-6"
+    }
+   ]
+  },
+  {
+   "id": "deceleration-parameter.pick",
+   "atom": "deceleration-parameter",
+   "kind": "pick",
+   "prompt": "What does q > 0 mean?",
+   "options": [
+    "Acceleration",
+    "Deceleration",
+    "Static universe",
+    "Flat geometry"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "deceleration-parameter.calculate",
+   "atom": "deceleration-parameter",
+   "kind": "calculate",
+   "prompt": "For flat matter plus Lambda, q0 = Omega_m/2 - Omega_Lambda. With Omega_m = 0.3 and Omega_Lambda = 0.7, what is q0?",
+   "answer": -0.55,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "deceleration-parameter.order",
+   "atom": "deceleration-parameter",
+   "kind": "order",
+   "prompt": "Order the steps to q for a single component.",
+   "steps": [
+    "Define q = -a'' a / a'^2",
+    "Use the acceleration equation",
+    "Insert p = w rho",
+    "Get q = (1+3w)/2"
+   ]
+  },
+  {
+   "id": "deceleration-parameter.spot-error",
+   "atom": "deceleration-parameter",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "q = -a'' a / a'^2",
+    "Matter gives q = 1/2",
+    "Negative q means acceleration",
+    "Lambda gives q = 1"
+   ],
+   "error": 3,
+   "fix": "Lambda, w = -1, gives q = -1."
+  },
+  {
+   "id": "deceleration-parameter.match",
+   "atom": "deceleration-parameter",
+   "kind": "match",
+   "prompt": "Match each component to q.",
+   "pairs": [
+    {
+     "term": "Matter",
+     "meaning": "1/2"
+    },
+    {
+     "term": "Radiation",
+     "meaning": "1"
+    },
+    {
+     "term": "Lambda",
+     "meaning": "-1"
+    },
+    {
+     "term": "Today's universe",
+     "meaning": "About -0.55"
+    }
+   ]
+  },
+  {
+   "id": "growth-of-structure.pick",
+   "atom": "growth-of-structure",
+   "kind": "pick",
+   "prompt": "Linear sub-horizon growth in matter is what kind of function of scale?",
+   "options": [
+    "Scale independent",
+    "Strongly scale dependent",
+    "Zero on all scales",
+    "Growing only on large scales"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "growth-of-structure.calculate",
+   "atom": "growth-of-structure",
+   "kind": "calculate",
+   "prompt": "In matter domination D(a) is proportional to a. By what factor does delta grow from z = 1000 to z = 0?",
+   "answer": 1001,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "growth-of-structure.order",
+   "atom": "growth-of-structure",
+   "kind": "order",
+   "prompt": "Order the derivation of the growth equation.",
+   "steps": [
+    "Linearize the fluid equations",
+    "Add the Poisson equation",
+    "Go to Fourier space",
+    "Get delta'' + 2H delta' - 4 pi G rho delta = 0"
+   ]
+  },
+  {
+   "id": "growth-of-structure.spot-error",
+   "atom": "growth-of-structure",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The growth equation is scale independent",
+    "delta(k,a) = D(a) delta_k",
+    "The 2H delta' term speeds growth",
+    "In matter domination D grows as a"
+   ],
+   "error": 2,
+   "fix": "The 2H delta' term is Hubble friction and slows growth."
+  },
+  {
+   "id": "growth-of-structure.match",
+   "atom": "growth-of-structure",
+   "kind": "match",
+   "prompt": "Match each term to its role.",
+   "pairs": [
+    {
+     "term": "2H delta'",
+     "meaning": "Hubble friction"
+    },
+    {
+     "term": "4 pi G rho delta",
+     "meaning": "Gravitational driving"
+    },
+    {
+     "term": "Growth factor D(a)",
+     "meaning": "Tracks linear amplitude over time"
+    },
+    {
+     "term": "Lambda era",
+     "meaning": "Growth slows and stalls"
+    }
+   ]
+  },
+  {
+   "id": "primordial-power-spectrum.pick",
+   "atom": "primordial-power-spectrum",
+   "kind": "pick",
+   "prompt": "What spectral index gives an exactly scale-invariant spectrum?",
+   "options": [
+    "n_s = 0",
+    "n_s = 1",
+    "n_s = 0.5",
+    "n_s = 2"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "primordial-power-spectrum.calculate",
+   "atom": "primordial-power-spectrum",
+   "kind": "calculate",
+   "prompt": "With P proportional to k^(n_s-1) and n_s = 0.965, what is the ratio P(10k)/P(k)?",
+   "answer": 0.923,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "primordial-power-spectrum.order",
+   "atom": "primordial-power-spectrum",
+   "kind": "order",
+   "prompt": "Order the origin of primordial fluctuations.",
+   "steps": [
+    "Quantum vacuum fluctuations in the inflaton",
+    "Inflation stretches them past the horizon",
+    "They freeze as curvature perturbations",
+    "They reenter later and seed structure"
+   ]
+  },
+  {
+   "id": "primordial-power-spectrum.spot-error",
+   "atom": "primordial-power-spectrum",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Measured n_s is slightly above 1",
+    "P(k) is proportional to k^(n_s-1)",
+    "Inflation stretches quantum fluctuations",
+    "A red tilt has more power on large scales"
+   ],
+   "error": 0,
+   "fix": "Measured n_s is about 0.965, slightly below 1."
+  },
+  {
+   "id": "primordial-power-spectrum.match",
+   "atom": "primordial-power-spectrum",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "n_s = 1",
+     "meaning": "Scale invariant"
+    },
+    {
+     "term": "n_s < 1",
+     "meaning": "Red tilt"
+    },
+    {
+     "term": "n_s > 1",
+     "meaning": "Blue tilt"
+    },
+    {
+     "term": "Planck n_s",
+     "meaning": "About 0.965"
+    }
+   ]
+  },
+  {
+   "id": "transfer-function.pick",
+   "atom": "transfer-function",
+   "kind": "pick",
+   "prompt": "Which scales have T(k) near 1?",
+   "options": [
+    "Small scales, k > k_eq",
+    "Large scales, k < k_eq",
+    "All scales equally",
+    "Only the Silk scale"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "transfer-function.calculate",
+   "atom": "transfer-function",
+   "kind": "calculate",
+   "prompt": "Above k_eq, T(k) falls roughly as k^-2. If k goes up by a factor of 5, by what factor does T^2 drop?",
+   "answer": 625,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "transfer-function.order",
+   "atom": "transfer-function",
+   "kind": "order",
+   "prompt": "Order how T(k) shapes P(k).",
+   "steps": [
+    "Start with the primordial spectrum",
+    "Modes enter the horizon",
+    "Modes entering in the radiation era are suppressed",
+    "P(k) turns over near k_eq"
+   ]
+  },
+  {
+   "id": "transfer-function.spot-error",
+   "atom": "transfer-function",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "P(k) is proportional to k^n_s T^2 D^2",
+    "Large scales are suppressed most",
+    "Large scales enter after equality",
+    "P(k) peaks near k_eq"
+   ],
+   "error": 1,
+   "fix": "Small scales entering in the radiation era are suppressed; large scales keep T near 1."
+  },
+  {
+   "id": "transfer-function.match",
+   "atom": "transfer-function",
+   "kind": "match",
+   "prompt": "Match each factor to its meaning.",
+   "pairs": [
+    {
+     "term": "T(k)",
+     "meaning": "Evolution through horizon crossing"
+    },
+    {
+     "term": "D(a)",
+     "meaning": "Linear growth factor"
+    },
+    {
+     "term": "k^n_s",
+     "meaning": "Primordial shape"
+    },
+    {
+     "term": "k_eq",
+     "meaning": "Horizon scale at equality"
+    }
+   ]
+  },
+  {
+   "id": "cmb-polarization.pick",
+   "atom": "cmb-polarization",
+   "kind": "pick",
+   "prompt": "What converts a temperature quadrupole into polarization?",
+   "options": [
+    "Thomson scattering",
+    "Gravitational redshift",
+    "Pair annihilation",
+    "Inverse Compton in clusters"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "cmb-polarization.calculate",
+   "atom": "cmb-polarization",
+   "kind": "calculate",
+   "prompt": "CMB polarization is about 5 percent of temperature anisotropy of 100 microkelvin. What is the polarization amplitude?",
+   "answer": 5,
+   "unit": "uK",
+   "relTol": 0.02
+  },
+  {
+   "id": "cmb-polarization.order",
+   "atom": "cmb-polarization",
+   "kind": "order",
+   "prompt": "Order the generation of CMB polarization.",
+   "steps": [
+    "Tight coupling breaks near recombination",
+    "A local quadrupole develops",
+    "Thomson scattering makes linear polarization",
+    "Free streaming carries it to us"
+   ]
+  },
+  {
+   "id": "cmb-polarization.spot-error",
+   "atom": "cmb-polarization",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Thomson scattering makes polarization",
+    "It needs a local quadrupole",
+    "Reionization adds a large-scale signal",
+    "Polarization forms throughout tight coupling"
+   ],
+   "error": 3,
+   "fix": "Polarization forms only in the brief last-scattering window."
+  },
+  {
+   "id": "cmb-polarization.match",
+   "atom": "cmb-polarization",
+   "kind": "match",
+   "prompt": "Match each pattern to its source.",
+   "pairs": [
+    {
+     "term": "E-modes",
+     "meaning": "Density perturbations"
+    },
+    {
+     "term": "B-modes",
+     "meaning": "Gravitational waves or lensing"
+    },
+    {
+     "term": "Thomson scattering",
+     "meaning": "Makes polarization from a quadrupole"
+    },
+    {
+     "term": "Reionization bump",
+     "meaning": "Large-scale polarization signal"
+    }
+   ]
+  }
+ ]
+}
