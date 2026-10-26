@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useState, type FormEvent } from "react";
-import type { BetaReport, CohortSummary, UserSummary } from "@/lib/beta/metrics";
+import { EXPERIMENTS, type CohortSettingRow } from "@/lib/beta/experiment-registry";
+import type { ArmSummary, BetaReport, CohortSummary, UserSummary } from "@/lib/beta/metrics";
 
-type Report = BetaReport & { truncated?: boolean };
+type Report = BetaReport & { settings: CohortSettingRow[]; truncated?: boolean };
 
 const STORAGE_KEY = "bucket.waitlist.key";
 const INPUT =
@@ -45,13 +46,13 @@ function minutes(s: number): string {
   return `${Math.round(s / 60)}m`;
 }
 
-export function CohortTable({ rows, label }: { rows: CohortSummary[]; label: string }) {
+export function CohortTable({ rows, label }: { rows: (CohortSummary | ArmSummary)[]; label: string }) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-[color:var(--hairline)]">
-            {[label, "users", "active", "sessions", "answers", "accuracy", "lessons", "D1", "D7", "D30", "recall D1", "recall D7", "recall D30"].map((h) => (
+            {[label, "users", "active", "sessions", "answers", "accuracy", "time/card", "lessons", "D1", "D7", "D30", "pinned", "recall D1", "recall D7", "recall D30"].map((h) => (
               <th key={h} className={TH}>{h}</th>
             ))}
           </tr>
@@ -65,10 +66,12 @@ export function CohortTable({ rows, label }: { rows: CohortSummary[]; label: str
               <td className={TD}>{c.sessions}</td>
               <td className={TD}>{c.cardsAnswered}</td>
               <td className={TD}>{pct(c.accuracy)}</td>
+              <td className={TD}>{c.avgCardMs === null ? "-" : `${(c.avgCardMs / 1000).toFixed(1)}s`}</td>
               <td className={TD}>{c.lessonsCompleted}</td>
               <td className={TD}>{pct(c.retention[1])}</td>
               <td className={TD}>{pct(c.retention[7])}</td>
               <td className={TD}>{pct(c.retention[30])}</td>
+              <td className={TD}>{"pinned" in c ? c.pinned : "-"}</td>
               <td className={TD}>{pct(c.recall[1])}</td>
               <td className={TD}>{pct(c.recall[7])}</td>
               <td className={TD}>{pct(c.recall[30])}</td>
@@ -157,6 +160,24 @@ export default function BetaAdmin() {
     }
   }, [load]);
 
+  async function saveSetting(experiment: string, cohort: string, setting: string) {
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/beta", {
+        method: "POST",
+        headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
+        body: JSON.stringify({ experiment, cohort, setting }),
+      });
+      if (!res.ok) {
+        setError(`The setting did not save (HTTP ${res.status}).`);
+        return;
+      }
+      await load(key);
+    } catch {
+      setError("No connection. Check your network and try again.");
+    }
+  }
+
   if (!data) {
     return (
       <form
@@ -185,6 +206,40 @@ export default function BetaAdmin() {
         <h2 className="small-caps text-[12px] tracking-[0.18em] text-[color:var(--basalt-2)] mb-3">Testers</h2>
         <UserTable rows={data.users} />
       </div>
+      <div>
+        <h2 className="small-caps text-[12px] tracking-[0.18em] text-[color:var(--basalt-2)] mb-3">Experiments</h2>
+        {data.experiments.map((x) => {
+          const exp = EXPERIMENTS.find((e) => e.key === x.key);
+          return (
+            <div key={x.key} className="mb-8">
+              <h3 className="text-[14px] text-[color:var(--basalt)] mb-2">
+                {x.key} <span className="text-[12px] text-[color:var(--basalt-3)]">{x.excluded} not assigned. Pinned testers are not randomized; compare hash-split testers.</span>
+              </h3>
+              <CohortTable rows={x.arms} label="arm" />
+              <div className="mt-2 flex flex-wrap gap-3">
+                {data.cohorts.map((c) => {
+                  const current = data.settings.find((r) => r.experiment === x.key && r.cohort === c.cohort)?.setting ?? "on";
+                  return (
+                    <label key={c.cohort} className="text-[12px] text-[color:var(--basalt-2)] flex items-center gap-2">
+                      {c.cohort}
+                      <select
+                        value={current}
+                        onChange={(e) => void saveSetting(x.key, c.cohort, e.target.value)}
+                        className="border border-[color:var(--hairline)] px-2 py-1 bg-white/70 min-h-[44px]"
+                      >
+                        {["on", "off", ...(exp?.arms ?? [])].map((o) => (
+                          <option key={o} value={o}>{o === "on" ? "random" : o}</option>
+                        ))}
+                      </select>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {error && <p role="alert" className="text-[12px] text-[color:var(--crimson)]">{error}</p>}
       <button type="button" onClick={() => void load(key)} disabled={busy} className={BUTTON + " self-start"}>{busy ? "loading" : "refresh"}</button>
     </section>
   );
