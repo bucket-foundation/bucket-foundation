@@ -164,7 +164,7 @@ class Export(unittest.TestCase):
         self.assertEqual((m["format"], m["format_version"], m["id"], m["title"], m["kind"], m["language"], m["curator"]), ("bkt-deck", 1, "polingual-es", "Spanish words", "words", "es", "Bucket Foundation"))
         self.assertEqual(m["fields"], ep.CARD_FIELDS)
         self.assertEqual(m["counts"]["cards"], 7)
-        self.assertEqual((m["licence"], m["source"], m["built"], m["exporter_commit"]), ("CC-BY-SA 3.0", "Wiktionary via Kaikki (kaikki.org)", "2026-10-11", "abc123"))
+        self.assertEqual((m["licence"], m["source"], m["built"], m["exporter_commit"]), ("CC-BY-SA 4.0", "Wiktionary via Kaikki (kaikki.org)", "2026-10-11", "abc123"))
         self.assertIn("Adapted by Bucket Foundation", m["adaptation"])
         folder = self.out / "es"
         self.assertEqual(m["sha256"], ep.sha256_file(folder / m["file"]))
@@ -175,7 +175,7 @@ class Export(unittest.TestCase):
     def test_pack_carries_its_licence_inside_and_holds_no_vectors(self):
         _, db = open_pack(self.out, "es")
         meta = dict(db.execute("select k, v from meta"))
-        self.assertEqual((meta["licence"], meta["source"], meta["kind"], meta["rows"]), ("CC-BY-SA 3.0", "Wiktionary via Kaikki (kaikki.org)", "words", "7"))
+        self.assertEqual((meta["licence"], meta["source"], meta["kind"], meta["rows"]), ("CC-BY-SA 4.0", "Wiktionary via Kaikki (kaikki.org)", "words", "7"))
         self.assertIn("same licence", meta["adaptation"])
         cols = [r[1] for r in db.execute("pragma table_info(words)")]
         self.assertEqual(cols, ["id", "surface", "folded", "ipa", "pos", "meaning", "head", "tier", "kind", "shared", "translations", "etymology"])
