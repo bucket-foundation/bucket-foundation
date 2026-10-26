@@ -68,11 +68,14 @@ targets:
       - path: Bucket/Sources/Style.swift
       - path: Bucket/Sources/AccountView.swift
       - path: Polingual/WidgetShared
+      - path: Polingual/WatchShared
       - path: Polingual/Polingual.storekit
         buildPhase: none
     dependencies:
       - package: BucketKit
       - target: PolingualWidgets
+        destinationFilters: [iOS]
+      - target: PolingualWatch
         destinationFilters: [iOS]
     settings:
       base:
@@ -123,6 +126,24 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.widgets
         IPHONEOS_DEPLOYMENT_TARGET: "26.0"
         MARKETING_VERSION: "1.0.1"
+        SKIP_INSTALL: YES
+  PolingualWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Polingual/Watch
+      - path: Polingual/WatchShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.watchkitapp
+        PRODUCT_NAME: PolingualWatch
+        MARKETING_VERSION: "1.0.1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Polingual
+        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.polingual.app
+        INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SKIP_INSTALL: YES
   PolingualTests:
     type: bundle.unit-test
