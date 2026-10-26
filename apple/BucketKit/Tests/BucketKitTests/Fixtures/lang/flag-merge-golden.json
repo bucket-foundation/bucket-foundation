@@ -1,0 +1,6 @@
+{
+ "rule": "per flag compare (misses, hits): more misses wins its pair; equal misses take max hits; a flag on one side only is kept",
+ "a": {"flagHits": {"fr": 2, "es": 2, "it": 2}, "flagMisses": {}},
+ "b": {"flagHits": {"it": 0, "es": 1}, "flagMisses": {"it": 1}},
+ "synced": {"flagHits": {"fr": 2, "es": 2, "it": 0}, "flagMisses": {"it": 1}}
+}
