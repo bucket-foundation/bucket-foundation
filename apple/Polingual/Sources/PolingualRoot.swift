@@ -47,6 +47,15 @@ struct PolingualRoot: View {
     }
 }
 
+enum LaunchRouting {
+    enum Step: Equatable { case study, place(String), none }
+
+    static func step(requestTaken: Bool, firstSystem: String) -> Step {
+        if requestTaken { return .study }
+        return firstSystem.isEmpty ? .none : .place(firstSystem)
+    }
+}
+
 struct Studio: View {
     @Environment(Subscriptions.self) private var subs
     @Environment(LangStore.self) private var store
@@ -87,18 +96,25 @@ struct Studio: View {
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
     }
 
-    func openRequested() async {
-        guard StudyRequest.take() else { return }
+    @discardableResult
+    func openRequested() async -> Bool {
+        guard StudyRequest.take() else { return false }
         await store.load()
-        guard let first = store.systems.first else { return }
+        guard let first = store.systems.first else { return false }
         path = NavigationPath()
         path.append(LangRoute.study(first.id))
+        return true
     }
 
     func openFromLaunch() async {
-        if StudyRequest.pending {
-            await openRequested()
-            return
+        let step = LaunchRouting.step(requestTaken: StudyRequest.pending && StudyRequest.take(), firstSystem: firstSystem)
+        if step == .study {
+            await store.load()
+            if let first = store.systems.first {
+                path = NavigationPath()
+                path.append(LangRoute.study(first.id))
+                return
+            }
         }
         if !firstSystem.isEmpty {
             await store.load()
@@ -108,6 +124,7 @@ struct Studio: View {
         }
         guard let spec = PolingualLaunch.value("-openLang") else { return }
         await store.load()
+        for _ in 0..<150 where store.status != .ready { try? await Task.sleep(for: .milliseconds(200)) }
         let parts = spec.split(separator: ":").map(String.init)
         guard parts.count == 3 else { return }
         let targets = parts[1].split(separator: ",").map(String.init)
