@@ -120,7 +120,7 @@ test("staff set their languages, the list comes back in the views, and the next 
   let out = await read(await get("?view=languages"));
   assert.equal(out.status, 200);
   assert.deepEqual(out.body.languages, []);
-  assert.equal((out.body.available as unknown[]).length, 27);
+  assert.equal((out.body.available as unknown[]).length, 28);
   for (const bad of [{ languages: ["xx"] }, { languages: "de" }, {}]) assert.equal((await put(bad)).status, 400);
   out = await read(await put({ languages: ["he", "de", "he"] }));
   assert.equal(out.status, 200);

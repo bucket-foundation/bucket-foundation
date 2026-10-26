@@ -9,7 +9,8 @@ import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, contentWords, fold, headword, knownLanguages, languageMakers, languageRivals, pairTargets, rivals, sharesSense, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
 import { SUBSET_FILE, loadWordSet, subsetPath } from "../src/lib/research-os/work-quiz/polingual-server";
-import { LANGUAGE_CODES, LANGUAGE_NAMES, MAX_LANGUAGES, RTL_LANGUAGES, languageDir, languagesByName, parseLanguages, textDir, toggleLanguage, wordCaption } from "../src/lib/research-os/work-quiz/languages";
+import { PRESETS, SYSTEM_CATALOG } from "../src/lib/academy/lang-systems";
+import { PREVIEW_LANGUAGES, LANGUAGE_CODES, LANGUAGE_NAMES, MAX_LANGUAGES, RTL_LANGUAGES, languageDir, languagesByName, parseLanguages, textDir, toggleLanguage, wordCaption } from "../src/lib/research-os/work-quiz/languages";
 import { builtCells, dueFrom, languageCells, sampleQuiz } from "../src/lib/research-os/work-quiz/sampler";
 import { BLOCKED_FORMS, DEPTHS, FORMS, FORM_LIMIT_SEC, LANGUAGE_FORMS, VALID_PAIRS, type Depth, type LanguageForm } from "../src/lib/research-os/work-quiz/space";
 import { ALL_QUIZ_TYPES, LANGUAGE_QUIZ_TYPES, QUIZ_TYPES, SOURCE_KINDS, TYPE_LABEL, toPublic, type WorkSources } from "../src/lib/research-os/work-quiz/types";
@@ -26,9 +27,9 @@ const SOURCES: WorkSources = {
   notes: [],
 };
 const NONE: WorkSources = { beads: [], prs: [], notes: [], repoUrl: null };
-const STRICT_CELLS = 829;
-const STRICT_CONCEPTS = 144;
-const STRICT_PAIRS = 5018;
+const STRICT_CELLS = 953;
+const STRICT_CONCEPTS = 160;
+const STRICT_PAIRS = 6248;
 const has = (lang: string, concept: string) => SET.cells.some((c) => c.lang === lang && c.concept === concept);
 const raw = (lang: string, word: string) => RAW.words.find((w) => w.l === lang && w.s === word)!;
 const TRIES = 40;
@@ -50,7 +51,7 @@ test("the loader finds the word set from the repo root and from a package folder
   assert.equal(subsetPath(path.join(process.cwd(), "packages", "bkt")), path.join(process.cwd(), SUBSET_FILE));
   assert.throws(() => subsetPath(path.parse(process.cwd()).root), /POLINGUAL_SUBSET_PATH/);
   assert.equal(loadWordSet(), SET);
-  assert.equal(SET.languages.length, 27);
+  assert.equal(SET.languages.length, 28);
 });
 
 test("a cell is strict when the gloss reduces to its concept and its language holds one such word", () => {
@@ -169,7 +170,7 @@ test("every language question passes checkLimits and holds its answer once", () 
   }
 });
 
-test("each of the 27 languages yields a meaning question in its own words", () => {
+test("each of the 28 languages yields a meaning question in its own words", () => {
   for (const lang of SET.languages) {
     const qs = made("meaning", [lang]);
     assert.ok(qs.length > 0, lang);
@@ -312,17 +313,17 @@ test("each language question carries the Wiktionary CC-BY-SA credit and link", (
 test("the static language list is the manifest, and a saved list is parsed against it", () => {
   assert.deepEqual(LANGUAGE_CODES.slice().sort(), RAW.manifest.languages.slice().sort());
   assert.deepEqual(LANGUAGE_NAMES, RAW.manifest.language_names);
-  assert.equal(MAX_LANGUAGES, 27);
+  assert.equal(MAX_LANGUAGES, 28);
   assert.deepEqual(parseLanguages(["de", "he", "de"]), ["de", "he"]);
   assert.deepEqual(parseLanguages([]), []);
   assert.equal(parseLanguages(["xx"]), null);
   assert.equal(parseLanguages("de"), null);
   assert.equal(parseLanguages([1]), null);
-  assert.equal(parseLanguages(Array(28).fill("de")), null);
+  assert.equal(parseLanguages(Array(29).fill("de")), null);
   assert.deepEqual(toggleLanguage(["de"], "he"), ["de", "he"]);
   assert.deepEqual(toggleLanguage(["de", "he"], "de"), ["he"]);
   const byName = languagesByName();
-  assert.equal(byName.length, 27);
+  assert.equal(byName.length, 28);
   assert.deepEqual(byName.slice(0, 2).map((l) => l.name), ["Arabic", "Chinese"]);
 });
 
@@ -415,4 +416,9 @@ test("a stored language card keeps its key, has no rewrite, and comes up when du
       assert.ok(quiz.questions.slice(1).every((x) => (QUIZ_TYPES as readonly string[]).includes(x.type)));
     }
   }
+});
+
+test("preview languages stay out of presets and the system catalog", () => {
+  assert.deepEqual(PREVIEW_LANGUAGES, ["pa"]);
+  for (const p of [...PRESETS, ...SYSTEM_CATALOG]) for (const code of PREVIEW_LANGUAGES) assert.ok(!p.targets.includes(code), p.name);
 });

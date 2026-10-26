@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { languagesByName, toggleLanguage } from "@/lib/research-os/work-quiz/languages";
+import { isPreviewLanguage, languagesByName, toggleLanguage } from "@/lib/research-os/work-quiz/languages";
 
 export const LANGUAGES_SAVE_FAILED = "Your languages were not saved.";
 
@@ -55,6 +55,7 @@ export default function LanguagePicker({ languages, fromSystems = [], save, onSa
           return (
             <button key={l.code} type="button" aria-pressed={on} disabled={busy || locked} title={locked ? "From your language systems" : undefined} onClick={() => void toggle(l.code)} className={on ? CHIP_ON : CHIP_OFF}>
               {l.name}
+              {isPreviewLanguage(l.code) && <span data-testid="preview-badge" className="ml-1 small-caps text-[10px] tracking-[0.12em]">Preview</span>}
             </button>
           );
         })}
