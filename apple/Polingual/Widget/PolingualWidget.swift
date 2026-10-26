@@ -1,3 +1,4 @@
+import BucketKit
 import SwiftUI
 import WidgetKit
 
@@ -14,8 +15,11 @@ struct SnapshotProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SnapshotEntry>) -> Void) {
-        let entry = SnapshotEntry(date: .now, snapshot: WidgetSnapshot.read() ?? .placeholder)
-        completion(Timeline(entries: [entry], policy: .after(.now.addingTimeInterval(3600))))
+        let snapshot = WidgetSnapshot.read() ?? .placeholder
+        let now = Date.now
+        let times = [now] + snapshot.changes(after: now)
+        let entries = times.map { SnapshotEntry(date: $0, snapshot: snapshot) }
+        completion(Timeline(entries: entries, policy: .after(max(times.last ?? now, now).addingTimeInterval(3600))))
     }
 }
 
@@ -39,6 +43,7 @@ struct PolingualWidgetView: View {
     let entry: SnapshotEntry
 
     var s: WidgetSnapshot { entry.snapshot }
+    var c: WidgetCounts { entry.snapshot.counts(at: entry.date) }
 
     var body: some View {
         switch family {
@@ -46,7 +51,7 @@ struct PolingualWidgetView: View {
             Gauge(value: 0) {
                 Image(systemName: "flame.fill")
             } currentValueLabel: {
-                Text("\(s.due)")
+                Text("\(c.due)")
             }
             .gaugeStyle(.accessoryCircularCapacity)
         case .accessoryRectangular:
@@ -55,41 +60,79 @@ struct PolingualWidgetView: View {
                 Text(s.words.map(\.form).joined(separator: " · ")).font(.headline).lineLimit(2)
             }
         case .accessoryInline:
-            Text("\(s.due) due · \(s.words.first?.form ?? s.gloss)")
+            Text("\(c.due) due · \(s.words.first?.form ?? s.gloss)")
         case .systemSmall:
             VStack(alignment: .leading, spacing: 6) {
-                HStack(spacing: 4) {
-                    Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
-                    Text("\(s.streak)").font(.system(size: 28, weight: .heavy, design: .rounded))
-                }
-                Text("\(s.due) due").font(.headline)
-                Text("\(s.newToday) new").font(.subheadline).foregroundStyle(WidgetInk.ink.opacity(0.6))
+                tally
                 Spacer(minLength: 0)
-                Text(s.words.first?.form ?? "").font(.system(size: 17, weight: .bold, design: .rounded)).foregroundStyle(WidgetInk.plum).lineLimit(1).minimumScaleFactor(0.6)
+                if let w = s.words.first { WidgetTile(word: w.form, lang: w.lang) }
             }
             .foregroundStyle(WidgetInk.ink)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         default:
-            HStack(alignment: .top, spacing: 16) {
-                VStack(alignment: .leading, spacing: 6) {
-                    HStack(spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .firstTextBaseline, spacing: 10) {
+                    HStack(spacing: 3) {
                         Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
-                        Text("\(s.streak)").font(.system(size: 28, weight: .heavy, design: .rounded))
+                        Text("\(c.streak)").font(.system(size: 22, weight: .heavy, design: .rounded))
                     }
-                    Text("\(s.due) due").font(.headline)
-                    Text("\(s.newToday) new").font(.subheadline).foregroundStyle(WidgetInk.ink.opacity(0.6))
+                    Text("\(c.due) due").font(.subheadline.weight(.bold))
+                    Text("\(c.new) new").font(.subheadline).foregroundStyle(WidgetInk.ink.opacity(0.6))
+                    Spacer(minLength: 4)
+                    Text(s.gloss).font(.caption.weight(.heavy)).textCase(.uppercase).foregroundStyle(WidgetInk.plum).lineLimit(1)
                 }
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(s.gloss).font(.caption.weight(.bold)).textCase(.uppercase).foregroundStyle(WidgetInk.ink.opacity(0.6))
-                    ForEach(s.words.prefix(4), id: \.lang) { w in
-                        Text(w.form).font(.system(size: 17, weight: .bold, design: .rounded)).foregroundStyle(WidgetInk.plum).lineLimit(1).minimumScaleFactor(0.6)
-                    }
+                HStack(spacing: 8) {
+                    ForEach(s.words.prefix(4), id: \.lang) { w in WidgetTile(word: w.form, lang: w.lang) }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxHeight: .infinity)
             }
             .foregroundStyle(WidgetInk.ink)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
+    }
+
+    var tally: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            HStack(spacing: 4) {
+                Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
+                Text("\(c.streak)").font(.system(size: 24, weight: .heavy, design: .rounded))
+            }
+            Text("\(c.due) due · \(c.new) new").font(.caption.weight(.semibold))
+        }
+    }
+}
+
+struct WidgetTile: View {
+    let word: String
+    let lang: String
+
+    var name: String {
+        guard Locale.current.language.languageCode?.identifier != "en", let tag = Lang.info[lang]?.bcp47,
+              let n = Locale.current.localizedString(forLanguageCode: String(tag.prefix { $0 != "-" })) else { return Lang.name(lang) }
+        return n.prefix(1).uppercased() + n.dropFirst()
+    }
+
+    var body: some View {
+        GeometryReader { g in
+            let side = min(g.size.width, g.size.height)
+            ZStack {
+                FlagFace(flag: D8Flag.of(lang), emblem: false)
+                RoundedRectangle(cornerRadius: 4).fill(WidgetInk.parchment.opacity(0.82)).padding(side * 0.07)
+                VStack(spacing: 2) {
+                    Text(name.uppercased()).font(.system(size: max(7, side * 0.085), weight: .bold, design: .monospaced))
+                        .foregroundStyle(WidgetInk.ink.opacity(0.65)).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(word).font(.system(size: side * 0.22, weight: .heavy, design: .rounded))
+                        .foregroundStyle(WidgetInk.ink).lineLimit(1).minimumScaleFactor(0.35)
+                        .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
+                }
+                .padding(.horizontal, side * 0.11)
+                Shine()
+            }
+            .frame(width: g.size.width, height: g.size.height)
+            .modifier(Glaze(radius: max(8, side * 0.14)))
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(name), \(word)")
     }
 }
 

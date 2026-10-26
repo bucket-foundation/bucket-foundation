@@ -121,6 +121,9 @@ targets:
       - path: Polingual/Widget/PolingualWidget.swift
       - path: Bucket/Widget/PrivacyInfo.xcprivacy
       - path: Polingual/WidgetShared
+      - path: Bucket/Sources/Polingual/FlagArt.swift
+    dependencies:
+      - package: BucketKit
     info:
       path: Bucket/Widget/Info.plist
       properties:
@@ -144,6 +147,9 @@ targets:
     sources:
       - path: Polingual/Widget
       - path: Polingual/WidgetShared
+      - path: Bucket/Sources/Polingual/FlagArt.swift
+    dependencies:
+      - package: BucketKit
     info:
       path: Polingual/Widget/Info.plist
       properties:

@@ -199,3 +199,43 @@ import Testing
     }
     #expect(want["flagHits"]?["it"] == 0 && want["flagMisses"]?["it"] == 1)
 }
+
+@Test func aStreakShowsOnlyThroughTheDayAfterTheLastStudy() {
+    let utc = TimeZone(identifier: "UTC")!
+    let day = 86_400_000.0
+    let monday = 1_761_523_200_000.0
+    var st = EngineState()
+    st.streak = 6
+    st.lastStudyDay = dayKey(monday, tz: utc)
+    #expect(liveStreak(st, now: monday + 3_600_000, tz: utc) == 6)
+    #expect(liveStreak(st, now: monday + day + 82_800_000, tz: utc) == 6)
+    #expect(liveStreak(st, now: monday + 2 * day + 60_000, tz: utc) == 0)
+    #expect(liveStreak(EngineState(), now: monday, tz: utc) == 0)
+}
+
+@Test func aStreakSurvivesTheShortSpringForwardDay() throws {
+    let ny = try #require(TimeZone(identifier: "America/New_York"))
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = ny
+    let studied = try #require(cal.date(from: DateComponents(year: 2026, month: 3, day: 8, hour: 12)))
+    let afterMidnight = try #require(cal.date(from: DateComponents(year: 2026, month: 3, day: 9, hour: 0, minute: 30)))
+    var st = EngineState()
+    st.streak = 5
+    st.lastStudyDay = dayKey(studied.timeIntervalSince1970 * 1000, tz: ny)
+    #expect(liveStreak(st, now: afterMidnight.timeIntervalSince1970 * 1000, tz: ny) == 5)
+}
+
+@Test func reminderForecastsDropALapsedStreak() {
+    let utc = TimeZone(identifier: "UTC")!
+    let monday = 1_761_523_200_000.0
+    var st = EngineState()
+    st.streak = 8
+    st.lastStudyDay = dayKey(monday, tz: utc)
+    let tuesday = Date(timeIntervalSince1970: (monday + 86_400_000 + 18 * 3_600_000) / 1000)
+    let thursday = Date(timeIntervalSince1970: (monday + 3 * 86_400_000) / 1000)
+    #expect(ReminderPlan.streak([st, EngineState()], at: tuesday, tz: utc) == 8)
+    #expect(ReminderPlan.streak([st], at: thursday, tz: utc) == 0)
+    let due = [(due: monday, label: Optional("nuit"))]
+    #expect(ReminderPlan.forecast(due: due, at: thursday, streak: ReminderPlan.streak([st], at: thursday, tz: utc)).streak == 0)
+    #expect(ReminderPlan.forecast(due: due, at: tuesday, streak: ReminderPlan.streak([st], at: tuesday, tz: utc)).streak == 8)
+}

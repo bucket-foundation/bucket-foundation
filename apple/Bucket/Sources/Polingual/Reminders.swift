@@ -36,11 +36,13 @@ func langDue(_ store: LangStore) -> [(due: Double, label: String?)] {
 }
 
 @MainActor
-func langStreak(_ store: LangStore) -> Int { store.systems.map { Int(store.state($0.id).streak) }.max() ?? 0 }
+func langStreak(_ store: LangStore, now: Date = .now) -> Int {
+    ReminderPlan.streak(store.systems.map { store.state($0.id) }, at: now)
+}
 
 @MainActor
 func langForecast(_ store: LangStore, at date: Date) -> ReviewForecast {
-    ReminderPlan.forecast(due: langDue(store), at: date, streak: langStreak(store))
+    ReminderPlan.forecast(due: langDue(store), at: date, streak: langStreak(store, now: date))
 }
 
 @MainActor

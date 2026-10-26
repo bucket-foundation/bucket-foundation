@@ -355,3 +355,12 @@ func dayTime(_ d: String) -> Double {
     c.day = p[2]
     return (Calendar(identifier: .gregorian).date(from: c)?.timeIntervalSince1970 ?? .nan) * 1000
 }
+
+public func liveStreak(_ state: EngineState, now: Double, tz: TimeZone = .current) -> Double {
+    guard let last = state.lastStudyDay else { return 0 }
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = tz
+    let today = Date(timeIntervalSince1970: now / 1000)
+    let yesterday = cal.date(byAdding: .day, value: -1, to: today) ?? today.addingTimeInterval(-86_400)
+    return last == dayKey(now, tz: tz) || last == dayKey(yesterday.timeIntervalSince1970 * 1000, tz: tz) ? state.streak : 0
+}

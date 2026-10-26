@@ -33,6 +33,10 @@ public enum ReminderPlan {
         return ReviewForecast(count: ready.count, example: first?.label, streak: streak)
     }
 
+    public static func streak(_ states: [EngineState], at date: Date, tz: TimeZone = .current) -> Int {
+        Int(states.map { liveStreak($0, now: date.timeIntervalSince1970 * 1000, tz: tz) }.max() ?? 0)
+    }
+
     public static func median(_ minutes: [Int], fallback: Int) -> Int {
         let m = minutes.sorted()
         return m.isEmpty ? fallback : m[m.count / 2]
