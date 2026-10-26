@@ -48,3 +48,12 @@ public func wordOfDay(_ system: LangSystem, _ corpus: LangCorpus, _ state: Engin
     for b in (system.id + day).utf8 { h = (h ^ UInt64(b)) &* 1099511628211 }
     return pool.sorted { $0.id < $1.id }[Int(h % UInt64(pool.count))]
 }
+
+public func detectLanguage(_ corpus: LangCorpus, _ query: String, langs: Set<String>? = nil) -> String? {
+    translateSearch(corpus, query, langs: langs, limit: 1).first?.matchedLang
+}
+
+public func translateSources(_ corpus: LangCorpus, mine: [String]) -> [String] {
+    let present = Set(corpus.items.flatMap { $0.forms.keys })
+    return mine.filter(present.contains) + Lang.codes.filter { present.contains($0) && !mine.contains($0) }
+}

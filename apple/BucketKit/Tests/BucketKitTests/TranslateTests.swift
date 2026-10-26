@@ -36,3 +36,15 @@ func translateCorpus() throws -> LangCorpus {
     let week = Set((20...26).compactMap { wordOfDay(system, corpus, EngineState(), day: "2026-10-\($0)")?.id })
     #expect(week.count > 1)
 }
+
+@Test func translateDetectsTheLanguageAndListsSourcesMineFirst() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    let item = try #require(corpus.items.first { $0.form("fr") != nil && $0.form("es") != nil && $0.form("fr") != $0.form("es") && translateSearch(corpus, $0.form("fr")!, langs: ["fr", "es", "en"], limit: 1).first?.matchedLang == "fr" })
+    #expect(detectLanguage(corpus, item.form("fr")!, langs: ["fr", "es", "en"]) == "fr")
+    #expect(detectLanguage(corpus, item.form("es")!, langs: ["es"]) == "es")
+    #expect(detectLanguage(corpus, "", langs: ["fr"]) == nil)
+    let sources = translateSources(corpus, mine: ["it", "en"])
+    #expect(Array(sources.prefix(2)) == ["it", "en"])
+    #expect(Set(sources).count == sources.count)
+    #expect(sources.contains("fr") && sources.allSatisfy { Lang.codes.contains($0) })
+}

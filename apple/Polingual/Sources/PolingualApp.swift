@@ -43,7 +43,7 @@ struct PolingualApp: App {
                         WatchBridge.shared.sink = store
                         WatchBridge.shared.send()
                         #endif
-                        await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay)
+                        await WordOfDayReminder.schedule(store, enabled: reminders.wordOfDay)
                     }
                 }
                 .onChange(of: subs.access) {
@@ -52,7 +52,7 @@ struct PolingualApp: App {
                     #endif
                 }
                 .onChange(of: reminders.wordOfDay) {
-                    backgroundSafe { await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay) }
+                    backgroundSafe { await WordOfDayReminder.schedule(store, enabled: reminders.wordOfDay) }
                 }
                 .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }

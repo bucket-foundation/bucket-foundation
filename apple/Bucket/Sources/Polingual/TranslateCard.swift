@@ -25,6 +25,10 @@ struct TranslateCard: View {
     @State private var query = TranslateCard.debugQuery
     @State private var picked: String?
     @State private var added: Set<String> = []
+    @State private var from: String?
+    @State private var sources: [String] = []
+    @State private var listening = false
+    @State private var missedVoice = false
     @FocusState private var focused: Bool
 
     static var debugQuery: String {
@@ -43,31 +47,89 @@ struct TranslateCard: View {
         return out
     }
 
+    var shown: [String] {
+        guard let from, !langs.contains(from) else { return langs }
+        return [from] + langs
+    }
+
+    var listenLang: String { from ?? store.systems.first?.root ?? "en" }
+
     var body: some View {
         if let corpus = store.corpus, !store.systems.isEmpty {
-            let hits = translateSearch(corpus, query, langs: Set(langs), limit: 6)
+            let searchIn: Set<String> = from.map { [$0] } ?? Set(langs)
+            let hits = translateSearch(corpus, query, langs: searchIn, limit: 6)
+            let detected = from == nil ? hits.first?.matchedLang : nil
             VStack(alignment: .leading, spacing: 12) {
+                HStack(spacing: 8) {
+                    Menu {
+                        Button { from = nil } label: { Label("Detect language", systemImage: from == nil ? "checkmark" : "sparkle.magnifyingglass") }
+                        Divider()
+                        ForEach(sources, id: \.self) { l in
+                            Button { from = l } label: {
+                                if from == l { Label(Lang.name(l), systemImage: "checkmark") } else { Text(Lang.name(l)) }
+                            }
+                        }
+                    } label: {
+                        HStack(spacing: 6) {
+                            if let from { FlagTile(lang: from, size: 22) } else { Image(systemName: "sparkle.magnifyingglass").font(.system(size: 18, weight: .semibold)) }
+                            Text(from.map(Lang.name) ?? String(localized: "Detect language"))
+                                .font(.system(size: 17, weight: .bold, design: .rounded))
+                            Image(systemName: "chevron.down").font(.system(size: 13, weight: .bold))
+                        }
+                        .foregroundStyle(D8.ink)
+                        .padding(.horizontal, 12)
+                        .frame(minHeight: 40)
+                        .background(.white, in: .capsule)
+                        .overlay { Capsule().strokeBorder(D8.keyline, lineWidth: 2) }
+                    }
+                    .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
+                    if let detected {
+                        Text("Detected: \(Lang.name(detected))")
+                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                            .foregroundStyle(Palette.muted)
+                            .lineLimit(1)
+                    }
+                    Spacer(minLength: 0)
+                }
                 HStack(spacing: 10) {
-                    Image(systemName: "character.bubble.fill").foregroundStyle(D8.lapis)
+                    Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
                     TextField("Translate a word", text: $query)
-                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                        .font(.system(size: 21, weight: .semibold, design: .rounded))
                         .autocorrectionDisabled()
                         .submitLabel(.search)
                         .focused($focused)
                         .onSubmit { if let id = picked ?? hits.first?.itemId { add(id, corpus) } }
                     if !query.isEmpty {
-                        Button { query = "" } label: { Image(systemName: "xmark.circle.fill").foregroundStyle(Palette.muted) }
+                        Button { query = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 20)).foregroundStyle(Palette.muted) }
                             .buttonStyle(.borderless)
                             .accessibilityLabel("Clear")
                     }
+                    if LangListener.shared.supported {
+                        Button { Task { await listen() } } label: {
+                            Image(systemName: listening ? "waveform" : "mic.fill")
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundStyle(listening ? .white : D8.vermilion)
+                                .frame(width: 40, height: 40)
+                                .background(listening ? D8.vermilion : D8.vermilion.opacity(0.12), in: .circle)
+                                .symbolEffect(.variableColor.iterative, isActive: listening)
+                        }
+                        .buttonStyle(.borderless)
+                        .disabled(listening)
+                        .accessibilityLabel(String(localized: "Say a word in \(Lang.name(listenLang))"))
+                    }
                 }
                 .padding(.horizontal, 14)
-                .frame(minHeight: 48)
-                .background(.white, in: .rect(cornerRadius: 12))
-                .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.keyline, lineWidth: 2) }
+                .frame(minHeight: 60)
+                .background(.white, in: .rect(cornerRadius: 14))
+                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
+                if listening {
+                    Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
+                } else if missedVoice {
+                    Text("Didn't catch that. Tap the mic and try again.").font(.subheadline).foregroundStyle(Palette.muted)
+                }
                 if !query.isEmpty {
                     if let id = picked ?? hits.first?.itemId, let item = corpus.byId[id] {
-                        ForEach(langs, id: \.self) { l in
+                        ForEach(shown, id: \.self) { l in
                             if let f = item.form(l) {
                                 HStack(spacing: 10) {
                                     FlagTile(lang: l, size: 26)
@@ -88,7 +150,7 @@ struct TranslateCard: View {
                                 Button("Add to my deck") { add(id, corpus) }
                                     .buttonStyle(D8Option(align: .center, compact: true))
                             }
-                            let words = langs.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
+                            let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
                             if let image = Share.wordImage(gloss: query, words: words) {
                                 ShareLink(item: image, message: Text(words.map(\.form).joined(separator: " · ") + " \(Share.appLink.absoluteString)"), preview: SharePreview(query, image: image)) {
                                     Image(systemName: "square.and.arrow.up").font(.headline)
@@ -97,8 +159,8 @@ struct TranslateCard: View {
                                 .accessibilityLabel("Share this word")
                             }
                         }
-                        let shown = Set(langs.compactMap { item.form($0).map(foldForSearch) })
-                        let similar = hits.filter { h in h.itemId != id && !shown.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
+                        let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
+                        let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
                         if !similar.isEmpty {
                             Text("Similar").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -120,7 +182,22 @@ struct TranslateCard: View {
             }
             .padding(.vertical, 6)
             .onChange(of: query) { picked = nil }
+            .onChange(of: from) { picked = nil }
+            .task(id: langs) { sources = translateSources(corpus, mine: langs) }
         }
+    }
+
+    func listen() async {
+        missedVoice = false
+        listening = true
+        let heard = await LangListener.shared.listenOnce(listenLang)
+        listening = false
+        guard let first = heard.first, !first.isEmpty else {
+            missedVoice = true
+            return
+        }
+        query = first
+        haptic(true)
     }
 
     func add(_ itemId: String, _ corpus: LangCorpus) {

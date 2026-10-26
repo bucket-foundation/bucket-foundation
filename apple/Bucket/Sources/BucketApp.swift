@@ -41,7 +41,13 @@ struct BucketApp: App {
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
-                    backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
+                    backgroundSafe {
+                        await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
+                        await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
+                    }
+                }
+                .onChange(of: reminders.wordOfDay) {
+                    backgroundSafe { await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay) }
                 }
                 .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
