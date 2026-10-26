@@ -213,6 +213,13 @@ public final class LangStore {
         commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier))
     }
 
+    public func flagMisses(_ systemId: String, lang: String) -> Int { FlagMisses.count(state(systemId), lang) }
+
+    public func recordFlagMiss(_ systemId: String, lang: String) {
+        guard let s = system(systemId) else { return }
+        commit(s, FlagMisses.recording(state(systemId), lang))
+    }
+
     public func place(_ systemId: String, lang: String, tier: Double) async {
         guard var s = system(systemId), let corpus else { return }
         s.placement[lang] = tier

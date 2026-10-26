@@ -74,3 +74,14 @@ import Testing
     #expect(Lang.articleWord("de", "f", "Kirche") == "die")
     #expect(Lang.articleWord("en", "m", "x") == nil)
 }
+
+@Test func flagMissCountersSurviveAReload() {
+    var st = EngineState()
+    st = FlagMisses.recording(st, "fr")
+    st = FlagMisses.recording(st, "fr")
+    st = FlagMisses.recording(st, "it")
+    let reloaded = EngineState(js: st.js)
+    #expect(FlagMisses.count(reloaded, "fr") == 2)
+    #expect(FlagMisses.count(reloaded, "it") == 1)
+    #expect(FlagMisses.count(reloaded, "es") == 0)
+}
