@@ -39,6 +39,7 @@ const SUITES = {
       "scripts/test-heritage-link.ts",
       "scripts/test-lang-tile-readings.ts",
       "scripts/test-lang-milestones.ts",
+      "scripts/test-seo-noindex.ts",
       "scripts/test-workspace-tabs.ts",
       "scripts/test-cross-language-options.ts",
       "scripts/test-canon-branch-status.ts",

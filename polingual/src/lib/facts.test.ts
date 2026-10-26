@@ -27,3 +27,10 @@ test("llms.txt links the pages it names", () => {
   assert.match(txt, /\/compare\/duolingo-three-languages/);
   assert.match(txt, new RegExp(`${FACTS.languageCount} languages`));
 });
+
+test("layout metadata carries the brand and an og image", () => {
+  const src = readFileSync(join(__dirname, "../app/layout.tsx"), "utf8");
+  assert.match(src, /template: "%s · Polingual"/);
+  assert.match(src, /\/d8\/og\.png/);
+  assert.ok(!/—/.test(src));
+});
