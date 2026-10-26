@@ -107,3 +107,36 @@ import Testing
         #expect(flags == plain.map { Optional($0) })
     }
 }
+
+@Test func flagMatchGradingMatchesTheWebGolden() throws {
+    struct Case: Decodable {
+        let name: String
+        let hits: [String: Int]
+        let misses: [String: Int]
+        let assign: [String: String]
+    }
+    func fixture(_ name: String) throws -> Data {
+        let url = try #require(Bundle.module.url(forResource: name, withExtension: "json", subdirectory: "Fixtures/lang"))
+        return try Data(contentsOf: url)
+    }
+    let cases = try JSONDecoder().decode([Case].self, from: fixture("flag-match-cases"))
+    let golden = try JSONDecoder().decode([[String]].self, from: fixture("flag-match-golden"))
+    #expect(cases.count == golden.count)
+    let langs = ["fr", "es", "it"]
+    let pairs = langs.map { LangWord(lang: $0, word: "w-\($0)") }
+    func table(_ m: [String: Int]) -> JSValue { .object(JSObject(m.sorted { $0.key < $1.key }.map { ($0.key, .number(Double($0.value))) })) }
+    func render(_ v: JSValue?) -> String {
+        guard let o = v?.object else { return "" }
+        return o.keys.sorted().map { "\($0)=\(Int(o[$0]?.number ?? 0))" }.joined(separator: ",")
+    }
+    for (c, want) in zip(cases, golden) {
+        var st = EngineState()
+        if !c.hits.isEmpty { st.settingsExtra["flagHits"] = table(c.hits) }
+        if !c.misses.isEmpty { st.settingsExtra["flagMisses"] = table(c.misses) }
+        let out = FlagMisses.gradeMatch(pairs, c.assign, st)
+        let ratings = langs.map { l in "\(l)=\(out.ratings.first { $0.lang == l }?.rating.map(String.init) ?? "none")" }.joined(separator: ",")
+        let shows = langs.map { "\($0)=\(FlagMisses.showsName(out.state, $0))" }.joined(separator: ",")
+        let got = [c.name, ratings, render(out.state.settingsExtra["flagHits"]), render(out.state.settingsExtra["flagMisses"]), shows]
+        #expect(got == want, "\(c.name)")
+    }
+}
