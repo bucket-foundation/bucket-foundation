@@ -94,6 +94,8 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
   );
 }
 
+export const metadata = { title: "Research notes", description: "Polingual research notes: a cross-lingual dictionary of 6.5 million words built on one meaning graph.", alternates: { canonical: "/research" } };
+
 export default function ResearchPage() {
   return (
     <main className="min-h-screen relative">
