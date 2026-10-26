@@ -93,7 +93,7 @@ describe("the word pack", () => {
   test("a source without the share-alike licence or with a denied name is refused", () => {
     expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, license: "MIT" } }, DENY, LICENCE)).toThrow("CC-BY-SA");
     expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, data: "A word list" } }, DENY, LICENCE)).toThrow("Wiktionary");
-    expect(() => assembleWords(RAW, DENY, "Attribution-ShareAlike 3.0 Unported")).toThrow("full Attribution-ShareAlike 3.0 Unported licence text");
+    expect(() => assembleWords(RAW, DENY, "Attribution-ShareAlike 4.0 International")).toThrow("full Attribution-ShareAlike 4.0 International licence text");
     const words = RAW.words.map((w, i) => (i === 0 ? { ...w, e: "From the Kruse family name." } : w));
     expect(() => assembleWords({ ...RAW, words }, DENY, LICENCE)).toThrow("rights:");
   });
@@ -106,7 +106,7 @@ describe("the word pack", () => {
   test("the pack and every lesson payload carry the attribution", () => {
     expect(PACK.attribution.data).toContain("Wiktionary");
     expect(PACK.attribution.license).toContain("CC-BY-SA");
-    expect(BOOK.credit.text).toBe("Words, definitions, IPA and etymology from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, shortened and filtered by Bucket. Full entries at en.wiktionary.org.");
+    expect(BOOK.credit.text).toBe("Words, definitions, IPA and etymology from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0, shortened and filtered by Bucket. Full entries at en.wiktionary.org.");
     expect(BOOK.credit.licenceHref).toStartWith("https://creativecommons.org/licenses/by-sa/");
   });
 });
@@ -114,15 +114,15 @@ describe("the word pack", () => {
 describe("the licence and the changes", () => {
   test("the pack ships the full licence text and a note of what Bucket changed", () => {
     expect(PACK.licenceText).toBe(LICENCE);
-    expect(PACK.licenceText).toContain("Attribution-ShareAlike 3.0 Unported");
-    expect(PACK.licenceText).toContain("You may Distribute or Publicly Perform an Adaptation only under the");
+    expect(PACK.licenceText).toContain("Attribution-ShareAlike 4.0 International");
+    expect(PACK.licenceText).toContain("The Adapter's License You apply must be a Creative Commons");
     expect(PACK.changes).toStartWith("Changes made by Bucket:");
     expect(PACK.changes).toContain("under the same licence");
-    expect(BOOK.licence).toMatchObject({ title: "Creative Commons CC-BY-SA 3.0", text: LICENCE, changes: PACK.changes });
+    expect(BOOK.licence).toMatchObject({ title: "Creative Commons CC-BY-SA 4.0", text: LICENCE, changes: PACK.changes });
     const notice = readFileSync(join(REPO, "packages/bkt/NOTICE"), "utf8");
     expect(notice).toContain("Wiktionary");
     expect(notice).toContain("Changes made by Bucket");
-    expect(notice).toContain("licences/CC-BY-SA-3.0.txt");
+    expect(notice).toContain("licences/CC-BY-SA-4.0.txt");
     expect(findCommand("licences")!.summary).toContain("licence text");
   });
 
@@ -132,7 +132,7 @@ describe("the licence and the changes", () => {
     expect(r.exitCode).toBe(0);
     expect(out.split("\n")[0]).toBe(BOOK.credit.text);
     expect(out).toContain("Changes made by Bucket:");
-    expect(out).toContain("8. Miscellaneous");
+    expect(out).toContain("Section 8 -- Interpretation.");
     const help = Bun.spawnSync([process.execPath, join(REPO, "packages/bkt/src/cli.tsx"), "help"], { env: { PATH: process.env.PATH ?? "", HOME: "/nonexistent", BKT_HOME: "/nonexistent/bkt" } });
     expect(help.stdout.toString()).toMatch(/licences\s+print the credit, the changes and the licence text/);
   });
@@ -147,11 +147,11 @@ describe("the licence and the changes", () => {
     const b = directBackend({ store, content: {}, daily: store2, record: (...a) => wq.record(...a), now: () => NOW, seed: () => "seed" });
     const text = io();
     expect(await daily(b, day, false, findCommand("daily")!, text)).toBe(0);
-    expect(text.out.at(-2)).toBe("Word questions use Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, shortened and filtered by Bucket. Run bkt licences for the terms.");
+    expect(text.out.at(-2)).toBe("Word questions use Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0, shortened and filtered by Bucket. Run bkt licences for the terms.");
     const line = io([JSON.stringify({ response: word.answer, elapsedMs: 900 }), JSON.stringify({ response: "dev", elapsedMs: 900 })]);
     await daily(b, day, true, findCommand("daily")!, line);
-    expect(JSON.parse(line.out[0]).credit).toContain("CC-BY-SA 3.0");
-    expect(JSON.parse(line.out[1]).credit).toContain("CC-BY-SA 3.0");
+    expect(JSON.parse(line.out[0]).credit).toContain("CC-BY-SA 4.0");
+    expect(JSON.parse(line.out[1]).credit).toContain("CC-BY-SA 4.0");
     expect(JSON.parse(line.out[2]).credit).toBeUndefined();
     store2.put({ day: "2026-10-12", questions: [plain, { ...plain, id: "plain-2" }, { ...plain, id: "plain-3" }] }, NOW);
     const none = io();

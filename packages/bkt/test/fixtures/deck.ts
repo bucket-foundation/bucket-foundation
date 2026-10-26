@@ -7,7 +7,7 @@ import { DECK_FORMAT, DECK_FORMAT_VERSION, type DeckManifest } from "../../src/d
 
 export type FixtureWord = [surface: string, ipa: string, pos: string, meaning: string, shared?: boolean];
 
-export const FIXTURE_LICENCE = "CC-BY-SA 3.0";
+export const FIXTURE_LICENCE = "CC-BY-SA 4.0";
 export const FIXTURE_SOURCE = "Wiktionary via Kaikki (kaikki.org)";
 
 const sha = (path: string) => createHash("sha256").update(readFileSync(path)).digest("hex");
@@ -62,7 +62,7 @@ export function buildDeck(root: string, lang: string, name: string, words: reado
     source: o.source ?? FIXTURE_SOURCE,
     source_url: o.sourceUrl ?? "https://kaikki.org",
     ...(o.wiktionaryUrl === null ? {} : { wiktionary_url: o.wiktionaryUrl ?? "https://en.wiktionary.org" }),
-    licence_url: o.licenceUrl ?? "https://creativecommons.org/licenses/by-sa/3.0/",
+    licence_url: o.licenceUrl ?? "https://creativecommons.org/licenses/by-sa/4.0/",
     curator: o.curator ?? "Bucket Foundation",
     adaptation: "Adapted by Bucket Foundation. This pack is shared under the same licence.",
     built: o.built ?? "2026-10-11",
