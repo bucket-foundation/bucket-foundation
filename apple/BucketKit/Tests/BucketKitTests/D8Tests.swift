@@ -239,3 +239,13 @@ import Testing
     #expect(ReminderPlan.forecast(due: due, at: thursday, streak: ReminderPlan.streak([st], at: thursday, tz: utc)).streak == 0)
     #expect(ReminderPlan.forecast(due: due, at: tuesday, streak: ReminderPlan.streak([st], at: tuesday, tz: utc)).streak == 8)
 }
+
+@Test func theHundredDayGoalCountsDownAndHolds() {
+    #expect(StreakGoal(streak: 6) == StreakGoal(streak: 6.0))
+    let six = StreakGoal(streak: 6)
+    #expect(six.day == 6 && six.left == 94 && !six.reached && abs(six.fraction - 0.06) < 1e-9)
+    let zero = StreakGoal(streak: 0)
+    #expect(zero.day == 0 && zero.left == 100)
+    let done = StreakGoal(streak: 130)
+    #expect(done.reached && done.left == 0 && done.fraction == 1 && done.day == 130)
+}

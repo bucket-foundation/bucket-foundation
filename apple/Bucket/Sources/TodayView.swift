@@ -106,7 +106,7 @@ struct TodayView: View {
             List {
                 Section {
                     VStack(alignment: .leading, spacing: 14) {
-                        if streak > 0 { Text("\(streakText(streak)) streak").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted) }
+                        StreakGoalCard(streak: streak)
                         HStack(spacing: 0) {
                             Tally(n: due, label: "due now", color: D8.vermilion)
                             Tally(n: new, label: "new today", color: D8.lapis)
