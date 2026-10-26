@@ -39,7 +39,7 @@ struct SystemView: View {
                 Text("\(sum.started) of \(sum.total) cards started across \(system.targets.count) languages. \(sum.due) due now.")
                     .font(.serif(.body))
                 Button(sum.due > 0 ? "Review" : "Study") { path.append(LangRoute.study(system.id)) }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(D8Primary(compact: true))
                 HStack(spacing: 18) {
                     Text("\(Int(sum.xp)) xp")
                     Text("\(Int(sum.streak)) day streak")
@@ -54,7 +54,7 @@ struct SystemView: View {
                 if let draft = editing {
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != system.root }, id: \.self) { c in
-                            Chip(title: Lang.name(c), on: draft.contains(c)) {
+                            Chip(title: Lang.name(c), langs: [c], on: draft.contains(c)) {
                                 editing = draft.contains(c) ? draft.filter { $0 != c } : draft + [c]
                             }
                         }
@@ -70,9 +70,9 @@ struct SystemView: View {
                                 }
                             }
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(D8Primary(compact: true))
                         .disabled(draft.isEmpty || draft.count > Lang.maxTargets)
-                        Button("Cancel") { editing = nil }.buttonStyle(.bordered)
+                        Button("Cancel") { editing = nil }.buttonStyle(D8Option(align: .center, compact: true))
                     }
                     Text("Progress in a removed language stays saved and returns if you add it back.").noticeStyle()
                     if let editError { Text(editError).noticeStyle() }
@@ -89,7 +89,7 @@ struct SystemView: View {
                 ForEach(per) { p in
                     VStack(alignment: .leading, spacing: 6) {
                         HStack {
-                            Text(Lang.name(p.lang)).font(.serif(.headline))
+                            HStack(spacing: 8) { FlagTile(lang: p.lang, size: 26); Text(Lang.name(p.lang)).font(.headline) }
                             Spacer()
                             Text("\(p.started)/\(p.total) started").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                         }
@@ -181,8 +181,8 @@ struct ProgressBar: View {
         GeometryReader { g in
             ZStack(alignment: .leading) {
                 Capsule().fill(Palette.muted.opacity(0.15))
-                Capsule().fill(Palette.muted.opacity(0.4)).frame(width: g.size.width * started)
-                Capsule().fill(Palette.ink).frame(width: g.size.width * mastered)
+                Capsule().fill(D8.lapis.opacity(0.45)).frame(width: g.size.width * started)
+                Capsule().fill(D8.malachite).frame(width: g.size.width * mastered)
             }
         }
         .frame(height: 8)

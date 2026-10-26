@@ -8,6 +8,8 @@ from pathlib import Path
 
 from wordfreq import get_frequency_dict
 
+from wordlist_qa import defects, fold
+
 ROOT = Path(__file__).resolve().parents[2]
 INDEX = ROOT / "_intake/photons/index.sqlite"
 OUT = ROOT / "learning/app/polingual/top1000"
@@ -96,6 +98,19 @@ def cedict_entries(path: Path) -> dict[str, dict]:
     return {k: v for k, (_, v) in best.items()}
 
 
+def clean(row: dict, lang: str, senses: list[str]) -> dict | None:
+    kinds = defects(row, lang)
+    if "junk" in kinds or "proper" in kinds:
+        return None
+    if "gloss" not in kinds:
+        return row
+    for gloss in senses:
+        fixed = {**row, "meaning": gloss}
+        if not defects(fixed, lang):
+            return fixed
+    return None
+
+
 def index_rows(db: sqlite3.Connection, lang: str) -> dict[str, dict]:
     rows = db.execute("select surface, meaning_en, pos, ipa from photons where lang=?", (lang,))
     return {s: {"word": s, "meaning": m, "pos": p, "ipa": i} for s, m, p, i in rows}
@@ -143,11 +158,11 @@ def rank_sourced(db: sqlite3.Connection, lang: str, n: int, kaikki: Path | None,
         if lang == "la":
             base = idx.get(word) or {"word": word, "ipa": None, "meaning": None}
             entry = {**base, **{k: v for k, v in extra.items() if v}, "word": word}
-        if not entry or not entry.get("meaning") or entry["word"] in seen:
+        if not entry or not entry.get("meaning") or fold(entry["word"]) in seen or not clean(entry, lang, []):
             continue
         if lang in SCRIPTS and not SCRIPTS[lang].match(entry["word"]):
             continue
-        seen.add(entry["word"])
+        seen.add(fold(entry["word"]))
         rank = len(out) + 1
         zipf = zipf_of(count, total) if lang not in ("la",) else 0.0
         row = {"rank": rank, "word": entry["word"], "meaning": entry["meaning"], "pos": entry["pos"], "ipa": entry.get("ipa"), "zipf": zipf, "band": band_of(rank)}
@@ -162,8 +177,8 @@ def rank_sourced(db: sqlite3.Connection, lang: str, n: int, kaikki: Path | None,
             break
     if len(out) < n and lang == "la":
         for row in rank_index(db, lang, n * 2):
-            if row["word"] not in seen and len(out) < n:
-                seen.add(row["word"])
+            if fold(row["word"]) not in seen and len(out) < n:
+                seen.add(fold(row["word"]))
                 out.append({**row, "rank": len(out) + 1, "band": band_of(len(out) + 1), "source": "index"})
     return out
 
@@ -180,16 +195,20 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int) -> list[dict]:
         if freq:
             zipf = round(math.log10(freq[surface] * 1e9), 2) if surface in freq else 0.0
             score = zipf * 100 + score / 100
-        scored.append((score, zipf, surface, meaning, pos, ipa))
+        senses = [x.get("gloss") for x in json.loads(payload).get("senses") or [] if x.get("gloss")]
+        scored.append((score, zipf, surface, meaning, pos, ipa, senses))
     scored.sort(key=lambda r: (-r[0], -r[1], r[2]))
     seen: set[str] = set()
     out = []
-    for score, zipf, surface, meaning, pos, ipa in scored:
-        if surface.lower() in seen:
+    for score, zipf, surface, meaning, pos, ipa, senses in scored:
+        if fold(surface) in seen:
             continue
-        seen.add(surface.lower())
+        row = clean({"word": surface, "meaning": meaning, "pos": pos}, lang, senses)
+        if not row:
+            continue
+        seen.add(fold(surface))
         rank = len(out) + 1
-        out.append({"rank": rank, "word": surface, "meaning": meaning, "pos": pos, "ipa": ipa, "zipf": zipf, "score": score, "band": band_of(rank)})
+        out.append({"rank": rank, "word": surface, "meaning": row["meaning"], "pos": pos, "ipa": ipa, "zipf": zipf, "score": score, "band": band_of(rank)})
         if len(out) == n:
             break
     return out

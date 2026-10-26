@@ -6,6 +6,7 @@ public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly,
 public protocol LangDisk: Sendable {
     func read(_ name: String) -> Data?
     func write(_ name: String, _ data: Data)
+    func removeAll()
 }
 
 public struct FileLangDisk: LangDisk {
@@ -18,6 +19,11 @@ public struct FileLangDisk: LangDisk {
 
     public func read(_ name: String) -> Data? { try? Data(contentsOf: root.appending(path: name)) }
     public func write(_ name: String, _ data: Data) { try? data.write(to: root.appending(path: name), options: .atomic) }
+
+    public func removeAll() {
+        let fm = FileManager.default
+        for f in (try? fm.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)) ?? [] { try? fm.removeItem(at: f) }
+    }
 }
 
 public final class MemoryLangDisk: LangDisk, @unchecked Sendable {
@@ -26,6 +32,8 @@ public final class MemoryLangDisk: LangDisk, @unchecked Sendable {
     public init() {}
     public func read(_ name: String) -> Data? { lock.withLock { files[name] } }
     public func write(_ name: String, _ data: Data) { lock.withLock { files[name] = data } }
+    public func removeAll() { lock.withLock { files.removeAll() } }
+    public var names: [String] { lock.withLock { Array(files.keys) } }
 }
 
 @MainActor
@@ -49,6 +57,7 @@ public final class LangStore {
     let token: @MainActor () async -> String?
     let now: @MainActor () -> Double
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
+    @ObservationIgnored private var pending: [String: String] = [:]
 
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
@@ -204,6 +213,7 @@ public final class LangStore {
         states[s.id] = next
         writeLocal(branch, next)
         pushes[branch]?.cancel()
+        pending[branch] = s.id
         pushes[branch] = Task { [weak self] in
             try? await Task.sleep(for: .seconds(1.2))
             guard !Task.isCancelled, let self else { return }
@@ -235,6 +245,24 @@ public final class LangStore {
             }
         }
         disk.write("guest-lesson.json", Data())
+    }
+
+    public func flush() async {
+        let open = pending
+        for t in pushes.values { t.cancel() }
+        pushes = [:]
+        pending = [:]
+        for (branch, systemId) in open { await push(systemId, branch) }
+    }
+
+    public func clearLocal() {
+        for t in pushes.values { t.cancel() }
+        pushes = [:]
+        pending = [:]
+        disk.removeAll()
+        systems = []
+        states = [:]
+        saveState = .idle
     }
 
     public func guestMayStudy(_ systemId: String) -> Bool {

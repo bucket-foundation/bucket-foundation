@@ -47,8 +47,13 @@ public struct Atom: Decodable, Sendable, Identifiable, Hashable {
     public let depths: [String: String]
     public let quiz: [QuizItem]
     public let lesson: String?
+    public let shell: String?
+    public let note: String?
+    public let gloss: String?
+    public internal(set) var leverage: Double?
+    public internal(set) var unlocks: [String] = []
 
-    enum CodingKeys: String, CodingKey { case id, title, type, requires, equation, summary, depths, quiz, lesson }
+    enum CodingKeys: String, CodingKey { case id, title, type, requires, equation, summary, depths, quiz, lesson, shell, note, gloss, leverage }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -61,6 +66,10 @@ public struct Atom: Decodable, Sendable, Identifiable, Hashable {
         depths = try c.decodeIfPresent([String: String].self, forKey: .depths) ?? [:]
         quiz = try c.decodeIfPresent([QuizItem].self, forKey: .quiz) ?? []
         lesson = try c.decodeIfPresent(String.self, forKey: .lesson)
+        shell = try c.decodeIfPresent(String.self, forKey: .shell)
+        note = try c.decodeIfPresent(String.self, forKey: .note)
+        gloss = try c.decodeIfPresent(String.self, forKey: .gloss)
+        leverage = try c.decodeIfPresent(Double.self, forKey: .leverage)
     }
 
     public static let depthOrder = ["eli5", "core", "deep"]

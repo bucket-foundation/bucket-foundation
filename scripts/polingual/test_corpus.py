@@ -15,6 +15,17 @@ def codes() -> list[str]:
 
 
 class CorpusTest(unittest.TestCase):
+    def test_lists_pass_the_word_qa(self):
+        import sys
+        sys.path.insert(0, str(ROOT / "scripts/polingual"))
+        from wordlist_qa import audit, defects
+        for lang in codes():
+            words = json.loads((DATA / f"top1000/{lang}.json").read_text())
+            self.assertEqual(audit(lang, words)["full_list_flagged"], 0, lang)
+        self.assertEqual(defects({"word": "kann", "meaning": "first/third-person singular present of können", "pos": "verb"}, "de"), ["gloss"])
+        self.assertIn("proper", defects({"word": "Eind", "meaning": "a hamlet in Leudal, Limburg; a village", "pos": "noun"}, "nl"))
+        self.assertIn("junk", defects({"word": "16-mal", "meaning": "sixteen times", "pos": "adv"}, "de"))
+
     def test_every_language_has_1000_tagged_words(self):
         for lang in codes():
             words = json.loads((DATA / f"top1000/{lang}.json").read_text())

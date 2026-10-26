@@ -1,5 +1,6 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
 import { dayKey, grade, makeFsrs, normalizeState, type EngineState } from "./engine";
+import { alphabetDone, alphabetUnit, dueLetters, FOLDABLE_MARKS, judgeSpelled, letterItemId, nextLetters } from "./lang-script";
 
 export interface LangInfo {
   name: string;
@@ -408,7 +409,7 @@ const ARABIC_VOWELS = /[ً-ْٰـ]/g;
 export function normalizeAnswer(s: string, lang = ""): string {
   let t = s.trim().toLowerCase();
   if (lang === "ar") t = t.replace(ARABIC_VOWELS, "");
-  else t = t.normalize("NFD").replace(/[̀-ͯ]/g, "").normalize("NFC");
+  else t = t.normalize("NFD").replace(FOLDABLE_MARKS, "").normalize("NFC");
   return t
     .replace(/[¿¡!?.,;:"'«»()。、！？؟،]/g, " ")
     .replace(/\s+/g, " ")
@@ -468,7 +469,9 @@ export type ExerciseKind =
   | "wordbank"
   | "gender"
   | "conjugate"
-  | "false-friend";
+  | "false-friend"
+  | "spell-heard"
+  | "letter";
 
 export interface Exercise {
   kind: ExerciseKind;
@@ -493,6 +496,7 @@ export interface Exercise {
   tense?: "present" | "past";
   level?: number;
   falseFriend?: FalseFriend;
+  optionLangs?: Record<string, string>;
 }
 
 export function readingLabel(r?: Reading): string | null {
@@ -613,7 +617,7 @@ export function exerciseFor(
   lang: string,
   card: LangCard | undefined,
   rng: Rng,
-  opts: { speech?: boolean; afterIntro?: boolean; level?: number } = {}
+  opts: { speech?: boolean; afterIntro?: boolean; level?: number; heritage?: boolean } = {}
 ): Exercise {
   const root = system.root;
   const target = item.forms[lang];
@@ -632,6 +636,7 @@ export function exerciseFor(
   if (!card && !opts.afterIntro) {
     return { ...base, kind: "intro", prompt: rootWord, promptLang: root, answer: target, answerLang: lang, family, answerReading: tr, promptReading: rr, falseFriend: ff };
   }
+  if (opts.heritage && !latin && card) return spellHeard(item, lang, root, tr);
   const choices = (right: string, l: string, other: string) => shuffle([right, ...distractors(corpus, item, l, other, rng)], rng);
   const toTarget = (kind: ExerciseKind, extra: Partial<Exercise> = {}): Exercise => ({ ...base, kind, prompt: rootWord, promptLang: root, answer: target, answerLang: lang, promptReading: rr, answerReading: tr, ...extra });
   const toRoot = (kind: ExerciseKind): Exercise => ({ ...base, kind, prompt: target, promptLang: lang, answer: rootWord, answerLang: root, promptReading: tr, answerReading: rr, options: choices(rootWord, root, lang) });
@@ -666,6 +671,29 @@ export function exerciseFor(
   if (opts.speech && roll < 0.7) return toTarget("speak");
   if (roll < 0.85) return toTarget("translate");
   return { ...base, kind: "type-heard", prompt: target, promptLang: lang, answer: target, answerLang: lang, answerReading: tr };
+}
+
+export function spellHeard(item: LangItem, lang: string, root: string, reading?: Reading): Exercise {
+  const target = item.forms[lang];
+  return { itemId: item.id, lang, root, kind: "spell-heard", prompt: target, promptLang: lang, answer: target, answerLang: lang, accept: [target], promptReading: reading, answerReading: reading };
+}
+
+export function gradeSpelling(ex: Exercise, given: string, hesitated = false): { verdict: Verdict; rating: Rating } {
+  const verdict = judgeSpelled(given, ex.accept ?? [ex.answer], ex.answerLang);
+  return { verdict, rating: verdictRating(verdict, hesitated) };
+}
+
+export function letterExerciseFor(lang: string, root: string, itemId: string, rng: Rng): Exercise | null {
+  const index = alphabetUnit(lang)?.letters.findIndex((l) => letterItemId(l.ch) === itemId) ?? -1;
+  return index < 0 ? null : letterExercise(lang, root, index, rng);
+}
+
+export function letterExercise(lang: string, root: string, index: number, rng: Rng): Exercise | null {
+  const unit = alphabetUnit(lang);
+  const letter = unit?.letters[index];
+  if (!unit || !letter) return null;
+  const others = shuffle(unit.letters.filter((l) => l.ch !== letter.ch && l.sound !== letter.sound), rng).slice(0, 3).map((l) => l.ch);
+  return { itemId: letterItemId(letter.ch), lang, root, kind: "letter", prompt: letter.sound, promptLang: lang, answer: letter.ch, answerLang: lang, options: shuffle([letter.ch, ...others], rng), promptReading: { roman: letter.sound }, note: unit.title };
 }
 
 function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): Exercise {
@@ -735,6 +763,28 @@ function conjExercise(corpus: LangCorpus, item: LangItem, lang: string, root: st
 
 export function gradeMatch(pairs: { lang: string; word: string }[], assign: Record<string, string>): { lang: string; correct: boolean }[] {
   return pairs.map((p) => ({ lang: p.lang, correct: pairs.find((q) => q.lang === assign[p.lang])?.word === p.word }));
+}
+
+export function crossLanguageOptions(ex: Exercise, item: LangItem, system: LangSystem, rng: Rng): Exercise {
+  if (ex.kind !== "choose" || !ex.options) return ex;
+  const seen = new Set([ex.answer, ...(ex.accept ?? [])]);
+  const langs: Record<string, string> = { [ex.answer]: ex.answerLang };
+  const picks: string[] = [];
+  for (const l of shuffle(system.targets.filter((t) => t !== ex.answerLang), rng)) {
+    const f = item.forms[l];
+    if (picks.length >= 3 || !f || seen.has(f)) continue;
+    seen.add(f);
+    langs[f] = l;
+    picks.push(f);
+  }
+  if (picks.length === 0) return ex;
+  for (const o of ex.options) {
+    if (picks.length >= 3 || seen.has(o)) continue;
+    seen.add(o);
+    langs[o] = ex.answerLang;
+    picks.push(o);
+  }
+  return { ...ex, options: shuffle([ex.answer, ...picks], rng), optionLangs: langs };
 }
 
 export function matchExercise(corpus: LangCorpus, system: LangSystem, item: LangItem, rng: Rng): Exercise | null {
@@ -918,15 +968,35 @@ export function applyPlacement(state: EngineState, system: LangSystem, corpus: L
 export interface QueueEntry {
   itemId: string;
   lang: string;
-  stage: "intro" | "check" | "review" | "match";
+  stage: "intro" | "check" | "review" | "match" | "letter";
 }
 
 export const CHECK_GAP = 3;
 export const MAX_TRIES = 2;
 
-export function buildQueue(system: LangSystem, corpus: LangCorpus, state: EngineState, now: number = Date.now(), size = 14): QueueEntry[] {
-  const plan = planSession(system, corpus, state, now, size);
+export const LETTERS_PER_SESSION = 5;
+
+export function letterQueue(system: LangSystem, state: EngineState, now: number = Date.now()): QueueEntry[] {
   const out: QueueEntry[] = [];
+  for (const lang of system.targets) {
+    if (!alphabetUnit(lang)) continue;
+    const due = dueLetters(state, lang, now);
+    const fresh = alphabetDone(state, lang) ? [] : nextLetters(state, lang, Math.max(0, LETTERS_PER_SESSION - due.length));
+    for (const l of [...due, ...fresh]) out.push({ itemId: letterItemId(l.ch), lang, stage: "letter" });
+  }
+  return out;
+}
+
+export function buildQueue(
+  system: LangSystem,
+  corpus: LangCorpus,
+  state: EngineState,
+  now: number = Date.now(),
+  size = 14,
+  opts: { heritage?: boolean } = {}
+): QueueEntry[] {
+  const plan = planSession(system, corpus, state, now, size);
+  const out: QueueEntry[] = opts.heritage ? letterQueue(system, state, now) : [];
   const pendingChecks: { at: number; e: QueueEntry }[] = [];
   for (const c of plan) {
     const isNew = !state.cards[cardId(c.lang, c.itemId)];
