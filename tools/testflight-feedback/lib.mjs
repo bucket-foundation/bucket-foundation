@@ -41,11 +41,20 @@ export function normalize(rec) {
   };
 }
 
-export function newItems(items, state) {
+export function filedIds(beads) {
+  const out = new Set();
+  for (const b of beads ?? []) {
+    const m = /^asc-(.+)$/.exec(b.external_ref ?? "");
+    if (m) out.add(m[1]);
+  }
+  return out;
+}
+
+export function newItems(items, state, filed = new Set()) {
   const fresh = [];
   const ids = new Set();
   for (const it of items) {
-    if (state.seen[it.id] || ids.has(it.id)) continue;
+    if (state.seen[it.id] || filed.has(it.id) || ids.has(it.id)) continue;
     ids.add(it.id);
     fresh.push(it);
   }
@@ -100,6 +109,30 @@ export function digestLine(it, beadId) {
   const tag = it.kind === "crash" ? "crash" : "feedback";
   const shots = it.screenshots.length ? `, ${it.screenshots.length} screenshot(s)` : "";
   return `${beadId ?? "dry-run"} ${it.app} ${tag}${shots}: ${oneLine(it.comment, 100) || "no comment"}`;
+}
+
+export function logItem(it, beadId) {
+  return { beadId, id: it.id, app: it.app, kind: it.kind, comment: oneLine(it.comment, 100), screenshots: it.screenshots.length };
+}
+
+export function readLog(file) {
+  try {
+    return fs.readFileSync(file, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  } catch {
+    return [];
+  }
+}
+
+export function dailyDigest(log, now = Date.now()) {
+  const since = now - 24 * 3600 * 1000;
+  const lastSent = Math.max(0, ...log.filter((e) => e.status === "digest").map((e) => Date.parse(e.at)));
+  const from = Math.max(since, lastSent);
+  const runs = log.filter((e) => Date.parse(e.at) > from && e.status !== "digest");
+  const items = runs.flatMap((e) => e.items ?? []);
+  const errors = runs.filter((e) => e.status === "error").length;
+  const head = `TestFlight daily: ${items.length} new item(s), ${runs.length - errors} run(s) ok, ${errors} failed`;
+  const lines = items.map((i) => `${i.beadId} ${i.app} ${i.kind === "crash" ? "crash" : "feedback"}${i.screenshots ? `, ${i.screenshots} screenshot(s)` : ""}: ${i.comment || "no comment"}`);
+  return { text: [head, ...lines].join("\n"), items: items.length, runs: runs.length, errors };
 }
 
 export function digest(entries) {

@@ -6,6 +6,7 @@ After=network-online.target
 Type=oneshot
 WorkingDirectory=%h/agfarms/bucket-foundation
 Environment=BUCKET_REPO=%h/agfarms/bucket-foundation
+Environment=TOOL_ROOT=%h/agfarms/bucket-foundation
 Environment=PATH=%h/bin:%h/go/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
-ExecStart=/bin/bash -c 'set -a; . %h/.derbyfish-secrets/asc-api-key.env; set +a; exec node tools/testflight-feedback/run.mjs'
+ExecStart=/bin/bash -c 'set -a; . %h/.derbyfish-secrets/asc-api-key.env; set +a; exec node "$TOOL_ROOT/tools/testflight-feedback/run.mjs"'
 Nice=10

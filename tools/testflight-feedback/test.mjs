@@ -51,3 +51,39 @@ test("digest is one line per item", () => {
   ]);
   assert.equal(digest([]), "");
 });
+
+test("filedIds reads asc external refs from bd", async () => {
+  const { filedIds } = await import("./lib.mjs");
+  const ids = filedIds([{ external_ref: "asc-abc" }, { external_ref: null }, { external_ref: "gh-1" }, {}]);
+  assert.deepEqual([...ids], ["abc"]);
+});
+
+test("newItems skips items already filed in bd even when local state is lost", () => {
+  const fresh = newItems(records, { seen: {} }, new Set([records[0].id]));
+  assert.ok(!fresh.some((r) => r.id === records[0].id));
+  assert.equal(fresh.length, records.length - 1);
+});
+
+test("dailyDigest covers runs since the last digest within a day", async () => {
+  const { dailyDigest, logItem } = await import("./lib.mjs");
+  const now = Date.parse("2026-10-27T09:00:00Z");
+  const log = [
+    { at: "2026-10-25T09:00:00Z", status: "ok", items: [logItem(records[0], "bkt-old")] },
+    { at: "2026-10-26T09:00:00Z", status: "digest" },
+    { at: "2026-10-26T12:00:00Z", status: "ok", items: [logItem(crashes[0], "bkt-c1")] },
+    { at: "2026-10-26T12:30:00Z", status: "error", error: "x" },
+    { at: "2026-10-26T13:00:00Z", status: "ok", items: [] },
+  ];
+  const d = dailyDigest(log, now);
+  assert.equal(d.items, 1);
+  assert.equal(d.errors, 1);
+  assert.match(d.text, /^TestFlight daily: 1 new item\(s\), 2 run\(s\) ok, 1 failed/);
+  assert.match(d.text, /bkt-c1 Bucket Foundation crash/);
+  assert.ok(!d.text.includes("bkt-old"));
+});
+
+test("a digest right after another one reports nothing new", async () => {
+  const { dailyDigest } = await import("./lib.mjs");
+  const d = dailyDigest([{ at: "2026-10-27T08:59:00Z", status: "digest" }], Date.parse("2026-10-27T09:00:00Z"));
+  assert.equal(d.items, 0);
+});

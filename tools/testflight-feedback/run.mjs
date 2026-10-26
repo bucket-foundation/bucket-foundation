@@ -3,9 +3,10 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
-import { loadState, saveState, parseRecords, newItems, beadArgs, digest } from "./lib.mjs";
+import { loadState, saveState, parseRecords, newItems, beadArgs, digest, filedIds, logItem, readLog, dailyDigest } from "./lib.mjs";
 
 const dryRun = process.argv.includes("--dry-run");
+const digestMode = process.argv.includes("--digest");
 const stateDir = process.env.TESTFLIGHT_STATE_DIR ?? path.join(os.homedir(), ".local/state/bucket-testflight-feedback");
 const stateFile = path.join(stateDir, "state.json");
 const logFile = path.join(stateDir, "completions.jsonl");
@@ -22,10 +23,29 @@ function appendLog(entry) {
   fs.appendFileSync(logFile, `${JSON.stringify({ at: new Date().toISOString(), ...entry })}\n`);
 }
 
+function filedInBd() {
+  const r = spawnSync("bd", ["--allow-stale", "list", "--all", "--label", "source-tester", "--json"], { cwd: repo, encoding: "utf8", maxBuffer: 64 << 20 });
+  if (r.status !== 0) throw new Error(`bd list exited ${r.status}: ${(r.stderr ?? "").slice(-300)}`);
+  return filedIds(JSON.parse(r.stdout || "[]"));
+}
+
+function sendDigest() {
+  const d = dailyDigest(readLog(logFile));
+  if (dryRun) {
+    console.log(d.text);
+    return;
+  }
+  const tg = spawnSync("agf-tg", ["send", "-"], { input: d.text, encoding: "utf8" });
+  if (tg.status !== 0) throw new Error("agf-tg send failed");
+  appendLog({ status: "digest", items: d.items, runs: d.runs, errors: d.errors });
+  console.log(`digest sent: ${d.items} item(s)`);
+}
+
 async function main() {
+  if (digestMode) return sendDigest();
   const state = loadState(stateFile);
   const items = fetchItems();
-  const fresh = newItems(items, state);
+  const fresh = newItems(items, state, filedInBd());
   const entries = [];
   for (const item of fresh) {
     if (dryRun) {
@@ -43,16 +63,12 @@ async function main() {
     if (text) console.log(text);
     return;
   }
-  if (text) {
-    const tg = spawnSync("agf-tg", ["send", "-"], { input: text, encoding: "utf8" });
-    if (tg.status !== 0) console.error("agf-tg send failed");
-  }
-  appendLog({ status: "ok", fetched: items.length, created: entries.map((e) => e.beadId) });
+  appendLog({ status: "ok", fetched: items.length, items: entries.map((e) => logItem(e.item, e.beadId)) });
   console.log(`fetched ${items.length}, created ${entries.length}`);
 }
 
 main().catch((e) => {
-  if (!dryRun) appendLog({ status: "error", error: String(e.message) });
+  if (!dryRun) appendLog({ status: "error", mode: digestMode ? "digest" : "pull", error: String(e.message) });
   console.error(e.message);
   process.exit(1);
 });
