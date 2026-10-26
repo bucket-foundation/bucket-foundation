@@ -191,7 +191,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "S was 8.5 with Z_eff 2.5, which is the Clementi-Raimondi value; Slater's rules give S = 8.8 and Z_eff = 2.2."
   },
   "effective-nuclear-charge.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -215,7 +216,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Option now matches the Slater value of about +2."
   },
   "ionic-bond.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -1457,7 +1459,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Key credited a d-orbital gap; heme's color comes mostly from porphyrin pi to pi* transitions."
   },
   "chemical-bond-energetics.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -1505,7 +1508,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Set in a vinegar titration; answer unchanged at 0.12 M."
   },
   "acid-base-titration.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1571,7 +1575,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Set on a mountain stove; answer unchanged at 0.697 atm."
   },
   "phase-equilibria-clausius.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1703,7 +1708,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Set in a gasworks making CO fuel; answer unchanged at -110.5 kJ."
   },
   "hess-law.order": {
    "reviewed_by": "claude-opus-5-5",

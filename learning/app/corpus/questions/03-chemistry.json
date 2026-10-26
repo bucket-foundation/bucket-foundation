@@ -449,8 +449,8 @@
    "id": "effective-nuclear-charge.calculate",
    "atom": "effective-nuclear-charge",
    "kind": "calculate",
-   "prompt": "Using Slater's estimate S = 8.5 for sodium's 3s electron and Z = 11, what is Z_eff?",
-   "answer": 2.5,
+   "prompt": "Slater's rules give sodium's 3s electron a shielding of S = 8.8: 2 x 1.00 for 1s and 8 x 0.85 for n = 2. With Z = 11, what is Z_eff?",
+   "answer": 2.2,
    "unit": "",
    "relTol": 0.02
   },
@@ -510,7 +510,7 @@
    "kind": "pick",
    "prompt": "Sodium burns in air and gives up an electron with ease. Which fact explains that best?",
    "options": [
-    "Its 3s electron feels a Z_eff near +1 to +2.5",
+    "Its 3s electron feels a Z_eff of only about +2",
     "Its nucleus holds 11 neutrons",
     "It is a liquid at room temperature, so its atoms drift apart",
     "It has a full 3s subshell"
@@ -3487,9 +3487,9 @@
    "id": "coordination-complexes.applied",
    "atom": "coordination-complexes",
    "kind": "pick",
-   "prompt": "Hemoglobin's iron sits in a coordination complex. Why is blood red?",
+   "prompt": "Hemoglobin holds iron inside a heme group. Why is blood red?",
    "options": [
-    "The complex absorbs other colors across its d-orbital gap",
+    "Heme's porphyrin ring absorbs blue-green light through pi to pi* transitions",
     "Iron metal is red",
     "Red cells contain dye",
     "Oxygen gas is red, and blood carries a lot of it around the body"
@@ -3600,7 +3600,7 @@
    "id": "acid-base-titration.calculate",
    "atom": "acid-base-titration",
    "kind": "calculate",
-   "prompt": "25.0 mL of HCl is neutralized by 30.0 mL of 0.100 M NaOH. What is [HCl] in M?",
+   "prompt": "A quality lab titrates 25.0 mL of diluted vinegar with 0.100 M NaOH and reaches the end point at 30.0 mL. What is the acetic acid concentration, in M?",
    "answer": 0.12,
    "unit": "M",
    "relTol": 0.02,
@@ -3759,7 +3759,7 @@
    "id": "phase-equilibria-clausius.calculate",
    "atom": "phase-equilibria-clausius",
    "kind": "calculate",
-   "prompt": "Water has Delta H_vap = 40.7 kJ/mol. Its vapor pressure is 1 atm at 373 K. What is it at 363 K, in atm?",
+   "prompt": "On a high mountain, water boils at 363 K (90 C). Water has Delta H_vap = 40.7 kJ/mol and boils at 373 K under 1 atm. About what air pressure does the climber's stove meet, in atm?",
    "answer": 0.6966,
    "unit": "atm",
    "relTol": 0.02,
@@ -4077,7 +4077,7 @@
    "id": "hess-law.calculate",
    "atom": "hess-law",
    "kind": "calculate",
-   "prompt": "C + O2 -> CO2 is -393.5 kJ and CO + 1/2 O2 -> CO2 is -283.0 kJ. What is Delta H for C + 1/2 O2 -> CO, in kJ?",
+   "prompt": "A gasworks makes carbon monoxide fuel by burning coke in limited air. C + O2 -> CO2 is -393.5 kJ and CO + 1/2 O2 -> CO2 is -283.0 kJ. What is Delta H for C + 1/2 O2 -> CO, in kJ?",
    "answer": -110.5,
    "unit": "kJ",
    "relTol": 0.02,
