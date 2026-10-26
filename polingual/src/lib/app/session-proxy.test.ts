@@ -40,3 +40,13 @@ test("an unreachable upstream answers 502 offline", async () => {
   assert.equal(r.status, 502);
   assert.deepEqual(await r.json(), { error: "offline" });
 });
+
+test("production without a secret answers 503 and logs instead of sending unsigned", async () => {
+  const { seen, f } = capture();
+  const logs: string[] = [];
+  const r = await proxySession(req(), { base: "https://b", secret: undefined, fetch: f, now: NOW, production: true, log: (m) => logs.push(m) });
+  assert.equal(r.status, 503);
+  assert.deepEqual(await r.json(), { error: "sync_unavailable" });
+  assert.equal(seen.length, 0);
+  assert.match(logs[0], /POLINGUAL_PROXY_SECRET/);
+});

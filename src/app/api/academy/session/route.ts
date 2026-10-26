@@ -5,7 +5,7 @@ import { appleTokenDeps } from "@/lib/academy/apple-token-store";
 import { vercelDefer } from "@/lib/capture/legs";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
-import { appleAudiences, bearerToken, clientIp, createSessionHandler } from "@/lib/academy/session-server";
+import { appleAudiences, bearerToken, createSessionHandler, sessionClientIp } from "@/lib/academy/session-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -73,7 +73,9 @@ const handle = createSessionHandler({
 
 export async function POST(req: NextRequest): Promise<Response> {
   try {
-    const r = await handle(await readJson(req), clientIp(req.headers, { secret: process.env.POLINGUAL_PROXY_SECRET }), bearerToken(req.headers));
+    const who = sessionClientIp(req.headers, { secret: process.env.POLINGUAL_PROXY_SECRET });
+    if ("reject" in who) return jsonResponse(who.reject.body, who.reject.status);
+    const r = await handle(await readJson(req), who.ip, bearerToken(req.headers));
     return jsonResponse(r.body, r.status);
   } catch (e) {
     console.error("academy session", e);

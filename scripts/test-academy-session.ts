@@ -1,7 +1,7 @@
 import test from "node:test";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
-import { APPLE_SIGNIN_REPLY_BUDGET_MS, appleAudiences, bearerToken, clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
+import { APPLE_SIGNIN_REPLY_BUDGET_MS, appleAudiences, bearerToken, clientIp, sessionClientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 import { PROXY_IP_HEADER, PROXY_TS_HEADER, signClientIp, verifiedProxyIp } from "../src/lib/academy/proxy-ip";
 
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "u1" } };
@@ -266,4 +266,16 @@ test("clientIp trusts a signed proxy header and ignores a forged or stale one", 
   const unsigned = new Headers({ ...base, [PROXY_IP_HEADER]: "198.51.100.1", [PROXY_TS_HEADER]: String(now / 1000) });
   assert.equal(clientIp(unsigned, { secret: "s3cret", now }), "76.76.21.21");
   assert.equal(verifiedProxyIp(new Headers(signClientIp("not an ip!", "s3cret", now)), "s3cret", now), null);
+});
+
+test("sessionClientIp rejects any x-polingual header set that fails verification", () => {
+  const now = Date.parse("2027-01-01T00:00:00Z");
+  const base = { "x-vercel-forwarded-for": "76.76.21.21" };
+  assert.deepEqual(sessionClientIp(new Headers(base), { secret: "s3cret", now }), { ip: "76.76.21.21" });
+  assert.deepEqual(sessionClientIp(new Headers({ ...base, ...signClientIp("203.0.113.9", "s3cret", now) }), { secret: "s3cret", now }), { ip: "203.0.113.9" });
+  const bad = { reject: { status: 400, body: { error: "bad_proxy_signature" } } };
+  assert.deepEqual(sessionClientIp(new Headers({ ...base, ...signClientIp("203.0.113.9", "other", now) }), { secret: "s3cret", now }), bad);
+  assert.deepEqual(sessionClientIp(new Headers({ ...base, [PROXY_IP_HEADER]: "198.51.100.1" }), { secret: "s3cret", now }), bad);
+  assert.deepEqual(sessionClientIp(new Headers({ ...base, ...signClientIp("203.0.113.9", "s3cret", now) }), { now }), bad);
+  assert.deepEqual(sessionClientIp(new Headers({ ...base, ...signClientIp("203.0.113.9", "s3cret", now) }), { secret: "s3cret", now: now + 301_000 }), bad);
 });

@@ -32,3 +32,11 @@ export function forwardedClientIp(headers: Headers): string {
   if (platform) return platform;
   return headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 }
+
+export type ProxyVerdict = "absent" | "valid" | "invalid";
+
+export function proxyVerdict(headers: Headers, secret: string | undefined, nowMs: number): ProxyVerdict {
+  const present = [PROXY_IP_HEADER, PROXY_TS_HEADER, PROXY_SIG_HEADER].some((h) => headers.has(h));
+  if (!present) return "absent";
+  return verifiedProxyIp(headers, secret, nowMs) ? "valid" : "invalid";
+}
