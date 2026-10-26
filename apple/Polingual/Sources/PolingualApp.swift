@@ -35,6 +35,9 @@ struct PolingualApp: App {
                     guard p == .background || p == .active else { return }
                     backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
                 }
+                .onChange(of: reminders.enabled) {
+                    backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
+                }
                 .tint(Palette.green)
         }
     }

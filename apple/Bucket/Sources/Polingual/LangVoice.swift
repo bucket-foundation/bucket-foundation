@@ -83,13 +83,27 @@ final class LangListener {
     }
 
     func authorize() async -> Bool {
-        let speech = await withCheckedContinuation { c in SFSpeechRecognizer.requestAuthorization { c.resume(returning: $0 == .authorized) } }
+        let speech = await Self.speechAuthorized()
         guard speech else { return false }
         #if os(iOS)
         return await AVAudioApplication.requestRecordPermission()
         #else
         return true
         #endif
+    }
+
+    nonisolated private static func speechAuthorized() async -> Bool {
+        await withCheckedContinuation { c in SFSpeechRecognizer.requestAuthorization { c.resume(returning: $0 == .authorized) } }
+    }
+
+    nonisolated private static func tap(_ input: AVAudioInputNode, into request: SFSpeechAudioBufferRecognitionRequest) {
+        input.installTap(onBus: 0, bufferSize: 1024, format: input.outputFormat(forBus: 0)) { buf, _ in request.append(buf) }
+    }
+
+    nonisolated private static func recognize(_ rec: SFSpeechRecognizer, _ request: SFSpeechAudioBufferRecognitionRequest, _ finish: @escaping @Sendable ([String]) -> Void) -> SFSpeechRecognitionTask {
+        rec.recognitionTask(with: request) { r, err in
+            if let r, r.isFinal { finish(r.transcriptions.prefix(5).map(\.formattedString)) } else if err != nil { finish([]) }
+        }
     }
 
     func listenOnce(_ lang: String) async -> [String] {
@@ -102,7 +116,7 @@ final class LangListener {
         #endif
         let input = engine.inputNode
         input.removeTap(onBus: 0)
-        input.installTap(onBus: 0, bufferSize: 1024, format: input.outputFormat(forBus: 0)) { buf, _ in request.append(buf) }
+        Self.tap(input, into: request)
         engine.prepare()
         guard (try? engine.start()) != nil else { return [] }
         let result: [String] = await withCheckedContinuation { c in
@@ -114,9 +128,7 @@ final class LangListener {
                     c.resume(returning: xs)
                 }
             }
-            let task = rec.recognitionTask(with: request) { r, err in
-                if let r, r.isFinal { finish(r.transcriptions.prefix(5).map(\.formattedString)) } else if err != nil { finish([]) }
-            }
+            let task = Self.recognize(rec, request, finish)
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 request.endAudio()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

@@ -137,7 +137,6 @@ final class Reminders {
         guard enabled else { return }
         for (i, date) in fireDates().enumerated() {
             let raw = forecast(date)
-            guard raw.count > 0 else { continue }
             let f = i == 0 ? raw : ReviewForecast(count: raw.count, example: raw.example, streak: 0)
             let content = UNMutableNotificationContent()
             content.title = title
@@ -170,6 +169,7 @@ struct ReminderPrompt: View {
 struct ReminderSettings: View {
     @Environment(Reminders.self) private var reminders
     @State private var testResult: String?
+    @State private var nextReminder: Date?
 
     var body: some View {
         @Bindable var r = reminders
@@ -198,12 +198,20 @@ struct ReminderSettings: View {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
             }
             #if DEBUG
+            if let nextReminder { Text("Next reminder \(nextReminder.formatted(date: .abbreviated, time: .shortened))").font(.footnote).foregroundStyle(Palette.muted) }
             Button("Send a test reminder in 10 seconds") { Task { testResult = await Reminders.test() } }
             if let testResult { Text(testResult).font(.footnote).foregroundStyle(Palette.muted) }
             #endif
         } header: {
             Eyebrow(text: "Reminders")
         }
+        #if DEBUG
+        .task(id: reminders.enabled) {
+            try? await Task.sleep(for: .seconds(1))
+            let pending = await UNUserNotificationCenter.current().pendingNotificationRequests()
+            nextReminder = pending.compactMap { ($0.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate() }.min()
+        }
+        #endif
     }
 }
 

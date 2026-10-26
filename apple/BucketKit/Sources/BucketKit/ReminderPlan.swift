@@ -40,7 +40,9 @@ public enum ReminderPlan {
 
     public static func message(_ f: ReviewForecast) -> String {
         let lead: String
-        if let ex = f.example, f.count == 1 {
+        if f.count == 0 {
+            lead = "New words are ready. Five minutes today keeps the habit."
+        } else if let ex = f.example, f.count == 1 {
             lead = "\(ex) is due. One quick review keeps it."
         } else if let ex = f.example {
             lead = "\(ex) and \(f.count - 1) more are due. A few minutes keeps them in long-term memory."
