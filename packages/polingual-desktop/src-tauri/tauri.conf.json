@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Polingual",
+  "mainBinaryName": "polingual-desktop",
+  "version": "0.1.0",
+  "identifier": "com.polingual.desktop",
+  "build": {
+    "frontendDist": "../splash"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "create": false,
+        "title": "Polingual",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 720,
+        "minHeight": 480
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "script-src": "'self'",
+        "style-src": "'self'",
+        "img-src": "'self'",
+        "connect-src": "'self'",
+        "object-src": "'none'",
+        "base-uri": "'none'",
+        "form-action": "'none'",
+        "frame-ancestors": "'none'"
+      },
+      "freezePrototype": true,
+      "capabilities": ["default"]
+    },
+    "withGlobalTauri": false
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["deb", "rpm", "appimage", "msi"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "category": "Education",
+    "shortDescription": "Polingual language learning",
+    "publisher": "Bucket Foundation",
+    "homepage": "https://polingual.com",
+    "linux": { "deb": { "depends": [] } }
+  },
+  "plugins": {
+    "deep-link": {
+      "desktop": { "schemes": ["polingual"] }
+    }
+  }
+}
