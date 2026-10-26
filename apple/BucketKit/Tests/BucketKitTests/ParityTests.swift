@@ -171,7 +171,45 @@ func runScenario(_ corpus: LangCorpus) throws -> JSValue {
     }
     out.append(("cross", .array(cross)))
     out.append(("heritage", heritageScenario(corpus, t0: t0)))
+    let articleCases: [(String, String, String)] = [("fr","m","haricot"),("fr","m","haricots"),("fr","m","hibou"),("fr","m","hiboux"),("fr","m","héros"),("fr","f","hache"),("fr","m","hamburger"),("fr","m","Homard"),("fr","f","honte"),("fr","m","hors-d'œuvre"),("fr","m","haut de gamme"),("fr","m","homme"),("fr","f","heure"),("fr","m","hôtel"),("fr","f","herbe"),("fr","m","hot-dog"),("fr","m","hold-up"),("fr","m","hip-hop"),("fr","f","haute couture"),("fr","m","haut-parleur"),("fr","f","hallucination"),("fr","m","hautbois"),("fr","f","haches"),("fr","m","ami"),("fr","f","eau"),("fr","m","livre"),("it","m","zero"),("it","f","acqua"),("it","m","libro"),("es","f","agua"),("es","f","casa"),("de","f","Kirche")]
+    let gateLangs = ["ja", "th", "hi", "ru"]
+    out.append(("gate", .array(gateLangs.map { l in
+        let u = LangScript.alphabetUnit(l)!
+        var rows: [JSValue] = []
+        var gs = EngineState()
+        for round in 0..<30 {
+            let fresh = LangScript.nextLetters(gs, l, n: 5).map(\.ch)
+            rows.append(.array([.string(fresh.joined()), .bool(LangScript.alphabetDone(gs, l))]))
+            if fresh.isEmpty { break }
+            for ch in fresh { gs = gradeCard(gs, l, LangScript.letterItemId(ch), 3, now: t0 + Double(round) * 86_400_000, tz: "UTC") }
+        }
+        return .array([.string(l), .number(Double(u.letters.count)), .array(rows)])
+    })))
+    out.append(("articles", .array(articleCases.map { Lang.articleWord($0.0, $0.1, $0.2).map(JSValue.string) ?? .null })))
+    out.append(("placement", placementScenario(corpus, t0: t0)))
     return obj(out)
+}
+
+func placementScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {
+    let day = 86_400_000.0
+    let utc = TimeZone(identifier: "UTC")!
+    var sys = try! createSystem("en", ["fr"], [], now: t0)
+    sys.placement["fr"] = 99
+    let placed = applyPlacement(EngineState(), sys, corpus, "fr", 99, now: t0, tz: utc)
+    var legacy = JSObject()
+    for i in 0..<311 {
+        legacy["fr:w\(i)"] = .object(JSObject([("state", .string("review")), ("reps", .number(1)), ("lapses", .number(0)), ("stability", .number(3.2)), ("difficulty", .number(5)),
+                                               ("lastReview", .number(t0 - 3 * day)), ("due", .number(t0)), ("placed", .bool(true))]))
+    }
+    legacy["fr:seen"] = .object(JSObject([("state", .string("review")), ("reps", .number(2)), ("lapses", .number(0)), ("stability", .number(9)), ("difficulty", .number(5)),
+                                          ("lastReview", .number(t0 - day)), ("due", .number(t0)), ("placed", .bool(true))]))
+    let spread = spreadingUntouchedPlaced(EngineState(js: .object(JSObject([("cards", .object(legacy))]))), now: t0)
+    let plan = buildQueue(sys, corpus, placed, now: t0 + 20 * day, tz: utc)
+    return obj([
+        ("due", .array(placed.cards.entries.map { .array([.string($0.key), .number($0.value.due ?? 0), .number($0.value.stability ?? 0), .number($0.value.reps ?? 0)]) })),
+        ("legacy", .array(spread.cards.entries.map { .array([.string($0.key), .number($0.value.due ?? 0)]) })),
+        ("plan", .array(plan.map { .string("\($0.lang):\($0.itemId):\($0.stage.rawValue)") })),
+    ])
 }
 
 func diff(_ a: JSValue, _ b: JSValue, _ path: String = "$") -> String? {
@@ -206,7 +244,7 @@ func heritageScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {
         ("שָׁלוֹם", ["שלום"], "he"), ("كتـاب", ["كتاب"], "ar"), ("كتاي", ["كتاب"], "ar"), ("يك", ["یک"], "fa"),
         ("еж", ["ёж"], "ru"), ("мои", ["мой"], "ru"), ("кни\u{301}га", ["книга"], "ru"), ("моско", ["москва"], "ru"),
         ("καλημερα", ["καλημέρα"], "el"), ("ΟΔΟΣ", ["οδός"], "el"), ("नमसते", ["नमस्ते"], "hi"), ("ﾈｺ", ["ネコ"], "ja"),
-        ("", ["猫"], "zh"), ("ねこ", ["猫", "ねこ"], "ja"), ("한국", ["한국".decomposedStringWithCanonicalMapping], "ko"),
+        ("", ["猫"], "zh"), ("все", ["всё"], "ru"), ("ВСЁ", ["всё"], "ru"), ("еж", ["ёж"], "ru"), ("ねこ", ["猫", "ねこ"], "ja"), ("한국", ["한국".decomposedStringWithCanonicalMapping], "ko"),
     ]
     let foldCases: [(String, String)] = [("ru", "кни\u{301}га"), ("el", "ΟΔΟΣ"), ("el", "ὀδός"), ("grc", "Ἀθῆναι"), ("he", " שָׁלוֹם! "), ("fa", "يك"), ("ja", "ﾈｺ"), ("uk", "ї")]
     var lrng = Rng(seed: 31)
@@ -214,7 +252,7 @@ func heritageScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {
         let u = LangScript.alphabetUnit(l)!
         return .array([0, 1, u.letters.count - 1].map { i in
             let x = letterExercise(l, "en", i, &lrng)!
-            return .string("\(l)|\(x.prompt)|\(x.answer)|\((x.options ?? []).joined())")
+            return .string("\(l)|\(x.prompt)|\(x.answer)|\((x.options ?? []).joined())|\((x.accept ?? []).joined())")
         })
     }
     var hs = EngineState()

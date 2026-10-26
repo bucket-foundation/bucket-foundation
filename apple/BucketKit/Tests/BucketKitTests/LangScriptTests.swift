@@ -13,8 +13,11 @@ import Testing
     #expect(LangScript.alphabetUnit("es") == nil)
     #expect(LangScript.alphabetUnit("ru")?.letters.count == 33)
     #expect(LangScript.alphabetUnit("he")?.letters.count == 22)
-    #expect(LangScript.alphabetUnit("th")?.letters.count == 44)
-    #expect(LangScript.alphabetUnit("ja")?.letters.count == 46)
+    #expect(LangScript.alphabetUnit("th")?.letters.count == 58)
+    #expect(LangScript.alphabetUnit("ja")?.letters.count == 92)
+    #expect(LangScript.alphabetUnit("ja")?.letters.contains { $0.ch == "カ" && $0.sound == "ka" } == true)
+    for l in ["hi", "sa", "ta", "th"] { #expect((LangScript.alphabetUnit(l)?.letters.filter { $0.ch.unicodeScalars.contains("◌") }.count ?? 0) >= 10, "\(l)") }
+    #expect(LangScript.alphabetUnit("hi")?.letters.contains { $0.ch == "◌ा" && $0.sound == "-ā" } == true)
     #expect(LangScript.alphabetUnit("ja")?.letters[5].ch == "か")
 }
 
@@ -26,7 +29,9 @@ import Testing
     #expect(j("كتـاب", ["كتاب"], "ar") == .exact)
     #expect(j("كتاي", ["كتاب"], "ar") == .close)
     #expect(j("يك", ["یک"], "fa") == .exact)
-    #expect(j("еж", ["ёж"], "ru") == .exact)
+    #expect(j("еж", ["ёж"], "ru") == .close)
+    #expect(j("все", ["всё"], "ru") != .exact && j("всё", ["все"], "ru") != .exact)
+    #expect(j("ВСЁ", ["всё"], "ru") == .exact)
     #expect(j("мои", ["мой"], "ru") != .exact)
     #expect(j("кни\u{301}га", ["книга"], "ru") == .exact)
     #expect(LangScript.foldMarks("ї", "uk") == "ї")
@@ -67,6 +72,16 @@ import Testing
     var rng = Rng(seed: 2)
     let lx = letterExercise("he", "en", 1, &rng)
     #expect(lx?.kind == .letter && lx?.answer == "ב" && lx?.prompt == "b/v" && lx?.options?.count == 4 && lx?.options?.contains("ב") == true)
+    var trng = Rng(seed: 2)
+    let thx = letterExercise("th", "en", 1, &trng)
+    #expect(thx?.prompt == "kh · kho khai" && thx?.accept == ["ข"])
+    let unitFa = LangScript.alphabetUnit("fa")!
+    var frng = Rng(seed: 2)
+    #expect(letterExercise("fa", "en", unitFa.letters.firstIndex { $0.ch == "س" }!, &frng)?.prompt == "s · sin")
+    let unitRu = LangScript.alphabetUnit("ru")!
+    var rrng = Rng(seed: 2)
+    let rux = letterExercise("ru", "en", unitRu.letters.firstIndex { $0.ch == "й" }!, &rrng)
+    #expect(rux?.accept?.contains("й") == true && rux?.accept?.contains("ы") == true)
     #expect(letterExercise("he", "en", 99, &rng) == nil && letterExercise("es", "en", 0, &rng) == nil)
     let now = 1_793_016_000_000.0
     var st = EngineState()

@@ -57,15 +57,14 @@ public enum FlagMisses {
         var misses = JSObject()
         var hits = JSObject()
         for l in langs {
-            let pa = (ma?[l]?.number, ha?[l]?.number)
-            let pb = (mb?[l]?.number, hb?[l]?.number)
-            let na = pa.0 ?? 0, nb = pb.0 ?? 0
-            let win: (Double?, Double?) = na > nb ? pa : nb > na ? pb : (pa.0 ?? pb.0, [pa.1, pb.1].compactMap { $0 }.max())
-            if let m = win.0 { misses[l] = .number(m) }
-            if let h = win.1 { hits[l] = .number(h) }
+            let na = ma?[l]?.number ?? 0, nb = mb?[l]?.number ?? 0
+            let xa = ha?[l]?.number ?? 0, xb = hb?[l]?.number ?? 0
+            let (m, h) = na > nb ? (na, xa) : nb > na ? (nb, xb) : (na, max(xa, xb))
+            if ha?[l] != nil || hb?[l] != nil || m > 0 { hits[l] = .number(h) }
+            if ma?[l] != nil || mb?[l] != nil { misses[l] = .number(m) }
         }
-        out[key] = misses.keys.isEmpty && ma == nil && mb == nil ? nil : .object(misses)
-        out[hitsKey] = hits.keys.isEmpty && ha == nil && hb == nil ? nil : .object(hits)
+        out[key] = ma == nil && mb == nil ? nil : .object(misses)
+        out[hitsKey] = ha == nil && hb == nil ? nil : .object(hits)
     }
 
     public static func merging(_ flags: EngineState, into state: EngineState) -> EngineState {
