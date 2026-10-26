@@ -16,6 +16,10 @@ test("the four bead experiments are registered", () => {
   assert.deepEqual(EXPERIMENTS.map((e) => e.key), ["option_language", "new_words", "practice_order", "cognate_hints"]);
 });
 
+test("option_language falls back to cross, matching the app", () => {
+  assert.equal(EXPERIMENTS.find((e) => e.key === "option_language")!.fallback, "cross");
+});
+
 test("hash assignment is deterministic and splits close to even", () => {
   for (const exp of EXPERIMENTS) {
     assert.equal(hashArm(exp, USER), hashArm(exp, USER.toUpperCase()));

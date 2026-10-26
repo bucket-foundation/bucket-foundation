@@ -68,13 +68,13 @@ Per-event errors in `rejected`: `bad_event`, `bad_id`, `bad_name`, `bad_ts`, `ts
 { "cohort": "default", "flags": { "new_words": { "value": "8", "arm": "8", "source": "hash" } } }
 ```
 
-Apps read `value`. On any non-200 answer, or with no network, apps use the fallback from the table below and retry on the next launch. `arm` is null and `value` holds the fallback when the cohort has the experiment off.
+Apps read `value`. On any non-200 answer, or with no network, apps use the fallback listed for each experiment and retry on the next launch. `arm` is null and `value` holds the fallback when the cohort has the experiment off.
 
 The first answer that gives a tester an arm writes it to `bucket.beta_assignments` with its source and cohort. Later answers return the stored arm, so a cohort change or a new pinned arm never moves a tester, and the report groups testers by the stored row. Switching a cohort `off` stops the experiment for its testers and keeps their rows. Hash assignment is `sha256("<experiment>:<user_id>")` mod the arm count.
 
 | Experiment | Arms | Fallback |
 |---|---|---|
-| `option_language` | `cross`, `same` | `same` |
+| `option_language` | `cross`, `same` | `cross` |
 | `new_words` | `4`, `8` | `4` |
 | `practice_order` | `mixed`, `blocked` | `blocked` |
 | `cognate_hints` | `on`, `off` | `off` |
