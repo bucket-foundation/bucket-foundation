@@ -26,7 +26,7 @@ export interface SessionDeps {
   enabled: () => boolean;
   configured: () => boolean;
   rateHit: (key: string, limit: number, windowSeconds: number) => Promise<boolean>;
-  sendOtp: (email: string) => Promise<{ status: number | null }>;
+  sendOtp: (email: string, redirectTo?: string) => Promise<{ status: number | null }>;
   verifyOtp: (email: string, code: string) => Promise<AuthResult>;
   refresh: (refreshToken: string) => Promise<AuthResult>;
   deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
@@ -48,6 +48,8 @@ export function clientIp(headers: Headers): string {
 
 export const OTP_LOCKOUT_MESSAGE = "Bucket sent several codes to this email. Wait ten minutes and try again.";
 export const RATE_MESSAGE = "Too many tries from here. Wait ten minutes and try again.";
+
+export const APP_REDIRECTS: Record<string, string> = { polingual: "https://polingual.com/" };
 
 const hashed = (v: string) => createHash("sha256").update(v.toLowerCase()).digest("hex").slice(0, 32);
 
@@ -84,7 +86,8 @@ export function createSessionHandler(deps: SessionDeps) {
       if (!EMAIL_RE.test(email)) return { status: 400, body: { error: "bad_email" } };
       if (!(await within([[`otp:ip:${ip}`, SESSION_LIMITS.otpIp]]))) return { status: 429, body: { error: "too_many_requests", message: RATE_MESSAGE } };
       if (!(await within([[`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE } };
-      const r = await deps.sendOtp(email);
+      const redirectTo = typeof b.app === "string" && Object.hasOwn(APP_REDIRECTS, b.app) ? APP_REDIRECTS[b.app] : undefined;
+      const r = redirectTo ? await deps.sendOtp(email, redirectTo) : await deps.sendOtp(email);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return r.status === null ? { status: 200, body: { ok: true } } : { status: 400, body: { error: "send_failed" } };
     }

@@ -1,0 +1,27 @@
+{{ if eq .RedirectTo "https://polingual.com/" }}<!doctype html>
+<html>
+<body style="margin:0;padding:0;background:#F6EEDC;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F6EEDC;">
+<tr><td align="center" style="padding:36px 16px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;">
+<tr><td style="padding-bottom:22px;">
+<table role="presentation" cellpadding="0" cellspacing="0"><tr>
+<td><img src="https://polingual.com/d8/icon-180.png" width="44" height="44" alt="Po" style="display:block;border-radius:11px;"></td>
+<td style="padding-left:10px;font-family:Nunito,Arial,sans-serif;font-size:22px;font-weight:800;color:#231F20;">polingual</td>
+</tr></table>
+</td></tr>
+<tr><td style="font-family:Nunito,Arial,sans-serif;font-size:28px;font-weight:800;line-height:1.2;color:#231F20;padding-bottom:10px;">Your Polingual code</td></tr>
+<tr><td style="font-family:Nunito,Arial,sans-serif;font-size:16px;line-height:1.5;color:#5d5650;padding-bottom:20px;">Enter it in the Polingual app to sign in. It expires in one hour.</td></tr>
+<tr><td style="background:#FFFDF7;border:2px solid #E3D6B8;border-radius:14px;padding:22px;text-align:center;">
+<span style="font-family:Menlo,'Space Mono',monospace;font-size:34px;font-weight:700;letter-spacing:0.25em;color:#D9381E;">{{ .Token }}</span>
+</td></tr>
+<tr><td style="font-family:Nunito,Arial,sans-serif;font-size:13px;line-height:1.5;color:#5d5650;padding-top:22px;">You asked to sign in to Polingual with this address. If that was not you, ignore this email.</td></tr>
+<tr><td style="border-top:2px solid #5B1A4A;margin-top:24px;padding-top:14px;font-family:Nunito,Arial,sans-serif;font-size:12px;color:#5d5650;">Polingual · Language learning for multilingual learners · <a href="https://polingual.com" style="color:#5B1A4A;">polingual.com</a></td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>{{ else }}<h2>Your bucket.foundation sign-in code</h2>
+<p style="font-size:28px;letter-spacing:0.2em;font-family:monospace">{{ .Token }}</p>
+<p>Enter it on the sign-in page. It expires in one hour.</p>
+<p>Or open this link: <a href="{{ .ConfirmationURL }}">sign in</a></p>{{ end }}
