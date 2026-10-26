@@ -409,8 +409,23 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #dk .pp .mini{font-weight:800;font-size:clamp(22px,2.1vw,40px);color:#F6EEDC;opacity:.75;animation-duration:9s}
 #dk .pp .azu{width:clamp(80px,8.8vw,170px);aspect-ratio:1;border-radius:6px;background:#F4F1E8;box-shadow:0 8px 0 rgba(0,0,0,.35);background-image:radial-gradient(circle at 50% 50%,#26428B 0 8%,transparent 8.5%),radial-gradient(circle at 0 0,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 100% 0,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 0 100%,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 100% 100%,#26428B 0 23%,transparent 23.5%),repeating-conic-gradient(from 45deg at 50% 50%,#6FB7C2 0 10deg,transparent 0 45deg)}
 @media (prefers-reduced-motion:reduce){#dk .pp>*{animation:none}}
+#dk .hc{display:none}
 @media (max-width:1299px){
-#dk .stage .cards{display:grid;grid-template-columns:repeat(2,176px);gap:22px;top:calc(var(--ex,0px) + 730px);bottom:auto;transform:scale(var(--cs,1));transform-origin:0 0}
+#dk .stage .l,#dk .stage .cards{display:none}
+#dk .hc{display:flex;flex-direction:column;justify-content:center;gap:clamp(10px,2.2vh,22px);position:absolute;left:clamp(32px,6vw,90px);top:0;bottom:0;width:min(44vw,500px);z-index:2}
+#dk .hc h1{font-family:Fredoka;font-weight:700;font-size:clamp(34px,3.8vw,46px);line-height:1;letter-spacing:-.02em;margin:0}
+#dk .hc h1 em{font-style:normal;color:var(--cta)}
+#dk .hc .stk{display:flex;align-items:center;gap:12px}
+#dk .hc .stk svg{width:30px;height:40px;flex:none}
+#dk .hc .stk b{font-family:Fredoka;font-weight:700;font-size:28px;line-height:1;color:var(--cta)}
+#dk .hc .stk small{display:block;white-space:nowrap;font-family:'Space Mono';font-weight:700;font-size:11px;letter-spacing:.14em;color:#4a443e}
+#dk .hc .stk p{margin:0 0 0 8px;padding-left:14px;border-left:2px solid var(--line);font-size:14px;color:var(--muted)}
+#dk .hc .g4{display:grid;grid-template-columns:repeat(2,max-content);gap:14px}
+#dk .hc .g4 .t{zoom:var(--hz,.75)}
+#dk .hc .btn{align-self:flex-start}
+}
+@media (max-width:1299px){
+#dk .stage .cards{display:none;grid-template-columns:repeat(2,176px);gap:22px;top:calc(var(--ex,0px) + 730px);bottom:auto;transform:scale(var(--cs,1));transform-origin:0 0}
 #dk .stage .cards .t:nth-child(n+5){display:none}
 }
 </style></head><body>
@@ -487,7 +502,13 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
  </div>
  <div class="stripe"></div>
  
-</div></div><div class="pp" aria-hidden="true">
+</div></div><div class="hc">
+ <h1>Language learning for <em>multilingual</em> learners.</h1>
+ <div class="stk"><svg viewBox="0 0 34 44" aria-hidden="true"><path d="M17 1c3 8 14 13 14 26a14 14 0 0 1-28 0c0-7 4-11 6-14 1 4 3 6 5 7-1-7 0-13 3-19z" fill="#E8602A"/><path d="M17 23c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 1 2 2 3 3 3-1-3-1-6 0-8z" fill="#F6EEDC"/></svg><div><b>100</b><small>DAY STREAK</small></div><p>1 new meaning a day in 4 languages: up to 400 words</p></div>
+ <div class="g4" id="hc-grid"></div>
+ <a class="btn btn-p" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a>
+</div>
+<div class="pp" aria-hidden="true">
  <div class="seal" style="left:79%;top:14%;--r:-7deg"><span>百</span></div>
  <div class="azu" style="left:85%;top:46%;--r:12deg"></div>
  <div class="stamp" style="left:65%;top:40%;--r:6deg"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
@@ -563,6 +584,7 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 </div>
 <script src="/d8/tiles.js"></script>
 <script>(()=>{const g=document.getElementById("app-grid");if(!g)return;const set=TILES.slice(0,4);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const z=()=>g.style.setProperty("--z",Math.min(1,(g.clientWidth-24)/2/208).toFixed(3));z();addEventListener("resize",z)})()</script>
+<script>(()=>{const g=document.getElementById("hc-grid");if(!g)return;const set=TILES.slice(0,4);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const hc=g.parentElement;const z=()=>{if(!hc.offsetParent)return;g.style.setProperty("--hz",1);const other=hc.scrollHeight-g.offsetHeight;const byH=(hc.clientHeight-other-40-14)/2,byW=(hc.clientWidth-14)/2;g.style.setProperty("--hz",Math.max(.5,Math.min(1,byH/206,byW/206)).toFixed(3))};z();addEventListener("resize",z);document.fonts.ready.then(z)})()</script>
 <script src="/d8/beta.js"></script>
 <script src="/d8/share.js"></script>
 <script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script>
