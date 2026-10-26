@@ -35,6 +35,13 @@ class CorpusTest(unittest.TestCase):
                 self.assertIn(p["band"], LEVELS)
                 self.assertTrue(p["url"].startswith("https://") and p["license"] and p["author"] and p["english"], lang)
 
+    def test_punjabi_deck_overrides_hold(self):
+        subset = json.loads((DATA / "subset.json").read_text())
+        pa = {w["c"]: w for w in subset["words"] if w["l"] == "pa"}
+        self.assertEqual(pa["mouth"]["s"], "ਮੂੰਹ")
+        self.assertNotIn("ਵਾਕ", {w["s"] for w in pa.values()})
+        self.assertNotIn("young", pa)
+
     def test_punjabi_is_gurmukhi(self):
         words = json.loads((DATA / "top1000/pa.json").read_text())
         self.assertTrue(all(re.fullmatch(r"[਀-੿]+", w["word"]) for w in words))
