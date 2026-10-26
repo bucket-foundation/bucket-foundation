@@ -54,7 +54,7 @@ const handle = createSessionHandler({
     return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
   },
   signInWithApple: async (token, nonce) => {
-    const { data, error } = await anonClient().auth.signInWithIdToken({ provider: "apple", token, ...(nonce ? { nonce } : {}) });
+    const { data, error } = await anonClient().auth.signInWithIdToken({ provider: "apple", token, nonce });
     return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
   },
   deleteAccount: deleteAccountFor,

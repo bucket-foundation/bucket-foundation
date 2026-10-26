@@ -10,6 +10,7 @@ export const SESSION_LIMITS = {
   verifyIp: 40,
   refreshIp: 120,
   deleteIp: 10,
+  appleIp: 40,
 } as const;
 
 export interface AuthSession {
@@ -26,10 +27,10 @@ export interface SessionDeps {
   enabled: () => boolean;
   configured: () => boolean;
   rateHit: (key: string, limit: number, windowSeconds: number) => Promise<boolean>;
-  sendOtp: (email: string, redirectTo?: string) => Promise<{ status: number | null }>;
+  sendOtp: (email: string) => Promise<{ status: number | null }>;
   verifyOtp: (email: string, code: string) => Promise<AuthResult>;
   refresh: (refreshToken: string) => Promise<AuthResult>;
-  signInWithApple: (token: string, nonce?: string) => Promise<AuthResult>;
+  signInWithApple: (token: string, nonce: string) => Promise<AuthResult>;
   deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
   now: () => number;
 }
@@ -50,7 +51,16 @@ export function clientIp(headers: Headers): string {
 export const OTP_LOCKOUT_MESSAGE = "Bucket sent several codes to this email. Wait ten minutes and try again.";
 export const RATE_MESSAGE = "Too many tries from here. Wait ten minutes and try again.";
 
-export const APP_REDIRECTS: Record<string, string> = { polingual: "https://polingual.com/" };
+export function appleNonceMatches(idToken: string, rawNonce: string): boolean {
+  const parts = idToken.split(".");
+  if (parts.length !== 3 || !rawNonce) return false;
+  try {
+    const claim = (JSON.parse(Buffer.from(parts[1], "base64url").toString("utf8")) as { nonce?: unknown }).nonce;
+    return typeof claim === "string" && claim === createHash("sha256").update(rawNonce).digest("hex");
+  } catch {
+    return false;
+  }
+}
 
 const hashed = (v: string) => createHash("sha256").update(v.toLowerCase()).digest("hex").slice(0, 32);
 
@@ -87,8 +97,7 @@ export function createSessionHandler(deps: SessionDeps) {
       if (!EMAIL_RE.test(email)) return { status: 400, body: { error: "bad_email" } };
       if (!(await within([[`otp:ip:${ip}`, SESSION_LIMITS.otpIp]]))) return { status: 429, body: { error: "too_many_requests", message: RATE_MESSAGE } };
       if (!(await within([[`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE } };
-      const redirectTo = typeof b.app === "string" && Object.hasOwn(APP_REDIRECTS, b.app) ? APP_REDIRECTS[b.app] : undefined;
-      const r = redirectTo ? await deps.sendOtp(email, redirectTo) : await deps.sendOtp(email);
+      const r = await deps.sendOtp(email);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return r.status === null ? { status: 200, body: { ok: true } } : { status: 400, body: { error: "send_failed" } };
     }
@@ -105,11 +114,13 @@ export function createSessionHandler(deps: SessionDeps) {
     if (b.action === "apple") {
       const token = typeof b.id_token === "string" ? b.id_token : "";
       const nonce = typeof b.nonce === "string" ? b.nonce : "";
-      if (!token || token.length > 8192 || nonce.length > 512) return { status: 400, body: { error: "bad_request" } };
-      if (!(await within([[`apple:ip:${ip}`, SESSION_LIMITS.verifyIp]]))) return { status: 429, body: { error: "too_many_requests" } };
-      const r = nonce ? await deps.signInWithApple(token, nonce) : await deps.signInWithApple(token);
+      if (!token || token.length > 8192 || !nonce || nonce.length > 512) return { status: 400, body: { error: "bad_request" } };
+      if (!(await within([[`apple:ip:${ip}`, SESSION_LIMITS.appleIp]]))) return { status: 429, body: { error: "too_many_requests" } };
+      if (!appleNonceMatches(token, nonce)) return { status: 401, body: { error: "bad_token" } };
+      const r = await deps.signInWithApple(token, nonce);
       if (r.session) return { status: 200, body: tokens(r.session) };
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
+      if (r.status === null || r.status >= 500) return { status: 502, body: { error: "apple_failed" } };
       return { status: 401, body: { error: "bad_token" } };
     }
 
