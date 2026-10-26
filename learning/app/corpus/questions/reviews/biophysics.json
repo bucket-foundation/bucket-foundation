@@ -419,7 +419,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: energy surface in place of landscape."
   },
   "anfinsen.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -689,7 +690,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "States the particle radius as 2 nm."
   },
   "einstein-stokes.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -851,13 +853,15 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Item described the ANM count 3N - 6; GNM has N - 1 nonzero modes. Also given a real setting."
   },
   "gnm.order": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Names the GNM's Kirchhoff matrix in place of a generic spring matrix."
   },
   "gnm.spot-error": {
    "reviewed_by": "claude-opus-5-5",
@@ -947,7 +951,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Given a real setting."
   },
   "esm.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -971,7 +976,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Softened: a language-model score is one line of evidence, not a diagnosis."
   },
   "idp-llps.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -983,7 +989,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Given a real setting."
   },
   "idp-llps.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1007,7 +1014,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Softened: phase separation is thought to help assemble stress granules alongside other interactions."
   },
   "amyloid.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -2351,7 +2359,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
   },
   "circular-dichroism.match": {
    "reviewed_by": "claude-opus-5-5",
@@ -2549,7 +2558,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "16 replicas give 15 neighbor intervals; the text said 16 steps. The key (450/300)^(1/15) = 1.027 already matched 16 replicas."
   },
   "replica-exchange.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -2645,7 +2655,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
   },
   "rouse-model.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -2795,7 +2806,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
   },
   "mass-action.match": {
    "reviewed_by": "claude-opus-5-5",
@@ -3047,7 +3059,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Given a real setting."
   },
   "master-equation.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -3083,7 +3096,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Given a real setting."
   },
   "gaussian-integral.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -3119,7 +3133,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Given a real setting."
   },
   "lagrange-multipliers.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -3191,7 +3206,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Given a real setting."
   },
   "legendre-transform.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -3521,7 +3537,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Dentists do not date fossils; ESR dating of tooth enamel is a geochronology method."
   },
   "schrodinger-equation.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -3605,7 +3622,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Given a real setting."
   },
   "selection-rules.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -4223,7 +4241,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
   },
   "pi-stacking.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -4319,7 +4338,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
   },
   "salt-bridge.match": {
    "reviewed_by": "claude-opus-5-5",
@@ -4331,7 +4351,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
   },
   "stern-layer.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -4505,7 +4526,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs biophysics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
   }
  }
 }

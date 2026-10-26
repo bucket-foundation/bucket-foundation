@@ -1008,7 +1008,7 @@
    "kind": "pick",
    "prompt": "Molecular chaperones help some cell proteins fold. On the funnel picture, what do they rescue?",
    "options": [
-    "Chains stuck in traps on a rugged landscape",
+    "Chains stuck in traps on a rugged energy surface",
     "Chains that have already reached their native fold",
     "The amino-acid sequence",
     "The water around the protein"
@@ -1656,7 +1656,7 @@
    "id": "einstein-stokes.calculate",
    "atom": "einstein-stokes",
    "kind": "calculate",
-   "prompt": "A 2 nm protein in water (viscosity 1e-3 Pa s) at 300 K has k_BT = 4.1e-21 J. What is D = k_BT/(6 pi eta r) in m^2/s?",
+   "prompt": "A protein of radius r = 2 nm diffuses in water (viscosity 1e-3 Pa s) at 300 K, where k_BT = 4.1e-21 J. What is D = k_BT/(6 pi eta r) in m^2/s?",
    "answer": 1.088e-10,
    "unit": "m^2/s",
    "relTol": 0.02,
@@ -2047,8 +2047,8 @@
    "id": "gnm.calculate",
    "atom": "gnm",
    "kind": "calculate",
-   "prompt": "A 3D elastic network of N = 100 nodes has 3N - 6 internal modes. How many?",
-   "answer": 294.0,
+   "prompt": "A lab builds a GNM of a 100-residue enzyme, one node per residue. A GNM has N - 1 nonzero modes. How many?",
+   "answer": 99.0,
    "unit": "modes",
    "relTol": 0.02
   },
@@ -2060,7 +2060,7 @@
    "steps": [
     "Take C-alpha positions",
     "Connect nodes within a cutoff",
-    "Diagonalize the spring matrix",
+    "Diagonalize the Kirchhoff matrix",
     "Read the lowest modes"
    ]
   },
@@ -2279,7 +2279,7 @@
    "id": "esm.calculate",
    "atom": "esm",
    "kind": "calculate",
-   "prompt": "A model gives wild type log-probability -0.5 and mutant -4.5. What is the log-likelihood ratio mutant minus wild type?",
+   "prompt": "Screening a patient's variant, a language model gives the wild-type residue log-probability -0.5 and the mutant -4.5. What is the log-likelihood ratio, mutant minus wild type?",
    "answer": -4.0,
    "unit": "",
    "relTol": 0.02
@@ -2338,12 +2338,12 @@
    "id": "esm.applied",
    "atom": "esm",
    "kind": "pick",
-   "prompt": "A clinic gets a rare patient variant with no lab data. What can a protein language model give within minutes?",
+   "prompt": "A clinic sees a rare patient variant with no lab data. What can a protein language model add to the other evidence?",
    "options": [
     "A score of how disfavored the mutation is",
     "A crystal structure of the variant protein",
-    "The patient's age",
-    "A drug dose"
+    "A diagnosis that settles the case",
+    "A drug dose for the patient"
    ],
    "answer": 0,
    "applied": true
@@ -2365,7 +2365,7 @@
    "id": "idp-llps.calculate",
    "atom": "idp-llps",
    "kind": "calculate",
-   "prompt": "A protein has 6 sticker motifs. How many sticker pairs could two copies form between them, at most?",
+   "prompt": "A stress-granule protein carries 6 sticker motifs. How many sticker-to-sticker pairs could two copies form between them, at most?",
    "answer": 36.0,
    "unit": "",
    "relTol": 0.02
@@ -2424,10 +2424,10 @@
    "id": "idp-llps.applied",
    "atom": "idp-llps",
    "kind": "pick",
-   "prompt": "Stress granules appear in cells within minutes of heat shock. What builds them?",
+   "prompt": "Stress granules appear in cells within minutes of heat shock. Which process is thought to help assemble them?",
    "options": [
     "Phase separation of proteins and RNA",
-    "New membrane growth",
+    "New membrane growth around the granule",
     "Crystallization of DNA in the cell nucleus",
     "Mitochondrial division"
    ],
@@ -5652,7 +5652,7 @@
     "Unfolding loses the helical signal"
    ],
    "error": 2,
-   "fix": "CD gives secondary-structure content, not atomic positions."
+   "fix": "CD gives secondary-structure content; atomic positions need crystallography, NMR or cryo-EM."
   },
   {
    "id": "circular-dichroism.match",
@@ -6126,7 +6126,7 @@
    "id": "replica-exchange.calculate",
    "atom": "replica-exchange",
    "kind": "calculate",
-   "prompt": "Replicas span 300 to 450 K on a geometric ladder of 16 steps. What is the ratio between neighbors, (450/300)^(1/15)?",
+   "prompt": "A lab runs 16 replicas from 300 to 450 K on a geometric ladder, which gives 15 neighbor intervals. What is the temperature ratio between neighbors, (450/300)^(1/15)?",
    "answer": 1.027,
    "unit": "",
    "relTol": 0.02
@@ -6357,7 +6357,7 @@
    "id": "flory-scaling.applied",
    "atom": "flory-scaling",
    "kind": "pick",
-   "prompt": "Disordered proteins in cells often scale with nu near 0.5 to 0.6. What does SAXS of a mutant with nu = 0.4 suggest?",
+   "prompt": "Many disordered proteins in cells scale with nu near 0.5 to 0.6. What does SAXS of a mutant with nu = 0.4 suggest?",
    "options": [
     "It has collapsed, as in poor solvent",
     "It became a stiff rod in solution",
@@ -6718,7 +6718,7 @@
     "K = 1 means Delta G0 = 0"
    ],
    "error": 2,
-   "fix": "K is fixed by Delta G0, not starting amounts."
+   "fix": "K is fixed by Delta G0 alone; starting amounts change Q and leave K the same."
   },
   {
    "id": "mass-action.match",
@@ -7325,7 +7325,7 @@
    "id": "master-equation.calculate",
    "atom": "master-equation",
    "kind": "calculate",
-   "prompt": "A <=> B with k+ = 10 per s and k- = 2 per s. What is P_A at steady state?",
+   "prompt": "A patch-clamp record shows a channel opening at k+ = 10 per s and closing at k- = 2 per s, A closed and B open. What fraction of time is it closed, P_A, at steady state?",
    "answer": 0.1667,
    "unit": "",
    "relTol": 0.02
@@ -7411,7 +7411,7 @@
    "id": "gaussian-integral.calculate",
    "atom": "gaussian-integral",
    "kind": "calculate",
-   "prompt": "What is the integral of e^(-4 x^2) over all x?",
+   "prompt": "A trapped bead's position weight is e^(-4 x^2) in scaled units. What normalizing integral of e^(-4 x^2) over all x does a lab need?",
    "answer": 0.8862,
    "unit": "",
    "relTol": 0.02
@@ -7497,7 +7497,7 @@
    "id": "lagrange-multipliers.calculate",
    "atom": "lagrange-multipliers",
    "kind": "calculate",
-   "prompt": "Maximize xy with x + y = 10. What is the maximum?",
+   "prompt": "A bioreactor splits 10 units of feed between two strains, x + y = 10, and output goes as xy. What is the largest output?",
    "answer": 25.0,
    "unit": "",
    "relTol": 0.02
@@ -7669,7 +7669,7 @@
    "id": "legendre-transform.calculate",
    "atom": "legendre-transform",
    "kind": "calculate",
-   "prompt": "A system has U = 100 kJ, T = 300 K and S = 0.2 kJ/K. What is F = U - TS in kJ?",
+   "prompt": "A protein solution in a sealed calorimeter has U = 100 kJ, T = 300 K and S = 0.2 kJ/K. What is its Helmholtz free energy F = U - TS in kJ?",
    "answer": 40.0,
    "unit": "kJ",
    "relTol": 0.02
@@ -8463,7 +8463,7 @@
    "id": "epr.applied",
    "atom": "epr",
    "kind": "pick",
-   "prompt": "Dentists date fossil teeth by trapped radiation damage. Which method reads the damage?",
+   "prompt": "Archaeologists can date fossil tooth enamel from radiation damage that builds up over time. Which method reads that damage?",
    "options": [
     "EPR of radiation-made radicals",
     "Mass photometry of single molecules",
@@ -8662,7 +8662,7 @@
    "id": "selection-rules.calculate",
    "atom": "selection-rules",
    "kind": "calculate",
-   "prompt": "The 0 to 1 transition dipole is proportional to sqrt(1) and 1 to 2 to sqrt(2). What is the intensity ratio (sqrt 2)^2/1^2?",
+   "prompt": "In an infrared spectrometer, a harmonic C=O bond has transition dipoles proportional to sqrt(1) for 0 to 1 and sqrt(2) for 1 to 2. What is the intensity ratio of the 1 to 2 line to the 0 to 1 line?",
    "answer": 2.0,
    "unit": "",
    "relTol": 0.02
@@ -10144,7 +10144,7 @@
    "id": "debye-huckel-activity.applied",
    "atom": "debye-huckel-activity",
    "kind": "pick",
-   "prompt": "A clinical lab's ion-selective electrode reads activity, not concentration, in blood. Which theory converts between them?",
+   "prompt": "A clinical lab's ion-selective electrode reads ion activity in blood. Which theory converts activity to concentration?",
    "options": [
     "Debye-Huckel",
     "Bragg",
@@ -10372,7 +10372,7 @@
     "Thermophiles use more of them"
    ],
    "error": 2,
-   "fix": "Surface salt bridges often add little after desolvation."
+   "fix": "Desolvation cancels much of the gain, so a surface salt bridge adds about 0 to 1 kcal/mol."
   },
   {
    "id": "salt-bridge.match",
@@ -10402,7 +10402,7 @@
    "id": "salt-bridge.applied",
    "atom": "salt-bridge",
    "kind": "pick",
-   "prompt": "Enzymes from deep-sea vent microbes stay folded near 100 C. What surface feature often helps?",
+   "prompt": "Enzymes from deep-sea vent microbes stay folded near 100 C. Which surface feature helps in many of them?",
    "options": [
     "Extra salt bridges",
     "Fewer residues",
@@ -10819,7 +10819,7 @@
    "id": "ch-pi.applied",
    "atom": "ch-pi",
    "kind": "pick",
-   "prompt": "Flu virus attaches to sugars on your airway cells. Which interaction often helps its proteins grip the sugar?",
+   "prompt": "Flu virus attaches to sugars on your airway cells. Which interaction helps many sugar-binding proteins grip the sugar?",
    "options": [
     "CH-pi stacking with aromatic residues",
     "Covalent bonds to the molecule",
