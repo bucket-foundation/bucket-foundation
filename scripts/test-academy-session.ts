@@ -2,6 +2,7 @@ import test from "node:test";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import { APPLE_SIGNIN_REPLY_BUDGET_MS, appleAudiences, bearerToken, clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
+import { PROXY_IP_HEADER, PROXY_TS_HEADER, signClientIp, verifiedProxyIp } from "../src/lib/academy/proxy-ip";
 
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "u1" } };
 
@@ -249,4 +250,20 @@ test("a late Apple code exchange that fails is logged once", async () => {
     console.error = realError;
   }
   assert.deepEqual(errors, [["apple code exchange", "apple down"]]);
+});
+
+test("clientIp trusts a signed proxy header and ignores a forged or stale one", () => {
+  const now = Date.parse("2027-01-01T00:00:00Z");
+  const base = { "x-vercel-forwarded-for": "76.76.21.21" };
+  const signed = new Headers({ ...base, ...signClientIp("203.0.113.9", "s3cret", now) });
+  assert.equal(clientIp(signed, { secret: "s3cret", now }), "203.0.113.9");
+  assert.equal(clientIp(signed, { secret: "other", now }), "76.76.21.21");
+  assert.equal(clientIp(signed, { now }), "76.76.21.21");
+  assert.equal(clientIp(signed, { secret: "s3cret", now: now + 301_000 }), "76.76.21.21");
+  const forged = new Headers(signed);
+  forged.set(PROXY_IP_HEADER, "198.51.100.1");
+  assert.equal(clientIp(forged, { secret: "s3cret", now }), "76.76.21.21");
+  const unsigned = new Headers({ ...base, [PROXY_IP_HEADER]: "198.51.100.1", [PROXY_TS_HEADER]: String(now / 1000) });
+  assert.equal(clientIp(unsigned, { secret: "s3cret", now }), "76.76.21.21");
+  assert.equal(verifiedProxyIp(new Headers(signClientIp("not an ip!", "s3cret", now)), "s3cret", now), null);
 });

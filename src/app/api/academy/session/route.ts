@@ -73,7 +73,7 @@ const handle = createSessionHandler({
 
 export async function POST(req: NextRequest): Promise<Response> {
   try {
-    const r = await handle(await readJson(req), clientIp(req.headers), bearerToken(req.headers));
+    const r = await handle(await readJson(req), clientIp(req.headers, { secret: process.env.POLINGUAL_PROXY_SECRET }), bearerToken(req.headers));
     return jsonResponse(r.body, r.status);
   } catch (e) {
     console.error("academy session", e);

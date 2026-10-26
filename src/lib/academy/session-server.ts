@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { forwardedClientIp, verifiedProxyIp } from "./proxy-ip";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const WINDOW_S = 600;
@@ -46,10 +47,8 @@ export function bearerToken(headers: Headers): string {
   return m ? m[1] : "";
 }
 
-export function clientIp(headers: Headers): string {
-  const platform = headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || headers.get("x-real-ip")?.trim();
-  if (platform) return platform;
-  return headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+export function clientIp(headers: Headers, proxy?: { secret?: string; now?: number }): string {
+  return verifiedProxyIp(headers, proxy?.secret, proxy?.now ?? Date.now()) ?? forwardedClientIp(headers);
 }
 
 export const APPLE_SIGNIN_REPLY_BUDGET_MS = 3000;
