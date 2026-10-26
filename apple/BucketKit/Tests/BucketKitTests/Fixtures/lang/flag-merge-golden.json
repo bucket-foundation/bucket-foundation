@@ -1,6 +1,11 @@
 {
  "rule": "per flag compare (misses, hits): more misses wins its pair; equal misses take max hits; a flag on one side only is kept",
- "a": {"flagHits": {"fr": 2, "es": 2, "it": 2}, "flagMisses": {}},
- "b": {"flagHits": {"it": 0, "es": 1}, "flagMisses": {"it": 1}},
- "synced": {"flagHits": {"fr": 2, "es": 2, "it": 0}, "flagMisses": {"it": 1}}
+ "a": {"flagHits":{"fr":2,"es":2,"it":2},"flagMisses":{}},
+ "b": {"flagHits":{"it":0,"es":1},"flagMisses":{"it":1}},
+ "synced": {"flagHits":{"fr":2,"es":2,"it":0},"flagMisses":{"it":1}},
+ "cases": [
+  {"name":"tie: equal misses keep the higher hits","a":{"flagHits":{"fr":2},"flagMisses":{"fr":1}},"b":{"flagHits":{"fr":4},"flagMisses":{"fr":1}},"synced":{"flagHits":{"fr":4},"flagMisses":{"fr":1}}},
+  {"name":"one-sided: each flag on one side only is kept","a":{"flagHits":{"de":3},"flagMisses":{}},"b":{"flagHits":{},"flagMisses":{"pt":2}},"synced":{"flagHits":{"de":3,"pt":0},"flagMisses":{"pt":2}}},
+  {"name":"three-way: merge(merge(a, b), c) in any order","a":{"flagHits":{"fr":3,"es":0},"flagMisses":{"es":2}},"b":{"flagHits":{"fr":0},"flagMisses":{"fr":1}},"c":{"flagHits":{"fr":5,"es":2},"flagMisses":{"es":2}},"synced":{"flagHits":{"fr":0,"es":2},"flagMisses":{"fr":1,"es":2}}}
+ ]
 }

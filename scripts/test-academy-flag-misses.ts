@@ -87,6 +87,19 @@ test("two devices grade apart; a reset after a miss on one device brings the nam
   assert.deepEqual(mergeFlagTables(golden.a, golden.b), golden.synced);
 });
 
+test("flag merge golden cases hold in every merge order", () => {
+  const golden = JSON.parse(fs.readFileSync(path.join(FIXTURES, "flag-merge-golden.json"), "utf8"));
+  const sides = ["a", "b", "c"] as const;
+  for (const c of golden.cases) {
+    const present = sides.filter((k) => c[k]).map((k) => c[k]);
+    const orders = present.length === 2 ? [[0, 1], [1, 0]] : [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+    for (const o of orders) {
+      const merged = o.slice(1).reduce((acc, i) => mergeFlagTables(acc, present[i]), present[o[0]]);
+      assert.deepEqual(merged, c.synced, `${c.name} order ${o.join("")}`);
+    }
+  }
+});
+
 test("mergeState merges flag tables per flag instead of replacing the table", () => {
   const a = withFlagTables(emptyState(), { flagHits: { fr: 3 }, flagMisses: {} });
   const b = withFlagTables(emptyState(), { flagHits: { es: 1 }, flagMisses: {} });
