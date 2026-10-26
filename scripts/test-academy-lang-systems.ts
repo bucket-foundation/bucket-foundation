@@ -273,6 +273,7 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   ok(g.kind === "gender" && g.answer === "le" && g.options!.includes("la") && g.prompt === "chien", "gender drill asks for the article");
 ok(articleFor("it", "m", "zero") === "lo zero" && articleFor("it", "m", "studente") === "lo studente" && articleFor("it", "m", "libro") === "il libro", "Italian lo before z and s plus consonant");
 ok(articleFor("it", "m", "amico") === "l'amico" && articleFor("fr", "f", "eau") === "l'eau" && articleFor("fr", "m", "homme") === "l'homme", "elision before a vowel or mute h");
+ok(articleFor("es", "f", "agua") === "el agua" && articleFor("es", "f", "hambre") === "el hambre" && articleFor("es", "f", "casa") === "la casa", "Spanish el before stressed a");
 ok(articleWord("it", "m", "sole") === "il" && articleWord("it", "m", "gnomo") === "lo", "lo only before s plus consonant, z, gn");
   const eat = corpus.byId.get("c-eat")!;
   const c1 = exerciseFor(corpus, romance, eat, "es", undefined, seededRng(1), { afterIntro: true });

@@ -228,11 +228,14 @@ function unitFor(category: string, kind: "word" | "phrase", tier: number): numbe
   return i < 0 ? UNITS.length - 1 : i;
 }
 
+const SPANISH_STRESSED_A = new Set(["agua", "águila", "alma", "arma", "hambre", "hacha", "aula", "área", "ala", "ave", "ancla", "hada", "haba", "habla", "alba", "asma", "aya"]);
+
 const ITALIAN_LO = /^(s[^aeiouàèéìòù]|z|gn|ps|pn|x|y|i[aeiou])/i;
 
 export function articleWord(lang: string, gender: string, noun: string): string | null {
   const a = ARTICLES[lang]?.[gender];
   if (!a) return null;
+  if (lang === "es" && gender === "f" && SPANISH_STRESSED_A.has(noun.toLowerCase())) return "el";
   if (lang === "fr" && /^[aeiouhàâéèêîôûœ]/i.test(noun)) return "l'";
   if (lang === "it" && /^[aeiouàèéìòù]/i.test(noun)) return "l'";
   if (lang === "it" && gender === "m" && ITALIAN_LO.test(noun)) return "lo";
@@ -662,8 +665,9 @@ function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): E
   const g = item.gender[lang];
   const table = ARTICLES[lang];
   const actual = articleWord(lang, g, noun);
-  const answer = actual && actual !== "l'" ? actual : table[g];
-  const pool = lang === "it" ? [...Object.values(table), "lo"] : Object.values(table);
+  const answer = actual ?? table[g];
+  const extra = lang === "it" ? ["lo", "l'"] : lang === "fr" ? ["l'"] : [];
+  const pool = [...Object.values(table), ...extra];
   const options = shuffle(Array.from(new Set(pool)), rng);
   const elided = item.forms[lang].startsWith("l'");
   return {
@@ -677,7 +681,7 @@ function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): E
     answerLang: lang,
     options,
     note: elided ? `Before a vowel the article shortens to l': ${item.forms[lang]}.` : `${item.forms[lang]}`,
-    cloze: { before: "", after: ` ${noun}` },
+    cloze: { before: "", after: answer === "l'" ? noun : ` ${noun}` },
     promptReading: { roman: root === "en" && !/^the /i.test(item.forms[root] ?? "") ? `the ${item.forms[root]}` : item.forms[root] },
   };
 }
