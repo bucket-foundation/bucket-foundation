@@ -55,3 +55,32 @@ export function gradeFlagMatch(
   }
   return { ratings, state: next };
 }
+
+export type FlagTables = Pick<EngineState["settings"], "flagHits" | "flagMisses">;
+
+export function flagTables(state: EngineState): FlagTables {
+  return { flagHits: { ...(state.settings.flagHits ?? {}) }, flagMisses: { ...(state.settings.flagMisses ?? {}) } };
+}
+
+export function withFlagTables(state: EngineState, tables: FlagTables): EngineState {
+  return { ...state, settings: { ...state.settings, ...tables } };
+}
+
+export function mergeFlagTables(a: FlagTables, b: FlagTables): FlagTables {
+  const hits: Record<string, number> = {};
+  const misses: Record<string, number> = {};
+  const langs = Array.from(new Set([a.flagHits, b.flagHits, a.flagMisses, b.flagMisses].flatMap((t) => Object.keys(t ?? {}))));
+  for (const lang of langs) {
+    const ma = a.flagMisses?.[lang] ?? 0;
+    const mb = b.flagMisses?.[lang] ?? 0;
+    const ha = a.flagHits?.[lang] ?? 0;
+    const hb = b.flagHits?.[lang] ?? 0;
+    const [m, h] = ma > mb ? [ma, ha] : mb > ma ? [mb, hb] : [ma, Math.max(ha, hb)];
+    if (lang in (a.flagHits ?? {}) || lang in (b.flagHits ?? {}) || m > 0) hits[lang] = h;
+    if (lang in (a.flagMisses ?? {}) || lang in (b.flagMisses ?? {})) misses[lang] = m;
+  }
+  const out: FlagTables = {};
+  if (a.flagHits || b.flagHits) out.flagHits = hits;
+  if (a.flagMisses || b.flagMisses) out.flagMisses = misses;
+  return out;
+}
