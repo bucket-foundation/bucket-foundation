@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createPublicKey, generateKeyPairSync, randomBytes, verify } from "node:crypto";
+import { createCipheriv, createPublicKey, generateKeyPairSync, randomBytes, verify } from "node:crypto";
 import {
   APPLE_REVOKE_URL,
   APPLE_TOKEN_URL,
@@ -19,6 +19,7 @@ import {
   revokeUserTokens,
   MAX_REVOKE_ATTEMPTS,
   sealToken,
+  APPLE_EXCHANGE_TIMEOUT_MS,
   type AppleTokenDeps,
   type PendingRevoke,
   type StoredAppleToken,
@@ -47,6 +48,7 @@ function apple(replies: Reply[], fetchSeconds = 0) {
     key: () => KEY,
     encKey: () => ENC,
     timeoutMs: 20,
+    exchangeTimeoutMs: 20,
     alert: (m) => void alerts.push(m),
     nowSeconds: () => now,
     log: (event, f) => (logFields.push({ event, ...f }), void logs.push(`${event} ${f.ok} ${f.reason ?? ""}`.trim())),
@@ -89,7 +91,7 @@ function apple(replies: Reply[], fetchSeconds = 0) {
       if (failed) p.status = "failed";
     },
   };
-  const store = (u: string, clientId: string, refresh: string) => tokens.set(`${u}|${clientId}`, { clientId, sealed: sealToken(ENC, refresh) });
+  const store = (u: string, clientId: string, refresh: string) => tokens.set(`${u}|${clientId}`, { clientId, sealed: sealToken(ENC, refresh, u, clientId) });
   return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads, alerts, logFields, advance: (s: number) => void (now += s) };
 }
 
@@ -110,14 +112,14 @@ test("env parsing for the Apple key and the 32-byte encryption key", () => {
 });
 
 test("sealed tokens round-trip, differ per seal, and reject tampering", () => {
-  const a = sealToken(ENC, "r1");
-  assert.notEqual(a, sealToken(ENC, "r1"));
+  const a = sealToken(ENC, "r1", "u1", "foundation.bucket.app");
+  assert.notEqual(a, sealToken(ENC, "r1", "u1", "foundation.bucket.app"));
   assert.ok(!a.includes("r1"));
-  assert.equal(openToken(ENC, a), "r1");
+  assert.equal(openToken(ENC, a, "u1", "foundation.bucket.app"), "r1");
   const parts = a.split(".");
   parts[3] = Buffer.from("xx").toString("base64url");
-  assert.throws(() => openToken(ENC, parts.join(".")));
-  assert.throws(() => openToken(randomBytes(32), a));
+  assert.throws(() => openToken(ENC, parts.join("."), "u1", "foundation.bucket.app"));
+  assert.throws(() => openToken(randomBytes(32), a, "u1", "foundation.bucket.app"));
 });
 
 test("a successful exchange stores the sealed refresh token under the app's client id", async () => {
@@ -128,7 +130,7 @@ test("a successful exchange stores the sealed refresh token under the app's clie
   assert.equal(w.calls[0].body.get("client_id"), "com.polingual.app");
   assert.ok(w.calls[0].signal instanceof AbortSignal);
   const saved = w.tokens.get("u1|com.polingual.app")!;
-  assert.equal(openToken(ENC, saved.sealed), "r1");
+  assert.equal(openToken(ENC, saved.sealed, "u1", "com.polingual.app"), "r1");
 });
 
 test("Bucket and Polingual tokens for one user are stored side by side", async () => {
@@ -189,7 +191,7 @@ for (const reply of [{ ok: false, status: 500 }, "throw", "timeout"] as const) {
     assert.deepEqual(await revokeUserTokens(w.deps, "u1"), { revoked: 0, pending: 1 });
     assert.equal(w.tokens.size, 0);
     assert.equal(w.pending.length, 1);
-    assert.equal(openToken(ENC, w.pending[0].sealed), "rb");
+    assert.equal(openToken(ENC, w.pending[0].sealed, w.pending[0].userId, "foundation.bucket.app"), "rb");
     assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 1, failed: 0, expired: 0, credentialFailedRows: 0, skipped: 0, alerts: [] });
     assert.equal(w.pending.length, 0);
     assert.equal(w.calls.at(-1)!.body.get("token"), "rb");
@@ -344,7 +346,7 @@ test("a run stops starting Apple calls once the time budget is spent", async () 
   const w = apple([{ ok: true, status: 200 }], 10);
   for (let i = 0; i < 8; i++) {
     w.store(`u${i}`, "foundation.bucket.app", `r${i}`);
-    w.pending.push({ clientId: "foundation.bucket.app", sealed: w.tokens.get(`u${i}|foundation.bucket.app`)!.sealed, id: 100 + i, attempts: 1, status: "pending", touched: -100 + i, lastError: "", first: null });
+    w.pending.push({ clientId: "foundation.bucket.app", userId: `u${i}`, sealed: w.tokens.get(`u${i}|foundation.bucket.app`)!.sealed, id: 100 + i, attempts: 1, status: "pending", touched: -100 + i, lastError: "", first: null });
   }
   const r = await retryPendingRevokes(w.deps);
   assert.equal(r.revoked, Math.ceil(RUN_BUDGET_SECONDS / 10));
@@ -379,7 +381,56 @@ test("the cron body reports skipped rows", async () => {
   const w = apple([{ ok: true, status: 200 }], 50);
   for (let i = 0; i < 2; i++) {
     w.store(`u${i}`, "foundation.bucket.app", `r${i}`);
-    w.pending.push({ clientId: "foundation.bucket.app", sealed: w.tokens.get(`u${i}|foundation.bucket.app`)!.sealed, id: 200 + i, attempts: 1, status: "pending", touched: -50 + i, lastError: "", first: null });
+    w.pending.push({ clientId: "foundation.bucket.app", userId: `u${i}`, sealed: w.tokens.get(`u${i}|foundation.bucket.app`)!.sealed, id: 200 + i, attempts: 1, status: "pending", touched: -50 + i, lastError: "", first: null });
   }
   assert.equal(retryCronReply(await retryPendingRevokes(w.deps)).body.skipped, 1);
+});
+
+const legacyV1 = (key: Buffer, plain: string) => {
+  const iv = randomBytes(12);
+  const c = createCipheriv("aes-256-gcm", key, iv);
+  const ct = Buffer.concat([c.update(plain, "utf8"), c.final()]);
+  return ["v1", iv.toString("base64url"), c.getAuthTag().toString("base64url"), ct.toString("base64url")].join(".");
+};
+
+test("v2 seals carry a version prefix and round-trip for the same user and client", () => {
+  const v2 = sealToken(ENC, "r1", "u1", "com.polingual.app");
+  assert.ok(v2.startsWith("v2."));
+  assert.equal(openToken(ENC, v2, "u1", "com.polingual.app"), "r1");
+});
+
+test("a v2 seal fails to open for another user, another client, or no user", () => {
+  const v2 = sealToken(ENC, "r1", "u1", "foundation.bucket.app");
+  assert.throws(() => openToken(ENC, v2, "u2", "foundation.bucket.app"));
+  assert.throws(() => openToken(ENC, v2, "u1", "com.polingual.app"));
+  assert.throws(() => openToken(ENC, v2, null, "foundation.bucket.app"));
+});
+
+test("an old v1 seal without AAD still opens, and still revokes from the pending queue", async () => {
+  const v1 = legacyV1(ENC, "old");
+  assert.equal(openToken(ENC, v1, "anyone", "foundation.bucket.app"), "old");
+  assert.equal(openToken(ENC, v1, null, "foundation.bucket.app"), "old");
+  const w = apple([{ ok: true, status: 200 }]);
+  w.tokens.set("u1|foundation.bucket.app", { clientId: "foundation.bucket.app", sealed: v1 });
+  assert.deepEqual(await revokeUserTokens(w.deps, "u1"), { revoked: 1, pending: 0 });
+  assert.equal(w.calls[0].body.get("token"), "old");
+});
+
+test("the sign-in code exchange times out at 3 s while revoke keeps 8 s", async () => {
+  assert.equal(APPLE_EXCHANGE_TIMEOUT_MS, 3000);
+  assert.equal(APPLE_FETCH_TIMEOUT_MS, 8000);
+  const seen: number[] = [];
+  const realTimeout = AbortSignal.timeout;
+  AbortSignal.timeout = (ms: number) => (seen.push(ms), realTimeout.call(AbortSignal, ms));
+  try {
+    const w = apple([{ ok: true, status: 200, body: { refresh_token: "r1" } }]);
+    w.deps.timeoutMs = undefined;
+    w.deps.exchangeTimeoutMs = undefined;
+    await exchangeAppleCode(w.deps, "u1", "bucket", "c1");
+    w.store("u2", "foundation.bucket.app", "r2");
+    await revokeUserTokens(w.deps, "u2");
+  } finally {
+    AbortSignal.timeout = realTimeout;
+  }
+  assert.deepEqual(seen, [3000, 8000]);
 });

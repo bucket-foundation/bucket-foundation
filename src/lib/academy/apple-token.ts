@@ -4,6 +4,7 @@ export const APPLE_TOKEN_URL = "https://appleid.apple.com/auth/token";
 export const APPLE_REVOKE_URL = "https://appleid.apple.com/auth/revoke";
 export const APPLE_CLIENT_IDS: Record<string, string> = { bucket: "foundation.bucket.app", polingual: "com.polingual.app" };
 export const APPLE_FETCH_TIMEOUT_MS = 8000;
+export const APPLE_EXCHANGE_TIMEOUT_MS = 3000;
 export const PENDING_BATCH = 20;
 export const MAX_REVOKE_ATTEMPTS = 5;
 export const MAX_CREDENTIAL_WAIT_DAYS = 30;
@@ -18,6 +19,7 @@ export interface AppleKey {
 export interface StoredAppleToken {
   clientId: string;
   sealed: string;
+  userId?: string | null;
 }
 
 export interface PendingRevoke extends StoredAppleToken {
@@ -32,6 +34,7 @@ export interface AppleTokenDeps {
   encKey: () => Buffer | null;
   fetch: (url: string, init: FetchInit) => Promise<{ ok: boolean; status: number; json: () => Promise<unknown> }>;
   timeoutMs?: number;
+  exchangeTimeoutMs?: number;
   save: (userId: string, token: StoredAppleToken) => Promise<void>;
   list: (userId: string) => Promise<StoredAppleToken[]>;
   remove: (userId: string, clientId: string) => Promise<void>;
@@ -59,17 +62,24 @@ export function encKeyFromEnv(raw: string | undefined): Buffer | null {
   return key.length === 32 ? key : null;
 }
 
-export function sealToken(key: Buffer, plain: string): string {
+const sealAad = (userId: string, clientId: string) => Buffer.from(`${userId}|${clientId}`, "utf8");
+
+export function sealToken(key: Buffer, plain: string, userId: string, clientId: string): string {
   const iv = randomBytes(12);
   const c = createCipheriv("aes-256-gcm", key, iv);
+  c.setAAD(sealAad(userId, clientId));
   const ct = Buffer.concat([c.update(plain, "utf8"), c.final()]);
-  return ["v1", iv.toString("base64url"), c.getAuthTag().toString("base64url"), ct.toString("base64url")].join(".");
+  return ["v2", iv.toString("base64url"), c.getAuthTag().toString("base64url"), ct.toString("base64url")].join(".");
 }
 
-export function openToken(key: Buffer, sealed: string): string {
+export function openToken(key: Buffer, sealed: string, userId: string | null | undefined, clientId: string): string {
   const [v, iv, tag, ct] = sealed.split(".");
-  if (v !== "v1" || !iv || !tag || ct === undefined) throw new Error("bad sealed token");
+  if ((v !== "v1" && v !== "v2") || !iv || !tag || ct === undefined) throw new Error("bad sealed token");
   const d = createDecipheriv("aes-256-gcm", key, Buffer.from(iv, "base64url"));
+  if (v === "v2") {
+    if (!userId) throw new Error("sealed token needs its user id");
+    d.setAAD(sealAad(userId, clientId));
+  }
   d.setAuthTag(Buffer.from(tag, "base64url"));
   return Buffer.concat([d.update(Buffer.from(ct, "base64url")), d.final()]).toString("utf8");
 }
@@ -85,9 +95,9 @@ export function appleClientSecret(key: AppleKey, clientId: string, nowSeconds: n
 
 const FORM_HEADERS = { "content-type": "application/x-www-form-urlencoded" };
 
-async function postApple(deps: AppleTokenDeps, url: string, fields: Record<string, string>) {
+async function postApple(deps: AppleTokenDeps, url: string, fields: Record<string, string>, timeoutMs = deps.timeoutMs ?? APPLE_FETCH_TIMEOUT_MS) {
   try {
-    const res = await deps.fetch(url, { method: "POST", headers: FORM_HEADERS, body: new URLSearchParams(fields).toString(), signal: AbortSignal.timeout(deps.timeoutMs ?? APPLE_FETCH_TIMEOUT_MS) });
+    const res = await deps.fetch(url, { method: "POST", headers: FORM_HEADERS, body: new URLSearchParams(fields).toString(), signal: AbortSignal.timeout(timeoutMs) });
     if (res.ok) return { res, reason: null };
     const err = await res.json().then((b) => (b as { error?: unknown }).error, () => undefined);
     return { res, reason: typeof err === "string" && /^[a-z_]{1,40}$/.test(err) ? `http_${res.status}_${err}` : `http_${res.status}` };
@@ -104,11 +114,11 @@ export async function exchangeAppleCode(deps: AppleTokenDeps, userId: string, ap
   const key = deps.key();
   if (!key) return done(false, "apple_key_missing");
   const clientId = APPLE_CLIENT_IDS[app] ?? APPLE_CLIENT_IDS.bucket;
-  const { res, reason } = await postApple(deps, APPLE_TOKEN_URL, { client_id: clientId, client_secret: appleClientSecret(key, clientId, deps.nowSeconds()), code, grant_type: "authorization_code" });
+  const { res, reason } = await postApple(deps, APPLE_TOKEN_URL, { client_id: clientId, client_secret: appleClientSecret(key, clientId, deps.nowSeconds()), code, grant_type: "authorization_code" }, deps.exchangeTimeoutMs ?? APPLE_EXCHANGE_TIMEOUT_MS);
   if (!res || reason) return done(false, reason ?? "fetch_error");
   const refresh = ((await res.json()) as { refresh_token?: unknown }).refresh_token;
   if (typeof refresh !== "string" || !refresh) return done(false, "no_refresh_token");
-  await deps.save(userId, { clientId, sealed: sealToken(enc, refresh) });
+  await deps.save(userId, { clientId, sealed: sealToken(enc, refresh, userId, clientId) });
   return done(true);
 }
 
@@ -119,7 +129,7 @@ async function revokeSealed(deps: AppleTokenDeps, t: StoredAppleToken): Promise<
   if (!key) return "apple_key_missing";
   let token: string;
   try {
-    token = openToken(enc, t.sealed);
+    token = openToken(enc, t.sealed, t.userId, t.clientId);
   } catch {
     return "decrypt_failed";
   }
@@ -213,7 +223,8 @@ export async function retryPendingRevokes(deps: AppleTokenDeps, limit = PENDING_
 export async function revokeUserTokens(deps: AppleTokenDeps, userId: string): Promise<{ revoked: number; pending: number }> {
   let revoked = 0;
   let pending = 0;
-  for (const t of await deps.list(userId)) {
+  for (const row of await deps.list(userId)) {
+    const t = { ...row, userId };
     const reason = await revokeSealed(deps, t);
     if (reason) {
       pending++;
