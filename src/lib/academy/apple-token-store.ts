@@ -29,12 +29,26 @@ export function appleTokenDeps(): AppleTokenDeps {
     remove: async (userId, clientId) => must("apple token remove", (await db().from("apple_tokens").delete().eq("user_id", userId).eq("client_id", clientId)).error),
     addPending: async (t, reason) => must("apple pending add", (await db().from("apple_revoke_pending").insert({ client_id: t.clientId, refresh_token_enc: t.sealed, last_error: reason })).error),
     listPending: async (limit) => {
-      const { data, error } = await db().from("apple_revoke_pending").select("id, client_id, refresh_token_enc, attempts, created_at").eq("status", "pending").order("updated_at").limit(limit);
+      const { data, error } = await db().from("apple_revoke_pending").select("id, client_id, refresh_token_enc, attempts").eq("status", "pending").order("updated_at").limit(limit);
       must("apple pending list", error);
-      return (data ?? []).map((r) => ({ id: r.id as number, clientId: r.client_id as string, sealed: r.refresh_token_enc as string, attempts: r.attempts as number, createdSeconds: Math.floor(Date.parse(r.created_at as string) / 1000) }));
+      return (data ?? []).map((r) => ({ id: r.id as number, clientId: r.client_id as string, sealed: r.refresh_token_enc as string, attempts: r.attempts as number }));
     },
     removePending: async (id) => must("apple pending remove", (await db().from("apple_revoke_pending").delete().eq("id", id)).error),
-    touchPending: async (id, reason) => must("apple pending touch", (await db().from("apple_revoke_pending").update({ last_error: reason.slice(0, 200), updated_at: new Date().toISOString() }).eq("id", id)).error),
+    touchPending: async (id, reason) => {
+      const { data, error } = await db().rpc("apple_revoke_pending_touch", { p_id: id, p_reason: reason });
+      must("apple pending touch", error);
+      return Math.floor(Date.parse(data as string) / 1000);
+    },
+    countCredentialFailed: async () => {
+      const { count, error } = await db().from("apple_revoke_pending").select("id", { count: "exact", head: true }).eq("status", "failed").like("last_error", "%invalid_client");
+      must("apple pending count", error);
+      return count ?? 0;
+    },
+    requeueCredentialFailed: async () => {
+      const { data, error } = await db().rpc("apple_revoke_pending_requeue");
+      must("apple pending requeue", error);
+      return Number(data ?? 0);
+    },
     bumpPending: async (id, reason, failed) => must("apple pending bump", (await db().rpc("apple_revoke_pending_bump", { p_id: id, p_reason: reason, p_failed: failed })).error),
   };
 }
