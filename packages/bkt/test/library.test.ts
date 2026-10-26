@@ -664,7 +664,7 @@ describe("through the command line", () => {
     const file = join(ROOT, "cli-share.bktdeck");
     const out = bkt("decks", "export", "Arabic", file);
     expect([out.code, out.err]).toEqual([0, ""]);
-    expect(out.out.trim()).toBe(`Wrote Arabic words to ${file}. Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0.`);
+    expect(out.out.trim()).toBe(`Wrote Arabic words to ${file}. Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0.`);
     const again = bkt("decks", "export", "Arabic", file);
     expect(again.code).toBe(1);
     expect(again.err).toContain("already exists; Bucket did not replace it");
