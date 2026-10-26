@@ -317,7 +317,7 @@ export default function BrandPage() {
           <div>
             <div className={styles.label}>Press kit</div>
             <h2 className={styles.h2}>Everything in one download</h2>
-            <p className={styles.lede}>Logos in SVG and PNG, app screens, credited imagery and a fact sheet. Press questions go to gianyrox@gmail.com.</p>
+            <p className={styles.lede}>Logos in SVG and PNG, app screens, credited imagery and a fact sheet. Press questions go to Gianangelo Dichio, @gianyrox, at gianyrox@gmail.com.</p>
             <div className={styles.ctaRow}>
               <a className={styles.cta} href="/brand/bucket-press-kit.zip" download>
                 Download press kit · 2.5 MB
