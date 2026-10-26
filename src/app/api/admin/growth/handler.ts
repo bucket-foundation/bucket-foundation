@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { buildReport, summarizeGroup } from "@/lib/beta/metrics";
 import type { BetaStore } from "@/lib/beta/store";
-import { buildGrowthReport } from "@/lib/growth/report";
+import { buildGrowthReport, type GrowthReport } from "@/lib/growth/report";
 import { parseSnapshot, SNAPSHOT_LIMITS } from "@/lib/growth/snapshot";
 import type { SnapshotStore } from "@/lib/growth/store";
 import type { WaitlistEntry } from "@/lib/waitlist/core";
@@ -32,18 +32,26 @@ function notFound(): NextResponse {
   return new NextResponse("Not Found", { status: 404, headers: { ...NO_STORE, "content-type": "text/plain; charset=utf-8" } });
 }
 
+export async function loadGrowthReport(
+  beta: BetaStore,
+  snapshots: SnapshotStore,
+  waitlist: () => Promise<WaitlistEntry[] | null>,
+  now: Date,
+): Promise<GrowthReport & { truncated: boolean }> {
+  const since = new Date(now.getTime() - GROWTH_WINDOW_DAYS * 86_400_000).toISOString();
+  const [testers, events, snapshot, signups] = await Promise.all([beta.testers(), beta.events(since), snapshots.latest(), waitlist()]);
+  const report = buildReport(testers, events.rows, now);
+  const overall = summarizeGroup("all", report.users);
+  return { ...buildGrowthReport({ waitlist: signups, beta: report, overall, snapshot, testers, events: events.rows, now }), truncated: events.truncated };
+}
+
 export async function handleGrowthReport(req: NextRequest, deps: GrowthDeps): Promise<NextResponse> {
   if (!authorized(req, deps)) return notFound();
   const beta = deps.beta();
   const snapshots = deps.snapshots();
   if (!beta || !snapshots) return json({ error: "store_unavailable" }, 503);
-  const now = deps.now?.() ?? new Date();
   try {
-    const since = new Date(now.getTime() - GROWTH_WINDOW_DAYS * 86_400_000).toISOString();
-    const [testers, events, snapshot, waitlist] = await Promise.all([beta.testers(), beta.events(since), snapshots.latest(), deps.waitlist()]);
-    const report = buildReport(testers, events.rows, now);
-    const overall = summarizeGroup("all", report.users);
-    return json({ ...buildGrowthReport({ waitlist, beta: report, overall, snapshot, now }), truncated: events.truncated });
+    return json(await loadGrowthReport(beta, snapshots, deps.waitlist, deps.now?.() ?? new Date()));
   } catch (err) {
     console.error("[admin/growth] report failed:", err instanceof Error ? err.message : err);
     return json({ error: "report_failed" }, 502);
