@@ -86,7 +86,7 @@ describe("the word pack", () => {
       expect(fromPack.scripts[l]).toBe(fromSource.scripts[l]);
       expect(cellRows(fromPack.byLang[l])).toEqual(cellRows(fromSource.byLang[l]));
     }
-    expect(PACK.counts).toMatchObject({ rows: RAW.words.length, checked: fromSource.cells.length, words: PACK.words.length, languages: 27 });
+    expect(PACK.counts).toMatchObject({ rows: RAW.words.length, checked: fromSource.cells.length, words: PACK.words.length, languages: fromPack.languages.length });
     expect(PACK.words.filter((w) => w.cell).length).toBe(fromSource.cells.length);
   });
 
