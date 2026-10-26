@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createDeckHandler, parseDeckCard, type DeckCard, type DeckDeps } from "../src/lib/polingual/deck";
+import { DECK_MAX_CARDS, createDeckHandler, parseDeckCard, type DeckCard, type DeckDeps } from "../src/lib/polingual/deck";
 
 function deps(over: Partial<DeckDeps> = {}) {
   const saved: [string, DeckCard][] = [];
@@ -8,6 +8,7 @@ function deps(over: Partial<DeckDeps> = {}) {
     configured: () => true,
     verifyUser: async () => "u1",
     rateHit: async () => true,
+    count: async (uid) => saved.filter(([u]) => u === uid).length,
     save: async (uid, card) => {
       const dup = saved.some(([u, c]) => u === uid && c.deck === card.deck && c.lang === card.lang && c.surface === card.surface);
       if (!dup) saved.push([uid, card]);
@@ -62,4 +63,9 @@ test("save maps rate limit, validation and store failure", async () => {
   assert.equal((await createDeckHandler(deps().d).save({ surface: "", lang: "es" })).status, 400);
   assert.equal((await createDeckHandler(deps({ save: async () => ({ ok: false }) }).d).save({ surface: "a", lang: "es" })).status, 500);
   assert.equal((await createDeckHandler(deps({ list: async () => null }).d).list(null)).status, 500);
+});
+
+test("save refuses a full deck and a failed count", async () => {
+  assert.deepEqual((await createDeckHandler(deps({ count: async () => DECK_MAX_CARDS }).d).save({ surface: "a", lang: "es" })).body, { error: "deck_full", limit: DECK_MAX_CARDS });
+  assert.equal((await createDeckHandler(deps({ count: async () => null }).d).save({ surface: "a", lang: "es" })).status, 500);
 });

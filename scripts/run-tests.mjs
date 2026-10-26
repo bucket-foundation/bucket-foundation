@@ -79,6 +79,7 @@ const SUITES = {
       "scripts/test-solver-gap-backtest-numbers.mjs",
       "scripts/test-provenance-packet.ts",
       "scripts/test-polingual-deck.ts",
+      "scripts/test-polingual-lookup.ts",
       "scripts/test-deck-catalog-route.ts",
       "scripts/test-brand-pick.ts",
       "scripts/test-beta-tracking.ts",

@@ -97,6 +97,13 @@ class PhotonServerTest(unittest.TestCase):
         self.assertIn("aqua", [r["surface"] for r in out["results"]])
         self.assertEqual(self.s.phonetic_search(self.ix, "//", None, 5)["results"], [])
 
+    def test_query_caps(self):
+        many = " ".join(["zzz"] * 4 + ["water", "clear"])
+        self.assertEqual(self.s.meaning_search(self.ix, many, None, 10)["results"], [])
+        self.assertEqual(self.s.meaning_search(self.ix, "x" * 100 + " water", None, 10)["results"], [])
+        self.assertEqual(self.s.phonetic_search(self.ix, "o" * 64 + "akwa", None, 5)["results"], [])
+        self.assertEqual(self.s.MAX_TARGETS, 29)
+
     def test_http_endpoints(self):
         from fastapi.testclient import TestClient
         c = TestClient(self.s.app)

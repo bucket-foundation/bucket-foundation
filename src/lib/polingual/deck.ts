@@ -47,6 +47,7 @@ export interface DeckDeps {
   configured: () => boolean;
   verifyUser: () => Promise<string | null>;
   rateHit: (key: string, limit: number, windowSeconds: number) => Promise<boolean>;
+  count: (userId: string) => Promise<number | null>;
   save: (userId: string, card: DeckCard) => Promise<{ ok: boolean; duplicate?: boolean }>;
   list: (userId: string, deck: string | null) => Promise<DeckCard[] | null>;
 }
@@ -54,6 +55,7 @@ export interface DeckDeps {
 export type DeckResult = { status: number; body: Record<string, unknown> };
 
 export const DECK_SAVE_LIMIT = 120;
+export const DECK_MAX_CARDS = 5000;
 
 export function createDeckHandler(deps: DeckDeps) {
   async function user(): Promise<string | DeckResult> {
@@ -69,6 +71,9 @@ export function createDeckHandler(deps: DeckDeps) {
       const parsed = parseDeckCard(body);
       if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
       if (!(await deps.rateHit(`deck:${uid}`, DECK_SAVE_LIMIT, 600))) return { status: 429, body: { error: "too_many_requests" } };
+      const n = await deps.count(uid);
+      if (n === null) return { status: 500, body: { error: "save_failed" } };
+      if (n >= DECK_MAX_CARDS) return { status: 409, body: { error: "deck_full", limit: DECK_MAX_CARDS } };
       const r = await deps.save(uid, parsed.card);
       if (!r.ok) return { status: 500, body: { error: "save_failed" } };
       return { status: r.duplicate ? 200 : 201, body: { ok: true, duplicate: Boolean(r.duplicate), card: parsed.card } };

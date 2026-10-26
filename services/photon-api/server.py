@@ -333,6 +333,11 @@ FAVORITE_LANGS = [
     if c.strip()
 ]
 
+MAX_TARGETS = 29
+MAX_TERMS = 5
+MAX_QUERY_CHARS = 100
+MAX_IPA_CHARS = 64
+
 def resolve_targets(ix, to, frm):
     if not to or to == "favorites":
         wanted = FAVORITE_LANGS
@@ -341,7 +346,7 @@ def resolve_targets(ix, to, frm):
     else:
         wanted = [c.strip() for c in to.split(",") if c.strip()]
     known = set(ix.langs)
-    return [c for c in dict.fromkeys(wanted) if c in known and c != frm]
+    return [c for c in dict.fromkeys(wanted) if c in known and c != frm][:MAX_TARGETS]
 
 def translate_many(ix, surface, frm, to=None, k=3):
     i = ix.find(surface, frm)
@@ -371,7 +376,7 @@ def translate_many(ix, surface, frm, to=None, k=3):
     }
 
 def meaning_search(ix, q, lang=None, k=10):
-    terms = [t for t in (q or "").lower().split() if t]
+    terms = [t for t in (q or "").lower()[:MAX_QUERY_CHARS].split() if t][:MAX_TERMS]
     if not terms:
         return {"query": q, "lang": lang, "results": [], "axis": "meaning"}
     scored = []
@@ -394,7 +399,7 @@ def _ipa_key(s):
     return "".join(ch for ch in (s or "") if ch not in "/[]ˈˌ.ː ")
 
 def phonetic_search(ix, ipa, lang=None, k=10):
-    key = _ipa_key(ipa)
+    key = _ipa_key((ipa or "")[:MAX_IPA_CHARS])
     if not key:
         return {"query": ipa, "lang": lang, "results": [],
                 "axis": "phonetic_search"}
