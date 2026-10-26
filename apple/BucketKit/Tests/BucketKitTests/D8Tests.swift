@@ -49,3 +49,27 @@ import Testing
     #expect(out.options == ex.options)
     #expect(out.optionLangs == nil)
 }
+
+@Test func italianAndFrenchArticlesFollowTheNoun() {
+    #expect(Lang.contextualArticle("it", "m", "zero") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "studente") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "gnomo") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "amico") == "l'")
+    #expect(Lang.contextualArticle("it", "f", "acqua") == "l'")
+    #expect(Lang.contextualArticle("it", "m", "libro") == nil)
+    #expect(Lang.contextualArticle("it", "m", "sole") == nil)
+    #expect(Lang.contextualArticle("fr", "f", "eau") == "l'")
+    #expect(Lang.contextualArticle("es", "m", "agua") == nil)
+}
+
+@Test func genderCardsUseTheRightItalianArticle() {
+    var ex = Exercise(kind: .gender, itemId: "x", lang: "it", root: "en", prompt: "zero", promptLang: "it", answer: "il", answerLang: "it")
+    ex.options = ["il", "la"]
+    var rng = Rng(seed: 3)
+    let out = correctArticle(ex, &rng)
+    #expect(out.answer == "lo")
+    #expect(Set(out.options ?? []) == ["il", "la", "lo", "l'"])
+    var plain = ex
+    plain.prompt = "libro"
+    #expect(correctArticle(plain, &rng).answer == "il")
+}

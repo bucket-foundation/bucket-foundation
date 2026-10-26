@@ -103,6 +103,25 @@ public enum Lang {
 
     static func article(_ lang: String, _ gender: String) -> String? { articles[lang]?.first { $0.0 == gender }?.1 }
 
+    public static func contextualArticle(_ lang: String, _ gender: String, _ noun: String) -> String? {
+        let w = noun.lowercased()
+        guard let first = w.first else { return nil }
+        let vowel = "aeiouàèéìòùh".contains(first)
+        switch lang {
+        case "it":
+            if vowel { return "l'" }
+            guard gender == "m" else { return nil }
+            let rest = w.dropFirst()
+            let sCluster = first == "s" && rest.first.map { !"aeiouàèéìòù".contains($0) } == true
+            if sCluster || "zxy".contains(first) || ["gn", "ps", "pn"].contains(where: { w.hasPrefix($0) }) { return "lo" }
+            return nil
+        case "fr":
+            return vowel ? "l'" : nil
+        default:
+            return nil
+        }
+    }
+
     static let phraseTier: [String: Double] = ["greeting": 1, "courtesy": 1, "intro": 3, "basics": 4, "smalltalk": 5, "survival": 6, "dining": 7, "shopping": 7, "direction": 8, "time": 8]
 }
 

@@ -69,7 +69,8 @@ struct StudyView: View {
             current = matchExercise(corpus, system, item, &rng)
         } else {
             let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang))
-            current = crossLanguageOptions(made, item, system, &rng)
+            let crossed = crossLanguageOptions(made, item, system, &rng)
+            current = correctArticle(crossed, &rng)
         }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
     }
