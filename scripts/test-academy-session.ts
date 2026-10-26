@@ -180,3 +180,15 @@ test("otp with app polingual redirects to polingual.com, other apps keep the def
   assert.equal((await w.handle({ action: "otp", email: "d@b.co" }, "1.1.1.1")).status, 200);
   assert.deepEqual(seen, ["https://polingual.com/", undefined, undefined]);
 });
+
+test("apple sign-in passes the authorization code on, and an exchange failure still signs in", async () => {
+  const linked: string[] = [];
+  const tok = appleToken({ aud: "com.polingual.app", nonce: sha("n1") });
+  const ok = world({ linkAppleCode: async (u, app, code) => void linked.push(`${u} ${app} ${code}`) });
+  assert.equal((await ok.handle({ action: "apple", id_token: tok, nonce: "n1", app: "polingual", authorization_code: "c1" }, "1.1.1.1")).status, 200);
+  assert.deepEqual(linked, ["u1 polingual c1"]);
+  const failing = world({ linkAppleCode: async () => { throw new Error("apple down"); } });
+  const r = await failing.handle({ action: "apple", id_token: tok, nonce: "n1", app: "polingual", authorization_code: "c1" }, "1.1.1.1");
+  assert.equal(r.status, 200);
+  assert.equal(r.body.access_token, "at");
+});
