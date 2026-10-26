@@ -1,8 +1,11 @@
+import type { AssignmentRow, CohortSettingRow } from "../src/lib/beta/experiment-registry";
 import type { BetaStore, BetaTester, StoredBetaEvent } from "../src/lib/beta/store";
 
 export const NOW = new Date("2026-10-26T12:00:00Z");
 
 export function memory(optedOut = false) {
+  const settings: CohortSettingRow[] = [];
+  const assignments: AssignmentRow[] = [];
   const rows = new Map<string, StoredBetaEvent>();
   const testers = new Map<string, BetaTester>();
   const store: BetaStore & { rows: typeof rows } = {
@@ -32,6 +35,16 @@ export function memory(optedOut = false) {
       if (!t) return false;
       t.cohort = cohort;
       return true;
+    },
+    cohortSettings: async () => settings,
+    setCohortSetting: async (row) => {
+      const i = settings.findIndex((r) => r.experiment === row.experiment && r.cohort === row.cohort);
+      if (i >= 0) settings[i] = row;
+      else settings.push(row);
+    },
+    assignments: async (userId) => assignments.filter((a) => !userId || a.userId === userId),
+    recordAssignments: async (rows) => {
+      for (const r of rows) if (!assignments.some((a) => a.userId === r.userId && a.experiment === r.experiment)) assignments.push(r);
     },
   };
   return store;

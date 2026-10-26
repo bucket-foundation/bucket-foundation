@@ -21,6 +21,7 @@ GRAMMAR_LEAD = re.compile(
 PROPER = re.compile(r"\b(surname|given name|a city|a town|a village|a river|a country|a province|a state of|capital of|a region of|female given|male given|a district|placename|place name)\b", re.I)
 PROPER_POS = {"name", "proper noun", "propn"}
 JUNK_POS = {"character", "symbol", "punct", "affix", "suffix", "prefix", "romanization", "syllable", "letter"}
+JUNK_GLOSS = re.compile(r"^(the (greek |roman )?numeral|the number \w+ in|the digit|iso \d|iso 3166|\w+ \(the [\w ]*letter|name of the [\w ]*letter)", re.I)
 DIGIT = re.compile(r"\d")
 LATIN_LANGS = {"cs", "de", "en", "es", "fi", "fr", "id", "it", "la", "nl", "pl", "pt", "sv", "tr", "vi"}
 
@@ -32,7 +33,7 @@ def fold(word: str) -> str:
 def defects(row: dict, lang: str) -> list[str]:
     word, gloss, pos = row["word"], (row.get("meaning") or "").strip(), (row.get("pos") or "").lower()
     out = []
-    if DIGIT.search(word) or pos in JUNK_POS or (lang in LATIN_LANGS and len(word) == 1 and word.lower() not in {"a", "e", "i", "o", "y", "u", "w", "z", "à", "é", "è", "å", "ä", "ö"}):
+    if DIGIT.search(word) or JUNK_GLOSS.match(gloss) or pos in JUNK_POS or (lang in LATIN_LANGS and len(word) == 1 and word.lower() not in {"a", "e", "i", "o", "y", "u", "w", "z", "à", "é", "è", "å", "ä", "ö"}):
         out.append("junk")
     if pos in PROPER_POS or PROPER.search(gloss) or re.match(r"^(Al|El)-[A-Z]", gloss) or (lang in LATIN_LANGS - {"de"} and word[:1].isupper() and word != word.upper()):
         out.append("proper")

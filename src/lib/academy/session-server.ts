@@ -10,6 +10,7 @@ export const SESSION_LIMITS = {
   verifyIp: 40,
   refreshIp: 120,
   deleteIp: 10,
+  appleIp: 40,
 } as const;
 
 export interface AuthSession {
@@ -29,6 +30,8 @@ export interface SessionDeps {
   sendOtp: (email: string, redirectTo?: string) => Promise<{ status: number | null }>;
   verifyOtp: (email: string, code: string) => Promise<AuthResult>;
   refresh: (refreshToken: string) => Promise<AuthResult>;
+  signInWithApple: (token: string, nonce: string) => Promise<AuthResult>;
+  appleAudiences?: () => string[];
   deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
   now: () => number;
 }
@@ -48,6 +51,27 @@ export function clientIp(headers: Headers): string {
 
 export const OTP_LOCKOUT_MESSAGE = "Bucket sent several codes to this email. Wait ten minutes and try again.";
 export const RATE_MESSAGE = "Too many tries from here. Wait ten minutes and try again.";
+
+export const DEFAULT_APPLE_AUDIENCES = ["foundation.bucket.app", "com.polingual.app"];
+export const APPLE_APPS = ["bucket", "polingual"];
+
+export function appleAudiences(raw: string | undefined): string[] {
+  const list = (raw ?? "").split(",").map((v) => v.trim()).filter(Boolean);
+  return list.length ? list : DEFAULT_APPLE_AUDIENCES;
+}
+
+export function appleTokenOk(idToken: string, rawNonce: string, audiences: string[]): boolean {
+  const parts = idToken.split(".");
+  if (parts.length !== 3 || !rawNonce) return false;
+  try {
+    const claims = JSON.parse(Buffer.from(parts[1], "base64url").toString("utf8")) as { nonce?: unknown; aud?: unknown };
+    const auds = Array.isArray(claims.aud) ? claims.aud : [claims.aud];
+    const audOk = auds.some((v) => typeof v === "string" && audiences.includes(v));
+    return audOk && typeof claims.nonce === "string" && claims.nonce === createHash("sha256").update(rawNonce).digest("hex");
+  } catch {
+    return false;
+  }
+}
 
 export const APP_REDIRECTS: Record<string, string> = { polingual: "https://polingual.com/" };
 
@@ -99,6 +123,20 @@ export function createSessionHandler(deps: SessionDeps) {
       const r = await deps.verifyOtp(email, code);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return r.session ? { status: 200, body: tokens(r.session) } : { status: 400, body: { error: "bad_code" } };
+    }
+
+    if (b.action === "apple") {
+      const token = typeof b.id_token === "string" ? b.id_token : "";
+      const nonce = typeof b.nonce === "string" ? b.nonce : "";
+      const app = b.app === undefined ? "bucket" : b.app;
+      if (!token || token.length > 8192 || !nonce || nonce.length > 512 || typeof app !== "string" || !APPLE_APPS.includes(app)) return { status: 400, body: { error: "bad_request" } };
+      if (!(await within([[`apple:ip:${ip}`, SESSION_LIMITS.appleIp]]))) return { status: 429, body: { error: "too_many_requests" } };
+      if (!appleTokenOk(token, nonce, deps.appleAudiences?.() ?? DEFAULT_APPLE_AUDIENCES)) return { status: 401, body: { error: "bad_token" } };
+      const r = await deps.signInWithApple(token, nonce);
+      if (r.session) return { status: 200, body: tokens(r.session) };
+      if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
+      if (r.status === null || r.status >= 500) return { status: 502, body: { error: "apple_failed" } };
+      return { status: 401, body: { error: "bad_token" } };
     }
 
     if (b.action === "refresh") {

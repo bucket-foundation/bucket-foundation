@@ -55,3 +55,11 @@ test("intro tiles show IPA or romanization under each linked word, and hide them
   assert.doesNotMatch(off, /link-word-reading/);
   assert.match(off, /data-testid="link-word"/);
 });
+
+test("a match card renders with a flag grader supplied", () => {
+  const sys = createSystem("en", ["es", "fr", "it"], [], 0);
+  const item = corpus.items.find((i) => i.kind === "word" && ["es", "fr", "it"].every((l) => i.forms[l]))!;
+  const ex = matchExercise(corpus, sys, item, seededRng(5))!;
+  const html = renderToStaticMarkup(createElement(LangExercise, { ex, onDone: () => {}, match: { grade: () => [] } }));
+  assert.equal((html.match(/data-testid="match-row"/g) ?? []).length, ex.pairs!.length);
+});

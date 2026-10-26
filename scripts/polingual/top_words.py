@@ -6,7 +6,7 @@ import sqlite3
 import unicodedata
 from pathlib import Path
 
-from wordfreq import get_frequency_dict
+from wordfreq import get_frequency_dict, zipf_frequency
 
 from wordlist_qa import defects, fold
 
@@ -31,7 +31,7 @@ BANDS = ((400, "A1"), (750, "A2"), (1000, "B1"))
 SOURCE_INFO = {
     "zh": {"name": "wordfreq zh", "url": "https://github.com/rspeer/wordfreq", "license": "CC-BY-SA 4.0", "glosses": "CC-CEDICT, https://www.mdbg.net/chinese/dictionary?page=cc-cedict, CC-BY-SA 4.0"},
     "th": {"name": "FrequencyWords th 2018, OpenSubtitles", "url": "https://github.com/hermitdave/FrequencyWords", "license": "CC-BY-SA 4.0"},
-    "la": {"name": "Dickinson College Commentaries Latin Core Vocabulary", "url": "https://dcc.dickinson.edu/latin-core-list1", "license": "CC-BY-SA 3.0"},
+    "la": {"name": "Dickinson College Commentaries Latin Core Vocabulary", "url": "https://dcc.dickinson.edu/latin-core-list1", "license": "CC-BY-SA"},
     "sa": {"name": "Digital Corpus of Sanskrit, lemma counts", "url": "https://github.com/OliverHellwig/sanskrit", "license": "CC-BY 4.0"},
     "pa": {"name": "Punjabi Wikipedia token counts", "url": "https://dumps.wikimedia.org/pawiki/", "license": "CC-BY-SA 4.0"},
 }
@@ -111,6 +111,108 @@ def clean(row: dict, lang: str, senses: list[str]) -> dict | None:
     return None
 
 
+MIN_SENSE_ZIPF = 4.0
+MIN_AGREEMENT = 200.0
+AGREEMENT_MARGIN = 2.0
+JUNK_SENSE = re.compile(r"defective spelling|eye dialect|obsolete|archaic", re.I)
+STRIP_MARKS = re.compile(r"[\u0300-\u036f\u064b-\u065f\u0670\u0591-\u05c7]")
+GLOSS_WORD = re.compile(r"[a-z]+(?:[ -][a-z]+)*")
+
+
+def gloss_pins() -> dict[tuple[str, str], str]:
+    path = SOURCES / "gloss_pins.tsv"
+    if not path.exists():
+        return {}
+    rows = [line.split("\t") for line in path.read_text(encoding="utf-8").splitlines()[1:] if line]
+    return {(lang, word): gloss for lang, word, gloss in rows}
+
+
+PINS = gloss_pins()
+
+
+def strip_marks(word: str) -> str:
+    return unicodedata.normalize("NFC", STRIP_MARKS.sub("", unicodedata.normalize("NFD", word))).casefold()
+
+
+def translation_votes(db: sqlite3.Connection) -> dict[tuple[str, str], dict[str, float]]:
+    en_freq = get_frequency_dict("en")
+    votes: dict[tuple[str, str], dict[str, float]] = {}
+    for head, payload in db.execute("select surface, payload from photons where lang='en'"):
+        table = json.loads(payload).get("translations") or []
+        by_sense: dict[str, set[str]] = {}
+        for t in table:
+            by_sense.setdefault(t.get("sense") or "", set()).add(t.get("code"))
+        zipf = math.log10(en_freq.get(head.lower(), 1e-9) * 1e9) if en_freq.get(head.lower()) else 0.0
+        for t in table:
+            if not t.get("word") or not t.get("code"):
+                continue
+            weight = zipf * len(by_sense[t.get("sense") or ""])
+            slot = votes.setdefault((t["code"], strip_marks(t["word"])), {})
+            slot[head.lower()] = max(slot.get(head.lower(), 0.0), weight)
+    return votes
+
+
+def translation_pos(db: sqlite3.Connection) -> dict[tuple[str, str], dict[str, int]]:
+    counts: dict[tuple[str, str], dict[str, int]] = {}
+    for head_pos, payload in db.execute("select pos, payload from photons where lang='en'"):
+        data = json.loads(payload)
+        by_gloss = {x.get("gloss"): x.get("pos") for x in data.get("senses") or [] if x.get("gloss")}
+        for t in data.get("translations") or []:
+            if not t.get("word") or not t.get("code"):
+                continue
+            pos = by_gloss.get(t.get("sense")) or head_pos
+            if pos:
+                slot = counts.setdefault((t["code"], strip_marks(t["word"])), {})
+                slot[pos] = slot.get(pos, 0) + 1
+    return counts
+
+
+def majority_pos(counts: dict[str, int], own: str | None) -> str | None:
+    if not counts:
+        return own
+    top = max(counts.values())
+    tied = sorted(p for p, c in counts.items() if c == top)
+    return own if own in tied else tied[0]
+
+
+def sense_terms(gloss: str) -> list[str]:
+    text = re.sub(r"\([^)]*\)", " ", gloss.lower())
+    return [m for part in re.split(r"[;,]", text) for m in [part.strip().removeprefix("to ").removeprefix("a ").removeprefix("an ").removeprefix("the ").strip()] if m]
+
+
+def sense_score(gloss: str, votes: dict[str, float]) -> float:
+    terms = set(sense_terms(gloss))
+    return sum(w for head, w in votes.items() if head in terms)
+
+
+def head_zipf(gloss: str) -> float:
+    terms = sense_terms(gloss)
+    return zipf_frequency(terms[0], "en") if terms else 0.0
+
+
+def junk_sense(sense: dict) -> bool:
+    return bool(JUNK_SENSE.search(sense.get("gloss") or "")) or any(JUNK_SENSE.search(t) for t in sense.get("tags") or [])
+
+
+def replaceable(senses: list[dict], pos: str | None) -> list[str]:
+    return [x["gloss"] for x in senses if x.get("pos") == pos and not junk_sense(x)]
+
+
+def agreed_sense(current: str, senses: list[str], votes: dict[str, float]) -> str | None:
+    if not votes or sense_score(current or "", votes) > 0:
+        return None
+    scored = sorted(((sense_score(g, votes), g) for g in senses), key=lambda x: -x[0])
+    if not scored or scored[0][0] < MIN_AGREEMENT:
+        return None
+    best_score, best = scored[0]
+    runner_up = next((sc for sc, g in scored[1:] if sc > 0 and g != best), 0.0)
+    if runner_up * AGREEMENT_MARGIN > best_score:
+        return None
+    if head_zipf(best) < max(MIN_SENSE_ZIPF, head_zipf(current or "")):
+        return None
+    return best
+
+
 def index_rows(db: sqlite3.Connection, lang: str) -> dict[str, dict]:
     rows = db.execute("select surface, meaning_en, pos, ipa from photons where lang=?", (lang,))
     return {s: {"word": s, "meaning": m, "pos": p, "ipa": i} for s, m, p, i in rows}
@@ -183,7 +285,7 @@ def rank_sourced(db: sqlite3.Connection, lang: str, n: int, kaikki: Path | None,
     return out
 
 
-def rank_index(db: sqlite3.Connection, lang: str, n: int) -> list[dict]:
+def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = None, pos_counts: dict | None = None) -> list[dict]:
     rows = db.execute("select surface, meaning_en, pos, ipa, payload from photons where lang=?", (lang,))
     freq = get_frequency_dict(lang) if lang in RAW_FREQ_LANGS else {}
     scored = []
@@ -195,15 +297,21 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int) -> list[dict]:
         if freq:
             zipf = round(math.log10(freq[surface] * 1e9), 2) if surface in freq else 0.0
             score = zipf * 100 + score / 100
-        senses = [x.get("gloss") for x in json.loads(payload).get("senses") or [] if x.get("gloss")]
-        scored.append((score, zipf, surface, meaning, pos, ipa, senses))
+        raw = [x for x in json.loads(payload).get("senses") or [] if x.get("gloss")]
+        senses = [x["gloss"] for x in raw]
+        major = majority_pos((pos_counts or {}).get((lang, strip_marks(surface)), {}), pos)
+        scored.append((score, zipf, surface, meaning, pos, ipa, senses, major, replaceable(raw, major)))
     scored.sort(key=lambda r: (-r[0], -r[1], r[2]))
     seen: set[str] = set()
     out = []
-    for score, zipf, surface, meaning, pos, ipa, senses in scored:
+    for score, zipf, surface, meaning, pos, ipa, senses, major, options in scored:
         if fold(surface) in seen:
             continue
-        row = clean({"word": surface, "meaning": meaning, "pos": pos}, lang, senses)
+        pinned = PINS.get((lang, surface))
+        agreed = pinned or (agreed_sense(meaning, options, votes.get((lang, strip_marks(surface)), {})) if votes else None)
+        if agreed and not pinned and agreed != meaning:
+            pos = major
+        row = clean({"word": surface, "meaning": agreed or meaning, "pos": pos}, lang, senses)
         if not row:
             continue
         seen.add(fold(surface))
@@ -226,8 +334,10 @@ def main() -> None:
     langs = [l for (l,) in db.execute("select distinct lang from photons order by lang")] + ["pa"]
     index_path = OUT / "index.json"
     summary = json.loads(index_path.read_text()) if index_path.exists() and args.only else {}
+    votes = translation_votes(db)
+    pos_counts = translation_pos(db)
     for lang in args.only or langs:
-        words = rank_sourced(db, lang, args.n, args.kaikki, args.cedict) if lang in SOURCE_INFO else rank_index(db, lang, args.n)
+        words = rank_sourced(db, lang, args.n, args.kaikki, args.cedict) if lang in SOURCE_INFO else rank_index(db, lang, args.n, votes, pos_counts)
         (OUT / f"{lang}.json").write_text(json.dumps(words, ensure_ascii=False, indent=1))
         summary[lang] = {
             "count": len(words),

@@ -3,11 +3,21 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
-import { buildQueue, cardId, exerciseFor, learnerLevel, letterExerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
+import { heritageLangs, langName, studyHref, buildQueue, cardId, exerciseFor, learnerLevel, letterExerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 import { linkForms, targetFirst } from "@/lib/academy/lang-layout";
-import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
+import LangExercise, { ReadingsContext, type ExerciseResult, type MatchGrading } from "./LangExercise";
+import { gradeWebMatch } from "@/lib/academy/flag-misses";
 import { useLangSystem } from "./useLangSystem";
+
+export function HeritageLink({ systemId, langs, on }: { systemId: string; langs: string[]; on: boolean }) {
+  if (!on && langs.length === 0) return null;
+  return (
+    <Link href={studyHref(systemId, !on)} className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)]" data-testid="heritage-link">
+      {on ? "back to regular study" : `I speak ${langs.map(langName).join(" or ")} but can't read the script`}
+    </Link>
+  );
+}
 
 export default function LangStudy({ systemId, heritage = false }: { systemId: string; heritage?: boolean }) {
   const h = useLangSystem(systemId);
@@ -68,16 +78,34 @@ export default function LangStudy({ systemId, heritage = false }: { systemId: st
     [entry, queue, i, h]
   );
 
+  const match = useMemo<MatchGrading>(
+    () => ({
+      grade: (pairs, assign) => {
+        const { results, tables } = gradeWebMatch(pairs, assign, state);
+        h.recordFlags(tables);
+        return results;
+      },
+    }),
+    [state, h]
+  );
+
   if (h.status === "loading" || (h.status === "ready" && queue === null)) return <LoadingState label="Building your session" />;
   if (h.status === "error") return <ErrorState title="The session did not load" />;
   if (!system || !corpus || !queue) return <EmptyState title="No such language system" action={{ href: "/research-os/learn/languages", label: "your systems" }} />;
 
   const back = `/research-os/learn/languages/${system.id}`;
-  if (queue.length === 0) return <EmptyState title="Nothing due" body="You have met today's new words in every language of this set. Come back tomorrow." action={{ href: back, label: "progress" }} />;
+  if (queue.length === 0)
+    return (
+      <div className="flex flex-col gap-3">
+        <EmptyState title="Nothing due" body="You have met today's new words in every language of this set. Come back tomorrow." action={{ href: back, label: "progress" }} />
+        <HeritageLink systemId={system.id} langs={heritageLangs(system)} on={heritage} />
+      </div>
+    );
 
   if (i >= queue.length || !ex) {
     return (
       <div className="flex flex-col gap-4" data-testid="session-done">
+        <HeritageLink systemId={system.id} langs={heritageLangs(system)} on={heritage} />
         <h1 className="font-display uppercase text-[clamp(1.4rem,3.6vw,2.25rem)] text-[color:var(--basalt)]">session done</h1>
         <p className="text-[14px] text-[color:var(--basalt-2)] [font-variant-numeric:tabular-nums]">
           {correct} of {graded} right · +{state.stats.xp - xpStart.current} xp · {state.stats.streak} day streak
@@ -118,9 +146,10 @@ export default function LangStudy({ systemId, heritage = false }: { systemId: st
         <div className="h-1 bg-[color:var(--gold-deep)]" style={{ width: `${Math.round((i / queue.length) * 100)}%` }} />
       </div>
       <ReadingsContext.Provider value={readings}>
-        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} links={links} targetLayout={!!h.shared} />
+        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} links={links} targetLayout={!!h.shared} match={match} />
       </ReadingsContext.Provider>
       <div className="flex flex-wrap items-center justify-between gap-3">
+      <HeritageLink systemId={system.id} langs={heritageLangs(system)} on={heritage} />
       <button type="button" onClick={() => setI((x) => x + 1)} className="text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip-exercise">
         skip this one
       </button>

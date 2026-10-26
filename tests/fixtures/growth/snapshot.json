@@ -1,0 +1,17 @@
+{
+  "takenAt": "2026-10-26T06:00:00Z",
+  "testers": [
+    { "app": "bucket", "state": "INSTALLED" },
+    { "app": "bucket", "state": "INSTALLED" },
+    { "app": "bucket", "state": "ACCEPTED" },
+    { "app": "bucket", "state": "INVITED" },
+    { "app": "polingual", "state": "INSTALLED" },
+    { "app": "polingual", "state": "NOT_INVITED" }
+  ],
+  "builds": [
+    { "app": "bucket", "version": "1.0", "build": "10", "uploadedAt": "2026-10-01T12:00:00Z", "state": "VALID", "tag": "bucket-build-10", "notes": ["feat(academy): first study loop"] },
+    { "app": "bucket", "version": "1.0", "build": "11", "uploadedAt": "2026-10-05T12:00:00Z", "state": "VALID", "tag": "bucket-build-11", "notes": ["fix(academy): card flip", "feat(beta): events"] },
+    { "app": "bucket", "version": "1.1", "build": "12", "uploadedAt": "2026-10-07T00:00:00Z", "state": "PROCESSING", "tag": null, "notes": [] },
+    { "app": "polingual", "version": "0.9", "build": "3", "uploadedAt": "2026-10-20T12:00:00Z", "state": "VALID", "tag": null, "notes": [] }
+  ]
+}

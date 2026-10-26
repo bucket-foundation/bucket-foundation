@@ -282,7 +282,7 @@
     },
     {
      "term": "Christoffel symbol",
-     "meaning": "Term in the geodesic equation that encodes curvature of the coordinates"
+     "meaning": "Term in the geodesic equation that tracks how the coordinate axes bend and stretch"
     },
     {
      "term": "Free fall",
@@ -1502,7 +1502,7 @@
     },
     {
      "term": "Warm spot",
-     "meaning": "A slightly denser region at recombination"
+     "meaning": "A direction where the CMB looks slightly hotter than average"
     },
     {
      "term": "Recombination",
@@ -2136,7 +2136,7 @@
     "Acceleration needs a component with positive pressure"
    ],
    "error": 3,
-   "fix": "Acceleration needs strongly negative pressure, near p = -ρc²."
+   "fix": "Acceleration needs negative pressure, with p below -ρc²/3 (w below -1/3)."
   },
   {
    "id": "dark-energy.match",

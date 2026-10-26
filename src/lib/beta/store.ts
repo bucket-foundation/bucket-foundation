@@ -1,6 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { configured } from "@/lib/research-os/db";
 import type { BetaApp, BetaEvent, BetaEventName, PropValue } from "./events";
+import type { AssignmentRow, CohortSettingRow } from "./experiment-registry";
 
 export interface BetaTester {
   userId: string;
@@ -33,6 +34,10 @@ export interface BetaStore {
   testers: () => Promise<BetaTester[]>;
   events: (sinceIso: string) => Promise<EventPage>;
   setCohort: (userId: string, cohort: string) => Promise<boolean>;
+  cohortSettings: () => Promise<CohortSettingRow[]>;
+  setCohortSetting: (row: CohortSettingRow) => Promise<void>;
+  assignments: (userId?: string) => Promise<AssignmentRow[]>;
+  recordAssignments: (rows: AssignmentRow[]) => Promise<void>;
 }
 
 const PAGE = 1000;
@@ -119,6 +124,37 @@ export function supabaseBetaStore(): BetaStore | null {
       const { data, error } = await client().from("beta_testers").update({ cohort }).eq("user_id", userId).select("user_id");
       if (error) throw new Error(`beta_testers update failed: ${error.message}`);
       return (data?.length ?? 0) > 0;
+    },
+    cohortSettings: async () => {
+      const { data, error } = await client().from("beta_experiment_cohorts").select("experiment, cohort, setting");
+      if (error) throw new Error(`beta_experiment_cohorts list failed: ${error.message}`);
+      return data as CohortSettingRow[];
+    },
+    setCohortSetting: async (row) => {
+      const { error } = await client()
+        .from("beta_experiment_cohorts")
+        .upsert({ ...row, updated_at: new Date().toISOString() }, { onConflict: "experiment,cohort" });
+      if (error) throw new Error(`beta_experiment_cohorts upsert failed: ${error.message}`);
+    },
+    assignments: async (userId) => {
+      let q = client().from("beta_assignments").select("user_id, experiment, arm, source, cohort, assigned_at");
+      if (userId) q = q.eq("user_id", userId);
+      const { data, error } = await q;
+      if (error) throw new Error(`beta_assignments list failed: ${error.message}`);
+      return (data as { user_id: string; experiment: string; arm: string; source: "hash" | "cohort"; cohort: string; assigned_at: string }[]).map((r) => ({
+        userId: r.user_id,
+        experiment: r.experiment,
+        arm: r.arm,
+        source: r.source,
+        cohort: r.cohort,
+        assignedAt: r.assigned_at,
+      }));
+    },
+    recordAssignments: async (rows) => {
+      if (rows.length === 0) return;
+      const payload = rows.map((r) => ({ user_id: r.userId, experiment: r.experiment, arm: r.arm, source: r.source, cohort: r.cohort, assigned_at: r.assignedAt }));
+      const { error } = await client().from("beta_assignments").upsert(payload, { onConflict: "user_id,experiment", ignoreDuplicates: true });
+      if (error) throw new Error(`beta_assignments insert failed: ${error.message}`);
     },
   };
 }

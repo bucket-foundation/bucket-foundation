@@ -22,6 +22,11 @@ export const COLLECTED: { what: string; detail: string; why: string }[] = [
     why: "To let you show your progress to others. Turn it off and the page goes away.",
   },
   {
+    what: "Polingual deck",
+    detail: "Words you choose to save from a Polingual lookup: the word, its language, its English meaning and pronunciation, and the deck name. A lookup saves nothing unless you press save.",
+    why: "To build your review deck. Delete a word or your account and it goes.",
+  },
+  {
     what: "Product events",
     detail: "A short record, tied to your account, each time one of the events below happens.",
     why: "To learn whether Learn works: how many people finish a first session and how many come back.",

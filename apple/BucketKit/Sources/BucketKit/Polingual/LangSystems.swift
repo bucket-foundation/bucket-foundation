@@ -377,7 +377,7 @@ public func buildLangCorpus(core: JSValue?, cognates: JSValue?, phrases: JSValue
     for i in items { byId[i.id] = i }
     return LangCorpus(
         items: items, byId: byId,
-        attribution: cognates?["meta"]?["attribution"]?.string ?? "Language data from Wiktionary contributors via Kaikki (kaikki.org), CC-BY-SA 3.0.",
+        attribution: cognates?["meta"]?["attribution"]?.string ?? "Language data from Wiktionary contributors via Kaikki (kaikki.org), CC-BY-SA 4.0.",
         sources: layers?["meta"]?["attribution"]?.stringArray ?? [],
         pool: pool, poolKeys: poolObj.keys, persons: persons, falseFriends: ffs,
         units: Lang.units.enumerated().map { LangUnit(index: $0.offset, id: $0.element.id, title: $0.element.title, grammar: $0.element.grammar) })

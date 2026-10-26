@@ -153,13 +153,14 @@ test("review records point at questions that exist", () => {
   const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
   assert.ok(files.includes("06-cosmology.json"));
   for (const f of files) {
-    const rec = JSON.parse(readFileSync(join(dir, f), "utf8")) as { branch: string; reviews: Record<string, { reviewed_by: string; reviewed_at: string }> };
+    const rec = JSON.parse(readFileSync(join(dir, f), "utf8")) as { branch: string; reviews: Record<string, { reviewed_by: string; reviewed_at: string; verdict?: string; note?: string }> };
     const deck = decks.find((d) => d.branch === rec.branch);
     assert.ok(deck, `${f}: no deck for ${rec.branch}`);
     const ids = new Set((deck.raw.questions as Question[]).map((q) => q.id));
     for (const [id, r] of Object.entries(rec.reviews)) {
       assert.ok(ids.has(id), `${f}: unknown question ${id}`);
       assert.ok(r.reviewed_by && /^\d{4}-\d{2}-\d{2}$/.test(r.reviewed_at), `${f}: bad record ${id}`);
+      if (r.verdict !== undefined) assert.ok(r.verdict === "ok" || (r.verdict === "fixed" && !!r.note), `${f}: bad verdict ${id}`);
     }
   }
 });

@@ -19,6 +19,9 @@ const OPS: Record<string, { path: string; params: string[] }> = {
   spelling: { path: "/spelling", params: ["surface", "lang", "k"] },
   etymology: { path: "/etymology", params: ["surface", "lang"] },
   translate: { path: "/translate", params: ["surface", "from", "to", "k"] },
+  translate_many: { path: "/translate/many", params: ["surface", "from", "to", "k"] },
+  meaning: { path: "/search/meaning", params: ["q", "lang", "k"] },
+  phonetic_search: { path: "/search/phonetic", params: ["ipa", "lang", "k"] },
 };
 
 const JSON_HEADERS = {
@@ -78,8 +81,9 @@ export async function GET(req: NextRequest) {
   if (!spec) {
     return err(400, "unknown_op", { allowed: Object.keys(OPS) });
   }
-  if (op !== "health" && !url.searchParams.get("surface")) {
-    return err(400, "missing_surface");
+  const required = op === "meaning" ? "q" : op === "phonetic_search" ? "ipa" : "surface";
+  if (op !== "health" && !url.searchParams.get(required)) {
+    return err(400, `missing_${required}`);
   }
 
   if (UPSTREAMS.length === 0) {

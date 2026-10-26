@@ -9,7 +9,7 @@ import SaveNotice from "./SaveNotice";
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
-export default function SystemView({ systemId }: { systemId: string }) {
+export default function SystemView({ systemId, showMilestones }: { systemId: string; showMilestones: boolean }) {
   const h = useLangSystem(systemId);
   const { system, corpus, state } = h;
   const per = useMemo(() => (system && corpus ? langProgress(system, corpus, state) : []), [system, corpus, state]);
@@ -39,9 +39,11 @@ export default function SystemView({ systemId }: { systemId: string }) {
             <Link href={`/research-os/learn/languages/${system.id}/study`} className={BTN_PRIMARY}>
               {sum.due > 0 ? "review" : "study"}
             </Link>
-            <Link href={`/research-os/learn/languages/${system.id}/milestones`} className={BTN_SECONDARY}>
-              milestones
-            </Link>
+            {showMilestones && (
+              <Link href={`/research-os/learn/languages/${system.id}/milestones`} className={BTN_SECONDARY}>
+                milestones
+              </Link>
+            )}
             <Link href="/research-os/learn/languages" className={BTN_SECONDARY}>
               all systems
             </Link>

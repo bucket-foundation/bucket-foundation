@@ -325,6 +325,99 @@ def translate(ix, surface, frm, to, k=8):
         "provenance": ix.provenance(i),
     }
 
+FAVORITE_LANGS = [
+    c.strip()
+    for c in os.environ.get(
+        "POLINGUAL_FAVORITES", "es,fr,de,it,pt,ja,zh,ar,he,ru"
+    ).split(",")
+    if c.strip()
+]
+
+MAX_TARGETS = 29
+MAX_TERMS = 5
+MAX_QUERY_CHARS = 100
+MAX_IPA_CHARS = 64
+
+def resolve_targets(ix, to, frm):
+    if not to or to == "favorites":
+        wanted = FAVORITE_LANGS
+    elif to == "all":
+        wanted = ix.langs
+    else:
+        wanted = [c.strip() for c in to.split(",") if c.strip()]
+    known = set(ix.langs)
+    return [c for c in dict.fromkeys(wanted) if c in known and c != frm][:MAX_TARGETS]
+
+def translate_many(ix, surface, frm, to=None, k=3):
+    i = ix.find(surface, frm)
+    if i is None:
+        return {"error": f"{surface!r} not found in {frm}", "found": False,
+                "word": surface, "from": frm, "translations": []}
+    targets = resolve_targets(ix, to, frm)
+    rows = []
+    for lang in targets:
+        one = translate(ix, surface, frm, lang, k)
+        picks = one["exact_meaning_matches"] or one["semantic_neighbors"]
+        rows.append({
+            "lang": lang,
+            "match": "exact" if one["exact_meaning_matches"] else
+                     ("semantic" if picks else "none"),
+            "results": picks[:k],
+        })
+    return {
+        "axis": "translate_many", "found": True,
+        "word": ix.surface[i], "from": frm,
+        "meaning_en": (ix.meaning[i] or "")[:120], "ipa": ix.ipa[i],
+        "scope": "all" if to == "all" else
+                 ("favorites" if not to or to == "favorites" else "custom"),
+        "available_langs": ix.langs,
+        "translations": rows,
+        "provenance": ix.provenance(i),
+    }
+
+def meaning_search(ix, q, lang=None, k=10):
+    terms = [t for t in (q or "").lower()[:MAX_QUERY_CHARS].split() if t][:MAX_TERMS]
+    if not terms:
+        return {"query": q, "lang": lang, "results": [], "axis": "meaning"}
+    scored = []
+    for j in range(ix.n):
+        if lang and ix.lang[j] != lang:
+            continue
+        m = (ix.meaning[j] or "").lower()
+        if not m or not all(t in m for t in terms):
+            continue
+        words = m.replace(",", " ").replace(";", " ").split()
+        whole = sum(1 for t in terms if t in words)
+        score = (whole + 1) / (len(terms) + 1) / (1 + len(words) / 20)
+        scored.append((j, score))
+    scored.sort(key=lambda x: (-x[1], ix.surface[x[0]]))
+    res = _fmt(ix, q, lang, scored[:k])
+    res["axis"] = "meaning"
+    return res
+
+def _ipa_key(s):
+    return "".join(ch for ch in (s or "") if ch not in "/[]ˈˌ.ː ")
+
+def phonetic_search(ix, ipa, lang=None, k=10):
+    key = _ipa_key((ipa or "")[:MAX_IPA_CHARS])
+    if not key:
+        return {"query": ipa, "lang": lang, "results": [],
+                "axis": "phonetic_search"}
+    scored = []
+    for j in range(ix.n):
+        if lang and ix.lang[j] != lang:
+            continue
+        other = _ipa_key(ix.ipa[j])
+        if not other or abs(len(other) - len(key)) > max(2, len(key) // 2):
+            continue
+        d = _norm_edit(key, other)
+        if d < 0.6:
+            scored.append((j, 1.0 - d))
+    scored.sort(key=lambda x: (-x[1], ix.surface[x[0]]))
+    res = _fmt(ix, ipa, lang, scored[:k], score_name="similarity")
+    res["axis"] = "phonetic_search"
+    return res
+
 def lookup(ix, surface, lang=None):
     i = ix.find(surface, lang)
     if i is None:
@@ -421,7 +514,9 @@ def healthz():
         "semantic_dim": ix.sem_dim,
         "phonetic_dim": ix.pho_dim,
         "axes": ["lookup", "semantic", "phonetic", "spelling",
-                 "etymology", "translate"],
+                 "etymology", "translate", "translate_many",
+                 "meaning", "phonetic_search"],
+        "favorites": FAVORITE_LANGS,
         "provenance": PROVENANCE_DEFAULT,
     }
 
@@ -489,6 +584,40 @@ def api_translate(request: Request, surface: str):
     k = _k(request.query_params.get("k"), 8)
     t0 = time.time()
     out = translate(get_index(), surface, frm, to, k)
+    out["took_ms"] = round((time.time() - t0) * 1000, 1)
+    return out
+
+@app.get("/translate/many")
+def api_translate_many(request: Request, surface: str, to: str | None = None):
+    rl = _rate_guard(request)
+    if rl:
+        return rl
+    frm = request.query_params.get("from", "en")
+    k = _k(request.query_params.get("k"), 3, hi=10)
+    t0 = time.time()
+    out = translate_many(get_index(), surface, frm, to, k)
+    out["took_ms"] = round((time.time() - t0) * 1000, 1)
+    return out
+
+@app.get("/search/meaning")
+def api_meaning(request: Request, q: str, lang: str | None = None,
+                k: int = 10):
+    rl = _rate_guard(request)
+    if rl:
+        return rl
+    t0 = time.time()
+    out = meaning_search(get_index(), q, lang, _k(k, 10))
+    out["took_ms"] = round((time.time() - t0) * 1000, 1)
+    return out
+
+@app.get("/search/phonetic")
+def api_phonetic_search(request: Request, ipa: str, lang: str | None = None,
+                        k: int = 10):
+    rl = _rate_guard(request)
+    if rl:
+        return rl
+    t0 = time.time()
+    out = phonetic_search(get_index(), ipa, lang, _k(k, 10))
     out["took_ms"] = round((time.time() - t0) * 1000, 1)
     return out
 

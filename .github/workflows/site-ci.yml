@@ -48,7 +48,7 @@ jobs:
       - name: No code comments
         run: npm run lint:comments
       - name: python deps for unit tests
-        run: python3 -m pip install --quiet numpy==2.5.1
+        run: python3 -m pip install --quiet numpy==2.5.1 fastapi==0.115.6 httpx==0.28.1
       - name: unit tests
         run: npm test
       - name: research report records
@@ -167,7 +167,7 @@ jobs:
   e2e:
     needs: e2e-paths
     if: always() && (github.event_name == 'workflow_dispatch' || needs.e2e-paths.outputs.run == 'true')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
