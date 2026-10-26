@@ -31,17 +31,17 @@ final class WatchModel: NSObject, WCSessionDelegate {
     }
 
     nonisolated func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        let context = session.receivedApplicationContext
-        Task { @MainActor in self.take(context) }
+        let data = session.receivedApplicationContext[WatchKeys.deck] as? Data
+        Task { @MainActor in self.take(data) }
     }
 
     nonisolated func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
         let data = applicationContext[WatchKeys.deck] as? Data
-        Task { @MainActor in self.take([WatchKeys.deck: data as Any]) }
+        Task { @MainActor in self.take(data) }
     }
 
-    func take(_ context: [String: Any]) {
-        guard let data = context[WatchKeys.deck] as? Data, let deck = try? JSONDecoder().decode([WatchCard].self, from: data) else { return }
+    func take(_ data: Data?) {
+        guard let data, let deck = try? JSONDecoder().decode([WatchCard].self, from: data) else { return }
         UserDefaults.standard.set(data, forKey: WatchKeys.deck)
         if deck.map(\.id) != cards.map(\.id) {
             cards = deck
