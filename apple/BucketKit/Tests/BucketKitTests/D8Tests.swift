@@ -213,3 +213,11 @@ import Testing
     }
     #expect((root["synced"] as? [String: [String: Int]])?["flagHits"]?["it"] == 0)
 }
+
+@Test func frenchHAspireBlocksElision() {
+    #expect(Lang.isHAspire("haricot") && Lang.isHAspire("haricots") && Lang.isHAspire("hiboux"))
+    #expect(Lang.isHAspire("Homard") && Lang.isHAspire(" haut de gamme"))
+    #expect(!Lang.isHAspire("homme") && !Lang.isHAspire("heure") && !Lang.isHAspire("hôtels"))
+    #expect(Lang.articleWord("fr", "m", "haricot") == "le" && Lang.articleWord("fr", "f", "hache") == "la")
+    #expect(Lang.articleWord("fr", "m", "homme") == "l'" && Lang.articleWord("fr", "f", "heure") == "l'")
+}

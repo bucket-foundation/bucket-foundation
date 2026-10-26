@@ -171,6 +171,8 @@ func runScenario(_ corpus: LangCorpus) throws -> JSValue {
     }
     out.append(("cross", .array(cross)))
     out.append(("heritage", heritageScenario(corpus, t0: t0)))
+    let articleCases: [(String, String, String)] = [("fr","m","haricot"),("fr","m","haricots"),("fr","m","hibou"),("fr","m","hiboux"),("fr","m","héros"),("fr","f","hache"),("fr","m","hamburger"),("fr","m","Homard"),("fr","f","honte"),("fr","m","hors-d'œuvre"),("fr","m","haut de gamme"),("fr","m","homme"),("fr","f","heure"),("fr","m","hôtel"),("fr","f","herbe"),("fr","m","ami"),("fr","f","eau"),("fr","m","livre"),("it","m","zero"),("it","f","acqua"),("it","m","libro"),("es","f","agua"),("es","f","casa"),("de","f","Kirche")]
+    out.append(("articles", .array(articleCases.map { Lang.articleWord($0.0, $0.1, $0.2).map(JSValue.string) ?? .null })))
     return obj(out)
 }
 
