@@ -48,3 +48,13 @@ func translateCorpus() throws -> LangCorpus {
     #expect(Set(sources).count == sources.count)
     #expect(sources.contains("fr") && sources.allSatisfy { Lang.codes.contains($0) })
 }
+
+@Test func sentencesAreDetectedAmongTheLearnersLanguages() {
+    #expect(SentenceLanguage.isSentence("do you have pizza"))
+    #expect(!SentenceLanguage.isSentence(" pizza "))
+    #expect(SentenceLanguage.detect("do you have pizza", among: ["en", "es", "fr", "it"]) == "en")
+    #expect(SentenceLanguage.detect("¿Tienes pizza para cenar esta noche?", among: ["en", "es", "fr", "it"]) == "es")
+    #expect(SentenceLanguage.detect("Est-ce que tu as une pizza ce soir ?", among: ["en", "es", "fr", "it"]) == "fr")
+    #expect(SentenceLanguage.detect("你有披萨吗", among: ["en", "zh"]) == "zh")
+    #expect(SentenceLanguage.appleCode("zh") == "zh-Hans")
+}

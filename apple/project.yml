@@ -55,8 +55,8 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.education
         INFOPLIST_KEY_NSHumanReadableCopyright: bucket.foundation
-        INFOPLIST_KEY_NSMicrophoneUsageDescription: Bucket listens when you tap Speak so you can say a word in the language you are learning.
-        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: Bucket turns what you say into text to check your pronunciation of the word.
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: Bucket listens when you tap Speak or the microphone, so you can practice a word or say a word or phrase to translate.
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: Bucket turns what you say into text to check your pronunciation or to translate the word or phrase you said.
         ENABLE_RESOURCE_ACCESS_AUDIO_INPUT: YES
         GENERATE_INFOPLIST_FILE: YES
         ENABLE_HARDENED_RUNTIME: YES
@@ -101,8 +101,8 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.education
         INFOPLIST_KEY_NSHumanReadableCopyright: polingual.com
-        INFOPLIST_KEY_NSMicrophoneUsageDescription: Polingual listens when you tap Speak so you can say a word in the language you are learning.
-        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: Polingual turns what you say into text to check your pronunciation of the word.
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: Polingual listens when you tap Speak or the microphone, so you can practice a word or say a word or phrase to translate.
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: Polingual turns what you say into text to check your pronunciation or to translate the word or phrase you said.
         ENABLE_RESOURCE_ACCESS_AUDIO_INPUT: YES
         GENERATE_INFOPLIST_FILE: YES
         ENABLE_HARDENED_RUNTIME: YES
