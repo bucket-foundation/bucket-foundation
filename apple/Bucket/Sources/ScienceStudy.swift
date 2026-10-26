@@ -236,8 +236,8 @@ struct StudySession: View {
         #if DEBUG
         kind = Launch.value("-questionKind").flatMap(QuestionKind.init(rawValue:))
         #endif
-        let reviews = Int(store.state(deck.branch).cards[atom.id]?.reps ?? 0)
-        return questions?.question(for: atom.id, review: reviews, kind: kind)
+        let reps = Int(store.state(deck.branch).cards[atom.id]?.reps ?? 0)
+        return questions?.question(for: atom.id, reps: reps, kind: kind)
     }
 
     func card(_ item: RouteItem, _ atom: Atom, count: Int) -> some View {
@@ -270,7 +270,7 @@ struct StudySession: View {
                     advance()
                 }
                 if !isNew || Launch.flag("-questionsAlways"), let q = question(for: atom) {
-                    QuestionCard(presented: QuestionEngine.present(q, seed: "\(deck.branch):\(graded)")) { rating in rate(rating, level, q.kind.rawValue, q) }
+                    QuestionCard(presented: QuestionEngine.present(q, seed: "\(deck.branch):\(graded)")) { rating in rate(rating, level, isNew ? "new" : "review", q) }
                         .id("\(item.id)-q")
                 } else {
                     ScienceDrill(atom: atom, level: level, onRate: { rating, level in rate(rating, level, isNew ? "new" : "review", nil) }, onSkip: advance)

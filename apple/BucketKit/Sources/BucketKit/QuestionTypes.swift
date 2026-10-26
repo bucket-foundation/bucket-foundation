@@ -41,9 +41,10 @@ public struct QuestionDeck: Codable, Sendable {
         return qs.filter { $0.applied == true } + qs.filter { $0.applied != true }
     }
 
-    public func question(for atom: String, review: Int, kind: QuestionKind? = nil) -> Question? {
+    public func question(for atom: String, reps: Int, kind: QuestionKind? = nil) -> Question? {
         let qs = rotation(for: atom, kind: kind)
-        return qs.isEmpty ? nil : qs[((review % qs.count) + qs.count) % qs.count]
+        let i = reps - 1
+        return qs.isEmpty ? nil : qs[((i % qs.count) + qs.count) % qs.count]
     }
 }
 

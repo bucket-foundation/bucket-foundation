@@ -104,14 +104,15 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
         let n = deck.rotation(for: atom).count
         #expect(n == 5 || n == 6, "\(atom)")
         for start in 0..<(2 * n) {
-            let cycle = (start..<(start + n)).compactMap { deck.question(for: atom, review: $0) }
+            let cycle = (start..<(start + n)).compactMap { deck.question(for: atom, reps: $0) }
             #expect(cycle.filter { $0.applied == true }.count == 1, "\(atom) from \(start)")
             #expect(Set(cycle.map(\.id)).count == n, "\(atom) from \(start)")
         }
     }
-    #expect(deck.question(for: "nope", review: 0) == nil)
+    #expect(deck.question(for: "nope", reps: 1) == nil)
+    for atom in withApplied { #expect(deck.question(for: atom, reps: 1)?.applied == true, "\(atom) first review") }
     let pickOnly = try #require(withApplied.first)
-    #expect(deck.question(for: pickOnly, review: 3, kind: .pick)?.kind == .pick)
+    #expect(deck.question(for: pickOnly, reps: 3, kind: .pick)?.kind == .pick)
 }
 
 @Test func appliedFlagMustBeABoolean() {
@@ -123,9 +124,9 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
 
 @Test func answeredEventsCarryTheQuestionKindAndAppliedFlag() throws {
     let q = try #require(try questionDeck("02-physics").questions.first { $0.applied == true })
-    let props = BetaEvent.answeredProps(deck: "science:02-physics", correct: true, ms: 1200, kind: q.kind.rawValue, question: q)
+    let props = BetaEvent.answeredProps(deck: "science:02-physics", correct: true, ms: 1200, kind: "review", question: q)
     #expect(props["question_kind"] == .string(q.kind.rawValue))
-    #expect(props["applied"] == .bool(true))
+    #expect(props["applied"] == .bool(true) && props["kind"] == .string("review"))
     let drill = BetaEvent.answeredProps(deck: "science:02-physics", correct: false, ms: 900, kind: "review")
     #expect(drill["question_kind"] == nil && drill["applied"] == nil && drill["kind"] == .string("review"))
 }
