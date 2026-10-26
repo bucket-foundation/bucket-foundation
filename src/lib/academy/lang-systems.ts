@@ -228,11 +228,21 @@ function unitFor(category: string, kind: "word" | "phrase", tier: number): numbe
   return i < 0 ? UNITS.length - 1 : i;
 }
 
-function articleFor(lang: string, gender: string, noun: string): string | null {
+const ITALIAN_LO = /^(s[^aeiouàèéìòù]|z|gn|ps|pn|x|y|i[aeiou])/i;
+
+export function articleWord(lang: string, gender: string, noun: string): string | null {
   const a = ARTICLES[lang]?.[gender];
   if (!a) return null;
-  if ((lang === "fr" || lang === "it") && /^[aeiouhàâéèêîôûœAEIOUH]/.test(noun)) return `l'${noun}`;
-  return `${a} ${noun}`;
+  if (lang === "fr" && /^[aeiouhàâéèêîôûœ]/i.test(noun)) return "l'";
+  if (lang === "it" && /^[aeiouàèéìòù]/i.test(noun)) return "l'";
+  if (lang === "it" && gender === "m" && ITALIAN_LO.test(noun)) return "lo";
+  return a;
+}
+
+export function articleFor(lang: string, gender: string, noun: string): string | null {
+  const a = articleWord(lang, gender, noun);
+  if (!a) return null;
+  return a === "l'" ? `l'${noun}` : `${a} ${noun}`;
 }
 
 export function buildLangCorpus(
@@ -648,11 +658,13 @@ export function exerciseFor(
 }
 
 function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): Exercise {
-  const noun = item.forms[lang].replace(/^(el|la|le|il|o|a|der|die|das|de|het) /, "").replace(/^l'/, "");
+  const noun = item.forms[lang].replace(/^(el|la|le|il|lo|o|a|der|die|das|de|het) /, "").replace(/^l'/, "");
   const g = item.gender[lang];
   const table = ARTICLES[lang];
-  const answer = table[g];
-  const options = shuffle(Array.from(new Set(Object.values(table))), rng);
+  const actual = articleWord(lang, g, noun);
+  const answer = actual && actual !== "l'" ? actual : table[g];
+  const pool = lang === "it" ? [...Object.values(table), "lo"] : Object.values(table);
+  const options = shuffle(Array.from(new Set(pool)), rng);
   const elided = item.forms[lang].startsWith("l'");
   return {
     kind: "gender",
@@ -666,7 +678,7 @@ function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): E
     options,
     note: elided ? `Before a vowel the article shortens to l': ${item.forms[lang]}.` : `${item.forms[lang]}`,
     cloze: { before: "", after: ` ${noun}` },
-    promptReading: { roman: item.forms[root] },
+    promptReading: { roman: root === "en" && !/^the /i.test(item.forms[root] ?? "") ? `the ${item.forms[root]}` : item.forms[root] },
   };
 }
 
