@@ -21,7 +21,7 @@ GRAMMAR_LEAD = re.compile(
 PROPER = re.compile(r"\b(surname|given name|a city|a town|a village|a river|a country|a province|a state of|capital of|a region of|female given|male given|a district|placename|place name)\b", re.I)
 PROPER_POS = {"name", "proper noun", "propn"}
 JUNK_POS = {"character", "symbol", "punct", "affix", "suffix", "prefix", "romanization", "syllable", "letter"}
-JUNK_GLOSS = re.compile(r"^(the (greek |roman )?numeral|the number \w+ in|the digit|\w+ \(the [\w ]*letter|name of the [\w ]*letter)", re.I)
+JUNK_GLOSS = re.compile(r"^(the (greek |roman )?numeral|the number \w+ in|the digit|iso \d|iso 3166|\w+ \(the [\w ]*letter|name of the [\w ]*letter)", re.I)
 DIGIT = re.compile(r"\d")
 LATIN_LANGS = {"cs", "de", "en", "es", "fi", "fr", "id", "it", "la", "nl", "pl", "pt", "sv", "tr", "vi"}
 
