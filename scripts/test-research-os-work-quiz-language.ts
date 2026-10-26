@@ -26,9 +26,9 @@ const SOURCES: WorkSources = {
   notes: [],
 };
 const NONE: WorkSources = { beads: [], prs: [], notes: [], repoUrl: null };
-const STRICT_CELLS = 829;
-const STRICT_CONCEPTS = 144;
-const STRICT_PAIRS = 5018;
+const STRICT_CELLS = 948;
+const STRICT_CONCEPTS = 158;
+const STRICT_PAIRS = 6190;
 const has = (lang: string, concept: string) => SET.cells.some((c) => c.lang === lang && c.concept === concept);
 const raw = (lang: string, word: string) => RAW.words.find((w) => w.l === lang && w.s === word)!;
 const TRIES = 40;
@@ -50,7 +50,7 @@ test("the loader finds the word set from the repo root and from a package folder
   assert.equal(subsetPath(path.join(process.cwd(), "packages", "bkt")), path.join(process.cwd(), SUBSET_FILE));
   assert.throws(() => subsetPath(path.parse(process.cwd()).root), /POLINGUAL_SUBSET_PATH/);
   assert.equal(loadWordSet(), SET);
-  assert.equal(SET.languages.length, 27);
+  assert.equal(SET.languages.length, 28);
 });
 
 test("a cell is strict when the gloss reduces to its concept and its language holds one such word", () => {
@@ -169,7 +169,7 @@ test("every language question passes checkLimits and holds its answer once", () 
   }
 });
 
-test("each of the 27 languages yields a meaning question in its own words", () => {
+test("each of the 28 languages yields a meaning question in its own words", () => {
   for (const lang of SET.languages) {
     const qs = made("meaning", [lang]);
     assert.ok(qs.length > 0, lang);
@@ -312,17 +312,17 @@ test("each language question carries the Wiktionary CC-BY-SA credit and link", (
 test("the static language list is the manifest, and a saved list is parsed against it", () => {
   assert.deepEqual(LANGUAGE_CODES.slice().sort(), RAW.manifest.languages.slice().sort());
   assert.deepEqual(LANGUAGE_NAMES, RAW.manifest.language_names);
-  assert.equal(MAX_LANGUAGES, 27);
+  assert.equal(MAX_LANGUAGES, 28);
   assert.deepEqual(parseLanguages(["de", "he", "de"]), ["de", "he"]);
   assert.deepEqual(parseLanguages([]), []);
   assert.equal(parseLanguages(["xx"]), null);
   assert.equal(parseLanguages("de"), null);
   assert.equal(parseLanguages([1]), null);
-  assert.equal(parseLanguages(Array(28).fill("de")), null);
+  assert.equal(parseLanguages(Array(29).fill("de")), null);
   assert.deepEqual(toggleLanguage(["de"], "he"), ["de", "he"]);
   assert.deepEqual(toggleLanguage(["de", "he"], "de"), ["he"]);
   const byName = languagesByName();
-  assert.equal(byName.length, 27);
+  assert.equal(byName.length, 28);
   assert.deepEqual(byName.slice(0, 2).map((l) => l.name), ["Arabic", "Chinese"]);
 });
 

@@ -18,6 +18,7 @@ export const LANGUAGE_NAMES: Readonly<Record<string, string>> = {
   ko: "Korean",
   la: "Latin",
   nl: "Dutch",
+  pa: "Punjabi",
   pl: "Polish",
   pt: "Portuguese",
   ru: "Russian",

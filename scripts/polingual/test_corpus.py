@@ -11,7 +11,7 @@ LEVELS = {"A1", "A2", "B1"}
 def codes() -> list[str]:
     src = (ROOT / "src/lib/research-os/work-quiz/languages.ts").read_text()
     block = src.split("LANGUAGE_NAMES")[1].split("};")[0]
-    return sorted(set(re.findall(r"^\s+([a-z]{2}):", block, re.M)) | {"pa"})
+    return sorted(set(re.findall(r"^\s+([a-z]{2}):", block, re.M)))
 
 
 class CorpusTest(unittest.TestCase):
