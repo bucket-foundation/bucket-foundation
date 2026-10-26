@@ -1,14 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { LANGS, langName } from "@academy/lang-systems";
+import { LANGS, langName, progressBranch } from "@academy/lang-systems";
 import { appHref, levelText, nextToPlace } from "@/lib/app/systems";
+import { useEffect, useState } from "react";
+import { webProgressStore } from "@academy/progress-store";
+import { streakCard, type StreakCard as Card } from "@/lib/app/streak";
 import NewSystem from "./NewSystem";
+import StreakCard from "./StreakCard";
 import { useSystems } from "./useSystems";
 import styles from "./app.module.css";
 
 export default function Home() {
   const { state, create } = useSystems();
+  const [card, setCard] = useState<Card | null>(null);
+  const systems = state.status === "ready" ? state.systems : null;
+  useEffect(() => {
+    if (!systems?.length) return;
+    let live = true;
+    void webProgressStore.pull().then((server) => Promise.all(systems.map((s) => webProgressStore.load(progressBranch(s), server)))).then((states) => live && setCard(streakCard(states, Date.now())));
+    return () => {
+      live = false;
+    };
+  }, [systems]);
   if (state.status === "loading") return <p className={styles.muted} aria-busy="true">Loading your languages</p>;
   if (state.status === "error") return <p className={styles.error}>Your languages did not load. Reload the page to try again.</p>;
   if (state.systems.length === 0) return <NewSystem first create={create} />;
@@ -18,6 +32,7 @@ export default function Home() {
         <p className={styles.label}>Your language systems</p>
         <h1 className={styles.title}>Pick up where you left off</h1>
       </div>
+      {card ? <StreakCard card={card} /> : null}
       <ul className={styles.grid}>
         {state.systems.map((s) => {
           const toPlace = nextToPlace(s);
