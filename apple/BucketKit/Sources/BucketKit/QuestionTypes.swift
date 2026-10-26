@@ -15,6 +15,7 @@ public struct Question: Codable, Sendable, Equatable, Identifiable {
     public let kind: QuestionKind
     public let prompt: String
     public var explain: String?
+    public var applied: Bool?
     public var options: [String]?
     public var answer: Double?
     public var tol: Double?
@@ -33,6 +34,16 @@ public struct QuestionDeck: Codable, Sendable {
 
     public func questions(for atom: String, kind: QuestionKind? = nil) -> [Question] {
         questions.filter { $0.atom == atom && (kind == nil || $0.kind == kind) }
+    }
+
+    public func rotation(for atom: String, kind: QuestionKind? = nil) -> [Question] {
+        let qs = questions(for: atom, kind: kind)
+        return qs.filter { $0.applied == true } + qs.filter { $0.applied != true }
+    }
+
+    public func question(for atom: String, review: Int, kind: QuestionKind? = nil) -> Question? {
+        let qs = rotation(for: atom, kind: kind)
+        return qs.isEmpty ? nil : qs[((review % qs.count) + qs.count) % qs.count]
     }
 }
 
