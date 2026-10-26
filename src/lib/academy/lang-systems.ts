@@ -1,5 +1,5 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
-import { dayKey, grade, makeFsrs, normalizeState, type EngineState } from "./engine";
+import { dayKey, grade, makeFsrs, normalizeState, PLACED_PER_DAY, spreadPlaced, type EngineState } from "./engine";
 import { alphabetDone, alphabetUnit, dueLetters, FOLDABLE_MARKS, judgeSpelled, letterItemId, nextLetters } from "./lang-script";
 import { isHAspire } from "./french-h-aspire";
 
@@ -872,12 +872,24 @@ function grammarReady(item: LangItem, lang: string, cards: Record<string, LangCa
   return !!base && (base.reps ?? 0) >= 2;
 }
 
+function isPlacedReview(c: LangCard): boolean {
+  return !!c.placed && (c.reps ?? 0) <= 1;
+}
+
+function placedReviewedToday(state: EngineState, now: number): number {
+  const dk = dayKey(now);
+  return Object.values(cardsOf(state)).filter((c) => c.placed && (c.reps ?? 0) === 2 && c.lastReview != null && dayKey(c.lastReview) === dk).length;
+}
+
 export function planSession(system: LangSystem, corpus: LangCorpus, state: EngineState, now: number = Date.now(), size = 14): SessionCard[] {
   const cards = cardsOf(state);
-  const due = Object.entries(cards)
+  const dueAll = Object.entries(cards)
     .map(([id, c]) => ({ ...parseCardId(id), c }))
     .filter((x) => system.targets.includes(x.lang) && corpus.byId.has(x.itemId) && x.c.due != null && x.c.due <= now)
-    .sort((a, b) => (a.c.due ?? 0) - (b.c.due ?? 0))
+    .sort((a, b) => Number(isPlacedReview(a.c)) - Number(isPlacedReview(b.c)) || (a.c.due ?? 0) - (b.c.due ?? 0));
+  let placedRoom = Math.max(0, PLACED_PER_DAY - placedReviewedToday(state, now));
+  const due = dueAll
+    .filter((x) => !isPlacedReview(x.c) || placedRoom-- > 0)
     .slice(0, size)
     .map((x) => ({ itemId: x.itemId, lang: x.lang }));
 
@@ -962,15 +974,18 @@ export function placementOptions(corpus: LangCorpus, item: LangItem, lang: strin
 export function applyPlacement(state: EngineState, system: LangSystem, corpus: LangCorpus, lang: string, tier: number, now: number = Date.now()): EngineState {
   const next = normalizeState(state);
   const fsrs: FSRS = makeFsrs(next);
+  const placed: string[] = [];
   for (const item of corpus.items) {
     if (!isVocab(item) || item.tier >= tier || !usable(item, system.root, lang)) continue;
     const id = cardId(lang, item.id);
     if (next.cards[id]) continue;
-    const c = fsrs.review({ state: "new" }, 3, now) as LangCard;
+    const c = fsrs.review({ state: "new" }, 4, now) as LangCard;
     c.placed = true;
     c.introduced = dayKey(now);
     next.cards[id] = c;
+    placed.push(id);
   }
+  spreadPlaced(next.cards, placed, now);
   return next;
 }
 

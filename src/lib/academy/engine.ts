@@ -68,11 +68,44 @@ export function emptyState(): EngineState {
   };
 }
 
-export function normalizeState(raw: unknown): EngineState {
+export const PLACED_SPREAD_DAYS = 14;
+export const PLACED_PER_DAY = 25;
+
+type PlacedCard = Card & { placed?: boolean; spread?: boolean };
+
+export function placedHash(id: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < id.length; i++) {
+    h ^= id.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h;
+}
+
+export function spreadPlaced(cards: Record<string, Card>, ids: string[], now: number): void {
+  const load = new Map<number, number>();
+  for (const id of [...ids].sort((a, b) => placedHash(a) - placedHash(b) || (a < b ? -1 : 1))) {
+    let day = 1 + (placedHash(id) % PLACED_SPREAD_DAYS);
+    for (let tries = 0; (load.get(day) ?? 0) >= PLACED_PER_DAY && tries < PLACED_SPREAD_DAYS; tries++) day = (day % PLACED_SPREAD_DAYS) + 1;
+    while ((load.get(day) ?? 0) >= PLACED_PER_DAY) day++;
+    load.set(day, (load.get(day) ?? 0) + 1);
+    cards[id] = { ...cards[id], due: now + day * DAY_MS, spread: true } as PlacedCard;
+  }
+}
+
+function untouchedPlaced(c: Card): boolean {
+  const p = c as PlacedCard;
+  return p.placed === true && p.reps === 1 && !p.spread;
+}
+
+export function normalizeState(raw: unknown, now: number = Date.now()): EngineState {
   const s = (raw && typeof raw === "object" ? raw : {}) as Partial<EngineState>;
   const base = emptyState();
+  const cards = { ...(s.cards ?? {}) } as Record<string, Card>;
+  const stale = Object.keys(cards).filter((id) => untouchedPlaced(cards[id]));
+  if (stale.length) spreadPlaced(cards, stale, now);
   return {
-    cards: { ...(s.cards ?? {}) } as Record<string, Card>,
+    cards,
     prof: { ...(s.prof ?? {}) },
     settings: { ...base.settings, ...(s.settings ?? {}) } as EngineState["settings"],
     stats: {

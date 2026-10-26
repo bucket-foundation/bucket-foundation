@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import { isHAspire } from "../src/lib/academy/french-h-aspire";
 import path from "node:path";
-import { normalizeState, dayKey } from "../src/lib/academy/engine";
+import { normalizeState, dayKey, PLACED_PER_DAY } from "../src/lib/academy/engine";
 import { DAY_MS } from "../src/lib/academy/fsrs";
 import {
   articleFor,
@@ -253,6 +253,48 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   ok(newToday(s, "fr", NOW) === 0, "placed cards do not use the new-card budget");
   const plan = planSession({ ...romance, placement: { fr: 4 } }, corpus, s, NOW, 15);
   ok(plan.filter((p) => p.lang === "fr").every((p) => corpus.byId.get(p.itemId)!.tier >= 4), "new French starts at the placed tier");
+}
+
+{
+  const perDay = (cards: Record<string, { due?: number | null }>, ids: string[]) => {
+    const m = new Map<number, number>();
+    for (const id of ids) {
+      const d = Math.floor(((cards[id].due ?? 0) - NOW) / DAY_MS);
+      m.set(d, (m.get(d) ?? 0) + 1);
+    }
+    return m;
+  };
+  const big = applyPlacement(normalizeState(null), { ...romance, placement: { fr: 99 } }, corpus, "fr", 99, NOW);
+  const ids = Object.keys(big.cards).filter((k) => (big.cards[k] as { placed?: boolean }).placed);
+  const days = perDay(big.cards, ids);
+  ok(ids.length >= 311 && Math.max(...Array.from(days.values())) <= PLACED_PER_DAY, `placing ${ids.length} words keeps every day at ${PLACED_PER_DAY} placed reviews or fewer`);
+  ok(Math.min(...Array.from(days.keys())) >= 1 && ids.every((id) => big.cards[id].reps === 1), "placed cards start tomorrow at the earliest with one Easy review");
+  const again = applyPlacement(normalizeState(null), { ...romance, placement: { fr: 99 } }, corpus, "fr", 99, NOW);
+  ok(ids.every((id) => again.cards[id].due === big.cards[id].due), "the spread is stable for the same cards");
+
+  const legacy: Record<string, unknown> = {};
+  for (let i = 0; i < 311; i++) legacy[`fr:w${i}`] = { state: "review", reps: 1, lapses: 0, stability: 3.2, difficulty: 5, lastReview: NOW - 3 * DAY_MS, due: NOW, placed: true };
+  legacy["fr:seen"] = { state: "review", reps: 2, lapses: 0, stability: 9, difficulty: 5, lastReview: NOW - DAY_MS, due: NOW, placed: true };
+  legacy["fr:own"] = { state: "review", reps: 1, lapses: 0, stability: 3, difficulty: 5, lastReview: NOW - DAY_MS, due: NOW };
+  const once = normalizeState({ cards: legacy }, NOW);
+  const twice = normalizeState(once, NOW + 5 * DAY_MS);
+  const lids = Object.keys(legacy).filter((k) => k.startsWith("fr:w"));
+  ok(Math.max(...Array.from(perDay(once.cards, lids).values())) <= PLACED_PER_DAY, "normalize spreads untouched placed cards");
+  ok(JSON.stringify(twice.cards) === JSON.stringify(once.cards), "normalize is idempotent");
+  ok(JSON.stringify(once.cards["fr:seen"]) === JSON.stringify(legacy["fr:seen"]) && JSON.stringify(once.cards["fr:own"]) === JSON.stringify(legacy["fr:own"]), "reviewed and never-placed cards are left alone");
+
+  let own = normalizeState(null);
+  const words = corpus.items.filter((i) => i.kind === "word" && i.forms.fr && i.forms.en);
+  for (const w of words.slice(0, 5)) own = gradeCard(own, "fr", w.id, 3, NOW);
+  const owned = new Set(words.slice(0, 5).map((w) => cardId("fr", w.id)));
+  const mixed = applyPlacement(own, { ...romance, placement: { fr: 99 } }, corpus, "fr", 99, NOW);
+  ok(Array.from(owned).every((id) => JSON.stringify(mixed.cards[id]) === JSON.stringify(own.cards[id])), "placement leaves existing cards unchanged");
+  const late = NOW + 30 * DAY_MS;
+  const plan = planSession({ ...romance, targets: ["fr"], placement: { fr: 99 } }, corpus, mixed, late, 40);
+  const isPlaced = (p: { itemId: string; lang: string }) => !!(mixed.cards[cardId(p.lang, p.itemId)] as { placed?: boolean } | undefined)?.placed;
+  const firstPlaced = plan.findIndex(isPlaced);
+  ok(plan.slice(0, 5).every((p) => owned.has(cardId(p.lang, p.itemId))) && firstPlaced >= 5, "real reviews come before placed ones");
+  ok(plan.filter(isPlaced).length <= PLACED_PER_DAY, `placed reviews are capped at ${PLACED_PER_DAY} a day`);
 }
 
 {
