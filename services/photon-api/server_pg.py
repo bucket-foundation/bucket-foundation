@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os, time
+from threading import BoundedSemaphore
 from contextlib import contextmanager
 from fastapi import FastAPI, Request, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,20 +16,48 @@ TABLE = os.environ.get("PHOTON_TABLE", "photons_full")
 PROV = {"source": "Wiktionary via Kaikki", "license": "CC-BY-SA 3.0"}
 COLS = "surface, lang, meaning_en, ipa, pos"
 
-pool = ThreadedConnectionPool(1, 12, **DSN)
+POOL_MAX = int(os.environ.get("POLINGUAL_POOL_MAX", "12"))
+POOL_WAIT_S = float(os.environ.get("POLINGUAL_POOL_WAIT_S", "2"))
+pool = ThreadedConnectionPool(1, POOL_MAX, **DSN)
+_slots = BoundedSemaphore(POOL_MAX)
+
+class PoolBusy(Exception):
+    pass
+
+@contextmanager
+def _conn():
+    if not _slots.acquire(timeout=POOL_WAIT_S):
+        raise PoolBusy()
+    try:
+        conn = pool.getconn()
+        try:
+            yield conn
+        finally:
+            if not conn.closed:
+                conn.autocommit = True
+            pool.putconn(conn, close=bool(conn.closed))
+    finally:
+        _slots.release()
+
+STATEMENT_TIMEOUT_MS = int(os.environ.get("POLINGUAL_STATEMENT_TIMEOUT_MS", "3000"))
+MAX_K = 50
+MAX_TERMS = 5
+MAX_QUERY_CHARS = 100
+MAX_IPA_CHARS = 64
+MAX_TARGETS = 29
+IPA_STRIP = "/[]ˈˌ.ː "
+IPA_NORM = f"translate(coalesce(ipa,''), '{IPA_STRIP}', '')"
+
 
 @contextmanager
 def cur():
-    conn = pool.getconn()
-    try:
+    with _conn() as conn:
         conn.autocommit = True
         c = conn.cursor()
         try:
             yield c
         finally:
             c.close()
-    finally:
-        pool.putconn(conn)
 
 def _rows(c, score_name="score"):
     out = []
@@ -47,9 +76,45 @@ def _qvec(c, surface, lang, col="embedding"):
                   f"AND {col} IS NOT NULL ORDER BY (lang='en') DESC LIMIT 1", (surface,))
     return c.fetchone()
 
+@contextmanager
+def txn(similarity=None):
+    with _conn() as conn:
+        conn.autocommit = False
+        c = conn.cursor()
+        try:
+            c.execute("SET LOCAL statement_timeout = %s", (STATEMENT_TIMEOUT_MS,))
+            if similarity is not None:
+                c.execute("SET LOCAL pg_trgm.similarity_threshold = %s", (similarity,))
+            yield c
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            c.close()
+
+def _cap_k(k):
+    return min(max(int(k), 1), MAX_K)
+
 app = FastAPI(title="Polingual Photon API (pgvector)", version="2.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "OPTIONS"],
                    allow_headers=["*"], max_age=86400)
+
+from psycopg2.errors import QueryCanceled  # noqa: E402
+
+@app.exception_handler(QueryCanceled)
+def _query_timeout(request: Request, exc: QueryCanceled):
+    return JSONResponse({"error": "query_timeout", "timeout_ms": STATEMENT_TIMEOUT_MS}, status_code=503)
+
+from psycopg2.errors import UndefinedFunction  # noqa: E402
+
+@app.exception_handler(PoolBusy)
+def _pool_busy(request: Request, exc: PoolBusy):
+    return JSONResponse({"error": "busy", "retry_after_s": 1}, status_code=503, headers={"retry-after": "1"})
+
+@app.exception_handler(UndefinedFunction)
+def _missing_extension(request: Request, exc: UndefinedFunction):
+    return JSONResponse({"error": "search_unavailable", "detail": "run migrations/001_search_indexes.sql"}, status_code=503)
 
 def timed(fn):
     t = time.time(); out = fn(); out["took_ms"] = round((time.time()-t)*1000, 1); return out
@@ -73,7 +138,7 @@ def healthz():
 @app.get("/lookup")
 def api_lookup(surface: str, lang: str | None = None):
     def go():
-        with cur() as c:
+        with txn() as c:
             q = f"SELECT id,surface,lang,meaning_en,pos,ipa,(embedding IS NOT NULL),(phonetic IS NOT NULL) FROM {TABLE} WHERE surface=%s"
             args = [surface]
             if lang: q += " AND lang=%s"; args.append(lang)
@@ -89,7 +154,7 @@ def api_lookup(surface: str, lang: str | None = None):
 @app.get("/semantic")
 def api_semantic(surface: str, lang: str | None = None, k: int = 10, cross: int = 1):
     def go():
-        with cur() as c:
+        with txn() as c:
             qv = _qvec(c, surface, lang, "embedding")
             if not qv:
                 return {"error": f"no semantic vector for {surface!r} ({lang})", "results": [],
@@ -108,7 +173,7 @@ def api_semantic(surface: str, lang: str | None = None, k: int = 10, cross: int 
 @app.get("/phonetic")
 def api_phonetic(surface: str, lang: str | None = None, k: int = 10):
     def go():
-        with cur() as c:
+        with txn() as c:
             qv = _qvec(c, surface, lang, "phonetic")
             if not qv:
                 return {"error": f"no phonetic vector for {surface!r} ({lang}) "
@@ -128,8 +193,7 @@ def api_spelling(surface: str, lang: str | None = None, k: int = 10):
         sl = (surface or "").lower()
         if not sl:
             return {"query": surface, "lang": lang, "results": [], "axis": "spelling"}
-        with cur() as c:
-            c.execute("SET pg_trgm.similarity_threshold = 0.3")
+        with txn(similarity=0.3) as c:
             q = (f"SELECT {COLS}, similarity(lower(surface), %s) AS score FROM {TABLE} "
                  f"WHERE lower(surface) %% %s AND lower(surface) <> %s")
             args = [sl, sl, sl]
@@ -140,9 +204,9 @@ def api_spelling(surface: str, lang: str | None = None, k: int = 10):
     return timed(go)
 
 @app.get("/etymology")
-def api_etymology(surface: str, lang: str):
+def api_etymology(surface: str, lang: str = "en"):
     def go():
-        with cur() as c:
+        with txn() as c:
             c.execute(f"SELECT relations FROM {TABLE} WHERE surface=%s AND lang=%s "
                       f"AND relations IS NOT NULL AND relations <> '[]'::jsonb LIMIT 1",
                       (surface, lang))
@@ -155,7 +219,7 @@ def api_etymology(surface: str, lang: str):
 @app.get("/translate")
 def api_translate(surface: str, to: str, frm: str = Query(alias="from"), k: int = 8):
     def go():
-        with cur() as c:
+        with txn() as c:
             qv = _qvec(c, surface, frm, "embedding")
             if not qv:
                 return {"query": surface, "from": frm, "to": to, "results": [], "axis": "translate"}
@@ -165,4 +229,89 @@ def api_translate(surface: str, to: str, frm: str = Query(alias="from"), k: int 
                       f"ORDER BY embedding <=> %s::vector LIMIT %s",
                       (vtxt, to, qid, vtxt, min(max(k,1),50)))
             return {"query": surface, "from": frm, "to": to, "results": _rows(c), "axis": "translate"}
+    return timed(go)
+
+
+FAVORITE_LANGS = [c.strip() for c in os.environ.get(
+    "POLINGUAL_FAVORITES", "es,fr,de,it,pt,ja,zh,ar,he,ru").split(",") if c.strip()]
+
+def _known_langs(c):
+    c.execute(f"SELECT array_agg(DISTINCT lang ORDER BY lang) FROM {TABLE}")
+    return c.fetchone()[0] or []
+
+def resolve_targets(known, to, frm):
+    if not to or to == "favorites":
+        wanted = FAVORITE_LANGS
+    elif to == "all":
+        wanted = known
+    else:
+        wanted = [x.strip() for x in to.split(",") if x.strip()]
+    ks = set(known)
+    return [x for x in dict.fromkeys(wanted) if x in ks and x != frm][:MAX_TARGETS]
+
+def meaning_terms(q):
+    return [t.replace("%", "").replace("_", "") for t in (q or "").lower()[:MAX_QUERY_CHARS].split()
+            if t.replace("%", "").replace("_", "")][:MAX_TERMS]
+
+def ipa_key(ipa):
+    return "".join(ch for ch in (ipa or "")[:MAX_IPA_CHARS] if ch not in IPA_STRIP)
+
+@app.get("/translate/many")
+def api_translate_many(surface: str, to: str | None = None,
+                       frm: str = Query("en", alias="from"), k: int = 3):
+    def go():
+        with txn() as c:
+            known = _known_langs(c)
+            qv = _qvec(c, surface, frm, "embedding")
+            if not qv:
+                return {"error": f"{surface!r} not found in {frm}", "found": False,
+                        "word": surface, "from": frm, "translations": []}
+            qid, vtxt = qv
+            rows = []
+            for lang in resolve_targets(known, to, frm):
+                c.execute(f"SELECT {COLS}, 1-(embedding <=> %s::vector) AS score FROM {TABLE} "
+                          f"WHERE embedding IS NOT NULL AND lang=%s AND id<>%s "
+                          f"ORDER BY embedding <=> %s::vector LIMIT %s",
+                          (vtxt, lang, qid, vtxt, min(max(k, 1), 10)))
+                res = _rows(c)
+                rows.append({"lang": lang, "match": "semantic" if res else "none",
+                             "results": res})
+            scope = "all" if to == "all" else ("favorites" if not to or to == "favorites" else "custom")
+            return {"axis": "translate_many", "found": True, "word": surface, "from": frm,
+                    "scope": scope, "available_langs": known, "translations": rows,
+                    "provenance": PROV}
+    return timed(go)
+
+@app.get("/search/meaning")
+def api_meaning(q: str, lang: str | None = None, k: int = 10):
+    def go():
+        terms = meaning_terms(q)
+        if not terms:
+            return {"query": q, "lang": lang, "results": [], "axis": "meaning"}
+        with txn() as c:
+            where = " AND ".join(["lower(meaning_en) LIKE %s"] * len(terms))
+            args = [f"%{t}%" for t in terms]
+            sql = (f"SELECT {COLS}, 1.0/(1+length(meaning_en)/80.0) AS score FROM {TABLE} "
+                   f"WHERE {where}")
+            if lang: sql += " AND lang=%s"; args.append(lang)
+            sql += " ORDER BY score DESC, surface LIMIT %s"; args.append(_cap_k(k))
+            c.execute(sql, args)
+            return {"query": q, "lang": lang, "results": _rows(c), "axis": "meaning"}
+    return timed(go)
+
+@app.get("/search/phonetic")
+def api_phonetic_search(ipa: str, lang: str | None = None, k: int = 10):
+    def go():
+        key = ipa_key(ipa)
+        if not key:
+            return {"query": ipa, "lang": lang, "results": [], "axis": "phonetic_search"}
+        with txn(similarity=0.3) as c:
+            sql = (f"SELECT {COLS}, similarity({IPA_NORM}, %s) AS score FROM {TABLE} "
+                   f"WHERE ipa IS NOT NULL AND {IPA_NORM} %% %s")
+            args = [key, key]
+            if lang: sql += " AND lang=%s"; args.append(lang)
+            sql += " ORDER BY score DESC LIMIT %s"; args.append(_cap_k(k))
+            c.execute(sql, args)
+            return {"query": ipa, "lang": lang, "results": _rows(c, "similarity"),
+                    "axis": "phonetic_search"}
     return timed(go)
