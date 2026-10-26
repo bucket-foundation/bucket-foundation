@@ -107,3 +107,95 @@ import Testing
         #expect(flags == plain.map { Optional($0) })
     }
 }
+
+@Test func flagMatchGradingMatchesTheWebGolden() throws {
+    struct Case: Decodable {
+        let name: String
+        let hits: [String: Int]
+        let misses: [String: Int]
+        let assign: [String: String]
+    }
+    func fixture(_ name: String) throws -> Data {
+        let url = try #require(Bundle.module.url(forResource: name, withExtension: "json", subdirectory: "Fixtures/lang"))
+        return try Data(contentsOf: url)
+    }
+    let cases = try JSONDecoder().decode([Case].self, from: fixture("flag-match-cases"))
+    let golden = try JSONDecoder().decode([[String]].self, from: fixture("flag-match-golden"))
+    #expect(cases.count == golden.count)
+    let langs = ["fr", "es", "it"]
+    let pairs = langs.map { LangWord(lang: $0, word: "w-\($0)") }
+    func table(_ m: [String: Int]) -> JSValue { .object(JSObject(m.sorted { $0.key < $1.key }.map { ($0.key, .number(Double($0.value))) })) }
+    func render(_ v: JSValue?) -> String {
+        guard let o = v?.object else { return "" }
+        return o.keys.sorted().map { "\($0)=\(Int(o[$0]?.number ?? 0))" }.joined(separator: ",")
+    }
+    for (c, want) in zip(cases, golden) {
+        var st = EngineState()
+        if !c.hits.isEmpty { st.settingsExtra["flagHits"] = table(c.hits) }
+        if !c.misses.isEmpty { st.settingsExtra["flagMisses"] = table(c.misses) }
+        let out = FlagMisses.gradeMatch(pairs, c.assign, st)
+        let ratings = langs.map { l in "\(l)=\(out.ratings.first { $0.lang == l }?.rating.map(String.init) ?? "none")" }.joined(separator: ",")
+        let shows = langs.map { "\($0)=\(FlagMisses.showsName(out.state, $0))" }.joined(separator: ",")
+        let got = [c.name, ratings, render(out.state.settingsExtra["flagHits"]), render(out.state.settingsExtra["flagMisses"]), shows]
+        #expect(got == want, "\(c.name)")
+    }
+}
+
+@Test func flagCountersFromTwoDevicesBothSurviveTheMerge() {
+    var phone = EngineState()
+    phone = FlagMisses.recordingHit(phone, "fr")
+    phone = FlagMisses.recordingHit(phone, "fr")
+    phone = FlagMisses.recording(phone, "it")
+    var ipad = EngineState()
+    ipad = FlagMisses.recordingHit(ipad, "es")
+    ipad = FlagMisses.recordingHit(ipad, "fr")
+    ipad = FlagMisses.recording(ipad, "de")
+    for merged in [mergeState(phone, ipad), mergeState(ipad, phone)] {
+        #expect(FlagMisses.hits(merged, "fr") == 2)
+        #expect(FlagMisses.hits(merged, "es") == 1)
+        #expect(FlagMisses.count(merged, "it") == 1)
+        #expect(FlagMisses.count(merged, "de") == 1)
+    }
+    let roundTrip = mergeState(EngineState(js: phone.js), EngineState(js: ipad.js))
+    #expect(FlagMisses.hits(roundTrip, "es") == 1 && FlagMisses.count(roundTrip, "it") == 1)
+}
+
+@Test func aMissOnOneDeviceBeatsStaleHitsFromAnother() {
+    var stale = EngineState()
+    for _ in 0..<3 { stale = FlagMisses.recordingHit(stale, "it") }
+    var fresh = stale
+    fresh = FlagMisses.recording(fresh, "it")
+    #expect(!FlagMisses.showsName(stale, "it"))
+    #expect(FlagMisses.showsName(fresh, "it"))
+    for merged in [mergeState(stale, fresh), mergeState(fresh, stale)] {
+        #expect(FlagMisses.count(merged, "it") == 1)
+        #expect(FlagMisses.hits(merged, "it") == 0)
+        #expect(FlagMisses.showsName(merged, "it"))
+    }
+    var later = fresh
+    later = FlagMisses.recordingHit(later, "it")
+    let tie = mergeState(fresh, later)
+    #expect(FlagMisses.count(tie, "it") == 1 && FlagMisses.hits(tie, "it") == 1)
+}
+
+@Test func flagMergeMatchesTheWebGolden() throws {
+    let url = try #require(Bundle.module.url(forResource: "flag-merge-golden", withExtension: "json", subdirectory: "Fixtures/lang"))
+    let root = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
+    func settings(_ key: String) -> JSObject {
+        let side = root[key] as? [String: [String: Int]] ?? [:]
+        return JSObject(side.keys.sorted().map { k in (k, .object(JSObject((side[k] ?? [:]).sorted { $0.key < $1.key }.map { ($0.key, .number(Double($0.value))) }))) })
+    }
+    func ints(_ v: JSValue?) -> [String: Int] {
+        var out: [String: Int] = [:]
+        for k in v?.object?.keys ?? [] { out[k] = Int(v?.object?[k]?.number ?? 0) }
+        return out
+    }
+    let want = root["synced"] as? [String: [String: Int]] ?? [:]
+    for (a, b) in [("a", "b"), ("b", "a")] {
+        var out = JSObject()
+        FlagMisses.mergeSynced(&out, settings(a), settings(b))
+        #expect(ints(out["flagHits"]) == want["flagHits"], "\(a)+\(b)")
+        #expect(ints(out["flagMisses"]) == want["flagMisses"], "\(a)+\(b)")
+    }
+    #expect(want["flagHits"]?["it"] == 0 && want["flagMisses"]?["it"] == 1)
+}
