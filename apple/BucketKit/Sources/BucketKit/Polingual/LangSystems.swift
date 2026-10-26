@@ -537,7 +537,7 @@ public func normalizeAnswer(_ s: String, _ lang: String = "") -> String {
     if lang == "ar" {
         t = mapScalars(t) { isArabicVowel($0) ? nil : $0 }
     } else {
-        t = mapScalars(t.decomposedStringWithCanonicalMapping) { (0x0300...0x036F).contains($0.value) ? nil : $0 }.precomposedStringWithCanonicalMapping
+        t = LangScript.foldableMarks(t.decomposedStringWithCanonicalMapping).precomposedStringWithCanonicalMapping
     }
     t = mapScalars(t) { answerPunct.contains($0) ? " " : $0 }
     return jsTrim(collapseSpaces(t))
@@ -597,7 +597,7 @@ public func verdictRating(_ v: Verdict, hesitated: Bool = false) -> Rating {
 }
 
 public enum ExerciseKind: String, Sendable {
-    case intro, choose, reverse, listen, translate, typeHeard = "type-heard", speak, cloze, cognate, match, sentence, wordbank, gender, conjugate, falseFriend = "false-friend"
+    case intro, choose, reverse, listen, translate, typeHeard = "type-heard", speak, cloze, cognate, match, sentence, wordbank, gender, conjugate, falseFriend = "false-friend", spellHeard = "spell-heard", letter
 
     public var label: String {
         switch self {
@@ -616,6 +616,8 @@ public enum ExerciseKind: String, Sendable {
         case .gender: "article"
         case .conjugate: "conjugate"
         case .falseFriend: "false friend"
+        case .spellHeard: "spell what you hear"
+        case .letter: "find the letter"
         }
     }
 }
@@ -797,7 +799,7 @@ public func relevantNote(_ note: String?, _ system: LangSystem) -> String? {
     return names.contains(where: { note.contains($0) }) ? note : nil
 }
 
-public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: LangItem, _ lang: String, _ card: Card?, _ rng: inout Rng, speech: Bool = false, afterIntro: Bool = false, level: Int? = nil) -> Exercise {
+public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: LangItem, _ lang: String, _ card: Card?, _ rng: inout Rng, speech: Bool = false, afterIntro: Bool = false, level: Int? = nil, heritage: Bool = false) -> Exercise {
     let root = system.root
     let target = item.forms[lang] ?? ""
     let rootWord = item.forms[root] ?? ""
@@ -824,6 +826,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         ex.falseFriend = ff
         return ex
     }
+    if heritage && !latin && card != nil { return spellHeard(item, lang, root, tr) }
     func choices(_ right: String, _ l: String, _ other: String) -> [String] {
         let d = distractors(corpus, item, l, other, &rng)
         return shuffle([right] + d, &rng)

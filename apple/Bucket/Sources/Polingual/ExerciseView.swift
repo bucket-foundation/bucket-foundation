@@ -40,12 +40,13 @@ struct OptionButton: View {
     let reading: Reading?
     var selected = false
     var tall = false
+    var glyph = false
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             VStack(alignment: tall ? .center : .leading, spacing: 2) {
-                Text(text).multilineTextAlignment(tall ? .center : .leading).lineLimit(tall ? 2 : nil).minimumScaleFactor(tall ? 0.6 : 1)
+                Text(text).font(glyph ? .system(size: 36, weight: .bold) : nil).multilineTextAlignment(tall ? .center : .leading).lineLimit(tall ? 2 : nil).minimumScaleFactor(tall ? 0.6 : 1)
                 if let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(D8.ipa) }
             }
             .padding(.vertical, 10)
@@ -116,7 +117,7 @@ struct ExerciseView: View {
             }
             #endif
             started = Date()
-            if ex.kind == .listen || ex.kind == .typeHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang) }
+            if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang) }
             if ex.kind == .intro { LangVoice.shared.speak(ex.answer, ex.answerLang) }
         }
     }
@@ -226,7 +227,11 @@ struct ExerciseView: View {
     }
 
     var typedKind: Bool {
-        ex.kind == .translate || ex.kind == .typeHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!LangListener.shared.supported || heard == ""))
+        ex.kind == .translate || ex.kind == .typeHeard || ex.kind == .spellHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!LangListener.shared.supported || heard == ""))
+    }
+
+    func judgeAnswer(_ s: String) -> Verdict {
+        ex.kind == .spellHeard ? LangScript.judgeSpelled(s, accepted, ex.answerLang) : judgeTyped(s, accepted, ex.answerLang)
     }
 
     func optionLang(_ o: String) -> String { ex.optionLangs?[o] ?? ex.answerLang }
@@ -251,10 +256,10 @@ struct ExerciseView: View {
                         .onAppear { haptic(accepted.contains(picked)) }
                 } else {
                     let row = ex.kind == .gender && options.count <= 3
-                    let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
+                    let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways || ex.kind == .letter ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
                     LazyVGrid(columns: cols, spacing: 10) {
                         ForEach(options, id: \.self) { o in
-                            OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o, tall: sideways) { selected = o; tap() }
+                            OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o, tall: sideways || ex.kind == .letter, glyph: ex.kind == .letter) { selected = o; tap() }
                         }
                     }
                     if ex.kind == .gender { ArticleKey(lang: ex.lang) }
@@ -274,7 +279,7 @@ struct ExerciseView: View {
                 Button("Type instead") { heard = "" }.buttonStyle(PlainLink())
             }
             if typedKind && verdict == nil {
-                TextField(ex.kind == .typeHeard ? "Type what you hear" : "Your answer", text: $typed)
+                TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
                     .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .foregroundStyle(D8.ink)
                     .padding(.horizontal, 16)
@@ -284,9 +289,9 @@ struct ExerciseView: View {
                     .autocorrectionDisabled()
                     .langInput(ex.answerLang)
                     .focused($focused)
-                    .onSubmit { if !typed.isEmpty { verdict = judgeTyped(typed, accepted, ex.answerLang) } }
+                    .onSubmit { if !typed.isEmpty { verdict = judgeAnswer(typed) } }
                     .onAppear { focused = true }
-                Button("Check") { verdict = judgeTyped(typed, accepted, ex.answerLang) }
+                Button("Check") { verdict = judgeAnswer(typed) }
                     .buttonStyle(D8Primary())
                     .disabled(typed.trimmingCharacters(in: .whitespaces).isEmpty)
             }
@@ -491,7 +496,7 @@ struct Prompt: View {
                 Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted)
             }
             .frame(maxWidth: .infinity)
-        case .listen, .typeHeard:
+        case .listen, .typeHeard, .spellHeard:
             VStack(spacing: 10) {
                 WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
