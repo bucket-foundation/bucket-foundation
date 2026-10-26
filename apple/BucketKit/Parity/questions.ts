@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { gradeQuestion, present, type Question, type QuestionDeck, type Response } from "../../../src/lib/academy/question-types";
 
 const dir = process.argv[2];
-const decks = ["00-learning-to-learn", "01-mathematics", "02-physics", "03-chemistry", "06-cosmology"].map((n) => JSON.parse(readFileSync(join(dir, `${n}.json`), "utf8")) as QuestionDeck);
+const decks = ["00-learning-to-learn", "01-mathematics", "02-physics", "03-chemistry", "04-information", "06-cosmology"].map((n) => JSON.parse(readFileSync(join(dir, `${n}.json`), "utf8")) as QuestionDeck);
 
 function responses(q: Question): Response[] {
   switch (q.kind) {
