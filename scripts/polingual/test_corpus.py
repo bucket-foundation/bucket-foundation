@@ -90,6 +90,10 @@ class CorpusTest(unittest.TestCase):
         self.assertEqual(majority_pos({"noun": 3, "verb": 3}, "verb"), "verb")
         self.assertEqual(majority_pos({"noun": 3, "verb": 3}, "adj"), "noun")
 
+    def test_replaced_gloss_takes_majority_pos(self):
+        words = {w["word"]: w for w in json.loads((DATA / "top1000/ar.json").read_text())}
+        self.assertEqual((words["غني"]["meaning"], words["غني"]["pos"]), ("rich, wealthy", "adj"))
+
     def test_punjabi_is_gurmukhi(self):
         words = json.loads((DATA / "top1000/pa.json").read_text())
         self.assertTrue(all(re.fullmatch(r"[਀-੿]+", w["word"]) for w in words))
