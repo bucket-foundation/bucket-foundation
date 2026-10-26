@@ -74,6 +74,8 @@ struct ExerciseView: View {
     @State private var built: [Int] = []
     @State private var started = Date()
     @FocusState private var focused: Bool
+    @Environment(\.verticalSizeClass) private var vertical
+    var sideways: Bool { vertical == .compact }
 
     var accepted: [String] { ex.accept ?? [ex.answer] }
     var slow: Bool { Date().timeIntervalSince(started) > 15 }
@@ -228,11 +230,11 @@ struct ExerciseView: View {
     var standard: some View {
         let mc = ex.options != nil && !typedKind
         let sameLangReadings = ex.kind != .gender && ex.kind != .conjugate
-        return VStack(alignment: .leading, spacing: 14) {
-            Prompt(ex: ex, readings: readings, cousins: { l in r(ex.family?.first { $0.lang == l }?.word ?? "", l) })
+        let prompt = Prompt(ex: ex, readings: readings, cousins: { l in r(ex.family?.first { $0.lang == l }?.word ?? "", l) })
+        let answers = VStack(alignment: .leading, spacing: 14) {
             if mc, let options = ex.options {
                 if let picked {
-                    VStack(spacing: 8) {
+                    LazyVGrid(columns: sideways && options.allSatisfy({ $0.count <= 14 }) ? [GridItem(.flexible(), spacing: 8), GridItem(.flexible())] : [GridItem(.flexible())], spacing: 8) {
                         ForEach(options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil)
@@ -245,7 +247,7 @@ struct ExerciseView: View {
                         .onAppear { haptic(accepted.contains(picked)) }
                 } else {
                     let row = ex.kind == .gender && options.count <= 3
-                    let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : [GridItem(.flexible())]
+                    let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways && options.allSatisfy({ $0.count <= 14 }) ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
                     LazyVGrid(columns: cols, spacing: 10) {
                         ForEach(options, id: \.self) { o in
                             OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o) { selected = o; tap() }
@@ -285,6 +287,19 @@ struct ExerciseView: View {
             }
             if let verdict {
                 Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: ex.kind == .speak ? heard : typed, reading: r(ex.lang == ex.answerLang ? ex.answer : ex.prompt, ex.lang)) { finish(verdict != .wrong, verdict) }
+            }
+        }
+        return Group {
+            if sideways {
+                HStack(alignment: .top, spacing: 20) {
+                    prompt.frame(maxWidth: .infinity)
+                    answers.frame(maxWidth: .infinity)
+                }
+            } else {
+                VStack(alignment: .leading, spacing: 14) {
+                    prompt
+                    answers
+                }
             }
         }
     }
@@ -408,6 +423,7 @@ struct AskWord: View {
 }
 
 struct Prompt: View {
+    @Environment(\.verticalSizeClass) private var vertical
     let ex: Exercise
     let readings: Bool
     let cousins: (String) -> Reading?
@@ -426,7 +442,7 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard:
             VStack(spacing: 10) {
-                WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: 140, speakText: ex.prompt)
+                WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:
@@ -437,7 +453,7 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .conjugate:
             VStack(spacing: 8) {
-                WordTile(word: ex.prompt, lang: ex.lang, reading: nil, size: 130)
+                WordTile(word: ex.prompt, lang: ex.lang, reading: nil, size: vertical == .compact ? 100 : 130)
                 Text([ex.promptReading?.roman, ex.tense == "past" ? "past" : "present"].compactMap { $0 }.joined(separator: " · ")).font(.subheadline).foregroundStyle(Palette.muted)
                 (Text("\(ex.person ?? "") ") + Text("______").foregroundStyle(Palette.muted)).font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink)
             }
@@ -446,7 +462,7 @@ struct Prompt: View {
                 if D8Fit.wide(ex.prompt) {
                     WideTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, label: false)
                 } else {
-                    WordTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, size: 160)
+                    WordTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, size: vertical == .compact ? 120 : 160)
                 }
                 Text("What does it mean?").font(.subheadline).foregroundStyle(Palette.muted)
             }

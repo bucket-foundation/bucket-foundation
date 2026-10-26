@@ -143,7 +143,7 @@ struct StudyView: View {
             .padding(.horizontal, 16)
             .padding(.top, 4)
             .padding(.bottom, 12)
-            .frame(maxWidth: 680, alignment: .top)
+            .frame(maxWidth: 900, alignment: .top)
             .frame(maxWidth: .infinity)
             ScrollView { page }
                 .scrollBounceBehavior(.basedOnSize)
