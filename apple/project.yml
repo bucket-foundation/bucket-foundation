@@ -59,10 +59,13 @@ targets:
       - path: Bucket/Sources/Polingual
       - path: Bucket/Sources/Style.swift
       - path: Bucket/Sources/AccountView.swift
+      - path: Polingual/WidgetShared
       - path: Polingual/Polingual.storekit
         buildPhase: none
     dependencies:
       - package: BucketKit
+      - target: PolingualWidgets
+        destinationFilters: [iOS]
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: Polingual/Polingual.entitlements
@@ -90,6 +93,29 @@ targets:
       configs:
         Debug:
           CODE_SIGN_ENTITLEMENTS: Polingual/PolingualDebug.entitlements
+  PolingualWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Polingual/Widget
+      - path: Polingual/WidgetShared
+    info:
+      path: Polingual/Widget/Info.plist
+      properties:
+        CFBundleDisplayName: Polingual
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Polingual/Widget/Widget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.polingual.app
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.widgets
+        IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        MARKETING_VERSION: "1.0.1"
+        SKIP_INSTALL: YES
   PolingualTests:
     type: bundle.unit-test
     supportedDestinations: [iOS, macOS]

@@ -38,3 +38,13 @@ public func translateSearch(_ corpus: LangCorpus, _ query: String, langs: Set<St
     let sortHits: ([TranslateHit]) -> [TranslateHit] = { hits in hits.sorted { (tier($0), corpus.byId[$0.itemId]?.form($0.matchedLang)?.count ?? 0) < (tier($1), corpus.byId[$1.itemId]?.form($1.matchedLang)?.count ?? 0) } }
     return Array((sortHits(exact) + sortHits(prefix) + sortHits(contains)).prefix(limit))
 }
+
+public func wordOfDay(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, day: String) -> LangItem? {
+    let covered: (LangItem) -> Bool = { item in isVocab(item) && item.kind == .word && system.targets.allSatisfy { item.form($0) != nil } && item.form(system.root) != nil }
+    let known = corpus.items.filter { item in covered(item) && system.targets.contains { state.cards.has(cardId($0, item.id)) } }
+    let pool = known.count >= 7 ? known : corpus.items.filter { covered($0) && $0.tier <= 2 }
+    guard !pool.isEmpty else { return nil }
+    var h: UInt64 = 1469598103934665603
+    for b in (system.id + day).utf8 { h = (h ^ UInt64(b)) &* 1099511628211 }
+    return pool.sorted { $0.id < $1.id }[Int(h % UInt64(pool.count))]
+}

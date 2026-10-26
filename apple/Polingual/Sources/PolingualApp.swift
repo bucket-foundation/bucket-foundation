@@ -34,7 +34,11 @@ struct PolingualApp: App {
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
-                    backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
+                    backgroundSafe {
+                        await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
+                        WidgetSync.refresh(store)
+                        await WidgetSync.scheduleWordOfDay(store, enabled: reminders.enabled)
+                    }
                 }
                 .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }

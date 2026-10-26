@@ -26,3 +26,13 @@ func translateCorpus() throws -> LangCorpus {
     }
     #expect(translateSearch(corpus, "").isEmpty)
 }
+
+@Test func wordOfDayIsStableForADayAndCoversEveryTarget() throws {
+    let corpus = try translateCorpus()
+    let system = try createSystem("en", ["fr", "es", "it"], [], now: 0)
+    let a = try #require(wordOfDay(system, corpus, EngineState(), day: "2026-10-26"))
+    #expect(wordOfDay(system, corpus, EngineState(), day: "2026-10-26")?.id == a.id)
+    #expect(["fr", "es", "it", "en"].allSatisfy { a.form($0) != nil })
+    let week = Set((20...26).compactMap { wordOfDay(system, corpus, EngineState(), day: "2026-10-\($0)")?.id })
+    #expect(week.count > 1)
+}
