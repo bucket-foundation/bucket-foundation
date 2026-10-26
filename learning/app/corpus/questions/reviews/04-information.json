@@ -161,7 +161,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Key was 0.6497, which dropped the (1-p) log2(1-p) term of H(p); C = 1 - H(0.11) = 0.5001."
   },
   "channel-capacity.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -437,7 +438,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "States that each cell read counts as one step."
   },
   "turing-machine.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -899,7 +901,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer key vs information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Generalized chess is EXPTIME-complete; the item said PSPACE-hard."
   },
   "propositional-logic.pick": {
    "reviewed_by": "claude-opus-5-5",
@@ -983,7 +986,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Reworded so the count reads as a proof checker's task."
   },
   "proof-systems.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1055,7 +1059,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Gave the bare formula a real setting: an RSA modulus."
   },
   "one-way-functions.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1157,7 +1162,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Gave the bare formula a real setting: a spam filter choosing among 1,000 rules."
   },
   "pac-learning.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1223,7 +1229,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Gave the bare formula a real setting: erasing a bit in a room-temperature chip."
   },
   "entropy-statistical-mechanics-link.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1289,7 +1296,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Gave the bare formula a real setting: key generation testing a candidate prime."
   },
   "randomized-algorithms.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1607,7 +1615,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "States that 1 MB means 10^6 bytes."
   },
   "perfect-secrecy.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1925,7 +1934,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Gave the bare formula a real setting: an attacker forging a signed file."
   },
   "cryptographic-hash.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1955,7 +1965,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Gave the bare count a real setting: a parity check on a 64-bit word."
   },
   "boolean-circuits.order": {
    "reviewed_by": "claude-opus-5-5",
