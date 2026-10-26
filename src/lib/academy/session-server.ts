@@ -32,6 +32,7 @@ export interface SessionDeps {
   refresh: (refreshToken: string) => Promise<AuthResult>;
   signInWithApple: (token: string, nonce: string) => Promise<AuthResult>;
   appleAudiences?: () => string[];
+  linkAppleCode?: (userId: string, app: string, code: string) => Promise<void>;
   deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
   now: () => number;
 }
@@ -132,8 +133,19 @@ export function createSessionHandler(deps: SessionDeps) {
       if (!token || token.length > 8192 || !nonce || nonce.length > 512 || typeof app !== "string" || !APPLE_APPS.includes(app)) return { status: 400, body: { error: "bad_request" } };
       if (!(await within([[`apple:ip:${ip}`, SESSION_LIMITS.appleIp]]))) return { status: 429, body: { error: "too_many_requests" } };
       if (!appleTokenOk(token, nonce, deps.appleAudiences?.() ?? DEFAULT_APPLE_AUDIENCES)) return { status: 401, body: { error: "bad_token" } };
+      const code = typeof b.authorization_code === "string" && b.authorization_code.length <= 1024 ? b.authorization_code : "";
       const r = await deps.signInWithApple(token, nonce);
-      if (r.session) return { status: 200, body: tokens(r.session) };
+      if (r.session) {
+        const userId = r.session.user?.id;
+        if (code && userId && deps.linkAppleCode) {
+          try {
+            await deps.linkAppleCode(userId, app, code);
+          } catch (e) {
+            console.error("apple code exchange", e instanceof Error ? e.message : e);
+          }
+        }
+        return { status: 200, body: tokens(r.session) };
+      }
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       if (r.status === null || r.status >= 500) return { status: 502, body: { error: "apple_failed" } };
       return { status: 401, body: { error: "bad_token" } };

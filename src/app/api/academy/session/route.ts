@@ -1,5 +1,7 @@
 import type { NextRequest } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { exchangeAppleCode, revokeForAccountDelete } from "@/lib/academy/apple-token";
+import { appleTokenDeps } from "@/lib/academy/apple-token-store";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { appleAudiences, bearerToken, clientIp, createSessionHandler } from "@/lib/academy/session-server";
@@ -16,6 +18,8 @@ const bucketClient = () => (bucket ??= createClient(URL_(), process.env.SUPABASE
 
 const adminClient = () => createClient(URL_(), process.env.SUPABASE_SERVICE_ROLE_KEY ?? "", opts);
 
+const appleTokens = appleTokenDeps();
+
 const deleteAccountFor = (accessToken: string) =>
   deleteAccount(
     {
@@ -24,6 +28,7 @@ const deleteAccountFor = (accessToken: string) =>
         return { id: error ? null : (data.user?.id ?? null), status: error ? (error.status ?? 500) : null };
       },
       deleteRows: async (table, userId) => ({ failed: Boolean((await bucketClient().from(table).delete().eq("user_id", userId)).error) }),
+      revokeApple: (userId) => revokeForAccountDelete(appleTokens, userId),
       deleteUser: async (userId) => {
         const { error } = await adminClient().auth.admin.deleteUser(userId);
         return { status: error ? (error.status ?? 500) : null };
@@ -56,6 +61,9 @@ const handle = createSessionHandler({
   signInWithApple: async (token, nonce) => {
     const { data, error } = await anonClient().auth.signInWithIdToken({ provider: "apple", token, nonce });
     return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
+  },
+  linkAppleCode: async (userId, app, code) => {
+    await exchangeAppleCode(appleTokens, userId, app, code);
   },
   appleAudiences: () => appleAudiences(process.env.APPLE_AUDIENCES),
   deleteAccount: deleteAccountFor,
