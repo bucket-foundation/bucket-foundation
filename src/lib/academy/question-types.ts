@@ -1,4 +1,4 @@
-import { parseLocaleNumber, resolveNumber } from "./locale-number";
+import { isEnglish, parseLocaleNumber, parseNumberFor } from "./locale-number";
 import type { Rating } from "./fsrs";
 
 export type QuestionKind = "pick" | "calculate" | "order" | "spot-error" | "match";
@@ -200,13 +200,15 @@ function result(score: number): GradeResult {
 }
 
 export function parseNumber(v: number | string, locale?: string): number {
-  return resolveNumber(parseLocaleNumber(v), locale) ?? NaN;
+  return parseNumberFor(v, locale) ?? NaN;
 }
 
 function gradeCalculate(q: CalculateQuestion, value: number | string, locale?: string): GradeResult {
-  const parsed = parseLocaleNumber(value);
-  const x = resolveNumber(parsed, locale);
-  if (x == null) return parsed.status === "ambiguous" ? { ...result(0), hint: parsed.hint } : result(0);
+  const x = parseNumberFor(value, locale);
+  if (x == null || !Number.isFinite(x)) {
+    const parsed = isEnglish(locale) ? undefined : parseLocaleNumber(value);
+    return parsed?.status === "ambiguous" ? { ...result(0), hint: parsed.hint } : result(0);
+  }
   const tol = Math.max(q.tol ?? 0, Math.abs(q.answer) * (q.relTol ?? 0), 1e-9);
   return result(Math.abs(x - q.answer) <= tol ? 1 : 0);
 }

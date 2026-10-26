@@ -1,12 +1,21 @@
 export type NumberParse =
   | { status: "ok"; value: number }
-  | { status: "ambiguous"; grouped: number; decimal: number; hint: string }
+  | { status: "ambiguous"; mark: "." | ","; grouped: number; decimal: number; hint: string }
   | { status: "invalid" };
 
 const INVALID: NumberParse = { status: "invalid" };
 
 export function isEnglish(locale?: string): boolean {
   return !locale || /^en\b/i.test(locale);
+}
+
+const COMMA_DECIMAL = /^es-(ES|AR|CL|CO)$/i;
+
+export function parseEnglishNumber(v: number | string): number {
+  if (typeof v === "number") return v;
+  const t = v.trim().replace(/,/g, "").replace(/\s+/g, "").replace(/[×x]10\^?/i, "e").replace(/%$/, "");
+  if (!/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(t)) return NaN;
+  return Number(t);
 }
 
 function grouped(head: string, groups: string[]): boolean {
@@ -32,9 +41,10 @@ function mantissa(body: string, scientific: boolean): NumberParse {
   const [int, frac] = parts;
   if (!/^\d*$/.test(int) || !/^\d*$/.test(frac) || !(int + frac)) return INVALID;
   const decimal = Number(`${int || "0"}.${frac || "0"}`);
-  if (mark === "," && !scientific && frac.length === 3 && /^[1-9]\d{0,2}$/.test(int)) {
+  if (!scientific && frac.length === 3 && /^[1-9]\d{0,2}$/.test(int)) {
     const whole = Number(int + frac);
-    return { status: "ambiguous", grouped: whole, decimal, hint: `Use ${whole} or ${int}.${frac} to make the decimal mark clear.` };
+    const other = mark === "," ? "." : ",";
+    return { status: "ambiguous", mark, grouped: whole, decimal, hint: `Use ${whole} or ${int}${other}${frac} to make the decimal mark clear.` };
   }
   return { status: "ok", value: decimal };
 }
@@ -55,7 +65,7 @@ export function parseLocaleNumber(input: number | string): NumberParse {
   const s = String(input)
     .trim()
     .replace(/[−–—]/g, "-")
-    .replace(/[\s\u00a0\u202f']+/g, "")
+    .replace(/[\s\u00a0\u202f]+/g, "")
     .replace(/[×x·]10\^?/i, "e")
     .replace(/%$/, "");
   if (!s) return INVALID;
@@ -67,8 +77,8 @@ export function parseLocaleNumber(input: number | string): NumberParse {
     const pick = (r: NumberParse, k: "grouped" | "decimal") => (r.status === "ok" ? r.value : r.status === "ambiguous" ? r[k] : NaN);
     if (pick(b, "grouped") === 0 || pick(b, "decimal") === 0) return INVALID;
     if (a.status === "ambiguous" || b.status === "ambiguous") {
-      const hint = (a.status === "ambiguous" ? a : (b as Extract<NumberParse, { status: "ambiguous" }>)).hint;
-      return { status: "ambiguous", grouped: pick(a, "grouped") / pick(b, "grouped"), decimal: pick(a, "decimal") / pick(b, "decimal"), hint };
+      const amb = a.status === "ambiguous" ? a : (b as Extract<NumberParse, { status: "ambiguous" }>);
+      return { status: "ambiguous", mark: amb.mark, hint: amb.hint, grouped: pick(a, "grouped") / pick(b, "grouped"), decimal: pick(a, "decimal") / pick(b, "decimal") };
     }
     return { status: "ok", value: pick(a, "grouped") / pick(b, "grouped") };
   }
@@ -77,8 +87,16 @@ export function parseLocaleNumber(input: number | string): NumberParse {
 
 export function resolveNumber(parse: NumberParse, locale?: string): number | null {
   if (parse.status === "ok") return parse.value;
-  if (parse.status === "ambiguous" && isEnglish(locale) && Number.isFinite(parse.grouped)) return parse.grouped;
+  if (parse.status === "ambiguous" && locale && COMMA_DECIMAL.test(locale)) return parse.mark === "," ? parse.decimal : parse.grouped;
   return null;
+}
+
+export function parseNumberFor(v: number | string, locale?: string): number | null {
+  if (isEnglish(locale)) {
+    const x = parseEnglishNumber(v);
+    return Number.isNaN(x) ? null : x;
+  }
+  return resolveNumber(parseLocaleNumber(v), locale);
 }
 
 export function formatNumber(value: number, locale = "en"): string {
