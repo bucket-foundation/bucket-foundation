@@ -363,7 +363,7 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 @media (max-width:759px),(max-aspect-ratio:5/4){#dk{display:none}#mb{display:block}}
 
 #app{display:none}
-@media (max-width:640px){
+@media (max-width:1000px),(max-aspect-ratio:5/4){
 html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #dk,#mb{display:none!important}
 #app{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;position:relative;overflow-x:hidden;color:#231F20;font-family:Nunito,sans-serif;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='140'%3E%3Cpath d='M12 4l2 6 6-2-4 5 4 5-6-2-2 6-2-6-6 2 4-5-4-5 6 2z' fill='%237FA6C9'/%3E%3Cpath d='M4 80c4-4 8 2 12-2' fill='none' stroke='%231E7A5A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") 0 20px/24px 140px repeat-y,radial-gradient(#d9ccb0 1.1px,transparent 1.3px) 0 0/22px 22px,#F1E8D6}
@@ -388,6 +388,30 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #app .stk2{position:absolute;right:18px;top:-30px;z-index:2;width:62px;height:62px;border-radius:8px;background:#D9381E;display:grid;place-items:center;transform:rotate(-10deg);box-shadow:inset 0 0 0 4px #D9381E,inset 0 0 0 6px #F6EEDC,0 4px 0 rgba(0,0,0,.3);font-family:'Noto Sans SC';font-weight:800;font-size:36px;color:#F6EEDC}
 #app .ft{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;font-size:12px;color:#d9c7d3}
 #app .ft a{color:inherit}
+}
+@media (min-width:641px) and ((max-width:1000px) or (max-aspect-ratio:5/4)){
+#app .in,#app .band>*{max-width:560px;margin-left:auto;margin-right:auto}
+#app .in{padding:40px 22px 0;width:100%;box-sizing:border-box}
+#app .stk1{left:calc(50% - 300px)}
+#app .stk2{right:calc(50% - 300px)}
+}
+
+#dk .stage .col{display:none}
+#dk .pp{position:absolute;inset:0;pointer-events:none;z-index:1}
+#dk .pp>*{position:absolute;transform:rotate(var(--r,0deg));animation:plf 6s ease-in-out infinite}
+#dk .pp .seal{width:clamp(72px,7.8vw,150px);height:clamp(72px,7.8vw,150px);background:#D9381E;border-radius:10px;display:grid;place-items:center;box-shadow:inset 0 0 0 clamp(4px,.4vw,8px) #D9381E,inset 0 0 0 clamp(6px,.6vw,12px) #F6EEDC,0 6px 0 rgba(0,0,0,.35)}
+#dk .pp .seal span{font-family:'Noto Sans SC';font-weight:800;font-size:clamp(44px,5vw,96px);color:#F6EEDC}
+#dk .pp .stamp{background:#F6EEDC;padding:clamp(10px,.95vw,18px) clamp(12px,1.15vw,22px);outline:clamp(4px,.4vw,8px) dotted #F6EEDC;outline-offset:-2px;box-shadow:0 8px 0 rgba(0,0,0,.35);color:#231F20}
+#dk .pp .stamp b{display:block;font-size:clamp(22px,2.3vw,44px)}
+#dk .pp .stamp small{font-family:'Space Mono';font-size:clamp(8px,.62vw,12px);letter-spacing:.12em;color:#7a6f63}
+#dk .pp .torn{background:#EBDDBE;padding:clamp(8px,.85vw,16px) clamp(16px,1.8vw,34px);clip-path:polygon(0 8%,6% 0,14% 6%,24% 1%,36% 7%,50% 0,63% 6%,77% 1%,88% 7%,100% 2%,98% 92%,88% 100%,74% 94%,60% 100%,46% 93%,32% 100%,18% 94%,6% 100%,1% 90%);animation-duration:8s}
+#dk .pp .torn span{font-size:clamp(28px,2.9vw,56px);font-weight:800;color:#5B1A4A}
+#dk .pp .mini{font-weight:800;font-size:clamp(22px,2.1vw,40px);color:#F6EEDC;opacity:.75;animation-duration:9s}
+#dk .pp .azu{width:clamp(80px,8.8vw,170px);aspect-ratio:1;border-radius:6px;background:#F4F1E8;box-shadow:0 8px 0 rgba(0,0,0,.35);background-image:radial-gradient(circle at 50% 50%,#26428B 0 8%,transparent 8.5%),radial-gradient(circle at 0 0,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 100% 0,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 0 100%,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 100% 100%,#26428B 0 23%,transparent 23.5%),repeating-conic-gradient(from 45deg at 50% 50%,#6FB7C2 0 10deg,transparent 0 45deg)}
+@media (prefers-reduced-motion:reduce){#dk .pp>*{animation:none}}
+@media (max-width:1299px){
+#dk .stage .cards{display:grid;grid-template-columns:repeat(2,176px);gap:22px;top:calc(var(--ex,0px) + 730px);bottom:auto;transform:scale(var(--cs,1));transform-origin:0 0}
+#dk .stage .cards .t:nth-child(n+5){display:none}
 }
 </style></head><body>
 <div id="app">
@@ -463,7 +487,14 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
  </div>
  <div class="stripe"></div>
  
-</div></div></main>
+</div></div><div class="pp" aria-hidden="true">
+ <div class="seal" style="left:79%;top:14%;--r:-7deg"><span>百</span></div>
+ <div class="azu" style="left:85%;top:46%;--r:12deg"></div>
+ <div class="stamp" style="left:65%;top:40%;--r:6deg"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
+ <div class="torn" style="left:70%;top:63%;--r:-4deg"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
+ <div class="mini" style="left:84%;top:80%;--r:18deg;font-family:'Noto Sans'">сто</div>
+</div>
+</main>
 <footer class="ft"><div class="wrap ftrow">
   <span>Polingual · for iPhone and iPad</span>
   <nav class="fl2"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a></nav>
@@ -537,5 +568,5 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 <script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script>
 <script>(()=>{const f=()=>document.querySelectorAll(".wd-art").forEach(a=>{const b=a.firstElementChild;if(!a.clientWidth)return;b.style.setProperty("--k",Math.min(a.clientWidth/520,a.clientHeight/1060))});f();addEventListener("resize",f);setTimeout(f,300)})()</script>
 <script>(()=>{const mq=matchMedia("(min-width:680px)");let last=null;const art=()=>document.querySelector("#mb .art")||document.querySelector(".pg .art");const snap=()=>{const a=art();if(a&&a.offsetParent)last=a.getBoundingClientRect()};snap();mq.addEventListener("change",()=>{const a=art();if(!a||!last)return snap();const n=a.getBoundingClientRect();if(!n.width)return snap();const dx=last.left-n.left,dy=last.top-n.top,sx=last.width/n.width,sy=last.height/n.height;a.animate([{transformOrigin:"0 0",transform:`translate(${dx}px,${dy}px) scale(${sx},${sy})`},{transformOrigin:"0 0",transform:"none"}],{duration:650,easing:"cubic-bezier(.2,.8,.2,1)"});snap()});addEventListener("resize",()=>{clearTimeout(window.plS);window.plS=setTimeout(snap,120)})})()</script>
-<script>const fit=()=>{const w=hero.clientWidth,h=hero.clientHeight;if(!w)return;const k=w/1920;const H=Math.max(1080,h/k);stage.style.height=H+"px";stage.style.setProperty("--ex",((H-1080)/2)+"px");const k2=Math.min(k,h/1080);stage.style.transform=`translate(${(w-1920*k2)/2}px,${(h-H*k2)/2}px) scale(${k2})`};fit();addEventListener("resize",fit);matchMedia("(max-width:759px),(max-aspect-ratio:5/4)").addEventListener("change",fit)</script>
+<script>const fit=()=>{const w=hero.clientWidth,h=hero.clientHeight;if(!w)return;const k=w/1920;const H=Math.max(1080,h/k);stage.style.height=H+"px";stage.style.setProperty("--ex",((H-1080)/2)+"px");stage.style.setProperty("--cs",Math.min(1,((H-1080)/2+258)/374).toFixed(3));const k2=Math.min(k,h/1080);stage.style.transform=`translate(${(w-1920*k2)/2}px,${(h-H*k2)/2}px) scale(${k2})`};fit();addEventListener("resize",fit);matchMedia("(max-width:759px),(max-aspect-ratio:5/4)").addEventListener("change",fit)</script>
 </body></html>
