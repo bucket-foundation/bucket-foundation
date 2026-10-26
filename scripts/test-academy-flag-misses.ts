@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { emptyState, normalizeState } from "../src/lib/academy/engine";
-import { HITS_TO_HIDE_NAME, flagHits, flagMissCount, flagShowsName, gradeFlagMatch, recordingFlagHit } from "../src/lib/academy/flag-misses";
+import { emptyState, mergeState, normalizeState } from "../src/lib/academy/engine";
+import { HITS_TO_HIDE_NAME, flagHits, flagMissCount, flagShowsName, gradeFlagMatch, mergeFlagTables, recordingFlagHit, withFlagTables } from "../src/lib/academy/flag-misses";
 import { gradeMatch } from "../src/lib/academy/lang-systems";
 
 const FIXTURES = path.join(process.cwd(), "apple/BucketKit/Tests/BucketKitTests/Fixtures/lang");
@@ -56,4 +56,40 @@ test("grading leaves the input state untouched", () => {
   const st = emptyState();
   gradeFlagMatch(pairs, { fr: "fr", es: "es", it: "it" }, st);
   assert.equal(st.settings.flagHits, undefined);
+});
+
+test("per flag the side with more misses wins its pair, equal misses take the higher hits, one-sided flags stay", () => {
+  const a = { flagHits: { fr: 0, es: 1, de: 4 }, flagMisses: { fr: 2, es: 1 } };
+  const b = { flagHits: { fr: 5, es: 3, it: 3 }, flagMisses: { fr: 1, es: 1 } };
+  const m = mergeFlagTables(a, b);
+  assert.deepEqual(m, { flagHits: { fr: 0, es: 3, de: 4, it: 3 }, flagMisses: { fr: 2, es: 1 } });
+  assert.deepEqual(mergeFlagTables(b, a), m);
+});
+
+test("two devices grade apart; a reset after a miss on one device brings the name back after sync", () => {
+  let phone = emptyState();
+  let laptop = emptyState();
+  phone = gradeFlagMatch(pairs, { fr: "fr", es: "es", it: "it" }, phone).state;
+  phone = gradeFlagMatch(pairs, { fr: "fr", es: "es", it: "it" }, phone).state;
+  for (let i = 0; i < HITS_TO_HIDE_NAME; i++) laptop = recordingFlagHit(laptop, "it");
+  laptop = gradeFlagMatch(pairs, { fr: "it", it: "fr", es: "es" }, laptop).state;
+  const synced = mergeState(phone, laptop);
+  assert.deepEqual(synced.settings.flagHits, { fr: 2, es: 2, it: 0 });
+  assert.deepEqual(synced.settings.flagMisses, { it: 1 });
+  assert.ok(flagShowsName(synced, "it"));
+  assert.deepEqual(mergeState(laptop, phone).settings, synced.settings);
+  const golden = JSON.parse(fs.readFileSync(path.join(FIXTURES, "flag-merge-golden.json"), "utf8"));
+  const tables = (st: typeof phone) => ({ flagHits: st.settings.flagHits ?? {}, flagMisses: st.settings.flagMisses ?? {} });
+  assert.deepEqual(tables(phone), golden.a);
+  assert.deepEqual(tables(laptop), golden.b);
+  assert.deepEqual(tables(synced), golden.synced);
+  assert.deepEqual(mergeFlagTables(golden.a, golden.b), golden.synced);
+});
+
+test("mergeState merges flag tables per flag instead of replacing the table", () => {
+  const a = withFlagTables(emptyState(), { flagHits: { fr: 3 }, flagMisses: {} });
+  const b = withFlagTables(emptyState(), { flagHits: { es: 1 }, flagMisses: {} });
+  const m = mergeState(a, b);
+  assert.deepEqual(m.settings.flagHits, { fr: 3, es: 1 });
+  assert.deepEqual(mergeState(b, a).settings.flagHits, { fr: 3, es: 1 });
 });
