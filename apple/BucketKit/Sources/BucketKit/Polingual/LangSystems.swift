@@ -1148,7 +1148,7 @@ public func applyPlacement(_ state: EngineState, _ system: LangSystem, _ corpus:
     return next
 }
 
-public enum Stage: String, Sendable { case intro, check, review, match }
+public enum Stage: String, Sendable { case intro, check, review, match, letter }
 
 public struct QueueEntry: Sendable, Equatable, Hashable {
     public let itemId: String
@@ -1162,9 +1162,26 @@ public struct QueueEntry: Sendable, Equatable, Hashable {
     }
 }
 
-public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current) -> [QueueEntry] {
-    let plan = planSession(system, corpus, state, now: now, size: size, tz: tz)
+public let lettersPerSession = 5
+
+public func letterQueue(_ system: LangSystem, _ state: EngineState, now: Double) -> [QueueEntry] {
     var out: [QueueEntry] = []
+    for lang in system.targets where LangScript.alphabetUnit(lang) != nil {
+        let due = LangScript.dueLetters(state, lang, now: now)
+        let fresh = LangScript.alphabetDone(state, lang) ? [] : LangScript.nextLetters(state, lang, n: max(0, lettersPerSession - due.count))
+        for l in due + fresh { out.append(QueueEntry(itemId: LangScript.letterItemId(l.ch), lang: lang, stage: .letter)) }
+    }
+    return out
+}
+
+public func letterExerciseFor(_ lang: String, _ root: String, _ itemId: String, _ rng: inout Rng) -> Exercise? {
+    guard let index = LangScript.alphabetUnit(lang)?.letters.firstIndex(where: { LangScript.letterItemId($0.ch) == itemId }) else { return nil }
+    return letterExercise(lang, root, index, &rng)
+}
+
+public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, heritage: Bool = false) -> [QueueEntry] {
+    let plan = planSession(system, corpus, state, now: now, size: size, tz: tz)
+    var out: [QueueEntry] = heritage ? letterQueue(system, state, now: now) : []
     var pending: [(at: Int, e: QueueEntry)] = []
     for c in plan {
         let isNew = !state.cards.has(cardId(c.lang, c.itemId))

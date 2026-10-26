@@ -54,11 +54,10 @@ struct AlphabetStudy: View {
     }
 
     func start() {
-        guard let unit else { return }
-        let state = store.state(systemId)
+        guard let unit, let system = store.system(systemId) else { return }
         let now = Date().timeIntervalSince1970 * 1000
-        let picked = LangScript.dueLetters(state, lang, now: now) + LangScript.nextLetters(state, lang, n: 5)
-        queue = picked.compactMap { l in unit.letters.firstIndex(of: l) }
+        let picked = letterQueue(system, store.state(systemId), now: now).filter { $0.lang == lang }
+        queue = picked.compactMap { e in unit.letters.firstIndex { LangScript.letterItemId($0.ch) == e.itemId } }
         i = 0
         next()
     }

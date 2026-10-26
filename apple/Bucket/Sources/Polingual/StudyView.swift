@@ -49,7 +49,7 @@ struct StudyView: View {
         let asked = wanted.flatMap { id in
             system.targets.filter { corpus.byId[id]?.form($0) != nil }.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] }
         }
-        queue = asked + buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
+        queue = asked + buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000, heritage: HeritageMode.on(systemId))
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
@@ -67,6 +67,13 @@ struct StudyView: View {
             return
         }
         let entry = queue[i]
+        if entry.stage == .letter {
+            current = letterExerciseFor(entry.lang, system.root, entry.itemId, &rng)
+            currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter"
+            cardStart = .now
+            if current == nil { self.i += 1; makeExercise() }
+            return
+        }
         guard let item = corpus.byId[entry.itemId] else {
             current = nil
             return
@@ -132,7 +139,7 @@ struct StudyView: View {
                 }
                 .buttonStyle(D8Primary())
                 Button("Another round") {
-                    self.queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
+                    self.queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000, heritage: HeritageMode.on(systemId))
                     i = 0
                     graded = 0
                     correct = 0

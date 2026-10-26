@@ -22,6 +22,10 @@ public struct AlphabetUnit: Sendable {
     public let letters: [Letter]
 }
 
+extension Character {
+    var isMark: Bool { unicodeScalars.allSatisfy { $0.properties.generalCategory == .nonspacingMark || $0.properties.generalCategory == .enclosingMark } }
+}
+
 public enum LangScript {
     public static let scripts: [String: ScriptInfo] = [
         "ru": ScriptInfo(script: "cyrillic", title: "Cyrillic alphabet", marks: .strip),
@@ -64,7 +68,7 @@ public enum LangScript {
         let n = scripts[lang]?.width == true ? s.precomposedStringWithCompatibilityMapping : s.precomposedStringWithCanonicalMapping
         var out = String.UnicodeScalarView()
         var gap = false
-        for c in n.lowercased().unicodeScalars {
+        for c in jsLowercased(n).unicodeScalars {
             if c.properties.isWhitespace || punct.contains(c) {
                 gap = true
                 continue
@@ -74,6 +78,21 @@ public enum LangScript {
             out.append(c)
         }
         return String(out)
+    }
+
+    public static func jsLowercased(_ s: String) -> String {
+        let chars = Array(s)
+        var out = ""
+        for (i, c) in chars.enumerated() {
+            if c == "Σ" {
+                let before = chars[..<i].last(where: { !$0.isMark })?.isLetter ?? false
+                let after = chars[(i + 1)...].first(where: { !$0.isMark })?.isLetter ?? false
+                out.append(before && !after ? "ς" : "σ")
+            } else {
+                out += c.lowercased()
+            }
+        }
+        return out
     }
 
     public static func foldMarks(_ s: String, _ lang: String) -> String {

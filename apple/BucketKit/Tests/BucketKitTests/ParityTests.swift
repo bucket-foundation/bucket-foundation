@@ -161,13 +161,16 @@ func runScenario(_ corpus: LangCorpus) throws -> JSValue {
             card.lastReview = t0
             card.due = t0
             let made = exerciseFor(corpus, sweepSys, item, lang, card, &crng, speech: false, level: 1)
-            if made.kind != .choose { continue }
+            guard made.kind == .choose else { continue }
             let c = crossLanguageOptions(made, item, sweepSys, &crng)
-            let langs: JSValue = c.optionLangs.map { m in .array(m.map { "\($0.key)=\($0.value)" }.sorted(by: strCmp).map { .string($0) }) } ?? .null
-            cross.append(obj([("itemId", .string(item.id)), ("lang", .string(lang)), ("options", c.options.map { .array($0.map { .string($0) }) } ?? .null), ("optionLangs", langs)]))
+            cross.append(obj([
+                ("itemId", .string(item.id)), ("lang", .string(lang)), ("options", strs(c.options)),
+                ("optionLangs", strs(c.optionLangs.map { $0.map { "\($0.key)=\($0.value)" }.sorted(by: strCmp) })),
+            ]))
         }
     }
     out.append(("cross", .array(cross)))
+    out.append(("heritage", heritageScenario(corpus, t0: t0)))
     return obj(out)
 }
 
@@ -196,4 +199,60 @@ func diff(_ a: JSValue, _ b: JSValue, _ path: String = "$") -> String? {
         let d = diff(mine, golden)
         #expect(d == nil, "\(d ?? "")")
     }
+}
+
+func heritageScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {
+    let judgeCases: [(String, [String], String)] = [
+        ("שָׁלוֹם", ["שלום"], "he"), ("كتـاب", ["كتاب"], "ar"), ("كتاي", ["كتاب"], "ar"), ("يك", ["یک"], "fa"),
+        ("еж", ["ёж"], "ru"), ("мои", ["мой"], "ru"), ("кни\u{301}га", ["книга"], "ru"), ("моско", ["москва"], "ru"),
+        ("καλημερα", ["καλημέρα"], "el"), ("ΟΔΟΣ", ["οδός"], "el"), ("नमसते", ["नमस्ते"], "hi"), ("ﾈｺ", ["ネコ"], "ja"),
+        ("", ["猫"], "zh"), ("ねこ", ["猫", "ねこ"], "ja"), ("한국", ["한국".decomposedStringWithCanonicalMapping], "ko"),
+    ]
+    let foldCases: [(String, String)] = [("ru", "кни\u{301}га"), ("el", "ΟΔΟΣ"), ("el", "ὀδός"), ("grc", "Ἀθῆναι"), ("he", " שָׁלוֹם! "), ("fa", "يك"), ("ja", "ﾈｺ"), ("uk", "ї")]
+    var lrng = Rng(seed: 31)
+    let letters: [JSValue] = LangScript.heritageLangs.sorted(by: strCmp).map { l in
+        let u = LangScript.alphabetUnit(l)!
+        return .array([0, 1, u.letters.count - 1].map { i in
+            let x = letterExercise(l, "en", i, &lrng)!
+            return .string("\(l)|\(x.prompt)|\(x.answer)|\((x.options ?? []).joined())")
+        })
+    }
+    var hs = EngineState()
+    var sched: [JSValue] = []
+    for round in 0..<3 {
+        let fresh = LangScript.nextLetters(hs, "ru", n: 5).map(\.ch)
+        for ch in fresh { hs = gradeCard(hs, "ru", LangScript.letterItemId(ch), round == 1 ? 1 : 3, now: t0 + Double(round) * 86_400_000, tz: "UTC") }
+        let due = LangScript.dueLetters(hs, "ru", now: t0 + Double(round + 5) * 86_400_000).map(\.ch).joined()
+        sched.append(.array([.string(fresh.joined()), .string(due), .bool(LangScript.alphabetDone(hs, "ru"))]))
+    }
+    for l in LangScript.alphabetUnit("ru")!.letters { hs = gradeCard(hs, "ru", LangScript.letterItemId(l.ch), 3, now: t0, tz: "UTC") }
+    sched.append(.array([.string("all"), .bool(LangScript.alphabetDone(hs, "ru")), .number(Double(LangScript.nextLetters(hs, "ru", n: 5).count))]))
+    let hSys = try! createSystem("en", ["ru", "el", "ja"], [], now: t0)
+    var hq = EngineState()
+    for l in LangScript.alphabetUnit("ru")!.letters.prefix(3) { hq = gradeCard(hq, "ru", LangScript.letterItemId(l.ch), 3, now: t0, tz: "UTC") }
+    let hQueue = buildQueue(hSys, corpus, hq, now: t0 + 6 * 86_400_000, tz: TimeZone(identifier: "UTC")!, heritage: true).map { "\($0.itemId)|\($0.lang)|\($0.stage.rawValue)" }
+    var spell: [String] = []
+    for item in corpus.items where item.kind == .word {
+        for lang in hSys.targets {
+            if item.form(lang) == nil || item.form("en") == nil { continue }
+            var card = Card(state: "review")
+            card.reps = 3
+            card.lapses = 0
+            card.stability = 3
+            card.difficulty = 5
+            card.lastReview = t0
+            card.due = t0
+            var r = Rng(seed: 5)
+            let ex = exerciseFor(corpus, hSys, item, lang, card, &r, speech: false, level: 1, heritage: true)
+            spell.append("\(item.id)|\(lang)|\(ex.kind.rawValue)|\(ex.prompt)|\(ex.answer)")
+        }
+    }
+    return obj([
+        ("judge", .array(judgeCases.map { .string(LangScript.judgeSpelled($0.0, $0.1, $0.2).rawValue) })),
+        ("fold", .array(foldCases.map { .string(LangScript.foldMarks($0.1, $0.0)) })),
+        ("letters", .array(letters)),
+        ("sched", .array(sched)),
+        ("spell", strs(spell)),
+        ("queue", strs(hQueue)),
+    ])
 }

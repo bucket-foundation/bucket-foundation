@@ -79,3 +79,10 @@ import Testing
     for l in LangScript.alphabetUnit("ko")!.letters { st = gradeCard(st, "ko", LangScript.letterItemId(l.ch), 3, now: now, tz: "UTC") }
     #expect(LangScript.alphabetDone(st, "ko") && LangScript.alphabetDone(st, "es"))
 }
+
+@Test func finalSigmaLowercasesLikeJavaScript() {
+    #expect(LangScript.jsLowercased("ΟΔΟΣ") == "οδος")
+    #expect(LangScript.jsLowercased("ΣΟΦΙΑ") == "σοφια")
+    #expect(LangScript.jsLowercased("ΟΔΟΣ ΚΑΙ") == "οδος και")
+    #expect(LangScript.jsLowercased("Σ") == "σ")
+}

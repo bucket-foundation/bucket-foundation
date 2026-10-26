@@ -46,7 +46,7 @@ struct OptionButton: View {
     var body: some View {
         Button(action: action) {
             VStack(alignment: tall ? .center : .leading, spacing: 2) {
-                Text(text).font(glyph ? .system(size: 36, weight: .bold) : nil).multilineTextAlignment(tall ? .center : .leading).lineLimit(tall ? 2 : nil).minimumScaleFactor(tall ? 0.6 : 1)
+                Text(text).font(glyph ? .largeTitle.weight(.bold) : nil).multilineTextAlignment(tall ? .center : .leading).lineLimit(tall ? 2 : nil).minimumScaleFactor(tall ? 0.6 : 1)
                 if let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(D8.ipa) }
             }
             .padding(.vertical, 10)
