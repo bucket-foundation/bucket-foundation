@@ -45,10 +45,20 @@ struct BucketApp: App {
                         await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
                         await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
                         WidgetSync.refresh(langs, extra: scienceWidgetExtra(library, science))
+                        #if os(iOS)
+                        WatchBridge.shared.store = langs
+                        WatchBridge.shared.sink = langs
+                        WatchBridge.shared.send()
+                        #endif
                     }
                 }
                 .onChange(of: reminders.wordOfDay) {
                     backgroundSafe { await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay) }
+                }
+                .task {
+                    #if os(iOS)
+                    WatchBridge.shared.start(langs)
+                    #endif
                 }
                 .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
