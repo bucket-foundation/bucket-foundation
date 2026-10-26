@@ -8,7 +8,7 @@ The body is `{ "signedPayload": "<JWS>" }`. The route checks the ES256 signature
 
 ## Storage
 
-One row per `notificationUUID` in `bucket.app_store_events`; a resent notification answers `duplicate` and writes nothing. Each row keeps the full decoded transaction and renewal info and the raw `appAccountToken`. Kinds: `trial`, `subscribe`, `renew`, `cancel`, `uncancel`, `refund`, `refund_reversed`, `revoke`, `expire`, `billing_issue`, `other`.
+One row per `notificationUUID` in `bucket.app_store_events`; a resent notification answers `duplicate` and writes nothing. Each row keeps the raw `appAccountToken` and an allowlist of the decoded info: from the transaction the ids (`transactionId`, `originalTransactionId`, `webOrderLineItemId`), `productId`, `type`, `price` and the dates; from the renewal info the ids, product ids, `renewalPrice` and the dates. Storefront, currency and every other field are dropped, for linked and unlinked rows alike. Kinds: `trial`, `subscribe`, `renew`, `cancel`, `uncancel`, `refund`, `refund_reversed`, `revoke`, `expire`, `billing_issue`, `other`.
 
 ## Account Link
 
