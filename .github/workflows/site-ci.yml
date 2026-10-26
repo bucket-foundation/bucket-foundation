@@ -48,7 +48,7 @@ jobs:
       - name: No code comments
         run: npm run lint:comments
       - name: python deps for unit tests
-        run: python3 -m pip install --quiet numpy==2.5.1 fastapi==0.115.6 httpx==0.28.1
+        run: python3 -m pip install --quiet numpy==2.5.1 fastapi==0.115.6 httpx==0.28.1 wordfreq==3.1.1
       - name: unit tests
         run: npm test
       - name: research report records
