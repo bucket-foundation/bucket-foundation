@@ -11,6 +11,7 @@ import {
   exerciseFor,
   gradeCard,
   judgeTyped,
+  letterExercise,
   langProgress,
   learnerLevel,
   matchExercise,
@@ -27,6 +28,7 @@ import {
   type PlacementAnswer,
 } from "../../../src/lib/academy/lang-systems";
 import { normalizeState } from "../../../src/lib/academy/engine";
+import { alphabetDone, alphabetUnit, dueLetters, foldMarks, HERITAGE_LANGS, judgeSpelled, letterItemId, nextLetters } from "../../../src/lib/academy/lang-script";
 import { audioKey } from "../../../src/lib/academy/lang-audio";
 
 const dir = process.argv[2];
@@ -170,5 +172,52 @@ for (const item of corpus.items) {
   }
 }
 out.cross = cross;
+
+const H_JUDGE: [string, string[], string][] = [
+  ["שָׁלוֹם", ["שלום"], "he"], ["كتـاب", ["كتاب"], "ar"], ["كتاي", ["كتاب"], "ar"], ["يك", ["یک"], "fa"],
+  ["еж", ["ёж"], "ru"], ["мои", ["мой"], "ru"], ["кни\u0301га", ["книга"], "ru"], ["моско", ["москва"], "ru"],
+  ["καλημερα", ["καλημέρα"], "el"], ["ΟΔΟΣ", ["οδός"], "el"], ["नमसते", ["नमस्ते"], "hi"], ["ﾈｺ", ["ネコ"], "ja"],
+  ["", ["猫"], "zh"], ["ねこ", ["猫", "ねこ"], "ja"], ["한국", ["한국".normalize("NFD")], "ko"],
+];
+const H_FOLD: [string, string][] = [["ru", "кни\u0301га"], ["el", "ΟΔΟΣ"], ["el", "ὀδός"], ["grc", "Ἀθῆναι"], ["he", " שָׁלוֹם! "], ["fa", "يك"], ["ja", "ﾈｺ"], ["uk", "ї"]];
+const lrng = seededRng(31);
+const hState = () => normalizeState(null);
+let hs = hState();
+const sched: unknown[] = [];
+for (let round = 0; round < 3; round++) {
+  const fresh = nextLetters(hs, "ru", 5).map((l) => l.ch);
+  for (const ch of fresh) hs = gradeCard(hs, "ru", letterItemId(ch), round === 1 ? 1 : 3, T0 + round * 86400000, "UTC");
+  sched.push([fresh.join(""), dueLetters(hs, "ru", T0 + (round + 5) * 86400000).map((l) => l.ch).join(""), alphabetDone(hs, "ru")]);
+}
+for (const l of alphabetUnit("ru")!.letters) hs = gradeCard(hs, "ru", letterItemId(l.ch), 3, T0, "UTC");
+sched.push(["all", alphabetDone(hs, "ru"), nextLetters(hs, "ru", 5).length]);
+const hSys = createSystem("en", ["ru", "el", "ja"], [], T0);
+let hq = normalizeState(null);
+for (const l of alphabetUnit("ru")!.letters.slice(0, 3)) hq = gradeCard(hq, "ru", letterItemId(l.ch), 3, T0, "UTC");
+const hQueue = buildQueue(hSys, corpus, hq, T0 + 6 * 86400000, 14, { heritage: true }).map((e) => `${e.itemId}|${e.lang}|${e.stage}`);
+const spell: string[] = [];
+for (const item of corpus.items) {
+  if (item.kind !== "word") continue;
+  for (const lang of hSys.targets) {
+    if (!item.forms[lang] || !item.forms["en"]) continue;
+    const card = { state: "review", reps: 3, lapses: 0, stability: 3, difficulty: 5, lastReview: T0, due: T0 };
+    const ex = exerciseFor(corpus, hSys, item, lang, card as never, seededRng(5), { speech: false, level: 1, heritage: true });
+    spell.push(`${item.id}|${lang}|${ex.kind}|${ex.prompt}|${ex.answer}`);
+  }
+}
+out.heritage = {
+  judge: H_JUDGE.map(([g, e, l]) => judgeSpelled(g, e, l)),
+  fold: H_FOLD.map(([l, x]) => foldMarks(x, l)),
+  letters: [...HERITAGE_LANGS].sort().map((l) => {
+    const u = alphabetUnit(l)!;
+    return [0, 1, u.letters.length - 1].map((i) => {
+      const x = letterExercise(l, "en", i, lrng)!;
+      return `${l}|${x.prompt}|${x.answer}|${(x.options ?? []).join("")}`;
+    });
+  }),
+  sched,
+  spell,
+  queue: hQueue,
+};
 
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));
