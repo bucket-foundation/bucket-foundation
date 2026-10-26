@@ -3,8 +3,9 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { emptyState, mergeState, normalizeState } from "../src/lib/academy/engine";
-import { HITS_TO_HIDE_NAME, flagHits, flagMissCount, flagShowsName, gradeFlagMatch, gradeWebMatch, mergeFlagTables, recordingFlagHit, withFlagTables } from "../src/lib/academy/flag-misses";
-import { gradeMatch } from "../src/lib/academy/lang-systems";
+import { HITS_TO_HIDE_NAME, flagHits, flagMissCount, flagShowsName, gradeFlagMatch, gradeWebMatch, mergeFlagTables, runGated, saveSetFlags, recordingFlagHit, withFlagTables } from "../src/lib/academy/flag-misses";
+import { cardId, gradeCard, gradeMatch } from "../src/lib/academy/lang-systems";
+import type { EngineState } from "../src/lib/academy/engine";
 
 const FIXTURES = path.join(process.cwd(), "apple/BucketKit/Tests/BucketKitTests/Fixtures/lang");
 const pairs = [{ lang: "fr", word: "nuit" }, { lang: "es", word: "noche" }, { lang: "it", word: "notte" }];
@@ -117,4 +118,34 @@ test("a web grader given the iOS visibility rule drops unrated words from the re
   const { results, tables } = gradeWebMatch(pairs, { fr: "it", it: "fr", es: "es" }, st, (l) => flagShowsName(st, l));
   assert.deepEqual(results.map((r) => r.lang), ["es", "it"]);
   assert.deepEqual(tables.flagMisses, { it: 1 });
+});
+
+test("a guest held at the account gate records no flags until the gate runs the action", () => {
+  const writes: string[] = [];
+  const held: (() => void)[] = [];
+  runGated(true, false, (a) => held.push(a), () => writes.push("flags"));
+  assert.equal(writes.length, 0);
+  held[0]();
+  assert.equal(writes.join(), "flags");
+  runGated(true, true, () => assert.fail("gate"), () => writes.push("allowed"));
+  runGated(false, false, () => assert.fail("gate"), () => writes.push("member"));
+  assert.equal(writes.join(), "flags,allowed,member");
+});
+
+test("shared mode saves flags onto the state as it is now, keeping writes made since the session opened", async () => {
+  const branch = "set:test";
+  const saved: Record<string, EngineState> = { [branch]: withFlagTables(emptyState(), { flagHits: { fr: 1 }, flagMisses: {} }) };
+  const store = { load: async (b: string) => normalizeState(JSON.parse(JSON.stringify(saved[b] ?? emptyState()))), save: (b: string, st: EngineState) => void (saved[b] = st) };
+  saved[branch] = withFlagTables(gradeCard(saved[branch], "es", "w-1", 3), { flagHits: { fr: 1, it: 2 }, flagMisses: {} });
+  const next = await saveSetFlags(store, branch, { flagHits: { fr: 2 }, flagMisses: {} });
+  assert.ok(next.cards[cardId("es", "w-1")]);
+  assert.deepEqual(saved[branch].settings.flagHits, { fr: 2, it: 2 });
+});
+
+test("recordFlags then grading through the same state keeps both the flag tables and the card", () => {
+  const { results, tables } = gradeWebMatch(pairs, { fr: "fr", es: "es", it: "it" }, emptyState());
+  let st = withFlagTables(emptyState(), tables);
+  for (const r of results) st = gradeCard(st, r.lang, "night", r.rating);
+  assert.deepEqual(st.settings.flagHits, { fr: 1, es: 1, it: 1 });
+  assert.equal(Object.keys(st.cards).length, 3);
 });

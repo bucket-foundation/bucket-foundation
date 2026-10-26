@@ -98,3 +98,20 @@ export function gradeWebMatch(
   const results = r.ratings.filter((x): x is { lang: string; rating: 1 | 3 } => x.rating !== null);
   return { results, tables: flagTables(r.state) };
 }
+
+export interface FlagStore {
+  load(branch: string): Promise<EngineState>;
+  save(branch: string, state: EngineState): void;
+}
+
+export async function saveSetFlags(store: FlagStore, branch: string, tables: FlagTables): Promise<EngineState> {
+  const current = await store.load(branch);
+  const next = withFlagTables(current, mergeFlagTables(flagTables(current), tables));
+  store.save(branch, next);
+  return next;
+}
+
+export function runGated(guest: boolean, allowed: boolean, requireAccount: (action: () => void) => void, apply: () => void): void {
+  if (guest && !allowed) requireAccount(apply);
+  else apply();
+}

@@ -6,7 +6,7 @@ import type { Rating } from "@/lib/academy/fsrs";
 import { loadLangCorpus, loadSystems, saveSystems, type SaveResult } from "@/lib/academy/lang-client";
 import { applyPlacement, editSystem, gradeCard, progressBranch, type LangCorpus, type LangSystem } from "@/lib/academy/lang-systems";
 import { webProgressStore } from "@/lib/academy/progress-store";
-import { flagTables, withFlagTables, type FlagTables } from "@/lib/academy/flag-misses";
+import { flagTables, runGated, saveSetFlags, withFlagTables, type FlagTables } from "@/lib/academy/flag-misses";
 import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
 import { sharedMemoryActive } from "@/lib/academy/lang-memory";
@@ -35,15 +35,16 @@ export function useLangSystem(systemId: string): LangSystemHandle {
   const handle = on ? shared : legacy;
   const { guest, requireAccount } = useAccountGate();
   const inner = handle.grade;
+  const innerFlags = handle.recordFlags;
   const grade = useCallback(
-    (lang: string, itemId: string, rating: Rating) => {
-      const apply = () => inner(lang, itemId, rating);
-      if (guest && !guestMayStudyLanguage(systemId)) requireAccount(apply);
-      else apply();
-    },
+    (lang: string, itemId: string, rating: Rating) => runGated(guest, guestMayStudyLanguage(systemId), requireAccount, () => inner(lang, itemId, rating)),
     [inner, guest, requireAccount, systemId]
   );
-  return useMemo(() => ({ ...handle, grade, ...(on ? { shared: true } : {}) }), [handle, grade, on]);
+  const recordFlags = useCallback(
+    (tables: FlagTables) => runGated(guest, guestMayStudyLanguage(systemId), requireAccount, () => innerFlags(tables)),
+    [innerFlags, guest, requireAccount, systemId]
+  );
+  return useMemo(() => ({ ...handle, grade, recordFlags, ...(on ? { shared: true } : {}) }), [handle, grade, recordFlags, on]);
 }
 
 function useLegacyLangSystem(systemId: string, active: boolean): LangSystemHandle {
@@ -138,7 +139,7 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
   ref.current = session;
   const [saveState, setSaveState] = useState<SaveResult | "idle" | "saving">("idle");
   const [epoch, setEpoch] = useState(0);
-  const setBranch = useRef<{ branch: string; state: EngineState } | null>(null);
+  const setBranch = useRef<string | null>(null);
   const [flags, setFlags] = useState<FlagTables>({});
 
   useEffect(() => {
@@ -158,7 +159,7 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
         const branch = progressBranch(sys);
         const setState0 = await webProgressStore.load(branch, server);
         if (!alive) return;
-        setBranch.current = { branch, state: setState0 };
+        setBranch.current = branch;
         setFlags(flagTables(setState0));
         setCorpus(c);
         setSession(s);
@@ -184,11 +185,9 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
 
   const recordFlags = useCallback((tables: FlagTables) => {
     setFlags(tables);
-    const b = setBranch.current;
-    if (!b) return;
-    const next = withFlagTables(b.state, tables);
-    setBranch.current = { ...b, state: next };
-    webProgressStore.save(b.branch, next);
+    const branch = setBranch.current;
+    if (!branch) return;
+    void saveSetFlags({ load: (b) => webProgressStore.load(b), save: (b, st) => webProgressStore.save(b, st) }, branch, tables).then((saved) => setFlags(flagTables(saved)));
   }, []);
 
   const place = useCallback(
