@@ -177,7 +177,7 @@ const H_JUDGE: [string, string[], string][] = [
   ["שָׁלוֹם", ["שלום"], "he"], ["كتـاب", ["كتاب"], "ar"], ["كتاي", ["كتاب"], "ar"], ["يك", ["یک"], "fa"],
   ["еж", ["ёж"], "ru"], ["мои", ["мой"], "ru"], ["кни\u0301га", ["книга"], "ru"], ["моско", ["москва"], "ru"],
   ["καλημερα", ["καλημέρα"], "el"], ["ΟΔΟΣ", ["οδός"], "el"], ["नमसते", ["नमस्ते"], "hi"], ["ﾈｺ", ["ネコ"], "ja"],
-  ["", ["猫"], "zh"], ["ねこ", ["猫", "ねこ"], "ja"], ["한국", ["한국".normalize("NFD")], "ko"],
+  ["", ["猫"], "zh"], ["все", ["всё"], "ru"], ["ВСЁ", ["всё"], "ru"], ["еж", ["ёж"], "ru"], ["ねこ", ["猫", "ねこ"], "ja"], ["한국", ["한국".normalize("NFD")], "ko"],
 ];
 const H_FOLD: [string, string][] = [["ru", "кни\u0301га"], ["el", "ΟΔΟΣ"], ["el", "ὀδός"], ["grc", "Ἀθῆναι"], ["he", " שָׁלוֹם! "], ["fa", "يك"], ["ja", "ﾈｺ"], ["uk", "ї"]];
 const lrng = seededRng(31);
@@ -212,7 +212,7 @@ out.heritage = {
     const u = alphabetUnit(l)!;
     return [0, 1, u.letters.length - 1].map((i) => {
       const x = letterExercise(l, "en", i, lrng)!;
-      return `${l}|${x.prompt}|${x.answer}|${(x.options ?? []).join("")}`;
+      return `${l}|${x.prompt}|${x.answer}|${(x.options ?? []).join("")}|${(x.accept ?? []).join("")}`;
     });
   }),
   sched,
