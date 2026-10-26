@@ -84,7 +84,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
             checked += 1
         }
     }
-    #expect(checked == 7110)
+    #expect(checked == 7146)
 }
 
 @Test func missingQuestionDeckFallsBackToTheDrill() async throws {
@@ -95,7 +95,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
     #expect(deck == nil)
 }
 
-@Test(arguments: [("01-mathematics", 46), ("02-physics", 55), ("03-chemistry", 55)])
+@Test(arguments: [("01-mathematics", 55), ("02-physics", 55), ("03-chemistry", 55)])
 func everyReviewCycleIncludesTheAppliedTask(_ name: String, _ applied: Int) throws {
     let deck = try questionDeck(name)
     let atoms = Set(deck.questions.map(\.atom))
