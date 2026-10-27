@@ -79,7 +79,8 @@ struct WordTile: View {
                         HStack(spacing: 6) {
                             Text(word)
                                 .font(D8.word(size * (D8Fit.long(word) ? 0.15 : 0.21)))
-                                .lineLimit(1)
+                                .lineLimit(word.contains(" ") ? 3 : 1)
+                                .multilineTextAlignment(.center)
                                 .minimumScaleFactor(0.4)
                                 .foregroundStyle(D8.ink)
                             if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
@@ -182,12 +183,14 @@ struct AnswerRow: View {
     let state: RowState
     var flag = true
     var reading: Reading?
+    var say: String?
 
     var body: some View {
-        let canSay = state == .right && LangVoice.shared.canSpeak(word, lang)
+        let spoken = say ?? word
+        let canSay = state == .right && LangVoice.shared.canSpeak(spoken, lang)
         Group {
             if canSay {
-                Button { LangVoice.shared.speak(word, lang) } label: { row(canSay) }
+                Button { LangVoice.shared.speak(spoken, lang) } label: { row(canSay) }
                     .buttonStyle(.plain)
                     .accessibilityHint("Plays the word")
             } else {
