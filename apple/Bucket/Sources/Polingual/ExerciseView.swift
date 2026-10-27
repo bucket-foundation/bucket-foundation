@@ -226,8 +226,14 @@ struct ExerciseView: View {
         }
     }
 
-    var typedKind: Bool {
-        ex.kind == .translate || ex.kind == .typeHeard || ex.kind == .spellHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!LangListener.shared.supported || heard == ""))
+    var typedKind: Bool { Self.typed(ex, speech: LangListener.shared.supported, heard: heard) }
+
+    static func typed(_ ex: Exercise, speech: Bool, heard: String?) -> Bool {
+        ex.kind == .translate || ex.kind == .typeHeard || ex.kind == .spellHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!speech || heard == ""))
+    }
+
+    static func choiceKeys(_ ex: Exercise, speech: Bool, heard: String?) -> Bool {
+        ex.options != nil && !typed(ex, speech: speech, heard: heard)
     }
 
     func judgeAnswer(_ s: String) -> Verdict {
@@ -237,7 +243,7 @@ struct ExerciseView: View {
     func optionLang(_ o: String) -> String { ex.optionLangs?[o] ?? ex.answerLang }
 
     var standard: some View {
-        let mc = ex.options != nil && !typedKind
+        let mc = Self.choiceKeys(ex, speech: LangListener.shared.supported, heard: heard)
         let sameLangReadings = ex.kind != .gender && ex.kind != .conjugate
         let prompt = Prompt(ex: ex, readings: readings, cousins: { l in r(ex.family?.first { $0.lang == l }?.word ?? "", l) })
         let answers = VStack(alignment: .leading, spacing: 14) {
@@ -258,14 +264,16 @@ struct ExerciseView: View {
                     let row = ex.kind == .gender && options.count <= 3
                     let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways || ex.kind == .letter ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
                     LazyVGrid(columns: cols, spacing: 10) {
-                        ForEach(options, id: \.self) { o in
+                        ForEach(Array(options.enumerated()), id: \.element) { k, o in
                             OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o, tall: sideways || ex.kind == .letter, glyph: ex.kind == .letter) { selected = o; tap() }
+                                .optionKey(k)
                         }
                     }
                     if ex.kind == .gender { ArticleKey(lang: ex.lang) }
                     Button("Check") { picked = selected }
                         .buttonStyle(D8Primary())
                         .disabled(selected == nil)
+                        .keyboardShortcut(.defaultAction)
                 }
             }
             if ex.kind == .speak && !typedKind && verdict == nil {
@@ -539,6 +547,24 @@ struct Prompt: View {
             AskWord(word: ex.prompt, sub: "say it in \(name)")
         default:
             AskWord(word: ex.prompt, sub: "in \(name)")
+        }
+    }
+}
+
+extension View {
+    func optionKey(_ index: Int) -> some View {
+        modifier(OptionKey(index: index))
+    }
+}
+
+struct OptionKey: ViewModifier {
+    let index: Int
+
+    func body(content: Content) -> some View {
+        if index < 9 {
+            content.keyboardShortcut(KeyEquivalent(Character(String(index + 1))), modifiers: [])
+        } else {
+            content
         }
     }
 }

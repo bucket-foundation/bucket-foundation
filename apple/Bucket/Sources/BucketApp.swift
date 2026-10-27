@@ -32,6 +32,9 @@ struct BucketApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                #if os(macOS)
+                .frame(minWidth: 960, minHeight: 680)
+                #endif
                 .environment(account)
                 .environment(library)
                 .environment(langs)
@@ -65,6 +68,9 @@ struct BucketApp: App {
                 }
                 .tint(Palette.green)
         }
+        #if os(macOS)
+        .defaultSize(width: 1180, height: 820)
+        #endif
     }
 }
 
@@ -95,6 +101,7 @@ struct RootView: View {
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
+        .tabViewStyle(.sidebarAdaptable)
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
