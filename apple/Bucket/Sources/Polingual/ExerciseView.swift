@@ -232,6 +232,10 @@ struct ExerciseView: View {
         ex.kind == .translate || ex.kind == .typeHeard || ex.kind == .spellHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!speech || heard == ""))
     }
 
+    static func spokenArticle(_ article: String, _ ex: Exercise) -> String {
+        "\(article)\(ex.cloze?.after ?? "")"
+    }
+
     static func choiceKeys(_ ex: Exercise, speech: Bool, heard: String?) -> Bool {
         ex.options != nil && !typed(ex, speech: speech, heard: heard)
     }
@@ -252,7 +256,8 @@ struct ExerciseView: View {
                     LazyVGrid(columns: sideways ? [GridItem(.flexible(), spacing: 8), GridItem(.flexible())] : [GridItem(.flexible())], spacing: 8) {
                         ForEach(options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
-                                      flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil)
+                                      flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil,
+                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil)
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
