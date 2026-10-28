@@ -20,6 +20,7 @@ struct SystemView: View {
             }
         }
         .paper()
+        .sharePage(store.system(systemId).map { SharePage.langs($0, streak: Int(store.state(systemId).streak)) })
         .navigationTitle(store.system(systemId)?.name ?? "Language system")
         .inlineTitle()
         .task { await store.load() }

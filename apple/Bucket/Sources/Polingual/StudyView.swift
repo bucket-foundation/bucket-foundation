@@ -32,6 +32,7 @@ struct StudyView: View {
             }
         }
         .paper()
+        .sharePage(sharePage)
         .navigationTitle(store.system(systemId)?.name ?? "Study")
         .inlineTitle()
         .task {
@@ -39,6 +40,12 @@ struct StudyView: View {
             await store.load()
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
+    }
+
+    var sharePage: SharePage? {
+        guard let system = store.system(systemId) else { return nil }
+        guard let ex = current, let item = store.corpus?.byId[ex.itemId] else { return .langs(system) }
+        return .word(item, system)
     }
 
     func startIfReady() {

@@ -76,6 +76,15 @@ struct BucketApp: App {
 
 enum AppTab: String, Hashable { case today, learn, canon, account }
 
+extension SharedLink {
+    var tab: AppTab {
+        switch self {
+        case .word, .home: .today
+        case .langs, .deck, .atom: .learn
+        }
+    }
+}
+
 enum Launch {
     static func value(_ flag: String) -> String? {
         let args = ProcessInfo.processInfo.arguments
@@ -102,6 +111,10 @@ struct RootView: View {
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .sharesScreenshots()
+        .onOpenURL { DeepLink.shared.open($0) }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
+        .onChange(of: DeepLink.shared.pending) { _, link in if let link { tab = link.tab } }
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
@@ -117,6 +130,11 @@ struct RootView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
         #if DEBUG
+        .task {
+            guard Launch.flag("-screenshotShare") else { return }
+            try? await Task.sleep(for: .seconds(6))
+            ScreenShare.shared.screenshotTaken()
+        }
         .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
             science.clearLocal()
             langs.clearLocal()

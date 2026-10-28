@@ -160,12 +160,13 @@ struct TranslateCard: View {
                             }
                             let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
                             if let image = Share.wordImage(gloss: query, words: words) {
-                                ShareLink(item: image, message: Text(words.map(\.form).joined(separator: " · ") + " \(Share.appLink.absoluteString)"), preview: SharePreview(query, image: image)) {
+                                ShareLink(item: SharePage.word(id: id, gloss: query, forms: words).url, message: Text(words.map(\.form).joined(separator: " · ")), preview: SharePreview(query, image: image)) {
                                     Image(systemName: "square.and.arrow.up").font(.headline)
                                 }
                                 .buttonStyle(.borderless)
                                 .accessibilityLabel("Share this word")
                             }
+                            Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: query, forms: words))
                         }
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
@@ -192,6 +193,12 @@ struct TranslateCard: View {
             .onChange(of: query) { picked = nil }
             .onChange(of: from) { picked = nil }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
+            .onChange(of: DeepLink.shared.translate, initial: true) { _, q in
+                guard let q else { return }
+                query = q
+                DeepLink.shared.translate = nil
+                DeepLink.shared.pending = nil
+            }
         }
     }
 

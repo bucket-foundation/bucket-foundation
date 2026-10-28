@@ -196,6 +196,7 @@ struct StudySession: View {
                         nothingDue
                     } else if position < queue.count, let atom = deck.byId[queue[position].id] {
                         card(queue[position], atom, count: queue.count)
+                            .sharePage(.atom(entry, atom))
                     } else {
                         done
                     }
