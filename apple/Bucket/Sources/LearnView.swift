@@ -152,7 +152,7 @@ struct DeckView: View {
                             if let atom = deck.byId[item.id] {
                                 NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
                                     HStack {
-                                        Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
+                                        Text(LessonText.inline(atom.title)).font(.serif(.body)).foregroundStyle(Palette.ink)
                                         Spacer()
                                         Text(item.kind == .review ? String(localized: "REVIEW") : String(localized: "NEW")).font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
                                     }
@@ -199,11 +199,11 @@ struct DeckView: View {
         return NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
             HStack(spacing: 10) {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(atom.title).font(.serif(.body, weight: .medium)).foregroundStyle(open ? Palette.ink : Palette.muted)
+                    Text(LessonText.inline(atom.title)).font(.serif(.body, weight: .medium)).foregroundStyle(open ? Palette.ink : Palette.muted)
                     if !open {
                         Text("After \(atom.requires.count) prerequisite\(atom.requires.count == 1 ? "" : "s")").font(.caption).foregroundStyle(Palette.muted)
                     } else if !atom.summary.isEmpty {
-                        Text(atom.summary).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
+                        Text(LessonText.inline(atom.summary)).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
                     }
                 }
                 Spacer(minLength: 0)
@@ -226,15 +226,15 @@ struct AtomView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 if let type = atom.type { Eyebrow(text: type) }
-                Text(atom.title).font(.serif(.largeTitle, weight: .semibold)).foregroundStyle(Palette.ink)
-                Text(atom.summary).font(.serif(.title3)).foregroundStyle(Palette.ink.opacity(0.85))
+                Text(LessonText.inline(atom.title)).font(.serif(.largeTitle, weight: .semibold)).foregroundStyle(Palette.ink)
+                Text(LessonText.inline(atom.summary)).font(.serif(.title3)).foregroundStyle(Palette.ink.opacity(0.85))
                 if let eq = atom.equation, !eq.isEmpty { EquationView(tex: eq) }
                 if !atom.orderedDepths.isEmpty {
                     Picker("Depth", selection: $depth) {
                         ForEach(atom.orderedDepths, id: \.key) { d in Text(Self.depthName(d.key)).tag(d.key) }
                     }
                     .pickerStyle(.segmented)
-                    Text(atom.depths[depth] ?? "").font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+                    Text(LessonText.inline(atom.depths[depth] ?? "")).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
                         .textSelection(.enabled)
                 }
                 if let lesson = atom.lesson, !lesson.isEmpty {
@@ -367,10 +367,7 @@ struct LessonText: View {
     }
 
     static func inline(_ p: String) -> AttributedString {
-        var text = ""
-        var parts = p.components(separatedBy: "$")
-        if parts.count.isMultiple(of: 2) { parts = [p] }
-        for (i, part) in parts.enumerated() { text += i.isMultiple(of: 2) ? part : TeXLite.render(part) }
+        let text = TeXLite.prose(p)
         return (try? AttributedString(markdown: text, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))) ?? AttributedString(text)
     }
 }

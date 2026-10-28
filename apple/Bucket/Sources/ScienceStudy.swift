@@ -32,6 +32,7 @@ struct ScienceDrill: View {
             VStack(alignment: .leading, spacing: 14) {
                 Text(quiz.level).font(.subheadline).foregroundStyle(Palette.muted)
                 Text(LessonText.inline(quiz.prompt)).font(.serif(revealed ? .body : .title2, weight: .semibold)).foregroundStyle(revealed ? Palette.muted : Palette.ink)
+                if let eq = quiz.eq, !eq.isEmpty { EquationView(tex: eq) }
                 if revealed {
                     let long = quiz.answer.count > 320
                     Text(LessonText.inline(quiz.answer)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
@@ -114,7 +115,7 @@ struct AtomLesson: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             if !atom.summary.isEmpty {
-                Text(atom.summary).font(.serif(.title3)).foregroundStyle(Palette.ink.opacity(0.85))
+                Text(LessonText.inline(atom.summary)).font(.serif(.title3)).foregroundStyle(Palette.ink.opacity(0.85))
             }
             if let eq = atom.equation, !eq.isEmpty { EquationView(tex: eq) }
             if let lesson = atom.lesson, !lesson.isEmpty { LessonText(markdown: lesson) }
@@ -253,7 +254,7 @@ struct StudySession: View {
                     BranchTile(branch: entry.id)
                     Text("\(entry.title) · \(isNew ? "new atom" : "review")").font(.subheadline).foregroundStyle(Palette.muted)
                 }
-                Text(atom.title).font(.system(size: 26, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(LessonText.inline(atom.title)).font(.system(size: 26, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
                 if (isNew && !Launch.flag("-hideLesson")) || showLesson {
                     AtomLesson(atom: atom)
                 } else {
