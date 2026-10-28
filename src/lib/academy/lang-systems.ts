@@ -1120,7 +1120,7 @@ export function mergeSystems(a: SystemsDoc, b: SystemsDoc): SystemsDoc {
     const older = newer === s ? cur : s;
     const placement: Record<string, number> = {};
     const stamps: Record<string, number> = {};
-    for (const l of new Set([...Object.keys(cur.placement), ...Object.keys(s.placement)])) {
+    for (const l of Array.from(new Set([...Object.keys(cur.placement), ...Object.keys(s.placement)]))) {
       const ta = cur.placedAt?.[l];
       const tb = s.placedAt?.[l];
       const va = cur.placement[l];
