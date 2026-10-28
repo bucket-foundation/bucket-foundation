@@ -7,14 +7,16 @@ import {
   cheerDecision,
   CROCKFORD,
   currentWeek,
+  fetchAllPages,
+  visibleGroupIds,
   groupGoal,
   memberGraph,
   normalizeCheerKind,
   normalizeWeeklyGoal,
+  shiftDay,
   generateInviteCode,
   groupPreview,
   joinDecision,
-  leavePlan,
   memberSummary,
   normalizeDisplayName,
   normalizeGroupName,
@@ -86,14 +88,6 @@ test("joining checks membership, the group cap and the per-user cap", () => {
   assert.equal(joinDecision("family", six, "z", 0), "full");
   assert.equal(joinDecision("friends", six, "z", 0), "ok");
   assert.equal(joinDecision("friends", six, "z", 20), "joined_limit");
-});
-
-test("an owner leaving hands the group to the oldest member and the last one deletes it", () => {
-  const ms = [member("own", "2026-10-01", "owner"), member("late", "2026-10-09"), member("early", "2026-10-03")];
-  assert.deepEqual(leavePlan(ms, "own", "own"), { action: "leave", newOwner: "early" });
-  assert.deepEqual(leavePlan(ms, "own", "late"), { action: "leave", newOwner: null });
-  assert.deepEqual(leavePlan([member("own", "2026-10-01", "owner")], "own", "own"), { action: "delete" });
-  assert.deepEqual(leavePlan(ms, "own", "stranger"), { action: "not_member" });
 });
 
 test("only the owner removes members, and never themselves", () => {
@@ -265,14 +259,14 @@ test("cheers are capped at three a day per pair and nudges need an idle recipien
   const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02")];
   const sent = (n: number, at = NOW - 3600_000): CheerRow[] =>
     Array.from({ length: n }, (_, i) => ({ id: `x${i}`, group_id: "g1", from_id: "a", to_id: "b", kind: "cheer", created_at: new Date(at).toISOString(), seen_at: null }));
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(2), 5, NOW, "UTC"), "ok");
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3), 5, NOW, "UTC"), "cheer_limit");
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3, NOW - DAY), 5, NOW, "UTC"), "ok");
-  assert.equal(cheerDecision(ms, "b", "a", "cheer", sent(3), 5, NOW, "UTC"), "ok");
-  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 1, NOW, "UTC"), "nudge_not_needed");
-  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 0, NOW, "UTC"), "ok");
-  assert.equal(cheerDecision(ms, "a", "a", "cheer", [], 0, NOW, "UTC"), "self");
-  assert.equal(cheerDecision(ms, "a", "c", "cheer", [], 0, NOW, "UTC"), "not_member");
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(2), 5, NOW), "ok");
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3), 5, NOW), "cheer_limit");
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3, NOW - DAY), 5, NOW), "ok");
+  assert.equal(cheerDecision(ms, "b", "a", "cheer", sent(3), 5, NOW), "ok");
+  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 1, NOW), "nudge_not_needed");
+  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 0, NOW), "ok");
+  assert.equal(cheerDecision(ms, "a", "a", "cheer", [], 0, NOW), "self");
+  assert.equal(cheerDecision(ms, "a", "c", "cheer", [], 0, NOW), "not_member");
   assert.equal(normalizeCheerKind("nudge"), "nudge");
   assert.equal(normalizeCheerKind("poke"), null);
 });
@@ -305,4 +299,45 @@ test("a group carries its goal and the cheers I sent or received", () => {
     { id: "1", from: "a", fromName: "A", to: "b", kind: "cheer", at: "2026-10-28T10:00:00Z", seen: false },
   ]);
   assert.equal(assembleGroup({ ...group, weekly_goal: 0 }, ms, new Map(), "b").goal, null);
+});
+
+test("day steps follow the calendar across a DST change", () => {
+  assert.equal(shiftDay("2026-3-9", -1), "2026-3-8");
+  assert.equal(shiftDay("2026-3-1", -1), "2026-2-28");
+  assert.equal(shiftDay("2026-12-31", 1), "2027-1-1");
+  const justAfter = Date.UTC(2026, 2, 9, 4, 30);
+  const rows = [{ branch: "physics", data: { cards: {}, stats: { streak: 6, lastStudyDay: "2026-3-8" } } }];
+  assert.equal(memberSummary(rows, lookup, justAfter, "America/New_York").streak, 6);
+  const sundayNight = currentWeek(Date.UTC(2026, 2, 9, 3, 30), "America/New_York");
+  assert.equal(sundayNight.weekStart, "2026-03-02");
+  assert.deepEqual(sundayNight.keys, ["2026-3-8", "2026-3-7", "2026-3-6", "2026-3-5", "2026-3-4", "2026-3-3", "2026-3-2"]);
+});
+
+test("cheer limits count UTC days whatever the caller's zone", () => {
+  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02")];
+  const lateUtc = Date.UTC(2026, 9, 28, 23, 0);
+  const sent: CheerRow[] = [0, 1, 2].map((i) => ({ id: `y${i}`, group_id: "g1", from_id: "a", to_id: "b", kind: "cheer", created_at: new Date(Date.UTC(2026, 9, 28, 1 + i)).toISOString(), seen_at: null }));
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent, 0, lateUtc), "cheer_limit");
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent, 0, Date.UTC(2026, 9, 29, 0, 30)), "ok");
+});
+
+test("groups load only where I am a member", () => {
+  const mine = [member("me", "2026-10-01", "member", "g1"), member("me", "2026-10-02", "owner", "g2")];
+  assert.deepEqual(visibleGroupIds(mine), ["g1", "g2"]);
+  assert.deepEqual(visibleGroupIds(mine, ["g2", "g9"]), ["g2"]);
+  assert.deepEqual(visibleGroupIds([], ["g1"]), []);
+});
+
+test("paging reads past the 1000 row cap and stops on a short page", async () => {
+  const total = 2345;
+  const calls: [number, number][] = [];
+  const rows = await fetchAllPages(async (from, to) => {
+    calls.push([from, to]);
+    return Array.from({ length: Math.max(0, Math.min(to, total - 1) - from + 1) }, (_, i) => from + i);
+  });
+  assert.equal(rows.length, total);
+  assert.deepEqual(calls, [[0, 999], [1000, 1999], [2000, 2999]]);
+  const exact = await fetchAllPages(async (from) => (from === 0 ? [1, 2] : []), 2);
+  assert.deepEqual(exact, [1, 2]);
+  await assert.rejects(fetchAllPages(async () => [1], 1, 3));
 });

@@ -8,7 +8,9 @@ import { buildLangCorpus, type LangCorpus } from "./lang-systems";
 import {
   assembleGroup,
   currentWeek,
+  fetchAllPages,
   generateInviteCode,
+  visibleGroupIds,
   memberSummary,
   type BranchRow,
   type CheerRow,
@@ -176,7 +178,10 @@ export const words: WordLookup = (lang, itemId) => {
 
 export async function progressRows(userIds: string[]): Promise<(BranchRow & { user_id: string })[]> {
   if (userIds.length === 0) return [];
-  return (check(await service().from(PROGRESS).select("user_id,branch,data").in("user_id", userIds), "progress read") ?? []) as (BranchRow & { user_id: string })[];
+  return fetchAllPages(async (from, to) => {
+    const res = await service().from(PROGRESS).select("user_id,branch,data").in("user_id", userIds).order("user_id").order("branch").range(from, to);
+    return (check(res, "progress read") ?? []) as (BranchRow & { user_id: string })[];
+  });
 }
 
 export async function summaries(userIds: string[], now: number, tz?: string): Promise<Map<string, MemberSummary>> {
@@ -193,13 +198,15 @@ export async function summaries(userIds: string[], now: number, tz?: string): Pr
   return out;
 }
 
+async function groupsByIds(ids: string[]): Promise<GroupRow[]> {
+  return (check(await service().from(GROUPS).select(GROUP_COLS).in("id", ids), "groups read") ?? []) as GroupRow[];
+}
+
 export async function groupsFor(uid: string, groupIds?: string[], tz?: string): Promise<Group[]> {
-  const ids = groupIds ?? (await membershipsOf(uid)).map((m) => m.group_id);
+  const ids = visibleGroupIds(await membershipsOf(uid), groupIds);
   if (ids.length === 0) return [];
-  const groups = (check(await service().from(GROUPS).select(GROUP_COLS).in("id", ids), "groups read") ?? []) as GroupRow[];
-  const members = await membersOf(groups.map((g) => g.id));
-  const visible = groups.filter((g) => members.some((m) => m.group_id === g.id && m.user_id === uid));
-  const users = Array.from(new Set(members.filter((m) => visible.some((g) => g.id === m.group_id)).map((m) => m.user_id)));
+  const [visible, members] = await Promise.all([groupsByIds(ids), membersOf(ids)]);
+  const users = Array.from(new Set(members.map((m) => m.user_id)));
   const now = Date.now();
   const [sums, cheers] = await Promise.all([summaries(users, now, tz), cheersOf(uid, visible.map((g) => g.id), now)]);
   const { weekStart } = currentWeek(now, tz);

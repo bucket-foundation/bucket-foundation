@@ -2,7 +2,8 @@
 --
 -- Private `bucket` schema, reached only through the /api/academy/groups routes with a
 -- service-role client. Row-Level Security mirrors the API rules for defense in depth.
--- Triggers enforce the size limits so concurrent joins cannot overfill a group.
+-- Size limits, cheer limits, leaving and owner hand-off run inside the database under
+-- locks so concurrent requests cannot break them.
 --
 -- Idempotent: safe to re-run.
 
@@ -62,18 +63,14 @@ returns boolean language sql stable security definer set search_path = bucket as
   select exists (select 1 from bucket.learning_groups g where g.id = gid and g.owner_id = uid);
 $$;
 
-create or replace function bucket.shares_group(a uuid, b uuid)
-returns boolean language sql stable security definer set search_path = bucket as $$
-  select exists (
-    select 1 from bucket.group_members x
-    join bucket.group_members y on y.group_id = x.group_id
-    where x.user_id = a and y.user_id = b
-  );
-$$;
+drop function if exists bucket.shares_group(uuid, uuid);
 
 alter table bucket.learning_groups enable row level security;
 alter table bucket.group_members enable row level security;
 alter table bucket.group_cheers enable row level security;
+
+drop policy if exists group_mate_select on bucket.academy_progress;
+drop policy if exists sender_insert on bucket.group_cheers;
 
 do $$
 begin
@@ -118,26 +115,20 @@ begin
       using (auth.uid() in (from_id, to_id) and bucket.is_group_member(group_id, auth.uid()));
   end if;
 
-  if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'group_cheers' and policyname = 'sender_insert') then
-    create policy sender_insert on bucket.group_cheers for insert
-      with check (auth.uid() = from_id and bucket.is_group_member(group_id, from_id) and bucket.is_group_member(group_id, to_id));
-  end if;
-
   if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'group_cheers' and policyname = 'recipient_update') then
     create policy recipient_update on bucket.group_cheers for update
       using (auth.uid() = to_id)
       with check (auth.uid() = to_id);
   end if;
-
-  if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'academy_progress' and policyname = 'group_mate_select') then
-    create policy group_mate_select on bucket.academy_progress for select
-      using (bucket.shares_group(auth.uid(), user_id));
-  end if;
 end $$;
+
+revoke insert, update, delete on bucket.group_cheers from anon, authenticated;
+grant update (seen_at) on bucket.group_cheers to authenticated;
 
 create or replace function bucket.learning_groups_limit()
 returns trigger language plpgsql as $$
 begin
+  perform pg_advisory_xact_lock(hashtext('bucket.groups.owner:' || new.owner_id::text));
   if (select count(*) from bucket.learning_groups where owner_id = new.owner_id) >= 10 then
     raise exception 'owned_limit';
   end if;
@@ -154,6 +145,7 @@ returns trigger language plpgsql as $$
 declare
   cap int;
 begin
+  perform pg_advisory_xact_lock(hashtext('bucket.groups.member:' || new.user_id::text));
   select case kind when 'family' then 6 else 30 end into cap
     from bucket.learning_groups where id = new.group_id for update;
   if (select count(*) from bucket.group_members where group_id = new.group_id) >= cap then
@@ -169,3 +161,89 @@ drop trigger if exists group_members_limit on bucket.group_members;
 create trigger group_members_limit
   before insert on bucket.group_members
   for each row execute function bucket.group_members_limit();
+
+create or replace function bucket.send_cheer(p_group uuid, p_from uuid, p_to uuid, p_kind text)
+returns setof bucket.group_cheers language plpgsql security definer set search_path = bucket as $$
+declare
+  day_start timestamptz := date_trunc('day', now() at time zone 'utc') at time zone 'utc';
+begin
+  if p_from = p_to then
+    raise exception 'self';
+  end if;
+  perform pg_advisory_xact_lock(hashtext('bucket.groups.cheer:' || p_from::text || ':' || p_to::text));
+  if not bucket.is_group_member(p_group, p_from) or not bucket.is_group_member(p_group, p_to) then
+    raise exception 'not_member';
+  end if;
+  if (select count(*) from bucket.group_cheers
+      where from_id = p_from and to_id = p_to and created_at >= day_start) >= 3 then
+    raise exception 'cheer_limit';
+  end if;
+  return query
+    insert into bucket.group_cheers (group_id, from_id, to_id, kind)
+    values (p_group, p_from, p_to, p_kind)
+    returning *;
+end $$;
+
+create or replace function bucket.leave_group(p_group uuid, p_user uuid)
+returns text language plpgsql security definer set search_path = bucket as $$
+declare
+  v_owner uuid;
+  v_next  uuid;
+begin
+  select owner_id into v_owner from bucket.learning_groups where id = p_group for update;
+  if not found then
+    return 'not_found';
+  end if;
+  if not bucket.is_group_member(p_group, p_user) then
+    return 'not_member';
+  end if;
+  select user_id into v_next from bucket.group_members
+    where group_id = p_group and user_id <> p_user
+    order by joined_at, user_id limit 1;
+  if v_next is null then
+    delete from bucket.learning_groups where id = p_group;
+    return 'deleted';
+  end if;
+  if v_owner = p_user then
+    update bucket.learning_groups set owner_id = v_next where id = p_group;
+    update bucket.group_members set role = 'owner' where group_id = p_group and user_id = v_next;
+  end if;
+  delete from bucket.group_members where group_id = p_group and user_id = p_user;
+  return 'left';
+end $$;
+
+create or replace function bucket.hand_off_owned_groups()
+returns trigger language plpgsql security definer set search_path = bucket as $$
+declare
+  g record;
+  v_next uuid;
+begin
+  for g in select id from bucket.learning_groups where owner_id = old.id for update loop
+    select user_id into v_next from bucket.group_members
+      where group_id = g.id and user_id <> old.id
+      order by joined_at, user_id limit 1;
+    if v_next is not null then
+      update bucket.learning_groups set owner_id = v_next where id = g.id;
+      update bucket.group_members set role = 'owner' where group_id = g.id and user_id = v_next;
+    end if;
+  end loop;
+  return old;
+end $$;
+
+drop trigger if exists bucket_hand_off_owned_groups on auth.users;
+create trigger bucket_hand_off_owned_groups
+  before delete on auth.users
+  for each row execute function bucket.hand_off_owned_groups();
+
+revoke execute on function bucket.is_group_member(uuid, uuid) from public, anon;
+revoke execute on function bucket.is_group_owner(uuid, uuid) from public, anon;
+grant execute on function bucket.is_group_member(uuid, uuid) to authenticated;
+grant execute on function bucket.is_group_owner(uuid, uuid) to authenticated;
+
+revoke execute on function bucket.send_cheer(uuid, uuid, uuid, text) from public, anon, authenticated;
+revoke execute on function bucket.leave_group(uuid, uuid) from public, anon, authenticated;
+revoke execute on function bucket.hand_off_owned_groups() from public, anon, authenticated;
+revoke execute on function bucket.learning_groups_limit() from public, anon, authenticated;
+revoke execute on function bucket.group_members_limit() from public, anon, authenticated;
+grant execute on function bucket.send_cheer(uuid, uuid, uuid, text) to service_role;
+grant execute on function bucket.leave_group(uuid, uuid) to service_role;

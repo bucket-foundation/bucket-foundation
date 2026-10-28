@@ -211,17 +211,8 @@ export function joinDecision(kind: GroupKind, members: readonly MemberRow[], uid
   return "ok";
 }
 
-export type LeavePlan = { action: "delete" } | { action: "leave"; newOwner: string | null } | { action: "not_member" };
-
 function byJoined(a: MemberRow, b: MemberRow): number {
   return a.joined_at < b.joined_at ? -1 : a.joined_at > b.joined_at ? 1 : a.user_id < b.user_id ? -1 : a.user_id > b.user_id ? 1 : 0;
-}
-
-export function leavePlan(members: readonly MemberRow[], ownerId: string, uid: string): LeavePlan {
-  if (!members.some((m) => m.user_id === uid)) return { action: "not_member" };
-  const rest = members.filter((m) => m.user_id !== uid).sort(byJoined);
-  if (rest.length === 0) return { action: "delete" };
-  return { action: "leave", newOwner: uid === ownerId ? rest[0].user_id : null };
 }
 
 export type RemoveDecision = "ok" | "forbidden" | "self" | "not_member";
@@ -238,7 +229,8 @@ function asState(data: unknown): StoredEngineState | null {
 
 export function liveStreak(stats: StoredEngineState["stats"], now: number, tz?: string): number {
   const last = stats?.lastStudyDay;
-  return last && (last === dayKey(now, tz) || last === dayKey(now - DAY_MS, tz)) ? stats?.streak || 0 : 0;
+  const today = dayKey(now, tz);
+  return last && (last === today || last === shiftDay(today, -1)) ? stats?.streak || 0 : 0;
 }
 
 function dayCount(stats: StoredEngineState["stats"], key: string): number {
@@ -251,12 +243,18 @@ function isoDay(key: string): string {
   return `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
 }
 
+export function shiftDay(key: string, days: number): string {
+  const [y, m, d] = key.split("-").map(Number);
+  const t = new Date(Date.UTC(y, m - 1, d + days));
+  return t.getUTCFullYear() + "-" + (t.getUTCMonth() + 1) + "-" + t.getUTCDate();
+}
+
 export function currentWeek(now: number, tz?: string): { weekStart: string; keys: string[] } {
   const today = dayKey(now, tz);
   const [y, m, d] = today.split("-").map(Number);
   const sinceMonday = (new Date(Date.UTC(y, m - 1, d)).getUTCDay() + 6) % 7;
   const keys: string[] = [];
-  for (let i = 0; i <= sinceMonday; i++) keys.push(dayKey(now - i * DAY_MS, tz));
+  for (let i = 0; i <= sinceMonday; i++) keys.push(shiftDay(today, -i));
   return { weekStart: isoDay(keys[keys.length - 1]), keys };
 }
 
@@ -432,13 +430,12 @@ export function cheerDecision(
   kind: CheerKind,
   sent: readonly CheerRow[],
   recipientTodayReviews: number,
-  now: number,
-  tz?: string
+  now: number
 ): CheerDecision {
   if (from === to) return "self";
   if (!members.some((m) => m.user_id === from) || !members.some((m) => m.user_id === to)) return "not_member";
-  const today = dayKey(now, tz);
-  const count = sent.filter((c) => c.from_id === from && c.to_id === to && dayKey(Date.parse(c.created_at), tz) === today).length;
+  const today = dayKey(now, "UTC");
+  const count = sent.filter((c) => c.from_id === from && c.to_id === to && dayKey(Date.parse(c.created_at), "UTC") === today).length;
   if (count >= CHEERS_PER_DAY) return "cheer_limit";
   if (kind === "nudge" && recipientTodayReviews > 0) return "nudge_not_needed";
   return "ok";
@@ -495,4 +492,19 @@ export function assembleGroup(
 export function groupPreview(group: GroupRow, members: readonly MemberRow[]): { name: string; kind: GroupKind; members: number; owner: string } {
   const owner = members.find((m) => m.user_id === group.owner_id);
   return { name: group.name, kind: group.kind, members: members.length, owner: owner?.display_name ?? "" };
+}
+
+export function visibleGroupIds(memberships: readonly MemberRow[], requested?: readonly string[]): string[] {
+  const mine = Array.from(new Set(memberships.map((m) => m.group_id)));
+  return requested ? mine.filter((id) => requested.includes(id)) : mine;
+}
+
+export async function fetchAllPages<T>(page: (from: number, to: number) => Promise<T[]>, size = 1000, maxPages = 200): Promise<T[]> {
+  const out: T[] = [];
+  for (let i = 0; i < maxPages; i++) {
+    const rows = await page(i * size, (i + 1) * size - 1);
+    out.push(...rows);
+    if (rows.length < size) return out;
+  }
+  throw new Error("fetchAllPages: too many pages");
 }
