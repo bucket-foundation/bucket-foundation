@@ -9,6 +9,7 @@ struct PolingualApp: App {
     @State private var gate: Gate
     @State private var subs: Subscriptions
     @State private var reminders = Reminders()
+    @State private var groups: GroupStore
     @Environment(\.scenePhase) private var phase
 
     init() {
@@ -21,6 +22,7 @@ struct PolingualApp: App {
         Beta.shared.account = account
         _store = State(initialValue: store)
         _gate = State(initialValue: Gate(account: account))
+        _groups = State(initialValue: GroupStore(api: api, token: { await account.freshToken() }))
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
     }
 
@@ -35,11 +37,13 @@ struct PolingualApp: App {
                 .environment(gate)
                 .environment(subs)
                 .environment(reminders)
+                .environment(groups)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
                         if p == .active { await reminders.sync() }
+                        if p == .background { await CheerNotifier.post(groups) }
                         await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
                         WidgetSync.refresh(store)
                         #if os(iOS)

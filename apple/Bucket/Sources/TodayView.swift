@@ -177,6 +177,7 @@ struct TodayView: View {
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Palette.card)
+                TodayStrip()
                 if !reminders.enabled && !items.isEmpty {
                     Section { ReminderPrompt().padding(.vertical, 6) }
                         .listRowBackground(Palette.card)

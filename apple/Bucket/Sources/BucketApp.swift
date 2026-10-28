@@ -10,6 +10,7 @@ struct BucketApp: App {
     @State private var science: ScienceStore
     @State private var gate: Gate
     @State private var reminders = Reminders()
+    @State private var groups: GroupStore
     @Environment(\.scenePhase) private var phase
 
     init() {
@@ -27,6 +28,7 @@ struct BucketApp: App {
         #endif
         _science = State(initialValue: ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift }))
         _gate = State(initialValue: Gate(account: account))
+        _groups = State(initialValue: GroupStore(api: BucketAPI(), token: { await account.freshToken() }))
     }
 
     var body: some Scene {
@@ -41,11 +43,13 @@ struct BucketApp: App {
                 .environment(science)
                 .environment(gate)
                 .environment(reminders)
+                .environment(groups)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
                         if p == .active { await reminders.sync() }
+                        if p == .background { await CheerNotifier.post(groups) }
                         await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
                         await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
                         WidgetSync.refresh(langs, extra: scienceWidgetExtra(library, science))
@@ -83,6 +87,7 @@ extension SharedLink {
         switch self {
         case .word, .home: .today
         case .langs, .deck, .atom: .learn
+        case .group: .account
         }
     }
 }
@@ -114,6 +119,8 @@ struct RootView: View {
         }
         .tabViewStyle(.sidebarAdaptable)
         .sharesScreenshots()
+        .groupInvites()
+        .groupsOnToday()
         .onOpenURL { DeepLink.shared.open($0) }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .onChange(of: DeepLink.shared.pending) { _, link in

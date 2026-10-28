@@ -8,6 +8,12 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case unavailable
     case server(Int, String?)
     case decoding
+    case groupNotFound
+    case groupFull
+    case ownedLimit
+    case joinedLimit
+    case cheerLimit
+    case nudgeNotNeeded
 
     public var errorDescription: String? {
         switch self {
@@ -18,6 +24,12 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .unavailable: "Sign-in is unavailable right now."
         case .server(let s, let m): m ?? "Bucket answered \(s)."
         case .decoding: "Bucket sent a reply this version cannot read."
+        case .groupNotFound: "That invite link no longer works. Ask for a new one."
+        case .groupFull: "This group is full."
+        case .ownedLimit: "You already own 10 groups."
+        case .joinedLimit: "You already belong to 20 groups."
+        case .cheerLimit: "You sent them 3 today. Try again tomorrow."
+        case .nudgeNotNeeded: "They already studied today."
         }
     }
 }
