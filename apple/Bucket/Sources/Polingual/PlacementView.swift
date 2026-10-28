@@ -62,11 +62,11 @@ struct PlacementView: View {
     }
 
     func confirmKnown(_ system: LangSystem) {
-        picking = false
         let order = system.targets.filter { known.contains($0) }
         queue = order.joined(separator: ",")
         Task {
             for l in system.targets where !known.contains(l) { await store.unplace(system.id, lang: l) }
+            picking = false
             if let first = order.first {
                 begin(first)
             } else {

@@ -75,6 +75,7 @@ final class LangListener {
     static let shared = LangListener()
     @ObservationIgnored private let engine = AVAudioEngine()
     @ObservationIgnored private var current: SpeechRun?
+    @ObservationIgnored private var stopEarly = false
     private(set) var live = ""
 
     var supported: Bool {
@@ -135,14 +136,18 @@ final class LangListener {
     nonisolated static let maxSentence: TimeInterval = 15
 
     func stop() {
-        guard let run = current else { return }
+        guard let run = current else {
+            stopEarly = true
+            return
+        }
         run.request.endAudio()
         run.task?.finish()
         run.finish(run.heard.alts)
     }
 
     func listenOnce(_ lang: String, limit: TimeInterval = LangListener.maxListen) async -> [String] {
-        guard await authorize(), let rec = SFSpeechRecognizer(locale: Locale(identifier: Lang.info[lang]?.bcp47 ?? lang)), rec.isAvailable else { return [] }
+        stopEarly = false
+        guard await authorize(), !stopEarly, let rec = SFSpeechRecognizer(locale: Locale(identifier: Lang.info[lang]?.bcp47 ?? lang)), rec.isAvailable else { return [] }
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
         request.requiresOnDeviceRecognition = rec.supportsOnDeviceRecognition
@@ -170,7 +175,7 @@ final class LangListener {
             Self.watch(run, started: Date(), limit: limit)
         }
         shown.cancel()
-        current = nil
+        if current === run { current = nil }
         live = result.first ?? live
         engine.stop()
         input.removeTap(onBus: 0)
