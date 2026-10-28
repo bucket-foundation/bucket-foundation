@@ -20,6 +20,7 @@ struct BucketApp: App {
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
         PushRegistry.shared.token = { await account.freshToken() }
+        PushRegistry.shared.user = { account.session?.userId }
         let langs = LangStore(api: BucketAPI(), token: { await account.freshToken() })
         LangVoice.shared.store = langs
         _account = State(initialValue: account)

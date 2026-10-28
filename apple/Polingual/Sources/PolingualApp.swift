@@ -22,6 +22,7 @@ struct PolingualApp: App {
         let store = LangStore(api: api, token: { await account.freshToken() })
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
+        PushRegistry.shared.user = { account.session?.userId }
         LangVoice.shared.store = store
         _account = State(initialValue: account)
         Beta.shared.account = account
