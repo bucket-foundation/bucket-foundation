@@ -12,10 +12,14 @@ struct BucketApp: App {
     @State private var reminders = Reminders()
     @State private var groups: GroupStore
     @Environment(\.scenePhase) private var phase
+    #if os(iOS)
+    @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
+    #endif
 
     init() {
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
+        PushRegistry.shared.token = { await account.freshToken() }
         let langs = LangStore(api: BucketAPI(), token: { await account.freshToken() })
         LangVoice.shared.store = langs
         _account = State(initialValue: account)
@@ -48,7 +52,10 @@ struct BucketApp: App {
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
-                        if p == .active { await reminders.sync() }
+                        if p == .active {
+                            await reminders.sync()
+                            await PushRegistry.shared.refresh()
+                        }
                         if p == .background { await CheerNotifier.post(groups) }
                         await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
                         await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
@@ -61,7 +68,10 @@ struct BucketApp: App {
                     }
                 }
                 .onChange(of: reminders.wordOfDay) {
-                    backgroundSafe { await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay) }
+                    backgroundSafe {
+                        await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
+                        await PushRegistry.shared.refresh()
+                    }
                 }
                 .task {
                     await reminders.sync()
@@ -70,7 +80,10 @@ struct BucketApp: App {
                     #endif
                 }
                 .onChange(of: reminders.enabled) {
-                    backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
+                    backgroundSafe {
+                        await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
+                        await PushRegistry.shared.refresh()
+                    }
                 }
                 .tint(Palette.green)
         }
@@ -134,6 +147,7 @@ struct RootView: View {
             if new == .signedIn && old != .signedIn {
                 Task { await langs.syncAfterSignIn() }
                 Task { await science.syncAfterSignIn() }
+                Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {
                 science.clearLocal()
@@ -142,6 +156,7 @@ struct RootView: View {
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
+        .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG
         .task {
             guard Launch.flag("-screenshotShare") else { return }
@@ -156,6 +171,7 @@ struct RootView: View {
         #endif
         .task {
             account.beforeSignOut = {
+                await PushRegistry.shared.unregister()
                 await science.flush()
                 await langs.flush()
             }

@@ -11,12 +11,17 @@ struct PolingualApp: App {
     @State private var reminders = Reminders()
     @State private var groups: GroupStore
     @Environment(\.scenePhase) private var phase
+    #if os(iOS)
+    @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
+    #endif
 
     init() {
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let api = BucketAPI()
         let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
         let store = LangStore(api: api, token: { await account.freshToken() })
+        PushRegistry.shared.api = api
+        PushRegistry.shared.token = { await account.freshToken() }
         LangVoice.shared.store = store
         _account = State(initialValue: account)
         Beta.shared.account = account
@@ -42,7 +47,10 @@ struct PolingualApp: App {
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
-                        if p == .active { await reminders.sync() }
+                        if p == .active {
+                            await reminders.sync()
+                            await PushRegistry.shared.refresh()
+                        }
                         if p == .background { await CheerNotifier.post(groups) }
                         await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
                         WidgetSync.refresh(store)
@@ -60,10 +68,16 @@ struct PolingualApp: App {
                     #endif
                 }
                 .onChange(of: reminders.wordOfDay) {
-                    backgroundSafe { await WordOfDayReminder.schedule(store, enabled: reminders.wordOfDay) }
+                    backgroundSafe {
+                        await WordOfDayReminder.schedule(store, enabled: reminders.wordOfDay)
+                        await PushRegistry.shared.refresh()
+                    }
                 }
                 .onChange(of: reminders.enabled) {
-                    backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
+                    backgroundSafe {
+                        await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
+                        await PushRegistry.shared.refresh()
+                    }
                 }
                 .task {
                     await reminders.sync()

@@ -260,4 +260,9 @@ final class NotificationPresenter: NSObject, UNUserNotificationCenterDelegate, S
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
         [.banner, .list, .sound]
     }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        guard PushToken.isCheer(response.notification.request.content.userInfo) else { return }
+        await MainActor.run { NotificationCenter.default.post(name: .openToday, object: nil) }
+    }
 }
