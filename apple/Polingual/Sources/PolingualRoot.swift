@@ -29,6 +29,9 @@ struct PolingualRoot: View {
             }
         }
         .task { if subs.access == .checking { await subs.refresh() } }
+        .onOpenURL { DeepLink.shared.open($0) }
+        .groupInvites()
+        .groupsOnToday()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn { Task { await store.syncAfterSignIn() } }
