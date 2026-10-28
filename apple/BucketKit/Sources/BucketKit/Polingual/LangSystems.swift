@@ -783,7 +783,7 @@ public func joinTokens(_ tokens: [String], _ lang: String) -> String {
 }
 
 public func learnerLevel(_ state: EngineState, _ lang: String) -> Int {
-    let n = state.cards.keys.filter { $0.hasPrefix("\(lang):") && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
+    let n = state.cards.keys.filter { state.cards.started($0) && $0.hasPrefix("\(lang):") && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
     return n < 60 ? 1 : n < 150 ? 2 : 3
 }
 
@@ -1020,8 +1020,8 @@ public func unitStatus(_ system: LangSystem, _ corpus: LangCorpus, _ state: Engi
     var prevDone = true
     for unit in corpus.units {
         let items = corpus.items.filter { $0.unit == unit.index && isVocab($0) && usable($0, system.root, lang) }
-        let started = items.filter { state.cards.has(cardId(lang, $0.id)) }.count
-        let covered = items.filter { state.cards.has(cardId(lang, $0.id)) || $0.tier < (system.placement[lang] ?? 0) }.count
+        let started = items.filter { state.cards.started(cardId(lang, $0.id)) }.count
+        let covered = items.filter { state.cards.started(cardId(lang, $0.id)) || $0.tier < (system.placement[lang] ?? 0) }.count
         let done = items.isEmpty || Double(covered) / Double(items.count) >= Lang.unitUnlockShare
         out.append(UnitStatus(unit: unit, total: items.count, started: started, unlocked: prevDone, done: done))
         prevDone = prevDone && done
@@ -1099,7 +1099,7 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
             if !unlocked[l]!.contains(item.unit) { continue }
             if isVocab(item) && item.tier < (system.placement[l] ?? 0) { continue }
             if !isVocab(item) && !grammarReady(item, l, state) { continue }
-            if state.cards.has(cardId(l, item.id)) { continue }
+            if state.cards.started(cardId(l, item.id)) { continue }
             fresh.append(SessionCard(itemId: item.id, lang: l))
             budget[l]! -= 1
         }
@@ -1109,7 +1109,7 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
 
 public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil) -> EngineState {
     let id = cardId(lang, itemId)
-    let wasNew = state.cards[id] == nil
+    let wasNew = !state.cards.started(id)
     var next = grade(state, id: id, rating: rating, level: "recall", now: now, tz: tz)
     if wasNew { next.cards[id]!.introduced = dayKey(now, tzName: tz) } else if let i = state.cards[id]?.introduced { next.cards[id]!.introduced = i }
     return next
@@ -1177,7 +1177,7 @@ public func applyPlacement(_ state: EngineState, _ system: LangSystem, _ corpus:
         if !isVocab(item) || !usable(item, system.root, lang) { continue }
         if let only { if !only.contains(item.id) { continue } } else if item.tier >= tier { continue }
         let id = cardId(lang, item.id)
-        if next.cards.has(id) { continue }
+        if next.cards.started(id) { continue }
         var c = fsrs.review(Card(state: "new"), 4, now: now)
         c.placed = true
         c.introduced = dayKey(now, tz: tz)
@@ -1188,18 +1188,13 @@ public func applyPlacement(_ state: EngineState, _ system: LangSystem, _ corpus:
     return next
 }
 
-public func unplace(_ state: EngineState, _ lang: String, now: Double, tz: TimeZone = .current) -> EngineState {
+public func unplace(_ state: EngineState, _ lang: String, now: Double) -> EngineState {
     var next = state
-    let fsrs = next.fsrs
-    var reset: [String] = []
-    for (id, c) in state.cards.entries where parseCardId(id).lang == lang && isPlacedReview(c) {
-        var fresh = fsrs.review(Card(state: "new"), 1, now: now)
-        fresh.placed = true
-        fresh.introduced = dayKey(now, tz: tz)
+    for (id, c) in state.cards.entries where parseCardId(id).lang == lang && c.placed == true {
+        var fresh = Card(state: "new")
+        fresh.lastReview = now
         next.cards[id] = fresh
-        reset.append(id)
     }
-    spreadPlaced(&next.cards, reset, now: now)
     return next
 }
 
@@ -1248,7 +1243,7 @@ public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: Engi
     var out: [QueueEntry] = heritage ? letterQueue(system, state, now: now) : []
     var pending: [(at: Int, e: QueueEntry)] = []
     for c in plan {
-        let isNew = !state.cards.has(cardId(c.lang, c.itemId))
+        let isNew = !state.cards.started(cardId(c.lang, c.itemId))
         let vocab = isVocab(corpus.byId[c.itemId]!)
         out.append(QueueEntry(itemId: c.itemId, lang: c.lang, stage: isNew && vocab ? .intro : isNew ? .check : .review))
         if isNew && vocab { pending.append((out.count + Lang.checkGap, QueueEntry(itemId: c.itemId, lang: c.lang, stage: .check))) }
@@ -1267,7 +1262,7 @@ public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: Engi
             seen[itemId]!.insert(lang)
         }
         for e in out { note(e.itemId, e.lang) }
-        for id in state.cards.keys {
+        for id in state.cards.keys where state.cards.started(id) {
             let p = parseCardId(id)
             if system.targets.contains(p.lang) { note(p.itemId, p.lang) }
         }
@@ -1371,7 +1366,7 @@ public func langProgress(_ system: LangSystem, _ corpus: LangCorpus, _ state: En
         var due = 0
         var rSum = 0.0
         for i in all {
-            guard let c = state.cards[cardId(lang, i.id)] else { continue }
+            guard let c = state.cards[cardId(lang, i.id)], isStarted(c) else { continue }
             if let d = c.due, d <= now { due += 1 }
             if !isVocab(i) { continue }
             started += 1
@@ -1380,7 +1375,7 @@ public func langProgress(_ system: LangSystem, _ corpus: LangCorpus, _ state: En
             rSum += fsrs.retrievability(elapsed, c.stability ?? 0)
         }
         return LangProgress(lang: lang, total: items.count, started: started, mastered: mastered, due: due, retention: started > 0 ? rSum / Double(started) : 0,
-                            placedAt: system.placement[lang], grammarStarted: grammar.filter { state.cards.has(cardId(lang, $0.id)) }.count, grammarTotal: grammar.count)
+                            placedAt: system.placement[lang], grammarStarted: grammar.filter { state.cards.started(cardId(lang, $0.id)) }.count, grammarTotal: grammar.count)
     }
 }
 

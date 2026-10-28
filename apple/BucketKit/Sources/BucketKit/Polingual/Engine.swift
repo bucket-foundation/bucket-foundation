@@ -399,6 +399,12 @@ public func spreadPlaced(_ cards: inout OrderedMap<Card>, _ ids: [String], now: 
     }
 }
 
+public func isStarted(_ c: Card?) -> Bool { c.map { $0.state != "new" } ?? false }
+
+extension OrderedMap where Value == Card {
+    public func started(_ id: String) -> Bool { isStarted(self[id]) }
+}
+
 func untouchedPlaced(_ c: Card) -> Bool { c.placed == true && c.reps == 1 && c.spread != true }
 
 public func spreadingUntouchedPlaced(_ state: EngineState, now: Double) -> EngineState {
