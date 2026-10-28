@@ -10,7 +10,7 @@ APP = "6825123451"
 SUBTITLE = "One word, every language. Learn it free."
 HOST = "https://www.bucket.foundation"
 INVOCATIONS = [
-    ("A word in four languages", f"{HOST}/s/w?id=night&g=night&f=fr:nuit|es:noche|it:notte|de:Nacht"),
+    ("A word in four languages", f"{HOST}/s/w?id=night&g=night&f=fr%3Anuit%7Ces%3Anoche%7Cit%3Anotte%7Cde%3ANacht"),
     ("A language set", f"{HOST}/s/l?l=fr.es.it&r=en"),
     ("A physics lesson", f"{HOST}/s/a?d=physics&id=newton-2&t=Newton%27s%20second%20law&b=Physics&q=Force%20equals%20mass%20times%20acceleration."),
 ]
