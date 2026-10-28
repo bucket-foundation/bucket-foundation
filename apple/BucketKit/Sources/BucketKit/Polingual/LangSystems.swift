@@ -1234,6 +1234,15 @@ public func letterExerciseFor(_ lang: String, _ root: String, _ itemId: String, 
     return letterExercise(lang, root, index, &rng)
 }
 
+func matchPick(_ candidates: [String], _ system: LangSystem, _ corpus: LangCorpus, inSession: Set<String>, seed: String) -> String? {
+    let fresh = candidates.filter { inSession.contains($0) }
+    let base = fresh.isEmpty ? candidates : fresh
+    let rooted = base.filter { sharedRootLangs(corpus.byId[$0]!, system).count >= 2 }
+    let pool = rooted.isEmpty ? base : rooted
+    guard !pool.isEmpty else { return nil }
+    return pool[Int(placedHash(seed) % UInt32(pool.count))]
+}
+
 public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, heritage: Bool = false) -> [QueueEntry] {
     let plan = planSession(system, corpus, state, now: now, size: size, tz: tz)
     var out: [QueueEntry] = heritage ? letterQueue(system, state, now: now) : []
@@ -1267,8 +1276,9 @@ public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: Engi
             let covered = system.targets.filter { item.form($0) != nil }
             return covered.count >= 2 && covered.allSatisfy { seen[itemId]!.contains($0) } && Set(covered.map { item.forms[$0]! }).count == covered.count
         }
-        let roots = { (id: String) in sharedRootLangs(corpus.byId[id]!, system).count }
-        if let best = candidates.stableSorted({ roots($0) > roots($1) }).first { out.append(QueueEntry(itemId: best, lang: system.targets[0], stage: .match)) }
+        if let pick = matchPick(candidates, system, corpus, inSession: Set(out.map(\.itemId)), seed: "\(system.id)|\(dayKey(now, tz: tz))|\(state.cards.count)") {
+            out.append(QueueEntry(itemId: pick, lang: system.targets[0], stage: .match))
+        }
     }
     return out
 }

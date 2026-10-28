@@ -187,7 +187,7 @@
     "es:hundred:intro",
     "fr:hundred:check",
     "es:hundred:check",
-    "fr:eight:match",
+    "fr:half:match",
     "fr:hundred:review"
    ],
    "rows": [
@@ -935,9 +935,9 @@
      "stage": "match",
      "ex": {
       "kind": "match",
-      "itemId": "eight",
+      "itemId": "half",
       "lang": "fr",
-      "prompt": "eight",
+      "prompt": "half",
       "promptLang": "en",
       "answer": "",
       "answerLang": "fr",
@@ -945,9 +945,9 @@
       "tokens": null,
       "accept": null,
       "pairs": [
-       "fr=huit",
-       "es=ocho",
-       "it=otto"
+       "fr=moitié",
+       "es=mitad",
+       "it=metà"
       ],
       "family": [],
       "cloze": null,
@@ -1076,16 +1076,16 @@
    "day": 0,
    "session": 2,
    "queue": [
-    "fr:eight:match"
+    "fr:five:match"
    ],
    "rows": [
     {
      "stage": "match",
      "ex": {
       "kind": "match",
-      "itemId": "eight",
+      "itemId": "five",
       "lang": "fr",
-      "prompt": "eight",
+      "prompt": "five",
       "promptLang": "en",
       "answer": "",
       "answerLang": "fr",
@@ -1093,9 +1093,9 @@
       "tokens": null,
       "accept": null,
       "pairs": [
-       "fr=huit",
-       "it=otto",
-       "es=ocho"
+       "fr=cinq",
+       "it=cinque",
+       "es=cinco"
       ],
       "family": [],
       "cloze": null,
@@ -1317,13 +1317,16 @@
     "fr:one:intro",
     "it:one:intro",
     "fr:number:review",
-    "fr:g-hundred:check",
-    "es:g-hundred:check",
+    "fr:g-half:check",
+    "es:g-half:check",
     "fr:one:check",
     "it:one:check",
+    "it:g-half:check",
+    "fr:g-hundred:check",
+    "es:g-hundred:check",
+    "it:one:review",
     "it:g-hundred:check",
-    "fr:number:match",
-    "it:one:review"
+    "fr:number:match"
    ],
    "rows": [
     {
@@ -1608,11 +1611,11 @@
      "stage": "check",
      "ex": {
       "kind": "gender",
-      "itemId": "g-hundred",
+      "itemId": "g-half",
       "lang": "fr",
-      "prompt": "cent",
+      "prompt": "moitié",
       "promptLang": "fr",
-      "answer": "le",
+      "answer": "la",
       "answerLang": "fr",
       "options": [
        "le",
@@ -1625,11 +1628,11 @@
       "family": null,
       "cloze": [
        "",
-       " cent"
+       " moitié"
       ],
       "person": null,
       "tense": null,
-      "note": "le cent",
+      "note": "la moitié",
       "sentenceId": null
      }
     },
@@ -1637,11 +1640,11 @@
      "stage": "check",
      "ex": {
       "kind": "gender",
-      "itemId": "g-hundred",
+      "itemId": "g-half",
       "lang": "es",
-      "prompt": "cien",
+      "prompt": "mitad",
       "promptLang": "es",
-      "answer": "el",
+      "answer": "la",
       "answerLang": "es",
       "options": [
        "la",
@@ -1653,11 +1656,11 @@
       "family": null,
       "cloze": [
        "",
-       " cien"
+       " mitad"
       ],
       "person": null,
       "tense": null,
-      "note": "el cien",
+      "note": "la mitad",
       "sentenceId": null
      }
     },
@@ -1721,11 +1724,11 @@
      "stage": "check",
      "ex": {
       "kind": "gender",
-      "itemId": "g-hundred",
+      "itemId": "g-half",
       "lang": "it",
-      "prompt": "cento",
+      "prompt": "metà",
       "promptLang": "it",
-      "answer": "il",
+      "answer": "la",
       "answerLang": "it",
       "options": [
        "il",
@@ -1739,40 +1742,68 @@
       "family": null,
       "cloze": [
        "",
-       " cento"
+       " metà"
       ],
       "person": null,
       "tense": null,
-      "note": "il cento",
+      "note": "la metà",
       "sentenceId": null
      }
     },
     {
-     "stage": "match",
+     "stage": "check",
      "ex": {
-      "kind": "match",
-      "itemId": "number",
+      "kind": "gender",
+      "itemId": "g-hundred",
       "lang": "fr",
-      "prompt": "number",
-      "promptLang": "en",
-      "answer": "",
+      "prompt": "cent",
+      "promptLang": "fr",
+      "answer": "le",
       "answerLang": "fr",
-      "options": null,
+      "options": [
+       "l'",
+       "la",
+       "le"
+      ],
       "tokens": null,
       "accept": null,
-      "pairs": [
-       "it=numero",
-       "es=número",
-       "fr=nombre"
+      "pairs": null,
+      "family": null,
+      "cloze": [
+       "",
+       " cent"
       ],
-      "family": [
-       "en=number",
-       "es=número"
-      ],
-      "cloze": null,
       "person": null,
       "tense": null,
-      "note": null,
+      "note": "le cent",
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "gender",
+      "itemId": "g-hundred",
+      "lang": "es",
+      "prompt": "cien",
+      "promptLang": "es",
+      "answer": "el",
+      "answerLang": "es",
+      "options": [
+       "la",
+       "el"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": [
+       "",
+       " cien"
+      ],
+      "person": null,
+      "tense": null,
+      "note": "el cien",
       "sentenceId": null
      }
     },
@@ -1789,7 +1820,7 @@
       "options": [
        "metà",
        "nove",
-       "quattro",
+       "numero",
        "uno"
       ],
       "tokens": null,
@@ -1802,148 +1833,22 @@
       "note": null,
       "sentenceId": null
      }
-    }
-   ]
-  },
-  {
-   "day": 1,
-   "session": 1,
-   "queue": [
-    "es:four:review",
-    "fr:half:review",
-    "fr:g-number:check",
-    "es:g-number:check",
-    "it:g-number:check",
-    "fr:number:match",
-    "es:g-number:review"
-   ],
-   "rows": [
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "reverse",
-      "itemId": "four",
-      "lang": "es",
-      "prompt": "cuatro",
-      "promptLang": "es",
-      "answer": "four",
-      "answerLang": "en",
-      "options": [
-       "eight",
-       "half",
-       "hundred",
-       "four"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "half",
-      "lang": "fr",
-      "prompt": "half",
-      "promptLang": "en",
-      "answer": "moitié",
-      "answerLang": "fr",
-      "options": [
-       "moitié",
-       "quatre",
-       "nombre",
-       "cinq"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
     },
     {
      "stage": "check",
      "ex": {
       "kind": "gender",
-      "itemId": "g-number",
-      "lang": "fr",
-      "prompt": "nombre",
-      "promptLang": "fr",
-      "answer": "le",
-      "answerLang": "fr",
-      "options": [
-       "l'",
-       "la",
-       "le"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": [
-       "",
-       " nombre"
-      ],
-      "person": null,
-      "tense": null,
-      "note": "le nombre",
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "gender",
-      "itemId": "g-number",
-      "lang": "es",
-      "prompt": "número",
-      "promptLang": "es",
-      "answer": "el",
-      "answerLang": "es",
-      "options": [
-       "el",
-       "la"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": [
-       "",
-       " número"
-      ],
-      "person": null,
-      "tense": null,
-      "note": "el número",
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "gender",
-      "itemId": "g-number",
+      "itemId": "g-hundred",
       "lang": "it",
-      "prompt": "numero",
+      "prompt": "cento",
       "promptLang": "it",
       "answer": "il",
       "answerLang": "it",
       "options": [
-       "lo",
        "l'",
        "la",
-       "il"
+       "il",
+       "lo"
       ],
       "tokens": null,
       "accept": null,
@@ -1951,11 +1856,11 @@
       "family": null,
       "cloze": [
        "",
-       " numero"
+       " cento"
       ],
       "person": null,
       "tense": null,
-      "note": "il numero",
+      "note": "il cento",
       "sentenceId": null
      }
     },
@@ -1987,9 +1892,104 @@
       "note": null,
       "sentenceId": null
      }
+    }
+   ]
+  },
+  {
+   "day": 1,
+   "session": 1,
+   "queue": [
+    "it:eight:review",
+    "es:four:review",
+    "fr:half:review",
+    "es:g-number:check",
+    "it:eight:review",
+    "fr:eight:match"
+   ],
+   "rows": [
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "reverse",
+      "itemId": "eight",
+      "lang": "it",
+      "prompt": "otto",
+      "promptLang": "it",
+      "answer": "eight",
+      "answerLang": "en",
+      "options": [
+       "five",
+       "half",
+       "hundred",
+       "eight"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
     },
     {
      "stage": "review",
+     "ex": {
+      "kind": "listen",
+      "itemId": "four",
+      "lang": "es",
+      "prompt": "cuatro",
+      "promptLang": "es",
+      "answer": "four",
+      "answerLang": "en",
+      "options": [
+       "four",
+       "half",
+       "number",
+       "five"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "listen",
+      "itemId": "half",
+      "lang": "fr",
+      "prompt": "moitié",
+      "promptLang": "fr",
+      "answer": "half",
+      "answerLang": "en",
+      "options": [
+       "four",
+       "nine",
+       "half",
+       "number"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
      "ex": {
       "kind": "gender",
       "itemId": "g-number",
@@ -2015,6 +2015,59 @@
       "note": "el número",
       "sentenceId": null
      }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "eight",
+      "lang": "it",
+      "prompt": "eight",
+      "promptLang": "en",
+      "answer": "otto",
+      "answerLang": "it",
+      "options": [
+       "quattro",
+       "otto",
+       "cinque",
+       "numero"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "match",
+     "ex": {
+      "kind": "match",
+      "itemId": "eight",
+      "lang": "fr",
+      "prompt": "eight",
+      "promptLang": "en",
+      "answer": "",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": [
+       "fr=huit",
+       "it=otto",
+       "es=ocho"
+      ],
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
     }
    ]
   },
@@ -2023,7 +2076,7 @@
    "session": 2,
    "queue": [
     "fr:hundred:review",
-    "fr:number:match"
+    "fr:hundred:match"
    ],
    "rows": [
     {
@@ -2057,9 +2110,9 @@
      "stage": "match",
      "ex": {
       "kind": "match",
-      "itemId": "number",
+      "itemId": "hundred",
       "lang": "fr",
-      "prompt": "number",
+      "prompt": "hundred",
       "promptLang": "en",
       "answer": "",
       "answerLang": "fr",
@@ -2067,14 +2120,11 @@
       "tokens": null,
       "accept": null,
       "pairs": [
-       "it=numero",
-       "fr=nombre",
-       "es=número"
+       "it=cento",
+       "fr=cent",
+       "es=cien"
       ],
-      "family": [
-       "en=number",
-       "es=número"
-      ],
+      "family": [],
       "cloze": null,
       "person": null,
       "tense": null,
@@ -2089,18 +2139,18 @@
    "session": 0,
    "queue": [
     "es:ph-hello:review",
-    "it:eight:review",
     "es:ph-good-afternoon:review",
     "es:ph-thank-you:review",
     "es:black:review",
+    "es:ph-hello:review",
     "es:bird:review",
-    "es:ph-good-afternoon:review",
     "es:dance:review",
-    "fr:g-half:check",
+    "fr:g-number:check",
+    "it:g-number:check",
     "fr:ph-hello:intro",
+    "es:dance:review",
     "it:ph-hello:intro",
     "fr:ph-good-morning:intro",
-    "fr:g-half:review",
     "it:ph-good-morning:intro",
     "fr:ph-hello:check",
     "it:ph-hello:check",
@@ -2108,10 +2158,10 @@
     "it:ph-good-morning:check",
     "fr:ph-good-afternoon:intro",
     "it:ph-good-afternoon:intro",
+    "fr:ph-good-morning:review",
     "fr:ph-good-afternoon:check",
     "it:ph-good-afternoon:check",
-    "fr:number:match",
-    "fr:ph-good-afternoon:review"
+    "fr:ph-good-morning:match"
    ],
    "rows": [
     {
@@ -2144,28 +2194,6 @@
     {
      "stage": "review",
      "ex": {
-      "kind": "translate",
-      "itemId": "eight",
-      "lang": "it",
-      "prompt": "eight",
-      "promptLang": "en",
-      "answer": "otto",
-      "answerLang": "it",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
       "kind": "choose",
       "itemId": "ph-good-afternoon",
       "lang": "es",
@@ -2174,9 +2202,9 @@
       "answer": "buenas tardes",
       "answerLang": "es",
       "options": [
-       "bienvenido",
        "hola",
-       "buenos días",
+       "cuánto tiempo",
+       "bienvenido",
        "buenas tardes"
       ],
       "tokens": null,
@@ -2201,10 +2229,10 @@
       "answer": "gracias",
       "answerLang": "es",
       "options": [
+       "por favor",
        "gracias",
        "quizás",
-       "de nada",
-       "no hay problema"
+       "de nada"
       ],
       "tokens": null,
       "accept": null,
@@ -2229,9 +2257,9 @@
       "answerLang": "es",
       "options": [
        "negro",
-       "verde",
        "azul",
-       "marrón"
+       "marrón",
+       "color"
       ],
       "tokens": null,
       "accept": null,
@@ -2248,6 +2276,33 @@
      "stage": "review",
      "ex": {
       "kind": "choose",
+      "itemId": "ph-hello",
+      "lang": "es",
+      "prompt": "hello",
+      "promptLang": "en",
+      "answer": "hola",
+      "answerLang": "es",
+      "options": [
+       "hola",
+       "hasta luego",
+       "buenas tardes",
+       "buenas noches"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
       "itemId": "bird",
       "lang": "es",
       "prompt": "bird",
@@ -2255,10 +2310,10 @@
       "answer": "pájaro",
       "answerLang": "es",
       "options": [
-       "gato",
+       "pájaro",
+       "oso",
        "vaca",
-       "abeja",
-       "pájaro"
+       "abeja"
       ],
       "tokens": null,
       "accept": null,
@@ -2275,33 +2330,6 @@
      "stage": "review",
      "ex": {
       "kind": "choose",
-      "itemId": "ph-good-afternoon",
-      "lang": "es",
-      "prompt": "good afternoon",
-      "promptLang": "en",
-      "answer": "buenas tardes",
-      "answerLang": "es",
-      "options": [
-       "buenas noches",
-       "bienvenido",
-       "buenas tardes",
-       "buenos días"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
       "itemId": "dance",
       "lang": "es",
       "prompt": "dance",
@@ -2310,9 +2338,9 @@
       "answerLang": "es",
       "options": [
        "bailar",
-       "beber",
        "comer",
-       "cocinar"
+       "cocinar",
+       "venir"
       ],
       "tokens": null,
       "accept": null,
@@ -2329,15 +2357,45 @@
      "stage": "check",
      "ex": {
       "kind": "gender",
-      "itemId": "g-half",
+      "itemId": "g-number",
       "lang": "fr",
-      "prompt": "moitié",
+      "prompt": "nombre",
       "promptLang": "fr",
-      "answer": "la",
+      "answer": "le",
       "answerLang": "fr",
       "options": [
-       "la",
        "le",
+       "l'",
+       "la"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": [
+       "",
+       " nombre"
+      ],
+      "person": null,
+      "tense": null,
+      "note": "le nombre",
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "gender",
+      "itemId": "g-number",
+      "lang": "it",
+      "prompt": "numero",
+      "promptLang": "it",
+      "answer": "il",
+      "answerLang": "it",
+      "options": [
+       "lo",
+       "la",
+       "il",
        "l'"
       ],
       "tokens": null,
@@ -2346,11 +2404,11 @@
       "family": null,
       "cloze": [
        "",
-       " moitié"
+       " numero"
       ],
       "person": null,
       "tense": null,
-      "note": "la moitié",
+      "note": "il numero",
       "sentenceId": null
      }
     },
@@ -2369,6 +2427,33 @@
       "accept": null,
       "pairs": null,
       "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "dance",
+      "lang": "es",
+      "prompt": "dance",
+      "promptLang": "en",
+      "answer": "bailar",
+      "answerLang": "es",
+      "options": [
+       "comprar",
+       "cerrar",
+       "bailar",
+       "morir"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
       "cloze": null,
       "person": null,
       "tense": null,
@@ -2421,35 +2506,6 @@
      }
     },
     {
-     "stage": "review",
-     "ex": {
-      "kind": "gender",
-      "itemId": "g-half",
-      "lang": "fr",
-      "prompt": "moitié",
-      "promptLang": "fr",
-      "answer": "la",
-      "answerLang": "fr",
-      "options": [
-       "la",
-       "le",
-       "l'"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": [
-       "",
-       " moitié"
-      ],
-      "person": null,
-      "tense": null,
-      "note": "la moitié",
-      "sentenceId": null
-     }
-    },
-    {
      "stage": "intro",
      "ex": {
       "kind": "intro",
@@ -2482,9 +2538,9 @@
       "answer": "bonjour",
       "answerLang": "fr",
       "options": [
-       "à bientôt",
-       "bon après-midi",
        "bonjour",
+       "bon après-midi",
+       "bienvenue",
        "au revoir"
       ],
       "tokens": null,
@@ -2509,10 +2565,10 @@
       "answer": "ciao",
       "answerLang": "it",
       "options": [
-       "ciao",
-       "buongiorno",
+       "buonasera",
+       "quanto tempo",
        "a presto",
-       "buonanotte"
+       "ciao"
       ],
       "tokens": null,
       "accept": null,
@@ -2536,10 +2592,10 @@
       "answer": "bonjour",
       "answerLang": "fr",
       "options": [
-       "ça fait longtemps",
-       "à bientôt",
+       "bonjour",
        "bonne nuit",
-       "bonjour"
+       "à bientôt",
+       "bon après-midi"
       ],
       "tokens": null,
       "accept": null,
@@ -2563,108 +2619,135 @@
       "answer": "buongiorno",
       "answerLang": "it",
       "options": [
-       "buongiorno",
-       "buonasera",
-       "arrivederci",
-       "ciao"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-good-afternoon",
-      "lang": "fr",
-      "prompt": "good afternoon",
-      "promptLang": "en",
-      "answer": "bon après-midi",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-good-afternoon",
-      "lang": "it",
-      "prompt": "good afternoon",
-      "promptLang": "en",
-      "answer": "buon pomeriggio",
-      "answerLang": "it",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-afternoon",
-      "lang": "fr",
-      "prompt": "good afternoon",
-      "promptLang": "en",
-      "answer": "bon après-midi",
-      "answerLang": "fr",
-      "options": [
-       "bonjour",
-       "bon après-midi",
-       "bonsoir",
-       "bonne nuit"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-afternoon",
-      "lang": "it",
-      "prompt": "good afternoon",
-      "promptLang": "en",
-      "answer": "buon pomeriggio",
-      "answerLang": "it",
-      "options": [
-       "buonanotte",
-       "buongiorno",
        "buon pomeriggio",
-       "a presto"
+       "buongiorno",
+       "ciao",
+       "buonanotte"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-good-afternoon",
+      "lang": "fr",
+      "prompt": "good afternoon",
+      "promptLang": "en",
+      "answer": "bon après-midi",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-good-afternoon",
+      "lang": "it",
+      "prompt": "good afternoon",
+      "promptLang": "en",
+      "answer": "buon pomeriggio",
+      "answerLang": "it",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-good-morning",
+      "lang": "fr",
+      "prompt": "good morning",
+      "promptLang": "en",
+      "answer": "bonjour",
+      "answerLang": "fr",
+      "options": [
+       "au revoir",
+       "bonjour",
+       "bonsoir",
+       "à bientôt"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-good-afternoon",
+      "lang": "fr",
+      "prompt": "good afternoon",
+      "promptLang": "en",
+      "answer": "bon après-midi",
+      "answerLang": "fr",
+      "options": [
+       "au revoir",
+       "bon après-midi",
+       "ça fait longtemps",
+       "à bientôt"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-good-afternoon",
+      "lang": "it",
+      "prompt": "good afternoon",
+      "promptLang": "en",
+      "answer": "buon pomeriggio",
+      "answerLang": "it",
+      "options": [
+       "arrivederci",
+       "benvenuto",
+       "buon pomeriggio",
+       "quanto tempo"
       ],
       "tokens": null,
       "accept": null,
@@ -2681,9 +2764,9 @@
      "stage": "match",
      "ex": {
       "kind": "match",
-      "itemId": "number",
+      "itemId": "ph-good-morning",
       "lang": "fr",
-      "prompt": "number",
+      "prompt": "good morning",
       "promptLang": "en",
       "answer": "",
       "answerLang": "fr",
@@ -2691,41 +2774,11 @@
       "tokens": null,
       "accept": null,
       "pairs": [
-       "it=numero",
-       "es=número",
-       "fr=nombre"
+       "it=buongiorno",
+       "es=buenos días",
+       "fr=bonjour"
       ],
-      "family": [
-       "en=number",
-       "es=número"
-      ],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-afternoon",
-      "lang": "fr",
-      "prompt": "good afternoon",
-      "promptLang": "en",
-      "answer": "bon après-midi",
-      "answerLang": "fr",
-      "options": [
-       "bonne nuit",
-       "bon après-midi",
-       "bienvenue",
-       "bonsoir"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
+      "family": [],
       "cloze": null,
       "person": null,
       "tense": null,
@@ -2739,20 +2792,77 @@
    "day": 2,
    "session": 1,
    "queue": [
-    "fr:g-hundred:review",
+    "fr:g-half:review",
     "it:one:review",
+    "fr:g-hundred:review",
+    "fr:number:review",
     "fr:ph-good-evening:intro",
+    "it:one:review",
     "it:ph-good-evening:intro",
-    "it:ph-good-night:intro",
     "es:g-bird:check",
+    "es:c-dance:check",
     "fr:ph-good-evening:check",
     "it:ph-good-evening:check",
-    "it:ph-good-night:check",
-    "es:c-dance:check",
-    "fr:ph-good-evening:review",
-    "fr:number:match"
+    "fr:number:match",
+    "fr:ph-good-evening:review"
    ],
    "rows": [
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "gender",
+      "itemId": "g-half",
+      "lang": "fr",
+      "prompt": "moitié",
+      "promptLang": "fr",
+      "answer": "la",
+      "answerLang": "fr",
+      "options": [
+       "le",
+       "la",
+       "l'"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": [
+       "",
+       " moitié"
+      ],
+      "person": null,
+      "tense": null,
+      "note": "la moitié",
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "listen",
+      "itemId": "one",
+      "lang": "it",
+      "prompt": "uno",
+      "promptLang": "it",
+      "answer": "one",
+      "answerLang": "en",
+      "options": [
+       "five",
+       "hundred",
+       "one",
+       "eight"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
     {
      "stage": "review",
      "ex": {
@@ -2785,28 +2895,31 @@
     {
      "stage": "review",
      "ex": {
-      "kind": "listen",
-      "itemId": "one",
-      "lang": "it",
-      "prompt": "uno",
-      "promptLang": "it",
-      "answer": "one",
-      "answerLang": "en",
-      "options": [
-       "five",
-       "hundred",
-       "one",
-       "eight"
+      "kind": "wordbank",
+      "itemId": "number",
+      "lang": "fr",
+      "prompt": "I like this number.",
+      "promptLang": "en",
+      "answer": "J'aime ce nombre.",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": [
+       "nombre.",
+       "leur",
+       "fourni",
+       "ce",
+       "J'aime"
       ],
-      "tokens": null,
-      "accept": null,
+      "accept": [
+       "J'aime ce nombre."
+      ],
       "pairs": null,
       "family": null,
       "cloze": null,
       "person": null,
       "tense": null,
       "note": null,
-      "sentenceId": null
+      "sentenceId": "10767966"
      }
     },
     {
@@ -2832,20 +2945,25 @@
      }
     },
     {
-     "stage": "intro",
+     "stage": "review",
      "ex": {
-      "kind": "intro",
-      "itemId": "ph-good-evening",
+      "kind": "choose",
+      "itemId": "one",
       "lang": "it",
-      "prompt": "good evening",
+      "prompt": "one",
       "promptLang": "en",
-      "answer": "buonasera",
+      "answer": "uno",
       "answerLang": "it",
-      "options": null,
+      "options": [
+       "cento",
+       "numero",
+       "nove",
+       "uno"
+      ],
       "tokens": null,
       "accept": null,
       "pairs": null,
-      "family": [],
+      "family": null,
       "cloze": null,
       "person": null,
       "tense": null,
@@ -2857,11 +2975,11 @@
      "stage": "intro",
      "ex": {
       "kind": "intro",
-      "itemId": "ph-good-night",
+      "itemId": "ph-good-evening",
       "lang": "it",
-      "prompt": "good night",
+      "prompt": "good evening",
       "promptLang": "en",
-      "answer": "buonanotte",
+      "answer": "buonasera",
       "answerLang": "it",
       "options": null,
       "tokens": null,
@@ -2886,8 +3004,8 @@
       "answer": "el",
       "answerLang": "es",
       "options": [
-       "el",
-       "la"
+       "la",
+       "el"
       ],
       "tokens": null,
       "accept": null,
@@ -2906,6 +3024,35 @@
     {
      "stage": "check",
      "ex": {
+      "kind": "conjugate",
+      "itemId": "c-dance",
+      "lang": "es",
+      "prompt": "bailar",
+      "promptLang": "es",
+      "answer": "bailamos",
+      "answerLang": "es",
+      "options": [
+       "bailó",
+       "bailaste",
+       "bailamos",
+       "bailé"
+      ],
+      "tokens": null,
+      "accept": [
+       "bailamos"
+      ],
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": "nosotros",
+      "tense": "past",
+      "note": "yo bailé, tú bailaste, él bailó, nosotros bailamos, vosotros bailasteis, ellos bailaron",
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
       "kind": "choose",
       "itemId": "ph-good-evening",
       "lang": "fr",
@@ -2914,10 +3061,10 @@
       "answer": "bonsoir",
       "answerLang": "fr",
       "options": [
-       "à bientôt",
-       "ça fait longtemps",
+       "bon après-midi",
+       "bonsoir",
        "bienvenue",
-       "bonsoir"
+       "bonjour"
       ],
       "tokens": null,
       "accept": null,
@@ -2941,558 +3088,8 @@
       "answer": "buonasera",
       "answerLang": "it",
       "options": [
-       "a presto",
-       "buonanotte",
+       "quanto tempo",
        "buonasera",
-       "buongiorno"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-night",
-      "lang": "it",
-      "prompt": "good night",
-      "promptLang": "en",
-      "answer": "buonanotte",
-      "answerLang": "it",
-      "options": [
-       "ciao",
-       "buonanotte",
-       "buon pomeriggio",
-       "buonasera"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "conjugate",
-      "itemId": "c-dance",
-      "lang": "es",
-      "prompt": "bailar",
-      "promptLang": "es",
-      "answer": "bailasteis",
-      "answerLang": "es",
-      "options": [
-       "bailasteis",
-       "bailé",
-       "bailamos",
-       "bailaron"
-      ],
-      "tokens": null,
-      "accept": [
-       "bailasteis"
-      ],
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": "vosotros",
-      "tense": "past",
-      "note": "yo bailé, tú bailaste, él bailó, nosotros bailamos, vosotros bailasteis, ellos bailaron",
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-evening",
-      "lang": "fr",
-      "prompt": "good evening",
-      "promptLang": "en",
-      "answer": "bonsoir",
-      "answerLang": "fr",
-      "options": [
-       "bonsoir",
-       "bonjour",
-       "au revoir",
-       "bon après-midi"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "match",
-     "ex": {
-      "kind": "match",
-      "itemId": "number",
-      "lang": "fr",
-      "prompt": "number",
-      "promptLang": "en",
-      "answer": "",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": [
-       "it=numero",
-       "fr=nombre",
-       "es=número"
-      ],
-      "family": [
-       "en=number",
-       "es=número"
-      ],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    }
-   ]
-  },
-  {
-   "day": 2,
-   "session": 2,
-   "queue": [
-    "es:g-number:review",
-    "fr:number:match"
-   ],
-   "rows": [
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "gender",
-      "itemId": "g-number",
-      "lang": "es",
-      "prompt": "número",
-      "promptLang": "es",
-      "answer": "el",
-      "answerLang": "es",
-      "options": [
-       "el",
-       "la"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": [
-       "",
-       " número"
-      ],
-      "person": null,
-      "tense": null,
-      "note": "el número",
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "match",
-     "ex": {
-      "kind": "match",
-      "itemId": "number",
-      "lang": "fr",
-      "prompt": "number",
-      "promptLang": "en",
-      "answer": "",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": [
-       "fr=nombre",
-       "it=numero",
-       "es=número"
-      ],
-      "family": [
-       "en=number",
-       "es=número"
-      ],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    }
-   ]
-  },
-  {
-   "day": 3,
-   "session": 0,
-   "queue": [
-    "es:ph-goodbye:review",
-    "fr:hundred:review",
-    "es:fruit:review",
-    "es:big:review",
-    "es:ph-goodbye:review",
-    "es:long:review",
-    "fr:ph-good-night:intro",
-    "fr:ph-goodbye:intro",
-    "it:ph-goodbye:intro",
-    "fr:ph-see-you-later:intro",
-    "fr:ph-good-night:check",
-    "fr:ph-goodbye:check",
-    "it:ph-goodbye:check",
-    "fr:ph-see-you-later:check",
-    "fr:ph-good-night:review",
-    "it:ph-see-you-later:intro",
-    "fr:ph-welcome:intro",
-    "it:ph-welcome:intro",
-    "fr:ph-long-time-no-see:intro",
-    "it:ph-see-you-later:check",
-    "fr:ph-welcome:check",
-    "it:ph-welcome:check",
-    "fr:ph-long-time-no-see:check",
-    "it:ph-long-time-no-see:intro",
-    "fr:ph-welcome:review",
-    "it:ph-long-time-no-see:check",
-    "fr:number:match"
-   ],
-   "rows": [
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-goodbye",
-      "lang": "es",
-      "prompt": "goodbye",
-      "promptLang": "en",
-      "answer": "adiós",
-      "answerLang": "es",
-      "options": [
-       "cuánto tiempo",
-       "adiós",
-       "buenos días",
-       "hasta luego"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "wordbank",
-      "itemId": "hundred",
-      "lang": "fr",
-      "prompt": "Count from one to a hundred.",
-      "promptLang": "en",
-      "answer": "Compte de un à cent.",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": [
-       "à",
-       "cent.",
-       "de",
-       "grand.",
-       "est",
-       "Compte",
-       "un"
-      ],
-      "accept": [
-       "Compte de un à cent."
-      ],
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": "2780826"
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "fruit",
-      "lang": "es",
-      "prompt": "fruit",
-      "promptLang": "en",
-      "answer": "fruta",
-      "answerLang": "es",
-      "options": [
-       "manzana",
-       "mantequilla",
-       "fruta",
-       "miel"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "big",
-      "lang": "es",
-      "prompt": "big",
-      "promptLang": "en",
-      "answer": "grande",
-      "answerLang": "es",
-      "options": [
-       "grande",
-       "malo",
-       "hermoso",
-       "limpio"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-goodbye",
-      "lang": "es",
-      "prompt": "goodbye",
-      "promptLang": "en",
-      "answer": "adiós",
-      "answerLang": "es",
-      "options": [
-       "cuánto tiempo",
-       "adiós",
-       "hasta luego",
-       "buenos días"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "long",
-      "lang": "es",
-      "prompt": "long",
-      "promptLang": "en",
-      "answer": "largo",
-      "answerLang": "es",
-      "options": [
-       "grande",
-       "hermoso",
-       "sucio",
-       "largo"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-good-night",
-      "lang": "fr",
-      "prompt": "good night",
-      "promptLang": "en",
-      "answer": "bonne nuit",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-goodbye",
-      "lang": "fr",
-      "prompt": "goodbye",
-      "promptLang": "en",
-      "answer": "au revoir",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-goodbye",
-      "lang": "it",
-      "prompt": "goodbye",
-      "promptLang": "en",
-      "answer": "arrivederci",
-      "answerLang": "it",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-see-you-later",
-      "lang": "fr",
-      "prompt": "see you later",
-      "promptLang": "en",
-      "answer": "à bientôt",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-night",
-      "lang": "fr",
-      "prompt": "good night",
-      "promptLang": "en",
-      "answer": "bonne nuit",
-      "answerLang": "fr",
-      "options": [
-       "ça fait longtemps",
-       "bonjour",
-       "bonne nuit",
-       "à bientôt"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-goodbye",
-      "lang": "fr",
-      "prompt": "goodbye",
-      "promptLang": "en",
-      "answer": "au revoir",
-      "answerLang": "fr",
-      "options": [
-       "ça fait longtemps",
-       "bonne nuit",
-       "au revoir",
-       "à bientôt"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-goodbye",
-      "lang": "it",
-      "prompt": "goodbye",
-      "promptLang": "en",
-      "answer": "arrivederci",
-      "answerLang": "it",
-      "options": [
-       "arrivederci",
-       "buon pomeriggio",
        "ciao",
        "benvenuto"
       ],
@@ -3504,993 +3101,6 @@
       "person": null,
       "tense": null,
       "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-see-you-later",
-      "lang": "fr",
-      "prompt": "see you later",
-      "promptLang": "en",
-      "answer": "à bientôt",
-      "answerLang": "fr",
-      "options": [
-       "bienvenue",
-       "bonsoir",
-       "ça fait longtemps",
-       "à bientôt"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-night",
-      "lang": "fr",
-      "prompt": "good night",
-      "promptLang": "en",
-      "answer": "bonne nuit",
-      "answerLang": "fr",
-      "options": [
-       "bienvenue",
-       "bonne nuit",
-       "bonjour",
-       "bon après-midi"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-see-you-later",
-      "lang": "it",
-      "prompt": "see you later",
-      "promptLang": "en",
-      "answer": "a presto",
-      "answerLang": "it",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-welcome",
-      "lang": "fr",
-      "prompt": "welcome",
-      "promptLang": "en",
-      "answer": "bienvenue",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-welcome",
-      "lang": "it",
-      "prompt": "welcome",
-      "promptLang": "en",
-      "answer": "benvenuto",
-      "answerLang": "it",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-long-time-no-see",
-      "lang": "fr",
-      "prompt": "long time no see",
-      "promptLang": "en",
-      "answer": "ça fait longtemps",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-see-you-later",
-      "lang": "it",
-      "prompt": "see you later",
-      "promptLang": "en",
-      "answer": "a presto",
-      "answerLang": "it",
-      "options": [
-       "buonasera",
-       "buongiorno",
-       "a presto",
-       "arrivederci"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-welcome",
-      "lang": "fr",
-      "prompt": "welcome",
-      "promptLang": "en",
-      "answer": "bienvenue",
-      "answerLang": "fr",
-      "options": [
-       "bienvenue",
-       "bonjour",
-       "ça fait longtemps",
-       "bonne nuit"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-welcome",
-      "lang": "it",
-      "prompt": "welcome",
-      "promptLang": "en",
-      "answer": "benvenuto",
-      "answerLang": "it",
-      "options": [
-       "buonanotte",
-       "a presto",
-       "quanto tempo",
-       "benvenuto"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-long-time-no-see",
-      "lang": "fr",
-      "prompt": "long time no see",
-      "promptLang": "en",
-      "answer": "ça fait longtemps",
-      "answerLang": "fr",
-      "options": [
-       "ça fait longtemps",
-       "au revoir",
-       "bonjour",
-       "bon après-midi"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-long-time-no-see",
-      "lang": "it",
-      "prompt": "long time no see",
-      "promptLang": "en",
-      "answer": "quanto tempo",
-      "answerLang": "it",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-welcome",
-      "lang": "fr",
-      "prompt": "welcome",
-      "promptLang": "en",
-      "answer": "bienvenue",
-      "answerLang": "fr",
-      "options": [
-       "bonne nuit",
-       "bonsoir",
-       "ça fait longtemps",
-       "bienvenue"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-long-time-no-see",
-      "lang": "it",
-      "prompt": "long time no see",
-      "promptLang": "en",
-      "answer": "quanto tempo",
-      "answerLang": "it",
-      "options": [
-       "arrivederci",
-       "quanto tempo",
-       "buonanotte",
-       "buonasera"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "match",
-     "ex": {
-      "kind": "match",
-      "itemId": "number",
-      "lang": "fr",
-      "prompt": "number",
-      "promptLang": "en",
-      "answer": "",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": [
-       "es=número",
-       "fr=nombre",
-       "it=numero"
-      ],
-      "family": [
-       "en=number",
-       "es=número"
-      ],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    }
-   ]
-  },
-  {
-   "day": 3,
-   "session": 1,
-   "queue": [
-    "fr:five:review",
-    "it:ph-hello:review",
-    "fr:g-half:review",
-    "es:five:review",
-    "fr:four:review",
-    "it:ph-hello:review",
-    "it:four:review",
-    "fr:ph-good-afternoon:review",
-    "es:half:review",
-    "it:half:review",
-    "it:ph-thank-you:intro",
-    "fr:ph-good-afternoon:review",
-    "es:g-fruit:check",
-    "it:ph-thank-you:check",
-    "fr:number:match"
-   ],
-   "rows": [
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "five",
-      "lang": "fr",
-      "prompt": "five",
-      "promptLang": "en",
-      "answer": "cinq",
-      "answerLang": "fr",
-      "options": [
-       "quatre",
-       "un",
-       "cinq",
-       "moitié"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-hello",
-      "lang": "it",
-      "prompt": "hello",
-      "promptLang": "en",
-      "answer": "ciao",
-      "answerLang": "it",
-      "options": [
-       "ciao",
-       "buonanotte",
-       "buon pomeriggio",
-       "quanto tempo"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "gender",
-      "itemId": "g-half",
-      "lang": "fr",
-      "prompt": "moitié",
-      "promptLang": "fr",
-      "answer": "la",
-      "answerLang": "fr",
-      "options": [
-       "l'",
-       "le",
-       "la"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": [
-       "",
-       " moitié"
-      ],
-      "person": null,
-      "tense": null,
-      "note": "la moitié",
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "five",
-      "lang": "es",
-      "prompt": "five",
-      "promptLang": "en",
-      "answer": "cinco",
-      "answerLang": "es",
-      "options": [
-       "ocho",
-       "nueve",
-       "cuatro",
-       "cinco"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "four",
-      "lang": "fr",
-      "prompt": "four",
-      "promptLang": "en",
-      "answer": "quatre",
-      "answerLang": "fr",
-      "options": [
-       "cent",
-       "quatre",
-       "moitié",
-       "cinq"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-hello",
-      "lang": "it",
-      "prompt": "hello",
-      "promptLang": "en",
-      "answer": "ciao",
-      "answerLang": "it",
-      "options": [
-       "buonanotte",
-       "arrivederci",
-       "buongiorno",
-       "ciao"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "four",
-      "lang": "it",
-      "prompt": "four",
-      "promptLang": "en",
-      "answer": "quattro",
-      "answerLang": "it",
-      "options": [
-       "metà",
-       "cinque",
-       "cento",
-       "quattro"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "listen",
-      "itemId": "ph-good-afternoon",
-      "lang": "fr",
-      "prompt": "bon après-midi",
-      "promptLang": "fr",
-      "answer": "good afternoon",
-      "answerLang": "en",
-      "options": [
-       "good afternoon",
-       "good evening",
-       "see you later",
-       "good night"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "half",
-      "lang": "es",
-      "prompt": "half",
-      "promptLang": "en",
-      "answer": "mitad",
-      "answerLang": "es",
-      "options": [
-       "cinco",
-       "nueve",
-       "mitad",
-       "ocho"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "half",
-      "lang": "it",
-      "prompt": "half",
-      "promptLang": "en",
-      "answer": "metà",
-      "answerLang": "it",
-      "options": [
-       "metà",
-       "cinque",
-       "nove",
-       "cento"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "intro",
-     "ex": {
-      "kind": "intro",
-      "itemId": "ph-thank-you",
-      "lang": "it",
-      "prompt": "thank you",
-      "promptLang": "en",
-      "answer": "grazie",
-      "answerLang": "it",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": [],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-good-afternoon",
-      "lang": "fr",
-      "prompt": "good afternoon",
-      "promptLang": "en",
-      "answer": "bon après-midi",
-      "answerLang": "fr",
-      "options": [
-       "bonne nuit",
-       "bonjour",
-       "à bientôt",
-       "bon après-midi"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "gender",
-      "itemId": "g-fruit",
-      "lang": "es",
-      "prompt": "fruta",
-      "promptLang": "es",
-      "answer": "la",
-      "answerLang": "es",
-      "options": [
-       "la",
-       "el"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": [
-       "",
-       " fruta"
-      ],
-      "person": null,
-      "tense": null,
-      "note": "la fruta",
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "choose",
-      "itemId": "ph-thank-you",
-      "lang": "it",
-      "prompt": "thank you",
-      "promptLang": "en",
-      "answer": "grazie",
-      "answerLang": "it",
-      "options": [
-       "no",
-       "sì",
-       "grazie",
-       "prego"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "match",
-     "ex": {
-      "kind": "match",
-      "itemId": "number",
-      "lang": "fr",
-      "prompt": "number",
-      "promptLang": "en",
-      "answer": "",
-      "answerLang": "fr",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": [
-       "fr=nombre",
-       "it=numero",
-       "es=número"
-      ],
-      "family": [
-       "en=number",
-       "es=número"
-      ],
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    }
-   ]
-  },
-  {
-   "day": 3,
-   "session": 2,
-   "queue": [
-    "es:four:review",
-    "it:hundred:review",
-    "es:hundred:review",
-    "fr:ph-good-evening:review",
-    "es:four:review",
-    "es:c-dance:review",
-    "es:g-half:check",
-    "fr:number:match",
-    "es:g-half:review"
-   ],
-   "rows": [
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "translate",
-      "itemId": "four",
-      "lang": "es",
-      "prompt": "four",
-      "promptLang": "en",
-      "answer": "cuatro",
-      "answerLang": "es",
-      "options": null,
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "listen",
-      "itemId": "hundred",
-      "lang": "it",
-      "prompt": "cento",
-      "promptLang": "it",
-      "answer": "hundred",
-      "answerLang": "en",
-      "options": [
-       "one",
-       "half",
-       "hundred",
-       "five"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "reverse",
-      "itemId": "hundred",
-      "lang": "es",
-      "prompt": "cien",
-      "promptLang": "es",
-      "answer": "hundred",
-      "answerLang": "en",
-      "options": [
-       "hundred",
-       "half",
-       "number",
-       "five"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "reverse",
-      "itemId": "ph-good-evening",
-      "lang": "fr",
-      "prompt": "bonsoir",
-      "promptLang": "fr",
-      "answer": "good evening",
-      "answerLang": "en",
-      "options": [
-       "good evening",
-       "hello",
-       "welcome",
-       "good morning"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "choose",
-      "itemId": "four",
-      "lang": "es",
-      "prompt": "four",
-      "promptLang": "en",
-      "answer": "cuatro",
-      "answerLang": "es",
-      "options": [
-       "cuatro",
-       "número",
-       "cinco",
-       "cien"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": null,
-      "tense": null,
-      "note": null,
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "review",
-     "ex": {
-      "kind": "conjugate",
-      "itemId": "c-dance",
-      "lang": "es",
-      "prompt": "bailar",
-      "promptLang": "es",
-      "answer": "bailé",
-      "answerLang": "es",
-      "options": [
-       "bailaron",
-       "bailé",
-       "bailaste",
-       "bailasteis"
-      ],
-      "tokens": null,
-      "accept": [
-       "bailé"
-      ],
-      "pairs": null,
-      "family": null,
-      "cloze": null,
-      "person": "yo",
-      "tense": "past",
-      "note": "yo bailé, tú bailaste, él bailó, nosotros bailamos, vosotros bailasteis, ellos bailaron",
-      "sentenceId": null
-     }
-    },
-    {
-     "stage": "check",
-     "ex": {
-      "kind": "gender",
-      "itemId": "g-half",
-      "lang": "es",
-      "prompt": "mitad",
-      "promptLang": "es",
-      "answer": "la",
-      "answerLang": "es",
-      "options": [
-       "el",
-       "la"
-      ],
-      "tokens": null,
-      "accept": null,
-      "pairs": null,
-      "family": null,
-      "cloze": [
-       "",
-       " mitad"
-      ],
-      "person": null,
-      "tense": null,
-      "note": "la mitad",
       "sentenceId": null
      }
     },
@@ -4526,16 +3136,54 @@
     {
      "stage": "review",
      "ex": {
+      "kind": "choose",
+      "itemId": "ph-good-evening",
+      "lang": "fr",
+      "prompt": "good evening",
+      "promptLang": "en",
+      "answer": "bonsoir",
+      "answerLang": "fr",
+      "options": [
+       "bienvenue",
+       "bonsoir",
+       "ça fait longtemps",
+       "bonjour"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "session": 2,
+   "queue": [
+    "es:g-number:review",
+    "it:eight:review",
+    "fr:eight:match"
+   ],
+   "rows": [
+    {
+     "stage": "review",
+     "ex": {
       "kind": "gender",
-      "itemId": "g-half",
+      "itemId": "g-number",
       "lang": "es",
-      "prompt": "mitad",
+      "prompt": "número",
       "promptLang": "es",
-      "answer": "la",
+      "answer": "el",
       "answerLang": "es",
       "options": [
-       "la",
-       "el"
+       "el",
+       "la"
       ],
       "tokens": null,
       "accept": null,
@@ -4543,11 +3191,1174 @@
       "family": null,
       "cloze": [
        "",
-       " mitad"
+       " número"
       ],
       "person": null,
       "tense": null,
-      "note": "la mitad",
+      "note": "el número",
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "sentence",
+      "itemId": "eight",
+      "lang": "it",
+      "prompt": "It's eight o'clock.",
+      "promptLang": "en",
+      "answer": "Sono le otto.",
+      "answerLang": "it",
+      "options": [
+       "Mio padre invecchiò.",
+       "Se dovessi morire, chi si occuperebbe dei miei figli?",
+       "Sono le otto.",
+       "Tom era sporco."
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": "2714675"
+     }
+    },
+    {
+     "stage": "match",
+     "ex": {
+      "kind": "match",
+      "itemId": "eight",
+      "lang": "fr",
+      "prompt": "eight",
+      "promptLang": "en",
+      "answer": "",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": [
+       "it=otto",
+       "es=ocho",
+       "fr=huit"
+      ],
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "session": 0,
+   "queue": [
+    "es:ph-goodbye:review",
+    "es:fruit:review",
+    "es:big:review",
+    "es:long:review",
+    "fr:ph-good-night:intro",
+    "es:fruit:review",
+    "it:ph-good-night:intro",
+    "fr:ph-goodbye:intro",
+    "it:ph-goodbye:intro",
+    "fr:ph-good-night:check",
+    "it:ph-good-night:check",
+    "fr:ph-goodbye:check",
+    "it:ph-goodbye:check",
+    "fr:ph-see-you-later:intro",
+    "it:ph-see-you-later:intro",
+    "fr:ph-goodbye:review",
+    "fr:ph-welcome:intro",
+    "it:ph-welcome:intro",
+    "fr:ph-see-you-later:check",
+    "it:ph-see-you-later:check",
+    "fr:ph-welcome:check",
+    "it:ph-welcome:check",
+    "fr:ph-long-time-no-see:intro",
+    "it:ph-long-time-no-see:intro",
+    "fr:ph-long-time-no-see:check",
+    "it:ph-welcome:review",
+    "it:ph-long-time-no-see:check",
+    "fr:ph-long-time-no-see:match"
+   ],
+   "rows": [
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-goodbye",
+      "lang": "es",
+      "prompt": "goodbye",
+      "promptLang": "en",
+      "answer": "adiós",
+      "answerLang": "es",
+      "options": [
+       "cuánto tiempo",
+       "adiós",
+       "buenos días",
+       "hasta luego"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "fruit",
+      "lang": "es",
+      "prompt": "fruit",
+      "promptLang": "en",
+      "answer": "fruta",
+      "answerLang": "es",
+      "options": [
+       "cerveza",
+       "fruta",
+       "miel",
+       "café"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "big",
+      "lang": "es",
+      "prompt": "big",
+      "promptLang": "en",
+      "answer": "grande",
+      "answerLang": "es",
+      "options": [
+       "hermoso",
+       "grande",
+       "malo",
+       "sucio"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "false-friend",
+      "itemId": "long",
+      "lang": "es",
+      "prompt": "largo",
+      "promptLang": "es",
+      "answer": "long",
+      "answerLang": "en",
+      "options": [
+       "long",
+       "bad",
+       "large",
+       "beautiful"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-good-night",
+      "lang": "fr",
+      "prompt": "good night",
+      "promptLang": "en",
+      "answer": "bonne nuit",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "fruit",
+      "lang": "es",
+      "prompt": "fruit",
+      "promptLang": "en",
+      "answer": "fruta",
+      "answerLang": "es",
+      "options": [
+       "fruta",
+       "manzana",
+       "mantequilla",
+       "café"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-good-night",
+      "lang": "it",
+      "prompt": "good night",
+      "promptLang": "en",
+      "answer": "buonanotte",
+      "answerLang": "it",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-goodbye",
+      "lang": "fr",
+      "prompt": "goodbye",
+      "promptLang": "en",
+      "answer": "au revoir",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-goodbye",
+      "lang": "it",
+      "prompt": "goodbye",
+      "promptLang": "en",
+      "answer": "arrivederci",
+      "answerLang": "it",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-good-night",
+      "lang": "fr",
+      "prompt": "good night",
+      "promptLang": "en",
+      "answer": "bonne nuit",
+      "answerLang": "fr",
+      "options": [
+       "au revoir",
+       "bonne nuit",
+       "ça fait longtemps",
+       "bienvenue"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-good-night",
+      "lang": "it",
+      "prompt": "good night",
+      "promptLang": "en",
+      "answer": "buonanotte",
+      "answerLang": "it",
+      "options": [
+       "buonanotte",
+       "ciao",
+       "buonasera",
+       "benvenuto"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-goodbye",
+      "lang": "fr",
+      "prompt": "goodbye",
+      "promptLang": "en",
+      "answer": "au revoir",
+      "answerLang": "fr",
+      "options": [
+       "bonjour",
+       "bon après-midi",
+       "au revoir",
+       "bonne nuit"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-goodbye",
+      "lang": "it",
+      "prompt": "goodbye",
+      "promptLang": "en",
+      "answer": "arrivederci",
+      "answerLang": "it",
+      "options": [
+       "arrivederci",
+       "ciao",
+       "buonanotte",
+       "buongiorno"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-see-you-later",
+      "lang": "fr",
+      "prompt": "see you later",
+      "promptLang": "en",
+      "answer": "à bientôt",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-see-you-later",
+      "lang": "it",
+      "prompt": "see you later",
+      "promptLang": "en",
+      "answer": "a presto",
+      "answerLang": "it",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-goodbye",
+      "lang": "fr",
+      "prompt": "goodbye",
+      "promptLang": "en",
+      "answer": "au revoir",
+      "answerLang": "fr",
+      "options": [
+       "bonne nuit",
+       "au revoir",
+       "bienvenue",
+       "bonjour"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-welcome",
+      "lang": "fr",
+      "prompt": "welcome",
+      "promptLang": "en",
+      "answer": "bienvenue",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-welcome",
+      "lang": "it",
+      "prompt": "welcome",
+      "promptLang": "en",
+      "answer": "benvenuto",
+      "answerLang": "it",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-see-you-later",
+      "lang": "fr",
+      "prompt": "see you later",
+      "promptLang": "en",
+      "answer": "à bientôt",
+      "answerLang": "fr",
+      "options": [
+       "bon après-midi",
+       "ça fait longtemps",
+       "à bientôt",
+       "bonjour"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-see-you-later",
+      "lang": "it",
+      "prompt": "see you later",
+      "promptLang": "en",
+      "answer": "a presto",
+      "answerLang": "it",
+      "options": [
+       "a presto",
+       "buonanotte",
+       "quanto tempo",
+       "benvenuto"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-welcome",
+      "lang": "fr",
+      "prompt": "welcome",
+      "promptLang": "en",
+      "answer": "bienvenue",
+      "answerLang": "fr",
+      "options": [
+       "bienvenue",
+       "ça fait longtemps",
+       "bonne nuit",
+       "bon après-midi"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-welcome",
+      "lang": "it",
+      "prompt": "welcome",
+      "promptLang": "en",
+      "answer": "benvenuto",
+      "answerLang": "it",
+      "options": [
+       "quanto tempo",
+       "buon pomeriggio",
+       "benvenuto",
+       "ciao"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-long-time-no-see",
+      "lang": "fr",
+      "prompt": "long time no see",
+      "promptLang": "en",
+      "answer": "ça fait longtemps",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "intro",
+     "ex": {
+      "kind": "intro",
+      "itemId": "ph-long-time-no-see",
+      "lang": "it",
+      "prompt": "long time no see",
+      "promptLang": "en",
+      "answer": "quanto tempo",
+      "answerLang": "it",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-long-time-no-see",
+      "lang": "fr",
+      "prompt": "long time no see",
+      "promptLang": "en",
+      "answer": "ça fait longtemps",
+      "answerLang": "fr",
+      "options": [
+       "ça fait longtemps",
+       "bonjour",
+       "bienvenue",
+       "au revoir"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-welcome",
+      "lang": "it",
+      "prompt": "welcome",
+      "promptLang": "en",
+      "answer": "benvenuto",
+      "answerLang": "it",
+      "options": [
+       "arrivederci",
+       "benvenuto",
+       "buonanotte",
+       "quanto tempo"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-long-time-no-see",
+      "lang": "it",
+      "prompt": "long time no see",
+      "promptLang": "en",
+      "answer": "quanto tempo",
+      "answerLang": "it",
+      "options": [
+       "a presto",
+       "buon pomeriggio",
+       "quanto tempo",
+       "benvenuto"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "match",
+     "ex": {
+      "kind": "match",
+      "itemId": "ph-long-time-no-see",
+      "lang": "fr",
+      "prompt": "long time no see",
+      "promptLang": "en",
+      "answer": "",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": [
+       "fr=ça fait longtemps",
+       "it=quanto tempo",
+       "es=cuánto tiempo"
+      ],
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "session": 1,
+   "queue": [
+    "fr:four:review",
+    "it:four:review",
+    "fr:ph-good-morning:review",
+    "it:half:review",
+    "es:half:review",
+    "es:g-fruit:check",
+    "fr:ph-good-morning:review",
+    "fr:ph-good-morning:match"
+   ],
+   "rows": [
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "four",
+      "lang": "fr",
+      "prompt": "four",
+      "promptLang": "en",
+      "answer": "quatre",
+      "answerLang": "fr",
+      "options": [
+       "cinq",
+       "un",
+       "quatre",
+       "moitié"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "four",
+      "lang": "it",
+      "prompt": "four",
+      "promptLang": "en",
+      "answer": "quattro",
+      "answerLang": "it",
+      "options": [
+       "numero",
+       "uno",
+       "cinque",
+       "quattro"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "translate",
+      "itemId": "ph-good-morning",
+      "lang": "fr",
+      "prompt": "good morning",
+      "promptLang": "en",
+      "answer": "bonjour",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "listen",
+      "itemId": "half",
+      "lang": "it",
+      "prompt": "metà",
+      "promptLang": "it",
+      "answer": "half",
+      "answerLang": "en",
+      "options": [
+       "one",
+       "five",
+       "hundred",
+       "half"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "reverse",
+      "itemId": "half",
+      "lang": "es",
+      "prompt": "mitad",
+      "promptLang": "es",
+      "answer": "half",
+      "answerLang": "en",
+      "options": [
+       "half",
+       "four",
+       "nine",
+       "five"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "check",
+     "ex": {
+      "kind": "gender",
+      "itemId": "g-fruit",
+      "lang": "es",
+      "prompt": "fruta",
+      "promptLang": "es",
+      "answer": "la",
+      "answerLang": "es",
+      "options": [
+       "el",
+       "la"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": [
+       "",
+       " fruta"
+      ],
+      "person": null,
+      "tense": null,
+      "note": "la fruta",
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "ph-good-morning",
+      "lang": "fr",
+      "prompt": "good morning",
+      "promptLang": "en",
+      "answer": "bonjour",
+      "answerLang": "fr",
+      "options": [
+       "au revoir",
+       "bonjour",
+       "bon après-midi",
+       "ça fait longtemps"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "match",
+     "ex": {
+      "kind": "match",
+      "itemId": "ph-good-morning",
+      "lang": "fr",
+      "prompt": "good morning",
+      "promptLang": "en",
+      "answer": "",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": [
+       "es=buenos días",
+       "fr=bonjour",
+       "it=buongiorno"
+      ],
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "session": 2,
+   "queue": [
+    "es:four:review",
+    "it:one:review",
+    "fr:ph-good-evening:review",
+    "fr:ph-good-evening:match",
+    "it:one:review"
+   ],
+   "rows": [
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "translate",
+      "itemId": "four",
+      "lang": "es",
+      "prompt": "four",
+      "promptLang": "en",
+      "answer": "cuatro",
+      "answerLang": "es",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "sentence",
+      "itemId": "one",
+      "lang": "it",
+      "prompt": "I have one.",
+      "promptLang": "en",
+      "answer": "Ne ho uno.",
+      "answerLang": "it",
+      "options": [
+       "Mangio formaggio.",
+       "Ha otto anni.",
+       "Ne ho uno.",
+       "Seppellirono il suo defunto marito."
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": "2245891"
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "listen",
+      "itemId": "ph-good-evening",
+      "lang": "fr",
+      "prompt": "bonsoir",
+      "promptLang": "fr",
+      "answer": "good evening",
+      "answerLang": "en",
+      "options": [
+       "see you later",
+       "welcome",
+       "good evening",
+       "good morning"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "match",
+     "ex": {
+      "kind": "match",
+      "itemId": "ph-good-evening",
+      "lang": "fr",
+      "prompt": "good evening",
+      "promptLang": "en",
+      "answer": "",
+      "answerLang": "fr",
+      "options": null,
+      "tokens": null,
+      "accept": null,
+      "pairs": [
+       "fr=bonsoir",
+       "it=buonasera",
+       "es=buenas noches"
+      ],
+      "family": [],
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
+      "sentenceId": null
+     }
+    },
+    {
+     "stage": "review",
+     "ex": {
+      "kind": "choose",
+      "itemId": "one",
+      "lang": "it",
+      "prompt": "one",
+      "promptLang": "en",
+      "answer": "uno",
+      "answerLang": "it",
+      "options": [
+       "uno",
+       "numero",
+       "quattro",
+       "cinque"
+      ],
+      "tokens": null,
+      "accept": null,
+      "pairs": null,
+      "family": null,
+      "cloze": null,
+      "person": null,
+      "tense": null,
+      "note": null,
       "sentenceId": null
      }
     }
@@ -4560,9 +4371,9 @@
    "review",
    3,
    0,
-   3.4028898749288974,
+   8.62629178908952,
    5.263544986114632,
-   1792774820000,
+   1793466060000,
    "2026-10-20",
    false
   ],
@@ -4571,20 +4382,20 @@
    "review",
    3,
    0,
-   3.4022483651309012,
+   8.625717685864858,
    5.263544986114632,
-   1792774820000,
+   1793466060000,
    "2026-10-20",
    false
   ],
   [
    "it:eight",
    "review",
-   5,
-   0,
-   3.431711937151793,
-   7.569203839753841,
-   1792940440000,
+   7,
+   1,
+   4.088319840570301,
+   8.012190126918915,
+   1793034060000,
    "2026-10-20",
    false
   ],
@@ -4593,9 +4404,9 @@
    "review",
    2,
    0,
-   10.830122531964214,
+   3.4006461778827908,
    5.272967931287446,
-   1793721620000,
+   1792774820000,
    "2026-10-20",
    false
   ],
@@ -4604,20 +4415,20 @@
    "review",
    2,
    0,
-   10.828543039403598,
+   3.3967881708368783,
    5.272967931287446,
-   1793721680000,
+   1792774820000,
    "2026-10-20",
    false
   ],
   [
    "it:five",
    "review",
-   1,
+   2,
    0,
-   15.69105,
-   3.2245015893713678,
-   1793891100000,
+   15.942453593969175,
+   3.2245015893713673,
+   1793898020000,
    "2026-10-20",
    false
   ],
@@ -4626,20 +4437,20 @@
    "review",
    2,
    0,
-   4.9451363259053,
-   6.0349502556102195,
-   1793203300000,
+   10.825910398851228,
+   5.272967931287446,
+   1793721620000,
    "2026-10-20",
    false
   ],
   [
    "es:four",
    "review",
-   5,
-   1,
-   0.8200563294445877,
-   8.036058337479083,
-   1792861300000,
+   4,
+   0,
+   5.946099255739684,
+   7.140360156361731,
+   1793293220000,
    "2026-10-20",
    false
   ],
@@ -4648,42 +4459,42 @@
    "review",
    2,
    0,
-   10.825383847796303,
+   10.822750977788731,
    5.272967931287446,
-   1793721740000,
+   1793721640000,
    "2026-10-20",
    false
   ],
   [
    "fr:half",
    "review",
-   2,
+   3,
    0,
-   8.170073910819683,
-   5.9060819957043655,
-   1793289640000,
+   3.5292329906211988,
+   6.458347336709581,
+   1792944060000,
    "2026-10-20",
    false
   ],
   [
    "es:half",
    "review",
-   2,
+   3,
    0,
-   10.825383847796303,
-   5.272967931287446,
-   1793721780000,
+   4.950071100133658,
+   6.0270563403407795,
+   1793203300000,
    "2026-10-20",
    false
   ],
   [
    "it:half",
    "review",
-   2,
+   3,
    0,
-   4.944526860764844,
-   6.0349502556102195,
-   1793203400000,
+   10.83531107368101,
+   5.263544986114632,
+   1793721680000,
    "2026-10-20",
    false
   ],
@@ -4692,9 +4503,9 @@
    "review",
    5,
    0,
-   3.5315396016996607,
-   7.953549468734206,
-   1793113240000,
+   2.2135738839032193,
+   7.569203839753841,
+   1792774840000,
    "2026-10-20",
    false
   ],
@@ -4703,9 +4514,9 @@
    "review",
    3,
    0,
-   10.939811895723727,
+   6.0731009801324785,
    5.263544986114632,
-   1793725260000,
+   1793120440000,
    "2026-10-20",
    false
   ],
@@ -4714,9 +4525,9 @@
    "review",
    3,
    0,
-   10.84657647602871,
+   5.9820440067658485,
    5.263544986114632,
-   1793725240000,
+   1793120440000,
    "2026-10-20",
    false
   ],
@@ -4734,11 +4545,11 @@
   [
    "es:number",
    "review",
-   10,
+   3,
    0,
-   22.11748765601989,
-   3.2245015893713638,
-   1794675760000,
+   18.946156938806006,
+   3.224501589371367,
+   1794326640000,
    "2026-10-21",
    true
   ],
@@ -4756,44 +4567,44 @@
   [
    "es:ph-hello",
    "review",
-   2,
-   0,
-   18.809488152595527,
-   3.2245015893713673,
-   1794322820000,
+   3,
+   1,
+   2.2637924369140565,
+   4.662342503890448,
+   1792854100000,
    "2026-10-21",
    true
   ],
   [
    "es:ph-good-morning",
    "review",
-   1,
+   3,
    0,
-   15.69105,
-   3.2245015893713678,
-   1793199600000,
+   21.99567483374377,
+   3.224501589371367,
+   1794672160000,
    "2026-10-21",
    true
   ],
   [
    "es:ph-good-afternoon",
    "review",
-   3,
-   1,
-   2.2638097587710733,
-   4.662342503890448,
-   1792854140000,
+   2,
+   0,
+   18.810204553545105,
+   3.2245015893713673,
+   1794322840000,
    "2026-10-21",
    true
   ],
   [
    "es:ph-good-evening",
    "review",
-   1,
+   2,
    0,
-   15.69105,
-   3.2245015893713678,
-   1793718000000,
+   22.138017285314884,
+   3.2245015893713673,
+   1794675680000,
    "2026-10-21",
    true
   ],
@@ -4811,11 +4622,11 @@
   [
    "es:ph-goodbye",
    "review",
-   3,
-   1,
-   2.301104863555085,
-   4.662342503890448,
-   1792940500000,
+   2,
+   0,
+   21.881878827493363,
+   3.2245015893713673,
+   1794668420000,
    "2026-10-21",
    true
   ],
@@ -4844,11 +4655,11 @@
   [
    "es:ph-long-time-no-see",
    "review",
-   1,
+   2,
    0,
-   15.69105,
-   3.2245015893713678,
-   1793199600000,
+   21.90094117750972,
+   3.2245015893713673,
+   1794668960000,
    "2026-10-21",
    true
   ],
@@ -4857,9 +4668,9 @@
    "review",
    2,
    0,
-   18.81163734815944,
-   3.2245015893713673,
-   1794322880000,
+   16.413300125403353,
+   4.318881718775723,
+   1794063660000,
    "2026-10-21",
    true
   ],
@@ -5066,9 +4877,9 @@
    "review",
    2,
    0,
-   16.41363181623232,
-   4.318881718775723,
-   1794063700000,
+   18.81163734815944,
+   3.2245015893713673,
+   1794322880000,
    "2026-10-21",
    true
   ],
@@ -5196,11 +5007,11 @@
   [
    "es:fruit",
    "review",
-   2,
-   0,
-   17.124553771265933,
-   4.318881718775723,
-   1794236460000,
+   3,
+   1,
+   2.2938654511275507,
+   6.144044598088668,
+   1792940520000,
    "2026-10-21",
    true
   ],
@@ -5363,9 +5174,9 @@
    "review",
    2,
    0,
-   21.883996951596224,
+   21.883290912595818,
    3.2245015893713673,
-   1794668480000,
+   1794668460000,
    "2026-10-21",
    true
   ],
@@ -5396,9 +5207,9 @@
    "review",
    2,
    0,
-   21.88540902249602,
+   21.883996951596224,
    3.2245015893713673,
-   1794668520000,
+   1794668480000,
    "2026-10-21",
    true
   ],
@@ -5471,11 +5282,11 @@
   [
    "es:dance",
    "review",
-   2,
-   0,
-   18.81450290824984,
-   3.2245015893713673,
-   1794322960000,
+   3,
+   1,
+   2.2565822063701555,
+   6.144044598088668,
+   1792854220000,
    "2026-10-21",
    true
   ],
@@ -5548,27 +5359,27 @@
   [
    "fr:number",
    "review",
-   11,
+   5,
    0,
-   4.456447060520568,
-   7.015996282223822,
-   1793120560000,
+   2.3533380472862637,
+   7.122347206953576,
+   1792857840000,
    "2026-10-21",
    false
   ],
   [
    "it:number",
    "review",
-   10,
+   3,
    0,
-   8.659888427720777,
-   5.198786943397779,
-   1793552560000,
+   5.984423476465952,
+   5.263544986114632,
+   1793203440000,
    "2026-10-21",
    false
   ],
   [
-   "fr:g-hundred",
+   "fr:g-half",
    "review",
    2,
    0,
@@ -5579,7 +5390,7 @@
    false
   ],
   [
-   "es:g-hundred",
+   "es:g-half",
    "review",
    1,
    0,
@@ -5603,16 +5414,16 @@
   [
    "it:one",
    "review",
-   3,
-   0,
-   5.482357224889461,
-   7.226603858678807,
-   1793116840000,
+   6,
+   2,
+   0.21214855558662077,
+   8.670116509076875,
+   1792861300000,
    "2026-10-21",
    false
   ],
   [
-   "it:g-hundred",
+   "it:g-half",
    "review",
    1,
    0,
@@ -5623,25 +5434,58 @@
    false
   ],
   [
-   "fr:g-number",
+   "fr:g-hundred",
+   "review",
+   2,
+   0,
+   3.524335767944981,
+   6.473291771547592,
+   1793030460000,
+   "2026-10-21",
+   false
+  ],
+  [
+   "es:g-hundred",
    "review",
    1,
    0,
    3.173,
    5.282434422319005,
-   1792857660000,
+   1792854360000,
+   "2026-10-21",
+   false
+  ],
+  [
+   "it:g-hundred",
+   "review",
+   1,
+   0,
+   3.173,
+   5.282434422319005,
+   1792854400000,
    "2026-10-21",
    false
   ],
   [
    "es:g-number",
    "review",
-   3,
+   2,
    0,
-   2.3354666011509084,
-   7.158456348252584,
-   1792861220000,
+   3.5295584438442087,
+   6.473291771547592,
+   1793034020000,
    "2026-10-21",
+   false
+  ],
+  [
+   "fr:g-number",
+   "review",
+   1,
+   0,
+   3.173,
+   5.282434422319005,
+   1792940560000,
+   "2026-10-22",
    false
   ],
   [
@@ -5651,18 +5495,7 @@
    0,
    3.173,
    5.282434422319005,
-   1792857700000,
-   "2026-10-21",
-   false
-  ],
-  [
-   "fr:g-half",
-   "review",
-   3,
-   0,
-   2.334917952911857,
-   7.158456348252584,
-   1792944060000,
+   1792940580000,
    "2026-10-22",
    false
   ],
@@ -5680,49 +5513,38 @@
   [
    "it:ph-hello",
    "review",
-   3,
    1,
-   0.5049947172817608,
-   7.587548558458277,
-   1792857720000,
+   0,
+   3.173,
+   5.282434422319005,
+   1792940720000,
    "2026-10-22",
    false
   ],
   [
    "fr:ph-good-morning",
    "review",
+   6,
    1,
-   0,
-   3.173,
-   5.282434422319005,
-   1792940740000,
+   0.26946020047285785,
+   8.050944053449133,
+   1792857760000,
    "2026-10-22",
    false
   ],
   [
    "it:ph-good-morning",
    "review",
-   1,
+   3,
    0,
-   3.173,
-   5.282434422319005,
-   1792940760000,
+   5.976016313887909,
+   5.263544986114632,
+   1793289760000,
    "2026-10-22",
    false
   ],
   [
    "fr:ph-good-afternoon",
-   "review",
-   4,
-   1,
-   0.2652603130630812,
-   8.351457110086416,
-   1792857840000,
-   "2026-10-22",
-   false
-  ],
-  [
-   "it:ph-good-afternoon",
    "review",
    1,
    0,
@@ -5733,29 +5555,18 @@
    false
   ],
   [
-   "es:g-bird",
+   "it:ph-good-afternoon",
    "review",
    1,
    0,
-   3.173,
-   5.282434422319005,
-   1792944120000,
+   15.69105,
+   3.2245015893713678,
+   1794064060000,
    "2026-10-22",
    false
   ],
   [
-   "fr:ph-good-evening",
-   "review",
-   3,
-   0,
-   0.8518196549114474,
-   7.6144867521158135,
-   1792861280000,
-   "2026-10-22",
-   false
-  ],
-  [
-   "it:ph-good-evening",
+   "es:g-bird",
    "review",
    1,
    0,
@@ -5766,7 +5577,7 @@
    false
   ],
   [
-   "it:ph-good-night",
+   "es:c-dance",
    "review",
    1,
    0,
@@ -5777,35 +5588,57 @@
    false
   ],
   [
-   "es:c-dance",
+   "fr:ph-good-evening",
+   "review",
+   4,
+   0,
+   2.104036942864145,
+   7.5892818288554675,
+   1792947680000,
+   "2026-10-22",
+   false
+  ],
+  [
+   "it:ph-good-evening",
    "review",
    2,
    0,
-   3.529083748644703,
-   6.473291771547592,
-   1793120520000,
+   5.973198714144604,
+   5.272967931287446,
+   1793293280000,
    "2026-10-22",
    false
   ],
   [
    "fr:ph-good-night",
    "review",
-   2,
+   1,
    0,
-   0.4047517184699424,
-   7.176636167311107,
-   1792854300000,
+   3.173,
+   5.282434422319005,
+   1793027000000,
+   "2026-10-23",
+   false
+  ],
+  [
+   "it:ph-good-night",
+   "review",
+   1,
+   0,
+   3.173,
+   5.282434422319005,
+   1793027020000,
    "2026-10-23",
    false
   ],
   [
    "fr:ph-goodbye",
    "review",
-   1,
+   2,
    0,
-   3.173,
-   5.282434422319005,
-   1793027040000,
+   0.4030596978257917,
+   7.629716592535107,
+   1792854320000,
    "2026-10-23",
    false
   ],
@@ -5825,9 +5658,9 @@
    "review",
    1,
    0,
-   1.18385,
-   6.488305268471453,
-   1792854280000,
+   3.173,
+   5.282434422319005,
+   1793027180000,
    "2026-10-23",
    false
   ],
@@ -5836,53 +5669,53 @@
    "review",
    1,
    0,
-   3.173,
-   5.282434422319005,
-   1793027200000,
+   15.69105,
+   3.2245015893713678,
+   1794150400000,
    "2026-10-23",
    false
   ],
   [
    "fr:ph-welcome",
    "review",
-   2,
+   1,
    0,
-   0.4047517184699424,
-   7.176636167311107,
-   1792854500000,
+   3.173,
+   5.282434422319005,
+   1793027220000,
    "2026-10-23",
    false
   ],
   [
    "it:ph-welcome",
    "review",
-   1,
+   2,
    0,
-   3.173,
-   5.282434422319005,
-   1793027240000,
+   0.4047517184699424,
+   7.176636167311107,
+   1792854520000,
    "2026-10-23",
    false
   ],
   [
    "fr:ph-long-time-no-see",
    "review",
-   1,
+   2,
    0,
-   1.18385,
-   6.488305268471453,
-   1792854460000,
+   3.1749404050282126,
+   5.272967931287446,
+   1793027360000,
    "2026-10-23",
    false
   ],
   [
    "it:ph-long-time-no-see",
    "review",
-   1,
+   2,
    0,
-   15.69105,
-   3.2245015893713678,
-   1794150520000,
+   1.1844240360063811,
+   6.473291771547592,
+   1792854560000,
    "2026-10-23",
    false
   ],
@@ -5891,37 +5724,15 @@
    "review",
    1,
    0,
-   15.69105,
-   3.2245015893713678,
-   1794153860000,
-   "2026-10-23",
-   false
-  ],
-  [
-   "it:ph-thank-you",
-   "review",
-   1,
-   0,
    3.173,
    5.282434422319005,
-   1793030680000,
-   "2026-10-23",
-   false
-  ],
-  [
-   "es:g-half",
-   "review",
-   2,
-   0,
-   0.40365100626615597,
-   7.176636167311107,
-   1792861380000,
+   1793030520000,
    "2026-10-23",
    false
   ]
  ],
  "stats": [
-  595,
+  575,
   4,
   "2026-10-23"
  ],
@@ -5931,8 +5742,8 @@
    78,
    17,
    0,
-   1,
-   0.9132880649256582,
+   2,
+   0.9207340586785249,
    null,
    3,
    42
@@ -5943,7 +5754,7 @@
    78,
    0,
    6,
-   0.9766669099986367,
+   0.9765326206330923,
    11,
    6,
    42
@@ -5951,12 +5762,12 @@
   [
    "it",
    78,
-   18,
+   17,
    0,
    0,
-   0.9524162946702622,
+   0.9375547610367228,
    null,
-   2,
+   3,
    42
   ]
  ],
@@ -6061,10 +5872,10 @@
   ]
  ],
  "summary": [
-  113,
+  112,
   234,
-  7,
-  595,
+  8,
+  575,
   4,
   3
  ],
@@ -66024,7 +65835,7 @@
    "hundred|el|intro",
    "hundred|ru|check",
    "hundred|el|check",
-   "eight|ru|match"
+   "four|ru|match"
   ]
  },
  "gate": [

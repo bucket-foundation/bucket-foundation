@@ -379,3 +379,13 @@ import Testing
     let merged = mergeState(out, st)
     #expect(merged.cards["fr:w0"] == out.cards["fr:w0"])
 }
+
+@Test func matchPickRotatesAcrossSeeds() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    let system = LangSystem(id: "s", name: "G", root: "en", targets: ["de", "sv", "nl"], createdAt: 0)
+    let ids = corpus.items.filter { isVocab($0) && $0.form("de") != nil && $0.form("sv") != nil && $0.form("nl") != nil }.prefix(40).map(\.id)
+    let picks = Set((0..<30).compactMap { matchPick(Array(ids), system, corpus, inSession: [], seed: "s|2026-10-\($0)|\($0 * 3)") })
+    #expect(picks.count >= 5)
+    let session = Set(ids.suffix(3))
+    #expect(session.contains(matchPick(Array(ids), system, corpus, inSession: session, seed: "x")!))
+}
