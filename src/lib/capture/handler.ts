@@ -23,6 +23,19 @@ export interface CaptureResult {
   body: CaptureBody;
 }
 
+export function layeredLimiter(local: (ip: string) => boolean, shared?: (ip: string) => Promise<boolean>): (ip: string) => Promise<boolean> {
+  return async (ip) => {
+    if (local(ip)) return true;
+    if (!shared) return false;
+    try {
+      return await shared(ip);
+    } catch (err) {
+      console.error("[capture] shared rate limit unavailable:", err instanceof Error ? err.message : err);
+      return false;
+    }
+  };
+}
+
 export function withTimeout<T>(work: Promise<T>, ms: number): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | undefined;
   const limit = new Promise<never>((_, reject) => {

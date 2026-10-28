@@ -1,13 +1,15 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { del, get, list, put } from "@vercel/blob";
 import { mergeEntry, parseEntry, sortEntries, type SignupInput, type WaitlistEntry } from "./core";
+import { supabaseConfigured, supabaseWaitlistStore } from "./supabase-store";
+
+const blob = () => import("@vercel/blob");
 
 type Env = Record<string, string | undefined>;
 
 export interface WaitlistStore {
-  kind: "blob" | "file";
+  kind: "blob" | "file" | "supabase";
   prefix: string;
   read(key: string): Promise<WaitlistEntry | null>;
   write(key: string, entry: WaitlistEntry): Promise<void>;
@@ -42,7 +44,7 @@ export function blobStore(prefix: string): WaitlistStore {
     kind: "blob",
     prefix,
     async read(key) {
-      const res = await get(`${prefix}${key}.json`, { access: "private", useCache: false }).catch((err: unknown) => {
+      const res = await (await blob()).get(`${prefix}${key}.json`, { access: "private", useCache: false }).catch((err: unknown) => {
         if (err instanceof Error && err.name === "BlobNotFoundError") return null;
         throw err;
       });
@@ -50,7 +52,7 @@ export function blobStore(prefix: string): WaitlistStore {
       return parseJson(await new Response(res.stream).text());
     },
     async write(key, entry) {
-      await put(`${prefix}${key}.json`, JSON.stringify(entry), {
+      await (await blob()).put(`${prefix}${key}.json`, JSON.stringify(entry), {
         access: "private",
         addRandomSuffix: false,
         allowOverwrite: true,
@@ -61,7 +63,7 @@ export function blobStore(prefix: string): WaitlistStore {
       const out: string[] = [];
       let cursor: string | undefined;
       do {
-        const page = await list({ prefix, cursor, limit: 1000 });
+        const page = await (await blob()).list({ prefix, cursor, limit: 1000 });
         for (const b of page.blobs) {
           const k = keyFromName(b.pathname, prefix);
           if (k) out.push(k);
@@ -71,7 +73,7 @@ export function blobStore(prefix: string): WaitlistStore {
       return out;
     },
     async remove(key) {
-      await del(`${prefix}${key}.json`);
+      await (await blob()).del(`${prefix}${key}.json`);
     },
   };
 }
@@ -115,6 +117,7 @@ export type StorePart = "list" | "suspect" | "downloads" | "downloads/suspect" |
 
 export function getWaitlistStore(env: Env = process.env, part: StorePart = "list"): WaitlistStore | null {
   const prefix = waitlistPrefix(env) + (part === "list" ? "" : `${part}/`);
+  if (supabaseConfigured(env)) return supabaseWaitlistStore(prefix, env);
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobStore(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileStore(path.join(process.cwd(), ".data"), prefix);
   return null;
