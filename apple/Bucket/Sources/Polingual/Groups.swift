@@ -21,6 +21,8 @@ extension GroupKind {
     var symbol: String { self == .family ? "house" : "person.2" }
 }
 
+func asBucket(_ e: any Error) -> BucketError { e as? BucketError ?? .server(0, nil) }
+
 func groupMessage(_ e: BucketError?) -> String? {
     switch e {
     case nil: nil
@@ -39,11 +41,15 @@ func groupMessage(_ e: BucketError?) -> String? {
 enum GroupSheet: Identifiable {
     case create(GroupKind)
     case invite(String)
+    case enterCode
+    case join(String)
 
     var id: String {
         switch self {
         case .create(let k): "create-\(k.rawValue)"
         case .invite(let g): "invite-\(g)"
+        case .enterCode: "code"
+        case .join(let c): "join-\(c)"
         }
     }
 }
@@ -72,6 +78,11 @@ struct FamilyAndFriends: View {
                     Label(kind.inviteLabel, systemImage: kind.symbol)
                 }
             }
+            Button {
+                if account.stage != .signedIn { signingIn = true } else { sheet = .enterCode }
+            } label: {
+                Label("Have an invite code?", systemImage: "ticket")
+            }
         } header: {
             Eyebrow(text: "Family and friends")
         } footer: {
@@ -81,6 +92,8 @@ struct FamilyAndFriends: View {
             switch s {
             case .create(let kind): CreateGroupSheet(kind: kind) { sheet = .invite($0.id) }
             case .invite(let id): InviteSheet(groupId: id)
+            case .enterCode: EnterCodeSheet { sheet = .join($0) }
+            case .join(let code): JoinGroupSheet(code: code)
             }
         }
     }
@@ -111,6 +124,7 @@ struct CreateGroupSheet: View {
     @Environment(\.dismiss) private var dismiss
     @AppStorage("groups.displayName") private var displayName = ""
     @State private var name = ""
+    @State private var error: BucketError?
 
     var body: some View {
         NavigationStack {
@@ -132,15 +146,17 @@ struct CreateGroupSheet: View {
                     Button("Create and invite") {
                         Task {
                             let n = name.trimmingCharacters(in: .whitespaces)
-                            if let g = await groups.create(name: String((n.isEmpty ? kind.label : n).prefix(60)), kind: kind, displayName: String(trimmedName.prefix(40))) {
-                                created(g)
+                            do {
+                                created(try await groups.create(name: String((n.isEmpty ? kind.label : n).prefix(60)), kind: kind, displayName: String(trimmedName.prefix(40))))
+                            } catch {
+                                self.error = asBucket(error)
                             }
                         }
                     }
                     .buttonStyle(D8Primary())
                     .disabled(groups.busy || trimmedName.isEmpty)
                 }
-                if let m = groupMessage(groups.error) { Section { Text(m).foregroundStyle(.red) } }
+                if let m = groupMessage(error) { Section { Text(m).foregroundStyle(.red) } }
                 if groups.busy { Section { ProgressView() } }
             }
             .listRowBackground(Palette.card)
@@ -197,6 +213,7 @@ struct GroupView: View {
     @State private var leaving = false
     @State private var inviting = false
     @State private var resetting = false
+    @State private var error: BucketError?
     #if !BUCKET
     @State private var paywall = false
     #endif
@@ -237,7 +254,7 @@ struct GroupView: View {
             if g.goal != nil || g.isOwner {
                 Section {
                     if let goal = g.goal { GoalBar(name: String(localized: "Weekly goal"), goal: goal) }
-                    if g.isOwner { GoalPicker(group: g) }
+                    if g.isOwner { GoalPicker(group: g, error: $error) }
                 } header: {
                     Eyebrow(text: "Shared goal")
                 } footer: {
@@ -264,7 +281,7 @@ struct GroupView: View {
                 }
             }
             #endif
-            if let m = groupMessage(groups.error) { Section { Text(m).foregroundStyle(.red) } }
+            if let m = groupMessage(error) { Section { Text(m).foregroundStyle(.red) } }
         }
         .listRowBackground(Palette.card)
         .scrollContentBackground(.hidden)
@@ -275,25 +292,39 @@ struct GroupView: View {
         #endif
         .confirmationDialog(String(localized: "Remove \(removing?.name ?? "")?"), isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
             Button("Remove", role: .destructive) {
-                if let m = removing { Task { await groups.remove(m.userId, from: g.id) } }
+                if let m = removing { act { try await groups.remove(m.userId, from: g.id) } }
             }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("They can rejoin only with a new invite link.")
         }
         .confirmationDialog(String(localized: "Reset the invite link?"), isPresented: $resetting, titleVisibility: .visible) {
-            Button("Reset link", role: .destructive) { Task { await groups.rotate(g.id) } }
+            Button("Reset link", role: .destructive) { act { try await groups.rotate(g.id) } }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("Resetting the link stops the old one from working.")
         }
         .confirmationDialog(String(localized: "Leave \(g.name)?"), isPresented: $leaving, titleVisibility: .visible) {
             Button("Leave group", role: .destructive) {
-                Task { if await groups.leave(g.id) { dismiss() } }
+                act {
+                    try await groups.leave(g.id)
+                    dismiss()
+                }
             }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text(g.isOwner && g.members.count > 1 ? String(localized: "The member who joined first becomes the owner.") : String(localized: "You can come back with an invite link."))
+        }
+    }
+
+    func act(_ work: @escaping () async throws -> Void) {
+        Task {
+            do {
+                try await work()
+                error = nil
+            } catch {
+                self.error = asBucket(error)
+            }
         }
     }
 }
@@ -496,6 +527,7 @@ struct JoinGroupSheet: View {
     @AppStorage("groups.displayName") private var displayName = ""
     @State private var preview: GroupPreview?
     @State private var previewError: BucketError?
+    @State private var joinError: BucketError?
     @State private var api = BucketAPI()
 
     var body: some View {
@@ -524,13 +556,18 @@ struct JoinGroupSheet: View {
                 Section {
                     Button("Join") {
                         Task {
-                            if await groups.join(code: code, displayName: String(trimmedName.prefix(40))) != nil { dismiss() }
+                            do {
+                                try await groups.join(code: code, displayName: String(trimmedName.prefix(40)))
+                                dismiss()
+                            } catch {
+                                joinError = asBucket(error)
+                            }
                         }
                     }
                     .buttonStyle(D8Primary())
                     .disabled(groups.busy || trimmedName.isEmpty || previewError == .groupNotFound)
                 }
-                if let m = groupMessage(groups.error ?? previewError) { Section { Text(m).foregroundStyle(.red) } }
+                if let m = groupMessage(joinError ?? previewError) { Section { Text(m).foregroundStyle(.red) } }
                 if groups.busy { Section { ProgressView() } }
             }
             .listRowBackground(Palette.card)
@@ -545,6 +582,49 @@ struct JoinGroupSheet: View {
     }
 
     var trimmedName: String { displayName.trimmingCharacters(in: .whitespacesAndNewlines) }
+}
+
+struct EnterCodeSheet: View {
+    let found: (String) -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var text = ""
+
+    var code: String? { GroupInvite.code(text) }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Invite code", text: $text)
+                        .font(.body.monospaced())
+                        .autocorrectionDisabled()
+                        .codeCapitals()
+                } footer: {
+                    Text("The code is the 10 letters and numbers at the end of the invite link.")
+                }
+                Section {
+                    Button("Continue") { if let code { found(code) } }
+                        .buttonStyle(D8Primary())
+                        .disabled(code == nil)
+                }
+            }
+            .listRowBackground(Palette.card)
+            .paper()
+            .navigationTitle("Have an invite code?")
+            .inlineTitle()
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+        }
+    }
+}
+
+extension View {
+    @ViewBuilder func codeCapitals() -> some View {
+        #if os(iOS)
+        textInputAutocapitalization(.characters)
+        #else
+        self
+        #endif
+    }
 }
 
 struct InviteCode: Identifiable, Equatable {
@@ -577,7 +657,9 @@ struct GroupInviteFlow: ViewModifier {
                     joining = InviteCode(id: code)
                 }
             }
-            .sheet(isPresented: $signingIn) { SignInSheet() }
+            .sheet(isPresented: $signingIn, onDismiss: {
+                if account.stage != .signedIn { waiting = nil }
+            }) { SignInSheet() }
             .sheet(item: $joining) { JoinGroupSheet(code: $0.id) }
     }
 }

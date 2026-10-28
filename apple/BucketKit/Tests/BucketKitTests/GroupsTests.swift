@@ -19,6 +19,19 @@ nonisolated(unsafe) let groupJSON: [String: Any] = [
     ],
 ]
 
+struct SlowListTransport: Transport {
+    let listed: Data
+    let joined: Data
+    let released: LockedBox<Bool>
+
+    func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+        let ok = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        if request.httpMethod == "POST" { return (joined, ok) }
+        while !released.value { try await Task.sleep(for: .milliseconds(10)) }
+        return (listed, ok)
+    }
+}
+
 func goalReply(_ r: URLRequest) -> Data {
     let o = (try? JSONSerialization.jsonObject(with: r.httpBody ?? Data()) as? [String: Any]) ?? [:]
     let weekly = o["weekly"] as? Int ?? 0
@@ -173,7 +186,6 @@ func body(_ r: URLRequest) -> [String: String] {
 
     @Test(arguments: [
         (404, BucketError.groupNotFound),
-        (409, BucketError.groupFull),
         (401, BucketError.revoked),
         (403, BucketError.server(403, "owner_only")),
     ])
@@ -188,6 +200,7 @@ func body(_ r: URLRequest) -> [String: String] {
         ("joined_limit", BucketError.joinedLimit),
         ("cheer_limit", BucketError.cheerLimit),
         ("nudge_not_needed", BucketError.nudgeNotNeeded),
+        ("something_new", BucketError.server(409, "something_new")),
     ])
     func mapsConflictCodes(code: String, expected: BucketError) {
         #expect(BucketAPI.groupError(status: 409, data: json(["error": code])) == expected)
@@ -250,7 +263,7 @@ func body(_ r: URLRequest) -> [String: String] {
 
 @MainActor
 @Suite struct GroupStoreTests {
-    @Test func joinLeaveRemoveAndRotateUpdateTheList() async {
+    @Test func joinLeaveRemoveAndRotateUpdateTheList() async throws {
         let api = BucketAPI(transport: StubTransport { r in
             switch r.url!.path {
             case "/api/academy/groups/rotate": (200, json(["code": "BBBBBBBBBB"]))
@@ -262,16 +275,16 @@ func body(_ r: URLRequest) -> [String: String] {
         let store = GroupStore(api: api, token: { "tok" })
         await store.load()
         #expect(store.loaded && store.groups.isEmpty)
-        await store.join(code: "7K3M9QX2PD", displayName: "Gia")
-        await store.join(code: "7K3M9QX2PD", displayName: "Gia")
+        try await store.join(code: "7K3M9QX2PD", displayName: "Gia")
+        try await store.join(code: "7K3M9QX2PD", displayName: "Gia")
         #expect(store.groups.count == 1)
         #expect(store.first(.family)?.id == "g1")
         #expect(store.first(.friends) == nil)
-        await store.remove("u2", from: "g1")
+        try await store.remove("u2", from: "g1")
         #expect(store.group("g1")?.members.count == 1)
-        #expect(await store.rotate("g1") == "BBBBBBBBBB")
+        #expect(try await store.rotate("g1") == "BBBBBBBBBB")
         #expect(store.group("g1")?.code == "BBBBBBBBBB")
-        #expect(await store.leave("g1"))
+        try await store.leave("g1")
         #expect(store.groups.isEmpty)
     }
 
@@ -298,27 +311,56 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(store.incoming.map(\.id) == ["c1"])
         let nonna = try #require(store.people.first?.member)
         #expect(nonna.cheerKind == .nudge)
-        #expect(await store.cheer(nonna, in: "g1")?.kind == .nudge)
+        #expect(try await store.cheer(nonna, in: "g1").kind == .nudge)
         #expect(store.group("g1")?.cheers.count == 4)
         await store.markSeen(["c1"])
         #expect(store.incoming.isEmpty)
         #expect(store.goals.isEmpty)
-        #expect(await store.setGoal("g1", weekly: 200))
+        try await store.setGoal("g1", weekly: 200)
         #expect(store.goals.first?.goal == GroupGoal(weekly: 200, done: 150, weekStart: "2026-10-26"))
-        #expect(await store.setGoal("g1", weekly: 0))
+        try await store.setGoal("g1", weekly: 0)
         #expect(store.group("g1")?.goal == nil)
     }
 
-    @Test func refusalLeavesTheListAndKeepsTheError() async {
-        let store = GroupStore(api: BucketAPI(transport: StubTransport { _ in (409, json(["error": "full"])) }, cacheDir: nil), token: { "tok" })
-        #expect(await store.join(code: "7K3M9QX2PD", displayName: "Gia") == nil)
-        #expect(store.error == .groupFull)
+    @Test func refusalLeavesTheListAndThrows() async {
+        let store = GroupStore(api: BucketAPI(transport: StubTransport { _ in (409, json(["error": "group_full"])) }, cacheDir: nil), token: { "tok" })
+        await #expect(throws: BucketError.groupFull) { try await store.join(code: "7K3M9QX2PD", displayName: "Gia") }
         #expect(store.groups.isEmpty)
+    }
+
+    @Test func aLoadThatStartedBeforeAnUpsertDoesNotOverwriteIt() async throws {
+        let gate = LockedBox<Bool>(false)
+        let listed = json(["groups": []])
+        let joined = json(["group": groupJSON])
+        let api = BucketAPI(transport: SlowListTransport(listed: listed, joined: joined, released: gate), cacheDir: nil)
+        let store = GroupStore(api: api, token: { "tok" })
+        let loading = Task { await store.load() }
+        try await Task.sleep(for: .milliseconds(50))
+        try await store.join(code: "7K3M9QX2PD", displayName: "Gia")
+        gate.mutate { $0 = true }
+        await loading.value
+        #expect(store.groups.map(\.id) == ["g1"])
     }
 
     @Test func signedOutAsksToSignIn() async {
         let store = GroupStore(api: BucketAPI(transport: StubTransport { _ in (200, json([:])) }, cacheDir: nil), token: { nil })
-        #expect(await store.create(name: "x", kind: .friends, displayName: "y") == nil)
-        #expect(store.error == .revoked)
+        await #expect(throws: BucketError.revoked) { try await store.create(name: "x", kind: .friends, displayName: "y") }
+    }
+}
+
+@Suite struct QueueNewTests {
+    @Test func aQueuedWordComesUpAsNewWithoutHistory() throws {
+        let corpus = try translateCorpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+        let item = try #require(corpus.items.last { $0.form("es") != nil && $0.form("en") != nil })
+        let now = 1_800_000_000_000.0
+        let state = queueNew(EngineState(), "es", item.id, now: now)
+        #expect(state.history.count == 0)
+        #expect(!state.cards.started(cardId("es", item.id)))
+        #expect(newToday(state, "es", now: now) == 0)
+        #expect(planSession(system, corpus, state, now: now).contains { $0.itemId == item.id && $0.lang == "es" })
+        let graded = gradeCard(state, "es", item.id, 3, now: now)
+        #expect(graded.cards.started(cardId("es", item.id)))
+        #expect(queueNew(graded, "es", item.id, now: now + 1) == graded)
     }
 }

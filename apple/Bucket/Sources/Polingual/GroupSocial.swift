@@ -213,7 +213,7 @@ struct RecentWordsSection: View {
                         .accessibilityHint(Text("Plays the word"))
                         if let target = target(w) {
                             Button {
-                                langs.grade(target.system, lang: w.lang, itemId: target.item, rating: 1)
+                                langs.queue(target.system, lang: w.lang, itemId: target.item)
                                 added.insert(w.id)
                                 haptic(true)
                             } label: {
@@ -237,7 +237,7 @@ struct RecentWordsSection: View {
     func target(_ w: RecentWord) -> (system: String, item: String)? {
         guard let corpus = langs.corpus, let system = langs.systems.first(where: { $0.targets.contains(w.lang) }) else { return nil }
         guard let item = corpus.items.first(where: { $0.form(w.lang) == w.form }) else { return nil }
-        if langs.state(system.id).cards.started(cardId(w.lang, item.id)) && !added.contains(w.id) { return nil }
+        if langs.state(system.id).cards[cardId(w.lang, item.id)] != nil && !added.contains(w.id) { return nil }
         return (system.id, item.id)
     }
 }
@@ -319,15 +319,27 @@ struct GoalBar: View {
 
 struct GoalPicker: View {
     let group: LearningGroup
+    @Binding var error: BucketError?
     @Environment(GroupStore.self) private var groups
+
+    func set(_ weekly: Int) {
+        Task {
+            do {
+                try await groups.setGoal(group.id, weekly: weekly)
+                error = nil
+            } catch {
+                self.error = asBucket(error)
+            }
+        }
+    }
 
     var body: some View {
         Menu {
             ForEach(GroupGoal.choices, id: \.self) { n in
-                Button(String(localized: "\(n) cards a week")) { Task { await groups.setGoal(group.id, weekly: n) } }
+                Button(String(localized: "\(n) cards a week")) { set(n) }
             }
             if group.goal != nil {
-                Button("Clear the goal", role: .destructive) { Task { await groups.setGoal(group.id, weekly: 0) } }
+                Button("Clear the goal", role: .destructive) { set(0) }
             }
         } label: {
             Label(group.goal == nil ? String(localized: "Set a weekly goal") : String(localized: "Change the weekly goal"), systemImage: "target")
@@ -419,12 +431,17 @@ struct TodayStrip: View {
             return
         }
         #endif
-        if await groups.cheer(m, in: groupId) != nil {
+        do {
+            try await groups.cheer(m, in: groupId)
             sent[m.userId] = m.cheerKind
             haptic(true)
             note = nil
-        } else {
-            note = groupMessage(groups.error)
+        } catch let e where e == .cheerLimit || e == .nudgeNotNeeded {
+            sent[m.userId] = m.cheerKind
+            note = groupMessage(e)
+            await groups.load()
+        } catch {
+            note = groupMessage(error)
         }
     }
 }

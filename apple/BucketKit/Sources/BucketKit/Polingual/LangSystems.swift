@@ -1114,6 +1114,16 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
     return interleave(Array(due)) + fresh
 }
 
+public func queueNew(_ state: EngineState, _ lang: String, _ itemId: String, now: Double) -> EngineState {
+    let id = cardId(lang, itemId)
+    guard state.cards[id] == nil || state.cards[id]?.state == "new" else { return state }
+    var next = state
+    var card = Card(state: "new")
+    card.due = now
+    next.cards[id] = card
+    return next
+}
+
 public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil) -> EngineState {
     let id = cardId(lang, itemId)
     let wasNew = !state.cards.started(id)

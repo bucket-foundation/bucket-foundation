@@ -239,6 +239,11 @@ public final class LangStore {
         commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier))
     }
 
+    public func queue(_ systemId: String, lang: String, itemId: String) {
+        guard let s = system(systemId) else { return }
+        commit(s, queueNew(state(systemId), lang, itemId, now: now()))
+    }
+
     public func flagMisses(_ systemId: String, lang: String) -> Int { FlagMisses.count(state(systemId), lang) }
 
     public func recordFlagMiss(_ systemId: String, lang: String) {

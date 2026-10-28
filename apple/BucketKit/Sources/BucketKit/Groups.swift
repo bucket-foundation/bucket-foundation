@@ -287,7 +287,7 @@ public struct MemberGraph: Codable, Equatable, Sendable {
     }
 
     func layered(_ links: [GraphEdge]) -> [String: CGPoint] {
-        var depth = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, 0) })
+        var depth = Dictionary(nodes.map { ($0.id, 0) }, uniquingKeysWith: { a, _ in a })
         for _ in 0..<nodes.count {
             var changed = false
             for e in links where depth[e.to]! < depth[e.from]! + 1 && depth[e.from]! + 1 < nodes.count {
@@ -310,11 +310,11 @@ public struct MemberGraph: Codable, Equatable, Sendable {
     func grid() -> [String: CGPoint] {
         let cols = max(1, Int(Double(nodes.count).squareRoot().rounded(.up)))
         let rows = max(1, (nodes.count + cols - 1) / cols)
-        return Dictionary(uniqueKeysWithValues: nodes.enumerated().map { i, n in
+        return Dictionary(nodes.enumerated().map { i, n in
             let r = i / cols, col = i % cols
             let shift = r.isMultiple(of: 2) ? 0 : 0.5
             return (n.id, CGPoint(x: (Double(col) + 0.5 + shift * 0.5) / Double(cols), y: (Double(r) + 0.5) / Double(rows)))
-        })
+        }, uniquingKeysWith: { a, _ in a })
     }
 }
 
@@ -480,7 +480,7 @@ extension BucketAPI {
         case (409, "joined_limit"): return .joinedLimit
         case (409, "cheer_limit"): return .cheerLimit
         case (409, "nudge_not_needed"): return .nudgeNotNeeded
-        case (409, _): return .groupFull
+        case (409, "group_full"): return .groupFull
         case (429, _): return .rateLimited(body["message"])
         default: return .server(status, body["message"] ?? body["error"])
         }
@@ -490,13 +490,17 @@ extension BucketAPI {
 @MainActor
 @Observable
 public final class GroupStore {
-    public var groups: [LearningGroup] = []
+    public var groups: [LearningGroup] = [] {
+        didSet { version += 1 }
+    }
     public private(set) var loaded = false
     public private(set) var busy = false
-    public var error: BucketError?
+    public private(set) var loadError: BucketError?
 
     let api: BucketAPI
     let token: @MainActor () async -> String?
+    @ObservationIgnored var version = 0
+    @ObservationIgnored var inFlight: Task<Void, Never>?
 
     public init(api: BucketAPI, token: @escaping @MainActor () async -> String?) {
         self.api = api
@@ -532,51 +536,58 @@ public final class GroupStore {
     }
 
     public func load() async {
+        if let inFlight { return await inFlight.value }
+        let task = Task { await self.fetch() }
+        inFlight = task
+        await task.value
+        inFlight = nil
+    }
+
+    func fetch() async {
         guard let t = await token() else { return }
+        let start = version
         do {
-            groups = try await api.groups(token: t)
+            let fresh = try await api.groups(token: t)
+            loadError = nil
+            guard version == start else { return }
+            groups = fresh
             loaded = true
-            error = nil
         } catch {
-            self.error = error as? BucketError ?? .server(0, nil)
+            loadError = error as? BucketError ?? .server(0, nil)
         }
     }
 
     @discardableResult
-    public func create(name: String, kind: GroupKind, displayName: String) async -> LearningGroup? {
-        await run { try await self.api.createGroup(token: $0, name: name, kind: kind, displayName: displayName) }.map(upsert)
+    public func create(name: String, kind: GroupKind, displayName: String) async throws(BucketError) -> LearningGroup {
+        upsert(try await run { try await self.api.createGroup(token: $0, name: name, kind: kind, displayName: displayName) })
     }
 
     @discardableResult
-    public func join(code: String, displayName: String) async -> LearningGroup? {
-        await run { try await self.api.joinGroup(token: $0, code: code, displayName: displayName) }.map(upsert)
+    public func join(code: String, displayName: String) async throws(BucketError) -> LearningGroup {
+        upsert(try await run { try await self.api.joinGroup(token: $0, code: code, displayName: displayName) })
     }
 
-    @discardableResult
-    public func leave(_ groupId: String) async -> Bool {
-        guard await run({ try await self.api.leaveGroup(token: $0, groupId: groupId) }) != nil else { return false }
+    public func leave(_ groupId: String) async throws(BucketError) {
+        try await run { try await self.api.leaveGroup(token: $0, groupId: groupId) }
         groups.removeAll { $0.id == groupId }
-        return true
     }
 
-    @discardableResult
-    public func remove(_ userId: String, from groupId: String) async -> Bool {
-        guard await run({ try await self.api.removeMember(token: $0, groupId: groupId, userId: userId) }) != nil else { return false }
+    public func remove(_ userId: String, from groupId: String) async throws(BucketError) {
+        try await run { try await self.api.removeMember(token: $0, groupId: groupId, userId: userId) }
         if let i = index(groupId) { groups[i].members.removeAll { $0.userId == userId } }
-        return true
     }
 
     @discardableResult
-    public func rotate(_ groupId: String) async -> String? {
-        guard let code = await run({ try await self.api.rotateInvite(token: $0, groupId: groupId) }) else { return nil }
+    public func rotate(_ groupId: String) async throws(BucketError) -> String {
+        let code = try await run { try await self.api.rotateInvite(token: $0, groupId: groupId) }
         if let i = index(groupId) { groups[i].code = code }
         return code
     }
 
     @discardableResult
-    public func cheer(_ member: GroupMember, in groupId: String) async -> Cheer? {
+    public func cheer(_ member: GroupMember, in groupId: String) async throws(BucketError) -> Cheer {
         let kind = member.cheerKind
-        guard let c = await run({ try await self.api.cheer(token: $0, groupId: groupId, to: member.userId, kind: kind) }) else { return nil }
+        let c = try await run { try await self.api.cheer(token: $0, groupId: groupId, to: member.userId, kind: kind) }
         if let i = index(groupId) { groups[i].cheers.append(c) }
         return c
     }
@@ -591,11 +602,9 @@ public final class GroupStore {
         try? await api.markCheersSeen(token: t, ids: ids)
     }
 
-    @discardableResult
-    public func setGoal(_ groupId: String, weekly: Int) async -> Bool {
-        guard let reply = await run({ try await self.api.setGoal(token: $0, groupId: groupId, weekly: weekly) }) else { return false }
+    public func setGoal(_ groupId: String, weekly: Int) async throws(BucketError) {
+        let reply = try await run { try await self.api.setGoal(token: $0, groupId: groupId, weekly: weekly) }
         if let i = index(groupId) { groups[i].goal = reply }
-        return true
     }
 
     public func graph(_ groupId: String, _ userId: String, branch: String) async -> MemberGraph? {
@@ -606,7 +615,7 @@ public final class GroupStore {
     public func clear() {
         groups = []
         loaded = false
-        error = nil
+        loadError = nil
     }
 
     func index(_ groupId: String) -> Int? { groups.firstIndex { $0.id == groupId } }
@@ -616,17 +625,13 @@ public final class GroupStore {
         return g
     }
 
-    func run<T>(_ work: @escaping (String) async throws -> T) async -> T? {
+    @discardableResult
+    func run<T>(_ work: @escaping (String) async throws -> T) async throws(BucketError) -> T {
         busy = true
-        error = nil
         defer { busy = false }
-        guard let t = await token() else {
-            error = .revoked
-            return nil
-        }
+        guard let t = await token() else { throw .revoked }
         do { return try await work(t) } catch {
-            self.error = error as? BucketError ?? .server(0, nil)
-            return nil
+            throw error as? BucketError ?? .server(0, nil)
         }
     }
 }
