@@ -21,6 +21,6 @@ export function mailWiring(env: Env = process.env): MailWiring | { status: 503; 
   const optOuts = getOptOutStore(env);
   const progress = getOptOutStore(env, "progress");
   const store = getWhatsNewStore(env);
-  if (!list || !downloads || !optOuts || !progress || !store) return { status: 503, error: "No Blob store is connected." };
+  if (!list || !downloads || !optOuts || !progress || !store) return { status: 503, error: "No signup store is connected." };
   return { config, progress, store, recipients: () => optedInRecipients([list, downloads], optOuts, config.secret) };
 }
