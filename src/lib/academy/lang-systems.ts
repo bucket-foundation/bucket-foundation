@@ -1115,10 +1115,14 @@ export function mergeSystems(a: SystemsDoc, b: SystemsDoc): SystemsDoc {
       byId.set(s.id, { ...s, placement: Object.fromEntries(Object.entries(s.placement).sort()) });
       continue;
     }
-    const placement = { ...cur.placement };
-    for (const [l, t] of Object.entries(s.placement)) placement[l] = Math.max(placement[l] ?? 0, t);
     const newer = (s.updatedAt ?? s.createdAt) > (cur.updatedAt ?? cur.createdAt) ? s : cur;
     const older = newer === s ? cur : s;
+    const placement = { ...older.placement };
+    if ((s.updatedAt ?? s.createdAt) === (cur.updatedAt ?? cur.createdAt)) {
+      for (const [l, t] of Object.entries(newer.placement)) placement[l] = Math.max(placement[l] ?? 0, t);
+    } else {
+      Object.assign(placement, newer.placement);
+    }
     const levels = older.levels || newer.levels ? { levels: { ...older.levels, ...newer.levels } } : {};
     byId.set(s.id, { ...newer, ...levels, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
   }

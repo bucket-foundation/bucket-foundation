@@ -95,6 +95,19 @@ public final class LangStore {
         systems = list
         states = st
         status = corpus == nil ? .error : .ready
+        if server != nil { await healPlacements() }
+    }
+
+    func healPlacements() async {
+        for s in systems {
+            let stale = stalePlacements(s, state(s.id))
+            guard !stale.isEmpty else { continue }
+            var next = s
+            for l in stale { next.placement[l] = 0 }
+            next.updatedAt = now()
+            replace(next)
+            await persistSystems(upsert: next)
+        }
     }
 
     func file(_ name: String) async -> Data? {
@@ -241,6 +254,7 @@ public final class LangStore {
     public func place(_ systemId: String, lang: String, tier: Double, only: [String]? = nil, level: String? = nil) async {
         guard var s = system(systemId), let corpus else { return }
         s.placement[lang] = tier
+        s.updatedAt = now()
         if let level { s.levels = (s.levels ?? [:]).merging([lang: level]) { _, n in n } }
         replace(s)
         commit(s, applyPlacement(state(systemId), s, corpus, lang, tier, now: now(), only: only.map(Set.init)))
@@ -252,6 +266,7 @@ public final class LangStore {
     public func unplace(_ systemId: String, lang: String) async {
         guard var s = system(systemId) else { return }
         s.placement[lang] = 0
+        s.updatedAt = now()
         s.levels = (s.levels ?? [:]).merging([lang: Self.unknownLevel]) { _, n in n }
         replace(s)
         commit(s, BucketKit.unplace(state(systemId), lang, now: now()))

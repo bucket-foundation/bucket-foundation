@@ -1188,6 +1188,11 @@ public func applyPlacement(_ state: EngineState, _ system: LangSystem, _ corpus:
     return next
 }
 
+public func stalePlacements(_ system: LangSystem, _ state: EngineState) -> [String] {
+    let placedLangs = Set(state.cards.entries.filter { $0.value.placed == true }.map { parseCardId($0.key).lang })
+    return system.placement.filter { $0.value > 0 && !placedLangs.contains($0.key) }.map(\.key).sorted()
+}
+
 public func unplace(_ state: EngineState, _ lang: String, now: Double) -> EngineState {
     var next = state
     for (id, c) in state.cards.entries where parseCardId(id).lang == lang && c.placed == true {
@@ -1329,10 +1334,14 @@ public func mergeSystems(_ a: SystemsDoc, _ b: SystemsDoc) -> SystemsDoc {
             byId[s.id] = s
             continue
         }
-        var placement = cur.placement
-        for (l, t) in s.placement { placement[l] = max(placement[l] ?? 0, t) }
         var newer = (s.updatedAt ?? s.createdAt) > (cur.updatedAt ?? cur.createdAt) ? s : cur
         let older = newer == s ? cur : s
+        var placement = older.placement
+        if (s.updatedAt ?? s.createdAt) == (cur.updatedAt ?? cur.createdAt) {
+            for (l, t) in newer.placement { placement[l] = max(placement[l] ?? 0, t) }
+        } else {
+            placement.merge(newer.placement) { _, n in n }
+        }
         if older.levels != nil || newer.levels != nil { newer.levels = (older.levels ?? [:]).merging(newer.levels ?? [:]) { _, n in n } }
         newer.createdAt = min(cur.createdAt, s.createdAt)
         newer.placement = placement

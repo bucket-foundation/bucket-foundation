@@ -40,6 +40,13 @@ const asian = createSystem("en", ["zh", "ja"], [], T + 10);
   ok(JSON.stringify(mergeSystems(m, m)) === JSON.stringify(m), "merge is idempotent");
 }
 {
+  const server: SystemsDoc = { systems: [{ ...romance, placement: { fr: 99, es: 3 } }], removed: {} };
+  const reset: SystemsDoc = { systems: [{ ...romance, updatedAt: T + 500, placement: { fr: 0 } }], removed: {} };
+  const r = mergeSystems(server, reset).systems[0];
+  ok(r.placement.fr === 0 && r.placement.es === 3, "a newer placement reset beats an older higher tier and keeps other languages");
+  ok(JSON.stringify(mergeSystems(reset, server)) === JSON.stringify(mergeSystems(server, reset)), "reset merge is order independent");
+}
+{
   const m = mergeSystems({ systems: [romance, asian], removed: {} }, { systems: [], removed: { [asian.id]: T + 20 } });
   ok(m.systems.length === 1 && m.systems[0].id === romance.id, "a removal on one device wins over a stale copy");
   const again = mergeSystems(m, { systems: [{ ...asian, createdAt: T + 30 }], removed: {} });
