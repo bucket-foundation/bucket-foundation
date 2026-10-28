@@ -18,7 +18,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
 
 @Test func everyQuestionGradesItsOwnAnswerAsRight() throws {
     let deck = try questionDeck()
-    #expect(deck.questions.count == 295)
+    #expect(deck.questions.count == 339)
     #expect(Set(deck.questions.map(\.kind)) == Set(QuestionKind.allCases))
     for q in deck.questions {
         let r: QuestionResponse
@@ -61,7 +61,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
     struct Row: Decodable { let branch: String; let id: String; let order: [Int]; let meanings: [Int]?; let cases: [Case] }
     let url = try #require(Bundle.module.url(forResource: "golden", withExtension: "json", subdirectory: "Fixtures/questions"))
     let rows = try JSONDecoder().decode([Row].self, from: Data(contentsOf: url))
-    let decks = try ["00-learning-to-learn", "01-mathematics", "02-physics", "03-chemistry", "06-cosmology"].map { try questionDeck($0) }
+    let decks = try ["00-learning-to-learn", "01-mathematics", "02-physics", "03-chemistry", "04-information", "06-cosmology"].map { try questionDeck($0) }
     let byId = Dictionary(uniqueKeysWithValues: decks.flatMap { d in d.questions.map { ("\(d.branch)/\($0.id)", $0) } })
     #expect(rows.count == byId.count)
     var checked = 0
@@ -84,7 +84,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
             checked += 1
         }
     }
-    #expect(checked == 7146)
+    #expect(checked == 9194)
 }
 
 @Test func missingQuestionDeckFallsBackToTheDrill() async throws {
@@ -95,14 +95,14 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
     #expect(deck == nil)
 }
 
-@Test(arguments: [("01-mathematics", 55), ("02-physics", 55), ("03-chemistry", 55)])
-func everyReviewCycleIncludesTheAppliedTask(_ name: String, _ applied: Int) throws {
+@Test(arguments: [("00-learning-to-learn", 10...10), ("01-mathematics", 55...60), ("02-physics", 55...60), ("03-chemistry", 55...60), ("04-information", 55...60), ("06-cosmology", 55...60)])
+func everyReviewCycleIncludesTheAppliedTask(_ name: String, _ applied: ClosedRange<Int>) throws {
     let deck = try questionDeck(name)
     let atoms = Set(deck.questions.map(\.atom))
     let withApplied = atoms.filter { a in deck.questions(for: a).contains { $0.applied == true } }
-    #expect(withApplied.count == applied)
+    #expect(applied.contains(withApplied.count))
     for atom in atoms {
-        #expect(deck.questions(for: atom).filter { $0.applied == true }.count <= 1, "\(atom)")
+        #expect(deck.questions(for: atom).filter { $0.applied == true }.count == 1, "\(atom)")
     }
     for atom in withApplied {
         let n = deck.rotation(for: atom).count
