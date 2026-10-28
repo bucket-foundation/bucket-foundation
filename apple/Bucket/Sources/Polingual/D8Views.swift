@@ -57,12 +57,15 @@ struct WordTile: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer(minLength: 0)
                     if let word {
-                        HStack(spacing: 6) {
+                        let phrase = word.contains(" ")
+                        let layout = phrase ? AnyLayout(VStackLayout(spacing: 4)) : AnyLayout(HStackLayout(spacing: 6))
+                        layout {
                             Text(word)
                                 .font(D8.word(size * (D8Fit.long(word) ? 0.15 : 0.21)))
-                                .lineLimit(word.contains(" ") ? 3 : 1)
+                                .lineLimit(phrase ? 3 : 1)
                                 .multilineTextAlignment(.center)
-                                .minimumScaleFactor(0.4)
+                                .minimumScaleFactor(phrase ? 0.75 : 0.4)
+                                .fixedSize(horizontal: false, vertical: phrase)
                                 .foregroundStyle(D8.ink)
                             if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
                         }
@@ -71,7 +74,7 @@ struct WordTile: View {
                         Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
                     }
                     Spacer(minLength: 0)
-                    Text(word == nil ? " " : readingText(reading) ?? " ").font(.system(size: size * 0.075)).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(word == nil ? " " : readingText(reading) ?? " ").font(.system(size: size * 0.075)).foregroundStyle(D8.ipa).lineLimit(word?.contains(" ") == true ? 2 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
                 }
                 .padding(.horizontal, inset * 1.7)
                 .padding(.vertical, inset * 1.5)

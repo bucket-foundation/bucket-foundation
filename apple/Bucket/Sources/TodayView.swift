@@ -80,12 +80,62 @@ struct TodayView: View {
     }
 
     func nextUp(_ now: Double) -> Item? {
-        let corpus = langs.corpus
-        return items.first { item in
+        items.first { hasWork($0, now) }
+    }
+
+    func hasWork(_ item: Item, _ now: Double) -> Bool {
+        switch item {
+        case .deck(let w): w.due + w.new > 0
+        case .lang(let s):
+            (langs.corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0) > 0 || langNewLeft(s, langs.state(s.id), now: now) > 0
+        }
+    }
+
+    func open(_ item: Item) {
+        switch item {
+        case .deck(let w): session = StudyLaunch(entry: w.entry, deck: w.deck)
+        case .lang(let s): path.append(LangRoute.study(s.id))
+        }
+    }
+
+    func move(_ item: Item, toTop: Bool) {
+        var ids = items.map(\.id).filter { $0 != item.id }
+        if toTop { ids.insert(item.id, at: 0) } else { ids.append(item.id) }
+        order = ids.joined(separator: ",")
+    }
+
+    func reorder(_ shown: [Item], _ from: IndexSet, _ to: Int) {
+        var moved = shown.map(\.id)
+        moved.move(fromOffsets: from, toOffset: to)
+        let rest = items.map(\.id).filter { !moved.contains($0) }
+        let pendingFirst = shown.first.map { hasWork($0, Date().timeIntervalSince1970 * 1000) } ?? true
+        order = (pendingFirst ? moved + rest : rest + moved).joined(separator: ",")
+    }
+
+    @ViewBuilder
+    func row(_ item: Item, done: Bool) -> some View {
+        Group {
             switch item {
-            case .deck(let w): w.due + w.new > 0
-            case .lang(let s):
-                (corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0) > 0 || langNewLeft(s, langs.state(s.id), now: now) > 0
+            case .deck(let work):
+                Button { open(item) } label: { ReviewDeckRow(entry: work.entry) }
+            case .lang(let system):
+                Button { open(item) } label: { LangSystemRow(system: system) }
+            }
+        }
+        .opacity(done ? 0.6 : 1)
+        .swipeActions(edge: .leading) {
+            Button("Study", systemImage: "play.fill") { open(item) }.tint(D8.malachite)
+        }
+        .swipeActions(edge: .trailing) {
+            Button("Bottom", systemImage: "arrow.down.to.line") { move(item, toTop: false) }.tint(D8.lapis)
+            Button("Top", systemImage: "arrow.up.to.line") { move(item, toTop: true) }.tint(Palette.ink)
+        }
+        .contextMenu {
+            Button("Study", systemImage: "play.fill") { open(item) }
+            Button("Move to top", systemImage: "arrow.up.to.line") { move(item, toTop: true) }
+            Button("Move to bottom", systemImage: "arrow.down.to.line") { move(item, toTop: false) }
+            if case .lang(let s) = item {
+                Button("Settings and placement", systemImage: "slider.horizontal.3") { path.append(LangRoute.system(s.id)) }
             }
         }
     }
@@ -132,23 +182,25 @@ struct TodayView: View {
                         .listRowBackground(Palette.card)
                 }
                 if loaded && !items.isEmpty {
-                    Section {
-                        ForEach(items) { item in
-                            switch item {
-                            case .deck(let work):
-                                Button { session = StudyLaunch(entry: work.entry, deck: work.deck) } label: { ReviewDeckRow(entry: work.entry) }
-                            case .lang(let system):
-                                Button { path.append(LangRoute.study(system.id)) } label: { LangSystemRow(system: system) }
-                            }
+                    let pending = items.filter { hasWork($0, now) }
+                    let finished = items.filter { !hasWork($0, now) }
+                    if !pending.isEmpty {
+                        Section {
+                            ForEach(pending) { row($0, done: false) }
+                                .onMove { reorder(pending, $0, $1) }
+                                .listRowBackground(Palette.card)
+                        } header: {
+                            Eyebrow(text: "Your studies")
                         }
-                        .onMove { from, to in
-                            var ids = items.map(\.id)
-                            ids.move(fromOffsets: from, toOffset: to)
-                            order = ids.joined(separator: ",")
+                    }
+                    if !finished.isEmpty {
+                        Section {
+                            ForEach(finished) { row($0, done: true) }
+                                .onMove { reorder(finished, $0, $1) }
+                                .listRowBackground(Palette.card)
+                        } header: {
+                            Eyebrow(text: "Done for today")
                         }
-                        .listRowBackground(Palette.card)
-                    } header: {
-                        Eyebrow(text: "Your studies")
                     }
                 }
             }

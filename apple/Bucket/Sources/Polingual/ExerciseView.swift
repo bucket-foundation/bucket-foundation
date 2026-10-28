@@ -143,7 +143,11 @@ struct ExerciseView: View {
                     let ok = owner == l
                     let truth = pairs.first { $0.lang == l }?.word ?? ""
                     Button {
-                        guard !matchDone, let h = holding else { return }
+                        if matchDone {
+                            LangVoice.shared.speak(truth, l)
+                            return
+                        }
+                        guard let h = holding else { return }
                         assign = assign.filter { $0.value != l }
                         assign[h] = l
                         holding = nil
@@ -161,11 +165,15 @@ struct ExerciseView: View {
                             Text(word ?? " ").font(D8.word(16)).strikethrough(matchDone && !ok, color: D8.vermilion)
                                 .foregroundStyle(matchDone ? (ok ? D8.malachite : Palette.muted) : Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
                             if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.malachite).lineLimit(1).minimumScaleFactor(0.6) }
+                            if matchDone && LangVoice.shared.canSpeak(truth, l) {
+                                Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted)
+                            }
                         }
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel("\(langName(l))\(word.map { ", holds \($0)" } ?? "")\(matchDone ? (ok ? ", right" : ", wrong, the answer is \(truth)") : "")")
+                    .accessibilityHint(matchDone ? String(localized: "Plays the word") : "")
                 }
             }
             if matchDone {
@@ -249,7 +257,7 @@ struct ExerciseView: View {
     var standard: some View {
         let mc = Self.choiceKeys(ex, speech: LangListener.shared.supported, heard: heard)
         let sameLangReadings = ex.kind != .gender && ex.kind != .conjugate
-        let prompt = Prompt(ex: ex, readings: readings, cousins: { l in r(ex.family?.first { $0.lang == l }?.word ?? "", l) })
+        let prompt = Prompt(ex: ex, readings: readings, cousins: { l in r(ex.family?.first { $0.lang == l }?.word ?? "", l) }, answered: picked != nil || verdict != nil)
         let answers = VStack(alignment: .leading, spacing: 14) {
             if mc, let options = ex.options {
                 if let picked {
@@ -318,18 +326,10 @@ struct ExerciseView: View {
                 Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: ex.kind == .speak ? heard : typed, reading: r(ex.lang == ex.answerLang ? ex.answer : ex.prompt, ex.lang)) { finish(verdict != .wrong, verdict) }
             }
         }
-        return Group {
-            if sideways {
-                HStack(alignment: .top, spacing: 20) {
-                    prompt.frame(maxWidth: .infinity)
-                    answers.frame(maxWidth: .infinity)
-                }
-            } else {
-                VStack(alignment: .leading, spacing: 14) {
-                    prompt
-                    answers
-                }
-            }
+        let layout = sideways ? AnyLayout(HStackLayout(alignment: .top, spacing: 20)) : AnyLayout(VStackLayout(alignment: .leading, spacing: 14))
+        return layout {
+            prompt.frame(maxWidth: sideways ? .infinity : nil)
+            answers.frame(maxWidth: sideways ? .infinity : nil)
         }
     }
 
@@ -503,6 +503,7 @@ struct Prompt: View {
     let ex: Exercise
     let readings: Bool
     let cousins: (String) -> Reading?
+    var answered = false
 
     var body: some View {
         let name = langName(ex.lang)
@@ -518,7 +519,7 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard, .spellHeard:
             VStack(spacing: 10) {
-                WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
+                WordTile(word: answered || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: answered && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:

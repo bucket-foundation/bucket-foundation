@@ -178,15 +178,12 @@ struct StudyView: View {
             .padding(.bottom, 12)
             .frame(maxWidth: 900, alignment: .top)
             .frame(maxWidth: .infinity)
-            Group {
-                if vertical == .compact {
-                    page.frame(maxHeight: .infinity, alignment: .top)
-                } else {
-                    ScrollView { page }
-                        .scrollBounceBehavior(.basedOnSize)
-                        .scrollDismissesKeyboard(.interactively)
-                }
+            ScrollView {
+                page.containerRelativeFrame(vertical == .compact ? .vertical : [], alignment: .top)
             }
+            .scrollDisabled(vertical == .compact)
+            .scrollBounceBehavior(.basedOnSize)
+            .scrollDismissesKeyboard(.interactively)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
@@ -231,8 +228,10 @@ struct StudyView: View {
         if kind == .letter, let l = system.targets.first(where: { LangScript.alphabetUnit($0) != nil }) {
             return letterExercise(l, system.root, rng.index(LangScript.alphabetUnit(l)!.letters.count), &rng)
         }
+        let args = ProcessInfo.processInfo.arguments
+        let pinned = args.firstIndex(of: "-forceItem").flatMap { $0 + 1 < args.count ? corpus.byId[args[$0 + 1]] : nil }
         for _ in 0..<4000 {
-            let item = corpus.items[rng.index(corpus.items.count)]
+            let item = pinned ?? corpus.items[rng.index(corpus.items.count)]
             let lang = system.targets[rng.index(system.targets.count)]
             guard item.form(lang) != nil, item.form(system.root) != nil else { continue }
             if item.kind == .conj && item.conj[lang] == nil { continue }
