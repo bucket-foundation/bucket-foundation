@@ -73,30 +73,31 @@ struct TranslateCard: View {
                         }
                     } label: {
                         HStack(spacing: 6) {
-                            if let from { FlagTile(lang: from, size: 22) } else { Image(systemName: "sparkle.magnifyingglass").font(.system(size: 18, weight: .semibold)) }
+                            if let from { FlagTile(lang: from, size: 20) } else { Image(systemName: "sparkle.magnifyingglass").font(.system(size: 15, weight: .semibold)) }
                             Text(from.map(Lang.name) ?? String(localized: "Detect language"))
-                                .font(.system(size: 17, weight: .bold, design: .rounded))
-                            Image(systemName: "chevron.down").font(.system(size: 13, weight: .bold))
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                            Image(systemName: "chevron.down").font(.system(size: 11, weight: .bold))
                         }
-                        .foregroundStyle(D8.ink)
+                        .foregroundStyle(Palette.ink)
                         .padding(.horizontal, 12)
-                        .frame(minHeight: 40)
-                        .background(.white, in: .capsule)
-                        .overlay { Capsule().strokeBorder(D8.keyline, lineWidth: 2) }
+                        .frame(minHeight: 34)
+                        .background(Palette.paper, in: .capsule)
                     }
                     .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
                     if let detected {
                         Text("Detected: \(Lang.name(detected))")
-                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
                             .foregroundStyle(Palette.muted)
                             .lineLimit(1)
                     }
                     Spacer(minLength: 0)
                 }
                 HStack(spacing: 10) {
-                    Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
+                    Image(systemName: "character.bubble.fill").font(.system(size: 20)).foregroundStyle(D8.lapis)
                     TextField("Translate a word", text: $query)
-                        .font(.system(size: 21, weight: .semibold, design: .rounded))
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .foregroundStyle(Palette.ink)
+                        .tint(D8.vermilion)
                         .autocorrectionDisabled()
                         .submitLabel(.search)
                         .focused($focused)
@@ -119,15 +120,17 @@ struct TranslateCard: View {
                         .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
                     }
                 }
-                .padding(.horizontal, 14)
-                .frame(minHeight: 60)
-                .background(.white, in: .rect(cornerRadius: 14))
-                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
+                .padding(.leading, 14)
+                .padding(.trailing, 8)
+                .frame(minHeight: 56)
+                .background(Palette.paper, in: .rect(cornerRadius: 16))
+                .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(focused ? D8.lapis.opacity(0.6) : Palette.muted.opacity(0.2), lineWidth: focused ? 2 : 1) }
+                .animation(.easeOut(duration: 0.15), value: focused)
                 if listening {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
                         if !LangListener.shared.live.isEmpty {
-                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(D8.ink)
+                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(Palette.ink)
                         }
                     }
                 } else if missedVoice {
@@ -137,18 +140,26 @@ struct TranslateCard: View {
                     SentenceTranslations(text: query, source: sentenceSource, targets: shown.filter { $0 != sentenceSource })
                 } else if !query.isEmpty {
                     if let id = picked ?? hits.first?.itemId, let item = corpus.byId[id] {
-                        ForEach(shown, id: \.self) { l in
-                            if let f = item.form(l) {
-                                HStack(spacing: 10) {
-                                    FlagTile(lang: l, size: 26)
-                                    Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
-                                        .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
+                        VStack(spacing: 0) {
+                            let rows = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
+                            ForEach(Array(rows.enumerated()), id: \.element.lang) { i, r in
+                                HStack(spacing: 12) {
+                                    FlagTile(lang: r.lang, size: 28)
+                                    VStack(alignment: .leading, spacing: 1) {
+                                        Text(r.form).font(.system(size: 20, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                                            .environment(\.layoutDirection, Lang.isRTL(r.lang) ? .rightToLeft : .leftToRight)
+                                        Text(Lang.name(r.lang)).font(.system(size: 12, weight: .semibold)).foregroundStyle(Palette.muted)
+                                    }
                                     Spacer(minLength: 4)
-                                    PlayButton(text: f, lang: l)
+                                    PlayButton(text: r.form, lang: r.lang)
                                 }
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 10)
                                 .accessibilityElement(children: .combine)
+                                if i < rows.count - 1 { Divider().overlay(Palette.muted.opacity(0.15)).padding(.leading, 54) }
                             }
                         }
+                        .background(Palette.paper, in: .rect(cornerRadius: 16))
                         HStack(spacing: 10) {
                             if added.contains(id) {
                                 Label("Added to your next session", systemImage: "checkmark.circle.fill")
