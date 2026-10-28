@@ -45,6 +45,7 @@ targets:
     entitlements:
       path: Bucket/Bucket.entitlements
       properties:
+        aps-environment: development
         keychain-access-groups:
           - $(AppIdentifierPrefix)foundation.bucket.shared
         com.apple.developer.applesignin:

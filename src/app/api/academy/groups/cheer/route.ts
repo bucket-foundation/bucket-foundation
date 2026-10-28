@@ -11,6 +11,7 @@ import {
   service,
   summaries,
 } from "@/lib/academy/groups-server";
+import { pushCheerToDevices } from "@/lib/academy/push-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,7 +47,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     const row = (Array.isArray(res.data) ? res.data[0] : res.data) as CheerRow | undefined;
     if (!row) throw new Error("send_cheer: no row");
-    return json({ cheer: toCheer(row, members) });
+    const cheer = toCheer(row, members);
+    await pushCheerToDevices(row, cheer.fromName || "A friend").catch(() => null);
+    return json({ cheer });
   } catch (err) {
     return fail(err, "cheer");
   }

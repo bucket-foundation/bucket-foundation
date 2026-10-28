@@ -35,13 +35,21 @@ struct PolingualRoot: View {
         .groupsOnToday()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
-            if new == .signedIn && old != .signedIn { Task { await store.syncAfterSignIn() } }
+            if new == .signedIn && old != .signedIn {
+                Task { await store.syncAfterSignIn() }
+                Task { await PushRegistry.shared.refresh() }
+            }
             if new == .signedOut && old == .signedIn && account.endedByUser {
                 store.clearLocal()
                 reminders.reset()
             }
         }
-        .task { account.beforeSignOut = { await store.flush() } }
+        .task {
+            account.beforeSignOut = {
+                await PushRegistry.shared.unregister()
+                await store.flush()
+            }
+        }
         #if DEBUG
         .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
             store.clearLocal()
@@ -115,6 +123,10 @@ struct Studio: View {
         .manageSubscriptions(isPresented: $managing)
         .task { await openFromLaunch() }
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+        .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in
+            section = "home"
+            path = NavigationPath()
+        }
         #else
         stack
             .sheet(isPresented: $showAccount) { AccountView() }
@@ -127,6 +139,7 @@ struct Studio: View {
             .manageSubscriptions(isPresented: $managing)
             .task { await openFromLaunch() }
             .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+            .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in path = NavigationPath() }
         #endif
     }
 
