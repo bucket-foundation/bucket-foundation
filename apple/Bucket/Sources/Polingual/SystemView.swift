@@ -102,6 +102,7 @@ struct SystemView: View {
                             if p.grammarTotal > 0 { Text("grammar \(p.grammarStarted)/\(p.grammarTotal)") }
                             if let placed = p.placedAt {
                                 Text("placed at tier \(JSON.number(placed))")
+                                Button("Redo placement") { path.append(LangRoute.place(system.id, nil)) }.buttonStyle(.borderless)
                             } else {
                                 Button("Take placement") { path.append(LangRoute.place(system.id, p.lang)) }.buttonStyle(.borderless)
                             }
