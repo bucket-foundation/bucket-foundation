@@ -46,6 +46,11 @@ public final class LangStore {
 
     public private(set) var status = Status.idle
     public private(set) var corpus: LangCorpus?
+
+    public static func topWords(_ lang: String, bundle: Bundle = .main) -> [TopWord]? {
+        guard let url = bundle.url(forResource: lang, withExtension: "json", subdirectory: "Corpus/top1000"), let data = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode([TopWord].self, from: data)
+    }
     public private(set) var systems: [LangSystem] = []
     public private(set) var states: [String: EngineState] = [:]
     public private(set) var saveState = SaveResult.idle
@@ -152,11 +157,15 @@ public final class LangStore {
     func writeLocal(_ branch: String, _ s: EngineState) { disk.write("branch-\(branch).json", JSON.data(s.js)) }
 
     func loadBranch(_ branch: String, _ server: JSObject?) async -> EngineState {
-        let local = readLocal(branch)
-        guard let remoteJS = server?[branch]?["data"] else { return local ?? EngineState() }
+        let stored = readLocal(branch)
+        let local = stored.map { spreadingUntouchedPlaced($0, now: now()) }
+        guard let remoteJS = server?[branch]?["data"] else {
+            if let local, local != stored { writeLocal(branch, local) }
+            return local ?? EngineState()
+        }
         let remote = EngineState(js: remoteJS)
-        let merged = mergeState(local, remote)
-        if local != merged { writeLocal(branch, merged) }
+        let merged = mergeState(local, spreadingUntouchedPlaced(remote, now: now()))
+        if stored != merged { writeLocal(branch, merged) }
         if remote != merged, let t = await token() { _ = await api.progressPush(token: t, branch: branch, data: merged.js) }
         return merged
     }
@@ -229,11 +238,23 @@ public final class LangStore {
         return out.ratings
     }
 
-    public func place(_ systemId: String, lang: String, tier: Double) async {
+    public func place(_ systemId: String, lang: String, tier: Double, only: [String]? = nil, level: String? = nil) async {
         guard var s = system(systemId), let corpus else { return }
         s.placement[lang] = tier
+        if let level { s.levels = (s.levels ?? [:]).merging([lang: level]) { _, n in n } }
         replace(s)
-        commit(s, applyPlacement(state(systemId), s, corpus, lang, tier, now: now()))
+        commit(s, applyPlacement(state(systemId), s, corpus, lang, tier, now: now(), only: only.map(Set.init)))
+        await persistSystems(upsert: s)
+    }
+
+    public static let unknownLevel = "A0"
+
+    public func unplace(_ systemId: String, lang: String) async {
+        guard var s = system(systemId) else { return }
+        s.placement[lang] = 0
+        s.levels = (s.levels ?? [:]).merging([lang: Self.unknownLevel]) { _, n in n }
+        replace(s)
+        commit(s, BucketKit.unplace(state(systemId), lang, now: now()))
         await persistSystems(upsert: s)
     }
 
@@ -253,7 +274,7 @@ public final class LangStore {
     func push(_ systemId: String, _ branch: String) async {
         guard let server = await pull(), let t = await token() else { return }
         let mine = state(systemId)
-        let merged = server[branch].map { mergeState(mine, EngineState(js: $0["data"])) } ?? mine
+        let merged = server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
         if merged != mine {
             states[systemId] = merged
             writeLocal(branch, merged)

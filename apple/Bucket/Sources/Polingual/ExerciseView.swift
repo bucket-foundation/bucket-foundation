@@ -232,6 +232,10 @@ struct ExerciseView: View {
         ex.kind == .translate || ex.kind == .typeHeard || ex.kind == .spellHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!speech || heard == ""))
     }
 
+    static func spokenArticle(_ article: String, _ ex: Exercise) -> String {
+        "\(article)\(ex.cloze?.after ?? "")"
+    }
+
     static func choiceKeys(_ ex: Exercise, speech: Bool, heard: String?) -> Bool {
         ex.options != nil && !typed(ex, speech: speech, heard: heard)
     }
@@ -252,7 +256,8 @@ struct ExerciseView: View {
                     LazyVGrid(columns: sideways ? [GridItem(.flexible(), spacing: 8), GridItem(.flexible())] : [GridItem(.flexible())], spacing: 8) {
                         ForEach(options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
-                                      flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil)
+                                      flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil,
+                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil)
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
@@ -277,13 +282,19 @@ struct ExerciseView: View {
                 }
             }
             if ex.kind == .speak && !typedKind && verdict == nil {
+                if listening {
+                    Text(LangListener.shared.live.isEmpty ? String(localized: "Listening…") : LangListener.shared.live)
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .foregroundStyle(LangListener.shared.live.isEmpty ? Palette.muted : D8.ink)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentTransition(.opacity)
+                }
                 Button {
-                    Task { await micTry() }
+                    if listening { LangListener.shared.stop() } else { Task { await micTry() } }
                 } label: {
-                    Label(listening ? String(localized: "Listening") : String(localized: "Speak"), systemImage: "mic.fill")
+                    Label(listening ? String(localized: "Stop") : String(localized: "Speak"), systemImage: listening ? "stop.fill" : "mic.fill")
                 }
                 .buttonStyle(D8Primary())
-                .disabled(listening)
                 Button("Type instead") { heard = "" }.buttonStyle(PlainLink())
             }
             if typedKind && verdict == nil {
@@ -400,6 +411,7 @@ struct ArticleKey: View {
         case "f": String(localized: "feminine")
         case "n": String(localized: "neuter")
         case "de": String(localized: "common")
+        case "pl": String(localized: "plural")
         default: String(localized: "neuter")
         }
     }

@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   applyPlacement,
+  articleWord,
   buildLangCorpus,
   buildQueue,
   crossLanguageOptions,
@@ -28,6 +29,7 @@ import {
   type PlacementAnswer,
 } from "../../../src/lib/academy/lang-systems";
 import { normalizeState } from "../../../src/lib/academy/engine";
+import { applyCefrPlacement, bandsAvailable, cefrPlacement, cefrQuestion, cefrStep, type CefrAnswer } from "../../../src/lib/academy/placement-cefr";
 import { alphabetDone, alphabetUnit, dueLetters, foldMarks, HERITAGE_LANGS, judgeSpelled, letterItemId, nextLetters } from "../../../src/lib/academy/lang-script";
 import { audioKey } from "../../../src/lib/academy/lang-audio";
 
@@ -177,7 +179,7 @@ const H_JUDGE: [string, string[], string][] = [
   ["שָׁלוֹם", ["שלום"], "he"], ["كتـاب", ["كتاب"], "ar"], ["كتاي", ["كتاب"], "ar"], ["يك", ["یک"], "fa"],
   ["еж", ["ёж"], "ru"], ["мои", ["мой"], "ru"], ["кни\u0301га", ["книга"], "ru"], ["моско", ["москва"], "ru"],
   ["καλημερα", ["καλημέρα"], "el"], ["ΟΔΟΣ", ["οδός"], "el"], ["नमसते", ["नमस्ते"], "hi"], ["ﾈｺ", ["ネコ"], "ja"],
-  ["", ["猫"], "zh"], ["ねこ", ["猫", "ねこ"], "ja"], ["한국", ["한국".normalize("NFD")], "ko"],
+  ["", ["猫"], "zh"], ["все", ["всё"], "ru"], ["ВСЁ", ["всё"], "ru"], ["еж", ["ёж"], "ru"], ["ねこ", ["猫", "ねこ"], "ja"], ["한국", ["한국".normalize("NFD")], "ko"],
 ];
 const H_FOLD: [string, string][] = [["ru", "кни\u0301га"], ["el", "ΟΔΟΣ"], ["el", "ὀδός"], ["grc", "Ἀθῆναι"], ["he", " שָׁלוֹם! "], ["fa", "يك"], ["ja", "ﾈｺ"], ["uk", "ї"]];
 const lrng = seededRng(31);
@@ -212,12 +214,75 @@ out.heritage = {
     const u = alphabetUnit(l)!;
     return [0, 1, u.letters.length - 1].map((i) => {
       const x = letterExercise(l, "en", i, lrng)!;
-      return `${l}|${x.prompt}|${x.answer}|${(x.options ?? []).join("")}`;
+      return `${l}|${x.prompt}|${x.answer}|${(x.options ?? []).join("")}|${(x.accept ?? []).join("")}`;
     });
   }),
   sched,
   spell,
   queue: hQueue,
 };
+
+const ARTICLE_CASES: [string, string, string][] = [["fr","m","haricot"],["fr","m","haricots"],["fr","m","hibou"],["fr","m","hiboux"],["fr","m","héros"],["fr","f","hache"],["fr","m","hamburger"],["fr","m","Homard"],["fr","f","honte"],["fr","m","hors-d'œuvre"],["fr","m","haut de gamme"],["fr","m","homme"],["fr","f","heure"],["fr","m","hôtel"],["fr","f","herbe"],["fr","m","hot-dog"],["fr","m","hold-up"],["fr","m","hip-hop"],["fr","f","haute couture"],["fr","m","haut-parleur"],["fr","f","hallucination"],["fr","m","hautbois"],["fr","f","haches"],["fr","m","ami"],["fr","f","eau"],["fr","m","livre"],["it","m","zero"],["it","f","acqua"],["it","m","libro"],["es","f","agua"],["es","f","casa"],["de","f","Kirche"]];
+const GATE_LANGS = ["ja", "th", "hi", "ru"];
+out.gate = GATE_LANGS.map((l) => {
+  const u = alphabetUnit(l)!;
+  const rows: unknown[] = [];
+  let gs = normalizeState(null);
+  for (let round = 0; round < 30; round++) {
+    const fresh = nextLetters(gs, l, 5).map((x) => x.ch);
+    rows.push([fresh.join(""), alphabetDone(gs, l)]);
+    if (!fresh.length) break;
+    for (const ch of fresh) gs = gradeCard(gs, l, letterItemId(ch), 3, T0 + round * 86400000, "UTC");
+  }
+  return [l, u.letters.length, rows];
+});
+out.articles = ARTICLE_CASES.map(([l, g, n]) => articleWord(l, g, n));
+const pSys = { ...createSystem("en", ["fr"], [], T0), placement: { fr: 99 } };
+const placed = applyPlacement(normalizeState(null), pSys, corpus, "fr", 99, T0);
+const legacyCards: Record<string, unknown> = {};
+for (let i = 0; i < 311; i++) legacyCards[`fr:w${i}`] = { state: "review", reps: 1, lapses: 0, stability: 3.2, difficulty: 5, lastReview: T0 - 3 * DAY, due: T0, placed: true };
+legacyCards["fr:seen"] = { state: "review", reps: 2, lapses: 0, stability: 9, difficulty: 5, lastReview: T0 - DAY, due: T0, placed: true };
+out.placement = {
+  due: Object.entries(placed.cards).map(([id, c]) => [id, c.due, c.stability, c.reps]),
+  legacy: Object.entries(normalizeState({ cards: legacyCards }, T0).cards).map(([id, c]) => [id, c.due]),
+  plan: buildQueue(pSys, corpus, placed, T0 + 20 * DAY).map((q) => `${q.lang}:${q.itemId}:${q.stage}`),
+};
+
+out.cefr = ["es", "fr", "de"].map((lang) => {
+  const top = read(`top-${lang}`);
+  const sys = createSystem("en", [lang], [], T0);
+  const src = { system: sys, corpus, lang, top };
+  const avail = bandsAvailable(src);
+  const crng = seededRng(77);
+  const answers: CefrAnswer[] = [];
+  const seen = new Set<string>();
+  const asked: string[] = [];
+  for (let i = 0; i < 40; i++) {
+    const st = cefrStep(answers, avail);
+    if (st.done || !st.next) break;
+    const q = cefrQuestion(src, st.next.band, st.next.task, seen, crng, { speech: true });
+    if (!q) {
+      asked.push(`${st.next.band}|none`);
+      answers.push({ band: st.next.band, task: st.next.task, itemId: `none${i}`, correct: false });
+      continue;
+    }
+    seen.add(q.ex.itemId);
+    asked.push(`${st.next.band}|${q.task}|${q.ex.kind}|${q.ex.itemId}|${q.ex.answer}|${(q.ex.options ?? []).join("/")}`);
+    answers.push({ band: st.next.band, task: q.task, itemId: q.ex.itemId, correct: true });
+  }
+  const st = cefrStep(answers, avail);
+  const p = cefrPlacement(src, answers, st);
+  const placedState = applyCefrPlacement(normalizeState(null), sys, corpus, lang, p, T0);
+  return {
+    lang,
+    avail,
+    asked,
+    level: p.level,
+    floor: p.floorTier,
+    bands: p.bands.map((b) => [b.band, b.asked, b.right, b.recallRight, b.passed, b.failed, b.confidence]),
+    ids: p.placeIds,
+    cards: Object.entries(placedState.cards).map(([id, c]) => [id, c.due]),
+  };
+});
 
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));

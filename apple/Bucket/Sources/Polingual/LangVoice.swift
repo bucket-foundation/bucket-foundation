@@ -70,9 +70,13 @@ final class LangVoice: NSObject {
 }
 
 @MainActor
+@Observable
 final class LangListener {
     static let shared = LangListener()
-    private let engine = AVAudioEngine()
+    @ObservationIgnored private let engine = AVAudioEngine()
+    @ObservationIgnored private var current: SpeechRun?
+    @ObservationIgnored private var stopEarly = false
+    private(set) var live = ""
 
     var supported: Bool {
         #if os(iOS) || os(macOS)
@@ -100,16 +104,52 @@ final class LangListener {
         input.installTap(onBus: 0, bufferSize: 1024, format: input.outputFormat(forBus: 0)) { buf, _ in request.append(buf) }
     }
 
-    nonisolated private static func recognize(_ rec: SFSpeechRecognizer, _ request: SFSpeechAudioBufferRecognitionRequest, _ finish: @escaping @Sendable ([String]) -> Void) -> SFSpeechRecognitionTask {
+    nonisolated private static func recognize(_ rec: SFSpeechRecognizer, _ request: SFSpeechAudioBufferRecognitionRequest, _ heard: HeardBox, _ finish: @escaping @Sendable ([String]) -> Void) -> SFSpeechRecognitionTask {
         rec.recognitionTask(with: request) { r, err in
-            if let r, r.isFinal { finish(r.transcriptions.prefix(5).map(\.formattedString)) } else if err != nil { finish([]) }
+            if let r {
+                let alts = Array(r.transcriptions.prefix(5).map(\.formattedString))
+                if r.isFinal { finish(alts) } else { heard.update(alts) }
+            } else if err != nil {
+                finish(heard.alts)
+            }
         }
     }
 
-    func listenOnce(_ lang: String) async -> [String] {
-        guard await authorize(), let rec = SFSpeechRecognizer(locale: Locale(identifier: Lang.info[lang]?.bcp47 ?? lang)), rec.isAvailable else { return [] }
+    nonisolated private static func watch(_ run: SpeechRun, started: Date, limit: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            if run.isDone { return }
+            let quiet = run.heard.quietFor() ?? 0
+            if (quiet >= silence && !run.heard.alts.isEmpty) || Date().timeIntervalSince(started) >= limit {
+                run.request.endAudio()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    run.task?.cancel()
+                    run.finish(run.heard.alts)
+                }
+                return
+            }
+            watch(run, started: started, limit: limit)
+        }
+    }
+
+    nonisolated static let silence: TimeInterval = 0.7
+    nonisolated static let maxListen: TimeInterval = 6
+    nonisolated static let maxSentence: TimeInterval = 15
+
+    func stop() {
+        guard let run = current else {
+            stopEarly = true
+            return
+        }
+        run.request.endAudio()
+        run.task?.finish()
+        run.finish(run.heard.alts)
+    }
+
+    func listenOnce(_ lang: String, limit: TimeInterval = LangListener.maxListen) async -> [String] {
+        stopEarly = false
+        guard await authorize(), !stopEarly, let rec = SFSpeechRecognizer(locale: Locale(identifier: Lang.info[lang]?.bcp47 ?? lang)), rec.isAvailable else { return [] }
         let request = SFSpeechAudioBufferRecognitionRequest()
-        request.shouldReportPartialResults = false
+        request.shouldReportPartialResults = true
         request.requiresOnDeviceRecognition = rec.supportsOnDeviceRecognition
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: [.duckOthers, .defaultToSpeaker])
@@ -120,24 +160,23 @@ final class LangListener {
         Self.tap(input, into: request)
         engine.prepare()
         guard (try? engine.start()) != nil else { return [] }
-        let result: [String] = await withCheckedContinuation { c in
-            var done = false
-            let finish: @Sendable ([String]) -> Void = { xs in
-                DispatchQueue.main.async {
-                    if done { return }
-                    done = true
-                    c.resume(returning: xs)
-                }
-            }
-            let task = Self.recognize(rec, request, finish)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                request.endAudio()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    task.cancel()
-                    finish([])
-                }
+        let run = SpeechRun(request: request)
+        current = run
+        live = ""
+        let shown = Task { [weak self] in
+            while !Task.isCancelled {
+                self?.live = run.heard.alts.first ?? ""
+                try? await Task.sleep(for: .milliseconds(120))
             }
         }
+        let result: [String] = await withCheckedContinuation { c in
+            run.onFinish = { xs in c.resume(returning: xs) }
+            run.task = Self.recognize(rec, request, run.heard) { run.finish($0) }
+            Self.watch(run, started: Date(), limit: limit)
+        }
+        shown.cancel()
+        if current === run { current = nil }
+        live = result.first ?? live
         engine.stop()
         input.removeTap(onBus: 0)
         #if os(iOS)
@@ -163,5 +202,46 @@ struct PlayButton: View {
             .tint(Palette.green)
             .accessibilityLabel(label ?? "Hear it in \(langName(lang))")
         }
+    }
+}
+
+final class HeardBox: @unchecked Sendable {
+    private let lock = NSLock()
+    private var latest: [String] = []
+    private var changed: Date?
+
+    var alts: [String] { lock.withLock { latest } }
+
+    func update(_ xs: [String]) {
+        lock.withLock {
+            if xs != latest { latest = xs; changed = Date() }
+        }
+    }
+
+    func quietFor(now: Date = Date()) -> TimeInterval? {
+        lock.withLock { changed.map { now.timeIntervalSince($0) } }
+    }
+}
+
+final class SpeechRun: @unchecked Sendable {
+    let request: SFSpeechAudioBufferRecognitionRequest
+    let heard = HeardBox()
+    var task: SFSpeechRecognitionTask?
+    var onFinish: (([String]) -> Void)?
+    private let lock = NSLock()
+    private var done = false
+
+    init(request: SFSpeechAudioBufferRecognitionRequest) { self.request = request }
+
+    var isDone: Bool { lock.withLock { done } }
+
+    func finish(_ xs: [String]) {
+        let first = lock.withLock { () -> Bool in
+            if done { return false }
+            done = true
+            return true
+        }
+        guard first else { return }
+        DispatchQueue.main.async { self.onFinish?(xs) }
     }
 }
