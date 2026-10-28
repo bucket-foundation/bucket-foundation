@@ -43,6 +43,11 @@ export default function SharePage({ params, searchParams }: Props) {
       ) : (
         <p style={{ fontSize: 19, lineHeight: 1.5, margin: "0 0 28px" }}>{view.description}</p>
       )}
+      {view.code ? (
+        <p style={{ fontSize: 15, margin: "0 0 28px", color: "#5d5650" }}>
+          Invite code <strong style={{ fontFamily: "ui-monospace, monospace", letterSpacing: 2, color: "#231F20" }}>{view.code}</strong>. Open this link on your iPhone to join in the Bucket app.
+        </p>
+      ) : null}
       <a
         href={APP_STORE_URL}
         style={{ display: "inline-block", padding: "14px 22px", borderRadius: 999, background: "#3D5E2E", color: "#fff", fontWeight: 700, textDecoration: "none" }}
