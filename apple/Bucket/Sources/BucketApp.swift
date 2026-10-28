@@ -45,6 +45,7 @@ struct BucketApp: App {
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
+                        if p == .active { await reminders.sync() }
                         await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
                         await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
                         WidgetSync.refresh(langs, extra: scienceWidgetExtra(library, science))
@@ -59,6 +60,7 @@ struct BucketApp: App {
                     backgroundSafe { await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay) }
                 }
                 .task {
+                    await reminders.sync()
                     #if os(iOS)
                     WatchBridge.shared.start(langs)
                     #endif

@@ -39,6 +39,7 @@ struct PolingualApp: App {
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
+                        if p == .active { await reminders.sync() }
                         await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
                         WidgetSync.refresh(store)
                         #if os(iOS)
@@ -61,6 +62,7 @@ struct PolingualApp: App {
                     backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
                 }
                 .task {
+                    await reminders.sync()
                     #if os(iOS)
                     WatchBridge.shared.allowed = { subs.access.open }
                     WatchBridge.shared.start(store)

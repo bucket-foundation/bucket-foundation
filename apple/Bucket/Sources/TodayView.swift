@@ -5,6 +5,7 @@ struct TodayView: View {
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
     @Environment(ScienceStore.self) private var science
+    @Environment(Reminders.self) private var reminders
     @State private var path = NavigationPath()
     @State private var session: StudyLaunch?
     @AppStorage("bucket.today.order") private var order = ""
@@ -176,6 +177,10 @@ struct TodayView: View {
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Palette.card)
+                if !reminders.enabled && !items.isEmpty {
+                    Section { ReminderPrompt().padding(.vertical, 6) }
+                        .listRowBackground(Palette.card)
+                }
                 if !langs.systems.isEmpty {
                     Section { TranslateCard() }
                         .listRowBackground(Palette.card)
