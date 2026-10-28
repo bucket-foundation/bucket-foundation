@@ -135,7 +135,6 @@ export const GROUP_CAP: Record<GroupKind, number> = { family: 6, friends: 30 };
 export const MAX_OWNED = 10;
 export const MAX_JOINED = 20;
 export const MAX_WEEKLY_GOAL = 10000;
-export const CHEERS_PER_DAY = 3;
 export const RECENT_WORDS = 20;
 export const GRAPH_WORDS = 60;
 
@@ -421,22 +420,17 @@ export function memberGraph(rows: readonly BranchRow[], branch: string, lookup: 
   return branchGraph(found.corpus, asState(rows.find((r) => r.branch === branch)?.data), now);
 }
 
-export type CheerDecision = "ok" | "self" | "not_member" | "cheer_limit" | "nudge_not_needed";
+export type CheerDecision = "ok" | "self" | "not_member" | "nudge_not_needed";
 
 export function cheerDecision(
   members: readonly MemberRow[],
   from: string,
   to: string,
   kind: CheerKind,
-  sent: readonly CheerRow[],
-  recipientTodayReviews: number,
-  now: number
+  recipientTodayReviews: number
 ): CheerDecision {
   if (from === to) return "self";
   if (!members.some((m) => m.user_id === from) || !members.some((m) => m.user_id === to)) return "not_member";
-  const today = dayKey(now, "UTC");
-  const count = sent.filter((c) => c.from_id === from && c.to_id === to && dayKey(Date.parse(c.created_at), "UTC") === today).length;
-  if (count >= CHEERS_PER_DAY) return "cheer_limit";
   if (kind === "nudge" && recipientTodayReviews > 0) return "nudge_not_needed";
   return "ok";
 }
@@ -507,4 +501,21 @@ export async function fetchAllPages<T>(page: (from: number, to: number) => Promi
     if (rows.length < size) return out;
   }
   throw new Error("fetchAllPages: too many pages");
+}
+
+export const PREVIEW_PER_MINUTE = 30;
+export const JOIN_PER_MINUTE = 10;
+
+export function windowLimiter(max: number, windowMs: number, clock: () => number = Date.now, maxKeys = 10_000): (key: string) => boolean {
+  const hits = new Map<string, number[]>();
+  return (key) => {
+    const now = clock();
+    const recent = (hits.get(key) ?? []).filter((t) => now - t < windowMs);
+    const limited = recent.length >= max;
+    if (!limited) recent.push(now);
+    hits.delete(key);
+    hits.set(key, recent);
+    if (hits.size > maxKeys) hits.delete(hits.keys().next().value as string);
+    return limited;
+  };
 }

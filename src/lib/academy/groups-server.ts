@@ -10,6 +10,9 @@ import {
   currentWeek,
   fetchAllPages,
   generateInviteCode,
+  JOIN_PER_MINUTE,
+  PREVIEW_PER_MINUTE,
+  windowLimiter,
   visibleGroupIds,
   memberSummary,
   type BranchRow,
@@ -71,6 +74,13 @@ export function service(): SupabaseClient {
     auth: { persistSession: false, autoRefreshToken: false },
   }) as unknown as SupabaseClient;
   return _svc;
+}
+
+export const previewLimited = windowLimiter(PREVIEW_PER_MINUTE, 60_000);
+export const joinLimited = windowLimiter(JOIN_PER_MINUTE, 60_000);
+
+export function clientIp(req: NextRequest): string {
+  return req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
 }
 
 export async function requestUser(req: NextRequest): Promise<string | null> {
@@ -228,16 +238,6 @@ async function cheersOf(uid: string, groupIds: string[], now: number): Promise<C
   return (check(res, "cheers read") ?? []) as CheerRow[];
 }
 
-export async function sentToday(groupId: string, from: string, to: string, now: number): Promise<CheerRow[]> {
-  const res = await service()
-    .from(CHEERS)
-    .select(CHEER_COLS)
-    .eq("group_id", groupId)
-    .eq("from_id", from)
-    .eq("to_id", to)
-    .gte("created_at", new Date(now - 2 * 86_400_000).toISOString());
-  return (check(res, "cheers read") ?? []) as CheerRow[];
-}
 
 export async function oneGroup(uid: string, groupId: string, tz?: string): Promise<Group> {
   const [g] = await groupsFor(uid, [groupId], tz);

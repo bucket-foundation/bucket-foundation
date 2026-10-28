@@ -8,7 +8,6 @@ import {
   preflight,
   readBody,
   requestUser,
-  sentToday,
   service,
   summaries,
 } from "@/lib/academy/groups-server";
@@ -33,11 +32,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const now = Date.now();
     const members = await membersOf([groupId]);
     if (!members.some((m) => m.user_id === uid)) return json({ error: "not_found" }, 404);
-    const [sent, sums] = await Promise.all([sentToday(groupId, uid, to, now), kind === "nudge" ? summaries([to], now, "UTC") : Promise.resolve(null)]);
-    const decision = cheerDecision(members, uid, to, kind, sent, sums?.get(to)?.todayReviews ?? 0, now);
+    const sums = kind === "nudge" ? await summaries([to], now, "UTC") : null;
+    const decision = cheerDecision(members, uid, to, kind, sums?.get(to)?.todayReviews ?? 0);
     if (decision === "self") return json({ error: "bad_request" }, 400);
     if (decision === "not_member") return json({ error: "not_found" }, 404);
-    if (decision !== "ok") return json({ error: decision }, 409);
+    if (decision === "nudge_not_needed") return json({ error: decision }, 409);
     const res = await service().rpc("send_cheer", { p_group: groupId, p_from: uid, p_to: to, p_kind: kind });
     if (res.error) {
       const m = res.error.message || "";

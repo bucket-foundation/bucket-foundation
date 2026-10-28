@@ -14,6 +14,9 @@ import {
   normalizeCheerKind,
   normalizeWeeklyGoal,
   shiftDay,
+  windowLimiter,
+  PREVIEW_PER_MINUTE,
+  JOIN_PER_MINUTE,
   generateInviteCode,
   groupPreview,
   joinDecision,
@@ -255,18 +258,13 @@ test("a language graph lists learned words by strength with no edges", () => {
   assert.deepEqual(memberGraph(rows, "lang-de", lookup, words, NOW), { nodes: [], edges: [] });
 });
 
-test("cheers are capped at three a day per pair and nudges need an idle recipient", () => {
+test("cheer checks cover self, membership and nudges; the daily cap is left to SQL", () => {
   const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02")];
-  const sent = (n: number, at = NOW - 3600_000): CheerRow[] =>
-    Array.from({ length: n }, (_, i) => ({ id: `x${i}`, group_id: "g1", from_id: "a", to_id: "b", kind: "cheer", created_at: new Date(at).toISOString(), seen_at: null }));
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(2), 5, NOW), "ok");
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3), 5, NOW), "cheer_limit");
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3, NOW - DAY), 5, NOW), "ok");
-  assert.equal(cheerDecision(ms, "b", "a", "cheer", sent(3), 5, NOW), "ok");
-  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 1, NOW), "nudge_not_needed");
-  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 0, NOW), "ok");
-  assert.equal(cheerDecision(ms, "a", "a", "cheer", [], 0, NOW), "self");
-  assert.equal(cheerDecision(ms, "a", "c", "cheer", [], 0, NOW), "not_member");
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", 5), "ok");
+  assert.equal(cheerDecision(ms, "a", "b", "nudge", 1), "nudge_not_needed");
+  assert.equal(cheerDecision(ms, "a", "b", "nudge", 0), "ok");
+  assert.equal(cheerDecision(ms, "a", "a", "cheer", 0), "self");
+  assert.equal(cheerDecision(ms, "a", "c", "cheer", 0), "not_member");
   assert.equal(normalizeCheerKind("nudge"), "nudge");
   assert.equal(normalizeCheerKind("poke"), null);
 });
@@ -301,24 +299,43 @@ test("a group carries its goal and the cheers I sent or received", () => {
   assert.equal(assembleGroup({ ...group, weekly_goal: 0 }, ms, new Map(), "b").goal, null);
 });
 
-test("day steps follow the calendar across a DST change", () => {
+test("day steps follow the calendar", () => {
   assert.equal(shiftDay("2026-3-9", -1), "2026-3-8");
   assert.equal(shiftDay("2026-3-1", -1), "2026-2-28");
   assert.equal(shiftDay("2026-12-31", 1), "2027-1-1");
+});
+
+test("spring forward: yesterday and the week keep every calendar day", () => {
   const justAfter = Date.UTC(2026, 2, 9, 4, 30);
   const rows = [{ branch: "physics", data: { cards: {}, stats: { streak: 6, lastStudyDay: "2026-3-8" } } }];
   assert.equal(memberSummary(rows, lookup, justAfter, "America/New_York").streak, 6);
   const sundayNight = currentWeek(Date.UTC(2026, 2, 9, 3, 30), "America/New_York");
   assert.equal(sundayNight.weekStart, "2026-03-02");
   assert.deepEqual(sundayNight.keys, ["2026-3-8", "2026-3-7", "2026-3-6", "2026-3-5", "2026-3-4", "2026-3-3", "2026-3-2"]);
+  const london = currentWeek(Date.UTC(2026, 2, 29, 23, 30), "Europe/London");
+  assert.deepEqual(london.keys, ["2026-3-30"]);
 });
 
-test("cheer limits count UTC days whatever the caller's zone", () => {
-  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02")];
-  const lateUtc = Date.UTC(2026, 9, 28, 23, 0);
-  const sent: CheerRow[] = [0, 1, 2].map((i) => ({ id: `y${i}`, group_id: "g1", from_id: "a", to_id: "b", kind: "cheer", created_at: new Date(Date.UTC(2026, 9, 28, 1 + i)).toISOString(), seen_at: null }));
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent, 0, lateUtc), "cheer_limit");
-  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent, 0, Date.UTC(2026, 9, 29, 0, 30)), "ok");
+test("fall back: the 25 hour day does not repeat today as yesterday", () => {
+  const lateSunday = Date.UTC(2026, 10, 2, 4, 30);
+  const rows = [{ branch: "physics", data: { cards: {}, stats: { streak: 4, lastStudyDay: "2026-10-31" } } }];
+  assert.equal(memberSummary(rows, lookup, lateSunday, "America/New_York").streak, 4);
+  const week = currentWeek(lateSunday, "America/New_York");
+  assert.equal(week.weekStart, "2026-10-26");
+  assert.deepEqual(week.keys, ["2026-11-1", "2026-10-31", "2026-10-30", "2026-10-29", "2026-10-28", "2026-10-27", "2026-10-26"]);
+  assert.equal(new Set(week.keys).size, 7);
+});
+
+test("the window limiter caps each key and frees it after the window", () => {
+  let t = 0;
+  const limited = windowLimiter(2, 60_000, () => t, 2);
+  assert.equal(limited("ip"), false);
+  assert.equal(limited("ip"), false);
+  assert.equal(limited("ip"), true);
+  assert.equal(limited("other"), false);
+  t = 60_000;
+  assert.equal(limited("ip"), false);
+  assert.equal(PREVIEW_PER_MINUTE > JOIN_PER_MINUTE, true);
 });
 
 test("groups load only where I am a member", () => {
