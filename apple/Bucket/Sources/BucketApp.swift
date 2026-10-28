@@ -75,6 +75,7 @@ struct BucketApp: App {
                 }
                 .task {
                     await reminders.sync()
+                    await PushRegistry.shared.retryPending()
                     #if os(iOS)
                     WatchBridge.shared.start(langs)
                     #endif

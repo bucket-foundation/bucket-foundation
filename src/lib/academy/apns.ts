@@ -37,6 +37,7 @@ export interface PushPayload {
 export interface SendResult {
   sent: number;
   pruned: string[];
+  moved: string[];
   failed: number;
 }
 
@@ -100,15 +101,25 @@ export function cheerPayload(kind: CheerPushKind, name: string, groupId: string)
 }
 
 export function shouldPrune(res: ApnsResponse): boolean {
-  return res.status === 410 || res.reason === "BadDeviceToken" || res.reason === "Unregistered";
+  return res.status === 410 || res.reason === "Unregistered";
+}
+
+export function otherEnv(env: PushEnv): PushEnv {
+  return env === "production" ? "sandbox" : "production";
 }
 
 export async function sendPush(
   devices: PushDevice[],
   payload: PushPayload,
-  opts: { cfg: ApnsConfig; prune: (token: string) => Promise<void>; transport?: ApnsTransport; now?: number },
+  opts: {
+    cfg: ApnsConfig;
+    prune: (token: string) => Promise<void>;
+    setEnv: (token: string, env: PushEnv) => Promise<void>;
+    transport?: ApnsTransport;
+    now?: number;
+  },
 ): Promise<SendResult> {
-  const result: SendResult = { sent: 0, pruned: [], failed: 0 };
+  const result: SendResult = { sent: 0, pruned: [], moved: [], failed: 0 };
   if (devices.length === 0) return result;
   const transport = opts.transport ?? http2Transport();
   const jwt = providerToken(opts.cfg, opts.now ?? Date.now());
@@ -117,14 +128,29 @@ export async function sendPush(
     await Promise.all(
       devices.map(async (d) => {
         try {
-          const res = await transport.send(apnsOrigin(d.env), `/3/device/${d.token}`, {
-            authorization: `bearer ${jwt}`,
-            "apns-topic": d.bundle_id,
-            "apns-push-type": "alert",
-            "apns-priority": "10",
-          }, body);
+          const post = (env: PushEnv) =>
+            transport.send(apnsOrigin(env), `/3/device/${d.token}`, {
+              authorization: `bearer ${jwt}`,
+              "apns-topic": d.bundle_id,
+              "apns-push-type": "alert",
+              "apns-priority": "10",
+            }, body);
+          const res = await post(d.env);
           if (res.status === 200) {
             result.sent += 1;
+            return;
+          }
+          if (res.reason === "BadDeviceToken") {
+            const retry = await post(otherEnv(d.env)).catch(() => null);
+            if (retry?.status === 200) {
+              result.sent += 1;
+              result.moved.push(d.token);
+              await opts.setEnv(d.token, otherEnv(d.env)).catch(() => undefined);
+              return;
+            }
+            result.failed += 1;
+            result.pruned.push(d.token);
+            await opts.prune(d.token).catch(() => undefined);
             return;
           }
           result.failed += 1;
@@ -146,6 +172,7 @@ export async function sendPush(
 export interface PushStore {
   devices(userId: string): Promise<PushDevice[]>;
   prune(token: string): Promise<void>;
+  setEnv(token: string, env: PushEnv): Promise<void>;
 }
 
 export async function pushCheer(
@@ -159,6 +186,7 @@ export async function pushCheer(
     return await sendPush(devices, cheerPayload(cheer.kind, fromName, cheer.group_id), {
       cfg: deps.cfg,
       prune: deps.store.prune,
+      setEnv: deps.store.setEnv,
       transport: deps.transport,
       now: deps.now,
     });
@@ -166,6 +194,14 @@ export async function pushCheer(
     console.error("[academy/push] cheer:", err instanceof Error ? err.message : err);
     return null;
   }
+}
+
+export function withBudget<T>(work: Promise<T>, ms: number): Promise<T | null> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const cap = new Promise<null>((resolve) => {
+    timer = setTimeout(() => resolve(null), ms);
+  });
+  return Promise.race([work.catch(() => null), cap]).finally(() => clearTimeout(timer));
 }
 
 export function http2Transport(timeoutMs = 8000): ApnsTransport {

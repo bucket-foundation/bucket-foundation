@@ -81,6 +81,7 @@ struct PolingualApp: App {
                 }
                 .task {
                     await reminders.sync()
+                    await PushRegistry.shared.retryPending()
                     #if os(iOS)
                     WatchBridge.shared.allowed = { subs.access.open }
                     WatchBridge.shared.start(store)

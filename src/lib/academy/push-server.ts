@@ -1,5 +1,5 @@
 import { service } from "./groups-server";
-import { apnsConfig, pushCheer, type CheerPushKind, type PushDevice, type PushEnv, type PushStore, type SendResult } from "./apns";
+import { apnsConfig, pushCheer, withBudget, type CheerPushKind, type PushDevice, type PushEnv, type PushStore, type SendResult } from "./apns";
 
 export const PUSH_DEVICES = "push_devices";
 
@@ -11,6 +11,9 @@ export const supabasePushStore: PushStore = {
   },
   async prune(token) {
     await service().from(PUSH_DEVICES).delete().eq("token", token);
+  },
+  async setEnv(token, env) {
+    await service().from(PUSH_DEVICES).update({ env, updated_at: new Date().toISOString() }).eq("token", token);
   },
 };
 
@@ -26,6 +29,8 @@ export async function unregisterDevice(userId: string, token: string): Promise<v
   if (res.error) throw new Error(`push unregister: ${res.error.message}`);
 }
 
+export const PUSH_BUDGET_MS = 3000;
+
 export function pushCheerToDevices(cheer: { group_id: string; to_id: string; kind: CheerPushKind }, fromName: string): Promise<SendResult | null> {
-  return pushCheer(cheer, fromName, { cfg: apnsConfig(), store: supabasePushStore });
+  return withBudget(pushCheer(cheer, fromName, { cfg: apnsConfig(), store: supabasePushStore }), PUSH_BUDGET_MS);
 }

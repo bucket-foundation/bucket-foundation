@@ -41,11 +41,51 @@ final class PushRegistry {
 
     func upload() async {
         guard let device, let bundle = Bundle.main.bundleIdentifier, let bearer = await token?() else { return }
-        try? await api.registerPush(token: bearer, device: device, env: .current, bundleId: bundle)
+        do {
+            try await api.registerPush(token: bearer, device: device, env: .current, bundleId: bundle)
+            PendingUnregister.clear()
+        } catch {}
     }
 
     func unregister() async {
         guard let device, let bearer = await token?() else { return }
-        try? await api.unregisterPush(token: bearer, device: device)
+        await attempt(PendingUnregister.Entry(device: device, bearer: bearer))
+    }
+
+    func retryPending() async {
+        guard let entry = PendingUnregister.load() else { return }
+        await attempt(entry)
+    }
+
+    private func attempt(_ entry: PendingUnregister.Entry) async {
+        do {
+            try await api.unregisterPush(token: entry.bearer, device: entry.device)
+            PendingUnregister.clear()
+        } catch BucketError.revoked {
+            PendingUnregister.clear()
+        } catch {
+            PendingUnregister.save(entry)
+        }
+    }
+}
+
+enum PendingUnregister {
+    struct Entry: Codable, Equatable {
+        let device: String
+        let bearer: String
+    }
+
+    static let key = "push.pendingUnregister"
+
+    static func save(_ entry: Entry, defaults: UserDefaults = .standard) {
+        defaults.set(try? JSONEncoder().encode(entry), forKey: key)
+    }
+
+    static func load(defaults: UserDefaults = .standard) -> Entry? {
+        defaults.data(forKey: key).flatMap { try? JSONDecoder().decode(Entry.self, from: $0) }
+    }
+
+    static func clear(defaults: UserDefaults = .standard) {
+        defaults.removeObject(forKey: key)
     }
 }
