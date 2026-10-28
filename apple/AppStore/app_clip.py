@@ -34,6 +34,17 @@ def default_experience(api, clip_id, header):
     existing = api.all(f"/v1/appClips/{clip_id}/appClipDefaultExperiences")
     if existing:
         print(f"  default experience exists {existing[0]['id']}")
+        for loc in api.all(f"/v1/appClipDefaultExperiences/{existing[0]['id']}/appClipDefaultExperienceLocalizations"):
+            s, h = api.call("GET", f"/v1/appClipDefaultExperienceLocalizations/{loc['id']}/appClipHeaderImage")
+            img = h.get("data") if s < 300 else None
+            state = img["attributes"].get("assetDeliveryState", {}).get("state") if img else "MISSING"
+            print(f"  header image {state}")
+            if state == "COMPLETE":
+                continue
+            if img:
+                api.write("delete header image", "DELETE", f"/v1/appClipHeaderImages/{img['id']}", None)
+            upload(api, "default experience header image", "appClipHeaderImages", {},
+                   {"appClipDefaultExperienceLocalization": rel("appClipDefaultExperienceLocalizations", loc["id"])}, header)
         return
     d = api.write("default App Clip experience", "POST", "/v1/appClipDefaultExperiences",
                   {"data": {"type": "appClipDefaultExperiences", "attributes": {"action": "OPEN"}, "relationships": {"appClip": rel("appClips", clip_id)}}})
@@ -65,7 +76,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--apply", action="store_true")
     p.add_argument("--build", default="", help="build number, latest upload with a clip when empty")
-    p.add_argument("--header", default=os.path.join(HERE, "clip-header.png"))
+    p.add_argument("--header", default=os.path.join(HERE, "clip-header.jpg"))
     args = p.parse_args()
     api = ASC(args.apply)
     clips = api.all(f"/v1/apps/{APP}/appClips")

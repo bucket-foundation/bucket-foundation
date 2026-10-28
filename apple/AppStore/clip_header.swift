@@ -24,7 +24,7 @@ struct Header: View {
 let path = CommandLine.arguments[1]
 MainActor.assumeIsolated {
     let r = ImageRenderer(content: Header())
-    r.scale = 1
+    r.scale = 5.0 / 3.0
     let img = r.cgImage!
     let rep = NSBitmapImageRep(cgImage: img)
     try! rep.representation(using: .png, properties: [:])!.write(to: URL(fileURLWithPath: path))

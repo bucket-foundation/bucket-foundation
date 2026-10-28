@@ -51,8 +51,20 @@ def main():
         return
     items = api.all(f"/v1/reviewSubmissions/{sub['id']}/items")
     if not any(i["relationships"].get("appStoreVersion", {}).get("data", {}) and i["relationships"]["appStoreVersion"]["data"]["id"] == v["id"] for i in items if "relationships" in i):
-        api.write(f"add version {args.version} to submission", "POST", "/v1/reviewSubmissionItems",
-                  {"data": {"type": "reviewSubmissionItems", "relationships": {"reviewSubmission": rel("reviewSubmissions", sub["id"]), "appStoreVersion": rel("appStoreVersions", v["id"])}}})
+        body = {"data": {"type": "reviewSubmissionItems", "relationships": {"reviewSubmission": rel("reviewSubmissions", sub["id"]), "appStoreVersion": rel("appStoreVersions", v["id"])}}}
+        if not args.apply:
+            print(f"  would add version {args.version} to submission")
+        else:
+            status, d = api.call("POST", "/v1/reviewSubmissionItems", body)
+            if status >= 300:
+                print(f"  FAIL  add version {args.version} to submission: {status}")
+                for e in d.get("errors", []):
+                    print(f"        {e.get('detail')}")
+                    for group in (e.get("meta", {}).get("associatedErrors") or {}).values():
+                        for a in group:
+                            print(f"        - {a.get('code')}: {a.get('detail')}")
+                return
+            print(f"  done  add version {args.version} to submission")
     api.write("submit for review", "PATCH", f"/v1/reviewSubmissions/{sub['id']}",
               {"data": {"type": "reviewSubmissions", "id": sub["id"], "attributes": {"submitted": True}}})
 
