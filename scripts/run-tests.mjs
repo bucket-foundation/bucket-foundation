@@ -37,6 +37,7 @@ const SUITES = {
       "scripts/test-site-zoom-pane.ts",
       "scripts/test-sitemap-routes.ts",
       "scripts/test-heritage-link.ts",
+      "scripts/test-share-links.ts",
       "scripts/test-lang-tile-readings.ts",
       "scripts/test-lang-milestones.ts",
       "scripts/test-seo-noindex.ts",
