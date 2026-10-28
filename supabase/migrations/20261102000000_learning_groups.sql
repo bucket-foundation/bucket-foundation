@@ -14,8 +14,12 @@ create table if not exists bucket.learning_groups (
   kind        text        not null check (kind in ('family', 'friends')),
   owner_id    uuid        not null references auth.users (id) on delete cascade,
   invite_code text        not null unique check (invite_code ~ '^[0-9A-HJKMNP-TV-Z]{10}$'),
+  weekly_goal int         not null default 0 check (weekly_goal between 0 and 10000),
   created_at  timestamptz not null default now()
 );
+
+alter table bucket.learning_groups
+  add column if not exists weekly_goal int not null default 0 check (weekly_goal between 0 and 10000);
 
 create index if not exists learning_groups_owner_idx
   on bucket.learning_groups (owner_id);
@@ -31,6 +35,22 @@ create table if not exists bucket.group_members (
 
 create index if not exists group_members_user_idx
   on bucket.group_members (user_id);
+
+create table if not exists bucket.group_cheers (
+  id         uuid        primary key default gen_random_uuid(),
+  group_id   uuid        not null references bucket.learning_groups (id) on delete cascade,
+  from_id    uuid        not null references auth.users (id) on delete cascade,
+  to_id      uuid        not null references auth.users (id) on delete cascade,
+  kind       text        not null check (kind in ('cheer', 'nudge')),
+  created_at timestamptz not null default now(),
+  seen_at    timestamptz,
+  check (from_id <> to_id)
+);
+
+create index if not exists group_cheers_to_idx
+  on bucket.group_cheers (to_id, created_at desc);
+create index if not exists group_cheers_pair_idx
+  on bucket.group_cheers (group_id, from_id, to_id, created_at desc);
 
 create or replace function bucket.is_group_member(gid uuid, uid uuid)
 returns boolean language sql stable security definer set search_path = bucket as $$
@@ -53,6 +73,7 @@ $$;
 
 alter table bucket.learning_groups enable row level security;
 alter table bucket.group_members enable row level security;
+alter table bucket.group_cheers enable row level security;
 
 do $$
 begin
@@ -90,6 +111,22 @@ begin
   if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'group_members' and policyname = 'self_or_owner_delete') then
     create policy self_or_owner_delete on bucket.group_members for delete
       using (auth.uid() = user_id or bucket.is_group_owner(group_id, auth.uid()));
+  end if;
+
+  if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'group_cheers' and policyname = 'party_select') then
+    create policy party_select on bucket.group_cheers for select
+      using (auth.uid() in (from_id, to_id) and bucket.is_group_member(group_id, auth.uid()));
+  end if;
+
+  if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'group_cheers' and policyname = 'sender_insert') then
+    create policy sender_insert on bucket.group_cheers for insert
+      with check (auth.uid() = from_id and bucket.is_group_member(group_id, from_id) and bucket.is_group_member(group_id, to_id));
+  end if;
+
+  if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'group_cheers' and policyname = 'recipient_update') then
+    create policy recipient_update on bucket.group_cheers for update
+      using (auth.uid() = to_id)
+      with check (auth.uid() = to_id);
   end if;
 
   if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'academy_progress' and policyname = 'group_mate_select') then

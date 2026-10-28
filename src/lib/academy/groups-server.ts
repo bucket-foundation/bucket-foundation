@@ -1,13 +1,19 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { verifyRequestUser } from "@/lib/auth/verify";
-import { branchLabel, loadCorpusForBranch } from "./corpus";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { branchLabel, corpusDir, loadCorpusForBranch } from "./corpus";
+import { buildLangCorpus, type LangCorpus } from "./lang-systems";
 import {
   assembleGroup,
+  currentWeek,
   generateInviteCode,
   memberSummary,
   type BranchRow,
+  type CheerRow,
   type CorpusLookup,
+  type WordLookup,
   type Group,
   type GroupRow,
   type MemberRow,
@@ -20,8 +26,11 @@ const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 export const GROUPS = "learning_groups";
 export const MEMBERS = "group_members";
+export const CHEERS = "group_cheers";
 const PROGRESS = "academy_progress";
-const GROUP_COLS = "id,name,kind,owner_id,invite_code,created_at";
+const GROUP_COLS = "id,name,kind,owner_id,invite_code,weekly_goal,created_at";
+export const CHEER_COLS = "id,group_id,from_id,to_id,kind,created_at,seen_at";
+const CHEER_WINDOW_MS = 7 * 86_400_000;
 const MEMBER_COLS = "group_id,user_id,role,display_name,joined_at";
 
 const CORS_HEADERS: Record<string, string> = {
@@ -118,7 +127,7 @@ export async function countOwned(uid: string): Promise<number> {
   return res.count ?? 0;
 }
 
-export async function insertGroupWithCode(row: Omit<GroupRow, "id" | "invite_code" | "created_at">): Promise<GroupRow> {
+export async function insertGroupWithCode(row: Omit<GroupRow, "id" | "invite_code" | "created_at" | "weekly_goal">): Promise<GroupRow> {
   for (let attempt = 0; attempt < 5; attempt++) {
     const res = await service().from(GROUPS).insert({ ...row, invite_code: generateInviteCode() }).select(GROUP_COLS).single();
     if (!res.error) return res.data as GroupRow;
@@ -139,22 +148,48 @@ export async function rotateCode(groupId: string): Promise<string> {
   throw new Error("code rotate: no free invite code");
 }
 
-const lookup: CorpusLookup = (branch) => {
+export const lookup: CorpusLookup = (branch) => {
   const corpus = loadCorpusForBranch(branch);
   return corpus ? { corpus, title: branchLabel(branch) } : null;
 };
 
-async function summaries(userIds: string[], now: number, tz?: string): Promise<Map<string, MemberSummary>> {
+let _lang: LangCorpus | null | undefined;
+function langCorpus(): LangCorpus | null {
+  if (_lang !== undefined) return _lang;
+  const read = (name: string) => {
+    try {
+      return JSON.parse(readFileSync(join(corpusDir(), name), "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  const core = read("lang-core.json");
+  _lang = core ? buildLangCorpus(core, read("lang-cognates.json"), read("lang-phrases.json"), read("lang-layers.json")) : null;
+  return _lang;
+}
+
+export const words: WordLookup = (lang, itemId) => {
+  const item = langCorpus()?.byId.get(itemId);
+  const form = item?.forms[lang];
+  return item && form ? { form, gloss: item.gloss } : null;
+};
+
+export async function progressRows(userIds: string[]): Promise<(BranchRow & { user_id: string })[]> {
+  if (userIds.length === 0) return [];
+  return (check(await service().from(PROGRESS).select("user_id,branch,data").in("user_id", userIds), "progress read") ?? []) as (BranchRow & { user_id: string })[];
+}
+
+export async function summaries(userIds: string[], now: number, tz?: string): Promise<Map<string, MemberSummary>> {
   const out = new Map<string, MemberSummary>();
   if (userIds.length === 0) return out;
-  const rows = (check(await service().from(PROGRESS).select("user_id,branch,data").in("user_id", userIds), "progress read") ?? []) as (BranchRow & { user_id: string })[];
+  const rows = await progressRows(userIds);
   const byUser = new Map<string, BranchRow[]>();
   for (const r of rows) {
     const list = byUser.get(r.user_id) ?? [];
     list.push(r);
     byUser.set(r.user_id, list);
   }
-  for (const id of userIds) out.set(id, memberSummary(byUser.get(id) ?? [], lookup, now, tz));
+  for (const id of userIds) out.set(id, memberSummary(byUser.get(id) ?? [], lookup, now, tz, words));
   return out;
 }
 
@@ -165,10 +200,36 @@ export async function groupsFor(uid: string, groupIds?: string[], tz?: string): 
   const members = await membersOf(groups.map((g) => g.id));
   const visible = groups.filter((g) => members.some((m) => m.group_id === g.id && m.user_id === uid));
   const users = Array.from(new Set(members.filter((m) => visible.some((g) => g.id === m.group_id)).map((m) => m.user_id)));
-  const sums = await summaries(users, Date.now(), tz);
+  const now = Date.now();
+  const [sums, cheers] = await Promise.all([summaries(users, now, tz), cheersOf(uid, visible.map((g) => g.id), now)]);
+  const { weekStart } = currentWeek(now, tz);
   return visible
     .sort((a, b) => (a.created_at < b.created_at ? -1 : a.created_at > b.created_at ? 1 : 0))
-    .map((g) => assembleGroup(g, members, sums, uid));
+    .map((g) => assembleGroup(g, members, sums, uid, cheers, weekStart));
+}
+
+async function cheersOf(uid: string, groupIds: string[], now: number): Promise<CheerRow[]> {
+  if (groupIds.length === 0) return [];
+  const res = await service()
+    .from(CHEERS)
+    .select(CHEER_COLS)
+    .in("group_id", groupIds)
+    .or(`to_id.eq.${uid},from_id.eq.${uid}`)
+    .gte("created_at", new Date(now - CHEER_WINDOW_MS).toISOString())
+    .order("created_at", { ascending: false })
+    .limit(500);
+  return (check(res, "cheers read") ?? []) as CheerRow[];
+}
+
+export async function sentToday(groupId: string, from: string, to: string, now: number): Promise<CheerRow[]> {
+  const res = await service()
+    .from(CHEERS)
+    .select(CHEER_COLS)
+    .eq("group_id", groupId)
+    .eq("from_id", from)
+    .eq("to_id", to)
+    .gte("created_at", new Date(now - 2 * 86_400_000).toISOString());
+  return (check(res, "cheers read") ?? []) as CheerRow[];
 }
 
 export async function oneGroup(uid: string, groupId: string, tz?: string): Promise<Group> {

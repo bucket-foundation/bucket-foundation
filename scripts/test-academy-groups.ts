@@ -3,7 +3,14 @@ import assert from "node:assert/strict";
 import { dayKey } from "../src/lib/academy/engine";
 import {
   assembleGroup,
+  cardStrength,
+  cheerDecision,
   CROCKFORD,
+  currentWeek,
+  groupGoal,
+  memberGraph,
+  normalizeCheerKind,
+  normalizeWeeklyGoal,
   generateInviteCode,
   groupPreview,
   joinDecision,
@@ -15,7 +22,9 @@ import {
   normalizeKind,
   removeDecision,
   validTimeZone,
+  type CheerRow,
   type CorpusLookup,
+  type WordLookup,
   type GroupRow,
   type MemberRow,
   type MemberSummary,
@@ -30,7 +39,17 @@ const card = (stability: number, reps: number, lastReview: number) => ({ state: 
 
 const lookup: CorpusLookup = (branch) =>
   branch === "physics"
-    ? { title: "Physics", corpus: { meta: { branch: "physics", title: "Physics" }, atoms: [{ id: "f-ma", shell: "nucleus" }, { id: "energy", shell: "nucleus" }, { id: "momentum", shell: "frontier" }] } }
+    ? {
+        title: "Physics",
+        corpus: {
+          meta: { branch: "physics", title: "Physics" },
+          atoms: [
+            { id: "f-ma", title: "Newton's laws", shell: "nucleus" },
+            { id: "energy", title: "Energy", shell: "nucleus", requires: ["f-ma"] },
+            { id: "momentum", title: "Momentum", shell: "frontier", requires: ["f-ma", "energy", "ghost"] },
+          ] as never,
+        },
+      }
     : null;
 
 function member(user: string, joined: string, role: "owner" | "member" = "member", group = "g1"): MemberRow {
@@ -103,10 +122,12 @@ test("a member summary counts languages across shared memory and system branches
     { branch: "lang-systems", data: { systems: [] } },
   ];
   const s = memberSummary(rows, lookup, NOW, "UTC");
-  assert.deepEqual(s.languages, [
+  assert.deepEqual(s.languages.map(({ lang, learned, mastered }) => ({ lang, learned, mastered })), [
     { lang: "fr", learned: 2, mastered: 1 },
     { lang: "es", learned: 1, mastered: 1 },
   ]);
+  assert.ok(s.languages[1].strength > 0.99);
+  assert.ok(s.languages[0].strength > 0.5 && s.languages[0].strength < s.languages[1].strength);
   assert.equal(s.streak, 5);
   assert.equal(s.todayReviews, 3);
   assert.equal(s.lastActivity, new Date(recent).toISOString());
@@ -125,7 +146,8 @@ test("a member summary rolls up subject branches and drops unknown ones", () => 
     { branch: "mystery", data: { cards: { x: card(200, 3, NOW) }, stats: { streak: 40, lastStudyDay: TODAY } } },
   ];
   const s = memberSummary(rows, lookup, NOW, "UTC");
-  assert.deepEqual(s.subjects, [{ branch: "physics", title: "Physics", started: 2, mastered: 1 }]);
+  assert.deepEqual(s.subjects.map(({ strength, ...rest }) => rest), [{ branch: "physics", title: "Physics", started: 2, mastered: 1 }]);
+  assert.ok(s.subjects[0].strength > 0.6 && s.subjects[0].strength < 1);
   assert.equal(s.streak, 2);
   assert.equal(s.todayReviews, 4);
 });
@@ -134,13 +156,13 @@ test("a streak lapses after a missed day, matching liveStreak", () => {
   const stale = [{ branch: "physics", data: { cards: { "f-ma": card(5, 1, NOW - 3 * DAY) }, stats: { streak: 9, lastStudyDay: dayKey(NOW - 2 * DAY, "UTC") } } }];
   assert.equal(memberSummary(stale, lookup, NOW, "UTC").streak, 0);
   const empty = memberSummary([], lookup, NOW);
-  assert.deepEqual(empty, { streak: 0, todayReviews: 0, lastActivity: null, languages: [], subjects: [] });
+  assert.deepEqual(empty, { streak: 0, todayReviews: 0, weekReviews: 0, lastActivity: null, languages: [], subjects: [], recentWords: [], sets: [] });
 });
 
 test("a group lists the owner first, marks me, and fills summaries", () => {
   const group: GroupRow = { id: "g1", name: "The Rossis", kind: "family", owner_id: "mom", invite_code: "7K3M9Q2XAB", created_at: "2026-10-01" };
   const rows = [member("kid", "2026-10-02"), member("mom", "2026-10-05", "member"), member("dad", "2026-10-01"), member("other", "2026-10-01", "owner", "g2")];
-  const sum: MemberSummary = { streak: 3, todayReviews: 7, lastActivity: null, languages: [{ lang: "it", learned: 4, mastered: 1 }], subjects: [] };
+  const sum: MemberSummary = { streak: 3, todayReviews: 7, weekReviews: 12, lastActivity: null, languages: [{ lang: "it", learned: 4, mastered: 1, strength: 0.8 }], subjects: [], recentWords: [], sets: [] };
   const g = assembleGroup(group, rows, new Map([["kid", sum]]), "kid");
   assert.equal(g.code, "7K3M9Q2XAB");
   assert.equal(g.role, "member");
@@ -153,4 +175,134 @@ test("a group lists the owner first, marks me, and fills summaries", () => {
   assert.equal(g.members[0].todayReviews, 0);
   assert.equal(assembleGroup(group, rows, new Map(), "mom").role, "owner");
   assert.deepEqual(groupPreview(group, rows.slice(0, 3)), { name: "The Rossis", kind: "family", members: 3, owner: "MOM" });
+});
+
+const words: WordLookup = (lang, itemId) => {
+  const table: Record<string, Record<string, string>> = { fr: { chat: "chat", chien: "chien", pain: "pain" }, es: { gato: "gato" } };
+  const form = table[lang]?.[itemId];
+  return form ? { form, gloss: itemId === "chat" || itemId === "gato" ? "cat" : itemId } : null;
+};
+
+test("the week starts on Monday and sums every day since", () => {
+  const w = currentWeek(NOW, "UTC");
+  assert.equal(w.weekStart, "2026-10-26");
+  assert.deepEqual(w.keys, ["2026-10-28", "2026-10-27", "2026-10-26"]);
+  assert.equal(currentWeek(Date.UTC(2026, 10, 1, 12), "UTC").weekStart, "2026-10-26");
+  const rows = [
+    {
+      branch: "physics",
+      data: { cards: {}, stats: { streak: 1, lastStudyDay: TODAY, history: { [TODAY]: { new: 1, reviews: 2 }, "2026-10-26": { new: 0, reviews: 5 }, "2026-10-25": { new: 9, reviews: 9 } } } },
+    },
+  ];
+  assert.equal(memberSummary(rows, lookup, NOW, "UTC").weekReviews, 8);
+});
+
+test("strength is retrievability now, falling with time since review", () => {
+  assert.equal(cardStrength(undefined, NOW), 0);
+  assert.ok(Math.abs(cardStrength(card(10, 2, NOW), NOW) - 1) < 1e-9);
+  assert.ok(Math.abs(cardStrength(card(10, 2, NOW - 10 * DAY), NOW) - 0.9) < 1e-9);
+});
+
+test("recent words list the latest learned words with form and gloss, newest first", () => {
+  const c = (introduced: string, reps: number, last: number) => ({ ...card(5, reps, last), introduced });
+  const rows = [
+    { branch: "lang-sys-a", data: { cards: { "fr:chat": c("2026-10-20", 3, NOW - DAY), "fr:pain": c("2026-10-27", 1, NOW - 2 * DAY), "fr:chien": c("2026-10-27", 0, NOW), "es:gato": card(5, 1, NOW - 3 * DAY), "fr:unknown": c("2026-10-28", 2, NOW) } } },
+  ];
+  const s = memberSummary(rows, lookup, NOW, "UTC", words);
+  assert.deepEqual(s.recentWords, [
+    { lang: "fr", form: "pain", gloss: "pain", learnedAt: "2026-10-27" },
+    { lang: "es", form: "gato", gloss: "cat", learnedAt: "2026-10-25" },
+    { lang: "fr", form: "chat", gloss: "cat", learnedAt: "2026-10-20" },
+  ]);
+  const many = { cards: Object.fromEntries(Array.from({ length: 30 }, (_, i) => [`fr:w${i}`, card(5, 1, NOW - i * 1000)])) };
+  const wide: WordLookup = (_lang, id) => ({ form: id, gloss: id });
+  assert.equal(memberSummary([{ branch: "lang-sys-b", data: many }], lookup, NOW, "UTC", wide).recentWords.length, 20);
+});
+
+test("sets come from the systems branch and skip removed ones", () => {
+  const rows = [
+    {
+      branch: "lang-systems",
+      data: {
+        systems: [
+          { id: "romance", name: "Romance", root: "en", targets: ["fr", "es"], createdAt: 10, placement: {} },
+          { id: "gone", name: "Gone", root: "en", targets: ["de"], createdAt: 10, placement: {} },
+        ],
+        removed: { gone: 20 },
+      },
+    },
+  ];
+  assert.deepEqual(memberSummary(rows, lookup, NOW).sets, [{ id: "romance", name: "Romance", root: "en", targets: ["fr", "es"] }]);
+});
+
+test("the canon graph has one node per atom with strength and edges from requires", () => {
+  const rows = [{ branch: "physics", data: { cards: { "f-ma": card(10, 3, NOW - 10 * DAY) } } }];
+  const g = memberGraph(rows, "physics", lookup, words, NOW);
+  assert.ok(g);
+  assert.deepEqual(g.nodes.map((n) => [n.id, n.title, n.strength]), [
+    ["f-ma", "Newton's laws", 0.9],
+    ["energy", "Energy", 0],
+    ["momentum", "Momentum", 0],
+  ]);
+  assert.deepEqual(g.edges, [
+    { from: "f-ma", to: "energy" },
+    { from: "f-ma", to: "momentum" },
+    { from: "energy", to: "momentum" },
+  ]);
+  assert.equal(memberGraph(rows, "mystery", lookup, words, NOW), null);
+});
+
+test("a language graph lists learned words by strength with no edges", () => {
+  const rows = [
+    { branch: "lang-fr", data: { lang: "fr", baseline: { cards: { "fr:chat": card(10, 2, NOW - 10 * DAY), "fr:pain": card(10, 1, NOW), "fr:chien": card(10, 0, NOW) } }, log: [], migrated: "v1" } },
+  ];
+  const g = memberGraph(rows, "lang-fr", lookup, words, NOW);
+  assert.deepEqual(g, { nodes: [{ id: "pain", title: "pain", strength: 1 }, { id: "chat", title: "chat", strength: 0.9 }], edges: [] });
+  assert.deepEqual(memberGraph(rows, "lang-de", lookup, words, NOW), { nodes: [], edges: [] });
+});
+
+test("cheers are capped at three a day per pair and nudges need an idle recipient", () => {
+  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02")];
+  const sent = (n: number, at = NOW - 3600_000): CheerRow[] =>
+    Array.from({ length: n }, (_, i) => ({ id: `x${i}`, group_id: "g1", from_id: "a", to_id: "b", kind: "cheer", created_at: new Date(at).toISOString(), seen_at: null }));
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(2), 5, NOW, "UTC"), "ok");
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3), 5, NOW, "UTC"), "cheer_limit");
+  assert.equal(cheerDecision(ms, "a", "b", "cheer", sent(3, NOW - DAY), 5, NOW, "UTC"), "ok");
+  assert.equal(cheerDecision(ms, "b", "a", "cheer", sent(3), 5, NOW, "UTC"), "ok");
+  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 1, NOW, "UTC"), "nudge_not_needed");
+  assert.equal(cheerDecision(ms, "a", "b", "nudge", [], 0, NOW, "UTC"), "ok");
+  assert.equal(cheerDecision(ms, "a", "a", "cheer", [], 0, NOW, "UTC"), "self");
+  assert.equal(cheerDecision(ms, "a", "c", "cheer", [], 0, NOW, "UTC"), "not_member");
+  assert.equal(normalizeCheerKind("nudge"), "nudge");
+  assert.equal(normalizeCheerKind("poke"), null);
+});
+
+test("the shared goal sums member week reviews and clears at zero", () => {
+  assert.deepEqual(groupGoal(50, [12, 8, 0], "2026-10-26"), { weekly: 50, done: 20, weekStart: "2026-10-26" });
+  assert.equal(groupGoal(0, [5], "2026-10-26"), null);
+  assert.equal(groupGoal(null, [5], "2026-10-26"), null);
+  assert.equal(normalizeWeeklyGoal(0), 0);
+  assert.equal(normalizeWeeklyGoal(140), 140);
+  assert.equal(normalizeWeeklyGoal(2.5), null);
+  assert.equal(normalizeWeeklyGoal(-1), null);
+  assert.equal(normalizeWeeklyGoal(10001), null);
+});
+
+test("a group carries its goal and the cheers I sent or received", () => {
+  const group: GroupRow = { id: "g1", name: "Climbers", kind: "friends", owner_id: "a", invite_code: "7K3M9Q2XAB", created_at: "2026-10-01", weekly_goal: 30 };
+  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02"), member("c", "2026-10-03")];
+  const sum = (weekReviews: number): MemberSummary => ({ streak: 0, todayReviews: 0, weekReviews, lastActivity: null, languages: [], subjects: [], recentWords: [], sets: [] });
+  const cheers: CheerRow[] = [
+    { id: "1", group_id: "g1", from_id: "a", to_id: "b", kind: "cheer", created_at: "2026-10-28T10:00:00Z", seen_at: null },
+    { id: "2", group_id: "g1", from_id: "c", to_id: "b", kind: "nudge", created_at: "2026-10-28T11:00:00Z", seen_at: "2026-10-28T12:00:00Z" },
+    { id: "3", group_id: "g1", from_id: "a", to_id: "c", kind: "cheer", created_at: "2026-10-28T12:00:00Z", seen_at: null },
+    { id: "4", group_id: "g2", from_id: "a", to_id: "b", kind: "cheer", created_at: "2026-10-28T13:00:00Z", seen_at: null },
+  ];
+  const g = assembleGroup(group, ms, new Map([["a", sum(10)], ["b", sum(7)]]), "b", cheers, "2026-10-26");
+  assert.deepEqual(g.goal, { weekly: 30, done: 17, weekStart: "2026-10-26" });
+  assert.deepEqual(g.cheers, [
+    { id: "2", from: "c", fromName: "C", to: "b", kind: "nudge", at: "2026-10-28T11:00:00Z", seen: true },
+    { id: "1", from: "a", fromName: "A", to: "b", kind: "cheer", at: "2026-10-28T10:00:00Z", seen: false },
+  ]);
+  assert.equal(assembleGroup({ ...group, weekly_goal: 0 }, ms, new Map(), "b").goal, null);
 });

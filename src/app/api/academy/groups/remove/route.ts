@@ -1,5 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { removeDecision } from "@/lib/academy/groups";
+import { removeDecision, uuidOrNull } from "@/lib/academy/groups";
 import { configured, fail, groupById, json, MEMBERS, membersOf, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
@@ -14,8 +14,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const uid = await requestUser(req);
   if (!uid) return json({ error: "unauthorized" }, 401);
   const body = await readBody(req);
-  const groupId = typeof body?.groupId === "string" ? body.groupId : "";
-  const target = typeof body?.userId === "string" ? body.userId : "";
+  const groupId = uuidOrNull(body?.groupId);
+  const target = uuidOrNull(body?.userId);
   if (!groupId || !target) return json({ error: "bad_request" }, 400);
   try {
     const group = await groupById(groupId);
