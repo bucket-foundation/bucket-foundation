@@ -80,7 +80,7 @@ struct BucketApp: App {
     }
 }
 
-enum AppTab: String, Hashable { case today, learn, canon, account }
+enum AppTab: String, Hashable { case today, learn, games, content, account }
 
 extension SharedLink {
     var tab: AppTab {
@@ -115,6 +115,8 @@ struct RootView: View {
         TabView(selection: $tab) {
             Tab("Today", systemImage: "sun.max", value: .today) { TodayView() }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
+            Tab("Games", systemImage: "gamecontroller", value: .games) { GamesView() }
+            Tab("Content", systemImage: "play.square.stack", value: .content) { ContentHub() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .tabViewStyle(.sidebarAdaptable)
