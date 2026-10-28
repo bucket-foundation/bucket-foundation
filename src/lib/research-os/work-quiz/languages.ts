@@ -18,6 +18,7 @@ export const LANGUAGE_NAMES: Readonly<Record<string, string>> = {
   ko: "Korean",
   la: "Latin",
   nl: "Dutch",
+  pa: "Punjabi",
   pl: "Polish",
   pt: "Portuguese",
   ru: "Russian",
@@ -31,6 +32,11 @@ export const LANGUAGE_NAMES: Readonly<Record<string, string>> = {
 };
 
 export const LANGUAGE_CODES: readonly string[] = Object.keys(LANGUAGE_NAMES);
+export const PREVIEW_LANGUAGES: readonly string[] = ["pa"];
+
+export function isPreviewLanguage(code: string): boolean {
+  return PREVIEW_LANGUAGES.includes(code);
+}
 export const RTL_LANGUAGES: readonly string[] = ["ar", "he", "fa"];
 export const MAX_LANGUAGES = LANGUAGE_CODES.length;
 export const LANGUAGES_ERROR = "languages must be a list of codes from the Polingual word set";
@@ -63,6 +69,23 @@ export function parseLanguages(raw: unknown): string[] | null {
 
 export function toggleLanguage(languages: readonly string[], code: string): string[] {
   return languages.includes(code) ? languages.filter((l) => l !== code) : [...languages, code];
+}
+
+export interface LanguageSystemLike {
+  root: string;
+  targets: readonly string[];
+}
+
+export function systemLanguageCodes(systems: readonly LanguageSystemLike[]): string[] {
+  const out: string[] = [];
+  for (const s of systems) for (const code of [s.root, ...s.targets]) if (LANGUAGE_CODES.includes(code) && !out.includes(code)) out.push(code);
+  return out;
+}
+
+export function withSystemLanguages(chosen: readonly string[], fromSystems: readonly string[]): string[] {
+  const out = [...chosen];
+  for (const code of fromSystems) if (!out.includes(code)) out.push(code);
+  return out;
 }
 
 export function languagesByName(codes: readonly string[] = LANGUAGE_CODES): { code: string; name: string }[] {

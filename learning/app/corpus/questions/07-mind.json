@@ -1,0 +1,5075 @@
+{
+ "branch": "07-mind",
+ "version": "0.6.0",
+ "questions": [
+  {
+   "id": "neuron-doctrine.pick",
+   "atom": "neuron-doctrine",
+   "kind": "pick",
+   "prompt": "What did the neuron doctrine establish?",
+   "options": [
+    "The nervous system is made of discrete cells",
+    "Neurons fuse into one continuous net with no gaps",
+    "Glia carry every signal",
+    "The brain has no cells"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neuron-doctrine.calculate",
+   "atom": "neuron-doctrine",
+   "kind": "calculate",
+   "prompt": "A Golgi stain blackens about 1 cell in 100. In a slice with 50,000 neurons, about how many are stained?",
+   "answer": 500.0,
+   "unit": "cells",
+   "relTol": 0.02
+  },
+  {
+   "id": "neuron-doctrine.order",
+   "atom": "neuron-doctrine",
+   "kind": "order",
+   "prompt": "Order the history of the neuron doctrine.",
+   "steps": [
+    "Golgi invents a silver stain",
+    "Cajal stains single whole neurons",
+    "Cajal argues neurons are separate cells",
+    "Electron microscopy shows the synaptic gap"
+   ]
+  },
+  {
+   "id": "neuron-doctrine.spot-error",
+   "atom": "neuron-doctrine",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Neurons are discrete cells",
+    "Signals cross gaps between cells",
+    "Cajal and Golgi agreed that neurons fuse into a net",
+    "Electron microscopy confirmed synaptic clefts"
+   ],
+   "error": 2,
+   "fix": "Golgi held the reticular view; Cajal argued for separate cells."
+  },
+  {
+   "id": "neuron-doctrine.match",
+   "atom": "neuron-doctrine",
+   "kind": "match",
+   "prompt": "Match each person or tool to its role.",
+   "pairs": [
+    {
+     "term": "Golgi",
+     "meaning": "Silver stain inventor"
+    },
+    {
+     "term": "Cajal",
+     "meaning": "Champion of the neuron doctrine"
+    },
+    {
+     "term": "Synaptic cleft",
+     "meaning": "Gap between neurons"
+    },
+    {
+     "term": "Electron microscope",
+     "meaning": "Showed the gap directly"
+    }
+   ]
+  },
+  {
+   "id": "neuron-doctrine.applied",
+   "atom": "neuron-doctrine",
+   "kind": "pick",
+   "prompt": "A pathologist stains brain tissue to count neurons lost in a disease. Which idea lets her count cells one by one?",
+   "options": [
+    "Neurons are discrete cells",
+    "The brain is one continuous net",
+    "Glia and neurons are identical",
+    "Neurons have no boundaries"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neuron-structure.pick",
+   "atom": "neuron-structure",
+   "kind": "pick",
+   "prompt": "Which part of a neuron receives most synaptic input?",
+   "options": [
+    "Dendrites",
+    "Axon terminal",
+    "Myelin",
+    "Node of Ranvier"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neuron-structure.calculate",
+   "atom": "neuron-structure",
+   "kind": "calculate",
+   "prompt": "1,000 synapses each add 0.05 mV if summed linearly. What total depolarization results, in mV?",
+   "answer": 50.0,
+   "unit": "mV",
+   "relTol": 0.02
+  },
+  {
+   "id": "neuron-structure.order",
+   "atom": "neuron-structure",
+   "kind": "order",
+   "prompt": "Order the flow of a signal through a neuron.",
+   "steps": [
+    "Dendrites receive input",
+    "The soma integrates it",
+    "The axon carries a spike",
+    "Terminals release transmitter"
+   ]
+  },
+  {
+   "id": "neuron-structure.spot-error",
+   "atom": "neuron-structure",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Dendrites take input",
+    "The axon initial segment starts spikes",
+    "Terminals receive most synapses",
+    "The soma integrates"
+   ],
+   "error": 2,
+   "fix": "Dendrites receive most synapses; terminals release transmitter."
+  },
+  {
+   "id": "neuron-structure.match",
+   "atom": "neuron-structure",
+   "kind": "match",
+   "prompt": "Match each part to its job.",
+   "pairs": [
+    {
+     "term": "Dendrite",
+     "meaning": "Input"
+    },
+    {
+     "term": "Soma",
+     "meaning": "Integration"
+    },
+    {
+     "term": "Axon",
+     "meaning": "Transmission"
+    },
+    {
+     "term": "Terminal",
+     "meaning": "Output"
+    }
+   ]
+  },
+  {
+   "id": "neuron-structure.applied",
+   "atom": "neuron-structure",
+   "kind": "pick",
+   "prompt": "A stroke damages white matter tracts but spares gray matter. Which neuron parts are hit hardest?",
+   "options": [
+    "Myelinated axons",
+    "Dendritic spines",
+    "Cell nuclei",
+    "Synaptic vesicles"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "ionic-gradients.pick",
+   "atom": "ionic-gradients",
+   "kind": "pick",
+   "prompt": "Where is K+ concentrated?",
+   "options": [
+    "Inside the cell",
+    "Outside the cell",
+    "Equally on both sides",
+    "In the myelin"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "ionic-gradients.calculate",
+   "atom": "ionic-gradients",
+   "kind": "calculate",
+   "prompt": "The Na+/K+ pump moves 3 Na+ out and 2 K+ in per ATP. How many ions move for 100 ATP?",
+   "answer": 500.0,
+   "unit": "ions",
+   "relTol": 0.02
+  },
+  {
+   "id": "ionic-gradients.order",
+   "atom": "ionic-gradients",
+   "kind": "order",
+   "prompt": "Order how gradients form.",
+   "steps": [
+    "Concentrations start equal",
+    "The pump moves Na+ out and K+ in",
+    "Gradients build up over many cycles",
+    "They store energy for signals"
+   ]
+  },
+  {
+   "id": "ionic-gradients.spot-error",
+   "atom": "ionic-gradients",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Na+ is high outside",
+    "K+ is high inside",
+    "The pump moves 2 Na+ out and 3 K+ in",
+    "Each cycle uses one ATP"
+   ],
+   "error": 2,
+   "fix": "The pump moves 3 Na+ out and 2 K+ in."
+  },
+  {
+   "id": "ionic-gradients.match",
+   "atom": "ionic-gradients",
+   "kind": "match",
+   "prompt": "Match each ion to its usual location.",
+   "pairs": [
+    {
+     "term": "K+",
+     "meaning": "About 140 mM inside"
+    },
+    {
+     "term": "Na+",
+     "meaning": "About 145 mM outside"
+    },
+    {
+     "term": "Cl-",
+     "meaning": "Mostly outside, about 110 mM"
+    },
+    {
+     "term": "Ca2+",
+     "meaning": "About 100 nM inside"
+    }
+   ]
+  },
+  {
+   "id": "ionic-gradients.applied",
+   "atom": "ionic-gradients",
+   "kind": "pick",
+   "prompt": "The brain is about 2% of body mass but uses about 20% of the body's energy. What takes much of it?",
+   "options": [
+    "Pumping ions to restore gradients",
+    "Growing and repairing bone tissue in the skull",
+    "Digesting food",
+    "Making hair"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "nernst.pick",
+   "atom": "nernst",
+   "kind": "pick",
+   "prompt": "What does the Nernst potential balance?",
+   "options": [
+    "Diffusion and electrical drift of one ion",
+    "Two different ions against each other",
+    "Heat and light",
+    "Glia and neurons"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "nernst.calculate",
+   "atom": "nernst",
+   "kind": "calculate",
+   "prompt": "In a lab bath, a neuron's outside K+ is raised to 10 times its inside level at 37 C. What is E_K = 26.7 mV x ln 10?",
+   "answer": 61.48,
+   "unit": "mV",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "nernst.order",
+   "atom": "nernst",
+   "kind": "order",
+   "prompt": "Order the Nernst calculation.",
+   "steps": [
+    "Find outside and inside concentrations",
+    "Take ln(out/in)",
+    "Multiply by RT/zF",
+    "Read the equilibrium voltage"
+   ]
+  },
+  {
+   "id": "nernst.spot-error",
+   "atom": "nernst",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "E depends on the concentration ratio",
+    "z is the ion's charge",
+    "Equal concentrations give a large potential",
+    "RT/F is about 26.7 mV at 37 C"
+   ],
+   "error": 2,
+   "fix": "Equal concentrations give zero potential."
+  },
+  {
+   "id": "nernst.match",
+   "atom": "nernst",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "z",
+     "meaning": "Ion charge"
+    },
+    {
+     "term": "R",
+     "meaning": "Gas constant"
+    },
+    {
+     "term": "F",
+     "meaning": "Faraday constant"
+    },
+    {
+     "term": "E_X",
+     "meaning": "Equilibrium potential"
+    }
+   ]
+  },
+  {
+   "id": "goldman.pick",
+   "atom": "goldman",
+   "kind": "pick",
+   "prompt": "Why does the resting potential sit near E_K?",
+   "options": [
+    "K+ is the most permeant ion at rest",
+    "Na+ is absent",
+    "Cl- is ignored by the membrane",
+    "The pump stops"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "goldman.calculate",
+   "atom": "goldman",
+   "kind": "calculate",
+   "prompt": "At rest P_K : P_Na = 1 : 0.04. How many times more permeant is K+?",
+   "answer": 25.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "goldman.order",
+   "atom": "goldman",
+   "kind": "order",
+   "prompt": "Order the Goldman estimate.",
+   "steps": [
+    "List each ion's concentrations",
+    "Weight each by permeability",
+    "Form the ratio of outside to inside sums",
+    "Multiply its log by RT/F"
+   ]
+  },
+  {
+   "id": "goldman.spot-error",
+   "atom": "goldman",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Goldman blends several ions",
+    "Permeability sets each ion's weight",
+    "Goldman ignores permeabilities",
+    "It reduces to Nernst for one ion"
+   ],
+   "error": 2,
+   "fix": "Goldman weights ions by permeability."
+  },
+  {
+   "id": "goldman.match",
+   "atom": "goldman",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "P_K",
+     "meaning": "Potassium permeability"
+    },
+    {
+     "term": "P_Na",
+     "meaning": "Sodium permeability"
+    },
+    {
+     "term": "V_m",
+     "meaning": "Membrane potential"
+    },
+    {
+     "term": "GHK",
+     "meaning": "Goldman-Hodgkin-Katz"
+    }
+   ]
+  },
+  {
+   "id": "goldman.applied",
+   "atom": "goldman",
+   "kind": "pick",
+   "prompt": "Raised blood potassium makes heart cells depolarize. Which equation predicts the shift?",
+   "options": [
+    "The Goldman equation",
+    "Hick's law",
+    "Weber's law for just-noticeable differences",
+    "Bayes' rule"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "resting-potential.pick",
+   "atom": "resting-potential",
+   "kind": "pick",
+   "prompt": "What is a typical resting potential?",
+   "options": [
+    "About -70 mV",
+    "About +40 mV",
+    "0 mV",
+    "About -200 mV"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "resting-potential.calculate",
+   "atom": "resting-potential",
+   "kind": "calculate",
+   "prompt": "At rest V = -70 mV and E_K = -90 mV. What is the K+ driving force V - E_K in mV?",
+   "answer": 20.0,
+   "unit": "mV",
+   "relTol": 0.02
+  },
+  {
+   "id": "resting-potential.order",
+   "atom": "resting-potential",
+   "kind": "order",
+   "prompt": "Order what holds rest steady.",
+   "steps": [
+    "K+ leaks out",
+    "Na+ leaks in",
+    "The currents nearly balance",
+    "The pump restores the gradients"
+   ]
+  },
+  {
+   "id": "resting-potential.spot-error",
+   "atom": "resting-potential",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Rest is a steady state",
+    "K+ leaks out at rest",
+    "Rest is a true equilibrium with no current",
+    "The pump offsets the leaks"
+   ],
+   "error": 2,
+   "fix": "Rest is a steady state with balancing leak currents."
+  },
+  {
+   "id": "resting-potential.match",
+   "atom": "resting-potential",
+   "kind": "match",
+   "prompt": "Match each current to its direction at rest.",
+   "pairs": [
+    {
+     "term": "K+ leak",
+     "meaning": "Outward"
+    },
+    {
+     "term": "Na+ leak",
+     "meaning": "Inward"
+    },
+    {
+     "term": "Pump",
+     "meaning": "Restores gradients"
+    },
+    {
+     "term": "Net",
+     "meaning": "Near zero"
+    }
+   ]
+  },
+  {
+   "id": "resting-potential.applied",
+   "atom": "resting-potential",
+   "kind": "pick",
+   "prompt": "A cardiologist reads a ventricular heart cell sitting near -85 mV as healthy at rest. What keeps it there?",
+   "options": [
+    "Balanced leaks and the Na/K pump",
+    "No ion movement at all across the membrane",
+    "Only chloride",
+    "Constant spiking"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "passive-cable.pick",
+   "atom": "passive-cable",
+   "kind": "pick",
+   "prompt": "Below threshold, how does voltage change along a dendrite?",
+   "options": [
+    "It decays with distance",
+    "It grows",
+    "It stays the same at every distance",
+    "It flips sign"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "passive-cable.calculate",
+   "atom": "passive-cable",
+   "kind": "calculate",
+   "prompt": "A dendrite has lambda = 0.5 mm. A 10 mV signal travels 1 mm. What voltage remains, 10 e^-2?",
+   "answer": 1.353,
+   "unit": "mV",
+   "relTol": 0.02
+  },
+  {
+   "id": "passive-cable.order",
+   "atom": "passive-cable",
+   "kind": "order",
+   "prompt": "Order passive spread.",
+   "steps": [
+    "Current enters the dendrite",
+    "Some leaks through the membrane",
+    "Voltage falls with distance",
+    "Distant inputs arrive smaller"
+   ]
+  },
+  {
+   "id": "passive-cable.spot-error",
+   "atom": "passive-cable",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "lambda sets the decay distance",
+    "tau sets the time course",
+    "Thinner dendrites have longer lambda",
+    "Passive signals smear in time"
+   ],
+   "error": 2,
+   "fix": "Thinner dendrites have shorter lambda."
+  },
+  {
+   "id": "passive-cable.match",
+   "atom": "passive-cable",
+   "kind": "match",
+   "prompt": "Match each constant to its meaning.",
+   "pairs": [
+    {
+     "term": "lambda",
+     "meaning": "Length constant"
+    },
+    {
+     "term": "tau_m",
+     "meaning": "Time constant"
+    },
+    {
+     "term": "r_m",
+     "meaning": "Membrane resistance"
+    },
+    {
+     "term": "r_i",
+     "meaning": "Axial resistance"
+    }
+   ]
+  },
+  {
+   "id": "passive-cable.applied",
+   "atom": "passive-cable",
+   "kind": "pick",
+   "prompt": "Why does a synapse far out on a dendrite affect firing less than one near the soma?",
+   "options": [
+    "Its signal decays along the cable",
+    "It releases no transmitter onto the dendrite",
+    "It is always inhibitory",
+    "It has no ions"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "voltage-gated-channels.pick",
+   "atom": "voltage-gated-channels",
+   "kind": "pick",
+   "prompt": "What makes voltage-gated Na+ channels open?",
+   "options": [
+    "Depolarization",
+    "Hyperpolarization",
+    "Light",
+    "Glucose"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "voltage-gated-channels.calculate",
+   "atom": "voltage-gated-channels",
+   "kind": "calculate",
+   "prompt": "A Na+ channel opens in 0.3 ms and inactivates after 1.0 ms. How long does it stay open, in ms?",
+   "answer": 0.7,
+   "unit": "ms",
+   "relTol": 0.02
+  },
+  {
+   "id": "voltage-gated-channels.order",
+   "atom": "voltage-gated-channels",
+   "kind": "order",
+   "prompt": "Order a Na+ channel cycle.",
+   "steps": [
+    "Closed at rest",
+    "Opens on depolarization",
+    "Inactivates",
+    "Recovers at rest"
+   ]
+  },
+  {
+   "id": "voltage-gated-channels.spot-error",
+   "atom": "voltage-gated-channels",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Voltage sensors move with depolarization",
+    "Na+ channels inactivate",
+    "K+ channels open faster than Na+ channels",
+    "Gating gives spikes their nonlinearity"
+   ],
+   "error": 2,
+   "fix": "K+ channels open more slowly than Na+ channels."
+  },
+  {
+   "id": "voltage-gated-channels.match",
+   "atom": "voltage-gated-channels",
+   "kind": "match",
+   "prompt": "Match each state to its meaning.",
+   "pairs": [
+    {
+     "term": "Closed",
+     "meaning": "Ready to open"
+    },
+    {
+     "term": "Open",
+     "meaning": "Conducting"
+    },
+    {
+     "term": "Inactivated",
+     "meaning": "Blocked, cannot reopen yet"
+    },
+    {
+     "term": "Voltage sensor",
+     "meaning": "Charged segment that moves"
+    }
+   ]
+  },
+  {
+   "id": "voltage-gated-channels.applied",
+   "atom": "voltage-gated-channels",
+   "kind": "pick",
+   "prompt": "Lidocaine numbs a tooth before a filling. What does it block?",
+   "options": [
+    "Voltage-gated sodium channels",
+    "Potassium leak channels in the nerve membrane",
+    "The Na/K pump",
+    "Gap junctions"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "action-potential.pick",
+   "atom": "action-potential",
+   "kind": "pick",
+   "prompt": "What does all-or-none mean for a spike?",
+   "options": [
+    "Above threshold it fires full size",
+    "It grows taller with a stronger stimulus",
+    "It never fails",
+    "It has no threshold"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "action-potential.calculate",
+   "atom": "action-potential",
+   "kind": "calculate",
+   "prompt": "A neuron rests at -70 mV and peaks at +30 mV. What is the spike amplitude in mV?",
+   "answer": 100.0,
+   "unit": "mV",
+   "relTol": 0.02
+  },
+  {
+   "id": "action-potential.order",
+   "atom": "action-potential",
+   "kind": "order",
+   "prompt": "Order an action potential.",
+   "steps": [
+    "Input brings the trigger zone to threshold",
+    "Na+ channels open and V rises",
+    "Na+ inactivates and K+ opens",
+    "V undershoots, then recovers"
+   ]
+  },
+  {
+   "id": "action-potential.spot-error",
+   "atom": "action-potential",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Spikes are all or none",
+    "Threshold is near -55 mV",
+    "A stronger stimulus makes a taller spike",
+    "A refractory period follows"
+   ],
+   "error": 2,
+   "fix": "Stronger stimuli raise the spike rate; height stays the same."
+  },
+  {
+   "id": "action-potential.match",
+   "atom": "action-potential",
+   "kind": "match",
+   "prompt": "Match each phase to its cause.",
+   "pairs": [
+    {
+     "term": "Rising phase",
+     "meaning": "Na+ influx"
+    },
+    {
+     "term": "Falling phase",
+     "meaning": "K+ efflux"
+    },
+    {
+     "term": "Undershoot",
+     "meaning": "K+ channels still open"
+    },
+    {
+     "term": "Refractory period",
+     "meaning": "Na+ inactivation"
+    }
+   ]
+  },
+  {
+   "id": "action-potential.applied",
+   "atom": "action-potential",
+   "kind": "pick",
+   "prompt": "Pufferfish toxin, tetrodotoxin, paralyzes. What does it stop?",
+   "options": [
+    "Action potentials, by blocking Na+ channels",
+    "Muscle growth in the limbs",
+    "Digestion",
+    "Hearing only"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "hodgkin-huxley.pick",
+   "atom": "hodgkin-huxley",
+   "kind": "pick",
+   "prompt": "What did Hodgkin and Huxley model?",
+   "options": [
+    "The action potential from ion conductances",
+    "Memory formation in the hippocampus",
+    "Vision",
+    "Reward"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hodgkin-huxley.calculate",
+   "atom": "hodgkin-huxley",
+   "kind": "calculate",
+   "prompt": "The Na+ term scales with m^3 h. With m = 0.5 and h = 0.8, what is m^3 h?",
+   "answer": 0.1,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "hodgkin-huxley.order",
+   "atom": "hodgkin-huxley",
+   "kind": "order",
+   "prompt": "Order the HH model's spike.",
+   "steps": [
+    "A current pushes V up",
+    "m rises fast and Na+ current grows",
+    "h falls and n rises",
+    "K+ current returns V to rest"
+   ]
+  },
+  {
+   "id": "hodgkin-huxley.spot-error",
+   "atom": "hodgkin-huxley",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "m gates Na+ activation",
+    "h gates Na+ inactivation",
+    "n gates Na+ activation",
+    "The model fit squid axon data"
+   ],
+   "error": 2,
+   "fix": "n gates K+ activation."
+  },
+  {
+   "id": "hodgkin-huxley.match",
+   "atom": "hodgkin-huxley",
+   "kind": "match",
+   "prompt": "Match each gate to its role.",
+   "pairs": [
+    {
+     "term": "m",
+     "meaning": "Na+ activation"
+    },
+    {
+     "term": "h",
+     "meaning": "Na+ inactivation"
+    },
+    {
+     "term": "n",
+     "meaning": "K+ activation"
+    },
+    {
+     "term": "g_L",
+     "meaning": "Leak conductance"
+    }
+   ]
+  },
+  {
+   "id": "hodgkin-huxley.applied",
+   "atom": "hodgkin-huxley",
+   "kind": "pick",
+   "prompt": "Drug makers test how a compound changes spikes by simulating it first. Which model do they adapt?",
+   "options": [
+    "A Hodgkin-Huxley conductance model",
+    "A perceptron",
+    "Weber's law for just-noticeable differences",
+    "A Hopfield attractor network"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "saltatory-conduction.pick",
+   "atom": "saltatory-conduction",
+   "kind": "pick",
+   "prompt": "Where does the spike regenerate in a myelinated axon?",
+   "options": [
+    "At nodes of Ranvier",
+    "Under the myelin along every micron",
+    "At the soma only",
+    "Nowhere"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "saltatory-conduction.calculate",
+   "atom": "saltatory-conduction",
+   "kind": "calculate",
+   "prompt": "A motor axon conducts at 60 m/s. How long does a signal take to travel 1 m from spine to foot, in ms?",
+   "answer": 16.67,
+   "unit": "ms",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "saltatory-conduction.order",
+   "atom": "saltatory-conduction",
+   "kind": "order",
+   "prompt": "Order saltatory conduction.",
+   "steps": [
+    "A spike fires at one node",
+    "Current flows fast under myelin",
+    "The next node reaches threshold",
+    "The spike jumps node to node"
+   ]
+  },
+  {
+   "id": "saltatory-conduction.spot-error",
+   "atom": "saltatory-conduction",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Myelin insulates the axon",
+    "Spikes regenerate at nodes",
+    "Myelin slows conduction",
+    "It saves metabolic energy"
+   ],
+   "error": 2,
+   "fix": "Myelin speeds conduction."
+  },
+  {
+   "id": "saltatory-conduction.match",
+   "atom": "saltatory-conduction",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Myelin",
+     "meaning": "Insulating wrap"
+    },
+    {
+     "term": "Node of Ranvier",
+     "meaning": "Gap with channels"
+    },
+    {
+     "term": "Saltatory",
+     "meaning": "Jumping"
+    },
+    {
+     "term": "Oligodendrocyte",
+     "meaning": "Makes CNS myelin"
+    }
+   ]
+  },
+  {
+   "id": "chemical-synapse.pick",
+   "atom": "chemical-synapse",
+   "kind": "pick",
+   "prompt": "What triggers transmitter release?",
+   "options": [
+    "Ca2+ entry into the terminal",
+    "K+ leaving the terminal",
+    "Glucose",
+    "Light"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "chemical-synapse.calculate",
+   "atom": "chemical-synapse",
+   "kind": "calculate",
+   "prompt": "A synapse has 10 release sites each releasing with probability 0.3. How many vesicles release on average?",
+   "answer": 3.0,
+   "unit": "vesicles",
+   "relTol": 0.02
+  },
+  {
+   "id": "chemical-synapse.order",
+   "atom": "chemical-synapse",
+   "kind": "order",
+   "prompt": "Order synaptic transmission.",
+   "steps": [
+    "A spike reaches the terminal",
+    "Ca2+ channels open",
+    "Vesicles fuse and release transmitter",
+    "Postsynaptic receptors respond"
+   ]
+  },
+  {
+   "id": "chemical-synapse.spot-error",
+   "atom": "chemical-synapse",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Release needs Ca2+",
+    "Vesicles fuse with the membrane",
+    "Chemical synapses have no delay",
+    "Release is probabilistic"
+   ],
+   "error": 2,
+   "fix": "Chemical synapses add about 0.5 to 1 ms of delay."
+  },
+  {
+   "id": "chemical-synapse.match",
+   "atom": "chemical-synapse",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Vesicle",
+     "meaning": "Packet of transmitter"
+    },
+    {
+     "term": "Active zone",
+     "meaning": "Release site"
+    },
+    {
+     "term": "SNARE",
+     "meaning": "Fusion proteins"
+    },
+    {
+     "term": "Cleft",
+     "meaning": "Gap between cells"
+    }
+   ]
+  },
+  {
+   "id": "chemical-synapse.applied",
+   "atom": "chemical-synapse",
+   "kind": "pick",
+   "prompt": "Botox smooths wrinkles by stopping muscle signals. What does it block?",
+   "options": [
+    "Vesicle fusion at the synapse",
+    "Na+ channels",
+    "Myelin",
+    "Gap junctions"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "electrical-synapse.pick",
+   "atom": "electrical-synapse",
+   "kind": "pick",
+   "prompt": "What links cells at an electrical synapse?",
+   "options": [
+    "Gap junctions",
+    "Vesicles",
+    "Myelin",
+    "Hormones"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "electrical-synapse.calculate",
+   "atom": "electrical-synapse",
+   "kind": "calculate",
+   "prompt": "A gap junction passes 10% of a 20 mV signal. What voltage appears in the coupled cell, in mV?",
+   "answer": 2.0,
+   "unit": "mV",
+   "relTol": 0.02
+  },
+  {
+   "id": "electrical-synapse.order",
+   "atom": "electrical-synapse",
+   "kind": "order",
+   "prompt": "Order electrical coupling.",
+   "steps": [
+    "Cell A depolarizes",
+    "Current flows through gap junctions",
+    "Cell B depolarizes almost at once",
+    "The cells fire in sync"
+   ]
+  },
+  {
+   "id": "electrical-synapse.spot-error",
+   "atom": "electrical-synapse",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Gap junctions pass current directly",
+    "Transfer is near instant",
+    "Electrical synapses work in one direction only",
+    "They help synchronize firing"
+   ],
+   "error": 2,
+   "fix": "Most electrical synapses work in both directions."
+  },
+  {
+   "id": "electrical-synapse.match",
+   "atom": "electrical-synapse",
+   "kind": "match",
+   "prompt": "Match each feature to its synapse type.",
+   "pairs": [
+    {
+     "term": "Near-zero delay",
+     "meaning": "Electrical synapse"
+    },
+    {
+     "term": "Vesicle release",
+     "meaning": "Chemical synapse"
+    },
+    {
+     "term": "Connexin",
+     "meaning": "Gap junction protein"
+    },
+    {
+     "term": "Bidirectional current",
+     "meaning": "Most gap junctions"
+    }
+   ]
+  },
+  {
+   "id": "electrical-synapse.applied",
+   "atom": "electrical-synapse",
+   "kind": "pick",
+   "prompt": "Heart muscle cells contract in a coordinated wave. Which connection spreads the signal between them?",
+   "options": [
+    "Gap junctions",
+    "Chemical synapses",
+    "Myelin",
+    "Hormones only"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neurotransmitters-receptors.pick",
+   "atom": "neurotransmitters-receptors",
+   "kind": "pick",
+   "prompt": "Which receptor needs both glutamate and depolarization to pass current?",
+   "options": [
+    "NMDA",
+    "AMPA",
+    "GABA-A",
+    "Nicotinic"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neurotransmitters-receptors.calculate",
+   "atom": "neurotransmitters-receptors",
+   "kind": "calculate",
+   "prompt": "An AMPA EPSP peaks at 1 ms and a metabotropic response at 100 ms. How many times slower is the metabotropic one?",
+   "answer": 100.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "neurotransmitters-receptors.order",
+   "atom": "neurotransmitters-receptors",
+   "kind": "order",
+   "prompt": "Order NMDA receptor opening.",
+   "steps": [
+    "Glutamate binds",
+    "The cell depolarizes",
+    "Mg2+ leaves the pore",
+    "Ca2+ and Na+ flow in"
+   ]
+  },
+  {
+   "id": "neurotransmitters-receptors.spot-error",
+   "atom": "neurotransmitters-receptors",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Ionotropic receptors are channels",
+    "Metabotropic receptors act through G proteins",
+    "GABA is the main excitatory transmitter",
+    "NMDA receptors pass Ca2+"
+   ],
+   "error": 2,
+   "fix": "Glutamate is the main excitatory transmitter; GABA is inhibitory."
+  },
+  {
+   "id": "neurotransmitters-receptors.match",
+   "atom": "neurotransmitters-receptors",
+   "kind": "match",
+   "prompt": "Match each receptor to its type.",
+   "pairs": [
+    {
+     "term": "AMPA",
+     "meaning": "Fast ionotropic glutamate"
+    },
+    {
+     "term": "NMDA",
+     "meaning": "Coincidence detector"
+    },
+    {
+     "term": "GABA-A",
+     "meaning": "Inhibitory chloride channel"
+    },
+    {
+     "term": "mGluR",
+     "meaning": "Metabotropic glutamate"
+    }
+   ]
+  },
+  {
+   "id": "neurotransmitters-receptors.applied",
+   "atom": "neurotransmitters-receptors",
+   "kind": "pick",
+   "prompt": "Benzodiazepines calm anxiety. Which receptor do they enhance?",
+   "options": [
+    "GABA-A",
+    "NMDA",
+    "AMPA",
+    "Nicotinic"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "synaptic-integration.pick",
+   "atom": "synaptic-integration",
+   "kind": "pick",
+   "prompt": "How does a neuron decide to fire?",
+   "options": [
+    "It sums EPSPs and IPSPs",
+    "It fires on any single input it receives",
+    "It counts glia",
+    "At random only"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "synaptic-integration.calculate",
+   "atom": "synaptic-integration",
+   "kind": "calculate",
+   "prompt": "Each EPSP adds 0.3 mV and threshold is 15 mV above rest. How many coincident EPSPs reach threshold?",
+   "answer": 50.0,
+   "unit": "EPSPs",
+   "relTol": 0.02
+  },
+  {
+   "id": "synaptic-integration.order",
+   "atom": "synaptic-integration",
+   "kind": "order",
+   "prompt": "Order synaptic integration.",
+   "steps": [
+    "Inputs arrive across dendrites",
+    "EPSPs and IPSPs spread to the soma",
+    "They sum in space and time",
+    "The axon fires if threshold is reached"
+   ]
+  },
+  {
+   "id": "synaptic-integration.spot-error",
+   "atom": "synaptic-integration",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Spatial summation adds inputs from many sites",
+    "Temporal summation adds rapid inputs",
+    "IPSPs push the cell toward threshold",
+    "Threshold is set at the axon initial segment"
+   ],
+   "error": 2,
+   "fix": "IPSPs push the cell away from threshold."
+  },
+  {
+   "id": "synaptic-integration.match",
+   "atom": "synaptic-integration",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "EPSP",
+     "meaning": "Excitatory potential"
+    },
+    {
+     "term": "IPSP",
+     "meaning": "Inhibitory potential"
+    },
+    {
+     "term": "Spatial summation",
+     "meaning": "Inputs from many sites"
+    },
+    {
+     "term": "Temporal summation",
+     "meaning": "Inputs close in time"
+    }
+   ]
+  },
+  {
+   "id": "synaptic-integration.applied",
+   "atom": "synaptic-integration",
+   "kind": "pick",
+   "prompt": "Why does one synapse alone rarely make a cortical neuron fire?",
+   "options": [
+    "A single EPSP is far below threshold",
+    "Synapses never release",
+    "Neurons fire only at random, ignoring inputs",
+    "Dendrites block all input"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "ltp-ltd.pick",
+   "atom": "ltp-ltd",
+   "kind": "pick",
+   "prompt": "What protocol classically induces LTP?",
+   "options": [
+    "High-frequency stimulation",
+    "Total silence",
+    "Cooling the slice to near freezing",
+    "Removing calcium"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "ltp-ltd.calculate",
+   "atom": "ltp-ltd",
+   "kind": "calculate",
+   "prompt": "After LTP an EPSP grows from 2.0 to 3.0 mV. What is the percent increase?",
+   "answer": 50.0,
+   "unit": "%",
+   "relTol": 0.02
+  },
+  {
+   "id": "ltp-ltd.order",
+   "atom": "ltp-ltd",
+   "kind": "order",
+   "prompt": "Order NMDA-dependent LTP.",
+   "steps": [
+    "High-frequency input depolarizes the cell",
+    "Mg2+ leaves NMDA receptors",
+    "Ca2+ enters the spine",
+    "More AMPA receptors are inserted"
+   ]
+  },
+  {
+   "id": "ltp-ltd.spot-error",
+   "atom": "ltp-ltd",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "LTP strengthens synapses",
+    "LTD weakens synapses",
+    "LTP needs no calcium",
+    "Low-frequency stimulation can give LTD"
+   ],
+   "error": 2,
+   "fix": "NMDA-dependent LTP needs a calcium rise."
+  },
+  {
+   "id": "ltp-ltd.match",
+   "atom": "ltp-ltd",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "LTP",
+     "meaning": "Lasting strengthening"
+    },
+    {
+     "term": "LTD",
+     "meaning": "Lasting weakening"
+    },
+    {
+     "term": "Tetanus",
+     "meaning": "High-frequency burst"
+    },
+    {
+     "term": "AMPA insertion",
+     "meaning": "Expression of LTP"
+    }
+   ]
+  },
+  {
+   "id": "ltp-ltd.applied",
+   "atom": "ltp-ltd",
+   "kind": "pick",
+   "prompt": "Researchers study LTP in rodents because it is a leading candidate mechanism for what?",
+   "options": [
+    "Memory storage",
+    "Bone growth during childhood",
+    "Digestion",
+    "Eye color"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "hebbian-learning.pick",
+   "atom": "hebbian-learning",
+   "kind": "pick",
+   "prompt": "What does Hebb's rule strengthen?",
+   "options": [
+    "Connections between co-active cells",
+    "All connections equally, whatever their activity",
+    "Silent connections",
+    "Inhibitory glia"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hebbian-learning.calculate",
+   "atom": "hebbian-learning",
+   "kind": "calculate",
+   "prompt": "With learning rate 0.1, input x = 1 and output y = 1, what is Delta w = eta x y?",
+   "answer": 0.1,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "hebbian-learning.order",
+   "atom": "hebbian-learning",
+   "kind": "order",
+   "prompt": "Order Hebbian learning on one input.",
+   "steps": [
+    "The input fires",
+    "The output fires",
+    "The weight grows",
+    "Repeated pairings strengthen it more"
+   ]
+  },
+  {
+   "id": "hebbian-learning.spot-error",
+   "atom": "hebbian-learning",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delta w is proportional to x y",
+    "Fire together, wire together",
+    "Pure Hebbian weights stay bounded on their own",
+    "It links associations"
+   ],
+   "error": 2,
+   "fix": "Pure Hebbian weights grow without bound unless a decay is added."
+  },
+  {
+   "id": "hebbian-learning.match",
+   "atom": "hebbian-learning",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "x",
+     "meaning": "Presynaptic activity"
+    },
+    {
+     "term": "y",
+     "meaning": "Postsynaptic activity"
+    },
+    {
+     "term": "eta",
+     "meaning": "Learning rate"
+    },
+    {
+     "term": "Delta w",
+     "meaning": "Weight change"
+    }
+   ]
+  },
+  {
+   "id": "hebbian-learning.applied",
+   "atom": "hebbian-learning",
+   "kind": "pick",
+   "prompt": "Hearing a song brings back the summer you first heard it. Which learning idea explains linked memories?",
+   "options": [
+    "Hebbian association",
+    "Myelination",
+    "Ion pumping",
+    "Saltatory conduction along axons"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "stdp.pick",
+   "atom": "stdp",
+   "kind": "pick",
+   "prompt": "At many cortical and hippocampal synapses studied in slices, pre fires 10 ms before post. What change do most of those studies report?",
+   "options": [
+    "Potentiation",
+    "Depression",
+    "Nothing",
+    "The synapse dies"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "stdp.calculate",
+   "atom": "stdp",
+   "kind": "calculate",
+   "prompt": "STDP change falls as e^(-dt/20 ms). What fraction of the peak change remains at dt = 20 ms?",
+   "answer": 0.3679,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "stdp.order",
+   "atom": "stdp",
+   "kind": "order",
+   "prompt": "Order an STDP pairing.",
+   "steps": [
+    "Pre spikes",
+    "Post spikes 10 ms later",
+    "The pre input helped cause the post spike",
+    "The synapse strengthens"
+   ]
+  },
+  {
+   "id": "stdp.spot-error",
+   "atom": "stdp",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Timing sets the sign",
+    "Pre before post gives LTP",
+    "Post before pre gives LTP",
+    "The window spans tens of ms"
+   ],
+   "error": 2,
+   "fix": "Post before pre gives LTD."
+  },
+  {
+   "id": "stdp.match",
+   "atom": "stdp",
+   "kind": "match",
+   "prompt": "Match each timing to its effect.",
+   "pairs": [
+    {
+     "term": "Pre then post",
+     "meaning": "Potentiation"
+    },
+    {
+     "term": "Post then pre",
+     "meaning": "Depression"
+    },
+    {
+     "term": "Large gap",
+     "meaning": "Little change"
+    },
+    {
+     "term": "Window",
+     "meaning": "Tens of milliseconds"
+    }
+   ]
+  },
+  {
+   "id": "stdp.applied",
+   "atom": "stdp",
+   "kind": "pick",
+   "prompt": "Robotics engineers use STDP in neuromorphic chips that learn from spike timing. What do the chips adjust?",
+   "options": [
+    "Synaptic weights by spike order",
+    "Battery voltage",
+    "Camera focus",
+    "The wheel speed directly, with no learning"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neural-coding.pick",
+   "atom": "neural-coding",
+   "kind": "pick",
+   "prompt": "What is a rate code?",
+   "options": [
+    "Information in spike count per time",
+    "Information in the color of each neuron",
+    "Information in cell size",
+    "Information in glia"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neural-coding.calculate",
+   "atom": "neural-coding",
+   "kind": "calculate",
+   "prompt": "A neuron fires 30 spikes in 0.5 s. What is its rate in spikes/s?",
+   "answer": 60.0,
+   "unit": "spikes/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "neural-coding.order",
+   "atom": "neural-coding",
+   "kind": "order",
+   "prompt": "Order reading a rate code.",
+   "steps": [
+    "Choose a time window",
+    "Count spikes",
+    "Divide by the window",
+    "Map rate to stimulus"
+   ]
+  },
+  {
+   "id": "neural-coding.spot-error",
+   "atom": "neural-coding",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Rate codes count spikes",
+    "Temporal codes use spike timing",
+    "Neurons can use only one code",
+    "Both codes appear in the brain"
+   ],
+   "error": 2,
+   "fix": "Different systems use rate, timing or both."
+  },
+  {
+   "id": "neural-coding.match",
+   "atom": "neural-coding",
+   "kind": "match",
+   "prompt": "Match each code to its feature.",
+   "pairs": [
+    {
+     "term": "Rate code",
+     "meaning": "Spike count"
+    },
+    {
+     "term": "Temporal code",
+     "meaning": "Spike timing"
+    },
+    {
+     "term": "Latency code",
+     "meaning": "First-spike time"
+    },
+    {
+     "term": "Phase code",
+     "meaning": "Timing within a rhythm"
+    }
+   ]
+  },
+  {
+   "id": "neural-coding.applied",
+   "atom": "neural-coding",
+   "kind": "pick",
+   "prompt": "A cochlear implant must convey sound timing to the auditory nerve. Which code matters most for pitch at low frequencies?",
+   "options": [
+    "A temporal code",
+    "A code based on the color of the sound",
+    "A size code",
+    "No code"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "population-coding.pick",
+   "atom": "population-coding",
+   "kind": "pick",
+   "prompt": "How is arm direction read from motor cortex in the population vector?",
+   "options": [
+    "Weighted sum of preferred directions",
+    "One neuron's rate",
+    "The single loudest neuron only",
+    "Random choice"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "population-coding.calculate",
+   "atom": "population-coding",
+   "kind": "calculate",
+   "prompt": "Averaging 100 independent noisy neurons cuts noise by sqrt(100). By what factor?",
+   "answer": 10.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "population-coding.order",
+   "atom": "population-coding",
+   "kind": "order",
+   "prompt": "Order the population vector.",
+   "steps": [
+    "Find each neuron's preferred direction",
+    "Record firing rates",
+    "Weight each direction by its rate",
+    "Sum to get the estimate"
+   ]
+  },
+  {
+   "id": "population-coding.spot-error",
+   "atom": "population-coding",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Tuning curves overlap",
+    "Many neurons beat one",
+    "One neuron gives the most precise estimate",
+    "Population codes underlie BCIs"
+   ],
+   "error": 2,
+   "fix": "Pooling many noisy neurons is more precise."
+  },
+  {
+   "id": "population-coding.match",
+   "atom": "population-coding",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Tuning curve",
+     "meaning": "Response by stimulus value"
+    },
+    {
+     "term": "Preferred direction",
+     "meaning": "Peak of tuning"
+    },
+    {
+     "term": "Population vector",
+     "meaning": "Weighted vote"
+    },
+    {
+     "term": "Noise",
+     "meaning": "Trial-to-trial variability"
+    }
+   ]
+  },
+  {
+   "id": "population-coding.applied",
+   "atom": "population-coding",
+   "kind": "pick",
+   "prompt": "A paralyzed patient moves a cursor with a brain implant. What does the decoder read?",
+   "options": [
+    "Population activity of many neurons",
+    "A single neuron in the motor cortex",
+    "Muscle signals",
+    "Heart rate"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neural-circuits.pick",
+   "atom": "neural-circuits",
+   "kind": "pick",
+   "prompt": "What does lateral inhibition do at an edge?",
+   "options": [
+    "Sharpens contrast",
+    "Blurs it",
+    "Removes it",
+    "Inverts the color of the edge"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neural-circuits.calculate",
+   "atom": "neural-circuits",
+   "kind": "calculate",
+   "prompt": "A cell fires 50 spikes/s and each of 4 neighbors inhibits it by 5 spikes/s. What is its rate?",
+   "answer": 30.0,
+   "unit": "spikes/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "neural-circuits.order",
+   "atom": "neural-circuits",
+   "kind": "order",
+   "prompt": "Order lateral inhibition at an edge.",
+   "steps": [
+    "Bright-side cells fire hard",
+    "They inhibit neighbors",
+    "Dark-side cells near the edge are suppressed more",
+    "The edge looks sharper"
+   ]
+  },
+  {
+   "id": "neural-circuits.spot-error",
+   "atom": "neural-circuits",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Feedforward inhibition limits timing",
+    "Feedback inhibition stabilizes",
+    "Lateral inhibition blurs edges",
+    "Recurrence can sustain activity"
+   ],
+   "error": 2,
+   "fix": "Lateral inhibition sharpens edges."
+  },
+  {
+   "id": "neural-circuits.match",
+   "atom": "neural-circuits",
+   "kind": "match",
+   "prompt": "Match each motif to its role.",
+   "pairs": [
+    {
+     "term": "Lateral inhibition",
+     "meaning": "Contrast enhancement"
+    },
+    {
+     "term": "Feedforward inhibition",
+     "meaning": "Narrow timing window"
+    },
+    {
+     "term": "Feedback inhibition",
+     "meaning": "Gain control"
+    },
+    {
+     "term": "Recurrent excitation",
+     "meaning": "Sustained activity"
+    }
+   ]
+  },
+  {
+   "id": "neural-circuits.applied",
+   "atom": "neural-circuits",
+   "kind": "pick",
+   "prompt": "Mach bands make shaded steps look edged. Which circuit motif explains them?",
+   "options": [
+    "Lateral inhibition",
+    "Myelination",
+    "Ion pumping",
+    "Gap junctions only"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "working-memory.pick",
+   "atom": "working-memory",
+   "kind": "pick",
+   "prompt": "Which mechanism is proposed to hold items for seconds?",
+   "options": [
+    "Persistent activity from recurrent excitation",
+    "Myelin growth around the prefrontal cortex",
+    "New neurons",
+    "Glia death"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "working-memory.calculate",
+   "atom": "working-memory",
+   "kind": "calculate",
+   "prompt": "In a digit-span test a subject gets 10 trials at 5 digits and recalls 6 of them perfectly. What percent of 5-digit trials succeed?",
+   "answer": 60.0,
+   "unit": "%",
+   "relTol": 0.02
+  },
+  {
+   "id": "working-memory.order",
+   "atom": "working-memory",
+   "kind": "order",
+   "prompt": "Order a delayed-response trial.",
+   "steps": [
+    "A cue flashes",
+    "A delay passes",
+    "Prefrontal cells keep firing",
+    "The animal responds to the remembered spot"
+   ]
+  },
+  {
+   "id": "working-memory.spot-error",
+   "atom": "working-memory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delay activity was recorded in prefrontal cortex",
+    "Recurrent excitation is one proposed mechanism",
+    "Activity-silent synaptic models are ruled out",
+    "Capacity is limited"
+   ],
+   "error": 2,
+   "fix": "Activity-silent models remain under debate alongside persistent activity."
+  },
+  {
+   "id": "working-memory.match",
+   "atom": "working-memory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Delay activity",
+     "meaning": "Firing during the gap"
+    },
+    {
+     "term": "Capacity",
+     "meaning": "Items held at once"
+    },
+    {
+     "term": "Prefrontal cortex",
+     "meaning": "Key region"
+    },
+    {
+     "term": "Activity-silent",
+     "meaning": "Synaptic storage proposal"
+    }
+   ]
+  },
+  {
+   "id": "working-memory.applied",
+   "atom": "working-memory",
+   "kind": "pick",
+   "prompt": "You keep a phone number in mind while dialing. Which system holds it?",
+   "options": [
+    "Working memory",
+    "Long-term memory only",
+    "Reflex arcs",
+    "The cerebellum alone"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "sensory-transduction.pick",
+   "atom": "sensory-transduction",
+   "kind": "pick",
+   "prompt": "What does a photoreceptor convert?",
+   "options": [
+    "Light into an electrical signal",
+    "Sound into light",
+    "Heat into sound",
+    "Pressure into a flash of light"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "sensory-transduction.calculate",
+   "atom": "sensory-transduction",
+   "kind": "calculate",
+   "prompt": "One rhodopsin activates 100 transducins and each PDE cleaves 1,000 cGMP. How many cGMP per photon?",
+   "answer": 100000.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "sensory-transduction.order",
+   "atom": "sensory-transduction",
+   "kind": "order",
+   "prompt": "Order phototransduction.",
+   "steps": [
+    "A photon isomerizes rhodopsin",
+    "Transducin activates",
+    "PDE breaks down cGMP",
+    "Channels close and the cell hyperpolarizes"
+   ]
+  },
+  {
+   "id": "sensory-transduction.spot-error",
+   "atom": "sensory-transduction",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Receptors make graded signals",
+    "Cascades amplify single photons",
+    "Photoreceptors depolarize to light",
+    "Hair cells transduce sound"
+   ],
+   "error": 2,
+   "fix": "Vertebrate photoreceptors hyperpolarize to light."
+  },
+  {
+   "id": "sensory-transduction.match",
+   "atom": "sensory-transduction",
+   "kind": "match",
+   "prompt": "Match each receptor to its stimulus.",
+   "pairs": [
+    {
+     "term": "Rod",
+     "meaning": "Dim light"
+    },
+    {
+     "term": "Hair cell",
+     "meaning": "Sound vibration"
+    },
+    {
+     "term": "Mechanoreceptor",
+     "meaning": "Pressure"
+    },
+    {
+     "term": "Olfactory neuron",
+     "meaning": "Odorants"
+    }
+   ]
+  },
+  {
+   "id": "sensory-transduction.applied",
+   "atom": "sensory-transduction",
+   "kind": "pick",
+   "prompt": "Night vision in a dark room depends on which cells?",
+   "options": [
+    "Rods",
+    "Cones only",
+    "Hair cells",
+    "Taste cells"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "receptive-fields.pick",
+   "atom": "receptive-fields",
+   "kind": "pick",
+   "prompt": "What happens when light covers a center-surround cell's surround too?",
+   "options": [
+    "Firing drops",
+    "Firing rises",
+    "No change",
+    "The cell dies"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "receptive-fields.calculate",
+   "atom": "receptive-fields",
+   "kind": "calculate",
+   "prompt": "A center spot gives 80 spikes/s and the surround subtracts 50. What is the rate for a full-field spot?",
+   "answer": 30.0,
+   "unit": "spikes/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "receptive-fields.order",
+   "atom": "receptive-fields",
+   "kind": "order",
+   "prompt": "Order mapping a receptive field.",
+   "steps": [
+    "Record a neuron",
+    "Flash small spots across the field",
+    "Note where firing rises or falls",
+    "Draw the excitatory and inhibitory regions"
+   ]
+  },
+  {
+   "id": "receptive-fields.spot-error",
+   "atom": "receptive-fields",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Receptive fields are built by wiring",
+    "Center-surround cells respond to contrast",
+    "Uniform light drives center-surround cells hardest",
+    "V1 cells prefer oriented edges"
+   ],
+   "error": 2,
+   "fix": "Uniform light drives them weakly; contrast drives them."
+  },
+  {
+   "id": "receptive-fields.match",
+   "atom": "receptive-fields",
+   "kind": "match",
+   "prompt": "Match each cell to its preferred stimulus.",
+   "pairs": [
+    {
+     "term": "Retinal ganglion cell",
+     "meaning": "Center-surround spot"
+    },
+    {
+     "term": "V1 simple cell",
+     "meaning": "Oriented edge"
+    },
+    {
+     "term": "Complex cell",
+     "meaning": "Edge anywhere in the field"
+    },
+    {
+     "term": "Face cell",
+     "meaning": "Faces"
+    }
+   ]
+  },
+  {
+   "id": "receptive-fields.applied",
+   "atom": "receptive-fields",
+   "kind": "pick",
+   "prompt": "Image-compression codecs spend their bits on edges and contrast. Which retinal property do they echo?",
+   "options": [
+    "Center-surround receptive fields",
+    "Myelination",
+    "Ion pumps",
+    "Gap junctions"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "hierarchical-processing.pick",
+   "atom": "hierarchical-processing",
+   "kind": "pick",
+   "prompt": "What do later visual stages represent?",
+   "options": [
+    "More complex, abstract features",
+    "Simpler edges only, at every stage",
+    "Color alone",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hierarchical-processing.calculate",
+   "atom": "hierarchical-processing",
+   "kind": "calculate",
+   "prompt": "V1 cells respond to about 1 degree and IT cells to about 20 degrees. How many times larger are IT fields?",
+   "answer": 20.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "hierarchical-processing.order",
+   "atom": "hierarchical-processing",
+   "kind": "order",
+   "prompt": "Order the ventral stream.",
+   "steps": [
+    "V1 detects edges",
+    "V2 and V4 combine curves and textures",
+    "IT responds to objects",
+    "Face areas respond to faces"
+   ]
+  },
+  {
+   "id": "hierarchical-processing.spot-error",
+   "atom": "hierarchical-processing",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Each stage pools the last",
+    "Receptive fields grow along the hierarchy",
+    "IT neurons respond only to single edges",
+    "Feedback also flows down"
+   ],
+   "error": 2,
+   "fix": "IT neurons respond to complex objects."
+  },
+  {
+   "id": "hierarchical-processing.match",
+   "atom": "hierarchical-processing",
+   "kind": "match",
+   "prompt": "Match each area to its features.",
+   "pairs": [
+    {
+     "term": "V1",
+     "meaning": "Oriented edges"
+    },
+    {
+     "term": "V4",
+     "meaning": "Shapes and color"
+    },
+    {
+     "term": "IT",
+     "meaning": "Objects"
+    },
+    {
+     "term": "FFA",
+     "meaning": "Faces"
+    }
+   ]
+  },
+  {
+   "id": "hierarchical-processing.applied",
+   "atom": "hierarchical-processing",
+   "kind": "pick",
+   "prompt": "After a stroke in the fusiform region, a patient sees faces but cannot recognize them. What is lost?",
+   "options": [
+    "A late stage of the visual hierarchy",
+    "The retina",
+    "V1 edges",
+    "The muscles that move the eyes"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "motor-control.pick",
+   "atom": "motor-control",
+   "kind": "pick",
+   "prompt": "What does the size principle say?",
+   "options": [
+    "Small motor units are recruited first",
+    "Large units fire first",
+    "All motor units fire together at once",
+    "Units fire randomly"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "motor-control.calculate",
+   "atom": "motor-control",
+   "kind": "calculate",
+   "prompt": "A motor unit has 100 muscle fibers each giving 0.01 N. What force does it make?",
+   "answer": 1.0,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "motor-control.order",
+   "atom": "motor-control",
+   "kind": "order",
+   "prompt": "Order lifting a cup.",
+   "steps": [
+    "Cortex plans the movement",
+    "Spinal circuits recruit motor units",
+    "Small units fire first",
+    "Feedback corrects the grip"
+   ]
+  },
+  {
+   "id": "motor-control.spot-error",
+   "atom": "motor-control",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Motor cortex plans",
+    "The cerebellum helps correct errors",
+    "Large motor units are recruited first",
+    "Spinal reflexes act fast"
+   ],
+   "error": 2,
+   "fix": "Small motor units are recruited first."
+  },
+  {
+   "id": "motor-control.match",
+   "atom": "motor-control",
+   "kind": "match",
+   "prompt": "Match each structure to its role.",
+   "pairs": [
+    {
+     "term": "Motor cortex",
+     "meaning": "Plans movement"
+    },
+    {
+     "term": "Cerebellum",
+     "meaning": "Error correction"
+    },
+    {
+     "term": "Basal ganglia",
+     "meaning": "Action selection"
+    },
+    {
+     "term": "Motor neuron",
+     "meaning": "Drives muscle"
+    }
+   ]
+  },
+  {
+   "id": "motor-control.applied",
+   "atom": "motor-control",
+   "kind": "pick",
+   "prompt": "A physical therapist trains a patient to grip a pen gently. Which motor units fire for light grips?",
+   "options": [
+    "Small, fatigue-resistant units",
+    "The largest, most powerful motor units",
+    "No units",
+    "Only reflex units"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "hippocampus-memory.pick",
+   "atom": "hippocampus-memory",
+   "kind": "pick",
+   "prompt": "What could H.M. not do after surgery?",
+   "options": [
+    "Form new declarative memories",
+    "Talk",
+    "Learn new motor skills such as mirror drawing",
+    "Recall childhood"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hippocampus-memory.calculate",
+   "atom": "hippocampus-memory",
+   "kind": "calculate",
+   "prompt": "H.M.'s mirror-drawing errors fell from 40 on day 1 to 10 on day 3. What percent drop is that?",
+   "answer": 75.0,
+   "unit": "%",
+   "relTol": 0.02
+  },
+  {
+   "id": "hippocampus-memory.order",
+   "atom": "hippocampus-memory",
+   "kind": "order",
+   "prompt": "Order what H.M.'s case showed.",
+   "steps": [
+    "The hippocampus is removed",
+    "New facts are not retained",
+    "Old memories mostly remain",
+    "Motor skills still improve"
+   ]
+  },
+  {
+   "id": "hippocampus-memory.spot-error",
+   "atom": "hippocampus-memory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The hippocampus forms new declarative memories",
+    "Place cells fire at locations",
+    "H.M. could not learn any motor skill",
+    "Older memories were largely spared"
+   ],
+   "error": 2,
+   "fix": "H.M. improved at mirror drawing without remembering practice."
+  },
+  {
+   "id": "hippocampus-memory.match",
+   "atom": "hippocampus-memory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Anterograde amnesia",
+     "meaning": "Cannot form new memories"
+    },
+    {
+     "term": "Retrograde amnesia",
+     "meaning": "Loss of past memories"
+    },
+    {
+     "term": "Declarative",
+     "meaning": "Facts and events"
+    },
+    {
+     "term": "Procedural",
+     "meaning": "Skills"
+    }
+   ]
+  },
+  {
+   "id": "hippocampus-memory.applied",
+   "atom": "hippocampus-memory",
+   "kind": "pick",
+   "prompt": "Doctors avoid removing both hippocampi when treating epilepsy. Why?",
+   "options": [
+    "It would block forming new declarative memories",
+    "It would stop breathing",
+    "It would cause blindness in both eyes",
+    "It would stop the heart"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "memory-consolidation.pick",
+   "atom": "memory-consolidation",
+   "kind": "pick",
+   "prompt": "When does much hippocampal replay happen?",
+   "options": [
+    "During slow-wave sleep",
+    "Only while running",
+    "Never",
+    "Only under general anesthesia"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "memory-consolidation.calculate",
+   "atom": "memory-consolidation",
+   "kind": "calculate",
+   "prompt": "Retention follows R = e^(-t/S) with S = 2 days. What fraction remains after 2 days?",
+   "answer": 0.3679,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "memory-consolidation.order",
+   "atom": "memory-consolidation",
+   "kind": "order",
+   "prompt": "Order the standard model of systems consolidation.",
+   "steps": [
+    "Learning engages the hippocampus",
+    "Sleep replays the patterns",
+    "Cortical links strengthen",
+    "Memory relies less on the hippocampus"
+   ]
+  },
+  {
+   "id": "memory-consolidation.spot-error",
+   "atom": "memory-consolidation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The standard model shifts memory to cortex over time",
+    "Sharp-wave ripples carry replay",
+    "Multiple trace theory says the hippocampus is never needed for any old memory",
+    "Spindles couple with slow oscillations"
+   ],
+   "error": 2,
+   "fix": "Multiple trace theory holds that the hippocampus stays involved in detailed episodic memories."
+  },
+  {
+   "id": "memory-consolidation.match",
+   "atom": "memory-consolidation",
+   "kind": "match",
+   "prompt": "Match each idea to its claim.",
+   "pairs": [
+    {
+     "term": "Standard model",
+     "meaning": "Memories move to cortex"
+    },
+    {
+     "term": "Multiple trace theory",
+     "meaning": "Hippocampus keeps detailed episodes"
+    },
+    {
+     "term": "Ripple",
+     "meaning": "Fast replay burst"
+    },
+    {
+     "term": "Spindle",
+     "meaning": "Sleep rhythm near 12 to 15 Hz"
+    }
+   ]
+  },
+  {
+   "id": "memory-consolidation.applied",
+   "atom": "memory-consolidation",
+   "kind": "pick",
+   "prompt": "A student sleeps well after studying and recalls more the next day. Which process does the research link to that gain?",
+   "options": [
+    "Sleep-dependent consolidation",
+    "Muscle repair",
+    "Digestion",
+    "Eye movement alone during dreams"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "attention.pick",
+   "atom": "attention",
+   "kind": "pick",
+   "prompt": "What does attention do to a neuron's response to two stimuli in its field?",
+   "options": [
+    "Biases it toward the attended one",
+    "Averages the two responses even more evenly",
+    "Silences both",
+    "Has no effect"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "attention.calculate",
+   "atom": "attention",
+   "kind": "calculate",
+   "prompt": "Both bars sit inside one cell's receptive field and attention is spread evenly. The cell gives 60 spikes/s to the preferred bar alone and 20 to the other alone. Under the averaging model, what is its response to the pair?",
+   "answer": 40.0,
+   "unit": "spikes/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "attention.order",
+   "atom": "attention",
+   "kind": "order",
+   "prompt": "Order biased competition.",
+   "steps": [
+    "Two stimuli share a receptive field",
+    "The response is an average",
+    "Attention is cued to one",
+    "The response shifts toward that stimulus"
+   ]
+  },
+  {
+   "id": "attention.spot-error",
+   "atom": "attention",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Attention allocates limited resources",
+    "It enhances relevant signals",
+    "Attention raises responses to every stimulus equally",
+    "It suppresses distractors"
+   ],
+   "error": 2,
+   "fix": "Attention favors the attended stimulus over others."
+  },
+  {
+   "id": "attention.match",
+   "atom": "attention",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Spatial attention",
+     "meaning": "Focus on a location"
+    },
+    {
+     "term": "Feature attention",
+     "meaning": "Focus on a property"
+    },
+    {
+     "term": "Biased competition",
+     "meaning": "Stimuli compete for response"
+    },
+    {
+     "term": "Inattentional blindness",
+     "meaning": "Missing unattended events"
+    }
+   ]
+  },
+  {
+   "id": "attention.applied",
+   "atom": "attention",
+   "kind": "pick",
+   "prompt": "Drivers on phones miss road events in plain view. Which phenomenon is that?",
+   "options": [
+    "Inattentional blindness",
+    "Saltatory conduction along axons",
+    "LTP",
+    "Gap junction coupling between neurons"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "perception-inference.pick",
+   "atom": "perception-inference",
+   "kind": "pick",
+   "prompt": "How should two cues be combined optimally?",
+   "options": [
+    "Weighted by their reliability",
+    "Averaged equally always",
+    "Take the loudest",
+    "Ignore the weaker one entirely"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "perception-inference.calculate",
+   "atom": "perception-inference",
+   "kind": "calculate",
+   "prompt": "A surgeon judges a lump's size by sight (variance 1) and by touch through a probe (variance 4). What weight should vision get, (1/1)/(1/1 + 1/4)?",
+   "answer": 0.8,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "perception-inference.order",
+   "atom": "perception-inference",
+   "kind": "order",
+   "prompt": "Order optimal cue combination.",
+   "steps": [
+    "Estimate from each sense",
+    "Find each estimate's variance",
+    "Weight by inverse variance",
+    "Combine into one estimate"
+   ]
+  },
+  {
+   "id": "perception-inference.spot-error",
+   "atom": "perception-inference",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Perception is inference about causes",
+    "Reliable cues get more weight",
+    "The combined estimate is less reliable than the best cue",
+    "Priors shape perception"
+   ],
+   "error": 2,
+   "fix": "The combined estimate is more reliable than either cue."
+  },
+  {
+   "id": "perception-inference.match",
+   "atom": "perception-inference",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Prior",
+     "meaning": "Expectation before data"
+    },
+    {
+     "term": "Likelihood",
+     "meaning": "Fit of data to cause"
+    },
+    {
+     "term": "Posterior",
+     "meaning": "Updated belief"
+    },
+    {
+     "term": "Reliability",
+     "meaning": "Inverse variance"
+    }
+   ]
+  },
+  {
+   "id": "neural-oscillations.pick",
+   "atom": "neural-oscillations",
+   "kind": "pick",
+   "prompt": "What frequency band is gamma?",
+   "options": [
+    "About 30 to 80 Hz",
+    "About 1 Hz",
+    "About 500 Hz",
+    "About 0.01 Hz, one cycle every 100 s"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neural-oscillations.calculate",
+   "atom": "neural-oscillations",
+   "kind": "calculate",
+   "prompt": "A gamma rhythm runs at 40 Hz. What is its period in ms?",
+   "answer": 25.0,
+   "unit": "ms",
+   "relTol": 0.02
+  },
+  {
+   "id": "neural-oscillations.order",
+   "atom": "neural-oscillations",
+   "kind": "order",
+   "prompt": "Order the PING gamma cycle.",
+   "steps": [
+    "Excitatory cells fire",
+    "They drive inhibitory cells",
+    "Inhibition silences the network",
+    "Inhibition fades and the cycle repeats"
+   ]
+  },
+  {
+   "id": "neural-oscillations.spot-error",
+   "atom": "neural-oscillations",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Rhythms organize timing",
+    "Gamma involves E-I loops",
+    "Theta is faster than gamma",
+    "Oscillations appear in EEG"
+   ],
+   "error": 2,
+   "fix": "Theta, near 4 to 8 Hz, is slower than gamma."
+  },
+  {
+   "id": "neural-oscillations.match",
+   "atom": "neural-oscillations",
+   "kind": "match",
+   "prompt": "Match each band to its range.",
+   "pairs": [
+    {
+     "term": "Delta",
+     "meaning": "Below 4 Hz"
+    },
+    {
+     "term": "Theta",
+     "meaning": "4 to 8 Hz"
+    },
+    {
+     "term": "Alpha",
+     "meaning": "8 to 12 Hz"
+    },
+    {
+     "term": "Gamma",
+     "meaning": "30 to 80 Hz"
+    }
+   ]
+  },
+  {
+   "id": "neural-oscillations.applied",
+   "atom": "neural-oscillations",
+   "kind": "pick",
+   "prompt": "An EEG shows strong alpha over the back of the head when a person closes their eyes. Which band is that?",
+   "options": [
+    "8 to 12 Hz",
+    "30 to 80 Hz",
+    "Below 1 Hz",
+    "Above 200 Hz"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neuromodulation.pick",
+   "atom": "neuromodulation",
+   "kind": "pick",
+   "prompt": "After learning, when do dopamine neurons burst in Schultz's task?",
+   "options": [
+    "At the predictive cue",
+    "At the juice only, even after learning",
+    "Never",
+    "At random"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neuromodulation.calculate",
+   "atom": "neuromodulation",
+   "kind": "calculate",
+   "prompt": "A dopamine neuron's baseline is 4 spikes/s and a burst reaches 20. By what factor does it rise?",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "neuromodulation.order",
+   "atom": "neuromodulation",
+   "kind": "order",
+   "prompt": "Order Schultz's findings.",
+   "steps": [
+    "Early on, dopamine bursts at juice",
+    "Training pairs a tone with juice",
+    "The burst moves to the tone",
+    "Omitted juice causes a dip"
+   ]
+  },
+  {
+   "id": "neuromodulation.spot-error",
+   "atom": "neuromodulation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Dopamine signals prediction error",
+    "Acetylcholine links to attention",
+    "Serotonin is the only modulator of mood",
+    "Norepinephrine links to arousal"
+   ],
+   "error": 2,
+   "fix": "Several modulators affect mood; serotonin is one."
+  },
+  {
+   "id": "neuromodulation.match",
+   "atom": "neuromodulation",
+   "kind": "match",
+   "prompt": "Match each modulator to a role.",
+   "pairs": [
+    {
+     "term": "Dopamine",
+     "meaning": "Linked to reward prediction error"
+    },
+    {
+     "term": "Acetylcholine",
+     "meaning": "Linked to attention and learning"
+    },
+    {
+     "term": "Norepinephrine",
+     "meaning": "Linked to arousal"
+    },
+    {
+     "term": "Serotonin",
+     "meaning": "Linked to mood and patience"
+    }
+   ]
+  },
+  {
+   "id": "neuromodulation.applied",
+   "atom": "neuromodulation",
+   "kind": "pick",
+   "prompt": "Parkinson's patients take L-dopa. Which modulator does it replace?",
+   "options": [
+    "Dopamine",
+    "Serotonin",
+    "Acetylcholine",
+    "Histamine"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "integrate-and-fire.pick",
+   "atom": "integrate-and-fire",
+   "kind": "pick",
+   "prompt": "What happens when V reaches threshold in this model?",
+   "options": [
+    "A spike and a reset",
+    "Nothing",
+    "V keeps rising",
+    "The neuron dies and is replaced"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "integrate-and-fire.calculate",
+   "atom": "integrate-and-fire",
+   "kind": "calculate",
+   "prompt": "A model neuron with refractory period 2 ms is driven so hard it fires at the limit. What is the maximum rate in spikes/s?",
+   "answer": 500.0,
+   "unit": "spikes/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "integrate-and-fire.order",
+   "atom": "integrate-and-fire",
+   "kind": "order",
+   "prompt": "Order an integrate-and-fire cycle.",
+   "steps": [
+    "Input charges the membrane",
+    "V rises toward threshold",
+    "A spike is recorded",
+    "V resets"
+   ]
+  },
+  {
+   "id": "integrate-and-fire.spot-error",
+   "atom": "integrate-and-fire",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "It integrates inputs",
+    "It fires at threshold",
+    "It models every ion channel in detail",
+    "It resets after a spike"
+   ],
+   "error": 2,
+   "fix": "It discards channel detail."
+  },
+  {
+   "id": "integrate-and-fire.match",
+   "atom": "integrate-and-fire",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "tau_m",
+     "meaning": "Time constant"
+    },
+    {
+     "term": "R",
+     "meaning": "Membrane resistance"
+    },
+    {
+     "term": "V_th",
+     "meaning": "Threshold"
+    },
+    {
+     "term": "V_reset",
+     "meaning": "Reset value"
+    }
+   ]
+  },
+  {
+   "id": "integrate-and-fire.applied",
+   "atom": "integrate-and-fire",
+   "kind": "pick",
+   "prompt": "Neuromorphic chips simulate millions of neurons in real time. Which model do many of them use?",
+   "options": [
+    "Leaky integrate-and-fire",
+    "Full Hodgkin-Huxley for every channel",
+    "Perceptron only",
+    "No model"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neuronal-dynamics.pick",
+   "atom": "neuronal-dynamics",
+   "kind": "pick",
+   "prompt": "How does an integrator start firing as current rises?",
+   "options": [
+    "At near 0 Hz, then speeds up",
+    "Suddenly at a high rate, skipping low rates",
+    "Never",
+    "Only once"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neuronal-dynamics.calculate",
+   "atom": "neuronal-dynamics",
+   "kind": "calculate",
+   "prompt": "A neuron's rate rises 2 spikes/s per pA above a 50 pA threshold. What is the rate at 80 pA?",
+   "answer": 60.0,
+   "unit": "spikes/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "neuronal-dynamics.order",
+   "atom": "neuronal-dynamics",
+   "kind": "order",
+   "prompt": "Order the onset of firing in an integrator.",
+   "steps": [
+    "Raise current slowly",
+    "Reach the bifurcation",
+    "Firing starts at a low rate",
+    "Rate grows with current"
+   ]
+  },
+  {
+   "id": "neuronal-dynamics.spot-error",
+   "atom": "neuronal-dynamics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Firing patterns come from dynamics",
+    "Resonators prefer certain input frequencies",
+    "All neurons fire the same pattern",
+    "Bursting is one pattern"
+   ],
+   "error": 2,
+   "fix": "Neurons show tonic, bursting, resonating and other patterns."
+  },
+  {
+   "id": "neuronal-dynamics.match",
+   "atom": "neuronal-dynamics",
+   "kind": "match",
+   "prompt": "Match each pattern to its description.",
+   "pairs": [
+    {
+     "term": "Tonic",
+     "meaning": "Steady firing"
+    },
+    {
+     "term": "Bursting",
+     "meaning": "Clusters of spikes"
+    },
+    {
+     "term": "Resonator",
+     "meaning": "Prefers a frequency"
+    },
+    {
+     "term": "Integrator",
+     "meaning": "Fires from 0 Hz upward"
+    }
+   ]
+  },
+  {
+   "id": "neuronal-dynamics.applied",
+   "atom": "neuronal-dynamics",
+   "kind": "pick",
+   "prompt": "Thalamic neurons switch between bursting in deep sleep and tonic firing when awake. What explains the switch?",
+   "options": [
+    "Changes in their dynamical state",
+    "A change in their DNA each night",
+    "New neurons",
+    "Loss of myelin"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "perceptron.pick",
+   "atom": "perceptron",
+   "kind": "pick",
+   "prompt": "What can a single perceptron not learn?",
+   "options": [
+    "XOR",
+    "AND",
+    "OR",
+    "NOT"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "perceptron.calculate",
+   "atom": "perceptron",
+   "kind": "calculate",
+   "prompt": "A perceptron has weights 1 and 1 with bias 1.5. For inputs 1 and 1, what is the weighted sum minus bias?",
+   "answer": 0.5,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "perceptron.order",
+   "atom": "perceptron",
+   "kind": "order",
+   "prompt": "Order the perceptron update.",
+   "steps": [
+    "Present an example",
+    "Compute the output",
+    "If wrong, nudge weights toward the target",
+    "Repeat until no errors"
+   ]
+  },
+  {
+   "id": "perceptron.spot-error",
+   "atom": "perceptron",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "It thresholds a weighted sum",
+    "It learns linearly separable sets",
+    "It can learn XOR alone",
+    "The learning rule converges for separable data"
+   ],
+   "error": 2,
+   "fix": "XOR is not linearly separable."
+  },
+  {
+   "id": "perceptron.match",
+   "atom": "perceptron",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Weight",
+     "meaning": "Input strength"
+    },
+    {
+     "term": "Bias",
+     "meaning": "Threshold offset"
+    },
+    {
+     "term": "Linearly separable",
+     "meaning": "Splittable by a line"
+    },
+    {
+     "term": "XOR",
+     "meaning": "Not linearly separable"
+    }
+   ]
+  },
+  {
+   "id": "perceptron.applied",
+   "atom": "perceptron",
+   "kind": "pick",
+   "prompt": "A spam filter that adds weighted word scores and flags mail above a cutoff works like which unit?",
+   "options": [
+    "A perceptron",
+    "A Hopfield attractor network",
+    "A glial cell",
+    "An oscillator"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "artificial-neural-networks.pick",
+   "atom": "artificial-neural-networks",
+   "kind": "pick",
+   "prompt": "What do the first layers of a trained CNN learn?",
+   "options": [
+    "Edge filters like V1 cells",
+    "Whole faces and objects",
+    "Words",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "artificial-neural-networks.calculate",
+   "atom": "artificial-neural-networks",
+   "kind": "calculate",
+   "prompt": "A layer maps 784 inputs to 100 units with one bias each. How many parameters?",
+   "answer": 78500.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "artificial-neural-networks.order",
+   "atom": "artificial-neural-networks",
+   "kind": "order",
+   "prompt": "Order the CNN feature hierarchy.",
+   "steps": [
+    "Edges",
+    "Textures",
+    "Object parts",
+    "Whole objects"
+   ]
+  },
+  {
+   "id": "artificial-neural-networks.spot-error",
+   "atom": "artificial-neural-networks",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Deep nets stack simple units",
+    "Early layers resemble V1 filters",
+    "Deep nets learn the way cortex does in every detail",
+    "Training uses gradient descent"
+   ],
+   "error": 2,
+   "fix": "They share some features with cortex and differ in many others."
+  },
+  {
+   "id": "artificial-neural-networks.match",
+   "atom": "artificial-neural-networks",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Convolution",
+     "meaning": "Shared local filter"
+    },
+    {
+     "term": "Layer",
+     "meaning": "Stage of units"
+    },
+    {
+     "term": "Activation",
+     "meaning": "Unit output"
+    },
+    {
+     "term": "Training",
+     "meaning": "Fitting the weights"
+    }
+   ]
+  },
+  {
+   "id": "artificial-neural-networks.applied",
+   "atom": "artificial-neural-networks",
+   "kind": "pick",
+   "prompt": "Phone cameras recognize faces with networks inspired by visual cortex. Which architecture fits?",
+   "options": [
+    "A convolutional neural network",
+    "A Hopfield network",
+    "A single perceptron with one weight",
+    "A lookup table"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "predictive-coding.pick",
+   "atom": "predictive-coding",
+   "kind": "pick",
+   "prompt": "In predictive coding, what is sent upward?",
+   "options": [
+    "Prediction errors",
+    "Raw images only",
+    "Nothing",
+    "Predictions only, with no error signal"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "predictive-coding.calculate",
+   "atom": "predictive-coding",
+   "kind": "calculate",
+   "prompt": "A prediction says 10 units of input and the input is 13. What prediction error is sent up?",
+   "answer": 3.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "predictive-coding.order",
+   "atom": "predictive-coding",
+   "kind": "order",
+   "prompt": "Order the predictive coding loop as its proponents describe it.",
+   "steps": [
+    "Higher levels predict input",
+    "Predictions go down",
+    "Lower levels compute the mismatch",
+    "Errors go up to revise predictions"
+   ]
+  },
+  {
+   "id": "predictive-coding.spot-error",
+   "atom": "predictive-coding",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Predictive coding is a hypothesis about cortex",
+    "Rao and Ballard modeled it in 1999",
+    "It is established fact for all of cortex",
+    "Mismatch responses are cited as support"
+   ],
+   "error": 2,
+   "fix": "It is an influential proposal, still tested and debated."
+  },
+  {
+   "id": "predictive-coding.match",
+   "atom": "predictive-coding",
+   "kind": "match",
+   "prompt": "Match each term to its meaning in the theory.",
+   "pairs": [
+    {
+     "term": "Prediction",
+     "meaning": "Top-down expectation"
+    },
+    {
+     "term": "Prediction error",
+     "meaning": "Bottom-up mismatch"
+    },
+    {
+     "term": "Precision",
+     "meaning": "Weight given to errors"
+    },
+    {
+     "term": "Mismatch negativity",
+     "meaning": "EEG response to surprise"
+    }
+   ]
+  },
+  {
+   "id": "predictive-coding.applied",
+   "atom": "predictive-coding",
+   "kind": "pick",
+   "prompt": "Video compression sends only changes from a predicted frame. Which brain theory uses the same idea?",
+   "options": [
+    "Predictive coding",
+    "The neuron doctrine",
+    "Saltatory conduction along axons",
+    "The size principle of motor recruitment"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "reinforcement-learning-brain.pick",
+   "atom": "reinforcement-learning-brain",
+   "kind": "pick",
+   "prompt": "What is the TD error?",
+   "options": [
+    "r + gamma V(s') - V(s)",
+    "V(s) alone",
+    "The reward squared, with no expectation term",
+    "Zero always"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "reinforcement-learning-brain.calculate",
+   "atom": "reinforcement-learning-brain",
+   "kind": "calculate",
+   "prompt": "A rat expects V(s) = 0 and gets reward 1 with V(s') = 0. What is the TD error?",
+   "answer": 1.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "reinforcement-learning-brain.order",
+   "atom": "reinforcement-learning-brain",
+   "kind": "order",
+   "prompt": "Order TD learning of a cue.",
+   "steps": [
+    "Reward arrives unexpectedly",
+    "The error is positive",
+    "The cue's value grows",
+    "The error moves to the cue"
+   ]
+  },
+  {
+   "id": "reinforcement-learning-brain.spot-error",
+   "atom": "reinforcement-learning-brain",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "TD errors resemble dopamine signals",
+    "Model-free learning caches values",
+    "Model-based learning ignores the world's structure",
+    "Both systems shape behavior"
+   ],
+   "error": 2,
+   "fix": "Model-based learning uses a model of the world's structure."
+  },
+  {
+   "id": "reinforcement-learning-brain.match",
+   "atom": "reinforcement-learning-brain",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "V(s)",
+     "meaning": "State value"
+    },
+    {
+     "term": "gamma",
+     "meaning": "Discount factor"
+    },
+    {
+     "term": "delta",
+     "meaning": "Prediction error"
+    },
+    {
+     "term": "Model-based",
+     "meaning": "Plans with a world model"
+    }
+   ]
+  },
+  {
+   "id": "reinforcement-learning-brain.applied",
+   "atom": "reinforcement-learning-brain",
+   "kind": "pick",
+   "prompt": "Habit researchers model automatic routines such as checking a phone. Which learning system do they say drives such habits most?",
+   "options": [
+    "Model-free learning",
+    "Model-based planning",
+    "Saltatory conduction along axons",
+    "Myelination"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neural-criticality.pick",
+   "atom": "neural-criticality",
+   "kind": "pick",
+   "prompt": "What does the criticality hypothesis propose?",
+   "options": [
+    "Cortex operates near a critical point",
+    "Neurons never fire",
+    "Every brain is fully ordered and never fluctuates",
+    "Glia control all firing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neural-criticality.calculate",
+   "atom": "neural-criticality",
+   "kind": "calculate",
+   "prompt": "A branching ratio of 1 means each event triggers how many on average?",
+   "answer": 1.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "neural-criticality.order",
+   "atom": "neural-criticality",
+   "kind": "order",
+   "prompt": "Order an avalanche analysis.",
+   "steps": [
+    "Record from many electrodes",
+    "Detect bursts between quiet gaps",
+    "Tally avalanche sizes",
+    "Check for a power law"
+   ]
+  },
+  {
+   "id": "neural-criticality.spot-error",
+   "atom": "neural-criticality",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Power-law avalanches are cited as support",
+    "A branching ratio near 1 marks criticality",
+    "Criticality in cortex is settled beyond debate",
+    "Critics note other causes of power laws"
+   ],
+   "error": 2,
+   "fix": "It is an active hypothesis with ongoing debate."
+  },
+  {
+   "id": "neural-criticality.match",
+   "atom": "neural-criticality",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Avalanche",
+     "meaning": "Burst of activity"
+    },
+    {
+     "term": "Branching ratio",
+     "meaning": "Events per event"
+    },
+    {
+     "term": "Power law",
+     "meaning": "Scale-free distribution"
+    },
+    {
+     "term": "Subcritical",
+     "meaning": "Activity dies out"
+    }
+   ]
+  },
+  {
+   "id": "neural-criticality.applied",
+   "atom": "neural-criticality",
+   "kind": "pick",
+   "prompt": "Researchers test whether anesthesia moves cortex away from criticality. What would they measure?",
+   "options": [
+    "Avalanche size distributions",
+    "Bone density of the skull",
+    "Heart sounds",
+    "Pupil color"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "theories-of-consciousness.pick",
+   "atom": "theories-of-consciousness",
+   "kind": "pick",
+   "prompt": "Which theory says consciousness arises when information is broadcast across the brain?",
+   "options": [
+    "Global workspace theory",
+    "Integrated information theory",
+    "Neuron doctrine",
+    "Hebbian learning"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "theories-of-consciousness.calculate",
+   "atom": "theories-of-consciousness",
+   "kind": "calculate",
+   "prompt": "In a threshold test, 50 of 100 identical flashes are reported seen. What fraction is reported conscious?",
+   "answer": 0.5,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "theories-of-consciousness.order",
+   "atom": "theories-of-consciousness",
+   "kind": "order",
+   "prompt": "Order a contrastive consciousness experiment.",
+   "steps": [
+    "Flash a stimulus at threshold",
+    "Sort trials by report",
+    "Compare seen with unseen",
+    "Test each theory's prediction"
+   ]
+  },
+  {
+   "id": "theories-of-consciousness.spot-error",
+   "atom": "theories-of-consciousness",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "GWT predicts late, widespread ignition",
+    "IIT ties consciousness to integrated information",
+    "One theory has been confirmed and the others refuted",
+    "Adversarial collaborations test rival predictions"
+   ],
+   "error": 2,
+   "fix": "No theory is settled; tests are ongoing."
+  },
+  {
+   "id": "theories-of-consciousness.match",
+   "atom": "theories-of-consciousness",
+   "kind": "match",
+   "prompt": "Match each theory to its proponents.",
+   "pairs": [
+    {
+     "term": "Global workspace",
+     "meaning": "Baars, Dehaene"
+    },
+    {
+     "term": "Integrated information",
+     "meaning": "Tononi"
+    },
+    {
+     "term": "Higher-order",
+     "meaning": "Rosenthal, Lau"
+    },
+    {
+     "term": "Recurrent processing",
+     "meaning": "Lamme"
+    }
+   ]
+  },
+  {
+   "id": "theories-of-consciousness.applied",
+   "atom": "theories-of-consciousness",
+   "kind": "pick",
+   "prompt": "Doctors assess awareness in unresponsive patients with TMS-EEG complexity measures. Which theory inspired them?",
+   "options": [
+    "Integrated information theory",
+    "The size principle of motor recruitment",
+    "Hick's law",
+    "Weber's law for just-noticeable differences"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "brain-computer-interfaces.pick",
+   "atom": "brain-computer-interfaces",
+   "kind": "pick",
+   "prompt": "What does a BCI decoder map?",
+   "options": [
+    "Neural activity to device commands",
+    "Muscle to bone",
+    "Light to sound",
+    "Glia to neurons in the spinal cord"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "brain-computer-interfaces.calculate",
+   "atom": "brain-computer-interfaces",
+   "kind": "calculate",
+   "prompt": "A BCI user types 90 characters in 1 minute. What is the rate in characters per second?",
+   "answer": 1.5,
+   "unit": "chars/s",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "brain-computer-interfaces.order",
+   "atom": "brain-computer-interfaces",
+   "kind": "order",
+   "prompt": "Order a cursor BCI.",
+   "steps": [
+    "Implant an array in motor cortex",
+    "Record during imagined movement",
+    "Train a decoder",
+    "Move the cursor from decoded intent"
+   ]
+  },
+  {
+   "id": "brain-computer-interfaces.spot-error",
+   "atom": "brain-computer-interfaces",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "BCIs read population activity",
+    "Decoders are trained on data",
+    "BCIs need muscle signals to work",
+    "Stimulation can write information"
+   ],
+   "error": 2,
+   "fix": "Implanted BCIs read neurons directly."
+  },
+  {
+   "id": "brain-computer-interfaces.match",
+   "atom": "brain-computer-interfaces",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Decoder",
+     "meaning": "Activity to command"
+    },
+    {
+     "term": "Array",
+     "meaning": "Electrode grid"
+    },
+    {
+     "term": "Calibration",
+     "meaning": "Training session"
+    },
+    {
+     "term": "Closed loop",
+     "meaning": "Feedback to the user"
+    }
+   ]
+  },
+  {
+   "id": "connectomics.pick",
+   "atom": "connectomics",
+   "kind": "pick",
+   "prompt": "Which animal's full connectome was mapped first?",
+   "options": [
+    "C. elegans",
+    "Human",
+    "Mouse",
+    "The fruit fly Drosophila"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "connectomics.calculate",
+   "atom": "connectomics",
+   "kind": "calculate",
+   "prompt": "C. elegans has 302 neurons. If each sends directed synapses to 25 others on average, about how many directed links exist?",
+   "answer": 7550.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "connectomics.order",
+   "atom": "connectomics",
+   "kind": "order",
+   "prompt": "Order a connectome project.",
+   "steps": [
+    "Slice tissue thin",
+    "Image with electron microscopy",
+    "Trace neurons",
+    "Map synapses"
+   ]
+  },
+  {
+   "id": "connectomics.spot-error",
+   "atom": "connectomics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Connectomes map wiring",
+    "The worm connectome is complete",
+    "Wiring alone predicts all behavior",
+    "Neuromodulation changes function on fixed wiring"
+   ],
+   "error": 2,
+   "fix": "Wiring alone does not predict behavior; dynamics and modulation matter."
+  },
+  {
+   "id": "connectomics.match",
+   "atom": "connectomics",
+   "kind": "match",
+   "prompt": "Match each scale to its method.",
+   "pairs": [
+    {
+     "term": "Synapse level",
+     "meaning": "Electron microscopy"
+    },
+    {
+     "term": "Tract level",
+     "meaning": "Diffusion MRI"
+    },
+    {
+     "term": "Whole worm",
+     "meaning": "C. elegans connectome"
+    },
+    {
+     "term": "Fly brain",
+     "meaning": "FlyWire"
+    }
+   ]
+  },
+  {
+   "id": "connectomics.applied",
+   "atom": "connectomics",
+   "kind": "pick",
+   "prompt": "The FlyWire project traced about 140,000 neurons of a fruit fly brain. What did it produce?",
+   "options": [
+    "A whole-brain connectome",
+    "A drug",
+    "A gene",
+    "A vaccine against brain disease"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "glia.pick",
+   "atom": "glia",
+   "kind": "pick",
+   "prompt": "What do astrocytes clear from synapses?",
+   "options": [
+    "Glutamate",
+    "Myelin",
+    "DNA",
+    "Bone"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "glia.calculate",
+   "atom": "glia",
+   "kind": "calculate",
+   "prompt": "Glia and neurons in human brain are about 85 billion each. What is the glia-to-neuron ratio?",
+   "answer": 1.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "glia.order",
+   "atom": "glia",
+   "kind": "order",
+   "prompt": "Order glutamate clearance.",
+   "steps": [
+    "A synapse releases glutamate",
+    "Astrocyte transporters take it up",
+    "Astrocytes convert it to glutamine",
+    "Neurons reuse it"
+   ]
+  },
+  {
+   "id": "glia.spot-error",
+   "atom": "glia",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Oligodendrocytes make CNS myelin",
+    "Microglia prune synapses",
+    "Glia outnumber neurons ten to one",
+    "Astrocytes buffer K+"
+   ],
+   "error": 2,
+   "fix": "Recent counts put the ratio near one to one."
+  },
+  {
+   "id": "glia.match",
+   "atom": "glia",
+   "kind": "match",
+   "prompt": "Match each glial cell to its role.",
+   "pairs": [
+    {
+     "term": "Astrocyte",
+     "meaning": "Ion and transmitter buffering"
+    },
+    {
+     "term": "Oligodendrocyte",
+     "meaning": "CNS myelin"
+    },
+    {
+     "term": "Microglia",
+     "meaning": "Immune and pruning"
+    },
+    {
+     "term": "Schwann cell",
+     "meaning": "PNS myelin"
+    }
+   ]
+  },
+  {
+   "id": "glia.applied",
+   "atom": "glia",
+   "kind": "pick",
+   "prompt": "Multiple sclerosis damages myelin in the brain and spinal cord. Which glial cells are hit?",
+   "options": [
+    "Oligodendrocytes",
+    "Microglia",
+    "Schwann cells",
+    "Red blood cells in brain capillaries"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "reward-prediction-error.pick",
+   "atom": "reward-prediction-error",
+   "kind": "pick",
+   "prompt": "What happens when an expected reward is omitted?",
+   "options": [
+    "Dopamine dips below baseline",
+    "Dopamine bursts",
+    "No change",
+    "Dopamine release doubles"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "reward-prediction-error.calculate",
+   "atom": "reward-prediction-error",
+   "kind": "calculate",
+   "prompt": "Expected reward 0.8, received 1.0. What is the prediction error?",
+   "answer": 0.2,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "reward-prediction-error.order",
+   "atom": "reward-prediction-error",
+   "kind": "order",
+   "prompt": "Order the dopamine RPE pattern.",
+   "steps": [
+    "Unexpected reward gives a burst",
+    "Learning moves the burst to the cue",
+    "Predicted reward gives no burst",
+    "Omission gives a dip"
+   ]
+  },
+  {
+   "id": "reward-prediction-error.spot-error",
+   "atom": "reward-prediction-error",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Dopamine signals reward minus expectation",
+    "Fully predicted rewards cause no burst",
+    "Omitted rewards cause a burst",
+    "It matches TD learning"
+   ],
+   "error": 2,
+   "fix": "Omitted rewards cause a dip."
+  },
+  {
+   "id": "reward-prediction-error.match",
+   "atom": "reward-prediction-error",
+   "kind": "match",
+   "prompt": "Match each event to the dopamine response.",
+   "pairs": [
+    {
+     "term": "Unexpected reward",
+     "meaning": "Burst"
+    },
+    {
+     "term": "Predicted reward",
+     "meaning": "No change"
+    },
+    {
+     "term": "Omitted reward",
+     "meaning": "Dip"
+    },
+    {
+     "term": "Predictive cue",
+     "meaning": "Burst after learning"
+    }
+   ]
+  },
+  {
+   "id": "reward-prediction-error.applied",
+   "atom": "reward-prediction-error",
+   "kind": "pick",
+   "prompt": "Slot machines pay out on unpredictable schedules. Which signal do the surprise wins drive?",
+   "options": [
+    "Positive reward prediction errors",
+    "Negative prediction errors only",
+    "No dopamine response",
+    "Myelin growth around the prefrontal cortex"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "cognitive-map.pick",
+   "atom": "cognitive-map",
+   "kind": "pick",
+   "prompt": "What pattern do grid cell firing fields form?",
+   "options": [
+    "A hexagonal lattice",
+    "A single spot near one wall",
+    "A line",
+    "Random dots"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "cognitive-map.calculate",
+   "atom": "cognitive-map",
+   "kind": "calculate",
+   "prompt": "Grid scale grows by about 1.4 per module. Module 1 has 30 cm spacing. What is module 3's spacing in cm?",
+   "answer": 58.8,
+   "unit": "cm",
+   "relTol": 0.02
+  },
+  {
+   "id": "cognitive-map.order",
+   "atom": "cognitive-map",
+   "kind": "order",
+   "prompt": "Order mapping a grid cell.",
+   "steps": [
+    "Record an entorhinal neuron",
+    "Let the rat forage",
+    "Plot firing locations",
+    "See the hexagonal lattice"
+   ]
+  },
+  {
+   "id": "cognitive-map.spot-error",
+   "atom": "cognitive-map",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Place cells fire at locations",
+    "Grid cells tile space",
+    "Grid cells are found in the hippocampus proper",
+    "The 2014 Nobel honored this work"
+   ],
+   "error": 2,
+   "fix": "Grid cells are in the medial entorhinal cortex."
+  },
+  {
+   "id": "cognitive-map.match",
+   "atom": "cognitive-map",
+   "kind": "match",
+   "prompt": "Match each cell to its tuning.",
+   "pairs": [
+    {
+     "term": "Place cell",
+     "meaning": "One location"
+    },
+    {
+     "term": "Grid cell",
+     "meaning": "Hexagonal lattice"
+    },
+    {
+     "term": "Head-direction cell",
+     "meaning": "Facing direction"
+    },
+    {
+     "term": "Border cell",
+     "meaning": "Walls"
+    }
+   ]
+  },
+  {
+   "id": "cognitive-map.applied",
+   "atom": "cognitive-map",
+   "kind": "pick",
+   "prompt": "London taxi drivers who learned the city's streets showed an enlarged posterior hippocampus. Which system does that implicate?",
+   "options": [
+    "The cognitive map",
+    "The motor cortex only",
+    "The retina",
+    "The cerebellum alone"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "drift-diffusion.pick",
+   "atom": "drift-diffusion",
+   "kind": "pick",
+   "prompt": "What does a higher decision threshold do?",
+   "options": [
+    "Slower but more accurate choices",
+    "Faster and more accurate choices at once",
+    "No change",
+    "Random choices"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "drift-diffusion.calculate",
+   "atom": "drift-diffusion",
+   "kind": "calculate",
+   "prompt": "Evidence drifts at 0.5 per 100 ms toward a threshold of 2, with no noise. How many ms to decide?",
+   "answer": 400.0,
+   "unit": "ms",
+   "relTol": 0.02
+  },
+  {
+   "id": "drift-diffusion.order",
+   "atom": "drift-diffusion",
+   "kind": "order",
+   "prompt": "Order a drift-diffusion decision.",
+   "steps": [
+    "Evidence arrives noisily",
+    "A decision variable accumulates",
+    "It hits a threshold",
+    "The choice is made"
+   ]
+  },
+  {
+   "id": "drift-diffusion.spot-error",
+   "atom": "drift-diffusion",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Drift rate reflects signal strength",
+    "Threshold sets speed versus accuracy",
+    "Stronger signals give slower choices",
+    "Noise causes errors"
+   ],
+   "error": 2,
+   "fix": "Stronger signals give faster choices."
+  },
+  {
+   "id": "drift-diffusion.match",
+   "atom": "drift-diffusion",
+   "kind": "match",
+   "prompt": "Match each parameter to its meaning.",
+   "pairs": [
+    {
+     "term": "Drift rate",
+     "meaning": "Evidence strength"
+    },
+    {
+     "term": "Threshold",
+     "meaning": "Caution"
+    },
+    {
+     "term": "Non-decision time",
+     "meaning": "Sensory and motor delay"
+    },
+    {
+     "term": "Starting point",
+     "meaning": "Bias"
+    }
+   ]
+  },
+  {
+   "id": "drift-diffusion.applied",
+   "atom": "drift-diffusion",
+   "kind": "pick",
+   "prompt": "A goalkeeper must dive within 300 ms of a kick. What does the time pressure force, in drift-diffusion terms?",
+   "options": [
+    "A low threshold with more errors",
+    "A high threshold with long deliberation",
+    "No accumulation",
+    "Perfect accuracy"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "efficient-coding.pick",
+   "atom": "efficient-coding",
+   "kind": "pick",
+   "prompt": "What does sparse coding of natural images produce?",
+   "options": [
+    "Edge-like filters resembling V1",
+    "Random noise with no structure",
+    "Color patches only, with no edges",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "efficient-coding.calculate",
+   "atom": "efficient-coding",
+   "kind": "calculate",
+   "prompt": "A code uses 8 equally likely symbols. How many bits per symbol does it need?",
+   "answer": 3.0,
+   "unit": "bits",
+   "relTol": 0.02
+  },
+  {
+   "id": "efficient-coding.order",
+   "atom": "efficient-coding",
+   "kind": "order",
+   "prompt": "Order Barlow's efficient-coding idea.",
+   "steps": [
+    "Natural signals are redundant",
+    "Neurons remove redundancy",
+    "Codes match input statistics",
+    "Fewer resources carry the same information"
+   ]
+  },
+  {
+   "id": "efficient-coding.spot-error",
+   "atom": "efficient-coding",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Sensory codes adapt to statistics",
+    "Sparse codes use few active units",
+    "Efficient codes keep all redundancy",
+    "Learning on images gives V1-like filters"
+   ],
+   "error": 2,
+   "fix": "Efficient codes remove redundancy."
+  },
+  {
+   "id": "efficient-coding.match",
+   "atom": "efficient-coding",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Redundancy",
+     "meaning": "Repeated information"
+    },
+    {
+     "term": "Sparse code",
+     "meaning": "Few active units"
+    },
+    {
+     "term": "Whitening",
+     "meaning": "Flattening the spectrum"
+    },
+    {
+     "term": "Adaptation",
+     "meaning": "Matching current statistics"
+    }
+   ]
+  },
+  {
+   "id": "efficient-coding.applied",
+   "atom": "efficient-coding",
+   "kind": "pick",
+   "prompt": "JPEG throws away detail the eye barely notices. Which neural principle does it echo?",
+   "options": [
+    "Efficient coding",
+    "Saltatory conduction along axons",
+    "The neuron doctrine",
+    "STDP"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "neurovascular-coupling.pick",
+   "atom": "neurovascular-coupling",
+   "kind": "pick",
+   "prompt": "What does BOLD fMRI measure?",
+   "options": [
+    "Blood oxygenation changes",
+    "Spikes from single neurons directly",
+    "Glial counts",
+    "Bone density of the skull"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neurovascular-coupling.calculate",
+   "atom": "neurovascular-coupling",
+   "kind": "calculate",
+   "prompt": "The BOLD response peaks about 5 s after a stimulus. A finger tap at t = 10 s peaks at what time, in s?",
+   "answer": 15.0,
+   "unit": "s",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "neurovascular-coupling.order",
+   "atom": "neurovascular-coupling",
+   "kind": "order",
+   "prompt": "Order neurovascular coupling.",
+   "steps": [
+    "Neurons fire",
+    "Vessels dilate",
+    "Oxygenated blood floods in",
+    "The BOLD signal rises"
+   ]
+  },
+  {
+   "id": "neurovascular-coupling.spot-error",
+   "atom": "neurovascular-coupling",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "fMRI measures blood oxygenation",
+    "The response lags by seconds",
+    "BOLD directly records single spikes",
+    "Astrocytes help couple activity and flow"
+   ],
+   "error": 2,
+   "fix": "BOLD is an indirect, slow measure."
+  },
+  {
+   "id": "neurovascular-coupling.match",
+   "atom": "neurovascular-coupling",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "BOLD",
+     "meaning": "Blood-oxygen signal"
+    },
+    {
+     "term": "HRF",
+     "meaning": "Response shape over time"
+    },
+    {
+     "term": "Hyperemia",
+     "meaning": "Increased blood flow"
+    },
+    {
+     "term": "Lag",
+     "meaning": "Seconds of delay"
+    }
+   ]
+  },
+  {
+   "id": "interoception.pick",
+   "atom": "interoception",
+   "kind": "pick",
+   "prompt": "What do osmoreceptors detect?",
+   "options": [
+    "Blood osmolality",
+    "Light",
+    "Sound",
+    "Touch"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "interoception.calculate",
+   "atom": "interoception",
+   "kind": "calculate",
+   "prompt": "Plasma osmolality rises from 285 to 300 mOsm/kg after a salty meal. What is the percent rise?",
+   "answer": 5.263,
+   "unit": "%",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "interoception.order",
+   "atom": "interoception",
+   "kind": "order",
+   "prompt": "Order the response to salty blood.",
+   "steps": [
+    "Osmoreceptors sense high osmolality",
+    "Thirst rises",
+    "Vasopressin is released",
+    "Kidneys retain water"
+   ]
+  },
+  {
+   "id": "interoception.spot-error",
+   "atom": "interoception",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The brain senses internal state",
+    "Thirst follows high osmolality",
+    "Vasopressin makes kidneys release more water",
+    "Interoception shapes emotion"
+   ],
+   "error": 2,
+   "fix": "Vasopressin makes kidneys retain water."
+  },
+  {
+   "id": "interoception.match",
+   "atom": "interoception",
+   "kind": "match",
+   "prompt": "Match each signal to its sensor.",
+   "pairs": [
+    {
+     "term": "Osmolality",
+     "meaning": "Osmoreceptors"
+    },
+    {
+     "term": "Blood pressure",
+     "meaning": "Baroreceptors"
+    },
+    {
+     "term": "Heartbeat",
+     "meaning": "Cardiac afferents"
+    },
+    {
+     "term": "Gut stretch",
+     "meaning": "Vagal afferents"
+    }
+   ]
+  },
+  {
+   "id": "amygdala-emotion.pick",
+   "atom": "amygdala-emotion",
+   "kind": "pick",
+   "prompt": "What does fear conditioning teach?",
+   "options": [
+    "A tone predicts shock",
+    "The shock becomes pleasant over time",
+    "Tones are silent",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "amygdala-emotion.calculate",
+   "atom": "amygdala-emotion",
+   "kind": "calculate",
+   "prompt": "After 5 tone-shock pairings a rat freezes 60% of the time. After extinction it freezes 15%. By how many points did freezing drop?",
+   "answer": 45.0,
+   "unit": "points",
+   "relTol": 0.02
+  },
+  {
+   "id": "amygdala-emotion.order",
+   "atom": "amygdala-emotion",
+   "kind": "order",
+   "prompt": "Order fear conditioning.",
+   "steps": [
+    "Tone sounds",
+    "Shock follows",
+    "The amygdala links them",
+    "Tone alone triggers freezing"
+   ]
+  },
+  {
+   "id": "amygdala-emotion.spot-error",
+   "atom": "amygdala-emotion",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The amygdala learns threat associations",
+    "Extinction forms new learning",
+    "Extinction erases the original memory",
+    "Freezing measures fear in rats"
+   ],
+   "error": 2,
+   "fix": "Extinction adds new learning; the original memory can return."
+  },
+  {
+   "id": "amygdala-emotion.match",
+   "atom": "amygdala-emotion",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "CS",
+     "meaning": "Conditioned stimulus"
+    },
+    {
+     "term": "US",
+     "meaning": "Unconditioned stimulus"
+    },
+    {
+     "term": "Extinction",
+     "meaning": "New inhibitory learning"
+    },
+    {
+     "term": "Freezing",
+     "meaning": "Fear response"
+    }
+   ]
+  },
+  {
+   "id": "amygdala-emotion.applied",
+   "atom": "amygdala-emotion",
+   "kind": "pick",
+   "prompt": "Exposure therapy treats phobias by repeated safe contact with the feared thing. Which process does it use?",
+   "options": [
+    "Fear extinction",
+    "LTP in muscle",
+    "Myelination",
+    "Saltatory conduction along axons"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "sleep-memory-replay.pick",
+   "atom": "sleep-memory-replay",
+   "kind": "pick",
+   "prompt": "In targeted memory reactivation, what is played during sleep?",
+   "options": [
+    "Sounds paired with learning",
+    "Loud alarms",
+    "Music unrelated to learning",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "sleep-memory-replay.calculate",
+   "atom": "sleep-memory-replay",
+   "kind": "calculate",
+   "prompt": "Cued items are recalled at 70% and uncued at 60%. What is the cueing benefit in points?",
+   "answer": 10.0,
+   "unit": "points",
+   "relTol": 0.02
+  },
+  {
+   "id": "sleep-memory-replay.order",
+   "atom": "sleep-memory-replay",
+   "kind": "order",
+   "prompt": "Order a targeted memory reactivation study.",
+   "steps": [
+    "Pair items with sounds",
+    "Let the subject sleep",
+    "Replay some sounds softly in slow-wave sleep",
+    "Test recall of cued and uncued items"
+   ]
+  },
+  {
+   "id": "sleep-memory-replay.spot-error",
+   "atom": "sleep-memory-replay",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Replay is compressed in time",
+    "Slow oscillations, spindles and ripples coordinate",
+    "Replay happens only while awake",
+    "Cueing can boost recall"
+   ],
+   "error": 2,
+   "fix": "Replay occurs in sleep and in quiet waking."
+  },
+  {
+   "id": "sleep-memory-replay.match",
+   "atom": "sleep-memory-replay",
+   "kind": "match",
+   "prompt": "Match each rhythm to its role.",
+   "pairs": [
+    {
+     "term": "Slow oscillation",
+     "meaning": "Below 1 Hz frame"
+    },
+    {
+     "term": "Spindle",
+     "meaning": "Thalamocortical burst"
+    },
+    {
+     "term": "Ripple",
+     "meaning": "Hippocampal replay burst"
+    },
+    {
+     "term": "TMR",
+     "meaning": "Cued reactivation"
+    }
+   ]
+  },
+  {
+   "id": "sleep-memory-replay.applied",
+   "atom": "sleep-memory-replay",
+   "kind": "pick",
+   "prompt": "A student plays the same soft background track while studying and while sleeping. Which research method does that borrow from?",
+   "options": [
+    "Targeted memory reactivation",
+    "Fear conditioning with shocks",
+    "Patch clamp",
+    "fMRI"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "free-energy-principle.pick",
+   "atom": "free-energy-principle",
+   "kind": "pick",
+   "prompt": "What does the free energy principle say agents minimize?",
+   "options": [
+    "Variational free energy, a bound on surprise",
+    "Body temperature above all else",
+    "Blood sugar",
+    "Neuron count"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "free-energy-principle.calculate",
+   "atom": "free-energy-principle",
+   "kind": "calculate",
+   "prompt": "An agent assigns probability 0.25 to its sensory input. What is the surprise -log2 p in bits?",
+   "answer": 2.0,
+   "unit": "bits",
+   "relTol": 0.02
+  },
+  {
+   "id": "free-energy-principle.order",
+   "atom": "free-energy-principle",
+   "kind": "order",
+   "prompt": "Order the two routes to cut prediction error, as Friston proposes.",
+   "steps": [
+    "A prediction meets mismatching input",
+    "Option one: update the belief",
+    "Option two: act to change the input",
+    "Either lowers free energy"
+   ]
+  },
+  {
+   "id": "free-energy-principle.spot-error",
+   "atom": "free-energy-principle",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Friston proposed it",
+    "Perception updates beliefs",
+    "It is a tested, settled law of brain function",
+    "Active inference adds action"
+   ],
+   "error": 2,
+   "fix": "It is an ambitious framework whose testability is debated."
+  },
+  {
+   "id": "free-energy-principle.match",
+   "atom": "free-energy-principle",
+   "kind": "match",
+   "prompt": "Match each term to its meaning in the framework.",
+   "pairs": [
+    {
+     "term": "Surprise",
+     "meaning": "-log p of sensations"
+    },
+    {
+     "term": "Free energy",
+     "meaning": "Upper bound on surprise"
+    },
+    {
+     "term": "Active inference",
+     "meaning": "Acting to fulfill predictions"
+    },
+    {
+     "term": "Generative model",
+     "meaning": "Model of how causes make sensations"
+    }
+   ]
+  },
+  {
+   "id": "free-energy-principle.applied",
+   "atom": "free-energy-principle",
+   "kind": "pick",
+   "prompt": "You reach for a mug you expect to be warm and find it cold. Which two responses does the framework describe?",
+   "options": [
+    "Update the belief or act to change the input",
+    "Ignore it forever",
+    "Grow new neurons",
+    "Stop all prediction and wait"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "tripartite-synapse.pick",
+   "atom": "tripartite-synapse",
+   "kind": "pick",
+   "prompt": "What is undisputed about astrocytes at synapses?",
+   "options": [
+    "They take up glutamate",
+    "They fire action potentials",
+    "They carry all memories",
+    "They lack receptors"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "tripartite-synapse.calculate",
+   "atom": "tripartite-synapse",
+   "kind": "calculate",
+   "prompt": "Astrocyte transporters clear 90% of synaptic glutamate. What percent remains?",
+   "answer": 10.0,
+   "unit": "%",
+   "relTol": 0.02
+  },
+  {
+   "id": "tripartite-synapse.order",
+   "atom": "tripartite-synapse",
+   "kind": "order",
+   "prompt": "Order the tripartite synapse picture.",
+   "steps": [
+    "A synapse releases glutamate",
+    "Astrocyte receptors sense it",
+    "Astrocyte calcium rises",
+    "Uptake shapes the signal's timing"
+   ]
+  },
+  {
+   "id": "tripartite-synapse.spot-error",
+   "atom": "tripartite-synapse",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Astrocytes wrap many synapses",
+    "Transporters clear glutamate",
+    "Gliotransmitter release is settled beyond debate",
+    "Calcium waves occur in astrocytes"
+   ],
+   "error": 2,
+   "fix": "Gliotransmission remains debated."
+  },
+  {
+   "id": "tripartite-synapse.match",
+   "atom": "tripartite-synapse",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Tripartite synapse",
+     "meaning": "Pre, post and astrocyte"
+    },
+    {
+     "term": "Gliotransmitter",
+     "meaning": "Proposed astrocyte signal"
+    },
+    {
+     "term": "EAAT",
+     "meaning": "Glutamate transporter"
+    },
+    {
+     "term": "Calcium wave",
+     "meaning": "Astrocyte signal"
+    }
+   ]
+  },
+  {
+   "id": "tripartite-synapse.applied",
+   "atom": "tripartite-synapse",
+   "kind": "pick",
+   "prompt": "Some ALS research targets astrocyte glutamate transporters. Why would weak uptake harm neurons?",
+   "options": [
+    "Excess glutamate can overdrive and damage them",
+    "Neurons need more myelin",
+    "Glutamate blocks blood flow to the cortex",
+    "It stops breathing directly"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "homeostatic-plasticity.pick",
+   "atom": "homeostatic-plasticity",
+   "kind": "pick",
+   "prompt": "What does synaptic scaling do after activity is blocked?",
+   "options": [
+    "Scales excitatory synapses up",
+    "Scales the excitatory synapses down",
+    "Nothing",
+    "Kills neurons"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "homeostatic-plasticity.calculate",
+   "atom": "homeostatic-plasticity",
+   "kind": "calculate",
+   "prompt": "After two days of silence, all synapses scale up by 1.5. A 2 mV synapse becomes what, in mV?",
+   "answer": 3.0,
+   "unit": "mV",
+   "relTol": 0.02
+  },
+  {
+   "id": "homeostatic-plasticity.order",
+   "atom": "homeostatic-plasticity",
+   "kind": "order",
+   "prompt": "Order synaptic scaling.",
+   "steps": [
+    "Activity is blocked",
+    "Firing falls below target",
+    "Synapses scale up multiplicatively",
+    "Firing returns toward target"
+   ]
+  },
+  {
+   "id": "homeostatic-plasticity.spot-error",
+   "atom": "homeostatic-plasticity",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Scaling keeps relative weights",
+    "It acts slowly",
+    "It works faster than Hebbian plasticity",
+    "It stabilizes firing"
+   ],
+   "error": 2,
+   "fix": "Scaling acts over hours to days, slower than Hebbian plasticity."
+  },
+  {
+   "id": "homeostatic-plasticity.match",
+   "atom": "homeostatic-plasticity",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Set point",
+     "meaning": "Target rate"
+    },
+    {
+     "term": "Scaling",
+     "meaning": "Multiplicative weight change"
+    },
+    {
+     "term": "Intrinsic plasticity",
+     "meaning": "Excitability change"
+    },
+    {
+     "term": "Stability",
+     "meaning": "Avoids runaway"
+    }
+   ]
+  },
+  {
+   "id": "homeostatic-plasticity.applied",
+   "atom": "homeostatic-plasticity",
+   "kind": "pick",
+   "prompt": "After weeks of hearing loss, auditory neurons raise their gain. Which process could cause tinnitus this way?",
+   "options": [
+    "Homeostatic plasticity",
+    "Saltatory conduction along axons",
+    "Myelination",
+    "Lateral inhibition only"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "oja-rule.pick",
+   "atom": "oja-rule",
+   "kind": "pick",
+   "prompt": "What does Oja's rule converge to?",
+   "options": [
+    "The leading principal component",
+    "Zero",
+    "Random weights",
+    "Weights that grow without any limit"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "oja-rule.calculate",
+   "atom": "oja-rule",
+   "kind": "calculate",
+   "prompt": "Oja keeps the weight norm at 1. A weight vector (0.6, w2) is at the fixed point. What is w2, positive?",
+   "answer": 0.8,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "oja-rule.order",
+   "atom": "oja-rule",
+   "kind": "order",
+   "prompt": "Order Oja's rule on 2D data.",
+   "steps": [
+    "Start with a random w",
+    "Move w toward each input",
+    "Decay w by y^2",
+    "w aligns with the main axis"
+   ]
+  },
+  {
+   "id": "oja-rule.spot-error",
+   "atom": "oja-rule",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "It adds decay to Hebb",
+    "It bounds the weights",
+    "It finds the smallest principal component",
+    "It performs online PCA"
+   ],
+   "error": 2,
+   "fix": "It finds the leading principal component."
+  },
+  {
+   "id": "oja-rule.match",
+   "atom": "oja-rule",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Hebb term",
+     "meaning": "Grows w with x y"
+    },
+    {
+     "term": "Decay term",
+     "meaning": "Shrinks w by y^2 w"
+    },
+    {
+     "term": "Fixed point",
+     "meaning": "Leading eigenvector"
+    },
+    {
+     "term": "PCA",
+     "meaning": "Principal component analysis"
+    }
+   ]
+  },
+  {
+   "id": "oja-rule.applied",
+   "atom": "oja-rule",
+   "kind": "pick",
+   "prompt": "A sensor network compresses correlated readings onto one main direction as data streams in. Which rule fits?",
+   "options": [
+    "Oja's rule",
+    "Bayes' rule alone",
+    "The size principle of motor recruitment",
+    "Hick's law"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "bcm-rule.pick",
+   "atom": "bcm-rule",
+   "kind": "pick",
+   "prompt": "In BCM, what happens below the threshold theta_M?",
+   "options": [
+    "The synapse weakens",
+    "It strengthens like LTP",
+    "Nothing",
+    "It dies"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "bcm-rule.calculate",
+   "atom": "bcm-rule",
+   "kind": "calculate",
+   "prompt": "theta_M tracks mean activity squared. Mean activity rises from 2 to 3. By what factor does theta_M rise?",
+   "answer": 2.25,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "bcm-rule.order",
+   "atom": "bcm-rule",
+   "kind": "order",
+   "prompt": "Order BCM selectivity development.",
+   "steps": [
+    "theta_M starts low",
+    "Many inputs potentiate",
+    "Activity rises and theta_M rises",
+    "Only the strongest inputs keep potentiating"
+   ]
+  },
+  {
+   "id": "bcm-rule.spot-error",
+   "atom": "bcm-rule",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Activity above theta_M gives LTP",
+    "theta_M slides with activity",
+    "theta_M is fixed forever",
+    "BCM explains visual selectivity"
+   ],
+   "error": 2,
+   "fix": "theta_M slides with the neuron's history."
+  },
+  {
+   "id": "bcm-rule.match",
+   "atom": "bcm-rule",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "theta_M",
+     "meaning": "Modification threshold"
+    },
+    {
+     "term": "Sliding threshold",
+     "meaning": "Moves with activity"
+    },
+    {
+     "term": "Selectivity",
+     "meaning": "Response to few inputs"
+    },
+    {
+     "term": "Monocular deprivation",
+     "meaning": "Classic BCM test"
+    }
+   ]
+  },
+  {
+   "id": "bcm-rule.applied",
+   "atom": "bcm-rule",
+   "kind": "pick",
+   "prompt": "Patching one eye in childhood shifts visual cortex toward the open eye. Which rule models that shift?",
+   "options": [
+    "The BCM rule",
+    "Oja only",
+    "Hick's law",
+    "Weber's law for just-noticeable differences"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "hopfield-network.pick",
+   "atom": "hopfield-network",
+   "kind": "pick",
+   "prompt": "What does a Hopfield network do with a corrupted pattern?",
+   "options": [
+    "Settles to the stored pattern",
+    "Erases it and stores noise",
+    "Grows it",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hopfield-network.calculate",
+   "atom": "hopfield-network",
+   "kind": "calculate",
+   "prompt": "A Hopfield net of 100 units can store about 0.14 N patterns before recall fails. How many?",
+   "answer": 14.0,
+   "unit": "patterns",
+   "relTol": 0.02
+  },
+  {
+   "id": "hopfield-network.order",
+   "atom": "hopfield-network",
+   "kind": "order",
+   "prompt": "Order pattern recall.",
+   "steps": [
+    "Store patterns with Hebbian weights",
+    "Present a noisy version",
+    "Update units by the sign rule",
+    "Settle at the stored pattern"
+   ]
+  },
+  {
+   "id": "hopfield-network.spot-error",
+   "atom": "hopfield-network",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Weights are symmetric",
+    "Energy never increases",
+    "Capacity grows without limit",
+    "It is content-addressable memory"
+   ],
+   "error": 2,
+   "fix": "Capacity is about 0.14 N patterns."
+  },
+  {
+   "id": "hopfield-network.match",
+   "atom": "hopfield-network",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Energy",
+     "meaning": "Lyapunov function"
+    },
+    {
+     "term": "Attractor",
+     "meaning": "Stored pattern"
+    },
+    {
+     "term": "Capacity",
+     "meaning": "About 0.14 N"
+    },
+    {
+     "term": "Spurious state",
+     "meaning": "Unwanted minimum"
+    }
+   ]
+  },
+  {
+   "id": "hopfield-network.applied",
+   "atom": "hopfield-network",
+   "kind": "pick",
+   "prompt": "You recall a whole song from its first two notes. Which kind of memory model matches that?",
+   "options": [
+    "An attractor network",
+    "A feedforward perceptron",
+    "Saltatory conduction along axons",
+    "A Weber fraction"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "backpropagation.pick",
+   "atom": "backpropagation",
+   "kind": "pick",
+   "prompt": "What does backpropagation apply backward through layers?",
+   "options": [
+    "The chain rule",
+    "Bayes' rule",
+    "Ohm's law",
+    "The size principle of motor recruitment"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "backpropagation.calculate",
+   "atom": "backpropagation",
+   "kind": "calculate",
+   "prompt": "Output 0.2, target 1, f' = 0.16. What is delta_out = (0.2 - 1) f'?",
+   "answer": -0.128,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "backpropagation.order",
+   "atom": "backpropagation",
+   "kind": "order",
+   "prompt": "Order one backprop step.",
+   "steps": [
+    "Forward pass",
+    "Compute output error",
+    "Pass errors back through weights",
+    "Update every weight"
+   ]
+  },
+  {
+   "id": "backpropagation.spot-error",
+   "atom": "backpropagation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Backprop computes gradients",
+    "It uses the chain rule",
+    "The brain is known to run backprop exactly",
+    "It trains deep nets"
+   ],
+   "error": 2,
+   "fix": "Whether the brain does anything like backprop is an open question."
+  },
+  {
+   "id": "backpropagation.match",
+   "atom": "backpropagation",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Gradient",
+     "meaning": "Slope of loss"
+    },
+    {
+     "term": "delta",
+     "meaning": "Error signal"
+    },
+    {
+     "term": "Learning rate",
+     "meaning": "Step size"
+    },
+    {
+     "term": "Weight transport",
+     "meaning": "Biological plausibility problem"
+    }
+   ]
+  },
+  {
+   "id": "backpropagation.applied",
+   "atom": "backpropagation",
+   "kind": "pick",
+   "prompt": "Speech recognizers on phones were trained on hours of audio. Which algorithm set their weights?",
+   "options": [
+    "Backpropagation with gradient descent",
+    "Hebb's rule only, with no error signal",
+    "Oja's rule",
+    "No training"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "sparse-coding.pick",
+   "atom": "sparse-coding",
+   "kind": "pick",
+   "prompt": "What does sparse coding learn from natural image patches?",
+   "options": [
+    "Localized, oriented filters",
+    "Whole faces and objects",
+    "Random noise with no structure",
+    "Color only"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "sparse-coding.calculate",
+   "atom": "sparse-coding",
+   "kind": "calculate",
+   "prompt": "A dictionary of 200 filters codes each patch with 10 active. What fraction is active?",
+   "answer": 0.05,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "sparse-coding.order",
+   "atom": "sparse-coding",
+   "kind": "order",
+   "prompt": "Order sparse dictionary learning.",
+   "steps": [
+    "Start with random filters",
+    "Find sparse coefficients per patch",
+    "Update filters to cut error",
+    "Repeat until filters settle"
+   ]
+  },
+  {
+   "id": "sparse-coding.spot-error",
+   "atom": "sparse-coding",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Few units are active per input",
+    "Dictionaries can be overcomplete",
+    "Sparse codes use most units for each input",
+    "Olshausen and Field found V1-like filters"
+   ],
+   "error": 2,
+   "fix": "Sparse codes use few units per input."
+  },
+  {
+   "id": "sparse-coding.match",
+   "atom": "sparse-coding",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Dictionary",
+     "meaning": "Set of filters"
+    },
+    {
+     "term": "Overcomplete",
+     "meaning": "More filters than inputs"
+    },
+    {
+     "term": "Sparsity",
+     "meaning": "Few active units"
+    },
+    {
+     "term": "Reconstruction",
+     "meaning": "Rebuilt input"
+    }
+   ]
+  },
+  {
+   "id": "sparse-coding.applied",
+   "atom": "sparse-coding",
+   "kind": "pick",
+   "prompt": "MRI scanners speed up scans with compressed sensing. Which idea do they borrow?",
+   "options": [
+    "Sparse representations",
+    "Saltatory conduction along axons",
+    "The neuron doctrine",
+    "Fear extinction"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "signal-detection-theory.pick",
+   "atom": "signal-detection-theory",
+   "kind": "pick",
+   "prompt": "What does d' measure?",
+   "options": [
+    "Sensitivity",
+    "Bias",
+    "Reaction time",
+    "Volume"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "signal-detection-theory.calculate",
+   "atom": "signal-detection-theory",
+   "kind": "calculate",
+   "prompt": "A radiologist has hit rate 0.84 and false-alarm rate 0.16, so z values are +1 and -1. What is d'?",
+   "answer": 2.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "signal-detection-theory.order",
+   "atom": "signal-detection-theory",
+   "kind": "order",
+   "prompt": "Order computing d'.",
+   "steps": [
+    "Find the hit rate",
+    "Find the false-alarm rate",
+    "Convert both to z-scores",
+    "Subtract z(FA) from z(H)"
+   ]
+  },
+  {
+   "id": "signal-detection-theory.spot-error",
+   "atom": "signal-detection-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "d' separates sensitivity from bias",
+    "The criterion sets the yes/no line",
+    "A stricter criterion raises d'",
+    "ROC curves trace criterion changes"
+   ],
+   "error": 2,
+   "fix": "Moving the criterion changes bias; d' stays the same."
+  },
+  {
+   "id": "signal-detection-theory.match",
+   "atom": "signal-detection-theory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Hit",
+     "meaning": "Yes on signal"
+    },
+    {
+     "term": "False alarm",
+     "meaning": "Yes on noise"
+    },
+    {
+     "term": "d'",
+     "meaning": "Sensitivity"
+    },
+    {
+     "term": "Criterion",
+     "meaning": "Decision cutoff"
+    }
+   ]
+  }
+ ]
+}

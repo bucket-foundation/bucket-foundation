@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { lookupPhoton, meansLike, PHOTON_PROVENANCE } from "@/lib/photon-index";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,6 +19,9 @@ const OPS: Record<string, { path: string; params: string[] }> = {
   spelling: { path: "/spelling", params: ["surface", "lang", "k"] },
   etymology: { path: "/etymology", params: ["surface", "lang"] },
   translate: { path: "/translate", params: ["surface", "from", "to", "k"] },
+  translate_many: { path: "/translate/many", params: ["surface", "from", "to", "k"] },
+  meaning: { path: "/search/meaning", params: ["q", "lang", "k"] },
+  phonetic_search: { path: "/search/phonetic", params: ["ipa", "lang", "k"] },
 };
 
 const JSON_HEADERS = {
@@ -34,6 +38,41 @@ function err(status: number, code: string, extra?: Record<string, unknown>) {
   );
 }
 
+function staticAnswer(op: string, params: URLSearchParams): Response | null {
+  const surface = params.get("surface") || "";
+  const lang = params.get("lang") || null;
+  const headers = { ...JSON_HEADERS, "x-polingual-upstream": "static" };
+  if (op === "semantic") {
+    const cross = params.get("cross") !== "0";
+    const { found, results } = meansLike(surface, lang, Number(params.get("k") ?? "10"), cross);
+    if (!found) return null;
+    return new Response(
+      JSON.stringify({ query: surface, lang, results, axis: "semantic", cross_lingual: cross }),
+      { status: 200, headers },
+    );
+  }
+  if (op === "lookup") {
+    const p = lookupPhoton(surface, lang);
+    if (!p) return null;
+    return new Response(
+      JSON.stringify({
+        found: true,
+        id: p.id,
+        surface: p.surface,
+        lang: p.lang,
+        meaning_en: p.meaning_en,
+        pos: p.pos ?? null,
+        ipa: p.ipa ?? null,
+        has_semantic: Boolean(p.means_like?.length),
+        has_phonetic: false,
+        provenance: PHOTON_PROVENANCE,
+      }),
+      { status: 200, headers },
+    );
+  }
+  return null;
+}
+
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const op = (url.searchParams.get("op") || "semantic").toLowerCase();
@@ -42,11 +81,14 @@ export async function GET(req: NextRequest) {
   if (!spec) {
     return err(400, "unknown_op", { allowed: Object.keys(OPS) });
   }
-  if (op !== "health" && !url.searchParams.get("surface")) {
-    return err(400, "missing_surface");
+  const required = op === "meaning" ? "q" : op === "phonetic_search" ? "ipa" : "surface";
+  if (op !== "health" && !url.searchParams.get(required)) {
+    return err(400, `missing_${required}`);
   }
 
   if (UPSTREAMS.length === 0) {
+    const local = staticAnswer(op, url.searchParams);
+    if (local) return local;
     return new Response(
       JSON.stringify(
         {
@@ -101,6 +143,8 @@ export async function GET(req: NextRequest) {
         clearTimeout(timer);
         continue;
       }
+      const local = staticAnswer(op, url.searchParams);
+      if (local) return local;
       return new Response(
         JSON.stringify(
           {

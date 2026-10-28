@@ -1,6 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { BIRTH_YEAR_BUCKET_LABELS, ROLE_LABELS } from "@ros/profile";
-import type { BirthYearBucket, LearnerRole } from "@ros/types";
+import { deleteConfirmed } from "@ros/privacy-actions";
+import { DELETE_CONFIRM_TOKEN, type BirthYearBucket, type LearnerRole } from "@ros/types";
 import "../ros.css";
 
 interface ProfileData {
@@ -11,7 +12,7 @@ interface ProfileData {
 const ROLES: LearnerRole[] = ["independent", "student", "teacher"];
 const BANDS: BirthYearBucket[] = ["18plus", "13to17", "under13"];
 export const UNDER_13_NOTE = "Choosing under 13 clears your progress on this computer.";
-export const DELETE_WORD = "DELETE";
+export const DELETE_WORD = DELETE_CONFIRM_TOKEN;
 export const DELETE_NOTE = "This removes your profile, level and idea progress on this computer, and it cannot be undone. Your Learn decks, notes and history stay.";
 export const EXPORT_TROUBLE = "Bucket could not save the export. Try again.";
 export const DELETE_TROUBLE = "Bucket could not delete your data. Try again.";
@@ -43,7 +44,7 @@ function YourData({ onDeleted }: { onDeleted: () => void }) {
   };
 
   const deleteMine = async () => {
-    if (typed.trim() !== DELETE_WORD) return;
+    if (!deleteConfirmed(typed)) return;
     setBusy(true);
     setNote(null);
     try {
@@ -79,7 +80,7 @@ function YourData({ onDeleted }: { onDeleted: () => void }) {
           </p>
           <div className="toolbar">
             <input value={typed} onChange={(e) => setTyped(e.target.value)} aria-label="type the confirm word" placeholder={DELETE_WORD} />
-            <button type="button" className="danger" disabled={busy || typed.trim() !== DELETE_WORD} onClick={() => void deleteMine()}>
+            <button type="button" className="danger" disabled={busy || !deleteConfirmed(typed)} onClick={() => void deleteMine()}>
               Delete
             </button>
             <button type="button" onClick={() => (setConfirming(false), setTyped(""))}>

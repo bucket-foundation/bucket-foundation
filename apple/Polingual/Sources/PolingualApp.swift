@@ -7,6 +7,8 @@ struct PolingualApp: App {
     @State private var store: LangStore
     @State private var gate: Gate
     @State private var subs: Subscriptions
+    @State private var reminders = Reminders()
+    @Environment(\.scenePhase) private var phase
 
     init() {
         let api = BucketAPI()
@@ -26,6 +28,11 @@ struct PolingualApp: App {
                 .environment(store)
                 .environment(gate)
                 .environment(subs)
+                .environment(reminders)
+                .onChange(of: phase) { _, p in
+                    guard p == .background || p == .active else { return }
+                    backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
+                }
                 .tint(Palette.green)
         }
     }
@@ -33,8 +40,12 @@ struct PolingualApp: App {
 
 enum PolingualLaunch {
     static func value(_ flag: String) -> String? {
+        #if DEBUG
         let args = ProcessInfo.processInfo.arguments
         guard let i = args.firstIndex(of: flag), i + 1 < args.count else { return nil }
         return args[i + 1]
+        #else
+        return nil
+        #endif
     }
 }

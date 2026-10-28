@@ -1,0 +1,24 @@
+.t{width:200px;height:200px;border-radius:14px;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--flag);box-shadow:inset 0 0 0 2px rgba(0,0,0,.15),inset 0 -24px 40px rgba(0,0,0,.18),inset 0 18px 30px rgba(255,255,255,.25),0 6px 0 rgba(35,31,32,.3)}
+.t:nth-child(odd){transform:rotate(-2deg)}.t:nth-child(even){transform:rotate(1.5deg) translateY(-6px)}
+.t::after{content:"";position:absolute;left:22px;top:18px;width:70px;height:20px;border-radius:50%;background:rgba(255,255,255,.45);transform:rotate(-20deg);pointer-events:none}
+.t .em{position:absolute;font-size:var(--es,0);color:var(--ec);line-height:1;left:var(--ex,50%);top:var(--ey,50%);transform:translate(-50%,-50%)}
+.t>img.face{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tt::before{content:"";position:absolute;inset:12px;border-radius:6px;background:rgba(246,238,220,.8)}
+.tt .em{display:none}
+.tt b{position:relative;z-index:1;font-size:54px;line-height:1.3;padding-top:10px;color:#231F20;font-weight:800}
+.tt b.long{font-size:36px}
+.tt i{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-style:normal;font-family:'Noto Sans',sans-serif;font-weight:400;font-size:17px;color:#444;z-index:1}
+.tt .cc{position:absolute;left:22px;top:20px;letter-spacing:.08em;text-transform:uppercase;font-family:'Space Mono';font-weight:700;font-size:13px;color:#555;z-index:1}
+.tt{cursor:pointer;transition:transform .15s}
+.tt:hover{transform:translateY(-6px) rotate(0)}
+.tt .wd{position:relative;z-index:1;display:flex;align-items:center;gap:6px;padding-top:10px}
+.tt .wd b{padding-top:0}
+.tt .snd{border:0;background:none;padding:0;color:#231F20;opacity:.55;cursor:pointer;display:grid;place-items:center}
+.tt .snd svg{width:22px;height:22px}
+.tt:hover .snd{opacity:.9}
+.tt.playing .snd{color:#D9381E;opacity:1}
+.tt::after{left:auto;right:18px}
+.t{transition:transform .24s ease}
+.t.flip{transform:perspective(600px) rotateY(90deg) !important}
+.t.flipin{animation:fin .26s ease}
+@keyframes fin{from{transform:perspective(600px) rotateY(-90deg)}}

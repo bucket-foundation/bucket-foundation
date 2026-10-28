@@ -408,7 +408,7 @@
     var p = prov || {};
     if (typeof p === "string") return { source: p, license: "CC-BY-SA" };
     return {
-      source: p.source || "Wiktionary via Kaikki (CC-BY-SA 3.0)",
+      source: p.source || "Wiktionary via Kaikki (CC-BY-SA 4.0)",
       license: p.license || "CC-BY-SA",
       uri: p.uri || null,
     };

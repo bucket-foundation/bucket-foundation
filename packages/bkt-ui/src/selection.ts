@@ -63,6 +63,17 @@ export function writeMarks(set: string, ids: string[], storage: MarkStorage | nu
   return kept;
 }
 
+export function aliasRow(id: string, aliases: Readonly<Record<string, string>>): string {
+  return Object.hasOwn(aliases, id) ? aliases[id] : id;
+}
+
+export function aliasMarks(aliases: Readonly<Record<string, string>>, storage: MarkStorage | null = sessionMarks()): void {
+  for (const [set, ids] of readAll(storage)) {
+    const moved = ids.map((id) => aliasRow(id, aliases));
+    if (moved.some((id, i) => id !== ids[i])) writeMarks(set, [...new Set(moved)], storage);
+  }
+}
+
 export function toggleMark(ids: string[], id: string): string[] {
   if (ids.includes(id)) return ids.filter((x) => x !== id);
   return ids.length >= MARK_CAP ? ids : [...ids, id];

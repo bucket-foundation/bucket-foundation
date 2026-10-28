@@ -30,6 +30,10 @@
   },
   "crons": [
     {
+      "path": "/api/cron/apple-revoke-retry",
+      "schedule": "41 5 * * *"
+    },
+    {
       "path": "/api/cron/download-retention",
       "schedule": "17 4 * * *"
     },

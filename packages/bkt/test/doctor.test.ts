@@ -225,7 +225,7 @@ describe("bkt doctor checks", () => {
   test("the word pack check recomputes its checksum and names the licence", async () => {
     const words = wordPack as unknown as WordPack;
     const good = byId(await runDoctor(deps()), "word-pack");
-    expect(good.result).toBe(`Version ${words.version}, ${words.words.length} words in ${words.languages.length} languages, Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, checksum matches.`);
+    expect(good.result).toBe(`Version ${words.version}, ${words.words.length} words in ${words.languages.length} languages, Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0, checksum matches.`);
     const cut = byId(await runDoctor(deps({ words: { ...words, words: words.words.slice(1) } })), "word-pack");
     expect([cut.status, cut.fix]).toEqual(["fail", "Install bkt again: run bkt update."]);
     const bare = { ...words, attribution: { ...words.attribution, license: "none" } };

@@ -32,8 +32,8 @@ export async function coverageByCountry(tables: TableReader, ctx: AssembleContex
     const total = count(c.rows_total);
     const checked = Math.min(total, count(c.rows_verified));
     return [{
-      key: place.iso2, title: place.name, sub: `${total.toLocaleString("en-US")} ${total === 1 ? "row" : "rows"}, ${checked.toLocaleString("en-US")} checked`,
-      group: total === 0 ? "none" : checked * 2 > total ? "most" : "some", source, place: place.iso2, point: place.point, weight: total > 0 ? total : null,
+      key: place.iso3, title: place.name, sub: `${total.toLocaleString("en-US")} ${total === 1 ? "row" : "rows"}, ${checked.toLocaleString("en-US")} checked`,
+      group: total === 0 ? "none" : checked * 2 > total ? "most" : "some", source, place: place.iso3, point: place.point, weight: total > 0 ? total : null,
     }];
   });
   return assembleRowSet([{ id: COVERAGE_BY_COUNTRY_ID, label: LABEL, audience: "public", modes: ["earth", "map"], groups: GROUPS, rows, layout: "ring", also: rows.length ? [{ source: POINT_SOURCE, rows: rows.length }] : [] }], ctx);

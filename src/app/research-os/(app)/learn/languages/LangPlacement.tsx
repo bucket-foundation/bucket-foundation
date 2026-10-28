@@ -1,59 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { judgeTyped, langDir, langName, placementItem, placementOptions, placementStep, readingsByForm, seededRng, type LangItem, type PlacementAnswer, type PlacementMode } from "@/lib/academy/lang-systems";
+import { langName } from "@/lib/academy/lang-systems";
+import { levelLabel } from "@/lib/academy/placement-cefr";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader } from "@/components/ui";
 import { useLangSystem } from "./useLangSystem";
+import { useCefrPlacement } from "./useCefrPlacement";
 import SaveNotice from "./SaveNotice";
-import { ReadingLine } from "./LangExercise";
+import LangExercise from "./LangExercise";
 
 export default function LangPlacement({ systemId, lang: requested }: { systemId: string; lang: string | null }) {
   const h = useLangSystem(systemId);
   const { system, corpus } = h;
-  const [lang, setLang] = useState<string | null>(null);
-  const rng = useMemo(() => seededRng(Date.now() % 2147483647), []);
-  const [answers, setAnswers] = useState<PlacementAnswer[]>([]);
-  const [seen, setSeen] = useState<Set<string>>(new Set());
-  const [item, setItem] = useState<LangItem | null>(null);
-  const [mode, setMode] = useState<PlacementMode>("recognize");
-  const [typed, setTyped] = useState("");
-  const [result, setResult] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (!system) return;
-    const pick = requested && system.targets.includes(requested) ? requested : (system.targets.find((t) => system.placement[t] === undefined) ?? system.targets[0]);
-    setLang((cur) => {
-      if (cur && (!requested || cur === requested)) return cur;
-      setAnswers([]);
-      setSeen(new Set());
-      setItem(null);
-      setResult(null);
-      return pick;
-    });
-  }, [system, requested]);
-
-  useEffect(() => {
-    if (!system || !corpus || !lang || result !== null || item) return;
-    const step = placementStep(answers);
-    if (step.done) {
-      h.place(lang, step.tier);
-      setResult(step.tier);
-      return;
-    }
-    const next = placementItem(system, corpus, lang, step.nextTier!, seen, rng);
-    if (!next) {
-      h.place(lang, step.tier);
-      setResult(step.tier);
-      return;
-    }
-    setMode(step.nextMode ?? "recognize");
-    setTyped("");
-    setItem(next);
-  }, [system, corpus, lang, answers, seen, item, result, rng, h]);
-
-  const options = useMemo(() => (item && corpus && lang && system ? placementOptions(corpus, item, lang, system.root, rng) : []), [item, corpus, lang, system, rng]);
-  const readings = useMemo(() => (corpus && lang ? readingsByForm(corpus, lang) : {}), [corpus, lang]);
+  const { lang, question: q, result, answers, band, readings, answer } = useCefrPlacement(h, requested);
 
   if (h.status === "loading") return <LoadingState label="Loading placement" />;
   if (h.status === "error") return <ErrorState title="Placement did not load" />;
@@ -62,22 +21,20 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
   const back = `/research-os/learn/languages/${system.id}`;
   const nextLang = system.targets.find((t) => t !== lang && system.placement[t] === undefined);
 
-  function answer(correct: boolean) {
-    if (!item) return;
-    const tier = placementStep(answers).nextTier ?? item.tier;
-    setAnswers((a) => [...a, { tier, correct, mode }]);
-    setSeen((s) => new Set(s).add(item.id));
-    setItem(null);
-  }
-
-  if (result !== null) {
+  if (result) {
+    const label = levelLabel(result);
+    const note = result.mapping === "none" ? "This language has no CEFR exam, so the bands carry no CEFR claim." : "Levels come from Polingual corpus bands mapped to CEFR as a proxy. No exam has validated them yet.";
     return (
-      <div className="flex flex-col gap-4" data-testid="placement-done">
-        <PageHeader
-          eyebrow={`placement · ${langName(lang)}`}
-          title={`placed at tier ${result}`}
-          lede={`${answers.length} questions. ${result > 0 ? `Words below tier ${result} start as known and come back for review on the normal schedule.` : "You start from the first words."}`}
-        />
+      <div className="flex flex-col gap-4" data-testid="placement-done" data-level={result.level}>
+        <PageHeader eyebrow={`placement · ${langName(lang)}`} title={`level ${label}`} lede={`${answers.length} questions. ${result.placeIds.length ? `${result.placeIds.length} words you answered right start as known.` : "You start from the first words."} ${note}`} />
+        <ul className="text-[13px] text-[color:var(--basalt-2)] [font-variant-numeric:tabular-nums]" data-testid="bands">
+          {result.bands.map((b) => (
+            <li key={b.band}>
+              {b.band}: {b.right} of {b.asked} right, {b.passed ? "passed" : "not passed"}
+            </li>
+          ))}
+          {result.unknownFrom ? <li>{result.unknownFrom} and above: not enough material in this language to test</li> : null}
+        </ul>
         <SaveNotice state={h.saveState} />
         <div className="flex flex-wrap gap-2">
           {nextLang ? (
@@ -97,54 +54,18 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
     );
   }
 
-  if (!item) return <LoadingState label="Picking the next word" />;
+  if (!q) return <LoadingState label="Picking the next question" />;
 
   return (
     <div className="flex flex-col gap-4 max-w-2xl">
-      <PageHeader eyebrow={`placement · ${langName(lang)}`} title={`${langName(system.root)} to ${langName(lang)}`} lede="Pick the word you know. Skip the ones you do not. The test narrows in on your level and stops when it finds it." />
+      <PageHeader eyebrow={`placement · ${langName(lang)}`} title={`${langName(system.root)} to ${langName(lang)}`} lede="Each level mixes typing, listening, gap fills, grammar and short reading. A level passes on 6 right before 3 misses. The test stops at the first level you do not pass." />
       <div className="text-[12px] text-[color:var(--basalt-3)] [font-variant-numeric:tabular-nums]" data-testid="counter">
-        question {answers.length + 1} · tier {item.tier}
+        question {answers.length + 1} · level {band}
       </div>
-      <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind="placement">
-        <div className="text-[15px] text-[color:var(--basalt)]">
-          {langName(lang)} for <strong>{item.forms[system.root]}</strong>
-        </div>
-        {mode === "produce" ? (
-          <form
-            className="mt-4 flex flex-wrap gap-2"
-            onSubmit={(e) => {
-              e.preventDefault();
-              answer(judgeTyped(typed, item.forms[lang], lang) !== "wrong");
-            }}
-          >
-            <input
-              autoFocus
-              value={typed}
-              onChange={(e) => setTyped(e.target.value)}
-              lang={lang}
-              dir={langDir(lang)}
-              aria-label={`answer in ${langName(lang)}`}
-              className="flex-1 min-w-[12rem] border border-[color:var(--hairline)] bg-white/70 px-3 py-2 rounded-sm text-[15px]"
-              data-testid="answer"
-            />
-            <button type="submit" className={BTN_PRIMARY} data-testid="check">
-              check
-            </button>
-          </form>
-        ) : (
-        <div className="mt-4 grid sm:grid-cols-2 gap-2">
-          {options.map((o) => (
-            <button key={o} type="button" lang={lang} dir={langDir(lang)} onClick={() => answer(o === item.forms[lang])} className="border border-[color:var(--hairline)] bg-white/50 hover:bg-[color:var(--bone-2)] px-3 py-2 text-left rounded-sm min-h-[48px] text-[15px]" data-testid="option">
-              {o}
-              <ReadingLine reading={readings[o]} testId="option-reading" />
-            </button>
-          ))}
-        </div>
-        )}
-        <button type="button" onClick={() => answer(false)} className="mt-3 text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip">
-          I do not know
-        </button>
-      </section>
+      <LangExercise key={`${answers.length}`} ex={q.ex} optionReadings={readings} onDone={(r) => answer(r.every((x) => x.rating > 1))} />
+      <button type="button" onClick={() => answer(false)} className="self-start text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip">
+        I do not know
+      </button>
     </div>
   );
 }

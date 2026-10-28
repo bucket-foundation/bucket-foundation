@@ -39,6 +39,12 @@ quizDb.loadStats = async () => {
 };
 let languages: string[] = [];
 quizDb.loadLanguages = async () => languages;
+let systemLanguages: string[] = [];
+let systemsDown = false;
+quizDb.loadSystemLanguages = async () => {
+  if (systemsDown) throw new Error("academy_progress unavailable");
+  return systemLanguages;
+};
 quizDb.saveLanguages = async (_learnerId: string, next: string[]) => {
   writes++;
   languages = next;
@@ -114,7 +120,7 @@ test("staff set their languages, the list comes back in the views, and the next 
   let out = await read(await get("?view=languages"));
   assert.equal(out.status, 200);
   assert.deepEqual(out.body.languages, []);
-  assert.equal((out.body.available as unknown[]).length, 27);
+  assert.equal((out.body.available as unknown[]).length, 28);
   for (const bad of [{ languages: ["xx"] }, { languages: "de" }, {}]) assert.equal((await put(bad)).status, 400);
   out = await read(await put({ languages: ["he", "de", "he"] }));
   assert.equal(out.status, 200);
@@ -132,4 +138,49 @@ test("staff set their languages, the list comes back in the views, and the next 
   assert.equal(q.word.href, "https://en.wiktionary.org");
   assert.ok(q.word.lang === null || ["he", "de"].includes(q.word.lang));
   noSources = false;
+});
+
+test("languages from the language systems join the quiz and stay on", async () => {
+  who = STAFF;
+  languages = ["de"];
+  systemLanguages = ["en", "ru"];
+  let out = await read(await get("?view=languages"));
+  assert.deepEqual(out.body.languages, ["de", "en", "ru"]);
+  assert.deepEqual(out.body.chosen, ["de"]);
+  assert.deepEqual(out.body.fromSystems, ["en", "ru"]);
+  assert.deepEqual((await read(await get("?view=stats"))).body.fromSystems, ["en", "ru"]);
+  out = await read(await put({ languages: ["ru", "fr"] }));
+  assert.deepEqual(languages, ["ru", "fr"]);
+  assert.deepEqual(out.body.languages, ["ru", "fr", "en"]);
+  assert.deepEqual(out.body.chosen, ["ru", "fr"]);
+  systemLanguages = [];
+  out = await read(await get("?view=languages"));
+  assert.deepEqual(out.body.languages, ["ru", "fr"]);
+  systemLanguages = ["en", "ru"];
+  noSources = true;
+  languages = [];
+  const issued = await read(await get("?mode=manual"));
+  assert.equal(issued.body.status, "issued");
+  const q = issued.body.question as { word: { lang: string | null } };
+  assert.ok(q.word.lang === null || ["en", "ru"].includes(q.word.lang));
+  noSources = false;
+  systemLanguages = [];
+});
+
+test("a failed language-systems read leaves the quiz on the learner's own picks for reads and saves", async () => {
+  who = STAFF;
+  languages = ["de"];
+  systemLanguages = ["en"];
+  systemsDown = true;
+  let out = await read(await get("?view=languages"));
+  assert.equal(out.status, 200);
+  assert.deepEqual(out.body.languages, ["de"]);
+  assert.deepEqual(out.body.fromSystems, []);
+  assert.deepEqual((await read(await get("?view=stats"))).body.languages, ["de"]);
+  out = await read(await put({ languages: ["fr"] }));
+  assert.equal(out.status, 200);
+  assert.deepEqual(out.body.languages, ["fr"]);
+  assert.deepEqual(languages, ["fr"]);
+  systemsDown = false;
+  systemLanguages = [];
 });

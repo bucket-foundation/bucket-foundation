@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { languagesByName, toggleLanguage } from "@/lib/research-os/work-quiz/languages";
+import { isPreviewLanguage, languagesByName, toggleLanguage } from "@/lib/research-os/work-quiz/languages";
 
 export const LANGUAGES_SAVE_FAILED = "Your languages were not saved.";
 
@@ -11,11 +12,12 @@ export const CHIP_OFF = `${CHIP} bg-[color:var(--bone)]/70 text-[color:var(--bas
 
 export interface LanguagePickerProps {
   languages: readonly string[];
+  fromSystems?: readonly string[];
   save(next: string[]): Promise<string[]>;
   onSaved?(next: string[]): void;
 }
 
-export default function LanguagePicker({ languages, save, onSaved }: LanguagePickerProps) {
+export default function LanguagePicker({ languages, fromSystems = [], save, onSaved }: LanguagePickerProps) {
   const [chosen, setChosen] = useState<readonly string[]>(languages);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,12 +43,19 @@ export default function LanguagePicker({ languages, save, onSaved }: LanguagePic
     <section className="border border-[color:var(--hairline)] rounded-sm p-4 bg-[color:var(--bone)]/70">
       <h2 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)]">languages</h2>
       <p className="mt-1 text-[13px] text-[color:var(--basalt-2)]">Pick the languages you know or are learning. Word questions in them join the quiz. Changes save as you tap.</p>
+      {fromSystems.length > 0 && (
+        <p data-testid="from-systems" className="mt-1 text-[13px] text-[color:var(--basalt-2)]">
+          Languages in your <Link href="/research-os/learn/languages" className="underline">language systems</Link> are always on here. Change them there.
+        </p>
+      )}
       <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="languages">
         {languagesByName().map((l) => {
-          const on = chosen.includes(l.code);
+          const locked = fromSystems.includes(l.code);
+          const on = locked || chosen.includes(l.code);
           return (
-            <button key={l.code} type="button" aria-pressed={on} disabled={busy} onClick={() => void toggle(l.code)} className={on ? CHIP_ON : CHIP_OFF}>
+            <button key={l.code} type="button" aria-pressed={on} disabled={busy || locked} title={locked ? "From your language systems" : undefined} onClick={() => void toggle(l.code)} className={on ? CHIP_ON : CHIP_OFF}>
               {l.name}
+              {isPreviewLanguage(l.code) && <span data-testid="preview-badge" className="ml-1 small-caps text-[10px] tracking-[0.12em]">Preview</span>}
             </button>
           );
         })}

@@ -143,6 +143,13 @@ describe("learn routes", () => {
     expect(p.branches.phys.data.prof.a.n).toBe(1);
   });
 
+  test("decks report xp and streak per deck", async () => {
+    await post("/local/review", { itemId: items[0].id, rating: 3, elapsedMs: 100 });
+    const d = (await (await req("/local/decks", { headers: auth })).json()) as { decks: { id: string; introduced: number; xp: number; streak: number }[] };
+    expect(d.decks.map((x) => [x.id, x.introduced, x.streak])).toEqual([["phys", 1, 1]]);
+    expect(d.decks[0].xp).toBeGreaterThan(0);
+  });
+
   test("progress POST merges by lastReview and rejects bad decks", async () => {
     const atoms = content.atoms.phys;
     const enc = buildEncompassingMap(atoms);

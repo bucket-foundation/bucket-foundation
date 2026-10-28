@@ -148,6 +148,28 @@ func runScenario(_ corpus: LangCorpus) throws -> JSValue {
         }
     }
     out.append(("sweep", .array(sweep)))
+    var crng = Rng(seed: 808)
+    var cross: [JSValue] = []
+    for item in corpus.items where item.kind == .word || item.kind == .phrase {
+        for lang in sweepSys.targets {
+            if item.form(lang) == nil || item.form("en") == nil { continue }
+            var card = Card(state: "review")
+            card.reps = 1
+            card.lapses = 0
+            card.stability = 3
+            card.difficulty = 5
+            card.lastReview = t0
+            card.due = t0
+            let made = exerciseFor(corpus, sweepSys, item, lang, card, &crng, speech: false, level: 1)
+            guard made.kind == .choose else { continue }
+            let c = crossLanguageOptions(made, item, sweepSys, &crng)
+            cross.append(obj([
+                ("itemId", .string(item.id)), ("lang", .string(lang)), ("options", strs(c.options)),
+                ("optionLangs", strs(c.optionLangs.map { $0.map { "\($0.key)=\($0.value)" }.sorted(by: strCmp) })),
+            ]))
+        }
+    }
+    out.append(("cross", .array(cross)))
     return obj(out)
 }
 

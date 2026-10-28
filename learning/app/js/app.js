@@ -1614,7 +1614,7 @@
 
     const attrib = el("div", "xpl-attrib",
       'Data: Wiktionary via <a href="https://kaikki.org" target="_blank" rel="noopener">Kaikki</a> ' +
-      '(CC-BY-SA 3.0). Short glosses only — full entries at ' +
+      '(CC-BY-SA 4.0). Short glosses only — full entries at ' +
       '<a href="https://en.wiktionary.org" target="_blank" rel="noopener">Wiktionary</a>.');
     wrap.appendChild(attrib);
 

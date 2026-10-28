@@ -11,7 +11,7 @@ import { cutLine, drawableModes, expandRows, POINT_CAPTION, verifiedLine, type E
 import type { FoundingCard } from "@/lib/explore/founding";
 import { unreadableScript } from "@/lib/explore/rank";
 import { MODES, modeById, ROW_MODE_IDS, type DesktopLayout } from "./modesV2";
-import { MARK_CAP, MARK_CAP_LINE, readMarks, toggleMark, writeMarks } from "../selection";
+import { aliasMarks, aliasRow, MARK_CAP, MARK_CAP_LINE, readMarks, toggleMark, writeMarks } from "../selection";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
 import { ORIGIN_LABEL, type AdvisorOrigin } from "@/lib/explore/advisor-origin";
@@ -176,6 +176,10 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
       .then((b) => {
         if (!live) return;
         setListed(true);
+        const aliases = b?.aliases && typeof b.aliases === "object" && !Array.isArray(b.aliases) ? (b.aliases as Record<string, string>) : {};
+        aliasMarks(aliases);
+        setMarked((now) => now.map((id) => aliasRow(id, aliases)));
+        setWantedSel((s) => (s ? aliasRow(s, aliases) : s));
         const entries = listDatasets(Array.isArray(b?.datasets) ? b.datasets : [], [], false);
         setDatasets(entries.some((e) => isRemote(e.id, entries)) ? entries : []);
         const asked = initial?.data ?? new URLSearchParams(window.location.search).get("data");

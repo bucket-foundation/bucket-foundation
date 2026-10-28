@@ -1,0 +1,27 @@
+name: polingual-ci
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths:
+      - "polingual/**"
+      - ".github/workflows/polingual-ci.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: polingual-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: polingual
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm test

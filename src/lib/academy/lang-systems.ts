@@ -1,5 +1,7 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
-import { dayKey, grade, makeFsrs, normalizeState, type EngineState } from "./engine";
+import { dayKey, grade, makeFsrs, normalizeState, PLACED_PER_DAY, spreadPlaced, type EngineState } from "./engine";
+import { alphabetDone, alphabetUnit, dueLetters, FOLDABLE_MARKS, judgeSpelled, letterItemId, nextLetters } from "./lang-script";
+import { isHAspire } from "./french-h-aspire";
 
 export interface LangInfo {
   name: string;
@@ -46,6 +48,14 @@ export function langDir(code: string): "rtl" | undefined {
 }
 
 export const LANG_CODES = Object.keys(LANGS);
+
+export function heritageLangs(system: { targets: string[] }): string[] {
+  return system.targets.filter((l) => LANGS[l] && LANGS[l].latin === false);
+}
+
+export function studyHref(systemId: string, heritage: boolean): string {
+  return `/research-os/learn/languages/${encodeURIComponent(systemId)}/study${heritage ? "?heritage=1" : ""}`;
+}
 export const MAX_TARGETS = 6;
 export const NEW_PER_LANG_PER_DAY = 5;
 export const PLACEMENT_TIERS = [0, 2, 4, 6, 8, 10];
@@ -94,6 +104,7 @@ export interface LangSystem {
   createdAt: number;
   updatedAt?: number;
   placement: Record<string, number>;
+  levels?: Record<string, string>;
 }
 
 export interface Reading {
@@ -216,7 +227,7 @@ export const ARTICLES: Record<string, Record<string, string>> = {
   fr: { m: "le", f: "la" },
   it: { m: "il", f: "la" },
   pt: { m: "o", f: "a" },
-  de: { m: "der", f: "die", n: "das" },
+  de: { m: "der", f: "die", n: "das", pl: "die" },
   nl: { de: "de", het: "het" },
 };
 
@@ -228,11 +239,24 @@ function unitFor(category: string, kind: "word" | "phrase", tier: number): numbe
   return i < 0 ? UNITS.length - 1 : i;
 }
 
-function articleFor(lang: string, gender: string, noun: string): string | null {
+const SPANISH_STRESSED_A = new Set(["agua", "águila", "alma", "arma", "hambre", "hacha", "aula", "área", "ala", "ave", "ancla", "hada", "haba", "habla", "alba", "asma", "aya"]);
+
+const ITALIAN_LO = /^(s[^aeiouàèéìòù]|z|gn|ps|pn|x|y)/i;
+
+export function articleWord(lang: string, gender: string, noun: string): string | null {
   const a = ARTICLES[lang]?.[gender];
   if (!a) return null;
-  if ((lang === "fr" || lang === "it") && /^[aeiouhàâéèêîôûœAEIOUH]/.test(noun)) return `l'${noun}`;
-  return `${a} ${noun}`;
+  if (lang === "es" && gender === "f" && SPANISH_STRESSED_A.has(noun.toLowerCase())) return "el";
+  if (lang === "fr" && /^[aeiouhàâéèêîôûœ]/i.test(noun) && !isHAspire(noun)) return "l'";
+  if (lang === "it" && /^[aeiouàèéìòù]/i.test(noun)) return "l'";
+  if (lang === "it" && gender === "m" && ITALIAN_LO.test(noun)) return "lo";
+  return a;
+}
+
+export function articleFor(lang: string, gender: string, noun: string): string | null {
+  const a = articleWord(lang, gender, noun);
+  if (!a) return null;
+  return a === "l'" ? `l'${noun}` : `${a} ${noun}`;
 }
 
 export function buildLangCorpus(
@@ -318,7 +342,7 @@ export function buildLangCorpus(
   return {
     items,
     byId: new Map(items.map((i) => [i.id, i])),
-    attribution: cognates?.meta?.attribution ?? "Language data from Wiktionary contributors via Kaikki (kaikki.org), CC-BY-SA 3.0.",
+    attribution: cognates?.meta?.attribution ?? "Language data from Wiktionary contributors via Kaikki (kaikki.org), CC-BY-SA 4.0.",
     sources: layers?.meta?.attribution ?? [],
     pool: layers?.sentences?.pool ?? {},
     persons: layers?.persons ?? {},
@@ -393,7 +417,7 @@ const ARABIC_VOWELS = /[ً-ْٰـ]/g;
 export function normalizeAnswer(s: string, lang = ""): string {
   let t = s.trim().toLowerCase();
   if (lang === "ar") t = t.replace(ARABIC_VOWELS, "");
-  else t = t.normalize("NFD").replace(/[̀-ͯ]/g, "").normalize("NFC");
+  else t = t.normalize("NFD").replace(FOLDABLE_MARKS, "").normalize("NFC");
   return t
     .replace(/[¿¡!?.,;:"'«»()。、！？؟،]/g, " ")
     .replace(/\s+/g, " ")
@@ -453,7 +477,9 @@ export type ExerciseKind =
   | "wordbank"
   | "gender"
   | "conjugate"
-  | "false-friend";
+  | "false-friend"
+  | "spell-heard"
+  | "letter";
 
 export interface Exercise {
   kind: ExerciseKind;
@@ -468,7 +494,7 @@ export interface Exercise {
   options?: string[];
   pairs?: { lang: string; word: string; reading?: Reading }[];
   cloze?: { before: string; after: string };
-  family?: { lang: string; word: string }[];
+  family?: { lang: string; word: string; reading?: Reading }[];
   note?: string;
   promptReading?: Reading;
   answerReading?: Reading;
@@ -478,6 +504,13 @@ export interface Exercise {
   tense?: "present" | "past";
   level?: number;
   falseFriend?: FalseFriend;
+  optionLangs?: Record<string, string>;
+}
+
+export function readingLabel(r?: Reading): string | null {
+  if (!r) return null;
+  const parts = [r.kana, r.roman, r.ipa ? `/${r.ipa}/` : undefined].filter((x): x is string => Boolean(x && x.trim()));
+  return parts.length ? parts.join(" · ") : null;
 }
 
 export type Rng = () => number;
@@ -526,7 +559,7 @@ export function distractors(corpus: LangCorpus, item: LangItem, optionLang: stri
   return out;
 }
 
-function clozeFor(item: LangItem, lang: string): { before: string; after: string } | null {
+export function clozeFor(item: LangItem, lang: string): { before: string; after: string } | null {
   const word = item.forms[lang];
   const sentence = item.example[lang];
   if (item.kind === "word" && sentence) {
@@ -563,7 +596,7 @@ export function sentenceFor(corpus: LangCorpus, item: LangItem, lang: string, ro
   return { id, s: corpus.pool[id] };
 }
 
-function sentenceDistractors(corpus: LangCorpus, lang: string, root: string, avoid: string, rng: Rng, n = 3): string[] {
+export function sentenceDistractors(corpus: LangCorpus, lang: string, root: string, avoid: string, rng: Rng, n = 3): string[] {
   const ids = shuffle(Object.keys(corpus.pool).filter((id) => id !== avoid && corpus.pool[id].t[lang] && corpus.pool[id].t[root] !== corpus.pool[avoid]?.t[root]), rng);
   const out: string[] = [];
   for (const id of ids) {
@@ -592,7 +625,7 @@ export function exerciseFor(
   lang: string,
   card: LangCard | undefined,
   rng: Rng,
-  opts: { speech?: boolean; afterIntro?: boolean; level?: number } = {}
+  opts: { speech?: boolean; afterIntro?: boolean; level?: number; heritage?: boolean } = {}
 ): Exercise {
   const root = system.root;
   const target = item.forms[lang];
@@ -602,7 +635,7 @@ export function exerciseFor(
   const base = { itemId: item.id, lang, root, note: relevantNote(item.note, system) };
   const reps = card?.reps ?? 0;
   const latin = LANGS[lang]?.latin ?? true;
-  const family = sharedRootLangs(item, system).filter((l) => l !== lang).map((l) => ({ lang: l, word: item.forms[l] }));
+  const family = sharedRootLangs(item, system).filter((l) => l !== lang).map((l) => ({ lang: l, word: item.forms[l], reading: item.readings[l] }));
   const ff = item.falseFriends[lang];
 
   if (item.kind === "gender") return genderExercise(item, lang, root, rng);
@@ -611,6 +644,7 @@ export function exerciseFor(
   if (!card && !opts.afterIntro) {
     return { ...base, kind: "intro", prompt: rootWord, promptLang: root, answer: target, answerLang: lang, family, answerReading: tr, promptReading: rr, falseFriend: ff };
   }
+  if (opts.heritage && !latin && card) return spellHeard(item, lang, root, tr);
   const choices = (right: string, l: string, other: string) => shuffle([right, ...distractors(corpus, item, l, other, rng)], rng);
   const toTarget = (kind: ExerciseKind, extra: Partial<Exercise> = {}): Exercise => ({ ...base, kind, prompt: rootWord, promptLang: root, answer: target, answerLang: lang, promptReading: rr, answerReading: tr, ...extra });
   const toRoot = (kind: ExerciseKind): Exercise => ({ ...base, kind, prompt: target, promptLang: lang, answer: rootWord, answerLang: root, promptReading: tr, answerReading: rr, options: choices(rootWord, root, lang) });
@@ -647,12 +681,40 @@ export function exerciseFor(
   return { ...base, kind: "type-heard", prompt: target, promptLang: lang, answer: target, answerLang: lang, answerReading: tr };
 }
 
+export function spellHeard(item: LangItem, lang: string, root: string, reading?: Reading): Exercise {
+  const target = item.forms[lang];
+  return { itemId: item.id, lang, root, kind: "spell-heard", prompt: target, promptLang: lang, answer: target, answerLang: lang, accept: [target], promptReading: reading, answerReading: reading };
+}
+
+export function gradeSpelling(ex: Exercise, given: string, hesitated = false): { verdict: Verdict; rating: Rating } {
+  const verdict = judgeSpelled(given, ex.accept ?? [ex.answer], ex.answerLang);
+  return { verdict, rating: verdictRating(verdict, hesitated) };
+}
+
+export function letterExerciseFor(lang: string, root: string, itemId: string, rng: Rng): Exercise | null {
+  const index = alphabetUnit(lang)?.letters.findIndex((l) => letterItemId(l.ch) === itemId) ?? -1;
+  return index < 0 ? null : letterExercise(lang, root, index, rng);
+}
+
+export function letterExercise(lang: string, root: string, index: number, rng: Rng): Exercise | null {
+  const unit = alphabetUnit(lang);
+  const letter = unit?.letters[index];
+  if (!unit || !letter) return null;
+  const others = shuffle(unit.letters.filter((l) => l.ch !== letter.ch && l.sound !== letter.sound), rng).slice(0, 3).map((l) => l.ch);
+  const prompt = letter.name ? `${letter.sound} · ${letter.name}` : letter.sound;
+  const accept = letter.name ? [letter.ch] : unit.letters.filter((l) => l.sound === letter.sound).map((l) => l.ch);
+  return { itemId: letterItemId(letter.ch), lang, root, kind: "letter", prompt, promptLang: lang, answer: letter.ch, answerLang: lang, options: shuffle([letter.ch, ...others], rng), accept, promptReading: { roman: letter.sound }, note: unit.title };
+}
+
 function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): Exercise {
-  const noun = item.forms[lang].replace(/^(el|la|le|il|o|a|der|die|das|de|het) /, "").replace(/^l'/, "");
+  const noun = item.forms[lang].replace(/^(el|la|le|il|lo|o|a|der|die|das|de|het) /, "").replace(/^l'/, "");
   const g = item.gender[lang];
   const table = ARTICLES[lang];
-  const answer = table[g];
-  const options = shuffle(Array.from(new Set(Object.values(table))), rng);
+  const actual = articleWord(lang, g, noun);
+  const answer = actual ?? table[g];
+  const extra = lang === "it" ? ["lo", "l'"] : lang === "fr" ? ["l'"] : [];
+  const pool = [...Object.values(table), ...extra];
+  const options = shuffle(Array.from(new Set(pool)), rng);
   const elided = item.forms[lang].startsWith("l'");
   return {
     kind: "gender",
@@ -665,8 +727,8 @@ function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): E
     answerLang: lang,
     options,
     note: elided ? `Before a vowel the article shortens to l': ${item.forms[lang]}.` : `${item.forms[lang]}`,
-    cloze: { before: "", after: ` ${noun}` },
-    promptReading: { roman: item.forms[root] },
+    cloze: { before: "", after: answer === "l'" ? noun : ` ${noun}` },
+    promptReading: { roman: root === "en" && !/^the /i.test(item.forms[root] ?? "") ? `the ${item.forms[root]}` : item.forms[root] },
   };
 }
 
@@ -713,6 +775,28 @@ export function gradeMatch(pairs: { lang: string; word: string }[], assign: Reco
   return pairs.map((p) => ({ lang: p.lang, correct: pairs.find((q) => q.lang === assign[p.lang])?.word === p.word }));
 }
 
+export function crossLanguageOptions(ex: Exercise, item: LangItem, system: LangSystem, rng: Rng): Exercise {
+  if (ex.kind !== "choose" || !ex.options) return ex;
+  const seen = new Set([ex.answer, ...(ex.accept ?? [])]);
+  const langs: Record<string, string> = { [ex.answer]: ex.answerLang };
+  const picks: string[] = [];
+  for (const l of shuffle(system.targets.filter((t) => t !== ex.answerLang), rng)) {
+    const f = item.forms[l];
+    if (picks.length >= 3 || !f || seen.has(f)) continue;
+    seen.add(f);
+    langs[f] = l;
+    picks.push(f);
+  }
+  if (picks.length === 0) return ex;
+  for (const o of ex.options) {
+    if (picks.length >= 3 || seen.has(o)) continue;
+    seen.add(o);
+    langs[o] = ex.answerLang;
+    picks.push(o);
+  }
+  return { ...ex, options: shuffle([ex.answer, ...picks], rng), optionLangs: langs };
+}
+
 export function matchExercise(corpus: LangCorpus, system: LangSystem, item: LangItem, rng: Rng): Exercise | null {
   const langs = system.targets.filter((l) => item.forms[l]);
   if (langs.length < 2 || !item.forms[system.root]) return null;
@@ -726,7 +810,7 @@ export function matchExercise(corpus: LangCorpus, system: LangSystem, item: Lang
     answer: "",
     answerLang: langs[0],
     pairs: shuffle(langs.map((l) => ({ lang: l, word: item.forms[l], reading: item.readings[l] })), rng),
-    family: sharedRootLangs(item, system).map((l) => ({ lang: l, word: item.forms[l] })),
+    family: sharedRootLangs(item, system).map((l) => ({ lang: l, word: item.forms[l], reading: item.readings[l] })),
     note: relevantNote(item.note, system),
   };
 }
@@ -755,7 +839,8 @@ export function unitStatus(system: LangSystem, corpus: LangCorpus, state: Engine
   for (const unit of corpus.units) {
     const items = corpus.items.filter((i) => i.unit === unit.index && isVocab(i) && usable(i, system.root, lang));
     const started = items.filter((i) => cards[cardId(lang, i.id)]).length;
-    const done = items.length === 0 || started / items.length >= UNIT_UNLOCK_SHARE;
+    const covered = items.filter((i) => cards[cardId(lang, i.id)] || i.tier < (system.placement[lang] ?? 0)).length;
+    const done = items.length === 0 || covered / items.length >= UNIT_UNLOCK_SHARE;
     out.push({ unit, total: items.length, started, unlocked: prevDone, done });
     prevDone = prevDone && done;
   }
@@ -789,12 +874,24 @@ function grammarReady(item: LangItem, lang: string, cards: Record<string, LangCa
   return !!base && (base.reps ?? 0) >= 2;
 }
 
+function isPlacedReview(c: LangCard): boolean {
+  return !!c.placed && (c.reps ?? 0) <= 1;
+}
+
+function placedReviewedToday(state: EngineState, now: number): number {
+  const dk = dayKey(now);
+  return Object.values(cardsOf(state)).filter((c) => c.placed && (c.reps ?? 0) === 2 && c.lastReview != null && dayKey(c.lastReview) === dk).length;
+}
+
 export function planSession(system: LangSystem, corpus: LangCorpus, state: EngineState, now: number = Date.now(), size = 14): SessionCard[] {
   const cards = cardsOf(state);
-  const due = Object.entries(cards)
+  const dueAll = Object.entries(cards)
     .map(([id, c]) => ({ ...parseCardId(id), c }))
     .filter((x) => system.targets.includes(x.lang) && corpus.byId.has(x.itemId) && x.c.due != null && x.c.due <= now)
-    .sort((a, b) => (a.c.due ?? 0) - (b.c.due ?? 0))
+    .sort((a, b) => Number(isPlacedReview(a.c)) - Number(isPlacedReview(b.c)) || (a.c.due ?? 0) - (b.c.due ?? 0));
+  let placedRoom = Math.max(0, PLACED_PER_DAY - placedReviewedToday(state, now));
+  const due = dueAll
+    .filter((x) => !isPlacedReview(x.c) || placedRoom-- > 0)
     .slice(0, size)
     .map((x) => ({ itemId: x.itemId, lang: x.lang }));
 
@@ -876,33 +973,57 @@ export function placementOptions(corpus: LangCorpus, item: LangItem, lang: strin
   return shuffle([item.forms[lang], ...distractors(corpus, item, lang, root, rng)], rng);
 }
 
-export function applyPlacement(state: EngineState, system: LangSystem, corpus: LangCorpus, lang: string, tier: number, now: number = Date.now()): EngineState {
+export function applyPlacement(state: EngineState, system: LangSystem, corpus: LangCorpus, lang: string, tier: number, now: number = Date.now(), only?: ReadonlySet<string>): EngineState {
   const next = normalizeState(state);
   const fsrs: FSRS = makeFsrs(next);
+  const placed: string[] = [];
   for (const item of corpus.items) {
-    if (!isVocab(item) || item.tier >= tier || !usable(item, system.root, lang)) continue;
+    if (!isVocab(item) || !usable(item, system.root, lang)) continue;
+    if (only ? !only.has(item.id) : item.tier >= tier) continue;
     const id = cardId(lang, item.id);
     if (next.cards[id]) continue;
-    const c = fsrs.review({ state: "new" }, 3, now) as LangCard;
+    const c = fsrs.review({ state: "new" }, 4, now) as LangCard;
     c.placed = true;
     c.introduced = dayKey(now);
     next.cards[id] = c;
+    placed.push(id);
   }
+  spreadPlaced(next.cards, placed, now);
   return next;
 }
 
 export interface QueueEntry {
   itemId: string;
   lang: string;
-  stage: "intro" | "check" | "review" | "match";
+  stage: "intro" | "check" | "review" | "match" | "letter";
 }
 
 export const CHECK_GAP = 3;
 export const MAX_TRIES = 2;
 
-export function buildQueue(system: LangSystem, corpus: LangCorpus, state: EngineState, now: number = Date.now(), size = 14): QueueEntry[] {
-  const plan = planSession(system, corpus, state, now, size);
+export const LETTERS_PER_SESSION = 5;
+
+export function letterQueue(system: LangSystem, state: EngineState, now: number = Date.now()): QueueEntry[] {
   const out: QueueEntry[] = [];
+  for (const lang of system.targets) {
+    if (!alphabetUnit(lang)) continue;
+    const due = dueLetters(state, lang, now);
+    const fresh = alphabetDone(state, lang) ? [] : nextLetters(state, lang, Math.max(0, LETTERS_PER_SESSION - due.length));
+    for (const l of [...due, ...fresh]) out.push({ itemId: letterItemId(l.ch), lang, stage: "letter" });
+  }
+  return out;
+}
+
+export function buildQueue(
+  system: LangSystem,
+  corpus: LangCorpus,
+  state: EngineState,
+  now: number = Date.now(),
+  size = 14,
+  opts: { heritage?: boolean } = {}
+): QueueEntry[] {
+  const plan = planSession(system, corpus, state, now, size);
+  const out: QueueEntry[] = opts.heritage ? letterQueue(system, state, now) : [];
   const pendingChecks: { at: number; e: QueueEntry }[] = [];
   for (const c of plan) {
     const isNew = !state.cards[cardId(c.lang, c.itemId)];
@@ -977,7 +1098,9 @@ export function mergeSystems(a: SystemsDoc, b: SystemsDoc): SystemsDoc {
     const placement = { ...cur.placement };
     for (const [l, t] of Object.entries(s.placement)) placement[l] = Math.max(placement[l] ?? 0, t);
     const newer = (s.updatedAt ?? s.createdAt) > (cur.updatedAt ?? cur.createdAt) ? s : cur;
-    byId.set(s.id, { ...newer, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
+    const older = newer === s ? cur : s;
+    const levels = older.levels || newer.levels ? { levels: { ...older.levels, ...newer.levels } } : {};
+    byId.set(s.id, { ...newer, ...levels, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
   }
   const systems = Array.from(byId.values())
     .filter((s) => (removed[s.id] ?? -1) < s.createdAt)

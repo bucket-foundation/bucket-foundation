@@ -1,6 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-
-const FROZEN_AT = new Date("2026-10-18T12:00:00Z");
+import { FROZEN_AT } from "./frozen-at";
 
 test.describe.configure({ mode: "serial" });
 

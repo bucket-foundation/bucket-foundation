@@ -29,10 +29,12 @@ export interface Atom {
   gloss?: string;
 }
 
+import { mergeFlagTables } from "./flag-misses";
+
 export interface EngineState extends StoredEngineState {
   cards: Record<string, Card>;
   prof: Record<string, ProficiencyState>;
-  settings: { newPerDay: number; requestRetention: number };
+  settings: { newPerDay: number; requestRetention: number; flagHits?: Record<string, number>; flagMisses?: Record<string, number> };
   stats: { xp: number; streak: number; lastStudyDay: string | null; history: Record<string, { new: number; reviews: number }> };
 }
 
@@ -66,11 +68,44 @@ export function emptyState(): EngineState {
   };
 }
 
-export function normalizeState(raw: unknown): EngineState {
+export const PLACED_SPREAD_DAYS = 14;
+export const PLACED_PER_DAY = 25;
+
+type PlacedCard = Card & { placed?: boolean; spread?: boolean };
+
+export function placedHash(id: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < id.length; i++) {
+    h ^= id.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h;
+}
+
+export function spreadPlaced(cards: Record<string, Card>, ids: string[], now: number): void {
+  const load = new Map<number, number>();
+  for (const id of [...ids].sort((a, b) => placedHash(a) - placedHash(b) || (a < b ? -1 : 1))) {
+    let day = 1 + (placedHash(id) % PLACED_SPREAD_DAYS);
+    for (let tries = 0; (load.get(day) ?? 0) >= PLACED_PER_DAY && tries < PLACED_SPREAD_DAYS; tries++) day = (day % PLACED_SPREAD_DAYS) + 1;
+    while ((load.get(day) ?? 0) >= PLACED_PER_DAY) day++;
+    load.set(day, (load.get(day) ?? 0) + 1);
+    cards[id] = { ...cards[id], due: now + day * DAY_MS, spread: true } as PlacedCard;
+  }
+}
+
+function untouchedPlaced(c: Card): boolean {
+  const p = c as PlacedCard;
+  return p.placed === true && p.reps === 1 && !p.spread;
+}
+
+export function normalizeState(raw: unknown, now: number = Date.now()): EngineState {
   const s = (raw && typeof raw === "object" ? raw : {}) as Partial<EngineState>;
   const base = emptyState();
+  const cards = { ...(s.cards ?? {}) } as Record<string, Card>;
+  const stale = Object.keys(cards).filter((id) => untouchedPlaced(cards[id]));
+  if (stale.length) spreadPlaced(cards, stale, now);
   return {
-    cards: { ...(s.cards ?? {}) } as Record<string, Card>,
+    cards,
     prof: { ...(s.prof ?? {}) },
     settings: { ...base.settings, ...(s.settings ?? {}) } as EngineState["settings"],
     stats: {
@@ -331,7 +366,7 @@ export function mergeState(a: EngineState | null, b: EngineState | null): Engine
   if (!a) return normalizeState(b);
   if (!b) return normalizeState(a);
   const out = emptyState();
-  out.settings = { ...a.settings, ...b.settings };
+  out.settings = { ...a.settings, ...b.settings, ...mergeFlagTables(a.settings, b.settings) };
   const ids = new Set([...Object.keys(a.cards), ...Object.keys(b.cards)]);
   ids.forEach((id) => {
     const ca = a.cards[id];

@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx --yes tsx@4.21.0 --test src/lib/signup.test.ts src/lib/baked.test.ts"
+    "test": "npx --yes tsx@4.21.0 --test src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/app/*.test.ts",
+    "test:db": "bash db/test-founding.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
@@ -18,6 +19,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",

@@ -1,0 +1,1837 @@
+{
+ "branch": "01-mathematics",
+ "reviews": {
+  "set-function.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "limit.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "limit.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "limit.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "limit.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "limit.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "limit.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "group.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "group.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "group.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "group.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "group.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "group.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "derivative.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "derivative.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "derivative.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "derivative.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "derivative.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "integral.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "integral.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "integral.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "integral.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "integral.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "vector-space.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "vector-space.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "vector-space.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "vector-space.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "vector-space.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "vector-space.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-map.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-map.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-map.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-map.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-map.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "inner-product.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "inner-product.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "inner-product.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "inner-product.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "inner-product.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "inner-product.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigenvalue.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigenvalue.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigenvalue.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigenvalue.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigenvalue.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "taylor.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "taylor.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "taylor.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "taylor.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "taylor.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "metric-space.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "metric-space.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "metric-space.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "metric-space.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "metric-space.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "metric-space.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "spectral-theorem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "spectral-theorem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "spectral-theorem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "spectral-theorem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "spectral-theorem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "spectral-theorem.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "stokes-theorem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "stokes-theorem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "stokes-theorem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "stokes-theorem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "stokes-theorem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "stokes-theorem.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "logic-proof.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "logic-proof.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "logic-proof.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "logic-proof.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "logic-proof.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "logic-proof.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantifiers-induction.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantifiers-induction.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantifiers-induction.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantifiers-induction.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantifiers-induction.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantifiers-induction.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-theory-axioms.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-theory-axioms.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-theory-axioms.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-theory-axioms.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-theory-axioms.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "number-systems.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "number-systems.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting."
+  },
+  "number-systems.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "Low from #1069: the order now includes the reals."
+  },
+  "number-systems.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "number-systems.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "number-systems.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "modular-arithmetic.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "modular-arithmetic.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "modular-arithmetic.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "modular-arithmetic.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "modular-arithmetic.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "polynomials-roots.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "polynomials-roots.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "polynomials-roots.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "polynomials-roots.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "polynomials-roots.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "combinatorics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "combinatorics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "combinatorics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "combinatorics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "combinatorics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "probability.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "probability.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "probability.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "probability.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "probability.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-variables.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-variables.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-variables.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-variables.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-variables.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ring-field.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ring-field.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ring-field.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ring-field.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ring-field.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ring-field.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "homomorphism.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "homomorphism.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "homomorphism.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "homomorphism.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "homomorphism.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-numbers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-numbers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-numbers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-numbers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-numbers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-numbers.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "sequences-series.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "sequences-series.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "sequences-series.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "sequences-series.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "sequences-series.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "multivariable-calculus.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "multivariable-calculus.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "multivariable-calculus.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "multivariable-calculus.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "multivariable-calculus.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "multivariable-calculus.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ode.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ode.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ode.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ode.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "ode.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "topology.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "topology.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "topology.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "topology.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "topology.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "determinant.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "determinant.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "determinant.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "determinant.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "determinant.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "real-analysis.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "real-analysis.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "real-analysis.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "real-analysis.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "real-analysis.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fundamental-theorem-algebra.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fundamental-theorem-algebra.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fundamental-theorem-algebra.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fundamental-theorem-algebra.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fundamental-theorem-algebra.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "fundamental-theorem-algebra.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "computability.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "computability.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "computability.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "computability.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "computability.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "computability.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "godel-incompleteness.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "category-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "category-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting."
+  },
+  "category-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "category-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "category-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "trigonometry.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "trigonometry.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "trigonometry.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "trigonometry.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "trigonometry.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "exponential-logarithm.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "exponential-logarithm.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "exponential-logarithm.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "exponential-logarithm.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "exponential-logarithm.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "mean-value-theorems.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "mean-value-theorems.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "mean-value-theorems.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "mean-value-theorems.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "mean-value-theorems.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "optimization.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "optimization.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "optimization.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "optimization.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "The old faulty step was true: a flat-bottomed convex function has many minimizers. The new faulty step says a local minimum can fail to be global."
+  },
+  "optimization.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "change-of-variables.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "change-of-variables.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "change-of-variables.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "change-of-variables.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "change-of-variables.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "orthogonality-least-squares.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "orthogonality-least-squares.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "orthogonality-least-squares.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "orthogonality-least-squares.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "orthogonality-least-squares.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "svd.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "svd.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "svd.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "svd.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "svd.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "svd.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "recurrence-generating.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "recurrence-generating.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "recurrence-generating.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "recurrence-generating.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "recurrence-generating.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-analysis.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-analysis.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-analysis.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-analysis.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-analysis.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "Low from #1069: contours need not be closed."
+  },
+  "measure-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "measure-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "measure-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "measure-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "measure-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "manifolds.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "manifolds.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "manifolds.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "manifolds.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "manifolds.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "manifolds.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "bayes-theorem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "bayes-theorem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "bayes-theorem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "bayes-theorem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "bayes-theorem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "prime-numbers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "prime-numbers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "prime-numbers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "prime-numbers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "prime-numbers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "prime-numbers.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-chains.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-chains.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-chains.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-chains.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-chains.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "banach-fixed-point.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "banach-fixed-point.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "banach-fixed-point.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "banach-fixed-point.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "banach-fixed-point.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "banach-fixed-point.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "galois-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "galois-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "galois-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "galois-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "galois-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-theory-axioms.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "homomorphism.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "topology.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "real-analysis.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "category-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-analysis.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "measure-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "galois-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  }
+ }
+}
