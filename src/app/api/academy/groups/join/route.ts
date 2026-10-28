@@ -1,9 +1,11 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { joinDecision, normalizeDisplayName, normalizeInviteCode } from "@/lib/academy/groups";
 import {
+  clientIp,
   configured,
   fail,
   groupByCode,
+  joinLimited,
   GroupsError,
   json,
   limitError,
@@ -28,6 +30,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!configured()) return json({ error: "sync_unavailable" }, 503);
   const uid = await requestUser(req);
   if (!uid) return json({ error: "unauthorized" }, 401);
+  if (joinLimited(`ip:${clientIp(req)}`) || joinLimited(`user:${uid}`)) return json({ error: "rate_limited" }, 429);
   const body = await readBody(req);
   const displayName = normalizeDisplayName(body?.displayName);
   if (!displayName || typeof body?.code !== "string") return json({ error: "bad_request" }, 400);
