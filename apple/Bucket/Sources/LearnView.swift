@@ -291,19 +291,19 @@ struct LessonText: View {
                 case .equation(let t):
                     EquationView(tex: t)
                 case .text(let t):
-                    Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+                    Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
                 case .bullet(let t):
                     HStack(alignment: .firstTextBaseline, spacing: 8) {
                         Text("•").foregroundStyle(Palette.muted)
-                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                        Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
                     }
                 case .numbered(let n, let t):
                     HStack(alignment: .firstTextBaseline, spacing: 8) {
                         Text(n).font(.serif(.body, weight: .semibold)).foregroundStyle(Palette.muted).monospacedDigit()
-                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                        Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
                     }
                 case .quote(let t):
-                    Text(Self.inline(t)).font(.serif(.body).italic()).foregroundStyle(Palette.ink.opacity(0.8)).lineSpacing(4)
+                    Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body).italic()).foregroundStyle(Palette.ink.opacity(0.8)).lineSpacing(4)
                         .padding(.leading, 12)
                         .overlay(alignment: .leading) { Rectangle().fill(Palette.rule).frame(width: 3) }
                 }
@@ -366,8 +366,7 @@ struct LessonText: View {
         return out
     }
 
-    static func inline(_ p: String) -> AttributedString {
-        let text = TeXLite.prose(p)
-        return (try? AttributedString(markdown: text, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))) ?? AttributedString(text)
-    }
+    static func inline(_ p: String) -> AttributedString { TeXLite.attributed(p) }
+
+    static func spoken(_ p: String) -> Text { Text(TeXLite.spokenProse(p)) }
 }

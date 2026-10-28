@@ -26,6 +26,21 @@ public enum TeXLite {
         ("\\rvert", "|"), ("\\vert", "|"), ("\\Vert", "‖"), ("\\varrho", "ρ"), ("\\vartheta", "θ"), ("\\upsilon", "υ"), ("\\Xi", "Ξ"),
         ("\\Upsilon", "Υ"), ("\\big", ""), ("\\Big", ""), ("\\bigg", ""), ("\\Bigg", ""), ("\\bigl", ""), ("\\bigr", ""), ("\\Bigl", ""),
         ("\\Bigr", ""), ("\\rm", ""), ("\\displaystyle", ""), ("\\limits", ""), ("\\nolimits", ""), ("\\{", "{"), ("\\}", "}"), ("\\ldots", "…"), ("\\dots", "…"), ("\\cdots", "⋯"),
+        ("\\Longleftrightarrow", "⟺"), ("\\longleftrightarrow", "⟷"), ("\\Longleftarrow", "⟸"), ("\\nvdash", "⊬"), ("\\vdash", "⊢"), ("\\models", "⊨"), ("\\lnot", "¬"), ("\\longrightarrow", "⟶"), ("\\longleftarrow", "⟵"),
+        ("\\Longrightarrow", "⟹"), ("\\longmapsto", "⟼"), ("\\textstyle", ""), ("\\scriptstyle", ""), ("\\subsetneq", "⊊"), ("\\supsetneq", "⊋"),
+        ("\\supseteq", "⊇"), ("\\supset", "⊃"), ("\\iint", "∬"), ("\\iiint", "∭"), ("\\rightleftharpoons", "⇌"), ("\\leftrightharpoons", "⇋"),
+        ("\\coth", " coth "), ("\\sec", " sec "), ("\\csc", " csc "), ("\\cot", " cot "), ("\\arcsin", " arcsin "), ("\\arccos", " arccos "),
+        ("\\arctan", " arctan "), ("\\Pr", " Pr "), ("\\gcd", " gcd "), ("\\lg", " lg "), ("\\hom", " hom "), ("\\limsup", " lim sup "), ("\\liminf", " lim inf "),
+        ("\\setminus", "∖"), ("\\varnothing", "∅"), ("\\aleph", "ℵ"), ("\\Re", "ℜ"), ("\\Im", "ℑ"), ("\\wp", "℘"), ("\\nexists", "∄"),
+        ("\\triangle", "△"), ("\\square", "□"), ("\\checkmark", "✓"), ("\\leqslant", "⩽"), ("\\geqslant", "⩾"), ("\\nleq", "≰"), ("\\ngeq", "≱"),
+        ("\\preceq", "⪯"), ("\\succeq", "⪰"), ("\\prec", "≺"), ("\\succ", "≻"), ("\\asymp", "≍"), ("\\doteq", "≐"), ("\\coloneqq", "≔"),
+        ("\\triangleq", "≜"), ("\\bigcup", "⋃"), ("\\bigcap", "⋂"), ("\\bigoplus", "⨁"), ("\\bigotimes", "⨂"), ("\\amalg", "⨿"), ("\\hookrightarrow", "↪"),
+        ("\\twoheadrightarrow", "↠"), ("\\leadsto", "⇝"), ("\\Uparrow", "⇑"), ("\\Downarrow", "⇓"), ("\\updownarrow", "↕"), ("\\nearrow", "↗"), ("\\searrow", "↘"),
+        ("\\rightharpoonup", "⇀"), ("\\ominus", "⊖"), ("\\oslash", "⊘"), ("\\wr", "≀"), ("\\varpi", "ϖ"), ("\\varsigma", "ς"), ("\\digamma", "ϝ"),
+        ("\\iota", "ι"), ("\\omicron", "ο"), ("\\Phi", "Φ"), ("\\neg", "¬"), ("\\land", "∧"), ("\\lor", "∨"), ("\\displaystyle", ""), ("\\middle", ""),
+        ("\\hline", ""), ("\\nonumber", ""), ("\\tag", ""), ("\\label", ""), ("\\ensuremath", ""), ("\\mathop", ""), ("\\mathrel", ""), ("\\mathbin", ""),
+        ("\\phantom", ""), ("\\quad", " "), ("\\enspace", " "), ("\\thinspace", " "), ("\\hfill", " "), ("\\cr", "; "), ("\\lbrace", "{"), ("\\rbrace", "}"),
+        ("\\lbrack", "["), ("\\rbrack", "]"), ("\\backslash", "∖"), ("\\degree", "°"), ("\\AA", "Å"), ("\\aa", "å"), ("\\ss", "ß"), ("\\S", "§"),
     ]
 
     static let superscripts: [Character: Character] = [
@@ -47,7 +62,7 @@ public enum TeXLite {
 
     static let marks: [String: String] = [
         "vec": "\u{20D7}", "hat": "\u{0302}", "widehat": "\u{0302}", "bar": "\u{0304}", "overline": "\u{0305}", "tilde": "\u{0303}",
-        "widetilde": "\u{0303}", "dot": "\u{0307}", "ddot": "\u{0308}",
+        "widetilde": "\u{0303}", "dot": "\u{0307}", "ddot": "\u{0308}", "dddot": "\u{20DB}", "not": "\u{0338}",
     ]
     static let plain = ["mathrm", "mathbf", "mathit", "mathsf", "mathtt", "text", "textrm", "textbf", "textit", "operatorname", "mathcal", "boldsymbol", "bm", "mathbb", "underbrace", "overbrace"]
     static let blackboard: [String: String] = ["R": "ℝ", "N": "ℕ", "Z": "ℤ", "Q": "ℚ", "C": "ℂ", "E": "𝔼", "P": "ℙ"]
@@ -55,13 +70,82 @@ public enum TeXLite {
 
     static let dollar = "\u{E000}"
 
-    public static func prose(_ text: String) -> String {
-        let escaped = text.replacingOccurrences(of: "\\$", with: dollar).replacingOccurrences(of: "\\\"", with: "\"")
-        return proseBody(escaped).replacingOccurrences(of: dollar, with: "$")
+    public enum Segment: Equatable, Sendable {
+        case text(String)
+        case math(tex: String, shown: String)
     }
 
-    static func proseBody(_ text: String) -> String {
-        var out = ""
+    final class Box: @unchecked Sendable {
+        let segments: [Segment]
+        init(_ s: [Segment]) { segments = s }
+    }
+
+    nonisolated(unsafe) static let cache: NSCache<NSString, Box> = {
+        let c = NSCache<NSString, Box>()
+        c.countLimit = 2000
+        return c
+    }()
+
+    public static func segments(_ text: String) -> [Segment] {
+        if let hit = cache.object(forKey: text as NSString) { return hit.segments }
+        let escaped = text.replacingOccurrences(of: "\\$", with: dollar).replacingOccurrences(of: "\\\"", with: "\"")
+        let out = merge(display(escaped)).map { seg -> Segment in
+            switch seg {
+            case .text(let t): .text(t.replacingOccurrences(of: dollar, with: "$"))
+            case .math(let tex, let shown): .math(tex: tex.replacingOccurrences(of: dollar, with: "\\$"), shown: shown.replacingOccurrences(of: dollar, with: "$"))
+            }
+        }
+        cache.setObject(Box(out), forKey: text as NSString)
+        return out
+    }
+
+    public static func prose(_ text: String) -> String {
+        segments(text).map { seg in
+            switch seg {
+            case .text(let t): t
+            case .math(_, let shown): shown
+            }
+        }.joined()
+    }
+
+    public static func attributed(_ text: String) -> AttributedString {
+        var out = AttributedString()
+        for seg in segments(text) {
+            switch seg {
+            case .text(let t):
+                out += (try? AttributedString(markdown: t, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))) ?? AttributedString(t)
+            case .math(_, let shown):
+                out += AttributedString(shown)
+            }
+        }
+        return out
+    }
+
+    public static func spokenProse(_ text: String) -> String {
+        segments(text).map { seg in
+            switch seg {
+            case .text(let t): t.replacingOccurrences(of: "**", with: "").replacingOccurrences(of: "*", with: "")
+            case .math(let tex, _): spoken(tex)
+            }
+        }.joined()
+    }
+
+    static func merge(_ segs: [Segment]) -> [Segment] {
+        var out: [Segment] = []
+        for s in segs {
+            if case .text(let t) = s, case .text(let prev)? = out.last {
+                out[out.count - 1] = .text(prev + t)
+            } else if case .text(let t) = s, t.isEmpty {
+                continue
+            } else {
+                out.append(s)
+            }
+        }
+        return out
+    }
+
+    static func display(_ text: String) -> [Segment] {
+        var out: [Segment] = []
         var rest = Substring(text)
         let pairs: [(String, String)] = [("$$", "$$"), ("\\[", "\\]"), ("\\(", "\\)")]
         while !rest.isEmpty {
@@ -71,21 +155,79 @@ public enum TeXLite {
             }.min { $0.0.lowerBound < $1.0.lowerBound }
             guard let (a, b) = next else { break }
             out += inline(String(rest[..<a.lowerBound]))
-            out += render(String(rest[a.upperBound..<b.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines))
+            let tex = String(rest[a.upperBound..<b.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+            out.append(.math(tex: tex, shown: render(tex)))
             rest = rest[b.upperBound...]
         }
         return out + inline(String(rest))
     }
 
-    static func inline(_ text: String) -> String {
-        let parts = text.components(separatedBy: "$")
-        guard parts.count > 1, !parts.count.isMultiple(of: 2) else { return text }
-        return parts.enumerated().map { $0.offset.isMultiple(of: 2) ? $0.element : render($0.element) }.joined()
+    public static func isMath(_ span: Substring) -> Bool {
+        guard let first = span.first, let last = span.last, !first.isWhitespace, !last.isWhitespace else { return false }
+        if span.contains(where: { "\\^_={}".contains($0) }) { return true }
+        if first.isNumber && span.contains(where: \.isWhitespace) { return false }
+        if span.contains(where: { "<>+".contains($0) }) { return true }
+        return span.count <= 4 && span.allSatisfy { $0.isLetter || $0.isNumber || "().,-'/".contains($0) }
+    }
+
+    static func inline(_ text: String) -> [Segment] {
+        var out: [Segment] = []
+        var plain = ""
+        var i = text.startIndex
+        while i < text.endIndex {
+            guard text[i] == "$" else {
+                plain.append(text[i])
+                i = text.index(after: i)
+                continue
+            }
+            let open = text.index(after: i)
+            if let close = text[open...].firstIndex(of: "$"), isMath(text[open..<close]),
+               text.index(after: close) == text.endIndex || !text[text.index(after: close)].isNumber {
+                if !plain.isEmpty { out.append(.text(plain)); plain = "" }
+                let tex = String(text[open..<close])
+                out.append(.math(tex: tex, shown: render(tex)))
+                i = text.index(after: close)
+            } else {
+                plain.append("$")
+                i = open
+            }
+        }
+        if !plain.isEmpty { out.append(.text(plain)) }
+        return out
+    }
+
+    static let speech: [String: String] = [
+        "=": " equals ", "+": " plus ", "-": " minus ", "<": " less than ", ">": " greater than ", "·": " times ", "×": " times ",
+        "≤": " less than or equal to ", "≥": " greater than or equal to ", "≠": " not equal to ", "≈": " approximately ", "∝": " proportional to ",
+        "→": " goes to ", "∞": " infinity ", "∑": " sum of ", "∫": " integral of ", "∂": " partial ", "±": " plus or minus ", "√": " square root of ",
+        "⁄": " over ", "/": " over ", "∈": " in ", "≡": " is congruent to ", "∼": " is about ", "⇒": " implies ", "⇔": " if and only if ",
+    ]
+
+    static let greekNames: [Character: String] = Dictionary(
+        symbols.filter { $0.1.count == 1 && ($0.1.unicodeScalars.first!.value >= 0x391 && $0.1.unicodeScalars.first!.value <= 0x3C9) }
+            .map { (Character($0.1), String($0.0.dropFirst())) },
+        uniquingKeysWith: { a, _ in a })
+
+    public static func spoken(_ tex: String) -> String {
+        var s = tex
+        for f in ["\\frac", "\\dfrac", "\\tfrac", "\\cfrac"] { s = replaceCommand(f, in: s) { " \($0[0]) over \($0[1]) " } }
+        s = replaceCommand("\\sqrt", in: s, arity: 1) { " square root of \($0[0]) " }
+        s = s.replacingOccurrences(of: #"\^\{([^{}]*)\}"#, with: " to the $1 ", options: .regularExpression)
+        s = s.replacingOccurrences(of: #"\^(\\?[A-Za-z0-9])"#, with: " to the $1 ", options: .regularExpression)
+        s = s.replacingOccurrences(of: #"_\{([^{}]*)\}"#, with: " sub $1 ", options: .regularExpression)
+        s = s.replacingOccurrences(of: #"_(\\?[A-Za-z0-9])"#, with: " sub $1 ", options: .regularExpression)
+        let shown = render(s).replacingOccurrences(of: "²", with: " squared ").replacingOccurrences(of: "³", with: " cubed ")
+        var out = ""
+        for c in shown {
+            if let w = speech[String(c)] { out += w } else if let g = greekNames[c] { out += " \(g) " } else { out.append(c) }
+        }
+        return out.split(whereSeparator: \.isWhitespace).joined(separator: " ")
     }
 
     public static func render(_ tex: String) -> String {
         var s = matrices(tex)
         s = s.replacingOccurrences(of: #"\\\\(\[[^\]]*\])?"#, with: "; ", options: .regularExpression)
+        s = s.replacingOccurrences(of: #"\\([dtc]?frac)\s*(\\[A-Za-z]+|[A-Za-z0-9])\s*(\\[A-Za-z]+|[A-Za-z0-9])(?![A-Za-z])"#, with: "\\\\$1{$2}{$3}", options: .regularExpression)
         s = s.replacingOccurrences(of: #"\\([dtc]?frac)\s*([A-Za-z0-9])\s*\{"#, with: "\\\\$1{$2}{", options: .regularExpression)
         s = s.replacingOccurrences(of: #"\\([dtc]?frac)\s*(\{[^{}]*\})\s*([A-Za-z0-9])"#, with: "\\\\$1$2{$3}", options: .regularExpression)
         for (k, v) in [("^\\circ", "°"), ("^{\\circ}", "°"), ("\\%", "%"), ("\\_", "_"), ("\\&", "&"), ("\\#", "#"), ("\\|", "‖"), ("\\{", "{"), ("\\}", "}"),
@@ -128,7 +270,7 @@ public enum TeXLite {
                 continue
             }
             var j = s.index(after: i)
-            while j < s.endIndex, s[j].isLetter { j = s.index(after: j) }
+            while j < s.endIndex, s[j].isASCII, s[j].isLetter { j = s.index(after: j) }
             let name = String(s[s.index(after: i)..<j])
             i = j
             if name.isEmpty { emit("\\"); continue }
@@ -166,18 +308,27 @@ public enum TeXLite {
     }
 
     static func replaceCommand(_ cmd: String, in s: String, arity: Int = 2, _ make: ([String]) -> String) -> String {
-        var out = s
-        while let r = out.range(of: cmd + "{") {
+        let key = cmd + "{"
+        var out = ""
+        var i = s.startIndex
+        while let r = s.range(of: key, range: i..<s.endIndex) {
             var args: [String] = []
-            var i = out.index(before: r.upperBound)
+            var j = s.index(before: r.upperBound)
             for _ in 0..<arity {
-                guard i < out.endIndex, out[i] == "{", let close = matching(out, from: i) else { return out }
-                args.append(String(out[out.index(after: i)..<close]))
-                i = out.index(after: close)
+                guard j < s.endIndex, s[j] == "{", let close = matching(s, from: j) else { break }
+                args.append(String(s[s.index(after: j)..<close]))
+                j = s.index(after: close)
             }
-            out.replaceSubrange(r.lowerBound..<i, with: make(args))
+            guard args.count == arity else {
+                out += s[i..<r.upperBound]
+                i = r.upperBound
+                continue
+            }
+            out += s[i..<r.lowerBound]
+            out += make(args.map { replaceCommand(cmd, in: $0, arity: arity, make) })
+            i = j
         }
-        return out
+        return out + s[i...]
     }
 
     static func matching(_ s: String, from open: String.Index) -> String.Index? {

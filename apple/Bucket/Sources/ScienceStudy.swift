@@ -31,11 +31,11 @@ struct ScienceDrill: View {
         if let quiz {
             VStack(alignment: .leading, spacing: 14) {
                 Text(quiz.level).font(.subheadline).foregroundStyle(Palette.muted)
-                Text(LessonText.inline(quiz.prompt)).font(.serif(revealed ? .body : .title2, weight: .semibold)).foregroundStyle(revealed ? Palette.muted : Palette.ink)
+                Text(LessonText.inline(quiz.prompt)).accessibilityLabel(LessonText.spoken(quiz.prompt)).font(.serif(revealed ? .body : .title2, weight: .semibold)).foregroundStyle(revealed ? Palette.muted : Palette.ink)
                 if let eq = quiz.eq, !eq.isEmpty { EquationView(tex: eq) }
                 if revealed {
                     let long = quiz.answer.count > 320
-                    Text(LessonText.inline(quiz.answer)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                    Text(LessonText.inline(quiz.answer)).accessibilityLabel(LessonText.spoken(quiz.answer)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
                         .lineLimit(long && !full ? 6 : nil)
                         .padding(14)
                         .frame(maxWidth: .infinity, alignment: .leading)
