@@ -282,13 +282,19 @@ struct ExerciseView: View {
                 }
             }
             if ex.kind == .speak && !typedKind && verdict == nil {
+                if listening {
+                    Text(LangListener.shared.live.isEmpty ? String(localized: "Listening…") : LangListener.shared.live)
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .foregroundStyle(LangListener.shared.live.isEmpty ? Palette.muted : D8.ink)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentTransition(.opacity)
+                }
                 Button {
-                    Task { await micTry() }
+                    if listening { LangListener.shared.stop() } else { Task { await micTry() } }
                 } label: {
-                    Label(listening ? String(localized: "Listening") : String(localized: "Speak"), systemImage: "mic.fill")
+                    Label(listening ? String(localized: "Stop") : String(localized: "Speak"), systemImage: listening ? "stop.fill" : "mic.fill")
                 }
                 .buttonStyle(D8Primary())
-                .disabled(listening)
                 Button("Type instead") { heard = "" }.buttonStyle(PlainLink())
             }
             if typedKind && verdict == nil {

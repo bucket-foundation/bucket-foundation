@@ -66,7 +66,7 @@ struct Paywall: View {
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .task { await load() }
         .task(id: account.session?.userId) { _ = await fetchToken(at: "prefetch") }
-        .sheet(isPresented: $signingIn) { AccountView() }
+        .sheet(isPresented: $signingIn) { SignInSheet() }
         #if os(iOS)
         .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
         .sheet(isPresented: $student) {

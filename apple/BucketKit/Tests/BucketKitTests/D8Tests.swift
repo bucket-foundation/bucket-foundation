@@ -352,3 +352,30 @@ import Testing
     #expect(checked > 0)
     #expect(Lang.articleWord("de", "pl", "Kleider") == "die")
 }
+
+@Test func unplaceResetsOnlyUntouchedPlacedCardsOfThatLanguage() {
+    let now = 1_792_508_400_000.0
+    var st = EngineState()
+    for i in 0..<40 {
+        var c = Card(state: "review")
+        c.reps = 1
+        c.stability = 30
+        c.lastReview = now - 3 * DAY_MS
+        c.due = now + 20 * DAY_MS
+        c.placed = true
+        st.cards["fr:w\(i)"] = c
+        st.cards["es:w\(i)"] = c
+    }
+    var seen = Card(state: "review")
+    seen.reps = 3
+    seen.stability = 30
+    seen.placed = true
+    st.cards["fr:seen"] = seen
+    let out = unplace(st, "fr", now: now, tz: TimeZone(identifier: "UTC")!)
+    #expect(out.cards["fr:seen"] == seen)
+    #expect(out.cards["es:w0"] == st.cards["es:w0"])
+    let reset = (0..<40).compactMap { out.cards["fr:w\($0)"] }
+    #expect(reset.allSatisfy { $0.placed == true && ($0.stability ?? 99) < 5 && ($0.due ?? 0) > now && ($0.due ?? .infinity) <= now + 15 * DAY_MS })
+    let merged = mergeState(out, st)
+    #expect(merged.cards["fr:w0"] == out.cards["fr:w0"])
+}

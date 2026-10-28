@@ -6,17 +6,97 @@ import UserNotifications
 struct AccountView: View {
     @Environment(Account.self) private var account
     @State private var confirmingReset = false
-    @State private var email = ""
-    @State private var code = ""
     @State private var confirmingDelete = false
-    @FocusState private var focused: Bool
-    @State private var nonce: AppleNonce?
-    @Environment(\.colorScheme) private var scheme
+    @State private var signingIn = false
 
     private static var privacyURL: URL {
         let polingual = Bundle.main.bundleIdentifier == "com.polingual.app"
         return URL(string: polingual ? "https://polingual.com/privacy" : "https://www.bucket.foundation/privacy")!
     }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                switch account.stage {
+                case .signedOut, .codeSent:
+                    Section {
+                        Button("Sign in") { signingIn = true }
+                            .buttonStyle(D8Primary())
+                            .disabled(account.busy)
+                    } footer: {
+                        Text("Sign in with Apple or your email. The same account works on bucket.foundation.")
+                    }
+                case .signedIn:
+                    Section {
+                        LabeledContent("Status", value: "Signed in")
+                        if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
+                        Button("Sign out", role: .destructive) {
+                            Beta.shared.signedOut()
+                            Task { await account.signOutAfterSync() }
+                        }
+                        Button("Delete account", role: .destructive) { confirmingDelete = true }
+                    } header: {
+                        Eyebrow(text: "Account")
+                    }
+                }
+                ReminderSettings()
+                BetaSharing()
+                FeedbackSettings()
+                #if DEBUG
+                Section {
+                    Button("Reset to fresh install", role: .destructive) { confirmingReset = true }
+                } header: {
+                    Eyebrow(text: "Developer")
+                }
+                #endif
+                if let error = account.error {
+                    Section { Text(error).foregroundStyle(.red) }
+                }
+                if account.busy {
+                    Section { ProgressView() }
+                }
+                Section {
+                    Link("Privacy and data", destination: Self.privacyURL)
+                    LabeledContent("Version", value: Bundle.main.versionLabel)
+                } header: {
+                    Eyebrow(text: "About")
+                } footer: {
+                    Text("build the past. build history. bucket is the new renaissance.")
+                }
+            }
+            .listRowBackground(Palette.card)
+            .paper()
+            .navigationTitle("Account")
+            .sheet(isPresented: $signingIn) { SignInSheet() }
+            .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
+                Button("Delete account and data", role: .destructive) {
+                    Beta.shared.signedOut()
+                    Task { await account.deleteAccount() }
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This removes your sign-in and your saved progress and profile from Bucket. It cannot be undone.")
+            }
+            #if DEBUG
+            .confirmationDialog("Reset to a fresh install?", isPresented: $confirmingReset, titleVisibility: .visible) {
+                Button("Reset and close the app", role: .destructive) { DevReset.run(account) }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Signs out on this phone, clears local progress, settings, onboarding and the dev pass, then closes. Your synced account stays on the server.")
+            }
+            #endif
+        }
+    }
+}
+
+struct SignInSheet: View {
+    @Environment(Account.self) private var account
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var scheme
+    @State private var email = ""
+    @State private var code = ""
+    @FocusState private var focused: Bool
+    @State private var nonce: AppleNonce?
 
     var body: some View {
         NavigationStack {
@@ -85,63 +165,24 @@ struct AccountView: View {
                         Text("Code sent to \(to).")
                     }
                 case .signedIn:
-                    Section {
-                        LabeledContent("Status", value: "Signed in")
-                        if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
-                        Button("Sign out", role: .destructive) {
-                            Beta.shared.signedOut()
-                            Task { await account.signOutAfterSync() }
-                        }
-                        Button("Delete account", role: .destructive) { confirmingDelete = true }
-                    } header: {
-                        Eyebrow(text: "Account")
-                    }
+                    Section { Label("Signed in", systemImage: "checkmark.circle.fill") }
                 }
-                ReminderSettings()
-                BetaSharing()
-                FeedbackSettings()
-                #if DEBUG
-                Section {
-                    Button("Reset to fresh install", role: .destructive) { confirmingReset = true }
-                } header: {
-                    Eyebrow(text: "Developer")
-                }
-                #endif
                 if let error = account.error {
                     Section { Text(error).foregroundStyle(.red) }
                 }
                 if account.busy {
                     Section { ProgressView() }
                 }
-                Section {
-                    Link("Privacy and data", destination: Self.privacyURL)
-                    LabeledContent("Version", value: Bundle.main.versionLabel)
-                } header: {
-                    Eyebrow(text: "About")
-                } footer: {
-                    Text("build the past. build history. bucket is the new renaissance.")
-                }
             }
             .listRowBackground(Palette.card)
             .paper()
-            .navigationTitle("Account")
-            .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
-                Button("Delete account and data", role: .destructive) {
-                    Beta.shared.signedOut()
-                    Task { await account.deleteAccount() }
-                }
-                Button("Cancel", role: .cancel) {}
-            } message: {
-                Text("This removes your sign-in and your saved progress and profile from Bucket. It cannot be undone.")
+            .navigationTitle("Sign in")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
             }
-            #if DEBUG
-            .confirmationDialog("Reset to a fresh install?", isPresented: $confirmingReset, titleVisibility: .visible) {
-                Button("Reset and close the app", role: .destructive) { DevReset.run(account) }
-                Button("Cancel", role: .cancel) {}
-            } message: {
-                Text("Signs out on this phone, clears local progress, settings, onboarding and the dev pass, then closes. Your synced account stays on the server.")
+            .onChange(of: account.stage) { _, new in
+                if new == .signedIn { dismiss() }
             }
-            #endif
         }
     }
 }

@@ -23,6 +23,6 @@ struct FeedbackFixTests {
         #expect(box.alts == ["quattro"])
         let quiet = box.quietFor(now: t0.addingTimeInterval(5)) ?? 0
         #expect(quiet >= 4)
-        #expect(LangListener.silence <= 1.0 && LangListener.maxListen == 6)
+        #expect(LangListener.silence <= 0.7 && LangListener.maxListen == 6 && LangListener.maxSentence == 15)
     }
 }

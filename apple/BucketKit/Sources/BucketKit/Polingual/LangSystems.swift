@@ -1188,6 +1188,21 @@ public func applyPlacement(_ state: EngineState, _ system: LangSystem, _ corpus:
     return next
 }
 
+public func unplace(_ state: EngineState, _ lang: String, now: Double, tz: TimeZone = .current) -> EngineState {
+    var next = state
+    let fsrs = next.fsrs
+    var reset: [String] = []
+    for (id, c) in state.cards.entries where parseCardId(id).lang == lang && isPlacedReview(c) {
+        var fresh = fsrs.review(Card(state: "new"), 1, now: now)
+        fresh.placed = true
+        fresh.introduced = dayKey(now, tz: tz)
+        next.cards[id] = fresh
+        reset.append(id)
+    }
+    spreadPlaced(&next.cards, reset, now: now)
+    return next
+}
+
 public enum Stage: String, Sendable { case intro, check, review, match, letter }
 
 public struct QueueEntry: Sendable, Equatable, Hashable {

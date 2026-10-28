@@ -15,11 +15,16 @@ struct PlacementView: View {
     @State private var result: CefrPlacement?
     @State private var asked = 0
     @AppStorage("bucket.lang.readings") private var readings = true
+    @AppStorage("bucket.lang.placeQueue") private var queue = ""
+    @State private var picking = false
+    @State private var known = Set<String>()
 
     var body: some View {
         Group {
             if store.status != .ready {
                 ProgressView("Loading placement")
+            } else if picking, let system = store.system(systemId) {
+                picker(system)
             } else if let system = store.system(systemId), let corpus = store.corpus, let lang {
                 content(system, corpus, lang)
             } else if store.system(systemId) == nil {
@@ -40,11 +45,67 @@ struct PlacementView: View {
     }
 
     func start() {
-        guard lang == nil, let system = store.system(systemId) else { return }
-        let pick = requested.flatMap { system.targets.contains($0) ? $0 : nil } ?? system.targets.first { system.placement[$0] == nil } ?? system.targets.first
-        top = pick.flatMap { LangStore.topWords($0) }
+        guard lang == nil, !picking, store.status == .ready, let system = store.system(systemId) else { return }
+        guard let pick = requested.flatMap({ system.targets.contains($0) ? $0 : nil }) else {
+            known = Set(system.targets.filter { (system.placement[$0] ?? 0) > 0 })
+            picking = true
+            return
+        }
+        if !queue.split(separator: ",").contains(Substring(pick)) { queue = "" }
+        begin(pick)
+    }
+
+    func begin(_ pick: String) {
+        top = LangStore.topWords(pick)
         lang = pick
         advance()
+    }
+
+    func confirmKnown(_ system: LangSystem) {
+        picking = false
+        let order = system.targets.filter { known.contains($0) }
+        queue = order.joined(separator: ",")
+        Task {
+            for l in system.targets where !known.contains(l) { await store.unplace(system.id, lang: l) }
+            if let first = order.first {
+                begin(first)
+            } else {
+                path.removeLast()
+                path.append(LangRoute.study(system.id))
+            }
+        }
+    }
+
+    @ViewBuilder
+    func picker(_ system: LangSystem) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 14) {
+                Eyebrow(text: String(localized: "Placement"))
+                Text("Which of these do you already know?").font(.serif(.title2, weight: .semibold))
+                Text("Pick the languages you can read or speak. Each one gets a level test. The rest start from the first words.")
+                    .foregroundStyle(Palette.muted)
+                ForEach(system.targets, id: \.self) { l in
+                    let on = known.contains(l)
+                    Button {
+                        if on { known.remove(l) } else { known.insert(l) }
+                    } label: {
+                        HStack(spacing: 12) {
+                            FlagTile(lang: l, size: 32)
+                            Text(langName(l)).font(.headline)
+                            Spacer()
+                            Image(systemName: on ? "checkmark.circle.fill" : "circle").font(.title3)
+                        }
+                    }
+                    .buttonStyle(D8Option(selected: on))
+                    .accessibilityAddTraits(on ? .isSelected : [])
+                }
+                Button(known.isEmpty ? String(localized: "Start from the first words") : String(localized: "Test my level")) { confirmKnown(system) }
+                    .buttonStyle(D8Primary())
+            }
+            .padding(20)
+            .frame(maxWidth: 680, alignment: .leading)
+            .frame(maxWidth: .infinity)
+        }
     }
 
     func advance() {
@@ -82,7 +143,8 @@ struct PlacementView: View {
     @ViewBuilder
     func content(_ system: LangSystem, _ corpus: LangCorpus, _ lang: String) -> some View {
         if let result {
-            let nextLang = system.targets.first { $0 != lang && system.placement[$0] == nil }
+            let queued = queue.split(separator: ",").map(String.init).filter { $0 != lang && system.targets.contains($0) }
+            let nextLang = queued.first
             List {
                 Section {
                     Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
@@ -98,12 +160,14 @@ struct PlacementView: View {
                     SaveNotice(state: store.saveState)
                     if let nextLang {
                         Button("Place \(langName(nextLang))") {
+                            queue = queued.joined(separator: ",")
                             path.removeLast()
                             path.append(LangRoute.place(system.id, nextLang))
                         }
                         .buttonStyle(D8Primary())
                     } else {
                         Button("Start studying") {
+                            queue = ""
                             path.removeLast()
                             path.append(LangRoute.study(system.id))
                         }

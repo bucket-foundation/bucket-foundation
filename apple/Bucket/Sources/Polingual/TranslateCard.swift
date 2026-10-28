@@ -107,8 +107,8 @@ struct TranslateCard: View {
                             .accessibilityLabel("Clear")
                     }
                     if LangListener.shared.supported {
-                        Button { Task { await listen() } } label: {
-                            Image(systemName: listening ? "waveform" : "mic.fill")
+                        Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
+                            Image(systemName: listening ? "stop.fill" : "mic.fill")
                                 .font(.system(size: 20, weight: .semibold))
                                 .foregroundStyle(listening ? .white : D8.vermilion)
                                 .frame(width: 40, height: 40)
@@ -116,8 +116,7 @@ struct TranslateCard: View {
                                 .symbolEffect(.variableColor.iterative, isActive: listening)
                         }
                         .buttonStyle(.borderless)
-                        .disabled(listening)
-                        .accessibilityLabel(String(localized: "Say a word in \(Lang.name(listenLang))"))
+                        .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
                     }
                 }
                 .padding(.horizontal, 14)
@@ -125,7 +124,12 @@ struct TranslateCard: View {
                 .background(.white, in: .rect(cornerRadius: 14))
                 .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
                 if listening {
-                    Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
+                        if !LangListener.shared.live.isEmpty {
+                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(D8.ink)
+                        }
+                    }
                 } else if missedVoice {
                     Text("Didn't catch that. Tap the mic and try again.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
@@ -194,7 +198,7 @@ struct TranslateCard: View {
     func listen() async {
         missedVoice = false
         listening = true
-        let heard = await LangListener.shared.listenOnce(listenLang)
+        let heard = await LangListener.shared.listenOnce(listenLang, limit: LangListener.maxSentence)
         listening = false
         guard let first = heard.first, !first.isEmpty else {
             missedVoice = true

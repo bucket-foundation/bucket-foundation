@@ -247,6 +247,17 @@ public final class LangStore {
         await persistSystems(upsert: s)
     }
 
+    public static let unknownLevel = "A0"
+
+    public func unplace(_ systemId: String, lang: String) async {
+        guard var s = system(systemId) else { return }
+        s.placement[lang] = 0
+        s.levels = (s.levels ?? [:]).merging([lang: Self.unknownLevel]) { _, n in n }
+        replace(s)
+        commit(s, BucketKit.unplace(state(systemId), lang, now: now()))
+        await persistSystems(upsert: s)
+    }
+
     func commit(_ s: LangSystem, _ next: EngineState) {
         let branch = progressBranch(s)
         states[s.id] = next
