@@ -200,8 +200,10 @@ async function main() {
   const view = foldByLang(trio, { it: live }, systems, { [progressBranch(romance)]: newer, [progressBranch(trio)]: b });
   ok(view.cards[cardId("it", words[2])].lastReview === T0 + 5 * DAY, "dual-read: a review an old client wrote to lang-sys-* shows in the folded view");
 
-  const golden = JSON.parse(fs.readFileSync(path.join(ROOT, "tests/fixtures/polingual-flag-off-queue.golden.json"), "utf8"));
+  const goldenPath = path.join(ROOT, "tests/fixtures/polingual-flag-off-queue.golden.json");
   const legacyQueue = buildQueue(trio, corpus, b, T0);
+  if (process.env.UPDATE_GOLDEN === "1") fs.writeFileSync(goldenPath, JSON.stringify({ branch: progressBranch(trio), queue: legacyQueue }, null, 1) + "\n");
+  const golden = JSON.parse(fs.readFileSync(goldenPath, "utf8"));
   ok(JSON.stringify(legacyQueue) === JSON.stringify(golden.queue) && progressBranch(trio) === golden.branch, "flag off: the legacy queue and branch match the polingual-ux-v1 golden");
 
   if (failures) {
