@@ -31,9 +31,24 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
     }
 }
 
+@MainActor
+enum GameWordCache {
+    static var key = ""
+    static var words: [GameWord] = []
+}
+
 extension LangStore {
     var gameWords: [GameWord] {
         guard let corpus else { return [] }
+        let key = systems.map { "\($0.id):\($0.targets.joined(separator: ","))" }.joined(separator: "|") + "#" + String(states.values.reduce(0) { $0 + $1.cards.count }) + "#" + String(corpus.items.count)
+        if key == GameWordCache.key { return GameWordCache.words }
+        let words = freshGameWords(corpus)
+        GameWordCache.key = key
+        GameWordCache.words = words
+        return words
+    }
+
+    func freshGameWords(_ corpus: LangCorpus) -> [GameWord] {
         let learned = GameWords.learned(systems, states: states, corpus: corpus)
         if learned.count >= 8 { return learned }
         let have = Set(learned.map(\.id))
@@ -226,6 +241,7 @@ struct MatchGame: View {
 struct MemoryGame: View {
     @Environment(LangStore.self) private var langs
     @State private var board: MemoryBoard?
+    @State private var hiding: Task<Void, Never>?
 
     var body: some View {
         ScrollView {
@@ -284,6 +300,8 @@ struct MemoryGame: View {
 
     func flip(_ t: MemoryBoard.Tile) {
         guard var b = board else { return }
+        hiding?.cancel()
+        hiding = nil
         let out = b.flip(t.id)
         board = b
         if t.isForm && out != .ignored { _ = LangVoice.shared.speak(t.text, t.lang) }
@@ -291,8 +309,9 @@ struct MemoryGame: View {
         case .matched: haptic(true)
         case .missed:
             haptic(false)
-            Task {
+            hiding = Task {
                 try? await Task.sleep(for: .milliseconds(900))
+                guard !Task.isCancelled else { return }
                 if board?.open.count == 2 { board?.hide() }
             }
         default: break

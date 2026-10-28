@@ -45,9 +45,7 @@ struct LearnView: View {
                             }
                         } else {
                             Section {
-                                NavigationLink {
-                                    CanonView()
-                                } label: {
+                                NavigationLink(value: LearnRoute.canon) {
                                     Label("Search the canon", systemImage: "text.magnifyingglass")
                                 }
                                 .listRowBackground(Palette.card)
@@ -70,6 +68,7 @@ struct LearnView: View {
             .navigationTitle("Learn")
             .navigationDestination(for: DeckEntry.self) { DeckView(entry: $0) }
             .navigationDestination(for: AtomRoute.self) { AtomView(route: $0) }
+            .navigationDestination(for: LearnRoute.self) { _ in CanonView() }
             .langDestinations(path: $path)
         }
         .task {
@@ -143,6 +142,10 @@ struct DeckRow: View {
         }
         .padding(.vertical, 6)
     }
+}
+
+enum LearnRoute: Hashable {
+    case canon
 }
 
 struct AtomRoute: Hashable {

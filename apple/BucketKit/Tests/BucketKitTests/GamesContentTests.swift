@@ -95,24 +95,46 @@ func words(_ n: Int) -> [GameWord] {
         #expect(ContentCatalog.branch(forTags: "Science") == "02")
     }
 
-    @Test func stationsDecodeAndDropBrokenOrRepeated() async throws {
-        let seen = LockedBox<URLRequest?>(nil)
-        let body = try JSONSerialization.data(withJSONObject: [
-            ["stationuuid": "a", "name": " France Culture ", "url_resolved": "https://x/a.mp3", "country": "France", "countrycode": "FR", "tags": "culture,philosophy", "favicon": ""],
-            ["stationuuid": "b", "name": "France Culture", "url_resolved": "https://x/b.mp3", "country": "France", "countrycode": "FR", "tags": "", "favicon": ""],
-            ["stationuuid": "c", "name": "Broken", "url_resolved": "", "country": "Belgium", "countrycode": "BE", "tags": "", "favicon": ""],
-        ])
+    static let stationsBody = try! JSONSerialization.data(withJSONObject: [
+        ["stationuuid": "a", "name": " France Culture ", "url_resolved": "https://x/a.mp3", "country": "France", "countrycode": "FR", "tags": "culture,philosophy", "favicon": "", "votes": 900],
+        ["stationuuid": "b", "name": "France Culture", "url_resolved": "https://x/b.mp3", "country": "France", "countrycode": "FR", "tags": "", "favicon": "", "votes": 50],
+        ["stationuuid": "c", "name": "Broken", "url_resolved": "", "country": "Belgium", "countrycode": "BE", "tags": "", "favicon": "", "votes": 50],
+        ["stationuuid": "d", "name": "Plain", "url_resolved": "http://x/d.mp3", "country": "Belgium", "countrycode": "BE", "tags": "", "favicon": "", "votes": 50],
+        ["stationuuid": "e", "name": "Quiet", "url_resolved": "https://x/e.mp3", "country": "Belgium", "countrycode": "BE", "tags": "", "favicon": "", "votes": 2],
+    ])
+
+    @Test func stationsKeepHttpsVotedAndDistinct() async throws {
+        let defaults = try #require(UserDefaults(suiteName: "content-tests-a"))
+        defaults.removePersistentDomain(forName: "content-tests-a")
+        let seen = LockedBox<[URLRequest]>([])
         let api = ContentAPI(transport: StubTransport { r in
-            seen.mutate { $0 = r }
-            return (200, body)
-        })
+            seen.mutate { $0.append(r) }
+            if r.url?.host() == "all.api.radio-browser.info" { return (200, try! JSONSerialization.data(withJSONObject: [["name": "nl1.api.radio-browser.info"]])) }
+            return (200, Self.stationsBody)
+        }, defaults: defaults)
         let s = try await api.stations("fr")
         #expect(s.map(\.name) == ["France Culture"])
         #expect(s.first?.branch == "07")
-        let r = try #require(seen.value)
-        #expect(r.url?.host() == "de1.api.radio-browser.info")
-        #expect(r.url?.query?.contains("language=french") == true)
-        #expect(r.value(forHTTPHeaderField: "user-agent")?.hasPrefix("Bucket/") == true)
+        let search = try #require(seen.value.last)
+        #expect(search.url?.host() == "nl1.api.radio-browser.info")
+        #expect(search.url?.query?.contains("language=french") == true)
+        #expect(search.url?.query?.contains("is_https=true") == true)
+        #expect(search.value(forHTTPHeaderField: "user-agent")?.hasPrefix("Bucket/") == true)
+        #expect(defaults.string(forKey: ContentAPI.serverKey) == "nl1.api.radio-browser.info")
+    }
+
+    @Test func stationsFallBackWhenAServerFails() async throws {
+        let defaults = try #require(UserDefaults(suiteName: "content-tests-b"))
+        defaults.removePersistentDomain(forName: "content-tests-b")
+        defaults.set("dead.api.radio-browser.info", forKey: ContentAPI.serverKey)
+        let api = ContentAPI(transport: StubTransport { r in
+            switch r.url?.host() {
+            case "all.api.radio-browser.info", "dead.api.radio-browser.info": (503, Data())
+            default: (200, Self.stationsBody)
+            }
+        }, defaults: defaults)
+        #expect(try await api.stations("fr").count == 1)
+        #expect(defaults.string(forKey: ContentAPI.serverKey) == ContentAPI.fallbackHosts[0])
     }
 
     @Test func titlesFollowLangLinks() async throws {

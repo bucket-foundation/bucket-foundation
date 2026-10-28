@@ -70,10 +70,11 @@ public struct RadioStation: Decodable, Sendable, Equatable, Identifiable {
     public let countrycode: String
     public let tags: String
     public let favicon: String
+    public let votes: Int
     public var id: String { stationuuid }
 
     enum CodingKeys: String, CodingKey {
-        case stationuuid, name, country, countrycode, tags, favicon
+        case stationuuid, name, country, countrycode, tags, favicon, votes
         case urlResolved = "url_resolved"
     }
 
@@ -86,10 +87,11 @@ public struct RadioStation: Decodable, Sendable, Equatable, Identifiable {
         countrycode = c.value(.countrycode, "")
         tags = c.value(.tags, "")
         favicon = c.value(.favicon, "")
+        votes = c.value(.votes, 0)
     }
 
     public var stream: URL? {
-        guard let u = URL(string: urlResolved), u.scheme == "https" || u.scheme == "http" else { return nil }
+        guard let u = URL(string: urlResolved), u.scheme == "https", u.host() != nil else { return nil }
         return u
     }
 
@@ -114,12 +116,33 @@ struct LangLinks: Decodable {
     let query: Query
 }
 
+struct RadioServer: Decodable {
+    let name: String
+}
+
 public struct ContentAPI: Sendable {
     let transport: Transport
-    public static let radioBase = URL(string: "https://de1.api.radio-browser.info")!
+    nonisolated(unsafe) let defaults: UserDefaults?
+    public static let fallbackHosts = ["de1.api.radio-browser.info", "fi1.api.radio-browser.info", "de2.api.radio-browser.info", "nl1.api.radio-browser.info"]
+    public static let serverKey = "content.radioServer"
     public static let agent = "Bucket/2.0 (https://www.bucket.foundation)"
+    public static let minVotes = 10
 
-    public init(transport: Transport = URLSessionTransport()) { self.transport = transport }
+    public init(transport: Transport = URLSessionTransport(), defaults: UserDefaults? = .standard) {
+        self.transport = transport
+        self.defaults = defaults
+    }
+
+    func hosts() async -> [String] {
+        var out: [String] = []
+        if let saved = defaults?.string(forKey: Self.serverKey) { out.append(saved) }
+        if let listed: [RadioServer] = try? await get(URL(string: "https://all.api.radio-browser.info/json/servers")!) {
+            out += listed.map(\.name).filter { $0.hasSuffix(".api.radio-browser.info") }.sorted()
+        }
+        out += Self.fallbackHosts
+        var seen = Set<String>()
+        return out.filter { seen.insert($0).inserted }
+    }
 
     func get<T: Decodable>(_ url: URL) async throws -> T {
         var r = URLRequest(url: url)
@@ -132,15 +155,27 @@ public struct ContentAPI: Sendable {
 
     public func stations(_ lang: String, limit: Int = 25) async throws -> [RadioStation] {
         guard let name = ContentCatalog.radioName(lang) else { return [] }
-        var c = URLComponents(url: Self.radioBase.appending(path: "json/stations/search"), resolvingAgainstBaseURL: false)!
-        c.queryItems = [
-            URLQueryItem(name: "language", value: name), URLQueryItem(name: "hidebroken", value: "true"),
-            URLQueryItem(name: "order", value: "clickcount"), URLQueryItem(name: "reverse", value: "true"),
-            URLQueryItem(name: "limit", value: String(limit)),
-        ]
-        let all: [RadioStation] = try await get(c.url!)
-        var seen = Set<String>()
-        return all.filter { $0.stream != nil && !$0.name.isEmpty && seen.insert($0.name.lowercased()).inserted }
+        var lastError: Error = BucketError.unavailable
+        for host in await hosts() {
+            var c = URLComponents()
+            c.scheme = "https"
+            c.host = host
+            c.path = "/json/stations/search"
+            c.queryItems = [
+                URLQueryItem(name: "language", value: name), URLQueryItem(name: "hidebroken", value: "true"),
+                URLQueryItem(name: "is_https", value: "true"), URLQueryItem(name: "order", value: "clickcount"),
+                URLQueryItem(name: "reverse", value: "true"), URLQueryItem(name: "limit", value: String(limit * 2)),
+            ]
+            do {
+                let all: [RadioStation] = try await get(c.url!)
+                defaults?.set(host, forKey: Self.serverKey)
+                var seen = Set<String>()
+                return Array(all.filter { $0.stream != nil && $0.votes >= Self.minVotes && !$0.name.isEmpty && seen.insert($0.name.lowercased()).inserted }.prefix(limit))
+            } catch {
+                lastError = error
+            }
+        }
+        throw lastError
     }
 
     public func titles(_ english: String) async throws -> [String: String] {

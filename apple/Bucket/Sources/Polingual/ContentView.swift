@@ -35,11 +35,23 @@ final class ContentStore {
     var stations: [String: [RadioStation]] = [:]
     var failed: Set<String> = []
 
-    func titles(for topic: ContentTopic) async -> [String: String] {
+    var hidden: Set<String> = Set(UserDefaults.standard.stringArray(forKey: "content.hiddenStations") ?? [])
+
+    func titles(for topic: ContentTopic) async -> [String: String]? {
         if let t = titles[topic.title] { return t }
-        guard let t = try? await api.titles(topic.title) else { return ["en": topic.title] }
+        guard let t = try? await api.titles(topic.title) else {
+            failed.insert("titles:\(topic.title)")
+            return nil
+        }
+        failed.remove("titles:\(topic.title)")
         titles[topic.title] = t
         return t
+    }
+
+    func report(_ s: RadioStation) {
+        hidden.insert(s.id)
+        UserDefaults.standard.set(Array(hidden), forKey: "content.hiddenStations")
+        Beta.shared.log("radio_report", ["station": .string(s.id), "name": .string(s.name), "country": .string(s.countrycode)])
     }
 
     func summary(_ lang: String, _ title: String) async -> WikiSummary? {
@@ -49,12 +61,14 @@ final class ContentStore {
             failed.insert(key)
             return nil
         }
+        failed.remove(key)
         summaries[key] = s
         return s
     }
 
     func stations(_ lang: String) async {
         guard stations[lang] == nil else { return }
+        failed.remove("radio:\(lang)")
         do { stations[lang] = try await api.stations(lang) } catch { failed.insert("radio:\(lang)") }
     }
 }
@@ -64,27 +78,70 @@ final class ContentStore {
 final class RadioPlayer {
     static let shared = RadioPlayer()
     private var player: AVPlayer?
+    private var watch: [Task<Void, Never>] = []
     private(set) var playing: String?
+    private(set) var failedId: String?
+
+    init() {
+        #if os(iOS)
+        Task { [weak self] in
+            for await n in NotificationCenter.default.notifications(named: AVAudioSession.interruptionNotification) {
+                let raw = n.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
+                if raw == AVAudioSession.InterruptionType.began.rawValue { self?.stop() }
+            }
+        }
+        #endif
+    }
 
     func toggle(_ s: RadioStation) {
         if playing == s.id {
             stop()
             return
         }
+        stop()
         guard let url = s.stream else { return }
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         try? AVAudioSession.sharedInstance().setActive(true)
         #endif
-        player = AVPlayer(url: url)
-        player?.play()
+        let item = AVPlayerItem(url: url)
+        let p = AVPlayer(playerItem: item)
+        player = p
         playing = s.id
+        failedId = nil
+        p.play()
+        let id = s.id
+        watch = [
+            Task { [weak self] in
+                for await status in item.publisher(for: \.status).values where status == .failed {
+                    self?.fail(id)
+                    return
+                }
+            },
+            Task { [weak self] in
+                for await _ in NotificationCenter.default.notifications(named: AVPlayerItem.failedToPlayToEndTimeNotification, object: item) {
+                    self?.fail(id)
+                    return
+                }
+            },
+        ]
+    }
+
+    func fail(_ id: String) {
+        guard playing == id else { return }
+        stop()
+        failedId = id
     }
 
     func stop() {
+        watch.forEach { $0.cancel() }
+        watch = []
         player?.pause()
         player = nil
         playing = nil
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        #endif
     }
 }
 
@@ -162,6 +219,8 @@ struct ContentHub: View {
             }
         }
         .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs) }
+        .onChange(of: kind) { _, k in if k != .listen { RadioPlayer.shared.stop() } }
+        .onDisappear { RadioPlayer.shared.stop() }
         .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs) }
         .task {
             await langs.load()
@@ -220,6 +279,7 @@ struct ReadView: View {
     @State private var titles: [String: String] = [:]
     @State private var texts: [String: WikiSummary] = [:]
     @State private var loading = true
+    @State private var failed = false
 
     var body: some View {
         ScrollView(.vertical) {
@@ -241,6 +301,16 @@ struct ReadView: View {
             _ = LangVoice.shared.speak(p.word, p.lang)
             return .handled
         })
+        .overlay {
+            if failed {
+                VStack(spacing: 12) {
+                    Text("Wikipedia did not answer. Check your connection.").foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                    Button("Retry") { Task { await load() } }.buttonStyle(D8Primary(compact: true))
+                }
+                .padding(24)
+                .background(Palette.card, in: .rect(cornerRadius: 16))
+            }
+        }
         .task { await load() }
     }
 
@@ -257,6 +327,9 @@ struct ReadView: View {
                     .environment(\.layoutDirection, Lang.info[l]?.rtl == true ? .rightToLeft : .leftToRight)
             } else if loading {
                 ProgressView()
+            } else if let t = titles[l], ContentStore.shared.failed.contains("\(l):\(t)") {
+                Text("This article did not load.").foregroundStyle(Palette.muted)
+                Button("Retry") { Task { await load() } }
             } else {
                 Text("No \(langName(l)) article on this topic yet.").foregroundStyle(Palette.muted)
             }
@@ -280,7 +353,15 @@ struct ReadView: View {
 
     func load() async {
         let store = ContentStore.shared
-        titles = await store.titles(for: topic)
+        loading = true
+        failed = false
+        for l in langs { if let t = titles[l] { store.failed.remove("\(l):\(t)") } }
+        guard let found = await store.titles(for: topic) else {
+            failed = true
+            loading = false
+            return
+        }
+        titles = found
         await withTaskGroup(of: (String, WikiSummary?).self) { group in
             for l in langs {
                 guard let t = titles[l] else { continue }
@@ -301,9 +382,11 @@ struct ListenList: View {
     var body: some View {
         ForEach(langs, id: \.self) { l in
             let all = store.stations[l] ?? []
-            let shown = all.filter { branch == nil || $0.branch == branch }
+            let shown = all.filter { (branch == nil || $0.branch == branch) && !store.hidden.contains($0.id) }
             Section {
-                if store.stations[l] == nil && !store.failed.contains("radio:\(l)") {
+                if store.failed.contains("radio:\(l)") {
+                    Button("Stations did not load. Retry") { Task { await store.stations(l) } }
+                } else if store.stations[l] == nil {
                     ProgressView()
                 } else if shown.isEmpty {
                     Text(all.isEmpty ? String(localized: "No stations found.") : String(localized: "No stations in this branch.")).foregroundStyle(Palette.muted)
@@ -316,12 +399,20 @@ struct ListenList: View {
                                 .foregroundStyle(radio.playing == s.id ? D8.vermilion : Palette.green)
                             VStack(alignment: .leading, spacing: 3) {
                                 Text(s.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
-                                Text(s.country).font(.footnote).foregroundStyle(Palette.muted)
+                                Text(radio.failedId == s.id ? String(localized: "This station did not play.") : s.country)
+                                    .font(.footnote)
+                                    .foregroundStyle(radio.failedId == s.id ? D8.vermilion : Palette.muted)
                                 ContentTags(langs: [l], branch: s.branch)
                             }
                         }
                     }
                     .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
+                    .contextMenu {
+                        Button("Report station", systemImage: "flag", role: .destructive) { report(s) }
+                    }
+                    .swipeActions {
+                        Button("Report", systemImage: "flag", role: .destructive) { report(s) }
+                    }
                 }
             } header: {
                 HStack(spacing: 6) {
@@ -334,6 +425,11 @@ struct ListenList: View {
             .listRowBackground(Palette.card)
             .task { await store.stations(l) }
         }
+    }
+
+    func report(_ s: RadioStation) {
+        if radio.playing == s.id { radio.stop() }
+        store.report(s)
     }
 }
 
