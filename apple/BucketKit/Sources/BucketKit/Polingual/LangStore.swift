@@ -100,10 +100,14 @@ public final class LangStore {
 
     func healPlacements() async {
         for s in systems {
-            let stale = stalePlacements(s, state(s.id))
+            guard let corpus else { return }
+            let stale = stalePlacements(s, state(s.id), corpus)
             guard !stale.isEmpty else { continue }
             var next = s
-            for l in stale { next.placement[l] = 0 }
+            for l in stale {
+                next.placement[l] = 0
+                next.placedAt = (next.placedAt ?? [:]).merging([l: now()]) { _, n in n }
+            }
             next.updatedAt = now()
             replace(next)
             await persistSystems(upsert: next)
@@ -255,6 +259,7 @@ public final class LangStore {
         guard var s = system(systemId), let corpus else { return }
         s.placement[lang] = tier
         s.updatedAt = now()
+        s.placedAt = (s.placedAt ?? [:]).merging([lang: now()]) { _, n in n }
         if let level { s.levels = (s.levels ?? [:]).merging([lang: level]) { _, n in n } }
         replace(s)
         commit(s, applyPlacement(state(systemId), s, corpus, lang, tier, now: now(), only: only.map(Set.init)))
@@ -267,6 +272,7 @@ public final class LangStore {
         guard var s = system(systemId) else { return }
         s.placement[lang] = 0
         s.updatedAt = now()
+        s.placedAt = (s.placedAt ?? [:]).merging([lang: now()]) { _, n in n }
         s.levels = (s.levels ?? [:]).merging([lang: Self.unknownLevel]) { _, n in n }
         replace(s)
         commit(s, BucketKit.unplace(state(systemId), lang, now: now()))

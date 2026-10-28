@@ -26,3 +26,14 @@ import Testing
     var rng = Rng(seed: 7)
     for e in q { #expect(ScriptCourse.exercise(e.lang, "en", e.itemId, &rng)?.kind == .letter) }
 }
+
+@Test func latinUnitsHaveOneEntryPerLetterAndCompareSounds() {
+    for lang in ["es", "de", "tr", "pl", "fr", "en"] {
+        for root in ["en", "ru", "es", "fr"] {
+            guard let unit = ScriptCourse.latinUnit(lang, root: root) else { continue }
+            #expect(Set(unit.letters.map(\.ch)).count == unit.letters.count, "\(lang) from \(root)")
+        }
+    }
+    #expect(ScriptCourse.latinUnit("de", root: "ru")!.letters.first { $0.ch == "w" }?.sound == "v")
+    #expect(ScriptCourse.latinUnit("es", root: "fr")!.letters.contains { $0.ch == "ch" })
+}

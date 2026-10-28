@@ -108,7 +108,7 @@ export function gradeShared(io: MemoryIO, s: SharedSession, lang: string, itemId
 
 export function placeShared(io: MemoryIO, s: SharedSession, corpus: LangCorpus, lang: string, tier: number, only?: string[], level?: string): { session: SharedSession; system: LangSystem; saved: Promise<boolean> } {
   const kept = Math.max(tier, s.plan.placement[lang] ?? 0);
-  const system = { ...s.system, updatedAt: io.now(), placement: { ...s.system.placement, [lang]: kept }, ...(level ? { levels: { ...s.system.levels, [lang]: level } } : {}) };
+  const system = { ...s.system, updatedAt: io.now(), placedAt: { ...s.system.placedAt, [lang]: io.now() }, placement: { ...s.system.placement, [lang]: kept }, ...(level ? { levels: { ...s.system.levels, [lang]: level } } : {}) };
   const systems = s.systems.map((x) => (x.id === system.id ? system : x));
   if (s.langStatus[lang] !== "ready") return { session: { ...s, system, systems, plan: planningSystem(system, systems) }, system, saved: Promise.resolve(false) };
   const m0 = s.memories[lang] ?? emptyMemory(lang);

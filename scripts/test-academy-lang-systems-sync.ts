@@ -41,10 +41,13 @@ const asian = createSystem("en", ["zh", "ja"], [], T + 10);
 }
 {
   const server: SystemsDoc = { systems: [{ ...romance, placement: { fr: 99, es: 3 } }], removed: {} };
-  const reset: SystemsDoc = { systems: [{ ...romance, updatedAt: T + 500, placement: { fr: 0 } }], removed: {} };
+  const reset: SystemsDoc = { systems: [{ ...romance, updatedAt: T + 500, placedAt: { fr: T + 500 }, placement: { fr: 0 } }], removed: {} };
   const r = mergeSystems(server, reset).systems[0];
   ok(r.placement.fr === 0 && r.placement.es === 3, "a newer placement reset beats an older higher tier and keeps other languages");
   ok(JSON.stringify(mergeSystems(reset, server)) === JSON.stringify(mergeSystems(server, reset)), "reset merge is order independent");
+  const stale: SystemsDoc = { systems: [{ ...romance, updatedAt: T + 900, placedAt: { es: T + 900, fr: T + 100 }, placement: { es: 5, fr: 7 } }], removed: {} };
+  const s2 = mergeSystems(mergeSystems(server, reset), stale).systems[0];
+  ok(s2.placement.fr === 0 && s2.placement.es === 5, "a stale device placing es does not carry back its old fr tier");
 }
 {
   const m = mergeSystems({ systems: [romance, asian], removed: {} }, { systems: [], removed: { [asian.id]: T + 20 } });

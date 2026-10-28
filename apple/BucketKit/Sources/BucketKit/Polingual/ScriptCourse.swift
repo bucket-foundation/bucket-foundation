@@ -27,9 +27,10 @@ public enum ScriptCourse {
 
     public static func latinUnit(_ lang: String, root: String) -> AlphabetUnit? {
         guard latinLetters[lang] != nil || lang == "id" || lang == "en" else { return nil }
-        let known = latinRoots.contains(root) ? Set(parse(latinLetters[root] ?? "").map(\.ch)) : []
-        var letters = latinRoots.contains(root) ? [] : parse(basicLatin)
-        letters += parse(latinLetters[lang] ?? "").filter { !known.contains($0.ch) }
+        let known = latinRoots.contains(root) ? Set(parse(latinLetters[root] ?? "").map { "\($0.ch)=\($0.sound)" }) : []
+        let own = parse(latinLetters[lang] ?? "").filter { !known.contains("\($0.ch)=\($0.sound)") }
+        let ownChs = Set(parse(latinLetters[lang] ?? "").map(\.ch))
+        let letters = (latinRoots.contains(root) ? [] : parse(basicLatin).filter { !ownChs.contains($0.ch) }) + own
         guard !letters.isEmpty, lang != root else { return nil }
         return AlphabetUnit(id: "latin-\(lang)-from-\(root)", lang: lang, script: "Latn", title: "\(Lang.name(lang)) letters", letters: letters)
     }

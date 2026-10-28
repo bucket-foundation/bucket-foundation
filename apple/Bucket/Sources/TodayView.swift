@@ -104,12 +104,11 @@ struct TodayView: View {
         order = ids.joined(separator: ",")
     }
 
-    func reorder(_ shown: [Item], _ from: IndexSet, _ to: Int) {
+    func reorder(_ shown: [Item], _ from: IndexSet, _ to: Int, pending: Bool) {
         var moved = shown.map(\.id)
         moved.move(fromOffsets: from, toOffset: to)
         let rest = items.map(\.id).filter { !moved.contains($0) }
-        let pendingFirst = shown.first.map { hasWork($0, Date().timeIntervalSince1970 * 1000) } ?? true
-        order = (pendingFirst ? moved + rest : rest + moved).joined(separator: ",")
+        order = (pending ? moved + rest : rest + moved).joined(separator: ",")
     }
 
     @ViewBuilder
@@ -187,7 +186,7 @@ struct TodayView: View {
                     if !pending.isEmpty {
                         Section {
                             ForEach(pending) { row($0, done: false) }
-                                .onMove { reorder(pending, $0, $1) }
+                                .onMove { reorder(pending, $0, $1, pending: true) }
                                 .listRowBackground(Palette.card)
                         } header: {
                             Eyebrow(text: "Your studies")
@@ -196,7 +195,7 @@ struct TodayView: View {
                     if !finished.isEmpty {
                         Section {
                             ForEach(finished) { row($0, done: true) }
-                                .onMove { reorder(finished, $0, $1) }
+                                .onMove { reorder(finished, $0, $1, pending: false) }
                                 .listRowBackground(Palette.card)
                         } header: {
                             Eyebrow(text: "Done for today")
