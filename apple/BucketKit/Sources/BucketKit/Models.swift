@@ -83,6 +83,7 @@ public struct QuizItem: Decodable, Sendable, Hashable {
     public let level: String
     public let prompt: String
     public let answer: String
+    public let eq: String?
 }
 
 public struct CanonSearch: Decodable, Sendable {
