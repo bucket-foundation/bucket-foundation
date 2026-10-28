@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
-import { langName, shareKind, shareView, type Params } from "@/lib/share/links";
+import { langName, ogParams, shareView } from "@/lib/share/links";
 
 export const runtime = "edge";
 
 export function GET(req: Request) {
   const url = new URL(req.url);
-  const params: Params = Object.fromEntries(url.searchParams.entries());
-  const view = shareView(shareKind(url.searchParams.get("k") ?? ""), params);
+  const { kind, params } = ogParams(url.searchParams);
+  const view = shareView(kind, params);
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: "#F6EEDC", padding: 64, color: "#231F20" }}>

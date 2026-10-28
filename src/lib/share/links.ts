@@ -6,7 +6,7 @@ export const CLIP_BUNDLE = "foundation.bucket.app.Clip";
 export const APP_STORE_URL = `https://apps.apple.com/app/id${BUCKET_APP_ID}`;
 
 export type Params = Record<string, string | string[] | undefined>;
-export type ShareKind = "w" | "l" | "d" | "a" | "";
+export type ShareKind = "w" | "l" | "d" | "a" | "g" | "";
 
 export interface ShareForm {
   lang: string;
@@ -21,9 +21,11 @@ export interface ShareView {
   forms: ShareForm[];
   langs: string[];
   streak: number;
+  code: string;
 }
 
-const KEYS = ["id", "g", "f", "l", "r", "s", "d", "t", "b", "q"] as const;
+const KEYS = ["id", "g", "f", "l", "r", "s", "d", "t", "b", "q", "c", "n", "k"] as const;
+const CODE_RE = /^[0-9A-HJKMNP-TV-Z]{10}$/;
 
 export function one(params: Params, key: string, max = 200): string {
   const v = params[key];
@@ -32,7 +34,7 @@ export function one(params: Params, key: string, max = 200): string {
 }
 
 export function shareKind(raw: string | undefined): ShareKind {
-  return raw === "w" || raw === "l" || raw === "d" || raw === "a" ? raw : "";
+  return raw === "w" || raw === "l" || raw === "d" || raw === "a" || raw === "g" ? raw : "";
 }
 
 export function langName(code: string): string {
@@ -75,6 +77,7 @@ export function shareView(kind: ShareKind, params: Params): ShareView {
     forms: [],
     langs: [],
     streak: 0,
+    code: "",
   };
   if (kind === "w") {
     const forms = parseForms(one(params, "f", 400));
@@ -112,6 +115,19 @@ export function shareView(kind: ShareKind, params: Params): ShareView {
     const q = one(params, "q", 160);
     return { ...base, eyebrow: one(params, "b", 60) || "Bucket lesson", title: t, description: q || `Learn ${t} on Bucket.` };
   }
+  if (kind === "g") {
+    const code = one(params, "c", 10).toUpperCase();
+    const name = one(params, "n", 60);
+    if (!CODE_RE.test(code) || !name) return base;
+    const family = one(params, "k", 10) === "family";
+    return {
+      ...base,
+      eyebrow: family ? "Family group" : "Friends group",
+      title: `Join ${name} on Bucket`,
+      description: `You are invited to learn together with ${name}. Join on Bucket to see each other's languages, subjects and streaks.`,
+      code,
+    };
+  }
   return base;
 }
 
@@ -132,6 +148,13 @@ export function sharePath(kind: ShareKind, params: Params): string {
 export function ogPath(kind: ShareKind, params: Params): string {
   const q = passQuery(params);
   return `/api/share/og?k=${kind}${q ? `&${q}` : ""}`;
+}
+
+export function ogParams(search: URLSearchParams): { kind: ShareKind; params: Params } {
+  const [kind, groupKind] = search.getAll("k");
+  const params: Params = Object.fromEntries(search.entries());
+  params.k = groupKind ?? "";
+  return { kind: shareKind(kind ?? ""), params };
 }
 
 export function appleBanner(url: string): string {

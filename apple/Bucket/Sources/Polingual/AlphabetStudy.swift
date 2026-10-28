@@ -6,6 +6,15 @@ enum HeritageMode {
     static func on(_ systemId: String) -> Bool { UserDefaults.standard.bool(forKey: key(systemId)) }
 }
 
+enum WritingMode {
+    static func key(_ systemId: String) -> String { "writing.\(systemId)" }
+    static func on(_ systemId: String) -> Bool { UserDefaults.standard.object(forKey: key(systemId)) as? Bool ?? true }
+
+    static func queue(_ system: LangSystem, _ state: EngineState, now: Double) -> [QueueEntry] {
+        on(system.id) || HeritageMode.on(system.id) ? ScriptCourse.queue(system, state, now: now) : []
+    }
+}
+
 struct AlphabetStudy: View {
     @Environment(LangStore.self) private var store
     let systemId: String

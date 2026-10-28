@@ -138,6 +138,12 @@ final class Reminders {
         return granted
     }
 
+    func sync() async {
+        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        denied = status == .denied
+        if defaults.object(forKey: Self.enabledKey) == nil, status == .authorized || status == .provisional { enabled = true }
+    }
+
     func disable() {
         enabled = false
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: (0..<Self.quietAfterDays + 1).map { Self.idPrefix + String($0) })
@@ -187,6 +193,12 @@ struct ReminderPrompt: View {
                     Button("Remind me when these are due") { Task { _ = await reminders.enable() } }
                         .buttonStyle(D8Option(align: .center, compact: true))
                 }
+                #if os(iOS)
+                if reminders.denied, let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+                    Link("Open Settings", destination: url)
+                        .buttonStyle(D8Option(align: .center, compact: true))
+                }
+                #endif
             }
         }
     }
@@ -247,5 +259,10 @@ final class NotificationPresenter: NSObject, UNUserNotificationCenterDelegate, S
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
         [.banner, .list, .sound]
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        guard PushToken.isCheer(response.notification.request.content.userInfo) else { return }
+        await MainActor.run { NotificationCenter.default.post(name: .openToday, object: nil) }
     }
 }
