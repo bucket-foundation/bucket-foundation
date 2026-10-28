@@ -44,11 +44,12 @@ public struct Card: Sendable, Equatable {
     public var firedCredit: Double?
     public var introduced: String?
     public var placed: Bool?
+    public var spread: Bool?
     public var extra = JSObject()
 
     public init(state: String? = nil) { self.state = state }
 
-    static let known: Set<String> = ["state", "stability", "difficulty", "reps", "lapses", "lastReview", "due", "scheduledDays", "firedCredit", "introduced", "placed"]
+    static let known: Set<String> = ["state", "stability", "difficulty", "reps", "lapses", "lastReview", "due", "scheduledDays", "firedCredit", "introduced", "placed", "spread"]
 
     public init(js: JSValue) {
         let o = js.object ?? JSObject()
@@ -63,6 +64,7 @@ public struct Card: Sendable, Equatable {
         firedCredit = o["firedCredit"]?.number
         introduced = o["introduced"]?.string
         placed = o["placed"]?.bool
+        spread = o["spread"]?.bool
         for (k, v) in o.entries where !Self.known.contains(k) { extra[k] = v }
     }
 
@@ -79,6 +81,7 @@ public struct Card: Sendable, Equatable {
         if let firedCredit { o["firedCredit"] = .number(firedCredit) }
         if let introduced { o["introduced"] = .string(introduced) }
         if let placed { o["placed"] = .bool(placed) }
+        if let spread { o["spread"] = .bool(spread) }
         return .object(o)
     }
 }
@@ -363,4 +366,45 @@ public func liveStreak(_ state: EngineState, now: Double, tz: TimeZone = .curren
     let today = Date(timeIntervalSince1970: now / 1000)
     let yesterday = cal.date(byAdding: .day, value: -1, to: today) ?? today.addingTimeInterval(-86_400)
     return last == dayKey(now, tz: tz) || last == dayKey(yesterday.timeIntervalSince1970 * 1000, tz: tz) ? state.streak : 0
+}
+
+public let PLACED_SPREAD_DAYS = 14
+public let PLACED_PER_DAY = 25
+
+public func placedHash(_ id: String) -> UInt32 {
+    var h: UInt32 = 0x811c9dc5
+    for u in id.utf16 { h = (h ^ UInt32(u)) &* 0x01000193 }
+    return h
+}
+
+public func spreadPlaced(_ cards: inout OrderedMap<Card>, _ ids: [String], now: Double) {
+    var load: [Int: Int] = [:]
+    let ordered = ids.sorted { a, b in
+        let ha = placedHash(a), hb = placedHash(b)
+        return ha != hb ? ha < hb : strCmp(a, b)
+    }
+    for id in ordered {
+        var day = 1 + Int(placedHash(id) % UInt32(PLACED_SPREAD_DAYS))
+        var tries = 0
+        while (load[day] ?? 0) >= PLACED_PER_DAY && tries < PLACED_SPREAD_DAYS {
+            day = (day % PLACED_SPREAD_DAYS) + 1
+            tries += 1
+        }
+        while (load[day] ?? 0) >= PLACED_PER_DAY { day += 1 }
+        load[day, default: 0] += 1
+        guard var c = cards[id] else { continue }
+        c.due = now + Double(day) * DAY_MS
+        c.spread = true
+        cards[id] = c
+    }
+}
+
+func untouchedPlaced(_ c: Card) -> Bool { c.placed == true && c.reps == 1 && c.spread != true }
+
+public func spreadingUntouchedPlaced(_ state: EngineState, now: Double) -> EngineState {
+    let stale = state.cards.keys.filter { untouchedPlaced(state.cards[$0]!) }
+    guard !stale.isEmpty else { return state }
+    var next = state
+    spreadPlaced(&next.cards, stale, now: now)
+    return next
 }
