@@ -1,5 +1,5 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
-import { dayKey, grade, makeFsrs, normalizeState, PLACED_PER_DAY, spreadPlaced, type EngineState } from "./engine";
+import { dayKey, grade, makeFsrs, normalizeState, PLACED_PER_DAY, placedHash, spreadPlaced, type EngineState } from "./engine";
 import { alphabetDone, alphabetUnit, dueLetters, FOLDABLE_MARKS, judgeSpelled, letterItemId, nextLetters } from "./lang-script";
 import { isHAspire } from "./french-h-aspire";
 
@@ -1014,6 +1014,14 @@ export function letterQueue(system: LangSystem, state: EngineState, now: number 
   return out;
 }
 
+export function matchPick(candidates: string[], system: LangSystem, corpus: LangCorpus, inSession: Set<string>, seed: string): string | null {
+  const fresh = candidates.filter((id) => inSession.has(id));
+  const base = fresh.length ? fresh : candidates;
+  const rooted = base.filter((id) => sharedRootLangs(corpus.byId.get(id)!, system).length >= 2);
+  const pool = rooted.length ? rooted : base;
+  return pool.length ? pool[placedHash(seed) % pool.length] : null;
+}
+
 export function buildQueue(
   system: LangSystem,
   corpus: LangCorpus,
@@ -1051,9 +1059,8 @@ export function buildQueue(
       const covered = system.targets.filter((l) => item.forms[l]);
       return covered.length >= 2 && covered.every((l) => langs.has(l)) && new Set(covered.map((l) => item.forms[l])).size === covered.length;
     });
-    const roots = (id: string) => sharedRootLangs(corpus.byId.get(id)!, system).length;
-    candidates.sort((a, b) => roots(b[0]) - roots(a[0]));
-    if (candidates.length) out.push({ itemId: candidates[0][0], lang: system.targets[0], stage: "match" });
+    const pick = matchPick(candidates.map(([id]) => id), system, corpus, new Set(out.map((e) => e.itemId)), `${system.id}|${dayKey(now)}|${Object.keys(state.cards).length}`);
+    if (pick) out.push({ itemId: pick, lang: system.targets[0], stage: "match" });
   }
   return out;
 }
