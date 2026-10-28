@@ -75,13 +75,16 @@ extension LearnView {
         case .langs(let root, let targets):
             DeepLink.shared.pending = nil
             await langs.load()
-            let existing = langs.systems.first { $0.root == root && Set($0.targets) == Set(targets) }
-            let system: LangSystem? = if let existing { existing } else { try? await langs.create(root: root, targets: targets) }
             path = NavigationPath()
             path.append(LangRoute.home)
-            if let system { path.append(LangRoute.system(system.id)) }
+            if let system = langs.systems.first(where: { $0.root == root && Set($0.targets) == Set(targets) }) {
+                path.append(LangRoute.system(system.id))
+            }
         case .deck(let id), .atom(let id, _):
-            guard let entry = library.scienceDecks.first(where: { $0.id == id }) else { return }
+            guard let entry = library.scienceDecks.first(where: { $0.id == id }) else {
+                if !library.scienceDecks.isEmpty { DeepLink.shared.pending = nil }
+                return
+            }
             DeepLink.shared.pending = nil
             path = NavigationPath()
             path.append(entry)

@@ -114,7 +114,11 @@ struct RootView: View {
         .sharesScreenshots()
         .onOpenURL { DeepLink.shared.open($0) }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
-        .onChange(of: DeepLink.shared.pending) { _, link in if let link { tab = link.tab } }
+        .onChange(of: DeepLink.shared.pending) { _, link in
+            guard let link else { return }
+            tab = link.tab
+            if link == .home { DeepLink.shared.pending = nil }
+        }
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in

@@ -84,6 +84,8 @@ targets:
     info:
       path: Clip/Info.plist
       properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSAppClip:
           NSAppClipRequestEphemeralUserNotification: false
           NSAppClipRequestLocationConfirmation: false

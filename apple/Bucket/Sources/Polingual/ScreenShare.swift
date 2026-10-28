@@ -31,7 +31,7 @@ struct SharePage: Equatable {
         return SharePage(path: "/w", items: [
             URLQueryItem(name: "id", value: id),
             URLQueryItem(name: "g", value: clip(gloss, 60)),
-            URLQueryItem(name: "f", value: shown.map { "\($0.lang):\(clip($0.form, 40))" }.joined(separator: "|")),
+            URLQueryItem(name: "f", value: shown.map { "\($0.lang):\(clip($0.form.replacingOccurrences(of: "|", with: "/"), 40))" }.joined(separator: "|")),
         ], title: "\(gloss): " + shown.map(\.form).joined(separator: " · "))
     }
 
@@ -66,6 +66,11 @@ final class ScreenShare {
     static let shared = ScreenShare()
     private var stack: [(id: UUID, page: SharePage)] = []
     var current: SharePage { stack.last?.page ?? .app }
+
+    func push(_ id: UUID, _ page: SharePage) {
+        stack.removeAll { $0.id == id }
+        stack.append((id, page))
+    }
 
     func set(_ id: UUID, _ page: SharePage) {
         if let i = stack.firstIndex(where: { $0.id == id }) { stack[i].page = page } else { stack.append((id, page)) }
@@ -138,7 +143,7 @@ struct SharePageTag: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .onAppear { ScreenShare.shared.set(id, page) }
+            .onAppear { ScreenShare.shared.push(id, page) }
             .onChange(of: page) { _, p in ScreenShare.shared.set(id, p) }
             .onDisappear { ScreenShare.shared.remove(id) }
     }
@@ -167,15 +172,16 @@ enum SharedLink: Equatable {
     case home
 
     init?(_ url: URL) {
-        guard url.host() == SharePage.host || url.host() == "bucket.foundation" || url.scheme == "bucket", let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
+        guard url.host() == SharePage.host || url.host() == "bucket.foundation", let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         let q = Dictionary((c.queryItems ?? []).compactMap { i in i.value.map { (i.name, $0) } }, uniquingKeysWith: { a, _ in a })
         let parts = c.path.split(separator: "/").map(String.init)
         guard parts.first == "s" else { return nil }
         switch parts.dropFirst().first {
         case "w": self = q["g"].map { .word($0) } ?? .home
         case "l":
-            let targets = (q["l"] ?? "").split(separator: ".").map(String.init).filter { !$0.isEmpty }
-            self = targets.isEmpty ? .home : .langs(root: q["r"] ?? "en", targets: targets)
+            let targets = Array((q["l"] ?? "").split(separator: ".").map(String.init).filter { Lang.info[$0] != nil }.prefix(8))
+            let root = q["r"].flatMap { Lang.info[$0] != nil ? $0 : nil } ?? "en"
+            self = targets.isEmpty ? .home : .langs(root: root, targets: targets)
         case "d": self = q["id"].map { .deck($0) } ?? .home
         case "a":
             if let d = q["d"], let a = q["id"] { self = .atom(deck: d, atom: a) } else { self = q["d"].map { .deck($0) } ?? .home }
