@@ -582,7 +582,7 @@ export function joinTokens(tokens: string[], lang: string): string {
 export const LEVEL_LABEL: Record<number, string> = { 1: "A1", 2: "A2", 3: "B1" };
 
 export function learnerLevel(state: EngineState, lang: string): number {
-  const n = Object.keys(state.cards).filter((id) => id.startsWith(`${lang}:`) && !id.startsWith(`${lang}:g-`) && !id.startsWith(`${lang}:c-`)).length;
+  const n = Object.keys(state.cards).filter((id) => isStarted(state.cards[id]) && id.startsWith(`${lang}:`) && !id.startsWith(`${lang}:g-`) && !id.startsWith(`${lang}:c-`)).length;
   return n < 60 ? 1 : n < 150 ? 2 : 3;
 }
 
@@ -815,6 +815,19 @@ export function matchExercise(corpus: LangCorpus, system: LangSystem, item: Lang
   };
 }
 
+export function isStarted(c: Card | undefined): boolean {
+  return !!c && c.state !== "new";
+}
+
+export function unplace(state: EngineState, lang: string, now: number): EngineState {
+  const next: EngineState = { ...state, cards: { ...state.cards } };
+  for (const [id, c] of Object.entries(state.cards)) {
+    if (parseCardId(id).lang !== lang || !(c as LangCard).placed) continue;
+    next.cards[id] = { state: "new", lastReview: now } as Card;
+  }
+  return next;
+}
+
 function cardsOf(state: EngineState): Record<string, LangCard> {
   return state.cards as Record<string, LangCard>;
 }
@@ -838,8 +851,8 @@ export function unitStatus(system: LangSystem, corpus: LangCorpus, state: Engine
   let prevDone = true;
   for (const unit of corpus.units) {
     const items = corpus.items.filter((i) => i.unit === unit.index && isVocab(i) && usable(i, system.root, lang));
-    const started = items.filter((i) => cards[cardId(lang, i.id)]).length;
-    const covered = items.filter((i) => cards[cardId(lang, i.id)] || i.tier < (system.placement[lang] ?? 0)).length;
+    const started = items.filter((i) => isStarted(cards[cardId(lang, i.id)])).length;
+    const covered = items.filter((i) => isStarted(cards[cardId(lang, i.id)]) || i.tier < (system.placement[lang] ?? 0)).length;
     const done = items.length === 0 || covered / items.length >= UNIT_UNLOCK_SHARE;
     out.push({ unit, total: items.length, started, unlocked: prevDone, done });
     prevDone = prevDone && done;
@@ -908,7 +921,7 @@ export function planSession(system: LangSystem, corpus: LangCorpus, state: Engin
       if (!unlocked.get(l)!.has(item.unit)) continue;
       if (isVocab(item) && item.tier < (system.placement[l] ?? 0)) continue;
       if (!isVocab(item) && !grammarReady(item, l, cards)) continue;
-      if (cards[cardId(l, item.id)]) continue;
+      if (isStarted(cards[cardId(l, item.id)])) continue;
       fresh.push({ itemId: item.id, lang: l });
       budget.set(l, (budget.get(l) ?? 0) - 1);
     }
@@ -918,7 +931,7 @@ export function planSession(system: LangSystem, corpus: LangCorpus, state: Engin
 
 export function gradeCard(state: EngineState, lang: string, itemId: string, rating: Rating, now: number = Date.now(), tz?: string): EngineState {
   const id = cardId(lang, itemId);
-  const wasNew = !state.cards[id];
+  const wasNew = !isStarted(state.cards[id]);
   const next = grade(state, [], {}, id, rating, "recall", now, tz);
   if (wasNew) (next.cards[id] as LangCard).introduced = dayKey(now, tz);
   else if ((state.cards[id] as LangCard).introduced) (next.cards[id] as LangCard).introduced = (state.cards[id] as LangCard).introduced;
@@ -981,7 +994,7 @@ export function applyPlacement(state: EngineState, system: LangSystem, corpus: L
     if (!isVocab(item) || !usable(item, system.root, lang)) continue;
     if (only ? !only.has(item.id) : item.tier >= tier) continue;
     const id = cardId(lang, item.id);
-    if (next.cards[id]) continue;
+    if (isStarted(next.cards[id])) continue;
     const c = fsrs.review({ state: "new" }, 4, now) as LangCard;
     c.placed = true;
     c.introduced = dayKey(now);
@@ -1026,7 +1039,7 @@ export function buildQueue(
   const out: QueueEntry[] = opts.heritage ? letterQueue(system, state, now) : [];
   const pendingChecks: { at: number; e: QueueEntry }[] = [];
   for (const c of plan) {
-    const isNew = !state.cards[cardId(c.lang, c.itemId)];
+    const isNew = !isStarted(state.cards[cardId(c.lang, c.itemId)]);
     const vocab = isVocab(corpus.byId.get(c.itemId)!);
     out.push({ ...c, stage: isNew && vocab ? "intro" : isNew ? "check" : "review" });
     if (isNew && vocab) pendingChecks.push({ at: out.length + CHECK_GAP, e: { ...c, stage: "check" } });
@@ -1041,7 +1054,7 @@ export function buildQueue(
       seen.get(itemId)!.add(lang);
     };
     for (const e of out) note(e.itemId, e.lang);
-    for (const id of Object.keys(state.cards)) {
+    for (const id of Object.keys(state.cards).filter((k) => isStarted(state.cards[k]))) {
       const { lang, itemId } = parseCardId(id);
       if (system.targets.includes(lang)) note(itemId, lang);
     }
@@ -1133,7 +1146,7 @@ export function langProgress(system: LangSystem, corpus: LangCorpus, state: Engi
     let rSum = 0;
     for (const i of all) {
       const c = cards[cardId(lang, i.id)];
-      if (!c) continue;
+      if (!c || !isStarted(c)) continue;
       if (c.due != null && c.due <= now) due++;
       if (!isVocab(i)) continue;
       started++;
@@ -1149,7 +1162,7 @@ export function langProgress(system: LangSystem, corpus: LangCorpus, state: Engi
       due,
       retention: started ? rSum / started : 0,
       placedAt: system.placement[lang] ?? null,
-      grammarStarted: grammar.filter((i) => cards[cardId(lang, i.id)]).length,
+      grammarStarted: grammar.filter((i) => isStarted(cards[cardId(lang, i.id)])).length,
       grammarTotal: grammar.length,
     };
   });
