@@ -13,12 +13,12 @@ struct SentenceTranslations: View {
     @State private var round = 0
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            ForEach(targets, id: \.self) { l in
-                HStack(spacing: 10) {
-                    FlagTile(lang: l, size: 26)
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(Array(targets.enumerated()), id: \.element) { i, l in
+                HStack(spacing: 12) {
+                    FlagTile(lang: l, size: 28)
                     if let r = results[l] {
-                        Text(r).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                        Text(r).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
                             .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
                             .textSelection(.enabled)
                         Spacer(minLength: 4)
@@ -32,9 +32,13 @@ struct SentenceTranslations: View {
                         ProgressView()
                     }
                 }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
                 .accessibilityElement(children: .combine)
+                if i < targets.count - 1 { Divider().overlay(Palette.muted.opacity(0.15)).padding(.leading, 54) }
             }
         }
+        .background(Palette.paper, in: .rect(cornerRadius: 16))
         .task(id: "\(source)|\(targets.joined(separator: ","))|\(text)|\(round)") { await run() }
         .translationTask(download) { session in
             try? await session.prepareTranslation()
