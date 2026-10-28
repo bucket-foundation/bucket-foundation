@@ -104,6 +104,7 @@ export interface LangSystem {
   createdAt: number;
   updatedAt?: number;
   placement: Record<string, number>;
+  placedAt?: Record<string, number>;
   levels?: Record<string, string>;
 }
 
@@ -1115,12 +1116,27 @@ export function mergeSystems(a: SystemsDoc, b: SystemsDoc): SystemsDoc {
       byId.set(s.id, { ...s, placement: Object.fromEntries(Object.entries(s.placement).sort()) });
       continue;
     }
-    const placement = { ...cur.placement };
-    for (const [l, t] of Object.entries(s.placement)) placement[l] = Math.max(placement[l] ?? 0, t);
     const newer = (s.updatedAt ?? s.createdAt) > (cur.updatedAt ?? cur.createdAt) ? s : cur;
     const older = newer === s ? cur : s;
+    const placement: Record<string, number> = {};
+    const stamps: Record<string, number> = {};
+    for (const l of new Set([...Object.keys(cur.placement), ...Object.keys(s.placement)])) {
+      const ta = cur.placedAt?.[l];
+      const tb = s.placedAt?.[l];
+      const va = cur.placement[l];
+      const vb = s.placement[l];
+      if (ta !== undefined && tb !== undefined && ta !== tb) placement[l] = (ta > tb ? va : vb) ?? 0;
+      else if (ta !== undefined && tb === undefined && va !== undefined) placement[l] = va;
+      else if (tb !== undefined && ta === undefined && vb !== undefined) placement[l] = vb;
+      else placement[l] = Math.max(va ?? 0, vb ?? 0);
+      const t = [ta, tb].filter((x): x is number => x !== undefined);
+      if (t.length) stamps[l] = Math.max(...t);
+    }
     const levels = older.levels || newer.levels ? { levels: { ...older.levels, ...newer.levels } } : {};
-    byId.set(s.id, { ...newer, ...levels, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
+    const base: LangSystem = { ...newer };
+    delete base.placedAt;
+    const placedAt = Object.keys(stamps).length ? { placedAt: Object.fromEntries(Object.entries(stamps).sort()) } : {};
+    byId.set(s.id, { ...base, ...levels, ...placedAt, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
   }
   const systems = Array.from(byId.values())
     .filter((s) => (removed[s.id] ?? -1) < s.createdAt)

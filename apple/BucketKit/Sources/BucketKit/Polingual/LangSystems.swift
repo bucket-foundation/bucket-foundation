@@ -259,6 +259,7 @@ public struct LangSystem: Sendable, Identifiable, Equatable, Hashable {
     public var createdAt: Double
     public var updatedAt: Double?
     public var placement: [String: Double]
+    public var placedAt: [String: Double]?
     public var levels: [String: String]?
 
     public init(id: String, name: String, root: String, targets: [String], createdAt: Double, updatedAt: Double? = nil, placement: [String: Double] = [:]) {
@@ -282,6 +283,11 @@ public struct LangSystem: Sendable, Identifiable, Equatable, Hashable {
         var p: [String: Double] = [:]
         for (k, v) in js["placement"]?.object?.entries ?? [] { if let n = v.number { p[k] = n } }
         placement = p
+        if let o = js["placedAt"]?.object {
+            var t: [String: Double] = [:]
+            for (k, v) in o.entries { if let n = v.number { t[k] = n } }
+            placedAt = t
+        }
         if let o = js["levels"]?.object {
             var l: [String: String] = [:]
             for (k, v) in o.entries { if let s = v.string { l[k] = s } }
@@ -293,6 +299,7 @@ public struct LangSystem: Sendable, Identifiable, Equatable, Hashable {
         var o = JSObject([("id", .string(id)), ("name", .string(name)), ("root", .string(root)), ("targets", .array(targets.map(JSValue.string))), ("createdAt", .number(createdAt))])
         if let updatedAt { o["updatedAt"] = .number(updatedAt) }
         o["placement"] = .object(JSObject(placement.keys.sorted().map { ($0, .number(placement[$0]!)) }))
+        if let placedAt { o["placedAt"] = .object(JSObject(placedAt.keys.sorted().map { ($0, .number(placedAt[$0]!)) })) }
         if let levels { o["levels"] = .object(JSObject(levels.keys.sorted().map { ($0, .string(levels[$0]!)) })) }
         return .object(o)
     }
@@ -1188,6 +1195,16 @@ public func applyPlacement(_ state: EngineState, _ system: LangSystem, _ corpus:
     return next
 }
 
+public func stalePlacements(_ system: LangSystem, _ state: EngineState, _ corpus: LangCorpus) -> [String] {
+    let langs = state.cards.entries.map { (lang: parseCardId($0.key).lang, placed: $0.value.placed == true) }
+    let placedLangs = Set(langs.filter(\.placed).map(\.lang))
+    let studied = Set(langs.map(\.lang))
+    return system.placement.filter { l, tier in
+        tier > 0 && studied.contains(l) && !placedLangs.contains(l)
+            && corpus.items.contains { isVocab($0) && $0.tier < tier && $0.form(l) != nil }
+    }.map(\.key).sorted()
+}
+
 public func unplace(_ state: EngineState, _ lang: String, now: Double) -> EngineState {
     var next = state
     for (id, c) in state.cards.entries where parseCardId(id).lang == lang && c.placed == true {
@@ -1329,10 +1346,25 @@ public func mergeSystems(_ a: SystemsDoc, _ b: SystemsDoc) -> SystemsDoc {
             byId[s.id] = s
             continue
         }
-        var placement = cur.placement
-        for (l, t) in s.placement { placement[l] = max(placement[l] ?? 0, t) }
         var newer = (s.updatedAt ?? s.createdAt) > (cur.updatedAt ?? cur.createdAt) ? s : cur
         let older = newer == s ? cur : s
+        var placement: [String: Double] = [:]
+        var stamps: [String: Double] = [:]
+        for l in Set(cur.placement.keys).union(s.placement.keys) {
+            let ta = cur.placedAt?[l], tb = s.placedAt?[l]
+            let va = cur.placement[l], vb = s.placement[l]
+            if let ta, let tb, ta != tb {
+                placement[l] = (ta > tb ? va : vb) ?? 0
+            } else if ta != nil && tb == nil, let va {
+                placement[l] = va
+            } else if tb != nil && ta == nil, let vb {
+                placement[l] = vb
+            } else {
+                placement[l] = max(va ?? 0, vb ?? 0)
+            }
+            if let t = [ta, tb].compactMap({ $0 }).max() { stamps[l] = t }
+        }
+        newer.placedAt = stamps.isEmpty ? nil : stamps
         if older.levels != nil || newer.levels != nil { newer.levels = (older.levels ?? [:]).merging(newer.levels ?? [:]) { _, n in n } }
         newer.createdAt = min(cur.createdAt, s.createdAt)
         newer.placement = placement
