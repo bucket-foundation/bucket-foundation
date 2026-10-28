@@ -94,7 +94,7 @@ struct ExerciseView: View {
 
     var headerText: String {
         let level = ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? ""
-        let label = String(localized: String.LocalizationValue(ex.kind.label))
+        let label = ex.kind == .letter && ScriptCourse.isCharacter(ex.lang, ex.answer) ? String(localized: "find the character") : String(localized: String.LocalizationValue(ex.kind.label))
         return ex.kind == .match ? "\(ex.prompt) · \(label)\(level)" : "\(label)\(level)"
     }
 

@@ -56,7 +56,8 @@ struct StudyView: View {
         let asked = wanted.flatMap { id in
             system.targets.filter { corpus.byId[id]?.form($0) != nil }.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] }
         }
-        queue = asked + buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000, heritage: HeritageMode.on(systemId))
+        let now = Date().timeIntervalSince1970 * 1000
+        queue = asked + WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
@@ -75,7 +76,7 @@ struct StudyView: View {
         }
         let entry = queue[i]
         if entry.stage == .letter {
-            current = letterExerciseFor(entry.lang, system.root, entry.itemId, &rng)
+            current = ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng)
             currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter"
             cardStart = .now
             if current == nil { self.i += 1; makeExercise() }
@@ -111,7 +112,7 @@ struct StudyView: View {
             if gate.guest && !store.guestMayStudy(systemId) { gate.require(apply) } else { apply() }
         }
         for r in results where r.rating == 1 {
-            next = requeueAfterMiss(next, i, QueueEntry(itemId: entry.itemId, lang: r.lang, stage: .review))
+            next = requeueAfterMiss(next, i, QueueEntry(itemId: entry.itemId, lang: r.lang, stage: entry.stage == .letter ? .letter : .review))
         }
         graded += results.count
         correct += results.filter { $0.rating > 1 }.count
@@ -146,7 +147,8 @@ struct StudyView: View {
                 }
                 .buttonStyle(D8Primary())
                 Button("Another round") {
-                    self.queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000, heritage: HeritageMode.on(systemId))
+                    let now = Date().timeIntervalSince1970 * 1000
+                    self.queue = WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
                     i = 0
                     graded = 0
                     correct = 0
@@ -192,6 +194,9 @@ struct StudyView: View {
                             makeExercise()
                         }
                         Toggle("Show readings and IPA", systemImage: "character.phonetic", isOn: $readings)
+                        if let system = store.system(systemId), system.targets.contains(where: { !ScriptCourse.units($0, root: system.root).isEmpty }) {
+                            Toggle("Learn the writing", systemImage: "character.textbox", isOn: Binding(get: { WritingMode.on(systemId) }, set: { UserDefaults.standard.set($0, forKey: WritingMode.key(systemId)) }))
+                        }
                         if let system = store.system(systemId), system.targets.contains(where: { LangScript.alphabetUnit($0) != nil }) {
                             Toggle("Heritage mode: spell what you hear", systemImage: "pencil.and.scribble", isOn: Binding(get: { HeritageMode.on(systemId) }, set: { UserDefaults.standard.set($0, forKey: HeritageMode.key(systemId)) }))
                             ForEach(system.targets.filter { LangScript.alphabetUnit($0) != nil }, id: \.self) { l in
