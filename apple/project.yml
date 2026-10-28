@@ -46,8 +46,8 @@ targets:
         com.apple.security.application-groups:
           - group.foundation.bucket.app
         com.apple.developer.associated-domains:
-          - applinks:bucket.foundation
-          - appclips:bucket.foundation
+          - applinks:www.bucket.foundation
+          - appclips:www.bucket.foundation
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app
@@ -93,7 +93,7 @@ targets:
         com.apple.developer.parent-application-identifiers:
           - $(AppIdentifierPrefix)foundation.bucket.app
         com.apple.developer.associated-domains:
-          - appclips:bucket.foundation
+          - appclips:www.bucket.foundation
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app.Clip

@@ -6,15 +6,15 @@ import Testing
 struct ScreenShareTests {
     @Test func wordLinkRoundTrips() {
         let page = SharePage.word(id: "night", gloss: "night", forms: [("fr", "nuit"), ("es", "noche"), ("de", "Nacht")])
-        #expect(page.url.absoluteString.hasPrefix("https://bucket.foundation/s/w?"))
+        #expect(page.url.absoluteString.hasPrefix("https://www.bucket.foundation/s/w?"))
         #expect(SharedLink(page.url) == .word("night"))
     }
 
     @Test func langsAtomAndDeckLinksParse() {
-        #expect(SharedLink(URL(string: "https://bucket.foundation/s/l?l=fr.es.it&r=en")!) == .langs(root: "en", targets: ["fr", "es", "it"]))
-        #expect(SharedLink(URL(string: "https://bucket.foundation/s/a?d=physics&id=newton-2")!) == .atom(deck: "physics", atom: "newton-2"))
-        #expect(SharedLink(URL(string: "https://bucket.foundation/s/d?id=math")!) == .deck("math"))
-        #expect(SharedLink(URL(string: "https://bucket.foundation/s")!) == .home)
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/l?l=fr.es.it&r=en")!) == .langs(root: "en", targets: ["fr", "es", "it"]))
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/a?d=physics&id=newton-2")!) == .atom(deck: "physics", atom: "newton-2"))
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/d?id=math")!) == .deck("math"))
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s")!) == .home)
         #expect(SharedLink(URL(string: "https://example.com/s/w?g=x")!) == nil)
     }
 

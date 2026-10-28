@@ -10,7 +10,7 @@ struct SharePage: Equatable {
     var items: [URLQueryItem] = []
     var title: String
 
-    static let host = "bucket.foundation"
+    static let host = "www.bucket.foundation"
     static let app = SharePage(path: "", title: String(localized: "Learn every subject and language together on Bucket"))
 
     var url: URL {
@@ -167,7 +167,7 @@ enum SharedLink: Equatable {
     case home
 
     init?(_ url: URL) {
-        guard url.host() == SharePage.host || url.scheme == "bucket", let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
+        guard url.host() == SharePage.host || url.host() == "bucket.foundation" || url.scheme == "bucket", let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         let q = Dictionary((c.queryItems ?? []).compactMap { i in i.value.map { (i.name, $0) } }, uniquingKeysWith: { a, _ in a })
         let parts = c.path.split(separator: "/").map(String.init)
         guard parts.first == "s" else { return nil }
