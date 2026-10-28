@@ -4,6 +4,14 @@ enum Plan {
     static let monthly = "com.polingual.monthly"
     static let yearly = "com.polingual.yearly"
     static let all = [yearly, monthly]
+    static let family = "com.polingual.family.yearly"
+    static let lifetime = "com.polingual.lifetime"
+    static let extra = [family, lifetime]
+    static let paid = all + extra
+
+    static func shown(extra on: Bool) -> [String] { on ? [yearly, family, monthly, lifetime] : all }
+
+    static func hasTrial(_ id: String) -> Bool { all.contains(id) }
     static let trialDays = 3
     static let terms = URL(string: "https://polingual.com/terms")!
     static let privacy = URL(string: "https://polingual.com/privacy")!
@@ -35,7 +43,7 @@ enum Access: Equatable, Sendable {
 
 enum Entitlement {
     static func live(_ r: EntitlementRecord, now: Date) -> Bool {
-        Plan.all.contains(r.productID) && r.revoked == nil && !r.upgraded && (r.expires.map { $0 > now } ?? true)
+        Plan.paid.contains(r.productID) && r.revoked == nil && !r.upgraded && (r.expires.map { $0 > now } ?? true)
     }
 
     static func access(_ records: [EntitlementRecord], now: Date) -> Access {

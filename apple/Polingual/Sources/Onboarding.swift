@@ -25,6 +25,7 @@ struct Onboarding: View {
                         .frame(maxWidth: 560, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
+                        .padding(.bottom, 64)
                         .frame(maxWidth: .infinity)
                         .tag(st)
                 }
@@ -35,7 +36,7 @@ struct Onboarding: View {
             .animation(.spring(duration: 0.4), value: step)
             footer
         }
-        .background(Dots().ignoresSafeArea())
+        .background(Backdrop().ignoresSafeArea())
         .sheet(isPresented: $signingIn) { AccountView() }
         .sheet(isPresented: $moreLanguages) { languagePicker }
         .onChange(of: account.stage) { _, st in if st == .signedIn { signingIn = false } }
@@ -54,14 +55,30 @@ struct Onboarding: View {
     }
 
     var welcome: some View {
+        GeometryReader { g in
+            if g.size.width > g.size.height {
+                HStack(alignment: .center, spacing: 20) {
+                    welcomeText.frame(maxWidth: .infinity, alignment: .leading)
+                    PlayfulTiles().frame(maxWidth: .infinity)
+                }
+            } else {
+                VStack(alignment: .leading, spacing: 16) {
+                    welcomeText
+                    PlayfulTiles()
+                }
+            }
+        }
+    }
+
+    var welcomeText: some View {
         VStack(alignment: .leading, spacing: 16) {
             PoMark()
-            (Text("Language learning for ") + Text("multilingual").foregroundStyle(D8.vermilion) + Text(" learners."))
+            Text(accented("Language learning for **multilingual** learners.", D8.vermilion))
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.6)
                 .fixedSize(horizontal: false, vertical: true)
-            PlayfulTiles()
+            StreakBadge()
         }
     }
 
@@ -77,7 +94,7 @@ struct Onboarding: View {
                 ForEach(targets, id: \.self) { l in
                     VStack(spacing: 6) {
                         FlagTile(lang: l, size: 56)
-                        Text(Lang.name(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
+                        Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .frame(maxWidth: 72)
                     .transition(.scale.combined(with: .opacity))
@@ -105,17 +122,17 @@ struct Onboarding: View {
                         Text("I already speak").foregroundStyle(Palette.muted)
                         Spacer()
                         Picker("I already speak", selection: $root) {
-                            ForEach(Lang.codes, id: \.self) { Text(Lang.name($0)).tag($0) }
+                            ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
                         }
                         .labelsHidden()
                         .tint(Palette.ink)
                     }
                     .onChange(of: root) { _, r in targets.removeAll { $0 == r } }
-                    Text(targets.count == 5 ? "Five at most. Tap one to swap it out." : "\(targets.count) of 5 picked")
+                    Text(targets.count == 5 ? String(localized: "Five at most. Tap one to swap it out.") : String(localized: "\(targets.count) of 5 picked"))
                         .font(.footnote).foregroundStyle(Palette.muted)
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                            Chip(title: Lang.name(c), langs: [c], on: targets.contains(c)) {
+                            Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
                                 if let i = targets.firstIndex(of: c) { targets.remove(at: i) } else if targets.count < 5 { targets.append(c) }
                             }
                         }
@@ -151,33 +168,22 @@ struct Onboarding: View {
             Text("Polingual reminds you once a day, at the time you usually study, and only when words are due.")
                 .font(.body)
                 .foregroundStyle(Palette.muted)
-            HStack(spacing: 8) {
-                ForEach(Array(["M", "T", "W", "T", "F", "S", "S"].enumerated()), id: \.offset) { i, d in
-                    VStack(spacing: 6) {
-                        Image(systemName: i < 5 ? "checkmark" : "")
-                            .font(.system(size: 15, weight: .heavy))
-                            .foregroundStyle(.white)
-                            .frame(width: 38, height: 38)
-                            .background(i < 5 ? D8.vermilion : Palette.rule, in: .rect(cornerRadius: 10))
-                            .modifier(Glaze(radius: 10, lip: i < 5 ? 3 : 0))
-                        Text(d).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
-                    }
-                    .frame(maxWidth: .infinity)
+            HStack(spacing: 14) {
+                Image(systemName: "flame.fill")
+                    .font(.system(size: 58))
+                    .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("5").font(.system(size: 44, weight: .heavy, design: .rounded)).foregroundStyle(D8.vermilion)
+                    Text("DAY STREAK").font(D8.caps(13)).tracking(1.5).foregroundStyle(Palette.muted)
                 }
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, 6)
+            .accessibilityElement(children: .ignore)
             .accessibilityLabel("A five day streak")
             if reminders.enabled {
                 Label("Reminder on", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
             } else if reminders.denied {
                 Text("Notifications are off for Polingual. You can turn them on later in Settings.").font(.subheadline).foregroundStyle(Palette.muted)
-            } else {
-                Button {
-                    Task { _ = await reminders.enable() }
-                } label: {
-                    Label("Turn on my daily reminder", systemImage: "bell.fill")
-                }
-                .buttonStyle(D8Option(align: .center))
             }
         }
     }
@@ -190,7 +196,7 @@ struct Onboarding: View {
             VStack(alignment: .leading, spacing: 14) {
                 HStack(spacing: 6) {
                     ForEach(targets, id: \.self) { FlagTile(lang: $0, size: 34) }
-                    Text(targets.map(Lang.name).joined(separator: " · ")).font(.headline).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.7).padding(.leading, 4)
+                    Text(targets.map(langName).joined(separator: " · ")).font(.headline).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.7).padding(.leading, 4)
                 }
                 PlanLine(icon: "scope", text: "A short placement in each language")
                 PlanLine(icon: "clock", text: "About 10 minutes a day, one mixed queue")
@@ -220,15 +226,30 @@ struct Onboarding: View {
         VStack(spacing: 12) {
             HStack(spacing: 8) {
                 ForEach(Step.allCases, id: \.self) { s in
-                    Capsule().fill(s == step ? D8.vermilion : Palette.rule).frame(width: s == step ? 22 : 8, height: 8)
+                    Capsule().fill(s == step ? D8.parchment : D8.parchment.opacity(0.35)).frame(width: s == step ? 22 : 8, height: 8)
                 }
             }
             .accessibilityHidden(true)
             Button(label) {
-                if step == .account { Task { await complete() } } else { advance() }
+                if step == .account {
+                    Task { await complete() }
+                } else if step == .daily && !reminders.enabled && !reminders.denied {
+                    Task {
+                        _ = await reminders.enable()
+                        advance()
+                    }
+                } else {
+                    advance()
+                }
             }
             .buttonStyle(D8Primary())
             .disabled((step == .languages && targets.isEmpty) || creating)
+            if step == .daily && !reminders.enabled && !reminders.denied {
+                Button("Not now") { advance() }
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(D8.parchment.opacity(0.85))
+                    .buttonStyle(LinkPad())
+            }
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 20)
@@ -238,6 +259,7 @@ struct Onboarding: View {
     var label: String {
         switch step {
         case .welcome: "Get started"
+        case .daily where !reminders.enabled && !reminders.denied: "Turn on my daily reminder"
         case .account: creating ? "Setting up" : failed == nil ? "Start learning" : "Try again"
         default: "Continue"
         }
@@ -286,8 +308,8 @@ struct PoMark: View {
 struct Point: View {
     let icon: String
     let color: Color
-    let title: String
-    let detail: String
+    let title: LocalizedStringKey
+    let detail: LocalizedStringKey
 
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
@@ -327,27 +349,37 @@ struct Dots: View {
 struct PlayfulTiles: View {
     var compact = false
     @Environment(\.accessibilityReduceMotion) private var still
-    static let words: [(String, String, String)] = [("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ")]
+    static let night: [(String, String, String)] = [
+        ("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ"),
+        ("de", "Nacht", "naxt"), ("nl", "nacht", "nɑxt"), ("sv", "natt", "natː"), ("ru", "ночь", "notʃʲ"),
+        ("el", "νύχτα", "ˈnixta"), ("ja", "夜", "joɾɯ"), ("ko", "밤", "pam"), ("tr", "gece", "ɟedʒe"),
+        ("hi", "रात", "raːt"), ("he", "לילה", "ˈlajla"), ("ar", "ليل", "lajl"), ("zh", "夜", "yè"),
+    ]
+    @State private var slots = [0, 1, 2, 3]
+    @State private var angle: [Double] = [0, 0, 0, 0]
     @State private var shown = false
+    @State private var floating = false
 
     var body: some View {
         GeometryReader { g in
             let side = compact ? min((g.size.width - 48) / 4, g.size.height - 16, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
             VStack(spacing: 12) {
                 if !compact {
-                    (Text("One word, ") + Text("night").foregroundStyle(D8.lapis) + Text(", in four languages"))
+                    Text(accented("One word, **night**, in every language", D8.lapis))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Palette.muted)
                 }
-                TimelineView(.animation(paused: still)) { t in
-                    let now = t.date.timeIntervalSinceReferenceDate
-                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
-                        ForEach(0..<4, id: \.self) { i in
-                            let w = Self.words[i]
-                            WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side)
-                                .rotationEffect(.degrees((i.isMultiple(of: 2) ? -2 : 1.5) + (still ? 0 : sin(now * 0.8 + Double(i)) * 1.2)))
-                                .offset(y: still ? 0 : sin(now * 1.1 + Double(i) * 1.6) * (compact ? 3 : 5))
+                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
+                    ForEach(0..<4, id: \.self) { i in
+                        let w = Self.night[slots[i]]
+                        WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) {
+                            tap()
+                            LangVoice.shared.speak(w.1, w.0)
                         }
+                            .rotation3DEffect(.degrees(angle[i]), axis: (x: 0, y: 1, z: 0), perspective: 0.4)
+                            .rotationEffect(.degrees(i.isMultiple(of: 2) ? -2 : 1.5))
+                            .offset(y: floating ? (i.isMultiple(of: 2) ? -4 : 4) : (i.isMultiple(of: 2) ? 3 : -3))
+                            .animation(still ? nil : .easeInOut(duration: 2.4 + Double(i) * 0.35).repeatForever(autoreverses: true), value: floating)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -355,13 +387,47 @@ struct PlayfulTiles: View {
                 .offset(y: shown ? 0 : 16)
             }
         }
-        .onAppear { withAnimation(.easeOut(duration: 0.6)) { shown = true } }
+        .onAppear {
+            withAnimation(.easeOut(duration: 0.6)) { shown = true }
+            floating = true
+            LangVoice.shared.warm()
+        }
+        .task {
+            guard !still else { return }
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(7))
+                await flip(Int.random(in: 0..<4), speak: false)
+            }
+        }
+    }
+
+    func flip(_ i: Int, speak: Bool) async {
+        if speak { tap() }
+        let used = Set(slots)
+        let next = (0..<Self.night.count).filter { !used.contains($0) }.randomElement() ?? slots[i]
+        if still {
+            slots[i] = next
+        } else {
+            withAnimation(.easeIn(duration: 0.24)) { angle[i] = 90 }
+            try? await Task.sleep(for: .milliseconds(240))
+            var t = Transaction()
+            t.disablesAnimations = true
+            withTransaction(t) {
+                slots[i] = next
+                angle[i] = -90
+            }
+            withAnimation(.easeOut(duration: 0.3)) { angle[i] = 0 }
+        }
+        if speak {
+            let w = Self.night[next]
+            if LangVoice.shared.canSpeak(w.1, w.0) { LangVoice.shared.speak(w.1, w.0) }
+        }
     }
 }
 
 struct PlanLine: View {
     let icon: String
-    let text: String
+    let text: LocalizedStringKey
 
     var body: some View {
         HStack(spacing: 10) {
@@ -369,4 +435,76 @@ struct PlanLine: View {
             Text(text).font(.subheadline).foregroundStyle(Palette.ink)
         }
     }
+}
+
+struct Backdrop: View {
+    var body: some View {
+        GeometryReader { g in
+            let w = g.size.width, h = g.size.height
+            ZStack(alignment: .topLeading) {
+                Dots()
+                VStack(spacing: 26) {
+                    ForEach(0..<Int(h / 52) + 1, id: \.self) { i in
+                        Text(i.isMultiple(of: 2) ? "✸" : "〜")
+                            .font(.system(size: i.isMultiple(of: 2) ? 22 : 18, weight: .black))
+                            .foregroundStyle(i.isMultiple(of: 2) ? D8.lapis : D8.malachite)
+                            .rotationEffect(.degrees(i.isMultiple(of: 2) ? 0 : -30))
+                    }
+                }
+                .frame(width: 24)
+                .opacity(0.45)
+                .offset(x: -6, y: 10)
+                Path { p in
+                    p.move(to: CGPoint(x: 0, y: h * 0.86))
+                    p.addLine(to: CGPoint(x: w, y: h * 0.80))
+                    p.addLine(to: CGPoint(x: w, y: h))
+                    p.addLine(to: CGPoint(x: 0, y: h))
+                    p.closeSubpath()
+                }
+                .fill(Color(hex: 0x5B1A4A))
+                Text("百")
+                    .font(.system(size: 30, weight: .black))
+                    .foregroundStyle(D8.parchment)
+                    .frame(width: 52, height: 52)
+                    .background(D8.vermilion, in: .rect(cornerRadius: 8))
+                    .overlay(RoundedRectangle(cornerRadius: 5).strokeBorder(D8.parchment, lineWidth: 2).padding(5))
+                    .rotationEffect(.degrees(-8))
+                    .position(x: w - 44, y: h * 0.815)
+                Text("ἑκατόν")
+                    .font(.system(size: 15, weight: .bold, design: .serif))
+                    .foregroundStyle(D8.ink)
+                    .padding(.horizontal, 10).padding(.vertical, 6)
+                    .background(D8.parchment, in: .rect(cornerRadius: 3))
+                    .rotationEffect(.degrees(6))
+                    .position(x: w * 0.18, y: h * 0.845)
+            }
+            .clipped()
+        }
+        .accessibilityHidden(true)
+    }
+}
+
+struct StreakBadge: View {
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "flame.fill")
+                .font(.system(size: 34))
+                .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
+            VStack(alignment: .leading, spacing: 0) {
+                Text("100").font(.system(size: 28, weight: .heavy, design: .rounded)).foregroundStyle(D8.vermilion)
+                Text("DAY STREAK").font(D8.caps(11)).tracking(1.4).foregroundStyle(Palette.muted)
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("A 100 day streak")
+    }
+}
+
+func accented(_ key: String.LocalizationValue, _ color: Color) -> AttributedString {
+    var a = AttributedString(localized: key)
+    for run in a.runs where run.inlinePresentationIntent?.contains(.stronglyEmphasized) == true {
+        a[run.range].foregroundColor = color
+        a[run.range].inlinePresentationIntent = nil
+    }
+    return a
 }

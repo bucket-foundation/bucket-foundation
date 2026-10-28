@@ -1,5 +1,6 @@
 import BucketKit
 import SwiftUI
+import UserNotifications
 
 @main
 struct BucketApp: App {
@@ -12,10 +13,12 @@ struct BucketApp: App {
     @Environment(\.scenePhase) private var phase
 
     init() {
+        UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
         let langs = LangStore(api: BucketAPI(), token: { await account.freshToken() })
         LangVoice.shared.store = langs
         _account = State(initialValue: account)
+        Beta.shared.account = account
         _langs = State(initialValue: langs)
         #if DEBUG
         let shift = (Launch.value("-clockDays").flatMap(Double.init) ?? 0) * DAY_MS
@@ -29,6 +32,9 @@ struct BucketApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                #if os(macOS)
+                .frame(minWidth: 960, minHeight: 680)
+                #endif
                 .environment(account)
                 .environment(library)
                 .environment(langs)
@@ -37,14 +43,47 @@ struct BucketApp: App {
                 .environment(reminders)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
+                    if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
+                    backgroundSafe {
+                        await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
+                        await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
+                        WidgetSync.refresh(langs, extra: scienceWidgetExtra(library, science))
+                        #if os(iOS)
+                        WatchBridge.shared.store = langs
+                        WatchBridge.shared.sink = langs
+                        WatchBridge.shared.send()
+                        #endif
+                    }
+                }
+                .onChange(of: reminders.wordOfDay) {
+                    backgroundSafe { await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay) }
+                }
+                .task {
+                    #if os(iOS)
+                    WatchBridge.shared.start(langs)
+                    #endif
+                }
+                .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
                 }
                 .tint(Palette.green)
         }
+        #if os(macOS)
+        .defaultSize(width: 1180, height: 820)
+        #endif
     }
 }
 
 enum AppTab: String, Hashable { case today, learn, canon, account }
+
+extension SharedLink {
+    var tab: AppTab {
+        switch self {
+        case .word, .home: .today
+        case .langs, .deck, .atom: .learn
+        }
+    }
+}
 
 enum Launch {
     static func value(_ flag: String) -> String? {
@@ -71,6 +110,15 @@ struct RootView: View {
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
+        .tabViewStyle(.sidebarAdaptable)
+        .sharesScreenshots()
+        .onOpenURL { DeepLink.shared.open($0) }
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
+        .onChange(of: DeepLink.shared.pending) { _, link in
+            guard let link else { return }
+            tab = link.tab
+            if link == .home { DeepLink.shared.pending = nil }
+        }
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
@@ -84,6 +132,19 @@ struct RootView: View {
                 reminders.reset()
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
+        #if DEBUG
+        .task {
+            guard Launch.flag("-screenshotShare") else { return }
+            try? await Task.sleep(for: .seconds(6))
+            ScreenShare.shared.screenshotTaken()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
+            science.clearLocal()
+            langs.clearLocal()
+            reminders.reset()
+        }
+        #endif
         .task {
             account.beforeSignOut = {
                 await science.flush()

@@ -1,98 +1,115 @@
 {
-  "identifier" : "7C1D6A20",
-  "nonRenewingSubscriptions" : [
-
-  ],
-  "products" : [
-
-  ],
-  "settings" : {
-    "_failTransactionsEnabled" : false,
-    "_locale" : "en_US",
-    "_storefront" : "USA",
-    "_storeKitErrors" : [
-
-    ]
-  },
-  "subscriptionGroups" : [
+  "identifier": "7C1D6A20",
+  "nonRenewingSubscriptions": [],
+  "products": [
     {
-      "id" : "21600001",
-      "localizations" : [
-
-      ],
-      "name" : "Polingual",
-      "subscriptions" : [
+      "displayPrice": "149.99",
+      "familyShareable": false,
+      "internalID": "6600000005",
+      "localizations": [
         {
-          "adHocOffers" : [
-
-          ],
-          "codeOffers" : [
-
-          ],
-          "displayPrice" : "59.99",
-          "familyShareable" : false,
-          "groupNumber" : 1,
-          "internalID" : "6600000002",
-          "introductoryOffer" : {
-            "internalID" : "6600000012",
-            "numberOfPeriods" : 1,
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
+          "description": "Every language system, paid once.",
+          "displayName": "Polingual Lifetime",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.polingual.lifetime",
+      "referenceName": "Polingual Lifetime",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "21600001",
+      "localizations": [],
+      "name": "Polingual",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "59.99",
+          "familyShareable": false,
+          "groupNumber": 1,
+          "internalID": "6600000002",
+          "introductoryOffer": {
+            "internalID": "6600000012",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P3D"
           },
-          "localizations" : [
+          "localizations": [
             {
-              "description" : "Every language system, a year at a time.",
-              "displayName" : "Polingual Yearly",
-              "locale" : "en_US"
+              "description": "Every language system, a year at a time.",
+              "displayName": "Polingual Yearly",
+              "locale": "en_US"
             }
           ],
-          "productID" : "com.polingual.yearly",
-          "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "Polingual Yearly",
-          "subscriptionGroupID" : "21600001",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
+          "productID": "com.polingual.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Polingual Yearly",
+          "subscriptionGroupID": "21600001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
         },
         {
-          "adHocOffers" : [
-
-          ],
-          "codeOffers" : [
-
-          ],
-          "displayPrice" : "9.99",
-          "familyShareable" : false,
-          "groupNumber" : 2,
-          "internalID" : "6600000001",
-          "introductoryOffer" : {
-            "internalID" : "6600000011",
-            "numberOfPeriods" : 1,
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "9.99",
+          "familyShareable": false,
+          "groupNumber": 2,
+          "internalID": "6600000001",
+          "introductoryOffer": {
+            "internalID": "6600000011",
+            "numberOfPeriods": 1,
+            "paymentMode": "free",
+            "subscriptionPeriod": "P3D"
           },
-          "localizations" : [
+          "localizations": [
             {
-              "description" : "Every language system, month to month.",
-              "displayName" : "Polingual Monthly",
-              "locale" : "en_US"
+              "description": "Every language system, month to month.",
+              "displayName": "Polingual Monthly",
+              "locale": "en_US"
             }
           ],
-          "productID" : "com.polingual.monthly",
-          "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "Polingual Monthly",
-          "subscriptionGroupID" : "21600001",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
+          "productID": "com.polingual.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Polingual Monthly",
+          "subscriptionGroupID": "21600001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "89.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "6600000004",
+          "localizations": [
+            {
+              "description": "Every language system for up to six people, a year at a time.",
+              "displayName": "Polingual Family",
+              "locale": "en_US"
+            }
+          ],
+          "productID": "com.polingual.family.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Polingual Family Yearly",
+          "subscriptionGroupID": "21600001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
         }
       ]
     }
   ],
-  "version" : {
-    "major" : 4,
-    "minor" : 0
+  "version": {
+    "major": 4,
+    "minor": 0
   }
 }

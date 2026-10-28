@@ -49,7 +49,7 @@ struct LangSystemRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(system.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
                 if let sum {
-                    Text("\(sum.started) of \(sum.total) cards · \(Int(sum.streak)) day streak").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text("\(sum.started) of \(sum.total) cards · \(StreakGoal(streak: liveStreak(state, now: now)).day) day streak").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                 }
             }
             Spacer(minLength: 0)
@@ -91,6 +91,7 @@ extension View {
             case .system(let id): SystemView(path: path, systemId: id)
             case .study(let id): StudyView(path: path, systemId: id)
             case .place(let id, let lang): PlacementView(path: path, systemId: id, requested: lang)
+            case .alphabet(let id, let lang): AlphabetStudy(systemId: id, lang: lang)
             }
         }
     }

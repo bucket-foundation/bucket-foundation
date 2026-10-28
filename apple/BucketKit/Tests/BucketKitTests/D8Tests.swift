@@ -49,3 +49,345 @@ import Testing
     #expect(out.options == ex.options)
     #expect(out.optionLangs == nil)
 }
+
+@Test func italianAndFrenchArticlesFollowTheNoun() {
+    #expect(Lang.contextualArticle("it", "m", "zero") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "studente") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "gnomo") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "amico") == "l'")
+    #expect(Lang.contextualArticle("it", "f", "acqua") == "l'")
+    #expect(Lang.contextualArticle("it", "m", "libro") == nil)
+    #expect(Lang.contextualArticle("it", "m", "sole") == nil)
+    #expect(Lang.contextualArticle("fr", "f", "eau") == "l'")
+    #expect(Lang.contextualArticle("es", "f", "agua") == "el")
+    #expect(Lang.contextualArticle("es", "f", "casa") == nil)
+}
+
+@Test func articleWordMatchesTheWebEngine() {
+    #expect(Lang.articleWord("it", "m", "libro") == "il")
+    #expect(Lang.articleWord("it", "m", "zero") == "lo")
+    #expect(Lang.articleWord("it", "f", "acqua") == "l'")
+    #expect(Lang.articleWord("it", "m", "hotel") == "il")
+    #expect(Lang.articleWord("fr", "m", "homme") == "l'")
+    #expect(Lang.articleWord("fr", "m", "haricot") == "le")
+    #expect(Lang.articleWord("es", "f", "agua") == "el")
+    #expect(Lang.articleWord("de", "f", "Kirche") == "die")
+    #expect(Lang.articleWord("en", "m", "x") == nil)
+}
+
+@Test func flagMissCountersSurviveAReload() {
+    var st = EngineState()
+    st = FlagMisses.recording(st, "fr")
+    st = FlagMisses.recording(st, "fr")
+    st = FlagMisses.recording(st, "it")
+    let reloaded = EngineState(js: st.js)
+    #expect(FlagMisses.count(reloaded, "fr") == 2)
+    #expect(FlagMisses.count(reloaded, "it") == 1)
+    #expect(FlagMisses.count(reloaded, "es") == 0)
+}
+
+@Test func namelessFlagMissLeavesTheWordUnratedAndCounts() {
+    let pairs = [LangWord(lang: "fr", word: "nuit"), LangWord(lang: "es", word: "noche"), LangWord(lang: "it", word: "notte")]
+    var st = EngineState()
+    for _ in 0..<FlagMisses.hitsToHideName { st = FlagMisses.recordingHit(st, "it") }
+    #expect(!FlagMisses.showsName(st, "it") && FlagMisses.showsName(st, "fr"))
+    let out = FlagMisses.gradeMatch(pairs, ["fr": "it", "it": "fr", "es": "es"], st)
+    #expect(out.ratings.first { $0.lang == "fr" }?.rating == nil)
+    #expect(out.ratings.first { $0.lang == "it" }?.rating == 1)
+    #expect(out.ratings.first { $0.lang == "es" }?.rating == 3)
+    #expect(FlagMisses.count(out.state, "it") == 1)
+    #expect(FlagMisses.showsName(out.state, "it"))
+}
+
+@Test func namedFlagsGradeLikeGradeMatch() {
+    let pairs = [LangWord(lang: "fr", word: "nuit"), LangWord(lang: "es", word: "noche"), LangWord(lang: "it", word: "notte")]
+    for assign in [["fr": "fr", "es": "es", "it": "it"], ["fr": "es", "es": "fr", "it": "it"], ["fr": "it", "es": "fr", "it": "es"]] {
+        let plain = gradeMatch(pairs, assign).map { $0.correct ? 3 : 1 }
+        let flags = FlagMisses.gradeMatch(pairs, assign, EngineState()).ratings.map { $0.rating }
+        #expect(flags == plain.map { Optional($0) })
+    }
+}
+
+@Test func flagMatchGradingMatchesTheWebGolden() throws {
+    struct Case: Decodable {
+        let name: String
+        let hits: [String: Int]
+        let misses: [String: Int]
+        let assign: [String: String]
+    }
+    func fixture(_ name: String) throws -> Data {
+        let url = try #require(Bundle.module.url(forResource: name, withExtension: "json", subdirectory: "Fixtures/lang"))
+        return try Data(contentsOf: url)
+    }
+    let cases = try JSONDecoder().decode([Case].self, from: fixture("flag-match-cases"))
+    let golden = try JSONDecoder().decode([[String]].self, from: fixture("flag-match-golden"))
+    #expect(cases.count == golden.count)
+    let langs = ["fr", "es", "it"]
+    let pairs = langs.map { LangWord(lang: $0, word: "w-\($0)") }
+    func table(_ m: [String: Int]) -> JSValue { .object(JSObject(m.sorted { $0.key < $1.key }.map { ($0.key, .number(Double($0.value))) })) }
+    func render(_ v: JSValue?) -> String {
+        guard let o = v?.object else { return "" }
+        return o.keys.sorted().map { "\($0)=\(Int(o[$0]?.number ?? 0))" }.joined(separator: ",")
+    }
+    for (c, want) in zip(cases, golden) {
+        var st = EngineState()
+        if !c.hits.isEmpty { st.settingsExtra["flagHits"] = table(c.hits) }
+        if !c.misses.isEmpty { st.settingsExtra["flagMisses"] = table(c.misses) }
+        let out = FlagMisses.gradeMatch(pairs, c.assign, st)
+        let ratings = langs.map { l in "\(l)=\(out.ratings.first { $0.lang == l }?.rating.map(String.init) ?? "none")" }.joined(separator: ",")
+        let shows = langs.map { "\($0)=\(FlagMisses.showsName(out.state, $0))" }.joined(separator: ",")
+        let got = [c.name, ratings, render(out.state.settingsExtra["flagHits"]), render(out.state.settingsExtra["flagMisses"]), shows]
+        #expect(got == want, "\(c.name)")
+    }
+}
+
+@Test func flagCountersFromTwoDevicesBothSurviveTheMerge() {
+    var phone = EngineState()
+    phone = FlagMisses.recordingHit(phone, "fr")
+    phone = FlagMisses.recordingHit(phone, "fr")
+    phone = FlagMisses.recording(phone, "it")
+    var ipad = EngineState()
+    ipad = FlagMisses.recordingHit(ipad, "es")
+    ipad = FlagMisses.recordingHit(ipad, "fr")
+    ipad = FlagMisses.recording(ipad, "de")
+    for merged in [mergeState(phone, ipad), mergeState(ipad, phone)] {
+        #expect(FlagMisses.hits(merged, "fr") == 2)
+        #expect(FlagMisses.hits(merged, "es") == 1)
+        #expect(FlagMisses.count(merged, "it") == 1)
+        #expect(FlagMisses.count(merged, "de") == 1)
+    }
+    let roundTrip = mergeState(EngineState(js: phone.js), EngineState(js: ipad.js))
+    #expect(FlagMisses.hits(roundTrip, "es") == 1 && FlagMisses.count(roundTrip, "it") == 1)
+}
+
+@Test func aMissOnOneDeviceBeatsStaleHitsFromAnother() {
+    var stale = EngineState()
+    for _ in 0..<3 { stale = FlagMisses.recordingHit(stale, "it") }
+    var fresh = stale
+    fresh = FlagMisses.recording(fresh, "it")
+    #expect(!FlagMisses.showsName(stale, "it"))
+    #expect(FlagMisses.showsName(fresh, "it"))
+    for merged in [mergeState(stale, fresh), mergeState(fresh, stale)] {
+        #expect(FlagMisses.count(merged, "it") == 1)
+        #expect(FlagMisses.hits(merged, "it") == 0)
+        #expect(FlagMisses.showsName(merged, "it"))
+    }
+    var later = fresh
+    later = FlagMisses.recordingHit(later, "it")
+    let tie = mergeState(fresh, later)
+    #expect(FlagMisses.count(tie, "it") == 1 && FlagMisses.hits(tie, "it") == 1)
+}
+
+@Test func flagMergeMatchesTheWebGolden() throws {
+    let url = try #require(Bundle.module.url(forResource: "flag-merge-golden", withExtension: "json", subdirectory: "Fixtures/lang"))
+    let root = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
+    func settings(_ side: Any?) -> JSObject {
+        let side = side as? [String: [String: Int]] ?? [:]
+        return JSObject(side.keys.sorted().map { k in (k, .object(JSObject((side[k] ?? [:]).sorted { $0.key < $1.key }.map { ($0.key, .number(Double($0.value))) }))) })
+    }
+    func ints(_ v: JSValue?) -> [String: Int] {
+        var out: [String: Int] = [:]
+        for k in v?.object?.keys ?? [] { out[k] = Int(v?.object?[k]?.number ?? 0) }
+        return out
+    }
+    func merged(_ sides: [JSObject]) -> JSObject {
+        sides.dropFirst().reduce(sides[0]) { acc, next in
+            var out = JSObject()
+            FlagMisses.mergeSynced(&out, acc, next)
+            return out
+        }
+    }
+    func orders(_ xs: [JSObject]) -> [[JSObject]] {
+        xs.count <= 1 ? [xs] : xs.indices.flatMap { i in orders(Array(xs[..<i] + xs[(i + 1)...])).map { [xs[i]] + $0 } }
+    }
+    let cases = [root] + (root["cases"] as? [[String: Any]] ?? [])
+    #expect(cases.count == 4)
+    for c in cases {
+        let want = c["synced"] as? [String: [String: Int]] ?? [:]
+        let sides = ["a", "b", "c"].compactMap { c[$0] }.map(settings)
+        for order in orders(sides) {
+            let out = merged(order)
+            #expect(ints(out["flagHits"]) == want["flagHits"] ?? [:], "\(c["name"] ?? "root")")
+            #expect(ints(out["flagMisses"]) == want["flagMisses"] ?? [:], "\(c["name"] ?? "root")")
+        }
+    }
+    #expect((root["synced"] as? [String: [String: Int]])?["flagHits"]?["it"] == 0)
+}
+
+@Test func frenchHAspireBlocksElision() {
+    #expect(Lang.isHAspire("haricot") && Lang.isHAspire("haricots") && Lang.isHAspire("hiboux"))
+    #expect(Lang.isHAspire("Homard") && Lang.isHAspire(" haut de gamme"))
+    #expect(!Lang.isHAspire("homme") && !Lang.isHAspire("heure") && !Lang.isHAspire("hôtels"))
+    #expect(Lang.isHAspire("hot-dog") && Lang.isHAspire("haut-parleur") && Lang.isHAspire("hors-d'œuvre") && !Lang.isHAspire("hallucination"))
+    #expect(Lang.articleWord("fr", "m", "haricot") == "le" && Lang.articleWord("fr", "f", "hache") == "la")
+    #expect(Lang.articleWord("fr", "m", "homme") == "l'" && Lang.articleWord("fr", "f", "heure") == "l'")
+}
+
+@Test func aStreakShowsOnlyThroughTheDayAfterTheLastStudy() {
+    let utc = TimeZone(identifier: "UTC")!
+    let day = 86_400_000.0
+    let monday = 1_761_523_200_000.0
+    var st = EngineState()
+    st.streak = 6
+    st.lastStudyDay = dayKey(monday, tz: utc)
+    #expect(liveStreak(st, now: monday + 3_600_000, tz: utc) == 6)
+    #expect(liveStreak(st, now: monday + day + 82_800_000, tz: utc) == 6)
+    #expect(liveStreak(st, now: monday + 2 * day + 60_000, tz: utc) == 0)
+    #expect(liveStreak(EngineState(), now: monday, tz: utc) == 0)
+}
+
+@Test func aStreakSurvivesTheShortSpringForwardDay() throws {
+    let ny = try #require(TimeZone(identifier: "America/New_York"))
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = ny
+    let studied = try #require(cal.date(from: DateComponents(year: 2026, month: 3, day: 8, hour: 12)))
+    let afterMidnight = try #require(cal.date(from: DateComponents(year: 2026, month: 3, day: 9, hour: 0, minute: 30)))
+    var st = EngineState()
+    st.streak = 5
+    st.lastStudyDay = dayKey(studied.timeIntervalSince1970 * 1000, tz: ny)
+    #expect(liveStreak(st, now: afterMidnight.timeIntervalSince1970 * 1000, tz: ny) == 5)
+}
+
+@Test func reminderForecastsDropALapsedStreak() {
+    let utc = TimeZone(identifier: "UTC")!
+    let monday = 1_761_523_200_000.0
+    var st = EngineState()
+    st.streak = 8
+    st.lastStudyDay = dayKey(monday, tz: utc)
+    let tuesday = Date(timeIntervalSince1970: (monday + 86_400_000 + 18 * 3_600_000) / 1000)
+    let thursday = Date(timeIntervalSince1970: (monday + 3 * 86_400_000) / 1000)
+    #expect(ReminderPlan.streak([st, EngineState()], at: tuesday, tz: utc) == 8)
+    #expect(ReminderPlan.streak([st], at: thursday, tz: utc) == 0)
+    let due = [(due: monday, label: Optional("nuit"))]
+    #expect(ReminderPlan.forecast(due: due, at: thursday, streak: ReminderPlan.streak([st], at: thursday, tz: utc)).streak == 0)
+    #expect(ReminderPlan.forecast(due: due, at: tuesday, streak: ReminderPlan.streak([st], at: tuesday, tz: utc)).streak == 8)
+}
+
+@Test func theHundredDayGoalCountsDownAndHolds() {
+    #expect(StreakGoal(streak: 6) == StreakGoal(streak: 6.0))
+    let six = StreakGoal(streak: 6)
+    #expect(six.day == 6 && six.left == 94 && !six.reached && abs(six.fraction - 0.06) < 1e-9)
+    let zero = StreakGoal(streak: 0)
+    #expect(zero.day == 0 && zero.left == 100)
+    let done = StreakGoal(streak: 130)
+    #expect(done.reached && done.left == 0 && done.fraction == 1 && done.day == 130)
+}
+
+@Test func theHundredDayGoalTurnsOverAtDay100AndSurvivesBadNumbers() {
+    let ninetyNine = StreakGoal(streak: 99)
+    #expect(ninetyNine.day == 99 && ninetyNine.left == 1 && !ninetyNine.reached && abs(ninetyNine.fraction - 0.99) < 1e-9)
+    let hundred = StreakGoal(streak: 100)
+    #expect(hundred.day == 100 && hundred.left == 0 && hundred.reached && hundred.fraction == 1)
+    for bad in [Double.nan, .infinity, -.infinity, -4] {
+        let g = StreakGoal(streak: bad)
+        #expect(g.day == 0 && g.left == 100 && !g.reached && g.fraction == 0)
+    }
+    var st = EngineState()
+    st.streak = .nan
+    st.lastStudyDay = dayKey(1_761_566_400_000, tz: TimeZone(identifier: "UTC")!)
+    #expect(ReminderPlan.streak([st], at: Date(timeIntervalSince1970: 1_761_566_400), tz: TimeZone(identifier: "UTC")!) == 0)
+}
+
+@Test func a311CardPlacementPileSpreadsOnceAtMost25ADay() {
+    let now = 1_792_508_400_000.0
+    var st = EngineState()
+    for i in 0..<311 {
+        var c = Card(state: "review")
+        c.reps = 1
+        c.stability = 3.2
+        c.lastReview = now - 3 * DAY_MS
+        c.due = now
+        c.placed = true
+        st.cards["fr:w\(i)"] = c
+    }
+    var seen = Card(state: "review")
+    seen.reps = 2
+    seen.due = now
+    seen.placed = true
+    st.cards["fr:seen"] = seen
+    let spread = spreadingUntouchedPlaced(st, now: now)
+    var perDay: [Int: Int] = [:]
+    for (id, c) in spread.cards.entries where id != "fr:seen" {
+        let day = Int(((c.due ?? 0) - now) / DAY_MS)
+        #expect(day >= 1)
+        perDay[day, default: 0] += 1
+    }
+    #expect(perDay.values.allSatisfy { $0 <= PLACED_PER_DAY })
+    #expect(perDay.keys.filter { $0 <= PLACED_SPREAD_DAYS }.count == PLACED_SPREAD_DAYS)
+    #expect(spread.cards["fr:seen"] == seen)
+    #expect(spreadingUntouchedPlaced(spread, now: now + 5 * DAY_MS) == spread)
+    #expect(EngineState(js: spread.js).cards["fr:w0"]?.spread == true)
+}
+
+@Test func placedReviewsAreCappedBehindRealReviews() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    let utc = TimeZone(identifier: "UTC")!
+    let now = 1_792_508_400_000.0
+    let sys = try createSystem("en", ["fr"], [], now: now)
+    let items = corpus.items.filter { $0.form("fr") != nil }.prefix(40)
+    var st = EngineState()
+    for (i, item) in items.enumerated() {
+        var c = Card(state: "review")
+        c.reps = i < 3 ? 4 : 1
+        c.placed = i < 3 ? nil : true
+        c.due = now - Double(40 - i) * 60_000
+        st.cards[cardId("fr", item.id)] = c
+    }
+    let plan = planSession(sys, corpus, st, now: now, size: 40, tz: utc)
+    let reviewed = plan.filter { st.cards.has(cardId($0.lang, $0.itemId)) }
+    #expect(reviewed.prefix(3).map(\.itemId) == items.prefix(3).map(\.id))
+    #expect(reviewed.count == 3 + PLACED_PER_DAY)
+}
+
+@Test func everyGenderedNounHasAnArticle() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    var checked = 0
+    for item in corpus.items where item.kind == .gender {
+        for (lang, g) in item.gender.entries {
+            let noun = item.forms[lang] ?? ""
+            #expect(Lang.articleWord(lang, g, noun) != nil, "\(item.id) \(lang) \(g)")
+            checked += 1
+        }
+    }
+    #expect(checked > 0)
+    #expect(Lang.articleWord("de", "pl", "Kleider") == "die")
+}
+
+@Test func unplaceTurnsPlacedCardsBackIntoNewWords() {
+    let now = 1_792_508_400_000.0
+    var st = EngineState()
+    for i in 0..<40 {
+        var c = Card(state: "review")
+        c.reps = i % 2 == 0 ? 1 : 4
+        c.stability = 30
+        c.lastReview = now - 3 * DAY_MS
+        c.due = now + 20 * DAY_MS
+        c.placed = true
+        st.cards["fr:w\(i)"] = c
+        st.cards["es:w\(i)"] = c
+    }
+    var studied = Card(state: "review")
+    studied.reps = 3
+    studied.stability = 30
+    studied.lastReview = now - DAY_MS
+    st.cards["fr:studied"] = studied
+    let out = unplace(st, "fr", now: now)
+    #expect(out.cards["fr:studied"] == studied)
+    #expect(out.cards["es:w0"] == st.cards["es:w0"])
+    #expect((0..<40).allSatisfy { !out.cards.started("fr:w\($0)") && out.cards.has("fr:w\($0)") })
+    #expect(out.cards.started("fr:studied"))
+    let merged = mergeState(out, st)
+    #expect((0..<40).allSatisfy { !merged.cards.started("fr:w\($0)") })
+    let graded = gradeCard(out, "fr", "w0", 3, now: now + 1000)
+    #expect(graded.cards.started("fr:w0") && graded.cards["fr:w0"]?.reps == 1 && graded.cards["fr:w0"]?.introduced != nil)
+}
+
+@Test func matchPickRotatesAcrossSeeds() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    let system = LangSystem(id: "s", name: "G", root: "en", targets: ["de", "sv", "nl"], createdAt: 0)
+    let ids = corpus.items.filter { isVocab($0) && $0.form("de") != nil && $0.form("sv") != nil && $0.form("nl") != nil }.prefix(40).map(\.id)
+    let picks = Set((0..<30).compactMap { matchPick(Array(ids), system, corpus, inSession: [], seed: "s|2026-10-\($0)|\($0 * 3)") })
+    #expect(picks.count >= 5)
+    let session = Set(ids.suffix(3))
+    #expect(session.contains(matchPick(Array(ids), system, corpus, inSession: session, seed: "x")!))
+}

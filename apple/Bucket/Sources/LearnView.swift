@@ -19,20 +19,20 @@ struct LearnView: View {
                 case .ready:
                     List {
                         Section {
-                            ForEach(library.scienceDecks) { entry in
-                                NavigationLink(value: entry) { DeckRow(entry: entry) }
-                                    .listRowBackground(Palette.card)
-                            }
-                        } header: {
-                            Eyebrow(text: "Seven branches and the meta-skill")
-                        }
-                        Section {
                             ForEach(library.languageDecks) { entry in
                                 NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
                                     .listRowBackground(Palette.card)
                             }
                         } header: {
                             Eyebrow(text: "Languages")
+                        }
+                        Section {
+                            ForEach(library.scienceDecks) { entry in
+                                NavigationLink(value: entry) { DeckRow(entry: entry) }
+                                    .listRowBackground(Palette.card)
+                            }
+                        } header: {
+                            Eyebrow(text: "Seven branches and the meta-skill")
                         }
                     }
                 }
@@ -60,8 +60,38 @@ struct LearnView: View {
             default: break
             }
         }
+        .onChange(of: DeepLink.shared.pending, initial: true) { _, _ in Task { await follow() } }
         .onChange(of: library.scienceDecks) { _, decks in
+            if DeepLink.shared.pending != nil { Task { await follow() } }
             if path.isEmpty, let id = Launch.value("-openDeck"), let d = decks.first(where: { $0.id == id }) { path.append(d) }
+        }
+    }
+}
+
+extension LearnView {
+    func follow() async {
+        guard let link = DeepLink.shared.pending, link.tab == .learn else { return }
+        switch link {
+        case .langs(let root, let targets):
+            DeepLink.shared.pending = nil
+            await langs.load()
+            path = NavigationPath()
+            path.append(LangRoute.home)
+            if let system = langs.systems.first(where: { $0.root == root && Set($0.targets) == Set(targets) }) {
+                path.append(LangRoute.system(system.id))
+            }
+        case .deck(let id), .atom(let id, _):
+            guard let entry = library.scienceDecks.first(where: { $0.id == id }) else {
+                if !library.scienceDecks.isEmpty { DeepLink.shared.pending = nil }
+                return
+            }
+            DeepLink.shared.pending = nil
+            path = NavigationPath()
+            path.append(entry)
+            if case .atom(_, let atomId) = link, let deck = await library.prepared(entry), let atom = deck.byId[atomId] {
+                path.append(AtomRoute(deck: entry, atom: atom))
+            }
+        default: break
         }
     }
 }
@@ -109,7 +139,7 @@ struct DeckView: View {
                         Button {
                             studying = StudyLaunch(entry: entry, deck: deck)
                         } label: {
-                            Label(today.isEmpty ? "Study" : "Study today (\(today.count))", systemImage: "play.fill").font(.headline)
+                            Label(today.isEmpty ? String(localized: "Study") : String(localized: "Study today (\(today.count))"), systemImage: "play.fill").font(.headline)
                         }
                     }
                     .listRowBackground(Palette.card)
@@ -124,7 +154,7 @@ struct DeckView: View {
                                     HStack {
                                         Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
                                         Spacer()
-                                        Text(item.kind == .review ? "REVIEW" : "NEW").font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
+                                        Text(item.kind == .review ? String(localized: "REVIEW") : String(localized: "NEW")).font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
                                     }
                                 }
                             }
@@ -154,6 +184,7 @@ struct DeckView: View {
             }
         }
         .paper()
+        .sharePage(.deck(entry))
         .navigationTitle(entry.title)
         .task {
             deck = await library.prepared(entry)
@@ -226,6 +257,7 @@ struct AtomView: View {
             .frame(maxWidth: .infinity)
         }
         .paper()
+        .sharePage(.atom(route.deck, atom))
         .inlineTitle()
         .sheet(isPresented: $practicing) {
             if let deck = library.prepared[route.deck.id] { AtomDrillSheet(deck: deck, atom: deck.byId[atom.id] ?? atom) }
