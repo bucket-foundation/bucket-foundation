@@ -18,8 +18,10 @@
 .tt:hover .snd{opacity:.9}
 .tt.playing .snd{color:#D9381E;opacity:1}
 .tt::after{left:auto;right:18px}
-.t{transition:opacity .24s ease}
-.t.flip{opacity:0}
-
-@keyframes fin{from{transform:perspective(600px) rotateY(-90deg)}}
+[data-tiles]{perspective:900px}
+.t{transition:rotate .26s ease-in,transform .15s;backface-visibility:hidden}
+.t.flip{rotate:y 90deg}
+.t.flipin{animation:fin .32s cubic-bezier(.2,.9,.3,1.2)}
+.t.deal{animation:fin .5s cubic-bezier(.2,.9,.3,1.2) backwards}
+@keyframes fin{from{rotate:y -90deg}}
 .tt .snd:focus-visible{outline:3px solid #D9381E;outline-offset:2px;border-radius:4px}
