@@ -15,6 +15,7 @@ export interface MobileSyncDeps {
   readLocal: (branch: string) => EngineState | null;
   uuid?: () => string;
   now?: () => number;
+  app?: string;
 }
 
 export interface MobileSync {
@@ -103,7 +104,7 @@ export function createMobileSync(deps: MobileSyncDeps): MobileSync {
 
   async function sendCode(email: string): Promise<{ ok: boolean; error?: string }> {
     if (!EMAIL_RE.test(email)) return { ok: false, error: "bad_email" };
-    const r = await session({ action: "otp", email });
+    const r = await session(deps.app ? { action: "otp", email, app: deps.app } : { action: "otp", email });
     return r.ok ? { ok: true } : { ok: false, error: String(r.body.error ?? "send_failed") };
   }
 

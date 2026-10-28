@@ -157,15 +157,44 @@ describe("rule 4, sources and licences", () => {
   });
 });
 
+describe("angle and radius", () => {
+  const shaped = (angle: number, radius: number) => fixtureDraft({ rows: [{ key: "one", title: "T", sub: "", group: "a", source: "open", angle, radius, year: 1990 }] });
+
+  test("values from 0 to 1 pack into the frame", () => {
+    const [rows] = assembleRowSet([shaped(0.25, 1)], ctx);
+    expect([rows.frame.angle, rows.frame.radius, rows.year]).toEqual([[0.25], [1], [1990]]);
+  });
+
+  test("a set without them carries null columns", () => {
+    const [rows] = assembleRowSet([fixtureDraft()], ctx);
+    expect([rows.frame.angle, rows.frame.radius]).toEqual([null, null]);
+  });
+
+  test("a value outside 0 to 1 fails", () => {
+    expect(() => assembleRowSet([shaped(1.5, 0)], ctx)).toThrow(/rule 3: angle/);
+    expect(() => assembleRowSet([shaped(0, -0.1)], ctx)).toThrow(/rule 3: radius/);
+  });
+});
+
 describe("rule 5, places", () => {
   const placed = (place: string) => fixtureDraft({ modes: ["earth"], rows: [{ key: "one", title: "T", sub: "", group: "a", source: "open", place }] });
 
-  test("a two-letter code in the country file passes", () => {
-    expect(assembleRowSet([placed("CL")], ctx)[0].frame.place).toEqual(["CL"]);
+  test("a three-letter code in the country file passes", () => {
+    expect(assembleRowSet([placed("CHL")], ctx)[0].frame.place).toEqual(["CHL"]);
+  });
+
+  test("iso3 codes match the world indicator countries the scoring file ranks", () => {
+    const data = resolve(import.meta.dir, "../../../../../src/data");
+    const scoring = JSON.parse(readFileSync(join(data, "world-indicators-scoring.json"), "utf8")) as { directions: Record<string, string> };
+    const world = JSON.parse(readFileSync(join(data, "world-indicators.json"), "utf8")) as { countries: { iso3: string; values: Record<string, unknown> }[] };
+    const ranked = world.countries.filter((c) => Object.keys(scoring.directions).some((k) => k in c.values)).map((c) => c.iso3);
+    expect(ranked.length).toBeGreaterThan(100);
+    const draft = fixtureDraft({ modes: ["earth"], rows: ranked.map((place) => ({ key: place, title: "T", sub: "", group: "a", source: "open", place })) });
+    expect(assembleRowSet([draft], fixtureContext({ places: new Set(ranked) }))[0].frame.place).toEqual(ranked);
   });
 
   test("a code outside the country file or of another shape fails", () => {
-    for (const place of ["ZZ", "USA", "us", "Chile"]) expect(() => assembleRowSet([placed(place)], ctx)).toThrow(/rule 5/);
+    for (const place of ["ZZZ", "US", "CL", "chl", "Chile"]) expect(() => assembleRowSet([placed(place)], ctx)).toThrow(/rule 5/);
   });
 });
 

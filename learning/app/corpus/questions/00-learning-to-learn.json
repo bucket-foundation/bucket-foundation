@@ -1,0 +1,748 @@
+{
+ "branch": "00-learning-to-learn",
+ "version": "0.1.0",
+ "questions": [
+  {
+   "id": "how-learning-works.pick",
+   "atom": "how-learning-works",
+   "kind": "pick",
+   "prompt": "Dunlosky et al. (2013) rated which pair of study techniques high utility?",
+   "options": [
+    "Practice testing and distributed practice",
+    "Rereading and highlighting the chapter text",
+    "Summarizing and keyword mnemonics",
+    "Imagery use and rereading together"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "how-learning-works.calculate",
+   "atom": "how-learning-works",
+   "kind": "calculate",
+   "prompt": "Dunlosky et al. graded 10 techniques and rated 2 of them high utility. What percent of the techniques earned the top rating?",
+   "answer": 20,
+   "tol": 0.5,
+   "unit": "%"
+  },
+  {
+   "id": "how-learning-works.order",
+   "atom": "how-learning-works",
+   "kind": "order",
+   "prompt": "Put the steps of an evidence-based study session in order.",
+   "steps": [
+    "Read the section once",
+    "Close the book and recall the key points",
+    "Check your recall against the text",
+    "Schedule the next review a few days out"
+   ]
+  },
+  {
+   "id": "how-learning-works.spot-error",
+   "atom": "how-learning-works",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step in this study plan.",
+   "steps": [
+    "Read the chapter once",
+    "Highlight the key sentences",
+    "Reread the highlights three times as the main review",
+    "Take a self-quiz the next day"
+   ],
+   "error": 2,
+   "fix": "Rereading highlights is low utility; replace it with retrieval practice."
+  },
+  {
+   "id": "how-learning-works.match",
+   "atom": "how-learning-works",
+   "kind": "match",
+   "prompt": "Match each technique to its Dunlosky utility rating.",
+   "pairs": [
+    {
+     "term": "Practice testing",
+     "meaning": "High utility"
+    },
+    {
+     "term": "Interleaved practice",
+     "meaning": "Moderate utility"
+    },
+    {
+     "term": "Highlighting",
+     "meaning": "Low utility"
+    }
+   ]
+  },
+  {
+   "id": "how-learning-works.applied",
+   "atom": "how-learning-works",
+   "kind": "pick",
+   "prompt": "You have one week before a biology exam. Which plan uses the two high-utility techniques?",
+   "options": [
+    "Rereading the notes every night",
+    "Spaced self-testing with flashcards",
+    "Highlighting the textbook in color",
+    "Copying the notes out neatly in a fresh notebook each night"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
+   "id": "metacognition.pick",
+   "atom": "metacognition",
+   "kind": "pick",
+   "prompt": "Flavell (1979) split metacognition into which two parts?",
+   "options": [
+    "Knowledge and regulation",
+    "Memory and attention span",
+    "Reading and writing skills",
+    "Speed and accuracy of recall"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "metacognition.calculate",
+   "atom": "metacognition",
+   "kind": "calculate",
+   "prompt": "You predicted you would get 9 of 10 quiz items right and got 6. By how many percentage points did you overestimate?",
+   "answer": 30,
+   "tol": 0.5,
+   "unit": "points",
+   "applied": true
+  },
+  {
+   "id": "metacognition.order",
+   "atom": "metacognition",
+   "kind": "order",
+   "prompt": "Order the metacognitive regulation cycle.",
+   "steps": [
+    "Plan how to approach the task",
+    "Monitor your understanding while working",
+    "Evaluate the result against the goal",
+    "Adjust your strategy for next time"
+   ]
+  },
+  {
+   "id": "metacognition.spot-error",
+   "atom": "metacognition",
+   "kind": "spot-error",
+   "prompt": "Find the step that breaks self-monitoring.",
+   "steps": [
+    "Set a goal for the session",
+    "Attempt practice problems without notes",
+    "Judge mastery by how familiar the page looks",
+    "Compare answers with the key"
+   ],
+   "error": 2,
+   "fix": "Judge mastery from recall performance; familiarity is a poor signal."
+  },
+  {
+   "id": "metacognition.match",
+   "atom": "metacognition",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Metacognitive knowledge",
+     "meaning": "What you know about how you learn"
+    },
+    {
+     "term": "Monitoring",
+     "meaning": "Tracking how well you understand right now"
+    },
+    {
+     "term": "Regulation",
+     "meaning": "Changing strategy in response to what you notice"
+    }
+   ]
+  },
+  {
+   "id": "fluency-illusion.pick",
+   "atom": "fluency-illusion",
+   "kind": "pick",
+   "prompt": "Why does rereading feel effective?",
+   "options": [
+    "Familiarity is mistaken for mastery",
+    "It produces the strongest long-term memory",
+    "It forces retrieval",
+    "It spaces practice automatically"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "fluency-illusion.calculate",
+   "atom": "fluency-illusion",
+   "kind": "calculate",
+   "prompt": "In Kornell and Bjork's study 90% learned better from spacing and 72% believed massing was better. What is the gap between those two figures in percentage points?",
+   "answer": 18,
+   "tol": 0.5,
+   "unit": "points"
+  },
+  {
+   "id": "fluency-illusion.order",
+   "atom": "fluency-illusion",
+   "kind": "order",
+   "prompt": "Order the steps to test whether a feeling of knowing is real.",
+   "steps": [
+    "Notice the page feels familiar",
+    "Cover the page",
+    "Try to state the idea from memory",
+    "Compare your answer with the source"
+   ]
+  },
+  {
+   "id": "fluency-illusion.spot-error",
+   "atom": "fluency-illusion",
+   "kind": "spot-error",
+   "prompt": "Find the flawed inference.",
+   "steps": [
+    "I reread the chapter twice",
+    "The second read felt smooth",
+    "So I have learned the material",
+    "I will check with a closed-book quiz"
+   ],
+   "error": 2,
+   "fix": "Smooth rereading shows familiarity; only a recall test shows learning."
+  },
+  {
+   "id": "fluency-illusion.match",
+   "atom": "fluency-illusion",
+   "kind": "match",
+   "prompt": "Match each experience to what it signals.",
+   "pairs": [
+    {
+     "term": "Smooth rereading",
+     "meaning": "Fluency"
+    },
+    {
+     "term": "Successful closed-book recall",
+     "meaning": "Retrievable memory"
+    },
+    {
+     "term": "Struggling then recalling",
+     "meaning": "Desirable difficulty"
+    }
+   ]
+  },
+  {
+   "id": "fluency-illusion.applied",
+   "atom": "fluency-illusion",
+   "kind": "pick",
+   "prompt": "Your notes feel easy on the third reread the night before a test. What should that feeling tell you?",
+   "options": [
+    "You have mastered the material",
+    "Familiarity can mislead, so test yourself with recall",
+    "Stop studying now and go out, since the material has stuck",
+    "Reread a fourth time"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
+   "id": "retrieval-practice.pick",
+   "atom": "retrieval-practice",
+   "kind": "pick",
+   "prompt": "Which activity is retrieval practice?",
+   "options": [
+    "Writing what you remember with the book closed",
+    "Rereading your notes the night before",
+    "Highlighting the summary in yellow ink",
+    "Copying the textbook definition word for word"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "retrieval-practice.calculate",
+   "atom": "retrieval-practice",
+   "kind": "calculate",
+   "prompt": "A deck has 40 cards. A learner recalls 28 on the first self-test. What percent did they retrieve?",
+   "answer": 70,
+   "tol": 0.5,
+   "unit": "%",
+   "applied": true
+  },
+  {
+   "id": "retrieval-practice.order",
+   "atom": "retrieval-practice",
+   "kind": "order",
+   "prompt": "Order the steps of one retrieval round.",
+   "steps": [
+    "Read the prompt",
+    "Recall the answer without looking",
+    "Reveal the correct answer",
+    "Rate how hard the recall was"
+   ]
+  },
+  {
+   "id": "retrieval-practice.spot-error",
+   "atom": "retrieval-practice",
+   "kind": "spot-error",
+   "prompt": "Find the step that turns this into restudy.",
+   "steps": [
+    "Show the question",
+    "Show the answer beside the question",
+    "Ask the learner to say the answer",
+    "Record whether they were right"
+   ],
+   "error": 1,
+   "fix": "Hide the answer until after the learner attempts recall."
+  },
+  {
+   "id": "retrieval-practice.match",
+   "atom": "retrieval-practice",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Testing effect",
+     "meaning": "Recall strengthens memory more than re-exposure"
+    },
+    {
+     "term": "Feedback",
+     "meaning": "Showing the correct answer after an attempt"
+    },
+    {
+     "term": "Free recall",
+     "meaning": "Producing items with no cues"
+    }
+   ]
+  },
+  {
+   "id": "spacing.pick",
+   "atom": "spacing",
+   "kind": "pick",
+   "prompt": "Which schedule uses spacing for a test in two weeks?",
+   "options": [
+    "Four short sessions spread over two weeks",
+    "One four-hour session the night before",
+    "Two sessions back to back on one evening",
+    "Rereading notes daily without any testing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "spacing.calculate",
+   "atom": "spacing",
+   "kind": "calculate",
+   "prompt": "A review schedule doubles the gap each time: 1, 2, 4, 8 days. How many days after the first study is the fifth review if the first review is 1 day after study?",
+   "answer": 31,
+   "tol": 0,
+   "unit": "days",
+   "applied": true
+  },
+  {
+   "id": "spacing.order",
+   "atom": "spacing",
+   "kind": "order",
+   "prompt": "Order a spaced schedule for one card.",
+   "steps": [
+    "Learn the card",
+    "Review it the next day",
+    "Review it about a week later",
+    "Review it about a month later"
+   ]
+  },
+  {
+   "id": "spacing.spot-error",
+   "atom": "spacing",
+   "kind": "spot-error",
+   "prompt": "Find the step that undoes the spacing.",
+   "steps": [
+    "Study the topic on Monday",
+    "Review it on Wednesday",
+    "Review it twice more on Wednesday night",
+    "Review it the following Monday"
+   ],
+   "error": 2,
+   "fix": "Back-to-back repeats in one night are massed; spread them across days."
+  },
+  {
+   "id": "spacing.match",
+   "atom": "spacing",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Distributed practice",
+     "meaning": "Study spread across sessions"
+    },
+    {
+     "term": "Massed practice",
+     "meaning": "Study packed into one session"
+    },
+    {
+     "term": "Retention interval",
+     "meaning": "Time between last study and the test"
+    }
+   ]
+  },
+  {
+   "id": "spacing-vs-massing-misconception.pick",
+   "atom": "spacing-vs-massing-misconception",
+   "kind": "pick",
+   "prompt": "What makes this the textbook case of a wrong belief?",
+   "options": [
+    "Most learners did better with spacing yet believed massing was better",
+    "Learners did better with massing than with spacing",
+    "Most learners had no opinion about either schedule",
+    "Spacing and massing gave identical results in every test"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "spacing-vs-massing-misconception.calculate",
+   "atom": "spacing-vs-massing-misconception",
+   "kind": "calculate",
+   "prompt": "In a class of 50, 90% learn better with spacing. How many students is that?",
+   "answer": 45,
+   "tol": 0,
+   "unit": "students"
+  },
+  {
+   "id": "spacing-vs-massing-misconception.order",
+   "atom": "spacing-vs-massing-misconception",
+   "kind": "order",
+   "prompt": "Order the Kornell and Bjork style experiment.",
+   "steps": [
+    "Learners study some items massed and some spaced",
+    "Learners take a test on all items",
+    "Researchers compare scores by condition",
+    "Learners report which method they think worked better"
+   ]
+  },
+  {
+   "id": "spacing-vs-massing-misconception.spot-error",
+   "atom": "spacing-vs-massing-misconception",
+   "kind": "spot-error",
+   "prompt": "Find the error in this conclusion.",
+   "steps": [
+    "90% scored higher with spacing",
+    "72% said massing worked better",
+    "So learners' beliefs track their results",
+    "Beliefs about learning need outside checks"
+   ],
+   "error": 2,
+   "fix": "The beliefs were inverted relative to results; they did not track them."
+  },
+  {
+   "id": "spacing-vs-massing-misconception.match",
+   "atom": "spacing-vs-massing-misconception",
+   "kind": "match",
+   "prompt": "Match each figure to what it measured.",
+   "pairs": [
+    {
+     "term": "90%",
+     "meaning": "Learners who did better with spacing"
+    },
+    {
+     "term": "72%",
+     "meaning": "Learners who believed massing was better"
+    },
+    {
+     "term": "Kornell and Bjork",
+     "meaning": "Authors of the 2008 study"
+    }
+   ]
+  },
+  {
+   "id": "spacing-vs-massing-misconception.applied",
+   "atom": "spacing-vs-massing-misconception",
+   "kind": "pick",
+   "prompt": "A friend crams all night and says it worked last time. What does the research say about the long run?",
+   "options": [
+    "Cramming beats spacing for long-term retention",
+    "Spacing beats cramming for long-term retention",
+    "They are equal after a month",
+    "Neither works without music"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
+   "id": "desirable-difficulties.pick",
+   "atom": "desirable-difficulties",
+   "kind": "pick",
+   "prompt": "Which is a desirable difficulty?",
+   "options": [
+    "Interleaving problem types",
+    "Rereading a summary until it feels easy",
+    "Using a larger font",
+    "Studying in silence"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "desirable-difficulties.calculate",
+   "atom": "desirable-difficulties",
+   "kind": "calculate",
+   "prompt": "Group A scores 80% right after blocked practice and 50% a week later. Group B scores 65% then 60%. How many percentage points more does B retain at one week?",
+   "answer": 10,
+   "tol": 0.5,
+   "unit": "points",
+   "applied": true
+  },
+  {
+   "id": "desirable-difficulties.order",
+   "atom": "desirable-difficulties",
+   "kind": "order",
+   "prompt": "Order how a desirable difficulty pays off.",
+   "steps": [
+    "Practice feels harder",
+    "Performance during practice dips",
+    "Effortful retrieval strengthens memory",
+    "Long-term retention rises"
+   ]
+  },
+  {
+   "id": "desirable-difficulties.spot-error",
+   "atom": "desirable-difficulties",
+   "kind": "spot-error",
+   "prompt": "Find the faulty reasoning.",
+   "steps": [
+    "The quiz session felt slow and hard",
+    "My practice scores were lower than with rereading",
+    "So the quiz session was a waste",
+    "I will check retention next week"
+   ],
+   "error": 2,
+   "fix": "Lower in-session performance is expected; judge by delayed retention."
+  },
+  {
+   "id": "desirable-difficulties.match",
+   "atom": "desirable-difficulties",
+   "kind": "match",
+   "prompt": "Match each technique to the difficulty it adds.",
+   "pairs": [
+    {
+     "term": "Retrieval practice",
+     "meaning": "Producing the answer from memory"
+    },
+    {
+     "term": "Spacing",
+     "meaning": "Letting some forgetting happen first"
+    },
+    {
+     "term": "Interleaving",
+     "meaning": "Choosing the method for each problem"
+    }
+   ]
+  },
+  {
+   "id": "interleaving.pick",
+   "atom": "interleaving",
+   "kind": "pick",
+   "prompt": "Interleaving helps most with which skill?",
+   "options": [
+    "Telling problem types apart and choosing a method",
+    "Typing speed on a standard keyboard layout every day",
+    "Recognizing a page you have already read twice",
+    "Memorizing one formula word for word"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "interleaving.calculate",
+   "atom": "interleaving",
+   "kind": "calculate",
+   "prompt": "A set has 3 problem types with 4 problems each, fully interleaved so no two adjacent problems share a type. How many type switches occur across the 12 problems?",
+   "answer": 11,
+   "tol": 0,
+   "unit": "switches",
+   "applied": true
+  },
+  {
+   "id": "interleaving.order",
+   "atom": "interleaving",
+   "kind": "order",
+   "prompt": "Order the steps for an interleaved session.",
+   "steps": [
+    "Pick several related problem types",
+    "Shuffle the problems together",
+    "Identify the type before solving each one",
+    "Check which identifications were wrong"
+   ]
+  },
+  {
+   "id": "interleaving.spot-error",
+   "atom": "interleaving",
+   "kind": "spot-error",
+   "prompt": "Find the step that turns this into blocking.",
+   "steps": [
+    "Collect area problems for three shapes",
+    "Sort them so all circles come first, then triangles, then squares",
+    "Solve each problem",
+    "Check answers"
+   ],
+   "error": 1,
+   "fix": "Mix the shapes so each problem needs a fresh choice of formula."
+  },
+  {
+   "id": "interleaving.match",
+   "atom": "interleaving",
+   "kind": "match",
+   "prompt": "Match each schedule to its pattern.",
+   "pairs": [
+    {
+     "term": "Blocked",
+     "meaning": "AAA BBB CCC"
+    },
+    {
+     "term": "Interleaved",
+     "meaning": "ABC BCA CAB"
+    },
+    {
+     "term": "Discrimination",
+     "meaning": "Telling problem types apart"
+    }
+   ]
+  },
+  {
+   "id": "elaboration-self-explanation.pick",
+   "atom": "elaboration-self-explanation",
+   "kind": "pick",
+   "prompt": "Which prompt is elaborative interrogation?",
+   "options": [
+    "Why is this fact true?",
+    "What page is this on?",
+    "How many words is the definition?",
+    "What color was the heading?"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "elaboration-self-explanation.calculate",
+   "atom": "elaboration-self-explanation",
+   "kind": "calculate",
+   "prompt": "A learner writes a why-explanation for 12 of 20 facts. What fraction, as a percent, got an explanation?",
+   "answer": 60,
+   "tol": 0.5,
+   "unit": "%",
+   "applied": true
+  },
+  {
+   "id": "elaboration-self-explanation.order",
+   "atom": "elaboration-self-explanation",
+   "kind": "order",
+   "prompt": "Order a self-explanation step on a worked example.",
+   "steps": [
+    "Read one line of the worked example",
+    "Ask what that line does and why",
+    "Connect it to something you already know",
+    "Say the explanation in your own words"
+   ]
+  },
+  {
+   "id": "elaboration-self-explanation.spot-error",
+   "atom": "elaboration-self-explanation",
+   "kind": "spot-error",
+   "prompt": "Find the step that is not self-explanation.",
+   "steps": [
+    "Read the step in the solution",
+    "Ask why this step follows",
+    "Copy the step word for word into notes",
+    "Link the step to a rule you know"
+   ],
+   "error": 2,
+   "fix": "Copying adds no meaning; explain the step in your own words."
+  },
+  {
+   "id": "elaboration-self-explanation.match",
+   "atom": "elaboration-self-explanation",
+   "kind": "match",
+   "prompt": "Match each technique to its definition.",
+   "pairs": [
+    {
+     "term": "Elaborative interrogation",
+     "meaning": "Explaining why a stated fact is true"
+    },
+    {
+     "term": "Self-explanation",
+     "meaning": "Relating new information to what you know"
+    },
+    {
+     "term": "Paraphrase",
+     "meaning": "Restating in your own words"
+    }
+   ]
+  },
+  {
+   "id": "learning-styles-myth.pick",
+   "atom": "learning-styles-myth",
+   "kind": "pick",
+   "prompt": "What did Pashler et al. (2008) find about the meshing hypothesis?",
+   "options": [
+    "Almost no evidence supports it",
+    "Strong evidence supports it",
+    "It works only for visual learners",
+    "It works only for children"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "learning-styles-myth.calculate",
+   "atom": "learning-styles-myth",
+   "kind": "calculate",
+   "prompt": "To test meshing, learners of 2 styles get each of 2 teaching modes. How many style-by-mode groups does the full crossover design need?",
+   "answer": 4,
+   "tol": 0,
+   "unit": "groups"
+  },
+  {
+   "id": "learning-styles-myth.order",
+   "atom": "learning-styles-myth",
+   "kind": "order",
+   "prompt": "Order the crossover test for learning styles.",
+   "steps": [
+    "Classify learners by preferred style",
+    "Randomly assign each to matched or mismatched teaching",
+    "Test everyone on the same material",
+    "Check whether matched beats mismatched for every style"
+   ]
+  },
+  {
+   "id": "learning-styles-myth.spot-error",
+   "atom": "learning-styles-myth",
+   "kind": "spot-error",
+   "prompt": "Find the unsupported step.",
+   "steps": [
+    "Survey students on preferred style",
+    "Label each student visual, auditory or kinesthetic",
+    "Teach each student only in their style to raise scores",
+    "Measure outcomes with a common test"
+   ],
+   "error": 2,
+   "fix": "Matching instruction to style has no evidence of raising scores; match the method to the content."
+  },
+  {
+   "id": "learning-styles-myth.match",
+   "atom": "learning-styles-myth",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Learning style",
+     "meaning": "A preferred mode of taking in information"
+    },
+    {
+     "term": "Meshing hypothesis",
+     "meaning": "Teaching in the preferred mode improves learning"
+    },
+    {
+     "term": "Crossover interaction",
+     "meaning": "The pattern needed to support meshing"
+    }
+   ]
+  },
+  {
+   "id": "learning-styles-myth.applied",
+   "atom": "learning-styles-myth",
+   "kind": "pick",
+   "prompt": "A tutor says you are a visual learner and should avoid audio lectures. What does the evidence say?",
+   "options": [
+    "Matching teaching to a style improves learning",
+    "Matching to a learning style shows no reliable benefit",
+    "Audio lectures harm visual learners",
+    "Styles predict exam scores"
+   ],
+   "answer": 1,
+   "applied": true
+  }
+ ]
+}

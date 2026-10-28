@@ -75,17 +75,19 @@ describe("the row set route", () => {
     const t = await token();
     const list = await rows(t, "");
     expect(list.status).toBe(200);
-    expect(list.body as unknown).toEqual({ datasets: [{ id: "occupations-time", label: "Occupations through time" }, { id: "major-to-career", label: "Major to career" }, { id: "mathematics-chain", label: "School mathematics chain" }, { id: "technology-waves", label: "Technology waves" }, { id: "education-by-country", label: "Education by country" }, { id: "coverage-by-country", label: "Corpus coverage by country" }] });
+    const listed = list.body as unknown as { datasets: unknown; aliases: Record<string, string> };
+    expect(Object.keys(listed.aliases)).toHaveLength(30);
+    expect(listed.datasets).toEqual([{ id: "occupations-time", label: "Occupations through time" }, { id: "major-to-career", label: "Major to career" }, { id: "mathematics-chain", label: "School mathematics chain" }, { id: "technology-waves", label: "Technology waves" }, { id: "education-by-country", label: "Education by country" }, { id: "coverage-by-country", label: "Corpus coverage by country" }]);
   });
 
   test("a build with no row set pack lists nothing and knows no set", async () => {
     boot(null);
     const t = await token();
-    expect((await rows(t, "")).body as unknown).toEqual({ datasets: [] });
+    expect((await rows(t, "")).body as unknown).toEqual({ datasets: [], aliases: {} });
     expect((await rows(t, "?id=major-to-career")).status).toBe(404);
     s?.stop();
     boot({ version: "empty", sets: [] });
-    expect((await rows(await token(), "")).body as unknown).toEqual({ datasets: [] });
+    expect((await rows(await token(), "")).body as unknown).toEqual({ datasets: [], aliases: {} });
   });
 
   test("answers 400 on a bad id, group or page and 404 on an unknown id", async () => {

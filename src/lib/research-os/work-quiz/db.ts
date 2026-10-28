@@ -1,5 +1,7 @@
 import type { Card } from "@/lib/academy/fsrs";
-import { graphService } from "../db";
+import { graphService, publicService } from "../db";
+import { normalizeSystemsDoc } from "@/lib/academy/lang-systems";
+import { systemLanguageCodes, withSystemLanguages } from "./languages";
 import type { QuizQuestion } from "./types";
 import { cardFields } from "./fact";
 import { splitFactId, type CoverageRow, type SamplePick } from "./sampler";
@@ -230,4 +232,16 @@ export async function saveLanguages(learnerId: string, languages: string[]): Pro
     .select("languages")
     .single();
   return must((data as { languages: string[] }).languages, error);
+}
+
+export const SYSTEMS_BRANCH = "lang-systems";
+
+export async function loadSystemLanguages(learnerId: string): Promise<string[]> {
+  const { data, error } = await publicService().schema("bucket").from("academy_progress").select("data").eq("user_id", learnerId).eq("branch", SYSTEMS_BRANCH).maybeSingle();
+  return must(systemLanguageCodes(normalizeSystemsDoc((data as { data: unknown } | null)?.data).systems), error);
+}
+
+export async function languageState(learnerId: string, load = loadLanguages, loadSystems = loadSystemLanguages): Promise<{ languages: string[]; chosen: string[]; fromSystems: string[] }> {
+  const [chosen, fromSystems] = await Promise.all([load(learnerId), loadSystems(learnerId)]);
+  return { languages: withSystemLanguages(chosen, fromSystems), chosen, fromSystems };
 }

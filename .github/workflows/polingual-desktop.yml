@@ -1,0 +1,195 @@
+name: polingual-desktop
+
+on:
+  pull_request:
+    paths:
+      - "packages/polingual-desktop/**"
+      - ".github/workflows/polingual-desktop.yml"
+  push:
+    tags: ["polingual-desktop-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: polingual-desktop-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+        with:
+          bun-version: 1.4.2
+      - name: install
+        working-directory: packages/polingual-desktop
+        run: bun install --frozen-lockfile
+      - name: config guarantees
+        working-directory: packages/polingual-desktop
+        run: bun test scripts && bunx tsc --noEmit
+
+  bundle:
+    needs: config
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            bundles: deb,rpm,appimage
+          - os: windows-latest
+            bundles: msi
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    environment: ${{ startsWith(github.ref, 'refs/tags/polingual-desktop-v') && 'polingual-release' || 'polingual-dry-run' }}
+    permissions:
+      contents: read
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: allow checkout of names Windows cannot write
+        if: runner.os == 'Windows'
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/archive/
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+        with:
+          bun-version: 1.4.2
+      - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6
+        with:
+          workspaces: packages/polingual-desktop/src-tauri
+      - name: linux build and smoke packages
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq --no-install-recommends libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf xvfb dbus-x11 libfuse2 rpm
+      - name: install
+        working-directory: packages/polingual-desktop
+        run: bun install --frozen-lockfile
+      - name: shell tests
+        working-directory: packages/polingual-desktop/src-tauri
+        run: cargo test --locked
+      - name: tauri build
+        working-directory: packages/polingual-desktop
+        env:
+          NO_STRIP: ${{ runner.os == 'Linux' && 'true' || '' }}
+        run: |
+          [ -n "$NO_STRIP" ] || unset NO_STRIP
+          bunx tauri build --bundles ${{ matrix.bundles }}
+      - name: collect bundles under their release names
+        working-directory: packages/polingual-desktop
+        run: |
+          v=$(bun -e 'console.log(require("./src-tauri/tauri.conf.json").version)')
+          out="$RUNNER_TEMP/bundles"
+          mkdir -p "$out"
+          os=$([ "$RUNNER_OS" = Windows ] && echo windows || echo linux)
+          for f in src-tauri/target/release/bundle/*/*; do
+            case "$f" in
+              *.AppImage) ext=AppImage ;;
+              *.deb) ext=deb ;;
+              *.rpm) ext=rpm ;;
+              *.msi) ext=msi ;;
+              *) continue ;;
+            esac
+            name="Polingual-desktop-$v-$os-x64.$ext"
+            cp "$f" "$out/$name"
+            (cd "$out" && sha256sum "$name" > "$name.sha256")
+          done
+          ls -la "$out"
+          echo "BUNDLES=$out" >> "$GITHUB_ENV"
+      - name: smoke the deb and AppImage
+        if: runner.os == 'Linux'
+        working-directory: packages/polingual-desktop
+        run: |
+          sudo apt-get install -yq "$BUNDLES"/*.deb
+          cat > "$RUNNER_TEMP/smoke.sh" <<'SH'
+          set -eu
+          export XDG_RUNTIME_DIR=$(mktemp -d)
+          HOME=$(mktemp -d) bun scripts/smoke.ts "$1"
+          SH
+          xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" /usr/bin/polingual-desktop
+          sudo apt-get remove -yq polingual
+          app=$(ls "$BUNDLES"/*.AppImage)
+          chmod +x "$app"
+          APPIMAGE_EXTRACT_AND_RUN=1 xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" "$app"
+      - name: the rpm carries the app, its desktop entry and the polingual scheme
+        if: runner.os == 'Linux'
+        run: |
+          rpms=("$BUNDLES"/*.rpm)
+          [ "${#rpms[@]}" -eq 1 ] && [ -f "${rpms[0]}" ] || { echo "expected one rpm, found ${#rpms[@]}"; exit 1; }
+          files=$(rpm -qpl "${rpms[0]}")
+          grep -qx /usr/bin/polingual-desktop <<< "$files" || { echo "no /usr/bin/polingual-desktop in the rpm"; exit 1; }
+          desktop=$(grep -x '/usr/share/applications/.*\.desktop' <<< "$files") || { echo "no desktop entry in the rpm"; exit 1; }
+          rpm2cpio "${rpms[0]}" | cpio -i --to-stdout ".$desktop" | grep -q 'x-scheme-handler/polingual' || { echo "the desktop entry does not claim polingual://"; exit 1; }
+      - name: smoke the msi
+        if: runner.os == 'Windows'
+        working-directory: packages/polingual-desktop
+        run: |
+          msi=$(cygpath -w "$(ls "$BUNDLES"/*.msi)")
+          log=$(cygpath -w "$RUNNER_TEMP/msi.log")
+          powershell -NoProfile -Command "\$p = Start-Process msiexec -ArgumentList '/i','\"$msi\"','/qn','/l*v','\"$log\"' -Wait -PassThru; exit \$p.ExitCode"
+          dir="/c/Program Files/Polingual"
+          exe=$(find "$dir" -maxdepth 1 -name '*.exe' ! -iname 'uninstall*' | head -1)
+          [ -n "$exe" ] || { echo "no app binary in $dir"; exit 1; }
+          echo "APP_EXE=$(cygpath -w "$exe")" >> "$GITHUB_ENV"
+      - name: smoke the installed app from a plain Windows shell
+        if: runner.os == 'Windows'
+        working-directory: packages/polingual-desktop
+        shell: pwsh
+        run: |
+          $env:PATH = (($env:PATH -split ';') | Where-Object { $_ -notmatch '\\Git\\(usr|mingw64)\\bin' }) -join ';'
+          bun scripts/smoke.ts "$env:APP_EXE"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: polingual-desktop-${{ matrix.os }}
+          path: ${{ env.BUNDLES }}/*
+          if-no-files-found: error
+
+  rpm-fedora:
+    needs: bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container: fedora:latest
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: polingual-desktop-ubuntu-latest
+          path: bundles
+      - name: dnf installs the rpm with its dependencies
+        run: |
+          rpms=(bundles/*.rpm)
+          [ "${#rpms[@]}" -eq 1 ] && [ -f "${rpms[0]}" ] || { echo "expected one rpm, found ${#rpms[@]}"; exit 1; }
+          taken=$(dnf repoquery -q --whatprovides /usr/bin/polingual-desktop)
+          [ -z "$taken" ] || { echo "Fedora packages already ship this path: $taken"; exit 1; }
+          dnf install -yq "./${rpms[0]}"
+          test -x /usr/bin/polingual-desktop
+          ldd /usr/bin/polingual-desktop | grep -q "not found" && { ldd /usr/bin/polingual-desktop; exit 1; } || true
+
+  attest:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    needs: bundle
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          pattern: polingual-desktop-*
+          path: bundles
+          merge-multiple: true
+      - name: verify checksums
+        run: cd bundles && for f in *.sha256; do sha256sum -c "$f"; done
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
+        with:
+          subject-path: bundles/*

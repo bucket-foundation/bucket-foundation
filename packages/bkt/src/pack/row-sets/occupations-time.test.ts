@@ -52,8 +52,8 @@ describe("occupations through time", () => {
     const pages = await occupationsTime(tables(), ctx);
     const again = await occupationsTime(tables(), ctx);
     expect(pages.map((p) => p.sha256)).toEqual(again.map((p) => p.sha256));
-    expect(pages[0].sha256).toBe("d7f43c28c42ed4ca62978978c59a7dbd1b1bfbfbc59e4ae241a43b67dfaa2c4d");
-    expect(pages[5].sha256).toBe("9a22e91d90b63a0afd063898176267aeeadc305f5b044f9391820b62e614a698");
+    expect(pages[0].sha256).toBe("c35a91a06fc8df2d2a576bedfd2d7a9a819ab338e5aef17bd5bba2dd8e5eaef9");
+    expect(pages[5].sha256).toBe("d70018e19550f47646f626ef440da1c44c0da0b9c830ba84731c9a2cb8789c2b");
   });
 
   test("the opening page holds one hit per major group and census year, and each opens its lifecycles", async () => {

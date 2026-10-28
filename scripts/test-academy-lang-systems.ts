@@ -1,8 +1,11 @@
 import fs from "node:fs";
+import { isHAspire } from "../src/lib/academy/french-h-aspire";
 import path from "node:path";
-import { normalizeState, dayKey } from "../src/lib/academy/engine";
+import { normalizeState, dayKey, PLACED_PER_DAY } from "../src/lib/academy/engine";
 import { DAY_MS } from "../src/lib/academy/fsrs";
 import {
+  articleFor,
+  articleWord,
   availableSystems,
   LANGS as CATALOG_LANGS,
   SYSTEM_CATALOG,
@@ -253,6 +256,48 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
 }
 
 {
+  const perDay = (cards: Record<string, { due?: number | null }>, ids: string[]) => {
+    const m = new Map<number, number>();
+    for (const id of ids) {
+      const d = Math.floor(((cards[id].due ?? 0) - NOW) / DAY_MS);
+      m.set(d, (m.get(d) ?? 0) + 1);
+    }
+    return m;
+  };
+  const big = applyPlacement(normalizeState(null), { ...romance, placement: { fr: 99 } }, corpus, "fr", 99, NOW);
+  const ids = Object.keys(big.cards).filter((k) => (big.cards[k] as { placed?: boolean }).placed);
+  const days = perDay(big.cards, ids);
+  ok(ids.length >= 311 && Math.max(...Array.from(days.values())) <= PLACED_PER_DAY, `placing ${ids.length} words keeps every day at ${PLACED_PER_DAY} placed reviews or fewer`);
+  ok(Math.min(...Array.from(days.keys())) >= 1 && ids.every((id) => big.cards[id].reps === 1), "placed cards start tomorrow at the earliest with one Easy review");
+  const again = applyPlacement(normalizeState(null), { ...romance, placement: { fr: 99 } }, corpus, "fr", 99, NOW);
+  ok(ids.every((id) => again.cards[id].due === big.cards[id].due), "the spread is stable for the same cards");
+
+  const legacy: Record<string, unknown> = {};
+  for (let i = 0; i < 311; i++) legacy[`fr:w${i}`] = { state: "review", reps: 1, lapses: 0, stability: 3.2, difficulty: 5, lastReview: NOW - 3 * DAY_MS, due: NOW, placed: true };
+  legacy["fr:seen"] = { state: "review", reps: 2, lapses: 0, stability: 9, difficulty: 5, lastReview: NOW - DAY_MS, due: NOW, placed: true };
+  legacy["fr:own"] = { state: "review", reps: 1, lapses: 0, stability: 3, difficulty: 5, lastReview: NOW - DAY_MS, due: NOW };
+  const once = normalizeState({ cards: legacy }, NOW);
+  const twice = normalizeState(once, NOW + 5 * DAY_MS);
+  const lids = Object.keys(legacy).filter((k) => k.startsWith("fr:w"));
+  ok(Math.max(...Array.from(perDay(once.cards, lids).values())) <= PLACED_PER_DAY, "normalize spreads untouched placed cards");
+  ok(JSON.stringify(twice.cards) === JSON.stringify(once.cards), "normalize is idempotent");
+  ok(JSON.stringify(once.cards["fr:seen"]) === JSON.stringify(legacy["fr:seen"]) && JSON.stringify(once.cards["fr:own"]) === JSON.stringify(legacy["fr:own"]), "reviewed and never-placed cards are left alone");
+
+  let own = normalizeState(null);
+  const words = corpus.items.filter((i) => i.kind === "word" && i.forms.fr && i.forms.en);
+  for (const w of words.slice(0, 5)) own = gradeCard(own, "fr", w.id, 3, NOW);
+  const owned = new Set(words.slice(0, 5).map((w) => cardId("fr", w.id)));
+  const mixed = applyPlacement(own, { ...romance, placement: { fr: 99 } }, corpus, "fr", 99, NOW);
+  ok(Array.from(owned).every((id) => JSON.stringify(mixed.cards[id]) === JSON.stringify(own.cards[id])), "placement leaves existing cards unchanged");
+  const late = NOW + 30 * DAY_MS;
+  const plan = planSession({ ...romance, targets: ["fr"], placement: { fr: 99 } }, corpus, mixed, late, 40);
+  const isPlaced = (p: { itemId: string; lang: string }) => !!(mixed.cards[cardId(p.lang, p.itemId)] as { placed?: boolean } | undefined)?.placed;
+  const firstPlaced = plan.findIndex(isPlaced);
+  ok(plan.slice(0, 5).every((p) => owned.has(cardId(p.lang, p.itemId))) && firstPlaced >= 5, "real reviews come before placed ones");
+  ok(plan.filter(isPlaced).length <= PLACED_PER_DAY, `placed reviews are capped at ${PLACED_PER_DAY} a day`);
+}
+
+{
   const units = unitStatus(romance, corpus, normalizeState(null), "fr");
   ok(units.length >= 10 && units[0].unlocked && !units[1].unlocked, "only the first unit is open at the start");
   let s = normalizeState(null);
@@ -269,6 +314,28 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   const dog = corpus.byId.get("g-dog")!;
   const g = exerciseFor(corpus, romance, dog, "fr", undefined, rng, { afterIntro: true });
   ok(g.kind === "gender" && g.answer === "le" && g.options!.includes("la") && g.prompt === "chien", "gender drill asks for the article");
+  const zaino = { ...dog, forms: { ...dog.forms, it: "lo zaino" }, gender: { ...dog.gender, it: "m" } };
+  const gi = exerciseFor(corpus, romance, zaino, "it", undefined, seededRng(5), { afterIntro: true });
+  ok(gi.kind === "gender" && gi.answer === "lo" && gi.prompt === "zaino" && ["il", "lo", "la", "l'"].every((o) => gi.options!.includes(o)), "Italian drill grades lo and offers l'");
+  const hibou = { ...dog, forms: { ...dog.forms, fr: "le hibou" } };
+  const gh = exerciseFor(corpus, romance, hibou, "fr", undefined, seededRng(5), { afterIntro: true });
+  ok(gh.kind === "gender" && gh.answer === "le" && gh.prompt === "hibou", "French drill keeps le before an aspirated h");
+{
+  const missing: string[] = [];
+  for (const item of corpus.items) {
+    for (const [lang, g] of Object.entries(item.gender ?? {})) {
+      const noun = (item.forms[lang] ?? "").split(" ").pop() ?? "";
+      if (["es", "fr", "it", "pt", "de", "nl"].includes(lang) && articleWord(lang, g, noun) === null) missing.push(`${item.id}:${lang}:${g}`);
+    }
+  }
+  ok(missing.length === 0, `every gendered noun has an article (${missing.join(", ")})`);
+  ok(articleWord("de", "pl", "Kleider") === "die", "German plural takes die");
+}
+ok(articleFor("it", "m", "zero") === "lo zero" && articleFor("it", "m", "studente") === "lo studente" && articleFor("it", "m", "libro") === "il libro", "Italian lo before z and s plus consonant");
+ok(articleFor("it", "m", "amico") === "l'amico" && articleFor("fr", "f", "eau") === "l'eau" && articleFor("fr", "m", "homme") === "l'homme", "elision before a vowel or mute h");
+ok(articleFor("fr", "m", "héros") === "le héros" && articleFor("fr", "f", "haine") === "la haine", "no elision before an aspirated h");
+ok(articleFor("es", "f", "agua") === "el agua" && articleFor("es", "f", "hambre") === "el hambre" && articleFor("es", "f", "casa") === "la casa", "Spanish el before stressed a");
+ok(articleWord("it", "m", "sole") === "il" && articleWord("it", "m", "gnomo") === "lo", "lo only before s plus consonant, z, gn");
   const eat = corpus.byId.get("c-eat")!;
   const c1 = exerciseFor(corpus, romance, eat, "es", undefined, seededRng(1), { afterIntro: true });
   ok(c1.kind === "conjugate" && !!c1.person && eat.conj.es.includes(c1.answer) && c1.options!.includes(c1.answer), "conjugation drill starts as a choice");
@@ -358,6 +425,24 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   const semitic = createSystem("en", ["he", "ar"], []);
   ok(semitic.name === "Semitic from English" && semitic.id === "en-he-ar", "starting Semitic makes en-he-ar");
 }
+
+for (const w of ["héron", "hibou", "haricot", "hasard", "hache", "hall", "hamac", "hangar", "harpe", "hêtre", "hockey", "homard", "housse", "hublot"]) {
+  ok(/^l[ea] /.test(articleFor("fr", ["hache", "harpe", "housse", "haine", "honte"].includes(w) ? "f" : "m", w)!), `h aspiré keeps le/la: ${w}`);
+}
+for (const [w, g] of [["homme", "m"], ["heure", "f"], ["hôtel", "m"], ["histoire", "f"], ["herbe", "f"], ["hiver", "m"], ["héroïne", "f"]]) {
+  ok(articleWord("fr", g, w) === "l'", `h muet elides: ${w}`);
+}
+ok(articleFor("fr", "m", "héros") === "le héros" && articleFor("fr", "f", "héroïne") === "l'héroïne", "le héros but l'héroïne");
+ok(isHAspire("hiboux") && isHAspire("haricots") && isHAspire("hall d'entrée") && !isHAspire("hommes"), "plural and multiword lookups");
+
+ok(isHAspire("hors-d'œuvre") && isHAspire("haut-parleur") && articleFor("fr", "m", "haut-parleur") === "le haut-parleur", "hyphenated and apostrophe compounds match their first element");
+ok(["hautain", "huitaine", "hurlement", "haineux", "hâtif", "honteux", "hurleur", "hachette"].every(isHAspire), "derived aspirated words kept");
+for (const [w, g] of [["hallucination", "f"], ["haltère", "m"], ["héroïsme", "m"], ["hommage", "m"], ["horizon", "m"]]) {
+  ok(articleWord("fr", g, w) === "l'", `hallucination bug: aspirated prefix does not capture h muet ${w}`);
+}
+
+ok(["hot-dog", "hold-up", "hip-hop", "hot-dogs"].every(isHAspire) && articleFor("fr", "m", "hold-up") === "le hold-up", "whole hyphenated words match before their first element");
+ok(isHAspire("haute") && articleFor("fr", "f", "haute") === "la haute", "haute is aspirated");
 
 if (failures) {
   console.error(`\n${failures} failure(s)`);

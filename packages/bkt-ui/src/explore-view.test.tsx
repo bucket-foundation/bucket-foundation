@@ -118,7 +118,7 @@ describe("Explore in the window", () => {
       fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "globe"], drill, rows: [{ key: "group-one", title: "Group one", sub: "700 rows", group: "a", source: "open" }] }),
       fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "globe"], drill, rows: leaves }),
     ], ctx);
-    const far = assembleRowSet([fixtureDraft({ id: "far-set", label: "Far set", modes: ["globe"] , rows: [{ key: "one", title: "Far row", sub: "", group: "a", source: "open", place: "CL", point: [-37.7, -71.4] }] })], ctx)[0];
+    const far = assembleRowSet([fixtureDraft({ id: "far-set", label: "Far set", modes: ["globe"] , rows: [{ key: "one", title: "Far row", sub: "", group: "a", source: "open", place: "CHL", point: [-37.7, -71.4] }] })], ctx)[0];
     const asked: string[] = [];
     const base = (async (input: RequestInfo | URL) => {
       const u = String(input);

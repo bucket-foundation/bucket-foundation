@@ -1,0 +1,1909 @@
+{
+ "branch": "03-chemistry",
+ "reviews": {
+  "atom-nucleus-electrons.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "atom-nucleus-electrons.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "atom-nucleus-electrons.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "atom-nucleus-electrons.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "atom-nucleus-electrons.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "atom-nucleus-electrons.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-numbers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-numbers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-numbers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-numbers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-numbers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-numbers.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-configuration.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-configuration.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-configuration.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-configuration.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-configuration.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-configuration.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-table.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-table.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-table.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-table.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-table.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-table.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-trends.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-trends.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-trends.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-trends.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "periodic-trends.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Low from #1066: each meaning now carries its direction, so the pairs read without the prompt."
+  },
+  "periodic-trends.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "effective-nuclear-charge.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "effective-nuclear-charge.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "S was 8.5 with Z_eff 2.5, which is the Clementi-Raimondi value; Slater's rules give S = 8.8 and Z_eff = 2.2."
+  },
+  "effective-nuclear-charge.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "effective-nuclear-charge.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "effective-nuclear-charge.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "effective-nuclear-charge.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Option now matches the Slater value of about +2."
+  },
+  "ionic-bond.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ionic-bond.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ionic-bond.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ionic-bond.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ionic-bond.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "covalent-bond.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "covalent-bond.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "covalent-bond.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "covalent-bond.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "covalent-bond.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "covalent-bond.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electronegativity-polarity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electronegativity-polarity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electronegativity-polarity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electronegativity-polarity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electronegativity-polarity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electronegativity-polarity.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "lewis-structures.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "lewis-structures.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "lewis-structures.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "lewis-structures.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "lewis-structures.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "lewis-structures.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "vsepr.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "vsepr.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "vsepr.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "vsepr.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "vsepr.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "vsepr.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hybridization.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hybridization.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "hybridization.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hybridization.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hybridization.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hybridization.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mo-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mo-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mo-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mo-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mo-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mo-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "metallic-bond.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "metallic-bond.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "metallic-bond.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "metallic-bond.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "metallic-bond.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mole-concept.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mole-concept.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mole-concept.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mole-concept.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "mole-concept.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "stoichiometry.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "stoichiometry.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "stoichiometry.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "stoichiometry.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "stoichiometry.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-gas-law.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-gas-law.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-gas-law.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-gas-law.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-gas-law.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "kinetic-molecular-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "kinetic-molecular-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "kinetic-molecular-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "kinetic-molecular-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "kinetic-molecular-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "kinetic-molecular-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "intermolecular-forces.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "intermolecular-forces.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "intermolecular-forces.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "intermolecular-forces.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "intermolecular-forces.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "intermolecular-forces.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "states-of-matter.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "states-of-matter.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "states-of-matter.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "states-of-matter.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "states-of-matter.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "states-of-matter.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solutions-concentration.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solutions-concentration.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solutions-concentration.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solutions-concentration.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solutions-concentration.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "enthalpy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "enthalpy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "enthalpy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "enthalpy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "enthalpy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs-free-energy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs-free-energy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs-free-energy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs-free-energy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs-free-energy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs-free-energy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-equilibrium.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-equilibrium.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-equilibrium.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-equilibrium.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-equilibrium.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-equilibrium.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "le-chatelier.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acids-bases.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acids-bases.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acids-bases.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acids-bases.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acids-bases.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ph-scale.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ph-scale.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ph-scale.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ph-scale.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "ph-scale.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "buffers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "buffers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "buffers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "buffers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "buffers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "buffers.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-rate.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-rate.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-rate.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-rate.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-rate.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-rate.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius-activation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius-activation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius-activation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius-activation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius-activation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius-activation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "catalysis.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "catalysis.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "catalysis.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "catalysis.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "catalysis.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "catalysis.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "redox.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "redox.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "redox.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "redox.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "redox.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "redox.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-cells.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-cells.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-cells.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-cells.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-cells.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-cells.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst-equation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst-equation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst-equation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst-equation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst-equation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst-equation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-atom.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-atom.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-atom.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-atom.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-atom.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-atom.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "functional-groups.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "functional-groups.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "functional-groups.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "functional-groups.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "functional-groups.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "functional-groups.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "isomerism.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "isomerism.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "isomerism.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "isomerism.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "isomerism.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "isomerism.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "organic-reaction-types.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "organic-reaction-types.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "organic-reaction-types.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "organic-reaction-types.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "organic-reaction-types.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "organic-reaction-types.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "thermodynamics-vs-kinetics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "thermodynamics-vs-kinetics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Near-duplicate of catalysis.calculate (same e^(10000/RT) = 56.61); replaced with a temperature comparison."
+  },
+  "thermodynamics-vs-kinetics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "thermodynamics-vs-kinetics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "thermodynamics-vs-kinetics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "thermodynamics-vs-kinetics.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "computational-chemistry.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "computational-chemistry.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "computational-chemistry.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "computational-chemistry.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "computational-chemistry.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "computational-chemistry.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "coordination-complexes.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "coordination-complexes.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
+  },
+  "coordination-complexes.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "coordination-complexes.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "coordination-complexes.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "coordination-complexes.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Key credited a d-orbital gap; heme's color comes mostly from porphyrin pi to pi* transitions."
+  },
+  "chemical-bond-energetics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-bond-energetics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-bond-energetics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-bond-energetics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-bond-energetics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-bond-energetics.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acid-base-titration.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acid-base-titration.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Set in a vinegar titration; answer unchanged at 0.12 M."
+  },
+  "acid-base-titration.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acid-base-titration.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "acid-base-titration.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "oxidation-states.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "oxidation-states.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "oxidation-states.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "oxidation-states.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "oxidation-states.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "oxidation-states.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "phase-equilibria-clausius.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "phase-equilibria-clausius.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Set on a mountain stove; answer unchanged at 0.697 atm."
+  },
+  "phase-equilibria-clausius.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "phase-equilibria-clausius.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "phase-equilibria-clausius.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-mechanisms.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-mechanisms.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-mechanisms.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-mechanisms.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-mechanisms.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-mechanisms.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "equilibrium-thermo-link.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "equilibrium-thermo-link.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "equilibrium-thermo-link.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "equilibrium-thermo-link.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "equilibrium-thermo-link.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "equilibrium-thermo-link.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "colligative-properties.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "colligative-properties.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Prompt asked for the drop \"in C\"; it now says degrees C to match the unit."
+  },
+  "colligative-properties.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "colligative-properties.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "colligative-properties.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hess-law.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hess-law.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "fixed",
+   "note": "Set in a gasworks making CO fuel; answer unchanged at -110.5 kJ."
+  },
+  "hess-law.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hess-law.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "hess-law.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-laws-order.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-laws-order.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-laws-order.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-laws-order.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-laws-order.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "transition-state-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "transition-state-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "transition-state-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "transition-state-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "transition-state-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "transition-state-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solubility-product.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solubility-product.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solubility-product.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solubility-product.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solubility-product.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "solubility-product.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "beer-lambert-law.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "beer-lambert-law.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "beer-lambert-law.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "beer-lambert-law.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "beer-lambert-law.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "crystal-field-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "crystal-field-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "crystal-field-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "crystal-field-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "crystal-field-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  },
+  "crystal-field-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs chemistry and atom lesson",
+   "verdict": "ok"
+  }
+ }
+}

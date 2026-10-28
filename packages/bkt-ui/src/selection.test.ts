@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { cleanMarks, MARK_CAP, MARK_SETS, readMarks, SELECTION_KEY, toggleMark, writeMarks, type MarkStorage } from "./selection";
+import { aliasMarks, aliasRow, cleanMarks, MARK_CAP, MARK_SETS, readMarks, SELECTION_KEY, toggleMark, writeMarks, type MarkStorage } from "./selection";
 
 function memory(seed: Record<string, string> = {}): MarkStorage & { data: Record<string, string> } {
   const data = { ...seed };
@@ -57,5 +57,24 @@ describe("marked rows", () => {
     const throwing: MarkStorage = { getItem: () => { throw new Error("denied"); }, setItem: () => { throw new Error("full"); }, removeItem: () => { throw new Error("denied"); } };
     expect(readMarks("flow-set", throwing)).toEqual([]);
     expect(writeMarks("flow-set", ids(1), throwing)).toEqual(ids(1));
+  });
+});
+
+describe("marks under two-letter country ids", () => {
+  const aliases = { "row:coverage-by-country:CL": "row:coverage-by-country:CHL", "row:coverage-by-country:US": "row:coverage-by-country:USA" };
+
+  test("move to their three-letter ids and keep other sets", () => {
+    const store = memory();
+    writeMarks("coverage-by-country", ["row:coverage-by-country:CL", "row:coverage-by-country:USA", "row:coverage-by-country:US"], store);
+    writeMarks("flow-set", ids(2), store);
+    aliasMarks(aliases, store);
+    expect(readMarks("coverage-by-country", store)).toEqual(["row:coverage-by-country:CHL", "row:coverage-by-country:USA"]);
+    expect(readMarks("flow-set", store)).toEqual(ids(2));
+  });
+
+  test("a deep link selection moves the same way", () => {
+    expect(aliasRow("row:coverage-by-country:CL", aliases)).toBe("row:coverage-by-country:CHL");
+    expect(aliasRow("row:coverage-by-country:IND", aliases)).toBe("row:coverage-by-country:IND");
+    expect(aliasRow("toString", aliases)).toBe("toString");
   });
 });

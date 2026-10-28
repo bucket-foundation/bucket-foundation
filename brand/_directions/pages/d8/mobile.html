@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bucket Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700;800&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Sans+Hebrew:wght@700&family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tiles.css">
+<style>
+:root{--bg:#F6EEDC;--ink:#231F20;--pur:#5B1A4A;--lip:#3A0F2F;--ochre:#E9A23B;--cta:#D9381E;--cta-lip:#8E2312;--muted:#5d5650;--btn-r:12px}
+*{box-sizing:border-box;margin:0}
+html{overflow-x:hidden}
+body{background:var(--bg);background-image:radial-gradient(#e2d4b4 1.2px,transparent 1.3px);background-size:24px 24px;font-family:Nunito,sans-serif;color:var(--ink);overflow-x:hidden}
+.memphis{position:fixed;left:0;top:0;bottom:0;width:28px;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='160'%3E%3Cpath d='M20 10l3 7 7-3-3 7 7 3-7 3 3 7-7-3-3 7-3-7-7 3 3-7-7-3 7-3-3-7 7 3z' fill='%2326428B'/%3E%3Cpath d='M78 22q8-14 16 0q-8 10-16 0z' fill='%23D9381E'/%3E%3Cpath d='M14 70a12 12 0 0 1 24 0a8 8 0 0 0-16 0a4 4 0 0 1 8 0' fill='none' stroke='%231E7A5A' stroke-width='3'/%3E%3Cpath d='M74 64h18v18h-12v-8h6' fill='none' stroke='%235B1A4A' stroke-width='3.5'/%3E%3Cpath d='M34 120q-6-10 0-16q6 6 0 16zm0 0q10-4 16 2q-8 6-16-2z' fill='%23E9A23B'/%3E%3Ccircle cx='90' cy='120' r='5' fill='%236FB7C2'/%3E%3Ccircle cx='100' cy='130' r='3' fill='%23C98A2E'/%3E%3Cpath d='M60 146l6-6 6 6-6 6z' fill='%23D9381E'/%3E%3C/svg%3E")}
+.pg{padding:0 16px 0 40px;max-width:520px;margin:0 auto}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.brand{display:flex;align-items:center;gap:10px;font-family:Fredoka;font-weight:700;font-size:26px;color:var(--lip);text-decoration:none}
+.mark{width:40px;height:40px;border-radius:11px;background:var(--pur);display:grid;place-items:center;box-shadow:0 3px 0 var(--lip)}
+.mark img{width:34px;height:34px}
+.si{font-weight:800;color:var(--ink);text-decoration:none;font-size:15px}
+h1{font-family:Fredoka;font-weight:700;font-size:44px;line-height:1;letter-spacing:-.01em;margin:22px 0 14px}
+h1 em{font-style:normal;color:var(--cta)}
+.sub{font-size:17px;line-height:1.45;color:var(--muted)}
+.btn{font-family:Nunito;font-weight:800;font-size:18px;padding:16px 20px;border-radius:var(--btn-r);border:0;display:block;text-align:center;text-decoration:none;width:100%}
+.btn-p{background:var(--cta);color:#fff;box-shadow:0 4px 0 var(--cta-lip)}
+.btn-s{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px #E3D6B8,0 4px 0 #E3D6B8;margin-top:12px}
+.cta{margin:24px 0 8px}
+.pot{display:flex;align-items:center;gap:10px;margin-left:18px}
+.pot .fire{width:100px;height:170px;overflow:visible}
+.pot b{display:block;font-family:Fredoka;font-weight:700;font-size:58px;line-height:1;color:var(--cta)}
+.pot span{font-family:'Space Mono';font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5d5650}
+.fl{transform-origin:50px 18px;transform-box:view-box}
+.one{transform-origin:50px 80px;animation:flk 1.1s ease-in-out infinite alternate}
+.core{transform-origin:50px 80px;transform-box:view-box;animation:flk .7s ease-in-out infinite alternate-reverse}
+.f2{animation:flk 0.8s ease-in-out infinite alternate-reverse}
+.f3{animation:flk 0.6s ease-in-out infinite alternate}
+@keyframes flk{0%{transform:scale(1,1) skewX(0)}35%{transform:scale(.94,1.08) skewX(-4deg)}70%{transform:scale(1.05,.95) skewX(3deg)}100%{transform:scale(.97,1.1) skewX(-2deg)}}
+@media (prefers-reduced-motion:reduce){.fl{animation:none}}
+
+.pot{margin:18px 0 0;gap:8px}.pot .fire{width:70px;height:119px}.pot b{font-size:40px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0 8px}
+.grid .t{width:100%;height:auto;aspect-ratio:1}
+.grid .tt b{font-size:38px}.grid .tt b.long{font-size:26px}
+.hint{font-family:'Space Mono';font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px}
+.art{z-index:2;position:relative;height:340px;margin:36px -16px 0 -40px;background:var(--pur);overflow:hidden;clip-path:polygon(0 12%,100% 0,100% 100%,0 100%)}
+.art>*{position:absolute}
+.azu{width:170px;height:170px;border-radius:6px;background:#F4F1E8;box-shadow:0 8px 0 rgba(0,0,0,.35);background-image:radial-gradient(circle at 50% 50%,#26428B 0 14px,transparent 15px),radial-gradient(circle at 0 0,#26428B 0 40px,transparent 41px),radial-gradient(circle at 100% 0,#26428B 0 40px,transparent 41px),radial-gradient(circle at 0 100%,#26428B 0 40px,transparent 41px),radial-gradient(circle at 100% 100%,#26428B 0 40px,transparent 41px),repeating-conic-gradient(from 45deg at 50% 50%,#6FB7C2 0 10deg,transparent 0 45deg)}
+.kente{width:300px;height:90px;box-shadow:0 8px 0 rgba(0,0,0,.35);background:repeating-linear-gradient(90deg,#E9A23B 0 22px,#1E7A5A 0 30px,#E9A23B 0 52px,#D9381E 0 60px,#231F20 0 66px),#E9A23B;background-blend-mode:normal}
+.kente::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 26px,rgba(35,31,32,.85) 0 32px)}
+.seal{width:150px;height:150px;background:#D9381E;border-radius:10px;display:grid;place-items:center;box-shadow:inset 0 0 0 8px #D9381E,inset 0 0 0 12px #F6EEDC,0 6px 0 rgba(0,0,0,.35)}
+.seal span{font-family:'Noto Sans SC';font-weight:800;font-size:96px;color:#F6EEDC}
+.stamp{background:#F6EEDC;padding:18px 22px;outline:8px dotted #F6EEDC;outline-offset:-2px;box-shadow:0 8px 0 rgba(0,0,0,.35);color:#231F20}
+.stamp b{display:block;font-size:44px}
+.stamp small{font-family:'Space Mono';font-size:12px;letter-spacing:.12em;color:#7a6f63}
+.torn{background:#EBDDBE;padding:16px 34px;clip-path:polygon(0 8%,6% 0,14% 6%,24% 1%,36% 7%,50% 0,63% 6%,77% 1%,88% 7%,100% 2%,98% 92%,88% 100%,74% 94%,60% 100%,46% 93%,32% 100%,18% 94%,6% 100%,1% 90%)}
+.torn span{font-size:56px;font-weight:800;color:#5B1A4A}
+.paisley{width:110px;height:150px;background:#D9381E;border-radius:60% 40% 60% 40%/70% 70% 30% 30%;box-shadow:inset 0 0 0 10px #E9A23B,inset 0 0 0 16px #D9381E,inset 0 0 0 20px #F6EEDC}
+
+.art .mini{font-weight:800;font-size:28px;color:#F6EEDC;opacity:.75}
+.ft{position:relative;z-index:2;background:var(--ink);color:#F6EEDC;margin:0 -16px 0 -40px;padding:32px 16px 28px 40px}
+.ft .row{display:flex;align-items:center;gap:10px;font-family:Fredoka;font-size:24px}
+.ft p{color:#c9bfae;font-size:15px;line-height:1.5;margin:10px 0 18px}
+.ft nav{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;padding:0}
+.ft nav a{color:#F6EEDC;text-decoration:none;font-weight:700}
+.ft small{display:block;margin-top:22px;font-family:'Space Mono';font-size:11px;color:#9a8f80}
+html,body{height:100%;overflow:hidden}
+.pg{height:100vh;height:100dvh;display:flex;flex-direction:column;padding-bottom:0}
+.pg>nav{flex:none;padding:10px 0}
+.mn{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+h1{font-size:min(9.6vw,5.4vh);margin:min(2vh,16px) 0 0}
+.pot{margin:min(1.5vh,12px) 0 0;flex:none}.pot .fire{width:auto;height:min(11vh,100px)}.pot b{font-size:min(8vw,4.4vh)}
+.grid{grid-template-columns:repeat(3,1fr);gap:10px;margin:min(2vh,16px) 0 0;flex:none}
+.grid .t{border-radius:10px}
+.grid .tt::before{inset:7px;border-radius:4px}
+.grid .tt b{font-size:min(6.4vw,3.4vh)}.grid .tt b.long{font-size:min(4.4vw,2.4vh)}
+.grid .tt .cc{font-size:8px;left:12px;top:11px;letter-spacing:.04em}
+.grid .tt i{font-size:10px;bottom:11px}
+.grid .tt .snd svg{width:13px;height:13px}
+.grid .tt .wd{padding-top:4px;gap:3px}
+.grid .t::after{width:36px;height:10px;top:10px;right:10px}
+.cta{display:flex;gap:10px;margin:min(2vh,16px) 0 0;flex:none}
+.cta .btn{font-size:min(16px,4.1vw);padding:13px 8px;white-space:nowrap}.cta .btn-s{margin-top:0}
+.art{flex:1 1 auto;min-height:0;height:auto;margin:min(2vh,16px) -16px 0 -40px}
+.ft{flex:none;margin:0 -16px 0 -40px;padding:10px 16px 10px 40px;display:flex;justify-content:space-between;align-items:center;font-family:'Space Mono',monospace;font-size:11px;color:#c9bfae}
+.ft nav{display:flex;gap:14px;padding:0}
+.ft nav a{color:#F6EEDC;text-decoration:none;font-weight:700}
+</style></head><body>
+<div class="memphis"></div>
+<div class="pg">
+ <nav><a class="brand" href="#"><span class="mark"><img src="mark.svg" onerror="this.onerror=null;this.src='mark-d8.svg'" alt="℧"></span>bkt</a><a class="si" href="#">Sign in</a></nav>
+ <main class="mn">
+ <h1>Language learning for <em>multilingual</em> learners.</h1>
+ 
+ <div class="pot" aria-label="100 day streak">
+   <svg viewBox="0 -78 100 184" class="fire" aria-hidden="true">
+    <defs>
+     <pattern id="sk-kente" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#E9A23B"/><rect width="3" height="12" fill="#1E7A5A"/><rect x="6" width="2" height="12" fill="#D9381E"/><rect y="8" width="12" height="3" fill="#231F20"/></pattern>
+     <pattern id="sk-azulejo" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#F4F1E8"/><circle cx="5" cy="5" r="2.4" fill="#26428B"/><circle r="2.6" fill="#26428B"/><circle cx="10" r="2.6" fill="#26428B"/><circle cy="10" r="2.6" fill="#26428B"/><circle cx="10" cy="10" r="2.6" fill="#26428B"/></pattern>
+     <pattern id="sk-girih" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#1E5F6E"/><path d="M6 1l1.4 3.6L11 6 7.4 7.4 6 11 4.6 7.4 1 6l3.6-1.4z" fill="#E9A23B"/></pattern>
+     <pattern id="sk-seal" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#D9381E"/><path d="M0 4h4V0M4 8V4h4" fill="none" stroke="#F6EEDC" stroke-width="1"/></pattern>
+     <pattern id="sk-paisley" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#8E2312"/><path d="M7 3c3 0 4 3 2 5-1 1-3 2-5 4 0-3-1-4-1-6 0-2 2-3 4-3z" fill="#E9A23B"/><circle cx="7" cy="6" r="1" fill="#8E2312"/></pattern>
+     <pattern id="sk-mudcloth" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#3B2A1E"/><path d="M1 2h8M1 8h8" stroke="#EBDDBE" stroke-width="1.2" stroke-dasharray="2 1.5"/><circle cx="5" cy="5" r="1" fill="#EBDDBE"/></pattern>
+    </defs>
+    
+    <g class="fl one">
+     <circle cx="50" cy="58" r="26" fill="#D9381E"/><path d="M50 -74C64 -46 84 -30 80 4c-2 22-6 40-8 56a22 22 0 0 1-44 0c-2-16-6-34-8-56-4-28 14-34 12-54 10 10 14 22 16 34 4-18 4-38-8-58z" fill="#D9381E"/>
+     <g class="core"><ellipse cx="50" cy="62" rx="17" ry="19" fill="#E9A23B"/><ellipse cx="50" cy="68" rx="8" ry="11" fill="#F6EEDC"/><path d="M50 -40c9 18 22 30 19 52-2 16-4 30-5 44a14 14 0 0 1-28 0c-1-14-3-28-5-44-2-16 8-22 8-34 6 8 8 16 10 24 3-12 3-26 1-42z" fill="#E9A23B"/>
+     <path d="M50 -6c5 12 11 22 10 38-1 10-2 20-3 30a7 7 0 0 1-14 0c-1-10-2-20-3-30-1-14 5-20 6-28 2 6 3 10 4 16 1-8 1-16 0-26z" fill="#F6EEDC"/></g>
+    </g>
+    <path class="mho" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#3A0F2F" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 6)"/>
+    <path class="mho face" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#5B1A4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+   </svg>
+   <div><b>100</b><span>day streak</span></div>
+  </div>
+ <div class="grid" data-tiles="text" data-cycle="2400"></div>
+ <div class="cta"><a class="btn btn-p" href="#">Start learning</a><a class="btn btn-s" href="#">Explore the canon</a></div>
+ <div class="art" aria-hidden="true">
+  <div class="azu" style="right:-20px;top:40px;transform:rotate(12deg) scale(.8)"></div>
+  <div class="seal" style="left:30px;top:70px;transform:rotate(-7deg) scale(.75)"><span>百</span></div>
+  <div class="stamp" style="left:150px;top:150px;transform:rotate(6deg) scale(.8)"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
+  <div class="kente" style="left:-30px;top:250px;transform:rotate(-12deg) scale(.8)"></div>
+  <div class="torn" style="right:10px;top:250px;transform:rotate(-4deg) scale(.7)"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
+  <div class="mini" style="left:200px;top:70px;transform:rotate(-12deg);font-family:'Noto Sans Hebrew'">מאה</div>
+  <div class="mini" style="left:40px;top:200px;transform:rotate(18deg);font-family:'Noto Sans'">сто</div>
+ </div>
+ </main>
+ <footer class="ft"><span>Bucket Foundation · nonprofit</span><nav><a href="#">Canon</a><a href="#">Manifesto</a><a href="#">Download</a></nav></footer>
+</div>
+<script src="tiles.js"></script>
+<script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script></body></html>

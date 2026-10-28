@@ -1,0 +1,1786 @@
+{
+ "branch": "02-physics",
+ "reviews": {
+  "kinematics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "kinematics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "kinematics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "kinematics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "kinematics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "vectors.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "vectors.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "vectors.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "vectors.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "vectors.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "calculus-physics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "calculus-physics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "calculus-physics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "calculus-physics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "calculus-physics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "newton-laws.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "newton-laws.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "newton-laws.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "newton-laws.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "newton-laws.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "momentum.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "momentum.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "momentum.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "momentum.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "momentum.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "work-energy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "work-energy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "work-energy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "work-energy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "work-energy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "energy-conservation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "energy-conservation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "energy-conservation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "energy-conservation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "energy-conservation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "rotational.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "rotational.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "rotational.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "rotational.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "rotational.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gravitation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gravitation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gravitation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gravitation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gravitation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrangian.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrangian.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrangian.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrangian.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrangian.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "least-action.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "least-action.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "least-action.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "least-action.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "least-action.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hamiltonian.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hamiltonian.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hamiltonian.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hamiltonian.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hamiltonian.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "shm.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "shm.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "shm.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "shm.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "shm.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "waves.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "waves.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "waves.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "waves.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "waves.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "coulomb.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "coulomb.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "coulomb.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "coulomb.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "coulomb.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gauss-law.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gauss-law.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gauss-law.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gauss-law.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gauss-law.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "magnetism-lorentz.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "magnetism-lorentz.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "magnetism-lorentz.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "magnetism-lorentz.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "magnetism-lorentz.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "faraday.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "faraday.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "faraday.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "faraday.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "faraday.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "ampere-maxwell.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "ampere-maxwell.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "fixed",
+   "note": "Low from #1064: now needs the displacement-current step epsilon_0 dPhi_E/dt."
+  },
+  "ampere-maxwell.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "ampere-maxwell.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "ampere-maxwell.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-equations.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-equations.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-equations.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-equations.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-equations.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "em-waves.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "em-waves.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "em-waves.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "em-waves.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "em-waves.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "thermo-temperature.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "thermo-temperature.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "thermo-temperature.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "thermo-temperature.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "thermo-temperature.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "first-law-thermo.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "first-law-thermo.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "first-law-thermo.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "first-law-thermo.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "first-law-thermo.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-second-law.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-second-law.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-second-law.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-second-law.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-second-law.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-entropy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-entropy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-entropy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-entropy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-entropy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-distribution.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-distribution.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-distribution.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-distribution.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-distribution.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geometric-optics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geometric-optics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geometric-optics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geometric-optics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geometric-optics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wave-optics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wave-optics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wave-optics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wave-optics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wave-optics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "special-relativity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "special-relativity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "special-relativity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "special-relativity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "special-relativity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "spacetime.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "fixed",
+   "note": "Near-duplicate of special-relativity.pick (both asked what all observers agree on); replaced."
+  },
+  "spacetime.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "spacetime.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "spacetime.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "spacetime.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-energy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-energy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-energy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-energy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-energy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "equivalence-principle.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "equivalence-principle.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "equivalence-principle.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "equivalence-principle.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "equivalence-principle.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geodesics-curvature.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geodesics-curvature.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geodesics-curvature.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geodesics-curvature.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "geodesics-curvature.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-equation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-equation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-equation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-equation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-equation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "photoelectric-quantization.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "photoelectric-quantization.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "photoelectric-quantization.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "photoelectric-quantization.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "photoelectric-quantization.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "matter-waves.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "matter-waves.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "matter-waves.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "matter-waves.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "matter-waves.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wavefunction.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wavefunction.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wavefunction.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wavefunction.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wavefunction.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "operators-observables.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "operators-observables.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "operators-observables.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "operators-observables.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "operators-observables.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "uncertainty.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "uncertainty.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "uncertainty.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "uncertainty.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "uncertainty.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-tunneling.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-tunneling.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-tunneling.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-tunneling.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-tunneling.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-spin.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-spin.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-spin.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-spin.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-spin.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-atom.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-atom.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-atom.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-atom.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-atom.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-entanglement.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-entanglement.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "fixed",
+   "note": "Low from #1064: recall in numerical dress; now needs the anti-correlation step."
+  },
+  "quantum-entanglement.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-entanglement.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-entanglement.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "qft-idea.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "qft-idea.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "qft-idea.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "qft-idea.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "qft-idea.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "standard-model.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "standard-model.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "fixed",
+   "note": "Low from #1064: now needs a quark-charge sum for the neutron."
+  },
+  "standard-model.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "standard-model.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "standard-model.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "fixed",
+   "note": "Low from #1064: gluons also feel the strong force, so the quark line names quarks as the bound matter particles."
+  },
+  "cosmology-glimpse.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "cosmology-glimpse.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "cosmology-glimpse.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "cosmology-glimpse.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "cosmology-glimpse.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "forces-friction.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "forces-friction.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "forces-friction.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "forces-friction.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "forces-friction.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluids-bernoulli.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluids-bernoulli.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluids-bernoulli.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluids-bernoulli.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluids-bernoulli.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "heat-engines-carnot.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "heat-engines-carnot.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "heat-engines-carnot.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "heat-engines-carnot.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "heat-engines-carnot.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "electric-potential.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "electric-potential.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "electric-potential.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "electric-potential.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "electric-potential.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "circuits-ohm.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "circuits-ohm.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "circuits-ohm.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "circuits-ohm.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "circuits-ohm.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "blackbody-planck.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "blackbody-planck.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "blackbody-planck.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "blackbody-planck.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "blackbody-planck.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "bohr-model.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "bohr-model.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "bohr-model.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "bohr-model.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "bohr-model.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-harmonic-oscillator.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-harmonic-oscillator.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; applied task; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-harmonic-oscillator.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-harmonic-oscillator.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-harmonic-oscillator.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrangian.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "least-action.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "hamiltonian.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "calculus-physics.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "coulomb.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "gauss-law.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "ampere-maxwell.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-equations.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-entropy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann-distribution.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "spacetime.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-equation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "wavefunction.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "operators-observables.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "uncertainty.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-spin.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "quantum-entanglement.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "qft-idea.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "standard-model.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  },
+  "bohr-model.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs physics and atom lesson",
+   "verdict": "ok"
+  }
+ }
+}

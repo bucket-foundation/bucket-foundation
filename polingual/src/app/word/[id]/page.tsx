@@ -1,16 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { cache } from "react";
 import { notFound } from "next/navigation";
 import { getPhoton, type Photon } from "@/lib/photon-db";
 
 export const dynamic = "force-dynamic";
 
-async function fetchPhoton(id: string): Promise<Photon | null> {
+const fetchPhoton = cache(async (id: string): Promise<Photon | null> => {
   try {
     return await getPhoton(id);
   } catch {
     return null;
   }
-}
+});
 
 const LANG_LABEL: Record<string, string> = {
   en: "English",  la: "Latin",      sa: "Sanskrit",   fr: "French",
@@ -21,6 +23,14 @@ const LANG_LABEL: Record<string, string> = {
   sv: "Swedish",  fi: "Finnish",    cs: "Czech",      vi: "Vietnamese",
   th: "Thai",     id: "Indonesian", ta: "Tamil",
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const photon = await fetchPhoton(decodeURIComponent(id));
+  if (!photon) return { title: "Word not found", robots: { index: false } };
+  const lang = LANG_LABEL[photon.lang] || photon.lang;
+  return { title: `${photon.surface} in ${lang}`, description: (photon.meaning_en ? `${photon.surface} (${lang}): ${photon.meaning_en}` : `${photon.surface}, a word in ${lang}, on Polingual.`).slice(0, 160), alternates: { canonical: `/word/${encodeURIComponent(photon.id)}` } };
+}
 
 export default async function WordPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

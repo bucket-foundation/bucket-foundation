@@ -172,7 +172,7 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 Language surface on the photon substrate. Contract and vision: `docs/specs/PHOTON-SPEC.md`, `docs/specs/POLINGUAL.md`. Axes: semantic, phonetic, spelling, etymology, translation.
 
 - Full index: 6,564,942 photons, 35 languages, LaBSE-768 plus 64-d phonetic vectors with HNSW, in local docker `bucket-pgvector` on 127.0.0.1:5433, table `photons_full`. API `services/photon-api/server_pg.py` on :8090.
-- The hosted fallback API and the store that held the authoritative `relations` jsonb metadata (translation and etymology edges) are gone for good. With `POLINGUAL_API_URL` and `POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes no network call and the app runs on the baked subset.
+- The hosted fallback API and the store that held the authoritative `relations` jsonb metadata (translation and etymology edges) are gone for good. With `POLINGUAL_API_URL` and `POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes no network call: `semantic` and `lookup` answer from `_intake/photons/all.json`, a 43 MB slice holding every word in the shipped language decks with precomputed means-like neighbors (`scripts/photon/build_deck_slice.py`). The full index and vectors stay a desktop download pack.
 - Data is Wiktionary via Kaikki, CC-BY-SA, and must be attributed.
 - Build pipeline, sizing, gotchas and infra history: `docs/internal/OPERATIONS.md`.
 

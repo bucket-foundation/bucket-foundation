@@ -65,6 +65,7 @@ figma-export/
 # ignore rule here silently drops history on the next checkout. Do not add
 # one back.
 *.png
+!apple/*/Resources/Assets.xcassets/AppIcon.appiconset/*.png
 # …EXCEPT the vendored paper/research figures under public/, which are part of
 # the shipped site (the research-atlas paper pages + the education-atlas corpus
 # render them) and MUST reach Vercel. Without these negations the blanket
@@ -234,3 +235,4 @@ tools/kindred/cache/
 
 !public/brand/directions/**
 !public/brand/round2/**
+!tests/fixtures/app-store/*.pem

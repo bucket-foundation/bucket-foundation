@@ -19,6 +19,7 @@ const GROUPS: RowGroup[] = [
 
 export interface CountryPoint {
   iso2: string;
+  iso3: string;
   name: string;
   point: [number, number];
 }
@@ -33,7 +34,7 @@ export async function countryPoints(tables: TableReader, ctx: AssembleContext): 
     const iso2 = text(row.iso2);
     if (publicSource("countries", row, ctx.registry) !== POINT_SOURCE || !/^[A-Z]{2}$/.test(iso2) || !/^[A-Z]{3}$/.test(text(row.iso3)) || !text(row.name)) continue;
     if (typeof row.lat !== "number" || typeof row.lng !== "number" || Math.abs(row.lat) > 90 || Math.abs(row.lng) > 180) continue;
-    const held = { iso2, name: text(row.name), point: [row.lat, row.lng] as [number, number] };
+    const held = { iso2, iso3: text(row.iso3), name: text(row.name), point: [row.lat, row.lng] as [number, number] };
     out.set(text(row.iso3), held);
     out.set(iso2, held);
   }
@@ -84,7 +85,7 @@ export async function educationByCountry(tables: TableReader, ctx: AssembleConte
     const schooling = (held.values.get("SE.PRM.DURS") ?? 0) + (held.values.get("SE.SEC.DURS") ?? 0);
     return {
       key: iso3, title: place.name, sub: schoolingLine(held.values), group: start === undefined ? "age-none" : [5, 6, 7].includes(start) ? `age-${start}` : "age-other",
-      source: held.source, year: held.year, url: held.url, place: place.iso2, point: place.point, weight: schooling > 0 ? schooling : null, verified: true,
+      source: held.source, year: held.year, url: held.url, place: place.iso3, point: place.point, weight: schooling > 0 ? schooling : null, verified: true,
     };
   });
   return assembleRowSet([{ id: EDUCATION_BY_COUNTRY_ID, label: LABEL, audience: "public", modes: ["earth", "map"], groups: GROUPS, rows, layout: "ring", also: rows.length ? [{ source: POINT_SOURCE, rows: rows.length }] : [] }], ctx);

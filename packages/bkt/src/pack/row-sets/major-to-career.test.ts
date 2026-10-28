@@ -33,7 +33,7 @@ describe("major to career", () => {
     const [rows] = await majorToCareer(tables(), ctx);
     const [again] = await majorToCareer(tables(), ctx);
     expect(rows.sha256).toBe(again.sha256);
-    expect(rows.sha256).toBe("bff462be9391fb2f6beccc785001b6d26a673e4af6d9853e48dafef9202521a3");
+    expect(rows.sha256).toBe("afc4c23067de5bc8086ef15e31f0fe87fd8fd0cd4b4b9b15c52acbeb8bf1b5ed");
   });
 
   test("series and major groups become hits, and crosswalk pairs become weighted links", async () => {

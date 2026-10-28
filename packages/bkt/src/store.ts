@@ -11,11 +11,11 @@ import type { Form } from "../../../src/lib/research-os/work-quiz/space";
 
 export { deckOf, LEGACY_DECKS };
 
-export const SCHEMA_VERSION = 13;
+export const SCHEMA_VERSION = 14;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
-export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "ros_nodes", "ros_edges", "ros_items", "ros_state", "ros_profile", "work_quiz_languages"] as const;
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "ros_nodes", "ros_edges", "ros_items", "ros_state", "ros_profile", "work_quiz_languages", "ros_productions"] as const;
 
 const deckCase = `case branch ${Object.entries(LEGACY_DECKS)
   .map(([b, d]) => `when '${b}' then '${d}'`)
@@ -137,6 +137,8 @@ export const MIGRATIONS: Migration[] = [
    create table ros_profile (id integer primary key check (id = 1), role text, birth_year_bucket text, game text, updated_at integer not null);`,
   `create table if not exists work_quiz_languages (code text primary key check (length(code) between 2 and 3), added_at integer not null);`,
   migrateItemIds,
+  `create table ros_productions (id text primary key, kind text not null, status text not null, claim text, target_node_id text not null,
+     related_node_id text, sources text not null default '[]', created_at integer not null, updated_at integer not null);`,
 ];
 
 export interface AttemptInput {

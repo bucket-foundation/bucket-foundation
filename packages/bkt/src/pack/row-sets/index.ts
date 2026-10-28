@@ -7,16 +7,16 @@ import { BUNDLED_DATASETS } from "../../../../../src/lib/explore/datasets";
 import { allowedSets } from "../../../../../src/lib/explore/space-api";
 import { hasEmail } from "../../../../../src/lib/research-os/advisor-review";
 import { assertClean, buildDenylist, type Denylist } from "../rights";
-import { audienceOf, MODE_IDS, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowSetText, SET_BYTES, type AssembleContext, type PackedRows } from "./contract";
+import { audienceOf, hitIds, MODE_IDS, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowSetText, SET_BYTES, type AssembleContext, type PackedRows } from "./contract";
 import { entryById, readCreditLine, REGISTRY, withCorpusCredits, type CreditLine, type LicenceEntry, type Row } from "./licences";
-import { coverageByCountry } from "./coverage-by-country";
+import { coverageByCountry, COVERAGE_BY_COUNTRY_ID } from "./coverage-by-country";
 import { educationByCountry } from "./education-by-country";
 import { majorToCareer } from "./major-to-career";
 import { mathematicsChain } from "./mathematics-chain";
 import { occupationsTime } from "./occupations-time";
 import { technologyWaves } from "./technology-waves";
 
-export const ROW_SET_PACK_SCHEMA = "bucket.explore-rows-pack/1";
+export const ROW_SET_PACK_SCHEMA = "bucket.explore-rows-pack/2";
 export const ROW_SET_PACK_BUDGET_BYTES = 1_310_720;
 export const ROW_SET_PACK_FILE = "explore-rows.json";
 export const TABLES_DIR = "learning/corpus/progressions/tables";
@@ -86,7 +86,7 @@ export function reservedIds(repo: string): Set<string> {
 export async function countryCodes(tables: TableReader): Promise<Set<string>> {
   const out = new Set<string>();
   if (!tables.has(COUNTRY_TABLE)) return out;
-  for await (const row of tables.rows(COUNTRY_TABLE)) if (typeof row.iso2 === "string" && /^[A-Z]{2}$/.test(row.iso2)) out.add(row.iso2);
+  for await (const row of tables.rows(COUNTRY_TABLE)) if (typeof row.iso3 === "string" && /^[A-Z]{3}$/.test(row.iso3)) out.add(row.iso3);
   return out;
 }
 
@@ -123,6 +123,38 @@ export interface RowSetPack {
   sha256: string;
   built: string;
   sets: RowSetEntry[];
+  aliases: Record<string, string>;
+}
+
+export function parseRowSetPack(value: unknown): RowSetPack | null {
+  const pack = value as Partial<RowSetPack> | null;
+  if (!pack || typeof pack !== "object" || pack.schema !== ROW_SET_PACK_SCHEMA || !Array.isArray(pack.sets) || typeof pack.version !== "string") return null;
+  if (!pack.aliases || typeof pack.aliases !== "object" || !Object.values(pack.aliases).every((v) => typeof v === "string")) return null;
+  return pack.sets.every((s) => s && typeof s.id === "string" && Array.isArray(s.pages)) ? (pack as RowSetPack) : null;
+}
+
+export function embeddedRowSets(value: unknown): RowSetPack {
+  const pack = parseRowSetPack(value);
+  if (!pack) throw new Error(`the embedded row set pack fails the ${ROW_SET_PACK_SCHEMA} schema check; rebuild with bun run pack:content`);
+  return pack;
+}
+
+export function isRowSetPackFile(file: string): boolean {
+  return file.endsWith(`/${ROW_SET_PACK_FILE}`) || file === ROW_SET_PACK_FILE;
+}
+
+export async function countryAliases(tables: TableReader, sets: PackedRows[][]): Promise<Record<string, string>> {
+  const iso3to2 = new Map<string, string>();
+  if (tables.has(COUNTRY_TABLE)) for await (const row of tables.rows(COUNTRY_TABLE)) if (typeof row.iso2 === "string" && typeof row.iso3 === "string" && /^[A-Z]{2}$/.test(row.iso2) && /^[A-Z]{3}$/.test(row.iso3)) iso3to2.set(row.iso3, row.iso2);
+  const out: Record<string, string> = {};
+  for (const page of sets.flat()) {
+    if (page.id !== COVERAGE_BY_COUNTRY_ID) continue;
+    for (const hit of hitIds(page)) {
+      const iso2 = iso3to2.get(hit.slice(hit.lastIndexOf(":") + 1));
+      if (iso2) out[`row:${page.id}:${iso2}`] = hit;
+    }
+  }
+  return out;
 }
 
 export function setBytes(pages: PackedRows[]): number {
@@ -162,7 +194,7 @@ export function packWarnings(pack: RowSetPack): string[] {
   return bytes > ROW_SET_PACK_BUDGET_BYTES * WARN_SHARE ? [`the pack is ${bytes} bytes, past 90% of the ${ROW_SET_PACK_BUDGET_BYTES} byte budget`] : [];
 }
 
-export function assembleRowSetPack(sets: PackedRows[][], deny: Denylist, built: string): RowSetPack {
+export function assembleRowSetPack(sets: PackedRows[][], deny: Denylist, built: string, aliases: Record<string, string> = {}): RowSetPack {
   const ids = new Set<string>();
   const entries: RowSetEntry[] = [];
   for (const pages of sets) {
@@ -174,9 +206,11 @@ export function assembleRowSetPack(sets: PackedRows[][], deny: Denylist, built: 
     checkCaps(first.id, pages);
     entries.push({ id: first.id, label: first.label, licence: first.licence, audience: "public", bytes: setBytes(pages), hits: pages.reduce((sum, p) => sum + p.n, 0), pages });
   }
-  const body = { schema: ROW_SET_PACK_SCHEMA, built, sets: entries } as const;
+  const body = { schema: ROW_SET_PACK_SCHEMA, built, sets: entries, aliases } as const;
   const sha256 = createHash("sha256").update(JSON.stringify(body)).digest("hex");
   const pack: RowSetPack = { version: sha256.slice(0, 12), sha256, ...body };
+  const bytes = packBytes(pack);
+  if (bytes > ROW_SET_PACK_BUDGET_BYTES) throw new Error(`row set pack: ${bytes} bytes is over the ${ROW_SET_PACK_BUDGET_BYTES} byte budget`);
   assertClean(deny, pack, "the row set pack");
   assertClean(deny, rowSetText(entries.flatMap((e) => e.pages)), "the row set hit ids");
   return pack;
@@ -191,19 +225,16 @@ export async function buildRowSetPack(repo: string, deny: Denylist = buildDenyli
     if (pages[0]?.id !== id) throw new Error(`row sets: the ${id} adapter built ${pages[0]?.id}`);
     sets.push(pages);
   }
-  return assembleRowSetPack(sets, deny, ctx.built);
+  return assembleRowSetPack(sets, deny, ctx.built, await countryAliases(tables, sets));
 }
 
 export function readRowSetPack(file: string): RowSetPack | null {
   if (!file.endsWith(".json")) return null;
-  let parsed: unknown;
   try {
-    parsed = JSON.parse(readFileSync(file, "utf8"));
+    return parseRowSetPack(JSON.parse(readFileSync(file, "utf8")));
   } catch {
     return null;
   }
-  const pack = parsed as Partial<RowSetPack> | null;
-  return pack && typeof pack === "object" && pack.schema === ROW_SET_PACK_SCHEMA && Array.isArray(pack.sets) ? (pack as RowSetPack) : null;
 }
 
 export function publicPackProblems(pack: RowSetPack, registry: LicenceEntry[] = REGISTRY): string[] {
@@ -223,6 +254,8 @@ export function publicPackProblems(pack: RowSetPack, registry: LicenceEntry[] = 
     if (hasEmail(text)) out.push(`${set.id}: an email address`);
     if (/ipums/i.test(text)) out.push(`${set.id}: a row that cites IPUMS`);
   }
+  const bytes = packBytes(pack);
+  if (bytes > ROW_SET_PACK_BUDGET_BYTES) out.push(`the pack is ${bytes} bytes, over the ${ROW_SET_PACK_BUDGET_BYTES} byte budget`);
   return [...new Set(out)];
 }
 

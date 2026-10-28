@@ -47,9 +47,10 @@ export function syncExplore(db: Database, pack: ExplorePack): boolean {
 }
 
 export const ROWS_META_KEY = "explore_rows_version";
+export const ROWS_ALIASES_KEY = "explore_rows_aliases";
 export const ROWS_QUERY_MAX = 200;
 
-export function syncRowSets(db: Database, pack: Pick<RowSetPack, "version" | "sets"> | null): boolean {
+export function syncRowSets(db: Database, pack: (Pick<RowSetPack, "version" | "sets"> & { aliases?: Record<string, string> }) | null): boolean {
   const version = pack?.version ?? "none";
   if (db.query<{ v: string }, [string]>("select v from meta where k = ?").get(ROWS_META_KEY)?.v === version) return false;
   db.transaction(() => {
@@ -63,6 +64,7 @@ export function syncRowSets(db: Database, pack: Pick<RowSetPack, "version" | "se
       s.pages.forEach((p, i) => page.run(s.id, i, JSON.stringify(p)));
     });
     db.query("insert into meta (k, v) values (?, ?) on conflict (k) do update set v = excluded.v").run(ROWS_META_KEY, version);
+    db.query("insert into meta (k, v) values (?, ?) on conflict (k) do update set v = excluded.v").run(ROWS_ALIASES_KEY, JSON.stringify(pack?.aliases ?? {}));
   })();
   return true;
 }
@@ -72,6 +74,16 @@ export class RowSetStore {
 
   private ready(): boolean {
     return this.db.query<{ n: number }, []>("select count(*) as n from sqlite_master where type = 'table' and name = 'explore_row_sets'").get()!.n > 0;
+  }
+
+  aliases(): Record<string, string> {
+    const raw = this.db.query<{ v: string }, [string]>("select v from meta where k = ?").get(ROWS_ALIASES_KEY)?.v;
+    try {
+      const parsed = raw ? (JSON.parse(raw) as unknown) : null;
+      return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? Object.fromEntries(Object.entries(parsed).filter(([, v]) => typeof v === "string")) : {};
+    } catch {
+      return {};
+    }
   }
 
   list(): { id: string; label: string }[] {
@@ -92,7 +104,7 @@ export class RowSetStore {
 export function rowSetReply(store: RowSetStore, url: URL): { status: number; body: unknown } {
   const params = url.searchParams;
   const id = params.get("id");
-  if (id === null) return { status: 200, body: { datasets: store.list() } };
+  if (id === null) return { status: 200, body: { datasets: store.list(), aliases: store.aliases() } };
   const bad = { status: 400, body: { error: "bad_request" } };
   if (!validDatasetId(id)) return bad;
   const opening = store.has(id) ? store.page(id, 0) : null;
@@ -214,13 +226,18 @@ export function exploreDeps(explore: ExploreStore, canon: CanonStore): ExploreSe
 }
 
 export class SavedStore {
-  constructor(private db: Database) {
+  constructor(private db: Database, private aliases: Record<string, string> = {}) {
     db.run("create table if not exists explore_saved (k text primary key, v text not null)");
   }
 
   get(): SavedState {
     const row = this.db.query<{ v: string }, []>("select v from explore_saved where k = 'list'").get();
-    return parseStored(row?.v).state;
+    const state = parseStored(row?.v).state;
+    if (!state.items.some((item) => item.id in this.aliases)) return state;
+    const items = state.items.map((item) => (item.id in this.aliases ? { ...item, id: this.aliases[item.id] } : item)).filter((item, n, all) => all.findIndex((o) => o.id === item.id) === n);
+    const moved = { ...state, items };
+    this.db.query("insert into explore_saved (k, v) values ('list', ?) on conflict (k) do update set v = excluded.v").run(serializeSaved(moved));
+    return moved;
   }
 
   put(raw: string): SavedState | null {

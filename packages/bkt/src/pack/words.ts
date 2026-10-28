@@ -7,8 +7,8 @@ import { buildWordSet, cleanIpa, rejection, scriptOf, usableWord, type RawSubset
 import { assertClean, buildDenylist, type Denylist } from "./rights";
 
 export const WORD_PACK_BUDGET_BYTES = 4 * 1024 * 1024;
-export const LICENCE_FILE = "packages/bkt/licences/CC-BY-SA-3.0.txt";
-export const LICENCE_TITLE = "Attribution-ShareAlike 3.0 Unported";
+export const LICENCE_FILE = "packages/bkt/licences/CC-BY-SA-4.0.txt";
+export const LICENCE_TITLE = "Attribution-ShareAlike 4.0 International";
 export const WORD_CHANGES =
   "Changes made by Bucket: the pack leaves out entries that only point to another word, and keeps one short definition and up to four further senses for each word, one pronunciation, and a shortened etymology. Bucket offers the changed word list under the same licence.";
 export const SEVERAL_WORDS = "several words for one concept";
@@ -36,7 +36,7 @@ export const SENSES_KEPT = 4;
 export const SENSE_CHARS = 160;
 export const SHARE_ALIKE = /CC[- ]BY[- ]SA/i;
 export const SOURCE_NAME = /Wiktionary/;
-export const LICENCE_URL = "https://creativecommons.org/licenses/by-sa/3.0/";
+export const LICENCE_URL = "https://creativecommons.org/licenses/by-sa/4.0/";
 
 export interface WordAttribution {
   data: string;

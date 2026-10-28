@@ -9,7 +9,7 @@ export interface StoredSession {
 }
 
 export interface TokenVault {
-  readonly kind: "libsecret" | "file" | "memory" | "secure-storage";
+  readonly kind: "libsecret" | "file" | "memory" | "secure-storage" | "browser-storage";
   get(): Promise<StoredSession | null>;
   set(s: StoredSession): Promise<void>;
   clear(): Promise<void>;

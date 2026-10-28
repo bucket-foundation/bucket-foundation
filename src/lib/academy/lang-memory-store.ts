@@ -106,14 +106,14 @@ export function gradeShared(io: MemoryIO, s: SharedSession, lang: string, itemId
   return { session, saved: persist(io, m, true) };
 }
 
-export function placeShared(io: MemoryIO, s: SharedSession, corpus: LangCorpus, lang: string, tier: number): { session: SharedSession; system: LangSystem; saved: Promise<boolean> } {
+export function placeShared(io: MemoryIO, s: SharedSession, corpus: LangCorpus, lang: string, tier: number, only?: string[], level?: string): { session: SharedSession; system: LangSystem; saved: Promise<boolean> } {
   const kept = Math.max(tier, s.plan.placement[lang] ?? 0);
-  const system = { ...s.system, placement: { ...s.system.placement, [lang]: kept } };
+  const system = { ...s.system, placement: { ...s.system.placement, [lang]: kept }, ...(level ? { levels: { ...s.system.levels, [lang]: level } } : {}) };
   const systems = s.systems.map((x) => (x.id === system.id ? system : x));
   if (s.langStatus[lang] !== "ready") return { session: { ...s, system, systems, plan: planningSystem(system, systems) }, system, saved: Promise.resolve(false) };
   const m0 = s.memories[lang] ?? emptyMemory(lang);
   const full = memoryState(m0);
-  const placed = applyPlacement(full, system, corpus, lang, kept, io.now());
+  const placed = applyPlacement(full, system, corpus, lang, kept, io.now(), only ? new Set(only) : undefined);
   const baseline = normalizeState(m0.baseline);
   for (const [id, c] of Object.entries(placed.cards)) if (!full.cards[id]) baseline.cards[id] = c;
   const m = { ...m0, baseline };

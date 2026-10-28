@@ -8,7 +8,7 @@ import { findStaff, findStaffRowSets } from "../../../scripts/check-no-staff";
 import { assertClean, buildDenylist } from "../rights";
 import { figureUrl, occupationKey, STAFF_ONLY_EVIDENCE } from "./technology-waves";
 import { assembleRowSet, checkRows, hitIds, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowKey, rowKeys, rowSetText, SET_BYTES, type RowDraft } from "./contract";
-import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, packWarnings, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
+import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, packWarnings, countryCodes, describeRowSets, fileTables, packBytes, embeddedRowSets, parseRowSetPack, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
 import { fixtureContext, fixtureDraft } from "./test-fixtures";
 
 const REPO = resolve(import.meta.dir, "../../../../..");
@@ -228,9 +228,20 @@ describe("the public row set pack, built from the tables", () => {
     for (const set of pack.sets) expect(reserved.has(set.id)).toBe(false);
   });
 
-  test("the countries table gives 237 two-letter codes, and every placed row carries one of them with its point", async () => {
+  test("every coverage hit has one alias from its two-letter id", async () => {
+    const iso2 = new Map<string, string>();
+    for await (const row of fileTables(join(REPO, TABLES_DIR)).rows("countries")) if (typeof row.iso2 === "string" && typeof row.iso3 === "string") iso2.set(row.iso3, row.iso2);
+    const hits = pack.sets.filter((s) => s.id === "coverage-by-country").flatMap((s) => s.pages.flatMap(hitIds));
+    const expected = Object.fromEntries(hits.map((hit) => [`row:coverage-by-country:${iso2.get(hit.split(":")[2])}`, hit]));
+    expect(hits).toHaveLength(30);
+    expect(Object.keys(pack.aliases)).toHaveLength(30);
+    expect(pack.aliases).toEqual(expected);
+    expect(pack.aliases["row:coverage-by-country:US"]).toBe("row:coverage-by-country:USA");
+  });
+
+  test("the countries table gives 236 three-letter codes, and every placed row carries one of them with its point", async () => {
     const codes = await countryCodes(fileTables(join(REPO, TABLES_DIR)));
-    expect(codes.size).toBe(237);
+    expect(codes.size).toBe(236);
     const placed = pack.sets.flatMap((s) => s.pages).filter((p) => p.frame.place !== null);
     expect(placed.map((p) => p.id)).toEqual(["education-by-country", "coverage-by-country"]);
     for (const page of placed) {
@@ -260,9 +271,9 @@ describe("the public row set pack, built from the tables", () => {
     const [rows] = setOf("coverage-by-country").pages;
     expect(rows.n).toBe(30);
     expect(rows.sources).toEqual(["bucket-corpus"]);
-    const us = rows.frame.place?.indexOf("US") as number;
+    const us = rows.frame.place?.indexOf("USA") as number;
     expect([rows.title[us], rows.sub[us], rows.frame.weight?.[us]]).toEqual(["United States of America", "32,898 rows, 3,639 checked", 32898]);
-    const turkey = rows.frame.place?.indexOf("TR") as number;
+    const turkey = rows.frame.place?.indexOf("TUR") as number;
     expect([rows.sub[turkey], rows.groups[rows.gi[turkey]].label, rows.frame.weight?.[turkey]]).toEqual(["0 rows, 0 checked", "No rows yet", null]);
   });
 
@@ -341,6 +352,8 @@ describe("the public build checks", () => {
     const file = write("explore-rows.json", pack);
     expect(readRowSetPack(file)?.sets).toHaveLength(6);
     expect(publicPackProblems(pack)).toEqual([]);
+    const padded = { ...pack, sets: [...pack.sets, ...Array.from({ length: Math.ceil(ROW_SET_PACK_BUDGET_BYTES / packBytes(pack)) }, () => pack.sets).flat()] };
+    expect(publicPackProblems(padded).some((p) => p.includes("over the 1310720 byte budget"))).toBe(true);
     expect(findStaffRowSets([file])).toEqual([]);
     expect(findKruse([file], [...deny.videoIds])).toEqual([]);
   });
@@ -377,6 +390,17 @@ describe("the public build checks", () => {
 
   test("a file of another shape is no row set pack", () => {
     expect(readRowSetPack(write("other.json", { schema: "bucket.explore-space/1" }))).toBeNull();
+    expect(ROW_SET_PACK_SCHEMA).toBe("bucket.explore-rows-pack/2");
+    expect(readRowSetPack(write("old.json", { ...pack, schema: "bucket.explore-rows-pack/1" }))).toBeNull();
+    const stale = write("explore-rows.json", { ...pack, schema: "bucket.explore-rows-pack/1" });
+    expect(findStaffRowSets([stale]).map((h) => h.marker)).toEqual(["a row set pack that fails the schema check"]);
+    expect(findKruse([stale], []).map((h) => h.marker)).toEqual(["a row set pack that fails the schema check"]);
+    expect(parseRowSetPack(pack)).toBe(pack);
+    expect(embeddedRowSets(pack)).toBe(pack);
+    expect(() => embeddedRowSets({ ...pack, schema: "bucket.explore-rows-pack/1" })).toThrow(/fails the bucket.explore-rows-pack\/2 schema check/);
+    expect(() => embeddedRowSets(null)).toThrow(/rebuild with bun run pack:content/);
+    expect(parseRowSetPack({ ...pack, aliases: undefined })).toBeNull();
+    expect(parseRowSetPack({ ...pack, sets: [{ id: 1 }] })).toBeNull();
     expect(readRowSetPack(write("broken.json", "{"))).toBeNull();
     expect(readRowSetPack(write("notes.txt", JSON.stringify(pack)))).toBeNull();
     rmSync(dir, { recursive: true, force: true });
