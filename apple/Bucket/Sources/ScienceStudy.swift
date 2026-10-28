@@ -185,6 +185,8 @@ struct StudySession: View {
     @State private var position = 0
     @State private var showLesson = false
     @State private var graded = 0
+    @State private var cardStart = Date()
+    @State private var questions: QuestionDeck?
 
     var body: some View {
         NavigationStack {
@@ -194,6 +196,7 @@ struct StudySession: View {
                         nothingDue
                     } else if position < queue.count, let atom = deck.byId[queue[position].id] {
                         card(queue[position], atom, count: queue.count)
+                            .sharePage(.atom(entry, atom))
                     } else {
                         done
                     }
@@ -210,8 +213,32 @@ struct StudySession: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
             }
         }
-        .onAppear { if queue == nil { queue = store.route(deck) } }
+        .onAppear {
+            if queue == nil {
+                queue = store.route(deck)
+                cardStart = .now
+                Beta.shared.studyStarted("science:\(deck.branch)")
+            }
+        }
         .onDisappear { Task { await store.flush() } }
+        .task {
+            #if DEBUG
+            if let path = Launch.value("-questionsFile"), let data = FileManager.default.contents(atPath: path) {
+                questions = try? JSONDecoder().decode(QuestionDeck.self, from: data)
+                return
+            }
+            #endif
+            questions = try? await BucketAPI().questionDeck(deck.branch)
+        }
+    }
+
+    func question(for atom: Atom) -> Question? {
+        var kind: QuestionKind?
+        #if DEBUG
+        kind = Launch.value("-questionKind").flatMap(QuestionKind.init(rawValue:))
+        #endif
+        let reps = Int(store.state(deck.branch).cards[atom.id]?.reps ?? 0)
+        return questions?.question(for: atom.id, reps: reps, kind: kind)
     }
 
     func card(_ item: RouteItem, _ atom: Atom, count: Int) -> some View {
@@ -227,20 +254,29 @@ struct StudySession: View {
                     Text("\(entry.title) · \(isNew ? "new atom" : "review")").font(.subheadline).foregroundStyle(Palette.muted)
                 }
                 Text(atom.title).font(.system(size: 26, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
-                if isNew || showLesson {
+                if (isNew && !Launch.flag("-hideLesson")) || showLesson {
                     AtomLesson(atom: atom)
                 } else {
                     Button("Read the lesson first") { withAnimation(.snappy) { showLesson = true } }
                         .font(.footnote.weight(.semibold))
                         .tint(Palette.muted)
                 }
-                ScienceDrill(atom: atom, level: pickLevel(store.state(deck.branch), atom), onRate: { rating, level in
+                let level = pickLevel(store.state(deck.branch), atom)
+                let rate: (Int, String, String, Question?) -> Void = { rating, level, kind, q in
                     store.grade(deck, id: item.id, rating: rating, level: level)
+                    Beta.shared.answered("science:\(deck.branch)", correct: rating > 1, ms: Int(Date.now.timeIntervalSince(cardStart) * 1000), kind: kind, question: q)
+                    cardStart = .now
                     reminders.noteStudy()
                     graded += 1
                     advance()
-                }, onSkip: advance)
-                .id(item.id)
+                }
+                if !isNew || Launch.flag("-questionsAlways"), let q = question(for: atom) {
+                    QuestionCard(presented: QuestionEngine.present(q, seed: "\(deck.branch):\(graded)")) { rating in rate(rating, level, isNew ? "new" : "review", q) }
+                        .id("\(item.id)-q")
+                } else {
+                    ScienceDrill(atom: atom, level: level, onRate: { rating, level in rate(rating, level, isNew ? "new" : "review", nil) }, onSkip: advance)
+                        .id(item.id)
+                }
             }
             .padding(20)
         }
@@ -278,6 +314,7 @@ struct StudySession: View {
                 DeckStats(summary: s)
                 if let nextLine { Text(nextLine).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink) }
                 ReminderPrompt()
+                FeedbackLink()
                 SyncLine(state: store.saveState)
                 Button {
                     dismiss()
@@ -289,6 +326,8 @@ struct StudySession: View {
             }
             .padding(20)
         }
+        .modifier(AskForReview(streak: Int(store.state(deck.branch).streak), graded: graded, correct: graded))
+        .onAppear { Beta.shared.studyEnded("science:\(deck.branch)", graded: graded, correct: graded) }
     }
 }
 

@@ -19,7 +19,8 @@ const POOL=[
 {c:"ke",n:"Swahili",w:"mia",ipa:"ˈmi.a",lang:"sw-KE",f:"Nunito",bg:"linear-gradient(#000 0 30%,#fff 0 35%,#BB0000 0 65%,#fff 0 70%,#006600 0)"},
 {c:"vn",n:"Vietnamese",w:"trăm",ipa:"ʈam",lang:"vi-VN",f:"Noto Sans",bg:"#DA251D",e:"★",ec:"#FFFF00",es:110},
 {c:"th",n:"Thai",w:"ร้อย",ipa:"rɔ́ːj",lang:"th-TH",f:"Noto Sans",bg:"linear-gradient(#A51931 0 16%,#F4F5F8 0 33%,#2D2A4A 0 66%,#F4F5F8 0 83%,#A51931 0)"}];
-const TILES=POOL.slice(0,6);
+const shuffled=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const TILES=shuffled(POOL).slice(0,6);
 const SPK='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 const byC=c=>POOL.find(t=>t.c===c);
 function say(el,t){
@@ -47,17 +48,22 @@ function renderTiles(root,mode){
  if(root.dataset.cycle!==undefined)cycle(els,text?'text':'bare',+root.dataset.cycle||2200);
 }
 function cycle(els,mode,ms){
- if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
- let k=0;
+ const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let last=-1;
  setInterval(()=>{
+  if(document.hidden)return;
   const shown=new Set(els.map(e=>e.dataset.c));
   const free=POOL.filter(t=>!shown.has(t.c));
-  const el=els[(k*4+1)%els.length];k++;
+  let i=Math.floor(Math.random()*els.length);
+  if(i===last&&els.length>1)i=(i+1)%els.length;
+  last=i;
+  const el=els[i];
   if(el.matches(':hover')||el.classList.contains('playing')||!free.length)return;
-  const t=free[(k*7)%free.length];
+  const t=free[Math.floor(Math.random()*free.length)];
+  if(calm){paint(el,t,mode);return}
   el.classList.add('flip');
   setTimeout(()=>{paint(el,t,mode);el.classList.remove('flip');el.classList.add('flipin');setTimeout(()=>el.classList.remove('flipin'),260)},240);
- },ms);
+ },calm?ms*2:ms);
 }
 if('speechSynthesis' in window)speechSynthesis.getVoices();
 document.querySelectorAll('[data-tiles]').forEach(r=>renderTiles(r,r.dataset.tiles));

@@ -38,6 +38,21 @@ struct PolingualRoot: View {
             }
         }
         .task { account.beforeSignOut = { await store.flush() } }
+        #if DEBUG
+        .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
+            store.clearLocal()
+            reminders.reset()
+        }
+        #endif
+    }
+}
+
+enum LaunchRouting {
+    enum Step: Equatable { case study, place(String), none }
+
+    static func step(requestTaken: Bool, firstSystem: String) -> Step {
+        if requestTaken { return .study }
+        return firstSystem.isEmpty ? .none : .place(firstSystem)
     }
 }
 
@@ -49,7 +64,49 @@ struct Studio: View {
     @State private var managing = false
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
+    @State private var section: String? = "home"
+
     var body: some View {
+        #if os(macOS)
+        NavigationSplitView {
+            List(selection: $section) {
+                Label("Home", systemImage: "house").tag("home")
+                Section("Language sets") {
+                    ForEach(store.systems) { s in
+                        HStack(spacing: 6) {
+                            HStack(spacing: 2) { ForEach(s.targets.prefix(3), id: \.self) { FlagTile(lang: $0, size: 18) } }
+                            Text(s.name).lineLimit(1)
+                        }
+                        .tag("sys:\(s.id)")
+                    }
+                }
+                Section {
+                    Button { showAccount = true } label: { Label("Account", systemImage: "person.crop.circle") }.buttonStyle(.plain)
+                    Button { manage() } label: { Label("Subscription", systemImage: "creditcard") }.buttonStyle(.plain)
+                }
+            }
+            .navigationSplitViewColumnWidth(min: 200, ideal: 240)
+        } detail: {
+            stack
+        }
+        .onChange(of: section) { _, s in
+            path = NavigationPath()
+            if let s, s.hasPrefix("sys:") { path.append(LangRoute.system(String(s.dropFirst(4)))) }
+        }
+        .sheet(isPresented: $showAccount) { AccountView() }
+        .manageSubscriptions(isPresented: $managing)
+        .task { await openFromLaunch() }
+        .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+        #else
+        stack
+            .sheet(isPresented: $showAccount) { AccountView() }
+            .manageSubscriptions(isPresented: $managing)
+            .task { await openFromLaunch() }
+            .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+        #endif
+    }
+
+    var stack: some View {
         NavigationStack(path: $path) {
             LanguagesHome(path: $path)
                 .langDestinations(path: $path)
@@ -66,7 +123,7 @@ struct Studio: View {
                 }
                 .safeAreaInset(edge: .bottom) {
                     if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
-                        Text(days == 1 ? "Free trial: 1 day left" : "Free trial: \(days) days left")
+                        Text(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"))
                             .font(.footnote)
                             .foregroundStyle(Palette.muted)
                             .padding(.vertical, 6)
@@ -75,12 +132,28 @@ struct Studio: View {
                     }
                 }
         }
-        .sheet(isPresented: $showAccount) { AccountView() }
-        .manageSubscriptions(isPresented: $managing)
-        .task { await openFromLaunch() }
+    }
+
+    @discardableResult
+    func openRequested() async -> Bool {
+        guard StudyRequest.take() else { return false }
+        await store.load()
+        guard let first = store.systems.first else { return false }
+        path = NavigationPath()
+        path.append(LangRoute.study(first.id))
+        return true
     }
 
     func openFromLaunch() async {
+        let step = LaunchRouting.step(requestTaken: StudyRequest.pending && StudyRequest.take(), firstSystem: firstSystem)
+        if step == .study {
+            await store.load()
+            if let first = store.systems.first {
+                path = NavigationPath()
+                path.append(LangRoute.study(first.id))
+                return
+            }
+        }
         if !firstSystem.isEmpty {
             await store.load()
             if store.system(firstSystem) != nil { path.append(LangRoute.place(firstSystem, nil)) }
@@ -89,6 +162,7 @@ struct Studio: View {
         }
         guard let spec = PolingualLaunch.value("-openLang") else { return }
         await store.load()
+        for _ in 0..<150 where store.status != .ready { try? await Task.sleep(for: .milliseconds(200)) }
         let parts = spec.split(separator: ":").map(String.init)
         guard parts.count == 3 else { return }
         let targets = parts[1].split(separator: ",").map(String.init)

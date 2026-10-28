@@ -43,18 +43,55 @@ public struct BucketAPI: Sendable {
 
     public let base: URL
     let transport: Transport
+    let cacheDir: URL?
 
-    public init(base: URL = BucketAPI.production, transport: Transport = URLSessionTransport()) {
+    public static let defaultCache = offlineDirectory("bucket-api")
+
+    public static func offlineDirectory(_ name: String) -> URL? {
+        guard var url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appending(path: name, directoryHint: .isDirectory) else { return nil }
+        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        var values = URLResourceValues()
+        values.isExcludedFromBackup = true
+        try? url.setResourceValues(values)
+        return url
+    }
+
+    public init(base: URL = BucketAPI.production, transport: Transport = URLSessionTransport(), cacheDir: URL? = BucketAPI.defaultCache) {
         self.base = base
         self.transport = transport
+        self.cacheDir = cacheDir
     }
 
     public func deckIndex() async throws -> DeckIndex {
-        try await get("academy-app/corpus/index.json")
+        try await cached("academy-app/corpus/index.json")
     }
 
     public func deck(_ entry: DeckEntry) async throws -> Deck {
-        try await get("academy-app/\(entry.file)")
+        try await cached("academy-app/\(entry.file)")
+    }
+
+    public func questionDeck(_ branch: String) async throws -> QuestionDeck {
+        try await cached("academy-app/corpus/questions/\(branch).json")
+    }
+
+    func cacheURL(_ path: String) -> URL? {
+        guard let dir = cacheDir else { return nil }
+        return dir.appending(path: path.replacingOccurrences(of: "/", with: "_"))
+    }
+
+    func cached<T: Decodable>(_ path: String) async throws -> T {
+        do {
+            let (data, http) = try await transport.send(URLRequest(url: base.appending(path: path)))
+            let value: T = try decode(data, http)
+            if let url = cacheURL(path) {
+                try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+                try? data.write(to: url, options: .atomic)
+            }
+            return value
+        } catch {
+            guard let url = cacheURL(path), let data = try? Data(contentsOf: url) else { throw error }
+            return try decodeBody(data)
+        }
     }
 
     public func canonSearch(_ query: String, topK: Int = 20) async throws -> CanonSearch {
@@ -65,11 +102,20 @@ public struct BucketAPI: Sendable {
     }
 
     public func requestCode(email: String) async throws {
-        _ = try await session(["action": "otp", "email": email])
+        _ = try await session(["action": "otp", "email": email, "app": Self.appName])
     }
+
+    public static var appName: String { Bundle.main.bundleIdentifier?.hasPrefix("com.polingual") == true ? "polingual" : "bucket" }
 
     public func verify(email: String, code: String) async throws -> Session {
         let data = try await session(["action": "verify", "email": email, "code": code])
+        return try decodeBody(data)
+    }
+
+    public func signInWithApple(idToken: String, nonce: String, authorizationCode: String? = nil) async throws -> Session {
+        var body = ["action": "apple", "id_token": idToken, "nonce": nonce, "app": Self.appName]
+        if let authorizationCode { body["authorization_code"] = authorizationCode }
+        let data = try await session(body)
         return try decodeBody(data)
     }
 
