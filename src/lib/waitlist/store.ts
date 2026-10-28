@@ -15,6 +15,7 @@ export interface WaitlistStore {
   write(key: string, entry: WaitlistEntry): Promise<void>;
   keys(): Promise<string[]>;
   remove(key: string): Promise<void>;
+  upsert?(key: string, merge: (existing: WaitlistEntry | null) => WaitlistEntry): Promise<boolean>;
 }
 
 export function emailKey(email: string): string {
@@ -125,6 +126,7 @@ export function getWaitlistStore(env: Env = process.env, part: StorePart = "list
 
 export async function saveSignup(store: WaitlistStore, input: SignupInput, now = new Date().toISOString()): Promise<boolean> {
   const key = emailKey(input.email);
+  if (store.upsert) return store.upsert(key, (existing) => mergeEntry(existing, input, now));
   const existing = await store.read(key);
   await store.write(key, mergeEntry(existing, input, now));
   return existing === null;

@@ -2,6 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import path from "node:path";
 import { blobMarks, fileMarks, type MarkStore } from "../download/marks";
 import { waitlistPrefix } from "../waitlist/store";
+import { supabaseConfigured, supabaseMarks } from "../waitlist/supabase-store";
 import { SITE_URL } from "./digest";
 
 type Env = Record<string, string | undefined>;
@@ -36,6 +37,7 @@ export function unsubscribeSecret(env: Env = process.env): string | null {
 
 export function getOptOutStore(env: Env = process.env, part: "optout" | "progress" = "optout"): MarkStore | null {
   const prefix = `${waitlistPrefix(env)}whats-new-${part}/`;
+  if (supabaseConfigured(env)) return supabaseMarks(prefix, env);
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobMarks(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileMarks(path.join(process.cwd(), ".data", prefix));
   return null;

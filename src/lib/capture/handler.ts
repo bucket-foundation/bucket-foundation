@@ -2,6 +2,7 @@ import { CAPTURE_LEGS, LEG_TIMEOUT_MS, parseCapture, storePart, type CaptureReco
 import type { DownloadNotifier, NotifyOutcome } from "../download/handler";
 import { saveSignup, type WaitlistStore } from "../waitlist/store";
 import type { StorePart } from "../waitlist/store";
+import { isTableMissing } from "../waitlist/supabase-store";
 
 export type CaptureLegSend = (record: CaptureRecord) => Promise<unknown>;
 
@@ -23,7 +24,15 @@ export interface CaptureResult {
   body: CaptureBody;
 }
 
-export function layeredLimiter(local: (ip: string) => boolean, shared?: (ip: string) => Promise<boolean>): (ip: string) => Promise<boolean> {
+export const FAIL_CLOSED_MS = 5 * 60_000;
+
+export function layeredLimiter(
+  local: (ip: string) => boolean,
+  shared?: (ip: string) => Promise<boolean>,
+  clock: () => number = Date.now,
+  denyMs = FAIL_CLOSED_MS,
+): (ip: string) => Promise<boolean> {
+  const seenWhileDown = new Map<string, number>();
   return async (ip) => {
     if (local(ip)) return true;
     if (!shared) return false;
@@ -31,7 +40,11 @@ export function layeredLimiter(local: (ip: string) => boolean, shared?: (ip: str
       return await shared(ip);
     } catch (err) {
       console.error("[capture] shared rate limit unavailable:", err instanceof Error ? err.message : err);
-      return false;
+      const now = clock();
+      const last = seenWhileDown.get(ip);
+      seenWhileDown.set(ip, now);
+      if (seenWhileDown.size > 5000) seenWhileDown.clear();
+      return last !== undefined && now - last < denyMs;
     }
   };
 }
@@ -63,6 +76,10 @@ export async function handleCapture(body: unknown, ip: string, deps: CaptureDeps
   try {
     first = await saveSignup(store, parsed.input, at);
   } catch (err) {
+    if (isTableMissing(err)) {
+      console.error("[capture] waitlist_table_missing:", err.message);
+      return { status: 503, body: { error: "Signups are closed for a moment. Try again later." } };
+    }
     console.error("[capture] save failed:", err instanceof Error ? err.message : err);
     return { status: 502, body: { error: "Your signup did not save. Try again in a minute." } };
   }
