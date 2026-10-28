@@ -66,6 +66,12 @@ struct Studio: View {
     @State private var path = NavigationPath()
     @State private var showAccount = false
     @State private var managing = false
+    @State private var extra: Extra?
+
+    enum Extra: String, Identifiable {
+        case games, content
+        var id: String { rawValue }
+    }
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
     @State private var section: String? = "home"
@@ -85,6 +91,8 @@ struct Studio: View {
                     }
                 }
                 Section {
+                    Button { extra = .games } label: { Label("Games", systemImage: "gamecontroller") }.buttonStyle(.plain)
+                    Button { extra = .content } label: { Label("Content", systemImage: "play.square.stack") }.buttonStyle(.plain)
                     Button { showAccount = true } label: { Label("Account", systemImage: "person.crop.circle") }.buttonStyle(.plain)
                     Button { manage() } label: { Label("Subscription", systemImage: "creditcard") }.buttonStyle(.plain)
                 }
@@ -98,12 +106,24 @@ struct Studio: View {
             if let s, s.hasPrefix("sys:") { path.append(LangRoute.system(String(s.dropFirst(4)))) }
         }
         .sheet(isPresented: $showAccount) { AccountView() }
+        .sheet(item: $extra) { e in
+            switch e {
+            case .games: GamesView()
+            case .content: ContentHub()
+            }
+        }
         .manageSubscriptions(isPresented: $managing)
         .task { await openFromLaunch() }
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
         #else
         stack
             .sheet(isPresented: $showAccount) { AccountView() }
+            .sheet(item: $extra) { e in
+                switch e {
+                case .games: GamesView()
+                case .content: ContentHub()
+                }
+            }
             .manageSubscriptions(isPresented: $managing)
             .task { await openFromLaunch() }
             .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
@@ -117,12 +137,14 @@ struct Studio: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
+                            Button("Games", systemImage: "gamecontroller") { extra = .games }
+                            Button("Content", systemImage: "play.square.stack") { extra = .content }
                             Button("Account", systemImage: "person.crop.circle") { showAccount = true }
                             Button("Subscription", systemImage: "creditcard") { manage() }
                         } label: {
                             Image(systemName: "person.crop.circle")
                         }
-                        .accessibilityLabel("Account and subscription")
+                        .accessibilityLabel("Games, content and account")
                     }
                 }
                 .safeAreaInset(edge: .bottom) {

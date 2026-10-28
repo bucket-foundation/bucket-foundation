@@ -36,6 +36,12 @@ targets:
         destinationFilters: [iOS]
       - target: BucketClip
         destinationFilters: [iOS]
+    info:
+      path: Bucket/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UIBackgroundModes: [audio]
     entitlements:
       path: Bucket/Bucket.entitlements
       properties:
@@ -125,6 +131,12 @@ targets:
       - path: Polingual/WatchShared
       - path: Polingual/Polingual.storekit
         buildPhase: none
+    info:
+      path: Polingual/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UIBackgroundModes: [audio]
     dependencies:
       - package: BucketKit
       - target: PolingualWidgets

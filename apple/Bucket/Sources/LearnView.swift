@@ -5,6 +5,14 @@ struct LearnView: View {
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
     @State private var path = NavigationPath()
+    @State private var side = LearnSide.launch
+
+    enum LearnSide: String, CaseIterable {
+        case languages, subjects
+
+        static var launch: LearnSide { Launch.value("-learnSide").flatMap(LearnSide.init(rawValue:)) ?? .languages }
+        var title: String { self == .languages ? String(localized: "Languages") : String(localized: "Subjects") }
+    }
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -19,20 +27,39 @@ struct LearnView: View {
                 case .ready:
                     List {
                         Section {
-                            ForEach(library.languageDecks) { entry in
-                                NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
-                                    .listRowBackground(Palette.card)
+                            Picker("Learn", selection: $side) {
+                                ForEach(LearnSide.allCases, id: \.self) { Text($0.title).tag($0) }
                             }
-                        } header: {
-                            Eyebrow(text: "Languages")
+                            .pickerStyle(.segmented)
+                            .listRowBackground(Color.clear)
+                            .listRowInsets(EdgeInsets())
                         }
-                        Section {
-                            ForEach(library.scienceDecks) { entry in
-                                NavigationLink(value: entry) { DeckRow(entry: entry) }
-                                    .listRowBackground(Palette.card)
+                        if side == .languages {
+                            Section {
+                                ForEach(library.languageDecks) { entry in
+                                    NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
+                                        .listRowBackground(Palette.card)
+                                }
+                            } header: {
+                                Eyebrow(text: "Languages")
                             }
-                        } header: {
-                            Eyebrow(text: "Seven branches and the meta-skill")
+                        } else {
+                            Section {
+                                NavigationLink(value: LearnRoute.canon) {
+                                    Label("Search the canon", systemImage: "text.magnifyingglass")
+                                }
+                                .listRowBackground(Palette.card)
+                            } footer: {
+                                Text("Foundations across seven branches: mathematics to mind.")
+                            }
+                            Section {
+                                ForEach(library.scienceDecks) { entry in
+                                    NavigationLink(value: entry) { DeckRow(entry: entry) }
+                                        .listRowBackground(Palette.card)
+                                }
+                            } header: {
+                                Eyebrow(text: "Seven branches and the meta-skill")
+                            }
                         }
                     }
                 }
@@ -41,6 +68,7 @@ struct LearnView: View {
             .navigationTitle("Learn")
             .navigationDestination(for: DeckEntry.self) { DeckView(entry: $0) }
             .navigationDestination(for: AtomRoute.self) { AtomView(route: $0) }
+            .navigationDestination(for: LearnRoute.self) { _ in CanonView() }
             .langDestinations(path: $path)
         }
         .task {
@@ -74,6 +102,7 @@ extension LearnView {
         switch link {
         case .langs(let root, let targets):
             DeepLink.shared.pending = nil
+            side = .languages
             await langs.load()
             path = NavigationPath()
             path.append(LangRoute.home)
@@ -86,6 +115,7 @@ extension LearnView {
                 return
             }
             DeepLink.shared.pending = nil
+            side = .subjects
             path = NavigationPath()
             path.append(entry)
             if case .atom(_, let atomId) = link, let deck = await library.prepared(entry), let atom = deck.byId[atomId] {
@@ -112,6 +142,10 @@ struct DeckRow: View {
         }
         .padding(.vertical, 6)
     }
+}
+
+enum LearnRoute: Hashable {
+    case canon
 }
 
 struct AtomRoute: Hashable {
