@@ -57,6 +57,7 @@ extension LetterSounds {
     """
 
     static let sanskritSounds = devanagariSounds + "\n" + """
+    अ|ɐ|In Sanskrit a short, slightly closed uh, like the u in cup.|अग्नि|fire
     ऋ|r̩|A syllabic r: hold a tapped r as the vowel itself; modern readers often say ri.|ऋषि|sage
     ◌ृ|r̩|This sign makes the r itself the vowel of the syllable.|वृक्ष|tree
     ऐ|ai|In Sanskrit a diphthong ai, as in aisle.|ऐक्य|unity
@@ -83,7 +84,7 @@ extension LetterSounds {
         ஐ|aj|The ai in aisle.|ஐந்து|five
         ஒ|o|A short o, lips rounded.|ஒன்று|one
         ஓ|oː|A long o, like the o in go with no glide.|ஓடு|run
-        ஔ|aw|The ow in cow.|ஔவை|Avvaiyar poet
+        ஔ|aw|The ow in cow.|ஔடதம்|medicine
         க|k|Unaspirated k with no puff of air at the start of a word; between vowels it softens to a breathy h or g.|கண்|eye
         ங|ŋ|The ng in sing; it stands before க.|சங்கு|conch
         ச|tʃ|Doubled or after a consonant it is ch with no puff of air; at the start of a word and between vowels most speakers say s.|பச்சை|green
@@ -126,7 +127,7 @@ extension LetterSounds {
         ฉ|tɕʰ|Aspirated ch with a puff of air, as in church.|ฉิ่ง|cymbals
         ช|tɕʰ|Aspirated ch with a puff of air, as in church.|ช้าง|elephant
         ซ|s|An s as in sun.|โซ่|chain
-        ฌ|tɕʰ|Aspirated ch with a puff of air; rare, found in Pali and Sanskrit words.|เฌอ|tree
+        ฌ|tɕʰ|Aspirated ch with a puff of air; rare, found in Pali and Sanskrit words.|ฌาน|meditation, rare
         ญ|j|A y as in yes at the start of a syllable; an n at the end.|หญิง|woman
         ฎ|d|A d as in dog; rare.|ชฎา|crown
         ฏ|t|Unaspirated t with no puff of air, like the t in stop.|ปฏิทิน|calendar
@@ -156,10 +157,10 @@ extension LetterSounds {
         ษ|s|An s as in sun.|ฤๅษี|hermit
         ส|s|An s as in sun.|เสือ|tiger
         ห|h|An h as in hat.|หีบ|chest
-        ฬ|l|An l as in leaf.|จุฬา|star kite
+        ฬ|l|An l as in leaf.|กีฬา|sport
         อ|ʔ|A glottal stop, the catch in uh-oh; it also serves as a silent carrier for vowels.|อ่าง|basin
         ฮ|h|An h as in hat.|นกฮูก|owl
-        ◌ะ|a|A short a, cut off sharp, like the u in cup.|จะ|will
+        ◌ะ|a|The a of father cut short.|จะ|will
         ◌า|aː|A long ah, as in father.|ตา|eye
         ◌ิ|i|A short i, like ee cut short.|ปิด|close
         ◌ี|iː|A long ee, as in see.|ดี|good
@@ -182,7 +183,7 @@ extension LetterSounds {
         お|o|A short o with rounded lips.|おちゃ|tea
         か|ka|A k with a light puff of air, then ah.|かさ|umbrella
         き|ki|A k with a light puff of air, then ee.|きのこ|mushroom
-        く|kɯ|A k, then an oo with unrounded lips.|くつ|shoes
+        く|kɯ|A k, then an oo with unrounded lips.|くも|cloud
         け|ke|A k, then e as in pet.|けむり|smoke
         こ|ko|A k, then a short o.|ねこ|cat
         さ|sa|An s, then ah.|さかな|fish
@@ -192,7 +193,7 @@ extension LetterSounds {
         そ|so|An s, then a short o.|そら|sky
         た|ta|A t, then ah.|たまご|egg
         ち|tɕi|A soft ch, then ee.|ちず|map
-        つ|tsɯ|The ts in cats, then an unrounded oo.|つき|moon
+        つ|tsɯ|The ts in cats, then an unrounded oo.|つな|rope
         て|te|A t, then e as in pet.|てがみ|letter
         と|to|A t, then a short o.|とり|bird
         な|na|An n, then ah.|なつ|summer
@@ -201,7 +202,7 @@ extension LetterSounds {
         ね|ne|An n, then e as in pet.|ふね|boat
         の|no|An n, then a short o.|のり|seaweed
         は|ha|An h, then ah; as the topic particle it is said wa.|はな|flower
-        ひ|çi|An h with the tongue close to the hard palate, like the h in huge, then ee.|ひと|person
+        ひ|çi|An h with the tongue close to the hard palate, like the h in huge, then ee.|ひる|noon
         ふ|ɸɯ|Blow air between both lips with no teeth, between f and h, then an unrounded oo.|ふゆ|winter
         へ|he|An h, then e as in pet; as the direction particle it is said e.|へや|room
         ほ|ho|An h, then a short o.|ほし|star
@@ -227,7 +228,7 @@ extension LetterSounds {
         エ|e|An e as in pet.|エアコン|air conditioner
         オ|o|A short o with rounded lips.|オレンジ|orange
         カ|ka|A k with a light puff of air, then ah.|カメラ|camera
-        キ|ki|A k with a light puff of air, then ee.|キッチン|kitchen
+        キ|ki|A k with a light puff of air, then ee.|キリン|giraffe
         ク|kɯ|A k, then an oo with unrounded lips.|クラス|class
         ケ|ke|A k, then e as in pet.|ケーキ|cake
         コ|ko|A k, then a short o.|コーヒー|coffee
@@ -294,7 +295,7 @@ extension LetterSounds {
         ㄨ|u|An oo as in food; before another vowel it is a w glide.|ㄨˇ|五 five
         ㄩ|y|English has no match: say ee and round the lips tight as for oo.|ㄩˊ|魚 fish
         ㄚ|a|An ah as in father.|ㄉㄚˋ|大 big
-        ㄛ|o|A rounded o; after ㄅ ㄆ ㄇ ㄈ it sounds like wo.|ㄨㄛˇ|我 I
+        ㄛ|o|A rounded o; after ㄅ ㄆ ㄇ ㄈ it sounds like wo.|ㄅㄛ|波 wave
         ㄜ|ɤ|English has no match: say oh, then spread the lips flat, close to the u in duh.|ㄍㄜ|哥 brother
         ㄝ|e|An e as in yes; it follows ㄧ and ㄩ.|ㄒㄧㄝˋ|謝 thank
         ㄞ|ai|The ai in aisle.|ㄞˋ|愛 love
@@ -324,7 +325,7 @@ extension LetterSounds {
         ㅎ|h|An h as in hat; between vowels it fades or drops.|ㅎㅐ|해 sun
         ㅏ|a|An ah as in father.|ㅇㅏㅇㅣ|아이 child
         ㅑ|ja|A y glide, then ah.|ㅇㅑㄱ|약 medicine
-        ㅓ|ʌ|An open aw with relaxed, unrounded lips, like the u in cup said further back.|ㅇㅓㅁㅁㅏ|엄마 mom
+        ㅓ|ʌ|Between the u in cup and the aw in law, lips relaxed.|ㅇㅓㅁㅁㅏ|엄마 mom
         ㅕ|jʌ|A y glide, then the open ㅓ sound.|ㅇㅕㄹ|열 ten
         ㅗ|o|A tight rounded o, like the o in go with no glide.|ㅇㅗ|오 five
         ㅛ|jo|A y glide, then a tight rounded o.|ㅇㅛㄹㅣ|요리 cooking
