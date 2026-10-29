@@ -124,15 +124,23 @@ struct ExerciseView: View {
             #endif
             started = Date()
             if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang) }
-            if ex.kind == .intro { LangVoice.shared.speak(ex.answer, ex.answerLang) }
+            if let say = letterSay { LangVoice.shared.speak(say, ex.lang) } else if ex.kind == .intro { LangVoice.shared.speak(ex.answer, ex.answerLang) }
         }
     }
 
+    var letterSound: LetterSound? { ex.itemId == LangScript.letterItemId(ex.answer) ? LetterSounds.lookup(ex.lang, ex.answer) : nil }
+    var letterSay: String? { letterSound.map { LetterSounds.spoken(ex.lang, $0) } }
+
     var intro: some View {
         VStack(spacing: 12) {
-            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
-            Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
-            Notes(ex: ex, showNote: true, readings: readings)
+            if let s = letterSound, let say = letterSay {
+                WordTile(word: ex.answer, lang: ex.lang, reading: nil, size: 190, speakText: say)
+                LetterSoundNote(sound: s, lang: ex.lang, say: say)
+            } else {
+                WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
+                Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
+                Notes(ex: ex, showNote: true, readings: readings)
+            }
             Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
         }
     }
@@ -271,7 +279,7 @@ struct ExerciseView: View {
                         ForEach(options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil,
-                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil)
+                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : ex.kind == .letter ? LetterSounds.lookup(ex.lang, o).map { LetterSounds.spoken(ex.lang, $0) } : nil)
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
@@ -563,6 +571,20 @@ struct Prompt: View {
             }
         case .speak:
             AskWord(word: ex.prompt, sub: "say it in \(name)")
+        case .letter where LetterSounds.lookup(ex.lang, ex.answer) != nil && ex.itemId == LangScript.letterItemId(ex.answer):
+            let s = LetterSounds.lookup(ex.lang, ex.answer)!
+            let say = LetterSounds.spoken(ex.lang, s)
+            VStack(spacing: 10) {
+                HStack(spacing: 10) {
+                    Text(answered ? s.example : LetterSounds.blanked(s, ex.answer) ?? s.example)
+                        .font(.system(size: 40, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                        .minimumScaleFactor(0.5).lineLimit(1)
+                    PlayButton(text: say, lang: ex.lang)
+                }
+                Text("/\(s.ipa)/ · \(s.hint)").font(.subheadline).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                if answered { Text(s.gloss).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted) }
+            }
+            .frame(maxWidth: .infinity)
         default:
             AskWord(word: ex.prompt, sub: "in \(name)")
         }
@@ -584,5 +606,26 @@ struct OptionKey: ViewModifier {
         } else {
             content
         }
+    }
+}
+
+struct LetterSoundNote: View {
+    let sound: LetterSound
+    let lang: String
+    let say: String
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Text("/\(sound.ipa)/").font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+            Text(sound.hint).font(.subheadline).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+            HStack(spacing: 10) {
+                Text(sound.example).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(sound.gloss).font(.subheadline).foregroundStyle(Palette.muted)
+                PlayButton(text: say, lang: lang)
+            }
+            .padding(.horizontal, 14).padding(.vertical, 8)
+            .background(Palette.paper, in: .rect(cornerRadius: 14))
+        }
+        .frame(maxWidth: .infinity)
     }
 }

@@ -24,6 +24,11 @@ public enum LetterSounds {
 
     public static func lookup(_ lang: String, _ ch: String) -> LetterSound? { tables[lang]?[ch] }
 
+    public static func spoken(_ lang: String, _ sound: LetterSound) -> String {
+        guard lang == "zh" || lang == "ko", let first = sound.gloss.split(separator: " ").first else { return sound.example }
+        return String(first)
+    }
+
     public static func blanked(_ sound: LetterSound, _ ch: String) -> String? {
         let mark = ch.replacingOccurrences(of: "◌", with: "")
         guard let r = sound.example.range(of: mark, options: [.caseInsensitive]) else { return nil }
