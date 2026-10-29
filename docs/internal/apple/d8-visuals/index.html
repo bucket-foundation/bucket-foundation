@@ -1,0 +1,444 @@
+<title>Study Card Visuals</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: one narrow column like a phone, D8 parchment ground, mockups drawn live from the D8 tile spec, screenshots in sideways strips */
+:root {
+  --bg: #F6EEDC;
+  --panel: #FFFDF7;
+  --ink: #231F20;
+  --muted: #5d5650;
+  --line: #E3D6B8;
+  --purple: #5B1A4A;
+  --vermilion: #D9381E;
+  --vermilion-lip: #8E2312;
+  --malachite: #1E7A5A;
+  --tile-panel: rgba(246, 238, 220, .86);
+  --display: "Fredoka", "Nunito", system-ui, sans-serif;
+  --body: "Nunito", system-ui, -apple-system, sans-serif;
+  --label: "Space Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #1E1A17; --panel: #29231F; --ink: #F3EADB; --muted: #B8AC9C; --line: #463B33; --purple: #C98AB8; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #1E1A17; --panel: #29231F; --ink: #F3EADB; --muted: #B8AC9C; --line: #463B33; --purple: #C98AB8; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body); }
+.wrap { max-width: 720px; margin: 0 auto; padding-block: 28px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 40px; }
+header { display: grid; gap: 8px; }
+.kicker { font: 700 12px/1.3 var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(30px, 8vw, 44px)/1.08 var(--display); margin: 0; color: var(--purple); text-wrap: balance; }
+h2 { font: 700 24px/1.2 var(--display); margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 62ch; }
+section { display: grid; gap: 14px; min-width: 0; }
+.note { color: var(--muted); font-size: 15px; }
+
+.phone { width: min(100%, 380px); background: var(--panel); border-radius: 28px; padding: 22px 18px 24px; box-shadow: inset 0 0 0 2px var(--line); display: grid; gap: 16px; }
+.cards { display: flex; flex-wrap: wrap; gap: 18px; }
+.cards figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+figcaption { font: 700 12px/1.4 var(--label); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+.headrow { display: flex; align-items: center; gap: 10px; }
+.flag { width: 44px; height: 44px; border-radius: 10px; flex: none; position: relative; overflow: hidden; box-shadow: inset 0 0 0 2px rgba(0,0,0,.15), inset 0 -10px 16px rgba(0,0,0,.16), inset 0 8px 12px rgba(255,255,255,.25); }
+.flag::after { content: ""; position: absolute; left: 7px; top: 6px; width: 18px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.45); transform: rotate(-20deg); }
+.flag.big { width: 72px; height: 72px; border-radius: 12px; }
+.dir { font: 700 15px/1.3 var(--body); }
+.dir span { color: var(--muted); font-weight: 400; }
+
+.wordtile { width: 210px; height: 210px; margin: 4px auto 0; border-radius: 14px; position: relative; display: grid; place-items: center; box-shadow: inset 0 0 0 2px rgba(0,0,0,.15), inset 0 -24px 40px rgba(0,0,0,.18), inset 0 18px 30px rgba(255,255,255,.25); }
+.wordtile::before { content: ""; position: absolute; inset: 12px; border-radius: 6px; background: var(--tile-panel); }
+.wordtile::after { content: ""; position: absolute; right: 18px; top: 18px; width: 64px; height: 18px; border-radius: 50%; background: rgba(255,255,255,.45); transform: rotate(-20deg); }
+.wordtile .w { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; font: 800 44px/1.2 var(--body); color: #231F20; }
+.wordtile .w svg { width: 22px; height: 22px; color: #231F20; opacity: .6; }
+.wordtile .ipa { position: absolute; z-index: 1; bottom: 26px; left: 0; right: 0; text-align: center; font-size: 16px; color: #444; }
+.prompt { text-align: center; font: 400 15px/1.4 var(--body); color: var(--muted); }
+.ask { text-align: center; font: 700 52px/1.1 var(--display); padding-block: 18px 10px; }
+.widetile { position: relative; border-radius: 14px; padding: 10px; box-shadow: inset 0 0 0 2px rgba(0,0,0,.15), inset 0 -16px 26px rgba(0,0,0,.18), inset 0 12px 20px rgba(255,255,255,.25), 0 6px 0 rgba(35,31,32,.3); }
+.widetile::after { content: ""; position: absolute; right: 16px; top: 4px; width: 56px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.45); transform: rotate(-12deg); pointer-events: none; z-index: 2; }
+.widetile .in { position: relative; z-index: 1; border-radius: 6px; background: rgba(246, 238, 220, .8); padding: 22px 12px 8px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 6px; color: #231F20; }
+.widetile .in u { position: absolute; left: 10px; top: 7px; text-decoration: none; font: 700 11px/1 "Space Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; color: #555; }
+.widetile .in b { font: 800 26px/1.2 var(--body); }
+.widetile .in svg { width: 20px; height: 20px; opacity: .55; order: 1; }
+.widetile .in i { order: 2; flex-basis: 100%; text-align: center; font: 400 14px/1.4 "Noto Sans", var(--body); font-style: normal; color: #444; }
+.widetile .in em { position: absolute; top: -20px; right: -20px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 800 15px/1 var(--body); font-style: normal; color: #fff; z-index: 3; }
+.widetile.right { outline: 3px solid var(--malachite); outline-offset: 3px; }
+.widetile.right .in em { background: var(--malachite); }
+.widetile.miss { outline: 3px solid var(--vermilion); outline-offset: 3px; }
+.widetile.miss .in em { background: var(--vermilion); }
+.widetile:not(.right) { filter: brightness(.78); }
+.widetile.off { box-shadow: inset 0 0 0 2px rgba(0,0,0,.15), inset 0 -16px 26px rgba(0,0,0,.18), inset 0 12px 20px rgba(255,255,255,.25); translate: 0 3px; }
+.opt.sel { background: #EEF3FB; box-shadow: inset 0 0 0 3px #1F4E9A, 0 1px 0 #1F4E9A; transform: translateY(3px); }
+.primary.off { background: #3A342C; color: #8A8070; box-shadow: 0 4px 0 #2A2620; }
+
+.opts { display: grid; gap: 14px; }
+.opt { background: #fff; color: #231F20; border-radius: 12px; padding: 13px 16px; font: 800 18px/1.2 var(--body); box-shadow: inset 0 0 0 2px #E3D6B8, 0 4px 0 #E3D6B8; }
+.opt.right { background: var(--malachite); color: #fff; box-shadow: 0 4px 0 #135440; }
+.opt.wrong { box-shadow: inset 0 0 0 2px var(--vermilion), 0 4px 0 #E3D6B8; text-decoration: line-through; opacity: .7; }
+.primary { align-self: end; background: var(--vermilion); color: #fff; border-radius: 12px; padding: 14px 16px; text-align: center; font: 800 18px/1.2 var(--body); box-shadow: 0 4px 0 var(--vermilion-lip); }
+
+.match { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.slot { display: grid; justify-items: center; gap: 6px; font: 700 13px/1.2 var(--body); color: var(--muted); }
+.slot .flag { width: 64px; height: 64px; border-radius: 12px; }
+.slot .placed { font: 800 16px/1.2 var(--body); color: var(--ink); min-height: 20px; }
+
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.choice { background: var(--panel); border-radius: 16px; padding: 18px; display: grid; gap: 14px; box-shadow: inset 0 0 0 2px var(--line); min-width: 0; }
+.choice h3 { margin: 0; font: 700 18px/1.25 var(--display); }
+.flagrow { display: grid; gap: 10px; }
+.flagrow div { display: flex; align-items: center; gap: 12px; font-size: 15px; }
+.flagrow b { min-width: 86px; }
+
+.strip { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; }
+.strip figure { margin: 0; flex: none; width: 200px; display: grid; gap: 6px; scroll-snap-align: start; }
+.strip img { width: 200px; height: auto; border-radius: 18px; box-shadow: 0 0 0 1px var(--line); display: block; }
+
+/* Flags drawn from brand/_directions/pages/d8/tiles.js */
+.us { background: linear-gradient(#3C3B6E 0 0) 0 0 / 42% 54% no-repeat, repeating-linear-gradient(#B22234 0 7.69%, #fff 0 15.38%); }
+.es { background: linear-gradient(#AA151B 0 25%, #F1BF00 0 75%, #AA151B 0); }
+.fr { background: linear-gradient(90deg, #002654 0 33.3%, #fff 0 66.6%, #CE1126 0); }
+.it { background: linear-gradient(90deg, #008C45 0 33.3%, #F4F5F0 0 66.6%, #CD212A 0); }
+.de { background: linear-gradient(#000 0 33.3%, #DD0000 0 66.6%, #FFCE00 0); }
+.wordtile.sm { width: 150px; height: 150px; }
+.wordtile.sm .w { font-size: 28px; }
+.wordtile.sm .ipa { bottom: 18px; font-size: 13px; }
+.wordtile .w.big svg { width: 44px; height: 44px; }
+.ja { background: radial-gradient(circle, #BC002D 0 22%, #fff 23%); }
+.sub { margin: 0; text-align: center; color: var(--muted); font-size: 15px; }
+.sent { margin: 8px 0 0; text-align: center; font: 600 24px/1.35 Georgia, serif; }
+.gap { display: inline-block; width: 70px; border-bottom: 3px solid var(--muted); vertical-align: -2px; }
+.when { margin: 0; font-size: 13px; line-height: 1.4; color: var(--muted); min-height: 36px; }
+.opt.long { font-size: 16px; }
+.opts.row { grid-template-columns: 1fr 1fr; }
+.field { background: #fff; color: #8A8070; border-radius: 12px; padding: 14px 16px; box-shadow: inset 0 0 0 2px #E3D6B8; font-size: 17px; }
+.line { min-height: 48px; border-bottom: 2px solid var(--line); text-align: center; font: 800 20px/48px var(--body); }
+.tokens { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.tokens span { background: #fff; color: #231F20; border-radius: 10px; padding: 8px 12px; font: 800 16px/1.2 var(--body); box-shadow: inset 0 0 0 2px #E3D6B8, 0 3px 0 #E3D6B8; }
+.tokens span.used { background: transparent; color: transparent; box-shadow: inset 0 0 0 2px var(--line); }
+.primary.mic { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.primary.mic svg { width: 20px; height: 20px; }
+.link { text-align: center; font-weight: 700; color: var(--muted); text-decoration: underline; }
+.minitile { position: relative; flex: 1; border-radius: 10px; padding: 6px; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,.15), inset 0 -8px 12px rgba(0,0,0,.16), 0 4px 0 rgba(35,31,32,.3); }
+.minitile .in { position: relative; border-radius: 5px; background: rgba(246,238,220,.8); padding: 14px 4px 6px; text-align: center; color: #231F20; min-height: 62px; }
+.minitile .in u { position: absolute; left: 6px; top: 4px; text-decoration: none; font: 700 8px/1 var(--label); letter-spacing: .08em; text-transform: uppercase; color: #555; }
+.minitile .in b { display: block; font: 800 18px/1.2 var(--body); }
+.minitile .in i { display: block; font: 400 11px/1.3 var(--body); font-style: normal; color: #444; }
+.minitile.empty .in b { color: #8A8070; }
+.minitile.empty { outline: 2px dashed var(--muted); outline-offset: 3px; }
+.family { display: flex; gap: 10px; }
+.wordtile.long .w { font-size: 25px; }
+.wordtile.sm.long .w { font-size: 20px; }
+.widetile .in b { text-align: center; } .widetile .in b.long { font-size: 17px; }
+.pig { display: grid; place-items: center; color: #fff; font: 800 20px/1 var(--body); }
+.pig.lapis { background: #1F4E9A; } .pig.verm { background: #D9381E; } .pig.mal { background: #1E7A5A; }
+.atom { margin: 4px 0 0; font: 700 26px/1.2 var(--display); }
+.lead { margin: 0; color: var(--muted); }
+.eq { background: #F6EEDC; color: #231F20; border-radius: 12px; padding: 14px; text-align: center; font: 400 20px/1.6 Georgia, serif; }
+.eq.sm { font-size: 17px; padding: 10px; }
+.eq.raw { font: 400 14px/1.5 ui-monospace, monospace; color: #8E2312; text-align: left; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .85em; }
+.frac span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 4px; }
+.qprompt { margin: 6px 0; font: 600 21px/1.4 Georgia, serif; }
+.qprompt.sm { font-size: 16px; color: var(--muted); }
+.ans { display: grid; gap: 8px; } .ans p { margin: 0; line-height: 1.5; }
+.ans.clamp .fade { max-height: 4.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 40%, transparent); mask-image: linear-gradient(#000 40%, transparent); color: var(--muted); }
+.rates { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rate { border-radius: 12px; padding: 10px 12px; background: #fff; color: #231F20; box-shadow: inset 0 0 0 2px #E3D6B8, 0 4px 0 #E3D6B8; }
+.rate b { display: block; font: 800 16px/1.2 var(--body); } .rate span { font-size: 12px; color: #6B6258; }
+.rate.again b { color: #D9381E; } .rate.hard b { color: #A9781C; } .rate.good b { color: #1E7A5A; } .rate.easy b { color: #1F4E9A; }
+.cards.two { margin-top: 16px; }
+.todayhead { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+.todayhead b { display: block; font: 700 32px/1.1 var(--display); } .todayhead span { font-size: 13px; color: var(--muted); }
+.grp { margin: 6px 0 -6px; font: 700 11px/1 var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.trow { display: flex; align-items: center; justify-content: space-between; gap: 8px; } .trow .flag { width: 32px; height: 32px; border-radius: 8px; font-size: 15px; } .trow.done { opacity: .6; }
+.pill { border-radius: 999px; padding: 4px 10px; font: 800 13px/1.2 var(--body); white-space: nowrap; }
+.pill.due { background: #D9381E; color: #fff; } .pill.new { background: #1F4E9A; color: #fff; } .pill.ok { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1.5px var(--line); }
+.ask small { display: block; font: 400 18px/1.3 var(--body); color: var(--muted); margin-top: 4px; }
+.pt { background: radial-gradient(circle at 40% 50%, #FFE600 0 13%, transparent 14%), linear-gradient(90deg, #006600 0 40%, #FF0000 0); }
+.br { background: radial-gradient(circle, #002776 0 17%, transparent 18%), conic-gradient(from 45deg at 50% 50%, #FFDF00 0 0) center / 66% 56% no-repeat, #009C3B; }
+.br { background: radial-gradient(circle, #002776 0 16%, transparent 17%), linear-gradient(#009C3B 0 0); }
+.br::before { content: ""; position: absolute; inset: 22% 14%; background: #FFDF00; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.br::after { z-index: 1; }
+.eg { background: radial-gradient(circle, #C09300 0 9%, transparent 10%), linear-gradient(#CE1126 0 33.3%, #fff 0 66.6%, #000 0); }
+.ar { background: #5B1A4A; display: grid; place-items: center; }
+.ar span { position: relative; z-index: 1; color: #E9A23B; font: 700 22px/1 system-ui; }
+.slot .ar span, .flag.big.ar span { font-size: 28px; }
+@media (prefers-reduced-motion: no-preference) { .flag, .wordtile { transition: transform .2s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="kicker">Bucket and Polingual · D8 study cards</span>
+    <h1>Study Card Visuals</h1>
+    <p class="note">The plan in PR #968, drawn in the D8 style, then the app as it is today. Nothing in the first two sections is built yet.</p>
+  </header>
+
+  <section>
+    <h2>Proposed card</h2>
+    <p class="note">The small flag shows the target language and the question reads "seven in Spanish". The answers are the same word in different languages. Picking lifts a button into its pressed state and wakes Check. After Check, each answer turns into a wide tile in its own flag. The right answer gets a green ring and ✓, a wrong pick gets a red ring and ✕, and every tile but the right one dims slightly.</p>
+    <div class="cards">
+      <figure>
+        <figcaption>Asking · nothing picked</figcaption>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>translate · A1</span></div></div>
+          <div class="ask">seven <small>in Spanish</small></div>
+          <div class="opts">
+            <div class="opt">sette</div>
+            <div class="opt">siete</div>
+            <div class="opt">sept</div>
+            <div class="opt">sieben</div>
+          </div>
+          <div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>Asking · siete picked</figcaption>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>translate · A1</span></div></div>
+          <div class="ask">seven <small>in Spanish</small></div>
+          <div class="opts">
+            <div class="opt">sette</div>
+            <div class="opt sel">siete</div>
+            <div class="opt">sept</div>
+            <div class="opt">sieben</div>
+          </div>
+          <div class="primary">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>Answered · wrong pick</figcaption>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>translate · A1</span></div></div>
+          <div class="ask">seven <small>in Spanish</small></div>
+          <div class="opts">
+            <div class="widetile it miss"><div class="in"><u>Italian</u><b>sette</b><i>/ˈsɛtte/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><em>✕</em></div></div>
+            <div class="widetile es right"><div class="in"><u>Spanish</u><b>siete</b><i>/ˈsjete/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><em>✓</em></div></div>
+            <div class="widetile fr off"><div class="in"><u>French</u><b>sept</b><i>/sɛt/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+            <div class="widetile de off"><div class="in"><u>German</u><b>sieben</b><i>/ˈziːbn̩/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+          </div>
+          <div class="primary">Continue</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>Answered · right pick</figcaption>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>translate · A1</span></div></div>
+          <div class="ask">seven <small>in Spanish</small></div>
+          <div class="opts">
+            <div class="widetile it off"><div class="in"><u>Italian</u><b>sette</b><i>/ˈsɛtte/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+            <div class="widetile es right"><div class="in"><u>Spanish</u><b>siete</b><i>/ˈsjete/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><em>✓</em></div></div>
+            <div class="widetile fr off"><div class="in"><u>French</u><b>sept</b><i>/sɛt/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+            <div class="widetile de off"><div class="in"><u>German</u><b>sieben</b><i>/ˈziːbn̩/</i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+          </div>
+          <div class="primary">Continue</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>New word in French</figcaption>
+        <div class="phone">
+          <div class="headrow"><div class="flag fr" role="img" aria-label="French flag"></div><div class="dir">English → French <span>· new word · A1</span></div></div>
+          <div class="wordtile fr"><div class="w">sept <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ipa">/sɛt/</div></div>
+          <p class="prompt">seven</p>
+          <div class="primary">Got it</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>Match, where flags teach</figcaption>
+        <div class="phone">
+          <div class="headrow"><div class="dir">seven <span>· match the set</span></div></div>
+          <div class="match">
+            <div class="slot"><div class="flag es" role="img" aria-label="Spanish flag"></div>Spanish<div class="placed">siete</div></div>
+            <div class="slot"><div class="flag fr" role="img" aria-label="French flag"></div>French<div class="placed">sept</div></div>
+            <div class="slot"><div class="flag it" role="img" aria-label="Italian flag"></div>Italian<div class="placed"></div></div>
+          </div>
+          <div class="opts"><div class="opt">sette</div></div>
+          <p class="note">The name under each flag stays until you match that language right 3 times.</p>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Every question type</h2>
+    <p class="note">The 15 kinds the engine asks, in the D8 card, before you answer. The line above each card says when the engine picks it. Answers turn into wide language tiles after Check, as in the card above.</p>
+    <div class="cards">
+      <figure>
+        <figcaption>1 · intro</figcaption>
+        <p class="when">The first time a word comes up.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>new word · A1</span></div></div><div class="wordtile es"><div class="w">siete <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ipa">/ˈsjete/</div></div><p class="sub">seven</p><div class="primary">Got it</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>2 · choose</figcaption>
+        <p class="when">Reviews 0 and 1, and after a lapse. Later for non-Latin scripts.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>translate · A1</span></div></div><div class="ask">seven <small>in Spanish</small></div><div class="opts"><div class="opt">sette</div><div class="opt">siete</div><div class="opt">sept</div><div class="opt">sieben</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>3 · cognate</figcaption>
+        <p class="when">Reviews 0 and 1 when the word shares a root across your set.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag it" role="img" aria-label="Italian flag"></div><div class="dir"><span>shared root · A1</span></div></div><div class="ask">seven <small>its Italian cousin</small></div><div class="family"><div class="minitile es "><div class="in"><u>Spanish</u><b>siete</b><i>/ˈsjete/</i></div></div><div class="minitile fr "><div class="in"><u>French</u><b>sept</b><i>/sɛt/</i></div></div><div class="minitile it empty"><div class="in"><u>Italian</u><b>?</b><i></i></div></div></div><div class="opts"><div class="opt">sette</div><div class="opt">otto</div><div class="opt">sei</div><div class="opt">nove</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>4 · reverse</figcaption>
+        <p class="when">Review 2, half the time.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>what does it mean · A1</span></div></div><div class="wordtile es"><div class="w">siete <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ipa">/ˈsjete/</div></div><div class="opts"><div class="opt">six</div><div class="opt">seven</div><div class="opt">eight</div><div class="opt">five</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>5 · listen</figcaption>
+        <p class="when">Review 2, the other half. Most reviews in non-Latin scripts.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag ja" role="img" aria-label="Japanese flag"></div><div class="dir"><span>listen · A1</span></div></div><div class="wordtile ja sm"><div class="w big"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div><p class="sub">pick the meaning</p><div class="opts"><div class="opt">seven</div><div class="opt">nine</div><div class="opt">four</div><div class="opt">ten</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>6 · cloze</figcaption>
+        <p class="when">Later reviews, when the word has a gapped sentence.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>fill the gap · A1</span></div></div><p class="sent">Tengo <span class="gap"></span> libros.</p><p class="sub">I have seven books.</p><div class="opts"><div class="opt">siete</div><div class="opt">seis</div><div class="opt">ocho</div><div class="opt">cinco</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>7 · sentence</figcaption>
+        <p class="when">Later reviews, about one in five, when a sentence uses the word.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>translate the sentence · A1</span></div></div><p class="sent">I have seven books.</p><div class="opts"><div class="opt long">Tengo siete libros.</div><div class="opt long">Tengo seis libros.</div><div class="opt long">Tienes siete libros.</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>8 · wordbank</figcaption>
+        <p class="when">Later reviews, about one in four, for sentences of 3 to 12 words.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>build the sentence · A1</span></div></div><p class="sent">I have seven books.</p><div class="line">Tengo&nbsp;siete</div><div class="tokens"><span>libros</span><span class="used">Tengo</span><span>casa</span><span class="used">siete</span><span>son</span></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>9 · translate</figcaption>
+        <p class="when">Later reviews in Latin scripts.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag fr" role="img" aria-label="French flag"></div><div class="dir"><span>type it · A1</span></div></div><div class="ask">seven <small>in French</small></div><div class="field">Your answer</div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>10 · type-heard</figcaption>
+        <p class="when">Later reviews in Latin scripts, the remainder.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag de" role="img" aria-label="German flag"></div><div class="dir"><span>type what you hear · A1</span></div></div><div class="wordtile de sm"><div class="w big"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div><div class="field">Type what you hear</div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>11 · speak</figcaption>
+        <p class="when">Later reviews in Latin scripts when speech is on.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag it" role="img" aria-label="Italian flag"></div><div class="dir"><span>say it · A1</span></div></div><div class="ask">Say seven</div><div class="primary mic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Hold to speak</div><div class="link">Type instead</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>12 · false-friend</figcaption>
+        <p class="when">From review 1, about one in three, for words with a look-alike.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>false friend · A1</span></div></div><div class="wordtile es sm long"><div class="w">embarazada <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ipa">/embaɾaˈθaða/</div></div><p class="sub">What does it mean?</p><div class="opts"><div class="opt">pregnant</div><div class="opt">embarrassed</div><div class="opt">tired</div><div class="opt">married</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>13 · gender</figcaption>
+        <p class="when">Every noun item.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>article · A1</span></div></div><p class="sent"><span class="gap"></span> casa</p><p class="sub">house</p><div class="opts row"><div class="opt">el</div><div class="opt">la</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>14 · conjugate</figcaption>
+        <p class="when">Every verb item. Buttons at first, typed after.</p>
+        <div class="phone">
+          <div class="headrow"><div class="flag es" role="img" aria-label="Spanish flag"></div><div class="dir"><span>conjugate · A1</span></div></div><div class="wordtile es sm"><div class="w">hablar <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ipa">/aˈβlaɾ/</div></div><p class="sub">to speak · present</p><p class="sent">yo <span class="gap"></span></p><div class="opts"><div class="opt">hablo</div><div class="opt">habla</div><div class="opt">hablas</div><div class="opt">hablan</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+      <figure>
+        <figcaption>15 · match</figcaption>
+        <p class="when">The match stage, one word across every language in the set.</p>
+        <div class="phone">
+          <div class="headrow"><div class="dir">seven <span>· match the set · A1</span></div></div><div class="match"><div class="slot"><div class="flag es"></div>Spanish<div class="placed">siete</div></div><div class="slot"><div class="flag fr"></div>French<div class="placed"></div></div><div class="slot"><div class="flag it"></div>Italian<div class="placed"></div></div></div><div class="opts"><div class="opt">sette</div><div class="opt">sept</div></div><div class="primary off">Check</div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Long words and phrases</h2>
+    <p class="note">The square tile holds one word. Words over 7 letters step the type down, as D8's .long size does. Anything with a space, or over 12 letters, moves to the wide tile, the same tile answers turn into. The tile never grows past the card and never cuts a word.</p>
+    <div class="cards">
+      <figure><figcaption>Short · square</figcaption><div class="phone"><div class="wordtile es"><div class="w">siete <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ipa">/ˈsjete/</div></div></div></figure>
+      <figure><figcaption>Long word · square, smaller type</figcaption><div class="phone"><div class="wordtile es long"><div class="w">embarazada <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="ipa">/embaɾaˈθaða/</div></div></div></figure>
+      <figure><figcaption>Phrase · wide tile</figcaption><div class="phone"><div class="widetile es"><div class="in"><u>Spanish</u><b>¿Dónde está la estación?</b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><i>/ˈdonde esˈta la estaˈθjon/</i></div></div><div class="widetile de"><div class="in"><u>German</u><b class="long">Geschwindigkeitsbegrenzung</b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><i>/ɡəˈʃvɪndɪçkaɪtsbəˌɡʁɛntsʊŋ/</i></div></div></div></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Other branches</h2>
+    <p class="note">Mathematics, physics, chemistry, information, biophysics, cosmology, mind and learning to learn all ask one kind of question: a prompt at one of four levels, recall, apply, derive and teach, then you show the answer and rate yourself. Each branch gets a pigment tile in place of a flag. Same buttons, same type.</p>
+    <div class="cards">
+      <figure><figcaption>New atom</figcaption><div class="phone"><div class="headrow"><div class="flag pig lapis" role="img" aria-label="Mathematics <span>· new atom</span>"><span>∑</span></div><div class="dir">Mathematics <span>· new atom</span></div></div><h3 class="atom">The derivative</h3><p class="lead">The best linear approximation to a function near a point: the slope of the tangent line.</p><div class="eq">f′(a) = lim<sub>h→0</sub> <span class="frac"><span>f(a+h) − f(a)</span><span>h</span></span></div><div class="primary">Got it</div></div></figure>
+      <figure><figcaption>Recall · asking</figcaption><div class="phone"><div class="headrow"><div class="flag pig lapis" role="img" aria-label="Mathematics <span>· recall</span>"><span>∑</span></div><div class="dir">Mathematics <span>· recall</span></div></div><p class="qprompt">State the derivative as a limit, and say what geometric object it computes.</p><div class="primary">Show the answer</div><div class="link">Skip</div></div></figure>
+      <figure><figcaption>Recall · answered</figcaption><div class="phone"><div class="headrow"><div class="flag pig lapis" role="img" aria-label="Mathematics <span>· recall</span>"><span>∑</span></div><div class="dir">Mathematics <span>· recall</span></div></div><p class="qprompt sm">State the derivative as a limit, and say what geometric object it computes.</p><div class="ans"><div class="eq sm">f′(a) = lim<sub>h→0</sub> <span class="frac"><span>f(a+h) − f(a)</span><span>h</span></span></div><p>The slope of the tangent line, the instantaneous rate of change at a.</p></div><div class="rates"><div class="rate again"><b>Again</b><span>did not have it</span></div><div class="rate hard"><b>Hard</b><span>had it, slowly</span></div><div class="rate good"><b>Good</b><span>had it</span></div><div class="rate easy"><b>Easy</b><span>had it at once</span></div></div></div></figure>
+      <figure><figcaption>Long answer · today vs proposed</figcaption><div class="phone"><div class="headrow"><div class="flag pig verm" role="img" aria-label="Biophysics <span>· derive</span>"><span>ψ</span></div><div class="dir">Biophysics <span>· derive</span></div></div><p class="qprompt sm">Derive the first-order energy correction, and show the second-order correction to the ground state is always negative.</p><div class="ans clamp"><p><b>Key result.</b> E<sub>n</sub><sup>(1)</sup> = ⟨n|V|n⟩, and every term of E<sub>0</sub><sup>(2)</sup> is ≤ 0.</p><p class="fade">Write Ĥ = Ĥ<sub>0</sub> + λV and expand ψ<sub>n</sub> = |n⟩ + λ|n<sup>(1)</sup>⟩ + … Insert into the Schrödinger equation and collect powers of λ. Order λ¹ gives…</p></div><div class="link">Read the full derivation</div><div class="rates"><div class="rate again"><b>Again</b><span>did not have it</span></div><div class="rate hard"><b>Hard</b><span>had it, slowly</span></div><div class="rate good"><b>Good</b><span>had it</span></div><div class="rate easy"><b>Easy</b><span>had it at once</span></div></div></div></figure>
+    </div>
+    <div class="cards two">
+      <figure><figcaption>LaTeX today</figcaption><div class="phone"><div class="eq raw">G_(μν) + Λ g_(μν) = \dfrac8π Gc⁴ T_(μν)</div><div class="eq raw">a ≡ b ±od n ⇔ n \mid (a-b)</div><p class="sub">1,094 math pieces in the live decks render like this.</p></div></figure>
+      <figure><figcaption>LaTeX proposed</figcaption><div class="phone"><div class="eq">G<sub>μν</sub> + Λg<sub>μν</sub> = <span class="frac"><span>8πG</span><span>c⁴</span></span> T<sub>μν</sub></div><div class="eq">a ≡ b (mod n) ⇔ n ∣ (a − b)</div><p class="sub">A typeset math view for equations, and full inline coverage.</p></div></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Today</h2>
+    <p class="note">Three plain groups with counts: due now, new today, done. Each row says what it holds in words.</p>
+    <div class="cards two">
+      <figure><figcaption>Today · proposed</figcaption><div class="phone">
+        <div class="todayhead"><div><b>23</b><span>due now</span></div><div><b>8</b><span>new today</span></div><div><b>14</b><span>done</span></div></div>
+        <div class="primary">Start · 23 reviews, then 8 new</div>
+        <p class="grp">Due now</p>
+        <div class="trow"><div class="headrow"><div class="flag pig es" role="img" aria-label="Spanish system"><span></span></div><div class="dir">Spanish system</div></div><span class="pill due">12 due</span></div>
+        <div class="trow"><div class="headrow"><div class="flag pig lapis" role="img" aria-label="Mathematics"><span>∑</span></div><div class="dir">Mathematics</div></div><span class="pill due">7 due</span></div>
+        <div class="trow"><div class="headrow"><div class="flag pig verm" role="img" aria-label="Biophysics"><span>ψ</span></div><div class="dir">Biophysics</div></div><span class="pill due">4 due</span></div>
+        <p class="grp">New today</p>
+        <div class="trow"><div class="headrow"><div class="flag pig es" role="img" aria-label="Spanish system"><span></span></div><div class="dir">Spanish system</div></div><span class="pill new">5 new</span></div>
+        <div class="trow"><div class="headrow"><div class="flag pig mal" role="img" aria-label="Chemistry"><span>⚗</span></div><div class="dir">Chemistry</div></div><span class="pill new">3 new</span></div>
+        <p class="grp">Done</p>
+        <div class="trow done"><div class="headrow"><div class="flag pig lapis" role="img" aria-label="Mathematics"><span>∑</span></div><div class="dir">Mathematics</div></div><span class="pill ok">14 ✓</span></div>
+      </div></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>The app today</h2>
+    <p class="note">What is on your iPhone now, after the tile experiment was reverted. Swipe sideways.</p>
+    <div class="strip">
+      <figure><img src="img/cur-study.jpg" alt="Current new-word card for French huit" loading="lazy"><figcaption>Study card</figcaption></figure>
+      <figure><img src="img/cur-place.jpg" alt="Current placement screen with answer buttons" loading="lazy"><figcaption>Placement</figcaption></figure>
+      <figure><img src="img/cur-today.jpg" alt="Today tab" loading="lazy"><figcaption>Today</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>App Store screenshots</h2>
+    <p class="note">Uploaded to App Store Connect for Bucket 2.0 and Polingual 1.0.</p>
+    <div class="strip">
+      <figure><img src="img/bucket-1.jpg" alt="Bucket Learn tab" loading="lazy"><figcaption>Bucket · Learn</figcaption></figure>
+      <figure><img src="img/bucket-2.jpg" alt="Bucket Physics deck" loading="lazy"><figcaption>Bucket · Physics</figcaption></figure>
+      <figure><img src="img/bucket-3.jpg" alt="Bucket language study" loading="lazy"><figcaption>Bucket · Languages</figcaption></figure>
+      <figure><img src="img/bucket-4.jpg" alt="Bucket language progress" loading="lazy"><figcaption>Bucket · Progress</figcaption></figure>
+      <figure><img src="img/bucket-5.jpg" alt="Bucket Practice" loading="lazy"><figcaption>Bucket · Practice</figcaption></figure>
+      <figure><img src="img/pol-1-onboarding.jpg" alt="Polingual onboarding" loading="lazy"><figcaption>Polingual · Welcome</figcaption></figure>
+      <figure><img src="img/pol-3-study.jpg" alt="Polingual study" loading="lazy"><figcaption>Polingual · Study</figcaption></figure>
+      <figure><img src="img/pol-4-placement.jpg" alt="Polingual placement" loading="lazy"><figcaption>Polingual · Placement</figcaption></figure>
+      <figure><img src="img/pol-6-paywall.jpg" alt="Polingual paywall" loading="lazy"><figcaption>Polingual · Paywall</figcaption></figure>
+    </div>
+  </section>
+</div>
