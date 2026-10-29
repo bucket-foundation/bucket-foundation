@@ -94,7 +94,13 @@ struct ExerciseView: View {
 
     var headerText: String {
         let level = ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? ""
-        let label = ex.kind == .letter && ScriptCourse.isCharacter(ex.lang, ex.answer) ? String(localized: "find the character") : String(localized: String.LocalizationValue(ex.kind.label))
+        let letter = ex.itemId == LangScript.letterItemId(ex.answer)
+        let character = letter && ScriptCourse.isCharacter(ex.lang, ex.answer)
+        let label = switch ex.kind {
+        case .letter: character ? String(localized: "find the character") : String(localized: String.LocalizationValue(ex.kind.label))
+        case .intro where letter: character ? String(localized: "new character") : String(localized: "new letter")
+        default: String(localized: String.LocalizationValue(ex.kind.label))
+        }
         return ex.kind == .match ? "\(ex.prompt) · \(label)\(level)" : "\(label)\(level)"
     }
 

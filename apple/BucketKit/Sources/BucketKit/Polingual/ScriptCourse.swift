@@ -86,6 +86,19 @@ public enum ScriptCourse {
         return out
     }
 
+    public static func letter(_ lang: String, _ root: String, _ itemId: String) -> Letter? {
+        [latinUnit(lang, root: root), LangScript.alphabetUnit(lang), characterUnit(lang)].compactMap { $0 }
+            .lazy.compactMap { $0.letters.first { LangScript.letterItemId($0.ch) == itemId } }.first
+    }
+
+    public static func intro(_ lang: String, _ root: String, _ itemId: String) -> Exercise? {
+        guard let letter = letter(lang, root, itemId) else { return nil }
+        let says = isCharacter(lang, letter.ch) ? "means “\(letter.sound)”" : "sounds like “\(letter.sound)”"
+        var ex = Exercise(kind: .intro, itemId: itemId, lang: lang, root: root, prompt: letter.name.map { "\(says), \($0)" } ?? says, promptLang: root, answer: letter.ch, answerLang: lang)
+        ex.answerReading = Reading(roman: letter.sound)
+        return ex
+    }
+
     public static func exercise(_ lang: String, _ root: String, _ itemId: String, _ rng: inout Rng) -> Exercise? {
         for unit in [latinUnit(lang, root: root), LangScript.alphabetUnit(lang), characterUnit(lang)].compactMap({ $0 }) {
             guard let letter = unit.letters.first(where: { LangScript.letterItemId($0.ch) == itemId }) else { continue }
