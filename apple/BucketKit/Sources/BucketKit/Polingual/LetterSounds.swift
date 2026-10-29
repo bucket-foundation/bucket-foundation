@@ -30,8 +30,8 @@ public enum LetterSounds {
     }
 
     public static func blanked(_ sound: LetterSound, _ ch: String) -> String? {
-        let mark = ch.replacingOccurrences(of: "◌", with: "")
-        guard let r = sound.example.range(of: mark, options: [.caseInsensitive]) else { return nil }
+        let mark = String(String.UnicodeScalarView(ch.unicodeScalars.filter { $0 != "◌" }))
+        guard let r = sound.example.range(of: mark, options: [.caseInsensitive, .literal]) else { return nil }
         return sound.example.replacingCharacters(in: r, with: "＿")
     }
 }
