@@ -2,14 +2,6 @@ import Foundation
 import Testing
 @testable import BucketKit
 
-@Test func youTubeResultsReadIdsAndTitles() {
-    let html = #"var ytInitialData = {"contents":[{"videoRenderer":{"videoId":"abcDEF12_-x","thumbnail":{},"title":{"runs":[{"text":"La gravité \"expliquée\""}]}}},{"videoRenderer":{"videoId":"abcDEF12_-x","title":{"runs":[{"text":"dup"}]}}},{"videoRenderer":{"videoId":"zzzzzzzzzz9","title":{"runs":[{"text":"Second"}]}}}]}"#
-    let found = YouTubeResults.parse(html)
-    #expect(found == [FoundVideo(id: "abcDEF12_-x", title: "La gravité \"expliquée\""), FoundVideo(id: "zzzzzzzzzz9", title: "Second")])
-    #expect(found[0].embed.absoluteString.contains("youtube-nocookie.com/embed/abcDEF12_-x"))
-    #expect(YouTubeResults.parse("<html>nothing</html>").isEmpty)
-}
-
 @Test func immersionCountsPerDayAndRollsOver() {
     var cal = Calendar(identifier: .gregorian)
     cal.timeZone = TimeZone(identifier: "UTC")!

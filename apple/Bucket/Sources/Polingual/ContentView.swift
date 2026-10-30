@@ -107,36 +107,55 @@ final class RadioPlayer {
             for await n in NotificationCenter.default.notifications(named: AVAudioSession.interruptionNotification) {
                 let raw = n.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
                 if raw == AVAudioSession.InterruptionType.began.rawValue { self?.pause() }
+                if raw == AVAudioSession.InterruptionType.ended.rawValue, let o = n.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt,
+                   AVAudioSession.InterruptionOptions(rawValue: o).contains(.shouldResume) { self?.resume() }
             }
         }
         #endif
         let c = MPRemoteCommandCenter.shared()
-        c.playCommand.addTarget { [weak self] _ in
-            Task { @MainActor in self?.resume() }
-            return .success
+        let run: (@escaping @MainActor (RadioPlayer) -> Void) -> (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus = { act in
+            { [weak self] _ in
+                MainActor.assumeIsolated {
+                    guard let self, self.station != nil else { return .noActionableNowPlayingItem }
+                    act(self)
+                    return .success
+                }
+            }
         }
-        c.pauseCommand.addTarget { [weak self] _ in
-            Task { @MainActor in self?.pause() }
-            return .success
-        }
-        c.stopCommand.addTarget { [weak self] _ in
-            Task { @MainActor in self?.stop() }
-            return .success
-        }
-        c.togglePlayPauseCommand.addTarget { [weak self] _ in
-            Task { @MainActor in if self?.playing == nil { self?.resume() } else { self?.pause() } }
-            return .success
-        }
+        c.playCommand.addTarget(handler: run { $0.resume() })
+        c.pauseCommand.addTarget(handler: run { $0.pause() })
+        c.stopCommand.addTarget(handler: run { $0.stop() })
+        c.togglePlayPauseCommand.addTarget(handler: run { if $0.playing == nil { $0.resume() } else { $0.pause() } })
+        commands(false)
+    }
+
+    func commands(_ on: Bool) {
+        let c = MPRemoteCommandCenter.shared()
+        for cmd in [c.playCommand, c.pauseCommand, c.stopCommand, c.togglePlayPauseCommand] { cmd.isEnabled = on }
     }
 
     func resume() {
         guard playing == nil, let station else { return }
-        start(station, lang: lang)
+        guard let player else {
+            start(station, lang: lang)
+            return
+        }
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setActive(true)
+        #endif
+        player.currentItem?.seek(to: .positiveInfinity, completionHandler: nil)
+        player.play()
+        playing = station.id
+        nowPlaying(rate: 1)
+        counter = Immersion.shared.counting { [weak self] in self?.playing != nil }
     }
 
     func pause() {
         guard playing != nil else { return }
-        halt()
+        player?.pause()
+        playing = nil
+        counter?.cancel()
+        counter = nil
         nowPlaying(rate: 0)
     }
 
@@ -181,6 +200,7 @@ final class RadioPlayer {
         failedId = nil
         p.play()
         nowPlaying(rate: 1)
+        commands(true)
         counter = Immersion.shared.counting { [weak self] in self?.playing != nil }
         let id = s.id
         watch = [
@@ -210,6 +230,7 @@ final class RadioPlayer {
         station = nil
         lang = nil
         nowPlaying(rate: 0)
+        commands(false)
     }
 
     private func halt() {
@@ -308,7 +329,10 @@ struct ContentHub: View {
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
             if let i = args.firstIndex(of: "-readTopic"), i + 1 < args.count { openTopic = ContentCatalog.topics.first { $0.title == args[i + 1] } }
-            if let i = args.firstIndex(of: "-watchQuery"), i + 1 < args.count { InApp.shared.watch(args[i + 1], learnerLangs.first ?? "es") }
+            if let i = args.firstIndex(of: "-watchQuery"), i + 1 < args.count {
+                try? await Task.sleep(for: .seconds(2))
+                InApp.shared.watch(args[i + 1], lang: learnerLangs.first ?? "es")
+            }
             #endif
         }
     }
@@ -511,10 +535,12 @@ struct NearbyRadio: View {
         let key = "near:\(lang)"
         let shown = (store.stations[key] ?? []).filter { !store.hidden.contains($0.id) }
         Section {
+            #if os(iOS)
             if !place.allowed && place.status != .denied && place.status != .restricted {
                 Button { place.ask() } label: { Label("Find stations near me", systemImage: "location.fill") }
                     .foregroundStyle(D8.lapis)
             }
+            #endif
             if store.failed.contains(key) {
                 Button("Stations did not load. Retry") { Task { await store.nearby(lang, place: place.spot) } }
             } else if store.stations[key] == nil {
@@ -647,7 +673,7 @@ struct WatchList: View {
             Section {
                 ForEach(langs, id: \.self) { l in
                     let title = store.titles[t.title]?[l]
-                    Button { InApp.shared.watch(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)", l) } label: {
+                    Button { InApp.shared.watch(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)", lang: l) } label: {
                         HStack(spacing: 10) {
                             FlagTile(lang: l, size: 24)
                             Text(title ?? t.title).foregroundStyle(Palette.ink)

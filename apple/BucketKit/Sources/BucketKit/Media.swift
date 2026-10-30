@@ -1,23 +1,6 @@
 import Foundation
 
-public struct FoundVideo: Sendable, Equatable, Identifiable, Hashable {
-    public let id: String
-    public let title: String
-
-    public init(id: String, title: String) {
-        self.id = id
-        self.title = title
-    }
-
-    public var embed: URL {
-        URL(string: "https://www.youtube-nocookie.com/embed/\(id)?playsinline=1&autoplay=1&rel=0&modestbranding=1")!
-    }
-}
-
 public enum YouTubeResults {
-    static let marker = "\"videoRenderer\":{\"videoId\":\""
-    static let titleMarker = "\"title\":{\"runs\":[{\"text\":\""
-
     public static func search(_ query: String, lang: String) -> URL {
         let native = Locale(identifier: lang).localizedString(forLanguageCode: lang) ?? ""
         let q = lang == "en" || native.isEmpty || query.localizedCaseInsensitiveContains(native) ? query : "\(query) \(native)"
@@ -25,36 +8,6 @@ public enum YouTubeResults {
         c.queryItems = [URLQueryItem(name: "search_query", value: q), URLQueryItem(name: "hl", value: lang)]
         if let region = Lang.info[lang]?.bcp47.split(separator: "-").last, region.count == 2 { c.queryItems?.append(URLQueryItem(name: "gl", value: String(region))) }
         return c.url!
-    }
-
-    public static func parse(_ html: String, limit: Int = 8) -> [FoundVideo] {
-        var out: [FoundVideo] = []
-        var seen = Set<String>()
-        var rest = html[...]
-        while out.count < limit, let m = rest.range(of: marker) {
-            let idEnd = rest.index(m.upperBound, offsetBy: 11, limitedBy: rest.endIndex) ?? rest.endIndex
-            let id = String(rest[m.upperBound..<idEnd])
-            rest = rest[idEnd...]
-            guard id.count == 11, id.allSatisfy({ $0.isLetter || $0.isNumber || $0 == "-" || $0 == "_" }), seen.insert(id).inserted else { continue }
-            let window = rest.prefix(4000)
-            guard let t = window.range(of: titleMarker), let title = jsonString(window[t.upperBound...]) else { continue }
-            out.append(FoundVideo(id: id, title: title))
-        }
-        return out
-    }
-
-    static func jsonString(_ s: Substring) -> String? {
-        var escaped = false
-        for i in s.indices {
-            let c = s[i]
-            if escaped { escaped = false; continue }
-            if c == "\\" { escaped = true; continue }
-            if c == "\"" {
-                let raw = "\"" + s[s.startIndex..<i] + "\""
-                return (try? JSONDecoder().decode(String.self, from: Data(raw.utf8)))
-            }
-        }
-        return nil
     }
 }
 
