@@ -79,7 +79,7 @@ struct Studio: View {
     @State private var extra: Extra?
 
     enum Extra: String, Identifiable {
-        case games, content
+        case games, content, meetups
         var id: String { rawValue }
     }
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
@@ -103,6 +103,7 @@ struct Studio: View {
                 Section {
                     Button { extra = .games } label: { Label("Games", systemImage: "gamecontroller") }.buttonStyle(.plain)
                     Button { extra = .content } label: { Label("Content", systemImage: "play.square.stack") }.buttonStyle(.plain)
+                    Button { extra = .meetups } label: { Label("Meetups", systemImage: "person.3.fill") }.buttonStyle(.plain)
                     Button { showAccount = true } label: { Label("Account", systemImage: "person.crop.circle") }.buttonStyle(.plain)
                     Button { manage() } label: { Label("Subscription", systemImage: "creditcard") }.buttonStyle(.plain)
                 }
@@ -120,6 +121,7 @@ struct Studio: View {
             switch e {
             case .games: GamesView()
             case .content: ContentHub()
+            case .meetups: ContentHub(start: .meet)
             }
         }
         .manageSubscriptions(isPresented: $managing)
@@ -136,6 +138,7 @@ struct Studio: View {
                 switch e {
                 case .games: GamesView()
                 case .content: ContentHub()
+                case .meetups: ContentHub(start: .meet)
                 }
             }
             .manageSubscriptions(isPresented: $managing)
@@ -152,6 +155,7 @@ struct Studio: View {
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
+                            Button("Meetups", systemImage: "person.3.fill") { extra = .meetups }
                             Button("Games", systemImage: "gamecontroller") { extra = .games }
                             Button("Content", systemImage: "play.square.stack") { extra = .content }
                             Button("Account", systemImage: "person.crop.circle") { showAccount = true }

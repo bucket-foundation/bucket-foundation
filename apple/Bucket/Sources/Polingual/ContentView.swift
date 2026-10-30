@@ -10,6 +10,7 @@ extension ContentKind {
         case .read: String(localized: "Read")
         case .listen: String(localized: "Listen")
         case .watch: String(localized: "Watch")
+        case .meet: String(localized: "Meet")
         }
     }
 }
@@ -247,7 +248,12 @@ final class RadioPlayer {
 struct ContentHub: View {
     @Environment(LangStore.self) private var langs
     var embedded = false
-    @State private var kind: ContentKind = Self.launchKind
+    @State private var kind: ContentKind
+
+    init(embedded: Bool = false, start: ContentKind? = nil) {
+        self.embedded = embedded
+        _kind = State(initialValue: start ?? Self.launchKind)
+    }
     @State private var branch: String?
     @State private var lang: String?
     @State private var openTopic: ContentTopic?
@@ -291,6 +297,7 @@ struct ContentHub: View {
             case .read: ReadList(branch: branch, langs: shownLangs)
             case .listen: ListenList(branch: branch, langs: shownLangs, home: langs.systems.first?.root ?? Locale.current.language.languageCode?.identifier)
             case .watch: WatchList(branch: branch, langs: shownLangs)
+            case .meet: MeetList(langs: Array(Set(learnerLangs + langs.systems.map(\.root))).sorted())
             }
             if langs.systems.isEmpty {
                 Section {

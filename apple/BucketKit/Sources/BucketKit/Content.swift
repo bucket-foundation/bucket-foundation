@@ -1,7 +1,7 @@
 import Foundation
 
 public enum ContentKind: String, Sendable, CaseIterable {
-    case read, listen, watch
+    case read, listen, watch, meet
 }
 
 public struct ContentTopic: Sendable, Equatable, Identifiable {
