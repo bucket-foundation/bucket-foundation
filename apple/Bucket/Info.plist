@@ -18,6 +18,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location finds radio stations near you. It is rounded to about 11 km and used only for that search.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

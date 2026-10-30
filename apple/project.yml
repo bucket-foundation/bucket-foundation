@@ -42,6 +42,7 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UIBackgroundModes: [audio]
+        NSLocationWhenInUseUsageDescription: Your location finds radio stations near you. It is rounded to about 11 km and used only for that search.
     entitlements:
       path: Bucket/Bucket.entitlements
       properties:
@@ -138,6 +139,7 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UIBackgroundModes: [audio]
+        NSLocationWhenInUseUsageDescription: Your location finds radio stations near you. It is rounded to about 11 km and used only for that search.
     dependencies:
       - package: BucketKit
       - target: PolingualWidgets
