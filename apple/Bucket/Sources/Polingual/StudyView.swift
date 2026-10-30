@@ -104,7 +104,10 @@ struct StudyView: View {
         let entry = q[i]
         var next = q
         let apply = {
-            for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
+            for r in results {
+                store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating)
+                GameRecords.shared.graded(systemId, lang: r.lang, itemId: entry.itemId)
+            }
         }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
         for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }

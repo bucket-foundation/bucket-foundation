@@ -34,6 +34,14 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
 extension GameKind {
     var lowerWins: Bool { self != .flags }
 
+    var standard: Int {
+        switch self {
+        case .match: 5
+        case .memory: 6
+        case .flags: FlagGame.total
+        }
+    }
+
     func bestText(_ v: Int) -> String {
         switch self {
         case .match: v == 0 ? String(localized: "no misses") : String(localized: "\(v) misses")
@@ -50,17 +58,25 @@ final class GameRecords {
     private let d = UserDefaults.standard
     private(set) var version = 0
 
-    func best(_ g: GameKind) -> Int? { d.object(forKey: "games.best.\(g.rawValue)") as? Int }
+    func best(_ g: GameKind, size: Int? = nil) -> Int? {
+        _ = version
+        return d.object(forKey: "games.best.\(g.rawValue).\(size ?? g.standard)") as? Int
+    }
+
+    var stars: [String: Int] { d.dictionary(forKey: "games.stars") as? [String: Int] ?? [:] }
 
     var todayStars: Int {
         _ = version
-        return d.integer(forKey: "games.stars.\(ImmersionDay.today)")
+        return stars[ImmersionDay.today] ?? 0
     }
 
-    func finish(_ g: GameKind, stars: Int, value: Int, missed: [GameWord], langs: LangStore) -> Bool {
-        let isBest = GameStars.isBest(value, previous: best(g), lowerWins: g.lowerWins)
-        if isBest { d.set(value, forKey: "games.best.\(g.rawValue)") }
-        d.set(todayStars + stars, forKey: "games.stars.\(ImmersionDay.today)")
+    func finish(_ g: GameKind, size: Int, stars earned: Int, value: Int, missed: [GameWord], langs: LangStore) -> Bool {
+        let isBest = GameStars.isBest(value, previous: best(g, size: size), lowerWins: g.lowerWins)
+        if isBest { d.set(value, forKey: "games.best.\(g.rawValue).\(size)") }
+        let today = ImmersionDay.today
+        var all = stars.filter { $0.key >= ImmersionDay.daysAgo(14) }
+        all[today, default: 0] += earned
+        d.set(all, forKey: "games.stars")
         bringBack(missed, langs)
         version += 1
         return isBest
@@ -80,15 +96,24 @@ final class GameRecords {
 
     func takeReplay(_ system: LangSystem, carded: (String, String) -> Bool) -> [QueueEntry] {
         let key = "games.replay.\(system.id)"
-        let entries = GameReplay.entries(d.stringArray(forKey: key) ?? [], in: system, carded: carded)
-        d.removeObject(forKey: key)
-        return entries
+        return GameReplay.entries(d.stringArray(forKey: key) ?? [], in: system, carded: carded)
+    }
+
+    func graded(_ systemId: String, lang: String, itemId: String) {
+        let key = "games.replay.\(systemId)"
+        guard let list = d.stringArray(forKey: key), list.contains(cardId(lang, itemId)) else { return }
+        let rest = list.filter { $0 != cardId(lang, itemId) }
+        if rest.isEmpty { d.removeObject(forKey: key) } else { d.set(rest, forKey: key) }
     }
 }
 
 enum ImmersionDay {
-    static var today: String {
-        let c = Calendar.current.dateComponents([.year, .month, .day], from: .now)
+    static var today: String { key(.now) }
+
+    static func daysAgo(_ n: Int) -> String { key(Calendar.current.date(byAdding: .day, value: -n, to: .now) ?? .now) }
+
+    static func key(_ date: Date) -> String {
+        let c = Calendar.current.dateComponents([.year, .month, .day], from: date)
         return String(format: "%04d-%02d-%02d", c.year ?? 0, c.month ?? 0, c.day ?? 0)
     }
 }
@@ -360,7 +385,7 @@ struct MatchGame: View {
             _ = LangVoice.shared.speak(w.form, w.lang)
             if r.done {
                 let stars = GameStars.match(misses: r.misses)
-                result = (stars, GameRecords.shared.finish(.match, stars: stars, value: r.misses, missed: missed, langs: langs))
+                result = (stars, GameRecords.shared.finish(.match, size: r.words.count, stars: stars, value: r.misses, missed: missed, langs: langs))
             }
         case .missed:
             haptic(false)
@@ -449,7 +474,7 @@ struct MemoryGame: View {
             haptic(true)
             if b.done {
                 let stars = GameStars.memory(turns: b.turns, pairs: b.tiles.count / 2)
-                result = (stars, GameRecords.shared.finish(.memory, stars: stars, value: b.turns, missed: [], langs: langs))
+                result = (stars, GameRecords.shared.finish(.memory, size: b.tiles.count / 2, stars: stars, value: b.turns, missed: [], langs: langs))
             }
         case .missed:
             haptic(false)
@@ -570,7 +595,7 @@ struct FlagGame: View {
         advance?.cancel()
         if played >= Self.total {
             let stars = GameStars.flags(score: score, of: Self.total)
-            result = (stars, GameRecords.shared.finish(.flags, stars: stars, value: score, missed: missed, langs: langs))
+            result = (stars, GameRecords.shared.finish(.flags, size: Self.total, stars: stars, value: score, missed: missed, langs: langs))
         } else {
             deal()
         }
