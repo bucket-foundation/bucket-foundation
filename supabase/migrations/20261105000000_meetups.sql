@@ -46,12 +46,18 @@ create table if not exists bucket.meetup_rsvps (
   meetup_id    uuid        not null references bucket.meetups (id) on delete cascade,
   user_id      uuid        not null references auth.users (id) on delete cascade,
   display_name text        not null check (char_length(display_name) between 1 and 40),
-  notified     boolean     not null default false,
   created_at   timestamptz not null default now(),
   primary key (meetup_id, user_id)
 );
 
 create index if not exists meetup_rsvps_user_idx on bucket.meetup_rsvps (user_id);
+
+create table if not exists bucket.meetup_pings (
+  meetup_id  uuid        not null references bucket.meetups (id) on delete cascade,
+  user_id    uuid        not null references auth.users (id) on delete cascade,
+  created_at timestamptz not null default now(),
+  primary key (meetup_id, user_id)
+);
 
 create table if not exists bucket.meetup_reports (
   meetup_id   uuid        not null references bucket.meetups (id) on delete cascade,
@@ -83,8 +89,9 @@ alter table bucket.meetups enable row level security;
 alter table bucket.meetup_rsvps enable row level security;
 alter table bucket.meetup_reports enable row level security;
 alter table bucket.meetup_blocks enable row level security;
+alter table bucket.meetup_pings enable row level security;
 
-revoke all on bucket.meetup_terms, bucket.meetups, bucket.meetup_rsvps, bucket.meetup_reports, bucket.meetup_blocks from anon, authenticated;
+revoke all on bucket.meetup_terms, bucket.meetups, bucket.meetup_rsvps, bucket.meetup_reports, bucket.meetup_blocks, bucket.meetup_pings from anon, authenticated;
 
 create or replace function bucket.meetup_host_gone()
 returns trigger language plpgsql as $$
@@ -170,7 +177,8 @@ begin
     return 'rsvp_limit';
   end if;
   insert into bucket.meetup_rsvps (meetup_id, user_id, display_name) values (p_meetup, p_user, p_name);
-  return 'joined';
+  insert into bucket.meetup_pings (meetup_id, user_id) values (p_meetup, p_user) on conflict do nothing;
+  return case when found then 'joined_first' else 'joined' end;
 end $$;
 
 create or replace function bucket.report_meetup(p_meetup uuid, p_user uuid, p_reason text, p_note text)
@@ -182,7 +190,7 @@ declare
 begin
   perform pg_advisory_xact_lock(hashtext('bucket.meetups.report:' || p_meetup::text));
   select * into m from bucket.meetups where id = p_meetup;
-  if not found then
+  if not found or m.taken_down_at is not null then
     return 'not_found';
   end if;
   if (select count(*) from bucket.meetup_reports where reporter_id = p_user and created_at > now() - interval '24 hours') >= 10 then

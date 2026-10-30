@@ -65,6 +65,7 @@ test("the filter folds lookalikes and leaves ordinary words alone", () => {
   assert.ok(rejectedContent("P0RN night"));
   assert.ok(rejectedContent("é s c o r t"));
   assert.ok(!rejectedContent("Sussex conversation club", "Essex", "Polyglot brunch at 11"));
+  assert.ok(!rejectedContent("Che casino!", "sin retardo", "le menu des enfants", "Sexta-feira em português", "escorted tour", "Hooke's law"));
   assert.equal(validOnlineUrl("https://meet.google.com/abc-defg-hij"), "https://meet.google.com/abc-defg-hij");
   assert.equal(roundCoord(91, 90), null);
 });

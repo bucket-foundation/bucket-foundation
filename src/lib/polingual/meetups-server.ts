@@ -55,10 +55,15 @@ export async function countingReports(ids: string[]): Promise<Map<string, number
   return out;
 }
 
-export async function present(rows: MeetupRow[], uid: string | null): Promise<Meetup[]> {
+export async function present(rows: MeetupRow[], uid: string | null, admin = false): Promise<Meetup[]> {
   const ids = rows.map((r) => r.id);
   const [stats, reports] = await Promise.all([rsvpStats(ids, uid), countingReports(ids)]);
-  return rows.map((r) => toMeetup(r, uid, stats.get(r.id) ?? { count: 0, viewerGoing: false }, reports.get(r.id) ?? 0));
+  return rows.map((r) => toMeetup(r, uid, stats.get(r.id) ?? { count: 0, viewerGoing: false }, reports.get(r.id) ?? 0, admin));
+}
+
+export async function goingMeetupIds(uid: string): Promise<string[]> {
+  const rows = check(await service().from("meetup_rsvps").select("meetup_id").eq("user_id", uid), "going ids") as { meetup_id: string }[];
+  return rows.map((r) => r.meetup_id);
 }
 
 export async function goingIds(meetupId: string): Promise<string[]> {

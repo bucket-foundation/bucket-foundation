@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export function OPTIONS(): NextResponse {
   return preflight();
 }
-import { adminIds, MEETUP_COLS, present } from "@/lib/polingual/meetups-server";
+import { adminIds, goingIds, meetupById, MEETUP_COLS, present, pushText } from "@/lib/polingual/meetups-server";
 import type { MeetupRow } from "@/lib/polingual/meetups";
 
 async function admin(req: NextRequest): Promise<string | null> {
@@ -47,6 +47,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (action === "takedown") {
       const t = await service().from("meetups").update({ taken_down_at: now }).eq("id", id);
       if (t.error) throw new Error(`takedown: ${t.error.message}`);
+      const row = await meetupById(id);
+      if (row) await pushText(await goingIds(id), `${row.title} was cancelled`, id).catch(() => undefined);
     }
     const r = await service().from("meetup_reports").update({ status: action === "takedown" ? "actioned" : "dismissed", reviewed_at: now }).eq("meetup_id", id).eq("status", "open");
     if (r.error) throw new Error(`review: ${r.error.message}`);

@@ -67,7 +67,7 @@ export interface Meetup {
   status: "open" | "cancelled" | "under_review" | "full";
 }
 
-const BLOCKED_TERMS = ["nigger", "faggot", "retard", "kike", "chink", "tranny", "escort", "onlyfans", "nudes", "sex", "porn", "hookup", "crypto giveaway", "bitcoin", "forex", "casino", "viagra", "cashapp", "venmo me", "telegram me", "whatsapp me"];
+const BLOCKED_TERMS = ["nigger", "niggers", "faggot", "faggots", "retard", "retards", "kike", "kikes", "chink", "chinks", "tranny", "escort", "escorts", "onlyfans", "nudes", "porn", "hookup", "hookups", "crypto giveaway", "bitcoin", "forex", "viagra", "cashapp", "venmo me", "telegram me", "whatsapp me"];
 
 export function foldForFilter(s: string): string {
   return s
@@ -84,10 +84,9 @@ export function foldForFilter(s: string): string {
 
 export function rejectedContent(...fields: string[]): boolean {
   return fields.some((f) => {
-    const folded = foldForFilter(f);
-    const squashed = folded.replace(/[^a-z]/g, "");
+    const folded = foldForFilter(f).replace(/\b([a-z])[\s._-](?=[a-z]\b)/g, "$1");
     if (/https?:\/\/|www\.|\.(com|net|org|io|ly|me)\b/.test(folded)) return true;
-    return BLOCKED_TERMS.some((t) => (t.includes(" ") ? folded.includes(t) : new RegExp(`\\b${t}\\b`).test(folded) || (t.length >= 5 && squashed.includes(t))));
+    return BLOCKED_TERMS.some((t) => (t.includes(" ") ? folded.includes(t) : new RegExp(`\\b${t}\\b`).test(folded)));
   });
 }
 
@@ -162,10 +161,10 @@ export function box(lat: number, lon: number, km = NEAR_KM): { minLat: number; m
   return { minLat: lat - dLat, maxLat: lat + dLat, minLon: lon - dLon, maxLon: lon + dLon };
 }
 
-export function toMeetup(row: MeetupRow, viewer: string | null, going: { count: number; viewerGoing: boolean }, countingReports: number): Meetup {
+export function toMeetup(row: MeetupRow, viewer: string | null, going: { count: number; viewerGoing: boolean }, countingReports: number, admin = false): Meetup {
   const isHost = viewer !== null && row.host_id === viewer;
   const closed = Boolean(row.cancelled_at || row.taken_down_at);
-  const insider = !closed && (isHost || going.viewerGoing);
+  const insider = admin || (!closed && (isHost || going.viewerGoing));
   const hidden = countingReports >= REPORTS_TO_HIDE || Boolean(row.taken_down_at);
   const status: Meetup["status"] = row.cancelled_at || row.taken_down_at ? "cancelled" : hidden ? "under_review" : row.capacity !== null && going.count >= row.capacity ? "full" : "open";
   const num = (v: number | string | null) => (v === null ? null : Number(v));

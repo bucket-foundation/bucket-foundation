@@ -8,7 +8,7 @@ export function OPTIONS(): NextResponse {
   return preflight();
 }
 import { box, distanceKm, matchesLangs, parseDraft, roundCoord, validLangs, visibleInList, MEETUP_TERMS_VERSION, type MeetupRow } from "@/lib/polingual/meetups";
-import { adminIds, blockedFor, countingReports, MEETUP_COLS, present } from "@/lib/polingual/meetups-server";
+import { adminIds, blockedFor, countingReports, goingMeetupIds, MEETUP_COLS, present } from "@/lib/polingual/meetups-server";
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   if (!configured()) return json({ error: "sync_unavailable" }, 503);
@@ -27,7 +27,9 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       const b = box(lat, lon);
       queries.push(base().eq("mode", "in_person").gte("lat", b.minLat).lte("lat", b.maxLat).gte("lon", b.minLon).lte("lon", b.maxLon));
     }
+    const mine = uid ? new Set(await goingMeetupIds(uid)) : new Set<string>();
     if (uid) queries.push(base().eq("host_id", uid));
+    if (mine.size > 0) queries.push(base().in("id", Array.from(mine)));
     const results = await Promise.all(queries);
     const seen = new Map<string, MeetupRow>();
     for (const r of results) {
@@ -38,7 +40,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const reports = await countingReports(Array.from(seen.keys()));
     const rows = Array.from(seen.values()).filter((row) => {
       if (!visibleInList(row, uid, blocked, reports.get(row.id) ?? 0, now.getTime())) return false;
-      if (row.host_id === uid) return true;
+      if (row.host_id === uid || mine.has(row.id)) return true;
       if (!matchesLangs(row, langs)) return false;
       if (row.mode === "online") return true;
       return lat !== null && lon !== null && row.lat !== null && row.lon !== null && distanceKm(lat, lon, Number(row.lat), Number(row.lon)) <= 60;

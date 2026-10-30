@@ -18,8 +18,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   try {
     const row = await meetupById(id);
     if (!row || row.host_id === null || (await blockedFor(uid)).has(row.host_id)) return json({ error: "not_found" }, 404);
-    const [meetup] = await present([row], uid);
-    if (meetup.status === "under_review" && !meetup.isHost && !(uid && adminIds().has(uid))) return json({ error: "not_found" }, 404);
+    const admin = uid !== null && adminIds().has(uid);
+    const [meetup] = await present([row], uid, admin);
+    if ((meetup.status === "under_review" || row.taken_down_at) && !meetup.isHost && !admin) return json({ error: "not_found" }, 404);
     return json({ meetup });
   } catch (err) {
     return fail(err, "meetup");

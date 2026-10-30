@@ -23,8 +23,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (row.host_id === uid) return json({ error: "bad_request" }, 400);
     const res = await service().from("meetup_blocks").upsert({ user_id: uid, blocked_id: row.host_id }, { onConflict: "user_id,blocked_id" });
     if (res.error) throw new Error(`block: ${res.error.message}`);
-    await service().from("meetup_rsvps").delete().eq("user_id", uid).in("meetup_id",
-      ((await service().from("meetups").select("id").eq("host_id", row.host_id)).data ?? []).map((m: { id: string }) => m.id));
+    const hosted = async (host: string) => ((await service().from("meetups").select("id").eq("host_id", host)).data ?? []).map((m: { id: string }) => m.id);
+    await service().from("meetup_rsvps").delete().eq("user_id", uid).in("meetup_id", await hosted(row.host_id));
+    await service().from("meetup_rsvps").delete().eq("user_id", row.host_id).in("meetup_id", await hosted(uid));
     return json({ ok: true });
   } catch (err) {
     return fail(err, "meetup block");
