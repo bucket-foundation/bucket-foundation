@@ -1,5 +1,7 @@
 import AVFoundation
 import BucketKit
+import CoreLocation
+import MediaPlayer
 import SwiftUI
 
 extension ContentKind {
@@ -66,6 +68,20 @@ final class ContentStore {
         return s
     }
 
+    func nearby(_ lang: String, place: Place.Spot?) async {
+        let key = "near:\(lang)"
+        failed.remove(key)
+        let country = Locale.current.region?.identifier
+        do {
+            let found = try await api.stations(lang, near: place.map { ($0.lat, $0.lon) }, country: country, limit: 12)
+            guard !Task.isCancelled else { return }
+            stations[key] = found
+            failed.remove(key)
+        } catch {
+            if !Task.isCancelled && stations[key] == nil { failed.insert(key) }
+        }
+    }
+
     func stations(_ lang: String) async {
         guard stations[lang] == nil else { return }
         failed.remove("radio:\(lang)")
@@ -81,24 +97,76 @@ final class RadioPlayer {
     private var watch: [Task<Void, Never>] = []
     private(set) var playing: String?
     private(set) var failedId: String?
+    private(set) var station: RadioStation?
+    private(set) var lang: String?
+    private var counter: Task<Void, Never>?
 
     init() {
         #if os(iOS)
         Task { [weak self] in
             for await n in NotificationCenter.default.notifications(named: AVAudioSession.interruptionNotification) {
                 let raw = n.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
-                if raw == AVAudioSession.InterruptionType.began.rawValue { self?.stop() }
+                if raw == AVAudioSession.InterruptionType.began.rawValue { self?.pause() }
             }
         }
         #endif
+        let c = MPRemoteCommandCenter.shared()
+        c.playCommand.addTarget { [weak self] _ in
+            Task { @MainActor in self?.resume() }
+            return .success
+        }
+        c.pauseCommand.addTarget { [weak self] _ in
+            Task { @MainActor in self?.pause() }
+            return .success
+        }
+        c.stopCommand.addTarget { [weak self] _ in
+            Task { @MainActor in self?.stop() }
+            return .success
+        }
+        c.togglePlayPauseCommand.addTarget { [weak self] _ in
+            Task { @MainActor in if self?.playing == nil { self?.resume() } else { self?.pause() } }
+            return .success
+        }
     }
 
-    func toggle(_ s: RadioStation) {
+    func resume() {
+        guard playing == nil, let station else { return }
+        start(station, lang: lang)
+    }
+
+    func pause() {
+        guard playing != nil else { return }
+        halt()
+        nowPlaying(rate: 0)
+    }
+
+    func nowPlaying(rate: Double) {
+        guard let station else {
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+            return
+        }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+            MPMediaItemPropertyTitle: station.name,
+            MPMediaItemPropertyArtist: [lang.map(langName), station.country.isEmpty ? nil : station.country].compactMap { $0 }.joined(separator: " · "),
+            MPMediaItemPropertyAlbumTitle: Feedback.appName,
+            MPNowPlayingInfoPropertyIsLiveStream: true,
+            MPNowPlayingInfoPropertyPlaybackRate: rate,
+        ]
+        #if os(macOS)
+        MPNowPlayingInfoCenter.default().playbackState = rate > 0 ? .playing : .paused
+        #endif
+    }
+
+    func toggle(_ s: RadioStation, lang: String? = nil) {
         if playing == s.id {
             stop()
             return
         }
-        stop()
+        start(s, lang: lang)
+    }
+
+    func start(_ s: RadioStation, lang: String?) {
+        halt()
         guard let url = s.stream else { return }
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -108,8 +176,12 @@ final class RadioPlayer {
         let p = AVPlayer(playerItem: item)
         player = p
         playing = s.id
+        station = s
+        self.lang = lang
         failedId = nil
         p.play()
+        nowPlaying(rate: 1)
+        counter = Immersion.shared.counting { [weak self] in self?.playing != nil }
         let id = s.id
         watch = [
             Task { [weak self] in
@@ -134,6 +206,15 @@ final class RadioPlayer {
     }
 
     func stop() {
+        halt()
+        station = nil
+        lang = nil
+        nowPlaying(rate: 0)
+    }
+
+    private func halt() {
+        counter?.cancel()
+        counter = nil
         watch.forEach { $0.cancel() }
         watch = []
         player?.pause()
@@ -185,10 +266,12 @@ struct ContentHub: View {
                 .pickerStyle(.segmented)
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
+            } footer: {
+                ImmersionLine()
             }
             switch kind {
             case .read: ReadList(branch: branch, langs: shownLangs)
-            case .listen: ListenList(branch: branch, langs: shownLangs)
+            case .listen: ListenList(branch: branch, langs: shownLangs, home: langs.systems.first?.root ?? Locale.current.language.languageCode?.identifier)
             case .watch: WatchList(branch: branch, langs: shownLangs)
             }
             if langs.systems.isEmpty {
@@ -219,14 +302,13 @@ struct ContentHub: View {
             }
         }
         .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs) }
-        .onChange(of: kind) { _, k in if k != .listen { RadioPlayer.shared.stop() } }
-        .onDisappear { RadioPlayer.shared.stop() }
         .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs) }
         .task {
             await langs.load()
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
             if let i = args.firstIndex(of: "-readTopic"), i + 1 < args.count { openTopic = ContentCatalog.topics.first { $0.title == args[i + 1] } }
+            if let i = args.firstIndex(of: "-watchQuery"), i + 1 < args.count { InApp.shared.watch(args[i + 1], learnerLangs.first ?? "es") }
             #endif
         }
     }
@@ -297,7 +379,7 @@ struct ReadView: View {
         .navigationTitle(topic.title)
         .inlineTitle()
         .environment(\.openURL, OpenURLAction { url in
-            guard let p = WordTaps.parse(url) else { return .systemAction }
+            guard let p = WordTaps.parse(url) else { return InApp.shared.open(url) }
             _ = LangVoice.shared.speak(p.word, p.lang)
             return .handled
         })
@@ -373,13 +455,124 @@ struct ReadView: View {
     }
 }
 
-struct ListenList: View {
-    let branch: String?
-    let langs: [String]
+@MainActor
+@Observable
+final class Place: NSObject, CLLocationManagerDelegate {
+    static let shared = Place()
+    struct Spot: Equatable { let lat: Double; let lon: Double }
+    private let manager = CLLocationManager()
+    private(set) var spot: Spot?
+    private(set) var status: CLAuthorizationStatus
+
+    override init() {
+        status = manager.authorizationStatus
+        super.init()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+    }
+
+    var allowed: Bool { status == .authorizedWhenInUse || status == .authorizedAlways }
+
+    func ask() {
+        if status == .notDetermined { manager.requestWhenInUseAuthorization() } else if allowed { manager.requestLocation() }
+    }
+
+    func refresh() { if allowed && spot == nil { manager.requestLocation() } }
+
+    nonisolated func locationManagerDidChangeAuthorization(_ m: CLLocationManager) {
+        let s = m.authorizationStatus
+        Task { @MainActor in
+            status = s
+            refresh()
+        }
+    }
+
+    nonisolated func locationManager(_ m: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let c = locations.last?.coordinate else { return }
+        Task { @MainActor in spot = Spot(lat: c.latitude, lon: c.longitude) }
+    }
+
+    nonisolated func locationManager(_ m: CLLocationManager, didFailWithError error: Error) {}
+}
+
+struct NearbyRadio: View {
+    let lang: String
+    @State private var store = ContentStore.shared
+    @State private var radio = RadioPlayer.shared
+    @State private var place = Place.shared
+
+    var body: some View {
+        let key = "near:\(lang)"
+        let shown = (store.stations[key] ?? []).filter { !store.hidden.contains($0.id) }
+        Section {
+            if !place.allowed && place.status != .denied && place.status != .restricted {
+                Button { place.ask() } label: { Label("Find stations near me", systemImage: "location.fill") }
+                    .foregroundStyle(D8.lapis)
+            }
+            if store.failed.contains(key) {
+                Button("Stations did not load. Retry") { Task { await store.nearby(lang, place: place.spot) } }
+            } else if store.stations[key] == nil {
+                ProgressView()
+            } else if shown.isEmpty {
+                Text("No stations found near you.").foregroundStyle(Palette.muted)
+            }
+            ForEach(shown) { s in StationRow(station: s, lang: lang) }
+        } header: {
+            HStack(spacing: 6) {
+                Image(systemName: place.spot == nil ? "globe" : "location.fill").font(.caption).foregroundStyle(D8.lapis)
+                Eyebrow(text: place.spot == nil ? String(localized: "Your country") : String(localized: "Near you"))
+            }
+        } footer: {
+            if place.spot != nil { Text("Your location is rounded to about 11 km before it is sent to radio-browser.info.") }
+        }
+        .listRowBackground(Palette.card)
+        .task(id: place.spot) { await store.nearby(lang, place: place.spot) }
+        .onAppear { place.refresh() }
+    }
+}
+
+struct StationRow: View {
+    let station: RadioStation
+    let lang: String
     @State private var store = ContentStore.shared
     @State private var radio = RadioPlayer.shared
 
     var body: some View {
+        let s = station
+        Button { radio.toggle(s, lang: lang) } label: {
+            HStack(spacing: 12) {
+                Image(systemName: radio.playing == s.id ? "stop.circle.fill" : "play.circle.fill")
+                    .font(.title)
+                    .foregroundStyle(radio.playing == s.id ? D8.vermilion : Palette.green)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(s.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
+                    Text(radio.failedId == s.id ? String(localized: "This station did not play.") : (s.state.isEmpty ? s.country : s.state))
+                        .font(.footnote)
+                        .foregroundStyle(radio.failedId == s.id ? D8.vermilion : Palette.muted)
+                        .lineLimit(1)
+                }
+            }
+        }
+        .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
+        .contextMenu { Button("Report station", systemImage: "flag", role: .destructive) { report() } }
+        .swipeActions { Button("Report", systemImage: "flag", role: .destructive) { report() } }
+    }
+
+    func report() {
+        if radio.playing == station.id { radio.stop() }
+        store.report(station)
+    }
+}
+
+struct ListenList: View {
+    let branch: String?
+    let langs: [String]
+    var home: String?
+    @State private var store = ContentStore.shared
+    @State private var radio = RadioPlayer.shared
+
+    var body: some View {
+        if let home, branch == nil { NearbyRadio(lang: home) }
         ForEach(langs, id: \.self) { l in
             let all = store.stations[l] ?? []
             let shown = all.filter { (branch == nil || $0.branch == branch) && !store.hidden.contains($0.id) }
@@ -392,7 +585,7 @@ struct ListenList: View {
                     Text(all.isEmpty ? String(localized: "No stations found.") : String(localized: "No stations in this branch.")).foregroundStyle(Palette.muted)
                 }
                 ForEach(shown) { s in
-                    Button { radio.toggle(s) } label: {
+                    Button { radio.toggle(s, lang: l) } label: {
                         HStack(spacing: 12) {
                             Image(systemName: radio.playing == s.id ? "stop.circle.fill" : "play.circle.fill")
                                 .font(.title)
@@ -423,7 +616,12 @@ struct ListenList: View {
                 if l == langs.last { Text("Stations from radio-browser.info.") }
             }
             .listRowBackground(Palette.card)
-            .task { await store.stations(l) }
+            .task {
+                await store.stations(l)
+                #if DEBUG
+                if ProcessInfo.processInfo.arguments.contains("-playRadio"), radio.station == nil, let s = store.stations[l]?.first { radio.toggle(s, lang: l) }
+                #endif
+            }
         }
     }
 
@@ -443,7 +641,7 @@ struct WatchList: View {
             Section {
                 ForEach(langs, id: \.self) { l in
                     let title = store.titles[t.title]?[l]
-                    Link(destination: ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)")) {
+                    Button { InApp.shared.watch(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)", l) } label: {
                         HStack(spacing: 10) {
                             FlagTile(lang: l, size: 24)
                             Text(title ?? t.title).foregroundStyle(Palette.ink)
@@ -460,6 +658,81 @@ struct WatchList: View {
             }
             .listRowBackground(Palette.card)
             .task { _ = await store.titles(for: t) }
+        }
+    }
+}
+
+struct ImmersionLine: View {
+    @State private var immersion = Immersion.shared
+
+    var body: some View {
+        let m = immersion.today
+        Label(m == 0 ? String(localized: "Listen or watch to count minutes today") : String(localized: "\(m) min listened and watched today"), systemImage: "headphones")
+            .font(.footnote.weight(.semibold))
+            .foregroundStyle(m == 0 ? Palette.muted : D8.malachite)
+            .padding(.top, 6)
+    }
+}
+
+struct RadioMiniPlayer: View {
+    @State private var radio = RadioPlayer.shared
+
+    var body: some View {
+        if let s = radio.station {
+            HStack(spacing: 10) {
+                if let l = radio.lang { FlagTile(lang: l, size: 26) }
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(s.name).font(.subheadline.weight(.bold)).lineLimit(1)
+                    Text(radio.playing == nil ? String(localized: "Paused") : String(localized: "Live radio")).font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
+                }
+                Spacer(minLength: 4)
+                Image(systemName: "waveform").symbolEffect(.variableColor.iterative, isActive: radio.playing != nil).foregroundStyle(D8.vermilion)
+                Button { if radio.playing == nil { radio.resume() } else { radio.pause() } } label: {
+                    Image(systemName: radio.playing == nil ? "play.fill" : "pause.fill").font(.title3)
+                }
+                .accessibilityLabel(radio.playing == nil ? String(localized: "Play") : String(localized: "Pause"))
+                Button { radio.stop() } label: { Image(systemName: "xmark").font(.subheadline.weight(.bold)) }
+                    .accessibilityLabel("Stop radio")
+            }
+            .padding(.horizontal, 14)
+            .buttonStyle(.plain)
+        }
+    }
+}
+
+extension View {
+    func radioInTabBar() -> some View { modifier(RadioTabAccessory()) }
+    func radioAtBottom() -> some View { modifier(RadioBottomBar()) }
+}
+
+struct RadioTabAccessory: ViewModifier {
+    @State private var radio = RadioPlayer.shared
+
+    func body(content: Content) -> some View {
+        #if os(iOS)
+        if #available(iOS 26.1, *) {
+            content.tabViewBottomAccessory(isEnabled: radio.station != nil) { RadioMiniPlayer() }
+        } else {
+            content.radioAtBottom()
+        }
+        #else
+        content
+        #endif
+    }
+}
+
+struct RadioBottomBar: ViewModifier {
+    @State private var radio = RadioPlayer.shared
+
+    func body(content: Content) -> some View {
+        content.safeAreaInset(edge: .bottom) {
+            if radio.station != nil {
+                RadioMiniPlayer()
+                    .padding(.vertical, 10)
+                    .background(.regularMaterial, in: .capsule)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 4)
+            }
         }
     }
 }

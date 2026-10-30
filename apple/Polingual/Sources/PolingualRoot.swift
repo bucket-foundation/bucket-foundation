@@ -29,6 +29,8 @@ struct PolingualRoot: View {
             }
         }
         .task { if subs.access == .checking { await subs.refresh() } }
+        .radioAtBottom()
+        .keepsLinksInApp()
         .onOpenURL { DeepLink.shared.open($0) }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .groupInvites()
