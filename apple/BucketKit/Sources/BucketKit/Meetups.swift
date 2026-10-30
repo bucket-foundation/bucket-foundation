@@ -85,7 +85,7 @@ public struct MeetupDraft: Codable, Sendable, Equatable {
 }
 
 public enum MeetupError: Error, Equatable, Sendable {
-    case signIn, rulesNeeded, notFound, closed, full, rsvpLimit, hostLimit, hostRate, badTime, contentRejected, reportLimit, unavailable, other(String?)
+    case signIn, rulesNeeded, notFound, closed, full, rsvpLimit, hostLimit, hostRate, badTime, contentRejected, reportLimit, unavailable, offline, other(String?)
 
     static func from(status: Int, code: String?) -> MeetupError {
         switch (status, code) {
@@ -119,6 +119,7 @@ public enum MeetupError: Error, Equatable, Sendable {
         case .contentRejected: String(localized: "Some words are not allowed. Leave out links and contact details.")
         case .reportLimit: String(localized: "You have sent many reports today. Email support@polingual.com.")
         case .unavailable: String(localized: "Meetups open soon.")
+        case .offline: String(localized: "You're offline. Check your connection and try again.")
         case .other: String(localized: "Something went wrong. Try again.")
         }
     }
@@ -212,7 +213,12 @@ extension BucketAPI {
         }
         let data: Data
         let http: HTTPURLResponse
-        do { (data, http) = try await transport.send(r) } catch { throw MeetupError.unavailable }
+        do {
+            (data, http) = try await transport.send(r)
+        } catch {
+            if error is CancellationError || (error as? URLError)?.code == .cancelled || Task.isCancelled { throw CancellationError() }
+            throw MeetupError.offline
+        }
         guard (200..<300).contains(http.statusCode) else {
             let code = (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["error"] as? String
             throw MeetupError.from(status: http.statusCode, code: code)

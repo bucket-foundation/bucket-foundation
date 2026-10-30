@@ -13,8 +13,15 @@ final class MeetupStore {
     var loading = false
     var error: MeetupError?
     var rulesAccepted = UserDefaults.standard.integer(forKey: "meetups.rules") >= MeetupRules.version
+    private var last: (token: String?, langs: [String], spot: Place.Spot?)?
+
+    func reload() async {
+        guard let last else { return }
+        await load(token: last.token, langs: last.langs, spot: last.spot)
+    }
 
     func load(token: String?, langs: [String], spot: Place.Spot?) async {
+        last = (token, langs, spot)
         loading = true
         defer { loading = false }
         do {
@@ -22,6 +29,9 @@ final class MeetupStore {
             meetups = r.meetups
             admin = r.admin
             error = nil
+            if token != nil { await MeetupReminder.reconcile(r.meetups) }
+        } catch is CancellationError {
+            return
         } catch {
             let e = error as? MeetupError ?? .other(nil)
             self.error = e == .notFound ? .unavailable : e
@@ -87,6 +97,14 @@ enum MeetupReminder {
     static func clear(_ meetupId: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id(meetupId)])
     }
+
+    static func reconcile(_ list: [Meetup]) async {
+        let pending = await UNUserNotificationCenter.current().pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix("meetup.") }
+        let keep = Set(list.filter { ($0.isGoing || $0.isHost) && $0.status != .cancelled }.map { id($0.id) })
+        let stale = pending.filter { !keep.contains($0) }
+        if !stale.isEmpty { UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: stale) }
+        for m in list where keep.contains(id(m.id)) { sync(m) }
+    }
 }
 
 struct MeetList: View {
@@ -132,7 +150,7 @@ struct MeetList: View {
         if let e = store.error {
             Section {
                 Text(e.message).foregroundStyle(Palette.muted)
-                if e != .unavailable { Button("Retry") { Task { await reload() } } }
+                if e != .unavailable { Button("Try again") { Task { await reload() } } }
             }
             .listRowBackground(Palette.card)
         } else if store.loading && store.meetups.isEmpty {
@@ -389,9 +407,9 @@ struct MeetupDetail: View {
         guard let t = await token() else { return }
         do {
             try await store.api.blockHost(token: t, meetupId: meetup.id)
-            store.meetups.removeAll { $0.hostName == meetup.hostName && !$0.isHost }
             store.remove(meetup.id)
             dismiss()
+            await store.reload()
         } catch {
             message = (error as? MeetupError)?.message ?? MeetupError.other(nil).message
         }
@@ -512,6 +530,8 @@ struct HostMeetup: View {
     @State private var city = ""
     @State private var area = ""
     @State private var placeName = ""
+    @State private var venue: CLLocationCoordinate2D?
+    @State private var searching = false
     @State private var link = ""
     @State private var limit = false
     @State private var capacity = 12
@@ -524,7 +544,7 @@ struct HostMeetup: View {
     var draft: MeetupDraft {
         MeetupDraft(hostName: displayName.trimmingCharacters(in: .whitespacesAndNewlines), title: title.trimmingCharacters(in: .whitespacesAndNewlines), about: about.trimmingCharacters(in: .whitespacesAndNewlines),
                     langs: langs.filter(picked.contains), start: start, durationMin: minutes, mode: mode, city: city.trimmingCharacters(in: .whitespaces), area: area.trimmingCharacters(in: .whitespaces),
-                    placeName: placeName.trimmingCharacters(in: .whitespaces), lat: mode == .inPerson ? place.spot?.lat : nil, lon: mode == .inPerson ? place.spot?.lon : nil,
+                    placeName: placeName.trimmingCharacters(in: .whitespaces), lat: mode == .inPerson ? venue?.latitude : nil, lon: mode == .inPerson ? venue?.longitude : nil,
                     onlineUrl: mode == .online ? link.trimmingCharacters(in: .whitespaces) : nil, capacity: limit ? capacity : nil)
     }
 
@@ -562,14 +582,12 @@ struct HostMeetup: View {
                     }
                     .pickerStyle(.segmented)
                     if mode == .inPerson {
+                        Button { searching = true } label: {
+                            Label(venue == nil ? String(localized: "Find the place") : placeName, systemImage: venue == nil ? "magnifyingglass" : "mappin.circle.fill")
+                        }
+                        .foregroundStyle(venue == nil ? D8.lapis : D8.malachite)
                         TextField("City", text: $city)
                         TextField("Neighborhood. Shown to everyone", text: $area)
-                        TextField("Place and address. Shown to people going", text: $placeName)
-                        if place.spot == nil {
-                            Button { place.ask() } label: { Label("Pin it at my location", systemImage: "location.fill") }
-                        } else {
-                            Label("Pinned near your location", systemImage: "mappin.circle.fill").foregroundStyle(D8.malachite)
-                        }
                         Toggle("It's a public place", isOn: $publicPlace)
                     } else {
                         TextField("Video link, https://", text: $link)
@@ -596,9 +614,21 @@ struct HostMeetup: View {
             }
             .sheet(isPresented: $rules) { MeetupRulesSheet { Task { await post() } } }
             .sheet(isPresented: $signingIn) { SignInSheet() }
+            .sheet(isPresented: $searching) {
+                VenueSearch(near: place.spot) { item in
+                    let p = item.placemark
+                    venue = p.coordinate
+                    placeName = [item.name, p.thoroughfare.map { t in [p.subThoroughfare, t].compactMap { $0 }.joined(separator: " ") }].compactMap { $0 }.joined(separator: ", ")
+                    city = p.locality ?? city
+                    area = p.subLocality ?? area
+                }
+            }
             .onAppear {
                 if picked.isEmpty { picked = Set(langs.prefix(2)) }
                 place.refresh()
+                #if DEBUG
+                if ProcessInfo.processInfo.arguments.contains("-venueQuery") { searching = true }
+                #endif
             }
         }
     }
@@ -689,5 +719,68 @@ struct MeetupReports: View {
         try? await MeetupStore.shared.api.reviewMeetup(token: t, id: id, takeDown: takeDown)
         if takeDown { MeetupStore.shared.remove(id) }
         await load()
+    }
+}
+
+struct VenueSearch: View {
+    let near: Place.Spot?
+    let picked: (MKMapItem) -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var query = VenueSearch.debugQuery
+    @State private var results: [MKMapItem] = []
+
+    static var debugQuery: String {
+        #if DEBUG
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-venueQuery"), i + 1 < args.count { return args[i + 1] }
+        #endif
+        return ""
+    }
+    @State private var searching = false
+
+    var body: some View {
+        NavigationStack {
+            List {
+                if searching { ProgressView().frame(maxWidth: .infinity).listRowBackground(Color.clear) }
+                ForEach(results, id: \.self) { item in
+                    Button {
+                        picked(item)
+                        dismiss()
+                    } label: {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(item.name ?? "").font(.headline).foregroundStyle(Palette.ink)
+                            Text([item.placemark.thoroughfare, item.placemark.subLocality, item.placemark.locality].compactMap { $0 }.joined(separator: ", "))
+                                .font(.footnote).foregroundStyle(Palette.muted)
+                        }
+                    }
+                }
+                .listRowBackground(Palette.card)
+            }
+            .paper()
+            .searchable(text: $query, prompt: Text("Café, library or park"))
+            .onSubmit(of: .search) { Task { await search() } }
+            .task(id: query) {
+                try? await Task.sleep(for: .milliseconds(350))
+                if !Task.isCancelled { await search() }
+            }
+            .navigationTitle("Find the place")
+            .inlineTitle()
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+        }
+    }
+
+    func search() async {
+        let q = query.trimmingCharacters(in: .whitespaces)
+        guard q.count >= 2 else {
+            results = []
+            return
+        }
+        let r = MKLocalSearch.Request()
+        r.naturalLanguageQuery = q
+        r.resultTypes = .pointOfInterest
+        if let near { r.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: near.lat, longitude: near.lon), latitudinalMeters: 40_000, longitudinalMeters: 40_000) }
+        searching = true
+        defer { searching = false }
+        results = (try? await MKLocalSearch(request: r).start().mapItems) ?? []
     }
 }
