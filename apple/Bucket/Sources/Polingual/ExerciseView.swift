@@ -94,7 +94,13 @@ struct ExerciseView: View {
 
     var headerText: String {
         let level = ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? ""
-        let label = ex.kind == .letter && ScriptCourse.isCharacter(ex.lang, ex.answer) ? String(localized: "find the character") : String(localized: String.LocalizationValue(ex.kind.label))
+        let letter = ex.itemId == LangScript.letterItemId(ex.answer)
+        let character = letter && ScriptCourse.isCharacter(ex.lang, ex.answer)
+        let label = switch ex.kind {
+        case .letter: character ? String(localized: "find the character") : String(localized: String.LocalizationValue(ex.kind.label))
+        case .intro where letter: character ? String(localized: "new character") : String(localized: "new letter")
+        default: String(localized: String.LocalizationValue(ex.kind.label))
+        }
         return ex.kind == .match ? "\(ex.prompt) · \(label)\(level)" : "\(label)\(level)"
     }
 
@@ -103,6 +109,10 @@ struct ExerciseView: View {
             CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText)
             switch ex.kind {
             case .intro: intro
+            case .letter where letterSound != nil:
+                LetterQuiz(ex: ex, sound: letterSound!, say: letterSay!) { right, helped in
+                    onDone([ExerciseResult(lang: ex.lang, rating: right ? (helped || slow ? 2 : 3) : 1)])
+                }
             case .match: match
             case .wordbank: wordbank
             default: standard
@@ -118,16 +128,23 @@ struct ExerciseView: View {
             #endif
             started = Date()
             if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang) }
-            if ex.kind == .intro { LangVoice.shared.speak(ex.answer, ex.answerLang) }
+            if let say = letterSay { LangVoice.shared.speak(say, ex.lang) } else if ex.kind == .intro { LangVoice.shared.speak(ex.answer, ex.answerLang) }
         }
     }
 
+    var letterSound: LetterSound? { ex.itemId == LangScript.letterItemId(ex.answer) ? LetterSounds.lookup(ex.lang, ex.answer) : nil }
+    var letterSay: String? { letterSound.map { LetterSounds.spoken(ex.lang, $0) } }
+
     var intro: some View {
         VStack(spacing: 12) {
-            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
-            Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
-            Notes(ex: ex, showNote: true, readings: readings)
-            Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
+            if let s = letterSound, let say = letterSay {
+                LetterMeet(ex: ex, sound: s, say: say) { onDone([]) }
+            } else {
+                WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
+                Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
+                Notes(ex: ex, showNote: true, readings: readings)
+                Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
+            }
         }
     }
 

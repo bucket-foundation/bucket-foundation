@@ -17,6 +17,7 @@ struct StudyView: View {
     @State private var current: Exercise?
     @State private var currentKey = ""
     @State private var cardStart = Date()
+    @State private var introduced: Set<String> = []
     @AppStorage("bucket.lang.readings") private var readings = true
 
     var body: some View {
@@ -76,8 +77,11 @@ struct StudyView: View {
         }
         let entry = queue[i]
         if entry.stage == .letter {
-            current = ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng)
-            currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter"
+            let key = cardId(entry.lang, entry.itemId)
+            let fresh = !store.state(systemId).cards.has(key) && !introduced.contains(key)
+            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng)
+            if fresh { introduced.insert(key) }
+            currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter\(fresh ? "-intro" : "")"
             cardStart = .now
             if current == nil { self.i += 1; makeExercise() }
             return
@@ -101,6 +105,10 @@ struct StudyView: View {
     func done(_ results: [ExerciseResult]) {
         guard let q = queue, i < q.count else { return }
         let entry = q[i]
+        if entry.stage == .letter && current?.kind == .intro {
+            makeExercise()
+            return
+        }
         var next = q
         let apply = {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
@@ -233,7 +241,13 @@ struct StudyView: View {
         if kind == .letter, let l = system.targets.first(where: { LangScript.alphabetUnit($0) != nil }) {
             return letterExercise(l, system.root, rng.index(LangScript.alphabetUnit(l)!.letters.count), &rng)
         }
+        if kind == .letter, let e = ScriptCourse.queue(system, EngineState(), now: 0).randomElement() {
+            return ScriptCourse.exercise(e.lang, system.root, e.itemId, &rng)
+        }
         let args = ProcessInfo.processInfo.arguments
+        if kind == .intro, args.contains("-letterIntro"), let e = ScriptCourse.queue(system, EngineState(), now: 0).randomElement() {
+            return ScriptCourse.intro(e.lang, system.root, e.itemId)
+        }
         let pinned = args.firstIndex(of: "-forceItem").flatMap { $0 + 1 < args.count ? corpus.byId[args[$0 + 1]] : nil }
         for _ in 0..<4000 {
             let item = pinned ?? corpus.items[rng.index(corpus.items.count)]
