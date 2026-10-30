@@ -31,7 +31,8 @@ export interface ApnsTransport {
 
 export interface PushPayload {
   aps: { alert: { body: string }; sound: string; "thread-id": string };
-  group: string;
+  group?: string;
+  meetup?: string;
 }
 
 export interface SendResult {
