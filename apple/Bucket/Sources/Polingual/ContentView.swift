@@ -471,7 +471,13 @@ final class Place: NSObject, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
 
-    var allowed: Bool { status == .authorizedWhenInUse || status == .authorizedAlways }
+    var allowed: Bool {
+        #if os(iOS)
+        status == .authorizedWhenInUse || status == .authorizedAlways
+        #else
+        status == .authorizedAlways
+        #endif
+    }
 
     func ask() {
         if status == .notDetermined { manager.requestWhenInUseAuthorization() } else if allowed { manager.requestLocation() }
