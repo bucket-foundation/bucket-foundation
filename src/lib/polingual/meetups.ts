@@ -72,7 +72,7 @@ const BLOCKED_TERMS = ["nigger", "faggot", "retard", "kike", "chink", "tranny", 
 export function foldForFilter(s: string): string {
   return s
     .normalize("NFKD")
-    .replace(/\p{M}/gu, "")
+    .replace(/[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/g, "")
     .toLowerCase()
     .replace(/[0@]/g, "o")
     .replace(/[1!|]/g, "i")
@@ -105,7 +105,7 @@ export function roundCoord(v: unknown, limit: number): number | null {
 
 export function validLangs(v: unknown): string[] | null {
   if (!Array.isArray(v)) return null;
-  const out = [...new Set(v.filter((x): x is string => typeof x === "string" && LANG_CODES.includes(x)))];
+  const out = Array.from(new Set(v.filter((x): x is string => typeof x === "string" && LANG_CODES.includes(x))));
   return out.length >= 1 && out.length <= 6 && out.length === v.length ? out : null;
 }
 

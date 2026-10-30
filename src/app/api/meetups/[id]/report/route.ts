@@ -28,7 +28,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
     if (out === "report_limit") return json({ error: out }, 429);
     if (out === "first") {
       const row = await meetupById(id);
-      await pushText([...adminIds()], `Meetup reported (${reason}): ${row?.title ?? id}`, id).catch(() => undefined);
+      await pushText(Array.from(adminIds()), `Meetup reported (${reason}): ${row?.title ?? id}`, id).catch(() => undefined);
     }
     return json({ ok: true });
   } catch (err) {

@@ -24,7 +24,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const reports = await service().from("meetup_reports").select("meetup_id,reason,note,created_at").eq("status", "open").order("created_at", { ascending: false }).limit(100);
     if (reports.error) throw new Error(`admin reports: ${reports.error.message}`);
     const list = (reports.data ?? []) as { meetup_id: string; reason: string; note: string; created_at: string }[];
-    const ids = [...new Set(list.map((r) => r.meetup_id))];
+    const ids = Array.from(new Set(list.map((r) => r.meetup_id)));
     const rows = ids.length ? await service().from("meetups").select(MEETUP_COLS).in("id", ids) : { data: [], error: null };
     if (rows.error) throw new Error(`admin meetups: ${rows.error.message}`);
     const meetups = await present((rows.data ?? []) as MeetupRow[], uid);

@@ -35,8 +35,8 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       for (const row of (r.data ?? []) as MeetupRow[]) seen.set(row.id, row);
     }
     const blocked = await blockedFor(uid);
-    const reports = await countingReports([...seen.keys()]);
-    const rows = [...seen.values()].filter((row) => {
+    const reports = await countingReports(Array.from(seen.keys()));
+    const rows = Array.from(seen.values()).filter((row) => {
       if (!visibleInList(row, uid, blocked, reports.get(row.id) ?? 0, now.getTime())) return false;
       if (row.host_id === uid) return true;
       if (!matchesLangs(row, langs)) return false;
