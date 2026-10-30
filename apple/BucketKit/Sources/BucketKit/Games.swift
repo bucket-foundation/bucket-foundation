@@ -163,3 +163,39 @@ public struct SeededRandom: RandomNumberGenerator, Sendable {
         return state
     }
 }
+
+public enum GameStars {
+    public static func match(misses: Int) -> Int { misses == 0 ? 3 : misses <= 2 ? 2 : 1 }
+
+    public static func memory(turns: Int, pairs: Int) -> Int { turns <= pairs + 2 ? 3 : turns <= pairs * 2 ? 2 : 1 }
+
+    public static func flags(score: Int, of total: Int) -> Int {
+        guard total > 0 else { return 1 }
+        let r = Double(score) / Double(total)
+        return r >= 0.9 ? 3 : r >= 0.7 ? 2 : 1
+    }
+
+    public static func isBest(_ value: Int, previous: Int?, lowerWins: Bool) -> Bool {
+        guard let previous else { return true }
+        return lowerWins ? value < previous : value > previous
+    }
+}
+
+public enum GameReplay {
+    public static let cap = 10
+
+    public static func adding(_ ids: [String], to list: [String]) -> [String] {
+        var out = list.filter { !ids.contains($0) }
+        out.append(contentsOf: ids)
+        var seen = Set<String>()
+        return Array(out.filter { seen.insert($0).inserted }.suffix(cap))
+    }
+
+    public static func entries(_ ids: [String], in system: LangSystem, carded: (String, String) -> Bool) -> [QueueEntry] {
+        ids.compactMap { key in
+            let parts = key.split(separator: ":", maxSplits: 1).map(String.init)
+            guard parts.count == 2, system.targets.contains(parts[0]), carded(parts[0], parts[1]) else { return nil }
+            return QueueEntry(itemId: parts[1], lang: parts[0], stage: .review)
+        }
+    }
+}

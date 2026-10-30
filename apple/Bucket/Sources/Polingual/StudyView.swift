@@ -56,8 +56,9 @@ struct StudyView: View {
         let asked = wanted.flatMap { id in
             system.targets.filter { corpus.byId[id]?.form($0) != nil }.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] }
         }
+        let replay = GameRecords.shared.takeReplay(system) { l, id in state.cards.has(cardId(l, id)) }
         let now = Date().timeIntervalSince1970 * 1000
-        queue = asked + WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
+        queue = asked + replay + WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now).filter { !replay.contains($0) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
@@ -103,7 +104,10 @@ struct StudyView: View {
         let entry = q[i]
         var next = q
         let apply = {
-            for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
+            for r in results {
+                store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating)
+                GameRecords.shared.graded(systemId, lang: r.lang, itemId: entry.itemId)
+            }
         }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
         for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }
