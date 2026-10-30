@@ -135,6 +135,8 @@ struct RootView: View {
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .radioInTabBar()
+        .keepsLinksInApp()
         .sharesScreenshots()
         .groupInvites()
         .groupsOnToday()

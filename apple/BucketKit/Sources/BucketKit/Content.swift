@@ -67,6 +67,7 @@ public struct RadioStation: Decodable, Sendable, Equatable, Identifiable {
     public let name: String
     public let urlResolved: String
     public let country: String
+    public let state: String
     public let countrycode: String
     public let tags: String
     public let favicon: String
@@ -74,7 +75,7 @@ public struct RadioStation: Decodable, Sendable, Equatable, Identifiable {
     public var id: String { stationuuid }
 
     enum CodingKeys: String, CodingKey {
-        case stationuuid, name, country, countrycode, tags, favicon, votes
+        case stationuuid, name, country, state, countrycode, tags, favicon, votes
         case urlResolved = "url_resolved"
     }
 
@@ -84,6 +85,7 @@ public struct RadioStation: Decodable, Sendable, Equatable, Identifiable {
         name = (try c.decode(String.self, forKey: .name)).trimmingCharacters(in: .whitespacesAndNewlines)
         urlResolved = c.value(.urlResolved, "")
         country = c.value(.country, "")
+        state = c.value(.state, "")
         countrycode = c.value(.countrycode, "")
         tags = c.value(.tags, "")
         favicon = c.value(.favicon, "")
@@ -153,7 +155,7 @@ public struct ContentAPI: Sendable {
         do { return try JSONDecoder().decode(T.self, from: data) } catch { throw BucketError.decoding }
     }
 
-    public func stations(_ lang: String, limit: Int = 25) async throws -> [RadioStation] {
+    public func stations(_ lang: String, near: (lat: Double, lon: Double)? = nil, country: String? = nil, limit: Int = 25) async throws -> [RadioStation] {
         guard let name = ContentCatalog.radioName(lang) else { return [] }
         var lastError: Error = BucketError.unavailable
         for host in await hosts() {
@@ -165,7 +167,7 @@ public struct ContentAPI: Sendable {
                 URLQueryItem(name: "language", value: name), URLQueryItem(name: "hidebroken", value: "true"),
                 URLQueryItem(name: "is_https", value: "true"), URLQueryItem(name: "order", value: "clickcount"),
                 URLQueryItem(name: "reverse", value: "true"), URLQueryItem(name: "limit", value: String(limit * 2)),
-            ]
+            ] + Self.place(near: near, country: country)
             do {
                 let all: [RadioStation] = try await get(c.url!)
                 defaults?.set(host, forKey: Self.serverKey)
@@ -176,6 +178,14 @@ public struct ContentAPI: Sendable {
             }
         }
         throw lastError
+    }
+
+    static func place(near: (lat: Double, lon: Double)?, country: String?) -> [URLQueryItem] {
+        if let near {
+            let r = { (x: Double) in String(format: "%.1f", x) }
+            return [URLQueryItem(name: "geo_lat", value: r(near.lat)), URLQueryItem(name: "geo_long", value: r(near.lon)), URLQueryItem(name: "geo_distance", value: "80000")]
+        }
+        return country.map { [URLQueryItem(name: "countrycode", value: $0)] } ?? []
     }
 
     public func titles(_ english: String) async throws -> [String: String] {
