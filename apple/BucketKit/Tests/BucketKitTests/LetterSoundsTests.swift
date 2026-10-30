@@ -24,4 +24,13 @@ func soundUnits() -> [AlphabetUnit] {
     let s = LetterSound(ipa: "e", hint: "h", example: "café", gloss: "coffee")
     #expect(LetterSounds.blanked(s, "é") == "caf＿")
     #expect(LetterSounds.blanked(s, "ô") == nil)
+    #expect(LetterSounds.parts(s, "é")?.before == "caf")
+    #expect(LetterSounds.parts(s, "é")?.letter == "é")
+}
+
+@Test func heardMatchesTheSpokenWordInAnyAlternative() {
+    #expect(LetterSounds.heard(["Le café", "cafe"], say: "café"))
+    #expect(LetterSounds.heard(["Café!"], say: "café"))
+    #expect(!LetterSounds.heard(["caffè latte"], say: "café"))
+    #expect(!LetterSounds.heard([], say: "café"))
 }

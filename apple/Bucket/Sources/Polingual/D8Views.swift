@@ -40,6 +40,7 @@ struct WordTile: View {
     var size: CGFloat = 200
     var speakText: String?
     var onTap: (() -> Void)?
+    var glyph = false
 
     var body: some View {
         let inset = size * 0.06
@@ -61,13 +62,13 @@ struct WordTile: View {
                         let layout = phrase ? AnyLayout(VStackLayout(spacing: 4)) : AnyLayout(HStackLayout(spacing: 6))
                         layout {
                             Text(word)
-                                .font(D8.word(size * (D8Fit.long(word) ? 0.15 : 0.21)))
+                                .font(D8.word(size * (glyph ? 0.42 : D8Fit.long(word) ? 0.15 : 0.21)))
                                 .lineLimit(phrase ? 3 : 1)
                                 .multilineTextAlignment(.center)
                                 .minimumScaleFactor(phrase ? 0.75 : 0.4)
                                 .fixedSize(horizontal: false, vertical: phrase)
                                 .foregroundStyle(D8.ink)
-                            if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
+                            if canSay && !glyph { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
                         }
                         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                     } else {

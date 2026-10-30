@@ -109,6 +109,10 @@ struct ExerciseView: View {
             CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText)
             switch ex.kind {
             case .intro: intro
+            case .letter where letterSound != nil:
+                LetterQuiz(ex: ex, sound: letterSound!, say: letterSay!) { right, helped in
+                    onDone([ExerciseResult(lang: ex.lang, rating: right ? (helped || slow ? 2 : 3) : 1)])
+                }
             case .match: match
             case .wordbank: wordbank
             default: standard
@@ -134,14 +138,13 @@ struct ExerciseView: View {
     var intro: some View {
         VStack(spacing: 12) {
             if let s = letterSound, let say = letterSay {
-                WordTile(word: ex.answer, lang: ex.lang, reading: nil, size: 190, speakText: say)
-                LetterSoundNote(sound: s, lang: ex.lang, say: say)
+                LetterMeet(ex: ex, sound: s, say: say) { onDone([]) }
             } else {
                 WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
                 Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
                 Notes(ex: ex, showNote: true, readings: readings)
+                Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
             }
-            Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
         }
     }
 
@@ -279,7 +282,7 @@ struct ExerciseView: View {
                         ForEach(options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil,
-                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : ex.kind == .letter ? LetterSounds.lookup(ex.lang, o).map { LetterSounds.spoken(ex.lang, $0) } : nil)
+                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil)
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
@@ -571,20 +574,6 @@ struct Prompt: View {
             }
         case .speak:
             AskWord(word: ex.prompt, sub: "say it in \(name)")
-        case .letter where LetterSounds.lookup(ex.lang, ex.answer) != nil && ex.itemId == LangScript.letterItemId(ex.answer):
-            let s = LetterSounds.lookup(ex.lang, ex.answer)!
-            let say = LetterSounds.spoken(ex.lang, s)
-            VStack(spacing: 10) {
-                HStack(spacing: 10) {
-                    Text(answered ? s.example : LetterSounds.blanked(s, ex.answer) ?? s.example)
-                        .font(.system(size: 40, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
-                        .minimumScaleFactor(0.5).lineLimit(1)
-                    PlayButton(text: say, lang: ex.lang)
-                }
-                Text("/\(s.ipa)/ · \(s.hint)").font(.subheadline).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
-                if answered { Text(s.gloss).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted) }
-            }
-            .frame(maxWidth: .infinity)
         default:
             AskWord(word: ex.prompt, sub: "in \(name)")
         }
@@ -606,26 +595,5 @@ struct OptionKey: ViewModifier {
         } else {
             content
         }
-    }
-}
-
-struct LetterSoundNote: View {
-    let sound: LetterSound
-    let lang: String
-    let say: String
-
-    var body: some View {
-        VStack(spacing: 8) {
-            Text("/\(sound.ipa)/").font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
-            Text(sound.hint).font(.subheadline).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
-            HStack(spacing: 10) {
-                Text(sound.example).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
-                Text(sound.gloss).font(.subheadline).foregroundStyle(Palette.muted)
-                PlayButton(text: say, lang: lang)
-            }
-            .padding(.horizontal, 14).padding(.vertical, 8)
-            .background(Palette.paper, in: .rect(cornerRadius: 14))
-        }
-        .frame(maxWidth: .infinity)
     }
 }

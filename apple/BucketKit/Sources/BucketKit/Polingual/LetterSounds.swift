@@ -29,9 +29,22 @@ public enum LetterSounds {
         return String(first)
     }
 
-    public static func blanked(_ sound: LetterSound, _ ch: String) -> String? {
+    public static func parts(_ sound: LetterSound, _ ch: String) -> (before: String, letter: String, after: String)? {
         let mark = String(String.UnicodeScalarView(ch.unicodeScalars.filter { $0 != "◌" }))
         guard let r = sound.example.range(of: mark, options: [.caseInsensitive, .literal]) else { return nil }
-        return sound.example.replacingCharacters(in: r, with: "＿")
+        return (String(sound.example[..<r.lowerBound]), String(sound.example[r]), String(sound.example[r.upperBound...]))
+    }
+
+    public static func blanked(_ sound: LetterSound, _ ch: String) -> String? {
+        parts(sound, ch).map { $0.before + "＿" + $0.after }
+    }
+
+    public static func heard(_ alts: [String], say: String) -> Bool {
+        let target = foldForSearch(say)
+        guard !target.isEmpty else { return false }
+        return alts.contains { alt in
+            let a = foldForSearch(alt)
+            return a == target || a.split(whereSeparator: { !$0.isLetter && !$0.isNumber }).contains { $0 == target }
+        }
     }
 }

@@ -45,7 +45,7 @@ final class LangVoice: NSObject {
     }
 
     @discardableResult
-    func speak(_ text: String, _ lang: String) -> Bool {
+    func speak(_ text: String, _ lang: String, slow: Bool = false) -> Bool {
         guard !text.isEmpty else { return false }
         activate()
         guard let v = voice(lang) else { return playClip(text, lang) }
@@ -53,7 +53,7 @@ final class LangVoice: NSObject {
         synth.stopSpeaking(at: .immediate)
         let u = AVSpeechUtterance(string: text)
         u.voice = v
-        u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
+        u.rate = AVSpeechUtteranceDefaultSpeechRate * (slow ? 0.45 : 0.9)
         synth.speak(u)
         return true
     }
@@ -77,6 +77,10 @@ final class LangListener {
     @ObservationIgnored private var current: SpeechRun?
     @ObservationIgnored private var stopEarly = false
     private(set) var live = ""
+
+    func canHear(_ lang: String) -> Bool {
+        supported && SFSpeechRecognizer(locale: Locale(identifier: Lang.info[lang]?.bcp47 ?? lang))?.isAvailable == true
+    }
 
     var supported: Bool {
         #if os(iOS) || os(macOS)

@@ -245,6 +245,9 @@ struct StudyView: View {
             return ScriptCourse.exercise(e.lang, system.root, e.itemId, &rng)
         }
         let args = ProcessInfo.processInfo.arguments
+        if kind == .intro, args.contains("-letterIntro"), let e = ScriptCourse.queue(system, EngineState(), now: 0).randomElement() {
+            return ScriptCourse.intro(e.lang, system.root, e.itemId)
+        }
         let pinned = args.firstIndex(of: "-forceItem").flatMap { $0 + 1 < args.count ? corpus.byId[args[$0 + 1]] : nil }
         for _ in 0..<4000 {
             let item = pinned ?? corpus.items[rng.index(corpus.items.count)]
