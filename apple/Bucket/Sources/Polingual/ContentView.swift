@@ -115,11 +115,8 @@ final class RadioPlayer {
         let c = MPRemoteCommandCenter.shared()
         let run: (@escaping @MainActor (RadioPlayer) -> Void) -> (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus = { act in
             { [weak self] _ in
-                MainActor.assumeIsolated {
-                    guard let self, self.station != nil else { return .noActionableNowPlayingItem }
-                    act(self)
-                    return .success
-                }
+                Task { @MainActor in if let self, self.station != nil { act(self) } }
+                return .success
             }
         }
         c.playCommand.addTarget(handler: run { $0.resume() })
