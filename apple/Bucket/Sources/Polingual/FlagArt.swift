@@ -32,7 +32,11 @@ struct FlagFace: View {
                     }
                     .fill(Color(hex: c))
                 }
-                if emblem, let e = flag.emblem {
+                if emblem, let e = flag.emblem, e.glyph == "☸" {
+                    Chakra(color: Color(hex: e.color))
+                        .frame(width: min(w, h) * e.scale, height: min(w, h) * e.scale)
+                        .position(x: w * e.x, y: h * e.y)
+                } else if emblem, let e = flag.emblem {
                     Text(e.glyph)
                         .font(.system(size: min(w, h) * e.scale, weight: .bold, design: flag.pigment ? .serif : .default))
                         .foregroundStyle(Color(hex: e.color))
@@ -96,5 +100,26 @@ struct Shine: View {
                 .position(x: g.size.width * 0.74, y: max(10, g.size.height * 0.1))
         }
         .allowsHitTesting(false)
+    }
+}
+
+struct Chakra: View {
+    let color: Color
+
+    var body: some View {
+        Canvas { ctx, size in
+            let r = min(size.width, size.height) / 2
+            let c = CGPoint(x: size.width / 2, y: size.height / 2)
+            let line = max(1, r * 0.12)
+            ctx.stroke(Path(ellipseIn: CGRect(x: c.x - r + line / 2, y: c.y - r + line / 2, width: 2 * r - line, height: 2 * r - line)), with: .color(color), lineWidth: line)
+            var spokes = Path()
+            for i in 0..<24 {
+                let a = Double(i) / 24 * 2 * .pi
+                spokes.move(to: c)
+                spokes.addLine(to: CGPoint(x: c.x + cos(a) * (r - line), y: c.y + sin(a) * (r - line)))
+            }
+            ctx.stroke(spokes, with: .color(color), lineWidth: max(0.5, r * 0.05))
+            ctx.fill(Path(ellipseIn: CGRect(x: c.x - r * 0.18, y: c.y - r * 0.18, width: r * 0.36, height: r * 0.36)), with: .color(color))
+        }
     }
 }
