@@ -7,6 +7,7 @@ enum LangRoute: Hashable {
     case study(String)
     case place(String, String?)
     case alphabet(String, String)
+    case reference(String)
 }
 
 struct SaveNotice: View {

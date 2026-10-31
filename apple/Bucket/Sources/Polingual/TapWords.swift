@@ -47,7 +47,7 @@ struct WordTapHost: ViewModifier {
             })
             .sheet(item: $shown) { d in
                 WordCard(detail: d, reveal: reveal)
-                    .presentationDetents([.height(190)])
+                    .presentationDetents([.height(230)])
                     .presentationBackgroundInteraction(.enabled)
                     .presentationBackground(Palette.card)
             }
@@ -57,6 +57,7 @@ struct WordTapHost: ViewModifier {
 struct WordCard: View {
     let detail: WordDetail
     let reveal: Bool
+    @State private var full = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -75,8 +76,14 @@ struct WordCard: View {
                     Text("The meaning shows after you answer.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
             }
+            if reveal {
+                Button("Full detail") { full = true }.buttonStyle(.borderless)
+            }
         }
         .padding(20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .sheet(isPresented: $full) {
+            NavigationStack { WordFactsView(detail: detail) }
+        }
     }
 }

@@ -94,6 +94,7 @@ struct SystemView: View {
                             Spacer()
                             Text("\(p.started)/\(p.total) started").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                         }
+                        Button("Words, sounds and writing") { path.append(LangRoute.reference(p.lang)) }.buttonStyle(.borderless)
                         ProgressBar(started: p.total > 0 ? Double(p.started) / Double(p.total) : 0, mastered: p.total > 0 ? Double(p.mastered) / Double(p.total) : 0)
                             .accessibilityLabel("\(langName(p.lang)) \(p.started) started, \(p.mastered) mastered")
                         FlowLayout(spacing: 10) {
