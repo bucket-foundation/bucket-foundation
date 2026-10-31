@@ -50,6 +50,12 @@ struct PlacementView: View {
 
     func start() {
         guard lang == nil, !picking, store.status == .ready, let system = store.system(systemId) else { return }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-autoPlace"), let first = system.targets.first {
+            begin(first)
+            return
+        }
+        #endif
         guard let pick = requested.flatMap({ system.targets.contains($0) ? $0 : nil }) else {
             known = Set(system.targets.filter { (system.placement[$0] ?? 0) > 0 })
             picking = true
