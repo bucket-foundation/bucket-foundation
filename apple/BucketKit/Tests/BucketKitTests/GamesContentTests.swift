@@ -165,6 +165,37 @@ func words(_ n: Int) -> [GameWord] {
         #expect(WordTaps.parse(URL(string: "https://x")!) == nil)
     }
 
+    @Test func everyWordInTheTextCarriesItsOwnLink() {
+        for (text, lang, want) in [
+            ("L'eau, c'est la vie. 42", "fr", ["L'eau", "c'est", "la", "vie"]),
+            ("😀 hola, señor", "es", ["hola", "señor"]),
+            ("قال الولد", "ar", ["قال", "الولد"]),
+        ] {
+            let out = WordTaps.attributed(text, lang: lang)
+            let linked = out.runs.filter { $0.link != nil }
+            #expect(linked.map { String(out[$0.range].characters) } == want)
+            #expect(linked.compactMap { $0.link.flatMap(WordTaps.parse)?.word } == want)
+            #expect(linked.allSatisfy { $0.link.flatMap(WordTaps.parse)?.lang == lang })
+            #expect(String(out.characters) == text)
+        }
+    }
+
+    @Test func aTileLinksOnlyASingleWord() throws {
+        let url = try #require(WordTaps.tileLink("casa", lang: "es"))
+        #expect(WordTaps.parse(url)! == ("es", "casa"))
+        #expect(WordTaps.tileLink("buenos días", lang: "es") == nil)
+        #expect(WordTaps.tileLink("42", lang: "es") == nil)
+    }
+
+    @Test func theCardHoldsTheMeaningUntilTheAnswer() {
+        let known = WordDetail(word: "casa", lang: "es", gloss: "house", reading: nil)
+        let unknown = WordDetail(word: "zzz", lang: "es", gloss: nil, reading: nil)
+        #expect(known.cardLine(reveal: false) == .afterAnswer)
+        #expect(known.cardLine(reveal: true) == .meaning("house"))
+        #expect(unknown.cardLine(reveal: false) == .noEntry)
+        #expect(unknown.cardLine(reveal: true) == .noEntry)
+    }
+
     @Test func youtubeSearchLink() {
         #expect(ContentCatalog.youtube("Gravitation physique").absoluteString == "https://www.youtube.com/results?search_query=Gravitation%20physique")
     }

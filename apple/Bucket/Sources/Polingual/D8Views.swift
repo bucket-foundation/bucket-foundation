@@ -18,10 +18,11 @@ struct FlagTile: View {
 struct CardHeader: View {
     let lang: String?
     let text: String
+    var flagSize: CGFloat = 44
 
     var body: some View {
         HStack(spacing: 10) {
-            if let lang { FlagTile(lang: lang) }
+            if let lang { FlagTile(lang: lang, size: flagSize) }
             Text(text).font(.subheadline).foregroundStyle(Palette.muted)
         }
     }
@@ -40,6 +41,8 @@ struct WordTile: View {
     var size: CGFloat = 200
     var speakText: String?
     var onTap: (() -> Void)?
+    @Environment(\.wordTapsHosted) private var hosted
+    @Environment(\.openURL) private var open
 
     var body: some View {
         let inset = size * 0.06
@@ -47,6 +50,7 @@ struct WordTile: View {
         let canSay = LangVoice.shared.canSpeak(say, lang)
         Button {
             if let onTap { onTap(); return }
+            if hosted, let word, let url = WordTaps.tileLink(word, lang: lang) { open(url); return }
             if canSay { LangVoice.shared.speak(say, lang) }
         } label: {
             ZStack {
@@ -172,27 +176,25 @@ struct AnswerRow: View {
     var body: some View {
         let spoken = say ?? word
         let canSay = state == .right && LangVoice.shared.canSpeak(spoken, lang)
-        Group {
-            if canSay {
-                Button { LangVoice.shared.speak(spoken, lang) } label: { row(canSay) }
-                    .buttonStyle(.plain)
-                    .accessibilityHint("Plays the word")
-            } else {
-                row(canSay)
-            }
-        }
+        row(canSay, spoken)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(word), \(langName(lang))\(state == .right ? ", right answer" : state == .wrong ? ", your pick, wrong" : "")")
     }
 
-    func row(_ canSay: Bool) -> some View {
+    func row(_ canSay: Bool, _ spoken: String) -> some View {
         HStack(spacing: 10) {
             if flag { FlagTile(lang: lang, size: state == .right ? 30 : 26) }
             VStack(alignment: .leading, spacing: 1) {
                 HStack(spacing: 6) {
-                    Text(word).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
-                        .strikethrough(state == .wrong, color: D8.vermilion).foregroundStyle(Palette.ink).lineLimit(2)
-                    if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted) }
+                    Text(tapText(word, lang)).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
+                        .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
+                    if canSay {
+                        Button { LangVoice.shared.speak(spoken, lang) } label: {
+                            Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted).frame(minWidth: 32, minHeight: 32)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityHint("Plays the word")
+                    }
                 }
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 if state == .right, let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(Palette.muted) }
