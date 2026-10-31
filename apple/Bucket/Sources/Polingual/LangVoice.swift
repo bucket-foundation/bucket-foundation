@@ -213,6 +213,7 @@ struct PlayButton: View {
     let text: String
     let lang: String
     var label: String?
+    var roomy = false
 
     var body: some View {
         if LangVoice.shared.canSpeak(text, lang) {
@@ -220,8 +221,11 @@ struct PlayButton: View {
                 LangVoice.shared.speak(text, lang)
             } label: {
                 Image(systemName: "speaker.wave.2.fill")
+                    .frame(minWidth: roomy ? FitScale.naturalTarget : nil, minHeight: roomy ? FitScale.naturalTarget : nil)
+                    .contentShape(.rect)
             }
             .buttonStyle(.borderless)
+            .padding(.vertical, roomy ? -9 : 0)
             .tint(Palette.green)
             .accessibilityLabel(label ?? "Hear it in \(langName(lang))")
         }

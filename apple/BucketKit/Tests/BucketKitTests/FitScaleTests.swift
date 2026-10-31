@@ -8,7 +8,13 @@ import Testing
     }
 
     @Test func tallContentShrinksToTheAvailableHeight() {
-        #expect(FitScale.scale(content: 500, available: 400) == 0.8)
+        #expect(FitScale.scale(content: 500, available: 450) == 0.9)
+    }
+
+    @Test func aControlAtItsNaturalSizeStaysTappableAtTheFloor() {
+        let smallest = FitScale.scale(content: 10_000, available: 1)
+        #expect(smallest == FitScale.floor)
+        #expect(FitScale.naturalTarget * smallest >= FitScale.minTarget)
     }
 
     @Test func shrinkingStopsAtTheFloorAndTheOverflowScrolls() {

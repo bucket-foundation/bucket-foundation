@@ -1,5 +1,7 @@
 public enum FitScale {
-    public static let floor = 0.6
+    public static let minTarget = 44.0
+    public static let naturalTarget = 50.0
+    public static let floor = 0.88
 
     public static func scale(content: Double, available: Double) -> Double {
         guard content > 0, available > 0 else { return 1 }

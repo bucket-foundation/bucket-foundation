@@ -19,6 +19,10 @@ public struct WordDetail: Sendable, Hashable, Identifiable {
         guard let gloss else { return .noEntry }
         return reveal ? .meaning(gloss) : .afterAnswer
     }
+
+    public func leadsTo(_ other: String, lang otherLang: String) -> Bool {
+        otherLang != lang || other.lowercased() != word.lowercased()
+    }
 }
 
 public enum WordLookup {

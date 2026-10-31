@@ -1,3 +1,4 @@
+import BucketKit
 import SwiftUI
 
 enum D8 {
@@ -29,7 +30,7 @@ struct D8Option: ButtonStyle {
         configuration.label
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(D8.ink)
-            .frame(maxWidth: compact ? nil : .infinity, minHeight: compact ? 42 : 50, alignment: align)
+            .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget, alignment: align)
             .padding(.horizontal, 16)
             .background(selected ? Color(hex: 0xEEF3FB) : .white, in: .rect(cornerRadius: 12))
             .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? D8.lapis : D8.keyline, lineWidth: selected ? 3 : 2) }

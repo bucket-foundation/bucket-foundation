@@ -489,7 +489,7 @@ struct FamilyLine: View {
                                 Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
                                 if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(D8.ipa) }
                             }
-                            PlayButton(text: w.word, lang: w.lang)
+                            PlayButton(text: w.word, lang: w.lang, roomy: true)
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 6)

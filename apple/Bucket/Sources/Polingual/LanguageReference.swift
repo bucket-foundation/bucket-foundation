@@ -136,6 +136,7 @@ struct WritingRows: View {
 struct WordFactsView: View {
     @Environment(LangStore.self) private var store: LangStore?
     let detail: WordDetail
+    @State private var next: WordDetail?
 
     var body: some View {
         let f = LangReference.facts(detail, corpus: store?.corpus, others: store?.gameLangs ?? [])
@@ -204,7 +205,15 @@ struct WordFactsView: View {
         .paper()
         .navigationTitle(detail.word)
         .inlineTitle()
-        .wordTaps(reveal: true)
+        .environment(\.openURL, OpenURLAction { url in
+            guard let p = WordTaps.parse(url) else { return .systemAction }
+            if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
+            if detail.leadsTo(p.word, lang: p.lang) {
+                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [])
+            }
+            return .handled
+        })
+        .navigationDestination(item: $next) { WordFactsView(detail: $0) }
     }
 
     func line(_ label: LocalizedStringKey, _ value: String) -> some View {

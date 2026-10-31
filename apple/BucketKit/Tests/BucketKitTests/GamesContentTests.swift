@@ -187,6 +187,14 @@ func words(_ n: Int) -> [GameWord] {
         #expect(WordTaps.tileLink("42", lang: "es") == nil)
     }
 
+    @Test func aWordTappedInItsOwnFactsStaysPut() {
+        let casa = WordDetail(word: "casa", lang: "es", gloss: "house", reading: nil)
+        #expect(!casa.leadsTo("casa", lang: "es"))
+        #expect(!casa.leadsTo("Casa", lang: "es"))
+        #expect(casa.leadsTo("blanca", lang: "es"))
+        #expect(casa.leadsTo("casa", lang: "pt"))
+    }
+
     @Test func theCardHoldsTheMeaningUntilTheAnswer() {
         let known = WordDetail(word: "casa", lang: "es", gloss: "house", reading: nil)
         let unknown = WordDetail(word: "zzz", lang: "es", gloss: nil, reading: nil)

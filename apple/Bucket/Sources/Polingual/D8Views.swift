@@ -190,7 +190,7 @@ struct AnswerRow: View {
                         .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
                     if canSay {
                         Button { LangVoice.shared.speak(spoken, lang) } label: {
-                            Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted).frame(minWidth: 32, minHeight: 32)
+                            Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted).frame(minWidth: FitScale.naturalTarget, minHeight: FitScale.naturalTarget).contentShape(.rect).padding(.vertical, -9)
                         }
                         .buttonStyle(.plain)
                         .accessibilityHint("Plays the word")
@@ -207,7 +207,7 @@ struct AnswerRow: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, state == .right ? 8 : 0)
-        .frame(minHeight: 44)
+        .frame(minHeight: FitScale.naturalTarget)
         .background(state == .right ? D8.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: 12))
         .overlay {
             if state != .other { RoundedRectangle(cornerRadius: 12).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 2) }
@@ -255,7 +255,7 @@ struct D8Primary: ButtonStyle {
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(enabled ? .white : D8.disabledText)
             .padding(.horizontal, compact ? 18 : 0)
-            .frame(maxWidth: compact ? nil : .infinity, minHeight: compact ? 42 : 50)
+            .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget)
             .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: 12))
             .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: 12).offset(y: pressed ? 1 : 4))
             .offset(y: pressed ? 3 : 0)
@@ -265,7 +265,7 @@ struct D8Primary: ButtonStyle {
 
 struct PlainLink: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label.font(.subheadline.weight(.bold)).underline().foregroundStyle(Palette.muted).frame(maxWidth: .infinity).opacity(configuration.isPressed ? 0.6 : 1)
+        configuration.label.font(.subheadline.weight(.bold)).underline().foregroundStyle(Palette.muted).frame(maxWidth: .infinity, minHeight: FitScale.naturalTarget).contentShape(.rect).opacity(configuration.isPressed ? 0.6 : 1)
     }
 }
 
