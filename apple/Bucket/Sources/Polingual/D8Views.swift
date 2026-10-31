@@ -41,6 +41,8 @@ struct WordTile: View {
     var size: CGFloat = 200
     var speakText: String?
     var onTap: (() -> Void)?
+    @Environment(\.wordTapsHosted) private var hosted
+    @Environment(\.openURL) private var open
 
     var body: some View {
         let inset = size * 0.06
@@ -48,6 +50,7 @@ struct WordTile: View {
         let canSay = LangVoice.shared.canSpeak(say, lang)
         Button {
             if let onTap { onTap(); return }
+            if hosted, let word, let url = WordTaps.tileLink(word, lang: lang) { open(url); return }
             if canSay { LangVoice.shared.speak(say, lang) }
         } label: {
             ZStack {

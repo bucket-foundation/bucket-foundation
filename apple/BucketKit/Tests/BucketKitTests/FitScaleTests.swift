@@ -8,8 +8,15 @@ import Testing
     }
 
     @Test func tallContentShrinksToTheAvailableHeight() {
-        #expect(FitScale.scale(content: 800, available: 400) == 0.5)
-        #expect(FitScale.scale(content: 900, available: 300) * 900 == 300)
+        #expect(FitScale.scale(content: 500, available: 400) == 0.8)
+    }
+
+    @Test func shrinkingStopsAtTheFloorAndTheOverflowScrolls() {
+        let s = FitScale.scale(content: 800, available: 400)
+        #expect(s == FitScale.floor)
+        #expect(FitScale.overflows(content: 800, available: 400, scale: s))
+        #expect(!FitScale.overflows(content: 500, available: 400, scale: 0.8))
+        #expect(!FitScale.overflows(content: 300, available: 600, scale: 1))
     }
 
     @Test func unmeasuredSizesKeepFullSize() {

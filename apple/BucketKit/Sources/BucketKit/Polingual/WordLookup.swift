@@ -10,6 +10,15 @@ public struct WordDetail: Sendable, Hashable, Identifiable {
     public var band: String? = nil
 
     public var id: String { "\(lang):\(word)" }
+
+    public enum CardLine: Sendable, Hashable {
+        case meaning(String), afterAnswer, noEntry
+    }
+
+    public func cardLine(reveal: Bool) -> CardLine {
+        guard let gloss else { return .noEntry }
+        return reveal ? .meaning(gloss) : .afterAnswer
+    }
 }
 
 public enum WordLookup {

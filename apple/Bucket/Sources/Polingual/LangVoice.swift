@@ -77,6 +77,7 @@ final class LangListener {
     @ObservationIgnored private var current: SpeechRun?
     @ObservationIgnored private var stopEarly = false
     private(set) var live = ""
+    var active: Bool { current != nil }
 
     var supported: Bool {
         #if os(iOS) || os(macOS)

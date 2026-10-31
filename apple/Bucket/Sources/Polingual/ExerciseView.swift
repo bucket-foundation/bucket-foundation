@@ -78,6 +78,7 @@ struct ExerciseView: View {
     @State private var matchDone = false
     @State private var built: [Int] = []
     @State private var started = Date()
+    @State private var autoFocused = false
     @FocusState private var focused: Bool
     @Environment(\.verticalSizeClass) private var vertical
     var sideways: Bool { vertical == .compact }
@@ -337,7 +338,11 @@ struct ExerciseView: View {
         }
     }
 
-    var compactTyping: Bool { sideways && typedKind && verdict == nil }
+    var compactTyping: Bool { Self.compactTyping(sideways: sideways, typing: typedKind, verdict: verdict) }
+
+    static func compactTyping(sideways: Bool, typing: Bool, verdict: Verdict?) -> Bool {
+        sideways && typing && verdict == nil
+    }
 
     var answerField: some View {
         TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
@@ -352,7 +357,9 @@ struct ExerciseView: View {
             .focused($focused)
             .onSubmit { if !typed.isEmpty { verdict = judgeAnswer(typed) } }
             .task {
-                try? await Task.sleep(for: .milliseconds(350))
+                guard !autoFocused else { return }
+                do { try await Task.sleep(for: .milliseconds(350)) } catch { return }
+                autoFocused = true
                 focused = true
             }
     }
