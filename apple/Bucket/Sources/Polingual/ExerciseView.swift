@@ -83,6 +83,7 @@ struct ExerciseView: View {
     var sideways: Bool { vertical == .compact }
 
     var accepted: [String] { ex.accept ?? [ex.answer] }
+    var answered: Bool { ex.kind == .intro || picked != nil || verdict != nil || matchDone }
     var slow: Bool { Date().timeIntervalSince(started) > 15 }
     var targetName: String { langName(ex.lang) }
 
@@ -109,6 +110,7 @@ struct ExerciseView: View {
             }
         }
         .exerciseCard()
+        .wordTaps(reveal: answered)
         .onAppear {
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("-pickWrong") {
@@ -125,7 +127,8 @@ struct ExerciseView: View {
     var intro: some View {
         VStack(spacing: 12) {
             WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
-            Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
+            PhraseWords(text: ex.answer, lang: ex.answerLang)
+            Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline).frame(maxWidth: .infinity)
             Notes(ex: ex, showNote: true, readings: readings)
             Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
         }
@@ -202,7 +205,7 @@ struct ExerciseView: View {
         let tokens = ex.tokens ?? []
         let answerText = joinTokens(built.map { tokens[$0] }, ex.lang)
         return VStack(alignment: .leading, spacing: 14) {
-            SentencePrompt(text: ex.prompt)
+            SentencePrompt(text: ex.prompt, lang: ex.promptLang)
             FlowLayout(spacing: 8) {
                 ForEach(Array(built.enumerated()), id: \.offset) { k, ti in
                     Button(tokens[ti]) { built.remove(at: k) }
@@ -396,7 +399,7 @@ struct Notes: View {
             FamilyLine(ex: ex, readings: readings)
             if ex.kind == .gender { ArticleKey(lang: ex.lang) }
             FalseFriendNote(ex: ex)
-            if showNote, let note = ex.note, !note.isEmpty { Text(note).font(.caption).foregroundStyle(Palette.muted) }
+            if showNote, let note = ex.note, !note.isEmpty { Text(tapText(note, ex.root, color: Palette.muted)).font(.caption) }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -478,19 +481,21 @@ func shownAnswer(_ ex: Exercise) -> String {
 
 struct SentencePrompt: View {
     let text: String
+    let lang: String
 
     var body: some View {
-        Text(text).font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink).multilineTextAlignment(.center).frame(maxWidth: .infinity)
+        Text(tapText(text, lang)).font(.serif(.title2, weight: .semibold)).multilineTextAlignment(.center).frame(maxWidth: .infinity)
     }
 }
 
 struct AskWord: View {
     let word: String
+    let lang: String
     let sub: LocalizedStringKey?
 
     var body: some View {
         VStack(spacing: 4) {
-            Text(word).font(.system(size: 46, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
+            Text(tapText(word, lang)).font(.system(size: 46, weight: .bold, design: .rounded)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
             if let sub { Text(sub).font(.title3).foregroundStyle(Palette.muted).multilineTextAlignment(.center) }
         }
         .frame(maxWidth: .infinity)
@@ -511,20 +516,21 @@ struct Prompt: View {
         case .cloze:
             VStack(spacing: 6) {
                 if let c = ex.cloze {
-                    (Text(c.before) + Text("______").foregroundStyle(Palette.muted) + Text(c.after))
-                        .font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                    (Text(tapText(c.before, ex.lang)) + Text("______").foregroundStyle(Palette.muted) + Text(tapText(c.after, ex.lang)))
+                        .font(.serif(.title2, weight: .semibold)).multilineTextAlignment(.center)
                 }
-                Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted)
+                Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline)
             }
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard, .spellHeard:
             VStack(spacing: 10) {
                 WordTile(word: answered || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: answered && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
+                if answered { PhraseWords(text: ex.prompt, lang: ex.promptLang) }
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:
             VStack(spacing: 4) {
-                (Text("______ ").foregroundStyle(Palette.muted) + Text(ex.prompt)).font(.serif(.title, weight: .semibold)).foregroundStyle(Palette.ink)
+                (Text("______ ").foregroundStyle(Palette.muted) + Text(tapText(ex.prompt, ex.lang))).font(.serif(.title, weight: .semibold))
                 if let g = ex.promptReading?.roman { Text(g).font(.subheadline).foregroundStyle(Palette.muted) }
             }
             .frame(maxWidth: .infinity)
@@ -541,13 +547,14 @@ struct Prompt: View {
                 } else {
                     WordTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, size: vertical == .compact ? 120 : 160)
                 }
+                PhraseWords(text: ex.prompt, lang: ex.lang)
                 Text("What does it mean?").font(.subheadline).foregroundStyle(Palette.muted)
             }
         case .sentence:
-            SentencePrompt(text: ex.prompt)
+            SentencePrompt(text: ex.prompt, lang: ex.promptLang)
         case .cognate:
             VStack(spacing: 12) {
-                AskWord(word: ex.prompt, sub: "its \(name) cousin")
+                AskWord(word: ex.prompt, lang: ex.promptLang, sub: "its \(name) cousin")
                 if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
                     HStack(spacing: 10) {
                         ForEach(f.prefix(3), id: \.lang) { w in MiniTile(word: w.word, lang: w.lang, reading: readings ? cousins(w.lang) : nil) }
@@ -556,9 +563,9 @@ struct Prompt: View {
                 }
             }
         case .speak:
-            AskWord(word: ex.prompt, sub: "say it in \(name)")
+            AskWord(word: ex.prompt, lang: ex.promptLang, sub: "say it in \(name)")
         default:
-            AskWord(word: ex.prompt, sub: "in \(name)")
+            AskWord(word: ex.prompt, lang: ex.promptLang, sub: "in \(name)")
         }
     }
 }
