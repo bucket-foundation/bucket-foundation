@@ -351,7 +351,10 @@ struct ExerciseView: View {
             .langInput(ex.answerLang)
             .focused($focused)
             .onSubmit { if !typed.isEmpty { verdict = judgeAnswer(typed) } }
-            .onAppear { focused = true }
+            .task {
+                try? await Task.sleep(for: .milliseconds(350))
+                focused = true
+            }
     }
 
     var checkTyped: some View {
