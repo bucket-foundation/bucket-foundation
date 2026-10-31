@@ -30,9 +30,23 @@ public enum LetterSounds {
     }
 
     public static func parts(_ sound: LetterSound, _ ch: String) -> (before: String, letter: String, after: String)? {
-        let mark = String(String.UnicodeScalarView(ch.unicodeScalars.filter { $0 != "◌" }))
-        guard let r = sound.example.range(of: mark, options: [.caseInsensitive, .literal]) else { return nil }
-        return (String(sound.example[..<r.lowerBound]), String(sound.example[r]), String(sound.example[r.upperBound...]))
+        let word = sound.example.unicodeScalars
+        let mark = ch.unicodeScalars.filter { $0 != "◌" }.map(\.properties.lowercaseMapping)
+        guard !mark.isEmpty else { return nil }
+        var start = word.startIndex
+        while start != word.endIndex {
+            var end = start
+            var matched = 0
+            while matched < mark.count, end != word.endIndex, word[end].properties.lowercaseMapping == mark[matched] {
+                end = word.index(after: end)
+                matched += 1
+            }
+            if matched == mark.count {
+                return (String(sound.example[..<start]), String(sound.example[start..<end]), String(sound.example[end...]))
+            }
+            start = word.index(after: start)
+        }
+        return nil
     }
 
     public static func blanked(_ sound: LetterSound, _ ch: String) -> String? {

@@ -28,6 +28,27 @@ func soundUnits() -> [AlphabetUnit] {
     #expect(LetterSounds.parts(s, "é")?.letter == "é")
 }
 
+@Test func partsMarkSharpSAndNotTheLettersItFoldsTo() {
+    let s = LetterSound(ipa: "s", hint: "h", example: "Straße", gloss: "street")
+    #expect(LetterSounds.parts(s, "ß")?.before == "Stra")
+    #expect(LetterSounds.parts(s, "ß")?.letter == "ß")
+    #expect(LetterSounds.parts(s, "ß")?.after == "e")
+    #expect(LetterSounds.blanked(s, "ß") == "Stra＿e")
+    #expect(LetterSounds.parts(s, "s")?.letter == "S")
+}
+
+@Test func partsMarkOnlyTheTaughtLetterInEveryExample() {
+    var wrong: [String] = []
+    for unit in soundUnits() {
+        for l in unit.letters {
+            guard let s = LetterSounds.lookup(unit.lang, l.ch), let p = LetterSounds.parts(s, l.ch) else { continue }
+            let taught = String(String.UnicodeScalarView(l.ch.unicodeScalars.filter { $0 != "◌" }))
+            if p.letter.lowercased() != taught.lowercased() { wrong.append("\(unit.lang) \(l.ch) marked \(p.letter)") }
+        }
+    }
+    #expect(wrong.isEmpty, "\(wrong.count): \(wrong.prefix(40).joined(separator: ", "))")
+}
+
 @Test func heardMatchesTheSpokenWordInAnyAlternative() {
     #expect(LetterSounds.heard(["Le café", "cafe"], say: "café"))
     #expect(LetterSounds.heard(["Café!"], say: "café"))
