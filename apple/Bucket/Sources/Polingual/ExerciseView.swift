@@ -7,8 +7,8 @@ struct ExerciseResult {
 }
 
 extension View {
-    func exerciseCard() -> some View {
-        padding(18)
+    func exerciseCard(tight: Bool = false) -> some View {
+        padding(tight ? 12 : 18)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Palette.card, in: .rect(cornerRadius: 22))
             .overlay(RoundedRectangle(cornerRadius: 22).stroke(Palette.rule))
@@ -78,11 +78,14 @@ struct ExerciseView: View {
     @State private var matchDone = false
     @State private var built: [Int] = []
     @State private var started = Date()
+    @State private var autoFocused = false
     @FocusState private var focused: Bool
     @Environment(\.verticalSizeClass) private var vertical
     var sideways: Bool { vertical == .compact }
+    var columns: AnyLayout { sideways ? AnyLayout(HStackLayout(alignment: .top, spacing: 20)) : AnyLayout(VStackLayout(alignment: .leading, spacing: 14)) }
 
     var accepted: [String] { ex.accept ?? [ex.answer] }
+    var answered: Bool { ex.kind == .intro || picked != nil || verdict != nil || matchDone }
     var slow: Bool { Date().timeIntervalSince(started) > 15 }
     var targetName: String { langName(ex.lang) }
 
@@ -99,21 +102,28 @@ struct ExerciseView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText)
+        VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
+            if !compactTyping { CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 26 : 44) }
             switch ex.kind {
             case .intro: intro
             case .match: match
             case .wordbank: wordbank
-            default: standard
+            default:
+                if compactTyping { typingRow } else { standard }
             }
         }
-        .exerciseCard()
+        .exerciseCard(tight: sideways)
+        .wordTaps(reveal: answered)
         .onAppear {
             #if DEBUG
             if ProcessInfo.processInfo.arguments.contains("-pickWrong") {
                 picked = ex.options?.first { !accepted.contains($0) }
                 if ex.options == nil { verdict = .wrong; typed = "xyz" }
+                if ex.kind == .match, let pairs = ex.pairs {
+                    let langs = pairs.map(\.lang)
+                    assign = Dictionary(uniqueKeysWithValues: zip(langs, langs.dropFirst() + langs.prefix(1)))
+                    matchDone = true
+                }
             }
             #endif
             started = Date()
@@ -123,11 +133,14 @@ struct ExerciseView: View {
     }
 
     var intro: some View {
-        VStack(spacing: 12) {
-            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
-            Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
-            Notes(ex: ex, showNote: true, readings: readings)
-            Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
+        columns {
+            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: sideways ? 170 : 190)
+            VStack(spacing: 12) {
+                PhraseWords(text: ex.answer, lang: ex.answerLang)
+                Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline).frame(maxWidth: .infinity)
+                Notes(ex: ex, showNote: true, readings: readings)
+                Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
+            }
         }
     }
 
@@ -135,7 +148,7 @@ struct ExerciseView: View {
         let pairs = ex.pairs ?? []
         let langs = pairs.map(\.lang)
         let placed = Set(assign.keys)
-        return VStack(alignment: .leading, spacing: 14) {
+        return columns {
             HStack(alignment: .top, spacing: 10) {
                 ForEach(langs, id: \.self) { l in
                     let owner = assign.first { $0.value == l }?.key
@@ -176,24 +189,26 @@ struct ExerciseView: View {
                     .accessibilityHint(matchDone ? String(localized: "Plays the word") : "")
                 }
             }
-            if matchDone {
-                Notes(ex: ex, showNote: false, readings: readings)
-                Button("Continue") {
-                    if let onMatch { onMatch(assign) } else { onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) }) }
-                }
-                .buttonStyle(D8Primary())
-            } else {
-                VStack(spacing: 10) {
-                    ForEach(pairs.filter { !placed.contains($0.lang) }, id: \.lang) { p in
-                        OptionButton(text: p.word, lang: p.lang, reading: nil, selected: holding == p.lang) { holding = p.lang; tap() }
+            VStack(alignment: .leading, spacing: 14) {
+                if matchDone {
+                    Notes(ex: ex, showNote: false, readings: readings)
+                    Button("Continue") {
+                        if let onMatch { onMatch(assign) } else { onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) }) }
                     }
-                }
-                Button("Check") {
-                    matchDone = true
-                    haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
-                }
                     .buttonStyle(D8Primary())
-                    .disabled(assign.count < pairs.count)
+                } else {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: sideways ? 2 : 1), spacing: 10) {
+                        ForEach(pairs.filter { !placed.contains($0.lang) }, id: \.lang) { p in
+                            OptionButton(text: p.word, lang: p.lang, reading: nil, selected: holding == p.lang) { holding = p.lang; tap() }
+                        }
+                    }
+                    Button("Check") {
+                        matchDone = true
+                        haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
+                    }
+                        .buttonStyle(D8Primary())
+                        .disabled(assign.count < pairs.count)
+                }
             }
         }
     }
@@ -201,35 +216,39 @@ struct ExerciseView: View {
     var wordbank: some View {
         let tokens = ex.tokens ?? []
         let answerText = joinTokens(built.map { tokens[$0] }, ex.lang)
-        return VStack(alignment: .leading, spacing: 14) {
-            SentencePrompt(text: ex.prompt)
-            FlowLayout(spacing: 8) {
-                ForEach(Array(built.enumerated()), id: \.offset) { k, ti in
-                    Button(tokens[ti]) { built.remove(at: k) }
-                        .buttonStyle(D8Option())
-                        .fixedSize()
-                        .disabled(verdict != nil)
-                }
-            }
-            .frame(maxWidth: .infinity, minHeight: 54, alignment: .topLeading)
-            .overlay(alignment: .bottom) { Rectangle().fill(Palette.rule).frame(height: 2) }
-            .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
-            if verdict == nil {
+        return columns {
+            VStack(alignment: .leading, spacing: 14) {
+                SentencePrompt(text: ex.prompt, lang: ex.promptLang)
                 FlowLayout(spacing: 8) {
-                    ForEach(Array(tokens.enumerated()), id: \.offset) { ti, t in
-                        Button(t) { built.append(ti) }
+                    ForEach(Array(built.enumerated()), id: \.offset) { k, ti in
+                        Button(tokens[ti]) { built.remove(at: k) }
                             .buttonStyle(D8Option())
                             .fixedSize()
-                            .disabled(built.contains(ti))
-                            .opacity(built.contains(ti) ? 0.25 : 1)
+                            .disabled(verdict != nil)
                     }
                 }
+                .frame(maxWidth: .infinity, minHeight: 54, alignment: .topLeading)
+                .overlay(alignment: .bottom) { Rectangle().fill(Palette.rule).frame(height: 2) }
                 .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
-                Button("Check") { verdict = judgeTyped(answerText, accepted, ex.lang) }
-                    .buttonStyle(D8Primary())
-                    .disabled(built.isEmpty)
-            } else if let verdict {
-                Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: answerText, reading: r(ex.answer, ex.answerLang)) { finish(verdict != .wrong, verdict) }
+            }
+            VStack(alignment: .leading, spacing: 14) {
+                if verdict == nil {
+                    FlowLayout(spacing: 8) {
+                        ForEach(Array(tokens.enumerated()), id: \.offset) { ti, t in
+                            Button(t) { built.append(ti) }
+                                .buttonStyle(D8Option())
+                                .fixedSize()
+                                .disabled(built.contains(ti))
+                                .opacity(built.contains(ti) ? 0.25 : 1)
+                        }
+                    }
+                    .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
+                    Button("Check") { verdict = judgeTyped(answerText, accepted, ex.lang) }
+                        .buttonStyle(D8Primary())
+                        .disabled(built.isEmpty)
+                } else if let verdict {
+                    Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: answerText, reading: r(ex.answer, ex.answerLang)) { finish(verdict != .wrong, verdict) }
+                }
             }
         }
     }
@@ -261,8 +280,8 @@ struct ExerciseView: View {
         let answers = VStack(alignment: .leading, spacing: 14) {
             if mc, let options = ex.options {
                 if let picked {
-                    LazyVGrid(columns: sideways ? [GridItem(.flexible(), spacing: 8), GridItem(.flexible())] : [GridItem(.flexible())], spacing: 8) {
-                        ForEach(options, id: \.self) { o in
+                    VStack(spacing: 8) {
+                        ForEach(sideways ? options.filter { accepted.contains($0) || $0 == picked } : options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil,
                                       say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil)
@@ -306,30 +325,56 @@ struct ExerciseView: View {
                 Button("Type instead") { heard = "" }.buttonStyle(PlainLink())
             }
             if typedKind && verdict == nil {
-                TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    .foregroundStyle(D8.ink)
-                    .padding(.horizontal, 16)
-                    .frame(minHeight: 52)
-                    .background(.white, in: .rect(cornerRadius: 12))
-                    .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.keyline, lineWidth: 2) }
-                    .autocorrectionDisabled()
-                    .langInput(ex.answerLang)
-                    .focused($focused)
-                    .onSubmit { if !typed.isEmpty { verdict = judgeAnswer(typed) } }
-                    .onAppear { focused = true }
-                Button("Check") { verdict = judgeAnswer(typed) }
-                    .buttonStyle(D8Primary())
-                    .disabled(typed.trimmingCharacters(in: .whitespaces).isEmpty)
+                answerField
+                checkTyped
             }
             if let verdict {
                 Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: ex.kind == .speak ? heard : typed, reading: r(ex.lang == ex.answerLang ? ex.answer : ex.prompt, ex.lang)) { finish(verdict != .wrong, verdict) }
             }
         }
-        let layout = sideways ? AnyLayout(HStackLayout(alignment: .top, spacing: 20)) : AnyLayout(VStackLayout(alignment: .leading, spacing: 14))
-        return layout {
+        return columns {
             prompt.frame(maxWidth: sideways ? .infinity : nil)
             answers.frame(maxWidth: sideways ? .infinity : nil)
+        }
+    }
+
+    var compactTyping: Bool { Self.compactTyping(sideways: sideways, typing: typedKind, verdict: verdict) }
+
+    static func compactTyping(sideways: Bool, typing: Bool, verdict: Verdict?) -> Bool {
+        sideways && typing && verdict == nil
+    }
+
+    var answerField: some View {
+        TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
+            .font(.system(size: 18, weight: .semibold, design: .rounded))
+            .foregroundStyle(D8.ink)
+            .padding(.horizontal, 16)
+            .frame(minHeight: 52)
+            .background(.white, in: .rect(cornerRadius: 12))
+            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.keyline, lineWidth: 2) }
+            .autocorrectionDisabled()
+            .langInput(ex.answerLang)
+            .focused($focused)
+            .onSubmit { if !typed.isEmpty { verdict = judgeAnswer(typed) } }
+            .task {
+                guard !autoFocused else { return }
+                do { try await Task.sleep(for: .milliseconds(350)) } catch { return }
+                autoFocused = true
+                focused = true
+            }
+    }
+
+    var checkTyped: some View {
+        Button("Check") { verdict = judgeAnswer(typed) }
+            .buttonStyle(D8Primary())
+            .disabled(typed.trimmingCharacters(in: .whitespaces).isEmpty)
+    }
+
+    var typingRow: some View {
+        HStack(spacing: 12) {
+            TypingPrompt(ex: ex).frame(maxWidth: 220)
+            answerField
+            checkTyped.frame(width: 110)
         }
     }
 
@@ -396,7 +441,7 @@ struct Notes: View {
             FamilyLine(ex: ex, readings: readings)
             if ex.kind == .gender { ArticleKey(lang: ex.lang) }
             FalseFriendNote(ex: ex)
-            if showNote, let note = ex.note, !note.isEmpty { Text(note).font(.caption).foregroundStyle(Palette.muted) }
+            if showNote, let note = ex.note, !note.isEmpty { Text(tapText(note, ex.root, color: Palette.muted)).font(.caption) }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -434,23 +479,22 @@ struct FamilyLine: View {
         if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
                 Text("SAME ROOT").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        ForEach(f, id: \.self) { w in
-                            HStack(spacing: 6) {
-                                FlagTile(lang: w.lang, size: 20)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
-                                    if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(D8.ipa) }
-                                }
-                                PlayButton(text: w.word, lang: w.lang)
+                FlowLayout(spacing: 8) {
+                    ForEach(f, id: \.self) { w in
+                        HStack(spacing: 6) {
+                            FlagTile(lang: w.lang, size: 20)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+                                if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(D8.ipa) }
                             }
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(.white, in: .rect(cornerRadius: 10))
-                            .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline, lineWidth: 1.5) }
-                            .accessibilityElement(children: .combine)
+                            PlayButton(text: w.word, lang: w.lang)
                         }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(.white, in: .rect(cornerRadius: 10))
+                        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline, lineWidth: 1.5) }
+                        .accessibilityElement(children: .combine)
+                        .fixedSize()
                     }
                 }
             }
@@ -478,23 +522,50 @@ func shownAnswer(_ ex: Exercise) -> String {
 
 struct SentencePrompt: View {
     let text: String
+    let lang: String
 
     var body: some View {
-        Text(text).font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink).multilineTextAlignment(.center).frame(maxWidth: .infinity)
+        Text(tapText(text, lang)).font(.serif(.title2, weight: .semibold)).multilineTextAlignment(.center).frame(maxWidth: .infinity)
     }
 }
 
 struct AskWord: View {
     let word: String
+    let lang: String
     let sub: LocalizedStringKey?
 
     var body: some View {
         VStack(spacing: 4) {
-            Text(word).font(.system(size: 46, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
+            Text(tapText(word, lang)).font(.system(size: 46, weight: .bold, design: .rounded)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
             if let sub { Text(sub).font(.title3).foregroundStyle(Palette.muted).multilineTextAlignment(.center) }
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
+    }
+}
+
+struct TypingPrompt: View {
+    let ex: Exercise
+
+    var body: some View {
+        switch ex.kind {
+        case .typeHeard, .spellHeard:
+            WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: 54, speakText: ex.prompt)
+        case .conjugate:
+            line(ex.prompt, ex.lang, "\(ex.person ?? "") ______")
+        case .speak:
+            line(ex.prompt, ex.promptLang, String(localized: "say it in \(langName(ex.lang))"))
+        default:
+            line(ex.prompt, ex.promptLang, String(localized: "in \(langName(ex.lang))"))
+        }
+    }
+
+    func line(_ word: String, _ lang: String, _ sub: String) -> some View {
+        VStack(spacing: 2) {
+            Text(tapText(word, lang)).font(.system(size: 22, weight: .bold, design: .rounded)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
+            Text(sub).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -511,20 +582,21 @@ struct Prompt: View {
         case .cloze:
             VStack(spacing: 6) {
                 if let c = ex.cloze {
-                    (Text(c.before) + Text("______").foregroundStyle(Palette.muted) + Text(c.after))
-                        .font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                    (Text(tapText(c.before, ex.lang)) + Text("______").foregroundStyle(Palette.muted) + Text(tapText(c.after, ex.lang)))
+                        .font(.serif(.title2, weight: .semibold)).multilineTextAlignment(.center)
                 }
-                Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted)
+                Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline)
             }
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard, .spellHeard:
             VStack(spacing: 10) {
                 WordTile(word: answered || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: answered && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
+                if answered { PhraseWords(text: ex.prompt, lang: ex.promptLang) }
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:
             VStack(spacing: 4) {
-                (Text("______ ").foregroundStyle(Palette.muted) + Text(ex.prompt)).font(.serif(.title, weight: .semibold)).foregroundStyle(Palette.ink)
+                (Text("______ ").foregroundStyle(Palette.muted) + Text(tapText(ex.prompt, ex.lang))).font(.serif(.title, weight: .semibold))
                 if let g = ex.promptReading?.roman { Text(g).font(.subheadline).foregroundStyle(Palette.muted) }
             }
             .frame(maxWidth: .infinity)
@@ -541,13 +613,14 @@ struct Prompt: View {
                 } else {
                     WordTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, size: vertical == .compact ? 120 : 160)
                 }
+                PhraseWords(text: ex.prompt, lang: ex.lang)
                 Text("What does it mean?").font(.subheadline).foregroundStyle(Palette.muted)
             }
         case .sentence:
-            SentencePrompt(text: ex.prompt)
+            SentencePrompt(text: ex.prompt, lang: ex.promptLang)
         case .cognate:
             VStack(spacing: 12) {
-                AskWord(word: ex.prompt, sub: "its \(name) cousin")
+                AskWord(word: ex.prompt, lang: ex.promptLang, sub: "its \(name) cousin")
                 if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
                     HStack(spacing: 10) {
                         ForEach(f.prefix(3), id: \.lang) { w in MiniTile(word: w.word, lang: w.lang, reading: readings ? cousins(w.lang) : nil) }
@@ -556,9 +629,9 @@ struct Prompt: View {
                 }
             }
         case .speak:
-            AskWord(word: ex.prompt, sub: "say it in \(name)")
+            AskWord(word: ex.prompt, lang: ex.promptLang, sub: "say it in \(name)")
         default:
-            AskWord(word: ex.prompt, sub: "in \(name)")
+            AskWord(word: ex.prompt, lang: ex.promptLang, sub: "in \(name)")
         }
     }
 }

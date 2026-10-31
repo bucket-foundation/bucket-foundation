@@ -32,16 +32,17 @@ struct AlphabetStudy: View {
         Group {
             if let unit {
                 if let current {
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(spacing: 10) {
-                            ProgressView(value: Double(i), total: Double(max(queue.count, 1))).tint(D8.malachite)
-                            Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                    FitPage {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(spacing: 10) {
+                                ProgressView(value: Double(i), total: Double(max(queue.count, 1))).tint(D8.malachite)
+                                Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                            }
+                            ExerciseView(ex: current, readings: false, reading: { _, _ in nil }, onDone: done)
+                                .id("\(i)-\(current.answer)")
                         }
-                        ExerciseView(ex: current, readings: false, reading: { _, _ in nil }, onDone: done)
-                            .id("\(i)-\(current.answer)")
-                        Spacer(minLength: 0)
+                        .padding(16)
                     }
-                    .padding(16)
                 } else {
                     VStack(spacing: 14) {
                         Text(queue.isEmpty ? String(localized: "No letters due") : String(localized: "Letters done")).font(.system(size: 28, weight: .bold, design: .rounded))

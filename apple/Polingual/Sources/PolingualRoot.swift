@@ -137,11 +137,26 @@ struct Studio: View {
                 }
             }
             .manageSubscriptions(isPresented: $managing)
-            .task { await openFromLaunch() }
+            .task {
+                #if DEBUG
+                applyLaunchLayout()
+                #endif
+                await openFromLaunch()
+            }
             .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
             .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in path = NavigationPath() }
         #endif
     }
+
+    #if DEBUG && os(iOS)
+    func applyLaunchLayout() {
+        if PolingualLaunch.value("-polingualOrientation") == "landscape",
+           let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+        }
+        extra = PolingualLaunch.value("-polingualExtra").flatMap(Extra.init(rawValue:))
+    }
+    #endif
 
     var stack: some View {
         NavigationStack(path: $path) {

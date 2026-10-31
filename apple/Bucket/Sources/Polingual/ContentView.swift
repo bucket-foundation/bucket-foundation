@@ -321,7 +321,7 @@ struct ReadView: View {
                 Text(texts[l]?.title ?? titles[l] ?? langName(l)).font(.serif(.title3, weight: .semibold))
             }
             if let s = texts[l] {
-                Text(tappable(s.extract, l))
+                Text(tapText(s.extract, l))
                     .font(.serif(.body))
                     .lineSpacing(4)
                     .environment(\.layoutDirection, Lang.info[l]?.rtl == true ? .rightToLeft : .leftToRight)
@@ -337,18 +337,6 @@ struct ReadView: View {
         .padding(16)
         .frame(width: 320, alignment: .topLeading)
         .background(Palette.card, in: .rect(cornerRadius: 16))
-    }
-
-    func tappable(_ text: String, _ lang: String) -> AttributedString {
-        var out = AttributedString(text)
-        for (word, range) in WordTaps.words(text) {
-            guard let lower = AttributedString.Index(range.lowerBound, within: out),
-                  let upper = AttributedString.Index(range.upperBound, within: out),
-                  let url = WordTaps.link(lang: lang, word: word) else { continue }
-            out[lower..<upper].link = url
-            out[lower..<upper].foregroundColor = Palette.ink
-        }
-        return out
     }
 
     func load() async {
