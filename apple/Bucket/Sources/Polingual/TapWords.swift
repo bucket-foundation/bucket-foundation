@@ -90,7 +90,11 @@ struct WordCard: View {
         .sheet(isPresented: $full) {
             NavigationStack {
                 WordFactsView(detail: detail)
-                    .toolbar { Button("Done") { full = false } }
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") { full = false }
+                        }
+                    }
             }
         }
     }
