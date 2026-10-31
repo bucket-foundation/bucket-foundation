@@ -37,3 +37,11 @@ import Testing
     #expect(ScriptCourse.latinUnit("de", root: "ru")!.letters.first { $0.ch == "w" }?.sound == "v")
     #expect(ScriptCourse.latinUnit("es", root: "fr")!.letters.contains { $0.ch == "ch" })
 }
+
+@Test func newLettersAreTaughtBeforeTheyAreQuizzed() {
+    let id = LangScript.letterItemId("é")
+    let fr = ScriptCourse.intro("fr", "en", id)
+    #expect(fr?.kind == .intro && fr?.answer == "é" && fr?.answerLang == "fr" && fr?.prompt == "sounds like “ay”, as in café")
+    #expect(ScriptCourse.intro("zh", "en", LangScript.letterItemId("我"))?.prompt == "means “I”")
+    #expect(ScriptCourse.intro("fr", "en", "nope") == nil)
+}

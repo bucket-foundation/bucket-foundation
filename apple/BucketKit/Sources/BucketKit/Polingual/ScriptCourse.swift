@@ -1,15 +1,15 @@
 public enum ScriptCourse {
     static let latinLetters: [String: String] = [
         "es": "ñ=ny:as_in_canyon ll=y:as_in_yes j=h:a_rough_h rr=rr:a_rolled_r ch=ch:as_in_church á=a:stressed_a é=e:stressed_e í=i:stressed_i ó=o:stressed_o ú=u:stressed_u ü=w:as_in_pingüino h=silent:never_said",
-        "fr": "é=ay:as_in_café è=eh:as_in_bed ê=eh:as_in_fête ç=s:as_in_façade à=a:as_in_là â=ah:long_a î=ee:long_i ô=oh:closed_o û=ü:rounded_u œ=eu:as_in_cœur ou=oo:as_in_food eau=oh:as_in_eau ch=sh:as_in_chat gn=ny:as_in_canyon on=õ:nasal_on an=ã:nasal_an",
+        "fr": "é=ay:as_in_café è=eh:as_in_bed ê=eh:as_in_fête ç=s:as_in_façade à=a:as_in_là â=ah:as_in_pâte î=ee:as_in_île ô=oh:closed_o û=ü:as_in_sûr œ=eu:as_in_cœur ou=oo:as_in_food eau=oh:as_in_eau ch=sh:as_in_chat gn=ny:as_in_canyon on=õ:nasal_on an=ã:nasal_an",
         "it": "gli=ly:as_in_million gn=ny:as_in_canyon ch=k:before_e_or_i ci=chee:as_in_cheese gi=jee:as_in_jeep sc=sh:before_e_or_i z=ts:as_in_pizza à=a:stressed_a è=eh:open_e é=ay:closed_e ò=o:open_o ù=oo:stressed_u",
         "pt": "ã=ã:nasal_a õ=õ:nasal_o ç=s:as_in_façade nh=ny:as_in_canyon lh=ly:as_in_million á=a:stressed_a â=uh:closed_a é=eh:open_e ê=ay:closed_e ó=aw:open_o ô=oh:closed_o ão=ow:nasal_ow",
         "de": "ä=eh:as_in_bed ö=ö:rounded_e ü=ü:rounded_i ß=ss:sharp_s ch=kh:as_in_Bach sch=sh:as_in_shoe ei=eye:as_in_Stein ie=ee:as_in_see eu=oy:as_in_boy w=v:as_in_van z=ts:as_in_cats v=f:as_in_fox",
-        "nl": "ij=ay:as_in_eye ui=öy:no_English_match oe=oo:as_in_food g=kh:throat_h eu=ö:rounded_e ou=ow:as_in_house sch=skh:s_then_kh w=v:soft_v j=y:as_in_yes",
+        "nl": "ij=ei:as_in_ijs ui=öy:no_English_match oe=oo:as_in_food g=kh:throat_h eu=ö:rounded_e ou=ow:as_in_house sch=skh:s_then_kh w=v:soft_v j=y:as_in_yes",
         "sv": "å=oa:as_in_more ä=eh:as_in_bed ö=ö:rounded_e sj=hw:breathy_sh tj=ch:soft_sh j=y:as_in_yes k=sh:before_e_i_y y=ü:rounded_i",
         "fi": "ä=a:as_in_cat ö=ö:rounded_e y=ü:rounded_i aa=aa:long_a ii=ee:long_i kk=kk:held_k j=y:as_in_yes",
-        "pl": "ą=on:nasal_o ę=en:nasal_e ć=ch:soft_ch ł=w:as_in_water ń=ny:as_in_canyon ó=u:as_in_put ś=sh:soft_sh ź=zh:soft_zh ż=zh:as_in_pleasure cz=ch:as_in_church sz=sh:as_in_shoe rz=zh:as_in_pleasure w=v:as_in_van",
-        "tr": "ç=ch:as_in_church ş=sh:as_in_shoe ğ=silent:lengthens_vowel ı=uh:undotted_i ö=ö:rounded_e ü=ü:rounded_i c=j:as_in_jam",
+        "pl": "ą=on:nasal_o ę=en:nasal_e ć=ch:soft_ch ł=w:as_in_water ń=ny:as_in_canyon ó=oo:as_in_food ś=sh:soft_sh ź=zh:soft_zh ż=zh:as_in_pleasure cz=ch:as_in_church sz=sh:as_in_shoe rz=zh:as_in_pleasure w=v:as_in_van",
+        "tr": "ç=ch:as_in_church ş=sh:as_in_shoe ğ=silent:lengthens_vowel ı=ɯ:undotted_i ö=ö:rounded_e ü=ü:rounded_i c=j:as_in_jam",
         "cs": "č=ch:as_in_church š=sh:as_in_shoe ž=zh:as_in_pleasure ř=rzh:rolled_r_zh ě=ye:as_in_yes ů=oo:long_u ch=kh:as_in_Bach",
         "vi": "đ=d:as_in_dog ă=a:short_a â=uh:short_uh ê=ay:closed_e ô=oh:closed_o ơ=uh:as_in_fur ư=ư:unrounded_u",
     ]
@@ -84,6 +84,19 @@ public enum ScriptCourse {
             }
         }
         return out
+    }
+
+    public static func letter(_ lang: String, _ root: String, _ itemId: String) -> Letter? {
+        [latinUnit(lang, root: root), LangScript.alphabetUnit(lang), characterUnit(lang)].compactMap { $0 }
+            .lazy.compactMap { $0.letters.first { LangScript.letterItemId($0.ch) == itemId } }.first
+    }
+
+    public static func intro(_ lang: String, _ root: String, _ itemId: String) -> Exercise? {
+        guard let letter = letter(lang, root, itemId) else { return nil }
+        let says = isCharacter(lang, letter.ch) ? "means “\(letter.sound)”" : "sounds like “\(letter.sound)”"
+        var ex = Exercise(kind: .intro, itemId: itemId, lang: lang, root: root, prompt: letter.name.map { "\(says), \($0)" } ?? says, promptLang: root, answer: letter.ch, answerLang: lang)
+        ex.answerReading = Reading(roman: letter.sound)
+        return ex
     }
 
     public static func exercise(_ lang: String, _ root: String, _ itemId: String, _ rng: inout Rng) -> Exercise? {
