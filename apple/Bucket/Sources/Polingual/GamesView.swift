@@ -146,6 +146,12 @@ struct GameWaiting: View {
     }
 }
 
+#if DEBUG
+let gameEndForced = ProcessInfo.processInfo.arguments.contains("-endGame")
+#else
+let gameEndForced = false
+#endif
+
 struct GameScore: View {
     let text: String
     let again: () -> Void
@@ -172,7 +178,7 @@ struct MatchGame: View {
             VStack(spacing: 0) {
                 if round == nil { GameWaiting() }
                 if let round {
-                    if round.done {
+                    if round.done || gameEndForced {
                         GameScore(text: round.misses == 0 ? String(localized: "All pairs, no misses.") : String(localized: "All pairs with \(round.misses) misses.")) { deal() }
                     } else {
                         HStack(alignment: .top, spacing: 12) {
@@ -252,7 +258,7 @@ struct MemoryGame: View {
             VStack(spacing: 0) {
                 if board == nil { GameWaiting() }
                 if let board {
-                    if board.done {
+                    if board.done || gameEndForced {
                         GameScore(text: String(localized: "Every pair in \(board.turns) turns.")) { deal() }
                     } else {
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: vertical == .compact ? 6 : 3), spacing: 10) {

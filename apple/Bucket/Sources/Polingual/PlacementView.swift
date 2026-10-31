@@ -129,6 +129,9 @@ struct PlacementView: View {
         }
         asked += 1
         question = (next.band, q.task, q.ex)
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-autoPlace") { answer(true) }
+        #endif
     }
 
     func finish(_ src: PlacementSource, _ step: CefrStep) {

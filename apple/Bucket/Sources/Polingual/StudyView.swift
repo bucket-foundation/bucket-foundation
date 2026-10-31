@@ -69,6 +69,13 @@ struct StudyView: View {
             currentKey = "\(i)-forced"
             return
         }
+        if ProcessInfo.processInfo.arguments.contains("-endSession"), let queue {
+            i = queue.count
+            graded = 12
+            correct = 9
+            current = nil
+            return
+        }
         #endif
         guard let queue, i < queue.count, let system = store.system(systemId), let corpus = store.corpus else {
             current = nil
