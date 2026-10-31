@@ -17,7 +17,9 @@ struct StudyView: View {
     @State private var current: Exercise?
     @State private var currentKey = ""
     @State private var cardStart = Date()
+    @State private var chorus: [VoiceLine] = []
     @AppStorage("bucket.lang.readings") private var readings = true
+    @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
 
     var body: some View {
         Group {
@@ -40,6 +42,7 @@ struct StudyView: View {
             await store.load()
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
+        .onDisappear { LangVoice.shared.hush() }
     }
 
     var sharePage: SharePage? {
@@ -63,6 +66,7 @@ struct StudyView: View {
     }
 
     func makeExercise() {
+        chorus = []
         #if DEBUG
         if let kind = Self.forcedKind, let system = store.system(systemId), let corpus = store.corpus {
             current = forced(kind, system, corpus)
@@ -94,12 +98,20 @@ struct StudyView: View {
             let crossed = !Beta.shared.flags.crossLanguageOptions ? made : crossLanguageOptions(made, item, system, &rng)
             current = crossed
         }
+        if let ex = current, ex.kind == .intro || ex.kind == .match {
+            if AudioPace.due(audioOffers) {
+                let lead = VoiceLine(lang: ex.answerLang, text: ex.kind == .intro ? ex.answer : item.form(ex.answerLang) ?? "")
+                chorus = AudioPace.chorus(lead: lead, targets: system.targets, root: system.root, form: item.form)
+            }
+            audioOffers += 1
+        }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
         cardStart = .now
     }
 
     func done(_ results: [ExerciseResult]) {
         guard let q = queue, i < q.count else { return }
+        LangVoice.shared.hush()
         let entry = q[i]
         var next = q
         let apply = {
@@ -172,7 +184,8 @@ struct StudyView: View {
                              onMatch: { assign in
                                  let rated = store.gradeMatchFlags(systemId, ex.pairs ?? [], assign)
                                  done(rated.compactMap { r in r.rating.map { ExerciseResult(lang: r.lang, rating: $0) } })
-                             })
+                             },
+                             chorus: chorus)
                     .id(currentKey)
             }
             .padding(.horizontal, 16)
@@ -190,6 +203,7 @@ struct StudyView: View {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
                         Button("Skip this one", systemImage: "forward") {
+                            LangVoice.shared.hush()
                             i += 1
                             makeExercise()
                         }
