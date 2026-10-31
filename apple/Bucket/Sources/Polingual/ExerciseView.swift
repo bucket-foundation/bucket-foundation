@@ -66,6 +66,7 @@ struct ExerciseView: View {
     let onDone: ([ExerciseResult]) -> Void
     var flagNamed: (String) -> Bool = { _ in true }
     var onMatch: (([String: String]) -> Void)?
+    var chorus: [VoiceLine] = []
 
     @State private var selected: String?
     @State private var picked: String?
@@ -118,7 +119,7 @@ struct ExerciseView: View {
             #endif
             started = Date()
             if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang) }
-            if ex.kind == .intro { LangVoice.shared.speak(ex.answer, ex.answerLang) }
+            if ex.kind == .intro { LangVoice.shared.speakTogether(chorus) }
         }
     }
 
@@ -191,6 +192,7 @@ struct ExerciseView: View {
                 Button("Check") {
                     matchDone = true
                     haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
+                    LangVoice.shared.speakTogether(chorus)
                 }
                     .buttonStyle(D8Primary())
                     .disabled(assign.count < pairs.count)
