@@ -58,6 +58,28 @@ final class LangVoice: NSObject {
         return true
     }
 
+    func speakTogether(_ lines: [VoiceLine]) {
+        let voiced = lines.compactMap { l in voice(l.lang).map { (l.text, $0) } }
+        guard voiced.count > 1 else {
+            if let l = lines.first(where: { voice($0.lang) != nil }) ?? lines.first { speak(l.text, l.lang) }
+            return
+        }
+        activate()
+        hush()
+        for (text, v) in voiced {
+            let u = AVSpeechUtterance(string: text)
+            u.voice = v
+            u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
+            u.postUtteranceDelay = 0.3
+            synth.speak(u)
+        }
+    }
+
+    func hush() {
+        player?.pause()
+        synth.stopSpeaking(at: .immediate)
+    }
+
     func playClip(_ text: String, _ lang: String) -> Bool {
         guard let store, store.hasClip(lang, text) else { return false }
         activate()

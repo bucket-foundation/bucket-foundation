@@ -225,7 +225,6 @@ struct MatchGame: View {
         switch out {
         case .matched:
             haptic(true)
-            _ = LangVoice.shared.speak(w.form, w.lang)
         case .missed:
             haptic(false)
             flash = w.id
@@ -304,7 +303,6 @@ struct MemoryGame: View {
         hiding = nil
         let out = b.flip(t.id)
         board = b
-        if t.isForm && out != .ignored { _ = LangVoice.shared.speak(t.text, t.lang) }
         switch out {
         case .matched: haptic(true)
         case .missed:
@@ -387,7 +385,6 @@ struct FlagGame: View {
         var rng = SystemRandomNumberGenerator()
         let choices = langsAll.count >= 4 ? langsAll : Array(Set(langsAll + Lang.codes.filter { $0 != w.root }.shuffled().prefix(4 - langsAll.count)))
         round = FlagRound(word: w, langs: choices, using: &rng)
-        _ = LangVoice.shared.speak(w.form, w.lang)
     }
 
     func answer(_ l: String) {
