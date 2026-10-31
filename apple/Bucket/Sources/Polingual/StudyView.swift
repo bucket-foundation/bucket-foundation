@@ -127,38 +127,46 @@ struct StudyView: View {
         if queue.isEmpty {
             StateMessage(title: "Nothing due", detail: "You have met today's new words in every language of this set. Come back tomorrow.", retry: nil)
         } else if i >= queue.count || current == nil {
-            VStack(spacing: 16) {
-                Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
-                    .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
-                    .onAppear {
-                        haptic(true)
-                        Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
+            FitPage(center: true) {
+                let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))
+                columns {
+                    VStack(spacing: 16) {
+                        Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
+                            .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
+                            .onAppear {
+                                haptic(true)
+                                Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
+                            }
+                        Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
+                        Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
+                            .foregroundStyle(Palette.muted)
+                            .monospacedDigit()
                     }
-                Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
-                ReminderPrompt()
-                FeedbackLink()
-                Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
-                    .foregroundStyle(Palette.muted)
-                    .monospacedDigit()
-                ShareProgress(langs: system.targets, streak: Int(state.streak), learned: systemSummary(system, corpus, state, now: Date().timeIntervalSince1970 * 1000).started)
-                Button("See progress") {
-                    path.removeLast()
-                    path.append(LangRoute.system(system.id))
+                    .frame(maxWidth: .infinity)
+                    VStack(spacing: 16) {
+                        ReminderPrompt()
+                        FeedbackLink()
+                        ShareProgress(langs: system.targets, streak: Int(state.streak), learned: systemSummary(system, corpus, state, now: Date().timeIntervalSince1970 * 1000).started)
+                        Button("See progress") {
+                            path.removeLast()
+                            path.append(LangRoute.system(system.id))
+                        }
+                        .buttonStyle(D8Primary())
+                        Button("Another round") {
+                            let now = Date().timeIntervalSince1970 * 1000
+                            self.queue = WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
+                            i = 0
+                            graded = 0
+                            correct = 0
+                            xpStart = state.xp
+                            makeExercise()
+                        }
+                        .buttonStyle(D8Option(align: .center))
+                    }
+                    .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(D8Primary())
-                Button("Another round") {
-                    let now = Date().timeIntervalSince1970 * 1000
-                    self.queue = WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
-                    i = 0
-                    graded = 0
-                    correct = 0
-                    xpStart = state.xp
-                    makeExercise()
-                }
-                .buttonStyle(D8Option(align: .center))
+                .padding(vertical == .compact ? 12 : 24)
             }
-            .padding(24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .modifier(AskForReview(streak: Int(state.streak), graded: graded, correct: correct))
         } else if let ex = current {
             let maps = readingMaps(ex, corpus)
@@ -180,12 +188,7 @@ struct StudyView: View {
             .padding(.bottom, 12)
             .frame(maxWidth: 900, alignment: .top)
             .frame(maxWidth: .infinity)
-            ScrollView {
-                page.containerRelativeFrame(vertical == .compact ? .vertical : [], alignment: .top)
-            }
-            .scrollDisabled(vertical == .compact)
-            .scrollBounceBehavior(.basedOnSize)
-            .scrollDismissesKeyboard(.interactively)
+            FitPage { page }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {

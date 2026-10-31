@@ -163,43 +163,46 @@ struct GameScore: View {
 
 struct MatchGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.verticalSizeClass) private var vertical
     @State private var round: MatchRound?
     @State private var flash: String?
 
     var body: some View {
-        ScrollView {
-            if round == nil { GameWaiting() }
-            if let round {
-                if round.done {
-                    GameScore(text: round.misses == 0 ? String(localized: "All pairs, no misses.") : String(localized: "All pairs with \(round.misses) misses.")) { deal() }
-                } else {
-                    HStack(alignment: .top, spacing: 12) {
-                        VStack(spacing: 10) {
-                            ForEach(round.words) { w in
-                                Button { _ = self.round?.pickLeft(w.id) } label: { Text(w.gloss).frame(maxWidth: .infinity) }
-                                    .buttonStyle(D8Option(selected: round.picked == w.id, align: .center))
+        FitPage {
+            VStack(spacing: 0) {
+                if round == nil { GameWaiting() }
+                if let round {
+                    if round.done {
+                        GameScore(text: round.misses == 0 ? String(localized: "All pairs, no misses.") : String(localized: "All pairs with \(round.misses) misses.")) { deal() }
+                    } else {
+                        HStack(alignment: .top, spacing: 12) {
+                            VStack(spacing: vertical == .compact ? 4 : 10) {
+                                ForEach(round.words) { w in
+                                    Button { _ = self.round?.pickLeft(w.id) } label: { Text(w.gloss).frame(maxWidth: .infinity) }
+                                        .buttonStyle(D8Option(selected: round.picked == w.id, align: .center))
+                                        .opacity(round.solved.contains(w.id) ? 0.25 : 1)
+                                        .disabled(round.solved.contains(w.id))
+                                }
+                            }
+                            VStack(spacing: vertical == .compact ? 4 : 10) {
+                                ForEach(round.right) { w in
+                                    Button { tapRight(w) } label: {
+                                        HStack(spacing: 6) {
+                                            FlagTile(lang: w.lang, size: 20)
+                                            Text(w.form).lineLimit(1).minimumScaleFactor(0.6)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(D8Option(align: .center))
+                                    .overlay { if flash == w.id { RoundedRectangle(cornerRadius: 12).stroke(D8.vermilion, lineWidth: 3) } }
                                     .opacity(round.solved.contains(w.id) ? 0.25 : 1)
                                     .disabled(round.solved.contains(w.id))
-                            }
-                        }
-                        VStack(spacing: 10) {
-                            ForEach(round.right) { w in
-                                Button { tapRight(w) } label: {
-                                    HStack(spacing: 6) {
-                                        FlagTile(lang: w.lang, size: 20)
-                                        Text(w.form).lineLimit(1).minimumScaleFactor(0.6)
-                                    }
-                                    .frame(maxWidth: .infinity)
                                 }
-                                .buttonStyle(D8Option(align: .center))
-                                .overlay { if flash == w.id { RoundedRectangle(cornerRadius: 12).stroke(D8.vermilion, lineWidth: 3) } }
-                                .opacity(round.solved.contains(w.id) ? 0.25 : 1)
-                                .disabled(round.solved.contains(w.id))
                             }
                         }
+                        .padding()
+                        Text("Tap a meaning, then its word.").font(.footnote).foregroundStyle(Palette.muted)
                     }
-                    .padding()
-                    Text("Tap a meaning, then its word.").font(.footnote).foregroundStyle(Palette.muted)
                 }
             }
         }
@@ -240,24 +243,27 @@ struct MatchGame: View {
 
 struct MemoryGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.verticalSizeClass) private var vertical
     @State private var board: MemoryBoard?
     @State private var hiding: Task<Void, Never>?
 
     var body: some View {
-        ScrollView {
-            if board == nil { GameWaiting() }
-            if let board {
-                if board.done {
-                    GameScore(text: String(localized: "Every pair in \(board.turns) turns.")) { deal() }
-                } else {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 3), spacing: 10) {
-                        ForEach(board.tiles) { t in
-                            Button { flip(t) } label: { face(t, up: board.isFaceUp(t.id)) }
-                                .buttonStyle(.plain)
+        FitPage {
+            VStack(spacing: 0) {
+                if board == nil { GameWaiting() }
+                if let board {
+                    if board.done {
+                        GameScore(text: String(localized: "Every pair in \(board.turns) turns.")) { deal() }
+                    } else {
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: vertical == .compact ? 6 : 3), spacing: 10) {
+                            ForEach(board.tiles) { t in
+                                Button { flip(t) } label: { face(t, up: board.isFaceUp(t.id)) }
+                                    .buttonStyle(.plain)
+                            }
                         }
+                        .padding()
+                        Text("Turns: \(board.turns)").font(.footnote.monospacedDigit()).foregroundStyle(Palette.muted)
                     }
-                    .padding()
-                    Text("Turns: \(board.turns)").font(.footnote.monospacedDigit()).foregroundStyle(Palette.muted)
                 }
             }
         }
@@ -321,46 +327,59 @@ struct MemoryGame: View {
 
 struct FlagGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.verticalSizeClass) private var vertical
     @State private var round: FlagRound?
     @State private var answered: String?
     @State private var score = 0
     @State private var played = 0
 
     var body: some View {
-        VStack(spacing: 22) {
-            Text("\(score) of \(played)").font(.footnote.monospacedDigit()).foregroundStyle(Palette.muted)
-            if let round {
-                VStack(spacing: 6) {
-                    Text(round.word.form).font(D8.word(40)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
-                    if answered != nil { Text(round.word.gloss).font(.headline).foregroundStyle(Palette.muted) }
-                }
-                .frame(minHeight: 120)
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                    ForEach(round.choices, id: \.self) { l in
-                        Button { answer(l) } label: {
+        let sideways = vertical == .compact
+        let columns = sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 22))
+        FitPage {
+            Group {
+                if let round {
+                    columns {
+                        VStack(spacing: sideways ? 12 : 22) {
+                            Text("\(score) of \(played)").font(.footnote.monospacedDigit()).foregroundStyle(Palette.muted)
                             VStack(spacing: 6) {
-                                FlagTile(lang: l, size: 64)
-                                Text(langName(l)).font(.footnote.weight(.semibold)).foregroundStyle(Palette.ink)
+                                Text(round.word.form).font(D8.word(40)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                                if answered != nil { Text(round.word.gloss).font(.headline).foregroundStyle(Palette.muted) }
                             }
-                            .padding(10)
-                            .frame(maxWidth: .infinity)
-                            .background(tint(l), in: .rect(cornerRadius: 14))
+                            .frame(minHeight: sideways ? nil : 120)
+                            if sideways, answered != nil {
+                                Button("Next") { deal() }.buttonStyle(D8Primary(compact: true))
+                            }
                         }
-                        .buttonStyle(.plain)
-                        .disabled(answered != nil)
+                        .frame(maxWidth: .infinity)
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: sideways ? 10 : 16) {
+                            ForEach(round.choices, id: \.self) { l in
+                                Button { answer(l) } label: {
+                                    VStack(spacing: 6) {
+                                        FlagTile(lang: l, size: sideways ? 56 : 64)
+                                        Text(langName(l)).font(.footnote.weight(.semibold)).foregroundStyle(Palette.ink)
+                                    }
+                                    .padding(sideways ? 6 : 10)
+                                    .frame(maxWidth: .infinity)
+                                    .background(tint(l), in: .rect(cornerRadius: 14))
+                                }
+                                .buttonStyle(.plain)
+                                .disabled(answered != nil)
+                            }
+                        }
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity)
+                        if !sideways, answered != nil {
+                            Button("Next") { deal() }.buttonStyle(D8Primary(compact: true))
+                        }
                     }
+                } else {
+                    Text("Start a language set in Learn to play.").foregroundStyle(Palette.muted)
                 }
-                .padding(.horizontal)
-                if answered != nil {
-                    Button("Next") { deal() }.buttonStyle(D8Primary(compact: true))
-                }
-            } else {
-                Text("Start a language set in Learn to play.").foregroundStyle(Palette.muted)
             }
-            Spacer()
+            .padding(.vertical, sideways ? 8 : 20)
+            .frame(maxWidth: .infinity)
         }
-        .padding(.top, 20)
-        .frame(maxWidth: .infinity)
         .paper()
         .navigationTitle("Flags")
         .inlineTitle()

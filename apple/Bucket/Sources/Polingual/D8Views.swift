@@ -18,10 +18,11 @@ struct FlagTile: View {
 struct CardHeader: View {
     let lang: String?
     let text: String
+    var flagSize: CGFloat = 44
 
     var body: some View {
         HStack(spacing: 10) {
-            if let lang { FlagTile(lang: lang) }
+            if let lang { FlagTile(lang: lang, size: flagSize) }
             Text(text).font(.subheadline).foregroundStyle(Palette.muted)
         }
     }

@@ -7,8 +7,8 @@ struct ExerciseResult {
 }
 
 extension View {
-    func exerciseCard() -> some View {
-        padding(18)
+    func exerciseCard(tight: Bool = false) -> some View {
+        padding(tight ? 12 : 18)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Palette.card, in: .rect(cornerRadius: 22))
             .overlay(RoundedRectangle(cornerRadius: 22).stroke(Palette.rule))
@@ -81,6 +81,7 @@ struct ExerciseView: View {
     @FocusState private var focused: Bool
     @Environment(\.verticalSizeClass) private var vertical
     var sideways: Bool { vertical == .compact }
+    var columns: AnyLayout { sideways ? AnyLayout(HStackLayout(alignment: .top, spacing: 20)) : AnyLayout(VStackLayout(alignment: .leading, spacing: 14)) }
 
     var accepted: [String] { ex.accept ?? [ex.answer] }
     var answered: Bool { ex.kind == .intro || picked != nil || verdict != nil || matchDone }
@@ -100,8 +101,8 @@ struct ExerciseView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText)
+        VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
+            CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 26 : 44)
             switch ex.kind {
             case .intro: intro
             case .match: match
@@ -109,7 +110,7 @@ struct ExerciseView: View {
             default: standard
             }
         }
-        .exerciseCard()
+        .exerciseCard(tight: sideways)
         .wordTaps(reveal: answered)
         .onAppear {
             #if DEBUG
@@ -125,12 +126,14 @@ struct ExerciseView: View {
     }
 
     var intro: some View {
-        VStack(spacing: 12) {
-            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
-            PhraseWords(text: ex.answer, lang: ex.answerLang)
-            Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline).frame(maxWidth: .infinity)
-            Notes(ex: ex, showNote: true, readings: readings)
-            Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
+        columns {
+            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: sideways ? 170 : 190)
+            VStack(spacing: 12) {
+                PhraseWords(text: ex.answer, lang: ex.answerLang)
+                Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline).frame(maxWidth: .infinity)
+                Notes(ex: ex, showNote: true, readings: readings)
+                Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
+            }
         }
     }
 
@@ -138,7 +141,7 @@ struct ExerciseView: View {
         let pairs = ex.pairs ?? []
         let langs = pairs.map(\.lang)
         let placed = Set(assign.keys)
-        return VStack(alignment: .leading, spacing: 14) {
+        return columns {
             HStack(alignment: .top, spacing: 10) {
                 ForEach(langs, id: \.self) { l in
                     let owner = assign.first { $0.value == l }?.key
@@ -179,24 +182,26 @@ struct ExerciseView: View {
                     .accessibilityHint(matchDone ? String(localized: "Plays the word") : "")
                 }
             }
-            if matchDone {
-                Notes(ex: ex, showNote: false, readings: readings)
-                Button("Continue") {
-                    if let onMatch { onMatch(assign) } else { onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) }) }
-                }
-                .buttonStyle(D8Primary())
-            } else {
-                VStack(spacing: 10) {
-                    ForEach(pairs.filter { !placed.contains($0.lang) }, id: \.lang) { p in
-                        OptionButton(text: p.word, lang: p.lang, reading: nil, selected: holding == p.lang) { holding = p.lang; tap() }
+            VStack(alignment: .leading, spacing: 14) {
+                if matchDone {
+                    Notes(ex: ex, showNote: false, readings: readings)
+                    Button("Continue") {
+                        if let onMatch { onMatch(assign) } else { onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) }) }
                     }
-                }
-                Button("Check") {
-                    matchDone = true
-                    haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
-                }
                     .buttonStyle(D8Primary())
-                    .disabled(assign.count < pairs.count)
+                } else {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: sideways ? 2 : 1), spacing: 10) {
+                        ForEach(pairs.filter { !placed.contains($0.lang) }, id: \.lang) { p in
+                            OptionButton(text: p.word, lang: p.lang, reading: nil, selected: holding == p.lang) { holding = p.lang; tap() }
+                        }
+                    }
+                    Button("Check") {
+                        matchDone = true
+                        haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
+                    }
+                        .buttonStyle(D8Primary())
+                        .disabled(assign.count < pairs.count)
+                }
             }
         }
     }
@@ -204,35 +209,39 @@ struct ExerciseView: View {
     var wordbank: some View {
         let tokens = ex.tokens ?? []
         let answerText = joinTokens(built.map { tokens[$0] }, ex.lang)
-        return VStack(alignment: .leading, spacing: 14) {
-            SentencePrompt(text: ex.prompt, lang: ex.promptLang)
-            FlowLayout(spacing: 8) {
-                ForEach(Array(built.enumerated()), id: \.offset) { k, ti in
-                    Button(tokens[ti]) { built.remove(at: k) }
-                        .buttonStyle(D8Option())
-                        .fixedSize()
-                        .disabled(verdict != nil)
-                }
-            }
-            .frame(maxWidth: .infinity, minHeight: 54, alignment: .topLeading)
-            .overlay(alignment: .bottom) { Rectangle().fill(Palette.rule).frame(height: 2) }
-            .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
-            if verdict == nil {
+        return columns {
+            VStack(alignment: .leading, spacing: 14) {
+                SentencePrompt(text: ex.prompt, lang: ex.promptLang)
                 FlowLayout(spacing: 8) {
-                    ForEach(Array(tokens.enumerated()), id: \.offset) { ti, t in
-                        Button(t) { built.append(ti) }
+                    ForEach(Array(built.enumerated()), id: \.offset) { k, ti in
+                        Button(tokens[ti]) { built.remove(at: k) }
                             .buttonStyle(D8Option())
                             .fixedSize()
-                            .disabled(built.contains(ti))
-                            .opacity(built.contains(ti) ? 0.25 : 1)
+                            .disabled(verdict != nil)
                     }
                 }
+                .frame(maxWidth: .infinity, minHeight: 54, alignment: .topLeading)
+                .overlay(alignment: .bottom) { Rectangle().fill(Palette.rule).frame(height: 2) }
                 .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
-                Button("Check") { verdict = judgeTyped(answerText, accepted, ex.lang) }
-                    .buttonStyle(D8Primary())
-                    .disabled(built.isEmpty)
-            } else if let verdict {
-                Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: answerText, reading: r(ex.answer, ex.answerLang)) { finish(verdict != .wrong, verdict) }
+            }
+            VStack(alignment: .leading, spacing: 14) {
+                if verdict == nil {
+                    FlowLayout(spacing: 8) {
+                        ForEach(Array(tokens.enumerated()), id: \.offset) { ti, t in
+                            Button(t) { built.append(ti) }
+                                .buttonStyle(D8Option())
+                                .fixedSize()
+                                .disabled(built.contains(ti))
+                                .opacity(built.contains(ti) ? 0.25 : 1)
+                        }
+                    }
+                    .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
+                    Button("Check") { verdict = judgeTyped(answerText, accepted, ex.lang) }
+                        .buttonStyle(D8Primary())
+                        .disabled(built.isEmpty)
+                } else if let verdict {
+                    Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: answerText, reading: r(ex.answer, ex.answerLang)) { finish(verdict != .wrong, verdict) }
+                }
             }
         }
     }
@@ -329,8 +338,7 @@ struct ExerciseView: View {
                 Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: ex.kind == .speak ? heard : typed, reading: r(ex.lang == ex.answerLang ? ex.answer : ex.prompt, ex.lang)) { finish(verdict != .wrong, verdict) }
             }
         }
-        let layout = sideways ? AnyLayout(HStackLayout(alignment: .top, spacing: 20)) : AnyLayout(VStackLayout(alignment: .leading, spacing: 14))
-        return layout {
+        return columns {
             prompt.frame(maxWidth: sideways ? .infinity : nil)
             answers.frame(maxWidth: sideways ? .infinity : nil)
         }
@@ -437,23 +445,22 @@ struct FamilyLine: View {
         if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
                 Text("SAME ROOT").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        ForEach(f, id: \.self) { w in
-                            HStack(spacing: 6) {
-                                FlagTile(lang: w.lang, size: 20)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
-                                    if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(D8.ipa) }
-                                }
-                                PlayButton(text: w.word, lang: w.lang)
+                FlowLayout(spacing: 8) {
+                    ForEach(f, id: \.self) { w in
+                        HStack(spacing: 6) {
+                            FlagTile(lang: w.lang, size: 20)
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+                                if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(D8.ipa) }
                             }
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(.white, in: .rect(cornerRadius: 10))
-                            .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline, lineWidth: 1.5) }
-                            .accessibilityElement(children: .combine)
+                            PlayButton(text: w.word, lang: w.lang)
                         }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(.white, in: .rect(cornerRadius: 10))
+                        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline, lineWidth: 1.5) }
+                        .accessibilityElement(children: .combine)
+                        .fixedSize()
                     }
                 }
             }
