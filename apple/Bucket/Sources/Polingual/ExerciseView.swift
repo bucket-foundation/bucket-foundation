@@ -279,8 +279,8 @@ struct ExerciseView: View {
         let answers = VStack(alignment: .leading, spacing: 14) {
             if mc, let options = ex.options {
                 if let picked {
-                    LazyVGrid(columns: sideways ? [GridItem(.flexible(), spacing: 8), GridItem(.flexible())] : [GridItem(.flexible())], spacing: 8) {
-                        ForEach(options, id: \.self) { o in
+                    VStack(spacing: 8) {
+                        ForEach(sideways ? options.filter { accepted.contains($0) || $0 == picked } : options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil,
                                       say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil)

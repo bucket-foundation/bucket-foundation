@@ -184,7 +184,7 @@ struct AnswerRow: View {
             VStack(alignment: .leading, spacing: 1) {
                 HStack(spacing: 6) {
                     Text(tapText(word, lang)).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
-                        .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2)
+                        .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
                     if canSay {
                         Button { LangVoice.shared.speak(spoken, lang) } label: {
                             Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted).frame(minWidth: 32, minHeight: 32)

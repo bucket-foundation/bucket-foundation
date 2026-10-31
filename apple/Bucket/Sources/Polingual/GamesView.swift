@@ -343,10 +343,10 @@ struct FlagGame: View {
                         VStack(spacing: sideways ? 12 : 22) {
                             Text("\(score) of \(played)").font(.footnote.monospacedDigit()).foregroundStyle(Palette.muted)
                             VStack(spacing: 6) {
-                                Text(round.word.form).font(D8.word(40)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                                Text(round.word.form).font(D8.word(40)).foregroundStyle(Palette.ink).multilineTextAlignment(.center).lineLimit(2).minimumScaleFactor(0.5)
                                 if answered != nil { Text(round.word.gloss).font(.headline).foregroundStyle(Palette.muted) }
                             }
-                            .frame(minHeight: sideways ? nil : 120)
+                            .frame(maxWidth: sideways ? 280 : nil, minHeight: sideways ? nil : 120)
                             if sideways, answered != nil {
                                 Button("Next") { deal() }.buttonStyle(D8Primary(compact: true))
                             }
