@@ -102,12 +102,13 @@ struct ExerciseView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
-            CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 26 : 44)
+            if !compactTyping { CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 26 : 44) }
             switch ex.kind {
             case .intro: intro
             case .match: match
             case .wordbank: wordbank
-            default: standard
+            default:
+                if compactTyping { typingRow } else { standard }
             }
         }
         .exerciseCard(tight: sideways)
@@ -117,6 +118,11 @@ struct ExerciseView: View {
             if ProcessInfo.processInfo.arguments.contains("-pickWrong") {
                 picked = ex.options?.first { !accepted.contains($0) }
                 if ex.options == nil { verdict = .wrong; typed = "xyz" }
+                if ex.kind == .match, let pairs = ex.pairs {
+                    let langs = pairs.map(\.lang)
+                    assign = Dictionary(uniqueKeysWithValues: zip(langs, langs.dropFirst() + langs.prefix(1)))
+                    matchDone = true
+                }
             }
             #endif
             started = Date()
@@ -318,21 +324,8 @@ struct ExerciseView: View {
                 Button("Type instead") { heard = "" }.buttonStyle(PlainLink())
             }
             if typedKind && verdict == nil {
-                TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    .foregroundStyle(D8.ink)
-                    .padding(.horizontal, 16)
-                    .frame(minHeight: 52)
-                    .background(.white, in: .rect(cornerRadius: 12))
-                    .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.keyline, lineWidth: 2) }
-                    .autocorrectionDisabled()
-                    .langInput(ex.answerLang)
-                    .focused($focused)
-                    .onSubmit { if !typed.isEmpty { verdict = judgeAnswer(typed) } }
-                    .onAppear { focused = true }
-                Button("Check") { verdict = judgeAnswer(typed) }
-                    .buttonStyle(D8Primary())
-                    .disabled(typed.trimmingCharacters(in: .whitespaces).isEmpty)
+                answerField
+                checkTyped
             }
             if let verdict {
                 Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: ex.kind == .speak ? heard : typed, reading: r(ex.lang == ex.answerLang ? ex.answer : ex.prompt, ex.lang)) { finish(verdict != .wrong, verdict) }
@@ -341,6 +334,37 @@ struct ExerciseView: View {
         return columns {
             prompt.frame(maxWidth: sideways ? .infinity : nil)
             answers.frame(maxWidth: sideways ? .infinity : nil)
+        }
+    }
+
+    var compactTyping: Bool { sideways && typedKind && verdict == nil }
+
+    var answerField: some View {
+        TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
+            .font(.system(size: 18, weight: .semibold, design: .rounded))
+            .foregroundStyle(D8.ink)
+            .padding(.horizontal, 16)
+            .frame(minHeight: 52)
+            .background(.white, in: .rect(cornerRadius: 12))
+            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.keyline, lineWidth: 2) }
+            .autocorrectionDisabled()
+            .langInput(ex.answerLang)
+            .focused($focused)
+            .onSubmit { if !typed.isEmpty { verdict = judgeAnswer(typed) } }
+            .onAppear { focused = true }
+    }
+
+    var checkTyped: some View {
+        Button("Check") { verdict = judgeAnswer(typed) }
+            .buttonStyle(D8Primary())
+            .disabled(typed.trimmingCharacters(in: .whitespaces).isEmpty)
+    }
+
+    var typingRow: some View {
+        HStack(spacing: 12) {
+            TypingPrompt(ex: ex).frame(maxWidth: 220)
+            answerField
+            checkTyped.frame(width: 110)
         }
     }
 
@@ -507,6 +531,31 @@ struct AskWord: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
+    }
+}
+
+struct TypingPrompt: View {
+    let ex: Exercise
+
+    var body: some View {
+        switch ex.kind {
+        case .typeHeard, .spellHeard:
+            WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: 54, speakText: ex.prompt)
+        case .conjugate:
+            line(ex.prompt, ex.lang, "\(ex.person ?? "") ______")
+        case .speak:
+            line(ex.prompt, ex.promptLang, String(localized: "say it in \(langName(ex.lang))"))
+        default:
+            line(ex.prompt, ex.promptLang, String(localized: "in \(langName(ex.lang))"))
+        }
+    }
+
+    func line(_ word: String, _ lang: String, _ sub: String) -> some View {
+        VStack(spacing: 2) {
+            Text(tapText(word, lang)).font(.system(size: 22, weight: .bold, design: .rounded)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
+            Text(sub).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
