@@ -10,9 +10,21 @@ final class LangVoice: NSObject {
 
     private var player: AVPlayer?
     private var warmed = false
-    private lazy var voices = AVSpeechSynthesisVoice.speechVoices()
+    private var voices: [AVSpeechSynthesisVoice] = []
     private var picked: [String: AVSpeechSynthesisVoice?] = [:]
     weak var store: LangStore?
+
+    override private init() {
+        super.init()
+        NotificationCenter.default.addObserver(forName: AVSpeechSynthesizer.availableVoicesDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.forgetVoices() }
+        }
+    }
+
+    private func forgetVoices() {
+        voices = []
+        picked = [:]
+    }
 
     func activate() {
         #if os(iOS)
@@ -35,6 +47,8 @@ final class LangVoice: NSObject {
 
     func voice(_ lang: String) -> AVSpeechSynthesisVoice? {
         if let hit = picked[lang] { return hit }
+        if voices.isEmpty { voices = AVSpeechSynthesisVoice.speechVoices() }
+        guard !voices.isEmpty else { return nil }
         let v = LangAudio.pickVoice(voices.map(\.language), lang).flatMap { tag in voices.first { $0.language == tag } }
         picked[lang] = v
         return v
