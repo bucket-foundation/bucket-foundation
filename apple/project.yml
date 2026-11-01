@@ -283,6 +283,18 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.tests
         GENERATE_INFOPLIST_FILE: YES
+  PolingualUITests:
+    type: bundle.ui-testing
+    supportedDestinations: [iOS]
+    sources:
+      - path: Polingual/UITests
+    dependencies:
+      - target: Polingual
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Polingual
 schemes:
   Bucket:
     build:
@@ -302,3 +314,11 @@ schemes:
       config: Debug
       targets:
         - PolingualTests
+  PolingualUI:
+    build:
+      targets:
+        Polingual: all
+    test:
+      config: Debug
+      targets:
+        - PolingualUITests
