@@ -9,20 +9,20 @@ final class LangVoice: NSObject {
     private let synth = AVSpeechSynthesizer()
 
     private var player: AVPlayer?
-    private var active = false
     private var warmed = false
     private lazy var voices = AVSpeechSynthesisVoice.speechVoices()
     private var picked: [String: AVSpeechSynthesisVoice?] = [:]
     weak var store: LangStore?
 
     func activate() {
-        guard !active else { return }
         #if os(iOS)
+        guard !LangListener.shared.active else { return }
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+        if session.category != .playback || session.mode != .spokenAudio {
+            try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+        }
         try? session.setActive(true)
         #endif
-        active = true
     }
 
     func warm() {

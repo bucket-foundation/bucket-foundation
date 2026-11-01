@@ -7,8 +7,19 @@ struct SoundButtons: View {
     var size: CGFloat = 64
     @Binding var plays: Int
     @State private var playing = false
+    @State private var voiceless = false
 
     var body: some View {
+        VStack(spacing: 4) {
+            buttons
+            if voiceless {
+                Text("No \(langName(lang)) voice on this device")
+                    .font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+            }
+        }
+    }
+
+    var buttons: some View {
         HStack(spacing: 14) {
             Button { play(slow: false) } label: {
                 Image(systemName: "speaker.wave.3.fill")
@@ -34,7 +45,8 @@ struct SoundButtons: View {
     }
 
     func play(slow: Bool) {
-        guard LangVoice.shared.speak(text, lang, slow: slow) else { return }
+        voiceless = !LangVoice.shared.speak(text, lang, slow: slow)
+        guard !voiceless else { return }
         plays += 1
         playing = true
         let seconds = (0.5 + Double(text.count) * 0.12) * (slow ? 2 : 1)
