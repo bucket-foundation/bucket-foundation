@@ -92,9 +92,9 @@ extension View {
             switch route {
             case .home: LanguagesHome(path: path)
             case .system(let id): SystemView(path: path, systemId: id)
-            case .study(let id): StudyView(path: path, systemId: id)
-            case .place(let id, let lang): PlacementView(path: path, systemId: id, requested: lang)
-            case .alphabet(let id, let lang): AlphabetStudy(systemId: id, lang: lang)
+            case .study(let id): StudyView(path: path, systemId: id).fullHeightSession()
+            case .place(let id, let lang): PlacementView(path: path, systemId: id, requested: lang).fullHeightSession()
+            case .alphabet(let id, let lang): AlphabetStudy(systemId: id, lang: lang).fullHeightSession()
             case .reference(let lang): LanguageReference(lang: lang)
             }
         }

@@ -115,9 +115,9 @@ struct GamesView: View {
         .navigationTitle("Games")
         .navigationDestination(item: $open) { g in
             switch g {
-            case .match: MatchGame()
-            case .memory: MemoryGame()
-            case .flags: FlagGame()
+            case .match: MatchGame().fullHeightSession()
+            case .memory: MemoryGame().fullHeightSession()
+            case .flags: FlagGame().fullHeightSession()
             }
         }
         .task {

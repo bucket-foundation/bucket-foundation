@@ -26,3 +26,14 @@ struct FitPage<Content: View>: View {
         }
     }
 }
+
+extension View {
+    @ViewBuilder
+    func fullHeightSession() -> some View {
+        #if os(iOS)
+        toolbar(.hidden, for: .tabBar)
+        #else
+        self
+        #endif
+    }
+}
