@@ -141,8 +141,18 @@ final class LangListener {
         await withCheckedContinuation { c in SFSpeechRecognizer.requestAuthorization { c.resume(returning: $0 == .authorized) } }
     }
 
-    nonisolated private static func tap(_ input: AVAudioInputNode, into request: SFSpeechAudioBufferRecognitionRequest) {
-        input.installTap(onBus: 0, bufferSize: 1024, format: input.outputFormat(forBus: 0)) { buf, _ in request.append(buf) }
+    nonisolated private static func tap(_ input: AVAudioInputNode, format: AVAudioFormat, into request: SFSpeechAudioBufferRecognitionRequest) {
+        input.installTap(onBus: 0, bufferSize: 1024, format: format) { buf, _ in request.append(buf) }
+    }
+
+    nonisolated static func canTap(sampleRate: Double, channels: UInt32) -> Bool {
+        sampleRate > 0 && channels > 0
+    }
+
+    private func restorePlayback() {
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+        #endif
     }
 
     nonisolated private static func recognize(_ rec: SFSpeechRecognizer, _ request: SFSpeechAudioBufferRecognitionRequest, _ heard: HeardBox, _ finish: @escaping @Sendable ([String]) -> Void) -> SFSpeechRecognitionTask {
@@ -198,9 +208,18 @@ final class LangListener {
         #endif
         let input = engine.inputNode
         input.removeTap(onBus: 0)
-        Self.tap(input, into: request)
+        let format = input.outputFormat(forBus: 0)
+        guard Self.canTap(sampleRate: format.sampleRate, channels: format.channelCount) else {
+            restorePlayback()
+            return []
+        }
+        Self.tap(input, format: format, into: request)
         engine.prepare()
-        guard (try? engine.start()) != nil else { return [] }
+        guard (try? engine.start()) != nil else {
+            input.removeTap(onBus: 0)
+            restorePlayback()
+            return []
+        }
         let run = SpeechRun(request: request)
         current = run
         live = ""
@@ -220,9 +239,7 @@ final class LangListener {
         live = result.first ?? live
         engine.stop()
         input.removeTap(onBus: 0)
-        #if os(iOS)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
-        #endif
+        restorePlayback()
         return result
     }
 }

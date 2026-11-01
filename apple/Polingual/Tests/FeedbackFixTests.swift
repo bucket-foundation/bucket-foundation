@@ -25,4 +25,10 @@ struct FeedbackFixTests {
         #expect(quiet >= 4)
         #expect(LangListener.silence <= 0.7 && LangListener.maxListen == 6 && LangListener.maxSentence == 15)
     }
+
+    @Test func noMicrophoneFormatSkipsTheTap() {
+        #expect(LangListener.canTap(sampleRate: 48_000, channels: 1))
+        #expect(!LangListener.canTap(sampleRate: 0, channels: 1))
+        #expect(!LangListener.canTap(sampleRate: 48_000, channels: 0))
+    }
 }
