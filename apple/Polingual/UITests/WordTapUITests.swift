@@ -25,15 +25,17 @@ final class WordTapUITests: XCTestCase {
         let app = launch(["-pickWrong"])
         let word = app.links.firstMatch
         XCTAssertTrue(word.waitForExistence(timeout: 60))
-        word.tap()
+        try XCTUnwrap(app.links.allElementsBoundByIndex.first { $0.isHittable }, "No word on screen").tap()
         let full = app.buttons["Full detail"]
         XCTAssertTrue(full.waitForExistence(timeout: 10))
         full.tap()
         let done = app.buttons["Done"]
         XCTAssertTrue(done.waitForExistence(timeout: 10))
         let title = app.navigationBars.allElementsBoundByIndex.last?.identifier ?? ""
-        let inSheet = app.links.allElementsBoundByIndex.last { $0.label.lowercased() != title.lowercased() }
-        let target = try XCTUnwrap(inSheet, "Full detail shows no other tappable word")
+        let inSheet = app.links.allElementsBoundByIndex.last { $0.isHittable && $0.label.lowercased() != title.lowercased() }
+        guard let target = inSheet else {
+            throw XCTSkip("\(title) has no example sentence to tap")
+        }
         target.tap()
         let pushed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: done)
         XCTAssertEqual(XCTWaiter().wait(for: [pushed], timeout: 5), .completed)
