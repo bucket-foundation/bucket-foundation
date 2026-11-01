@@ -163,6 +163,14 @@ struct RootView: View {
         .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG
         .task {
+            #if os(iOS)
+            if Launch.value("-bucketOrientation") == "landscape",
+               let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+            }
+            #endif
+        }
+        .task {
             guard Launch.flag("-screenshotShare") else { return }
             try? await Task.sleep(for: .seconds(6))
             ScreenShare.shared.screenshotTaken()
