@@ -21,11 +21,6 @@ final class Library {
         return []
     }
 
-    var languageDecks: [DeckEntry] {
-        if case .ready(let d) = index { return d.filter(\.isLanguage) }
-        return []
-    }
-
     func loadIndex() async {
         if case .ready = index { return }
         index = .loading

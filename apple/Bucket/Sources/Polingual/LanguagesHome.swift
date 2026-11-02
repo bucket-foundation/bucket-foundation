@@ -2,7 +2,6 @@ import BucketKit
 import SwiftUI
 
 enum LangRoute: Hashable {
-    case home
     case system(String)
     case study(String)
     case place(String, String?)
@@ -62,14 +61,7 @@ struct Chip: View {
 
 struct LanguagesHome: View {
     @Environment(LangStore.self) private var store
-    @Environment(Gate.self) private var gate
     @Binding var path: NavigationPath
-    @State private var root = "en"
-    @State private var targets: [String] = []
-    @State private var removing: LangSystem?
-    @State private var justMade: String?
-
-    var err: SystemError? { validateSystem(root, targets, store.systems) }
 
     var body: some View {
         Group {
@@ -81,19 +73,19 @@ struct LanguagesHome: View {
                     Task { await store.load(force: true) }
                 }
             case .ready:
-                if let corpus = store.corpus { content(corpus) }
+                if let corpus = store.corpus {
+                    ScrollViewReader { proxy in
+                        List {
+                            LanguageSections(path: $path, corpus: corpus, proxy: proxy)
+                            LanguageFooter(corpus: corpus)
+                        }
+                    }
+                }
             }
         }
         .paper()
         .navigationTitle("Language systems")
         .task { await store.load() }
-        .confirmationDialog("Remove \(removing?.name ?? "")?", isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
-            Button("Remove", role: .destructive) {
-                if let s = removing { Task { await store.remove(s.id) } }
-            }
-        } message: {
-            Text("Progress stays saved and returns if you build the same system again.")
-        }
     }
 
     static let presets: [(name: String, targets: [String])] = Lang.presets + [
@@ -103,75 +95,122 @@ struct LanguagesHome: View {
         ("Classical", ["la", "grc", "sa"]),
         ("Mediterranean", ["es", "it", "el", "tr"]),
     ]
+}
 
-    func content(_ corpus: LangCorpus) -> some View {
-        ScrollViewReader { proxy in
-            List {
-                Section {
-                    Text("Learn several languages together.")
-                        .font(.headline)
-                        .foregroundStyle(Palette.muted)
-                        .listRowBackground(Color.clear)
-                }
-                if !store.systems.isEmpty {
-                    Section { StreakGoalCard(streak: Double(langStreak(store))) }
-                        .listRowBackground(Palette.card)
-                }
-                TodayStrip()
-                if !store.systems.isEmpty {
-                    Section { TranslateCard() }
-                        .listRowBackground(Palette.card)
-                }
-                ForEach(store.systems) { s in
-                    Section {
-                        systemCard(s, corpus)
-                    }
-                    .id(s.id)
-                    .listRowBackground(Palette.card)
-                }
-                Section {
-                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
-                        ForEach(Self.presets, id: \.name) { p in
-                            PresetCard(name: p.name, langs: p.targets.filter { $0 != root }) {
-                                create(p.targets.filter { $0 != root }, proxy)
-                            }
+struct LanguageFooter: View {
+    @Environment(LangStore.self) private var store
+    @Environment(Gate.self) private var gate
+    let corpus: LangCorpus
+
+    var body: some View {
+        Section {
+            if gate.guest && !store.systems.isEmpty {
+                Button("Save to your account") { gate.require { Task { await store.persistSystems() } } }
+            } else {
+                SaveNotice(state: store.saveState)
+            }
+            Text(corpus.attribution).font(.caption2).foregroundStyle(Palette.muted)
+        }
+        .listRowBackground(Color.clear)
+    }
+}
+
+struct LanguageSections: View {
+    @Environment(LangStore.self) private var store
+    @Environment(Gate.self) private var gate
+    @Binding var path: NavigationPath
+    let corpus: LangCorpus
+    let proxy: ScrollViewProxy
+    var railsOnceStarted = false
+    @State private var root = "en"
+    @State private var targets: [String] = []
+    @State private var removing: LangSystem?
+    @State private var justMade: String?
+
+    var err: SystemError? { validateSystem(root, targets, store.systems) }
+    var rails: Bool { railsOnceStarted && !store.systems.isEmpty }
+    var pickable: [String] { Lang.codes.filter { $0 != root } }
+
+    var body: some View {
+        if !rails {
+            Section {
+                Text("Learn several languages together.")
+                    .font(.headline)
+                    .foregroundStyle(Palette.muted)
+                    .listRowBackground(Color.clear)
+            }
+        }
+        if !store.systems.isEmpty {
+            Section { StreakGoalCard(streak: Double(langStreak(store))) }
+                .listRowBackground(Palette.card)
+        }
+        TodayStrip()
+        if !store.systems.isEmpty {
+            Section { TranslateCard() }
+                .listRowBackground(Palette.card)
+        }
+        ForEach(store.systems) { s in
+            Section {
+                systemCard(s, corpus)
+            }
+            .id(s.id)
+            .listRowBackground(Palette.card)
+        }
+        Section {
+            if rails {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: 10) {
+                        ForEach(LanguagesHome.presets, id: \.name) { p in
+                            presetCard(p).frame(width: 172)
                         }
                     }
                     .padding(.vertical, 6)
-                } header: {
-                    Eyebrow(text: "Start a set")
                 }
-                .listRowBackground(Color.clear)
-                Section {
-                    FlowLayout(spacing: 8) {
-                        ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                            Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
-                                if targets.contains(c) { targets.removeAll { $0 == c } } else { targets.append(c) }
-                            }
-                        }
-                    }
-                    Picker("I already speak", selection: $root) {
-                        ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
-                    }
-                    .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
-                    Button("Create my set") { create(targets, proxy) }
-                        .buttonStyle(D8Primary(compact: true))
-                        .disabled(err != nil || targets.isEmpty)
-                    if let err, !targets.isEmpty { Text(err.message).noticeStyle() }
-                } header: {
-                    Eyebrow(text: "Or build your own")
+            } else {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
+                    ForEach(LanguagesHome.presets, id: \.name) { presetCard($0) }
                 }
-                .listRowBackground(Palette.card)
-                Section {
-                    if gate.guest && !store.systems.isEmpty {
-                        Button("Save to your account") { gate.require { Task { await store.persistSystems() } } }
-                    } else {
-                        SaveNotice(state: store.saveState)
-                    }
-                    Text(corpus.attribution).font(.caption2).foregroundStyle(Palette.muted)
-                }
-                .listRowBackground(Color.clear)
+                .padding(.vertical, 6)
             }
+        } header: {
+            Eyebrow(text: "Start a set")
+        }
+        .listRowBackground(Color.clear)
+        Section {
+            if rails {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    chips.frame(width: CGFloat(pickable.count) * 48)
+                }
+            } else {
+                chips
+            }
+            Picker("I already speak", selection: $root) {
+                ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
+            }
+            .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
+            Button("Create my set") { create(targets, proxy) }
+                .buttonStyle(D8Primary(compact: true))
+                .disabled(err != nil || targets.isEmpty)
+            if let err, !targets.isEmpty { Text(err.message).noticeStyle() }
+        } header: {
+            Eyebrow(text: "Or build your own")
+        }
+        .listRowBackground(Palette.card)
+    }
+
+    var chips: some View {
+        FlowLayout(spacing: 8) {
+            ForEach(pickable, id: \.self) { c in
+                Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
+                    if targets.contains(c) { targets.removeAll { $0 == c } } else { targets.append(c) }
+                }
+            }
+        }
+    }
+
+    func presetCard(_ p: (name: String, targets: [String])) -> some View {
+        PresetCard(name: p.name, langs: p.targets.filter { $0 != root }) {
+            create(p.targets.filter { $0 != root }, proxy)
         }
     }
 
@@ -211,6 +250,11 @@ struct LanguagesHome: View {
             }
         }
         .padding(.vertical, 6)
+        .confirmationDialog("Remove \(s.name)?", isPresented: Binding(get: { removing?.id == s.id }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
+            Button("Remove", role: .destructive) { Task { await store.remove(s.id) } }
+        } message: {
+            Text("Progress stays saved and returns if you build the same system again.")
+        }
     }
 
     func create(_ picked: [String], _ proxy: ScrollViewProxy) {
