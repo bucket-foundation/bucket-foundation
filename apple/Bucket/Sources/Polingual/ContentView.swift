@@ -319,6 +319,10 @@ struct ReadView: View {
             HStack(spacing: 8) {
                 FlagTile(lang: l, size: 26)
                 Text(texts[l]?.title ?? titles[l] ?? langName(l)).font(.serif(.title3, weight: .semibold))
+                if let s = texts[l] {
+                    Spacer(minLength: 0)
+                    ShareObjectButton(.content(ShareMoment(title: s.title, source: String(localized: "\(langName(l)) Wikipedia"), branch: topic.branch, lang: l, quote: s.extract)))
+                }
             }
             if let s = texts[l] {
                 Text(tapText(s.extract, l))
@@ -380,6 +384,7 @@ struct ListenList: View {
                     Text(all.isEmpty ? String(localized: "No stations found.") : String(localized: "No stations in this branch.")).foregroundStyle(Palette.muted)
                 }
                 ForEach(shown) { s in
+                    HStack(spacing: 8) {
                     Button { radio.toggle(s) } label: {
                         HStack(spacing: 12) {
                             Image(systemName: radio.playing == s.id ? "stop.circle.fill" : "play.circle.fill")
@@ -392,9 +397,14 @@ struct ListenList: View {
                                     .foregroundStyle(radio.failedId == s.id ? D8.vermilion : Palette.muted)
                                 ContentTags(langs: [l], branch: s.branch)
                             }
+                            Spacer(minLength: 0)
                         }
+                        .contentShape(.rect)
                     }
+                    .buttonStyle(.plain)
                     .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
+                    ShareObjectButton(.content(ShareMoment(title: s.name, source: s.country, branch: s.branch, lang: l)))
+                    }
                     .contextMenu {
                         Button("Report station", systemImage: "flag", role: .destructive) { report(s) }
                     }
@@ -431,13 +441,17 @@ struct WatchList: View {
             Section {
                 ForEach(langs, id: \.self) { l in
                     let title = store.titles[t.title]?[l]
-                    Link(destination: ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)")) {
-                        HStack(spacing: 10) {
-                            FlagTile(lang: l, size: 24)
-                            Text(title ?? t.title).foregroundStyle(Palette.ink)
-                            Spacer()
-                            Image(systemName: "play.rectangle.fill").foregroundStyle(D8.vermilion)
+                    HStack(spacing: 10) {
+                        Link(destination: ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)")) {
+                            HStack(spacing: 10) {
+                                FlagTile(lang: l, size: 24)
+                                Text(title ?? t.title).foregroundStyle(Palette.ink)
+                                Spacer()
+                                Image(systemName: "play.rectangle.fill").foregroundStyle(D8.vermilion)
+                            }
                         }
+                        .buttonStyle(.borderless)
+                        ShareObjectButton(.content(ShareMoment(title: title ?? t.title, source: branchTitle(t.branch), branch: t.branch, lang: l)))
                     }
                 }
             } header: {

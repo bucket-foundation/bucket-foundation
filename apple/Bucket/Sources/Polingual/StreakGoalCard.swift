@@ -2,10 +2,21 @@ import BucketKit
 import SwiftUI
 
 struct StreakGoalCard: View {
+    @Environment(LangStore.self) private var store: LangStore?
     let streak: Double
 
     var body: some View {
         let g = StreakGoal(streak: streak)
+        HStack(spacing: 12) {
+            summary(g).accessibilityElement(children: .combine)
+            if g.day > 0 {
+                ShareObjectButton(.streak(days: g.day, langs: store?.gameLangs ?? [], root: store?.systems.first?.root ?? "en"))
+            }
+        }
+        .padding(.vertical, 4)
+    }
+
+    func summary(_ g: StreakGoal) -> some View {
         HStack(spacing: 12) {
             Image(systemName: "flame.fill")
                 .font(.system(size: 30))
@@ -16,8 +27,6 @@ struct StreakGoalCard: View {
                 Text(detail(g)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
             }
         }
-        .padding(.vertical, 4)
-        .accessibilityElement(children: .combine)
     }
 
     func title(_ g: StreakGoal) -> String {

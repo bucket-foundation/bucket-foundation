@@ -46,7 +46,6 @@ struct WordTile: View {
     var glyph = false
 
     var body: some View {
-        let inset = size * 0.06
         let say = speakText ?? word ?? ""
         let canSay = LangVoice.shared.canSpeak(say, lang)
         Button {
@@ -54,44 +53,59 @@ struct WordTile: View {
             if hosted, let word, let url = WordTaps.tileLink(word, lang: lang) { open(url); return }
             if canSay { LangVoice.shared.speak(say, lang) }
         } label: {
-            ZStack {
-                FlagFace(flag: D8Flag.of(lang), emblem: false)
-                RoundedRectangle(cornerRadius: 6).fill(D8.panel).padding(inset)
-                VStack(spacing: 4) {
-                    Text(langName(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Spacer(minLength: 0)
-                    if let word {
-                        let phrase = word.contains(" ")
-                        let layout = phrase ? AnyLayout(VStackLayout(spacing: 4)) : AnyLayout(HStackLayout(spacing: 6))
-                        layout {
-                            Text(word)
-                                .font(D8.word(size * (glyph ? 0.42 : D8Fit.long(word) ? 0.15 : 0.21)))
-                                .lineLimit(phrase ? 3 : 1)
-                                .multilineTextAlignment(.center)
-                                .minimumScaleFactor(phrase ? 0.75 : 0.4)
-                                .fixedSize(horizontal: false, vertical: phrase)
-                                .foregroundStyle(D8.ink)
-                            if canSay && !glyph { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
-                        }
-                        .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-                    } else {
-                        Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
-                    }
-                    Spacer(minLength: 0)
-                    Text(word == nil ? " " : readingText(reading) ?? " ").font(.system(size: size * 0.075)).foregroundStyle(D8.ipa).lineLimit(word?.contains(" ") == true ? 2 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, inset * 1.7)
-                .padding(.vertical, inset * 1.5)
-                Shine()
-            }
-            .frame(width: size, height: size)
-            .modifier(Glaze(radius: 14, lip: 6))
+            TileFace(word: word, lang: lang, reading: readingText(reading), size: size, speaker: canSay, glyph: glyph)
+                .frame(width: size, height: size)
+                .modifier(Glaze(radius: 14, lip: 6))
         }
         .buttonStyle(TilePress())
         .frame(maxWidth: .infinity)
         .accessibilityLabel([langName(lang), word, readingText(reading).map { "IPA \($0)" }].compactMap { $0 }.joined(separator: ", "))
         .accessibilityHint(canSay ? "Plays the word" : "")
+        .shareMenu(word.map { .tile(form: ShareForm(lang: lang, form: $0), gloss: $0, reading: readingText(reading)) })
+    }
+}
+
+struct TileFace: View {
+    let word: String?
+    let lang: String
+    let reading: String?
+    let size: CGFloat
+    var speaker = false
+    var glyph = false
+
+    var body: some View {
+        let inset = size * 0.06
+        ZStack {
+            FlagFace(flag: D8Flag.of(lang), emblem: false)
+            RoundedRectangle(cornerRadius: max(6, size * 0.03)).fill(D8.panel).padding(inset)
+            VStack(spacing: 4) {
+                Text(langName(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Spacer(minLength: 0)
+                if let word {
+                    let phrase = word.contains(" ")
+                    let layout = phrase ? AnyLayout(VStackLayout(spacing: 4)) : AnyLayout(HStackLayout(spacing: 6))
+                    layout {
+                        Text(word)
+                            .font(D8.word(size * (glyph ? 0.42 : D8Fit.long(word) ? 0.15 : 0.21)))
+                            .lineLimit(phrase ? 3 : 1)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(phrase ? 0.75 : 0.4)
+                            .fixedSize(horizontal: false, vertical: phrase)
+                            .foregroundStyle(D8.ink)
+                        if speaker && !glyph { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
+                    }
+                    .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
+                } else {
+                    Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
+                }
+                Spacer(minLength: 0)
+                Text(word == nil ? " " : reading ?? " ").font(.system(size: size * 0.075)).foregroundStyle(D8.ipa).lineLimit(word?.contains(" ") == true ? 2 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
+            }
+            .padding(.horizontal, inset * 1.7)
+            .padding(.vertical, inset * 1.5)
+            Shine()
+        }
     }
 }
 

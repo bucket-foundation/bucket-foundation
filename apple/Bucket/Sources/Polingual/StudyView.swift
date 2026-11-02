@@ -173,7 +173,7 @@ struct StudyView: View {
                     VStack(spacing: 16) {
                         ReminderPrompt()
                         FeedbackLink()
-                        ShareProgress(langs: system.targets, streak: Int(state.streak), learned: systemSummary(system, corpus, state, now: Date().timeIntervalSince1970 * 1000).started)
+                        ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
                         Button("See progress") {
                             path.removeLast()
                             path.append(LangRoute.system(system.id))
@@ -242,6 +242,12 @@ struct StudyView: View {
                 }
             }
         }
+    }
+
+    func sessionShare(_ system: LangSystem, _ corpus: LangCorpus, _ streak: Int) -> ShareObject {
+        if graded > 0 { return .score(ShareScore(source: system.name, right: correct, total: graded, langs: system.targets, root: system.root, streak: streak)) }
+        let learned = systemSummary(system, corpus, store.state(systemId), now: Date().timeIntervalSince1970 * 1000).started
+        return .system(name: system.name, root: system.root, targets: system.targets, streak: streak, learned: learned)
     }
 
     func readingMaps(_ ex: Exercise, _ corpus: LangCorpus) -> [String: [String: Reading]] {

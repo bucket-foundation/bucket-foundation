@@ -6,7 +6,7 @@ export const CLIP_BUNDLE = "foundation.bucket.app.Clip";
 export const APP_STORE_URL = `https://apps.apple.com/app/id${BUCKET_APP_ID}`;
 
 export type Params = Record<string, string | string[] | undefined>;
-export type ShareKind = "w" | "l" | "d" | "a" | "g" | "";
+export type ShareKind = "w" | "l" | "d" | "a" | "g" | "x" | "c" | "";
 
 export interface ShareForm {
   lang: string;
@@ -24,7 +24,7 @@ export interface ShareView {
   code: string;
 }
 
-const KEYS = ["id", "g", "f", "l", "r", "s", "d", "t", "b", "q", "c", "n", "k"] as const;
+const KEYS = ["id", "g", "f", "l", "r", "s", "d", "t", "b", "q", "c", "n", "k", "p", "m", "at"] as const;
 const CODE_RE = /^[0-9A-HJKMNP-TV-Z]{10}$/;
 
 export function one(params: Params, key: string, max = 200): string {
@@ -34,7 +34,7 @@ export function one(params: Params, key: string, max = 200): string {
 }
 
 export function shareKind(raw: string | undefined): ShareKind {
-  return raw === "w" || raw === "l" || raw === "d" || raw === "a" || raw === "g" ? raw : "";
+  return raw === "w" || raw === "l" || raw === "d" || raw === "a" || raw === "g" || raw === "x" || raw === "c" ? raw : "";
 }
 
 export function langName(code: string): string {
@@ -68,6 +68,16 @@ function joinNames(langs: string[]): string {
   return langs.map(langName).join(", ");
 }
 
+function count(params: Params, key: string, max: number): number {
+  return Math.max(0, Math.min(max, parseInt(one(params, key, 6), 10) || 0));
+}
+
+export function clockLabel(seconds: number): string {
+  const tail = String(seconds % 60).padStart(2, "0");
+  if (seconds < 3600) return `${Math.floor(seconds / 60)}:${tail}`;
+  return `${Math.floor(seconds / 3600)}:${String(Math.floor(seconds / 60) % 60).padStart(2, "0")}:${tail}`;
+}
+
 export function shareView(kind: ShareKind, params: Params): ShareView {
   const base: ShareView = {
     kind,
@@ -85,7 +95,7 @@ export function shareView(kind: ShareKind, params: Params): ShareView {
     if (!gloss || forms.length === 0) return base;
     return {
       ...base,
-      eyebrow: `One word in ${forms.length} languages`,
+      eyebrow: forms.length === 1 ? `A word in ${langName(forms[0].lang)}` : `One word in ${forms.length} languages`,
       title: gloss,
       description: forms.map((f) => `${langName(f.lang)}: ${f.form}`).join(" · "),
       forms,
@@ -94,11 +104,11 @@ export function shareView(kind: ShareKind, params: Params): ShareView {
   if (kind === "l") {
     const langs = parseLangs(one(params, "l", 80));
     if (langs.length === 0) return base;
-    const streak = Math.max(0, Math.min(10000, parseInt(one(params, "s", 6), 10) || 0));
+    const streak = count(params, "s", 10000);
     return {
       ...base,
-      eyebrow: streak > 1 ? `${streak} day streak` : "Languages together",
-      title: `Learning ${joinNames(langs)} together`,
+      eyebrow: streak > 1 ? `${streak} day streak` : langs.length === 1 ? "A language on Bucket" : "Languages together",
+      title: langs.length === 1 ? `Learning ${langName(langs[0])}` : `Learning ${joinNames(langs)} together`,
       description: `Learn ${joinNames(langs)} from one root language with flag tiles, cognates and daily review on Bucket.`,
       langs,
       streak,
@@ -114,6 +124,34 @@ export function shareView(kind: ShareKind, params: Params): ShareView {
     if (!t) return base;
     const q = one(params, "q", 160);
     return { ...base, eyebrow: one(params, "b", 60) || "Bucket lesson", title: t, description: q || `Learn ${t} on Bucket.` };
+  }
+  if (kind === "x") {
+    const source = one(params, "t", 60);
+    const right = count(params, "p", 100000);
+    const total = count(params, "m", 100000);
+    if (!source || total === 0) return base;
+    const langs = parseLangs(one(params, "l", 80));
+    const streak = count(params, "s", 10000);
+    return {
+      ...base,
+      eyebrow: `${source} score`,
+      title: `${right} of ${total} right`,
+      description: langs.length > 0 ? `Practicing ${joinNames(langs)} on Bucket. Try to beat it.` : "Studying on Bucket. Try to beat it.",
+      langs,
+      streak,
+    };
+  }
+  if (kind === "c") {
+    const t = one(params, "t", 80);
+    if (!t) return base;
+    const at = one(params, "at", 7);
+    const source = one(params, "b", 60) || "Bucket";
+    return {
+      ...base,
+      eyebrow: at ? `${source}, play from ${clockLabel(count(params, "at", 1000000))}` : source,
+      title: t,
+      description: one(params, "q", 160) || `Read, listen and watch in the languages you study on Bucket.`,
+    };
   }
   if (kind === "g") {
     const code = one(params, "c", 10).toUpperCase();

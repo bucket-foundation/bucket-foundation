@@ -50,6 +50,12 @@ struct LanguageReference: View {
         .navigationTitle(langName(lang))
         .inlineTitle()
         .searchable(text: $query, prompt: Text("Search words"))
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                let root = store.systems.first { $0.targets.contains(lang) }?.root ?? "en"
+                ShareObjectButton(.language(lang, root: root), .flag(lang, root: root))
+            }
+        }
         .navigationDestination(for: WordDetail.self) { WordFactsView(detail: $0) }
         .task {
             await store.load()
@@ -205,6 +211,15 @@ struct WordFactsView: View {
         .paper()
         .navigationTitle(detail.word)
         .inlineTitle()
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                let relatives = LangReference.facts(detail, corpus: store?.corpus, others: store?.gameLangs ?? []).relatives
+                let gloss = detail.gloss ?? detail.word
+                let own = ShareForm(lang: detail.lang, form: detail.word)
+                ShareObjectButton(.word(id: detail.itemId ?? detail.word, gloss: gloss, forms: [own] + relatives.map { ShareForm(lang: $0.lang, form: $0.word) }),
+                                  .tile(form: own, gloss: gloss, reading: readingText(detail.reading)))
+            }
+        }
         .environment(\.openURL, OpenURLAction { url in
             guard let p = WordTaps.parse(url) else { return .systemAction }
             if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
