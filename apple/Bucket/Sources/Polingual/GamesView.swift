@@ -119,10 +119,13 @@ struct GamesView: View {
             } else {
                 Section {
                     ForEach(GameKind.allCases) { g in
+                        HStack {
                         Button { open = g } label: {
                             TileRow(symbol: g.symbol, title: g.title, detail: g.detail)
                         }
                         .buttonStyle(.plain)
+                        AddToToday(item: .game(g), look: .icon)
+                        }
                     }
                 } footer: {
                     Text("\(langs.gameWords.count) words from your sets. Games do not change your reviews.")
