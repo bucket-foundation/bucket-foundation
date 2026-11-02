@@ -65,12 +65,12 @@ struct WordCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 10) {
                     FlagTile(lang: detail.lang, size: 30)
-                    Text(detail.word).font(D8.word(26)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
+                    Text(detail.word).font(D8.word(26)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.5)
                     Spacer(minLength: 0)
                     PlayButton(text: detail.word, lang: detail.lang)
                 }
                 .environment(\.layoutDirection, Lang.isRTL(detail.lang) ? .rightToLeft : .leftToRight)
-                if let r = readingText(detail.reading) { Text(r).font(.subheadline).foregroundStyle(D8.ipa) }
+                if let r = readingText(detail.reading) { Text(r).font(.subheadline).foregroundStyle(Palette.muted) }
                 switch detail.cardLine(reveal: reveal) {
                 case .meaning(let gloss):
                     Text(gloss).font(.body).foregroundStyle(Palette.ink)

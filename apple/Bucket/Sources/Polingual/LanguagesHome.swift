@@ -45,12 +45,12 @@ struct Chip: View {
                 if !langs.isEmpty {
                     HStack(spacing: 3) { ForEach(langs.prefix(3), id: \.self) { FlagTile(lang: $0, size: 20) } }
                 }
-                Text(LocalizedStringKey(title)).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                Text(LocalizedStringKey(title)).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
             }
             .padding(.horizontal, 12)
             .frame(minHeight: 42)
-            .background(on ? Color(hex: 0xEEF3FB) : .white, in: .rect(cornerRadius: 12))
-            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(on ? D8.lapis : D8.keyline, lineWidth: on ? 3 : 2))
+            .background(on ? D8.pickedFace : D8.face, in: .rect(cornerRadius: 12))
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(on ? D8.picked : D8.edge, lineWidth: on ? 3 : 2))
         }
         .buttonStyle(TilePress())
         .accessibilityElement(children: .ignore)
@@ -289,14 +289,14 @@ struct PresetCard: View {
         } label: {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) { ForEach(langs.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
-                Text(LocalizedStringKey(name)).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
-                Text(langs.map(langName).joined(separator: " · ")).font(.caption).foregroundStyle(D8.label).lineLimit(2)
+                Text(LocalizedStringKey(name)).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(langs.map(langName).joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted).lineLimit(2)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(12)
-            .background(.white, in: .rect(cornerRadius: 14))
-            .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
-            .background(D8.keyline, in: .rect(cornerRadius: 14).offset(y: 4))
+            .background(D8.face, in: .rect(cornerRadius: 14))
+            .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
+            .background(D8.edge, in: .rect(cornerRadius: 14).offset(y: 4))
         }
         .buttonStyle(TilePress())
         .accessibilityLabel("\(name): \(langs.map(langName).joined(separator: ", "))")

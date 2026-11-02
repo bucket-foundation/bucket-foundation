@@ -78,11 +78,11 @@ struct TranslateCard: View {
                                 .font(.system(size: 17, weight: .bold, design: .rounded))
                             Image(systemName: "chevron.down").font(.system(size: 13, weight: .bold))
                         }
-                        .foregroundStyle(D8.ink)
+                        .foregroundStyle(Palette.ink)
                         .padding(.horizontal, 12)
                         .frame(minHeight: 40)
-                        .background(.white, in: .capsule)
-                        .overlay { Capsule().strokeBorder(D8.keyline, lineWidth: 2) }
+                        .background(D8.face, in: .capsule)
+                        .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 2) }
                     }
                     .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
                     if let detected {
@@ -121,13 +121,13 @@ struct TranslateCard: View {
                 }
                 .padding(.horizontal, 14)
                 .frame(minHeight: 60)
-                .background(.white, in: .rect(cornerRadius: 14))
-                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
+                .background(D8.face, in: .rect(cornerRadius: 14))
+                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
                 if listening {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
                         if !LangListener.shared.live.isEmpty {
-                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(D8.ink)
+                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(Palette.ink)
                         }
                     }
                 } else if missedVoice {
@@ -141,7 +141,7 @@ struct TranslateCard: View {
                             if let f = item.form(l) {
                                 HStack(spacing: 10) {
                                     FlagTile(lang: l, size: 26)
-                                    Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                                    Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
                                         .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
                                     Spacer(minLength: 4)
                                     PlayButton(text: f, lang: l)

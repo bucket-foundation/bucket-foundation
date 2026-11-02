@@ -18,7 +18,7 @@ struct SentenceTranslations: View {
                 HStack(spacing: 10) {
                     FlagTile(lang: l, size: 26)
                     if let r = results[l] {
-                        Text(r).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                        Text(r).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
                             .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
                             .textSelection(.enabled)
                         Spacer(minLength: 4)
