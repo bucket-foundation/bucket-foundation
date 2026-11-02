@@ -88,7 +88,7 @@ struct ReviewWalk {
         tap(app.buttons["Report or block"])
         tap(app.buttons["Block \(memberName)"])
         tap(app.buttons["Block"].firstMatch)
-        XCTAssertTrue(app.staticTexts["Members"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.buttons["Leave group"].waitForExistence(timeout: 30))
         hold()
         XCTAssertFalse(labeled(memberName).exists)
 
@@ -103,7 +103,7 @@ struct ReviewWalk {
         XCTAssertTrue(app.staticTexts["Block \(groupName)?"].waitForExistence(timeout: 10))
         hold()
         tap(app.buttons["Cancel"].firstMatch)
-        tap(app.navigationBars.buttons.firstMatch)
+        tap(app.buttons["BackButton"].firstMatch)
 
         let blocked = labeled("Blocked")
         scrollTo(blocked)
@@ -112,7 +112,7 @@ struct ReviewWalk {
         if Self.onDevice {
             XCTAssertFalse(app.buttons["Unblock"].waitForExistence(timeout: 2) && app.buttons["Unblock"].isHittable)
         }
-        tap(app.navigationBars.buttons.firstMatch)
+        tap(app.buttons["BackButton"].firstMatch)
     }
 
     func nameFilter() {
