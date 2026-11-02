@@ -22,7 +22,7 @@ test("both pages pair through hreflang", () => {
 });
 
 test("es keeps the Bucket beta call to action", () => {
-  assert.match(es, /testflight\.apple\.com\/join\/HfeRBKr8/);
+  assert.match(es, /testflight\.apple\.com\/join\/B1ctUxn5/);
 });
 
 test("/es rewrites to the generated page", async () => {

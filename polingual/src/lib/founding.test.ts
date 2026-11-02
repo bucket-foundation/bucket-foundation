@@ -142,5 +142,5 @@ test("beta modal switches to founding mode only when the API reports open spots 
   const js = readFileSync(join(__dirname, "../../public/d8/beta.js"), "utf8");
   assert.match(js, /if\(!j\|\|!\(j\.left>0\)\|\|!j\.siteKey\)return/);
   assert.match(js, /turnstile:/);
-  assert.match(js, /testflight\.apple\.com\/join\/HfeRBKr8/);
+  assert.match(js, /testflight\.apple\.com\/join\/B1ctUxn5/);
 });
