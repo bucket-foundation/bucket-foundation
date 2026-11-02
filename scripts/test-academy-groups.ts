@@ -14,6 +14,9 @@ import {
   groupGoal,
   memberGraph,
   normalizeCheerKind,
+  normalizeCheerReaction,
+  CHEER_REACTIONS,
+  toCheer,
   normalizeWeeklyGoal,
   shiftDay,
   windowLimiter,
@@ -288,6 +291,35 @@ test("cheer checks cover self, membership and nudges; the daily cap is left to S
   assert.equal(cheerDecision(ms, "a", "c", "cheer", 0), "not_member");
   assert.equal(normalizeCheerKind("nudge"), "nudge");
   assert.equal(normalizeCheerKind("poke"), null);
+});
+
+test("reactions come from a closed list and carry no free text", () => {
+  assert.deepEqual([...CHEER_REACTIONS], ["high_five", "nice_streak", "race_you", "keep_going"]);
+  for (const r of CHEER_REACTIONS) assert.equal(normalizeCheerReaction(r), r);
+  assert.equal(normalizeCheerReaction("you are great"), null);
+  assert.equal(normalizeCheerReaction("cheer"), null);
+  assert.equal(normalizeCheerReaction(undefined), null);
+  assert.equal(normalizeCheerReaction(1), null);
+});
+
+test("a reaction reads as a cheer on the wire so older apps keep their list", () => {
+  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02")];
+  const row: CheerRow = { id: "1", group_id: "g1", from_id: "a", to_id: "b", kind: "high_five", created_at: "2026-10-28T10:00:00Z", seen_at: null };
+  assert.deepEqual(toCheer(row, ms), { id: "1", from: "a", fromName: "A", to: "b", kind: "cheer", at: "2026-10-28T10:00:00Z", seen: false, reaction: "high_five" });
+  assert.deepEqual(toCheer({ ...row, kind: "nudge" }, ms), { id: "1", from: "a", fromName: "A", to: "b", kind: "nudge", at: "2026-10-28T10:00:00Z", seen: false });
+  assert.deepEqual(toCheer({ ...row, kind: "cheer" }, ms), { id: "1", from: "a", fromName: "A", to: "b", kind: "cheer", at: "2026-10-28T10:00:00Z", seen: false });
+});
+
+test("blocks hide reactions in both directions", () => {
+  const group: GroupRow = { id: "g1", name: "Climbers", kind: "friends", owner_id: "a", invite_code: "7K3M9Q2XAB", created_at: "2026-10-01" };
+  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02"), member("c", "2026-10-03")];
+  const cheers: CheerRow[] = [
+    { id: "1", group_id: "g1", from_id: "b", to_id: "a", kind: "race_you", created_at: "2026-10-28T10:00:00Z", seen_at: null },
+    { id: "2", group_id: "g1", from_id: "c", to_id: "a", kind: "keep_going", created_at: "2026-10-28T11:00:00Z", seen_at: null },
+  ];
+  const g = assembleGroup(group, ms, new Map(), "a", cheers, "2026-10-26", new Set(["b"]));
+  assert.deepEqual(g.cheers.map((c) => [c.id, c.reaction]), [["2", "keep_going"]]);
+  assert.deepEqual(g.members.map((m) => m.userId), ["a", "c"]);
 });
 
 test("the shared goal sums member week reviews and clears at zero", () => {

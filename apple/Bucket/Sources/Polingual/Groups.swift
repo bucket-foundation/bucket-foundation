@@ -238,6 +238,8 @@ struct GroupView: View {
 
     func content(_ g: LearningGroup) -> some View {
         List {
+            StandingsSection(group: g, removing: $removing, reporting: $reporting, blocking: $blocking)
+            ReactionSection(group: g)
             Section {
                 ForEach(g.members) { m in
                     NavigationLink { MemberView(member: m, groupId: g.id) } label: { MemberRow(member: m) }
@@ -423,6 +425,13 @@ struct MemberView: View {
                 LabeledContent("This week", value: String(localized: "\(member.weekReviews) cards"))
                 if let d = member.lastActive {
                     LabeledContent("Last active", value: d.formatted(.relative(presentation: .named)))
+                }
+            }
+            if !member.isMe {
+                Section {
+                    ReactionRow(member: member, groupId: groupId)
+                } header: {
+                    Eyebrow(text: "Send a reaction")
                 }
             }
             if member.languages.count >= 3 {

@@ -22,6 +22,14 @@ struct ShareCardTests {
         .content(ShareMoment(title: "Gravity", source: "Spanish Wikipedia", branch: "02", lang: "es", quote: "La gravedad es la fuerza de atracción entre todas las cosas que tienen masa, desde las manzanas hasta las galaxias más lejanas.")),
         .content(ShareMoment(title: "Radio Nacional", source: "Spain", branch: "00", lang: "es")),
         .content(ShareMoment(title: "Newton's second law", source: "Physics", branch: "02", quote: "Force equals mass times acceleration.", seconds: 667)),
+        .standings(ShareStandings(group: "Rossi family", rows: [
+            ShareStanding(rank: 1, name: "Gia", weekly: 160, streak: 12, mastered: 240, langs: ["it", "es", "fr", "de"], isMe: true),
+            ShareStanding(rank: 2, name: "Nonna", weekly: 150, streak: 41, mastered: 300, langs: ["en"], isMe: false),
+            ShareStanding(rank: 3, name: "Marco", weekly: 96, streak: 5, mastered: 232, langs: ["fr", "de", "es"], isMe: false),
+            ShareStanding(rank: 4, name: "Sofia", weekly: 12, streak: 0, mastered: 0, langs: ["ja", "pt"], isMe: false),
+            ShareStanding(rank: 5, name: "Bartholomew", weekly: 12000, streak: 365, mastered: 9000, langs: ["zh"], isMe: false),
+            ShareStanding(rank: 6, name: "Lu", weekly: 0, streak: 0, mastered: 0, langs: [], isMe: false),
+        ], members: 6)),
     ]
 
     @Test func everyCardRendersAtFullResolution() throws {

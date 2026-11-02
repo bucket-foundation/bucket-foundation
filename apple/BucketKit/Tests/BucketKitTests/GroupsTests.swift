@@ -273,6 +273,7 @@ func body(_ r: URLRequest) -> [String: String] {
         let bodies = r.prefix(3).map { try! JSONSerialization.jsonObject(with: $0.httpBody!) as! NSDictionary }
         let tz = TimeZone.current.identifier
         #expect(bodies[0] == ["groupId": "g1", "to": "u2", "kind": "cheer", "tz": tz])
+        #expect(r[0].url?.path == "/api/academy/groups/cheer")
         #expect(bodies[1] == ["ids": ["c1", "c2"]])
         #expect(bodies[2] == ["groupId": "g1", "weekly": 200, "tz": tz])
         #expect(r[1].url?.path == "/api/academy/groups/cheers/seen")
@@ -408,5 +409,74 @@ func body(_ r: URLRequest) -> [String: String] {
         let graded = gradeCard(state, "es", item.id, 3, now: now)
         #expect(graded.cards.started(cardId("es", item.id)))
         #expect(queueNew(graded, "es", item.id, now: now + 1) == graded)
+    }
+}
+
+@Suite struct GroupCompareTests {
+    func member(_ id: String, week: Int, streak: Int = 0, mastered: [Int] = [], me: Bool = false) -> GroupMember {
+        GroupMember(userId: id, name: "\(id.capitalized) Rossi", role: .member, isMe: me, streak: streak, todayReviews: 0, weekReviews: week, lastActivity: nil,
+                    languages: mastered.enumerated().map { MemberLanguage(lang: "l\($0.offset)", learned: 10, mastered: $0.element) }, subjects: [])
+    }
+
+    func group(_ members: [GroupMember]) -> LearningGroup {
+        LearningGroup(id: "g", name: "Club", kind: .friends, code: "AAAAAAAAAA", role: .member, members: members)
+    }
+
+    @Test func standingsSortByThisWeek() {
+        let g = group([member("a", week: 10), member("b", week: 90), member("c", week: 40, me: true)])
+        #expect(g.standings.map(\.member.userId) == ["b", "c", "a"])
+        #expect(g.standings.map(\.rank) == [1, 2, 3])
+    }
+
+    @Test func equalWeeksShareARankAndBreakOnStreakThenWords() {
+        let g = group([member("a", week: 50, streak: 1), member("b", week: 50, streak: 9), member("c", week: 50, streak: 1, mastered: [4]), member("d", week: 5)])
+        #expect(g.standings.map(\.member.userId) == ["b", "c", "a", "d"])
+        #expect(g.standings.map(\.rank) == [1, 1, 1, 4])
+    }
+
+    @Test func wordsMasteredAddUpAcrossLanguages() {
+        #expect(member("a", week: 0, mastered: [3, 4, 5]).wordsMastered == 12)
+    }
+
+    @Test func aBlockedMemberLeavesTheStandings() async {
+        let store = await GroupStore(api: BucketAPI(transport: StubTransport { _ in (200, Data()) }, cacheDir: nil)) { "t" }
+        await MainActor.run {
+            store.groups = [group([member("a", week: 9, me: true), member("b", week: 90)])]
+            store.hide(groupId: "g", userId: "b")
+            #expect(store.group("g")?.standings.map(\.member.userId) == ["a"])
+        }
+    }
+
+    @Test func sharedStandingsUseFirstNamesAndKeepTheViewer() {
+        let members = (0..<9).map { member("m\($0)", week: 100 - $0) } + [member("me", week: 1, me: true)]
+        let s = group(members).shareStandings()
+        #expect(s.rows.count == 6)
+        #expect(s.members == 10)
+        #expect(s.mine?.rank == 10)
+        #expect(s.rows.first?.name == "M0")
+    }
+
+    @Test func aCheerReadsItsReaction() throws {
+        let raw = ["id": "c", "from": "a", "fromName": "A", "to": "b", "kind": "cheer", "at": "2026-10-28", "seen": false, "reaction": "race_you"] as [String: Any]
+        #expect(try JSONDecoder().decode(Cheer.self, from: JSONSerialization.data(withJSONObject: raw)).reaction == .raceYou)
+    }
+
+    @Test func anUnknownReactionStaysAPlainCheer() throws {
+        let raw = ["id": "c", "from": "a", "fromName": "A", "to": "b", "kind": "cheer", "at": "2026-10-28", "seen": false, "reaction": "later_preset"] as [String: Any]
+        let c = try JSONDecoder().decode(Cheer.self, from: JSONSerialization.data(withJSONObject: raw))
+        #expect(c.reaction == nil && c.kind == .cheer)
+    }
+
+    @Test func aReactionPostsAsACheerWithAPreset() async throws {
+        let seen = LockedBox<[URLRequest]>([])
+        let api = BucketAPI(transport: StubTransport { req in
+            seen.mutate { $0.append(req) }
+            return (200, Data(#"{"cheer":{"id":"c","from":"a","fromName":"A","to":"b","kind":"cheer","at":"2026-10-28","seen":false,"reaction":"high_five"}}"#.utf8))
+        }, cacheDir: nil)
+        let c = try await api.cheer(token: "t", groupId: "g", to: "b", kind: .cheer, reaction: .highFive)
+        #expect(c.reaction == .highFive)
+        let body = try #require(seen.value.first?.httpBody)
+        let sent = try #require(JSONSerialization.jsonObject(with: body) as? [String: String])
+        #expect(sent["kind"] == "cheer" && sent["reaction"] == "high_five")
     }
 }

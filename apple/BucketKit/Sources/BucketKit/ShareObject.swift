@@ -153,8 +153,44 @@ public struct ShareMoment: Sendable, Hashable {
     }
 }
 
+public struct ShareStanding: Sendable, Hashable {
+    public var rank: Int
+    public var name: String
+    public var weekly: Int
+    public var streak: Int
+    public var mastered: Int
+    public var langs: [String]
+    public var isMe: Bool
+
+    public init(rank: Int, name: String, weekly: Int, streak: Int, mastered: Int, langs: [String], isMe: Bool) {
+        self.rank = rank
+        self.name = name
+        self.weekly = weekly
+        self.streak = streak
+        self.mastered = mastered
+        self.langs = langs
+        self.isMe = isMe
+    }
+}
+
+public struct ShareStandings: Sendable, Hashable {
+    public var group: String
+    public var rows: [ShareStanding]
+    public var members: Int
+    public var root: String
+
+    public init(group: String, rows: [ShareStanding], members: Int, root: String = "en") {
+        self.group = group
+        self.rows = rows
+        self.members = members
+        self.root = root
+    }
+
+    public var mine: ShareStanding? { rows.first(where: \.isMe) }
+}
+
 public enum ShareStyle: String, Sendable, Hashable, CaseIterable, Identifiable {
-    case flame, hundred, ledger, tree, wall, banner, plate, stack, tile, number, ring, quote, cover, moment
+    case flame, hundred, ledger, tree, wall, banner, plate, stack, tile, number, ring, quote, cover, moment, board, rank
 
     public var id: String { rawValue }
 }
@@ -169,6 +205,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
     case flag(String, root: String)
     case score(ShareScore)
     case content(ShareMoment)
+    case standings(ShareStandings)
 
     public var id: String { "\(kind):\(route.url.absoluteString)" }
 
@@ -183,6 +220,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .flag: "flag"
         case .score: "score"
         case .content: "content"
+        case .standings: "standings"
         }
     }
 
@@ -195,6 +233,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .tile(let form, let gloss, _): .word(id: form.form, gloss: gloss, forms: [form])
         case .score(let s): .score(s)
         case .content(let m): .moment(m)
+        case .standings(let s): s.mine.map { .langs($0.langs, root: s.root) } ?? ShareRoute(path: "")
         }
     }
 
@@ -209,6 +248,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .flag: [.banner, .plate]
         case .score: [.number, .ring]
         case .content(let m): (m.seconds != nil ? [.moment] : []) + (m.quote != nil ? [.quote] : []) + [.cover]
+        case .standings: [.board, .rank]
         }
     }
 }

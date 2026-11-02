@@ -7,6 +7,8 @@ export type GroupKind = "family" | "friends";
 export type GroupRole = "owner" | "member";
 
 export type CheerKind = "cheer" | "nudge";
+export const CHEER_REACTIONS = ["high_five", "nice_streak", "race_you", "keep_going"] as const;
+export type CheerReaction = (typeof CHEER_REACTIONS)[number];
 
 export interface MemberLanguage {
   lang: string;
@@ -62,6 +64,7 @@ export interface Cheer {
   kind: CheerKind;
   at: string;
   seen: boolean;
+  reaction?: CheerReaction;
 }
 
 export interface CheerRow {
@@ -69,7 +72,7 @@ export interface CheerRow {
   group_id: string;
   from_id: string;
   to_id: string;
-  kind: CheerKind;
+  kind: CheerKind | CheerReaction;
   created_at: string;
   seen_at: string | null;
 }
@@ -218,6 +221,10 @@ export function normalizeWeeklyGoal(input: unknown): number | null {
 
 export function normalizeCheerKind(input: unknown): CheerKind | null {
   return input === "cheer" || input === "nudge" ? input : null;
+}
+
+export function normalizeCheerReaction(input: unknown): CheerReaction | null {
+  return CHEER_REACTIONS.find((r) => r === input) ?? null;
 }
 
 export function normalizeReportReason(input: unknown): ReportReason | null {
@@ -494,7 +501,9 @@ export function cheerDecision(
 
 export function toCheer(row: CheerRow, members: readonly MemberRow[]): Cheer {
   const sender = members.find((m) => m.group_id === row.group_id && m.user_id === row.from_id);
-  return { id: row.id, from: row.from_id, fromName: sender?.display_name ?? "", to: row.to_id, kind: row.kind, at: row.created_at, seen: row.seen_at != null };
+  const reaction = normalizeCheerReaction(row.kind);
+  const kind: CheerKind = row.kind === "nudge" ? "nudge" : "cheer";
+  return { id: row.id, from: row.from_id, fromName: sender?.display_name ?? "", to: row.to_id, kind, at: row.created_at, seen: row.seen_at != null, ...(reaction ? { reaction } : {}) };
 }
 
 export function cheersFor(groupId: string, rows: readonly CheerRow[], members: readonly MemberRow[], me: string, limit = 50): Cheer[] {

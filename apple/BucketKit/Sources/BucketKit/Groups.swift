@@ -138,6 +138,8 @@ public struct GroupMember: Codable, Equatable, Sendable, Identifiable {
     public var cheerKind: CheerKind { studiedToday ? .cheer : .nudge }
 
     public var lastActive: Date? { lastActivity.flatMap(parseInstant) }
+    public var wordsMastered: Int { languages.reduce(0) { $0 + $1.mastered } }
+    public var firstName: String { name.split(separator: " ").first.map(String.init) ?? name }
 
     public var initials: String {
         let words = name.split(separator: " ").prefix(2)
@@ -174,6 +176,13 @@ public enum CheerKind: String, Codable, Sendable {
     case cheer, nudge
 }
 
+public enum CheerReaction: String, Codable, Sendable, CaseIterable {
+    case highFive = "high_five"
+    case niceStreak = "nice_streak"
+    case raceYou = "race_you"
+    case keepGoing = "keep_going"
+}
+
 public struct Cheer: Codable, Equatable, Sendable, Identifiable {
     public var id: String
     public var from: String
@@ -182,8 +191,9 @@ public struct Cheer: Codable, Equatable, Sendable, Identifiable {
     public var kind: CheerKind
     public var at: String
     public var seen: Bool
+    public var reaction: CheerReaction?
 
-    public init(id: String, from: String, fromName: String, to: String, kind: CheerKind, at: String, seen: Bool) {
+    public init(id: String, from: String, fromName: String, to: String, kind: CheerKind, at: String, seen: Bool, reaction: CheerReaction? = nil) {
         self.id = id
         self.from = from
         self.fromName = fromName
@@ -191,6 +201,32 @@ public struct Cheer: Codable, Equatable, Sendable, Identifiable {
         self.kind = kind
         self.at = at
         self.seen = seen
+        self.reaction = reaction
+    }
+
+    enum CodingKeys: String, CodingKey { case id, from, fromName, to, kind, at, seen, reaction }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        from = try c.decode(String.self, forKey: .from)
+        fromName = try c.decode(String.self, forKey: .fromName)
+        to = try c.decode(String.self, forKey: .to)
+        kind = try c.decode(CheerKind.self, forKey: .kind)
+        at = try c.decode(String.self, forKey: .at)
+        seen = try c.decode(Bool.self, forKey: .seen)
+        reaction = c.value(.reaction, nil as CheerReaction?)
+    }
+}
+
+public struct GroupStanding: Equatable, Sendable, Identifiable {
+    public var rank: Int
+    public var member: GroupMember
+    public var id: String { member.userId }
+
+    public init(rank: Int, member: GroupMember) {
+        self.rank = rank
+        self.member = member
     }
 }
 
@@ -232,6 +268,26 @@ public struct LearningGroup: Codable, Equatable, Sendable, Identifiable {
     public var isOwner: Bool { role == .owner }
     public var isFull: Bool { members.count >= kind.capacity }
     public var me: GroupMember? { members.first(where: \.isMe) }
+
+    public var standings: [GroupStanding] {
+        let sorted = members.sorted {
+            ($1.weekReviews, $1.streak, $1.wordsMastered, $0.name, $0.userId) < ($0.weekReviews, $0.streak, $0.wordsMastered, $1.name, $1.userId)
+        }
+        var out: [GroupStanding] = []
+        for (i, m) in sorted.enumerated() {
+            let tied = out.last.flatMap { $0.member.weekReviews == m.weekReviews ? $0.rank : nil }
+            out.append(GroupStanding(rank: tied ?? i + 1, member: m))
+        }
+        return out
+    }
+
+    public func shareStandings(root: String = "en", limit: Int = 6) -> ShareStandings {
+        let all = standings
+        var shown = Array(all.prefix(limit))
+        if !shown.contains(where: \.member.isMe), let mine = all.first(where: \.member.isMe), !shown.isEmpty { shown[shown.count - 1] = mine }
+        let rows = shown.map { ShareStanding(rank: $0.rank, name: $0.member.firstName, weekly: $0.member.weekReviews, streak: $0.member.streak, mastered: $0.member.wordsMastered, langs: $0.member.languages.map(\.lang), isMe: $0.member.isMe) }
+        return ShareStandings(group: name, rows: rows, members: members.count, root: root)
+    }
 }
 
 public struct GroupPreview: Decodable, Equatable, Sendable {
@@ -467,8 +523,10 @@ extension BucketAPI {
         try await groupCall("api/academy/groups/member", query: ["groupId": groupId, "userId": userId, "branch": branch], token: token)
     }
 
-    public func cheer(token: String, groupId: String, to userId: String, kind: CheerKind) async throws -> Cheer {
-        let r: CheerReply = try await groupCall("api/academy/groups/cheer", token: token, body: ["groupId": .text(groupId), "to": .text(userId), "kind": .text(kind.rawValue), "tz": .text(TimeZone.current.identifier)])
+    public func cheer(token: String, groupId: String, to userId: String, kind: CheerKind, reaction: CheerReaction? = nil) async throws -> Cheer {
+        var body: [String: Field] = ["groupId": .text(groupId), "to": .text(userId), "kind": .text(kind.rawValue), "tz": .text(TimeZone.current.identifier)]
+        if let reaction { body["reaction"] = .text(reaction.rawValue) }
+        let r: CheerReply = try await groupCall("api/academy/groups/cheer", token: token, body: body)
         return r.cheer
     }
 
@@ -638,6 +696,13 @@ public final class GroupStore {
     public func cheer(_ member: GroupMember, in groupId: String) async throws(BucketError) -> Cheer {
         let kind = member.cheerKind
         let c = try await run { try await self.api.cheer(token: $0, groupId: groupId, to: member.userId, kind: kind) }
+        if let i = index(groupId) { groups[i].cheers.append(c) }
+        return c
+    }
+
+    @discardableResult
+    public func react(_ reaction: CheerReaction, to member: GroupMember, in groupId: String) async throws(BucketError) -> Cheer {
+        let c = try await run { try await self.api.cheer(token: $0, groupId: groupId, to: member.userId, kind: .cheer, reaction: reaction) }
         if let i = index(groupId) { groups[i].cheers.append(c) }
         return c
     }

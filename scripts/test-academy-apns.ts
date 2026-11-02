@@ -81,6 +81,10 @@ test("cheerPayload carries the text, thread-id and group id", () => {
     group: "g-1",
   });
   assert.equal(cheerPayload("nudge", "Lu", "g-2").aps.alert.body, "Lu nudged you: time for today's reviews");
+  assert.equal(cheerPayload("high_five", "Gia", "g-1").aps.alert.body, "Gia sent you a high five");
+  assert.equal(cheerPayload("nice_streak", "Gia", "g-1").aps.alert.body, "Gia says nice streak");
+  assert.equal(cheerPayload("race_you", "Gia", "g-1").aps.alert.body, "Gia wants to race you this week");
+  assert.equal(cheerPayload("keep_going", "Gia", "g-1").aps.alert.body, "Gia says keep going");
 });
 
 test("apnsConfig needs all three env vars and unescapes newlines", () => {

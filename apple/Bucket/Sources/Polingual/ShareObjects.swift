@@ -16,6 +16,8 @@ extension ShareObject {
         case .tile(let form, let gloss, _): form.form == gloss ? form.form : "\(form.form): \(gloss)"
         case .score(let s): String(localized: "\(s.right) of \(s.total) right in \(s.source) on \(Feedback.appName)")
         case .content(let m): m.quote ?? m.title
+        case .standings(let s):
+            s.mine.map { String(localized: "Number \($0.rank) of \(s.members) in \(s.group) this week on \(Feedback.appName)") } ?? String(localized: "This week in \(s.group) on \(Feedback.appName)")
         }
     }
 
@@ -30,6 +32,7 @@ extension ShareObject {
         case .flag: String(localized: "Share this flag")
         case .score: String(localized: "Share your score")
         case .content: String(localized: "Share this moment")
+        case .standings: String(localized: "Share the standings")
         }
     }
 
@@ -44,6 +47,7 @@ extension ShareObject {
         case .flag(let lang, _): String(localized: "\(langName(lang)) flag")
         case .score: String(localized: "Score")
         case .content(let m): m.title
+        case .standings: String(localized: "Standings")
         }
     }
 
@@ -126,6 +130,8 @@ struct ShareCardView: View {
             case .quote: QuoteCard(moment: m)
             default: CoverCard(moment: m)
             }
+        case .standings(let s):
+            if style == .rank { StandingRankCard(standings: s) } else { StandingsCard(standings: s) }
         }
     }
 }
@@ -512,6 +518,77 @@ struct MomentCard: View {
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(D8.lapis)
+    }
+}
+
+struct StandingsCard: View {
+    let standings: ShareStandings
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(standings.group).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
+            Text("THIS WEEK").font(D8.caps(16)).tracking(1.2).foregroundStyle(stone).padding(.top, 4).padding(.bottom, 16)
+            VStack(spacing: 8) {
+                ForEach(standings.rows, id: \.self) { StandingCardRow(row: $0) }
+            }
+            Spacer(minLength: 0)
+            CardFoot()
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(D8.parchment)
+    }
+}
+
+struct StandingCardRow: View {
+    let row: ShareStanding
+
+    var body: some View {
+        let ink = row.isMe ? Color.white : D8.ink
+        HStack(spacing: 12) {
+            Text("\(row.rank)").font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(ink).frame(width: 40)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(row.name).font(.system(size: 24, weight: .heavy, design: .rounded)).foregroundStyle(ink).lineLimit(1).minimumScaleFactor(0.6)
+                HStack(spacing: 4) {
+                    Image(systemName: "flame.fill")
+                    Text("\(row.streak) · \(row.mastered) mastered").lineLimit(1).minimumScaleFactor(0.7)
+                }
+                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .foregroundStyle(row.isMe ? D8.parchment : stone)
+            }
+            Spacer(minLength: 4)
+            HStack(spacing: 3) {
+                ForEach(row.langs.prefix(3), id: \.self) { FlagTile(lang: $0, size: 28) }
+            }
+            Text("\(row.weekly)").font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(ink).lineLimit(1).minimumScaleFactor(0.5).frame(width: 74, alignment: .trailing)
+        }
+        .padding(.horizontal, 12)
+        .frame(height: 68)
+        .modifier(GameLip(face: row.isMe ? D8.lapis : .white, lip: row.isMe ? Color(hex: 0x12326A) : D8.keyline, radius: 14))
+    }
+}
+
+struct StandingRankCard: View {
+    let standings: ShareStandings
+
+    var body: some View {
+        let mine = standings.mine
+        VStack(alignment: .leading, spacing: 0) {
+            Text(standings.group.uppercased()).font(D8.caps(22)).tracking(2.5).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(1).minimumScaleFactor(0.5)
+            Spacer(minLength: 0)
+            HStack(alignment: .lastTextBaseline, spacing: 6) {
+                Text("#\(mine?.rank ?? 1)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+                Text("/\(standings.members)").font(.system(size: 64, weight: .heavy, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7)).lineLimit(1).minimumScaleFactor(0.5)
+            }
+            Text("\(mine?.weekly ?? 0) cards this week").font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
+            if let mine, mine.streak > 1 { Text("\(mine.streak) day streak").font(D8.caps(18)).tracking(1.5).foregroundStyle(D8.parchment).padding(.top, 6) }
+            Spacer(minLength: 0)
+            CardFlags(langs: mine?.langs ?? []).padding(.bottom, 26)
+            CardFoot(color: .white)
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(D8.malachite)
     }
 }
 
