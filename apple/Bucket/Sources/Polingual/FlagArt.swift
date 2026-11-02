@@ -33,9 +33,7 @@ struct FlagFace: View {
                     .fill(Color(hex: c))
                 }
                 if emblem, let e = flag.emblem {
-                    Text(e.glyph)
-                        .font(.system(size: min(w, h) * e.scale, weight: .bold, design: flag.pigment ? .serif : .default))
-                        .foregroundStyle(Color(hex: e.color))
+                    FlagEmblem(emblem: e, size: min(w, h) * e.scale, serif: flag.pigment)
                         .position(x: w * e.x, y: h * e.y)
                 }
             }
@@ -62,6 +60,67 @@ struct FlagFace: View {
     }
 }
 
+struct FlagEmblem: View {
+    let emblem: D8Flag.Emblem
+    let size: CGFloat
+    let serif: Bool
+
+    var body: some View {
+        let color = Color(hex: emblem.color)
+        switch emblem.glyph {
+        case "✡": Hexagram().stroke(color, lineWidth: size * 0.09).frame(width: size, height: size)
+        case "☸": Chakra().stroke(color, lineWidth: size * 0.07).frame(width: size, height: size)
+        case "☯": Taegeuk(size: size, red: color)
+        default:
+            Text(emblem.glyph)
+                .font(.system(size: size, weight: .bold, design: serif ? .serif : .default))
+                .foregroundStyle(color)
+        }
+    }
+}
+
+struct Chakra: Shape {
+    func path(in r: CGRect) -> Path {
+        var p = Path(ellipseIn: r)
+        let radius = min(r.width, r.height) / 2
+        for spoke in 0..<12 {
+            let angle = Double(spoke) * .pi / 6
+            p.move(to: CGPoint(x: r.midX + radius * cos(angle), y: r.midY + radius * sin(angle)))
+            p.addLine(to: CGPoint(x: r.midX - radius * cos(angle), y: r.midY - radius * sin(angle)))
+        }
+        return p
+    }
+}
+
+struct Taegeuk: View {
+    let size: CGFloat
+    let red: Color
+    private let blue = Color(hex: 0x003478)
+
+    var body: some View {
+        ZStack {
+            Circle().fill(blue)
+            Circle().trim(from: 0.5, to: 1).fill(red)
+            Circle().fill(red).frame(width: size / 2, height: size / 2).offset(x: -size / 4)
+            Circle().fill(blue).frame(width: size / 2, height: size / 2).offset(x: size / 4)
+        }
+        .frame(width: size, height: size)
+    }
+}
+
+struct Hexagram: Shape {
+    func path(in r: CGRect) -> Path {
+        var p = Path()
+        let top = [CGPoint(x: r.midX, y: r.minY), CGPoint(x: r.maxX, y: r.minY + r.height * 0.75), CGPoint(x: r.minX, y: r.minY + r.height * 0.75)]
+        let bottom = [CGPoint(x: r.midX, y: r.maxY), CGPoint(x: r.minX, y: r.minY + r.height * 0.25), CGPoint(x: r.maxX, y: r.minY + r.height * 0.25)]
+        p.addLines(top + [top[0]])
+        p.closeSubpath()
+        p.addLines(bottom + [bottom[0]])
+        p.closeSubpath()
+        return p
+    }
+}
+
 struct Glaze: ViewModifier {
     let radius: CGFloat
     var lip: CGFloat = 0
@@ -83,6 +142,7 @@ struct Glaze: ViewModifier {
                     .allowsHitTesting(false)
             }
             .clipShape(.rect(cornerRadius: radius))
+            .compositingGroup()
             .shadow(color: Color(hex: 0x231F20).opacity(lip > 0 ? 0.3 : 0), radius: 0, x: 0, y: lip)
     }
 }

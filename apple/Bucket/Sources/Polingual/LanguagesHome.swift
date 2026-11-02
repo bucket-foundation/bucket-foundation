@@ -2,11 +2,11 @@ import BucketKit
 import SwiftUI
 
 enum LangRoute: Hashable {
-    case home
     case system(String)
     case study(String)
     case place(String, String?)
     case alphabet(String, String)
+    case reference(String)
 }
 
 struct SaveNotice: View {
@@ -45,12 +45,12 @@ struct Chip: View {
                 if !langs.isEmpty {
                     HStack(spacing: 3) { ForEach(langs.prefix(3), id: \.self) { FlagTile(lang: $0, size: 20) } }
                 }
-                Text(LocalizedStringKey(title)).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                Text(LocalizedStringKey(title)).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
             }
             .padding(.horizontal, 12)
             .frame(minHeight: 42)
-            .background(on ? Color(hex: 0xEEF3FB) : .white, in: .rect(cornerRadius: 12))
-            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(on ? D8.lapis : D8.keyline, lineWidth: on ? 3 : 2))
+            .background(on ? D8.pickedFace : D8.face, in: .rect(cornerRadius: 12))
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(on ? D8.picked : D8.edge, lineWidth: on ? 3 : 2))
         }
         .buttonStyle(TilePress())
         .accessibilityElement(children: .ignore)
@@ -61,14 +61,7 @@ struct Chip: View {
 
 struct LanguagesHome: View {
     @Environment(LangStore.self) private var store
-    @Environment(Gate.self) private var gate
     @Binding var path: NavigationPath
-    @State private var root = "en"
-    @State private var targets: [String] = []
-    @State private var removing: LangSystem?
-    @State private var justMade: String?
-
-    var err: SystemError? { validateSystem(root, targets, store.systems) }
 
     var body: some View {
         Group {
@@ -80,19 +73,19 @@ struct LanguagesHome: View {
                     Task { await store.load(force: true) }
                 }
             case .ready:
-                if let corpus = store.corpus { content(corpus) }
+                if let corpus = store.corpus {
+                    ScrollViewReader { proxy in
+                        List {
+                            LanguageSections(path: $path, corpus: corpus, proxy: proxy)
+                            LanguageFooter(corpus: corpus)
+                        }
+                    }
+                }
             }
         }
         .paper()
         .navigationTitle("Language systems")
         .task { await store.load() }
-        .confirmationDialog("Remove \(removing?.name ?? "")?", isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
-            Button("Remove", role: .destructive) {
-                if let s = removing { Task { await store.remove(s.id) } }
-            }
-        } message: {
-            Text("Progress stays saved and returns if you build the same system again.")
-        }
     }
 
     static let presets: [(name: String, targets: [String])] = Lang.presets + [
@@ -102,75 +95,110 @@ struct LanguagesHome: View {
         ("Classical", ["la", "grc", "sa"]),
         ("Mediterranean", ["es", "it", "el", "tr"]),
     ]
+}
 
-    func content(_ corpus: LangCorpus) -> some View {
-        ScrollViewReader { proxy in
-            List {
-                Section {
-                    Text("Learn several languages together.")
-                        .font(.headline)
-                        .foregroundStyle(Palette.muted)
-                        .listRowBackground(Color.clear)
-                }
-                if !store.systems.isEmpty {
-                    Section { StreakGoalCard(streak: Double(langStreak(store))) }
-                        .listRowBackground(Palette.card)
-                }
-                TodayStrip()
-                if !store.systems.isEmpty {
-                    Section { TranslateCard() }
-                        .listRowBackground(Palette.card)
-                }
-                ForEach(store.systems) { s in
-                    Section {
-                        systemCard(s, corpus)
-                    }
-                    .id(s.id)
-                    .listRowBackground(Palette.card)
-                }
-                Section {
-                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
-                        ForEach(Self.presets, id: \.name) { p in
-                            PresetCard(name: p.name, langs: p.targets.filter { $0 != root }) {
-                                create(p.targets.filter { $0 != root }, proxy)
-                            }
-                        }
-                    }
-                    .padding(.vertical, 6)
-                } header: {
-                    Eyebrow(text: "Start a set")
-                }
-                .listRowBackground(Color.clear)
-                Section {
-                    FlowLayout(spacing: 8) {
-                        ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                            Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
-                                if targets.contains(c) { targets.removeAll { $0 == c } } else { targets.append(c) }
-                            }
-                        }
-                    }
-                    Picker("I already speak", selection: $root) {
-                        ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
-                    }
-                    .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
-                    Button("Create my set") { create(targets, proxy) }
-                        .buttonStyle(D8Primary(compact: true))
-                        .disabled(err != nil || targets.isEmpty)
-                    if let err, !targets.isEmpty { Text(err.message).noticeStyle() }
-                } header: {
-                    Eyebrow(text: "Or build your own")
-                }
-                .listRowBackground(Palette.card)
-                Section {
-                    if gate.guest && !store.systems.isEmpty {
-                        Button("Save to your account") { gate.require { Task { await store.persistSystems() } } }
-                    } else {
-                        SaveNotice(state: store.saveState)
-                    }
-                    Text(corpus.attribution).font(.caption2).foregroundStyle(Palette.muted)
-                }
-                .listRowBackground(Color.clear)
+struct LanguageFooter: View {
+    @Environment(LangStore.self) private var store
+    @Environment(Gate.self) private var gate
+    let corpus: LangCorpus
+
+    var body: some View {
+        Section {
+            if gate.guest && !store.systems.isEmpty {
+                Button("Save to your account") { gate.require { Task { await store.persistSystems() } } }
+            } else {
+                SaveNotice(state: store.saveState)
             }
+            Text(corpus.attribution).font(.caption2).foregroundStyle(Palette.muted)
+        }
+        .listRowBackground(Color.clear)
+    }
+}
+
+struct LanguageSections: View {
+    @Environment(LangStore.self) private var store
+    @Environment(Reminders.self) private var reminders
+    @Environment(Gate.self) private var gate
+    @Binding var path: NavigationPath
+    let corpus: LangCorpus
+    let proxy: ScrollViewProxy
+    var builderOnly = false
+    @State private var root = "en"
+    @State private var targets: [String] = []
+    @State private var removing: LangSystem?
+    @State private var justMade: String?
+
+    var err: SystemError? { validateSystem(root, targets, store.systems) }
+    var pickable: [String] { Lang.codes.filter { $0 != root } }
+
+    var body: some View {
+        if !builderOnly {
+            Section {
+                Text("Learn several languages together.")
+                    .font(.headline)
+                    .foregroundStyle(Palette.muted)
+                    .listRowBackground(Color.clear)
+            }
+            if !store.systems.isEmpty {
+                Section { StreakGoalCard(streak: Double(langStreak(store))) }
+                    .listRowBackground(Palette.card)
+            }
+            TodayStrip()
+            if !reminders.enabled && !store.systems.isEmpty {
+                Section { ReminderPrompt().padding(.vertical, 6) }
+                    .listRowBackground(Palette.card)
+            }
+            if !store.systems.isEmpty {
+                Section { TranslateCard() }
+                    .listRowBackground(Palette.card)
+            }
+            ForEach(store.systems) { s in
+                Section {
+                    systemCard(s, corpus)
+                }
+                .id(s.id)
+                .listRowBackground(Palette.card)
+            }
+        }
+        Section {
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
+                ForEach(LanguagesHome.presets, id: \.name) { presetCard($0) }
+            }
+            .padding(.vertical, 6)
+        } header: {
+            Eyebrow(text: "Start a set")
+        }
+        .id("start")
+        .listRowBackground(Color.clear)
+        Section {
+            chips
+            Picker("I already speak", selection: $root) {
+                ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
+            }
+            .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
+            Button("Create my set") { create(targets, proxy) }
+                .buttonStyle(D8Primary(compact: true))
+                .disabled(err != nil || targets.isEmpty)
+            if let err, !targets.isEmpty { Text(err.message).noticeStyle() }
+        } header: {
+            Eyebrow(text: "Or build your own")
+        }
+        .listRowBackground(Palette.card)
+    }
+
+    var chips: some View {
+        FlowLayout(spacing: 8) {
+            ForEach(pickable, id: \.self) { c in
+                Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
+                    if targets.contains(c) { targets.removeAll { $0 == c } } else { targets.append(c) }
+                }
+            }
+        }
+    }
+
+    func presetCard(_ p: (name: String, targets: [String])) -> some View {
+        PresetCard(name: p.name, langs: p.targets.filter { $0 != root }) {
+            create(p.targets.filter { $0 != root }, proxy)
         }
     }
 
@@ -210,6 +238,11 @@ struct LanguagesHome: View {
             }
         }
         .padding(.vertical, 6)
+        .confirmationDialog("Remove \(s.name)?", isPresented: Binding(get: { removing?.id == s.id }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
+            Button("Remove", role: .destructive) { Task { await store.remove(s.id) } }
+        } message: {
+            Text("Progress stays saved and returns if you build the same system again.")
+        }
     }
 
     func create(_ picked: [String], _ proxy: ScrollViewProxy) {
@@ -223,7 +256,11 @@ struct LanguagesHome: View {
                 guard let made else { return }
                 haptic(true)
                 justMade = made.id
-                withAnimation(.snappy) { proxy.scrollTo(made.id, anchor: .top) }
+                if builderOnly {
+                    path.append(LangRoute.system(made.id))
+                } else {
+                    withAnimation(.snappy) { proxy.scrollTo(made.id, anchor: .top) }
+                }
             }
         }
         if gate.guest && store.systems.isEmpty { make() } else { gate.require(make) }
@@ -242,14 +279,14 @@ struct PresetCard: View {
         } label: {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) { ForEach(langs.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
-                Text(LocalizedStringKey(name)).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
-                Text(langs.map(langName).joined(separator: " · ")).font(.caption).foregroundStyle(D8.label).lineLimit(2)
+                Text(LocalizedStringKey(name)).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(langs.map(langName).joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted).lineLimit(2)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(12)
-            .background(.white, in: .rect(cornerRadius: 14))
-            .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
-            .background(D8.keyline, in: .rect(cornerRadius: 14).offset(y: 4))
+            .background(D8.face, in: .rect(cornerRadius: 14))
+            .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
+            .background(D8.edge, in: .rect(cornerRadius: 14).offset(y: 4))
         }
         .buttonStyle(TilePress())
         .accessibilityLabel("\(name): \(langs.map(langName).joined(separator: ", "))")

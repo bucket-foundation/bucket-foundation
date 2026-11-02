@@ -95,13 +95,13 @@ struct BucketApp: App {
     }
 }
 
-enum AppTab: String, Hashable { case today, learn, games, content, account }
+enum AppTab: String, Hashable { case today, learn, account }
 
 extension SharedLink {
     var tab: AppTab {
         switch self {
         case .word, .home: .today
-        case .langs, .deck, .atom: .learn
+        case .langs, .deck, .atom, .content, .voice: .learn
         case .group: .account
         }
     }
@@ -130,12 +130,10 @@ struct RootView: View {
         TabView(selection: $tab) {
             Tab("Today", systemImage: "sun.max", value: .today) { TodayView() }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Games", systemImage: "gamecontroller", value: .games) { GamesView() }
-            Tab("Content", systemImage: "play.square.stack", value: .content) { ContentHub() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .tabViewStyle(.sidebarAdaptable)
-        .sharesScreenshots()
+        .modifier(ScreenshotShare())
         .groupInvites()
         .groupsOnToday()
         .onOpenURL { DeepLink.shared.open($0) }
@@ -163,9 +161,13 @@ struct RootView: View {
         .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG
         .task {
-            guard Launch.flag("-screenshotShare") else { return }
-            try? await Task.sleep(for: .seconds(6))
-            ScreenShare.shared.screenshotTaken()
+            if let link = Launch.value("-openLink").flatMap(URL.init(string:)) { DeepLink.shared.open(link) }
+            #if os(iOS)
+            if Launch.value("-bucketOrientation") == "landscape",
+               let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+            }
+            #endif
         }
         .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
             science.clearLocal()

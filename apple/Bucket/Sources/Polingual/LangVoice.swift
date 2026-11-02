@@ -9,20 +9,32 @@ final class LangVoice: NSObject {
     private let synth = AVSpeechSynthesizer()
 
     private var player: AVPlayer?
-    private var active = false
     private var warmed = false
-    private lazy var voices = AVSpeechSynthesisVoice.speechVoices()
+    private var voices: [AVSpeechSynthesisVoice] = []
     private var picked: [String: AVSpeechSynthesisVoice?] = [:]
     weak var store: LangStore?
 
+    override private init() {
+        super.init()
+        NotificationCenter.default.addObserver(forName: AVSpeechSynthesizer.availableVoicesDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.forgetVoices() }
+        }
+    }
+
+    private func forgetVoices() {
+        voices = []
+        picked = [:]
+    }
+
     func activate() {
-        guard !active else { return }
         #if os(iOS)
+        guard !LangListener.shared.active else { return }
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+        if session.category != .playback || session.mode != .spokenAudio {
+            try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+        }
         try? session.setActive(true)
         #endif
-        active = true
     }
 
     func warm() {
@@ -35,6 +47,8 @@ final class LangVoice: NSObject {
 
     func voice(_ lang: String) -> AVSpeechSynthesisVoice? {
         if let hit = picked[lang] { return hit }
+        if voices.isEmpty { voices = AVSpeechSynthesisVoice.speechVoices() }
+        guard !voices.isEmpty else { return nil }
         let v = LangAudio.pickVoice(voices.map(\.language), lang).flatMap { tag in voices.first { $0.language == tag } }
         picked[lang] = v
         return v
@@ -45,7 +59,7 @@ final class LangVoice: NSObject {
     }
 
     @discardableResult
-    func speak(_ text: String, _ lang: String) -> Bool {
+    func speak(_ text: String, _ lang: String, slow: Bool = false) -> Bool {
         guard !text.isEmpty else { return false }
         activate()
         guard let v = voice(lang) else { return playClip(text, lang) }
@@ -53,9 +67,31 @@ final class LangVoice: NSObject {
         synth.stopSpeaking(at: .immediate)
         let u = AVSpeechUtterance(string: text)
         u.voice = v
-        u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
+        u.rate = AVSpeechUtteranceDefaultSpeechRate * (slow ? 0.45 : 0.9)
         synth.speak(u)
         return true
+    }
+
+    func speakTogether(_ lines: [VoiceLine]) {
+        let voiced = lines.compactMap { l in voice(l.lang).map { (l.text, $0) } }
+        guard voiced.count > 1 else {
+            if let l = lines.first(where: { voice($0.lang) != nil }) ?? lines.first { speak(l.text, l.lang) }
+            return
+        }
+        activate()
+        hush()
+        for (text, v) in voiced {
+            let u = AVSpeechUtterance(string: text)
+            u.voice = v
+            u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
+            u.postUtteranceDelay = 0.3
+            synth.speak(u)
+        }
+    }
+
+    func hush() {
+        player?.pause()
+        synth.stopSpeaking(at: .immediate)
     }
 
     func playClip(_ text: String, _ lang: String) -> Bool {
@@ -77,6 +113,11 @@ final class LangListener {
     @ObservationIgnored private var current: SpeechRun?
     @ObservationIgnored private var stopEarly = false
     private(set) var live = ""
+    var active: Bool { current != nil }
+
+    func canHear(_ lang: String) -> Bool {
+        supported && SFSpeechRecognizer(locale: Locale(identifier: Lang.info[lang]?.bcp47 ?? lang))?.isAvailable == true
+    }
 
     var supported: Bool {
         #if os(iOS) || os(macOS)
@@ -100,8 +141,18 @@ final class LangListener {
         await withCheckedContinuation { c in SFSpeechRecognizer.requestAuthorization { c.resume(returning: $0 == .authorized) } }
     }
 
-    nonisolated private static func tap(_ input: AVAudioInputNode, into request: SFSpeechAudioBufferRecognitionRequest) {
-        input.installTap(onBus: 0, bufferSize: 1024, format: input.outputFormat(forBus: 0)) { buf, _ in request.append(buf) }
+    nonisolated private static func tap(_ input: AVAudioInputNode, format: AVAudioFormat, into request: SFSpeechAudioBufferRecognitionRequest) {
+        input.installTap(onBus: 0, bufferSize: 1024, format: format) { buf, _ in request.append(buf) }
+    }
+
+    nonisolated static func canTap(sampleRate: Double, channels: UInt32) -> Bool {
+        sampleRate > 0 && channels > 0
+    }
+
+    private func restorePlayback() {
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+        #endif
     }
 
     nonisolated private static func recognize(_ rec: SFSpeechRecognizer, _ request: SFSpeechAudioBufferRecognitionRequest, _ heard: HeardBox, _ finish: @escaping @Sendable ([String]) -> Void) -> SFSpeechRecognitionTask {
@@ -157,9 +208,18 @@ final class LangListener {
         #endif
         let input = engine.inputNode
         input.removeTap(onBus: 0)
-        Self.tap(input, into: request)
+        let format = input.outputFormat(forBus: 0)
+        guard Self.canTap(sampleRate: format.sampleRate, channels: format.channelCount) else {
+            restorePlayback()
+            return []
+        }
+        Self.tap(input, format: format, into: request)
         engine.prepare()
-        guard (try? engine.start()) != nil else { return [] }
+        guard (try? engine.start()) != nil else {
+            input.removeTap(onBus: 0)
+            restorePlayback()
+            return []
+        }
         let run = SpeechRun(request: request)
         current = run
         live = ""
@@ -179,9 +239,7 @@ final class LangListener {
         live = result.first ?? live
         engine.stop()
         input.removeTap(onBus: 0)
-        #if os(iOS)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
-        #endif
+        restorePlayback()
         return result
     }
 }
@@ -190,6 +248,7 @@ struct PlayButton: View {
     let text: String
     let lang: String
     var label: String?
+    var roomy = false
 
     var body: some View {
         if LangVoice.shared.canSpeak(text, lang) {
@@ -197,8 +256,11 @@ struct PlayButton: View {
                 LangVoice.shared.speak(text, lang)
             } label: {
                 Image(systemName: "speaker.wave.2.fill")
+                    .frame(minWidth: roomy ? FitScale.naturalTarget : nil, minHeight: roomy ? FitScale.naturalTarget : nil)
+                    .contentShape(.rect)
             }
             .buttonStyle(.borderless)
+            .padding(.vertical, roomy ? -9 : 0)
             .tint(Palette.green)
             .accessibilityLabel(label ?? "Hear it in \(langName(lang))")
         }

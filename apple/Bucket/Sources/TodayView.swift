@@ -6,10 +6,15 @@ struct TodayView: View {
     @Environment(LangStore.self) private var langs
     @Environment(ScienceStore.self) private var science
     @Environment(Reminders.self) private var reminders
+    @Environment(Account.self) private var account
+    @Environment(\.scenePhase) private var phase
     @State private var path = NavigationPath()
     @State private var session: StudyLaunch?
+    @State private var picking = false
+    @State private var dropTarget: String?
     @AppStorage("bucket.today.order") private var order = ""
     @State private var scienceReady = false
+    private let plan = TodayPlanStore.shared
 
     var loaded: Bool {
         #if DEBUG
@@ -26,23 +31,37 @@ struct TodayView: View {
     enum Item: Identifiable {
         case deck(Work)
         case lang(LangSystem)
+        case game(GameKind)
+        case read(ContentTopic)
+        case activity(TodayActivity)
 
         var id: String {
             switch self {
-            case .deck(let w): "d:\(w.entry.id)"
-            case .lang(let s): "l:\(s.id)"
+            case .deck(let w): TodayItem.deck(w.entry).id
+            case .lang(let s): TodayItem.system(s).id
+            case .game(let g): TodayItem.game(g).id
+            case .read(let t): TodayItem.topic(t).id
+            case .activity(let a): a.id
             }
         }
-    }
 
-    var items: [Item] {
-        let all = langs.systems.map(Item.lang) + work.map(Item.deck)
-        let saved = order.split(separator: ",").map(String.init)
-        return all.enumerated().sorted { a, b in
-            let ia = saved.firstIndex(of: a.element.id) ?? saved.count + a.offset
-            let ib = saved.firstIndex(of: b.element.id) ?? saved.count + b.offset
-            return ia < ib
-        }.map(\.element)
+        var title: String {
+            switch self {
+            case .deck(let w): w.entry.title
+            case .lang(let s): s.name
+            case .game(let g): g.title
+            case .read(let t): t.title
+            case .activity(let a): a.title
+            }
+        }
+
+        var legacyId: String {
+            switch self {
+            case .deck(let w): "d:\(w.entry.id)"
+            case .lang(let s): "l:\(s.id)"
+            default: id
+            }
+        }
     }
 
     struct Work {
@@ -52,19 +71,65 @@ struct TodayView: View {
         let new: Int
     }
 
-    var work: [Work] {
-        library.scienceDecks.compactMap { entry in
-            guard let deck = library.prepared[entry.id], science.state(entry.id).cards.count > 0 else { return nil }
-            let r = science.route(deck)
-            let due = r.filter { $0.kind == .review }.count
-            return Work(entry: entry, deck: deck, due: due, new: r.count - due)
+    func work(_ entry: DeckEntry) -> Work? {
+        guard let deck = library.prepared[entry.id] else { return nil }
+        let r = science.route(deck)
+        let due = r.filter { $0.kind == .review }.count
+        return Work(entry: entry, deck: deck, due: due, new: r.count - due)
+    }
+
+    var startedWork: [Work] {
+        library.scienceDecks.filter { science.state($0.id).cards.count > 0 }.compactMap(work)
+    }
+
+    var defaultItems: [TodayItem] {
+        let saved = order.split(separator: ",").map(String.init)
+        let own = (langs.systems.map(Item.lang) + startedWork.map(Item.deck)).enumerated().sorted { a, b in
+            let ia = saved.firstIndex(of: a.element.legacyId) ?? saved.count + a.offset
+            let ib = saved.firstIndex(of: b.element.legacyId) ?? saved.count + b.offset
+            return ia < ib
+        }.compactMap { todayItem($0.element) }
+        return TodayPlan.defaults(systems: own, decks: [], starter: library.scienceDecks.prefix(1).map(TodayItem.deck))
+    }
+
+    func todayItem(_ item: Item) -> TodayItem? {
+        switch item {
+        case .deck(let w): .deck(w.entry)
+        case .lang(let s): .system(s)
+        case .game(let g): .game(g)
+        case .read(let t): .topic(t)
+        case .activity(let a): .activity(a)
         }
+    }
+
+    func alphabetSystem(_ lang: String) -> LangSystem? {
+        LangScript.alphabetUnit(lang) == nil ? nil : langs.systems.first { $0.targets.contains(lang) }
+    }
+
+    func resolve(_ item: TodayItem) -> Item? {
+        if case .alphabet(let lang)? = item.activity, alphabetSystem(lang) == nil { return nil }
+        if let activity = item.activity { return .activity(activity) }
+        switch item.kind {
+        case .system: return langs.systems.first { $0.id == item.ref }.map(Item.lang)
+        case .deck: return library.scienceDecks.first { $0.id == item.ref }.flatMap(work).map(Item.deck)
+        case .game: return GameKind(rawValue: item.ref).map(Item.game)
+        case .content: return ContentCatalog.topics.first { $0.title == item.ref }.map(Item.read)
+        }
+    }
+
+    var items: [Item] { plan.plan.items.compactMap(resolve) }
+
+    var fallback: [Item] {
+        (langs.systems.map(Item.lang) + startedWork.map(Item.deck)).filter { hasWork($0, Date().timeIntervalSince1970 * 1000) }
     }
 
     var langDue: [(system: LangSystem, due: Int)] {
         guard let corpus = langs.corpus else { return [] }
         let now = Date().timeIntervalSince1970 * 1000
-        return langs.systems.map { ($0, systemSummary($0, corpus, langs.state($0.id), now: now).due) }
+        return items.compactMap { item in
+            guard case .lang(let s) = item else { return nil }
+            return (s, systemSummary(s, corpus, langs.state(s.id), now: now).due)
+        }
     }
 
     var streak: Double {
@@ -74,154 +139,230 @@ struct TodayView: View {
 
     func startNext() {
         guard let next = nextUp(Date().timeIntervalSince1970 * 1000) ?? items.first else { return }
-        switch next {
-        case .deck(let w): session = StudyLaunch(entry: w.entry, deck: w.deck)
-        case .lang(let s): path.append(LangRoute.study(s.id))
-        }
+        open(next)
     }
 
     func nextUp(_ now: Double) -> Item? {
-        items.first { hasWork($0, now) }
+        items.first { hasWork($0, now) } ?? fallback.first
+    }
+
+    func cards(_ item: Item, _ now: Double) -> (due: Int, new: Int)? {
+        switch item {
+        case .deck(let w): (w.due, w.new)
+        case .lang(let s): (langs.corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0, langNewLeft(s, langs.state(s.id), now: now))
+        case .game, .read, .activity: nil
+        }
     }
 
     func hasWork(_ item: Item, _ now: Double) -> Bool {
+        if resting(item, now) { return false }
+        return cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
+    }
+
+    func resting(_ item: Item, _ now: Double) -> Bool {
+        guard case .activity(.alphabet(let lang)) = item, !plan.isDone(item.id), let system = alphabetSystem(lang) else { return false }
+        return !letterQueue(system, langs.state(system.id), now: now).contains { $0.lang == lang }
+    }
+
+    func studied(_ item: Item, _ now: Double) -> Int {
+        let state: EngineState
         switch item {
-        case .deck(let w): w.due + w.new > 0
-        case .lang(let s):
-            (langs.corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0) > 0 || langNewLeft(s, langs.state(s.id), now: now) > 0
+        case .deck(let w): state = science.state(w.entry.id)
+        case .lang(let s): state = langs.state(s.id)
+        case .game, .read, .activity: return 0
         }
+        return state.history[dayKey(now)].map { Int($0.new + $0.reviews) }.orZero
     }
 
     func open(_ item: Item) {
         switch item {
         case .deck(let w): session = StudyLaunch(entry: w.entry, deck: w.deck)
         case .lang(let s): path.append(LangRoute.study(s.id))
+        case .game(let g): path.append(TodayRoute.game(g))
+        case .read(let t): path.append(TodayRoute.read(t))
+        case .activity(.listen): path.append(TodayRoute.content(.listen))
+        case .activity(.watch): path.append(TodayRoute.content(.watch))
+        case .activity(.alphabet(let lang)):
+            if let system = alphabetSystem(lang) { path.append(LangRoute.alphabet(system.id, lang)) }
         }
     }
 
-    func move(_ item: Item, toTop: Bool) {
-        var ids = items.map(\.id).filter { $0 != item.id }
-        if toTop { ids.insert(item.id, at: 0) } else { ids.append(item.id) }
-        order = ids.joined(separator: ",")
+    func masteredPercent(_ item: Item, _ now: Double) -> Int {
+        switch item {
+        case .deck(let w):
+            let s = science.summary(w.deck)
+            return s.total > 0 ? Int(Double(s.mastered) / Double(s.total) * 100) : 0
+        case .lang(let s):
+            guard let corpus = langs.corpus else { return 0 }
+            let per = langProgress(s, corpus, langs.state(s.id), now: now)
+            let total = per.reduce(0) { $0 + Int($1.total) }
+            return total > 0 ? Int(Double(per.reduce(0) { $0 + Int($1.mastered) }) / Double(total) * 100) : 0
+        case .game, .read, .activity: return 0
+        }
     }
 
-    func reorder(_ shown: [Item], _ from: IndexSet, _ to: Int, pending: Bool) {
-        var moved = shown.map(\.id)
-        moved.move(fromOffsets: from, toOffset: to)
-        let rest = items.map(\.id).filter { !moved.contains($0) }
-        order = (pending ? moved + rest : rest + moved).joined(separator: ",")
+    func detail(_ item: Item, _ now: Double) -> String {
+        if let c = cards(item, now) {
+            if c.due + c.new == 0 { return String(localized: "\(masteredPercent(item, now))% mastered · \(studied(item, now)) today") }
+            if c.new == 0 { return String(localized: "\(c.due) review") }
+            if c.due == 0 { return String(localized: "\(c.new) new") }
+            return String(localized: "\(c.due) review · \(c.new) new")
+        }
+        switch item {
+        case .game: return String(localized: "Play one round")
+        case .activity(.listen): return String(localized: "Listen for 2 minutes")
+        case .activity(.watch): return String(localized: "Watch for 1 minute")
+        case .activity(.alphabet): return resting(item, now) ? String(localized: "No letters due") : String(localized: "Finish one round")
+        default: return String(localized: "Read for 30 seconds")
+        }
     }
 
-    @ViewBuilder
-    func row(_ item: Item, done: Bool) -> some View {
-        Group {
-            switch item {
-            case .deck(let work):
-                Button { open(item) } label: { ReviewDeckRow(entry: work.entry) }
-            case .lang(let system):
-                Button { open(item) } label: { LangSystemRow(system: system) }
+    func widget(_ item: Item, done: Bool, now: Double) -> some View {
+        let did = studied(item, now)
+        let count = cards(item, now).map { $0.due + $0.new }
+        let symbol: String? = switch item {
+        case .game(let game): game.symbol
+        case .read: "book"
+        case .activity(.listen): "dot.radiowaves.left.and.right"
+        case .activity(.watch): "play.rectangle"
+        case .activity(.alphabet): "character.book.closed"
+        default: nil
+        }
+        let branch: String? = if case .deck(let w) = item { w.entry.id } else { nil }
+        let flags: [String] = switch item {
+        case .lang(let s): s.targets
+        case .activity(.alphabet(let lang)): [lang]
+        default: []
+        }
+        let share = did + (count ?? 0)
+        return TodayWidget(symbol: symbol, branch: branch, flags: flags, title: item.title, detail: detail(item, now), left: count, progress: done ? 1 : share > 0 ? Double(did) / Double(share) : 0, done: done, dragId: item.id) { open(item) }
+            .contextMenu {
+                Button("Open", systemImage: "play.fill") { open(item) }
+                Button("Move to top", systemImage: "arrow.up.to.line") { plan.move(item.id, toTop: true) }
+                Button("Move to bottom", systemImage: "arrow.down.to.line") { plan.move(item.id, toTop: false) }
+                if case .lang(let s) = item {
+                    Button("Settings and placement", systemImage: "slider.horizontal.3") { path.append(LangRoute.system(s.id)) }
+                }
+                Button("Remove from Today", systemImage: "minus.circle", role: .destructive) { plan.remove(item.id) }
             }
-        }
-        .opacity(done ? 0.6 : 1)
-        .swipeActions(edge: .leading) {
-            Button("Study", systemImage: "play.fill") { open(item) }.tint(D8.malachite)
-        }
-        .swipeActions(edge: .trailing) {
-            Button("Bottom", systemImage: "arrow.down.to.line") { move(item, toTop: false) }.tint(D8.lapis)
-            Button("Top", systemImage: "arrow.up.to.line") { move(item, toTop: true) }.tint(Palette.ink)
-        }
-        .contextMenu {
-            Button("Study", systemImage: "play.fill") { open(item) }
-            Button("Move to top", systemImage: "arrow.up.to.line") { move(item, toTop: true) }
-            Button("Move to bottom", systemImage: "arrow.down.to.line") { move(item, toTop: false) }
-            if case .lang(let s) = item {
-                Button("Settings and placement", systemImage: "slider.horizontal.3") { path.append(LangRoute.system(s.id)) }
+            .dropDestination(for: String.self) { ids, _ in
+                guard let id = ids.first, id != item.id else { return false }
+                withAnimation(.snappy) { plan.drop(id, onto: item.id) }
+                return true
+            } isTargeted: { over in
+                if over { dropTarget = item.id } else if dropTarget == item.id { dropTarget = nil }
             }
-        }
+            .overlay {
+                if dropTarget == item.id { RoundedRectangle(cornerRadius: 22).strokeBorder(D8.lapis, lineWidth: 3).allowsHitTesting(false) }
+            }
+            .accessibilityIdentifier("today.widget.\(item.id)")
+    }
+
+    func hero(_ date: Date, studied: Bool, pending: [Item], planned: [Item], now: Double) -> some View {
+        let real = TodayStatus.evaluate(streak: StreakGoal(streak: streak).day, studiedToday: studied, items: planned.count, itemsLeft: pending.count, now: date)
+        #if DEBUG
+        let status = TodayDemo.status(real, now: date)
+        #else
+        let status = real
+        #endif
+        return TodayHero(status: status, done: planned.count - pending.count, total: planned.count, next: nextUp(now)?.title, start: startNext, browse: { picking = true })
     }
 
     var body: some View {
-        let w = work
-        let due = w.reduce(0) { $0 + $1.due } + langDue.reduce(0) { $0 + $1.due }
         let now = Date().timeIntervalSince1970 * 1000
-        let new = w.reduce(0) { $0 + $1.new } + langs.systems.reduce(0) { $0 + langNewLeft($1, langs.state($1.id), now: now) }
+        let all = items
+        let idle = all.filter { resting($0, now) }
+        let planned = all.filter { !resting($0, now) }
+        let w = planned.compactMap { if case .deck(let w) = $0 { w } else { nil } }
+        let due = w.reduce(0) { $0 + $1.due } + langDue.reduce(0) { $0 + $1.due }
+        let new = w.reduce(0) { $0 + $1.new } + langDue.reduce(0) { $0 + langNewLeft($1.system, langs.state($1.system.id), now: now) }
         let today = dayKey(now)
         let done = library.scienceDecks.reduce(0) { t, e in t + science.state(e.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
             + langs.systems.reduce(0) { t, s in t + langs.state(s.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
+        let pending = planned.filter { hasWork($0, now) }
+        let finished = planned.filter { !hasWork($0, now) }
         NavigationStack(path: $path) {
             Group {
             if !loaded {
                 TodaySkeleton()
             } else {
-            List {
-                Section {
-                    VStack(alignment: .leading, spacing: 14) {
-                        StreakGoalCard(streak: streak)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    StreakGoalCard(streak: streak).todayCard()
+                    VStack(spacing: 12) {
+                        TimelineView(.periodic(from: .now, by: 60)) { context in
+                            hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Divider().overlay(Palette.rule)
                         HStack(spacing: 0) {
                             Tally(n: due, label: "due now", color: D8.vermilion)
                             Tally(n: new, label: "new today", color: D8.lapis)
                             Tally(n: done, label: "done today", color: D8.malachite)
                         }
-                        Text(due + new == 0 ? (w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : "All caught up. Reviews come back as their intervals run out.") : "Due reviews first, then new cards.")
-                            .font(.subheadline)
-                            .foregroundStyle(Palette.muted)
-                        if loaded, let next = nextUp(now) {
-                            switch next {
-                            case .deck(let work):
-                                Button("Start · \(work.entry.title)") { session = StudyLaunch(entry: work.entry, deck: work.deck) }.buttonStyle(D8Primary())
-                            case .lang(let system):
-                                Button("Start · \(system.name)") { path.append(LangRoute.study(system.id)) }.buttonStyle(D8Primary())
-                            }
+                        .padding(.vertical, 4)
+                    }
+                    .todayCard()
+                    if !langs.systems.isEmpty {
+                        VoiceCircle {
+                            DeepLink.shared.listen = true
+                            path.append(TodayRoute.translate)
                         }
                     }
-                    .padding(.vertical, 8)
-                }
-                .listRowBackground(Palette.card)
-                TodayStrip()
-                if !reminders.enabled && !items.isEmpty {
-                    Section { ReminderPrompt().padding(.vertical, 6) }
-                        .listRowBackground(Palette.card)
-                }
-                if !langs.systems.isEmpty {
-                    Section { TranslateCard() }
-                        .listRowBackground(Palette.card)
-                }
-                if loaded && !items.isEmpty {
-                    let pending = items.filter { hasWork($0, now) }
-                    let finished = items.filter { !hasWork($0, now) }
-                    if !pending.isEmpty {
-                        Section {
-                            ForEach(pending) { row($0, done: false) }
-                                .onMove { reorder(pending, $0, $1, pending: true) }
-                                .listRowBackground(Palette.card)
-                        } header: {
-                            Eyebrow(text: "Your studies")
+                    VStack(alignment: .leading, spacing: 10) {
+                        Eyebrow(text: "Your day").padding(.leading, 16)
+                        LazyVGrid(columns: learnColumns, spacing: 14) {
+                            ForEach(pending) { widget($0, done: false, now: now) }
+                            ForEach(idle) { widget($0, done: false, now: now) }
+                            ForEach(finished) { widget($0, done: true, now: now) }
+                            TodayAddWidget { picking = true }
                         }
                     }
-                    if !finished.isEmpty {
-                        Section {
-                            ForEach(finished) { row($0, done: true) }
-                                .onMove { reorder(finished, $0, $1, pending: false) }
-                                .listRowBackground(Palette.card)
-                        } header: {
-                            Eyebrow(text: "Done for today")
-                        }
+                    TodayStrip(card: true)
+                    if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
+                        ReminderPrompt().padding(.vertical, 6).todayCard()
                     }
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
             }
-            #if os(iOS)
-            .toolbar { if items.count > 1 { EditButton().tint(Palette.ink) } }
-            #endif
             }
             }
             .animation(.easeOut(duration: 0.35), value: loaded)
             .paper()
             .navigationTitle("Today")
+            .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }
+            .sheet(isPresented: $picking) { TodayPicker() }
             .langDestinations(path: $path)
+            .navigationDestination(for: TodayRoute.self) { route in
+                switch route {
+                case .game(let game): game.screen
+                case .read(let topic): ReadView(topic: topic, langs: langs.gameLangs.isEmpty ? ["es", "fr"] : langs.gameLangs)
+                case .content(let kind): ContentHub(embedded: true, start: kind, fromToday: true).fullHeightSession()
+                case .translate: TranslateScreen()
+                }
+            }
+            .onChange(of: defaultItems, initial: true) { _, items in if loaded { plan.adopt(items) } }
+            .onChange(of: loaded) { _, ready in if ready { plan.adopt(defaultItems) } }
+            .onChange(of: phase) { _, p in
+                guard p == .active else { return }
+                WatchDwell.returned()
+                Task { await plan.pull() }
+            }
+            .onChange(of: account.stage) { old, new in
+                if new == .signedOut && old == .signedIn && account.endedByUser { plan.clearLocal() }
+            }
+            .task(id: account.stage == .signedIn) {
+                plan.token = { await account.freshToken() }
+                await plan.pull()
+            }
             .onChange(of: loaded, initial: true) { _, ready in if ready && StudyRequest.take() { startNext() } }
             .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in if loaded && StudyRequest.take() { startNext() } }
-            .task { await langs.load() }
+            .task {
+                WatchDwell.returned()
+                await langs.load()
+            }
             .task(id: library.scienceDecks.map(\.id)) {
                 scienceReady = false
                 await science.load(library.scienceDecks.map(\.id))
@@ -231,36 +372,7 @@ struct TodayView: View {
                 session = StudyLaunch(entry: entry, deck: deck)
             }
         }
-    }
-}
-
-struct ReviewDeckRow: View {
-    @Environment(Library.self) private var library
-    @Environment(ScienceStore.self) private var science
-    let entry: DeckEntry
-
-    var body: some View {
-        HStack(alignment: .center, spacing: 12) {
-            DeckRow(entry: entry, subtitle: detail)
-            Spacer(minLength: 0)
-            if let c = counts { CountPills(due: c.due, new: c.new) }
-        }
-        .task { _ = await library.prepared(entry) }
-    }
-
-    var counts: (due: Int, new: Int, streak: Double)? {
-        guard let deck = library.prepared[entry.id] else { return nil }
-        let r = science.route(deck)
-        let due = r.filter { $0.kind == .review }.count
-        return (due, r.count - due, liveStreak(science.state(entry.id), now: Date().timeIntervalSince1970 * 1000))
-    }
-
-    var detail: String? {
-        guard let c = counts else { return entry.sub }
-        if c.due == 0 && c.new == 0 { return "Nothing due today" }
-        var parts = ["\(c.due) due", "\(c.new) new"]
-        if c.streak > 0 { parts.append("\(streakText(c.streak)) streak") }
-        return parts.joined(separator: " · ")
+        .modifier(MilestoneMoments(ready: loaded && session == nil && !picking && path.isEmpty))
     }
 }
 
@@ -273,8 +385,8 @@ func bucketForecast(_ library: Library, _ science: ScienceStore, _ langs: LangSt
             due.append((d, library.prepared[entry.id]?.byId[id]?.title))
         }
     }
-    let streak = ReminderPlan.streak(langs.systems.map { langs.state($0.id) } + library.scienceDecks.map { science.state($0.id) }, at: date)
-    return ReminderPlan.forecast(due: due, at: date, streak: streak)
+    let states = langs.systems.map { langs.state($0.id) } + library.scienceDecks.map { science.state($0.id) }
+    return ReminderPlan.forecast(due: due, at: date, streak: ReminderPlan.streak(states, at: date), studiedToday: ReminderPlan.studied(states, at: date))
 }
 
 struct Tally: View {

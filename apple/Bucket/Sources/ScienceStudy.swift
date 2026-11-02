@@ -212,6 +212,11 @@ struct StudySession: View {
             .inlineTitle()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
+                if let queue, position < queue.count, let atom = deck.byId[queue[position].id] {
+                    ToolbarItem(placement: .primaryAction) {
+                        ShareObjectButton(.content(ShareMoment(title: atom.title, source: entry.title, branch: entry.id, quote: atom.summary, deck: entry.id, atom: atom.id)))
+                    }
+                }
             }
         }
         .onAppear {
@@ -316,6 +321,9 @@ struct StudySession: View {
                 if let nextLine { Text(nextLine).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink) }
                 ReminderPrompt()
                 FeedbackLink()
+                if graded > 0 {
+                    ShareObjectButton(.score(ShareScore(source: entry.title, right: graded, total: graded, streak: Int(store.state(deck.branch).streak))), wide: true)
+                }
                 SyncLine(state: store.saveState)
                 Button {
                     dismiss()

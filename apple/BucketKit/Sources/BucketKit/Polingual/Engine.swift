@@ -300,10 +300,15 @@ public func grade(_ state: EngineState, encompassing: [String: [EncEdge]] = [:],
     var h = next.history[dk] ?? DayStats(new: 0, reviews: 0)
     if wasNew { h.new += 1 } else { h.reviews += 1 }
     next.history[dk] = h
-    if next.lastStudyDay != dk {
-        next.streak = next.lastStudyDay == dayKey(now - DAY_MS, tzName: tz) ? next.streak + 1 : 1
-        next.lastStudyDay = dk
-    }
+    return markStudyDay(next, now: now, tz: tz)
+}
+
+public func markStudyDay(_ state: EngineState, now: Double, tz: String? = nil) -> EngineState {
+    let dk = dayKey(now, tzName: tz)
+    guard state.lastStudyDay != dk else { return state }
+    var next = state
+    next.streak = next.lastStudyDay == dayKey(now - DAY_MS, tzName: tz) ? next.streak + 1 : 1
+    next.lastStudyDay = dk
     return next
 }
 
@@ -330,6 +335,7 @@ public func mergeState(_ a: EngineState?, _ b: EngineState?) -> EngineState {
         let pb = b.prof[id]
         out.prof[id] = pa == nil ? pb : pb == nil ? pa : (pb!.n >= pa!.n ? pb : pa)
     }
+    GameLedger.mergeSynced(&out, a.settingsExtra, b.settingsExtra)
     out.xp = max(a.xp, b.xp)
     out.streak = max(a.streak, b.streak)
     out.lastStudyDay = latestDay(a.lastStudyDay, b.lastStudyDay)

@@ -1,6 +1,8 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { joinDecision, normalizeDisplayName, normalizeInviteCode } from "@/lib/academy/groups";
+import { joinBlocked, joinDecision, normalizeDisplayName, normalizeInviteCode } from "@/lib/academy/groups";
+import { nameAllowed } from "@/lib/academy/groups-names";
 import {
+  blocksTouching,
   clientIp,
   configured,
   fail,
@@ -12,6 +14,7 @@ import {
   MEMBERS,
   membersOf,
   membershipsOf,
+  NAME_NOT_ALLOWED,
   oneGroup,
   preflight,
   readBody,
@@ -34,12 +37,14 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const body = await readBody(req);
   const displayName = normalizeDisplayName(body?.displayName);
   if (!displayName || typeof body?.code !== "string") return json({ error: "bad_request" }, 400);
+  if (!nameAllowed(displayName)) return json({ error: NAME_NOT_ALLOWED }, 422);
   const code = normalizeInviteCode(body.code);
   if (!code) return json({ error: "not_found" }, 404);
   try {
     const group = await groupByCode(code);
     if (!group) return json({ error: "not_found" }, 404);
-    const [members, mine] = await Promise.all([membersOf([group.id]), membershipsOf(uid)]);
+    const [members, mine, blocks] = await Promise.all([membersOf([group.id]), membershipsOf(uid), blocksTouching(uid)]);
+    if (joinBlocked(blocks, uid, group)) return json({ error: "not_found" }, 404);
     const decision = joinDecision(group.kind, members, uid, mine.length);
     if (decision === "full") return json({ error: "group_full" }, 409);
     if (decision === "joined_limit") return json({ error: "joined_limit" }, 409);

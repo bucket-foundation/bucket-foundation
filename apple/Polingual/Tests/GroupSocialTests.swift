@@ -17,6 +17,13 @@ struct GroupSocialTests {
         #expect((d.stringArray(forKey: CheerNotifier.key) ?? []).count == 200)
     }
 
+    @Test func everyReactionHasItsOwnLine() {
+        let lines = CheerReaction.allCases.map { Cheer(id: "c", from: "u2", fromName: "Marco", to: "u1", kind: .cheer, at: "2026-10-28", seen: false, reaction: $0).line }
+        #expect(Set(lines).count == 4)
+        #expect(lines.allSatisfy { $0.contains("Marco") })
+        #expect(cheer("a").line == "Marco cheered you on.")
+    }
+
     @Test func spokesUseStrengthOrTheMasteredShare() {
         let m = GroupMember(userId: "u", name: "Ada Lovelace", role: .member, isMe: false, streak: 0, todayReviews: 0, lastActivity: nil,
                             languages: [MemberLanguage(lang: "fr", learned: 10, mastered: 5), MemberLanguage(lang: "de", learned: 4, mastered: 1, strength: 0.9)],

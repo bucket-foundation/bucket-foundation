@@ -23,6 +23,14 @@ struct SystemView: View {
         .sharePage(store.system(systemId).map { SharePage.langs($0, streak: Int(store.state(systemId).streak)) })
         .navigationTitle(store.system(systemId)?.name ?? "Language system")
         .inlineTitle()
+        .toolbar {
+            if let system = store.system(systemId), let corpus = store.corpus {
+                ToolbarItem(placement: .primaryAction) {
+                    let learned = systemSummary(system, corpus, store.state(systemId), now: Date().timeIntervalSince1970 * 1000).started
+                    ShareObjectButton(.system(name: system.name, root: system.root, targets: system.targets, streak: Int(store.state(systemId).streak), learned: learned))
+                }
+            }
+        }
         .task { await store.load() }
     }
 
@@ -41,6 +49,7 @@ struct SystemView: View {
                     .font(.serif(.body))
                 Button(sum.due > 0 ? String(localized: "Review") : String(localized: "Study")) { path.append(LangRoute.study(system.id)) }
                     .buttonStyle(D8Primary(compact: true))
+                AddToToday(item: .system(system))
                 HStack(spacing: 18) {
                     Text("\(Int(sum.xp)) xp")
                     Text("\(StreakGoal(streak: liveStreak(state, now: now)).day) day streak")
@@ -93,7 +102,13 @@ struct SystemView: View {
                             HStack(spacing: 8) { FlagTile(lang: p.lang, size: 26); Text(langName(p.lang)).font(.headline) }
                             Spacer()
                             Text("\(p.started)/\(p.total) started").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                            if p.mastered > 0 {
+                                ShareObjectButton(.mastered(lang: p.lang, count: Int(p.mastered), root: system.root), .language(p.lang, root: system.root))
+                            } else {
+                                ShareObjectButton(.language(p.lang, root: system.root))
+                            }
                         }
+                        Button("Words, sounds and writing") { path.append(LangRoute.reference(p.lang)) }.buttonStyle(.borderless)
                         ProgressBar(started: p.total > 0 ? Double(p.started) / Double(p.total) : 0, mastered: p.total > 0 ? Double(p.mastered) / Double(p.total) : 0)
                             .accessibilityLabel("\(langName(p.lang)) \(p.started) started, \(p.mastered) mastered")
                         FlowLayout(spacing: 10) {
