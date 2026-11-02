@@ -40,6 +40,7 @@ export const PRIVACY_TABLES: PrivacyTableConfig[] = [
   { schema: "bucket", table: "academy_credentials", learnerColumn: "user_id", label: "academy_credentials" },
   { schema: "bucket", table: "learn_events", learnerColumn: "user_id", label: "learn_events" },
   { schema: "bucket", table: "brand_picks", learnerColumn: "user_id", label: "brand_picks" },
+  { schema: "bucket", table: "streak_reminders", learnerColumn: "user_id", label: "streak_reminders" },
   { schema: "graph", table: "event_usage", learnerColumn: "subject", label: "event_usage" },
   { schema: "graph", table: "work_quiz_attempts", learnerColumn: "learner_id", label: "work_quiz_attempts" },
   { schema: "graph", table: "work_quiz_cards", learnerColumn: "learner_id", label: "work_quiz_cards" },

@@ -87,6 +87,11 @@ export default function PrivacyPage() {
         </ul>
         <p className={P}>Our servers write these records. The page you study on cannot add to them.</p>
 
+        <h2 className={H2}>streak reminders</h2>
+        <p className={P}>
+          Streak reminders stay off until you turn them on in <Link href="/settings" className="underline underline-offset-4">settings</Link>, and they are for accounts 18 and over. We send at most one a day, only when you studied yesterday and not yet today. Every email carries an unsubscribe link, which stops the emails and the app notifications. You can also turn them off in settings.
+        </p>
+
         <h2 className={H2}>beta testing</h2>
         <p className={P}>
           While you test the Bucket or Polingual app, it sends us your sessions, the cards you see and answer, and the lessons you finish, tied to your account. We use them to see what helps people learn. We keep no IP address, device id or location with them. Turn it off in the app or by emailing us; turning it off deletes the beta events we hold for you.
