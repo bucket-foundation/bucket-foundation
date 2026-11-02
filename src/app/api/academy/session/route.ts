@@ -1,10 +1,11 @@
 import type { NextRequest } from "next/server";
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createClient, type EmailOtpType, type SupabaseClient } from "@supabase/supabase-js";
 import { exchangeAppleCode, revokeForAccountDelete } from "@/lib/academy/apple-token";
 import { appleTokenDeps } from "@/lib/academy/apple-token-store";
 import { vercelDefer } from "@/lib/capture/legs";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
+import { mintReviewSession, reviewDemoConfig } from "@/lib/academy/review-demo";
 import { appleAudiences, bearerToken, createSessionHandler, sessionClientIp } from "@/lib/academy/session-server";
 
 export const runtime = "nodejs";
@@ -69,6 +70,21 @@ const handle = createSessionHandler({
   defer: vercelDefer,
   appleAudiences: () => appleAudiences(process.env.APPLE_AUDIENCES),
   deleteAccount: deleteAccountFor,
+  reviewDemo: {
+    config: () => reviewDemoConfig(process.env.REVIEW_DEMO_EMAIL, process.env.REVIEW_DEMO_CODE),
+    signIn: (email) =>
+      mintReviewSession(email, {
+        generateLink: async (address) => {
+          const { data, error } = await adminClient().auth.admin.generateLink({ type: "magiclink", email: address });
+          return error ? { link: null, status: error.status ?? 500 } : { link: { user: data.user, tokenHash: data.properties.hashed_token, type: data.properties.verification_type }, status: null };
+        },
+        verifyToken: async (tokenHash, type) => {
+          const { data, error } = await anonClient().auth.verifyOtp({ token_hash: tokenHash, type: type as EmailOtpType });
+          return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
+        },
+      }),
+    log: (event) => console.info("review demo sign-in", JSON.stringify(event)),
+  },
 });
 
 export async function POST(req: NextRequest): Promise<Response> {
