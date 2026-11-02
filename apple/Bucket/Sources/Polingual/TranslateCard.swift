@@ -159,13 +159,7 @@ struct TranslateCard: View {
                                     .buttonStyle(D8Option(align: .center, compact: true))
                             }
                             let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
-                            if let image = Share.wordImage(gloss: query, words: words) {
-                                ShareLink(item: SharePage.word(id: id, gloss: query, forms: words).url, message: Text(words.map(\.form).joined(separator: " · ")), preview: SharePreview(query, image: image)) {
-                                    Image(systemName: "square.and.arrow.up").font(.headline)
-                                }
-                                .buttonStyle(.borderless)
-                                .accessibilityLabel("Share this word")
-                            }
+                            ShareObjectButton(.word(id: id, gloss: query, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
                             Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: query, forms: words))
                         }
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })

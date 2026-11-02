@@ -133,7 +133,6 @@ struct RootView: View {
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .tabViewStyle(.sidebarAdaptable)
-        .sharesScreenshots()
         .groupInvites()
         .groupsOnToday()
         .onOpenURL { DeepLink.shared.open($0) }
@@ -167,11 +166,6 @@ struct RootView: View {
                 scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
             }
             #endif
-        }
-        .task {
-            guard Launch.flag("-screenshotShare") else { return }
-            try? await Task.sleep(for: .seconds(6))
-            ScreenShare.shared.screenshotTaken()
         }
         .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
             science.clearLocal()

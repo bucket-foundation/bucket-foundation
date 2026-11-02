@@ -168,8 +168,15 @@ let gameEndForced = ProcessInfo.processInfo.arguments.contains("-endGame")
 let gameEndForced = false
 #endif
 
+extension LangStore {
+    func gameScore(_ source: String, right: Int, total: Int) -> ShareObject {
+        .score(ShareScore(source: source, right: right, total: total, langs: gameLangs, root: systems.first?.root ?? "en", streak: langStreak(self)))
+    }
+}
+
 struct GameScore: View {
     let text: String
+    let share: ShareObject
     let again: () -> Void
 
     var body: some View {
@@ -177,6 +184,7 @@ struct GameScore: View {
             Image(systemName: "checkmark.seal.fill").font(.system(size: 54)).foregroundStyle(D8.malachite)
             Text(text).font(.title3.weight(.semibold)).multilineTextAlignment(.center)
             Button("Play again", action: again).buttonStyle(D8Primary(compact: true))
+            ShareObjectButton(share, wide: true).padding(.horizontal, 32)
         }
         .padding(.vertical, 24)
         .frame(maxWidth: .infinity)
@@ -195,7 +203,7 @@ struct MatchGame: View {
                 if round == nil { GameWaiting() }
                 if let round {
                     if round.done || gameEndForced {
-                        GameScore(text: round.misses == 0 ? String(localized: "All pairs, no misses.") : String(localized: "All pairs with \(round.misses) misses.")) { deal() }
+                        GameScore(text: round.misses == 0 ? String(localized: "All pairs, no misses.") : String(localized: "All pairs with \(round.misses) misses."), share: langs.gameScore(GameKind.match.title, right: round.words.count, total: round.words.count + round.misses)) { deal() }
                     } else {
                         HStack(alignment: .top, spacing: 12) {
                             VStack(spacing: vertical == .compact ? 4 : 10) {
@@ -274,7 +282,7 @@ struct MemoryGame: View {
                 if board == nil { GameWaiting() }
                 if let board {
                     if board.done || gameEndForced {
-                        GameScore(text: String(localized: "Every pair in \(board.turns) turns.")) { deal() }
+                        GameScore(text: String(localized: "Every pair in \(board.turns) turns."), share: langs.gameScore(GameKind.memory.title, right: board.tiles.count / 2, total: max(board.turns, board.tiles.count / 2))) { deal() }
                     } else {
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: vertical == .compact ? 6 : 3), spacing: 10) {
                             ForEach(board.tiles) { t in
@@ -361,7 +369,11 @@ struct FlagGame: View {
                 if let round {
                     columns {
                         VStack(spacing: sideways ? 12 : 22) {
-                            Text("\(score) of \(played)").font(.footnote.monospacedDigit()).foregroundStyle(Palette.muted)
+                            HStack(spacing: 10) {
+                                Text("\(score) of \(played)").font(.footnote.monospacedDigit()).foregroundStyle(Palette.muted)
+                                if played > 0 { ShareObjectButton(langs.gameScore(GameKind.flags.title, right: score, total: played)) }
+                                if answered != nil { ShareObjectButton(.flag(round.word.lang, root: round.word.root)) }
+                            }
                             VStack(spacing: 6) {
                                 Text(round.word.form).font(D8.word(40)).foregroundStyle(Palette.ink).multilineTextAlignment(.center).lineLimit(2).minimumScaleFactor(0.5)
                                 if answered != nil { Text(round.word.gloss).font(.headline).foregroundStyle(Palette.muted) }

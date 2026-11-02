@@ -10,29 +10,25 @@ struct SharePage: Equatable {
     var items: [URLQueryItem] = []
     var title: String
 
-    static let host = "www.bucket.foundation"
+    static let host = ShareRoute.host
     static let app = SharePage(path: "", title: String(localized: "Learn every subject and language together on Bucket"))
 
-    var url: URL {
-        var c = URLComponents()
-        c.scheme = "https"
-        c.host = Self.host
-        c.path = "/s" + path
-        c.queryItems = items.isEmpty ? nil : items
-        return c.url ?? URL(string: "https://\(Self.host)/s")!
+    init(path: String, items: [URLQueryItem] = [], title: String) {
+        self.path = path
+        self.items = items
+        self.title = title
     }
 
-    static func clip(_ s: String, _ n: Int) -> String {
-        s.count <= n ? s : String(s.prefix(n - 1)) + "…"
+    init(_ route: ShareRoute, title: String) {
+        self.init(path: route.path, items: route.items, title: title)
     }
+
+    var url: URL { ShareRoute(path: path, items: items).url }
+
+    static func clip(_ s: String, _ n: Int) -> String { ShareRoute.clip(s, n) }
 
     static func word(id: String, gloss: String, forms: [(lang: String, form: String)]) -> SharePage {
-        let shown = forms.prefix(6)
-        return SharePage(path: "/w", items: [
-            URLQueryItem(name: "id", value: id),
-            URLQueryItem(name: "g", value: clip(gloss, 60)),
-            URLQueryItem(name: "f", value: shown.map { "\($0.lang):\(clip($0.form.replacingOccurrences(of: "|", with: "/"), 40))" }.joined(separator: "|")),
-        ], title: "\(gloss): " + shown.map(\.form).joined(separator: " · "))
+        SharePage(.word(id: id, gloss: gloss, forms: forms.map { ShareForm(lang: $0.lang, form: $0.form) }), title: "\(gloss): " + forms.prefix(6).map(\.form).joined(separator: " · "))
     }
 
     static func word(_ item: LangItem, _ system: LangSystem) -> SharePage {
@@ -40,23 +36,15 @@ struct SharePage: Equatable {
     }
 
     static func langs(_ system: LangSystem, streak: Int = 0) -> SharePage {
-        var items = [URLQueryItem(name: "l", value: system.targets.joined(separator: ".")), URLQueryItem(name: "r", value: system.root)]
-        if streak > 1 { items.append(URLQueryItem(name: "s", value: String(streak))) }
-        return SharePage(path: "/l", items: items, title: String(localized: "Learning \(system.targets.map(langName).joined(separator: ", ")) together on Bucket"))
+        SharePage(.langs(system.targets, root: system.root, streak: streak), title: String(localized: "Learning \(system.targets.map(langName).joined(separator: ", ")) together on Bucket"))
     }
 
     static func deck(_ entry: DeckEntry) -> SharePage {
-        SharePage(path: "/d", items: [URLQueryItem(name: "id", value: entry.id), URLQueryItem(name: "t", value: clip(entry.title, 80))], title: entry.title)
+        SharePage(.deck(id: entry.id, title: entry.title), title: entry.title)
     }
 
     static func atom(_ deck: DeckEntry, _ atom: Atom) -> SharePage {
-        SharePage(path: "/a", items: [
-            URLQueryItem(name: "d", value: deck.id),
-            URLQueryItem(name: "id", value: atom.id),
-            URLQueryItem(name: "t", value: clip(atom.title, 80)),
-            URLQueryItem(name: "b", value: clip(deck.title, 60)),
-            URLQueryItem(name: "q", value: clip(atom.summary, 160)),
-        ], title: atom.title)
+        SharePage(.atom(deck: deck.id, deckTitle: deck.title, id: atom.id, title: atom.title, summary: atom.summary), title: atom.title)
     }
 }
 
@@ -79,20 +67,12 @@ final class ScreenShare {
     func remove(_ id: UUID) { stack.removeAll { $0.id == id } }
 
     #if os(iOS)
-    private var presenting = false
-
-    func screenshotTaken() {
-        guard !presenting, let window = Self.keyWindow, let top = Self.top(window.rootViewController) else { return }
-        let page = current
-        let shot = UIGraphicsImageRenderer(bounds: window.bounds).image { _ in window.drawHierarchy(in: window.bounds, afterScreenUpdates: false) }
-        let sheet = UIActivityViewController(activityItems: [ShareLinkItem(page: page, image: shot)], applicationActivities: nil)
+    func present(_ page: SharePage, image: UIImage, finished: @escaping (_ target: String, _ sent: Bool) -> Void) {
+        guard let top = Self.top(Self.keyWindow?.rootViewController) else { return }
+        let sheet = UIActivityViewController(activityItems: [ShareLinkItem(page: page, image: image), image], applicationActivities: nil)
         sheet.popoverPresentationController?.sourceView = top.view
         sheet.popoverPresentationController?.sourceRect = CGRect(x: top.view.bounds.midX, y: top.view.bounds.maxY - 80, width: 1, height: 1)
-        sheet.completionWithItemsHandler = { [weak self] type, done, _, _ in
-            self?.presenting = false
-            Beta.shared.log("screenshot_share", ["path": .string(page.path), "to": .string(type?.rawValue ?? ""), "sent": .string(done ? "1" : "0")])
-        }
-        presenting = true
+        sheet.completionWithItemsHandler = { type, done, _, _ in finished(type?.rawValue ?? "", done) }
         top.present(sheet, animated: true)
     }
 
@@ -152,16 +132,6 @@ struct SharePageTag: ViewModifier {
 extension View {
     func sharePage(_ page: SharePage) -> some View { modifier(SharePageTag(page: page)) }
     func sharePage(_ page: SharePage?) -> some View { modifier(SharePageTag(page: page ?? .app)) }
-
-    func sharesScreenshots() -> some View {
-        #if os(iOS)
-        onReceive(NotificationCenter.default.publisher(for: UIApplication.userDidTakeScreenshotNotification)) { _ in
-            ScreenShare.shared.screenshotTaken()
-        }
-        #else
-        self
-        #endif
-    }
 }
 
 enum SharedLink: Equatable {
@@ -179,7 +149,7 @@ enum SharedLink: Equatable {
         guard parts.first == "s" else { return nil }
         switch parts.dropFirst().first {
         case "w": self = q["g"].map { .word($0) } ?? .home
-        case "l":
+        case "l", "x":
             let targets = Array((q["l"] ?? "").split(separator: ".").map(String.init).filter { Lang.info[$0] != nil }.prefix(8))
             let root = q["r"].flatMap { Lang.info[$0] != nil ? $0 : nil } ?? "en"
             self = targets.isEmpty ? .home : .langs(root: root, targets: targets)

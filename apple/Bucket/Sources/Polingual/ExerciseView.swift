@@ -152,6 +152,9 @@ struct ExerciseView: View {
         } else {
             columns {
                 WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: sideways ? 170 : 190)
+                    .overlay(alignment: .topTrailing) {
+                        ShareObjectButton(.tile(form: ShareForm(lang: ex.answerLang, form: ex.answer), gloss: ex.prompt, reading: readings ? readingText(ex.answerReading) : nil))
+                    }
                 VStack(spacing: 12) {
                     PhraseWords(text: ex.answer, lang: ex.answerLang)
                     Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline).frame(maxWidth: .infinity)
