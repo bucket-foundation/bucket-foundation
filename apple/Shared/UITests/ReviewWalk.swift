@@ -17,7 +17,7 @@ struct ReviewWalk {
     var groupName: String { env["REVIEW_GROUP"] ?? "Rossi family" }
     var memberName: String { env["REVIEW_MEMBER"] ?? "Marco" }
     var lead: TimeInterval { env["REVIEW_LEAD_SECONDS"].flatMap(TimeInterval.init) ?? (Self.onDevice ? 20 : 0) }
-    var pace: TimeInterval { Self.onDevice ? 2 : 0 }
+    var pace: TimeInterval { Self.onDevice ? 2 : 1 }
     var humanTimeout: TimeInterval { 240 }
 
     func hold() {
