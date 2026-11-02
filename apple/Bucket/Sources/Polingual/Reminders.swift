@@ -48,21 +48,24 @@ func langForecast(_ store: LangStore, at date: Date) -> ReviewForecast {
 @MainActor
 @Observable
 final class Reminders {
-    static let enabledKey = "reminders.enabled"
-    static let customKey = "reminders.customMinute"
+    static let enabledKey = ReminderConsent.enabledKey
+    static let customKey = ReminderConsent.customKey
     static let studyKey = "reminders.studyMinutes"
     static let lastStudyKey = "reminders.lastStudy"
-    static let wordKey = "reminders.wordOfDay"
+    static let wordKey = ReminderConsent.wordKey
     static let streakKey = "reminders.streakRisk"
     static let cheersKey = "reminders.cheers"
-    static let healedKey = "reminders.healedOff"
     static let idPrefix = "review-reminder-"
     static let riskPrefix = "streak-risk-"
     static let fallbackMinute = 19 * 60
     static let quietAfterDays = 7
 
     private let defaults: UserDefaults
-    var enabled: Bool { didSet { defaults.set(enabled, forKey: Self.enabledKey) } }
+    var enabled: Bool {
+        didSet {
+            if enabled { defaults.set(true, forKey: Self.enabledKey) } else { defaults.removeObject(forKey: Self.enabledKey) }
+        }
+    }
     var customMinute: Int? { didSet { defaults.set(customMinute ?? -1, forKey: Self.customKey) } }
     var denied = false
     var wordChoice: Bool? { didSet { defaults.set(wordChoice, forKey: Self.wordKey) } }
@@ -77,10 +80,7 @@ final class Reminders {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        if !defaults.bool(forKey: Self.healedKey) {
-            if defaults.object(forKey: Self.enabledKey) as? Bool == false { defaults.removeObject(forKey: Self.enabledKey) }
-            defaults.set(true, forKey: Self.healedKey)
-        }
+        ReminderConsent.heal(defaults)
         enabled = defaults.bool(forKey: Self.enabledKey)
         let c = defaults.object(forKey: Self.customKey) as? Int ?? -1
         customMinute = c >= 0 ? c : nil
@@ -134,7 +134,7 @@ final class Reminders {
 
     func reset() {
         disable()
-        for k in [Self.enabledKey, Self.studyKey, Self.lastStudyKey, Self.customKey] { defaults.removeObject(forKey: k) }
+        for k in [Self.studyKey, Self.lastStudyKey, Self.customKey] { defaults.removeObject(forKey: k) }
         customMinute = nil
     }
 
@@ -166,17 +166,22 @@ final class Reminders {
 
     func enable() async -> Bool {
         let center = UNUserNotificationCenter.current()
+        ReminderConsent.record(on: true, defaults)
         let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
         denied = !granted
         enabled = granted
-        if !granted { defaults.removeObject(forKey: Self.enabledKey) }
         return granted
     }
 
     func sync() async {
         let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
         denied = status == .denied
-        if defaults.object(forKey: Self.enabledKey) == nil, status == .authorized || status == .provisional { enabled = true }
+        if !enabled, ReminderConsent.autoEnables(authorized: status == .authorized || status == .provisional, defaults) { enabled = true }
+    }
+
+    func turnOff() {
+        ReminderConsent.record(on: false, defaults)
+        disable()
     }
 
     func disable() {
@@ -279,7 +284,7 @@ struct ReminderSettings: View {
         @Bindable var r = reminders
         Section {
             Toggle("Daily review reminder", isOn: Binding(get: { reminders.enabled }, set: { on in
-                if on { Task { _ = await reminders.enable() } } else { reminders.disable() }
+                if on { Task { _ = await reminders.enable() } } else { reminders.turnOff() }
             }))
             if reminders.enabled {
                 Toggle("At my regular study time", isOn: Binding(get: { reminders.customMinute == nil }, set: { auto in
