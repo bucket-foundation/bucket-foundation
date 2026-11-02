@@ -232,9 +232,14 @@ export function liveStreak(stats: StoredEngineState["stats"], now: number, tz?: 
   return last && (last === today || last === shiftDay(today, -1)) ? stats?.streak || 0 : 0;
 }
 
-function dayCount(stats: StoredEngineState["stats"], key: string): number {
-  const h = stats?.history?.[key];
-  return (h?.new || 0) + (h?.reviews || 0);
+function gameCount(settings: StoredEngineState["settings"], key: string): number {
+  const games = settings?.games as { days?: Record<string, number> } | undefined;
+  return games?.days?.[key] || 0;
+}
+
+function dayCount(state: StoredEngineState, key: string): number {
+  const h = state.stats?.history?.[key];
+  return (h?.new || 0) + (h?.reviews || 0) + gameCount(state.settings, key);
 }
 
 function isoDay(key: string): string {
@@ -382,8 +387,8 @@ export function memberSummary(rows: readonly BranchRow[], lookup: CorpusLookup, 
   const today = dayKey(now, tz);
   return {
     streak: parsed.states.reduce((m, s) => Math.max(m, liveStreak(s.stats, now, tz)), 0),
-    todayReviews: parsed.states.reduce((n, s) => n + dayCount(s.stats, today), 0),
-    weekReviews: parsed.states.reduce((n, s) => n + week.keys.reduce((k, key) => k + dayCount(s.stats, key), 0), 0),
+    todayReviews: parsed.states.reduce((n, s) => n + dayCount(s, today), 0),
+    weekReviews: parsed.states.reduce((n, s) => n + week.keys.reduce((k, key) => k + dayCount(s, key), 0), 0),
     lastActivity: lastMs > 0 ? new Date(lastMs).toISOString() : null,
     languages,
     subjects,
