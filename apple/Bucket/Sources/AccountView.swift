@@ -11,6 +11,9 @@ struct AccountView: View {
     @State private var confirmingReset = false
     @State private var confirmingDelete = false
     @State private var signingIn = false
+    #if DEBUG
+    @State private var demoShown = false
+    #endif
 
     private static var privacyURL: URL {
         let polingual = Bundle.main.bundleIdentifier == "com.polingual.app"
@@ -79,17 +82,20 @@ struct AccountView: View {
                 }
             }
             .task(id: account.stage == .signedIn) {
-                if account.stage == .signedIn { await groups.load() } else { groups.clear() }
                 #if DEBUG
                 if DemoGroup.on {
+                    guard !demoShown else { return }
+                    demoShown = true
                     groups.groups = [DemoGroup.shown]
                     switch DemoGroup.screen {
                     case "member", "graph": openMember = "u2"
                     case "account", "joined": break
                     default: openGroup = DemoGroup.group.id
                     }
+                    return
                 }
                 #endif
+                if account.stage == .signedIn { await groups.load() } else { groups.clear() }
             }
             .sheet(isPresented: $signingIn) { SignInSheet() }
             .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
