@@ -74,6 +74,10 @@ extension View {
             .paper()
             .navigationTitle(sideways ? "" : title)
             .inlineTitle()
+            #if os(iOS)
+            .onAppear { ScreenShare.shared.quiet += 1 }
+            .onDisappear { ScreenShare.shared.quiet -= 1 }
+            #endif
     }
 
     func gameShake(_ trigger: Int) -> some View {

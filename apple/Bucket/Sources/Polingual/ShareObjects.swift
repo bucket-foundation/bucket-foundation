@@ -818,7 +818,7 @@ struct ScreenshotShare: ViewModifier {
         #if os(iOS)
         content
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.userDidTakeScreenshotNotification)) { _ in
-                ScreenShare.shared.offer(store.shareables)
+                ScreenShare.shared.offerAfterScreenshot(store.shareables)
             }
             #if DEBUG
             .task {

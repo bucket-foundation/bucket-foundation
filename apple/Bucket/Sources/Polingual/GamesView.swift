@@ -139,7 +139,7 @@ extension LangStore {
     }
 
     @discardableResult
-    func recordGame(_ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil) -> Bool {
+    func recordGame(_ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true) -> Bool {
         let before = gameBest(kind.rawValue)
         let touched = kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
         for s in touched {
@@ -149,7 +149,7 @@ extension LangStore {
             for w in mine where !carded.contains(w) && !w.itemId.hasPrefix("abc:") { WantedWords.add(w.itemId, to: s.id) }
         }
         Beta.shared.studyEnded("game:\(kind.rawValue)", graded: hits + missed.count, correct: hits)
-        TodayPlanStore.shared.finish(TodayItem.game(kind).id)
+        if earned { TodayPlanStore.shared.finish(TodayItem.game(kind).id) }
         guard let points, let before else { return false }
         return points > before
     }
@@ -504,6 +504,7 @@ struct GameEnd: View {
     var results: [Bool]?
     let missed: [GameWord]
     var cells: [[Bool]]?
+    var sharing = true
     var share: AnyView?
     var shareObject: ShareObject?
     let again: (() -> Void)?
@@ -552,10 +553,12 @@ struct GameEnd: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Palette.card, in: .rect(cornerRadius: 14))
             }
-            ShareLink(item: brag, preview: SharePreview(kind.title)) {
-                Label("Share your result", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
+            if sharing {
+                ShareLink(item: brag, preview: SharePreview(kind.title)) {
+                    Label("Share your result", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
+                }
+                .buttonStyle(D8Primary())
             }
-            .buttonStyle(D8Primary())
             if let share { share }
             if let shareObject { ShareObjectButton(shareObject, wide: true) }
             if let again { Button("Play again", action: again).buttonStyle(D8Primary(compact: true)) }

@@ -11,6 +11,8 @@ extension LangStore {
 enum MiniRecord {
     static func key(_ day: String) -> String { "mini.time.\(day)" }
 
+    static func shownKey(_ day: String) -> String { "mini.shown.\(day)" }
+
     static func seconds(_ day: String) -> Int? { UserDefaults.standard.object(forKey: key(day)) as? Int }
 
     static func save(_ seconds: Int, _ day: String) { UserDefaults.standard.set(seconds, forKey: key(day)) }
@@ -37,7 +39,7 @@ struct MiniGame: View {
     var body: some View {
         ScrollView {
             if let time, let puzzle {
-                GameEnd(kind: .mini, score: MiniRecord.clock(time), line: showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow."), missed: showed ? puzzle.entries.map(\.word) : [], cells: GameBrag.miniCells(puzzle), shareObject: langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: puzzle.entries.count, total: puzzle.entries.count), again: nil)
+                GameEnd(kind: .mini, score: MiniRecord.clock(time), line: showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow."), missed: showed ? puzzle.entries.map(\.word) : [], cells: GameBrag.miniCells(puzzle), sharing: !showed, shareObject: showed ? nil : langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: puzzle.entries.count, total: puzzle.entries.count), again: nil)
             } else if let puzzle {
                 board(puzzle)
             } else {
@@ -51,6 +53,7 @@ struct MiniGame: View {
             let p = langs.miniPuzzle
             puzzle = p
             time = MiniRecord.seconds(day)
+            showed = UserDefaults.standard.bool(forKey: MiniRecord.shownKey(day))
             guard time == nil, let first = p?.entries.first else { return }
             entryId = first.id
             cursor = first.cells.first
@@ -197,10 +200,11 @@ struct MiniGame: View {
         guard time == nil else { return }
         let seconds = max(1, Int(Date.now.timeIntervalSince(started)))
         time = seconds
+        if showed { UserDefaults.standard.set(true, forKey: MiniRecord.shownKey(day)) }
         MiniRecord.save(seconds, day)
         let words = p.entries.map(\.word)
-        langs.recordGame(.mini, played: words, hits: showed ? 0 : words.count, points: nil, missed: showed ? words : [])
-        reminders.noteStudy()
+        langs.recordGame(.mini, played: words, hits: showed ? 0 : words.count, points: nil, missed: showed ? words : [], earned: !showed)
+        if !showed { reminders.noteStudy() }
         haptic(!showed)
     }
 }

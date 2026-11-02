@@ -193,8 +193,10 @@ struct TranslateCard: View {
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
                 guard on else { return }
                 DeepLink.shared.listen = false
-                if DeepLink.shared.pending == .voice { DeepLink.shared.pending = nil }
                 Task { await listen() }
+            }
+            .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
+                if link == .voice { DeepLink.shared.pending = nil }
             }
             .onChange(of: DeepLink.shared.translate, initial: true) { _, q in
                 guard let q else { return }

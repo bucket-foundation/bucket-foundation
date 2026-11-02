@@ -75,6 +75,13 @@ final class ScreenShare {
     func removeObjects(_ id: UUID) { sets.removeAll { $0.id == id } }
 
     #if os(iOS)
+    var quiet = 0
+
+    func offerAfterScreenshot(_ base: [ShareObject]) {
+        guard quiet == 0, Self.keyWindow?.rootViewController?.presentedViewController == nil else { return }
+        offer(base)
+    }
+
     func offer(_ base: [ShareObject]) {
         var seen = Set<String>()
         let all = ((sets.last?.objects ?? []) + base).filter { seen.insert($0.id).inserted }
@@ -205,7 +212,6 @@ final class DeepLink {
     func open(_ url: URL) {
         guard let link = SharedLink(url) else { return }
         if case .word(let g) = link { translate = g }
-        if link == .voice { listen = true }
         pending = link
     }
 }

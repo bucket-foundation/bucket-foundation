@@ -146,20 +146,19 @@ final class Reminders {
 
     static func test() async -> String {
         let center = UNUserNotificationCenter.current()
-        _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
         let settings = await center.notificationSettings()
         guard settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional else {
-            return "Notifications are off for this app. Turn them on in iPhone Settings, Notifications."
+            return String(localized: "Notifications are off for this app. Turn on a reminder above, or allow them in iPhone Settings.")
         }
         let content = UNMutableNotificationContent()
-        content.title = "Test reminder"
-        content.body = "Notifications reach this phone."
+        content.title = String(localized: "Test reminder")
+        content.body = String(localized: "Your reminders reach this phone.")
         content.sound = .default
         do {
             try await center.add(UNNotificationRequest(identifier: "test.reminder", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)))
-            return "Scheduled. It arrives in 10 seconds, in the app or on the lock screen."
+            return String(localized: "Sent. It arrives in 10 seconds.")
         } catch {
-            return "Could not schedule: \(error.localizedDescription)"
+            return String(localized: "That did not send. Try again.")
         }
     }
 

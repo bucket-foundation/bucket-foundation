@@ -321,6 +321,7 @@ extension LearnView {
                 path.append(LearnRoute.content(fallback))
             }
         case .voice:
+            DeepLink.shared.pending = nil
             path = NavigationPath()
             path.append(LearnRoute.translate)
         default: break
