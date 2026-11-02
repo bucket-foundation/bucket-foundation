@@ -242,15 +242,6 @@ struct TodayView: View {
                     .padding(.vertical, 4)
                 }
                 .listRowBackground(Palette.card)
-                TodayStrip()
-                if !reminders.enabled && !planned.isEmpty {
-                    Section { ReminderPrompt().padding(.vertical, 6) }
-                        .listRowBackground(Palette.card)
-                }
-                if !langs.systems.isEmpty {
-                    Section { TranslateCard() }
-                        .listRowBackground(Palette.card)
-                }
                 Section {
                     ForEach(pending) { row($0, done: false) }
                         .onMove { reorder(pending, $0, $1, pending: true) }
@@ -270,6 +261,15 @@ struct TodayView: View {
                     } header: {
                         Eyebrow(text: "Done for today")
                     }
+                }
+                TodayStrip()
+                if !reminders.enabled && !planned.isEmpty {
+                    Section { ReminderPrompt().padding(.vertical, 6) }
+                        .listRowBackground(Palette.card)
+                }
+                if !langs.systems.isEmpty {
+                    Section { TranslateCard() }
+                        .listRowBackground(Palette.card)
                 }
             }
             #if os(iOS)
