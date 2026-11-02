@@ -416,8 +416,8 @@ test("missingTable spots an unapplied migration and nothing else", () => {
 
 test("hiddenUsers hides both sides of a block", () => {
   const rows = [block({ blocker_id: MATE, target_user_id: OTHER }), block({ blocker_id: OWNER, target_user_id: MATE }), block({ blocker_id: MATE, target_group_id: "g9" })];
-  assert.deepEqual([...hiddenUsers(rows, MATE)].sort(), [OWNER, OTHER]);
-  assert.deepEqual([...hiddenUsers(rows, OTHER)], [MATE]);
+  assert.deepEqual(Array.from(hiddenUsers(rows, MATE)).sort(), [OWNER, OTHER]);
+  assert.deepEqual(Array.from(hiddenUsers(rows, OTHER)), [MATE]);
 });
 
 test("joinBlocked covers a blocked owner, a blocking owner and a blocked group", () => {
