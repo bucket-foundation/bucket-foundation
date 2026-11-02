@@ -163,6 +163,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
     case streak(days: Int, langs: [String], root: String)
     case system(name: String, root: String, targets: [String], streak: Int, learned: Int)
     case language(String, root: String)
+    case mastered(lang: String, count: Int, root: String)
     case word(id: String, gloss: String, forms: [ShareForm])
     case tile(form: ShareForm, gloss: String, reading: String?)
     case flag(String, root: String)
@@ -176,6 +177,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .streak: "streak"
         case .system: "system"
         case .language: "language"
+        case .mastered: "mastered"
         case .word: "word"
         case .tile: "tile"
         case .flag: "flag"
@@ -188,7 +190,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         switch self {
         case .streak(let days, let langs, let root): .langs(langs, root: root, streak: days)
         case .system(_, let root, let targets, let streak, _): .langs(targets, root: root, streak: streak)
-        case .language(let lang, let root), .flag(let lang, let root): .langs([lang], root: root)
+        case .language(let lang, let root), .flag(let lang, let root), .mastered(let lang, _, let root): .langs([lang], root: root)
         case .word(let id, let gloss, let forms): .word(id: id, gloss: gloss, forms: forms)
         case .tile(let form, let gloss, _): .word(id: form.form, gloss: gloss, forms: [form])
         case .score(let s): .score(s)
@@ -201,6 +203,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .streak: [.flame, .hundred, .ledger]
         case .system: [.tree, .wall, .ledger]
         case .language: [.banner, .plate]
+        case .mastered: [.number, .banner]
         case .word(_, _, let forms): forms.count > 1 ? [.stack, .wall, .tile] : [.tile, .stack]
         case .tile: [.tile, .banner]
         case .flag: [.banner, .plate]

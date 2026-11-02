@@ -160,7 +160,7 @@ struct Studio: View {
 
     var stack: some View {
         NavigationStack(path: $path) {
-            LanguagesHome(path: $path)
+            LanguagesHome(path: $path).modifier(MilestoneMoments(ready: path.isEmpty))
                 .langDestinations(path: $path)
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {

@@ -69,36 +69,68 @@ struct TodayHero: View {
     }
 }
 
-struct TodayTaskRow: View {
+struct TodayWidget: View {
     let symbol: String?
+    let branch: String?
+    let flags: [String]
     let title: String
     let detail: String
+    let left: Int?
     let progress: Double
     let done: Bool
+    let open: () -> Void
 
     var body: some View {
-        HStack(spacing: 14) {
-            ZStack {
-                Circle().stroke(Palette.rule, lineWidth: 4)
-                Circle().trim(from: 0, to: progress).stroke(D8.malachite, style: StrokeStyle(lineWidth: 4, lineCap: .round)).rotationEffect(.degrees(-90))
-                if done {
-                    Image(systemName: "checkmark").font(.caption.weight(.heavy)).foregroundStyle(D8.malachite)
-                } else if let symbol {
-                    Image(systemName: symbol).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+        Button(action: open) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(alignment: .top) {
+                    ZStack {
+                        Circle().stroke(Palette.rule, lineWidth: 5)
+                        Circle().trim(from: 0, to: progress).stroke(D8.malachite, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
+                        if done {
+                            Image(systemName: "checkmark").font(.subheadline.weight(.heavy)).foregroundStyle(D8.malachite)
+                        } else if let left {
+                            Text("\(left)").font(.system(size: 15, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink).monospacedDigit().minimumScaleFactor(0.6).padding(6)
+                        } else if let symbol {
+                            Image(systemName: symbol).font(.subheadline.weight(.bold)).foregroundStyle(Palette.muted)
+                        }
+                    }
+                    .frame(width: 48, height: 48)
+                    Spacer(minLength: 4)
+                    if let branch {
+                        BranchTile(branch: branch, size: 26)
+                    } else {
+                        HStack(spacing: 3) { ForEach(flags.prefix(3), id: \.self) { FlagTile(lang: $0, size: 22) } }
+                    }
                 }
+                Text(title).font(.system(size: 16, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                    .lineLimit(2, reservesSpace: true).multilineTextAlignment(.leading)
+                Text(detail).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit().lineLimit(1).minimumScaleFactor(0.8)
             }
-            .frame(width: 34, height: 34)
-            .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 3) {
-                Text(title).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.85)
-                Text(detail).font(.subheadline).foregroundStyle(Palette.muted).monospacedDigit().lineLimit(1)
-            }
-            Spacer(minLength: 0)
-            if !done {
-                Image(systemName: "play.fill").font(.footnote).foregroundStyle(D8.vermilion)
-            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Palette.card, in: .rect(cornerRadius: 22))
+            .opacity(done ? 0.7 : 1)
         }
-        .padding(.vertical, 6)
+        .buttonStyle(.plain)
+    }
+}
+
+struct TodayAddWidget: View {
+    let open: () -> Void
+
+    var body: some View {
+        Button(action: open) {
+            VStack(spacing: 8) {
+                Image(systemName: "plus").font(.system(size: 26, weight: .bold))
+                Text("Add to Today").font(.subheadline.weight(.bold))
+            }
+            .foregroundStyle(Palette.muted)
+            .frame(maxWidth: .infinity, minHeight: 150)
+            .overlay { RoundedRectangle(cornerRadius: 22).strokeBorder(Palette.rule, style: StrokeStyle(lineWidth: 2, dash: [6, 5])) }
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("today.add")
     }
 }
 

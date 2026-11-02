@@ -102,7 +102,11 @@ struct SystemView: View {
                             HStack(spacing: 8) { FlagTile(lang: p.lang, size: 26); Text(langName(p.lang)).font(.headline) }
                             Spacer()
                             Text("\(p.started)/\(p.total) started").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
-                            ShareObjectButton(.language(p.lang, root: system.root))
+                            if p.mastered > 0 {
+                                ShareObjectButton(.mastered(lang: p.lang, count: Int(p.mastered), root: system.root), .language(p.lang, root: system.root))
+                            } else {
+                                ShareObjectButton(.language(p.lang, root: system.root))
+                            }
                         }
                         Button("Words, sounds and writing") { path.append(LangRoute.reference(p.lang)) }.buttonStyle(.borderless)
                         ProgressBar(started: p.total > 0 ? Double(p.started) / Double(p.total) : 0, mastered: p.total > 0 ? Double(p.mastered) / Double(p.total) : 0)

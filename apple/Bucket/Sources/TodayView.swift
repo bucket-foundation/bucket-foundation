@@ -166,54 +166,38 @@ struct TodayView: View {
         }
     }
 
-    func reorder(_ shown: [Item], _ from: IndexSet, _ to: Int, pending: Bool) {
-        var moved = shown.map(\.id)
-        moved.move(fromOffsets: from, toOffset: to)
-        let rest = items.map(\.id).filter { !moved.contains($0) }
-        plan.order(pending ? moved + rest : rest + moved)
-    }
-
     func detail(_ item: Item, _ now: Double) -> String {
         if let c = cards(item, now) {
             if c.due + c.new == 0 { return String(localized: "\(studied(item, now)) cards today") }
-            if c.new == 0 { return String(localized: "\(c.due) to review") }
+            if c.new == 0 { return String(localized: "\(c.due) review") }
             if c.due == 0 { return String(localized: "\(c.new) new") }
-            return String(localized: "\(c.due) to review · \(c.new) new")
+            return String(localized: "\(c.due) review · \(c.new) new")
         }
         if case .game = item { return String(localized: "Play one round") }
         return String(localized: "Read for 30 seconds")
     }
 
-    func taskRow(_ item: Item, done: Bool, now: Double) -> TodayTaskRow {
+    func widget(_ item: Item, done: Bool, now: Double) -> some View {
         let did = studied(item, now)
-        let left = cards(item, now).map { $0.due + $0.new } ?? 0
+        let count = cards(item, now).map { $0.due + $0.new }
         let symbol: String? = switch item {
         case .game(let game): game.symbol
         case .read: "book"
         default: nil
         }
-        return TodayTaskRow(symbol: symbol, title: item.title, detail: detail(item, now), progress: done ? 1 : did + left > 0 ? Double(did) / Double(did + left) : 0, done: done)
-    }
-
-    @ViewBuilder
-    func row(_ item: Item, done: Bool, now: Double) -> some View {
-        Button { open(item) } label: { taskRow(item, done: done, now: now).frame(maxWidth: .infinity, alignment: .leading).contentShape(.rect) }
-            .buttonStyle(.plain)
-            .opacity(done ? 0.6 : 1)
-        .swipeActions(edge: .trailing) {
-            Button("Remove", systemImage: "minus.circle", role: .destructive) { plan.remove(item.id) }
-            Button("Bottom", systemImage: "arrow.down.to.line") { plan.move(item.id, toTop: false) }.tint(D8.lapis)
-            Button("Top", systemImage: "arrow.up.to.line") { plan.move(item.id, toTop: true) }.tint(Palette.ink)
-        }
-        .contextMenu {
-            Button("Open", systemImage: "play.fill") { open(item) }
-            Button("Move to top", systemImage: "arrow.up.to.line") { plan.move(item.id, toTop: true) }
-            Button("Move to bottom", systemImage: "arrow.down.to.line") { plan.move(item.id, toTop: false) }
-            if case .lang(let s) = item {
-                Button("Settings and placement", systemImage: "slider.horizontal.3") { path.append(LangRoute.system(s.id)) }
+        let branch: String? = if case .deck(let w) = item { w.entry.id } else { nil }
+        let flags: [String] = if case .lang(let s) = item { s.targets } else { [] }
+        let share = did + (count ?? 0)
+        return TodayWidget(symbol: symbol, branch: branch, flags: flags, title: item.title, detail: detail(item, now), left: count, progress: done ? 1 : share > 0 ? Double(did) / Double(share) : 0, done: done) { open(item) }
+            .contextMenu {
+                Button("Open", systemImage: "play.fill") { open(item) }
+                Button("Move to top", systemImage: "arrow.up.to.line") { plan.move(item.id, toTop: true) }
+                Button("Move to bottom", systemImage: "arrow.down.to.line") { plan.move(item.id, toTop: false) }
+                if case .lang(let s) = item {
+                    Button("Settings and placement", systemImage: "slider.horizontal.3") { path.append(LangRoute.system(s.id)) }
+                }
+                Button("Remove from Today", systemImage: "minus.circle", role: .destructive) { plan.remove(item.id) }
             }
-            Button("Remove from Today", systemImage: "minus.circle", role: .destructive) { plan.remove(item.id) }
-        }
     }
 
     func hero(_ date: Date, studied: Bool, pending: [Item], planned: [Item], now: Double) -> some View {
@@ -266,34 +250,23 @@ struct TodayView: View {
                     .listRowBackground(Color.clear)
                 }
                 Section {
-                    ForEach(pending) { row($0, done: false, now: now) }
-                        .onMove { reorder(pending, $0, $1, pending: true) }
-                        .listRowBackground(Palette.card)
-                    Button { picking = true } label: { Label("Add to Today", systemImage: "plus.circle") }
-                        .tint(Palette.ink)
-                        .listRowBackground(Palette.card)
-                        .accessibilityIdentifier("today.add")
-                } header: {
-                    Eyebrow(text: "Your list")
-                }
-                if !finished.isEmpty {
-                    Section {
-                        ForEach(finished) { row($0, done: true, now: now) }
-                            .onMove { reorder(finished, $0, $1, pending: false) }
-                            .listRowBackground(Palette.card)
-                    } header: {
-                        Eyebrow(text: "Done for today")
+                    LazyVGrid(columns: learnColumns, spacing: 14) {
+                        ForEach(pending) { widget($0, done: false, now: now) }
+                        ForEach(finished) { widget($0, done: true, now: now) }
+                        TodayAddWidget { picking = true }
                     }
+                    .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                    .listRowSeparator(.hidden)
+                } header: {
+                    Eyebrow(text: "Your day")
                 }
+                .listRowBackground(Color.clear)
                 TodayStrip()
                 if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
                     Section { ReminderPrompt().padding(.vertical, 6) }
                         .listRowBackground(Palette.card)
                 }
             }
-            #if os(iOS)
-            .toolbar { if items.count > 1 { EditButton().tint(Palette.ink) } }
-            #endif
             }
             }
             .animation(.easeOut(duration: 0.35), value: loaded)
@@ -331,6 +304,7 @@ struct TodayView: View {
                 session = StudyLaunch(entry: entry, deck: deck)
             }
         }
+        .modifier(MilestoneMoments(ready: loaded && session == nil && !picking && path.isEmpty))
     }
 }
 

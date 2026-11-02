@@ -11,6 +11,7 @@ extension ShareObject {
             langs.isEmpty ? String(localized: "\(days) day streak on \(Feedback.appName)") : String(localized: "\(days) days in a row learning \(langs.map(langName).joined(separator: ", ")) on \(Feedback.appName)")
         case .system(_, _, let targets, _, _): String(localized: "Learning \(targets.map(langName).joined(separator: ", ")) together on \(Feedback.appName)")
         case .language(let lang, _), .flag(let lang, _): String(localized: "Learning \(langName(lang)) on \(Feedback.appName)")
+        case .mastered(let lang, let count, _): String(localized: "\(count) words mastered in \(langName(lang)) on \(Feedback.appName)")
         case .word(_, let gloss, let forms): "\(gloss): " + forms.prefix(6).map(\.form).joined(separator: " · ")
         case .tile(let form, let gloss, _): form.form == gloss ? form.form : "\(form.form): \(gloss)"
         case .score(let s): String(localized: "\(s.right) of \(s.total) right in \(s.source) on \(Feedback.appName)")
@@ -23,6 +24,7 @@ extension ShareObject {
         case .streak: String(localized: "Share your streak")
         case .system: String(localized: "Share your language system")
         case .language: String(localized: "Share this language")
+        case .mastered: String(localized: "Share your words")
         case .word: String(localized: "Share this word")
         case .tile: String(localized: "Share this tile")
         case .flag: String(localized: "Share this flag")
@@ -65,6 +67,8 @@ struct ShareCardView: View {
             }
         case .language(let lang, _):
             if style == .plate { FlagPlateCard(lang: lang, dark: false) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: String(localized: "Learning it on \(Feedback.appName)")) }
+        case .mastered(let lang, let count, _):
+            if style == .banner { FlagBannerCard(lang: lang, word: "\(count)", reading: nil, line: String(localized: "words mastered")) } else { MasteredCard(lang: lang, count: count) }
         case .flag(let lang, _):
             if style == .plate { FlagPlateCard(lang: lang, dark: true) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: nil) }
         case .word(_, let gloss, let forms):
@@ -312,6 +316,26 @@ struct TileWallCard: View {
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(D8.ink)
+    }
+}
+
+struct MasteredCard: View {
+    let lang: String
+    let count: Int
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            FlagTile(lang: lang, size: 96)
+            Spacer(minLength: 0)
+            Text("\(count)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+            Text(count == 1 ? String(localized: "word mastered") : String(localized: "words mastered")).font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
+            Text(langName(lang)).font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8))
+            Spacer(minLength: 0)
+            CardFoot(color: .white)
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(D8.malachite)
     }
 }
 
