@@ -102,7 +102,7 @@ struct ReviewWalk {
         tap(block)
         XCTAssertTrue(app.staticTexts["Block \(groupName)?"].waitForExistence(timeout: 10))
         hold()
-        tap(app.buttons["Cancel"].firstMatch)
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.12)).tap()
         tap(app.buttons["BackButton"].firstMatch)
 
         let blocked = labeled("Blocked")
