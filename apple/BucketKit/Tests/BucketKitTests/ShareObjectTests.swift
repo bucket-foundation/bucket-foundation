@@ -10,6 +10,11 @@ private func query(_ o: ShareObject) -> [String: String] {
     Dictionary(uniqueKeysWithValues: o.route.items.map { ($0.name, $0.value ?? "") })
 }
 
+private let standings = ShareStandings(group: "Rossi family", rows: [
+    ShareStanding(rank: 1, name: "Gia", weekly: 160, streak: 12, mastered: 240, langs: ["it", "es"], isMe: true),
+    ShareStanding(rank: 2, name: "MR", weekly: 96, streak: 5, mastered: 232, langs: ["fr"], isMe: false),
+], members: 4)
+
 @Suite struct ShareObjectTests {
     let every: [ShareObject] = [
         .streak(days: 12, langs: ["fr", "es"], root: "en"),
@@ -20,11 +25,12 @@ private func query(_ o: ShareObject) -> [String: String] {
         .flag("es", root: "en"),
         .score(score),
         .content(article),
+        .standings(standings),
     ]
 
     @Test func everyObjectLinksToAKnownSharePage() {
         let paths = every.map(\.route.path)
-        #expect(paths == ["/l", "/l", "/l", "/w", "/w", "/l", "/x", "/c"])
+        #expect(paths == ["/l", "/l", "/l", "/w", "/w", "/l", "/x", "/c", "/l"])
         for o in every { #expect(o.route.url.absoluteString.hasPrefix("https://www.bucket.foundation/s/")) }
     }
 
@@ -52,6 +58,17 @@ private func query(_ o: ShareObject) -> [String: String] {
 
     @Test func aOneDayStreakStaysOutOfTheLink() {
         #expect(query(.streak(days: 1, langs: ["fr"], root: "en"))["s"] == nil)
+    }
+
+    @Test func standingsLinkLeavesOutGroupNamesAndInvites() {
+        let url = ShareObject.standings(standings).route.url.absoluteString
+        for private_ in ["Rossi", "MR", "Gia", "c="] { #expect(!url.contains(private_)) }
+        #expect(query(.standings(standings))["l"] == "it.es")
+    }
+
+    @Test func standingsWithoutTheViewerFallBackToTheHomeLink() {
+        let others = ShareStandings(group: "Club", rows: [], members: 2)
+        #expect(ShareObject.standings(others).route.path == "")
     }
 
     @Test func tileLinksOneFormOnly() {

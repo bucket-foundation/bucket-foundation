@@ -529,8 +529,7 @@ struct TodayStrip: View {
         if !groups.people.isEmpty || !groups.incoming.isEmpty || !groups.goals.isEmpty {
             Section {
                 ForEach(groups.incoming.prefix(3)) { c in
-                    Label(c.kind == .cheer ? String(localized: "\(c.fromName) cheered you on.") : String(localized: "\(c.fromName) nudged you to study today."),
-                          systemImage: c.kind == .cheer ? "hands.clap.fill" : "bell.fill")
+                    Label(c.line, systemImage: c.symbol)
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(c.kind == .cheer ? D8.malachite : D8.vermilion)
                 }
@@ -646,7 +645,7 @@ enum CheerNotifier {
         guard await center.notificationSettings().authorizationStatus == .authorized else { return }
         for c in new.prefix(3) {
             let content = UNMutableNotificationContent()
-            content.title = c.kind == .cheer ? String(localized: "\(c.fromName) cheered you on.") : String(localized: "\(c.fromName) nudged you to study today.")
+            content.title = c.line
             content.userInfo = ["study": true]
             content.sound = .default
             try? await center.add(UNNotificationRequest(identifier: "cheer-\(c.id)", content: content, trigger: nil))
