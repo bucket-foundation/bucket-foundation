@@ -243,7 +243,7 @@ export function http2Transport(timeoutMs = 8000): ApnsTransport {
       });
     },
     close() {
-      for (const s of sessions.values()) s.close();
+      sessions.forEach((s) => s.close());
       sessions.clear();
     },
   };
