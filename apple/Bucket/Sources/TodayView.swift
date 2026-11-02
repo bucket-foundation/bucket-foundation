@@ -221,7 +221,7 @@ struct TodayView: View {
         #else
         let status = real
         #endif
-        return TodayHero(status: status, streak: streak, done: planned.count - pending.count, total: planned.count, next: nextUp(now)?.title, start: startNext, browse: { picking = true })
+        return TodayHero(status: status, done: planned.count - pending.count, total: planned.count, next: nextUp(now)?.title, start: startNext, browse: { picking = true })
     }
 
     var body: some View {
@@ -241,6 +241,8 @@ struct TodayView: View {
                 TodaySkeleton()
             } else {
             List {
+                Section { StreakGoalCard(streak: streak) }
+                    .listRowBackground(Palette.card)
                 Section {
                     TimelineView(.periodic(from: .now, by: 60)) { context in
                         hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)

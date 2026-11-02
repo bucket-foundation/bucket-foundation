@@ -367,7 +367,7 @@ struct DailyShare: View {
             Color.clear.frame(height: 0)
             if let image {
                 ShareLink(item: image, message: Text(message), preview: SharePreview(GameKind.daily.title, image: image)) {
-                    Label("Share your result", systemImage: "square.and.arrow.up")
+                    Label("Share the card", systemImage: "photo")
                 }
                 .buttonStyle(D8Option(align: .center))
             }

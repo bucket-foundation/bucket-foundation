@@ -3,7 +3,6 @@ import SwiftUI
 
 struct TodayHero: View {
     let status: TodayStatus
-    let streak: Double
     let done: Int
     let total: Int
     let next: String?
@@ -51,7 +50,6 @@ struct TodayHero: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            StreakGoalCard(streak: streak)
             VStack(alignment: .leading, spacing: 4) {
                 Text(title).font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(urgent ? D8.vermilion : Palette.ink)
                 Text(detail).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)

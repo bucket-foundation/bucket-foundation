@@ -37,7 +37,7 @@ struct MiniGame: View {
     var body: some View {
         ScrollView {
             if let time, let puzzle {
-                GameEnd(kind: .mini, score: MiniRecord.clock(time), line: showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow."), missed: showed ? puzzle.entries.map(\.word) : [], shareObject: langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: puzzle.entries.count, total: puzzle.entries.count), again: nil)
+                GameEnd(kind: .mini, score: MiniRecord.clock(time), line: showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow."), missed: showed ? puzzle.entries.map(\.word) : [], cells: GameBrag.miniCells(puzzle), shareObject: langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: puzzle.entries.count, total: puzzle.entries.count), again: nil)
             } else if let puzzle {
                 board(puzzle)
             } else {

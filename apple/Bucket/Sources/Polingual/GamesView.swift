@@ -498,9 +498,15 @@ struct GameEnd: View {
     var best = false
     var results: [Bool]?
     let missed: [GameWord]
+    var cells: [[Bool]]?
     var share: AnyView?
     var shareObject: ShareObject?
     let again: (() -> Void)?
+
+    var brag: String {
+        let date = Date.now.formatted(.dateTime.month(.defaultDigits).day())
+        return GameBrag.text(title: "\(Feedback.appName) \(kind.title)", day: date, score: score, results: results, cells: cells, link: Feedback.isPolingual ? "polingual.com" : "bucket.foundation")
+    }
 
     var body: some View {
         VStack(spacing: 16) {
@@ -541,6 +547,10 @@ struct GameEnd: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Palette.card, in: .rect(cornerRadius: 14))
             }
+            ShareLink(item: brag, preview: SharePreview(kind.title)) {
+                Label("Share your result", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
+            }
+            .buttonStyle(D8Primary())
             if let share { share }
             if let shareObject { ShareObjectButton(shareObject, wide: true) }
             if let again { Button("Play again", action: again).buttonStyle(D8Primary(compact: true)) }
