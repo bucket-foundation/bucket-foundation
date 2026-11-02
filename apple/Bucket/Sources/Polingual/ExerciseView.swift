@@ -316,7 +316,7 @@ struct ExerciseView: View {
                     let row = ex.kind == .gender && options.count <= 3
                     let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways || ex.kind == .letter ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
                     if ex.optionLangs != nil {
-                        Text("Some options are from other languages. Pick the \(targetName) one.")
+                        Text("Some options are from other languages. Pick the right answer in \(targetName).")
                             .font(.subheadline).foregroundStyle(Palette.muted)
                             .fixedSize(horizontal: false, vertical: true)
                     }
