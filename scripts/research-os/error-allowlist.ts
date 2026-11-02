@@ -4,6 +4,7 @@ export interface ErrorException {
 }
 
 export const ERROR_EXCEPTIONS: ErrorException[] = [
+  { at: "src/lib/waitlist/supabase-store.ts::sweep::<unknown>::res::1", because: "ok() throws on res.error on the next line, and the scanner only reads destructured errors." },
   { at: "src/app/api/academy/credential/verify/route.ts::liveProfile::academy_profiles::data::1", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
   { at: "src/app/m/[handle]/page.tsx::fetchPublicProfile::academy_profiles::data::1", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
   { at: "src/lib/academy/credential/store.ts::listCredentialsForUser::<unknown>::data::1", because: "not yet triaged, empty-guard: this read binds error and returns the same empty value either way, and nothing here has read the caller to say whether that is right" },
