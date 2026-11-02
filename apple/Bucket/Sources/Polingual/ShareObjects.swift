@@ -53,7 +53,7 @@ struct ShareCardView: View {
         switch object {
         case .streak(let days, let langs, _):
             switch style {
-            case .hundred: HundredCard(days: days, langs: langs)
+            case .hundred: HundredCard(days: days)
             case .ledger: ShareCard(langs: langs, streak: days, learned: 0)
             default: FlameCard(days: days, langs: langs)
             }
@@ -135,7 +135,6 @@ struct FlameCard: View {
 
 struct HundredCard: View {
     let days: Int
-    let langs: [String]
 
     var body: some View {
         let g = StreakGoal(streak: Double(days))
@@ -168,10 +167,10 @@ struct TreeCard: View {
 
     var body: some View {
         let shown = Array(targets.prefix(8))
-        let row = min(84, 372 / CGFloat(max(1, shown.count)))
+        let row = min(108, 372 / CGFloat(max(1, shown.count)))
         VStack(alignment: .leading, spacing: 0) {
             Text(name).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
-            Text("One root, \(shown.count) languages").font(D8.caps(16)).tracking(1.2).foregroundStyle(stone).padding(.top, 4).padding(.bottom, 20)
+            Text(shown.count == 1 ? String(localized: "One root, one language") : String(localized: "One root, \(shown.count) languages")).font(D8.caps(16)).tracking(1.2).foregroundStyle(stone).padding(.top, 4).padding(.bottom, 20)
             HStack(spacing: 14) {
                 FlagTile(lang: root, size: 64)
                 Text(langName(root)).font(.system(size: 28, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
@@ -230,8 +229,8 @@ struct FlagBannerCard: View {
         VStack(spacing: 0) {
             FlagFace(flag: D8Flag.of(lang), emblem: word == nil)
             VStack(alignment: .leading, spacing: 8) {
-                Text(langName(lang).uppercased()).font(D8.caps(word == nil ? 22 : 18)).tracking(2).foregroundStyle(stone)
                 if let word {
+                    Text(langName(lang).uppercased()).font(D8.caps(18)).tracking(2).foregroundStyle(stone)
                     Text(word).font(D8.word(68)).foregroundStyle(D8.ink).lineLimit(2).minimumScaleFactor(0.4)
                         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 } else {

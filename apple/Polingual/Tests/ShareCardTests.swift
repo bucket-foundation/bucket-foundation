@@ -36,6 +36,16 @@ struct ShareCardTests {
         }
     }
 
+    @Test func everyFlagRenders() throws {
+        let out = ProcessInfo.processInfo.environment["SHARE_CARD_OUT"]
+        for start in stride(from: 0, to: Lang.codes.count, by: 9) {
+            let langs = Array(Lang.codes[start..<min(start + 9, Lang.codes.count)])
+            let object = ShareObject.system(name: "flags", root: "en", targets: langs, streak: 0, learned: 0)
+            let image = try #require(Share.renderer(object, .wall).uiImage)
+            if let out, let data = image.pngData() { try data.write(to: URL(fileURLWithPath: out).appending(path: "flags-\(start).png")) }
+        }
+    }
+
     @Test func everyObjectNamesItsSheetAndKeepsItsLink() {
         for object in Self.every {
             #expect(!object.sheetTitle.isEmpty)

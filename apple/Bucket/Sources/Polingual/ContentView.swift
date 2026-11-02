@@ -385,25 +385,25 @@ struct ListenList: View {
                 }
                 ForEach(shown) { s in
                     HStack(spacing: 8) {
-                    Button { radio.toggle(s) } label: {
-                        HStack(spacing: 12) {
-                            Image(systemName: radio.playing == s.id ? "stop.circle.fill" : "play.circle.fill")
-                                .font(.title)
-                                .foregroundStyle(radio.playing == s.id ? D8.vermilion : Palette.green)
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(s.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
-                                Text(radio.failedId == s.id ? String(localized: "This station did not play.") : s.country)
-                                    .font(.footnote)
-                                    .foregroundStyle(radio.failedId == s.id ? D8.vermilion : Palette.muted)
-                                ContentTags(langs: [l], branch: s.branch)
+                        Button { radio.toggle(s) } label: {
+                            HStack(spacing: 12) {
+                                Image(systemName: radio.playing == s.id ? "stop.circle.fill" : "play.circle.fill")
+                                    .font(.title)
+                                    .foregroundStyle(radio.playing == s.id ? D8.vermilion : Palette.green)
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text(s.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
+                                    Text(radio.failedId == s.id ? String(localized: "This station did not play.") : s.country)
+                                        .font(.footnote)
+                                        .foregroundStyle(radio.failedId == s.id ? D8.vermilion : Palette.muted)
+                                    ContentTags(langs: [l], branch: s.branch)
+                                }
+                                Spacer(minLength: 0)
                             }
-                            Spacer(minLength: 0)
+                            .contentShape(.rect)
                         }
-                        .contentShape(.rect)
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
-                    ShareObjectButton(.content(ShareMoment(title: s.name, source: s.country, branch: s.branch, lang: l)))
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
+                        ShareObjectButton(.content(ShareMoment(title: s.name, source: s.country, branch: s.branch, lang: l)))
                     }
                     .contextMenu {
                         Button("Report station", systemImage: "flag", role: .destructive) { report(s) }
