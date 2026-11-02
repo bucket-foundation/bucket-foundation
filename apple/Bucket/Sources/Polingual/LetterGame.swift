@@ -294,11 +294,11 @@ struct LetterQuiz: View {
                 Text(o).font(.system(size: sideways ? 28 : 36, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
                 if picked != nil, let s = LetterSounds.lookup(ex.lang, o) {
                     Label(s.example, systemImage: "speaker.wave.2.fill").labelStyle(.titleAndIcon)
-                        .font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : D8.label).lineLimit(1).minimumScaleFactor(0.6)
+                        .font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : Palette.muted).lineLimit(1).minimumScaleFactor(0.6)
                 }
             }
             .frame(maxWidth: .infinity, minHeight: sideways ? 52 : 64)
-            .foregroundStyle(state == .right ? .white : D8.ink)
+            .foregroundStyle(state == .right ? .white : Palette.ink)
         }
         .buttonStyle(LetterTileStyle(state: state))
         .keyframeAnimator(initialValue: 0.0, trigger: state == .wrong ? shake : 0) { v, x in v.offset(x: x) } keyframes: { _ in
@@ -318,8 +318,8 @@ struct LetterTileStyle: ButtonStyle {
     let state: RowState
 
     func makeBody(configuration: Configuration) -> some View {
-        let face: Color = state == .right ? D8.malachite : state == .wrong ? Color(hex: 0xFBE9E5) : .white
-        let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.keyline
+        let face: Color = state == .right ? D8.malachite : state == .wrong ? D8.wrongFace : D8.face
+        let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.edge
         configuration.label
             .background(face, in: .rect(cornerRadius: 16))
             .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(lip, lineWidth: 2) }

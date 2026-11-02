@@ -75,6 +75,7 @@ public struct ShareRoute: Sendable, Equatable {
         if let q = m.quote { items.append(URLQueryItem(name: "q", value: clip(q, 160))) }
         if let l = m.lang { items.append(URLQueryItem(name: "l", value: l)) }
         if let at = m.seconds { items.append(URLQueryItem(name: "at", value: String(at))) }
+        if let topic = m.topic { items.append(URLQueryItem(name: "id", value: clip(topic, 80))) }
         return ShareRoute(path: "/c", items: items)
     }
 }
@@ -118,8 +119,9 @@ public struct ShareMoment: Sendable, Hashable {
     public var seconds: Int?
     public var deck: String?
     public var atom: String?
+    public var topic: String?
 
-    public init(title: String, source: String, branch: String, lang: String? = nil, quote: String? = nil, seconds: Int? = nil, deck: String? = nil, atom: String? = nil) {
+    public init(title: String, source: String, branch: String, lang: String? = nil, quote: String? = nil, seconds: Int? = nil, deck: String? = nil, atom: String? = nil, topic: String? = nil) {
         self.title = title
         self.source = source
         self.branch = branch
@@ -128,6 +130,7 @@ public struct ShareMoment: Sendable, Hashable {
         self.seconds = seconds.flatMap { $0 >= 0 ? $0 : nil }
         self.deck = deck
         self.atom = atom
+        self.topic = topic
     }
 
     public var clock: String? { seconds.map { Self.timecode($0) } }

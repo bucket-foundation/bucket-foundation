@@ -111,6 +111,12 @@ private func query(_ o: ShareObject) -> [String: String] {
         #expect(query(o)["id"] == "f-ma")
     }
 
+    @Test func momentCarriesItsCatalogTopic() {
+        var m = article
+        m.topic = "Gravity"
+        #expect(query(.content(m))["id"] == "Gravity")
+    }
+
     @Test func momentDropsANegativeTimestamp() {
         #expect(ShareMoment(title: "t", source: "s", branch: "01", seconds: -4).seconds == nil)
     }

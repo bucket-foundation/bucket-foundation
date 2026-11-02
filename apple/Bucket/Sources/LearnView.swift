@@ -13,7 +13,7 @@ struct LearnView: View {
                     LearnHeading(text: langs.systems.isEmpty ? "Languages" : "Your languages")
                     languages(proxy)
                     LearnHeading(text: "Explore")
-                    GamesSection()
+                    GamesSection { path.append(LearnRoute.game($0)) }
                     ContentSection()
                     SubjectsSection()
                     if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
@@ -84,9 +84,14 @@ struct LearnView: View {
         switch route {
         case .canon: CanonView()
         case .game(let game): game.screen
-        case .read(let topic): ReadView(topic: topic, langs: langs.contentLangs).fullHeightSession()
+        case .read(let topic, let lang): ReadView(topic: topic, langs: readLangs(lang)).fullHeightSession()
         case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
         }
+    }
+
+    func readLangs(_ shared: String?) -> [String] {
+        guard let shared else { return langs.contentLangs }
+        return [shared] + langs.contentLangs.filter { $0 != shared }
     }
 }
 
@@ -122,28 +127,18 @@ struct LearnGroupTitle: View {
 }
 
 struct GamesSection: View {
-    @Environment(LangStore.self) private var langs
+    let open: (GameKind) -> Void
 
     var body: some View {
         Section {
-            ForEach(GameKind.allCases) { game in
-                NavigationLink(value: LearnRoute.game(game)) {
-                    TileRow(symbol: game.symbol, title: game.title, detail: game.detail)
-                }
-                .disabled(langs.systems.isEmpty)
-                .opacity(langs.systems.isEmpty ? 0.55 : 1)
-            }
+            GamesBoard(open: open)
+                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                .listRowSeparator(.hidden)
         } header: {
             LearnGroupTitle(text: "Games")
-        } footer: {
-            if langs.systems.isEmpty {
-                Text("Start a language set above. The games use the words you study.")
-            } else {
-                Text("\(langs.gameWords.count) words from your sets. Games do not change your reviews.")
-            }
         }
         .id("games")
-        .listRowBackground(Palette.card)
+        .listRowBackground(Color.clear)
     }
 }
 
@@ -155,8 +150,11 @@ struct ContentSection: View {
     var body: some View {
         Section {
             ForEach(ContentCatalog.topics.prefix(3)) { topic in
-                NavigationLink(value: LearnRoute.read(topic)) {
-                    TileRow(symbol: "book", title: topic.title, detail: String(localized: "Read side by side in \(names)"), color: D8.malachite)
+                HStack {
+                    NavigationLink(value: LearnRoute.read(topic)) {
+                        TileRow(symbol: "book", title: topic.title, detail: String(localized: "Read side by side in \(names)"), color: D8.malachite)
+                    }
+                    AddToToday(item: .topic(topic), look: .icon)
                 }
             }
             NavigationLink(value: LearnRoute.content(.listen)) {
@@ -224,6 +222,14 @@ extension LearnView {
             if case .atom(_, let atomId) = link, let deck = await library.prepared(entry), let atom = deck.byId[atomId] {
                 path.append(AtomRoute(deck: entry, atom: atom))
             }
+        case .content(let title, let lang):
+            DeepLink.shared.pending = nil
+            path = NavigationPath()
+            if let topic = ContentCatalog.topics.first(where: { $0.title == title }) {
+                path.append(LearnRoute.read(topic, lang: lang))
+            } else {
+                path.append(LearnRoute.content(.listen))
+            }
         default: break
         }
     }
@@ -250,7 +256,7 @@ struct DeckRow: View {
 enum LearnRoute: Hashable {
     case canon
     case game(GameKind)
-    case read(ContentTopic)
+    case read(ContentTopic, lang: String? = nil)
     case content(ContentKind)
 }
 
@@ -324,8 +330,8 @@ struct DeckView: View {
             }
         }
         .paper()
-        .sharePage(.deck(entry))
         .navigationTitle(entry.title)
+        .toolbar { ToolbarItem(placement: .primaryAction) { AddToToday(item: .deck(entry), look: .icon) } }
         .task {
             deck = await library.prepared(entry)
             await science.load(library.scienceDecks.map(\.id))
@@ -397,7 +403,6 @@ struct AtomView: View {
             .frame(maxWidth: .infinity)
         }
         .paper()
-        .sharePage(.atom(route.deck, atom))
         .inlineTitle()
         .sheet(isPresented: $practicing) {
             if let deck = library.prepared[route.deck.id] { AtomDrillSheet(deck: deck, atom: deck.byId[atom.id] ?? atom) }

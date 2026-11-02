@@ -14,6 +14,9 @@ struct ScreenShareTests {
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/l?l=fr.es.it&r=en")!) == .langs(root: "en", targets: ["fr", "es", "it"]))
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/a?d=physics&id=newton-2")!) == .atom(deck: "physics", atom: "newton-2"))
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/d?id=math")!) == .deck("math"))
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/c?t=Gravedad&b=Wikipedia&l=es&id=Gravity")!) == .content(topic: "Gravity", lang: "es"))
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/c?t=Radio%20Uno&b=Spain")!) == .content(topic: "Radio Uno", lang: nil))
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/c")!) == .home)
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s")!) == .home)
         #expect(SharedLink(URL(string: "https://example.com/s/w?g=x")!) == nil)
     }

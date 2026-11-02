@@ -227,6 +227,7 @@ struct LanguageSections: View {
                 Text(s.name).font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
                 Spacer()
                 Text("\(sum.started) of \(sum.total) cards").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                AddToToday(item: .system(s), look: .icon)
             }
             HStack(spacing: 4) { ForEach(s.targets, id: \.self) { FlagTile(lang: $0, size: 24) }; Text("from \(langName(s.root))").font(.subheadline).foregroundStyle(Palette.muted).padding(.leading, 4) }
             HStack(spacing: 14) {

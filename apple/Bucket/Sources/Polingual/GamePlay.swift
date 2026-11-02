@@ -57,8 +57,8 @@ struct GameChoiceStyle: ButtonStyle {
     let state: RowState
 
     func makeBody(configuration: Configuration) -> some View {
-        let face: Color = state == .right ? D8.malachite : state == .wrong ? Color(hex: 0xFBE9E5) : .white
-        let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.keyline
+        let face: Color = state == .right ? D8.malachite : state == .wrong ? D8.wrongFace : D8.face
+        let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.edge
         configuration.label
             .background(face, in: .rect(cornerRadius: 16))
             .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(lip, lineWidth: 2) }
@@ -231,7 +231,7 @@ struct QuizGame: View {
             }
             .padding(10)
             .frame(maxWidth: .infinity, minHeight: sideways ? 64 : 124)
-            .foregroundStyle(state == .right ? .white : D8.ink)
+            .foregroundStyle(state == .right ? .white : Palette.ink)
             .contentShape(.rect)
         }
         .buttonStyle(GameChoiceStyle(state: state))
@@ -269,11 +269,11 @@ struct PromptCard: View {
                 if rail.count > 1 { family } else { FlagTile(lang: prompt.word.lang, size: 48) }
                 Text(prompt.word.gloss)
                     .font(D8.word(sideways ? 28 : 36))
-                    .foregroundStyle(D8.ink)
+                    .foregroundStyle(Palette.ink)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
-                Text("in \(langName(prompt.word.lang))").font(.subheadline.weight(.semibold)).foregroundStyle(D8.label)
+                Text("in \(langName(prompt.word.lang))").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
             } else {
                 if prompt.mode == .voice && !answered {
                     Button { LangVoice.shared.speak(prompt.word.form, prompt.word.lang) } label: {
@@ -286,22 +286,22 @@ struct PromptCard: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel("Hear it")
-                    Text("Which language is this?").font(.subheadline.weight(.semibold)).foregroundStyle(D8.label)
+                    Text("Which language is this?").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
                 } else {
                     Text(prompt.word.form)
                         .font(D8.word(sideways ? 30 : 40))
-                        .foregroundStyle(D8.ink)
+                        .foregroundStyle(Palette.ink)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
                     Text(answered ? prompt.word.gloss : String(localized: "Which language is this?"))
-                        .font(.subheadline.weight(.semibold)).foregroundStyle(D8.label)
+                        .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
                 }
             }
         }
         .padding(18)
         .frame(maxWidth: .infinity, minHeight: sideways ? 120 : 230)
-        .modifier(GameLip(face: .white, lip: D8.keyline))
+        .modifier(GameLip(face: D8.face, lip: D8.edge))
     }
 
     var rail: [GamePrompt] { run.prompts.filter { $0.group == prompt.group && $0.mode == .form && isSameWord } }

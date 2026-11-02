@@ -15,6 +15,7 @@ enum D8 {
     static let panel = Color(hex: 0xF6EEDC).opacity(0.8)
     static let face = Color(light: 0xFFFFFF, dark: 0x38332A)
     static let edge = Color(light: 0xE3D6B8, dark: 0x4D463A)
+    static let wrongFace = Color(light: 0xFBE9E5, dark: 0x54302A)
     static let pickedFace = Color(light: 0xEEF3FB, dark: 0x22344F)
     static let picked = Color(light: 0x1F4E9A, dark: 0x6C9BE8)
     static let rightText = Color(light: 0x1E7A5A, dark: 0x5CC9A0)

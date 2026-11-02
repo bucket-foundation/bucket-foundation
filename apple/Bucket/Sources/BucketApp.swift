@@ -101,7 +101,7 @@ extension SharedLink {
     var tab: AppTab {
         switch self {
         case .word, .home: .today
-        case .langs, .deck, .atom: .learn
+        case .langs, .deck, .atom, .content: .learn
         case .group: .account
         }
     }

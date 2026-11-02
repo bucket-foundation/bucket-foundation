@@ -331,7 +331,7 @@ struct ReadView: View {
                 Text(texts[l]?.title ?? titles[l] ?? langName(l)).font(.serif(.title3, weight: .semibold))
                 if let s = texts[l] {
                     Spacer(minLength: 0)
-                    ShareObjectButton(.content(ShareMoment(title: s.title, source: String(localized: "\(langName(l)) Wikipedia"), branch: topic.branch, lang: l, quote: s.extract)))
+                    ShareObjectButton(.content(ShareMoment(title: s.title, source: String(localized: "\(langName(l)) Wikipedia"), branch: topic.branch, lang: l, quote: s.extract, topic: topic.title)))
                 }
             }
             if let s = texts[l] {
@@ -461,7 +461,7 @@ struct WatchList: View {
                             }
                         }
                         .buttonStyle(.borderless)
-                        ShareObjectButton(.content(ShareMoment(title: title ?? t.title, source: branchTitle(t.branch), branch: t.branch, lang: l)))
+                        ShareObjectButton(.content(ShareMoment(title: title ?? t.title, source: branchTitle(t.branch), branch: t.branch, lang: l, topic: t.title)))
                     }
                 }
             } header: {
