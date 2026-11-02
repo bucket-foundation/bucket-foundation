@@ -5,7 +5,7 @@ import { appleTokenDeps } from "@/lib/academy/apple-token-store";
 import { vercelDefer } from "@/lib/capture/legs";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
-import { mintReviewSession, reviewDemoConfig } from "@/lib/academy/review-demo";
+import { findUserByEmail, mintReviewSession, reviewDemoConfig } from "@/lib/academy/review-demo";
 import { appleAudiences, bearerToken, createSessionHandler, sessionClientIp } from "@/lib/academy/session-server";
 
 export const runtime = "nodejs";
@@ -71,12 +71,18 @@ const handle = createSessionHandler({
   appleAudiences: () => appleAudiences(process.env.APPLE_AUDIENCES),
   deleteAccount: deleteAccountFor,
   reviewDemo: {
-    config: () => reviewDemoConfig(process.env.REVIEW_DEMO_EMAIL, process.env.REVIEW_DEMO_CODE),
+    config: () => reviewDemoConfig(process.env.REVIEW_DEMO_EMAIL, process.env.REVIEW_DEMO_CODE, process.env.REVIEW_DEMO_UNTIL, Date.now()),
     signIn: (email) =>
       mintReviewSession(email, {
+        findUser: (address) =>
+          findUserByEmail(async (page, perPage) => {
+            const { data, error } = await adminClient().auth.admin.listUsers({ page, perPage });
+            if (error) throw new Error(`review demo user lookup failed with status ${error.status}`);
+            return data.users;
+          }, address),
         generateLink: async (address) => {
           const { data, error } = await adminClient().auth.admin.generateLink({ type: "magiclink", email: address });
-          return error ? { link: null, status: error.status ?? 500 } : { link: { user: data.user, tokenHash: data.properties.hashed_token, type: data.properties.verification_type }, status: null };
+          return error ? { link: null, status: error.status ?? 500 } : { link: { tokenHash: data.properties.hashed_token, type: data.properties.verification_type }, status: null };
         },
         verifyToken: async (tokenHash, type) => {
           const { data, error } = await anonClient().auth.verifyOtp({ token_hash: tokenHash, type: type as EmailOtpType });

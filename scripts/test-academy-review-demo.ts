@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { isReviewDemoEmail, isReviewDemoUser, mintReviewSession, reviewCodeMatches, reviewDemoConfig, type ReviewDemoAuth } from "../src/lib/academy/review-demo";
+import { findUserByEmail, isReviewDemoEmail, isReviewDemoUser, mintReviewSession, reviewCodeMatches, reviewDemoConfig, type ReviewDemoAuth, type ReviewDemoUser } from "../src/lib/academy/review-demo";
 import { reviewPeerEmail, reviewProgressRows, reviewSystem, reviewSystemsDoc } from "../src/lib/academy/review-demo-seed";
 import { createSessionHandler, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 import { memberSummary, normalizeInviteCode } from "../src/lib/academy/groups";
@@ -8,16 +8,18 @@ import { normalizeSystemsDoc, progressBranch } from "../src/lib/academy/lang-sys
 
 const EMAIL = "review@bucket.example";
 const CODE = "48151623";
+const NOW = 1_760_000_000_000;
+const UNTIL = new Date(NOW + 86_400_000).toISOString();
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "demo" } };
 
-function world(over: Partial<SessionDeps> = {}, config: () => ReturnType<typeof reviewDemoConfig> = () => reviewDemoConfig(EMAIL, CODE)) {
+function world(over: Partial<SessionDeps> = {}, config: () => ReturnType<typeof reviewDemoConfig> = () => reviewDemoConfig(EMAIL, CODE, UNTIL, NOW)) {
   const hits = new Map<string, number>();
   const calls: string[] = [];
   const logs: { outcome: string; ip: string }[] = [];
   const deps: SessionDeps = {
     enabled: () => true,
     configured: () => true,
-    now: () => 1_760_000_000_000,
+    now: () => NOW,
     rateHit: async (key, limit) => {
       const n = (hits.get(key) ?? 0) + 1;
       hits.set(key, n);
@@ -39,14 +41,20 @@ function world(over: Partial<SessionDeps> = {}, config: () => ReturnType<typeof 
 }
 
 test("the config needs an address and a code of eight to ten digits, and fails closed", () => {
-  assert.deepEqual(reviewDemoConfig(` ${EMAIL.toUpperCase()} `, ` ${CODE} `), { email: EMAIL, code: CODE });
-  assert.equal(reviewDemoConfig(undefined, CODE), null);
-  assert.equal(reviewDemoConfig(EMAIL, undefined), null);
-  assert.equal(reviewDemoConfig("", ""), null);
-  assert.equal(reviewDemoConfig("nope", CODE), null);
-  assert.equal(reviewDemoConfig(EMAIL, "123456"), null);
-  assert.equal(reviewDemoConfig(EMAIL, "12345678901"), null);
-  assert.equal(reviewDemoConfig(EMAIL, "abcdefgh"), null);
+  const config = (email?: string, code?: string) => reviewDemoConfig(email, code, UNTIL, NOW);
+  assert.deepEqual(config(` ${EMAIL.toUpperCase()} `, ` ${CODE} `), { email: EMAIL, code: CODE });
+  assert.equal(config(undefined, CODE), null);
+  assert.equal(config(EMAIL, undefined), null);
+  assert.equal(config("", ""), null);
+  assert.equal(config("nope", CODE), null);
+  assert.equal(config(EMAIL, "123456"), null);
+  assert.equal(config(EMAIL, "12345678901"), null);
+  assert.equal(config(EMAIL, "abcdefgh"), null);
+});
+
+test("a missing, past, exact or unreadable REVIEW_DEMO_UNTIL turns the path off", () => {
+  assert.notEqual(reviewDemoConfig(EMAIL, CODE, "2099-01-01", NOW), null);
+  for (const until of [undefined, "", "2020-01-01", new Date(NOW).toISOString(), "soon", "12", "2099-13-45"]) assert.equal(reviewDemoConfig(EMAIL, CODE, until, NOW), null);
 });
 
 test("the address match takes that one address and ignores case", () => {
@@ -97,23 +105,42 @@ test("the fixed code opens nothing for any other address", async () => {
 });
 
 test("with the env unset the demo address follows the normal code flow", async () => {
-  const w = world({}, () => reviewDemoConfig(undefined, undefined));
+  const w = world({}, () => reviewDemoConfig(undefined, undefined, undefined, NOW));
   await w.handle({ action: "otp", email: EMAIL }, "1.1.1.1");
   assert.equal((await w.handle({ action: "verify", email: EMAIL, code: CODE }, "1.1.1.1")).status, 400);
   assert.deepEqual(w.calls, [`otp ${EMAIL}`, `verify ${EMAIL} ${CODE}`]);
   assert.equal(w.logs.length, 0);
 });
 
-test("guesses at the demo address hit the per-email cap even from new addresses, and the right code then waits", async () => {
+test("strangers guessing from many addresses cannot lock the reviewer out", async () => {
   const w = world();
-  for (let i = 0; i < SESSION_LIMITS.verifyEmail; i++) assert.equal((await w.handle({ action: "verify", email: EMAIL, code: "11111111" }, `10.1.0.${i}`)).status, 400);
-  assert.equal((await w.handle({ action: "verify", email: EMAIL, code: CODE }, "10.1.0.200")).status, 429);
+  for (let i = 0; i < SESSION_LIMITS.verifyEmail * 3; i++) assert.equal((await w.handle({ action: "verify", email: EMAIL, code: "11111111" }, `10.1.0.${i}`)).status, 400);
+  assert.equal((await w.handle({ action: "verify", email: EMAIL, code: CODE }, "198.51.100.7")).status, 200);
+});
+
+test("strangers asking for codes cannot lock the reviewer out", async () => {
+  const w = world();
+  for (let i = 0; i < SESSION_LIMITS.otpEmail * 3; i++) await w.handle({ action: "otp", email: EMAIL }, `10.3.0.${i}`);
+  assert.equal((await w.handle({ action: "otp", email: EMAIL }, "198.51.100.7")).status, 200);
+});
+
+test("guesses at the demo address are capped per address, and other addresses stay open", async () => {
+  const w = world();
+  for (let i = 0; i < SESSION_LIMITS.reviewVerifyIp; i++) assert.equal((await w.handle({ action: "verify", email: EMAIL, code: "11111111" }, "10.1.0.1")).status, 400);
+  assert.equal((await w.handle({ action: "verify", email: EMAIL, code: CODE }, "10.1.0.1")).status, 429);
   assert.equal(w.calls.length, 0);
   assert.equal(w.logs.at(-1)?.outcome, "rate_limited");
+  assert.equal((await w.handle({ action: "verify", email: EMAIL, code: CODE }, "10.1.0.2")).status, 200);
+});
+
+test("other addresses keep their per-email cap", async () => {
+  const w = world();
+  for (let i = 0; i < SESSION_LIMITS.verifyEmail; i++) await w.handle({ action: "verify", email: "a@b.co", code: "000000" }, `10.4.0.${i}`);
+  assert.equal((await w.handle({ action: "verify", email: "a@b.co", code: "000000" }, "10.4.0.200")).status, 429);
 });
 
 test("a failed mint is a bad code and logged", async () => {
-  const w = world({ reviewDemo: { config: () => reviewDemoConfig(EMAIL, CODE), signIn: async () => ({ session: null, status: 403 }), log: () => {} } });
+  const w = world({ reviewDemo: { config: () => reviewDemoConfig(EMAIL, CODE, UNTIL, NOW), signIn: async () => ({ session: null, status: 403 }), log: () => {} } });
   assert.equal((await w.handle({ action: "verify", email: EMAIL, code: CODE }, "1.1.1.1")).status, 400);
 });
 
@@ -125,19 +152,20 @@ test("log lines carry an outcome and a hashed address, with no code or email", a
   for (const secret of [CODE, "11111111", EMAIL, "203.0.113.9"]) assert.equal(text.includes(secret), false);
 });
 
-function auth(user: { app_metadata?: Record<string, unknown> } | null, status: number | null = null) {
+function auth(user: ReviewDemoUser | null, status: number | null = null) {
   const seen: string[] = [];
   const deps: ReviewDemoAuth = {
-    generateLink: async () => (status === null ? { link: { user, tokenHash: "hash", type: "magiclink" }, status: null } : { link: null, status }),
+    findUser: async () => user,
+    generateLink: async () => (seen.push("link"), status === null ? { link: { tokenHash: "hash", type: "magiclink" }, status: null } : { link: null, status }),
     verifyToken: async (hash, type) => (seen.push(`${hash} ${type}`), { session: SESSION, status: null }),
   };
   return { deps, seen };
 }
 
-test("a session is minted only for a user the seed marked", async () => {
+test("a session is minted only for a user the seed marked, and nothing else generates a link", async () => {
   const marked = auth({ app_metadata: { review_demo: true } });
   assert.deepEqual(await mintReviewSession(EMAIL, marked.deps), { session: SESSION, status: null });
-  assert.deepEqual(marked.seen, ["hash magiclink"]);
+  assert.deepEqual(marked.seen, ["link", "hash magiclink"]);
   for (const user of [{ app_metadata: {} }, { app_metadata: { review_demo: "true" } }, {}, null]) {
     const a = auth(user);
     assert.deepEqual(await mintReviewSession(EMAIL, a.deps), { session: null, status: 403 });
@@ -147,9 +175,18 @@ test("a session is minted only for a user the seed marked", async () => {
 });
 
 test("a link failure passes through without a verify", async () => {
-  const a = auth(null, 500);
+  const a = auth({ app_metadata: { review_demo: true } }, 500);
   assert.deepEqual(await mintReviewSession(EMAIL, a.deps), { session: null, status: 500 });
-  assert.deepEqual(a.seen, []);
+  assert.deepEqual(a.seen, ["link"]);
+});
+
+test("the user lookup walks every page and stops at the last one", async () => {
+  const pages: { email: string }[][] = [Array.from({ length: 1000 }, (_, i) => ({ email: `u${i}@b.co` })), [{ email: EMAIL.toUpperCase() }]];
+  const asked: number[] = [];
+  const list = async (page: number) => (asked.push(page), pages[page - 1] ?? []);
+  assert.deepEqual(await findUserByEmail(list, EMAIL), { email: EMAIL.toUpperCase() });
+  assert.deepEqual(asked, [1, 2]);
+  assert.equal(await findUserByEmail(list, "absent@b.co"), null);
 });
 
 test("seed rows read back as a language set and a live group summary", () => {

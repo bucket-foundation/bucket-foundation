@@ -1,9 +1,8 @@
 import { createClient, type SupabaseClient, type User } from "@supabase/supabase-js";
-import { isReviewDemoUser } from "../src/lib/academy/review-demo";
+import { findUserByEmail, isReviewDemoUser } from "../src/lib/academy/review-demo";
 import { REVIEW_DISPLAY_NAME, REVIEW_GROUP_KIND, REVIEW_GROUP_NAME, REVIEW_PEER_NAME, reviewInviteCode, reviewPeerEmail, reviewProgressRows } from "../src/lib/academy/review-demo-seed";
 
 const PEER_WORDS = ["one", "two", "three", "red"];
-const PAGE_SIZE = 1000;
 
 function required(name: string): string {
   const value = process.env[name]?.trim();
@@ -12,13 +11,11 @@ function required(name: string): string {
 }
 
 async function findUser(auth: SupabaseClient["auth"]["admin"], email: string): Promise<User | null> {
-  for (let page = 1; ; page++) {
-    const { data, error } = await auth.listUsers({ page, perPage: PAGE_SIZE });
+  return findUserByEmail(async (page, perPage) => {
+    const { data, error } = await auth.listUsers({ page, perPage });
     if (error) throw new Error(`list users failed with status ${error.status}`);
-    const found = data.users.find((u) => u.email?.toLowerCase() === email);
-    if (found) return found;
-    if (data.users.length < PAGE_SIZE) return null;
-  }
+    return data.users;
+  }, email);
 }
 
 async function ensureUser(auth: SupabaseClient["auth"]["admin"], email: string): Promise<string> {
@@ -29,10 +26,7 @@ async function ensureUser(auth: SupabaseClient["auth"]["admin"], email: string):
     return data.user.id;
   }
   if (isReviewDemoUser(existing)) return existing.id;
-  if (existing.last_sign_in_at) throw new Error("that address belongs to a real account, choose another REVIEW_DEMO_EMAIL");
-  const { error } = await auth.updateUserById(existing.id, { app_metadata: { review_demo: true } });
-  if (error) throw new Error(`mark user failed with status ${error.status}`);
-  return existing.id;
+  throw new Error("that address belongs to an account this seed did not create, choose another REVIEW_DEMO_EMAIL");
 }
 
 async function ensureGroup(bucket: SupabaseClient, ownerId: string, peerId: string): Promise<string> {

@@ -19,7 +19,7 @@ export default function Page() {
       <p>Do not scrape the service, resell access, or interfere with its operation.</p>
       <h2>Groups and objectionable content</h2>
       <p>We have zero tolerance for objectionable content and abusive users. In family and friends groups, your group names and display names must stay free of hate, harassment, threats, sexual content, violence, spam and impersonation. Do not harass, threaten or abuse another person.</p>
-      <p>The app filters names and lets you report or block a member or a group. We review every report within 24 hours. We remove offending content, and we remove users who break these rules from their groups and from the service.</p>
+      <p>The app filters names and lets you report or block a member or a group. Reports go to the Polingual team, who review them promptly and remove content or accounts that break these terms.</p>
       <h2>Changes and ending</h2>
       <p>We may change these terms and will post the new version here with a new effective date. You can stop using Polingual at any time.</p>
       <h2>Liability</h2>

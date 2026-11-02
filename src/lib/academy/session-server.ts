@@ -10,6 +10,7 @@ export const SESSION_LIMITS = {
   otpIp: 20,
   verifyEmail: 10,
   verifyIp: 40,
+  reviewVerifyIp: 5,
   refreshIp: 120,
   deleteIp: 10,
   appleIp: 40,
@@ -127,7 +128,7 @@ export function createSessionHandler(deps: SessionDeps) {
     if (b.action === "otp") {
       if (!EMAIL_RE.test(email)) return { status: 400, body: { error: "bad_email" } };
       if (!(await within([[`otp:ip:${ip}`, SESSION_LIMITS.otpIp]]))) return { status: 429, body: { error: "too_many_requests", message: RATE_MESSAGE } };
-      if (!(await within([[`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE } };
+      if (!reviewer && !(await within([[`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE } };
       if (reviewer) {
         logReview("code_requested");
         return { status: 200, body: { ok: true } };
@@ -141,7 +142,8 @@ export function createSessionHandler(deps: SessionDeps) {
     if (b.action === "verify") {
       const code = typeof b.code === "string" ? b.code.trim() : "";
       if (!EMAIL_RE.test(email) || !/^\d{6,10}$/.test(code)) return { status: 400, body: { error: "bad_code" } };
-      if (!(await within([[`verify:ip:${ip}`, SESSION_LIMITS.verifyIp], [`verify:email:${hashed(email)}`, SESSION_LIMITS.verifyEmail]]))) {
+      const second: [string, number] = reviewer ? [`verify:review:ip:${ip}`, SESSION_LIMITS.reviewVerifyIp] : [`verify:email:${hashed(email)}`, SESSION_LIMITS.verifyEmail];
+      if (!(await within([[`verify:ip:${ip}`, SESSION_LIMITS.verifyIp], second]))) {
         if (reviewer) logReview("rate_limited");
         return { status: 429, body: { error: "too_many_requests" } };
       }

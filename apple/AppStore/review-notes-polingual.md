@@ -46,7 +46,8 @@ Polingual is not a regulated service. It includes third-party language data unde
 | Item | What is unknown or missing |
 |---|---|
 | Recording | Physical device recording must be attached, including the paywall and a sandbox purchase. `apple/scripts/review-recording.sh polingual device` walks it |
-| Demo account | Set `REVIEW_DEMO_EMAIL` and `REVIEW_DEMO_CODE` in Vercel production, 8 to 10 digits, on an address the project controls. Run `npx tsx scripts/seed-review-demo.ts` against production with the migration applied, and rerun it between review rounds: it restores the account, group and member and clears the account's blocks. A deleted demo account refuses sign-in until the seed runs. Remove both env values after approval. |
+| Demo account | Set `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` (8 to 10 digits) and `REVIEW_DEMO_UNTIL` (ISO date, sign-in stops at that date) in Vercel production, on an address the project controls. Run `npx tsx scripts/seed-review-demo.ts` against production with the migration applied, and rerun it between review rounds: it restores the account, group and member and clears the account's blocks. A deleted demo account refuses sign-in until the seed runs. |
+| After approval | Remove `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` and `REVIEW_DEMO_UNTIL` from Vercel production, then redeploy. A past or missing date already turns the path off |
 | Paywall | A demo sign-in alone does not pass the paywall. The reviewer needs a Sandbox account |
 | Audience and age | Not stated in the code. The app has no age question |
 | Prices | `Polingual.storekit` lists $9.99 monthly and $59.99 yearly. Live prices in App Store Connect were not checked |

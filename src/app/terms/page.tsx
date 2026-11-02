@@ -38,7 +38,7 @@ export default function TermsPage() {
 
         <h2 className={H2}>your account</h2>
         <p className={P}>
-          You can use most of Bucket without an account. You sign in with Apple or with a one-time code sent to your email, and the same account works in Bucket, Polingual and bucket.foundation. Keep access to that email secure. Bucket is for learners 13 and over.
+          You can use most of Bucket without an account. You sign in with Apple or with a one-time code sent to your email, and the same account works in Bucket, Polingual and bucket.foundation. Keep access to that email secure. You must be 13 or older to use Bucket, and using it confirms you meet this condition.
         </p>
         <p className={P}>
           You can delete your account in the app at any time: Account, Delete account.
@@ -58,7 +58,7 @@ export default function TermsPage() {
           <a href={mailto("Report abuse")} className="underline underline-offset-4 break-words">{CONTACT_EMAIL}</a>.
         </p>
         <p className={P}>
-          We review every report within 24 hours. We remove offending content, and we remove users who break these rules from their groups and from Bucket.
+          Reports go to the Bucket team, who review them promptly and remove content or accounts that break these terms.
         </p>
 
         <h2 className={H2}>using the service</h2>

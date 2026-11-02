@@ -46,7 +46,8 @@ Bucket is not a regulated service and gives no medical, legal or financial advic
 | Item | What is unknown or missing |
 |---|---|
 | Recording | Physical device recording must be attached. `apple/scripts/review-recording.sh bucket device` walks it |
-| Demo account | Set `REVIEW_DEMO_EMAIL` and `REVIEW_DEMO_CODE` in Vercel production, 8 to 10 digits, on an address the project controls. Run `npx tsx scripts/seed-review-demo.ts` against production with the migration applied, and rerun it between review rounds: it restores the account, group and member and clears the account's blocks. A deleted demo account refuses sign-in until the seed runs. Remove both env values after approval. |
+| Demo account | Set `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` (8 to 10 digits) and `REVIEW_DEMO_UNTIL` (ISO date, sign-in stops at that date) in Vercel production, on an address the project controls. Run `npx tsx scripts/seed-review-demo.ts` against production with the migration applied, and rerun it between review rounds: it restores the account, group and member and clears the account's blocks. A deleted demo account refuses sign-in until the seed runs. |
+| After approval | Remove `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` and `REVIEW_DEMO_UNTIL` from Vercel production, then redeploy. A past or missing date already turns the path off |
 | Audience and age | Not stated in the code. `src/lib/privacy-notice.ts` describes an age question and limits for under 18s; the iOS apps have no age question |
 | Terms | `/terms` on bucket.foundation carries the abuse clause after this PR deploys. The Account screen links Privacy only: add Terms in `apple/` |
 | Moderation response | Reports land in `bucket.group_reports` and email `MODERATION_EMAIL`, or `gianyrox@gmail.com` when it is unset. Nobody is named to act on them, and removal is manual SQL |
