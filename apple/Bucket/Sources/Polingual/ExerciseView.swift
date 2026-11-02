@@ -141,8 +141,7 @@ struct ExerciseView: View {
             #endif
             started = Date()
             if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang) }
-            if ex.kind == .letterSound {
-            } else if let say = letterSay { LangVoice.shared.speak(say, ex.lang) } else if ex.kind == .intro { LangVoice.shared.speakTogether(chorus) }
+            if let say = letterSay, ex.kind != .letterSound { LangVoice.shared.speak(say, ex.lang) } else if ex.kind == .intro { LangVoice.shared.speakTogether(chorus) }
         }
     }
 

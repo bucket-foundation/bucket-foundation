@@ -7,6 +7,7 @@ struct SpokenTile: View {
     let lang: String
     let state: RowState
     var symbol: String?
+    var selected = false
     let action: () -> Void
     @Environment(\.verticalSizeClass) private var vertical
 
@@ -19,12 +20,14 @@ struct SpokenTile: View {
                     Text(detail).font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : D8.label).lineLimit(2).minimumScaleFactor(0.7).multilineTextAlignment(.center)
                 }
             }
-            .padding(.horizontal, 6)
+            .padding(.horizontal, 6).padding(.vertical, 6)
             .frame(maxWidth: .infinity, minHeight: vertical == .compact ? 52 : 68)
             .foregroundStyle(state == .right ? .white : D8.ink)
         }
         .buttonStyle(LetterTileStyle(state: state))
+        .overlay { if selected { RoundedRectangle(cornerRadius: 16).strokeBorder(D8.lapis, lineWidth: 3) } }
         .scaleEffect(state == .right ? 1.03 : 1)
+        .accessibilityAddTraits(selected ? .isSelected : [])
         .accessibilityLabel(detail.map { "\(text), \($0)" } ?? text)
     }
 }
@@ -63,6 +66,7 @@ struct DrillResult: View {
     }
 }
 
+@MainActor
 func hearAll(_ words: [SpokenOption], _ lang: String) {
     LangVoice.shared.speakTogether(words.map { VoiceLine(lang: lang, text: $0.say) })
 }
@@ -134,7 +138,7 @@ struct PairDrill: View {
         }
         picked = w.key
         haptic(w.key == ex.answer)
-        if w.key != ex.answer { hearAll(words.sorted { a, _ in a.key == ex.answer }, ex.lang) }
+        if w.key != ex.answer { hearAll(words.filter { $0.key == ex.answer } + words.filter { $0.key != ex.answer }, ex.lang) }
     }
 }
 
@@ -209,7 +213,7 @@ struct BlendDrill: View {
             }
             chips.environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
             ForEach(Array(options.enumerated()), id: \.element.key) { k, o in
-                SpokenTile(text: label(k, o), detail: checked ? o.gloss : nil, lang: ex.lang, state: state(o), symbol: voiced && !checked ? "speaker.wave.2.fill" : nil) { choose(o) }
+                SpokenTile(text: label(k, o), detail: checked ? o.gloss : nil, lang: ex.lang, state: state(o), symbol: voiced && !checked ? "speaker.wave.2.fill" : nil, selected: !checked && o.key == chosen) { choose(o) }
             }
             if checked {
                 DrillResult(right: right, wrongText: String(localized: "That word was “\(ex.answer)”.")) { onDone(right, false) }
@@ -253,7 +257,7 @@ struct BlendDrill: View {
     }
 
     func state(_ o: SpokenOption) -> RowState {
-        if !checked { return o.key == chosen ? .wrong : .other }
+        guard checked else { return .other }
         return o.key == ex.answer ? .right : o.key == chosen ? .wrong : .other
     }
 

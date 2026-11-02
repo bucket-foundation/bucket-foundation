@@ -51,7 +51,7 @@ enum CharacterTables {
     也|yě|also||也是||is also
     你|nǐ|you|亻 尔|你好||hello
     为|wèi|for||因为||because
-    他|tā|he|亻 也|他们||they
+    他|tā|he|亻 也|他们||they, men
     这|zhè|this|辶 文|这个||this one
     中|zhōng|middle|口|中国||China
     年|nián|year||今年||this year
