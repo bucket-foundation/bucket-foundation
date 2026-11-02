@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/supabase/server";
 import { signInUrl } from "@/lib/auth/paths";
+import StreakReminderToggle from "./StreakReminderToggle";
 
 export const metadata: Metadata = { title: "Settings", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
@@ -22,6 +23,10 @@ export default async function SettingsPage() {
             Sign out
           </button>
         </form>
+      </section>
+      <section className="mt-6 p-5 bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)]">
+        <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">reminders</div>
+        <StreakReminderToggle />
       </section>
       <p className="mt-6 text-[14px] text-[color:var(--basalt-2)]">
         Change your handle and name on your <Link href="/account" className="underline underline-offset-4">profile</Link>.

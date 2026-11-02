@@ -1,5 +1,5 @@
 import { service } from "./groups-server";
-import { apnsConfig, pushCheer, withBudget, type CheerPushKind, type PushDevice, type PushEnv, type PushStore, type SendResult } from "./apns";
+import { apnsConfig, pushCheer, pushStreak, withBudget, type CheerPushKind, type PushDevice, type PushEnv, type PushStore, type SendResult } from "./apns";
 
 export const PUSH_DEVICES = "push_devices";
 
@@ -33,4 +33,8 @@ export const PUSH_BUDGET_MS = 3000;
 
 export function pushCheerToDevices(cheer: { group_id: string; to_id: string; kind: CheerPushKind }, fromName: string): Promise<SendResult | null> {
   return withBudget(pushCheer(cheer, fromName, { cfg: apnsConfig(), store: supabasePushStore }), PUSH_BUDGET_MS);
+}
+
+export function pushStreakToDevices(userId: string, streak: number): Promise<SendResult | null> {
+  return withBudget(pushStreak(userId, streak, { cfg: apnsConfig(), store: supabasePushStore }), PUSH_BUDGET_MS);
 }
