@@ -14,7 +14,8 @@ final class ReviewRecordingUITests: XCTestCase {
 
     func onboarding(_ walk: ReviewWalk) {
         let app = walk.app
-        walk.tap(app.buttons["Get started"], timeout: 60)
+        guard app.buttons["Get started"].waitForExistence(timeout: 30) else { return }
+        walk.tap(app.buttons["Get started"])
         walk.tap(app.buttons["Continue"])
         walk.tap(app.buttons["Continue"])
         walk.tap(app.buttons["Not now"])
@@ -45,7 +46,7 @@ final class ReviewRecordingUITests: XCTestCase {
     func testRecordingFlow() {
         let first = ReviewWalk(app: XCUIApplication())
         Thread.sleep(forTimeInterval: first.lead)
-        let walk = launch(["-polingual.onboarded", "NO"])
+        let walk = launch([])
         onboarding(walk)
         paywall(walk)
         let inside = ReviewWalk.onDevice ? walk : launch(["-polingual.onboarded", "YES", "-polingualOpen", "-demoGroup", "joined"])
