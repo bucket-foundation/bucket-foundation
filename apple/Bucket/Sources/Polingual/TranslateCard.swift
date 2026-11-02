@@ -95,7 +95,7 @@ struct TranslateCard: View {
                 }
                 HStack(spacing: 10) {
                     Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
-                    TextField("Translate a word", text: $query)
+                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(D8.label))
                         .font(.system(size: 21, weight: .semibold, design: .rounded))
                         .autocorrectionDisabled()
                         .submitLabel(.search)

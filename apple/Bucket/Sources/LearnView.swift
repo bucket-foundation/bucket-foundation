@@ -18,6 +18,7 @@ struct LearnView: View {
                     SubjectsSection()
                     if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
                 }
+                .listSectionSpacing(.compact)
                 #if DEBUG
                 .task {
                     guard let anchor = Launch.value("-learnScroll") else { return }

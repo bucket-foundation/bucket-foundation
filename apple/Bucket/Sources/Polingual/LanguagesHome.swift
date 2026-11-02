@@ -164,6 +164,7 @@ struct LanguageSections: View {
                             presetCard(p).frame(width: 172)
                         }
                     }
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.vertical, 6)
                 }
             } else {
@@ -175,6 +176,7 @@ struct LanguageSections: View {
         } header: {
             Eyebrow(text: "Start a set")
         }
+        .id("start")
         .listRowBackground(Color.clear)
         Section {
             if rails {
@@ -290,7 +292,7 @@ struct PresetCard: View {
                 Text(LocalizedStringKey(name)).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
                 Text(langs.map(langName).joined(separator: " · ")).font(.caption).foregroundStyle(D8.label).lineLimit(2)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(12)
             .background(.white, in: .rect(cornerRadius: 14))
             .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
