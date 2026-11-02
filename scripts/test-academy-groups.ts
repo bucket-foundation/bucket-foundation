@@ -395,7 +395,7 @@ function row(user: string, role: "owner" | "member" = "member"): MemberRow {
 const SUMMARY: MemberSummary = { streak: 0, todayReviews: 0, weekReviews: 10, lastActivity: null, languages: [], subjects: [], recentWords: [], sets: [] };
 
 test("moderation migration keeps reports past deletion and blocks atomically", () => {
-  const sql = readFileSync(join(process.cwd(), "supabase/migrations/20261105000000_group_moderation.sql"), "utf8");
+  const sql = readFileSync(join(process.cwd(), "supabase/migrations/20261105000100_group_moderation.sql"), "utf8");
   const reports = sql.slice(sql.indexOf("bucket.group_reports ("), sql.indexOf("create index if not exists group_reports_open_idx"));
   assert.match(reports, /target_user_id uuid\s+references auth\.users \(id\) on delete set null/);
   assert.match(reports, /group_id\s+uuid\s+references bucket\.learning_groups \(id\) on delete set null/);

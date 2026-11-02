@@ -47,7 +47,7 @@ Bucket is not a regulated service and gives no medical, legal or financial advic
 | Audience and age | Not stated in the code. `src/lib/privacy-notice.ts` describes an age question and limits for under 18s; the iOS apps have no age question |
 | Terms | www.bucket.foundation/terms returns 404. Apple 1.2 expects terms that ban objectionable content and abuse |
 | Moderation response | Reports land in `bucket.group_reports` and email `MODERATION_EMAIL`, or `gianyrox@gmail.com` when it is unset. Nobody is named to act on them, and removal is manual SQL |
-| Server | The migration `20261105000000_group_moderation.sql` and this PR must reach production before review. Without the migration, group loading fails |
+| Server | The migration `20261105000100_group_moderation.sql` and this PR must reach production before review. Without the migration, group loading fails |
 | Email sender | Supabase sends the code email. Whether its SMTP goes through Resend is not in the repo; the notes list Resend for reports only |
 | App privacy | Group names, display names, reports and blocks are new collected data. `src/lib/privacy-notice.ts` does not cover them, and Polingual's page needs the same check |
 | Credits | The app shows Wiktionary, Tatoeba and Wikipedia credits. wordfreq, CC-CEDICT, FrequencyWords, Dickinson and Digital Corpus of Sanskrit ship in `apple/Shared/Corpus/top1000` with no credit in the UI found |

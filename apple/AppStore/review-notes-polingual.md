@@ -49,7 +49,7 @@ Polingual is not a regulated service. It includes third-party language data unde
 | Family and Lifetime | Behind the `extra_plans` flag and not created in App Store Connect per `SUBMISSION-CHECKLIST.md`. Left out of the notes |
 | Terms | www.polingual.com/terms has no clause on objectionable content or abuse and no mention of groups. Apple 1.2 expects one. It also says sign-in is by email code only, and credits Wiktionary alone |
 | Moderation response | Reports land in `bucket.group_reports` and email `MODERATION_EMAIL`, or `gianyrox@gmail.com` when it is unset. Nobody is named to act on them, and removal is manual SQL |
-| Server | The migration `20261105000000_group_moderation.sql` and this PR must reach production before review. Without the migration, group loading fails |
+| Server | The migration `20261105000100_group_moderation.sql` and this PR must reach production before review. Without the migration, group loading fails |
 | Email sender | Supabase sends the code email. Whether its SMTP goes through Resend is not in the repo; the notes list Resend for reports only |
 | App privacy | Group names, display names, reports and blocks are new collected data. Check the policy and the App Privacy answers |
 | Credits | Wordfreq, CC-CEDICT, FrequencyWords, Dickinson and Digital Corpus of Sanskrit data ships in `apple/Shared/Corpus/top1000` with no credit in the UI found |
