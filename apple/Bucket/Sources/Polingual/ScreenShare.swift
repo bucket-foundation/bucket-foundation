@@ -66,6 +66,25 @@ final class ScreenShare {
 
     func remove(_ id: UUID) { stack.removeAll { $0.id == id } }
 
+    private var sets: [(id: UUID, objects: [ShareObject])] = []
+
+    func pushObjects(_ id: UUID, _ objects: [ShareObject]) {
+        if let i = sets.firstIndex(where: { $0.id == id }) { sets[i].objects = objects } else { sets.append((id, objects)) }
+    }
+
+    func removeObjects(_ id: UUID) { sets.removeAll { $0.id == id } }
+
+    #if os(iOS)
+    func offer(_ base: [ShareObject]) {
+        var seen = Set<String>()
+        let all = ((sets.last?.objects ?? []) + base).filter { seen.insert($0.id).inserted }
+        guard !all.isEmpty, let top = Self.top(Self.keyWindow?.rootViewController), !(top is ShareHost), !(top is UIActivityViewController) else { return }
+        let host = ShareHost(rootView: AnyView(ObjectShareSheet(objects: all)))
+        host.sheetPresentationController?.prefersGrabberVisible = true
+        top.present(host, animated: true)
+    }
+    #endif
+
     #if os(iOS)
     func present(_ page: SharePage, image: UIImage, finished: @escaping (_ target: String, _ sent: Bool) -> Void) {
         guard let top = Self.top(Self.keyWindow?.rootViewController) else { return }
@@ -91,6 +110,8 @@ final class ScreenShare {
 }
 
 #if os(iOS)
+final class ShareHost: UIHostingController<AnyView> {}
+
 final class ShareLinkItem: NSObject, UIActivityItemSource {
     let page: SharePage
     let image: UIImage

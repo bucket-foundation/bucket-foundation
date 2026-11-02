@@ -36,6 +36,7 @@ struct StudyView: View {
         }
         .paper()
         .sharePage(sharePage)
+        .shareObjects(wordObjects)
         .navigationTitle(store.system(systemId)?.name ?? "Study")
         .inlineTitle()
         .task {
@@ -44,6 +45,13 @@ struct StudyView: View {
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
         .onDisappear { LangVoice.shared.hush() }
+    }
+
+    var wordObjects: [ShareObject] {
+        guard let system = store.system(systemId), let ex = current, let item = store.corpus?.byId[ex.itemId] else { return [] }
+        let forms = system.targets.compactMap { l in item.form(l).map { ShareForm(lang: l, form: $0) } }
+        let gloss = item.form(system.root) ?? item.gloss
+        return [.word(id: item.id, gloss: gloss, forms: forms)] + forms.map { .tile(form: $0, gloss: gloss, reading: nil) }
     }
 
     var sharePage: SharePage? {

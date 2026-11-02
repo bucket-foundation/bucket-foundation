@@ -33,7 +33,46 @@ extension ShareObject {
         }
     }
 
+    var chip: String {
+        switch self {
+        case .streak: String(localized: "Streak")
+        case .system(let name, _, _, _, _): name
+        case .language(let lang, _): langName(lang)
+        case .mastered(let lang, let count, _): String(localized: "\(count) \(langName(lang)) words")
+        case .word(_, let gloss, _): gloss
+        case .tile(let form, _, _): form.form
+        case .flag(let lang, _): String(localized: "\(langName(lang)) flag")
+        case .score: String(localized: "Score")
+        case .content(let m): m.title
+        }
+    }
+
     var page: SharePage { SharePage(route, title: text) }
+}
+
+extension LangStore {
+    var shareables: [ShareObject] {
+        let root = systems.first?.root ?? "en"
+        let now = Date().timeIntervalSince1970 * 1000
+        let streak = langStreak(self)
+        var out: [ShareObject] = streak > 0 ? [.streak(days: streak, langs: gameLangs, root: root)] : []
+        var mastered: [String: Int] = [:]
+        for s in systems {
+            let learned = corpus.map { systemSummary(s, $0, state(s.id), now: now).started } ?? 0
+            out.append(.system(name: s.name, root: s.root, targets: s.targets, streak: streak, learned: learned))
+            guard let corpus else { continue }
+            for p in langProgress(s, corpus, state(s.id), now: now) { mastered[p.lang] = max(mastered[p.lang] ?? 0, Int(p.mastered)) }
+        }
+        out += mastered.filter { $0.value > 0 }.sorted { $0.value > $1.value }.map { .mastered(lang: $0.key, count: $0.value, root: root) }
+        out += gameLangs.map { .language($0, root: root) }
+        out += gameLangs.map { .flag($0, root: root) }
+        return out
+    }
+}
+
+struct ShareChoice: Identifiable {
+    let id = UUID()
+    let objects: [ShareObject]
 }
 
 private let plum = Color(hex: 0x5B1A4A)
@@ -477,6 +516,40 @@ struct MomentCard: View {
 }
 
 struct ObjectShareSheet: View {
+    let objects: [ShareObject]
+    @State private var picked: String?
+
+    var object: ShareObject { objects.first { $0.id == picked } ?? objects[0] }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            if objects.count > 1 {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(objects) { o in
+                            Button { picked = o.id } label: {
+                                Text(o.chip).font(.subheadline.weight(.bold)).lineLimit(1)
+                                    .foregroundStyle(o.id == object.id ? D8.parchment : Palette.ink)
+                                    .padding(.horizontal, 14).padding(.vertical, 9)
+                                    .background(o.id == object.id ? D8.vermilion : D8.face, in: .capsule)
+                                    .overlay { Capsule().strokeBorder(o.id == object.id ? D8.vermilion : D8.edge, lineWidth: 2) }
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                }
+                .padding(.top, 24)
+            }
+            ObjectShareCards(object: object).id(object.id)
+        }
+        .background(Palette.paper.ignoresSafeArea())
+        .presentationDetents([.large])
+        .presentationDragIndicator(.visible)
+    }
+}
+
+struct ObjectShareCards: View {
     let object: ShareObject
     @State private var picked: ShareStyle?
     @State private var copied = false
@@ -527,9 +600,6 @@ struct ObjectShareSheet: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .background(Palette.paper.ignoresSafeArea())
-        .presentationDetents([.large])
-        .presentationDragIndicator(.visible)
     }
 
     @ViewBuilder var send: some View {
@@ -579,7 +649,7 @@ struct ShareOption: Identifiable {
 struct ShareObjectButton: View {
     let options: [ShareOption]
     var wide = false
-    @State private var open: ShareObject?
+    @State private var open: ShareChoice?
 
     init(_ objects: ShareObject..., wide: Bool = false) {
         options = objects.map(ShareOption.init)
@@ -588,35 +658,26 @@ struct ShareObjectButton: View {
 
     var body: some View {
         control
-            .sheet(item: $open) { ObjectShareSheet(object: $0) }
+            .sheet(item: $open) { ObjectShareSheet(objects: $0.objects) }
             #if DEBUG
             .task {
                 let args = ProcessInfo.processInfo.arguments
                 guard let i = args.firstIndex(of: "-openShare"), i + 1 < args.count else { return }
-                open = options.first { $0.object.kind == args[i + 1] }?.object
+                open = options.first { $0.object.kind == args[i + 1] }.map { ShareChoice(objects: [$0.object]) }
             }
             #endif
     }
 
     @ViewBuilder var control: some View {
-        if options.count > 1 {
-            Menu {
-                ForEach(options) { o in Button(o.title) { open = o.object } }
-            } label: {
-                icon
+        if wide, let first = options.first {
+            Button { open = ShareChoice(objects: options.map(\.object)) } label: {
+                Label(first.title, systemImage: "square.and.arrow.up")
             }
-            .accessibilityLabel(Text("Share"))
-        } else if let only = options.first {
-            if wide {
-                Button { open = only.object } label: {
-                    Label(only.title, systemImage: "square.and.arrow.up")
-                }
-                .buttonStyle(D8Option(align: .center))
-            } else {
-                Button { open = only.object } label: { icon }
-                    .buttonStyle(.borderless)
-                    .accessibilityLabel(Text(only.title))
-            }
+            .buttonStyle(D8Option(align: .center))
+        } else if let first = options.first {
+            Button { open = ShareChoice(objects: options.map(\.object)) } label: { icon }
+                .buttonStyle(.borderless)
+                .accessibilityLabel(Text(first.title))
         }
     }
 
@@ -636,10 +697,61 @@ struct ShareMenu: ViewModifier {
                     Button(object.sheetTitle, systemImage: "square.and.arrow.up") { open = object }
                 }
             }
-            .sheet(item: $open) { ObjectShareSheet(object: $0) }
+            .sheet(item: $open) { ObjectShareSheet(objects: [$0]) }
     }
 }
 
 extension View {
     func shareMenu(_ object: ShareObject?) -> some View { modifier(ShareMenu(object: object)) }
+}
+
+struct ShareObjectsTag: ViewModifier {
+    let objects: [ShareObject]
+    @State private var id = UUID()
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear { ScreenShare.shared.pushObjects(id, objects) }
+            .onChange(of: objects) { _, o in ScreenShare.shared.pushObjects(id, o) }
+            .onDisappear { ScreenShare.shared.removeObjects(id) }
+    }
+}
+
+extension View {
+    func shareObjects(_ objects: [ShareObject]) -> some View { modifier(ShareObjectsTag(objects: objects)) }
+}
+
+struct ScreenShareButton: View {
+    @Environment(LangStore.self) private var store
+
+    var body: some View {
+        #if os(iOS)
+        Button { ScreenShare.shared.offer(store.shareables) } label: { Image(systemName: "square.and.arrow.up") }
+            .tint(Palette.ink)
+            .accessibilityLabel(Text("Share"))
+            .accessibilityIdentifier("screenShare")
+        #endif
+    }
+}
+
+struct ScreenshotShare: ViewModifier {
+    @Environment(LangStore.self) private var store
+
+    func body(content: Content) -> some View {
+        #if os(iOS)
+        content
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.userDidTakeScreenshotNotification)) { _ in
+                ScreenShare.shared.offer(store.shareables)
+            }
+            #if DEBUG
+            .task {
+                guard ProcessInfo.processInfo.arguments.contains("-offerShare") else { return }
+                try? await Task.sleep(for: .seconds(5))
+                ScreenShare.shared.offer(store.shareables)
+            }
+            #endif
+        #else
+        content
+        #endif
+    }
 }

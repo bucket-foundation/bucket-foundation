@@ -39,6 +39,7 @@ struct LearnView: View {
             }
             .paper()
             .navigationTitle("Learn")
+            .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .navigationDestination(for: DeckEntry.self) { DeckView(entry: $0) }
             .navigationDestination(for: AtomRoute.self) { AtomView(route: $0) }
             .navigationDestination(for: LearnRoute.self) { destination($0) }
@@ -171,45 +172,6 @@ struct GamesSection: View {
         }
         .id("games")
         .listRowBackground(Color.clear)
-    }
-}
-
-let learnColumns = [GridItem(.adaptive(minimum: 150), spacing: 14)]
-
-struct LearnTile<Mark: View>: View {
-    let title: String
-    let detail: String
-    let face: Color
-    var lip: Color?
-    var item: TodayItem?
-    let open: () -> Void
-    @ViewBuilder let mark: () -> Mark
-
-    var body: some View {
-        Button(action: open) {
-            VStack(alignment: .leading, spacing: 6) {
-                mark().frame(height: 34)
-                Text(title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
-                Text(detail).font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
-                    .lineLimit(2, reservesSpace: true)
-                    .multilineTextAlignment(.leading)
-            }
-            .padding(14)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .modifier(GameLip(face: face, lip: lip ?? face.mix(with: .black, by: 0.3)))
-        }
-        .buttonStyle(.plain)
-        .overlay(alignment: .topTrailing) {
-            if let item { AddToToday(item: item, look: .icon, color: D8.parchment).padding(8) }
-        }
-    }
-}
-
-struct LearnSymbol: View {
-    let name: String
-
-    var body: some View {
-        Image(systemName: name).font(.system(size: 26, weight: .bold)).foregroundStyle(D8.parchment)
     }
 }
 
@@ -464,7 +426,11 @@ struct DeckView: View {
         }
         .paper()
         .navigationTitle(entry.title)
-        .toolbar { ToolbarItem(placement: .primaryAction) { AddToToday(item: .deck(entry), look: .icon) } }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) { AddToToday(item: .deck(entry), look: .icon) }
+            ToolbarItem(placement: .primaryAction) { ScreenShareButton() }
+        }
+        .shareObjects([.content(ShareMoment(title: entry.title, source: entry.sub ?? entry.title, branch: entry.id, deck: entry.id))])
         .task {
             deck = await library.prepared(entry)
             await science.load(library.scienceDecks.map(\.id))
@@ -537,6 +503,8 @@ struct AtomView: View {
         }
         .paper()
         .inlineTitle()
+        .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
+        .shareObjects([.content(ShareMoment(title: atom.title, source: route.deck.title, branch: route.deck.id, quote: atom.summary, deck: route.deck.id, atom: atom.id))])
         .sheet(isPresented: $practicing) {
             if let deck = library.prepared[route.deck.id] { AtomDrillSheet(deck: deck, atom: deck.byId[atom.id] ?? atom) }
         }

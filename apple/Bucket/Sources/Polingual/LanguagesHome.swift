@@ -117,6 +117,7 @@ struct LanguageFooter: View {
 
 struct LanguageSections: View {
     @Environment(LangStore.self) private var store
+    @Environment(Reminders.self) private var reminders
     @Environment(Gate.self) private var gate
     @Binding var path: NavigationPath
     let corpus: LangCorpus
@@ -143,6 +144,10 @@ struct LanguageSections: View {
                     .listRowBackground(Palette.card)
             }
             TodayStrip()
+            if !reminders.enabled && !store.systems.isEmpty {
+                Section { ReminderPrompt().padding(.vertical, 6) }
+                    .listRowBackground(Palette.card)
+            }
             if !store.systems.isEmpty {
                 Section { TranslateCard() }
                     .listRowBackground(Palette.card)

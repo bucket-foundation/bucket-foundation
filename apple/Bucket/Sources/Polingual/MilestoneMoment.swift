@@ -88,5 +88,14 @@ struct MilestoneMoments: ViewModifier {
             .onChange(of: ready, initial: true) { check() }
             .onChange(of: store.status) { check() }
             .onAppear { check() }
+            #if DEBUG
+            .task {
+                let args = ProcessInfo.processInfo.arguments
+                guard let i = args.firstIndex(of: "-milestone"), i + 1 < args.count else { return }
+                let spec = args[i + 1]
+                let parts = spec.split(separator: ":").map(String.init)
+                if parts.count == 2, let n = Int(parts[1]) { moment = Milestone(kind: .mastered(lang: parts[0], count: n)) }
+            }
+            #endif
     }
 }

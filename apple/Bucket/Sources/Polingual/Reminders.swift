@@ -144,7 +144,6 @@ final class Reminders {
         return t > 0 ? Date(timeIntervalSince1970: t) : nil
     }
 
-    #if DEBUG
     static func test() async -> String {
         let center = UNUserNotificationCenter.current()
         _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
@@ -163,7 +162,6 @@ final class Reminders {
             return "Could not schedule: \(error.localizedDescription)"
         }
     }
-    #endif
 
     func enable() async -> Bool {
         let center = UNUserNotificationCenter.current()
@@ -316,21 +314,17 @@ struct ReminderSettings: View {
                 if let url = URL(string: UIApplication.openNotificationSettingsURLString) { Link("Open Settings", destination: url) }
                 #endif
             }
-            #if DEBUG
             if let nextReminder { Text("Next reminder \(nextReminder.formatted(date: .abbreviated, time: .shortened))").font(.footnote).foregroundStyle(Palette.muted) }
             Button("Send a test reminder in 10 seconds") { Task { testResult = await Reminders.test() } }
             if let testResult { Text(testResult).font(.footnote).foregroundStyle(Palette.muted) }
-            #endif
         } header: {
             Eyebrow(text: "Notifications")
         }
-        #if DEBUG
         .task(id: reminders.enabled) {
             try? await Task.sleep(for: .seconds(1))
             let pending = await UNUserNotificationCenter.current().pendingNotificationRequests()
             nextReminder = pending.compactMap { ($0.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate() }.min()
         }
-        #endif
     }
 }
 

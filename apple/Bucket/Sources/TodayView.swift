@@ -166,9 +166,23 @@ struct TodayView: View {
         }
     }
 
+    func masteredPercent(_ item: Item, _ now: Double) -> Int {
+        switch item {
+        case .deck(let w):
+            let s = science.summary(w.deck)
+            return s.total > 0 ? Int(Double(s.mastered) / Double(s.total) * 100) : 0
+        case .lang(let s):
+            guard let corpus = langs.corpus else { return 0 }
+            let per = langProgress(s, corpus, langs.state(s.id), now: now)
+            let total = per.reduce(0) { $0 + Int($1.total) }
+            return total > 0 ? Int(Double(per.reduce(0) { $0 + Int($1.mastered) }) / Double(total) * 100) : 0
+        case .game, .read: return 0
+        }
+    }
+
     func detail(_ item: Item, _ now: Double) -> String {
         if let c = cards(item, now) {
-            if c.due + c.new == 0 { return String(localized: "\(studied(item, now)) cards today") }
+            if c.due + c.new == 0 { return String(localized: "\(masteredPercent(item, now))% mastered · \(studied(item, now)) today") }
             if c.new == 0 { return String(localized: "\(c.due) review") }
             if c.due == 0 { return String(localized: "\(c.new) new") }
             return String(localized: "\(c.due) review · \(c.new) new")
@@ -241,7 +255,7 @@ struct TodayView: View {
                 .listRowBackground(Palette.card)
                 if !langs.systems.isEmpty {
                     Section {
-                        VoiceTile {
+                        VoiceCircle {
                             DeepLink.shared.listen = true
                             path.append(TodayRoute.translate)
                         }
@@ -272,6 +286,7 @@ struct TodayView: View {
             .animation(.easeOut(duration: 0.35), value: loaded)
             .paper()
             .navigationTitle("Today")
+            .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }
             .sheet(isPresented: $picking) { TodayPicker() }
             .langDestinations(path: $path)

@@ -2,13 +2,14 @@ import BucketKit
 import SwiftUI
 
 enum GameKind: String, CaseIterable, Identifiable, Hashable {
-    case daily, same, match, voice, flags, letters
+    case daily, mini, same, match, voice, flags, letters
 
     var id: String { rawValue }
 
     var title: String {
         switch self {
         case .daily: String(localized: "Daily Set")
+        case .mini: String(localized: "Mini")
         case .same: String(localized: "Same Word")
         case .match: String(localized: "Speed Match")
         case .voice: String(localized: "Which Voice")
@@ -20,6 +21,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
     var detail: String {
         switch self {
         case .daily: String(localized: "Six words. The same six for everyone on your languages today.")
+        case .mini: String(localized: "A small crossword in your language. New every day.")
         case .same: String(localized: "One meaning across your languages.")
         case .match: String(localized: "Pair words against a 60 second clock.")
         case .voice: String(localized: "Listen, then pick the flag.")
@@ -31,6 +33,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
     var symbol: String {
         switch self {
         case .daily: "calendar"
+        case .mini: "square.grid.3x3.fill"
         case .same: "square.stack.3d.up.fill"
         case .match: "bolt.fill"
         case .voice: "waveform"
@@ -42,7 +45,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
     var color: Color {
         switch self {
         case .daily, .voice: D8.lapis
-        case .same, .letters: D8.vermilion
+        case .same, .letters, .mini: D8.vermilion
         case .match, .flags: D8.malachite
         }
     }
@@ -50,7 +53,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
     var lip: Color {
         switch self {
         case .daily, .voice: Color(hex: 0x12326A)
-        case .same, .letters: D8.vermilionLip
+        case .same, .letters, .mini: D8.vermilionLip
         case .match, .flags: D8.malachiteLip
         }
     }
@@ -60,6 +63,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .daily, .same, .voice, .flags: QuizGame(kind: self).fullHeightSession()
         case .match: SpeedMatchGame().fullHeightSession()
         case .letters: LetterSprintGame().fullHeightSession()
+        case .mini: MiniGame().fullHeightSession()
         }
     }
 }
@@ -211,6 +215,7 @@ struct GamesBoard: View {
 
     func available(_ kind: GameKind) -> Bool {
         switch kind {
+        case .mini: langs.miniPuzzle != nil
         case .same: langs.sameWordSystem != nil
         case .letters: langs.hasLetterGame
         default: true
@@ -228,6 +233,45 @@ struct GameLip: ViewModifier {
             .background(face, in: .rect(cornerRadius: radius))
             .background(lip, in: .rect(cornerRadius: radius).offset(y: 5))
             .padding(.bottom, 5)
+    }
+}
+
+let learnColumns = [GridItem(.adaptive(minimum: 150), spacing: 14)]
+
+struct LearnTile<Mark: View>: View {
+    let title: String
+    let detail: String
+    let face: Color
+    var lip: Color?
+    var item: TodayItem?
+    let open: () -> Void
+    @ViewBuilder let mark: () -> Mark
+
+    var body: some View {
+        Button(action: open) {
+            VStack(alignment: .leading, spacing: 6) {
+                mark().frame(height: 34)
+                Text(title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
+                Text(detail).font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                    .lineLimit(2, reservesSpace: true)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .modifier(GameLip(face: face, lip: lip ?? face.mix(with: .black, by: 0.3)))
+        }
+        .buttonStyle(.plain)
+        .overlay(alignment: .topTrailing) {
+            if let item { AddToToday(item: item, look: .icon, color: D8.parchment).padding(8) }
+        }
+    }
+}
+
+struct LearnSymbol: View {
+    let name: String
+
+    var body: some View {
+        Image(systemName: name).font(.system(size: 26, weight: .bold)).foregroundStyle(D8.parchment)
     }
 }
 
@@ -249,6 +293,24 @@ struct VoiceTile: View {
             .modifier(GameLip(face: D8.vermilion, lip: D8.vermilionLip))
         }
         .buttonStyle(.plain)
+        .accessibilityIdentifier("voiceTile")
+    }
+}
+
+struct VoiceCircle: View {
+    let open: () -> Void
+
+    var body: some View {
+        Button(action: open) {
+            Image(systemName: "mic.fill").font(.system(size: 34, weight: .bold)).foregroundStyle(.white)
+                .frame(width: 84, height: 84)
+                .background(D8.vermilion, in: .circle)
+                .background(D8.vermilionLip, in: .circle.offset(y: 5))
+                .padding(.bottom, 5)
+        }
+        .buttonStyle(.plain)
+        .frame(maxWidth: .infinity)
+        .accessibilityLabel(Text("Translate"))
         .accessibilityIdentifier("voiceTile")
     }
 }
