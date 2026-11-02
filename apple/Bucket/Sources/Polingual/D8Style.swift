@@ -17,6 +17,7 @@ enum D8 {
     static let edge = Color(light: 0xE3D6B8, dark: 0x4D463A)
     static let pickedFace = Color(light: 0xEEF3FB, dark: 0x22344F)
     static let picked = Color(light: 0x1F4E9A, dark: 0x6C9BE8)
+    static let rightText = Color(light: 0x1E7A5A, dark: 0x5CC9A0)
     static let disabled = Color(light: 0xE4DCCB, dark: 0x3A342C)
     static let disabledText = Color(light: 0x8A8070, dark: 0x8A8070)
 

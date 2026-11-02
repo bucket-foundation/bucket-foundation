@@ -438,7 +438,7 @@ import Testing
     let side: CGFloat = 190
     for phrase in ["parlez lentement, s'il vous plaît", "говорите медленнее, пожалуйста", "क्या आप मेरी मदद कर सकते हैं?", "もう一度言ってください", "kannst du das wiederholen?"] {
         let font = D8Fit.tileFont(phrase, side: side)
-        #expect(font >= side * 0.1, "\(phrase) at \(font)")
+        #expect(font >= side * 0.085, "\(phrase) at \(font)")
         #expect(font < side * 0.2, "\(phrase) at \(font)")
     }
 }

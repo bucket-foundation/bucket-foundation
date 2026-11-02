@@ -194,8 +194,8 @@ struct ExerciseView: View {
                                 }
                             if flagNamed(l) || matchDone { Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.muted) }
                             Text(word ?? " ").font(D8.word(16)).strikethrough(matchDone && !ok, color: D8.vermilion)
-                                .foregroundStyle(matchDone ? (ok ? D8.malachite : Palette.muted) : Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
-                            if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.malachite).lineLimit(1).minimumScaleFactor(0.6) }
+                                .foregroundStyle(matchDone ? (ok ? D8.rightText : Palette.muted) : Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
+                            if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.rightText).lineLimit(1).minimumScaleFactor(0.6) }
                             if matchDone && LangVoice.shared.canSpeak(truth, l) {
                                 Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted)
                             }
@@ -442,7 +442,7 @@ struct Answered: View {
         let target = ex.answerLang == ex.lang ? shownAnswer(ex) : ex.prompt
         VStack(alignment: .leading, spacing: 12) {
             if verdict == .close {
-                Text("Close. Check the spelling and accents.").font(.subheadline.weight(.semibold)).foregroundStyle(D8.malachite)
+                Text("Close. Check the spelling and accents.").font(.subheadline.weight(.semibold)).foregroundStyle(D8.rightText)
             } else if !ok {
                 (Text("Not quite. ") + Text(given.flatMap { $0.isEmpty ? nil : "You wrote \($0)." } ?? "")).font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
             }
