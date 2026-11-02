@@ -18,6 +18,12 @@ struct Paywall: View {
     @State private var redeeming = false
     @State private var student = false
     @State private var tokens = AccountTokens()
+    let family: Bool
+
+    init(family: Bool = false) {
+        self.family = family
+        _chosen = State(initialValue: family ? Plan.family : Plan.yearly)
+    }
 
     var product: Product? { products.first { $0.id == chosen } }
 
@@ -160,7 +166,7 @@ struct Paywall: View {
 
     func load() async {
         loading = true
-        let ids = Plan.shown(extra: PaywallFlags.extraPlans)
+        let ids = Plan.shown(extra: PaywallFlags.extraPlans || family)
         let found = (try? await Product.products(for: ids)) ?? []
         products = ids.compactMap { id in found.first { $0.id == id } }
         if !products.contains(where: { $0.id == chosen }), let first = products.first { chosen = first.id }

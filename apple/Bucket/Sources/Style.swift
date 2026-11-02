@@ -88,8 +88,7 @@ struct EquationView: View {
             .padding(.horizontal, 12)
             .background(Palette.card, in: .rect(cornerRadius: 12))
             .overlay(RoundedRectangle(cornerRadius: 12).stroke(Palette.rule))
-            .accessibilityLabel("Equation")
-            .accessibilityValue(TeXLite.render(tex))
+            .accessibilityLabel(Text(TeXLite.spoken(tex)))
             .textSelection(.enabled)
     }
 }

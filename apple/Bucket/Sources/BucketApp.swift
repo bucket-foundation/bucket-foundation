@@ -10,11 +10,17 @@ struct BucketApp: App {
     @State private var science: ScienceStore
     @State private var gate: Gate
     @State private var reminders = Reminders()
+    @State private var groups: GroupStore
     @Environment(\.scenePhase) private var phase
+    #if os(iOS)
+    @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
+    #endif
 
     init() {
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
+        PushRegistry.shared.token = { await account.freshToken() }
+        PushRegistry.shared.user = { account.session?.userId }
         let langs = LangStore(api: BucketAPI(), token: { await account.freshToken() })
         LangVoice.shared.store = langs
         _account = State(initialValue: account)
@@ -27,6 +33,7 @@ struct BucketApp: App {
         #endif
         _science = State(initialValue: ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift }))
         _gate = State(initialValue: Gate(account: account))
+        _groups = State(initialValue: GroupStore(api: BucketAPI(), token: { await account.freshToken() }))
     }
 
     var body: some Scene {
@@ -41,10 +48,16 @@ struct BucketApp: App {
                 .environment(science)
                 .environment(gate)
                 .environment(reminders)
+                .environment(groups)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
+                        if p == .active {
+                            await reminders.sync()
+                            await PushRegistry.shared.refresh()
+                        }
+                        if p == .background { await CheerNotifier.post(groups) }
                         await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
                         await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
                         WidgetSync.refresh(langs, extra: scienceWidgetExtra(library, science))
@@ -56,15 +69,23 @@ struct BucketApp: App {
                     }
                 }
                 .onChange(of: reminders.wordOfDay) {
-                    backgroundSafe { await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay) }
+                    backgroundSafe {
+                        await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
+                        await PushRegistry.shared.refresh()
+                    }
                 }
                 .task {
+                    await reminders.sync()
+                    await PushRegistry.shared.retryPending()
                     #if os(iOS)
                     WatchBridge.shared.start(langs)
                     #endif
                 }
                 .onChange(of: reminders.enabled) {
-                    backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
+                    backgroundSafe {
+                        await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
+                        await PushRegistry.shared.refresh()
+                    }
                 }
                 .tint(Palette.green)
         }
@@ -74,13 +95,14 @@ struct BucketApp: App {
     }
 }
 
-enum AppTab: String, Hashable { case today, learn, canon, account }
+enum AppTab: String, Hashable { case today, learn, games, content, account }
 
 extension SharedLink {
     var tab: AppTab {
         switch self {
         case .word, .home: .today
         case .langs, .deck, .atom: .learn
+        case .group: .account
         }
     }
 }
@@ -108,10 +130,14 @@ struct RootView: View {
         TabView(selection: $tab) {
             Tab("Today", systemImage: "sun.max", value: .today) { TodayView() }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
+            Tab("Games", systemImage: "gamecontroller", value: .games) { GamesView() }
+            Tab("Content", systemImage: "play.square.stack", value: .content) { ContentHub() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .tabViewStyle(.sidebarAdaptable)
         .sharesScreenshots()
+        .groupInvites()
+        .groupsOnToday()
         .onOpenURL { DeepLink.shared.open($0) }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .onChange(of: DeepLink.shared.pending) { _, link in
@@ -125,6 +151,7 @@ struct RootView: View {
             if new == .signedIn && old != .signedIn {
                 Task { await langs.syncAfterSignIn() }
                 Task { await science.syncAfterSignIn() }
+                Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {
                 science.clearLocal()
@@ -133,6 +160,7 @@ struct RootView: View {
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
+        .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG
         .task {
             guard Launch.flag("-screenshotShare") else { return }
@@ -147,6 +175,7 @@ struct RootView: View {
         #endif
         .task {
             account.beforeSignOut = {
+                await PushRegistry.shared.unregister()
                 await science.flush()
                 await langs.flush()
             }

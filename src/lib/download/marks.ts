@@ -1,8 +1,10 @@
 import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { del, get, list, put } from "@vercel/blob";
 import { waitlistPrefix } from "../waitlist/store";
+import { supabaseConfigured, supabaseMarks } from "../waitlist/supabase-store";
+
+const blob = () => import("@vercel/blob");
 
 type Env = Record<string, string | undefined>;
 
@@ -11,6 +13,7 @@ export const MARK_MAX_AGE_MS = 25 * 60 * 60 * 1000;
 export interface MarkStore {
   get(key: string): Promise<number | null>;
   set(key: string, value: number): Promise<void>;
+  bump?(key: string): Promise<number>;
   sweep(olderThan: number, deadline: number): Promise<{ removed: number; done: boolean }>;
 }
 
@@ -30,7 +33,7 @@ function parse(text: string): number | null {
 export function blobMarks(prefix: string, clock: () => number = Date.now): MarkStore {
   return {
     async get(key) {
-      const res = await get(prefix + fileName(key), { access: "private", useCache: false }).catch((err: unknown) => {
+      const res = await (await blob()).get(prefix + fileName(key), { access: "private", useCache: false }).catch((err: unknown) => {
         if (err instanceof Error && err.name === "BlobNotFoundError") return null;
         throw err;
       });
@@ -38,7 +41,7 @@ export function blobMarks(prefix: string, clock: () => number = Date.now): MarkS
       return parse(await new Response(res.stream).text());
     },
     async set(key, value) {
-      await put(prefix + fileName(key), JSON.stringify({ v: value }), {
+      await (await blob()).put(prefix + fileName(key), JSON.stringify({ v: value }), {
         access: "private",
         addRandomSuffix: false,
         allowOverwrite: true,
@@ -50,9 +53,9 @@ export function blobMarks(prefix: string, clock: () => number = Date.now): MarkS
       let cursor: string | undefined;
       do {
         if (clock() > deadline) return { removed, done: false };
-        const page = await list({ prefix, cursor, limit: 1000 });
+        const page = await (await blob()).list({ prefix, cursor, limit: 1000 });
         const stale = page.blobs.filter((b) => new Date(b.uploadedAt).getTime() < olderThan).map((b) => b.url);
-        if (stale.length) await del(stale);
+        if (stale.length) await (await blob()).del(stale);
         removed += stale.length;
         cursor = page.hasMore ? page.cursor : undefined;
       } while (cursor);
@@ -93,6 +96,7 @@ export function fileMarks(dir: string, clock: () => number = Date.now): MarkStor
 
 export function getMarkStore(env: Env = process.env): MarkStore | null {
   const prefix = `${waitlistPrefix(env)}download-marks/`;
+  if (supabaseConfigured(env)) return supabaseMarks(prefix, env);
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobMarks(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileMarks(path.join(process.cwd(), ".data", prefix));
   return null;
@@ -101,6 +105,7 @@ export function getMarkStore(env: Env = process.env): MarkStore | null {
 export function sharedRateLimiter(marks: MarkStore, max: number, windowMs: number, clock: () => number = Date.now): (ip: string) => Promise<boolean> {
   return async (ip) => {
     const key = `rate:${ip}:${Math.floor(clock() / windowMs)}`;
+    if (marks.bump) return (await marks.bump(key)) > max;
     const count = ((await marks.get(key)) ?? 0) + 1;
     await marks.set(key, count);
     return count > max;

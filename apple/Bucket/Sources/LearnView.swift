@@ -5,6 +5,14 @@ struct LearnView: View {
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
     @State private var path = NavigationPath()
+    @State private var side = LearnSide.launch
+
+    enum LearnSide: String, CaseIterable {
+        case languages, subjects
+
+        static var launch: LearnSide { Launch.value("-learnSide").flatMap(LearnSide.init(rawValue:)) ?? .languages }
+        var title: String { self == .languages ? String(localized: "Languages") : String(localized: "Subjects") }
+    }
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -19,20 +27,39 @@ struct LearnView: View {
                 case .ready:
                     List {
                         Section {
-                            ForEach(library.languageDecks) { entry in
-                                NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
-                                    .listRowBackground(Palette.card)
+                            Picker("Learn", selection: $side) {
+                                ForEach(LearnSide.allCases, id: \.self) { Text($0.title).tag($0) }
                             }
-                        } header: {
-                            Eyebrow(text: "Languages")
+                            .pickerStyle(.segmented)
+                            .listRowBackground(Color.clear)
+                            .listRowInsets(EdgeInsets())
                         }
-                        Section {
-                            ForEach(library.scienceDecks) { entry in
-                                NavigationLink(value: entry) { DeckRow(entry: entry) }
-                                    .listRowBackground(Palette.card)
+                        if side == .languages {
+                            Section {
+                                ForEach(library.languageDecks) { entry in
+                                    NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
+                                        .listRowBackground(Palette.card)
+                                }
+                            } header: {
+                                Eyebrow(text: "Languages")
                             }
-                        } header: {
-                            Eyebrow(text: "Seven branches and the meta-skill")
+                        } else {
+                            Section {
+                                NavigationLink(value: LearnRoute.canon) {
+                                    Label("Search the canon", systemImage: "text.magnifyingglass")
+                                }
+                                .listRowBackground(Palette.card)
+                            } footer: {
+                                Text("Foundations across seven branches: mathematics to mind.")
+                            }
+                            Section {
+                                ForEach(library.scienceDecks) { entry in
+                                    NavigationLink(value: entry) { DeckRow(entry: entry) }
+                                        .listRowBackground(Palette.card)
+                                }
+                            } header: {
+                                Eyebrow(text: "Seven branches and the meta-skill")
+                            }
                         }
                     }
                 }
@@ -41,6 +68,7 @@ struct LearnView: View {
             .navigationTitle("Learn")
             .navigationDestination(for: DeckEntry.self) { DeckView(entry: $0) }
             .navigationDestination(for: AtomRoute.self) { AtomView(route: $0) }
+            .navigationDestination(for: LearnRoute.self) { _ in CanonView() }
             .langDestinations(path: $path)
         }
         .task {
@@ -74,6 +102,7 @@ extension LearnView {
         switch link {
         case .langs(let root, let targets):
             DeepLink.shared.pending = nil
+            side = .languages
             await langs.load()
             path = NavigationPath()
             path.append(LangRoute.home)
@@ -86,6 +115,7 @@ extension LearnView {
                 return
             }
             DeepLink.shared.pending = nil
+            side = .subjects
             path = NavigationPath()
             path.append(entry)
             if case .atom(_, let atomId) = link, let deck = await library.prepared(entry), let atom = deck.byId[atomId] {
@@ -112,6 +142,10 @@ struct DeckRow: View {
         }
         .padding(.vertical, 6)
     }
+}
+
+enum LearnRoute: Hashable {
+    case canon
 }
 
 struct AtomRoute: Hashable {
@@ -152,7 +186,7 @@ struct DeckView: View {
                             if let atom = deck.byId[item.id] {
                                 NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
                                     HStack {
-                                        Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
+                                        Text(LessonText.inline(atom.title)).font(.serif(.body)).foregroundStyle(Palette.ink)
                                         Spacer()
                                         Text(item.kind == .review ? String(localized: "REVIEW") : String(localized: "NEW")).font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
                                     }
@@ -199,11 +233,11 @@ struct DeckView: View {
         return NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
             HStack(spacing: 10) {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(atom.title).font(.serif(.body, weight: .medium)).foregroundStyle(open ? Palette.ink : Palette.muted)
+                    Text(LessonText.inline(atom.title)).font(.serif(.body, weight: .medium)).foregroundStyle(open ? Palette.ink : Palette.muted)
                     if !open {
                         Text("After \(atom.requires.count) prerequisite\(atom.requires.count == 1 ? "" : "s")").font(.caption).foregroundStyle(Palette.muted)
                     } else if !atom.summary.isEmpty {
-                        Text(atom.summary).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
+                        Text(LessonText.inline(atom.summary)).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
                     }
                 }
                 Spacer(minLength: 0)
@@ -226,15 +260,15 @@ struct AtomView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 if let type = atom.type { Eyebrow(text: type) }
-                Text(atom.title).font(.serif(.largeTitle, weight: .semibold)).foregroundStyle(Palette.ink)
-                Text(atom.summary).font(.serif(.title3)).foregroundStyle(Palette.ink.opacity(0.85))
+                Text(LessonText.inline(atom.title)).font(.serif(.largeTitle, weight: .semibold)).foregroundStyle(Palette.ink)
+                Text(LessonText.inline(atom.summary)).font(.serif(.title3)).foregroundStyle(Palette.ink.opacity(0.85))
                 if let eq = atom.equation, !eq.isEmpty { EquationView(tex: eq) }
                 if !atom.orderedDepths.isEmpty {
                     Picker("Depth", selection: $depth) {
                         ForEach(atom.orderedDepths, id: \.key) { d in Text(Self.depthName(d.key)).tag(d.key) }
                     }
                     .pickerStyle(.segmented)
-                    Text(atom.depths[depth] ?? "").font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+                    Text(LessonText.inline(atom.depths[depth] ?? "")).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
                         .textSelection(.enabled)
                 }
                 if let lesson = atom.lesson, !lesson.isEmpty {
@@ -291,19 +325,19 @@ struct LessonText: View {
                 case .equation(let t):
                     EquationView(tex: t)
                 case .text(let t):
-                    Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+                    Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
                 case .bullet(let t):
                     HStack(alignment: .firstTextBaseline, spacing: 8) {
                         Text("•").foregroundStyle(Palette.muted)
-                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                        Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
                     }
                 case .numbered(let n, let t):
                     HStack(alignment: .firstTextBaseline, spacing: 8) {
                         Text(n).font(.serif(.body, weight: .semibold)).foregroundStyle(Palette.muted).monospacedDigit()
-                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                        Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
                     }
                 case .quote(let t):
-                    Text(Self.inline(t)).font(.serif(.body).italic()).foregroundStyle(Palette.ink.opacity(0.8)).lineSpacing(4)
+                    Text(Self.inline(t)).accessibilityLabel(Self.spoken(t)).font(.serif(.body).italic()).foregroundStyle(Palette.ink.opacity(0.8)).lineSpacing(4)
                         .padding(.leading, 12)
                         .overlay(alignment: .leading) { Rectangle().fill(Palette.rule).frame(width: 3) }
                 }
@@ -366,11 +400,7 @@ struct LessonText: View {
         return out
     }
 
-    static func inline(_ p: String) -> AttributedString {
-        var text = ""
-        var parts = p.components(separatedBy: "$")
-        if parts.count.isMultiple(of: 2) { parts = [p] }
-        for (i, part) in parts.enumerated() { text += i.isMultiple(of: 2) ? part : TeXLite.render(part) }
-        return (try? AttributedString(markdown: text, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))) ?? AttributedString(text)
-    }
+    static func inline(_ p: String) -> AttributedString { TeXLite.attributed(p) }
+
+    static func spoken(_ p: String) -> Text { Text(TeXLite.spokenProse(p)) }
 }

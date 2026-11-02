@@ -9,7 +9,7 @@ struct CanonView: View {
     @State private var searching = false
 
     var body: some View {
-        NavigationStack {
+        Group {
             List {
                 if let error {
                     Text(error).foregroundStyle(.red).listRowBackground(Palette.card)

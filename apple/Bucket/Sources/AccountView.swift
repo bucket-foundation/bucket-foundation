@@ -5,6 +5,9 @@ import UserNotifications
 
 struct AccountView: View {
     @Environment(Account.self) private var account
+    @Environment(GroupStore.self) private var groups
+    @State private var openGroup: String?
+    @State private var openMember: String?
     @State private var confirmingReset = false
     @State private var confirmingDelete = false
     @State private var signingIn = false
@@ -39,6 +42,8 @@ struct AccountView: View {
                         Eyebrow(text: "Account")
                     }
                 }
+                FamilyAndFriends(signingIn: $signingIn)
+                MyStrength()
                 ReminderSettings()
                 BetaSharing()
                 FeedbackSettings()
@@ -67,6 +72,25 @@ struct AccountView: View {
             .listRowBackground(Palette.card)
             .paper()
             .navigationTitle("Account")
+            .navigationDestination(item: $openGroup) { GroupView(groupId: $0) }
+            .navigationDestination(item: $openMember) { id in
+                if let g = groups.groups.first(where: { $0.members.contains { $0.userId == id } }), let m = g.members.first(where: { $0.userId == id }) {
+                    MemberView(member: m, groupId: g.id)
+                }
+            }
+            .task(id: account.stage == .signedIn) {
+                if account.stage == .signedIn { await groups.load() } else { groups.clear() }
+                #if DEBUG
+                if DemoGroup.on {
+                    groups.groups = [DemoGroup.group]
+                    switch DemoGroup.screen {
+                    case "member", "graph": openMember = "u2"
+                    case "account": break
+                    default: openGroup = DemoGroup.group.id
+                    }
+                }
+                #endif
+            }
             .sheet(isPresented: $signingIn) { SignInSheet() }
             .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
                 Button("Delete account and data", role: .destructive) {

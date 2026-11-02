@@ -1,6 +1,6 @@
 import { track } from "@vercel/analytics/server";
 import { CAPTURE_MAX_PER_WINDOW, CAPTURE_WINDOW_MS } from "./core";
-import { handleCapture, type CaptureResult } from "./handler";
+import { handleCapture, layeredLimiter, type CaptureResult } from "./handler";
 import { analyticsLeg, slackLeg, vercelDefer } from "./legs";
 import { rateLimiter } from "../download/handler";
 import { getMarkStore, sharedRateLimiter } from "../download/marks";
@@ -15,7 +15,7 @@ export async function captureRequest(body: unknown, ip: string): Promise<Capture
   if (!config) console.error("[capture] RESEND_API_KEY, DOWNLOAD_LINK_SECRET or DOWNLOAD_ARTIFACT_BLOB unset; download signups stored without email");
   return handleCapture(body, ip, {
     store: (part) => getWaitlistStore(process.env, part),
-    limited: marks ? sharedRateLimiter(marks, CAPTURE_MAX_PER_WINDOW, CAPTURE_WINDOW_MS) : localLimited,
+    limited: layeredLimiter(localLimited, marks ? sharedRateLimiter(marks, CAPTURE_MAX_PER_WINDOW, CAPTURE_WINDOW_MS) : undefined),
     notify: config && marks ? resendNotifier(config, marks) : undefined,
     analytics: analyticsLeg(process.env, track),
     slack: slackLeg(process.env),

@@ -18,6 +18,20 @@ struct ScreenShareTests {
         #expect(SharedLink(URL(string: "https://example.com/s/w?g=x")!) == nil)
     }
 
+    @Test func groupInviteLinkRoundTrips() {
+        let page = SharePage.group(code: "7K3M9QX2PD", name: "Rossi family", kind: .family)
+        #expect(page.url.absoluteString == "https://www.bucket.foundation/s/g?c=7K3M9QX2PD&n=Rossi%20family&k=family")
+        #expect(SharedLink(page.url) == .group("7K3M9QX2PD"))
+        #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/g?c=bad")!) == .home)
+    }
+
+    @Test func groupLinkWaitsForTheJoinSheet() {
+        DeepLink.shared.open(URL(string: "https://bucket.foundation/s/g?c=7K3M9QX2PD")!)
+        #expect(DeepLink.shared.pending == .group("7K3M9QX2PD"))
+        #expect(DeepLink.shared.translate == nil)
+        DeepLink.shared.pending = nil
+    }
+
     @Test func longFieldsAreClipped() {
         let page = SharePage.word(id: "x", gloss: String(repeating: "a", count: 200), forms: [("fr", String(repeating: "b", count: 200))])
         #expect(page.url.absoluteString.count < 200)

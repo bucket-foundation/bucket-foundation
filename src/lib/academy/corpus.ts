@@ -6,7 +6,7 @@ const ROOT = process.cwd();
 const PUBLIC_DIR = join(ROOT, "public", "academy-app", "corpus");
 const SRC_DIR = join(ROOT, "learning", "app", "corpus");
 
-function corpusDir(): string {
+export function corpusDir(): string {
   return existsSync(PUBLIC_DIR) ? PUBLIC_DIR : SRC_DIR;
 }
 

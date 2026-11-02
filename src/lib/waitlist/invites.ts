@@ -1,10 +1,12 @@
 import { randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { get, list, put } from "@vercel/blob";
 import { safeNextPath } from "../auth/paths";
 import { normalizeEmail, parseEntry, type WaitlistEntry, type WaitlistRole } from "./core";
 import { emailKey, waitlistPrefix } from "./store";
+import { supabaseConfigured, supabaseInviteStore } from "./supabase-store";
+
+const blob = () => import("@vercel/blob");
 
 type Env = Record<string, string | undefined>;
 
@@ -29,7 +31,7 @@ export interface InviteRecord {
 }
 
 export interface InviteStore {
-  kind: "blob" | "file" | "memory";
+  kind: "blob" | "file" | "memory" | "supabase";
   read(key: string): Promise<InviteRecord | null>;
   create(key: string, record: InviteRecord): Promise<boolean>;
   write(key: string, record: InviteRecord): Promise<void>;
@@ -284,12 +286,12 @@ export function fileInviteStore(root: string, prefix: string): InviteStore {
 }
 
 export function blobInviteStore(prefix: string): InviteStore {
-  const put_ = (key: string, value: InviteRecord, allowOverwrite: boolean) =>
-    put(`${prefix}${key}.json`, JSON.stringify(value), { access: "private", addRandomSuffix: false, allowOverwrite, contentType: "application/json" });
+  const put_ = async (key: string, value: InviteRecord, allowOverwrite: boolean) =>
+    (await blob()).put(`${prefix}${key}.json`, JSON.stringify(value), { access: "private", addRandomSuffix: false, allowOverwrite, contentType: "application/json" });
   const store: InviteStore = {
     kind: "blob",
     async read(key) {
-      const res = await get(`${prefix}${key}.json`, { access: "private", useCache: false }).catch((err: unknown) => {
+      const res = await (await blob()).get(`${prefix}${key}.json`, { access: "private", useCache: false }).catch((err: unknown) => {
         if (err instanceof Error && err.name === "BlobNotFoundError") return null;
         throw err;
       });
@@ -312,7 +314,7 @@ export function blobInviteStore(prefix: string): InviteStore {
       const out: string[] = [];
       let cursor: string | undefined;
       do {
-        const page = await list({ prefix, cursor, limit: 1000 });
+        const page = await (await blob()).list({ prefix, cursor, limit: 1000 });
         for (const b of page.blobs) {
           const k = keyFromName(b.pathname, prefix);
           if (k) out.push(k);
@@ -327,6 +329,7 @@ export function blobInviteStore(prefix: string): InviteStore {
 
 export function getInviteStore(env: Env = process.env, root = process.cwd()): InviteStore | null {
   const prefix = invitePrefix(env);
+  if (supabaseConfigured(env)) return supabaseInviteStore(prefix, env);
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobInviteStore(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileInviteStore(path.join(root, ".data"), prefix);
   return null;

@@ -1,11 +1,13 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { del, get, list, put } from "@vercel/blob";
+import { supabaseConfigured, supabaseDocStore } from "../waitlist/supabase-store";
+
+const blob = () => import("@vercel/blob");
 
 type Env = Record<string, string | undefined>;
 
 export interface DocStore {
-  kind: "blob" | "file";
+  kind: "blob" | "file" | "supabase";
   prefix: string;
   read(name: string): Promise<string | null>;
   write(name: string, text: string): Promise<void>;
@@ -24,7 +26,7 @@ export function blobDocs(prefix: string): DocStore {
     kind: "blob",
     prefix,
     async read(name) {
-      const res = await get(prefix + name, { access: "private", useCache: false }).catch((err: unknown) => {
+      const res = await (await blob()).get(prefix + name, { access: "private", useCache: false }).catch((err: unknown) => {
         if (err instanceof Error && err.name === "BlobNotFoundError") return null;
         throw err;
       });
@@ -33,11 +35,11 @@ export function blobDocs(prefix: string): DocStore {
       return new Response(res.stream).text();
     },
     async write(name, text) {
-      await put(prefix + name, text, { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "application/json" });
+      await (await blob()).put(prefix + name, text, { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "application/json" });
     },
     async create(name, text) {
       try {
-        await put(prefix + name, text, { access: "private", addRandomSuffix: false, allowOverwrite: false, contentType: "application/json" });
+        await (await blob()).put(prefix + name, text, { access: "private", addRandomSuffix: false, allowOverwrite: false, contentType: "application/json" });
         return true;
       } catch (err) {
         if ((await store.read(name)) !== null) return false;
@@ -45,14 +47,14 @@ export function blobDocs(prefix: string): DocStore {
       }
     },
     async remove(name) {
-      await del(prefix + name);
+      await (await blob()).del(prefix + name);
     },
     async list(dir) {
       const base = `${prefix}${dir}/`;
       const out: string[] = [];
       let cursor: string | undefined;
       do {
-        const page = await list({ prefix: base, cursor, limit: 1000 });
+        const page = await (await blob()).list({ prefix: base, cursor, limit: 1000 });
         for (const b of page.blobs) out.push(b.pathname.slice(base.length));
         cursor = page.hasMore ? page.cursor : undefined;
       } while (cursor);
@@ -118,6 +120,7 @@ export function fileDocs(root: string, prefix: string): DocStore {
 
 export function getWhatsNewStore(env: Env = process.env): DocStore | null {
   const prefix = whatsNewPrefix(env);
+  if (supabaseConfigured(env)) return supabaseDocStore(prefix, env);
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobDocs(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileDocs(path.join(process.cwd(), ".data"), prefix);
   return null;

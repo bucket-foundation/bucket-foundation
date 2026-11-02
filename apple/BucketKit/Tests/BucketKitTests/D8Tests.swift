@@ -391,3 +391,41 @@ import Testing
     let session = Set(ids.suffix(3))
     #expect(session.contains(matchPick(Array(ids), system, corpus, inSession: session, seed: "x")!))
 }
+
+@Test func newerPlacementResetBeatsOlderHigherTier() {
+    var server = LangSystem(id: "s", name: "R", root: "en", targets: ["fr", "es"], createdAt: 10, placement: ["fr": 99, "es": 3])
+    server.updatedAt = 100
+    var reset = server
+    reset.placement = ["fr": 0]
+    reset.placedAt = ["fr": 200]
+    reset.updatedAt = 200
+    let a = mergeSystems(SystemsDoc(systems: [server]), SystemsDoc(systems: [reset])).systems[0]
+    let b = mergeSystems(SystemsDoc(systems: [reset]), SystemsDoc(systems: [server])).systems[0]
+    #expect(a.placement == ["fr": 0, "es": 3])
+    #expect(b.placement == a.placement)
+    var tie = reset
+    tie.updatedAt = 100
+    tie.placement = ["fr": 4]
+    tie.placedAt = nil
+    #expect(mergeSystems(SystemsDoc(systems: [server]), SystemsDoc(systems: [tie])).systems[0].placement["fr"] == 99)
+    var stale = server
+    stale.placement = ["es": 5, "fr": 7]
+    stale.placedAt = ["es": 900, "fr": 100]
+    stale.updatedAt = 900
+    let m = mergeSystems(mergeSystems(SystemsDoc(systems: [server]), SystemsDoc(systems: [reset])), SystemsDoc(systems: [stale])).systems[0]
+    #expect(m.placement == ["fr": 0, "es": 5])
+}
+
+@Test func placementWithoutPlacedCardsIsStale() {
+    let system = LangSystem(id: "s", name: "R", root: "en", targets: ["fr", "es"], createdAt: 0, placement: ["fr": 99, "es": 3])
+    var st = EngineState()
+    var c = Card(state: "review")
+    c.placed = true
+    st.cards["es:w1"] = c
+    st.cards["fr:w1"] = Card(state: "new")
+    let corpus = buildLangCorpus(core: try! langFixture("core"), cognates: try! langFixture("cognates"), phrases: try! langFixture("phrases"), layers: try! langFixture("layers"))
+    #expect(stalePlacements(system, st, corpus) == ["fr"])
+    #expect(stalePlacements(system, EngineState(), corpus).isEmpty)
+    st.cards["fr:w2"] = c
+    #expect(stalePlacements(system, st, corpus).isEmpty)
+}

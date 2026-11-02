@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { APP_STORE_URL, SHARE_HOST, appleBanner, langName, ogPath, sharePath, shareKind, shareView, type Params } from "@/lib/share/links";
+import { SHARE_HOST, appleBanner, betaSteps, langName, ogPath, sharePath, shareKind, shareView, type Params } from "@/lib/share/links";
 
 interface Props {
   params: { kind?: string[] };
@@ -27,6 +27,7 @@ export function generateMetadata({ params, searchParams }: Props): Metadata {
 export default function SharePage({ params, searchParams }: Props) {
   const kind = shareKind(params.kind?.[0]);
   const view = shareView(kind, searchParams);
+  const steps = betaSteps(Boolean(view.code));
   return (
     <main style={{ maxWidth: 640, margin: "0 auto", padding: "56px 16px 96px" }}>
       <p style={{ fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: "#8A6E2E", margin: 0 }}>{view.eyebrow}</p>
@@ -43,13 +44,31 @@ export default function SharePage({ params, searchParams }: Props) {
       ) : (
         <p style={{ fontSize: 19, lineHeight: 1.5, margin: "0 0 28px" }}>{view.description}</p>
       )}
-      <a
-        href={APP_STORE_URL}
-        style={{ display: "inline-block", padding: "14px 22px", borderRadius: 999, background: "#3D5E2E", color: "#fff", fontWeight: 700, textDecoration: "none" }}
-      >
-        Get Bucket on the App Store
-      </a>
-      <p style={{ marginTop: 18, fontSize: 15 }}>
+      {view.code ? (
+        <p style={{ fontSize: 15, margin: "0 0 28px", color: "#5d5650" }}>
+          Invite code <strong style={{ fontFamily: "ui-monospace, monospace", letterSpacing: 2, color: "#231F20" }}>{view.code}</strong>. Open this link on your iPhone. If you have Bucket, it joins the group.
+        </p>
+      ) : null}
+      <h2 style={{ fontSize: 20, margin: "0 0 14px" }}>Get Bucket on your iPhone</h2>
+      <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 20 }}>
+        {steps.map((step, i) => (
+          <li key={step.title} style={{ display: "grid", gap: 8 }}>
+            <strong style={{ fontSize: 17 }}>
+              {i + 1}. {step.title}
+            </strong>
+            <span style={{ fontSize: 15, lineHeight: 1.45, color: "#5d5650" }}>{step.detail}</span>
+            {step.href ? (
+              <a
+                href={step.href}
+                style={{ justifySelf: "start", padding: "14px 22px", borderRadius: 999, background: "#3D5E2E", color: "#fff", fontWeight: 700, textDecoration: "none" }}
+              >
+                {step.cta}
+              </a>
+            ) : null}
+          </li>
+        ))}
+      </ol>
+      <p style={{ marginTop: 24, fontSize: 15 }}>
         <a href="/research-os/learn">Learn on the web</a>
       </p>
     </main>

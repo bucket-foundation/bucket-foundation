@@ -33,7 +33,7 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
   try {
     for (const part of FORGET_PARTS) {
       const store = getWaitlistStore(process.env, part);
-      if (!store) return NextResponse.json({ error: "No Blob store is connected." }, { status: 503, headers: NO_STORE });
+      if (!store) return NextResponse.json({ error: "No signup store is connected." }, { status: 503, headers: NO_STORE });
       await forgetDownload(store, email);
     }
   } catch (err) {

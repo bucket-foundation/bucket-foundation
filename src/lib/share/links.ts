@@ -3,10 +3,11 @@ export const BUCKET_APP_ID = "6825123451";
 export const TEAM_ID = "QQ6D6A2LLS";
 export const APP_BUNDLE = "foundation.bucket.app";
 export const CLIP_BUNDLE = "foundation.bucket.app.Clip";
-export const APP_STORE_URL = `https://apps.apple.com/app/id${BUCKET_APP_ID}`;
+export const TESTFLIGHT_APP_URL = "https://apps.apple.com/app/testflight/id899247664";
+export const BETA_JOIN_URL = "https://testflight.apple.com/join/HfeRBKr8";
 
 export type Params = Record<string, string | string[] | undefined>;
-export type ShareKind = "w" | "l" | "d" | "a" | "";
+export type ShareKind = "w" | "l" | "d" | "a" | "g" | "";
 
 export interface ShareForm {
   lang: string;
@@ -21,9 +22,11 @@ export interface ShareView {
   forms: ShareForm[];
   langs: string[];
   streak: number;
+  code: string;
 }
 
-const KEYS = ["id", "g", "f", "l", "r", "s", "d", "t", "b", "q"] as const;
+const KEYS = ["id", "g", "f", "l", "r", "s", "d", "t", "b", "q", "c", "n", "k"] as const;
+const CODE_RE = /^[0-9A-HJKMNP-TV-Z]{10}$/;
 
 export function one(params: Params, key: string, max = 200): string {
   const v = params[key];
@@ -32,7 +35,7 @@ export function one(params: Params, key: string, max = 200): string {
 }
 
 export function shareKind(raw: string | undefined): ShareKind {
-  return raw === "w" || raw === "l" || raw === "d" || raw === "a" ? raw : "";
+  return raw === "w" || raw === "l" || raw === "d" || raw === "a" || raw === "g" ? raw : "";
 }
 
 export function langName(code: string): string {
@@ -75,6 +78,7 @@ export function shareView(kind: ShareKind, params: Params): ShareView {
     forms: [],
     langs: [],
     streak: 0,
+    code: "",
   };
   if (kind === "w") {
     const forms = parseForms(one(params, "f", 400));
@@ -112,7 +116,46 @@ export function shareView(kind: ShareKind, params: Params): ShareView {
     const q = one(params, "q", 160);
     return { ...base, eyebrow: one(params, "b", 60) || "Bucket lesson", title: t, description: q || `Learn ${t} on Bucket.` };
   }
+  if (kind === "g") {
+    const code = one(params, "c", 10).toUpperCase();
+    const name = one(params, "n", 60);
+    if (!CODE_RE.test(code) || !name) return base;
+    const family = one(params, "k", 10) === "family";
+    return {
+      ...base,
+      eyebrow: family ? "Family group" : "Friends group",
+      title: `Join ${name} on Bucket`,
+      description: `You are invited to learn together with ${name}. Join on Bucket to see each other's languages, subjects and streaks.`,
+      code,
+    };
+  }
   return base;
+}
+
+export interface BetaStep {
+  title: string;
+  detail: string;
+  href?: string;
+  cta?: string;
+}
+
+export function betaSteps(hasInvite: boolean): BetaStep[] {
+  const steps: BetaStep[] = [
+    {
+      title: "Install TestFlight",
+      detail: "Apple's free app for beta apps. Skip this step if you have it. It may ask for a code: you do not need one, so close it and return to this page.",
+      href: TESTFLIGHT_APP_URL,
+      cta: "Get TestFlight",
+    },
+    {
+      title: "Come back here and join the beta",
+      detail: "Tap this after TestFlight is on your phone, then tap Install.",
+      href: BETA_JOIN_URL,
+      cta: "Join the Bucket beta",
+    },
+  ];
+  if (hasInvite) steps.push({ title: "Tap your invite link again", detail: "Open this same link once Bucket is installed. It opens Bucket and joins the group." });
+  return steps;
 }
 
 export function passQuery(params: Params): string {
@@ -132,6 +175,13 @@ export function sharePath(kind: ShareKind, params: Params): string {
 export function ogPath(kind: ShareKind, params: Params): string {
   const q = passQuery(params);
   return `/api/share/og?k=${kind}${q ? `&${q}` : ""}`;
+}
+
+export function ogParams(search: URLSearchParams): { kind: ShareKind; params: Params } {
+  const [kind, groupKind] = search.getAll("k");
+  const params: Params = Object.fromEntries(search.entries());
+  params.k = groupKind ?? "";
+  return { kind: shareKind(kind ?? ""), params };
 }
 
 export function appleBanner(url: string): string {

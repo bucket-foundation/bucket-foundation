@@ -13,6 +13,13 @@ final class WatchModel: NSObject, WCSessionDelegate {
     override init() {
         super.init()
         if let data = UserDefaults.standard.data(forKey: WatchKeys.deck), let saved = try? JSONDecoder().decode([WatchCard].self, from: data) { cards = WatchQueue.unseen(saved, graded: graded).cards }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-demoDeck") {
+            cards = [("fr", "nuit"), ("es", "noche"), ("it", "notte")].map { l, f in
+                WatchCard(id: "\(l):night", systemId: "demo", itemId: "night", lang: l, prompt: "night", answer: WatchAnswer(lang: l, form: f))
+            }
+        }
+        #endif
         if WCSession.isSupported() {
             WCSession.default.delegate = self
             WCSession.default.activate()

@@ -36,7 +36,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   }
 
   const store = getWaitlistStore();
-  if (!store) return json({ error: "No Blob store is connected to this deployment." }, 503);
+  if (!store) return json({ error: "No signup store is connected to this deployment." }, 503);
 
   const suspectStore = getWaitlistStore(process.env, "suspect");
   let entries;

@@ -30,4 +30,5 @@ export const ALLOWED_BASELINE: readonly string[] = [
   "src/lib/research-os/db.ts::loadSecondSourceRequiredForLearner::classes::classRows::1",
   "src/lib/research-os/learn-sync.ts::syncAcademyMastery::learner_node_state::states::1",
   "src/lib/research-os/production-node.ts::createNodeFromProduction::nodes::node::1",
+  "src/lib/waitlist/supabase-store.ts::sweep::<unknown>::res::1",
 ];

@@ -116,6 +116,7 @@ struct LanguagesHome: View {
                     Section { StreakGoalCard(streak: Double(langStreak(store))) }
                         .listRowBackground(Palette.card)
                 }
+                TodayStrip()
                 if !store.systems.isEmpty {
                     Section { TranslateCard() }
                         .listRowBackground(Palette.card)

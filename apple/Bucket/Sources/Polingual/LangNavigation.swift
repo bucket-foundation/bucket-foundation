@@ -43,13 +43,16 @@ struct LangSystemRow: View {
         let sum = store.corpus.map { systemSummary(system, $0, state, now: now) }
         let fresh = langNewLeft(system, state, now: now)
         HStack(spacing: 12) {
-            HStack(spacing: 3) {
-                ForEach(system.targets.prefix(3), id: \.self) { FlagTile(lang: $0, size: 22) }
-            }
-            VStack(alignment: .leading, spacing: 2) {
-                Text(system.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
-                if let sum {
-                    Text("\(sum.started) of \(sum.total) cards · \(StreakGoal(streak: liveStreak(state, now: now)).day) day streak").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+            VStack(alignment: .leading, spacing: 4) {
+                Text(system.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                HStack(spacing: 6) {
+                    HStack(spacing: 3) {
+                        ForEach(system.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 18) }
+                    }
+                    if let sum {
+                        Text("\(sum.started) of \(sum.total) · \(StreakGoal(streak: liveStreak(state, now: now)).day) day streak").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                            .lineLimit(1).minimumScaleFactor(0.8)
+                    }
                 }
             }
             Spacer(minLength: 0)
