@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { appSiteAssociation, appleBanner, ogParams, ogPath, parseForms, sharePath, shareView } from "../src/lib/share/links";
+import { BETA_JOIN_URL, TESTFLIGHT_APP_URL, appSiteAssociation, appleBanner, betaSteps, ogParams, ogPath, parseForms, sharePath, shareView } from "../src/lib/share/links";
 
 test("a word link renders the gloss and each form with its language", () => {
   const v = shareView("w", { id: "night", g: "night", f: "fr:nuit|es:noche|de:Nacht" });
@@ -91,4 +91,18 @@ test("group share paths carry the code, name and kind, and the og image reads bo
   const word = ogParams(new URL(ogPath("w", { g: "night", f: "fr:nuit" }), "https://x.test").searchParams);
   assert.equal(word.kind, "w");
   assert.equal(shareView(word.kind, word.params).title, "night");
+});
+
+test("the install steps send TestFlight first, then back to the join link", () => {
+  const steps = betaSteps(false);
+  assert.deepEqual(steps.map((s) => s.href), [TESTFLIGHT_APP_URL, BETA_JOIN_URL]);
+  assert.match(steps[0].detail, /do not need one/);
+  assert.match(steps[1].title, /Come back/);
+});
+
+test("an invite adds a last step to tap the link again", () => {
+  const steps = betaSteps(true);
+  assert.equal(steps.length, 3);
+  assert.match(steps[2].title, /invite link again/);
+  assert.equal(steps[2].href, undefined);
 });

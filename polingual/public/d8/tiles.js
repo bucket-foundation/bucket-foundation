@@ -20,7 +20,8 @@ const POOL=[
 {c:"vn",n:"Vietnamese",w:"trăm",ipa:"ʈam",lang:"vi-VN",f:"Noto Sans",bg:"#DA251D",e:"★",ec:"#FFFF00",es:110},
 {c:"th",n:"Thai",w:"ร้อย",ipa:"rɔ́ːj",lang:"th-TH",f:"Noto Sans",bg:"linear-gradient(#A51931 0 16%,#F4F5F8 0 33%,#2D2A4A 0 66%,#F4F5F8 0 83%,#A51931 0)"}];
 const shuffled=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
-const TILES=shuffled(POOL).slice(0,6);
+const PALE=new Set(["jp","kr","il"]);
+const TILES=shuffled(POOL.filter(t=>!PALE.has(t.c))).slice(0,6);
 const SPK='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 const byC=c=>POOL.find(t=>t.c===c);
 function say(el,t){
@@ -39,12 +40,13 @@ function inner(t,mode){
  if(mode==='bare')return `${face}<span class="em">${t.e||''}</span>`;
  return `${face}<span class="cc">${t.n}</span><div class="wd"><b class="${[...t.w].length>3?'long':''}" lang="${t.lang}" style="font-family:'${t.f}'">${t.w}</b><button class="snd" aria-label="Play ${t.n} ${t.w}">${SPK}</button></div><i>/${t.ipa}/</i>`;
 }
-function paint(el,t,mode){el.dataset.c=t.c;el.setAttribute('style',style(t));el.innerHTML=inner(t,mode);}
+function paint(el,t,mode){el.dataset.c=t.c;el.setAttribute('style',style(t)+(el.style.animationDelay?`;animation-delay:${el.style.animationDelay}`:''));el.innerHTML=inner(t,mode);}
 function renderTiles(root,mode){
  const text=mode!=='bare';
  root.innerHTML=TILES.map(()=>`<div class="t${text?' tt':''}"></div>`).join('');
  const els=[...root.children];els.forEach((el,i)=>paint(el,TILES[i],text?'text':'bare'));
  if(text)els.forEach(el=>{el.onclick=()=>say(el,byC(el.dataset.c))});
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)els.forEach((el,i)=>{el.style.animationDelay=`${i*110}ms`;el.classList.add('deal');el.addEventListener('animationend',()=>{el.classList.remove('deal');el.style.animationDelay=''},{once:true})});
  if(root.dataset.cycle!==undefined)cycle(els,text?'text':'bare',+root.dataset.cycle||2200);
 }
 function cycle(els,mode,ms){
@@ -62,7 +64,7 @@ function cycle(els,mode,ms){
   const t=free[Math.floor(Math.random()*free.length)];
   if(calm){paint(el,t,mode);return}
   el.classList.add('flip');
-  setTimeout(()=>{paint(el,t,mode);el.classList.remove('flip');el.classList.add('flipin');setTimeout(()=>el.classList.remove('flipin'),260)},240);
+  setTimeout(()=>{paint(el,t,mode);el.classList.remove('flip');el.classList.add('flipin');setTimeout(()=>el.classList.remove('flipin'),320)},260);
  },calm?ms*2:ms);
 }
 if('speechSynthesis' in window)speechSynthesis.getVoices();

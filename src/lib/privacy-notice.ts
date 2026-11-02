@@ -27,6 +27,11 @@ export const COLLECTED: { what: string; detail: string; why: string }[] = [
     why: "To build your review deck. Delete a word or your account and it goes.",
   },
   {
+    what: "Streak reminders",
+    detail: "Only if you turn them on in settings: your time zone, when you turned them on or off, and the day we last sent one.",
+    why: "To send one reminder in your evening when a streak of two days or more would end that night. It goes to your email and, when you have the app with notifications on, to your phone through Apple.",
+  },
+  {
     what: "Product events",
     detail: "A short record, tied to your account, each time one of the events below happens.",
     why: "To learn whether Learn works: how many people finish a first session and how many come back.",
@@ -44,7 +49,7 @@ export const EVENTS: { name: string; when: string }[] = [
 export const PROCESSORS: { name: string; role: string }[] = [
   { name: "Supabase", role: "stores your account and the records above" },
   { name: "Vercel", role: "hosts the site, counts page views without cookies, and holds download requests in private Blob storage" },
-  { name: "Resend", role: "sends the download link and the daily digest" },
+  { name: "Resend", role: "sends the download link, the daily digest and streak reminders" },
   { name: "Anthropic", role: "receives the text of a tutor question and the lesson it is about, once the tutor is on" },
 ];
 

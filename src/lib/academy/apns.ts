@@ -113,6 +113,14 @@ export function cheerPayload(kind: CheerPushKind, name: string, groupId: string)
   return { aps: { alert: { body: cheerText(kind, name) }, sound: "default", "thread-id": groupId }, group: groupId };
 }
 
+export function streakText(streak: number): string {
+  return `Your ${streak}-day streak ends tonight. One review keeps it going.`;
+}
+
+export function streakPayload(streak: number): PushPayload {
+  return { aps: { alert: { body: streakText(streak) }, sound: "default", "thread-id": "streak" }, group: "streak" };
+}
+
 export function shouldPrune(res: ApnsResponse): boolean {
   return res.status === 410 || res.reason === "Unregistered";
 }
@@ -209,6 +217,27 @@ export async function pushCheer(
   }
 }
 
+export async function pushStreak(
+  userId: string,
+  streak: number,
+  deps: { cfg: ApnsConfig | null; store: PushStore; transport?: ApnsTransport; now?: number },
+): Promise<SendResult | null> {
+  if (!deps.cfg) return null;
+  try {
+    const devices = await deps.store.devices(userId);
+    return await sendPush(devices, streakPayload(streak), {
+      cfg: deps.cfg,
+      prune: deps.store.prune,
+      setEnv: deps.store.setEnv,
+      transport: deps.transport,
+      now: deps.now,
+    });
+  } catch (err) {
+    console.error("[academy/push] streak:", err instanceof Error ? err.message : err);
+    return null;
+  }
+}
+
 export function withBudget<T>(work: Promise<T>, ms: number): Promise<T | null> {
   let timer: ReturnType<typeof setTimeout> | undefined;
   const cap = new Promise<null>((resolve) => {
@@ -256,7 +285,7 @@ export function http2Transport(timeoutMs = 8000): ApnsTransport {
       });
     },
     close() {
-      for (const s of sessions.values()) s.close();
+      sessions.forEach((s) => s.close());
       sessions.clear();
     },
   };

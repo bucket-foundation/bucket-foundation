@@ -396,6 +396,23 @@ function parseRows(rows: readonly BranchRow[], lookup: CorpusLookup): ParsedRows
   return out;
 }
 
+export function studyStats(rows: readonly BranchRow[]): StoredEngineState["stats"][] {
+  const out: StoredEngineState["stats"][] = [];
+  for (const row of rows) {
+    const b = row.branch;
+    if (b.endsWith(".bak-v1") || b === "lang-systems") continue;
+    const memory = /^lang-([a-z]{2,3})$/.exec(b);
+    if (memory) {
+      out.push(langMemoryState(memory[1], row.data).stats);
+      continue;
+    }
+    if (b.startsWith("lang-") && !b.startsWith("lang-sys-")) continue;
+    const state = asState(row.data);
+    if (state) out.push(state.stats);
+  }
+  return out;
+}
+
 function learned(card: StoredCard): boolean {
   return (card.reps || 0) > 0;
 }

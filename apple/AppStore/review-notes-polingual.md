@@ -12,7 +12,10 @@ The app needs a subscription after onboarding. Polingual Monthly (com.polingual.
 
 SETUP AND LOGIN
 No setup or special hardware. Finish onboarding, start the trial, then open the person icon at the top right and choose Account. An account is optional for study and required for sync and groups. There are two methods and no passwords: Sign in with Apple, or a one-time code sent to an email address. A first sign-in creates the account.
-Demo account: [FOUNDER: address and how the reviewer reads its code].
+Demo account: Finish onboarding, start the trial with a Sandbox account, open the person icon, then Account and Sign in. Type the email below and tap Send code. No email goes out for this address. Type the code below and tap Verify. Signing in does not replace the subscription.
+Email: [REVIEW_DEMO_EMAIL value, entered by hand in App Store Connect]
+Code: [REVIEW_DEMO_CODE value, entered by hand in App Store Connect]
+The account has a language set, progress and a group named Review Family with a second member, Sam, so report and block can be tried on Sam. Deleting this account ends the demo, so please test deletion on a new account made with Sign in with Apple or your own email.
 Account deletion: Account, Delete account, Delete account and data.
 
 USER-GENERATED CONTENT
@@ -43,11 +46,13 @@ Polingual is not a regulated service. It includes third-party language data unde
 | Item | What is unknown or missing |
 |---|---|
 | Recording | Physical device recording must be attached, including the paywall and a sandbox purchase. `apple/scripts/review-recording.sh polingual device` walks it |
-| Demo account | Needed. The app has no password login, so the reviewer needs a mailbox for the code or must use Sign in with Apple. The account needs a seeded group with a second member. A sign-in alone does not pass the paywall |
+| Demo account | Set `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` (8 to 10 digits) and `REVIEW_DEMO_UNTIL` (ISO date, sign-in stops at that date) in Vercel production, on an address the project controls. Run `npx tsx scripts/seed-review-demo.ts` against production with the migration applied, and rerun it between review rounds: it restores the account, group and member and clears the account's blocks. A deleted demo account refuses sign-in until the seed runs. |
+| After approval | Remove `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` and `REVIEW_DEMO_UNTIL` from Vercel production, then redeploy. A past or missing date already turns the path off |
+| Paywall | A demo sign-in alone does not pass the paywall. The reviewer needs a Sandbox account |
 | Audience and age | Not stated in the code. The app has no age question |
 | Prices | `Polingual.storekit` lists $9.99 monthly and $59.99 yearly. Live prices in App Store Connect were not checked |
 | Family and Lifetime | Behind the `extra_plans` flag and not created in App Store Connect per `SUBMISSION-CHECKLIST.md`. Left out of the notes |
-| Terms | www.polingual.com/terms has no clause on objectionable content or abuse and no mention of groups. Apple 1.2 expects one. It also says sign-in is by email code only, and credits Wiktionary alone |
+| Terms | polingual.com/terms carries the abuse clause after this PR deploys |
 | Moderation response | Reports land in `bucket.group_reports` and email `MODERATION_EMAIL`, or `gianyrox@gmail.com` when it is unset. Nobody is named to act on them, and removal is manual SQL |
 | Server | The migration `20261105000100_group_moderation.sql` and this PR must reach production before review. Without the migration, group loading fails |
 | Email sender | Supabase sends the code email. Whether its SMTP goes through Resend is not in the repo; the notes list Resend for reports only |

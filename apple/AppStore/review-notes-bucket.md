@@ -12,7 +12,10 @@ Bucket has no in-app purchases, subscriptions or paid content.
 
 SETUP AND LOGIN
 No setup or special hardware. Most of the app works without an account. Open the Account tab and tap Sign in to create an account or log in. There are two methods and no passwords: Sign in with Apple, or a one-time code sent to an email address. A first sign-in creates the account.
-Demo account: [FOUNDER: address and how the reviewer reads its code].
+Demo account: Open the Account tab, tap Sign in, type the email below and tap Send code. No email goes out for this address. Type the code below and tap Verify.
+Email: [REVIEW_DEMO_EMAIL value, entered by hand in App Store Connect]
+Code: [REVIEW_DEMO_CODE value, entered by hand in App Store Connect]
+The account has a language set, progress and a group named Review Family with a second member, Sam, so report and block can be tried on Sam. Deleting this account ends the demo, so please test deletion on a new account made with Sign in with Apple or your own email.
 Account deletion: Account tab, Delete account, Delete account and data.
 
 USER-GENERATED CONTENT
@@ -43,9 +46,10 @@ Bucket is not a regulated service and gives no medical, legal or financial advic
 | Item | What is unknown or missing |
 |---|---|
 | Recording | Physical device recording must be attached. `apple/scripts/review-recording.sh bucket device` walks it |
-| Demo account | Needed. The app has no password login, so the reviewer needs a mailbox for the code or must use Sign in with Apple. The account needs a seeded group with a second member |
+| Demo account | Set `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` (8 to 10 digits) and `REVIEW_DEMO_UNTIL` (ISO date, sign-in stops at that date) in Vercel production, on an address the project controls. Run `npx tsx scripts/seed-review-demo.ts` against production with the migration applied, and rerun it between review rounds: it restores the account, group and member and clears the account's blocks. A deleted demo account refuses sign-in until the seed runs. |
+| After approval | Remove `REVIEW_DEMO_EMAIL`, `REVIEW_DEMO_CODE` and `REVIEW_DEMO_UNTIL` from Vercel production, then redeploy. A past or missing date already turns the path off |
 | Audience and age | Not stated in the code. `src/lib/privacy-notice.ts` describes an age question and limits for under 18s; the iOS apps have no age question |
-| Terms | www.bucket.foundation/terms returns 404. Apple 1.2 expects terms that ban objectionable content and abuse |
+| Terms | `/terms` on bucket.foundation carries the abuse clause after this PR deploys. The Account screen links Privacy only: add Terms in `apple/` |
 | Moderation response | Reports land in `bucket.group_reports` and email `MODERATION_EMAIL`, or `gianyrox@gmail.com` when it is unset. Nobody is named to act on them, and removal is manual SQL |
 | Server | The migration `20261105000100_group_moderation.sql` and this PR must reach production before review. Without the migration, group loading fails |
 | Email sender | Supabase sends the code email. Whether its SMTP goes through Resend is not in the repo; the notes list Resend for reports only |

@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/governance",         pri: 0.7,  freq: "monthly" as const },
     { p: "/download",           pri: 0.9,  freq: "weekly"  as const },
     { p: "/about",              pri: 0.7,  freq: "monthly" as const },
+    { p: "/terms",              pri: 0.5,  freq: "yearly"  as const },
     { p: "/contributors",       pri: 0.7,  freq: "weekly"  as const },
     { p: "/research",           pri: 0.85, freq: "weekly"  as const },
     { p: "/research/tools",     pri: 0.85, freq: "weekly"  as const },

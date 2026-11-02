@@ -55,7 +55,7 @@ function memoryTable(): KvTable & { rows: Map<string, { value: unknown; at: numb
     },
     async sweep(p, olderThan) {
       let n = 0;
-      for (const [r, v] of rows) if (r.startsWith(`${p}\u0000`) && v.at < olderThan && rows.delete(r)) n++;
+      for (const [r, v] of Array.from(rows)) if (r.startsWith(`${p}\u0000`) && v.at < olderThan && rows.delete(r)) n++;
       return n;
     },
   };

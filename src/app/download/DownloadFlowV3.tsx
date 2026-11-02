@@ -158,6 +158,7 @@ export default function DownloadFlowV3({ detected, installers, windowed = [] }: 
         <input type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1" aria-label="Agree to the privacy terms" />
         <span>I agree to the <Link href="/privacy" className="underline">privacy terms</Link>.</span>
       </label>
+      <p className="text-[12px]">Using Bucket follows the <Link href="/terms" className="underline">terms of use</Link>.</p>
 
       <button type="submit" disabled={!complete || busy} className={BUTTON + " mt-2"} data-download-button>
         {busy ? "Saving" : "Sign up"}

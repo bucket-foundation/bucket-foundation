@@ -93,6 +93,10 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
       <div className="border-t border-[color:var(--hairline-bone)]">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-5 flex flex-wrap gap-4 justify-between text-[10px] small-caps text-[color:var(--bone-3)]">
           <div>bucket foundation · nonprofit · MIT code · CC0 intent · <FooterVersion /></div>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="hover:text-[color:var(--bone)] transition">Privacy</Link>
+            <Link href="/terms" className="hover:text-[color:var(--bone)] transition">Terms</Link>
+          </div>
           <div className="text-[color:var(--gold)]">carved in stone · mmxxii</div>
         </div>
       </div>
