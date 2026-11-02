@@ -429,3 +429,16 @@ import Testing
     st.cards["fr:w2"] = c
     #expect(stalePlacements(system, st, corpus).isEmpty)
 }
+
+@Test func longPhrasesShrinkToFitWordTiles() {
+    #expect(D8Fit.wraps("einen Moment, bitte"))
+    #expect(D8Fit.wraps("もう一度言ってください"))
+    #expect(!D8Fit.wraps("Straße"))
+    #expect(D8Fit.tileFont("ja bitte", side: 190) > D8Fit.tileFont("einen Moment, bitte", side: 190))
+    let side: CGFloat = 190
+    for phrase in ["parlez lentement, s'il vous plaît", "говорите медленнее, пожалуйста", "क्या आप मेरी मदद कर सकते हैं?", "もう一度言ってください", "kannst du das wiederholen?"] {
+        let font = D8Fit.tileFont(phrase, side: side)
+        #expect(font >= side * 0.1, "\(phrase) at \(font)")
+        #expect(font < side * 0.2, "\(phrase) at \(font)")
+    }
+}

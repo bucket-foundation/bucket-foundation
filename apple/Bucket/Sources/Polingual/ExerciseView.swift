@@ -47,7 +47,7 @@ struct OptionButton: View {
         Button(action: action) {
             VStack(alignment: tall ? .center : .leading, spacing: 2) {
                 Text(text).font(glyph ? .largeTitle.weight(.bold) : nil).multilineTextAlignment(tall ? .center : .leading).lineLimit(tall ? 2 : nil).minimumScaleFactor(tall ? 0.6 : 1)
-                if let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(D8.ipa) }
+                if let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(Palette.muted) }
             }
             .padding(.vertical, 10)
             .frame(maxWidth: tall ? .infinity : nil, minHeight: tall ? 72 : nil)
@@ -303,7 +303,8 @@ struct ExerciseView: View {
                         ForEach(sideways ? options.filter { accepted.contains($0) || $0 == picked } : options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil,
-                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil)
+                                      say: ex.kind == .gender ? Self.spokenArticle(o, ex) : nil,
+                                      tag: optionLang(o) == ex.answerLang ? nil : langName(optionLang(o)))
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
@@ -314,6 +315,11 @@ struct ExerciseView: View {
                 } else {
                     let row = ex.kind == .gender && options.count <= 3
                     let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways || ex.kind == .letter ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
+                    if ex.optionLangs != nil {
+                        Text("Some options are from other languages. Pick the \(targetName) one.")
+                            .font(.subheadline).foregroundStyle(Palette.muted)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                     LazyVGrid(columns: cols, spacing: 10) {
                         ForEach(Array(options.enumerated()), id: \.element) { k, o in
                             OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o, tall: sideways || ex.kind == .letter, glyph: ex.kind == .letter) { selected = o; tap() }
@@ -331,7 +337,7 @@ struct ExerciseView: View {
                 if listening {
                     Text(LangListener.shared.live.isEmpty ? String(localized: "Listening…") : LangListener.shared.live)
                         .font(.system(size: 20, weight: .semibold, design: .rounded))
-                        .foregroundStyle(LangListener.shared.live.isEmpty ? Palette.muted : D8.ink)
+                        .foregroundStyle(LangListener.shared.live.isEmpty ? Palette.muted : Palette.ink)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentTransition(.opacity)
                 }
@@ -366,11 +372,11 @@ struct ExerciseView: View {
     var answerField: some View {
         TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
             .font(.system(size: 18, weight: .semibold, design: .rounded))
-            .foregroundStyle(D8.ink)
+            .foregroundStyle(Palette.ink)
             .padding(.horizontal, 16)
             .frame(minHeight: 52)
-            .background(.white, in: .rect(cornerRadius: 12))
-            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.keyline, lineWidth: 2) }
+            .background(D8.face, in: .rect(cornerRadius: 12))
+            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.edge, lineWidth: 2) }
             .autocorrectionDisabled()
             .langInput(ex.answerLang)
             .focused($focused)
@@ -494,24 +500,35 @@ struct FamilyLine: View {
     let ex: Exercise
     var readings = true
 
+    var words: [LangWord] {
+        if ex.kind == .match { return ex.pairs ?? [] }
+        return (ex.family ?? []).filter { $0.lang != ex.lang && $0.lang != ex.root }
+    }
+
+    var sharedRoot: Bool {
+        guard ex.kind == .match else { return true }
+        return Set((ex.pairs ?? []).map(\.lang)).isSubset(of: (ex.family ?? []).map(\.lang))
+    }
+
     var body: some View {
-        if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
+        let shown = words
+        if !shown.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
-                Text("SAME ROOT").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
+                Text(sharedRoot ? "SAME ROOT" : "IN EACH LANGUAGE").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
                 FlowLayout(spacing: 8) {
-                    ForEach(f, id: \.self) { w in
+                    ForEach(shown, id: \.self) { w in
                         HStack(spacing: 6) {
                             FlagTile(lang: w.lang, size: 20)
                             VStack(alignment: .leading, spacing: 0) {
                                 Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
-                                if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(D8.ipa) }
+                                if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(Palette.muted) }
                             }
                             PlayButton(text: w.word, lang: w.lang, roomy: true)
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 6)
-                        .background(.white, in: .rect(cornerRadius: 10))
-                        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline, lineWidth: 1.5) }
+                        .background(D8.face, in: .rect(cornerRadius: 10))
+                        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.edge, lineWidth: 1.5) }
                         .accessibilityElement(children: .combine)
                         .fixedSize()
                     }

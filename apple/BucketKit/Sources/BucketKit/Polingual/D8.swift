@@ -89,6 +89,49 @@ public struct D8Flag: Sendable, Equatable {
 public enum D8Fit {
     public static func wide(_ text: String) -> Bool { text.contains(" ") || text.count > 12 }
     public static func long(_ text: String) -> Bool { text.count > 7 }
+
+    public static func wraps(_ text: String) -> Bool {
+        text.contains(" ") || (text.count > 5 && text.unicodeScalars.contains(where: isFullWidth))
+    }
+
+    public static func tileFont(_ text: String, side: CGFloat) -> CGFloat {
+        let width = side * 0.67
+        let height = side * 0.46
+        let words = text.split(separator: " ").map { (Double($0.unicodeScalars.reduce(0) { $0 + (isFullWidth($1) ? 1 : 0.62) }), $0.unicodeScalars.contains(where: isFullWidth)) }
+        var font = side * 0.21
+        while font > side * 0.07 {
+            var lines = 1.0
+            var used = 0.0
+            var fits = true
+            for (ems, breakable) in words {
+                let w = ems * font
+                if breakable && w > width {
+                    lines += used > 0 ? 1 : 0
+                    lines += (w / width).rounded(.up) - 1
+                    used = w.truncatingRemainder(dividingBy: width)
+                    continue
+                }
+                if w > width { fits = false; break }
+                let space = used > 0 ? font * 0.3 : 0
+                if used + space + w > width {
+                    lines += 1
+                    used = w
+                } else {
+                    used += space + w
+                }
+            }
+            if fits && lines * font * 1.22 <= height { return font }
+            font -= side * 0.01
+        }
+        return font
+    }
+
+    static func isFullWidth(_ s: Unicode.Scalar) -> Bool {
+        switch s.value {
+        case 0x1100...0x11FF, 0x3040...0x30FF, 0x3400...0x9FFF, 0xAC00...0xD7AF: true
+        default: false
+        }
+    }
 }
 
 public func crossLanguageOptions(_ ex: Exercise, _ item: LangItem, _ system: LangSystem, _ rng: inout Rng) -> Exercise {
