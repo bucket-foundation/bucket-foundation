@@ -128,7 +128,7 @@ export default function PrivacyPage() {
           <a href={mailto("Privacy")} className="underline underline-offset-4 break-words">
             {CONTACT_EMAIL}
           </a>
-          .
+          . The rules for using Bucket sit in the <Link href="/terms" className="underline underline-offset-4">terms of use</Link>.
         </p>
       </div>
     </main>
