@@ -283,14 +283,14 @@ struct MemoryGame: View {
 
     func face(_ t: MemoryBoard.Tile, up: Bool) -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 12).fill(up ? Color.white : D8.lapis)
-            RoundedRectangle(cornerRadius: 12).strokeBorder(up ? D8.keyline : D8.lapis, lineWidth: 2)
+            RoundedRectangle(cornerRadius: 12).fill(up ? D8.face : D8.lapis)
+            RoundedRectangle(cornerRadius: 12).strokeBorder(up ? D8.edge : D8.lapis, lineWidth: 2)
             if up {
                 VStack(spacing: 6) {
                     if t.isForm { FlagTile(lang: t.lang, size: 18) }
                     Text(t.text)
                         .font(.system(size: 16, weight: .heavy, design: .rounded))
-                        .foregroundStyle(D8.ink)
+                        .foregroundStyle(Palette.ink)
                         .multilineTextAlignment(.center)
                         .minimumScaleFactor(0.5)
                 }

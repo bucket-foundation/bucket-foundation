@@ -144,12 +144,12 @@ struct WordFactsView: View {
             Section {
                 HStack(spacing: 10) {
                     FlagTile(lang: detail.lang, size: 34)
-                    Text(detail.word).font(D8.word(28)).foregroundStyle(D8.ink).lineLimit(2).minimumScaleFactor(0.5)
+                    Text(detail.word).font(D8.word(28)).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.5)
                     Spacer(minLength: 0)
                     PlayButton(text: detail.word, lang: detail.lang)
                 }
                 .environment(\.layoutDirection, Lang.isRTL(detail.lang) ? .rightToLeft : .leftToRight)
-                if let r = readingText(detail.reading) { Text(r).foregroundStyle(D8.ipa) }
+                if let r = readingText(detail.reading) { Text(r).foregroundStyle(Palette.muted) }
                 if let g = detail.gloss { Text(g).font(.serif(.body)) }
                 let tags = [detail.pos, detail.band].compactMap { $0 }
                 if !tags.isEmpty { Text(tags.joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted) }

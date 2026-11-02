@@ -240,9 +240,9 @@ struct PlanCard: View {
             VStack(spacing: 3) {
                 Text(PlanCard.title(product.id)).font(.system(size: 15, weight: .heavy, design: .rounded))
                 Text(product.displayPrice).font(.system(size: 22, weight: .heavy, design: .rounded))
-                Text(PlanCard.period(product.id)).font(.caption).foregroundStyle(D8.label)
+                Text(PlanCard.period(product.id)).font(.caption).foregroundStyle(Palette.muted)
             }
-            .foregroundStyle(D8.ink)
+            .foregroundStyle(Palette.ink)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
             .overlay(alignment: .top) {
