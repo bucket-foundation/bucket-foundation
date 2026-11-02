@@ -82,10 +82,10 @@ struct AccountView: View {
                 if account.stage == .signedIn { await groups.load() } else { groups.clear() }
                 #if DEBUG
                 if DemoGroup.on {
-                    groups.groups = [DemoGroup.group]
+                    groups.groups = [DemoGroup.shown]
                     switch DemoGroup.screen {
                     case "member", "graph": openMember = "u2"
-                    case "account": break
+                    case "account", "joined": break
                     default: openGroup = DemoGroup.group.id
                     }
                 }

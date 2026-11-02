@@ -14,6 +14,7 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case joinedLimit
     case cheerLimit
     case nudgeNotNeeded
+    case nameNotAllowed
 
     public var errorDescription: String? {
         switch self {
@@ -26,6 +27,7 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .decoding: "Bucket sent a reply this version cannot read."
         case .groupNotFound: "That invite link no longer works. Ask for a new one."
         case .groupFull: "This group is full."
+        case .nameNotAllowed: "That name is not allowed. Try another."
         case .ownedLimit: "You already own 10 groups."
         case .joinedLimit: "You already belong to 20 groups."
         case .cheerLimit: "You sent them 3 today. Try again tomorrow."

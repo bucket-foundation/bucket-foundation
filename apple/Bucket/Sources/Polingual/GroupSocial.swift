@@ -347,6 +347,161 @@ struct GoalPicker: View {
     }
 }
 
+struct ModerationTarget: Identifiable, Equatable {
+    let name: String
+    let groupId: String
+    let userId: String?
+
+    var id: String { "\(groupId):\(userId ?? "group")" }
+
+    init(member: GroupMember, groupId: String) {
+        name = member.name
+        self.groupId = groupId
+        userId = member.userId
+    }
+
+    init(group: LearningGroup) {
+        name = group.name
+        groupId = group.id
+        userId = nil
+    }
+}
+
+extension ReportReason {
+    var label: String {
+        switch self {
+        case .offensiveName: String(localized: "Offensive name")
+        case .harassment: String(localized: "Harassment")
+        case .spam: String(localized: "Spam")
+        case .other: String(localized: "Something else")
+        }
+    }
+}
+
+struct Moderation: ViewModifier {
+    @Binding var reporting: ModerationTarget?
+    @Binding var blocking: ModerationTarget?
+    let blocked: (ModerationTarget) -> Void
+    @Environment(GroupStore.self) private var groups
+    @State private var reported: ModerationTarget?
+    @State private var failure: String?
+
+    func isOpen<T>(_ value: Binding<T?>) -> Binding<Bool> {
+        Binding(get: { value.wrappedValue != nil }, set: { if !$0 { value.wrappedValue = nil } })
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .confirmationDialog(String(localized: "Report \(reporting?.name ?? "")?"), isPresented: isOpen($reporting), titleVisibility: .visible, presenting: reporting) { target in
+                ForEach(ReportReason.allCases, id: \.self) { reason in
+                    Button(reason.label) { Task { await report(target, reason) } }
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: { _ in
+                Text("Tell us what is wrong.")
+            }
+            .confirmationDialog(String(localized: "Block \(blocking?.name ?? "")?"), isPresented: isOpen($blocking), titleVisibility: .visible, presenting: blocking) { target in
+                Button("Block", role: .destructive) { Task { await block(target) } }
+                Button("Cancel", role: .cancel) {}
+            } message: { target in
+                Text(target.userId == nil ? String(localized: "You leave this group and its invite link stops working for you. You can undo this from Account.") : String(localized: "You stop seeing each other in groups and cheers stop. You can undo this from Account."))
+            }
+            .alert("Report sent", isPresented: isOpen($reported), presenting: reported) { target in
+                Button("Block \(target.name)", role: .destructive) {
+                    Task {
+                        try? await Task.sleep(for: .milliseconds(500))
+                        blocking = target
+                    }
+                }
+                Button("OK", role: .cancel) {}
+            } message: { _ in
+                Text("We will review this report and act on it.")
+            }
+            .alert("That did not work", isPresented: isOpen($failure), presenting: failure) { _ in
+                Button("OK", role: .cancel) {}
+            } message: { Text($0) }
+    }
+
+    func report(_ target: ModerationTarget, _ reason: ReportReason) async {
+        #if DEBUG
+        if DemoGroup.on {
+            reported = target
+            return
+        }
+        #endif
+        do {
+            try await groups.report(groupId: target.groupId, userId: target.userId, reason: reason)
+            reported = target
+        } catch {
+            failure = groupMessage(error)
+        }
+    }
+
+    func block(_ target: ModerationTarget) async {
+        #if DEBUG
+        if DemoGroup.on {
+            groups.blocks.append(GroupBlock(id: target.id, kind: target.userId == nil ? .group : .member, targetId: target.userId ?? target.groupId, name: target.name, at: ""))
+            groups.hide(groupId: target.groupId, userId: target.userId)
+            blocked(target)
+            return
+        }
+        #endif
+        do {
+            try await groups.block(groupId: target.groupId, userId: target.userId)
+            blocked(target)
+        } catch {
+            failure = groupMessage(error)
+        }
+    }
+}
+
+struct BlockedList: View {
+    @Environment(GroupStore.self) private var groups
+    @State private var failure: String?
+
+    var body: some View {
+        List {
+            Section {
+                ForEach(groups.blocks) { b in
+                    HStack(spacing: 12) {
+                        Image(systemName: b.kind == .group ? "person.2" : "person")
+                            .foregroundStyle(Palette.muted)
+                            .frame(width: 28)
+                        Text(b.name).font(.headline)
+                        Spacer(minLength: 8)
+                        Button("Unblock") { Task { await unblock(b) } }
+                            .buttonStyle(.borderless)
+                            .disabled(groups.busy)
+                    }
+                }
+            } footer: {
+                Text("Unblocking does not put you back in a group. You can rejoin with an invite link.")
+            }
+            if let failure { Section { Text(failure).foregroundStyle(.red) } }
+        }
+        .listRowBackground(Palette.card)
+        .scrollContentBackground(.hidden)
+        .paper()
+        .navigationTitle("Blocked")
+    }
+
+    func unblock(_ b: GroupBlock) async {
+        #if DEBUG
+        if DemoGroup.on {
+            groups.blocks.removeAll { $0.id == b.id }
+            return
+        }
+        #endif
+        do {
+            try await groups.unblock(b)
+            failure = nil
+            await groups.load()
+        } catch {
+            failure = groupMessage(error)
+        }
+    }
+}
+
 struct Avatar: View {
     let member: GroupMember
     var size: CGFloat = 52
@@ -454,7 +609,7 @@ struct GroupsOnToday: ViewModifier {
         content.task(id: account.stage == .signedIn) {
             #if DEBUG
             if DemoGroup.on {
-                groups.groups = [DemoGroup.group]
+                groups.groups = [DemoGroup.shown]
                 return
             }
             #endif

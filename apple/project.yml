@@ -288,6 +288,7 @@ targets:
     supportedDestinations: [iOS]
     sources:
       - path: Polingual/UITests
+      - path: Shared/UITests
     dependencies:
       - target: Polingual
     settings:
@@ -295,6 +296,19 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.uitests
         GENERATE_INFOPLIST_FILE: YES
         TEST_TARGET_NAME: Polingual
+  BucketUITests:
+    type: bundle.ui-testing
+    supportedDestinations: [iOS]
+    sources:
+      - path: Bucket/UITests
+      - path: Shared/UITests
+    dependencies:
+      - target: Bucket
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Bucket
 schemes:
   Bucket:
     build:
@@ -303,6 +317,14 @@ schemes:
     test:
       targets:
         - package: BucketKit/BucketKitTests
+  BucketUI:
+    build:
+      targets:
+        Bucket: all
+    test:
+      config: Debug
+      targets:
+        - BucketUITests
   Polingual:
     build:
       targets:

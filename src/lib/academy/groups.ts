@@ -113,6 +113,25 @@ export interface GroupRow {
   weekly_goal?: number | null;
 }
 
+export type ReportReason = "offensive_name" | "harassment" | "spam" | "other";
+
+export interface BlockRow {
+  id: string;
+  blocker_id: string;
+  target_user_id: string | null;
+  target_group_id: string | null;
+  name: string;
+  created_at: string;
+}
+
+export interface Block {
+  id: string;
+  kind: "member" | "group";
+  targetId: string;
+  name: string;
+  at: string;
+}
+
 export interface MemberRow {
   group_id: string;
   user_id: string;
@@ -199,6 +218,34 @@ export function normalizeWeeklyGoal(input: unknown): number | null {
 
 export function normalizeCheerKind(input: unknown): CheerKind | null {
   return input === "cheer" || input === "nudge" ? input : null;
+}
+
+export function normalizeReportReason(input: unknown): ReportReason | null {
+  return input === "offensive_name" || input === "harassment" || input === "spam" || input === "other" ? input : null;
+}
+
+export function hiddenUsers(blocks: readonly BlockRow[], me: string): Set<string> {
+  const hidden = new Set<string>();
+  for (const b of blocks) {
+    if (!b.target_user_id) continue;
+    if (b.blocker_id === me) hidden.add(b.target_user_id);
+    else if (b.target_user_id === me) hidden.add(b.blocker_id);
+  }
+  return hidden;
+}
+
+export function joinBlocked(blocks: readonly BlockRow[], me: string, group: Pick<GroupRow, "id" | "owner_id">): boolean {
+  return hiddenUsers(blocks, me).has(group.owner_id) || blocks.some((b) => b.blocker_id === me && b.target_group_id === group.id);
+}
+
+export function toBlock(row: BlockRow): Block {
+  return {
+    id: row.id,
+    kind: row.target_group_id ? "group" : "member",
+    targetId: row.target_group_id ?? row.target_user_id ?? "",
+    name: row.name,
+    at: row.created_at,
+  };
 }
 
 export type JoinDecision = "already" | "full" | "joined_limit" | "ok";
@@ -461,7 +508,8 @@ export function assembleGroup(
   summaries: ReadonlyMap<string, MemberSummary>,
   me: string,
   cheers: readonly CheerRow[] = [],
-  weekStart = ""
+  weekStart = "",
+  hidden: ReadonlySet<string> = new Set()
 ): Group {
   const sorted = members.filter((m) => m.group_id === group.id).sort((a, b) => Number(b.user_id === group.owner_id) - Number(a.user_id === group.owner_id) || byJoined(a, b));
   const list: Member[] = sorted.map((m) => ({
@@ -477,9 +525,9 @@ export function assembleGroup(
     kind: group.kind,
     code: group.invite_code,
     role: group.owner_id === me ? "owner" : "member",
-    members: list,
+    members: list.filter((m) => !hidden.has(m.userId)),
     goal: groupGoal(group.weekly_goal, list.map((m) => m.weekReviews), weekStart),
-    cheers: cheersFor(group.id, cheers, members, me),
+    cheers: cheersFor(group.id, cheers.filter((c) => !hidden.has(c.from_id) && !hidden.has(c.to_id)), members, me),
   };
 }
 
@@ -505,6 +553,7 @@ export async function fetchAllPages<T>(page: (from: number, to: number) => Promi
 
 export const PREVIEW_PER_MINUTE = 30;
 export const JOIN_PER_MINUTE = 10;
+export const REPORT_PER_MINUTE = 10;
 
 export function windowLimiter(max: number, windowMs: number, clock: () => number = Date.now, maxKeys = 10_000): (key: string) => boolean {
   const hits = new Map<string, number[]>();

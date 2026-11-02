@@ -1,5 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { MAX_OWNED, normalizeDisplayName, normalizeGroupName, normalizeKind, validTimeZone } from "@/lib/academy/groups";
+import { nameAllowed } from "@/lib/academy/groups-names";
 import {
   configured,
   countOwned,
@@ -9,6 +10,7 @@ import {
   json,
   limitError,
   MEMBERS,
+  NAME_NOT_ALLOWED,
   oneGroup,
   preflight,
   readBody,
@@ -45,6 +47,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const kind = normalizeKind(body?.kind);
   const displayName = normalizeDisplayName(body?.displayName);
   if (!name || !kind || !displayName) return json({ error: "bad_request" }, 400);
+  if (!nameAllowed(name) || !nameAllowed(displayName)) return json({ error: NAME_NOT_ALLOWED }, 422);
   try {
     if ((await countOwned(uid)) >= MAX_OWNED) return json({ error: "owned_limit" }, 409);
     const group = await insertGroupWithCode({ name, kind, owner_id: uid });

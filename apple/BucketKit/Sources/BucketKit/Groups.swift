@@ -248,6 +248,31 @@ public struct GroupPreview: Decodable, Equatable, Sendable {
     }
 }
 
+public enum ReportReason: String, Sendable, CaseIterable {
+    case offensiveName = "offensive_name"
+    case harassment, spam, other
+}
+
+public enum BlockKind: String, Codable, Sendable {
+    case member, group
+}
+
+public struct GroupBlock: Codable, Equatable, Sendable, Identifiable {
+    public var id: String
+    public var kind: BlockKind
+    public var targetId: String
+    public var name: String
+    public var at: String
+
+    public init(id: String, kind: BlockKind, targetId: String, name: String, at: String) {
+        self.id = id
+        self.kind = kind
+        self.targetId = targetId
+        self.name = name
+        self.at = at
+    }
+}
+
 public struct GraphNode: Codable, Equatable, Sendable, Identifiable {
     public var id: String
     public var title: String
@@ -398,6 +423,7 @@ struct GroupReply: Decodable { let group: LearningGroup }
 struct GroupsReply: Decodable { let groups: [LearningGroup] }
 struct CheerReply: Decodable { let cheer: Cheer }
 struct GoalReply: Decodable { let goal: GroupGoal? }
+struct BlocksReply: Decodable { let blocks: [GroupBlock] }
 struct RotateReply: Decodable {
     let code: String?
     let group: LearningGroup?
@@ -455,6 +481,27 @@ extension BucketAPI {
         return r.goal
     }
 
+    public func report(token: String, groupId: String, userId: String?, reason: ReportReason) async throws {
+        var body: [String: Field] = ["groupId": .text(groupId), "reason": .text(reason.rawValue)]
+        if let userId { body["userId"] = .text(userId) }
+        let _: Ignored = try await groupCall("api/academy/groups/report", token: token, body: body)
+    }
+
+    public func blocks(token: String) async throws -> [GroupBlock] {
+        let r: BlocksReply = try await groupCall("api/academy/groups/block", token: token)
+        return r.blocks
+    }
+
+    public func block(token: String, groupId: String, userId: String?) async throws {
+        var body: [String: Field] = ["groupId": .text(groupId)]
+        if let userId { body["userId"] = .text(userId) }
+        let _: Ignored = try await groupCall("api/academy/groups/block", token: token, body: body)
+    }
+
+    public func unblock(token: String, blockId: String) async throws {
+        let _: Ignored = try await groupCall("api/academy/groups/unblock", token: token, body: ["blockId": .text(blockId)])
+    }
+
     func groupCall<T: Decodable>(_ path: String, query: [String: String] = [:], token: String?, body: [String: Field]? = nil) async throws -> T {
         var c = URLComponents(url: base.appending(path: path), resolvingAgainstBaseURL: false)!
         if !query.isEmpty { c.queryItems = query.keys.sorted().map { URLQueryItem(name: $0, value: query[$0]) } }
@@ -481,6 +528,7 @@ extension BucketAPI {
         case (409, "cheer_limit"): return .cheerLimit
         case (409, "nudge_not_needed"): return .nudgeNotNeeded
         case (409, "group_full"): return .groupFull
+        case (422, "name_not_allowed"): return .nameNotAllowed
         case (429, _): return .rateLimited(body["message"])
         default: return .server(status, body["message"] ?? body["error"])
         }
@@ -493,6 +541,7 @@ public final class GroupStore {
     public var groups: [LearningGroup] = [] {
         didSet { version += 1 }
     }
+    public var blocks: [GroupBlock] = []
     public private(set) var loaded = false
     public private(set) var busy = false
     public private(set) var loadError: BucketError?
@@ -552,6 +601,7 @@ public final class GroupStore {
             guard version == start else { return }
             groups = fresh
             loaded = true
+            if let list = try? await api.blocks(token: t) { blocks = list }
         } catch {
             loadError = error as? BucketError ?? .server(0, nil)
         }
@@ -607,6 +657,32 @@ public final class GroupStore {
         if let i = index(groupId) { groups[i].goal = reply }
     }
 
+    public func report(groupId: String, userId: String?, reason: ReportReason) async throws(BucketError) {
+        try await run { try await self.api.report(token: $0, groupId: groupId, userId: userId, reason: reason) }
+    }
+
+    public func block(groupId: String, userId: String?) async throws(BucketError) {
+        let list = try await run { token in
+            try await self.api.block(token: token, groupId: groupId, userId: userId)
+            return try await self.api.blocks(token: token)
+        }
+        blocks = list
+        hide(groupId: groupId, userId: userId)
+    }
+
+    public func hide(groupId: String, userId: String?) {
+        guard let userId else {
+            groups.removeAll { $0.id == groupId }
+            return
+        }
+        for i in groups.indices { groups[i].members.removeAll { $0.userId == userId } }
+    }
+
+    public func unblock(_ block: GroupBlock) async throws(BucketError) {
+        try await run { try await self.api.unblock(token: $0, blockId: block.id) }
+        blocks.removeAll { $0.id == block.id }
+    }
+
     public func graph(_ groupId: String, _ userId: String, branch: String) async -> MemberGraph? {
         guard let t = await token() else { return nil }
         return try? await api.memberGraph(token: t, groupId: groupId, userId: userId, branch: branch)
@@ -614,6 +690,7 @@ public final class GroupStore {
 
     public func clear() {
         groups = []
+        blocks = []
         loaded = false
         loadError = nil
     }

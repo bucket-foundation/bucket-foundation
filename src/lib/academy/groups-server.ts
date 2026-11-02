@@ -3,6 +3,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { DEFAULT_FROM, DEFAULT_NOTIFY_TO } from "@/lib/download/notify";
 import { branchLabel, corpusDir, loadCorpusForBranch } from "./corpus";
 import { buildLangCorpus, type LangCorpus } from "./lang-systems";
 import {
@@ -10,11 +11,14 @@ import {
   currentWeek,
   fetchAllPages,
   generateInviteCode,
+  hiddenUsers,
   JOIN_PER_MINUTE,
   PREVIEW_PER_MINUTE,
+  REPORT_PER_MINUTE,
   windowLimiter,
   visibleGroupIds,
   memberSummary,
+  type BlockRow,
   type BranchRow,
   type CheerRow,
   type CorpusLookup,
@@ -32,11 +36,14 @@ const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 export const GROUPS = "learning_groups";
 export const MEMBERS = "group_members";
 export const CHEERS = "group_cheers";
+export const BLOCKS = "group_blocks";
+export const REPORTS = "group_reports";
 const PROGRESS = "academy_progress";
 const GROUP_COLS = "id,name,kind,owner_id,invite_code,weekly_goal,created_at";
 export const CHEER_COLS = "id,group_id,from_id,to_id,kind,created_at,seen_at";
 const CHEER_WINDOW_MS = 7 * 86_400_000;
 const MEMBER_COLS = "group_id,user_id,role,display_name,joined_at";
+const BLOCK_COLS = "id,blocker_id,target_user_id,target_group_id,name,created_at";
 
 const CORS_HEADERS: Record<string, string> = {
   "access-control-allow-origin": "*",
@@ -78,6 +85,7 @@ export function service(): SupabaseClient {
 
 export const previewLimited = windowLimiter(PREVIEW_PER_MINUTE, 60_000);
 export const joinLimited = windowLimiter(JOIN_PER_MINUTE, 60_000);
+export const reportLimited = windowLimiter(REPORT_PER_MINUTE, 60_000);
 
 export function clientIp(req: NextRequest): string {
   return req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
@@ -116,6 +124,8 @@ export function limitError(message: string | undefined): GroupsError | null {
   return null;
 }
 
+export const NAME_NOT_ALLOWED = "name_not_allowed";
+
 export async function groupById(id: string): Promise<GroupRow | null> {
   return check(await service().from(GROUPS).select(GROUP_COLS).eq("id", id).maybeSingle(), "group read") as GroupRow | null;
 }
@@ -131,6 +141,47 @@ export async function membersOf(groupIds: string[]): Promise<MemberRow[]> {
 
 export async function membershipsOf(uid: string): Promise<MemberRow[]> {
   return (check(await service().from(MEMBERS).select(MEMBER_COLS).eq("user_id", uid), "memberships read") ?? []) as MemberRow[];
+}
+
+export async function blocksTouching(uid: string): Promise<BlockRow[]> {
+  const res = await service().from(BLOCKS).select(BLOCK_COLS).or(`blocker_id.eq.${uid},target_user_id.eq.${uid}`).order("created_at", { ascending: false });
+  return (check(res, "blocks read") ?? []) as BlockRow[];
+}
+
+export async function isHidden(uid: string, other: string): Promise<boolean> {
+  return hiddenUsers(await blocksTouching(uid), uid).has(other);
+}
+
+export async function insertBlock(row: Omit<BlockRow, "id" | "created_at">): Promise<void> {
+  const res = await service().from(BLOCKS).insert(row);
+  if (res.error && !/duplicate key|unique/i.test(res.error.message)) throw new Error(`block insert: ${res.error.message}`);
+}
+
+export async function removeFromOwnedGroups(owner: string, target: string): Promise<void> {
+  const owned = (check(await service().from(GROUPS).select("id").eq("owner_id", owner), "owned read") ?? []) as { id: string }[];
+  if (owned.length === 0) return;
+  const res = await service().from(MEMBERS).delete().eq("user_id", target).in("group_id", owned.map((g) => g.id));
+  if (res.error) throw new Error(`blocked member remove: ${res.error.message}`);
+}
+
+export async function emailReport(report: { reason: string; targetName: string; groupName: string; groupId: string; targetUserId: string | null }): Promise<void> {
+  const key = process.env.RESEND_API_KEY?.trim();
+  if (!key) {
+    console.error("[academy/groups] RESEND_API_KEY unset; report stored without email");
+    return;
+  }
+  const kind = report.targetUserId ? "member name" : "group name";
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      from: DEFAULT_FROM,
+      to: process.env.MODERATION_EMAIL?.trim() || DEFAULT_NOTIFY_TO,
+      subject: `Group report: ${report.reason}`,
+      text: `Reported ${kind}: ${report.targetName}\nGroup: ${report.groupName} (${report.groupId})\nUser: ${report.targetUserId ?? "none"}\nReason: ${report.reason}`,
+    }),
+  });
+  if (!res.ok) throw new Error(`report email ${res.status}`);
 }
 
 export async function countOwned(uid: string): Promise<number> {
@@ -218,11 +269,12 @@ export async function groupsFor(uid: string, groupIds?: string[], tz?: string): 
   const [visible, members] = await Promise.all([groupsByIds(ids), membersOf(ids)]);
   const users = Array.from(new Set(members.map((m) => m.user_id)));
   const now = Date.now();
-  const [sums, cheers] = await Promise.all([summaries(users, now, tz), cheersOf(uid, visible.map((g) => g.id), now)]);
+  const [sums, cheers, blocks] = await Promise.all([summaries(users, now, tz), cheersOf(uid, visible.map((g) => g.id), now), blocksTouching(uid)]);
+  const hidden = hiddenUsers(blocks, uid);
   const { weekStart } = currentWeek(now, tz);
   return visible
     .sort((a, b) => (a.created_at < b.created_at ? -1 : a.created_at > b.created_at ? 1 : 0))
-    .map((g) => assembleGroup(g, members, sums, uid, cheers, weekStart));
+    .map((g) => assembleGroup(g, members, sums, uid, cheers, weekStart, hidden));
 }
 
 async function cheersOf(uid: string, groupIds: string[], now: number): Promise<CheerRow[]> {
