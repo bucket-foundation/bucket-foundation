@@ -135,26 +135,34 @@ struct TodayView: View {
         items.first { hasWork($0, now) } ?? fallback.first
     }
 
-    func hasWork(_ item: Item, _ now: Double) -> Bool {
-        if plan.isDone(item.id) { return false }
+    func cards(_ item: Item, _ now: Double) -> (due: Int, new: Int)? {
         switch item {
-        case .deck(let w): return w.due + w.new > 0
-        case .lang(let s):
-            return (langs.corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0) > 0 || langNewLeft(s, langs.state(s.id), now: now) > 0
-        case .game, .read: return true
+        case .deck(let w): (w.due, w.new)
+        case .lang(let s): (langs.corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0, langNewLeft(s, langs.state(s.id), now: now))
+        case .game, .read: nil
         }
+    }
+
+    func hasWork(_ item: Item, _ now: Double) -> Bool {
+        cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
+    }
+
+    func studied(_ item: Item, _ now: Double) -> Int {
+        let state: EngineState
+        switch item {
+        case .deck(let w): state = science.state(w.entry.id)
+        case .lang(let s): state = langs.state(s.id)
+        case .game, .read: return 0
+        }
+        return state.history[dayKey(now)].map { Int($0.new + $0.reviews) }.orZero
     }
 
     func open(_ item: Item) {
         switch item {
         case .deck(let w): session = StudyLaunch(entry: w.entry, deck: w.deck)
         case .lang(let s): path.append(LangRoute.study(s.id))
-        case .game(let g):
-            plan.setDone(item.id, true)
-            path.append(TodayRoute.game(g))
-        case .read(let t):
-            plan.setDone(item.id, true)
-            path.append(TodayRoute.read(t))
+        case .game(let g): path.append(TodayRoute.game(g))
+        case .read(let t): path.append(TodayRoute.read(t))
         }
     }
 
@@ -165,27 +173,33 @@ struct TodayView: View {
         plan.order(pending ? moved + rest : rest + moved)
     }
 
-    @ViewBuilder
-    func rowLabel(_ item: Item) -> some View {
-        switch item {
-        case .deck(let work): ReviewDeckRow(entry: work.entry)
-        case .lang(let system): LangSystemRow(system: system)
-        case .game(let game): TodayPlanRow(symbol: game.symbol, title: game.title, detail: game.detail)
-        case .read(let topic): TodayPlanRow(symbol: "book", title: topic.title, detail: branchTitle(topic.branch))
+    func detail(_ item: Item, _ now: Double) -> String {
+        if let c = cards(item, now) {
+            if c.due + c.new == 0 { return String(localized: "\(studied(item, now)) cards today") }
+            if c.new == 0 { return String(localized: "\(c.due) to review") }
+            if c.due == 0 { return String(localized: "\(c.new) new") }
+            return String(localized: "\(c.due) to review · \(c.new) new")
         }
+        if case .game = item { return String(localized: "Play one round") }
+        return String(localized: "Read for 30 seconds")
+    }
+
+    func taskRow(_ item: Item, done: Bool, now: Double) -> TodayTaskRow {
+        let did = studied(item, now)
+        let left = cards(item, now).map { $0.due + $0.new } ?? 0
+        let symbol: String? = switch item {
+        case .game(let game): game.symbol
+        case .read: "book"
+        default: nil
+        }
+        return TodayTaskRow(symbol: symbol, title: item.title, detail: detail(item, now), progress: done ? 1 : did + left > 0 ? Double(did) / Double(did + left) : 0, done: done)
     }
 
     @ViewBuilder
-    func row(_ item: Item, done: Bool) -> some View {
-        HStack(spacing: 10) {
-            TodayDoneMark(done: done) { plan.setDone(item.id, !done) }
-            Button { open(item) } label: { rowLabel(item).frame(maxWidth: .infinity, alignment: .leading).contentShape(.rect) }
-                .buttonStyle(.plain)
-        }
-        .opacity(done ? 0.6 : 1)
-        .swipeActions(edge: .leading) {
-            Button("Open", systemImage: "play.fill") { open(item) }.tint(D8.malachite)
-        }
+    func row(_ item: Item, done: Bool, now: Double) -> some View {
+        Button { open(item) } label: { taskRow(item, done: done, now: now).frame(maxWidth: .infinity, alignment: .leading).contentShape(.rect) }
+            .buttonStyle(.plain)
+            .opacity(done ? 0.6 : 1)
         .swipeActions(edge: .trailing) {
             Button("Remove", systemImage: "minus.circle", role: .destructive) { plan.remove(item.id) }
             Button("Bottom", systemImage: "arrow.down.to.line") { plan.move(item.id, toTop: false) }.tint(D8.lapis)
@@ -193,7 +207,6 @@ struct TodayView: View {
         }
         .contextMenu {
             Button("Open", systemImage: "play.fill") { open(item) }
-            Button(done ? "Not done" : "Done for today", systemImage: "checkmark.circle") { plan.setDone(item.id, !done) }
             Button("Move to top", systemImage: "arrow.up.to.line") { plan.move(item.id, toTop: true) }
             Button("Move to bottom", systemImage: "arrow.down.to.line") { plan.move(item.id, toTop: false) }
             if case .lang(let s) = item {
@@ -210,7 +223,7 @@ struct TodayView: View {
         #else
         let status = real
         #endif
-        return TodayHero(status: status, done: planned.count - pending.count, total: planned.count, next: nextUp(now)?.title, start: startNext, browse: { picking = true })
+        return TodayHero(status: status, streak: streak, done: planned.count - pending.count, total: planned.count, next: nextUp(now)?.title, start: startNext, browse: { picking = true })
     }
 
     var body: some View {
@@ -242,8 +255,18 @@ struct TodayView: View {
                     .padding(.vertical, 4)
                 }
                 .listRowBackground(Palette.card)
+                if !langs.systems.isEmpty {
+                    Section {
+                        VoiceTile {
+                            DeepLink.shared.listen = true
+                            path.append(TodayRoute.translate)
+                        }
+                        .listRowInsets(EdgeInsets())
+                    }
+                    .listRowBackground(Color.clear)
+                }
                 Section {
-                    ForEach(pending) { row($0, done: false) }
+                    ForEach(pending) { row($0, done: false, now: now) }
                         .onMove { reorder(pending, $0, $1, pending: true) }
                         .listRowBackground(Palette.card)
                     Button { picking = true } label: { Label("Add to Today", systemImage: "plus.circle") }
@@ -255,7 +278,7 @@ struct TodayView: View {
                 }
                 if !finished.isEmpty {
                     Section {
-                        ForEach(finished) { row($0, done: true) }
+                        ForEach(finished) { row($0, done: true, now: now) }
                             .onMove { reorder(finished, $0, $1, pending: false) }
                             .listRowBackground(Palette.card)
                     } header: {
@@ -265,10 +288,6 @@ struct TodayView: View {
                 TodayStrip()
                 if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
                     Section { ReminderPrompt().padding(.vertical, 6) }
-                        .listRowBackground(Palette.card)
-                }
-                if !langs.systems.isEmpty {
-                    Section { TranslateCard() }
                         .listRowBackground(Palette.card)
                 }
             }
@@ -287,6 +306,7 @@ struct TodayView: View {
                 switch route {
                 case .game(let game): game.screen
                 case .read(let topic): ReadView(topic: topic, langs: langs.gameLangs.isEmpty ? ["es", "fr"] : langs.gameLangs)
+                case .translate: TranslateScreen()
                 }
             }
             .onChange(of: defaultItems, initial: true) { _, items in if loaded { plan.adopt(items) } }
@@ -311,36 +331,6 @@ struct TodayView: View {
                 session = StudyLaunch(entry: entry, deck: deck)
             }
         }
-    }
-}
-
-struct ReviewDeckRow: View {
-    @Environment(Library.self) private var library
-    @Environment(ScienceStore.self) private var science
-    let entry: DeckEntry
-
-    var body: some View {
-        HStack(alignment: .center, spacing: 12) {
-            DeckRow(entry: entry, subtitle: detail)
-            Spacer(minLength: 0)
-            if let c = counts { CountPills(due: c.due, new: c.new) }
-        }
-        .task { _ = await library.prepared(entry) }
-    }
-
-    var counts: (due: Int, new: Int, streak: Double)? {
-        guard let deck = library.prepared[entry.id] else { return nil }
-        let r = science.route(deck)
-        let due = r.filter { $0.kind == .review }.count
-        return (due, r.count - due, liveStreak(science.state(entry.id), now: Date().timeIntervalSince1970 * 1000))
-    }
-
-    var detail: String? {
-        guard let c = counts else { return entry.sub }
-        if c.due == 0 && c.new == 0 { return "Nothing due today" }
-        var parts = ["\(c.due) due", "\(c.new) new"]
-        if c.streak > 0 { parts.append("\(streakText(c.streak)) streak") }
-        return parts.joined(separator: " · ")
     }
 }
 

@@ -141,6 +141,7 @@ extension LangStore {
             for w in mine where !carded.contains(w) && !w.itemId.hasPrefix("abc:") { WantedWords.add(w.itemId, to: s.id) }
         }
         Beta.shared.studyEnded("game:\(kind.rawValue)", graded: hits + missed.count, correct: hits)
+        TodayPlanStore.shared.finish(TodayItem.game(kind).id)
         guard let points, let before else { return false }
         return points > before
     }
@@ -227,6 +228,40 @@ struct GameLip: ViewModifier {
             .background(face, in: .rect(cornerRadius: radius))
             .background(lip, in: .rect(cornerRadius: radius).offset(y: 5))
             .padding(.bottom, 5)
+    }
+}
+
+struct VoiceTile: View {
+    let open: () -> Void
+
+    var body: some View {
+        Button(action: open) {
+            HStack(spacing: 16) {
+                Image(systemName: "mic.fill").font(.system(size: 34, weight: .bold)).foregroundStyle(D8.vermilion)
+                    .frame(width: 68, height: 68).background(D8.parchment, in: .circle)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Translate").font(D8.word(24)).foregroundStyle(D8.parchment)
+                    Text("Tap and speak").font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9))
+                }
+                Spacer(minLength: 0)
+            }
+            .padding(14)
+            .modifier(GameLip(face: D8.vermilion, lip: D8.vermilionLip))
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("voiceTile")
+    }
+}
+
+struct TranslateScreen: View {
+    var body: some View {
+        List {
+            Section { TranslateCard() }
+                .listRowBackground(Palette.card)
+        }
+        .paper()
+        .navigationTitle("Translate")
+        .inlineTitle()
     }
 }
 

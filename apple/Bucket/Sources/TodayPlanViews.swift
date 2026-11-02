@@ -3,28 +3,15 @@ import SwiftUI
 
 struct TodayHero: View {
     let status: TodayStatus
+    let streak: Double
     let done: Int
     let total: Int
     let next: String?
     let start: () -> Void
     let browse: () -> Void
 
-    var color: Color {
-        switch status {
-        case .atRisk: D8.vermilion
-        case .secured, .done: D8.malachite
-        default: Color(hex: 0xE9A23B)
-        }
-    }
-
-    var symbol: String {
-        switch status {
-        case .empty: "sparkles"
-        case .atRisk: "exclamationmark.triangle.fill"
-        case .secured: "checkmark.shield.fill"
-        case .done: "checkmark.seal.fill"
-        default: "flame.fill"
-        }
+    var urgent: Bool {
+        if case .atRisk = status { true } else { false }
     }
 
     func clock(_ t: TimeLeft) -> String {
@@ -64,19 +51,16 @@ struct TodayHero: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HStack(alignment: .top, spacing: 12) {
-                Image(systemName: symbol).font(.system(size: 30)).foregroundStyle(color).frame(width: 38)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title).font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
-                    Text(detail).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+            StreakGoalCard(streak: streak)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title).font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(urgent ? D8.vermilion : Palette.ink)
+                Text(detail).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                if total > 0 {
+                    Text("\(done) of \(total) done").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
                 }
             }
             .accessibilityElement(children: .combine)
             .accessibilityIdentifier("today.status")
-            if total > 0 {
-                ProgressView(value: Double(done), total: Double(total)).tint(color)
-                Text("\(done) of \(total) done").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
-            }
             if let action {
                 Button(action) { if case .empty = status { browse() } else { start() } }.buttonStyle(D8Primary())
             }
@@ -85,33 +69,36 @@ struct TodayHero: View {
     }
 }
 
-struct TodayPlanRow: View {
-    let symbol: String
+struct TodayTaskRow: View {
+    let symbol: String?
     let title: String
-    let detail: String?
+    let detail: String
+    let progress: Double
+    let done: Bool
 
     var body: some View {
         HStack(spacing: 14) {
-            Image(systemName: symbol).font(.title3).foregroundStyle(D8.parchment).frame(width: 36, height: 36).background(D8.lapis, in: .rect(cornerRadius: 9))
+            ZStack {
+                Circle().stroke(Palette.rule, lineWidth: 4)
+                Circle().trim(from: 0, to: progress).stroke(D8.malachite, style: StrokeStyle(lineWidth: 4, lineCap: .round)).rotationEffect(.degrees(-90))
+                if done {
+                    Image(systemName: "checkmark").font(.caption.weight(.heavy)).foregroundStyle(D8.malachite)
+                } else if let symbol {
+                    Image(systemName: symbol).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                }
+            }
+            .frame(width: 34, height: 34)
+            .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 3) {
-                Text(title).font(.headline).foregroundStyle(Palette.ink).lineLimit(2)
-                if let detail { Text(detail).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1) }
+                Text(title).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.85)
+                Text(detail).font(.subheadline).foregroundStyle(Palette.muted).monospacedDigit().lineLimit(1)
+            }
+            Spacer(minLength: 0)
+            if !done {
+                Image(systemName: "play.fill").font(.footnote).foregroundStyle(D8.vermilion)
             }
         }
         .padding(.vertical, 6)
-    }
-}
-
-struct TodayDoneMark: View {
-    let done: Bool
-    let toggle: () -> Void
-
-    var body: some View {
-        Button(action: toggle) {
-            Image(systemName: done ? "checkmark.circle.fill" : "circle").font(.title2).foregroundStyle(done ? D8.malachite : Palette.muted)
-        }
-        .buttonStyle(.borderless)
-        .accessibilityLabel(done ? String(localized: "Not done") : String(localized: "Done for today"))
     }
 }
 
@@ -171,6 +158,7 @@ struct TodayPicker: View {
 enum TodayRoute: Hashable {
     case game(GameKind)
     case read(ContentTopic)
+    case translate
 }
 
 #if DEBUG

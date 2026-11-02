@@ -141,9 +141,14 @@ enum SharedLink: Equatable {
     case atom(deck: String, atom: String)
     case content(topic: String, lang: String?, fallback: ContentKind)
     case group(String)
+    case voice
     case home
 
     init?(_ url: URL) {
+        if url.host() == "voice", url.scheme == "bucket" || url.scheme == "polingual" {
+            self = .voice
+            return
+        }
         guard url.host() == SharePage.host || url.host() == "bucket.foundation", let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         let q = Dictionary((c.queryItems ?? []).compactMap { i in i.value.map { (i.name, $0) } }, uniquingKeysWith: { a, _ in a })
         let parts = c.path.split(separator: "/").map(String.init)
@@ -174,10 +179,12 @@ final class DeepLink {
     static let shared = DeepLink()
     var pending: SharedLink?
     var translate: String?
+    var listen = false
 
     func open(_ url: URL) {
         guard let link = SharedLink(url) else { return }
         if case .word(let g) = link { translate = g }
+        if link == .voice { listen = true }
         pending = link
     }
 }

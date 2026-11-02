@@ -121,71 +121,52 @@ struct LanguageSections: View {
     @Binding var path: NavigationPath
     let corpus: LangCorpus
     let proxy: ScrollViewProxy
-    var railsOnceStarted = false
+    var builderOnly = false
     @State private var root = "en"
     @State private var targets: [String] = []
     @State private var removing: LangSystem?
     @State private var justMade: String?
 
     var err: SystemError? { validateSystem(root, targets, store.systems) }
-    var rails: Bool { railsOnceStarted && !store.systems.isEmpty }
     var pickable: [String] { Lang.codes.filter { $0 != root } }
 
     var body: some View {
-        if !rails {
+        if !builderOnly {
             Section {
                 Text("Learn several languages together.")
                     .font(.headline)
                     .foregroundStyle(Palette.muted)
                     .listRowBackground(Color.clear)
             }
-        }
-        if !store.systems.isEmpty {
-            Section { StreakGoalCard(streak: Double(langStreak(store))) }
-                .listRowBackground(Palette.card)
-        }
-        TodayStrip()
-        if !store.systems.isEmpty {
-            Section { TranslateCard() }
-                .listRowBackground(Palette.card)
-        }
-        ForEach(store.systems) { s in
-            Section {
-                systemCard(s, corpus)
+            if !store.systems.isEmpty {
+                Section { StreakGoalCard(streak: Double(langStreak(store))) }
+                    .listRowBackground(Palette.card)
             }
-            .id(s.id)
-            .listRowBackground(Palette.card)
+            TodayStrip()
+            if !store.systems.isEmpty {
+                Section { TranslateCard() }
+                    .listRowBackground(Palette.card)
+            }
+            ForEach(store.systems) { s in
+                Section {
+                    systemCard(s, corpus)
+                }
+                .id(s.id)
+                .listRowBackground(Palette.card)
+            }
         }
         Section {
-            if rails {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .top, spacing: 10) {
-                        ForEach(LanguagesHome.presets, id: \.name) { p in
-                            presetCard(p).frame(width: 172)
-                        }
-                    }
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.vertical, 6)
-                }
-            } else {
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
-                    ForEach(LanguagesHome.presets, id: \.name) { presetCard($0) }
-                }
-                .padding(.vertical, 6)
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
+                ForEach(LanguagesHome.presets, id: \.name) { presetCard($0) }
             }
+            .padding(.vertical, 6)
         } header: {
             Eyebrow(text: "Start a set")
         }
         .id("start")
         .listRowBackground(Color.clear)
         Section {
-            if rails {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    chips.frame(width: CGFloat(pickable.count) * 48)
-                }
-            } else {
-                chips
-            }
+            chips
             Picker("I already speak", selection: $root) {
                 ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
             }
@@ -227,7 +208,6 @@ struct LanguageSections: View {
                 Text(s.name).font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
                 Spacer()
                 Text("\(sum.started) of \(sum.total) cards").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
-                AddToToday(item: .system(s), look: .icon)
             }
             HStack(spacing: 4) { ForEach(s.targets, id: \.self) { FlagTile(lang: $0, size: 24) }; Text("from \(langName(s.root))").font(.subheadline).foregroundStyle(Palette.muted).padding(.leading, 4) }
             HStack(spacing: 14) {
@@ -271,7 +251,11 @@ struct LanguageSections: View {
                 guard let made else { return }
                 haptic(true)
                 justMade = made.id
-                withAnimation(.snappy) { proxy.scrollTo(made.id, anchor: .top) }
+                if builderOnly {
+                    path.append(LangRoute.system(made.id))
+                } else {
+                    withAnimation(.snappy) { proxy.scrollTo(made.id, anchor: .top) }
+                }
             }
         }
         if gate.guest && store.systems.isEmpty { make() } else { gate.require(make) }

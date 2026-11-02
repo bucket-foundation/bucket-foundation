@@ -199,6 +199,15 @@ import Testing
         #expect(again.contains(item.id) && again.isDone(item.id))
     }
 
+    @Test func finishOnlyMarksItemsOnTheList() {
+        let store = TodayPlanStore(api: BucketAPI(transport: ProgressServer().transport), disk: MemoryLangDisk(), now: { 10 })
+        store.finish(item.id)
+        #expect(!store.isDone(item.id))
+        store.add(item)
+        store.finish(item.id)
+        #expect(store.isDone(item.id))
+    }
+
     @Test func pushesEditsToTheProgressBranch() async {
         let server = ProgressServer()
         let store = TodayPlanStore(api: BucketAPI(transport: server.transport), disk: MemoryLangDisk(), token: { "t" }, now: { 10 })

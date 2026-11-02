@@ -299,6 +299,10 @@ struct BranchTile: View {
         "04": (0x231F20, "∫"), "05": (0x5B1A4A, "ψ"), "06": (0x2E6FA8, "★"), "07": (0x8E2312, "∞"), "la": (0x5B1A4A, "Aa"),
     ]
 
+    static func face(_ branch: String) -> Color { Color(hex: pigments[String(branch.prefix(2))]?.0 ?? 0x5d5650) }
+
+    static func glyph(_ branch: String) -> String { pigments[String(branch.prefix(2))]?.1 ?? String(branch.prefix(1)).uppercased() }
+
     var body: some View {
         let p = Self.pigments[String(branch.prefix(2))] ?? (0x5d5650, String(branch.prefix(1)).uppercased())
         Text(p.1)

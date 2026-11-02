@@ -322,6 +322,11 @@ struct ReadView: View {
             }
         }
         .task { await load() }
+        .task(id: texts.isEmpty) {
+            guard !texts.isEmpty else { return }
+            try? await Task.sleep(for: .seconds(30))
+            if !Task.isCancelled { TodayPlanStore.shared.finish(TodayItem.topic(topic).id) }
+        }
     }
 
     func column(_ l: String) -> some View {

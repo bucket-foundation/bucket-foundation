@@ -10,12 +10,22 @@ struct LearnView: View {
         NavigationStack(path: $path) {
             ScrollViewReader { proxy in
                 List {
+                    if !langs.systems.isEmpty {
+                        Section {
+                            VoiceTile {
+                                DeepLink.shared.listen = true
+                                path.append(LearnRoute.translate)
+                            }
+                            .listRowInsets(EdgeInsets())
+                        }
+                        .listRowBackground(Color.clear)
+                    }
                     LearnHeading(text: langs.systems.isEmpty ? "Languages" : "Your languages")
                     languages(proxy)
                     LearnHeading(text: "Explore")
                     GamesSection { path.append(LearnRoute.game($0)) }
-                    ContentSection()
-                    SubjectsSection()
+                    ContentSection { path.append($0) }
+                    SubjectsSection(open: { path.append($0) }, search: { path.append(LearnRoute.canon) })
                     if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
                 }
                 .listSectionSpacing(.compact)
@@ -75,7 +85,19 @@ struct LearnView: View {
             .listRowBackground(Palette.card)
         case .ready:
             if let corpus = langs.corpus {
-                LanguageSections(path: $path, corpus: corpus, proxy: proxy, railsOnceStarted: true)
+                if langs.systems.isEmpty {
+                    LanguageSections(path: $path, corpus: corpus, proxy: proxy, builderOnly: true)
+                } else {
+                    Section {
+                        LazyVGrid(columns: learnColumns, spacing: 14) {
+                            ForEach(langs.systems) { LangTile(system: $0, corpus: corpus, open: { id in path.append(LangRoute.system(id)) }) }
+                            NewSetTile { path.append(LearnRoute.newSet) }
+                        }
+                        .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                        .listRowSeparator(.hidden)
+                    }
+                    .listRowBackground(Color.clear)
+                }
             }
         }
     }
@@ -86,6 +108,16 @@ struct LearnView: View {
         case .game(let game): game.screen
         case .read(let topic, let lang): ReadView(topic: topic, langs: readLangs(lang)).fullHeightSession()
         case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
+        case .translate: TranslateScreen()
+        case .newSet:
+            ScrollViewReader { proxy in
+                List {
+                    if let corpus = langs.corpus { LanguageSections(path: $path, corpus: corpus, proxy: proxy, builderOnly: true) }
+                }
+            }
+            .paper()
+            .navigationTitle("New set")
+            .inlineTitle()
         }
     }
 
@@ -142,37 +174,129 @@ struct GamesSection: View {
     }
 }
 
+let learnColumns = [GridItem(.adaptive(minimum: 150), spacing: 14)]
+
+struct LearnTile<Mark: View>: View {
+    let title: String
+    let detail: String
+    let face: Color
+    var lip: Color?
+    var item: TodayItem?
+    let open: () -> Void
+    @ViewBuilder let mark: () -> Mark
+
+    var body: some View {
+        Button(action: open) {
+            VStack(alignment: .leading, spacing: 6) {
+                mark().frame(height: 34)
+                Text(title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
+                Text(detail).font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                    .lineLimit(2, reservesSpace: true)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .modifier(GameLip(face: face, lip: lip ?? face.mix(with: .black, by: 0.3)))
+        }
+        .buttonStyle(.plain)
+        .overlay(alignment: .topTrailing) {
+            if let item { AddToToday(item: item, look: .icon, color: D8.parchment).padding(8) }
+        }
+    }
+}
+
+struct LearnSymbol: View {
+    let name: String
+
+    var body: some View {
+        Image(systemName: name).font(.system(size: 26, weight: .bold)).foregroundStyle(D8.parchment)
+    }
+}
+
+struct LangTile: View {
+    @Environment(LangStore.self) private var store
+    let system: LangSystem
+    let corpus: LangCorpus
+    let open: (String) -> Void
+    @State private var removing = false
+
+    var body: some View {
+        let sum = systemSummary(system, corpus, store.state(system.id), now: Date().timeIntervalSince1970 * 1000)
+        Button { open(system.id) } label: {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 4) { ForEach(system.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 28) } }
+                    .frame(height: 34, alignment: .leading)
+                Text(system.name).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                    .lineLimit(2, reservesSpace: true).multilineTextAlignment(.leading)
+                ProgressView(value: Double(sum.started), total: Double(max(1, sum.total))).tint(D8.malachite)
+                Text("\(sum.started) of \(sum.total) cards").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(D8.face, in: .rect(cornerRadius: 18))
+            .overlay { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.edge, lineWidth: 2) }
+            .background(D8.edge, in: .rect(cornerRadius: 18).offset(y: 5))
+            .padding(.bottom, 5)
+        }
+        .buttonStyle(.plain)
+        .overlay(alignment: .topTrailing) { AddToToday(item: .system(system), look: .icon).padding(8) }
+        .contextMenu { Button("Remove", systemImage: "minus.circle", role: .destructive) { removing = true } }
+        .confirmationDialog("Remove \(system.name)?", isPresented: $removing, titleVisibility: .visible) {
+            Button("Remove", role: .destructive) { Task { await store.remove(system.id) } }
+        } message: {
+            Text("Progress stays saved and returns if you build the same system again.")
+        }
+    }
+}
+
+struct NewSetTile: View {
+    let open: () -> Void
+
+    var body: some View {
+        LearnTile(title: String(localized: "New set"), detail: String(localized: "Pick the languages to learn together."), face: D8.lapis, lip: Color(hex: 0x12326A), open: open) {
+            LearnSymbol(name: "plus")
+        }
+    }
+}
+
 struct ContentSection: View {
     @Environment(LangStore.self) private var langs
+    let open: (LearnRoute) -> Void
 
     var names: String { langs.contentLangs.prefix(3).map(langName).joined(separator: ", ") }
 
     var body: some View {
         Section {
-            ForEach(ContentCatalog.topics.prefix(3)) { topic in
-                HStack {
-                    NavigationLink(value: LearnRoute.read(topic)) {
-                        TileRow(symbol: "book", title: topic.title, detail: String(localized: "Read side by side in \(names)"), color: D8.malachite)
+            LazyVGrid(columns: learnColumns, spacing: 14) {
+                LearnTile(title: ContentKind.read.title, detail: String(localized: "Side by side in \(names)"), face: D8.malachite, lip: D8.malachiteLip, open: { open(.content(.read)) }) {
+                    LearnSymbol(name: "book")
+                }
+                LearnTile(title: ContentKind.listen.title, detail: String(localized: "Live radio in \(names)"), face: D8.vermilion, lip: D8.vermilionLip, open: { open(.content(.listen)) }) {
+                    LearnSymbol(name: "dot.radiowaves.left.and.right")
+                }
+                LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: D8.lapis, lip: Color(hex: 0x12326A), open: { open(.content(.watch)) }) {
+                    LearnSymbol(name: "play.rectangle")
+                }
+                ForEach(ContentCatalog.topics.prefix(3)) { topic in
+                    LearnTile(title: topic.title, detail: branchTitle(topic.branch), face: BranchTile.face(topic.branch), item: .topic(topic), open: { open(.read(topic)) }) {
+                        LearnSymbol(name: "text.book.closed")
                     }
-                    AddToToday(item: .topic(topic), look: .icon)
                 }
             }
-            NavigationLink(value: LearnRoute.content(.listen)) {
-                TileRow(symbol: "dot.radiowaves.left.and.right", title: ContentKind.listen.title, detail: String(localized: "Live radio in \(names)"), color: D8.vermilion)
-            }
-            NavigationLink(value: LearnRoute.content(.watch)) {
-                TileRow(symbol: "play.rectangle", title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics in \(names)"), color: D8.vermilion)
-            }
+            .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+            .listRowSeparator(.hidden)
         } header: {
             LearnGroupTitle(text: "Content", more: .content(.read))
         }
         .id("content")
-        .listRowBackground(Palette.card)
+        .listRowBackground(Color.clear)
     }
 }
 
 struct SubjectsSection: View {
     @Environment(Library.self) private var library
+    let open: (DeckEntry) -> Void
+    let search: () -> Void
 
     var body: some View {
         Section {
@@ -183,20 +307,24 @@ struct SubjectsSection: View {
                 Text(message).foregroundStyle(Palette.muted)
                 Button("Retry") { Task { await library.retryIndex() } }
             case .ready:
-                NavigationLink(value: LearnRoute.canon) {
-                    Label("Search the canon", systemImage: "text.magnifyingglass")
+                LazyVGrid(columns: learnColumns, spacing: 14) {
+                    LearnTile(title: String(localized: "Search the canon"), detail: String(localized: "Every idea across seven branches."), face: Palette.ink, open: search) {
+                        LearnSymbol(name: "text.magnifyingglass")
+                    }
+                    ForEach(library.scienceDecks) { entry in
+                        LearnTile(title: entry.title, detail: entry.sub ?? "", face: BranchTile.face(entry.id), item: .deck(entry), open: { open(entry) }) {
+                            Text(BranchTile.glyph(entry.id)).font(.system(size: 26, weight: .bold, design: .serif)).foregroundStyle(D8.parchment)
+                        }
+                    }
                 }
-                ForEach(library.scienceDecks) { entry in
-                    NavigationLink(value: entry) { DeckRow(entry: entry) }
-                }
+                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                .listRowSeparator(.hidden)
             }
         } header: {
             LearnGroupTitle(text: "Subjects")
-        } footer: {
-            Text("Foundations across seven branches: mathematics to mind.")
         }
         .id("subjects")
-        .listRowBackground(Palette.card)
+        .listRowBackground(Color.clear)
     }
 }
 
@@ -230,6 +358,9 @@ extension LearnView {
             } else {
                 path.append(LearnRoute.content(fallback))
             }
+        case .voice:
+            path = NavigationPath()
+            path.append(LearnRoute.translate)
         default: break
         }
     }
@@ -258,6 +389,8 @@ enum LearnRoute: Hashable {
     case game(GameKind)
     case read(ContentTopic, lang: String? = nil)
     case content(ContentKind)
+    case translate
+    case newSet
 }
 
 struct AtomRoute: Hashable {

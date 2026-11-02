@@ -50,6 +50,10 @@ public final class TodayPlanStore {
         change { $0.setDone(id, on, day: day, now: now()) }
     }
 
+    public func finish(_ id: String) {
+        if contains(id) { setDone(id, true) }
+    }
+
     public func pull() async {
         guard let t = await token(), let server = await api.progressPull(token: t) else { return }
         let remote = TodayPlan(js: server[Self.branch]?["data"])

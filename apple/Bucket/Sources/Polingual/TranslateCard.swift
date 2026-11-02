@@ -106,23 +106,26 @@ struct TranslateCard: View {
                             .buttonStyle(.borderless)
                             .accessibilityLabel("Clear")
                     }
-                    if LangListener.shared.supported {
-                        Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
-                            Image(systemName: listening ? "stop.fill" : "mic.fill")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundStyle(listening ? .white : D8.vermilion)
-                                .frame(width: 40, height: 40)
-                                .background(listening ? D8.vermilion : D8.vermilion.opacity(0.12), in: .circle)
-                                .symbolEffect(.variableColor.iterative, isActive: listening)
-                        }
-                        .buttonStyle(.borderless)
-                        .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
-                    }
                 }
                 .padding(.horizontal, 14)
                 .frame(minHeight: 60)
                 .background(D8.face, in: .rect(cornerRadius: 14))
                 .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
+                if LangListener.shared.supported {
+                    Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: listening ? "stop.fill" : "mic.fill")
+                                .font(.system(size: 30, weight: .bold))
+                                .symbolEffect(.variableColor.iterative, isActive: listening)
+                            Text(listening ? String(localized: "Stop") : String(localized: "Tap and speak")).font(D8.word(21))
+                        }
+                        .foregroundStyle(D8.parchment)
+                        .frame(maxWidth: .infinity, minHeight: 84)
+                        .modifier(GameLip(face: D8.vermilion, lip: D8.vermilionLip))
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
+                }
                 if listening {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
@@ -187,6 +190,12 @@ struct TranslateCard: View {
             .onChange(of: query) { picked = nil }
             .onChange(of: from) { picked = nil }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
+            .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
+                guard on else { return }
+                DeepLink.shared.listen = false
+                if DeepLink.shared.pending == .voice { DeepLink.shared.pending = nil }
+                Task { await listen() }
+            }
             .onChange(of: DeepLink.shared.translate, initial: true) { _, q in
                 guard let q else { return }
                 query = q
