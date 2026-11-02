@@ -2,7 +2,7 @@ import BucketKit
 import SwiftUI
 
 enum GameKind: String, CaseIterable, Identifiable, Hashable {
-    case daily, mini, same, match, voice, flags, letters
+    case daily, mini, wordGroups, same, match, voice, flags, letters
 
     var id: String { rawValue }
 
@@ -10,6 +10,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .daily: String(localized: "Daily Set")
         case .mini: String(localized: "Mini")
+        case .wordGroups: String(localized: "Word Groups")
         case .same: String(localized: "Same Word")
         case .match: String(localized: "Speed Match")
         case .voice: String(localized: "Which Voice")
@@ -22,6 +23,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .daily: String(localized: "Six words. The same six for everyone on your languages today.")
         case .mini: String(localized: "A small crossword in your language. New every day.")
+        case .wordGroups: String(localized: "Sort sixteen of your words into four groups. New every day.")
         case .same: String(localized: "One meaning across your languages.")
         case .match: String(localized: "Pair words against a 60 second clock.")
         case .voice: String(localized: "Listen, then pick the flag.")
@@ -34,6 +36,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         switch self {
         case .daily: "calendar"
         case .mini: "square.grid.3x3.fill"
+        case .wordGroups: "square.grid.4x3.fill"
         case .same: "square.stack.3d.up.fill"
         case .match: "bolt.fill"
         case .voice: "waveform"
@@ -44,7 +47,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
 
     var color: Color {
         switch self {
-        case .daily, .voice: D8.lapis
+        case .daily, .voice, .wordGroups: D8.lapis
         case .same, .letters, .mini: D8.vermilion
         case .match, .flags: D8.malachite
         }
@@ -52,7 +55,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
 
     var lip: Color {
         switch self {
-        case .daily, .voice: Color(hex: 0x12326A)
+        case .daily, .voice, .wordGroups: Color(hex: 0x12326A)
         case .same, .letters, .mini: D8.vermilionLip
         case .match, .flags: D8.malachiteLip
         }
@@ -64,6 +67,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .match: SpeedMatchGame().fullHeightSession()
         case .letters: LetterSprintGame().fullHeightSession()
         case .mini: MiniGame().fullHeightSession()
+        case .wordGroups: WordGroupsGame().fullHeightSession()
         }
     }
 }
@@ -216,6 +220,7 @@ struct GamesBoard: View {
     func available(_ kind: GameKind) -> Bool {
         switch kind {
         case .mini: langs.miniPuzzle != nil
+        case .wordGroups: langs.wordGroupsPuzzle != nil
         case .same: langs.sameWordSystem != nil
         case .letters: langs.hasLetterGame
         default: true

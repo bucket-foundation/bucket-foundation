@@ -68,6 +68,11 @@ struct AlphabetStudy: View {
         .paper()
         .navigationTitle(unit?.title ?? "")
         .inlineTitle()
+        .toolbar {
+            if unit != nil {
+                ToolbarItem(placement: .primaryAction) { AddToToday(item: .activity(.alphabet(lang)), look: .icon) }
+            }
+        }
         .onAppear { if queue.isEmpty { start() } }
     }
 
@@ -104,5 +109,6 @@ struct AlphabetStudy: View {
         }
         i += 1
         next()
+        if i >= queue.count { TodayPlanStore.shared.finish(TodayActivity.alphabet(lang).id) }
     }
 }

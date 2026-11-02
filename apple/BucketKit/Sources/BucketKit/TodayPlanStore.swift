@@ -43,6 +43,11 @@ public final class TodayPlanStore {
 
     public func order(_ ids: [String]) { change { $0.order(ids, now: now()) } }
 
+    public func drop(_ id: String, onto target: String) {
+        guard id != target, contains(id), contains(target) else { return }
+        order(plan.moving(id, onto: target))
+    }
+
     public func move(_ id: String, toTop: Bool) { change { $0.move(id, toTop: toTop, now: now()) } }
 
     public func setDone(_ id: String, _ on: Bool) {

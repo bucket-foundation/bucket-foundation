@@ -10,6 +10,14 @@ extension ContentKind {
         case .watch: String(localized: "Watch")
         }
     }
+
+    var activity: TodayActivity? {
+        switch self {
+        case .read: nil
+        case .listen: .listen
+        case .watch: .watch
+        }
+    }
 }
 
 func branchTitle(_ id: String) -> String {
@@ -81,6 +89,7 @@ final class RadioPlayer {
     private var watch: [Task<Void, Never>] = []
     private(set) var playing: String?
     private(set) var failedId: String?
+    private var clock = PlayClock()
 
     init() {
         #if os(iOS)
@@ -124,7 +133,18 @@ final class RadioPlayer {
                     return
                 }
             },
+            Task { [weak self] in
+                while !Task.isCancelled {
+                    try? await Task.sleep(for: .seconds(1))
+                    self?.heard()
+                }
+            },
         ]
+    }
+
+    func heard() {
+        guard player?.timeControlStatus == .playing else { return }
+        if clock.tick(1, day: dayKey(Date().timeIntervalSince1970 * 1000)) { TodayPlanStore.shared.finish(TodayActivity.listen.id) }
     }
 
     func fail(_ id: String) {
@@ -160,9 +180,11 @@ struct ContentHub: View {
     @State private var lang: String?
     @State private var openTopic: ContentTopic?
     let fixed: Bool
+    let fromToday: Bool
 
-    init(embedded: Bool = false, start: ContentKind? = nil) {
+    init(embedded: Bool = false, start: ContentKind? = nil, fromToday: Bool = false) {
         self.embedded = embedded
+        self.fromToday = fromToday
         fixed = start != nil
         _kind = State(initialValue: start ?? Self.launchKind)
     }
@@ -202,7 +224,7 @@ struct ContentHub: View {
             switch kind {
             case .read: ReadList(branch: branch) { openTopic = $0 }
             case .listen: ListenList(branch: branch, langs: shownLangs)
-            case .watch: WatchList(branch: branch, langs: shownLangs)
+            case .watch: WatchList(branch: branch, langs: shownLangs, earns: fromToday)
             }
             if langs.systems.isEmpty {
                 Section {
@@ -229,6 +251,9 @@ struct ContentHub: View {
                 } label: {
                     Label("Filter", systemImage: branch == nil && lang == nil ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
                 }
+            }
+            if fixed, let activity = kind.activity {
+                ToolbarItem(placement: .primaryAction) { AddToToday(item: .activity(activity), look: .icon) }
             }
         }
         .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
@@ -443,6 +468,7 @@ struct WatchList: View {
     @Environment(\.openURL) private var openURL
     let branch: String?
     let langs: [String]
+    var earns = false
     @State private var store = ContentStore.shared
 
     var body: some View {
@@ -451,7 +477,10 @@ struct WatchList: View {
                 LazyVGrid(columns: learnColumns, spacing: 14) {
                     ForEach(langs, id: \.self) { l in
                         let title = store.titles[t.title]?[l]
-                        LearnTile(title: title ?? t.title, detail: langName(l), face: BranchTile.face(t.branch), open: { openURL(ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)")) }) {
+                        LearnTile(title: title ?? t.title, detail: langName(l), face: BranchTile.face(t.branch), open: {
+                            if earns { WatchDwell.opened() }
+                            openURL(ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)"))
+                        }) {
                             FlagTile(lang: l, size: 30)
                         }
                         .overlay(alignment: .topTrailing) {

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct GameWord: Sendable, Equatable, Hashable, Identifiable {
+public struct GameWord: Codable, Sendable, Equatable, Hashable, Identifiable {
     public var itemId: String
     public var lang: String
     public var form: String

@@ -76,6 +76,7 @@ struct TodayWidget: View {
     let left: Int?
     let progress: Double
     let done: Bool
+    var dragId = ""
     let open: () -> Void
 
     var body: some View {
@@ -109,6 +110,8 @@ struct TodayWidget: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Palette.card, in: .rect(cornerRadius: 22))
             .opacity(done ? 0.7 : 1)
+            .contentShape(.dragPreview, .rect(cornerRadius: 22))
+            .draggable(dragId)
         }
         .buttonStyle(.plain)
     }
@@ -137,6 +140,12 @@ struct TodayPicker: View {
     @Environment(LangStore.self) private var langs
     @Environment(\.dismiss) private var dismiss
 
+    var games: [GameKind] {
+        GameKind.allCases.filter { $0 != .letters && ($0 != .wordGroups || langs.wordGroupsPuzzle != nil) }
+    }
+
+    var alphabets: [String] { langs.gameLangs.filter { LangScript.alphabetUnit($0) != nil } }
+
     func row(_ title: String, _ item: TodayItem) -> some View {
         HStack {
             Text(title).foregroundStyle(Palette.ink)
@@ -163,11 +172,32 @@ struct TodayPicker: View {
                 }
                 .listRowBackground(Palette.card)
                 Section {
-                    ForEach(GameKind.allCases) { row($0.title, .game($0)) }
+                    ForEach(games) { row($0.title, .game($0)) }
                 } header: {
                     Eyebrow(text: "Games")
                 }
                 .listRowBackground(Palette.card)
+                Section {
+                    row(TodayActivity.listen.title, .activity(.listen))
+                    row(TodayActivity.watch.title, .activity(.watch))
+                } header: {
+                    Eyebrow(text: "Listen and watch")
+                }
+                .listRowBackground(Palette.card)
+                if !alphabets.isEmpty || langs.hasLetterGame {
+                    Section {
+                        ForEach(alphabets, id: \.self) { l in
+                            HStack(spacing: 10) {
+                                FlagTile(lang: l, size: 22)
+                                row(TodayActivity.alphabet(l).title, .activity(.alphabet(l)))
+                            }
+                        }
+                        if langs.hasLetterGame { row(GameKind.letters.title, .game(.letters)) }
+                    } header: {
+                        Eyebrow(text: "Drills")
+                    }
+                    .listRowBackground(Palette.card)
+                }
                 Section {
                     ForEach(ContentCatalog.topics) { row($0.title, .topic($0)) }
                 } header: {
@@ -188,6 +218,7 @@ struct TodayPicker: View {
 enum TodayRoute: Hashable {
     case game(GameKind)
     case read(ContentTopic)
+    case content(ContentKind)
     case translate
 }
 

@@ -520,6 +520,7 @@ struct Avatar: View {
 }
 
 struct TodayStrip: View {
+    var card = false
     @Environment(Account.self) private var account
     @Environment(GroupStore.self) private var groups
     @State private var sent: [String: CheerKind] = [:]
@@ -527,44 +528,22 @@ struct TodayStrip: View {
 
     var body: some View {
         if !groups.people.isEmpty || !groups.incoming.isEmpty || !groups.goals.isEmpty {
-            Section {
-                ForEach(groups.incoming.prefix(3)) { c in
-                    Label(c.line, systemImage: c.symbol)
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(c.kind == .cheer ? D8.malachite : D8.vermilion)
-                }
-                if !groups.people.isEmpty {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(alignment: .top, spacing: 14) {
-                            ForEach(groups.people, id: \.member.userId) { p in
-                                Button { Task { await send(p.member, p.groupId) } } label: {
-                                    VStack(spacing: 4) {
-                                        Avatar(member: p.member)
-                                        Text(p.member.name.split(separator: " ").first.map(String.init) ?? p.member.name)
-                                            .font(.caption.weight(.semibold))
-                                            .lineLimit(1)
-                                        Text(sent[p.member.userId].map { $0 == .cheer ? String(localized: "Cheered") : String(localized: "Nudged") }
-                                             ?? (p.member.studiedToday ? String(localized: "Cheer") : String(localized: "Nudge")))
-                                            .font(D8.caps(9))
-                                            .textCase(.uppercase)
-                                            .foregroundStyle(p.member.studiedToday ? D8.malachite : D8.vermilion)
-                                    }
-                                    .frame(width: 62)
-                                }
-                                .buttonStyle(.plain)
-                                .disabled(sent[p.member.userId] != nil || groups.busy)
-                                .accessibilityLabel(Text(p.member.studiedToday ? "Cheer \(p.member.name)" : "Nudge \(p.member.name)"))
-                            }
-                        }
-                        .padding(.vertical, 4)
+            Group {
+                if card {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Eyebrow(text: "Family and friends")
+                        rows
                     }
+                    .todayCard()
+                } else {
+                    Section {
+                        rows
+                    } header: {
+                        Eyebrow(text: "Family and friends")
+                    }
+                    .listRowBackground(Palette.card)
                 }
-                ForEach(groups.goals, id: \.group.id) { GoalBar(name: $0.group.name, goal: $0.goal) }
-                if let note { Text(note).font(.footnote).foregroundStyle(Palette.muted) }
-            } header: {
-                Eyebrow(text: "Family and friends")
             }
-            .listRowBackground(Palette.card)
             .task(id: groups.incoming.map(\.id)) {
                 let ids = groups.incoming.map(\.id)
                 guard !ids.isEmpty else { return }
@@ -576,6 +555,42 @@ struct TodayStrip: View {
                 await groups.markSeen(ids)
             }
         }
+    }
+
+    @ViewBuilder var rows: some View {
+        ForEach(groups.incoming.prefix(3)) { c in
+            Label(c.line, systemImage: c.symbol)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(c.kind == .cheer ? D8.malachite : D8.vermilion)
+        }
+        if !groups.people.isEmpty {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 14) {
+                    ForEach(groups.people, id: \.member.userId) { p in
+                        Button { Task { await send(p.member, p.groupId) } } label: {
+                            VStack(spacing: 4) {
+                                Avatar(member: p.member)
+                                Text(p.member.name.split(separator: " ").first.map(String.init) ?? p.member.name)
+                                    .font(.caption.weight(.semibold))
+                                    .lineLimit(1)
+                                Text(sent[p.member.userId].map { $0 == .cheer ? String(localized: "Cheered") : String(localized: "Nudged") }
+                                     ?? (p.member.studiedToday ? String(localized: "Cheer") : String(localized: "Nudge")))
+                                    .font(D8.caps(9))
+                                    .textCase(.uppercase)
+                                    .foregroundStyle(p.member.studiedToday ? D8.malachite : D8.vermilion)
+                            }
+                            .frame(width: 62)
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(sent[p.member.userId] != nil || groups.busy)
+                        .accessibilityLabel(Text(p.member.studiedToday ? "Cheer \(p.member.name)" : "Nudge \(p.member.name)"))
+                    }
+                }
+                .padding(.vertical, 4)
+            }
+        }
+        ForEach(groups.goals, id: \.group.id) { GoalBar(name: $0.group.name, goal: $0.goal) }
+        if let note { Text(note).font(.footnote).foregroundStyle(Palette.muted) }
     }
 
     func send(_ m: GroupMember, _ groupId: String) async {
