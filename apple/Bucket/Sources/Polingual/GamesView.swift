@@ -87,6 +87,7 @@ struct GamesView: View {
             } else {
                 Section {
                     ForEach(GameKind.allCases) { g in
+                        HStack {
                         Button { open = g } label: {
                             HStack(spacing: 14) {
                                 Image(systemName: g.symbol)
@@ -104,6 +105,8 @@ struct GamesView: View {
                             .contentShape(.rect)
                         }
                         .buttonStyle(.plain)
+                        AddToToday(item: .game(g), look: .icon)
+                        }
                     }
                 } footer: {
                     Text("\(langs.gameWords.count) words from your sets. Games do not change your reviews.")

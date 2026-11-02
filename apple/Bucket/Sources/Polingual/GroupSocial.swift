@@ -486,6 +486,7 @@ enum CheerNotifier {
         let new = fresh(store.incoming)
         guard !new.isEmpty else { return }
         remember(new)
+        guard Reminders.cheersOn else { return }
         let center = UNUserNotificationCenter.current()
         guard await center.notificationSettings().authorizationStatus == .authorized else { return }
         for c in new.prefix(3) {

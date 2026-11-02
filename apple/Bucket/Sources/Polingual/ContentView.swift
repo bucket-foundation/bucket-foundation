@@ -295,6 +295,7 @@ struct ReadView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .paper()
         .navigationTitle(topic.title)
+        .toolbar { ToolbarItem(placement: .primaryAction) { AddToToday(item: .topic(topic), look: .icon) } }
         .inlineTitle()
         .environment(\.openURL, OpenURLAction { url in
             guard let p = WordTaps.parse(url) else { return .systemAction }

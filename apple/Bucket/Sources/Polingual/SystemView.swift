@@ -41,6 +41,7 @@ struct SystemView: View {
                     .font(.serif(.body))
                 Button(sum.due > 0 ? String(localized: "Review") : String(localized: "Study")) { path.append(LangRoute.study(system.id)) }
                     .buttonStyle(D8Primary(compact: true))
+                AddToToday(item: .system(system))
                 HStack(spacing: 18) {
                     Text("\(Int(sum.xp)) xp")
                     Text("\(StreakGoal(streak: liveStreak(state, now: now)).day) day streak")

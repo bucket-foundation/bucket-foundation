@@ -42,7 +42,7 @@ func langStreak(_ store: LangStore, now: Date = .now) -> Int {
 
 @MainActor
 func langForecast(_ store: LangStore, at date: Date) -> ReviewForecast {
-    ReminderPlan.forecast(due: langDue(store), at: date, streak: langStreak(store, now: date))
+    ReminderPlan.forecast(due: langDue(store), at: date, streak: langStreak(store, now: date), studiedToday: ReminderPlan.studied(store.systems.map { store.state($0.id) }, at: date))
 }
 
 @MainActor
@@ -53,7 +53,11 @@ final class Reminders {
     static let studyKey = "reminders.studyMinutes"
     static let lastStudyKey = "reminders.lastStudy"
     static let wordKey = "reminders.wordOfDay"
+    static let streakKey = "reminders.streakRisk"
+    static let cheersKey = "reminders.cheers"
+    static let healedKey = "reminders.healedOff"
     static let idPrefix = "review-reminder-"
+    static let riskPrefix = "streak-risk-"
     static let fallbackMinute = 19 * 60
     static let quietAfterDays = 7
 
@@ -63,13 +67,42 @@ final class Reminders {
     var denied = false
     var wordChoice: Bool? { didSet { defaults.set(wordChoice, forKey: Self.wordKey) } }
     var wordOfDay: Bool { wordChoice ?? enabled }
+    var streakChoice: Bool? { didSet { defaults.set(streakChoice, forKey: Self.streakKey) } }
+    var streakRisk: Bool { streakChoice ?? enabled }
+    var cheers: Bool { didSet { defaults.set(cheers, forKey: Self.cheersKey) } }
+    @ObservationIgnored private var replan: (@MainActor () async -> Void)?
+    @ObservationIgnored private var planning: Task<Void, Never>?
+
+    static var cheersOn: Bool { UserDefaults.standard.object(forKey: cheersKey) as? Bool ?? true }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
+        if !defaults.bool(forKey: Self.healedKey) {
+            if defaults.object(forKey: Self.enabledKey) as? Bool == false { defaults.removeObject(forKey: Self.enabledKey) }
+            defaults.set(true, forKey: Self.healedKey)
+        }
         enabled = defaults.bool(forKey: Self.enabledKey)
         let c = defaults.object(forKey: Self.customKey) as? Int ?? -1
         customMinute = c >= 0 ? c : nil
         wordChoice = defaults.object(forKey: Self.wordKey) as? Bool
+        streakChoice = defaults.object(forKey: Self.streakKey) as? Bool
+        cheers = defaults.object(forKey: Self.cheersKey) as? Bool ?? true
+    }
+
+    func setStreakRisk(_ on: Bool) async {
+        if on {
+            let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])) ?? false
+            denied = !granted
+            streakChoice = granted
+        } else {
+            streakChoice = false
+        }
+        await replan?()
+    }
+
+    func setCheers(_ on: Bool) async {
+        cheers = on
+        if on { await PushRegistry.shared.refresh() } else { await PushRegistry.shared.unregister() }
     }
 
     func setWordOfDay(_ on: Bool) async {
@@ -96,11 +129,12 @@ final class Reminders {
         let m = (c.hour ?? 0) * 60 + (c.minute ?? 0)
         defaults.set(Array((studyMinutes + [m]).suffix(14)), forKey: Self.studyKey)
         defaults.set(date.timeIntervalSince1970, forKey: Self.lastStudyKey)
+        Task { await replan?() }
     }
 
     func reset() {
         disable()
-        for k in [Self.studyKey, Self.lastStudyKey, Self.customKey] { defaults.removeObject(forKey: k) }
+        for k in [Self.enabledKey, Self.studyKey, Self.lastStudyKey, Self.customKey] { defaults.removeObject(forKey: k) }
         customMinute = nil
     }
 
@@ -135,6 +169,7 @@ final class Reminders {
         let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
         denied = !granted
         enabled = granted
+        if !granted { defaults.removeObject(forKey: Self.enabledKey) }
         return granted
     }
 
@@ -153,8 +188,38 @@ final class Reminders {
         ReminderPlan.fireDates(now: now, minute: minute, lastStudy: lastStudy)
     }
 
-    func reschedule(title: String, forecast: (Date) -> ReviewForecast) async {
+    func reschedule(title: String, forecast: @escaping @MainActor (Date) -> ReviewForecast) async {
+        replan = { [weak self] in await self?.reschedule(title: title, forecast: forecast) }
+        let previous = planning
+        let task = Task {
+            await previous?.value
+            await plan(title: title, forecast: forecast)
+        }
+        planning = task
+        await task.value
+    }
+
+    static func riskId(_ date: Date) -> String { riskPrefix + dayKey(date.timeIntervalSince1970 * 1000) }
+
+    private func planRisk(_ f: ReviewForecast, center: UNUserNotificationCenter) async {
+        let old = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(Self.riskPrefix) }
+        center.removePendingNotificationRequests(withIdentifiers: old)
+        if f.studiedToday { center.removeDeliveredNotifications(withIdentifiers: [Self.riskId(.now)]) }
+        guard streakRisk else { return }
+        for alert in ReminderPlan.riskAlerts(now: .now, dailyMinute: minute, streak: f.streak, studiedToday: f.studiedToday) {
+            let content = UNMutableNotificationContent()
+            content.title = String(localized: "Your \(alert.streak)-day streak ends at midnight")
+            content.body = String(localized: "One card saves it.")
+            content.sound = .default
+            content.userInfo = ["study": true]
+            let comps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: alert.date)
+            try? await center.add(UNNotificationRequest(identifier: Self.riskId(alert.date), content: content, trigger: UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)))
+        }
+    }
+
+    private func plan(title: String, forecast: @MainActor (Date) -> ReviewForecast) async {
         let center = UNUserNotificationCenter.current()
+        await planRisk(forecast(.now), center: center)
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.quietAfterDays + 1).map { Self.idPrefix + String($0) })
         #if DEBUG
         if !enabled, ProcessInfo.processInfo.arguments.contains("-reminderProbe") { print("reminderProbe enabled false auth", (await center.notificationSettings()).authorizationStatus.rawValue) }
@@ -167,6 +232,7 @@ final class Reminders {
             content.title = title
             content.body = ReminderPlan.message(f)
             content.sound = .default
+            content.userInfo = ["study": true]
             let comps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
             try? await center.add(UNNotificationRequest(identifier: Self.idPrefix + String(i), content: content, trigger: UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)))
         }
@@ -232,9 +298,17 @@ struct ReminderSettings: View {
                         .foregroundStyle(Palette.muted)
                 }
             }
+            Toggle("Streak at risk in the evening", isOn: Binding(get: { reminders.streakRisk }, set: { on in Task { await reminders.setStreakRisk(on) } }))
             Toggle("Word of the day at 9am", isOn: Binding(get: { reminders.wordOfDay }, set: { on in Task { await reminders.setWordOfDay(on) } }))
+            Toggle("Group cheers and nudges", isOn: Binding(get: { reminders.cheers }, set: { on in Task { await reminders.setCheers(on) } }))
+            if Bundle.main.bundleIdentifier == "com.polingual.app" {
+                LabeledContent("Trial ending", value: String(localized: "Sent once, before your trial ends"))
+            }
             if reminders.denied {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
+                #if os(iOS)
+                if let url = URL(string: UIApplication.openNotificationSettingsURLString) { Link("Open Settings", destination: url) }
+                #endif
             }
             #if DEBUG
             if let nextReminder { Text("Next reminder \(nextReminder.formatted(date: .abbreviated, time: .shortened))").font(.footnote).foregroundStyle(Palette.muted) }
@@ -242,7 +316,7 @@ struct ReminderSettings: View {
             if let testResult { Text(testResult).font(.footnote).foregroundStyle(Palette.muted) }
             #endif
         } header: {
-            Eyebrow(text: "Reminders")
+            Eyebrow(text: "Notifications")
         }
         #if DEBUG
         .task(id: reminders.enabled) {
