@@ -194,6 +194,18 @@ test("the week starts on Monday and sums every day since", () => {
   assert.equal(memberSummary(rows, lookup, NOW, "UTC").weekReviews, 8);
 });
 
+test("finished games count toward the day and the week", () => {
+  const rows = [
+    {
+      branch: "physics",
+      data: { cards: {}, settings: { games: { days: { [TODAY]: 4, "2026-10-26": 3, "2026-10-25": 9 } } }, stats: { streak: 1, lastStudyDay: TODAY, history: {} } },
+    },
+  ];
+  const s = memberSummary(rows, lookup, NOW, "UTC");
+  assert.equal(s.todayReviews, 4);
+  assert.equal(s.weekReviews, 7);
+});
+
 test("strength is retrievability now, falling with time since review", () => {
   assert.equal(cardStrength(undefined, NOW), 0);
   assert.ok(Math.abs(cardStrength(card(10, 2, NOW), NOW) - 1) < 1e-9);

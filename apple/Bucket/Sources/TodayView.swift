@@ -285,9 +285,7 @@ struct TodayView: View {
             .langDestinations(path: $path)
             .navigationDestination(for: TodayRoute.self) { route in
                 switch route {
-                case .game(.match): MatchGame().fullHeightSession()
-                case .game(.memory): MemoryGame().fullHeightSession()
-                case .game(.flags): FlagGame().fullHeightSession()
+                case .game(let game): game.screen
                 case .read(let topic): ReadView(topic: topic, langs: langs.gameLangs.isEmpty ? ["es", "fr"] : langs.gameLangs)
                 }
             }

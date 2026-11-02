@@ -260,6 +260,19 @@ public final class LangStore {
         return out.ratings
     }
 
+    public func finishGame(_ systemId: String, _ game: GameResult) {
+        guard let s = system(systemId) else { return }
+        commit(s, GameLedger.finishing(state(systemId), game, now: now(), tz: TimeZone.current.identifier))
+    }
+
+    public func gameBest(_ game: String) -> Int? {
+        systems.compactMap { GameLedger(state($0.id)).best[game] }.max()
+    }
+
+    public func gameDaily(_ systemId: String) -> String? {
+        GameLedger(state(systemId)).daily[dayKey(now())]
+    }
+
     public func place(_ systemId: String, lang: String, tier: Double, only: [String]? = nil, level: String? = nil) async {
         guard var s = system(systemId), let corpus else { return }
         s.placement[lang] = tier

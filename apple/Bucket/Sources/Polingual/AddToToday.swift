@@ -18,6 +18,7 @@ struct AddToToday: View {
 
     let item: TodayItem
     var look = Look.label
+    var color: Color?
 
     var body: some View {
         if TodayPlanStore.hosted {
@@ -32,7 +33,7 @@ struct AddToToday: View {
                 case .icon: Image(systemName: on ? "checkmark.circle.fill" : "plus.circle").font(.title2)
                 }
             }
-            .tint(on ? D8.malachite : Palette.ink)
+            .tint(color ?? (on ? D8.malachite : Palette.ink))
             .buttonStyle(.borderless)
             .accessibilityLabel(title)
             .accessibilityIdentifier("addToToday.\(item.id)")
