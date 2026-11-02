@@ -140,6 +140,7 @@ public struct GroupMember: Codable, Equatable, Sendable, Identifiable {
     public var lastActive: Date? { lastActivity.flatMap(parseInstant) }
     public var wordsMastered: Int { languages.reduce(0) { $0 + $1.mastered } }
     public var firstName: String { name.split(separator: " ").first.map(String.init) ?? name }
+    public var shareName: String { isMe ? firstName : (initials.isEmpty ? "?" : initials) }
 
     public var initials: String {
         let words = name.split(separator: " ").prefix(2)
@@ -285,7 +286,7 @@ public struct LearningGroup: Codable, Equatable, Sendable, Identifiable {
         let all = standings
         var shown = Array(all.prefix(limit))
         if !shown.contains(where: \.member.isMe), let mine = all.first(where: \.member.isMe), !shown.isEmpty { shown[shown.count - 1] = mine }
-        let rows = shown.map { ShareStanding(rank: $0.rank, name: $0.member.firstName, weekly: $0.member.weekReviews, streak: $0.member.streak, mastered: $0.member.wordsMastered, langs: $0.member.languages.map(\.lang), isMe: $0.member.isMe) }
+        let rows = shown.map { ShareStanding(rank: $0.rank, name: $0.member.shareName, weekly: $0.member.weekReviews, streak: $0.member.streak, mastered: $0.member.wordsMastered, langs: $0.member.languages.map(\.lang), isMe: $0.member.isMe) }
         return ShareStandings(group: name, rows: rows, members: members.count, root: root)
     }
 }

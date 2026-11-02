@@ -447,13 +447,20 @@ func body(_ r: URLRequest) -> [String: String] {
         }
     }
 
-    @Test func sharedStandingsUseFirstNamesAndKeepTheViewer() {
+    @Test func sharedStandingsNameOnlyTheViewer() {
+        let s = group([member("a", week: 9), member("b", week: 5, me: true), member("c", week: 1)]).shareStandings()
+        #expect(s.rows.map(\.name) == ["AR", "B", "CR"])
+        #expect(s.mine?.name == "B")
+        for row in s.rows where !row.isMe { #expect(!row.name.lowercased().contains("rossi")) }
+    }
+
+    @Test func sharedStandingsKeepTheViewerWhenCapped() {
         let members = (0..<9).map { member("m\($0)", week: 100 - $0) } + [member("me", week: 1, me: true)]
         let s = group(members).shareStandings()
         #expect(s.rows.count == 6)
         #expect(s.members == 10)
         #expect(s.mine?.rank == 10)
-        #expect(s.rows.first?.name == "M0")
+        #expect(s.rows.first?.name == "MR")
     }
 
     @Test func aCheerReadsItsReaction() throws {

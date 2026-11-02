@@ -12,7 +12,7 @@ private func query(_ o: ShareObject) -> [String: String] {
 
 private let standings = ShareStandings(group: "Rossi family", rows: [
     ShareStanding(rank: 1, name: "Gia", weekly: 160, streak: 12, mastered: 240, langs: ["it", "es"], isMe: true),
-    ShareStanding(rank: 2, name: "Marco", weekly: 96, streak: 5, mastered: 232, langs: ["fr"], isMe: false),
+    ShareStanding(rank: 2, name: "MR", weekly: 96, streak: 5, mastered: 232, langs: ["fr"], isMe: false),
 ], members: 4)
 
 @Suite struct ShareObjectTests {
@@ -62,7 +62,7 @@ private let standings = ShareStandings(group: "Rossi family", rows: [
 
     @Test func standingsLinkLeavesOutGroupNamesAndInvites() {
         let url = ShareObject.standings(standings).route.url.absoluteString
-        for private_ in ["Rossi", "Marco", "Gia", "c="] { #expect(!url.contains(private_)) }
+        for private_ in ["Rossi", "MR", "Gia", "c="] { #expect(!url.contains(private_)) }
         #expect(query(.standings(standings))["l"] == "it.es")
     }
 
