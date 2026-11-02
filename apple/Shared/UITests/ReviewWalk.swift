@@ -103,7 +103,13 @@ struct ReviewWalk {
         XCTAssertTrue(app.staticTexts["Block \(groupName)?"].waitForExistence(timeout: 10))
         hold()
         app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.12)).tap()
-        tap(app.buttons["BackButton"].firstMatch)
+        hold()
+        var tries = 4
+        while app.buttons["Leave group"].exists && tries > 0 {
+            tap(app.buttons["BackButton"].firstMatch)
+            hold()
+            tries -= 1
+        }
 
         scrollToTop()
         let blocked = labeled("Blocked")
