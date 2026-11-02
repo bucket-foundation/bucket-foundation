@@ -105,6 +105,7 @@ struct ReviewWalk {
         app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.12)).tap()
         tap(app.buttons["BackButton"].firstMatch)
 
+        scrollToTop()
         let blocked = labeled("Blocked")
         scrollTo(blocked)
         tap(blocked)
