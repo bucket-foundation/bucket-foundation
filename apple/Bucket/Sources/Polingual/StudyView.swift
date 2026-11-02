@@ -61,7 +61,7 @@ struct StudyView: View {
             system.targets.filter { corpus.byId[id]?.form($0) != nil }.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] }
         }
         let now = Date().timeIntervalSince1970 * 1000
-        queue = asked + WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
+        queue = asked + WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now)
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
@@ -90,7 +90,7 @@ struct StudyView: View {
         if entry.stage == .letter {
             let key = cardId(entry.lang, entry.itemId)
             let fresh = !store.state(systemId).cards.has(key) && !introduced.contains(key)
-            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng)
+            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng, state: store.state(systemId))
             if fresh { introduced.insert(key) }
             currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter\(fresh ? "-intro" : "")"
             cardStart = .now
@@ -181,7 +181,7 @@ struct StudyView: View {
                         .buttonStyle(D8Primary())
                         Button("Another round") {
                             let now = Date().timeIntervalSince1970 * 1000
-                            self.queue = WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
+                            self.queue = WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now)
                             i = 0
                             graded = 0
                             correct = 0
@@ -261,7 +261,24 @@ struct StudyView: View {
         return ExerciseKind(rawValue: args[i + 1])
     }()
 
+    func forcedDrill(_ kind: ExerciseKind, _ system: LangSystem, pinned: String?) -> Exercise? {
+        for lang in system.targets {
+            let letters = ScriptCourse.units(lang, root: system.root).flatMap(\.letters).map(\.ch)
+            var met = EngineState()
+            for ch in letters { met.cards[LangScript.letterCardId(lang, ch)] = Card(state: "review") }
+            for ch in pinned.map({ [$0] }) ?? shuffle(letters, &rng) {
+                let id = LangScript.letterItemId(ch)
+                let made = kind == .intro ? ScriptCourse.intro(lang, system.root, id) : ScriptCourse.drill(kind, lang, system.root, id, &rng, state: met)
+                if let made, made.kind == kind { return made }
+            }
+        }
+        return nil
+    }
+
     func forced(_ kind: ExerciseKind, _ system: LangSystem, _ corpus: LangCorpus) -> Exercise? {
+        let letterArgs = ProcessInfo.processInfo.arguments
+        let pinnedLetter = letterArgs.firstIndex(of: "-forceLetter").flatMap { $0 + 1 < letterArgs.count ? letterArgs[$0 + 1] : nil }
+        if pinnedLetter != nil || [.letterSound, .blend, .minimalPair].contains(kind) { return forcedDrill(kind, system, pinned: pinnedLetter) }
         if kind == .letter, let l = system.targets.first(where: { LangScript.alphabetUnit($0) != nil }) {
             return letterExercise(l, system.root, rng.index(LangScript.alphabetUnit(l)!.letters.count), &rng)
         }
