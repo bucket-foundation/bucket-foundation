@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { dayKey } from "../src/lib/academy/engine";
 import {
   assembleGroup,
@@ -391,6 +393,17 @@ function row(user: string, role: "owner" | "member" = "member"): MemberRow {
 }
 
 const SUMMARY: MemberSummary = { streak: 0, todayReviews: 0, weekReviews: 10, lastActivity: null, languages: [], subjects: [], recentWords: [], sets: [] };
+
+test("moderation migration keeps reports past deletion and blocks atomically", () => {
+  const sql = readFileSync(join(process.cwd(), "supabase/migrations/20261105000000_group_moderation.sql"), "utf8");
+  const reports = sql.slice(sql.indexOf("bucket.group_reports ("), sql.indexOf("create index if not exists group_reports_open_idx"));
+  assert.match(reports, /target_user_id uuid\s+references auth\.users \(id\) on delete set null/);
+  assert.match(reports, /group_id\s+uuid\s+references bucket\.learning_groups \(id\) on delete set null/);
+  assert.match(reports, /group_name\s+text\s+not null/);
+  assert.doesNotMatch(reports, /cascade/);
+  assert.match(sql, /function bucket\.block_member/);
+  assert.match(sql, /function bucket\.block_group/);
+});
 
 test("missingTable spots an unapplied migration and nothing else", () => {
   assert.equal(missingTable({ code: "PGRST205", message: "Could not find the table 'bucket.group_blocks' in the schema cache" }), true);

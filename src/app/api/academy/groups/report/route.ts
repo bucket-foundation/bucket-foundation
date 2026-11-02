@@ -25,7 +25,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const reported = target ? members.find((m) => m.user_id === target) : null;
     if (target && !reported) return json({ error: "not_found" }, 404);
     const targetName = reported?.display_name ?? group.name;
-    const res = await service().from(REPORTS).insert({ reporter_id: uid, group_id: groupId, target_user_id: target, target_name: targetName, reason });
+    const res = await service().from(REPORTS).insert({ reporter_id: uid, group_id: groupId, group_name: group.name, target_kind: target ? "member" : "group", target_user_id: target, target_name: targetName, reason });
     if (res.error && !missingTable(res.error)) throw new Error(`report insert: ${res.error.message}`);
     const emailed = await emailReport({ reason, targetName, groupName: group.name, groupId, targetUserId: target }).catch((err) => {
       console.error("[academy/groups] report email:", err instanceof Error ? err.message : err);

@@ -88,6 +88,54 @@ import Testing
         #expect(Set(m.done) == [lang.id, math.id])
     }
 
+    @Test func aLaterUncheckBeatsAnEarlierCheckEitherWay() {
+        var a = TodayPlan(), b = TodayPlan()
+        a.setDone(lang.id, true, day: "d", now: 1)
+        b = a
+        b.setDone(lang.id, false, day: "d", now: 2)
+        #expect(TodayPlan.merge(a, b).done.isEmpty)
+        #expect(TodayPlan.merge(b, a).done.isEmpty)
+        let again = TodayPlan.merge(TodayPlan.merge(a, b), a)
+        #expect(!again.isDone(lang.id, day: "d"))
+    }
+
+    @Test func aLaterCheckBeatsAnEarlierUncheck() {
+        var a = TodayPlan(), b = TodayPlan()
+        a.setDone(lang.id, true, day: "d", now: 1)
+        a.setDone(lang.id, false, day: "d", now: 2)
+        b.setDone(lang.id, true, day: "d", now: 3)
+        #expect(TodayPlan.merge(a, b).done == [lang.id])
+        #expect(TodayPlan.merge(b, a).done == [lang.id])
+    }
+
+    @Test func eachItemKeepsItsOwnLastWrite() {
+        var a = TodayPlan(), b = TodayPlan()
+        a.setDone(lang.id, true, day: "d", now: 1)
+        a.setDone(math.id, true, day: "d", now: 4)
+        b.setDone(lang.id, true, day: "d", now: 1)
+        b.setDone(lang.id, false, day: "d", now: 3)
+        b.setDone(math.id, false, day: "d", now: 2)
+        #expect(TodayPlan.merge(a, b).done == [math.id])
+    }
+
+    @Test func removingAnItemStaysRemovedFromDoneAcrossDevices() {
+        var a = TodayPlan()
+        a.add(lang, now: 1)
+        a.setDone(lang.id, true, day: "d", now: 2)
+        var b = a
+        b.remove(lang.id, now: 3)
+        #expect(TodayPlan.merge(a, b).done.isEmpty)
+    }
+
+    @Test func aPlanWithoutMarksStillMerges() {
+        var a = TodayPlan(), b = TodayPlan()
+        a.doneDay = "d"
+        a.doneAt = 5
+        a.done = [lang.id]
+        b.setDone(math.id, true, day: "d", now: 6)
+        #expect(Set(TodayPlan.merge(a, b).done) == [lang.id, math.id])
+    }
+
     @Test func mergeTakesTheLaterDay() {
         var a = TodayPlan(), b = TodayPlan()
         a.setDone(lang.id, true, day: "mon", now: 1)

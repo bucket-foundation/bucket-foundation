@@ -263,7 +263,7 @@ struct TodayView: View {
                     }
                 }
                 TodayStrip()
-                if !reminders.enabled && !planned.isEmpty {
+                if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
                     Section { ReminderPrompt().padding(.vertical, 6) }
                         .listRowBackground(Palette.card)
                 }

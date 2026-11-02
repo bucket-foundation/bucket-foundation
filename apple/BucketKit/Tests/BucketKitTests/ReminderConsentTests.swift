@@ -10,11 +10,30 @@ import Testing
         return d
     }
 
-    @Test func aSavedFalseWithNoChoiceHeals() {
+    @Test func aMissingKeyAutoEnables() {
+        let d = defaults()
+        ReminderConsent.heal(d)
+        #expect(d.object(forKey: ReminderConsent.enabledKey) == nil)
+        #expect(!ReminderConsent.stuckOff(d))
+        #expect(ReminderConsent.autoEnables(authorized: true, d))
+    }
+
+    @Test func aSavedFalseWithDefaultSettingsStaysOff() {
         let d = defaults()
         d.set(false, forKey: ReminderConsent.enabledKey)
         ReminderConsent.heal(d)
-        #expect(d.object(forKey: ReminderConsent.enabledKey) == nil)
+        #expect(d.object(forKey: ReminderConsent.enabledKey) as? Bool == false)
+        #expect(ReminderConsent.optedOut(d))
+        #expect(ReminderConsent.stuckOff(d))
+        #expect(!ReminderConsent.autoEnables(authorized: true, d))
+    }
+
+    @Test func turningOnClearsTheStuckCard() {
+        let d = defaults()
+        d.set(false, forKey: ReminderConsent.enabledKey)
+        ReminderConsent.heal(d)
+        ReminderConsent.record(on: true, d)
+        #expect(!ReminderConsent.stuckOff(d))
         #expect(ReminderConsent.autoEnables(authorized: true, d))
     }
 

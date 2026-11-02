@@ -154,18 +154,6 @@ export async function isHidden(uid: string, other: string): Promise<boolean> {
   return hiddenUsers(await blocksTouching(uid), uid).has(other);
 }
 
-export async function insertBlock(row: Omit<BlockRow, "id" | "created_at">): Promise<void> {
-  const res = await service().from(BLOCKS).insert(row);
-  if (res.error && !/duplicate key|unique/i.test(res.error.message)) throw new Error(`block insert: ${res.error.message}`);
-}
-
-export async function removeFromOwnedGroups(owner: string, target: string): Promise<void> {
-  const owned = (check(await service().from(GROUPS).select("id").eq("owner_id", owner), "owned read") ?? []) as { id: string }[];
-  if (owned.length === 0) return;
-  const res = await service().from(MEMBERS).delete().eq("user_id", target).in("group_id", owned.map((g) => g.id));
-  if (res.error) throw new Error(`blocked member remove: ${res.error.message}`);
-}
-
 export async function emailReport(report: { reason: string; targetName: string; groupName: string; groupId: string; targetUserId: string | null }): Promise<boolean> {
   const key = process.env.RESEND_API_KEY?.trim();
   if (!key) {

@@ -18,6 +18,16 @@ public struct TodayItem: Codable, Hashable, Identifiable, Sendable {
     public var id: String { "\(kind.rawValue):\(ref)" }
 }
 
+public struct DoneMark: Codable, Equatable, Sendable {
+    public var on: Bool
+    public var at: Double
+
+    public init(on: Bool, at: Double) {
+        self.on = on
+        self.at = at
+    }
+}
+
 public struct TodayPlan: Codable, Equatable, Sendable {
     public var items: [TodayItem] = []
     public var customized = false
@@ -25,6 +35,7 @@ public struct TodayPlan: Codable, Equatable, Sendable {
     public var doneDay: String?
     public var doneAt: Double = 0
     public var done: [String] = []
+    public var marks: [String: DoneMark]?
 
     public init() {}
 
@@ -48,6 +59,7 @@ public struct TodayPlan: Codable, Equatable, Sendable {
 
     public mutating func remove(_ id: String, now: Double) {
         items.removeAll { $0.id == id }
+        if done.contains(id) { marks = (marks ?? [:]).merging([id: DoneMark(on: false, at: now)]) { _, new in new } }
         done.removeAll { $0 == id }
         touch(now)
     }
@@ -73,9 +85,12 @@ public struct TodayPlan: Codable, Equatable, Sendable {
 
     public mutating func setDone(_ id: String, _ on: Bool, day: String, now: Double) {
         var today = doneToday(day)
+        var stamped = doneDay == day ? marks ?? [:] : [:]
         today.removeAll { $0 == id }
         if on { today.append(id) }
+        stamped[id] = DoneMark(on: on, at: now)
         done = today
+        marks = stamped
         doneDay = day
         doneAt = now
     }
@@ -85,14 +100,30 @@ public struct TodayPlan: Codable, Equatable, Sendable {
         if a.doneDay == b.doneDay {
             out.doneDay = a.doneDay
             out.doneAt = max(a.doneAt, b.doneAt)
-            out.done = a.done + b.done.filter { !a.done.contains($0) }
+            let order = a.done + b.done.filter { !a.done.contains($0) }
+            let ids = Set(order).union((a.marks ?? [:]).keys).union((b.marks ?? [:]).keys)
+            var winners: [String: DoneMark] = [:]
+            for id in ids { winners[id] = latest(a.mark(id), b.mark(id)) }
+            out.done = order.filter { winners[$0]?.on == true }
+            out.marks = winners.isEmpty ? nil : winners
         } else {
             let newest = b.doneAt > a.doneAt ? b : a
             out.doneDay = newest.doneDay
             out.doneAt = newest.doneAt
             out.done = newest.done
+            out.marks = newest.marks
         }
         return out
+    }
+
+    func mark(_ id: String) -> DoneMark? {
+        marks?[id] ?? (done.contains(id) ? DoneMark(on: true, at: doneAt) : nil)
+    }
+
+    static func latest(_ a: DoneMark?, _ b: DoneMark?) -> DoneMark? {
+        guard let a, let b else { return a ?? b }
+        if a.at != b.at { return a.at > b.at ? a : b }
+        return a.on ? a : b
     }
 
     public var js: JSValue {

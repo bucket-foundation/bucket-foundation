@@ -1,6 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { toBlock, uuidOrNull } from "@/lib/academy/groups";
-import { blocksTouching, configured, fail, groupById, insertBlock, json, membersOf, preflight, readBody, removeFromOwnedGroups, requestUser, service } from "@/lib/academy/groups-server";
+import { blocksTouching, configured, fail, groupById, json, membersOf, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -35,14 +35,13 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (target) {
       const member = members.find((m) => m.user_id === target);
       if (!member) return json({ error: "not_found" }, 404);
-      await insertBlock({ blocker_id: uid, target_user_id: target, target_group_id: null, name: member.display_name });
-      await removeFromOwnedGroups(uid, target);
+      const res = await service().rpc("block_member", { p_blocker: uid, p_target: target, p_name: member.display_name });
+      if (res.error) throw new Error(`block_member: ${res.error.message}`);
       return json({ ok: true });
     }
     if (group.owner_id === uid) return json({ error: "bad_request" }, 400);
-    await insertBlock({ blocker_id: uid, target_user_id: null, target_group_id: groupId, name: group.name });
-    const res = await service().rpc("leave_group", { p_group: groupId, p_user: uid });
-    if (res.error) throw new Error(`leave_group: ${res.error.message}`);
+    const res = await service().rpc("block_group", { p_blocker: uid, p_group: groupId, p_name: group.name });
+    if (res.error) throw new Error(`block_group: ${res.error.message}`);
     return json({ ok: true });
   } catch (err) {
     return fail(err, "block");

@@ -222,13 +222,13 @@ extension LearnView {
             if case .atom(_, let atomId) = link, let deck = await library.prepared(entry), let atom = deck.byId[atomId] {
                 path.append(AtomRoute(deck: entry, atom: atom))
             }
-        case .content(let title, let lang):
+        case .content(let title, let lang, let fallback):
             DeepLink.shared.pending = nil
             path = NavigationPath()
             if let topic = ContentCatalog.topics.first(where: { $0.title == title }) {
                 path.append(LearnRoute.read(topic, lang: lang))
             } else {
-                path.append(LearnRoute.content(.listen))
+                path.append(LearnRoute.content(fallback))
             }
         default: break
         }

@@ -139,7 +139,7 @@ enum SharedLink: Equatable {
     case langs(root: String, targets: [String])
     case deck(String)
     case atom(deck: String, atom: String)
-    case content(topic: String, lang: String?)
+    case content(topic: String, lang: String?, fallback: ContentKind)
     case group(String)
     case home
 
@@ -155,7 +155,11 @@ enum SharedLink: Equatable {
             let root = q["r"].flatMap { Lang.info[$0] != nil ? $0 : nil } ?? "en"
             self = targets.isEmpty ? .home : .langs(root: root, targets: targets)
         case "d": self = q["id"].map { .deck($0) } ?? .home
-        case "c": self = (q["id"] ?? q["t"]).map { .content(topic: $0, lang: q["l"]) } ?? .home
+        case "c":
+            let topic = (q["id"] ?? q["t"] ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            let lang = q["l"].flatMap { Lang.info[$0] != nil ? $0 : nil }
+            let fallback: ContentKind = q["at"] != nil ? .watch : q["q"] != nil ? .read : .listen
+            self = topic.isEmpty ? .home : .content(topic: topic, lang: lang, fallback: fallback)
         case "g": self = GroupInvite.code(from: url).map { .group($0) } ?? .home
         case "a":
             if let d = q["d"], let a = q["id"] { self = .atom(deck: d, atom: a) } else { self = q["d"].map { .deck($0) } ?? .home }

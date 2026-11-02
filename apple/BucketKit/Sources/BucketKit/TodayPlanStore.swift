@@ -58,7 +58,7 @@ public final class TodayPlanStore {
             plan = merged
             save()
         }
-        if merged.customized || !merged.done.isEmpty, merged != remote { _ = await api.progressPush(token: t, branch: Self.branch, data: merged.js) }
+        if merged.customized || !merged.done.isEmpty || merged.marks != nil, merged != remote { _ = await api.progressPush(token: t, branch: Self.branch, data: merged.js) }
     }
 
     public func flush() async {

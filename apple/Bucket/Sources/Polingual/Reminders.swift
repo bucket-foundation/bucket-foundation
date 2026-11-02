@@ -70,6 +70,7 @@ final class Reminders {
     var denied = false
     var wordChoice: Bool? { didSet { defaults.set(wordChoice, forKey: Self.wordKey) } }
     var wordOfDay: Bool { wordChoice ?? enabled }
+    var stuckOff: Bool { ReminderConsent.stuckOff(defaults) }
     var streakChoice: Bool? { didSet { defaults.set(streakChoice, forKey: Self.streakKey) } }
     var streakRisk: Bool { streakChoice ?? enabled }
     var cheers: Bool { didSet { defaults.set(cheers, forKey: Self.cheersKey) } }
@@ -261,7 +262,7 @@ struct ReminderPrompt: View {
                     .font(.subheadline)
                     .foregroundStyle(Palette.muted)
                 if !reminders.denied {
-                    Button("Remind me when these are due") { Task { _ = await reminders.enable() } }
+                    Button(reminders.stuckOff ? String(localized: "Turn on reminders") : String(localized: "Remind me when these are due")) { Task { _ = await reminders.enable() } }
                         .buttonStyle(D8Option(align: .center, compact: true))
                 }
                 #if os(iOS)
