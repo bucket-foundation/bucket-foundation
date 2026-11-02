@@ -206,6 +206,52 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(BucketAPI.groupError(status: 409, data: json(["error": code])) == expected)
     }
 
+    @Test func mapsTheNameFilterRefusal() {
+        #expect(BucketAPI.groupError(status: 422, data: json(["error": "name_not_allowed"])) == .nameNotAllowed)
+    }
+
+    @Test func moderationCallsUseTheContract() async throws {
+        let seen = LockedBox<[URLRequest]>([])
+        let api = BucketAPI(transport: StubTransport { r in
+            seen.mutate { $0.append(r) }
+            if r.httpMethod == nil || r.httpMethod == "GET" {
+                return (200, json(["blocks": [["id": "b1", "kind": "member", "targetId": "u2", "name": "Nonna", "at": "2026-11-02T10:00:00Z"]]]))
+            }
+            return (200, json(["ok": true]))
+        }, cacheDir: nil)
+        try await api.report(token: "t", groupId: "g1", userId: "u2", reason: .offensiveName)
+        try await api.report(token: "t", groupId: "g1", userId: nil, reason: .spam)
+        try await api.block(token: "t", groupId: "g1", userId: nil)
+        let blocks = try await api.blocks(token: "t")
+        try await api.unblock(token: "t", blockId: "b1")
+        #expect(blocks == [GroupBlock(id: "b1", kind: .member, targetId: "u2", name: "Nonna", at: "2026-11-02T10:00:00Z")])
+        func body(_ i: Int) throws -> [String: String] {
+            try #require(try JSONSerialization.jsonObject(with: seen.value[i].httpBody ?? Data()) as? [String: String])
+        }
+        #expect(seen.value.map(\.url!.path) == ["/api/academy/groups/report", "/api/academy/groups/report", "/api/academy/groups/block", "/api/academy/groups/block", "/api/academy/groups/unblock"])
+        #expect(try body(0) == ["groupId": "g1", "userId": "u2", "reason": "offensive_name"])
+        #expect(try body(1) == ["groupId": "g1", "reason": "spam"])
+        #expect(try body(2) == ["groupId": "g1"])
+        #expect(try body(4) == ["blockId": "b1"])
+    }
+
+    @MainActor @Test func blockingHidesTheMemberEverywhere() async throws {
+        let list = json(["blocks": [["id": "b1", "kind": "member", "targetId": "u2", "name": "Nonna", "at": "2026-11-02T10:00:00Z"]]])
+        let api = BucketAPI(transport: StubTransport { r in r.httpMethod == "POST" ? (200, json(["ok": true])) : (200, list) }, cacheDir: nil)
+        let store = GroupStore(api: api, token: { "t" })
+        let group = try JSONDecoder().decode(LearningGroup.self, from: json(groupJSON))
+        var other = group
+        other.id = "g2"
+        store.groups = [group, other]
+        try await store.block(groupId: "g1", userId: "u2")
+        #expect(store.groups.allSatisfy { g in !g.members.contains { $0.userId == "u2" } })
+        #expect(store.blocks.map(\.id) == ["b1"])
+        try await store.unblock(store.blocks[0])
+        #expect(store.blocks.isEmpty)
+        try await store.block(groupId: "g2", userId: nil)
+        #expect(store.groups.map(\.id) == ["g1"])
+    }
+
     @Test func socialCallsUseTheContract() async throws {
         let seen = LockedBox<[URLRequest]>([])
         let api = BucketAPI(transport: StubTransport { r in

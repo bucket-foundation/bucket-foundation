@@ -34,6 +34,7 @@ func groupMessage(_ e: BucketError?) -> String? {
     case .joinedLimit: String(localized: "You already belong to 20 groups.")
     case .cheerLimit: String(localized: "You sent them 3 today. Try again tomorrow.")
     case .nudgeNotNeeded: String(localized: "They already studied today.")
+    case .nameNotAllowed: String(localized: "That name is not allowed. Try another.")
     default: String(localized: "Something went wrong. Try again.")
     }
 }
@@ -82,6 +83,9 @@ struct FamilyAndFriends: View {
                 if account.stage != .signedIn { signingIn = true } else { sheet = .enterCode }
             } label: {
                 Label("Have an invite code?", systemImage: "ticket")
+            }
+            if !groups.blocks.isEmpty {
+                NavigationLink { BlockedList() } label: { Label("Blocked", systemImage: "hand.raised") }
             }
         } header: {
             Eyebrow(text: "Family and friends")
@@ -213,6 +217,8 @@ struct GroupView: View {
     @State private var leaving = false
     @State private var inviting = false
     @State private var resetting = false
+    @State private var reporting: ModerationTarget?
+    @State private var blocking: ModerationTarget?
     @State private var error: BucketError?
     #if !BUCKET
     @State private var paywall = false
@@ -239,10 +245,18 @@ struct GroupView: View {
                             if g.isOwner && !m.isMe {
                                 Button("Remove", role: .destructive) { removing = m }
                             }
+                            if !m.isMe {
+                                Button("Block") { blocking = ModerationTarget(member: m, groupId: g.id) }.tint(D8.vermilion)
+                                Button("Report") { reporting = ModerationTarget(member: m, groupId: g.id) }.tint(Palette.muted)
+                            }
                         }
                         .contextMenu {
                             if g.isOwner && !m.isMe {
                                 Button("Remove", systemImage: "person.badge.minus", role: .destructive) { removing = m }
+                            }
+                            if !m.isMe {
+                                Button("Report", systemImage: "flag") { reporting = ModerationTarget(member: m, groupId: g.id) }
+                                Button("Block", systemImage: "hand.raised", role: .destructive) { blocking = ModerationTarget(member: m, groupId: g.id) }
                             }
                         }
                 }
@@ -268,6 +282,10 @@ struct GroupView: View {
                     Button { resetting = true } label: { Label("Reset invite link", systemImage: "arrow.clockwise") }
                 }
                 Button("Leave group", role: .destructive) { leaving = true }
+                if !g.isOwner {
+                    Button { reporting = ModerationTarget(group: g) } label: { Label("Report group name", systemImage: "flag") }
+                    Button(role: .destructive) { blocking = ModerationTarget(group: g) } label: { Label("Block this group", systemImage: "hand.raised") }
+                }
             } footer: {
                 if g.isOwner { Text("Resetting the link stops the old one from working.") }
             }
@@ -286,6 +304,7 @@ struct GroupView: View {
         .listRowBackground(Palette.card)
         .scrollContentBackground(.hidden)
         .navigationTitle(g.name)
+        .modifier(Moderation(reporting: $reporting, blocking: $blocking) { if $0.userId == nil { dismiss() } })
         .sheet(isPresented: $inviting) { InviteSheet(groupId: g.id) }
         #if !BUCKET
         .sheet(isPresented: $paywall) { Paywall(family: true) }
@@ -379,8 +398,11 @@ struct MemberView: View {
     let member: GroupMember
     let groupId: String
     @Environment(GroupStore.self) private var groups
+    @Environment(\.dismiss) private var dismiss
     @State private var comparing = false
     @State private var together: MemberSet?
+    @State private var reporting: ModerationTarget?
+    @State private var blocking: ModerationTarget?
 
     var me: GroupMember? { member.isMe ? nil : groups.group(groupId)?.me }
 
@@ -489,6 +511,20 @@ struct MemberView: View {
         .scrollContentBackground(.hidden)
         .paper()
         .navigationTitle(member.name)
+        .toolbar {
+            if !member.isMe {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        Button("Report \(member.name)", systemImage: "flag") { reporting = ModerationTarget(member: member, groupId: groupId) }
+                        Button("Block \(member.name)", systemImage: "hand.raised", role: .destructive) { blocking = ModerationTarget(member: member, groupId: groupId) }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                    .accessibilityLabel("Report or block")
+                }
+            }
+        }
+        .modifier(Moderation(reporting: $reporting, blocking: $blocking) { _ in dismiss() })
         .sheet(item: $together) { LearnTogetherSheet(set: $0, memberName: member.name) }
     }
 }
@@ -688,6 +724,12 @@ enum DemoGroup {
         MemberSubject(branch: "03-chemistry", title: "Chemistry", started: 6, mastered: 1, strength: 0.35),
         MemberSubject(branch: "04-information", title: "Information", started: 4, mastered: 0, strength: 0.22),
     ]
+
+    static var shown: LearningGroup {
+        var g = group
+        if screen == "joined" { g.role = .member }
+        return g
+    }
 
     static let group = LearningGroup(id: "demo", name: "Rossi family", kind: .family, code: "7K3M9QX2PD", role: .owner, members: [
         GroupMember(userId: "u1", name: "Gia Rossi", role: .owner, isMe: true, streak: 12, todayReviews: 34, weekReviews: 160, lastActivity: nil,

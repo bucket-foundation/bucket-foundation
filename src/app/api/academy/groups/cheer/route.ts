@@ -3,6 +3,7 @@ import { cheerDecision, normalizeCheerKind, toCheer, uuidOrNull, type CheerRow }
 import {
   configured,
   fail,
+  isHidden,
   json,
   membersOf,
   preflight,
@@ -33,6 +34,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const now = Date.now();
     const members = await membersOf([groupId]);
     if (!members.some((m) => m.user_id === uid)) return json({ error: "not_found" }, 404);
+    if (await isHidden(uid, to)) return json({ error: "not_found" }, 404);
     const sums = kind === "nudge" ? await summaries([to], now, "UTC") : null;
     const decision = cheerDecision(members, uid, to, kind, sums?.get(to)?.todayReviews ?? 0);
     if (decision === "self") return json({ error: "bad_request" }, 400);

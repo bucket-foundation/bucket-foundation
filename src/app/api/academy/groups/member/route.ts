@@ -1,6 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { memberGraph, uuidOrNull } from "@/lib/academy/groups";
-import { configured, fail, json, lookup, membersOf, preflight, progressRows, requestUser, words } from "@/lib/academy/groups-server";
+import { configured, fail, isHidden, json, lookup, membersOf, preflight, progressRows, requestUser, words } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,6 +21,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const members = await membersOf([groupId]);
     if (!members.some((m) => m.user_id === uid) || !members.some((m) => m.user_id === target)) return json({ error: "not_found" }, 404);
+    if (await isHidden(uid, target)) return json({ error: "not_found" }, 404);
     const graph = memberGraph(await progressRows([target]), branch, lookup, words);
     if (!graph) return json({ error: "not_found" }, 404);
     return json(graph);
