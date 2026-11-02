@@ -1,6 +1,6 @@
 import { parseSignup } from "./signup";
 
-export const TESTFLIGHT_URL = "https://testflight.apple.com/join/HfeRBKr8";
+export const TESTFLIGHT_URL = "https://testflight.apple.com/join/B1ctUxn5";
 export const TESTFLIGHT_APP_URL = "https://apps.apple.com/app/testflight/id899247664";
 
 export type BetaEnv = Record<string, string | undefined>;
