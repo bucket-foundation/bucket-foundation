@@ -5,82 +5,49 @@ struct LearnView: View {
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
     @State private var path = NavigationPath()
-    @State private var side = LearnSide.launch
-
-    enum LearnSide: String, CaseIterable {
-        case languages, subjects
-
-        static var launch: LearnSide { Launch.value("-learnSide").flatMap(LearnSide.init(rawValue:)) ?? .languages }
-        var title: String { self == .languages ? String(localized: "Languages") : String(localized: "Subjects") }
-    }
 
     var body: some View {
         NavigationStack(path: $path) {
-            Group {
-                switch library.index {
-                case .idle, .loading:
-                    ProgressView("Opening the canon")
-                case .failed(let message):
-                    StateMessage(title: "Bucket could not load the decks", detail: message) {
-                        Task { await library.retryIndex() }
-                    }
-                case .ready:
-                    List {
-                        Section {
-                            Picker("Learn", selection: $side) {
-                                ForEach(LearnSide.allCases, id: \.self) { Text($0.title).tag($0) }
-                            }
-                            .pickerStyle(.segmented)
-                            .listRowBackground(Color.clear)
-                            .listRowInsets(EdgeInsets())
-                        }
-                        if side == .languages {
-                            Section {
-                                ForEach(library.languageDecks) { entry in
-                                    NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
-                                        .listRowBackground(Palette.card)
-                                }
-                            } header: {
-                                Eyebrow(text: "Languages")
-                            }
-                        } else {
-                            Section {
-                                NavigationLink(value: LearnRoute.canon) {
-                                    Label("Search the canon", systemImage: "text.magnifyingglass")
-                                }
-                                .listRowBackground(Palette.card)
-                            } footer: {
-                                Text("Foundations across seven branches: mathematics to mind.")
-                            }
-                            Section {
-                                ForEach(library.scienceDecks) { entry in
-                                    NavigationLink(value: entry) { DeckRow(entry: entry) }
-                                        .listRowBackground(Palette.card)
-                                }
-                            } header: {
-                                Eyebrow(text: "Seven branches and the meta-skill")
-                            }
-                        }
-                    }
+            ScrollViewReader { proxy in
+                List {
+                    LearnHeading(text: langs.systems.isEmpty ? "Languages" : "Your languages")
+                    languages(proxy)
+                    LearnHeading(text: "Explore")
+                    GamesSection()
+                    ContentSection()
+                    SubjectsSection()
+                    if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
                 }
+                .listSectionSpacing(.compact)
+                #if DEBUG
+                .task {
+                    guard let anchor = Launch.value("-learnScroll") else { return }
+                    try? await Task.sleep(for: .seconds(4))
+                    proxy.scrollTo(anchor, anchor: .top)
+                }
+                #endif
             }
             .paper()
             .navigationTitle("Learn")
             .navigationDestination(for: DeckEntry.self) { DeckView(entry: $0) }
             .navigationDestination(for: AtomRoute.self) { AtomView(route: $0) }
-            .navigationDestination(for: LearnRoute.self) { _ in CanonView() }
+            .navigationDestination(for: LearnRoute.self) { destination($0) }
             .langDestinations(path: $path)
         }
         .task {
-            guard let spec = Launch.value("-openLang") else { return }
             await langs.load()
+            #if DEBUG
+            if let game = Launch.value("-openGame").flatMap(GameKind.init(rawValue:)) { path.append(LearnRoute.game(game)) }
+            if let kind = Launch.value("-contentKind").flatMap(ContentKind.init(rawValue:)) { path.append(LearnRoute.content(kind)) }
+            if let topic = ContentCatalog.topics.first(where: { $0.title == Launch.value("-readTopic") }) { path.append(LearnRoute.read(topic)) }
+            #endif
+            guard let spec = Launch.value("-openLang") else { return }
             let parts = spec.split(separator: ":").map(String.init)
             guard parts.count == 3 else { return }
             let targets = parts[1].split(separator: ",").map(String.init)
             let existing = langs.systems.first { $0.root == parts[0] && $0.targets == targets }
             let system: LangSystem? = if let existing { existing } else { try? await langs.create(root: parts[0], targets: targets) }
             guard let system else { return }
-            path.append(LangRoute.home)
             switch parts[2] {
             case "study": path.append(LangRoute.study(system.id))
             case "place": path.append(LangRoute.place(system.id, nil))
@@ -94,6 +61,145 @@ struct LearnView: View {
             if path.isEmpty, let id = Launch.value("-openDeck"), let d = decks.first(where: { $0.id == id }) { path.append(d) }
         }
     }
+
+    @ViewBuilder func languages(_ proxy: ScrollViewProxy) -> some View {
+        switch langs.status {
+        case .idle, .loading:
+            Section { ProgressView("Loading your language systems").frame(maxWidth: .infinity) }
+                .listRowBackground(Color.clear)
+        case .error:
+            Section {
+                Text("The language corpus files did not arrive. Check the connection and try again.").foregroundStyle(Palette.muted)
+                Button("Retry") { Task { await langs.load(force: true) } }
+            }
+            .listRowBackground(Palette.card)
+        case .ready:
+            if let corpus = langs.corpus {
+                LanguageSections(path: $path, corpus: corpus, proxy: proxy, railsOnceStarted: true)
+            }
+        }
+    }
+
+    @ViewBuilder func destination(_ route: LearnRoute) -> some View {
+        switch route {
+        case .canon: CanonView()
+        case .game(let game): game.screen
+        case .read(let topic): ReadView(topic: topic, langs: langs.contentLangs).fullHeightSession()
+        case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
+        }
+    }
+}
+
+struct LearnHeading: View {
+    let text: String
+
+    var body: some View {
+        Section {
+            Text(LocalizedStringKey(text))
+                .font(.serif(.title2, weight: .semibold))
+                .foregroundStyle(Palette.ink)
+                .accessibilityAddTraits(.isHeader)
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets(top: 8, leading: 4, bottom: 0, trailing: 4))
+        }
+    }
+}
+
+struct LearnGroupTitle: View {
+    let text: String
+    var more: LearnRoute?
+
+    var body: some View {
+        HStack(alignment: .firstTextBaseline) {
+            Text(LocalizedStringKey(text)).font(.headline).foregroundStyle(Palette.ink)
+            Spacer()
+            if let more {
+                NavigationLink("See all", value: more).font(.subheadline.weight(.semibold))
+            }
+        }
+        .textCase(nil)
+    }
+}
+
+struct GamesSection: View {
+    @Environment(LangStore.self) private var langs
+
+    var body: some View {
+        Section {
+            ForEach(GameKind.allCases) { game in
+                NavigationLink(value: LearnRoute.game(game)) {
+                    TileRow(symbol: game.symbol, title: game.title, detail: game.detail)
+                }
+                .disabled(langs.systems.isEmpty)
+                .opacity(langs.systems.isEmpty ? 0.55 : 1)
+            }
+        } header: {
+            LearnGroupTitle(text: "Games")
+        } footer: {
+            if langs.systems.isEmpty {
+                Text("Start a language set above. The games use the words you study.")
+            } else {
+                Text("\(langs.gameWords.count) words from your sets. Games do not change your reviews.")
+            }
+        }
+        .id("games")
+        .listRowBackground(Palette.card)
+    }
+}
+
+struct ContentSection: View {
+    @Environment(LangStore.self) private var langs
+
+    var names: String { langs.contentLangs.prefix(3).map(langName).joined(separator: ", ") }
+
+    var body: some View {
+        Section {
+            ForEach(ContentCatalog.topics.prefix(3)) { topic in
+                NavigationLink(value: LearnRoute.read(topic)) {
+                    TileRow(symbol: "book", title: topic.title, detail: String(localized: "Read side by side in \(names)"), color: D8.malachite)
+                }
+            }
+            NavigationLink(value: LearnRoute.content(.listen)) {
+                TileRow(symbol: "dot.radiowaves.left.and.right", title: ContentKind.listen.title, detail: String(localized: "Live radio in \(names)"), color: D8.vermilion)
+            }
+            NavigationLink(value: LearnRoute.content(.watch)) {
+                TileRow(symbol: "play.rectangle", title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics in \(names)"), color: D8.vermilion)
+            }
+        } header: {
+            LearnGroupTitle(text: "Content", more: .content(.read))
+        }
+        .id("content")
+        .listRowBackground(Palette.card)
+    }
+}
+
+struct SubjectsSection: View {
+    @Environment(Library.self) private var library
+
+    var body: some View {
+        Section {
+            switch library.index {
+            case .idle, .loading:
+                ProgressView("Opening the canon").frame(maxWidth: .infinity)
+            case .failed(let message):
+                Text(message).foregroundStyle(Palette.muted)
+                Button("Retry") { Task { await library.retryIndex() } }
+            case .ready:
+                NavigationLink(value: LearnRoute.canon) {
+                    Label("Search the canon", systemImage: "text.magnifyingglass")
+                }
+                ForEach(library.scienceDecks) { entry in
+                    NavigationLink(value: entry) { DeckRow(entry: entry) }
+                }
+            }
+        } header: {
+            LearnGroupTitle(text: "Subjects")
+        } footer: {
+            Text("Foundations across seven branches: mathematics to mind.")
+        }
+        .id("subjects")
+        .listRowBackground(Palette.card)
+    }
 }
 
 extension LearnView {
@@ -102,10 +208,8 @@ extension LearnView {
         switch link {
         case .langs(let root, let targets):
             DeepLink.shared.pending = nil
-            side = .languages
             await langs.load()
             path = NavigationPath()
-            path.append(LangRoute.home)
             if let system = langs.systems.first(where: { $0.root == root && Set($0.targets) == Set(targets) }) {
                 path.append(LangRoute.system(system.id))
             }
@@ -115,7 +219,6 @@ extension LearnView {
                 return
             }
             DeepLink.shared.pending = nil
-            side = .subjects
             path = NavigationPath()
             path.append(entry)
             if case .atom(_, let atomId) = link, let deck = await library.prepared(entry), let atom = deck.byId[atomId] {
@@ -146,6 +249,9 @@ struct DeckRow: View {
 
 enum LearnRoute: Hashable {
     case canon
+    case game(GameKind)
+    case read(ContentTopic)
+    case content(ContentKind)
 }
 
 struct AtomRoute: Hashable {

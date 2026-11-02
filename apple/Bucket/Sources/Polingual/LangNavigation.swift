@@ -90,7 +90,6 @@ extension View {
     func langDestinations(path: Binding<NavigationPath>) -> some View {
         navigationDestination(for: LangRoute.self) { route in
             switch route {
-            case .home: LanguagesHome(path: path)
             case .system(let id): SystemView(path: path, systemId: id)
             case .study(let id): StudyView(path: path, systemId: id).fullHeightSession()
             case .place(let id, let lang): PlacementView(path: path, systemId: id, requested: lang).fullHeightSession()

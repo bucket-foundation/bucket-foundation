@@ -29,6 +29,38 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .flags: "flag"
         }
     }
+
+    @MainActor @ViewBuilder var screen: some View {
+        switch self {
+        case .match: MatchGame().fullHeightSession()
+        case .memory: MemoryGame().fullHeightSession()
+        case .flags: FlagGame().fullHeightSession()
+        }
+    }
+}
+
+struct TileRow: View {
+    let symbol: String
+    let title: String
+    let detail: String
+    var color = D8.lapis
+
+    var body: some View {
+        HStack(spacing: 14) {
+            Image(systemName: symbol)
+                .font(.title2)
+                .foregroundStyle(D8.parchment)
+                .frame(width: 48, height: 48)
+                .background(color, in: .rect(cornerRadius: 12))
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title).font(.headline).foregroundStyle(Palette.ink)
+                Text(detail).font(.footnote).foregroundStyle(Palette.muted)
+            }
+        }
+        .padding(.vertical, 4)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .contentShape(.rect)
+    }
 }
 
 @MainActor
@@ -88,20 +120,7 @@ struct GamesView: View {
                 Section {
                     ForEach(GameKind.allCases) { g in
                         Button { open = g } label: {
-                            HStack(spacing: 14) {
-                                Image(systemName: g.symbol)
-                                    .font(.title2)
-                                    .foregroundStyle(D8.parchment)
-                                    .frame(width: 48, height: 48)
-                                    .background(D8.lapis, in: .rect(cornerRadius: 12))
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(g.title).font(.headline)
-                                    Text(g.detail).font(.footnote).foregroundStyle(Palette.muted)
-                                }
-                            }
-                            .padding(.vertical, 4)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .contentShape(.rect)
+                            TileRow(symbol: g.symbol, title: g.title, detail: g.detail)
                         }
                         .buttonStyle(.plain)
                     }
@@ -113,13 +132,7 @@ struct GamesView: View {
         }
         .paper()
         .navigationTitle("Games")
-        .navigationDestination(item: $open) { g in
-            switch g {
-            case .match: MatchGame().fullHeightSession()
-            case .memory: MemoryGame().fullHeightSession()
-            case .flags: FlagGame().fullHeightSession()
-            }
-        }
+        .navigationDestination(item: $open) { $0.screen }
         .task {
             await langs.load()
             #if DEBUG

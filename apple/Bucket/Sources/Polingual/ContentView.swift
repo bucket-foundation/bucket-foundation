@@ -145,13 +145,25 @@ final class RadioPlayer {
     }
 }
 
+extension LangStore {
+    var contentLangs: [String] {
+        let all = gameLangs
+        return all.isEmpty ? ["es", "fr"] : all
+    }
+}
+
 struct ContentHub: View {
     @Environment(LangStore.self) private var langs
     var embedded = false
-    @State private var kind: ContentKind = Self.launchKind
+    @State private var kind: ContentKind
     @State private var branch: String?
     @State private var lang: String?
     @State private var openTopic: ContentTopic?
+
+    init(embedded: Bool = false, start: ContentKind? = nil) {
+        self.embedded = embedded
+        _kind = State(initialValue: start ?? Self.launchKind)
+    }
 
     static var launchKind: ContentKind {
         #if DEBUG
@@ -161,10 +173,7 @@ struct ContentHub: View {
         return .read
     }
 
-    var learnerLangs: [String] {
-        let all = langs.gameLangs
-        return all.isEmpty ? ["es", "fr"] : all
-    }
+    var learnerLangs: [String] { langs.contentLangs }
 
     var shownLangs: [String] { lang.map { [$0] } ?? learnerLangs }
 
@@ -218,10 +227,10 @@ struct ContentHub: View {
                 }
             }
         }
-        .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs) }
+        .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
         .onChange(of: kind) { _, k in if k != .listen { RadioPlayer.shared.stop() } }
         .onDisappear { RadioPlayer.shared.stop() }
-        .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs) }
+        .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
         .task {
             await langs.load()
             #if DEBUG
