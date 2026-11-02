@@ -7,10 +7,12 @@ struct TodayView: View {
     @Environment(ScienceStore.self) private var science
     @Environment(Reminders.self) private var reminders
     @Environment(Account.self) private var account
+    @Environment(GroupStore.self) private var groups
     @Environment(\.scenePhase) private var phase
     @State private var path = NavigationPath()
     @State private var session: StudyLaunch?
     @State private var picking = false
+    @State private var dropTarget: String?
     @AppStorage("bucket.today.order") private var order = ""
     @State private var scienceReady = false
     private let plan = TodayPlanStore.shared
@@ -32,6 +34,7 @@ struct TodayView: View {
         case lang(LangSystem)
         case game(GameKind)
         case read(ContentTopic)
+        case activity(TodayActivity)
 
         var id: String {
             switch self {
@@ -39,6 +42,7 @@ struct TodayView: View {
             case .lang(let s): TodayItem.system(s).id
             case .game(let g): TodayItem.game(g).id
             case .read(let t): TodayItem.topic(t).id
+            case .activity(let a): a.id
             }
         }
 
@@ -48,6 +52,7 @@ struct TodayView: View {
             case .lang(let s): s.name
             case .game(let g): g.title
             case .read(let t): t.title
+            case .activity(let a): a.title
             }
         }
 
@@ -94,15 +99,22 @@ struct TodayView: View {
         case .lang(let s): .system(s)
         case .game(let g): .game(g)
         case .read(let t): .topic(t)
+        case .activity(let a): .activity(a)
         }
     }
 
+    func alphabetSystem(_ lang: String) -> LangSystem? {
+        LangScript.alphabetUnit(lang) == nil ? nil : langs.systems.first { $0.targets.contains(lang) }
+    }
+
     func resolve(_ item: TodayItem) -> Item? {
+        if case .alphabet(let lang)? = item.activity, alphabetSystem(lang) == nil { return nil }
+        if let activity = item.activity { return .activity(activity) }
         switch item.kind {
-        case .system: langs.systems.first { $0.id == item.ref }.map(Item.lang)
-        case .deck: library.scienceDecks.first { $0.id == item.ref }.flatMap(work).map(Item.deck)
-        case .game: GameKind(rawValue: item.ref).map(Item.game)
-        case .content: ContentCatalog.topics.first { $0.title == item.ref }.map(Item.read)
+        case .system: return langs.systems.first { $0.id == item.ref }.map(Item.lang)
+        case .deck: return library.scienceDecks.first { $0.id == item.ref }.flatMap(work).map(Item.deck)
+        case .game: return GameKind(rawValue: item.ref).map(Item.game)
+        case .content: return ContentCatalog.topics.first { $0.title == item.ref }.map(Item.read)
         }
     }
 
@@ -139,12 +151,13 @@ struct TodayView: View {
         switch item {
         case .deck(let w): (w.due, w.new)
         case .lang(let s): (langs.corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0, langNewLeft(s, langs.state(s.id), now: now))
-        case .game, .read: nil
+        case .game, .read, .activity: nil
         }
     }
 
     func hasWork(_ item: Item, _ now: Double) -> Bool {
-        cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
+        if case .activity(.alphabet(let lang)) = item, let system = alphabetSystem(lang), !letterQueue(system, langs.state(system.id), now: now).contains(where: { $0.lang == lang }) { return false }
+        return cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
     }
 
     func studied(_ item: Item, _ now: Double) -> Int {
@@ -152,7 +165,7 @@ struct TodayView: View {
         switch item {
         case .deck(let w): state = science.state(w.entry.id)
         case .lang(let s): state = langs.state(s.id)
-        case .game, .read: return 0
+        case .game, .read, .activity: return 0
         }
         return state.history[dayKey(now)].map { Int($0.new + $0.reviews) }.orZero
     }
@@ -163,6 +176,10 @@ struct TodayView: View {
         case .lang(let s): path.append(LangRoute.study(s.id))
         case .game(let g): path.append(TodayRoute.game(g))
         case .read(let t): path.append(TodayRoute.read(t))
+        case .activity(.listen): path.append(TodayRoute.content(.listen))
+        case .activity(.watch): path.append(TodayRoute.content(.watch))
+        case .activity(.alphabet(let lang)):
+            if let system = alphabetSystem(lang) { path.append(LangRoute.alphabet(system.id, lang)) }
         }
     }
 
@@ -176,7 +193,7 @@ struct TodayView: View {
             let per = langProgress(s, corpus, langs.state(s.id), now: now)
             let total = per.reduce(0) { $0 + Int($1.total) }
             return total > 0 ? Int(Double(per.reduce(0) { $0 + Int($1.mastered) }) / Double(total) * 100) : 0
-        case .game, .read: return 0
+        case .game, .read, .activity: return 0
         }
     }
 
@@ -187,8 +204,13 @@ struct TodayView: View {
             if c.due == 0 { return String(localized: "\(c.new) new") }
             return String(localized: "\(c.due) review · \(c.new) new")
         }
-        if case .game = item { return String(localized: "Play one round") }
-        return String(localized: "Read for 30 seconds")
+        switch item {
+        case .game: return String(localized: "Play one round")
+        case .activity(.listen): return String(localized: "Listen for 2 minutes")
+        case .activity(.watch): return String(localized: "Watch for 1 minute")
+        case .activity(.alphabet): return String(localized: "Finish one round")
+        default: return String(localized: "Read for 30 seconds")
+        }
     }
 
     func widget(_ item: Item, done: Bool, now: Double) -> some View {
@@ -197,12 +219,19 @@ struct TodayView: View {
         let symbol: String? = switch item {
         case .game(let game): game.symbol
         case .read: "book"
+        case .activity(.listen): "dot.radiowaves.left.and.right"
+        case .activity(.watch): "play.rectangle"
+        case .activity(.alphabet): "character.book.closed"
         default: nil
         }
         let branch: String? = if case .deck(let w) = item { w.entry.id } else { nil }
-        let flags: [String] = if case .lang(let s) = item { s.targets } else { [] }
+        let flags: [String] = switch item {
+        case .lang(let s): s.targets
+        case .activity(.alphabet(let lang)): [lang]
+        default: []
+        }
         let share = did + (count ?? 0)
-        return TodayWidget(symbol: symbol, branch: branch, flags: flags, title: item.title, detail: detail(item, now), left: count, progress: done ? 1 : share > 0 ? Double(did) / Double(share) : 0, done: done) { open(item) }
+        return TodayWidget(symbol: symbol, branch: branch, flags: flags, title: item.title, detail: detail(item, now), left: count, progress: done ? 1 : share > 0 ? Double(did) / Double(share) : 0, done: done, dragId: item.id) { open(item) }
             .contextMenu {
                 Button("Open", systemImage: "play.fill") { open(item) }
                 Button("Move to top", systemImage: "arrow.up.to.line") { plan.move(item.id, toTop: true) }
@@ -212,6 +241,17 @@ struct TodayView: View {
                 }
                 Button("Remove from Today", systemImage: "minus.circle", role: .destructive) { plan.remove(item.id) }
             }
+            .dropDestination(for: String.self) { ids, _ in
+                guard let id = ids.first, id != item.id else { return false }
+                withAnimation(.snappy) { plan.drop(id, onto: item.id) }
+                return true
+            } isTargeted: { over in
+                if over { dropTarget = item.id } else if dropTarget == item.id { dropTarget = nil }
+            }
+            .overlay {
+                if dropTarget == item.id { RoundedRectangle(cornerRadius: 22).strokeBorder(D8.lapis, lineWidth: 3).allowsHitTesting(false) }
+            }
+            .accessibilityIdentifier("today.widget.\(item.id)")
     }
 
     func hero(_ date: Date, studied: Bool, pending: [Item], planned: [Item], now: Double) -> some View {
@@ -240,48 +280,46 @@ struct TodayView: View {
             if !loaded {
                 TodaySkeleton()
             } else {
-            List {
-                Section { StreakGoalCard(streak: streak) }
-                    .listRowBackground(Palette.card)
-                Section {
-                    TimelineView(.periodic(from: .now, by: 60)) { context in
-                        hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    StreakGoalCard(streak: streak).todayCard()
+                    VStack(spacing: 12) {
+                        TimelineView(.periodic(from: .now, by: 60)) { context in
+                            hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Divider().overlay(Palette.rule)
+                        HStack(spacing: 0) {
+                            Tally(n: due, label: "due now", color: D8.vermilion)
+                            Tally(n: new, label: "new today", color: D8.lapis)
+                            Tally(n: done, label: "done today", color: D8.malachite)
+                        }
+                        .padding(.vertical, 4)
                     }
-                    HStack(spacing: 0) {
-                        Tally(n: due, label: "due now", color: D8.vermilion)
-                        Tally(n: new, label: "new today", color: D8.lapis)
-                        Tally(n: done, label: "done today", color: D8.malachite)
-                    }
-                    .padding(.vertical, 4)
-                }
-                .listRowBackground(Palette.card)
-                if !langs.systems.isEmpty {
-                    Section {
+                    .todayCard()
+                    if !langs.systems.isEmpty {
                         VoiceCircle {
                             DeepLink.shared.listen = true
                             path.append(TodayRoute.translate)
                         }
-                        .listRowInsets(EdgeInsets())
                     }
-                    .listRowBackground(Color.clear)
-                }
-                Section {
-                    LazyVGrid(columns: learnColumns, spacing: 14) {
-                        ForEach(pending) { widget($0, done: false, now: now) }
-                        ForEach(finished) { widget($0, done: true, now: now) }
-                        TodayAddWidget { picking = true }
+                    VStack(alignment: .leading, spacing: 10) {
+                        Eyebrow(text: "Your day").padding(.leading, 16)
+                        LazyVGrid(columns: learnColumns, spacing: 14) {
+                            ForEach(pending) { widget($0, done: false, now: now) }
+                            ForEach(finished) { widget($0, done: true, now: now) }
+                            TodayAddWidget { picking = true }
+                        }
                     }
-                    .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-                    .listRowSeparator(.hidden)
-                } header: {
-                    Eyebrow(text: "Your day")
+                    if !groups.people.isEmpty || !groups.incoming.isEmpty || !groups.goals.isEmpty {
+                        VStack(alignment: .leading, spacing: 10) { TodayStrip() }.todayCard()
+                    }
+                    if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
+                        ReminderPrompt().padding(.vertical, 6).todayCard()
+                    }
                 }
-                .listRowBackground(Color.clear)
-                TodayStrip()
-                if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
-                    Section { ReminderPrompt().padding(.vertical, 6) }
-                        .listRowBackground(Palette.card)
-                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
             }
             }
             }
@@ -296,12 +334,17 @@ struct TodayView: View {
                 switch route {
                 case .game(let game): game.screen
                 case .read(let topic): ReadView(topic: topic, langs: langs.gameLangs.isEmpty ? ["es", "fr"] : langs.gameLangs)
+                case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
                 case .translate: TranslateScreen()
                 }
             }
             .onChange(of: defaultItems, initial: true) { _, items in if loaded { plan.adopt(items) } }
             .onChange(of: loaded) { _, ready in if ready { plan.adopt(defaultItems) } }
-            .onChange(of: phase) { _, p in if p == .active { Task { await plan.pull() } } }
+            .onChange(of: phase) { _, p in
+                guard p == .active else { return }
+                WatchDwell.returned()
+                Task { await plan.pull() }
+            }
             .onChange(of: account.stage) { old, new in
                 if new == .signedOut && old == .signedIn && account.endedByUser { plan.clearLocal() }
             }
@@ -311,7 +354,10 @@ struct TodayView: View {
             }
             .onChange(of: loaded, initial: true) { _, ready in if ready && StudyRequest.take() { startNext() } }
             .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in if loaded && StudyRequest.take() { startNext() } }
-            .task { await langs.load() }
+            .task {
+                WatchDwell.returned()
+                await langs.load()
+            }
             .task(id: library.scienceDecks.map(\.id)) {
                 scienceReady = false
                 await science.load(library.scienceDecks.map(\.id))

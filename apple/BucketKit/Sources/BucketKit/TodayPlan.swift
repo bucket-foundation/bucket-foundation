@@ -16,6 +16,68 @@ public struct TodayItem: Codable, Hashable, Identifiable, Sendable {
     }
 
     public var id: String { "\(kind.rawValue):\(ref)" }
+
+    public init(_ activity: TodayActivity, title: String) {
+        self.init(kind: .content, ref: activity.ref, title: title)
+    }
+
+    public var activity: TodayActivity? { kind == .content ? TodayActivity(ref: ref) : nil }
+}
+
+public enum TodayActivity: Hashable, Sendable {
+    case listen, watch
+    case alphabet(String)
+
+    static let prefix = "activity:"
+
+    public var ref: String {
+        switch self {
+        case .listen: "\(Self.prefix)listen"
+        case .watch: "\(Self.prefix)watch"
+        case .alphabet(let lang): "\(Self.prefix)alphabet:\(lang)"
+        }
+    }
+
+    public var id: String { TodayItem(self, title: "").id }
+
+    public init?(ref: String) {
+        guard ref.hasPrefix(Self.prefix) else { return nil }
+        let parts = ref.dropFirst(Self.prefix.count).split(separator: ":").map(String.init)
+        switch (parts.first, parts.count) {
+        case ("listen", 1): self = .listen
+        case ("watch", 1): self = .watch
+        case ("alphabet", 2): self = .alphabet(parts[1])
+        default: return nil
+        }
+    }
+}
+
+public struct PlayClock: Equatable, Sendable {
+    public static let listenSeconds = 120.0
+
+    public private(set) var day = ""
+    public private(set) var seconds = 0.0
+    let goal: Double
+
+    public init(goal: Double = listenSeconds) { self.goal = goal }
+
+    public mutating func tick(_ elapsed: Double, day today: String) -> Bool {
+        if day != today {
+            day = today
+            seconds = 0
+        }
+        seconds += elapsed
+        return seconds >= goal
+    }
+}
+
+public enum AwayDwell {
+    public static let watchMilliseconds = 60_000.0
+
+    public static func earned(openedAt: Double?, now: Double, tz: TimeZone = .current) -> Bool {
+        guard let openedAt, now - openedAt >= watchMilliseconds else { return false }
+        return dayKey(openedAt, tz: tz) == dayKey(now, tz: tz)
+    }
 }
 
 public struct DoneMark: Codable, Equatable, Sendable {
@@ -70,6 +132,14 @@ public struct TodayPlan: Codable, Equatable, Sendable {
         let listed = ids.compactMap { id -> TodayItem? in seen.insert(id).inserted ? byId[id] : nil }
         items = listed + items.filter { !seen.contains($0.id) }
         touch(now)
+    }
+
+    public func moving(_ id: String, onto target: String) -> [String] {
+        var ids = items.map(\.id)
+        guard id != target, let from = ids.firstIndex(of: id), let to = ids.firstIndex(of: target) else { return ids }
+        ids.remove(at: from)
+        ids.insert(id, at: to)
+        return ids
     }
 
     public mutating func move(_ id: String, toTop: Bool, now: Double) {

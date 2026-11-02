@@ -57,6 +57,16 @@ import Testing
         #expect(p.items == [flags, lang, math, read])
     }
 
+    @Test func draggingOntoAWidgetTakesItsPlaceEitherWay() {
+        var p = TodayPlan()
+        for i in [lang, math, flags, read] { p.add(i, now: 1) }
+        #expect(p.moving(lang.id, onto: flags.id) == [math.id, flags.id, lang.id, read.id])
+        #expect(p.moving(read.id, onto: math.id) == [lang.id, read.id, math.id, flags.id])
+        #expect(p.moving(lang.id, onto: lang.id) == p.items.map(\.id))
+        #expect(p.moving("gone", onto: lang.id) == p.items.map(\.id))
+        #expect(p.moving(lang.id, onto: "gone") == p.items.map(\.id))
+    }
+
     @Test func moveToTopAndBottom() {
         var p = TodayPlan()
         for i in [lang, math, flags] { p.add(i, now: 1) }
@@ -152,6 +162,63 @@ import Testing
         #expect(TodayPlan(js: nil) == nil)
     }
 
+    @Test func aPlanSavedBeforeActivitiesStillDecodes() throws {
+        let saved = #"{"items":[{"kind":"system","ref":"sys1","title":"Romance"},{"kind":"content","ref":"Entropy","title":"Entropy"},{"kind":"game","ref":"flags","title":"Flags"}],"customized":true,"updatedAt":5,"doneDay":"d","doneAt":6,"done":["game:flags"]}"#
+        let p = try JSONDecoder().decode(TodayPlan.self, from: Data(saved.utf8))
+        #expect(p.items == [lang, read, flags])
+        #expect(p.items.allSatisfy { $0.activity == nil })
+        #expect(p.isDone(flags.id, day: "d"))
+    }
+
+    @Test func activitiesRoundTripThroughTheirRefs() {
+        for a in [TodayActivity.listen, .watch, .alphabet("ja")] {
+            let item = TodayItem(a, title: "t")
+            #expect(item.activity == a)
+            #expect(TodayActivity(ref: a.ref) == a)
+            #expect(item.id == a.id)
+        }
+        var p = TodayPlan()
+        p.add(TodayItem(.listen, title: "Listen"), now: 1)
+        p.add(TodayItem(.alphabet("ko"), title: "Hangul"), now: 2)
+        #expect(TodayPlan(js: p.js) == p)
+    }
+
+    @Test func activitiesUseAKindEveryShippedBuildCanDecode() throws {
+        let data = try JSONEncoder().encode(TodayItem(.watch, title: "Watch"))
+        let raw = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        #expect(raw["kind"] as? String == "content")
+    }
+
+    @Test func unknownActivityRefsAndTopicsAreNotActivities() {
+        #expect(TodayActivity(ref: "activity:dance") == nil)
+        #expect(TodayActivity(ref: "activity:alphabet") == nil)
+        #expect(TodayActivity(ref: "Entropy") == nil)
+        #expect(TodayItem(kind: .game, ref: TodayActivity.listen.ref, title: "x").activity == nil)
+    }
+
+    @Test func radioCountsTwoMinutesPlayedAcrossStations() {
+        var c = PlayClock()
+        let early = (0..<119).map { _ in c.tick(1, day: "d") }
+        let reached = c.tick(1, day: "d")
+        #expect(!early.contains(true) && reached)
+    }
+
+    @Test func radioTimeStartsOverOnANewDay() {
+        var c = PlayClock()
+        _ = c.tick(100, day: "mon")
+        let reached = c.tick(30, day: "tue")
+        #expect(!reached && c.seconds == 30)
+    }
+
+    @Test func watchNeedsSixtySecondsAwayTheSameDay() {
+        let utc = TimeZone(identifier: "UTC")!
+        let noon = 1_793_620_800_000.0 - 43_200_000
+        #expect(!AwayDwell.earned(openedAt: nil, now: noon, tz: utc))
+        #expect(!AwayDwell.earned(openedAt: noon, now: noon + 59_999, tz: utc))
+        #expect(AwayDwell.earned(openedAt: noon, now: noon + 60_000, tz: utc))
+        #expect(!AwayDwell.earned(openedAt: noon, now: noon + 86_400_000, tz: utc))
+    }
+
     @Test func statusBeforeAnyStudy() {
         #expect(TodayStatus.evaluate(streak: 0, studiedToday: false, items: 0, itemsLeft: 0, now: at(9), calendar: cal) == .empty)
         #expect(TodayStatus.evaluate(streak: 0, studiedToday: false, items: 2, itemsLeft: 2, now: at(9), calendar: cal) == .start)
@@ -206,6 +273,18 @@ import Testing
         store.add(item)
         store.finish(item.id)
         #expect(store.isDone(item.id))
+    }
+
+    @Test func droppingAWidgetPersistsTheOrder() {
+        let disk = MemoryLangDisk()
+        let store = TodayPlanStore(api: BucketAPI(transport: ProgressServer().transport), disk: disk, now: { 10 })
+        let other = TodayItem(.listen, title: "Listen")
+        store.add(item)
+        store.add(other)
+        store.drop(other.id, onto: item.id)
+        #expect(store.plan.items == [other, item])
+        store.drop("gone", onto: item.id)
+        #expect(TodayPlanStore(api: BucketAPI(transport: ProgressServer().transport), disk: disk, now: { 10 }).plan.items == [other, item])
     }
 
     @Test func pushesEditsToTheProgressBranch() async {

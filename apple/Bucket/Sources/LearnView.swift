@@ -233,10 +233,10 @@ struct ContentSection: View {
                 LearnTile(title: ContentKind.read.title, detail: String(localized: "Side by side in \(names)"), face: D8.malachite, lip: D8.malachiteLip, open: { open(.content(.read)) }) {
                     LearnSymbol(name: "book")
                 }
-                LearnTile(title: ContentKind.listen.title, detail: String(localized: "Live radio in \(names)"), face: D8.vermilion, lip: D8.vermilionLip, open: { open(.content(.listen)) }) {
+                LearnTile(title: ContentKind.listen.title, detail: String(localized: "Live radio in \(names)"), face: D8.vermilion, lip: D8.vermilionLip, item: .activity(.listen), open: { open(.content(.listen)) }) {
                     LearnSymbol(name: "dot.radiowaves.left.and.right")
                 }
-                LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: D8.lapis, lip: Color(hex: 0x12326A), open: { open(.content(.watch)) }) {
+                LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: D8.lapis, lip: Color(hex: 0x12326A), item: .activity(.watch), open: { open(.content(.watch)) }) {
                     LearnSymbol(name: "play.rectangle")
                 }
                 ForEach(ContentCatalog.topics.prefix(3)) { topic in
