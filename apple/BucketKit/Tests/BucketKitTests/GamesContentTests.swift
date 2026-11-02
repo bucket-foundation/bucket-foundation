@@ -54,6 +54,17 @@ func words(_ n: Int) -> [GameWord] {
         #expect(ledger.days[dayKey(now, tzName: "UTC")] == GameLedger.dayCredit)
     }
 
+    @Test func allMissesSaveTheWordsButEarnNoStreak() throws {
+        let corpus = try translateCorpus()
+        let item = try #require(corpus.items.first { isVocab($0) && $0.form("es") != nil })
+        let now = 1_800_000_000_000.0
+        let state = gradeCard(EngineState(), "es", item.id, 3, now: now, tz: "UTC")
+        let next = GameLedger.finishing(state, GameResult(game: "match", points: 0, hits: 0, missed: [cardId("es", item.id)]), now: now + 2 * DAY_MS, tz: "UTC")
+        #expect(next.streak == state.streak)
+        #expect(next.lastStudyDay == state.lastStudyDay)
+        #expect(GameLedger(next).misses.count == 1)
+    }
+
     @Test func emptyGameEarnsNothing() {
         let state = EngineState()
         #expect(GameLedger.finishing(state, GameResult(game: "match", hits: 0, missed: []), now: 1_800_000_000_000) == state)
@@ -172,6 +183,8 @@ func words(_ n: Int) -> [GameWord] {
         #expect(!wrong.contains("ja"))
         #expect(Set(GameFamilies.distractors(for: "ja", own: ["ja", "es"], using: &rng)) == ["zh", "ko"])
         #expect(!GameFamilies.distractors(for: "es", own: ["es"], excluding: ["pt"], using: &rng).contains("pt"))
+        #expect(!GameFamilies.distractors(for: "es", own: ["es"], using: &rng).contains { GameFamilies.classical.contains($0) })
+        #expect(GameFamilies.distractors(for: "ru", own: ["ru", "es"], using: &rng).count == 3)
     }
 
     @Test func flagRoundRotatesLanguagesWithoutRepeats() {
@@ -198,6 +211,10 @@ func words(_ n: Int) -> [GameWord] {
         #expect(run.pattern == "101")
         #expect(run.hits == 2)
         #expect(run.missed == [prompts[1].word])
+        let played = GameRun(prompts, replaying: run.pattern)
+        #expect(played.done)
+        #expect(played.hits == 2)
+        #expect(played.missed == run.missed)
     }
 
     @Test func speedBoardKeepsDealingAndHidesTheLastPair() {

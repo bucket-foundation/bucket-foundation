@@ -203,6 +203,12 @@ public struct GameRun: Sendable, Equatable {
 
     public init(_ prompts: [GamePrompt]) { self.prompts = prompts }
 
+    public init(_ prompts: [GamePrompt], replaying pattern: String) {
+        self.prompts = prompts
+        results = pattern.prefix(prompts.count).map { $0 == "1" }
+        index = results.count
+    }
+
     public var current: GamePrompt? { prompts.indices.contains(index) ? prompts[index] : nil }
     public var done: Bool { index >= prompts.count }
     public var hits: Int { results.filter { $0 }.count }
@@ -239,10 +245,12 @@ public enum GameFamilies {
         ["ja", "zh", "ko"],
     ]
 
+    static let classical: Set<String> = ["la", "ang", "grc", "sa"]
+
     public static func family(_ lang: String) -> [String] { groups.first { $0.contains(lang) } ?? [lang] }
 
     public static func distractors<R: RandomNumberGenerator>(for lang: String, own: [String], excluding: Set<String> = [], count: Int = 3, using rng: inout R) -> [String] {
-        let blocked = excluding.union([lang])
+        let blocked = excluding.union([lang]).union(classical.subtracting(own))
         let kin = family(lang).filter { !blocked.contains($0) }
         let near = mixed(kin.filter(own.contains), using: &rng) + mixed(kin.filter { !own.contains($0) }, using: &rng)
         if near.count >= 2 { return Array(near.prefix(count)) }

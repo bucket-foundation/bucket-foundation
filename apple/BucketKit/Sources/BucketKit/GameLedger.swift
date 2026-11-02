@@ -67,7 +67,7 @@ public struct GameLedger: Sendable, Equatable {
 
     public static func finishing(_ state: EngineState, _ game: GameResult, now: Double, tz: String? = nil) -> EngineState {
         guard game.hits > 0 || !game.missed.isEmpty else { return state }
-        var next = markStudyDay(state, now: now, tz: tz)
+        var next = game.hits > 0 ? markStudyDay(state, now: now, tz: tz) : state
         var ledger = GameLedger(next)
         let day = dayKey(now, tzName: tz)
         ledger.days[day] = min(dayCredit, (ledger.days[day] ?? 0) + game.hits)
