@@ -12,7 +12,7 @@ final class ReviewRecordingUITests: XCTestCase {
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"] + (ReviewWalk.onDevice ? [] : ["-demoGroup", "joined"])
         app.launch()
         let walk = ReviewWalk(app: app)
-        walk.tap(app.buttons["Account"].firstMatch, timeout: 60)
+        walk.threeTabs()
         walk.accountFlows()
     }
 }

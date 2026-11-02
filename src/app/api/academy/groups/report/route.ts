@@ -1,5 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { normalizeReportReason, uuidOrNull } from "@/lib/academy/groups";
+import { missingTable, normalizeReportReason, uuidOrNull } from "@/lib/academy/groups";
 import { configured, emailReport, fail, groupById, json, membersOf, preflight, readBody, reportLimited, REPORTS, requestUser, service } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
@@ -26,8 +26,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (target && !reported) return json({ error: "not_found" }, 404);
     const targetName = reported?.display_name ?? group.name;
     const res = await service().from(REPORTS).insert({ reporter_id: uid, group_id: groupId, target_user_id: target, target_name: targetName, reason });
-    if (res.error) throw new Error(`report insert: ${res.error.message}`);
-    await emailReport({ reason, targetName, groupName: group.name, groupId, targetUserId: target }).catch((err) => console.error("[academy/groups] report email:", err instanceof Error ? err.message : err));
+    if (res.error && !missingTable(res.error)) throw new Error(`report insert: ${res.error.message}`);
+    const emailed = await emailReport({ reason, targetName, groupName: group.name, groupId, targetUserId: target }).catch((err) => {
+      console.error("[academy/groups] report email:", err instanceof Error ? err.message : err);
+      return false;
+    });
+    if (res.error && !emailed) throw new Error("report lost: no table and no email");
     return json({ ok: true });
   } catch (err) {
     return fail(err, "report");

@@ -20,6 +20,7 @@ import {
   generateInviteCode,
   groupPreview,
   hiddenUsers,
+  missingTable,
   joinBlocked,
   joinDecision,
   memberSummary,
@@ -390,6 +391,15 @@ function row(user: string, role: "owner" | "member" = "member"): MemberRow {
 }
 
 const SUMMARY: MemberSummary = { streak: 0, todayReviews: 0, weekReviews: 10, lastActivity: null, languages: [], subjects: [], recentWords: [], sets: [] };
+
+test("missingTable spots an unapplied migration and nothing else", () => {
+  assert.equal(missingTable({ code: "PGRST205", message: "Could not find the table 'bucket.group_blocks' in the schema cache" }), true);
+  assert.equal(missingTable({ code: "42P01", message: 'relation "bucket.group_blocks" does not exist' }), true);
+  assert.equal(missingTable({ message: 'relation "bucket.group_reports" does not exist' }), true);
+  assert.equal(missingTable({ code: "42501", message: "permission denied" }), false);
+  assert.equal(missingTable({ code: "42703", message: "column group_blocks.name does not exist" }), false);
+  assert.equal(missingTable(null), false);
+});
 
 test("hiddenUsers hides both sides of a block", () => {
   const rows = [block({ blocker_id: MATE, target_user_id: OTHER }), block({ blocker_id: OWNER, target_user_id: MATE }), block({ blocker_id: MATE, target_group_id: "g9" })];

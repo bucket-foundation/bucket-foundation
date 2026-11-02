@@ -1,5 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { uuidOrNull } from "@/lib/academy/groups";
+import { missingTable, uuidOrNull } from "@/lib/academy/groups";
 import { BLOCKS, configured, fail, json, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!blockId) return json({ error: "bad_request" }, 400);
   try {
     const res = await service().from(BLOCKS).delete().eq("id", blockId).eq("blocker_id", uid);
-    if (res.error) throw new Error(`unblock: ${res.error.message}`);
+    if (res.error && !missingTable(res.error)) throw new Error(`unblock: ${res.error.message}`);
     return json({ ok: true });
   } catch (err) {
     return fail(err, "unblock");

@@ -146,6 +146,17 @@ struct ReviewWalk {
         hold()
     }
 
+    func threeTabs() {
+        XCTAssertTrue(app.navigationBars["Today"].waitForExistence(timeout: 60))
+        hold()
+        tap(app.buttons["Learn"].firstMatch)
+        XCTAssertTrue(app.navigationBars["Learn"].waitForExistence(timeout: 20))
+        hold()
+        XCTAssertFalse(app.buttons["Games"].exists)
+        XCTAssertFalse(app.buttons["Content"].exists)
+        tap(app.buttons["Account"].firstMatch)
+    }
+
     func accountFlows() {
         if Self.onDevice { signIn(email: demoEmail) }
         reportAndBlock()

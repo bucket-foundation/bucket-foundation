@@ -160,6 +160,7 @@ struct RootView: View {
         .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG
         .task {
+            if let link = Launch.value("-openLink").flatMap(URL.init(string:)) { DeepLink.shared.open(link) }
             #if os(iOS)
             if Launch.value("-bucketOrientation") == "landscape",
                let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {

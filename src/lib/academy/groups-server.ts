@@ -18,6 +18,7 @@ import {
   windowLimiter,
   visibleGroupIds,
   memberSummary,
+  missingTable,
   type BlockRow,
   type BranchRow,
   type CheerRow,
@@ -145,6 +146,7 @@ export async function membershipsOf(uid: string): Promise<MemberRow[]> {
 
 export async function blocksTouching(uid: string): Promise<BlockRow[]> {
   const res = await service().from(BLOCKS).select(BLOCK_COLS).or(`blocker_id.eq.${uid},target_user_id.eq.${uid}`).order("created_at", { ascending: false });
+  if (missingTable(res.error)) return [];
   return (check(res, "blocks read") ?? []) as BlockRow[];
 }
 
@@ -164,11 +166,11 @@ export async function removeFromOwnedGroups(owner: string, target: string): Prom
   if (res.error) throw new Error(`blocked member remove: ${res.error.message}`);
 }
 
-export async function emailReport(report: { reason: string; targetName: string; groupName: string; groupId: string; targetUserId: string | null }): Promise<void> {
+export async function emailReport(report: { reason: string; targetName: string; groupName: string; groupId: string; targetUserId: string | null }): Promise<boolean> {
   const key = process.env.RESEND_API_KEY?.trim();
   if (!key) {
-    console.error("[academy/groups] RESEND_API_KEY unset; report stored without email");
-    return;
+    console.error("[academy/groups] RESEND_API_KEY unset; report not emailed");
+    return false;
   }
   const kind = report.targetUserId ? "member name" : "group name";
   const res = await fetch("https://api.resend.com/emails", {
@@ -182,6 +184,7 @@ export async function emailReport(report: { reason: string; targetName: string; 
     }),
   });
   if (!res.ok) throw new Error(`report email ${res.status}`);
+  return true;
 }
 
 export async function countOwned(uid: string): Promise<number> {

@@ -224,6 +224,11 @@ export function normalizeReportReason(input: unknown): ReportReason | null {
   return input === "offensive_name" || input === "harassment" || input === "spam" || input === "other" ? input : null;
 }
 
+export function missingTable(error: { code?: string; message?: string } | null | undefined): boolean {
+  if (!error) return false;
+  return error.code === "42P01" || error.code === "PGRST205" || /relation .* does not exist|could not find the table/i.test(error.message ?? "");
+}
+
 export function hiddenUsers(blocks: readonly BlockRow[], me: string): Set<string> {
   const hidden = new Set<string>();
   for (const b of blocks) {
