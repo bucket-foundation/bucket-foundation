@@ -563,7 +563,7 @@ struct StandingCardRow: View {
             Text("\(row.weekly)").font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(ink).lineLimit(1).minimumScaleFactor(0.5).frame(width: 74, alignment: .trailing)
         }
         .padding(.horizontal, 12)
-        .frame(height: 68)
+        .frame(height: 62)
         .modifier(GameLip(face: row.isMe ? D8.lapis : .white, lip: row.isMe ? Color(hex: 0x12326A) : D8.keyline, radius: 14))
     }
 }

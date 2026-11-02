@@ -101,6 +101,7 @@ struct StandingTile: View {
 
 struct StandingsSection: View {
     let group: LearningGroup
+    @Binding var opening: String?
     @Binding var removing: GroupMember?
     @Binding var reporting: ModerationTarget?
     @Binding var blocking: ModerationTarget?
@@ -109,7 +110,7 @@ struct StandingsSection: View {
         Section {
             LazyVGrid(columns: learnColumns, spacing: 14) {
                 ForEach(group.standings) { s in
-                    NavigationLink { MemberView(member: s.member, groupId: group.id) } label: { StandingTile(standing: s) }
+                    Button { opening = s.member.userId } label: { StandingTile(standing: s) }
                         .buttonStyle(.plain)
                         .contextMenu { actions(s.member) }
                 }

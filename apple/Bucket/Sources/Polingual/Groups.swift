@@ -213,6 +213,7 @@ struct GroupView: View {
     let groupId: String
     @Environment(GroupStore.self) private var groups
     @Environment(\.dismiss) private var dismiss
+    @State private var opening: String?
     @State private var removing: GroupMember?
     @State private var leaving = false
     @State private var inviting = false
@@ -238,7 +239,7 @@ struct GroupView: View {
 
     func content(_ g: LearningGroup) -> some View {
         List {
-            StandingsSection(group: g, removing: $removing, reporting: $reporting, blocking: $blocking)
+            StandingsSection(group: g, opening: $opening, removing: $removing, reporting: $reporting, blocking: $blocking)
             ReactionSection(group: g)
             Section {
                 ForEach(g.members) { m in
@@ -306,6 +307,9 @@ struct GroupView: View {
         .listRowBackground(Palette.card)
         .scrollContentBackground(.hidden)
         .navigationTitle(g.name)
+        .navigationDestination(item: $opening) { id in
+            if let m = g.members.first(where: { $0.userId == id }) { MemberView(member: m, groupId: g.id) }
+        }
         .modifier(Moderation(reporting: $reporting, blocking: $blocking) { if $0.userId == nil { dismiss() } })
         .sheet(isPresented: $inviting) { InviteSheet(groupId: g.id) }
         #if !BUCKET
