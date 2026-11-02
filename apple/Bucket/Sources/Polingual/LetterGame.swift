@@ -89,14 +89,21 @@ struct SoundHint: View {
     let sound: LetterSound
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 10) {
-            Text("/\(sound.ipa)/")
-                .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 10).padding(.vertical, 4)
-                .background(D8.lapis, in: .capsule)
-            Text(sound.hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink)
-                .fixedSize(horizontal: false, vertical: true)
+        VStack(alignment: .leading, spacing: 6) {
+            if let flag = sound.flag {
+                Label(flag, systemImage: "exclamationmark.triangle.fill")
+                    .font(.subheadline.weight(.bold)).foregroundStyle(D8.vermilion)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Text(sound.reading ?? "/\(sound.ipa)/")
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 10).padding(.vertical, 4)
+                    .background(D8.lapis, in: .capsule)
+                Text(sound.hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -203,12 +210,16 @@ struct LetterQuiz: View {
 
     var right: Bool { picked == ex.answer }
     var sideways: Bool { vertical == .compact }
+    var question: String {
+        if ScriptCourse.isCharacter(ex.lang, ex.answer) { return String(localized: "Which character completes this word?") }
+        return ScriptCourse.isTone(ex.lang, ex.answer) ? String(localized: "Which tone did you hear?") : String(localized: "Which letter makes this sound?")
+    }
 
     var body: some View {
         (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 10))) {
             VStack(spacing: 10) {
                 if picked == nil {
-                    Text("Which letter makes this sound?")
+                    Text(question)
                         .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
                         .frame(maxWidth: .infinity)
                 }

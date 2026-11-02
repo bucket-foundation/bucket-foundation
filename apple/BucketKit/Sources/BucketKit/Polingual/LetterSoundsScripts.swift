@@ -44,7 +44,7 @@ extension LetterSounds {
         ζ|z|Like z in zoo.|ζάχαρη|sugar
         η|i|Like ee in see, short; it sounds the same as ι and υ.|νησί|island
         θ|θ|Like th in thin.|θάλασσα|sea
-        ι|i|Like ee in see, short.|ιταλία|Italy
+        ι|i|Like ee in see, short.|Ιταλία|Italy
         κ|k|Like k in skin, with no puff of air; before e and i sounds it moves forward toward ky.|καφές|coffee
         λ|l|Like a clear l in let.|λεμόνι|lemon
         μ|m|Like m in mom.|μέλι|honey

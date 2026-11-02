@@ -54,7 +54,6 @@ public enum LangReference {
 
     static let latinExtras: [String: String] = [
         "en": "a=a:as_in_cat e=e:as_in_bed i=i:as_in_sit o=o:as_in_hot u=u:as_in_cup th=th:as_in_thin sh=sh:as_in_shoe ch=ch:as_in_church ng=ng:as_in_sing",
-        "id": "c=ch:as_in_church ng=ng:as_in_sing ny=ny:as_in_canyon sy=sh:as_in_shoe kh=kh:as_in_Bach",
         "la": "c=k:always_hard v=w:as_in_water ae=eye:as_in_eye oe=oy:as_in_boy ph=p:with_a_breath th=t:with_a_breath ch=k:with_a_breath ā=aa:long_a ē=ay:long_e ī=ee:long_i ō=oh:long_o ū=oo:long_u",
         "ang": "æ=a:as_in_cat þ=th:as_in_thin ð=th:as_in_this ƿ=w:as_in_water sc=sh:as_in_shoe cg=j:as_in_edge ċ=ch:as_in_church ġ=y:as_in_yes",
     ]
