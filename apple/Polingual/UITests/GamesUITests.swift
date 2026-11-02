@@ -36,6 +36,7 @@ final class GamesUITests: XCTestCase {
         app.terminate()
         let back = launch(["-openGame", "daily"])
         XCTAssertTrue(back.staticTexts["New set tomorrow."].waitForExistence(timeout: 60))
+        XCTAssertTrue(back.buttons["Share your result"].waitForExistence(timeout: 10))
         XCTAssertFalse(back.buttons["game-choice"].exists)
         XCTAssertFalse(back.buttons["Play again"].exists)
     }

@@ -6,13 +6,15 @@ public struct GameResult: Sendable, Equatable {
     public var hits: Int
     public var missed: [String]
     public var dailyPattern: String?
+    public var countsForGroup: Bool
 
-    public init(game: String, points: Int? = nil, hits: Int, missed: [String], dailyPattern: String? = nil) {
+    public init(game: String, points: Int? = nil, hits: Int, missed: [String], dailyPattern: String? = nil, countsForGroup: Bool = true) {
         self.game = game
         self.points = points
         self.hits = hits
         self.missed = missed
         self.dailyPattern = dailyPattern
+        self.countsForGroup = countsForGroup
     }
 }
 
@@ -70,7 +72,7 @@ public struct GameLedger: Sendable, Equatable {
         var next = game.hits > 0 ? markStudyDay(state, now: now, tz: tz) : state
         var ledger = GameLedger(next)
         let day = dayKey(now, tzName: tz)
-        ledger.days[day] = min(dayCredit, (ledger.days[day] ?? 0) + game.hits)
+        if game.countsForGroup { ledger.days[day] = min(dayCredit, (ledger.days[day] ?? 0) + game.hits) }
         if let points = game.points { ledger.best[game.game] = max(ledger.best[game.game] ?? 0, points) }
         if let pattern = game.dailyPattern, ledger.daily[day] == nil { ledger.daily[day] = pattern }
         for id in game.missed where next.cards.started(id) { ledger.misses[id] = now }

@@ -69,6 +69,13 @@ struct GameChoiceStyle: ButtonStyle {
 }
 
 extension View {
+    func gameChrome(_ title: String, sideways: Bool) -> some View {
+        safeAreaPadding(.top, sideways ? 12 : 0)
+            .paper()
+            .navigationTitle(sideways ? "" : title)
+            .inlineTitle()
+    }
+
     func gameShake(_ trigger: Int) -> some View {
         keyframeAnimator(initialValue: 0.0, trigger: trigger) { v, x in v.offset(x: x) } keyframes: { _ in
             LinearKeyframe(-8, duration: 0.06)
@@ -106,9 +113,7 @@ struct QuizGame: View {
                 }
             }
         }
-        .paper()
-        .navigationTitle(kind.title)
-        .inlineTitle()
+        .gameChrome(kind.title, sideways: vertical == .compact)
         .task(id: langs.status) {
             LangVoice.shared.warm()
             await langs.load()
@@ -356,7 +361,8 @@ struct DailyShare: View {
     }
 
     var body: some View {
-        Group {
+        VStack(spacing: 0) {
+            Color.clear.frame(height: 0)
             if let image {
                 ShareLink(item: image, message: Text(message), preview: SharePreview(GameKind.daily.title, image: image)) {
                     Label("Share your result", systemImage: "square.and.arrow.up")
@@ -435,9 +441,7 @@ struct SpeedMatchGame: View {
                 }
             }
         }
-        .paper()
-        .navigationTitle(GameKind.match.title)
-        .inlineTitle()
+        .gameChrome(GameKind.match.title, sideways: vertical == .compact)
         .task(id: langs.status) {
             LangVoice.shared.warm()
             await langs.load()
@@ -480,10 +484,11 @@ struct SpeedMatchGame: View {
 
     func play(_ b: SpeedBoard) -> some View {
         VStack(spacing: vertical == .compact ? 6 : 14) {
-            if let ends { GameClock(ends: ends, total: SpeedBoard.seconds) }
+            if vertical != .compact, let ends { GameClock(ends: ends, total: Self.clock) }
             HStack {
-                Text("\(b.points)").font(D8.word(30)).foregroundStyle(Palette.ink).monospacedDigit().contentTransition(.numericText())
-                Spacer()
+                if vertical == .compact, let ends { GameClock(ends: ends, total: Self.clock) }
+                Text("\(b.points)").font(D8.word(vertical == .compact ? 22 : 30)).foregroundStyle(Palette.ink).monospacedDigit().contentTransition(.numericText())
+                if vertical != .compact { Spacer() }
                 if b.combo >= SpeedBoard.hotCombo {
                     Label("Double points", systemImage: "bolt.fill").font(.subheadline.weight(.heavy)).foregroundStyle(D8.vermilion)
                         .transition(.scale.combined(with: .opacity))
@@ -596,9 +601,7 @@ struct LetterSprintGame: View {
                 }
             }
         }
-        .paper()
-        .navigationTitle(GameKind.letters.title)
-        .inlineTitle()
+        .gameChrome(GameKind.letters.title, sideways: vertical == .compact)
         .task(id: langs.status) {
             LangVoice.shared.warm()
             await langs.load()

@@ -109,11 +109,11 @@ extension LangStore {
     @discardableResult
     func recordGame(_ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil) -> Bool {
         let before = gameBest(kind.rawValue)
-        let touched = systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
+        let touched = kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
             let carded = mine.filter { state(s.id).cards.started($0.id) }
-            finishGame(s.id, GameResult(game: kind.rawValue, points: points, hits: hits, missed: carded.map(\.id), dailyPattern: pattern))
+            finishGame(s.id, GameResult(game: kind.rawValue, points: points, hits: hits, missed: carded.map(\.id), dailyPattern: pattern, countsForGroup: s.id == touched.first?.id))
             for w in mine where !carded.contains(w) && !w.itemId.hasPrefix("abc:") { WantedWords.add(w.itemId, to: s.id) }
         }
         Beta.shared.studyEnded("game:\(kind.rawValue)", graded: hits + missed.count, correct: hits)
@@ -260,7 +260,7 @@ struct GameTile: View {
                     .font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
                     .lineLimit(3, reservesSpace: true)
                     .multilineTextAlignment(.leading)
-                Text(langs.gameBest(kind.rawValue).map { String(localized: "Best \($0)") } ?? " ")
+                Text(langs.gameBest(kind.rawValue).flatMap { $0 > 0 ? String(localized: "Best \($0)") : nil } ?? " ")
                     .font(.caption.weight(.heavy).monospacedDigit()).foregroundStyle(D8.parchment)
             }
             .padding(14)
