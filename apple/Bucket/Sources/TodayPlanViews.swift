@@ -67,15 +67,6 @@ struct TodayHero: View {
     }
 }
 
-extension View {
-    func todayCard() -> some View {
-        padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Palette.card, in: .rect(cornerRadius: 22))
-    }
-}
-
 struct TodayWidget: View {
     let symbol: String?
     let branch: String?

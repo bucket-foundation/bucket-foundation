@@ -1,7 +1,7 @@
 import Foundation
 
-public struct WordGroup: Sendable, Equatable, Identifiable {
-    public enum Link: Sendable, Equatable, Hashable {
+public struct WordGroup: Codable, Sendable, Equatable, Identifiable {
+    public enum Link: Codable, Sendable, Equatable, Hashable {
         case language(String)
         case theme(String)
         case languageTheme(String, String)
@@ -13,7 +13,7 @@ public struct WordGroup: Sendable, Equatable, Identifiable {
     public var id: String { words.map(\.id).sorted().joined(separator: ",") }
 }
 
-public struct WordGroupsPuzzle: Sendable, Equatable {
+public struct WordGroupsPuzzle: Codable, Sendable, Equatable {
     public static let groupCount = 4
     public static let groupSize = 4
     public static let mistakes = 4
@@ -23,12 +23,16 @@ public struct WordGroupsPuzzle: Sendable, Equatable {
     public let groups: [WordGroup]
     public let tiles: [GameWord]
 
+    public static func boardKey(day: String, root: String, targets: [String]) -> String {
+        "\(day)|\(root)|\(Set(targets).sorted().joined(separator: ","))"
+    }
+
     enum Partition: CaseIterable {
         case language, theme, languageTheme
     }
 
     public static func daily(_ words: [GameWord], day: String, root: String, targets: [String], theme: (GameWord) -> String?, sameForm: (GameWord, String) -> Bool = { _, _ in false }) -> WordGroupsPuzzle? {
-        let seed = "groups|\(day)|\(root)|\(targets.sorted().joined(separator: ","))"
+        let seed = "groups|\(boardKey(day: day, root: root, targets: targets))"
         var rng = SeededRandom(seed: GameSeed.hash(seed))
         let pool = words.filter { targets.contains($0.lang) && fits($0) }
             .map { (order: GameSeed.hash("\(seed)|\($0.id)"), word: $0) }

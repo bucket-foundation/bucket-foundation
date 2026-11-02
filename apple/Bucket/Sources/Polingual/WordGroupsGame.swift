@@ -5,32 +5,53 @@ import SwiftUI
 enum WordGroupsCache {
     static var key = ""
     static var puzzle: WordGroupsPuzzle?
+    static var skipped = ""
 }
 
 extension LangStore {
+    var wordGroupsKey: String? {
+        dailySystem.map { WordGroupsPuzzle.boardKey(day: dayKey(Date().timeIntervalSince1970 * 1000), root: $0.root, targets: gameLangs) }
+    }
+
     var wordGroupsPuzzle: WordGroupsPuzzle? {
-        guard let system = dailySystem, let corpus else { return nil }
+        guard let system = dailySystem, let corpus, let board = wordGroupsKey else { return nil }
+        if board == WordGroupsCache.key { return WordGroupsCache.puzzle }
+        if let stored = WordGroupsRecord.board(board) { return remember(stored, board) }
         let words = gameWords
+        let tried = "\(board)#\(GameWordCache.key)"
+        if tried == WordGroupsCache.skipped { return nil }
         let day = dayKey(Date().timeIntervalSince1970 * 1000)
-        let key = "\(day)#\(GameWordCache.key)"
-        if key == WordGroupsCache.key { return WordGroupsCache.puzzle }
-        let puzzle = WordGroupsPuzzle.daily(words, day: day, root: system.root, targets: gameLangs, theme: { corpus.byId[$0.itemId]?.category }, sameForm: { w, l in corpus.byId[w.itemId]?.form(l)?.lowercased() == w.form.lowercased() })
-        WordGroupsCache.key = key
+        guard let puzzle = WordGroupsPuzzle.daily(words, day: day, root: system.root, targets: gameLangs, theme: { corpus.byId[$0.itemId]?.category }, sameForm: { w, l in corpus.byId[w.itemId]?.form(l)?.lowercased() == w.form.lowercased() }) else {
+            WordGroupsCache.skipped = tried
+            return nil
+        }
+        WordGroupsRecord.store(puzzle, board)
+        return remember(puzzle, board)
+    }
+
+    func remember(_ puzzle: WordGroupsPuzzle, _ board: String) -> WordGroupsPuzzle {
+        WordGroupsCache.key = board
         WordGroupsCache.puzzle = puzzle
         return puzzle
     }
 }
 
 enum WordGroupsRecord {
-    static func key(_ day: String) -> String { "groups.save.\(day)" }
-
-    static func load(_ day: String) -> WordGroupsSave? {
-        UserDefaults.standard.data(forKey: key(day)).flatMap { try? JSONDecoder().decode(WordGroupsSave.self, from: $0) }
+    static func decode<T: Decodable>(_ type: T.Type, _ key: String) -> T? {
+        UserDefaults.standard.data(forKey: key).flatMap { try? JSONDecoder().decode(type, from: $0) }
     }
 
-    static func save(_ save: WordGroupsSave, _ day: String) {
-        if let data = try? JSONEncoder().encode(save) { UserDefaults.standard.set(data, forKey: key(day)) }
+    static func encode(_ value: some Encodable, _ key: String) {
+        if let data = try? JSONEncoder().encode(value) { UserDefaults.standard.set(data, forKey: key) }
     }
+
+    static func board(_ board: String) -> WordGroupsPuzzle? { decode(WordGroupsPuzzle.self, "groups.board.\(board)") }
+
+    static func store(_ puzzle: WordGroupsPuzzle, _ board: String) { encode(puzzle, "groups.board.\(board)") }
+
+    static func load(_ board: String) -> WordGroupsSave? { decode(WordGroupsSave.self, "groups.save.\(board)") }
+
+    static func save(_ save: WordGroupsSave, _ board: String) { encode(save, "groups.save.\(board)") }
 }
 
 extension WordGroup {
@@ -69,7 +90,7 @@ struct WordGroupsGame: View {
     @State private var shakes = 0
     @State private var rng = SeededRandom(seed: UInt64(Date().timeIntervalSince1970))
 
-    var day: String { dayKey(Date().timeIntervalSince1970 * 1000) }
+    @State private var board: String?
 
     static let colors = [D8.malachite, D8.lapis, D8.vermilion, Color(hex: 0xB0761A)]
 
@@ -87,7 +108,9 @@ struct WordGroupsGame: View {
         .task(id: langs.status) {
             await langs.load()
             guard round == nil, closed == nil else { return }
-            let saved = WordGroupsRecord.load(day)
+            guard let key = langs.wordGroupsKey else { return }
+            board = key
+            let saved = WordGroupsRecord.load(key)
             if let saved, saved.finished {
                 closed = saved
                 round = langs.wordGroupsPuzzle.map { WordGroupsRound($0, resuming: saved) }
@@ -200,7 +223,7 @@ struct WordGroupsGame: View {
         case .repeated: note = String(localized: "Already tried")
         case .ignored: return
         }
-        WordGroupsRecord.save(r.save, day)
+        if let board { WordGroupsRecord.save(r.save, board) }
         if r.finished { finish(r) }
     }
 

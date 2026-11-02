@@ -191,6 +191,24 @@ import Testing
         #expect(out == .repeated)
     }
 
+    @Test func aStoredBoardKeepsItsSaveAfterTheWordsChange() throws {
+        var r = try round()
+        let g = r.puzzle.groups[1]
+        pickFour(&r, g.words)
+        _ = r.submit()
+        let stored = try JSONDecoder().decode(WordGroupsPuzzle.self, from: JSONEncoder().encode(r.puzzle))
+        #expect(stored == r.puzzle)
+        let back = WordGroupsRound(stored, resuming: r.save)
+        #expect(back.solved == [g] && back.tiles.count == 12)
+    }
+
+    @Test func theBoardKeyNamesTheDayAndLanguagesOnly() {
+        let key = WordGroupsPuzzle.boardKey(day: "d", root: "en", targets: ["fr", "es", "fr"])
+        #expect(key == WordGroupsPuzzle.boardKey(day: "d", root: "en", targets: ["es", "fr"]))
+        #expect(key != WordGroupsPuzzle.boardKey(day: "e", root: "en", targets: ["es", "fr"]))
+        #expect(key != WordGroupsPuzzle.boardKey(day: "d", root: "en", targets: ["es"]))
+    }
+
     @Test func aSaveFromAnotherBoardStartsFresh() throws {
         let r = try round()
         let back = WordGroupsRound(r.puzzle, resuming: WordGroupsSave(pattern: "01", solved: ["other"]))

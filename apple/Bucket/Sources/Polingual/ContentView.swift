@@ -180,9 +180,11 @@ struct ContentHub: View {
     @State private var lang: String?
     @State private var openTopic: ContentTopic?
     let fixed: Bool
+    let fromToday: Bool
 
-    init(embedded: Bool = false, start: ContentKind? = nil) {
+    init(embedded: Bool = false, start: ContentKind? = nil, fromToday: Bool = false) {
         self.embedded = embedded
+        self.fromToday = fromToday
         fixed = start != nil
         _kind = State(initialValue: start ?? Self.launchKind)
     }
@@ -222,7 +224,7 @@ struct ContentHub: View {
             switch kind {
             case .read: ReadList(branch: branch) { openTopic = $0 }
             case .listen: ListenList(branch: branch, langs: shownLangs)
-            case .watch: WatchList(branch: branch, langs: shownLangs)
+            case .watch: WatchList(branch: branch, langs: shownLangs, earns: fromToday)
             }
             if langs.systems.isEmpty {
                 Section {
@@ -466,6 +468,7 @@ struct WatchList: View {
     @Environment(\.openURL) private var openURL
     let branch: String?
     let langs: [String]
+    var earns = false
     @State private var store = ContentStore.shared
 
     var body: some View {
@@ -475,7 +478,7 @@ struct WatchList: View {
                     ForEach(langs, id: \.self) { l in
                         let title = store.titles[t.title]?[l]
                         LearnTile(title: title ?? t.title, detail: langName(l), face: BranchTile.face(t.branch), open: {
-                            WatchDwell.opened()
+                            if earns { WatchDwell.opened() }
                             openURL(ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)"))
                         }) {
                             FlagTile(lang: l, size: 30)

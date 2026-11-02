@@ -7,7 +7,6 @@ struct TodayView: View {
     @Environment(ScienceStore.self) private var science
     @Environment(Reminders.self) private var reminders
     @Environment(Account.self) private var account
-    @Environment(GroupStore.self) private var groups
     @Environment(\.scenePhase) private var phase
     @State private var path = NavigationPath()
     @State private var session: StudyLaunch?
@@ -156,8 +155,13 @@ struct TodayView: View {
     }
 
     func hasWork(_ item: Item, _ now: Double) -> Bool {
-        if case .activity(.alphabet(let lang)) = item, let system = alphabetSystem(lang), !letterQueue(system, langs.state(system.id), now: now).contains(where: { $0.lang == lang }) { return false }
+        if resting(item, now) { return false }
         return cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
+    }
+
+    func resting(_ item: Item, _ now: Double) -> Bool {
+        guard case .activity(.alphabet(let lang)) = item, !plan.isDone(item.id), let system = alphabetSystem(lang) else { return false }
+        return !letterQueue(system, langs.state(system.id), now: now).contains { $0.lang == lang }
     }
 
     func studied(_ item: Item, _ now: Double) -> Int {
@@ -208,7 +212,7 @@ struct TodayView: View {
         case .game: return String(localized: "Play one round")
         case .activity(.listen): return String(localized: "Listen for 2 minutes")
         case .activity(.watch): return String(localized: "Watch for 1 minute")
-        case .activity(.alphabet): return String(localized: "Finish one round")
+        case .activity(.alphabet): return resting(item, now) ? String(localized: "No letters due") : String(localized: "Finish one round")
         default: return String(localized: "Read for 30 seconds")
         }
     }
@@ -265,10 +269,12 @@ struct TodayView: View {
     }
 
     var body: some View {
-        let planned = items
+        let now = Date().timeIntervalSince1970 * 1000
+        let all = items
+        let idle = all.filter { resting($0, now) }
+        let planned = all.filter { !resting($0, now) }
         let w = planned.compactMap { if case .deck(let w) = $0 { w } else { nil } }
         let due = w.reduce(0) { $0 + $1.due } + langDue.reduce(0) { $0 + $1.due }
-        let now = Date().timeIntervalSince1970 * 1000
         let new = w.reduce(0) { $0 + $1.new } + langDue.reduce(0) { $0 + langNewLeft($1.system, langs.state($1.system.id), now: now) }
         let today = dayKey(now)
         let done = library.scienceDecks.reduce(0) { t, e in t + science.state(e.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
@@ -307,13 +313,12 @@ struct TodayView: View {
                         Eyebrow(text: "Your day").padding(.leading, 16)
                         LazyVGrid(columns: learnColumns, spacing: 14) {
                             ForEach(pending) { widget($0, done: false, now: now) }
+                            ForEach(idle) { widget($0, done: false, now: now) }
                             ForEach(finished) { widget($0, done: true, now: now) }
                             TodayAddWidget { picking = true }
                         }
                     }
-                    if !groups.people.isEmpty || !groups.incoming.isEmpty || !groups.goals.isEmpty {
-                        VStack(alignment: .leading, spacing: 10) { TodayStrip() }.todayCard()
-                    }
+                    TodayStrip(card: true)
                     if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
                         ReminderPrompt().padding(.vertical, 6).todayCard()
                     }
@@ -334,7 +339,7 @@ struct TodayView: View {
                 switch route {
                 case .game(let game): game.screen
                 case .read(let topic): ReadView(topic: topic, langs: langs.gameLangs.isEmpty ? ["es", "fr"] : langs.gameLangs)
-                case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
+                case .content(let kind): ContentHub(embedded: true, start: kind, fromToday: true).fullHeightSession()
                 case .translate: TranslateScreen()
                 }
             }
