@@ -23,6 +23,7 @@ fi
 exec "$HOME/code/.wt/buildq" sudo launchctl asuser 501 sudo -u g env PATH=/opt/homebrew/bin:/usr/bin:/bin HOME=/Users/g LANG=en_US.UTF-8 \
   TEST_RUNNER_REVIEW_DEMO_EMAIL="$REVIEW_DEMO_EMAIL" TEST_RUNNER_REVIEW_NEW_EMAIL="$REVIEW_NEW_EMAIL" \
   TEST_RUNNER_REVIEW_GROUP="$REVIEW_GROUP" TEST_RUNNER_REVIEW_MEMBER="$REVIEW_MEMBER" \
+  TEST_RUNNER_REVIEW_DEMO_CODE="${REVIEW_DEMO_CODE:-}" \
   xcodebuild test -project "$apple/Bucket.xcodeproj" -scheme "$scheme" \
   -destination "id=00008120-001E5CEE0C44201E" -allowProvisioningUpdates DEVELOPMENT_TEAM=QQ6D6A2LLS \
   -derivedDataPath "$dd" -clonedSourcePackagesDirPath "$dd/spm" \

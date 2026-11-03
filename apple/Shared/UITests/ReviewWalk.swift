@@ -81,6 +81,13 @@ struct ReviewWalk {
         field.tap()
         field.typeText(email)
         tap(app.buttons["Send code"])
+        if email == demoEmail, let demoCode = env["REVIEW_DEMO_CODE"], !demoCode.isEmpty {
+            let box = app.textFields["Code"]
+            XCTAssertTrue(box.waitForExistence(timeout: 30))
+            box.tap()
+            box.typeText(demoCode)
+            tap(app.buttons["Verify"])
+        }
         XCTAssertTrue(app.buttons["Sign out"].waitForExistence(timeout: humanTimeout), "Type the emailed code on the phone")
     }
 
