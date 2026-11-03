@@ -28,10 +28,43 @@ import Testing
         #expect(Set(d.map { cal.startOfDay(for: $0) }).count == d.count)
     }
 
-    @Test func goesQuietAWeekAfterTheLastSession() {
+    @Test func goesQuietAWeekAfterTheLastOpen() {
         let d = ReminderPlan.fireDates(now: at(21, 9), minute: 19 * 60, lastStudy: at(16, 19), calendar: cal)
-        #expect(d.allSatisfy { $0 < at(23, 0) })
-        #expect(d.count == 2)
+        #expect(d.count == 7)
+        #expect(d.allSatisfy { $0 < at(28, 0) })
+    }
+
+    @Test func aLapsedUserWhoOpensTheAppGetsRemindersAgain() {
+        let d = ReminderPlan.fireDates(now: at(21, 9), minute: 19 * 60, lastStudy: at(1, 19), calendar: cal)
+        #expect(d.first == at(21, 19))
+    }
+
+    @Test func riskFiresThisEveningWhenNothingIsDone() {
+        let a = ReminderPlan.riskAlerts(now: at(21, 9), dailyMinute: 9 * 60, streak: 5, studiedToday: false, calendar: cal)
+        #expect(a == [RiskAlert(date: at(21, 20), streak: 5)])
+    }
+
+    @Test func riskMovesToTomorrowOnceTodayIsDone() {
+        let a = ReminderPlan.riskAlerts(now: at(21, 9), dailyMinute: 9 * 60, streak: 5, studiedToday: true, calendar: cal)
+        #expect(a == [RiskAlert(date: at(22, 20), streak: 5)])
+    }
+
+    @Test func riskStaysSilentWithNoStreakOrAfterTheHour() {
+        #expect(ReminderPlan.riskAlerts(now: at(21, 9), dailyMinute: 9 * 60, streak: 0, studiedToday: false, calendar: cal).isEmpty)
+        #expect(ReminderPlan.riskAlerts(now: at(21, 20, 30), dailyMinute: 9 * 60, streak: 5, studiedToday: false, calendar: cal).isEmpty)
+    }
+
+    @Test func riskFollowsALateDailyReminder() {
+        #expect(ReminderPlan.riskTime(dailyMinute: 9 * 60) == 20 * 60)
+        #expect(ReminderPlan.riskTime(dailyMinute: 19 * 60 + 30) == 20 * 60 + 30)
+        #expect(ReminderPlan.riskTime(dailyMinute: 23 * 60) == 22 * 60)
+    }
+
+    @Test func studiedReadsTheLastStudyDayOfAnyState() {
+        var a = EngineState()
+        a.lastStudyDay = dayKey(at(21, 9).timeIntervalSince1970 * 1000, tz: cal.timeZone)
+        #expect(ReminderPlan.studied([EngineState(), a], at: at(21, 22), tz: cal.timeZone))
+        #expect(!ReminderPlan.studied([EngineState(), a], at: at(22, 9), tz: cal.timeZone))
     }
 
     @Test func medianStudyTime() {

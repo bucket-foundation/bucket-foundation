@@ -66,6 +66,13 @@ struct PaperBackground: ViewModifier {
 extension View {
     func paper() -> some View { modifier(PaperBackground()) }
 
+    func todayCard() -> some View {
+        padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Palette.card, in: .rect(cornerRadius: 22))
+    }
+
     @ViewBuilder func inlineTitle() -> some View {
         #if os(iOS)
         navigationBarTitleDisplayMode(.inline)

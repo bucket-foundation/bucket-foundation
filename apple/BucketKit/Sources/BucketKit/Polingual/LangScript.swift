@@ -21,6 +21,7 @@ public struct AlphabetUnit: Sendable {
     public let script: String
     public let title: String
     public let letters: [Letter]
+    public var share = 0.8
 }
 
 extension Character {

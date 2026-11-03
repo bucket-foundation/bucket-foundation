@@ -1,3 +1,4 @@
+import BucketKit
 import SwiftUI
 
 enum D8 {
@@ -12,6 +13,12 @@ enum D8 {
     static let label = Color(hex: 0x555555)
     static let ipa = Color(hex: 0x444444)
     static let panel = Color(hex: 0xF6EEDC).opacity(0.8)
+    static let face = Color(light: 0xFFFFFF, dark: 0x38332A)
+    static let edge = Color(light: 0xE3D6B8, dark: 0x4D463A)
+    static let wrongFace = Color(light: 0xFBE9E5, dark: 0x54302A)
+    static let pickedFace = Color(light: 0xEEF3FB, dark: 0x22344F)
+    static let picked = Color(light: 0x1F4E9A, dark: 0x6C9BE8)
+    static let rightText = Color(light: 0x1E7A5A, dark: 0x5CC9A0)
     static let disabled = Color(light: 0xE4DCCB, dark: 0x3A342C)
     static let disabledText = Color(light: 0x8A8070, dark: 0x8A8070)
 
@@ -28,12 +35,12 @@ struct D8Option: ButtonStyle {
         let down = selected || configuration.isPressed
         configuration.label
             .font(.system(size: 18, weight: .heavy, design: .rounded))
-            .foregroundStyle(D8.ink)
-            .frame(maxWidth: compact ? nil : .infinity, minHeight: compact ? 42 : 50, alignment: align)
+            .foregroundStyle(Palette.ink)
+            .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget, alignment: align)
             .padding(.horizontal, 16)
-            .background(selected ? Color(hex: 0xEEF3FB) : .white, in: .rect(cornerRadius: 12))
-            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? D8.lapis : D8.keyline, lineWidth: selected ? 3 : 2) }
-            .background(selected ? D8.lapis : D8.keyline, in: .rect(cornerRadius: 12).offset(y: down ? 1 : 4))
+            .background(selected ? D8.pickedFace : D8.face, in: .rect(cornerRadius: 12))
+            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? D8.picked : D8.edge, lineWidth: selected ? 3 : 2) }
+            .background(selected ? D8.picked : D8.edge, in: .rect(cornerRadius: 12).offset(y: down ? 1 : 4))
             .offset(y: down ? 3 : 0)
             .padding(.bottom, 4)
     }

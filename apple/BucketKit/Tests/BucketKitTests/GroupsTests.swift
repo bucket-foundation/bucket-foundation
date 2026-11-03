@@ -206,6 +206,52 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(BucketAPI.groupError(status: 409, data: json(["error": code])) == expected)
     }
 
+    @Test func mapsTheNameFilterRefusal() {
+        #expect(BucketAPI.groupError(status: 422, data: json(["error": "name_not_allowed"])) == .nameNotAllowed)
+    }
+
+    @Test func moderationCallsUseTheContract() async throws {
+        let seen = LockedBox<[URLRequest]>([])
+        let api = BucketAPI(transport: StubTransport { r in
+            seen.mutate { $0.append(r) }
+            if r.httpMethod == nil || r.httpMethod == "GET" {
+                return (200, json(["blocks": [["id": "b1", "kind": "member", "targetId": "u2", "name": "Nonna", "at": "2026-11-02T10:00:00Z"]]]))
+            }
+            return (200, json(["ok": true]))
+        }, cacheDir: nil)
+        try await api.report(token: "t", groupId: "g1", userId: "u2", reason: .offensiveName)
+        try await api.report(token: "t", groupId: "g1", userId: nil, reason: .spam)
+        try await api.block(token: "t", groupId: "g1", userId: nil)
+        let blocks = try await api.blocks(token: "t")
+        try await api.unblock(token: "t", blockId: "b1")
+        #expect(blocks == [GroupBlock(id: "b1", kind: .member, targetId: "u2", name: "Nonna", at: "2026-11-02T10:00:00Z")])
+        func body(_ i: Int) throws -> [String: String] {
+            try #require(try JSONSerialization.jsonObject(with: seen.value[i].httpBody ?? Data()) as? [String: String])
+        }
+        #expect(seen.value.map(\.url!.path) == ["/api/academy/groups/report", "/api/academy/groups/report", "/api/academy/groups/block", "/api/academy/groups/block", "/api/academy/groups/unblock"])
+        #expect(try body(0) == ["groupId": "g1", "userId": "u2", "reason": "offensive_name"])
+        #expect(try body(1) == ["groupId": "g1", "reason": "spam"])
+        #expect(try body(2) == ["groupId": "g1"])
+        #expect(try body(4) == ["blockId": "b1"])
+    }
+
+    @MainActor @Test func blockingHidesTheMemberEverywhere() async throws {
+        let list = json(["blocks": [["id": "b1", "kind": "member", "targetId": "u2", "name": "Nonna", "at": "2026-11-02T10:00:00Z"]]])
+        let api = BucketAPI(transport: StubTransport { r in r.httpMethod == "POST" ? (200, json(["ok": true])) : (200, list) }, cacheDir: nil)
+        let store = GroupStore(api: api, token: { "t" })
+        let group = try JSONDecoder().decode(LearningGroup.self, from: json(groupJSON))
+        var other = group
+        other.id = "g2"
+        store.groups = [group, other]
+        try await store.block(groupId: "g1", userId: "u2")
+        #expect(store.groups.allSatisfy { g in !g.members.contains { $0.userId == "u2" } })
+        #expect(store.blocks.map(\.id) == ["b1"])
+        try await store.unblock(store.blocks[0])
+        #expect(store.blocks.isEmpty)
+        try await store.block(groupId: "g2", userId: nil)
+        #expect(store.groups.map(\.id) == ["g1"])
+    }
+
     @Test func socialCallsUseTheContract() async throws {
         let seen = LockedBox<[URLRequest]>([])
         let api = BucketAPI(transport: StubTransport { r in
@@ -227,6 +273,7 @@ func body(_ r: URLRequest) -> [String: String] {
         let bodies = r.prefix(3).map { try! JSONSerialization.jsonObject(with: $0.httpBody!) as! NSDictionary }
         let tz = TimeZone.current.identifier
         #expect(bodies[0] == ["groupId": "g1", "to": "u2", "kind": "cheer", "tz": tz])
+        #expect(r[0].url?.path == "/api/academy/groups/cheer")
         #expect(bodies[1] == ["ids": ["c1", "c2"]])
         #expect(bodies[2] == ["groupId": "g1", "weekly": 200, "tz": tz])
         #expect(r[1].url?.path == "/api/academy/groups/cheers/seen")
@@ -362,5 +409,81 @@ func body(_ r: URLRequest) -> [String: String] {
         let graded = gradeCard(state, "es", item.id, 3, now: now)
         #expect(graded.cards.started(cardId("es", item.id)))
         #expect(queueNew(graded, "es", item.id, now: now + 1) == graded)
+    }
+}
+
+@Suite struct GroupCompareTests {
+    func member(_ id: String, week: Int, streak: Int = 0, mastered: [Int] = [], me: Bool = false) -> GroupMember {
+        GroupMember(userId: id, name: "\(id.capitalized) Rossi", role: .member, isMe: me, streak: streak, todayReviews: 0, weekReviews: week, lastActivity: nil,
+                    languages: mastered.enumerated().map { MemberLanguage(lang: "l\($0.offset)", learned: 10, mastered: $0.element) }, subjects: [])
+    }
+
+    func group(_ members: [GroupMember]) -> LearningGroup {
+        LearningGroup(id: "g", name: "Club", kind: .friends, code: "AAAAAAAAAA", role: .member, members: members)
+    }
+
+    @Test func standingsSortByThisWeek() {
+        let g = group([member("a", week: 10), member("b", week: 90), member("c", week: 40, me: true)])
+        #expect(g.standings.map(\.member.userId) == ["b", "c", "a"])
+        #expect(g.standings.map(\.rank) == [1, 2, 3])
+    }
+
+    @Test func equalWeeksShareARankAndBreakOnStreakThenWords() {
+        let g = group([member("a", week: 50, streak: 1), member("b", week: 50, streak: 9), member("c", week: 50, streak: 1, mastered: [4]), member("d", week: 5)])
+        #expect(g.standings.map(\.member.userId) == ["b", "c", "a", "d"])
+        #expect(g.standings.map(\.rank) == [1, 1, 1, 4])
+    }
+
+    @Test func wordsMasteredAddUpAcrossLanguages() {
+        #expect(member("a", week: 0, mastered: [3, 4, 5]).wordsMastered == 12)
+    }
+
+    @Test func aBlockedMemberLeavesTheStandings() async {
+        let store = await GroupStore(api: BucketAPI(transport: StubTransport { _ in (200, Data()) }, cacheDir: nil)) { "t" }
+        await MainActor.run {
+            store.groups = [group([member("a", week: 9, me: true), member("b", week: 90)])]
+            store.hide(groupId: "g", userId: "b")
+            #expect(store.group("g")?.standings.map(\.member.userId) == ["a"])
+        }
+    }
+
+    @Test func sharedStandingsNameOnlyTheViewer() {
+        let s = group([member("a", week: 9), member("b", week: 5, me: true), member("c", week: 1)]).shareStandings()
+        #expect(s.rows.map(\.name) == ["AR", "B", "CR"])
+        #expect(s.mine?.name == "B")
+        for row in s.rows where !row.isMe { #expect(!row.name.lowercased().contains("rossi")) }
+    }
+
+    @Test func sharedStandingsKeepTheViewerWhenCapped() {
+        let members = (0..<9).map { member("m\($0)", week: 100 - $0) } + [member("me", week: 1, me: true)]
+        let s = group(members).shareStandings()
+        #expect(s.rows.count == 6)
+        #expect(s.members == 10)
+        #expect(s.mine?.rank == 10)
+        #expect(s.rows.first?.name == "MR")
+    }
+
+    @Test func aCheerReadsItsReaction() throws {
+        let raw = ["id": "c", "from": "a", "fromName": "A", "to": "b", "kind": "cheer", "at": "2026-10-28", "seen": false, "reaction": "race_you"] as [String: Any]
+        #expect(try JSONDecoder().decode(Cheer.self, from: JSONSerialization.data(withJSONObject: raw)).reaction == .raceYou)
+    }
+
+    @Test func anUnknownReactionStaysAPlainCheer() throws {
+        let raw = ["id": "c", "from": "a", "fromName": "A", "to": "b", "kind": "cheer", "at": "2026-10-28", "seen": false, "reaction": "later_preset"] as [String: Any]
+        let c = try JSONDecoder().decode(Cheer.self, from: JSONSerialization.data(withJSONObject: raw))
+        #expect(c.reaction == nil && c.kind == .cheer)
+    }
+
+    @Test func aReactionPostsAsACheerWithAPreset() async throws {
+        let seen = LockedBox<[URLRequest]>([])
+        let api = BucketAPI(transport: StubTransport { req in
+            seen.mutate { $0.append(req) }
+            return (200, Data(#"{"cheer":{"id":"c","from":"a","fromName":"A","to":"b","kind":"cheer","at":"2026-10-28","seen":false,"reaction":"high_five"}}"#.utf8))
+        }, cacheDir: nil)
+        let c = try await api.cheer(token: "t", groupId: "g", to: "b", kind: .cheer, reaction: .highFive)
+        #expect(c.reaction == .highFive)
+        let body = try #require(seen.value.first?.httpBody)
+        let sent = try #require(JSONSerialization.jsonObject(with: body) as? [String: String])
+        #expect(sent["kind"] == "cheer" && sent["reaction"] == "high_five")
     }
 }

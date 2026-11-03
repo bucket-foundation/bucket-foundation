@@ -17,7 +17,10 @@ struct StudyView: View {
     @State private var current: Exercise?
     @State private var currentKey = ""
     @State private var cardStart = Date()
+    @State private var chorus: [VoiceLine] = []
+    @State private var introduced: Set<String> = []
     @AppStorage("bucket.lang.readings") private var readings = true
+    @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
 
     var body: some View {
         Group {
@@ -33,6 +36,7 @@ struct StudyView: View {
         }
         .paper()
         .sharePage(sharePage)
+        .shareObjects(wordObjects)
         .navigationTitle(store.system(systemId)?.name ?? "Study")
         .inlineTitle()
         .task {
@@ -40,6 +44,14 @@ struct StudyView: View {
             await store.load()
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
+        .onDisappear { LangVoice.shared.hush() }
+    }
+
+    var wordObjects: [ShareObject] {
+        guard let system = store.system(systemId), let ex = current, let item = store.corpus?.byId[ex.itemId] else { return [] }
+        let forms = system.targets.compactMap { l in item.form(l).map { ShareForm(lang: l, form: $0) } }
+        let gloss = item.form(system.root) ?? item.gloss
+        return [.word(id: item.id, gloss: gloss, forms: forms)] + forms.map { .tile(form: $0, gloss: gloss, reading: nil) }
     }
 
     var sharePage: SharePage? {
@@ -56,17 +68,26 @@ struct StudyView: View {
         let asked = wanted.flatMap { id in
             system.targets.filter { corpus.byId[id]?.form($0) != nil }.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] }
         }
+        let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = asked + WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
+        queue = asked + replay + WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now).filter { !replay.contains($0) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
 
     func makeExercise() {
+        chorus = []
         #if DEBUG
         if let kind = Self.forcedKind, let system = store.system(systemId), let corpus = store.corpus {
             current = forced(kind, system, corpus)
             currentKey = "\(i)-forced"
+            return
+        }
+        if ProcessInfo.processInfo.arguments.contains("-endSession"), let queue {
+            i = queue.count
+            graded = 12
+            correct = 9
+            current = nil
             return
         }
         #endif
@@ -76,8 +97,11 @@ struct StudyView: View {
         }
         let entry = queue[i]
         if entry.stage == .letter {
-            current = ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng)
-            currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter"
+            let key = cardId(entry.lang, entry.itemId)
+            let fresh = !store.state(systemId).cards.has(key) && !introduced.contains(key)
+            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng, state: store.state(systemId))
+            if fresh { introduced.insert(key) }
+            currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter\(fresh ? "-intro" : "")"
             cardStart = .now
             if current == nil { self.i += 1; makeExercise() }
             return
@@ -94,13 +118,25 @@ struct StudyView: View {
             let crossed = !Beta.shared.flags.crossLanguageOptions ? made : crossLanguageOptions(made, item, system, &rng)
             current = crossed
         }
+        if let ex = current, ex.kind == .intro || ex.kind == .match {
+            if AudioPace.due(audioOffers) {
+                let lead = VoiceLine(lang: ex.answerLang, text: ex.kind == .intro ? ex.answer : item.form(ex.answerLang) ?? "")
+                chorus = AudioPace.chorus(lead: lead, targets: system.targets, root: system.root, form: item.form)
+            }
+            audioOffers += 1
+        }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
         cardStart = .now
     }
 
     func done(_ results: [ExerciseResult]) {
         guard let q = queue, i < q.count else { return }
+        LangVoice.shared.hush()
         let entry = q[i]
+        if entry.stage == .letter && current?.kind == .intro {
+            makeExercise()
+            return
+        }
         var next = q
         let apply = {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
@@ -127,38 +163,46 @@ struct StudyView: View {
         if queue.isEmpty {
             StateMessage(title: "Nothing due", detail: "You have met today's new words in every language of this set. Come back tomorrow.", retry: nil)
         } else if i >= queue.count || current == nil {
-            VStack(spacing: 16) {
-                Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
-                    .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
-                    .onAppear {
-                        haptic(true)
-                        Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
+            FitPage(center: true) {
+                let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))
+                columns {
+                    VStack(spacing: 16) {
+                        Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
+                            .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
+                            .onAppear {
+                                haptic(true)
+                                Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
+                            }
+                        Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
+                        Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
+                            .foregroundStyle(Palette.muted)
+                            .monospacedDigit()
                     }
-                Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
-                ReminderPrompt()
-                FeedbackLink()
-                Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
-                    .foregroundStyle(Palette.muted)
-                    .monospacedDigit()
-                ShareProgress(langs: system.targets, streak: Int(state.streak), learned: systemSummary(system, corpus, state, now: Date().timeIntervalSince1970 * 1000).started)
-                Button("See progress") {
-                    path.removeLast()
-                    path.append(LangRoute.system(system.id))
+                    .frame(maxWidth: .infinity)
+                    VStack(spacing: 16) {
+                        ReminderPrompt()
+                        FeedbackLink()
+                        ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
+                        Button("See progress") {
+                            path.removeLast()
+                            path.append(LangRoute.system(system.id))
+                        }
+                        .buttonStyle(D8Primary())
+                        Button("Another round") {
+                            let now = Date().timeIntervalSince1970 * 1000
+                            self.queue = WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now)
+                            i = 0
+                            graded = 0
+                            correct = 0
+                            xpStart = state.xp
+                            makeExercise()
+                        }
+                        .buttonStyle(D8Option(align: .center))
+                    }
+                    .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(D8Primary())
-                Button("Another round") {
-                    let now = Date().timeIntervalSince1970 * 1000
-                    self.queue = WritingMode.queue(system, state, now: now) + buildQueue(system, corpus, state, now: now)
-                    i = 0
-                    graded = 0
-                    correct = 0
-                    xpStart = state.xp
-                    makeExercise()
-                }
-                .buttonStyle(D8Option(align: .center))
+                .padding(vertical == .compact ? 12 : 24)
             }
-            .padding(24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .modifier(AskForReview(streak: Int(state.streak), graded: graded, correct: correct))
         } else if let ex = current {
             let maps = readingMaps(ex, corpus)
@@ -172,7 +216,8 @@ struct StudyView: View {
                              onMatch: { assign in
                                  let rated = store.gradeMatchFlags(systemId, ex.pairs ?? [], assign)
                                  done(rated.compactMap { r in r.rating.map { ExerciseResult(lang: r.lang, rating: $0) } })
-                             })
+                             },
+                             chorus: chorus)
                     .id(currentKey)
             }
             .padding(.horizontal, 16)
@@ -180,16 +225,12 @@ struct StudyView: View {
             .padding(.bottom, 12)
             .frame(maxWidth: 900, alignment: .top)
             .frame(maxWidth: .infinity)
-            ScrollView {
-                page.containerRelativeFrame(vertical == .compact ? .vertical : [], alignment: .top)
-            }
-            .scrollDisabled(vertical == .compact)
-            .scrollBounceBehavior(.basedOnSize)
-            .scrollDismissesKeyboard(.interactively)
+            FitPage { page }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
                         Button("Skip this one", systemImage: "forward") {
+                            LangVoice.shared.hush()
                             i += 1
                             makeExercise()
                         }
@@ -212,6 +253,12 @@ struct StudyView: View {
         }
     }
 
+    func sessionShare(_ system: LangSystem, _ corpus: LangCorpus, _ streak: Int) -> ShareObject {
+        if graded > 0 { return .score(ShareScore(source: system.name, right: correct, total: graded, langs: system.targets, root: system.root, streak: streak)) }
+        let learned = systemSummary(system, corpus, store.state(systemId), now: Date().timeIntervalSince1970 * 1000).started
+        return .system(name: system.name, root: system.root, targets: system.targets, streak: streak, learned: learned)
+    }
+
     func readingMaps(_ ex: Exercise, _ corpus: LangCorpus) -> [String: [String: Reading]] {
         var langs: Set<String> = [ex.answerLang, ex.lang, ex.promptLang]
         langs.formUnion((ex.optionLangs ?? [:]).values)
@@ -229,11 +276,34 @@ struct StudyView: View {
         return ExerciseKind(rawValue: args[i + 1])
     }()
 
+    func forcedDrill(_ kind: ExerciseKind, _ system: LangSystem, pinned: String?) -> Exercise? {
+        for lang in system.targets {
+            let letters = ScriptCourse.units(lang, root: system.root).flatMap(\.letters).map(\.ch)
+            var met = EngineState()
+            for ch in letters { met.cards[LangScript.letterCardId(lang, ch)] = Card(state: "review") }
+            for ch in pinned.map({ [$0] }) ?? shuffle(letters, &rng) {
+                let id = LangScript.letterItemId(ch)
+                let made = kind == .intro ? ScriptCourse.intro(lang, system.root, id) : ScriptCourse.drill(kind, lang, system.root, id, &rng, state: met)
+                if let made, made.kind == kind { return made }
+            }
+        }
+        return nil
+    }
+
     func forced(_ kind: ExerciseKind, _ system: LangSystem, _ corpus: LangCorpus) -> Exercise? {
+        let letterArgs = ProcessInfo.processInfo.arguments
+        let pinnedLetter = letterArgs.firstIndex(of: "-forceLetter").flatMap { $0 + 1 < letterArgs.count ? letterArgs[$0 + 1] : nil }
+        if pinnedLetter != nil || [.letterSound, .blend, .minimalPair].contains(kind) { return forcedDrill(kind, system, pinned: pinnedLetter) }
         if kind == .letter, let l = system.targets.first(where: { LangScript.alphabetUnit($0) != nil }) {
             return letterExercise(l, system.root, rng.index(LangScript.alphabetUnit(l)!.letters.count), &rng)
         }
+        if kind == .letter, let e = ScriptCourse.queue(system, EngineState(), now: 0).randomElement() {
+            return ScriptCourse.exercise(e.lang, system.root, e.itemId, &rng)
+        }
         let args = ProcessInfo.processInfo.arguments
+        if kind == .intro, args.contains("-letterIntro"), let e = ScriptCourse.queue(system, EngineState(), now: 0).randomElement() {
+            return ScriptCourse.intro(e.lang, system.root, e.itemId)
+        }
         let pinned = args.firstIndex(of: "-forceItem").flatMap { $0 + 1 < args.count ? corpus.byId[args[$0 + 1]] : nil }
         for _ in 0..<4000 {
             let item = pinned ?? corpus.items[rng.index(corpus.items.count)]

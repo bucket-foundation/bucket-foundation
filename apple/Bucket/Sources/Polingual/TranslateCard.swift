@@ -78,11 +78,11 @@ struct TranslateCard: View {
                                 .font(.system(size: 17, weight: .bold, design: .rounded))
                             Image(systemName: "chevron.down").font(.system(size: 13, weight: .bold))
                         }
-                        .foregroundStyle(D8.ink)
+                        .foregroundStyle(Palette.ink)
                         .padding(.horizontal, 12)
                         .frame(minHeight: 40)
-                        .background(.white, in: .capsule)
-                        .overlay { Capsule().strokeBorder(D8.keyline, lineWidth: 2) }
+                        .background(D8.face, in: .capsule)
+                        .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 2) }
                     }
                     .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
                     if let detected {
@@ -95,7 +95,7 @@ struct TranslateCard: View {
                 }
                 HStack(spacing: 10) {
                     Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
-                    TextField("Translate a word", text: $query)
+                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(D8.label))
                         .font(.system(size: 21, weight: .semibold, design: .rounded))
                         .autocorrectionDisabled()
                         .submitLabel(.search)
@@ -106,28 +106,31 @@ struct TranslateCard: View {
                             .buttonStyle(.borderless)
                             .accessibilityLabel("Clear")
                     }
-                    if LangListener.shared.supported {
-                        Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
-                            Image(systemName: listening ? "stop.fill" : "mic.fill")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundStyle(listening ? .white : D8.vermilion)
-                                .frame(width: 40, height: 40)
-                                .background(listening ? D8.vermilion : D8.vermilion.opacity(0.12), in: .circle)
-                                .symbolEffect(.variableColor.iterative, isActive: listening)
-                        }
-                        .buttonStyle(.borderless)
-                        .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
-                    }
                 }
                 .padding(.horizontal, 14)
                 .frame(minHeight: 60)
-                .background(.white, in: .rect(cornerRadius: 14))
-                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
+                .background(D8.face, in: .rect(cornerRadius: 14))
+                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
+                if LangListener.shared.supported {
+                    Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: listening ? "stop.fill" : "mic.fill")
+                                .font(.system(size: 30, weight: .bold))
+                                .symbolEffect(.variableColor.iterative, isActive: listening)
+                            Text(listening ? String(localized: "Stop") : String(localized: "Tap and speak")).font(D8.word(21))
+                        }
+                        .foregroundStyle(D8.parchment)
+                        .frame(maxWidth: .infinity, minHeight: 84)
+                        .modifier(GameLip(face: D8.vermilion, lip: D8.vermilionLip))
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
+                }
                 if listening {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
                         if !LangListener.shared.live.isEmpty {
-                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(D8.ink)
+                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(Palette.ink)
                         }
                     }
                 } else if missedVoice {
@@ -141,7 +144,7 @@ struct TranslateCard: View {
                             if let f = item.form(l) {
                                 HStack(spacing: 10) {
                                     FlagTile(lang: l, size: 26)
-                                    Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                                    Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
                                         .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
                                     Spacer(minLength: 4)
                                     PlayButton(text: f, lang: l)
@@ -159,13 +162,7 @@ struct TranslateCard: View {
                                     .buttonStyle(D8Option(align: .center, compact: true))
                             }
                             let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
-                            if let image = Share.wordImage(gloss: query, words: words) {
-                                ShareLink(item: SharePage.word(id: id, gloss: query, forms: words).url, message: Text(words.map(\.form).joined(separator: " · ")), preview: SharePreview(query, image: image)) {
-                                    Image(systemName: "square.and.arrow.up").font(.headline)
-                                }
-                                .buttonStyle(.borderless)
-                                .accessibilityLabel("Share this word")
-                            }
+                            ShareObjectButton(.word(id: id, gloss: query, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
                             Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: query, forms: words))
                         }
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
@@ -193,6 +190,14 @@ struct TranslateCard: View {
             .onChange(of: query) { picked = nil }
             .onChange(of: from) { picked = nil }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
+            .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
+                guard on else { return }
+                DeepLink.shared.listen = false
+                Task { await listen() }
+            }
+            .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
+                if link == .voice { DeepLink.shared.pending = nil }
+            }
             .onChange(of: DeepLink.shared.translate, initial: true) { _, q in
                 guard let q else { return }
                 query = q

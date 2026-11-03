@@ -1,8 +1,9 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { cheerDecision, normalizeCheerKind, toCheer, uuidOrNull, type CheerRow } from "@/lib/academy/groups";
+import { cheerDecision, normalizeCheerKind, normalizeCheerReaction, toCheer, uuidOrNull, type CheerRow } from "@/lib/academy/groups";
 import {
   configured,
   fail,
+  isHidden,
   json,
   membersOf,
   preflight,
@@ -28,17 +29,20 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const groupId = uuidOrNull(body?.groupId);
   const to = uuidOrNull(body?.to);
   const kind = normalizeCheerKind(body?.kind);
+  const reaction = normalizeCheerReaction(body?.reaction);
   if (!groupId || !to || !kind) return json({ error: "bad_request" }, 400);
+  if (body?.reaction !== undefined && (!reaction || kind !== "cheer")) return json({ error: "bad_request" }, 400);
   try {
     const now = Date.now();
     const members = await membersOf([groupId]);
     if (!members.some((m) => m.user_id === uid)) return json({ error: "not_found" }, 404);
+    if (await isHidden(uid, to)) return json({ error: "not_found" }, 404);
     const sums = kind === "nudge" ? await summaries([to], now, "UTC") : null;
     const decision = cheerDecision(members, uid, to, kind, sums?.get(to)?.todayReviews ?? 0);
     if (decision === "self") return json({ error: "bad_request" }, 400);
     if (decision === "not_member") return json({ error: "not_found" }, 404);
     if (decision === "nudge_not_needed") return json({ error: decision }, 409);
-    const res = await service().rpc("send_cheer", { p_group: groupId, p_from: uid, p_to: to, p_kind: kind });
+    const res = await service().rpc("send_cheer", { p_group: groupId, p_from: uid, p_to: to, p_kind: reaction ?? kind });
     if (res.error) {
       const m = res.error.message || "";
       if (m.includes("cheer_limit")) return json({ error: "cheer_limit" }, 409);

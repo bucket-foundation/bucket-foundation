@@ -18,10 +18,11 @@ struct FlagTile: View {
 struct CardHeader: View {
     let lang: String?
     let text: String
+    var flagSize: CGFloat = 44
 
     var body: some View {
         HStack(spacing: 10) {
-            if let lang { FlagTile(lang: lang) }
+            if let lang { FlagTile(lang: lang, size: flagSize) }
             Text(text).font(.subheadline).foregroundStyle(Palette.muted)
         }
     }
@@ -40,53 +41,75 @@ struct WordTile: View {
     var size: CGFloat = 200
     var speakText: String?
     var onTap: (() -> Void)?
+    @Environment(\.wordTapsHosted) private var hosted
+    @Environment(\.openURL) private var open
+    var glyph = false
 
     var body: some View {
-        let inset = size * 0.06
         let say = speakText ?? word ?? ""
         let canSay = LangVoice.shared.canSpeak(say, lang)
         Button {
             if let onTap { onTap(); return }
+            if hosted, let word, let url = WordTaps.tileLink(word, lang: lang) { open(url); return }
             if canSay { LangVoice.shared.speak(say, lang) }
         } label: {
-            ZStack {
-                FlagFace(flag: D8Flag.of(lang), emblem: false)
-                RoundedRectangle(cornerRadius: 6).fill(D8.panel).padding(inset)
-                VStack(spacing: 4) {
-                    Text(langName(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Spacer(minLength: 0)
-                    if let word {
-                        let phrase = word.contains(" ")
-                        let layout = phrase ? AnyLayout(VStackLayout(spacing: 4)) : AnyLayout(HStackLayout(spacing: 6))
-                        layout {
-                            Text(word)
-                                .font(D8.word(size * (D8Fit.long(word) ? 0.15 : 0.21)))
-                                .lineLimit(phrase ? 3 : 1)
-                                .multilineTextAlignment(.center)
-                                .minimumScaleFactor(phrase ? 0.75 : 0.4)
-                                .fixedSize(horizontal: false, vertical: phrase)
-                                .foregroundStyle(D8.ink)
-                            if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
-                        }
-                        .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-                    } else {
-                        Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
-                    }
-                    Spacer(minLength: 0)
-                    Text(word == nil ? " " : readingText(reading) ?? " ").font(.system(size: size * 0.075)).foregroundStyle(D8.ipa).lineLimit(word?.contains(" ") == true ? 2 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
-                }
-                .padding(.horizontal, inset * 1.7)
-                .padding(.vertical, inset * 1.5)
-                Shine()
-            }
-            .frame(width: size, height: size)
-            .modifier(Glaze(radius: 14, lip: 6))
+            TileFace(word: word, lang: lang, reading: readingText(reading), size: size, speaker: canSay, glyph: glyph)
+                .frame(width: size, height: size)
+                .modifier(Glaze(radius: 14, lip: 6))
         }
         .buttonStyle(TilePress())
         .frame(maxWidth: .infinity)
         .accessibilityLabel([langName(lang), word, readingText(reading).map { "IPA \($0)" }].compactMap { $0 }.joined(separator: ", "))
         .accessibilityHint(canSay ? "Plays the word" : "")
+        .shareMenu(word.map { .tile(form: ShareForm(lang: lang, form: $0), gloss: $0, reading: readingText(reading)) })
+    }
+}
+
+struct TileFace: View {
+    let word: String?
+    let lang: String
+    let reading: String?
+    let size: CGFloat
+    var speaker = false
+    var glyph = false
+
+    var body: some View {
+        let inset = size * 0.06
+        let phrase = word.map(D8Fit.wraps) ?? false
+        ZStack {
+            FlagFace(flag: D8Flag.of(lang), emblem: false)
+            RoundedRectangle(cornerRadius: max(6, size * 0.03)).fill(D8.panel).padding(inset)
+            VStack(spacing: 4) {
+                HStack(spacing: 4) {
+                    Text(langName(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label).lineLimit(1).minimumScaleFactor(0.6)
+                    Spacer(minLength: 0)
+                    if phrase && speaker { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.08)).foregroundStyle(D8.ink.opacity(0.55)) }
+                }
+                .fixedSize(horizontal: false, vertical: true)
+                Spacer(minLength: 0)
+                if let word {
+                    HStack(spacing: 6) {
+                        Text(word)
+                            .font(D8.word(phrase ? D8Fit.tileFont(word, side: size) : size * (glyph ? 0.42 : D8Fit.long(word) ? 0.15 : 0.21)))
+                            .lineLimit(phrase ? 6 : 1)
+                            .multilineTextAlignment(.center)
+                            .minimumScaleFactor(phrase ? 0.8 : 0.4)
+                            .foregroundStyle(D8.ink)
+                        if speaker && !glyph && !phrase { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
+                    }
+                    .layoutPriority(1)
+                    .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
+                } else {
+                    Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
+                }
+                Spacer(minLength: 0)
+                Text(word == nil ? " " : reading ?? " ").font(.system(size: size * (phrase ? 0.062 : 0.075))).foregroundStyle(D8.ipa).lineLimit(phrase ? 3 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: phrase)
+            }
+            .padding(.horizontal, inset * 1.7)
+            .padding(.vertical, inset * 1.5)
+            Shine()
+        }
     }
 }
 
@@ -168,31 +191,31 @@ struct AnswerRow: View {
     var flag = true
     var reading: Reading?
     var say: String?
+    var tag: String?
 
     var body: some View {
         let spoken = say ?? word
         let canSay = state == .right && LangVoice.shared.canSpeak(spoken, lang)
-        Group {
-            if canSay {
-                Button { LangVoice.shared.speak(spoken, lang) } label: { row(canSay) }
-                    .buttonStyle(.plain)
-                    .accessibilityHint("Plays the word")
-            } else {
-                row(canSay)
-            }
-        }
+        row(canSay, spoken)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(word), \(langName(lang))\(state == .right ? ", right answer" : state == .wrong ? ", your pick, wrong" : "")")
     }
 
-    func row(_ canSay: Bool) -> some View {
+    func row(_ canSay: Bool, _ spoken: String) -> some View {
         HStack(spacing: 10) {
             if flag { FlagTile(lang: lang, size: state == .right ? 30 : 26) }
             VStack(alignment: .leading, spacing: 1) {
                 HStack(spacing: 6) {
-                    Text(word).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
-                        .strikethrough(state == .wrong, color: D8.vermilion).foregroundStyle(Palette.ink).lineLimit(2)
-                    if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted) }
+                    Text(tapText(word, lang)).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
+                        .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
+                    if let tag { Text(tag).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted) }
+                    if canSay {
+                        Button { LangVoice.shared.speak(spoken, lang) } label: {
+                            Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted).frame(minWidth: FitScale.naturalTarget, minHeight: FitScale.naturalTarget).contentShape(.rect).padding(.vertical, -9)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityHint("Plays the word")
+                    }
                 }
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 if state == .right, let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(Palette.muted) }
@@ -205,12 +228,12 @@ struct AnswerRow: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, state == .right ? 8 : 0)
-        .frame(minHeight: 44)
+        .frame(minHeight: FitScale.naturalTarget)
         .background(state == .right ? D8.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: 12))
         .overlay {
             if state != .other { RoundedRectangle(cornerRadius: 12).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 2) }
         }
-        .opacity(state == .other ? 0.38 : 1)
+        .opacity(state != .other ? 1 : tag == nil ? 0.38 : 0.75)
     }
 
 }
@@ -253,7 +276,7 @@ struct D8Primary: ButtonStyle {
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(enabled ? .white : D8.disabledText)
             .padding(.horizontal, compact ? 18 : 0)
-            .frame(maxWidth: compact ? nil : .infinity, minHeight: compact ? 42 : 50)
+            .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget)
             .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: 12))
             .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: 12).offset(y: pressed ? 1 : 4))
             .offset(y: pressed ? 3 : 0)
@@ -263,7 +286,7 @@ struct D8Primary: ButtonStyle {
 
 struct PlainLink: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label.font(.subheadline.weight(.bold)).underline().foregroundStyle(Palette.muted).frame(maxWidth: .infinity).opacity(configuration.isPressed ? 0.6 : 1)
+        configuration.label.font(.subheadline.weight(.bold)).underline().foregroundStyle(Palette.muted).frame(maxWidth: .infinity, minHeight: FitScale.naturalTarget).contentShape(.rect).opacity(configuration.isPressed ? 0.6 : 1)
     }
 }
 
@@ -275,6 +298,10 @@ struct BranchTile: View {
         "00": (0xC8952C, "✦"), "01": (0x1F4E9A, "∑"), "02": (0xD9381E, "Φ"), "03": (0x1E7A5A, "χ"),
         "04": (0x231F20, "∫"), "05": (0x5B1A4A, "ψ"), "06": (0x2E6FA8, "★"), "07": (0x8E2312, "∞"), "la": (0x5B1A4A, "Aa"),
     ]
+
+    static func face(_ branch: String) -> Color { Color(hex: pigments[String(branch.prefix(2))]?.0 ?? 0x5d5650) }
+
+    static func glyph(_ branch: String) -> String { pigments[String(branch.prefix(2))]?.1 ?? String(branch.prefix(1)).uppercased() }
 
     var body: some View {
         let p = Self.pigments[String(branch.prefix(2))] ?? (0x5d5650, String(branch.prefix(1)).uppercased())

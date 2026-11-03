@@ -23,6 +23,13 @@ struct KeyboardShortcutTests {
         #expect(!ExerciseView.choiceKeys(ex(.speak, options: opts), speech: false, heard: nil))
     }
 
+    @Test func onlyAnUnansweredTypedCardGoesCompactSideways() {
+        #expect(ExerciseView.compactTyping(sideways: true, typing: true, verdict: nil))
+        #expect(!ExerciseView.compactTyping(sideways: false, typing: true, verdict: nil))
+        #expect(!ExerciseView.compactTyping(sideways: true, typing: false, verdict: nil))
+        #expect(!ExerciseView.compactTyping(sideways: true, typing: true, verdict: .wrong))
+    }
+
     @Test func numberKeysRunOnChoiceCardsOnly() {
         let opts = ["noche", "día", "tarde", "luz"]
         for kind in [ExerciseKind.choose, .reverse, .listen, .cloze, .gender, .sentence, .cognate] {

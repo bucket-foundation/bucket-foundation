@@ -10,8 +10,15 @@ enum WritingMode {
     static func key(_ systemId: String) -> String { "writing.\(systemId)" }
     static func on(_ systemId: String) -> Bool { UserDefaults.standard.object(forKey: key(systemId)) as? Bool ?? true }
 
-    static func queue(_ system: LangSystem, _ state: EngineState, now: Double) -> [QueueEntry] {
-        on(system.id) || HeritageMode.on(system.id) ? ScriptCourse.queue(system, state, now: now) : []
+    static func queue(_ system: LangSystem, _ state: EngineState, now: Double, corpus: LangCorpus) -> [QueueEntry] {
+        guard on(system.id) || HeritageMode.on(system.id) else { return [] }
+        return ScriptCourse.queue(system, state, now: now) { lang in
+            state.cards.keys.compactMap { id -> String? in
+                let card = parseCardId(id)
+                guard card.lang == lang, state.cards.started(id) else { return nil }
+                return corpus.byId[card.itemId]?.form(lang)
+            }
+        }
     }
 }
 
@@ -20,7 +27,8 @@ struct AlphabetStudy: View {
     let systemId: String
     let lang: String
 
-    @State private var queue: [Int] = []
+    @State private var queue: [QueueEntry] = []
+    @State private var introduced: Set<String> = []
     @State private var i = 0
     @State private var current: Exercise?
     @State private var rng = Rng(seed: UInt32(UInt64(Date().timeIntervalSince1970) % 2147483647))
@@ -32,20 +40,21 @@ struct AlphabetStudy: View {
         Group {
             if let unit {
                 if let current {
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(spacing: 10) {
-                            ProgressView(value: Double(i), total: Double(max(queue.count, 1))).tint(D8.malachite)
-                            Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                    FitPage {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(spacing: 10) {
+                                ProgressView(value: Double(i), total: Double(max(queue.count, 1))).tint(D8.malachite)
+                                Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                            }
+                            ExerciseView(ex: current, readings: false, reading: { _, _ in nil }, onDone: done)
+                                .id("\(i)-\(current.kind.rawValue)-\(current.answer)")
                         }
-                        ExerciseView(ex: current, readings: false, reading: { _, _ in nil }, onDone: done)
-                            .id("\(i)-\(current.answer)")
-                        Spacer(minLength: 0)
+                        .padding(16)
                     }
-                    .padding(16)
                 } else {
                     VStack(spacing: 14) {
                         Text(queue.isEmpty ? String(localized: "No letters due") : String(localized: "Letters done")).font(.system(size: 28, weight: .bold, design: .rounded))
-                        Text(LangScript.alphabetDone(store.state(systemId), lang) ? String(localized: "You know most of the \(unit.title). Heritage cards now ask you to spell words.") : String(localized: "\(right) of \(queue.count) right. New letters come in fives."))
+                        Text(ScriptCourse.done(store.state(systemId), unit) ? String(localized: "You know most of the \(unit.title). Heritage cards now ask you to spell words.") : String(localized: "\(right) of \(queue.count) right. New letters come in fives."))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(Palette.muted)
                     }
@@ -59,29 +68,47 @@ struct AlphabetStudy: View {
         .paper()
         .navigationTitle(unit?.title ?? "")
         .inlineTitle()
+        .toolbar {
+            if unit != nil {
+                ToolbarItem(placement: .primaryAction) { AddToToday(item: .activity(.alphabet(lang)), look: .icon) }
+            }
+        }
         .onAppear { if queue.isEmpty { start() } }
     }
 
     func start() {
-        guard let unit, let system = store.system(systemId) else { return }
+        guard let system = store.system(systemId) else { return }
         let now = Date().timeIntervalSince1970 * 1000
-        let picked = letterQueue(system, store.state(systemId), now: now).filter { $0.lang == lang }
-        queue = picked.compactMap { e in unit.letters.firstIndex { LangScript.letterItemId($0.ch) == e.itemId } }
+        queue = letterQueue(system, store.state(systemId), now: now).filter { $0.lang == lang }
         i = 0
         next()
     }
 
     func next() {
-        current = i < queue.count ? letterExercise(lang, "en", queue[i], &rng) : nil
+        guard i < queue.count, let system = store.system(systemId) else {
+            current = nil
+            return
+        }
+        let id = queue[i].itemId
+        let key = cardId(lang, id)
+        let state = store.state(systemId)
+        let fresh = !state.cards.has(key) && !introduced.contains(key)
+        if fresh { introduced.insert(key) }
+        current = fresh ? ScriptCourse.intro(lang, system.root, id) : ScriptCourse.exercise(lang, system.root, id, &rng, state: state)
     }
 
     func done(_ results: [ExerciseResult]) {
         guard let ex = current else { return }
+        if ex.kind == .intro {
+            next()
+            return
+        }
         for r in results {
             store.grade(systemId, lang: lang, itemId: ex.itemId, rating: r.rating)
             if r.rating > 1 { right += 1 }
         }
         i += 1
         next()
+        if i >= queue.count { TodayPlanStore.shared.finish(TodayActivity.alphabet(lang).id) }
     }
 }

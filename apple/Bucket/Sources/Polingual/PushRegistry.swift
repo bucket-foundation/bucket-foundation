@@ -28,6 +28,7 @@ final class PushRegistry {
     private(set) var device: String?
 
     func refresh() async {
+        guard Reminders.cheersOn else { return }
         #if os(iOS)
         let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
         guard status == .authorized || status == .provisional || status == .ephemeral else { return }

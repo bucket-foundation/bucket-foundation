@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { forwardedClientIp, proxyVerdict, verifiedProxyIp } from "./proxy-ip";
+import { isReviewDemoEmail, reviewCodeMatches, type ReviewDemo, type ReviewDemoOutcome } from "./review-demo";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const WINDOW_S = 600;
@@ -9,6 +10,7 @@ export const SESSION_LIMITS = {
   otpIp: 20,
   verifyEmail: 10,
   verifyIp: 40,
+  reviewVerifyIp: 5,
   refreshIp: 120,
   deleteIp: 10,
   appleIp: 40,
@@ -38,6 +40,11 @@ export interface SessionDeps {
   linkBudgetMs?: number;
   deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
   now: () => number;
+  reviewDemo?: {
+    config: () => ReviewDemo | null;
+    signIn: (email: string) => Promise<AuthResult>;
+    log: (event: { outcome: ReviewDemoOutcome; ip: string }) => void;
+  };
 }
 
 export type SessionResult = { status: number; body: Record<string, unknown> };
@@ -114,11 +121,18 @@ export function createSessionHandler(deps: SessionDeps) {
     if (!deps.configured()) return { status: 503, body: { error: "sync_unavailable" } };
     const b = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
     const email = typeof b.email === "string" ? b.email.trim() : "";
+    const demo = deps.reviewDemo?.config() ?? null;
+    const reviewer = demo !== null && isReviewDemoEmail(email, demo) ? demo : null;
+    const logReview = (outcome: ReviewDemoOutcome) => deps.reviewDemo?.log({ outcome, ip: hashed(ip) });
 
     if (b.action === "otp") {
       if (!EMAIL_RE.test(email)) return { status: 400, body: { error: "bad_email" } };
       if (!(await within([[`otp:ip:${ip}`, SESSION_LIMITS.otpIp]]))) return { status: 429, body: { error: "too_many_requests", message: RATE_MESSAGE } };
-      if (!(await within([[`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE } };
+      if (!reviewer && !(await within([[`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE } };
+      if (reviewer) {
+        logReview("code_requested");
+        return { status: 200, body: { ok: true } };
+      }
       const redirectTo = typeof b.app === "string" && Object.hasOwn(APP_REDIRECTS, b.app) ? APP_REDIRECTS[b.app] : undefined;
       const r = redirectTo ? await deps.sendOtp(email, redirectTo) : await deps.sendOtp(email);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
@@ -128,7 +142,20 @@ export function createSessionHandler(deps: SessionDeps) {
     if (b.action === "verify") {
       const code = typeof b.code === "string" ? b.code.trim() : "";
       if (!EMAIL_RE.test(email) || !/^\d{6,10}$/.test(code)) return { status: 400, body: { error: "bad_code" } };
-      if (!(await within([[`verify:ip:${ip}`, SESSION_LIMITS.verifyIp], [`verify:email:${hashed(email)}`, SESSION_LIMITS.verifyEmail]]))) return { status: 429, body: { error: "too_many_requests" } };
+      const second: [string, number] = reviewer ? [`verify:review:ip:${ip}`, SESSION_LIMITS.reviewVerifyIp] : [`verify:email:${hashed(email)}`, SESSION_LIMITS.verifyEmail];
+      if (!(await within([[`verify:ip:${ip}`, SESSION_LIMITS.verifyIp], second]))) {
+        if (reviewer) logReview("rate_limited");
+        return { status: 429, body: { error: "too_many_requests" } };
+      }
+      if (reviewer && deps.reviewDemo) {
+        if (!reviewCodeMatches(code, reviewer.code)) {
+          logReview("bad_code");
+          return { status: 400, body: { error: "bad_code" } };
+        }
+        const minted = await deps.reviewDemo.signIn(reviewer.email);
+        logReview(minted.session ? "signed_in" : "sign_in_failed");
+        return minted.session ? { status: 200, body: tokens(minted.session) } : { status: 400, body: { error: "bad_code" } };
+      }
       const r = await deps.verifyOtp(email, code);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return r.session ? { status: 200, body: tokens(r.session) } : { status: 400, body: { error: "bad_code" } };

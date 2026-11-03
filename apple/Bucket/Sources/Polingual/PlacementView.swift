@@ -3,6 +3,7 @@ import SwiftUI
 
 struct PlacementView: View {
     @Environment(LangStore.self) private var store
+    @Environment(\.verticalSizeClass) private var vertical
     @Binding var path: NavigationPath
     let systemId: String
     let requested: String?
@@ -41,12 +42,20 @@ struct PlacementView: View {
         .onChange(of: store.status, initial: true) { _, _ in start() }
     }
 
+    var sideways: Bool { vertical == .compact }
+
     func source(_ system: LangSystem, _ corpus: LangCorpus, _ lang: String) -> PlacementSource {
         PlacementSource(system: system, corpus: corpus, lang: lang, top: top)
     }
 
     func start() {
         guard lang == nil, !picking, store.status == .ready, let system = store.system(systemId) else { return }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-autoPlace"), let first = system.targets.first {
+            begin(first)
+            return
+        }
+        #endif
         guard let pick = requested.flatMap({ system.targets.contains($0) ? $0 : nil }) else {
             known = Set(system.targets.filter { (system.placement[$0] ?? 0) > 0 })
             picking = true
@@ -79,32 +88,34 @@ struct PlacementView: View {
 
     @ViewBuilder
     func picker(_ system: LangSystem) -> some View {
-        ScrollView {
+        FitPage {
             VStack(alignment: .leading, spacing: 14) {
                 Eyebrow(text: String(localized: "Placement"))
                 Text("Which of these do you already know?").font(.serif(.title2, weight: .semibold))
                 Text("Pick the languages you can read or speak. Each one gets a level test. The rest start from the first words.")
                     .foregroundStyle(Palette.muted)
-                ForEach(system.targets, id: \.self) { l in
-                    let on = known.contains(l)
-                    Button {
-                        if on { known.remove(l) } else { known.insert(l) }
-                    } label: {
-                        HStack(spacing: 12) {
-                            FlagTile(lang: l, size: 32)
-                            Text(langName(l)).font(.headline)
-                            Spacer()
-                            Image(systemName: on ? "checkmark.circle.fill" : "circle").font(.title3)
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: sideways ? 3 : 1), spacing: 10) {
+                    ForEach(system.targets, id: \.self) { l in
+                        let on = known.contains(l)
+                        Button {
+                            if on { known.remove(l) } else { known.insert(l) }
+                        } label: {
+                            HStack(spacing: 12) {
+                                FlagTile(lang: l, size: 32)
+                                Text(langName(l)).font(.headline)
+                                Spacer()
+                                Image(systemName: on ? "checkmark.circle.fill" : "circle").font(.title3)
+                            }
                         }
+                        .buttonStyle(D8Option(selected: on))
+                        .accessibilityAddTraits(on ? .isSelected : [])
                     }
-                    .buttonStyle(D8Option(selected: on))
-                    .accessibilityAddTraits(on ? .isSelected : [])
                 }
                 Button(known.isEmpty ? String(localized: "Start from the first words") : String(localized: "Test my level")) { confirmKnown(system) }
                     .buttonStyle(D8Primary())
             }
-            .padding(20)
-            .frame(maxWidth: 680, alignment: .leading)
+            .padding(sideways ? 12 : 20)
+            .frame(maxWidth: sideways ? 900 : 680, alignment: .leading)
             .frame(maxWidth: .infinity)
         }
     }
@@ -124,6 +135,9 @@ struct PlacementView: View {
         }
         asked += 1
         question = (next.band, q.task, q.ex)
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-autoPlace") { answer(true) }
+        #endif
     }
 
     func finish(_ src: PlacementSource, _ step: CefrStep) {
@@ -146,50 +160,64 @@ struct PlacementView: View {
         if let result {
             let queued = queue.split(separator: ",").map(String.init).filter { $0 != lang && system.targets.contains($0) }
             let nextLang = queued.first
-            List {
-                Section {
-                    Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
-                    Text("Level \(Cefr.levelLabel(result))").font(.serif(.title, weight: .semibold))
-                    Text(summary(result)).foregroundStyle(Palette.muted)
-                    ForEach(result.bands, id: \.band) { b in
-                        Text(b.passed ? "\(b.band.rawValue): \(b.right) of \(b.asked) right, passed" : "\(b.band.rawValue): \(b.right) of \(b.asked) right, not passed")
-                            .font(.footnote).foregroundStyle(Palette.ink).monospacedDigit()
-                    }
-                    if let u = result.unknownFrom {
-                        Text("\(u.rawValue) and above: not enough material in this language to test").font(.footnote).foregroundStyle(Palette.muted)
-                    }
-                    SaveNotice(state: store.saveState)
-                    if let nextLang {
-                        Button("Place \(langName(nextLang))") {
-                            queue = queued.joined(separator: ",")
-                            path.removeLast()
-                            path.append(LangRoute.place(system.id, nextLang))
+            FitPage(center: true) {
+                let columns = sideways ? AnyLayout(HStackLayout(alignment: .top, spacing: 20)) : AnyLayout(VStackLayout(alignment: .leading, spacing: 14))
+                columns {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
+                        Text("Level \(Cefr.levelLabel(result))").font(.serif(.title, weight: .semibold))
+                        Text(summary(result)).foregroundStyle(Palette.muted)
+                        if let u = result.unknownFrom {
+                            Text("\(u.rawValue) and above: not enough material in this language to test").font(.footnote).foregroundStyle(Palette.muted)
                         }
-                        .buttonStyle(D8Primary())
-                    } else {
-                        Button("Start studying") {
-                            queue = ""
-                            path.removeLast()
-                            path.append(LangRoute.study(system.id))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    VStack(alignment: .leading, spacing: 8) {
+                        ForEach(result.bands, id: \.band) { b in
+                            Text(b.passed ? "\(b.band.rawValue): \(b.right) of \(b.asked) right, passed" : "\(b.band.rawValue): \(b.right) of \(b.asked) right, not passed")
+                                .font(.footnote).foregroundStyle(Palette.ink).monospacedDigit()
                         }
-                        .buttonStyle(D8Primary())
+                        SaveNotice(state: store.saveState)
+                        if let nextLang {
+                            Button("Place \(langName(nextLang))") {
+                                queue = queued.joined(separator: ",")
+                                path.removeLast()
+                                path.append(LangRoute.place(system.id, nextLang))
+                            }
+                            .buttonStyle(D8Primary())
+                        } else {
+                            Button("Start studying") {
+                                queue = ""
+                                path.removeLast()
+                                path.append(LangRoute.study(system.id))
+                            }
+                            .buttonStyle(D8Primary())
+                        }
+                        Button("Progress") {
+                            path.removeLast()
+                            path.append(LangRoute.system(system.id))
+                        }
+                        .buttonStyle(D8Option(align: .center))
                     }
-                    Button("Progress") {
-                        path.removeLast()
-                        path.append(LangRoute.system(system.id))
-                    }
-                    .buttonStyle(D8Option(align: .center))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .listRowBackground(Palette.card)
+                .exerciseCard(tight: sideways)
+                .padding(sideways ? 12 : 20)
+                .frame(maxWidth: sideways ? 900 : 680)
+                .frame(maxWidth: .infinity)
             }
         } else if let q = question {
             let maps = [lang: readingsByForm(corpus, lang), system.root: readingsByForm(corpus, system.root)]
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+            FitPage {
+                VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
                     Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
-                    Text("\(langName(system.root)) to \(langName(lang))").font(.serif(.title2, weight: .semibold))
-                    Text("Each level mixes typing, listening, gap fills, grammar and short reading. A level passes on 6 right before 3 misses. The test stops at the first level you do not pass.")
-                        .foregroundStyle(Palette.muted)
+                    if !sideways {
+                        Text("\(langName(system.root)) to \(langName(lang))").font(.serif(.title2, weight: .semibold))
+                        if asked == 1 {
+                            Text("Each level mixes typing, listening, gap fills, grammar and short reading. A level passes on 6 right before 3 misses. The test stops at the first level you do not pass.")
+                                .foregroundStyle(Palette.muted)
+                        }
+                    }
                     Text("Question \(asked) · level \(q.band.rawValue)").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                     ExerciseView(ex: q.ex, readings: readings, reading: { form, l in maps[l]?[form] }, onDone: { results in
                         answer(results.contains { $0.rating > 1 })
@@ -197,8 +225,8 @@ struct PlacementView: View {
                     .id("\(q.band.rawValue)-\(asked)")
                     Button("I do not know") { answer(false) }.buttonStyle(PlainLink())
                 }
-                .padding(20)
-                .frame(maxWidth: 680, alignment: .leading)
+                .padding(sideways ? 12 : 20)
+                .frame(maxWidth: sideways ? 900 : 680, alignment: .leading)
                 .frame(maxWidth: .infinity)
             }
         } else {

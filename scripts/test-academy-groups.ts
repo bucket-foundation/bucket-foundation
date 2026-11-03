@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { dayKey } from "../src/lib/academy/engine";
 import {
   assembleGroup,
@@ -12,6 +14,9 @@ import {
   groupGoal,
   memberGraph,
   normalizeCheerKind,
+  normalizeCheerReaction,
+  CHEER_REACTIONS,
+  toCheer,
   normalizeWeeklyGoal,
   shiftDay,
   windowLimiter,
@@ -19,14 +24,20 @@ import {
   JOIN_PER_MINUTE,
   generateInviteCode,
   groupPreview,
+  hiddenUsers,
+  missingTable,
+  joinBlocked,
   joinDecision,
   memberSummary,
   normalizeDisplayName,
   normalizeGroupName,
   normalizeInviteCode,
   normalizeKind,
+  normalizeReportReason,
   removeDecision,
+  toBlock,
   validTimeZone,
+  type BlockRow,
   type CheerRow,
   type CorpusLookup,
   type WordLookup,
@@ -34,6 +45,7 @@ import {
   type MemberRow,
   type MemberSummary,
 } from "../src/lib/academy/groups";
+import { nameAllowed } from "../src/lib/academy/groups-names";
 
 const DAY = 86_400_000;
 const NOW = Date.UTC(2026, 9, 28, 15);
@@ -194,6 +206,18 @@ test("the week starts on Monday and sums every day since", () => {
   assert.equal(memberSummary(rows, lookup, NOW, "UTC").weekReviews, 8);
 });
 
+test("finished games count toward the day and the week", () => {
+  const rows = [
+    {
+      branch: "physics",
+      data: { cards: {}, settings: { games: { days: { [TODAY]: 4, "2026-10-26": 3, "2026-10-25": 9 } } }, stats: { streak: 1, lastStudyDay: TODAY, history: {} } },
+    },
+  ];
+  const s = memberSummary(rows, lookup, NOW, "UTC");
+  assert.equal(s.todayReviews, 4);
+  assert.equal(s.weekReviews, 7);
+});
+
 test("strength is retrievability now, falling with time since review", () => {
   assert.equal(cardStrength(undefined, NOW), 0);
   assert.ok(Math.abs(cardStrength(card(10, 2, NOW), NOW) - 1) < 1e-9);
@@ -267,6 +291,35 @@ test("cheer checks cover self, membership and nudges; the daily cap is left to S
   assert.equal(cheerDecision(ms, "a", "c", "cheer", 0), "not_member");
   assert.equal(normalizeCheerKind("nudge"), "nudge");
   assert.equal(normalizeCheerKind("poke"), null);
+});
+
+test("reactions come from a closed list and carry no free text", () => {
+  assert.deepEqual([...CHEER_REACTIONS], ["high_five", "nice_streak", "race_you", "keep_going"]);
+  for (const r of CHEER_REACTIONS) assert.equal(normalizeCheerReaction(r), r);
+  assert.equal(normalizeCheerReaction("you are great"), null);
+  assert.equal(normalizeCheerReaction("cheer"), null);
+  assert.equal(normalizeCheerReaction(undefined), null);
+  assert.equal(normalizeCheerReaction(1), null);
+});
+
+test("a reaction reads as a cheer on the wire so older apps keep their list", () => {
+  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02")];
+  const row: CheerRow = { id: "1", group_id: "g1", from_id: "a", to_id: "b", kind: "high_five", created_at: "2026-10-28T10:00:00Z", seen_at: null };
+  assert.deepEqual(toCheer(row, ms), { id: "1", from: "a", fromName: "A", to: "b", kind: "cheer", at: "2026-10-28T10:00:00Z", seen: false, reaction: "high_five" });
+  assert.deepEqual(toCheer({ ...row, kind: "nudge" }, ms), { id: "1", from: "a", fromName: "A", to: "b", kind: "nudge", at: "2026-10-28T10:00:00Z", seen: false });
+  assert.deepEqual(toCheer({ ...row, kind: "cheer" }, ms), { id: "1", from: "a", fromName: "A", to: "b", kind: "cheer", at: "2026-10-28T10:00:00Z", seen: false });
+});
+
+test("blocks hide reactions in both directions", () => {
+  const group: GroupRow = { id: "g1", name: "Climbers", kind: "friends", owner_id: "a", invite_code: "7K3M9Q2XAB", created_at: "2026-10-01" };
+  const ms = [member("a", "2026-10-01", "owner"), member("b", "2026-10-02"), member("c", "2026-10-03")];
+  const cheers: CheerRow[] = [
+    { id: "1", group_id: "g1", from_id: "b", to_id: "a", kind: "race_you", created_at: "2026-10-28T10:00:00Z", seen_at: null },
+    { id: "2", group_id: "g1", from_id: "c", to_id: "a", kind: "keep_going", created_at: "2026-10-28T11:00:00Z", seen_at: null },
+  ];
+  const g = assembleGroup(group, ms, new Map(), "a", cheers, "2026-10-26", new Set(["b"]));
+  assert.deepEqual(g.cheers.map((c) => [c.id, c.reaction]), [["2", "keep_going"]]);
+  assert.deepEqual(g.members.map((m) => m.userId), ["a", "c"]);
 });
 
 test("the shared goal sums member week reviews and clears at zero", () => {
@@ -357,4 +410,91 @@ test("paging reads past the 1000 row cap and stops on a short page", async () =>
   const exact = await fetchAllPages(async (from) => (from === 0 ? [1, 2] : []), 2);
   assert.deepEqual(exact, [1, 2]);
   await assert.rejects(fetchAllPages(async () => [1], 1, 3));
+});
+
+const OWNER = "00000000-0000-0000-0000-000000000001";
+const MATE = "00000000-0000-0000-0000-000000000002";
+const OTHER = "00000000-0000-0000-0000-000000000003";
+
+function block(over: Partial<BlockRow>): BlockRow {
+  return { id: "b1", blocker_id: MATE, target_user_id: null, target_group_id: null, name: "Name", created_at: "2026-11-01T00:00:00Z", ...over };
+}
+
+function row(user: string, role: "owner" | "member" = "member"): MemberRow {
+  return { group_id: "g1", user_id: user, role, display_name: user.slice(-1), joined_at: `2026-10-0${user.slice(-1)}T00:00:00Z` };
+}
+
+const SUMMARY: MemberSummary = { streak: 0, todayReviews: 0, weekReviews: 10, lastActivity: null, languages: [], subjects: [], recentWords: [], sets: [] };
+
+test("moderation migration keeps reports past deletion and blocks atomically", () => {
+  const sql = readFileSync(join(process.cwd(), "supabase/migrations/20261105000100_group_moderation.sql"), "utf8");
+  const reports = sql.slice(sql.indexOf("bucket.group_reports ("), sql.indexOf("create index if not exists group_reports_open_idx"));
+  assert.match(reports, /target_user_id uuid\s+references auth\.users \(id\) on delete set null/);
+  assert.match(reports, /group_id\s+uuid\s+references bucket\.learning_groups \(id\) on delete set null/);
+  assert.match(reports, /group_name\s+text\s+not null/);
+  assert.doesNotMatch(reports, /cascade/);
+  assert.match(sql, /function bucket\.block_member/);
+  assert.match(sql, /function bucket\.block_group/);
+});
+
+test("missingTable spots an unapplied migration and nothing else", () => {
+  assert.equal(missingTable({ code: "PGRST205", message: "Could not find the table 'bucket.group_blocks' in the schema cache" }), true);
+  assert.equal(missingTable({ code: "42P01", message: 'relation "bucket.group_blocks" does not exist' }), true);
+  assert.equal(missingTable({ message: 'relation "bucket.group_reports" does not exist' }), true);
+  assert.equal(missingTable({ code: "42501", message: "permission denied" }), false);
+  assert.equal(missingTable({ code: "42703", message: "column group_blocks.name does not exist" }), false);
+  assert.equal(missingTable(null), false);
+});
+
+test("hiddenUsers hides both sides of a block", () => {
+  const rows = [block({ blocker_id: MATE, target_user_id: OTHER }), block({ blocker_id: OWNER, target_user_id: MATE }), block({ blocker_id: MATE, target_group_id: "g9" })];
+  assert.deepEqual(Array.from(hiddenUsers(rows, MATE)).sort(), [OWNER, OTHER]);
+  assert.deepEqual(Array.from(hiddenUsers(rows, OTHER)), [MATE]);
+});
+
+test("joinBlocked covers a blocked owner, a blocking owner and a blocked group", () => {
+  const group = { id: "g1", owner_id: OWNER };
+  assert.equal(joinBlocked([block({ blocker_id: OWNER, target_user_id: MATE })], MATE, group), true);
+  assert.equal(joinBlocked([block({ blocker_id: MATE, target_user_id: OWNER })], MATE, group), true);
+  assert.equal(joinBlocked([block({ blocker_id: MATE, target_group_id: "g1" })], MATE, group), true);
+  assert.equal(joinBlocked([block({ blocker_id: MATE, target_group_id: "g2" })], MATE, group), false);
+  assert.equal(joinBlocked([block({ blocker_id: OTHER, target_user_id: MATE })], MATE, group), false);
+});
+
+test("assembleGroup drops hidden members and their cheers and keeps the goal total", () => {
+  const group: GroupRow = { id: "g1", name: "G", kind: "friends", owner_id: OWNER, invite_code: "0123456789", created_at: "2026-10-01", weekly_goal: 100 };
+  const members = [row(OWNER, "owner"), row(MATE), row(OTHER)];
+  const sums = new Map(members.map((m) => [m.user_id, SUMMARY]));
+  const cheers: CheerRow[] = [
+    { id: "c1", group_id: "g1", from_id: OTHER, to_id: MATE, kind: "cheer", created_at: "2026-10-02", seen_at: null },
+    { id: "c2", group_id: "g1", from_id: OWNER, to_id: MATE, kind: "cheer", created_at: "2026-10-03", seen_at: null },
+  ];
+  const g = assembleGroup(group, members, sums, MATE, cheers, "2026-09-28", new Set([OTHER]));
+  assert.deepEqual(g.members.map((m) => m.userId), [OWNER, MATE]);
+  assert.deepEqual(g.cheers.map((c) => c.id), ["c2"]);
+  assert.equal(g.goal?.done, 30);
+});
+
+test("toBlock names the target kind", () => {
+  assert.deepEqual(toBlock(block({ id: "b", target_group_id: "g1", name: "N" })), { id: "b", kind: "group", targetId: "g1", name: "N", at: "2026-11-01T00:00:00Z" });
+  assert.equal(toBlock(block({ target_user_id: OTHER })).kind, "member");
+});
+
+test("normalizeReportReason keeps known reasons", () => {
+  assert.equal(normalizeReportReason("spam"), "spam");
+  assert.equal(normalizeReportReason("offensive_name"), "offensive_name");
+  assert.equal(normalizeReportReason("nope"), null);
+  assert.equal(normalizeReportReason(3), null);
+});
+
+test("nameAllowed rejects profanity in several spellings", () => {
+  for (const name of ["fuck", "F U C K", "fuuuck you", "sh1t", "$hit", "Puta", "PUTÁ", "mierda team", "Scheiße", "n1gger", "the b1tch club", "f.u.c.k"]) {
+    assert.equal(nameAllowed(name), false, name);
+  }
+});
+
+test("nameAllowed keeps ordinary names", () => {
+  for (const name of ["Rossi family", "Scunthorpe United", "Bass Players", "Niger Friends", "Cassandra", "Dick Van Dyke", "Essex crew", "Nonna Lucia", "Hannah", "Pushkin readers", "Associates", "José", "田中"]) {
+    assert.equal(nameAllowed(name), true, name);
+  }
 });

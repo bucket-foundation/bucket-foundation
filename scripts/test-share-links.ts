@@ -15,6 +15,36 @@ test("a language set link names the languages and the streak", () => {
   assert.equal(v.eyebrow, "12 day streak");
 });
 
+test("a single tile and a single language read in the singular", () => {
+  assert.equal(shareView("w", { g: "night", f: "es:noche" }).eyebrow, "A word in Spanish");
+  const v = shareView("l", { l: "es", r: "en" });
+  assert.equal(v.title, "Learning Spanish");
+  assert.equal(v.eyebrow, "A language on Bucket");
+});
+
+test("a score link names the source and the count", () => {
+  const v = shareView("x", { t: "Match", p: "9", m: "12", l: "fr.es", r: "en", s: "4" });
+  assert.equal(v.kind, "x");
+  assert.equal(v.eyebrow, "Match score");
+  assert.equal(v.title, "9 of 12 right");
+  assert.deepEqual(v.langs, ["fr", "es"]);
+  assert.match(sharePath("x", { t: "Match", p: "9", m: "12" }), /^\/s\/x\?t=Match&p=9&m=12$/);
+});
+
+test("a score link without a total falls back to the app card", () => {
+  assert.equal(shareView("x", { t: "Match", p: "9" }).title, "Learn every subject and language together");
+});
+
+test("a content link keeps the quote and the moment", () => {
+  const v = shareView("c", { t: "Gravity", b: "Spanish Wikipedia", q: "La gravedad atrae.", at: "667" });
+  assert.equal(v.title, "Gravity");
+  assert.equal(v.eyebrow, "Spanish Wikipedia, play from 11:07");
+  assert.equal(v.description, "La gravedad atrae.");
+  assert.equal(shareView("c", { t: "Gravity" }).eyebrow, "Bucket");
+  assert.match(sharePath("c", { t: "Gravity", at: "667" }), /at=667/);
+  assert.equal(shareView("c", { b: "x" }).title, "Learn every subject and language together");
+});
+
 test("broken or unknown links fall back to the app card", () => {
   assert.equal(shareView("w", { g: "night" }).title, "Learn every subject and language together");
   assert.equal(shareView("", {}).kind, "");

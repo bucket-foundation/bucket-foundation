@@ -6,14 +6,15 @@ import UserNotifications
 enum WordOfDayReminder {
     static func schedule(_ store: LangStore, enabled: Bool, now: Date = .now) async {
         let center = UNUserNotificationCenter.current()
-        let ids = (1...3).map { "word-of-day-\($0)" }
-        center.removePendingNotificationRequests(withIdentifiers: ids)
+        let ids = (0...3).map { "word-of-day-\($0)" }
+        if !enabled { center.removePendingNotificationRequests(withIdentifiers: ids) }
         guard enabled, let corpus = store.corpus, let system = store.systems.first else { return }
+        center.removePendingNotificationRequests(withIdentifiers: ids)
         let state = store.state(system.id)
         let cal = Calendar.current
-        for k in 1...3 {
+        for k in 0...3 {
             guard let day = cal.date(byAdding: .day, value: k, to: cal.startOfDay(for: now)),
-                  let fire = cal.date(bySettingHour: 9, minute: 0, second: 0, of: day),
+                  let fire = cal.date(bySettingHour: 9, minute: 0, second: 0, of: day), fire > now,
                   let word = wordOfDay(system, corpus, state, day: dayKey(day.timeIntervalSince1970 * 1000)),
                   let gloss = word.form(system.root) else { continue }
             let content = UNMutableNotificationContent()

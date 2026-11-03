@@ -109,8 +109,8 @@ struct QuestionCard: View {
             }
             .padding(.horizontal, 16)
             .frame(minHeight: 52)
-            .background(.white, in: .rect(cornerRadius: 12))
-            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.keyline, lineWidth: 2) }
+            .background(D8.face, in: .rect(cornerRadius: 12))
+            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.edge, lineWidth: 2) }
             .disabled(result != nil)
         case .order:
             Text("Tap the steps in order.").font(.caption).foregroundStyle(Palette.muted)
@@ -138,11 +138,11 @@ struct QuestionCard: View {
                     Menu {
                         ForEach(meanings, id: \.self) { m in Button(m) { matches[p.term] = m; tap() } }
                     } label: {
-                        Text(matches[p.term] ?? String(localized: "Choose")).font(.subheadline).foregroundStyle(matches[p.term] == nil ? Palette.muted : D8.ink)
+                        Text(matches[p.term] ?? String(localized: "Choose")).font(.subheadline).foregroundStyle(matches[p.term] == nil ? Palette.muted : Palette.ink)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(10)
-                            .background(.white, in: .rect(cornerRadius: 10))
-                            .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline, lineWidth: 2) }
+                            .background(D8.face, in: .rect(cornerRadius: 10))
+                            .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.edge, lineWidth: 2) }
                     }
                     .disabled(result != nil)
                 }

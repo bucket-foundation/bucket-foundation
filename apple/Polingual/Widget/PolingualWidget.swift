@@ -32,8 +32,10 @@ enum WidgetBrand {
 
     #if BUCKET
     static let name = "Bucket"
+    static let voice = URL(string: "bucket://voice")
     #else
     static let name = "Polingual"
+    static let voice = URL(string: "polingual://voice")
     #endif
 }
 
@@ -164,7 +166,67 @@ struct PolingualWidget: Widget {
     }
 }
 
+struct VoiceWidgetView: View {
+    @Environment(\.widgetFamily) private var family
+
+    var mic: some View {
+        Image(systemName: "mic.fill").font(.system(size: 40, weight: .bold)).foregroundStyle(WidgetInk.vermilion)
+            .frame(width: 84, height: 84).background(WidgetInk.parchment, in: .circle)
+    }
+
+    var body: some View {
+        switch family {
+        #if os(iOS)
+        case .accessoryCircular:
+            ZStack {
+                AccessoryWidgetBackground()
+                Image(systemName: "mic.fill").font(.title2.weight(.bold))
+            }
+        #endif
+        case .systemMedium:
+            HStack(spacing: 18) {
+                mic
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Translate").font(.system(size: 26, weight: .heavy, design: .rounded))
+                    Text("Tap and speak").font(.subheadline.weight(.semibold))
+                }
+                .foregroundStyle(WidgetInk.parchment)
+                Spacer(minLength: 0)
+            }
+        default:
+            VStack(spacing: 8) {
+                mic
+                Text("Tap and speak").font(.system(size: 14, weight: .heavy, design: .rounded)).foregroundStyle(WidgetInk.parchment).lineLimit(1).minimumScaleFactor(0.7)
+            }
+        }
+    }
+}
+
+struct VoiceWidget: Widget {
+    var families: [WidgetFamily] {
+        #if os(iOS)
+        [.systemSmall, .systemMedium, .accessoryCircular]
+        #else
+        [.systemSmall, .systemMedium]
+        #endif
+    }
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "PolingualVoice", provider: SnapshotProvider()) { _ in
+            VoiceWidgetView()
+                .widgetURL(WidgetBrand.voice)
+                .containerBackground(WidgetInk.vermilion, for: .widget)
+        }
+        .configurationDisplayName("Translate")
+        .description("One tap, then speak.")
+        .supportedFamilies(families)
+    }
+}
+
 @main
 struct PolingualWidgets: WidgetBundle {
-    var body: some Widget { PolingualWidget() }
+    var body: some Widget {
+        VoiceWidget()
+        PolingualWidget()
+    }
 }

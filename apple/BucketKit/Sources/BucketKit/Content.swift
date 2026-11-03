@@ -216,6 +216,23 @@ public enum WordTaps {
         return c.url
     }
 
+    public static func attributed(_ text: String, lang: String) -> AttributedString {
+        var out = AttributedString(text)
+        for (word, range) in words(text) {
+            guard let lower = AttributedString.Index(range.lowerBound, within: out),
+                  let upper = AttributedString.Index(range.upperBound, within: out),
+                  let url = link(lang: lang, word: word) else { continue }
+            out[lower..<upper].link = url
+        }
+        return out
+    }
+
+    public static func tileLink(_ text: String, lang: String) -> URL? {
+        let found = words(text)
+        guard found.count == 1 else { return nil }
+        return link(lang: lang, word: found[0].word)
+    }
+
     public static func parse(_ url: URL) -> (lang: String, word: String)? {
         guard url.scheme == "bucket-speak", let lang = url.host(), let c = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let w = c.queryItems?.first(where: { $0.name == "w" })?.value, !w.isEmpty else { return nil }

@@ -621,7 +621,7 @@ public func verdictRating(_ v: Verdict, hesitated: Bool = false) -> Rating {
 }
 
 public enum ExerciseKind: String, Sendable {
-    case intro, choose, reverse, listen, translate, typeHeard = "type-heard", speak, cloze, cognate, match, sentence, wordbank, gender, conjugate, falseFriend = "false-friend", spellHeard = "spell-heard", letter
+    case intro, choose, reverse, listen, translate, typeHeard = "type-heard", speak, cloze, cognate, match, sentence, wordbank, gender, conjugate, falseFriend = "false-friend", spellHeard = "spell-heard", letter, letterSound = "letter-sound", blend, minimalPair = "minimal-pair"
 
     public var label: String {
         switch self {
@@ -642,6 +642,9 @@ public enum ExerciseKind: String, Sendable {
         case .falseFriend: "false friend"
         case .spellHeard: "spell what you hear"
         case .letter: "find the letter"
+        case .letterSound: "what sound"
+        case .blend: "blend the word"
+        case .minimalPair: "hear the difference"
         }
     }
 }
@@ -676,6 +679,10 @@ public struct Exercise: Sendable {
     public var tense: String?
     public var level: Double?
     public var falseFriend: FalseFriend?
+    public var spoken: [SpokenOption]?
+    public var segments: [String]?
+    public var hint: String?
+    public var nativeVoice = false
 
     public init(kind: ExerciseKind, itemId: String, lang: String, root: String, prompt: String, promptLang: String, answer: String, answerLang: String, note: String? = nil) {
         self.kind = kind

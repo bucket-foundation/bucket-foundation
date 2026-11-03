@@ -10,6 +10,14 @@ extension ContentKind {
         case .watch: String(localized: "Watch")
         }
     }
+
+    var activity: TodayActivity? {
+        switch self {
+        case .read: nil
+        case .listen: .listen
+        case .watch: .watch
+        }
+    }
 }
 
 func branchTitle(_ id: String) -> String {
@@ -81,6 +89,7 @@ final class RadioPlayer {
     private var watch: [Task<Void, Never>] = []
     private(set) var playing: String?
     private(set) var failedId: String?
+    private var clock = PlayClock()
 
     init() {
         #if os(iOS)
@@ -124,7 +133,18 @@ final class RadioPlayer {
                     return
                 }
             },
+            Task { [weak self] in
+                while !Task.isCancelled {
+                    try? await Task.sleep(for: .seconds(1))
+                    self?.heard()
+                }
+            },
         ]
+    }
+
+    func heard() {
+        guard player?.timeControlStatus == .playing else { return }
+        if clock.tick(1, day: dayKey(Date().timeIntervalSince1970 * 1000)) { TodayPlanStore.shared.finish(TodayActivity.listen.id) }
     }
 
     func fail(_ id: String) {
@@ -145,13 +165,29 @@ final class RadioPlayer {
     }
 }
 
+extension LangStore {
+    var contentLangs: [String] {
+        let all = gameLangs
+        return all.isEmpty ? ["es", "fr"] : all
+    }
+}
+
 struct ContentHub: View {
     @Environment(LangStore.self) private var langs
     var embedded = false
-    @State private var kind: ContentKind = Self.launchKind
+    @State private var kind: ContentKind
     @State private var branch: String?
     @State private var lang: String?
     @State private var openTopic: ContentTopic?
+    let fixed: Bool
+    let fromToday: Bool
+
+    init(embedded: Bool = false, start: ContentKind? = nil, fromToday: Bool = false) {
+        self.embedded = embedded
+        self.fromToday = fromToday
+        fixed = start != nil
+        _kind = State(initialValue: start ?? Self.launchKind)
+    }
 
     static var launchKind: ContentKind {
         #if DEBUG
@@ -161,10 +197,7 @@ struct ContentHub: View {
         return .read
     }
 
-    var learnerLangs: [String] {
-        let all = langs.gameLangs
-        return all.isEmpty ? ["es", "fr"] : all
-    }
+    var learnerLangs: [String] { langs.contentLangs }
 
     var shownLangs: [String] { lang.map { [$0] } ?? learnerLangs }
 
@@ -178,18 +211,20 @@ struct ContentHub: View {
 
     var content: some View {
         List {
-            Section {
-                Picker("Content", selection: $kind) {
-                    ForEach(ContentKind.allCases, id: \.self) { Text($0.title).tag($0) }
+            if !fixed {
+                Section {
+                    Picker("Content", selection: $kind) {
+                        ForEach(ContentKind.allCases, id: \.self) { Text($0.title).tag($0) }
+                    }
+                    .pickerStyle(.segmented)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
                 }
-                .pickerStyle(.segmented)
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets())
             }
             switch kind {
-            case .read: ReadList(branch: branch, langs: shownLangs)
+            case .read: ReadList(branch: branch) { openTopic = $0 }
             case .listen: ListenList(branch: branch, langs: shownLangs)
-            case .watch: WatchList(branch: branch, langs: shownLangs)
+            case .watch: WatchList(branch: branch, langs: shownLangs, earns: fromToday)
             }
             if langs.systems.isEmpty {
                 Section {
@@ -201,7 +236,7 @@ struct ContentHub: View {
             }
         }
         .paper()
-        .navigationTitle("Content")
+        .navigationTitle(fixed ? kind.title : String(localized: "Content"))
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Menu {
@@ -217,11 +252,14 @@ struct ContentHub: View {
                     Label("Filter", systemImage: branch == nil && lang == nil ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
                 }
             }
+            if fixed, let activity = kind.activity {
+                ToolbarItem(placement: .primaryAction) { AddToToday(item: .activity(activity), look: .icon) }
+            }
         }
-        .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs) }
+        .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
         .onChange(of: kind) { _, k in if k != .listen { RadioPlayer.shared.stop() } }
         .onDisappear { RadioPlayer.shared.stop() }
-        .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs) }
+        .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
         .task {
             await langs.load()
             #if DEBUG
@@ -251,25 +289,23 @@ struct ContentTags: View {
 
 struct ReadList: View {
     let branch: String?
-    let langs: [String]
+    let open: (ContentTopic) -> Void
 
     var body: some View {
         Section {
-            ForEach(ContentCatalog.topics(in: branch)) { t in
-                NavigationLink(value: t) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(t.title).font(.headline)
-                        ContentTags(langs: langs, branch: t.branch)
+            LazyVGrid(columns: learnColumns, spacing: 14) {
+                ForEach(ContentCatalog.topics(in: branch)) { t in
+                    LearnTile(title: t.title, detail: branchTitle(t.branch), face: BranchTile.face(t.branch), item: .topic(t), open: { open(t) }) {
+                        Text(BranchTile.glyph(t.branch)).font(.system(size: 26, weight: .bold, design: .serif)).foregroundStyle(D8.parchment)
                     }
-                    .padding(.vertical, 2)
                 }
             }
-        } header: {
-            Eyebrow(text: "Wikipedia side by side")
+            .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+            .listRowSeparator(.hidden)
         } footer: {
             Text("Tap any word to hear it. Text from Wikipedia, CC BY-SA.")
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(Color.clear)
     }
 }
 
@@ -295,6 +331,11 @@ struct ReadView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .paper()
         .navigationTitle(topic.title)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) { AddToToday(item: .topic(topic), look: .icon) }
+            ToolbarItem(placement: .primaryAction) { ScreenShareButton() }
+        }
+        .shareObjects(langs.compactMap { l in texts[l].map { .content(ShareMoment(title: $0.title, source: String(localized: "\(langName(l)) Wikipedia"), branch: topic.branch, lang: l, quote: $0.extract, topic: topic.title)) } })
         .inlineTitle()
         .environment(\.openURL, OpenURLAction { url in
             guard let p = WordTaps.parse(url) else { return .systemAction }
@@ -312,6 +353,11 @@ struct ReadView: View {
             }
         }
         .task { await load() }
+        .task(id: texts.isEmpty) {
+            guard !texts.isEmpty else { return }
+            try? await Task.sleep(for: .seconds(30))
+            if !Task.isCancelled { TodayPlanStore.shared.finish(TodayItem.topic(topic).id) }
+        }
     }
 
     func column(_ l: String) -> some View {
@@ -319,9 +365,13 @@ struct ReadView: View {
             HStack(spacing: 8) {
                 FlagTile(lang: l, size: 26)
                 Text(texts[l]?.title ?? titles[l] ?? langName(l)).font(.serif(.title3, weight: .semibold))
+                if let s = texts[l] {
+                    Spacer(minLength: 0)
+                    ShareObjectButton(.content(ShareMoment(title: s.title, source: String(localized: "\(langName(l)) Wikipedia"), branch: topic.branch, lang: l, quote: s.extract, topic: topic.title)))
+                }
             }
             if let s = texts[l] {
-                Text(tappable(s.extract, l))
+                Text(tapText(s.extract, l))
                     .font(.serif(.body))
                     .lineSpacing(4)
                     .environment(\.layoutDirection, Lang.info[l]?.rtl == true ? .rightToLeft : .leftToRight)
@@ -337,18 +387,6 @@ struct ReadView: View {
         .padding(16)
         .frame(width: 320, alignment: .topLeading)
         .background(Palette.card, in: .rect(cornerRadius: 16))
-    }
-
-    func tappable(_ text: String, _ lang: String) -> AttributedString {
-        var out = AttributedString(text)
-        for (word, range) in WordTaps.words(text) {
-            guard let lower = AttributedString.Index(range.lowerBound, within: out),
-                  let upper = AttributedString.Index(range.upperBound, within: out),
-                  let url = WordTaps.link(lang: lang, word: word) else { continue }
-            out[lower..<upper].link = url
-            out[lower..<upper].foregroundColor = Palette.ink
-        }
-        return out
     }
 
     func load() async {
@@ -391,29 +429,22 @@ struct ListenList: View {
                 } else if shown.isEmpty {
                     Text(all.isEmpty ? String(localized: "No stations found.") : String(localized: "No stations in this branch.")).foregroundStyle(Palette.muted)
                 }
-                ForEach(shown) { s in
-                    Button { radio.toggle(s) } label: {
-                        HStack(spacing: 12) {
-                            Image(systemName: radio.playing == s.id ? "stop.circle.fill" : "play.circle.fill")
-                                .font(.title)
-                                .foregroundStyle(radio.playing == s.id ? D8.vermilion : Palette.green)
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(s.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
-                                Text(radio.failedId == s.id ? String(localized: "This station did not play.") : s.country)
-                                    .font(.footnote)
-                                    .foregroundStyle(radio.failedId == s.id ? D8.vermilion : Palette.muted)
-                                ContentTags(langs: [l], branch: s.branch)
-                            }
+                LazyVGrid(columns: learnColumns, spacing: 14) {
+                    ForEach(shown) { s in
+                        LearnTile(title: s.name, detail: radio.failedId == s.id ? String(localized: "This station did not play.") : s.country, face: radio.playing == s.id ? D8.vermilion : BranchTile.face(s.branch), open: { radio.toggle(s) }) {
+                            LearnSymbol(name: radio.playing == s.id ? "stop.fill" : "play.fill")
+                        }
+                        .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
+                        .overlay(alignment: .topTrailing) {
+                            ShareObjectButton(.content(ShareMoment(title: s.name, source: s.country, branch: s.branch, lang: l))).tint(D8.parchment).padding(10)
+                        }
+                        .contextMenu {
+                            Button("Report station", systemImage: "flag", role: .destructive) { report(s) }
                         }
                     }
-                    .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
-                    .contextMenu {
-                        Button("Report station", systemImage: "flag", role: .destructive) { report(s) }
-                    }
-                    .swipeActions {
-                        Button("Report", systemImage: "flag", role: .destructive) { report(s) }
-                    }
                 }
+                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                .listRowSeparator(.hidden)
             } header: {
                 HStack(spacing: 6) {
                     FlagTile(lang: l, size: 18)
@@ -422,7 +453,7 @@ struct ListenList: View {
             } footer: {
                 if l == langs.last { Text("Stations from radio-browser.info.") }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(Color.clear)
             .task { await store.stations(l) }
         }
     }
@@ -434,31 +465,38 @@ struct ListenList: View {
 }
 
 struct WatchList: View {
+    @Environment(\.openURL) private var openURL
     let branch: String?
     let langs: [String]
+    var earns = false
     @State private var store = ContentStore.shared
 
     var body: some View {
         ForEach(ContentCatalog.topics(in: branch)) { t in
             Section {
-                ForEach(langs, id: \.self) { l in
-                    let title = store.titles[t.title]?[l]
-                    Link(destination: ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)")) {
-                        HStack(spacing: 10) {
-                            FlagTile(lang: l, size: 24)
-                            Text(title ?? t.title).foregroundStyle(Palette.ink)
-                            Spacer()
-                            Image(systemName: "play.rectangle.fill").foregroundStyle(D8.vermilion)
+                LazyVGrid(columns: learnColumns, spacing: 14) {
+                    ForEach(langs, id: \.self) { l in
+                        let title = store.titles[t.title]?[l]
+                        LearnTile(title: title ?? t.title, detail: langName(l), face: BranchTile.face(t.branch), open: {
+                            if earns { WatchDwell.opened() }
+                            openURL(ContentCatalog.youtube(title ?? "\(t.title) \(Lang.info[l]?.name ?? l)"))
+                        }) {
+                            FlagTile(lang: l, size: 30)
+                        }
+                        .overlay(alignment: .topTrailing) {
+                            ShareObjectButton(.content(ShareMoment(title: title ?? t.title, source: branchTitle(t.branch), branch: t.branch, lang: l, topic: t.title))).tint(D8.parchment).padding(10)
                         }
                     }
                 }
+                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+                .listRowSeparator(.hidden)
             } header: {
                 HStack(spacing: 6) {
                     BranchTile(branch: t.branch, size: 18)
                     Eyebrow(text: t.title)
                 }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(Color.clear)
             .task { _ = await store.titles(for: t) }
         }
     }

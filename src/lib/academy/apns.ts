@@ -2,7 +2,7 @@ import { createPrivateKey, sign, type KeyObject } from "node:crypto";
 import { connect, type ClientHttp2Session } from "node:http2";
 
 export type PushEnv = "sandbox" | "production";
-export type CheerPushKind = "cheer" | "nudge";
+export type CheerPushKind = "cheer" | "nudge" | "high_five" | "nice_streak" | "race_you" | "keep_going";
 
 export const PUSH_BUNDLES = ["foundation.bucket.app", "com.polingual.app"] as const;
 export const TOKEN_TTL_MS = 50 * 60_000;
@@ -93,11 +93,32 @@ export function resetTokenCache(): void {
 }
 
 export function cheerText(kind: CheerPushKind, name: string): string {
-  return kind === "cheer" ? `${name} cheered you on` : `${name} nudged you: time for today's reviews`;
+  switch (kind) {
+    case "cheer":
+      return `${name} cheered you on`;
+    case "nudge":
+      return `${name} nudged you: time for today's reviews`;
+    case "high_five":
+      return `${name} sent you a high five`;
+    case "nice_streak":
+      return `${name} says nice streak`;
+    case "race_you":
+      return `${name} wants to race you this week`;
+    case "keep_going":
+      return `${name} says keep going`;
+  }
 }
 
 export function cheerPayload(kind: CheerPushKind, name: string, groupId: string): PushPayload {
   return { aps: { alert: { body: cheerText(kind, name) }, sound: "default", "thread-id": groupId }, group: groupId };
+}
+
+export function streakText(streak: number): string {
+  return `Your ${streak}-day streak ends tonight. One review keeps it going.`;
+}
+
+export function streakPayload(streak: number): PushPayload {
+  return { aps: { alert: { body: streakText(streak) }, sound: "default", "thread-id": "streak" }, group: "streak" };
 }
 
 export function shouldPrune(res: ApnsResponse): boolean {
@@ -192,6 +213,27 @@ export async function pushCheer(
     });
   } catch (err) {
     console.error("[academy/push] cheer:", err instanceof Error ? err.message : err);
+    return null;
+  }
+}
+
+export async function pushStreak(
+  userId: string,
+  streak: number,
+  deps: { cfg: ApnsConfig | null; store: PushStore; transport?: ApnsTransport; now?: number },
+): Promise<SendResult | null> {
+  if (!deps.cfg) return null;
+  try {
+    const devices = await deps.store.devices(userId);
+    return await sendPush(devices, streakPayload(streak), {
+      cfg: deps.cfg,
+      prune: deps.store.prune,
+      setEnv: deps.store.setEnv,
+      transport: deps.transport,
+      now: deps.now,
+    });
+  } catch (err) {
+    console.error("[academy/push] streak:", err instanceof Error ? err.message : err);
     return null;
   }
 }
