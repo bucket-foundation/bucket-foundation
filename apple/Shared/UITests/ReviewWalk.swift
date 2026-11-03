@@ -20,6 +20,21 @@ struct ReviewWalk {
     var pace: TimeInterval { Self.onDevice ? 2 : 1 }
     var humanTimeout: TimeInterval { 240 }
 
+    nonisolated(unsafe) static var recording = false
+
+    func clearAlerts() {
+        let board = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        guard board.alerts.firstMatch.exists else { return }
+        for name in ["Allow", "Allow While Using App", "OK", "Continue", "Not Now"] {
+            let button = board.alerts.buttons[name]
+            if button.exists {
+                button.tap()
+                hold()
+                return
+            }
+        }
+    }
+
     @discardableResult
     func toggleScreenRecording() -> Bool {
         guard Self.onDevice else { return false }
@@ -33,6 +48,7 @@ struct ReviewWalk {
             return false
         }
         toggle.tap()
+        Self.recording.toggle()
         Thread.sleep(forTimeInterval: 4)
         board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)).tap()
         Thread.sleep(forTimeInterval: 1)
@@ -48,7 +64,10 @@ struct ReviewWalk {
     }
 
     func tap(_ element: XCUIElement, timeout: TimeInterval = 20, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertTrue(element.waitForExistence(timeout: timeout), "Missing \(element)", file: file, line: line)
+        if !element.waitForExistence(timeout: 3) { clearAlerts() }
+        let found = element.waitForExistence(timeout: timeout)
+        if !found { print(app.debugDescription) }
+        XCTAssertTrue(found, "Missing \(element)", file: file, line: line)
         hold()
         element.tap()
     }

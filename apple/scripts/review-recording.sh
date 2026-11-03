@@ -14,7 +14,7 @@ if [ "$where" = sim ]; then
   exec "$HOME/code/.wt/buildq" xcodebuild test -project "$apple/Bucket.xcodeproj" -scheme "$scheme" \
     -destination "platform=iOS Simulator,id=ED83F68A-E9E7-4CCF-8EAC-CF73A5A6085B" \
     -derivedDataPath "$dd" -clonedSourcePackagesDirPath "$dd/spm" \
-    -only-testing:"$suite/ReviewRecordingUITests"
+    -only-testing:"$suite/ReviewRecordingUITests/testRecordingFlow"
 fi
 : "${REVIEW_DEMO_EMAIL:?set the demo account address}"
 : "${REVIEW_NEW_EMAIL:?set a fresh address to register and delete}"
@@ -27,4 +27,4 @@ exec "$HOME/code/.wt/buildq" sudo launchctl asuser 501 sudo -u g env PATH=/opt/h
   xcodebuild test -project "$apple/Bucket.xcodeproj" -scheme "$scheme" \
   -destination "id=00008120-001E5CEE0C44201E" -allowProvisioningUpdates DEVELOPMENT_TEAM=QQ6D6A2LLS \
   -derivedDataPath "$dd" -clonedSourcePackagesDirPath "$dd/spm" \
-  -only-testing:"$suite/ReviewRecordingUITests"
+  -only-testing:"$suite/ReviewRecordingUITests/testRecordingFlow"

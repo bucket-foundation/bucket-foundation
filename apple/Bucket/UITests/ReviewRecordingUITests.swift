@@ -5,6 +5,10 @@ final class ReviewRecordingUITests: XCTestCase {
         continueAfterFailure = false
     }
 
+    override func tearDown() {
+        if ReviewWalk.recording { ReviewWalk(app: XCUIApplication()).toggleScreenRecording() }
+    }
+
     func testRecordingFlow() {
         let app = XCUIApplication()
         ReviewWalk(app: app).startRecording()
