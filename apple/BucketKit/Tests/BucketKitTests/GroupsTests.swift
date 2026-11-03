@@ -243,7 +243,8 @@ func body(_ r: URLRequest) -> [String: String] {
         members[1]["weekReviews"] = 85
         members[1]["languages"] = [["lang": "it", "learned": 40, "mastered": 6]]
         fresh["members"] = members
-        let api = BucketAPI(transport: StubTransport { _ in (200, json(["groups": [fresh]])) }, cacheDir: nil)
+        let payload = json(["groups": [fresh]])
+        let api = BucketAPI(transport: StubTransport { _ in (200, payload) }, cacheDir: nil)
         let store = GroupStore(api: api, token: { "t" })
         store.groups = [try JSONDecoder().decode(LearningGroup.self, from: json(groupJSON))]
         #expect(store.member("u2", in: "g1")?.weekReviews == 0)
