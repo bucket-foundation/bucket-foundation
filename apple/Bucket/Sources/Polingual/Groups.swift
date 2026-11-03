@@ -401,8 +401,8 @@ struct Badge: View {
 }
 
 struct MemberView: View {
-    let member: GroupMember
     let groupId: String
+    private let initial: GroupMember
     @Environment(GroupStore.self) private var groups
     @Environment(\.dismiss) private var dismiss
     @State private var comparing = false
@@ -410,7 +410,21 @@ struct MemberView: View {
     @State private var reporting: ModerationTarget?
     @State private var blocking: ModerationTarget?
 
+    init(member: GroupMember, groupId: String) {
+        initial = member
+        self.groupId = groupId
+    }
+
+    var member: GroupMember { groups.member(initial.userId, in: groupId) ?? initial }
+
     var me: GroupMember? { member.isMe ? nil : groups.group(groupId)?.me }
+
+    func reload() async {
+        #if DEBUG
+        if DemoGroup.on { return }
+        #endif
+        await groups.load()
+    }
 
     var graphFirst: Bool {
         #if DEBUG
@@ -524,6 +538,8 @@ struct MemberView: View {
         .scrollContentBackground(.hidden)
         .paper()
         .navigationTitle(member.name)
+        .refreshable { await reload() }
+        .task { await reload() }
         .toolbar {
             if !member.isMe {
                 ToolbarItem(placement: .primaryAction) {

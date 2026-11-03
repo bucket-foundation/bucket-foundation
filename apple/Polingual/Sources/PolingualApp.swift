@@ -51,6 +51,11 @@ struct PolingualApp: App {
                         if p == .active {
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
+                            #if DEBUG
+                            if !DemoGroup.on { await groups.load() }
+                            #else
+                            await groups.load()
+                            #endif
                         }
                         if p == .background { await CheerNotifier.post(groups) }
                         await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }

@@ -617,6 +617,8 @@ public final class GroupStore {
 
     public func group(_ id: String) -> LearningGroup? { groups.first { $0.id == id } }
 
+    public func member(_ userId: String, in groupId: String) -> GroupMember? { group(groupId)?.members.first { $0.userId == userId } }
+
     public func first(_ kind: GroupKind) -> LearningGroup? {
         groups.first { $0.kind == kind && $0.isOwner } ?? groups.first { $0.kind == kind }
     }

@@ -235,6 +235,23 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(try body(4) == ["blockId": "b1"])
     }
 
+    @MainActor @Test func reloadReplacesAStaleMember() async throws {
+        var fresh = groupJSON
+        var members = try #require(fresh["members"] as? [[String: Any]])
+        members[1]["streak"] = 4
+        members[1]["weekReviews"] = 85
+        members[1]["languages"] = [["lang": "it", "learned": 40, "mastered": 6]]
+        fresh["members"] = members
+        let api = BucketAPI(transport: StubTransport { _ in (200, json(["groups": [fresh]])) }, cacheDir: nil)
+        let store = GroupStore(api: api, token: { "t" })
+        store.groups = [try JSONDecoder().decode(LearningGroup.self, from: json(groupJSON))]
+        #expect(store.member("u2", in: "g1")?.weekReviews == 0)
+        await store.load()
+        let nonna = try #require(store.member("u2", in: "g1"))
+        #expect(nonna.streak == 4 && nonna.weekReviews == 85 && nonna.languages.map(\.lang) == ["it"])
+        #expect(store.member("u2", in: "g2") == nil && store.member("u9", in: "g1") == nil)
+    }
+
     @MainActor @Test func blockingHidesTheMemberEverywhere() async throws {
         let list = json(["blocks": [["id": "b1", "kind": "member", "targetId": "u2", "name": "Nonna", "at": "2026-11-02T10:00:00Z"]]])
         let api = BucketAPI(transport: StubTransport { r in r.httpMethod == "POST" ? (200, json(["ok": true])) : (200, list) }, cacheDir: nil)
