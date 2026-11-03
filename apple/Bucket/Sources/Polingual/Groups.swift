@@ -365,17 +365,23 @@ struct MemberRow: View {
                     if member.isMe { Badge(text: String(localized: "You")) }
                     if member.role == .owner { Badge(text: String(localized: "Owner")) }
                 }
-                HStack(spacing: 10) {
-                    HStack(spacing: 3) {
-                        Image(systemName: "flame.fill")
-                        Text(member.streak, format: .number)
-                    }
-                    .foregroundStyle(member.streak > 0 ? D8.vermilion : Palette.muted)
-                    .accessibilityLabel(Text("\(member.streak) day streak"))
-                    Text("\(member.todayReviews) today")
+                if !member.hasProgress {
+                    Text("No progress synced yet")
+                        .font(.footnote.weight(.semibold))
                         .foregroundStyle(Palette.muted)
+                } else {
+                    HStack(spacing: 10) {
+                        HStack(spacing: 3) {
+                            Image(systemName: "flame.fill")
+                            Text(member.streak, format: .number)
+                        }
+                        .foregroundStyle(member.streak > 0 ? D8.vermilion : Palette.muted)
+                        .accessibilityLabel(Text("\(member.streak) day streak"))
+                        Text("\(member.todayReviews) today")
+                            .foregroundStyle(Palette.muted)
+                    }
+                    .font(.footnote.weight(.semibold))
                 }
-                .font(.footnote.weight(.semibold))
             }
             Spacer(minLength: 8)
             HStack(spacing: 3) {
@@ -438,6 +444,11 @@ struct MemberView: View {
         List {
             if graphFirst { StrengthGraphSection(groupId: groupId, member: member) }
             Section {
+                if !member.hasProgress {
+                    Text(member.isMe ? "Your progress has not synced yet. Finish a session while signed in." : "\(member.firstName) has no synced progress yet. Scores appear after their next session while signed in.")
+                        .font(.footnote)
+                        .foregroundStyle(Palette.muted)
+                }
                 LabeledContent("Streak", value: String(localized: "\(member.streak) days"))
                 LabeledContent("Today", value: String(localized: "\(member.todayReviews) cards"))
                 LabeledContent("This week", value: String(localized: "\(member.weekReviews) cards"))

@@ -55,6 +55,7 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(me.subjects.first?.title == "Mathematics")
         #expect(me.lastActive != nil)
         #expect(g.members[1].lastActivity == nil && g.members[1].lastActive == nil)
+        #expect(me.hasProgress && !g.members[1].hasProgress)
         #expect(!g.isFull)
     }
 

@@ -138,6 +138,7 @@ public struct GroupMember: Codable, Equatable, Sendable, Identifiable {
     public var cheerKind: CheerKind { studiedToday ? .cheer : .nudge }
 
     public var lastActive: Date? { lastActivity.flatMap(parseInstant) }
+    public var hasProgress: Bool { lastActivity != nil || streak > 0 || weekReviews > 0 || !languages.isEmpty || !subjects.isEmpty }
     public var wordsMastered: Int { languages.reduce(0) { $0 + $1.mastered } }
     public var firstName: String { name.split(separator: " ").first.map(String.init) ?? name }
     public var shareName: String { isMe ? firstName : (initials.isEmpty ? "?" : initials) }
