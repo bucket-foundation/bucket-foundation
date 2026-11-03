@@ -20,6 +20,29 @@ struct ReviewWalk {
     var pace: TimeInterval { Self.onDevice ? 2 : 1 }
     var humanTimeout: TimeInterval { 240 }
 
+    @discardableResult
+    func toggleScreenRecording() -> Bool {
+        guard Self.onDevice else { return false }
+        let board = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        board.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.002))
+            .press(forDuration: 0.1, thenDragTo: board.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.7)))
+        let toggle = board.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Screen Recording' OR label CONTAINS[c] 'Record Screen'")).firstMatch
+        guard toggle.waitForExistence(timeout: 5) else {
+            print(board.debugDescription)
+            board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)).tap()
+            return false
+        }
+        toggle.tap()
+        Thread.sleep(forTimeInterval: 4)
+        board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)).tap()
+        Thread.sleep(forTimeInterval: 1)
+        return true
+    }
+
+    func startRecording() {
+        if !toggleScreenRecording() { Thread.sleep(forTimeInterval: lead) }
+    }
+
     func hold() {
         if pace > 0 { Thread.sleep(forTimeInterval: pace) }
     }

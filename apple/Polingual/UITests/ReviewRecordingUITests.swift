@@ -44,8 +44,7 @@ final class ReviewRecordingUITests: XCTestCase {
     }
 
     func testRecordingFlow() {
-        let first = ReviewWalk(app: XCUIApplication())
-        Thread.sleep(forTimeInterval: first.lead)
+        ReviewWalk(app: XCUIApplication()).startRecording()
         let walk = launch([])
         onboarding(walk)
         paywall(walk)
@@ -55,5 +54,13 @@ final class ReviewRecordingUITests: XCTestCase {
         inside.tap(app.buttons["Games, content and account"])
         inside.tap(app.buttons["Account"])
         inside.accountFlows()
+        inside.toggleScreenRecording()
+    }
+
+    func testScreenRecordingToggle() {
+        let walk = ReviewWalk(app: XCUIApplication())
+        XCTAssertTrue(walk.toggleScreenRecording())
+        Thread.sleep(forTimeInterval: 3)
+        XCTAssertTrue(walk.toggleScreenRecording())
     }
 }
