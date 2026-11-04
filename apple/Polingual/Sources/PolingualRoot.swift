@@ -100,12 +100,20 @@ struct Studio: View {
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
     var body: some View {
+        VStack(spacing: 0) {
+            trial
+            tabs
+        }
+        .background(Palette.paper)
+    }
+
+    var tabs: some View {
         TabView(selection: $tab) {
             Tab("Today", systemImage: "sun.max", value: .today) {
-                TodayView(opening: { await place($0) }).safeAreaInset(edge: .bottom) { trial }
+                TodayView(opening: { await place($0) })
             }
-            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView().safeAreaInset(edge: .bottom) { trial } }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage).safeAreaInset(edge: .bottom) { trial } }
+            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
+            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage) }
         }
         .tabViewStyle(.sidebarAdaptable)
         .modifier(ScreenshotShare())
@@ -129,12 +137,18 @@ struct Studio: View {
 
     @ViewBuilder var trial: some View {
         if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
-            Text(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"))
-                .font(.footnote)
-                .foregroundStyle(Palette.muted)
-                .padding(.vertical, 6)
-                .frame(maxWidth: .infinity)
-                .background(.bar)
+            Button(action: manage) {
+                Label(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"), systemImage: "gift.fill")
+                    .font(.subheadline.weight(.bold))
+                    .foregroundStyle(.white)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity)
+                    .background(D8.lapis, ignoresSafeAreaEdges: [])
+            }
+            .buttonStyle(.plain)
+            .accessibilityHint(String(localized: "Manage your subscription"))
         }
     }
 
