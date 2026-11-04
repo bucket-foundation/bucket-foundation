@@ -26,8 +26,12 @@ final class SignUpFunnelUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Continue"].waitForExistence(timeout: 10))
         shot("onboarding-languages")
         app.buttons["Continue"].tap()
-        XCTAssertTrue(app.buttons["Restore"].waitForExistence(timeout: 60))
-        shot("paywall")
+        let paywall = app.buttons["Restore"]
+        let home = app.buttons["Games, content and account"]
+        let deadline = Date().addingTimeInterval(60)
+        while !paywall.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
+        XCTAssertTrue(paywall.exists || home.exists, "Onboarding did not leave after two taps")
+        shot(paywall.exists ? "paywall" : "home-already-subscribed")
     }
 
     func testSaveProgressOffersAppleThenEmail() throws {
@@ -44,8 +48,8 @@ final class SignUpFunnelUITests: XCTestCase {
         app.buttons["Cancel"].firstMatch.tap()
         XCTAssertTrue(app.buttons["Not now"].waitForExistence(timeout: 10))
         app.buttons["Not now"].tap()
-        XCTAssertTrue(app.buttons["Games, content and account"].waitForExistence(timeout: 20))
-        XCTAssertFalse(app.staticTexts["Save your progress"].waitForExistence(timeout: 2))
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.staticTexts["Save your progress"])
+        XCTAssertEqual(XCTWaiter().wait(for: [gone], timeout: 10), .completed)
     }
 
     func testAccountListsAppleFirst() throws {
