@@ -55,3 +55,19 @@ func soundUnits() -> [AlphabetUnit] {
     #expect(!LetterSounds.heard(["caffè latte"], say: "café"))
     #expect(!LetterSounds.heard([], say: "café"))
 }
+
+@Test func soundCardPutsTheCharacterOverItsPinyinAndMeaning() {
+    let ma = LetterSounds.card(LetterSounds.lookup("zh", "mā")!)
+    #expect(ma == SoundCard(word: "妈", phonetic: "mā", meaning: "mom", phoneticHoldsLetter: true))
+    let ga = LetterSounds.card(LetterSounds.lookup("ko", "ㄱ")!)
+    #expect(ga.word == "가" && ga.phonetic == "ㄱㅏ" && ga.meaning == "go")
+    let rain = LetterSounds.card(LetterSounds.lookup("ja", "あ")!)
+    #expect(rain == SoundCard(word: "あめ", phonetic: nil, meaning: "rain", phoneticHoldsLetter: false))
+    let cafe = LetterSounds.card(LetterSound(ipa: "e", hint: "h", example: "café", gloss: "coffee"))
+    #expect(cafe == SoundCard(word: "café", phonetic: nil, meaning: "coffee", phoneticHoldsLetter: false))
+}
+
+@Test func soundCardKeepsTheCharacterWordReading() {
+    let s = LetterSound(ipa: "", hint: "h", example: "我的", gloss: "mine", reading: "wǒ de")
+    #expect(LetterSounds.card(s) == SoundCard(word: "我的", phonetic: "wǒ de", meaning: "mine", phoneticHoldsLetter: false))
+}
