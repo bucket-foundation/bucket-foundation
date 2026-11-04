@@ -145,7 +145,7 @@ struct ReviewWalk {
         tap(app.buttons["Report or block"])
         tap(app.buttons["Block \(memberName)"])
         tap(app.buttons["Block"].firstMatch)
-        XCTAssertTrue(app.buttons["Leave group"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.navigationBars[groupName].waitForExistence(timeout: 30))
         hold()
         XCTAssertFalse(labeled(memberName).exists)
 

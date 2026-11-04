@@ -650,7 +650,7 @@ struct LetterSprintGame: View {
         }
         let w = words[i]
         var rng = Rng(seed: UInt32.random(in: 0...UInt32.max))
-        quiz = ScriptCourse.exercise(w.lang, w.root, w.itemId, &rng)
+        quiz = GameLetters.quiz(w, &rng)
         if let quiz, let s = LetterSounds.lookup(quiz.lang, quiz.answer) { LangVoice.shared.speak(LetterSounds.spoken(quiz.lang, s), quiz.lang) }
     }
 
