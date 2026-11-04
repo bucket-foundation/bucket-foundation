@@ -12,6 +12,7 @@ struct AccountView: View {
     @State private var confirmingDelete = false
     @State private var signingIn = false
     @State private var emailing = false
+    var subscription: (() -> Void)?
     #if DEBUG
     @State private var demoShown = false
     #endif
@@ -45,6 +46,13 @@ struct AccountView: View {
                         Button("Delete account", role: .destructive) { confirmingDelete = true }
                     } header: {
                         Eyebrow(text: "Account")
+                    }
+                }
+                if let subscription {
+                    Section {
+                        Button("Manage subscription", systemImage: "creditcard", action: subscription)
+                    } header: {
+                        Eyebrow(text: "Subscription")
                     }
                 }
                 FamilyAndFriends(signingIn: $signingIn)

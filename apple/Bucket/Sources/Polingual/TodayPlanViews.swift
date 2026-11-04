@@ -6,6 +6,7 @@ struct TodayHero: View {
     let done: Int
     let total: Int
     let next: String?
+    var languagesOnly = false
     let start: () -> Void
     let browse: () -> Void
 
@@ -30,7 +31,7 @@ struct TodayHero: View {
 
     var detail: String {
         switch status {
-        case .empty: String(localized: "Add a language or a subject and it becomes your daily list.")
+        case .empty: languagesOnly ? String(localized: "Add a language and it becomes your daily list.") : String(localized: "Add a language or a subject and it becomes your daily list.")
         case .start: String(localized: "One card counts as day 1.")
         case .keep(_, let t): "\(clock(t)). " + String(localized: "One card keeps it.")
         case .atRisk(_, let t): "\(clock(t)). " + String(localized: "One card saves it.")
@@ -136,8 +137,8 @@ struct TodayAddWidget: View {
 }
 
 struct TodayPicker: View {
-    @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
+    let subjects: [DeckEntry]?
     @Environment(\.dismiss) private var dismiss
 
     var games: [GameKind] {
@@ -165,12 +166,14 @@ struct TodayPicker: View {
                     }
                     .listRowBackground(Palette.card)
                 }
-                Section {
-                    ForEach(library.scienceDecks) { row($0.title, .deck($0)) }
-                } header: {
-                    Eyebrow(text: "Subjects")
+                if let subjects {
+                    Section {
+                        ForEach(subjects) { row($0.title, .deck($0)) }
+                    } header: {
+                        Eyebrow(text: "Subjects")
+                    }
+                    .listRowBackground(Palette.card)
                 }
-                .listRowBackground(Palette.card)
                 Section {
                     ForEach(games) { row($0.title, .game($0)) }
                 } header: {

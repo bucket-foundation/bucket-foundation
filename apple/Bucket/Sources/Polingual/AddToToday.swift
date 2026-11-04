@@ -3,7 +3,6 @@ import SwiftUI
 
 extension TodayPlanStore {
     static let shared = TodayPlanStore(api: BucketAPI())
-    static var hosted: Bool { Bundle.main.bundleIdentifier != "com.polingual.app" }
 }
 
 extension TodayItem {
@@ -53,22 +52,20 @@ struct AddToToday: View {
     var color: Color?
 
     var body: some View {
-        if TodayPlanStore.hosted {
-            let plan = TodayPlanStore.shared
-            let on = plan.contains(item.id)
-            let title = on ? String(localized: "On Today") : String(localized: "Add to Today")
-            Button {
-                if on { plan.remove(item.id) } else { plan.add(item) }
-            } label: {
-                switch look {
-                case .label: Label(title, systemImage: on ? "checkmark.circle.fill" : "plus.circle")
-                case .icon: Image(systemName: on ? "checkmark.circle.fill" : "plus.circle").font(.title2)
-                }
+        let plan = TodayPlanStore.shared
+        let on = plan.contains(item.id)
+        let title = on ? String(localized: "On Today") : String(localized: "Add to Today")
+        Button {
+            if on { plan.remove(item.id) } else { plan.add(item) }
+        } label: {
+            switch look {
+            case .label: Label(title, systemImage: on ? "checkmark.circle.fill" : "plus.circle")
+            case .icon: Image(systemName: on ? "checkmark.circle.fill" : "plus.circle").font(.title2)
             }
-            .tint(color ?? (on ? D8.malachite : Palette.ink))
-            .buttonStyle(.borderless)
-            .accessibilityLabel(title)
-            .accessibilityIdentifier("addToToday.\(item.id)")
         }
+        .tint(color ?? (on ? D8.malachite : Palette.ink))
+        .buttonStyle(.borderless)
+        .accessibilityLabel(title)
+        .accessibilityIdentifier("addToToday.\(item.id)")
     }
 }

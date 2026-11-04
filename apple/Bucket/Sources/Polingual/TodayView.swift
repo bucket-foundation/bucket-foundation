@@ -2,9 +2,7 @@ import BucketKit
 import SwiftUI
 
 struct TodayView: View {
-    @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
-    @Environment(ScienceStore.self) private var science
     @Environment(Reminders.self) private var reminders
     @Environment(Account.self) private var account
     @Environment(\.scenePhase) private var phase
@@ -15,17 +13,18 @@ struct TodayView: View {
     @AppStorage("bucket.today.order") private var order = ""
     @State private var scienceReady = false
     private let plan = TodayPlanStore.shared
+    var subjects: (any Subjects)?
+    var opening: (@MainActor (Binding<NavigationPath>) async -> Void)?
+
+    var decks: [DeckEntry] { subjects?.decks ?? [] }
+
+    var deckStates: [EngineState] { decks.compactMap { subjects?.state($0.id) } }
 
     var loaded: Bool {
         #if DEBUG
         if Launch.flag("-holdLoading") { return false }
         #endif
-        let indexDone: Bool
-        switch library.index {
-        case .ready, .failed: indexDone = true
-        default: indexDone = false
-        }
-        return indexDone && scienceReady && (langs.status == .ready || langs.status == .error)
+        return (subjects?.indexDone ?? true) && scienceReady && (langs.status == .ready || langs.status == .error)
     }
 
     enum Item: Identifiable {
@@ -71,15 +70,10 @@ struct TodayView: View {
         let new: Int
     }
 
-    func work(_ entry: DeckEntry) -> Work? {
-        guard let deck = library.prepared[entry.id] else { return nil }
-        let r = science.route(deck)
-        let due = r.filter { $0.kind == .review }.count
-        return Work(entry: entry, deck: deck, due: due, new: r.count - due)
-    }
+    func work(_ entry: DeckEntry) -> Work? { subjects?.work(entry) }
 
     var startedWork: [Work] {
-        library.scienceDecks.filter { science.state($0.id).cards.count > 0 }.compactMap(work)
+        decks.filter { (subjects?.state($0.id).cards.count ?? 0) > 0 }.compactMap(work)
     }
 
     var defaultItems: [TodayItem] {
@@ -89,7 +83,7 @@ struct TodayView: View {
             let ib = saved.firstIndex(of: b.element.legacyId) ?? saved.count + b.offset
             return ia < ib
         }.compactMap { todayItem($0.element) }
-        return TodayPlan.defaults(systems: own, decks: [], starter: library.scienceDecks.prefix(1).map(TodayItem.deck))
+        return TodayPlan.defaults(systems: own, decks: [], starter: decks.prefix(1).map(TodayItem.deck))
     }
 
     func todayItem(_ item: Item) -> TodayItem? {
@@ -111,7 +105,7 @@ struct TodayView: View {
         if let activity = item.activity { return .activity(activity) }
         switch item.kind {
         case .system: return langs.systems.first { $0.id == item.ref }.map(Item.lang)
-        case .deck: return library.scienceDecks.first { $0.id == item.ref }.flatMap(work).map(Item.deck)
+        case .deck: return decks.first { $0.id == item.ref }.flatMap(work).map(Item.deck)
         case .game: return GameKind(rawValue: item.ref).map(Item.game)
         case .content: return ContentCatalog.topics.first { $0.title == item.ref }.map(Item.read)
         }
@@ -134,7 +128,7 @@ struct TodayView: View {
 
     var streak: Double {
         let now = Date().timeIntervalSince1970 * 1000
-        return (library.scienceDecks.map { liveStreak(science.state($0.id), now: now) } + langs.systems.map { liveStreak(langs.state($0.id), now: now) }).max() ?? 0
+        return (deckStates.map { liveStreak($0, now: now) } + langs.systems.map { liveStreak(langs.state($0.id), now: now) }).max() ?? 0
     }
 
     func startNext() {
@@ -167,7 +161,7 @@ struct TodayView: View {
     func studied(_ item: Item, _ now: Double) -> Int {
         let state: EngineState
         switch item {
-        case .deck(let w): state = science.state(w.entry.id)
+        case .deck(let w): guard let s = subjects?.state(w.entry.id) else { return 0 }; state = s
         case .lang(let s): state = langs.state(s.id)
         case .game, .read, .activity: return 0
         }
@@ -189,9 +183,7 @@ struct TodayView: View {
 
     func masteredPercent(_ item: Item, _ now: Double) -> Int {
         switch item {
-        case .deck(let w):
-            let s = science.summary(w.deck)
-            return s.total > 0 ? Int(Double(s.mastered) / Double(s.total) * 100) : 0
+        case .deck(let w): return subjects?.masteredPercent(w.deck) ?? 0
         case .lang(let s):
             guard let corpus = langs.corpus else { return 0 }
             let per = langProgress(s, corpus, langs.state(s.id), now: now)
@@ -265,7 +257,7 @@ struct TodayView: View {
         #else
         let status = real
         #endif
-        return TodayHero(status: status, done: planned.count - pending.count, total: planned.count, next: nextUp(now)?.title, start: startNext, browse: { picking = true })
+        return TodayHero(status: status, done: planned.count - pending.count, total: planned.count, next: nextUp(now)?.title, languagesOnly: subjects == nil, start: startNext, browse: { picking = true })
     }
 
     var body: some View {
@@ -277,7 +269,7 @@ struct TodayView: View {
         let due = w.reduce(0) { $0 + $1.due } + langDue.reduce(0) { $0 + $1.due }
         let new = w.reduce(0) { $0 + $1.new } + langDue.reduce(0) { $0 + langNewLeft($1.system, langs.state($1.system.id), now: now) }
         let today = dayKey(now)
-        let done = library.scienceDecks.reduce(0) { t, e in t + science.state(e.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
+        let done = deckStates.reduce(0) { t, state in t + state.history[today].map { Int($0.new + $0.reviews) }.orZero }
             + langs.systems.reduce(0) { t, s in t + langs.state(s.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
         let pending = planned.filter { hasWork($0, now) }
         let finished = planned.filter { !hasWork($0, now) }
@@ -332,8 +324,8 @@ struct TodayView: View {
             .paper()
             .navigationTitle("Today")
             .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
-            .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }
-            .sheet(isPresented: $picking) { TodayPicker() }
+            .sheet(item: $session) { subjects?.study($0) }
+            .sheet(isPresented: $picking) { TodayPicker(subjects: subjects?.decks) }
             .langDestinations(path: $path)
             .navigationDestination(for: TodayRoute.self) { route in
                 switch route {
@@ -362,31 +354,18 @@ struct TodayView: View {
             .task {
                 WatchDwell.returned()
                 await langs.load()
+                await opening?($path)
             }
-            .task(id: library.scienceDecks.map(\.id)) {
+            .task(id: decks.map(\.id)) {
                 scienceReady = false
-                await science.load(library.scienceDecks.map(\.id))
-                for entry in library.scienceDecks { _ = await library.prepared(entry) }
+                await subjects?.load()
                 scienceReady = true
-                guard session == nil, let id = Launch.value("-study"), let entry = library.scienceDecks.first(where: { $0.id == id }), let deck = await library.prepared(entry) else { return }
+                guard session == nil, let id = Launch.value("-study"), let entry = decks.first(where: { $0.id == id }), let deck = await subjects?.prepared(entry) else { return }
                 session = StudyLaunch(entry: entry, deck: deck)
             }
         }
         .modifier(MilestoneMoments(ready: loaded && session == nil && !picking && path.isEmpty))
     }
-}
-
-@MainActor
-func bucketForecast(_ library: Library, _ science: ScienceStore, _ langs: LangStore, at date: Date) -> ReviewForecast {
-    var due = langDue(langs)
-    for entry in library.scienceDecks {
-        for (id, card) in science.state(entry.id).cards.entries {
-            guard let d = card.due else { continue }
-            due.append((d, library.prepared[entry.id]?.byId[id]?.title))
-        }
-    }
-    let states = langs.systems.map { langs.state($0.id) } + library.scienceDecks.map { science.state($0.id) }
-    return ReminderPlan.forecast(due: due, at: date, streak: ReminderPlan.streak(states, at: date), studiedToday: ReminderPlan.studied(states, at: date))
 }
 
 struct Tally: View {
@@ -480,23 +459,4 @@ struct TodaySkeleton: View {
         .accessibilityElement()
         .accessibilityLabel("Loading your reviews")
     }
-}
-
-@MainActor
-func scienceWidgetExtra(_ library: Library, _ science: ScienceStore, now: Date = .now) -> WidgetExtra {
-    var extra = WidgetExtra()
-    let tomorrow = (Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: now)) ?? now).timeIntervalSince1970 * 1000 + 3_600_000
-    for entry in library.scienceDecks {
-        guard let deck = library.prepared[entry.id] else { continue }
-        let state = science.state(entry.id)
-        guard state.cards.count > 0 else { continue }
-        let r = science.route(deck)
-        let due = r.filter { $0.kind == .review }.count
-        extra.dueNow += due
-        extra.newToday += r.count - due
-        extra.newTomorrow += route(state, deck.atoms, now: tomorrow).filter { $0.kind != .review }.count
-        extra.dueLater += state.cards.entries.compactMap { $0.value.due }
-        extra.states.append(state)
-    }
-    return extra
 }
