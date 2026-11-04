@@ -85,8 +85,61 @@ struct LetterInWord: View {
     }
 }
 
+struct SoundWord: View {
+    let sound: LetterSound
+    let letter: String
+    let lang: String
+    var shown = true
+    var tint: Color = D8.vermilion
+    var size: CGFloat = 44
+
+    var body: some View {
+        let card = LetterSounds.card(sound, letter: letter)
+        VStack(spacing: 4) {
+            if card.phoneticHoldsLetter {
+                Text(card.word).font(D8.word(size)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.5)
+                    .opacity(shown ? 1 : 0).accessibilityHidden(!shown)
+                LetterInWord(sound: sound, letter: letter, lang: lang, shown: shown, tint: tint, size: size * 0.6)
+            } else {
+                LetterInWord(sound: sound, letter: letter, lang: lang, shown: shown, tint: tint, size: size)
+                if let phonetic = card.phonetic {
+                    Text(phonetic).font(D8.word(size * 0.5)).foregroundStyle(D8.lapis).lineLimit(1).minimumScaleFactor(0.5)
+                        .opacity(shown ? 1 : 0).accessibilityHidden(!shown)
+                }
+            }
+            Text(card.meaning).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
+                .opacity(shown || !card.phoneticHoldsLetter ? 1 : 0).accessibilityHidden(!shown && card.phoneticHoldsLetter)
+        }
+        .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+struct PlayFlash: ViewModifier {
+    let trigger: Int
+
+    func body(content: Content) -> some View {
+        content.keyframeAnimator(initialValue: 0.0, trigger: trigger) { view, glow in
+            view.overlay(RoundedRectangle(cornerRadius: 14).stroke(D8.lapis, lineWidth: 4).opacity(glow))
+        } keyframes: { _ in
+            LinearKeyframe(1, duration: 0.06)
+            LinearKeyframe(0, duration: 0.3)
+        }
+    }
+}
+
+extension View {
+    func playFlash(_ trigger: Int) -> some View { modifier(PlayFlash(trigger: trigger)) }
+}
+
 struct SoundHint: View {
     let sound: LetterSound
+    var reading = true
+
+    var capsule: String? {
+        if !sound.ipa.isEmpty { return "/\(sound.ipa)/" }
+        return reading ? sound.reading.flatMap { $0.isEmpty ? nil : $0 } : nil
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -96,11 +149,13 @@ struct SoundHint: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Text(sound.reading ?? "/\(sound.ipa)/")
-                    .font(.system(size: 17, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 10).padding(.vertical, 4)
-                    .background(D8.lapis, in: .capsule)
+                if let capsule {
+                    Text(capsule)
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 10).padding(.vertical, 4)
+                        .background(D8.lapis, in: .capsule)
+                }
                 Text(sound.hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -127,17 +182,17 @@ struct SayItButton: View {
                     .symbolEffect(.variableColor.iterative, isActive: listening)
             }
             .buttonStyle(D8Option(align: .center, compact: true))
-            if let result {
-                HStack(spacing: 6) {
-                    Image(systemName: result ? "sparkles" : "ear").symbolEffect(.bounce, value: tries)
-                    Text(result ? Self.cheer(tries) : String(localized: "Close. Tap play, listen once more, then try again."))
-                }
-                .font(.subheadline.weight(.bold))
-                .foregroundStyle(result ? D8.malachite : D8.lapis)
-                .transition(.scale.combined(with: .opacity))
+            HStack(spacing: 6) {
+                Image(systemName: result == true ? "sparkles" : "ear")
+                Text(result == true ? Self.cheer(tries) : String(localized: "Close. Tap play, listen once more, then try again."))
+                    .lineLimit(1).minimumScaleFactor(0.7)
             }
+            .font(.subheadline.weight(.bold))
+            .foregroundStyle(result == true ? D8.malachite : D8.lapis)
+            .opacity(result == nil ? 0 : 1)
+            .accessibilityHidden(result == nil)
         }
-        .animation(.spring(duration: 0.35), value: result)
+        .animation(.easeOut(duration: 0.18), value: result)
     }
 
     static func cheer(_ n: Int) -> String {
@@ -166,25 +221,19 @@ struct LetterMeet: View {
     var sideways: Bool { vertical == .compact }
 
     var body: some View {
-        (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 10))) {
-            VStack(spacing: 10) {
-                WordTile(word: ex.answer, lang: ex.lang, reading: nil, size: sideways ? 96 : 110, speakText: say, onTap: { LangVoice.shared.speak(say, ex.lang); plays += 1 }, glyph: true)
-                    .keyframeAnimator(initialValue: 1.0, trigger: plays) { v, s in v.scaleEffect(s) } keyframes: { _ in
-                        SpringKeyframe(1.12, duration: 0.18)
-                        SpringKeyframe(1.0, duration: 0.3)
-                    }
+        (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 14))) {
+            HStack(alignment: .center, spacing: 16) {
+                WordTile(word: ex.answer, lang: ex.lang, reading: nil, size: sideways ? 84 : 96, speakText: say, onTap: { LangVoice.shared.speak(say, ex.lang); plays += 1 }, glyph: true)
+                    .playFlash(plays)
                 Button { LangVoice.shared.speak(say, ex.lang); plays += 1 } label: {
-                    VStack(spacing: 2) {
-                        LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 30 : 46)
-                        Text(sound.gloss).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
-                    }
+                    SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, size: sideways ? 36 : 44)
                 }
                 .buttonStyle(.plain)
             }
             .frame(maxWidth: .infinity)
-            VStack(spacing: 10) {
+            VStack(spacing: 12) {
+                SoundHint(sound: sound, reading: false)
                 SoundButtons(text: say, lang: ex.lang, size: 56, plays: $plays)
-                SoundHint(sound: sound)
                 if LangListener.shared.canHear(ex.lang) {
                     SayItButton(say: say, lang: ex.lang) { plays += 1 }
                 }
@@ -218,25 +267,17 @@ struct LetterQuiz: View {
     var body: some View {
         (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 10))) {
             VStack(spacing: 10) {
-                if picked == nil {
-                    Text(question)
-                        .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
-                        .frame(maxWidth: .infinity)
-                }
-                SoundButtons(text: say, lang: ex.lang, size: sideways || picked != nil ? 52 : 72, plays: $plays)
-                VStack(spacing: 2) {
-                    LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? D8.vermilion : D8.malachite, size: sideways ? 30 : 46)
-                        .keyframeAnimator(initialValue: 1.0, trigger: picked) { v, s in v.scaleEffect(s) } keyframes: { _ in
-                            SpringKeyframe(1.15, duration: 0.2)
-                            SpringKeyframe(1.0, duration: 0.35)
-                        }
-                    Text(sound.gloss).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
-                }
-                if hinted || picked != nil {
-                    SoundHint(sound: sound).transition(.scale(scale: 0.9).combined(with: .opacity))
-                } else {
+                Text(question)
+                    .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                    .frame(maxWidth: .infinity)
+                SoundButtons(text: say, lang: ex.lang, size: sideways ? 52 : 64, plays: $plays)
+                SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? D8.vermilion : D8.malachite, size: sideways ? 36 : 44)
+                ZStack {
+                    SoundHint(sound: sound, reading: false).opacity(hinted || picked != nil ? 1 : 0).accessibilityHidden(!hinted && picked == nil)
                     Button { hinted = true; tap() } label: { Label("Hint", systemImage: "lightbulb.fill") }
                         .buttonStyle(PlainLink())
+                        .opacity(hinted || picked != nil ? 0 : 1)
+                        .disabled(hinted || picked != nil)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -246,23 +287,26 @@ struct LetterQuiz: View {
                         tile(o).optionKey(k)
                     }
                 }
-                if let picked {
+                Group {
                     HStack(spacing: 8) {
-                        Image(systemName: right ? "star.fill" : "arrow.uturn.left").symbolEffect(.bounce, value: picked)
-                        Text(right ? Self.cheer(ex.answer) : String(localized: "It's “\(ex.answer)”, as in \(sound.example)."))
+                        Image(systemName: right ? "star.fill" : "arrow.uturn.left")
+                        Text(right ? Self.cheer(ex.answer) : String(localized: "It's “\(ex.answer)”, as in \(Self.example(sound))."))
+                            .lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .font(.headline).foregroundStyle(right ? D8.malachite : D8.vermilion)
                     .frame(maxWidth: .infinity)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
                     Button("Continue") { onDone(right, hinted) }
                         .buttonStyle(D8Primary())
                         .keyboardShortcut(.defaultAction)
+                        .disabled(picked == nil)
                 }
+                .opacity(picked == nil ? 0 : 1)
+                .accessibilityHidden(picked == nil)
             }
             .frame(maxWidth: .infinity)
         }
-        .animation(.spring(duration: 0.35), value: picked)
-        .animation(.spring(duration: 0.3), value: hinted)
+        .animation(.easeOut(duration: 0.18), value: picked)
+        .animation(.easeOut(duration: 0.18), value: hinted)
         .onAppear {
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
@@ -270,6 +314,11 @@ struct LetterQuiz: View {
             if args.contains("-pickRight") { picked = ex.answer }
             #endif
         }
+    }
+
+    static func example(_ s: LetterSound) -> String {
+        let card = LetterSounds.card(s, letter: "")
+        return card.phoneticHoldsLetter ? "\(card.word) \(card.meaning)" : s.example
     }
 
     static func cheer(_ seed: String) -> String {
@@ -292,9 +341,11 @@ struct LetterQuiz: View {
         } label: {
             VStack(spacing: 2) {
                 Text(o).font(.system(size: sideways ? 28 : 36, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
-                if picked != nil, let s = LetterSounds.lookup(ex.lang, o) {
-                    Label(s.example, systemImage: "speaker.wave.2.fill").labelStyle(.titleAndIcon)
+                if let s = LetterSounds.lookup(ex.lang, o) {
+                    Label(Self.example(s), systemImage: "speaker.wave.2.fill").labelStyle(.titleAndIcon)
                         .font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : Palette.muted).lineLimit(1).minimumScaleFactor(0.6)
+                        .opacity(picked == nil ? 0 : 1)
+                        .accessibilityHidden(picked == nil)
                 }
             }
             .frame(maxWidth: .infinity, minHeight: sideways ? 52 : 64)
