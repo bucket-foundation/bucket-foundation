@@ -18,12 +18,12 @@ public struct SoundCard: Sendable, Equatable {
 }
 
 public enum LetterSounds {
-    public static func card(_ sound: LetterSound) -> SoundCard {
+    public static func card(_ sound: LetterSound, letter: String) -> SoundCard {
         let tokens = sound.gloss.split(separator: " ", maxSplits: 1).map(String.init)
         if tokens.count == 2, isHanOrKana(tokens[0]) {
             return SoundCard(word: tokens[0], phonetic: sound.example, meaning: tokens[1], phoneticHoldsLetter: true)
         }
-        let reading = sound.reading.flatMap { $0.isEmpty || $0 == sound.example ? nil : $0 }
+        let reading = sound.reading.flatMap { $0.isEmpty || $0 == sound.example ? nil : sound.example == letter ? $0 : "\(letter) \($0)" }
         return SoundCard(word: sound.example, phonetic: reading, meaning: sound.gloss, phoneticHoldsLetter: false)
     }
 

@@ -94,19 +94,21 @@ struct SoundWord: View {
     var size: CGFloat = 44
 
     var body: some View {
-        let card = LetterSounds.card(sound)
+        let card = LetterSounds.card(sound, letter: letter)
         VStack(spacing: 4) {
             if card.phoneticHoldsLetter {
                 Text(card.word).font(D8.word(size)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.5)
+                    .opacity(shown ? 1 : 0).accessibilityHidden(!shown)
                 LetterInWord(sound: sound, letter: letter, lang: lang, shown: shown, tint: tint, size: size * 0.6)
             } else {
                 LetterInWord(sound: sound, letter: letter, lang: lang, shown: shown, tint: tint, size: size)
                 if let phonetic = card.phonetic {
                     Text(phonetic).font(D8.word(size * 0.5)).foregroundStyle(D8.lapis).lineLimit(1).minimumScaleFactor(0.5)
-                        .opacity(shown ? 1 : 0)
+                        .opacity(shown ? 1 : 0).accessibilityHidden(!shown)
                 }
             }
             Text(card.meaning).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
+                .opacity(shown || !card.phoneticHoldsLetter ? 1 : 0).accessibilityHidden(!shown && card.phoneticHoldsLetter)
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .combine)
@@ -132,6 +134,12 @@ extension View {
 
 struct SoundHint: View {
     let sound: LetterSound
+    var reading = true
+
+    var capsule: String? {
+        if !sound.ipa.isEmpty { return "/\(sound.ipa)/" }
+        return reading ? sound.reading.flatMap { $0.isEmpty ? nil : $0 } : nil
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -141,8 +149,8 @@ struct SoundHint: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             HStack(alignment: .firstTextBaseline, spacing: 10) {
-                if !sound.ipa.isEmpty {
-                    Text("/\(sound.ipa)/")
+                if let capsule {
+                    Text(capsule)
                         .font(.system(size: 17, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 10).padding(.vertical, 4)
@@ -224,7 +232,7 @@ struct LetterMeet: View {
             }
             .frame(maxWidth: .infinity)
             VStack(spacing: 12) {
-                SoundHint(sound: sound)
+                SoundHint(sound: sound, reading: false)
                 SoundButtons(text: say, lang: ex.lang, size: 56, plays: $plays)
                 if LangListener.shared.canHear(ex.lang) {
                     SayItButton(say: say, lang: ex.lang) { plays += 1 }
@@ -265,7 +273,7 @@ struct LetterQuiz: View {
                 SoundButtons(text: say, lang: ex.lang, size: sideways ? 52 : 64, plays: $plays)
                 SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? D8.vermilion : D8.malachite, size: sideways ? 36 : 44)
                 ZStack {
-                    SoundHint(sound: sound).opacity(hinted || picked != nil ? 1 : 0)
+                    SoundHint(sound: sound, reading: false).opacity(hinted || picked != nil ? 1 : 0).accessibilityHidden(!hinted && picked == nil)
                     Button { hinted = true; tap() } label: { Label("Hint", systemImage: "lightbulb.fill") }
                         .buttonStyle(PlainLink())
                         .opacity(hinted || picked != nil ? 0 : 1)
@@ -309,7 +317,7 @@ struct LetterQuiz: View {
     }
 
     static func example(_ s: LetterSound) -> String {
-        let card = LetterSounds.card(s)
+        let card = LetterSounds.card(s, letter: "")
         return card.phoneticHoldsLetter ? "\(card.word) \(card.meaning)" : s.example
     }
 
@@ -337,6 +345,7 @@ struct LetterQuiz: View {
                     Label(Self.example(s), systemImage: "speaker.wave.2.fill").labelStyle(.titleAndIcon)
                         .font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : Palette.muted).lineLimit(1).minimumScaleFactor(0.6)
                         .opacity(picked == nil ? 0 : 1)
+                        .accessibilityHidden(picked == nil)
                 }
             }
             .frame(maxWidth: .infinity, minHeight: sideways ? 52 : 64)
