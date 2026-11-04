@@ -218,15 +218,31 @@ struct LetterMeet: View {
     @State private var plays = 0
     @Environment(\.verticalSizeClass) private var vertical
 
+    var card: SoundCard { LetterSounds.card(sound, letter: ex.answer) }
+    var characterReading: String? {
+        guard !card.phoneticHoldsLetter, sound.ipa.isEmpty, let r = sound.reading, !r.isEmpty else { return nil }
+        return r
+    }
+
     var sideways: Bool { vertical == .compact }
 
     var body: some View {
         (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 14))) {
-            HStack(alignment: .center, spacing: 16) {
-                WordTile(word: ex.answer, lang: ex.lang, reading: nil, size: sideways ? 84 : 96, speakText: say, onTap: { LangVoice.shared.speak(say, ex.lang); plays += 1 }, glyph: true)
+            VStack(spacing: 6) {
+                WordTile(word: card.phoneticHoldsLetter ? card.word : ex.answer, lang: ex.lang, reading: nil, size: sideways ? 96 : 120, speakText: say, onTap: { LangVoice.shared.speak(say, ex.lang); plays += 1 }, glyph: true)
                     .playFlash(plays)
                 Button { LangVoice.shared.speak(say, ex.lang); plays += 1 } label: {
-                    SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, size: sideways ? 36 : 44)
+                    VStack(spacing: 2) {
+                        if let reading = characterReading {
+                            Text(reading).font(D8.word(sideways ? 34 : 44)).foregroundStyle(D8.vermilion)
+                            Text("\(sound.example) \(card.meaning)").font(D8.word(sideways ? 24 : 30)).foregroundStyle(Palette.ink)
+                        } else {
+                            LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 34 : 44)
+                            Text(card.meaning).font(D8.word(sideways ? 24 : 30)).foregroundStyle(Palette.ink)
+                        }
+                    }
+                    .lineLimit(1).minimumScaleFactor(0.6)
+                    .accessibilityElement(children: .combine)
                 }
                 .buttonStyle(.plain)
             }
