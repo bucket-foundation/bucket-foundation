@@ -588,6 +588,9 @@ extension BucketAPI {
         case (409, "nudge_not_needed"): return .nudgeNotNeeded
         case (409, "group_full"): return .groupFull
         case (422, "name_not_allowed"): return .nameNotAllowed
+        case (422, "text_not_allowed"): return .textNotAllowed
+        case (429, "share_limit"): return .shareLimit
+        case (413, _): return .imageTooLarge
         case (429, _): return .rateLimited(body["message"])
         default: return .server(status, body["message"] ?? body["error"])
         }
@@ -601,6 +604,7 @@ public final class GroupStore {
         didSet { version += 1 }
     }
     public var blocks: [GroupBlock] = []
+    public var items: [String: [SharedItem]] = [:]
     public private(set) var loaded = false
     public private(set) var busy = false
     public private(set) var loadError: BucketError?
@@ -609,6 +613,7 @@ public final class GroupStore {
     let token: @MainActor () async -> String?
     @ObservationIgnored var version = 0
     @ObservationIgnored var inFlight: Task<Void, Never>?
+    @ObservationIgnored public var donor: ShareDonor?
 
     public init(api: BucketAPI, token: @escaping @MainActor () async -> String?) {
         self.api = api
@@ -660,6 +665,7 @@ public final class GroupStore {
             guard version == start else { return }
             groups = fresh
             loaded = true
+            publishTargets(donate: true)
             if let list = try? await api.blocks(token: t) { blocks = list }
         } catch {
             loadError = error as? BucketError ?? .server(0, nil)
@@ -679,11 +685,14 @@ public final class GroupStore {
     public func leave(_ groupId: String) async throws(BucketError) {
         try await run { try await self.api.leaveGroup(token: $0, groupId: groupId) }
         groups.removeAll { $0.id == groupId }
+        items[groupId] = nil
+        publishTargets(donate: false)
     }
 
     public func remove(_ userId: String, from groupId: String) async throws(BucketError) {
         try await run { try await self.api.removeMember(token: $0, groupId: groupId, userId: userId) }
         if let i = index(groupId) { groups[i].members.removeAll { $0.userId == userId } }
+        publishTargets(donate: false)
     }
 
     @discardableResult
@@ -698,6 +707,7 @@ public final class GroupStore {
         let kind = member.cheerKind
         let c = try await run { try await self.api.cheer(token: $0, groupId: groupId, to: member.userId, kind: kind) }
         if let i = index(groupId) { groups[i].cheers.append(c) }
+        if let t = ShareTargets.person(member, in: groupId) { donor?.donate(t) }
         return c
     }
 
@@ -705,6 +715,7 @@ public final class GroupStore {
     public func react(_ reaction: CheerReaction, to member: GroupMember, in groupId: String) async throws(BucketError) -> Cheer {
         let c = try await run { try await self.api.cheer(token: $0, groupId: groupId, to: member.userId, kind: .cheer, reaction: reaction) }
         if let i = index(groupId) { groups[i].cheers.append(c) }
+        if let t = ShareTargets.person(member, in: groupId) { donor?.donate(t) }
         return c
     }
 
@@ -737,11 +748,14 @@ public final class GroupStore {
     }
 
     public func hide(groupId: String, userId: String?) {
+        defer { publishTargets(donate: false) }
         guard let userId else {
             groups.removeAll { $0.id == groupId }
+            items[groupId] = nil
             return
         }
         for i in groups.indices { groups[i].members.removeAll { $0.userId == userId } }
+        for k in items.keys { items[k]?.removeAll { $0.from == userId } }
     }
 
     public func unblock(_ block: GroupBlock) async throws(BucketError) {
@@ -754,7 +768,38 @@ public final class GroupStore {
         return try? await api.memberGraph(token: t, groupId: groupId, userId: userId, branch: branch)
     }
 
+    public var shareTargets: [ShareTarget] { ShareTargets.build(groups) }
+
+    func publishTargets(donate: Bool) {
+        donor?.publish(shareTargets, donate: donate)
+    }
+
+    public func loadItems(_ groupId: String) async {
+        guard let t = await token() else { return }
+        if let list = try? await api.sharedItems(token: t, groupId: groupId) { items[groupId] = list }
+    }
+
+    @discardableResult
+    public func share(_ payload: SharePayload, to target: ShareTarget) async throws(BucketError) -> SharedItem {
+        let item = try await run { try await self.api.share(token: $0, groupId: target.groupId, to: target.userId, payload: payload) }
+        items[target.groupId, default: []].insert(item, at: 0)
+        donor?.donate(target)
+        return item
+    }
+
+    public func reportItem(_ item: SharedItem, reason: ReportReason) async throws(BucketError) {
+        try await run { try await self.api.reportItem(token: $0, itemId: item.id, reason: reason) }
+        items[item.groupId]?.removeAll { $0.id == item.id }
+    }
+
+    public func removeItem(_ item: SharedItem) async throws(BucketError) {
+        try await run { try await self.api.removeItem(token: $0, itemId: item.id) }
+        items[item.groupId]?.removeAll { $0.id == item.id }
+    }
+
     public func clear() {
+        donor?.forgetAll()
+        items = [:]
         groups = []
         blocks = []
         loaded = false

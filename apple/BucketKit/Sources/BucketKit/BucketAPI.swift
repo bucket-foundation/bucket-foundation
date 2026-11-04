@@ -15,6 +15,9 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case cheerLimit
     case nudgeNotNeeded
     case nameNotAllowed
+    case shareLimit
+    case textNotAllowed
+    case imageTooLarge
 
     public var errorDescription: String? {
         switch self {
@@ -32,6 +35,9 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .joinedLimit: "You already belong to 20 groups."
         case .cheerLimit: "You sent them 3 today. Try again tomorrow."
         case .nudgeNotNeeded: "They already studied today."
+        case .shareLimit: "You shared a lot just now. Try again in an hour."
+        case .textNotAllowed: "That text is not allowed. Try other words."
+        case .imageTooLarge: "That image is too large to share."
         }
     }
 }
