@@ -18,6 +18,7 @@ struct Paywall: View {
     @State private var redeeming = false
     @State private var student = false
     @State private var tokens = AccountTokens()
+    @State private var freeBeta = false
     let family: Bool
 
     init(family: Bool = false) {
@@ -71,6 +72,7 @@ struct Paywall: View {
         }
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .task { await load() }
+        .task { freeBeta = await FreeBeta.active() }
         .task(id: account.session?.userId) { _ = await fetchToken(at: "prefetch") }
         .sheet(isPresented: $signingIn) { SignInSheet() }
         #if os(iOS)
@@ -96,6 +98,13 @@ struct Paywall: View {
                 .foregroundStyle(Palette.ink)
                 .minimumScaleFactor(0.7)
                 .lineLimit(1)
+            if freeBeta {
+                Text("FREE DURING THE BETA")
+                    .font(D8.caps(11)).tracking(1.2).foregroundStyle(.white)
+                    .padding(.horizontal, 10).padding(.vertical, 5)
+                    .background(D8.vermilion, in: .capsule)
+                    .accessibilityLabel(String(localized: "Free during the beta"))
+            }
         }
         .padding(.horizontal, 24)
         .padding(.top, 12)
@@ -142,6 +151,13 @@ struct Paywall: View {
             }
             .buttonStyle(D8Primary())
             .disabled(product == nil || buying)
+            if freeBeta {
+                Text(FreeBeta.note)
+                    .font(.subheadline.weight(.bold))
+                    .foregroundStyle(D8.parchment)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
             if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center) }
             if let product {
                 Text(PaywallCopy.disclosure(trial: subs.trialEligible && Plan.hasTrial(product.id), price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
@@ -335,6 +351,23 @@ struct Diagonal: Shape {
         p.addLine(to: CGPoint(x: 0, y: r.height))
         p.closeSubpath()
         return p
+    }
+}
+
+@MainActor
+enum FreeBeta {
+    static let note = String(localized: "You are on the TestFlight beta. Apple does not charge for purchases here, so any plan is free while you test.")
+
+    static func shows(environment: AppStore.Environment, flag: String?) -> Bool {
+        environment == .sandbox && flag != "off"
+    }
+
+    static func active() async -> Bool {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-freeBeta") { return true }
+        #endif
+        guard case .verified(let t) = try? await AppTransaction.shared else { return false }
+        return shows(environment: t.environment, flag: Beta.shared.flags.value("free_beta_note"))
     }
 }
 
