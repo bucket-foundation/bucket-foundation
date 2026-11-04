@@ -30,7 +30,7 @@ struct LearnView: View {
                     subjects?.section(open: { path.append($0) }, search: { path.append(LearnRoute.canon) })
                     if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
                 }
-                .listSectionSpacing(.compact)
+                .compactSections()
                 #if DEBUG
                 .task {
                     guard let anchor = Launch.value("-learnScroll") else { return }
@@ -320,4 +320,14 @@ enum LearnRoute: Hashable {
 struct AtomRoute: Hashable {
     let deck: DeckEntry
     let atom: Atom
+}
+
+extension View {
+    @ViewBuilder func compactSections() -> some View {
+        #if os(iOS)
+        listSectionSpacing(.compact)
+        #else
+        self
+        #endif
+    }
 }
