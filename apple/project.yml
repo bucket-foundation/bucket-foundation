@@ -279,6 +279,8 @@ targets:
           - group.foundation.bucket.app
         keychain-access-groups:
           - $(AppIdentifierPrefix)foundation.bucket.shared
+        com.apple.developer.sensitivecontentanalysis.client:
+          - analysis
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app.share
@@ -317,6 +319,8 @@ targets:
           - group.com.polingual.app
         keychain-access-groups:
           - $(AppIdentifierPrefix)foundation.bucket.shared
+        com.apple.developer.sensitivecontentanalysis.client:
+          - analysis
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.share

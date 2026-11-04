@@ -18,6 +18,7 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case shareLimit
     case textNotAllowed
     case imageTooLarge
+    case imageNotAllowed
 
     public var errorDescription: String? {
         switch self {
@@ -38,6 +39,7 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .shareLimit: "You shared a lot just now. Try again in an hour."
         case .textNotAllowed: "That text is not allowed. Try other words."
         case .imageTooLarge: "That image is too large to share."
+        case .imageNotAllowed: "This image may be sensitive, so it was not sent."
         }
     }
 }

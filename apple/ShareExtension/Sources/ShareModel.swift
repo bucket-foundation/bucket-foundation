@@ -42,10 +42,11 @@ final class ShareModel {
     init(context: NSExtensionContext?) {
         self.context = context
         let api = BucketAPI()
-        let account = Account(api: api, store: KeychainSessionStore(accessGroup: ShareBrand.keychainGroup))
+        let account = Account(api: api, store: KeychainSessionStore(accessGroup: ShareBrand.keychainGroup), lock: FileRefreshLock(appGroup: ShareBrand.appGroup))
         self.account = account
         groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: ShareBrand.appGroup)
+        groups.imageScreen = SensitiveImageScreen()
         targets = ShareTargetCache(suite: ShareBrand.appGroup).load()
         wanted = (context?.intent as? INSendMessageIntent)?.conversationIdentifier
         pick()
@@ -119,6 +120,7 @@ final class ShareModel {
         case .shareLimit: String(localized: "You shared a lot just now. Try again in an hour.")
         case .textNotAllowed: String(localized: "That text is not allowed. Try other words.")
         case .imageTooLarge: String(localized: "That image is too large to share.")
+        case .imageNotAllowed: String(localized: "This image may be sensitive, so it was not sent.")
         case .revoked: String(localized: "Sign in to \(ShareBrand.name) again, then share.")
         case .groupNotFound: String(localized: "You can no longer share with them.")
         default: String(localized: "That did not send. Try again.")

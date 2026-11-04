@@ -95,6 +95,7 @@ func shareMessage(_ e: BucketError) -> String {
     case .shareLimit: String(localized: "You shared a lot just now. Try again in an hour.")
     case .textNotAllowed: String(localized: "That text is not allowed. Try other words.")
     case .imageTooLarge: String(localized: "That image is too large to share.")
+    case .imageNotAllowed: String(localized: "This image may be sensitive, so it was not sent.")
     default: groupMessage(e) ?? String(localized: "Something went wrong. Try again.")
     }
 }
@@ -118,8 +119,9 @@ struct SharedItemRow: View {
             case .url:
                 if let link = item.link {
                     Link(destination: link) {
-                        Label(link.host() ?? link.absoluteString, systemImage: "link").font(.callout).lineLimit(1)
+                        Label(link.host() ?? link.absoluteString, systemImage: "link").font(.callout.weight(.semibold)).lineLimit(1)
                     }
+                    Text(link.absoluteString).font(.caption.monospaced()).foregroundStyle(Palette.muted).lineLimit(2)
                 }
                 if let text = item.text { Text(text).font(.callout) }
             case .text:

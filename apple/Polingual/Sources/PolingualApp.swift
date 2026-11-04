@@ -18,7 +18,7 @@ struct PolingualApp: App {
     init() {
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let api = BucketAPI()
-        let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
+        let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
         let store = LangStore(api: api, token: { await account.freshToken() })
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }

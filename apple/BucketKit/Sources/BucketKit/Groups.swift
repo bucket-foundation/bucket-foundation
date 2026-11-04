@@ -614,6 +614,7 @@ public final class GroupStore {
     @ObservationIgnored var version = 0
     @ObservationIgnored var inFlight: Task<Void, Never>?
     @ObservationIgnored public var donor: ShareDonor?
+    @ObservationIgnored public var imageScreen: ImageScreen?
 
     public init(api: BucketAPI, token: @escaping @MainActor () async -> String?) {
         self.api = api
@@ -781,6 +782,7 @@ public final class GroupStore {
 
     @discardableResult
     public func share(_ payload: SharePayload, to target: ShareTarget) async throws(BucketError) -> SharedItem {
+        if case .image(let data, _) = payload, let imageScreen, await imageScreen.flagged(data) { throw .imageNotAllowed }
         let item = try await run { try await self.api.share(token: $0, groupId: target.groupId, to: target.userId, payload: payload) }
         items[target.groupId, default: []].insert(item, at: 0)
         donor?.donate(target)
