@@ -54,6 +54,8 @@ declare
   stranger uuid := pg_temp.person('stranger');
   link uuid;
   direct uuid;
+  pic uuid;
+  doomed uuid;
   n int;
 begin
   assert (select relrowsecurity and relforcerowsecurity from pg_class where oid = 'bucket.group_shared_items'::regclass), 'items force row level security';
@@ -82,20 +84,35 @@ begin
   n := bucket.report_shared_item(link, mate, 'spam');
   assert n = 1, 'first report counted';
   assert not pg_temp.sees('mate', link), 'a reporter stops seeing the item';
-  assert pg_temp.sees('third', link), 'one report leaves the item up for others';
-  assert pg_temp.raises(format('select bucket.report_shared_item(%L, %L, %L)', link, owner, 'spam'), 'not_found'), 'senders cannot report their own item';
-  n := bucket.report_shared_item(link, third, 'harassment');
-  assert n = 2 and (select removed_at is not null from bucket.group_shared_items where id = link), 'two reports take the item down';
+  assert not pg_temp.sees('third', link) and not pg_temp.sees('owner', link), 'one report holds the item for everyone';
+  assert pg_temp.raises(format('select bucket.report_shared_item(%L, %L, %L)', link, third, 'spam'), 'not_found'), 'held items take no more reports';
+  assert bucket.moderate_shared_item(link, 'restore') = 'restored', 'a moderator restores the item';
+  assert pg_temp.sees('third', link) and not pg_temp.sees('mate', link), 'restored items return for everyone except the reporter';
+  assert (select reviewed_at is not null from bucket.group_item_reports where item_id = link), 'restoring marks the report reviewed';
+
+  select id into pic from bucket.send_shared_item(g, owner, mate, 'image', null, null, g || '/pic.jpg');
+  assert pg_temp.sees('mate', pic), 'the recipient sees a direct image';
+  assert bucket.report_shared_item(pic, mate, 'harassment') = 1, 'a direct item takes a report';
+  assert not pg_temp.sees('owner', pic), 'a reported direct item is held for the sender too';
+  assert bucket.moderate_shared_item(pic, 'remove') = 'removed', 'a moderator removes the item';
+  assert (select removed_at is not null from bucket.group_shared_items where id = pic), 'removal is recorded';
+  assert exists (select 1 from bucket.group_share_purge where path = g || '/pic.jpg'), 'removing an image queues its file for deletion';
+  assert pg_temp.raises(format('select bucket.moderate_shared_item(%L, %L)', pic, 'delete'), 'bad_action'), 'only remove or restore';
 
   assert not bucket.remove_shared_item(direct, third), 'others cannot remove an item';
   assert bucket.remove_shared_item(direct, mate) = false, 'recipients cannot remove an item';
   assert bucket.remove_shared_item(direct, owner), 'the sender removes an item';
   assert not pg_temp.sees('mate', direct), 'removed items are hidden';
 
-  for i in 1..28 loop
+  for i in 1..27 loop
     perform bucket.send_shared_item(g, owner, null, 'text', null, 'n' || i, null);
   end loop;
   assert pg_temp.raises(format('select bucket.send_shared_item(%L, %L, null, %L, null, %L, null)', g, owner, 'text', 'one more'), 'share_limit'), 'thirty items an hour';
+
+  select id into doomed from bucket.send_shared_item(g, mate, null, 'image', null, null, g || '/gone.jpg');
+  delete from auth.users where id = mate;
+  assert not exists (select 1 from bucket.group_shared_items where id = doomed), 'account deletion removes the items';
+  assert exists (select 1 from bucket.group_share_purge where path = g || '/gone.jpg'), 'account deletion queues the files';
 end $$;
 
 rollback;

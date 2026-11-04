@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { normalizeShare, shareRpcError, toSharedItem, visibleItems, MAX_SHARE_IMAGE, type SharedItemRow } from "../src/lib/academy/group-shares";
+import { moderationToken, normalizeShare, reportEmailText, shareRpcError, toSharedItem, verifyModerationToken, visibleItems, MAX_SHARE_IMAGE, MODERATION_TOKEN_TTL_MS, type SharedItemRow } from "../src/lib/academy/group-shares";
 import type { MemberRow } from "../src/lib/academy/groups";
 
 const jpeg = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 1, 2, 3]).toString("base64");
@@ -53,6 +53,7 @@ const row = (over: Partial<SharedItemRow>): SharedItemRow => ({
   body: "hi",
   image_path: null,
   created_at: "2026-11-04T10:00:00Z",
+  held_at: null,
   removed_at: null,
   ...over,
 });
@@ -66,6 +67,7 @@ test("visible items drop blocked senders, reported items and other people's dire
     row({ id: "e", sender_id: "me", recipient_id: "u3" }),
     row({ id: "f" }),
     row({ id: "g", removed_at: "2026-11-04T11:00:00Z" }),
+    row({ id: "h", held_at: "2026-11-04T11:00:00Z" }),
   ];
   const shown = visibleItems(rows, "me", new Set(["blocked"]), new Set(["f"]));
   assert.deepEqual(shown.map((r) => r.id), ["a", "d", "e"]);
@@ -84,4 +86,29 @@ test("database errors map to client codes", () => {
   assert.deepEqual(shareRpcError("ERROR: share_limit"), { error: "share_limit", status: 429 });
   assert.deepEqual(shareRpcError("not_member"), { error: "not_found", status: 404 });
   assert.equal(shareRpcError("boom"), null);
+});
+
+const ITEM = "0b6f1f0e-8a52-4c1e-9b8e-6d6f5b0a1c2d";
+
+test("moderation tokens verify, expire and resist tampering", () => {
+  const now = 1_800_000_000_000;
+  const t = moderationToken(ITEM, "remove", "s3cret", now);
+  assert.deepEqual(verifyModerationToken(t, "s3cret", now + 1000), { itemId: ITEM, action: "remove" });
+  assert.equal(verifyModerationToken(t, "other", now), null);
+  assert.equal(verifyModerationToken(t, undefined, now), null);
+  assert.equal(verifyModerationToken(t, "s3cret", now + MODERATION_TOKEN_TTL_MS + 1), null);
+  const [body, mac] = t.split(".");
+  const forged = Buffer.from(`${ITEM}.restore.${now + MODERATION_TOKEN_TTL_MS}`).toString("base64url");
+  assert.equal(verifyModerationToken(`${forged}.${mac}`, "s3cret", now), null);
+  assert.equal(verifyModerationToken(`${body}.${mac}.x`, "s3cret", now), null);
+  assert.equal(verifyModerationToken(42, "s3cret", now), null);
+});
+
+test("the report email carries ids and links only", () => {
+  const text = reportEmailText({ itemId: ITEM, groupId: "g1", senderId: "u1", reporterId: "u2", reason: "harassment", reports: 1, removeUrl: "https://x/remove", restoreUrl: "https://x/restore" });
+  assert.match(text, new RegExp(ITEM));
+  assert.match(text, /hidden from everyone/);
+  assert.match(text, /https:\/\/x\/remove/);
+  assert.doesNotMatch(text, /ciao|https:\/\/polingual/);
+  assert.match(reportEmailText({ itemId: ITEM, groupId: "g1", senderId: "u1", reporterId: "u2", reason: "spam", reports: 1, removeUrl: null, restoreUrl: null }), /MODERATION_SECRET is unset/);
 });

@@ -8,6 +8,7 @@ create table if not exists bucket.group_shared_items (
   body         text        check (body is null or char_length(body) between 1 and 1000),
   image_path   text        check (image_path is null or char_length(image_path) <= 200),
   created_at   timestamptz not null default now(),
+  held_at      timestamptz,
   removed_at   timestamptz,
   check (sender_id <> recipient_id),
   check (case kind when 'url' then url is not null when 'text' then body is not null else image_path is not null end)
@@ -89,7 +90,7 @@ declare
   v_count int;
 begin
   select * into v_item from bucket.group_shared_items where id = p_item for update;
-  if not found or v_item.removed_at is not null
+  if not found or v_item.removed_at is not null or v_item.held_at is not null
      or not bucket.can_see_shared_item(v_item.group_id, v_item.sender_id, v_item.recipient_id, v_item.id, p_reporter)
      or v_item.sender_id = p_reporter then
     raise exception 'not_found';
@@ -97,10 +98,8 @@ begin
   insert into bucket.group_item_reports (item_id, reporter_id, reason)
     values (p_item, p_reporter, p_reason)
     on conflict (item_id, reporter_id) do nothing;
+  update bucket.group_shared_items set held_at = now() where id = p_item and held_at is null;
   select count(*) into v_count from bucket.group_item_reports where item_id = p_item;
-  if v_count >= 2 then
-    update bucket.group_shared_items set removed_at = now() where id = p_item;
-  end if;
   return v_count;
 end $$;
 
@@ -113,21 +112,69 @@ begin
   return found;
 end $$;
 
+create or replace function bucket.moderate_shared_item(p_item uuid, p_action text)
+returns text language plpgsql security definer set search_path = bucket as $$
+declare
+  v_item bucket.group_shared_items;
+begin
+  if p_action not in ('remove', 'restore') then
+    raise exception 'bad_action';
+  end if;
+  select * into v_item from bucket.group_shared_items where id = p_item for update;
+  if not found then
+    return 'not_found';
+  end if;
+  if v_item.removed_at is not null then
+    update bucket.group_item_reports set reviewed_at = coalesce(reviewed_at, now()) where item_id = p_item;
+    return 'removed';
+  end if;
+  if p_action = 'remove' then
+    update bucket.group_shared_items set removed_at = now() where id = p_item;
+  else
+    update bucket.group_shared_items set held_at = null where id = p_item;
+  end if;
+  update bucket.group_item_reports set reviewed_at = now() where item_id = p_item and reviewed_at is null;
+  return case p_action when 'remove' then 'removed' else 'restored' end;
+end $$;
+
+create table if not exists bucket.group_share_purge (
+  path      text        primary key,
+  queued_at timestamptz not null default now()
+);
+
+create or replace function bucket.queue_share_purge()
+returns trigger language plpgsql security definer set search_path = bucket as $$
+begin
+  if old.image_path is not null and (tg_op = 'DELETE' or (old.removed_at is null and new.removed_at is not null)) then
+    insert into bucket.group_share_purge (path) values (old.image_path) on conflict (path) do nothing;
+  end if;
+  return null;
+end $$;
+
+drop trigger if exists group_shared_items_purge on bucket.group_shared_items;
+create trigger group_shared_items_purge
+  after update of removed_at or delete on bucket.group_shared_items
+  for each row execute function bucket.queue_share_purge();
+
 alter table bucket.group_shared_items enable row level security;
 alter table bucket.group_shared_items force row level security;
 alter table bucket.group_item_reports enable row level security;
 alter table bucket.group_item_reports force row level security;
+alter table bucket.group_share_purge enable row level security;
+alter table bucket.group_share_purge force row level security;
 
 do $$
 begin
   if not exists (select 1 from pg_policies where schemaname = 'bucket' and tablename = 'group_shared_items' and policyname = 'member_select') then
     create policy member_select on bucket.group_shared_items for select
-      using (removed_at is null and bucket.can_see_shared_item(group_id, sender_id, recipient_id, id, auth.uid()));
+      using (removed_at is null and held_at is null and bucket.can_see_shared_item(group_id, sender_id, recipient_id, id, auth.uid()));
   end if;
 end $$;
 
 revoke all on bucket.group_shared_items from public, anon, authenticated;
 revoke all on bucket.group_item_reports from public, anon, authenticated;
+revoke all on bucket.group_share_purge from public, anon, authenticated;
+grant select, insert, delete on bucket.group_share_purge to service_role;
 grant select on bucket.group_shared_items to authenticated;
 grant select, insert, update, delete on bucket.group_shared_items to service_role;
 grant select, insert, update, delete on bucket.group_item_reports to service_role;
@@ -141,6 +188,9 @@ grant execute on function bucket.can_see_shared_item(uuid, uuid, uuid, uuid, uui
 revoke execute on function bucket.send_shared_item(uuid, uuid, uuid, text, text, text, text) from public, anon, authenticated;
 revoke execute on function bucket.report_shared_item(uuid, uuid, text) from public, anon, authenticated;
 revoke execute on function bucket.remove_shared_item(uuid, uuid) from public, anon, authenticated;
+revoke execute on function bucket.moderate_shared_item(uuid, text) from public, anon, authenticated;
+revoke execute on function bucket.queue_share_purge() from public, anon, authenticated;
+grant execute on function bucket.moderate_shared_item(uuid, text) to service_role;
 grant execute on function bucket.send_shared_item(uuid, uuid, uuid, text, text, text, text) to service_role;
 grant execute on function bucket.report_shared_item(uuid, uuid, text) to service_role;
 grant execute on function bucket.remove_shared_item(uuid, uuid) to service_role;

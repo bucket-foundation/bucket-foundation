@@ -1,3 +1,4 @@
+import { createHmac, timingSafeEqual } from "node:crypto";
 import { nameAllowed } from "./groups-names";
 import type { MemberRow } from "./groups";
 
@@ -13,6 +14,7 @@ export interface SharedItemRow {
   body: string | null;
   image_path: string | null;
   created_at: string;
+  held_at: string | null;
   removed_at: string | null;
 }
 
@@ -44,7 +46,7 @@ export const MAX_SHARE_TEXT = 1000;
 export const MAX_SHARE_URL = 2048;
 export const MAX_SHARE_IMAGE = 1_572_864;
 export const SHARE_BUCKET = "group-shares";
-export const SHARE_ITEM_COLS = "id,group_id,sender_id,recipient_id,kind,url,body,image_path,created_at,removed_at";
+export const SHARE_ITEM_COLS = "id,group_id,sender_id,recipient_id,kind,url,body,image_path,created_at,held_at,removed_at";
 
 function cleanText(input: unknown): string | null | undefined {
   if (input === undefined || input === null) return null;
@@ -115,7 +117,7 @@ export function imagePath(groupId: string, itemKey: string): string {
 }
 
 export function visibleItems(rows: readonly SharedItemRow[], me: string, hidden: ReadonlySet<string>, reported: ReadonlySet<string>): SharedItemRow[] {
-  return rows.filter((r) => !r.removed_at && !hidden.has(r.sender_id) && !reported.has(r.id) && (r.recipient_id === null || r.recipient_id === me || r.sender_id === me));
+  return rows.filter((r) => !r.removed_at && !r.held_at && !hidden.has(r.sender_id) && !reported.has(r.id) && (r.recipient_id === null || r.recipient_id === me || r.sender_id === me));
 }
 
 export function toSharedItem(row: SharedItemRow, members: readonly MemberRow[], me: string, imageUrl: string | null = null): SharedItem {
@@ -140,4 +142,44 @@ export function shareRpcError(message: string | undefined): { error: string; sta
   if (m.includes("not_member") || m.includes("not_found")) return { error: "not_found", status: 404 };
   if (m.includes("self")) return { error: "bad_request", status: 400 };
   return null;
+}
+
+export type ModerationAction = "remove" | "restore";
+export const MODERATION_TOKEN_TTL_MS = 14 * 86_400_000;
+
+function sign(body: string, secret: string): string {
+  return createHmac("sha256", secret).update(body).digest("base64url");
+}
+
+export function moderationToken(itemId: string, action: ModerationAction, secret: string, now: number = Date.now()): string {
+  const body = Buffer.from(`${itemId}.${action}.${now + MODERATION_TOKEN_TTL_MS}`).toString("base64url");
+  return `${body}.${sign(body, secret)}`;
+}
+
+export function verifyModerationToken(token: unknown, secret: string | undefined, now: number = Date.now()): { itemId: string; action: ModerationAction } | null {
+  if (!secret || typeof token !== "string" || token.length > 512) return null;
+  const [body, mac, extra] = token.split(".");
+  if (!body || !mac || extra !== undefined) return null;
+  const want = Buffer.from(sign(body, secret));
+  const got = Buffer.from(mac);
+  if (want.length !== got.length || !timingSafeEqual(want, got)) return null;
+  const [itemId, action, exp] = Buffer.from(body, "base64url").toString().split(".");
+  if (!/^[0-9a-f-]{36}$/i.test(itemId ?? "") || (action !== "remove" && action !== "restore")) return null;
+  if (!(Number(exp) > now)) return null;
+  return { itemId, action };
+}
+
+export function reportEmailText(r: { itemId: string; groupId: string; senderId: string; reporterId: string; reason: string; reports: number; removeUrl: string | null; restoreUrl: string | null }): string {
+  const lines = [
+    `Item: ${r.itemId}`,
+    `Group: ${r.groupId}`,
+    `Sender: ${r.senderId}`,
+    `Reporter: ${r.reporterId}`,
+    `Reason: ${r.reason}`,
+    `Reports: ${r.reports}`,
+    "The item is hidden from everyone until you review it.",
+  ];
+  if (r.removeUrl && r.restoreUrl) lines.push("", `Review and remove: ${r.removeUrl}`, `Review and restore: ${r.restoreUrl}`);
+  else lines.push("", "MODERATION_SECRET is unset, so this email has no review links.");
+  return lines.join("\n");
 }

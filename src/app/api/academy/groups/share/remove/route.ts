@@ -1,5 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { uuidOrNull } from "@/lib/academy/groups";
+import { drainPurge } from "@/lib/academy/group-shares-server";
 import { configured, fail, json, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
@@ -20,6 +21,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const res = await service().rpc("remove_shared_item", { p_item: itemId, p_user: uid });
     if (res.error) throw new Error(`remove_shared_item: ${res.error.message}`);
     if (res.data !== true) return json({ error: "not_found" }, 404);
+    await drainPurge().catch((err) => console.error("[academy/groups] purge:", err instanceof Error ? err.message : err));
     return json({ ok: true });
   } catch (err) {
     return fail(err, "share remove");

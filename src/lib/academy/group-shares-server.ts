@@ -47,7 +47,25 @@ export async function deleteImage(path: string): Promise<void> {
   await service().storage.from(SHARE_BUCKET).remove([path]);
 }
 
-export async function emailItemReport(report: { itemId: string; groupId: string; groupName: string; senderId: string; senderName: string; reason: string; reports: number; preview: string }): Promise<boolean> {
+export const PURGE = "group_share_purge";
+
+export async function drainPurge(limit = 100): Promise<number> {
+  const res = await service().from(PURGE).select("path").order("queued_at").limit(limit);
+  if (res.error) throw new Error(`purge read: ${res.error.message}`);
+  const paths = (res.data ?? []).map((r: { path: string }) => r.path);
+  if (paths.length === 0) return 0;
+  const removed = await service().storage.from(SHARE_BUCKET).remove(paths);
+  if (removed.error) throw new Error(`purge remove: ${removed.error.message}`);
+  const done = await service().from(PURGE).delete().in("path", paths);
+  if (done.error) throw new Error(`purge clear: ${done.error.message}`);
+  return paths.length;
+}
+
+export function siteOrigin(): string {
+  return (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.bucket.foundation").replace(/\/$/, "");
+}
+
+export async function emailItemReport(text: string, reason: string): Promise<boolean> {
   const key = process.env.RESEND_API_KEY?.trim();
   if (!key) {
     console.error("[academy/groups] RESEND_API_KEY unset; item report not emailed");
@@ -59,8 +77,8 @@ export async function emailItemReport(report: { itemId: string; groupId: string;
     body: JSON.stringify({
       from: DEFAULT_FROM,
       to: process.env.MODERATION_EMAIL?.trim() || DEFAULT_NOTIFY_TO,
-      subject: `Shared item report: ${report.reason}`,
-      text: `Item: ${report.itemId}\nGroup: ${report.groupName} (${report.groupId})\nSender: ${report.senderName} (${report.senderId})\nReason: ${report.reason}\nReports so far: ${report.reports}${report.reports >= 2 ? " (taken down)" : ""}\n\n${report.preview}`,
+      subject: `Shared item report: ${reason}`,
+      text,
     }),
   });
   if (!res.ok) throw new Error(`item report email ${res.status}`);

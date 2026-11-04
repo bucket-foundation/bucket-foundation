@@ -1,8 +1,8 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { normalizeReportReason, uuidOrNull } from "@/lib/academy/groups";
-import { shareRpcError } from "@/lib/academy/group-shares";
-import { emailItemReport, itemById } from "@/lib/academy/group-shares-server";
-import { configured, fail, groupById, json, membersOf, preflight, readBody, reportLimited, requestUser, service } from "@/lib/academy/groups-server";
+import { moderationToken, reportEmailText, shareRpcError } from "@/lib/academy/group-shares";
+import { emailItemReport, itemById, siteOrigin } from "@/lib/academy/group-shares-server";
+import { configured, fail, json, preflight, readBody, reportLimited, requestUser, service } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,18 +29,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
     const item = await itemById(itemId);
     if (item) {
-      const [group, members] = await Promise.all([groupById(item.group_id), membersOf([item.group_id])]);
-      const sender = members.find((m) => m.user_id === item.sender_id);
-      await emailItemReport({
-        itemId,
-        groupId: item.group_id,
-        groupName: group?.name ?? "",
-        senderId: item.sender_id,
-        senderName: sender?.display_name ?? "",
-        reason,
-        reports: Number(res.data) || 1,
-        preview: [item.kind, item.url, item.body, item.image_path].filter(Boolean).join("\n"),
-      }).catch((err) => console.error("[academy/groups] item report email:", err instanceof Error ? err.message : err));
+      const secret = process.env.MODERATION_SECRET?.trim();
+      const link = (action: "remove" | "restore") => (secret ? `${siteOrigin()}/api/academy/groups/share/moderate?t=${moderationToken(itemId, action, secret)}` : null);
+      const text = reportEmailText({ itemId, groupId: item.group_id, senderId: item.sender_id, reporterId: uid, reason, reports: Number(res.data) || 1, removeUrl: link("remove"), restoreUrl: link("restore") });
+      await emailItemReport(text, reason).catch((err) => console.error("[academy/groups] item report email:", err instanceof Error ? err.message : err));
     }
     return json({ ok: true });
   } catch (err) {
