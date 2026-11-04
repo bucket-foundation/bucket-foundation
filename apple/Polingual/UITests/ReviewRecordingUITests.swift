@@ -25,13 +25,13 @@ final class ReviewRecordingUITests: XCTestCase {
 
     func paywall(_ walk: ReviewWalk) {
         let app = walk.app
-        let home = app.navigationBars["Today"]
+        let today = app.navigationBars["Today"]
         let deadline = Date().addingTimeInterval(60)
-        while !app.buttons["Restore"].exists && !home.exists && Date() < deadline {
+        while !app.buttons["Restore"].exists && !today.exists && Date() < deadline {
             walk.clearAlerts()
             Thread.sleep(forTimeInterval: 1)
         }
-        if home.exists {
+        if today.exists {
             XCTAssertFalse(ReviewWalk.onDevice, "This Apple ID already subscribes, so the paywall is missing from the video. Cancel the sandbox subscription and run again")
             return
         }
@@ -51,23 +51,23 @@ final class ReviewRecordingUITests: XCTestCase {
 
     func home(_ walk: ReviewWalk, timeout: TimeInterval) {
         let app = walk.app
-        let home = app.navigationBars["Today"]
+        let today = app.navigationBars["Today"]
         let deadline = Date().addingTimeInterval(timeout)
-        while !home.exists && Date() < deadline {
+        while !today.exists && Date() < deadline {
             walk.clearAlerts()
             let back = app.navigationBars.buttons.firstMatch
             if back.exists && back.isHittable { back.tap() }
             Thread.sleep(forTimeInterval: 1)
         }
-        XCTAssertTrue(home.exists, "Confirm the sandbox purchase on the phone")
+        XCTAssertTrue(today.exists, "Confirm the sandbox purchase on the phone")
     }
 
     func signedOutStart() {
         guard ReviewWalk.onDevice else { return }
         let walk = launch([])
         let app = walk.app
-        let home = app.navigationBars["Today"]
-        if home.waitForExistence(timeout: 20) {
+        let today = app.navigationBars["Today"]
+        if today.waitForExistence(timeout: 20) {
             walk.tap(app.buttons["Account"].firstMatch)
             if app.buttons["Sign out"].waitForExistence(timeout: 5) { walk.signOut() }
         }
