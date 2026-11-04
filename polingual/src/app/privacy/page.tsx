@@ -17,10 +17,11 @@ export default function Page() {
       <li>Email address, when you claim a founding spot. We store it in our database next to the one-time offer code it received, so each address gets one code, and send the code with Resend. We keep it until the offer ends or you ask us to delete it.</li>
       <li>A hash of your IP address when you claim a founding spot, kept for one day to limit claims from one network.</li>
       <li>A user id that ties your progress to your account.</li>
+      <li>Website visits on polingual.com: a random visitor id kept in your browser, the page, the campaign tag in the link you followed, the site that sent you, your country from the network, and whether you opened the beta form, joined, or tapped TestFlight. We store it in our own database to see which posts bring people. It holds no IP address, name or email. Vercel, our web host, also counts page views without cookies.</li>
       </ul>
       <p>Without sign-in or a beta signup, your progress stays on your device and we receive none of it.</p>
       <h2>What we do not collect</h2>
-      <p>We do not track you across apps or websites. Polingual has no advertising or analytics SDK. We do not sell or share personal data.</p>
+      <p>We do not track you across apps or other websites. The Polingual app has no advertising or analytics SDK. We do not sell or share personal data.</p>
       <h2>Speech</h2>
       <p>When you tap Speak, your audio goes to Apple&rsquo;s speech recognition to check your pronunciation, under Apple&rsquo;s privacy policy. Polingual does not store or receive the audio.</p>
       <h2>Payments</h2>

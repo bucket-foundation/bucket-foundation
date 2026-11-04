@@ -1,0 +1,6 @@
+(()=>{const ID={meta:"",tiktok:"",google:""},w=window,d=document,add=s=>{const e=d.createElement("script");e.async=true;e.src=s;d.head.appendChild(e)};
+if(ID.meta){w.fbq=w.fbq||function(){w.fbq.callMethod?w.fbq.callMethod.apply(w.fbq,arguments):w.fbq.queue.push(arguments)};w._fbq=w.fbq;w.fbq.push=w.fbq;w.fbq.loaded=true;w.fbq.version="2.0";w.fbq.queue=[];add("https://connect.facebook.net/en_US/fbevents.js");w.fbq("init",ID.meta);w.fbq("track","PageView")}
+if(ID.tiktok){w.TiktokAnalyticsObject="ttq";const q=w.ttq=w.ttq||[];q.methods=["page","track","identify"];q.methods.forEach(m=>{q[m]=function(){q.push([m].concat([].slice.call(arguments)))}});add("https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="+ID.tiktok+"&lib=ttq");q.page()}
+if(ID.google){w.dataLayer=w.dataLayer||[];w.gtag=function(){w.dataLayer.push(arguments)};add("https://www.googletagmanager.com/gtag/js?id="+ID.google);w.gtag("js",new Date());w.gtag("config",ID.google)}
+const MAP={beta_signup:["Lead","SubmitForm","generate_lead"],founding_claim:["CompleteRegistration","CompleteRegistration","sign_up"],testflight_open:["ViewContent","ClickButton","select_content"]};
+w.plPixel=n=>{const m=MAP[n];if(!m)return;try{ID.meta&&w.fbq("track",m[0]);ID.tiktok&&w.ttq.track(m[1]);ID.google&&w.gtag("event",m[2])}catch(_){}}})();
