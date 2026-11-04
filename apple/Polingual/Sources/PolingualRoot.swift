@@ -95,6 +95,7 @@ struct Studio: View {
         .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG && os(iOS)
         .task {
+            if let start = PolingualLaunch.value("-startTab").flatMap(AppTab.init(rawValue:)) { tab = start }
             if PolingualLaunch.value("-polingualOrientation") == "landscape",
                let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
