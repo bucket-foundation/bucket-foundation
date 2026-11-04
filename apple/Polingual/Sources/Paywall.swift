@@ -194,12 +194,13 @@ struct Paywall: View {
             switch try await product.purchase(options: options) {
             case .success(.verified(let t)):
                 await t.finish()
-                await subs.refresh()
                 haptic(true)
                 switch TrialReminder.action(productID: t.productID, introductory: t.offer?.type == .introductory) {
                 case .schedule: await TrialReminder.schedule()
                 case .cancel: TrialReminder.cancel()
                 }
+                if SaveProgress.offer(signedIn: account.stage == .signedIn) { UserDefaults.standard.set(true, forKey: SaveProgress.key) }
+                await subs.refresh()
             case .success(.unverified):
                 note = "The App Store could not verify this purchase. Tap Restore, or try again."
             case .pending:
@@ -373,9 +374,18 @@ enum TrialReminder {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
 
+    static func asks(_ status: UNAuthorizationStatus) -> Bool { status == .notDetermined }
+
+    static func allowed(_ status: UNAuthorizationStatus) -> Bool { status == .authorized || status == .provisional }
+
     static func schedule(now: Date = .now) async {
         let center = UNUserNotificationCenter.current()
-        guard await center.notificationSettings().authorizationStatus == .authorized else { return }
+        var status = await center.notificationSettings().authorizationStatus
+        if asks(status) {
+            _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
+            status = await center.notificationSettings().authorizationStatus
+        }
+        guard allowed(status) else { return }
         let content = UNMutableNotificationContent()
         content.title = "Your Polingual trial ends tomorrow"
         content.body = "Keep learning, or cancel in Settings before tomorrow and pay nothing."

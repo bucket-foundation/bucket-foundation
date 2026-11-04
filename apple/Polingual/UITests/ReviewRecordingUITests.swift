@@ -21,9 +21,6 @@ final class ReviewRecordingUITests: XCTestCase {
         guard app.buttons["Get started"].waitForExistence(timeout: 30) else { return }
         walk.tap(app.buttons["Get started"])
         walk.tap(app.buttons["Continue"])
-        walk.tap(app.buttons["Continue"])
-        walk.tap(app.buttons["Not now"])
-        walk.tap(app.buttons["Start learning"])
     }
 
     func paywall(_ walk: ReviewWalk) {
@@ -42,6 +39,13 @@ final class ReviewRecordingUITests: XCTestCase {
         walk.hold()
         guard ReviewWalk.onDevice else { return }
         walk.tap(app.buttons["Start 3 days free"], timeout: 30)
+        let save = app.staticTexts["Save your progress"]
+        let saveDeadline = Date().addingTimeInterval(walk.humanTimeout)
+        while !save.exists && Date() < saveDeadline {
+            walk.clearAlerts()
+            Thread.sleep(forTimeInterval: 1)
+        }
+        if save.exists { walk.tap(app.buttons["Not now"]) }
         home(walk, timeout: walk.humanTimeout)
     }
 

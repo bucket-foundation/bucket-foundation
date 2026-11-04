@@ -65,6 +65,8 @@ struct ReviewWalk {
         XCTAssertTrue(toggleScreenRecording(), "Screen recording may still be running, stop it from Control Center", file: file, line: line)
     }
 
+    var emailSignIn: XCUIElement { app.buttons["Sign in with email"] }
+
     func hold() {
         if pace > 0 { Thread.sleep(forTimeInterval: pace) }
     }
@@ -96,7 +98,7 @@ struct ReviewWalk {
     }
 
     func signIn(email: String) {
-        tap(app.buttons["Sign in"].firstMatch)
+        tap(emailSignIn)
         let field = app.textFields["you@school.example"]
         XCTAssertTrue(field.waitForExistence(timeout: 20))
         guard Self.onDevice else {
@@ -119,12 +121,12 @@ struct ReviewWalk {
     func signOut() {
         scrollToTop()
         tap(app.buttons["Sign out"])
-        XCTAssertTrue(app.buttons["Sign in"].firstMatch.waitForExistence(timeout: 30))
+        XCTAssertTrue(emailSignIn.waitForExistence(timeout: 30))
     }
 
     func scrollToTop() {
         var left = 12
-        while !app.buttons["Sign out"].isHittable && !app.buttons["Sign in"].firstMatch.isHittable && left > 0 {
+        while !app.buttons["Sign out"].isHittable && !emailSignIn.isHittable && left > 0 {
             app.swipeDown()
             left -= 1
         }
@@ -197,7 +199,7 @@ struct ReviewWalk {
         scrollToTop()
         tap(app.buttons["Delete account"])
         tap(app.buttons["Delete account and data"])
-        XCTAssertTrue(app.buttons["Sign in"].firstMatch.waitForExistence(timeout: 60))
+        XCTAssertTrue(emailSignIn.waitForExistence(timeout: 60))
         hold()
     }
 
