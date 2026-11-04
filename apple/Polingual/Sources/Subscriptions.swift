@@ -75,6 +75,9 @@ final class Subscriptions {
 
     static func launchOverride() -> Access? {
         #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-polingualTrial") {
+            return .trial(until: Date().addingTimeInterval(2.5 * 86_400))
+        }
         if ProcessInfo.processInfo.arguments.contains("-polingualOpen") || UserDefaults.standard.bool(forKey: "polingual.devPass") {
             return .subscribed(productID: Plan.yearly, until: nil)
         }
