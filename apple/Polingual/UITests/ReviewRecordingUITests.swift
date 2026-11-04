@@ -34,7 +34,10 @@ final class ReviewRecordingUITests: XCTestCase {
             walk.clearAlerts()
             Thread.sleep(forTimeInterval: 1)
         }
-        if menu.exists { return }
+        if menu.exists {
+            XCTAssertFalse(ReviewWalk.onDevice, "This Apple ID already subscribes, so the paywall is missing from the video. Cancel the sandbox subscription and run again")
+            return
+        }
         XCTAssertTrue(app.buttons["Restore"].exists)
         walk.hold()
         guard ReviewWalk.onDevice else { return }
@@ -80,7 +83,7 @@ final class ReviewRecordingUITests: XCTestCase {
         inside.tap(app.buttons["Games, content and account"])
         inside.tap(app.buttons["Account"])
         inside.accountFlows()
-        inside.toggleScreenRecording()
+        inside.stopRecording()
     }
 
     func testScreenRecordingToggle() {

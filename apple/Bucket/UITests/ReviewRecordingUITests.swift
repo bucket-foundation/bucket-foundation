@@ -17,6 +17,6 @@ final class ReviewRecordingUITests: XCTestCase {
         let walk = ReviewWalk(app: app)
         walk.threeTabs()
         walk.accountFlows()
-        walk.toggleScreenRecording()
+        walk.stopRecording()
     }
 }

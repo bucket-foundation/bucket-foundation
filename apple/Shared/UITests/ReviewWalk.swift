@@ -48,15 +48,21 @@ struct ReviewWalk {
             return false
         }
         toggle.tap()
-        Self.recording.toggle()
         Thread.sleep(forTimeInterval: 4)
         board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)).tap()
         Thread.sleep(forTimeInterval: 1)
+        Self.recording.toggle()
         return true
     }
 
-    func startRecording() {
-        if !toggleScreenRecording() { Thread.sleep(forTimeInterval: lead) }
+    func startRecording(file: StaticString = #filePath, line: UInt = #line) {
+        guard Self.onDevice else { return Thread.sleep(forTimeInterval: lead) }
+        XCTAssertTrue(toggleScreenRecording(), "Control Center has no Screen Recording button", file: file, line: line)
+    }
+
+    func stopRecording(file: StaticString = #filePath, line: UInt = #line) {
+        guard Self.onDevice, Self.recording else { return }
+        XCTAssertTrue(toggleScreenRecording(), "Screen recording may still be running, stop it from Control Center", file: file, line: line)
     }
 
     func hold() {
