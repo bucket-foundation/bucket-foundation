@@ -141,6 +141,8 @@ struct Studio: View {
                 Label(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"), systemImage: "gift.fill")
                     .font(.subheadline.weight(.bold))
                     .foregroundStyle(.white)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.vertical, 8)
                     .frame(maxWidth: .infinity)
                     .background(D8.lapis, ignoresSafeAreaEdges: [])
