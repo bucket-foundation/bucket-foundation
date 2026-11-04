@@ -28,7 +28,9 @@ struct PolingualApp: App {
         Beta.shared.account = account
         _store = State(initialValue: store)
         _gate = State(initialValue: Gate(account: account))
-        _groups = State(initialValue: GroupStore(api: api, token: { await account.freshToken() }))
+        let groups = GroupStore(api: api, token: { await account.freshToken() })
+        groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
+        _groups = State(initialValue: groups)
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
     }
 

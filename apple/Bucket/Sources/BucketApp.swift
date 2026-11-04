@@ -33,7 +33,9 @@ struct BucketApp: App {
         #endif
         _science = State(initialValue: ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift }))
         _gate = State(initialValue: Gate(account: account))
-        _groups = State(initialValue: GroupStore(api: BucketAPI(), token: { await account.freshToken() }))
+        let groups = GroupStore(api: BucketAPI(), token: { await account.freshToken() })
+        groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
+        _groups = State(initialValue: groups)
     }
 
     var body: some Scene {

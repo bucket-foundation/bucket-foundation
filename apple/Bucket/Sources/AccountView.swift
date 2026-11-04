@@ -89,6 +89,8 @@ struct AccountView: View {
                     guard !demoShown else { return }
                     demoShown = true
                     groups.groups = [DemoGroup.shown]
+                    groups.items[DemoGroup.group.id] = DemoGroup.items
+                    groups.donor?.publish(groups.shareTargets, donate: true)
                     switch DemoGroup.screen {
                     case "member", "graph": openMember = "u2"
                     case "account", "joined": break

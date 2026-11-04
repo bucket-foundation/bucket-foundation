@@ -241,6 +241,7 @@ struct GroupView: View {
         List {
             StandingsSection(group: g, opening: $opening, removing: $removing, reporting: $reporting, blocking: $blocking)
             ReactionSection(group: g)
+            SharedItemsSection(group: g, blocking: $blocking)
             Section {
                 ForEach(g.members) { m in
                     NavigationLink { MemberView(member: m, groupId: g.id) } label: { MemberRow(member: m) }
@@ -769,6 +770,12 @@ enum DemoGroup {
     ], goal: GroupGoal(weekly: 500, done: 418, weekStart: "2026-10-26"), cheers: [
         Cheer(id: "c1", from: "u3", fromName: "Nonna Lucia", to: "u1", kind: .cheer, at: "2026-10-28", seen: false),
     ])
+
+    static let items = [
+        SharedItem(id: "i1", groupId: "demo", from: "u2", fromName: "Marco", kind: .url, url: "https://www.polingual.com", text: "Try the French deck tonight", at: "2026-11-04T09:10:00Z", mine: false),
+        SharedItem(id: "i2", groupId: "demo", from: "u3", fromName: "Nonna Lucia", kind: .text, text: "Buonanotte a tutti", at: "2026-11-03T21:40:00Z", mine: false),
+        SharedItem(id: "i3", groupId: "demo", from: "u1", fromName: "Gia Rossi", to: "u2", kind: .text, text: "Race you to 200 cards", at: "2026-11-03T18:00:00Z", mine: true),
+    ]
 
     static func graph(_ branch: String) -> MemberGraph {
         if branch.hasPrefix("lang-") {
