@@ -235,7 +235,7 @@ struct LetterMeet: View {
                     VStack(spacing: 2) {
                         if let reading = characterReading {
                             Text(reading).font(D8.word(sideways ? 34 : 44)).foregroundStyle(D8.vermilion)
-                            Text("\(sound.example) \(card.meaning)").font(D8.word(sideways ? 24 : 30)).foregroundStyle(Palette.ink)
+                            Text(sound.example == ex.answer ? card.meaning : "\(sound.example) \(card.meaning)").font(D8.word(sideways ? 24 : 30)).foregroundStyle(Palette.ink)
                         } else {
                             LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 34 : 44)
                             Text(card.meaning).font(D8.word(sideways ? 24 : 30)).foregroundStyle(Palette.ink)
