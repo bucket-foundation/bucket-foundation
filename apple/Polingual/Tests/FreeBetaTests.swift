@@ -5,16 +5,17 @@ import Testing
 @MainActor
 struct FreeBetaTests {
     @Test func showsInSandbox() {
-        #expect(FreeBeta.shows(environment: .sandbox, flag: nil))
         #expect(FreeBeta.shows(environment: .sandbox, flag: "on"))
     }
 
     @Test func hiddenOnTheAppStore() {
-        #expect(!FreeBeta.shows(environment: .production, flag: nil))
-        #expect(!FreeBeta.shows(environment: .xcode, flag: nil))
+        #expect(!FreeBeta.shows(environment: .production, flag: "on"))
+        #expect(!FreeBeta.shows(environment: .xcode, flag: "on"))
     }
 
-    @Test func flagTurnsItOff() {
+    @Test func offUnlessFlagIsOn() {
         #expect(!FreeBeta.shows(environment: .sandbox, flag: "off"))
+        #expect(!FreeBeta.shows(environment: .sandbox, flag: ""))
+        #expect(!FreeBeta.shows(environment: .sandbox, flag: nil))
     }
 }

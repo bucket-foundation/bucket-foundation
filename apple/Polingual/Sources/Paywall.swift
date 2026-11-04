@@ -359,7 +359,7 @@ enum FreeBeta {
     static let note = String(localized: "You are on the TestFlight beta. Apple does not charge for purchases here, so any plan is free while you test.")
 
     static func shows(environment: AppStore.Environment, flag: String?) -> Bool {
-        environment == .sandbox && flag != "off"
+        environment == .sandbox && flag == "on"
     }
 
     static func active() async -> Bool {
