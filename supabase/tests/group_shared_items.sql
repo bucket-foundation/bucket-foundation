@@ -2,8 +2,8 @@ begin;
 
 \ir ../migrations/20261102000000_learning_groups.sql
 \ir ../migrations/20261105000100_group_moderation.sql
-\ir ../migrations/20261107000000_group_shared_items.sql
-\ir ../migrations/20261107000000_group_shared_items.sql
+\ir ../migrations/20261107000001_group_shared_items.sql
+\ir ../migrations/20261107000001_group_shared_items.sql
 
 grant usage on schema bucket to authenticated;
 
