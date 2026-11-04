@@ -5,14 +5,18 @@ final class ReviewRecordingUITests: XCTestCase {
         continueAfterFailure = false
     }
 
+    override func tearDown() {
+        if ReviewWalk.recording { ReviewWalk(app: XCUIApplication()).toggleScreenRecording() }
+    }
+
     func testRecordingFlow() {
         let app = XCUIApplication()
-        let lead = ReviewWalk(app: app).lead
-        Thread.sleep(forTimeInterval: lead)
+        ReviewWalk(app: app).startRecording()
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"] + (ReviewWalk.onDevice ? [] : ["-demoGroup", "joined"])
         app.launch()
         let walk = ReviewWalk(app: app)
         walk.threeTabs()
         walk.accountFlows()
+        walk.stopRecording()
     }
 }

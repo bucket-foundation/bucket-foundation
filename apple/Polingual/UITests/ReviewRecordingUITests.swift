@@ -5,6 +5,10 @@ final class ReviewRecordingUITests: XCTestCase {
         continueAfterFailure = false
     }
 
+    override func tearDown() {
+        if ReviewWalk.recording { ReviewWalk(app: XCUIApplication()).toggleScreenRecording() }
+    }
+
     func launch(_ args: [String]) -> ReviewWalk {
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"] + args
@@ -24,7 +28,17 @@ final class ReviewRecordingUITests: XCTestCase {
 
     func paywall(_ walk: ReviewWalk) {
         let app = walk.app
-        XCTAssertTrue(app.buttons["Restore"].waitForExistence(timeout: 60))
+        let menu = app.buttons["Games, content and account"]
+        let deadline = Date().addingTimeInterval(60)
+        while !app.buttons["Restore"].exists && !menu.exists && Date() < deadline {
+            walk.clearAlerts()
+            Thread.sleep(forTimeInterval: 1)
+        }
+        if menu.exists {
+            XCTAssertFalse(ReviewWalk.onDevice, "This Apple ID already subscribes, so the paywall is missing from the video. Cancel the sandbox subscription and run again")
+            return
+        }
+        XCTAssertTrue(app.buttons["Restore"].exists)
         walk.hold()
         guard ReviewWalk.onDevice else { return }
         walk.tap(app.buttons["Start 3 days free"], timeout: 30)
@@ -36,6 +50,7 @@ final class ReviewRecordingUITests: XCTestCase {
         let menu = app.buttons["Games, content and account"]
         let deadline = Date().addingTimeInterval(timeout)
         while !menu.exists && Date() < deadline {
+            walk.clearAlerts()
             let back = app.navigationBars.buttons.firstMatch
             if back.exists && back.isHittable { back.tap() }
             Thread.sleep(forTimeInterval: 1)
@@ -43,9 +58,22 @@ final class ReviewRecordingUITests: XCTestCase {
         XCTAssertTrue(menu.exists, "Confirm the sandbox purchase on the phone")
     }
 
+    func signedOutStart() {
+        guard ReviewWalk.onDevice else { return }
+        let walk = launch([])
+        let app = walk.app
+        let menu = app.buttons["Games, content and account"]
+        if menu.waitForExistence(timeout: 20) {
+            menu.tap()
+            walk.tap(app.buttons["Account"])
+            if app.buttons["Sign out"].waitForExistence(timeout: 5) { walk.signOut() }
+        }
+        app.terminate()
+    }
+
     func testRecordingFlow() {
-        let first = ReviewWalk(app: XCUIApplication())
-        Thread.sleep(forTimeInterval: first.lead)
+        signedOutStart()
+        ReviewWalk(app: XCUIApplication()).startRecording()
         let walk = launch([])
         onboarding(walk)
         paywall(walk)
@@ -55,5 +83,13 @@ final class ReviewRecordingUITests: XCTestCase {
         inside.tap(app.buttons["Games, content and account"])
         inside.tap(app.buttons["Account"])
         inside.accountFlows()
+        inside.stopRecording()
+    }
+
+    func testScreenRecordingToggle() {
+        let walk = ReviewWalk(app: XCUIApplication())
+        XCTAssertTrue(walk.toggleScreenRecording())
+        Thread.sleep(forTimeInterval: 3)
+        XCTAssertTrue(walk.toggleScreenRecording())
     }
 }

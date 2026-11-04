@@ -20,12 +20,60 @@ struct ReviewWalk {
     var pace: TimeInterval { Self.onDevice ? 2 : 1 }
     var humanTimeout: TimeInterval { 240 }
 
+    nonisolated(unsafe) static var recording = false
+
+    func clearAlerts() {
+        let board = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        guard board.alerts.firstMatch.exists else { return }
+        for name in ["Allow", "Allow While Using App", "OK", "Continue", "Not Now"] {
+            let button = board.alerts.buttons[name]
+            if button.exists {
+                button.tap()
+                hold()
+                return
+            }
+        }
+    }
+
+    @discardableResult
+    func toggleScreenRecording() -> Bool {
+        guard Self.onDevice else { return false }
+        let board = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        board.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.002))
+            .press(forDuration: 0.1, thenDragTo: board.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.7)))
+        let toggle = board.buttons.matching(NSPredicate(format: "label CONTAINS[c] 'Screen Recording' OR label CONTAINS[c] 'Record Screen'")).firstMatch
+        guard toggle.waitForExistence(timeout: 5) else {
+            print(board.debugDescription)
+            board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)).tap()
+            return false
+        }
+        toggle.tap()
+        Thread.sleep(forTimeInterval: 4)
+        board.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)).tap()
+        Thread.sleep(forTimeInterval: 1)
+        Self.recording.toggle()
+        return true
+    }
+
+    func startRecording(file: StaticString = #filePath, line: UInt = #line) {
+        guard Self.onDevice else { return Thread.sleep(forTimeInterval: lead) }
+        XCTAssertTrue(toggleScreenRecording(), "Control Center has no Screen Recording button", file: file, line: line)
+    }
+
+    func stopRecording(file: StaticString = #filePath, line: UInt = #line) {
+        guard Self.onDevice, Self.recording else { return }
+        XCTAssertTrue(toggleScreenRecording(), "Screen recording may still be running, stop it from Control Center", file: file, line: line)
+    }
+
     func hold() {
         if pace > 0 { Thread.sleep(forTimeInterval: pace) }
     }
 
     func tap(_ element: XCUIElement, timeout: TimeInterval = 20, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertTrue(element.waitForExistence(timeout: timeout), "Missing \(element)", file: file, line: line)
+        if !element.waitForExistence(timeout: 3) { clearAlerts() }
+        let found = element.waitForExistence(timeout: timeout)
+        if !found { print(app.debugDescription) }
+        XCTAssertTrue(found, "Missing \(element)", file: file, line: line)
         hold()
         element.tap()
     }
@@ -58,6 +106,13 @@ struct ReviewWalk {
         field.tap()
         field.typeText(email)
         tap(app.buttons["Send code"])
+        if email == demoEmail, let demoCode = env["REVIEW_DEMO_CODE"], !demoCode.isEmpty {
+            let box = app.textFields["Code"]
+            XCTAssertTrue(box.waitForExistence(timeout: 30))
+            box.tap()
+            box.typeText(demoCode)
+            tap(app.buttons["Verify"])
+        }
         XCTAssertTrue(app.buttons["Sign out"].waitForExistence(timeout: humanTimeout), "Type the emailed code on the phone")
     }
 
