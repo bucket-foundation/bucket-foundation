@@ -16,6 +16,11 @@ enum StudyRequest {
     }
 
     static var pending: Bool { UserDefaults.standard.double(forKey: key) > 0 }
+
+    static func fresh(now: Date = .now) -> Bool {
+        let at = UserDefaults.standard.double(forKey: key)
+        return at > 0 && now.timeIntervalSince1970 - at < 60
+    }
 }
 
 struct StartStudyIntent: AppIntent {

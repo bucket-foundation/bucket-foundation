@@ -25,13 +25,13 @@ final class ReviewRecordingUITests: XCTestCase {
 
     func paywall(_ walk: ReviewWalk) {
         let app = walk.app
-        let menu = app.buttons["Games, content and account"]
+        let today = app.navigationBars["Today"]
         let deadline = Date().addingTimeInterval(60)
-        while !app.buttons["Restore"].exists && !menu.exists && Date() < deadline {
+        while !app.buttons["Restore"].exists && !today.exists && Date() < deadline {
             walk.clearAlerts()
             Thread.sleep(forTimeInterval: 1)
         }
-        if menu.exists {
+        if today.exists {
             XCTAssertFalse(ReviewWalk.onDevice, "This Apple ID already subscribes, so the paywall is missing from the video. Cancel the sandbox subscription and run again")
             return
         }
@@ -51,25 +51,24 @@ final class ReviewRecordingUITests: XCTestCase {
 
     func home(_ walk: ReviewWalk, timeout: TimeInterval) {
         let app = walk.app
-        let menu = app.buttons["Games, content and account"]
+        let today = app.navigationBars["Today"]
         let deadline = Date().addingTimeInterval(timeout)
-        while !menu.exists && Date() < deadline {
+        while !today.exists && Date() < deadline {
             walk.clearAlerts()
             let back = app.navigationBars.buttons.firstMatch
             if back.exists && back.isHittable { back.tap() }
             Thread.sleep(forTimeInterval: 1)
         }
-        XCTAssertTrue(menu.exists, "Confirm the sandbox purchase on the phone")
+        XCTAssertTrue(today.exists, "Confirm the sandbox purchase on the phone")
     }
 
     func signedOutStart() {
         guard ReviewWalk.onDevice else { return }
         let walk = launch([])
         let app = walk.app
-        let menu = app.buttons["Games, content and account"]
-        if menu.waitForExistence(timeout: 20) {
-            menu.tap()
-            walk.tap(app.buttons["Account"])
+        let today = app.navigationBars["Today"]
+        if today.waitForExistence(timeout: 20) {
+            walk.tap(app.buttons["Account"].firstMatch)
             if app.buttons["Sign out"].waitForExistence(timeout: 5) { walk.signOut() }
         }
         app.terminate()
@@ -84,8 +83,7 @@ final class ReviewRecordingUITests: XCTestCase {
         let inside = ReviewWalk.onDevice ? walk : launch(["-polingual.onboarded", "YES", "-polingualOpen", "-demoGroup", "joined"])
         let app = inside.app
         home(inside, timeout: 60)
-        inside.tap(app.buttons["Games, content and account"])
-        inside.tap(app.buttons["Account"])
+        inside.tap(app.buttons["Account"].firstMatch)
         inside.accountFlows()
         inside.stopRecording()
     }

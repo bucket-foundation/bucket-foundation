@@ -6,21 +6,35 @@ import Testing
 @Suite(.serialized)
 struct LaunchRoutingTests {
     @Test func staleStudyRequestFallsThroughToPlacement() {
-        let now = Date(timeIntervalSince1970: 1_800_000_000)
+        let now = Date()
         UserDefaults.standard.set(now.timeIntervalSince1970 - 600, forKey: StudyRequest.key)
-        #expect(StudyRequest.pending)
-        let taken = StudyRequest.pending && StudyRequest.take(now: now)
-        #expect(!taken)
-        #expect(!StudyRequest.pending)
-        #expect(LaunchRouting.step(requestTaken: taken, firstSystem: "en-ru") == .place("en-ru"))
+        defer { UserDefaults.standard.removeObject(forKey: StudyRequest.key) }
+        #expect(!StudyRequest.fresh(now: now))
+        #expect(LaunchRouting.step(studyFresh: StudyRequest.fresh(now: now), firstSystem: "en-ru") == .place("en-ru"))
     }
 
-    @Test func freshStudyRequestOpensStudy() {
-        let now = Date(timeIntervalSince1970: 1_800_000_000)
+    @Test func freshStudyRequestWinsOverPlacementAndStaysForToday() {
+        let now = Date()
         UserDefaults.standard.set(now.timeIntervalSince1970 - 5, forKey: StudyRequest.key)
-        let taken = StudyRequest.pending && StudyRequest.take(now: now)
-        #expect(taken)
-        #expect(LaunchRouting.step(requestTaken: taken, firstSystem: "en-ru") == .study)
-        #expect(LaunchRouting.step(requestTaken: false, firstSystem: "") == .none)
+        defer { UserDefaults.standard.removeObject(forKey: StudyRequest.key) }
+        #expect(LaunchRouting.step(studyFresh: StudyRequest.fresh(now: now), firstSystem: "en-ru") == .study)
+        #expect(StudyRequest.take(now: now))
+        #expect(LaunchRouting.step(studyFresh: false, firstSystem: "") == .none)
+    }
+
+    @Test func paywallGateOpensStudioOnlyForTrialAndSubscribed() {
+        #expect(RootScreen.pick(onboarded: false, access: .subscribed(productID: "y", until: nil)) == .onboarding)
+        #expect(RootScreen.pick(onboarded: true, access: .checking) == .loading)
+        #expect(RootScreen.pick(onboarded: true, access: .locked) == .paywall)
+        #expect(RootScreen.pick(onboarded: true, access: .trial(until: .distantFuture)) == .studio)
+        #expect(RootScreen.pick(onboarded: true, access: .subscribed(productID: "y", until: nil)) == .studio)
+    }
+
+    @Test func linkPendingAtMountPicksItsTab() {
+        #expect(LaunchRouting.tab(for: nil, current: .learn) == .learn)
+        #expect(LaunchRouting.tab(for: .group("7K3M9QX2PD"), current: .today) == .account)
+        #expect(LaunchRouting.tab(for: .langs(root: "en", targets: ["es"]), current: .today) == .learn)
+        #expect(LaunchRouting.tab(for: .voice, current: .account) == .learn)
+        #expect(LaunchRouting.tab(for: .home, current: .learn) == .today)
     }
 }

@@ -1,9 +1,10 @@
 import XCTest
 
+@MainActor
 final class GamesUITests: XCTestCase {
     private func launch(_ extra: [String]) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-polingualExtra", "games", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40"] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40"] + extra
         app.launch()
         return app
     }
@@ -20,12 +21,11 @@ final class GamesUITests: XCTestCase {
         let deadline = Date().addingTimeInterval(180)
         while taps < 20 && Date() < deadline {
             if end.exists { return }
-            let choice = choices.element(boundBy: taps % max(choices.count, 1))
-            guard choice.exists && choice.isEnabled && choice.isHittable else {
+            guard let choice = try? choices.firstMatch.snapshot(), choice.isEnabled, !choice.frame.isEmpty else {
                 usleep(100_000)
                 continue
             }
-            choice.tap()
+            app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: choice.frame.midX, dy: choice.frame.midY)).tap()
             taps += 1
             if taps == 2 { shot("\(name)-answered") }
         }
@@ -37,7 +37,7 @@ final class GamesUITests: XCTestCase {
     }
 
     func testDailySetCreditsTheDayAndHoldsTheResult() {
-        let app = launch(["-openGame", "daily"])
+        let app = launch(["-openGame", "daily", "-freshDaily"])
         playQuiz(app, until: app.staticTexts["New set tomorrow."], name: "daily")
         shot("daily-end")
         app.terminate()
@@ -66,7 +66,8 @@ final class GamesUITests: XCTestCase {
         shot("voice-play")
         voice.terminate()
         let letters = launch(["-openGame", "letters"])
-        XCTAssertTrue(letters.staticTexts["Which letter makes this sound?"].waitForExistence(timeout: 60))
+        let prompt = letters.staticTexts.matching(NSPredicate(format: "label IN %@", ["Which letter makes this sound?", "Which character completes this word?", "Which tone did you hear?"])).firstMatch
+        XCTAssertTrue(prompt.waitForExistence(timeout: 60))
         shot("letters-play")
     }
 

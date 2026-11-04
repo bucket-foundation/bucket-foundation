@@ -27,7 +27,7 @@ final class SignUpFunnelUITests: XCTestCase {
         shot("onboarding-languages")
         app.buttons["Continue"].tap()
         let paywall = app.buttons["Restore"]
-        let home = app.buttons["Games, content and account"]
+        let home = app.navigationBars["Today"]
         let deadline = Date().addingTimeInterval(60)
         while !paywall.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
         XCTAssertTrue(paywall.exists || home.exists, "Onboarding did not leave after two taps")
@@ -54,10 +54,8 @@ final class SignUpFunnelUITests: XCTestCase {
 
     func testAccountListsAppleFirst() throws {
         let app = launch(["-polingual.onboarded", "YES", "-polingualOpen"])
-        let menu = app.buttons["Games, content and account"]
-        XCTAssertTrue(menu.waitForExistence(timeout: 60))
-        menu.tap()
-        app.buttons["Account"].tap()
+        XCTAssertTrue(app.navigationBars["Today"].waitForExistence(timeout: 60))
+        app.buttons["Account"].firstMatch.tap()
         let email = app.buttons["Sign in with email"]
         guard email.waitForExistence(timeout: 20) else { throw XCTSkip("Signed in on this simulator") }
         let apple = app.buttons["Sign in with Apple"]

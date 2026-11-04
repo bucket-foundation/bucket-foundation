@@ -146,7 +146,7 @@ struct QuizGame: View {
         case .daily:
             guard let s = langs.dailySystem else { return }
             prompts = GameRounds.daily(GameDeck(corpus, root: s.root, targets: s.targets), day: dayKey(Date().timeIntervalSince1970 * 1000))
-            if let done = langs.gameDaily(s.id), !prompts.isEmpty {
+            if let done = langs.gameDaily(s.id), !prompts.isEmpty, !GameLaunch.freshDaily {
                 replayed = true
                 run = GameRun(prompts, replaying: done)
                 return
@@ -671,5 +671,15 @@ struct LetterSprintGame: View {
         best = langs.recordGame(.letters, played: Array(words.prefix(results.count)), hits: hits, points: hits, missed: missed)
         reminders.noteStudy()
         haptic(true)
+    }
+}
+
+enum GameLaunch {
+    static var freshDaily: Bool {
+        #if DEBUG
+        Launch.flag("-freshDaily")
+        #else
+        false
+        #endif
     }
 }

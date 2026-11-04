@@ -97,28 +97,6 @@ struct BucketApp: App {
     }
 }
 
-enum AppTab: String, Hashable { case today, learn, account }
-
-extension SharedLink {
-    var tab: AppTab {
-        switch self {
-        case .word, .home: .today
-        case .langs, .deck, .atom, .content, .voice: .learn
-        case .group: .account
-        }
-    }
-}
-
-enum Launch {
-    static func value(_ flag: String) -> String? {
-        let args = ProcessInfo.processInfo.arguments
-        guard let i = args.firstIndex(of: flag), i + 1 < args.count else { return nil }
-        return args[i + 1]
-    }
-
-    static func flag(_ name: String) -> Bool { ProcessInfo.processInfo.arguments.contains(name) }
-}
-
 struct RootView: View {
     @Environment(Reminders.self) private var reminders
     @Environment(Library.self) private var library
@@ -128,10 +106,12 @@ struct RootView: View {
     @Environment(Account.self) private var account
     @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
 
+    var subjects: ScienceSubjects { ScienceSubjects(library: library, science: science) }
+
     var body: some View {
         TabView(selection: $tab) {
-            Tab("Today", systemImage: "sun.max", value: .today) { TodayView() }
-            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
+            Tab("Today", systemImage: "sun.max", value: .today) { TodayView(subjects: subjects) }
+            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView(subjects: subjects) }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .tabViewStyle(.sidebarAdaptable)
