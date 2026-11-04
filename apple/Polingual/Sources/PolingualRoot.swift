@@ -9,6 +9,7 @@ struct PolingualRoot: View {
     @Environment(Subscriptions.self) private var subs
     @AppStorage("polingual.onboarded") private var onboarded = false
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
+    @AppStorage(SaveProgress.key) private var savePending = false
 
     var body: some View {
         Group {
@@ -34,8 +35,16 @@ struct PolingualRoot: View {
         .groupInvites()
         .groupsOnToday()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
+        .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn, access: subs.access) }, set: { if !$0 { savePending = false } })) {
+            SaveProgressSheet()
+                .presentationDetents([.large])
+        }
+        #if DEBUG
+        .task { if ProcessInfo.processInfo.arguments.contains("-saveProgress") { savePending = true } }
+        #endif
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {
+                savePending = false
                 Task { await store.syncAfterSignIn() }
                 Task { await PushRegistry.shared.refresh() }
             }

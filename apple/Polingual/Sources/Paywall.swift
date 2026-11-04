@@ -194,6 +194,7 @@ struct Paywall: View {
             switch try await product.purchase(options: options) {
             case .success(.verified(let t)):
                 await t.finish()
+                if SaveProgress.offer(signedIn: account.stage == .signedIn) { UserDefaults.standard.set(true, forKey: SaveProgress.key) }
                 await subs.refresh()
                 haptic(true)
                 switch TrialReminder.action(productID: t.productID, introductory: t.offer?.type == .introductory) {
