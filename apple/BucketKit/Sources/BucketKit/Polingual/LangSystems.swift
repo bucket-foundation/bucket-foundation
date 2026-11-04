@@ -156,8 +156,8 @@ public struct Reading: Sendable, Equatable, Hashable {
         self.ipa = ipa
     }
 
-    init(js: JSValue) {
-        roman = js["roman"]?.string
+    init(js: JSValue, lang: String = "") {
+        roman = js["roman"]?.string.map { lang == "ja" ? Romaji.hanbun($0) : $0 }
         kana = js["kana"]?.string
         ipa = js["ipa"]?.string
     }
@@ -217,6 +217,19 @@ public struct LangItem: Sendable, Identifiable {
     public func form(_ l: String) -> String? {
         guard let f = forms[l], !f.isEmpty else { return nil }
         return f
+    }
+}
+
+public enum Romaji {
+    public static func hanbun(_ roman: String) -> String {
+        roman.replacing(/m(?=[bmp])/, with: "n")
+    }
+
+    static func hanbun(_ byLang: [String: String]) -> [String: String] {
+        guard let ja = byLang["ja"] else { return byLang }
+        var out = byLang
+        out["ja"] = hanbun(ja)
+        return out
     }
 }
 
@@ -347,7 +360,7 @@ public func buildLangCorpus(core: JSValue?, cognates: JSValue?, phrases: JSValue
         let tier = a["tier"]?.number ?? 0
         let category = a["category"]?.string ?? "word"
         var readings: [String: Reading] = [:]
-        for (l, r) in layers?["readings"]?[aid]?.object?.entries ?? [] { readings[l] = Reading(js: r) }
+        for (l, r) in layers?["readings"]?[aid]?.object?.entries ?? [] { readings[l] = Reading(js: r, lang: l) }
         var item = LangItem(
             id: aid, kind: .word, baseId: aid, tier: tier, unit: unitFor(category, .word, tier), category: category,
             gloss: a["gloss"]?.string ?? aid, forms: forms, readings: readings,
@@ -401,7 +414,7 @@ public func buildLangCorpus(core: JSValue?, cognates: JSValue?, phrases: JSValue
         let cat = p["category"]?.string
         let tier = Lang.phraseTier[cat ?? ""] ?? 5
         var readings: [String: Reading] = [:]
-        for (l, r) in layers?["readings"]?[id]?.object?.entries ?? [] { readings[l] = Reading(js: r) }
+        for (l, r) in layers?["readings"]?[id]?.object?.entries ?? [] { readings[l] = Reading(js: r, lang: l) }
         items.append(LangItem(
             id: id, kind: .phrase, baseId: id, tier: tier, unit: unitFor(cat ?? "", .phrase, tier), category: cat ?? "phrase",
             gloss: p["en"]?.string ?? p["forms"]?["en"]?.string ?? pid, forms: strings(p["forms"]), readings: readings,
@@ -422,7 +435,7 @@ public func buildLangCorpus(core: JSValue?, cognates: JSValue?, phrases: JSValue
             for (l, n) in o.entries { if let n = n.number { m[l] = n } }
             lv = m
         }
-        pool[k] = PoolSentence(t: strings(s["t"]), r: strings(s["r"]), jaTokens: s["jaTokens"]?.stringArray, lv: lv)
+        pool[k] = PoolSentence(t: strings(s["t"]), r: Romaji.hanbun(strings(s["r"])), jaTokens: s["jaTokens"]?.stringArray, lv: lv)
     }
     var persons: [String: [String]] = [:]
     for (l, p) in layers?["persons"]?.object?.entries ?? [] { persons[l] = p.stringArray ?? [] }
