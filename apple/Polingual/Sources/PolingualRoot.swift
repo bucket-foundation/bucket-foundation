@@ -13,20 +13,18 @@ struct PolingualRoot: View {
 
     var body: some View {
         Group {
-            if !onboarded {
+            switch RootScreen.pick(onboarded: onboarded, access: subs.access) {
+            case .onboarding:
                 Onboarding { id in
                     firstSystem = id ?? ""
                     onboarded = true
                 }
-            } else {
-                switch subs.access {
-                case .checking:
-                    ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity).background(Palette.paper.ignoresSafeArea())
-                case .locked:
-                    Paywall()
-                case .trial, .subscribed:
-                    Studio()
-                }
+            case .loading:
+                ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity).background(Palette.paper.ignoresSafeArea())
+            case .paywall:
+                Paywall()
+            case .studio:
+                Studio()
             }
         }
         .task { if subs.access == .checking { await subs.refresh() } }
@@ -68,6 +66,32 @@ struct PolingualRoot: View {
     }
 }
 
+enum RootScreen: Equatable {
+    case onboarding, loading, paywall, studio
+
+    static func pick(onboarded: Bool, access: Access) -> RootScreen {
+        guard onboarded else { return .onboarding }
+        switch access {
+        case .checking: return .loading
+        case .locked: return .paywall
+        case .trial, .subscribed: return .studio
+        }
+    }
+}
+
+enum LaunchRouting {
+    enum Step: Equatable { case study, place(String), none }
+
+    static func step(studyFresh: Bool, firstSystem: String) -> Step {
+        if studyFresh { return .study }
+        return firstSystem.isEmpty ? .none : .place(firstSystem)
+    }
+
+    static func tab(for link: SharedLink?, current: AppTab) -> AppTab {
+        link?.tab ?? current
+    }
+}
+
 struct Studio: View {
     @Environment(Subscriptions.self) private var subs
     @Environment(LangStore.self) private var store
@@ -80,15 +104,14 @@ struct Studio: View {
             Tab("Today", systemImage: "sun.max", value: .today) {
                 TodayView(opening: { await place($0) }).safeAreaInset(edge: .bottom) { trial }
             }
-            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage) }
+            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView().safeAreaInset(edge: .bottom) { trial } }
+            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage).safeAreaInset(edge: .bottom) { trial } }
         }
         .tabViewStyle(.sidebarAdaptable)
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
-        .onChange(of: DeepLink.shared.pending) { _, link in
-            guard let link else { return }
-            tab = link.tab
+        .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
+            tab = LaunchRouting.tab(for: link, current: tab)
             if link == .home { DeepLink.shared.pending = nil }
         }
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
@@ -116,11 +139,11 @@ struct Studio: View {
     }
 
     func place(_ path: Binding<NavigationPath>) async {
-        guard !firstSystem.isEmpty else { return }
-        let id = firstSystem
-        firstSystem = ""
+        guard case .place(let id) = LaunchRouting.step(studyFresh: StudyRequest.fresh(), firstSystem: firstSystem) else { return }
         await store.load()
-        if store.system(id) != nil { path.wrappedValue.append(LangRoute.place(id, nil)) }
+        guard store.system(id) != nil else { return }
+        firstSystem = ""
+        path.wrappedValue.append(LangRoute.place(id, nil))
     }
 
     func manage() {

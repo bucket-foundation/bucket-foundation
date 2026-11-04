@@ -33,7 +33,7 @@ final class WordTapUITests: XCTestCase {
         let done = app.buttons["Done"]
         XCTAssertTrue(done.waitForExistence(timeout: 10))
         let title = app.navigationBars.allElementsBoundByIndex.last?.identifier ?? ""
-        let inSheet = app.links.allElementsBoundByIndex.last { $0.isHittable && $0.label.lowercased() != title.lowercased() }
+        let inSheet = app.links.allElementsBoundByIndex.last { $0.isHittable && !$0.label.contains("://") && $0.label.lowercased() != title.lowercased() }
         guard let target = inSheet else {
             throw XCTSkip("\(title) has no example sentence to tap")
         }

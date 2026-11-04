@@ -37,7 +37,7 @@ final class GamesUITests: XCTestCase {
     }
 
     func testDailySetCreditsTheDayAndHoldsTheResult() {
-        let app = launch(["-openGame", "daily"])
+        let app = launch(["-openGame", "daily", "-freshDaily"])
         playQuiz(app, until: app.staticTexts["New set tomorrow."], name: "daily")
         shot("daily-end")
         app.terminate()
