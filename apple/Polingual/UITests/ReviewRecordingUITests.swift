@@ -90,7 +90,8 @@ final class ReviewRecordingUITests: XCTestCase {
         inside.stopRecording()
     }
 
-    func testScreenRecordingToggle() {
+    func testScreenRecordingToggle() throws {
+        guard ReviewWalk.onDevice else { throw XCTSkip("Control Center screen recording needs a device") }
         let walk = ReviewWalk(app: XCUIApplication())
         XCTAssertTrue(walk.toggleScreenRecording())
         Thread.sleep(forTimeInterval: 3)

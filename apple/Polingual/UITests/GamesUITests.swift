@@ -16,13 +16,20 @@ final class GamesUITests: XCTestCase {
     private func playQuiz(_ app: XCUIApplication, until end: XCUIElement, name: String) {
         let choices = app.buttons.matching(identifier: "game-choice")
         XCTAssertTrue(choices.firstMatch.waitForExistence(timeout: 60))
-        for i in 0..<20 {
-            while !end.exists && !(choices.firstMatch.exists && choices.firstMatch.isEnabled) { usleep(100_000) }
+        var taps = 0
+        let deadline = Date().addingTimeInterval(180)
+        while taps < 20 && Date() < deadline {
             if end.exists { return }
-            choices.element(boundBy: i % choices.count).tap()
-            if i == 1 { shot("\(name)-answered") }
+            let choice = choices.element(boundBy: taps % max(choices.count, 1))
+            guard choice.exists && choice.isEnabled && choice.isHittable else {
+                usleep(100_000)
+                continue
+            }
+            choice.tap()
+            taps += 1
+            if taps == 2 { shot("\(name)-answered") }
         }
-        XCTFail("The round did not end")
+        XCTAssertTrue(end.waitForExistence(timeout: 10), "The round did not end")
     }
 
     override func setUp() {
