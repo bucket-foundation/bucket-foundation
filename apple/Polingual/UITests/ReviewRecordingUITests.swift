@@ -39,9 +39,13 @@ final class ReviewRecordingUITests: XCTestCase {
         walk.hold()
         guard ReviewWalk.onDevice else { return }
         walk.tap(app.buttons["Start 3 days free"], timeout: 30)
-        if app.staticTexts["Save your progress"].waitForExistence(timeout: walk.humanTimeout) {
-            walk.tap(app.buttons["Not now"])
+        let save = app.staticTexts["Save your progress"]
+        let saveDeadline = Date().addingTimeInterval(walk.humanTimeout)
+        while !save.exists && Date() < saveDeadline {
+            walk.clearAlerts()
+            Thread.sleep(forTimeInterval: 1)
         }
+        if save.exists { walk.tap(app.buttons["Not now"]) }
         home(walk, timeout: walk.humanTimeout)
     }
 
