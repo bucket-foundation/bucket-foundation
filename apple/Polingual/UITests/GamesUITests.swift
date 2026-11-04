@@ -1,5 +1,6 @@
 import XCTest
 
+@MainActor
 final class GamesUITests: XCTestCase {
     private func launch(_ extra: [String]) -> XCUIApplication {
         let app = XCUIApplication()
@@ -20,12 +21,11 @@ final class GamesUITests: XCTestCase {
         let deadline = Date().addingTimeInterval(180)
         while taps < 20 && Date() < deadline {
             if end.exists { return }
-            let choice = choices.firstMatch
-            guard choice.exists && choice.isEnabled && choice.isHittable else {
+            guard let choice = try? choices.firstMatch.snapshot(), choice.isEnabled, !choice.frame.isEmpty else {
                 usleep(100_000)
                 continue
             }
-            choice.tap()
+            app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: choice.frame.midX, dy: choice.frame.midY)).tap()
             taps += 1
             if taps == 2 { shot("\(name)-answered") }
         }
