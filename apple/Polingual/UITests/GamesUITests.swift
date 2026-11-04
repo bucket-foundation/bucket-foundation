@@ -20,7 +20,7 @@ final class GamesUITests: XCTestCase {
         let deadline = Date().addingTimeInterval(180)
         while taps < 20 && Date() < deadline {
             if end.exists { return }
-            let choice = choices.element(boundBy: taps % max(choices.count, 1))
+            let choice = choices.firstMatch
             guard choice.exists && choice.isEnabled && choice.isHittable else {
                 usleep(100_000)
                 continue
@@ -66,7 +66,8 @@ final class GamesUITests: XCTestCase {
         shot("voice-play")
         voice.terminate()
         let letters = launch(["-openGame", "letters"])
-        XCTAssertTrue(letters.staticTexts["Which letter makes this sound?"].waitForExistence(timeout: 60))
+        let prompt = letters.staticTexts.matching(NSPredicate(format: "label IN %@", ["Which letter makes this sound?", "Which character completes this word?", "Which tone did you hear?"])).firstMatch
+        XCTAssertTrue(prompt.waitForExistence(timeout: 60))
         shot("letters-play")
     }
 

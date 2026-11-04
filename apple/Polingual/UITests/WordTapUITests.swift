@@ -33,7 +33,7 @@ final class WordTapUITests: XCTestCase {
         let done = app.buttons["Done"]
         XCTAssertTrue(done.waitForExistence(timeout: 10))
         let title = app.navigationBars.allElementsBoundByIndex.last?.identifier ?? ""
-        let inSheet = app.links.allElementsBoundByIndex.last { $0.isHittable && !$0.label.contains("://") && $0.label.lowercased() != title.lowercased() }
+        let inSheet = app.links.allElementsBoundByIndex.last { $0.isHittable && linkWord($0.label) != title.lowercased() }
         guard let target = inSheet else {
             throw XCTSkip("\(title) has no example sentence to tap")
         }
@@ -45,5 +45,10 @@ final class WordTapUITests: XCTestCase {
         XCTAssertTrue(done.waitForExistence(timeout: 5))
         done.tap()
         XCTAssertTrue(full.waitForExistence(timeout: 10))
+    }
+
+    private func linkWord(_ label: String) -> String {
+        let word = label.components(separatedBy: "w=").last ?? label
+        return (word.removingPercentEncoding ?? word).lowercased()
     }
 }
