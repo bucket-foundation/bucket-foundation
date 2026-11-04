@@ -51,7 +51,7 @@ export const SHARE_ITEM_COLS = "id,group_id,sender_id,recipient_id,kind,url,body
 function cleanText(input: unknown): string | null | undefined {
   if (input === undefined || input === null) return null;
   if (typeof input !== "string") return undefined;
-  const t = input.replace(/\u0000/g, "").trim();
+  const t = input.split(String.fromCharCode(0)).join("").trim();
   if (t.length === 0) return null;
   return t.length <= MAX_SHARE_TEXT ? t : undefined;
 }
