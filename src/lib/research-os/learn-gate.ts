@@ -7,12 +7,12 @@ export type LearnWriteDecision = { allowed: true } | { allowed: false; reason: L
 
 export const LEARN_WRITE_MESSAGES: Record<LearnWriteRefusal, string> = {
   no_profile: "Choose your age range before Learn saves progress to your account.",
-  minor_read_only: "During launch, learners under 18 can study, and progress stays on this device.",
+  minor_read_only: "Progress for this account stays on this device.",
   under_13: "Bucket is for learners 13 and over. This account holds no learning data.",
 };
 
 export function decideLearnWrite(band: BirthYearBucket | null): LearnWriteDecision {
-  if (band === "18plus") return { allowed: true };
+  if (band === "18plus" || band === "13to17") return { allowed: true };
   const reason: LearnWriteRefusal = band === "under13" ? "under_13" : band === "13to17" ? "minor_read_only" : "no_profile";
   return { allowed: false, reason, message: LEARN_WRITE_MESSAGES[reason] };
 }
