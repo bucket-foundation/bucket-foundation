@@ -174,6 +174,16 @@ public struct BucketAPI: Sendable {
         return http.statusCode
     }
 
+    public func setAgeBand(token: String, band: AgeBand) async -> Int {
+        var r = URLRequest(url: base.appending(path: "api/research-os/profile"))
+        r.httpMethod = "POST"
+        r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        r.setValue("application/json", forHTTPHeaderField: "content-type")
+        r.httpBody = JSON.data(.object(JSObject([("role", .string("independent")), ("birthYearBucket", .string(band.rawValue))])))
+        guard let (_, http) = try? await transport.send(r) else { return 0 }
+        return http.statusCode
+    }
+
     func get<T: Decodable>(_ path: String) async throws -> T {
         let (data, http) = try await transport.send(URLRequest(url: base.appending(path: path)))
         return try decode(data, http)
@@ -209,5 +219,19 @@ public struct BucketAPI: Sendable {
 
     func decodeBody<T: Decodable>(_ data: Data) throws -> T {
         do { return try JSONDecoder().decode(T.self, from: data) } catch { throw BucketError.decoding }
+    }
+}
+
+public enum AgeBand: String, CaseIterable, Sendable {
+    case adult = "18plus"
+    case teen = "13to17"
+    case child = "under13"
+
+    public var label: String {
+        switch self {
+        case .adult: "18 or older"
+        case .teen: "13 to 17"
+        case .child: "Under 13"
+        }
     }
 }

@@ -19,7 +19,8 @@ struct SaveNotice: View {
         case .localOnly:
             Text("Saved on this device. Sign in to sync your language systems.").noticeStyle()
         case .needsProfile:
-            Text("Saved on this device. Finish your learner profile at bucket.foundation to sync.").noticeStyle()
+            Button("Saved on this device. Choose your age range to sync.") { NotificationCenter.default.post(name: .askAgeRange, object: nil) }
+                .font(.footnote)
         default:
             EmptyView()
         }
