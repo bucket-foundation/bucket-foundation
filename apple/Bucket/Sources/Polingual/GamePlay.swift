@@ -146,7 +146,7 @@ struct QuizGame: View {
         case .daily:
             guard let s = langs.dailySystem else { return }
             prompts = GameRounds.daily(GameDeck(corpus, root: s.root, targets: s.targets), day: dayKey(Date().timeIntervalSince1970 * 1000))
-            if let done = langs.gameDaily(s.id), !prompts.isEmpty {
+            if let done = langs.gameDaily(s.id), !prompts.isEmpty, !GameLaunch.freshDaily {
                 replayed = true
                 run = GameRun(prompts, replaying: done)
                 return
@@ -650,7 +650,7 @@ struct LetterSprintGame: View {
         }
         let w = words[i]
         var rng = Rng(seed: UInt32.random(in: 0...UInt32.max))
-        quiz = ScriptCourse.exercise(w.lang, w.root, w.itemId, &rng)
+        quiz = GameLetters.quiz(w, &rng)
         if let quiz, let s = LetterSounds.lookup(quiz.lang, quiz.answer) { LangVoice.shared.speak(LetterSounds.spoken(quiz.lang, s), quiz.lang) }
     }
 
@@ -671,5 +671,15 @@ struct LetterSprintGame: View {
         best = langs.recordGame(.letters, played: Array(words.prefix(results.count)), hits: hits, points: hits, missed: missed)
         reminders.noteStudy()
         haptic(true)
+    }
+}
+
+enum GameLaunch {
+    static var freshDaily: Bool {
+        #if DEBUG
+        Launch.flag("-freshDaily")
+        #else
+        false
+        #endif
     }
 }

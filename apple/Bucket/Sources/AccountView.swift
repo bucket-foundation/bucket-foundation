@@ -11,6 +11,8 @@ struct AccountView: View {
     @State private var confirmingReset = false
     @State private var confirmingDelete = false
     @State private var signingIn = false
+    @State private var emailing = false
+    var subscription: (() -> Void)?
     #if DEBUG
     @State private var demoShown = false
     #endif
@@ -26,8 +28,9 @@ struct AccountView: View {
                 switch account.stage {
                 case .signedOut, .codeSent:
                     Section {
-                        Button("Sign in") { signingIn = true }
-                            .buttonStyle(D8Primary())
+                        AppleSignInButton()
+                        Button("Sign in with email") { emailing = true }
+                            .buttonStyle(D8Option(align: .center))
                             .disabled(account.busy)
                     } footer: {
                         Text("Sign in with Apple or your email. The same account works on bucket.foundation.")
@@ -43,6 +46,13 @@ struct AccountView: View {
                         Button("Delete account", role: .destructive) { confirmingDelete = true }
                     } header: {
                         Eyebrow(text: "Account")
+                    }
+                }
+                if let subscription {
+                    Section {
+                        Button("Manage subscription", systemImage: "creditcard", action: subscription)
+                    } header: {
+                        Eyebrow(text: "Subscription")
                     }
                 }
                 FamilyAndFriends(signingIn: $signingIn)
@@ -87,6 +97,8 @@ struct AccountView: View {
                     guard !demoShown else { return }
                     demoShown = true
                     groups.groups = [DemoGroup.shown]
+                    groups.items[DemoGroup.group.id] = DemoGroup.items
+                    groups.donor?.publish(groups.shareTargets, donate: true)
                     switch DemoGroup.screen {
                     case "member", "graph": openMember = "u2"
                     case "account", "joined": break
@@ -98,6 +110,7 @@ struct AccountView: View {
                 if account.stage == .signedIn { await groups.load() } else { groups.clear() }
             }
             .sheet(isPresented: $signingIn) { SignInSheet() }
+            .sheet(isPresented: $emailing) { SignInSheet(emailOnly: true) }
             .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
                 Button("Delete account and data", role: .destructive) {
                     Beta.shared.signedOut()
@@ -122,45 +135,20 @@ struct AccountView: View {
 struct SignInSheet: View {
     @Environment(Account.self) private var account
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.colorScheme) private var scheme
     @State private var email = ""
     @State private var code = ""
     @FocusState private var focused: Bool
-    @State private var nonce: AppleNonce?
+    var emailOnly = false
 
     var body: some View {
         NavigationStack {
             Form {
                 switch account.stage {
                 case .signedOut:
-                    Section {
-                        SignInWithAppleButton(.signIn) { request in
-                            let n = AppleNonce.make()
-                            nonce = n
-                            request.requestedScopes = [.email]
-                            request.nonce = n.hashed
-                        } onCompletion: { result in
-                            switch result {
-                            case .failure(let error):
-                                if (error as? ASAuthorizationError)?.code != .canceled {
-                                    account.error = String(localized: "Sign in with Apple didn't finish. Try again, or use your email below.")
-                                }
-                            case .success(let auth):
-                                guard let credential = auth.credential as? ASAuthorizationAppleIDCredential,
-                                      let token = credential.identityToken.flatMap({ String(data: $0, encoding: .utf8) }),
-                                      let raw = nonce?.raw else {
-                                    account.error = String(localized: "Apple didn't return a sign-in token. Try again, or use your email below.")
-                                    return
-                                }
-                                account.error = nil
-                                let code = credential.authorizationCode.flatMap { String(data: $0, encoding: .utf8) }
-                                Task { await account.signInWithApple(idToken: token, nonce: raw, authorizationCode: code) }
-                            }
+                    if !emailOnly {
+                        Section {
+                            AppleSignInButton()
                         }
-                        .signInWithAppleButtonStyle(scheme == .dark ? .white : .black)
-                        .frame(height: 52)
-                        .clipShape(.rect(cornerRadius: 12))
-                        .disabled(account.busy)
                     }
                     Section {
                         TextField("you@school.example", text: $email)
@@ -172,7 +160,7 @@ struct SignInSheet: View {
                             .buttonStyle(D8Primary())
                             .disabled(account.busy || !email.contains("@"))
                     } header: {
-                        Eyebrow(text: "Or use email")
+                        Eyebrow(text: emailOnly ? "Email" : "Or use email")
                     } footer: {
                         Text("Bucket emails a one-time code. The same account works on bucket.foundation.")
                     }
@@ -214,6 +202,42 @@ struct SignInSheet: View {
                 if new == .signedIn { dismiss() }
             }
         }
+    }
+}
+
+struct AppleSignInButton: View {
+    @Environment(Account.self) private var account
+    @Environment(\.colorScheme) private var scheme
+    @State private var nonce: AppleNonce?
+
+    var body: some View {
+        SignInWithAppleButton(.signIn) { request in
+            let n = AppleNonce.make()
+            nonce = n
+            request.requestedScopes = [.email]
+            request.nonce = n.hashed
+        } onCompletion: { result in
+            switch result {
+            case .failure(let error):
+                if (error as? ASAuthorizationError)?.code != .canceled {
+                    account.error = String(localized: "Sign in with Apple didn't finish. Try again, or use your email below.")
+                }
+            case .success(let auth):
+                guard let credential = auth.credential as? ASAuthorizationAppleIDCredential,
+                      let token = credential.identityToken.flatMap({ String(data: $0, encoding: .utf8) }),
+                      let raw = nonce?.raw else {
+                    account.error = String(localized: "Apple didn't return a sign-in token. Try again, or use your email below.")
+                    return
+                }
+                account.error = nil
+                let code = credential.authorizationCode.flatMap { String(data: $0, encoding: .utf8) }
+                Task { await account.signInWithApple(idToken: token, nonce: raw, authorizationCode: code) }
+            }
+        }
+        .signInWithAppleButtonStyle(scheme == .dark ? .white : .black)
+        .frame(height: 52)
+        .clipShape(.rect(cornerRadius: 12))
+        .disabled(account.busy)
     }
 }
 

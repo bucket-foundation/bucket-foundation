@@ -144,3 +144,14 @@ test("beta modal switches to founding mode only when the API reports open spots 
   assert.match(js, /turnstile:/);
   assert.match(js, /testflight\.apple\.com\/join\/B1ctUxn5/);
 });
+
+test("beta.js loads Vercel analytics once and sends launch events only on success", () => {
+  const js = readFileSync(join(__dirname, "../../public/d8/beta.js"), "utf8");
+  assert.match(js, /querySelector\('script\[src="\/_vercel\/insights\/script\.js"\]'\)/);
+  assert.match(js, /UTM=T0\.s\|\|"direct"/);
+  assert.match(js, /sendBeacon\("\/api\/events",b\)/);
+  assert.match(js, /if\(top===self\)ev\("page_view"\)/);
+  assert.match(js, /const open=\(\)=>\{ev\('beta_open'\)/);
+  assert.match(js, /if\(r\.ok\)ev\(FD\?'founding_claim':'beta_signup'\)/);
+  assert.match(js, /a\[href\^="https:\/\/testflight\.apple\.com\/join"\][\s\S]*ev\("testflight_open"\)/);
+});

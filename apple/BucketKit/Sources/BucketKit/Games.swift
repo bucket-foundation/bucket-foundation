@@ -440,6 +440,11 @@ public enum GameLetters {
         }
         return Array(GameWords.ordered(pool, using: &rng).prefix(count))
     }
+
+    public static func quiz(_ word: GameWord, _ rng: inout Rng) -> Exercise? {
+        guard let ex = ScriptCourse.drill(.letter, word.lang, word.root, word.itemId, &rng), LetterSounds.lookup(ex.lang, ex.answer) != nil else { return nil }
+        return ex
+    }
 }
 
 public struct GroupQuest: Sendable, Equatable {

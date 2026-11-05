@@ -55,3 +55,21 @@ func soundUnits() -> [AlphabetUnit] {
     #expect(!LetterSounds.heard(["caffè latte"], say: "café"))
     #expect(!LetterSounds.heard([], say: "café"))
 }
+
+@Test func soundCardPutsTheCharacterOverItsPinyinAndMeaning() {
+    let ma = LetterSounds.card(LetterSounds.lookup("zh", "mā")!, letter: "mā")
+    #expect(ma == SoundCard(word: "妈", phonetic: "mā", meaning: "mom", phoneticHoldsLetter: true))
+    let ga = LetterSounds.card(LetterSounds.lookup("ko", "ㄱ")!, letter: "ㄱ")
+    #expect(ga.word == "가" && ga.phonetic == "ㄱㅏ" && ga.meaning == "go")
+    let rain = LetterSounds.card(LetterSounds.lookup("ja", "あ")!, letter: "あ")
+    #expect(rain == SoundCard(word: "あめ", phonetic: nil, meaning: "rain", phoneticHoldsLetter: false))
+    let cafe = LetterSounds.card(LetterSound(ipa: "e", hint: "h", example: "café", gloss: "coffee"), letter: "é")
+    #expect(cafe == SoundCard(word: "café", phonetic: nil, meaning: "coffee", phoneticHoldsLetter: false))
+}
+
+@Test func soundCardPairsTheCharacterWithItsOwnReading() {
+    let de = LetterSounds.card(LetterSounds.lookup("zh", "的")!, letter: "的")
+    #expect(de == SoundCard(word: "我的", phonetic: "的 de", meaning: "mine", phoneticHoldsLetter: false))
+    let alone = LetterSound(ipa: "", hint: "h", example: "人", gloss: "person", reading: "rén")
+    #expect(LetterSounds.card(alone, letter: "人").phonetic == "rén")
+}

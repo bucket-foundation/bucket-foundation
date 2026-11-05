@@ -1,0 +1,66 @@
+import XCTest
+
+final class SignUpFunnelUITests: XCTestCase {
+    override func setUp() {
+        continueAfterFailure = false
+    }
+
+    func launch(_ args: [String]) -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"] + args
+        app.launch()
+        return app
+    }
+
+    func shot(_ name: String) {
+        let a = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        a.name = name
+        a.lifetime = .keepAlways
+        add(a)
+    }
+
+    func testOnboardingReachesPaywallInTwoTaps() throws {
+        let app = launch([])
+        guard app.buttons["Get started"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
+        app.buttons["Get started"].tap()
+        XCTAssertTrue(app.buttons["Continue"].waitForExistence(timeout: 10))
+        shot("onboarding-languages")
+        app.buttons["Continue"].tap()
+        let paywall = app.buttons["Restore"]
+        let home = app.navigationBars["Today"]
+        let deadline = Date().addingTimeInterval(60)
+        while !paywall.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
+        XCTAssertTrue(paywall.exists || home.exists, "Onboarding did not leave after two taps")
+        shot(paywall.exists ? "paywall" : "home-already-subscribed")
+    }
+
+    func testSaveProgressOffersAppleThenEmail() throws {
+        let app = launch(["-polingual.onboarded", "YES", "-polingualOpen", "-saveProgress"])
+        guard app.staticTexts["Save your progress"].waitForExistence(timeout: 30) else { throw XCTSkip("Signed in on this simulator") }
+        let apple = app.buttons["Sign in with Apple"]
+        let email = app.buttons["Use email instead"]
+        XCTAssertTrue(apple.waitForExistence(timeout: 10))
+        XCTAssertTrue(email.exists)
+        XCTAssertLessThan(apple.frame.minY, email.frame.minY)
+        shot("save-progress")
+        email.tap()
+        XCTAssertTrue(app.textFields["you@school.example"].waitForExistence(timeout: 10))
+        app.buttons["Cancel"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["Not now"].waitForExistence(timeout: 10))
+        app.buttons["Not now"].tap()
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.staticTexts["Save your progress"])
+        XCTAssertEqual(XCTWaiter().wait(for: [gone], timeout: 10), .completed)
+    }
+
+    func testAccountListsAppleFirst() throws {
+        let app = launch(["-polingual.onboarded", "YES", "-polingualOpen"])
+        XCTAssertTrue(app.navigationBars["Today"].waitForExistence(timeout: 60))
+        app.buttons["Account"].firstMatch.tap()
+        let email = app.buttons["Sign in with email"]
+        guard email.waitForExistence(timeout: 20) else { throw XCTSkip("Signed in on this simulator") }
+        let apple = app.buttons["Sign in with Apple"]
+        XCTAssertTrue(apple.exists)
+        XCTAssertLessThan(apple.frame.minY, email.frame.minY)
+        shot("account")
+    }
+}

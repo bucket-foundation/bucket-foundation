@@ -18,7 +18,7 @@ struct PolingualApp: App {
     init() {
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let api = BucketAPI()
-        let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
+        let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
         let store = LangStore(api: api, token: { await account.freshToken() })
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
@@ -28,7 +28,9 @@ struct PolingualApp: App {
         Beta.shared.account = account
         _store = State(initialValue: store)
         _gate = State(initialValue: Gate(account: account))
-        _groups = State(initialValue: GroupStore(api: api, token: { await account.freshToken() }))
+        let groups = GroupStore(api: api, token: { await account.freshToken() })
+        groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
+        _groups = State(initialValue: groups)
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
     }
 
