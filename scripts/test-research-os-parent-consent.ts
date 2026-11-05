@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { signParentToken, verifyParentToken, DECIDE_TTL_MS } from "../src/lib/research-os/parent-consent";
+import { signParentToken, verifyParentToken, parentApprovalCheck, sameEmail, DECIDE_TTL_MS } from "../src/lib/research-os/parent-consent";
 import { summariesForGroup } from "../src/lib/academy/minor-visibility";
 import type { MemberSummary } from "../src/lib/academy/groups";
 
@@ -23,19 +23,32 @@ test("tampered, wrong-secret and expired tokens fail", () => {
   assert.equal(verifyParentToken("garbage", SECRET), null);
 });
 
-const sum = { weekReviews: 5 } as unknown as MemberSummary;
-const sums = new Map([["kid", sum], ["adult", sum]]);
-const minors = new Map<string, string | null>([["kid", "h-parent"]]);
-const owners = new Map([["parent", "h-parent"], ["stranger", "h-other"]]);
-
-test("a consented child shows only in the consenting parent's family group", () => {
-  assert.equal(summariesForGroup({ kind: "family", owner_id: "parent" }, sums, minors, owners).has("kid"), true);
-  assert.equal(summariesForGroup({ kind: "friends", owner_id: "parent" }, sums, minors, owners).has("kid"), false);
-  assert.equal(summariesForGroup({ kind: "family", owner_id: "stranger" }, sums, minors, owners).has("kid"), false);
-  assert.equal(summariesForGroup({ kind: "family", owner_id: "stranger" }, sums, minors, owners).has("adult"), true);
+test("a child cannot approve their own request", () => {
+  const args = { invitedEmail: "parent@example.com", childId: "kid", parentBand: "18plus", declaresAdult: false };
+  assert.equal(parentApprovalCheck({ ...args, parent: null }), "sign_in");
+  assert.equal(parentApprovalCheck({ ...args, parent: { id: "kid", email: "parent@example.com" } }), "self");
+  assert.equal(parentApprovalCheck({ ...args, parent: { id: "p", email: "other@example.com" } }), "wrong_account");
+  assert.equal(parentApprovalCheck({ ...args, parent: { id: "p", email: "Parent@Example.com" } }), "ok");
+  assert.equal(parentApprovalCheck({ ...args, parentBand: "13to17", parent: { id: "p", email: "parent@example.com" } }), "not_adult");
+  assert.equal(parentApprovalCheck({ ...args, parentBand: "under13", declaresAdult: true, parent: { id: "p", email: "parent@example.com" } }), "not_adult");
+  assert.equal(parentApprovalCheck({ ...args, parentBand: null, parent: { id: "p", email: "parent@example.com" } }), "declare_adult");
+  assert.equal(parentApprovalCheck({ ...args, parentBand: null, declaresAdult: true, parent: { id: "p", email: "parent@example.com" } }), "ok");
+  assert.equal(sameEmail(" Kid@x.com", "kid@x.com"), true);
+  assert.equal(sameEmail(null, "kid@x.com"), false);
 });
 
-test("a child without consent shows nowhere", () => {
+const sum = { weekReviews: 5, todayReviews: 2 } as unknown as MemberSummary;
+const sums = new Map([["kid", sum], ["adult", sum]]);
+const minors = new Map<string, string | null>([["kid", "parent"]]);
+
+test("a consented child shows only in the consenting parent's family group", () => {
+  assert.equal(summariesForGroup({ kind: "family", owner_id: "parent" }, sums, minors).has("kid"), true);
+  assert.equal(summariesForGroup({ kind: "friends", owner_id: "parent" }, sums, minors).has("kid"), false);
+  assert.equal(summariesForGroup({ kind: "family", owner_id: "stranger" }, sums, minors).has("kid"), false);
+  assert.equal(summariesForGroup({ kind: "family", owner_id: "stranger" }, sums, minors).has("adult"), true);
+});
+
+test("a child without consent shows nowhere, even to the owner", () => {
   const none = new Map<string, string | null>([["kid", null]]);
-  assert.equal(summariesForGroup({ kind: "family", owner_id: "parent" }, sums, none, owners).has("kid"), false);
+  assert.equal(summariesForGroup({ kind: "family", owner_id: "parent" }, sums, none).has("kid"), false);
 });

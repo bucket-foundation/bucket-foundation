@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { graphService, verifyLearner } from "@/lib/research-os/db";
+import { graphService, verifyLearnerIdentity } from "@/lib/research-os/db";
 import { verifyClassStaff } from "@/lib/research-os/class-db";
 import { consentPathFor, hashContact, type ConsentRequestRecord } from "@/lib/research-os/consent-paths";
 import { resolveConsentPaths, type BirthYearBucket, type ConsentStatus, type LearnerProfile } from "@/lib/research-os/consent";
 import { vendorByName } from "@/lib/research-os/consent-vendor";
-import { CONTACT_SALT, DECIDE_TTL_MS, consentSecret, emailConsentRequest, isEmail, signParentToken } from "@/lib/research-os/parent-consent";
+import { CONTACT_SALT, DECIDE_TTL_MS, MAX_PENDING_PER_DAY, consentSecret, emailConsentRequest, isEmail, sameEmail, signParentToken } from "@/lib/research-os/parent-consent";
 import { NO_STORE, bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
@@ -72,12 +72,27 @@ export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
   const svc = graphService();
 
   if (body.action === "request") {
-    const learnerId = await verifyLearner(req);
-    if (!learnerId) return bad(401, "unauthorized");
+    const identity = await verifyLearnerIdentity(req);
+    if (!identity) return bad(401, "unauthorized");
+    const learnerId = identity.id;
     const vendor = vendorByName(body.vendor || "");
     if (!vendor) return bad(400, "bad_vendor");
     const parentEmail = body.guardianContact?.trim().toLowerCase() ?? "";
-    if (vendor.name === "email" && !isEmail(parentEmail)) return bad(400, "bad_email");
+    const secret = consentSecret();
+    if (vendor.name === "email") {
+      if (!isEmail(parentEmail)) return bad(400, "bad_email");
+      if (sameEmail(parentEmail, identity.email)) return bad(400, "parent_email_is_yours");
+      if (!secret) return bad(503, "consent_unavailable");
+      const { count, error: countErr } = await svc
+        .from("consent_requests")
+        .select("id", { count: "exact", head: true })
+        .eq("learner_id", learnerId)
+        .eq("vendor", "email")
+        .eq("status", "pending")
+        .gte("created_at", new Date(Date.now() - 86_400_000).toISOString());
+      if (countErr) return bad(503, "consent_unavailable");
+      if ((count ?? 0) >= MAX_PENDING_PER_DAY) return bad(409, "too_many_requests");
+    }
     const contactHash = body.guardianContact?.trim() ? await hashContact(body.guardianContact, SALT) : null;
     let started: { vendorRef: string; url: string | null };
     try {
@@ -93,7 +108,7 @@ export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
     if (error || !data) return bad(500, "write_failed");
     if (vendor.name === "email") {
       try {
-        const token = signParentToken({ requestId: (data as { id: string }).id, action: "decide", email: parentEmail, expiresAt: Date.now() + DECIDE_TTL_MS }, consentSecret());
+        const token = signParentToken({ requestId: (data as { id: string }).id, action: "decide", email: parentEmail, expiresAt: Date.now() + DECIDE_TTL_MS }, secret as string);
         await emailConsentRequest(parentEmail, token);
       } catch (err) {
         console.error("[research-os/consent] parent email failed:", err instanceof Error ? err.message : err);

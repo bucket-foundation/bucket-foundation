@@ -15,10 +15,32 @@ export const REVOKE_TTL_MS = 3 * 365 * 86_400_000;
 
 export const CONTACT_SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABASE_URL || "bucket";
 
-export function consentSecret(): string {
-  const s = process.env.PARENT_CONSENT_SECRET?.trim() || process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
-  if (!s) throw new Error("parent consent secret unset");
-  return s;
+export function consentSecret(): string | null {
+  return process.env.PARENT_CONSENT_SECRET?.trim() || null;
+}
+
+export const MAX_PENDING_PER_DAY = 3;
+
+export function sameEmail(a: string | null | undefined, b: string | null | undefined): boolean {
+  return !!a && !!b && a.trim().toLowerCase() === b.trim().toLowerCase();
+}
+
+export type ApprovalCheck = "ok" | "sign_in" | "wrong_account" | "self" | "not_adult" | "declare_adult";
+
+export function parentApprovalCheck(input: {
+  parent: { id: string; email: string | null } | null;
+  invitedEmail: string;
+  childId: string;
+  parentBand: string | null;
+  declaresAdult: boolean;
+}): ApprovalCheck {
+  const { parent } = input;
+  if (!parent) return "sign_in";
+  if (parent.id === input.childId) return "self";
+  if (!sameEmail(parent.email, input.invitedEmail)) return "wrong_account";
+  if (input.parentBand === "18plus") return "ok";
+  if (input.parentBand !== null) return "not_adult";
+  return input.declaresAdult ? "ok" : "declare_adult";
 }
 
 const b64 = (b: Buffer) => b.toString("base64url");
