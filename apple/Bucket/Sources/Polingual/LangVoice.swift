@@ -7,10 +7,8 @@ import SwiftUI
 final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = LangVoice()
     static let startWait: Duration = .seconds(2)
-    private var synth = AVSpeechSynthesizer()
+    private(set) var synth = AVSpeechSynthesizer()
     private var waiting: ObjectIdentifier?
-    private(set) var lastStarted: String?
-    private(set) var renewals = 0
 
     private var player: AVPlayer?
     private var warmed = false
@@ -90,14 +88,13 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
             try? await Task.sleep(for: Self.startWait)
             guard let self, self.waiting == id else { return }
             self.waiting = nil
-            guard retry else { return }
+            guard retry, !self.synth.isSpeaking else { return }
             self.renew()
             self.say(us.compactMap { $0.copy() as? AVSpeechUtterance }, retry: false)
         }
     }
 
     private func renew() {
-        renewals += 1
         synth.delegate = nil
         synth.stopSpeaking(at: .immediate)
         synth = AVSpeechSynthesizer()
@@ -109,11 +106,8 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
 
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         let id = ObjectIdentifier(utterance)
-        let text = utterance.speechString
         Task { @MainActor [weak self] in
-            guard let self else { return }
-            self.lastStarted = text
-            if self.waiting == id { self.waiting = nil }
+            if self?.waiting == id { self?.waiting = nil }
         }
     }
 

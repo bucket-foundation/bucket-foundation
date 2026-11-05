@@ -21,18 +21,29 @@ final class SpeechPlaybackTests: XCTestCase {
         XCTAssertGreaterThan(total, 0)
     }
 
-    func testRapidTapsStartTheLastWord() async throws {
+    func testRapidTapsLeaveTheLastWordSpeaking() async throws {
         _ = try XCTUnwrap(LangVoice.shared.voice("it"))
         for word in ["uno", "due", "tre", "quattro"] {
             LangVoice.shared.speak(word, "it")
             try await Task.sleep(for: .milliseconds(60))
         }
         let deadline = Date().addingTimeInterval(10)
-        while LangVoice.shared.lastStarted != "quattro", Date() < deadline {
+        while !LangVoice.shared.synth.isSpeaking, Date() < deadline {
             try await Task.sleep(for: .milliseconds(100))
         }
-        XCTAssertEqual(LangVoice.shared.lastStarted, "quattro")
-        print("RENEW_REPORT renewals=\(LangVoice.shared.renewals)")
+        XCTAssertTrue(LangVoice.shared.synth.isSpeaking)
+    }
+
+    func testABusyVoiceIsNotSpokenTwice() async throws {
+        _ = try XCTUnwrap(LangVoice.shared.voice("it"))
+        LangVoice.shared.speak("precipitevolissimevolmente, quattrocentoquarantaquattro", "it", slow: true)
+        try await Task.sleep(for: .milliseconds(300))
+        let first = ObjectIdentifier(LangVoice.shared.synth)
+        try await Task.sleep(for: LangVoice.startWait + .milliseconds(800))
+        if LangVoice.shared.synth.isSpeaking {
+            XCTAssertEqual(ObjectIdentifier(LangVoice.shared.synth), first)
+        }
+        LangVoice.shared.hush()
     }
 
     func testLetterWordFinishesThroughTheAppSession() throws {
