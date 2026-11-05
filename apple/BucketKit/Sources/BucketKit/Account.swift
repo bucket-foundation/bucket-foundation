@@ -63,6 +63,11 @@ public final class Account {
         return (200..<300).contains(await api.setAgeBand(token: t, band: band))
     }
 
+    public func requestParentConsent(email: String) async -> Bool {
+        guard let t = await freshToken() else { return false }
+        return (200..<300).contains(await api.requestParentConsent(token: t, parentEmail: email))
+    }
+
     @ObservationIgnored private var refreshing: Task<String?, Never>?
 
     public func freshToken(now: @escaping @Sendable () -> Date = { .now }) async -> String? {

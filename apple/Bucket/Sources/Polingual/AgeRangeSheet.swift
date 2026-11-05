@@ -8,21 +8,46 @@ struct AgeRangeSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var saving = false
     @State private var failed = false
+    @State private var askParent = false
+    @State private var parentEmail = ""
+    @State private var emailed = false
 
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Choose your age range so your progress saves to your account and your group can see your stats.")
-                    .foregroundStyle(Palette.muted)
-                ForEach(AgeBand.allCases, id: \.self) { band in
+                if emailed {
+                    Text("We emailed your parent. Your progress saves once they approve.")
+                    Button("Done") { dismiss() }.buttonStyle(.borderedProminent)
+                } else if askParent {
+                    Text("Enter a parent's email. We ask them to approve saving your progress.")
+                        .foregroundStyle(Palette.muted)
+                    TextField("Parent's email", text: $parentEmail)
+                        .textContentType(.emailAddress)
+                        .keyboardType(.emailAddress)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .textFieldStyle(.roundedBorder)
                     Button {
-                        Task { await choose(band) }
+                        Task { await sendParent() }
                     } label: {
-                        Text(band.label).frame(maxWidth: .infinity)
+                        Text("Send").frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(.borderedProminent)
                     .controlSize(.large)
-                    .disabled(saving)
+                    .disabled(saving || !parentEmail.contains("@"))
+                } else {
+                    Text("Choose your age range so your progress saves to your account and your group can see your stats.")
+                        .foregroundStyle(Palette.muted)
+                    ForEach(AgeBand.allCases, id: \.self) { band in
+                        Button {
+                            Task { await choose(band) }
+                        } label: {
+                            Text(band.label).frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.large)
+                        .disabled(saving)
+                    }
                 }
                 if failed {
                     Text("That did not save. Check your connection and try again.").font(.footnote).foregroundStyle(.red)
@@ -40,10 +65,19 @@ struct AgeRangeSheet: View {
         saving = true
         defer { saving = false }
         guard await account.setAgeBand(band) else { failed = true; return }
+        if band == .child { askParent = true; return }
         await langs.syncAfterSignIn()
         await langs.flush()
         await groups.load()
         dismiss()
+    }
+
+    func sendParent() async {
+        saving = true
+        defer { saving = false }
+        failed = false
+        guard await account.requestParentConsent(email: parentEmail.trimmingCharacters(in: .whitespaces)) else { failed = true; return }
+        emailed = true
     }
 }
 

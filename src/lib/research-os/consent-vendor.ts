@@ -1,5 +1,5 @@
 export interface ConsentVendor {
-  readonly name: "privo" | "kid" | "manual";
+  readonly name: "privo" | "kid" | "manual" | "email";
   start(input: { learnerId: string; guardianContactHash: string | null }): Promise<{ vendorRef: string; url: string | null }>;
 }
 
@@ -24,9 +24,17 @@ export class ManualVendor implements ConsentVendor {
   }
 }
 
+export class EmailVendor implements ConsentVendor {
+  readonly name = "email" as const;
+  async start(input: { learnerId: string }): Promise<{ vendorRef: string; url: string | null }> {
+    return { vendorRef: `email:${input.learnerId.slice(0, 8)}:${Date.now().toString(36)}`, url: null };
+  }
+}
+
 export function vendorByName(name: string): ConsentVendor | null {
   if (name === "privo") return new PrivoVendor();
   if (name === "kid") return new KidVendor();
   if (name === "manual") return new ManualVendor();
+  if (name === "email") return new EmailVendor();
   return null;
 }

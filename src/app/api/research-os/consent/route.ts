@@ -4,11 +4,12 @@ import { verifyClassStaff } from "@/lib/research-os/class-db";
 import { consentPathFor, hashContact, type ConsentRequestRecord } from "@/lib/research-os/consent-paths";
 import { resolveConsentPaths, type BirthYearBucket, type ConsentStatus, type LearnerProfile } from "@/lib/research-os/consent";
 import { vendorByName } from "@/lib/research-os/consent-vendor";
+import { CONTACT_SALT, DECIDE_TTL_MS, consentSecret, emailConsentRequest, isEmail, signParentToken } from "@/lib/research-os/parent-consent";
 import { NO_STORE, bad, readAnyJson, withResearchOsRoute } from "@/lib/research-os/route";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-const SALT = process.env.RESEARCH_OS_HASH_SALT || process.env.NEXT_PUBLIC_SUPABASE_URL || "bucket";
+const SALT = CONTACT_SALT;
 
 async function loadProfile(learnerId: string): Promise<LearnerProfile | null> {
   const { data, error } = await graphService().from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
@@ -75,6 +76,8 @@ export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
     if (!learnerId) return bad(401, "unauthorized");
     const vendor = vendorByName(body.vendor || "");
     if (!vendor) return bad(400, "bad_vendor");
+    const parentEmail = body.guardianContact?.trim().toLowerCase() ?? "";
+    if (vendor.name === "email" && !isEmail(parentEmail)) return bad(400, "bad_email");
     const contactHash = body.guardianContact?.trim() ? await hashContact(body.guardianContact, SALT) : null;
     let started: { vendorRef: string; url: string | null };
     try {
@@ -88,6 +91,15 @@ export const POST = withResearchOsRoute({ auth: "none" }, async (req) => {
       .select("id")
       .single();
     if (error || !data) return bad(500, "write_failed");
+    if (vendor.name === "email") {
+      try {
+        const token = signParentToken({ requestId: (data as { id: string }).id, action: "decide", email: parentEmail, expiresAt: Date.now() + DECIDE_TTL_MS }, consentSecret());
+        await emailConsentRequest(parentEmail, token);
+      } catch (err) {
+        console.error("[research-os/consent] parent email failed:", err instanceof Error ? err.message : err);
+        return bad(503, "email_failed");
+      }
+    }
     return NextResponse.json({ requestId: (data as { id: string }).id, vendorRef: started.vendorRef, url: started.url }, NO_STORE);
   }
 

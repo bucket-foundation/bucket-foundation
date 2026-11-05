@@ -184,6 +184,16 @@ public struct BucketAPI: Sendable {
         return http.statusCode
     }
 
+    public func requestParentConsent(token: String, parentEmail: String) async -> Int {
+        var r = URLRequest(url: base.appending(path: "api/research-os/consent"))
+        r.httpMethod = "POST"
+        r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
+        r.setValue("application/json", forHTTPHeaderField: "content-type")
+        r.httpBody = JSON.data(.object(JSObject([("action", .string("request")), ("vendor", .string("email")), ("guardianContact", .string(parentEmail))])))
+        guard let (_, http) = try? await transport.send(r) else { return 0 }
+        return http.statusCode
+    }
+
     func get<T: Decodable>(_ path: String) async throws -> T {
         let (data, http) = try await transport.send(URLRequest(url: base.appending(path: path)))
         return try decode(data, http)

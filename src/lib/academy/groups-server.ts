@@ -5,6 +5,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { DEFAULT_FROM, DEFAULT_NOTIFY_TO } from "@/lib/download/notify";
 import { branchLabel, corpusDir, loadCorpusForBranch } from "./corpus";
+import { summariesForGroup } from "./minor-visibility";
+import { graphService } from "../research-os/db";
+import { hashContact } from "../research-os/consent-paths";
+import { CONTACT_SALT } from "../research-os/parent-consent";
 import { buildLangCorpus, type LangCorpus } from "./lang-systems";
 import {
   assembleGroup,
@@ -263,9 +267,32 @@ export async function groupsFor(uid: string, groupIds?: string[], tz?: string): 
   const [sums, cheers, blocks] = await Promise.all([summaries(users, now, tz), cheersOf(uid, visible.map((g) => g.id), now), blocksTouching(uid)]);
   const hidden = hiddenUsers(blocks, uid);
   const { weekStart } = currentWeek(now, tz);
+  const minors = await minorParents(users);
+  const owners = minors.size > 0 ? await ownerHashes(visible.filter((g) => g.kind === "family").map((g) => g.owner_id)) : new Map<string, string>();
   return visible
     .sort((a, b) => (a.created_at < b.created_at ? -1 : a.created_at > b.created_at ? 1 : 0))
-    .map((g) => assembleGroup(g, members, sums, uid, cheers, weekStart, hidden));
+    .map((g) => assembleGroup(g, members, summariesForGroup(g, sums, minors, owners), uid, cheers, weekStart, hidden));
+}
+
+async function minorParents(userIds: string[]): Promise<Map<string, string | null>> {
+  const out = new Map<string, string | null>();
+  if (userIds.length === 0) return out;
+  const res = await graphService().from("learner_profiles").select("learner_id,consent_status,guardian_contact_hash").eq("birth_year_bucket", "under13").in("learner_id", userIds);
+  if (res.error) throw new Error(`minor profiles read: ${res.error.message}`);
+  for (const r of (res.data ?? []) as { learner_id: string; consent_status: string; guardian_contact_hash: string | null }[]) {
+    out.set(r.learner_id, r.consent_status === "parent" ? r.guardian_contact_hash : null);
+  }
+  return out;
+}
+
+async function ownerHashes(ownerIds: string[]): Promise<Map<string, string>> {
+  const out = new Map<string, string>();
+  for (const id of Array.from(new Set(ownerIds))) {
+    const { data, error } = await service().auth.admin.getUserById(id);
+    if (error) throw new Error(`owner read: ${error.message}`);
+    if (data.user?.email) out.set(id, await hashContact(data.user.email, CONTACT_SALT));
+  }
+  return out;
 }
 
 async function cheersOf(uid: string, groupIds: string[], now: number): Promise<CheerRow[]> {

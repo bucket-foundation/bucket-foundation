@@ -63,7 +63,7 @@ export interface ReviewLogDeps {
   origins: () => readonly string[];
   now: () => number;
   verifyUser: (req: Request) => Promise<string | null>;
-  readAgeBand: (uid: string) => Promise<{ ok: true; band: BirthYearBucket | null } | { ok: false }>;
+  readAgeBand: (uid: string) => Promise<{ ok: true; band: BirthYearBucket | null; consent?: string | null } | { ok: false }>;
   appendReviews: (uid: string, rows: AppendRow[]) => Promise<AppendResult[]>;
   readLog: (uid: string, sinceSeq: number, limit: number) => Promise<StoredReview[]>;
   readBranch: (uid: string, branch: string, opts?: { afterSeq?: number; limit?: number }) => Promise<{ baseline: EngineState | null; rows: StoredReview[] }>;
@@ -273,7 +273,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     if (pre instanceof Response) return pre;
     const band = await deps.readAgeBand(pre.uid);
     if (!band.ok) return respond(req, { error: "consent_unavailable" }, 503);
-    const gate = decideLearnWrite(band.band);
+    const gate = decideLearnWrite(band.band, band.consent ?? null);
     if (!gate.allowed) return respond(req, { error: gate.reason, message: gate.message, needsProfile: gate.reason === "no_profile" }, 403);
 
     let body: unknown;
