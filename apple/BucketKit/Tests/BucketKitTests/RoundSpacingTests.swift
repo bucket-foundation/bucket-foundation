@@ -37,30 +37,41 @@ import Testing
         #expect(first.filter { $0.stage == .check }.count == first.filter { $0.stage == .intro }.count)
     }
 
-    @Test func anotherRoundNeverAsksAWordRightAfterItsIntroOrAsALoneMatch() throws {
-        let all = try rounds(4)
-        for q in all {
+    @Test func anotherRoundNeverAsksAWordRightAfterItsIntro() throws {
+        for q in try rounds(4) where q.count > Lang.checkGap * 2 {
             #expect(gaps(q).allSatisfy { $0 >= Lang.checkGap })
-            #expect(!q.allSatisfy { $0.stage == .match } || q.isEmpty)
         }
-        #expect(all[2].isEmpty)
+    }
+
+    @Test func everyNewWordInTheQueueStaysInTheRound() throws {
+        let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+        let sys = try createSystem("en", ["fr", "es", "it"], now: 0)
+        let q = buildQueue(sys, corpus, EngineState(), now: 1_700_000_000_000, tz: TimeZone(identifier: "UTC")!)
+        let out = spacedChecks(q)
+        #expect(out.count == q.count)
+        #expect(Set(out.map { "\($0.lang):\($0.itemId):\($0.stage)" }) == Set(q.map { "\($0.lang):\($0.itemId):\($0.stage)" }))
     }
 
     @Test func requestedWordPairsGetSpacedByTheRestOfTheRound() {
         let q = [e("man", "fr", .intro), e("man", "fr", .check), e("a", "fr", .review), e("b", "es", .review), e("c", "it", .review), e("d", "fr", .review)]
         let out = spacedChecks(q)
         #expect(out.count == q.count)
-        #expect(gaps(out) == [3])
+        #expect(gaps(out).allSatisfy { $0 >= Lang.checkGap })
     }
 
-    @Test func aShortRoundDefersTheNewWordAndKeepsItsReviews() {
+    @Test func aNewWordAtTheTailMovesItsIntroUpFront() {
+        let q = [e("a", "fr", .review), e("b", "es", .review), e("c", "it", .review), e("man", "fr", .intro), e("man", "fr", .check)]
+        #expect(spacedChecks(q) == [e("man", "fr", .intro), e("a", "fr", .review), e("b", "es", .review), e("c", "it", .review), e("man", "fr", .check)])
+    }
+
+    @Test func aShortRoundKeepsTheNewWordWithItsCheckLast() {
         let q = [e("a", "fr", .review), e("man", "fr", .intro), e("man", "fr", .check)]
-        #expect(spacedChecks(q) == [e("a", "fr", .review)])
+        #expect(spacedChecks(q) == [e("man", "fr", .intro), e("a", "fr", .review), e("man", "fr", .check)])
     }
 
-    @Test func aLoneMatchIsNoRound() {
-        #expect(spacedChecks([e("four", "fr", .match)]).isEmpty)
-        #expect(spacedChecks([e("man", "fr", .intro), e("man", "fr", .check), e("man", "fr", .match)]).isEmpty)
+    @Test func aMatchOnlyRoundStaysPlayable() {
+        #expect(spacedChecks([e("four", "fr", .match)]) == [e("four", "fr", .match)])
+        #expect(spacedChecks([e("man", "fr", .intro), e("man", "fr", .check), e("man", "fr", .match)]).count == 3)
     }
 
     @Test func checksWithoutAnIntroStayWhereTheyAre() {
