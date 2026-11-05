@@ -115,23 +115,6 @@ struct SoundWord: View {
     }
 }
 
-struct PlayFlash: ViewModifier {
-    let trigger: Int
-
-    func body(content: Content) -> some View {
-        content.keyframeAnimator(initialValue: 0.0, trigger: trigger) { view, glow in
-            view.overlay(RoundedRectangle(cornerRadius: 14).stroke(D8.lapis, lineWidth: 4).opacity(glow))
-        } keyframes: { _ in
-            LinearKeyframe(1, duration: 0.06)
-            LinearKeyframe(0, duration: 0.3)
-        }
-    }
-}
-
-extension View {
-    func playFlash(_ trigger: Int) -> some View { modifier(PlayFlash(trigger: trigger)) }
-}
-
 struct SoundHint: View {
     let sound: LetterSound
     var reading = true
@@ -228,25 +211,10 @@ struct LetterMeet: View {
 
     var body: some View {
         (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 14))) {
-            VStack(spacing: 6) {
-                WordTile(word: card.phoneticHoldsLetter ? card.word : ex.answer, lang: ex.lang, reading: nil, size: sideways ? 96 : 120, speakText: say, onTap: { LangVoice.shared.speak(say, ex.lang); plays += 1 }, glyph: true)
-                    .playFlash(plays)
-                Button { LangVoice.shared.speak(say, ex.lang); plays += 1 } label: {
-                    VStack(spacing: 2) {
-                        if let reading = characterReading {
-                            Text(reading).font(D8.word(sideways ? 34 : 44)).foregroundStyle(D8.vermilion)
-                            Text(sound.example == ex.answer ? card.meaning : "\(sound.example) \(card.meaning)").font(D8.word(sideways ? 24 : 30)).foregroundStyle(Palette.ink)
-                        } else {
-                            LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 34 : 44)
-                            Text(card.meaning).font(D8.word(sideways ? 24 : 30)).foregroundStyle(Palette.ink)
-                        }
-                    }
-                    .lineLimit(1).minimumScaleFactor(0.6)
-                    .accessibilityElement(children: .combine)
-                }
-                .buttonStyle(.plain)
-            }
-            .frame(maxWidth: .infinity)
+            Button { LangVoice.shared.speak(say, ex.lang); plays += 1 } label: { tile }
+                .buttonStyle(TilePress())
+                .frame(maxWidth: .infinity)
+                .accessibilityHint(String(localized: "Plays the word"))
             VStack(spacing: 12) {
                 SoundHint(sound: sound, reading: false)
                 SoundButtons(text: say, lang: ex.lang, size: 56, plays: $plays)
@@ -259,6 +227,38 @@ struct LetterMeet: View {
         }
         .frame(maxWidth: .infinity)
         .onAppear { plays += 1 }
+    }
+
+    var tile: some View {
+        let width: CGFloat = sideways ? 190 : 250
+        return ZStack {
+            FlagFace(flag: D8Flag.of(ex.lang), emblem: false)
+            RoundedRectangle(cornerRadius: 8).fill(D8.panel).padding(width * 0.05)
+            VStack(spacing: 2) {
+                HStack {
+                    Text(langName(ex.lang).uppercased()).font(D8.caps(11)).tracking(0.8).foregroundStyle(D8.label)
+                    Spacer(minLength: 0)
+                    Image(systemName: "speaker.wave.2.fill").font(.system(size: 18, weight: .bold)).foregroundStyle(D8.ink.opacity(0.6))
+                }
+                Spacer(minLength: 0)
+                Text(card.phoneticHoldsLetter ? card.word : ex.answer)
+                    .font(D8.word(sideways ? 64 : 84)).foregroundStyle(D8.ink)
+                    .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
+                if let reading = characterReading {
+                    Text(reading).font(D8.word(sideways ? 32 : 40)).foregroundStyle(D8.vermilion)
+                    Text(sound.example == ex.answer ? card.meaning : "\(sound.example) \(card.meaning)").font(D8.word(sideways ? 20 : 26)).foregroundStyle(D8.ink)
+                } else {
+                    LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 32 : 40)
+                    Text(card.meaning).font(D8.word(sideways ? 20 : 26)).foregroundStyle(D8.ink)
+                }
+                Spacer(minLength: 0)
+            }
+            .lineLimit(1).minimumScaleFactor(0.5)
+            .padding(width * 0.1)
+        }
+        .frame(width: width, height: width * 1.12)
+        .modifier(Glaze(radius: 14, lip: 6))
+        .accessibilityElement(children: .combine)
     }
 }
 
