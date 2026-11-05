@@ -366,17 +366,23 @@ struct MemberRow: View {
                     if member.isMe { Badge(text: String(localized: "You")) }
                     if member.role == .owner { Badge(text: String(localized: "Owner")) }
                 }
-                HStack(spacing: 10) {
-                    HStack(spacing: 3) {
-                        Image(systemName: "flame.fill")
-                        Text(member.streak, format: .number)
-                    }
-                    .foregroundStyle(member.streak > 0 ? D8.vermilion : Palette.muted)
-                    .accessibilityLabel(Text("\(member.streak) day streak"))
-                    Text("\(member.todayReviews) today")
+                if !member.hasProgress {
+                    Text("No progress synced yet")
+                        .font(.footnote.weight(.semibold))
                         .foregroundStyle(Palette.muted)
+                } else {
+                    HStack(spacing: 10) {
+                        HStack(spacing: 3) {
+                            Image(systemName: "flame.fill")
+                            Text(member.streak, format: .number)
+                        }
+                        .foregroundStyle(member.streak > 0 ? D8.vermilion : Palette.muted)
+                        .accessibilityLabel(Text("\(member.streak) day streak"))
+                        Text("\(member.todayReviews) today")
+                            .foregroundStyle(Palette.muted)
+                    }
+                    .font(.footnote.weight(.semibold))
                 }
-                .font(.footnote.weight(.semibold))
             }
             Spacer(minLength: 8)
             HStack(spacing: 3) {
@@ -402,8 +408,8 @@ struct Badge: View {
 }
 
 struct MemberView: View {
-    let member: GroupMember
     let groupId: String
+    private let initial: GroupMember
     @Environment(GroupStore.self) private var groups
     @Environment(\.dismiss) private var dismiss
     @State private var comparing = false
@@ -411,7 +417,21 @@ struct MemberView: View {
     @State private var reporting: ModerationTarget?
     @State private var blocking: ModerationTarget?
 
+    init(member: GroupMember, groupId: String) {
+        initial = member
+        self.groupId = groupId
+    }
+
+    var member: GroupMember { groups.member(initial.userId, in: groupId) ?? initial }
+
     var me: GroupMember? { member.isMe ? nil : groups.group(groupId)?.me }
+
+    func reload() async {
+        #if DEBUG
+        if DemoGroup.on { return }
+        #endif
+        await groups.load()
+    }
 
     var graphFirst: Bool {
         #if DEBUG
@@ -425,6 +445,11 @@ struct MemberView: View {
         List {
             if graphFirst { StrengthGraphSection(groupId: groupId, member: member) }
             Section {
+                if !member.hasProgress {
+                    Text(member.isMe ? "Your progress has not synced yet. Finish a session while signed in." : "\(member.firstName) has no synced progress yet. Scores appear after their next session while signed in.")
+                        .font(.footnote)
+                        .foregroundStyle(Palette.muted)
+                }
                 LabeledContent("Streak", value: String(localized: "\(member.streak) days"))
                 LabeledContent("Today", value: String(localized: "\(member.todayReviews) cards"))
                 LabeledContent("This week", value: String(localized: "\(member.weekReviews) cards"))
@@ -525,6 +550,8 @@ struct MemberView: View {
         .scrollContentBackground(.hidden)
         .paper()
         .navigationTitle(member.name)
+        .refreshable { await reload() }
+        .task { await reload() }
         .toolbar {
             if !member.isMe {
                 ToolbarItem(placement: .primaryAction) {
