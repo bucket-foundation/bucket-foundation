@@ -343,8 +343,10 @@ struct SyncLine: View {
             Label("Saved on this device. Sign in to keep it on bucket.foundation too.", systemImage: "iphone")
                 .font(.footnote).foregroundStyle(Palette.muted)
         } else if state == .needsProfile {
-            Label("Saved on this device. Finish your profile on bucket.foundation to sync it.", systemImage: "person.crop.circle.badge.exclamationmark")
-                .font(.footnote).foregroundStyle(Palette.muted)
+            Button { NotificationCenter.default.post(name: .askAgeRange, object: nil) } label: {
+                Label("Saved on this device. Choose your age range to sync.", systemImage: "person.crop.circle.badge.exclamationmark")
+            }
+            .font(.footnote)
         }
     }
 }

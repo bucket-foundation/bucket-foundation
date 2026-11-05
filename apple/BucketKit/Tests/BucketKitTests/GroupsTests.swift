@@ -55,6 +55,7 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(me.subjects.first?.title == "Mathematics")
         #expect(me.lastActive != nil)
         #expect(g.members[1].lastActivity == nil && g.members[1].lastActive == nil)
+        #expect(me.hasProgress && !g.members[1].hasProgress)
         #expect(!g.isFull)
     }
 
@@ -233,6 +234,24 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(try body(1) == ["groupId": "g1", "reason": "spam"])
         #expect(try body(2) == ["groupId": "g1"])
         #expect(try body(4) == ["blockId": "b1"])
+    }
+
+    @MainActor @Test func reloadReplacesAStaleMember() async throws {
+        var fresh = groupJSON
+        var members = try #require(fresh["members"] as? [[String: Any]])
+        members[1]["streak"] = 4
+        members[1]["weekReviews"] = 85
+        members[1]["languages"] = [["lang": "it", "learned": 40, "mastered": 6]]
+        fresh["members"] = members
+        let payload = json(["groups": [fresh]])
+        let api = BucketAPI(transport: StubTransport { _ in (200, payload) }, cacheDir: nil)
+        let store = GroupStore(api: api, token: { "t" })
+        store.groups = [try JSONDecoder().decode(LearningGroup.self, from: json(groupJSON))]
+        #expect(store.member("u2", in: "g1")?.weekReviews == 0)
+        await store.load()
+        let nonna = try #require(store.member("u2", in: "g1"))
+        #expect(nonna.streak == 4 && nonna.weekReviews == 85 && nonna.languages.map(\.lang) == ["it"])
+        #expect(store.member("u2", in: "g2") == nil && store.member("u9", in: "g1") == nil)
     }
 
     @MainActor @Test func blockingHidesTheMemberEverywhere() async throws {

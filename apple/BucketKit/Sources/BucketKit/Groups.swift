@@ -138,6 +138,7 @@ public struct GroupMember: Codable, Equatable, Sendable, Identifiable {
     public var cheerKind: CheerKind { studiedToday ? .cheer : .nudge }
 
     public var lastActive: Date? { lastActivity.flatMap(parseInstant) }
+    public var hasProgress: Bool { lastActivity != nil || streak > 0 || weekReviews > 0 || !languages.isEmpty || !subjects.isEmpty }
     public var wordsMastered: Int { languages.reduce(0) { $0 + $1.mastered } }
     public var firstName: String { name.split(separator: " ").first.map(String.init) ?? name }
     public var shareName: String { isMe ? firstName : (initials.isEmpty ? "?" : initials) }
@@ -622,6 +623,8 @@ public final class GroupStore {
     }
 
     public func group(_ id: String) -> LearningGroup? { groups.first { $0.id == id } }
+
+    public func member(_ userId: String, in groupId: String) -> GroupMember? { group(groupId)?.members.first { $0.userId == userId } }
 
     public func first(_ kind: GroupKind) -> LearningGroup? {
         groups.first { $0.kind == kind && $0.isOwner } ?? groups.first { $0.kind == kind }

@@ -58,6 +58,11 @@ struct BucketApp: App {
                         if p == .active {
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
+                            #if DEBUG
+                            if !DemoGroup.on { await groups.load() }
+                            #else
+                            await groups.load()
+                            #endif
                         }
                         if p == .background { await CheerNotifier.post(groups) }
                         await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
@@ -118,6 +123,7 @@ struct RootView: View {
         .modifier(ScreenshotShare())
         .groupInvites()
         .groupsOnToday()
+        .ageRangePrompt()
         .onOpenURL { DeepLink.shared.open($0) }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .onChange(of: DeepLink.shared.pending) { _, link in

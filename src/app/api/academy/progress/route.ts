@@ -90,7 +90,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   const band = await readAgeBand(uid);
   if (!band.ok) return json({ error: "consent_unavailable" }, 503);
-  const gate = decideLearnWrite(band.band);
+  const gate = decideLearnWrite(band.band, band.consent ?? null);
   if (!gate.allowed) return json({ error: gate.reason, message: gate.message, needsProfile: gate.reason === "no_profile" }, 403);
 
   let body: unknown;
