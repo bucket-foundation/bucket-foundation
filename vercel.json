@@ -38,6 +38,10 @@
       "schedule": "17 4 * * *"
     },
     {
+      "path": "/api/cron/group-share-purge",
+      "schedule": "29 4 * * *"
+    },
+    {
       "path": "/api/cron/whats-new-daily?slot=0",
       "schedule": "0 6 * * *"
     },

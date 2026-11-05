@@ -2,14 +2,11 @@ import BucketKit
 import SwiftUI
 
 struct Onboarding: View {
-    enum Step: Int, CaseIterable { case welcome, languages, method, daily, account }
+    enum Step: Int, CaseIterable { case welcome, languages }
 
-    @Environment(Account.self) private var account
     @Environment(LangStore.self) private var store
-    @Environment(Reminders.self) private var reminders
     let finish: (String?) -> Void
     @State private var step = PolingualLaunch.value("-onboardingStep").flatMap(Int.init).flatMap(Step.init(rawValue:)) ?? .welcome
-    @State private var signingIn = false
     @State private var root = "en"
     @State private var targets: [String] = ["fr", "es", "it"]
     @State private var creating = false
@@ -37,9 +34,7 @@ struct Onboarding: View {
             footer
         }
         .background(Backdrop().ignoresSafeArea())
-        .sheet(isPresented: $signingIn) { AccountView() }
         .sheet(isPresented: $moreLanguages) { languagePicker }
-        .onChange(of: account.stage) { _, st in if st == .signedIn { signingIn = false } }
         .task { await store.load() }
     }
 
@@ -48,9 +43,6 @@ struct Onboarding: View {
         switch s {
         case .welcome: welcome
         case .languages: languages
-        case .method: method
-        case .daily: daily
-        case .account: accountStep
         }
     }
 
@@ -111,6 +103,10 @@ struct Onboarding: View {
                 }
             }
             Button("More languages · 29") { moreLanguages = true }.buttonStyle(D8Option(align: .center, compact: true))
+            if let failed {
+                Text(failed).font(.footnote).foregroundStyle(D8.vermilion)
+                Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
+            }
         }
     }
 
@@ -148,80 +144,6 @@ struct Onboarding: View {
         .presentationDetents([.large])
     }
 
-    var method: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("A short session a day")
-                .font(.system(size: 34, weight: .heavy, design: .rounded))
-                .foregroundStyle(Palette.ink)
-            Point(icon: "scope", color: D8.lapis, title: "Placement", detail: "A short test finds your level in each language, so you skip what you know.")
-            Point(icon: "arrow.triangle.2.circlepath", color: D8.malachite, title: "Spaced review", detail: "Words return right before you would forget them, across all your languages.")
-            Point(icon: "speaker.wave.2.fill", color: D8.vermilion, title: "Hear and say it", detail: "Every word is spoken, and you can say it back to check yourself.")
-            Point(icon: "leaf.fill", color: Color(hex: 0xC8952C), title: "Shared roots", detail: "See noche, nuit and notte side by side and remember all three.")
-        }
-    }
-
-    var daily: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            Text("One nudge a day")
-                .font(.system(size: 34, weight: .heavy, design: .rounded))
-                .foregroundStyle(Palette.ink)
-            Text("Polingual reminds you once a day, at the time you usually study, and only when words are due.")
-                .font(.body)
-                .foregroundStyle(Palette.muted)
-            HStack(spacing: 14) {
-                Image(systemName: "flame.fill")
-                    .font(.system(size: 58))
-                    .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("5").font(.system(size: 44, weight: .heavy, design: .rounded)).foregroundStyle(D8.vermilion)
-                    Text("DAY STREAK").font(D8.caps(13)).tracking(1.5).foregroundStyle(Palette.muted)
-                }
-            }
-            .padding(.vertical, 6)
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel("A five day streak")
-            if reminders.enabled {
-                Label("Reminder on", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
-            } else if reminders.denied {
-                Text("Notifications are off for Polingual. You can turn them on later in Settings.").font(.subheadline).foregroundStyle(Palette.muted)
-            }
-        }
-    }
-
-    var accountStep: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            Text("Your plan is ready")
-                .font(.system(size: 34, weight: .heavy, design: .rounded))
-                .foregroundStyle(Palette.ink)
-            VStack(alignment: .leading, spacing: 14) {
-                HStack(spacing: 6) {
-                    ForEach(targets, id: \.self) { FlagTile(lang: $0, size: 34) }
-                    Text(targets.map(langName).joined(separator: " · ")).font(.headline).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.7).padding(.leading, 4)
-                }
-                PlanLine(icon: "scope", text: "A short placement in each language")
-                PlanLine(icon: "clock", text: "About 10 minutes a day, one mixed queue")
-                PlanLine(icon: reminders.enabled ? "bell.fill" : "bell.slash", text: reminders.enabled ? "A daily reminder at your study time" : "No reminder, turn it on any time")
-            }
-            .padding(16)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Palette.card, in: .rect(cornerRadius: 18))
-            if account.stage == .signedIn {
-                Label("Signed in, progress syncs", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
-            } else {
-                Button {
-                    signingIn = true
-                } label: {
-                    Label("Sign in to sync iPhone, iPad and Mac", systemImage: "person.crop.circle")
-                }
-                .buttonStyle(D8Option(align: .center))
-            }
-            if let failed {
-                Text(failed).font(.footnote).foregroundStyle(D8.vermilion)
-                Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
-            }
-        }
-    }
-
     var footer: some View {
         VStack(spacing: 12) {
             HStack(spacing: 8) {
@@ -231,25 +153,14 @@ struct Onboarding: View {
             }
             .accessibilityHidden(true)
             Button(label) {
-                if step == .account {
+                if step == .languages {
                     Task { await complete() }
-                } else if step == .daily && !reminders.enabled && !reminders.denied {
-                    Task {
-                        _ = await reminders.enable()
-                        advance()
-                    }
                 } else {
                     advance()
                 }
             }
             .buttonStyle(D8Primary())
             .disabled((step == .languages && targets.isEmpty) || creating)
-            if step == .daily && !reminders.enabled && !reminders.denied {
-                Button("Not now") { advance() }
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(D8.parchment.opacity(0.85))
-                    .buttonStyle(LinkPad())
-            }
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 20)
@@ -259,9 +170,7 @@ struct Onboarding: View {
     var label: String {
         switch step {
         case .welcome: "Get started"
-        case .daily where !reminders.enabled && !reminders.denied: "Turn on my daily reminder"
-        case .account: creating ? "Setting up" : failed == nil ? "Start learning" : "Try again"
-        default: "Continue"
+        case .languages: creating ? "Setting up" : failed == nil ? "Continue" : "Try again"
         }
     }
 
@@ -302,28 +211,6 @@ struct PoMark: View {
         }
         .accessibilityElement()
         .accessibilityLabel("Polingual")
-    }
-}
-
-struct Point: View {
-    let icon: String
-    let color: Color
-    let title: LocalizedStringKey
-    let detail: LocalizedStringKey
-
-    var body: some View {
-        HStack(alignment: .top, spacing: 14) {
-            Image(systemName: icon)
-                .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(D8.parchment)
-                .frame(width: 40, height: 40)
-                .background(color, in: .rect(cornerRadius: 10))
-                .modifier(Glaze(radius: 10))
-            VStack(alignment: .leading, spacing: 3) {
-                Text(title).font(.headline).foregroundStyle(Palette.ink)
-                Text(detail).font(.subheadline).foregroundStyle(Palette.muted)
-            }
-        }
     }
 }
 

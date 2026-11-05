@@ -10,7 +10,27 @@ public struct LetterSound: Sendable, Equatable {
     public var say: String? = nil
 }
 
+public struct SoundCard: Sendable, Equatable {
+    public let word: String
+    public let phonetic: String?
+    public let meaning: String
+    public let phoneticHoldsLetter: Bool
+}
+
 public enum LetterSounds {
+    public static func card(_ sound: LetterSound, letter: String) -> SoundCard {
+        let tokens = sound.gloss.split(separator: " ", maxSplits: 1).map(String.init)
+        if tokens.count == 2, isHanOrKana(tokens[0]) {
+            return SoundCard(word: tokens[0], phonetic: sound.example, meaning: tokens[1], phoneticHoldsLetter: true)
+        }
+        let reading = sound.reading.flatMap { $0.isEmpty || $0 == sound.example ? nil : sound.example == letter ? $0 : "\(letter) \($0)" }
+        return SoundCard(word: sound.example, phonetic: reading, meaning: sound.gloss, phoneticHoldsLetter: false)
+    }
+
+    static func isHanOrKana(_ s: String) -> Bool {
+        !s.isEmpty && s.unicodeScalars.allSatisfy { $0.properties.isIdeographic || (0xAC00...0xD7A3).contains($0.value) || (0x3040...0x30FF).contains($0.value) }
+    }
+
     static let tables: [String: [String: LetterSound]] = {
         var out: [String: [String: LetterSound]] = [:]
         for (lang, raw) in latin.merging(scripts) { a, _ in a }.merging(asia) { a, _ in a } {

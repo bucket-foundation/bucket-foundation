@@ -11,8 +11,8 @@ PAID CONTENT
 The app needs a subscription after onboarding. Polingual Monthly (com.polingual.monthly) and Polingual Yearly (com.polingual.yearly) are auto-renewable and include a 3-day free trial for new subscribers. The paywall shows price, terms, privacy, Restore and offer code redemption. Please use a Sandbox account to start the trial.
 
 SETUP AND LOGIN
-No setup or special hardware. Finish onboarding, start the trial, then open the person icon at the top right and choose Account. An account is optional for study and required for sync and groups. There are two methods and no passwords: Sign in with Apple, or a one-time code sent to an email address. A first sign-in creates the account.
-Demo account: Finish onboarding, start the trial with a Sandbox account, open the person icon, then Account and Sign in. Type the email below and tap Send code. No email goes out for this address. Type the code below and tap Verify. Signing in does not replace the subscription.
+No setup or special hardware. Finish onboarding, start the trial, then open the Account tab. An account is optional for study and required for sync and groups. There are two methods and no passwords: Sign in with Apple, or a one-time code sent to an email address. A first sign-in creates the account.
+Demo account: Finish onboarding, start the trial with a Sandbox account, open the Account tab, then Sign in with email. Type the email below and tap Send code. No email goes out for this address. Type the code below and tap Verify. Signing in does not replace the subscription.
 Email: [REVIEW_DEMO_EMAIL value, entered by hand in App Store Connect]
 Code: [REVIEW_DEMO_CODE value, entered by hand in App Store Connect]
 The account has a language set, progress and a group named Review Family with a second member, Sam, so report and block can be tried on Sam. Deleting this account ends the demo, so please test deletion on a new account made with Sign in with Apple or your own email.

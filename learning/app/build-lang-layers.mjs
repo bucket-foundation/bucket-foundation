@@ -197,7 +197,7 @@ async function readingFor(lang, text) {
   if (lang === "ja") {
     const kana = await kuroshiro.convert(text, { to: "hiragana" });
     const roman = await kuroshiro.convert(text, { to: "romaji", mode: "spaced", romajiSystem: "hepburn" });
-    return { kana, roman: roman.replace(/\s+/g, " ").trim() };
+    return { kana, roman: roman.replace(/\s+/g, " ").trim().replace(/m(?=[bmp])/g, "n") };
   }
   if (lang === "ko") return { roman: romanizeKo(text) };
   if (lang === "ru") return { roman: translitRu(text) };

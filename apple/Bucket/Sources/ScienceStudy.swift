@@ -170,12 +170,6 @@ struct MasteryBar: View {
     }
 }
 
-struct StudyLaunch: Identifiable {
-    let entry: DeckEntry
-    let deck: PreparedDeck
-    var id: String { entry.id }
-}
-
 struct StudySession: View {
     @Environment(Reminders.self) private var reminders
     @Environment(ScienceStore.self) private var store

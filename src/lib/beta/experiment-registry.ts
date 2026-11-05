@@ -11,6 +11,7 @@ export const EXPERIMENTS: readonly Experiment[] = [
   { key: "practice_order", arms: ["mixed", "blocked"], fallback: "blocked" },
   { key: "cognate_hints", arms: ["on", "off"], fallback: "off" },
   { key: "extra_plans", arms: ["on", "off"], fallback: "off", defaultSetting: "off" },
+  { key: "free_beta_note", arms: ["on"], fallback: "off", defaultSetting: "off" },
 ];
 
 export interface AssignmentRow {

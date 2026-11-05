@@ -261,6 +261,19 @@ func words(_ n: Int) -> [GameWord] {
         #expect(GameLetters.deal([system], states: ["s": state], now: 1000 + 400 * DAY_MS, using: &again).first?.form == due.form)
     }
 
+    @Test func everyDealtLetterBecomesASoundToLetterQuiz() {
+        for targets in [["es", "fr", "de"], ["ru"], ["ja"], ["zh"], ["el"], ["ko"], ["ar"], ["hi"], ["he"]] {
+            let system = LangSystem(id: "s", name: "s", root: "en", targets: targets, createdAt: 0)
+            var rng = SeededRandom(seed: 3)
+            let round = GameLetters.deal([system], states: [:], now: 0, count: 40, using: &rng)
+            #expect(!round.isEmpty)
+            for word in round {
+                var r = Rng(seed: 7)
+                #expect(GameLetters.quiz(word, &r) != nil, "\(word.lang) \(word.form)")
+            }
+        }
+    }
+
     @Test func groupQuestScalesToActiveMembers() {
         func member(_ id: String, week: Int, today: Int = 0, me: Bool = false) -> GroupMember {
             GroupMember(userId: id, name: id, role: .member, isMe: me, streak: 0, todayReviews: today, weekReviews: week, lastActivity: nil, languages: [], subjects: [])

@@ -5,6 +5,10 @@ final class ReviewRecordingUITests: XCTestCase {
         continueAfterFailure = false
     }
 
+    override func tearDown() {
+        if ReviewWalk.recording { ReviewWalk(app: XCUIApplication()).toggleScreenRecording() }
+    }
+
     func launch(_ args: [String]) -> ReviewWalk {
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US"] + args
@@ -17,43 +21,78 @@ final class ReviewRecordingUITests: XCTestCase {
         guard app.buttons["Get started"].waitForExistence(timeout: 30) else { return }
         walk.tap(app.buttons["Get started"])
         walk.tap(app.buttons["Continue"])
-        walk.tap(app.buttons["Continue"])
-        walk.tap(app.buttons["Not now"])
-        walk.tap(app.buttons["Start learning"])
     }
 
     func paywall(_ walk: ReviewWalk) {
         let app = walk.app
-        XCTAssertTrue(app.buttons["Restore"].waitForExistence(timeout: 60))
+        let today = app.navigationBars["Today"]
+        let deadline = Date().addingTimeInterval(60)
+        while !app.buttons["Restore"].exists && !today.exists && Date() < deadline {
+            walk.clearAlerts()
+            Thread.sleep(forTimeInterval: 1)
+        }
+        if today.exists {
+            XCTAssertFalse(ReviewWalk.onDevice, "This Apple ID already subscribes, so the paywall is missing from the video. Cancel the sandbox subscription and run again")
+            return
+        }
+        XCTAssertTrue(app.buttons["Restore"].exists)
         walk.hold()
         guard ReviewWalk.onDevice else { return }
         walk.tap(app.buttons["Start 3 days free"], timeout: 30)
+        let save = app.staticTexts["Save your progress"]
+        let saveDeadline = Date().addingTimeInterval(walk.humanTimeout)
+        while !save.exists && Date() < saveDeadline {
+            walk.clearAlerts()
+            Thread.sleep(forTimeInterval: 1)
+        }
+        if save.exists { walk.tap(app.buttons["Not now"]) }
         home(walk, timeout: walk.humanTimeout)
     }
 
     func home(_ walk: ReviewWalk, timeout: TimeInterval) {
         let app = walk.app
-        let menu = app.buttons["Games, content and account"]
+        let today = app.navigationBars["Today"]
         let deadline = Date().addingTimeInterval(timeout)
-        while !menu.exists && Date() < deadline {
+        while !today.exists && Date() < deadline {
+            walk.clearAlerts()
             let back = app.navigationBars.buttons.firstMatch
             if back.exists && back.isHittable { back.tap() }
             Thread.sleep(forTimeInterval: 1)
         }
-        XCTAssertTrue(menu.exists, "Confirm the sandbox purchase on the phone")
+        XCTAssertTrue(today.exists, "Confirm the sandbox purchase on the phone")
+    }
+
+    func signedOutStart() {
+        guard ReviewWalk.onDevice else { return }
+        let walk = launch([])
+        let app = walk.app
+        let today = app.navigationBars["Today"]
+        if today.waitForExistence(timeout: 20) {
+            walk.tap(app.buttons["Account"].firstMatch)
+            if app.buttons["Sign out"].waitForExistence(timeout: 5) { walk.signOut() }
+        }
+        app.terminate()
     }
 
     func testRecordingFlow() {
-        let first = ReviewWalk(app: XCUIApplication())
-        Thread.sleep(forTimeInterval: first.lead)
+        signedOutStart()
+        ReviewWalk(app: XCUIApplication()).startRecording()
         let walk = launch([])
         onboarding(walk)
         paywall(walk)
         let inside = ReviewWalk.onDevice ? walk : launch(["-polingual.onboarded", "YES", "-polingualOpen", "-demoGroup", "joined"])
         let app = inside.app
         home(inside, timeout: 60)
-        inside.tap(app.buttons["Games, content and account"])
-        inside.tap(app.buttons["Account"])
+        inside.tap(app.buttons["Account"].firstMatch)
         inside.accountFlows()
+        inside.stopRecording()
+    }
+
+    func testScreenRecordingToggle() throws {
+        guard ReviewWalk.onDevice else { throw XCTSkip("Control Center screen recording needs a device") }
+        let walk = ReviewWalk(app: XCUIApplication())
+        XCTAssertTrue(walk.toggleScreenRecording())
+        Thread.sleep(forTimeInterval: 3)
+        XCTAssertTrue(walk.toggleScreenRecording())
     }
 }

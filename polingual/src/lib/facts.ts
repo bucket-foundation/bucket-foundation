@@ -17,7 +17,7 @@ export const FAQ: Faq[] = [
   { q: "How many languages does Polingual teach?", a: `${FACTS.languageCount}, from Spanish and Japanese to Latin, Sanskrit and Old English.` },
   { q: "Can I study three languages at the same time?", a: "Yes. Pick a set such as Spanish, French and Italian. Placement runs once per language, then the words from all three share one spaced review queue." },
   { q: "How does Polingual check pronunciation?", a: "You hear each word and say it back. Apple speech recognition checks it." },
-  { q: "How do I get Polingual?", a: "Polingual language systems run today in the Bucket app, in beta on TestFlight. Join the beta from polingual.com. The standalone Polingual app is not released yet." },
+  { q: "How do I get Polingual?", a: "Polingual is in a free beta on TestFlight for iPhone and iPad. Join from polingual.com. The App Store release follows Apple review." },
   { q: "Does Polingual work with Bucket?", a: "Yes. Sign in with the same email in both apps and your language progress syncs." },
 ];
 

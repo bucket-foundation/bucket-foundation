@@ -58,3 +58,14 @@ func translateCorpus() throws -> LangCorpus {
     #expect(SentenceLanguage.detect("你有披萨吗", among: ["en", "zh"]) == "zh")
     #expect(SentenceLanguage.appleCode("zh") == "zh-Hans")
 }
+
+@Test func japaneseRomajiSpellsSyllabicNBeforeLabials() throws {
+    #expect(Romaji.hanbun("hambun") == "hanbun")
+    #expect(Romaji.hanbun("shimbun o yomu") == "shinbun o yomu")
+    #expect(Romaji.hanbun("samma") == "sanma")
+    #expect(Romaji.hanbun("kimi") == "kimi")
+    let corpus = try translateCorpus()
+    let ja = corpus.items.compactMap { $0.readings["ja"]?.roman } + corpus.pool.values.compactMap { $0.r["ja"] }
+    #expect(ja.contains { $0.contains("hanbun") })
+    #expect(!ja.contains { $0.contains(/m[bmp]/) })
+}

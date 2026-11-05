@@ -15,10 +15,12 @@ public final class Account {
 
     let api: BucketAPI
     let store: SessionStore
+    let lock: RefreshLock?
 
-    public init(api: BucketAPI, store: SessionStore) {
+    public init(api: BucketAPI, store: SessionStore, lock: RefreshLock? = nil) {
         self.api = api
         self.store = store
+        self.lock = lock
         let saved = store.load()
         session = saved
         stage = saved == nil ? .signedOut : .signedIn
@@ -64,12 +66,24 @@ public final class Account {
         if let inFlight = refreshing { return await inFlight.value }
         let task = Task { () -> String? in
             defer { self.refreshing = nil }
+            await self.lock?.acquire()
+            defer { self.lock?.release() }
+            var s = s
+            if let stored = self.newer(than: s) {
+                self.session = stored
+                if !stored.expires(within: Self.refreshMargin, now: now()) { return stored.accessToken }
+                s = stored
+            }
             do {
                 let next = try await self.api.refresh(s)
                 try self.store.save(next)
                 self.session = next
                 return next.accessToken
             } catch BucketError.revoked {
+                if let stored = self.newer(than: s), !stored.expires(within: 0, now: now()) {
+                    self.session = stored
+                    return stored.accessToken
+                }
                 self.end(.expired)
                 return nil
             } catch {
@@ -78,6 +92,11 @@ public final class Account {
         }
         refreshing = task
         return await task.value
+    }
+
+    func newer(than s: Session) -> Session? {
+        guard let stored = store.load(), stored.userId == s.userId, stored.refreshToken != s.refreshToken, stored.expiresAt >= s.expiresAt else { return nil }
+        return stored
     }
 
     public func startOver() {
