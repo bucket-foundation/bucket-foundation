@@ -26,7 +26,6 @@ struct SpokenTile: View {
         }
         .buttonStyle(LetterTileStyle(state: state))
         .overlay { if selected { RoundedRectangle(cornerRadius: 16).strokeBorder(D8.lapis, lineWidth: 3) } }
-        .scaleEffect(state == .right ? 1.03 : 1)
         .accessibilityAddTraits(selected ? .isSelected : [])
         .accessibilityLabel(detail.map { "\(text), \($0)" } ?? text)
     }
@@ -49,20 +48,33 @@ struct NativeVoiceNote: View {
     }
 }
 
+struct DrillLine: View {
+    let shown: Bool
+    let text: String
+
+    var body: some View {
+        Label(text, systemImage: "arrow.uturn.left")
+            .lineLimit(1).minimumScaleFactor(0.7)
+            .font(.headline).foregroundStyle(D8.vermilion)
+            .frame(maxWidth: .infinity)
+            .opacity(shown ? 1 : 0)
+            .accessibilityHidden(!shown)
+    }
+}
+
 struct DrillResult: View {
+    let shown: Bool
     let right: Bool
     let wrongText: String
     let onContinue: () -> Void
 
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: right ? "star.fill" : "arrow.uturn.left")
-            Text(right ? LetterQuiz.cheer(wrongText) : wrongText)
-        }
-        .font(.headline).foregroundStyle(right ? D8.malachite : D8.vermilion)
-        .frame(maxWidth: .infinity)
-        .transition(.move(edge: .bottom).combined(with: .opacity))
-        Button("Continue", action: onContinue).buttonStyle(D8Primary()).keyboardShortcut(.defaultAction)
+        DrillLine(shown: shown && !right, text: wrongText)
+        Button("Continue", action: onContinue)
+            .buttonStyle(D8Primary()).keyboardShortcut(.defaultAction)
+            .disabled(!shown)
+            .opacity(shown ? 1 : 0)
+            .accessibilityHidden(!shown)
     }
 }
 
@@ -105,7 +117,7 @@ struct PairDrill: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            if picked == nil { Text("Which one did you hear?").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity) }
+            Text("Which one did you hear?").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
             SoundButtons(text: ex.prompt, lang: ex.lang, size: 64, plays: $plays)
             TileGrid {
                 ForEach(words, id: \.key) { w in
@@ -113,14 +125,16 @@ struct PairDrill: View {
                     SpokenTile(text: w.text, detail: w.gloss, lang: ex.lang, state: state) { choose(w) }
                 }
             }
-            if let picked {
+            Group {
                 if let hint = ex.hint { Text(hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink).frame(maxWidth: .infinity, alignment: .leading).fixedSize(horizontal: false, vertical: true) }
-                Button { hearAll(words, ex.lang) } label: { Label("Hear them again", systemImage: "speaker.wave.2.fill") }.buttonStyle(D8Option(align: .center, compact: true))
+                Button { hearAll(words, ex.lang) } label: { Label("Hear them again", systemImage: "speaker.wave.2.fill") }.buttonStyle(D8Option(align: .center, compact: true)).disabled(picked == nil)
                 if ex.nativeVoice { NativeVoiceNote() }
-                DrillResult(right: right, wrongText: String(localized: "That was “\(target?.text ?? picked)”.")) { onDone(right, false) }
             }
+            .opacity(picked == nil ? 0 : 1)
+            .accessibilityHidden(picked == nil)
+            DrillResult(shown: picked != nil, right: right, wrongText: String(localized: "That was “\(target?.text ?? picked ?? "")”.")) { onDone(right, false) }
         }
-        .animation(.spring(duration: 0.35), value: picked)
+        .animation(.easeOut(duration: 0.18), value: picked)
         .onAppear {
             LangVoice.shared.speak(ex.prompt, ex.lang)
             #if DEBUG
@@ -154,10 +168,8 @@ struct LetterSoundDrill: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            if picked == nil {
-                Text(character ? String(localized: "What does this character say?") : String(localized: "What sound does this make?"))
-                    .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
-            }
+            Text(character ? String(localized: "What does this character say?") : String(localized: "What sound does this make?"))
+                .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
             Text(ex.answer.replacingOccurrences(of: "◌", with: ""))
                 .font(.system(size: 76, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
                 .foregroundStyle(Palette.ink)
@@ -168,12 +180,10 @@ struct LetterSoundDrill: View {
                     SpokenTile(text: o.text, detail: picked == nil ? nil : o.gloss, lang: ex.lang, state: state) { choose(o) }
                 }
             }
-            if picked != nil {
-                SoundHint(sound: sound)
-                DrillResult(right: right, wrongText: String(localized: "It's “\(ex.spoken?.first { $0.key == ex.answer }?.text ?? ex.answer)”, as in \(sound.example).")) { onDone(right, false) }
-            }
+            SoundHint(sound: sound).opacity(picked == nil ? 0 : 1).accessibilityHidden(picked == nil)
+            DrillResult(shown: picked != nil, right: right, wrongText: String(localized: "It's “\(ex.spoken?.first { $0.key == ex.answer }?.text ?? ex.answer)”, as in \(sound.example).")) { onDone(right, false) }
         }
-        .animation(.spring(duration: 0.35), value: picked)
+        .animation(.easeOut(duration: 0.18), value: picked)
         .onAppear {
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
@@ -207,26 +217,22 @@ struct BlendDrill: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            if !checked {
-                Text(voiced ? String(localized: "Sound it out, then find the word you hear.") : String(localized: "Sound it out, then find its meaning."))
-                    .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity).multilineTextAlignment(.center)
-            }
+            Text(voiced ? String(localized: "Sound it out, then find the word you hear.") : String(localized: "Sound it out, then find its meaning."))
+                .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity).multilineTextAlignment(.center)
             chips.environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
             ForEach(Array(options.enumerated()), id: \.element.key) { k, o in
                 SpokenTile(text: label(k, o), detail: checked ? o.gloss : nil, lang: ex.lang, state: state(o), symbol: voiced && !checked ? "speaker.wave.2.fill" : nil, selected: !checked && o.key == chosen) { choose(o) }
             }
-            if checked {
-                DrillResult(right: right, wrongText: String(localized: "That word was “\(ex.answer)”.")) { onDone(right, false) }
-            } else {
-                Button("Check") {
-                    checked = true
-                    haptic(right)
-                    if let say = options.first(where: { $0.key == ex.answer })?.say { LangVoice.shared.speak(say, ex.lang) }
-                }
-                .buttonStyle(D8Primary()).disabled(chosen == nil)
+            DrillLine(shown: checked && !right, text: String(localized: "That word was “\(ex.answer)”."))
+            Button(checked ? String(localized: "Continue") : String(localized: "Check")) {
+                if checked { onDone(right, false); return }
+                checked = true
+                haptic(right)
+                if let say = options.first(where: { $0.key == ex.answer })?.say { LangVoice.shared.speak(say, ex.lang) }
             }
+            .buttonStyle(D8Primary()).keyboardShortcut(.defaultAction).disabled(chosen == nil)
         }
-        .animation(.spring(duration: 0.35), value: checked)
+        .animation(.easeOut(duration: 0.18), value: checked)
         .onAppear {
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments

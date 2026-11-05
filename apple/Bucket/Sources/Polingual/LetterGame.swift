@@ -303,21 +303,7 @@ struct LetterQuiz: View {
                         tile(o).optionKey(k)
                     }
                 }
-                Group {
-                    HStack(spacing: 8) {
-                        Image(systemName: right ? "star.fill" : "arrow.uturn.left")
-                        Text(right ? Self.cheer(ex.answer) : String(localized: "It's “\(ex.answer)”, as in \(Self.example(sound))."))
-                            .lineLimit(1).minimumScaleFactor(0.7)
-                    }
-                    .font(.headline).foregroundStyle(right ? D8.malachite : D8.vermilion)
-                    .frame(maxWidth: .infinity)
-                    Button("Continue") { onDone(right, hinted) }
-                        .buttonStyle(D8Primary())
-                        .keyboardShortcut(.defaultAction)
-                        .disabled(picked == nil)
-                }
-                .opacity(picked == nil ? 0 : 1)
-                .accessibilityHidden(picked == nil)
+                DrillResult(shown: picked != nil, right: right, wrongText: String(localized: "It's “\(ex.answer)”, as in \(Self.example(sound)).")) { onDone(right, hinted) }
             }
             .frame(maxWidth: .infinity)
         }
@@ -337,11 +323,6 @@ struct LetterQuiz: View {
         return card.phoneticHoldsLetter ? "\(card.word) \(card.meaning)" : s.example
     }
 
-    static func cheer(_ seed: String) -> String {
-        let all = [String(localized: "Great ear!"), String(localized: "That's the sound!"), String(localized: "You heard it!"), String(localized: "Right on!")]
-        return all[abs(seed.unicodeScalars.reduce(0) { $0 &+ Int($1.value) }) % all.count]
-    }
-
     func tile(_ o: String) -> some View {
         let state: RowState = picked == nil ? .other : o == ex.answer ? .right : o == picked ? .wrong : .other
         return Button {
@@ -355,16 +336,23 @@ struct LetterQuiz: View {
                 LangVoice.shared.speak(LetterSounds.spoken(ex.lang, s), ex.lang)
             }
         } label: {
-            VStack(spacing: 2) {
-                Text(o).font(.system(size: sideways ? 28 : 36, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
+            VStack(spacing: 0) {
+                Text(o).font(.system(size: sideways ? 28 : 32, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
+                    .overlay(alignment: .trailing) {
+                        Image(systemName: "speaker.wave.2.fill").font(.subheadline.weight(.bold))
+                            .fixedSize().alignmentGuide(.trailing) { $0[.leading] - 6 }
+                            .opacity(picked == nil ? 0 : 1)
+                            .accessibilityHidden(true)
+                    }
                 if let s = LetterSounds.lookup(ex.lang, o) {
-                    Label(Self.example(s), systemImage: "speaker.wave.2.fill").labelStyle(.titleAndIcon)
+                    Text(Self.example(s))
                         .font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : Palette.muted).lineLimit(1).minimumScaleFactor(0.6)
                         .opacity(picked == nil ? 0 : 1)
                         .accessibilityHidden(picked == nil)
                 }
             }
-            .frame(maxWidth: .infinity, minHeight: sideways ? 52 : 64)
+            .padding(.vertical, 6)
+            .frame(maxWidth: .infinity, minHeight: sideways ? 48 : 56)
             .foregroundStyle(state == .right ? .white : Palette.ink)
         }
         .buttonStyle(LetterTileStyle(state: state))
@@ -374,7 +362,6 @@ struct LetterQuiz: View {
             LinearKeyframe(-5, duration: 0.07)
             LinearKeyframe(0, duration: 0.06)
         }
-        .scaleEffect(state == .right ? 1.05 : 1)
         .opacity(picked != nil && state == .other ? 0.55 : 1)
         .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
         .accessibilityLabel(o)
