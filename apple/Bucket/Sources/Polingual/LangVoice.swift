@@ -4,9 +4,13 @@ import Speech
 import SwiftUI
 
 @MainActor
-final class LangVoice: NSObject {
+final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = LangVoice()
-    private let synth = AVSpeechSynthesizer()
+    static let startWait: Duration = .seconds(2)
+    private var synth = AVSpeechSynthesizer()
+    private var waiting: ObjectIdentifier?
+    private(set) var lastStarted: String?
+    private(set) var renewals = 0
 
     private var player: AVPlayer?
     private var warmed = false
@@ -16,6 +20,7 @@ final class LangVoice: NSObject {
 
     override private init() {
         super.init()
+        synth.delegate = self
         NotificationCenter.default.addObserver(forName: AVSpeechSynthesizer.availableVoicesDidChangeNotification, object: nil, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated { self?.forgetVoices() }
         }
@@ -63,13 +68,53 @@ final class LangVoice: NSObject {
         guard !text.isEmpty else { return false }
         activate()
         guard let v = voice(lang) else { return playClip(text, lang) }
-        player?.pause()
-        synth.stopSpeaking(at: .immediate)
+        hush()
+        say([utterance(text, v, rate: slow ? 0.45 : 0.9)], retry: true)
+        return true
+    }
+
+    private func utterance(_ text: String, _ v: AVSpeechSynthesisVoice, rate: Float = 0.9, gap: TimeInterval = 0) -> AVSpeechUtterance {
         let u = AVSpeechUtterance(string: text)
         u.voice = v
-        u.rate = AVSpeechUtteranceDefaultSpeechRate * (slow ? 0.45 : 0.9)
-        synth.speak(u)
-        return true
+        u.rate = AVSpeechUtteranceDefaultSpeechRate * rate
+        u.postUtteranceDelay = gap
+        return u
+    }
+
+    private func say(_ us: [AVSpeechUtterance], retry: Bool) {
+        guard let first = us.first else { return }
+        let id = ObjectIdentifier(first)
+        waiting = id
+        us.forEach(synth.speak)
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(for: Self.startWait)
+            guard let self, self.waiting == id else { return }
+            self.waiting = nil
+            guard retry else { return }
+            self.renew()
+            self.say(us.compactMap { $0.copy() as? AVSpeechUtterance }, retry: false)
+        }
+    }
+
+    private func renew() {
+        renewals += 1
+        synth.delegate = nil
+        synth.stopSpeaking(at: .immediate)
+        synth = AVSpeechSynthesizer()
+        synth.delegate = self
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setActive(true)
+        #endif
+    }
+
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        let id = ObjectIdentifier(utterance)
+        let text = utterance.speechString
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            self.lastStarted = text
+            if self.waiting == id { self.waiting = nil }
+        }
     }
 
     func speakTogether(_ lines: [VoiceLine]) {
@@ -80,25 +125,19 @@ final class LangVoice: NSObject {
         }
         activate()
         hush()
-        for (text, v) in voiced {
-            let u = AVSpeechUtterance(string: text)
-            u.voice = v
-            u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
-            u.postUtteranceDelay = 0.3
-            synth.speak(u)
-        }
+        say(voiced.map { utterance($0.0, $0.1, gap: 0.3) }, retry: true)
     }
 
     func hush() {
         player?.pause()
-        synth.stopSpeaking(at: .immediate)
+        waiting = nil
+        if synth.isSpeaking || synth.isPaused { synth.stopSpeaking(at: .immediate) }
     }
 
     func playClip(_ text: String, _ lang: String) -> Bool {
         guard let store, store.hasClip(lang, text) else { return false }
         activate()
-        synth.stopSpeaking(at: .immediate)
-        player?.pause()
+        hush()
         player = AVPlayer(url: store.clipURL(lang, text))
         player?.play()
         return true

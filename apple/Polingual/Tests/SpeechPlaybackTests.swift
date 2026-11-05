@@ -21,6 +21,20 @@ final class SpeechPlaybackTests: XCTestCase {
         XCTAssertGreaterThan(total, 0)
     }
 
+    func testRapidTapsStartTheLastWord() async throws {
+        _ = try XCTUnwrap(LangVoice.shared.voice("it"))
+        for word in ["uno", "due", "tre", "quattro"] {
+            LangVoice.shared.speak(word, "it")
+            try await Task.sleep(for: .milliseconds(60))
+        }
+        let deadline = Date().addingTimeInterval(10)
+        while LangVoice.shared.lastStarted != "quattro", Date() < deadline {
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        XCTAssertEqual(LangVoice.shared.lastStarted, "quattro")
+        print("RENEW_REPORT renewals=\(LangVoice.shared.renewals)")
+    }
+
     func testLetterWordFinishesThroughTheAppSession() throws {
         let voice = try XCTUnwrap(LangVoice.shared.voice("it"))
         LangVoice.shared.activate()
