@@ -95,7 +95,7 @@ test("an unreadable age band fails closed with 503 and writes nothing", async ()
   assert.equal(w.log.size, 0);
 });
 
-for (const [band, reason] of [[null, "no_profile"], ["13to17", "minor_read_only"], ["under13", "under_13"]] as const) {
+for (const [band, reason] of [[null, "no_profile"], ["under13", "needs_parent"]] as const) {
   test(`the learn gate refuses band ${band} with ${reason}`, async () => {
     const w = world({}, band);
     const res = await createReviewLogHandlers(w.deps).POST(post({ reviews: [review()] }));

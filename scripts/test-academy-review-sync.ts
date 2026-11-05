@@ -245,7 +245,7 @@ test("reviews queued by one account never post under the next account in the sam
   assert.equal(server.log.filter((r) => r.user === "u2").length, 0);
 });
 
-test("a no_profile refusal keeps the outbox and a minor refusal drops it", async () => {
+test("a no_profile refusal keeps the outbox and a teen writes", async () => {
   const server = new Server();
   server.band = null;
   const tab = new Tab(server, memoryStorage());
@@ -260,7 +260,7 @@ test("a no_profile refusal keeps the outbox and a minor refusal drops it", async
   tab.study("a2", T0 + 1000);
   await tab.sync.flush();
   assert.equal(tab.sync.pending().length, 0);
-  assert.equal(server.log.length, 1);
+  assert.equal(server.log.length, 2);
 });
 
 test("a review appended in one tab while another tab flushes is kept", async () => {

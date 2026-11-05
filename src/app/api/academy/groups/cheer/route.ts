@@ -10,7 +10,7 @@ import {
   readBody,
   requestUser,
   service,
-  summaries,
+  groupSummaries,
 } from "@/lib/academy/groups-server";
 import { pushCheerToDevices } from "@/lib/academy/push-server";
 
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const members = await membersOf([groupId]);
     if (!members.some((m) => m.user_id === uid)) return json({ error: "not_found" }, 404);
     if (await isHidden(uid, to)) return json({ error: "not_found" }, 404);
-    const sums = kind === "nudge" ? await summaries([to], now, "UTC") : null;
+    const sums = kind === "nudge" ? await groupSummaries(groupId, [to], now, "UTC") : null;
     const decision = cheerDecision(members, uid, to, kind, sums?.get(to)?.todayReviews ?? 0);
     if (decision === "self") return json({ error: "bad_request" }, 400);
     if (decision === "not_member") return json({ error: "not_found" }, 404);

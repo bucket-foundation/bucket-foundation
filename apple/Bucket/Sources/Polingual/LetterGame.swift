@@ -286,8 +286,10 @@ struct LetterQuiz: View {
                 Text(question)
                     .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
                     .frame(maxWidth: .infinity)
-                SoundButtons(text: say, lang: ex.lang, size: sideways ? 52 : 64, plays: $plays)
-                SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? D8.vermilion : D8.malachite, size: sideways ? 36 : 44)
+                (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 12)) : AnyLayout(VStackLayout(spacing: 10))) {
+                    SoundButtons(text: say, lang: ex.lang, size: sideways ? 52 : 64, plays: $plays)
+                    SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? D8.vermilion : D8.malachite, size: sideways ? 36 : 44)
+                }
                 ZStack {
                     SoundHint(sound: sound, reading: false).opacity(hinted || picked != nil ? 1 : 0).accessibilityHidden(!hinted && picked == nil)
                     Button { hinted = true; tap() } label: { Label("Hint", systemImage: "lightbulb.fill") }
