@@ -1,5 +1,5 @@
-import { ImageResponse } from "next/og";
 import { OG_FONT_STACK, loadOgFonts } from "@/lib/og-fonts";
+import { renderOg } from "@/lib/og-render";
 import { langName, ogParams, shareView } from "@/lib/share";
 import { visualOrder } from "@/lib/rtl-shape";
 
@@ -14,9 +14,9 @@ export async function GET(req: Request) {
   const langLine = view.langs.map(langName).join(" · ");
   const streak = view.streak > 1 ? `${view.streak} day streak` : "";
   const text = [view.eyebrow, view.description, FOOTER, TAGLINE, langLine, streak, view.code, ...forms.flatMap((f) => [f.form, langName(f.lang)])].join(" ");
-  const fonts = await loadOgFonts(text, `${view.title} Polingual`);
+  const fontSet = await loadOgFonts(text, `${view.title} Polingual`);
   const wide = view.forms.length > 3;
-  return new ImageResponse(
+  return renderOg(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: "#F6EEDC", color: "#231F20", padding: "48px 64px", fontFamily: OG_FONT_STACK }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -47,6 +47,6 @@ export async function GET(req: Request) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630, ...(fonts.length > 0 ? { fonts } : {}), headers: { "cache-control": "public, max-age=86400, s-maxage=31536000, immutable" } },
+    fontSet,
   );
 }

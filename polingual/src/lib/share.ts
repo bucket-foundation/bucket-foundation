@@ -19,14 +19,28 @@ export type ShareView = {
   code: string;
 };
 
-const KEYS = ["id", "g", "f", "l", "r", "s", "d", "t", "b", "q", "c", "n", "k", "p", "m", "at"] as const;
+export const PARAM_LIMITS: Record<string, number> = { id: 80, g: 60, f: 400, l: 80, r: 8, s: 6, d: 80, t: 80, b: 60, q: 160, c: 10, n: 60, k: 10, p: 6, m: 6, at: 7 };
+
+const KEYS = Object.keys(PARAM_LIMITS);
 const CODE_RE = /^[0-9A-HJKMNP-TV-Z]{10}$/;
 const RTL = new Set(["ar", "fa", "he", "ur", "yi"]);
+
+const GRAPHEMES = new Intl.Segmenter("en", { granularity: "grapheme" });
+
+export function graphemeSlice(text: string, max: number): string {
+  let out = "";
+  let n = 0;
+  for (const { segment } of GRAPHEMES.segment(text)) {
+    if (n++ >= max) break;
+    out += segment;
+  }
+  return out;
+}
 
 export function one(params: Params, key: string, max = 200): string {
   const v = params[key];
   const s = (Array.isArray(v) ? v[0] : v) ?? "";
-  return s.trim().slice(0, max);
+  return graphemeSlice(s.trim(), max).trim();
 }
 
 export function shareKind(raw: string | undefined): ShareKind {
@@ -52,7 +66,7 @@ export function parseForms(raw: string): ShareForm[] {
     .split("|")
     .map((pair) => {
       const i = pair.indexOf(":");
-      return i > 0 ? { lang: pair.slice(0, i).slice(0, 8), form: pair.slice(i + 1).trim().slice(0, 40) } : null;
+      return i > 0 ? { lang: pair.slice(0, i).slice(0, 8), form: graphemeSlice(pair.slice(i + 1).trim(), 40) } : null;
     })
     .filter((f): f is ShareForm => !!f && f.form.length > 0)
     .slice(0, 6);
@@ -178,17 +192,21 @@ function build(kind: ShareKind, params: Params): Omit<ShareView, "kind"> {
 }
 
 export function shareView(kind: ShareKind, params: Params): ShareView {
-  const v = build(kind, params);
+  const v = build(kind, clampParams(params));
   return { ...v, kind, title: clip(v.title, OG_TITLE_MAX), description: clip(v.description, OG_DESCRIPTION_MAX) };
 }
 
-export function passQuery(params: Params): string {
-  const q = new URLSearchParams();
+export function clampParams(params: Params): Record<string, string> {
+  const out: Record<string, string> = {};
   for (const k of KEYS) {
-    const v = one(params, k, 400);
-    if (v) q.set(k, v);
+    const v = one(params, k, PARAM_LIMITS[k]);
+    if (v) out[k] = v;
   }
-  return q.toString();
+  return out;
+}
+
+export function passQuery(params: Params): string {
+  return new URLSearchParams(clampParams(params)).toString();
 }
 
 export function sharePath(kind: ShareKind, params: Params): string {
@@ -202,8 +220,7 @@ export function ogPath(kind: ShareKind, params: Params): string {
 }
 
 export function ogParams(search: URLSearchParams): { kind: ShareKind; params: Params } {
-  const params: Params = Object.fromEntries(search.entries());
-  return { kind: shareKind(search.get("kind") ?? ""), params };
+  return { kind: shareKind(search.get("kind") ?? ""), params: clampParams(Object.fromEntries(search.entries())) };
 }
 
 export function installHref(kind: ShareKind): string {

@@ -12,5 +12,5 @@ export function wordOgAlt(w: Word): string {
 }
 
 export function wordOgImage(w: Word): OgImage {
-  return { url: `${wordPath(w)}/og.png`, width: 1200, height: 630, type: "image/png", alt: wordOgAlt(w) };
+  return { url: `${wordPath(w)}/og`, width: 1200, height: 630, type: "image/png", alt: wordOgAlt(w) };
 }

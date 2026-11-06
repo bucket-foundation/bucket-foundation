@@ -100,7 +100,7 @@ test("every word page names the word in its image", async () => {
     const m = await wordPage.generateMetadata({ params: Promise.resolve({ slug: w.slug }) });
     checkPage(m, `${SITE}/word/${w.slug}`);
     const img = (m.openGraph as Og).images![0];
-    assert.equal(img.url, `${SITE}/word/${w.slug}/og.png`);
+    assert.equal(img.url, `${SITE}/word/${w.slug}/og`);
     assert.ok(img.alt!.toLowerCase().includes(w.en.toLowerCase()), img.alt);
   }
 });
