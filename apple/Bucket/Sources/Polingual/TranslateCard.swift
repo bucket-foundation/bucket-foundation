@@ -213,8 +213,13 @@ struct TranslateCard: View {
                             if let f = item.form(l) ?? lexicon[l] {
                                 HStack(spacing: 10) {
                                     FlagTile(lang: l, size: 26)
-                                    Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
-                                        .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        if item.form(l) == nil, answer?.glossed.contains(l) == true {
+                                            Text("Word by word").font(.caption.weight(.semibold)).foregroundStyle(soft)
+                                        }
+                                        Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                                            .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
+                                    }
                                     Spacer(minLength: 4)
                                     PlayButton(text: f, lang: l)
                                 }

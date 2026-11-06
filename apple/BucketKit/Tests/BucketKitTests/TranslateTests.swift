@@ -121,3 +121,29 @@ func lexiconShelf() -> LexiconShelf {
     _ = shelf.lexicon("nl")
     #expect(shelf.loaded == ["pt", "de", "fr", "nl"])
 }
+
+@Test func deckHitGlossesTargetsTheDeckLacks() throws {
+    let corpus = try translateCorpus()
+    let candidates = ["he", "fa", "ta", "th", "fi", "sv", "cs", "el", "hi", "vi"]
+    let item = try #require(corpus.items.first { item in
+        guard let en = item.form("en"), candidates.contains(where: { item.form($0) == nil }) else { return false }
+        let words = en.split(separator: " ")
+        return words.count == 2 && words.allSatisfy { $0.allSatisfy(\.isLetter) } && translateSearch(corpus, en, langs: ["en"], limit: 1).first?.itemId == item.id
+    })
+    let target = try #require(candidates.first { item.form($0) == nil })
+    let words = item.form("en")!.lowercased().split(separator: " ").map(String.init)
+    let tsv: [String: String] = [
+        target: "AAA\t\(words[0])\nBBB\t\(words[1])\n=\(words[0])\tAAA\n=\(words[1])\tBBB\n",
+        "en": "\(words[0])\t\t\n\(words[1])\t\t\n",
+    ]
+    let shelf = LexiconShelf(capacity: 8) { lang in
+        guard let text = tsv[lang] else { return nil }
+        return try? (Data(text.utf8) as NSData).compressed(using: .zlib) as Data
+    }
+    let answer = try #require(TranslateEngine.answer(item.form("en")!, from: ["en"], to: [target, "es"], corpus: corpus, shelf: shelf))
+    #expect(answer.layer == .deck)
+    #expect(answer.itemId == item.id)
+    #expect(answer.rows[target] == "AAA BBB")
+    #expect(answer.glossed == [target])
+    if let es = item.form("es") { #expect(answer.rows["es"] == es) }
+}

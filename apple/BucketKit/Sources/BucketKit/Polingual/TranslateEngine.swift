@@ -11,6 +11,7 @@ public struct TranslateAnswer: Sendable, Equatable {
     public let headword: String
     public let rows: [String: String]
     public var itemId: String? = nil
+    public var glossed: Set<String> = []
 }
 
 public enum TranslateEngine {
@@ -24,7 +25,20 @@ public enum TranslateEngine {
                 let fill = lexical(q, sources: [hit.matchedLang], targets: targets, shelf: shelf)
                 for (t, f) in fill?.rows ?? [:] where rows[t] == nil { rows[t] = f }
             }
-            if !rows.isEmpty { return TranslateAnswer(layer: .deck, source: hit.matchedLang, headword: item.form(hit.matchedLang) ?? q, rows: rows, itemId: item.id) }
+            var glossed: Set<String> = []
+            let missing = targets.filter { $0 != hit.matchedLang && rows[$0] == nil }
+            if !missing.isEmpty {
+                let pooled = poolSentence(q, sources: [hit.matchedLang], targets: missing, corpus: corpus)
+                for (t, f) in pooled?.rows ?? [:] where rows[t] == nil { rows[t] = f }
+                let still = missing.filter { rows[$0] == nil }
+                if !still.isEmpty, let g = gloss(q, sources: [hit.matchedLang], targets: still, shelf: shelf) {
+                    for (t, f) in g.rows where rows[t] == nil {
+                        rows[t] = f
+                        glossed.insert(t)
+                    }
+                }
+            }
+            if !rows.isEmpty { return TranslateAnswer(layer: .deck, source: hit.matchedLang, headword: item.form(hit.matchedLang) ?? q, rows: rows, itemId: item.id, glossed: glossed) }
         }
         if let lex = lexical(q, sources: sources, targets: targets, shelf: shelf) { return lex }
         if let corpus, let pooled = poolSentence(q, sources: sources, targets: targets, corpus: corpus) { return pooled }
