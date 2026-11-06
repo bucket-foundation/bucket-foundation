@@ -28,6 +28,8 @@ struct ScreenShareTests {
         #expect(SharedLink(URL(string: "https://example.com/s/w?g=x")!) == nil)
         #expect(SharedLink(URL(string: "https://polingual.com/s/d?id=math")!) == .deck("math"))
         #expect(SharedLink(URL(string: "https://www.polingual.com/s/w?g=night")!) == .word("night"))
+        #expect(SharedLink(URL(string: "https://polingual.com/word/good-night")!) == .word("good night"))
+        #expect(SharedLink(URL(string: "https://www.polingual.com/word")!) == .home)
     }
 
     @Test func polingualSharesPolingualLinks() {

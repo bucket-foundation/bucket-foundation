@@ -189,6 +189,10 @@ enum SharedLink: Equatable {
         guard ShareRoute.hosts.contains(url.host() ?? ""), let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         let q = Dictionary((c.queryItems ?? []).compactMap { i in i.value.map { (i.name, $0) } }, uniquingKeysWith: { a, _ in a })
         let parts = c.path.split(separator: "/").map(String.init)
+        if parts.first == "word" {
+            self = parts.count == 2 ? .word(parts[1].replacingOccurrences(of: "-", with: " ")) : .home
+            return
+        }
         guard parts.first == "s" else { return nil }
         switch parts.dropFirst().first {
         case "w": self = q["g"].map { .word($0) } ?? .home
