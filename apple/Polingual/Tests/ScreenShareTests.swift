@@ -1,12 +1,15 @@
 import Foundation
 import Testing
 @testable import Polingual
+#if os(iOS)
+import UIKit
+#endif
 
 @MainActor
 struct ScreenShareTests {
     @Test func wordLinkRoundTrips() {
         let page = SharePage.word(id: "night", gloss: "night", forms: [("fr", "nuit"), ("es", "noche"), ("de", "Nacht")])
-        #expect(page.url.absoluteString.hasPrefix("https://www.bucket.foundation/s/w?"))
+        #expect(page.url.absoluteString.hasPrefix("https://www.polingual.com/s/w?"))
         #expect(SharedLink(page.url) == .word("night"))
     }
 
@@ -23,11 +26,25 @@ struct ScreenShareTests {
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/c")!) == .home)
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s")!) == .home)
         #expect(SharedLink(URL(string: "https://example.com/s/w?g=x")!) == nil)
+        #expect(SharedLink(URL(string: "https://polingual.com/s/d?id=math")!) == .deck("math"))
+        #expect(SharedLink(URL(string: "https://www.polingual.com/s/w?g=night")!) == .word("night"))
+        #expect(SharedLink(URL(string: "https://polingual.com/word/good-night")!) == .word("good night"))
+        #expect(SharedLink(URL(string: "https://www.polingual.com/word")!) == .home)
+    }
+
+    @Test func polingualSharesPolingualLinks() {
+        #expect(SharePage.app.url.host() == "www.polingual.com")
+        #expect(SharePage.app.title.contains("Polingual"))
+        #expect(SharePage.group(code: "7K3M9QX2PD", name: "Club", kind: .friends).title == "Join Club on Polingual")
+        #expect(Share.appLink.absoluteString == "https://www.polingual.com/?utm_source=app_share")
+        let es = Bundle.main.path(forResource: "es", ofType: "lproj").flatMap(Bundle.init(path:))
+        #expect(es?.localizedString(forKey: "Join %@ on %@", value: nil, table: nil) == "Únete a %1$@ en %2$@")
+        #expect(es?.localizedString(forKey: "Learn languages together on Polingual", value: nil, table: nil) == "Aprende idiomas juntos en Polingual")
     }
 
     @Test func groupInviteLinkRoundTrips() {
         let page = SharePage.group(code: "7K3M9QX2PD", name: "Rossi family", kind: .family)
-        #expect(page.url.absoluteString == "https://www.bucket.foundation/s/g?c=7K3M9QX2PD&n=Rossi%20family&k=family")
+        #expect(page.url.absoluteString == "https://www.polingual.com/s/g?c=7K3M9QX2PD&n=Rossi%20family&k=family")
         #expect(SharedLink(page.url) == .group("7K3M9QX2PD"))
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/g?c=bad")!) == .home)
     }
@@ -58,3 +75,24 @@ struct ScreenShareTests {
         #expect(s.current == .app)
     }
 }
+
+#if os(iOS)
+@MainActor
+struct ShareLinkItemTests {
+    let page = SharePage.group(code: "7K3M9QX2PD", name: "Club", kind: .friends)
+
+    @Test func appleTargetsGetTheLinkForARichPreview() {
+        for type in [UIActivity.ActivityType.message, .mail, .airDrop, .copyToPasteboard] {
+            #expect(ShareLinkItem.item(page, for: type) as? URL == page.url)
+        }
+    }
+
+    @Test func otherTargetsGetTitleAndLinkOnce() {
+        for type in [UIActivity.ActivityType("net.whatsapp.WhatsApp.ShareExtension"), UIActivity.ActivityType("ph.telegra.Telegraph.Share")] {
+            let text = ShareLinkItem.item(page, for: type) as? String
+            #expect(text == "Join Club on Polingual\n" + page.url.absoluteString)
+            #expect(text?.components(separatedBy: page.url.absoluteString).count == 2)
+        }
+    }
+}
+#endif

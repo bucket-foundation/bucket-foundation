@@ -29,8 +29,9 @@ test("llms.txt links the pages it names", () => {
 });
 
 test("layout metadata carries the brand and an og image", () => {
-  const src = readFileSync(join(__dirname, "../app/layout.tsx"), "utf8");
+  const src = readFileSync(join(__dirname, "../app/root-meta.ts"), "utf8");
   assert.match(src, /template: "%s · Polingual"/);
-  assert.match(src, /\/d8\/og\.png/);
+  assert.match(src, /images: \[DEFAULT_OG_IMAGE\]/);
+  assert.match(readFileSync(join(__dirname, "meta.ts"), "utf8"), /\/d8\/og\.png/);
   assert.ok(!/—/.test(src));
 });

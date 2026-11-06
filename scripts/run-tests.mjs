@@ -51,7 +51,7 @@ const SUITES = {
       "scripts/test-whats-new-email.ts",
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
-      "scripts/test-academy-{engine,question-types,locale-number,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,placement-cefr,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted,groups,group-shares,apns,streak-reminder,review-demo}.ts",
+      "scripts/test-academy-{engine,question-types,locale-number,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,placement-cefr,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted,groups,group-shares,apns,streak-reminder,review-demo,translation-report}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-academy-fsrs-fit.ts",
       "scripts/test-academy-delete-account.ts",
@@ -125,7 +125,7 @@ const SUITES = {
       "scripts/test-research-tools-routes.ts",
     ],
     exclude: [
-      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language,work-quiz-route,work-quiz-page,work-quiz-resources}.ts",
+      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language,work-quiz-route,work-quiz-page,work-quiz-resources,learn-gate,parent-consent}.ts",
       "scripts/test-research-os-*-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts",
     ],
     commands: [

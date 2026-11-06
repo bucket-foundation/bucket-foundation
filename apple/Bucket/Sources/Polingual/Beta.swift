@@ -31,6 +31,7 @@ final class Beta {
             flags = await BetaFlags.fetch(app: BucketAPI.appName, token: token)
             _ = await events.flush(token: token, owner: account.session?.userId)
         }
+        TranslationReporter.shared.flush()
     }
 
     func signedOut() {

@@ -327,15 +327,20 @@ struct LetterQuiz: View {
 
     func tile(_ o: String) -> some View {
         let state: RowState = picked == nil ? .other : o == ex.answer ? .right : o == picked ? .wrong : .other
+        let mine = LetterSounds.lookup(ex.lang, o).map { LetterSounds.spoken(ex.lang, $0) } ?? o
         return Button {
             if picked == nil {
                 picked = o
                 haptic(o == ex.answer)
-                if o != ex.answer { shake += 1 }
-                LangVoice.shared.speak(say, ex.lang)
+                if o == ex.answer {
+                    LangVoice.shared.speak(say, ex.lang)
+                } else {
+                    shake += 1
+                    LangVoice.shared.speakTogether([VoiceLine(lang: ex.lang, text: mine), VoiceLine(lang: ex.lang, text: say)])
+                }
                 plays += 1
-            } else if let s = LetterSounds.lookup(ex.lang, o) {
-                LangVoice.shared.speak(LetterSounds.spoken(ex.lang, s), ex.lang)
+            } else {
+                LangVoice.shared.speak(o == ex.answer ? say : mine, ex.lang)
             }
         } label: {
             VStack(spacing: 0) {

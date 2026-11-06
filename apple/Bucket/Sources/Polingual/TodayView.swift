@@ -18,6 +18,14 @@ struct TodayView: View {
 
     var decks: [DeckEntry] { subjects?.decks ?? [] }
 
+    var startAnchor: UnitPoint {
+        #if DEBUG
+        if Launch.flag("-todayScrollEnd") { return .bottom }
+        if Launch.flag("-todayScrollMid") { return .center }
+        #endif
+        return .top
+    }
+
     var deckStates: [EngineState] { decks.compactMap { subjects?.state($0.id) } }
 
     var loaded: Bool {
@@ -47,7 +55,7 @@ struct TodayView: View {
         var title: String {
             switch self {
             case .deck(let w): w.entry.title
-            case .lang(let s): s.name
+            case .lang(let s): s.title
             case .game(let g): g.title
             case .read(let t): t.title
             case .activity(let a): a.title
@@ -226,8 +234,17 @@ struct TodayView: View {
         case .activity(.alphabet(let lang)): [lang]
         default: []
         }
+        let look: TileLook = switch item {
+        case .deck(let w): TodayLooks.branch(w.entry.id)
+        case .lang(let s): TodayLooks.lang(s.targets)
+        case .game(let game): TodayLooks.game(game)
+        case .read(let topic): TodayLooks.branch(topic.branch)
+        case .activity(.listen): TodayLooks.listen
+        case .activity(.watch): TodayLooks.watch
+        case .activity(.alphabet): TodayLooks.alphabet
+        }
         let share = did + (count ?? 0)
-        return TodayWidget(symbol: symbol, branch: branch, flags: flags, title: item.title, detail: detail(item, now), left: count, progress: done ? 1 : share > 0 ? Double(did) / Double(share) : 0, done: done, dragId: item.id) { open(item) }
+        return TodayWidget(symbol: symbol, branch: branch, flags: flags, title: item.title, detail: detail(item, now), left: count, progress: done ? 1 : share > 0 ? Double(did) / Double(share) : 0, done: done, look: look, dragId: item.id) { open(item) }
             .contextMenu {
                 Button("Open", systemImage: "play.fill") { open(item) }
                 Button("Move to top", systemImage: "arrow.up.to.line") { plan.move(item.id, toTop: true) }
@@ -245,7 +262,7 @@ struct TodayView: View {
                 if over { dropTarget = item.id } else if dropTarget == item.id { dropTarget = nil }
             }
             .overlay {
-                if dropTarget == item.id { RoundedRectangle(cornerRadius: 22).strokeBorder(D8.lapis, lineWidth: 3).allowsHitTesting(false) }
+                if dropTarget == item.id { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.lapis, lineWidth: 3).allowsHitTesting(false) }
             }
             .accessibilityIdentifier("today.widget.\(item.id)")
     }
@@ -296,10 +313,7 @@ struct TodayView: View {
                     }
                     .todayCard()
                     if !langs.systems.isEmpty {
-                        VoiceCircle {
-                            DeepLink.shared.listen = true
-                            path.append(TodayRoute.translate)
-                        }
+                        TranslateCard(today: true)
                     }
                     VStack(alignment: .leading, spacing: 10) {
                         Eyebrow(text: "Your day").padding(.leading, 16)
@@ -318,6 +332,7 @@ struct TodayView: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
             }
+            .defaultScrollAnchor(startAnchor)
             }
             }
             .animation(.easeOut(duration: 0.35), value: loaded)
@@ -336,6 +351,15 @@ struct TodayView: View {
                 }
             }
             .onChange(of: defaultItems, initial: true) { _, items in if loaded { plan.adopt(items) } }
+            #if DEBUG
+            .task {
+                if Launch.flag("-todayDemoPlan") {
+                    for item in [TodayItem.activity(.listen), .activity(.watch), .game(.daily)] where !plan.contains(item.id) { plan.add(item) }
+                    plan.finish(TodayActivity.watch.id)
+                }
+                if Launch.flag("-todayPicker") { picking = true }
+            }
+            #endif
             .onChange(of: loaded) { _, ready in if ready { plan.adopt(defaultItems) } }
             .onChange(of: phase) { _, p in
                 guard p == .active else { return }
@@ -376,7 +400,7 @@ struct Tally: View {
     var body: some View {
         VStack(spacing: 2) {
             Text("\(n)").font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(n > 0 ? color : Palette.muted).monospacedDigit()
-            Text(label).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+            Text(LocalizedStringKey(label)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .combine)

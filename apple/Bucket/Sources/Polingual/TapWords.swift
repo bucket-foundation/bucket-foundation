@@ -80,7 +80,11 @@ struct WordCard: View {
                     Text("No entry for this word yet.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
                 if reveal {
-                    Button("Full detail") { full = true }.buttonStyle(.borderless)
+                    HStack {
+                        Button("Full detail") { full = true }.buttonStyle(.borderless)
+                        Spacer(minLength: 8)
+                        WrongTranslationLink(subject: detail.gloss.map { ReportSubject(lang: detail.lang, itemId: detail.itemId, text: detail.word, shown: $0, context: "word:tap") })
+                    }
                 }
             }
             .padding(20)

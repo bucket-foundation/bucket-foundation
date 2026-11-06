@@ -230,7 +230,7 @@ export default function Search() {
               {items.map((p) => (
                 <Link
                   key={p.id}
-                  href={`/word/${encodeURIComponent(p.id)}`}
+                  href={`/photon/${encodeURIComponent(p.id)}`}
                   className="block rounded-xl bg-white px-5 py-4 transition hover:shadow-md"
                   style={{
                     border: `1px solid ${"var(--hairline)"}`,

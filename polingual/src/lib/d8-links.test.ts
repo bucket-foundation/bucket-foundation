@@ -6,6 +6,7 @@ import { join } from "node:path";
 const root = join(__dirname, "../..");
 const d8 = join(root, "public/d8");
 const pages = readdirSync(d8).filter((f) => f.endsWith(".html"));
+const groups = ["", ...readdirSync(join(root, "src/app")).filter((d) => /^\(.+\)$/.test(d))];
 
 for (const page of pages) {
   const html = readFileSync(join(d8, page), "utf8");
@@ -18,7 +19,7 @@ for (const page of pages) {
   test(`${page} internal links resolve to a route`, () => {
     for (const href of hrefs.filter((h) => h.startsWith("/") && h !== "/")) {
       const route = href.split(/[?#]/)[0].replace(/^\//, "");
-      const ok = existsSync(join(root, "src/app", route, "page.tsx")) || existsSync(join(root, "public", route));
+      const ok = groups.some((g) => existsSync(join(root, "src/app", g, route, "page.tsx"))) || existsSync(join(root, "public", route));
       assert.ok(ok, `${page}: ${href} has no page`);
     }
   });

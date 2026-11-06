@@ -34,6 +34,16 @@ private let standings = ShareStandings(group: "Rossi family", rows: [
         for o in every { #expect(o.route.url.absoluteString.hasPrefix("https://www.bucket.foundation/s/")) }
     }
 
+    @Test func eachAppSharesItsOwnHost() {
+        #expect(ShareRoute.host(for: "polingual") == "www.polingual.com")
+        #expect(ShareRoute.host(for: "bucket") == "www.bucket.foundation")
+        #expect(ShareRoute.host == ShareRoute.host(for: BucketAPI.appName))
+        let route = ShareRoute.langs(["fr"], root: "en")
+        #expect(route.url(host: ShareRoute.host(for: "polingual")).absoluteString == "https://www.polingual.com/s/l?l=fr&r=en")
+        #expect(route.url(host: ShareRoute.host(for: "bucket")).absoluteString == "https://www.bucket.foundation/s/l?l=fr&r=en")
+        #expect(ShareRoute.hosts.isSuperset(of: ["www.polingual.com", "polingual.com", "www.bucket.foundation", "bucket.foundation"]))
+    }
+
     @Test func everyObjectOffersTwoOrThreeDistinctCards() {
         for o in every {
             #expect((2...3).contains(o.styles.count), "\(o.kind)")
