@@ -4,16 +4,12 @@ import Legal from "../legal";
 import styles from "./word.module.css";
 import { appJsonLd, jsonLdScript, SITE, FACTS } from "@/lib/facts";
 import { WORDS, capitalize, wordPath, wordsByTheme } from "@/lib/words";
+import { pageMeta } from "@/lib/meta";
 
 const title = `${WORDS.length} words in ${FACTS.languageCount} languages`;
 const description = `Common words from numbers to verbs, each in up to ${FACTS.languageCount} languages with native script and pronunciation. Browse by theme.`;
 
-export const metadata: Metadata = {
-  title: { absolute: `${title} | Polingual` },
-  description,
-  alternates: { canonical: "/word" },
-  openGraph: { type: "website", title, description, url: "/word", images: [{ url: "/d8/og.png", width: 1200, height: 630 }] },
-};
+export const metadata: Metadata = pageMeta({ path: "/word", title, documentTitle: `${title} | Polingual`, description });
 
 export default function Page() {
   const themes = wordsByTheme();

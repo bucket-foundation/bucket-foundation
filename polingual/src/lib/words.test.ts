@@ -53,7 +53,7 @@ test("descriptions stay within the snippet length", () => {
 });
 
 test("photon urls redirect to /photon in raw and encoded form", async () => {
-  const config = require("../../next.config.js");
+  const { default: config } = await import("../../next.config.js");
   const [rule] = await config.redirects();
   assert.equal(rule.destination, "/photon/:id");
   const pattern = new RegExp(`^${rule.source.replace(":id(", "(")}$`);

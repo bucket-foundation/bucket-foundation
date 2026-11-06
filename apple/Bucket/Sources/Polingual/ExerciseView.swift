@@ -88,6 +88,7 @@ struct ExerciseView: View {
     var accepted: [String] { ex.accept ?? [ex.answer] }
     var answered: Bool { ex.kind == .intro || picked != nil || verdict != nil || matchDone }
     var slow: Bool { Date().timeIntervalSince(started) > 15 }
+    var reportable: Bool { answered || [.letter, .letterSound, .minimalPair, .blend].contains(ex.kind) }
     var targetName: String { langName(ex.lang) }
 
     func finish(_ ok: Bool, _ v: Verdict? = nil) {
@@ -126,6 +127,7 @@ struct ExerciseView: View {
             }
         }
         .exerciseCard(tight: sideways)
+        .wrongTranslation(ReportSubject(ex, surface: "card"), visible: reportable)
         .wordTaps(reveal: answered)
         .onAppear {
             #if DEBUG

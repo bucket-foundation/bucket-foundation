@@ -16,6 +16,7 @@ struct PolingualApp: App {
     #endif
 
     init() {
+        InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let api = BucketAPI()
         let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
@@ -46,6 +47,7 @@ struct PolingualApp: App {
                 .environment(subs)
                 .environment(reminders)
                 .environment(groups)
+                .interfaceLanguage(store)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }

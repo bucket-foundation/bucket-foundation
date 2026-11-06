@@ -37,7 +37,7 @@ struct GroupSocialTests {
     @Test func groupPageCarriesTheInvite() {
         let g = LearningGroup(id: "g", name: "Club", kind: .friends, code: "AAAAAAAAAA", role: .member, members: [])
         let page = SharePage.group(g)
-        #expect(page.url.absoluteString == "https://www.bucket.foundation/s/g?c=AAAAAAAAAA&n=Club&k=friends")
+        #expect(page.url.absoluteString == "https://www.polingual.com/s/g?c=AAAAAAAAAA&n=Club&k=friends")
         #expect(SharedLink(page.url) == .group("AAAAAAAAAA"))
     }
 }

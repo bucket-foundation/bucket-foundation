@@ -160,7 +160,7 @@ struct TodayPicker: View {
             List {
                 if !langs.systems.isEmpty {
                     Section {
-                        ForEach(langs.systems) { row($0.name, .system($0)) }
+                        ForEach(langs.systems) { row($0.title, .system($0)) }
                     } header: {
                         Eyebrow(text: "Languages")
                     }

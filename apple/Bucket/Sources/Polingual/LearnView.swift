@@ -198,7 +198,7 @@ struct LangTile: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) { ForEach(system.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 28) } }
                     .frame(height: 34, alignment: .leading)
-                Text(system.name).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(system.title).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
                     .lineLimit(2, reservesSpace: true).multilineTextAlignment(.leading)
                 ProgressView(value: Double(sum.started), total: Double(max(1, sum.total))).tint(D8.malachite)
                 Text("\(sum.started) of \(sum.total) cards").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
@@ -213,7 +213,7 @@ struct LangTile: View {
         .buttonStyle(.plain)
         .overlay(alignment: .topTrailing) { AddToToday(item: .system(system), look: .icon).padding(8) }
         .contextMenu { Button("Remove", systemImage: "minus.circle", role: .destructive) { removing = true } }
-        .confirmationDialog("Remove \(system.name)?", isPresented: $removing, titleVisibility: .visible) {
+        .confirmationDialog("Remove \(system.title)?", isPresented: $removing, titleVisibility: .visible) {
             Button("Remove", role: .destructive) { Task { await store.remove(system.id) } }
         } message: {
             Text("Progress stays saved and returns if you build the same system again.")

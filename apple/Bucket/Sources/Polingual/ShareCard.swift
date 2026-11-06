@@ -77,7 +77,9 @@ struct WordShareCard: View {
 }
 
 enum Share {
-    static var appLink: URL { URL(string: "https://apps.apple.com/app/id\(Feedback.appID)")! }
+    static var appLink: URL {
+        URL(string: Feedback.isPolingual ? "https://www.polingual.com/?utm_source=app_share" : "https://apps.apple.com/app/id\(Feedback.appID)")!
+    }
 
     @MainActor
     static func renderer(_ object: ShareObject, _ style: ShareStyle) -> ImageRenderer<ShareCardView> {
@@ -89,7 +91,7 @@ enum Share {
 
 struct InviteFriend: View {
     var body: some View {
-        ShareLink(item: Share.appLink, message: Text("I'm learning languages together on \(Feedback.appName). Join me:")) {
+        ShareLink(item: Share.appLink, subject: Text(Feedback.appName), message: Text("I'm learning languages together on \(Feedback.appName). Join me:")) {
             Label("Invite a friend", systemImage: "person.badge.plus")
         }
     }

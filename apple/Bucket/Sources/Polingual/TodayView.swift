@@ -47,7 +47,7 @@ struct TodayView: View {
         var title: String {
             switch self {
             case .deck(let w): w.entry.title
-            case .lang(let s): s.name
+            case .lang(let s): s.title
             case .game(let g): g.title
             case .read(let t): t.title
             case .activity(let a): a.title
@@ -376,7 +376,7 @@ struct Tally: View {
     var body: some View {
         VStack(spacing: 2) {
             Text("\(n)").font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(n > 0 ? color : Palette.muted).monospacedDigit()
-            Text(label).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+            Text(LocalizedStringKey(label)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .combine)

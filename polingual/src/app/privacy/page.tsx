@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Legal from "../legal";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = { title: { absolute: "Polingual Privacy Policy" }, description: "How Polingual handles your data.", alternates: { canonical: "/privacy" } };
+export const metadata: Metadata = pageMeta({ path: "/privacy", title: "Polingual Privacy Policy", description: "How Polingual handles your data: what we collect, why, and how to delete it." });
 
 export default function Page() {
   return (
