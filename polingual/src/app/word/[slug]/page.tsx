@@ -6,6 +6,8 @@ import styles from "../word.module.css";
 import { appJsonLd, jsonLdScript } from "@/lib/facts";
 import { GUIDES } from "@/lib/guides";
 import { LANGS, WORDS, breadcrumbJsonLd, capitalize, ctaHref, relatedWords, themeName, word, wordDescription, wordJsonLd, wordPath, wordTitle } from "@/lib/words";
+import { pageMeta } from "@/lib/meta";
+import { wordOgImage } from "@/lib/word-og";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -21,13 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = wordTitle(w);
   const description = wordDescription(w);
   const url = wordPath(w);
-  return {
-    title: { absolute: title },
-    description,
-    alternates: { canonical: url },
-    openGraph: { type: "article", title, description, url },
-    twitter: { card: "summary_large_image", title, description },
-  };
+  return pageMeta({ path: url, title: `${capitalize(w.en)} in ${w.forms.length} languages`, documentTitle: title, description, type: "article", image: wordOgImage(w) });
 }
 
 export default async function Page({ params }: Props) {

@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "katex/dist/katex.min.css";
 import "./globals.css";
+import { APPLE_TOUCH_ICON, DEFAULT_OG_IMAGE, LOCALE, SITE_NAME, THEME_COLOR } from "@/lib/meta";
 
 const description = "Polingual teaches several languages at once on iPhone and iPad. 29 languages, one spaced review queue, every word spoken aloud.";
 
@@ -10,9 +11,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.polingual.com"),
   alternates: { types: { "application/rss+xml": [{ url: "/feed.xml", title: "Polingual" }] } },
   applicationName: "Polingual",
-  openGraph: { type: "website", siteName: "Polingual", title: "Polingual", description, url: "https://www.polingual.com", images: [{ url: "/d8/og.png", width: 1200, height: 630, alt: "Polingual word tiles in six scripts" }] },
-  twitter: { card: "summary_large_image", images: ["/d8/og.png"] },
+  icons: { apple: [{ url: APPLE_TOUCH_ICON, sizes: "180x180" }] },
+  openGraph: { type: "website", siteName: SITE_NAME, locale: LOCALE, title: SITE_NAME, description, images: [DEFAULT_OG_IMAGE] },
+  twitter: { card: "summary_large_image", title: SITE_NAME, description, images: [{ url: DEFAULT_OG_IMAGE.url, alt: DEFAULT_OG_IMAGE.alt }] },
 };
+
+export const viewport: Viewport = { themeColor: THEME_COLOR };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -1,8 +1,9 @@
 import Search from "../search";
 import Signup from "../signup";
 import { Tex } from "../tex";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata = { robots: { index: false, follow: true }, alternates: { canonical: "/archive" } };
+export const metadata = pageMeta({ path: "/archive", title: "Polingual archive", documentTitle: "Polingual", description: "The Polingual word archive: search words by meaning, sound and spelling across languages.", noindex: true });
 
 const STATS = [
   ["6.5M", "words indexed"],
