@@ -9,7 +9,7 @@ import SyncedAccountPill from "@/components/auth/SyncedAccountPill";
 import { pillHidden } from "@/lib/account-pill";
 
 const BUTTON =
-  "small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] tracking-[0.14em] px-4 rounded-sm hover:bg-[color:var(--aegean-deep)] transition inline-flex items-center whitespace-nowrap h-11";
+  "small-caps text-[11px] text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] tracking-[0.14em] px-2 underline underline-offset-4 transition inline-flex items-center whitespace-nowrap h-11";
 const DRAWER_BUTTON =
   "block text-center small-caps text-[12px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-6 py-4 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] min-h-[52px] tracking-[0.1em]";
 
