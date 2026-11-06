@@ -11,7 +11,7 @@ export function Tile({ lang, code, label, word, reading, rtl }: TileProps) {
       <b className={`${styles.word} ${size}`} lang={lang} dir={rtl ? "rtl" : undefined}>
         {word}
       </b>
-      {reading ? <i className={styles.reading}>{reading}</i> : null}
+      {reading ? <i className={styles.reading} dir="ltr">{reading}</i> : null}
       <span className={styles.label}>{label}</span>
     </li>
   );
