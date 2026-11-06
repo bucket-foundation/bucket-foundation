@@ -302,23 +302,6 @@ struct VoiceTile: View {
     }
 }
 
-struct VoiceCircle: View {
-    let open: () -> Void
-
-    var body: some View {
-        Button(action: open) {
-            Image(systemName: "mic.fill").font(.system(size: 22, weight: .bold)).foregroundStyle(Palette.muted)
-                .frame(width: 56, height: 56)
-                .overlay { Circle().strokeBorder(D8.edge, lineWidth: 2) }
-                .contentShape(.circle)
-        }
-        .buttonStyle(.plain)
-        .frame(maxWidth: .infinity)
-        .accessibilityLabel(Text("Translate"))
-        .accessibilityIdentifier("voiceTile")
-    }
-}
-
 struct TranslateScreen: View {
     var body: some View {
         List {

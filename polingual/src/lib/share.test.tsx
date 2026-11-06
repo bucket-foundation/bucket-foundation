@@ -11,7 +11,7 @@ import { OG_CACHE_FAIL, OG_CACHE_OK, renderOg } from "./og-render";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { GET as shareOg } from "../app/api/share/og/route";
-import { GET as wordOg } from "../app/word/[slug]/og/route";
+import { GET as wordOg } from "../app/(site)/word/[slug]/og/route";
 import { GET as aasa } from "../app/.well-known/apple-app-site-association/route";
 
 const PNG = [0x89, 0x50, 0x4e, 0x47];
