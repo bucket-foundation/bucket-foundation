@@ -154,3 +154,48 @@ test("one host and five phones play a whole game on the local stack", async ({ b
   await expect(phones[1].getByTestId("phone-finale")).toBeVisible({ timeout: 30_000 });
   await host.getByTestId("end").click();
 });
+
+test("without school mode the board and phones show the app link, and an RTL phone plays Arabic options", async ({ browser }) => {
+  mkdirSync(SHOTS, { recursive: true });
+  const hostCtx = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+  const host = await hostCtx.newPage();
+  await signInHost(host);
+  await host.getByTestId("target-es").click();
+  await host.getByTestId("target-ar").click();
+  await host.getByTestId("create-room").click();
+  await expect(host.getByTestId("board-lobby")).toBeVisible({ timeout: 30_000 });
+  const code = ((await host.getByTestId("room-code").textContent()) ?? "").trim();
+  const p = await phone(browser, code, false);
+  await p.evaluate(() => {
+    document.documentElement.dir = "rtl";
+    document.documentElement.lang = "ar";
+  });
+  await p.getByTestId("nickname").first().click();
+  await expect(p.getByTestId("phone-lobby")).toBeVisible({ timeout: 30_000 });
+  await host.getByTestId("start").click();
+  let shot = false;
+  for (let n = 1; n <= 15 && !shot; n++) {
+    await expect(p.getByTestId("tile-A")).toBeEnabled({ timeout: 20_000 });
+    const text = (await p.getByTestId("prompt").textContent()) ?? "";
+    const options = (await p.getByTestId("tiles").textContent()) ?? "";
+    if (/Pick the word/.test(text) && /[\u0600-\u06FF]/.test(options)) {
+      const mark = await p.getByTestId("tile-A").locator("svg").boundingBox();
+      const label = await p.getByTestId("tile-A").locator("span").last().boundingBox();
+      expect(mark!.x).toBeGreaterThan(label!.x);
+      await p.screenshot({ path: `${SHOTS}/phone-question-rtl-390.png` });
+      shot = true;
+    }
+    await p.getByTestId("tile-A").click();
+    await expect(host.getByTestId("board-reveal")).toBeVisible({ timeout: 15_000 });
+    if (!shot) {
+      await host.getByTestId("skip").click();
+      if (n % 5 === 0) await host.getByTestId("skip").click();
+    }
+  }
+  expect(shot, "an Arabic pick-the-word question came up").toBe(true);
+  await host.getByTestId("end").click();
+  await expect(host.getByTestId("board-finale")).toBeVisible({ timeout: 15_000 });
+  await expect(host.getByTestId("board-promo")).toBeVisible();
+  await expect(p.getByTestId("phone-finale")).toBeVisible({ timeout: 15_000 });
+  await expect(p.getByTestId("app-link")).toBeVisible();
+});

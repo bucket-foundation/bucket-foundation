@@ -161,3 +161,8 @@ export async function playAll(items: SpeakItem[]) {
   }
   if (t === token) set(IDLE);
 }
+
+export function toggle(item: SpeakItem, playing: boolean) {
+  if (playing) stop();
+  else void play(item);
+}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { postgrestRpc, type LiveDeps, type LiveResult } from "./live";
+import { clientIpFrom, postgrestRpc, type LiveDeps, type LiveResult } from "./live";
 import { buildRoomSet } from "./generators";
 
 const ORIGINS = new Set(["https://polingual.com", "https://www.polingual.com", "https://bucket.foundation", "https://www.bucket.foundation"]);
@@ -38,5 +38,5 @@ export async function readJson(req: NextRequest): Promise<unknown> {
 }
 
 export function clientIp(req: NextRequest): string | null {
-  return req.headers.get("x-real-ip") || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || null;
+  return clientIpFrom(req.headers);
 }

@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
 import { createRoomKeys, hostToken, playerToken, readToken, type PlayerClaims } from "./keys";
-import { createRoom, hostAction, ipKey, joinRoom, medianGrace, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
+import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
 import { isNickname, nicknameChoices } from "./nicknames";
 import { parseSettings } from "./questions";
 import { verifyEvent } from "./verify";
@@ -311,4 +311,27 @@ test("room creation passes School mode to the database", async () => {
   await createRoom("Bearer good-session", { settings: { targets: ["es"] } }, d);
   await createRoom("Bearer good-session", { settings: { targets: ["es"] }, school_mode: "yes" }, d);
   assert.deepEqual(seen.map((s) => s.school_mode), [true, false, false]);
+});
+
+test("after a rotation the last event goes out on the old and the new topic", async () => {
+  const sent: Sent[] = [];
+  const old = randomUUID();
+  const d = deps(async () => ({ data: { room_id: RID, topic: TOPIC, topics: [TOPIC, old], sign_key: KEYS.signKey, events: [{ seq: 9, type: "rotate", issued_at: NOW, payload: {} }] } }), sent);
+  assert.equal((await hostAction(RID, "rotate", host(), d)).status, 200);
+  const call = sent.find((s) => s.url.endsWith("/realtime/v1/api/broadcast"))!;
+  const msgs = (call.body as { messages: { topic: string; payload: unknown }[] }).messages;
+  assert.deepEqual(msgs.map((m) => m.topic), [`stoa:${TOPIC}`, `stoa:${old}`]);
+  assert.deepEqual(msgs[0].payload, msgs[1].payload);
+  const v = await verifyEvent(msgs[1].payload, { roomId: RID, lastSeq: 8, publicKey: KEYS.verifyKey, now: NOW, clockOffsetMs: 0 });
+  assert.equal(v.ok && v.type, "rotate");
+});
+
+test("the client IP comes only from x-real-ip, which Vercel sets and overwrites", () => {
+  const h = (o: Record<string, string>) => new Headers(o);
+  assert.equal(clientIpFrom(h({ "x-real-ip": "203.0.113.7", "x-forwarded-for": "6.6.6.6, 203.0.113.7" })), "203.0.113.7", "a spoofed forwarded-for is ignored");
+  assert.equal(clientIpFrom(h({ "x-real-ip": " 2001:db8::1 " })), "2001:db8::1");
+  assert.equal(clientIpFrom(h({ "x-forwarded-for": "198.51.100.4" })), null, "forwarded-for alone is never trusted");
+  assert.equal(clientIpFrom(h({ "x-real-ip": "not an ip" })), null);
+  assert.equal(clientIpFrom(h({})), null);
+  assert.notEqual(ipKey("203.0.113.7"), ipKey(null));
 });
