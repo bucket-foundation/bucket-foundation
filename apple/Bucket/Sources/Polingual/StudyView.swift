@@ -185,8 +185,7 @@ struct StudyView: View {
                         FeedbackLink()
                         ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
                         Button("See progress") {
-                            path.removeLast()
-                            path.append(LangRoute.system(system.id))
+                            path.replaceTop(with: LangRoute.system(system.id))
                         }
                         .buttonStyle(D8Primary())
                         Button("Another round") {
