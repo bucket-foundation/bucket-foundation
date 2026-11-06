@@ -30,6 +30,7 @@ struct TranslateCard: View {
     @State private var listening = false
     @State private var missedVoice = false
     @State private var answer: TranslateAnswer?
+    @State private var loadingLexicon = false
     @FocusState private var focused: Bool
 
     nonisolated static let lexicons = LexiconShelf()
@@ -142,6 +143,8 @@ struct TranslateCard: View {
                 } else if missedVoice {
                     Text("Didn't catch that. Tap the mic and try again.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
+                Text("Loading dictionary…").font(.caption).foregroundStyle(Palette.muted)
+                    .frame(height: 16).opacity(loadingLexicon ? 1 : 0).accessibilityHidden(!loadingLexicon)
                 if sentence {
                     SentenceTranslations(text: query, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:])
                 } else if picked == nil, let answer, answer.layer != .deck {
@@ -228,9 +231,12 @@ struct TranslateCard: View {
         guard !Task.isCancelled else { return }
         let order = from.map { [$0] } ?? ([guess] + langs.filter { $0 != guess })
         let targets = shown
+        let warm = Set(TranslateCard.lexicons.loaded)
+        loadingLexicon = (order + targets).contains { !warm.contains($0) }
         let result = await Task.detached(priority: .userInitiated) {
             TranslateEngine.answer(q, from: order, to: targets, corpus: corpus, shelf: TranslateCard.lexicons)
         }.value
+        loadingLexicon = false
         guard !Task.isCancelled, q == query else { return }
         answer = result
     }
