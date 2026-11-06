@@ -64,11 +64,11 @@ begin
   assert pg_temp.raises(format('insert into bucket.live_players (room_id, nickname_key) values (%L, %L)', open_old, 'Bobby Tables'), '23514'),
     'nicknames come from the generated key format';
 
-  update bucket.live_rooms set created_at = clock_timestamp() - interval '28 hours', expires_at = clock_timestamp() - interval '25 hours',
-    phase = 'closed', closed_at = clock_timestamp() - interval '25 hours' where id = old;
-  update bucket.live_rooms set created_at = clock_timestamp() - interval '28 hours', expires_at = clock_timestamp() - interval '25 hours'
+  update bucket.live_rooms set created_at = now() - interval '28 hours', expires_at = now() - interval '25 hours',
+    phase = 'closed', closed_at = now() - interval '25 hours' where id = old;
+  update bucket.live_rooms set created_at = now() - interval '28 hours', expires_at = now() - interval '25 hours'
     where id = open_old;
-  update bucket.live_rooms set phase = 'closed', closed_at = clock_timestamp() - interval '23 hours' where id = fresh;
+  update bucket.live_rooms set phase = 'closed', closed_at = now() - interval '23 hours' where id = fresh;
 
   n := bucket.live_purge();
   assert n = 2, format('purge deletes the two rooms past 24 hours, got %s', n);
