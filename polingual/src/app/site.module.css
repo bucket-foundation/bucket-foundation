@@ -38,7 +38,7 @@
 .cc{position:absolute;inset-inline-start:20px;top:18px;z-index:1;font-family:"Space Mono",monospace;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#555}
 .word{position:relative;z-index:1;font-family:Nunito,"Noto Sans","Noto Sans Arabic","Noto Sans Hebrew","Noto Sans Devanagari","Noto Sans Tamil","Noto Sans Thai","Noto Sans JP","Noto Sans KR",sans-serif;font-weight:800;font-size:clamp(14px,calc((100cqi - 40px) / (var(--n,6) * var(--k,.64))),var(--cap,40px));line-height:1.15;color:var(--ink);text-align:center;padding:0 18px;overflow-wrap:normal;word-break:keep-all;hyphens:none;max-width:100%}
 .play{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;border-radius:14px;background:none;padding:0;cursor:pointer;color:var(--ink);-webkit-tap-highlight-color:transparent}
-.play:focus-visible{outline:3px solid #D9381E;outline-offset:3px}
+.play:focus-visible{outline:3px solid #D9381E;outline-offset:-6px}
 .playIcon{position:absolute;top:13px;inset-inline-end:14px;width:30px;height:30px;display:grid;place-items:center;opacity:.6}
 .playIcon svg{width:24px;height:24px}
 .tile:has(.play){transition:transform .15s}

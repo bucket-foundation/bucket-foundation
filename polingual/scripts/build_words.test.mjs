@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
-import { CORPUS_DIR, OUT_FILE, buildWords, cleanNote, rootClusters } from "./build_words.mjs";
-import { commonsMp3, credit, kaikkiUrl, pageTitle, pickSound, plainArtist, wikitextAudio } from "./fetch_word_audio.mjs";
+import { CORPUS_DIR, OUT_FILE, buildWords, cleanNote, readAudio, rootClusters, uncredited } from "./build_words.mjs";
+import { authorFromWikitext, commonsMp3, credit, kaikkiUrl, pageTitle, pickSound, plainArtist, wikitextAudio } from "./fetch_word_audio.mjs";
 
 test("notes lose dashes and internal tier notes", () => {
   assert.equal(cleanNote("From Latin 'terra' \u2014 root of 'terrain'. A canon-tier word tying to physics."), "From Latin 'terra', root of 'terrain'.");
@@ -73,4 +73,19 @@ test("wikitext audio comes from the right language section", () => {
 
 test("commons mp3 urls follow the upload hash layout", () => {
   assert.equal(commonsMp3("En-us-night.ogg"), "https://upload.wikimedia.org/wikipedia/commons/transcoded/4/46/En-us-night.ogg/En-us-night.ogg.mp3");
+});
+
+test("recordings without an author or license fail the build", () => {
+  assert.deepEqual(uncredited({ "es:noche": { src: "a", file: "f", license: "CC BY 2.0 fr" }, "de:Bier": { src: "a", file: "f", license: "Public domain" }, "fr:nuit": { src: "a", file: "f", license: "CC BY-SA 3.0", by: "X" } }), ["es:noche"]);
+});
+
+test("every stored recording names its author or is public domain", () => {
+  assert.deepEqual(uncredited(readAudio()), []);
+});
+
+test("authors come from the file page when the metadata has none", () => {
+  assert.equal(authorFromWikitext("Russian pronunciation.<br/>Audio sample provided by [[Commons:Shtooka|The Shtooka Project]].{{Cc-by-2.0-fr}}"), "The Shtooka Project");
+  assert.equal(authorFromWikitext("*'''Who:''' [[User:Pill|Pill]]\n"), "Pill");
+  assert.equal(authorFromWikitext("{{Information|author=Own work}}"), undefined);
+  assert.equal(credit({ LicenseShortName: { value: "CC BY-SA 3.0" }, Categories: { value: "Self-published work|PD-self" } }, "Pajz").by, "Pajz");
 });

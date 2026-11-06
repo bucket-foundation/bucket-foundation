@@ -9,9 +9,6 @@ export const AUDIO_FILE = join(HERE, "word-audio.json");
 
 const read = (dir, name) => JSON.parse(readFileSync(join(dir, name), "utf8"));
 
-export function readAudio(file = AUDIO_FILE) {
-  return existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : {};
-}
 
 const APPOSITIVE = /^(the |a |also )?(root|source|same) |^and /i;
 
@@ -41,6 +38,21 @@ export function rootClusters(concept) {
     if (out.length === 4) break;
   }
   return out;
+}
+
+const NO_ATTRIBUTION = /^(public domain|cc0|pd)/i;
+
+export function uncredited(audio) {
+  return Object.entries(audio)
+    .filter(([, a]) => !a.src || !a.file || !a.license || (!a.by && !NO_ATTRIBUTION.test(a.license)))
+    .map(([key]) => key);
+}
+
+export function readAudio(file = AUDIO_FILE) {
+  const audio = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : {};
+  const bad = uncredited(audio);
+  if (bad.length) throw new Error(`recordings without an author or license: ${bad.join(", ")}`);
+  return audio;
 }
 
 export function buildWords(dir = CORPUS_DIR, audio = readAudio()) {

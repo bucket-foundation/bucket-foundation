@@ -60,19 +60,43 @@ export function pickSound(entries, lang) {
 export function plainArtist(html) {
   if (!html) return undefined;
   const text = html.replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#0?39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
-  return text.length > 80 ? `${text.slice(0, 77).trim()}...` : text || undefined;
+  if (!text || /^(own work|unknown|anonymous)\.?$/i.test(text)) return undefined;
+  return text.length > 80 ? `${text.slice(0, 77).trim()}...` : text;
 }
 
-export function credit(meta) {
+export function credit(meta, uploader) {
   if (!meta) return undefined;
   const license = meta.LicenseShortName?.value?.trim();
   if (!license) return undefined;
   const out = { license };
-  const by = plainArtist(meta.Artist?.value);
+  const selfPublished = /(^|\|)Self-published work(\||$)/.test(meta.Categories?.value ?? "");
+  const by = plainArtist(meta.Artist?.value) ?? plainArtist(meta.Attribution?.value) ?? (selfPublished ? plainArtist(uploader) : undefined);
   if (by) out.by = by;
   const url = meta.LicenseUrl?.value?.trim();
   if (url) out.licenseUrl = url.replace(/^\/\//, "https://");
   return out;
+}
+
+export function plainWikitext(text) {
+  return text
+    .replace(/\[\[(?:[^\]|]*\|)?([^\]]*)\]\]/g, "$1")
+    .replace(/\[https?:\/\/\S+\s+([^\]]+)\]/g, "$1")
+    .replace(/\{\{[^{}]*\}\}/g, "")
+    .replace(/'{2,}/g, "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const AUTHOR_PATTERNS = [/\|\s*[Aa]uthor\s*=\s*([^\n|}]+)/, /'''Who:'''\s*([^\n]+)/, /provided by\s+(\[\[[^\]]+\]\]|[^.\n{]+)/i];
+
+export function authorFromWikitext(text) {
+  for (const re of AUTHOR_PATTERNS) {
+    const m = text.match(re);
+    const by = m ? plainArtist(plainWikitext(m[1])) : undefined;
+    if (by) return by;
+  }
+  return undefined;
 }
 
 export function commonsName(file) {
@@ -171,21 +195,34 @@ async function main() {
   const meta = {};
   for (let i = 0; i < files.length; i += 50) {
     const titles = files.slice(i, i + 50).map((f) => `File:${f}`).join("|");
-    const u = `https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&prop=imageinfo&iiprop=extmetadata&iiextmetadatafilter=LicenseShortName|Artist|LicenseUrl&titles=${encodeURIComponent(titles)}`;
-    const body = await get(u);
-    if (!body) continue;
-    const q = JSON.parse(body).query || {};
-    const norm = new Map((q.normalized || []).map((n) => [n.to, n.from]));
-    for (const p of q.pages || []) {
-      const from = (norm.get(p.title) || p.title).replace(/^File:/, "");
-      meta[from] = { title: p.title.replace(/^File:/, ""), ...credit(p.imageinfo?.[0]?.extmetadata) };
-    }
+    const base = `https://commons.wikimedia.org/w/api.php?action=query&format=json&formatversion=2&prop=imageinfo&iiprop=extmetadata|user&iiextmetadatafilter=LicenseShortName|Artist|LicenseUrl|Attribution|Categories&titles=${encodeURIComponent(titles)}`;
+    let cont = "";
+    do {
+      const body = await get(base + cont);
+      if (!body) throw new Error(`Commons metadata request failed at batch ${i / 50}`);
+      const json = JSON.parse(body);
+      const q = json.query || {};
+      const norm = new Map((q.normalized || []).map((n) => [n.to, n.from]));
+      for (const p of q.pages || []) {
+        const info = p.imageinfo?.[0];
+        if (!info) continue;
+        const from = (norm.get(p.title) || p.title).replace(/^File:/, "");
+        meta[from] = { title: p.title.replace(/^File:/, ""), ...credit(info.extmetadata, info.user) };
+      }
+      cont = json.continue ? `&${new URLSearchParams(json.continue)}` : "";
+    } while (cont);
   }
+  const needs = Object.values(meta).filter((m) => m.license && !m.by && !/^(public domain|cc0|pd)/i.test(m.license));
+  await pool(needs, 4, async (m) => {
+    const text = await get(`https://commons.wikimedia.org/w/index.php?action=raw&title=${encodeURIComponent(`File:${m.title}`)}`);
+    const by = text ? authorFromWikitext(text) : undefined;
+    if (by) m.by = by;
+  });
   const out = {};
   for (const key of [...keys].sort()) {
     const s = raw[key];
     const m = s && meta[s.file];
-    if (!s || !m?.license) continue;
+    if (!s || !m?.license || (!m.by && !/^(public domain|cc0|pd)/i.test(m.license))) continue;
     out[key] = { src: s.src, file: m.title, license: m.license, ...(m.by ? { by: m.by } : {}), ...(m.licenseUrl ? { licenseUrl: m.licenseUrl } : {}) };
   }
   writeFileSync(AUDIO_FILE, JSON.stringify(out, null, 0).replace(/},"/g, '},\n"') + "\n");

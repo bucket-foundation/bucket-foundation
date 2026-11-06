@@ -64,6 +64,19 @@ function set(next: PlayerState) {
   for (const l of listeners) l();
 }
 
+let shared: HTMLAudioElement | null = null;
+
+function sharedAudio(): HTMLAudioElement {
+  shared ??= new Audio();
+  shared.preload = "auto";
+  return shared;
+}
+
+export function resetPlayer() {
+  stop();
+  shared = null;
+}
+
 function synth(): SpeechSynthesis | undefined {
   return typeof window !== "undefined" && "speechSynthesis" in window ? window.speechSynthesis : undefined;
 }
@@ -118,8 +131,8 @@ function playOne(item: SpeakItem): Promise<void> {
       else done();
     };
     if (source.kind === "voice") return speakWith(item.text, item.lang, source.voice, done);
-    audio = new Audio(source.src);
-    audio.preload = "auto";
+    audio = sharedAudio();
+    audio.src = source.src;
     audio.onended = done;
     audio.onerror = () => {
       if (audio) audio.onerror = null;

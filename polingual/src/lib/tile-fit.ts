@@ -17,7 +17,7 @@ export function longestToken(word: string): number {
 
 export function glyphWidth(word: string): number {
   if (WIDE.test(word)) return 1.05;
-  if (TAMIL.test(word)) return 1.75;
+  if (TAMIL.test(word)) return 2;
   if (INDIC.test(word)) return 0.9;
   if (CYRILLIC_GREEK.test(word)) return 0.68;
   return 0.64;

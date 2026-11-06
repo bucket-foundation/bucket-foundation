@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
-import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, playable } from "./speak";
+import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, resetPlayer, snapshot, stop, type SpeakItem } from "./speak";
 import { LANGS, WORDS, word } from "./words";
 import { capPx, fitPx, glyphWidth, graphemes, longestToken } from "./tile-fit";
 import { WordView } from "../app/(site)/word/views";
@@ -78,9 +78,131 @@ test("tile words fit on one line from grapheme length with a floor", () => {
   assert.equal(longestToken("pomme de terre"), 5);
   assert.equal(glyphWidth("茶色い"), 1.05);
   assert.equal(glyphWidth("коричневый"), 0.68);
-  assert.equal(glyphWidth("உருளைக்கிழங்கு"), 1.75);
+  assert.equal(glyphWidth("உருளைக்கிழங்கு"), 2);
   assert.equal(capPx("màu da cam"), 24);
   assert.equal(fitPx("brun", 140), 40);
   assert.ok(fitPx("коричневый", 140) * 10 * 0.68 <= 140);
   assert.equal(fitPx("vaaleanpunainenvaaleanpunainen", 140), 14);
 });
+
+class FakeAudio {
+  static made = 0;
+  static next: "ok" | "reject" = "ok";
+  src = "";
+  preload = "";
+  paused = true;
+  plays: string[] = [];
+  onended: (() => void) | null = null;
+  onerror: (() => void) | null = null;
+  constructor() {
+    FakeAudio.made++;
+    audios.push(this);
+  }
+  play() {
+    this.plays.push(this.src);
+    if (FakeAudio.next === "reject") return Promise.reject(new Error("blocked"));
+    this.paused = false;
+    return Promise.resolve();
+  }
+  pause() {
+    this.paused = true;
+  }
+}
+
+const audios: FakeAudio[] = [];
+const spoken: { text: string; voice: unknown; onend?: () => void; onerror?: () => void }[] = [];
+let cancels = 0;
+const fakeVoices = [{ lang: "es-ES", name: "Monica" }];
+
+function installFakes() {
+  const g = globalThis as Record<string, unknown>;
+  g.Audio = FakeAudio;
+  g.SpeechSynthesisUtterance = class {
+    text: string;
+    voice: unknown;
+    lang = "";
+    rate = 1;
+    onend?: () => void;
+    onerror?: () => void;
+    constructor(text: string) {
+      this.text = text;
+    }
+  };
+  g.window = {
+    speechSynthesis: {
+      getVoices: () => fakeVoices,
+      speak: (u: (typeof spoken)[number]) => spoken.push(u),
+      cancel: () => {
+        cancels++;
+        for (const u of spoken.splice(0)) u.onerror?.();
+      },
+    },
+  };
+}
+
+const tick = () => new Promise((r) => setTimeout(r, 0));
+const noche: SpeakItem = { id: "es", text: "noche", lang: "es-ES", src: "https://upload.wikimedia.org/noche.mp3" };
+const nuit: SpeakItem = { id: "fr", text: "nuit", lang: "fr-FR", src: "https://upload.wikimedia.org/nuit.mp3" };
+
+test("a blocked recording falls back to the matching voice", async () => {
+  installFakes();
+  resetPlayer();
+  FakeAudio.next = "reject";
+  const done = play(noche);
+  await tick();
+  assert.equal(spoken.length, 1);
+  assert.equal(spoken[0].text, "noche");
+  assert.deepEqual(spoken[0].voice, fakeVoices[0]);
+  assert.equal(snapshot().id, "es");
+  spoken[0].onend?.();
+  await done;
+  assert.equal(snapshot().id, null);
+  FakeAudio.next = "ok";
+});
+
+test("a new tap stops the sound that is playing", async () => {
+  installFakes();
+  resetPlayer();
+  const first = play(noche);
+  await tick();
+  void play(nuit);
+  await first;
+  assert.equal(snapshot().id, "fr");
+  const el = audios[audios.length - 1];
+  assert.equal(el.src, nuit.src);
+  assert.deepEqual(el.plays.slice(-2), [noche.src, nuit.src]);
+  stop();
+});
+
+test("stop silences audio and speech and clears the state", async () => {
+  installFakes();
+  resetPlayer();
+  const before = cancels;
+  void play(noche);
+  await tick();
+  const el = audios[audios.length - 1];
+  assert.equal(el.paused, false);
+  stop();
+  assert.equal(el.paused, true);
+  assert.ok(cancels > before);
+  assert.deepEqual(snapshot(), { id: null, all: false });
+});
+
+test("hear all reuses one audio element so iOS keeps the unlock from the tap", async () => {
+  installFakes();
+  resetPlayer();
+  const made = FakeAudio.made;
+  const all = playAll([noche, nuit]);
+  await tick();
+  assert.deepEqual(snapshot(), { id: "es", all: true });
+  const el = audios[audios.length - 1];
+  el.onended?.();
+  await new Promise((r) => setTimeout(r, 300));
+  assert.deepEqual(snapshot(), { id: "fr", all: true });
+  assert.equal(el.src, nuit.src);
+  el.onended?.();
+  await all;
+  assert.equal(FakeAudio.made - made, 1);
+  assert.deepEqual(snapshot(), { id: null, all: false });
+});
+
