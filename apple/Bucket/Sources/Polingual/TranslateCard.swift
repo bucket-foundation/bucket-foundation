@@ -137,7 +137,7 @@ struct TranslateCard: View {
                     } label: {
                         HStack(spacing: 6) {
                             if let from { FlagTile(lang: from, size: 22) } else { Image(systemName: "sparkle.magnifyingglass").font(.system(size: 18, weight: .semibold)) }
-                            Text(from.map(Lang.name) ?? String(localized: "Detect language"))
+                            Text(from.map(Lang.name) ?? String(localized: "Detect"))
                                 .font(.system(size: 17, weight: .bold, design: .rounded))
                                 .lineLimit(1)
                                 .fixedSize()
@@ -200,14 +200,17 @@ struct TranslateCard: View {
                 }
                 statusLine
                 if sentence {
-                    SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:])
+                    SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:], soft: soft)
                 } else if picked == nil, let answer, answer.layer != .deck {
                     LexiconAnswerView(answer: answer, shown: shown, withSource: false, soft: soft)
                 } else if !text.isEmpty {
                     if let id = picked ?? answer?.itemId ?? hits.first?.itemId, let item = corpus.byId[id] {
                         let source = from ?? answer?.source ?? hits.first(where: { $0.itemId == id })?.matchedLang
-                        ForEach(shown.filter { $0 != source }, id: \.self) { l in
-                            if let f = item.form(l) {
+                        let outs = shown.filter { $0 != source }
+                        let lexicon = answer?.rows ?? [:]
+                        let unmet = outs.filter { item.form($0) == nil && lexicon[$0] == nil }
+                        ForEach(outs, id: \.self) { l in
+                            if let f = item.form(l) ?? lexicon[l] {
                                 HStack(spacing: 10) {
                                     FlagTile(lang: l, size: 26)
                                     Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
@@ -217,6 +220,10 @@ struct TranslateCard: View {
                                 }
                                 .accessibilityElement(children: .combine)
                             }
+                        }
+                        if !unmet.isEmpty, let source {
+                            SentenceTranslations(text: text, source: source, targets: unmet, fallback: lexicon, soft: soft)
+                                .id(unmet.joined(separator: ","))
                         }
                         HStack(spacing: 10) {
                             if added.contains(id) {
