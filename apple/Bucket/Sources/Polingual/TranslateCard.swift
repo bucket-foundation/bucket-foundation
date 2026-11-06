@@ -22,6 +22,10 @@ enum WantedWords {
 
 struct TranslateCard: View {
     @Environment(LangStore.self) private var store
+    @Environment(\.colorScheme) private var scheme
+    var today = false
+    @AppStorage("translate.targets") private var targetsRaw = ""
+    @State private var committed = TranslateCard.debugQuery
     @State private var query = TranslateCard.debugQuery
     @State private var picked: String?
     @State private var added: Set<String> = []
@@ -50,9 +54,36 @@ struct TranslateCard: View {
         return out
     }
 
+    var chosen: [String] {
+        let picked = targetsRaw.split(separator: ",").map(String.init).filter { !$0.isEmpty }
+        return picked.isEmpty ? langs : picked
+    }
+
+    var base: [String] { today ? chosen : langs }
+
     var shown: [String] {
-        guard let from, !langs.contains(from) else { return langs }
-        return [from] + langs
+        guard let from, !base.contains(from) else { return base }
+        return [from] + base
+    }
+
+    var active: String { today ? committed : query }
+
+    func setTargets(_ list: [String]) { targetsRaw = list.joined(separator: ",") }
+
+    func toggleTarget(_ l: String) {
+        var list = chosen
+        if let i = list.firstIndex(of: l) {
+            guard list.count > 1 else { return }
+            list.remove(at: i)
+        } else {
+            list.append(l)
+        }
+        setTargets(list)
+    }
+
+    func commit() {
+        committed = query
+        focused = false
     }
 
     var listenLang: String { from ?? store.systems.first?.root ?? "en" }
@@ -60,14 +91,15 @@ struct TranslateCard: View {
     var body: some View {
         if let corpus = store.corpus, !store.systems.isEmpty {
             let searchIn: Set<String> = from.map { [$0] } ?? Set(langs)
-            let hits = translateSearch(corpus, query, langs: searchIn, limit: 6)
-            let guess = from ?? SentenceLanguage.detect(query, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
-            let answer = query.isEmpty ? nil : answer
+            let text = active
+            let hits = translateSearch(corpus, text, langs: searchIn, limit: 6)
+            let guess = from ?? SentenceLanguage.detect(text, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
+            let answer = text.isEmpty ? nil : answer
             let found = answer.map { $0.layer != .gloss } ?? false
-            let sentence = !query.isEmpty && picked == nil && !found && (SentenceLanguage.isSentence(query) || hits.isEmpty)
+            let sentence = !text.isEmpty && picked == nil && !found && (SentenceLanguage.isSentence(text) || hits.isEmpty)
             let sentenceSource = answer?.source ?? guess
-            let detected = from == nil && !query.isEmpty ? (sentence ? sentenceSource : answer?.source ?? hits.first?.matchedLang) : nil
-            VStack(alignment: .leading, spacing: 12) {
+            let detected = from == nil && !text.isEmpty ? (sentence ? sentenceSource : answer?.source ?? hits.first?.matchedLang) : nil
+            let card = VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 8) {
                     Menu {
                         Button { from = nil } label: { Label("Detect language", systemImage: from == nil ? "checkmark" : "sparkle.magnifyingglass") }
@@ -82,6 +114,7 @@ struct TranslateCard: View {
                             if let from { FlagTile(lang: from, size: 22) } else { Image(systemName: "sparkle.magnifyingglass").font(.system(size: 18, weight: .semibold)) }
                             Text(from.map(Lang.name) ?? String(localized: "Detect language"))
                                 .font(.system(size: 17, weight: .bold, design: .rounded))
+                                .lineLimit(1)
                             Image(systemName: "chevron.down").font(.system(size: 13, weight: .bold))
                         }
                         .foregroundStyle(Palette.ink)
@@ -99,16 +132,19 @@ struct TranslateCard: View {
                     }
                     Spacer(minLength: 0)
                 }
+                if today { targetRow }
                 HStack(spacing: 10) {
                     Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
-                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(D8.label))
+                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(today ? Palette.muted : D8.label))
                         .font(.system(size: 21, weight: .semibold, design: .rounded))
                         .autocorrectionDisabled()
                         .submitLabel(.search)
                         .focused($focused)
-                        .onSubmit { if let id = picked ?? hits.first?.itemId { add(id, corpus) } }
+                        .onSubmit {
+                            if today { commit() } else if let id = picked ?? hits.first?.itemId { add(id, corpus) }
+                        }
                     if !query.isEmpty {
-                        Button { query = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 20)).foregroundStyle(Palette.muted) }
+                        Button { query = ""; committed = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 20)).foregroundStyle(Palette.muted) }
                             .buttonStyle(.borderless)
                             .accessibilityLabel("Clear")
                     }
@@ -117,7 +153,9 @@ struct TranslateCard: View {
                 .frame(minHeight: 60)
                 .background(D8.face, in: .rect(cornerRadius: 14))
                 .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
-                if LangListener.shared.supported {
+                if today {
+                    actionRow
+                } else if LangListener.shared.supported {
                     Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
                         HStack(spacing: 12) {
                             Image(systemName: listening ? "stop.fill" : "mic.fill")
@@ -143,10 +181,10 @@ struct TranslateCard: View {
                     Text("Didn't catch that. Tap the mic and try again.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
                 if sentence {
-                    SentenceTranslations(text: query, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:])
+                    SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:])
                 } else if picked == nil, let answer, answer.layer != .deck {
                     LexiconAnswerView(answer: answer, shown: shown)
-                } else if !query.isEmpty {
+                } else if !text.isEmpty {
                     if let id = picked ?? answer?.itemId ?? hits.first?.itemId, let item = corpus.byId[id] {
                         ForEach(shown, id: \.self) { l in
                             if let f = item.form(l) {
@@ -170,8 +208,8 @@ struct TranslateCard: View {
                                     .buttonStyle(D8Option(align: .center, compact: true))
                             }
                             let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
-                            ShareObjectButton(.word(id: id, gloss: query, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
-                            Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: query, forms: words))
+                            ShareObjectButton(.word(id: id, gloss: text, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
+                            Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: text, forms: words))
                         }
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
@@ -194,21 +232,31 @@ struct TranslateCard: View {
                     }
                 }
             }
-            .padding(.vertical, 6)
+            Group {
+                if today {
+                    card
+                        .padding(16)
+                        .environment(\.colorScheme, scheme == .dark ? .light : .dark)
+                        .modifier(GameLip(face: scheme == .dark ? D8.parchment : D8.ink, lip: scheme == .dark ? D8.keyline : .black, radius: 22))
+                        .accessibilityIdentifier("today.translate")
+                } else {
+                    card.padding(.vertical, 6)
+                }
+            }
             .onChange(of: query) { picked = nil }
             .onChange(of: from) { picked = nil }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
-                guard on else { return }
+                guard on, !today else { return }
                 DeepLink.shared.listen = false
                 Task { await listen() }
             }
             .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
-                if link == .voice { DeepLink.shared.pending = nil }
+                if !today, link == .voice { DeepLink.shared.pending = nil }
             }
             .onChange(of: DeepLink.shared.translate, initial: true) { _, q in
-                guard let q else { return }
+                guard !today, let q else { return }
                 query = q
                 DeepLink.shared.translate = nil
                 DeepLink.shared.pending = nil
@@ -216,10 +264,10 @@ struct TranslateCard: View {
         }
     }
 
-    var answerKey: String { "\(query)|\(from ?? "")|\(shown.joined(separator: ","))" }
+    var answerKey: String { "\(active)|\(from ?? "")|\(shown.joined(separator: ","))" }
 
     func refresh(_ corpus: LangCorpus, guess: String) async {
-        let q = query
+        let q = active
         guard !q.isEmpty else {
             answer = nil
             return
@@ -231,7 +279,7 @@ struct TranslateCard: View {
         let result = await Task.detached(priority: .userInitiated) {
             TranslateEngine.answer(q, from: order, to: targets, corpus: corpus, shelf: TranslateCard.lexicons)
         }.value
-        guard !Task.isCancelled, q == query else { return }
+        guard !Task.isCancelled, q == active else { return }
         answer = result
     }
 
@@ -245,7 +293,78 @@ struct TranslateCard: View {
             return
         }
         query = first
+        committed = first
         haptic(true)
+    }
+
+    var targetRow: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                Text("Into").font(.subheadline.weight(.bold)).foregroundStyle(Palette.muted)
+                ForEach(chosen, id: \.self) { l in
+                    Button { toggleTarget(l) } label: {
+                        HStack(spacing: 6) {
+                            FlagTile(lang: l, size: 20)
+                            Text(Lang.name(l)).font(.system(size: 15, weight: .bold, design: .rounded))
+                            if chosen.count > 1 { Image(systemName: "xmark").font(.system(size: 10, weight: .heavy)).foregroundStyle(Palette.muted) }
+                        }
+                        .foregroundStyle(Palette.ink)
+                        .padding(.horizontal, 10)
+                        .frame(minHeight: 36)
+                        .background(D8.face, in: .capsule)
+                        .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 1.5) }
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text("Remove \(Lang.name(l))"))
+                }
+                Menu {
+                    Section("My languages") {
+                        ForEach(langs.filter { !chosen.contains($0) }, id: \.self) { l in Button(Lang.name(l)) { toggleTarget(l) } }
+                    }
+                    Section("More languages") {
+                        ForEach(sources.filter { !chosen.contains($0) && !langs.contains($0) }, id: \.self) { l in Button(Lang.name(l)) { toggleTarget(l) } }
+                    }
+                } label: {
+                    Image(systemName: "plus").font(.system(size: 15, weight: .heavy)).foregroundStyle(Palette.ink)
+                        .frame(width: 36, height: 36)
+                        .background(D8.face, in: .circle)
+                        .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
+                }
+                .accessibilityLabel(Text("Add a language"))
+                .accessibilityIdentifier("translate.addTarget")
+            }
+        }
+    }
+
+    var actionRow: some View {
+        HStack(spacing: 12) {
+            Button { commit() } label: {
+                Label("Translate", systemImage: "arrow.right")
+                    .labelStyle(TrailingIcon())
+                    .font(D8.word(19))
+                    .foregroundStyle(D8.parchment)
+                    .frame(maxWidth: .infinity, minHeight: 60)
+                    .modifier(GameLip(face: D8.lapis, lip: Color(hex: 0x12326A)))
+            }
+            .buttonStyle(.plain)
+            .disabled(query.trimmingCharacters(in: .whitespaces).isEmpty)
+            .accessibilityIdentifier("translate.go")
+            if LangListener.shared.supported {
+                Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
+                    Image(systemName: listening ? "stop.fill" : "mic.fill")
+                        .font(.system(size: 26, weight: .bold))
+                        .symbolEffect(.variableColor.iterative, isActive: listening)
+                        .foregroundStyle(D8.parchment)
+                        .frame(width: 60, height: 60)
+                        .background(D8.vermilion, in: .circle)
+                        .background(D8.vermilionLip, in: .circle.offset(y: 5))
+                        .padding(.bottom, 5)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
+                .accessibilityIdentifier("translate.mic")
+            }
+        }
     }
 
     func add(_ itemId: String, _ corpus: LangCorpus) {
@@ -260,6 +379,15 @@ struct TranslateCard: View {
     }
 }
 
+
+struct TrailingIcon: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 8) {
+            configuration.title
+            configuration.icon
+        }
+    }
+}
 
 struct LexiconAnswerView: View {
     let answer: TranslateAnswer
