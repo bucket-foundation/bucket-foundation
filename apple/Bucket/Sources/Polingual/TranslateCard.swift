@@ -30,7 +30,6 @@ struct TranslateCard: View {
     @State private var listening = false
     @State private var missedVoice = false
     @State private var answer: TranslateAnswer?
-    @State private var answerFor = ""
     @FocusState private var focused: Bool
 
     nonisolated static let lexicons = LexiconShelf()
@@ -63,7 +62,7 @@ struct TranslateCard: View {
             let searchIn: Set<String> = from.map { [$0] } ?? Set(langs)
             let hits = translateSearch(corpus, query, langs: searchIn, limit: 6)
             let guess = from ?? SentenceLanguage.detect(query, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
-            let answer = answerFor == query ? answer : nil
+            let answer = query.isEmpty ? nil : answer
             let found = answer.map { $0.layer != .gloss } ?? false
             let sentence = !query.isEmpty && picked == nil && !found && (SentenceLanguage.isSentence(query) || hits.isEmpty)
             let sentenceSource = answer?.source ?? guess
@@ -223,7 +222,6 @@ struct TranslateCard: View {
         let q = query
         guard !q.isEmpty else {
             answer = nil
-            answerFor = q
             return
         }
         try? await Task.sleep(for: .milliseconds(180))
@@ -235,7 +233,6 @@ struct TranslateCard: View {
         }.value
         guard !Task.isCancelled, q == query else { return }
         answer = result
-        answerFor = q
     }
 
     func listen() async {

@@ -164,6 +164,7 @@ enum TranslateEval {
             lines.append("en→L  | \(s.map(\.cell).joined(separator: " | "))")
         }
         lines.append("all L | \(total.map(\.cell).joined(separator: " | "))")
+        lines.append("tatoeba word refs: top three English words by Dice co-occurrence in Tatoeba pairs; noisy, frequent words only")
         return lines.joined(separator: "\n")
     }
 }
