@@ -153,13 +153,13 @@ def top_edges(langs, sim, k: int):
     idx = {l: i for i, l in enumerate(langs)}
     edges = set()
     for a in langs:
-        others = sorted((l for l in langs if l != a), key=lambda b: (-sim[idx[a]][idx[b]], b))
+        others = sorted((l for l in langs if l != a and sim[idx[a]][idx[l]] is not None), key=lambda b: (-sim[idx[a]][idx[b]], b))
         for b in others[:k]:
             edges.add(tuple(sorted((a, b))))
     return sorted(edges, key=lambda e: (sim[idx[e[0]]][idx[e[1]]], e))
 
 
-def language_network(graph: dict, path: str, k: int = 2, modalities=("script", "phonetic", "meaning")) -> str:
+def language_network(graph: dict, path: str, k: int = 2, modalities=("script", "phonetic", "meaning"), key: str = "excess") -> str:
     seed_all()
     langs = graph["langs"]
     order = order_by_family(langs)
@@ -167,10 +167,10 @@ def language_network(graph: dict, path: str, k: int = 2, modalities=("script", "
     idx = {l: i for i, l in enumerate(langs)}
     fig, axes = plt.subplots(1, len(modalities), figsize=(3.0 * len(modalities), 3.6))
     for ax, m in zip(np.atleast_1d(axes), modalities):
-        sim = graph["sim"][m]
+        sim = graph[key][m]
         edges = top_edges(langs, sim, k)
         vals = [sim[idx[a]][idx[b]] for a, b in edges]
-        lo, hi = min(vals), max(vals)
+        lo, hi = (min(vals), max(vals)) if vals else (0.0, 0.0)
         for (a, b), v in zip(edges, vals):
             t = 0.0 if hi == lo else (v - lo) / (hi - lo)
             ax.plot([pos[a][0], pos[b][0]], [pos[a][1], pos[b][1]], color=MODALITY_COLORS.get(m, BLUE), alpha=0.25 + 0.65 * t, linewidth=0.4 + 2.2 * t, zorder=1)
@@ -178,7 +178,8 @@ def language_network(graph: dict, path: str, k: int = 2, modalities=("script", "
             x, y = pos[l]
             ax.scatter([x], [y], s=26, color=FAMILY_COLORS[family(l)], zorder=2, edgecolors="white", linewidths=0.5)
             ax.text(1.16 * x, 1.16 * y, l, fontsize=6, ha="center", va="center")
-        ax.set_title(f"{m}, top {k} per language, cos {lo:.2f} to {hi:.2f}", fontsize=7.5)
+        label = "cos above random pairs" if key == "excess" else "cos"
+        ax.set_title(f"{m}, top {k} per language\n{label} {lo:.2f} to {hi:.2f}", fontsize=7.5)
         ax.set_xlim(-1.35, 1.35)
         ax.set_ylim(-1.35, 1.35)
         ax.set_aspect("equal")
@@ -236,7 +237,13 @@ def first_targets(root: str, lang: str) -> dict:
     return dict(zip(d.english, d.word))
 
 
-def derive_graph(root: str, langs=None, modalities=("script", "phonetic", "meaning"), min_langs: int = 20, max_anchors: int = 600) -> dict:
+def mismatched(shared: list, seed: int) -> list:
+    order = list(shared)
+    random.Random(seed).shuffle(order)
+    return [(order[i], order[(i + 1) % len(order)]) for i in range(len(order))]
+
+
+def derive_graph(root: str, langs=None, modalities=("script", "phonetic", "meaning"), min_langs: int = 20, max_anchors: int = 600, seed: int = SEED) -> dict:
     root = os.path.expanduser(root)
     if langs is None:
         langs = sorted(l for l in os.listdir(root) if os.path.isfile(os.path.join(root, l, "pairs.parquet")))
@@ -246,26 +253,34 @@ def derive_graph(root: str, langs=None, modalities=("script", "phonetic", "meani
         for e in targets[l]:
             counts[e] = counts.get(e, 0) + 1
     eligible = sorted(e for e, c in counts.items() if c >= min_langs)
-    anchors = eligible[:max_anchors]
+    anchors = sorted(random.Random(seed).sample(eligible, min(max_anchors, len(eligible))))
     rows = {}
     for l in langs:
         words = read_words(root, l)
         where = {w: i for i, w in enumerate(words)}
         rows[l] = {e: where[targets[l][e]] for e in anchors if e in targets[l] and targets[l][e] in where}
-    sims = {}
+    n = len(langs)
+    sims, nulls, excess = {}, {}, {}
     for m in modalities:
         mats = {l: load_matrix(root, l, m) for l in langs}
         vec = {l: {e: np.asarray(mats[l][i], dtype=np.float64) for e, i in rows[l].items()} for l in langs}
-        s = np.zeros((len(langs), len(langs)))
+        s = [[None] * n for _ in range(n)]
+        z = [[None] * n for _ in range(n)]
+        x = [[None] * n for _ in range(n)]
         for i, a in enumerate(langs):
-            for j, b in enumerate(langs):
-                if j < i:
-                    s[i][j] = s[j][i]
-                    continue
+            for j in range(i, n):
+                b = langs[j]
                 shared = [e for e in anchors if e in vec[a] and e in vec[b]]
-                s[i][j] = float(np.mean([vec[a][e] @ vec[b][e] for e in shared])) if shared else 0.0
-        sims[m] = [[round(float(x), 4) for x in r] for r in s]
-    return {"langs": list(langs), "anchors": len(anchors), "eligible": len(eligible), "min_langs": min_langs, "families": {l: family(l) for l in langs}, "sim": sims}
+                if len(shared) < 2:
+                    continue
+                raw = round(float(np.mean([vec[a][e] @ vec[b][e] for e in shared])), 4)
+                null = round(float(np.mean([vec[a][e] @ vec[b][f] for e, f in mismatched(shared, seed * 1000003 + i * 101 + j)])), 4)
+                s[i][j] = s[j][i] = raw
+                z[i][j] = z[j][i] = null
+                if i != j:
+                    x[i][j] = x[j][i] = round(raw - null, 4)
+        sims[m], nulls[m], excess[m] = s, z, x
+    return {"langs": list(langs), "anchors": len(anchors), "eligible": len(eligible), "min_langs": min_langs, "seed": seed, "families": {l: family(l) for l in langs}, "sim": sims, "null": nulls, "excess": excess}
 
 
 def derive_neighbors(root: str, lang: str, word: str, k: int = 6, modalities=("phonetic", "script")) -> dict:
@@ -305,6 +320,7 @@ def main(argv=None) -> int:
     d.add_argument("--out", required=True)
     d.add_argument("--min-langs", type=int, default=20)
     d.add_argument("--max-anchors", type=int, default=600)
+    d.add_argument("--seed", type=int, default=SEED)
     n = sub.add_parser("neighbors")
     n.add_argument("--root", required=True)
     n.add_argument("--lang", required=True)
@@ -322,11 +338,12 @@ def main(argv=None) -> int:
         q.add_argument("--ylabel", default="percent")
     a = p.parse_args(argv)
     if a.cmd == "derive":
-        print(write_json(derive_graph(a.root, min_langs=a.min_langs, max_anchors=a.max_anchors), a.out))
+        print(write_json(derive_graph(a.root, min_langs=a.min_langs, max_anchors=a.max_anchors, seed=a.seed), a.out))
     elif a.cmd == "neighbors":
         print(write_json(derive_neighbors(a.root, a.lang, a.word, a.k), a.out))
     else:
-        data = json.load(open(a.inp, encoding="utf-8"))
+        with open(a.inp, encoding="utf-8") as f:
+            data = json.load(f)
         if a.cmd == "network":
             print(language_network(data, a.out))
         elif a.cmd == "neighbor-graph":

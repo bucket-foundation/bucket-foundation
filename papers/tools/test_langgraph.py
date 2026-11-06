@@ -55,9 +55,23 @@ def test_derive_graph_is_symmetric_with_unit_diagonal(dataset):
     g = langgraph.derive_graph(str(dataset), min_langs=3)
     assert g["langs"] == ["es", "pt", "ru"] and g["anchors"] == 3
     for m in ("script", "phonetic", "meaning"):
-        s = np.array(g["sim"][m])
+        s = np.array(g["sim"][m], dtype=float)
         assert np.allclose(s, s.T)
         assert np.allclose(np.diag(s), 1.0, atol=2e-3)
+        x = g["excess"][m]
+        assert all(x[i][i] is None for i in range(3))
+        assert x[0][1] == x[1][0] == round(g["sim"][m][0][1] - g["null"][m][0][1], 4)
+
+
+def test_anchor_sample_depends_on_seed_only(dataset):
+    a = langgraph.derive_graph(str(dataset), min_langs=3, max_anchors=2, seed=1)
+    b = langgraph.derive_graph(str(dataset), min_langs=3, max_anchors=2, seed=1)
+    assert a == b and a["anchors"] == 2
+
+
+def test_missing_pairs_drop_edges():
+    sim = [[None, 0.5, None], [0.5, None, None], [None, None, None]]
+    assert langgraph.top_edges(["a", "b", "c"], sim, 2) == [("a", "b")]
 
 
 def test_neighbors_skip_the_word_and_its_case_variant(dataset):
