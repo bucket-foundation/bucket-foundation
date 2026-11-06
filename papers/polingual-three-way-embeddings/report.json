@@ -1,0 +1,69 @@
+{
+ "schema": "bucket.report/1",
+ "slug": "polingual-three-way-embeddings",
+ "kind": "paper",
+ "title": "Three-Way Word Embeddings for Polingual",
+ "abstract": "Script, phonetic, meaning and joint embeddings for 529,131 words of 29 languages, and a meaning re-ranked lexicon that raises held-out first-sense precision from 58.0% to 68.3%.",
+ "authors": [
+  "Gianangelo Dichio"
+ ],
+ "affiliation": "Bucket Foundation",
+ "venue": "Bucket Foundation paper",
+ "version": "2.0",
+ "date": "2026-11-06",
+ "built_at": "2026-11-06T00:00:00Z",
+ "updated_at": "2026-11-06T00:00:00Z",
+ "published_at": null,
+ "status": "private",
+ "licence": "CC-BY-SA-4.0",
+ "bead": null,
+ "build_command": "make figures lean pdf",
+ "source_path": "papers/polingual-three-way-embeddings/main.tex",
+ "pdf_path": "papers/polingual-three-way-embeddings/main.pdf",
+ "data_sources": [
+  {
+   "label": "dataset v1 reports",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/data",
+   "retrieved": "2026-11-06"
+  },
+  {
+   "label": "language graph data from dataset v1 embeddings",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/data/langgraph.json",
+   "retrieved": "2026-11-06"
+  }
+ ],
+ "figures": [
+  {
+   "caption": "Tatoeba word row per language, drawn by figures/build.py",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/figures/fig_tatoeba.png"
+  },
+  {
+   "caption": "lexicon induction P@10 per view, drawn by figures/build.py",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/figures/fig_modalities.png"
+  },
+  {
+   "caption": "held-out precision by script family, drawn by papers/tools/langgraph.py",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/figures/fig_family_bars.png"
+  },
+  {
+   "caption": "before and after slopes, drawn by papers/tools/langgraph.py",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/figures/fig_slope.png"
+  },
+  {
+   "caption": "script, phonetic and meaning language networks, drawn by papers/tools/langgraph.py",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/figures/fig_network.png"
+  },
+  {
+   "caption": "homophone and confusable neighbours of English right, drawn by papers/tools/langgraph.py",
+   "licence": "CC-BY-SA-4.0",
+   "path": "papers/polingual-three-way-embeddings/figures/fig_neighbors.png"
+  }
+ ]
+}

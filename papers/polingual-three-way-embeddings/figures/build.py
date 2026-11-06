@@ -1,4 +1,4 @@
-import json, os, statistics
+import json, os, statistics, sys
 
 import matplotlib
 
@@ -9,6 +9,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
 TAB = os.path.join(HERE, "..", "tables")
 BLUE, GRAY = "#14417a", "#9a9a9a"
+sys.path.insert(0, os.path.join(HERE, "..", "..", "tools"))
+import langgraph
 COLS = ["wiki", "tail", "tatoeba", "phrase", "sentence"]
 
 
@@ -31,7 +33,7 @@ def swift(name):
 
 
 def pct(x):
-    return "--" if x is None else f"{x:.1f}"
+    return "-" if x is None else f"{x:.1f}"
 
 
 def write(name, rows):
@@ -61,7 +63,7 @@ def tatoeba_table(before, after):
     ax.set_xticks(list(x)); ax.set_xticklabels(langs, fontsize=7)
     ax.set_ylabel("Tatoeba word precision (%)"); ax.set_ylim(0, 100)
     ax.legend(fontsize=7, frameon=False, loc="upper right")
-    fig.tight_layout(); fig.savefig(os.path.join(HERE, "fig_tatoeba.png")); plt.close(fig)
+    fig.tight_layout(); fig.savefig(os.path.join(HERE, "fig_tatoeba.png"), metadata={"Software": None}); plt.close(fig)
 
 
 def modality_tables():
@@ -81,8 +83,8 @@ def modality_tables():
     rows = []
     for lang, r in p.items():
         hp = r.get("homophone_pairs")
-        hom = f"{hp} & {100 * r['homophone_phon_r10']:.1f} & {100 * r['homophone_char_r10']:.1f}" if hp else "-- & -- & --"
-        g2p = f"{r['g2p_cos']:.3f} & {100 * r['g2p_r10']:.1f}" if "g2p_cos" in r else "-- & --"
+        hom = f"{hp} & {100 * r['homophone_phon_r10']:.1f} & {100 * r['homophone_char_r10']:.1f}" if hp else "- & - & -"
+        g2p = f"{r['g2p_cos']:.3f} & {100 * r['g2p_r10']:.1f}" if "g2p_cos" in r else "- & -"
         rows.append(f"{lang} & {r['wikipron']} & {r['vocab_with_ipa']}/{r['vocab']} & {g2p} & {hom} \\\\")
     write("phonetic.tex", rows)
     s = load("script_report.json")
@@ -91,7 +93,7 @@ def modality_tables():
     rows = []
     for lang, r in s["fuzzy"].items():
         e, cf = r.get("edit"), r.get("confusable")
-        cell = lambda x: " & ".join(f"{100 * x[m]['r1']:.1f}" for m in ("cnn", "char", "fused")) if x else "-- & -- & --"
+        cell = lambda x: " & ".join(f"{100 * x[m]['r1']:.1f}" for m in ("cnn", "char", "fused")) if x else "- & - & -"
         rows.append(f"{lang} & {cell(e)} & {cell(cf)} \\\\")
     write("fuzzy.tex", rows)
     fig, ax = plt.subplots(figsize=(5.6, 2.6), dpi=200)
@@ -101,7 +103,7 @@ def modality_tables():
     for i, v in enumerate(vals):
         ax.text(i, v + 1, f"{v:.1f}", ha="center", fontsize=7)
     ax.set_ylim(0, 75)
-    fig.tight_layout(); fig.savefig(os.path.join(HERE, "fig_modalities.png")); plt.close(fig)
+    fig.tight_layout(); fig.savefig(os.path.join(HERE, "fig_modalities.png"), metadata={"Software": None}); plt.close(fig)
 
 
 def regression_table():
@@ -129,10 +131,43 @@ def regression_table():
     write("heldout.tex", [f"First shown sense & {100 * tb[2]:.1f} & {100 * ta[2]:.1f} \\\\", f"Any shown sense, longer answers & {100 * tb[0]:.1f} & {100 * ta[0]:.1f} \\\\"])
 
 
+def langgraph_figures():
+    rr = load("rerank_report.json")["per_language"]
+    odd = {l: v["odd"] for l, v in rr.items() if v.get("odd")}
+    first_b = {l: 100 * v["first_before"] for l, v in odd.items()}
+    first_a = {l: 100 * v["first_after"] for l, v in odd.items()}
+    any_b = {l: 100 * v["any_before"] for l, v in odd.items()}
+    any_a = {l: 100 * v["any_after"] for l, v in odd.items()}
+    langgraph.metric_bars(first_a, os.path.join(HERE, "fig_family_bars.png"), "held-out first-sense precision (%)", baseline=first_b)
+    langgraph.slope_chart([("first sense", first_b, first_a), ("any token", any_b, any_a)], os.path.join(HERE, "fig_slope.png"), "held-out precision (%)", labels=("frequency order", "re-ranked"))
+    langgraph.language_network(load("langgraph.json"), os.path.join(HERE, "fig_network.png"), k=2)
+    langgraph.neighbor_graph(load("neighbors_en_right.json"), os.path.join(HERE, "fig_neighbors.png"))
+
+
+def write_csvs():
+    out = os.path.join(DATA, "csv")
+    os.makedirs(out, exist_ok=True)
+    rr = load("rerank_report.json")["per_language"]
+    rows = ["lang,script_family,n,first_before,first_after,any_before,any_after"]
+    for l, v in rr.items():
+        o = v.get("odd")
+        if o:
+            rows.append(f"{l},{langgraph.family(l)},{o['n']},{100 * o['first_before']:.2f},{100 * o['first_after']:.2f},{100 * o['any_before']:.2f},{100 * o['any_after']:.2f}")
+    open(os.path.join(out, "heldout_per_language.csv"), "w", encoding="utf-8").write("\n".join(rows) + "\n")
+    j = load("joint_report.json")
+    mods = ["script", "char", "phonetic", "meaning", "weighted", "projection"]
+    rows = ["lang,script_family,n," + ",".join(f"p10_{m}" for m in mods)]
+    for l, r in j["bli"].items():
+        rows.append(f"{l},{langgraph.family(l)},{r['n']}," + ",".join(f"{100 * r[m][1]:.2f}" for m in mods))
+    open(os.path.join(out, "bli_per_language.csv"), "w", encoding="utf-8").write("\n".join(rows) + "\n")
+
+
 def main():
+    write_csvs()
     tatoeba_table(swift("swift_before.txt"), swift("swift_after.txt"))
     modality_tables()
     regression_table()
+    langgraph_figures()
 
 
 if __name__ == "__main__":
