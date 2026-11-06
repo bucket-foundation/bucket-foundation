@@ -9,7 +9,7 @@ export type LiveResult = { status: number; body: Record<string, unknown> };
 export type Rpc = (fn: string, args: Record<string, unknown>) => Promise<{ data: unknown } | { error: string }>;
 export type LiveDeps = { env: StoaEnv; rpc: Rpc; send: Fetcher; build: QuestionBuilder; now?: () => number; random?: (max: number) => number };
 type DbEvent = { seq: number; type: string; issued_at: number; payload: unknown };
-type DbResult = { room_id: string; topic: string; sign_key: string; events: DbEvent[]; error?: string } & Record<string, unknown>;
+type DbResult = { room_id: string; topic: string; topics?: string[]; sign_key: string; events: DbEvent[]; error?: string } & Record<string, unknown>;
 
 export const CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 export const CODE = /^[0-9A-HJKMNP-TV-Z]{6}$/;
@@ -26,6 +26,15 @@ const STATUS: Record<string, number> = {
   room_full: 409, name_taken: 409, not_open: 409, late: 409, duplicate: 409, paused: 409, bad_phase: 409, closed: 409,
   bad_action: 400, code_taken: 503, slow_down: 429, too_soon: 429, locked: 409, bad_settings: 400,
 };
+
+const IP = /^[0-9a-fA-F:.]{2,45}$/;
+
+export function clientIpFrom(headers: { get(name: string): string | null }): string | null {
+  const real = headers.get("x-real-ip")?.trim();
+  if (real && IP.test(real)) return real;
+  const first = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return first && IP.test(first) ? first : null;
+}
 
 export function ipKey(ip: string | null): string {
   return createHash("sha256").update(`stoa:${ip || "unknown"}`).digest("hex").slice(0, 32);
@@ -96,7 +105,7 @@ export async function broadcast(res: DbResult, deps: LiveDeps): Promise<number> 
     await deps.send(`${base(deps.env)}/realtime/v1/api/broadcast`, {
       method: "POST",
       headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: [{ topic: `stoa:${res.topic}`, event: "stoa", payload: ev, private: false }] }),
+      body: JSON.stringify({ messages: (res.topics?.length ? res.topics : [res.topic]).map((t) => ({ topic: `stoa:${t}`, event: "stoa", payload: ev, private: false })) }),
       signal: AbortSignal.timeout(DB_TIMEOUT_MS),
     });
   } catch {
@@ -106,7 +115,7 @@ export async function broadcast(res: DbResult, deps: LiveDeps): Promise<number> 
 }
 
 function strip(res: DbResult): Record<string, unknown> {
-  const { sign_key: _s, events: _e, topic: _t, error: _x, ...rest } = res;
+  const { sign_key: _s, events: _e, topic: _t, topics: _ts, error: _x, ...rest } = res;
   return rest;
 }
 
