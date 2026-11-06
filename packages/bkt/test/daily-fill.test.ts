@@ -351,6 +351,31 @@ describe("daily quiz memory", () => {
     expect(got.body.questions.filter((q) => q.origin === "critic").length).toBeLessThan(DAILY_MAX);
   });
 
+  test("due Academy cards reach the quiz when work sources could fill every slot", async () => {
+    const { wq } = open();
+    const titles = JSON.parse(readFileSync(join(import.meta.dir, "../../../scripts/fixtures/quiz-titles.json"), "utf8")) as { beads: string[] };
+    wq.setBeads(titles.beads.map((title, i) => ({ id: `bkt-f${i.toString(36)}`, title, status: "open", priority: 2, createdAt: "2026-09-01" })), 1);
+    const due = wq.lessons().slice(-2).map((i) => i.id);
+    wq.dueLessons = () => due;
+    await daily(routesFor(wq));
+    const stored = wq.daily.get(DAY)!.questions;
+    const lessons = stored.filter((q) => q.origin === "lesson").map((q) => q.sources[0].ref);
+    const want = wq.lessons().filter((i) => due.includes(i.id)).map((i) => lessonFactId(i).slice("atom:".length));
+    expect(lessons).toEqual(expect.arrayContaining(want));
+    expect(stored.some((q) => q.origin !== "lesson")).toBe(true);
+  });
+
+  test("a day where every critic question repeats keeps the top one and says why when still short", async () => {
+    const { wq } = open(undefined, false);
+    plant({ day: DAY1, questions: [COPY, ...CRITIC] }, DAY1);
+    await daily(routesFor(wq, { now: () => AT1 }), DAY1);
+    plant({ day: DAY, questions: [COPY2, CRITIC[0]] });
+    const got = await daily(routesFor(wq));
+    expect(got.status).toBe(404);
+    expect(got.body.error).toContain("2 repeated an earlier day");
+    expect(logs).toContain(`daily quiz ${DAY}: kept repeat critic-copy2 to reach ${DAILY_MIN} questions`);
+  });
+
   test("due Academy cards lead the lesson fill", () => {
     const items = PACK.items.map((i) => withShort(i)).filter(hasShort).slice(0, 40);
     const all = lessonFill({ day: DAY, items, count: items.length });

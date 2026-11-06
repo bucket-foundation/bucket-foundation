@@ -21,12 +21,15 @@ describe("daily quiz repeat filter", () => {
       [est("Flashcard reviews in one year at 50 reviews per day?", "18250"), est("How many runs does an hourly timer make in one year?", "8760")],
       [rec("Which license covers the Wiktionary data in the Polingual index?", "CC-BY-SA"), rec("Which branch receives every feat/hte-* engine PR?", "hte/integration")],
       [est("Heartbeats in an 80-year life at 70 beats per minute?", "2940000000"), est("How many queries at $0.005 each earn $1,000?", "200000")],
+      [est("GB per hour of 4K video streaming?", "7"), est("GB per hour of 1080p video streaming?", "3")],
+      [est("Seconds for light to travel from the Sun to Earth?", "500"), est("Seconds for light to travel from the Moon to Earth?", "1.3")],
+      [est("Tokens in a 10-page PDF at 500 words a page?", "6500"), est("Tokens in a 100-page PDF at 500 words a page?", "65000")],
     ] as const;
     for (const [a, b] of pairs) expect({ a: a.prompt, dup: nearDuplicate(a, b) }).toEqual({ a: a.prompt, dup: false });
   });
 
   test("numbers lose their thousands commas and units fold to one token", () => {
-    expect(promptTokens("Gigabytes for 6,564,942 vectors?")).toEqual(new Set(["gb", "6564942", "vector"]));
+    expect(promptTokens("Gigabytes for 6,564,942 768-dimension vectors?")).toEqual(new Set(["gb", "6564942", "768", "dimension", "vector"]));
   });
 
   test("dropRepeats checks history and the new set itself", () => {
