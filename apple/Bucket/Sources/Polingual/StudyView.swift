@@ -70,7 +70,8 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = asked + replay + WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now).filter { !replay.contains($0) }
+        queue = spacedChecks(asked + replay + WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now).filter { !replay.contains($0) })
+        for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
@@ -190,7 +191,7 @@ struct StudyView: View {
                         .buttonStyle(D8Primary())
                         Button("Another round") {
                             let now = Date().timeIntervalSince1970 * 1000
-                            self.queue = WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now)
+                            self.queue = spacedChecks(WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now))
                             i = 0
                             graded = 0
                             correct = 0

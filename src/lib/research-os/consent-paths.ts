@@ -7,7 +7,7 @@ export interface ClassConsent {
 }
 
 export interface ConsentRequestRecord {
-  vendor: "privo" | "kid" | "manual";
+  vendor: "privo" | "kid" | "manual" | "email";
   status: "pending" | "verified" | "declined";
   vendorRef?: string | null;
 }

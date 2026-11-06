@@ -5,6 +5,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { DEFAULT_FROM, DEFAULT_NOTIFY_TO } from "@/lib/download/notify";
 import { branchLabel, corpusDir, loadCorpusForBranch } from "./corpus";
+import { summariesForGroup } from "./minor-visibility";
+import { graphService } from "../research-os/db";
 import { buildLangCorpus, type LangCorpus } from "./lang-systems";
 import {
   assembleGroup,
@@ -263,9 +265,38 @@ export async function groupsFor(uid: string, groupIds?: string[], tz?: string): 
   const [sums, cheers, blocks] = await Promise.all([summaries(users, now, tz), cheersOf(uid, visible.map((g) => g.id), now), blocksTouching(uid)]);
   const hidden = hiddenUsers(blocks, uid);
   const { weekStart } = currentWeek(now, tz);
+  const minors = await minorParents(users);
   return visible
     .sort((a, b) => (a.created_at < b.created_at ? -1 : a.created_at > b.created_at ? 1 : 0))
-    .map((g) => assembleGroup(g, members, sums, uid, cheers, weekStart, hidden));
+    .map((g) => assembleGroup(g, members, summariesForGroup(g, sums, minors), uid, cheers, weekStart, hidden));
+}
+
+export async function minorParents(userIds: string[]): Promise<Map<string, string | null>> {
+  const out = new Map<string, string | null>();
+  if (userIds.length === 0) return out;
+  const prof = await graphService().from("learner_profiles").select("learner_id,consent_status").eq("birth_year_bucket", "under13").in("learner_id", userIds);
+  if (prof.error) throw new Error(`minor profiles read: ${prof.error.message}`);
+  const rows = (prof.data ?? []) as { learner_id: string; consent_status: string }[];
+  for (const r of rows) out.set(r.learner_id, null);
+  const consented = rows.filter((r) => r.consent_status === "parent").map((r) => r.learner_id);
+  if (consented.length === 0) return out;
+  const reqs = await graphService()
+    .from("consent_requests")
+    .select("learner_id,parent_user_id,decided_at")
+    .eq("vendor", "email")
+    .eq("status", "verified")
+    .not("parent_user_id", "is", null)
+    .in("learner_id", consented)
+    .order("decided_at", { ascending: true });
+  if (reqs.error) throw new Error(`consent read: ${reqs.error.message}`);
+  for (const r of (reqs.data ?? []) as { learner_id: string; parent_user_id: string }[]) out.set(r.learner_id, r.parent_user_id);
+  return out;
+}
+
+export async function groupSummaries(groupId: string, userIds: string[], now: number, tz?: string): Promise<Map<string, MemberSummary>> {
+  const [g] = await groupsByIds([groupId]);
+  const [sums, minors] = await Promise.all([summaries(userIds, now, tz), minorParents(userIds)]);
+  return g ? summariesForGroup(g, sums, minors) : new Map();
 }
 
 async function cheersOf(uid: string, groupIds: string[], now: number): Promise<CheerRow[]> {

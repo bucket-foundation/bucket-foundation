@@ -72,7 +72,7 @@ const SUITES = {
       "scripts/test-tutor-provider.ts",
       "scripts/test-llm-contract.ts",
       "scripts/test-mcp-route.ts",
-      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language,work-quiz-route,work-quiz-page,work-quiz-resources}.ts",
+      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language,work-quiz-route,work-quiz-page,work-quiz-resources,learn-gate,parent-consent}.ts",
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
       "scripts/test-report-record.mjs",
@@ -125,7 +125,7 @@ const SUITES = {
       "scripts/test-research-tools-routes.ts",
     ],
     exclude: [
-      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language,work-quiz-route,work-quiz-page,work-quiz-resources}.ts",
+      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language,work-quiz-route,work-quiz-page,work-quiz-resources,learn-gate,parent-consent}.ts",
       "scripts/test-research-os-*-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts",
     ],
     commands: [
