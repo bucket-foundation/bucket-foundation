@@ -16,7 +16,7 @@ end $$;
 
 create function pg_temp.room(host uuid, code text) returns uuid language sql as $$
   insert into bucket.live_rooms (sign_key, verify_key, code, product, host_user, seed)
-  values (repeat('k', 32), repeat('A', 43), code, 'polingual', host, 7)
+  values ('v1.' || repeat('k', 40), repeat('A', 43), code, 'polingual', host, 7)
   returning id
 $$;
 
@@ -39,9 +39,9 @@ begin
   old := pg_temp.room(host, 'ABC124');
   open_old := pg_temp.room(host, 'ABC125');
 
-  assert pg_temp.raises(format('insert into bucket.live_rooms (sign_key, verify_key, code, product, host_user, seed) values (%L, %L, %L, %L, %L, 1)', repeat('k', 32), repeat('A', 43), 'ABC123', 'polingual', host), '23505'),
+  assert pg_temp.raises(format('insert into bucket.live_rooms (sign_key, verify_key, code, product, host_user, seed) values (%L, %L, %L, %L, %L, 1)', 'v1.' || repeat('k', 40), repeat('A', 43), 'ABC123', 'polingual', host), '23505'),
     'an open code is unique';
-  assert pg_temp.raises(format('insert into bucket.live_rooms (sign_key, verify_key, code, product, host_user, seed) values (%L, %L, %L, %L, %L, 1)', repeat('k', 32), repeat('A', 43), 'ABCI23', 'polingual', host), '23514'),
+  assert pg_temp.raises(format('insert into bucket.live_rooms (sign_key, verify_key, code, product, host_user, seed) values (%L, %L, %L, %L, %L, 1)', 'v1.' || repeat('k', 40), repeat('A', 43), 'ABCI23', 'polingual', host), '23514'),
     'codes use the Crockford alphabet';
 
   for q1 in select unnest(array[fresh, old, open_old]) loop
@@ -91,7 +91,15 @@ begin
   assert s.right_rate = '[{"idx": 0, "right": 0.500}]'::jsonb, format('summary keeps the right rate, got %s', s.right_rate);
   assert bucket.live_purge() = 0, 'a second purge finds nothing';
 
-  assert bucket.live_sweep_ping() is null, 'no due room and no sweep secret means no request';
+  assert bucket.live_sweep_ping() is null, 'no due room means no request';
+  update bucket.live_rooms set next_at = clock_timestamp() - interval '1 second' where id = fresh;
+  update bucket.live_rooms set phase = 'lobby', closed_at = null where id = fresh;
+  assert bucket.live_sweep_ping() is null, 'a due room with an empty vault sends no request';
+  assert pg_temp.raises(format('insert into bucket.live_rooms (sign_key, verify_key, code, product, host_user, seed) values (%L, %L, %L, %L, %L, 1)', repeat('k', 48), repeat('A', 43), 'ABC126', 'polingual', host), '23514'),
+    'a plaintext sign key is refused';
+  insert into bucket.live_limits (bucket_key, minute, hits) values ('join:x', date_trunc('minute', clock_timestamp()) - interval '5 minutes', 3);
+  perform bucket.live_purge();
+  assert not exists (select 1 from bucket.live_limits where bucket_key = 'join:x'), 'old rate-limit rows are purged';
 
   select count(*) into n from cron.job where jobname in ('stoa-purge', 'stoa-sweep');
   assert n = 2, 'both cron jobs are scheduled';

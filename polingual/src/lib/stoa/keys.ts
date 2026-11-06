@@ -22,15 +22,24 @@ export type PlayerAccess = "ok" | "removed" | "stale";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 const SEALED = /^v1\.([A-Za-z0-9_-]+)$/;
-const MIN_SECRET = 32;
+const SECRET = /^[A-Za-z0-9+/_-]{43,}={0,2}$/;
+export const PREV_WINDOW_MS = 3 * 3_600_000;
 
 export class StoaConfigError extends Error {}
 
-export function roomSecrets(env: StoaEnv): string[] {
+export function secretOk(value: string | undefined): value is string {
+  if (!value || !SECRET.test(value)) return false;
+  const bytes = Buffer.from(value.replace(/-/g, "+").replace(/_/g, "/"), "base64");
+  return bytes.length >= 32 && new Set(bytes).size >= 16;
+}
+
+export function roomSecrets(env: StoaEnv, now = Date.now()): string[] {
   const current = env.STOA_ROOM_SECRET?.trim();
-  if (!current || current.length < MIN_SECRET) throw new StoaConfigError("STOA_ROOM_SECRET is missing or shorter than 32 characters");
+  if (!secretOk(current)) throw new StoaConfigError("STOA_ROOM_SECRET must be base64 of 32 or more random bytes");
   const prev = env.STOA_ROOM_SECRET_PREV?.trim();
-  return prev && prev.length >= MIN_SECRET && prev !== current ? [current, prev] : [current];
+  const until = Date.parse(env.STOA_ROOM_SECRET_PREV_UNTIL?.trim() ?? "");
+  const open = Number.isFinite(until) && now < until && until - now <= PREV_WINDOW_MS;
+  return open && secretOk(prev) && prev !== current ? [current, prev] : [current];
 }
 
 export function stoaConfigured(env: StoaEnv): boolean {
@@ -71,7 +80,7 @@ export function createRoomKeys(roomId: string, env: StoaEnv): RoomKeys {
   return { signKey: sealSignKey(roomId, privateKey, env), verifyKey: jwk.x };
 }
 
-export function openSignKey(roomId: string, sealed: string, env: StoaEnv): KeyObject | null {
+export function openSignKey(roomId: string, sealed: string, env: StoaEnv, now = Date.now()): KeyObject | null {
   const m = SEALED.exec(sealed);
   if (!m) return null;
   const raw = Buffer.from(m[1], "base64url");
@@ -79,7 +88,7 @@ export function openSignKey(roomId: string, sealed: string, env: StoaEnv): KeyOb
   const iv = raw.subarray(0, 12);
   const tag = raw.subarray(12, 28);
   const ct = raw.subarray(28);
-  for (const secret of roomSecrets(env)) {
+  for (const secret of roomSecrets(env, now)) {
     try {
       const decipher = createDecipheriv("aes-256-gcm", roomKey(secret, roomId), iv);
       decipher.setAAD(Buffer.from(roomId));
@@ -135,7 +144,7 @@ export function readToken(token: string | null | undefined, env: StoaEnv, now = 
   if (parts.length !== 3 || parts[0] !== HEADER) return null;
   const sig = Buffer.from(parts[2], "base64url");
   const data = `${parts[0]}.${parts[1]}`;
-  const signed = roomSecrets(env).some((secret) => {
+  const signed = roomSecrets(env, now).some((secret) => {
     const want = mac(secret, data);
     return sig.length === want.length && timingSafeEqual(sig, want);
   });
