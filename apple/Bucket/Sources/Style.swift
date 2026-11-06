@@ -70,7 +70,10 @@ extension View {
         padding(.horizontal, 16)
             .padding(.vertical, 12)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Palette.card, in: .rect(cornerRadius: 22))
+            .background(D8.face, in: .rect(cornerRadius: 22))
+            .overlay { RoundedRectangle(cornerRadius: 22).strokeBorder(D8.edge, lineWidth: 2) }
+            .background(D8.edge, in: .rect(cornerRadius: 22).offset(y: 5))
+            .padding(.bottom, 5)
     }
 
     @ViewBuilder func inlineTitle() -> some View {

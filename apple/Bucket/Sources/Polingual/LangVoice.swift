@@ -160,6 +160,17 @@ final class LangListener {
         #endif
     }
 
+    var denied: Bool {
+        #if os(iOS)
+        if AVAudioApplication.shared.recordPermission == .denied { return true }
+        #endif
+        #if os(iOS) || os(macOS)
+        return !supported
+        #else
+        return false
+        #endif
+    }
+
     func authorize() async -> Bool {
         let speech = await Self.speechAuthorized()
         guard speech else { return false }
