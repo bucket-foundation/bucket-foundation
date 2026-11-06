@@ -100,6 +100,7 @@ struct LocalizationTests {
         #expect(defaults.stringArray(forKey: "AppleLanguages") == ["ja"])
         #expect(InterfaceLanguage.layoutDirection == .leftToRight)
         InterfaceLanguage.apply(root: "la", defaults: defaults)
-        #expect(defaults.object(forKey: "AppleLanguages") == nil)
+        #expect(defaults.persistentDomain(forName: "interface-language-test")?["AppleLanguages"] == nil)
+        #expect(defaults.string(forKey: InterfaceLanguage.storageKey) == nil)
     }
 }
