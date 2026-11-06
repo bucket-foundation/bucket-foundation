@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ 及以上：该语言的材料不足，无法测试";
 "%@ cheered you on." = "%@ 为你加油。";
 "%@ flag" = "%@ 旗帜";
+"%@ from %@" = "从%2$@学%1$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ 还没有同步的进度。对方登录后完成下一次学习，分数就会显示。";
 "%@ invited you. %lld of %lld members." = "%1$@ 邀请了你。成员 %2$lld/%3$lld。";
 "%@ nudged you to study today." = "%@ 提醒你今天学习。";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ 和你击了个掌。";
 "%@ to %@" = "%1$@ 到 %2$@";
 "%@ wants to race you this week." = "%@ 想和你本周比一比。";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld 道题。";
 "%lld review" = "%lld 复习";
 "%lld review · %lld new" = "%1$lld 复习 · %2$lld 新";
+"%lld sources" = "%lld 个来源";
 "%lld started · %lld mastered" = "已开始 %1$lld · 已掌握 %2$lld";
 "%lld this week" = "本周 %lld";
 "%lld today" = "今天 %lld";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "古希腊字母";
 "Animals" = "动物";
 "Another round" = "再来一轮";
+"Answer: %@" = "答案：%@";
+"Answer: %@ %@" = "答案：%@ %@";
 "Answers shown. New puzzle tomorrow." = "已显示答案。明天有新谜题。";
 "Anyone who opens this link can join %@." = "任何打开此链接的人都可以加入 %@。";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple 没有返回登录令牌。请重试，或使用下方的邮箱。";
@@ -145,6 +150,7 @@
 "Buy once" = "一次买断";
 "Cancel" = "取消";
 "Canon" = "经典";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "已记录卡片：%1$lld。已开始 %3$lld 个原子中的 %2$lld 个，掌握 %4$lld 个。";
 "Change the weekly goal" = "更改每周目标";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "从你的 Apple Account 扣款。除非在周期结束前至少 24 小时于“设置”中取消，否则将自动续订。";
 "Check" = "检查";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "请输入家长的邮箱。我们会请家长同意保存你的进度。";
 "Every card anyone in the group studies counts toward the goal." = "群组中任何人学习的每张卡片都计入目标。";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "所有卡片都已排好计划，今天的新知识点也已完成。可以阅读卡组中的任意知识点，或选择其他分支。";
+"Every idea across seven branches." = "七大分支的所有概念。";
 "Every word of two or more syllables marks its stress with an accent." = "两个及以上音节的词都用重音符号标出重音。";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "日常文本省略元音符号。儿童读物和祈祷书会印出来。";
 "Explore" = "探索";
@@ -272,6 +279,7 @@
 "Hint" = "提示";
 "Hiragana" = "平假名";
 "Hiragana and katakana" = "平假名和片假名";
+"How well did you recall it" = "你记得怎么样";
 "I already speak" = "我已经会说";
 "I do not know" = "我不知道";
 "I have a code" = "我有兑换码";
@@ -345,6 +353,7 @@
 "Manage subscription" = "管理订阅";
 "Manage your subscription" = "管理你的订阅";
 "Manuscripts follow no fixed spelling." = "手抄本没有固定拼写。";
+"Mastery %lld percent" = "掌握度百分之 %lld";
 "Mathematics" = "数学";
 "Means %@, looks like English %@" = "意思是 %1$@，看起来像英语的 %2$@";
 "Mediterranean" = "地中海";
@@ -360,6 +369,7 @@
 "More languages · 29" = "更多语言 · 29";
 "Move to bottom" = "移到底部";
 "Move to top" = "移到顶部";
+"NEW" = "新";
 "Nailed it!" = "完美！";
 "Name others see" = "他人看到的名字";
 "Nature" = "自然";
@@ -377,6 +387,7 @@
 "No letters due" = "没有待复习的字母";
 "No mistakes. New board tomorrow." = "零失误。明天有新棋盘。";
 "No progress synced yet" = "还没有同步的进度";
+"No results" = "无结果";
 "No stations found." = "未找到电台。";
 "No stations in this branch." = "这个分支没有电台。";
 "No subjects yet." = "还没有学科。";
@@ -388,6 +399,7 @@
 "Not quite" = "不太对";
 "Not quite. " = "不太对。 ";
 "Nothing due" = "没有待复习";
+"Nothing due in %@" = "%@没有待复习";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "没有待复习。所有卡片都已排好计划，今天的新知识点也已完成。";
 "Nothing to draw yet." = "暂无可显示内容。";
 "Notifications" = "通知";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polingual 学生方案";
 "Practice with ${applicationName}" = "用 ${applicationName} 练习";
 "Preparing today's route" = "正在准备今天的路线";
+"Prerequisites: %lld" = "先修条件：%lld";
 "Present tense" = "现在时";
 "Privacy" = "隐私";
 "Privacy and data" = "隐私与数据";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "进度在 iPhone、iPad 和 Mac 之间同步";
 "Quest done. New one Monday." = "任务完成。周一有新任务。";
 "Question %lld · level %@" = "第 %1$lld 题 · 级别 %2$@";
+"REVIEW" = "复习";
 "Race you" = "比一比";
 "Rate %@ on the App Store" = "在 App Store 为 %@ 评分";
 "Reactions are presets. Blocking someone stops them." = "互动消息为预设内容。屏蔽对方即可停止接收。";
@@ -527,6 +541,7 @@
 "See progress" = "查看进度";
 "See you tomorrow." = "明天见。";
 "Send" = "发送";
+"Send a reaction" = "发送互动";
 "Send a test reminder in 10 seconds" = "10 秒后发送测试提醒";
 "Send code" = "发送验证码";
 "Send feedback" = "发送反馈";
@@ -555,6 +570,7 @@
 "Share your score" = "分享你的分数";
 "Share your streak" = "分享你的连续天数";
 "Share your words" = "分享你的单词";
+"Shared" = "已共享";
 "Shared goal" = "共同目标";
 "Shared roots in this set · %lld words" = "本组的同源词 · %lld 个词";
 "Short vowels usually go unwritten." = "短元音通常不写出来。";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "电台未能加载。重试";
 "Stations from radio-browser.info." = "电台来自 radio-browser.info。";
 "Status" = "状态";
+"Step %lld is wrong. %@" = "第 %1$lld 步错了。%2$@";
 "Stop" = "停止";
 "Stop %@" = "停止 %@";
 "Streak" = "连续天数";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "再学几个词，明天的迷你就会开放。";
 "Study a few more words and tomorrow's Word Groups opens." = "再学几个词，明天的词语分组就会开放。";
 "Study a few words in Learn first." = "请先在“学习”中学几个词。";
+"Study today (%lld)" = "今天学习 (%lld)";
 "Study today to count day 1." = "今天学习即算第 1 天。";
 "Subject strength" = "学科熟练度";
 "Subjects" = "学科";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "此设备不支持%@翻译。";
 "Trial ending" = "试用即将结束";
 "Try again" = "重试";
+"Try another word." = "换个词试试。";
 "Turn on reminders" = "开启提醒";
 "Type instead" = "改为输入";
 "Type what you hear" = "输入你听到的内容";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "你的 %lld 天连续记录将在午夜中断";
 "Your age range" = "你的年龄段";
 "Your answer" = "你的答案";
+"Your day" = "你的今天";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "尝试三次后，你的语言系统仍未能上传到服务器。它们已保存在此设备上，下次更改时会重试同步。";
 "Your languages" = "你的语言";
 "Your name" = "你的名字";
@@ -781,6 +801,9 @@
 "calculate" = "计算";
 "common" = "通性";
 "conjugate" = "变位";
+"done today" = "今日完成";
+"due now" = "待复习";
+"entropy, symmetry, memory" = "熵、对称、记忆";
 "false friend" = "假朋友";
 "feminine" = "阴性";
 "fill the gap" = "填空";
@@ -798,6 +821,7 @@
 "new character" = "新字";
 "new letter" = "新字母";
 "new sound" = "新发音";
+"new today" = "今日新词";
 "new word" = "新词";
 "night" = "夜晚";
 "once" = "一次";
@@ -826,6 +850,7 @@
 "word mastered" = "个词已掌握";
 "words mastered" = "个词已掌握";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

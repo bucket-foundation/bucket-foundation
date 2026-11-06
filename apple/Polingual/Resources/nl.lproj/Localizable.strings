@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ en hoger: te weinig materiaal in deze taal om te testen";
 "%@ cheered you on." = "%@ moedigde je aan.";
 "%@ flag" = "Vlag: %@";
+"%@ from %@" = "%1$@ vanuit het %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ heeft nog geen gesynchroniseerde voortgang. Scores verschijnen na hun volgende sessie terwijl ze zijn ingelogd.";
 "%@ invited you. %lld of %lld members." = "%@ heeft je uitgenodigd. %lld van %lld leden.";
 "%@ nudged you to study today." = "%@ geeft je een duwtje om vandaag te studeren.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ gaf je een high five.";
 "%@ to %@" = "%@ naar %@";
 "%@ wants to race you this week." = "%@ wil deze week de strijd met je aangaan.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld vragen.";
 "%lld review" = "%lld herhalen";
 "%lld review · %lld new" = "%lld herhalen · %lld nieuw";
+"%lld sources" = "%lld bronnen";
 "%lld started · %lld mastered" = "%lld begonnen · %lld beheerst";
 "%lld this week" = "%lld deze week";
 "%lld today" = "%lld vandaag";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "Oudgrieks alfabet";
 "Animals" = "Dieren";
 "Another round" = "Nog een ronde";
+"Answer: %@" = "Antwoord: %@";
+"Answer: %@ %@" = "Antwoord: %@ %@";
 "Answers shown. New puzzle tomorrow." = "Antwoorden getoond. Morgen een nieuwe puzzel.";
 "Anyone who opens this link can join %@." = "Iedereen die deze link opent, kan lid worden van %@.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple gaf geen inlogtoken terug. Probeer het opnieuw, of gebruik hieronder je e-mail.";
@@ -145,6 +150,7 @@
 "Buy once" = "Eenmalig kopen";
 "Cancel" = "Annuleer";
 "Canon" = "Canon";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "Vastgelegde kaarten: %lld. %lld van %lld atomen begonnen, %lld beheerst.";
 "Change the weekly goal" = "Weekdoel wijzigen";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Afgeschreven van je Apple Account. Wordt automatisch verlengd, tenzij je minstens 24 uur voor het einde van de periode opzegt in Instellingen.";
 "Check" = "Controleer";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "Vul het e-mailadres van een ouder in. We vragen hen om het bewaren van je voortgang goed te keuren.";
 "Every card anyone in the group studies counts toward the goal." = "Elke kaart die iemand in de groep studeert, telt mee voor het doel.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "Elke kaart staat al ingepland en de nieuwe atomen van vandaag zijn klaar. Lees een atoom uit het deck of kies een andere tak.";
+"Every idea across seven branches." = "Elk idee in zeven takken.";
 "Every word of two or more syllables marks its stress with an accent." = "Elk woord van twee of meer lettergrepen geeft de klemtoon aan met een accent.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "Gewone tekst laat de klinkertekens weg. Kinderboeken en gebedenboeken drukken ze wel.";
 "Explore" = "Ontdekken";
@@ -272,6 +279,7 @@
 "Hint" = "Hint";
 "Hiragana" = "Hiragana";
 "Hiragana and katakana" = "Hiragana en katakana";
+"How well did you recall it" = "Hoe goed wist je het nog";
 "I already speak" = "Ik spreek al";
 "I do not know" = "Ik weet het niet";
 "I have a code" = "Ik heb een code";
@@ -345,6 +353,7 @@
 "Manage subscription" = "Abonnement beheren";
 "Manage your subscription" = "Beheer je abonnement";
 "Manuscripts follow no fixed spelling." = "Handschriften volgen geen vaste spelling.";
+"Mastery %lld percent" = "Beheersing %lld procent";
 "Mathematics" = "Wiskunde";
 "Means %@, looks like English %@" = "Betekent %@, lijkt op Engels %@";
 "Mediterranean" = "Mediterraan";
@@ -360,6 +369,7 @@
 "More languages · 29" = "Meer talen · 29";
 "Move to bottom" = "Naar onderen";
 "Move to top" = "Naar boven";
+"NEW" = "NIEUW";
 "Nailed it!" = "Raak!";
 "Name others see" = "Naam die anderen zien";
 "Nature" = "Natuur";
@@ -377,6 +387,7 @@
 "No letters due" = "Geen letters te herhalen";
 "No mistakes. New board tomorrow." = "Geen fouten. Morgen een nieuw bord.";
 "No progress synced yet" = "Nog geen voortgang gesynchroniseerd";
+"No results" = "Geen resultaten";
 "No stations found." = "Geen zenders gevonden.";
 "No stations in this branch." = "Geen zenders in deze tak.";
 "No subjects yet." = "Nog geen vakken.";
@@ -388,6 +399,7 @@
 "Not quite" = "Niet helemaal";
 "Not quite. " = "Niet helemaal. ";
 "Nothing due" = "Niets te herhalen";
+"Nothing due in %@" = "Niets te herhalen in het %@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "Niets te herhalen. Elke kaart staat al ingepland en de nieuwe atomen van vandaag zijn klaar.";
 "Nothing to draw yet." = "Nog niets om te tekenen.";
 "Notifications" = "Meldingen";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polingual-studentenabonnement";
 "Practice with ${applicationName}" = "Oefen met ${applicationName}";
 "Preparing today's route" = "Route van vandaag voorbereiden";
+"Prerequisites: %lld" = "Voorkennis: %lld";
 "Present tense" = "Tegenwoordige tijd";
 "Privacy" = "Privacy";
 "Privacy and data" = "Privacy en gegevens";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "Voortgang synchroniseert tussen iPhone, iPad en Mac";
 "Quest done. New one Monday." = "Opdracht klaar. Maandag een nieuwe.";
 "Question %lld · level %@" = "Vraag %lld · niveau %@";
+"REVIEW" = "HERHALEN";
 "Race you" = "Daag uit";
 "Rate %@ on the App Store" = "Beoordeel %@ in de App Store";
 "Reactions are presets. Blocking someone stops them." = "Reacties liggen vast. Iemand blokkeren stopt ze.";
@@ -527,6 +541,7 @@
 "See progress" = "Voortgang bekijken";
 "See you tomorrow." = "Tot morgen.";
 "Send" = "Stuur";
+"Send a reaction" = "Stuur een reactie";
 "Send a test reminder in 10 seconds" = "Stuur over 10 seconden een testherinnering";
 "Send code" = "Code sturen";
 "Send feedback" = "Feedback sturen";
@@ -555,6 +570,7 @@
 "Share your score" = "Deel je score";
 "Share your streak" = "Deel je reeks";
 "Share your words" = "Deel je woorden";
+"Shared" = "Gedeeld";
 "Shared goal" = "Gedeeld doel";
 "Shared roots in this set · %lld words" = "Gedeelde wortels in deze set · %lld woorden";
 "Short vowels usually go unwritten." = "Korte klinkers worden meestal niet geschreven.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "Zenders niet geladen. Opnieuw";
 "Stations from radio-browser.info." = "Zenders van radio-browser.info.";
 "Status" = "Status";
+"Step %lld is wrong. %@" = "Stap %lld is fout. %@";
 "Stop" = "Stop";
 "Stop %@" = "%@ stoppen";
 "Streak" = "Reeks";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "Studeer nog een paar woorden en de Mini van morgen gaat open.";
 "Study a few more words and tomorrow's Word Groups opens." = "Studeer nog een paar woorden en Woordgroepen van morgen gaat open.";
 "Study a few words in Learn first." = "Studeer eerst een paar woorden in Leren.";
+"Study today (%lld)" = "Vandaag studeren (%lld)";
 "Study today to count day 1." = "Studeer vandaag om dag 1 te tellen.";
 "Subject strength" = "Vaksterkte";
 "Subjects" = "Vakken";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "Vertalen is niet beschikbaar voor %@ op dit apparaat.";
 "Trial ending" = "Proefperiode loopt af";
 "Try again" = "Probeer opnieuw";
+"Try another word." = "Probeer een ander woord.";
 "Turn on reminders" = "Herinneringen aanzetten";
 "Type instead" = "Liever typen";
 "Type what you hear" = "Typ wat je hoort";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "Je reeks van %lld dagen eindigt om middernacht";
 "Your age range" = "Je leeftijdsgroep";
 "Your answer" = "Je antwoord";
+"Your day" = "Je dag";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "Je taalsystemen hebben de server na drie pogingen niet bereikt. Ze zijn bewaard op dit apparaat; bij de volgende wijziging proberen we opnieuw te synchroniseren.";
 "Your languages" = "Je talen";
 "Your name" = "Je naam";
@@ -781,6 +801,9 @@
 "calculate" = "bereken";
 "common" = "gemeenschappelijk";
 "conjugate" = "vervoeg";
+"done today" = "vandaag klaar";
+"due now" = "nu te doen";
+"entropy, symmetry, memory" = "entropie, symmetrie, geheugen";
 "false friend" = "valse vriend";
 "feminine" = "vrouwelijk";
 "fill the gap" = "vul het gat in";
@@ -798,6 +821,7 @@
 "new character" = "nieuw teken";
 "new letter" = "nieuwe letter";
 "new sound" = "nieuwe klank";
+"new today" = "nieuw vandaag";
 "new word" = "nieuw woord";
 "night" = "nacht";
 "once" = "eenmalig";
@@ -826,6 +850,7 @@
 "word mastered" = "woord beheerst";
 "words mastered" = "woorden beheerst";
 "you@school.example" = "jij@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

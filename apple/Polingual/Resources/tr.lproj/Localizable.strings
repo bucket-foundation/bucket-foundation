@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ ve üstü: bu dilde test için yeterli materyal yok";
 "%@ cheered you on." = "%@ seni destekledi.";
 "%@ flag" = "Bayrak: %@";
+"%@ from %@" = "%1$@, temel: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ için henüz eşitlenmiş ilerleme yok. Puanlar, oturum açıkken yapılacak bir sonraki çalışmadan sonra görünür.";
 "%@ invited you. %lld of %lld members." = "%@ seni davet etti. %lld/%lld üye.";
 "%@ nudged you to study today." = "%@ bugün çalışman için seni dürttü.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ sana beşlik çaktı.";
 "%@ to %@" = "%@ → %@";
 "%@ wants to race you this week." = "%@ bu hafta seninle yarışmak istiyor.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld soru.";
 "%lld review" = "%lld tekrar";
 "%lld review · %lld new" = "%lld tekrar · %lld yeni";
+"%lld sources" = "%lld kaynak";
 "%lld started · %lld mastered" = "%lld başlandı · %lld ustalaşıldı";
 "%lld this week" = "Bu hafta %lld";
 "%lld today" = "Bugün %lld";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "Antik Yunan alfabesi";
 "Animals" = "Hayvanlar";
 "Another round" = "Bir tur daha";
+"Answer: %@" = "Cevap: %@";
+"Answer: %@ %@" = "Cevap: %@ %@";
 "Answers shown. New puzzle tomorrow." = "Cevaplar gösterildi. Yeni bulmaca yarın.";
 "Anyone who opens this link can join %@." = "Bu bağlantıyı açan herkes %@ grubuna katılabilir.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple oturum açma anahtarı döndürmedi. Tekrar dene ya da aşağıdan e-postanı kullan.";
@@ -145,6 +150,7 @@
 "Buy once" = "Bir kez satın al";
 "Cancel" = "Vazgeç";
 "Canon" = "Kanon";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "Kaydedilen kart: %1$lld. %3$lld atomdan %2$lld başladı, %4$lld ustalaşıldı.";
 "Change the weekly goal" = "Haftalık hedefi değiştir";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Apple Hesabından ücretlendirilir. Dönem bitmeden en az 24 saat önce Ayarlar'dan iptal edilmezse otomatik yenilenir.";
 "Check" = "Kontrol et";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "Bir ebeveynin e-postasını gir. İlerlemeni kaydetmeyi onaylamasını isteriz.";
 "Every card anyone in the group studies counts toward the goal." = "Gruptaki herkesin çalıştığı her kart hedefe sayılır.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "Tüm kartlar ileriye planlandı ve bugünün yeni atomları bitti. Desteden istediğin atomu oku ya da başka bir dal seç.";
+"Every idea across seven branches." = "Yedi daldaki tüm fikirler.";
 "Every word of two or more syllables marks its stress with an accent." = "İki ya da daha fazla heceli her kelimede vurgu bir aksanla gösterilir.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "Gündelik metinlerde ünlü işaretleri yazılmaz. Çocuk kitapları ve dua kitapları bunları basar.";
 "Explore" = "Keşfet";
@@ -272,6 +279,7 @@
 "Hint" = "İpucu";
 "Hiragana" = "Hiragana";
 "Hiragana and katakana" = "Hiragana ve katakana";
+"How well did you recall it" = "Ne kadar iyi hatırladın";
 "I already speak" = "Zaten konuşuyorum";
 "I do not know" = "Bilmiyorum";
 "I have a code" = "Kodum var";
@@ -345,6 +353,7 @@
 "Manage subscription" = "Aboneliği yönet";
 "Manage your subscription" = "Aboneliğini yönet";
 "Manuscripts follow no fixed spelling." = "El yazmalarında sabit bir yazım yoktur.";
+"Mastery %lld percent" = "Ustalık yüzde %lld";
 "Mathematics" = "Matematik";
 "Means %@, looks like English %@" = "%@ demek, İngilizce %@ gibi görünür";
 "Mediterranean" = "Akdeniz";
@@ -360,6 +369,7 @@
 "More languages · 29" = "Daha fazla dil · 29";
 "Move to bottom" = "En alta taşı";
 "Move to top" = "En üste taşı";
+"NEW" = "YENİ";
 "Nailed it!" = "Tam isabet!";
 "Name others see" = "Başkalarının gördüğü ad";
 "Nature" = "Doğa";
@@ -377,6 +387,7 @@
 "No letters due" = "Tekrar edilecek harf yok";
 "No mistakes. New board tomorrow." = "Hiç hata yok. Yeni tahta yarın.";
 "No progress synced yet" = "Henüz eşitlenmiş ilerleme yok";
+"No results" = "Sonuç yok";
 "No stations found." = "İstasyon bulunamadı.";
 "No stations in this branch." = "Bu dalda istasyon yok.";
 "No subjects yet." = "Henüz konu yok.";
@@ -388,6 +399,7 @@
 "Not quite" = "Tam değil";
 "Not quite. " = "Tam değil. ";
 "Nothing due" = "Tekrar yok";
+"Nothing due in %@" = "%@ için tekrar yok";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "Tekrar yok. Tüm kartlar ileriye planlandı ve bugünün yeni atomları bitti.";
 "Nothing to draw yet." = "Henüz çizilecek bir şey yok.";
 "Notifications" = "Bildirimler";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polingual öğrenci planı";
 "Practice with ${applicationName}" = "${applicationName} ile pratik yap";
 "Preparing today's route" = "Bugünün rotası hazırlanıyor";
+"Prerequisites: %lld" = "Ön koşullar: %lld";
 "Present tense" = "Şimdiki zaman";
 "Privacy" = "Gizlilik";
 "Privacy and data" = "Gizlilik ve veriler";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "İlerleme iPhone, iPad ve Mac arasında eşitlenir";
 "Quest done. New one Monday." = "Görev tamam. Yenisi pazartesi.";
 "Question %lld · level %@" = "Soru %lld · seviye %@";
+"REVIEW" = "TEKRAR";
 "Race you" = "Yarışalım";
 "Rate %@ on the App Store" = "App Store'da %@ uygulamasını değerlendir";
 "Reactions are presets. Blocking someone stops them." = "Tepkiler hazır seçeneklerdir. Birini engellemek onları durdurur.";
@@ -527,6 +541,7 @@
 "See progress" = "İlerlemeyi gör";
 "See you tomorrow." = "Yarın görüşürüz.";
 "Send" = "Gönder";
+"Send a reaction" = "Tepki gönder";
 "Send a test reminder in 10 seconds" = "10 saniye içinde deneme hatırlatması gönder";
 "Send code" = "Kodu gönder";
 "Send feedback" = "Geri bildirim gönder";
@@ -555,6 +570,7 @@
 "Share your score" = "Puanını paylaş";
 "Share your streak" = "Serini paylaş";
 "Share your words" = "Kelimelerini paylaş";
+"Shared" = "Paylaşılan";
 "Shared goal" = "Ortak hedef";
 "Shared roots in this set · %lld words" = "Bu setteki ortak kökler · %lld kelime";
 "Short vowels usually go unwritten." = "Kısa ünlüler genellikle yazılmaz.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "İstasyonlar yüklenmedi. Tekrar dene";
 "Stations from radio-browser.info." = "İstasyonlar radio-browser.info'dan.";
 "Status" = "Durum";
+"Step %lld is wrong. %@" = "%lld. adım yanlış. %@";
 "Stop" = "Durdur";
 "Stop %@" = "%@ durdur";
 "Streak" = "Seri";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "Birkaç kelime daha çalış, yarının Mini'si açılsın.";
 "Study a few more words and tomorrow's Word Groups opens." = "Birkaç kelime daha çalış, yarının Kelime Grupları açılsın.";
 "Study a few words in Learn first." = "Önce Öğren'de birkaç kelime çalış.";
+"Study today (%lld)" = "Bugün çalış (%lld)";
 "Study today to count day 1." = "1. günü saymak için bugün çalış.";
 "Subject strength" = "Konu gücü";
 "Subjects" = "Konular";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "Bu cihazda %@ için çeviri yok.";
 "Trial ending" = "Deneme bitiyor";
 "Try again" = "Tekrar dene";
+"Try another word." = "Başka bir kelime dene.";
 "Turn on reminders" = "Hatırlatmaları aç";
 "Type instead" = "Yazarak gir";
 "Type what you hear" = "Duyduğunu yaz";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "%lld günlük serin gece yarısı bitiyor";
 "Your age range" = "Yaş aralığın";
 "Your answer" = "Cevabın";
+"Your day" = "Günün";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "Dil sistemlerin üç denemeden sonra sunucuya ulaşamadı. Bu cihaza kaydedildi; sonraki değişiklik eşitlemeyi yeniden dener.";
 "Your languages" = "Dillerin";
 "Your name" = "Adın";
@@ -781,6 +801,9 @@
 "calculate" = "hesapla";
 "common" = "ortak";
 "conjugate" = "çekimle";
+"done today" = "bugün bitti";
+"due now" = "şimdi tekrar";
+"entropy, symmetry, memory" = "entropi, simetri, bellek";
 "false friend" = "yalancı eş";
 "feminine" = "dişil";
 "fill the gap" = "boşluğu doldur";
@@ -798,6 +821,7 @@
 "new character" = "yeni karakter";
 "new letter" = "yeni harf";
 "new sound" = "yeni ses";
+"new today" = "bugün yeni";
 "new word" = "yeni kelime";
 "night" = "gece";
 "once" = "tek seferlik";
@@ -826,6 +850,7 @@
 "word mastered" = "kelimede ustalaşıldı";
 "words mastered" = "kelimede ustalaşıldı";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

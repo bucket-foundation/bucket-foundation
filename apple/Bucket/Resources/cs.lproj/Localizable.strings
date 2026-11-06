@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Zvuk je převod textu na řeč v zařízení, s nahranými klipy tam, kde jazyk nemá hlas.";
 "%@ %lld started, %lld mastered" = "%@ začato: %lld, zvládnuto: %lld";
 "%@ Wikipedia" = "%@ Wikipedie";
+"%@ a month" = "%@ měsíčně";
+"%@ a year" = "%@ ročně";
 "%@ and above: not enough material in this language to test" = "%@ a výš: v tomto jazyce není dost materiálu k testování";
 "%@ cheered you on." = "%@ ti fandí.";
 "%@ flag" = "Vlajka: %@";
+"%@ from %@" = "%1$@, základ: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ zatím nemá synchronizovaný pokrok. Skóre se objeví po další lekci s přihlášením.";
 "%@ invited you. %lld of %lld members." = "%@ tě zve. %lld z %lld členů.";
 "%@ nudged you to study today." = "%@ ti připomíná, ať se dnes učíš.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ jednorázově. Účtováno na tvůj Apple Account. Bez předplatného a bez obnovení.";
 "%@ quest" = "Výzva: %@";
 "%@ says keep going." = "%@ říká: jen tak dál.";
 "%@ says nice streak." = "%@ říká: pěkná série.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, kartička %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, pořadí %lld, kartičky tento týden: %lld, série dní: %lld, zvládnutá slova: %lld";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: %lld z %lld správně, nesplněno";
 "%@: %lld of %lld right, passed" = "%@: %lld z %lld správně, splněno";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Série dní: %lld";
 "%lld day streak on %@" = "Série dní v %2$@: %1$lld";
 "%lld days" = "Dny: %lld";
+"%lld days free" = "Dny zdarma: %lld";
+"%lld days free, then %@." = "Dny zdarma: %lld, pak %@.";
 "%lld days in a row learning %@ on %@" = "Dny v řadě učení (%2$@) v %3$@: %1$lld";
 "%lld days to 100" = "Do 100 zbývá dní: %lld";
 "%lld down · %lld letters" = "%lld svisle · písmena: %lld";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%lld z %lld správně · +%lld xp · série dní: %lld";
 "%lld of %lld right. New letters come in fives." = "%lld z %lld správně. Nová písmena chodí po pěti.";
 "%lld of %lld today. See your result." = "%lld z %lld dnes. Podívej se na výsledek.";
+"%lld of 5 picked" = "Vybráno %lld z 5";
 "%lld pairs. Longest run %lld." = "Páry: %lld. Nejdelší řada: %lld.";
 "%lld points" = "Body: %lld";
 "%lld questions." = "Otázky: %lld.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 dní splněno. Jen tak dál.";
 "5" = "5";
+"A 100 day streak" = "Série 100 dní";
 "A bar along the top joins the letters of a word." = "Čára nahoře spojuje písmena slova.";
 "A family group holds up to 6 people." = "Rodinná skupina má místo pro 6 lidí.";
 "A friends group holds up to 30 people." = "Skupina přátel má místo pro 30 lidí.";
+"A new phone picks up where you left off" = "Nový telefon naváže tam, kde jsi skončil";
 "A small crossword in your language. New every day." = "Malá křížovka v tvém jazyce. Každý den nová.";
 "A unit opens once 80% of the one before it has started." = "Část se otevře, až začneš 80% té předchozí.";
 "A word with a missing letter" = "Slovo s chybějícím písmenem";
@@ -234,6 +245,7 @@
 "Finals" = "Koncovky";
 "Finish one round" = "Dokonči jedno kolo";
 "First word mastered" = "První slovo zvládnuto";
+"Five at most. Tap one to swap it out." = "Nejvýš pět. Klepnutím jedno vyměníš.";
 "Five letters change shape at the end of a word." = "Pět písmen mění na konci slova tvar.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Pět tónů vychází z třídy souhlásky, tónového znaménka a typu slabiky.";
 "Flags" = "Vlajky";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Základy v sedmi větvích: od matematiky po mysl.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Čtyři tóny a neutrální tón mění význam slabiky.";
 "Free during the beta" = "Zdarma během bety";
+"Free trial: %lld days left" = "Zkušební verze: zbývá dní: %lld";
+"Free trial: 1 day left" = "Zkušební verze: zbývá 1 den";
 "Friends" = "Přátelé";
 "From %@: %@" = "Od %@: %@";
 "Full detail" = "Všechny podrobnosti";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Načítám tvá opakování";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Pošta není na tomto zařízení nastavená. Vlož %@ do libovolné e-mailové aplikace.";
 "Manage subscription" = "Spravovat předplatné";
+"Manage your subscription" = "Spravuj své předplatné";
 "Manuscripts follow no fixed spelling." = "Rukopisy nemají ustálený pravopis.";
 "Mastery %lld percent" = "Zvládnutí %lld procent";
 "Mathematics" = "Matematika";
@@ -463,6 +478,7 @@
 "Progress" = "Pokrok";
 "Progress in a removed language stays saved and returns if you add it back." = "Pokrok v odebraném jazyce zůstane uložený a vrátí se, když jazyk znovu přidáš.";
 "Progress stays saved and returns if you build the same system again." = "Pokrok zůstane uložený a vrátí se, když vytvoříš stejný systém znovu.";
+"Progress syncs across iPhone, iPad and Mac" = "Pokrok se synchronizuje mezi iPhonem, iPadem a Macem";
 "Quest done. New one Monday." = "Výzva splněna. Nová v pondělí.";
 "Question %lld · level %@" = "Otázka %lld · úroveň %@";
 "REVIEW" = "OPAKOVÁNÍ";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Obnovit do stavu nové instalace?";
 "Reset to fresh install" = "Obnovit do stavu nové instalace";
 "Resetting the link stops the old one from working." = "Po resetu přestane starý odkaz fungovat.";
+"Restore" = "Obnovit";
+"Restoring" = "Obnovuji";
 "Retry" = "Zkusit znovu";
 "Review" = "Opakovat";
 "Right" = "Správně";
@@ -509,6 +527,7 @@
 "Save languages" = "Uložit jazyky";
 "Save my streak · %@" = "Zachraň mou sérii · %@";
 "Save to your account" = "Uložit do účtu";
+"Save your progress" = "Ulož svůj pokrok";
 "Saved on this device. Choose your age range to sync." = "Uloženo v tomto zařízení. Vyber věkové rozmezí pro synchronizaci.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Uloženo v tomto zařízení. Přihlas se, abys to měl i na bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "Uloženo v tomto zařízení. Přihlas se pro synchronizaci jazykových systémů.";
@@ -551,6 +570,7 @@
 "Share your score" = "Sdílej skóre";
 "Share your streak" = "Sdílej sérii";
 "Share your words" = "Sdílej svá slova";
+"Shared" = "Sdílené";
 "Shared goal" = "Společný cíl";
 "Shared roots in this set · %lld words" = "Společné kořeny v této sadě · slova: %lld";
 "Short vowels usually go unwritten." = "Krátké samohlásky se obvykle nepíšou.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Napiš to vlastním písmem";
 "Spot on!" = "Přesně!";
 "Standings" = "Pořadí";
+"Start %lld days free" = "Začít zdarma, dny: %lld";
 "Start a language set in Learn. The games use the words you study." = "Začni jazykovou sadu v Učení. Hry používají slova, která se učíš.";
 "Start a set" = "Začít sadu";
 "Start from the first words" = "Začít od prvních slov";
@@ -697,6 +718,7 @@
 "Unblock" = "Odblokovat";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Odblokování tě do skupiny nevrátí. Vrátit se můžeš přes odkaz pozvánky.";
 "Use a different email" = "Použít jiný e-mail";
+"Use email instead" = "Raději použít e-mail";
 "Verbs" = "Slovesa";
 "Verify" = "Ověřit";
 "Version" = "Verze";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Tvůj pokrok se ještě nesynchronizoval. Dokonči lekci s přihlášením.";
 "Your reminders reach this phone." = "Připomínky chodí na tento telefon.";
 "Your strength" = "Tvá síla";
+"Your trial is on. Sign in so your words and streak stay with you." = "Zkušební doba běží. Přihlas se, ať ti slova a série zůstanou.";
 "Your turn: say “%@”" = "Jsi na řadě: řekni “%@”";
 "Zhuyin sounds" = "Hlásky zhuyin";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "vypočítej";
 "common" = "společný";
 "conjugate" = "vyčasuj";
+"done today" = "hotovo dnes";
+"due now" = "k opakování";
 "entropy, symmetry, memory" = "entropie, symetrie, paměť";
 "false friend" = "falešný přítel";
 "feminine" = "ženský";
@@ -796,6 +821,7 @@
 "new character" = "nový znak";
 "new letter" = "nové písmeno";
 "new sound" = "nová hláska";
+"new today" = "nové dnes";
 "new word" = "nové slovo";
 "night" = "noc";
 "once" = "jednorázově";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

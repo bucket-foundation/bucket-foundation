@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ и выше: в этом языке мало материала для теста";
 "%@ cheered you on." = "%@ подбадривает тебя.";
 "%@ flag" = "Флаг: %@";
+"%@ from %@" = "%1$@, основа: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "У пользователя %@ пока нет синхронизированного прогресса. Результаты появятся после следующего занятия со входом в аккаунт.";
 "%@ invited you. %lld of %lld members." = "%@ приглашает тебя. Участников: %lld из %lld.";
 "%@ nudged you to study today." = "%@ напоминает тебе позаниматься сегодня.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ даёт тебе пять.";
 "%@ to %@" = "%@ → %@";
 "%@ wants to race you this week." = "%@ вызывает тебя на соревнование на этой неделе.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "Вопросов: %lld.";
 "%lld review" = "Повторений: %lld";
 "%lld review · %lld new" = "Повторений: %lld · новых: %lld";
+"%lld sources" = "Источников: %lld";
 "%lld started · %lld mastered" = "Начато: %lld · освоено: %lld";
 "%lld this week" = "За неделю: %lld";
 "%lld today" = "Сегодня: %lld";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "Древнегреческий алфавит";
 "Animals" = "Животные";
 "Another round" = "Ещё раунд";
+"Answer: %@" = "Ответ: %@";
+"Answer: %@ %@" = "Ответ: %@ %@";
 "Answers shown. New puzzle tomorrow." = "Ответы показаны. Новая головоломка завтра.";
 "Anyone who opens this link can join %@." = "Любой, кто откроет эту ссылку, сможет вступить в %@.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple не вернул токен входа. Попробуй ещё раз или используй почту ниже.";
@@ -145,6 +150,7 @@
 "Buy once" = "Купить один раз";
 "Cancel" = "Отмена";
 "Canon" = "Канон";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "Записано карточек: %lld. Начато %lld из %lld атомов, освоено %lld.";
 "Change the weekly goal" = "Изменить цель на неделю";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Оплата с Apple Account. Продлевается автоматически, если не отменить в Настройках минимум за 24 часа до конца периода.";
 "Check" = "Проверить";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "Введи почту родителя. Мы попросим разрешить сохранение твоего прогресса.";
 "Every card anyone in the group studies counts toward the goal." = "Каждая карточка любого участника группы идёт в зачёт цели.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "Все карточки запланированы на будущее, а новые атомы на сегодня пройдены. Прочитай любой атом из колоды или выбери другую ветвь.";
+"Every idea across seven branches." = "Все идеи в семи ветвях.";
 "Every word of two or more syllables marks its stress with an accent." = "В каждом слове из двух и более слогов ударение отмечено знаком.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "В обычных текстах знаки гласных опускают. В детских книгах и молитвенниках их печатают.";
 "Explore" = "Обзор";
@@ -272,6 +279,7 @@
 "Hint" = "Подсказка";
 "Hiragana" = "Хирагана";
 "Hiragana and katakana" = "Хирагана и катакана";
+"How well did you recall it" = "Насколько хорошо ты вспомнил";
 "I already speak" = "Я уже говорю";
 "I do not know" = "Не знаю";
 "I have a code" = "У меня есть код";
@@ -345,6 +353,7 @@
 "Manage subscription" = "Управлять подпиской";
 "Manage your subscription" = "Управляй подпиской";
 "Manuscripts follow no fixed spelling." = "В рукописях нет устойчивой орфографии.";
+"Mastery %lld percent" = "Освоено на %lld процентов";
 "Mathematics" = "Математика";
 "Means %@, looks like English %@" = "Значит %@, похоже на английское %@";
 "Mediterranean" = "Средиземноморские";
@@ -360,6 +369,7 @@
 "More languages · 29" = "Ещё языки · 29";
 "Move to bottom" = "В конец";
 "Move to top" = "В начало";
+"NEW" = "НОВОЕ";
 "Nailed it!" = "В точку!";
 "Name others see" = "Имя для других";
 "Nature" = "Природа";
@@ -377,6 +387,7 @@
 "No letters due" = "Нет букв к повторению";
 "No mistakes. New board tomorrow." = "Без ошибок. Новое поле завтра.";
 "No progress synced yet" = "Прогресс ещё не синхронизирован";
+"No results" = "Ничего не найдено";
 "No stations found." = "Станции не найдены.";
 "No stations in this branch." = "В этой ветви нет станций.";
 "No subjects yet." = "Предметов пока нет.";
@@ -388,6 +399,7 @@
 "Not quite" = "Не совсем";
 "Not quite. " = "Не совсем. ";
 "Nothing due" = "Нечего повторять";
+"Nothing due in %@" = "Нечего повторять: %@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "Нечего повторять. Все карточки запланированы на будущее, а новые атомы на сегодня пройдены.";
 "Nothing to draw yet." = "Пока нечего показать.";
 "Notifications" = "Уведомления";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Студенческий тариф Polingual";
 "Practice with ${applicationName}" = "Практикуйся с ${applicationName}";
 "Preparing today's route" = "Готовим маршрут на сегодня";
+"Prerequisites: %lld" = "Предварительные условия: %lld";
 "Present tense" = "Настоящее время";
 "Privacy" = "Конфиденциальность";
 "Privacy and data" = "Конфиденциальность и данные";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "Прогресс синхронизируется между iPhone, iPad и Mac";
 "Quest done. New one Monday." = "Задание выполнено. Новое в понедельник.";
 "Question %lld · level %@" = "Вопрос %lld · уровень %@";
+"REVIEW" = "ПОВТОРЕНИЕ";
 "Race you" = "Вызов";
 "Rate %@ on the App Store" = "Оцени %@ в App Store";
 "Reactions are presets. Blocking someone stops them." = "Реакции заданы заранее. Блокировка их останавливает.";
@@ -527,6 +541,7 @@
 "See progress" = "Посмотреть прогресс";
 "See you tomorrow." = "До завтра.";
 "Send" = "Отправить";
+"Send a reaction" = "Отправить реакцию";
 "Send a test reminder in 10 seconds" = "Отправить тестовое напоминание через 10 секунд";
 "Send code" = "Отправить код";
 "Send feedback" = "Отправить отзыв";
@@ -555,6 +570,7 @@
 "Share your score" = "Поделись счётом";
 "Share your streak" = "Поделись серией";
 "Share your words" = "Поделись словами";
+"Shared" = "Общее";
 "Shared goal" = "Общая цель";
 "Shared roots in this set · %lld words" = "Общие корни в наборе · слов: %lld";
 "Short vowels usually go unwritten." = "Краткие гласные обычно не пишут.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "Станции не загрузились. Повторить";
 "Stations from radio-browser.info." = "Станции с radio-browser.info.";
 "Status" = "Статус";
+"Step %lld is wrong. %@" = "Шаг %lld неверный. %@";
 "Stop" = "Стоп";
 "Stop %@" = "Остановить %@";
 "Streak" = "Серия";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "Выучи ещё несколько слов, и завтрашний Мини откроется.";
 "Study a few more words and tomorrow's Word Groups opens." = "Выучи ещё несколько слов, и завтрашние «Группы слов» откроются.";
 "Study a few words in Learn first." = "Сначала выучи несколько слов в «Учить».";
+"Study today (%lld)" = "Учить сегодня (%lld)";
 "Study today to count day 1." = "Позанимайся сегодня, чтобы засчитать день 1.";
 "Subject strength" = "Сила предметов";
 "Subjects" = "Предметы";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "Перевод для языка %@ недоступен на этом устройстве.";
 "Trial ending" = "Пробный период заканчивается";
 "Try again" = "Попробуй снова";
+"Try another word." = "Попробуй другое слово.";
 "Turn on reminders" = "Включить напоминания";
 "Type instead" = "Ввести текстом";
 "Type what you hear" = "Напиши, что слышишь";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "Твоя серия (%lld дн.) прервётся в полночь";
 "Your age range" = "Твой возраст";
 "Your answer" = "Твой ответ";
+"Your day" = "Твой день";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "Языковые системы не дошли до сервера после трёх попыток. Они сохранены на устройстве; следующее изменение снова запустит синхронизацию.";
 "Your languages" = "Твои языки";
 "Your name" = "Твоё имя";
@@ -781,6 +801,9 @@
 "calculate" = "вычисли";
 "common" = "общий род";
 "conjugate" = "проспрягай";
+"done today" = "сделано сегодня";
+"due now" = "к повторению";
+"entropy, symmetry, memory" = "энтропия, симметрия, память";
 "false friend" = "ложный друг";
 "feminine" = "женский род";
 "fill the gap" = "заполни пропуск";
@@ -798,6 +821,7 @@
 "new character" = "новый знак";
 "new letter" = "новая буква";
 "new sound" = "новый звук";
+"new today" = "новые сегодня";
 "new word" = "новое слово";
 "night" = "ночь";
 "once" = "единоразово";
@@ -826,6 +850,7 @@
 "word mastered" = "слово освоено";
 "words mastered" = "слов освоено";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

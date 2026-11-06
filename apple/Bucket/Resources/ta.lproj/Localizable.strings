@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ ஒலி சாதனத்தின் உரை-ஒலி மாற்றத்தில் வருகிறது. குரல் இல்லாத மொழிகளுக்குப் பதிவு செய்த ஒலிக்கோவைகள் இயங்கும்.";
 "%@ %lld started, %lld mastered" = "%1$@ %2$lld தொடங்கியவை, %3$lld தேர்ந்தவை";
 "%@ Wikipedia" = "%@ விக்கிப்பீடியா";
+"%@ a month" = "மாதம் %@";
+"%@ a year" = "ஆண்டுக்கு %@";
 "%@ and above: not enough material in this language to test" = "%@ மற்றும் மேல்: சோதிக்க இந்த மொழியில் போதுமான உள்ளடக்கம் இல்லை";
 "%@ cheered you on." = "%@ உங்களை உற்சாகப்படுத்தினார்.";
 "%@ flag" = "%@ கொடி";
+"%@ from %@" = "%2$@ வழியாக %1$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ இன் முன்னேற்றம் இன்னும் ஒத்திசைக்கப்படவில்லை. உள்நுழைந்த நிலையில் அடுத்த அமர்வுக்குப் பிறகு மதிப்பெண்கள் தெரியும்.";
 "%@ invited you. %lld of %lld members." = "%1$@ உங்களை அழைத்தார். %3$lld இல் %2$lld உறுப்பினர்கள்.";
 "%@ nudged you to study today." = "இன்று படிக்க %@ நினைவூட்டினார்.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "ஒருமுறை %@. உங்கள் Apple கணக்கில் கட்டணம். சந்தாவும் புதுப்பித்தலும் இல்லை.";
 "%@ quest" = "%@ சவால்";
 "%@ says keep going." = "%@ சொல்கிறார்: தொடருங்கள்.";
 "%@ says nice streak." = "%@ சொல்கிறார்: அருமையான தொடர்.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@, அட்டை %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@, தரம் %2$lld, இந்த வாரம் %3$lld அட்டைகள், %4$lld நாள் தொடர், %5$lld சொற்கள் தேர்ந்தவை";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: %3$lld இல் %2$lld சரி, தேர்ச்சி இல்லை";
 "%@: %lld of %lld right, passed" = "%1$@: %3$lld இல் %2$lld சரி, தேர்ச்சி";
@@ -33,6 +39,8 @@
 "%lld day streak" = "%lld நாள் தொடர்";
 "%lld day streak on %@" = "%2$@ இல் %1$lld நாள் தொடர்";
 "%lld days" = "%lld நாட்கள்";
+"%lld days free" = "%lld நாட்கள் இலவசம்";
+"%lld days free, then %@." = "%1$lld நாட்கள் இலவசம், பிறகு %2$@.";
 "%lld days in a row learning %@ on %@" = "%3$@ இல் தொடர்ந்து %1$lld நாட்கள் %2$@ கற்கிறேன்";
 "%lld days to 100" = "100 க்கு %lld நாட்கள்";
 "%lld down · %lld letters" = "%1$lld நெடுக்கு · %2$lld எழுத்துகள்";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%2$lld இல் %1$lld சரி · +%3$lld xp · %4$lld நாள் தொடர்";
 "%lld of %lld right. New letters come in fives." = "%2$lld இல் %1$lld சரி. புதிய எழுத்துகள் ஐந்து ஐந்தாக வரும்.";
 "%lld of %lld today. See your result." = "இன்று %2$lld இல் %1$lld. உங்கள் முடிவைப் பாருங்கள்.";
+"%lld of 5 picked" = "5 இல் %lld தேர்வு";
 "%lld pairs. Longest run %lld." = "%1$lld ஜோடிகள். நீண்ட தொடர் %2$lld.";
 "%lld points" = "%lld புள்ளிகள்";
 "%lld questions." = "%lld கேள்விகள்.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 நாட்கள் எட்டியது. தொடருங்கள்.";
 "5" = "5";
+"A 100 day streak" = "100 நாள் தொடர்";
 "A bar along the top joins the letters of a word." = "மேலே ஒரு கோடு சொல்லின் எழுத்துகளை இணைக்கிறது.";
 "A family group holds up to 6 people." = "குடும்பக் குழுவில் 6 பேர் வரை இருக்கலாம்.";
 "A friends group holds up to 30 people." = "நண்பர்கள் குழுவில் 30 பேர் வரை இருக்கலாம்.";
+"A new phone picks up where you left off" = "புதிய போன் நீங்கள் விட்ட இடத்திலிருந்து தொடரும்";
 "A small crossword in your language. New every day." = "உங்கள் மொழியில் ஒரு சிறிய குறுக்கெழுத்து. தினமும் புதியது.";
 "A unit opens once 80% of the one before it has started." = "முந்தைய அலகில் 80% தொடங்கியதும் அடுத்த அலகு திறக்கும்.";
 "A word with a missing letter" = "ஒரு எழுத்து விடுபட்ட சொல்";
@@ -234,6 +245,7 @@
 "Finals" = "இறுதி ஒலிகள்";
 "Finish one round" = "ஒரு சுற்றை முடி";
 "First word mastered" = "முதல் சொல் தேர்ந்தது";
+"Five at most. Tap one to swap it out." = "அதிகபட்சம் ஐந்து. மாற்ற ஒன்றைத் தட்டுங்கள்.";
 "Five letters change shape at the end of a word." = "ஐந்து எழுத்துகள் சொல்லின் இறுதியில் வடிவம் மாறும்.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "ஐந்து தொனிகள் மெய் வகை, தொனிக் குறி, அசை வகை ஆகியவற்றிலிருந்து வரும்.";
 "Flags" = "கொடிகள்";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "ஏழு கிளைகளின் அடிப்படைகள்: கணிதம் முதல் மனம் வரை.";
 "Four tones and a neutral tone change the meaning of a syllable." = "நான்கு தொனிகளும் ஒரு நடுநிலைத் தொனியும் அசையின் பொருளை மாற்றும்.";
 "Free during the beta" = "பீட்டாவின்போது இலவசம்";
+"Free trial: %lld days left" = "இலவசச் சோதனை: %lld நாட்கள் மீதம்";
+"Free trial: 1 day left" = "இலவசச் சோதனை: 1 நாள் மீதம்";
 "Friends" = "நண்பர்கள்";
 "From %@: %@" = "%1$@ இடமிருந்து: %2$@";
 "Full detail" = "முழு விவரம்";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "உங்கள் மீள்பார்வைகள் ஏற்றப்படுகின்றன";
 "Mail isn't set up on this device. Paste %@ into any email app." = "இந்தச் சாதனத்தில் அஞ்சல் அமைக்கப்படவில்லை. %@ ஐ எந்த மின்னஞ்சல் செயலியிலும் ஒட்டுங்கள்.";
 "Manage subscription" = "சந்தாவை நிர்வகி";
+"Manage your subscription" = "உங்கள் சந்தாவை நிர்வகியுங்கள்";
 "Manuscripts follow no fixed spelling." = "கையெழுத்துப் படிகளுக்கு நிலையான எழுத்துக்கூட்டல் இல்லை.";
 "Mastery %lld percent" = "தேர்ச்சி %lld சதவீதம்";
 "Mathematics" = "கணிதம்";
@@ -463,6 +478,7 @@
 "Progress" = "முன்னேற்றம்";
 "Progress in a removed language stays saved and returns if you add it back." = "நீக்கிய மொழியின் முன்னேற்றம் சேமிக்கப்பட்டிருக்கும், மீண்டும் சேர்த்தால் திரும்ப வரும்.";
 "Progress stays saved and returns if you build the same system again." = "முன்னேற்றம் சேமிக்கப்பட்டிருக்கும், அதே அமைப்பை மீண்டும் உருவாக்கினால் திரும்ப வரும்.";
+"Progress syncs across iPhone, iPad and Mac" = "முன்னேற்றம் iPhone, iPad, Mac இடையே ஒத்திசைகிறது";
 "Quest done. New one Monday." = "சவால் முடிந்தது. புதியது திங்கள்.";
 "Question %lld · level %@" = "கேள்வி %1$lld · நிலை %2$@";
 "REVIEW" = "மீள்பார்வை";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "புதிய நிறுவலாக மீட்டமைக்கவா?";
 "Reset to fresh install" = "புதிய நிறுவலாக மீட்டமை";
 "Resetting the link stops the old one from working." = "இணைப்பை மீட்டமைத்தால் பழையது செயல்படாது.";
+"Restore" = "மீட்டெடு";
+"Restoring" = "மீட்டெடுக்கிறது";
 "Retry" = "மீண்டும் முயல்";
 "Review" = "மீள்பார்";
 "Right" = "சரி";
@@ -509,6 +527,7 @@
 "Save languages" = "மொழிகளைச் சேமி";
 "Save my streak · %@" = "என் தொடரைக் காப்பாற்று · %@";
 "Save to your account" = "உங்கள் கணக்கில் சேமி";
+"Save your progress" = "உங்கள் முன்னேற்றத்தைச் சேமியுங்கள்";
 "Saved on this device. Choose your age range to sync." = "இந்தச் சாதனத்தில் சேமிக்கப்பட்டது. ஒத்திசைக்க உங்கள் வயது வரம்பைத் தேர்ந்தெடுங்கள்.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "இந்தச் சாதனத்தில் சேமிக்கப்பட்டது. bucket.foundation இலும் வைத்திருக்க உள்நுழையுங்கள்.";
 "Saved on this device. Sign in to sync your language systems." = "இந்தச் சாதனத்தில் சேமிக்கப்பட்டது. உங்கள் மொழி அமைப்புகளை ஒத்திசைக்க உள்நுழையுங்கள்.";
@@ -551,6 +570,7 @@
 "Share your score" = "உங்கள் மதிப்பெண்ணைப் பகிருங்கள்";
 "Share your streak" = "உங்கள் தொடரைப் பகிருங்கள்";
 "Share your words" = "உங்கள் சொற்களைப் பகிருங்கள்";
+"Shared" = "பகிரப்பட்டவை";
 "Shared goal" = "பகிர்ந்த இலக்கு";
 "Shared roots in this set · %lld words" = "இந்தத் தொகுப்பில் பொது வேர்கள் · %lld சொற்கள்";
 "Short vowels usually go unwritten." = "குறில்கள் பொதுவாக எழுதப்படுவதில்லை.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "அதன் சொந்த எழுத்தில் எழுதுங்கள்";
 "Spot on!" = "மிகச் சரி!";
 "Standings" = "தரவரிசை";
+"Start %lld days free" = "%lld நாட்கள் இலவசமாகத் தொடங்கு";
 "Start a language set in Learn. The games use the words you study." = "கற்க பகுதியில் மொழித் தொகுப்பைத் தொடங்குங்கள். விளையாட்டுகள் நீங்கள் படிக்கும் சொற்களைப் பயன்படுத்தும்.";
 "Start a set" = "தொகுப்பைத் தொடங்கு";
 "Start from the first words" = "முதல் சொற்களிலிருந்து தொடங்கு";
@@ -697,6 +718,7 @@
 "Unblock" = "தடை நீக்கு";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "தடை நீக்கினால் நீங்கள் குழுவில் மீண்டும் சேர மாட்டீர்கள். அழைப்பு இணைப்பின் மூலம் மீண்டும் சேரலாம்.";
 "Use a different email" = "வேறு மின்னஞ்சல் பயன்படுத்து";
+"Use email instead" = "பதிலாக மின்னஞ்சல் பயன்படுத்து";
 "Verbs" = "வினைச்சொற்கள்";
 "Verify" = "சரிபார்";
 "Version" = "பதிப்பு";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "உங்கள் முன்னேற்றம் இன்னும் ஒத்திசைக்கப்படவில்லை. உள்நுழைந்த நிலையில் ஒரு அமர்வை முடியுங்கள்.";
 "Your reminders reach this phone." = "உங்கள் நினைவூட்டல்கள் இந்தப் போனுக்கு வரும்.";
 "Your strength" = "உங்கள் வலிமை";
+"Your trial is on. Sign in so your words and streak stay with you." = "உங்கள் சோதனைக் காலம் இயங்குகிறது. உங்கள் சொற்களும் தொடரும் உங்களுடன் இருக்க உள்நுழையுங்கள்.";
 "Your turn: say “%@”" = "உங்கள் முறை: “%@” என்று சொல்லுங்கள்";
 "Zhuyin sounds" = "ஜூயின் ஒலிகள்";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "கணக்கிடு";
 "common" = "பொது";
 "conjugate" = "வினை மாற்று";
+"done today" = "இன்று முடிந்தவை";
+"due now" = "மீள்பார்வைக்கு";
 "entropy, symmetry, memory" = "என்ட்ரோபி, சமச்சீர், நினைவு";
 "false friend" = "போலி நண்பன்";
 "feminine" = "பெண்பால்";
@@ -796,6 +821,7 @@
 "new character" = "புதிய எழுத்து";
 "new letter" = "புதிய எழுத்து";
 "new sound" = "புதிய ஒலி";
+"new today" = "இன்று புதியவை";
 "new word" = "புதிய சொல்";
 "night" = "இரவு";
 "once" = "ஒருமுறை";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

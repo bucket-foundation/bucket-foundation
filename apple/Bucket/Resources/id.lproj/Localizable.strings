@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Audio memakai suara bawaan perangkat, dengan rekaman jika suatu bahasa belum punya suara.";
 "%@ %lld started, %lld mastered" = "%@ %lld dimulai, %lld dikuasai";
 "%@ Wikipedia" = "Wikipedia %@";
+"%@ a month" = "%@ per bulan";
+"%@ a year" = "%@ per tahun";
 "%@ and above: not enough material in this language to test" = "%@ ke atas: materi bahasa ini belum cukup untuk diuji";
 "%@ cheered you on." = "%@ menyemangatimu.";
 "%@ flag" = "Bendera %@";
+"%@ from %@" = "%1$@ dari %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ belum punya progres yang disinkronkan. Skor muncul setelah sesi berikutnya saat mereka masuk.";
 "%@ invited you. %lld of %lld members." = "%@ mengundangmu. %lld dari %lld anggota.";
 "%@ nudged you to study today." = "%@ mengingatkanmu untuk belajar hari ini.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ sekali bayar. Ditagihkan ke Apple Account kamu. Tanpa langganan dan tanpa perpanjangan.";
 "%@ quest" = "Misi %@";
 "%@ says keep going." = "%@ bilang: terus semangat.";
 "%@ says nice streak." = "%@ bilang: runtunan yang keren.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, kartu %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, peringkat %lld, %lld kartu minggu ini, runtunan %lld hari, %lld kata dikuasai";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: %lld dari %lld benar, belum lulus";
 "%@: %lld of %lld right, passed" = "%@: %lld dari %lld benar, lulus";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Runtunan %lld hari";
 "%lld day streak on %@" = "Runtunan %lld hari di %@";
 "%lld days" = "%lld hari";
+"%lld days free" = "Gratis %lld hari";
+"%lld days free, then %@." = "Gratis %lld hari, lalu %@.";
 "%lld days in a row learning %@ on %@" = "%lld hari berturut-turut belajar %@ di %@";
 "%lld days to 100" = "%lld hari lagi menuju 100";
 "%lld down · %lld letters" = "%lld menurun · %lld huruf";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%lld dari %lld benar · +%lld xp · runtunan %lld hari";
 "%lld of %lld right. New letters come in fives." = "%lld dari %lld benar. Huruf baru datang per lima.";
 "%lld of %lld today. See your result." = "%lld dari %lld hari ini. Lihat hasilmu.";
+"%lld of 5 picked" = "%lld dari 5 dipilih";
 "%lld pairs. Longest run %lld." = "%lld pasang. Runtunan terpanjang %lld.";
 "%lld points" = "%lld poin";
 "%lld questions." = "%lld soal.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 hari tercapai. Terus lanjutkan.";
 "5" = "5";
+"A 100 day streak" = "Runtunan 100 hari";
 "A bar along the top joins the letters of a word." = "Garis di bagian atas menyambung huruf-huruf dalam satu kata.";
 "A family group holds up to 6 people." = "Grup keluarga bisa berisi hingga 6 orang.";
 "A friends group holds up to 30 people." = "Grup teman bisa berisi hingga 30 orang.";
+"A new phone picks up where you left off" = "Ponsel baru melanjutkan dari posisi terakhirmu";
 "A small crossword in your language. New every day." = "Teka-teki silang mini dalam bahasamu. Baru setiap hari.";
 "A unit opens once 80% of the one before it has started." = "Satu unit terbuka setelah 80% unit sebelumnya dimulai.";
 "A word with a missing letter" = "Kata dengan satu huruf hilang";
@@ -234,6 +245,7 @@
 "Finals" = "Akhiran";
 "Finish one round" = "Selesaikan satu ronde";
 "First word mastered" = "Kata pertama dikuasai";
+"Five at most. Tap one to swap it out." = "Paling banyak lima. Ketuk salah satu untuk menggantinya.";
 "Five letters change shape at the end of a word." = "Lima huruf berubah bentuk di akhir kata.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Lima nada ditentukan oleh kelas konsonan, tanda nada, dan jenis suku kata.";
 "Flags" = "Bendera";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Dasar-dasar dalam tujuh cabang: dari matematika hingga pikiran.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Empat nada dan satu nada netral mengubah arti suku kata.";
 "Free during the beta" = "Gratis selama beta";
+"Free trial: %lld days left" = "Uji coba gratis: sisa %lld hari";
+"Free trial: 1 day left" = "Uji coba gratis: sisa 1 hari";
 "Friends" = "Teman";
 "From %@: %@" = "Dari %@: %@";
 "Full detail" = "Detail lengkap";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Memuat ulasanmu";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Mail belum diatur di perangkat ini. Tempel %@ ke aplikasi email apa pun.";
 "Manage subscription" = "Kelola langganan";
+"Manage your subscription" = "Kelola langgananmu";
 "Manuscripts follow no fixed spelling." = "Naskah tidak mengikuti ejaan baku.";
 "Mastery %lld percent" = "Penguasaan %lld persen";
 "Mathematics" = "Matematika";
@@ -463,6 +478,7 @@
 "Progress" = "Progres";
 "Progress in a removed language stays saved and returns if you add it back." = "Progres bahasa yang dihapus tetap tersimpan dan kembali jika kamu menambahkannya lagi.";
 "Progress stays saved and returns if you build the same system again." = "Progres tetap tersimpan dan kembali jika kamu membuat sistem yang sama lagi.";
+"Progress syncs across iPhone, iPad and Mac" = "Progres tersinkron di iPhone, iPad, dan Mac";
 "Quest done. New one Monday." = "Misi selesai. Misi baru hari Senin.";
 "Question %lld · level %@" = "Soal %lld · level %@";
 "REVIEW" = "ULASAN";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Kembalikan seperti baru dipasang?";
 "Reset to fresh install" = "Kembalikan seperti baru dipasang";
 "Resetting the link stops the old one from working." = "Mengatur ulang tautan membuat tautan lama tidak berlaku.";
+"Restore" = "Pulihkan";
+"Restoring" = "Memulihkan";
 "Retry" = "Coba lagi";
 "Review" = "Ulasan";
 "Right" = "Benar";
@@ -509,6 +527,7 @@
 "Save languages" = "Simpan bahasa";
 "Save my streak · %@" = "Selamatkan runtunanku · %@";
 "Save to your account" = "Simpan ke akunmu";
+"Save your progress" = "Simpan progresmu";
 "Saved on this device. Choose your age range to sync." = "Tersimpan di perangkat ini. Pilih rentang usiamu untuk sinkronisasi.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Tersimpan di perangkat ini. Masuk agar tersimpan juga di bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "Tersimpan di perangkat ini. Masuk untuk menyinkronkan sistem bahasamu.";
@@ -551,6 +570,7 @@
 "Share your score" = "Bagikan skormu";
 "Share your streak" = "Bagikan runtunanmu";
 "Share your words" = "Bagikan kata-katamu";
+"Shared" = "Dibagikan";
 "Shared goal" = "Target bersama";
 "Shared roots in this set · %lld words" = "Akar bersama di set ini · %lld kata";
 "Short vowels usually go unwritten." = "Vokal pendek biasanya tidak ditulis.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Eja dengan aksaranya sendiri";
 "Spot on!" = "Tepat sekali!";
 "Standings" = "Klasemen";
+"Start %lld days free" = "Mulai gratis %lld hari";
 "Start a language set in Learn. The games use the words you study." = "Mulai set bahasa di Belajar. Permainan memakai kata yang kamu pelajari.";
 "Start a set" = "Mulai set";
 "Start from the first words" = "Mulai dari kata pertama";
@@ -697,6 +718,7 @@
 "Unblock" = "Buka blokir";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Membuka blokir tidak mengembalikanmu ke grup. Kamu bisa bergabung lagi dengan tautan undangan.";
 "Use a different email" = "Pakai email lain";
+"Use email instead" = "Pakai email saja";
 "Verbs" = "Kata kerja";
 "Verify" = "Verifikasi";
 "Version" = "Versi";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Progresmu belum tersinkron. Selesaikan satu sesi saat sudah masuk.";
 "Your reminders reach this phone." = "Pengingatmu sampai ke ponsel ini.";
 "Your strength" = "Kekuatanmu";
+"Your trial is on. Sign in so your words and streak stay with you." = "Uji cobamu aktif. Masuk agar kata dan runtunanmu tetap bersamamu.";
 "Your turn: say “%@”" = "Giliranmu: ucapkan “%@”";
 "Zhuyin sounds" = "Bunyi Zhuyin";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "hitung";
 "common" = "umum";
 "conjugate" = "konjugasikan";
+"done today" = "selesai hari ini";
+"due now" = "jatuh tempo";
 "entropy, symmetry, memory" = "entropi, simetri, memori";
 "false friend" = "kata menipu";
 "feminine" = "feminin";
@@ -796,6 +821,7 @@
 "new character" = "aksara baru";
 "new letter" = "huruf baru";
 "new sound" = "bunyi baru";
+"new today" = "baru hari ini";
 "new word" = "kata baru";
 "night" = "malam";
 "once" = "sekali";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

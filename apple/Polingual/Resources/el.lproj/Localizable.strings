@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ και πάνω: δεν υπάρχει αρκετό υλικό σε αυτή τη γλώσσα για τεστ";
 "%@ cheered you on." = "Ο/Η %@ σε εμψύχωσε.";
 "%@ flag" = "Σημαία: %@";
+"%@ from %@" = "%1$@, βάση: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "Ο/Η %@ δεν έχει ακόμα συγχρονισμένη πρόοδο. Οι βαθμολογίες εμφανίζονται μετά την επόμενη συνεδρία του/της με σύνδεση.";
 "%@ invited you. %lld of %lld members." = "Ο/Η %@ σε προσκάλεσε. %lld από %lld μέλη.";
 "%@ nudged you to study today." = "Ο/Η %@ σου υπενθύμισε να μελετήσεις σήμερα.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "Ο/Η %@ σου έστειλε ένα κόλλα πέντε.";
 "%@ to %@" = "%@ → %@";
 "%@ wants to race you this week." = "Ο/Η %@ θέλει να σε προκαλέσει αυτή την εβδομάδα.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld ερωτήσεις.";
 "%lld review" = "%lld επανάληψη";
 "%lld review · %lld new" = "%lld επανάληψη · %lld νέες";
+"%lld sources" = "%lld πηγές";
 "%lld started · %lld mastered" = "%lld ξεκίνησαν · %lld κατακτημένες";
 "%lld this week" = "%lld αυτή την εβδομάδα";
 "%lld today" = "%lld σήμερα";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "Αρχαίο ελληνικό αλφάβητο";
 "Animals" = "Ζώα";
 "Another round" = "Άλλος ένας γύρος";
+"Answer: %@" = "Απάντηση: %@";
+"Answer: %@ %@" = "Απάντηση: %@ %@";
 "Answers shown. New puzzle tomorrow." = "Οι απαντήσεις εμφανίστηκαν. Νέος γρίφος αύριο.";
 "Anyone who opens this link can join %@." = "Όποιος ανοίξει αυτόν τον σύνδεσμο μπορεί να μπει στο %@.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Η Apple δεν επέστρεψε διακριτικό σύνδεσης. Δοκίμασε ξανά ή χρησιμοποίησε το email σου παρακάτω.";
@@ -145,6 +150,7 @@
 "Buy once" = "Αγορά μία φορά";
 "Cancel" = "Ακύρωση";
 "Canon" = "Κανόνας";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "Καταγεγραμμένες κάρτες: %lld. Ξεκίνησαν %lld από %lld άτομα, κατακτήθηκαν %lld.";
 "Change the weekly goal" = "Άλλαξε τον εβδομαδιαίο στόχο";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Χρέωση στον Apple λογαριασμό σου. Ανανεώνεται αυτόματα, εκτός αν ακυρωθεί στις Ρυθμίσεις τουλάχιστον 24 ώρες πριν λήξει η περίοδος.";
 "Check" = "Έλεγχος";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "Γράψε το email ενός γονέα. Θα του ζητήσουμε να εγκρίνει την αποθήκευση της προόδου σου.";
 "Every card anyone in the group studies counts toward the goal." = "Κάθε κάρτα που μελετά οποιοσδήποτε στην ομάδα μετράει για τον στόχο.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "Όλες οι κάρτες είναι προγραμματισμένες για αργότερα και τα σημερινά νέα άτομα ολοκληρώθηκαν. Διάβασε οποιοδήποτε άτομο από την τράπουλα ή διάλεξε άλλον κλάδο.";
+"Every idea across seven branches." = "Κάθε ιδέα σε επτά κλάδους.";
 "Every word of two or more syllables marks its stress with an accent." = "Κάθε λέξη με δύο ή περισσότερες συλλαβές σημειώνει τον τονισμό της με τόνο.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "Τα καθημερινά κείμενα παραλείπουν τα σημάδια φωνηέντων. Τα παιδικά βιβλία και τα προσευχητάρια τα τυπώνουν.";
 "Explore" = "Εξερεύνηση";
@@ -272,6 +279,7 @@
 "Hint" = "Υπόδειξη";
 "Hiragana" = "Χιραγκάνα";
 "Hiragana and katakana" = "Χιραγκάνα και κατακάνα";
+"How well did you recall it" = "Πόσο καλά το θυμήθηκες";
 "I already speak" = "Ήδη μιλάω";
 "I do not know" = "Δεν ξέρω";
 "I have a code" = "Έχω κωδικό";
@@ -345,6 +353,7 @@
 "Manage subscription" = "Διαχείριση συνδρομής";
 "Manage your subscription" = "Διαχειρίσου τη συνδρομή σου";
 "Manuscripts follow no fixed spelling." = "Τα χειρόγραφα δεν ακολουθούν σταθερή ορθογραφία.";
+"Mastery %lld percent" = "Κατάκτηση %lld τοις εκατό";
 "Mathematics" = "Μαθηματικά";
 "Means %@, looks like English %@" = "Σημαίνει %@, μοιάζει με το αγγλικό %@";
 "Mediterranean" = "Μεσογειακές";
@@ -360,6 +369,7 @@
 "More languages · 29" = "Περισσότερες γλώσσες · 29";
 "Move to bottom" = "Μετακίνηση στο τέλος";
 "Move to top" = "Μετακίνηση στην αρχή";
+"NEW" = "ΝΕΟ";
 "Nailed it!" = "Το πέτυχες!";
 "Name others see" = "Όνομα που βλέπουν οι άλλοι";
 "Nature" = "Φύση";
@@ -377,6 +387,7 @@
 "No letters due" = "Κανένα γράμμα για επανάληψη";
 "No mistakes. New board tomorrow." = "Κανένα λάθος. Νέος πίνακας αύριο.";
 "No progress synced yet" = "Δεν έχει συγχρονιστεί πρόοδος ακόμα";
+"No results" = "Κανένα αποτέλεσμα";
 "No stations found." = "Δεν βρέθηκαν σταθμοί.";
 "No stations in this branch." = "Κανένας σταθμός σε αυτόν τον κλάδο.";
 "No subjects yet." = "Κανένα θέμα ακόμα.";
@@ -388,6 +399,7 @@
 "Not quite" = "Όχι ακριβώς";
 "Not quite. " = "Όχι ακριβώς. ";
 "Nothing due" = "Τίποτα για επανάληψη";
+"Nothing due in %@" = "Τίποτα για επανάληψη στα %@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "Τίποτα για επανάληψη. Όλες οι κάρτες είναι προγραμματισμένες για αργότερα και τα σημερινά νέα άτομα ολοκληρώθηκαν.";
 "Nothing to draw yet." = "Τίποτα για σχεδίαση ακόμα.";
 "Notifications" = "Ειδοποιήσεις";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Φοιτητικό πρόγραμμα Polingual";
 "Practice with ${applicationName}" = "Εξάσκηση με ${applicationName}";
 "Preparing today's route" = "Ετοιμάζουμε τη σημερινή διαδρομή";
+"Prerequisites: %lld" = "Προαπαιτούμενα: %lld";
 "Present tense" = "Ενεστώτας";
 "Privacy" = "Απόρρητο";
 "Privacy and data" = "Απόρρητο και δεδομένα";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "Η πρόοδος συγχρονίζεται σε iPhone, iPad και Mac";
 "Quest done. New one Monday." = "Η αποστολή ολοκληρώθηκε. Νέα τη Δευτέρα.";
 "Question %lld · level %@" = "Ερώτηση %lld · επίπεδο %@";
+"REVIEW" = "ΕΠΑΝΑΛΗΨΗ";
 "Race you" = "Πρόκληση";
 "Rate %@ on the App Store" = "Βαθμολόγησε το %@ στο App Store";
 "Reactions are presets. Blocking someone stops them." = "Οι αντιδράσεις είναι προκαθορισμένες. Ο αποκλεισμός τις σταματά.";
@@ -527,6 +541,7 @@
 "See progress" = "Δες την πρόοδο";
 "See you tomorrow." = "Τα λέμε αύριο.";
 "Send" = "Αποστολή";
+"Send a reaction" = "Στείλε αντίδραση";
 "Send a test reminder in 10 seconds" = "Δοκιμαστική υπενθύμιση σε 10 δευτερόλεπτα";
 "Send code" = "Αποστολή κωδικού";
 "Send feedback" = "Στείλε σχόλια";
@@ -555,6 +570,7 @@
 "Share your score" = "Μοιράσου το σκορ σου";
 "Share your streak" = "Μοιράσου το σερί σου";
 "Share your words" = "Μοιράσου τις λέξεις σου";
+"Shared" = "Κοινόχρηστα";
 "Shared goal" = "Κοινός στόχος";
 "Shared roots in this set · %lld words" = "Κοινές ρίζες σε αυτό το σετ · %lld λέξεις";
 "Short vowels usually go unwritten." = "Τα βραχέα φωνήεντα συνήθως δεν γράφονται.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "Οι σταθμοί δεν φόρτωσαν. Ξανά";
 "Stations from radio-browser.info." = "Σταθμοί από το radio-browser.info.";
 "Status" = "Κατάσταση";
+"Step %lld is wrong. %@" = "Το βήμα %lld είναι λάθος. %@";
 "Stop" = "Διακοπή";
 "Stop %@" = "Διακοπή %@";
 "Streak" = "Σερί";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "Μελέτησε λίγες λέξεις ακόμα και το αυριανό Μίνι ανοίγει.";
 "Study a few more words and tomorrow's Word Groups opens." = "Μελέτησε λίγες λέξεις ακόμα και οι αυριανές Ομάδες λέξεων ανοίγουν.";
 "Study a few words in Learn first." = "Μελέτησε πρώτα λίγες λέξεις στο Μάθε.";
+"Study today (%lld)" = "Μελέτη σήμερα (%lld)";
 "Study today to count day 1." = "Μελέτησε σήμερα για να μετρήσει η ημέρα 1.";
 "Subject strength" = "Δύναμη θεμάτων";
 "Subjects" = "Θέματα";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "Η μετάφραση δεν είναι διαθέσιμη για %@ σε αυτή τη συσκευή.";
 "Trial ending" = "Η δοκιμή λήγει";
 "Try again" = "Δοκίμασε ξανά";
+"Try another word." = "Δοκίμασε άλλη λέξη.";
 "Turn on reminders" = "Ενεργοποίηση υπενθυμίσεων";
 "Type instead" = "Πληκτρολόγησε";
 "Type what you hear" = "Γράψε ό,τι ακούς";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "Το σερί %lld ημερών λήγει τα μεσάνυχτα";
 "Your age range" = "Η ηλικιακή σου ομάδα";
 "Your answer" = "Η απάντησή σου";
+"Your day" = "Η μέρα σου";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "Τα γλωσσικά σου συστήματα δεν έφτασαν στον διακομιστή μετά από τρεις προσπάθειες. Είναι αποθηκευμένα σε αυτή τη συσκευή· η επόμενη αλλαγή ξαναδοκιμάζει τον συγχρονισμό.";
 "Your languages" = "Οι γλώσσες σου";
 "Your name" = "Το όνομά σου";
@@ -781,6 +801,9 @@
 "calculate" = "υπολόγισε";
 "common" = "κοινό";
 "conjugate" = "κλίνε";
+"done today" = "έγιναν σήμερα";
+"due now" = "προς επανάληψη";
+"entropy, symmetry, memory" = "εντροπία, συμμετρία, μνήμη";
 "false friend" = "ψευδόφιλη λέξη";
 "feminine" = "θηλυκό";
 "fill the gap" = "συμπλήρωσε το κενό";
@@ -798,6 +821,7 @@
 "new character" = "νέος χαρακτήρας";
 "new letter" = "νέο γράμμα";
 "new sound" = "νέος ήχος";
+"new today" = "νέες σήμερα";
 "new word" = "νέα λέξη";
 "night" = "νύχτα";
 "once" = "μία φορά";
@@ -826,6 +850,7 @@
 "word mastered" = "λέξη κατακτημένη";
 "words mastered" = "λέξεις κατακτημένες";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

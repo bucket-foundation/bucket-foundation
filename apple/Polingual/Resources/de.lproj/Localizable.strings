@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ und höher: zu wenig Material in dieser Sprache für einen Test";
 "%@ cheered you on." = "%@ hat dich angefeuert.";
 "%@ flag" = "Flagge: %@";
+"%@ from %@" = "%1$@ aus %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ hat noch keinen synchronisierten Fortschritt. Punkte erscheinen nach der nächsten Sitzung mit Anmeldung.";
 "%@ invited you. %lld of %lld members." = "%@ hat dich eingeladen. %lld von %lld Mitgliedern.";
 "%@ nudged you to study today." = "%@ erinnert dich, heute zu lernen.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ hat dich abgeklatscht.";
 "%@ to %@" = "%1$@ bis %2$@";
 "%@ wants to race you this week." = "%@ fordert dich diese Woche heraus.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld Fragen.";
 "%lld review" = "%lld Wiederholung";
 "%lld review · %lld new" = "%1$lld Wiederholung · %2$lld neu";
+"%lld sources" = "%lld Quellen";
 "%lld started · %lld mastered" = "%1$lld begonnen · %2$lld gemeistert";
 "%lld this week" = "%lld diese Woche";
 "%lld today" = "%lld heute";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "Altgriechisches Alphabet";
 "Animals" = "Tiere";
 "Another round" = "Noch eine Runde";
+"Answer: %@" = "Antwort: %@";
+"Answer: %@ %@" = "Antwort: %@ %@";
 "Answers shown. New puzzle tomorrow." = "Lösungen angezeigt. Morgen gibt es ein neues Rätsel.";
 "Anyone who opens this link can join %@." = "Wer diesen Link öffnet, kann %@ beitreten.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple hat kein Anmelde-Token geliefert. Versuch es nochmal oder nutze unten deine E-Mail.";
@@ -145,6 +150,7 @@
 "Buy once" = "Einmal kaufen";
 "Cancel" = "Abbrechen";
 "Canon" = "Kanon";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "Erfasste Karten: %lld. %lld von %lld Atomen begonnen, %lld gemeistert.";
 "Change the weekly goal" = "Wochenziel ändern";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Abrechnung über deinen Apple Account. Verlängert sich automatisch, wenn du nicht mindestens 24 Stunden vor Ende des Zeitraums in den Einstellungen kündigst.";
 "Check" = "Prüfen";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "Gib die E-Mail eines Elternteils ein. Wir bitten um Zustimmung, deinen Fortschritt zu speichern.";
 "Every card anyone in the group studies counts toward the goal." = "Jede Karte, die jemand in der Gruppe lernt, zählt zum Ziel.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "Alle Karten sind eingeplant und die neuen Atome von heute sind erledigt. Lies ein Atom aus dem Stapel oder wähle einen anderen Zweig.";
+"Every idea across seven branches." = "Jede Idee, in sieben Zweigen.";
 "Every word of two or more syllables marks its stress with an accent." = "Jedes Wort mit zwei oder mehr Silben markiert seine Betonung mit einem Akzent.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "Alltagstexte lassen die Vokalzeichen weg. Kinderbücher und Gebetbücher drucken sie.";
 "Explore" = "Entdecken";
@@ -272,6 +279,7 @@
 "Hint" = "Tipp";
 "Hiragana" = "Hiragana";
 "Hiragana and katakana" = "Hiragana und Katakana";
+"How well did you recall it" = "Wie gut wusstest du es";
 "I already speak" = "Ich spreche schon";
 "I do not know" = "Weiß ich nicht";
 "I have a code" = "Ich habe einen Code";
@@ -345,6 +353,7 @@
 "Manage subscription" = "Abo verwalten";
 "Manage your subscription" = "Verwalte dein Abo";
 "Manuscripts follow no fixed spelling." = "Handschriften folgen keiner festen Schreibung.";
+"Mastery %lld percent" = "Beherrschung %lld Prozent";
 "Mathematics" = "Mathematik";
 "Means %@, looks like English %@" = "Bedeutet %@, sieht aus wie englisch %@";
 "Mediterranean" = "Mittelmeer";
@@ -360,6 +369,7 @@
 "More languages · 29" = "Weitere Sprachen · 29";
 "Move to bottom" = "Nach unten";
 "Move to top" = "Nach oben";
+"NEW" = "NEU";
 "Nailed it!" = "Volltreffer!";
 "Name others see" = "Name, den andere sehen";
 "Nature" = "Natur";
@@ -377,6 +387,7 @@
 "No letters due" = "Keine Buchstaben fällig";
 "No mistakes. New board tomorrow." = "Keine Fehler. Morgen gibt es ein neues Feld.";
 "No progress synced yet" = "Noch kein Fortschritt synchronisiert";
+"No results" = "Keine Ergebnisse";
 "No stations found." = "Keine Sender gefunden.";
 "No stations in this branch." = "Keine Sender in diesem Zweig.";
 "No subjects yet." = "Noch keine Fächer.";
@@ -388,6 +399,7 @@
 "Not quite" = "Nicht ganz";
 "Not quite. " = "Nicht ganz. ";
 "Nothing due" = "Nichts fällig";
+"Nothing due in %@" = "Nichts fällig in %@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "Nichts fällig. Alle Karten sind eingeplant und die neuen Atome von heute sind erledigt.";
 "Nothing to draw yet." = "Noch nichts zu zeichnen.";
 "Notifications" = "Mitteilungen";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polingual Studierendentarif";
 "Practice with ${applicationName}" = "Mit ${applicationName} üben";
 "Preparing today's route" = "Heutige Route wird vorbereitet";
+"Prerequisites: %lld" = "Voraussetzungen: %lld";
 "Present tense" = "Gegenwart";
 "Privacy" = "Datenschutz";
 "Privacy and data" = "Datenschutz und Daten";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "Fortschritt wird auf iPhone, iPad und Mac synchronisiert";
 "Quest done. New one Monday." = "Quest geschafft. Montag kommt eine neue.";
 "Question %lld · level %@" = "Frage %lld · Level %@";
+"REVIEW" = "WIEDERHOLEN";
 "Race you" = "Fordere mich heraus";
 "Rate %@ on the App Store" = "Bewerte %@ im App Store";
 "Reactions are presets. Blocking someone stops them." = "Reaktionen sind vorgegeben. Wenn du jemanden blockierst, hören sie auf.";
@@ -527,6 +541,7 @@
 "See progress" = "Fortschritt ansehen";
 "See you tomorrow." = "Bis morgen.";
 "Send" = "Senden";
+"Send a reaction" = "Reaktion senden";
 "Send a test reminder in 10 seconds" = "Testerinnerung in 10 Sekunden senden";
 "Send code" = "Code senden";
 "Send feedback" = "Feedback senden";
@@ -555,6 +570,7 @@
 "Share your score" = "Teile deine Punkte";
 "Share your streak" = "Teile deine Serie";
 "Share your words" = "Teile deine Wörter";
+"Shared" = "Geteilt";
 "Shared goal" = "Gemeinsames Ziel";
 "Shared roots in this set · %lld words" = "Gemeinsame Wurzeln in diesem Set · %lld Wörter";
 "Short vowels usually go unwritten." = "Kurze Vokale werden meist nicht geschrieben.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "Sender wurden nicht geladen. Erneut versuchen";
 "Stations from radio-browser.info." = "Sender von radio-browser.info.";
 "Status" = "Status";
+"Step %lld is wrong. %@" = "Schritt %lld ist falsch. %@";
 "Stop" = "Stopp";
 "Stop %@" = "%@ stoppen";
 "Streak" = "Serie";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "Lerne noch ein paar Wörter, und das Mini von morgen öffnet sich.";
 "Study a few more words and tomorrow's Word Groups opens." = "Lerne noch ein paar Wörter, und die Wortgruppen von morgen öffnen sich.";
 "Study a few words in Learn first." = "Lerne zuerst ein paar Wörter in Lernen.";
+"Study today (%lld)" = "Heute lernen (%lld)";
 "Study today to count day 1." = "Lerne heute, damit Tag 1 zählt.";
 "Subject strength" = "Fachstärke";
 "Subjects" = "Fächer";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "Übersetzung ist für %@ auf diesem Gerät nicht verfügbar.";
 "Trial ending" = "Test endet";
 "Try again" = "Nochmal versuchen";
+"Try another word." = "Versuch ein anderes Wort.";
 "Turn on reminders" = "Erinnerungen einschalten";
 "Type instead" = "Lieber tippen";
 "Type what you hear" = "Tippe, was du hörst";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "Deine Serie von %lld Tagen endet um Mitternacht";
 "Your age range" = "Deine Altersgruppe";
 "Your answer" = "Deine Antwort";
+"Your day" = "Dein Tag";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "Deine Sprachsysteme haben den Server nach drei Versuchen nicht erreicht. Sie sind auf diesem Gerät gespeichert; die nächste Änderung startet die Synchronisierung erneut.";
 "Your languages" = "Deine Sprachen";
 "Your name" = "Dein Name";
@@ -781,6 +801,9 @@
 "calculate" = "berechnen";
 "common" = "Utrum";
 "conjugate" = "konjugieren";
+"done today" = "heute erledigt";
+"due now" = "jetzt fällig";
+"entropy, symmetry, memory" = "Entropie, Symmetrie, Gedächtnis";
 "false friend" = "falscher Freund";
 "feminine" = "feminin";
 "fill the gap" = "Lücke füllen";
@@ -798,6 +821,7 @@
 "new character" = "neues Zeichen";
 "new letter" = "neuer Buchstabe";
 "new sound" = "neuer Laut";
+"new today" = "heute neu";
 "new word" = "neues Wort";
 "night" = "Nacht";
 "once" = "einmalig";
@@ -826,6 +850,7 @@
 "word mastered" = "Wort gemeistert";
 "words mastered" = "Wörter gemeistert";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ 이상: 이 언어는 테스트할 자료가 부족해요";
 "%@ cheered you on." = "%@ 님이 응원했어요.";
 "%@ flag" = "%@ 국기";
+"%@ from %@" = "%2$@에서 %1$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ 님은 아직 동기화된 진도가 없어요. 로그인한 상태로 다음 학습을 마치면 점수가 표시돼요.";
 "%@ invited you. %lld of %lld members." = "%1$@ 님이 초대했어요. 멤버 %2$lld/%3$lld명.";
 "%@ nudged you to study today." = "%@ 님이 오늘 공부하라고 알려 줬어요.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ 님이 하이파이브를 보냈어요.";
 "%@ to %@" = "%1$@에서 %2$@(으)로";
 "%@ wants to race you this week." = "%@ 님이 이번 주에 겨뤄 보고 싶어 해요.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld문제.";
 "%lld review" = "복습 %lld";
 "%lld review · %lld new" = "복습 %1$lld · 새 항목 %2$lld";
+"%lld sources" = "출처 %lld개";
 "%lld started · %lld mastered" = "시작 %1$lld · 마스터 %2$lld";
 "%lld this week" = "이번 주 %lld";
 "%lld today" = "오늘 %lld";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "고대 그리스 문자";
 "Animals" = "동물";
 "Another round" = "한 판 더";
+"Answer: %@" = "정답: %@";
+"Answer: %@ %@" = "정답: %@ %@";
 "Answers shown. New puzzle tomorrow." = "정답을 표시했어요. 새 퍼즐은 내일 나와요.";
 "Anyone who opens this link can join %@." = "이 링크를 여는 사람은 누구나 %@에 참여할 수 있어요.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple에서 로그인 토큰을 받지 못했어요. 다시 시도하거나 아래 이메일을 사용하세요.";
@@ -145,6 +150,7 @@
 "Buy once" = "한 번 구매";
 "Cancel" = "취소";
 "Canon" = "캐논";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "기록된 카드: %1$lld. 아톰 %3$lld개 중 %2$lld개 시작, %4$lld개 마스터.";
 "Change the weekly goal" = "주간 목표 변경";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Apple Account로 결제돼요. 기간 종료 최소 24시간 전에 설정에서 취소하지 않으면 자동으로 갱신돼요.";
 "Check" = "확인";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "보호자 이메일을 입력하세요. 진도 저장을 승인해 달라고 요청할게요.";
 "Every card anyone in the group studies counts toward the goal." = "그룹 멤버가 공부한 모든 카드가 목표에 포함돼요.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "모든 카드가 예약되었고 오늘의 새 개념도 끝냈어요. 덱에서 아무 개념이나 읽거나 다른 분야를 선택하세요.";
+"Every idea across seven branches." = "일곱 분야의 모든 개념.";
 "Every word of two or more syllables marks its stress with an accent." = "두 음절 이상의 단어는 강세를 부호로 표시해요.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "일상 글에서는 모음 기호를 생략해요. 어린이 책과 기도서에는 표시돼요.";
 "Explore" = "탐색";
@@ -272,6 +279,7 @@
 "Hint" = "힌트";
 "Hiragana" = "히라가나";
 "Hiragana and katakana" = "히라가나와 가타카나";
+"How well did you recall it" = "얼마나 잘 기억했나요";
 "I already speak" = "이미 할 줄 아는 언어";
 "I do not know" = "모르겠어요";
 "I have a code" = "코드가 있어요";
@@ -345,6 +353,7 @@
 "Manage subscription" = "구독 관리";
 "Manage your subscription" = "구독 관리";
 "Manuscripts follow no fixed spelling." = "필사본은 정해진 철자가 없어요.";
+"Mastery %lld percent" = "숙달도 %lld퍼센트";
 "Mathematics" = "수학";
 "Means %@, looks like English %@" = "뜻은 %1$@, 영어 %2$@와 비슷해 보여요";
 "Mediterranean" = "지중해";
@@ -360,6 +369,7 @@
 "More languages · 29" = "더 많은 언어 · 29";
 "Move to bottom" = "맨 아래로 이동";
 "Move to top" = "맨 위로 이동";
+"NEW" = "새로운";
 "Nailed it!" = "완벽해요!";
 "Name others see" = "다른 사람에게 보이는 이름";
 "Nature" = "자연";
@@ -377,6 +387,7 @@
 "No letters due" = "복습할 글자 없음";
 "No mistakes. New board tomorrow." = "실수 없음. 새 보드는 내일 나와요.";
 "No progress synced yet" = "아직 동기화된 진도가 없어요";
+"No results" = "결과 없음";
 "No stations found." = "방송국을 찾지 못했어요.";
 "No stations in this branch." = "이 분야에는 방송국이 없어요.";
 "No subjects yet." = "아직 과목이 없어요.";
@@ -388,6 +399,7 @@
 "Not quite" = "아쉬워요";
 "Not quite. " = "아쉬워요. ";
 "Nothing due" = "복습 없음";
+"Nothing due in %@" = "%@ 복습 없음";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "복습할 것이 없어요. 모든 카드가 예약되었고 오늘의 새 개념도 끝냈어요.";
 "Nothing to draw yet." = "아직 표시할 내용이 없어요.";
 "Notifications" = "알림";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polingual 학생 요금제";
 "Practice with ${applicationName}" = "${applicationName}(으)로 연습하기";
 "Preparing today's route" = "오늘의 경로 준비 중";
+"Prerequisites: %lld" = "선수 항목: %lld";
 "Present tense" = "현재 시제";
 "Privacy" = "개인정보";
 "Privacy and data" = "개인정보 및 데이터";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "진도가 iPhone, iPad, Mac에서 동기화돼요";
 "Quest done. New one Monday." = "퀘스트 완료. 새 퀘스트는 월요일에 나와요.";
 "Question %lld · level %@" = "문제 %1$lld · 레벨 %2$@";
+"REVIEW" = "복습";
 "Race you" = "겨뤄 봐요";
 "Rate %@ on the App Store" = "App Store에서 %@ 평가하기";
 "Reactions are presets. Blocking someone stops them." = "반응은 미리 정해진 문구예요. 차단하면 더 이상 받지 않아요.";
@@ -527,6 +541,7 @@
 "See progress" = "진도 보기";
 "See you tomorrow." = "내일 만나요.";
 "Send" = "보내기";
+"Send a reaction" = "반응 보내기";
 "Send a test reminder in 10 seconds" = "10초 후 테스트 알림 보내기";
 "Send code" = "코드 보내기";
 "Send feedback" = "피드백 보내기";
@@ -555,6 +570,7 @@
 "Share your score" = "점수 공유";
 "Share your streak" = "연속 기록 공유";
 "Share your words" = "단어 공유";
+"Shared" = "공유됨";
 "Shared goal" = "공동 목표";
 "Shared roots in this set · %lld words" = "이 세트의 같은 어원 · 단어 %lld개";
 "Short vowels usually go unwritten." = "단모음은 보통 쓰지 않아요.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "방송국을 불러오지 못했어요. 다시 시도";
 "Stations from radio-browser.info." = "방송국 출처: radio-browser.info.";
 "Status" = "상태";
+"Step %lld is wrong. %@" = "%1$lld단계가 틀렸어요. %2$@";
 "Stop" = "정지";
 "Stop %@" = "%@ 정지";
 "Streak" = "연속 기록";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "단어를 몇 개 더 공부하면 내일의 미니가 열려요.";
 "Study a few more words and tomorrow's Word Groups opens." = "단어를 몇 개 더 공부하면 내일의 단어 그룹이 열려요.";
 "Study a few words in Learn first." = "먼저 학습에서 단어를 몇 개 공부하세요.";
+"Study today (%lld)" = "오늘 공부 (%lld)";
 "Study today to count day 1." = "오늘 공부하면 1일차가 돼요.";
 "Subject strength" = "과목 숙련도";
 "Subjects" = "과목";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "이 기기에서는 %@ 번역을 사용할 수 없어요.";
 "Trial ending" = "체험 종료 예정";
 "Try again" = "다시 시도";
+"Try another word." = "다른 단어를 입력하세요.";
 "Turn on reminders" = "알림 켜기";
 "Type instead" = "입력하기";
 "Type what you hear" = "들은 내용 입력";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "%lld일 연속 기록이 자정에 끊겨요";
 "Your age range" = "연령대";
 "Your answer" = "내 답";
+"Your day" = "오늘 하루";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "세 번 시도했지만 언어 시스템이 서버에 전송되지 않았어요. 이 기기에는 저장되어 있으며, 다음 변경 시 동기화를 다시 시도해요.";
 "Your languages" = "내 언어";
 "Your name" = "이름";
@@ -781,6 +801,9 @@
 "calculate" = "계산하기";
 "common" = "통성";
 "conjugate" = "활용하기";
+"done today" = "오늘 완료";
+"due now" = "복습 대기";
+"entropy, symmetry, memory" = "엔트로피, 대칭, 기억";
 "false friend" = "거짓 친구";
 "feminine" = "여성";
 "fill the gap" = "빈칸 채우기";
@@ -798,6 +821,7 @@
 "new character" = "새 글자";
 "new letter" = "새 글자";
 "new sound" = "새 소리";
+"new today" = "오늘 새 카드";
 "new word" = "새 단어";
 "night" = "밤";
 "once" = "1회";
@@ -826,6 +850,7 @@
 "word mastered" = "단어 마스터";
 "words mastered" = "단어 마스터";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

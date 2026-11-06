@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ El audio es texto a voz del dispositivo, con clips grabados donde un idioma no tiene voz.";
 "%@ %lld started, %lld mastered" = "%@ %lld empezadas, %lld dominadas";
 "%@ Wikipedia" = "Wikipedia en %@";
+"%@ a month" = "%@ al mes";
+"%@ a year" = "%@ al año";
 "%@ and above: not enough material in this language to test" = "%@ y superiores: no hay material suficiente en este idioma para evaluar";
 "%@ cheered you on." = "%@ te animó.";
 "%@ flag" = "Bandera de %@";
+"%@ from %@" = "%1$@ desde %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ aún no tiene progreso sincronizado. Las puntuaciones aparecen tras su próxima sesión con la cuenta iniciada.";
 "%@ invited you. %lld of %lld members." = "%@ te invitó. %lld de %lld miembros.";
 "%@ nudged you to study today." = "%@ te recordó estudiar hoy.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ una vez. Se cobra a tu cuenta de Apple. Sin suscripción ni renovación.";
 "%@ quest" = "Misión de %@";
 "%@ says keep going." = "%@ dice: sigue así.";
 "%@ says nice streak." = "%@ dice: buena racha.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@, tarjeta %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@, puesto %2$lld, %3$lld tarjetas esta semana, racha de %4$lld días, %5$lld palabras dominadas";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: %2$lld de %3$lld bien, no aprobado";
 "%@: %lld of %lld right, passed" = "%1$@: %2$lld de %3$lld bien, aprobado";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Racha de %lld días";
 "%lld day streak on %@" = "Racha de %1$lld días en %2$@";
 "%lld days" = "%lld días";
+"%lld days free" = "%lld días gratis";
+"%lld days free, then %@." = "%lld días gratis, luego %@.";
 "%lld days in a row learning %@ on %@" = "%1$lld días seguidos aprendiendo %2$@ en %3$@";
 "%lld days to 100" = "%lld días para 100";
 "%lld down · %lld letters" = "%1$lld vertical · %2$lld letras";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%1$lld de %2$lld correctas · +%3$lld xp · racha de %4$lld días";
 "%lld of %lld right. New letters come in fives." = "%lld de %lld bien. Las letras nuevas llegan de cinco en cinco.";
 "%lld of %lld today. See your result." = "%1$lld de %2$lld hoy. Mira tu resultado.";
+"%lld of 5 picked" = "%lld de 5 elegidos";
 "%lld pairs. Longest run %lld." = "%1$lld parejas. Mejor racha: %2$lld.";
 "%lld points" = "%lld puntos";
 "%lld questions." = "%lld preguntas.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 días cumplidos. Sigue así.";
 "5" = "5";
+"A 100 day streak" = "Una racha de 100 días";
 "A bar along the top joins the letters of a word." = "Una barra superior une las letras de una palabra.";
 "A family group holds up to 6 people." = "Un grupo familiar admite hasta 6 personas.";
 "A friends group holds up to 30 people." = "Un grupo de amigos admite hasta 30 personas.";
+"A new phone picks up where you left off" = "Un teléfono nuevo sigue donde lo dejaste";
 "A small crossword in your language. New every day." = "Un crucigrama pequeño en tu idioma. Nuevo cada día.";
 "A unit opens once 80% of the one before it has started." = "Una unidad se abre cuando se inicia el 80% de la anterior.";
 "A word with a missing letter" = "Una palabra a la que le falta una letra";
@@ -234,6 +245,7 @@
 "Finals" = "Finales";
 "Finish one round" = "Termina una ronda";
 "First word mastered" = "Primera palabra dominada";
+"Five at most. Tap one to swap it out." = "Cinco como máximo. Toca uno para cambiarlo.";
 "Five letters change shape at the end of a word." = "Cinco letras cambian de forma al final de una palabra.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Cinco tonos surgen de la clase de consonante, la marca de tono y el tipo de sílaba.";
 "Flags" = "Banderas";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Fundamentos en siete ramas: de las matemáticas a la mente.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Cuatro tonos y un tono neutro cambian el significado de una sílaba.";
 "Free during the beta" = "Gratis durante la beta";
+"Free trial: %lld days left" = "Prueba gratis: quedan %lld días";
+"Free trial: 1 day left" = "Prueba gratis: queda 1 día";
 "Friends" = "Amigos";
 "From %@: %@" = "Desde %@: %@";
 "Full detail" = "Detalle completo";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Cargando tus repasos";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Mail no está configurado en este dispositivo. Pega %@ en cualquier app de correo.";
 "Manage subscription" = "Gestionar suscripción";
+"Manage your subscription" = "Gestiona tu suscripción";
 "Manuscripts follow no fixed spelling." = "Los manuscritos no siguen una ortografía fija.";
 "Mastery %lld percent" = "Dominio del %lld por ciento";
 "Mathematics" = "Matemáticas";
@@ -463,6 +478,7 @@
 "Progress" = "Progreso";
 "Progress in a removed language stays saved and returns if you add it back." = "El progreso de un idioma eliminado se guarda y regresa si lo vuelves a agregar.";
 "Progress stays saved and returns if you build the same system again." = "El progreso se guarda y regresa si creas el mismo sistema otra vez.";
+"Progress syncs across iPhone, iPad and Mac" = "Tu progreso se sincroniza en iPhone, iPad y Mac";
 "Quest done. New one Monday." = "Misión cumplida. El lunes hay otra.";
 "Question %lld · level %@" = "Pregunta %1$lld · nivel %2$@";
 "REVIEW" = "REPASO";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "¿Restablecer como instalación nueva?";
 "Reset to fresh install" = "Restablecer como instalación nueva";
 "Resetting the link stops the old one from working." = "Al restablecer el enlace, el anterior deja de funcionar.";
+"Restore" = "Restaurar";
+"Restoring" = "Restaurando";
 "Retry" = "Reintentar";
 "Review" = "Repasar";
 "Right" = "Correcto";
@@ -509,6 +527,7 @@
 "Save languages" = "Guardar idiomas";
 "Save my streak · %@" = "Salvar mi racha · %@";
 "Save to your account" = "Guardar en tu cuenta";
+"Save your progress" = "Guarda tu progreso";
 "Saved on this device. Choose your age range to sync." = "Guardado en este dispositivo. Elige tu rango de edad para sincronizar.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Guardado en este dispositivo. Inicia sesión para guardarlo también en bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "Guardado en este dispositivo. Inicia sesión para sincronizar tus sistemas de idiomas.";
@@ -551,6 +570,7 @@
 "Share your score" = "Comparte tu puntuación";
 "Share your streak" = "Comparte tu racha";
 "Share your words" = "Comparte tus palabras";
+"Shared" = "Compartido";
 "Shared goal" = "Meta compartida";
 "Shared roots in this set · %lld words" = "Raíces compartidas en este conjunto · %lld palabras";
 "Short vowels usually go unwritten." = "Las vocales breves no suelen escribirse.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Escríbelo en su propio alfabeto";
 "Spot on!" = "¡Exacto!";
 "Standings" = "Clasificación";
+"Start %lld days free" = "Empieza %lld días gratis";
 "Start a language set in Learn. The games use the words you study." = "Empieza un conjunto de idiomas en Aprender. Los juegos usan las palabras que estudias.";
 "Start a set" = "Empieza un conjunto";
 "Start from the first words" = "Empezar por las primeras palabras";
@@ -697,6 +718,7 @@
 "Unblock" = "Desbloquear";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Desbloquear no te devuelve a un grupo. Puedes volver con un enlace de invitación.";
 "Use a different email" = "Usar otro correo";
+"Use email instead" = "Usar correo";
 "Verbs" = "Verbos";
 "Verify" = "Verificar";
 "Version" = "Versión";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Tu progreso aún no se ha sincronizado. Termina una sesión con la cuenta iniciada.";
 "Your reminders reach this phone." = "Tus recordatorios llegan a este teléfono.";
 "Your strength" = "Tu fuerza";
+"Your trial is on. Sign in so your words and streak stay with you." = "Tu prueba ya empezó. Inicia sesión para conservar tus palabras y tu racha.";
 "Your turn: say “%@”" = "Te toca: di “%@”";
 "Zhuyin sounds" = "Sonidos zhuyin";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "calcula";
 "common" = "común";
 "conjugate" = "conjugar";
+"done today" = "hechas hoy";
+"due now" = "pendientes";
 "entropy, symmetry, memory" = "entropía, simetría, memoria";
 "false friend" = "falso amigo";
 "feminine" = "femenino";
@@ -796,6 +821,7 @@
 "new character" = "carácter nuevo";
 "new letter" = "letra nueva";
 "new sound" = "sonido nuevo";
+"new today" = "nuevas hoy";
 "new word" = "palabra nueva";
 "night" = "noche";
 "once" = "una vez";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

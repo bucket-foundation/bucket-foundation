@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ ומעלה: אין מספיק חומר בשפה הזו למבחן";
 "%@ cheered you on." = "%@ עודד אותך.";
 "%@ flag" = "דגל %@";
+"%@ from %@" = "%1$@ מ%2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "ל%@ אין עדיין התקדמות מסונכרנת. התוצאות יופיעו אחרי הסשן הבא שלו בזמן התחברות.";
 "%@ invited you. %lld of %lld members." = "%1$@ הזמין אותך. %2$lld מתוך %3$lld חברים.";
 "%@ nudged you to study today." = "%@ הזכיר לך ללמוד היום.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ שלח לך כיף.";
 "%@ to %@" = "%1$@ עד %2$@";
 "%@ wants to race you this week." = "%@ רוצה להתחרות בך השבוע.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld שאלות.";
 "%lld review" = "%lld לחזרה";
 "%lld review · %lld new" = "%1$lld לחזרה · %2$lld חדשים";
+"%lld sources" = "%lld מקורות";
 "%lld started · %lld mastered" = "%1$lld התחילו · %2$lld בשליטה";
 "%lld this week" = "%lld השבוע";
 "%lld today" = "%lld היום";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "האלפבית היווני העתיק";
 "Animals" = "בעלי חיים";
 "Another round" = "עוד סיבוב";
+"Answer: %@" = "תשובה: %@";
+"Answer: %@ %@" = "תשובה: %1$@ %2$@";
 "Answers shown. New puzzle tomorrow." = "התשובות מוצגות. חידה חדשה מחר.";
 "Anyone who opens this link can join %@." = "כל מי שפותח את הקישור יכול להצטרף ל%@.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple לא החזירה אסימון התחברות. נסו שוב או השתמשו באימייל למטה.";
@@ -145,6 +150,7 @@
 "Buy once" = "קנייה חד־פעמית";
 "Cancel" = "ביטול";
 "Canon" = "הקאנון";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "כרטיסים שנרשמו: %1$lld. %2$lld מתוך %3$lld אטומים התחילו, %4$lld נשלטו.";
 "Change the weekly goal" = "שינוי היעד השבועי";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "החיוב בחשבון Apple שלך. מתחדש אוטומטית אלא אם מבטלים בהגדרות לפחות 24 שעות לפני סוף התקופה.";
 "Check" = "בדיקה";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "הזינו אימייל של הורה. נבקש ממנו לאשר את שמירת ההתקדמות.";
 "Every card anyone in the group studies counts toward the goal." = "כל כרטיס שמישהו בקבוצה לומד נספר ליעד.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "כל הכרטיסים מתוזמנים מראש והאטומים החדשים של היום הושלמו. קראו כל אטום מהחפיסה או בחרו ענף אחר.";
+"Every idea across seven branches." = "כל רעיון בשבעה ענפים.";
 "Every word of two or more syllables marks its stress with an accent." = "כל מילה בת שתי הברות או יותר מסמנת את ההטעמה בסימן.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "טקסט יומיומי משמיט את הניקוד. ספרי ילדים וסידורים מדפיסים אותו.";
 "Explore" = "גילוי";
@@ -272,6 +279,7 @@
 "Hint" = "רמז";
 "Hiragana" = "הירגאנה";
 "Hiragana and katakana" = "הירגאנה וקטקאנה";
+"How well did you recall it" = "עד כמה זכרתם";
 "I already speak" = "אני כבר מדבר";
 "I do not know" = "אני לא יודע";
 "I have a code" = "יש לי קוד";
@@ -345,6 +353,7 @@
 "Manage subscription" = "ניהול מנוי";
 "Manage your subscription" = "ניהול המנוי שלך";
 "Manuscripts follow no fixed spelling." = "כתבי היד אינם נוהגים לפי כתיב קבוע.";
+"Mastery %lld percent" = "שליטה %lld אחוז";
 "Mathematics" = "מתמטיקה";
 "Means %@, looks like English %@" = "פירושה %1$@, נראית כמו %2$@ באנגלית";
 "Mediterranean" = "ים תיכוניות";
@@ -360,6 +369,7 @@
 "More languages · 29" = "עוד שפות · 29";
 "Move to bottom" = "העברה לתחתית";
 "Move to top" = "העברה לראש";
+"NEW" = "חדש";
 "Nailed it!" = "בול!";
 "Name others see" = "השם שאחרים רואים";
 "Nature" = "טבע";
@@ -377,6 +387,7 @@
 "No letters due" = "אין אותיות לחזרה";
 "No mistakes. New board tomorrow." = "בלי טעויות. לוח חדש מחר.";
 "No progress synced yet" = "אין עדיין התקדמות מסונכרנת";
+"No results" = "אין תוצאות";
 "No stations found." = "לא נמצאו תחנות.";
 "No stations in this branch." = "אין תחנות בענף הזה.";
 "No subjects yet." = "אין עדיין נושאים.";
@@ -388,6 +399,7 @@
 "Not quite" = "לא בדיוק";
 "Not quite. " = "לא בדיוק. ";
 "Nothing due" = "אין חזרות";
+"Nothing due in %@" = "אין חזרות ב%@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "אין חזרות. כל הכרטיסים מתוזמנים מראש והאטומים החדשים של היום הושלמו.";
 "Nothing to draw yet." = "אין עדיין מה לצייר.";
 "Notifications" = "התראות";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "תוכנית סטודנט של Polingual";
 "Practice with ${applicationName}" = "תרגול עם ${applicationName}";
 "Preparing today's route" = "מכין את המסלול של היום";
+"Prerequisites: %lld" = "דרישות קדם: %lld";
 "Present tense" = "זמן הווה";
 "Privacy" = "פרטיות";
 "Privacy and data" = "פרטיות ונתונים";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "ההתקדמות מסתנכרנת בין iPhone,‏ iPad ו־Mac";
 "Quest done. New one Monday." = "המשימה הושלמה. חדשה ביום שני.";
 "Question %lld · level %@" = "שאלה %1$lld · רמה %2$@";
+"REVIEW" = "חזרה";
 "Race you" = "תחרות";
 "Rate %@ on the App Store" = "דרגו את %@ ב־App Store";
 "Reactions are presets. Blocking someone stops them." = "התגובות מוגדרות מראש. חסימת מישהו עוצרת אותן.";
@@ -527,6 +541,7 @@
 "See progress" = "הצגת התקדמות";
 "See you tomorrow." = "נתראה מחר.";
 "Send" = "שליחה";
+"Send a reaction" = "שליחת תגובה";
 "Send a test reminder in 10 seconds" = "שליחת תזכורת ניסיון בעוד 10 שניות";
 "Send code" = "שליחת קוד";
 "Send feedback" = "שליחת משוב";
@@ -555,6 +570,7 @@
 "Share your score" = "שיתוף הניקוד";
 "Share your streak" = "שיתוף הרצף";
 "Share your words" = "שיתוף המילים";
+"Shared" = "משותף";
 "Shared goal" = "יעד משותף";
 "Shared roots in this set · %lld words" = "שורשים משותפים בסט · %lld מילים";
 "Short vowels usually go unwritten." = "תנועות קצרות בדרך כלל לא נכתבות.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "התחנות לא נטענו. נסו שוב";
 "Stations from radio-browser.info." = "תחנות מ־radio-browser.info.";
 "Status" = "סטטוס";
+"Step %lld is wrong. %@" = "שלב %1$lld שגוי. %2$@";
 "Stop" = "עצירה";
 "Stop %@" = "עצירת %@";
 "Streak" = "רצף";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "למדו עוד כמה מילים והמיני של מחר ייפתח.";
 "Study a few more words and tomorrow's Word Groups opens." = "למדו עוד כמה מילים וקבוצות המילים של מחר ייפתחו.";
 "Study a few words in Learn first." = "למדו קודם כמה מילים בלימוד.";
+"Study today (%lld)" = "לימוד היום (%lld)";
 "Study today to count day 1." = "למדו היום כדי לספור יום 1.";
 "Subject strength" = "חוזק הנושא";
 "Subjects" = "נושאים";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "תרגום ל%@ לא זמין במכשיר הזה.";
 "Trial ending" = "הניסיון מסתיים";
 "Try again" = "נסו שוב";
+"Try another word." = "נסו מילה אחרת.";
 "Turn on reminders" = "הפעלת תזכורות";
 "Type instead" = "הקלדה במקום";
 "Type what you hear" = "הקלידו את מה ששומעים";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "הרצף של %lld ימים נגמר בחצות";
 "Your age range" = "טווח הגילאים שלך";
 "Your answer" = "התשובה שלך";
+"Your day" = "היום שלך";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "מערכות השפה שלך לא הגיעו לשרת אחרי שלושה ניסיונות. הן שמורות במכשיר הזה; השינוי הבא ינסה לסנכרן שוב.";
 "Your languages" = "השפות שלך";
 "Your name" = "השם שלך";
@@ -781,6 +801,9 @@
 "calculate" = "חשבו";
 "common" = "משותף";
 "conjugate" = "הטו";
+"done today" = "הושלמו היום";
+"due now" = "לחזרה עכשיו";
+"entropy, symmetry, memory" = "אנטרופיה, סימטריה, זיכרון";
 "false friend" = "חבר מטעה";
 "feminine" = "נקבה";
 "fill the gap" = "השלימו את החסר";
@@ -798,6 +821,7 @@
 "new character" = "סימן חדש";
 "new letter" = "אות חדשה";
 "new sound" = "צליל חדש";
+"new today" = "חדשים היום";
 "new word" = "מילה חדשה";
 "night" = "לילה";
 "once" = "פעם אחת";
@@ -826,6 +850,7 @@
 "word mastered" = "מילה בשליטה";
 "words mastered" = "מילים בשליטה";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

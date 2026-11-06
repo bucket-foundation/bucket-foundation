@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Ses, cihazın metin okuma özelliğiyle üretilir; sesi olmayan dillerde kayıtlı klipler kullanılır.";
 "%@ %lld started, %lld mastered" = "%@ %lld başlandı, %lld ustalaşıldı";
 "%@ Wikipedia" = "%@ Vikipedi";
+"%@ a month" = "Aylık %@";
+"%@ a year" = "Yıllık %@";
 "%@ and above: not enough material in this language to test" = "%@ ve üstü: bu dilde test için yeterli materyal yok";
 "%@ cheered you on." = "%@ seni destekledi.";
 "%@ flag" = "Bayrak: %@";
+"%@ from %@" = "%1$@, temel: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ için henüz eşitlenmiş ilerleme yok. Puanlar, oturum açıkken yapılacak bir sonraki çalışmadan sonra görünür.";
 "%@ invited you. %lld of %lld members." = "%@ seni davet etti. %lld/%lld üye.";
 "%@ nudged you to study today." = "%@ bugün çalışman için seni dürttü.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "Tek seferlik %@. Apple Hesabından ücretlendirilir. Abonelik ve yenileme yok.";
 "%@ quest" = "Görev: %@";
 "%@ says keep going." = "%@ diyor ki: devam et.";
 "%@ says nice streak." = "%@ diyor ki: güzel seri.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, kart %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, sıra %lld, bu hafta %lld kart, %lld günlük seri, %lld kelimede ustalaşıldı";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: %lld/%lld doğru, geçilmedi";
 "%@: %lld of %lld right, passed" = "%@: %lld/%lld doğru, geçildi";
@@ -33,6 +39,8 @@
 "%lld day streak" = "%lld günlük seri";
 "%lld day streak on %@" = "%2$@ uygulamasında %1$lld günlük seri";
 "%lld days" = "%lld gün";
+"%lld days free" = "%lld gün ücretsiz";
+"%lld days free, then %@." = "%lld gün ücretsiz, sonra %@.";
 "%lld days in a row learning %@ on %@" = "%3$@ uygulamasında %1$lld gündür aralıksız %2$@ öğreniyorum";
 "%lld days to 100" = "100'e %lld gün";
 "%lld down · %lld letters" = "%lld yukarıdan aşağıya · %lld harf";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%lld/%lld doğru · +%lld xp · %lld günlük seri";
 "%lld of %lld right. New letters come in fives." = "%lld/%lld doğru. Yeni harfler beşerli gelir.";
 "%lld of %lld today. See your result." = "Bugün %lld/%lld. Sonucunu gör.";
+"%lld of 5 picked" = "%lld/5 seçildi";
 "%lld pairs. Longest run %lld." = "%lld çift. En uzun seri %lld.";
 "%lld points" = "%lld puan";
 "%lld questions." = "%lld soru.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 güne ulaştın. Böyle devam et.";
 "5" = "5";
+"A 100 day streak" = "100 günlük seri";
 "A bar along the top joins the letters of a word." = "Üstteki bir çizgi kelimenin harflerini birleştirir.";
 "A family group holds up to 6 people." = "Bir aile grubu en fazla 6 kişi alır.";
 "A friends group holds up to 30 people." = "Bir arkadaş grubu en fazla 30 kişi alır.";
+"A new phone picks up where you left off" = "Yeni telefon kaldığın yerden devam eder";
 "A small crossword in your language. New every day." = "Kendi dilinde küçük bir bulmaca. Her gün yenisi.";
 "A unit opens once 80% of the one before it has started." = "Bir ünite, öncekinin %80'ine başlandığında açılır.";
 "A word with a missing letter" = "Bir harfi eksik kelime";
@@ -234,6 +245,7 @@
 "Finals" = "Sonsesler";
 "Finish one round" = "Bir turu bitir";
 "First word mastered" = "İlk kelimede ustalaşıldı";
+"Five at most. Tap one to swap it out." = "En fazla beş. Değiştirmek için birine dokun.";
 "Five letters change shape at the end of a word." = "Beş harf kelime sonunda biçim değiştirir.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Beş ton; ünsüz sınıfından, ton işaretinden ve hece türünden gelir.";
 "Flags" = "Bayraklar";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Yedi dalda temeller: matematikten zihne.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Dört ton ve bir nötr ton hecenin anlamını değiştirir.";
 "Free during the beta" = "Beta süresince ücretsiz";
+"Free trial: %lld days left" = "Ücretsiz deneme: %lld gün kaldı";
+"Free trial: 1 day left" = "Ücretsiz deneme: 1 gün kaldı";
 "Friends" = "Arkadaşlar";
 "From %@: %@" = "%@ gönderdi: %@";
 "Full detail" = "Tüm ayrıntılar";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Tekrarların yükleniyor";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Bu cihazda Mail kurulu değil. %@ adresini herhangi bir e-posta uygulamasına yapıştır.";
 "Manage subscription" = "Aboneliği yönet";
+"Manage your subscription" = "Aboneliğini yönet";
 "Manuscripts follow no fixed spelling." = "El yazmalarında sabit bir yazım yoktur.";
 "Mastery %lld percent" = "Ustalık yüzde %lld";
 "Mathematics" = "Matematik";
@@ -463,6 +478,7 @@
 "Progress" = "İlerleme";
 "Progress in a removed language stays saved and returns if you add it back." = "Kaldırılan bir dildeki ilerleme kayıtlı kalır ve dili geri eklersen geri gelir.";
 "Progress stays saved and returns if you build the same system again." = "İlerleme kayıtlı kalır ve aynı sistemi yeniden kurarsan geri gelir.";
+"Progress syncs across iPhone, iPad and Mac" = "İlerleme iPhone, iPad ve Mac arasında eşitlenir";
 "Quest done. New one Monday." = "Görev tamam. Yenisi pazartesi.";
 "Question %lld · level %@" = "Soru %lld · seviye %@";
 "REVIEW" = "TEKRAR";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Yeni kurulum durumuna sıfırlansın mı?";
 "Reset to fresh install" = "Yeni kurulum durumuna sıfırla";
 "Resetting the link stops the old one from working." = "Bağlantıyı sıfırlarsan eskisi çalışmaz.";
+"Restore" = "Geri yükle";
+"Restoring" = "Geri yükleniyor";
 "Retry" = "Tekrar dene";
 "Review" = "Tekrar et";
 "Right" = "Doğru";
@@ -509,6 +527,7 @@
 "Save languages" = "Dilleri kaydet";
 "Save my streak · %@" = "Serimi kurtar · %@";
 "Save to your account" = "Hesabına kaydet";
+"Save your progress" = "İlerlemeni kaydet";
 "Saved on this device. Choose your age range to sync." = "Bu cihaza kaydedildi. Eşitlemek için yaş aralığını seç.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Bu cihaza kaydedildi. bucket.foundation'da da tutmak için oturum aç.";
 "Saved on this device. Sign in to sync your language systems." = "Bu cihaza kaydedildi. Dil sistemlerini eşitlemek için oturum aç.";
@@ -551,6 +570,7 @@
 "Share your score" = "Puanını paylaş";
 "Share your streak" = "Serini paylaş";
 "Share your words" = "Kelimelerini paylaş";
+"Shared" = "Paylaşılan";
 "Shared goal" = "Ortak hedef";
 "Shared roots in this set · %lld words" = "Bu setteki ortak kökler · %lld kelime";
 "Short vowels usually go unwritten." = "Kısa ünlüler genellikle yazılmaz.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Kendi yazısıyla yaz";
 "Spot on!" = "Tam yerinde!";
 "Standings" = "Sıralama";
+"Start %lld days free" = "%lld gün ücretsiz başla";
 "Start a language set in Learn. The games use the words you study." = "Öğren'de bir dil seti başlat. Oyunlar çalıştığın kelimeleri kullanır.";
 "Start a set" = "Set başlat";
 "Start from the first words" = "İlk kelimelerden başla";
@@ -697,6 +718,7 @@
 "Unblock" = "Engeli kaldır";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Engeli kaldırmak seni gruba geri eklemez. Bir davet bağlantısıyla yeniden katılabilirsin.";
 "Use a different email" = "Farklı bir e-posta kullan";
+"Use email instead" = "E-posta kullan";
 "Verbs" = "Fiiller";
 "Verify" = "Doğrula";
 "Version" = "Sürüm";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "İlerlemen henüz eşitlenmedi. Oturum açıkken bir çalışmayı bitir.";
 "Your reminders reach this phone." = "Hatırlatmaların bu telefona gelir.";
 "Your strength" = "Gücün";
+"Your trial is on. Sign in so your words and streak stay with you." = "Deneme süren başladı. Kelimelerin ve serin seninle kalsın diye oturum aç.";
 "Your turn: say “%@”" = "Sıra sende: “%@” de";
 "Zhuyin sounds" = "Zhuyin sesleri";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "hesapla";
 "common" = "ortak";
 "conjugate" = "çekimle";
+"done today" = "bugün bitti";
+"due now" = "şimdi tekrar";
 "entropy, symmetry, memory" = "entropi, simetri, bellek";
 "false friend" = "yalancı eş";
 "feminine" = "dişil";
@@ -796,6 +821,7 @@
 "new character" = "yeni karakter";
 "new letter" = "yeni harf";
 "new sound" = "yeni ses";
+"new today" = "bugün yeni";
 "new word" = "yeni kelime";
 "night" = "gece";
 "once" = "tek seferlik";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

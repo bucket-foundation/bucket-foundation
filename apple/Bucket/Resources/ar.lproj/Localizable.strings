@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ الصوت من تحويل النص إلى كلام في جهازك، مع مقاطع مسجلة للغات التي لا صوت لها.";
 "%@ %lld started, %lld mastered" = "%1$@ %2$lld بدأت، %3$lld أتقنت";
 "%@ Wikipedia" = "ويكيبيديا %@";
+"%@ a month" = "%@ شهريًا";
+"%@ a year" = "%@ سنويًا";
 "%@ and above: not enough material in this language to test" = "%@ وما فوق: لا توجد مواد كافية في هذه اللغة للاختبار";
 "%@ cheered you on." = "شجّعك %@.";
 "%@ flag" = "علم %@";
+"%@ from %@" = "%1$@ من %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "لا يوجد تقدّم متزامن لـ %@ بعد. تظهر النتائج بعد جلسته التالية أثناء تسجيل الدخول.";
 "%@ invited you. %lld of %lld members." = "دعاك %1$@. %2$lld من %3$lld أعضاء.";
 "%@ nudged you to study today." = "ذكّرك %@ بالدراسة اليوم.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ مرة واحدة. يُخصم من حساب Apple. بلا اشتراك ولا تجديد.";
 "%@ quest" = "مهمة %@";
 "%@ says keep going." = "%@ يقول: واصل.";
 "%@ says nice streak." = "%@ يقول: سلسلة رائعة.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@، البطاقة %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@، المرتبة %2$lld، %3$lld بطاقة هذا الأسبوع، سلسلة %4$lld يوم، %5$lld كلمة متقنة";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: %2$lld من %3$lld صحيحة، لم يجتز";
 "%@: %lld of %lld right, passed" = "%1$@: %2$lld من %3$lld صحيحة، اجتاز";
@@ -33,6 +39,8 @@
 "%lld day streak" = "سلسلة %lld يوم";
 "%lld day streak on %@" = "سلسلة %1$lld يوم على %2$@";
 "%lld days" = "%lld يوم";
+"%lld days free" = "%lld يوم مجانًا";
+"%lld days free, then %@." = "%1$lld يوم مجانًا، ثم %2$@.";
 "%lld days in a row learning %@ on %@" = "%1$lld يوم متتالٍ في تعلّم %2$@ على %3$@";
 "%lld days to 100" = "%lld يوم حتى 100";
 "%lld down · %lld letters" = "%1$lld عمودي · %2$lld أحرف";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%1$lld من %2$lld صحيحة · +%3$lld xp · سلسلة %4$lld يوم";
 "%lld of %lld right. New letters come in fives." = "%1$lld من %2$lld صحيحة. تأتي الحروف الجديدة خمسة خمسة.";
 "%lld of %lld today. See your result." = "%1$lld من %2$lld اليوم. شاهد نتيجتك.";
+"%lld of 5 picked" = "اخترت %lld من 5";
 "%lld pairs. Longest run %lld." = "%1$lld أزواج. أطول سلسلة %2$lld.";
 "%lld points" = "%lld نقطة";
 "%lld questions." = "%lld أسئلة.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "وصلت إلى 100 يوم. واصل.";
 "5" = "5";
+"A 100 day streak" = "سلسلة 100 يوم";
 "A bar along the top joins the letters of a word." = "خط في الأعلى يصل حروف الكلمة.";
 "A family group holds up to 6 people." = "تتسع مجموعة العائلة لـ 6 أشخاص.";
 "A friends group holds up to 30 people." = "تتسع مجموعة الأصدقاء لـ 30 شخصًا.";
+"A new phone picks up where you left off" = "الهاتف الجديد يكمل من حيث توقفت";
 "A small crossword in your language. New every day." = "كلمات متقاطعة صغيرة بلغتك. جديدة كل يوم.";
 "A unit opens once 80% of the one before it has started." = "تُفتح الوحدة بعد بدء 80% من الوحدة السابقة.";
 "A word with a missing letter" = "كلمة ينقصها حرف";
@@ -234,6 +245,7 @@
 "Finals" = "الحروف الأخيرة";
 "Finish one round" = "أنهِ جولة واحدة";
 "First word mastered" = "أول كلمة متقنة";
+"Five at most. Tap one to swap it out." = "خمس كحد أقصى. اضغط واحدة لاستبدالها.";
 "Five letters change shape at the end of a word." = "خمسة حروف يتغيّر شكلها في آخر الكلمة.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "تأتي النغمات الخمس من فئة الحرف الساكن وعلامة النغمة ونوع المقطع.";
 "Flags" = "الأعلام";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "أسس عبر سبعة فروع: من الرياضيات إلى العقل.";
 "Four tones and a neutral tone change the meaning of a syllable." = "أربع نغمات ونغمة محايدة تغيّر معنى المقطع.";
 "Free during the beta" = "مجاني خلال النسخة التجريبية";
+"Free trial: %lld days left" = "التجربة المجانية: بقي %lld يوم";
+"Free trial: 1 day left" = "التجربة المجانية: بقي يوم واحد";
 "Friends" = "الأصدقاء";
 "From %@: %@" = "من %1$@: %2$@";
 "Full detail" = "التفاصيل الكاملة";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "جارٍ تحميل مراجعاتك";
 "Mail isn't set up on this device. Paste %@ into any email app." = "البريد غير مُعد على هذا الجهاز. الصق %@ في أي تطبيق بريد.";
 "Manage subscription" = "إدارة الاشتراك";
+"Manage your subscription" = "إدارة اشتراكك";
 "Manuscripts follow no fixed spelling." = "لا تتبع المخطوطات تهجئة ثابتة.";
 "Mastery %lld percent" = "الإتقان %lld بالمئة";
 "Mathematics" = "الرياضيات";
@@ -463,6 +478,7 @@
 "Progress" = "التقدّم";
 "Progress in a removed language stays saved and returns if you add it back." = "يبقى تقدّمك في اللغة المحذوفة محفوظًا ويعود إذا أضفتها مجددًا.";
 "Progress stays saved and returns if you build the same system again." = "يبقى التقدّم محفوظًا ويعود إذا أنشأت النظام نفسه مجددًا.";
+"Progress syncs across iPhone, iPad and Mac" = "يتزامن التقدّم عبر iPhone وiPad وMac";
 "Quest done. New one Monday." = "انتهت المهمة. مهمة جديدة يوم الاثنين.";
 "Question %lld · level %@" = "السؤال %1$lld · المستوى %2$@";
 "REVIEW" = "مراجعة";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "إعادة الضبط كتثبيت جديد؟";
 "Reset to fresh install" = "إعادة الضبط كتثبيت جديد";
 "Resetting the link stops the old one from working." = "إعادة ضبط الرابط توقف عمل الرابط القديم.";
+"Restore" = "استعادة";
+"Restoring" = "جارٍ الاستعادة";
 "Retry" = "إعادة المحاولة";
 "Review" = "مراجعة";
 "Right" = "صحيح";
@@ -509,6 +527,7 @@
 "Save languages" = "حفظ اللغات";
 "Save my streak · %@" = "أنقذ سلسلتي · %@";
 "Save to your account" = "احفظ في حسابك";
+"Save your progress" = "احفظ تقدّمك";
 "Saved on this device. Choose your age range to sync." = "محفوظ على هذا الجهاز. اختر فئتك العمرية للمزامنة.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "محفوظ على هذا الجهاز. سجّل الدخول لحفظه على bucket.foundation أيضًا.";
 "Saved on this device. Sign in to sync your language systems." = "محفوظ على هذا الجهاز. سجّل الدخول لمزامنة أنظمتك اللغوية.";
@@ -551,6 +570,7 @@
 "Share your score" = "شارك نقاطك";
 "Share your streak" = "شارك سلسلتك";
 "Share your words" = "شارك كلماتك";
+"Shared" = "مشتركة";
 "Shared goal" = "هدف مشترك";
 "Shared roots in this set · %lld words" = "جذور مشتركة في هذه المجموعة · %lld كلمة";
 "Short vowels usually go unwritten." = "الحركات القصيرة لا تُكتب غالبًا.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "اكتبها بخطها الأصلي";
 "Spot on!" = "تمامًا!";
 "Standings" = "الترتيب";
+"Start %lld days free" = "ابدأ %lld يوم مجانًا";
 "Start a language set in Learn. The games use the words you study." = "ابدأ مجموعة لغات في تعلّم. تستخدم الألعاب الكلمات التي تدرسها.";
 "Start a set" = "ابدأ مجموعة";
 "Start from the first words" = "ابدأ من الكلمات الأولى";
@@ -697,6 +718,7 @@
 "Unblock" = "إلغاء الحظر";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "إلغاء الحظر لا يعيدك إلى المجموعة. يمكنك العودة برابط دعوة.";
 "Use a different email" = "استخدم بريدًا آخر";
+"Use email instead" = "استخدم البريد بدلًا من ذلك";
 "Verbs" = "الأفعال";
 "Verify" = "تحقّق";
 "Version" = "الإصدار";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "لم يتزامن تقدّمك بعد. أنهِ جلسة أثناء تسجيل الدخول.";
 "Your reminders reach this phone." = "تصل تذكيراتك إلى هذا الهاتف.";
 "Your strength" = "قوتك";
+"Your trial is on. Sign in so your words and streak stay with you." = "تجربتك فعّالة. سجّل الدخول لتبقى كلماتك وسلسلتك معك.";
 "Your turn: say “%@”" = "دورك: قل «%@»";
 "Zhuyin sounds" = "أصوات التشويين";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "احسب";
 "common" = "مشترك";
 "conjugate" = "صرّف";
+"done today" = "أُنجزت اليوم";
+"due now" = "مستحقة الآن";
 "entropy, symmetry, memory" = "الإنتروبيا، التناظر، الذاكرة";
 "false friend" = "صديق مخادع";
 "feminine" = "مؤنث";
@@ -796,6 +821,7 @@
 "new character" = "رمز جديد";
 "new letter" = "حرف جديد";
 "new sound" = "صوت جديد";
+"new today" = "جديدة اليوم";
 "new word" = "كلمة جديدة";
 "night" = "ليل";
 "once" = "مرة واحدة";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

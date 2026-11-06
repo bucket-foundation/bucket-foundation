@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ ऑडियो डिवाइस के टेक्स्ट-टू-स्पीच से आता है, और जिस भाषा की आवाज़ नहीं है, वहाँ रिकॉर्ड की गई क्लिप चलती हैं।";
 "%@ %lld started, %lld mastered" = "%1$@ %2$lld शुरू, %3$lld पक्के";
 "%@ Wikipedia" = "%@ विकिपीडिया";
+"%@ a month" = "%@ प्रति माह";
+"%@ a year" = "%@ प्रति वर्ष";
 "%@ and above: not enough material in this language to test" = "%@ और ऊपर: इस भाषा में जाँच के लिए पर्याप्त सामग्री नहीं है";
 "%@ cheered you on." = "%@ ने आपका हौसला बढ़ाया।";
 "%@ flag" = "%@ झंडा";
+"%@ from %@" = "%2$@ से %1$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ की प्रगति अभी सिंक नहीं हुई है। साइन इन रहते हुए अगला सेशन पूरा होने पर स्कोर दिखेंगे।";
 "%@ invited you. %lld of %lld members." = "%1$@ ने आपको आमंत्रित किया। %3$lld में से %2$lld सदस्य।";
 "%@ nudged you to study today." = "%@ ने आपको आज पढ़ने की याद दिलाई।";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "एक बार %@। आपके Apple खाते से शुल्क लिया जाएगा। कोई सदस्यता या नवीनीकरण नहीं।";
 "%@ quest" = "%@ क्वेस्ट";
 "%@ says keep going." = "%@ कहते हैं: लगे रहो।";
 "%@ says nice streak." = "%@ कहते हैं: बढ़िया स्ट्रीक।";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@, कार्ड %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@, रैंक %2$lld, इस हफ़्ते %3$lld कार्ड, %4$lld दिन की स्ट्रीक, %5$lld शब्द पक्के";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: %3$lld में से %2$lld सही, पास नहीं";
 "%@: %lld of %lld right, passed" = "%1$@: %3$lld में से %2$lld सही, पास";
@@ -33,6 +39,8 @@
 "%lld day streak" = "%lld दिन की स्ट्रीक";
 "%lld day streak on %@" = "%2$@ पर %1$lld दिन की स्ट्रीक";
 "%lld days" = "%lld दिन";
+"%lld days free" = "%lld दिन मुफ़्त";
+"%lld days free, then %@." = "%1$lld दिन मुफ़्त, फिर %2$@।";
 "%lld days in a row learning %@ on %@" = "%3$@ पर लगातार %1$lld दिन से %2$@ सीख रहे हैं";
 "%lld days to 100" = "100 तक %lld दिन";
 "%lld down · %lld letters" = "%1$lld खड़ा · %2$lld अक्षर";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%2$lld में से %1$lld सही · +%3$lld xp · %4$lld दिन की स्ट्रीक";
 "%lld of %lld right. New letters come in fives." = "%2$lld में से %1$lld सही। नए अक्षर पाँच-पाँच करके आते हैं।";
 "%lld of %lld today. See your result." = "आज %2$lld में से %1$lld। अपना नतीजा देखें।";
+"%lld of 5 picked" = "5 में से %lld चुने";
 "%lld pairs. Longest run %lld." = "%1$lld जोड़े। सबसे लंबी लड़ी %2$lld।";
 "%lld points" = "%lld अंक";
 "%lld questions." = "%lld सवाल।";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 दिन पूरे। इसे जारी रखें।";
 "5" = "5";
+"A 100 day streak" = "100 दिन की स्ट्रीक";
 "A bar along the top joins the letters of a word." = "ऊपर की एक रेखा शब्द के अक्षरों को जोड़ती है।";
 "A family group holds up to 6 people." = "परिवार समूह में 6 लोग तक हो सकते हैं।";
 "A friends group holds up to 30 people." = "दोस्तों के समूह में 30 लोग तक हो सकते हैं।";
+"A new phone picks up where you left off" = "नया फ़ोन वहीं से शुरू करता है जहाँ आपने छोड़ा था";
 "A small crossword in your language. New every day." = "आपकी भाषा में एक छोटी वर्ग पहेली। रोज़ नई।";
 "A unit opens once 80% of the one before it has started." = "पिछली इकाई का 80% शुरू होने पर अगली इकाई खुलती है।";
 "A word with a missing letter" = "एक अक्षर गायब वाला शब्द";
@@ -234,6 +245,7 @@
 "Finals" = "अंतिम ध्वनियाँ";
 "Finish one round" = "एक राउंड पूरा करें";
 "First word mastered" = "पहला शब्द पक्का";
+"Five at most. Tap one to swap it out." = "ज़्यादा से ज़्यादा पाँच। बदलने के लिए किसी पर टैप करें।";
 "Five letters change shape at the end of a word." = "शब्द के अंत में पाँच अक्षर अपना आकार बदलते हैं।";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "पाँच टोन व्यंजन वर्ग, टोन चिह्न और शब्दांश के प्रकार से बनते हैं।";
 "Flags" = "झंडे";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "सात शाखाओं की नींव: गणित से मन तक।";
 "Four tones and a neutral tone change the meaning of a syllable." = "चार टोन और एक तटस्थ टोन शब्दांश का अर्थ बदलते हैं।";
 "Free during the beta" = "बीटा के दौरान मुफ़्त";
+"Free trial: %lld days left" = "मुफ़्त ट्रायल: %lld दिन बाकी";
+"Free trial: 1 day left" = "मुफ़्त ट्रायल: 1 दिन बाकी";
 "Friends" = "दोस्त";
 "From %@: %@" = "%1$@ से: %2$@";
 "Full detail" = "पूरा विवरण";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "आपके दोहराव लोड हो रहे हैं";
 "Mail isn't set up on this device. Paste %@ into any email app." = "इस डिवाइस पर मेल सेट नहीं है। %@ को किसी भी ईमेल ऐप में पेस्ट करें।";
 "Manage subscription" = "सदस्यता प्रबंधित करें";
+"Manage your subscription" = "अपनी सदस्यता प्रबंधित करें";
 "Manuscripts follow no fixed spelling." = "पांडुलिपियों की कोई तय वर्तनी नहीं है।";
 "Mastery %lld percent" = "महारत %lld प्रतिशत";
 "Mathematics" = "गणित";
@@ -463,6 +478,7 @@
 "Progress" = "प्रगति";
 "Progress in a removed language stays saved and returns if you add it back." = "हटाई गई भाषा की प्रगति सहेजी रहती है और उसे वापस जोड़ने पर लौट आती है।";
 "Progress stays saved and returns if you build the same system again." = "प्रगति सहेजी रहती है और वही सिस्टम दोबारा बनाने पर लौट आती है।";
+"Progress syncs across iPhone, iPad and Mac" = "प्रगति iPhone, iPad और Mac पर सिंक होती है";
 "Quest done. New one Monday." = "क्वेस्ट पूरा। नया सोमवार को।";
 "Question %lld · level %@" = "सवाल %1$lld · स्तर %2$@";
 "REVIEW" = "दोहराव";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "नए इंस्टॉल जैसा रीसेट करें?";
 "Reset to fresh install" = "नए इंस्टॉल जैसा रीसेट करें";
 "Resetting the link stops the old one from working." = "लिंक रीसेट करने से पुराना लिंक काम करना बंद कर देता है।";
+"Restore" = "बहाल करें";
+"Restoring" = "बहाल हो रहा है";
 "Retry" = "फिर कोशिश करें";
 "Review" = "दोहराएँ";
 "Right" = "सही";
@@ -509,6 +527,7 @@
 "Save languages" = "भाषाएँ सहेजें";
 "Save my streak · %@" = "मेरी स्ट्रीक बचाएँ · %@";
 "Save to your account" = "अपने खाते में सहेजें";
+"Save your progress" = "अपनी प्रगति सहेजें";
 "Saved on this device. Choose your age range to sync." = "इस डिवाइस पर सहेजा गया। सिंक करने के लिए अपनी आयु सीमा चुनें।";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "इस डिवाइस पर सहेजा गया। इसे bucket.foundation पर भी रखने के लिए साइन इन करें।";
 "Saved on this device. Sign in to sync your language systems." = "इस डिवाइस पर सहेजा गया। अपने भाषा सिस्टम सिंक करने के लिए साइन इन करें।";
@@ -551,6 +570,7 @@
 "Share your score" = "अपना स्कोर शेयर करें";
 "Share your streak" = "अपनी स्ट्रीक शेयर करें";
 "Share your words" = "अपने शब्द शेयर करें";
+"Shared" = "साझा";
 "Shared goal" = "साझा लक्ष्य";
 "Shared roots in this set · %lld words" = "इस सेट में साझा मूल · %lld शब्द";
 "Short vowels usually go unwritten." = "ह्रस्व स्वर आम तौर पर लिखे नहीं जाते।";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "इसकी अपनी लिपि में लिखें";
 "Spot on!" = "एकदम सही!";
 "Standings" = "रैंकिंग";
+"Start %lld days free" = "%lld दिन मुफ़्त शुरू करें";
 "Start a language set in Learn. The games use the words you study." = "सीखें में भाषा सेट शुरू करें। खेल आपके पढ़े शब्द इस्तेमाल करते हैं।";
 "Start a set" = "सेट शुरू करें";
 "Start from the first words" = "पहले शब्दों से शुरू करें";
@@ -697,6 +718,7 @@
 "Unblock" = "अनब्लॉक करें";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "अनब्लॉक करने से आप समूह में वापस नहीं जुड़ते। आप आमंत्रण लिंक से दोबारा जुड़ सकते हैं।";
 "Use a different email" = "दूसरा ईमेल इस्तेमाल करें";
+"Use email instead" = "इसके बजाय ईमेल इस्तेमाल करें";
 "Verbs" = "क्रियाएँ";
 "Verify" = "सत्यापित करें";
 "Version" = "संस्करण";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "आपकी प्रगति अभी सिंक नहीं हुई। साइन इन रहते हुए एक सेशन पूरा करें।";
 "Your reminders reach this phone." = "आपके रिमाइंडर इस फ़ोन पर आते हैं।";
 "Your strength" = "आपकी मज़बूती";
+"Your trial is on. Sign in so your words and streak stay with you." = "आपका ट्रायल चालू है। साइन इन करें ताकि आपके शब्द और स्ट्रीक आपके साथ रहें।";
 "Your turn: say “%@”" = "आपकी बारी: “%@” बोलें";
 "Zhuyin sounds" = "झुयिन ध्वनियाँ";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "गणना करें";
 "common" = "सामान्य";
 "conjugate" = "रूप बनाएँ";
+"done today" = "आज पूरे";
+"due now" = "अभी बाकी";
 "entropy, symmetry, memory" = "एन्ट्रॉपी, समरूपता, स्मृति";
 "false friend" = "भ्रामक शब्द";
 "feminine" = "स्त्रीलिंग";
@@ -796,6 +821,7 @@
 "new character" = "नया अक्षर";
 "new letter" = "नया अक्षर";
 "new sound" = "नई ध्वनि";
+"new today" = "आज नए";
 "new word" = "नया शब्द";
 "night" = "रात";
 "once" = "एक बार";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

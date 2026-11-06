@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ 오디오는 기기의 텍스트 음성 변환을 사용하며, 음성이 없는 언어는 녹음된 클립을 사용해요.";
 "%@ %lld started, %lld mastered" = "%1$@ %2$lld개 시작, %3$lld개 마스터";
 "%@ Wikipedia" = "%@ Wikipedia";
+"%@ a month" = "월 %@";
+"%@ a year" = "연 %@";
 "%@ and above: not enough material in this language to test" = "%@ 이상: 이 언어는 테스트할 자료가 부족해요";
 "%@ cheered you on." = "%@ 님이 응원했어요.";
 "%@ flag" = "%@ 국기";
+"%@ from %@" = "%2$@에서 %1$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ 님은 아직 동기화된 진도가 없어요. 로그인한 상태로 다음 학습을 마치면 점수가 표시돼요.";
 "%@ invited you. %lld of %lld members." = "%1$@ 님이 초대했어요. 멤버 %2$lld/%3$lld명.";
 "%@ nudged you to study today." = "%@ 님이 오늘 공부하라고 알려 줬어요.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "1회 %@. Apple Account로 결제돼요. 구독이나 갱신은 없어요.";
 "%@ quest" = "%@ 퀘스트";
 "%@ says keep going." = "%@ 님: 계속 힘내요.";
 "%@ says nice streak." = "%@ 님: 연속 기록 멋져요.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@, 카드 %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@, %2$lld위, 이번 주 카드 %3$lld장, %4$lld일 연속, 마스터한 단어 %5$lld개";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: %3$lld개 중 %2$lld개 정답, 불합격";
 "%@: %lld of %lld right, passed" = "%1$@: %3$lld개 중 %2$lld개 정답, 합격";
@@ -33,6 +39,8 @@
 "%lld day streak" = "%lld일 연속";
 "%lld day streak on %@" = "%2$@에서 %1$lld일 연속";
 "%lld days" = "%lld일";
+"%lld days free" = "%lld일 무료";
+"%lld days free, then %@." = "%1$lld일 무료, 이후 %2$@.";
 "%lld days in a row learning %@ on %@" = "%3$@에서 %2$@ %1$lld일 연속 학습 중";
 "%lld days to 100" = "100일까지 %lld일";
 "%lld down · %lld letters" = "세로 %1$lld · %2$lld글자";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%2$lld개 중 %1$lld개 정답 · +%3$lld XP · %4$lld일 연속";
 "%lld of %lld right. New letters come in fives." = "%2$lld개 중 %1$lld개 정답. 새 글자는 5개씩 나와요.";
 "%lld of %lld today. See your result." = "오늘 %1$lld/%2$lld. 결과를 확인하세요.";
+"%lld of 5 picked" = "%lld/5 선택됨";
 "%lld pairs. Longest run %lld." = "%1$lld쌍. 최장 연속 %2$lld.";
 "%lld points" = "%lld점";
 "%lld questions." = "%lld문제.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100일 달성. 계속 이어 가세요.";
 "5" = "5";
+"A 100 day streak" = "100일 연속";
 "A bar along the top joins the letters of a word." = "위쪽 가로줄이 단어의 글자를 이어 줘요.";
 "A family group holds up to 6 people." = "가족 그룹은 최대 6명이에요.";
 "A friends group holds up to 30 people." = "친구 그룹은 최대 30명이에요.";
+"A new phone picks up where you left off" = "새 휴대폰에서도 이어서 학습";
 "A small crossword in your language. New every day." = "내 언어로 하는 작은 낱말 퍼즐. 매일 새로워요.";
 "A unit opens once 80% of the one before it has started." = "이전 단원의 80%를 시작하면 다음 단원이 열려요.";
 "A word with a missing letter" = "글자 하나가 빠진 단어";
@@ -234,6 +245,7 @@
 "Finals" = "운모";
 "Finish one round" = "한 판 끝내기";
 "First word mastered" = "첫 단어 마스터";
+"Five at most. Tap one to swap it out." = "최대 5개예요. 탭해서 바꿀 수 있어요.";
 "Five letters change shape at the end of a word." = "다섯 글자는 단어 끝에서 모양이 바뀌어요.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "다섯 성조는 자음 종류, 성조 부호, 음절 유형으로 정해져요.";
 "Flags" = "국기";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "일곱 분야의 기초: 수학부터 마음까지.";
 "Four tones and a neutral tone change the meaning of a syllable." = "네 성조와 경성이 음절의 뜻을 바꿔요.";
 "Free during the beta" = "베타 기간 무료";
+"Free trial: %lld days left" = "무료 체험: %lld일 남음";
+"Free trial: 1 day left" = "무료 체험: 1일 남음";
 "Friends" = "친구";
 "From %@: %@" = "%1$@: %2$@";
 "Full detail" = "자세히";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "복습 불러오는 중";
 "Mail isn't set up on this device. Paste %@ into any email app." = "이 기기에 메일이 설정되지 않았어요. 아무 이메일 앱에 %@을(를) 붙여 넣으세요.";
 "Manage subscription" = "구독 관리";
+"Manage your subscription" = "구독 관리";
 "Manuscripts follow no fixed spelling." = "필사본은 정해진 철자가 없어요.";
 "Mastery %lld percent" = "숙달도 %lld퍼센트";
 "Mathematics" = "수학";
@@ -463,6 +478,7 @@
 "Progress" = "진도";
 "Progress in a removed language stays saved and returns if you add it back." = "삭제한 언어의 진도는 저장되어 있다가 다시 추가하면 돌아와요.";
 "Progress stays saved and returns if you build the same system again." = "진도는 저장되어 있다가 같은 시스템을 다시 만들면 돌아와요.";
+"Progress syncs across iPhone, iPad and Mac" = "진도가 iPhone, iPad, Mac에서 동기화돼요";
 "Quest done. New one Monday." = "퀘스트 완료. 새 퀘스트는 월요일에 나와요.";
 "Question %lld · level %@" = "문제 %1$lld · 레벨 %2$@";
 "REVIEW" = "복습";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "처음 설치 상태로 초기화할까요?";
 "Reset to fresh install" = "처음 설치 상태로 초기화";
 "Resetting the link stops the old one from working." = "링크를 재설정하면 이전 링크는 작동하지 않아요.";
+"Restore" = "복원";
+"Restoring" = "복원 중";
 "Retry" = "다시 시도";
 "Review" = "복습";
 "Right" = "정답";
@@ -509,6 +527,7 @@
 "Save languages" = "언어 저장";
 "Save my streak · %@" = "연속 기록 지키기 · %@";
 "Save to your account" = "계정에 저장";
+"Save your progress" = "진도 저장";
 "Saved on this device. Choose your age range to sync." = "이 기기에 저장됐어요. 동기화하려면 연령대를 선택하세요.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "이 기기에 저장됐어요. 로그인하면 bucket.foundation에도 저장돼요.";
 "Saved on this device. Sign in to sync your language systems." = "이 기기에 저장됐어요. 언어 시스템을 동기화하려면 로그인하세요.";
@@ -551,6 +570,7 @@
 "Share your score" = "점수 공유";
 "Share your streak" = "연속 기록 공유";
 "Share your words" = "단어 공유";
+"Shared" = "공유됨";
 "Shared goal" = "공동 목표";
 "Shared roots in this set · %lld words" = "이 세트의 같은 어원 · 단어 %lld개";
 "Short vowels usually go unwritten." = "단모음은 보통 쓰지 않아요.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "고유 문자로 쓰기";
 "Spot on!" = "정확해요!";
 "Standings" = "순위";
+"Start %lld days free" = "%lld일 무료로 시작";
 "Start a language set in Learn. The games use the words you study." = "학습에서 언어 세트를 시작하세요. 게임은 공부하는 단어를 사용해요.";
 "Start a set" = "세트 시작";
 "Start from the first words" = "첫 단어부터 시작";
@@ -697,6 +718,7 @@
 "Unblock" = "차단 해제";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "차단을 해제해도 그룹으로 돌아가지 않아요. 초대 링크로 다시 참여할 수 있어요.";
 "Use a different email" = "다른 이메일 사용";
+"Use email instead" = "이메일 사용";
 "Verbs" = "동사";
 "Verify" = "인증";
 "Version" = "버전";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "진도가 아직 동기화되지 않았어요. 로그인한 상태로 학습을 마치세요.";
 "Your reminders reach this phone." = "알림이 이 휴대폰으로 와요.";
 "Your strength" = "내 숙련도";
+"Your trial is on. Sign in so your words and streak stay with you." = "체험이 시작됐어요. 단어와 연속 기록을 유지하려면 로그인하세요.";
 "Your turn: say “%@”" = "내 차례: “%@” 말하기";
 "Zhuyin sounds" = "주음 소리";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "계산하기";
 "common" = "통성";
 "conjugate" = "활용하기";
+"done today" = "오늘 완료";
+"due now" = "복습 대기";
 "entropy, symmetry, memory" = "엔트로피, 대칭, 기억";
 "false friend" = "거짓 친구";
 "feminine" = "여성";
@@ -796,6 +821,7 @@
 "new character" = "새 글자";
 "new letter" = "새 글자";
 "new sound" = "새 소리";
+"new today" = "오늘 새 카드";
 "new word" = "새 단어";
 "night" = "밤";
 "once" = "1회";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

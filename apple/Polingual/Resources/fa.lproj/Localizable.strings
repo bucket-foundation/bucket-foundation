@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ و بالاتر: محتوای کافی در این زبان برای آزمون نیست";
 "%@ cheered you on." = "%@ تشویقت کرد.";
 "%@ flag" = "پرچم %@";
+"%@ from %@" = "%1$@ از %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ هنوز پیشرفت همگام‌شده‌ای ندارد. امتیازها بعد از جلسهٔ بعدی او در حالت ورود نمایش داده می‌شوند.";
 "%@ invited you. %lld of %lld members." = "%1$@ دعوتت کرد. %2$lld از %3$lld عضو.";
 "%@ nudged you to study today." = "%@ یادآوری کرد که امروز درس بخوانی.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ برایت بزن‌قدش فرستاد.";
 "%@ to %@" = "%1$@ تا %2$@";
 "%@ wants to race you this week." = "%@ می‌خواهد این هفته با تو مسابقه بدهد.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld پرسش.";
 "%lld review" = "%lld مرور";
 "%lld review · %lld new" = "%1$lld مرور · %2$lld جدید";
+"%lld sources" = "%lld منبع";
 "%lld started · %lld mastered" = "%1$lld شروع‌شده · %2$lld مسلط";
 "%lld this week" = "%lld این هفته";
 "%lld today" = "%lld امروز";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "الفبای یونانی باستان";
 "Animals" = "حیوانات";
 "Another round" = "یک دور دیگر";
+"Answer: %@" = "پاسخ: %@";
+"Answer: %@ %@" = "پاسخ: %1$@ %2$@";
 "Answers shown. New puzzle tomorrow." = "پاسخ‌ها نمایش داده شد. معمای تازه فردا.";
 "Anyone who opens this link can join %@." = "هر کس این پیوند را باز کند می‌تواند به %@ بپیوندد.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple توکن ورود را برنگرداند. دوباره امتحان کن یا از ایمیلت در پایین استفاده کن.";
@@ -145,6 +150,7 @@
 "Buy once" = "خرید یک‌باره";
 "Cancel" = "لغو";
 "Canon" = "مرجع";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "کارت‌های ثبت‌شده: %1$lld. %2$lld از %3$lld اتم شروع شده، %4$lld مسلط.";
 "Change the weekly goal" = "تغییر هدف هفتگی";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "از حساب Apple شما کسر می‌شود. خودکار تمدید می‌شود مگر آنکه دست‌کم ۲۴ ساعت پیش از پایان دوره در تنظیمات لغو شود.";
 "Check" = "بررسی";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "ایمیل یکی از والدینت را وارد کن. از او می‌خواهیم ذخیرهٔ پیشرفتت را تأیید کند.";
 "Every card anyone in the group studies counts toward the goal." = "هر کارتی که هر کس در گروه مطالعه کند در هدف حساب می‌شود.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "همهٔ کارت‌ها از پیش زمان‌بندی شده‌اند و اتم‌های تازهٔ امروز تمام شده‌اند. هر اتمی از دسته را بخوان یا شاخهٔ دیگری انتخاب کن.";
+"Every idea across seven branches." = "همهٔ ایده‌ها در هفت شاخه.";
 "Every word of two or more syllables marks its stress with an accent." = "هر واژهٔ دو هجایی یا بیشتر تکیه‌اش را با علامت نشان می‌دهد.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "متن روزمره نشانه‌های مصوت را نمی‌نویسد. کتاب‌های کودکان و دعا آن‌ها را چاپ می‌کنند.";
 "Explore" = "کاوش";
@@ -272,6 +279,7 @@
 "Hint" = "راهنمایی";
 "Hiragana" = "هیراگانا";
 "Hiragana and katakana" = "هیراگانا و کاتاکانا";
+"How well did you recall it" = "چقدر خوب به یاد آوردی";
 "I already speak" = "از قبل صحبت می‌کنم";
 "I do not know" = "نمی‌دانم";
 "I have a code" = "کد دارم";
@@ -345,6 +353,7 @@
 "Manage subscription" = "مدیریت اشتراک";
 "Manage your subscription" = "مدیریت اشتراکت";
 "Manuscripts follow no fixed spelling." = "نسخه‌های خطی املای ثابتی ندارند.";
+"Mastery %lld percent" = "تسلط %lld درصد";
 "Mathematics" = "ریاضیات";
 "Means %@, looks like English %@" = "یعنی %1$@، شبیه %2$@ انگلیسی است";
 "Mediterranean" = "مدیترانه‌ای";
@@ -360,6 +369,7 @@
 "More languages · 29" = "زبان‌های بیشتر · ۲۹";
 "Move to bottom" = "انتقال به پایین";
 "Move to top" = "انتقال به بالا";
+"NEW" = "جدید";
 "Nailed it!" = "عالی بود!";
 "Name others see" = "نامی که دیگران می‌بینند";
 "Nature" = "طبیعت";
@@ -377,6 +387,7 @@
 "No letters due" = "حرفی موعد ندارد";
 "No mistakes. New board tomorrow." = "بدون اشتباه. صفحهٔ تازه فردا.";
 "No progress synced yet" = "هنوز پیشرفتی همگام نشده";
+"No results" = "نتیجه‌ای نیست";
 "No stations found." = "ایستگاهی پیدا نشد.";
 "No stations in this branch." = "در این شاخه ایستگاهی نیست.";
 "No subjects yet." = "هنوز موضوعی نیست.";
@@ -388,6 +399,7 @@
 "Not quite" = "نه کاملاً";
 "Not quite. " = "نه کاملاً. ";
 "Nothing due" = "چیزی موعد ندارد";
+"Nothing due in %@" = "در %@ چیزی موعد ندارد";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "چیزی موعد ندارد. همهٔ کارت‌ها از پیش زمان‌بندی شده‌اند و اتم‌های تازهٔ امروز تمام شده‌اند.";
 "Nothing to draw yet." = "هنوز چیزی برای رسم نیست.";
 "Notifications" = "اعلان‌ها";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "طرح دانشجویی Polingual";
 "Practice with ${applicationName}" = "تمرین با ${applicationName}";
 "Preparing today's route" = "در حال آماده کردن مسیر امروز";
+"Prerequisites: %lld" = "پیش‌نیازها: %lld";
 "Present tense" = "زمان حال";
 "Privacy" = "حریم خصوصی";
 "Privacy and data" = "حریم خصوصی و داده‌ها";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "پیشرفت بین iPhone، iPad و Mac همگام می‌شود";
 "Quest done. New one Monday." = "مأموریت تمام شد. مأموریت تازه دوشنبه.";
 "Question %lld · level %@" = "پرسش %1$lld · سطح %2$@";
+"REVIEW" = "مرور";
 "Race you" = "مسابقه بدهیم";
 "Rate %@ on the App Store" = "به %@ در App Store امتیاز بده";
 "Reactions are presets. Blocking someone stops them." = "واکنش‌ها از پیش تعیین شده‌اند. مسدود کردن کسی آن‌ها را متوقف می‌کند.";
@@ -527,6 +541,7 @@
 "See progress" = "دیدن پیشرفت";
 "See you tomorrow." = "فردا می‌بینمت.";
 "Send" = "فرستادن";
+"Send a reaction" = "فرستادن واکنش";
 "Send a test reminder in 10 seconds" = "فرستادن یادآوری آزمایشی تا ۱۰ ثانیه دیگر";
 "Send code" = "فرستادن کد";
 "Send feedback" = "فرستادن بازخورد";
@@ -555,6 +570,7 @@
 "Share your score" = "اشتراک امتیازت";
 "Share your streak" = "اشتراک زنجیره‌ات";
 "Share your words" = "اشتراک واژه‌هایت";
+"Shared" = "مشترک";
 "Shared goal" = "هدف مشترک";
 "Shared roots in this set · %lld words" = "ریشه‌های مشترک در این مجموعه · %lld واژه";
 "Short vowels usually go unwritten." = "مصوت‌های کوتاه معمولاً نوشته نمی‌شوند.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "ایستگاه‌ها بارگیری نشدند. دوباره";
 "Stations from radio-browser.info." = "ایستگاه‌ها از radio-browser.info.";
 "Status" = "وضعیت";
+"Step %lld is wrong. %@" = "گام %1$lld نادرست است. %2$@";
 "Stop" = "توقف";
 "Stop %@" = "توقف %@";
 "Streak" = "زنجیره";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "چند واژهٔ دیگر بخوان تا مینی فردا باز شود.";
 "Study a few more words and tomorrow's Word Groups opens." = "چند واژهٔ دیگر بخوان تا گروه‌های واژهٔ فردا باز شود.";
 "Study a few words in Learn first." = "اول چند واژه در یادگیری بخوان.";
+"Study today (%lld)" = "مطالعهٔ امروز (%lld)";
 "Study today to count day 1." = "امروز مطالعه کن تا روز ۱ حساب شود.";
 "Subject strength" = "قدرت موضوع";
 "Subjects" = "موضوع‌ها";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "ترجمه برای %@ روی این دستگاه در دسترس نیست.";
 "Trial ending" = "پایان دورهٔ آزمایشی";
 "Try again" = "دوباره امتحان کن";
+"Try another word." = "واژهٔ دیگری امتحان کن.";
 "Turn on reminders" = "روشن کردن یادآورها";
 "Type instead" = "به‌جایش تایپ کن";
 "Type what you hear" = "آنچه می‌شنوی را تایپ کن";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "زنجیرهٔ %lld روزه‌ات نیمه‌شب تمام می‌شود";
 "Your age range" = "بازهٔ سنی‌ات";
 "Your answer" = "پاسخ تو";
+"Your day" = "روز تو";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "سامانه‌های زبانی‌ات پس از سه تلاش به سرور نرسیدند. روی این دستگاه ذخیره شده‌اند؛ تغییر بعدی همگام‌سازی را دوباره امتحان می‌کند.";
 "Your languages" = "زبان‌هایت";
 "Your name" = "نامت";
@@ -781,6 +801,9 @@
 "calculate" = "حساب کن";
 "common" = "مشترک";
 "conjugate" = "صرف کن";
+"done today" = "انجام‌شده امروز";
+"due now" = "موعد مرور";
+"entropy, symmetry, memory" = "آنتروپی، تقارن، حافظه";
 "false friend" = "دوست کاذب";
 "feminine" = "مؤنث";
 "fill the gap" = "جای خالی را پر کن";
@@ -798,6 +821,7 @@
 "new character" = "نویسهٔ تازه";
 "new letter" = "حرف تازه";
 "new sound" = "صدای تازه";
+"new today" = "جدید امروز";
 "new word" = "واژهٔ تازه";
 "night" = "شب";
 "once" = "یک‌بار";
@@ -826,6 +850,7 @@
 "word mastered" = "واژهٔ مسلط";
 "words mastered" = "واژهٔ مسلط";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

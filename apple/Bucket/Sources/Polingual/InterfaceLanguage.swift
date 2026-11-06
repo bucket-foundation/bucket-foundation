@@ -75,3 +75,19 @@ extension View {
         modifier(InterfaceLanguageModifier(root: root))
     }
 }
+
+extension InterfaceLanguage {
+    static func string(_ key: String) -> String {
+        let lproj = active.flatMap { Bundle.main.path(forResource: $0, ofType: "lproj") }.flatMap(Bundle.init(path:))
+        return (lproj ?? .main).localizedString(forKey: key, value: key, table: nil)
+    }
+}
+
+extension LangSystem {
+    var title: String {
+        guard name == systemName(root, targets) else { return name }
+        let preset = Lang.presets.first { $0.targets.count == targets.count && $0.targets.allSatisfy(targets.contains) }
+        let set = preset.map { InterfaceLanguage.string($0.name) } ?? targets.map(langName).joined(separator: " + ")
+        return String(format: InterfaceLanguage.string("%@ from %@"), set, langName(root))
+    }
+}

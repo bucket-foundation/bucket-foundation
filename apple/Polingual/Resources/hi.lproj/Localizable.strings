@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ और ऊपर: इस भाषा में जाँच के लिए पर्याप्त सामग्री नहीं है";
 "%@ cheered you on." = "%@ ने आपका हौसला बढ़ाया।";
 "%@ flag" = "%@ झंडा";
+"%@ from %@" = "%2$@ से %1$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ की प्रगति अभी सिंक नहीं हुई है। साइन इन रहते हुए अगला सेशन पूरा होने पर स्कोर दिखेंगे।";
 "%@ invited you. %lld of %lld members." = "%1$@ ने आपको आमंत्रित किया। %3$lld में से %2$lld सदस्य।";
 "%@ nudged you to study today." = "%@ ने आपको आज पढ़ने की याद दिलाई।";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ ने आपको हाई फ़ाइव भेजा।";
 "%@ to %@" = "%1$@ से %2$@";
 "%@ wants to race you this week." = "%@ इस हफ़्ते आपसे मुकाबला करना चाहते हैं।";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld सवाल।";
 "%lld review" = "%lld दोहराव";
 "%lld review · %lld new" = "%1$lld दोहराव · %2$lld नए";
+"%lld sources" = "%lld स्रोत";
 "%lld started · %lld mastered" = "%1$lld शुरू · %2$lld पक्के";
 "%lld this week" = "इस हफ़्ते %lld";
 "%lld today" = "आज %lld";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "प्राचीन यूनानी वर्णमाला";
 "Animals" = "जानवर";
 "Another round" = "एक और राउंड";
+"Answer: %@" = "उत्तर: %@";
+"Answer: %@ %@" = "उत्तर: %1$@ %2$@";
 "Answers shown. New puzzle tomorrow." = "उत्तर दिखाए गए। नई पहेली कल।";
 "Anyone who opens this link can join %@." = "यह लिंक खोलने वाला कोई भी %@ से जुड़ सकता है।";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple ने साइन-इन टोकन नहीं लौटाया। फिर कोशिश करें, या नीचे अपना ईमेल इस्तेमाल करें।";
@@ -145,6 +150,7 @@
 "Buy once" = "एक बार खरीदें";
 "Cancel" = "रद्द करें";
 "Canon" = "कैनन";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "दर्ज कार्ड: %1$lld. %3$lld में से %2$lld एटम शुरू, %4$lld में महारत।";
 "Change the weekly goal" = "साप्ताहिक लक्ष्य बदलें";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "आपके Apple खाते से शुल्क लिया जाएगा। अवधि खत्म होने से कम से कम 24 घंटे पहले सेटिंग्स में रद्द न करने पर यह अपने आप नवीनीकृत होगा।";
 "Check" = "जाँचें";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "माता-पिता का ईमेल डालें। हम उनसे आपकी प्रगति सहेजने की मंज़ूरी माँगेंगे।";
 "Every card anyone in the group studies counts toward the goal." = "समूह में कोई भी जो कार्ड पढ़ता है, वह लक्ष्य में गिना जाता है।";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "हर कार्ड आगे के लिए तय है और आज के नए एटम पूरे हो गए। डेक से कोई भी एटम पढ़ें, या दूसरी शाखा चुनें।";
+"Every idea across seven branches." = "सात शाखाओं के सभी विचार।";
 "Every word of two or more syllables marks its stress with an accent." = "दो या ज़्यादा शब्दांश वाले हर शब्द में बलाघात एक चिह्न से दिखाया जाता है।";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "रोज़ के लेखन में स्वर चिह्न नहीं लिखे जाते। बच्चों की किताबें और प्रार्थना पुस्तकें उन्हें छापती हैं।";
 "Explore" = "खोजें";
@@ -272,6 +279,7 @@
 "Hint" = "संकेत";
 "Hiragana" = "हिरागाना";
 "Hiragana and katakana" = "हिरागाना और काताकाना";
+"How well did you recall it" = "आपको यह कितना अच्छे से याद था";
 "I already speak" = "मैं पहले से बोलता हूँ";
 "I do not know" = "मुझे नहीं पता";
 "I have a code" = "मेरे पास कोड है";
@@ -345,6 +353,7 @@
 "Manage subscription" = "सदस्यता प्रबंधित करें";
 "Manage your subscription" = "अपनी सदस्यता प्रबंधित करें";
 "Manuscripts follow no fixed spelling." = "पांडुलिपियों की कोई तय वर्तनी नहीं है।";
+"Mastery %lld percent" = "महारत %lld प्रतिशत";
 "Mathematics" = "गणित";
 "Means %@, looks like English %@" = "अर्थ %1$@, अंग्रेज़ी के %2$@ जैसा दिखता है";
 "Mediterranean" = "भूमध्यसागरीय";
@@ -360,6 +369,7 @@
 "More languages · 29" = "और भाषाएँ · 29";
 "Move to bottom" = "नीचे ले जाएँ";
 "Move to top" = "ऊपर ले जाएँ";
+"NEW" = "नया";
 "Nailed it!" = "बिल्कुल सही!";
 "Name others see" = "दूसरों को दिखने वाला नाम";
 "Nature" = "प्रकृति";
@@ -377,6 +387,7 @@
 "No letters due" = "कोई अक्षर बाकी नहीं";
 "No mistakes. New board tomorrow." = "कोई गलती नहीं। नया बोर्ड कल।";
 "No progress synced yet" = "अभी कोई प्रगति सिंक नहीं हुई";
+"No results" = "कोई परिणाम नहीं";
 "No stations found." = "कोई स्टेशन नहीं मिला।";
 "No stations in this branch." = "इस शाखा में कोई स्टेशन नहीं।";
 "No subjects yet." = "अभी कोई विषय नहीं।";
@@ -388,6 +399,7 @@
 "Not quite" = "पूरी तरह नहीं";
 "Not quite. " = "पूरी तरह नहीं। ";
 "Nothing due" = "कुछ बाकी नहीं";
+"Nothing due in %@" = "%@ में कुछ बाकी नहीं";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "कुछ बाकी नहीं। हर कार्ड आगे के लिए तय है और आज के नए एटम पूरे हो गए।";
 "Nothing to draw yet." = "अभी दिखाने को कुछ नहीं।";
 "Notifications" = "सूचनाएँ";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polingual छात्र प्लान";
 "Practice with ${applicationName}" = "${applicationName} के साथ अभ्यास करें";
 "Preparing today's route" = "आज का रास्ता तैयार हो रहा है";
+"Prerequisites: %lld" = "पूर्व-आवश्यकताएँ: %lld";
 "Present tense" = "वर्तमान काल";
 "Privacy" = "गोपनीयता";
 "Privacy and data" = "गोपनीयता और डेटा";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "प्रगति iPhone, iPad और Mac पर सिंक होती है";
 "Quest done. New one Monday." = "क्वेस्ट पूरा। नया सोमवार को।";
 "Question %lld · level %@" = "सवाल %1$lld · स्तर %2$@";
+"REVIEW" = "दोहराव";
 "Race you" = "मुकाबला करें";
 "Rate %@ on the App Store" = "App Store पर %@ को रेट करें";
 "Reactions are presets. Blocking someone stops them." = "प्रतिक्रियाएँ पहले से तय हैं। किसी को ब्लॉक करने से वे रुक जाती हैं।";
@@ -527,6 +541,7 @@
 "See progress" = "प्रगति देखें";
 "See you tomorrow." = "कल मिलते हैं।";
 "Send" = "भेजें";
+"Send a reaction" = "प्रतिक्रिया भेजें";
 "Send a test reminder in 10 seconds" = "10 सेकंड में टेस्ट रिमाइंडर भेजें";
 "Send code" = "कोड भेजें";
 "Send feedback" = "फ़ीडबैक भेजें";
@@ -555,6 +570,7 @@
 "Share your score" = "अपना स्कोर शेयर करें";
 "Share your streak" = "अपनी स्ट्रीक शेयर करें";
 "Share your words" = "अपने शब्द शेयर करें";
+"Shared" = "साझा";
 "Shared goal" = "साझा लक्ष्य";
 "Shared roots in this set · %lld words" = "इस सेट में साझा मूल · %lld शब्द";
 "Short vowels usually go unwritten." = "ह्रस्व स्वर आम तौर पर लिखे नहीं जाते।";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "स्टेशन लोड नहीं हुए। फिर कोशिश करें";
 "Stations from radio-browser.info." = "radio-browser.info से स्टेशन।";
 "Status" = "स्थिति";
+"Step %lld is wrong. %@" = "चरण %1$lld गलत है। %2$@";
 "Stop" = "रोकें";
 "Stop %@" = "%@ रोकें";
 "Streak" = "स्ट्रीक";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "कुछ और शब्द पढ़ें, कल का मिनी खुल जाएगा।";
 "Study a few more words and tomorrow's Word Groups opens." = "कुछ और शब्द पढ़ें, कल का शब्द समूह खुल जाएगा।";
 "Study a few words in Learn first." = "पहले सीखें में कुछ शब्द पढ़ें।";
+"Study today (%lld)" = "आज पढ़ें (%lld)";
 "Study today to count day 1." = "दिन 1 गिनने के लिए आज पढ़ें।";
 "Subject strength" = "विषय की मज़बूती";
 "Subjects" = "विषय";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "इस डिवाइस पर %@ के लिए अनुवाद उपलब्ध नहीं है।";
 "Trial ending" = "ट्रायल खत्म हो रहा है";
 "Try again" = "फिर कोशिश करें";
+"Try another word." = "दूसरा शब्द आज़माएँ।";
 "Turn on reminders" = "रिमाइंडर चालू करें";
 "Type instead" = "इसके बजाय टाइप करें";
 "Type what you hear" = "जो सुनें वह टाइप करें";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "आपकी %lld दिन की स्ट्रीक आधी रात को खत्म होगी";
 "Your age range" = "आपकी आयु सीमा";
 "Your answer" = "आपका उत्तर";
+"Your day" = "आपका दिन";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "तीन कोशिशों के बाद भी आपके भाषा सिस्टम सर्वर तक नहीं पहुँचे। वे इस डिवाइस पर सहेजे हैं; अगला बदलाव सिंक फिर से आज़माएगा।";
 "Your languages" = "आपकी भाषाएँ";
 "Your name" = "आपका नाम";
@@ -781,6 +801,9 @@
 "calculate" = "गणना करें";
 "common" = "सामान्य";
 "conjugate" = "रूप बनाएँ";
+"done today" = "आज पूरे";
+"due now" = "अभी बाकी";
+"entropy, symmetry, memory" = "एन्ट्रॉपी, समरूपता, स्मृति";
 "false friend" = "भ्रामक शब्द";
 "feminine" = "स्त्रीलिंग";
 "fill the gap" = "खाली जगह भरें";
@@ -798,6 +821,7 @@
 "new character" = "नया अक्षर";
 "new letter" = "नया अक्षर";
 "new sound" = "नई ध्वनि";
+"new today" = "आज नए";
 "new word" = "नया शब्द";
 "night" = "रात";
 "once" = "एक बार";
@@ -826,6 +850,7 @@
 "word mastered" = "शब्द पक्का";
 "words mastered" = "शब्द पक्के";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

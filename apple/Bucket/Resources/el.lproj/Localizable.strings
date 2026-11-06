@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Ο ήχος είναι σύνθεση φωνής της συσκευής, με ηχογραφήσεις όπου μια γλώσσα δεν έχει φωνή.";
 "%@ %lld started, %lld mastered" = "%@ %lld ξεκίνησαν, %lld κατακτήθηκαν";
 "%@ Wikipedia" = "%@ Βικιπαίδεια";
+"%@ a month" = "%@ τον μήνα";
+"%@ a year" = "%@ τον χρόνο";
 "%@ and above: not enough material in this language to test" = "%@ και πάνω: δεν υπάρχει αρκετό υλικό σε αυτή τη γλώσσα για τεστ";
 "%@ cheered you on." = "Ο/Η %@ σε εμψύχωσε.";
 "%@ flag" = "Σημαία: %@";
+"%@ from %@" = "%1$@, βάση: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "Ο/Η %@ δεν έχει ακόμα συγχρονισμένη πρόοδο. Οι βαθμολογίες εμφανίζονται μετά την επόμενη συνεδρία του/της με σύνδεση.";
 "%@ invited you. %lld of %lld members." = "Ο/Η %@ σε προσκάλεσε. %lld από %lld μέλη.";
 "%@ nudged you to study today." = "Ο/Η %@ σου υπενθύμισε να μελετήσεις σήμερα.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ μία φορά. Χρέωση στον Apple λογαριασμό σου. Χωρίς συνδρομή και χωρίς ανανέωση.";
 "%@ quest" = "Αποστολή: %@";
 "%@ says keep going." = "Ο/Η %@ λέει: συνέχισε έτσι.";
 "%@ says nice streak." = "Ο/Η %@ λέει: ωραίο σερί.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, κάρτα %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, θέση %lld, %lld κάρτες αυτή την εβδομάδα, σερί %lld ημερών, %lld λέξεις κατακτημένες";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: %lld από %lld σωστές, δεν πέρασε";
 "%@: %lld of %lld right, passed" = "%@: %lld από %lld σωστές, πέρασε";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Σερί %lld ημερών";
 "%lld day streak on %@" = "Σερί %lld ημερών στο %@";
 "%lld days" = "%lld ημέρες";
+"%lld days free" = "%lld ημέρες δωρεάν";
+"%lld days free, then %@." = "%lld ημέρες δωρεάν, μετά %@.";
 "%lld days in a row learning %@ on %@" = "%lld ημέρες στη σειρά μαθαίνω %@ στο %@";
 "%lld days to 100" = "%lld ημέρες ως τις 100";
 "%lld down · %lld letters" = "%lld κάθετα · %lld γράμματα";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%lld από %lld σωστές · +%lld xp · σερί %lld ημερών";
 "%lld of %lld right. New letters come in fives." = "%lld από %lld σωστές. Τα νέα γράμματα έρχονται ανά πέντε.";
 "%lld of %lld today. See your result." = "%lld από %lld σήμερα. Δες το αποτέλεσμά σου.";
+"%lld of 5 picked" = "%lld από 5 επιλεγμένα";
 "%lld pairs. Longest run %lld." = "%lld ζεύγη. Μεγαλύτερο σερί %lld.";
 "%lld points" = "%lld πόντοι";
 "%lld questions." = "%lld ερωτήσεις.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "Έφτασες τις 100 ημέρες. Συνέχισε έτσι.";
 "5" = "5";
+"A 100 day streak" = "Σερί 100 ημερών";
 "A bar along the top joins the letters of a word." = "Μια γραμμή από πάνω ενώνει τα γράμματα μιας λέξης.";
 "A family group holds up to 6 people." = "Μια οικογενειακή ομάδα χωράει έως 6 άτομα.";
 "A friends group holds up to 30 people." = "Μια ομάδα φίλων χωράει έως 30 άτομα.";
+"A new phone picks up where you left off" = "Ένα νέο κινητό συνεχίζει από εκεί που σταμάτησες";
 "A small crossword in your language. New every day." = "Ένα μικρό σταυρόλεξο στη γλώσσα σου. Νέο κάθε μέρα.";
 "A unit opens once 80% of the one before it has started." = "Μια ενότητα ανοίγει όταν έχει ξεκινήσει το 80% της προηγούμενης.";
 "A word with a missing letter" = "Μια λέξη με ένα γράμμα που λείπει";
@@ -234,6 +245,7 @@
 "Finals" = "Τελικά";
 "Finish one round" = "Τελείωσε έναν γύρο";
 "First word mastered" = "Πρώτη λέξη κατακτημένη";
+"Five at most. Tap one to swap it out." = "Έως πέντε. Πάτα ένα για να το αλλάξεις.";
 "Five letters change shape at the end of a word." = "Πέντε γράμματα αλλάζουν μορφή στο τέλος της λέξης.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Πέντε τόνοι προκύπτουν από την κατηγορία του συμφώνου, το τονικό σημάδι και τον τύπο της συλλαβής.";
 "Flags" = "Σημαίες";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Βάσεις σε επτά κλάδους: από τα μαθηματικά ως τον νου.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Τέσσερις τόνοι και ένας ουδέτερος τόνος αλλάζουν τη σημασία μιας συλλαβής.";
 "Free during the beta" = "Δωρεάν κατά τη beta";
+"Free trial: %lld days left" = "Δωρεάν δοκιμή: απομένουν %lld ημέρες";
+"Free trial: 1 day left" = "Δωρεάν δοκιμή: απομένει 1 ημέρα";
 "Friends" = "Φίλοι";
 "From %@: %@" = "Από %@: %@";
 "Full detail" = "Πλήρεις λεπτομέρειες";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Φόρτωση των επαναλήψεών σου";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Το Mail δεν έχει ρυθμιστεί σε αυτή τη συσκευή. Επικόλλησε το %@ σε οποιαδήποτε εφαρμογή email.";
 "Manage subscription" = "Διαχείριση συνδρομής";
+"Manage your subscription" = "Διαχειρίσου τη συνδρομή σου";
 "Manuscripts follow no fixed spelling." = "Τα χειρόγραφα δεν ακολουθούν σταθερή ορθογραφία.";
 "Mastery %lld percent" = "Κατάκτηση %lld τοις εκατό";
 "Mathematics" = "Μαθηματικά";
@@ -463,6 +478,7 @@
 "Progress" = "Πρόοδος";
 "Progress in a removed language stays saved and returns if you add it back." = "Η πρόοδος σε μια γλώσσα που αφαιρέθηκε μένει αποθηκευμένη και επιστρέφει αν την προσθέσεις ξανά.";
 "Progress stays saved and returns if you build the same system again." = "Η πρόοδος μένει αποθηκευμένη και επιστρέφει αν φτιάξεις ξανά το ίδιο σύστημα.";
+"Progress syncs across iPhone, iPad and Mac" = "Η πρόοδος συγχρονίζεται σε iPhone, iPad και Mac";
 "Quest done. New one Monday." = "Η αποστολή ολοκληρώθηκε. Νέα τη Δευτέρα.";
 "Question %lld · level %@" = "Ερώτηση %lld · επίπεδο %@";
 "REVIEW" = "ΕΠΑΝΑΛΗΨΗ";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Επαναφορά σε νέα εγκατάσταση;";
 "Reset to fresh install" = "Επαναφορά σε νέα εγκατάσταση";
 "Resetting the link stops the old one from working." = "Με την επαναφορά ο παλιός σύνδεσμος σταματά να λειτουργεί.";
+"Restore" = "Επαναφορά";
+"Restoring" = "Επαναφορά σε εξέλιξη";
 "Retry" = "Ξανά";
 "Review" = "Επανάληψη";
 "Right" = "Σωστό";
@@ -509,6 +527,7 @@
 "Save languages" = "Αποθήκευση γλωσσών";
 "Save my streak · %@" = "Σώσε το σερί μου · %@";
 "Save to your account" = "Αποθήκευση στον λογαριασμό σου";
+"Save your progress" = "Αποθήκευσε την πρόοδό σου";
 "Saved on this device. Choose your age range to sync." = "Αποθηκεύτηκε σε αυτή τη συσκευή. Διάλεξε ηλικιακή ομάδα για συγχρονισμό.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Αποθηκεύτηκε σε αυτή τη συσκευή. Συνδέσου για να το έχεις και στο bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "Αποθηκεύτηκε σε αυτή τη συσκευή. Συνδέσου για να συγχρονίσεις τα γλωσσικά σου συστήματα.";
@@ -551,6 +570,7 @@
 "Share your score" = "Μοιράσου το σκορ σου";
 "Share your streak" = "Μοιράσου το σερί σου";
 "Share your words" = "Μοιράσου τις λέξεις σου";
+"Shared" = "Κοινόχρηστα";
 "Shared goal" = "Κοινός στόχος";
 "Shared roots in this set · %lld words" = "Κοινές ρίζες σε αυτό το σετ · %lld λέξεις";
 "Short vowels usually go unwritten." = "Τα βραχέα φωνήεντα συνήθως δεν γράφονται.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Γράψ' το με τη δική του γραφή";
 "Spot on!" = "Ακριβώς!";
 "Standings" = "Κατάταξη";
+"Start %lld days free" = "Ξεκίνα %lld ημέρες δωρεάν";
 "Start a language set in Learn. The games use the words you study." = "Ξεκίνα ένα σετ γλωσσών στο Μάθε. Τα παιχνίδια χρησιμοποιούν τις λέξεις που μελετάς.";
 "Start a set" = "Ξεκίνα σετ";
 "Start from the first words" = "Ξεκίνα από τις πρώτες λέξεις";
@@ -697,6 +718,7 @@
 "Unblock" = "Άρση αποκλεισμού";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Η άρση αποκλεισμού δεν σε επαναφέρει σε ομάδα. Μπορείς να μπεις ξανά με σύνδεσμο πρόσκλησης.";
 "Use a different email" = "Χρησιμοποίησε άλλο email";
+"Use email instead" = "Χρησιμοποίησε email";
 "Verbs" = "Ρήματα";
 "Verify" = "Επαλήθευση";
 "Version" = "Έκδοση";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Η πρόοδός σου δεν έχει συγχρονιστεί ακόμα. Ολοκλήρωσε μια συνεδρία ενώ είσαι συνδεδεμένος.";
 "Your reminders reach this phone." = "Οι υπενθυμίσεις σου έρχονται σε αυτό το κινητό.";
 "Your strength" = "Η δύναμή σου";
+"Your trial is on. Sign in so your words and streak stay with you." = "Η δοκιμή σου τρέχει. Συνδέσου για να μείνουν μαζί σου οι λέξεις και το σερί σου.";
 "Your turn: say “%@”" = "Σειρά σου: πες «%@»";
 "Zhuyin sounds" = "Ήχοι τζουγίν";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "υπολόγισε";
 "common" = "κοινό";
 "conjugate" = "κλίνε";
+"done today" = "έγιναν σήμερα";
+"due now" = "προς επανάληψη";
 "entropy, symmetry, memory" = "εντροπία, συμμετρία, μνήμη";
 "false friend" = "ψευδόφιλη λέξη";
 "feminine" = "θηλυκό";
@@ -796,6 +821,7 @@
 "new character" = "νέος χαρακτήρας";
 "new letter" = "νέο γράμμα";
 "new sound" = "νέος ήχος";
+"new today" = "νέες σήμερα";
 "new word" = "νέα λέξη";
 "night" = "νύχτα";
 "once" = "μία φορά";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

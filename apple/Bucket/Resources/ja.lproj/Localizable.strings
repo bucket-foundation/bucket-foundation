@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ 音声は端末の読み上げ機能です。音声がない言語には録音クリップを使います。";
 "%@ %lld started, %lld mastered" = "%1$@ %2$lld 開始、%3$lld 習得済み";
 "%@ Wikipedia" = "%@ Wikipedia";
+"%@ a month" = "月額 %@";
+"%@ a year" = "年額 %@";
 "%@ and above: not enough material in this language to test" = "%@ 以上: この言語ではテストできる教材が足りません";
 "%@ cheered you on." = "%@ さんが応援しています。";
 "%@ flag" = "%@ の旗";
+"%@ from %@" = "%2$@から%1$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ さんの進捗はまだ同期されていません。サインインして次のセッションを終えるとスコアが表示されます。";
 "%@ invited you. %lld of %lld members." = "%1$@ さんから招待が届きました。メンバー %2$lld / %3$lld 人。";
 "%@ nudged you to study today." = "%@ さんが今日の学習を促しています。";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "1回 %@。Apple Account に請求されます。サブスクリプションや自動更新はありません。";
 "%@ quest" = "%@ クエスト";
 "%@ says keep going." = "%@ さん: その調子!";
 "%@ says nice streak." = "%@ さん: すごい連続記録!";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@、カード %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@、%2$lld 位、今週 %3$lld 枚、%4$lld 日連続、%5$lld 語習得";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: %3$lld 問中 %2$lld 問正解、不合格";
 "%@: %lld of %lld right, passed" = "%1$@: %3$lld 問中 %2$lld 問正解、合格";
@@ -33,6 +39,8 @@
 "%lld day streak" = "%lld 日連続";
 "%lld day streak on %@" = "%2$@ で %1$lld 日連続";
 "%lld days" = "%lld 日";
+"%lld days free" = "%lld 日間無料";
+"%lld days free, then %@." = "%1$lld 日間無料、その後 %2$@。";
 "%lld days in a row learning %@ on %@" = "%3$@ で %2$@ を %1$lld 日連続で学習中";
 "%lld days to 100" = "100 日まであと %lld 日";
 "%lld down · %lld letters" = "タテ %1$lld · %2$lld 文字";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%2$lld 問中 %1$lld 問正解 · +%3$lld XP · %4$lld 日連続";
 "%lld of %lld right. New letters come in fives." = "%2$lld 問中 %1$lld 問正解。新しい文字は5つずつ登場します。";
 "%lld of %lld today. See your result." = "今日は %1$lld / %2$lld。結果を見てみましょう。";
+"%lld of 5 picked" = "%lld / 5 選択済み";
 "%lld pairs. Longest run %lld." = "%1$lld ペア。最長連続 %2$lld。";
 "%lld points" = "%lld ポイント";
 "%lld questions." = "%lld 問。";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 日達成。この調子で続けましょう。";
 "5" = "5";
+"A 100 day streak" = "100 日連続";
 "A bar along the top joins the letters of a word." = "上の横線が単語の文字をつなぎます。";
 "A family group holds up to 6 people." = "ファミリーグループは最大6人です。";
 "A friends group holds up to 30 people." = "友だちグループは最大30人です。";
+"A new phone picks up where you left off" = "新しいスマホでも続きから学べます";
 "A small crossword in your language. New every day." = "あなたの言語の小さなクロスワード。毎日新しい問題です。";
 "A unit opens once 80% of the one before it has started." = "前のユニットの80%を開始すると、次のユニットが開きます。";
 "A word with a missing letter" = "1文字欠けた単語";
@@ -234,6 +245,7 @@
 "Finals" = "韻母";
 "Finish one round" = "1ラウンド完了する";
 "First word mastered" = "最初の単語を習得";
+"Five at most. Tap one to swap it out." = "最大5つです。タップすると入れ替えられます。";
 "Five letters change shape at the end of a word." = "5つの文字は語末で形が変わります。";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "5つの声調は、子音の種類、声調記号、音節の型で決まります。";
 "Flags" = "旗";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "7つの分野の基礎: 数学から心まで。";
 "Four tones and a neutral tone change the meaning of a syllable." = "4つの声調と軽声で音節の意味が変わります。";
 "Free during the beta" = "ベータ期間中は無料";
+"Free trial: %lld days left" = "無料体験: 残り %lld 日";
+"Free trial: 1 day left" = "無料体験: 残り 1 日";
 "Friends" = "友だち";
 "From %@: %@" = "%1$@ から: %2$@";
 "Full detail" = "詳細";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "復習を読み込み中";
 "Mail isn't set up on this device. Paste %@ into any email app." = "この端末ではメールが設定されていません。%@ を任意のメールアプリに貼り付けてください。";
 "Manage subscription" = "サブスクリプションを管理";
+"Manage your subscription" = "サブスクリプションを管理";
 "Manuscripts follow no fixed spelling." = "写本のつづりは決まっていません。";
 "Mastery %lld percent" = "習得度 %lld パーセント";
 "Mathematics" = "数学";
@@ -463,6 +478,7 @@
 "Progress" = "進捗";
 "Progress in a removed language stays saved and returns if you add it back." = "削除した言語の進捗は保存されたままで、再び追加すると戻ります。";
 "Progress stays saved and returns if you build the same system again." = "進捗は保存されたままで、同じシステムを作り直すと戻ります。";
+"Progress syncs across iPhone, iPad and Mac" = "進捗は iPhone、iPad、Mac で同期されます";
 "Quest done. New one Monday." = "クエスト完了。次は月曜日です。";
 "Question %lld · level %@" = "問題 %1$lld · レベル %2$@";
 "REVIEW" = "復習";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "インストール直後の状態に戻しますか?";
 "Reset to fresh install" = "インストール直後に戻す";
 "Resetting the link stops the old one from working." = "リセットすると古いリンクは使えなくなります。";
+"Restore" = "復元";
+"Restoring" = "復元中";
 "Retry" = "再試行";
 "Review" = "復習";
 "Right" = "正解";
@@ -509,6 +527,7 @@
 "Save languages" = "言語を保存";
 "Save my streak · %@" = "連続記録を守る · %@";
 "Save to your account" = "アカウントに保存";
+"Save your progress" = "進捗を保存";
 "Saved on this device. Choose your age range to sync." = "この端末に保存しました。同期するには年齢層を選んでください。";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "この端末に保存しました。サインインすると bucket.foundation にも保存されます。";
 "Saved on this device. Sign in to sync your language systems." = "この端末に保存しました。言語システムを同期するにはサインインしてください。";
@@ -551,6 +570,7 @@
 "Share your score" = "スコアを共有";
 "Share your streak" = "連続記録を共有";
 "Share your words" = "単語を共有";
+"Shared" = "共有";
 "Shared goal" = "共通の目標";
 "Shared roots in this set · %lld words" = "このセットの共通語源 · %lld 語";
 "Short vowels usually go unwritten." = "短母音は通常書かれません。";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "その言語の文字でつづる";
 "Spot on!" = "正解!";
 "Standings" = "順位";
+"Start %lld days free" = "%lld 日間無料で始める";
 "Start a language set in Learn. The games use the words you study." = "「学ぶ」で言語セットを始めましょう。ゲームでは学習中の単語を使います。";
 "Start a set" = "セットを始める";
 "Start from the first words" = "最初の単語から始める";
@@ -697,6 +718,7 @@
 "Unblock" = "ブロック解除";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "ブロックを解除してもグループには戻りません。招待リンクで再参加できます。";
 "Use a different email" = "別のメールアドレスを使う";
+"Use email instead" = "メールを使う";
 "Verbs" = "動詞";
 "Verify" = "確認";
 "Version" = "バージョン";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "進捗はまだ同期されていません。サインインした状態でセッションを完了してください。";
 "Your reminders reach this phone." = "リマインダーはこのスマホに届きます。";
 "Your strength" = "あなたの定着度";
+"Your trial is on. Sign in so your words and streak stay with you." = "無料体験中です。単語と連続記録を残すためにサインインしてください。";
 "Your turn: say “%@”" = "あなたの番: 「%@」と言ってください";
 "Zhuyin sounds" = "注音の音";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "計算する";
 "common" = "通性";
 "conjugate" = "活用する";
+"done today" = "今日の完了";
+"due now" = "復習待ち";
 "entropy, symmetry, memory" = "エントロピー、対称性、記憶";
 "false friend" = "空似言葉";
 "feminine" = "女性";
@@ -796,6 +821,7 @@
 "new character" = "新しい文字";
 "new letter" = "新しい文字";
 "new sound" = "新しい音";
+"new today" = "今日の新規";
 "new word" = "新しい単語";
 "night" = "夜";
 "once" = "1回";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

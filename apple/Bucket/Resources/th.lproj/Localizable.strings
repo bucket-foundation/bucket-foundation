@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ เสียงมาจากระบบอ่านออกเสียงของอุปกรณ์ และใช้คลิปที่บันทึกไว้สำหรับภาษาที่ไม่มีเสียง";
 "%@ %lld started, %lld mastered" = "%1$@ เริ่มแล้ว %2$lld จำได้แม่น %3$lld";
 "%@ Wikipedia" = "วิกิพีเดีย%@";
+"%@ a month" = "%@ ต่อเดือน";
+"%@ a year" = "%@ ต่อปี";
 "%@ and above: not enough material in this language to test" = "%@ ขึ้นไป: ภาษานี้ยังมีเนื้อหาไม่พอสำหรับทดสอบ";
 "%@ cheered you on." = "%@ ส่งกำลังใจให้คุณ";
 "%@ flag" = "ธง%@";
+"%@ from %@" = "%1$@ จาก%2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ ยังไม่มีความคืบหน้าที่ซิงค์ คะแนนจะแสดงหลังเซสชันถัดไปขณะลงชื่อเข้าใช้";
 "%@ invited you. %lld of %lld members." = "%1$@ เชิญคุณ สมาชิก %2$lld จาก %3$lld คน";
 "%@ nudged you to study today." = "%@ เตือนให้คุณเรียนวันนี้";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ ครั้งเดียว เรียกเก็บจากบัญชี Apple ของคุณ ไม่มีการสมัครสมาชิกและไม่ต่ออายุ";
 "%@ quest" = "ภารกิจ%@";
 "%@ says keep going." = "%@ บอกว่า สู้ต่อไป";
 "%@ says nice streak." = "%@ บอกว่า ต่อเนื่องได้เยี่ยม";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@ การ์ด %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@ อันดับ %2$lld สัปดาห์นี้ %3$lld การ์ด ต่อเนื่อง %4$lld วัน จำได้แม่น %5$lld คำ";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: ถูก %2$lld จาก %3$lld ไม่ผ่าน";
 "%@: %lld of %lld right, passed" = "%1$@: ถูก %2$lld จาก %3$lld ผ่าน";
@@ -33,6 +39,8 @@
 "%lld day streak" = "ต่อเนื่อง %lld วัน";
 "%lld day streak on %@" = "ต่อเนื่อง %1$lld วันบน %2$@";
 "%lld days" = "%lld วัน";
+"%lld days free" = "ฟรี %lld วัน";
+"%lld days free, then %@." = "ฟรี %1$lld วัน จากนั้น %2$@";
 "%lld days in a row learning %@ on %@" = "เรียน%2$@ติดต่อกัน %1$lld วันบน %3$@";
 "%lld days to 100" = "อีก %lld วันถึง 100";
 "%lld down · %lld letters" = "แนวตั้ง %1$lld · %2$lld ตัวอักษร";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "ถูก %1$lld จาก %2$lld · +%3$lld xp · ต่อเนื่อง %4$lld วัน";
 "%lld of %lld right. New letters come in fives." = "ถูก %1$lld จาก %2$lld ตัวอักษรใหม่มาครั้งละห้าตัว";
 "%lld of %lld today. See your result." = "วันนี้ %1$lld จาก %2$lld ดูผลของคุณ";
+"%lld of 5 picked" = "เลือกแล้ว %lld จาก 5";
 "%lld pairs. Longest run %lld." = "%1$lld คู่ ติดกันนานสุด %2$lld";
 "%lld points" = "%lld คะแนน";
 "%lld questions." = "%lld คำถาม";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "ครบ 100 วันแล้ว ทำต่อไปนะ";
 "5" = "5";
+"A 100 day streak" = "ต่อเนื่อง 100 วัน";
 "A bar along the top joins the letters of a word." = "เส้นด้านบนเชื่อมตัวอักษรของคำเข้าด้วยกัน";
 "A family group holds up to 6 people." = "กลุ่มครอบครัวมีได้สูงสุด 6 คน";
 "A friends group holds up to 30 people." = "กลุ่มเพื่อนมีได้สูงสุด 30 คน";
+"A new phone picks up where you left off" = "โทรศัพท์เครื่องใหม่ทำต่อจากที่คุณค้างไว้";
 "A small crossword in your language. New every day." = "ปริศนาอักษรไขว้เล็กๆ ในภาษาของคุณ ใหม่ทุกวัน";
 "A unit opens once 80% of the one before it has started." = "หน่วยจะเปิดเมื่อเริ่มหน่วยก่อนหน้าไปแล้ว 80%";
 "A word with a missing letter" = "คำที่ขาดตัวอักษรหนึ่งตัว";
@@ -234,6 +245,7 @@
 "Finals" = "เสียงท้าย";
 "Finish one round" = "เล่นจบหนึ่งรอบ";
 "First word mastered" = "จำคำแรกได้แม่นแล้ว";
+"Five at most. Tap one to swap it out." = "สูงสุดห้าภาษา แตะเพื่อสลับออก";
 "Five letters change shape at the end of a word." = "ตัวอักษรห้าตัวเปลี่ยนรูปเมื่ออยู่ท้ายคำ";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "ห้าวรรณยุกต์เกิดจากหมู่พยัญชนะ รูปวรรณยุกต์ และชนิดพยางค์";
 "Flags" = "ธง";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "พื้นฐานในเจ็ดสาขา: ตั้งแต่คณิตศาสตร์ถึงจิตใจ";
 "Four tones and a neutral tone change the meaning of a syllable." = "สี่วรรณยุกต์และเสียงเบาเปลี่ยนความหมายของพยางค์";
 "Free during the beta" = "ฟรีช่วงเบต้า";
+"Free trial: %lld days left" = "ทดลองฟรี: เหลือ %lld วัน";
+"Free trial: 1 day left" = "ทดลองฟรี: เหลือ 1 วัน";
 "Friends" = "เพื่อน";
 "From %@: %@" = "จาก %1$@: %2$@";
 "Full detail" = "รายละเอียดทั้งหมด";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "กำลังโหลดการทบทวน";
 "Mail isn't set up on this device. Paste %@ into any email app." = "ยังไม่ได้ตั้งค่าเมลบนอุปกรณ์นี้ วาง %@ ในแอปอีเมลใดก็ได้";
 "Manage subscription" = "จัดการการสมัครสมาชิก";
+"Manage your subscription" = "จัดการการสมัครสมาชิกของคุณ";
 "Manuscripts follow no fixed spelling." = "ต้นฉบับไม่มีการสะกดที่ตายตัว";
 "Mastery %lld percent" = "ความแม่นยำ %lld เปอร์เซ็นต์";
 "Mathematics" = "คณิตศาสตร์";
@@ -463,6 +478,7 @@
 "Progress" = "ความคืบหน้า";
 "Progress in a removed language stays saved and returns if you add it back." = "ความคืบหน้าของภาษาที่ลบยังถูกบันทึกไว้ และจะกลับมาเมื่อคุณเพิ่มภาษานั้นอีกครั้ง";
 "Progress stays saved and returns if you build the same system again." = "ความคืบหน้ายังถูกบันทึกไว้ และจะกลับมาเมื่อคุณสร้างระบบเดิมอีกครั้ง";
+"Progress syncs across iPhone, iPad and Mac" = "ความคืบหน้าซิงค์ระหว่าง iPhone, iPad และ Mac";
 "Quest done. New one Monday." = "ภารกิจเสร็จแล้ว ภารกิจใหม่วันจันทร์";
 "Question %lld · level %@" = "คำถาม %1$lld · ระดับ %2$@";
 "REVIEW" = "ทบทวน";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "รีเซ็ตเหมือนติดตั้งใหม่ไหม";
 "Reset to fresh install" = "รีเซ็ตเหมือนติดตั้งใหม่";
 "Resetting the link stops the old one from working." = "การรีเซ็ตลิงก์จะทำให้ลิงก์เก่าใช้ไม่ได้";
+"Restore" = "กู้คืน";
+"Restoring" = "กำลังกู้คืน";
 "Retry" = "ลองใหม่";
 "Review" = "ทบทวน";
 "Right" = "ถูก";
@@ -509,6 +527,7 @@
 "Save languages" = "บันทึกภาษา";
 "Save my streak · %@" = "รักษาความต่อเนื่อง · %@";
 "Save to your account" = "บันทึกลงบัญชี";
+"Save your progress" = "บันทึกความคืบหน้า";
 "Saved on this device. Choose your age range to sync." = "บันทึกบนอุปกรณ์นี้แล้ว เลือกช่วงอายุเพื่อซิงค์";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "บันทึกบนอุปกรณ์นี้แล้ว ลงชื่อเข้าใช้เพื่อเก็บไว้บน bucket.foundation ด้วย";
 "Saved on this device. Sign in to sync your language systems." = "บันทึกบนอุปกรณ์นี้แล้ว ลงชื่อเข้าใช้เพื่อซิงค์ระบบภาษาของคุณ";
@@ -551,6 +570,7 @@
 "Share your score" = "แชร์คะแนนของคุณ";
 "Share your streak" = "แชร์ความต่อเนื่อง";
 "Share your words" = "แชร์คำของคุณ";
+"Shared" = "แชร์แล้ว";
 "Shared goal" = "เป้าหมายร่วม";
 "Shared roots in this set · %lld words" = "รากร่วมในชุดนี้ · %lld คำ";
 "Short vowels usually go unwritten." = "สระเสียงสั้นมักไม่เขียน";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "สะกดด้วยอักษรของภาษานั้น";
 "Spot on!" = "ถูกเป๊ะ!";
 "Standings" = "อันดับ";
+"Start %lld days free" = "เริ่มฟรี %lld วัน";
 "Start a language set in Learn. The games use the words you study." = "เริ่มชุดภาษาในเรียน เกมจะใช้คำที่คุณเรียน";
 "Start a set" = "เริ่มชุด";
 "Start from the first words" = "เริ่มจากคำแรกๆ";
@@ -697,6 +718,7 @@
 "Unblock" = "เลิกบล็อก";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "การเลิกบล็อกไม่ได้พาคุณกลับเข้ากลุ่ม คุณกลับเข้ามาได้ด้วยลิงก์เชิญ";
 "Use a different email" = "ใช้อีเมลอื่น";
+"Use email instead" = "ใช้อีเมลแทน";
 "Verbs" = "คำกริยา";
 "Verify" = "ยืนยัน";
 "Version" = "เวอร์ชัน";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "ความคืบหน้ายังไม่ซิงค์ ทำเซสชันให้จบขณะลงชื่อเข้าใช้";
 "Your reminders reach this phone." = "การเตือนจะมาที่โทรศัพท์เครื่องนี้";
 "Your strength" = "ความแข็งแรงของคุณ";
+"Your trial is on. Sign in so your words and streak stay with you." = "ช่วงทดลองเริ่มแล้ว ลงชื่อเข้าใช้เพื่อเก็บคำและความต่อเนื่องไว้กับคุณ";
 "Your turn: say “%@”" = "ตาคุณ: พูดว่า “%@”";
 "Zhuyin sounds" = "เสียงจู้อิน";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "คำนวณ";
 "common" = "ทั่วไป";
 "conjugate" = "ผันคำกริยา";
+"done today" = "เสร็จวันนี้";
+"due now" = "ถึงกำหนด";
 "entropy, symmetry, memory" = "เอนโทรปี สมมาตร ความจำ";
 "false friend" = "คำลวง";
 "feminine" = "เพศหญิง";
@@ -796,6 +821,7 @@
 "new character" = "อักษรใหม่";
 "new letter" = "ตัวอักษรใหม่";
 "new sound" = "เสียงใหม่";
+"new today" = "ใหม่วันนี้";
 "new word" = "คำใหม่";
 "night" = "กลางคืน";
 "once" = "ครั้งเดียว";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

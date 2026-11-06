@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Звук озвучивается синтезатором речи устройства, а для языков без голоса используются записи.";
 "%@ %lld started, %lld mastered" = "%@ начато: %lld, освоено: %lld";
 "%@ Wikipedia" = "%@ Википедия";
+"%@ a month" = "%@ в месяц";
+"%@ a year" = "%@ в год";
 "%@ and above: not enough material in this language to test" = "%@ и выше: в этом языке мало материала для теста";
 "%@ cheered you on." = "%@ подбадривает тебя.";
 "%@ flag" = "Флаг: %@";
+"%@ from %@" = "%1$@, основа: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "У пользователя %@ пока нет синхронизированного прогресса. Результаты появятся после следующего занятия со входом в аккаунт.";
 "%@ invited you. %lld of %lld members." = "%@ приглашает тебя. Участников: %lld из %lld.";
 "%@ nudged you to study today." = "%@ напоминает тебе позаниматься сегодня.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ один раз. Оплата с Apple Account. Без подписки и продления.";
 "%@ quest" = "Задание: %@";
 "%@ says keep going." = "%@ говорит: так держать.";
 "%@ says nice streak." = "%@ говорит: отличная серия.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, карточка %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, место %lld, карточек за неделю: %lld, серия: %lld дн., освоено слов: %lld";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: верно %lld из %lld, не пройдено";
 "%@: %lld of %lld right, passed" = "%@: верно %lld из %lld, пройдено";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Серия: %lld дн.";
 "%lld day streak on %@" = "Серия: %lld дн. в %@";
 "%lld days" = "%lld дн.";
+"%lld days free" = "%lld дн. бесплатно";
+"%lld days free, then %@." = "%lld дн. бесплатно, затем %@.";
 "%lld days in a row learning %@ on %@" = "%lld дн. подряд учу %@ в %@";
 "%lld days to 100" = "До 100 дней: %lld";
 "%lld down · %lld letters" = "%lld по вертикали · букв: %lld";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "Верно %lld из %lld · +%lld xp · серия: %lld дн.";
 "%lld of %lld right. New letters come in fives." = "Верно %lld из %lld. Новые буквы идут по пять.";
 "%lld of %lld today. See your result." = "%lld из %lld сегодня. Посмотри результат.";
+"%lld of 5 picked" = "Выбрано: %lld из 5";
 "%lld pairs. Longest run %lld." = "Пар: %lld. Лучшая серия: %lld.";
 "%lld points" = "Очков: %lld";
 "%lld questions." = "Вопросов: %lld.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 дней позади. Так держать.";
 "5" = "5";
+"A 100 day streak" = "Серия в 100 дней";
 "A bar along the top joins the letters of a word." = "Черта сверху соединяет буквы слова.";
 "A family group holds up to 6 people." = "В семейной группе до 6 человек.";
 "A friends group holds up to 30 people." = "В группе друзей до 30 человек.";
+"A new phone picks up where you left off" = "На новом телефоне продолжишь с того же места";
 "A small crossword in your language. New every day." = "Маленький кроссворд на твоём языке. Новый каждый день.";
 "A unit opens once 80% of the one before it has started." = "Раздел открывается, когда начато 80% предыдущего.";
 "A word with a missing letter" = "Слово с пропущенной буквой";
@@ -234,6 +245,7 @@
 "Finals" = "Финали";
 "Finish one round" = "Закончи один раунд";
 "First word mastered" = "Первое слово освоено";
+"Five at most. Tap one to swap it out." = "Не больше пяти. Нажми на один, чтобы заменить.";
 "Five letters change shape at the end of a word." = "Пять букв меняют форму в конце слова.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Пять тонов зависят от класса согласной, тонового знака и типа слога.";
 "Flags" = "Флаги";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Основы в семи ветвях: от математики до разума.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Четыре тона и нейтральный тон меняют значение слога.";
 "Free during the beta" = "Бесплатно во время беты";
+"Free trial: %lld days left" = "Пробный период: осталось %lld дн.";
+"Free trial: 1 day left" = "Пробный период: остался 1 день";
 "Friends" = "Друзья";
 "From %@: %@" = "От %@: %@";
 "Full detail" = "Подробно";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Загружаем повторения";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Почта не настроена на этом устройстве. Вставь %@ в любое почтовое приложение.";
 "Manage subscription" = "Управлять подпиской";
+"Manage your subscription" = "Управляй подпиской";
 "Manuscripts follow no fixed spelling." = "В рукописях нет устойчивой орфографии.";
 "Mastery %lld percent" = "Освоено на %lld процентов";
 "Mathematics" = "Математика";
@@ -463,6 +478,7 @@
 "Progress" = "Прогресс";
 "Progress in a removed language stays saved and returns if you add it back." = "Прогресс в удалённом языке сохраняется и вернётся, если добавить язык снова.";
 "Progress stays saved and returns if you build the same system again." = "Прогресс сохраняется и вернётся, если снова собрать ту же систему.";
+"Progress syncs across iPhone, iPad and Mac" = "Прогресс синхронизируется между iPhone, iPad и Mac";
 "Quest done. New one Monday." = "Задание выполнено. Новое в понедельник.";
 "Question %lld · level %@" = "Вопрос %lld · уровень %@";
 "REVIEW" = "ПОВТОРЕНИЕ";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Сбросить до состояния новой установки?";
 "Reset to fresh install" = "Сбросить до новой установки";
 "Resetting the link stops the old one from working." = "После сброса старая ссылка перестанет работать.";
+"Restore" = "Восстановить";
+"Restoring" = "Восстанавливаем";
 "Retry" = "Повторить";
 "Review" = "Повторить";
 "Right" = "Верно";
@@ -509,6 +527,7 @@
 "Save languages" = "Сохранить языки";
 "Save my streak · %@" = "Спасти серию · %@";
 "Save to your account" = "Сохранить в аккаунт";
+"Save your progress" = "Сохрани прогресс";
 "Saved on this device. Choose your age range to sync." = "Сохранено на этом устройстве. Выбери возрастную группу для синхронизации.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Сохранено на этом устройстве. Войди, чтобы это было и на bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "Сохранено на этом устройстве. Войди, чтобы синхронизировать языковые системы.";
@@ -551,6 +570,7 @@
 "Share your score" = "Поделись счётом";
 "Share your streak" = "Поделись серией";
 "Share your words" = "Поделись словами";
+"Shared" = "Общее";
 "Shared goal" = "Общая цель";
 "Shared roots in this set · %lld words" = "Общие корни в наборе · слов: %lld";
 "Short vowels usually go unwritten." = "Краткие гласные обычно не пишут.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Напиши его родным письмом";
 "Spot on!" = "Точно!";
 "Standings" = "Рейтинг";
+"Start %lld days free" = "Начать: %lld дн. бесплатно";
 "Start a language set in Learn. The games use the words you study." = "Начни набор языков в «Учить». В играх используются слова, которые ты учишь.";
 "Start a set" = "Начать набор";
 "Start from the first words" = "Начать с первых слов";
@@ -697,6 +718,7 @@
 "Unblock" = "Разблокировать";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Разблокировка не вернёт тебя в группу. Вернуться можно по ссылке-приглашению.";
 "Use a different email" = "Другая почта";
+"Use email instead" = "Использовать почту";
 "Verbs" = "Глаголы";
 "Verify" = "Подтвердить";
 "Version" = "Версия";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Прогресс ещё не синхронизирован. Заверши занятие, войдя в аккаунт.";
 "Your reminders reach this phone." = "Напоминания приходят на этот телефон.";
 "Your strength" = "Твоя сила";
+"Your trial is on. Sign in so your words and streak stay with you." = "Пробный период начался. Войди, чтобы слова и серия остались с тобой.";
 "Your turn: say “%@”" = "Твоя очередь: скажи «%@»";
 "Zhuyin sounds" = "Звуки чжуинь";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "вычисли";
 "common" = "общий род";
 "conjugate" = "проспрягай";
+"done today" = "сделано сегодня";
+"due now" = "к повторению";
 "entropy, symmetry, memory" = "энтропия, симметрия, память";
 "false friend" = "ложный друг";
 "feminine" = "женский род";
@@ -796,6 +821,7 @@
 "new character" = "новый знак";
 "new letter" = "новая буква";
 "new sound" = "новый звук";
+"new today" = "новые сегодня";
 "new word" = "новое слово";
 "night" = "ночь";
 "once" = "единоразово";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

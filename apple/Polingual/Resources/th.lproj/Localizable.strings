@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ ขึ้นไป: ภาษานี้ยังมีเนื้อหาไม่พอสำหรับทดสอบ";
 "%@ cheered you on." = "%@ ส่งกำลังใจให้คุณ";
 "%@ flag" = "ธง%@";
+"%@ from %@" = "%1$@ จาก%2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ ยังไม่มีความคืบหน้าที่ซิงค์ คะแนนจะแสดงหลังเซสชันถัดไปขณะลงชื่อเข้าใช้";
 "%@ invited you. %lld of %lld members." = "%1$@ เชิญคุณ สมาชิก %2$lld จาก %3$lld คน";
 "%@ nudged you to study today." = "%@ เตือนให้คุณเรียนวันนี้";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ ไฮไฟว์ให้คุณ";
 "%@ to %@" = "%1$@ ถึง %2$@";
 "%@ wants to race you this week." = "%@ อยากแข่งกับคุณสัปดาห์นี้";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld คำถาม";
 "%lld review" = "ทบทวน %lld";
 "%lld review · %lld new" = "ทบทวน %1$lld · ใหม่ %2$lld";
+"%lld sources" = "%lld แหล่ง";
 "%lld started · %lld mastered" = "เริ่มแล้ว %1$lld · จำได้แม่น %2$lld";
 "%lld this week" = "สัปดาห์นี้ %lld";
 "%lld today" = "วันนี้ %lld";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "อักษรกรีกโบราณ";
 "Animals" = "สัตว์";
 "Another round" = "อีกรอบ";
+"Answer: %@" = "คำตอบ: %@";
+"Answer: %@ %@" = "คำตอบ: %1$@ %2$@";
 "Answers shown. New puzzle tomorrow." = "แสดงคำตอบแล้ว ปริศนาใหม่พรุ่งนี้";
 "Anyone who opens this link can join %@." = "ใครก็ตามที่เปิดลิงก์นี้เข้าร่วม %@ ได้";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple ไม่ได้ส่งโทเค็นลงชื่อเข้าใช้กลับมา ลองอีกครั้ง หรือใช้อีเมลด้านล่าง";
@@ -145,6 +150,7 @@
 "Buy once" = "ซื้อครั้งเดียว";
 "Cancel" = "ยกเลิก";
 "Canon" = "คลังความรู้";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "การ์ดที่บันทึก: %lld เริ่มแล้ว %lld จาก %lld อะตอม เชี่ยวชาญ %lld";
 "Change the weekly goal" = "เปลี่ยนเป้าหมายรายสัปดาห์";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "เรียกเก็บจากบัญชี Apple ของคุณ ต่ออายุอัตโนมัติ เว้นแต่ยกเลิกในการตั้งค่าอย่างน้อย 24 ชั่วโมงก่อนสิ้นสุดรอบ";
 "Check" = "ตรวจ";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "ใส่อีเมลของผู้ปกครอง เราจะขอให้ผู้ปกครองอนุมัติการบันทึกความคืบหน้า";
 "Every card anyone in the group studies counts toward the goal." = "ทุกการ์ดที่ใครในกลุ่มเรียนจะนับรวมในเป้าหมาย";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "ทุกการ์ดถูกจัดตารางล่วงหน้าแล้ว และอะตอมใหม่ของวันนี้เสร็จแล้ว อ่านอะตอมใดก็ได้จากสำรับ หรือเลือกสาขาอื่น";
+"Every idea across seven branches." = "ทุกแนวคิดในเจ็ดสาขา";
 "Every word of two or more syllables marks its stress with an accent." = "ทุกคำที่มีสองพยางค์ขึ้นไปจะมีเครื่องหมายบอกการเน้นเสียง";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "ข้อความทั่วไปไม่ใส่รูปสระ หนังสือเด็กและหนังสือสวดมนต์จะพิมพ์ไว้";
 "Explore" = "สำรวจ";
@@ -272,6 +279,7 @@
 "Hint" = "คำใบ้";
 "Hiragana" = "ฮิรางานะ";
 "Hiragana and katakana" = "ฮิรางานะและคาตากานะ";
+"How well did you recall it" = "คุณจำได้ดีแค่ไหน";
 "I already speak" = "ฉันพูดได้แล้ว";
 "I do not know" = "ฉันไม่รู้";
 "I have a code" = "ฉันมีรหัส";
@@ -345,6 +353,7 @@
 "Manage subscription" = "จัดการการสมัครสมาชิก";
 "Manage your subscription" = "จัดการการสมัครสมาชิกของคุณ";
 "Manuscripts follow no fixed spelling." = "ต้นฉบับไม่มีการสะกดที่ตายตัว";
+"Mastery %lld percent" = "ความแม่นยำ %lld เปอร์เซ็นต์";
 "Mathematics" = "คณิตศาสตร์";
 "Means %@, looks like English %@" = "แปลว่า %1$@ ดูคล้ายคำอังกฤษ %2$@";
 "Mediterranean" = "เมดิเตอร์เรเนียน";
@@ -360,6 +369,7 @@
 "More languages · 29" = "ภาษาเพิ่มเติม · 29";
 "Move to bottom" = "ย้ายไปล่างสุด";
 "Move to top" = "ย้ายไปบนสุด";
+"NEW" = "ใหม่";
 "Nailed it!" = "เป๊ะมาก!";
 "Name others see" = "ชื่อที่คนอื่นเห็น";
 "Nature" = "ธรรมชาติ";
@@ -377,6 +387,7 @@
 "No letters due" = "ไม่มีตัวอักษรถึงกำหนด";
 "No mistakes. New board tomorrow." = "ไม่ผิดเลย กระดานใหม่พรุ่งนี้";
 "No progress synced yet" = "ยังไม่มีความคืบหน้าที่ซิงค์";
+"No results" = "ไม่มีผลลัพธ์";
 "No stations found." = "ไม่พบสถานี";
 "No stations in this branch." = "ไม่มีสถานีในสาขานี้";
 "No subjects yet." = "ยังไม่มีวิชา";
@@ -388,6 +399,7 @@
 "Not quite" = "ยังไม่ถูก";
 "Not quite. " = "ยังไม่ถูก ";
 "Nothing due" = "ไม่มีรายการถึงกำหนด";
+"Nothing due in %@" = "ไม่มีรายการถึงกำหนดใน%@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "ไม่มีรายการถึงกำหนด ทุกการ์ดถูกจัดตารางล่วงหน้าแล้ว และอะตอมใหม่ของวันนี้เสร็จแล้ว";
 "Nothing to draw yet." = "ยังไม่มีอะไรให้แสดง";
 "Notifications" = "การแจ้งเตือน";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "แผนนักเรียน Polingual";
 "Practice with ${applicationName}" = "ฝึกกับ ${applicationName}";
 "Preparing today's route" = "กำลังเตรียมเส้นทางวันนี้";
+"Prerequisites: %lld" = "ข้อกำหนดเบื้องต้น: %lld";
 "Present tense" = "ปัจจุบันกาล";
 "Privacy" = "ความเป็นส่วนตัว";
 "Privacy and data" = "ความเป็นส่วนตัวและข้อมูล";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "ความคืบหน้าซิงค์ระหว่าง iPhone, iPad และ Mac";
 "Quest done. New one Monday." = "ภารกิจเสร็จแล้ว ภารกิจใหม่วันจันทร์";
 "Question %lld · level %@" = "คำถาม %1$lld · ระดับ %2$@";
+"REVIEW" = "ทบทวน";
 "Race you" = "แข่งกัน";
 "Rate %@ on the App Store" = "ให้คะแนน %@ บน App Store";
 "Reactions are presets. Blocking someone stops them." = "รีแอ็กชันเป็นแบบสำเร็จรูป การบล็อกจะหยุดรีแอ็กชันจากคนนั้น";
@@ -527,6 +541,7 @@
 "See progress" = "ดูความคืบหน้า";
 "See you tomorrow." = "เจอกันพรุ่งนี้";
 "Send" = "ส่ง";
+"Send a reaction" = "ส่งรีแอ็กชัน";
 "Send a test reminder in 10 seconds" = "ส่งการเตือนทดสอบใน 10 วินาที";
 "Send code" = "ส่งรหัส";
 "Send feedback" = "ส่งความคิดเห็น";
@@ -555,6 +570,7 @@
 "Share your score" = "แชร์คะแนนของคุณ";
 "Share your streak" = "แชร์ความต่อเนื่อง";
 "Share your words" = "แชร์คำของคุณ";
+"Shared" = "แชร์แล้ว";
 "Shared goal" = "เป้าหมายร่วม";
 "Shared roots in this set · %lld words" = "รากร่วมในชุดนี้ · %lld คำ";
 "Short vowels usually go unwritten." = "สระเสียงสั้นมักไม่เขียน";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "โหลดสถานีไม่ได้ ลองใหม่";
 "Stations from radio-browser.info." = "สถานีจาก radio-browser.info";
 "Status" = "สถานะ";
+"Step %lld is wrong. %@" = "ขั้นที่ %1$lld ผิด %2$@";
 "Stop" = "หยุด";
 "Stop %@" = "หยุด %@";
 "Streak" = "ความต่อเนื่อง";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "เรียนอีกสักไม่กี่คำ แล้วมินิของพรุ่งนี้จะเปิด";
 "Study a few more words and tomorrow's Word Groups opens." = "เรียนอีกสักไม่กี่คำ แล้วกลุ่มคำของพรุ่งนี้จะเปิด";
 "Study a few words in Learn first." = "เรียนสักไม่กี่คำในเรียนก่อน";
+"Study today (%lld)" = "เรียนวันนี้ (%lld)";
 "Study today to count day 1." = "เรียนวันนี้เพื่อนับเป็นวันที่ 1";
 "Subject strength" = "ความแข็งแรงด้านวิชา";
 "Subjects" = "วิชา";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "อุปกรณ์นี้ยังแปลภาษา%@ไม่ได้";
 "Trial ending" = "ช่วงทดลองใกล้หมด";
 "Try again" = "ลองอีกครั้ง";
+"Try another word." = "ลองคำอื่น";
 "Turn on reminders" = "เปิดการเตือน";
 "Type instead" = "พิมพ์แทน";
 "Type what you hear" = "พิมพ์สิ่งที่ได้ยิน";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "ความต่อเนื่อง %lld วันจะขาดตอนเที่ยงคืน";
 "Your age range" = "ช่วงอายุของคุณ";
 "Your answer" = "คำตอบของคุณ";
+"Your day" = "วันของคุณ";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "ระบบภาษาของคุณส่งไปถึงเซิร์ฟเวอร์ไม่ได้หลังลองสามครั้ง ข้อมูลบันทึกไว้บนอุปกรณ์นี้แล้ว การเปลี่ยนแปลงครั้งถัดไปจะลองซิงค์อีกครั้ง";
 "Your languages" = "ภาษาของคุณ";
 "Your name" = "ชื่อของคุณ";
@@ -781,6 +801,9 @@
 "calculate" = "คำนวณ";
 "common" = "ทั่วไป";
 "conjugate" = "ผันคำกริยา";
+"done today" = "เสร็จวันนี้";
+"due now" = "ถึงกำหนด";
+"entropy, symmetry, memory" = "เอนโทรปี สมมาตร ความจำ";
 "false friend" = "คำลวง";
 "feminine" = "เพศหญิง";
 "fill the gap" = "เติมคำในช่องว่าง";
@@ -798,6 +821,7 @@
 "new character" = "อักษรใหม่";
 "new letter" = "ตัวอักษรใหม่";
 "new sound" = "เสียงใหม่";
+"new today" = "ใหม่วันนี้";
 "new word" = "คำใหม่";
 "night" = "กลางคืน";
 "once" = "ครั้งเดียว";
@@ -826,6 +850,7 @@
 "word mastered" = "จำคำได้แม่น";
 "words mastered" = "คำที่จำได้แม่น";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

@@ -275,7 +275,11 @@ struct D8Primary: ButtonStyle {
         configuration.label
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(enabled ? .white : D8.disabledText)
-            .padding(.horizontal, compact ? 18 : 0)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .minimumScaleFactor(0.8)
+            .padding(.horizontal, compact ? 18 : 14)
+            .padding(.vertical, compact ? 0 : 6)
             .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget)
             .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: 12))
             .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: 12).offset(y: pressed ? 1 : 4))

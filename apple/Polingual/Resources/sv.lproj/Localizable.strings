@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ och uppåt: för lite material på det här språket för att testa";
 "%@ cheered you on." = "%@ hejade på dig.";
 "%@ flag" = "Flagga: %@";
+"%@ from %@" = "%1$@ från %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ har inga synkade framsteg än. Poäng visas efter nästa session med inloggning.";
 "%@ invited you. %lld of %lld members." = "%@ bjöd in dig. %lld av %lld medlemmar.";
 "%@ nudged you to study today." = "%@ påminner dig om att plugga i dag.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ gav dig en high five.";
 "%@ to %@" = "%@ till %@";
 "%@ wants to race you this week." = "%@ vill tävla mot dig den här veckan.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld frågor.";
 "%lld review" = "%lld att repetera";
 "%lld review · %lld new" = "%lld att repetera · %lld nya";
+"%lld sources" = "%lld källor";
 "%lld started · %lld mastered" = "%lld påbörjade · %lld behärskade";
 "%lld this week" = "%lld den här veckan";
 "%lld today" = "%lld i dag";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "Forngrekiska alfabetet";
 "Animals" = "Djur";
 "Another round" = "En runda till";
+"Answer: %@" = "Svar: %@";
+"Answer: %@ %@" = "Svar: %@ %@";
 "Answers shown. New puzzle tomorrow." = "Svaren visas. Nytt pussel i morgon.";
 "Anyone who opens this link can join %@." = "Alla som öppnar länken kan gå med i %@.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple skickade ingen inloggningstoken. Försök igen, eller använd din e-post nedan.";
@@ -145,6 +150,7 @@
 "Buy once" = "Köp en gång";
 "Cancel" = "Avbryt";
 "Canon" = "Kanon";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "Registrerade kort: %lld. %lld av %lld atomer påbörjade, %lld behärskade.";
 "Change the weekly goal" = "Ändra veckomålet";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Debiteras ditt Apple Account. Förnyas automatiskt om du inte avslutar minst 24 timmar innan perioden tar slut, i Inställningar.";
 "Check" = "Kontrollera";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "Ange en förälders e-post. Vi ber dem godkänna att dina framsteg sparas.";
 "Every card anyone in the group studies counts toward the goal." = "Varje kort som någon i gruppen pluggar räknas mot målet.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "Alla kort är schemalagda framåt och dagens nya atomer är klara. Läs valfri atom ur kortleken, eller välj en annan gren.";
+"Every idea across seven branches." = "Varje idé i sju grenar.";
 "Every word of two or more syllables marks its stress with an accent." = "Varje ord med två eller fler stavelser markerar betoningen med en accent.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "Vardaglig text utelämnar vokaltecknen. Barnböcker och bönböcker trycker dem.";
 "Explore" = "Utforska";
@@ -272,6 +279,7 @@
 "Hint" = "Ledtråd";
 "Hiragana" = "Hiragana";
 "Hiragana and katakana" = "Hiragana och katakana";
+"How well did you recall it" = "Hur väl mindes du det";
 "I already speak" = "Jag talar redan";
 "I do not know" = "Jag vet inte";
 "I have a code" = "Jag har en kod";
@@ -345,6 +353,7 @@
 "Manage subscription" = "Hantera prenumeration";
 "Manage your subscription" = "Hantera din prenumeration";
 "Manuscripts follow no fixed spelling." = "Handskrifter följer ingen fast stavning.";
+"Mastery %lld percent" = "Behärskning %lld procent";
 "Mathematics" = "Matematik";
 "Means %@, looks like English %@" = "Betyder %@, liknar engelska %@";
 "Mediterranean" = "Medelhavet";
@@ -360,6 +369,7 @@
 "More languages · 29" = "Fler språk · 29";
 "Move to bottom" = "Flytta längst ned";
 "Move to top" = "Flytta högst upp";
+"NEW" = "NY";
 "Nailed it!" = "Klockrent!";
 "Name others see" = "Namn som andra ser";
 "Nature" = "Natur";
@@ -377,6 +387,7 @@
 "No letters due" = "Inga bokstäver att repetera";
 "No mistakes. New board tomorrow." = "Inga misstag. Ny bräda i morgon.";
 "No progress synced yet" = "Inga framsteg synkade än";
+"No results" = "Inga resultat";
 "No stations found." = "Inga stationer hittades.";
 "No stations in this branch." = "Inga stationer i den här grenen.";
 "No subjects yet." = "Inga ämnen än.";
@@ -388,6 +399,7 @@
 "Not quite" = "Inte riktigt";
 "Not quite. " = "Inte riktigt. ";
 "Nothing due" = "Inget att repetera";
+"Nothing due in %@" = "Inget att repetera på %@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "Inget att repetera. Alla kort är schemalagda framåt och dagens nya atomer är klara.";
 "Nothing to draw yet." = "Inget att rita än.";
 "Notifications" = "Notiser";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polinguals studentabonnemang";
 "Practice with ${applicationName}" = "Öva med ${applicationName}";
 "Preparing today's route" = "Förbereder dagens rutt";
+"Prerequisites: %lld" = "Förkunskaper: %lld";
 "Present tense" = "Presens";
 "Privacy" = "Integritet";
 "Privacy and data" = "Integritet och data";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "Framstegen synkas mellan iPhone, iPad och Mac";
 "Quest done. New one Monday." = "Uppdrag klart. Nytt på måndag.";
 "Question %lld · level %@" = "Fråga %lld · nivå %@";
+"REVIEW" = "REPETERA";
 "Race you" = "Tävla";
 "Rate %@ on the App Store" = "Betygsätt %@ på App Store";
 "Reactions are presets. Blocking someone stops them." = "Reaktionerna är förinställda. Om du blockerar någon stoppas de.";
@@ -527,6 +541,7 @@
 "See progress" = "Visa framsteg";
 "See you tomorrow." = "Vi ses i morgon.";
 "Send" = "Skicka";
+"Send a reaction" = "Skicka en reaktion";
 "Send a test reminder in 10 seconds" = "Skicka en testpåminnelse om 10 sekunder";
 "Send code" = "Skicka kod";
 "Send feedback" = "Skicka feedback";
@@ -555,6 +570,7 @@
 "Share your score" = "Dela dina poäng";
 "Share your streak" = "Dela din svit";
 "Share your words" = "Dela dina ord";
+"Shared" = "Delat";
 "Shared goal" = "Gemensamt mål";
 "Shared roots in this set · %lld words" = "Gemensamma rötter i det här setet · %lld ord";
 "Short vowels usually go unwritten." = "Korta vokaler skrivs oftast inte ut.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "Stationerna laddades inte. Försök igen";
 "Stations from radio-browser.info." = "Stationer från radio-browser.info.";
 "Status" = "Status";
+"Step %lld is wrong. %@" = "Steg %lld är fel. %@";
 "Stop" = "Stopp";
 "Stop %@" = "Stoppa %@";
 "Streak" = "Svit";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "Plugga några ord till så öppnas morgondagens Mini.";
 "Study a few more words and tomorrow's Word Groups opens." = "Plugga några ord till så öppnas morgondagens Ordgrupper.";
 "Study a few words in Learn first." = "Plugga några ord i Lär dig först.";
+"Study today (%lld)" = "Plugga i dag (%lld)";
 "Study today to count day 1." = "Plugga i dag för att räkna dag 1.";
 "Subject strength" = "Ämnesstyrka";
 "Subjects" = "Ämnen";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "Översättning finns inte för %@ på den här enheten.";
 "Trial ending" = "Provperioden tar slut";
 "Try again" = "Försök igen";
+"Try another word." = "Prova ett annat ord.";
 "Turn on reminders" = "Slå på påminnelser";
 "Type instead" = "Skriv i stället";
 "Type what you hear" = "Skriv det du hör";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "Din svit på %lld dagar tar slut vid midnatt";
 "Your age range" = "Din åldersgrupp";
 "Your answer" = "Ditt svar";
+"Your day" = "Din dag";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "Dina språksystem nådde inte servern efter tre försök. De är sparade på den här enheten; nästa ändring försöker synka igen.";
 "Your languages" = "Dina språk";
 "Your name" = "Ditt namn";
@@ -781,6 +801,9 @@
 "calculate" = "räkna ut";
 "common" = "utrum";
 "conjugate" = "böj verbet";
+"done today" = "klara i dag";
+"due now" = "att repetera";
+"entropy, symmetry, memory" = "entropi, symmetri, minne";
 "false friend" = "falsk vän";
 "feminine" = "femininum";
 "fill the gap" = "fyll i luckan";
@@ -798,6 +821,7 @@
 "new character" = "nytt tecken";
 "new letter" = "ny bokstav";
 "new sound" = "nytt ljud";
+"new today" = "nya i dag";
 "new word" = "nytt ord";
 "night" = "natt";
 "once" = "en gång";
@@ -826,6 +850,7 @@
 "word mastered" = "ord behärskat";
 "words mastered" = "ord behärskade";
 "you@school.example" = "du@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";

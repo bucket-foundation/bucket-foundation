@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%1$@ %2$@ השמע הוא הקראת טקסט של המכשיר, עם הקלטות בשפות שאין להן קול.";
 "%@ %lld started, %lld mastered" = "%1$@ %2$lld התחלת, %3$lld שלטת";
 "%@ Wikipedia" = "ויקיפדיה ב%@";
+"%@ a month" = "%@ לחודש";
+"%@ a year" = "%@ לשנה";
 "%@ and above: not enough material in this language to test" = "%@ ומעלה: אין מספיק חומר בשפה הזו למבחן";
 "%@ cheered you on." = "%@ עודד אותך.";
 "%@ flag" = "דגל %@";
+"%@ from %@" = "%1$@ מ%2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "ל%@ אין עדיין התקדמות מסונכרנת. התוצאות יופיעו אחרי הסשן הבא שלו בזמן התחברות.";
 "%@ invited you. %lld of %lld members." = "%1$@ הזמין אותך. %2$lld מתוך %3$lld חברים.";
 "%@ nudged you to study today." = "%@ הזכיר לך ללמוד היום.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ פעם אחת. החיוב בחשבון Apple שלך. בלי מנוי ובלי חידוש.";
 "%@ quest" = "משימת %@";
 "%@ says keep going." = "%@ אומר: תמשיך.";
 "%@ says nice streak." = "%@ אומר: רצף יפה.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%1$@, כרטיס %2$lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%1$@, מקום %2$lld, %3$lld כרטיסים השבוע, רצף של %4$lld ימים, %5$lld מילים בשליטה";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%1$@: %2$lld מתוך %3$lld נכונות, לא עבר";
 "%@: %lld of %lld right, passed" = "%1$@: %2$lld מתוך %3$lld נכונות, עבר";
@@ -33,6 +39,8 @@
 "%lld day streak" = "רצף של %lld ימים";
 "%lld day streak on %@" = "רצף של %1$lld ימים ב־%2$@";
 "%lld days" = "%lld ימים";
+"%lld days free" = "%lld ימים חינם";
+"%lld days free, then %@." = "%1$lld ימים חינם, ואז %2$@.";
 "%lld days in a row learning %@ on %@" = "%1$lld ימים ברצף של לימוד %2$@ ב־%3$@";
 "%lld days to 100" = "עוד %lld ימים ל־100";
 "%lld down · %lld letters" = "%1$lld מאונך · %2$lld אותיות";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%1$lld מתוך %2$lld נכונות · +%3$lld xp · רצף של %4$lld ימים";
 "%lld of %lld right. New letters come in fives." = "%1$lld מתוך %2$lld נכונות. אותיות חדשות מגיעות בחמישיות.";
 "%lld of %lld today. See your result." = "%1$lld מתוך %2$lld היום. ראו את התוצאה.";
+"%lld of 5 picked" = "נבחרו %lld מתוך 5";
 "%lld pairs. Longest run %lld." = "%1$lld זוגות. הרצף הארוך ביותר %2$lld.";
 "%lld points" = "%lld נקודות";
 "%lld questions." = "%lld שאלות.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "הגעתם ל־100 ימים. המשיכו כך.";
 "5" = "5";
+"A 100 day streak" = "רצף של 100 ימים";
 "A bar along the top joins the letters of a word." = "קו לאורך החלק העליון מחבר את אותיות המילה.";
 "A family group holds up to 6 people." = "קבוצת משפחה מכילה עד 6 אנשים.";
 "A friends group holds up to 30 people." = "קבוצת חברים מכילה עד 30 אנשים.";
+"A new phone picks up where you left off" = "טלפון חדש ממשיך מאיפה שעצרתם";
 "A small crossword in your language. New every day." = "תשבץ קטן בשפה שלך. חדש בכל יום.";
 "A unit opens once 80% of the one before it has started." = "יחידה נפתחת אחרי ש־80% מהיחידה הקודמת התחילו.";
 "A word with a missing letter" = "מילה שחסרה בה אות";
@@ -234,6 +245,7 @@
 "Finals" = "סופיות";
 "Finish one round" = "סיימו סיבוב אחד";
 "First word mastered" = "מילה ראשונה בשליטה";
+"Five at most. Tap one to swap it out." = "עד חמש. הקישו על אחת כדי להחליף אותה.";
 "Five letters change shape at the end of a word." = "חמש אותיות משנות צורה בסוף מילה.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "חמשת הטונים נקבעים לפי סוג העיצור, סימן הטון וסוג ההברה.";
 "Flags" = "דגלים";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "יסודות בשבעה ענפים: ממתמטיקה ועד התודעה.";
 "Four tones and a neutral tone change the meaning of a syllable." = "ארבעה טונים וטון ניטרלי משנים את משמעות ההברה.";
 "Free during the beta" = "חינם בזמן הבטא";
+"Free trial: %lld days left" = "ניסיון חינם: נשארו %lld ימים";
+"Free trial: 1 day left" = "ניסיון חינם: נשאר יום אחד";
 "Friends" = "חברים";
 "From %@: %@" = "מאת %1$@: %2$@";
 "Full detail" = "פירוט מלא";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "טוען את החזרות שלך";
 "Mail isn't set up on this device. Paste %@ into any email app." = "הדואר לא מוגדר במכשיר הזה. הדביקו את %@ בכל אפליקציית אימייל.";
 "Manage subscription" = "ניהול מנוי";
+"Manage your subscription" = "ניהול המנוי שלך";
 "Manuscripts follow no fixed spelling." = "כתבי היד אינם נוהגים לפי כתיב קבוע.";
 "Mastery %lld percent" = "שליטה %lld אחוז";
 "Mathematics" = "מתמטיקה";
@@ -463,6 +478,7 @@
 "Progress" = "התקדמות";
 "Progress in a removed language stays saved and returns if you add it back." = "ההתקדמות בשפה שהוסרה נשמרת וחוזרת אם תוסיפו אותה שוב.";
 "Progress stays saved and returns if you build the same system again." = "ההתקדמות נשמרת וחוזרת אם תבנו שוב את אותה מערכת.";
+"Progress syncs across iPhone, iPad and Mac" = "ההתקדמות מסתנכרנת בין iPhone,‏ iPad ו־Mac";
 "Quest done. New one Monday." = "המשימה הושלמה. חדשה ביום שני.";
 "Question %lld · level %@" = "שאלה %1$lld · רמה %2$@";
 "REVIEW" = "חזרה";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "לאפס להתקנה חדשה?";
 "Reset to fresh install" = "איפוס להתקנה חדשה";
 "Resetting the link stops the old one from working." = "איפוס הקישור משבית את הקישור הישן.";
+"Restore" = "שחזור";
+"Restoring" = "משחזר";
 "Retry" = "ניסיון חוזר";
 "Review" = "חזרה";
 "Right" = "נכון";
@@ -509,6 +527,7 @@
 "Save languages" = "שמירת שפות";
 "Save my streak · %@" = "הצילו את הרצף שלי · %@";
 "Save to your account" = "שמירה בחשבון";
+"Save your progress" = "שמרו את ההתקדמות";
 "Saved on this device. Choose your age range to sync." = "נשמר במכשיר הזה. בחרו טווח גילאים כדי לסנכרן.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "נשמר במכשיר הזה. התחברו כדי לשמור גם ב־bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "נשמר במכשיר הזה. התחברו כדי לסנכרן את מערכות השפה.";
@@ -551,6 +570,7 @@
 "Share your score" = "שיתוף הניקוד";
 "Share your streak" = "שיתוף הרצף";
 "Share your words" = "שיתוף המילים";
+"Shared" = "משותף";
 "Shared goal" = "יעד משותף";
 "Shared roots in this set · %lld words" = "שורשים משותפים בסט · %lld מילים";
 "Short vowels usually go unwritten." = "תנועות קצרות בדרך כלל לא נכתבות.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "כתבו בכתב שלה";
 "Spot on!" = "מדויק!";
 "Standings" = "דירוג";
+"Start %lld days free" = "התחילו %lld ימים חינם";
 "Start a language set in Learn. The games use the words you study." = "התחילו סט שפות בלימוד. המשחקים משתמשים במילים שאתם לומדים.";
 "Start a set" = "התחלת סט";
 "Start from the first words" = "התחלה מהמילים הראשונות";
@@ -697,6 +718,7 @@
 "Unblock" = "ביטול חסימה";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "ביטול החסימה לא מחזיר אתכם לקבוצה. אפשר להצטרף שוב עם קישור הזמנה.";
 "Use a different email" = "שימוש באימייל אחר";
+"Use email instead" = "שימוש באימייל במקום";
 "Verbs" = "פעלים";
 "Verify" = "אימות";
 "Version" = "גרסה";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "ההתקדמות עוד לא סונכרנה. סיימו סשן בזמן התחברות.";
 "Your reminders reach this phone." = "התזכורות מגיעות לטלפון הזה.";
 "Your strength" = "החוזק שלך";
+"Your trial is on. Sign in so your words and streak stay with you." = "הניסיון פעיל. התחברו כדי שהמילים והרצף יישארו איתכם.";
 "Your turn: say “%@”" = "תורכם: אמרו „%@”";
 "Zhuyin sounds" = "צלילי ג׳ויין";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "חשבו";
 "common" = "משותף";
 "conjugate" = "הטו";
+"done today" = "הושלמו היום";
+"due now" = "לחזרה עכשיו";
 "entropy, symmetry, memory" = "אנטרופיה, סימטריה, זיכרון";
 "false friend" = "חבר מטעה";
 "feminine" = "נקבה";
@@ -796,6 +821,7 @@
 "new character" = "סימן חדש";
 "new letter" = "אות חדשה";
 "new sound" = "צליל חדש";
+"new today" = "חדשים היום";
 "new word" = "מילה חדשה";
 "night" = "לילה";
 "once" = "פעם אחת";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

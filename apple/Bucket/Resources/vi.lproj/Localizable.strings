@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Âm thanh là giọng đọc của thiết bị, kèm bản ghi sẵn khi một ngôn ngữ chưa có giọng.";
 "%@ %lld started, %lld mastered" = "%@ %lld đã bắt đầu, %lld đã thuộc";
 "%@ Wikipedia" = "Wikipedia %@";
+"%@ a month" = "%@ mỗi tháng";
+"%@ a year" = "%@ mỗi năm";
 "%@ and above: not enough material in this language to test" = "%@ trở lên: ngôn ngữ này chưa đủ tài liệu để kiểm tra";
 "%@ cheered you on." = "%@ đã cổ vũ bạn.";
 "%@ flag" = "Cờ %@";
+"%@ from %@" = "%1$@ từ %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ chưa có tiến độ đồng bộ. Điểm sẽ hiện sau buổi học tiếp theo khi họ đã đăng nhập.";
 "%@ invited you. %lld of %lld members." = "%@ đã mời bạn. %lld trên %lld thành viên.";
 "%@ nudged you to study today." = "%@ nhắc bạn học hôm nay.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ một lần. Tính phí vào Apple Account của bạn. Không đăng ký định kỳ, không gia hạn.";
 "%@ quest" = "Thử thách %@";
 "%@ says keep going." = "%@ bảo bạn cố lên.";
 "%@ says nice streak." = "%@ khen chuỗi ngày của bạn.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, thẻ %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, hạng %lld, %lld thẻ tuần này, chuỗi %lld ngày, %lld từ đã thuộc";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: đúng %lld trên %lld, chưa đạt";
 "%@: %lld of %lld right, passed" = "%@: đúng %lld trên %lld, đã đạt";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Chuỗi %lld ngày";
 "%lld day streak on %@" = "Chuỗi %lld ngày trên %@";
 "%lld days" = "%lld ngày";
+"%lld days free" = "%lld ngày miễn phí";
+"%lld days free, then %@." = "%lld ngày miễn phí, sau đó %@.";
 "%lld days in a row learning %@ on %@" = "%lld ngày liên tiếp học %@ trên %@";
 "%lld days to 100" = "Còn %lld ngày đến 100";
 "%lld down · %lld letters" = "%lld dọc · %lld chữ cái";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "Đúng %lld trên %lld · +%lld xp · chuỗi %lld ngày";
 "%lld of %lld right. New letters come in fives." = "Đúng %lld trên %lld. Chữ mới đến theo nhóm năm.";
 "%lld of %lld today. See your result." = "%lld trên %lld hôm nay. Xem kết quả.";
+"%lld of 5 picked" = "Đã chọn %lld trên 5";
 "%lld pairs. Longest run %lld." = "%lld cặp. Chuỗi dài nhất %lld.";
 "%lld points" = "%lld điểm";
 "%lld questions." = "%lld câu hỏi.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "Đã đạt 100 ngày. Tiếp tục nhé.";
 "5" = "5";
+"A 100 day streak" = "Chuỗi 100 ngày";
 "A bar along the top joins the letters of a word." = "Một nét ngang phía trên nối các chữ cái của một từ.";
 "A family group holds up to 6 people." = "Nhóm gia đình có tối đa 6 người.";
 "A friends group holds up to 30 people." = "Nhóm bạn bè có tối đa 30 người.";
+"A new phone picks up where you left off" = "Điện thoại mới tiếp tục từ chỗ bạn dừng";
 "A small crossword in your language. New every day." = "Ô chữ nhỏ bằng ngôn ngữ của bạn. Mới mỗi ngày.";
 "A unit opens once 80% of the one before it has started." = "Một bài mở khi 80% bài trước đó đã bắt đầu.";
 "A word with a missing letter" = "Một từ thiếu một chữ cái";
@@ -234,6 +245,7 @@
 "Finals" = "Vần";
 "Finish one round" = "Hoàn thành một ván";
 "First word mastered" = "Từ đầu tiên đã thuộc";
+"Five at most. Tap one to swap it out." = "Tối đa năm. Chạm một mục để đổi.";
 "Five letters change shape at the end of a word." = "Năm chữ cái đổi hình dạng ở cuối từ.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Năm thanh điệu đến từ nhóm phụ âm, dấu thanh và loại âm tiết.";
 "Flags" = "Cờ";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Nền tảng qua bảy nhánh: từ toán học đến tâm trí.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Bốn thanh và một thanh nhẹ làm đổi nghĩa của âm tiết.";
 "Free during the beta" = "Miễn phí trong bản beta";
+"Free trial: %lld days left" = "Dùng thử miễn phí: còn %lld ngày";
+"Free trial: 1 day left" = "Dùng thử miễn phí: còn 1 ngày";
 "Friends" = "Bạn bè";
 "From %@: %@" = "Từ %@: %@";
 "Full detail" = "Chi tiết đầy đủ";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Đang tải bài ôn";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Thiết bị chưa cài Mail. Hãy dán %@ vào bất kỳ ứng dụng email nào.";
 "Manage subscription" = "Quản lý gói đăng ký";
+"Manage your subscription" = "Quản lý gói đăng ký của bạn";
 "Manuscripts follow no fixed spelling." = "Bản chép tay không theo chính tả cố định.";
 "Mastery %lld percent" = "Thành thạo %lld phần trăm";
 "Mathematics" = "Toán học";
@@ -463,6 +478,7 @@
 "Progress" = "Tiến độ";
 "Progress in a removed language stays saved and returns if you add it back." = "Tiến độ của ngôn ngữ đã xóa vẫn được lưu và sẽ quay lại nếu bạn thêm lại.";
 "Progress stays saved and returns if you build the same system again." = "Tiến độ vẫn được lưu và sẽ quay lại nếu bạn tạo lại cùng hệ thống.";
+"Progress syncs across iPhone, iPad and Mac" = "Tiến độ đồng bộ trên iPhone, iPad và Mac";
 "Quest done. New one Monday." = "Xong thử thách. Thứ Hai có thử thách mới.";
 "Question %lld · level %@" = "Câu %lld · cấp độ %@";
 "REVIEW" = "ÔN TẬP";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Đặt lại như mới cài?";
 "Reset to fresh install" = "Đặt lại như mới cài";
 "Resetting the link stops the old one from working." = "Đặt lại liên kết sẽ vô hiệu hóa liên kết cũ.";
+"Restore" = "Khôi phục";
+"Restoring" = "Đang khôi phục";
 "Retry" = "Thử lại";
 "Review" = "Ôn tập";
 "Right" = "Đúng";
@@ -509,6 +527,7 @@
 "Save languages" = "Lưu ngôn ngữ";
 "Save my streak · %@" = "Cứu chuỗi ngày · %@";
 "Save to your account" = "Lưu vào tài khoản";
+"Save your progress" = "Lưu tiến độ";
 "Saved on this device. Choose your age range to sync." = "Đã lưu trên thiết bị này. Chọn độ tuổi để đồng bộ.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Đã lưu trên thiết bị này. Đăng nhập để lưu cả trên bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "Đã lưu trên thiết bị này. Đăng nhập để đồng bộ hệ thống ngôn ngữ.";
@@ -551,6 +570,7 @@
 "Share your score" = "Chia sẻ điểm số";
 "Share your streak" = "Chia sẻ chuỗi ngày";
 "Share your words" = "Chia sẻ từ của bạn";
+"Shared" = "Đã chia sẻ";
 "Shared goal" = "Mục tiêu chung";
 "Shared roots in this set · %lld words" = "Gốc chung trong bộ này · %lld từ";
 "Short vowels usually go unwritten." = "Nguyên âm ngắn thường không được viết.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Viết bằng chữ của chính nó";
 "Spot on!" = "Chính xác!";
 "Standings" = "Xếp hạng";
+"Start %lld days free" = "Bắt đầu %lld ngày miễn phí";
 "Start a language set in Learn. The games use the words you study." = "Tạo bộ ngôn ngữ trong Học. Trò chơi dùng các từ bạn học.";
 "Start a set" = "Tạo một bộ";
 "Start from the first words" = "Bắt đầu từ những từ đầu tiên";
@@ -697,6 +718,7 @@
 "Unblock" = "Bỏ chặn";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Bỏ chặn không đưa bạn trở lại nhóm. Bạn có thể vào lại bằng liên kết mời.";
 "Use a different email" = "Dùng email khác";
+"Use email instead" = "Dùng email";
 "Verbs" = "Động từ";
 "Verify" = "Xác minh";
 "Version" = "Phiên bản";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Tiến độ của bạn chưa đồng bộ. Hãy hoàn thành một buổi học khi đã đăng nhập.";
 "Your reminders reach this phone." = "Lời nhắc sẽ đến điện thoại này.";
 "Your strength" = "Độ nhớ của bạn";
+"Your trial is on. Sign in so your words and streak stay with you." = "Bạn đang dùng thử. Hãy đăng nhập để giữ từ và chuỗi ngày của bạn.";
 "Your turn: say “%@”" = "Đến lượt bạn: nói “%@”";
 "Zhuyin sounds" = "Âm Chú âm";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "tính toán";
 "common" = "giống chung";
 "conjugate" = "chia động từ";
+"done today" = "xong hôm nay";
+"due now" = "cần ôn";
 "entropy, symmetry, memory" = "entropy, đối xứng, trí nhớ";
 "false friend" = "từ dễ nhầm";
 "feminine" = "giống cái";
@@ -796,6 +821,7 @@
 "new character" = "chữ mới";
 "new letter" = "chữ cái mới";
 "new sound" = "âm mới";
+"new today" = "mới hôm nay";
 "new word" = "từ mới";
 "night" = "đêm";
 "once" = "một lần";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

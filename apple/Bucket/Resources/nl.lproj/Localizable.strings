@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Audio is tekst-naar-spraak van je apparaat, met opgenomen fragmenten waar een taal geen stem heeft.";
 "%@ %lld started, %lld mastered" = "%@ %lld begonnen, %lld beheerst";
 "%@ Wikipedia" = "%@ Wikipedia";
+"%@ a month" = "%@ per maand";
+"%@ a year" = "%@ per jaar";
 "%@ and above: not enough material in this language to test" = "%@ en hoger: te weinig materiaal in deze taal om te testen";
 "%@ cheered you on." = "%@ moedigde je aan.";
 "%@ flag" = "Vlag: %@";
+"%@ from %@" = "%1$@ vanuit het %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ heeft nog geen gesynchroniseerde voortgang. Scores verschijnen na hun volgende sessie terwijl ze zijn ingelogd.";
 "%@ invited you. %lld of %lld members." = "%@ heeft je uitgenodigd. %lld van %lld leden.";
 "%@ nudged you to study today." = "%@ geeft je een duwtje om vandaag te studeren.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "Eenmalig %@. Afgeschreven van je Apple Account. Geen abonnement en geen verlenging.";
 "%@ quest" = "Opdracht: %@";
 "%@ says keep going." = "%@ zegt: ga zo door.";
 "%@ says nice streak." = "%@ zegt: mooie reeks.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, kaart %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, plaats %lld, %lld kaarten deze week, reeks van %lld dagen, %lld woorden beheerst";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: %lld van %lld goed, niet gehaald";
 "%@: %lld of %lld right, passed" = "%@: %lld van %lld goed, gehaald";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Reeks van %lld dagen";
 "%lld day streak on %@" = "Reeks van %lld dagen op %@";
 "%lld days" = "%lld dagen";
+"%lld days free" = "%lld dagen gratis";
+"%lld days free, then %@." = "%lld dagen gratis, daarna %@.";
 "%lld days in a row learning %@ on %@" = "%lld dagen op rij %@ leren op %@";
 "%lld days to 100" = "Nog %lld dagen tot 100";
 "%lld down · %lld letters" = "%lld verticaal · %lld letters";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%lld van %lld goed · +%lld xp · reeks van %lld dagen";
 "%lld of %lld right. New letters come in fives." = "%lld van %lld goed. Nieuwe letters komen per vijf.";
 "%lld of %lld today. See your result." = "%lld van %lld vandaag. Bekijk je resultaat.";
+"%lld of 5 picked" = "%lld van 5 gekozen";
 "%lld pairs. Longest run %lld." = "%lld paren. Langste reeks %lld.";
 "%lld points" = "%lld punten";
 "%lld questions." = "%lld vragen.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 dagen gehaald. Ga zo door.";
 "5" = "5";
+"A 100 day streak" = "Een reeks van 100 dagen";
 "A bar along the top joins the letters of a word." = "Een streep langs de bovenkant verbindt de letters van een woord.";
 "A family group holds up to 6 people." = "Een gezinsgroep heeft plaats voor 6 mensen.";
 "A friends group holds up to 30 people." = "Een vriendengroep heeft plaats voor 30 mensen.";
+"A new phone picks up where you left off" = "Een nieuwe telefoon gaat verder waar je was";
 "A small crossword in your language. New every day." = "Een kleine kruiswoordpuzzel in jouw taal. Elke dag nieuw.";
 "A unit opens once 80% of the one before it has started." = "Een unit gaat open zodra 80% van de vorige is begonnen.";
 "A word with a missing letter" = "Een woord met een ontbrekende letter";
@@ -234,6 +245,7 @@
 "Finals" = "Finalen";
 "Finish one round" = "Maak één ronde af";
 "First word mastered" = "Eerste woord beheerst";
+"Five at most. Tap one to swap it out." = "Hoogstens vijf. Tik op een om die te wisselen.";
 "Five letters change shape at the end of a word." = "Vijf letters veranderen van vorm aan het eind van een woord.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Vijf tonen volgen uit de medeklinkerklasse, het toonteken en het lettergreeptype.";
 "Flags" = "Vlaggen";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Fundamenten in zeven takken: van wiskunde tot geest.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Vier tonen en een neutrale toon veranderen de betekenis van een lettergreep.";
 "Free during the beta" = "Gratis tijdens de bèta";
+"Free trial: %lld days left" = "Gratis proef: nog %lld dagen";
+"Free trial: 1 day left" = "Gratis proef: nog 1 dag";
 "Friends" = "Vrienden";
 "From %@: %@" = "Van %@: %@";
 "Full detail" = "Alle details";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Je herhalingen laden";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Mail is niet ingesteld op dit apparaat. Plak %@ in een andere e-mailapp.";
 "Manage subscription" = "Abonnement beheren";
+"Manage your subscription" = "Beheer je abonnement";
 "Manuscripts follow no fixed spelling." = "Handschriften volgen geen vaste spelling.";
 "Mastery %lld percent" = "Beheersing %lld procent";
 "Mathematics" = "Wiskunde";
@@ -463,6 +478,7 @@
 "Progress" = "Voortgang";
 "Progress in a removed language stays saved and returns if you add it back." = "Voortgang in een verwijderde taal blijft bewaard en komt terug als je de taal weer toevoegt.";
 "Progress stays saved and returns if you build the same system again." = "Voortgang blijft bewaard en komt terug als je hetzelfde systeem opnieuw maakt.";
+"Progress syncs across iPhone, iPad and Mac" = "Voortgang synchroniseert tussen iPhone, iPad en Mac";
 "Quest done. New one Monday." = "Opdracht klaar. Maandag een nieuwe.";
 "Question %lld · level %@" = "Vraag %lld · niveau %@";
 "REVIEW" = "HERHALEN";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Terugzetten naar een nieuwe installatie?";
 "Reset to fresh install" = "Terugzetten naar nieuwe installatie";
 "Resetting the link stops the old one from working." = "Na het resetten werkt de oude link niet meer.";
+"Restore" = "Herstellen";
+"Restoring" = "Herstellen";
 "Retry" = "Opnieuw";
 "Review" = "Herhalen";
 "Right" = "Goed";
@@ -509,6 +527,7 @@
 "Save languages" = "Talen bewaren";
 "Save my streak · %@" = "Red mijn reeks · %@";
 "Save to your account" = "Bewaren in je account";
+"Save your progress" = "Bewaar je voortgang";
 "Saved on this device. Choose your age range to sync." = "Bewaard op dit apparaat. Kies je leeftijdsgroep om te synchroniseren.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Bewaard op dit apparaat. Log in om het ook op bucket.foundation te bewaren.";
 "Saved on this device. Sign in to sync your language systems." = "Bewaard op dit apparaat. Log in om je taalsystemen te synchroniseren.";
@@ -551,6 +570,7 @@
 "Share your score" = "Deel je score";
 "Share your streak" = "Deel je reeks";
 "Share your words" = "Deel je woorden";
+"Shared" = "Gedeeld";
 "Shared goal" = "Gedeeld doel";
 "Shared roots in this set · %lld words" = "Gedeelde wortels in deze set · %lld woorden";
 "Short vowels usually go unwritten." = "Korte klinkers worden meestal niet geschreven.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Spel het in het eigen schrift";
 "Spot on!" = "Precies!";
 "Standings" = "Stand";
+"Start %lld days free" = "Start %lld dagen gratis";
 "Start a language set in Learn. The games use the words you study." = "Start een taalset in Leren. De spellen gebruiken de woorden die je studeert.";
 "Start a set" = "Start een set";
 "Start from the first words" = "Begin bij de eerste woorden";
@@ -697,6 +718,7 @@
 "Unblock" = "Deblokkeren";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Deblokkeren zet je niet terug in een groep. Je kunt weer lid worden met een uitnodigingslink.";
 "Use a different email" = "Gebruik een ander e-mailadres";
+"Use email instead" = "Gebruik liever e-mail";
 "Verbs" = "Werkwoorden";
 "Verify" = "Verifieer";
 "Version" = "Versie";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Je voortgang is nog niet gesynchroniseerd. Maak een sessie af terwijl je bent ingelogd.";
 "Your reminders reach this phone." = "Je herinneringen komen op deze telefoon binnen.";
 "Your strength" = "Je sterkte";
+"Your trial is on. Sign in so your words and streak stay with you." = "Je proefperiode loopt. Log in zodat je woorden en reeks bij je blijven.";
 "Your turn: say “%@”" = "Jouw beurt: zeg “%@”";
 "Zhuyin sounds" = "Zhuyin-klanken";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "bereken";
 "common" = "gemeenschappelijk";
 "conjugate" = "vervoeg";
+"done today" = "vandaag klaar";
+"due now" = "nu te doen";
 "entropy, symmetry, memory" = "entropie, symmetrie, geheugen";
 "false friend" = "valse vriend";
 "feminine" = "vrouwelijk";
@@ -796,6 +821,7 @@
 "new character" = "nieuw teken";
 "new letter" = "nieuwe letter";
 "new sound" = "nieuwe klank";
+"new today" = "nieuw vandaag";
 "new word" = "nieuw woord";
 "night" = "nacht";
 "once" = "eenmalig";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

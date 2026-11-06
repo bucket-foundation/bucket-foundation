@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Ääni on laitteen puhesynteesiä, ja äänitettyjä leikkeitä käytetään, jos kielellä ei ole ääntä.";
 "%@ %lld started, %lld mastered" = "%@ %lld aloitettu, %lld hallussa";
 "%@ Wikipedia" = "%@ Wikipedia";
+"%@ a month" = "%@ kuukaudessa";
+"%@ a year" = "%@ vuodessa";
 "%@ and above: not enough material in this language to test" = "%@ ja ylempi: tällä kielellä ei ole tarpeeksi aineistoa testiin";
 "%@ cheered you on." = "%@ kannusti sinua.";
 "%@ flag" = "Lippu: %@";
+"%@ from %@" = "%1$@, pohja: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "Käyttäjällä %@ ei ole vielä synkronoitua edistymistä. Pisteet näkyvät hänen seuraavan kirjautuneena tehdyn harjoituksensa jälkeen.";
 "%@ invited you. %lld of %lld members." = "%@ kutsui sinut. %lld/%lld jäsentä.";
 "%@ nudged you to study today." = "%@ muistutti sinua opiskelemaan tänään.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ kerran. Veloitetaan Apple-tililtäsi. Ei tilausta eikä uusimista.";
 "%@ quest" = "Tehtävä: %@";
 "%@ says keep going." = "%@ sanoo: jatka samaan malliin.";
 "%@ says nice streak." = "%@ sanoo: hieno putki.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, kortti %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, sija %lld, %lld korttia tällä viikolla, %lld päivän putki, %lld sanaa hallussa";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: %lld/%lld oikein, ei läpäisty";
 "%@: %lld of %lld right, passed" = "%@: %lld/%lld oikein, läpäisty";
@@ -33,6 +39,8 @@
 "%lld day streak" = "%lld päivän putki";
 "%lld day streak on %@" = "%lld päivän putki sovelluksessa %@";
 "%lld days" = "%lld päivää";
+"%lld days free" = "%lld päivää ilmaiseksi";
+"%lld days free, then %@." = "%lld päivää ilmaiseksi, sitten %@.";
 "%lld days in a row learning %@ on %@" = "%lld päivää putkeen opiskelua (%@) sovelluksessa %@";
 "%lld days to 100" = "%lld päivää sataan";
 "%lld down · %lld letters" = "%lld pystyyn · %lld kirjainta";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%lld/%lld oikein · +%lld xp · %lld päivän putki";
 "%lld of %lld right. New letters come in fives." = "%lld/%lld oikein. Uusia kirjaimia tulee viisi kerrallaan.";
 "%lld of %lld today. See your result." = "%lld/%lld tänään. Katso tuloksesi.";
+"%lld of 5 picked" = "%lld/5 valittu";
 "%lld pairs. Longest run %lld." = "%lld paria. Pisin sarja %lld.";
 "%lld points" = "%lld pistettä";
 "%lld questions." = "%lld kysymystä.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 päivää saavutettu. Jatka samaan malliin.";
 "5" = "5";
+"A 100 day streak" = "100 päivän putki";
 "A bar along the top joins the letters of a word." = "Yläreunan viiva yhdistää sanan kirjaimet.";
 "A family group holds up to 6 people." = "Perheryhmään mahtuu enintään 6 henkeä.";
 "A friends group holds up to 30 people." = "Kaveriryhmään mahtuu enintään 30 henkeä.";
+"A new phone picks up where you left off" = "Uusi puhelin jatkaa siitä, mihin jäit";
 "A small crossword in your language. New every day." = "Pieni ristikko kielelläsi. Uusi joka päivä.";
 "A unit opens once 80% of the one before it has started." = "Yksikkö aukeaa, kun 80 % edellisestä on aloitettu.";
 "A word with a missing letter" = "Sana, josta puuttuu kirjain";
@@ -234,6 +245,7 @@
 "Finals" = "Loppuäänteet";
 "Finish one round" = "Pelaa yksi kierros loppuun";
 "First word mastered" = "Ensimmäinen sana hallussa";
+"Five at most. Tap one to swap it out." = "Enintään viisi. Napauta yhtä vaihtaaksesi sen.";
 "Five letters change shape at the end of a word." = "Viisi kirjainta muuttaa muotoaan sanan lopussa.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Viisi sävyä määräytyy konsonanttiluokasta, sävymerkistä ja tavutyypistä.";
 "Flags" = "Liput";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Perusteet seitsemässä haarassa: matematiikasta mieleen.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Neljä sävyä ja neutraali sävy muuttavat tavun merkitystä.";
 "Free during the beta" = "Ilmainen beetan aikana";
+"Free trial: %lld days left" = "Ilmainen kokeilu: %lld päivää jäljellä";
+"Free trial: 1 day left" = "Ilmainen kokeilu: 1 päivä jäljellä";
 "Friends" = "Kaverit";
 "From %@: %@" = "Lähettäjä %@: %@";
 "Full detail" = "Kaikki tiedot";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Ladataan kertauksiasi";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Mail-sovellusta ei ole määritetty tällä laitteella. Liitä %@ mihin tahansa sähköpostisovellukseen.";
 "Manage subscription" = "Hallitse tilausta";
+"Manage your subscription" = "Hallitse tilaustasi";
 "Manuscripts follow no fixed spelling." = "Käsikirjoituksissa ei ole vakiintunutta oikeinkirjoitusta.";
 "Mastery %lld percent" = "Hallinta %lld prosenttia";
 "Mathematics" = "Matematiikka";
@@ -463,6 +478,7 @@
 "Progress" = "Edistyminen";
 "Progress in a removed language stays saved and returns if you add it back." = "Poistetun kielen edistyminen säilyy ja palaa, jos lisäät kielen takaisin.";
 "Progress stays saved and returns if you build the same system again." = "Edistyminen säilyy ja palaa, jos luot saman järjestelmän uudelleen.";
+"Progress syncs across iPhone, iPad and Mac" = "Edistyminen synkronoituu iPhonen, iPadin ja Macin välillä";
 "Quest done. New one Monday." = "Tehtävä suoritettu. Uusi maanantaina.";
 "Question %lld · level %@" = "Kysymys %lld · taso %@";
 "REVIEW" = "KERTAUS";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Palautetaanko uuden asennuksen tilaan?";
 "Reset to fresh install" = "Palauta uuden asennuksen tilaan";
 "Resetting the link stops the old one from working." = "Nollauksen jälkeen vanha linkki lakkaa toimimasta.";
+"Restore" = "Palauta";
+"Restoring" = "Palautetaan";
 "Retry" = "Yritä uudelleen";
 "Review" = "Kertaa";
 "Right" = "Oikein";
@@ -509,6 +527,7 @@
 "Save languages" = "Tallenna kielet";
 "Save my streak · %@" = "Pelasta putkeni · %@";
 "Save to your account" = "Tallenna tilillesi";
+"Save your progress" = "Tallenna edistymisesi";
 "Saved on this device. Choose your age range to sync." = "Tallennettu tälle laitteelle. Valitse ikäryhmäsi synkronoidaksesi.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Tallennettu tälle laitteelle. Kirjaudu sisään, jotta se säilyy myös osoitteessa bucket.foundation.";
 "Saved on this device. Sign in to sync your language systems." = "Tallennettu tälle laitteelle. Kirjaudu sisään synkronoidaksesi kielijärjestelmäsi.";
@@ -551,6 +570,7 @@
 "Share your score" = "Jaa pisteesi";
 "Share your streak" = "Jaa putkesi";
 "Share your words" = "Jaa sanasi";
+"Shared" = "Jaetut";
 "Shared goal" = "Yhteinen tavoite";
 "Shared roots in this set · %lld words" = "Yhteiset juuret tässä setissä · %lld sanaa";
 "Short vowels usually go unwritten." = "Lyhyitä vokaaleja ei yleensä kirjoiteta.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Kirjoita se sen omilla kirjaimilla";
 "Spot on!" = "Täsmälleen!";
 "Standings" = "Tulostaulu";
+"Start %lld days free" = "Aloita %lld päivää ilmaiseksi";
 "Start a language set in Learn. The games use the words you study." = "Aloita kielisetti Opi-osiossa. Pelit käyttävät opiskelemiasi sanoja.";
 "Start a set" = "Aloita setti";
 "Start from the first words" = "Aloita ensimmäisistä sanoista";
@@ -697,6 +718,7 @@
 "Unblock" = "Poista esto";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Eston poistaminen ei palauta sinua ryhmään. Voit liittyä uudelleen kutsulinkillä.";
 "Use a different email" = "Käytä toista sähköpostia";
+"Use email instead" = "Käytä sähköpostia";
 "Verbs" = "Verbit";
 "Verify" = "Vahvista";
 "Version" = "Versio";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Edistymisesi ei ole vielä synkronoitunut. Suorita harjoitus kirjautuneena.";
 "Your reminders reach this phone." = "Muistutuksesi tulevat tähän puhelimeen.";
 "Your strength" = "Vahvuutesi";
+"Your trial is on. Sign in so your words and streak stay with you." = "Kokeilusi on käynnissä. Kirjaudu sisään, jotta sanasi ja putkesi pysyvät mukanasi.";
 "Your turn: say “%@”" = "Sinun vuorosi: sano ”%@”";
 "Zhuyin sounds" = "Zhuyin-äänteet";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "laske";
 "common" = "yhteinen";
 "conjugate" = "taivuta";
+"done today" = "tehty tänään";
+"due now" = "erääntyneet";
 "entropy, symmetry, memory" = "entropia, symmetria, muisti";
 "false friend" = "väärä ystävä";
 "feminine" = "feminiini";
@@ -796,6 +821,7 @@
 "new character" = "uusi merkki";
 "new letter" = "uusi kirjain";
 "new sound" = "uusi äänne";
+"new today" = "uudet tänään";
 "new word" = "uusi sana";
 "night" = "yö";
 "once" = "kerran";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

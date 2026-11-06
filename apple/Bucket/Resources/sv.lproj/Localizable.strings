@@ -3,12 +3,16 @@
 "%@ %@ Audio is device text-to-speech, with recorded clips where a language has no voice." = "%@ %@ Ljudet är enhetens talsyntes, med inspelade klipp där ett språk saknar röst.";
 "%@ %lld started, %lld mastered" = "%@ %lld påbörjade, %lld behärskade";
 "%@ Wikipedia" = "%@ Wikipedia";
+"%@ a month" = "%@ i månaden";
+"%@ a year" = "%@ om året";
 "%@ and above: not enough material in this language to test" = "%@ och uppåt: för lite material på det här språket för att testa";
 "%@ cheered you on." = "%@ hejade på dig.";
 "%@ flag" = "Flagga: %@";
+"%@ from %@" = "%1$@ från %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "%@ har inga synkade framsteg än. Poäng visas efter nästa session med inloggning.";
 "%@ invited you. %lld of %lld members." = "%@ bjöd in dig. %lld av %lld medlemmar.";
 "%@ nudged you to study today." = "%@ påminner dig om att plugga i dag.";
+"%@ once. Charged to your Apple Account. No subscription and no renewal." = "%@ en gång. Debiteras ditt Apple Account. Ingen prenumeration och ingen förnyelse.";
 "%@ quest" = "Uppdrag: %@";
 "%@ says keep going." = "%@ säger: fortsätt så.";
 "%@ says nice streak." = "%@ säger: snygg svit.";
@@ -19,8 +23,10 @@
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
+"%@, %@, %@" = "%@, %@, %@";
 "%@, card %lld" = "%@, kort %lld";
 "%@, rank %lld, %lld cards this week, %lld day streak, %lld words mastered" = "%@, plats %lld, %lld kort den här veckan, svit på %lld dagar, %lld ord behärskade";
+"%@." = "%@.";
 "%@: %@" = "%@: %@";
 "%@: %lld of %lld right, not passed" = "%@: %lld av %lld rätt, inte godkänd";
 "%@: %lld of %lld right, passed" = "%@: %lld av %lld rätt, godkänd";
@@ -33,6 +39,8 @@
 "%lld day streak" = "Svit på %lld dagar";
 "%lld day streak on %@" = "Svit på %lld dagar på %@";
 "%lld days" = "%lld dagar";
+"%lld days free" = "%lld dagar gratis";
+"%lld days free, then %@." = "%lld dagar gratis, sedan %@.";
 "%lld days in a row learning %@ on %@" = "%lld dagar i rad med %@ på %@";
 "%lld days to 100" = "%lld dagar kvar till 100";
 "%lld down · %lld letters" = "%lld lodrätt · %lld bokstäver";
@@ -56,6 +64,7 @@
 "%lld of %lld right · +%lld xp · %lld day streak" = "%lld av %lld rätt · +%lld xp · svit på %lld dagar";
 "%lld of %lld right. New letters come in fives." = "%lld av %lld rätt. Nya bokstäver kommer fem åt gången.";
 "%lld of %lld today. See your result." = "%lld av %lld i dag. Se ditt resultat.";
+"%lld of 5 picked" = "%lld av 5 valda";
 "%lld pairs. Longest run %lld." = "%lld par. Längsta följd %lld.";
 "%lld points" = "%lld poäng";
 "%lld questions." = "%lld frågor.";
@@ -88,9 +97,11 @@
 "100" = "100";
 "100 days reached. Keep it going." = "100 dagar nådda. Fortsätt så.";
 "5" = "5";
+"A 100 day streak" = "En svit på 100 dagar";
 "A bar along the top joins the letters of a word." = "Ett streck längs ovankanten binder ihop bokstäverna i ett ord.";
 "A family group holds up to 6 people." = "En familjegrupp rymmer upp till 6 personer.";
 "A friends group holds up to 30 people." = "En vängrupp rymmer upp till 30 personer.";
+"A new phone picks up where you left off" = "En ny telefon fortsätter där du slutade";
 "A small crossword in your language. New every day." = "Ett litet korsord på ditt språk. Nytt varje dag.";
 "A unit opens once 80% of the one before it has started." = "En enhet öppnas när 80% av den föregående har påbörjats.";
 "A word with a missing letter" = "Ett ord med en bokstav som saknas";
@@ -234,6 +245,7 @@
 "Finals" = "Slutljud";
 "Finish one round" = "Avsluta en runda";
 "First word mastered" = "Första ordet behärskat";
+"Five at most. Tap one to swap it out." = "Högst fem. Tryck på ett för att byta ut det.";
 "Five letters change shape at the end of a word." = "Fem bokstäver ändrar form i slutet av ett ord.";
 "Five tones come from the consonant class, the tone mark and the syllable type." = "Fem toner styrs av konsonantklassen, tontecknet och stavelsetypen.";
 "Flags" = "Flaggor";
@@ -241,6 +253,8 @@
 "Foundations across seven branches: mathematics to mind." = "Grunder i sju grenar: från matematik till sinne.";
 "Four tones and a neutral tone change the meaning of a syllable." = "Fyra toner och en neutral ton ändrar betydelsen av en stavelse.";
 "Free during the beta" = "Gratis under betan";
+"Free trial: %lld days left" = "Gratis provperiod: %lld dagar kvar";
+"Free trial: 1 day left" = "Gratis provperiod: 1 dag kvar";
 "Friends" = "Vänner";
 "From %@: %@" = "Från %@: %@";
 "Full detail" = "Alla detaljer";
@@ -337,6 +351,7 @@
 "Loading your reviews" = "Laddar dina repetitioner";
 "Mail isn't set up on this device. Paste %@ into any email app." = "Mail är inte inställt på den här enheten. Klistra in %@ i valfri e-postapp.";
 "Manage subscription" = "Hantera prenumeration";
+"Manage your subscription" = "Hantera din prenumeration";
 "Manuscripts follow no fixed spelling." = "Handskrifter följer ingen fast stavning.";
 "Mastery %lld percent" = "Behärskning %lld procent";
 "Mathematics" = "Matematik";
@@ -463,6 +478,7 @@
 "Progress" = "Framsteg";
 "Progress in a removed language stays saved and returns if you add it back." = "Framsteg i ett borttaget språk sparas och kommer tillbaka om du lägger till det igen.";
 "Progress stays saved and returns if you build the same system again." = "Framstegen sparas och kommer tillbaka om du skapar samma system igen.";
+"Progress syncs across iPhone, iPad and Mac" = "Framstegen synkas mellan iPhone, iPad och Mac";
 "Quest done. New one Monday." = "Uppdrag klart. Nytt på måndag.";
 "Question %lld · level %@" = "Fråga %lld · nivå %@";
 "REVIEW" = "REPETERA";
@@ -498,6 +514,8 @@
 "Reset to a fresh install?" = "Återställa till en ny installation?";
 "Reset to fresh install" = "Återställ till ny installation";
 "Resetting the link stops the old one from working." = "När länken återställs slutar den gamla att fungera.";
+"Restore" = "Återställ";
+"Restoring" = "Återställer";
 "Retry" = "Försök igen";
 "Review" = "Repetera";
 "Right" = "Rätt";
@@ -509,6 +527,7 @@
 "Save languages" = "Spara språk";
 "Save my streak · %@" = "Rädda min svit · %@";
 "Save to your account" = "Spara på ditt konto";
+"Save your progress" = "Spara dina framsteg";
 "Saved on this device. Choose your age range to sync." = "Sparat på den här enheten. Välj din åldersgrupp för att synka.";
 "Saved on this device. Sign in to keep it on bucket.foundation too." = "Sparat på den här enheten. Logga in för att ha det på bucket.foundation också.";
 "Saved on this device. Sign in to sync your language systems." = "Sparat på den här enheten. Logga in för att synka dina språksystem.";
@@ -551,6 +570,7 @@
 "Share your score" = "Dela dina poäng";
 "Share your streak" = "Dela din svit";
 "Share your words" = "Dela dina ord";
+"Shared" = "Delat";
 "Shared goal" = "Gemensamt mål";
 "Shared roots in this set · %lld words" = "Gemensamma rötter i det här setet · %lld ord";
 "Short vowels usually go unwritten." = "Korta vokaler skrivs oftast inte ut.";
@@ -593,6 +613,7 @@
 "Spell it in its own script" = "Stava det i sin egen skrift";
 "Spot on!" = "Helt rätt!";
 "Standings" = "Ställning";
+"Start %lld days free" = "Starta %lld dagar gratis";
 "Start a language set in Learn. The games use the words you study." = "Starta ett språkset i Lär dig. Spelen använder orden du pluggar.";
 "Start a set" = "Starta ett set";
 "Start from the first words" = "Börja från de första orden";
@@ -697,6 +718,7 @@
 "Unblock" = "Avblockera";
 "Unblocking does not put you back in a group. You can rejoin with an invite link." = "Att avblockera lägger inte tillbaka dig i en grupp. Du kan gå med igen med en inbjudningslänk.";
 "Use a different email" = "Använd en annan e-post";
+"Use email instead" = "Använd e-post i stället";
 "Verbs" = "Verb";
 "Verify" = "Verifiera";
 "Version" = "Version";
@@ -764,6 +786,7 @@
 "Your progress has not synced yet. Finish a session while signed in." = "Dina framsteg har inte synkats än. Avsluta en session när du är inloggad.";
 "Your reminders reach this phone." = "Dina påminnelser kommer till den här telefonen.";
 "Your strength" = "Din styrka";
+"Your trial is on. Sign in so your words and streak stay with you." = "Din provperiod är igång. Logga in så att dina ord och din svit följer med dig.";
 "Your turn: say “%@”" = "Din tur: säg “%@”";
 "Zhuyin sounds" = "Zhuyin-ljud";
 "______" = "______";
@@ -778,6 +801,8 @@
 "calculate" = "räkna ut";
 "common" = "utrum";
 "conjugate" = "böj verbet";
+"done today" = "klara i dag";
+"due now" = "att repetera";
 "entropy, symmetry, memory" = "entropi, symmetri, minne";
 "false friend" = "falsk vän";
 "feminine" = "femininum";
@@ -796,6 +821,7 @@
 "new character" = "nytt tecken";
 "new letter" = "ny bokstav";
 "new sound" = "nytt ljud";
+"new today" = "nya i dag";
 "new word" = "nytt ord";
 "night" = "natt";
 "once" = "en gång";
@@ -830,4 +856,6 @@
 "शतम्" = "शतम्";
 "ἑκατόν" = "ἑκατόν";
 "•" = "•";
+"✸" = "✸";
+"〜" = "〜";
 "百" = "百";

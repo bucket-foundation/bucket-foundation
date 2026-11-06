@@ -8,6 +8,7 @@
 "%@ and above: not enough material in this language to test" = "%@ ja ylempi: tällä kielellä ei ole tarpeeksi aineistoa testiin";
 "%@ cheered you on." = "%@ kannusti sinua.";
 "%@ flag" = "Lippu: %@";
+"%@ from %@" = "%1$@, pohja: %2$@";
 "%@ has no synced progress yet. Scores appear after their next session while signed in." = "Käyttäjällä %@ ei ole vielä synkronoitua edistymistä. Pisteet näkyvät hänen seuraavan kirjautuneena tehdyn harjoituksensa jälkeen.";
 "%@ invited you. %lld of %lld members." = "%@ kutsui sinut. %lld/%lld jäsentä.";
 "%@ nudged you to study today." = "%@ muistutti sinua opiskelemaan tänään.";
@@ -18,6 +19,7 @@
 "%@ sent you a high five." = "%@ lähetti sinulle yläfemman.";
 "%@ to %@" = "%@ → %@";
 "%@ wants to race you this week." = "%@ haastaa sinut kisaan tällä viikolla.";
+"%@ · %@" = "%@ · %@";
 "%@%@%@" = "%@%@%@";
 "%@, %@" = "%@, %@";
 "%@, %@%@" = "%@, %@%@";
@@ -68,6 +70,7 @@
 "%lld questions." = "%lld kysymystä.";
 "%lld review" = "%lld kertausta";
 "%lld review · %lld new" = "%lld kertausta · %lld uutta";
+"%lld sources" = "%lld lähdettä";
 "%lld started · %lld mastered" = "%lld aloitettu · %lld hallussa";
 "%lld this week" = "%lld tällä viikolla";
 "%lld today" = "%lld tänään";
@@ -121,6 +124,8 @@
 "Ancient Greek alphabet" = "Muinaiskreikan aakkoset";
 "Animals" = "Eläimet";
 "Another round" = "Uusi kierros";
+"Answer: %@" = "Vastaus: %@";
+"Answer: %@ %@" = "Vastaus: %@ %@";
 "Answers shown. New puzzle tomorrow." = "Vastaukset näytetty. Uusi tehtävä huomenna.";
 "Anyone who opens this link can join %@." = "Kuka tahansa linkin avaava voi liittyä ryhmään %@.";
 "Apple didn't return a sign-in token. Try again, or use your email below." = "Apple ei palauttanut kirjautumistunnusta. Yritä uudelleen tai käytä alla sähköpostiasi.";
@@ -145,6 +150,7 @@
 "Buy once" = "Osta kerran";
 "Cancel" = "Kumoa";
 "Canon" = "Kaanon";
+"Cards recorded: %lld. %lld of %lld atoms started, %lld mastered." = "Tallennetut kortit: %lld. %lld/%lld atomia aloitettu, %lld hallussa.";
 "Change the weekly goal" = "Muuta viikkotavoitetta";
 "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings." = "Veloitetaan Apple-tililtäsi. Uusiutuu automaattisesti, ellei sitä peruta Asetuksissa vähintään 24 tuntia ennen kauden päättymistä.";
 "Check" = "Tarkista";
@@ -223,6 +229,7 @@
 "Enter a parent's email. We ask them to approve saving your progress." = "Anna vanhemman sähköposti. Pyydämme häntä hyväksymään edistymisesi tallentamisen.";
 "Every card anyone in the group studies counts toward the goal." = "Jokainen kortti, jota kuka tahansa ryhmässä opiskelee, lasketaan tavoitteeseen.";
 "Every card is scheduled ahead and today's new atoms are done. Read any atom from the deck, or pick another branch." = "Kaikki kortit on ajoitettu eteenpäin ja tämän päivän uudet atomit on tehty. Lue mikä tahansa atomi pakasta tai valitse toinen haara.";
+"Every idea across seven branches." = "Jokainen idea seitsemässä haarassa.";
 "Every word of two or more syllables marks its stress with an accent." = "Jokaisessa vähintään kaksitavuisessa sanassa paino merkitään aksentilla.";
 "Everyday text leaves out the vowel signs. Children's books and prayer books print them." = "Arkiteksteistä vokaalimerkit jätetään pois. Lastenkirjoissa ja rukouskirjoissa ne painetaan.";
 "Explore" = "Tutki";
@@ -272,6 +279,7 @@
 "Hint" = "Vihje";
 "Hiragana" = "Hiragana";
 "Hiragana and katakana" = "Hiragana ja katakana";
+"How well did you recall it" = "Kuinka hyvin muistit sen";
 "I already speak" = "Puhun jo";
 "I do not know" = "En tiedä";
 "I have a code" = "Minulla on koodi";
@@ -345,6 +353,7 @@
 "Manage subscription" = "Hallitse tilausta";
 "Manage your subscription" = "Hallitse tilaustasi";
 "Manuscripts follow no fixed spelling." = "Käsikirjoituksissa ei ole vakiintunutta oikeinkirjoitusta.";
+"Mastery %lld percent" = "Hallinta %lld prosenttia";
 "Mathematics" = "Matematiikka";
 "Means %@, looks like English %@" = "Tarkoittaa %@, näyttää englannin sanalta %@";
 "Mediterranean" = "Välimeren";
@@ -360,6 +369,7 @@
 "More languages · 29" = "Lisää kieliä · 29";
 "Move to bottom" = "Siirrä alimmaiseksi";
 "Move to top" = "Siirrä ylimmäiseksi";
+"NEW" = "UUSI";
 "Nailed it!" = "Naulan kantaan!";
 "Name others see" = "Muille näkyvä nimi";
 "Nature" = "Luonto";
@@ -377,6 +387,7 @@
 "No letters due" = "Ei kerrattavia kirjaimia";
 "No mistakes. New board tomorrow." = "Ei virheitä. Uusi ruudukko huomenna.";
 "No progress synced yet" = "Edistymistä ei ole vielä synkronoitu";
+"No results" = "Ei tuloksia";
 "No stations found." = "Asemia ei löytynyt.";
 "No stations in this branch." = "Tässä haarassa ei ole asemia.";
 "No subjects yet." = "Ei vielä aiheita.";
@@ -388,6 +399,7 @@
 "Not quite" = "Ei aivan";
 "Not quite. " = "Ei aivan. ";
 "Nothing due" = "Ei kerrattavaa";
+"Nothing due in %@" = "Ei kerrattavaa: %@";
 "Nothing due. Every card is scheduled ahead and today's new atoms are done." = "Ei kerrattavaa. Kaikki kortit on ajoitettu eteenpäin ja tämän päivän uudet atomit on tehty.";
 "Nothing to draw yet." = "Ei vielä piirrettävää.";
 "Notifications" = "Ilmoitukset";
@@ -459,6 +471,7 @@
 "Polingual student plan" = "Polingualin opiskelijatilaus";
 "Practice with ${applicationName}" = "Harjoittele sovelluksella ${applicationName}";
 "Preparing today's route" = "Valmistellaan päivän reittiä";
+"Prerequisites: %lld" = "Esitiedot: %lld";
 "Present tense" = "Preesens";
 "Privacy" = "Tietosuoja";
 "Privacy and data" = "Tietosuoja ja tiedot";
@@ -468,6 +481,7 @@
 "Progress syncs across iPhone, iPad and Mac" = "Edistyminen synkronoituu iPhonen, iPadin ja Macin välillä";
 "Quest done. New one Monday." = "Tehtävä suoritettu. Uusi maanantaina.";
 "Question %lld · level %@" = "Kysymys %lld · taso %@";
+"REVIEW" = "KERTAUS";
 "Race you" = "Haasta kisaan";
 "Rate %@ on the App Store" = "Arvioi %@ App Storessa";
 "Reactions are presets. Blocking someone stops them." = "Reaktiot ovat valmiita vaihtoehtoja. Estäminen lopettaa ne.";
@@ -527,6 +541,7 @@
 "See progress" = "Katso edistyminen";
 "See you tomorrow." = "Nähdään huomenna.";
 "Send" = "Lähetä";
+"Send a reaction" = "Lähetä reaktio";
 "Send a test reminder in 10 seconds" = "Lähetä testimuistutus 10 sekunnin kuluttua";
 "Send code" = "Lähetä koodi";
 "Send feedback" = "Lähetä palautetta";
@@ -555,6 +570,7 @@
 "Share your score" = "Jaa pisteesi";
 "Share your streak" = "Jaa putkesi";
 "Share your words" = "Jaa sanasi";
+"Shared" = "Jaetut";
 "Shared goal" = "Yhteinen tavoite";
 "Shared roots in this set · %lld words" = "Yhteiset juuret tässä setissä · %lld sanaa";
 "Short vowels usually go unwritten." = "Lyhyitä vokaaleja ei yleensä kirjoiteta.";
@@ -609,6 +625,7 @@
 "Stations did not load. Retry" = "Asemat eivät latautuneet. Yritä uudelleen";
 "Stations from radio-browser.info." = "Asemat palvelusta radio-browser.info.";
 "Status" = "Tila";
+"Step %lld is wrong. %@" = "Vaihe %lld on väärin. %@";
 "Stop" = "Pysäytä";
 "Stop %@" = "Pysäytä %@";
 "Streak" = "Putki";
@@ -622,6 +639,7 @@
 "Study a few more words and tomorrow's Mini opens." = "Opiskele vielä muutama sana, niin huomisen Mini aukeaa.";
 "Study a few more words and tomorrow's Word Groups opens." = "Opiskele vielä muutama sana, niin huomisen Sanaryhmät aukeavat.";
 "Study a few words in Learn first." = "Opiskele ensin muutama sana Opi-osiossa.";
+"Study today (%lld)" = "Opiskele tänään (%lld)";
 "Study today to count day 1." = "Opiskele tänään, niin päivä 1 lasketaan.";
 "Subject strength" = "Aiheiden vahvuus";
 "Subjects" = "Aiheet";
@@ -693,6 +711,7 @@
 "Translation isn't available for %@ on this device." = "Käännös ei ole saatavilla kielelle %@ tällä laitteella.";
 "Trial ending" = "Kokeilu päättymässä";
 "Try again" = "Yritä uudelleen";
+"Try another word." = "Kokeile toista sanaa.";
 "Turn on reminders" = "Laita muistutukset päälle";
 "Type instead" = "Kirjoita mieluummin";
 "Type what you hear" = "Kirjoita mitä kuulet";
@@ -760,6 +779,7 @@
 "Your %lld-day streak ends at midnight" = "%lld päivän putkesi päättyy keskiyöllä";
 "Your age range" = "Ikäryhmäsi";
 "Your answer" = "Vastauksesi";
+"Your day" = "Päiväsi";
 "Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync." = "Kielijärjestelmäsi eivät tavoittaneet palvelinta kolmen yrityksen jälkeen. Ne on tallennettu tälle laitteelle; seuraava muutos yrittää synkronointia uudelleen.";
 "Your languages" = "Kielesi";
 "Your name" = "Nimesi";
@@ -781,6 +801,9 @@
 "calculate" = "laske";
 "common" = "yhteinen";
 "conjugate" = "taivuta";
+"done today" = "tehty tänään";
+"due now" = "erääntyneet";
+"entropy, symmetry, memory" = "entropia, symmetria, muisti";
 "false friend" = "väärä ystävä";
 "feminine" = "feminiini";
 "fill the gap" = "täydennä aukko";
@@ -798,6 +821,7 @@
 "new character" = "uusi merkki";
 "new letter" = "uusi kirjain";
 "new sound" = "uusi äänne";
+"new today" = "uudet tänään";
 "new word" = "uusi sana";
 "night" = "yö";
 "once" = "kerran";
@@ -826,6 +850,7 @@
 "word mastered" = "sana hallussa";
 "words mastered" = "sanaa hallussa";
 "you@school.example" = "you@school.example";
+"·" = "·";
 "сто" = "сто";
 "מאה" = "מאה";
 "शतम्" = "शतम्";
