@@ -39,7 +39,7 @@ test("tiles carry the language code, the word and an ltr reading", () => {
 });
 
 test("no page uses the old green serif theme", () => {
-  const sources = files(APP).filter((f) => /\.(tsx?|css)$/.test(f) && !f.includes(`${join("app", "app")}`) && !f.includes(join("app", "brand")));
+  const sources = files(APP).filter((f) => /\.(tsx?|css)$/.test(f) && !f.includes(join("(site)", "app")) && !f.includes(join("(site)", "brand")));
   for (const f of sources) {
     const src = readFileSync(f, "utf8");
     assert.ok(!src.includes("legal.module.css"), `${f} imports legal.module.css`);
@@ -52,6 +52,16 @@ test("lists with a class have no bullets and the css uses logical sides", () => 
   const css = readFileSync(join(APP, "site.module.css"), "utf8");
   assert.match(css, /ul:not\(\[class\]\)[^{]*\{[^}]*list-style:disc/);
   assert.ok(!/\b(left|right):|padding-left|padding-right|margin-left|margin-right|text-align:(left|right)/.test(css), "physical sides in site.module.css");
-  const word = readFileSync(join(APP, "word/word.module.css"), "utf8");
+  const word = readFileSync(join(APP, "(site)/word/word.module.css"), "utf8");
   assert.ok(!/[^-]serif/.test(word.replace(/sans-serif/g, "")), "serif fallback in word.module.css");
+});
+
+test("unmatched urls get the branded global 404", async () => {
+  const { default: GlobalNotFound } = await import("../app/global-not-found");
+  const html = renderToStaticMarkup(<GlobalNotFound />);
+  assert.match(html, /<html lang="en">/);
+  assert.match(html, /Page not found/);
+  assert.match(html, /mark-pl\.svg/);
+  const config = readFileSync(join(__dirname, "../../next.config.js"), "utf8");
+  assert.match(config, /globalNotFound: true/);
 });

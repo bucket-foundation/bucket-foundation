@@ -17,7 +17,7 @@ const nextConfig = {
     return [{ source: "/word/:id(photon.*)", destination: "/photon/:id", permanent: true }];
   },
   reactStrictMode: true,
-  experimental: { externalDir: true },
+  experimental: { externalDir: true, globalNotFound: true },
   outputFileTracingIncludes: {
     "/api/photon/**": ["./data/photons.json.gz"],
     "/photon/**": ["./data/photons.json.gz"],
