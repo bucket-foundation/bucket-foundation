@@ -1,4 +1,4 @@
-import json, re, sys, unicodedata, zlib
+import json, os, re, sys, unicodedata, zlib
 from collections import defaultdict
 from pathlib import Path
 
@@ -71,6 +71,14 @@ def short_gloss(glosses):
     return "; ".join(out)
 
 
+def gloss_key(g):
+    g = re.sub(r"\s*\([^)]*\)", "", g).strip().lower()
+    for p in ("to ", "a ", "an ", "the "):
+        if g.startswith(p):
+            g = g[len(p):]
+    return g
+
+
 def romans(lang, rs):
     out = []
     for r in rs:
@@ -120,7 +128,7 @@ def load_english(path, en_rank):
     return fwd, forms, heads
 
 
-def build(dl, out, budget, corpus):
+def build(dl, out, budget, corpus, order=None, dump=None, rev_rerank=True):
     out.mkdir(parents=True, exist_ok=True)
     en_rank = freq_list("en", 60000)
     fwd, en_forms, heads = load_english(dl / "en.jsonl", en_rank)
@@ -194,9 +202,16 @@ def build(dl, out, budget, corpus):
         lines = []
         size = 0
         chosen = set()
+        ranked = (order or {}).get(lang, {})
+        dumped = []
         for k in sorted(entries, key=score):
             e = entries[k]
-            eng = [p[1] for p in sorted(set(inv.get(k, [])))][:4]
+            full = [p[1] for p in sorted(set(inv.get(k, [])))]
+            eng = ranked[k][:4] if k in ranked else full[:4]
+            if dump is not None:
+                dumped.append({"k": k, "w": e["w"], "e": full[:16], "g": e["g"]})
+            if not eng and not e["g"]:
+                eng = full[:1]
             if not eng and not e["g"]:
                 continue
             g = "" if eng else "; ".join(e["g"].split("; ")[:3])
@@ -221,9 +236,21 @@ def build(dl, out, budget, corpus):
             if fsize > form_budget:
                 break
             lines.append(line)
+        by_gloss = defaultdict(list)
+        if order is not None or dump is not None:
+            for k in sorted(chosen, key=score):
+                for sense in entries[k]["g"].split("; ")[:2]:
+                    by_gloss[gloss_key(sense)].append(entries[k]["w"])
         rev = []
         for e, ws in sorted(fwd[lang].items(), key=lambda x: heads[x[0]]):
+            if dump is not None:
+                extra = [w for w in by_gloss.get(e.lower(), []) if w not in ws]
+                dumped.append({"k": "=" + e, "w": e, "e": (ws + extra)[:16], "g": ""})
+            if rev_rerank:
+                ws = ranked.get("=" + e, ws)
             rev.append(f"={e}\t{'|'.join(ws[:3])}")
+        if dump is not None:
+            dump[lang] = [d for d in dumped if d["k"].startswith("=")] + [d for d in dumped if not d["k"].startswith("=")][:len(lines) + 2000]
         write(out / f"{lang}.tsv", lines + rev)
         report[lang] = (len(lines), len(rev))
         print(lang, len(lines), len(rev), file=sys.stderr)
@@ -239,4 +266,9 @@ def write(path, lines):
 
 
 if __name__ == "__main__":
-    build(Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3]), Path(sys.argv[4]))
+    order = json.load(open(sys.argv[5])) if len(sys.argv) > 5 and sys.argv[5] != "-" else None
+    rev_rerank = os.environ.get("REV_RERANK", "1") == "1"
+    dump = {} if len(sys.argv) > 6 else None
+    build(Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3]), Path(sys.argv[4]), order, dump, rev_rerank)
+    if dump is not None:
+        json.dump(dump, open(sys.argv[6], "w"), ensure_ascii=False)

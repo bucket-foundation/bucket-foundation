@@ -35,6 +35,7 @@ struct TranslateCard: View {
     @State private var missedVoice = false
     @State private var speechDenied = false
     @State private var answer: TranslateAnswer?
+    @State private var loadingLexicon = false
     @FocusState private var focused: Bool
 
     nonisolated static let lexicons = LexiconShelf()
@@ -315,9 +316,12 @@ struct TranslateCard: View {
         guard !Task.isCancelled else { return }
         let order = from.map { [$0] } ?? ([guess] + langs.filter { $0 != guess })
         let targets = shown
+        let warm = Set(TranslateCard.lexicons.loaded)
+        loadingLexicon = (order + targets).contains { !warm.contains($0) }
         let result = await Task.detached(priority: .userInitiated) {
             TranslateEngine.answer(q, from: order, to: targets, corpus: corpus, shelf: TranslateCard.lexicons)
         }.value
+        loadingLexicon = false
         guard !Task.isCancelled, q == active else { return }
         answer = result
     }
@@ -405,6 +409,11 @@ struct TranslateCard: View {
             }
             .opacity(speechDenied && !listening ? 1 : 0)
             .allowsHitTesting(speechDenied && !listening)
+            Text("Loading dictionary…")
+                .font(.subheadline)
+                .foregroundStyle(soft)
+                .opacity(loadingLexicon && !listening && !missedVoice && !speechDenied ? 1 : 0)
+                .accessibilityHidden(!loadingLexicon)
         }
         .lineLimit(1)
         .minimumScaleFactor(0.8)
@@ -506,6 +515,6 @@ struct TranslateCredit: View {
     var soft = Palette.muted
 
     var body: some View {
-        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY.").font(.caption2).foregroundStyle(soft)
+        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY 2.0 FR.").font(.caption2).foregroundStyle(soft)
     }
 }
