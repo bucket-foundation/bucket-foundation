@@ -1,0 +1,71 @@
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+export const CORPUS_DIR = join(HERE, "../../apple/Shared/Corpus");
+export const OUT_FILE = join(HERE, "../src/data/words.json");
+
+const read = (dir, name) => JSON.parse(readFileSync(join(dir, name), "utf8"));
+
+export function cleanNote(note) {
+  if (!note) return undefined;
+  const text = note
+    .replace(/\s*[—–]\s*/g, ", ")
+    .split(/(?<=\.)\s+/)
+    .filter((s) => !/canon-tier/i.test(s))
+    .join(" ")
+    .trim();
+  return text || undefined;
+}
+
+export function rootClusters(concept) {
+  if (!concept?.clusters) return [];
+  const seen = new Set();
+  const out = [];
+  for (const c of concept.clusters) {
+    if (c.root.startsWith("*-") || c.langs.length < 2) continue;
+    const key = [...c.langs].sort().join(",");
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({ root: c.root, langs: c.langs });
+    if (out.length === 4) break;
+  }
+  return out;
+}
+
+export function buildWords(dir = CORPUS_DIR) {
+  const core = read(dir, "lang-core.json");
+  const cognates = read(dir, "lang-cognates.json").concepts;
+  const layers = read(dir, "lang-layers.json");
+  const order = [...core.meta.languages, ...(core.meta.bonusLanguages || []), ...(core.meta.extraLanguages || [])];
+  return core.atoms.map((atom) => {
+    const concept = cognates[atom.id];
+    const readings = layers.readings[atom.id] || {};
+    const forms = order
+      .filter((lang) => atom.forms[lang]?.word)
+      .map((lang) => {
+        const r = readings[lang] || {};
+        const c = concept?.forms?.[lang];
+        const ipa = (r.ipa || atom.forms[lang].ipa || (c?.via === "surface" ? c.ipa : "") || "").replace(/^[[/]|[\]/]$/g, "");
+        const form = { lang, word: atom.forms[lang].word };
+        if (ipa) form.ipa = ipa;
+        if (r.roman) form.roman = r.roman;
+        if (r.kana) form.kana = r.kana;
+        return form;
+      });
+    const word = { slug: atom.id, en: atom.forms.en.word, gloss: atom.gloss, category: atom.category, tier: atom.tier, forms };
+    const note = cleanNote(atom.note);
+    if (note) word.note = note;
+    const roots = rootClusters(concept);
+    if (roots.length) word.roots = roots;
+    return word;
+  });
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const words = buildWords();
+  mkdirSync(dirname(OUT_FILE), { recursive: true });
+  writeFileSync(OUT_FILE, JSON.stringify(words) + "\n");
+  console.log(`wrote ${words.length} words to ${OUT_FILE}`);
+}
