@@ -109,7 +109,7 @@ body {
 
 .primary {
   padding: 11px 22px;
-  background: radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--stone-patina) 70%, white), var(--stone-patina) 55%, color-mix(in srgb, var(--stone-patina) 70%, black));
+  background: radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--stone-patina) 85%, white), var(--stone-patina) 55%, color-mix(in srgb, var(--stone-patina) 70%, black));
   color: var(--stone-patina-ink);
 }
 
@@ -158,9 +158,42 @@ body {
 .ghost:focus-visible,
 .choice:focus-visible,
 .quiz-kinds a:focus-visible,
-.side nav a:focus-visible {
-  outline: 3px solid var(--stone-gold);
-  outline-offset: 4px;
+.side nav a:focus-visible,
+.go-back:focus-visible {
+  outline: 3px solid var(--stone-ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 7px var(--stone-gold);
+}
+
+.go-back {
+  border: 0;
+  padding: 5px 11px;
+  border-radius: var(--stone-radius-chip);
+  background: radial-gradient(ellipse at 30% 20%, var(--stone-face-hi), var(--stone-face) 60%, var(--stone-face-lo));
+  color: var(--stone-ink-2);
+  box-shadow: var(--stone-bevel), 0 3px 0 var(--stone-base);
+  transition:
+    transform var(--stone-press-ms),
+    box-shadow var(--stone-press-ms);
+}
+
+.go-back:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: var(--stone-pressed);
+}
+
+.go-back:disabled {
+  opacity: 1;
+  color: var(--stone-ink-3);
+  background: var(--stone-groove);
+  box-shadow: var(--stone-groove-shadow);
+}
+
+.choice.dim {
+  opacity: 1;
+  color: var(--stone-ink-3);
+  background: var(--stone-groove);
+  box-shadow: var(--stone-groove-shadow);
 }
 
 .choice.right {
@@ -210,8 +243,9 @@ body {
   font-family: var(--stone-font-etch);
 }
 
-.feedback b.ok {
-  color: var(--stone-ink);
+.feedback b.ok,
+.after-block b.ok {
+  color: var(--stone-gold-ink);
   background: linear-gradient(var(--stone-gold-hi), var(--stone-gold));
   padding: 1px 8px;
   border-radius: var(--stone-radius-chip);
