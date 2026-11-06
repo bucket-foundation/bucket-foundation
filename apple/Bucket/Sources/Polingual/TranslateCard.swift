@@ -299,6 +299,6 @@ struct LexiconAnswerView: View {
 
 struct TranslateCredit: View {
     var body: some View {
-        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY.").font(.caption2).foregroundStyle(Palette.muted)
+        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY 2.0 FR.").font(.caption2).foregroundStyle(Palette.muted)
     }
 }

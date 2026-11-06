@@ -115,8 +115,18 @@ def regression_table():
         rows.append(f"{label} & {nb} & {100 * rb / nb:.1f} & {100 * ra / na:.1f} \\\\")
     write("regression.tex", rows)
     rr = load("rerank_report.json")
+    rows = []
+    tot = [0, 0, 0, 0, 0]
+    for lang, v in rr["per_language"].items():
+        o = v.get("odd")
+        if not o:
+            continue
+        rows.append(f"{lang} & {o['n']} & {100 * o['first_before']:.1f} & {100 * o['first_after']:.1f} & {100 * (o['first_after'] - o['first_before']):+.1f} & {100 * o['any_before']:.1f} & {100 * o['any_after']:.1f} \\\\")
+    write("heldout_lang.tex", rows)
+    a = load("audit_report.json")
+    write("audit.tex", [f"Frequency order & {a['n']} & {a['before_right']} \\\\", f"Re-ranked & {a['n']} & {a['after_right']} \\\\"])
     tb, ta = rr["test_baseline"], rr["test_rerank"]
-    write("heldout.tex", [f"Any shown sense & {100 * tb[0]:.1f} & {100 * ta[0]:.1f} \\\\", f"First shown sense & {100 * tb[2]:.1f} & {100 * ta[2]:.1f} \\\\"])
+    write("heldout.tex", [f"First shown sense & {100 * tb[2]:.1f} & {100 * ta[2]:.1f} \\\\", f"Any shown sense, longer answers & {100 * tb[0]:.1f} & {100 * ta[0]:.1f} \\\\"])
 
 
 def main():

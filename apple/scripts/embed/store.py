@@ -21,7 +21,7 @@ def main(dest):
     (dest / "reports").mkdir(exist_ok=True)
     for f in ["script_cnn.pt", "joint_proj.pt"]:
         shutil.copy2(VEC / f, dest / "models" / f)
-    for f in ["script_report.json", "phonetic_report.json", "joint_report.json", "rerank_report.json", "regression_report.json"]:
+    for f in ["script_report.json", "phonetic_report.json", "joint_report.json", "rerank_report.json", "regression_report.json", "audit_report.json"]:
         if (VEC / f).exists():
             shutil.copy2(VEC / f, dest / "reports" / f)
     shutil.copy2(Path(__file__).with_name("load_pgvector.py"), dest / "load_pgvector.py")
@@ -35,6 +35,9 @@ def main(dest):
                    "joint": "linear projection of the four, InfoNCE on Wiktionary translation pairs"},
         "weights": json.load(open(VEC / "joint_report.json"))["weights"],
     }
+    import hashlib
+    manifest["sha256"] = {f"reports/{f.name}": hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted((dest / "reports").glob("*.json"))}
+    manifest["models"]["meaning_revision"] = "836121a0533e5664b21c7aacc5d22951f2b8b25b"
     json.dump(manifest, open(dest / "manifest.json", "w"), indent=1)
     shutil.copy2(Path(__file__).with_name("DATASET.md"), dest / "README.md")
     print(dest, sum(counts.values()))

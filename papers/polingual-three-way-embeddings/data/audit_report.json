@@ -1,0 +1,812 @@
+{
+ "kind": "model audit by Claude Opus 5.5, not a human audit",
+ "rule": "first target word judged against the most common Wiktionary sense of the English word and its Tatoeba usage",
+ "population": "en>xx first answers for 388 common and polysemous English words that differ between the frequency order and the re-ranked order",
+ "differing": 1488,
+ "total": 4848,
+ "n": 100,
+ "before_right": 60,
+ "after_right": 91,
+ "items": [
+  {
+   "lang": "ar",
+   "english": "hour",
+   "before": "سَاعَة",
+   "after": "ساعة",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ja",
+   "english": "concrete",
+   "before": "実際の",
+   "after": "コンクリート",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "fr",
+   "english": "opposite",
+   "before": "opposé",
+   "after": "contraire",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "it",
+   "english": "cream",
+   "before": "panna",
+   "after": "crema",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fi",
+   "english": "far",
+   "before": "äärimmäinen",
+   "after": "pitkälle",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "ta",
+   "english": "here",
+   "before": "இங்கே",
+   "after": "இங்கு",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ru",
+   "english": "square",
+   "before": "угольник",
+   "after": "площадь",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "de",
+   "english": "pitch",
+   "before": "Harz",
+   "after": "Pech",
+   "before_right": false,
+   "after_right": false
+  },
+  {
+   "lang": "he",
+   "english": "south",
+   "before": "דָּרוֹם",
+   "after": "דרום",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fa",
+   "english": "know",
+   "before": "شناختن",
+   "after": "دانستن",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "he",
+   "english": "day",
+   "before": "יְמָמָה",
+   "after": "יוֹם",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "it",
+   "english": "lock",
+   "before": "restare immobile",
+   "after": "serratura",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "pl",
+   "english": "bow",
+   "before": "smyczek",
+   "after": "łuk",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "he",
+   "english": "most",
+   "before": "הכי",
+   "after": "ביותר",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "hi",
+   "english": "will",
+   "before": "आशा",
+   "after": "इच्छा",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "vi",
+   "english": "come",
+   "before": "lại",
+   "after": "đến",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "sv",
+   "english": "stem",
+   "before": "gren",
+   "after": "stam",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "vi",
+   "english": "opposite",
+   "before": "trái ngược",
+   "after": "ngược",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "sa",
+   "english": "low",
+   "before": "अधर",
+   "after": "नीचै",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "es",
+   "english": "play",
+   "before": "hacerse el/la",
+   "after": "jugar",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "it",
+   "english": "great",
+   "before": "grandioso",
+   "after": "grande",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "es",
+   "english": "why",
+   "before": "por qué",
+   "after": "por",
+   "before_right": true,
+   "after_right": false
+  },
+  {
+   "lang": "ar",
+   "english": "concrete",
+   "before": "مَادِّيّ",
+   "after": "خرسانة",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "vi",
+   "english": "when",
+   "before": "khi nào",
+   "after": "khi",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ar",
+   "english": "god",
+   "before": "إِلٰه",
+   "after": "الله",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "nl",
+   "english": "meat",
+   "before": "substantie",
+   "after": "vlees",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "ru",
+   "english": "stone",
+   "before": "драгоценный камень",
+   "after": "камень",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "pl",
+   "english": "this",
+   "before": "ten m ta f to n ci m pl te",
+   "after": "on",
+   "before_right": false,
+   "after_right": false
+  },
+  {
+   "lang": "fa",
+   "english": "ball",
+   "before": "کُرِه",
+   "after": "توپ",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "he",
+   "english": "warm",
+   "before": "חָמִים",
+   "after": "חמים",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "pl",
+   "english": "band",
+   "before": "pasmo",
+   "after": "zespół",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "fa",
+   "english": "person",
+   "before": "شَخْص",
+   "after": "انسان",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "sa",
+   "english": "dance",
+   "before": "नटनम्",
+   "after": "नृत्यति",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ja",
+   "english": "man",
+   "before": "男性",
+   "after": "男",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "es",
+   "english": "give",
+   "before": "hundirse",
+   "after": "impartir",
+   "before_right": false,
+   "after_right": false
+  },
+  {
+   "lang": "fi",
+   "english": "line",
+   "before": "naru",
+   "after": "linja",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "fa",
+   "english": "sea",
+   "before": "دَرْیا",
+   "after": "دریا",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fa",
+   "english": "star",
+   "before": "سِتَارَه",
+   "after": "ستاره",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "pt",
+   "english": "little",
+   "before": "menor",
+   "after": "pequeno",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "nl",
+   "english": "family",
+   "before": "gezin",
+   "after": "familie",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "es",
+   "english": "over",
+   "before": "terminado",
+   "after": "sobre",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "sv",
+   "english": "second",
+   "before": "sekundant",
+   "after": "andra",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "nl",
+   "english": "like",
+   "before": "houden van",
+   "after": "graag",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fi",
+   "english": "concrete",
+   "before": "konkreettinen",
+   "after": "betoni",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "th",
+   "english": "they",
+   "before": "เขา",
+   "after": "พวกเขา",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "el",
+   "english": "well",
+   "before": "λοιπόν",
+   "after": "καλά",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "sv",
+   "english": "sage",
+   "before": "kryddsalvia",
+   "after": "salvia",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "it",
+   "english": "think",
+   "before": "credere",
+   "after": "pensare",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fi",
+   "english": "still",
+   "before": "pysäytyskuva",
+   "after": "yhä",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "ar",
+   "english": "blue",
+   "before": "أَزْرَق",
+   "after": "أزرق",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ang",
+   "english": "blue",
+   "before": "hæwen",
+   "after": "blaw",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "he",
+   "english": "inside",
+   "before": "בִּפְנִים",
+   "after": "תוך",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "he",
+   "english": "key",
+   "before": "מַפְתֵּחַ",
+   "after": "מפתח",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "he",
+   "english": "jet",
+   "before": "סִילוֹן",
+   "after": "סילון",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "grc",
+   "english": "inside",
+   "before": "ἔνδον",
+   "after": "ἔσω",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "la",
+   "english": "blue",
+   "before": "blavus",
+   "after": "caeruleus",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "ar",
+   "english": "year",
+   "before": "أَعْوَام",
+   "after": "سنة",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "cs",
+   "english": "right",
+   "before": "velmi",
+   "after": "že",
+   "before_right": false,
+   "after_right": false
+  },
+  {
+   "lang": "fr",
+   "english": "bang",
+   "before": "cogner",
+   "after": "frapper",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ar",
+   "english": "come",
+   "before": "جَاءَ",
+   "after": "جاء",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "it",
+   "english": "drink",
+   "before": "bevuta",
+   "after": "bere",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ja",
+   "english": "inside",
+   "before": "中に",
+   "after": "イン",
+   "before_right": true,
+   "after_right": false
+  },
+  {
+   "lang": "vi",
+   "english": "fast",
+   "before": "mau",
+   "after": "nhanh",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ja",
+   "english": "more",
+   "before": "よりたくさん",
+   "after": "もっと",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ar",
+   "english": "wind",
+   "before": "تَعَرَّجَ",
+   "after": "ريح",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "id",
+   "english": "old",
+   "before": "lama",
+   "after": "tua",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ta",
+   "english": "heart",
+   "before": "மனசு",
+   "after": "உள்ளம்",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ja",
+   "english": "file",
+   "before": "申請する",
+   "after": "ファイル",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "id",
+   "english": "know",
+   "before": "kenal",
+   "after": "tahu",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "sv",
+   "english": "round",
+   "before": "patron",
+   "after": "runda",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "ko",
+   "english": "blue",
+   "before": "푸르다",
+   "after": "파란색",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ko",
+   "english": "flat",
+   "before": "판판하다",
+   "after": "평평하다",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "sv",
+   "english": "you",
+   "before": "dig",
+   "after": "du",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ko",
+   "english": "hot",
+   "before": "덥다",
+   "after": "핫",
+   "before_right": true,
+   "after_right": false
+  },
+  {
+   "lang": "tr",
+   "english": "like",
+   "before": "hoşlanmak",
+   "after": "sevmek",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "pt",
+   "english": "fish",
+   "before": "pesca",
+   "after": "peixe",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "el",
+   "english": "number",
+   "before": "αριθμός",
+   "after": "νούμερο",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fr",
+   "english": "book",
+   "before": "réserver",
+   "after": "livre",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "zh",
+   "english": "take",
+   "before": "拿",
+   "after": "取",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "nl",
+   "english": "abstract",
+   "before": "essentie",
+   "after": "algemeen",
+   "before_right": false,
+   "after_right": false
+  },
+  {
+   "lang": "de",
+   "english": "heart",
+   "before": "Herzchen",
+   "after": "Herz",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "ja",
+   "english": "mark",
+   "before": "標識",
+   "after": "マーク",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ko",
+   "english": "back",
+   "before": "등",
+   "after": "뒤",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "vi",
+   "english": "prompt",
+   "before": "nhắc nhở",
+   "after": "nhắc",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fa",
+   "english": "death",
+   "before": "مَوْت",
+   "after": "مرگ",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "pt",
+   "english": "cross",
+   "before": "persignar-se",
+   "after": "cruz",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "de",
+   "english": "straight",
+   "before": "aufrecht",
+   "after": "direkt",
+   "before_right": false,
+   "after_right": false
+  },
+  {
+   "lang": "pl",
+   "english": "root",
+   "before": "pierwiastek",
+   "after": "korzeń",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "he",
+   "english": "punch",
+   "before": "מַקָּב",
+   "after": "אגרוף",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "fi",
+   "english": "race",
+   "before": "rotu",
+   "after": "kilpailla",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "cs",
+   "english": "root",
+   "before": "odmocnina",
+   "after": "kořen",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "fi",
+   "english": "wind",
+   "before": "kiemurrella",
+   "after": "tuuli",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "ko",
+   "english": "full",
+   "before": "완전하다",
+   "after": "가득",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "fi",
+   "english": "above",
+   "before": "ylle",
+   "after": "yli",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "sv",
+   "english": "concrete",
+   "before": "konkret",
+   "after": "betong",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "zh",
+   "english": "line",
+   "before": "直线 /直线",
+   "after": "行",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "ko",
+   "english": "green",
+   "before": "녹색의",
+   "after": "녹색",
+   "before_right": true,
+   "after_right": true
+  },
+  {
+   "lang": "fa",
+   "english": "light",
+   "before": "سَبُک",
+   "after": "روشن",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "pt",
+   "english": "line",
+   "before": "fio",
+   "after": "linha",
+   "before_right": false,
+   "after_right": true
+  },
+  {
+   "lang": "grc",
+   "english": "come",
+   "before": "ἀφικνέομαι",
+   "after": "ἔρχομαι",
+   "before_right": true,
+   "after_right": true
+  }
+ ]
+}

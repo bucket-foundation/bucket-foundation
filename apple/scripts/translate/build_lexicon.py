@@ -1,4 +1,4 @@
-import json, re, sys, unicodedata, zlib
+import json, os, re, sys, unicodedata, zlib
 from collections import defaultdict
 from pathlib import Path
 
@@ -128,7 +128,7 @@ def load_english(path, en_rank):
     return fwd, forms, heads
 
 
-def build(dl, out, budget, corpus, order=None, dump=None):
+def build(dl, out, budget, corpus, order=None, dump=None, rev_rerank=True):
     out.mkdir(parents=True, exist_ok=True)
     en_rank = freq_list("en", 60000)
     fwd, en_forms, heads = load_english(dl / "en.jsonl", en_rank)
@@ -246,7 +246,8 @@ def build(dl, out, budget, corpus, order=None, dump=None):
             if dump is not None:
                 extra = [w for w in by_gloss.get(e.lower(), []) if w not in ws]
                 dumped.append({"k": "=" + e, "w": e, "e": (ws + extra)[:16], "g": ""})
-            ws = ranked.get("=" + e, ws)
+            if rev_rerank:
+                ws = ranked.get("=" + e, ws)
             rev.append(f"={e}\t{'|'.join(ws[:3])}")
         if dump is not None:
             dump[lang] = [d for d in dumped if d["k"].startswith("=")] + [d for d in dumped if not d["k"].startswith("=")][:len(lines) + 2000]
@@ -266,7 +267,8 @@ def write(path, lines):
 
 if __name__ == "__main__":
     order = json.load(open(sys.argv[5])) if len(sys.argv) > 5 and sys.argv[5] != "-" else None
+    rev_rerank = os.environ.get("REV_RERANK", "1") == "1"
     dump = {} if len(sys.argv) > 6 else None
-    build(Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3]), Path(sys.argv[4]), order, dump)
+    build(Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3]), Path(sys.argv[4]), order, dump, rev_rerank)
     if dump is not None:
         json.dump(dump, open(sys.argv[6], "w"), ensure_ascii=False)

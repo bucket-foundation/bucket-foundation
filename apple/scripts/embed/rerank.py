@@ -22,9 +22,8 @@ def gloss_vectors(cand):
     strings = sorted({x for lang in LANGS for d in cand.get(lang, []) if not d["k"].startswith("=") for x in gloss_senses(d["g"])})
     if path.exists() and (OUT / "gloss_strings.json").exists() and json.load(open(OUT / "gloss_strings.json")) == strings:
         return {x: i for i, x in enumerate(strings)}, np.load(path).astype(np.float32)
-    from sentence_transformers import SentenceTransformer
-    from meaning import MODEL
-    m = SentenceTransformer(MODEL, device="cuda")
+    from meaning import model
+    m = model()
     v = m.encode([re.sub(r"\s*\([^)]*\)", "", x) or x for x in strings], batch_size=1024, normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False)
     np.save(path, v.astype(np.float16)); json.dump(strings, open(OUT / "gloss_strings.json", "w"), ensure_ascii=False)
     return {x: i for i, x in enumerate(strings)}, v.astype(np.float32)
@@ -197,7 +196,7 @@ def main():
     ok = [g for g in grid if g["dev_coverage"] >= bc - 1e-9]
     best = max(ok, key=lambda g: g["dev_first_sense"])
     rgrid = []
-    for rbeta, gamma in itertools.product([0, 0.05, 0.1], [0, 0.1, 0.2, 0.3, 0.5]):
+    for rbeta, gamma in itertools.product([0, 0.05, 0.1], [0, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0]):
         o = order(cand, tables, best["scorer"], best["beta"], best["tau"], best["rel"], best["gloss"], best["bonus"], gamma, rbeta)
         rgrid.append({"rbeta": rbeta, "gamma": gamma, "dev_rev_first": rev_accuracy(cand, o, 0)})
         print(json.dumps(rgrid[-1]), flush=True)
@@ -209,6 +208,12 @@ def main():
     best["test_rev_first_before"] = rev_accuracy(cand, None, 1)
     best["test_rev_first_after"] = rev_accuracy(cand, o, 1)
     json.dump(o, open(OUT / "order.json", "w"), ensure_ascii=False)
+    per = {}
+    for part in (0, 1):
+        b, a = simulate(cand, {}, part, True), simulate(cand, o, part, True)
+        ba, aa = simulate(cand, {}, part), simulate(cand, o, part)
+        for lang in b:
+            per.setdefault(lang, {})["even" if part == 0 else "odd"] = {"n": b[lang][0], "first_before": b[lang][2] / max(b[lang][1], 1), "first_after": a[lang][2] / max(a[lang][1], 1), "any_before": ba[lang][2] / max(ba[lang][1], 1), "any_after": aa[lang][2] / max(aa[lang][1], 1)}
     for lang, t in tables.items():
         kept = set()
         for k, xs in o[lang].items():
@@ -219,7 +224,7 @@ def main():
         t["freq_rank"] = np.array(t["freq_rank"], np.int32)
         t["kept"] = [r >= 0 for r in t["new_rank"]]
         pq.write_table(pa.table({c: (v if not isinstance(v, np.ndarray) else v.astype(np.float32)) for c, v in t.items()}), VEC / lang / "pairs.parquet")
-    json.dump({"best": best, "dev_baseline_first_sense": [bp, bc], "test_baseline": test_base, "test_rerank": test_new, "grid": grid, "rev_grid": rgrid},
+    json.dump({"best": best, "dev_baseline_first_sense": [bp, bc], "test_baseline": test_base, "test_rerank": test_new, "grid": grid, "rev_grid": rgrid, "per_language": per},
               open(VEC / "rerank_report.json", "w"), indent=1)
     print("best", best, "test", test_base, test_new)
 

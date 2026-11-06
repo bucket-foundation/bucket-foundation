@@ -4,10 +4,20 @@ from sentence_transformers import SentenceTransformer
 from common import LANGS, VEC, words
 
 MODEL = "sentence-transformers/LaBSE"
+REVISION = "836121a0533e5664b21c7aacc5d22951f2b8b25b"
+
+
+def device():
+    import torch
+    return "cuda" if torch.cuda.is_available() else "cpu"
+
+
+def model():
+    return SentenceTransformer(MODEL, revision=REVISION, device=device())
 
 
 def main():
-    m = SentenceTransformer(MODEL, device="cuda")
+    m = model()
     for lang in ["en"] + LANGS:
         out = VEC / lang / "meaning.npy"
         if out.exists() and "--force" not in sys.argv:

@@ -802,7 +802,7 @@
   "after": {
    "es": {
     "n": 7,
-    "right": 6,
+    "right": 5,
     "detail": {
      "good": [
       "bueno",
@@ -813,8 +813,8 @@
       true
      ],
      "well": [
-      "bien",
-      true
+      "bueno",
+      false
      ],
      "kind": [
       "género",
@@ -900,15 +900,15 @@
    },
    "pt": {
     "n": 9,
-    "right": 9,
+    "right": 7,
     "detail": {
      "good": [
       "bom",
       true
      ],
      "right": [
-      "direita",
-      true
+      "bem",
+      false
      ],
      "light": [
       "luz",
@@ -923,8 +923,8 @@
       true
      ],
      "mean": [
-      "significar",
-      true
+      "média",
+      false
      ],
      "bank": [
       "banco",
@@ -977,7 +977,7 @@
       true
      ],
      "run": [
-      "laufen",
+      "rennen",
       true
      ]
     }
@@ -1060,7 +1060,7 @@
    },
    "pl": {
     "n": 8,
-    "right": 8,
+    "right": 7,
     "detail": {
      "good": [
       "dobry",
@@ -1075,8 +1075,8 @@
       true
      ],
      "kind": [
-      "rodzaj",
-      true
+      "typ",
+      false
      ],
      "mean": [
       "znaczyć",
@@ -1098,7 +1098,7 @@
    },
    "fi": {
     "n": 9,
-    "right": 7,
+    "right": 8,
     "detail": {
      "good": [
       "hyvä",
@@ -1113,8 +1113,8 @@
       true
      ],
      "well": [
-      "tuota",
-      false
+      "no",
+      true
      ],
      "kind": [
       "tyyppi",
@@ -1133,7 +1133,7 @@
       true
      ],
      "run": [
-      "juoksu",
+      "juosta",
       true
      ]
     }
@@ -1265,7 +1265,7 @@
       false
      ],
      "play": [
-      "खेलना",
+      "खेल",
       false
      ],
      "run": [
@@ -1276,7 +1276,7 @@
    },
    "ja": {
     "n": 7,
-    "right": 3,
+    "right": 4,
     "detail": {
      "good": [
       "いい",
@@ -1299,8 +1299,8 @@
       false
      ],
      "play": [
-      "プレイ",
-      false
+      "遊び",
+      true
      ],
      "run": [
       "走る",
@@ -1365,7 +1365,7 @@
       true
      ],
      "light": [
-      "קלה",
+      "קל",
       false
      ],
      "well": [
@@ -1392,19 +1392,19 @@
    },
    "fa": {
     "n": 4,
-    "right": 4,
+    "right": 2,
     "detail": {
      "light": [
-      "نور",
-      true
+      "روشن",
+      false
      ],
      "well": [
       "خوب",
       true
      ],
      "kind": [
-      "مهربان",
-      true
+      "گونه",
+      false
      ],
      "play": [
       "بازی",
@@ -1444,15 +1444,15 @@
    },
    "cs": {
     "n": 8,
-    "right": 8,
+    "right": 7,
     "detail": {
      "good": [
       "dobrý",
       true
      ],
      "right": [
-      "pravý",
-      true
+      "že",
+      false
      ],
      "light": [
       "světlo",
@@ -1482,11 +1482,11 @@
    },
    "id": {
     "n": 4,
-    "right": 4,
+    "right": 3,
     "detail": {
      "light": [
-      "cahaya",
-      true
+      "ringan",
+      false
      ],
      "mean": [
       "berarti",
@@ -17433,7 +17433,7 @@
   "after": {
    "es": {
     "n": 211,
-    "right": 162,
+    "right": 164,
     "detail": {
      "what": [
       "qué",
@@ -17444,8 +17444,8 @@
       true
      ],
      "you": [
-      "te",
-      true
+      "la",
+      false
      ],
      "when": [
       "cuando",
@@ -17500,8 +17500,8 @@
       true
      ],
      "why": [
-      "por qué",
-      false
+      "por",
+      true
      ],
      "time": [
       "tiempo",
@@ -17732,8 +17732,8 @@
       true
      ],
      "old": [
-      "viejo",
-      true
+      "antiguo",
+      false
      ],
      "heavy": [
       "pesado",
@@ -17744,7 +17744,7 @@
       true
      ],
      "who": [
-      "quien",
+      "que",
       true
      ],
      "big": [
@@ -17796,7 +17796,7 @@
       false
      ],
      "hot": [
-      "caliente",
+      "cálido",
       true
      ],
      "child": [
@@ -17848,8 +17848,8 @@
       false
      ],
      "like": [
-      "al igual que",
-      false
+      "gustarle",
+      true
      ],
      "bow": [
       "arco",
@@ -17868,7 +17868,7 @@
       true
      ],
      "still": [
-      "quieto",
+      "instantánea",
       false
      ],
      "box": [
@@ -17980,7 +17980,7 @@
       true
      ],
      "square": [
-      "cuadrado",
+      "plaza",
       true
      ],
      "will": [
@@ -18064,7 +18064,7 @@
       true
      ],
      "after": [
-      "después de",
+      "tras",
       true
      ],
      "out": [
@@ -18076,8 +18076,8 @@
       true
      ],
      "south": [
-      "sud",
-      false
+      "sur",
+      true
      ],
      "silence": [
       "silencio",
@@ -18088,7 +18088,7 @@
       false
      ],
      "mass": [
-      "misa",
+      "masa",
       true
      ],
      "mint": [
@@ -18104,7 +18104,7 @@
       true
      ],
      "joint": [
-      "conjunto",
+      "junta",
       false
      ],
      "zero": [
@@ -18136,7 +18136,7 @@
       false
      ],
      "key": [
-      "clave",
+      "llave",
       true
      ],
      "this": [
@@ -18272,8 +18272,8 @@
       true
      ],
      "hold": [
-      "detentar",
-      false
+      "contener",
+      true
      ],
      "half": [
       "mitad",
@@ -18283,7 +18283,7 @@
    },
    "fr": {
     "n": 220,
-    "right": 160,
+    "right": 161,
     "detail": {
      "free": [
       "libre",
@@ -18366,7 +18366,7 @@
       true
      ],
      "work": [
-      "travail",
+      "travailler",
       true
      ],
      "number": [
@@ -18378,8 +18378,8 @@
       true
      ],
      "country": [
-      "territoire",
-      false
+      "pays",
+      true
      ],
      "see": [
       "voir",
@@ -18506,8 +18506,8 @@
       true
      ],
      "slow": [
-      "tardif",
-      false
+      "lent",
+      true
      ],
      "sand": [
       "sable",
@@ -18518,7 +18518,7 @@
       true
      ],
      "hard": [
-      "difficile",
+      "dur",
       true
      ],
      "family": [
@@ -18546,8 +18546,8 @@
       true
      ],
      "know": [
-      "savoir",
-      true
+      "connaître",
+      false
      ],
      "egg": [
       "œuf",
@@ -18642,7 +18642,7 @@
       true
      ],
      "hot": [
-      "faire chaud",
+      "bonne",
       false
      ],
      "child": [
@@ -18754,7 +18754,7 @@
       true
      ],
      "pitch": [
-      "poix",
+      "sève",
       false
      ],
      "ring": [
@@ -18770,7 +18770,7 @@
       true
      ],
      "wrong": [
-      "incorrect",
+      "erroné",
       false
      ],
      "can": [
@@ -18778,7 +18778,7 @@
       false
      ],
      "over": [
-      "terminé",
+      "fini",
       false
      ],
      "row": [
@@ -18818,7 +18818,7 @@
       false
      ],
      "cross": [
-      "croix",
+      "croiser",
       true
      ],
      "inside": [
@@ -18906,7 +18906,7 @@
       true
      ],
      "some": [
-      "quelques",
+      "quelque",
       true
      ],
      "abstract": [
@@ -19130,7 +19130,7 @@
       true
      ],
      "brown": [
-      "brun",
+      "marron",
       true
      ],
      "ball": [
@@ -19169,7 +19169,7 @@
    },
    "it": {
     "n": 207,
-    "right": 161,
+    "right": 163,
     "detail": {
      "free": [
       "libero",
@@ -19396,8 +19396,8 @@
       true
      ],
      "god": [
-      "Iddio",
-      false
+      "dio",
+      true
      ],
      "they": [
       "loro",
@@ -19432,8 +19432,8 @@
       true
      ],
      "she": [
-      "ella",
-      false
+      "lei",
+      true
      ],
      "life": [
       "vita",
@@ -19532,11 +19532,11 @@
       false
      ],
      "soft": [
-      "molle",
+      "dolce",
       false
      ],
      "morning": [
-      "mattina",
+      "mattino",
       true
      ],
      "death": [
@@ -19656,8 +19656,8 @@
       true
      ],
      "lead": [
-      "piombo",
-      true
+      "comportarsi",
+      false
      ],
      "fly": [
       "volare",
@@ -19704,7 +19704,7 @@
       true
      ],
      "round": [
-      "tornata",
+      "carica",
       false
      ],
      "race": [
@@ -19716,7 +19716,7 @@
       false
      ],
      "square": [
-      "quadrato",
+      "piazza",
       true
      ],
      "will": [
@@ -19744,7 +19744,7 @@
       false
      ],
      "slip": [
-      "crollare",
+      "calare",
       false
      ],
      "capital": [
@@ -19760,7 +19760,7 @@
       true
      ],
      "base": [
-      "basamento",
+      "basi",
       false
      ],
      "season": [
@@ -19768,8 +19768,8 @@
       true
      ],
      "some": [
-      "alquanto",
-      false
+      "alcuno",
+      true
      ],
      "next": [
       "prossimo",
@@ -19896,7 +19896,7 @@
       false
      ],
      "swallow": [
-      "assorbire",
+      "consumare",
       false
      ],
      "just": [
@@ -20003,7 +20003,7 @@
    },
    "pt": {
     "n": 218,
-    "right": 177,
+    "right": 174,
     "detail": {
      "free": [
       "livre",
@@ -20066,8 +20066,8 @@
       true
      ],
      "why": [
-      "porquê",
-      true
+      "como",
+      false
      ],
      "time": [
       "tempo",
@@ -20150,7 +20150,7 @@
       true
      ],
      "black": [
-      "negra",
+      "negro",
       true
      ],
      "warm": [
@@ -20322,7 +20322,7 @@
       true
      ],
      "who": [
-      "quem",
+      "que",
       true
      ],
      "big": [
@@ -20550,7 +20550,7 @@
       true
      ],
      "rest": [
-      "descansar",
+      "resto",
       true
      ],
      "live": [
@@ -20574,7 +20574,7 @@
       true
      ],
      "square": [
-      "quadrado",
+      "praça",
       true
      ],
      "will": [
@@ -20694,7 +20694,7 @@
       false
      ],
      "joint": [
-      "articular",
+      "junta",
       false
      ],
      "zero": [
@@ -20722,8 +20722,8 @@
       true
      ],
      "east": [
-      "leste",
-      true
+      "este",
+      false
      ],
      "key": [
       "chave",
@@ -20866,8 +20866,8 @@
       true
      ],
      "hold": [
-      "segurar",
-      true
+      "ter",
+      false
      ],
      "bang": [
       "martelar",
@@ -20881,7 +20881,7 @@
    },
    "de": {
     "n": 217,
-    "right": 157,
+    "right": 156,
     "detail": {
      "what": [
       "welcher",
@@ -20892,8 +20892,8 @@
       true
      ],
      "you": [
-      "du",
-      true
+      "dich",
+      false
      ],
      "when": [
       "wann",
@@ -20932,8 +20932,8 @@
       true
      ],
      "open": [
-      "offen",
-      true
+      "auf",
+      false
      ],
      "root": [
       "Wurzel",
@@ -21096,8 +21096,8 @@
       true
      ],
      "full": [
-      "voll",
-      true
+      "komplett",
+      false
      ],
      "feel": [
       "spüren",
@@ -21148,20 +21148,20 @@
       true
      ],
      "know": [
-      "wissen",
-      true
+      "kennen",
+      false
      ],
      "egg": [
-      "aai",
-      false
+      "Ei",
+      true
      ],
      "horse": [
       "Pferd",
       true
      ],
      "day": [
-      "auf den Tag",
-      false
+      "tag",
+      true
      ],
      "cat": [
       "Katze",
@@ -21288,8 +21288,8 @@
       true
      ],
      "tongue": [
-      "lingual",
-      false
+      "Zunge",
+      true
      ],
      "evening": [
       "Abend",
@@ -21380,7 +21380,7 @@
       false
      ],
      "rock": [
-      "schaukeln",
+      "schwanken",
       false
      ],
      "hail": [
@@ -21476,7 +21476,7 @@
       true
      ],
      "slip": [
-      "schlüpfen",
+      "herausrutschen",
       false
      ],
      "capital": [
@@ -21492,7 +21492,7 @@
       true
      ],
      "strain": [
-      "reißen",
+      "überdehnen",
       false
      ],
      "base": [
@@ -21584,7 +21584,7 @@
       false
      ],
      "zero": [
-      "null",
+      "Null",
       true
      ],
      "opposite": [
@@ -21592,19 +21592,19 @@
       true
      ],
      "shoot": [
-      "schießen",
-      true
+      "anschießen",
+      false
      ],
      "upset": [
       "nervös",
       false
      ],
      "jet": [
-      "Jett",
+      "Strahl",
       false
      ],
      "concrete": [
-      "Beton",
+      "konkret",
       true
      ],
      "east": [
@@ -21680,8 +21680,8 @@
       true
      ],
      "cream": [
-      "creme",
-      false
+      "Sahne",
+      true
      ],
      "line": [
       "Linie",
@@ -21708,7 +21708,7 @@
       true
      ],
      "above": [
-      "oben",
+      "über",
       false
      ],
      "sweet": [
@@ -21755,14 +21755,14 @@
    },
    "nl": {
     "n": 191,
-    "right": 150,
+    "right": 147,
     "detail": {
      "free": [
       "vrij",
       true
      ],
      "you": [
-      "jij",
+      "jou",
       false
      ],
      "when": [
@@ -21854,7 +21854,7 @@
       true
      ],
      "book": [
-      "boek",
+      "boeken",
       true
      ],
      "hand": [
@@ -21862,7 +21862,7 @@
       true
      ],
      "mind": [
-      "geest",
+      "verstand",
       false
      ],
      "more": [
@@ -22046,8 +22046,8 @@
       true
      ],
      "who": [
-      "wie",
-      true
+      "dat",
+      false
      ],
      "big": [
       "volwassen",
@@ -22098,8 +22098,8 @@
       true
      ],
      "child": [
-      "kleintje",
-      false
+      "kind",
+      true
      ],
      "write": [
       "schrijven",
@@ -22194,16 +22194,16 @@
       false
      ],
      "ring": [
-      "ringen",
-      true
+      "bellen",
+      false
      ],
      "rock": [
       "steen",
       true
      ],
      "wrong": [
-      "verkeerd",
-      true
+      "fout",
+      false
      ],
      "can": [
       "kan",
@@ -22230,8 +22230,8 @@
       false
      ],
      "even": [
-      "zelfs",
-      true
+      "gelijk",
+      false
      ],
      "level": [
       "niveau",
@@ -22266,7 +22266,7 @@
       true
      ],
      "square": [
-      "carré",
+      "plaats",
       false
      ],
      "will": [
@@ -22342,7 +22342,7 @@
       false
      ],
      "after": [
-      "over",
+      "na",
       true
      ],
      "out": [
@@ -22474,7 +22474,7 @@
       true
      ],
      "north": [
-      "noord",
+      "noorden",
       true
      ],
      "most": [
@@ -22525,7 +22525,7 @@
    },
    "sv": {
     "n": 175,
-    "right": 131,
+    "right": 132,
     "detail": {
      "what": [
       "vad",
@@ -22596,8 +22596,8 @@
       true
      ],
      "take": [
-      "hålla",
-      false
+      "ta",
+      true
      ],
      "green": [
       "grön",
@@ -22684,7 +22684,7 @@
       true
      ],
      "dance": [
-      "dansa",
+      "dans",
       true
      ],
      "dark": [
@@ -23064,7 +23064,7 @@
       true
      ],
      "deal": [
-      "affär",
+      "dela",
       false
      ],
      "roll": [
@@ -23104,7 +23104,7 @@
       true
      ],
      "little": [
-      "föga",
+      "ringa",
       false
      ],
      "after": [
@@ -23231,7 +23231,7 @@
    },
    "pl": {
     "n": 180,
-    "right": 127,
+    "right": 130,
     "detail": {
      "free": [
       "wolny",
@@ -23270,7 +23270,7 @@
       true
      ],
      "man": [
-      "człowiek",
+      "mężczyzna",
       true
      ],
      "open": [
@@ -23298,15 +23298,15 @@
       true
      ],
      "take": [
-      "wziąć",
-      true
+      "brać",
+      false
      ],
      "green": [
       "zielony",
       true
      ],
      "work": [
-      "praca",
+      "pracować",
       true
      ],
      "number": [
@@ -23462,8 +23462,8 @@
       true
      ],
      "god": [
-      "bóstwo",
-      false
+      "bóg",
+      true
      ],
      "they": [
       "oni",
@@ -23494,8 +23494,8 @@
       true
      ],
      "cat": [
-      "kotka",
-      false
+      "kot",
+      true
      ],
      "she": [
       "ona",
@@ -23526,7 +23526,7 @@
       true
      ],
      "who": [
-      "kto",
+      "który",
       true
      ],
      "big": [
@@ -23570,7 +23570,7 @@
       true
      ],
      "hear": [
-      "usłyszeć",
+      "słyszeć",
       true
      ],
      "tree": [
@@ -23750,8 +23750,8 @@
       true
      ],
      "round": [
-      "runda",
-      false
+      "okrągły",
+      true
      ],
      "race": [
       "rasa",
@@ -23762,8 +23762,8 @@
       true
      ],
      "square": [
-      "kwadratowy",
-      false
+      "plac",
+      true
      ],
      "behind": [
       "za",
@@ -23790,8 +23790,8 @@
       false
      ],
      "next": [
-      "następny",
-      true
+      "dalej",
+      false
      ],
      "content": [
       "treść",
@@ -23834,7 +23834,7 @@
       true
      ],
      "case": [
-      "etui",
+      "raz",
       false
      ],
      "zero": [
@@ -23874,8 +23874,8 @@
       false
      ],
      "storm": [
-      "sztorm",
-      false
+      "burza",
+      true
      ],
      "great": [
       "świetnie",
@@ -23957,10 +23957,10 @@
    },
    "fi": {
     "n": 224,
-    "right": 164,
+    "right": 162,
     "detail": {
      "what": [
-      "mitä",
+      "mikä",
       true
      ],
      "free": [
@@ -23968,7 +23968,7 @@
       true
      ],
      "you": [
-      "sinä",
+      "sinut",
       true
      ],
      "when": [
@@ -24048,7 +24048,7 @@
       true
      ],
      "work": [
-      "työ",
+      "työskennellä",
       false
      ],
      "number": [
@@ -24144,8 +24144,8 @@
       true
      ],
      "where": [
-      "missä",
-      true
+      "jossa",
+      false
      ],
      "far": [
       "pitkälle",
@@ -24536,7 +24536,7 @@
       true
      ],
      "tap": [
-      "napauttaa",
+      "avata",
       false
      ],
      "live": [
@@ -24560,8 +24560,8 @@
       true
      ],
      "square": [
-      "neliö",
-      true
+      "suorakulma",
+      false
      ],
      "will": [
       "tulla",
@@ -24684,7 +24684,7 @@
       true
      ],
      "miss": [
-      "missata",
+      "välttää",
       false
      ],
      "mass": [
@@ -24772,7 +24772,7 @@
       false
      ],
      "top": [
-      "yläosa",
+      "yläreuna",
       false
      ],
      "peel": [
@@ -24784,7 +24784,7 @@
       true
      ],
      "desert": [
-      "autiomaa",
+      "aavikko",
       true
      ],
      "cream": [
@@ -24852,14 +24852,14 @@
       false
      ],
      "half": [
-      "puoli",
+      "puolet",
       true
      ]
     }
    },
    "ru": {
     "n": 214,
-    "right": 158,
+    "right": 154,
     "detail": {
      "free": [
       "свободный",
@@ -24942,7 +24942,7 @@
       true
      ],
      "number": [
-      "число",
+      "номер",
       true
      ],
      "now": [
@@ -25090,7 +25090,7 @@
       true
      ],
      "hard": [
-      "трудный",
+      "тяжёлый",
       true
      ],
      "family": [
@@ -25126,8 +25126,8 @@
       true
      ],
      "horse": [
-      "лошадь",
-      true
+      "конь",
+      false
      ],
      "day": [
       "день",
@@ -25174,8 +25174,8 @@
       false
      ],
      "who": [
-      "кто",
-      true
+      "что",
+      false
      ],
      "big": [
       "большой",
@@ -25306,7 +25306,7 @@
       true
      ],
      "back": [
-      "зад",
+      "спина",
       false
      ],
      "set": [
@@ -25318,7 +25318,7 @@
       true
      ],
      "tip": [
-      "наконечник",
+      "кончик",
       false
      ],
      "that": [
@@ -25430,11 +25430,11 @@
       false
      ],
      "only": [
-      "единственный",
-      true
+      "но",
+      false
      ],
      "square": [
-      "квадрат",
+      "площадь",
       true
      ],
      "will": [
@@ -25442,7 +25442,7 @@
       false
      ],
      "behind": [
-      "назад",
+      "за",
       false
      ],
      "deal": [
@@ -25454,7 +25454,7 @@
       true
      ],
      "compound": [
-      "объединять",
+      "соединять",
       false
      ],
      "rush": [
@@ -25550,8 +25550,8 @@
       false
      ],
      "boot": [
-      "ботинок",
-      true
+      "бутса",
+      false
      ],
      "case": [
       "случай",
@@ -25566,8 +25566,8 @@
       true
      ],
      "rake": [
-      "сгребать",
-      true
+      "собирать",
+      false
      ],
      "jet": [
       "струя",
@@ -25646,7 +25646,7 @@
       true
      ],
      "cream": [
-      "кремовый",
+      "сливки",
       false
      ],
      "line": [
@@ -25670,8 +25670,8 @@
       false
      ],
      "most": [
-      "наиболее",
-      false
+      "самый",
+      true
      ],
      "net": [
       "сеть",
@@ -25721,7 +25721,7 @@
    },
    "el": {
     "n": 146,
-    "right": 107,
+    "right": 106,
     "detail": {
      "free": [
       "ελεύθερος",
@@ -25772,7 +25772,7 @@
       true
      ],
      "time": [
-      "χρόνος",
+      "φορά",
       true
      ],
      "take": [
@@ -25916,8 +25916,8 @@
       true
      ],
      "hard": [
-      "σκληρά",
-      true
+      "δυνατά",
+      false
      ],
      "family": [
       "οικογένεια",
@@ -26116,7 +26116,7 @@
       false
      ],
      "wrong": [
-      "λάθος",
+      "λανθασμένος",
       true
      ],
      "can": [
@@ -26160,7 +26160,7 @@
       true
      ],
      "square": [
-      "τετράγωνο",
+      "πλατεία",
       true
      ],
      "behind": [
@@ -26260,7 +26260,7 @@
       false
      ],
      "wind": [
-      "άνεμος",
+      "αέρας",
       false
      ],
      "gray": [
@@ -26311,7 +26311,7 @@
    },
    "ar": {
     "n": 132,
-    "right": 65,
+    "right": 66,
     "detail": {
      "free": [
       "حر",
@@ -26402,7 +26402,7 @@
       false
      ],
      "mind": [
-      "ذهن",
+      "عقل",
       false
      ],
      "more": [
@@ -26650,7 +26650,7 @@
       false
      ],
      "post": [
-      "بوست",
+      "بريد",
       false
      ],
      "back": [
@@ -26682,8 +26682,8 @@
       true
      ],
      "wrong": [
-      "مخطئ",
-      true
+      "خَاطِئ",
+      false
      ],
      "can": [
       "علبة",
@@ -26702,11 +26702,11 @@
       false
      ],
      "cut": [
-      "قص",
-      false
+      "قَطَعَ",
+      true
      ],
      "even": [
-      "مسطح",
+      "زوجي",
       false
      ],
      "fuck": [
@@ -26722,7 +26722,7 @@
       false
      ],
      "live": [
-      "حيي",
+      "مباشر",
       false
      ],
      "race": [
@@ -26814,8 +26814,8 @@
       false
      ],
      "line": [
-      "سَطْر",
-      false
+      "خَطّ",
+      true
      ],
      "north": [
       "شمال",
@@ -26868,7 +26868,7 @@
       false
      ],
      "long": [
-      "लंबा",
+      "लम्बा",
       false
      ],
      "fast": [
@@ -26888,7 +26888,7 @@
       false
      ],
      "man": [
-      "आदमी",
+      "पुरुष",
       false
      ],
      "open": [
@@ -27184,7 +27184,7 @@
       true
      ],
      "fly": [
-      "उड़ाना",
+      "उड़ना",
       false
      ],
      "even": [
@@ -27192,7 +27192,7 @@
       false
      ],
      "fuck": [
-      "चुदाई",
+      "चोदना",
       false
      ],
      "inside": [
@@ -27200,7 +27200,7 @@
       false
      ],
      "rest": [
-      "आराम देना",
+      "आराम करना",
       false
      ],
      "live": [
@@ -27236,7 +27236,7 @@
       false
      ],
      "after": [
-      "उपरांत",
+      "पीछे",
       false
      ],
      "south": [
@@ -27295,14 +27295,14 @@
    },
    "ja": {
     "n": 175,
-    "right": 119,
+    "right": 118,
     "detail": {
      "free": [
       "無料",
       true
      ],
      "you": [
-      "お前",
+      "君",
       false
      ],
      "when": [
@@ -27394,7 +27394,7 @@
       true
      ],
      "see": [
-      "見",
+      "見る",
       true
      ],
      "book": [
@@ -27426,7 +27426,7 @@
       true
      ],
      "drink": [
-      "飲",
+      "飲料",
       true
      ],
      "cold": [
@@ -27630,7 +27630,7 @@
       false
      ],
      "hot": [
-      "熱い",
+      "暑い",
       true
      ],
      "child": [
@@ -27650,7 +27650,7 @@
       true
      ],
      "hour": [
-      "時間",
+      "時",
       true
      ],
      "morning": [
@@ -27710,7 +27710,7 @@
       false
      ],
      "tip": [
-      "チップ",
+      "先",
       false
      ],
      "that": [
@@ -27754,7 +27754,7 @@
       true
      ],
      "cut": [
-      "カット",
+      "切る",
       false
      ],
      "even": [
@@ -27770,12 +27770,12 @@
       false
      ],
      "inside": [
-      "内側",
+      "イン",
       false
      ],
      "rest": [
-      "休み",
-      true
+      "残り",
+      false
      ],
      "tap": [
       "タップ",
@@ -27818,7 +27818,7 @@
       true
      ],
      "base": [
-      "ベース",
+      "基礎",
       false
      ],
      "season": [
@@ -27862,7 +27862,7 @@
       true
      ],
      "elder": [
-      "長者",
+      "長老",
       false
      ],
      "mass": [
@@ -27986,7 +27986,7 @@
       false
      ],
      "cover": [
-      "蓋",
+      "覆う",
       false
      ],
      "hold": [
@@ -28001,7 +28001,7 @@
    },
    "zh": {
     "n": 79,
-    "right": 50,
+    "right": 49,
     "detail": {
      "free": [
       "自由",
@@ -28072,8 +28072,8 @@
       true
      ],
      "hard": [
-      "硬",
-      false
+      "难",
+      true
      ],
      "god": [
       "神",
@@ -28188,11 +28188,11 @@
       true
      ],
      "square": [
-      "平方",
+      "广场",
       true
      ],
      "will": [
-      "将",
+      "要",
       false
      ],
      "behind": [
@@ -28212,8 +28212,8 @@
       false
      ],
      "straight": [
-      "直",
-      true
+      "正",
+      false
      ],
      "flat": [
       "平",
@@ -28240,7 +28240,7 @@
       false
      ],
      "mark": [
-      "标记",
+      "记",
       false
      ],
      "after": [
@@ -28260,7 +28260,7 @@
       false
      ],
      "mass": [
-      "批量",
+      "质量",
       false
      ],
      "shoot": [
@@ -28272,12 +28272,12 @@
       false
      ],
      "since": [
-      "以来",
+      "因为",
       false
      ],
      "just": [
-      "只",
-      true
+      "就",
+      false
      ],
      "gray": [
       "灰",
@@ -28323,7 +28323,7 @@
    },
    "ko": {
     "n": 91,
-    "right": 42,
+    "right": 43,
     "detail": {
      "free": [
       "자유적이다",
@@ -28442,8 +28442,8 @@
       true
      ],
      "milk": [
-      "우유",
-      true
+      "젖",
+      false
      ],
      "dark": [
       "어둠",
@@ -28474,8 +28474,8 @@
       false
      ],
      "word": [
-      "단어",
-      true
+      "말",
+      false
      ],
      "hard": [
       "어렵다",
@@ -28494,8 +28494,8 @@
       true
      ],
      "new": [
-      "신규",
-      false
+      "새",
+      true
      ],
      "know": [
       "알다",
@@ -28542,8 +28542,8 @@
       false
      ],
      "small": [
-      "작은",
-      true
+      "작다",
+      false
      ],
      "year": [
       "년",
@@ -28610,24 +28610,24 @@
       false
      ],
      "rest": [
-      "휴식",
-      false
+      "나머지",
+      true
      ],
      "live": [
       "살다",
       false
      ],
      "only": [
-      "고작",
-      false
+      "유일한",
+      true
      ],
      "will": [
       "-을 것이다",
       false
      ],
      "capital": [
-      "자본",
-      false
+      "수도",
+      true
      ],
      "season": [
       "시즌",
@@ -28674,7 +28674,7 @@
       false
      ],
      "north": [
-      "북쪽",
+      "북",
       false
      ],
      "most": [
@@ -28788,7 +28788,7 @@
       false
      ],
      "mind": [
-      "מוח",
+      "דעת",
       false
      ],
      "house": [
@@ -29244,7 +29244,7 @@
       false
      ],
      "desert": [
-      "עָרַק",
+      "מִדְבָּר",
       false
      ],
      "cream": [
@@ -29478,7 +29478,7 @@
       true
      ],
      "they": [
-      "آنان",
+      "ایشان",
       false
      ],
      "bad": [
@@ -29622,8 +29622,8 @@
       true
      ],
      "straight": [
-      "مستقیم",
-      false
+      "راست",
+      true
      ],
      "enough": [
       "کافی",
@@ -29678,8 +29678,8 @@
       false
      ],
      "desert": [
-      "صحرا",
-      true
+      "دشت",
+      false
      ],
      "line": [
       "خط",
@@ -29697,7 +29697,7 @@
    },
    "tr": {
     "n": 162,
-    "right": 119,
+    "right": 118,
     "detail": {
      "free": [
       "serbest",
@@ -30052,12 +30052,12 @@
       false
      ],
      "like": [
-      "beğenmek",
+      "sevmek",
       false
      ],
      "bow": [
-      "arşe",
-      false
+      "yay",
+      true
      ],
      "file": [
       "dosya",
@@ -30100,8 +30100,8 @@
       false
      ],
      "rock": [
-      "kayaç",
-      true
+      "sallamak",
+      false
      ],
      "wrong": [
       "yanlış",
@@ -30120,8 +30120,8 @@
       true
      ],
      "fly": [
-      "uçmak",
-      true
+      "gitmek",
+      false
      ],
      "cut": [
       "kesme",
@@ -30232,7 +30232,7 @@
       false
      ],
      "jet": [
-      "jet makinesi",
+      "jet motoru",
       false
      ],
      "concrete": [
@@ -30280,7 +30280,7 @@
       true
      ],
      "sage": [
-      "meryemiye",
+      "ada çayı",
       false
      ],
      "peel": [
@@ -30358,7 +30358,7 @@
       true
      ],
      "you": [
-      "ty",
+      "tebe",
       false
      ],
      "when": [
@@ -30626,7 +30626,7 @@
       true
      ],
      "bread": [
-      "chleba",
+      "chléb",
       true
      ],
      "come": [
@@ -30646,8 +30646,8 @@
       true
      ],
      "who": [
-      "kdo",
-      true
+      "který",
+      false
      ],
      "heart": [
       "srdce",
@@ -30838,7 +30838,7 @@
       true
      ],
      "only": [
-      "pouze",
+      "jen",
       true
      ],
      "square": [
@@ -30846,8 +30846,8 @@
       true
      ],
      "behind": [
-      "zpátky",
-      false
+      "za",
+      true
      ],
      "deal": [
       "obchod",
@@ -30894,7 +30894,7 @@
       false
      ],
      "south": [
-      "jižně",
+      "jih",
       true
      ],
      "miss": [
@@ -30958,7 +30958,7 @@
       true
      ],
      "cream": [
-      "krém",
+      "smetana",
       false
      ],
      "line": [
@@ -30966,7 +30966,7 @@
       false
      ],
      "north": [
-      "severně",
+      "sever",
       true
      ],
      "rent": [
@@ -30994,14 +30994,14 @@
       false
      ],
      "half": [
-      "půl",
+      "polovina",
       true
      ]
     }
    },
    "id": {
     "n": 109,
-    "right": 94,
+    "right": 92,
     "detail": {
      "you": [
       "kamu",
@@ -31080,7 +31080,7 @@
       true
      ],
      "book": [
-      "pustaka",
+      "pesan",
       false
      ],
      "house": [
@@ -31236,7 +31236,7 @@
       false
      ],
      "woman": [
-      "wanita",
+      "perempuan",
       true
      ],
      "small": [
@@ -31316,8 +31316,8 @@
       false
      ],
      "that": [
-      "itu",
-      true
+      "yang",
+      false
      ],
      "forward": [
       "maju",
@@ -31340,8 +31340,8 @@
       true
      ],
      "race": [
-      "balapan",
-      true
+      "lomba",
+      false
      ],
      "only": [
       "hanya",
@@ -31443,7 +31443,7 @@
    },
    "vi": {
     "n": 129,
-    "right": 84,
+    "right": 85,
     "detail": {
      "free": [
       "rảnh",
@@ -31534,8 +31534,8 @@
       false
      ],
      "see": [
-      "xem",
-      false
+      "thấy",
+      true
      ],
      "book": [
       "sách",
@@ -31554,7 +31554,7 @@
       true
      ],
      "skin": [
-      "da dẻ",
+      "bì",
       false
      ],
      "drink": [
@@ -31582,8 +31582,8 @@
       true
      ],
      "dance": [
-      "nhảy",
-      true
+      "vũ",
+      false
      ],
      "dark": [
       "tối",
@@ -31610,7 +31610,7 @@
       true
      ],
      "full": [
-      "đầy đủ",
+      "mãn",
       false
      ],
      "read": [
@@ -31654,11 +31654,11 @@
       true
      ],
      "she": [
-      "chị ấy",
+      "nó",
       false
      ],
      "life": [
-      "kiếp",
+      "sự sống",
       false
      ],
      "bread": [
@@ -31690,7 +31690,7 @@
       true
      ],
      "speak": [
-      "biết nói",
+      "rằng",
       false
      ],
      "woman": [
@@ -31714,8 +31714,8 @@
       true
      ],
      "son": [
-      "con trai",
-      false
+      "con",
+      true
      ],
      "hear": [
       "nghe",
@@ -31802,8 +31802,8 @@
       false
      ],
      "wrong": [
-      "không đúng",
-      false
+      "sai",
+      true
      ],
      "can": [
       "lon",
@@ -31878,8 +31878,8 @@
       true
      ],
      "south": [
-      "phía nam",
-      true
+      "nam",
+      false
      ],
      "miss": [
       "nhớ",
@@ -31965,7 +31965,7 @@
    },
    "th": {
     "n": 77,
-    "right": 47,
+    "right": 48,
     "detail": {
      "you": [
       "คุณ",
@@ -31996,7 +31996,7 @@
       false
      ],
      "man": [
-      "ชาย",
+      "ผู้ชาย",
       true
      ],
      "open": [
@@ -32032,7 +32032,7 @@
       true
      ],
      "book": [
-      "สมุด",
+      "จอง",
       false
      ],
      "house": [
@@ -32184,7 +32184,7 @@
       true
      ],
      "morning": [
-      "เช้า",
+      "ตอนเช้า",
       true
      ],
      "like": [
@@ -32224,8 +32224,8 @@
       true
      ],
      "live": [
-      "มีชีวิต",
-      false
+      "อยู่",
+      true
      ],
      "will": [
       "จะ",
@@ -32338,7 +32338,7 @@
       true
      ],
      "like": [
-      "விரும்பு",
+      "விருப்பம்",
       false
      ],
      "back": [
@@ -32365,7 +32365,7 @@
    },
    "la": {
     "n": 132,
-    "right": 75,
+    "right": 77,
     "detail": {
      "free": [
       "liber",
@@ -32380,8 +32380,8 @@
       true
      ],
      "close": [
-      "artus",
-      false
+      "claudo",
+      true
      ],
      "head": [
       "caput",
@@ -32392,11 +32392,11 @@
       true
      ],
      "fast": [
-      "rapidus",
-      false
+      "celer",
+      true
      ],
      "yes": [
-      "sic",
+      "etiam",
       false
      ],
      "love": [
@@ -32404,8 +32404,8 @@
       true
      ],
      "man": [
-      "mas",
-      false
+      "vir",
+      true
      ],
      "open": [
       "apertus",
@@ -32428,8 +32428,8 @@
       true
      ],
      "take": [
-      "accipio",
-      true
+      "capio",
+      false
      ],
      "green": [
       "viridis",
@@ -32572,7 +32572,7 @@
       true
      ],
      "they": [
-      "illi",
+      "ei",
       false
      ],
      "new": [
@@ -32640,7 +32640,7 @@
       true
      ],
      "woman": [
-      "mulier",
+      "femina",
       true
      ],
      "small": [
@@ -32668,8 +32668,8 @@
       true
      ],
      "hear": [
-      "ausculto",
-      false
+      "audio",
+      true
      ],
      "child": [
       "puer",
@@ -32716,11 +32716,11 @@
       false
      ],
      "like": [
-      "quasi",
+      "amo",
       false
      ],
      "post": [
-      "stipes",
+      "palus",
       false
      ],
      "back": [
@@ -32728,11 +32728,11 @@
       false
      ],
      "box": [
-      "buxis",
+      "buxus",
       false
      ],
      "that": [
-      "illud",
+      "ut",
       false
      ],
      "forward": [
@@ -32740,7 +32740,7 @@
       false
      ],
      "bark": [
-      "baulo",
+      "latratus",
       false
      ],
      "ring": [
@@ -32784,7 +32784,7 @@
       false
      ],
      "square": [
-      "forum",
+      "norma",
       false
      ],
      "behind": [
@@ -32880,8 +32880,8 @@
       false
      ],
      "ball": [
-      "pila",
-      true
+      "globus",
+      false
      ],
      "cover": [
       "occulo",
@@ -33138,7 +33138,7 @@
       true
      ],
      "see": [
-      "geseon",
+      "ġeseon",
       true
      ],
      "house": [
@@ -33178,8 +33178,8 @@
       true
      ],
      "she": [
-      "hio",
-      false
+      "heo",
+      true
      ],
      "life": [
       "lif",
@@ -33206,7 +33206,7 @@
       true
      ],
      "year": [
-      "winter",
+      "ġear",
       false
      ],
      "king": [
@@ -33238,8 +33238,8 @@
       false
      ],
      "live": [
-      "libban",
-      true
+      "wunian",
+      false
      ],
      "only": [
       "an",
@@ -41541,8 +41541,8 @@
       true
      ],
      "you": [
-      "te",
-      true
+      "la",
+      false
      ],
      "close": [
       "cerrar",
@@ -41709,11 +41709,11 @@
       false
      ],
      "old": [
-      "viejo",
-      true
+      "antiguo",
+      false
      ],
      "who": [
-      "quien",
+      "que",
       true
      ],
      "heart": [
@@ -41733,7 +41733,7 @@
       true
      ],
      "hot": [
-      "caliente",
+      "cálido",
       true
      ],
      "bird": [
@@ -41821,7 +41821,7 @@
       true
      ],
      "square": [
-      "cuadrado",
+      "plaza",
       true
      ],
      "will": [
@@ -41861,8 +41861,8 @@
       true
      ],
      "south": [
-      "sud",
-      false
+      "sur",
+      true
      ],
      "miss": [
       "perder",
@@ -41957,8 +41957,8 @@
       true
      ],
      "hold": [
-      "detentar",
-      false
+      "contener",
+      true
      ],
      "half": [
       "mitad",
@@ -42011,7 +42011,7 @@
       true
      ],
      "work": [
-      "travail",
+      "travailler",
       true
      ],
      "number": [
@@ -42099,7 +42099,7 @@
       true
      ],
      "hard": [
-      "difficile",
+      "dur",
       true
      ],
      "god": [
@@ -42155,7 +42155,7 @@
       true
      ],
      "hot": [
-      "faire chaud",
+      "bonne",
       false
      ],
      "bird": [
@@ -42231,7 +42231,7 @@
       false
      ],
      "over": [
-      "terminé",
+      "fini",
       false
      ],
      "lead": [
@@ -42557,8 +42557,8 @@
       true
      ],
      "god": [
-      "Iddio",
-      false
+      "dio",
+      true
      ],
      "they": [
       "loro",
@@ -42617,7 +42617,7 @@
       false
      ],
      "morning": [
-      "mattina",
+      "mattino",
       true
      ],
      "tongue": [
@@ -42681,8 +42681,8 @@
       false
      ],
      "lead": [
-      "piombo",
-      true
+      "comportarsi",
+      false
      ],
      "fit": [
       "adattare",
@@ -42705,11 +42705,11 @@
       false
      ],
      "round": [
-      "tornata",
+      "carica",
       false
      ],
      "square": [
-      "quadrato",
+      "piazza",
       true
      ],
      "will": [
@@ -42801,7 +42801,7 @@
       true
      ],
      "swallow": [
-      "assorbire",
+      "consumare",
       false
      ],
      "just": [
@@ -42860,7 +42860,7 @@
    },
    "pt": {
     "n": 115,
-    "right": 91,
+    "right": 90,
     "detail": {
      "you": [
       "você",
@@ -42947,7 +42947,7 @@
       false
      ],
      "black": [
-      "negra",
+      "negro",
       true
      ],
      "milk": [
@@ -43039,7 +43039,7 @@
       true
      ],
      "who": [
-      "quem",
+      "que",
       true
      ],
      "heart": [
@@ -43151,7 +43151,7 @@
       true
      ],
      "rest": [
-      "descansar",
+      "resto",
       true
      ],
      "round": [
@@ -43163,7 +43163,7 @@
       true
      ],
      "square": [
-      "quadrado",
+      "praça",
       true
      ],
      "will": [
@@ -43315,8 +43315,8 @@
       true
      ],
      "hold": [
-      "segurar",
-      true
+      "ter",
+      false
      ],
      "half": [
       "metade",
@@ -43326,15 +43326,15 @@
    },
    "de": {
     "n": 109,
-    "right": 78,
+    "right": 76,
     "detail": {
      "what": [
       "welcher",
       false
      ],
      "you": [
-      "du",
-      true
+      "dich",
+      false
      ],
      "close": [
       "schließen",
@@ -43357,8 +43357,8 @@
       true
      ],
      "open": [
-      "offen",
-      true
+      "auf",
+      false
      ],
      "blue": [
       "blau",
@@ -43453,8 +43453,8 @@
       true
      ],
      "full": [
-      "voll",
-      true
+      "komplett",
+      false
      ],
      "read": [
       "lesen",
@@ -43545,8 +43545,8 @@
       true
      ],
      "tongue": [
-      "lingual",
-      false
+      "Zunge",
+      true
      ],
      "evening": [
       "Abend",
@@ -43645,7 +43645,7 @@
       true
      ],
      "strain": [
-      "reißen",
+      "überdehnen",
       false
      ],
      "season": [
@@ -43685,15 +43685,15 @@
       false
      ],
      "zero": [
-      "null",
+      "Null",
       true
      ],
      "shoot": [
-      "schießen",
-      true
+      "anschießen",
+      false
      ],
      "concrete": [
-      "Beton",
+      "konkret",
       true
      ],
      "this": [
@@ -43729,8 +43729,8 @@
       true
      ],
      "cream": [
-      "creme",
-      false
+      "Sahne",
+      true
      ],
      "rent": [
       "Miete",
@@ -43741,7 +43741,7 @@
       false
      ],
      "above": [
-      "oben",
+      "über",
       false
      ],
      "sweet": [
@@ -43768,10 +43768,10 @@
    },
    "nl": {
     "n": 99,
-    "right": 76,
+    "right": 73,
     "detail": {
      "you": [
-      "jij",
+      "jou",
       false
      ],
      "close": [
@@ -43927,8 +43927,8 @@
       true
      ],
      "who": [
-      "wie",
-      true
+      "dat",
+      false
      ],
      "heart": [
       "hart",
@@ -43999,8 +43999,8 @@
       false
      ],
      "ring": [
-      "ringen",
-      true
+      "bellen",
+      false
      ],
      "can": [
       "kan",
@@ -44015,8 +44015,8 @@
       true
      ],
      "even": [
-      "zelfs",
-      true
+      "gelijk",
+      false
      ],
      "level": [
       "niveau",
@@ -44031,7 +44031,7 @@
       false
      ],
      "square": [
-      "carré",
+      "plaats",
       false
      ],
      "will": [
@@ -44170,7 +44170,7 @@
    },
    "sv": {
     "n": 93,
-    "right": 74,
+    "right": 75,
     "detail": {
      "what": [
       "vad",
@@ -44213,8 +44213,8 @@
       true
      ],
      "take": [
-      "hålla",
-      false
+      "ta",
+      true
      ],
      "work": [
       "jobba",
@@ -44453,7 +44453,7 @@
       false
      ],
      "deal": [
-      "affär",
+      "dela",
       false
      ],
      "next": [
@@ -44469,7 +44469,7 @@
       true
      ],
      "little": [
-      "föga",
+      "ringa",
       false
      ],
      "out": [
@@ -44548,7 +44548,7 @@
    },
    "pl": {
     "n": 96,
-    "right": 66,
+    "right": 68,
     "detail": {
      "you": [
       "ciebie",
@@ -44587,11 +44587,11 @@
       true
      ],
      "take": [
-      "wziąć",
-      true
+      "brać",
+      false
      ],
      "work": [
-      "praca",
+      "pracować",
       true
      ],
      "number": [
@@ -44683,8 +44683,8 @@
       true
      ],
      "god": [
-      "bóstwo",
-      false
+      "bóg",
+      true
      ],
      "they": [
       "oni",
@@ -44699,8 +44699,8 @@
       true
      ],
      "cat": [
-      "kotka",
-      false
+      "kot",
+      true
      ],
      "life": [
       "życie",
@@ -44711,7 +44711,7 @@
       true
      ],
      "who": [
-      "kto",
+      "który",
       true
      ],
      "heart": [
@@ -44823,12 +44823,12 @@
       false
      ],
      "round": [
-      "runda",
-      false
+      "okrągły",
+      true
      ],
      "square": [
-      "kwadratowy",
-      false
+      "plac",
+      true
      ],
      "capital": [
       "kapitał",
@@ -44839,8 +44839,8 @@
       true
      ],
      "next": [
-      "następny",
-      true
+      "dalej",
+      false
      ],
      "enough": [
       "dość",
@@ -44859,7 +44859,7 @@
       true
      ],
      "case": [
-      "etui",
+      "raz",
       false
      ],
      "zero": [
@@ -44938,14 +44938,14 @@
    },
    "fi": {
     "n": 116,
-    "right": 83,
+    "right": 82,
     "detail": {
      "what": [
-      "mitä",
+      "mikä",
       true
      ],
      "you": [
-      "sinä",
+      "sinut",
       true
      ],
      "close": [
@@ -44985,7 +44985,7 @@
       true
      ],
      "work": [
-      "työ",
+      "työskennellä",
       false
      ],
      "number": [
@@ -45241,7 +45241,7 @@
       true
      ],
      "tap": [
-      "napauttaa",
+      "avata",
       false
      ],
      "round": [
@@ -45253,8 +45253,8 @@
       true
      ],
      "square": [
-      "neliö",
-      true
+      "suorakulma",
+      false
      ],
      "will": [
       "tulla",
@@ -45313,7 +45313,7 @@
       true
      ],
      "miss": [
-      "missata",
+      "välttää",
       false
      ],
      "case": [
@@ -45401,14 +45401,14 @@
       false
      ],
      "half": [
-      "puoli",
+      "puolet",
       true
      ]
     }
    },
    "ru": {
     "n": 112,
-    "right": 79,
+    "right": 77,
     "detail": {
      "you": [
       "тебя",
@@ -45455,7 +45455,7 @@
       true
      ],
      "number": [
-      "число",
+      "номер",
       true
      ],
      "water": [
@@ -45539,7 +45539,7 @@
       true
      ],
      "hard": [
-      "трудный",
+      "тяжёлый",
       true
      ],
      "god": [
@@ -45559,8 +45559,8 @@
       true
      ],
      "horse": [
-      "лошадь",
-      true
+      "конь",
+      false
      ],
      "cat": [
       "кошка",
@@ -45583,8 +45583,8 @@
       true
      ],
      "who": [
-      "кто",
-      true
+      "что",
+      false
      ],
      "heart": [
       "сердце",
@@ -45651,7 +45651,7 @@
       true
      ],
      "back": [
-      "зад",
+      "спина",
       false
      ],
      "set": [
@@ -45711,7 +45711,7 @@
       false
      ],
      "square": [
-      "квадрат",
+      "площадь",
       true
      ],
      "will": [
@@ -45723,7 +45723,7 @@
       false
      ],
      "compound": [
-      "объединять",
+      "соединять",
       false
      ],
      "capital": [
@@ -45775,8 +45775,8 @@
       true
      ],
      "rake": [
-      "сгребать",
-      true
+      "собирать",
+      false
      ],
      "concrete": [
       "бетон",
@@ -45819,7 +45819,7 @@
       true
      ],
      "cream": [
-      "кремовый",
+      "сливки",
       false
      ],
      "pale": [
@@ -45831,8 +45831,8 @@
       false
      ],
      "most": [
-      "наиболее",
-      false
+      "самый",
+      true
      ],
      "above": [
       "свыше",
@@ -45862,7 +45862,7 @@
    },
    "el": {
     "n": 78,
-    "right": 56,
+    "right": 55,
     "detail": {
      "you": [
       "εσύ",
@@ -45893,7 +45893,7 @@
       true
      ],
      "time": [
-      "χρόνος",
+      "φορά",
       true
      ],
      "take": [
@@ -45977,8 +45977,8 @@
       true
      ],
      "hard": [
-      "σκληρά",
-      true
+      "δυνατά",
+      false
      ],
      "god": [
       "θεός",
@@ -46097,7 +46097,7 @@
       false
      ],
      "square": [
-      "τετράγωνο",
+      "πλατεία",
       true
      ],
      "deal": [
@@ -46359,7 +46359,7 @@
       false
      ],
      "post": [
-      "بوست",
+      "بريد",
       false
      ],
      "back": [
@@ -46391,7 +46391,7 @@
       false
      ],
      "even": [
-      "مسطح",
+      "زوجي",
       false
      ],
      "rest": [
@@ -46457,7 +46457,7 @@
       false
      ],
      "long": [
-      "लंबा",
+      "लम्बा",
       false
      ],
      "fast": [
@@ -46637,7 +46637,7 @@
       false
      ],
      "rest": [
-      "आराम देना",
+      "आराम करना",
       false
      ],
      "will": [
@@ -46692,10 +46692,10 @@
    },
    "ja": {
     "n": 87,
-    "right": 59,
+    "right": 58,
     "detail": {
      "you": [
-      "お前",
+      "君",
       false
      ],
      "close": [
@@ -46747,7 +46747,7 @@
       true
      ],
      "see": [
-      "見",
+      "見る",
       true
      ],
      "hand": [
@@ -46863,7 +46863,7 @@
       false
      ],
      "hot": [
-      "熱い",
+      "暑い",
       true
      ],
      "bird": [
@@ -46871,7 +46871,7 @@
       true
      ],
      "hour": [
-      "時間",
+      "時",
       true
      ],
      "morning": [
@@ -46935,8 +46935,8 @@
       false
      ],
      "rest": [
-      "休み",
-      true
+      "残り",
+      false
      ],
      "tap": [
       "タップ",
@@ -47031,7 +47031,7 @@
       true
      ],
      "cover": [
-      "蓋",
+      "覆う",
       false
      ],
      "hold": [
@@ -47081,8 +47081,8 @@
       true
      ],
      "hard": [
-      "硬",
-      false
+      "难",
+      true
      ],
      "god": [
       "神",
@@ -47141,11 +47141,11 @@
       false
      ],
      "square": [
-      "平方",
+      "广场",
       true
      ],
      "will": [
-      "将",
+      "要",
       false
      ],
      "deal": [
@@ -47165,7 +47165,7 @@
       true
      ],
      "mark": [
-      "标记",
+      "记",
       false
      ],
      "miss": [
@@ -47181,8 +47181,8 @@
       false
      ],
      "just": [
-      "只",
-      true
+      "就",
+      false
      ],
      "gray": [
       "灰",
@@ -47220,7 +47220,7 @@
    },
    "ko": {
     "n": 48,
-    "right": 21,
+    "right": 22,
     "detail": {
      "you": [
       "당신",
@@ -47295,8 +47295,8 @@
       false
      ],
      "milk": [
-      "우유",
-      true
+      "젖",
+      false
      ],
      "dark": [
       "어둠",
@@ -47379,16 +47379,16 @@
       false
      ],
      "rest": [
-      "휴식",
-      false
+      "나머지",
+      true
      ],
      "will": [
       "-을 것이다",
       false
      ],
      "capital": [
-      "자본",
-      false
+      "수도",
+      true
      ],
      "season": [
       "시즌",
@@ -47843,7 +47843,7 @@
       true
      ],
      "they": [
-      "آنان",
+      "ایشان",
       false
      ],
      "bad": [
@@ -47938,7 +47938,7 @@
    },
    "tr": {
     "n": 82,
-    "right": 60,
+    "right": 61,
     "detail": {
      "you": [
       "seni",
@@ -48129,8 +48129,8 @@
       false
      ],
      "bow": [
-      "arşe",
-      false
+      "yay",
+      true
      ],
      "post": [
       "posta",
@@ -48225,7 +48225,7 @@
       true
      ],
      "sage": [
-      "meryemiye",
+      "ada çayı",
       false
      ],
      "peel": [
@@ -48272,10 +48272,10 @@
    },
    "cs": {
     "n": 83,
-    "right": 63,
+    "right": 62,
     "detail": {
      "you": [
-      "ty",
+      "tebe",
       false
      ],
      "close": [
@@ -48431,8 +48431,8 @@
       true
      ],
      "who": [
-      "kdo",
-      true
+      "který",
+      false
      ],
      "heart": [
       "srdce",
@@ -48547,7 +48547,7 @@
       false
      ],
      "south": [
-      "jižně",
+      "jih",
       true
      ],
      "miss": [
@@ -48579,7 +48579,7 @@
       true
      ],
      "cream": [
-      "krém",
+      "smetana",
       false
      ],
      "rent": [
@@ -48603,14 +48603,14 @@
       false
      ],
      "half": [
-      "půl",
+      "polovina",
       true
      ]
     }
    },
    "id": {
     "n": 58,
-    "right": 51,
+    "right": 50,
     "detail": {
      "you": [
       "kamu",
@@ -48753,7 +48753,7 @@
       false
      ],
      "woman": [
-      "wanita",
+      "perempuan",
       true
      ],
      "king": [
@@ -48797,8 +48797,8 @@
       false
      ],
      "that": [
-      "itu",
-      true
+      "yang",
+      false
      ],
      "can": [
       "dapat",
@@ -48903,8 +48903,8 @@
       true
      ],
      "see": [
-      "xem",
-      false
+      "thấy",
+      true
      ],
      "hand": [
       "tay",
@@ -48915,7 +48915,7 @@
       true
      ],
      "skin": [
-      "da dẻ",
+      "bì",
       false
      ],
      "there": [
@@ -48947,7 +48947,7 @@
       true
      ],
      "full": [
-      "đầy đủ",
+      "mãn",
       false
      ],
      "read": [
@@ -48971,7 +48971,7 @@
       true
      ],
      "life": [
-      "kiếp",
+      "sự sống",
       false
      ],
      "old": [
@@ -49075,8 +49075,8 @@
       false
      ],
      "south": [
-      "phía nam",
-      true
+      "nam",
+      false
      ],
      "miss": [
       "nhớ",
@@ -49241,7 +49241,7 @@
       true
      ],
      "morning": [
-      "เช้า",
+      "ตอนเช้า",
       true
      ],
      "back": [
@@ -49345,19 +49345,19 @@
       true
      ],
      "close": [
-      "artus",
-      false
+      "claudo",
+      true
      ],
      "long": [
       "longus",
       true
      ],
      "fast": [
-      "rapidus",
-      false
+      "celer",
+      true
      ],
      "yes": [
-      "sic",
+      "etiam",
       false
      ],
      "love": [
@@ -49377,8 +49377,8 @@
       true
      ],
      "take": [
-      "accipio",
-      true
+      "capio",
+      false
      ],
      "work": [
       "laboro",
@@ -49465,7 +49465,7 @@
       true
      ],
      "they": [
-      "illi",
+      "ei",
       false
      ],
      "cat": [
@@ -49489,7 +49489,7 @@
       true
      ],
      "woman": [
-      "mulier",
+      "femina",
       true
      ],
      "king": [
@@ -49529,7 +49529,7 @@
       false
      ],
      "post": [
-      "stipes",
+      "palus",
       false
      ],
      "back": [
@@ -49537,11 +49537,11 @@
       false
      ],
      "that": [
-      "illud",
+      "ut",
       false
      ],
      "bark": [
-      "baulo",
+      "latratus",
       false
      ],
      "ring": [
@@ -49553,7 +49553,7 @@
       false
      ],
      "square": [
-      "forum",
+      "norma",
       false
      ],
      "season": [
@@ -49593,8 +49593,8 @@
       true
      ],
      "ball": [
-      "pila",
-      true
+      "globus",
+      false
      ],
      "cover": [
       "occulo",
@@ -49738,7 +49738,7 @@
       true
      ],
      "see": [
-      "geseon",
+      "ġeseon",
       true
      ],
      "house": [
