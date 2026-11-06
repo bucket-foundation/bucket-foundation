@@ -7,12 +7,13 @@ import type { QuizQuestion } from "../../../src/lib/research-os/work-quiz/types"
 import pack from "../content/pack.json" with { type: "json" };
 import type { ChatScan } from "../src/chat-sources";
 import { newDataKey } from "../src/crypto";
-import { CRITIC_DIR_ENV, criticDir, lessonFill, readCriticQuiz, recentDays, repeats } from "../src/daily-fill";
+import { CRITIC_DIR_ENV, criticDir, lessonFactId, lessonFill, readCriticQuiz, recentDays, repeats } from "../src/daily-fill";
 import { DAILY_MAX, DAILY_MIN } from "../src/daily-quiz";
 import type { Item } from "../src/grade";
 import { platformFor, type ExecResult } from "../src/platform";
 import type { QuizDeps } from "../src/notify";
 import { NOTIFY_BAD_BODY, NOTIFY_EDITED, NOTIFY_FAILED, NOTIFY_UNAVAILABLE, notifyState, settingsRoutes } from "../src/settings";
+import { hasShort, withShort } from "../src/short-fields";
 import { Store } from "../src/store";
 import { parseStamp, VERSION } from "../src/version";
 import { WorkQuizStore, workQuizRoutes, type WorkQuizOptions } from "../src/work-quiz";
@@ -164,7 +165,7 @@ describe("daily quiz fill", () => {
     const first = (await daily(routes)).body.questions.map((q) => q.id);
     expect(first).not.toContain("critic-photon-gb");
     expect(first[0]).toBe("critic-1");
-    expect(logs).toEqual([`daily quiz ${DAY}: 1 critic questions repeat the last 30 days`]);
+    expect(logs).toEqual([`daily quiz ${DAY}: 1 critic questions repeat the last 30 days`, `daily quiz ${DAY}: dropped repeat critic-photon-gb`]);
     expect((await daily(routes)).body.questions.map((q) => q.id)).toEqual(first);
   });
 
@@ -313,5 +314,50 @@ describe("settings route and version", () => {
     expect(parseStamp("e61d7174b 2026-10-08")).toEqual({ commit: "e61d7174b", date: "2026-10-08" });
     expect(parseStamp("")).toBeNull();
     expect(parseStamp(undefined)).toBeNull();
+  });
+});
+
+describe("daily quiz memory", () => {
+  const DAY1 = "2026-10-10";
+  const AT1 = Date.parse("2026-10-10T09:00:00");
+  const COPY = { id: "critic-copy", type: "estimate", prompt: "Seconds to copy 57 GB at 500 MB/s?", answer: "114", log10Tolerance: 1, limitSec: 60, explain: "57,000 over 500." };
+  const COPY2 = { ...COPY, id: "critic-copy2", prompt: "Seconds to copy 57 GB at 100 Mbit/s?", answer: "4560" };
+  const est = (id: string, prompt: string) => ({ ...CRITIC[1], id, prompt });
+
+  test("a critic question that repeats one from the last 30 days is dropped", async () => {
+    const { wq } = open();
+    plant({ day: DAY1, questions: [COPY, ...CRITIC] }, DAY1);
+    await daily(routesFor(wq, { now: () => AT1 }), DAY1);
+    plant({ day: DAY, questions: [COPY2, CRITIC[0], est("critic-new", "Atoms across all Academy decks?")] });
+    const ids = (await daily(routesFor(wq))).body.questions.map((q) => q.id);
+    expect(ids).toContain("critic-new");
+    expect(ids).not.toContain("critic-copy2");
+    expect(ids).not.toContain("critic-1");
+    expect(logs).toContain(`daily quiz ${DAY}: dropped repeat critic-copy2`);
+  });
+
+  test("a missed daily answer becomes a card that comes back as a review", async () => {
+    const { wq } = open();
+    plant({ day: DAY1, questions: [COPY, ...CRITIC] }, DAY1);
+    const r1 = routesFor(wq, { now: () => AT1 });
+    await daily(r1, DAY1);
+    const res = await r1["POST /local/work-quiz/answer"](new Request("http://x", { method: "POST", body: JSON.stringify({ day: DAY1, id: "critic-copy", response: "9", elapsedMs: 4000 }) }), new URL("http://x/"));
+    expect(((await res.json()) as { correct: boolean }).correct).toBe(false);
+    expect(wq.dueCards(AT).length).toBe(1);
+    plant({ day: DAY, questions: [est("n2", "Lines in the bkt store module?"), est("n3", "Atoms across all Academy decks?"), est("n4", "Photons in the Polingual index?"), est("n5", "Languages covered by Polingual?"), est("n6", "Tests in the bkt package suite?")] });
+    const got = await daily(routesFor(wq));
+    expect(got.body.questions.length).toBe(DAILY_MAX);
+    expect(got.body.questions.map((q) => q.origin)).toContain("review");
+    expect(got.body.questions.filter((q) => q.origin === "critic").length).toBeLessThan(DAILY_MAX);
+  });
+
+  test("due Academy cards lead the lesson fill", () => {
+    const items = PACK.items.map((i) => withShort(i)).filter(hasShort).slice(0, 40);
+    const all = lessonFill({ day: DAY, items, count: items.length });
+    expect(all.picks.length).toBeGreaterThan(2);
+    const lastFact = all.picks.at(-1)!.factIds[0];
+    const last = items.find((i) => lessonFactId(i) === lastFact)!;
+    const due = lessonFill({ day: DAY, items, count: 2, due: [last.id] });
+    expect(due.picks[0].factIds[0]).toBe(lessonFactId(last));
   });
 });
