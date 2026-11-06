@@ -256,16 +256,17 @@ struct PlanCard: View {
             .foregroundStyle(Palette.ink)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
-            .overlay(alignment: .top) {
-                if yearly {
-                    Text("BEST VALUE").font(D8.caps(9)).tracking(1).foregroundStyle(.white)
-                        .padding(.horizontal, 8).padding(.vertical, 3)
-                        .background(D8.ink, in: .capsule)
-                        .offset(y: -10)
-                }
-            }
         }
         .buttonStyle(D8Option(selected: selected, align: .center))
+        .overlay(alignment: .top) {
+            if yearly {
+                Text("BEST VALUE").font(D8.caps(9)).tracking(1).foregroundStyle(.white)
+                    .padding(.horizontal, 8).padding(.vertical, 3)
+                    .background(D8.ink, in: .capsule)
+                    .offset(y: -10)
+                    .allowsHitTesting(false)
+            }
+        }
         .accessibilityLabel("\(PlanCard.title(product.id)), \(product.displayPrice), \(PlanCard.period(product.id))")
         .accessibilityAddTraits(selected ? .isSelected : [])
     }
