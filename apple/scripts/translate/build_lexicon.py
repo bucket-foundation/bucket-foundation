@@ -28,14 +28,39 @@ def clean_word(lang, w):
 
 
 def key(w):
-    return w.lower().strip(" .,!?¡¿;:\"'«»“”")
+    return w.lower().strip(" .,!?¡¿;:\"'«»“”").replace("ς", "σ")
+
+
+_t2s = None
+
+
+def simplified(w):
+    global _t2s
+    if _t2s is None:
+        from opencc import OpenCC
+        _t2s = OpenCC("t2s")
+    return _t2s.convert(w)
+
+
+def priority_words(lang, corpus):
+    words = {}
+    top = corpus / "top1000" / f"{lang}.json"
+    if top.exists():
+        for i, t in enumerate(json.load(open(top))):
+            words.setdefault(key(t["word"]), i)
+    allp = corpus.parent.parent.parent / "_intake/photons/all.json"
+    if allp.exists():
+        for p in json.load(open(allp)):
+            if p["lang"] == lang:
+                words.setdefault(key(p["surface"]), 1000 + len(words))
+    return words
 
 
 def short_gloss(glosses):
     out = []
     for g in glosses:
         g = re.sub(r"\s+", " ", g).strip().rstrip(".")
-        if not g or re.search(r"\b(form|plural|participle|tense|singular|person|inflection|spelling|romanization) of\b", g):
+        if not g or re.search(r"\b(form|plural|participle|tense|singular|person|inflection|spelling|romanization) of\b|syllable|letter of the", g):
             continue
         if len(g) > 70:
             g = g[:70].rsplit(" ", 1)[0] + "…"
@@ -65,6 +90,8 @@ def load_english(path, en_rank):
         e = json.loads(line)
         w = e["w"]
         toks = w.lower().split()
+        if not toks:
+            continue
         if len(toks) == 1:
             r = en_rank.get(w.lower())
             if r is None:
@@ -73,7 +100,8 @@ def load_english(path, en_rank):
             if len(toks) > 4 or any(t not in en_rank or en_rank[t] > 30000 for t in toks):
                 continue
             r = 60000 + max(en_rank[t] for t in toks)
-        heads[w] = min(heads.get(w, r), r)
+        if e.get("t"):
+            heads[w] = min(heads.get(w, r), r)
         for f in e.get("f") or []:
             if " " not in f and f.lower() in en_rank and f.lower() != w.lower():
                 forms.setdefault(f.lower(), w)
@@ -85,17 +113,20 @@ def load_english(path, en_rank):
             if lang not in LANGS:
                 continue
             tw = clean_word(lang, tw)
+            if lang == "zh":
+                tw = simplified(tw)
             if tw and tw not in fwd[lang][w]:
                 fwd[lang][w].append(tw)
     return fwd, forms, heads
 
 
-def build(dl, out, budget):
+def build(dl, out, budget, corpus):
     out.mkdir(parents=True, exist_ok=True)
     en_rank = freq_list("en", 60000)
     fwd, en_forms, heads = load_english(dl / "en.jsonl", en_rank)
-    en_lines = [f"{w}\t\t" for w in sorted(heads, key=heads.get)]
-    en_lines += [f"{f}\t>{l}" for f, l in en_forms.items() if f not in heads or heads.get(f, 0) > 60000]
+    kept_forms = {f: l for f, l in en_forms.items() if f not in heads and l in heads}
+    en_lines = [f"{w}\t\t" for w in sorted(set(kept_forms.values()), key=heads.get)]
+    en_lines += [f"{f}\t>{l}" for f, l in kept_forms.items()]
     write(out / "en.tsv", en_lines)
     report = {}
     for lang in LANGS:
@@ -113,15 +144,27 @@ def build(dl, out, budget):
                 w = clean_word(lang, e["w"] or "")
                 if not w:
                     continue
+                if lang == "zh":
+                    simp = simplified(w)
+                    if simp != w:
+                        forms.setdefault(key(w), (w, simp))
+                        w = simp
                 k = key(w)
                 if e.get("o") and not short_gloss(e.get("g") or []):
-                    forms.setdefault(k, (w, clean_word(lang, e["o"][0].split(" /")[0].strip())))
+                    target = clean_word(lang, e["o"][0].split(" /")[0].strip())
+                    forms.setdefault(k, (w, simplified(target) if lang == "zh" else target))
                     continue
                 g = short_gloss(e.get("g") or [])
                 cur = entries.get(k)
                 if cur:
-                    if g and g not in cur["g"] and cur["g"].count(";") < 2:
-                        cur["g"] = f"{cur['g']}; {g}" if cur["g"] else g
+                    lower_now = w == k and cur["w"] != k
+                    if lower_now:
+                        cur["w"] = w
+                    if g and g not in cur["g"]:
+                        if lower_now or not cur["g"]:
+                            cur["g"] = f"{g}; {cur['g']}" if cur["g"] else g
+                        elif cur["g"].count(";") < 2:
+                            cur["g"] = f"{cur['g']}; {g}"
                     if not cur["r"]:
                         cur["r"] = romans(lang, e.get("r") or [])
                 else:
@@ -136,7 +179,11 @@ def build(dl, out, budget):
             if k not in entries:
                 entries[k] = {"w": k, "g": "", "r": ""}
 
+        prio = priority_words(lang, corpus)
+
         def score(k):
+            if k in prio:
+                return -100000 + prio[k]
             r = rank.get(k)
             if r is not None:
                 return r
@@ -152,7 +199,8 @@ def build(dl, out, budget):
             eng = [p[1] for p in sorted(set(inv.get(k, [])))][:4]
             if not eng and not e["g"]:
                 continue
-            line = f"{e['w']}\t{'|'.join(eng)}\t{e['g'] if not eng else ''}\t{e['r']}".rstrip("\t")
+            g = "" if eng else "; ".join(e["g"].split("; ")[:3])
+            line = f"{e['w']}\t{'|'.join(eng)}\t{g}\t{e['r']}".rstrip("\t")
             size += len(line.encode()) + 1
             if size > budget:
                 break
@@ -191,4 +239,4 @@ def write(path, lines):
 
 
 if __name__ == "__main__":
-    build(Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3]) if len(sys.argv) > 3 else 900_000)
+    build(Path(sys.argv[1]), Path(sys.argv[2]), int(sys.argv[3]), Path(sys.argv[4]))

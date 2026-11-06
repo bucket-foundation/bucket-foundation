@@ -66,6 +66,30 @@ public struct Lexicon: Sendable {
     public static func key(_ s: String) -> String {
         s.lowercased().trimmingCharacters(in: .whitespacesAndNewlines.union(.punctuationCharacters).union(.symbols))
             .replacingOccurrences(of: "’", with: "'")
+            .replacingOccurrences(of: "ς", with: "σ")
+    }
+
+    static let clitics: [String: (prefixes: [String], suffixes: [String])] = [
+        "ar": (["وبال", "وال", "بال", "فال", "كال", "لل", "ال", "و", "ف", "ب", "ل", "ك", "س"], ["هما", "كما", "ها", "هم", "هن", "كم", "نا", "ني", "ه", "ك", "ي", "ات", "ون", "ين", "ة"]),
+        "he": (["וה", "שה", "וב", "ול", "ומ", "וש", "ה", "ו", "ב", "ל", "מ", "ש", "כ"], ["ים", "ות", "יך", "נו", "כם", "הם", "ה", "י", "ו"]),
+        "fa": (["نمی", "می", "ن", "ب"], ["هایی", "هایم", "های", "ها", "ترین", "تر", "ام", "ات", "اش", "ای", "ی", "م", "د", "ند", "یم", "ید"]),
+    ]
+
+    func stripped(_ k: String) -> [String] {
+        guard let rule = Lexicon.clitics[lang] else { return [] }
+        var out: [String] = []
+        let pres = [""] + rule.prefixes.filter { k.hasPrefix($0) }
+        let sufs = [""] + rule.suffixes.filter { k.hasSuffix($0) }
+        for p in pres {
+            for s in sufs where !(p.isEmpty && s.isEmpty) {
+                guard k.count - p.count - s.count >= 2 else { continue }
+                let core = String(k.dropFirst(p.count).dropLast(s.count))
+                out.append(core)
+                if lang == "he" && s == "ות" { out.append(core + "ה") }
+                if lang == "ar" && s == "ات" { out.append(core + "ة") }
+            }
+        }
+        return out
     }
 
     public static func fold(_ s: String) -> String {
@@ -105,6 +129,12 @@ public struct Lexicon: Sendable {
         if Lexicon.foldsMarks.contains(lang), let ids = loose[Lexicon.fold(query)] {
             let hits = resolve(ids)
             if !hits.isEmpty { return (.form, hits) }
+        }
+        for core in stripped(k) {
+            if let ids = exact[core] {
+                let hits = resolve(ids)
+                if !hits.isEmpty { return (.form, hits) }
+            }
         }
         if let lemma = Lexicon.tagLemma(query, lang: lang), Lexicon.key(lemma) != k, let ids = exact[Lexicon.key(lemma)] {
             let hits = resolve(ids)

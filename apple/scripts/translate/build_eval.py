@@ -3,7 +3,7 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build_lexicon import LANGS, NO_FREQ, clean_word, freq_list, key, load_english, short_gloss
+from build_lexicon import LANGS, NO_FREQ, clean_word, freq_list, key, load_english, short_gloss, simplified
 
 TAIL = 250
 
@@ -34,6 +34,8 @@ def main(dl, corpus, tatoeba, out):
             for line in open(src, encoding="utf-8"):
                 e = json.loads(line)
                 k = key(clean_word(lang, e["w"] or ""))
+                if lang == "zh":
+                    k = key(simplified(k))
                 g = short_gloss(e.get("g") or [])
                 if g:
                     gloss[k].add(g)
