@@ -20,7 +20,8 @@ import { normalizeSystemsDoc } from "../../../src/lib/academy/lang-systems";
 import { SYSTEMS_META } from "./local";
 import { answerDaily, LearnError } from "./core/learn";
 import { DAILY_MAX, DAILY_MIN, DailyQuizStore, overLength, TOO_FEW, validDay, type DailyQuiz } from "./daily-quiz";
-import { criticDir, lessonFill, originOf, readCriticQuiz, recentDays, repeats } from "./daily-fill";
+import { criticDir, lessonFill, originOf, readCriticQuiz, recentDays } from "./daily-fill";
+import { dropRepeats, type Asked } from "./daily-dedupe";
 import type { Item } from "./grade";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import { hasShort, withShort } from "./short-fields";
@@ -35,6 +36,7 @@ export const BEADS_BODY_BYTES = 32 * 1024 * 1024;
 export const MAX_BEAD_BYTES = 24 * 1024 * 1024;
 export const MAX_BEAD_LINES = 100_000;
 export const CHAT_META = "work_quiz_chat";
+export const REVIEW_RESERVE = 2;
 
 export const SAFE_GIT_CONFIG = [
   "-c", "core.fsmonitor=false",
@@ -159,6 +161,10 @@ export class WorkQuizStore {
       .filter(hasShort);
   }
 
+  dueLessons(now: number, limit: number): string[] {
+    return this.store.dueItemIds(now, limit);
+  }
+
   get daily(): DailyQuizStore {
     return new DailyQuizStore(this.store, this.key);
   }
@@ -281,17 +287,20 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const refresh = new Set<string>();
   const critics = o.criticDir ?? criticDir(process.env, o.home);
 
+  function asked(day: string): Asked[] {
+    return recentDays(day).flatMap((d) => wq.daily.get(d)?.questions ?? []);
+  }
+
   const askable = (s: WorkSources) => !sourcesEmpty(s) || wq.languages().length > 0;
 
-  function freshCritic(day: string, logged = false): { questions: QuizQuestion[] } {
+  function freshCritic(day: string, logged = false): { questions: QuizQuestion[]; dropped: QuizQuestion[] } {
     const read = readCriticQuiz(day, critics);
-    const asked = recentDays(day).flatMap((d) => wq.daily.get(d)?.questions ?? []);
-    const questions = read.questions.filter((q) => !repeats(q, asked));
+    const { kept: questions, dropped } = dropRepeats(read.questions, asked(day));
     if (logged) {
       for (const why of read.skipped) log(`daily quiz ${day}: critic quiz skipped: ${why}`);
       if (questions.length < read.questions.length) log(`daily quiz ${day}: ${read.questions.length - questions.length} critic questions repeat the last 30 days`);
     }
-    return { questions };
+    return { questions, dropped };
   }
 
   async function build(day: string): Promise<DailyQuiz | null> {
@@ -311,12 +320,19 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
     }
     const seen = new Set<string>();
     const fresh = (q: QuizQuestion) => !seen.has(q.id) && !!seen.add(q.id);
-    const questions = [...critic.questions, ...chat].filter(fresh).slice(0, DAILY_MAX);
+    const fromChat = dropRepeats([...critic.questions, ...chat], asked(day));
+    const kept = fromChat.kept;
+    const dropped = [...critic.dropped, ...fromChat.dropped];
+    for (const q of dropped) log(`daily quiz ${day}: dropped repeat ${q.id}`);
+    const dueNow = wq.dueCards(now());
+    const academyDue = wq.dueLessons(now(), REVIEW_RESERVE);
+    const reserve = Math.min(REVIEW_RESERVE, dueNow.length + academyDue.length);
+    const questions = kept.filter(fresh).slice(0, DAILY_MAX - reserve);
     const { sources: src } = await sources();
     const coverage = wq.coverage();
     const exclude = usedOn(coverage, day);
     const open = DAILY_MAX - questions.length;
-    const sampled = open > 0 ? sampleQuiz({ day, sources: src, coverage, due: wq.dueCards(now()), now: now(), slots: open, exclude, languages: wq.languages(), words: o.words }) : null;
+    const sampled = open > 0 ? sampleQuiz({ day, sources: src, coverage, due: dueNow, now: now(), slots: Math.max(0, open - academyDue.length), exclude, languages: wq.languages(), words: o.words }) : null;
     const picks: SamplePick[] = [];
     for (const [i, q] of (sampled?.questions ?? []).entries()) {
       if (!fresh(q)) continue;
@@ -325,14 +341,21 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       if (!reviewed) picks.push(sampled!.picks[i - sampled!.reviewed]);
     }
     const taken = [...exclude, ...(sampled?.questions ?? []).flatMap((q) => dueFrom(q, 0).factIds)];
-    const lessons = lessonFill({ day, items: questions.length < DAILY_MAX ? wq.lessons() : [], count: DAILY_MAX - questions.length, coverage, exclude: taken });
+    const lessons = lessonFill({ day, items: questions.length < DAILY_MAX ? wq.lessons() : [], count: DAILY_MAX - questions.length, coverage, exclude: taken, due: academyDue });
     for (const [i, q] of lessons.questions.entries()) {
       if (!fresh(q)) continue;
       questions.push(q);
       picks.push(lessons.picks[i]);
     }
+    for (const q of dropped) {
+      if (questions.length >= DAILY_MIN) break;
+      if (!fresh(q)) continue;
+      questions.push(q);
+      log(`daily quiz ${day}: kept repeat ${q.id} to reach ${DAILY_MIN} questions`);
+    }
     if (questions.length < DAILY_MIN) {
-      empty.set(day, questions.length === 0 ? NO_QUIZ : TOO_FEW);
+      const why = questions.length === 0 ? NO_QUIZ : TOO_FEW;
+      empty.set(day, dropped.length ? `${why}; ${dropped.length} repeated an earlier day` : why);
       return null;
     }
     const quiz = wq.daily.put({ day, questions }, now());

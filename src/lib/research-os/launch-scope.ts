@@ -23,6 +23,7 @@ export const LAUNCH_API_NAMES = [
   "classes",
   "connections",
   "consent",
+  "consent/parent",
   "loop",
   "makeup",
   "node",

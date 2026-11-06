@@ -71,7 +71,7 @@ RLS audit: 42 tables are created across the migrations, 41 enable RLS; `graph.im
 
 ### Vercel Env Vars
 
-`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SIGN_IN_OPEN=1` (read at build, so a redeploy follows, `docs/AUTH.md:52`), `RESEARCH_OS_REVIEWER_EMAILS`, `RESEARCH_OS_HASH_SALT` as a secret (today it falls back to the public Supabase URL, `consent/route.ts:12`), `RESEARCH_OS_DAILY_TOOL_CAP=20`. `ANTHROPIC_API_KEY` comes later.
+`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SIGN_IN_OPEN=1` (read at build, so a redeploy follows, `docs/AUTH.md:52`), `RESEARCH_OS_REVIEWER_EMAILS`, `RESEARCH_OS_HASH_SALT` as a secret (today it falls back to the public Supabase URL, `parent-consent.ts:16`), `RESEARCH_OS_DAILY_TOOL_CAP=20`. `ANTHROPIC_API_KEY` comes later.
 
 ### Anthropic Key
 

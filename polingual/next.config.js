@@ -12,11 +12,14 @@ const nextConfig = {
       ],
     };
   },
+  async redirects() {
+    return [{ source: "/word/:id(photon.*)", destination: "/photon/:id", permanent: true }];
+  },
   reactStrictMode: true,
   experimental: { externalDir: true },
   outputFileTracingIncludes: {
     "/api/photon/**": ["./data/photons.json.gz"],
-    "/word/**": ["./data/photons.json.gz"],
+    "/photon/**": ["./data/photons.json.gz"],
   },
   webpack(config) {
     config.resolve.modules = [path.join(__dirname, "node_modules"), "node_modules"];

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: { default: "Polingual", template: "%s · Polingual" },
   description,
   metadataBase: new URL("https://www.polingual.com"),
+  alternates: { types: { "application/rss+xml": [{ url: "/feed.xml", title: "Polingual" }] } },
   applicationName: "Polingual",
   openGraph: { type: "website", siteName: "Polingual", title: "Polingual", description, url: "https://www.polingual.com", images: [{ url: "/d8/og.png", width: 1200, height: 630, alt: "Polingual word tiles in six scripts" }] },
   twitter: { card: "summary_large_image", images: ["/d8/og.png"] },
