@@ -11,7 +11,7 @@ extension SharePage {
             URLQueryItem(name: "c", value: code),
             URLQueryItem(name: "n", value: clip(name, 60)),
             URLQueryItem(name: "k", value: kind.rawValue),
-        ], title: String(localized: "Join \(name) on Bucket"))
+        ], title: String(localized: "Join \(name) on \(Feedback.appName)"))
     }
 }
 
