@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
 import Legal from "../../legal";
 import { FAQ, FACTS, faqJsonLd, jsonLdScript } from "@/lib/facts";
+import { pageMeta } from "@/lib/meta";
 
 const CHECKED = "2026-10-25";
 
 const title = "Polingual vs Duolingo for 3 languages";
 const description = "How Polingual and Duolingo handle studying three languages at the same time.";
 
-export const metadata: Metadata = {
-  title: { absolute: title },
-  description,
-  alternates: { canonical: "/compare/duolingo-three-languages" },
-  openGraph: { type: "article", title, description, url: "/compare/duolingo-three-languages", images: [{ url: "/d8/og.png", width: 1200, height: 630 }] },
-};
+export const metadata: Metadata = pageMeta({ path: "/compare/duolingo-three-languages", title, description, type: "article" });
 
 const ROWS: [string, string, string][] = [
   ["Courses at once", "Several languages in one set, studied together", "Each language is a separate course"],
