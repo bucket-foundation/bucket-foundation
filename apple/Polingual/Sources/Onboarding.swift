@@ -123,7 +123,7 @@ struct Onboarding: View {
                         .labelsHidden()
                         .tint(Palette.ink)
                     }
-                    .onChange(of: root) { _, r in
+                    .onChange(of: root, initial: true) { _, r in
                         targets.removeAll { $0 == r }
                         InterfacePick.shared.root = r
                     }

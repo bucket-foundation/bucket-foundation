@@ -11,6 +11,9 @@ enum InterfaceLanguage {
     static let rightToLeft: Set<String> = ["ar", "fa", "he"]
     static let storageKey = "interface.root"
 
+    static let writtenKey = "interface.appleLanguages"
+    static let appleLanguages = "AppleLanguages"
+
     nonisolated(unsafe) private static var active: String?
 
     static func localization(for root: String?) -> String? {
@@ -23,13 +26,11 @@ enum InterfaceLanguage {
         active.map(Locale.init(identifier:)) ?? .current
     }
 
-    static var layoutDirection: LayoutDirection {
+    static var layoutDirection: LayoutDirection { direction(active) }
+
+    static func direction(_ active: String?) -> LayoutDirection {
         guard let active else { return Locale.current.language.characterDirection == .rightToLeft ? .rightToLeft : .leftToRight }
         return rightToLeft.contains(String(active.prefix(2))) ? .rightToLeft : .leftToRight
-    }
-
-    static func restore(_ defaults: UserDefaults = .standard) {
-        apply(root: defaults.string(forKey: storageKey), defaults: defaults)
     }
 
     static var deviceRoot: String {
@@ -37,17 +38,34 @@ enum InterfaceLanguage {
         return localizations[code] != nil && Lang.codes.contains(code) ? code : "en"
     }
 
+    static var appDomain: String { Bundle.main.bundleIdentifier ?? "" }
+
+    static func userChoseLanguage(_ defaults: UserDefaults, domain: String) -> Bool {
+        let own = defaults.persistentDomain(forName: domain)?[appleLanguages] as? [String]
+        return own != nil && own != defaults.stringArray(forKey: writtenKey)
+    }
+
+    static func restore(_ defaults: UserDefaults = .standard, domain: String = appDomain) {
+        apply(root: defaults.string(forKey: storageKey), defaults: defaults, domain: domain)
+    }
+
     @discardableResult
-    static func apply(root: String?, defaults: UserDefaults = .standard) -> String? {
+    static func apply(root: String?, defaults: UserDefaults = .standard, domain: String = appDomain) -> String? {
+        if userChoseLanguage(defaults, domain: domain) {
+            active = nil
+            defaults.removeObject(forKey: writtenKey)
+            root.map { defaults.set($0, forKey: storageKey) } ?? defaults.removeObject(forKey: storageKey)
+            return nil
+        }
         let loc = localization(for: root)
         active = loc
-        guard defaults.string(forKey: storageKey) != root else { return loc }
-        if let root, let loc {
-            defaults.set(root, forKey: storageKey)
-            defaults.set([loc], forKey: "AppleLanguages")
-        } else {
-            defaults.removeObject(forKey: storageKey)
-            defaults.removeObject(forKey: "AppleLanguages")
+        if let root { defaults.set(root, forKey: storageKey) } else { defaults.removeObject(forKey: storageKey) }
+        if let loc {
+            defaults.set([loc], forKey: appleLanguages)
+            defaults.set([loc], forKey: writtenKey)
+        } else if defaults.stringArray(forKey: writtenKey) != nil {
+            defaults.removeObject(forKey: appleLanguages)
+            defaults.removeObject(forKey: writtenKey)
         }
         return loc
     }
@@ -59,20 +77,34 @@ final class InterfacePick {
     var root: String?
 }
 
+enum RootState: Equatable {
+    case loading
+    case known(String?)
+}
+
 struct InterfaceLanguageModifier: ViewModifier {
-    let root: String?
+    let state: RootState
+    @State private var active = InterfaceLanguage.current
+
+    var effective: RootState {
+        if case .known(nil) = state, let pick = InterfacePick.shared.root { return .known(pick) }
+        return state
+    }
 
     func body(content: Content) -> some View {
-        if let root = root ?? InterfacePick.shared.root { InterfaceLanguage.apply(root: root) }
-        return content
-            .environment(\.locale, InterfaceLanguage.locale)
-            .environment(\.layoutDirection, InterfaceLanguage.layoutDirection)
+        content
+            .environment(\.locale, active.map(Locale.init(identifier:)) ?? .current)
+            .environment(\.layoutDirection, InterfaceLanguage.direction(active))
+            .onChange(of: effective, initial: true) { _, s in
+                guard case .known(let root) = s else { return }
+                active = InterfaceLanguage.apply(root: root)
+            }
     }
 }
 
 extension View {
-    func interfaceLanguage(_ root: String?) -> some View {
-        modifier(InterfaceLanguageModifier(root: root))
+    func interfaceLanguage(_ store: LangStore) -> some View {
+        modifier(InterfaceLanguageModifier(state: store.status == .ready || store.status == .error ? .known(store.systems.first?.root) : .loading))
     }
 }
 

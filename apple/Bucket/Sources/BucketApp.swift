@@ -52,7 +52,7 @@ struct BucketApp: App {
                 .environment(gate)
                 .environment(reminders)
                 .environment(groups)
-                .interfaceLanguage(langs.systems.first?.root)
+                .interfaceLanguage(langs)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }

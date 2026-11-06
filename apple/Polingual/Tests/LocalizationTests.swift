@@ -28,7 +28,7 @@ struct LocalizationTests {
     }
 
     static func specifiers(_ s: String) -> [Int: String] {
-        let regex = /%(?:(\d+)\$)?(lld|ld|lu|li|d|i|u|@|f|\.\d+f|lf|%)/
+        let regex = /%(?:(\d+)\$)?(lld|ld|lu|li|d|i|u|@|(?:\.\d+)?l?[fFeEgG]|%)/
         var out: [Int: String] = [:]
         var next = 0
         for m in s.matches(of: regex) where m.output.2 != "%" {
@@ -74,7 +74,7 @@ struct LocalizationTests {
             for lang in Self.languages {
                 for value in (Self.table(pattern, lang) ?? [:]).values {
                     let positional = value.contains(/%\d+\$/)
-                    let plain = value.contains(/%(lld|ld|d|@)/)
+                    let plain = value.contains(/%(lld|ld|d|@|(?:\.\d+)?l?[fFeEgG])/)
                     #expect(!(positional && plain), "\(lang): \(value)")
                 }
             }
@@ -90,17 +90,82 @@ struct LocalizationTests {
         #expect(InterfaceLanguage.localization(for: "la") == nil)
     }
 
+    static func suite(_ name: String) throws -> UserDefaults {
+        let d = try #require(UserDefaults(suiteName: name))
+        d.removePersistentDomain(forName: name)
+        return d
+    }
+
     @Test func applyStoresTheLanguageForTheNextLaunch() throws {
-        let defaults = try #require(UserDefaults(suiteName: "interface-language-test"))
-        defer { defaults.removePersistentDomain(forName: "interface-language-test") }
-        #expect(InterfaceLanguage.apply(root: "ar", defaults: defaults) == "ar")
+        let name = "interface-language-test"
+        let defaults = try Self.suite(name)
+        defer { defaults.removePersistentDomain(forName: name) }
+        #expect(InterfaceLanguage.apply(root: "ar", defaults: defaults, domain: name) == "ar")
         #expect(defaults.stringArray(forKey: "AppleLanguages") == ["ar"])
         #expect(InterfaceLanguage.layoutDirection == .rightToLeft)
-        InterfaceLanguage.apply(root: "ja", defaults: defaults)
+        InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name)
         #expect(defaults.stringArray(forKey: "AppleLanguages") == ["ja"])
         #expect(InterfaceLanguage.layoutDirection == .leftToRight)
-        InterfaceLanguage.apply(root: "la", defaults: defaults)
-        #expect(defaults.persistentDomain(forName: "interface-language-test")?["AppleLanguages"] == nil)
+        InterfaceLanguage.apply(root: nil, defaults: defaults, domain: name)
+        #expect(defaults.persistentDomain(forName: name)?["AppleLanguages"] == nil)
         #expect(defaults.string(forKey: InterfaceLanguage.storageKey) == nil)
+    }
+
+    @Test(arguments: ["la", "grc", "sa", "ang"])
+    func classicalRootKeepsTheDeviceLanguage(_ root: String) throws {
+        let name = "interface-language-classical"
+        let defaults = try Self.suite(name)
+        defer { defaults.removePersistentDomain(forName: name) }
+        #expect(InterfaceLanguage.apply(root: root, defaults: defaults, domain: name) == nil)
+        #expect(defaults.persistentDomain(forName: name)?["AppleLanguages"] == nil)
+        #expect(InterfaceLanguage.locale == .current)
+        defaults.set(["fr"], forKey: "AppleLanguages")
+        #expect(InterfaceLanguage.apply(root: root, defaults: defaults, domain: name) == nil)
+        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["fr"])
+    }
+
+    @Test func userPerAppLanguageWins() throws {
+        let name = "interface-language-user"
+        let defaults = try Self.suite(name)
+        defer { defaults.removePersistentDomain(forName: name) }
+        defaults.set(["de"], forKey: "AppleLanguages")
+        #expect(InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name) == nil)
+        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["de"])
+        InterfaceLanguage.apply(root: nil, defaults: defaults, domain: name)
+        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["de"])
+        defaults.removeObject(forKey: "AppleLanguages")
+        #expect(InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name) == "ja")
+        defaults.set(["ko"], forKey: "AppleLanguages")
+        #expect(InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name) == nil)
+        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["ko"])
+    }
+
+    static func sourceKeys() throws -> Set<String> {
+        let fm = FileManager.default
+        var keys = Set<String>()
+        let call = /(?:\bText|\bButton|\bLabel|\bToggle|\bSection|navigationTitle|String\(localized:|Eyebrow\(text:)\(?\s*"((?:[^"\\\n]|\\[^(])*)"/
+        for dir in ["Bucket/Sources", "Polingual/Sources", "ShareExtension/Sources", "Clip/Sources"] {
+            let root = appleRoot.appendingPathComponent(dir)
+            guard let walk = fm.enumerator(at: root, includingPropertiesForKeys: nil) else { continue }
+            for case let url as URL in walk where url.pathExtension == "swift" {
+                let text = try String(contentsOf: url, encoding: .utf8)
+                for m in text.matches(of: call) {
+                    let key = String(m.output.1).replacingOccurrences(of: "\\\"", with: "\"").replacingOccurrences(of: "\\n", with: "\n")
+                    if !key.isEmpty { keys.insert(key) }
+                }
+            }
+        }
+        return keys
+    }
+
+    @Test func literalKeysInSwiftExistInEveryLanguage() throws {
+        let keys = try Self.sourceKeys()
+        #expect(keys.count > 300)
+        let tables = ["Bucket/Resources/%@.lproj/Localizable.strings", "Polingual/Resources/%@.lproj/Localizable.strings", "ShareExtension/Resources/%@.lproj/Localizable.strings", "Clip/Resources/%@.lproj/Localizable.strings"]
+        for lang in Self.languages {
+            let known = tables.compactMap { Self.table($0, lang) }.reduce(into: Set<String>()) { $0.formUnion($1.keys) }
+            let missing = keys.subtracting(known)
+            #expect(missing.isEmpty, "\(lang) lacks \(missing.sorted().prefix(8))")
+        }
     }
 }

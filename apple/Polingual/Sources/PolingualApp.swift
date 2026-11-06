@@ -47,7 +47,7 @@ struct PolingualApp: App {
                 .environment(subs)
                 .environment(reminders)
                 .environment(groups)
-                .interfaceLanguage(store.systems.first?.root)
+                .interfaceLanguage(store)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
