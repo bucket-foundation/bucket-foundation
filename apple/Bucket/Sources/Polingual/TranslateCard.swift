@@ -29,6 +29,8 @@ struct TranslateCard: View {
     @State private var sources: [String] = []
     @State private var listening = false
     @State private var missedVoice = false
+    @State private var answer: TranslateAnswer?
+    @State private var answerFor = ""
     @FocusState private var focused: Bool
 
     nonisolated static let lexicons = LexiconShelf()
@@ -61,8 +63,7 @@ struct TranslateCard: View {
             let searchIn: Set<String> = from.map { [$0] } ?? Set(langs)
             let hits = translateSearch(corpus, query, langs: searchIn, limit: 6)
             let guess = from ?? SentenceLanguage.detect(query, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
-            let order = from.map { [$0] } ?? ([guess] + langs.filter { $0 != guess })
-            let answer = TranslateEngine.answer(query, from: order, to: shown, corpus: corpus, shelf: TranslateCard.lexicons)
+            let answer = answerFor == query ? answer : nil
             let found = answer.map { $0.layer != .gloss } ?? false
             let sentence = !query.isEmpty && picked == nil && !found && (SentenceLanguage.isSentence(query) || hits.isEmpty)
             let sentenceSource = answer?.source ?? guess
@@ -197,11 +198,8 @@ struct TranslateCard: View {
             .padding(.vertical, 6)
             .onChange(of: query) { picked = nil }
             .onChange(of: from) { picked = nil }
-            .task(id: langs) {
-                sources = translateSources(corpus, mine: langs)
-                let warm = langs
-                await Task.detached(priority: .utility) { for l in warm { _ = TranslateCard.lexicons.lexicon(l) } }.value
-            }
+            .task(id: langs) { sources = translateSources(corpus, mine: langs) }
+            .task(id: answerKey) { await refresh(corpus, guess: guess) }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
                 guard on else { return }
                 DeepLink.shared.listen = false
@@ -217,6 +215,27 @@ struct TranslateCard: View {
                 DeepLink.shared.pending = nil
             }
         }
+    }
+
+    var answerKey: String { "\(query)|\(from ?? "")|\(shown.joined(separator: ","))" }
+
+    func refresh(_ corpus: LangCorpus, guess: String) async {
+        let q = query
+        guard !q.isEmpty else {
+            answer = nil
+            answerFor = q
+            return
+        }
+        try? await Task.sleep(for: .milliseconds(180))
+        guard !Task.isCancelled else { return }
+        let order = from.map { [$0] } ?? ([guess] + langs.filter { $0 != guess })
+        let targets = shown
+        let result = await Task.detached(priority: .userInitiated) {
+            TranslateEngine.answer(q, from: order, to: targets, corpus: corpus, shelf: TranslateCard.lexicons)
+        }.value
+        guard !Task.isCancelled, q == query else { return }
+        answer = result
+        answerFor = q
     }
 
     func listen() async {
@@ -253,6 +272,7 @@ struct LexiconAnswerView: View {
         switch answer.layer {
         case .form: String(localized: "Form of \(answer.headword)")
         case .roman: String(localized: "Read as \(answer.headword)")
+        case .gloss: String(localized: "Word by word")
         default: nil
         }
     }
@@ -275,7 +295,13 @@ struct LexiconAnswerView: View {
                     .accessibilityElement(children: .combine)
                 }
             }
-            Text("Dictionary from Wiktionary, CC BY-SA").font(.caption2).foregroundStyle(Palette.muted)
+            TranslateCredit()
         }
+    }
+}
+
+struct TranslateCredit: View {
+    var body: some View {
+        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY.").font(.caption2).foregroundStyle(Palette.muted)
     }
 }

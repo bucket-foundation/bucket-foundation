@@ -181,7 +181,7 @@ struct SystemView: View {
                 .listRowBackground(Palette.card)
             }
             Section {
-                Text("\(corpus.attribution) \(corpus.sources.joined(separator: " ")) Audio is device text-to-speech, with recorded clips where a language has no voice.")
+                Text("\(corpus.attribution) \(corpus.sources.joined(separator: " ")) Audio is device text-to-speech, with recorded clips where a language has no voice. Translate uses Wiktionary under CC BY-SA 4.0 and Tatoeba under CC BY 2.0 FR.")
                     .font(.caption2)
                     .foregroundStyle(Palette.muted)
             }

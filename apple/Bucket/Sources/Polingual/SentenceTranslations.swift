@@ -12,6 +12,8 @@ struct SentenceTranslations: View {
     @State private var missing: Set<String> = []
     @State private var download: TranslationSession.Configuration?
     @State private var round = 0
+    @State private var downloading: String?
+    @State private var failed: Set<String> = []
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -31,15 +33,23 @@ struct SentenceTranslations: View {
                                 .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
                                 .textSelection(.enabled)
                             if needsDownload.contains(l) {
-                                Button("Download \(Lang.name(l)) for full sentences") { download = TranslationSession.Configuration(source: language(source), target: language(l)) }
+                                if failed.contains(l) {
+                                    Text("The \(Lang.name(l)) download didn't finish.").font(.subheadline).foregroundStyle(Palette.muted)
+                                }
+                                Button(failed.contains(l) ? String(localized: "Try the download again") : String(localized: "Download \(Lang.name(l)) for full sentences")) { start(l) }
                                     .buttonStyle(D8Option(align: .center, compact: true))
                             }
                         }
                         Spacer(minLength: 4)
                         PlayButton(text: g, lang: l)
                     } else if needsDownload.contains(l) {
-                        Button("Download \(Lang.name(l))") { download = TranslationSession.Configuration(source: language(source), target: language(l)) }
-                            .buttonStyle(D8Option(align: .center, compact: true))
+                        VStack(alignment: .leading, spacing: 6) {
+                            if failed.contains(l) {
+                                Text("The \(Lang.name(l)) download didn't finish.").font(.subheadline).foregroundStyle(Palette.muted)
+                            }
+                            Button(failed.contains(l) ? String(localized: "Try the download again") : String(localized: "Download \(Lang.name(l))")) { start(l) }
+                                .buttonStyle(D8Option(align: .center, compact: true))
+                        }
                     } else if missing.contains(l) {
                         Text("Translation isn't available for \(Lang.name(l)) on this device.").font(.subheadline).foregroundStyle(Palette.muted)
                     } else {
@@ -48,13 +58,28 @@ struct SentenceTranslations: View {
                 }
                 .accessibilityElement(children: .combine)
             }
+            if targets.contains(where: { fallback[$0] != nil && results[$0] == nil }) {
+                TranslateCredit()
+            }
         }
         .task(id: "\(source)|\(targets.joined(separator: ","))|\(text)|\(round)") { await run() }
         .translationTask(download) { session in
-            try? await session.prepareTranslation()
+            let target = downloading
+            do {
+                try await session.prepareTranslation()
+                if let target { failed.remove(target) }
+            } catch {
+                if let target { failed.insert(target) }
+            }
             download = nil
+            downloading = nil
             round += 1
         }
+    }
+
+    func start(_ l: String) {
+        downloading = l
+        download = TranslationSession.Configuration(source: language(source), target: language(l))
     }
 
     func language(_ code: String) -> Locale.Language { Locale.Language(identifier: SentenceLanguage.appleCode(code)) }

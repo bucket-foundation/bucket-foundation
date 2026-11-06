@@ -77,7 +77,7 @@ func lexiconShelf() -> LexiconShelf {
         "ja": "ねこ\tcat\n=cat\t猫\n",
         "en": "house\t\t\nhouses\t>house\ncat\t\t\n",
     ]
-    return LexiconShelf { lang in
+    return LexiconShelf(capacity: 8) { lang in
         guard let text = tsv[lang] else { return nil }
         return try? (Data(text.utf8) as NSData).compressed(using: .zlib) as Data
     }
@@ -111,4 +111,13 @@ func lexiconShelf() -> LexiconShelf {
     let back = try #require(TranslateEngine.answer("the black cat", from: ["en"], to: ["es"], corpus: nil, shelf: shelf))
     #expect(back.rows["es"] == "the negro gato")
     #expect(TranslateEngine.answer("zzz qqq", from: ["es"], to: ["en"], corpus: nil, shelf: shelf) == nil)
+}
+
+@Test func lexiconShelfKeepsFourLanguagesLoaded() {
+    let shelf = LexiconShelf { lang in try? (Data("w\tx\n".utf8) as NSData).compressed(using: .zlib) as Data }
+    for l in ["es", "fr", "it", "pt", "de"] { #expect(shelf.lexicon(l) != nil) }
+    #expect(shelf.loaded == ["fr", "it", "pt", "de"])
+    _ = shelf.lexicon("fr")
+    _ = shelf.lexicon("nl")
+    #expect(shelf.loaded == ["pt", "de", "fr", "nl"])
 }

@@ -70,8 +70,19 @@ enum EvalMatch {
 
     static func sentence(_ answer: String, _ refs: [String], _ lang: String) -> Bool? {
         guard !refs.isEmpty else { return nil }
-        let a = units(answer, lang)
-        return refs.contains { f1(a, units($0, lang)) >= 0.5 }
+        return f1(units(answer, lang), units(refs[0], lang)) >= 0.5
+    }
+
+    static func stem(_ w: String) -> String {
+        for suffix in ["ing", "ed", "es", "s"] where w.count > suffix.count + 2 && w.hasSuffix(suffix) { return String(w.dropLast(suffix.count)) }
+        return w
+    }
+
+    static func aligned(_ answer: String, _ refs: [String]) -> Bool? {
+        guard !refs.isEmpty else { return nil }
+        let r = Set(refs.map { stem($0.lowercased()) })
+        let tokens = senses(answer).flatMap { $0.split(separator: " ").map { stem(String($0)) } }
+        return tokens.contains(where: r.contains)
     }
 }
 
@@ -80,6 +91,7 @@ struct EvalSet: Decodable {
     let tail: [[Entry]]?
     let phrases: [[Entry]]?
     let sentences: [[Entry]]?
+    let aligned: [[Entry]]?
 
     enum Entry: Decodable {
         case text(String), list([String]), map([String: [String]])
@@ -125,29 +137,30 @@ enum TranslateEval {
 
     static func run(mode: String) throws -> String {
         let corpus = try corpus()
-        let shelf = LexiconShelf(load: LexiconShelf.directory(apple.appending(path: "Shared/Corpus/lexicon")))
+        let shelf = LexiconShelf(capacity: 64, load: LexiconShelf.directory(apple.appending(path: "Shared/Corpus/lexicon")))
         let ask: (String, String, String, Bool) -> String? = { q, from, to, word in
             mode == "baseline" ? baseline(q, from: from, to: to, corpus: corpus, wordMode: word) : current(q, from: from, to: to, corpus: corpus, shelf: shelf)
         }
-        var lines = ["lang  | word cov/prec | tail cov/prec | phrase cov/prec | sentence cov/prec"]
-        var total = [EvalScore](repeating: EvalScore(), count: 4)
+        var lines = ["lang  | wiktionary word | tail word     | tatoeba word  | phrase        | sentence"]
+        var total = [EvalScore](repeating: EvalScore(), count: 5)
         for lang in langs {
             guard let set = set(lang) else { continue }
-            var s = [EvalScore](repeating: EvalScore(), count: 4)
+            var s = [EvalScore](repeating: EvalScore(), count: 5)
             for row in set.words ?? [] { s[0].add(ask(row[0].text, lang, "en", true)) { EvalMatch.englishWord($0, row[1].list) } }
             for row in set.tail ?? [] { s[1].add(ask(row[0].text, lang, "en", true)) { EvalMatch.englishWord($0, row[1].list) } }
-            for row in set.phrases ?? [] { s[2].add(ask(row[0].text, lang, "en", false)) { EvalMatch.sentence($0, row[1].list, "en") } }
-            for row in set.sentences ?? [] { s[3].add(ask(row[0].text, lang, "en", false)) { EvalMatch.sentence($0, row[1].list, "en") } }
-            for i in 0..<4 { total[i].asked += s[i].asked; total[i].answered += s[i].answered; total[i].judged += s[i].judged; total[i].right += s[i].right }
+            for row in set.aligned ?? [] { s[2].add(ask(row[0].text, lang, "en", true)) { EvalMatch.aligned($0, row[1].list) } }
+            for row in set.phrases ?? [] { s[3].add(ask(row[0].text, lang, "en", false)) { EvalMatch.sentence($0, row[1].list, "en") } }
+            for row in set.sentences ?? [] { s[4].add(ask(row[0].text, lang, "en", false)) { EvalMatch.sentence($0, row[1].list, "en") } }
+            for i in 0..<5 { total[i].asked += s[i].asked; total[i].answered += s[i].answered; total[i].judged += s[i].judged; total[i].right += s[i].right }
             lines.append("\(lang.padding(toLength: 5, withPad: " ", startingAt: 0)) | \(s.map(\.cell).joined(separator: " | "))")
         }
         if let en = set("en") {
-            var s = [EvalScore](repeating: EvalScore(), count: 4)
+            var s = [EvalScore](repeating: EvalScore(), count: 5)
             for row in en.words ?? [] {
                 for (lang, refs) in row[1].map where langs.contains(lang) { s[0].add(ask(row[0].text, "en", lang, true)) { EvalMatch.targetWord($0, refs) } }
             }
-            for row in en.phrases ?? [] { s[2].add(ask(row[0].text, "en", row[1].text, false)) { EvalMatch.sentence($0, [row[2].text], row[1].text) } }
-            for row in en.sentences ?? [] { s[3].add(ask(row[0].text, "en", row[1].text, false)) { EvalMatch.sentence($0, [row[2].text], row[1].text) } }
+            for row in en.phrases ?? [] { s[3].add(ask(row[0].text, "en", row[1].text, false)) { EvalMatch.sentence($0, [row[2].text], row[1].text) } }
+            for row in en.sentences ?? [] { s[4].add(ask(row[0].text, "en", row[1].text, false)) { EvalMatch.sentence($0, [row[2].text], row[1].text) } }
             lines.append("en→L  | \(s.map(\.cell).joined(separator: " | "))")
         }
         lines.append("all L | \(total.map(\.cell).joined(separator: " | "))")
@@ -161,4 +174,22 @@ func translateEvalReport() throws {
     let report = try TranslateEval.run(mode: mode)
     print("TRANSLATE_EVAL \(mode)\n\(report)")
     if let out = ProcessInfo.processInfo.environment["TRANSLATE_EVAL_OUT"] { try report.write(toFile: out, atomically: true, encoding: .utf8) }
+}
+
+@Test func translateMeetsCoverageAndPrecisionFloors() throws {
+    let shelf = LexiconShelf(load: LexiconShelf.directory(TranslateEval.apple.appending(path: "Shared/Corpus/lexicon")))
+    for lang in ["es", "ru", "ja", "ar"] {
+        let set = try #require(TranslateEval.set(lang))
+        var wiki = EvalScore(), tatoeba = EvalScore()
+        for row in (set.words ?? []).prefix(150) {
+            wiki.add(TranslateEngine.answer(row[0].text, from: [lang], to: ["en"], corpus: nil, shelf: shelf)?.rows["en"]) { EvalMatch.englishWord($0, row[1].list) }
+        }
+        for row in (set.aligned ?? []).prefix(100) {
+            tatoeba.add(TranslateEngine.answer(row[0].text, from: [lang], to: ["en"], corpus: nil, shelf: shelf)?.rows["en"]) { EvalMatch.aligned($0, row[1].list) }
+        }
+        #expect(Double(wiki.answered) / Double(wiki.asked) >= 0.95, "\(lang) word coverage")
+        #expect(Double(wiki.right) / Double(max(wiki.judged, 1)) >= 0.9, "\(lang) word precision")
+        #expect(Double(tatoeba.answered) / Double(max(tatoeba.asked, 1)) >= 0.9, "\(lang) tatoeba coverage")
+        #expect(Double(tatoeba.right) / Double(max(tatoeba.judged, 1)) >= 0.5, "\(lang) tatoeba precision")
+    }
 }

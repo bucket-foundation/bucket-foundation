@@ -179,10 +179,13 @@ public struct Lexicon: Sendable {
 public final class LexiconShelf: @unchecked Sendable {
     private let lock = NSLock()
     private var cache: [String: Lexicon] = [:]
+    private var recent: [String] = []
     private var missing: Set<String> = []
     let load: @Sendable (String) -> Data?
+    public let capacity: Int
 
-    public init(load: @escaping @Sendable (String) -> Data? = LexiconShelf.bundled) {
+    public init(capacity: Int = 4, load: @escaping @Sendable (String) -> Data? = LexiconShelf.bundled) {
+        self.capacity = max(1, capacity)
         self.load = load
     }
 
@@ -198,15 +201,28 @@ public final class LexiconShelf: @unchecked Sendable {
         try? (data as NSData).decompressed(using: .zlib) as Data
     }
 
+    public var loaded: [String] { lock.withLock { recent } }
+
     public func lexicon(_ lang: String) -> Lexicon? {
-        if let hit = lock.withLock({ cache[lang] }) { return hit }
+        let hit: Lexicon? = lock.withLock {
+            guard let lex = cache[lang] else { return nil }
+            recent.removeAll { $0 == lang }
+            recent.append(lang)
+            return lex
+        }
+        if let hit { return hit }
         if lock.withLock({ missing.contains(lang) }) { return nil }
         guard let packed = load(lang), let data = LexiconShelf.inflate(packed), let text = String(data: data, encoding: .utf8) else {
             lock.withLock { _ = missing.insert(lang) }
             return nil
         }
         let lex = Lexicon(lang: lang, tsv: text)
-        lock.withLock { cache[lang] = lex }
+        lock.withLock {
+            cache[lang] = lex
+            recent.removeAll { $0 == lang }
+            recent.append(lang)
+            while recent.count > capacity { cache[recent.removeFirst()] = nil }
+        }
         return lex
     }
 }
