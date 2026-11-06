@@ -25,5 +25,3 @@ export function parseSettings(raw: unknown): RoomSettings | null {
   if (!targets.every((t): t is string => typeof t === "string" && Boolean(LANGS[t]) && t !== home)) return null;
   return { home, targets, rounds: ROUNDS, per_round: PER_ROUND, window_ms: WINDOW_MS };
 }
-
-export const roomSet: QuestionBuilder = () => null;

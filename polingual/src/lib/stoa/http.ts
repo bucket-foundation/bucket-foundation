@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { postgrestRpc, type LiveDeps, type LiveResult } from "./live";
-import { roomSet } from "./questions";
+import { buildRoomSet } from "./generators";
 
 const ORIGINS = new Set(["https://polingual.com", "https://www.polingual.com", "https://bucket.foundation", "https://www.bucket.foundation"]);
 
 export function liveDeps(): LiveDeps {
-  return { env: process.env, rpc: postgrestRpc(process.env, fetch), send: fetch, build: roomSet };
+  return { env: process.env, rpc: postgrestRpc(process.env, fetch), send: fetch, build: buildRoomSet };
 }
 
 function cors(req: NextRequest): Record<string, string> {
