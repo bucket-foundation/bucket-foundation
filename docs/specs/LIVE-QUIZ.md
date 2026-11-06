@@ -1,32 +1,33 @@
 # Stoa: Live Quiz Build Plan
 
-Drafted 2026-11-06. Stoa is a live multiplayer quiz shared by Polingual and Bucket. One big screen shows the board, players join from their phones with a code, teams race on speed and accuracy, and a leaderboard runs between rounds. Later phases add asynchronous duels and a category dial mode.
+Drafted 2026-11-06, revised the same day after the critic review on PR #1211. Stoa is a live multiplayer quiz shared by Polingual and Bucket. One big screen shows the board, players join from their phones with a code, answers score on speed and accuracy, and a leaderboard runs between rounds. Later phases add teams, asynchronous duels and a category dial mode.
 
 ## Identity
 
-- **Name.** Stoa, the Athenian porch where teachers met students in public. It fits a classroom and both products. A trademark search in the app and game classes runs before P1 ships.
-- **Look.** The D8 palette from `apple/Bucket/Sources/Polingual/D8Style.swift`: parchment ground, ink type, lapis, vermilion, malachite, plus one new ochre. Answer tiles carry a pigment and a glyph: wave, spark, leaf, crescent. Tiles sit in one column on phones and a 2 by 2 grid on the board.
-- **Sound.** Four short cues made in-house: join, lock, reveal, finale. No looping music in P1.
-- **Phones show the full answer text** next to the glyph, so a player who cannot see the board can still play.
+- **Name.** Stoa, the Athenian porch where teachers met students in public. It fits a classroom and both products. A trademark search in the app and game classes runs before P1a ships.
+- **Look.** The D8 palette from `apple/Bucket/Sources/Polingual/D8Style.swift`: parchment ground, ink type, lapis, vermilion, malachite, plus one new ochre. Tiles sit in one column on phones and a 2 by 2 grid on the board.
+- **Answer marks.** Every tile carries a pigment, a glyph and a letter: lapis wave A, vermilion spark B, malachite leaf C, ochre crescent D. Phones also show the full answer text, so a player who cannot see the board can still play.
+- **Sound.** Four short cues made in-house: join, lock, reveal, finale. No looping music.
 
 ## Rules
 
-The P1 mode is **Chorus**.
+**Open Floor** is the P1a mode, every player for themselves.
 
-1. The host picks the product, the content, the team count of 2 to 4 or solo, and three rounds of five questions.
+1. The host picks the product, the content and three rounds of five questions.
 2. Each question opens for 20 seconds. A player locks one answer and cannot change it.
-3. Player points: 500 for a right answer plus up to 500 for speed, scaled linearly across the window. A wrong answer or no answer scores 0.
-4. Team score is the mean of its members' points per question, so a team of 4 and a team of 6 compete on equal terms.
-5. **Unison bonus.** When 80% or more of a team answers right, the team earns 150 more.
-6. **Steady streak.** Three right answers in a row add 100 to the player; the streak resets on a miss.
-7. After each round the board shows team standings and the top five players, then a 10 second break.
-8. The finale shows the winning team, the most improved player from round 1 to round 3, and the question most players missed.
+3. Player points: 500 for a right answer plus up to 500 for speed, scaled linearly across the player's window. A wrong answer or no answer scores 0.
+4. **Steady streak.** Three right answers in a row add 100; the streak resets on a miss.
+5. After each round the board shows the top ten players, then a 10 second break.
+6. The finale shows the top five, the most improved player from round 1 to round 3, and the question most players missed.
 
-Teams are named for the pigments: Lapis, Vermilion, Malachite, Ochre. Players auto-balance across teams on join; the host can move them in the lobby.
+**Chorus** is the P1b team mode, on the same engine.
+
+1. The host sets 2 to 4 teams, named for the pigments: Lapis, Vermilion, Malachite, Ochre. Players auto-balance on join; the host can move them in the lobby.
+2. Team score is the mean of its members' points per question, so a team of 4 and a team of 6 compete on equal terms.
+3. **Unison bonus.** When 80% or more of a team answers right, the team earns 150 more.
+4. The board shows team standings first and the top five players second.
 
 ## Host Surfaces
-
-Order, with reasons:
 
 | Order | Surface | Reason |
 |---|---|---|
@@ -35,102 +36,112 @@ Order, with reasons:
 | 3 | Native tvOS app | ASC already holds "Bucket tvOS 1.0". tvOS has no web view, so this is a SwiftUI port of the board. Worth it once web hosting shows repeat living-room use. |
 | 4 | Roku channel | Largest US TV platform, highest cost per user reached. Gated on demand data. |
 
-**AirPlay host.** The phone becomes the host remote and the TV becomes the board. The app declares a scene for the `UIWindowSceneSessionRoleExternalDisplayNonInteractive` role in its scene manifest and returns a `UIHostingController` holding `StoaBoardView` when that session connects. The phone keeps the controls: start, pause, skip, kick, next round. When no external screen is connected the phone shows the board itself, which works for small groups around one device.
+**AirPlay host.** The phone becomes the host remote and the TV becomes the board. The app declares a scene for the `UIWindowSceneSessionRoleExternalDisplayNonInteractive` role and returns a `UIHostingController` holding `StoaBoardView` when that session connects. The phone keeps the controls: start, pause, skip, remove, next round. With no external screen the phone shows the board itself, which works for a small group around one device.
 
-**tvOS.** A new `BucketTV` target in `apple/project.yml`, bundle `foundation.bucket.app` for universal purchase with the existing record. BucketKit gains the tvOS platform. Sign-in reuses the device code flow in `src/lib/academy/device-flow.ts`, so the host signs in on a phone. The Siri Remote drives start, next and pause. Polingual content runs inside the same tvOS app under a Languages tab until Polingual adds its own tvOS platform.
+**tvOS.** A new `BucketTV` target in `apple/project.yml`, bundle `foundation.bucket.app` for universal purchase with the existing record. BucketKit gains the tvOS platform. Sign-in reuses the device code flow in `src/lib/academy/device-flow.ts`, so the host signs in on a phone. The Siri Remote drives start, next and pause. Polingual content runs in the same app under a Languages tab until Polingual adds its own tvOS platform.
 
-**Roku cost.** Roku runs BrightScript and SceneGraph, a separate language and UI toolkit with no web view and no shared code. BrightScript has no WebSocket object, so the channel polls `live_state` every 500 ms over `roUrlTransfer`. It needs a Roku device in developer mode, a separate channel certification against Roku's criteria, and its own release train. Estimate 4 weeks of build plus certification, and ongoing upkeep on every rules change. P5 starts only if 10% or more of web host sessions come from Roku TV browsers or cast fallbacks fail for real users.
+**Roku cost.** Roku runs BrightScript and SceneGraph, a separate language and UI toolkit with no web view and no shared code. BrightScript has no WebSocket object, so the channel polls the state route every 500 ms over `roUrlTransfer`. It needs a Roku device in developer mode, a separate channel certification against Roku's criteria, and its own release train. Estimate 4 weeks of build plus certification, and upkeep on every rules change. P5 starts only if 10% or more of web host sessions come from Roku TV browsers, or cast fallbacks fail for real users.
 
 ## Joining
 
-- **Web, no install.** polingual.com/join and bucket.foundation/join take the 6 character code. The board shows the code, the URL and a QR code that opens `/join/<code>`.
-- **iOS app.** A Join Live button on the Games tab and on Today, with code entry and the camera QR scanner. Universal links on `/join/<code>` open the app when installed through the existing `apple-app-site-association`.
-- **App Clip.** `BucketClip` already exists; a later Polingual clip opens on the same `/join/<code>` URL with no install. Post P3.
-- **Roster mode.** A teacher pastes first names before class; each player taps their own name from the list. Players never type a name.
+- **Web, no install.** polingual.com/join and bucket.foundation/join take the 6 character code.
+- **QR.** The board shows the code, the URL and a QR code that opens `/join/<code>`.
+- **iOS app.** A Join Live button on the Games tab, with code entry and the camera scanner. Universal links on `/join/<code>` open the app when installed, through the existing `apple-app-site-association`.
+- **App Clip.** A Polingual clip on the same `/join/<code>` URL, after P3.
 
-**Codes.** 6 characters from the Crockford alphabet the group invite codes use (`^[0-9A-HJKMNP-TV-Z]{6}$`). A code is live only while its room is open, and expires after 3 hours.
+**Codes.** 6 characters from the Crockford alphabet the group invite codes use (`^[0-9A-HJKMNP-TV-Z]{6}$`). A code resolves only while its room is open, and every room closes within 3 hours.
 
-**Nicknames.** Players pick from three generated two-word names, adjective plus animal or object, drawn from a reviewed list in each interface language, with a reroll. No free text anywhere: no chat, no custom names, no team names. The host can rename a player to another generated name or remove them. Emoji reactions are off in P1.
+**Players never sign in.** `POST /api/live/join` takes the code and a nickname key and returns a room token: a JWT signed on the Vercel server with `STOA_ROOM_SECRET`, carrying room id, player id and an expiry at room close. The client keeps it in `sessionStorage` or memory and sends it with every answer. The player id exists only inside that room.
+
+**Nicknames.** Players pick from three generated two-word names, adjective plus animal or object, from a reviewed list in each interface language, with a reroll. No free text anywhere: no chat, no custom names, no team names, no reactions. The host can swap a player's name for another generated one or remove the player.
 
 ## Transport and State
 
-Stoa needs the hosted Supabase project that serves auth for both apps, the one the replacement decision in `bkt-x23u` settles. Local development runs on `npm run db:local`.
+Stoa runs on the live hosted Supabase project `xbwblxwafphvdeldighd`. Local development runs on `npm run db:local`. Founder task before P1a: change that project's Auth site URL from localhost to the production domain, so host sign-in links resolve.
 
-**Decision: Supabase Realtime broadcast for fan-out, Postgres functions as the authority.**
+**Decision: a public Realtime broadcast channel for fan-out, Vercel routes in front of Postgres functions as the authority.**
 
-The `bucket` schema is sealed off from PostgREST, so clients call thin Next routes under `/api/live/` on bucket.foundation, and each route verifies the caller's Supabase JWT and calls one `bucket.live_*` function with the service role. Every timestamp comes from the database.
+- **Routes.** The `bucket` schema is sealed off from PostgREST, so every call goes to a Next route under `/api/live/` on bucket.foundation, CORS open to polingual.com. Each route checks the room token or the host session and calls one `bucket.live_*` function with the service role. Every timestamp comes from `clock_timestamp()` in the database.
+- **Channel.** Clients subscribe with the anon key to the public broadcast topic `stoa:<room id>`, where the room id is a random UUID returned only by join. Public channels need no `realtime.messages` policies and no anonymous-auth setting. Only the routes broadcast, through the Realtime HTTP broadcast endpoint with the service key.
+- **Signed events.** Anyone holding the room id could send on a public channel, so every event carries an Ed25519 signature from the routes, and clients drop events that fail the check. Browsers verify with WebCrypto, with a 7 KB fallback library for older ones; iOS verifies with CryptoKit. This costs one module and one key, and it keeps a student from faking a reveal on classmates' phones.
+- **Events.** `open` carries `seq`, `idx`, prompt, options and `closes_at`. `reveal` carries the answer key and per-option counts. `board` carries standings. The answer key leaves the server only in `reveal`.
+- **Private channels considered.** They would need JWTs for players, which means anonymous auth users, policies on `realtime.messages` and a cleanup job for auth rows. Signed public events give the same protection with less to run.
 
-- The room state machine lives in Postgres: `lobby`, `question`, `reveal`, `board`, then `finale` and `closed`. The `live_*` functions move it and stamp every transition with `clock_timestamp()`.
-- Each transition calls `realtime.send()` from the function, which broadcasts a small event (`seq`, `phase`, `q_index`, `opens_at`, `closes_at`) on the private topic `stoa:<room uuid>`. Clients never broadcast: RLS on `realtime.messages` grants select to room members and grants insert to nobody.
-- Answers go over HTTP to the answer route, so each one is authenticated, stamped and written once by primary key.
-- The host owns pacing and the server owns time and scoring. The host calls `live_advance` at the deadline; the server refuses before `closes_at`. When the host drops, the first `live_state` call more than 2 seconds past the deadline closes the question.
-- Presence stays off for players, since presence diffs fan out to every member. The roster comes from `live_players`, and a ping call every 15 seconds updates `last_seen` and returns server time for clock sync.
+**Clock and host drop.** The room row stores every deadline: `opens_at`, `closes_at`, `next_at`. Phases advance on schedule with no host action, and the host can pause, skip or extend. Every route call first runs `live_tick(room)`, which applies any overdue transition and broadcasts it. A pg_cron job every 10 seconds calls `/api/live/sweep` through `pg_net` with a shared secret, so an idle room still advances. A host who drops reconnects with a host token, signed like the room token, and resumes the controls.
 
-**Why this over the alternatives.** Vercel functions hold no long-lived sockets. A host-authoritative design lets a modified host page award points. A separate socket server adds an always-on service, which Local First avoids. Supabase is already the database and auth for both apps.
+**Answer path.** `live_answers` takes inserts only, one row per answer, primary key `room_id, idx, player_id`, stamped with server receive time. No counter rows. At reveal one aggregate query scores the question and writes points to `live_scores`. The host board polls a count of rows for the current question once a second.
 
-**Identity.** Every player gets a Supabase anonymous session: supabase-js on the web, the `/auth/v1/signup` anonymous call through URLSession in BucketKit. iOS adds a small Phoenix channel client on `URLSessionWebSocketTask` in BucketKit, around 200 lines, with no new package. Hosts sign in with their existing account.
+**Latency fairness.** In the lobby each client measures its broadcast delay: the server sends signed probes stamped with send time, and the client reports receipt time corrected by a ping clock offset. The median becomes the player's grace, capped at 1000 ms. Speed points use server receive time minus `opens_at` minus grace. Answers after `closes_at` plus grace score 0.
 
-**Latency fairness.** The client reports milliseconds from the moment the question rendered. The server clamps that value into the range from its own elapsed time minus the player's measured round trip minus 300 ms, up to its own elapsed time. Speed points use the clamped value. Answers arriving after `closes_at` plus 500 ms score 0.
+**Reconnects.** Broadcasts drive the screen and `GET /api/live/rooms/:id/state` is the truth. A client that sees a gap in `seq`, wakes from the background or reloads fetches state with its token and renders the snapshot.
 
-**Reconnects.** Broadcasts are hints; `live_state` is the truth. A client that sees a gap in `seq`, wakes from the background, or rejoins calls `live_state` and renders the snapshot. The anonymous session persists in localStorage or the Keychain, so a reload keeps the same player and score.
-
-**Limits.** 100 players per room, enforced in `live_join`. A full room of 100 opens 101 connections and sends about 6 broadcasts per question, each delivered to 101 clients. The Realtime connection and message quotas for the prod project's plan get checked against 3 concurrent full rooms before P1 launch `[empirical: supabase.com/docs/guides/realtime/quotas, to read at P1 start]`. The host gets the live answer count on a host-only topic, throttled to 2 updates a second.
+**Limits.** 100 players per room, enforced in `live_join`. Joins are rate limited per room code at 150 a minute, so a class of 35 behind one school NAT joins at once. Failed code lookups are limited per IP at 60 a minute to stop guessing. A full room opens 101 connections and receives about 4 broadcasts per question. The Realtime connection and message quotas for the project's plan get checked against 3 concurrent full rooms before P1a launch `[empirical: supabase.com/docs/guides/realtime/quotas, to read at P1a start]`.
 
 ## Question Generators
 
-All generators are pure TypeScript in `src/lib/stoa/`, seeded by the room seed, so a seed replays the same set in tests. Room creation generates the full set and stores it; players receive prompt and options at open and the answer at reveal.
+All generators are pure TypeScript in `src/lib/stoa/`, seeded by the room seed, so a seed replays the same set in tests. Room creation generates and stores the full set. Only kinds the current data supports ship.
 
-**Polingual**, from `polingual/src/data/words.json`: 244 concepts across 29 languages, with IPA, romanization, a 0 to 10 tier and roots on 102 entries.
+**Polingual**, from `polingual/src/data/words.json`: 244 concepts across 29 languages, each with a category, a 0 to 10 tier, and IPA or romanization on most forms.
 
-| Kind | Prompt | Options |
-|---|---|---|
-| Pick the word | "water" in Spanish | four Spanish words; distractors from the same category, using `Confusables` rules |
-| Hear it | The board plays a word | four written forms in that language |
-| Shared root | `*nem-` | four pairs of words; one pair shares the root |
-| Which script | a word in its native script | four language names |
-| Translate | a word in language A | four words in language B |
+| Kind | Phase | Prompt | Options |
+|---|---|---|---|
+| Pick the word | P1a | "water" in Spanish | four Spanish words; distractors share the category and sit within 2 tiers |
+| Which language | P1a | a word in its native script | four language names; distractors share the script where the set allows |
+| Translate | P1b | a word in language A | four words in language B, same distractor rule |
+| Sound it out | later | the IPA on screen, with audio as an extra | four written forms; only languages with IPA |
 
-- **Difficulty.** Round 1 draws tiers 0 to 3, round 2 tiers 3 to 6, round 3 tiers 6 to 10. Hard questions also draw distractors from the same category and the same script.
-- **Mix by root language.** The host sets a home language for prompts and picks target languages. The generator groups targets into families (Romance, Germanic, Slavic, Semitic, Indic, East Asian, classical) and keeps any one family under 40% of a round when more than one family is chosen.
-- **Audio.** The board plays audio through the same voices the apps use; the web host falls back to `speechSynthesis` and drops Hear it for a language with no voice on that device. After reveal the board shows the IPA.
+- **Difficulty.** Round 1 draws tiers 0 to 3, round 2 tiers 3 to 6, round 3 tiers 6 to 10.
+- **Mix by root language.** The host sets a home language for prompts and picks target languages. The generator groups targets into families (Romance, Germanic, Slavic, Semitic, Indic, East Asian, classical) and keeps any one family under 40% of a round when the host picked more than one family.
+- **Audio.** Sound it out shows the IPA first. The board plays audio as an extra, through the apps' voices or `speechSynthesis` on the web.
+- **Deferred.** Shared root and confusable-distractor kinds wait for data: roots cover 102 of 244 concepts.
 
-**Bucket**, from `learning/app/corpus/questions/*.json`: 793 `pick` questions across the 8 decks, plus `match` and `order` questions for later modes. P2 uses `pick` only, shuffled with the answer index tracked. Difficulty follows the atom's place in the prerequisite graph (`requires`): early atoms in round 1, deep atoms in round 3. The host picks one deck or a mix.
+**Bucket**, from `learning/app/corpus/questions/*.json`: 793 `pick` questions across the 8 decks. P2 uses `pick` only, shuffled with the answer index tracked. Difficulty follows the atom's place in the prerequisite graph (`requires`): early atoms in round 1, deep atoms in round 3. The host picks one deck or a mix.
 
 ## Data Model
 
-New migration in schema `bucket`, all tables with RLS on and reached through the `live_*` functions.
+New migration in schema `bucket`, RLS on every table, reached only through the `live_*` functions.
 
 | Table | Key columns |
 |---|---|
-| `live_rooms` | `id uuid`, `code`, `product`, `host_user`, `mode`, `settings jsonb`, `seed`, `phase`, `q_index`, `opens_at`, `closes_at`, `seq`, `paused_ms`, `expires_at` |
-| `live_teams` | `room_id`, `slot`, `pigment` |
-| `live_players` | `id`, `room_id`, `auth_uid`, `nickname_key`, `team_slot`, `time_factor`, `streak`, `score`, `last_seen`, `removed` |
-| `live_questions` | `room_id`, `idx`, `round`, `kind`, `prompt jsonb`, `options jsonb`, `answer smallint`, `audio jsonb` |
-| `live_answers` | primary key `room_id, idx, player_id`; `choice`, `client_ms`, `server_ms`, `scored_ms`, `correct`, `points` |
+| `live_rooms` | `id uuid`, `code`, `product`, `host_user`, `mode`, `school_mode`, `settings jsonb`, `seed`, `phase`, `idx`, `opens_at`, `closes_at`, `next_at`, `paused_at`, `seq`, `expires_at` |
+| `live_players` | `id`, `room_id`, `nickname_key`, `team_slot`, `time_factor`, `grace_ms`, `removed` |
+| `live_questions` | `room_id`, `idx`, `round`, `kind`, `prompt jsonb`, `options jsonb`, `answer smallint` |
+| `live_answers` | primary key `room_id, idx, player_id`; `choice`, `received_at` |
+| `live_scores` | primary key `room_id, idx, player_id`; `correct`, `points`, written once at reveal |
 | `live_duels` (P4) | `id`, `seed`, `product`, `from_user`, `to_user`, `from_result`, `to_result`, `status`, `expires_at` |
 
-A daily cron deletes rooms, players and answers older than 24 hours and the anonymous auth users tied to them. Hosts keep a per-room summary: team scores and the per-question right rate, with no player rows.
+A pg_cron job deletes rooms and every child row 24 hours after close. The host keeps a summary with no player rows: player count, the per-question right rate, and the top nicknames.
 
 ## API Surface
 
-| Call | Where | Who |
-|---|---|---|
-| `POST /api/live/rooms` | bucket.foundation route, CORS for polingual.com | host; generates and stores the set, returns code and room id |
-| `POST /api/live/join` with code and nickname key | route over `live_join` | player; returns room id, player id, team |
-| `GET /api/live/rooms/:id/state` | route over `live_state` | anyone in the room; snapshot with no answers before reveal |
-| `POST /api/live/answer` with idx, choice, client ms | route over `live_answer` | player |
-| `POST /api/live/ping` | route over `live_ping` | player; returns server time |
-| `POST /api/live/rooms/:id/{start,advance,pause,lock,end}` | routes | host |
-| `POST /api/live/rooms/:id/players/:pid/{move,rename,remove,time}` | routes | host |
-| `GET /api/live/rooms/:id/summary` | route | host; CSV for teachers |
-| `POST /api/live/duels`, `GET /api/live/duels` | route, P4 | signed-in users |
+| Call | Who |
+|---|---|
+| `POST /api/live/rooms` | signed-in host; generates the set, returns code, room id and host token |
+| `POST /api/live/join` | player; code and nickname key in, room token and room id out |
+| `GET /api/live/rooms/:id/state` | room token or host token; snapshot with no answer key before reveal |
+| `POST /api/live/answer` | room token; idx and choice |
+| `POST /api/live/probe` | room token; lobby latency reports |
+| `POST /api/live/rooms/:id/{start,pause,resume,skip,end}` | host token |
+| `POST /api/live/rooms/:id/players/:pid/{move,rename,remove,time}` | host token |
+| `POST /api/live/sweep` | pg_cron through `pg_net`, shared secret |
+| `GET /api/live/rooms/:id/summary` | host; CSV of nicknames and scores |
+| `POST /api/live/duels`, `GET /api/live/duels` | signed-in users, P4 |
+
+## Child Safety
+
+- **Players.** No account, no email, no typed name, no free text, and no id that outlives the room. Nicknames come from the generated list.
+- **Retention.** Room, player, answer and score rows are deleted 24 hours after the room closes. Rate-limit counters live in memory for one minute.
+- **School mode.** A room setting that removes every promo, paywall link, QR to the app, and TestFlight or App Store call to action from player screens and from the board. Results show nicknames only.
+- **Hosts.** The host signs in with an existing account and accepts the Stoa host terms once: the host is a teacher or another adult, and a school host confirms the school allows the tool.
+- **COPPA.** Stoa collects no personal information from players: no name, contact, photo, location or persistent identifier. A nickname from our list, a room token that expires at close, and answers deleted within a day are what a player leaves behind. Under-13 students can play in a class without parental consent because nothing about them is collected. Duels in P4 need an account and pass the existing age range check, so they stay 13 and over.
+- **FERPA.** Stoa receives no student names or education records. The teacher's summary pairs nicknames with scores, and only the teacher knows which student held which nickname. A student data page with these terms ships with P1a.
 
 ## Monetization
 
-- **Joining is free everywhere**, with no account. Every player sees the brand and a QR to the app at the finale, so players are the acquisition channel.
-- **Polingual hosting** is free up to 10 players with Chorus and the Pick the word kind. Polingual subscribers, including trial users and Polingual Family, host up to 100 players with every kind and mode. Ten players covers a family or party and sends each host to the paywall when a class wants in.
-- **Classroom grant.** Teachers apply once with a school email and host up to 100 players free. A grant reaches 25 to 35 new players a session at no cost per seat.
-- **Bucket hosting is free** at every size, matching the free-to-read canon.
+- **P1 hosting is free** for every product and room size.
+- **Joining is free** everywhere, with no account.
+- **Measured.** Host sessions per week, players per room, repeat hosts after 14 days, School mode share, and app installs from the finale screen outside School mode.
+- **Later rule.** A Polingual room above 30 players needs a host with a Polingual subscription or trial, unless the room runs in School mode.
 
 ## Phases
 
@@ -138,19 +149,19 @@ Each phase ships alone. Sizes assume one build agent and include review.
 
 | Phase | Screens | APIs | Tests | Size |
 |---|---|---|---|---|
-| **P1** Web host and phone join, Polingual words, Chorus | polingual.com/live: setup, lobby with code and QR, question, reveal, board, finale. polingual.com/join: code, nickname pick, waiting, answer, result | migration, `live_*` functions, every `/api/live/` route, cleanup cron | generator and scoring unit tests on seeds; SQL tests in `supabase/tests/` for RLS, clamping, double answers and late answers; Playwright run with a host and 3 players; a load script with 100 simulated players on the local stack | 3 weeks, 5 PRs |
-| **P2** Bucket quizzes, iOS join, AirPlay host | bucket.foundation/live and /join; iOS Join Live, QR scan, answer screen; iOS host remote and external display board; roster mode | Bucket generator, roster routes, summary CSV | BucketKit tests for the Phoenix client and state decoding; UI test for join by code; device test of AirPlay to an Apple TV | 3 weeks, 4 PRs |
+| **P1a** Web host and web join, Open Floor, Pick the word and Which language | polingual.com/live: setup, lobby with code and QR, question, reveal, board, finale. polingual.com/join: code, nickname pick, waiting, answer, result | migration, `live_*` functions, rooms, join, state, answer, probe, host controls, sweep, signed broadcast module, deletion cron | generator unit tests on seeds; scoring tests for grace and late answers; SQL tests in `supabase/tests/` for duplicate answers and deletion; signature rejection test; Playwright with a host and 3 players; a load script with 100 players on the local stack | 2 weeks, 4 PRs |
+| **P1b** Chorus teams, Translate, School mode | team lobby, team board, School mode toggle and stripped player screens | move route, team scoring, summary CSV | team mean and unison tests; School mode screens show no promo, checked in Playwright | 1.5 weeks, 3 PRs |
+| **P2** Bucket quizzes, iOS join, AirPlay host | bucket.foundation/live and /join; iOS Join Live, scanner, answer screen; iOS host remote and external display board | Bucket generator | BucketKit tests for the Phoenix client, signature check and state decoding; UI test for join by code; device test of AirPlay to an Apple TV | 3 weeks, 4 PRs |
 | **P3** tvOS host | tvOS setup, lobby, question, board, finale, device code sign-in | none new | tvOS UI tests on the simulator; a TestFlight build on Apple TV | 2 weeks, 3 PRs |
-| **P4** Duels and matchmaking | send a duel from a word or a deck; inbox; result card through the existing brag share | duel routes; matchmaking pairs players of the same languages and level from a queue, falling back to a seeded ghost run | duel lifecycle and expiry tests; matchmaking fairness test on synthetic queues | 3 weeks, 4 PRs |
-| **P5** Roku | lobby, question, board, finale in SceneGraph | none new, polls `live_state` | Roku dev-mode runs; certification checklist | 4 weeks plus certification |
+| **P4** Duels and matchmaking | send a duel from a word or a deck; inbox; result card through the existing brag share | duel routes; matchmaking pairs players of the same languages and level, falling back to a seeded ghost run | duel lifecycle and expiry tests; matchmaking fairness test on synthetic queues | 3 weeks, 4 PRs |
+| **P5** Roku | lobby, question, board, finale in SceneGraph | none new, polls state | Roku dev-mode runs; certification checklist | 4 weeks plus certification |
 
-**Compass mode**, the category dial, follows P4. The board spins a dial of eight points: the seven canon branches plus Languages. A player who answers three right in a row on a branch claims its keystone, and the first to hold four keystones wins. It reuses the Chorus engine with a new round picker.
+**Compass mode**, the category dial, follows P4. The board spins a dial of eight points: the seven canon branches plus Languages. A player who answers three right in a row on a branch claims its keystone, and the first to hold four keystones wins. It reuses the Open Floor engine with a new round picker.
 
 ## Risks
 
-- **COPPA and schools.** The apps are rated 13+, and classrooms include younger students. Players give no email, no name of their own and no free text; the anonymous session is used for room operation and deleted within 24 hours, which keeps players inside COPPA's support-for-internal-operations path. Duels need an account and the existing age range check, so under-13 users never reach them. The classroom grant terms state the school authorizes use, and a student data page goes up with P1.
-- **Cheating.** Answers stay server-side until reveal. One answer per player per question by primary key. Join attempts are rate limited per IP at 10 failed codes a minute, and the host can lock the room. A modified client can answer fast but cannot see the answer, and its timing is clamped to the server window.
-- **Accessibility.** Pigment plus glyph plus full text on every tile. VoiceOver reads "Wave, option 1, agua" and announces 10 and 5 seconds left. Reduce Motion drops the dial spin and score animations. The host can set a time factor up to 1.5 for a player, and speed points scale to that player's window. The board meets 4.5 to 1 contrast at 3 meters.
-- **Right to left.** Arabic, Hebrew and Persian words render with bidi isolation (`dir="auto"` per option on the web, natural alignment in SwiftUI). An Arabic interface mirrors the phone layout and keeps the board grid fixed so glyph positions match across devices.
-- **Offline.** Live play needs a network. A player who drops sees a reconnecting banner and rejoins with the same score; missed questions score 0. The host can pause, which extends `closes_at` for everyone. A school network that blocks WebSockets falls back to polling `live_state` once a second.
+- **Cheating.** The answer key leaves the server only at reveal. One answer per player per question by primary key. Scores use server receive time, so a modified client gains at most its own grace, capped at 1000 ms. Forged broadcasts fail the signature check. The host can lock the room and remove players.
+- **Accessibility.** Every question has a visual form, and audio is an extra. Tiles carry color, glyph and letter plus the full text. VoiceOver reads "A, wave, agua" and announces 10 and 5 seconds left. Reduce Motion drops the dial spin and score animations. The host can extend a player's time up to 3 times the window, and speed points scale to that player's window. The board meets 4.5 to 1 contrast at 3 meters.
+- **Right to left.** Arabic, Hebrew and Persian words render with bidi isolation: `dir="auto"` per option on the web and natural alignment in SwiftUI. An Arabic interface mirrors the phone layout and keeps the board grid and letters fixed, so A to D sit in the same place on every device.
+- **Offline.** Live play needs a network. A player who drops sees a reconnecting banner and rejoins with the same token and score; missed questions score 0. The host can pause, which moves every deadline. A school network that blocks WebSockets falls back to polling state once a second.
 - **Name and look.** Stoa, the pigments, the glyphs and the cues are original. Any rule or asset that resembles a shipped quiz game gets changed before release.
