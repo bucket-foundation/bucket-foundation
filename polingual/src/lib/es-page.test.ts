@@ -11,7 +11,7 @@ test("es page is Spanish and canonical at /es", () => {
   assert.match(es, /<html lang="es">/);
   assert.match(es, /<link rel="canonical" href="https:\/\/www\.polingual\.com\/es">/);
   assert.match(es, /tercer<\/em> idioma/);
-  assert.ok(!/Join the beta|Language learning|day streak/.test(es));
+  assert.ok(!/Join the beta|Language learning|day streak/.test(es.replace(/<script>window\.PL_TR=.*?<\/script>/s, "")));
 });
 
 test("both pages pair through hreflang", () => {
@@ -33,6 +33,32 @@ test("/es rewrites to the generated page", async () => {
 
 test("beta modal speaks Spanish on Spanish pages", () => {
   const js = readFileSync(join(d8, "beta.js"), "utf8");
-  assert.match(js, /documentElement\.lang==="es"/);
-  assert.match(js, /Únete a la beta/);
+  assert.match(js, /TR=window\.PL_TR\|\|\{\}/);
+  assert.match(es, /window\.PL_TR=\{[^<]*"Join the beta": "Únete a la beta"/);
+});
+
+const langs: string[] = JSON.parse(readFileSync(join(__dirname, "site-langs.json"), "utf8"));
+const keys = JSON.parse(readFileSync(join(__dirname, "../../scripts/i18n/keys.json"), "utf8"));
+
+test("every site language has a page, a rewrite, an hreflang and the phone layout", async () => {
+  const { default: config } = await import("../../next.config.js");
+  const r = await config.rewrites();
+  assert.ok(langs.length >= 20, `only ${langs.length} languages`);
+  for (const l of langs) {
+    const html = readFileSync(join(d8, `${l}.html`), "utf8");
+    assert.match(html, new RegExp(`<html lang="${l}">`));
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://www\\.polingual\\.com/${l}">`));
+    assert.match(html, /id="app"/);
+    assert.match(html, new RegExp(`<option value="/${l}" lang="${l}" selected>`));
+    assert.match(en, new RegExp(`hreflang="[^"]+" href="https://www\\.polingual\\.com/${l}"`));
+    assert.ok(r.beforeFiles.some((x: { source: string; destination: string }) => x.source === `/${l}` && x.destination === `/d8/${l}.html`), l);
+  }
+});
+
+test("no English page string is left on a translated page", () => {
+  for (const l of langs) {
+    const html = readFileSync(join(d8, `${l}.html`), "utf8");
+    const page: Record<string, string> = JSON.parse(readFileSync(join(__dirname, `../../scripts/i18n/${l}.json`), "utf8")).page;
+    for (const k of keys.page as string[]) if (page[k] !== k) assert.ok(!html.includes(k), `${l} still has ${k}`);
+  }
 });

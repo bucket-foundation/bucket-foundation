@@ -64,10 +64,9 @@ test("Learn progress writes follow the age band", { skip }, async () => {
     assert.equal(first.json.needsProfile, true);
 
     assert.equal((await call(profile.POST, "/api/research-os/profile", u.token, { role: "student", birthYearBucket: "13to17" })).status, 200);
-    const minor = await call(progress.POST, "/api/academy/progress", u.token, PROGRESS);
-    assert.equal(minor.status, 403);
-    assert.equal(minor.json.error, "minor_read_only");
-    assert.equal(sql(`select count(*) from bucket.academy_progress where user_id = '${u.id}'`).out, "0");
+    const teen = await call(progress.POST, "/api/academy/progress", u.token, PROGRESS);
+    assert.equal(teen.status, 200, JSON.stringify(teen.json));
+    assert.equal(sql(`select count(*) from bucket.academy_progress where user_id = '${u.id}'`).out, "1");
 
     const raise = await call(profile.POST, "/api/research-os/profile", u.token, { role: "student", birthYearBucket: "18plus" });
     assert.equal(raise.status, 403);
@@ -77,7 +76,7 @@ test("Learn progress writes follow the age band", { skip }, async () => {
   }
 });
 
-test("an adult writes progress, and choosing under 13 deletes it and locks the band", { skip }, async () => {
+test("an adult writes progress, and choosing under 13 waits for a parent and locks the band", { skip }, async () => {
   const progress = await import("../src/app/api/academy/progress/route");
   const profile = await import("../src/app/api/research-os/profile/route");
   const u = await makeUser();
@@ -89,13 +88,12 @@ test("an adult writes progress, and choosing under 13 deletes it and locks the b
 
     const child = await call(profile.POST, "/api/research-os/profile", u.token, { role: "student", birthYearBucket: "under13" });
     assert.equal(child.status, 200, JSON.stringify(child.json));
-    assert.equal(child.json.deleted, true);
-    assert.equal(sql(`select count(*) from bucket.academy_progress where user_id = '${u.id}'`).out, "0");
+    assert.equal(child.json.deleted, false);
     assert.equal(sql(`select birth_year_bucket from graph.learner_profiles where learner_id = '${u.id}'`).out, "under13");
 
     const blocked = await call(progress.POST, "/api/academy/progress", u.token, PROGRESS);
     assert.equal(blocked.status, 403);
-    assert.equal(blocked.json.error, "under_13");
+    assert.equal(blocked.json.error, "needs_parent");
     const relabel = await call(profile.POST, "/api/research-os/profile", u.token, { role: "independent", birthYearBucket: "18plus" });
     assert.equal(relabel.status, 403);
     assert.equal(relabel.json.error, "age_band_locked");

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Legal from "../legal";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = { title: { absolute: "Polingual Terms of Use" }, description: "Terms for the Polingual app and polingual.com.", alternates: { canonical: "/terms" } };
+export const metadata: Metadata = pageMeta({ path: "/terms", title: "Polingual Terms of Use", description: "Terms for the Polingual app and polingual.com." });
 
 export default function Page() {
   return (

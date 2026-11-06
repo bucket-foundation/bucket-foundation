@@ -7,8 +7,8 @@ struct Onboarding: View {
     @Environment(LangStore.self) private var store
     let finish: (String?) -> Void
     @State private var step = PolingualLaunch.value("-onboardingStep").flatMap(Int.init).flatMap(Step.init(rawValue:)) ?? .welcome
-    @State private var root = "en"
-    @State private var targets: [String] = ["fr", "es", "it"]
+    @State private var root = InterfaceLanguage.deviceRoot
+    @State private var targets: [String] = ["fr", "es", "it", "de"].filter { $0 != InterfaceLanguage.deviceRoot }.prefix(3).map(\.self)
     @State private var creating = false
     @State private var failed: String?
 

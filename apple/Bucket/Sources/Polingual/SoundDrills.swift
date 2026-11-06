@@ -152,7 +152,11 @@ struct PairDrill: View {
         }
         picked = w.key
         haptic(w.key == ex.answer)
-        if w.key != ex.answer { hearAll(words.filter { $0.key == ex.answer } + words.filter { $0.key != ex.answer }, ex.lang) }
+        if w.key == ex.answer {
+            LangVoice.shared.speak(w.say, ex.lang)
+        } else {
+            hearAll([w] + words.filter { $0.key == ex.answer }, ex.lang)
+        }
     }
 }
 
@@ -200,7 +204,11 @@ struct LetterSoundDrill: View {
         }
         picked = o.key
         haptic(o.key == ex.answer)
-        LangVoice.shared.speak(say, ex.lang)
+        if o.key == ex.answer {
+            LangVoice.shared.speak(say, ex.lang)
+        } else {
+            LangVoice.shared.speakTogether([VoiceLine(lang: ex.lang, text: o.say), VoiceLine(lang: ex.lang, text: say)])
+        }
     }
 }
 

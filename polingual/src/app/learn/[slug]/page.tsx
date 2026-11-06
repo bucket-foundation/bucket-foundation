@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Legal from "../../legal";
 import { appJsonLd, faqJsonLd, jsonLdScript } from "@/lib/facts";
 import { GUIDES, guide } from "@/lib/guides";
+import { pageMeta } from "@/lib/meta";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,12 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const g = guide((await params).slug);
   if (!g) return {};
   const url = `/learn/${g.slug}`;
-  return {
-    title: { absolute: `${g.title} | Polingual` },
-    description: g.description,
-    alternates: { canonical: url },
-    openGraph: { type: "article", title: g.title, description: g.description, url, locale: g.lang === "es" ? "es_US" : "en_US", images: [{ url: "/d8/og.png", width: 1200, height: 630 }] },
-  };
+  return pageMeta({ path: url, title: g.title, documentTitle: `${g.title} | Polingual`, description: g.description, type: "article", locale: g.lang === "es" ? "es_US" : "en_US" });
 }
 
 export default async function Page({ params }: Props) {

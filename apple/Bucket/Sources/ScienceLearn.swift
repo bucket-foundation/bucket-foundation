@@ -140,7 +140,7 @@ struct DeckView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(LessonText.inline(atom.title)).font(.serif(.body, weight: .medium)).foregroundStyle(open ? Palette.ink : Palette.muted)
                     if !open {
-                        Text("After \(atom.requires.count) prerequisite\(atom.requires.count == 1 ? "" : "s")").font(.caption).foregroundStyle(Palette.muted)
+                        Text("Prerequisites: \(atom.requires.count)").font(.caption).foregroundStyle(Palette.muted)
                     } else if !atom.summary.isEmpty {
                         Text(LessonText.inline(atom.summary)).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
                     }

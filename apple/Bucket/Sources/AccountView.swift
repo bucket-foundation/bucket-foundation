@@ -45,7 +45,6 @@ struct AccountView: View {
                             Beta.shared.signedOut()
                             Task { await account.signOutAfterSync() }
                         }
-                        Button("Delete account", role: .destructive) { confirmingDelete = true }
                     } header: {
                         Eyebrow(text: "Account")
                     }
@@ -89,6 +88,13 @@ struct AccountView: View {
                 } footer: {
                     Text("build the past. build history. bucket is the new renaissance.")
                 }
+                if account.stage == .signedIn {
+                    Section {
+                        Button("Delete account", role: .destructive) { confirmingDelete = true }
+                    } header: {
+                        Text("Danger zone").font(.caption.weight(.heavy)).foregroundStyle(.red)
+                    }
+                }
             }
             .listRowBackground(Palette.card)
             .paper()
@@ -119,14 +125,11 @@ struct AccountView: View {
             }
             .sheet(isPresented: $signingIn) { SignInSheet() }
             .sheet(isPresented: $emailing) { SignInSheet(emailOnly: true) }
-            .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
-                Button("Delete account and data", role: .destructive) {
+            .sheet(isPresented: $confirmingDelete) {
+                DeleteAccountSheet {
                     Beta.shared.signedOut()
                     Task { await account.deleteAccount() }
                 }
-                Button("Cancel", role: .cancel) {}
-            } message: {
-                Text("This removes your sign-in and your saved progress and profile from Bucket. It cannot be undone.")
             }
             #if DEBUG
             .confirmationDialog("Reset to a fresh install?", isPresented: $confirmingReset, titleVisibility: .visible) {
@@ -137,6 +140,43 @@ struct AccountView: View {
             }
             #endif
         }
+    }
+}
+
+struct DeleteAccountSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var typed = ""
+    let onDelete: () -> Void
+
+    private var word: String { String(localized: "delete") }
+    private var matches: Bool { typed.trimmingCharacters(in: .whitespaces).lowercased() == word.lowercased() }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    Text("This removes your sign-in and your saved progress and profile from Bucket. It cannot be undone.")
+                    TextField(word, text: $typed)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                    Button("Delete account and data", role: .destructive) {
+                        dismiss()
+                        onDelete()
+                    }
+                    .disabled(!matches)
+                } footer: {
+                    Text("Type \(word) to confirm.")
+                }
+            }
+            .listRowBackground(Palette.card)
+            .paper()
+            .navigationTitle("Delete your account?")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+            }
+        }
+        .presentationDetents([.medium])
     }
 }
 

@@ -164,6 +164,9 @@ struct TranslateCard: View {
                             let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
                             ShareObjectButton(.word(id: id, gloss: query, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
                             Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: query, forms: words))
+                            Spacer(minLength: 0)
+                            WrongTranslationLink(subject: ReportSubject(lang: from ?? hits.first { $0.itemId == id }?.matchedLang ?? langs.first ?? "en", itemId: id, text: query,
+                                                                        shown: words.map { "\($0.lang): \($0.form)" }.joined(separator: "; "), context: "translate:word"))
                         }
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }

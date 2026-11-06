@@ -37,7 +37,7 @@ struct StudyView: View {
         .paper()
         .sharePage(sharePage)
         .shareObjects(wordObjects)
-        .navigationTitle(store.system(systemId)?.name ?? "Study")
+        .navigationTitle(store.system(systemId)?.title ?? String(localized: "Study"))
         .inlineTitle()
         .task {
             LangVoice.shared.warm()

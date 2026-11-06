@@ -152,6 +152,7 @@ export interface LessonFillInput {
   count: number;
   coverage?: readonly CoverageRow[];
   exclude?: readonly string[];
+  due?: readonly string[];
 }
 
 export interface LessonFill {
@@ -173,12 +174,14 @@ export function lessonFill(input: LessonFillInput): LessonFill {
     }
   }
   const used = new Set<string>(input.exclude ?? []);
+  const dueOrder = new Map((input.due ?? []).map((id, i) => [id, i]));
+  const dueRank = (id: string) => dueOrder.get(id) ?? Number.MAX_SAFE_INTEGER;
   const ranked = pool
     .map((item) => {
       const fact = lessonFactId(item);
       return { item, fact, tie: createHash("sha256").update(`${seed}|${item.id}`).digest("hex"), ...(seen.get(fact) ?? { picks: 0, lastDay: "" }) };
     })
-    .sort((a, b) => a.picks - b.picks || a.lastDay.localeCompare(b.lastDay) || a.tie.localeCompare(b.tie));
+    .sort((a, b) => dueRank(a.item.id) - dueRank(b.item.id) || a.picks - b.picks || a.lastDay.localeCompare(b.lastDay) || a.tie.localeCompare(b.tie));
   for (const r of ranked) {
     if (out.questions.length >= input.count) break;
     if (used.has(r.fact)) continue;
