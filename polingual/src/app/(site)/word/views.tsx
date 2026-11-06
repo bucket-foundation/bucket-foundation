@@ -2,10 +2,12 @@ import Link from "next/link";
 import Site, { type SiteLocale } from "@/app/site";
 import { Tile, Tiles } from "@/app/tile";
 import styles from "./word.module.css";
+import { HearAll, PlayTile } from "./Speak";
+import { bcp47, commonsFileUrl, type SpeakItem } from "@/lib/speak";
 import { appJsonLd, jsonLdScript, SITE } from "@/lib/facts";
 import { GUIDES } from "@/lib/guides";
 import { LANGS, WORDS, breadcrumbJsonLd, ctaHref, relatedWords, wordJsonLd, wordsByTheme, type Word } from "@/lib/words";
-import { capitalizeIn, langLabel, localIndexCopy, localPath, localWordCopy, localeInfo, orderedForms, strings, wordLocalPath } from "@/lib/word-i18n";
+import { capitalizeIn, fill, langLabel, localIndexCopy, localPath, localWordCopy, localeInfo, orderedForms, strings, wordLocalPath } from "@/lib/word-i18n";
 
 export function siteLocale(code: string): SiteLocale {
   const info = localeInfo(code);
@@ -18,6 +20,9 @@ export function WordView({ w, code }: { w: Word; code: string }) {
   const copy = localWordCopy(code, w);
   const related = relatedWords(w);
   const guides = code === "en" ? GUIDES.filter((g) => g.lang === "en") : [];
+  const forms = orderedForms(w, code);
+  const items: SpeakItem[] = forms.map((f) => ({ id: f.lang, text: f.word, lang: bcp47(f.lang), src: f.audio?.src }));
+  const recorded = forms.filter((f) => f.audio);
   const ld = code === "en" ? [wordJsonLd(w), breadcrumbJsonLd(w), appJsonLd()] : [appJsonLd()];
   return (
     <Site wide loc={siteLocale(code)}>
@@ -29,15 +34,37 @@ export function WordView({ w, code }: { w: Word; code: string }) {
       {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
       <p className="lede">{copy.intro}</p>
       <p>{copy.body.join(" ")}</p>
-      <p className={styles.legend}>
-        {s.colLanguage} · {s.colWord} · {s.colPronunciation}
-      </p>
+      <div className={styles.legendRow}>
+        <p className={styles.legend}>
+          {s.colLanguage} · {s.colWord} · {s.colPronunciation}
+        </p>
+        <HearAll items={items} label={s.hearAll} stopLabel={s.stop} />
+      </div>
       <Tiles>
-        {orderedForms(w, code).map((f) => {
+        {forms.map((f, i) => {
           const reading = [f.ipa ? `/${f.ipa}/` : "", f.kana, f.roman].filter(Boolean).join(" · ");
-          return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} />;
+          return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} play={<PlayTile item={items[i]} label={fill(s.listen, { word: f.word })} />} />;
         })}
       </Tiles>
+      {recorded.length > 0 && (
+        <p className={styles.audioCredit}>
+          {s.audioCredit}{" "}
+          {recorded.map(({ lang, word: text, audio }, i) => (
+            <span key={lang}>
+              {i > 0 && s.sep}
+              <a href={commonsFileUrl(audio!.file)} lang={lang}>
+                <bdi>{text}</bdi>
+              </a>{" "}
+              ({audio!.by && (
+                <>
+                  <bdi>{audio!.by}</bdi>,{" "}
+                </>
+              )}
+              {audio!.licenseUrl ? <a href={audio!.licenseUrl}>{audio!.license}</a> : audio!.license})
+            </span>
+          ))}
+        </p>
+      )}
       {(w.note || w.roots) && (
         <section>
           <h2>{s.roots}</h2>
