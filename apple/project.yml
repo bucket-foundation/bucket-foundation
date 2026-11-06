@@ -431,6 +431,9 @@ schemes:
       storeKitConfiguration: Polingual/Polingual.storekit
     test:
       config: Debug
+      commandLineArguments:
+        "-AppleLanguages (en)": true
+        "-AppleLocale en_US": true
       targets:
         - PolingualTests
   PolingualUI:

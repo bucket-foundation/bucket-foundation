@@ -96,15 +96,19 @@ struct LocalizationTests {
         return d
     }
 
+    static func saved(_ defaults: UserDefaults, _ name: String) -> [String]? {
+        defaults.persistentDomain(forName: name)?["AppleLanguages"] as? [String]
+    }
+
     @Test func applyStoresTheLanguageForTheNextLaunch() throws {
         let name = "interface-language-test"
         let defaults = try Self.suite(name)
         defer { defaults.removePersistentDomain(forName: name) }
         #expect(InterfaceLanguage.apply(root: "ar", defaults: defaults, domain: name) == "ar")
-        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["ar"])
+        #expect(Self.saved(defaults, name) == ["ar"])
         #expect(InterfaceLanguage.layoutDirection == .rightToLeft)
         InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name)
-        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["ja"])
+        #expect(Self.saved(defaults, name) == ["ja"])
         #expect(InterfaceLanguage.layoutDirection == .leftToRight)
         InterfaceLanguage.apply(root: nil, defaults: defaults, domain: name)
         #expect(defaults.persistentDomain(forName: name)?["AppleLanguages"] == nil)
@@ -121,7 +125,7 @@ struct LocalizationTests {
         #expect(InterfaceLanguage.locale == .current)
         defaults.set(["fr"], forKey: "AppleLanguages")
         #expect(InterfaceLanguage.apply(root: root, defaults: defaults, domain: name) == nil)
-        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["fr"])
+        #expect(Self.saved(defaults, name) == ["fr"])
     }
 
     @Test func userPerAppLanguageWins() throws {
@@ -130,14 +134,14 @@ struct LocalizationTests {
         defer { defaults.removePersistentDomain(forName: name) }
         defaults.set(["de"], forKey: "AppleLanguages")
         #expect(InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name) == nil)
-        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["de"])
+        #expect(Self.saved(defaults, name) == ["de"])
         InterfaceLanguage.apply(root: nil, defaults: defaults, domain: name)
-        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["de"])
+        #expect(Self.saved(defaults, name) == ["de"])
         defaults.removeObject(forKey: "AppleLanguages")
         #expect(InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name) == "ja")
         defaults.set(["ko"], forKey: "AppleLanguages")
         #expect(InterfaceLanguage.apply(root: "ja", defaults: defaults, domain: name) == nil)
-        #expect(defaults.stringArray(forKey: "AppleLanguages") == ["ko"])
+        #expect(Self.saved(defaults, name) == ["ko"])
     }
 
     static func sourceKeys() throws -> Set<String> {
