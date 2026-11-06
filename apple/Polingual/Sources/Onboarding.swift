@@ -7,8 +7,8 @@ struct Onboarding: View {
     @Environment(LangStore.self) private var store
     let finish: (String?) -> Void
     @State private var step = PolingualLaunch.value("-onboardingStep").flatMap(Int.init).flatMap(Step.init(rawValue:)) ?? .welcome
-    @State private var root = "en"
-    @State private var targets: [String] = ["fr", "es", "it"]
+    @State private var root = InterfaceLanguage.deviceRoot
+    @State private var targets: [String] = ["fr", "es", "it", "de"].filter { $0 != InterfaceLanguage.deviceRoot }.prefix(3).map(\.self)
     @State private var creating = false
     @State private var failed: String?
 
@@ -123,7 +123,10 @@ struct Onboarding: View {
                         .labelsHidden()
                         .tint(Palette.ink)
                     }
-                    .onChange(of: root) { _, r in targets.removeAll { $0 == r } }
+                    .onChange(of: root, initial: true) { _, r in
+                        targets.removeAll { $0 == r }
+                        InterfacePick.shared.root = r
+                    }
                     Text(targets.count == 5 ? String(localized: "Five at most. Tap one to swap it out.") : String(localized: "\(targets.count) of 5 picked"))
                         .font(.footnote).foregroundStyle(Palette.muted)
                     FlowLayout(spacing: 8) {

@@ -164,3 +164,11 @@ test("the sitemap splits into an index past 45k urls or 45 MB", () => {
   assert.deepEqual(sitemapChildUrls(), [`${SITE}/sitemap/0.xml`]);
   assert.match(sitemapIndexXml(), /<sitemapindex[^>]*><sitemap><loc>https:\/\/www\.polingual\.com\/sitemap\/0\.xml<\/loc><\/sitemap><\/sitemapindex>/);
 });
+
+test("the arabic body paragraph uses no gendered verb", () => {
+  for (const w of WORDS.slice(0, 40)) {
+    const body = wordBody("ar", w).join(" ");
+    assert.ok(!/(تستخدم|تشترك|تُنطق|يستخدم|يشترك|يُنطق)/.test(body), body);
+    assert.ok(body.includes(String(w.forms.length)), body);
+  }
+});

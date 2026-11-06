@@ -34,6 +34,8 @@ struct SentenceTranslations: View {
                 }
                 .accessibilityElement(children: .combine)
             }
+            WrongTranslationLink(subject: report, visible: !results.isEmpty)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .task(id: "\(source)|\(targets.joined(separator: ","))|\(text)|\(round)") { await run() }
         .translationTask(download) { session in
@@ -41,6 +43,12 @@ struct SentenceTranslations: View {
             download = nil
             round += 1
         }
+    }
+
+    var report: ReportSubject? {
+        guard !results.isEmpty else { return nil }
+        let shown = targets.compactMap { l in results[l].map { "\(l): \($0)" } }.joined(separator: "; ")
+        return ReportSubject(lang: source, text: text, shown: shown, context: "translate:sentence")
     }
 
     func language(_ code: String) -> Locale.Language { Locale.Language(identifier: SentenceLanguage.appleCode(code)) }

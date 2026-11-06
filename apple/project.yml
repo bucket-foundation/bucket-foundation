@@ -89,6 +89,7 @@ targets:
     platform: iOS
     sources:
       - path: Clip/Sources
+      - path: Clip/Resources
       - path: Bucket/Sources/Style.swift
       - path: Bucket/Sources/Polingual/FlagArt.swift
       - path: Bucket/Sources/Polingual/D8Style.swift
@@ -253,6 +254,7 @@ targets:
     platform: iOS
     sources:
       - path: ShareExtension/Sources
+      - path: ShareExtension/Resources
     dependencies:
       - package: BucketKit
       - sdk: Intents.framework
@@ -293,6 +295,7 @@ targets:
     platform: iOS
     sources:
       - path: ShareExtension/Sources
+      - path: ShareExtension/Resources
     dependencies:
       - package: BucketKit
       - sdk: Intents.framework
@@ -428,6 +431,9 @@ schemes:
       storeKitConfiguration: Polingual/Polingual.storekit
     test:
       config: Debug
+      commandLineArguments:
+        "-AppleLanguages (en)": true
+        "-AppleLocale en_US": true
       targets:
         - PolingualTests
   PolingualUI:

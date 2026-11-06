@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { allLinks, detectFromHints, testflightUrl } from "@/lib/download/device";
+import { allLinks, detectFromHints } from "@/lib/download/device";
 import { fetchLatestReleaseV2 } from "@/lib/download/release-v2";
 import DownloadExperience from "@/components/download/DownloadExperience";
 
@@ -18,7 +18,7 @@ export default async function DownloadPage() {
   const release = await fetchLatestReleaseV2();
   const windowed = release ? release.windowed : [];
   const device = detectFromHints(ua, h.get("sec-ch-ua-platform"), h.get("sec-ch-ua-arch"));
-  const links = allLinks({ windowed, apk: release?.apk ?? null, testflight: testflightUrl(process.env.BUCKET_TESTFLIGHT_URL) });
+  const links = allLinks({ windowed, apk: release?.apk ?? null });
 
   return (
     <DownloadExperience device={device} links={links} />

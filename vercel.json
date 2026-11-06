@@ -42,6 +42,10 @@
       "schedule": "29 4 * * *"
     },
     {
+      "path": "/api/cron/translation-report-purge",
+      "schedule": "47 4 * * *"
+    },
+    {
       "path": "/api/cron/whats-new-daily?slot=0",
       "schedule": "0 6 * * *"
     },

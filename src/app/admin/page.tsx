@@ -13,6 +13,7 @@ const LINKS = [
   { href: "/admin/activity", label: "Activity", body: "DAU, WAU, reviews a day and retention cohorts." },
   { href: "/admin/waitlist", label: "Launch list", body: "Signups and invites." },
   { href: "/admin/whats-new", label: "What's New", body: "Drafts waiting to publish." },
+  { href: "/admin/translation-reports", label: "Translation reports", body: "Wrong translations learners flagged on Polingual cards." },
 ];
 
 export default async function AdminHome() {
