@@ -1,0 +1,50 @@
+{
+  "POST unconfigured": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable"
+    }
+  },
+  "POST anonymous": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable"
+    }
+  },
+  "POST signed in, store down": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable"
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable"
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable"
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 503,
+    "cache": null,
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable"
+    }
+  }
+}
