@@ -2,7 +2,7 @@ import Link from "next/link";
 import Site, { type SiteLocale } from "@/app/site";
 import { Tile, Tiles } from "@/app/tile";
 import styles from "./word.module.css";
-import { HearAll, PlayTile } from "./Speak";
+import { FitWords, HearAll, PlayTile } from "./Speak";
 import { bcp47, commonsFileUrl, type SpeakItem } from "@/lib/speak";
 import { appJsonLd, jsonLdScript, SITE } from "@/lib/facts";
 import { GUIDES } from "@/lib/guides";
@@ -46,6 +46,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
           return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} index={i} play={<PlayTile item={items[i]} label={fill(s.listen, { word: f.word })} />} />;
         })}
       </Tiles>
+      <FitWords />
       {recorded.length > 0 && (
         <p className={styles.audioCredit}>
           {s.audioCredit}{" "}
