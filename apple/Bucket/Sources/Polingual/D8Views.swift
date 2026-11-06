@@ -317,8 +317,9 @@ struct BranchTile: View {
 }
 
 func langName(_ code: String) -> String {
-    guard Locale.current.language.languageCode?.identifier != "en",
+    let locale = InterfaceLanguage.locale
+    guard locale.language.languageCode?.identifier != "en",
           let tag = Lang.info[code]?.bcp47,
-          let name = Locale.current.localizedString(forLanguageCode: String(tag.prefix { $0 != "-" })) else { return Lang.name(code) }
+          let name = locale.localizedString(forLanguageCode: String(tag.prefix { $0 != "-" })) else { return Lang.name(code) }
     return name.prefix(1).uppercased() + name.dropFirst()
 }
