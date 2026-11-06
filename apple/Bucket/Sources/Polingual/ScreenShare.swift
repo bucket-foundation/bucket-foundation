@@ -131,7 +131,7 @@ final class ShareLinkItem: NSObject, UIActivityItemSource {
 
     func activityViewControllerPlaceholderItem(_ controller: UIActivityViewController) -> Any { page.url }
 
-    static let linkPreviewTargets: Set<UIActivity.ActivityType> = [.message, .airDrop, .copyToPasteboard, .addToReadingList]
+    static let linkPreviewTargets: Set<UIActivity.ActivityType> = [.message, .mail, .airDrop, .copyToPasteboard, .addToReadingList]
 
     static func item(_ page: SharePage, for type: UIActivity.ActivityType?) -> Any {
         guard let type, !linkPreviewTargets.contains(type) else { return page.url }

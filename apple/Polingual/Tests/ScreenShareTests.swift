@@ -35,6 +35,9 @@ struct ScreenShareTests {
         #expect(SharePage.app.title.contains("Polingual"))
         #expect(SharePage.group(code: "7K3M9QX2PD", name: "Club", kind: .friends).title == "Join Club on Polingual")
         #expect(Share.appLink.absoluteString == "https://www.polingual.com/?utm_source=app_share")
+        let es = Bundle.main.path(forResource: "es", ofType: "lproj").flatMap(Bundle.init(path:))
+        #expect(es?.localizedString(forKey: "Join %@ on %@", value: nil, table: nil) == "Únete a %1$@ en %2$@")
+        #expect(es?.localizedString(forKey: "Learn languages together on Polingual", value: nil, table: nil) == "Aprende idiomas juntos en Polingual")
     }
 
     @Test func groupInviteLinkRoundTrips() {
@@ -77,13 +80,13 @@ struct ShareLinkItemTests {
     let page = SharePage.group(code: "7K3M9QX2PD", name: "Club", kind: .friends)
 
     @Test func appleTargetsGetTheLinkForARichPreview() {
-        for type in [UIActivity.ActivityType.message, .airDrop, .copyToPasteboard] {
+        for type in [UIActivity.ActivityType.message, .mail, .airDrop, .copyToPasteboard] {
             #expect(ShareLinkItem.item(page, for: type) as? URL == page.url)
         }
     }
 
     @Test func otherTargetsGetTitleAndLinkOnce() {
-        for type in [UIActivity.ActivityType.mail, UIActivity.ActivityType("net.whatsapp.WhatsApp.ShareExtension"), UIActivity.ActivityType("ph.telegra.Telegraph.Share")] {
+        for type in [UIActivity.ActivityType("net.whatsapp.WhatsApp.ShareExtension"), UIActivity.ActivityType("ph.telegra.Telegraph.Share")] {
             let text = ShareLinkItem.item(page, for: type) as? String
             #expect(text == "Join Club on Polingual\n" + page.url.absoluteString)
             #expect(text?.components(separatedBy: page.url.absoluteString).count == 2)
