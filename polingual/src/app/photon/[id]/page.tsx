@@ -3,6 +3,7 @@ import Link from "next/link";
 import { cache } from "react";
 import { notFound } from "next/navigation";
 import { getPhoton, type Photon } from "@/lib/photon-db";
+import { pageMeta } from "@/lib/meta";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const photon = await fetchPhoton(decodeURIComponent(id));
   if (!photon) return { title: "Word not found", robots: { index: false } };
   const lang = LANG_LABEL[photon.lang] || photon.lang;
-  return { title: `${photon.surface} in ${lang}`, description: (photon.meaning_en ? `${photon.surface} (${lang}): ${photon.meaning_en}` : `${photon.surface}, a word in ${lang}, on Polingual.`).slice(0, 160), alternates: { canonical: `/word/${encodeURIComponent(photon.id)}` } };
+  const title = `${photon.surface} in ${lang}`;
+  const description = photon.meaning_en ? `${photon.surface} (${lang}): ${photon.meaning_en}` : `${photon.surface}, a word in ${lang}, on Polingual.`;
+  return pageMeta({ path: `/photon/${encodeURIComponent(photon.id)}`, title, documentTitle: `${title} · Polingual`, description, type: "article" });
 }
 
 export default async function WordPage({ params }: { params: Promise<{ id: string }> }) {
@@ -140,7 +143,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
                     {r.predicate}
                   </span>
                   <Link
-                    href={`/word/${encodeURIComponent(r.to)}`}
+                    href={`/photon/${encodeURIComponent(r.to)}`}
                     className="hover:underline truncate"
                     style={{ color: "var(--blue)" }}
                   >
