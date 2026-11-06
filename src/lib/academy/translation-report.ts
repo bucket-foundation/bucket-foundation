@@ -7,7 +7,9 @@ export const RATE = {
   user: { limit: 40, windowSeconds: 3600 },
   device: { limit: 20, windowSeconds: 3600 },
   ip: { limit: 60, windowSeconds: 3600 },
+  anonymous: { limit: 600, windowSeconds: 3600 },
 } as const;
+export const RETENTION_DAYS = 180;
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const LANG_RE = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})?$/;
@@ -77,12 +79,14 @@ export interface TranslationReportRow {
 
 export interface StoredTranslationReport extends TranslationReportRow {
   created_at: string;
+  resolved_at: string | null;
 }
 
 export type ReportWrite = "recorded" | "duplicate";
 
 export interface TranslationReportStore {
-  hit: (key: string, limit: number, windowSeconds: number) => Promise<boolean>;
+  exists: (id: string) => Promise<boolean>;
+  hit: (key: string, limit: number, windowSeconds: number) => Promise<number>;
   insert: (row: TranslationReportRow) => Promise<ReportWrite>;
 }
 
@@ -96,18 +100,24 @@ export type ReportOutcome =
   | { outcome: "rate_limited"; retryAfterSeconds: number }
   | { outcome: "anonymous_needs_device" };
 
-export function rateKeys(report: TranslationReport, who: Reporter): { key: string; limit: number; windowSeconds: number }[] {
-  const keys: { key: string; limit: number; windowSeconds: number }[] = [];
-  if (who.userId) keys.push({ key: `tr:u:${who.userId}`, ...RATE.user });
-  else if (report.deviceId) keys.push({ key: `tr:d:${report.deviceId}`, ...RATE.device });
-  if (who.ip && who.ip !== "unknown") keys.push({ key: `tr:ip:${who.ip}`, ...RATE.ip });
-  return keys;
+export type RateKey = { key: string; limit: number; windowSeconds: number };
+
+export function rateKeys(report: TranslationReport, who: Reporter): RateKey[] {
+  const ip = who.ip && who.ip !== "unknown" ? who.ip : null;
+  if (who.userId) return [{ key: `tr:u:${who.userId}`, ...RATE.user }, ...(ip ? [{ key: `tr:ip:${ip}`, ...RATE.ip }] : [])];
+  return [
+    ...(report.deviceId ? [{ key: `tr:d:${report.deviceId}`, ...RATE.device }] : []),
+    { key: `tr:ip:${ip ?? "unknown"}`, ...RATE.ip },
+    { key: "tr:anon", ...RATE.anonymous },
+  ];
 }
 
 export async function recordTranslationReport(store: TranslationReportStore, report: TranslationReport, who: Reporter): Promise<ReportOutcome> {
   if (!who.userId && !report.deviceId) return { outcome: "anonymous_needs_device" };
+  if (await store.exists(report.id)) return { outcome: "duplicate" };
   for (const k of rateKeys(report, who)) {
-    if (!(await store.hit(k.key, k.limit, k.windowSeconds))) return { outcome: "rate_limited", retryAfterSeconds: k.windowSeconds };
+    const wait = await store.hit(k.key, k.limit, k.windowSeconds);
+    if (wait > 0) return { outcome: "rate_limited", retryAfterSeconds: Math.min(Math.max(1, Math.ceil(wait)), k.windowSeconds) };
   }
   const outcome = await store.insert({
     id: report.id,

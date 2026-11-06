@@ -23,10 +23,11 @@ function memoryStore(): TranslationReportStore & { rows: TranslationReportRow[];
   return {
     rows,
     hits,
-    hit: async (key, limit) => {
+    exists: async (id) => rows.some((r) => r.id === id),
+    hit: async (key, limit, windowSeconds) => {
       const n = (hits.get(key) ?? 0) + 1;
       hits.set(key, n);
-      return n <= limit;
+      return n <= limit ? 0 : Math.floor(windowSeconds / 2);
     },
     insert: async (row) => {
       if (rows.some((r) => r.id === row.id)) return "duplicate";
@@ -84,7 +85,32 @@ test("signed-in reports key the limit on the user, anonymous ones on the device"
   assert.ok(p.ok);
   if (!p.ok) return;
   assert.deepEqual(rateKeys(p.value, { userId: USER, ip: null }).map((k) => k.key), [`tr:u:${USER}`]);
-  assert.deepEqual(rateKeys(p.value, { userId: null, ip: "1.2.3.4" }).map((k) => k.key), [`tr:d:${DEVICE}`, "tr:ip:1.2.3.4"]);
+  assert.deepEqual(rateKeys(p.value, { userId: USER, ip: "1.2.3.4" }).map((k) => k.key), [`tr:u:${USER}`, "tr:ip:1.2.3.4"]);
+  assert.deepEqual(rateKeys(p.value, { userId: null, ip: "1.2.3.4" }).map((k) => k.key), [`tr:d:${DEVICE}`, "tr:ip:1.2.3.4", "tr:anon"]);
+});
+
+test("anonymous reports with no known ip share one ip bucket and the global cap", () => {
+  const p = parseTranslationReport(body());
+  assert.ok(p.ok);
+  if (!p.ok) return;
+  for (const ip of [null, "unknown"]) assert.deepEqual(rateKeys(p.value, { userId: null, ip }).map((k) => k.key), [`tr:d:${DEVICE}`, "tr:ip:unknown", "tr:anon"]);
+});
+
+test("rotating device ids from one ip still hits the ip cap", async () => {
+  const store = memoryStore();
+  const deps = { verifyUser: async () => null, store: () => store };
+  for (let i = 0; i < RATE.ip.limit; i++) assert.equal((await handleTranslationReport(post(body({ device_id: randomUUID() }), { "x-real-ip": "unknown" }), deps)).status, 200);
+  assert.equal((await handleTranslationReport(post(body({ device_id: randomUUID() }), { "x-real-ip": "unknown" }), deps)).status, 429);
+});
+
+test("a duplicate retry does not spend rate quota", async () => {
+  const store = memoryStore();
+  const p = parseTranslationReport(body());
+  assert.ok(p.ok);
+  if (!p.ok) return;
+  await recordTranslationReport(store, p.value, { userId: null, ip: "1.2.3.4" });
+  for (let i = 0; i < 5; i++) assert.deepEqual(await recordTranslationReport(store, p.value, { userId: null, ip: "1.2.3.4" }), { outcome: "duplicate" });
+  assert.equal(store.hits.get(`tr:d:${DEVICE}`), 1);
 });
 
 test("a retried report with the same id is stored once", async () => {
@@ -135,7 +161,7 @@ test("the route rate limits a device past its hourly cap", async () => {
   for (let i = 0; i < RATE.device.limit; i++) assert.equal((await handleTranslationReport(post(body()), deps)).status, 200);
   const res = await handleTranslationReport(post(body()), deps);
   assert.equal(res.status, 429);
-  assert.equal(res.headers.get("retry-after"), String(RATE.device.windowSeconds));
+  assert.equal(res.headers.get("retry-after"), String(Math.floor(RATE.device.windowSeconds / 2)));
   assert.equal(store.rows.length, RATE.device.limit);
 });
 
@@ -156,4 +182,12 @@ test("the migration seals the table and keeps reports past account deletion", ()
   assert.match(sql, /reason in \('meaning', 'spelling', 'sound', 'script'\)/);
   assert.doesNotMatch(sql, /grant [^;]* to (anon|authenticated)/);
   assert.doesNotMatch(sql, /cascade/);
+  assert.match(sql, /function bucket\.purge_translation_reports\(\)/);
+  assert.match(sql, /resolved_at is not null or created_at < now\(\) - interval '180 days'/);
+  assert.match(sql, /grant execute on function bucket\.purge_translation_reports\(\) to service_role/);
+});
+
+test("the purge cron runs nightly", () => {
+  const crons = (JSON.parse(readFileSync(join(process.cwd(), "vercel.json"), "utf8")) as { crons: { path: string }[] }).crons;
+  assert.ok(crons.some((c) => c.path === "/api/cron/translation-report-purge"));
 });

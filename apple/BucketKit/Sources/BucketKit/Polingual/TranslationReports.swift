@@ -51,14 +51,44 @@ public struct TranslationReport: Codable, Sendable, Equatable {
         shown = Self.clip(subject.shown, 400)
         self.reason = reason
         self.suggestion = trimmed.flatMap { $0.isEmpty ? nil : Self.clip($0, 400) }
-        context = subject.context
+        context = Self.clip(subject.context, Self.contextLimit)
         self.deviceId = deviceId
     }
 
-    static func clip(_ s: String, _ max: Int) -> String {
+    public static let contextLimit = 40
+    public static let freeTextBytes = 1_000
+    public static let maxBytes = 4_096
+
+    static func clip(_ s: String, _ max: Int, bytes: Int = freeTextBytes) -> String {
         var out = String.UnicodeScalarView()
-        out.append(contentsOf: s.unicodeScalars.prefix(max))
+        var used = 0
+        for scalar in s.unicodeScalars.prefix(max) {
+            let size = String(scalar).utf8.count
+            if used + size > bytes { break }
+            used += size
+            out.append(scalar)
+        }
         return String(out)
+    }
+}
+
+public enum ReportDelivery: Sendable, Equatable {
+    case sent, queued, rejected
+}
+
+public struct FlushResult: Sendable, Equatable {
+    public var sent: [String] = []
+    public var rejected: [String] = []
+
+    public init(sent: [String] = [], rejected: [String] = []) {
+        self.sent = sent
+        self.rejected = rejected
+    }
+
+    public func delivery(of id: String) -> ReportDelivery {
+        if sent.contains(id) { return .sent }
+        if rejected.contains(id) { return .rejected }
+        return .queued
     }
 }
 
@@ -71,7 +101,8 @@ public actor TranslationReports {
     let file: URL
     let defaults: UserDefaults
     var queue: [TranslationReport]
-    var flushing = false
+    var drain: Task<FlushResult, Never>?
+    public private(set) var dropped = 0
 
     public init(base: URL = BucketAPI.production, transport: any Transport = URLSessionTransport(), file: URL, suite: String? = nil) {
         self.base = base
@@ -90,44 +121,57 @@ public actor TranslationReports {
         return id
     }
 
-    @discardableResult
-    public func submit(_ subject: ReportSubject, reason: TranslationIssue, suggestion: String?, token: String?) async -> Int {
-        queue.append(TranslationReport(subject: subject, reason: reason, suggestion: suggestion, deviceId: deviceId))
+    public func submit(_ subject: ReportSubject, reason: TranslationIssue, suggestion: String?, token: String?) async -> ReportDelivery {
+        let report = TranslationReport(subject: subject, reason: reason, suggestion: suggestion, deviceId: deviceId)
+        queue.append(report)
         if queue.count > Self.maxQueue { queue.removeFirst(queue.count - Self.maxQueue) }
         save()
-        return await flush(token: token)
+        return await flush(token: token).delivery(of: report.id)
     }
 
     @discardableResult
-    public func flush(token: String?) async -> Int {
-        guard !flushing, !queue.isEmpty else { return 0 }
-        flushing = true
-        defer { flushing = false }
-        var sent = 0
+    public func flush(token: String?) async -> FlushResult {
+        if let drain { return await drain.value }
+        guard !queue.isEmpty else { return FlushResult() }
+        let task = Task { await self.drainQueue(token: token) }
+        drain = task
+        return await task.value
+    }
+
+    func drainQueue(token: String?) async -> FlushResult {
+        var result = FlushResult()
         while let next = queue.first {
             var status = await post(next, token: token)
             if status == 401, token != nil { status = await post(next, token: nil) }
-            guard let status else { break }
-            if status == 200 || status == 400 || status == 413 {
-                queue.removeFirst()
-                sent += status == 200 ? 1 : 0
-                save()
+            guard let status, status == 200 || Self.permanent(status) else { break }
+            queue.removeAll { $0.id == next.id }
+            if status == 200 {
+                result.sent.append(next.id)
             } else {
-                break
+                result.rejected.append(next.id)
+                dropped += 1
             }
+            save()
         }
-        return sent
+        drain = nil
+        return result
     }
 
+    static func permanent(_ status: Int) -> Bool { status == 400 || status == 413 }
+
     func post(_ report: TranslationReport, token: String?) async -> Int? {
+        guard let body = try? JSONEncoder().encode(report) else { return 400 }
+        if body.count > Self.maxBodyBytes { return 413 }
         var r = URLRequest(url: base.appending(path: "api/academy/translation-report"))
         r.httpMethod = "POST"
         if let token { r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization") }
         r.setValue("application/json", forHTTPHeaderField: "content-type")
-        r.httpBody = try? JSONEncoder().encode(report)
+        r.httpBody = body
         guard let (_, http) = try? await transport.send(r) else { return nil }
         return http.statusCode
     }
+
+    static var maxBodyBytes: Int { TranslationReport.maxBytes }
 
     func save() {
         try? FileManager.default.createDirectory(at: file.deletingLastPathComponent(), withIntermediateDirectories: true)

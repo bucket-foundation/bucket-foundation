@@ -12,9 +12,9 @@ final class TranslationReporter {
         reports = TranslationReports(file: dir.appending(path: "translation-reports.json"))
     }
 
-    func send(_ subject: ReportSubject, reason: TranslationIssue, suggestion: String?) async -> Bool {
+    func send(_ subject: ReportSubject, reason: TranslationIssue, suggestion: String?) async -> ReportDelivery {
         let token = await Beta.shared.account?.freshToken()
-        return await reports.submit(subject, reason: reason, suggestion: suggestion, token: token) > 0
+        return await reports.submit(subject, reason: reason, suggestion: suggestion, token: token)
     }
 
     func flush() {
@@ -49,6 +49,7 @@ struct WrongTranslationLink: View {
     let subject: ReportSubject?
     var visible = true
     @State private var open = false
+    @ScaledMetric(relativeTo: .caption2) private var hitSlop: CGFloat = 13
 
     var live: Bool { visible && subject != nil }
 
@@ -58,11 +59,12 @@ struct WrongTranslationLink: View {
                 Image(systemName: "flag")
                 Text("Wrong translation?", tableName: "WrongTranslation")
             }
-            .font(.system(size: 11, weight: .medium))
+            .font(.caption2.weight(.medium))
             .foregroundStyle(Palette.muted.opacity(0.75))
             .padding(.vertical, 3)
             .padding(.horizontal, 6)
-            .contentShape(.rect)
+            .frame(minWidth: 44)
+            .contentShape(Rectangle().inset(by: -hitSlop))
         }
         .buttonStyle(.plain)
         .lineLimit(1)
@@ -96,7 +98,7 @@ struct WrongTranslationSheet: View {
     @State private var reason: TranslationIssue?
     @State private var fix = ""
     @State private var sending = false
-    @State private var done: Bool?
+    @State private var done: ReportDelivery?
     @FocusState private var typing: Bool
 
     var body: some View {
@@ -120,12 +122,16 @@ struct WrongTranslationSheet: View {
                 }
                 if let done {
                     Label {
-                        Text(done ? "Thanks. We will check it." : "Saved. It sends when you are back online.", tableName: "WrongTranslation")
+                        switch done {
+                        case .sent: Text("Thanks. We will check it.", tableName: "WrongTranslation")
+                        case .queued: Text("Saved. It sends when you are back online.", tableName: "WrongTranslation")
+                        case .rejected: Text("This report could not be sent.", tableName: "WrongTranslation")
+                        }
                     } icon: {
-                        Image(systemName: done ? "checkmark.circle.fill" : "tray.and.arrow.up")
+                        Image(systemName: done.symbol)
                     }
                     .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(done ? D8.malachite : Palette.muted)
+                    .foregroundStyle(done == .sent ? D8.malachite : done == .rejected ? Palette.ink : Palette.muted)
                 } else {
                     LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
                         ForEach(TranslationIssue.allCases) { r in
@@ -161,12 +167,23 @@ struct WrongTranslationSheet: View {
         sending = true
         typing = false
         Task {
-            let sent = await TranslationReporter.shared.send(subject, reason: reason, suggestion: fix)
+            let delivery = await TranslationReporter.shared.send(subject, reason: reason, suggestion: fix)
             sending = false
-            done = sent
-            haptic(true)
+            done = delivery
+            haptic(delivery != .rejected)
+            if delivery == .rejected { return }
             try? await Task.sleep(for: .seconds(1.4))
             dismiss()
+        }
+    }
+}
+
+extension ReportDelivery {
+    var symbol: String {
+        switch self {
+        case .sent: "checkmark.circle.fill"
+        case .queued: "tray.and.arrow.up"
+        case .rejected: "exclamationmark.triangle.fill"
         }
     }
 }
