@@ -10,8 +10,9 @@ struct SharePage: Equatable {
     var items: [URLQueryItem] = []
     var title: String
 
-    static let host = ShareRoute.host
-    static let app = SharePage(path: "", title: String(localized: "Learn every subject and language together on Bucket"))
+    static var app: SharePage {
+        SharePage(path: "", title: Feedback.isPolingual ? String(localized: "Learn languages together on Polingual") : String(localized: "Learn every subject and language together on Bucket"))
+    }
 
     init(path: String, items: [URLQueryItem] = [], title: String) {
         self.path = path
@@ -36,7 +37,7 @@ struct SharePage: Equatable {
     }
 
     static func langs(_ system: LangSystem, streak: Int = 0) -> SharePage {
-        SharePage(.langs(system.targets, root: system.root, streak: streak), title: String(localized: "Learning \(system.targets.map(langName).joined(separator: ", ")) together on Bucket"))
+        SharePage(.langs(system.targets, root: system.root, streak: streak), title: String(localized: "Learning \(system.targets.map(langName).joined(separator: ", ")) together on \(Feedback.appName)"))
     }
 
     static func deck(_ entry: DeckEntry) -> SharePage {
@@ -130,7 +131,14 @@ final class ShareLinkItem: NSObject, UIActivityItemSource {
 
     func activityViewControllerPlaceholderItem(_ controller: UIActivityViewController) -> Any { page.url }
 
-    func activityViewController(_ controller: UIActivityViewController, itemForActivityType type: UIActivity.ActivityType?) -> Any? { page.url }
+    static let linkPreviewTargets: Set<UIActivity.ActivityType> = [.message, .airDrop, .copyToPasteboard, .addToReadingList]
+
+    static func item(_ page: SharePage, for type: UIActivity.ActivityType?) -> Any {
+        guard let type, !linkPreviewTargets.contains(type) else { return page.url }
+        return "\(page.title)\n\(page.url.absoluteString)"
+    }
+
+    func activityViewController(_ controller: UIActivityViewController, itemForActivityType type: UIActivity.ActivityType?) -> Any? { Self.item(page, for: type) }
 
     func activityViewController(_ controller: UIActivityViewController, subjectForActivityType type: UIActivity.ActivityType?) -> String { page.title }
 
@@ -140,6 +148,7 @@ final class ShareLinkItem: NSObject, UIActivityItemSource {
         m.url = page.url
         m.title = page.title
         m.imageProvider = NSItemProvider(object: image)
+        m.iconProvider = NSItemProvider(object: image)
         return m
     }
 }
@@ -177,7 +186,7 @@ enum SharedLink: Equatable {
             self = .voice
             return
         }
-        guard url.host() == SharePage.host || url.host() == "bucket.foundation", let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
+        guard ShareRoute.hosts.contains(url.host() ?? ""), let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         let q = Dictionary((c.queryItems ?? []).compactMap { i in i.value.map { (i.name, $0) } }, uniquingKeysWith: { a, _ in a })
         let parts = c.path.split(separator: "/").map(String.init)
         guard parts.first == "s" else { return nil }

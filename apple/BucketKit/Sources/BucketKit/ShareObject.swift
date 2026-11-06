@@ -1,7 +1,12 @@
 import Foundation
 
 public struct ShareRoute: Sendable, Equatable {
-    public static let host = "www.bucket.foundation"
+    public static let bucketHost = "www.bucket.foundation"
+    public static let polingualHost = "www.polingual.com"
+    public static let hosts: Set<String> = [bucketHost, "bucket.foundation", polingualHost, "polingual.com"]
+    public static var host: String { host(for: BucketAPI.appName) }
+
+    public static func host(for app: String) -> String { app == "polingual" ? polingualHost : bucketHost }
 
     public var path: String
     public var items: [URLQueryItem]
@@ -11,13 +16,15 @@ public struct ShareRoute: Sendable, Equatable {
         self.items = items
     }
 
-    public var url: URL {
+    public var url: URL { url(host: Self.host) }
+
+    public func url(host: String) -> URL {
         var c = URLComponents()
         c.scheme = "https"
-        c.host = Self.host
+        c.host = host
         c.path = "/s" + path
         c.queryItems = items.isEmpty ? nil : items
-        return c.url ?? URL(string: "https://\(Self.host)/s")!
+        return c.url ?? URL(string: "https://\(host)/s")!
     }
 
     public static func clip(_ s: String, _ n: Int) -> String {
