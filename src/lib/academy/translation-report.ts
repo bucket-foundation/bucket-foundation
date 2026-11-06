@@ -33,6 +33,7 @@ export type Parsed<T> = { ok: true; value: T } | { ok: false; error: string };
 function clean(v: unknown, max: number): string | null | undefined {
   if (v === undefined || v === null) return null;
   if (typeof v !== "string") return undefined;
+  // eslint-disable-next-line no-control-regex
   const s = v.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "").trim();
   if (s.length === 0) return null;
   return Array.from(s).length > max ? undefined : s;
