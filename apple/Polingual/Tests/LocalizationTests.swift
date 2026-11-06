@@ -165,7 +165,7 @@ struct LocalizationTests {
     @Test func literalKeysInSwiftExistInEveryLanguage() throws {
         let keys = try Self.sourceKeys()
         #expect(keys.count > 300)
-        let tables = ["Bucket/Resources/%@.lproj/Localizable.strings", "Polingual/Resources/%@.lproj/Localizable.strings", "ShareExtension/Resources/%@.lproj/Localizable.strings", "Clip/Resources/%@.lproj/Localizable.strings"]
+        let tables = ["Bucket/Resources/%@.lproj/Localizable.strings", "Polingual/Resources/%@.lproj/Localizable.strings", "ShareExtension/Resources/%@.lproj/Localizable.strings", "Clip/Resources/%@.lproj/Localizable.strings", "Bucket/Resources/%@.lproj/WrongTranslation.strings", "Polingual/Resources/%@.lproj/WrongTranslation.strings"]
         for lang in Self.languages {
             let known = tables.compactMap { Self.table($0, lang) }.reduce(into: Set<String>()) { $0.formUnion($1.keys) }
             let missing = keys.subtracting(known)
