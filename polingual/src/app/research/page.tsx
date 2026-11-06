@@ -1,5 +1,6 @@
 import Signup from "../signup";
 import { Tex } from "../tex";
+import { pageMeta } from "@/lib/meta";
 
 const NAV = [
     { id: "record", label: "The record" },
@@ -94,7 +95,7 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
   );
 }
 
-export const metadata = { title: "Research notes", description: "Polingual research notes: a cross-lingual dictionary of 6.5 million words built on one meaning graph.", alternates: { canonical: "/research" } };
+export const metadata = pageMeta({ path: "/research", title: "Polingual research notes", documentTitle: "Research notes · Polingual", type: "article", description: "Polingual research notes: a cross-lingual dictionary of 6.5 million words built on one meaning graph." });
 
 export default function ResearchPage() {
   return (
