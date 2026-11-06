@@ -84,6 +84,7 @@ test("the word size is set in CSS from a build-time fit, with no client fitting"
   assert.match(rule(".tile:has(.play) .word"), /clamp\(12px,calc\(var\(--fit-icon,20\) \* 1cqi\)/);
   assert.match(CSS, /\.word\{[^}]*overflow-wrap:normal;word-break:keep-all;hyphens:none;text-wrap:balance/);
   assert.match(CSS, /\.tile\{position:relative;container-type:inline-size/);
+  assert.match(CSS, /font-size:clamp\(12px,calc\(var\(--fit,20\) \* min\(\.44vw,1\.68px\)\),var\(--cap,54px\)\);font-size:clamp\(12px,calc\(var\(--fit,20\) \* 1cqi\)/);
   const page = renderToStaticMarkup(<WordView w={word("brown")!} code="ru" />);
   assert.doesNotMatch(page, /data-fit/);
 });
