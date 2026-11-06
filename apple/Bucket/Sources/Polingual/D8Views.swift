@@ -275,7 +275,11 @@ struct D8Primary: ButtonStyle {
         configuration.label
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(enabled ? .white : D8.disabledText)
-            .padding(.horizontal, compact ? 18 : 0)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
+            .minimumScaleFactor(0.8)
+            .padding(.horizontal, compact ? 18 : 14)
+            .padding(.vertical, compact ? 0 : 6)
             .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget)
             .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: 12))
             .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: 12).offset(y: pressed ? 1 : 4))
@@ -317,8 +321,9 @@ struct BranchTile: View {
 }
 
 func langName(_ code: String) -> String {
-    guard Locale.current.language.languageCode?.identifier != "en",
+    let locale = InterfaceLanguage.locale
+    guard locale.language.languageCode?.identifier != "en",
           let tag = Lang.info[code]?.bcp47,
-          let name = Locale.current.localizedString(forLanguageCode: String(tag.prefix { $0 != "-" })) else { return Lang.name(code) }
+          let name = locale.localizedString(forLanguageCode: String(tag.prefix { $0 != "-" })) else { return Lang.name(code) }
     return name.prefix(1).uppercased() + name.dropFirst()
 }
