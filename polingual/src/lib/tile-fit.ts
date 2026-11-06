@@ -1,5 +1,6 @@
 const WIDE = /[ᄀ-ᇿ぀-ヿ㐀-鿿가-힯豈-﫿]/;
 const TAMIL = /[஀-௿]/;
+const ARABIC = /[\u0600-\u06ff\u0750-\u077f]/;
 const INDIC = /[ऀ-෿]/;
 const CYRILLIC_GREEK = /[Ͱ-ϿЀ-ӿἀ-῿]/;
 
@@ -19,13 +20,14 @@ export function glyphWidth(word: string): number {
   if (WIDE.test(word)) return 1.05;
   if (TAMIL.test(word)) return 2;
   if (INDIC.test(word)) return 0.9;
+  if (ARABIC.test(word)) return 0.95;
   if (CYRILLIC_GREEK.test(word)) return 0.68;
   return 0.64;
 }
 
 export const MAX_PX = 40;
 export const MULTI_PX = 24;
-export const MIN_PX = 14;
+export const MIN_PX = 10;
 
 export function capPx(word: string): number {
   return word.trim().split(/\s+/).length > 1 ? MULTI_PX : MAX_PX;

@@ -82,7 +82,7 @@ test("tile words fit on one line from grapheme length with a floor", () => {
   assert.equal(capPx("màu da cam"), 24);
   assert.equal(fitPx("brun", 140), 40);
   assert.ok(fitPx("коричневый", 140) * 10 * 0.68 <= 140);
-  assert.equal(fitPx("vaaleanpunainenvaaleanpunainen", 140), 14);
+  assert.equal(fitPx("vaaleanpunainenvaaleanpunainen", 140), 10);
 });
 
 class FakeAudio {

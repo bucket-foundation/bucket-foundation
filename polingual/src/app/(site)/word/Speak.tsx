@@ -47,10 +47,7 @@ export function PlayTile({ item, label }: { item: SpeakItem; label: string }) {
   if (!show) return null;
   const on = player.id === item.id;
   return (
-    <button type="button" className={styles.play} data-playing={on || undefined} aria-pressed={on} aria-label={label}onClick={() => (on ? stop() : void play(item))}>
-      <span className={styles.playIcon}>
-        <SpeakerIcon />
-      </span>
+    <button type="button" className={styles.play} data-playing={on || undefined} aria-pressed={on} aria-label={label} onClick={() => (on ? stop() : void play(item))}>
     </button>
   );
 }

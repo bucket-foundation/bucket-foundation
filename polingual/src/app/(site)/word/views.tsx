@@ -43,7 +43,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
       <Tiles>
         {forms.map((f, i) => {
           const reading = [f.ipa ? `/${f.ipa}/` : "", f.kana, f.roman].filter(Boolean).join(" · ");
-          return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} play={<PlayTile item={items[i]} label={fill(s.listen, { word: f.word })} />} />;
+          return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} index={i} play={<PlayTile item={items[i]} label={fill(s.listen, { word: f.word })} />} />;
         })}
       </Tiles>
       {recorded.length > 0 && (
