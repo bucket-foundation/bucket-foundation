@@ -69,3 +69,46 @@ func translateCorpus() throws -> LangCorpus {
     #expect(ja.contains { $0.contains("hanbun") })
     #expect(!ja.contains { $0.contains(/m[bmp]/) })
 }
+
+func lexiconShelf() -> LexiconShelf {
+    let tsv: [String: String] = [
+        "es": "casa\thome|house\ntener\thave\ntiene\t>tener\nbuenos días\tgood morning\ngato\tcat\nnegro\tblack\n=house\tcasa\n=cat\tgato\n=good morning\tbuenos días\n=black\tnegro\n",
+        "zh": "你好\thello\t\tnǐhǎo\n猫\tcat\t\tmāo\n=cat\t猫\n=hello\t你好\n",
+        "ja": "ねこ\tcat\n=cat\t猫\n",
+        "en": "house\t\t\nhouses\t>house\ncat\t\t\n",
+    ]
+    return LexiconShelf { lang in
+        guard let text = tsv[lang] else { return nil }
+        return try? (Data(text.utf8) as NSData).compressed(using: .zlib) as Data
+    }
+}
+
+@Test func lexiconLayersAnswerWordsFormsAndReadings() throws {
+    let shelf = lexiconShelf()
+    let word = try #require(TranslateEngine.answer("Casa", from: ["es"], to: ["en", "zh"], corpus: nil, shelf: shelf))
+    #expect(word.layer == .word)
+    #expect(word.rows["en"] == "home; house")
+    #expect(word.rows["zh"] == nil)
+    let form = try #require(TranslateEngine.answer("tiene", from: ["es"], to: ["en"], corpus: nil, shelf: shelf))
+    #expect(form.layer == .form && form.headword == "tener" && form.rows["en"] == "have")
+    let pinyin = try #require(TranslateEngine.answer("ni hao", from: ["zh"], to: ["en"], corpus: nil, shelf: shelf))
+    #expect(pinyin.layer == .roman && pinyin.headword == "你好")
+    let romaji = try #require(TranslateEngine.answer("neko", from: ["ja"], to: ["en"], corpus: nil, shelf: shelf))
+    #expect(romaji.headword == "ねこ")
+    let plural = try #require(TranslateEngine.answer("houses", from: ["en"], to: ["es", "zh"], corpus: nil, shelf: shelf))
+    #expect(plural.rows["es"] == "casa")
+    let pivot = try #require(TranslateEngine.answer("gato", from: ["es"], to: ["zh"], corpus: nil, shelf: shelf))
+    #expect(pivot.rows["zh"] == "猫")
+}
+
+@Test func phrasesMatchWholeAndSentencesFallBackToAGloss() throws {
+    let shelf = lexiconShelf()
+    let phrase = try #require(TranslateEngine.answer("¡Buenos días!", from: ["es"], to: ["en"], corpus: nil, shelf: shelf))
+    #expect(phrase.layer == .phrase && phrase.rows["en"] == "good morning")
+    let gloss = try #require(TranslateEngine.answer("el gato negro", from: ["es"], to: ["en"], corpus: nil, shelf: shelf))
+    #expect(gloss.layer == .gloss)
+    #expect(gloss.rows["en"] == "el cat black")
+    let back = try #require(TranslateEngine.answer("the black cat", from: ["en"], to: ["es"], corpus: nil, shelf: shelf))
+    #expect(back.rows["es"] == "the negro gato")
+    #expect(TranslateEngine.answer("zzz qqq", from: ["es"], to: ["en"], corpus: nil, shelf: shelf) == nil)
+}

@@ -38,7 +38,7 @@ public enum TranslateEngine {
             let rows = render(source: source, head: head, entries: entries, targets: targets, shelf: shelf)
             guard !rows.isEmpty else { continue }
             let multi = q.split(whereSeparator: \.isWhitespace).count > 1
-            let layer: TranslateLayer = multi ? .phrase : match == .word ? .word : match == .form ? .form : .roman
+            let layer: TranslateLayer = match == .roman ? .roman : multi ? .phrase : match == .word ? .word : .form
             let rank = match == .word ? 0 : match == .form ? 1 : 2
             if rank < (best?.rank ?? 9) { best = (rank, TranslateAnswer(layer: layer, source: source, headword: first.word, rows: rows)) }
             if rank == 0 { break }
