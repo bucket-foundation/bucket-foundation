@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import CopySwatch from "./CopySwatch";
 import styles from "./brand.module.css";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
-  title: { absolute: "Polingual Brand" },
-  description: "The Polingual brand: the Po mark, colors, type, word tiles, voice, app screens and a press kit download.",
-  alternates: { canonical: "/brand" },
-};
+export const metadata: Metadata = pageMeta({ path: "/brand", title: "Polingual Brand", description: "The Polingual brand: the Po mark, colors, type, word tiles, voice, app screens and a press kit download." });
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Sans+Hebrew:wght@700&family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+SC:wght@700&display=swap";
 

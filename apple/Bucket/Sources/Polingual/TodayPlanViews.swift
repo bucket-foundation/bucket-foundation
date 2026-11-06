@@ -274,7 +274,7 @@ struct TodayPicker: View {
         let study = String(localized: "Review and new cards")
         var out: [PickSection] = []
         if !langs.systems.isEmpty {
-            out.append(PickSection(title: "Languages", entries: langs.systems.map { PickEntry(item: .system($0), title: $0.name, symbol: "character.bubble", flags: $0.targets, look: TodayLooks.lang($0.targets), detail: study) }))
+            out.append(PickSection(title: "Languages", entries: langs.systems.map { PickEntry(item: .system($0), title: $0.title, symbol: "character.bubble", flags: $0.targets, look: TodayLooks.lang($0.targets), detail: study) }))
         }
         if let subjects {
             out.append(PickSection(title: "Subjects", entries: subjects.map { PickEntry(item: .deck($0), title: $0.title, symbol: "rectangle.stack", branch: $0.id, look: TodayLooks.branch($0.id), detail: study) }))

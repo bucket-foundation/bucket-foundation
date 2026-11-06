@@ -1,5 +1,6 @@
 import { RELEASES_PAGE } from "./release";
 import { directFiles, type WindowedInstaller } from "./release-v2";
+import { APP_STORE_URL } from "@/lib/share/links";
 
 export const DEVICES = ["ios", "android", "macos-arm64", "macos-x64", "windows", "linux", "linux-arm64", "web"] as const;
 export type DetectedDevice = Device | "macos";
@@ -54,7 +55,6 @@ export interface DeviceLink {
 export interface DeviceSources {
   windowed: WindowedInstaller[];
   apk: string | null;
-  testflight: string | null;
 }
 
 function desktop(windowed: WindowedInstaller[], os: WindowedInstaller["os"], arch: WindowedInstaller["arch"]): string | null {
@@ -84,7 +84,7 @@ const OS_NAME: Record<Device, string> = {
 
 export function linkFor(device: Device, src: DeviceSources): DeviceLink {
   const label = DEVICE_LABEL[device];
-  if (device === "ios") return src.testflight ? { device, label, href: src.testflight, action: "Get Bucket for iPhone on TestFlight" } : { device, label, href: null, action: "Bucket for iPhone is coming soon" };
+  if (device === "ios") return { device, label, href: APP_STORE_URL, action: "Get Bucket for iPhone on the App Store" };
   if (device === "android") return src.apk ? { device, label, href: src.apk, action: "Download Bucket for Android" } : { device, label, href: null, action: "Bucket for Android is coming soon" };
   if (device === "web") return { device, label, href: LEARN_PATH, action: "Open Bucket in your browser" };
   const href = desktop(src.windowed, ...DESKTOP_TARGET[device]);
@@ -107,9 +107,4 @@ export function deviceLinks(detected: DetectedDevice, links: DeviceLinks): Devic
   const main: Device = detected === "macos" ? "macos-arm64" : detected;
   const alt = detected === "macos" ? links["macos-x64"] : null;
   return { primary: links[main], alt, others: DEVICES.filter((d) => d !== main && d !== alt?.device).map((d) => links[d]) };
-}
-
-export function testflightUrl(raw: string | null | undefined): string | null {
-  const v = (raw ?? "").trim();
-  return /^https:\/\/testflight\.apple\.com\/join\/[A-Za-z0-9]+$/.test(v) ? v : null;
 }

@@ -17,6 +17,7 @@ struct BucketApp: App {
     #endif
 
     init() {
+        InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
         PushRegistry.shared.token = { await account.freshToken() }
@@ -51,6 +52,7 @@ struct BucketApp: App {
                 .environment(gate)
                 .environment(reminders)
                 .environment(groups)
+                .interfaceLanguage(langs)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { DEVICES, LEARN_PATH, allLinks, detectDevice, detectFromHints, deviceLinks, linkFor, testflightUrl, type DeviceSources } from "../src/lib/download/device";
+import { DEVICES, LEARN_PATH, allLinks, detectDevice, detectFromHints, deviceLinks, linkFor, type DeviceSources } from "../src/lib/download/device";
 import { RELEASES_PAGE } from "../src/lib/download/release";
 import { pickLatestV2, signedApk, windowedInstallers } from "../src/lib/download/release-v2";
 
@@ -16,8 +16,8 @@ const assets = [
   "Bucket-android-unsigned.apk",
   "Bucket-android-bkt-v0.6.0.apk",
 ].map(asset);
-const full: DeviceSources = { windowed: windowedInstallers(assets), apk: signedApk(assets), testflight: "https://testflight.apple.com/join/AbC123" };
-const empty: DeviceSources = { windowed: [], apk: null, testflight: null };
+const full: DeviceSources = { windowed: windowedInstallers(assets), apk: signedApk(assets) };
+const empty: DeviceSources = { windowed: [], apk: null };
 
 test("detectDevice maps user agents to one device", () => {
   assert.equal(detectDevice("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"), "ios");
@@ -48,12 +48,11 @@ test("linkFor picks the installer for each device", () => {
   assert.equal(linkFor("linux-arm64", full).href, RELEASES_PAGE);
   assert.equal(linkFor("linux", full).href, `https://example.org/Bucket-desktop-${v}-linux-x64.AppImage.tar.gz`);
   assert.equal(linkFor("android", full).href, "https://example.org/Bucket-android-bkt-v0.6.0.apk");
-  assert.equal(linkFor("ios", full).href, "https://testflight.apple.com/join/AbC123");
+  assert.equal(linkFor("ios", empty).href, "https://apps.apple.com/app/id6825123451");
   assert.equal(linkFor("web", full).href, LEARN_PATH);
 });
 
 test("linkFor falls back when an asset is missing", () => {
-  assert.deepEqual([linkFor("ios", empty).href, linkFor("ios", empty).action], [null, "Bucket for iPhone is coming soon"]);
   assert.deepEqual([linkFor("android", empty).href, linkFor("android", empty).action], [null, "Bucket for Android is coming soon"]);
   assert.equal(linkFor("macos-arm64", empty).href, RELEASES_PAGE);
   assert.equal(linkFor("web", empty).href, LEARN_PATH);
@@ -96,10 +95,3 @@ test("every desktop button reads Download Bucket for its OS", () => {
   assert.equal(linkFor("macos-arm64", empty).action, "Download Bucket for Mac");
 });
 
-test("testflightUrl accepts only a TestFlight join link", () => {
-  assert.equal(testflightUrl(" https://testflight.apple.com/join/AbC123 "), "https://testflight.apple.com/join/AbC123");
-  assert.equal(testflightUrl("https://evil.example/join/AbC123"), null);
-  assert.equal(testflightUrl("javascript:alert(1)"), null);
-  assert.equal(testflightUrl(""), null);
-  assert.equal(testflightUrl(undefined), null);
-});

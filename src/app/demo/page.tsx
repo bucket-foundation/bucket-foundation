@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectOs } from "@/lib/download/release";
-import { allLinks, detectFromHints, testflightUrl } from "@/lib/download/device";
+import { allLinks, detectFromHints } from "@/lib/download/device";
 import { fetchLatestReleaseV2 } from "@/lib/download/release-v2";
 import DemoExperience from "@/components/download/DemoExperience";
 
@@ -21,7 +21,7 @@ export default async function DemoPage() {
   const installers = release ? release.installers : [];
   const windowed = release ? release.windowed : [];
   const device = detectFromHints(ua, h.get("sec-ch-ua-platform"), h.get("sec-ch-ua-arch"));
-  const links = allLinks({ windowed, apk: release?.apk ?? null, testflight: testflightUrl(process.env.BUCKET_TESTFLIGHT_URL) });
+  const links = allLinks({ windowed, apk: release?.apk ?? null });
 
   return <DemoExperience detected={os} installers={installers} windowed={windowed} device={device} links={links} />;
 }

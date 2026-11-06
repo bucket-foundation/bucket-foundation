@@ -21,7 +21,7 @@ struct SystemView: View {
         }
         .paper()
         .sharePage(store.system(systemId).map { SharePage.langs($0, streak: Int(store.state(systemId).streak)) })
-        .navigationTitle(store.system(systemId)?.name ?? "Language system")
+        .navigationTitle(store.system(systemId)?.title ?? String(localized: "Language system"))
         .inlineTitle()
         .toolbar {
             if let system = store.system(systemId), let corpus = store.corpus {

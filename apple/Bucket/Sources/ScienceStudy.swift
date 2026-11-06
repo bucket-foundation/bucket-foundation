@@ -309,7 +309,7 @@ struct StudySession: View {
             VStack(alignment: .leading, spacing: 16) {
                 Eyebrow(text: entry.title)
                 Text("Route done").font(.serif(.largeTitle, weight: .semibold)).foregroundStyle(Palette.ink)
-                Text("\(graded) card\(graded == 1 ? "" : "s") recorded. \(s.introduced) of \(s.total) atoms started, \(s.mastered) mastered.")
+                Text("Cards recorded: \(graded). \(s.introduced) of \(s.total) atoms started, \(s.mastered) mastered.")
                     .font(.serif(.body)).foregroundStyle(Palette.ink)
                 DeckStats(summary: s)
                 if let nextLine { Text(nextLine).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink) }
