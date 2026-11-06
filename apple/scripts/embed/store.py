@@ -21,7 +21,7 @@ def main(dest):
     (dest / "reports").mkdir(exist_ok=True)
     for f in ["script_cnn.pt", "joint_proj.pt"]:
         shutil.copy2(VEC / f, dest / "models" / f)
-    for f in ["script_report.json", "phonetic_report.json", "joint_report.json", "rerank_report.json"]:
+    for f in ["script_report.json", "phonetic_report.json", "joint_report.json", "rerank_report.json", "regression_report.json"]:
         if (VEC / f).exists():
             shutil.copy2(VEC / f, dest / "reports" / f)
     shutil.copy2(Path(__file__).with_name("load_pgvector.py"), dest / "load_pgvector.py")
