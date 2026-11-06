@@ -300,3 +300,16 @@ test("sweep ticks at most 5 rooms at a time and stops starting work after its bu
   assert.equal(peak, 5);
   assert.ok((r.body.ticked as number) < 20, `ticked ${r.body.ticked}`);
 });
+
+test("after a rotation the last event goes out on the old and the new topic", async () => {
+  const sent: Sent[] = [];
+  const old = randomUUID();
+  const d = deps(async () => ({ data: { room_id: RID, topic: TOPIC, topics: [TOPIC, old], sign_key: KEYS.signKey, events: [{ seq: 9, type: "rotate", issued_at: NOW, payload: {} }] } }), sent);
+  assert.equal((await hostAction(RID, "rotate", host(), d)).status, 200);
+  const call = sent.find((s) => s.url.endsWith("/realtime/v1/api/broadcast"))!;
+  const msgs = (call.body as { messages: { topic: string; payload: unknown }[] }).messages;
+  assert.deepEqual(msgs.map((m) => m.topic), [`stoa:${TOPIC}`, `stoa:${old}`]);
+  assert.deepEqual(msgs[0].payload, msgs[1].payload);
+  const v = await verifyEvent(msgs[1].payload, { roomId: RID, lastSeq: 8, publicKey: KEYS.verifyKey, now: NOW, clockOffsetMs: 0 });
+  assert.equal(v.ok && v.type, "rotate");
+});

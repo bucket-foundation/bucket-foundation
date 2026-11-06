@@ -9,7 +9,7 @@ export type LiveResult = { status: number; body: Record<string, unknown> };
 export type Rpc = (fn: string, args: Record<string, unknown>) => Promise<{ data: unknown } | { error: string }>;
 export type LiveDeps = { env: StoaEnv; rpc: Rpc; send: Fetcher; build: QuestionBuilder; now?: () => number; random?: (max: number) => number };
 type DbEvent = { seq: number; type: string; issued_at: number; payload: unknown };
-type DbResult = { room_id: string; topic: string; sign_key: string; events: DbEvent[]; error?: string } & Record<string, unknown>;
+type DbResult = { room_id: string; topic: string; topics?: string[]; sign_key: string; events: DbEvent[]; error?: string } & Record<string, unknown>;
 
 export const CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 export const CODE = /^[0-9A-HJKMNP-TV-Z]{6}$/;
@@ -96,7 +96,7 @@ export async function broadcast(res: DbResult, deps: LiveDeps): Promise<number> 
     await deps.send(`${base(deps.env)}/realtime/v1/api/broadcast`, {
       method: "POST",
       headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: [{ topic: `stoa:${res.topic}`, event: "stoa", payload: ev, private: false }] }),
+      body: JSON.stringify({ messages: (res.topics?.length ? res.topics : [res.topic]).map((t) => ({ topic: `stoa:${t}`, event: "stoa", payload: ev, private: false })) }),
       signal: AbortSignal.timeout(DB_TIMEOUT_MS),
     });
   } catch {
@@ -106,7 +106,7 @@ export async function broadcast(res: DbResult, deps: LiveDeps): Promise<number> 
 }
 
 function strip(res: DbResult): Record<string, unknown> {
-  const { sign_key: _s, events: _e, topic: _t, error: _x, ...rest } = res;
+  const { sign_key: _s, events: _e, topic: _t, topics: _ts, error: _x, ...rest } = res;
   return rest;
 }
 
