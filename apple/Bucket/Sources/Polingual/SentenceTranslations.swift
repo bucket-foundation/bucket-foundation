@@ -6,6 +6,7 @@ struct SentenceTranslations: View {
     let text: String
     let source: String
     let targets: [String]
+    var fallback: [String: String] = [:]
     @State private var results: [String: String] = [:]
     @State private var needsDownload: Set<String> = []
     @State private var missing: Set<String> = []
@@ -23,6 +24,19 @@ struct SentenceTranslations: View {
                             .textSelection(.enabled)
                         Spacer(minLength: 4)
                         PlayButton(text: r, lang: l)
+                    } else if needsDownload.contains(l) || missing.contains(l), let g = fallback[l] {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Word by word").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+                            Text(g).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                                .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
+                                .textSelection(.enabled)
+                            if needsDownload.contains(l) {
+                                Button("Download \(Lang.name(l)) for full sentences") { download = TranslationSession.Configuration(source: language(source), target: language(l)) }
+                                    .buttonStyle(D8Option(align: .center, compact: true))
+                            }
+                        }
+                        Spacer(minLength: 4)
+                        PlayButton(text: g, lang: l)
                     } else if needsDownload.contains(l) {
                         Button("Download \(Lang.name(l))") { download = TranslationSession.Configuration(source: language(source), target: language(l)) }
                             .buttonStyle(D8Option(align: .center, compact: true))

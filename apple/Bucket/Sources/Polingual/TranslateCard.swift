@@ -31,6 +31,8 @@ struct TranslateCard: View {
     @State private var missedVoice = false
     @FocusState private var focused: Bool
 
+    nonisolated static let lexicons = LexiconShelf()
+
     static var debugQuery: String {
         #if DEBUG
         let args = ProcessInfo.processInfo.arguments
@@ -58,9 +60,13 @@ struct TranslateCard: View {
         if let corpus = store.corpus, !store.systems.isEmpty {
             let searchIn: Set<String> = from.map { [$0] } ?? Set(langs)
             let hits = translateSearch(corpus, query, langs: searchIn, limit: 6)
-            let sentence = !query.isEmpty && (hits.first?.exact != true) && (SentenceLanguage.isSentence(query) || hits.isEmpty)
-            let sentenceSource = from ?? SentenceLanguage.detect(query, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
-            let detected = from == nil ? (sentence ? (query.isEmpty ? nil : sentenceSource) : hits.first?.matchedLang) : nil
+            let guess = from ?? SentenceLanguage.detect(query, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
+            let order = from.map { [$0] } ?? ([guess] + langs.filter { $0 != guess })
+            let answer = TranslateEngine.answer(query, from: order, to: shown, corpus: corpus, shelf: TranslateCard.lexicons)
+            let found = answer.map { $0.layer != .gloss } ?? false
+            let sentence = !query.isEmpty && picked == nil && !found && (SentenceLanguage.isSentence(query) || hits.isEmpty)
+            let sentenceSource = answer?.source ?? guess
+            let detected = from == nil && !query.isEmpty ? (sentence ? sentenceSource : answer?.source ?? hits.first?.matchedLang) : nil
             VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 8) {
                     Menu {
@@ -137,9 +143,11 @@ struct TranslateCard: View {
                     Text("Didn't catch that. Tap the mic and try again.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
                 if sentence {
-                    SentenceTranslations(text: query, source: sentenceSource, targets: shown.filter { $0 != sentenceSource })
+                    SentenceTranslations(text: query, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:])
+                } else if picked == nil, let answer, answer.layer != .deck {
+                    LexiconAnswerView(answer: answer, shown: shown)
                 } else if !query.isEmpty {
-                    if let id = picked ?? hits.first?.itemId, let item = corpus.byId[id] {
+                    if let id = picked ?? answer?.itemId ?? hits.first?.itemId, let item = corpus.byId[id] {
                         ForEach(shown, id: \.self) { l in
                             if let f = item.form(l) {
                                 HStack(spacing: 10) {
@@ -189,7 +197,11 @@ struct TranslateCard: View {
             .padding(.vertical, 6)
             .onChange(of: query) { picked = nil }
             .onChange(of: from) { picked = nil }
-            .task(id: langs) { sources = translateSources(corpus, mine: langs) }
+            .task(id: langs) {
+                sources = translateSources(corpus, mine: langs)
+                let warm = langs
+                await Task.detached(priority: .utility) { for l in warm { _ = TranslateCard.lexicons.lexicon(l) } }.value
+            }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
                 guard on else { return }
                 DeepLink.shared.listen = false
@@ -229,5 +241,41 @@ struct TranslateCard: View {
         }
         added.insert(itemId)
         haptic(true)
+    }
+}
+
+
+struct LexiconAnswerView: View {
+    let answer: TranslateAnswer
+    let shown: [String]
+
+    var note: String? {
+        switch answer.layer {
+        case .form: String(localized: "Form of \(answer.headword)")
+        case .roman: String(localized: "Read as \(answer.headword)")
+        default: nil
+        }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if let note {
+                Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+            }
+            ForEach([answer.source] + shown.filter { $0 != answer.source }, id: \.self) { l in
+                if let f = l == answer.source ? answer.headword : answer.rows[l] {
+                    HStack(spacing: 10) {
+                        FlagTile(lang: l, size: 26)
+                        Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                            .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
+                            .textSelection(.enabled)
+                        Spacer(minLength: 4)
+                        PlayButton(text: f, lang: l)
+                    }
+                    .accessibilityElement(children: .combine)
+                }
+            }
+            Text("Dictionary from Wiktionary, CC BY-SA").font(.caption2).foregroundStyle(Palette.muted)
+        }
     }
 }
