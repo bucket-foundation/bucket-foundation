@@ -1,11 +1,12 @@
 create schema if not exists bucket;
 create extension if not exists pg_cron;
 create extension if not exists pg_net with schema extensions;
+create extension if not exists supabase_vault;
 
 create table if not exists bucket.live_rooms (
   id            uuid        primary key default gen_random_uuid(),
   topic         uuid        not null default gen_random_uuid() unique,
-  sign_key      text        not null check (char_length(sign_key) between 16 and 512),
+  sign_key      text        not null check (char_length(sign_key) <= 512 and sign_key ~ '^v1\.[A-Za-z0-9_-]{40,}$'),
   verify_key    text        not null check (verify_key ~ '^[A-Za-z0-9_-]{43}$'),
   token_version integer     not null default 1 check (token_version > 0),
   code          text        not null check (code ~ '^[0-9A-HJKMNP-TV-Z]{6}$'),
@@ -23,8 +24,8 @@ create table if not exists bucket.live_rooms (
   paused_at     timestamptz,
   probe_at      timestamptz,
   seq           bigint      not null default 0 check (seq >= 0),
-  forged_count  integer     not null default 0 check (forged_count >= 0),
-  forged_since  timestamptz,
+  locked        boolean     not null default false,
+  rotated_at    timestamptz,
   created_at    timestamptz not null default now(),
   closed_at     timestamptz,
   expires_at    timestamptz not null default now() + interval '3 hours',
@@ -83,6 +84,22 @@ create table if not exists bucket.live_scores (
   foreign key (room_id, idx) references bucket.live_questions (room_id, idx) on delete cascade
 );
 
+create table if not exists bucket.live_reports (
+  room_id     uuid        not null references bucket.live_rooms (id) on delete cascade,
+  player_id   uuid        not null references bucket.live_players (id) on delete cascade,
+  reported_at timestamptz not null default clock_timestamp(),
+  primary key (room_id, player_id)
+);
+
+create table if not exists bucket.live_limits (
+  bucket_key text        not null check (char_length(bucket_key) <= 120),
+  minute     timestamptz not null,
+  hits       integer     not null default 0,
+  primary key (bucket_key, minute)
+);
+
+create index if not exists live_limits_minute on bucket.live_limits (minute);
+
 create table if not exists bucket.live_summaries (
   room_id       uuid        primary key,
   host_user     uuid        not null references auth.users (id) on delete cascade,
@@ -97,7 +114,7 @@ create table if not exists bucket.live_summaries (
 create index if not exists live_summaries_host on bucket.live_summaries (host_user, created_at desc);
 
 create or replace function bucket.live_answers_insert_only()
-returns trigger language plpgsql set search_path = bucket as $$
+returns trigger language plpgsql set search_path = bucket, pg_temp as $$
 begin
   raise exception 'insert_only';
 end $$;
@@ -116,12 +133,15 @@ alter table bucket.live_questions enable row level security;
 alter table bucket.live_answers enable row level security;
 alter table bucket.live_scores enable row level security;
 alter table bucket.live_summaries enable row level security;
+alter table bucket.live_reports enable row level security;
+alter table bucket.live_limits enable row level security;
 
-revoke all on bucket.live_rooms, bucket.live_players, bucket.live_questions, bucket.live_answers, bucket.live_scores, bucket.live_summaries
+revoke all on bucket.live_rooms, bucket.live_players, bucket.live_questions, bucket.live_answers, bucket.live_scores, bucket.live_summaries,
+  bucket.live_reports, bucket.live_limits
   from public, anon, authenticated, service_role;
 
 create or replace function bucket.live_purge()
-returns integer language plpgsql security definer set search_path = bucket as $$
+returns integer language plpgsql security definer set search_path = bucket, pg_temp as $$
 declare
   gone integer;
 begin
@@ -152,11 +172,12 @@ begin
   delete from bucket.live_rooms r
   where coalesce(r.closed_at, r.expires_at) < clock_timestamp() - interval '24 hours';
   get diagnostics gone = row_count;
+  delete from bucket.live_limits where minute < clock_timestamp() - interval '2 minutes';
   return gone;
 end $$;
 
 create or replace function bucket.live_sweep_ping()
-returns bigint language plpgsql security definer set search_path = bucket, extensions as $$
+returns bigint language plpgsql security definer set search_path = bucket, extensions, pg_temp as $$
 declare
   url text;
   secret text;
@@ -166,6 +187,9 @@ begin
     where closed_at is null and paused_at is null and (next_at <= clock_timestamp() or expires_at <= clock_timestamp())
   ) then
     return null;
+  end if;
+  if not exists (select 1 from pg_extension where extname = 'supabase_vault') then
+    raise exception 'stoa sweep needs the supabase_vault extension';
   end if;
   select decrypted_secret into url from vault.decrypted_secrets where name = 'stoa_sweep_url';
   select decrypted_secret into secret from vault.decrypted_secrets where name = 'stoa_sweep_secret';
@@ -184,5 +208,5 @@ revoke all on function bucket.live_purge() from public, anon, authenticated;
 revoke all on function bucket.live_sweep_ping() from public, anon, authenticated;
 revoke all on function bucket.live_answers_insert_only() from public, anon, authenticated;
 
-select cron.schedule('stoa-purge', '*/15 * * * *', 'select bucket.live_purge()');
+select cron.schedule('stoa-purge', '*/5 * * * *', 'select bucket.live_purge()');
 select cron.schedule('stoa-sweep', '10 seconds', 'select bucket.live_sweep_ping()');
