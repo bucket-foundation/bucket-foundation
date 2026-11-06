@@ -2,12 +2,13 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { LANGS, OG_LANGS, THEMES, WORDS, ctaHref, relatedWords, word, wordDescription, wordJsonLd, wordTitle, wordsByTheme } from "./words";
+import { DESCRIPTION_MAX, LANGS, OG_LANGS, THEMES, WORDS, ctaHref, titleLangs, relatedWords, word, wordDescription, wordJsonLd, wordTitle, wordsByTheme } from "./words";
 import { buildFeed, feedItems, xmlEscape } from "./feed";
 import { sitemapPaths } from "./sitemap-paths";
 import { GUIDES } from "./guides";
+import { fontCssUrl, ttfUrl } from "./og-fonts";
 
-const BANNED = /—|–|\b(genuinely|honestly|truly|really|actually|basically|essentially|literally|obviously|clearly|simply|very|seamless|leverage|unlock)\b/i;
+const BANNED = /\u2014|\u2013|\b(genuinely|honestly|truly|really|actually|basically|essentially|literally|obviously|clearly|simply|very|seamless|leverage|unlock)\b/i;
 
 test("every word has a unique url-safe slug and an English form", () => {
   assert.equal(new Set(WORDS.map((w) => w.slug)).size, WORDS.length);
@@ -33,10 +34,32 @@ test("the share card languages cover six scripts", () => {
 
 test("title, description and cta name the word", () => {
   const night = word("night")!;
-  assert.match(wordTitle(night), /^Night in 29 languages: Spanish, French, Japanese/);
+  assert.match(wordTitle(night), /^Night in 29 languages: Spanish, \S+, \S+ and more$/);
   assert.match(wordDescription(night), /noche/);
-  assert.ok(wordDescription(night).length <= 200);
   assert.equal(ctaHref(night), "/?utm_source=seo&utm_campaign=word_night");
+});
+
+test("titles name languages the word has and vary across words", () => {
+  for (const w of WORDS) {
+    const names = new Set(w.forms.map((f) => LANGS[f.lang].name));
+    for (const n of titleLangs(w)) assert.ok(names.has(n), `${w.slug}: ${n}`);
+    assert.equal(new Set(titleLangs(w)).size, 3);
+  }
+  assert.ok(new Set(WORDS.map((w) => titleLangs(w).join())).size > 5);
+});
+
+test("descriptions stay within the snippet length", () => {
+  for (const w of WORDS) assert.ok(wordDescription(w).length <= DESCRIPTION_MAX, `${w.slug}: ${wordDescription(w).length}`);
+});
+
+test("photon urls redirect to /photon in raw and encoded form", async () => {
+  const config = require("../../next.config.js");
+  const [rule] = await config.redirects();
+  assert.equal(rule.destination, "/photon/:id");
+  const pattern = new RegExp(`^${rule.source.replace(":id(", "(")}$`);
+  assert.match("/word/photon:word:en:light", pattern);
+  assert.match("/word/photon%3Aword%3Aen%3Alight", pattern);
+  assert.doesNotMatch("/word/night", pattern);
 });
 
 test("related words exclude the word itself and come six at a time", () => {
@@ -51,7 +74,7 @@ test("word copy and notes follow the voice rules", () => {
   for (const w of WORDS) {
     assert.doesNotMatch(wordTitle(w), BANNED);
     assert.doesNotMatch(wordDescription(w), BANNED);
-    if (w.note) assert.doesNotMatch(w.note, /—|–|canon-tier/);
+    if (w.note) assert.doesNotMatch(w.note, /\u2014|\u2013|canon-tier/);
   }
 });
 
@@ -87,4 +110,11 @@ test("the IndexNow key file holds its own name", () => {
   const keys = readdirSync(dir).filter((f) => /^[0-9a-f]{32}\.txt$/.test(f));
   assert.equal(keys.length, 1);
   assert.equal(readFileSync(join(dir, keys[0]), "utf8").trim(), keys[0].replace(".txt", ""));
+});
+
+test("og fonts resolve the truetype url and subset by text", () => {
+  const css = `@font-face { font-family: 'Noto Sans JP'; src: url(https://fonts.gstatic.com/l/font?kit=abc) format('truetype'); }`;
+  assert.equal(ttfUrl(css), "https://fonts.gstatic.com/l/font?kit=abc");
+  assert.equal(ttfUrl("src: url(x.woff2) format('woff2')"), undefined);
+  assert.match(fontCssUrl("Noto Sans Thai", 400, "คืน"), /family=Noto\+Sans\+Thai:wght@400&text=%E0/);
 });

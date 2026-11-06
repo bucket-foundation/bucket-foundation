@@ -8,10 +8,14 @@ export const OUT_FILE = join(HERE, "../src/data/words.json");
 
 const read = (dir, name) => JSON.parse(readFileSync(join(dir, name), "utf8"));
 
+const APPOSITIVE = /^(the |a |also )?(root|source|same) |^and /i;
+
 export function cleanNote(note) {
   if (!note) return undefined;
   const text = note
-    .replace(/\s*[—–]\s*/g, ", ")
+    .replace(/\(([^)]*)\)/g, (m) => m.replace(/\s*[\u2014\u2013]\s*/g, ", "))
+    .replace(/\s*[\u2014\u2013]\s*(.)/g, (m, c, at, all) => (APPOSITIVE.test(all.slice(at + m.length - 1)) ? `, ${c}` : `. ${c.toUpperCase()}`))
+    .replace(/\band interestingly\b/g, "and")
     .split(/(?<=\.)\s+/)
     .filter((s) => !/canon-tier/i.test(s))
     .join(" ")

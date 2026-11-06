@@ -77,14 +77,37 @@ export function translations(w: Word): WordForm[] {
   return w.forms.filter((f) => f.lang !== "en");
 }
 
-export function wordTitle(w: Word): string {
-  return `${capitalize(w.en)} in ${w.forms.length} languages: Spanish, French, Japanese and more`;
+const TITLE_POOL = ["fr", "ja", "de", "it", "ru", "ar", "ko", "hi", "pt", "zh", "el", "he", "la"];
+
+function hash(s: string): number {
+  let h = 0;
+  for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return h;
 }
 
+export function titleLangs(w: Word): string[] {
+  const have = new Set(w.forms.map((f) => f.lang));
+  const pool = TITLE_POOL.filter((l) => have.has(l));
+  const start = hash(w.slug) % pool.length;
+  const picked = [pool[start], pool[(start + 1) % pool.length]];
+  return (have.has("es") ? ["es", ...picked] : [...picked, pool[(start + 2) % pool.length]]).map((l) => LANGS[l].name);
+}
+
+export function wordTitle(w: Word): string {
+  return `${capitalize(w.en)} in ${w.forms.length} languages: ${titleLangs(w).join(", ")} and more`;
+}
+
+export const DESCRIPTION_MAX = 155;
+
 export function wordDescription(w: Word): string {
-  const pick = (lang: string) => w.forms.find((f) => f.lang === lang)?.word;
-  const sample = ["es", "fr", "ja", "ar", "hi"].map((l) => (pick(l) ? `${LANGS[l].name} ${pick(l)}` : "")).filter(Boolean).join(", ");
-  return `How to say ${w.en} in ${w.forms.length} languages, with script and pronunciation: ${sample}. Learn them together in Polingual.`;
+  const samples = ["es", "fr", "ja", "ar", "hi", "ru"]
+    .map((l) => w.forms.find((f) => f.lang === l))
+    .filter((f) => f !== undefined)
+    .map((f) => `${LANGS[f.lang].name} ${f.word}`);
+  const build = (n: number) => `How to say ${w.en} in ${w.forms.length} languages${n ? `: ${samples.slice(0, n).join(", ")}` : ""}. Learn them together in Polingual.`;
+  let n = samples.length;
+  while (n > 0 && build(n).length > DESCRIPTION_MAX) n--;
+  return build(n);
 }
 
 export function wordPath(w: Word): string {

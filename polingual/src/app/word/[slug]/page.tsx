@@ -42,7 +42,7 @@ export default async function Page({ params }: Props) {
       <p><Link href="/word">Words</Link> / {themeName(w.category)}</p>
       <h1>{name} in {w.forms.length} languages</h1>
       {w.gloss !== w.en && <p className={styles.gloss}>{capitalize(w.gloss)}</p>}
-      <p className="lede">The word {w.en} in every language Polingual teaches, written in each language&apos;s own script with its pronunciation.</p>
+      <p className="lede">The word {w.en} in {w.forms.length} languages, each in its own script, with IPA or a romanization where the data has one.</p>
       <table className={styles.forms}>
         <thead>
           <tr><th>Language</th><th>Word</th><th>Pronunciation</th></tr>
@@ -55,7 +55,7 @@ export default async function Page({ params }: Props) {
               <tr key={f.lang}>
                 <td className={styles.lang}>{l.name}<small>{l.script}</small></td>
                 <td className={styles.form} lang={f.lang} dir={l.rtl ? "rtl" : undefined}>{f.word}</td>
-                <td className={styles.ipa}>{f.ipa ? `/${f.ipa}/` : ""}{reading && <small>{reading}</small>}</td>
+                <td className={styles.ipa}>{f.ipa ? <>{`/${f.ipa}/`}{reading && <small>{reading}</small>}</> : reading}</td>
               </tr>
             );
           })}
@@ -93,7 +93,7 @@ export default async function Page({ params }: Props) {
           <li key={g.slug}><Link href={`/learn/${g.slug}`}>{g.title}</Link></li>
         ))}
       </ul>
-      <p>Word data from Wiktionary via kaikki.org. Pronunciation from eSpeak NG.</p>
+      <p>Words from Wiktionary via kaikki.org. IPA generated with eSpeak NG, pinyin with pinyin-pro and Japanese readings with Kuroshiro.</p>
     </Legal>
   );
 }
