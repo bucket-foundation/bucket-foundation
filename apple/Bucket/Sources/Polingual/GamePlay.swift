@@ -306,6 +306,8 @@ struct PromptCard: View {
         .padding(18)
         .frame(maxWidth: .infinity, minHeight: sideways ? 120 : 230)
         .modifier(GameLip(face: D8.face, lip: D8.edge))
+        .wrongTranslation(ReportSubject(lang: prompt.word.lang, root: prompt.word.root, itemId: prompt.word.itemId, text: prompt.word.form, shown: prompt.word.gloss, context: "game:quiz"),
+                          visible: answered, alignment: .bottomTrailing, inset: 6)
     }
 
     var rail: [GamePrompt] { run.prompts.filter { $0.group == prompt.group && $0.mode == .form && isSameWord } }
