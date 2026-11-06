@@ -1,0 +1,227 @@
+:root {
+  --paper: var(--stone-ground);
+  --panel: var(--stone-face);
+  --line: var(--stone-face-lo);
+  --ink: var(--stone-ink);
+  --ink-2: var(--stone-ink-2);
+  --ink-3: var(--stone-ink-3);
+  --accent: var(--stone-patina);
+  --accent-ink: var(--stone-patina-ink);
+  --ok: var(--stone-moss);
+  --bad: var(--stone-wrong);
+}
+
+body {
+  background: radial-gradient(circle at 50% -10%, var(--stone-ground-glow), var(--stone-ground) 62%) fixed;
+}
+
+.side {
+  border-right: 0;
+  background: linear-gradient(100deg, var(--stone-face-hi), var(--stone-face) 40%, var(--stone-face-lo));
+  box-shadow: inset -2px 0 0 var(--stone-lit), inset -10px 0 18px #0000001a, 4px 0 0 var(--stone-edge);
+}
+
+.brand {
+  font-family: var(--stone-font-relief);
+  font-size: 20px;
+  text-shadow: var(--stone-carve-text);
+}
+
+.brand .mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 0;
+  background: none;
+  flex: none;
+}
+
+.side nav a {
+  border-radius: var(--stone-radius-chip);
+  text-shadow: var(--stone-carve-text);
+}
+
+.side nav a:hover {
+  background: var(--stone-face-hi);
+}
+
+.side nav a.on {
+  background: var(--stone-groove);
+  box-shadow: var(--stone-groove-shadow);
+}
+
+.head h1 {
+  font-family: var(--stone-font-relief);
+  font-weight: 700;
+  text-shadow: var(--stone-carve-text);
+}
+
+.panel {
+  border: 0;
+  border-radius: var(--stone-radius-slab);
+  background: radial-gradient(ellipse at 22% 8%, var(--stone-face-hi), var(--stone-face) 55%, var(--stone-face-lo));
+  box-shadow: var(--stone-slab-shadow);
+  margin-bottom: 18px;
+}
+
+.panel.card {
+  border-left: 6px solid var(--stone-patina);
+}
+
+.q {
+  font-family: var(--stone-font-relief);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-shadow: var(--stone-carve-text);
+}
+
+.muted.small,
+.status,
+.tag,
+.choice .key,
+.quiz-kinds a,
+.head .muted {
+  font-family: var(--stone-font-etch);
+  letter-spacing: 0.01em;
+}
+
+.tag {
+  border-radius: var(--stone-radius-chip);
+  box-shadow: var(--stone-groove-shadow);
+}
+
+.tag.ghost {
+  border: 0;
+  background: var(--stone-groove);
+}
+
+.primary,
+.ghost,
+.choice,
+.quiz-kinds a {
+  border: 0;
+  border-radius: var(--stone-radius-block);
+  box-shadow: var(--stone-bevel), var(--stone-lift);
+  transition:
+    transform var(--stone-press-ms),
+    box-shadow var(--stone-press-ms);
+}
+
+.primary {
+  padding: 11px 22px;
+  background: radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--stone-patina) 70%, white), var(--stone-patina) 55%, color-mix(in srgb, var(--stone-patina) 70%, black));
+  color: var(--stone-patina-ink);
+}
+
+.ghost {
+  background: radial-gradient(ellipse at 30% 20%, var(--stone-face-hi), var(--stone-face) 60%, var(--stone-face-lo));
+  color: var(--stone-ink-2);
+}
+
+.choices {
+  gap: 14px;
+}
+
+.choices li:nth-child(2n) .choice {
+  border-radius: var(--stone-radius-block-alt);
+}
+
+.choice {
+  padding: 14px 16px;
+  background: radial-gradient(ellipse at 26% 14%, var(--stone-face-hi), var(--stone-face) 58%, var(--stone-face-lo));
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.choice .key {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--stone-radius-chip);
+  background: var(--stone-groove);
+  color: var(--stone-ink-2);
+  box-shadow: var(--stone-groove-shadow);
+}
+
+.primary:active:not(:disabled),
+.ghost:active:not(:disabled),
+.choice:active:not(:disabled),
+.quiz-kinds a:active {
+  transform: translateY(var(--stone-press-depth));
+  box-shadow: var(--stone-pressed);
+}
+
+.choice:hover:not(:disabled) {
+  background: radial-gradient(ellipse at 26% 14%, var(--stone-face-hi), var(--stone-face-hi) 40%, var(--stone-face));
+}
+
+.primary:focus-visible,
+.ghost:focus-visible,
+.choice:focus-visible,
+.quiz-kinds a:focus-visible,
+.side nav a:focus-visible {
+  outline: 3px solid var(--stone-gold);
+  outline-offset: 4px;
+}
+
+.choice.right {
+  background: radial-gradient(ellipse at 30% 20%, var(--stone-gold-hi), var(--stone-gold) 52%, var(--stone-gold-lo));
+  color: var(--stone-gold-ink);
+  box-shadow: var(--stone-bevel), 0 5px 0 #6d4b10;
+}
+
+.choice.right .key {
+  background: #00000024;
+  color: var(--stone-gold-ink);
+}
+
+.choice.wrong {
+  box-shadow: var(--stone-pressed), inset 0 0 0 2px var(--stone-wrong);
+  transform: translateY(var(--stone-press-depth));
+}
+
+.choice:disabled {
+  cursor: default;
+}
+
+.quiz-kinds {
+  border: 0;
+  overflow: visible;
+  gap: 10px;
+  padding-bottom: 6px;
+}
+
+.quiz-kinds a {
+  background: radial-gradient(ellipse at 30% 20%, var(--stone-face-hi), var(--stone-face) 60%, var(--stone-face-lo));
+}
+
+.quiz-kinds a.on {
+  background: var(--stone-groove);
+  color: var(--stone-ink);
+  box-shadow: var(--stone-pressed);
+  transform: translateY(var(--stone-press-depth));
+}
+
+.toolbar select,
+.search {
+  border: 0;
+  border-radius: var(--stone-radius-chip);
+  background: var(--stone-groove);
+  box-shadow: var(--stone-groove-shadow);
+  font-family: var(--stone-font-etch);
+}
+
+.feedback b.ok {
+  color: var(--stone-ink);
+  background: linear-gradient(var(--stone-gold-hi), var(--stone-gold));
+  padding: 1px 8px;
+  border-radius: var(--stone-radius-chip);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary,
+  .ghost,
+  .choice,
+  .quiz-kinds a {
+    transition: none;
+  }
+}

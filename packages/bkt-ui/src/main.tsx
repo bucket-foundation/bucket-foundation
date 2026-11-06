@@ -11,6 +11,9 @@ import "katex/dist/katex.min.css";
 import "../../../src/styles/brand-tokens.css";
 import "./app.css";
 import "./brand.css";
+import "./stone-tokens.css";
+import "./stone.css";
+import { StoneMark } from "./stone-mark";
 
 function useDarkScheme(): boolean {
   const query = "(prefers-color-scheme: dark)";
@@ -96,7 +99,7 @@ function App() {
     <div className="shell">
       <aside className="side">
         <div className="brand">
-          <span className="mark" aria-hidden />
+          <StoneMark />
           <span>Bucket</span>
           <BackButton trail={trail} />
         </div>
