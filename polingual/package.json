@@ -12,7 +12,8 @@
     "words": "node scripts/build_words.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "test:db": "bash db/test-founding.sh",
-    "test:live-db": "bash db/test-live.sh"
+    "test:live-db": "bash db/test-live.sh",
+    "test:live-local": "bash db/test-live-local.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
