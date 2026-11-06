@@ -1,15 +1,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { randomUUID } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 import { createRoomKeys, hostToken, playerToken, readToken, type PlayerClaims } from "./keys";
-import { createRoom, hostAction, joinRoom, medianGrace, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, Window, type LiveDeps, type Rpc } from "./live";
+import { createRoom, hostAction, ipKey, joinRoom, medianGrace, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
 import { isNickname, nicknameChoices } from "./nicknames";
 import { parseSettings } from "./questions";
 import { verifyEvent } from "./verify";
 
 const NOW = 1_800_000_000_000;
 const env = {
-  STOA_ROOM_SECRET: "r".repeat(40),
+  STOA_ROOM_SECRET: randomBytes(48).toString("base64"),
   STOA_SWEEP_SECRET: "w".repeat(40),
   POLINGUAL_DB_URL: "https://db.test",
   POLINGUAL_DB_SERVICE_KEY: "service",
@@ -112,7 +112,7 @@ test("a room without questions refuses to open", async () => {
 test("join returns a player token carrying the token version", async () => {
   const d = deps(async (fn, args) => {
     assert.equal(fn, "live_join");
-    assert.deepEqual(args, { p_code: "ABC123", p_nickname: "brave-otter" });
+    assert.deepEqual(args, { p_code: "ABC123", p_nickname: "brave-otter", p_ip: ipKey("9.9.9.1") });
     return wrap({ player_id: PID, token_version: 3, expires_at: EXP, verify_key: KEYS.verifyKey });
   });
   const r = await joinRoom({ code: "abc123", nickname: "brave-otter" }, "9.9.9.1", d);
@@ -128,18 +128,13 @@ test("join refuses free-text names and malformed codes", async () => {
   assert.equal((await joinRoom({ code: "ABCI23", nickname: "brave-otter" }, "9.9.9.2", d)).status, 400);
 });
 
-test("failed code lookups are limited to 60 a minute per IP", async () => {
-  const d = deps(async () => ({ error: "no_room" }));
-  for (let i = 0; i < 60; i++) assert.equal((await joinRoom({ code: "ZZZ999", nickname: "brave-otter" }, "9.9.9.3", d)).status, 404);
-  assert.equal((await joinRoom({ code: "ZZZ999", nickname: "brave-otter" }, "9.9.9.3", d)).status, 429);
-  assert.equal((await joinRoom({ code: "ZZZ999", nickname: "brave-otter" }, "9.9.9.4", d)).status, 404);
-});
-
-test("joins are limited to 150 a minute per code, so one school NAT fits", () => {
-  const w = new Window(150, 60_000);
-  for (let i = 0; i < 150; i++) assert.ok(w.hit("ABC123", NOW));
-  assert.equal(w.hit("ABC123", NOW), false);
-  assert.ok(w.hit("ABC123", NOW + 60_000));
+test("join sends a hashed IP and maps the database limits to 429", async () => {
+  assert.match(ipKey("9.9.9.3"), /^[0-9a-f]{32}$/);
+  assert.notEqual(ipKey("9.9.9.3"), ipKey("9.9.9.4"));
+  assert.ok(!ipKey("9.9.9.3").includes("9.9.9.3"));
+  assert.deepEqual(await joinRoom({ code: "ZZZ999", nickname: "brave-otter" }, "9.9.9.3", deps(async () => ({ data: { error: "slow_down", events: [] } }))), { status: 429, body: { error: "slow_down" } });
+  assert.deepEqual(await joinRoom({ code: "ZZZ999", nickname: "brave-otter" }, "9.9.9.3", deps(async () => ({ data: { error: "no_room", events: [] } }))), { status: 404, body: { error: "no_room" } });
+  assert.deepEqual(await joinRoom({ code: "ABC123", nickname: "brave-otter" }, "9.9.9.3", deps(async () => wrap({ error: "locked" }))), { status: 409, body: { error: "locked" } });
 });
 
 test("room-full and name-taken map to 409", async () => {
@@ -182,12 +177,16 @@ test("host state passes the host user and player state passes the player", async
 });
 
 test("an answer goes to the database with the token version and returns the receive time", async () => {
+  const fns: string[] = [];
   const d = deps(async (fn, args) => {
+    fns.push(fn);
+    if (fn === "live_tick") return wrap({});
     assert.equal(fn, "live_answer");
     assert.deepEqual(args, { p_room: RID, p_player: PID, p_tv: 1, p_idx: 2, p_choice: 3 });
     return wrap({ received_at: NOW + 5 });
   });
   assert.deepEqual(await submitAnswer(player(), { idx: 2, choice: 3 }, d), { status: 200, body: { received_at: NOW + 5 } });
+  assert.deepEqual(fns, ["live_answer", "live_tick"], "a stored answer is followed by a tick for the early reveal");
   assert.equal((await submitAnswer(player(), { idx: 2, choice: 4 }, d)).status, 400);
   assert.equal((await submitAnswer(host(), { idx: 2, choice: 1 }, d)).status, 401);
 });
@@ -200,14 +199,16 @@ test("late, duplicate, stale and removed answers map to their codes", async () =
   assert.deepEqual(await submitAnswer(player(), { idx: 0, choice: 0 }, deps(async () => ({ error: "removed" }))), { status: 403, body: { error: "removed" } });
 });
 
-test("events from a call are signed, broadcast on the room topic and verify on a phone", async () => {
+test("a call broadcasts only its last event, signed on the room topic, and it verifies on a phone", async () => {
   const sent: Sent[] = [];
   const reveal = { idx: 0, answer: 0, counts: [3, 1, 0, 0], right: 3 };
-  const d = deps(async () => wrap({ received_at: NOW }, [{ seq: 7, type: "reveal", issued_at: NOW, payload: reveal }]), sent);
-  await submitAnswer(player(), { idx: 0, choice: 0 }, d);
+  const d = deps(async () => wrap({}, [{ seq: 6, type: "board", issued_at: NOW, payload: {} }, { seq: 7, type: "reveal", issued_at: NOW, payload: reveal }]), sent);
+  await hostAction(RID, "skip", host(), d);
   const call = sent.find((s) => s.url === "https://db.test/realtime/v1/api/broadcast");
   assert.ok(call);
-  const [msg] = (call.body as { messages: { topic: string; event: string; private: boolean; payload: unknown }[] }).messages;
+  const msgs = (call.body as { messages: { topic: string; event: string; private: boolean; payload: unknown }[] }).messages;
+  assert.equal(msgs.length, 1);
+  const [msg] = msgs;
   assert.deepEqual([msg.topic, msg.event, msg.private], [`stoa:${TOPIC}`, "stoa", false]);
   const v = await verifyEvent(msg.payload, { roomId: RID, lastSeq: 6, publicKey: KEYS.verifyKey, now: NOW + 200, clockOffsetMs: 0 });
   assert.deepEqual(v, { ok: true, seq: 7, type: "reveal", issuedAt: NOW, payload: reveal });
@@ -226,11 +227,16 @@ test("probe grace is the median delay, capped at 1000 ms", () => {
 test("probe reports grace and verify failures", async () => {
   const d = deps(async (fn, args) => {
     assert.equal(fn, "live_probe");
-    assert.deepEqual(args, { p_room: RID, p_player: PID, p_tv: 1, p_grace: 200, p_failures: 50 });
+    assert.deepEqual(args, { p_room: RID, p_player: PID, p_tv: 1, p_grace: 200, p_failed: true });
     return wrap({ rotated: true });
   });
   const samples = [150, 200, 250].map((x) => ({ sent_at: NOW, received_at: NOW + x }));
-  assert.deepEqual(await submitProbe(player(), { samples, failures: 900 }, d), { status: 200, body: { rotated: true } });
+  assert.deepEqual(await submitProbe(player(), { samples, failed: true }, d), { status: 200, body: { rotated: true } });
+  const quiet = deps(async (_fn, args) => {
+    assert.equal(args.p_failed, false, "a failure count from the client is ignored");
+    return wrap({ rotated: false });
+  });
+  await submitProbe(player(), { failures: 900 }, quiet);
 });
 
 test("host controls need the host token for that room", async () => {
@@ -239,6 +245,7 @@ test("host controls need the host token for that room", async () => {
     return wrap({}, [{ seq: 1, type: String(args.p_action) === "start" ? "open" : "pause", issued_at: NOW, payload: {} }]);
   });
   assert.deepEqual(await hostAction(RID, "start", host(), d), { status: 200, body: { ok: true, events: 1 } });
+  for (const action of ["lock", "unlock", "kick_all", "rotate"]) assert.equal((await hostAction(RID, action, host(), d)).status, 200);
   assert.equal((await hostAction(RID, "start", player(), d)).status, 401);
   assert.equal((await hostAction(randomUUID(), "start", host(), d)).status, 401);
   assert.equal((await hostAction(RID, "explode", host(), d)).status, 404);
@@ -271,6 +278,25 @@ test("sweep needs the shared secret and ticks every due room", async () => {
   }, sent);
   assert.equal((await sweep("Bearer wrong", d)).status, 401);
   assert.equal((await sweep(null, d)).status, 401);
-  assert.deepEqual(await sweep(`Bearer ${"w".repeat(40)}`, d), { status: 200, body: { rooms: 2, events: 1 } });
+  assert.deepEqual(await sweep(`Bearer ${"w".repeat(40)}`, d), { status: 200, body: { rooms: 2, ticked: 2, events: 1 } });
   assert.equal(sent.filter((s) => s.url.endsWith("/api/broadcast")).length, 1);
+});
+
+test("sweep ticks at most 5 rooms at a time and stops starting work after its budget", async () => {
+  const ids = Array.from({ length: 20 }, () => randomUUID());
+  let running = 0;
+  let peak = 0;
+  let clock = NOW;
+  const d = deps(async (fn) => {
+    if (fn === "live_due") return { data: ids };
+    running++;
+    peak = Math.max(peak, running);
+    await new Promise((r) => setTimeout(r, 5));
+    clock += 400;
+    running--;
+    return { error: "no_room" };
+  }, [], { now: () => clock });
+  const r = await sweep(`Bearer ${"w".repeat(40)}`, d);
+  assert.equal(peak, 5);
+  assert.ok((r.body.ticked as number) < 20, `ticked ${r.body.ticked}`);
 });

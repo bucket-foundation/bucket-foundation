@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { randomUUID } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 import { verifyEvent } from "../src/lib/stoa/verify";
 import { createRoom, hostAction, joinRoom, playerAction, postgrestRpc, roomState, submitAnswer, sweep, type Fetcher, type LiveDeps } from "../src/lib/stoa/live";
 
@@ -10,7 +10,7 @@ const ANON = process.env.LIVE_LOCAL_ANON_KEY;
 const skip = !URL_ || !SERVICE || !ANON || !/^http:\/\/(127\.0\.0\.1|localhost)/.test(URL_);
 
 const env = {
-  STOA_ROOM_SECRET: randomUUID() + randomUUID(),
+  STOA_ROOM_SECRET: randomBytes(48).toString("base64"),
   STOA_SWEEP_SECRET: randomUUID() + randomUUID(),
   POLINGUAL_DB_URL: URL_,
   POLINGUAL_DB_SERVICE_KEY: SERVICE,
@@ -29,7 +29,7 @@ const deps: LiveDeps = {
   rpc: postgrestRpc(env, send),
   send,
   build: () =>
-    [0, 1].map((idx) => ({ idx, round: 1 as const, kind: "pick_word" as const, prompt: { en: `w${idx}`, lang: "es" }, options: ["a", "b", "c", "d"], answer: 0 })),
+    Array.from({ length: 15 }, (_, idx) => ({ idx, round: (Math.floor(idx / 5) + 1) as 1 | 2 | 3, kind: "pick_word" as const, prompt: { en: `w${idx}`, lang: "es" }, options: ["a", "b", "c", "d"], answer: 0 })),
 };
 
 function listen(realtime: { url: string; key: string; topic: string }): Promise<{ events: unknown[]; close: () => void }> {
@@ -111,14 +111,39 @@ test("a full room runs on the local stack", { skip }, async () => {
 
   assert.equal((await playerAction(rid, ids["swift-heron"], "remove", hostAuth, {}, deps)).status, 200);
   assert.equal((await roomState(rid, tokens["swift-heron"], deps)).status, 403);
-  const fresh = await roomState(rid, tokens["quiet-lamp"], deps);
-  assert.ok(fresh.body.token, "a remaining player gets a new token");
+  const kept = await roomState(rid, tokens["quiet-lamp"], deps);
+  assert.equal(kept.status, 200);
+  assert.equal(kept.body.token, undefined, "removing one player leaves other tokens valid");
   assert.equal((await hostAction(rid, "skip", hostAuth, deps)).status, 200);
-  assert.equal((await submitAnswer(tokens["quiet-lamp"], { idx: 1, choice: 0 }, deps)).body.error, "stale_token");
-  assert.equal((await submitAnswer(`Bearer ${fresh.body.token}`, { idx: 1, choice: 0 }, deps)).status, 200);
+  assert.equal((await submitAnswer(tokens["quiet-lamp"], { idx: 1, choice: 0 }, deps)).status, 200);
+  assert.equal((await submitAnswer(tokens["swift-heron"], { idx: 1, choice: 0 }, deps)).status, 403);
 
   assert.equal((await sweep(`Bearer ${env.STOA_SWEEP_SECRET}`, deps)).status, 200);
   assert.equal((await hostAction(rid, "end", hostAuth, deps)).status, 200);
   assert.equal((await joinRoom({ code: room.body.code, nickname: "eager-owl" }, "127.0.0.1", deps)).status, 404);
   assert.ok(broadcasts.length >= 4 && broadcasts.every((s) => s === 202), `broadcasts: ${broadcasts.join(",")}`);
+});
+
+test("40 players answer at once and every answer is scored", { skip }, async () => {
+  const room = await createRoom(`Bearer ${await session()}`, { settings: { targets: ["es"] } }, deps);
+  assert.equal(room.status, 200, JSON.stringify(room.body));
+  const rid = String(room.body.room_id);
+  const hostAuth = `Bearer ${room.body.host_token}`;
+  const adj = ["amber", "brave", "bright", "calm", "clever", "cozy", "eager", "gentle"];
+  const noun = ["badger", "comet", "falcon", "fern", "heron"];
+  const nicks = adj.flatMap((a) => noun.map((n) => `${a}-${n}`));
+  const tokens = await Promise.all(nicks.map(async (nickname) => `Bearer ${(await joinRoom({ code: room.body.code, nickname }, "10.0.0.1", deps)).body.token}`));
+  assert.equal((await hostAction(rid, "lock", hostAuth, deps)).status, 200);
+  assert.equal((await joinRoom({ code: room.body.code, nickname: "witty-zebra" }, "10.0.0.1", deps)).status, 409);
+  assert.equal((await hostAction(rid, "start", hostAuth, deps)).status, 200);
+  const results = await Promise.all(tokens.map((t) => submitAnswer(t, { idx: 0, choice: 0 }, deps)));
+  assert.deepEqual(results.map((r) => r.status).filter((s) => s !== 200), []);
+  const host = await roomState(rid, hostAuth, deps);
+  assert.equal((host.body.room as { phase: string }).phase, "reveal", "the last of 40 answers reveals the question");
+  const standings = host.body.standings as { points: number }[];
+  assert.equal(standings.length, 10);
+  assert.ok(standings.every((s) => s.points >= 500), "every concurrent answer was scored");
+  assert.equal((await hostAction(rid, "kick_all", hostAuth, deps)).status, 200);
+  assert.equal((await roomState(rid, tokens[0], deps)).status, 403);
+  assert.equal((await hostAction(rid, "end", hostAuth, deps)).status, 200);
 });

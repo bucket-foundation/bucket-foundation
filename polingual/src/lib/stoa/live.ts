@@ -1,4 +1,4 @@
-import { randomInt, randomUUID, timingSafeEqual } from "node:crypto";
+import { createHash, randomInt, randomUUID, timingSafeEqual } from "node:crypto";
 import type { SignedEvent } from "./event";
 import { bearer, createRoomKeys, hostToken, openSignKey, playerAccess, playerToken, readToken, signEvent, stoaConfigured, type HostClaims, type PlayerClaims, type StoaEnv } from "./keys";
 import { isNickname } from "./nicknames";
@@ -14,39 +14,22 @@ type DbResult = { room_id: string; topic: string; sign_key: string; events: DbEv
 export const CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 export const CODE = /^[0-9A-HJKMNP-TV-Z]{6}$/;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-export const HOST_ACTIONS = ["start", "pause", "resume", "skip", "end"] as const;
+export const HOST_ACTIONS = ["start", "pause", "resume", "skip", "end", "lock", "unlock", "kick_all", "rotate"] as const;
 export const PLAYER_ACTIONS = ["move", "rename", "remove", "time"] as const;
 export const DB_TIMEOUT_MS = 4000;
 export const GRACE_CAP_MS = 1000;
+export const SWEEP_CONCURRENCY = 5;
+export const SWEEP_BUDGET_MS = 3000;
 
 const STATUS: Record<string, number> = {
   no_room: 404, no_player: 404, not_host: 403, removed: 403, stale_token: 409, too_many_rooms: 429,
   room_full: 409, name_taken: 409, not_open: 409, late: 409, duplicate: 409, paused: 409, bad_phase: 409, closed: 409,
-  bad_action: 400, code_taken: 503,
+  bad_action: 400, code_taken: 503, slow_down: 429, too_soon: 429, locked: 409, bad_settings: 400,
 };
 
-export class Window {
-  private hits = new Map<string, number[]>();
-  constructor(private limit: number, private windowMs: number, private maxKeys = 10000) {}
-  private recent(key: string, now: number): number[] {
-    return (this.hits.get(key) ?? []).filter((t) => now - t < this.windowMs);
-  }
-  full(key: string, now = Date.now()): boolean {
-    return this.recent(key, now).length >= this.limit;
-  }
-  hit(key: string, now = Date.now()): boolean {
-    const r = this.recent(key, now);
-    if (r.length >= this.limit) return false;
-    r.push(now);
-    this.hits.delete(key);
-    this.hits.set(key, r);
-    if (this.hits.size > this.maxKeys) this.hits.delete(this.hits.keys().next().value as string);
-    return true;
-  }
+export function ipKey(ip: string | null): string {
+  return createHash("sha256").update(`stoa:${ip || "unknown"}`).digest("hex").slice(0, 32);
 }
-
-export const joinsPerCode = new Window(150, 60_000);
-export const missesPerIp = new Window(60, 60_000);
 
 export function dbConfigured(env: StoaEnv): boolean {
   return Boolean(env.POLINGUAL_DB_URL?.trim() && env.POLINGUAL_DB_SERVICE_KEY?.trim() && env.POLINGUAL_DB_ANON_KEY?.trim());
@@ -98,28 +81,28 @@ function realtime(env: StoaEnv, topic: string) {
   return { url: base(env), key: env.POLINGUAL_DB_ANON_KEY!.trim(), topic: `stoa:${topic}` };
 }
 
-export function signAll(res: DbResult, env: StoaEnv): SignedEvent[] {
-  if (!res.events?.length) return [];
+export function signLast(res: DbResult, env: StoaEnv): SignedEvent | null {
+  const last = res.events?.[res.events.length - 1];
+  if (!last || !res.sign_key) return null;
   const key = openSignKey(res.room_id, res.sign_key, env);
-  if (!key) return [];
-  return res.events.map((e) => signEvent(res.room_id, e.seq, e.type, e.issued_at, e.payload, key));
+  return key ? signEvent(res.room_id, last.seq, last.type, last.issued_at, last.payload, key) : null;
 }
 
 export async function broadcast(res: DbResult, deps: LiveDeps): Promise<number> {
-  const signed = signAll(res, deps.env);
-  if (!signed.length) return 0;
+  const ev = signLast(res, deps.env);
+  if (!ev) return 0;
   const key = deps.env.POLINGUAL_DB_SERVICE_KEY!.trim();
   try {
     await deps.send(`${base(deps.env)}/realtime/v1/api/broadcast`, {
       method: "POST",
       headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: signed.map((ev) => ({ topic: `stoa:${res.topic}`, event: "stoa", payload: ev, private: false })) }),
+      body: JSON.stringify({ messages: [{ topic: `stoa:${res.topic}`, event: "stoa", payload: ev, private: false }] }),
       signal: AbortSignal.timeout(DB_TIMEOUT_MS),
     });
   } catch {
     return 0;
   }
-  return signed.length;
+  return 1;
 }
 
 function strip(res: DbResult): Record<string, unknown> {
@@ -195,21 +178,12 @@ export async function joinRoom(body: unknown, ip: string | null, deps: LiveDeps)
   const off = ready(deps.env);
   if (off) return off;
   const now = deps.now?.() ?? Date.now();
-  const who = ip || "unknown";
-  if (missesPerIp.full(who, now)) return { status: 429, body: { error: "slow_down" } };
   const b = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
   const code = typeof b.code === "string" ? b.code.trim().toUpperCase() : "";
-  if (!CODE.test(code)) {
-    missesPerIp.hit(who, now);
-    return { status: 400, body: { error: "code" } };
-  }
+  if (!CODE.test(code)) return { status: 400, body: { error: "code" } };
   if (!isNickname(b.nickname)) return { status: 400, body: { error: "nickname" } };
-  if (!joinsPerCode.hit(code, now)) return { status: 429, body: { error: "slow_down" } };
-  const res = await call(deps, "live_join", { p_code: code, p_nickname: b.nickname });
-  if (isResult(res)) {
-    if (res.body.error === "no_room") missesPerIp.hit(who, now);
-    return res;
-  }
+  const res = await call(deps, "live_join", { p_code: code, p_nickname: b.nickname, p_ip: ipKey(ip) });
+  if (isResult(res)) return res;
   const token = playerToken(res.room_id, String(res.player_id), Number(res.token_version), Number(res.expires_at), deps.env, now);
   return { status: 200, body: { room_id: res.room_id, player_id: res.player_id, token, verify_key: res.verify_key, realtime: realtime(deps.env, res.topic) } };
 }
@@ -249,6 +223,7 @@ export async function submitAnswer(authorization: string | null, body: unknown, 
   if (!Number.isInteger(choice) || (choice as number) < 0 || (choice as number) > 3) return { status: 400, body: { error: "choice" } };
   const res = await call(deps, "live_answer", { p_room: c.rid, p_player: c.pid, p_tv: c.tv, p_idx: idx, p_choice: choice });
   if (isResult(res)) return res;
+  await call(deps, "live_tick", { p_room: c.rid });
   return { status: 200, body: { received_at: res.received_at } };
 }
 
@@ -271,8 +246,7 @@ export async function submitProbe(authorization: string | null, body: unknown, d
   const c = claimsFor(authorization, null, deps);
   if (!c || c.typ !== "player") return { status: 401, body: { error: "token" } };
   const b = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
-  const failures = Number.isInteger(b.failures) ? Math.max(0, Math.min(50, b.failures as number)) : 0;
-  const res = await call(deps, "live_probe", { p_room: c.rid, p_player: c.pid, p_tv: c.tv, p_grace: medianGrace(b.samples), p_failures: failures });
+  const res = await call(deps, "live_probe", { p_room: c.rid, p_player: c.pid, p_tv: c.tv, p_grace: medianGrace(b.samples), p_failed: b.failed === true });
   if (isResult(res)) return res;
   return { status: 200, body: { rotated: res.rotated === true } };
 }
@@ -333,11 +307,19 @@ export async function sweep(authorization: string | null, deps: LiveDeps): Promi
   const due = await deps.rpc("live_due", {});
   if ("error" in due) return fail(due.error);
   const ids = (due.data as string[]).filter((id) => UUID.test(id));
+  const clock = deps.now ?? Date.now;
+  const start = clock();
+  const queue = [...ids];
   let events = 0;
-  for (const id of ids) {
-    const r = await deps.rpc("live_tick", { p_room: id });
-    if ("error" in r) continue;
-    events += await broadcast(r.data as DbResult, deps);
-  }
-  return { status: 200, body: { rooms: ids.length, events } };
+  let ticked = 0;
+  const worker = async () => {
+    while (queue.length && clock() - start < SWEEP_BUDGET_MS) {
+      const id = queue.shift()!;
+      const r = await deps.rpc("live_tick", { p_room: id });
+      ticked++;
+      if (!("error" in r)) events += await broadcast(r.data as DbResult, deps);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(SWEEP_CONCURRENCY, ids.length) }, worker));
+  return { status: 200, body: { rooms: ids.length, ticked, events } };
 }
