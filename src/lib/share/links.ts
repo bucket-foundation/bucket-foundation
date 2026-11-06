@@ -3,8 +3,7 @@ export const BUCKET_APP_ID = "6825123451";
 export const TEAM_ID = "QQ6D6A2LLS";
 export const APP_BUNDLE = "foundation.bucket.app";
 export const CLIP_BUNDLE = "foundation.bucket.app.Clip";
-export const BETA_JOIN_URL = "https://testflight.apple.com/join/HfeRBKr8";
-export const TESTFLIGHT_OPEN_URL = BETA_JOIN_URL.replace("https://", "itms-beta://");
+export const APP_STORE_URL = `https://apps.apple.com/app/id${BUCKET_APP_ID}`;
 
 export type Params = Record<string, string | string[] | undefined>;
 export type ShareKind = "w" | "l" | "d" | "a" | "g" | "x" | "c" | "";
@@ -180,16 +179,10 @@ export interface BetaStep {
 export function betaSteps(hasInvite: boolean): BetaStep[] {
   const steps: BetaStep[] = [
     {
-      title: "Join the beta",
-      detail: "Apple's page installs TestFlight, its free beta app, if you need it. Then tap View in TestFlight and Install.",
-      href: BETA_JOIN_URL,
-      cta: "Join the Bucket beta",
-    },
-    {
-      title: "TestFlight asked for a code?",
-      detail: "Tap this to open your invite in TestFlight, then tap Accept and Install.",
-      href: TESTFLIGHT_OPEN_URL,
-      cta: "Open the invite in TestFlight",
+      title: "Get Bucket from the App Store",
+      detail: "Free on iPhone and iPad.",
+      href: APP_STORE_URL,
+      cta: "Get Bucket",
     },
   ];
   if (hasInvite) steps.push({ title: "Tap your invite link again", detail: "Open this same link once Bucket is installed. It opens Bucket and joins the group." });

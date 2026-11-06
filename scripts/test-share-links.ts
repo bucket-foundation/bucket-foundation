@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BETA_JOIN_URL, TESTFLIGHT_OPEN_URL, appSiteAssociation, appleBanner, betaSteps, ogParams, ogPath, parseForms, sharePath, shareView } from "../src/lib/share/links";
+import { APP_STORE_URL, appSiteAssociation, appleBanner, betaSteps, ogParams, ogPath, parseForms, sharePath, shareView } from "../src/lib/share/links";
 
 test("a word link renders the gloss and each form with its language", () => {
   const v = shareView("w", { id: "night", g: "night", f: "fr:nuit|es:noche|de:Nacht" });
@@ -93,16 +93,15 @@ test("group share paths carry the code, name and kind, and the og image reads bo
   assert.equal(shareView(word.kind, word.params).title, "night");
 });
 
-test("the install steps start at the join link and offer the invite in TestFlight", () => {
+test("the install step opens Bucket on the App Store", () => {
   const steps = betaSteps(false);
-  assert.deepEqual(steps.map((s) => s.href), [BETA_JOIN_URL, TESTFLIGHT_OPEN_URL]);
-  assert.equal(TESTFLIGHT_OPEN_URL, "itms-beta://testflight.apple.com/join/HfeRBKr8");
-  assert.match(steps[1].title, /asked for a code/);
+  assert.deepEqual(steps.map((s) => s.href), [APP_STORE_URL]);
+  assert.equal(APP_STORE_URL, "https://apps.apple.com/app/id6825123451");
 });
 
 test("an invite adds a last step to tap the link again", () => {
   const steps = betaSteps(true);
-  assert.equal(steps.length, 3);
-  assert.match(steps[2].title, /invite link again/);
-  assert.equal(steps[2].href, undefined);
+  assert.equal(steps.length, 2);
+  assert.match(steps[1].title, /invite link again/);
+  assert.equal(steps[1].href, undefined);
 });
