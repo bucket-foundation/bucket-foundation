@@ -22,7 +22,7 @@ export default function Page() {
     hasDefinedTerm: WORDS.map((w) => ({ "@type": "DefinedTerm", name: w.en, url: `${SITE}${wordPath(w)}` })),
   };
   return (
-    <Legal>
+    <Legal wide>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript([setLd, appJsonLd()]) }} />
       <h1>{title}</h1>
       <p className="lede">{description}</p>
@@ -43,7 +43,9 @@ export default function Page() {
           </ul>
         </section>
       ))}
-      <a className={styles.cta} href="/?utm_source=seo&utm_campaign=word_index">Learn them all in one app</a>
+      <div className={styles.ctaRow}>
+        <a className={styles.cta} href="/?utm_source=seo&utm_campaign=word_index">Learn them all in one app</a>
+      </div>
     </Legal>
   );
 }
