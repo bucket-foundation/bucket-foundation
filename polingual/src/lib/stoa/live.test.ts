@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
 import { createRoomKeys, hostToken, playerToken, readToken, type PlayerClaims } from "./keys";
-import { createRoom, hostAction, ipKey, joinRoom, medianGrace, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
+import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
 import { isNickname, nicknameChoices } from "./nicknames";
 import { parseSettings } from "./questions";
 import { verifyEvent } from "./verify";
@@ -312,4 +312,15 @@ test("after a rotation the last event goes out on the old and the new topic", as
   assert.deepEqual(msgs[0].payload, msgs[1].payload);
   const v = await verifyEvent(msgs[1].payload, { roomId: RID, lastSeq: 8, publicKey: KEYS.verifyKey, now: NOW, clockOffsetMs: 0 });
   assert.equal(v.ok && v.type, "rotate");
+});
+
+test("the client IP comes from x-real-ip, then the first X-Forwarded-For hop", () => {
+  const h = (o: Record<string, string>) => new Headers(o);
+  assert.equal(clientIpFrom(h({ "x-real-ip": "203.0.113.7", "x-forwarded-for": "6.6.6.6, 203.0.113.7" })), "203.0.113.7", "a spoofed forwarded-for loses to x-real-ip");
+  assert.equal(clientIpFrom(h({ "x-forwarded-for": " 198.51.100.4 , 10.0.0.1" })), "198.51.100.4");
+  assert.equal(clientIpFrom(h({ "x-forwarded-for": "2001:db8::1" })), "2001:db8::1");
+  assert.equal(clientIpFrom(h({ "x-real-ip": "not an ip", "x-forwarded-for": "198.51.100.9" })), "198.51.100.9", "a junk x-real-ip falls through");
+  assert.equal(clientIpFrom(h({ "x-forwarded-for": "<script>, 1.2.3.4" })), null, "a junk first hop is not trusted");
+  assert.equal(clientIpFrom(h({})), null);
+  assert.notEqual(ipKey("203.0.113.7"), ipKey(null));
 });

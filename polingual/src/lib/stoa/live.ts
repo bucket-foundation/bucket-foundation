@@ -27,6 +27,15 @@ const STATUS: Record<string, number> = {
   bad_action: 400, code_taken: 503, slow_down: 429, too_soon: 429, locked: 409, bad_settings: 400,
 };
 
+const IP = /^[0-9a-fA-F:.]{2,45}$/;
+
+export function clientIpFrom(headers: { get(name: string): string | null }): string | null {
+  const real = headers.get("x-real-ip")?.trim();
+  if (real && IP.test(real)) return real;
+  const first = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return first && IP.test(first) ? first : null;
+}
+
 export function ipKey(ip: string | null): string {
   return createHash("sha256").update(`stoa:${ip || "unknown"}`).digest("hex").slice(0, 32);
 }

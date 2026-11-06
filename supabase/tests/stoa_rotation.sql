@@ -25,6 +25,10 @@ begin
   assert array_position(ps, null) is null, 'one IP joins 60 players in a minute';
   assert bucket.live_join('R0TA7E', 'p-61', 'ip-a') ->> 'error' = 'slow_down', 'the 61st join from one IP in a minute waits';
   assert bucket.live_join('R0TA7E', 'p-61', 'ip-b') ->> 'player_id' is not null, 'another IP still joins';
+  for i in 1..200 loop
+    perform bucket.live_join('R0TA7E', 'p-61', 'ip-a');
+  end loop;
+  assert (select hits from bucket.live_limits where bucket_key = 'join:' || rid) = 61, 'one IP past its cap never drains the room bucket';
 
   select topic into t0 from bucket.live_rooms where id = rid;
   res := bucket.live_tick(rid);
@@ -49,9 +53,20 @@ begin
   res := bucket.live_host(rid, host, 'rotate');
   assert res ->> 'error' is null and res -> 'events' -> -1 ->> 'type' = 'rotate', 'the host rotates inside the cooldown';
   assert (select topic from bucket.live_rooms where id = rid) not in (t0, t1), 'the host rotation picks a new topic';
-  assert (select prev_topic from bucket.live_rooms where id = rid) = t1, 'the old topic is the one phones were on';
+  res := bucket.live_tick(rid);
+  assert res -> 'topics' -> 1 = to_jsonb(t1) and res -> 'topics' -> 2 = to_jsonb(t0), 'two rotations inside 60 s keep both old topics live';
+  assert jsonb_array_length(res -> 'topics') = 3, 'the new topic and two old ones';
 
-  update bucket.live_rooms set prev_topic_until = clock_timestamp() - interval '1 second' where id = rid;
+  update bucket.live_rooms set rotated_at = null where id = rid;
+  perform bucket.live_host(rid, host, 'rotate');
+  perform bucket.live_host(rid, host, 'rotate');
+  assert jsonb_array_length((select topic_history from bucket.live_rooms where id = rid)) = 3, 'the history keeps the last 3 topics';
+  assert jsonb_array_length(bucket.live_tick(rid) -> 'topics') = 4, 'events go to the new topic and the last 3';
+
+  update bucket.live_rooms set topic_history = (
+    select jsonb_agg(jsonb_set(h, '{until}', to_jsonb(bucket.live_ms(clock_timestamp() - interval '1 second'))))
+    from jsonb_array_elements(topic_history) h
+  ) where id = rid;
   assert jsonb_array_length(bucket.live_tick(rid) -> 'topics') = 1, 'after 60 seconds only the new topic carries events';
 end $$;
 

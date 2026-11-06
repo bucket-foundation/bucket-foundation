@@ -1,5 +1,4 @@
-alter table bucket.live_rooms add column if not exists prev_topic uuid;
-alter table bucket.live_rooms add column if not exists prev_topic_until timestamptz;
+alter table bucket.live_rooms add column if not exists topic_history jsonb not null default '[]'::jsonb;
 
 drop function if exists bucket.live_rotate(uuid);
 
@@ -9,7 +8,17 @@ declare
   ev jsonb;
 begin
   update bucket.live_rooms
-  set prev_topic = topic, prev_topic_until = clock_timestamp() + interval '60 seconds',
+  set topic_history = (
+        select coalesce(jsonb_agg(h order by (h ->> 'until') desc), '[]'::jsonb)
+        from (
+          select h from jsonb_array_elements(
+            jsonb_build_array(jsonb_build_object('topic', topic, 'until', bucket.live_ms(clock_timestamp() + interval '60 seconds'))) || topic_history
+          ) h
+          where (h ->> 'until')::bigint > bucket.live_ms(clock_timestamp())
+          order by (h ->> 'until')::bigint desc
+          limit 3
+        ) kept
+      ),
       topic = gen_random_uuid(), rotated_at = clock_timestamp()
   where id = p_room and (p_force or rotated_at is null or rotated_at <= clock_timestamp() - interval '2 minutes');
   if not found then
@@ -21,9 +30,13 @@ begin
 end $$;
 
 create or replace function bucket.live_wrap(p_room uuid, p_events jsonb, p_extra jsonb)
-returns jsonb language sql stable security definer set search_path = bucket, pg_temp as $$
+returns jsonb language sql volatile security definer set search_path = bucket, pg_temp as $$
   select coalesce(p_extra, '{}'::jsonb) || jsonb_build_object('room_id', r.id, 'topic', r.topic, 'sign_key', r.sign_key, 'events', p_events,
-    'topics', case when r.prev_topic is not null and r.prev_topic_until > clock_timestamp() then jsonb_build_array(r.topic, r.prev_topic) else jsonb_build_array(r.topic) end)
+    'topics', jsonb_build_array(r.topic) || coalesce((
+      select jsonb_agg(h -> 'topic' order by (h ->> 'until')::bigint desc)
+      from jsonb_array_elements(r.topic_history) h
+      where (h ->> 'until')::bigint > bucket.live_ms(clock_timestamp())
+    ), '[]'::jsonb))
   from bucket.live_rooms r where r.id = p_room
 $$;
 
@@ -42,7 +55,7 @@ begin
     perform bucket.live_take('miss:' || p_ip, 60);
     return jsonb_build_object('error', 'no_room', 'events', '[]'::jsonb);
   end if;
-  if not bucket.live_take('join:' || r.id::text, 150) or not bucket.live_take('joinip:' || r.id::text || ':' || p_ip, 60) then
+  if not bucket.live_take('joinip:' || r.id::text || ':' || p_ip, 60) or not bucket.live_take('join:' || r.id::text, 150) then
     return bucket.live_wrap(r.id, '[]'::jsonb, jsonb_build_object('error', 'slow_down'));
   end if;
   ev := bucket.live_step(r.id);
