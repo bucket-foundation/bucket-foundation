@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Tile } from "../app/tile";
 import { WordView } from "../app/(site)/word/views";
-import { MIN_PX, ICON_RESERVE_PX, capPx, fitPx, glyphWidth, shrinkPx } from "./tile-fit";
+import { MAX_PX, MIN_PX, ROOM_ICON_CQI, capPx, fitCqi, fitPx, fitVars, wordEm } from "./tile-fit";
 import { snapshot, stop, toggle } from "./speak";
 import { word } from "./words";
 
@@ -67,22 +67,33 @@ test("the play button covers the whole tile and a tap plays or stops", () => {
 });
 
 test("the longest form in each language fits one line at or above the 12px floor", () => {
-  const inner = 168 - ICON_RESERVE_PX;
+  const narrowest = 168;
+  const room = (narrowest * ROOM_ICON_CQI) / 100;
   for (const [lang, form, em] of LONGEST) {
-    const px = shrinkPx(fitPx(form, inner), em * fitPx(form, inner), inner);
+    assert.ok(wordEm(form) >= em, `${lang} ${form} estimate ${wordEm(form)} under measured ${em}`);
+    const px = fitPx(form, narrowest);
     assert.ok(px >= MIN_PX, `${lang} ${form} ${px}`);
-    assert.ok(em * px <= inner + 0.5, `${lang} ${form} needs ${em * px}px of ${inner}`);
+    assert.ok(em * px <= room + 0.5, `${lang} ${form} needs ${em * px}px of ${room}`);
   }
 });
 
+test("the word size is set in CSS from a build-time fit, with no client fitting", () => {
+  const html = renderToStaticMarkup(<Tile lang="ru" code="ru" label="Russian" word="коричневый" play={<button type="button" />} />);
+  assert.match(html, /--fit:[\d.]+;--fit-icon:[\d.]+;--cap:54px/);
+  assert.match(CSS, /\.word\{[^}]*font-size:clamp\(12px,calc\(var\(--fit,20\) \* 1cqi\),var\(--cap,54px\)\)/);
+  assert.match(rule(".tile:has(.play) .word"), /clamp\(12px,calc\(var\(--fit-icon,20\) \* 1cqi\)/);
+  assert.match(CSS, /\.word\{[^}]*overflow-wrap:normal;word-break:keep-all;hyphens:none;text-wrap:balance/);
+  assert.match(CSS, /\.tile\{position:relative;container-type:inline-size/);
+  const page = renderToStaticMarkup(<WordView w={word("brown")!} code="ru" />);
+  assert.doesNotMatch(page, /data-fit/);
+});
+
 test("fit caps single words at 54px and phrases at 24px", () => {
-  assert.equal(capPx("brun"), 54);
+  assert.equal(capPx("brun"), MAX_PX);
   assert.equal(capPx("màu da cam"), 24);
   assert.equal(capPx("橙色", "/ʈʂʰə̌ŋ.sɤ̂/ · chéngsè"), 44);
   assert.equal(capPx("牛乳", "ぎゅうにゅう · gyūnyū"), 44);
   assert.equal(capPx("brun", "/bʁœ̃/"), 54);
-  assert.equal(fitPx("八", 120), 54);
-  assert.equal(glyphWidth("உருளைக்கிழங்கு"), 2);
-  assert.equal(shrinkPx(30, 100, 120), 30);
-  assert.equal(shrinkPx(30, 400, 100), MIN_PX);
+  assert.equal(fitPx("八", 180), 54);
+  assert.ok(fitCqi("brown") < Number(fitVars("brown")["--fit"]));
 });

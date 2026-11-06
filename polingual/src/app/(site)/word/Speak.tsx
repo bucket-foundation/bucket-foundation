@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { idle, installedVoices, playAll, playable, snapshot, stop, subscribe, toggle, type SpeakItem } from "@/lib/speak";
-import { shrinkPx } from "@/lib/tile-fit";
 import styles from "@/app/site.module.css";
 
 function usePlayer() {
@@ -66,22 +65,3 @@ export function HearAll({ items, label, stopLabel }: { items: SpeakItem[]; label
   );
 }
 
-export function fitWords(root: ParentNode) {
-  for (const el of root.querySelectorAll<HTMLElement>("b[data-fit]")) {
-    el.style.fontSize = "";
-    const px = parseFloat(getComputedStyle(el).fontSize);
-    const next = shrinkPx(px, el.scrollWidth, el.clientWidth);
-    if (next !== px) el.style.fontSize = `${next}px`;
-  }
-}
-
-export function FitWords() {
-  useLayoutEffect(() => {
-    const run = () => fitWords(document);
-    run();
-    void document.fonts?.ready.then(run);
-    window.addEventListener("resize", run);
-    return () => window.removeEventListener("resize", run);
-  }, []);
-  return null;
-}

@@ -1,5 +1,5 @@
 import { flagFor } from "@/lib/flags";
-import { capPx, glyphWidth, longestToken } from "@/lib/tile-fit";
+import { fitVars } from "@/lib/tile-fit";
 import styles from "./site.module.css";
 
 export type TileProps = { lang: string; code: string; label: string; word: string; reading?: string; rtl?: boolean; play?: React.ReactNode; index?: number };
@@ -12,12 +12,12 @@ const SPEAKER = (
 );
 
 export function Tile({ lang, code, label, word, reading, rtl, play, index = 0 }: TileProps) {
-  const fit = { "--n": longestToken(word), "--k": glyphWidth(word), "--cap": capPx(word, reading) + "px" } as React.CSSProperties;
+  const fit = fitVars(word, reading) as React.CSSProperties;
   return (
     <li className={styles.tile} style={{ background: flagFor(lang), "--i": Math.min(index, 11) } as React.CSSProperties}>
       <span className={styles.cc}>{code}</span>
       <span className={styles.wd}>
-        <b className={styles.word} style={fit} data-fit lang={lang} dir={rtl ? "rtl" : undefined}>
+        <b className={styles.word} style={fit} lang={lang} dir={rtl ? "rtl" : undefined}>
           {word}
         </b>
         {play ? <span className={styles.snd}>{SPEAKER}</span> : null}
