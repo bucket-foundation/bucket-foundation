@@ -33,6 +33,7 @@ struct TranslateCard: View {
     @State private var sources: [String] = []
     @State private var listening = false
     @State private var missedVoice = false
+    @State private var speechDenied = false
     @State private var answer: TranslateAnswer?
     @FocusState private var focused: Bool
 
@@ -67,6 +68,30 @@ struct TranslateCard: View {
     }
 
     var active: String { today ? committed : query }
+
+    var soft: Color {
+        guard today else { return Palette.muted }
+        return scheme == .dark ? D8.ink.opacity(0.75) : D8.parchment.opacity(0.75)
+    }
+
+    static var settingsURL: URL? {
+        #if os(iOS)
+        URL(string: UIApplication.openSettingsURLString)
+        #else
+        URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_SpeechRecognition")
+        #endif
+    }
+
+    func micTapped() {
+        if listening {
+            LangListener.shared.stop()
+        } else if LangListener.shared.denied {
+            missedVoice = false
+            speechDenied = true
+        } else {
+            Task { await listen() }
+        }
+    }
 
     func setTargets(_ list: [String]) { targetsRaw = list.joined(separator: ",") }
 
@@ -115,6 +140,7 @@ struct TranslateCard: View {
                             Text(from.map(Lang.name) ?? String(localized: "Detect language"))
                                 .font(.system(size: 17, weight: .bold, design: .rounded))
                                 .lineLimit(1)
+                                .fixedSize()
                             Image(systemName: "chevron.down").font(.system(size: 13, weight: .bold))
                         }
                         .foregroundStyle(Palette.ink)
@@ -123,19 +149,21 @@ struct TranslateCard: View {
                         .background(D8.face, in: .capsule)
                         .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 2) }
                     }
+                    .layoutPriority(1)
                     .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
                     if let detected {
                         Text("Detected: \(Lang.name(detected))")
                             .font(.system(size: 15, weight: .semibold, design: .rounded))
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(soft)
                             .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                     }
                     Spacer(minLength: 0)
                 }
                 if today { targetRow }
                 HStack(spacing: 10) {
                     Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
-                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(today ? Palette.muted : D8.label))
+                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(today ? soft : D8.label))
                         .font(.system(size: 21, weight: .semibold, design: .rounded))
                         .autocorrectionDisabled()
                         .submitLabel(.search)
@@ -144,7 +172,7 @@ struct TranslateCard: View {
                             if today { commit() } else if let id = picked ?? hits.first?.itemId { add(id, corpus) }
                         }
                     if !query.isEmpty {
-                        Button { query = ""; committed = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 20)).foregroundStyle(Palette.muted) }
+                        Button { query = ""; committed = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 20)).foregroundStyle(soft) }
                             .buttonStyle(.borderless)
                             .accessibilityLabel("Clear")
                     }
@@ -155,8 +183,8 @@ struct TranslateCard: View {
                 .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
                 if today {
                     actionRow
-                } else if LangListener.shared.supported {
-                    Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
+                } else {
+                    Button { micTapped() } label: {
                         HStack(spacing: 12) {
                             Image(systemName: listening ? "stop.fill" : "mic.fill")
                                 .font(.system(size: 30, weight: .bold))
@@ -170,23 +198,15 @@ struct TranslateCard: View {
                     .buttonStyle(.plain)
                     .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
                 }
-                if listening {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Listening in \(Lang.name(listenLang))…").font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
-                        if !LangListener.shared.live.isEmpty {
-                            Text(LangListener.shared.live).font(.system(size: 20, weight: .semibold, design: .rounded)).foregroundStyle(Palette.ink)
-                        }
-                    }
-                } else if missedVoice {
-                    Text("Didn't catch that. Tap the mic and try again.").font(.subheadline).foregroundStyle(Palette.muted)
-                }
+                statusLine
                 if sentence {
                     SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:])
                 } else if picked == nil, let answer, answer.layer != .deck {
-                    LexiconAnswerView(answer: answer, shown: shown)
+                    LexiconAnswerView(answer: answer, shown: shown, withSource: false, soft: soft)
                 } else if !text.isEmpty {
                     if let id = picked ?? answer?.itemId ?? hits.first?.itemId, let item = corpus.byId[id] {
-                        ForEach(shown, id: \.self) { l in
+                        let source = from ?? answer?.source ?? hits.first(where: { $0.itemId == id })?.matchedLang
+                        ForEach(shown.filter { $0 != source }, id: \.self) { l in
                             if let f = item.form(l) {
                                 HStack(spacing: 10) {
                                     FlagTile(lang: l, size: 26)
@@ -214,7 +234,7 @@ struct TranslateCard: View {
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
                         if !similar.isEmpty {
-                            Text("Similar").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+                            Text("Similar").font(.caption.weight(.semibold)).foregroundStyle(soft)
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 8) {
                                     ForEach(similar, id: \.itemId) { h in
@@ -228,7 +248,7 @@ struct TranslateCard: View {
                     } else {
                         Text("Not in your languages yet. Try the word in another language you know.")
                             .font(.subheadline)
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(soft)
                     }
                 }
             }
@@ -243,7 +263,11 @@ struct TranslateCard: View {
                     card.padding(.vertical, 6)
                 }
             }
-            .onChange(of: query) { picked = nil }
+            .onChange(of: query) {
+                picked = nil
+                missedVoice = false
+                speechDenied = false
+            }
             .onChange(of: from) { picked = nil }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
@@ -285,11 +309,12 @@ struct TranslateCard: View {
 
     func listen() async {
         missedVoice = false
+        speechDenied = false
         listening = true
         let heard = await LangListener.shared.listenOnce(listenLang, limit: LangListener.maxSentence)
         listening = false
         guard let first = heard.first, !first.isEmpty else {
-            missedVoice = true
+            if LangListener.shared.denied { speechDenied = true } else { missedVoice = true }
             return
         }
         query = first
@@ -300,22 +325,28 @@ struct TranslateCard: View {
     var targetRow: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                Text("Into").font(.subheadline.weight(.bold)).foregroundStyle(Palette.muted)
+                Text("Into").font(.subheadline.weight(.bold)).foregroundStyle(soft)
                 ForEach(chosen, id: \.self) { l in
-                    Button { toggleTarget(l) } label: {
-                        HStack(spacing: 6) {
-                            FlagTile(lang: l, size: 20)
-                            Text(Lang.name(l)).font(.system(size: 15, weight: .bold, design: .rounded))
-                            if chosen.count > 1 { Image(systemName: "xmark").font(.system(size: 10, weight: .heavy)).foregroundStyle(Palette.muted) }
+                    HStack(spacing: 2) {
+                        FlagTile(lang: l, size: 20)
+                        Text(Lang.name(l)).font(.system(size: 15, weight: .bold, design: .rounded)).padding(.leading, 4)
+                        if chosen.count > 1 {
+                            Button { toggleTarget(l) } label: {
+                                Image(systemName: "xmark").font(.system(size: 11, weight: .heavy)).foregroundStyle(soft)
+                                    .frame(width: 32, height: 36)
+                                    .contentShape(.rect)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(Text("Remove \(Lang.name(l))"))
+                            .accessibilityHint(Text("Stops translating into this language"))
                         }
-                        .foregroundStyle(Palette.ink)
-                        .padding(.horizontal, 10)
-                        .frame(minHeight: 36)
-                        .background(D8.face, in: .capsule)
-                        .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 1.5) }
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(Text("Remove \(Lang.name(l))"))
+                    .foregroundStyle(Palette.ink)
+                    .padding(.leading, 10)
+                    .padding(.trailing, chosen.count > 1 ? 0 : 10)
+                    .frame(minHeight: 36)
+                    .background(D8.face, in: .capsule)
+                    .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 1.5) }
                 }
                 Menu {
                     Section("My languages") {
@@ -336,6 +367,37 @@ struct TranslateCard: View {
         }
     }
 
+    var statusLine: some View {
+        ZStack(alignment: .leading) {
+            Text(LangListener.shared.live.isEmpty ? String(localized: "Listening in \(Lang.name(listenLang))…") : LangListener.shared.live)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(LangListener.shared.live.isEmpty ? D8.vermilion : Palette.ink)
+                .truncationMode(.head)
+                .opacity(listening ? 1 : 0)
+            Text("Didn't catch that. Tap the mic and try again.")
+                .font(.subheadline)
+                .foregroundStyle(soft)
+                .opacity(missedVoice && !listening ? 1 : 0)
+            HStack(spacing: 6) {
+                Text("Turn on speech in Settings").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+                if let url = Self.settingsURL {
+                    Link(destination: url) {
+                        Text("Open Settings").font(.subheadline.weight(.bold)).underline()
+                    }
+                    .foregroundStyle(D8.vermilion)
+                    .accessibilityIdentifier("translate.openSettings")
+                }
+            }
+            .opacity(speechDenied && !listening ? 1 : 0)
+            .allowsHitTesting(speechDenied && !listening)
+        }
+        .lineLimit(1)
+        .minimumScaleFactor(0.8)
+        .frame(maxWidth: .infinity, minHeight: 22, maxHeight: 22, alignment: .leading)
+        .animation(.easeOut(duration: 0.2), value: listening)
+        .accessibilityElement(children: .contain)
+    }
+
     var actionRow: some View {
         HStack(spacing: 12) {
             Button { commit() } label: {
@@ -349,21 +411,19 @@ struct TranslateCard: View {
             .buttonStyle(.plain)
             .disabled(query.trimmingCharacters(in: .whitespaces).isEmpty)
             .accessibilityIdentifier("translate.go")
-            if LangListener.shared.supported {
-                Button { if listening { LangListener.shared.stop() } else { Task { await listen() } } } label: {
-                    Image(systemName: listening ? "stop.fill" : "mic.fill")
-                        .font(.system(size: 26, weight: .bold))
-                        .symbolEffect(.variableColor.iterative, isActive: listening)
-                        .foregroundStyle(D8.parchment)
-                        .frame(width: 60, height: 60)
-                        .background(D8.vermilion, in: .circle)
-                        .background(D8.vermilionLip, in: .circle.offset(y: 5))
-                        .padding(.bottom, 5)
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
-                .accessibilityIdentifier("translate.mic")
+            Button { micTapped() } label: {
+                Image(systemName: listening ? "stop.fill" : "mic.fill")
+                    .font(.system(size: 26, weight: .bold))
+                    .symbolEffect(.variableColor.iterative, isActive: listening)
+                    .foregroundStyle(D8.parchment)
+                    .frame(width: 60, height: 60)
+                    .background(D8.vermilion, in: .circle)
+                    .background(D8.vermilionLip, in: .circle.offset(y: 5))
+                    .padding(.bottom, 5)
             }
+            .buttonStyle(.plain)
+            .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
+            .accessibilityIdentifier("translate.mic")
         }
     }
 
@@ -392,6 +452,8 @@ struct TrailingIcon: LabelStyle {
 struct LexiconAnswerView: View {
     let answer: TranslateAnswer
     let shown: [String]
+    var withSource = true
+    var soft = Palette.muted
 
     var note: String? {
         switch answer.layer {
@@ -405,9 +467,9 @@ struct LexiconAnswerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             if let note {
-                Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(soft)
             }
-            ForEach([answer.source] + shown.filter { $0 != answer.source }, id: \.self) { l in
+            ForEach((withSource ? [answer.source] : []) + shown.filter { $0 != answer.source }, id: \.self) { l in
                 if let f = l == answer.source ? answer.headword : answer.rows[l] {
                     HStack(spacing: 10) {
                         FlagTile(lang: l, size: 26)
@@ -420,13 +482,15 @@ struct LexiconAnswerView: View {
                     .accessibilityElement(children: .combine)
                 }
             }
-            TranslateCredit()
+            TranslateCredit(soft: soft)
         }
     }
 }
 
 struct TranslateCredit: View {
+    var soft = Palette.muted
+
     var body: some View {
-        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY.").font(.caption2).foregroundStyle(Palette.muted)
+        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY.").font(.caption2).foregroundStyle(soft)
     }
 }

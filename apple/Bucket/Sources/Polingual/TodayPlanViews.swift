@@ -82,6 +82,20 @@ enum TodayLooks {
     static let watch = TileLook.vivid(D8.lapis, Color(hex: 0x12326A))
     static let alphabet = TileLook.vivid(D8.malachite, D8.malachiteLip)
     static func branch(_ b: String) -> TileLook { .vivid(BranchTile.face(b)) }
+
+    static func lang(_ targets: [String]) -> TileLook {
+        for l in targets {
+            let flag = D8Flag.of(l)
+            let colors = flag.bands.sorted { $0.weight > $1.weight }.map(\.color) + [flag.canton?.color, flag.cross, flag.hoist].compactMap { $0 }
+            if let c = colors.first(where: { deep($0) }) { return .vivid(Color(hex: c)) }
+        }
+        return .vivid(D8.lapis, Color(hex: 0x12326A))
+    }
+
+    static func deep(_ c: UInt32) -> Bool {
+        let r = Double((c >> 16) & 0xFF), g = Double((c >> 8) & 0xFF), b = Double(c & 0xFF)
+        return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.62
+    }
 }
 
 struct TodayTileSkin: ViewModifier {
@@ -260,7 +274,7 @@ struct TodayPicker: View {
         let study = String(localized: "Review and new cards")
         var out: [PickSection] = []
         if !langs.systems.isEmpty {
-            out.append(PickSection(title: "Languages", entries: langs.systems.map { PickEntry(item: .system($0), title: $0.name, symbol: "character.bubble", flags: $0.targets, detail: study) }))
+            out.append(PickSection(title: "Languages", entries: langs.systems.map { PickEntry(item: .system($0), title: $0.name, symbol: "character.bubble", flags: $0.targets, look: TodayLooks.lang($0.targets), detail: study) }))
         }
         if let subjects {
             out.append(PickSection(title: "Subjects", entries: subjects.map { PickEntry(item: .deck($0), title: $0.title, symbol: "rectangle.stack", branch: $0.id, look: TodayLooks.branch($0.id), detail: study) }))

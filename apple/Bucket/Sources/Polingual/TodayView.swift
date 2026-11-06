@@ -236,7 +236,7 @@ struct TodayView: View {
         }
         let look: TileLook = switch item {
         case .deck(let w): TodayLooks.branch(w.entry.id)
-        case .lang: .plain
+        case .lang(let s): TodayLooks.lang(s.targets)
         case .game(let game): TodayLooks.game(game)
         case .read(let topic): TodayLooks.branch(topic.branch)
         case .activity(.listen): TodayLooks.listen
