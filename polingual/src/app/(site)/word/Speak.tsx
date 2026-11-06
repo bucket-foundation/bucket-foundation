@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { idle, installedVoices, play, playAll, playable, snapshot, stop, subscribe, type SpeakItem } from "@/lib/speak";
+import { idle, installedVoices, playAll, playable, snapshot, stop, subscribe, toggle, type SpeakItem } from "@/lib/speak";
 import styles from "@/app/site.module.css";
 
 function usePlayer() {
@@ -47,10 +47,7 @@ export function PlayTile({ item, label }: { item: SpeakItem; label: string }) {
   if (!show) return null;
   const on = player.id === item.id;
   return (
-    <button type="button" className={styles.play} data-playing={on || undefined} aria-pressed={on} aria-label={label}onClick={() => (on ? stop() : void play(item))}>
-      <span className={styles.playIcon}>
-        <SpeakerIcon />
-      </span>
+    <button type="button" className={styles.play} data-playing={on || undefined} aria-pressed={on} aria-label={label} onClick={() => toggle(item, on)}>
     </button>
   );
 }
@@ -67,3 +64,4 @@ export function HearAll({ items, label, stopLabel }: { items: SpeakItem[]; label
     </button>
   );
 }
+

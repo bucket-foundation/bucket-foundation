@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
 import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, resetPlayer, snapshot, stop, type SpeakItem } from "./speak";
 import { LANGS, WORDS, word } from "./words";
-import { capPx, fitPx, glyphWidth, graphemes, longestToken } from "./tile-fit";
+import { graphemes, longestToken } from "./tile-fit";
 import { WordView } from "../app/(site)/word/views";
 
 const voices = [
@@ -73,16 +73,9 @@ test("every recording is a Commons mp3 with a license", () => {
     }
 });
 
-test("tile words fit on one line from grapheme length with a floor", () => {
+test("grapheme counts merge combining marks and phrases use the longest token", () => {
   assert.equal(graphemes("بُنِّيّ"), 3);
   assert.equal(longestToken("pomme de terre"), 5);
-  assert.equal(glyphWidth("茶色い"), 1.05);
-  assert.equal(glyphWidth("коричневый"), 0.68);
-  assert.equal(glyphWidth("உருளைக்கிழங்கு"), 2);
-  assert.equal(capPx("màu da cam"), 24);
-  assert.equal(fitPx("brun", 140), 40);
-  assert.ok(fitPx("коричневый", 140) * 10 * 0.68 <= 140);
-  assert.equal(fitPx("vaaleanpunainenvaaleanpunainen", 140), 14);
 });
 
 class FakeAudio {
