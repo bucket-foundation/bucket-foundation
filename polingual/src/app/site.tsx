@@ -6,9 +6,9 @@ import styles from "./site.module.css";
 export const SITE_FONTS =
   "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Hebrew:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+Tamil:wght@700&family=Noto+Sans+Thai:wght@700&family=Noto+Sans+JP:wght@700&family=Noto+Sans+KR:wght@700&display=swap";
 
-export type SiteLocale = { code: string; rtl: boolean; words: string; labels: { beta: string; support: string; privacy: string; terms: string } };
+export type SiteLocale = { code: string; rtl: boolean; words: string; labels: { beta: string; support: string; privacy: string; terms: string }; footer: { tagline: string; data: string; published: string } };
 
-export const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" } };
+export const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" }, footer: { tagline: "Polingual · for iPhone and iPad", data: "Word data:", published: "Published by AGFarms LLC." } };
 
 function home(code: string): string {
   return code === "en" ? "/" : `/${code}`;
@@ -43,7 +43,7 @@ export function SiteFooter({ loc = EN_SITE }: { loc?: SiteLocale }) {
     <footer className={styles.ft}>
       <div className={styles.stripe} style={{ background: FLAG_STRIPE }} />
       <div className={styles.ftrow}>
-        <span>Polingual · for iPhone and iPad</span>
+        <span>{loc.footer.tagline}</span>
         <nav className={styles.fl}>
           <Link href={wordsHref(loc.code)}>{loc.words}</Link>
           <Link href="/privacy">{loc.labels.privacy}</Link>
@@ -51,7 +51,7 @@ export function SiteFooter({ loc = EN_SITE }: { loc?: SiteLocale }) {
           <Link href="/support">{loc.labels.support}</Link>
         </nav>
         <span>
-          Word data: <a href="https://en.wiktionary.org">Wiktionary</a> via <a href="https://kaikki.org">Kaikki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Published by AGFarms LLC.
+          {loc.footer.data} <a href="https://en.wiktionary.org">Wiktionary</a> · <a href="https://kaikki.org">Kaikki</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. <span dir="auto">{loc.footer.published}</span>
         </span>
       </div>
     </footer>

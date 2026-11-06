@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test src/lib/word-i18n.test.ts src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts scripts/indexnow.test.mjs scripts/build_words.test.mjs",
+    "test": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test src/lib/word-i18n.test.tsx src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts scripts/indexnow.test.mjs scripts/build_words.test.mjs",
     "words": "node scripts/build_words.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "test:db": "bash db/test-founding.sh"

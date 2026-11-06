@@ -3,7 +3,7 @@ import { FACTS } from "./facts";
 import { pageMeta } from "./meta";
 import { WORDS, capitalize, wordDescription, wordPath, wordTitle, type Word } from "./words";
 import { wordOgImage } from "./word-og";
-import { hreflangAlternates, localIndexCopy, localPath, localWordCopy, localeInfo } from "./word-i18n";
+import { hreflangAlternates, localIndexCopy, localOgImage, localPath, localWordCopy, localeInfo } from "./word-i18n";
 
 export function wordMeta(code: string, w: Word): Metadata {
   const path = wordPath(w);
@@ -13,7 +13,7 @@ export function wordMeta(code: string, w: Word): Metadata {
     return pageMeta({ path, title: `${capitalize(w.en)} in ${w.forms.length} languages`, documentTitle: wordTitle(w), description: wordDescription(w), type: "article", image: wordOgImage(w), languages, locale });
   }
   const copy = localWordCopy(code, w);
-  return pageMeta({ path: localPath(code, path), title: copy.title, documentTitle: `${copy.title} | Polingual`, description: copy.description, type: "article", image: wordOgImage(w), languages, locale });
+  return pageMeta({ path: localPath(code, path), title: copy.title, documentTitle: `${copy.title} | Polingual`, description: copy.description, type: "article", image: localOgImage(code, w), languages, locale });
 }
 
 export function wordIndexMeta(code: string): Metadata {

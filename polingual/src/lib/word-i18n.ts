@@ -1,6 +1,9 @@
 import SITE_LANGS_JSON from "./site-langs.json";
 import { SITE_BUNDLES, WORD_BUNDLES } from "../i18n";
 import { LANGS, THEMES, WORDS, wordPath, type Word, type WordForm } from "./words";
+import { INDEXED_WORD_LOCALES } from "./rollout";
+import { wordOgForms, wordOgImage } from "./word-og";
+import type { OgImage } from "./meta";
 import { FACTS, SITE } from "./facts";
 import { OG_DESCRIPTION_MAX } from "./meta";
 
@@ -24,6 +27,15 @@ export type WordStrings = {
   indexDescription: string;
   indexCta: string;
   credits: string;
+  footerTagline: string;
+  footerData: string;
+  footerPublished: string;
+  setName: string;
+  ogAlt: string;
+  bodyScripts: string;
+  bodyRoot: string;
+  bodyNoRoot: string;
+  bodySay: string;
   themes: Record<string, string>;
 };
 
@@ -93,6 +105,11 @@ function stripTag(s: string): string {
   return s.replace(/^>|<$/g, "");
 }
 
+export function bareHreflang(tag: string): string {
+  const [lang, sub] = tag.split("-");
+  return sub && sub.length === 4 ? `${lang}-${sub}` : lang;
+}
+
 export function localeInfo(code: string): LocaleInfo {
   if (code === "en") return { code, name: "English", locale: "en_US", hreflang: "en", rtl: false, labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" } };
   const b = SITE_BUNDLES[code] as { name: string; locale: string; hreflang: string; page: Record<string, string> };
@@ -100,7 +117,7 @@ export function localeInfo(code: string): LocaleInfo {
     code,
     name: b.name,
     locale: b.locale,
-    hreflang: b.hreflang,
+    hreflang: bareHreflang(b.hreflang),
     rtl: RTL_LOCALES.has(code),
     labels: { beta: stripTag(b.page[">Join the beta<"]), support: stripTag(b.page[">Support<"]), privacy: stripTag(b.page[">Privacy<"]), terms: stripTag(b.page[">Terms<"]) },
   };
@@ -164,7 +181,40 @@ export function localWordCopy(code: string, w: Word) {
     description: describe(k),
     intro: fill(s.intro, values),
     cta: fill(s.cta, values),
+    body: wordBody(code, w),
   };
+}
+
+export function scriptCount(w: Word): number {
+  return new Set(w.forms.map((f) => LANGS[f.lang]?.script ?? f.lang)).size;
+}
+
+export function rootMates(w: Word, code: string): WordForm[] {
+  const langs = new Set((w.roots ?? []).filter((r) => r.langs.includes(code)).flatMap((r) => r.langs));
+  langs.delete(code);
+  return w.forms.filter((f) => langs.has(f.lang));
+}
+
+export function wordBody(code: string, w: Word): string[] {
+  const s = strings(code);
+  const own = formIn(w, code);
+  const form = own?.word ?? w.en;
+  const values = { Form: capitalizeIn(form, code), form, n: w.forms.length };
+  const out = [fill(s.bodyScripts, { ...values, scripts: scriptCount(w) })];
+  if (!own) return out;
+  const mates = rootMates(w, code);
+  out.push(mates.length > 0 ? fill(s.bodyRoot, { ...values, list: mates.map((f) => `${langLabel(f.lang, code)} ${f.word}`).join(s.sep) }) : fill(s.bodyNoRoot, values));
+  const say = own.ipa ? `/${own.ipa}/` : own.roman;
+  if (say) out.push(fill(s.bodySay, { ...values, lang: langLabel(code, code), say }));
+  return out;
+}
+
+export function localOgImage(code: string, w: Word): OgImage {
+  const image = wordOgImage(w);
+  if (code === "en") return image;
+  const s = strings(code);
+  const samples = wordOgForms(w).map((f) => `${langLabel(f.lang, code)} ${f.word}`).join(s.sep);
+  return { ...image, alt: fill(s.ogAlt, { en: w.en, n: w.forms.length, samples }) };
 }
 
 export function localIndexCopy(code: string) {
@@ -180,7 +230,7 @@ export function hreflangAlternates(path: string): Record<string, string> {
   return out;
 }
 
-export function localWordPaths(): string[] {
-  return SITE_LANGS.flatMap((code) => [localPath(code, "/word"), ...WORDS.map((w) => wordLocalPath(code, w))]);
+export function localWordPaths(codes: string[] = INDEXED_WORD_LOCALES): string[] {
+  return codes.flatMap((code) => [localPath(code, "/word"), ...WORDS.map((w) => wordLocalPath(code, w))]);
 }
 
