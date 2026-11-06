@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
-const FONTS = "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap";
+const FONTS = "/fonts/stoa/fonts.css";
 
 export const metadata: Metadata = {
   title: "Join a live room",

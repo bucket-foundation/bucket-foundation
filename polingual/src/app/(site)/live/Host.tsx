@@ -1,11 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { clockOffset, displayNickname, joinUrl, langName, secondsLeft, type Snapshot } from "@/lib/stoa/client";
 import SignIn from "../app/SignIn";
-import { Brand, Prompt, Qr, Standings, Tiles, type TileState } from "./parts";
+import { Brand, Prompt, Standings, Tiles, type TileState } from "./parts";
 import styles from "./stoa.module.css";
+
+const Qr = dynamic(() => import("./Qr"), { ssr: false });
 
 const KEY = "stoa/host/v1";
 const HOMES = ["en", "es", "fr", "de", "pt", "it", "ar", "he", "ja", "zh", "ko", "hi", "ru", "tr"];
@@ -249,7 +252,7 @@ export default function Host() {
   return (
     <div className={styles.page}>
       <header className={styles.bar}>
-        <Brand />
+        <Brand link={!snap?.room.school_mode} />
         {room && snap?.room.school_mode ? <span className={styles.label}>School mode</span> : null}
       </header>
       <main className={styles.main} data-testid="host">

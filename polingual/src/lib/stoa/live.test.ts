@@ -300,3 +300,15 @@ test("sweep ticks at most 5 rooms at a time and stops starting work after its bu
   assert.equal(peak, 5);
   assert.ok((r.body.ticked as number) < 20, `ticked ${r.body.ticked}`);
 });
+
+test("room creation passes School mode to the database", async () => {
+  const seen: Record<string, unknown>[] = [];
+  const d = deps(async (_fn, args) => {
+    seen.push(args.p_settings as Record<string, unknown>);
+    return { data: { room_id: args.p_id, code: args.p_code, topic: TOPIC, expires_at: EXP, verify_key: args.p_verify_key } };
+  });
+  await createRoom("Bearer good-session", { settings: { targets: ["es"] }, school_mode: true }, d);
+  await createRoom("Bearer good-session", { settings: { targets: ["es"] } }, d);
+  await createRoom("Bearer good-session", { settings: { targets: ["es"] }, school_mode: "yes" }, d);
+  assert.deepEqual(seen.map((s) => s.school_mode), [true, false, false]);
+});

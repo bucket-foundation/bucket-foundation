@@ -13,6 +13,14 @@ const APP_URL = "https://apps.apple.com/app/id6825177856";
 
 type Seat = { room_id: string; player_id: string; token: string };
 
+export function announce(left: number | null, paused: boolean): string {
+  if (paused) return "Paused.";
+  if (left === 10) return "10 seconds left.";
+  if (left === 5) return "5 seconds left.";
+  if (left === 0) return "Time is up.";
+  return "";
+}
+
 function loadSeat(): Seat | null {
   try {
     const raw = sessionStorage.getItem(KEY);
@@ -144,7 +152,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
       );
       return;
     }
-    setTimeout(() => void fetchState(), v.type === "rotate" ? 0 : Math.floor(Math.random() * 800));
+    setTimeout(() => void fetchState(), v.type === "rotate" || v.type === "reveal" ? 0 : Math.floor(Math.random() * 800));
   };
 
   const roomId = seat?.room_id;
@@ -153,8 +161,8 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   }, [roomId, fetchState]);
 
   useEffect(() => {
-    if (!seat || status === "open") return;
-    const t = setInterval(() => void fetchState(), 1500);
+    if (!seat) return;
+    const t = setInterval(() => void fetchState(), status === "open" ? 10_000 : 1500);
     return () => clearInterval(t);
   }, [seat, status, fetchState]);
 
@@ -261,8 +269,9 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
         <>
           <div className={styles.spread}>
             <span className={styles.stat}>Question {q.idx + 1} of {snap.room.total}</span>
-            <span className={styles.timer} aria-live="polite">{snap.room.paused ? "Paused" : left}</span>
+            <span className={styles.timer} aria-hidden="true">{snap.room.paused ? "Paused" : left}</span>
           </div>
+          <p className={styles.sr} aria-live="polite" data-testid="timer-announce">{announce(left, snap.room.paused)}</p>
           <Prompt q={q} />
           <Tiles q={q} states={states} onPick={(i) => void answer(i)} disabled={chosen !== null || snap.room.paused || left === 0} />
           {chosen !== null ? <p className={styles.banner} data-testid="locked">Locked in. Watch the board.</p> : null}
@@ -299,7 +308,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   return (
     <div className={styles.page}>
       <header className={styles.bar}>
-        <Brand />
+        <Brand link={false} />
         {seat ? <span className={styles.stat} data-testid="phone-status" data-socket={status} data-verified={verified}>{status === "open" ? "Live" : "Reconnecting"}</span> : null}
       </header>
       <main className={`${styles.main} ${styles.phone}`} data-testid="phone">

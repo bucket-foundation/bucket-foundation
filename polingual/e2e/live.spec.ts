@@ -85,6 +85,10 @@ test("one host and five phones play a whole game on the local stack", async ({ b
   await host.screenshot({ path: `${SHOTS}/board-lobby-1920.png` });
   await phones[0].screenshot({ path: `${SHOTS}/phone-lobby-390.png` });
 
+  await phones[4].evaluate(() => {
+    document.documentElement.dir = "rtl";
+    document.documentElement.lang = "ar";
+  });
   await host.getByTestId("start").click();
   for (let n = 1; n <= 15; n++) {
     await expect(host.getByTestId("board-question")).toBeVisible({ timeout: 30_000 });
@@ -93,6 +97,12 @@ test("one host and five phones play a whole game on the local stack", async ({ b
       const p = phones[i];
       const tile = p.getByTestId(`tile-${"ABCD"[(i + n) % 4]}`);
       await expect(tile).toBeEnabled({ timeout: 15_000 });
+      if (n === 1 && i === 4) {
+        const mark = await p.getByTestId("tile-A").locator("svg").boundingBox();
+        const label = await p.getByTestId("tile-A").locator("span").last().boundingBox();
+        expect(mark!.x).toBeGreaterThan(label!.x);
+        await p.screenshot({ path: `${SHOTS}/phone-question-rtl-390.png` });
+      }
       if (n === 1 && i === 0) {
         await p.screenshot({ path: `${SHOTS}/phone-question-390.png` });
         await host.screenshot({ path: `${SHOTS}/board-question-1920.png` });
@@ -103,6 +113,11 @@ test("one host and five phones play a whole game on the local stack", async ({ b
     await expect(host.getByTestId("board-reveal")).toBeVisible({ timeout: 15_000 });
     await expect(phones[0].getByTestId("result")).toBeVisible({ timeout: 15_000 });
     if (n === 1) {
+      await host.evaluate(() => (document.documentElement.dir = "rtl"));
+      const a = await host.getByTestId("tile-A").boundingBox();
+      const b = await host.getByTestId("tile-B").boundingBox();
+      expect(a!.x).toBeLessThan(b!.x);
+      await host.evaluate(() => (document.documentElement.dir = "ltr"));
       await host.screenshot({ path: `${SHOTS}/board-reveal-1920.png` });
       await phones[0].screenshot({ path: `${SHOTS}/phone-result-390.png` });
     }

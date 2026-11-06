@@ -1,7 +1,5 @@
 "use client";
 
-import qrcode from "qrcode-generator";
-import { useMemo } from "react";
 import { displayNickname, MARKS, optionLabel, promptView, type Mark, type Question, type Standing } from "@/lib/stoa/client";
 import styles from "./stoa.module.css";
 
@@ -27,9 +25,9 @@ export function Prompt({ q }: { q: Pick<Question, "kind" | "prompt"> }) {
   const v = promptView(q);
   return (
     <div className={styles.prompt} data-testid="prompt">
-      <p className={styles.lead}>{v.lead}</p>
+      <p className={styles.lead} dir="auto">{v.lead}</p>
       <p className={styles.word} dir="auto" lang={q.kind === "pick_word" ? q.prompt.home_lang : undefined}>{v.word}</p>
-      {v.tail ? <p className={styles.tail}>{v.tail}</p> : null}
+      {v.tail ? <p className={styles.tail} dir="auto">{v.tail}</p> : null}
     </div>
   );
 }
@@ -66,7 +64,7 @@ export function Tiles({
               data-testid={`tile-${mark.letter}`}
               disabled={disabled || !onPick}
               onClick={() => onPick?.(i)}
-              aria-label={`${mark.letter}, ${mark.glyph}, ${label}`}
+              aria-label={[mark.letter, mark.glyph, label, states?.[i] === "right" ? "correct" : states?.[i] === "chosen" ? "your answer" : null].filter(Boolean).join(", ")}
             >
               <MarkBadge mark={mark} />
               <span className={styles.text} dir="auto" lang={name}>{label}</span>
@@ -92,30 +90,16 @@ export function Standings({ rows, me, testId }: { rows: Standing[]; me?: string;
   );
 }
 
-export function Qr({ text }: { text: string }) {
-  const { size, cells } = useMemo(() => {
-    const qr = qrcode(0, "M");
-    qr.addData(text);
-    qr.make();
-    const n = qr.getModuleCount();
-    const out: string[] = [];
-    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (qr.isDark(r, c)) out.push(`M${c} ${r}h1v1h-1z`);
-    return { size: n, cells: out.join("") };
-  }, [text]);
-  return (
-    <div className={styles.qr} data-testid="qr">
-      <svg viewBox={`-2 -2 ${size + 4} ${size + 4}`} role="img" aria-label={`QR code for ${text}`} shapeRendering="crispEdges">
-        <path d={cells} fill="#231F20" />
-      </svg>
-    </div>
-  );
-}
-
-export function Brand() {
-  return (
-    <a href="/" className={styles.brand} aria-label="Polingual home">
+export function Brand({ link = true }: { link?: boolean }) {
+  const inner = (
+    <>
       <img src="/brand/kit/mark.svg" alt="" width={32} height={32} />
       <span>polingual live</span>
-    </a>
+    </>
+  );
+  return link ? (
+    <a href="/" className={styles.brand} aria-label="Polingual home">{inner}</a>
+  ) : (
+    <span className={styles.brand} data-testid="brand-plain">{inner}</span>
   );
 }
