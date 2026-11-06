@@ -1,7 +1,6 @@
 import { parseSignup } from "./signup";
 
 export const TESTFLIGHT_URL = "https://testflight.apple.com/join/B1ctUxn5";
-export const TESTFLIGHT_APP_URL = "https://apps.apple.com/app/testflight/id899247664";
 
 export type BetaEnv = Record<string, string | undefined>;
 export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
@@ -50,8 +49,8 @@ export function welcomeEmail(to: string, from: string) {
     from,
     to: [to],
     subject: "Your Polingual beta link",
-    text: `Thanks for joining the Polingual beta.\n\nStep 1: get TestFlight, Apple's free beta app. Skip this if you have it. If it asks for a code, you do not need one.\n${TESTFLIGHT_APP_URL}\n\nStep 2: come back to this email and tap this link to install:\n${TESTFLIGHT_URL}\n\nReply to this email with the languages you speak and the ones you want next.\n\n${UNSUBSCRIBE}\n\nPolingual`,
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>Thanks for joining the Polingual beta.</p><p><strong>Step 1:</strong> <a href="${TESTFLIGHT_APP_URL}">get TestFlight</a>, Apple's free beta app. Skip this if you have it. If it asks for a code, you do not need one.</p><p><strong>Step 2:</strong> come back to this email and tap this button.</p><p><a href="${TESTFLIGHT_URL}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install with TestFlight</a></p><p>Reply with the languages you speak and the ones you want next.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+    text: `Thanks for joining the Polingual beta.\n\nOn your iPhone, open this link:\n${TESTFLIGHT_URL}\n\nApple's page installs TestFlight, its free beta app, if you need it. Then tap View in TestFlight and Install. If TestFlight asks for a code, open the link above again.\n\nReply to this email with the languages you speak and the ones you want next.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>Thanks for joining the Polingual beta.</p><p><a href="${TESTFLIGHT_URL}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install Polingual</a></p><p>Apple's page installs TestFlight, its free beta app, if you need it. Then tap View in TestFlight and Install. If TestFlight asks for a code, tap the button again.</p><p>Reply with the languages you speak and the ones you want next.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
   };
 }
 
