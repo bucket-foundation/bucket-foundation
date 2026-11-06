@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Legal from "../../legal";
+import { Tile, Tiles } from "../../tile";
 import styles from "../word.module.css";
 import { appJsonLd, jsonLdScript } from "@/lib/facts";
 import { GUIDES } from "@/lib/guides";
@@ -33,30 +34,19 @@ export default async function Page({ params }: Props) {
   const related = relatedWords(w);
   const guides = GUIDES.filter((g) => g.lang === "en");
   return (
-    <Legal>
+    <Legal wide>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript([wordJsonLd(w), breadcrumbJsonLd(w), appJsonLd()]) }} />
-      <p><Link href="/word">Words</Link> / {themeName(w.category)}</p>
+      <p className={styles.crumbs}><Link href="/word">Words</Link> / {themeName(w.category)}</p>
       <h1>{name} in {w.forms.length} languages</h1>
       {w.gloss !== w.en && <p className={styles.gloss}>{capitalize(w.gloss)}</p>}
       <p className="lede">The word {w.en} in {w.forms.length} languages, each in its own script, with IPA or a romanization where the data has one.</p>
-      <table className={styles.forms}>
-        <thead>
-          <tr><th>Language</th><th>Word</th><th>Pronunciation</th></tr>
-        </thead>
-        <tbody>
-          {w.forms.map((f) => {
-            const l = LANGS[f.lang] ?? { name: f.lang, script: "" };
-            const reading = [f.kana, f.roman].filter(Boolean).join(" · ");
-            return (
-              <tr key={f.lang}>
-                <td className={styles.lang}>{l.name}<small>{l.script}</small></td>
-                <td className={styles.form} lang={f.lang} dir={l.rtl ? "rtl" : undefined}>{f.word}</td>
-                <td className={styles.ipa}>{f.ipa ? <>{`/${f.ipa}/`}{reading && <small>{reading}</small>}</> : reading}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <Tiles>
+        {w.forms.map((f) => {
+          const l = LANGS[f.lang] ?? { name: f.lang, script: "" };
+          const reading = [f.ipa ? `/${f.ipa}/` : "", f.kana, f.roman].filter(Boolean).join(" · ");
+          return <Tile key={f.lang} lang={f.lang} code={f.lang} label={l.name} word={f.word} reading={reading} rtl={l.rtl} />;
+        })}
+      </Tiles>
       {(w.note || w.roots) && (
         <section>
           <h2>Roots</h2>
@@ -76,7 +66,9 @@ export default async function Page({ params }: Props) {
           )}
         </section>
       )}
-      <a className={styles.cta} href={ctaHref(w)}>Learn {w.en} in your languages with Polingual</a>
+      <div className={styles.ctaRow}>
+        <a className={styles.cta} href={ctaHref(w)}>Learn {w.en} in your languages with Polingual</a>
+      </div>
       <h2>Related words</h2>
       <ul className={styles.chips}>
         {related.map((r) => (

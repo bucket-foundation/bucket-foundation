@@ -2,6 +2,7 @@ import Search from "../search";
 import Signup from "../signup";
 import { Tex } from "../tex";
 import { pageMeta } from "@/lib/meta";
+import Site from "../site";
 
 export const metadata = pageMeta({ path: "/archive", title: "Polingual archive", documentTitle: "Polingual", description: "The Polingual word archive: search words by meaning, sound and spelling across languages.", noindex: true });
 
@@ -14,12 +15,11 @@ const STATS = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen relative">
+    <Site bare>
+    <div className="relative">
       <div className="hero-glow absolute inset-x-0 top-0 h-[520px] pointer-events-none" />
       <div className="relative mx-auto max-w-3xl px-4 md:px-8 pb-20">
         <nav className="flex items-center justify-between pt-6 font-sans text-[15px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.svg" alt="polingual" width="100" height="40" className="h-9 w-auto" />
           <a href="/research" style={{ color: "var(--ink-dim)" }} className="hover:underline">Research</a>
         </nav>
 
@@ -73,6 +73,7 @@ export default function HomePage() {
           <a href="https://www.bucket.foundation" className="underline">bucket.foundation</a>.
         </footer>
       </div>
-    </main>
+    </div>
+    </Site>
   );
 }
