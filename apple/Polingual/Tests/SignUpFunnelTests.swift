@@ -45,6 +45,15 @@ struct TrialReminderPermissionTests {
         #expect(!TrialReminder.allowed(.denied))
         #expect(!TrialReminder.allowed(.notDetermined))
     }
+
+    @Test func outcomeReportsWhyNoReminderWasSet() {
+        let now = Date(timeIntervalSince1970: 1_800_000_000)
+        let until = now.addingTimeInterval(3 * 86_400)
+        #expect(TrialReminder.outcome(.authorized, until: until, now: now) == .scheduled)
+        #expect(TrialReminder.outcome(.denied, until: until, now: now) == .notAllowed)
+        #expect(TrialReminder.outcome(.notDetermined, until: until, now: now) == .notAllowed)
+        #expect(TrialReminder.outcome(.authorized, until: now.addingTimeInterval(3_600), now: now) == .tooLate)
+    }
 }
 
 struct TodayExtrasTests {

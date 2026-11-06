@@ -14,6 +14,7 @@ struct AccountView: View {
     @State private var emailing = false
     var subscription: (() -> Void)?
     var trialDaysLeft: Int?
+    var trialReminderOff = false
     #if DEBUG
     @State private var demoShown = false
     #endif
@@ -53,6 +54,9 @@ struct AccountView: View {
                     Section {
                         if let trialDaysLeft {
                             LabeledContent("Free trial", value: trialDaysLeft == 1 ? String(localized: "1 day left") : String(localized: "\(trialDaysLeft) days left"))
+                            if trialReminderOff {
+                                Text("Notifications are off, so no reminder comes before the trial ends.").font(.footnote).foregroundStyle(Palette.muted)
+                            }
                         }
                         Button("Manage subscription", systemImage: "creditcard", action: subscription)
                     } header: {

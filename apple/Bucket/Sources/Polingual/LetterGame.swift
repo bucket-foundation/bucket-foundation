@@ -135,9 +135,7 @@ struct SoundHint: View {
                 if let capsule {
                     Text(capsule)
                         .font(.system(size: 17, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 10).padding(.vertical, 4)
-                        .background(D8.lapis, in: .capsule)
+                        .foregroundStyle(D8.lapis)
                 }
                 Text(sound.hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink)
                     .fixedSize(horizontal: false, vertical: true)

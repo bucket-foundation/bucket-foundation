@@ -99,13 +99,14 @@ struct Studio: View {
     @Environment(LangStore.self) private var store
     @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
     @State private var managing = false
+    @State private var trialReminder: TrialReminder.Outcome?
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
     var body: some View {
         tabs
             .background(Palette.paper)
             .task(id: TrialReminder.key(subs.access, allowed: reminders.enabled)) {
-                if case .trial(let until) = subs.access { await TrialReminder.schedule(until: until) }
+                if case .trial(let until) = subs.access { trialReminder = await TrialReminder.schedule(until: until) } else { trialReminder = nil }
             }
     }
 
@@ -115,7 +116,7 @@ struct Studio: View {
                 TodayView(opening: { await place($0) })
             }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now)) }
+            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed) }
         }
         .tabViewStyle(.sidebarAdaptable)
         .modifier(ScreenshotShare())

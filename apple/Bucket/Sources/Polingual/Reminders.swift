@@ -68,6 +68,7 @@ final class Reminders {
     }
     var customMinute: Int? { didSet { defaults.set(customMinute ?? -1, forKey: Self.customKey) } }
     var denied = false
+    var unasked = false
     var wordChoice: Bool? { didSet { defaults.set(wordChoice, forKey: Self.wordKey) } }
     var wordOfDay: Bool { wordChoice ?? enabled }
     var stuckOff: Bool { ReminderConsent.stuckOff(defaults) }
@@ -92,9 +93,7 @@ final class Reminders {
 
     func setStreakRisk(_ on: Bool) async {
         if on {
-            let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])) ?? false
-            denied = !granted
-            streakChoice = granted
+            streakChoice = await allowed()
         } else {
             streakChoice = false
         }
@@ -111,9 +110,20 @@ final class Reminders {
             wordChoice = false
             return
         }
-        let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])) ?? false
-        denied = !granted
-        wordChoice = granted
+        wordChoice = await allowed()
+    }
+
+    func allowed() async -> Bool {
+        let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        denied = status == .denied
+        unasked = status == .notDetermined
+        return status == .authorized || status == .provisional
+    }
+
+    func turnOnAllowed() async {
+        guard await allowed() else { return }
+        ReminderConsent.record(on: true, defaults)
+        enabled = true
     }
 
     var studyMinutes: [Int] { defaults.array(forKey: Self.studyKey) as? [Int] ?? [] }
@@ -163,10 +173,10 @@ final class Reminders {
     }
 
     func enable() async -> Bool {
-        let center = UNUserNotificationCenter.current()
         ReminderConsent.record(on: true, defaults)
-        let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
+        let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])) ?? false
         denied = !granted
+        unasked = false
         enabled = granted
         return granted
     }
@@ -174,6 +184,7 @@ final class Reminders {
     func sync() async {
         let status = await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
         denied = status == .denied
+        unasked = status == .notDetermined
         if !enabled, ReminderConsent.autoEnables(authorized: status == .authorized || status == .provisional, defaults) { enabled = true }
     }
 
@@ -282,7 +293,7 @@ struct ReminderSettings: View {
         @Bindable var r = reminders
         Section {
             Toggle("Daily review reminder", isOn: Binding(get: { reminders.enabled }, set: { on in
-                if on { Task { _ = await reminders.enable() } } else { reminders.turnOff() }
+                if on { Task { await reminders.turnOnAllowed() } } else { reminders.turnOff() }
             }))
             if reminders.enabled {
                 Toggle("At my regular study time", isOn: Binding(get: { reminders.customMinute == nil }, set: { auto in
@@ -306,6 +317,9 @@ struct ReminderSettings: View {
             Toggle("Group cheers and nudges", isOn: Binding(get: { reminders.cheers }, set: { on in Task { await reminders.setCheers(on) } }))
             if Bundle.main.bundleIdentifier == "com.polingual.app" {
                 LabeledContent("Trial ending", value: String(localized: "Sent once, before your trial ends"))
+            }
+            if reminders.unasked {
+                Text("Allow notifications from the reminder card on Today, then turn these on.").font(.footnote).foregroundStyle(Palette.muted)
             }
             if reminders.denied {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)

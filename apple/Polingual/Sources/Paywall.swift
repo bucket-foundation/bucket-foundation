@@ -147,8 +147,8 @@ struct Paywall: View {
             .disabled(product == nil || buying)
             if freeBeta {
                 Text(FreeBeta.note)
-                    .font(.subheadline.weight(.bold))
-                    .foregroundStyle(D8.parchment)
+                    .font(.footnote)
+                    .foregroundStyle(D8.parchment.opacity(0.85))
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -413,14 +413,28 @@ enum TrialReminder {
         return at > now ? at : nil
     }
 
-    static func schedule(until: Date, now: Date = .now) async {
+    enum Outcome: Equatable { case scheduled, notAllowed, tooLate }
+
+    static func outcome(_ status: UNAuthorizationStatus, until: Date, now: Date) -> Outcome {
+        guard allowed(status) else { return .notAllowed }
+        return fireDate(until: until, now: now) == nil ? .tooLate : .scheduled
+    }
+
+    @discardableResult
+    static func schedule(until: Date, now: Date = .now) async -> Outcome {
         let center = UNUserNotificationCenter.current()
-        guard allowed(await center.notificationSettings().authorizationStatus), let at = fireDate(until: until, now: now) else { return }
+        let result = outcome(await center.notificationSettings().authorizationStatus, until: until, now: now)
+        guard result == .scheduled, let at = fireDate(until: until, now: now) else { return result }
         let content = UNMutableNotificationContent()
         content.title = String(localized: "Your Polingual trial ends tomorrow")
         content.body = String(localized: "Keep learning, or cancel in Settings before tomorrow and pay nothing.")
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at), repeats: false)
-        try? await center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
+        do {
+            try await center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
+            return .scheduled
+        } catch {
+            return .notAllowed
+        }
     }
 }
 
