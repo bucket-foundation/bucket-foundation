@@ -27,6 +27,10 @@ export type WordStrings = {
   indexDescription: string;
   indexCta: string;
   credits: string;
+  listen: string;
+  hearAll: string;
+  stop: string;
+  audioCredit: string;
   footerTagline: string;
   footerData: string;
   footerPublished: string;

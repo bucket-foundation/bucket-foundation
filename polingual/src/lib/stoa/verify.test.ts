@@ -1,10 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { randomUUID } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 import { createRoomKeys, openSignKey, signEvent } from "./keys";
 import { verifyEvent, type VerifyContext } from "./verify";
 
-const env = { STOA_ROOM_SECRET: "s".repeat(40) };
+const env = { STOA_ROOM_SECRET: randomBytes(48).toString("base64") };
 const NOW = 1_800_000_000_000;
 
 function room() {

@@ -64,23 +64,24 @@ begin
 
   res := bucket.live_create_room(rid, host, 'QZ7K2M', 'polingual', '{"per_round": 2}', 42, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
   assert res ->> 'code' = 'QZ7K2M' and res ->> 'room_id' = rid::text, 'room created';
-  assert pg_temp.raises(format('select bucket.live_create_room(%L, %L, %L, %L, %L, 1, %L, %L, %L)', gen_random_uuid(), other, 'QZ7K2M', 'polingual', '{}', 'v1.' || repeat('x', 40), repeat('A', 43), qs), 'code_taken'),
+  assert pg_temp.raises(format('select bucket.live_create_room(%L, %L, %L, %L, %L, 1, %L, %L, %L)', gen_random_uuid(), other, 'QZ7K2M', 'polingual', '{"per_round": 2}', 'v1.' || repeat('x', 40), repeat('A', 43), qs), 'code_taken'),
     'an open code cannot be reused';
 
-  assert pg_temp.raises('select bucket.live_join(''ZZZZZZ'', ''brave-otter'')', 'no_room'), 'unknown code';
-  a := (bucket.live_join('QZ7K2M', 'brave-otter') ->> 'player_id')::uuid;
-  b := (bucket.live_join('QZ7K2M', 'quiet-lamp') ->> 'player_id')::uuid;
-  c := (bucket.live_join('QZ7K2M', 'swift-heron') ->> 'player_id')::uuid;
-  assert bucket.live_join('QZ7K2M', 'quiet-lamp') ->> 'error' = 'name_taken', 'nicknames are unique in a room';
-  res := bucket.live_join('QZ7K2M', 'calm-river');
+  assert bucket.live_join('ZZZZZZ', 'brave-otter', 'ip9') ->> 'error' = 'no_room', 'unknown code';
+  assert (select hits from bucket.live_limits where bucket_key = 'miss:ip9') = 1, 'an unknown code charges the caller';
+  a := (bucket.live_join('QZ7K2M', 'brave-otter', 'ip1') ->> 'player_id')::uuid;
+  b := (bucket.live_join('QZ7K2M', 'quiet-lamp', 'ip1') ->> 'player_id')::uuid;
+  c := (bucket.live_join('QZ7K2M', 'swift-heron', 'ip1') ->> 'player_id')::uuid;
+  assert bucket.live_join('QZ7K2M', 'quiet-lamp', 'ip1') ->> 'error' = 'name_taken', 'nicknames are unique in a room';
+  res := bucket.live_join('QZ7K2M', 'calm-river', 'ip1');
   assert res ->> 'token_version' = '1' and res ? 'sign_key' and res ? 'topic', 'join returns version, sealed key and topic';
   update bucket.live_players set removed = true where id = (res ->> 'player_id')::uuid;
 
   update bucket.live_rooms set probe_at = null where id = rid;
   assert pg_temp.types(bucket.live_tick(rid)) = 'probe', 'the lobby sends a latency probe';
-  assert pg_temp.types(bucket.live_tick(rid)) = '', 'probes wait 3 seconds';
-  perform bucket.live_probe(rid, b, 1, 800, 0);
-  perform bucket.live_probe(rid, c, 1, 5000, 0);
+  assert pg_temp.types(bucket.live_tick(rid)) = '', 'probes wait 5 seconds';
+  perform bucket.live_probe(rid, b, 1, 800, false);
+  perform bucket.live_probe(rid, c, 1, 5000, false);
   assert (select grace_ms from bucket.live_players where id = b) = 800, 'grace is the reported median';
   assert (select grace_ms from bucket.live_players where id = c) = 1000, 'grace caps at 1000 ms';
   update bucket.live_players set grace_ms = 0 where id = c;
@@ -139,8 +140,8 @@ begin
   perform pg_temp.at(rid, 3000);
   perform bucket.live_answer(rid, a, 1, 2, 0::smallint);
   perform bucket.live_answer(rid, c, 1, 2, 0::smallint);
-  res := bucket.live_answer(rid, b, 1, 2, 0::smallint);
-  assert pg_temp.types(res) = 'reveal', 'the last answer reveals the question';
+  perform bucket.live_answer(rid, b, 1, 2, 0::smallint);
+  assert pg_temp.types(bucket.live_tick(rid)) = 'reveal', 'the tick after the last answer reveals the question';
   assert (select bonus from bucket.live_scores where room_id = rid and idx = 2 and player_id = b) = 100, 'three right in a row add 100';
   assert (select bonus from bucket.live_scores where room_id = rid and idx = 2 and player_id = a) = 0, 'a broken streak adds nothing';
 
@@ -156,10 +157,9 @@ begin
   assert (select next_at from bucket.live_rooms where id = rid) >= next0 + interval '10 seconds', 'resume moves every deadline by the pause';
 
   res := bucket.live_player_admin(rid, host, c, 'remove', null);
-  assert res ->> 'token_version' = '2', 'removing a player bumps the token version';
-  assert pg_temp.raises(format('select bucket.live_answer(%L, %L, 2, 3, 0::smallint)', rid, c), 'removed'), 'a removed player cannot answer';
-  assert pg_temp.raises(format('select bucket.live_answer(%L, %L, 1, 3, 0::smallint)', rid, a), 'stale_token'), 'an old token version is refused';
-  assert bucket.live_answer(rid, a, 2, 3, 0::smallint) ? 'received_at', 'a reissued token answers';
+  assert res ->> 'token_version' = '1', 'removing one player leaves every other token valid';
+  assert pg_temp.raises(format('select bucket.live_answer(%L, %L, 1, 3, 0::smallint)', rid, c), 'removed'), 'a removed player cannot answer';
+  assert bucket.live_answer(rid, a, 1, 3, 0::smallint) ? 'received_at', 'the others keep answering';
   assert (bucket.live_state(rid, c, null) -> 'player' ->> 'removed') = 'true', 'state reports the removal';
   assert bucket.live_player_admin(rid, host, a, 'rename', 'quiet-lamp') ->> 'error' = 'name_taken', 'rename keeps names unique';
   perform bucket.live_player_admin(rid, host, b, 'time', '2');
@@ -178,27 +178,25 @@ begin
   assert jsonb_array_length(ev -> 'top') = 2, 'the finale ranks active players';
   assert ev -> 'most_improved' ->> 'nickname' is not null, 'the finale names the most improved player';
   assert (ev -> 'most_missed' ->> 'right_rate')::numeric = 0, 'the most missed question nobody got right';
-  assert bucket.live_join('QZ7K2M', 'late-comer') ->> 'error' = 'no_room', 'a code stops resolving at the finale';
+  assert bucket.live_join('QZ7K2M', 'late-comer', 'ip1') ->> 'error' = 'no_room', 'a code stops resolving at the finale';
   assert pg_temp.types(bucket.live_host(rid, host, 'end')) = 'closed', 'the host ends the room';
-  assert pg_temp.raises('select bucket.live_join(''QZ7K2M'', ''late-comer'')', 'no_room'), 'a closed code resolves nothing';
+  assert bucket.live_join('QZ7K2M', 'late-comer', 'ip1') ->> 'error' = 'no_room', 'a closed code resolves nothing';
 
-  select topic into topic0 from bucket.live_rooms where id = rid;
-  perform bucket.live_probe(rid, a, 2, null, 15);
-  assert (select topic from bucket.live_rooms where id = rid) = topic0, '15 verify failures keep the topic';
-  assert (bucket.live_probe(rid, a, 2, null, 10) ->> 'rotated') = 'true', 'over 20 failures a minute rotate the topic';
-  assert (select topic from bucket.live_rooms where id = rid) <> topic0, 'the room has a new topic';
-
-  perform bucket.live_create_room(old, host, 'XYZ123', 'polingual', '{}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
+  perform bucket.live_create_room(old, host, 'XYZ123', 'polingual', '{"per_round": 2}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
   update bucket.live_rooms set created_at = clock_timestamp() - interval '3 hours', expires_at = clock_timestamp() - interval '1 second' where id = old;
   assert old in (select bucket.live_due()), 'the sweep finds an expired room';
   assert pg_temp.types(bucket.live_tick(old)) = 'closed', 'an expired room closes on its next tick';
   assert old not in (select bucket.live_due()), 'a closed room leaves the sweep';
   assert (select array_agg(e ->> 'seq' order by e ->> 'seq') from jsonb_array_elements(bucket.live_tick(old) -> 'events') e) is null, 'a closed room emits nothing';
 
-  perform bucket.live_create_room(gen_random_uuid(), host, 'MAX001', 'polingual', '{}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
-  perform bucket.live_create_room(gen_random_uuid(), host, 'MAX002', 'polingual', '{}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
-  perform bucket.live_create_room(gen_random_uuid(), host, 'MAX003', 'polingual', '{}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
-  assert pg_temp.raises(format('select bucket.live_create_room(%L, %L, %L, %L, %L, 1, %L, %L, %L)', gen_random_uuid(), host, 'MAX004', 'polingual', '{}', 'v1.' || repeat('x', 40), repeat('A', 43), qs), 'too_many_rooms'),
+  assert pg_temp.raises(format('select bucket.live_create_room(%L, %L, %L, %L, %L, 1, %L, %L, %L)', gen_random_uuid(), host, 'BAD001', 'polingual', '{}', 'v1.' || repeat('x', 40), repeat('A', 43), qs), 'bad_settings'),
+    'the question count must match rounds times questions per round';
+  assert pg_temp.raises(format('select bucket.live_create_room(%L, %L, %L, %L, %L, 1, %L, %L, %L)', gen_random_uuid(), host, 'BAD002', 'polingual', '{"per_round": 2, "window_ms": 999999}', 'v1.' || repeat('x', 40), repeat('A', 43), qs), 'bad_settings'),
+    'settings are clamped in the database';
+  perform bucket.live_create_room(gen_random_uuid(), host, 'MAX001', 'polingual', '{"per_round": 2}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
+  perform bucket.live_create_room(gen_random_uuid(), host, 'MAX002', 'polingual', '{"per_round": 2}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
+  perform bucket.live_create_room(gen_random_uuid(), host, 'MAX003', 'polingual', '{"per_round": 2}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
+  assert pg_temp.raises(format('select bucket.live_create_room(%L, %L, %L, %L, %L, 1, %L, %L, %L)', gen_random_uuid(), host, 'MAX004', 'polingual', '{"per_round": 2}', 'v1.' || repeat('x', 40), repeat('A', 43), qs), 'too_many_rooms'),
     'a host holds three open rooms at most';
 end $$;
 
@@ -210,12 +208,75 @@ declare
   n integer := 0;
 begin
   update bucket.live_rooms set phase = 'closed', closed_at = clock_timestamp() where host_user = host and closed_at is null;
-  perform bucket.live_create_room(rid, host, 'FAAA01', 'polingual', '{}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
+  perform bucket.live_create_room(rid, host, 'FAAA01', 'polingual', '{"rounds": 1, "per_round": 1}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
   insert into bucket.live_players (room_id, nickname_key) select rid, 'p-' || g from generate_series(1, 100) g;
-  assert bucket.live_join('FAAA01', 'one-more') ->> 'error' = 'room_full', 'a room holds 100 players';
+  assert bucket.live_join('FAAA01', 'one-more', 'ip1') ->> 'error' = 'room_full', 'a room holds 100 players';
 end $$;
 
-select has_function_privilege('anon', 'bucket.live_join(text, text)', 'execute') as anon_joins \gset
+do $$
+declare
+  host uuid := (select id from auth.users where email like 'stoa-%' limit 1);
+  rid uuid := gen_random_uuid();
+  qs jsonb := '[{"idx":0,"round":1,"kind":"pick_word","prompt":{},"options":["a","b","c","d"],"answer":0}]';
+  ps uuid[];
+  late uuid;
+  topic0 uuid;
+  res jsonb;
+  n integer;
+begin
+  update bucket.live_rooms set phase = 'closed', closed_at = clock_timestamp() where host_user = host and closed_at is null;
+  perform bucket.live_create_room(rid, host, 'R0TATE', 'polingual', '{"rounds": 1, "per_round": 1}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
+  select array_agg((bucket.live_join('R0TATE', 'p-' || g, 'ip-r') ->> 'player_id')::uuid order by g) into ps from generate_series(1, 20) g;
+  select topic into topic0 from bucket.live_rooms where id = rid;
+
+  for i in 1..10 loop
+    perform bucket.live_probe(rid, ps[1], 1, null, true);
+  end loop;
+  assert (select topic from bucket.live_rooms where id = rid) = topic0, 'one player reporting over and over cannot rotate the topic';
+  perform bucket.live_probe(rid, ps[2], 1, null, true);
+  perform bucket.live_probe(rid, ps[3], 1, null, true);
+  assert (select topic from bucket.live_rooms where id = rid) = topic0, 'three of twenty is under 20 percent';
+  update bucket.live_reports set reported_at = clock_timestamp() - interval '31 seconds' where room_id = rid and player_id = ps[1];
+  perform bucket.live_probe(rid, ps[4], 1, null, true);
+  assert (select topic from bucket.live_rooms where id = rid) = topic0, 'reports older than 30 seconds do not count';
+  res := bucket.live_probe(rid, ps[5], 1, null, true);
+  assert res ->> 'rotated' = 'true' and (select topic from bucket.live_rooms where id = rid) <> topic0, 'four distinct reporters of twenty in 30 s rotate the topic';
+  select topic into topic0 from bucket.live_rooms where id = rid;
+  for i in 7..12 loop
+    perform bucket.live_probe(rid, ps[i], 1, null, true);
+  end loop;
+  assert (select topic from bucket.live_rooms where id = rid) = topic0, 'one rotation per 2 minutes';
+  assert bucket.live_host(rid, host, 'rotate') ->> 'error' = 'too_soon', 'the host is held to the same 2 minutes';
+  update bucket.live_rooms set rotated_at = clock_timestamp() - interval '121 seconds' where id = rid;
+  res := bucket.live_host(rid, host, 'rotate');
+  assert res ->> 'error' is null and (select topic from bucket.live_rooms where id = rid) <> topic0, 'the host rotates on request';
+
+  perform bucket.live_host(rid, host, 'lock');
+  assert bucket.live_join('R0TATE', 'new-face', 'ip-r') ->> 'error' = 'locked', 'a locked room takes no joins';
+  perform bucket.live_host(rid, host, 'unlock');
+  late := (bucket.live_join('R0TATE', 'new-face', 'ip-r') ->> 'player_id')::uuid;
+  assert late is not null, 'an unlocked room takes joins again';
+
+  perform bucket.live_host(rid, host, 'kick_all');
+  assert (select token_version from bucket.live_rooms where id = rid) = 2, 'kick all bumps the token version';
+  assert not exists (select 1 from bucket.live_players where room_id = rid and not removed), 'kick all removes every player';
+  late := (bucket.live_join('R0TATE', 'after-kick', 'ip-r') ->> 'player_id')::uuid;
+  assert pg_temp.raises(format('select bucket.live_answer(%L, %L, 1, 0, 0::smallint)', rid, late), 'stale_token'), 'a token from before kick all is refused';
+
+  insert into bucket.live_limits (bucket_key, minute, hits) values ('join:' || rid, date_trunc('minute', clock_timestamp()), 150)
+  on conflict (bucket_key, minute) do update set hits = 150;
+  assert bucket.live_join('R0TATE', 'one-more', 'ip-r') ->> 'error' = 'slow_down', 'a room takes 150 joins a minute';
+  insert into bucket.live_limits (bucket_key, minute, hits) values ('miss:ip-g', date_trunc('minute', clock_timestamp()), 60);
+  assert bucket.live_join('R0TATE', 'one-more', 'ip-g') ->> 'error' = 'slow_down', 'an IP with 60 misses is held for the minute';
+  select hits into n from bucket.live_limits where bucket_key = 'join:' || rid;
+  for i in 1..5 loop
+    perform bucket.live_join('ZZZZZ' || i, 'brave-otter', 'ip-h');
+  end loop;
+  assert (select hits from bucket.live_limits where bucket_key = 'miss:ip-h') = 5, 'misses charge the caller';
+  assert (select hits from bucket.live_limits where bucket_key = 'join:' || rid) = n, 'unknown codes never drain a real room';
+end $$;
+
+select has_function_privilege('anon', 'bucket.live_join(text, text, text)', 'execute') as anon_joins \gset
 \if :anon_joins
   \echo 'FAIL: anon can call live_join'
   select 1/0;
