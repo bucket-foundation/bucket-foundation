@@ -4,6 +4,7 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import { getPhoton, type Photon } from "@/lib/photon-db";
 import { pageMeta } from "@/lib/meta";
+import Site from "../../site";
 
 export const dynamic = "force-dynamic";
 
@@ -42,15 +43,14 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
   const langLabel = LANG_LABEL[photon.lang] || photon.lang;
 
   return (
-    <main className="min-h-screen">
+    <Site bare>
+    <div>
       <div className="max-w-3xl mx-auto px-5 md:px-8 py-10 md:py-14">
         <Link
           href="/"
           className="inline-flex items-center gap-3 group"
           aria-label="back to polingual"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.svg" alt="" width="120" height="48" className="h-9 w-auto opacity-70 group-hover:opacity-100 transition" />
           <span
             className="font-mono text-[10px] uppercase tracking-[0.22em] transition"
             style={{ color: "var(--ink-faint)" }}
@@ -219,6 +219,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </section>
         )}
       </div>
-    </main>
+    </div>
+    </Site>
   );
 }

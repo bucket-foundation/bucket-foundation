@@ -1,6 +1,7 @@
 import Signup from "../signup";
 import { Tex } from "../tex";
 import { pageMeta } from "@/lib/meta";
+import Site from "../site";
 
 const NAV = [
     { id: "record", label: "The record" },
@@ -99,13 +100,12 @@ export const metadata = pageMeta({ path: "/research", title: "Polingual research
 
 export default function ResearchPage() {
   return (
-    <main className="min-h-screen relative">
+    <Site bare>
+    <div className="relative">
       <div className="hero-glow absolute inset-x-0 top-0 h-[480px] pointer-events-none" />
       <div className="relative mx-auto max-w-6xl px-4 md:px-8 md:grid md:grid-cols-[180px_1fr] md:gap-12">
         <aside className="hidden md:block">
           <nav className="sticky top-8 pt-16">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.svg" alt="polingual" width="120" height="48" className="h-10 w-auto mb-8" />
             <ul className="space-y-2 font-sans text-sm">
               {NAV.map((n) => (
                 <li key={n.id}>
@@ -118,8 +118,6 @@ export default function ResearchPage() {
 
         <div className="min-w-0 max-w-3xl pb-24">
           <header className="pt-10 md:pt-16">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.svg" alt="polingual" width="120" height="48" className="h-10 w-auto mb-6 md:hidden" />
             <p className="font-mono text-[11px] uppercase tracking-[0.28em]" style={{ color: "var(--ink-dim)" }}>polingual v0, research notes</p>
             <h1 className="mt-4 leading-[1.05] text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--ink)", letterSpacing: "-0.02em" }}>
               Every word in every language, <em style={{ color: "var(--blue)" }}>one meaning.</em>
@@ -305,6 +303,7 @@ export default function ResearchPage() {
           </footer>
         </div>
       </div>
-    </main>
+    </div>
+    </Site>
   );
 }
