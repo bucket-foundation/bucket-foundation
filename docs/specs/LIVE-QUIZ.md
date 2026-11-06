@@ -51,7 +51,7 @@ Drafted 2026-11-06, revised the same day after the critic review on PR #1211. St
 
 **Codes.** 6 characters from the Crockford alphabet the group invite codes use (`^[0-9A-HJKMNP-TV-Z]{6}$`). A code resolves only while its room is open, and every room closes within 3 hours.
 
-**Players never sign in.** `POST /api/live/join` takes the code and a nickname key and returns a room token: a JWT signed on the Vercel server with `STOA_ROOM_SECRET`, carrying room id, player id and an expiry at room close. The client keeps it in `sessionStorage` or memory and sends it with every answer. The player id exists only inside that room.
+**Players never sign in.** `POST /api/live/join` takes the code and a nickname key and returns a room token: a JWT signed on the Vercel server with `STOA_ROOM_SECRET`, carrying room id, player id and an expiry at room close. The client keeps it in `sessionStorage` or memory and sends it with every answer. The player id exists only inside that room. The token also carries the room's `token_version`. Every answer and state call checks that the player row is active and the version matches; a removed player gets 403. Removing a player bumps `token_version` and the routes reissue tokens to the remaining players on their next state call, so a copied token from the removed player stops working.
 
 **Nicknames.** Players pick from three generated two-word names, adjective plus animal or object, from a reviewed list in each interface language, with a reroll. No free text anywhere: no chat, no custom names, no team names, no reactions. The host can swap a player's name for another generated one or remove the player.
 
@@ -62,8 +62,12 @@ Stoa runs on the live hosted Supabase project `xbwblxwafphvdeldighd`. Local deve
 **Decision: a public Realtime broadcast channel for fan-out, Vercel routes in front of Postgres functions as the authority.**
 
 - **Routes.** The `bucket` schema is sealed off from PostgREST, so every call goes to a Next route under `/api/live/` on bucket.foundation, CORS open to polingual.com. Each route checks the room token or the host session and calls one `bucket.live_*` function with the service role. Every timestamp comes from `clock_timestamp()` in the database.
-- **Channel.** Clients subscribe with the anon key to the public broadcast topic `stoa:<room id>`, where the room id is a random UUID returned only by join. Public channels need no `realtime.messages` policies and no anonymous-auth setting. Only the routes broadcast, through the Realtime HTTP broadcast endpoint with the service key.
-- **Signed events.** Anyone holding the room id could send on a public channel, so every event carries an Ed25519 signature from the routes, and clients drop events that fail the check. Browsers verify with WebCrypto, with a 7 KB fallback library for older ones; iOS verifies with CryptoKit. This costs one module and one key, and it keeps a student from faking a reveal on classmates' phones.
+- **Channel.** Clients subscribe with the anon key to the public broadcast topic `stoa:<topic>`, where `topic` is a random UUID stored on the room and returned only by join and state. Public channels need no `realtime.messages` policies and no anonymous-auth setting. Only the routes broadcast, through the Realtime HTTP broadcast endpoint with the service key.
+- **Signed events.** Anyone holding the room id could send on a public channel, so every event carries an Ed25519 signature, and phones verify it before any render. Browsers verify with WebCrypto, with a 7 KB fallback library for older ones; iOS verifies with CryptoKit.
+- **Room keys.** `POST /api/live/rooms` generates a fresh Ed25519 keypair for each room. The private key sits in `live_rooms.sign_key`, encrypted with AES-GCM under a key derived by HKDF from `STOA_ROOM_SECRET` and the room id. `STOA_ROOM_SECRET` lives in Vercel encrypted environment variables for production and preview and in `.env.local` for local work, and stays out of every client bundle and app build. Join and state responses carry the room's public key. The keypair dies with the room row at the 24 hour deletion.
+- **Rotation.** Rotating `STOA_ROOM_SECRET` covers both the room keys and the room tokens. The routes read `STOA_ROOM_SECRET` and `STOA_ROOM_SECRET_PREV`, try the current one first, and keep the previous one for 3 hours so live rooms finish. New rooms always use the current secret.
+- **Replay.** The signature covers `room_id`, `seq`, event type, `issued_at` and the SHA-256 of the payload. Phones reject an event for another room, a `seq` at or below the last one seen, or an `issued_at` more than 30 seconds old by the ping clock offset. A phone that just loaded or rejoined fetches state over HTTPS first, takes its `seq` and public key from that, and only then accepts broadcasts. A replay from another room fails on `room_id` and on that room's key.
+- **Flooding.** Unsigned or invalid events are dropped before parsing the payload into the UI. Realtime enforces per-project limits on messages a second and on payload size, and channel joins per connection, for the project's plan `[empirical: supabase.com/docs/guides/realtime/quotas, to read at P1a start]`. When a room sees forged traffic, the routes count verify failures reported by phones through `/api/live/probe`, and above 20 a minute the room moves to a new random topic. The new name reaches phones only through the state route, and the old topic goes quiet.
 - **Events.** `open` carries `seq`, `idx`, prompt, options and `closes_at`. `reveal` carries the answer key and per-option counts. `board` carries standings. The answer key leaves the server only in `reveal`.
 - **Private channels considered.** They would need JWTs for players, which means anonymous auth users, policies on `realtime.messages` and a cleanup job for auth rows. Signed public events give the same protection with less to run.
 
@@ -103,7 +107,7 @@ New migration in schema `bucket`, RLS on every table, reached only through the `
 
 | Table | Key columns |
 |---|---|
-| `live_rooms` | `id uuid`, `code`, `product`, `host_user`, `mode`, `school_mode`, `settings jsonb`, `seed`, `phase`, `idx`, `opens_at`, `closes_at`, `next_at`, `paused_at`, `seq`, `expires_at` |
+| `live_rooms` | `id uuid`, `topic`, `sign_key`, `token_version`, `code`, `product`, `host_user`, `mode`, `school_mode`, `settings jsonb`, `seed`, `phase`, `idx`, `opens_at`, `closes_at`, `next_at`, `paused_at`, `seq`, `expires_at` |
 | `live_players` | `id`, `room_id`, `nickname_key`, `team_slot`, `time_factor`, `grace_ms`, `removed` |
 | `live_questions` | `room_id`, `idx`, `round`, `kind`, `prompt jsonb`, `options jsonb`, `answer smallint` |
 | `live_answers` | primary key `room_id, idx, player_id`; `choice`, `received_at` |
@@ -126,6 +130,19 @@ A pg_cron job deletes rooms and every child row 24 hours after close. The host k
 | `POST /api/live/sweep` | pg_cron through `pg_net`, shared secret |
 | `GET /api/live/rooms/:id/summary` | host; CSV of nicknames and scores |
 | `POST /api/live/duels`, `GET /api/live/duels` | signed-in users, P4 |
+
+## Beads
+
+To file with `source-founder`, one bead per PR.
+
+| Phase | Bead titles |
+|---|---|
+| P1a | Stoa migration: rooms, players, questions, answers, scores, deletion cron · Stoa room crypto: per-room Ed25519 keys, room tokens, dual-secret rotation · Stoa routes: rooms, join, state, answer, probe, host controls, sweep · Stoa generators: Pick the word and Which language with seeded tests · Stoa web host and join screens on polingual.com · Stoa load and replay tests: 100 players, forged and replayed events |
+| P1b | Stoa Chorus teams: team lobby, mean scoring, unison bonus · Stoa Translate kind · Stoa School mode and summary CSV · Stoa student data page and host terms |
+| P2 | Stoa Bucket pick generator · Stoa iOS join with Phoenix client and signature check · Stoa AirPlay host remote and external board · bucket.foundation/live and /join |
+| P3 | Stoa tvOS target and board · Stoa tvOS device code sign-in |
+| P4 | Stoa duels routes and inbox · Stoa matchmaking and ghost runs |
+| P5 | Stoa Roku channel · Stoa Roku certification |
 
 ## Child Safety
 
@@ -160,7 +177,7 @@ Each phase ships alone. Sizes assume one build agent and include review.
 
 ## Risks
 
-- **Cheating.** The answer key leaves the server only at reveal. One answer per player per question by primary key. Scores use server receive time, so a modified client gains at most its own grace, capped at 1000 ms. Forged broadcasts fail the signature check. The host can lock the room and remove players.
+- **Cheating.** The answer key leaves the server only at reveal. One answer per player per question by primary key. Scores use server receive time, so a modified client gains at most its own grace, capped at 1000 ms. Forged and replayed broadcasts fail the signature, room, `seq` and age checks. The host can lock the room and remove players.
 - **Accessibility.** Every question has a visual form, and audio is an extra. Tiles carry color, glyph and letter plus the full text. VoiceOver reads "A, wave, agua" and announces 10 and 5 seconds left. Reduce Motion drops the dial spin and score animations. The host can extend a player's time up to 3 times the window, and speed points scale to that player's window. The board meets 4.5 to 1 contrast at 3 meters.
 - **Right to left.** Arabic, Hebrew and Persian words render with bidi isolation: `dir="auto"` per option on the web and natural alignment in SwiftUI. An Arabic interface mirrors the phone layout and keeps the board grid and letters fixed, so A to D sit in the same place on every device.
 - **Offline.** Live play needs a network. A player who drops sees a reconnecting banner and rejoins with the same token and score; missed questions score 0. The host can pause, which moves every deadline. A school network that blocks WebSockets falls back to polling state once a second.
