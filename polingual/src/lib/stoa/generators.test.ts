@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { LANGS, WORDS } from "../words";
-import { buildRoomSet, FAMILIES, familyCap, pickTheWord, ROUND_TIERS, roundTargets, seeded, shuffle, whichLanguage } from "./generators";
+import { randomBytes } from "node:crypto";
+import { buildRoomSet, FAMILIES, familyCap, fold, MAX_WIDEN, pickTheWord, ROUND_TIERS, roundTargets, seeded, shuffle, whichLanguage } from "./generators";
 import { parseSettings, type RoomSettings } from "./questions";
 
 const settings = parseSettings({ home: "en", targets: ["es", "fr", "de", "ru", "ja", "ar"] }) as RoomSettings;
@@ -46,10 +47,10 @@ for (const seed of [1, 2, 3, 99, 2024, 31337, 2 ** 31 - 2]) {
       if (q.kind === "pick_word") {
         const lang = String(q.prompt.lang);
         assert.ok(settings.targets.includes(lang));
-        const w = WORDS.find((x) => x.en === q.prompt.en && formOf(x.slug, lang) === q.options[q.answer]);
+        const w = WORDS.find((x) => formOf(x.slug, settings.home) === q.prompt.home && formOf(x.slug, lang) === q.options[q.answer]);
         assert.ok(w, "the answer is the prompt word in the target language");
         const [lo, hi] = ROUND_TIERS[q.round - 1];
-        assert.ok(w.tier >= lo && w.tier <= hi, `tier ${w.tier} sits in round ${q.round}`);
+        assert.ok(w.tier >= lo - MAX_WIDEN && w.tier <= hi + MAX_WIDEN, `tier ${w.tier} sits near round ${q.round}`);
         for (const opt of q.options) {
           const ok = WORDS.some((d) => d.category === w.category && Math.abs(d.tier - w.tier) <= 2 && d.forms.some((f) => f.lang === lang && f.word === opt));
           assert.ok(ok, `distractor ${opt} shares the category and tier band`);
@@ -74,7 +75,7 @@ test("pick the word keeps the answer out of the prompt", () => {
   const q = pickTheWord(BY_SLUG.get("eight")!, "es", settings, WORDS, seeded(1))!;
   assert.equal(q.options[q.answer], "ocho");
   assert.ok(!Object.values(q.prompt).includes("ocho"));
-  assert.deepEqual(q.prompt, { en: "eight", home: "eight", home_lang: "en", lang: "es" });
+  assert.deepEqual(q.prompt, { home: "eight", home_lang: "en", lang: "es" });
 });
 
 test("pick the word gives the home-language prompt", () => {
@@ -131,7 +132,7 @@ test("shuffle keeps every item", () => {
 test("room creation stores the generated set without leaking answers to the host reply", async () => {
   const { createRoom } = await import("./live");
   let stored: unknown[] = [];
-  const env = { STOA_ROOM_SECRET: "g".repeat(40), POLINGUAL_DB_URL: "https://db.test", POLINGUAL_DB_SERVICE_KEY: "s", POLINGUAL_DB_ANON_KEY: "a" };
+  const env = { STOA_ROOM_SECRET: randomBytes(48).toString("base64"), POLINGUAL_DB_URL: "https://db.test", POLINGUAL_DB_SERVICE_KEY: "s", POLINGUAL_DB_ANON_KEY: "a" };
   const r = await createRoom("Bearer ok", { settings: { targets: ["es", "ja"] } }, {
     env,
     build: buildRoomSet,
@@ -146,4 +147,45 @@ test("room creation stores the generated set without leaking answers to the host
   assert.equal(stored.length, 15);
   assert.deepEqual(stored, buildRoomSet((2 ** 31 - 1) >> 1, parseSettings({ targets: ["es", "ja"] })!));
   assert.ok(!("questions" in r.body));
+});
+
+const HOMES = ["en", "es", "fr", "de", "ru", "ja", "zh", "ar", "he", "hi", "ko", "fa", "tr"];
+const TARGETS = ["en", "es", "fr", "it", "pt", "de", "nl", "ru", "pl", "ja", "zh", "ko", "ar", "he", "hi", "el", "th", "la"];
+
+function strings(v: unknown, out: string[] = []): string[] {
+  if (typeof v === "string") out.push(v);
+  else if (Array.isArray(v)) v.forEach((x) => strings(x, out));
+  else if (v && typeof v === "object") Object.values(v).forEach((x) => strings(x, out));
+  return out;
+}
+
+test("no prompt or open-event field carries an option, for every home and target pair", () => {
+  let checked = 0;
+  for (const home of HOMES) {
+    for (const target of TARGETS) {
+      if (home === target) continue;
+      const s = parseSettings({ home, targets: [target] })!;
+      for (const seed of [1, 2, 3]) {
+        const set = buildRoomSet(seed * 7919 + home.length, s);
+        assert.ok(set, `${home} to ${target} seed ${seed} builds`);
+        for (const q of set) {
+          const event: Record<string, unknown> = { idx: q.idx, round: q.round, kind: q.kind, prompt: q.prompt, total: set.length, opens_at: 0, closes_at: 20000 };
+          const names = q.kind === "which_language" ? q.options.map((l) => LANGS[l].name) : [];
+          const opts = new Set([...q.options, ...names].map(fold));
+          const hit: string | undefined = strings(event).find((x) => opts.has(fold(x)));
+          assert.equal(hit, undefined, `${home} to ${target} seed ${seed} q${q.idx} leaks ${hit}`);
+          checked++;
+        }
+      }
+    }
+  }
+  assert.ok(checked > 3000, `checked ${checked}`);
+});
+
+test("home Spanish with target English never sends the English answer in the prompt", () => {
+  const set = buildRoomSet(5, parseSettings({ home: "es", targets: ["en"] })!)!;
+  for (const q of set.filter((x) => x.kind === "pick_word")) {
+    assert.ok(!strings(q.prompt).map(fold).includes(fold(q.options[q.answer])));
+    assert.equal(q.prompt.home_lang, "es");
+  }
 });

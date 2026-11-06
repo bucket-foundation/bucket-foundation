@@ -3,6 +3,7 @@ import { PER_ROUND, ROUNDS, type LiveQuestion, type QuestionKind, type RoomSetti
 
 export const ROUND_TIERS: [number, number][] = [[0, 3], [3, 6], [6, 10]];
 export const FAMILY_SHARE = 0.4;
+export const MAX_WIDEN = 2;
 
 export const FAMILIES: Record<string, string> = {
   es: "romance", fr: "romance", it: "romance", pt: "romance",
@@ -39,6 +40,15 @@ export function shuffle<T>(items: readonly T[], rng: Rng): T[] {
 
 function form(w: Word, lang: string): string | null {
   return w.forms.find((f) => f.lang === lang)?.word ?? null;
+}
+
+export function fold(text: string): string {
+  return text.normalize("NFKC").toLocaleLowerCase("und").trim();
+}
+
+export function leaks(prompt: Record<string, string | number>, options: string[]): boolean {
+  const opts = new Set(options.map(fold));
+  return Object.values(prompt).some((v) => typeof v === "string" && opts.has(fold(v)));
 }
 
 export function familyCap(targets: string[], slots: number): number {
@@ -80,13 +90,12 @@ export function pickTheWord(w: Word, target: string, settings: RoomSettings, wor
     if (distractors.length === 3) break;
   }
   if (distractors.length < 3) return null;
+  const home = form(w, settings.home);
+  if (!home) return null;
   const options = shuffle([right, ...distractors], rng);
-  return {
-    kind: "pick_word",
-    prompt: { en: w.en, home: form(w, settings.home) ?? w.en, home_lang: settings.home, lang: target },
-    options,
-    answer: options.indexOf(right),
-  };
+  const prompt = { home, home_lang: settings.home, lang: target };
+  if (leaks(prompt, options) || new Set(options.map(fold)).size < 4) return null;
+  return { kind: "pick_word", prompt, options, answer: options.indexOf(right) };
 }
 
 export function whichLanguage(w: Word, target: string, rng: Rng): Omit<LiveQuestion, "idx" | "round"> | null {
@@ -99,7 +108,9 @@ export function whichLanguage(w: Word, target: string, rng: Rng): Omit<LiveQuest
   const distractors = [...same, ...rest].slice(0, 3);
   if (distractors.length < 3) return null;
   const options = shuffle([target, ...distractors], rng);
-  return { kind: "which_language", prompt: { word }, options, answer: options.indexOf(target) };
+  const prompt = { word };
+  if (leaks(prompt, [...options, ...options.map((l) => LANGS[l].name)])) return null;
+  return { kind: "which_language", prompt, options, answer: options.indexOf(target) };
 }
 
 export function roundKinds(rng: Rng): QuestionKind[] {
@@ -115,7 +126,7 @@ export function buildRoomSet(seed: number, settings: RoomSettings, words: readon
     const kinds = roundKinds(rng);
     for (let slot = 0; slot < PER_ROUND; slot++) {
       let q: Omit<LiveQuestion, "idx" | "round"> | null = null;
-      for (let widen = 0; widen <= 10 && !q; widen++) {
+      for (let widen = 0; widen <= MAX_WIDEN && !q; widen++) {
         for (const w of shuffle(words.filter((x) => !used.has(x.slug) && inTiers(x, ROUND_TIERS[round - 1], widen)), rng)) {
           q = kinds[slot] === "pick_word" ? pickTheWord(w, targets[slot], settings, words, rng) : whichLanguage(w, targets[slot], rng);
           if (q) {
