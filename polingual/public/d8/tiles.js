@@ -20,6 +20,8 @@ const POOL=[
 {c:"vn",n:"Vietnamese",w:"trăm",ipa:"ʈam",lang:"vi-VN",f:"Noto Sans",bg:"#DA251D",e:"★",ec:"#FFFF00",es:110},
 {c:"th",n:"Thai",w:"ร้อย",ipa:"rɔ́ːj",lang:"th-TH",f:"Noto Sans",bg:"linear-gradient(#A51931 0 16%,#F4F5F8 0 33%,#2D2A4A 0 66%,#F4F5F8 0 83%,#A51931 0)"}];
 const shuffled=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const WORD_SLUG="hundred";
+const wordHref=()=>{const l=document.documentElement.lang||"en";return `${l==="en"||l.startsWith("en-")?"":"/"+l}/word/${WORD_SLUG}`};
 const PALE=new Set(["jp","kr","il"]);
 const TILES=shuffled(POOL.filter(t=>!PALE.has(t.c))).slice(0,6);
 const SPK='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
@@ -38,9 +40,9 @@ function style(t){return `--flag:${t.bg};--ec:${t.ec||'#000'};--es:${t.es||0}px$
 function inner(t,mode){
  const face="";
  if(mode==='bare')return `${face}<span class="em">${t.e||''}</span>`;
- return `${face}<span class="cc">${t.n}</span><div class="wd"><b class="${[...t.w].length>3?'long':''}" lang="${t.lang}" style="font-family:'${t.f}'">${t.w}</b><button class="snd" aria-label="Play ${t.n} ${t.w}">${SPK}</button></div><i>/${t.ipa}/</i>`;
+ return `${face}<span class="cc">${t.n}</span><div class="wd"><a class="wl" href="${wordHref()}"><b class="${[...t.w].length>3?'long':''}" lang="${t.lang}" style="font-family:'${t.f}'">${t.w}</b></a><button class="snd" aria-label="Play ${t.n} ${t.w}">${SPK}</button></div><i>/${t.ipa}/</i>`;
 }
-function paint(el,t,mode){el.dataset.c=t.c;el.setAttribute('style',style(t)+(el.style.animationDelay?`;animation-delay:${el.style.animationDelay}`:''));el.innerHTML=inner(t,mode);}
+function paint(el,t,mode){el.dataset.c=t.c;el.setAttribute('style',style(t)+(el.style.animationDelay?`;animation-delay:${el.style.animationDelay}`:''));el.innerHTML=inner(t,mode);el.querySelector('.wl')?.addEventListener('click',e=>e.stopPropagation());}
 function renderTiles(root,mode){
  const text=mode!=='bare';
  root.innerHTML=TILES.map(()=>`<div class="t${text?' tt':''}"></div>`).join('');
