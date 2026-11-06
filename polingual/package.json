@@ -13,12 +13,14 @@
     "indexnow": "node scripts/indexnow.mjs",
     "test:db": "bash db/test-founding.sh",
     "test:live-db": "bash db/test-live.sh",
-    "test:live-local": "bash db/test-live-local.sh"
+    "test:live-local": "bash db/test-live-local.sh",
+    "test:live-e2e": "bash db/test-live-e2e.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
     "katex": "^0.19.0",
     "next": "^15.0.0",
+    "qrcode-generator": "1.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

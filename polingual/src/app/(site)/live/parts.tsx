@@ -1,0 +1,121 @@
+"use client";
+
+import qrcode from "qrcode-generator";
+import { useMemo } from "react";
+import { displayNickname, MARKS, optionLabel, promptView, type Mark, type Question, type Standing } from "@/lib/stoa/client";
+import styles from "./stoa.module.css";
+
+
+export function Glyph({ glyph }: { glyph: Mark["glyph"] }) {
+  const common = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2.4, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
+  if (glyph === "wave") return <svg {...common}><path d="M2 9c3-3 5-3 8 0s5 3 8 0 3-2 4-1" /><path d="M2 16c3-3 5-3 8 0s5 3 8 0 3-2 4-1" /></svg>;
+  if (glyph === "spark") return <svg {...common}><path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l3.5 3.5M15.5 15.5 19 19M19 5l-3.5 3.5M8.5 15.5 5 19" /></svg>;
+  if (glyph === "leaf") return <svg {...common}><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16Z" /><path d="M4 20 13 11" /></svg>;
+  return <svg {...common}><path d="M16 3a9 9 0 1 0 5 15A7 7 0 0 1 16 3Z" /></svg>;
+}
+
+export function MarkBadge({ mark }: { mark: Mark }) {
+  return (
+    <span className={styles.mark}>
+      <Glyph glyph={mark.glyph} />
+      <span className={styles.letter}>{mark.letter}</span>
+    </span>
+  );
+}
+
+export function Prompt({ q }: { q: Pick<Question, "kind" | "prompt"> }) {
+  const v = promptView(q);
+  return (
+    <div className={styles.prompt} data-testid="prompt">
+      <p className={styles.lead}>{v.lead}</p>
+      <p className={styles.word} dir="auto" lang={q.kind === "pick_word" ? q.prompt.home_lang : undefined}>{v.word}</p>
+      {v.tail ? <p className={styles.tail}>{v.tail}</p> : null}
+    </div>
+  );
+}
+
+export type TileState = "idle" | "dim" | "chosen" | "right";
+
+export function Tiles({
+  q,
+  grid,
+  states,
+  counts,
+  onPick,
+  disabled,
+}: {
+  q: Pick<Question, "kind" | "options" | "prompt">;
+  grid?: boolean;
+  states?: TileState[];
+  counts?: number[] | null;
+  onPick?: (i: number) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <ul className={`${styles.tiles} ${grid ? styles.grid : ""}`} data-testid="tiles">
+      {MARKS.map((mark, i) => {
+        const label = optionLabel(q, i);
+        const name = q.kind === "pick_word" ? q.prompt.lang : undefined;
+        return (
+          <li key={mark.letter}>
+            <button
+              type="button"
+              className={styles.tile}
+              data-pigment={mark.pigment}
+              data-state={states?.[i] ?? "idle"}
+              data-testid={`tile-${mark.letter}`}
+              disabled={disabled || !onPick}
+              onClick={() => onPick?.(i)}
+              aria-label={`${mark.letter}, ${mark.glyph}, ${label}`}
+            >
+              <MarkBadge mark={mark} />
+              <span className={styles.text} dir="auto" lang={name}>{label}</span>
+              {counts ? <span className={styles.count}>{counts[i] ?? 0}</span> : null}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export function Standings({ rows, me, testId }: { rows: Standing[]; me?: string; testId?: string }) {
+  return (
+    <ol className={styles.standings} data-testid={testId ?? "standings"}>
+      {rows.map((r) => (
+        <li key={r.player_id} data-me={r.player_id === me}>
+          <span>{displayNickname(r.nickname)}</span>
+          <span>{r.points}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+export function Qr({ text }: { text: string }) {
+  const { size, cells } = useMemo(() => {
+    const qr = qrcode(0, "M");
+    qr.addData(text);
+    qr.make();
+    const n = qr.getModuleCount();
+    const out: string[] = [];
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (qr.isDark(r, c)) out.push(`M${c} ${r}h1v1h-1z`);
+    return { size: n, cells: out.join("") };
+  }, [text]);
+  return (
+    <div className={styles.qr} data-testid="qr">
+      <svg viewBox={`-2 -2 ${size + 4} ${size + 4}`} role="img" aria-label={`QR code for ${text}`} shapeRendering="crispEdges">
+        <path d={cells} fill="#231F20" />
+      </svg>
+    </div>
+  );
+}
+
+export function Brand() {
+  return (
+    <a href="/" className={styles.brand} aria-label="Polingual home">
+      <img src="/brand/kit/mark.svg" alt="" width={32} height={32} />
+      <span>polingual live</span>
+    </a>
+  );
+}
