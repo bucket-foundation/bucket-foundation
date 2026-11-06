@@ -11,6 +11,7 @@ LANGS = {f.stem: json.loads(f.read_text()) for f in sorted((Path(__file__).resol
 KEYS = json.loads((Path(__file__).resolve().parent / "i18n" / "keys.json").read_text())
 SITE = "https://www.polingual.com"
 RTL = {"ar", "fa", "he"}
+JOINED = {"ar", "fa", "hi", "ta", "th"}
 ALT = f'<link rel="alternate" hreflang="en-US" href="{SITE}/">\n' + "".join(f'<link rel="alternate" hreflang="{v["hreflang"]}" href="{SITE}/{k}">\n' for k, v in LANGS.items()) + f'<link rel="alternate" hreflang="x-default" href="{SITE}/">\n'
 SEL = '<select class="lsel" aria-label="Language" onchange="location.href=this.value" style="font:inherit;font-size:inherit;color:inherit;background:transparent;border:0;cursor:pointer;margin-left:12px">'
 
@@ -45,6 +46,8 @@ def localize(code, lang):
         if a not in html:
             raise SystemExit(f"{code}: missing {a!r}")
         html = html.replace(a, b)
+    if code in JOINED:
+        html = html.replace("</head>", "<style>small{letter-spacing:0!important}</style></head>", 1)
     if code in RTL:
         html = html.replace("</head>", "<style>h1,h2,p,small,b,span,a,.pill,.btn{unicode-bidi:plaintext}</style></head>", 1)
     tr = json.dumps(lang["modal"], ensure_ascii=False).replace("</", "<\\/")
