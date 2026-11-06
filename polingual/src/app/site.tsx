@@ -51,7 +51,7 @@ export function SiteFooter({ loc = EN_SITE }: { loc?: SiteLocale }) {
           <Link href="/support">{loc.labels.support}</Link>
         </nav>
         <span>
-          {loc.footer.data} <a href="https://en.wiktionary.org">Wiktionary</a> · <a href="https://kaikki.org">Kaikki</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. <span dir="auto">{loc.footer.published}</span>
+          {loc.footer.data} <a href="https://en.wiktionary.org">Wiktionary</a> · <a href="https://kaikki.org">Kaikki</a> · <a href="https://commons.wikimedia.org">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. <span dir="auto">{loc.footer.published}</span>
         </span>
       </div>
     </footer>

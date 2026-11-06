@@ -1,12 +1,14 @@
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const CORPUS_DIR = join(HERE, "../../apple/Shared/Corpus");
 export const OUT_FILE = join(HERE, "../src/data/words.json");
+export const AUDIO_FILE = join(HERE, "word-audio.json");
 
 const read = (dir, name) => JSON.parse(readFileSync(join(dir, name), "utf8"));
+
 
 const APPOSITIVE = /^(the |a |also )?(root|source|same) |^and /i;
 
@@ -38,7 +40,22 @@ export function rootClusters(concept) {
   return out;
 }
 
-export function buildWords(dir = CORPUS_DIR) {
+const NO_ATTRIBUTION = /^(public domain|cc0|pd)/i;
+
+export function uncredited(audio) {
+  return Object.entries(audio)
+    .filter(([, a]) => !a.src || !a.file || !a.license || (!a.by && !NO_ATTRIBUTION.test(a.license)))
+    .map(([key]) => key);
+}
+
+export function readAudio(file = AUDIO_FILE) {
+  const audio = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : {};
+  const bad = uncredited(audio);
+  if (bad.length) throw new Error(`recordings without an author or license: ${bad.join(", ")}`);
+  return audio;
+}
+
+export function buildWords(dir = CORPUS_DIR, audio = readAudio()) {
   const core = read(dir, "lang-core.json");
   const cognates = read(dir, "lang-cognates.json").concepts;
   const layers = read(dir, "lang-layers.json");
@@ -56,6 +73,8 @@ export function buildWords(dir = CORPUS_DIR) {
         if (ipa) form.ipa = ipa;
         if (r.roman) form.roman = r.roman;
         if (r.kana) form.kana = r.kana;
+        const a = audio[`${lang}:${form.word}`];
+        if (a) form.audio = a;
         return form;
       });
     const word = { slug: atom.id, en: atom.forms.en.word, gloss: atom.gloss, category: atom.category, tier: atom.tier, forms };
