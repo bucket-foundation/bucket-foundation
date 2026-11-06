@@ -17,7 +17,7 @@ struct AgeRangeSheet: View {
             VStack(alignment: .leading, spacing: 16) {
                 if emailed {
                     Text("We emailed your parent. Your progress saves once they approve.")
-                    Button("Done") { dismiss() }.buttonStyle(.borderedProminent)
+                    Button("Done") { dismiss() }.buttonStyle(D8Primary())
                 } else if askParent {
                     Text("Enter a parent's email. We ask them to approve saving your progress.")
                         .foregroundStyle(Palette.muted)
@@ -30,10 +30,9 @@ struct AgeRangeSheet: View {
                     Button {
                         Task { await sendParent() }
                     } label: {
-                        Text("Send").frame(maxWidth: .infinity)
+                        Text("Send")
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
+                    .buttonStyle(D8Primary())
                     .disabled(saving || !parentEmail.contains("@"))
                 } else {
                     Text("Choose your age range so your progress saves to your account and your group can see your stats.")
@@ -42,10 +41,9 @@ struct AgeRangeSheet: View {
                         Button {
                             Task { await choose(band) }
                         } label: {
-                            Text(band.label).frame(maxWidth: .infinity)
+                            Text(band.label)
                         }
-                        .buttonStyle(.bordered)
-                        .controlSize(.large)
+                        .buttonStyle(D8Option(align: .center))
                         .disabled(saving)
                     }
                 }
@@ -82,21 +80,15 @@ struct AgeRangeSheet: View {
 }
 
 struct AgeRangePrompt: ViewModifier {
-    @Environment(LangStore.self) private var langs
     @State private var open = false
-    @State private var asked = false
 
     func body(content: Content) -> some View {
         content
-            .onChange(of: langs.saveState) { _, s in ask(s) }
             .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in open = true }
             .sheet(isPresented: $open) { AgeRangeSheet() }
-    }
-
-    func ask(_ s: SaveResult) {
-        guard s == .needsProfile, !asked else { return }
-        asked = true
-        open = true
+            #if DEBUG
+            .task { if Launch.flag("-ageRange") { open = true } }
+            #endif
     }
 }
 

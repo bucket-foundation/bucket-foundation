@@ -273,6 +273,7 @@ struct TodayView: View {
             + langs.systems.reduce(0) { t, s in t + langs.state(s.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
         let pending = planned.filter { hasWork($0, now) }
         let finished = planned.filter { !hasWork($0, now) }
+        let later = TodayExtras.shown(days: deckStates.flatMap { Array($0.history.keys) } + langs.systems.flatMap { Array(langs.state($0.id).history.keys) }, today: today)
         NavigationStack(path: $path) {
             Group {
             if !loaded {
@@ -280,7 +281,7 @@ struct TodayView: View {
             } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    StreakGoalCard(streak: streak).todayCard()
+                    StreakGoalCard(streak: streak, share: later).todayCard()
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
                             hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
@@ -310,9 +311,11 @@ struct TodayView: View {
                             TodayAddWidget { picking = true }
                         }
                     }
-                    TodayStrip(card: true)
-                    if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
-                        ReminderPrompt().padding(.vertical, 6).todayCard()
+                    if later {
+                        TodayStrip(card: true)
+                        if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
+                            ReminderPrompt().padding(.vertical, 6).todayCard()
+                        }
                     }
                 }
                 .padding(.horizontal, 16)
@@ -365,6 +368,15 @@ struct TodayView: View {
             }
         }
         .modifier(MilestoneMoments(ready: loaded && session == nil && !picking && path.isEmpty))
+    }
+}
+
+enum TodayExtras {
+    static func shown(days: [String], today: String) -> Bool {
+        #if DEBUG
+        if Launch.flag("-dayTwo") { return true }
+        #endif
+        return days.contains { $0 != today }
     }
 }
 

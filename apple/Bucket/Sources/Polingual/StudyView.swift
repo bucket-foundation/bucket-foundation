@@ -181,7 +181,6 @@ struct StudyView: View {
                     }
                     .frame(maxWidth: .infinity)
                     VStack(spacing: 16) {
-                        ReminderPrompt()
                         FeedbackLink()
                         ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
                         Button("See progress") {

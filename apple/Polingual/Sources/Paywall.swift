@@ -19,6 +19,7 @@ struct Paywall: View {
     @State private var student = false
     @State private var tokens = AccountTokens()
     @State private var freeBeta = false
+    @State private var otherOptions = Launch.flag("-otherOptions")
     let family: Bool
 
     init(family: Bool = false) {
@@ -98,13 +99,6 @@ struct Paywall: View {
                 .foregroundStyle(Palette.ink)
                 .minimumScaleFactor(0.7)
                 .lineLimit(1)
-            if freeBeta {
-                Text("FREE DURING THE BETA")
-                    .font(D8.caps(11)).tracking(1.2).foregroundStyle(.white)
-                    .padding(.horizontal, 10).padding(.vertical, 5)
-                    .background(D8.vermilion, in: .capsule)
-                    .accessibilityLabel(String(localized: "Free during the beta"))
-            }
         }
         .padding(.horizontal, 24)
         .padding(.top, 12)
@@ -168,15 +162,18 @@ struct Paywall: View {
             }
             FlowLayout(spacing: 4) {
                 Button(restoring ? String(localized: "Restoring") : String(localized: "Restore")) { Task { await restore() } }.disabled(restoring)
-                Button("Code") { redeeming = true }
-                Button("Student") { student = true }
-                if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
+                Button("Other options") { otherOptions = true }
                 Button("Terms") { openURL(Plan.terms) }
                 Button("Privacy") { openURL(Plan.privacy) }
             }
             .font(.system(size: 13, weight: .semibold))
             .foregroundStyle(D8.parchment.opacity(0.85))
             .buttonStyle(LinkPad())
+            .confirmationDialog("Other options", isPresented: $otherOptions, titleVisibility: .visible) {
+                Button("Redeem a code") { redeeming = true }
+                Button("Student plan") { student = true }
+                if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
+            }
         }
     }
 
@@ -211,10 +208,7 @@ struct Paywall: View {
             case .success(.verified(let t)):
                 await t.finish()
                 haptic(true)
-                switch TrialReminder.action(productID: t.productID, introductory: t.offer?.type == .introductory) {
-                case .schedule: await TrialReminder.schedule()
-                case .cancel: TrialReminder.cancel()
-                }
+                if TrialReminder.action(productID: t.productID, introductory: t.offer?.type == .introductory) == .cancel { TrialReminder.cancel() }
                 if SaveProgress.offer(signedIn: account.stage == .signedIn) { UserDefaults.standard.set(true, forKey: SaveProgress.key) }
                 await subs.refresh()
             case .success(.unverified):
@@ -266,7 +260,7 @@ struct PlanCard: View {
                 if yearly {
                     Text("BEST VALUE").font(D8.caps(9)).tracking(1).foregroundStyle(.white)
                         .padding(.horizontal, 8).padding(.vertical, 3)
-                        .background(D8.vermilion, in: .capsule)
+                        .background(D8.ink, in: .capsule)
                         .offset(y: -10)
                 }
             }
@@ -407,22 +401,24 @@ enum TrialReminder {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
     }
 
-    static func asks(_ status: UNAuthorizationStatus) -> Bool { status == .notDetermined }
-
     static func allowed(_ status: UNAuthorizationStatus) -> Bool { status == .authorized || status == .provisional }
 
-    static func schedule(now: Date = .now) async {
+    static func key(_ access: Access, allowed: Bool) -> String {
+        guard case .trial(let until) = access else { return "none" }
+        return "\(until.timeIntervalSince1970)-\(allowed)"
+    }
+
+    static func fireDate(until: Date, now: Date) -> Date? {
+        let at = until.addingTimeInterval(-86_400)
+        return at > now ? at : nil
+    }
+
+    static func schedule(until: Date, now: Date = .now) async {
         let center = UNUserNotificationCenter.current()
-        var status = await center.notificationSettings().authorizationStatus
-        if asks(status) {
-            _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
-            status = await center.notificationSettings().authorizationStatus
-        }
-        guard allowed(status) else { return }
+        guard allowed(await center.notificationSettings().authorizationStatus), let at = fireDate(until: until, now: now) else { return }
         let content = UNMutableNotificationContent()
-        content.title = "Your Polingual trial ends tomorrow"
-        content.body = "Keep learning, or cancel in Settings before tomorrow and pay nothing."
-        let at = now.addingTimeInterval(Double(Plan.trialDays - 1) * 86_400)
+        content.title = String(localized: "Your Polingual trial ends tomorrow")
+        content.body = String(localized: "Keep learning, or cancel in Settings before tomorrow and pay nothing.")
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at), repeats: false)
         try? await center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
     }

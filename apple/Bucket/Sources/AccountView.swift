@@ -13,6 +13,7 @@ struct AccountView: View {
     @State private var signingIn = false
     @State private var emailing = false
     var subscription: (() -> Void)?
+    var trialDaysLeft: Int?
     #if DEBUG
     @State private var demoShown = false
     #endif
@@ -50,6 +51,9 @@ struct AccountView: View {
                 }
                 if let subscription {
                     Section {
+                        if let trialDaysLeft {
+                            LabeledContent("Free trial", value: trialDaysLeft == 1 ? String(localized: "1 day left") : String(localized: "\(trialDaysLeft) days left"))
+                        }
                         Button("Manage subscription", systemImage: "creditcard", action: subscription)
                     } header: {
                         Eyebrow(text: "Subscription")
