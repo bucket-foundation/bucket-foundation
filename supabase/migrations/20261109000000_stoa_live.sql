@@ -25,9 +25,9 @@ create table if not exists bucket.live_rooms (
   seq           bigint      not null default 0 check (seq >= 0),
   forged_count  integer     not null default 0 check (forged_count >= 0),
   forged_since  timestamptz,
-  created_at    timestamptz not null default clock_timestamp(),
+  created_at    timestamptz not null default now(),
   closed_at     timestamptz,
-  expires_at    timestamptz not null default clock_timestamp() + interval '3 hours',
+  expires_at    timestamptz not null default now() + interval '3 hours',
   check (expires_at <= created_at + interval '3 hours'),
   check ((phase = 'closed') = (closed_at is not null))
 );
