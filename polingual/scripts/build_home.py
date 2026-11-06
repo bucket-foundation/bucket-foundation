@@ -47,7 +47,7 @@ def localize(code, lang):
             raise SystemExit(f"{code}: missing {a!r}")
         html = html.replace(a, b)
     if code in JOINED:
-        html = html.replace("</head>", "<style>small{letter-spacing:0!important}</style></head>", 1)
+        html = html.replace("</head>", "<style>small{letter-spacing:0!important;font-family:Nunito,sans-serif!important}</style></head>", 1)
     if code in RTL:
         html = html.replace("</head>", "<style>h1,h2,p,small,b,span,a,.pill,.btn{unicode-bidi:plaintext}</style></head>", 1)
     tr = json.dumps(lang["modal"], ensure_ascii=False).replace("</", "<\\/")
