@@ -1,7 +1,8 @@
 import data from "../data/words.json";
 import { SITE } from "./facts";
 
-export type WordForm = { lang: string; word: string; ipa?: string; roman?: string; kana?: string };
+export type WordAudio = { src: string; file: string; license: string; by?: string; licenseUrl?: string };
+export type WordForm = { lang: string; word: string; ipa?: string; roman?: string; kana?: string; audio?: WordAudio };
 export type RootCluster = { root: string; langs: string[] };
 export type Word = { slug: string; en: string; gloss: string; category: string; tier: number; forms: WordForm[]; note?: string; roots?: RootCluster[] };
 
