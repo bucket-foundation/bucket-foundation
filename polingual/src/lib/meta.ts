@@ -36,6 +36,7 @@ export type PageMetaInput = {
   image?: OgImage | null;
   locale?: string;
   noindex?: boolean;
+  languages?: Record<string, string>;
 };
 
 export function pageMeta(p: PageMetaInput): Metadata {
@@ -48,7 +49,7 @@ export function pageMeta(p: PageMetaInput): Metadata {
   return {
     title: { absolute: p.documentTitle ?? p.title },
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...(p.languages ? { languages: p.languages } : {}) },
     ...(p.noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: { type: p.type ?? "website", siteName: SITE_NAME, locale: p.locale ?? LOCALE, title, description, url, ...images },
     twitter: { card: "summary_large_image", title, description, ...twitterImages },

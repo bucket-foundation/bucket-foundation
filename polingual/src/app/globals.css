@@ -3,38 +3,40 @@
 @source "../../../src/components/ui/index.tsx";
 
 :root {
-  --sky:        #F2F7FC;
-  --sky-2:      #E4EEF7;
-  --sky-3:      #CFE0EE;
-  --hairline:   rgba(15, 37, 64, 0.10);
-  --hairline-2: rgba(15, 37, 64, 0.18);
+  --sky:        #F6EEDC;
+  --sky-2:      #EFE3C8;
+  --sky-3:      #E3D6B8;
+  --hairline:   rgba(35, 31, 32, 0.12);
+  --hairline-2: rgba(35, 31, 32, 0.22);
 
-  --ink:        #0F2540;
-  --ink-2:      #224569;
-  --ink-dim:    #5A7290;
-  --ink-faint:  #93A5BC;
+  --ink:        #231F20;
+  --ink-2:      #3A0F2F;
+  --ink-dim:    #5D5650;
+  --ink-faint:  #8A8076;
 
-  --blue:       #2563EB;
-  --blue-deep:  #1D4ED8;
-  --blue-soft:  #BCD3EE;
-  --gold:       #C99A2E;
-  --burgundy:   #6F2A2F;
+  --blue:       #26428B;
+  --blue-deep:  #1C3270;
+  --blue-soft:  #C9D3EA;
+  --gold:       #E9A23B;
+  --burgundy:   #5B1A4A;
+  --purple:     #5B1A4A;
+  --cta:        #D9381E;
+  --teal:       #6FB7C2;
 }
 
 html, body {
   background: var(--sky);
   color: var(--ink);
-  font-family: "Cormorant Garamond", "EB Garamond", "Garamond", Georgia, serif;
-  font-feature-settings: "kern", "liga", "calt", "onum";
+  font-family: Nunito, "Noto Sans", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 * { box-sizing: border-box; }
 
-.font-mono   { font-family: "JetBrains Mono", ui-monospace, monospace; }
-.font-sans   { font-family: "Inter", system-ui, -apple-system, sans-serif; }
-.font-script { font-family: "Cinzel", "Trajan Pro", serif; }
+.font-mono   { font-family: "Space Mono", ui-monospace, monospace; }
+.font-sans   { font-family: Nunito, "Noto Sans", system-ui, sans-serif; }
+.font-script { font-family: Fredoka, Nunito, sans-serif; }
 
 @media (prefers-reduced-motion: no-preference) {
   .fade-in { animation: fadeIn 200ms ease-out; }
@@ -47,8 +49,8 @@ html, body {
 .hero-glow {
   background:
     radial-gradient(ellipse 80% 50% at 50% 0%,
-      rgba(37, 99, 235, 0.10) 0%,
-      rgba(37, 99, 235, 0.04) 40%,
+      rgba(91, 26, 74, 0.10) 0%,
+      rgba(91, 26, 74, 0.04) 40%,
       transparent 70%);
 }
 
@@ -69,8 +71,6 @@ html, body {
 @font-face { font-family: "Latin Modern"; src: url("/fonts/LM-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 @font-face { font-family: "Latin Modern"; src: url("/fonts/LM-bold-italic.woff2") format("woff2"); font-weight: 700; font-style: italic; font-display: swap; }
 
-html, body, .font-sans, p, dd, li, h1, h2 { font-family: "Latin Modern", "Latin Modern Roman", Georgia, serif; }
-h1, h2 { font-weight: 700; }
+h1, h2 { font-family: Fredoka, Nunito, sans-serif; font-weight: 700; color: var(--purple); }
 h1 { letter-spacing: 0 !important; }
-p, dd, li { hyphens: auto; text-align: justify; }
 p.text-center, .text-center p { text-align: center; }
