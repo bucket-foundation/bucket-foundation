@@ -26,7 +26,7 @@ export function Prompt({ q }: { q: Pick<Question, "kind" | "prompt"> }) {
   return (
     <div className={styles.prompt} data-testid="prompt">
       <p className={styles.lead} dir="auto">{v.lead}</p>
-      <p className={styles.word} dir="auto" lang={q.kind === "pick_word" ? q.prompt.home_lang : undefined}>{v.word}</p>
+      <p className={styles.word} dir="auto" lang={q.kind === "pick_word" ? q.prompt.home_lang : q.kind === "translate" ? q.prompt.from : undefined}>{v.word}</p>
       {v.tail ? <p className={styles.tail} dir="auto">{v.tail}</p> : null}
     </div>
   );
@@ -53,7 +53,7 @@ export function Tiles({
     <ul className={`${styles.tiles} ${grid ? styles.grid : ""}`} data-testid="tiles">
       {MARKS.map((mark, i) => {
         const label = optionLabel(q, i);
-        const name = q.kind === "pick_word" ? q.prompt.lang : undefined;
+        const name = q.kind === "pick_word" ? q.prompt.lang : q.kind === "translate" ? q.prompt.to : undefined;
         return (
           <li key={mark.letter}>
             <button

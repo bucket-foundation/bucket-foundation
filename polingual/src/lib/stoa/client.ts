@@ -14,7 +14,7 @@ export type Standing = { player_id: string; nickname: string; points: number };
 export type Question = {
   idx: number;
   round: number;
-  kind: "pick_word" | "which_language";
+  kind: "pick_word" | "which_language" | "translate";
   prompt: Record<string, string>;
   options: string[];
   answer: number | null;
@@ -69,6 +69,7 @@ export type PromptView = { lead: string; word: string; tail: string | null };
 
 export function promptView(q: Pick<Question, "kind" | "prompt">): PromptView {
   if (q.kind === "which_language") return { lead: "Which language is this?", word: q.prompt.word ?? "", tail: null };
+  if (q.kind === "translate") return { lead: `Translate from ${langName(q.prompt.from ?? "")}`, word: q.prompt.word ?? "", tail: `into ${langName(q.prompt.to ?? "")}` };
   return { lead: "Pick the word for", word: q.prompt.home ?? "", tail: `in ${langName(q.prompt.lang ?? "")}` };
 }
 
