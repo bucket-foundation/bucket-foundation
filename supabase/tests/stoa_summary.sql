@@ -31,9 +31,14 @@ begin
 
   res := bucket.live_summary(rid, host);
   assert res ->> 'code' = 'C5V0K1';
-  assert res -> 'rows' = '[{"nickname":"brave-owl","points":1850,"correct":2},{"nickname":"amber-otter","points":900,"correct":1}]'::jsonb,
+  assert res ->> 'mode' = 'open_floor' and not (res ? 'phase');
+  assert res -> 'rows' = '[{"nickname":"brave-owl","team":null,"points":1850,"correct":2},{"nickname":"amber-otter","team":null,"points":900,"correct":1}]'::jsonb,
     'rows rank by points and hold nickname, points and right answers only';
   assert not (res::text ~ '[0-9a-f]{8}-[0-9a-f]{4}-'), 'no player or room id leaves in the summary';
+
+  update bucket.live_rooms set mode = 'chorus' where id = rid;
+  update bucket.live_players set team_slot = 1 where id = ps[2];
+  assert bucket.live_summary(rid, host) -> 'rows' -> 0 ->> 'team' = '1', 'a Chorus room reports each player team';
 
   begin
     perform bucket.live_summary(rid, other);

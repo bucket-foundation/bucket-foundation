@@ -302,13 +302,17 @@ export async function playerAction(roomId: string, playerId: string, action: str
   return { status: 200, body: { ok: true, token_version: res.token_version } };
 }
 
-export type SummaryRow = { nickname: string; points: number; correct: number };
+export type SummaryRow = { nickname: string; team?: number | null; points: number; correct: number };
+export const TEAM_NAMES = ["Lapis", "Vermilion", "Malachite", "Ochre"] as const;
 
-export function summaryCsv(rows: SummaryRow[]): string {
-  const lines = ["rank,nickname,points,correct"];
+export function summaryCsv(rows: SummaryRow[], chorus = false): string {
+  const lines = [chorus ? "rank,nickname,team,points,correct" : "rank,nickname,points,correct"];
+  const points = rows.map((r) => Math.trunc(Number(r.points) || 0));
   rows.forEach((r, i) => {
     const name = /^[a-z]+-[a-z]+$/.test(r.nickname) ? r.nickname : "";
-    lines.push(`${i + 1},${name},${Math.trunc(Number(r.points) || 0)},${Math.trunc(Number(r.correct) || 0)}`);
+    const rank = points.filter((p) => p > points[i]).length + 1;
+    const team = chorus ? [TEAM_NAMES[r.team ?? -1] ?? ""] : [];
+    lines.push([rank, name, ...team, points[i], Math.trunc(Number(r.correct) || 0)].join(","));
   });
   return lines.join("\r\n") + "\r\n";
 }
@@ -318,9 +322,9 @@ export async function roomSummary(roomId: string, authorization: string | null, 
   if ("status" in c) return c;
   const r = await deps.rpc("live_summary", { p_room: c.rid, p_host: c.uid });
   if ("error" in r) return fail(r.error);
-  const res = r.data as { code: string; rows: SummaryRow[]; error?: string };
+  const res = r.data as { code: string; mode?: string; rows: SummaryRow[]; error?: string };
   if (res.error) return fail(res.error);
-  return { status: 200, body: { code: res.code, csv: summaryCsv(res.rows ?? []) } };
+  return { status: 200, body: { code: res.code, csv: summaryCsv(res.rows ?? [], res.mode === "chorus") } };
 }
 
 export function sweepAllowed(authorization: string | null, env: StoaEnv): boolean {

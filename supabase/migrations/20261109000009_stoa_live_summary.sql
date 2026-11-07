@@ -15,14 +15,14 @@ begin
   end if;
   return jsonb_build_object(
     'code', r.code,
-    'phase', r.phase,
+    'mode', r.mode,
     'rows', (
-      select coalesce(jsonb_agg(jsonb_build_object('nickname', t.nickname_key, 'points', t.total, 'correct', t.correct) order by t.total desc, t.nickname_key), '[]'::jsonb)
+      select coalesce(jsonb_agg(jsonb_build_object('nickname', t.nickname_key, 'team', t.team_slot, 'points', t.total, 'correct', t.correct) order by t.total desc, t.nickname_key), '[]'::jsonb)
       from (
-        select p.nickname_key, coalesce(sum(s.points + s.bonus), 0)::integer as total, count(*) filter (where s.correct)::integer as correct
+        select p.nickname_key, p.team_slot, coalesce(sum(s.points + s.bonus), 0)::integer as total, count(*) filter (where s.correct)::integer as correct
         from bucket.live_players p left join bucket.live_scores s on s.player_id = p.id
         where p.room_id = p_room and not p.removed
-        group by p.id, p.nickname_key
+        group by p.id, p.nickname_key, p.team_slot
       ) t
     )
   );
