@@ -301,6 +301,18 @@ test("sweep ticks at most 5 rooms at a time and stops starting work after its bu
   assert.ok((r.body.ticked as number) < 20, `ticked ${r.body.ticked}`);
 });
 
+test("room creation passes School mode to the database", async () => {
+  const seen: Record<string, unknown>[] = [];
+  const d = deps(async (_fn, args) => {
+    seen.push(args.p_settings as Record<string, unknown>);
+    return { data: { room_id: args.p_id, code: args.p_code, topic: TOPIC, expires_at: EXP, verify_key: args.p_verify_key } };
+  });
+  await createRoom("Bearer good-session", { settings: { targets: ["es"] }, school_mode: true }, d);
+  await createRoom("Bearer good-session", { settings: { targets: ["es"] } }, d);
+  await createRoom("Bearer good-session", { settings: { targets: ["es"] }, school_mode: "yes" }, d);
+  assert.deepEqual(seen.map((s) => s.school_mode), [true, false, false]);
+});
+
 test("after a rotation the last event goes out on the old and the new topic", async () => {
   const sent: Sent[] = [];
   const old = randomUUID();
@@ -314,13 +326,12 @@ test("after a rotation the last event goes out on the old and the new topic", as
   assert.equal(v.ok && v.type, "rotate");
 });
 
-test("the client IP comes from x-real-ip, then the first X-Forwarded-For hop", () => {
+test("the client IP comes only from x-real-ip, which Vercel sets and overwrites", () => {
   const h = (o: Record<string, string>) => new Headers(o);
-  assert.equal(clientIpFrom(h({ "x-real-ip": "203.0.113.7", "x-forwarded-for": "6.6.6.6, 203.0.113.7" })), "203.0.113.7", "a spoofed forwarded-for loses to x-real-ip");
-  assert.equal(clientIpFrom(h({ "x-forwarded-for": " 198.51.100.4 , 10.0.0.1" })), "198.51.100.4");
-  assert.equal(clientIpFrom(h({ "x-forwarded-for": "2001:db8::1" })), "2001:db8::1");
-  assert.equal(clientIpFrom(h({ "x-real-ip": "not an ip", "x-forwarded-for": "198.51.100.9" })), "198.51.100.9", "a junk x-real-ip falls through");
-  assert.equal(clientIpFrom(h({ "x-forwarded-for": "<script>, 1.2.3.4" })), null, "a junk first hop is not trusted");
+  assert.equal(clientIpFrom(h({ "x-real-ip": "203.0.113.7", "x-forwarded-for": "6.6.6.6, 203.0.113.7" })), "203.0.113.7", "a spoofed forwarded-for is ignored");
+  assert.equal(clientIpFrom(h({ "x-real-ip": " 2001:db8::1 " })), "2001:db8::1");
+  assert.equal(clientIpFrom(h({ "x-forwarded-for": "198.51.100.4" })), null, "forwarded-for alone is never trusted");
+  assert.equal(clientIpFrom(h({ "x-real-ip": "not an ip" })), null);
   assert.equal(clientIpFrom(h({})), null);
   assert.notEqual(ipKey("203.0.113.7"), ipKey(null));
 });

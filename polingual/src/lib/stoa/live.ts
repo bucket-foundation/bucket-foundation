@@ -31,9 +31,7 @@ const IP = /^[0-9a-fA-F:.]{2,45}$/;
 
 export function clientIpFrom(headers: { get(name: string): string | null }): string | null {
   const real = headers.get("x-real-ip")?.trim();
-  if (real && IP.test(real)) return real;
-  const first = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return first && IP.test(first) ? first : null;
+  return real && IP.test(real) ? real : null;
 }
 
 export function ipKey(ip: string | null): string {
@@ -163,7 +161,7 @@ export async function createRoom(authorization: string | null, body: unknown, de
     const roomId = randomUUID();
     const keys = createRoomKeys(roomId, deps.env);
     const r = await deps.rpc("live_create_room", {
-      p_id: roomId, p_host: uid, p_code: newCode(random), p_product: "polingual", p_settings: settings, p_seed: seed,
+      p_id: roomId, p_host: uid, p_code: newCode(random), p_product: "polingual", p_settings: { ...settings, school_mode: b.school_mode === true }, p_seed: seed,
       p_sign_key: keys.signKey, p_verify_key: keys.verifyKey, p_questions: questions,
     });
     if ("error" in r) {

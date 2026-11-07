@@ -8,27 +8,31 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test src/lib/word-i18n.test.tsx src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/landing-words.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts src/lib/speak.test.tsx src/lib/tile.test.tsx src/lib/stoa/*.test.ts scripts/indexnow.test.mjs scripts/build_words.test.mjs",
+    "test": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test src/lib/word-i18n.test.tsx src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/landing-words.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts src/lib/speak.test.tsx src/lib/tile.test.tsx src/lib/stoa/*.test.ts src/lib/stoa/*.test.tsx scripts/indexnow.test.mjs scripts/build_words.test.mjs",
     "words": "node scripts/build_words.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "test:db": "bash db/test-founding.sh",
     "test:live-db": "bash db/test-live.sh",
-    "test:live-local": "bash db/test-live-local.sh"
+    "test:live-local": "bash db/test-live-local.sh",
+    "test:live-e2e": "bash db/test-live-e2e.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
     "katex": "^0.19.0",
     "next": "^15.0.0",
+    "qrcode-generator": "1.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4.0.0",
+    "@types/jsdom": "21.1.7",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.20",
+    "jsdom": "25.0.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0"
