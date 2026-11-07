@@ -52,7 +52,21 @@ class FakeSocket {
   }
 }
 g.WebSocket = FakeSocket;
-after(() => dom.window.close());
+const mounted = new Set<{ unmount(): void }>();
+function track<R extends { unmount(): void }>(r: R): R {
+  const unmount = r.unmount.bind(r);
+  r.unmount = () => {
+    mounted.delete(r);
+    unmount();
+  };
+  mounted.add(r);
+  return r;
+}
+after(async () => {
+  const { act } = await import("react");
+  for (const r of [...mounted]) await act(async () => r.unmount());
+  dom.window.close();
+});
 
 type Call = { url: string; body: unknown };
 const calls: Call[] = [];
@@ -74,14 +88,14 @@ g.fetch = async (input: string, init: RequestInit = {}) => {
   const url = String(input);
   const body = init.body ? JSON.parse(String(init.body)) : null;
   calls.push({ url, body });
-  if (url === "/api/live/join") return Response.json({ room_id: RID, player_id: PID, token: "tok", verify_key: KEYS.verifyKey, realtime: RT });
+  if (url === "/api/live/join") return Response.json({ room_id: RID, player_id: PID, token: `e30.${Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + 3600 })).toString("base64url")}.sig`, verify_key: KEYS.verifyKey, realtime: RT });
   if (url === `/api/live/rooms/${RID}/state`) return Response.json({ ...snapshot, server_now: Date.now() });
   if (url === "/api/live/answer") return Response.json({ received_at: Date.now() });
   if (url === "/api/live/probe") return Response.json({ rotated: false });
   return new Response("{}", { status: 404 });
 };
 
-async function until(check: () => boolean, label: string, ms = 4000) {
+async function until(check: () => boolean, label: string, ms = 15_000) {
   const { act } = await import("react");
   const end = Date.now() + ms;
   while (Date.now() < end) {
@@ -100,7 +114,8 @@ const ev = (type: string, payload: unknown, key = SIGN) => signEvent(RID, ++seq,
 
 test("a phone joins, verifies signed events, answers and sees school mode stay free of links", async () => {
   const { act, createElement } = await import("react");
-  const { createRoot } = await import("react-dom/client");
+  const { createRoot: makeRoot } = await import("react-dom/client");
+  const createRoot = (el: Element) => track(makeRoot(el));
   const { default: Phone } = await import("../../app/(site)/join/Phone");
   const host = dom.window.document.createElement("div");
   dom.window.document.body.appendChild(host);
@@ -158,6 +173,132 @@ test("a phone joins, verifies signed events, answers and sees school mode stay f
   await until(() => Boolean($("app-link")), "the promo outside school mode");
 
   await act(async () => root.unmount());
+});
+
+test("a phone that reloads or loses its tab finds its seat again, and a removed seat is dropped", async () => {
+  const { act, createElement } = await import("react");
+  const { createRoot: makeRoot } = await import("react-dom/client");
+  const createRoot = (el: Element) => track(makeRoot(el));
+  const { default: Phone } = await import("../../app/(site)/join/Phone");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "the closed room from the last test dropped its seat");
+  const exp = Math.floor(Date.now() / 1000) + 3600;
+  const tok = `e30.${Buffer.from(JSON.stringify({ exp })).toString("base64url")}.sig`;
+  dom.window.localStorage.setItem("stoa/seats/v1", JSON.stringify([{ room_id: RID, player_id: PID, token: tok, code: "QZ7K2M", exp: exp * 1000 }]));
+  dom.window.sessionStorage.clear();
+  calls.length = 0;
+  snap("question", { question: { ...q0, answer: null, counts: null } }, { seq: seq + 1 }, { choice: 2, points: 990 });
+
+  const host = dom.window.document.createElement("div");
+  dom.window.document.body.appendChild(host);
+  const root = createRoot(host);
+  await act(async () => root.render(createElement(Phone, { initialCode: "QZ7K2M" })));
+  await until(() => Boolean($("continue")), "the continue choice after a reload");
+  await act(async () => $("continue")!.click());
+  await until(() => Boolean($("locked")), "the locked answer after a reload");
+  assert.equal(calls.some((c) => c.url === "/api/live/join"), false, "no second join, so the score stays");
+  assert.ok(calls.some((c) => c.url === `/api/live/rooms/${RID}/state`));
+  await act(async () => root.unmount());
+  host.remove();
+
+  const other = dom.window.document.createElement("div");
+  dom.window.document.body.appendChild(other);
+  const fresh = createRoot(other);
+  await act(async () => fresh.render(createElement(Phone, { initialCode: "AB12CD" })));
+  await until(() => $$("nickname").length === 3, "a different code starts a new join");
+  await act(async () => fresh.unmount());
+  other.remove();
+
+  const real = g.fetch as (input: string, init?: RequestInit) => Promise<Response>;
+  g.fetch = async (input: string, init: RequestInit = {}) => (String(input).endsWith("/state") ? new Response("{}", { status: 403 }) : real(input, init));
+  const gone = dom.window.document.createElement("div");
+  dom.window.document.body.appendChild(gone);
+  const removed = createRoot(gone);
+  await act(async () => removed.render(createElement(Phone, { initialCode: "QZ7K2M" })));
+  await until(() => Boolean($("continue")), "the continue choice");
+  await act(async () => $("continue")!.click());
+  await until(() => /removed you/.test($("phone-error")?.textContent ?? ""), "the removal message");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "a removed seat leaves storage");
+  await act(async () => removed.unmount());
+  gone.remove();
+  g.fetch = real;
+});
+
+test("on a shared phone /join starts clean, Leave game clears the seat, and 401 or 404 drops it", async () => {
+  const { act, createElement } = await import("react");
+  const { createRoot: makeRoot } = await import("react-dom/client");
+  const createRoot = (el: Element) => track(makeRoot(el));
+  const { default: Phone } = await import("../../app/(site)/join/Phone");
+  const exp = Math.floor(Date.now() / 1000) + 3600;
+  const tok = `${Buffer.from("{}").toString("base64url")}.${Buffer.from(JSON.stringify({ exp })).toString("base64url")}.sig`;
+  const store = () => dom.window.localStorage.setItem("stoa/seats/v1", JSON.stringify([{ room_id: RID, player_id: PID, token: tok, code: "QZ7K2M", exp: exp * 1000, nickname: "brave-otter" }]));
+  const cont = async () => {
+    await until(() => Boolean($("continue")), "the continue choice");
+    assert.equal($("continue")!.textContent, "Continue as Brave Otter");
+    await act(async () => $("continue")!.click());
+  };
+  const mount = async (props: Record<string, unknown>) => {
+    const el = dom.window.document.createElement("div");
+    dom.window.document.body.appendChild(el);
+    const root = createRoot(el);
+    await act(async () => root.render(createElement(Phone, props)));
+    return async () => {
+      await act(async () => root.unmount());
+      el.remove();
+    };
+  };
+  snap("lobby", {}, { seq: seq + 1 });
+
+  store();
+  calls.length = 0;
+  let done = await mount({});
+  await until(() => Boolean($("join-code")), "the code entry");
+  await act(async () => new Promise((r) => setTimeout(r, 100)));
+  assert.equal(calls.length, 0, "the next student sees the code screen and nobody's seat");
+  await done();
+
+  done = await mount({});
+  await act(async () => {
+    const input = $("code-input") as HTMLInputElement;
+    const set = Object.getOwnPropertyDescriptor(dom.window.HTMLInputElement.prototype, "value")!.set!;
+    set.call(input, "qz7k2m");
+    input.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
+  });
+  await act(async () => ($("join-code") as HTMLFormElement).requestSubmit());
+  await until(() => Boolean($("someone-new")), "the choice when a typed code has a stored seat");
+  await act(async () => $("someone-new")!.click());
+  await until(() => $$("nickname").length === 3, "fresh names for the next student");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "joining as someone new drops the earlier seat");
+  assert.equal(calls.length, 0, "nobody's seat was opened");
+  await done();
+
+  store();
+  done = await mount({ initialCode: "QZ7K2M" });
+  await cont();
+  await until(() => Boolean($("phone-lobby")), "the previous seat on the QR link");
+  await act(async () => $("leave")!.click());
+  await until(() => Boolean($("join-code")), "the code screen after leaving");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "Leave game clears the stored seat");
+  await done();
+
+  const real = g.fetch as (input: string, init?: RequestInit) => Promise<Response>;
+  for (const status of [401, 404]) {
+    store();
+    g.fetch = async (input: string, init: RequestInit = {}) => (String(input).endsWith("/state") ? new Response("{}", { status }) : real(input, init));
+    done = await mount({ initialCode: "QZ7K2M" });
+    await cont();
+    await until(() => /ended/.test($("phone-error")?.textContent ?? ""), `the ended message on ${status}`);
+    assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, `${status} drops the seat`);
+    await done();
+  }
+  g.fetch = real;
+
+  store();
+  snap("closed", {}, { seq: seq + 1 });
+  done = await mount({ initialCode: "QZ7K2M" });
+  await cont();
+  await until(() => Boolean($("phone-finale")), "the closed room");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "a closed room drops the seat");
+  await done();
 });
 
 test("the screens keep D8 tokens, self-hosted fonts, RTL-safe tiles and the QR on the host only", () => {

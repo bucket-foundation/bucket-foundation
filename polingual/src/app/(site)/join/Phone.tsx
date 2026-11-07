@@ -3,15 +3,13 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { clockOffset, displayNickname, joinError, normalizeCode, rank, secondsLeft, type Snapshot } from "@/lib/stoa/client";
 import { nicknameChoices } from "@/lib/stoa/nicknames";
+import { dropSeat, findSeat, keepSeat, seatStore, type Seat } from "@/lib/stoa/seat";
 import { LiveSocket, type SocketStatus } from "@/lib/stoa/socket";
 import { verifyEvent } from "@/lib/stoa/verify";
 import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "../live/parts";
 import styles from "../live/stoa.module.css";
 
-const KEY = "stoa/player/v1";
 const APP_URL = "https://apps.apple.com/app/id6825177856";
-
-type Seat = { room_id: string; player_id: string; token: string };
 
 export function announce(left: number | null, paused: boolean): string {
   if (paused) return "Paused.";
@@ -21,21 +19,8 @@ export function announce(left: number | null, paused: boolean): string {
   return "";
 }
 
-function loadSeat(): Seat | null {
-  try {
-    const raw = sessionStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as Seat) : null;
-  } catch {
-    return null;
-  }
-}
-
-function saveSeat(s: Seat | null): void {
-  try {
-    if (s) sessionStorage.setItem(KEY, JSON.stringify(s));
-    else sessionStorage.removeItem(KEY);
-  } catch {
-  }
+function saveSeat(s: Omit<Seat, "exp">): Seat {
+  return keepSeat(seatStore(), s, Date.now());
 }
 
 export default function Phone({ initialCode }: { initialCode?: string }) {
@@ -43,6 +28,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const [ready, setReady] = useState(false);
   const [code, setCode] = useState(normalizeCode(initialCode ?? ""));
   const [names, setNames] = useState<string[]>([]);
+  const [back, setBack] = useState<Seat | null>(null);
   const [step, setStep] = useState<"code" | "name">(initialCode && normalizeCode(initialCode).length === 6 ? "name" : "code");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -56,14 +42,11 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const samples = useRef<{ sent_at: number; received_at: number }[]>([]);
   const lastFail = useRef(0);
   const seatRef = useRef<Seat | null>(null);
+  const alive = useRef(true);
 
   useEffect(() => {
     setNames(nicknameChoices(Math.random));
-    const s = loadSeat();
-    if (s) {
-      seatRef.current = s;
-      setSeat(s);
-    }
+    setBack(initialCode ? findSeat(seatStore(), normalizeCode(initialCode), Date.now()) : null);
     setReady(true);
   }, []);
 
@@ -75,7 +58,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const leave = useCallback((message?: string) => {
     socket.current?.stop();
     socket.current = null;
-    saveSeat(null);
+    if (seatRef.current) dropSeat(seatStore(), seatRef.current.room_id, Date.now());
     seatRef.current = null;
     setSeat(null);
     setSnap(null);
@@ -93,17 +76,19 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     } catch {
       return;
     }
+    if (!alive.current) return;
     if (r.status === 401 || r.status === 403 || r.status === 404) return leave(r.status === 403 ? "The host removed you from this room." : "That room has ended.");
     if (!r.ok) return;
     const body = (await r.json()) as Snapshot;
+    if (!alive.current || seatRef.current?.room_id !== s.room_id) return;
     offset.current = clockOffset(sent, Date.now(), body.server_now);
     if (body.token) {
-      const next = { ...s, token: body.token };
+      const next = saveSeat({ ...s, token: body.token });
       seatRef.current = next;
-      saveSeat(next);
       setSeat(next);
     }
     seq.current = Math.max(seq.current, body.room.seq);
+    if (body.room.phase === "closed") dropSeat(seatStore(), s.room_id, Date.now());
     setSnap(body);
     if (!socket.current) {
       socket.current = new LiveSocket(body.realtime, (p) => void onEvent.current(p), setStatus);
@@ -166,7 +151,14 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     return () => clearInterval(t);
   }, [seat, status, fetchState]);
 
-  useEffect(() => () => socket.current?.stop(), []);
+  useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+      socket.current?.stop();
+      socket.current = null;
+    };
+  }, []);
 
   async function join(nickname: string) {
     setBusy(true);
@@ -180,8 +172,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
         if (body.error === "no_room" || body.error === "code") setStep("code");
         return;
       }
-      const s = { room_id: body.room_id, player_id: body.player_id, token: body.token };
-      saveSeat(s);
+      const s = saveSeat({ room_id: body.room_id, player_id: body.player_id, token: body.token, code, nickname });
       seatRef.current = s;
       seq.current = 0;
       samples.current = [];
@@ -211,12 +202,39 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     e.preventDefault();
     if (code.length !== 6) return setError(joinError("code"));
     setError(null);
+    setBack(findSeat(seatStore(), code, Date.now()));
+    setStep("name");
+  }
+
+  function resume(s: Seat) {
+    setBack(null);
+    seatRef.current = s;
+    seq.current = 0;
+    samples.current = [];
+    setSeat(s);
+  }
+
+  function fresh(s: Seat) {
+    dropSeat(seatStore(), s.room_id, Date.now());
+    setBack(null);
     setStep("name");
   }
 
   const body = (() => {
     if (!ready) return null;
     if (!seat) {
+      if (back && step === "name")
+        return (
+          <section className={styles.card} data-testid="join-back">
+            <p className={styles.label}>Room {back.code}</p>
+            <h1 className={styles.title}>Welcome back</h1>
+            <p className={styles.body}>This phone already has a seat in this room.</p>
+            <button type="button" className={styles.cta} onClick={() => resume(back)} data-testid="continue">
+              {back.nickname ? `Continue as ${displayNickname(back.nickname)}` : "Continue with my seat"}
+            </button>
+            <button type="button" className={styles.ghost} onClick={() => fresh(back)} data-testid="someone-new">Join as someone new</button>
+          </section>
+        );
       if (step === "code")
         return (
           <form className={styles.card} onSubmit={submitCode} data-testid="join-code">
@@ -317,6 +335,9 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
       </header>
       <main className={`${styles.main} ${styles.phone}`} data-testid="phone">
         {body}
+        {seat ? (
+          <button type="button" className={styles.ghost} onClick={() => leave()} data-testid="leave">Leave game</button>
+        ) : null}
         {error ? <p role="alert" className={styles.error} data-testid="phone-error">{error}</p> : null}
       </main>
     </div>
