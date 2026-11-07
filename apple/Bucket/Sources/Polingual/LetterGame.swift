@@ -64,11 +64,12 @@ struct LetterInWord: View {
     let shown: Bool
     var tint: Color = D8.vermilion
     var size: CGFloat = 46
+    var ink: Color = Palette.ink
 
     var body: some View {
         Text(attributed)
             .font(D8.word(size))
-            .foregroundStyle(Palette.ink)
+            .foregroundStyle(ink)
             .lineLimit(1)
             .minimumScaleFactor(0.4)
             .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
@@ -248,7 +249,7 @@ struct LetterMeet: View {
                     Text(reading).font(D8.word(sideways ? 32 : 40)).foregroundStyle(D8.vermilion)
                     Text(sound.example == ex.answer ? card.meaning : "\(sound.example) \(card.meaning)").font(D8.word(sideways ? 20 : 26)).foregroundStyle(D8.ink)
                 } else {
-                    LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 32 : 40)
+                    LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 32 : 40, ink: D8.ink)
                     Text(card.meaning).font(D8.word(sideways ? 20 : 26)).foregroundStyle(D8.ink)
                 }
                 Spacer(minLength: 0)
