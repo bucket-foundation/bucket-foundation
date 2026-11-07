@@ -23,6 +23,20 @@ begin
   exception when check_violation then
     null;
   end;
+  begin
+    perform bucket.live_create_room(gen_random_uuid(), host, 'TRAN5A', 'polingual', '{"rounds": 1, "per_round": 1}', 1, 'v1.' || repeat('x', 40), repeat('A', 43),
+      jsonb_set(qs, '{0,prompt}', '{"word":"ocho"}'));
+    assert false, 'a Translate prompt needs word, from and to';
+  exception when check_violation then
+    null;
+  end;
+  begin
+    perform bucket.live_create_room(gen_random_uuid(), host, 'TRAN5B', 'polingual', '{"rounds": 1, "per_round": 1}', 1, 'v1.' || repeat('x', 40), repeat('A', 43),
+      jsonb_set(qs, '{0,prompt}', '{"word":"ocho","from":"es","to":"es"}'));
+    assert false, 'a Translate prompt goes between two languages';
+  exception when check_violation then
+    null;
+  end;
 end $$;
 
 \echo 'stoa_translate.sql: all checks pass'

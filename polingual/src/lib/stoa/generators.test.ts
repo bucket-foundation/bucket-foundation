@@ -233,3 +233,17 @@ test("translate goes into another target, or into the home language when the hos
   }
   assert.equal(translateInto("ja", parseSettings({ home: "en", targets: ["ja"] })!, seeded(1)), "en");
 });
+
+test("200 seeds never put a Translate answer in its prompt", () => {
+  const many = parseSettings({ home: "en", targets: ["es", "fr", "it", "de", "ru", "ja", "ar", "pt"] })!;
+  let seen = 0;
+  for (let seed = 1; seed <= 200; seed++) {
+    for (const q of buildRoomSet(seed * 104729, many)!.filter((x) => x.kind === "translate")) {
+      const opts = new Set(q.options.map(fold));
+      assert.equal(strings(q.prompt).find((x) => opts.has(fold(x))), undefined, `seed ${seed} q${q.idx}`);
+      assert.notEqual(q.prompt.from, q.prompt.to);
+      seen++;
+    }
+  }
+  assert.equal(seen, 600);
+});
