@@ -42,6 +42,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const samples = useRef<{ sent_at: number; received_at: number }[]>([]);
   const lastFail = useRef(0);
   const seatRef = useRef<Seat | null>(null);
+  const alive = useRef(true);
 
   useEffect(() => {
     setNames(nicknameChoices(Math.random));
@@ -75,9 +76,11 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     } catch {
       return;
     }
+    if (!alive.current) return;
     if (r.status === 401 || r.status === 403 || r.status === 404) return leave(r.status === 403 ? "The host removed you from this room." : "That room has ended.");
     if (!r.ok) return;
     const body = (await r.json()) as Snapshot;
+    if (!alive.current || seatRef.current?.room_id !== s.room_id) return;
     offset.current = clockOffset(sent, Date.now(), body.server_now);
     if (body.token) {
       const next = saveSeat({ ...s, token: body.token });
@@ -148,7 +151,14 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     return () => clearInterval(t);
   }, [seat, status, fetchState]);
 
-  useEffect(() => () => socket.current?.stop(), []);
+  useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+      socket.current?.stop();
+      socket.current = null;
+    };
+  }, []);
 
   async function join(nickname: string) {
     setBusy(true);
