@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
 import { createRoomKeys, hostToken, playerToken, readToken, type PlayerClaims } from "./keys";
-import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
+import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, netKey, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
 import { isNickname, nicknameChoices } from "./nicknames";
 import { parseSettings } from "./questions";
 import { verifyEvent } from "./verify";
@@ -227,16 +227,26 @@ test("probe grace is the median delay, capped at 1000 ms", () => {
 test("probe reports grace and verify failures", async () => {
   const d = deps(async (fn, args) => {
     assert.equal(fn, "live_probe");
-    assert.deepEqual(args, { p_room: RID, p_player: PID, p_tv: 1, p_grace: 200, p_failed: true });
+    assert.deepEqual(args, { p_room: RID, p_player: PID, p_tv: 1, p_grace: 200, p_failed: true, p_net: netKey(RID, "203.0.113.9") });
     return wrap({ rotated: true });
   });
   const samples = [150, 200, 250].map((x) => ({ sent_at: NOW, received_at: NOW + x }));
-  assert.deepEqual(await submitProbe(player(), { samples, failed: true }, d), { status: 200, body: { rotated: true } });
+  assert.deepEqual(await submitProbe(player(), { samples, failed: true }, d, "203.0.113.9"), { status: 200, body: { rotated: true } });
   const quiet = deps(async (_fn, args) => {
     assert.equal(args.p_failed, false, "a failure count from the client is ignored");
     return wrap({ rotated: false });
   });
   await submitProbe(player(), { failures: 900 }, quiet);
+});
+
+test("the report network key is per room and hides the address", () => {
+  const a = netKey(RID, "203.0.113.9");
+  assert.match(a, /^[0-9a-f]{32}$/);
+  assert.equal(a, netKey(RID, "203.0.113.9"), "one network reports as one");
+  assert.notEqual(a, netKey(randomUUID(), "203.0.113.9"), "the key does not link rooms");
+  assert.notEqual(a, netKey(RID, "203.0.113.10"));
+  assert.ok(!a.includes("203"));
+  assert.equal(netKey(RID, null), netKey(RID, ""), "unknown addresses share one network");
 });
 
 test("host controls need the host token for that room", async () => {

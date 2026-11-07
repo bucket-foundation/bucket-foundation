@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { liveDeps, preflight, readJson, reply } from "@/lib/stoa/http";
+import { clientIp, liveDeps, preflight, readJson, reply } from "@/lib/stoa/http";
 import { submitProbe } from "@/lib/stoa/live";
 
 export const runtime = "nodejs";
@@ -10,5 +10,5 @@ export function OPTIONS(req: NextRequest): NextResponse {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  return reply(req, await submitProbe(req.headers.get("authorization"), await readJson(req), liveDeps()));
+  return reply(req, await submitProbe(req.headers.get("authorization"), await readJson(req), liveDeps(), clientIp(req)));
 }
