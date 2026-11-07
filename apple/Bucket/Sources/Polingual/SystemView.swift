@@ -103,7 +103,7 @@ struct SystemView: View {
                             Spacer()
                             Text("\(p.started)/\(p.total) started").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                             if p.mastered > 0 {
-                                ShareObjectButton(.mastered(lang: p.lang, count: Int(p.mastered), root: system.root), .language(p.lang, root: system.root))
+                                ShareObjectButton(.mastered(lang: p.lang, count: Int(p.mastered), root: system.root, words: masteredWords(system, corpus, state, lang: p.lang)), .language(p.lang, root: system.root))
                             } else {
                                 ShareObjectButton(.language(p.lang, root: system.root))
                             }

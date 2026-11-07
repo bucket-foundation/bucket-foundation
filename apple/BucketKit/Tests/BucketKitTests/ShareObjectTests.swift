@@ -176,3 +176,29 @@ private let standings = ShareStandings(group: "Rossi family", rows: [
         #expect(o.route.url.absoluteString.count < 400)
     }
 }
+
+@Test func masteredSharesListTheirWordsFirst() {
+    let words = [MasteredWord(form: "noche", meaning: "night"), MasteredWord(form: "agua", meaning: "water")]
+    #expect(ShareObject.mastered(lang: "es", count: 2, root: "en", words: words).styles == [.list, .number, .banner])
+    #expect(ShareObject.mastered(lang: "es", count: 2, root: "en").styles == [.number, .banner])
+    #expect(ShareObject.mastered(lang: "es", count: 2, root: "en", words: words).route == ShareObject.mastered(lang: "es", count: 2, root: "en").route)
+}
+
+@Test func masteredWordsMatchTheMasteredCount() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+    let items = Array(corpus.items.filter { isVocab($0) && usable($0, "en", "es") }.prefix(12))
+    let day = 86_400_000.0
+    var now = 1_800_000_000_000.0
+    var state = EngineState()
+    for round in 0..<8 {
+        for (k, i) in items.enumerated() where k < 6 || round == 0 { state = gradeCard(state, "es", i.id, 4, now: now) }
+        now += day * Double(1 << round)
+    }
+    let words = masteredWords(system, corpus, state, lang: "es")
+    let progress = try #require(langProgress(system, corpus, state, now: now).first)
+    #expect(!words.isEmpty)
+    #expect(words.count == progress.mastered)
+    let forms = Set(items.compactMap { $0.form("es") })
+    #expect(words.allSatisfy { forms.contains($0.form) && !$0.meaning.isEmpty })
+}
