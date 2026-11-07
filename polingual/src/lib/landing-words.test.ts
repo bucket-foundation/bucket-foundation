@@ -23,7 +23,7 @@ const parsed = new Map(
     return [file, {
       html,
       header: anchors(blocks(html, /<header class="hd">/, "header")[0]?.body ?? ""),
-      dkFooter: anchors(blocks(html, /<nav class="fl2">/, "nav")[0]?.body ?? ""),
+      footers: [...blocks(html, /<footer class="ft">/, "footer"), ...blocks(html, /<nav class="fl2">/, "nav")].map((b) => anchors(b.body)),
       appTop: anchors(blocks(html, /<div id="app">/, "h1")[0]?.body ?? "").find((a) => a.attrs.class === "wtop"),
       browse: blocks(html, /<p class="hw"[^>]*>/, "p").map((b) => ({ dir: b.attrs.dir, links: anchors(b.body) })),
     }];
@@ -38,12 +38,12 @@ test("the landing ships in 25 languages", () => {
 for (const { code, file, base } of pages) {
   const p = parsed.get(file)!;
 
-  test(`${file} headers and footer link Words to ${base}/word`, () => {
+  test(`${file} headers link Words to ${base}/word and footers do not`, () => {
     const wl = p.header.find((a) => a.attrs["data-slot"] === "words");
     assert.equal(wl?.attrs.href, `${base}/word`);
-    assert.equal(p.dkFooter[0]?.attrs.href, `${base}/word`);
     assert.equal(p.appTop?.attrs.href, `${base}/word`);
-    assert.equal(p.dkFooter[0]?.text, wl?.text);
+    assert.equal(p.footers.length, 4);
+    for (const links of p.footers) assert.ok(!links.some((a) => a.attrs.href === `${base}/word` || a.text === wl?.text), `${file} footer links Words`);
     assert.equal(p.appTop?.text, wl?.text);
     if (code !== "en") assert.notEqual(wl?.text, "Words", `${file} label untranslated`);
   });
