@@ -18,7 +18,7 @@ struct ShareCardTests {
         .word(id: "night", gloss: "night", forms: forms),
         .tile(form: ShareForm(lang: "es", form: "noche"), gloss: "night", reading: "/ˈno.tʃe/"),
         .tile(form: ShareForm(lang: "de", form: "Donaudampfschifffahrt"), gloss: "Danube steam shipping", reading: nil),
-        .mastered(lang: "es", count: 23, root: "en", words: [("noche", "night"), ("agua", "water"), ("Donaudampfschiff", "Danube steamer"), ("gracias", "thank you"), ("buenos días", "good morning"), ("casa", "house"), ("perro", "dog"), ("libro", "book"), ("ciudad", "city"), ("mañana", "tomorrow"), ("amigo", "friend"), ("comer", "to eat")].map { MasteredWord(form: $0.0, meaning: $0.1) }),
+        .mastered(lang: "es", count: 12, root: "en", words: [("noche", "night"), ("agua", "water"), ("Donaudampfschiff", "Danube steamer"), ("gracias", "thank you"), ("buenos días", "good morning"), ("casa", "house"), ("perro", "dog"), ("libro", "book"), ("ciudad", "city"), ("mañana", "tomorrow"), ("amigo", "friend"), ("comer", "to eat")].map { MasteredWord(form: $0.0, meaning: $0.1) }),
         .mastered(lang: "ja", count: 2, root: "en", words: [MasteredWord(form: "夜", meaning: "night"), MasteredWord(form: "水", meaning: "water")]),
         .score(ShareScore(source: "Match", right: 9, total: 12, langs: ["fr", "es"], root: "en", streak: 37)),
         .content(ShareMoment(title: "Gravity", source: "Spanish Wikipedia", branch: "02", lang: "es", quote: "La gravedad es la fuerza de atracción entre todas las cosas que tienen masa, desde las manzanas hasta las galaxias más lejanas.")),

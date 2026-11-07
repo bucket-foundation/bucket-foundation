@@ -62,17 +62,21 @@ extension LangStore {
         let streak = langStreak(self)
         var out: [ShareObject] = streak > 0 ? [.streak(days: streak, langs: gameLangs, root: root)] : []
         var mastered: [String: Int] = [:]
-        var words: [String: [MasteredWord]] = [:]
+        var best: [String: LangSystem] = [:]
         for s in systems {
             let learned = corpus.map { systemSummary(s, $0, state(s.id), now: now).started } ?? 0
             out.append(.system(name: s.name, root: s.root, targets: s.targets, streak: streak, learned: learned))
             guard let corpus else { continue }
             for p in langProgress(s, corpus, state(s.id), now: now) where Int(p.mastered) > mastered[p.lang] ?? 0 {
                 mastered[p.lang] = Int(p.mastered)
-                words[p.lang] = masteredWords(s, corpus, state(s.id), lang: p.lang)
+                best[p.lang] = s
             }
         }
-        out += mastered.filter { $0.value > 0 }.sorted { $0.value > $1.value }.map { .mastered(lang: $0.key, count: $0.value, root: root, words: words[$0.key] ?? []) }
+        out += mastered.filter { $0.value > 0 }.sorted { $0.value > $1.value }.map { lang, count in
+            var words: [MasteredWord] = []
+            if let s = best[lang], let corpus { words = masteredWords(s, corpus, state(s.id), lang: lang) }
+            return .mastered(lang: lang, count: count, root: root, words: words)
+        }
         out += gameLangs.map { .language($0, root: root) }
         out += gameLangs.map { .flag($0, root: root) }
         return out
