@@ -147,10 +147,10 @@ To file with `source-founder`, one bead per PR.
 ## Child Safety
 
 - **Players.** No account, no email, no typed name, no free text, and no id that outlives the room. Nicknames come from the generated list.
-- **Retention.** Room, player, answer and score rows are deleted 24 hours after the room closes. Rate-limit counters live in memory for one minute.
+- **Retention.** Room, player, answer and score rows are deleted 24 hours after the room closes. Rate-limit counters and report network keys hold a keyed hash of the network address, and the 5 minute purge deletes them within ten minutes.
 - **School mode.** A room setting that removes every promo, paywall link, QR to the app, and TestFlight or App Store call to action from player screens and from the board. Results show nicknames only.
 - **Hosts.** The host signs in with an existing account and accepts the Stoa host terms once: the host is a teacher or another adult, and a school host confirms the school allows the tool.
-- **COPPA.** Stoa collects no personal information from players: no name, contact, photo, location or persistent identifier. A nickname from our list, a room token that expires at close, and answers deleted within a day are what a player leaves behind. Under-13 students can play in a class without parental consent because nothing about them is collected. Duels in P4 need an account and pass the existing age range check, so they stay 13 and over.
+- **COPPA.** Stoa asks players for no name, contact, photo or location. The servers see network addresses and keep them hashed for under ten minutes, only to run rooms and stop abuse, which COPPA treats as support for internal operations. A nickname from our list, a room token that expires at close, and answers deleted within a day are what a player leaves behind. Under-13 students can play in a class without parental consent because nothing about them is collected. Duels in P4 need an account and pass the existing age range check, so they stay 13 and over.
 - **FERPA.** Stoa receives no student names or education records. The teacher's summary pairs nicknames with scores, and only the teacher knows which student held which nickname. The student data page lives at /live/student-data and the host terms at /live/terms. The host accepts the terms with a checkbox before opening a room; the browser remembers the acceptance.
 
 ## Monetization
