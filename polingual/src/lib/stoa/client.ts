@@ -9,6 +9,21 @@ export const MARKS: Mark[] = [
   { letter: "D", pigment: "ochre", glyph: "crescent" },
 ];
 
+export type Team = { slot: 0 | 1 | 2 | 3; name: "Lapis" | "Vermilion" | "Malachite" | "Ochre"; pigment: Mark["pigment"] };
+
+export const TEAMS: Team[] = [
+  { slot: 0, name: "Lapis", pigment: "lapis" },
+  { slot: 1, name: "Vermilion", pigment: "vermilion" },
+  { slot: 2, name: "Malachite", pigment: "malachite" },
+  { slot: 3, name: "Ochre", pigment: "ochre" },
+];
+
+export function team(slot: number | null | undefined): Team | null {
+  return slot == null ? null : TEAMS[slot] ?? null;
+}
+
+export type TeamStanding = { team: number; points: number; unisons: number; members: number };
+
 export type Phase = "lobby" | "question" | "reveal" | "board" | "finale" | "closed";
 export type Standing = { player_id: string; nickname: string; points: number };
 export type Question = {
@@ -25,6 +40,8 @@ export type Snapshot = {
   room: {
     id: string;
     code: string;
+    mode?: "open_floor" | "chorus";
+    teams?: number;
     phase: Phase;
     idx: number;
     seq: number;
@@ -41,10 +58,11 @@ export type Snapshot = {
     players: number;
   };
   standings: Standing[];
+  team_standings?: TeamStanding[];
   question?: Question;
   answered?: number;
-  roster?: { id: string; nickname: string }[];
-  player?: { id: string; nickname: string; removed: boolean; points: number; streak: number; choice: number | null };
+  roster?: { id: string; nickname: string; team_slot?: number | null }[];
+  player?: { id: string; nickname: string; removed: boolean; points: number; streak: number; choice: number | null; team_slot?: number | null };
   realtime: { url: string; key: string; topic: string };
   token?: string;
 };

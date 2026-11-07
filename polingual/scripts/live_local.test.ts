@@ -147,3 +147,31 @@ test("40 players answer at once and every answer is scored", { skip }, async () 
   assert.equal((await roomState(rid, tokens[0], deps)).status, 403);
   assert.equal((await hostAction(rid, "end", hostAuth, deps)).status, 200);
 });
+
+test("a Chorus room balances teams, lets the host move a player, and scores teams by their mean", { skip }, async () => {
+  const room = await createRoom(`Bearer ${await session()}`, { settings: { targets: ["es"] }, mode: "chorus", teams: 2 }, deps);
+  assert.equal(room.status, 200, JSON.stringify(room.body));
+  const rid = String(room.body.room_id);
+  const hostAuth = `Bearer ${room.body.host_token}`;
+  const joined = [];
+  for (const nickname of ["amber-otter", "brave-owl", "calm-fern", "eager-lamp", "gentle-river"]) {
+    const j = await joinRoom({ code: room.body.code, nickname }, "10.1.0.1", deps);
+    assert.equal(j.status, 200, JSON.stringify(j.body));
+    joined.push({ id: String(j.body.player_id), token: `Bearer ${j.body.token}` });
+  }
+  let host = await roomState(rid, hostAuth, deps);
+  const roster = host.body.roster as { id: string; team_slot: number }[];
+  assert.deepEqual(roster.map((p) => p.team_slot), [0, 1, 0, 1, 0], "players alternate teams on join");
+  assert.equal((await playerAction(rid, joined[4].id, "move", hostAuth, { team: 1 }, deps)).status, 200);
+  assert.equal((await playerAction(rid, joined[4].id, "move", hostAuth, { team: 2 }, deps)).status, 400, "a two-team room has no third team");
+  assert.equal((await hostAction(rid, "start", hostAuth, deps)).status, 200);
+  for (const [i, p] of joined.entries()) assert.equal((await submitAnswer(p.token, { idx: 0, choice: i < 2 ? 0 : 3 }, deps)).status, 200);
+  host = await roomState(rid, hostAuth, deps);
+  assert.equal((host.body.room as { phase: string; mode: string }).mode, "chorus");
+  const teams = host.body.team_standings as { team: number; points: number; members: number }[];
+  assert.deepEqual(teams.map((t) => t.members).sort(), [2, 3]);
+  assert.equal(teams.length, 2);
+  const phone = await roomState(rid, joined[0].token, deps);
+  assert.equal((phone.body.player as { team_slot: number }).team_slot, 0);
+  assert.equal((await hostAction(rid, "end", hostAuth, deps)).status, 200);
+});

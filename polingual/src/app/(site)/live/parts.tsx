@@ -1,6 +1,6 @@
 "use client";
 
-import { displayNickname, MARKS, optionLabel, promptView, type Mark, type Question, type Standing } from "@/lib/stoa/client";
+import { displayNickname, MARKS, optionLabel, promptView, team, type Mark, type Question, type Standing, type TeamStanding } from "@/lib/stoa/client";
 import styles from "./stoa.module.css";
 
 
@@ -88,6 +88,30 @@ export function Standings({ rows, me, testId }: { rows: Standing[]; me?: string;
       ))}
     </ol>
   );
+}
+
+export function TeamStandings({ rows, mine }: { rows: TeamStanding[]; mine?: number | null }) {
+  return (
+    <ol className={styles.standings} data-testid="team-standings">
+      {rows.map((r) => {
+        const t = team(r.team);
+        return (
+          <li key={r.team} data-me={r.team === mine} data-pigment={t?.pigment}>
+            <span>
+              Team {t?.name} <span className={styles.members}>{r.members} {r.members === 1 ? "player" : "players"}{r.unisons ? `, ${r.unisons} in unison` : ""}</span>
+            </span>
+            <span>{r.points}</span>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+export function TeamTag({ slot }: { slot: number | null | undefined }) {
+  const t = team(slot);
+  if (!t) return null;
+  return <span className={styles.teamTag} data-pigment={t.pigment} data-testid="team-tag">Team {t.name}</span>;
 }
 
 export function Brand({ link = true }: { link?: boolean }) {

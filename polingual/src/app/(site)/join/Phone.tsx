@@ -5,7 +5,7 @@ import { clockOffset, displayNickname, joinError, normalizeCode, rank, secondsLe
 import { nicknameChoices } from "@/lib/stoa/nicknames";
 import { LiveSocket, type SocketStatus } from "@/lib/stoa/socket";
 import { verifyEvent } from "@/lib/stoa/verify";
-import { Brand, Prompt, Standings, Tiles, type TileState } from "../live/parts";
+import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "../live/parts";
 import styles from "../live/stoa.module.css";
 
 const KEY = "stoa/player/v1";
@@ -258,6 +258,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
         <section className={styles.card} data-testid="phone-lobby">
           <p className={styles.label}>You are in</p>
           <p className={styles.big}>{name}</p>
+          <TeamTag slot={me?.team_slot} />
           <p className={styles.body}>Watch the board. The first question opens when the host starts.</p>
         </section>
       );
@@ -287,7 +288,8 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
           <p className={styles.banner} data-tone={right ? "right" : "wrong"} data-testid="result">
             {me?.choice == null ? "No answer this time." : right ? "Right." : "Not this one."} {me?.points ?? 0} points{r ? `, place ${r}` : ""}.
           </p>
-          {phase === "board" ? <Standings rows={snap.standings} me={me?.id} /> : <Tiles q={q} states={states} />}
+          {phase === "board" && snap.team_standings ? <TeamStandings rows={snap.team_standings} mine={me?.team_slot} /> : null}
+          {phase === "board" ? <Standings rows={snap.team_standings ? snap.standings.slice(0, 5) : snap.standings} me={me?.id} /> : <Tiles q={q} states={states} />}
         </>
       );
     }
@@ -296,6 +298,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
         <section className={styles.card} data-testid="phone-finale">
           <p className={styles.label}>Final board</p>
           <p className={styles.big}>{me?.points ?? 0} points</p>
+          {snap.team_standings ? <TeamStandings rows={snap.team_standings} mine={me?.team_slot} /> : null}
           <Standings rows={snap.standings.slice(0, 5)} me={me?.id} />
           {!snap.room.school_mode ? (
             <a className={styles.ghost} href={APP_URL} data-testid="app-link">Keep learning with Polingual</a>

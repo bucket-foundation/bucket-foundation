@@ -63,6 +63,15 @@
 .standings li::before{content:counter(rank);font-family:"Space Mono",monospace;color:var(--vermilion);min-width:2ch}
 .standings li span:first-child{flex:1}
 .standings li[data-me=true]{background:var(--tyrian);color:var(--parchment)}
+.members{display:block;font-size:.6em;font-weight:700;color:var(--ink-2)}
+.standings li[data-me=true] .members{color:var(--parchment)}
+.teamTag{align-self:flex-start;display:inline-flex;align-items:center;min-height:32px;padding-inline:12px;border-radius:999px;font-family:"Fredoka",sans-serif;font-weight:700;color:#fff}
+.teamTag[data-pigment=lapis]{background:var(--lapis)}
+.teamTag[data-pigment=vermilion]{background:var(--vermilion)}
+.teamTag[data-pigment=malachite]{background:var(--malachite)}
+.teamTag[data-pigment=ochre]{background:var(--ochre);color:var(--ink)}
+.teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px}
+.teamCol{display:flex;flex-direction:column;gap:8px;min-width:0}
 .controls{display:flex;flex-wrap:wrap;gap:10px}
 .phone{max-width:520px;width:100%;margin-inline:auto;display:flex;flex-direction:column;gap:16px}
 .phone .word{font-size:clamp(34px,10vw,56px)}
