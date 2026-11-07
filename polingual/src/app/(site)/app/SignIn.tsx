@@ -4,7 +4,15 @@ import { useState, type FormEvent } from "react";
 import { appAuth, signInError } from "@/lib/app/auth";
 import styles from "./app.module.css";
 
-export default function SignIn({ onSignedIn }: { onSignedIn: () => void }) {
+export type SignInCopy = { label: string; title: string; intro: string };
+
+const LEARN: SignInCopy = {
+  label: "Polingual on the web",
+  title: "Sign in to learn",
+  intro: "Use the email from the Polingual app. Your languages, reviews and streak come with you.",
+};
+
+export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () => void; copy?: SignInCopy }) {
   const [step, setStep] = useState<"email" | "code">("email");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -33,11 +41,11 @@ export default function SignIn({ onSignedIn }: { onSignedIn: () => void }) {
 
   return (
     <section className={styles.card} data-testid="sign-in">
-      <p className={styles.label}>Polingual on the web</p>
-      <h1 className={styles.title}>{step === "email" ? "Sign in to learn" : "Check your email"}</h1>
+      <p className={styles.label}>{copy.label}</p>
+      <h1 className={styles.title}>{step === "email" ? copy.title : "Check your email"}</h1>
       {step === "email" ? (
         <form onSubmit={send} className={styles.form}>
-          <p className={styles.body}>Use the email from the Polingual app. Your languages, reviews and streak come with you.</p>
+          <p className={styles.body}>{copy.intro}</p>
           <label className={styles.field}>
             <span>Email</span>
             <input type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} data-testid="email" />
