@@ -22,7 +22,7 @@ export function team(slot: number | null | undefined): Team | null {
   return slot == null ? null : TEAMS[slot] ?? null;
 }
 
-export type TeamStanding = { team: number; points: number; unisons: number; members: number };
+export type TeamStanding = { team: number; points: number; unisons: number; members: number; place?: number };
 
 export type Phase = "lobby" | "question" | "reveal" | "board" | "finale" | "closed";
 export type Standing = { player_id: string; nickname: string; points: number };

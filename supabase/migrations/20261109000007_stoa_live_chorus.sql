@@ -3,6 +3,57 @@ returns integer language sql immutable as $$
   select case when r.mode = 'chorus' then coalesce((r.settings ->> 'teams')::integer, 2) else 0 end
 $$;
 
+alter table bucket.live_scores add column if not exists team_slot smallint check (team_slot between 0 and 3);
+
+create or replace function bucket.live_unison(p_size integer, p_right integer)
+returns boolean language sql immutable as $$
+  select p_right >= 1 and p_size - p_right <= greatest(1, p_size / 5)
+$$;
+
+create or replace function bucket.live_reveal(p_room uuid)
+returns jsonb language plpgsql security definer set search_path = bucket, pg_temp as $$
+declare
+  r bucket.live_rooms;
+  q bucket.live_questions;
+  win integer;
+  right_n integer;
+begin
+  perform pg_advisory_xact_lock(bucket.live_answer_lock(p_room));
+  select * into r from bucket.live_rooms where id = p_room;
+  select * into q from bucket.live_questions where room_id = p_room and idx = r.idx;
+  win := bucket.live_setting(r, 'window_ms', 20000);
+
+  with s as (
+    select p.id, p.streak, p.team_slot,
+      coalesce(a.choice = q.answer and a.received_at <= r.opens_at + make_interval(secs => (win * p.time_factor + p.grace_ms) / 1000.0), false) as correct,
+      case when a.received_at is null then 0 else
+        greatest(0, round(500 * (1 - greatest(0, extract(epoch from a.received_at - r.opens_at) * 1000 - p.grace_ms) / (win * p.time_factor))))::integer
+      end as speed
+    from bucket.live_players p
+    left join bucket.live_answers a on a.room_id = p.room_id and a.idx = r.idx and a.player_id = p.id
+    where p.room_id = p_room and not p.removed
+  ), u as (
+    update bucket.live_players p set streak = case when s.correct then s.streak + 1 else 0 end
+    from s where p.id = s.id
+    returning p.id, p.streak
+  )
+  insert into bucket.live_scores (room_id, idx, player_id, correct, points, bonus, team_slot)
+  select p_room, r.idx, s.id, s.correct,
+    case when s.correct then 500 + s.speed else 0 end,
+    case when s.correct and u.streak % 3 = 0 then 100 else 0 end,
+    s.team_slot
+  from s join u on u.id = s.id
+  on conflict do nothing;
+
+  select count(*) into right_n from bucket.live_scores where room_id = p_room and idx = r.idx and correct;
+  update bucket.live_rooms
+  set phase = 'reveal', next_at = clock_timestamp() + make_interval(secs => bucket.live_setting(r, 'reveal_ms', 5000) / 1000.0)
+  where id = p_room;
+  return bucket.live_event(p_room, 'reveal', jsonb_build_object(
+    'idx', r.idx, 'answer', q.answer, 'counts', bucket.live_counts(p_room, r.idx), 'right', right_n
+  ));
+end $$;
+
 create or replace function bucket.live_team_standings(p_room uuid)
 returns jsonb language sql stable security definer set search_path = bucket, pg_temp as $$
   with room as (
@@ -10,21 +61,23 @@ returns jsonb language sql stable security definer set search_path = bucket, pg_
   ), teams as (
     select g as slot from room r, generate_series(0, bucket.live_team_count(r) - 1) g
   ), per_question as (
-    select p.team_slot as slot, s.idx, avg(s.points + s.bonus) as mean, avg(s.correct::integer) as right_rate
-    from bucket.live_scores s join bucket.live_players p on p.id = s.player_id
-    where s.room_id = p_room and not p.removed and p.team_slot is not null
-    group by p.team_slot, s.idx
+    select s.team_slot as slot, s.idx, avg(s.points + s.bonus) as mean,
+      bucket.live_unison(count(*)::integer, (count(*) filter (where s.correct))::integer) as unison
+    from bucket.live_scores s
+    where s.room_id = p_room and s.team_slot is not null
+    group by s.team_slot, s.idx
   ), totals as (
-    select slot, round(sum(mean))::integer as mean_points, count(*) filter (where right_rate >= 0.8)::integer as unisons
+    select slot, round(sum(mean))::integer as mean_points, count(*) filter (where unison)::integer as unisons
     from per_question group by slot
+  ), rows as (
+    select t.slot, coalesce(x.mean_points, 0) + 150 * coalesce(x.unisons, 0) as points, coalesce(x.unisons, 0) as unisons,
+      (select count(*) from bucket.live_players p where p.room_id = p_room and not p.removed and p.team_slot = t.slot) as members
+    from teams t left join totals x on x.slot = t.slot
   )
-  select coalesce(jsonb_agg(jsonb_build_object(
-      'team', t.slot,
-      'points', coalesce(x.mean_points, 0) + 150 * coalesce(x.unisons, 0),
-      'unisons', coalesce(x.unisons, 0),
-      'members', (select count(*) from bucket.live_players p where p.room_id = p_room and not p.removed and p.team_slot = t.slot)
-    ) order by coalesce(x.mean_points, 0) + 150 * coalesce(x.unisons, 0) desc, t.slot), '[]'::jsonb)
-  from teams t left join totals x on x.slot = t.slot
+  select coalesce(jsonb_agg(jsonb_build_object('team', slot, 'points', points, 'unisons', unisons, 'members', members,
+      'place', (select count(*) from rows o where o.points > rows.points) + 1)
+    order by points desc, members, slot), '[]'::jsonb)
+  from rows
 $$;
 
 create or replace function bucket.live_create_room(
@@ -220,7 +273,8 @@ begin
   return out;
 end $$;
 
-revoke all on function bucket.live_team_count(bucket.live_rooms), bucket.live_team_standings(uuid), bucket.live_snapshot(uuid, uuid, boolean)
+revoke all on function bucket.live_team_count(bucket.live_rooms), bucket.live_team_standings(uuid), bucket.live_snapshot(uuid, uuid, boolean),
+  bucket.live_unison(integer, integer), bucket.live_reveal(uuid)
   from public, anon, authenticated, service_role;
 revoke all on function bucket.live_create_room(uuid, uuid, text, text, jsonb, bigint, text, text, jsonb), bucket.live_join(text, text, text),
   bucket.live_player_admin(uuid, uuid, uuid, text, text)

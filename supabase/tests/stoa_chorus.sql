@@ -57,6 +57,7 @@ begin
 
   teams := bucket.live_snapshot(rid, ps[3], true) -> 'team_standings';
   assert jsonb_array_length(teams) = 2 and (teams -> 0 ->> 'points')::int = 0, 'both teams start at 0';
+  assert teams -> 0 ->> 'team' = '0' and teams -> 0 ->> 'place' = '1' and teams -> 1 ->> 'place' = '1', 'tied teams share first place, the smaller team listed first';
   assert (bucket.live_snapshot(rid, ps[3], false) -> 'player' ->> 'team_slot')::int = 1, 'a phone sees its team';
   assert (bucket.live_snapshot(rid, null, true) -> 'room' ->> 'teams')::int = 2;
 
@@ -64,20 +65,37 @@ begin
   res := bucket.live_player_admin(rid, host, ps[3], 'move', '0');
   assert res ->> 'error' = 'bad_phase', 'teams lock once the game starts';
 
-  insert into bucket.live_scores (room_id, idx, player_id, correct, points) values
-    (rid, 0, ps[1], true, 800), (rid, 0, ps[2], true, 800),
-    (rid, 0, ps[3], true, 800), (rid, 0, ps[4], true, 800), (rid, 0, ps[5], true, 800), (rid, 0, ps[6], false, 0);
+  insert into bucket.live_scores (room_id, idx, player_id, correct, points, team_slot) values
+    (rid, 0, ps[1], true, 800, 0), (rid, 0, ps[2], true, 800, 0),
+    (rid, 0, ps[3], true, 800, 1), (rid, 0, ps[4], true, 800, 1), (rid, 0, ps[5], true, 800, 1), (rid, 0, ps[6], false, 0, 1);
   teams := bucket.live_team_standings(rid);
   assert teams -> 0 ->> 'team' = '0' and (teams -> 0 ->> 'points')::int = 950, 'two of two right: mean 800 plus the unison 150';
-  assert (teams -> 1 ->> 'points')::int = 600 and (teams -> 1 ->> 'unisons')::int = 0, 'three of four right: mean 600, under 80% so no unison';
+  assert (teams -> 1 ->> 'points')::int = 750 and (teams -> 1 ->> 'unisons')::int = 1, 'three of four right: mean 600, one slip still sings in unison';
 
-  insert into bucket.live_scores (room_id, idx, player_id, correct, points, bonus) values
-    (rid, 1, ps[1], true, 900, 0), (rid, 1, ps[2], false, 0, 0),
-    (rid, 1, ps[3], true, 1000, 0), (rid, 1, ps[4], true, 1000, 0), (rid, 1, ps[5], true, 900, 100), (rid, 1, ps[6], true, 1000, 0);
+  insert into bucket.live_scores (room_id, idx, player_id, correct, points, bonus, team_slot) values
+    (rid, 1, ps[1], true, 900, 0, 0), (rid, 1, ps[2], false, 0, 0, 0),
+    (rid, 1, ps[3], true, 1000, 0, 1), (rid, 1, ps[4], true, 1000, 0, 1), (rid, 1, ps[5], true, 900, 100, 1), (rid, 1, ps[6], true, 1000, 0, 1);
   teams := bucket.live_team_standings(rid);
-  assert teams -> 0 ->> 'team' = '1' and (teams -> 0 ->> 'points')::int = 600 + 1000 + 150, 'four of four right: mean 1000 with the streak bonus, plus 150';
-  assert (teams -> 1 ->> 'points')::int = 950 + 450, 'one of two right: mean 450';
+  assert teams -> 0 ->> 'team' = '1' and (teams -> 0 ->> 'points')::int = 750 + 1000 + 150, 'four of four right: mean 1000 with the streak bonus, plus 150';
+  assert (teams -> 1 ->> 'points')::int = 950 + 450 + 150, 'one of two right: mean 450, one slip allowed';
   assert (teams -> 0 ->> 'members')::int = 4 and (teams -> 1 ->> 'members')::int = 2;
+
+  update bucket.live_players set removed = true where id = ps[6];
+  assert bucket.live_team_standings(rid) -> 0 ->> 'points' = teams -> 0 ->> 'points' and bucket.live_team_standings(rid) -> 1 ->> 'points' = teams -> 1 ->> 'points',
+    'removing a player leaves scored questions as they were';
+  assert (bucket.live_team_standings(rid) -> 0 ->> 'members')::int = 3, 'the member count drops for the questions ahead';
+  update bucket.live_rooms set phase = 'question', closed_at = null where id = rid;
+  perform bucket.live_join('CH0R25', 'late-1', 'ip-late');
+  assert (bucket.live_team_standings(rid) -> 1 ->> 'points')::int = 1550, 'a late joiner changes no question already scored';
+
+  assert array(select g - (select max(m) from generate_series(0, g) m where bucket.live_unison(g, g - m)) from generate_series(1, 10) g)
+    = array[1, 1, 2, 3, 4, 5, 6, 7, 8, 8],
+    'fewest right for a unison, team sizes 1 to 10';
+  assert array(select max(m) from generate_series(1, 10) g, generate_series(0, 10) m where m <= g and bucket.live_unison(g, g - m) group by g order by g)
+    = array[0, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+    'every team of 2 to 9 forgives one slip and a team of 10 forgives two; the 80% rule forgave none at 4 and one at 5';
+  assert not bucket.live_unison(1, 0) and bucket.live_unison(1, 1), 'a team of one sings in unison only when right';
+  assert not bucket.live_unison(2, 0), 'nobody right is never unison';
 
   perform bucket.live_create_room(open_rid, host, 'C0PEN1', 'polingual', '{"rounds":1,"per_round":2}', 1, 'v1.' || repeat('x', 40), repeat('A', 43), qs);
   op := (bucket.live_join('C0PEN1', 'solo-1', 'ip-1') ->> 'player_id')::uuid;
