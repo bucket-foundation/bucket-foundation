@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
 import { createRoomKeys, hostToken, playerToken, readToken, type PlayerClaims } from "./keys";
-import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, netKey, newCode, playerAction, roomState, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
+import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, netKey, newCode, playerAction, roomState, roomSummary, summaryCsv, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
 import { isNickname, nicknameChoices } from "./nicknames";
 import { parseSettings } from "./questions";
 import { verifyEvent } from "./verify";
@@ -344,4 +344,39 @@ test("the client IP comes only from x-real-ip, which Vercel sets and overwrites"
   assert.equal(clientIpFrom(h({ "x-real-ip": "not an ip" })), null);
   assert.equal(clientIpFrom(h({})), null);
   assert.notEqual(ipKey("203.0.113.7"), ipKey(null));
+});
+
+test("the summary CSV holds nicknames and scores only", () => {
+  assert.equal(
+    summaryCsv([{ nickname: "brave-owl", points: 1850, correct: 2 }, { nickname: "amber-otter", points: 900, correct: 1 }]),
+    "rank,nickname,points,correct\r\n1,brave-owl,1850,2\r\n2,amber-otter,900,1\r\n",
+  );
+  assert.equal(summaryCsv([{ nickname: "=cmd|x", points: 1, correct: 0 }]), "rank,nickname,points,correct\r\n1,,1,0\r\n", "only list nicknames reach a cell");
+  assert.equal(summaryCsv([]), "rank,nickname,points,correct\r\n");
+  assert.equal(
+    summaryCsv([{ nickname: "brave-owl", points: 900, correct: 2 }, { nickname: "calm-fern", points: 900, correct: 2 }, { nickname: "amber-otter", points: 100, correct: 1 }]),
+    "rank,nickname,points,correct\r\n1,brave-owl,900,2\r\n1,calm-fern,900,2\r\n3,amber-otter,100,1\r\n",
+    "tied scores share a rank",
+  );
+  assert.equal(
+    summaryCsv([{ nickname: "brave-owl", team: 1, points: 900, correct: 2 }, { nickname: "calm-fern", team: 0, points: 500, correct: 1 }], true),
+    "rank,nickname,team,points,correct\r\n1,brave-owl,Vermilion,900,2\r\n2,calm-fern,Lapis,500,1\r\n",
+    "a Chorus room adds the team",
+  );
+});
+
+test("the summary needs the host token for that room", async () => {
+  const d = deps(async (fn, args) => {
+    assert.equal(fn, "live_summary");
+    assert.deepEqual(args, { p_room: RID, p_host: UID });
+    return { data: { code: "QZ7K2M", rows: [{ nickname: "brave-owl", points: 500, correct: 1 }] } };
+  });
+  const r = await roomSummary(RID, host(), d);
+  assert.equal(r.status, 200);
+  assert.equal(r.body.code, "QZ7K2M");
+  assert.match(String(r.body.csv), /^rank,nickname,points,correct\r\n1,brave-owl,500,1/);
+  assert.equal((await roomSummary(RID, player(), d)).status, 401, "a player token cannot read it");
+  assert.equal((await roomSummary(randomUUID(), host(), d)).status, 401, "a host token for another room cannot read it");
+  const slow = deps(async () => ({ data: { error: "slow_down" } }));
+  assert.equal((await roomSummary(RID, host(), slow)).status, 429);
 });

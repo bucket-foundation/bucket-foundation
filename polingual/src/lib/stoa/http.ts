@@ -27,6 +27,13 @@ export function reply(req: NextRequest, result: LiveResult): NextResponse {
   return NextResponse.json(result.body, { status: result.status, headers: cors(req) });
 }
 
+export function csvReply(req: NextRequest, filename: string, csv: string): NextResponse {
+  return new NextResponse(csv, {
+    status: 200,
+    headers: { ...cors(req), "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="${filename.replace(/[^A-Za-z0-9._-]/g, "")}"` },
+  });
+}
+
 export async function readJson(req: NextRequest): Promise<unknown> {
   const text = await req.text();
   if (text.length > 16_000) return null;
