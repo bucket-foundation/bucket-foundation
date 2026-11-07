@@ -23,8 +23,8 @@ Drafted 2026-11-06, revised the same day after the critic review on PR #1211. St
 **Chorus** is the P1b team mode, on the same engine.
 
 1. The host sets 2 to 4 teams, named for the pigments: Lapis, Vermilion, Malachite, Ochre. Players auto-balance on join; the host can move them in the lobby.
-2. Team score is the mean of its members' points per question, so a team of 4 and a team of 6 compete on equal terms.
-3. **Unison bonus.** When 80% or more of a team answers right, the team earns 150 more.
+2. Team score is the mean of its members' points per question, so a team of 4 and a team of 6 compete on equal terms. Each score row records the team at reveal, so scored questions stay frozen: a late joiner counts only from the questions they played, and removing a player changes no past question. Late joiners go to the team with the fewest active players. Teams lock when the game starts. Tied teams share a place.
+3. **Unison bonus.** A team earns 150 more on a question when at least one member is right and the misses stay within max(1, floor(size / 5)): every team of 2 to 9 forgives one slip, a team of 10 forgives two, and a team of one must be right. A flat 80% forgave no slip at 4 and one at 5.
 4. The board shows team standings first and the top five players second.
 
 ## Host Surfaces

@@ -24,7 +24,7 @@ export const SWEEP_BUDGET_MS = 3000;
 const STATUS: Record<string, number> = {
   no_room: 404, no_player: 404, not_host: 403, removed: 403, stale_token: 409, too_many_rooms: 429,
   room_full: 409, name_taken: 409, not_open: 409, late: 409, duplicate: 409, paused: 409, bad_phase: 409, closed: 409,
-  bad_action: 400, code_taken: 503, slow_down: 429, too_soon: 429, locked: 409, bad_settings: 400,
+  bad_action: 400, team: 400, code_taken: 503, slow_down: 429, too_soon: 429, locked: 409, bad_settings: 400,
 };
 
 const IP = /^[0-9a-fA-F:.]{2,45}$/;
@@ -144,6 +144,14 @@ export function newCode(random: (max: number) => number = randomInt): string {
   return s;
 }
 
+export function parseMode(b: Record<string, unknown>): { mode: "open_floor" } | { mode: "chorus"; teams: number } | null {
+  const mode = b.mode ?? "open_floor";
+  if (mode === "open_floor") return { mode };
+  if (mode !== "chorus") return null;
+  const teams = b.teams ?? 2;
+  return Number.isInteger(teams) && (teams as number) >= 2 && (teams as number) <= 4 ? { mode, teams: teams as number } : null;
+}
+
 export async function createRoom(authorization: string | null, body: unknown, deps: LiveDeps): Promise<LiveResult> {
   const off = ready(deps.env);
   if (off) return off;
@@ -153,6 +161,8 @@ export async function createRoom(authorization: string | null, body: unknown, de
   if ((b.product ?? "polingual") !== "polingual") return { status: 400, body: { error: "product" } };
   const settings = parseSettings(b.settings);
   if (!settings) return { status: 400, body: { error: "settings" } };
+  const mode = parseMode(b);
+  if (!mode) return { status: 400, body: { error: "settings" } };
   const random = deps.random ?? randomInt;
   const seed = random(2 ** 31 - 1);
   const questions = deps.build(seed, settings);
@@ -161,7 +171,7 @@ export async function createRoom(authorization: string | null, body: unknown, de
     const roomId = randomUUID();
     const keys = createRoomKeys(roomId, deps.env);
     const r = await deps.rpc("live_create_room", {
-      p_id: roomId, p_host: uid, p_code: newCode(random), p_product: "polingual", p_settings: { ...settings, school_mode: b.school_mode === true }, p_seed: seed,
+      p_id: roomId, p_host: uid, p_code: newCode(random), p_product: "polingual", p_settings: { ...settings, school_mode: b.school_mode === true, ...mode }, p_seed: seed,
       p_sign_key: keys.signKey, p_verify_key: keys.verifyKey, p_questions: questions,
     });
     if ("error" in r) {

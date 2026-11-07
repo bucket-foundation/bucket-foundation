@@ -208,3 +208,47 @@ test("without school mode the board and phones show the app link, and an RTL pho
   await expect(p.getByTestId("phone-finale")).toBeVisible({ timeout: 15_000 });
   await expect(p.getByTestId("app-link")).toBeVisible();
 });
+
+test("a Chorus room splits phones into teams and shows the team board first", async ({ browser }) => {
+  mkdirSync(SHOTS, { recursive: true });
+  const hostCtx = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+  const host = await hostCtx.newPage();
+  await signInHost(host);
+  await host.getByTestId("target-fr").click();
+  await host.getByTestId("mode-chorus").click();
+  await host.getByTestId("team-count").selectOption("2");
+  await host.getByTestId("create-room").click();
+  await expect(host.getByTestId("team-lobby")).toBeVisible({ timeout: 30_000 });
+  const code = ((await host.getByTestId("room-code").textContent()) ?? "").trim();
+  const phones: Page[] = [];
+  for (let i = 0; i < 4; i++) {
+    const p = await phone(browser, code, false);
+    await p.getByTestId("nickname").first().click();
+    await expect(p.getByTestId("phone-lobby")).toBeVisible({ timeout: 30_000 });
+    phones.push(p);
+  }
+  await expect(host.getByTestId("roster-0").locator("li")).toHaveCount(2, { timeout: 15_000 });
+  await expect(host.getByTestId("roster-1").locator("li")).toHaveCount(2);
+  await host.getByTestId("roster-0").getByTestId("move").first().click();
+  await expect(host.getByTestId("roster-1").locator("li")).toHaveCount(3, { timeout: 15_000 });
+  await host.screenshot({ path: `${SHOTS}/board-team-lobby-1920.png` });
+  await expect(phones[1].getByTestId("team-tag")).toHaveText(/Team (Lapis|Vermilion)/);
+  await phones[1].screenshot({ path: `${SHOTS}/phone-team-lobby-390.png` });
+
+  await host.getByTestId("start").click();
+  for (let n = 1; n <= 5; n++) {
+    await expect.poll(() => questionNumber(host), { timeout: 15_000 }).toBe(n);
+    for (const p of phones) {
+      await expect(p.getByTestId("tile-A")).toBeEnabled({ timeout: 15_000 });
+      await p.getByTestId("tile-A").click();
+    }
+    await expect(host.getByTestId("board-reveal")).toBeVisible({ timeout: 15_000 });
+    await host.getByTestId("skip").click();
+  }
+  await expect(host.getByTestId("board-standings")).toBeVisible({ timeout: 15_000 });
+  await expect(host.getByTestId("team-standings").locator("li")).toHaveCount(2);
+  await host.screenshot({ path: `${SHOTS}/board-team-standings-1920.png` });
+  await expect(phones[0].getByTestId("team-standings")).toBeVisible({ timeout: 15_000 });
+  await phones[0].screenshot({ path: `${SHOTS}/phone-team-standings-390.png` });
+  await host.getByTestId("end").click();
+});

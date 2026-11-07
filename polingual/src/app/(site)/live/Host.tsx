@@ -3,9 +3,9 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
-import { clockOffset, displayNickname, joinUrl, langName, secondsLeft, type Snapshot } from "@/lib/stoa/client";
+import { clockOffset, displayNickname, joinUrl, langName, secondsLeft, team, TEAMS, type Snapshot } from "@/lib/stoa/client";
 import SignIn from "../app/SignIn";
-import { Brand, Prompt, Standings, Tiles, type TileState } from "./parts";
+import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "./parts";
 import styles from "./stoa.module.css";
 
 const Qr = dynamic(() => import("./Qr"), { ssr: false });
@@ -55,6 +55,8 @@ export default function Host() {
   const [home, setHome] = useState("en");
   const [targets, setTargets] = useState<string[]>(["es"]);
   const [school, setSchool] = useState(false);
+  const [mode, setMode] = useState<"open_floor" | "chorus">("open_floor");
+  const [teamCount, setTeamCount] = useState(2);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(() => Date.now());
@@ -105,7 +107,7 @@ export default function Host() {
       const r = await fetch("/api/live/rooms", {
         method: "POST",
         headers: { authorization: `Bearer ${token ?? ""}`, "content-type": "application/json" },
-        body: JSON.stringify({ product: "polingual", settings: { home, targets }, school_mode: school }),
+        body: JSON.stringify({ product: "polingual", settings: { home, targets }, school_mode: school, mode, ...(mode === "chorus" ? { teams: teamCount } : {}) }),
       });
       const body = (await r.json()) as { error?: string; room_id: string; host_token: string; code: string };
       if (!r.ok) {
@@ -123,10 +125,10 @@ export default function Host() {
     }
   }
 
-  async function act(action: string, player?: string) {
+  async function act(action: string, player?: string, body: Record<string, unknown> = {}) {
     if (!room) return;
     const path = player ? `players/${player}/${action}` : action;
-    await fetch(`/api/live/rooms/${room.room_id}/${path}`, { method: "POST", headers: { authorization: `Bearer ${room.host_token}`, "content-type": "application/json" }, body: "{}" }).catch(() => null);
+    await fetch(`/api/live/rooms/${room.room_id}/${path}`, { method: "POST", headers: { authorization: `Bearer ${room.host_token}`, "content-type": "application/json" }, body: JSON.stringify(body) }).catch(() => null);
     void poll();
   }
 
@@ -163,6 +165,23 @@ export default function Host() {
               </li>
             ))}
           </ul>
+          <p className={styles.fieldLabel}>Mode</p>
+          <ul className={styles.chips}>
+            <li>
+              <button type="button" className={styles.pick} aria-pressed={mode === "open_floor"} onClick={() => setMode("open_floor")} data-testid="mode-open">Open Floor: every player for themselves</button>
+            </li>
+            <li>
+              <button type="button" className={styles.pick} aria-pressed={mode === "chorus"} onClick={() => setMode("chorus")} data-testid="mode-chorus">Chorus: teams</button>
+            </li>
+          </ul>
+          {mode === "chorus" ? (
+            <label className={styles.field}>
+              <span>Teams</span>
+              <select value={teamCount} onChange={(e) => setTeamCount(Number(e.target.value))} data-testid="team-count">
+                {[2, 3, 4].map((n) => <option key={n} value={n}>{n} teams: {TEAMS.slice(0, n).map((t) => t.name).join(", ")}</option>)}
+              </select>
+            </label>
+          ) : null}
           <label className={styles.toggle}>
             <input type="checkbox" checked={school} onChange={(e) => setSchool(e.target.checked)} data-testid="school-mode" />
             <span>School mode: no app links or promotions on any screen</span>
@@ -176,6 +195,17 @@ export default function Host() {
     const phase = snap.room.phase;
     const q = snap.question;
     const url = joinUrl(origin, room.code);
+    const teams = snap.room.mode === "chorus" ? snap.room.teams ?? 2 : 0;
+    const chip = (p: { id: string; nickname: string; team_slot?: number | null }) => (
+      <li key={p.id} className={styles.player}>
+        {displayNickname(p.nickname)}
+        {teams ? (
+          <button type="button" className={styles.remove} aria-label={`Move ${displayNickname(p.nickname)} to Team ${team(((p.team_slot ?? 0) + 1) % teams)?.name}`} onClick={() => void act("move", p.id, { team: ((p.team_slot ?? 0) + 1) % teams })} data-testid="move">⇄</button>
+        ) : null}
+        <button type="button" className={styles.remove} aria-label={`Remove ${displayNickname(p.nickname)}`} onClick={() => void act("remove", p.id)}>×</button>
+      </li>
+    );
+    const roster = snap.roster ?? [];
     const controls = (
       <div className={styles.controls} data-testid="host-controls">
         {phase === "lobby" ? (
@@ -204,14 +234,18 @@ export default function Host() {
               <p className={styles.label}>Join at {origin.replace(/^https?:\/\//, "")}/join</p>
               <p className={styles.code} data-testid="room-code">{room.code}</p>
               <p className={styles.stat} data-testid="player-count">{snap.room.players} {snap.room.players === 1 ? "player" : "players"}</p>
-              <ul className={styles.roster} data-testid="roster">
-                {(snap.roster ?? []).map((p) => (
-                  <li key={p.id} className={styles.player}>
-                    {displayNickname(p.nickname)}
-                    <button type="button" className={styles.remove} aria-label={`Remove ${displayNickname(p.nickname)}`} onClick={() => void act("remove", p.id)}>×</button>
-                  </li>
-                ))}
-              </ul>
+              {teams ? (
+                <div className={styles.teams} data-testid="team-lobby">
+                  {TEAMS.slice(0, teams).map((t) => (
+                    <div key={t.slot} className={styles.teamCol}>
+                      <TeamTag slot={t.slot} />
+                      <ul className={styles.roster} data-testid={`roster-${t.slot}`}>{roster.filter((p) => (p.team_slot ?? 0) === t.slot).map(chip)}</ul>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <ul className={styles.roster} data-testid="roster">{roster.map(chip)}</ul>
+              )}
             </div>
             <Qr text={url} />
           </div>
@@ -238,13 +272,15 @@ export default function Host() {
       return (
         <section className={styles.board} data-testid="board-standings">
           <h2 className={styles.title}>Round {q?.round ?? ""} standings</h2>
-          <Standings rows={snap.standings} />
+          {snap.team_standings ? <TeamStandings rows={snap.team_standings} /> : null}
+          <Standings rows={snap.team_standings ? snap.standings.slice(0, 5) : snap.standings} />
           {controls}
         </section>
       );
     return (
       <section className={styles.board} data-testid="board-finale">
         <h2 className={styles.title}>Final board</h2>
+        {snap.team_standings ? <TeamStandings rows={snap.team_standings} /> : null}
         <Standings rows={snap.standings.slice(0, 5)} testId="finale-top" />
         {!snap.room.school_mode ? (
           <p className={styles.body} data-testid="board-promo">Keep learning at home with the Polingual app: {APP_URL.replace("https://", "")}</p>
