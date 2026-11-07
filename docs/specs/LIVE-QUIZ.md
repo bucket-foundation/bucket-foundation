@@ -151,7 +151,7 @@ To file with `source-founder`, one bead per PR.
 - **School mode.** A room setting that removes every promo, paywall link, QR to the app, and TestFlight or App Store call to action from player screens and from the board. Results show nicknames only.
 - **Hosts.** The host signs in with an existing account and accepts the Stoa host terms once: the host is a teacher or another adult, and a school host confirms the school allows the tool.
 - **COPPA.** Stoa collects no personal information from players: no name, contact, photo, location or persistent identifier. A nickname from our list, a room token that expires at close, and answers deleted within a day are what a player leaves behind. Under-13 students can play in a class without parental consent because nothing about them is collected. Duels in P4 need an account and pass the existing age range check, so they stay 13 and over.
-- **FERPA.** Stoa receives no student names or education records. The teacher's summary pairs nicknames with scores, and only the teacher knows which student held which nickname. A student data page with these terms ships with P1a.
+- **FERPA.** Stoa receives no student names or education records. The teacher's summary pairs nicknames with scores, and only the teacher knows which student held which nickname. The student data page lives at /live/student-data and the host terms at /live/terms. The host accepts the terms with a checkbox before opening a room; the browser remembers the acceptance.
 
 ## Monetization
 

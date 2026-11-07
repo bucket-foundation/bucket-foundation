@@ -11,6 +11,7 @@ import styles from "./stoa.module.css";
 const Qr = dynamic(() => import("./Qr"), { ssr: false });
 
 const KEY = "stoa/host/v1";
+const TERMS_KEY = "stoa/host-terms/v1";
 const HOST_COPY = {
   label: "Polingual Live",
   title: "Sign in to host a live game",
@@ -57,6 +58,7 @@ export default function Host() {
   const [school, setSchool] = useState(false);
   const [mode, setMode] = useState<"open_floor" | "chorus">("open_floor");
   const [teamCount, setTeamCount] = useState(2);
+  const [terms, setTerms] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(() => Date.now());
@@ -70,6 +72,11 @@ export default function Host() {
   useEffect(() => {
     setOrigin(window.location.origin);
     setRoom(load());
+    try {
+      setTerms(localStorage.getItem(TERMS_KEY) === "1");
+    } catch {
+      setTerms(false);
+    }
     void refresh();
     const t = setInterval(() => setNow(Date.now()), 250);
     return () => clearInterval(t);
@@ -150,6 +157,16 @@ export default function Host() {
     setSnap(null);
   }
 
+  function acceptTerms(on: boolean) {
+    setTerms(on);
+    try {
+      if (on) localStorage.setItem(TERMS_KEY, "1");
+      else localStorage.removeItem(TERMS_KEY);
+    } catch {
+      return;
+    }
+  }
+
   function toggleTarget(t: string) {
     setTargets((cur) => (cur.includes(t) ? cur.filter((x) => x !== t) : cur.length >= 12 ? cur : [...cur, t]));
   }
@@ -198,7 +215,13 @@ export default function Host() {
             <input type="checkbox" checked={school} onChange={(e) => setSchool(e.target.checked)} data-testid="school-mode" />
             <span>School mode: no app links or promotions on any screen</span>
           </label>
-          <button type="button" className={styles.cta} disabled={busy || targets.length === 0} onClick={() => void create()} data-testid="create-room">
+          <label className={styles.toggle}>
+            <input type="checkbox" checked={terms} onChange={(e) => acceptTerms(e.target.checked)} data-testid="host-terms" />
+            <span>
+              I accept the <a href="/live/terms">host terms</a>. Players&rsquo; data is covered on the <a href="/live/student-data">student data page</a>.
+            </span>
+          </label>
+          <button type="button" className={styles.cta} disabled={busy || targets.length === 0 || !terms} onClick={() => void create()} data-testid="create-room">
             {busy ? "Opening" : "Open the room"}
           </button>
         </section>

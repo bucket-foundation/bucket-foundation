@@ -27,7 +27,8 @@ async function hostSession(): Promise<{ access_token: string; user_id: string }>
   return { access_token: s.access_token, user_id: user.id };
 }
 
-async function signInHost(page: Page): Promise<void> {
+async function signInHost(page: Page, acceptTerms = true): Promise<void> {
+  if (acceptTerms) await page.addInitScript(() => window.localStorage.setItem("stoa/host-terms/v1", "1"));
   if (REMOTE) {
     await page.addInitScript((raw) => window.localStorage.setItem("polingual-web/session/v1", raw), HOST_SESSION);
     await page.goto("/live");
@@ -174,9 +175,11 @@ test("without school mode the board and phones show the app link, and an RTL pho
   mkdirSync(SHOTS, { recursive: true });
   const hostCtx = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
   const host = await hostCtx.newPage();
-  await signInHost(host);
+  await signInHost(host, false);
   await host.getByTestId("target-es").click();
   await host.getByTestId("target-ar").click();
+  await expect(host.getByTestId("create-room")).toBeDisabled();
+  await host.getByTestId("host-terms").check();
   await host.getByTestId("create-room").click();
   await expect(host.getByTestId("board-lobby")).toBeVisible({ timeout: 30_000 });
   const code = ((await host.getByTestId("room-code").textContent()) ?? "").trim();
