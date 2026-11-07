@@ -1,6 +1,6 @@
-import { createHash, randomInt, randomUUID, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, randomInt, randomUUID, timingSafeEqual } from "node:crypto";
 import type { SignedEvent } from "./event";
-import { bearer, createRoomKeys, hostToken, openSignKey, playerAccess, playerToken, readToken, signEvent, stoaConfigured, type HostClaims, type PlayerClaims, type StoaEnv } from "./keys";
+import { bearer, createRoomKeys, hostToken, openSignKey, playerAccess, playerToken, readToken, roomSecrets, signEvent, stoaConfigured, type HostClaims, type PlayerClaims, type StoaEnv } from "./keys";
 import { isNickname } from "./nicknames";
 import { parseSettings, type QuestionBuilder } from "./questions";
 
@@ -257,8 +257,22 @@ export function medianGrace(samples: unknown): number | null {
   return Math.round(Math.min(GRACE_CAP_MS, Math.max(0, m)));
 }
 
-export function netKey(roomId: string, ip: string | null): string {
-  return createHash("sha256").update(`stoa:net:${roomId}:${ip || "unknown"}`).digest("hex").slice(0, 32);
+export function networkOf(ip: string | null): string {
+  const raw = (ip ?? "").trim().toLowerCase();
+  if (!raw) return "unknown";
+  const mapped = /^::ffff:(\d{1,3}(?:\.\d{1,3}){3})$/.exec(raw);
+  if (mapped) return mapped[1];
+  if (!raw.includes(":")) return raw;
+  const [head, tail] = raw.split("::");
+  const left = head ? head.split(":") : [];
+  const right = tail !== undefined && tail ? tail.split(":") : [];
+  const groups = tail === undefined ? left : [...left, ...Array(Math.max(0, 8 - left.length - right.length)).fill("0"), ...right];
+  return `${groups.slice(0, 4).map((g) => (g.replace(/^0+(?=.)/, "") || "0")).join(":")}::/64`;
+}
+
+export function netKey(roomId: string, ip: string | null, env: StoaEnv): string {
+  const [secret] = roomSecrets(env);
+  return createHmac("sha256", secret).update(`stoa:net:${roomId}:${networkOf(ip)}`).digest("hex").slice(0, 32);
 }
 
 export async function submitProbe(authorization: string | null, body: unknown, deps: LiveDeps, ip: string | null = null): Promise<LiveResult> {
@@ -267,7 +281,7 @@ export async function submitProbe(authorization: string | null, body: unknown, d
   const c = claimsFor(authorization, null, deps);
   if (!c || c.typ !== "player") return { status: 401, body: { error: "token" } };
   const b = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
-  const res = await call(deps, "live_probe", { p_room: c.rid, p_player: c.pid, p_tv: c.tv, p_grace: medianGrace(b.samples), p_failed: b.failed === true, p_net: netKey(c.rid, ip) });
+  const res = await call(deps, "live_probe", { p_room: c.rid, p_player: c.pid, p_tv: c.tv, p_grace: medianGrace(b.samples), p_failed: b.failed === true, p_net: netKey(c.rid, ip, deps.env) });
   if (isResult(res)) return res;
   return { status: 200, body: { rotated: res.rotated === true } };
 }

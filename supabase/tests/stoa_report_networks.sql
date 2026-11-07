@@ -6,6 +6,7 @@ begin;
 \ir ../migrations/20261109000001_stoa_live_functions.sql
 \ir ../migrations/20261109000003_stoa_live_rotation.sql
 \ir ../migrations/20261109000006_stoa_live_report_networks.sql
+\ir ../migrations/20261109000011_stoa_live_probe_null_net.sql
 \o
 
 do $$
@@ -30,6 +31,16 @@ begin
   exception when raise_exception then
     assert sqlerrm = 'bad_action';
   end;
+
+  begin
+    perform bucket.live_probe(rid, ps[1], 1, null, true, null);
+    assert false, 'a report with no network key is refused';
+  exception when raise_exception then
+    assert sqlerrm = 'bad_action';
+  end;
+  perform bucket.live_probe(rid, ps[1], 1, null, true, md5('first'));
+  perform bucket.live_probe(rid, ps[1], 1, null, true, home);
+  assert (select net from bucket.live_reports where player_id = ps[1]) = home, 'a second report replaces the network key';
 
   for i in 1..5 loop
     res := bucket.live_probe(rid, ps[i], 1, null, true, home);

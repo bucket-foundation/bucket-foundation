@@ -122,7 +122,8 @@ class Channel {
     });
   }
 
-  push(payload: unknown): void {
+  async push(payload: unknown): Promise<void> {
+    for (let i = 0; i < 50 && this.ws?.readyState !== WebSocket.OPEN; i++) await sleep(100);
     this.ws?.send(JSON.stringify({ topic: `realtime:${this.rt.topic}`, event: "broadcast", payload: { type: "broadcast", event: "stoa", payload }, ref: String(++this.ref) }));
   }
 
@@ -159,7 +160,10 @@ class Phone {
 
   constructor(public nickname: string, private capture = false) {}
 
+  ip = "";
+
   async join(code: string, ip: string): Promise<void> {
+    this.ip = ip;
     const r = await joinRoom({ code, nickname: this.nickname }, ip, deps);
     assert.equal(r.status, 200, `${this.nickname} joins: ${JSON.stringify(r.body)}`);
     this.token = `Bearer ${r.body.token}`;
@@ -195,7 +199,7 @@ class Phone {
       if (v.reason !== "seq" && Date.now() - this.lastFail > REPORT_GAP_MS) {
         this.lastFail = Date.now();
         reportsSent++;
-        await submitProbe(this.token, { failed: true }, deps);
+        await submitProbe(this.token, { failed: true }, deps, this.ip);
       }
       return;
     }
@@ -206,7 +210,7 @@ class Phone {
     this.seqs.push(v.seq);
     if (v.type === "probe") {
       this.samples.push({ sent_at: v.issuedAt, received_at: Date.now() + this.offset });
-      if (this.samples.length === 3) await submitProbe(this.token, { samples: this.samples }, deps);
+      if (this.samples.length === 3) await submitProbe(this.token, { samples: this.samples }, deps, this.ip);
       return;
     }
     if (v.type === "rotate") rotatesSeen++;
@@ -298,7 +302,7 @@ async function main(): Promise<void> {
 
   const phones = nicknames(PLAYERS).map((n, i) => new Phone(n, i === 0));
   const joinStart = performance.now();
-  await Promise.all(phones.map((p, i) => p.join(String(room.body.code), `10.0.${Math.floor(i / 35)}.1`)));
+  await Promise.all(phones.map((p, i) => p.join(String(room.body.code), `10.0.${i % 3}.${i}`)));
   const joinMs = performance.now() - joinStart;
   await Promise.all(phones.map((p) => p.state()));
   const attacker = phones[0];
@@ -322,7 +326,7 @@ async function main(): Promise<void> {
   const topicBefore = attacker.channel!.rt.topic;
   const forgedAt = at();
   for (let i = 0; i < 5; i++) {
-    attacker.channel!.push({ room_id: rid, seq: 1_000_000 + i, type: "reveal", issued_at: Date.now(), body: JSON.stringify({ idx: 1, answer: 0 }), sig: randomBytes(64).toString("base64url") });
+    await attacker.channel!.push({ room_id: rid, seq: 1_000_000 + i, type: "reveal", issued_at: Date.now(), body: JSON.stringify({ idx: 1, answer: 0 }), sig: randomBytes(64).toString("base64url") });
     await sleep(200);
   }
   await sleep(3000);
@@ -332,8 +336,8 @@ async function main(): Promise<void> {
   hostDown = true;
   const dropAt = at();
   const dropIdx = lastHost!.room.idx;
-  for (const old of attacker.captured.slice(-5)) attacker.channel!.push(old);
-  for (const foreign of spy.captured.slice(-3)) attacker.channel!.push(foreign);
+  for (const old of attacker.captured.slice(-5)) await attacker.channel!.push(old);
+  for (const foreign of spy.captured.slice(-3)) await attacker.channel!.push(foreign);
   await sleep(30_000);
 
   const back = await hostState(rid, hostAuth);
