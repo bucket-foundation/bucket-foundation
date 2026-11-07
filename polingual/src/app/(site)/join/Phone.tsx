@@ -28,6 +28,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const [ready, setReady] = useState(false);
   const [code, setCode] = useState(normalizeCode(initialCode ?? ""));
   const [names, setNames] = useState<string[]>([]);
+  const [back, setBack] = useState<Seat | null>(null);
   const [step, setStep] = useState<"code" | "name">(initialCode && normalizeCode(initialCode).length === 6 ? "name" : "code");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -44,11 +45,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
 
   useEffect(() => {
     setNames(nicknameChoices(Math.random));
-    const s = initialCode ? findSeat(seatStore(), normalizeCode(initialCode), Date.now()) : null;
-    if (s) {
-      seatRef.current = s;
-      setSeat(s);
-    }
+    setBack(initialCode ? findSeat(seatStore(), normalizeCode(initialCode), Date.now()) : null);
     setReady(true);
   }, []);
 
@@ -165,7 +162,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
         if (body.error === "no_room" || body.error === "code") setStep("code");
         return;
       }
-      const s = saveSeat({ room_id: body.room_id, player_id: body.player_id, token: body.token, code });
+      const s = saveSeat({ room_id: body.room_id, player_id: body.player_id, token: body.token, code, nickname });
       seatRef.current = s;
       seq.current = 0;
       samples.current = [];
@@ -195,19 +192,39 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     e.preventDefault();
     if (code.length !== 6) return setError(joinError("code"));
     setError(null);
-    const back = findSeat(seatStore(), code, Date.now());
-    if (back) {
-      seatRef.current = back;
-      seq.current = 0;
-      setSeat(back);
-      return;
-    }
+    setBack(findSeat(seatStore(), code, Date.now()));
+    setStep("name");
+  }
+
+  function resume(s: Seat) {
+    setBack(null);
+    seatRef.current = s;
+    seq.current = 0;
+    samples.current = [];
+    setSeat(s);
+  }
+
+  function fresh(s: Seat) {
+    dropSeat(seatStore(), s.room_id, Date.now());
+    setBack(null);
     setStep("name");
   }
 
   const body = (() => {
     if (!ready) return null;
     if (!seat) {
+      if (back && step === "name")
+        return (
+          <section className={styles.card} data-testid="join-back">
+            <p className={styles.label}>Room {back.code}</p>
+            <h1 className={styles.title}>Welcome back</h1>
+            <p className={styles.body}>This phone already has a seat in this room.</p>
+            <button type="button" className={styles.cta} onClick={() => resume(back)} data-testid="continue">
+              {back.nickname ? `Continue as ${displayNickname(back.nickname)}` : "Continue with my seat"}
+            </button>
+            <button type="button" className={styles.ghost} onClick={() => fresh(back)} data-testid="someone-new">Join as someone new</button>
+          </section>
+        );
       if (step === "code")
         return (
           <form className={styles.card} onSubmit={submitCode} data-testid="join-code">

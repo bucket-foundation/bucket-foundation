@@ -1,4 +1,4 @@
-export type Seat = { room_id: string; player_id: string; token: string; code: string; exp: number };
+export type Seat = { room_id: string; player_id: string; token: string; code: string; exp: number; nickname?: string };
 export type SeatStore = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
 export const SEATS_KEY = "stoa/seats/v1";
@@ -19,7 +19,7 @@ export function tokenExpiry(token: string): number | null {
 function isSeat(v: unknown): v is Seat {
   if (!v || typeof v !== "object") return false;
   const s = v as Record<string, unknown>;
-  return typeof s.room_id === "string" && typeof s.player_id === "string" && typeof s.token === "string" && typeof s.code === "string" && CODE.test(s.code) && Number.isSafeInteger(s.exp);
+  return typeof s.room_id === "string" && typeof s.player_id === "string" && typeof s.token === "string" && typeof s.code === "string" && CODE.test(s.code) && Number.isSafeInteger(s.exp) && (s.nickname === undefined || (typeof s.nickname === "string" && /^[a-z]+-[a-z]+$/.test(s.nickname)));
 }
 
 export function readSeats(store: SeatStore | null, now: number): Seat[] {
