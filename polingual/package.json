@@ -14,6 +14,7 @@
     "test:db": "bash db/test-founding.sh",
     "test:live-db": "bash db/test-live.sh",
     "test:live-local": "bash db/test-live-local.sh",
+    "test:live-load": "bash db/test-live-load.sh",
     "test:live-e2e": "bash db/test-live-e2e.sh"
   },
   "dependencies": {
