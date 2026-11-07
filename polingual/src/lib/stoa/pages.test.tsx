@@ -41,3 +41,15 @@ test("the host terms state who may host, and that acceptance lives in the browse
 test("both pages keep the voice rules: no dashes", () => {
   for (const html of [renderToStaticMarkup(<StudentDataPage />), renderToStaticMarkup(<HostTermsPage />)]) assert.ok(!/[–—]/.test(html));
 });
+
+test("the keyed-hash claim matches how the server keys addresses", () => {
+  const live = readFileSync(join(__dirname, "live.ts"), "utf8");
+  for (const fn of ["ipKey", "netKey"]) {
+    const body = live.slice(live.indexOf(`export function ${fn}(`), live.indexOf("\n}\n", live.indexOf(`export function ${fn}(`)));
+    assert.match(body, /createHmac\("sha256", secret\)/, `${fn} is an HMAC`);
+    assert.match(body, /roomSecrets\(env\)/, `${fn} is keyed with the room secret`);
+    assert.match(body, /networkOf\(ip\)/, `${fn} groups IPv6 by /64`);
+  }
+  const t = text(renderToStaticMarkup(<StudentDataPage />));
+  assert.ok(t.includes("keyed hash") && t.includes("first 64 bits"));
+});
