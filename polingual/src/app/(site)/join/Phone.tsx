@@ -227,6 +227,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
               <input className={styles.codeInput} value={code} onChange={(e) => setCode(normalizeCode(e.target.value))} inputMode="text" autoCapitalize="characters" autoComplete="off" maxLength={6} size={6} data-testid="code-input" aria-describedby="code-help" />
             </label>
             <p id="code-help" className={styles.muted}>6 letters and numbers.</p>
+            <p className={styles.muted}>No account and no personal details. <a href="/live/student-data" data-testid="student-data-link">How we handle student data</a></p>
             <button type="submit" className={styles.cta} disabled={code.length !== 6}>Next</button>
           </form>
         );

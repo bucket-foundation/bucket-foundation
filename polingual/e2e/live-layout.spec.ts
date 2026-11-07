@@ -39,3 +39,16 @@ test("a signed-out host sees the live-game sign-in", async ({ browser }) => {
   await p.screenshot({ path: `${SHOTS}/live-sign-in-390.png` });
   await ctx.close();
 });
+
+for (const path of ["/live/student-data", "/live/terms"]) {
+  test(`${path} reads on a phone`, async ({ browser }) => {
+    mkdirSync(SHOTS, { recursive: true });
+    const ctx = await browser.newContext({ viewport: { width: 375, height: 812 }, isMobile: true, hasTouch: true });
+    const p = await ctx.newPage();
+    await p.goto(path);
+    await expect(p.getByRole("heading", { level: 1 })).toBeVisible({ timeout: 60_000 });
+    expect(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await p.screenshot({ path: `${SHOTS}${path.replace("/live", "").replace("/", "/page-")}-375.png`, fullPage: true });
+    await ctx.close();
+  });
+}
