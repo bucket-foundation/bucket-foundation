@@ -11,7 +11,8 @@ extension ShareObject {
             langs.isEmpty ? String(localized: "\(days) day streak on \(Feedback.appName)") : String(localized: "\(days) days in a row learning \(langs.map(langName).joined(separator: ", ")) on \(Feedback.appName)")
         case .system(_, _, let targets, _, _): String(localized: "Learning \(targets.map(langName).joined(separator: ", ")) together on \(Feedback.appName)")
         case .language(let lang, _), .flag(let lang, _): String(localized: "Learning \(langName(lang)) on \(Feedback.appName)")
-        case .mastered(let lang, let count, _): String(localized: "\(count) words mastered in \(langName(lang)) on \(Feedback.appName)")
+        case .mastered(let lang, let count, _, let words):
+            String(localized: "\(count) words mastered in \(langName(lang)) on \(Feedback.appName)") + (words.isEmpty ? "" : ": " + words.prefix(12).map(\.form).joined(separator: ", "))
         case .word(_, let gloss, let forms): "\(gloss): " + forms.prefix(6).map(\.form).joined(separator: " · ")
         case .tile(let form, let gloss, _): form.form == gloss ? form.form : "\(form.form): \(gloss)"
         case .score(let s): String(localized: "\(s.right) of \(s.total) right in \(s.source) on \(Feedback.appName)")
@@ -41,7 +42,7 @@ extension ShareObject {
         case .streak: String(localized: "Streak")
         case .system(let name, _, _, _, _): name
         case .language(let lang, _): langName(lang)
-        case .mastered(let lang, let count, _): String(localized: "\(count) \(langName(lang)) words")
+        case .mastered(let lang, let count, _, _): String(localized: "\(count) \(langName(lang)) words")
         case .word(_, let gloss, _): gloss
         case .tile(let form, _, _): form.form
         case .flag(let lang, _): String(localized: "\(langName(lang)) flag")
@@ -61,13 +62,17 @@ extension LangStore {
         let streak = langStreak(self)
         var out: [ShareObject] = streak > 0 ? [.streak(days: streak, langs: gameLangs, root: root)] : []
         var mastered: [String: Int] = [:]
+        var words: [String: [MasteredWord]] = [:]
         for s in systems {
             let learned = corpus.map { systemSummary(s, $0, state(s.id), now: now).started } ?? 0
             out.append(.system(name: s.name, root: s.root, targets: s.targets, streak: streak, learned: learned))
             guard let corpus else { continue }
-            for p in langProgress(s, corpus, state(s.id), now: now) { mastered[p.lang] = max(mastered[p.lang] ?? 0, Int(p.mastered)) }
+            for p in langProgress(s, corpus, state(s.id), now: now) where Int(p.mastered) > mastered[p.lang] ?? 0 {
+                mastered[p.lang] = Int(p.mastered)
+                words[p.lang] = masteredWords(s, corpus, state(s.id), lang: p.lang)
+            }
         }
-        out += mastered.filter { $0.value > 0 }.sorted { $0.value > $1.value }.map { .mastered(lang: $0.key, count: $0.value, root: root) }
+        out += mastered.filter { $0.value > 0 }.sorted { $0.value > $1.value }.map { .mastered(lang: $0.key, count: $0.value, root: root, words: words[$0.key] ?? []) }
         out += gameLangs.map { .language($0, root: root) }
         out += gameLangs.map { .flag($0, root: root) }
         return out
@@ -110,8 +115,12 @@ struct ShareCardView: View {
             }
         case .language(let lang, _):
             if style == .plate { FlagPlateCard(lang: lang, dark: false) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: String(localized: "Learning it on \(Feedback.appName)")) }
-        case .mastered(let lang, let count, _):
-            if style == .banner { FlagBannerCard(lang: lang, word: "\(count)", reading: nil, line: String(localized: "words mastered")) } else { MasteredCard(lang: lang, count: count) }
+        case .mastered(let lang, let count, _, let words):
+            switch style {
+            case .banner: FlagBannerCard(lang: lang, word: "\(count)", reading: nil, line: String(localized: "words mastered"))
+            case .list: MasteredListCard(lang: lang, count: count, words: words)
+            default: MasteredCard(lang: lang, count: count)
+            }
         case .flag(let lang, _):
             if style == .plate { FlagPlateCard(lang: lang, dark: true) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: nil) }
         case .word(_, let gloss, let forms):
@@ -375,6 +384,46 @@ struct MasteredCard: View {
             Text("\(count)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
             Text(count == 1 ? String(localized: "word mastered") : String(localized: "words mastered")).font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
             Text(langName(lang)).font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8))
+            Spacer(minLength: 0)
+            CardFoot(color: .white)
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(D8.malachite)
+    }
+}
+
+struct MasteredListCard: View {
+    static let shown = 10
+    let lang: String
+    let count: Int
+    let words: [MasteredWord]
+
+    var body: some View {
+        let big = words.count <= 5
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 14) {
+                FlagTile(lang: lang, size: 56)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(count == 1 ? String(localized: "First word mastered") : String(localized: "\(count) words mastered"))
+                        .font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(langName(lang)).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8))
+                }
+            }
+            .padding(.bottom, 20)
+            if big { Spacer(minLength: 0) }
+            VStack(alignment: .leading, spacing: big ? 18 : 7) {
+                ForEach(Array(words.prefix(Self.shown).enumerated()), id: \.offset) { _, w in
+                    HStack(alignment: .firstTextBaseline, spacing: 10) {
+                        Text(w.form).font(.system(size: big ? 48 : 24, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                        Spacer(minLength: 8)
+                        Text(w.meaning).font(.system(size: big ? 28 : 18, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
+                    }
+                }
+                if max(count, words.count) > Self.shown {
+                    Text(verbatim: "+\(max(count, words.count) - Self.shown)").font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7))
+                }
+            }
             Spacer(minLength: 0)
             CardFoot(color: .white)
         }

@@ -1441,6 +1441,17 @@ public func langProgress(_ system: LangSystem, _ corpus: LangCorpus, _ state: En
     }
 }
 
+public func masteredWords(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, lang: String) -> [MasteredWord] {
+    let fsrs = FSRS()
+    let scored: [(word: MasteredWord, mastery: Double)] = corpus.items.compactMap { i in
+        guard isVocab(i), usable(i, system.root, lang), let c = state.cards[cardId(lang, i.id)], isStarted(c) else { return nil }
+        let m = fsrs.mastery(c)
+        guard m >= 0.8, let form = i.form(lang), let meaning = i.form(system.root) else { return nil }
+        return (MasteredWord(form: form, meaning: meaning), m)
+    }
+    return scored.stableSorted { $0.mastery > $1.mastery }.map(\.word)
+}
+
 public struct SystemSummary: Sendable {
     public let started: Int
     public let total: Int
