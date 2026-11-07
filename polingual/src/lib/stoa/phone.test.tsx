@@ -74,7 +74,7 @@ g.fetch = async (input: string, init: RequestInit = {}) => {
   const url = String(input);
   const body = init.body ? JSON.parse(String(init.body)) : null;
   calls.push({ url, body });
-  if (url === "/api/live/join") return Response.json({ room_id: RID, player_id: PID, token: "tok", verify_key: KEYS.verifyKey, realtime: RT });
+  if (url === "/api/live/join") return Response.json({ room_id: RID, player_id: PID, token: `e30.${Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + 3600 })).toString("base64url")}.sig`, verify_key: KEYS.verifyKey, realtime: RT });
   if (url === `/api/live/rooms/${RID}/state`) return Response.json({ ...snapshot, server_now: Date.now() });
   if (url === "/api/live/answer") return Response.json({ received_at: Date.now() });
   if (url === "/api/live/probe") return Response.json({ rotated: false });
@@ -164,8 +164,10 @@ test("a phone that reloads or loses its tab finds its seat again, and a removed 
   const { act, createElement } = await import("react");
   const { createRoot } = await import("react-dom/client");
   const { default: Phone } = await import("../../app/(site)/join/Phone");
-  const stored = JSON.parse(dom.window.localStorage.getItem("stoa/seats/v1") ?? "[]") as { code: string; room_id: string }[];
-  assert.deepEqual(stored.map((s) => [s.code, s.room_id]), [["QZ7K2M", RID]], "the seat is stored per room code");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "the closed room from the last test dropped its seat");
+  const exp = Math.floor(Date.now() / 1000) + 3600;
+  const tok = `e30.${Buffer.from(JSON.stringify({ exp })).toString("base64url")}.sig`;
+  dom.window.localStorage.setItem("stoa/seats/v1", JSON.stringify([{ room_id: RID, player_id: PID, token: tok, code: "QZ7K2M", exp: exp * 1000 }]));
   dom.window.sessionStorage.clear();
   calls.length = 0;
   snap("question", { question: { ...q0, answer: null, counts: null } }, { seq: seq + 1 }, { choice: 2, points: 990 });
@@ -193,12 +195,65 @@ test("a phone that reloads or loses its tab finds its seat again, and a removed 
   const gone = dom.window.document.createElement("div");
   dom.window.document.body.appendChild(gone);
   const removed = createRoot(gone);
-  await act(async () => removed.render(createElement(Phone, {})));
+  await act(async () => removed.render(createElement(Phone, { initialCode: "QZ7K2M" })));
   await until(() => /removed you/.test($("phone-error")?.textContent ?? ""), "the removal message");
   assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "a removed seat leaves storage");
   await act(async () => removed.unmount());
   gone.remove();
   g.fetch = real;
+});
+
+test("on a shared phone /join starts clean, Leave game clears the seat, and 401 or 404 drops it", async () => {
+  const { act, createElement } = await import("react");
+  const { createRoot } = await import("react-dom/client");
+  const { default: Phone } = await import("../../app/(site)/join/Phone");
+  const exp = Math.floor(Date.now() / 1000) + 3600;
+  const tok = `${Buffer.from("{}").toString("base64url")}.${Buffer.from(JSON.stringify({ exp })).toString("base64url")}.sig`;
+  const store = () => dom.window.localStorage.setItem("stoa/seats/v1", JSON.stringify([{ room_id: RID, player_id: PID, token: tok, code: "QZ7K2M", exp: exp * 1000 }]));
+  const mount = async (props: Record<string, unknown>) => {
+    const el = dom.window.document.createElement("div");
+    dom.window.document.body.appendChild(el);
+    const root = createRoot(el);
+    await act(async () => root.render(createElement(Phone, props)));
+    return async () => {
+      await act(async () => root.unmount());
+      el.remove();
+    };
+  };
+  snap("lobby", {}, { seq: seq + 1 });
+
+  store();
+  calls.length = 0;
+  let done = await mount({});
+  await until(() => Boolean($("join-code")), "the code entry");
+  await act(async () => new Promise((r) => setTimeout(r, 100)));
+  assert.equal(calls.length, 0, "the next student sees the code screen and nobody's seat");
+  await done();
+
+  done = await mount({ initialCode: "QZ7K2M" });
+  await until(() => Boolean($("phone-lobby")), "the previous seat on the QR link");
+  await act(async () => $("leave")!.click());
+  await until(() => Boolean($("join-code")), "the code screen after leaving");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "Leave game clears the stored seat");
+  await done();
+
+  const real = g.fetch as (input: string, init?: RequestInit) => Promise<Response>;
+  for (const status of [401, 404]) {
+    store();
+    g.fetch = async (input: string, init: RequestInit = {}) => (String(input).endsWith("/state") ? new Response("{}", { status }) : real(input, init));
+    done = await mount({ initialCode: "QZ7K2M" });
+    await until(() => /ended/.test($("phone-error")?.textContent ?? ""), `the ended message on ${status}`);
+    assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, `${status} drops the seat`);
+    await done();
+  }
+  g.fetch = real;
+
+  store();
+  snap("closed", {}, { seq: seq + 1 });
+  done = await mount({ initialCode: "QZ7K2M" });
+  await until(() => Boolean($("phone-finale")), "the closed room");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "a closed room drops the seat");
+  await done();
 });
 
 test("the screens keep D8 tokens, self-hosted fonts, RTL-safe tiles and the QR on the host only", () => {

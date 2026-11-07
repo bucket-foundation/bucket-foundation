@@ -22,7 +22,8 @@ test("the seat lives until the room token expires", () => {
   const store = memory();
   keepSeat(store, seat("QZ7K2M", "r1"), NOW);
   assert.equal(findSeat(store, "QZ7K2M", NOW + 1000)?.room_id, "r1", "a reload or a killed tab finds the seat by code");
-  assert.equal(findSeat(store, null, NOW + 1000)?.room_id, "r1", "/join with no code resumes the only seat");
+  assert.equal(findSeat(store, null, NOW + 1000), null, "/join with no code never resumes a seat, so a shared phone starts clean");
+  assert.equal(findSeat(store, "QZ7K2X", NOW + 1000), null, "a seat resumes only for its own room code");
   assert.equal(findSeat(store, "QZ7K2M", NOW + 3_600_001), null, "an expired seat is gone");
   assert.equal(store.data.has(SEATS_KEY), false, "expired seats are pruned from storage");
 });
@@ -33,7 +34,7 @@ test("seats are per room, capped, and dropped on leave", () => {
   const seats = readSeats(store, NOW);
   assert.equal(seats.length, MAX_SEATS);
   assert.equal(seats[0].room_id, "r5", "the newest seat comes first");
-  assert.equal(findSeat(store, null, NOW), null, "with several seats, /join asks for a code");
+  assert.equal(findSeat(store, "QZ7K23", NOW)?.room_id, "r3");
   keepSeat(store, { ...seat("QZ7K25", "r5"), token: token(Math.floor(NOW / 1000) + 60) }, NOW);
   assert.equal(readSeats(store, NOW).filter((s) => s.room_id === "r5").length, 1, "a reissued token replaces the seat");
   dropSeat(store, "r5", NOW);
@@ -49,5 +50,8 @@ test("broken storage never breaks the phone", () => {
   const throwing: SeatStore = { getItem: () => { throw new Error("denied"); }, setItem: () => { throw new Error("denied"); }, removeItem: () => { throw new Error("denied"); } };
   assert.equal(findSeat(throwing, "QZ7K2M", NOW), null);
   assert.equal(keepSeat(throwing, seat("QZ7K2M", "r1"), NOW).room_id, "r1");
+  const junk = memory();
+  keepSeat(junk, { room_id: "r9", player_id: "p", token: "junk", code: "QZ7K2M" }, NOW);
+  assert.equal(findSeat(junk, "QZ7K2M", NOW), null, "a token with no expiry is treated as expired");
   assert.equal(findSeat(null, "QZ7K2M", NOW), null);
 });

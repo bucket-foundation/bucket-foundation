@@ -44,7 +44,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
 
   useEffect(() => {
     setNames(nicknameChoices(Math.random));
-    const s = findSeat(seatStore(), initialCode ? normalizeCode(initialCode) : null, Date.now());
+    const s = initialCode ? findSeat(seatStore(), normalizeCode(initialCode), Date.now()) : null;
     if (s) {
       seatRef.current = s;
       setSeat(s);
@@ -88,6 +88,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
       setSeat(next);
     }
     seq.current = Math.max(seq.current, body.room.seq);
+    if (body.room.phase === "closed") dropSeat(seatStore(), s.room_id, Date.now());
     setSnap(body);
     if (!socket.current) {
       socket.current = new LiveSocket(body.realtime, (p) => void onEvent.current(p), setStatus);
@@ -194,6 +195,13 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     e.preventDefault();
     if (code.length !== 6) return setError(joinError("code"));
     setError(null);
+    const back = findSeat(seatStore(), code, Date.now());
+    if (back) {
+      seatRef.current = back;
+      seq.current = 0;
+      setSeat(back);
+      return;
+    }
     setStep("name");
   }
 
@@ -300,6 +308,9 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
       </header>
       <main className={`${styles.main} ${styles.phone}`} data-testid="phone">
         {body}
+        {seat ? (
+          <button type="button" className={styles.ghost} onClick={() => leave()} data-testid="leave">Leave game</button>
+        ) : null}
         {error ? <p role="alert" className={styles.error} data-testid="phone-error">{error}</p> : null}
       </main>
     </div>

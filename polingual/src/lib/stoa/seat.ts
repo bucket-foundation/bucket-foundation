@@ -45,12 +45,11 @@ function write(store: SeatStore | null, seats: Seat[]): void {
 export function findSeat(store: SeatStore | null, code: string | null, now: number): Seat | null {
   const seats = readSeats(store, now);
   write(store, seats);
-  if (code) return seats.find((s) => s.code === code) ?? null;
-  return seats.length === 1 ? seats[0] : null;
+  return code && CODE.test(code) ? seats.find((s) => s.code === code) ?? null : null;
 }
 
 export function keepSeat(store: SeatStore | null, seat: Omit<Seat, "exp">, now: number): Seat {
-  const kept = { ...seat, exp: tokenExpiry(seat.token) ?? now + 3 * 3_600_000 };
+  const kept = { ...seat, exp: tokenExpiry(seat.token) ?? now };
   write(store, [kept, ...readSeats(store, now).filter((s) => s.room_id !== seat.room_id && s.code !== seat.code)].slice(0, MAX_SEATS));
   return kept;
 }
