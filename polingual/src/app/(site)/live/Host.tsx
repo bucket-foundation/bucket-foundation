@@ -11,6 +11,11 @@ import styles from "./stoa.module.css";
 const Qr = dynamic(() => import("./Qr"), { ssr: false });
 
 const KEY = "stoa/host/v1";
+const HOST_COPY = {
+  label: "Polingual Live",
+  title: "Sign in to host a live game",
+  intro: "Hosting puts a quiz on your screen. Players join from their phones with a room code and need no account.",
+};
 const HOMES = ["en", "es", "fr", "de", "pt", "it", "ar", "he", "ja", "zh", "ko", "hi", "ru", "tr"];
 const TARGETS = ["es", "fr", "it", "pt", "de", "nl", "sv", "ru", "pl", "el", "ar", "he", "fa", "hi", "ja", "zh", "ko", "th", "tr", "vi", "en", "la"];
 const APP_URL = "https://apps.apple.com/app/id6825177856";
@@ -137,7 +142,7 @@ export default function Host() {
 
   const view = (() => {
     if (auth === "loading") return null;
-    if (auth === "signed-out") return <SignIn onSignedIn={() => void refresh()} />;
+    if (auth === "signed-out") return <SignIn onSignedIn={() => void refresh()} copy={HOST_COPY} />;
     if (!room)
       return (
         <section className={styles.card} data-testid="host-setup">

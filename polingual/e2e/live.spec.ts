@@ -8,7 +8,10 @@ const ANON = process.env.LIVE_LOCAL_ANON_KEY ?? "";
 const SHOTS = process.env.PL_SHOTS_DIR ?? "test-results/stoa";
 const PHONES = 5;
 
-test.skip(!/^http:\/\/(127\.0\.0\.1|localhost)/.test(URL_), "needs the local Supabase stack");
+const HOST_SESSION = process.env.PL_LIVE_HOST_SESSION ?? "";
+const REMOTE = Boolean(process.env.PL_LIVE_BASE_URL && HOST_SESSION);
+
+test.skip(!REMOTE && !/^http:\/\/(127\.0\.0\.1|localhost)/.test(URL_), "needs the local Supabase stack, or PL_LIVE_BASE_URL with PL_LIVE_HOST_SESSION");
 
 async function hostSession(): Promise<{ access_token: string; user_id: string }> {
   const email = `stoa-host-${randomUUID()}@bucket.test`;
@@ -25,6 +28,12 @@ async function hostSession(): Promise<{ access_token: string; user_id: string }>
 }
 
 async function signInHost(page: Page): Promise<void> {
+  if (REMOTE) {
+    await page.addInitScript((raw) => window.localStorage.setItem("polingual-web/session/v1", raw), HOST_SESSION);
+    await page.goto("/live");
+    await expect(page.getByTestId("host-setup")).toBeVisible({ timeout: 60_000 });
+    return;
+  }
   const s = await hostSession();
   await page.route("**/api/academy/session", async (route) => {
     const b = route.request().postDataJSON() as Record<string, unknown>;
