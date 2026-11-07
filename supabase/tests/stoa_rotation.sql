@@ -5,6 +5,7 @@ begin;
 \ir ../migrations/20261109000000_stoa_live.sql
 \ir ../migrations/20261109000001_stoa_live_functions.sql
 \ir ../migrations/20261109000003_stoa_live_rotation.sql
+\ir ../migrations/20261109000006_stoa_live_report_networks.sql
 \o
 
 do $$
@@ -35,7 +36,7 @@ begin
   assert res -> 'topics' = jsonb_build_array(t0), 'one topic before any rotation';
 
   for i in 1..20 loop
-    res := bucket.live_probe(rid, ps[i], 1, null, true);
+    res := bucket.live_probe(rid, ps[i], 1, null, true, md5(i::text));
     exit when (res ->> 'rotated')::boolean;
   end loop;
   assert (res ->> 'rotated')::boolean, 'enough distinct reporters rotate the topic';
@@ -46,7 +47,7 @@ begin
   assert bucket.live_tick(rid) -> 'topics' = jsonb_build_array(t1, t0), 'both topics carry events for 60 seconds';
 
   for i in 21..40 loop
-    res := bucket.live_probe(rid, ps[i], 1, null, true);
+    res := bucket.live_probe(rid, ps[i], 1, null, true, md5(i::text));
   end loop;
   assert (select topic from bucket.live_rooms where id = rid) = t1, 'reports rotate at most once per 2 minutes';
 

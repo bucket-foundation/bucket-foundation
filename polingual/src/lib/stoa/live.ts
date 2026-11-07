@@ -247,13 +247,17 @@ export function medianGrace(samples: unknown): number | null {
   return Math.round(Math.min(GRACE_CAP_MS, Math.max(0, m)));
 }
 
-export async function submitProbe(authorization: string | null, body: unknown, deps: LiveDeps): Promise<LiveResult> {
+export function netKey(roomId: string, ip: string | null): string {
+  return createHash("sha256").update(`stoa:net:${roomId}:${ip || "unknown"}`).digest("hex").slice(0, 32);
+}
+
+export async function submitProbe(authorization: string | null, body: unknown, deps: LiveDeps, ip: string | null = null): Promise<LiveResult> {
   const off = ready(deps.env);
   if (off) return off;
   const c = claimsFor(authorization, null, deps);
   if (!c || c.typ !== "player") return { status: 401, body: { error: "token" } };
   const b = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
-  const res = await call(deps, "live_probe", { p_room: c.rid, p_player: c.pid, p_tv: c.tv, p_grace: medianGrace(b.samples), p_failed: b.failed === true });
+  const res = await call(deps, "live_probe", { p_room: c.rid, p_player: c.pid, p_tv: c.tv, p_grace: medianGrace(b.samples), p_failed: b.failed === true, p_net: netKey(c.rid, ip) });
   if (isResult(res)) return res;
   return { status: 200, body: { rotated: res.rotated === true } };
 }
