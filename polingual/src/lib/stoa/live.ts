@@ -302,6 +302,27 @@ export async function playerAction(roomId: string, playerId: string, action: str
   return { status: 200, body: { ok: true, token_version: res.token_version } };
 }
 
+export type SummaryRow = { nickname: string; points: number; correct: number };
+
+export function summaryCsv(rows: SummaryRow[]): string {
+  const lines = ["rank,nickname,points,correct"];
+  rows.forEach((r, i) => {
+    const name = /^[a-z]+-[a-z]+$/.test(r.nickname) ? r.nickname : "";
+    lines.push(`${i + 1},${name},${Math.trunc(Number(r.points) || 0)},${Math.trunc(Number(r.correct) || 0)}`);
+  });
+  return lines.join("\r\n") + "\r\n";
+}
+
+export async function roomSummary(roomId: string, authorization: string | null, deps: LiveDeps): Promise<LiveResult> {
+  const c = await hostClaims(roomId, authorization, deps);
+  if ("status" in c) return c;
+  const r = await deps.rpc("live_summary", { p_room: c.rid, p_host: c.uid });
+  if ("error" in r) return fail(r.error);
+  const res = r.data as { code: string; rows: SummaryRow[]; error?: string };
+  if (res.error) return fail(res.error);
+  return { status: 200, body: { code: res.code, csv: summaryCsv(res.rows ?? []) } };
+}
+
 export function sweepAllowed(authorization: string | null, env: StoaEnv): boolean {
   const want = env.STOA_SWEEP_SECRET?.trim();
   const got = bearer(authorization);

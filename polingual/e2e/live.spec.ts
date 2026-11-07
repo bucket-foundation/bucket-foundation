@@ -1,5 +1,5 @@
 import { expect, test, type Browser, type Page } from "@playwright/test";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, readFileSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 
 const URL_ = process.env.LIVE_LOCAL_URL ?? "";
@@ -148,6 +148,12 @@ test("one host and five phones play a whole game on the local stack", async ({ b
     await expect(p.getByTestId("app-link")).toHaveCount(0);
   }
   await phones[0].screenshot({ path: `${SHOTS}/phone-finale-390.png` });
+  const [download] = await Promise.all([host.waitForEvent("download"), host.getByTestId("download").click()]);
+  expect(download.suggestedFilename()).toBe(`stoa-${code}-results.csv`);
+  const csv = readFileSync(await download.path(), "utf8").trim().split("\r\n");
+  expect(csv[0]).toBe("rank,nickname,points,correct");
+  expect(csv).toHaveLength(PHONES + 1);
+  expect(csv.slice(1).every((row) => /^\d+,[a-z]+-[a-z]+,\d+,\d+$/.test(row))).toBe(true);
 
   for (const p of phones) {
     const status = p.getByTestId("phone-status");

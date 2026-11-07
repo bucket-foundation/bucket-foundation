@@ -130,6 +130,18 @@ export default function Host() {
     void poll();
   }
 
+  async function download() {
+    if (!room) return;
+    const r = await fetch(`/api/live/rooms/${room.room_id}/summary`, { headers: { authorization: `Bearer ${room.host_token}` }, cache: "no-store" }).catch(() => null);
+    if (!r || !r.ok) return setError("The results did not download. Try again.");
+    const url = URL.createObjectURL(await r.blob());
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `stoa-${room.code}-results.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   function newRoom() {
     save(null);
     setRoom(null);
@@ -193,7 +205,12 @@ export default function Host() {
           </>
         ) : null}
         {phase !== "closed" ? <button type="button" className={styles.ghost} onClick={() => void act("end")} data-testid="end">End room</button> : null}
-        {phase === "closed" || phase === "finale" ? <button type="button" className={styles.ghost} onClick={newRoom} data-testid="new-room">New room</button> : null}
+        {phase === "closed" || phase === "finale" ? (
+          <>
+            <button type="button" className={styles.ghost} onClick={() => void download()} data-testid="download">Download results</button>
+            <button type="button" className={styles.ghost} onClick={newRoom} data-testid="new-room">New room</button>
+          </>
+        ) : null}
       </div>
     );
     if (phase === "lobby")
