@@ -160,6 +160,47 @@ test("a phone joins, verifies signed events, answers and sees school mode stay f
   await act(async () => root.unmount());
 });
 
+test("a phone that reloads or loses its tab finds its seat again, and a removed seat is dropped", async () => {
+  const { act, createElement } = await import("react");
+  const { createRoot } = await import("react-dom/client");
+  const { default: Phone } = await import("../../app/(site)/join/Phone");
+  const stored = JSON.parse(dom.window.localStorage.getItem("stoa/seats/v1") ?? "[]") as { code: string; room_id: string }[];
+  assert.deepEqual(stored.map((s) => [s.code, s.room_id]), [["QZ7K2M", RID]], "the seat is stored per room code");
+  dom.window.sessionStorage.clear();
+  calls.length = 0;
+  snap("question", { question: { ...q0, answer: null, counts: null } }, { seq: seq + 1 }, { choice: 2, points: 990 });
+
+  const host = dom.window.document.createElement("div");
+  dom.window.document.body.appendChild(host);
+  const root = createRoot(host);
+  await act(async () => root.render(createElement(Phone, { initialCode: "QZ7K2M" })));
+  await until(() => Boolean($("locked")), "the locked answer after a reload");
+  assert.equal(calls.some((c) => c.url === "/api/live/join"), false, "no second join, so the score stays");
+  assert.ok(calls.some((c) => c.url === `/api/live/rooms/${RID}/state`));
+  await act(async () => root.unmount());
+  host.remove();
+
+  const other = dom.window.document.createElement("div");
+  dom.window.document.body.appendChild(other);
+  const fresh = createRoot(other);
+  await act(async () => fresh.render(createElement(Phone, { initialCode: "AB12CD" })));
+  await until(() => $$("nickname").length === 3, "a different code starts a new join");
+  await act(async () => fresh.unmount());
+  other.remove();
+
+  const real = g.fetch as (input: string, init?: RequestInit) => Promise<Response>;
+  g.fetch = async (input: string, init: RequestInit = {}) => (String(input).endsWith("/state") ? new Response("{}", { status: 403 }) : real(input, init));
+  const gone = dom.window.document.createElement("div");
+  dom.window.document.body.appendChild(gone);
+  const removed = createRoot(gone);
+  await act(async () => removed.render(createElement(Phone, {})));
+  await until(() => /removed you/.test($("phone-error")?.textContent ?? ""), "the removal message");
+  assert.equal(dom.window.localStorage.getItem("stoa/seats/v1"), null, "a removed seat leaves storage");
+  await act(async () => removed.unmount());
+  gone.remove();
+  g.fetch = real;
+});
+
 test("the screens keep D8 tokens, self-hosted fonts, RTL-safe tiles and the QR on the host only", () => {
   const app = join(__dirname, "../../app/(site)");
   const css = readFileSync(join(app, "live/stoa.module.css"), "utf8");

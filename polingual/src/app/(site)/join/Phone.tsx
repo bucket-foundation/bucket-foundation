@@ -3,15 +3,13 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { clockOffset, displayNickname, joinError, normalizeCode, rank, secondsLeft, type Snapshot } from "@/lib/stoa/client";
 import { nicknameChoices } from "@/lib/stoa/nicknames";
+import { dropSeat, findSeat, keepSeat, seatStore, type Seat } from "@/lib/stoa/seat";
 import { LiveSocket, type SocketStatus } from "@/lib/stoa/socket";
 import { verifyEvent } from "@/lib/stoa/verify";
 import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "../live/parts";
 import styles from "../live/stoa.module.css";
 
-const KEY = "stoa/player/v1";
 const APP_URL = "https://apps.apple.com/app/id6825177856";
-
-type Seat = { room_id: string; player_id: string; token: string };
 
 export function announce(left: number | null, paused: boolean): string {
   if (paused) return "Paused.";
@@ -21,21 +19,8 @@ export function announce(left: number | null, paused: boolean): string {
   return "";
 }
 
-function loadSeat(): Seat | null {
-  try {
-    const raw = sessionStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as Seat) : null;
-  } catch {
-    return null;
-  }
-}
-
-function saveSeat(s: Seat | null): void {
-  try {
-    if (s) sessionStorage.setItem(KEY, JSON.stringify(s));
-    else sessionStorage.removeItem(KEY);
-  } catch {
-  }
+function saveSeat(s: Omit<Seat, "exp">): Seat {
+  return keepSeat(seatStore(), s, Date.now());
 }
 
 export default function Phone({ initialCode }: { initialCode?: string }) {
@@ -59,7 +44,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
 
   useEffect(() => {
     setNames(nicknameChoices(Math.random));
-    const s = loadSeat();
+    const s = findSeat(seatStore(), initialCode ? normalizeCode(initialCode) : null, Date.now());
     if (s) {
       seatRef.current = s;
       setSeat(s);
@@ -75,7 +60,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const leave = useCallback((message?: string) => {
     socket.current?.stop();
     socket.current = null;
-    saveSeat(null);
+    if (seatRef.current) dropSeat(seatStore(), seatRef.current.room_id, Date.now());
     seatRef.current = null;
     setSeat(null);
     setSnap(null);
@@ -98,9 +83,8 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     const body = (await r.json()) as Snapshot;
     offset.current = clockOffset(sent, Date.now(), body.server_now);
     if (body.token) {
-      const next = { ...s, token: body.token };
+      const next = saveSeat({ ...s, token: body.token });
       seatRef.current = next;
-      saveSeat(next);
       setSeat(next);
     }
     seq.current = Math.max(seq.current, body.room.seq);
@@ -180,8 +164,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
         if (body.error === "no_room" || body.error === "code") setStep("code");
         return;
       }
-      const s = { room_id: body.room_id, player_id: body.player_id, token: body.token };
-      saveSeat(s);
+      const s = saveSeat({ room_id: body.room_id, player_id: body.player_id, token: body.token, code });
       seatRef.current = s;
       seq.current = 0;
       samples.current = [];
