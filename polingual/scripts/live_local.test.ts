@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
 import { verifyEvent } from "../src/lib/stoa/verify";
-import { createRoom, hostAction, joinRoom, playerAction, postgrestRpc, roomState, submitAnswer, sweep, type Fetcher, type LiveDeps } from "../src/lib/stoa/live";
+import { createRoom, hostAction, joinRoom, playerAction, postgrestRpc, roomState, submitAnswer, submitProbe, sweep, type Fetcher, type LiveDeps } from "../src/lib/stoa/live";
 
 const URL_ = process.env.LIVE_LOCAL_URL;
 const SERVICE = process.env.LIVE_LOCAL_SERVICE_KEY;
@@ -174,4 +174,25 @@ test("a Chorus room balances teams, lets the host move a player, and scores team
   const phone = await roomState(rid, joined[0].token, deps);
   assert.equal((phone.body.player as { team_slot: number }).team_slot, 0);
   assert.equal((await hostAction(rid, "end", hostAuth, deps)).status, 200);
+});
+
+test("30 phones report forged traffic at the same moment with no deadlock and one rotation", { skip }, async () => {
+  const room = await createRoom(`Bearer ${await session()}`, { settings: { targets: ["es"] } }, deps);
+  assert.equal(room.status, 200, JSON.stringify(room.body));
+  const adj = ["amber", "brave", "bright", "calm", "clever", "cozy"];
+  const noun = ["badger", "comet", "falcon", "fern", "heron"];
+  const seats = await Promise.all(
+    adj.flatMap((a) => noun.map((n) => `${a}-${n}`)).map(async (nickname, i) => {
+      const ip = `10.3.${i % 6}.${i}`;
+      const j = await joinRoom({ code: room.body.code, nickname }, ip, deps);
+      assert.equal(j.status, 200, JSON.stringify(j.body));
+      return { token: `Bearer ${j.body.token}`, ip };
+    }),
+  );
+  for (let round = 0; round < 3; round++) {
+    const results = await Promise.all(seats.map((s) => submitProbe(s.token, { failed: true }, deps, s.ip)));
+    assert.deepEqual(results.filter((r) => r.status !== 200).map((r) => JSON.stringify(r.body)), [], "every concurrent report lands");
+    assert.ok(results.filter((r) => r.body.rotated === true).length <= 1, "one rotation at most");
+  }
+  assert.equal((await hostAction(String(room.body.room_id), "end", `Bearer ${room.body.host_token}`, deps)).status, 200);
 });

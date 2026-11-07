@@ -4,7 +4,7 @@ here="$(cd "$(dirname "$0")" && pwd)"
 root="$here/../.."
 DB="${LIVE_TEST_DB_URL:-postgresql://postgres:postgres@127.0.0.1:54322/postgres}"
 case "$DB" in *127.0.0.1*|*localhost*) ;; *) echo "refusing a non-local database"; exit 2 ;; esac
-for m in "$root"/supabase/migrations/2026110900000*_stoa_live*.sql; do
+for m in "$root"/supabase/migrations/202611090000*_stoa_live*.sql; do
   psql "$DB" -X -q -v ON_ERROR_STOP=1 -c "set client_min_messages = warning" -f "$m" >/dev/null
 done
 psql "$DB" -X -q -c "notify pgrst, 'reload schema'"

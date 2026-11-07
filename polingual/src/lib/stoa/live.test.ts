@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
 import { createRoomKeys, hostToken, playerToken, readToken, type PlayerClaims } from "./keys";
-import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, netKey, newCode, playerAction, roomState, roomSummary, summaryCsv, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
+import { clientIpFrom, createRoom, hostAction, ipKey, joinRoom, medianGrace, netKey, networkOf, newCode, playerAction, roomState, roomSummary, summaryCsv, submitAnswer, submitProbe, sweep, type LiveDeps, type Rpc } from "./live";
 import { isNickname, nicknameChoices } from "./nicknames";
 import { parseSettings } from "./questions";
 import { verifyEvent } from "./verify";
@@ -112,7 +112,7 @@ test("a room without questions refuses to open", async () => {
 test("join returns a player token carrying the token version", async () => {
   const d = deps(async (fn, args) => {
     assert.equal(fn, "live_join");
-    assert.deepEqual(args, { p_code: "ABC123", p_nickname: "brave-otter", p_ip: ipKey("9.9.9.1") });
+    assert.deepEqual(args, { p_code: "ABC123", p_nickname: "brave-otter", p_ip: ipKey("9.9.9.1", env) });
     return wrap({ player_id: PID, token_version: 3, expires_at: EXP, verify_key: KEYS.verifyKey });
   });
   const r = await joinRoom({ code: "abc123", nickname: "brave-otter" }, "9.9.9.1", d);
@@ -129,9 +129,13 @@ test("join refuses free-text names and malformed codes", async () => {
 });
 
 test("join sends a hashed IP and maps the database limits to 429", async () => {
-  assert.match(ipKey("9.9.9.3"), /^[0-9a-f]{32}$/);
-  assert.notEqual(ipKey("9.9.9.3"), ipKey("9.9.9.4"));
-  assert.ok(!ipKey("9.9.9.3").includes("9.9.9.3"));
+  assert.match(ipKey("9.9.9.3", env), /^[0-9a-f]{32}$/);
+  assert.notEqual(ipKey("9.9.9.3", env), ipKey("9.9.9.4", env));
+  assert.ok(!ipKey("9.9.9.3", env).includes("9.9.9.3"));
+  assert.notEqual(ipKey("9.9.9.3", env), ipKey("9.9.9.3", { ...env, STOA_ROOM_SECRET: randomBytes(48).toString("base64") }), "the key needs the room secret");
+  assert.equal(ipKey("2001:db8:1:2::1", env), ipKey("2001:db8:1:2:ffff::9", env), "one IPv6 /64 is one rate-limit bucket");
+  assert.notEqual(ipKey("2001:db8:1:2::1", env), ipKey("2001:db8:1:3::1", env));
+  assert.notEqual(ipKey("9.9.9.3", env), netKey(RID, "9.9.9.3", env), "rate-limit keys and report keys never match");
   assert.deepEqual(await joinRoom({ code: "ZZZ999", nickname: "brave-otter" }, "9.9.9.3", deps(async () => ({ data: { error: "slow_down", events: [] } }))), { status: 429, body: { error: "slow_down" } });
   assert.deepEqual(await joinRoom({ code: "ZZZ999", nickname: "brave-otter" }, "9.9.9.3", deps(async () => ({ data: { error: "no_room", events: [] } }))), { status: 404, body: { error: "no_room" } });
   assert.deepEqual(await joinRoom({ code: "ABC123", nickname: "brave-otter" }, "9.9.9.3", deps(async () => wrap({ error: "locked" }))), { status: 409, body: { error: "locked" } });
@@ -227,7 +231,7 @@ test("probe grace is the median delay, capped at 1000 ms", () => {
 test("probe reports grace and verify failures", async () => {
   const d = deps(async (fn, args) => {
     assert.equal(fn, "live_probe");
-    assert.deepEqual(args, { p_room: RID, p_player: PID, p_tv: 1, p_grace: 200, p_failed: true, p_net: netKey(RID, "203.0.113.9") });
+    assert.deepEqual(args, { p_room: RID, p_player: PID, p_tv: 1, p_grace: 200, p_failed: true, p_net: netKey(RID, "203.0.113.9", env) });
     return wrap({ rotated: true });
   });
   const samples = [150, 200, 250].map((x) => ({ sent_at: NOW, received_at: NOW + x }));
@@ -239,14 +243,24 @@ test("probe reports grace and verify failures", async () => {
   await submitProbe(player(), { failures: 900 }, quiet);
 });
 
-test("the report network key is per room and hides the address", () => {
-  const a = netKey(RID, "203.0.113.9");
+test("the report network key is per room, keyed by the room secret, and hides the address", () => {
+  const a = netKey(RID, "203.0.113.9", env);
   assert.match(a, /^[0-9a-f]{32}$/);
-  assert.equal(a, netKey(RID, "203.0.113.9"), "one network reports as one");
-  assert.notEqual(a, netKey(randomUUID(), "203.0.113.9"), "the key does not link rooms");
-  assert.notEqual(a, netKey(RID, "203.0.113.10"));
-  assert.ok(!a.includes("203"));
-  assert.equal(netKey(RID, null), netKey(RID, ""), "unknown addresses share one network");
+  assert.equal(a, netKey(RID, "203.0.113.9", env), "one network reports as one");
+  assert.notEqual(a, netKey(randomUUID(), "203.0.113.9", env), "the key does not link rooms");
+  assert.notEqual(a, netKey(RID, "203.0.113.10", env));
+  assert.notEqual(a, netKey(RID, "203.0.113.9", { ...env, STOA_ROOM_SECRET: randomBytes(48).toString("base64") }), "without the secret the address cannot be enumerated back");
+  assert.equal(netKey(RID, null, env), netKey(RID, "", env), "unknown addresses share one network");
+});
+
+test("IPv6 addresses group by their /64", () => {
+  assert.equal(networkOf("2001:db8:1:2:aaaa::1"), "2001:db8:1:2::/64");
+  assert.equal(networkOf("2001:0DB8:0001:0002:ffff:ffff:ffff:ffff"), "2001:db8:1:2::/64");
+  assert.equal(networkOf("2001:db8::7"), "2001:db8:0:0::/64");
+  assert.equal(networkOf("::ffff:203.0.113.9"), "203.0.113.9", "an IPv4-mapped address counts as its IPv4 network");
+  assert.equal(networkOf("203.0.113.9"), "203.0.113.9");
+  assert.equal(netKey(RID, "2001:db8:1:2::1", env), netKey(RID, "2001:db8:1:2:dead:beef:0:9", env), "one /64 is one network");
+  assert.notEqual(netKey(RID, "2001:db8:1:2::1", env), netKey(RID, "2001:db8:1:3::1", env));
 });
 
 test("host controls need the host token for that room", async () => {
@@ -343,7 +357,7 @@ test("the client IP comes only from x-real-ip, which Vercel sets and overwrites"
   assert.equal(clientIpFrom(h({ "x-forwarded-for": "198.51.100.4" })), null, "forwarded-for alone is never trusted");
   assert.equal(clientIpFrom(h({ "x-real-ip": "not an ip" })), null);
   assert.equal(clientIpFrom(h({})), null);
-  assert.notEqual(ipKey("203.0.113.7"), ipKey(null));
+  assert.notEqual(ipKey("203.0.113.7", env), ipKey(null, env));
 });
 
 test("the summary CSV holds nicknames and scores only", () => {
