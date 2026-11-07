@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { LANGS, WORDS } from "../words";
 import { randomBytes } from "node:crypto";
-import { buildRoomSet, FAMILIES, familyCap, fold, MAX_WIDEN, pickTheWord, ROUND_TIERS, roundTargets, seeded, shuffle, whichLanguage } from "./generators";
+import { buildRoomSet, FAMILIES, familyCap, fold, MAX_WIDEN, pickTheWord, ROUND_TIERS, roundTargets, seeded, shuffle, translate, translateInto, whichLanguage } from "./generators";
 import { parseSettings, type RoomSettings } from "./questions";
 
 const settings = parseSettings({ home: "en", targets: ["es", "fr", "de", "ru", "ja", "ar"] }) as RoomSettings;
@@ -55,6 +55,17 @@ for (const seed of [1, 2, 3, 99, 2024, 31337, 2 ** 31 - 2]) {
           const ok = WORDS.some((d) => d.category === w.category && Math.abs(d.tier - w.tier) <= 2 && d.forms.some((f) => f.lang === lang && f.word === opt));
           assert.ok(ok, `distractor ${opt} shares the category and tier band`);
         }
+      } else if (q.kind === "translate") {
+        const from = String(q.prompt.from);
+        const to = String(q.prompt.to);
+        assert.ok(settings.targets.includes(from) && settings.targets.includes(to) && from !== to, `${from} into ${to}`);
+        const w = WORDS.find((x) => formOf(x.slug, from) === q.prompt.word && formOf(x.slug, to) === q.options[q.answer]);
+        assert.ok(w, "the answer is the prompt word in the second language");
+        for (const opt of q.options) {
+          const ok = WORDS.some((d) => d.category === w.category && Math.abs(d.tier - w.tier) <= 2 && d.forms.some((f) => f.lang === to && f.word === opt));
+          assert.ok(ok, `distractor ${opt} shares the category and tier band`);
+        }
+        assert.ok(!strings(q.prompt).map(fold).includes(fold(q.options[q.answer])), "the prompt never holds the answer");
       } else {
         const lang = q.options[q.answer];
         assert.ok(settings.targets.includes(lang));
@@ -114,7 +125,7 @@ test("one family stays at 40% of a round when the host picks several", () => {
   for (const seed of [5, 6, 7]) {
     const set = buildRoomSet(seed, parseSettings({ home: "en", targets: ["es", "fr", "it", "de", "ru", "ja"] })!)!;
     for (const round of [1, 2, 3]) {
-      const langs = set.filter((q) => q.round === round).map((q) => (q.kind === "pick_word" ? String(q.prompt.lang) : q.options[q.answer]));
+      const langs = set.filter((q) => q.round === round).map((q) => (q.kind === "pick_word" ? String(q.prompt.lang) : q.kind === "translate" ? String(q.prompt.from) : q.options[q.answer]));
       assert.ok(langs.filter((l) => FAMILIES[l] === "romance").length <= 2, `round ${round}: ${langs.join(",")}`);
     }
   }
@@ -188,4 +199,51 @@ test("home Spanish with target English never sends the English answer in the pro
     assert.ok(!strings(q.prompt).map(fold).includes(fold(q.options[q.answer])));
     assert.equal(q.prompt.home_lang, "es");
   }
+});
+
+test("every round holds one Translate question", () => {
+  for (const seed of [1, 2, 3, 4, 5]) {
+    const set = buildRoomSet(seed, settings)!;
+    for (const round of [1, 2, 3]) assert.equal(set.filter((q) => q.round === round && q.kind === "translate").length, 1, `seed ${seed} round ${round}`);
+  }
+});
+
+test("translate shows a word in one language and asks for it in another", () => {
+  const q = translate(BY_SLUG.get("eight")!, "es", "fr", WORDS, seeded(1))!;
+  assert.deepEqual(q.prompt, { word: "ocho", from: "es", to: "fr" });
+  assert.equal(q.options[q.answer], "huit");
+  assert.equal(new Set(q.options.map(fold)).size, 4);
+  assert.deepEqual(translate(BY_SLUG.get("eight")!, "es", "fr", WORDS, seeded(1)), q, "a seed replays the same question");
+  assert.equal(translate(BY_SLUG.get("eight")!, "es", "es", WORDS, seeded(1)), null, "a language never translates into itself");
+});
+
+test("translate skips a word spelled the same in both languages", () => {
+  const same = WORDS.find((w) => {
+    const de = formOf(w.slug, "de");
+    return de && de === formOf(w.slug, "nl");
+  });
+  assert.ok(same, "German and Dutch share a spelling somewhere in the set");
+  for (let s = 0; s < 10; s++) assert.equal(translate(same!, "de", "nl", WORDS, seeded(s)), null);
+});
+
+test("translate goes into another target, or into the home language when the host picked one target", () => {
+  for (let s = 0; s < 20; s++) {
+    const into = translateInto("es", settings, seeded(s));
+    assert.ok(into !== "es" && settings.targets.includes(into));
+  }
+  assert.equal(translateInto("ja", parseSettings({ home: "en", targets: ["ja"] })!, seeded(1)), "en");
+});
+
+test("200 seeds never put a Translate answer in its prompt", () => {
+  const many = parseSettings({ home: "en", targets: ["es", "fr", "it", "de", "ru", "ja", "ar", "pt"] })!;
+  let seen = 0;
+  for (let seed = 1; seed <= 200; seed++) {
+    for (const q of buildRoomSet(seed * 104729, many)!.filter((x) => x.kind === "translate")) {
+      const opts = new Set(q.options.map(fold));
+      assert.equal(strings(q.prompt).find((x) => opts.has(fold(x))), undefined, `seed ${seed} q${q.idx}`);
+      assert.notEqual(q.prompt.from, q.prompt.to);
+      seen++;
+    }
+  }
+  assert.equal(seen, 600);
 });

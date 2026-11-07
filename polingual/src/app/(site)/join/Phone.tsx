@@ -139,7 +139,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
       return;
     }
     if (v.type === "open" && !gap) {
-      const p = v.payload as { idx: number; round: number; kind: "pick_word" | "which_language"; prompt: Record<string, string>; options: string[]; opens_at: number; closes_at: number };
+      const p = v.payload as { idx: number; round: number; kind: "pick_word" | "which_language" | "translate"; prompt: Record<string, string>; options: string[]; opens_at: number; closes_at: number };
       setSnap((prev) =>
         prev
           ? {

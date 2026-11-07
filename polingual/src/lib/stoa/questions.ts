@@ -1,6 +1,6 @@
 import { LANGS } from "../words";
 
-export type QuestionKind = "pick_word" | "which_language";
+export type QuestionKind = "pick_word" | "which_language" | "translate";
 export type LiveQuestion = {
   idx: number;
   round: 1 | 2 | 3;

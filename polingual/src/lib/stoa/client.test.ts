@@ -16,6 +16,8 @@ test("prompts read in plain English with the word set apart", () => {
   assert.deepEqual(promptView({ kind: "which_language", prompt: { word: "水" } }), { lead: "Which language is this?", word: "水", tail: null });
   assert.equal(optionLabel({ kind: "which_language", options: ["ja", "zh", "ko", "th"] }, 1), "Chinese");
   assert.equal(optionLabel({ kind: "pick_word", options: ["agua", "fuego", "tierra", "aire"] }, 0), "agua");
+  assert.deepEqual(promptView({ kind: "translate", prompt: { word: "ocho", from: "es", to: "fr" } }), { lead: "Translate from Spanish", word: "ocho", tail: "into French" });
+  assert.equal(optionLabel({ kind: "translate", options: ["huit", "sept", "neuf", "six"] }, 0), "huit");
 });
 
 test("codes normalize to the Crockford alphabet", () => {

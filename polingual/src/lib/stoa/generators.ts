@@ -113,8 +113,33 @@ export function whichLanguage(w: Word, target: string, rng: Rng): Omit<LiveQuest
   return { kind: "which_language", prompt, options, answer: options.indexOf(target) };
 }
 
+export function translate(w: Word, from: string, to: string, words: readonly Word[], rng: Rng): Omit<LiveQuestion, "idx" | "round"> | null {
+  const word = form(w, from);
+  const right = form(w, to);
+  if (!word || !right || from === to) return null;
+  const seen = new Set([fold(right)]);
+  const distractors: string[] = [];
+  for (const d of shuffle(words.filter((x) => x.slug !== w.slug && x.category === w.category && Math.abs(x.tier - w.tier) <= 2), rng)) {
+    const f = form(d, to);
+    if (!f || seen.has(fold(f))) continue;
+    seen.add(fold(f));
+    distractors.push(f);
+    if (distractors.length === 3) break;
+  }
+  if (distractors.length < 3) return null;
+  const options = shuffle([right, ...distractors], rng);
+  const prompt = { word, from, to };
+  if (leaks(prompt, options)) return null;
+  return { kind: "translate", prompt, options, answer: options.indexOf(right) };
+}
+
+export function translateInto(from: string, settings: RoomSettings, rng: Rng): string {
+  const others = settings.targets.filter((t) => t !== from);
+  return others.length ? others[Math.floor(rng() * others.length)] : settings.home;
+}
+
 export function roundKinds(rng: Rng): QuestionKind[] {
-  return shuffle<QuestionKind>(["pick_word", "pick_word", "pick_word", "which_language", "which_language"], rng);
+  return shuffle<QuestionKind>(["pick_word", "pick_word", "translate", "which_language", "which_language"], rng);
 }
 
 export function buildRoomSet(seed: number, settings: RoomSettings, words: readonly Word[] = WORDS): LiveQuestion[] | null {
@@ -125,10 +150,16 @@ export function buildRoomSet(seed: number, settings: RoomSettings, words: readon
     const targets = roundTargets(settings.targets, PER_ROUND, rng);
     const kinds = roundKinds(rng);
     for (let slot = 0; slot < PER_ROUND; slot++) {
+      const into = kinds[slot] === "translate" ? translateInto(targets[slot], settings, rng) : "";
       let q: Omit<LiveQuestion, "idx" | "round"> | null = null;
       for (let widen = 0; widen <= MAX_WIDEN && !q; widen++) {
         for (const w of shuffle(words.filter((x) => !used.has(x.slug) && inTiers(x, ROUND_TIERS[round - 1], widen)), rng)) {
-          q = kinds[slot] === "pick_word" ? pickTheWord(w, targets[slot], settings, words, rng) : whichLanguage(w, targets[slot], rng);
+          q =
+            kinds[slot] === "pick_word"
+              ? pickTheWord(w, targets[slot], settings, words, rng)
+              : kinds[slot] === "translate"
+                ? translate(w, targets[slot], into, words, rng)
+                : whichLanguage(w, targets[slot], rng);
           if (q) {
             used.add(w.slug);
             break;

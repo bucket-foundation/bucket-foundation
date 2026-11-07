@@ -91,7 +91,7 @@ All generators are pure TypeScript in `src/lib/stoa/`, seeded by the room seed, 
 |---|---|---|---|
 | Pick the word | P1a | "water" in Spanish | four Spanish words; distractors share the category and sit within 2 tiers |
 | Which language | P1a | a word in its native script | four language names; distractors share the script where the set allows |
-| Translate | P1b | a word in language A | four words in language B, same distractor rule |
+| Translate | P1b | a word in language A, named with language B | four words in language B, same distractor rule; B is another picked target, or the home language when the host picked one |
 | Sound it out | later | the IPA on screen, with audio as an extra | four written forms; only languages with IPA |
 
 - **Difficulty.** Round 1 draws tiers 0 to 3, round 2 tiers 3 to 6, round 3 tiers 6 to 10.
