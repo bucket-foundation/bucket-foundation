@@ -46,6 +46,7 @@ Every game keeps the Kahoot loop: the board shows the question, phones answer ag
 Every reveal teaches. After the timer closes, the board and every phone show a learn card with the answer before the standings.
 
 - **Polingual.** The word in its script, romanization or IPA when the data has it, the meaning in the room's home language, and the language name. The board plays the recording, or `speechSynthesis` when no recording exists and a voice does. A Translate question also shows the prompt word next to the answer, so the pair reads as one line: "agua · water".
+- **Which language.** The meaning shows on the question itself, under the word, in the home language: "agua" with "water" beneath it. The meaning gives no clue to the language, so a player always learns what the word says while guessing where it comes from. The learn card then adds the language and the recording.
 - **Bucket.** The right answer and the title of the atom it tests. Questions carry no explanation field today, so a one-line explanation waits for the corpus to add one.
 - **Timing.** The card holds for 5 seconds, inside the existing reveal window. The host can tap to hold it longer for a class discussion.
 - **Phones.** The phone shows the same card under the player's own result, so a player who looks down still sees the meaning.
