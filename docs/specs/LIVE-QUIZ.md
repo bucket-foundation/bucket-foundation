@@ -27,6 +27,30 @@ Drafted 2026-11-06, revised the same day after the critic review on PR #1211. St
 3. **Unison bonus.** A team earns 150 more on a question when at least one member is right and the misses stay within max(1, floor(size / 5)) for teams of 3 or more: teams of 1 and 2 must all be right, every team of 3 to 9 forgives one slip, and a team of 10 forgives two. A pair with one right is half the team, which is no unison. A flat 80% forgave no slip at 4 and one at 5.
 4. The board shows team standings first and the top five players second.
 
+## Games
+
+Every game keeps the Kahoot loop: the board shows the question, phones answer against a timer, points pay for right and fast, and a board shows standings between rounds. The setup screen shows one card per game. All games run on the Open Floor engine and its generators; each adds one rule or one view. Bucket rooms get every game except Listen.
+
+| Game | Play | Engine change |
+|---|---|---|
+| **Open Floor** | Every player for themselves, rules above | none |
+| **Chorus** | Teams, rules above | none |
+| **Lightning** | 15 true or false questions at 5 seconds each, built from the same pairs as Pick the word: "agua means water in Portuguese?" Half are true. 500 for right plus up to 250 for speed; no streak | a `true_false` kind with two tiles, lapis A and vermilion B |
+| **Last Standing** | A miss or no answer marks the player out. Out players keep watching and see the learn card, and cannot answer. Tiers climb each round as in Open Floor. When one player is left, or the questions run out, the players still standing share the win, ranked by points. If every player misses the same question, all of them stay in | an `out_at` column on `live_players` and an answer guard |
+| **Summit** | Scoring is Open Floor, shown as climbers on a mountain instead of numbers. Each 100 points lifts a climber one step; the top is 40 steps. The first to the top wins and ends the game; otherwise the highest climber after round 3 wins | a summit board view; scoring unchanged |
+| **Listen** | The board plays the recording of the word and players pick the written form. Only words with a Wiktionary or Commons recording enter the set, with credit shown on the learn card | a `listen` kind; the board loads the recording, phones never play audio |
+| **Compass** | The category dial, after P4 | a new round picker |
+
+## Learn Card
+
+Every reveal teaches. After the timer closes, the board and every phone show a learn card with the answer before the standings.
+
+- **Polingual.** The word in its script, romanization or IPA when the data has it, the meaning in the room's home language, and the language name. The board plays the recording, or `speechSynthesis` when no recording exists and a voice does. A Translate question also shows the prompt word next to the answer, so the pair reads as one line: "agua · water".
+- **Bucket.** The right answer and the title of the atom it tests. Questions carry no explanation field today, so a one-line explanation waits for the corpus to add one.
+- **Timing.** The card holds for 5 seconds, inside the existing reveal window. The host can tap to hold it longer for a class discussion.
+- **Phones.** The phone shows the same card under the player's own result, so a player who looks down still sees the meaning.
+- **School mode.** The card shows no promo and no app link.
+
 ## Host Surfaces
 
 | Order | Surface | Reason |
@@ -168,6 +192,7 @@ Each phase ships alone. Sizes assume one build agent and include review.
 |---|---|---|---|---|
 | **P1a** Web host and web join, Open Floor, Pick the word and Which language | polingual.com/live: setup, lobby with code and QR, question, reveal, board, finale. polingual.com/join: code, nickname pick, waiting, answer, result | migration, `live_*` functions, rooms, join, state, answer, probe, host controls, sweep, signed broadcast module, deletion cron | generator unit tests on seeds; scoring tests for grace and late answers; SQL tests in `supabase/tests/` for duplicate answers and deletion; signature rejection test; Playwright with a host and 3 players; a load script with 100 players on the local stack | 2 weeks, 4 PRs |
 | **P1b** Chorus teams, Translate, School mode | team lobby, team board, School mode toggle and stripped player screens | move route, team scoring, summary CSV | team mean and unison tests; School mode screens show no promo, checked in Playwright | 1.5 weeks, 3 PRs |
+| **P1c** Games and learn card | game cards on setup; learn card on board and phone; Lightning and Last Standing; then Summit board; then Listen | `true_false` and `listen` kinds, out guard, summit view | generator tests for each kind on seeds; Last Standing guard and all-miss tests in SQL; learn card shows the home-language meaning in Playwright; Listen sets hold only recorded words | 2 weeks, 4 PRs |
 | **P2** Bucket quizzes, iOS join, AirPlay host | bucket.foundation/live and /join; iOS Join Live, scanner, answer screen; iOS host remote and external display board | Bucket generator | BucketKit tests for the Phoenix client, signature check and state decoding; UI test for join by code; device test of AirPlay to an Apple TV | 3 weeks, 4 PRs |
 | **P3** tvOS host | tvOS setup, lobby, question, board, finale, device code sign-in | none new | tvOS UI tests on the simulator; a TestFlight build on Apple TV | 2 weeks, 3 PRs |
 | **P4** Duels and matchmaking | send a duel from a word or a deck; inbox; result card through the existing brag share | duel routes; matchmaking pairs players of the same languages and level, falling back to a seeded ghost run | duel lifecycle and expiry tests; matchmaking fairness test on synthetic queues | 3 weeks, 4 PRs |
