@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import calendar from "@/data/omega-seasons.json";
+import InverseOmega from "@/components/InverseOmega";
 
 export const metadata: Metadata = {
   title: "Omega Seasons",
@@ -21,16 +22,12 @@ export default function SeasonsPage() {
     <main className="mx-auto max-w-6xl px-4 py-12 text-[#f7f4ec]">
       <section className="flex flex-col items-center gap-4 text-center">
         <p className="text-xs uppercase tracking-[0.3em] text-[#8a5a12]">Stable mark</p>
-        <img
-          src={calendar.stableMark.png}
-          alt={calendar.stableMark.name}
-          width={176}
-          height={176}
-          className="rounded-[40px] shadow-[0_0_60px_rgba(232,178,58,0.35)]"
-        />
+        <div className="rounded-[40px] bg-[#15130f] p-4 shadow-[0_0_60px_rgba(232,178,58,0.35)]">
+          <InverseOmega size={160} variant="inlay" title={calendar.stableMark.name} />
+        </div>
         <h1 className="font-serif text-4xl text-[#1c1a16]">Omega Seasons</h1>
         <p className="max-w-xl text-sm text-[#3b372f]">
-          The lyre never changes. Each month ships one seasonal app icon and four
+          The gold lyre never changes. Each month ships one seasonal app icon and four
           badges, starting {monthLabel(calendar.start)}, {calendar.months} seasons in all.
         </p>
       </section>
