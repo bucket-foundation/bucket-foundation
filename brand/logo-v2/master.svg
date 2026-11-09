@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <title>bucket.foundation</title>
+  <defs>
+    <radialGradient id="field-g" cx="50%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#2A2219"/>
+      <stop offset="1" stop-color="#0E0C09"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6D57C"/>
+      <stop offset="0.55" stop-color="#E2AA3F"/>
+      <stop offset="1" stop-color="#B07620"/>
+    </linearGradient>
+    <linearGradient id="string" gradientUnits="userSpaceOnUse" x1="0" y1="48" x2="0" y2="176">
+      <stop offset="0" stop-color="#FBE6A6"/>
+      <stop offset="1" stop-color="#D9A43A"/>
+    </linearGradient>
+  </defs>
+  <rect id="field" width="1024" height="1024" fill="url(#field-g)"/>
+  <g id="mark" transform="translate(116 98) scale(3.3)">
+    <rect x="22" y="22" width="20" height="28" rx="4" fill="url(#gold)"/>
+    <rect x="198" y="22" width="20" height="28" rx="4" fill="url(#gold)"/>
+    <rect x="30" y="28" width="180" height="16" rx="3" fill="url(#gold)"/>
+    <rect x="34" y="29" width="172" height="3" rx="1.5" fill="#FDF0C4" opacity="0.6"/>
+    <path d="M66 36C61 72 56 106 62 136C70 172 96 190 120 190C144 190 170 172 178 136C184 106 179 72 174 36" fill="none" stroke="url(#gold)" stroke-width="24"/>
+    <g id="strings" stroke="url(#string)" stroke-width="7" stroke-linecap="round">
+      <line x1="98" y1="48" x2="98" y2="170"/>
+      <line x1="120" y1="48" x2="120" y2="176"/>
+      <line x1="142" y1="48" x2="142" y2="170"/>
+    </g>
+    <circle cx="120" cy="218" r="11" fill="url(#gold)"/>
+    <circle cx="116.5" cy="214.5" r="3" fill="#FDF0C4" opacity="0.7"/>
+  </g>
+</svg>
