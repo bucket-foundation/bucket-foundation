@@ -1,0 +1,974 @@
+[
+ {
+  "id": "norse-frost",
+  "trend": "ai-nordic",
+  "palettes": [
+   [
+    "#001F3F",
+    "#000000",
+    "#FFD700",
+    "#000000",
+    "#FF4F2E",
+    "#FFF1B8"
+   ]
+  ],
+  "renderers": [
+   "woodcut",
+   "stencil",
+   "extrude"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "norse frost omega with glowing flame, etched in birch bark style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1000
+  }
+ },
+ {
+  "id": "cyber-samurai",
+  "trend": "ai-tech",
+  "palettes": [
+   [
+    "#1A1A1A",
+    "#000000",
+    "#FFA500",
+    "#000000",
+    "#00FF00",
+    "#00FFFF"
+   ]
+  ],
+  "renderers": [
+   "halftone",
+   "pixel",
+   "metal"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "cyber samurai omega with electric sparks, pixel-art and metallic texture",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1000
+  }
+ },
+ {
+  "id": "industrial-gothic",
+  "trend": "ai-design",
+  "palettes": [
+   [
+    "#2E2E2E",
+    "#000000",
+    "#FF6B6B",
+    "#000000",
+    "#FF4F2E",
+    "#FFF1B8"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "halftone",
+   "metal"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "industrial gothic omega with flame and sticker-style texture",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1000
+  }
+ },
+ {
+  "id": "medieval-mech",
+  "trend": "ai-fantasy",
+  "palettes": [
+   [
+    "#6B4423",
+    "#4A2D1D",
+    "#FFD700",
+    "#000000",
+    "#FF4F2E",
+    "#FFF1B8"
+   ]
+  ],
+  "renderers": [
+   "mosaic",
+   "extrude",
+   "stone"
+  ],
+  "centers": [
+   "none"
+  ],
+  "prompt": "medieval mechanical omega with mosaic and stone textures",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1000
+  }
+ },
+ {
+  "id": "biomechanical-surreal",
+  "trend": "ai-art",
+  "palettes": [
+   [
+    "#2A2A2A",
+    "#1A1A1A",
+    "#A0D8B8",
+    "#000000",
+    "#FFB600",
+    "#D4EDD4"
+   ]
+  ],
+  "renderers": [
+   "stencil",
+   "rings",
+   "hollow"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in biomechanical surreal style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1001
+  }
+ },
+ {
+  "id": "indonesian-ornate",
+  "trend": "ai-culture",
+  "palettes": [
+   [
+    "#6B4423",
+    "#4A2E1B",
+    "#F7D0A4",
+    "#000000",
+    "#E69A2A",
+    "#F4C28B"
+   ]
+  ],
+  "renderers": [
+   "woodcut",
+   "stitch",
+   "extrude"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in Indonesian ornate woodcarving style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1001
+  }
+ },
+ {
+  "id": "japanese-mecha",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#1E1E1E",
+    "#0C0C0C",
+    "#FF6B6B",
+    "#000000",
+    "#FFD700",
+    "#FFA500"
+   ]
+  ],
+  "renderers": [
+   "metal",
+   "outline",
+   "pixel"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in Japanese mecha anime style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1001
+  }
+ },
+ {
+  "id": "nebula-omega",
+  "trend": "ai-space",
+  "palettes": [
+   [
+    "#0A0A1A",
+    "#000000",
+    "#FFB600",
+    "#000000",
+    "#FFD700",
+    "#00FF99"
+   ]
+  ],
+  "renderers": [
+   "constellation",
+   "extrude",
+   "neon"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in a cosmic nebula, glowing with celestial hues",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1002
+  }
+ },
+ {
+  "id": "vintage-omega",
+  "trend": "ai-retro",
+  "palettes": [
+   [
+    "#D2B48C",
+    "#A0522D",
+    "#FFD700",
+    "#8B4513",
+    "#FF8C00",
+    "#FFA07A"
+   ]
+  ],
+  "renderers": [
+   "woodcut",
+   "stencil",
+   "hollow"
+  ],
+  "centers": [
+   "dot"
+  ],
+  "prompt": "omega glyph with flame in vintage parchment style, faded and textured",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1002
+  }
+ },
+ {
+  "id": "zulu-omega",
+  "trend": "ai-military",
+  "palettes": [
+   [
+    "#2F4F4F",
+    "#000000",
+    "#FF4500",
+    "#000000",
+    "#FF6347",
+    "#00FF00"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "halftone",
+   "pixel"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "omega glyph with flame in zulu flag style, bold and geometric",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1002
+  }
+ },
+ {
+  "id": "surreal-omega",
+  "trend": "ai-abstract",
+  "palettes": [
+   [
+    "#FFFFFF",
+    "#000000",
+    "#FF00FF",
+    "#000000",
+    "#FFFF00",
+    "#00FF00"
+   ]
+  ],
+  "renderers": [
+   "split",
+   "sticker",
+   "rings"
+  ],
+  "centers": [
+   "none"
+  ],
+  "prompt": "omega glyph with flame in surreal abstract form, layered and vibrant",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1002
+  }
+ },
+ {
+  "id": "kintsugi-omega",
+  "trend": "ai-craft",
+  "palettes": [
+   [
+    "#F5F5DC",
+    "#8B4513",
+    "#FFD700",
+    "#000000",
+    "#FFA500",
+    "#FF4500"
+   ]
+  ],
+  "renderers": [
+   "stitch",
+   "mosaic",
+   "flat"
+  ],
+  "centers": [
+   "seed"
+  ],
+  "prompt": "omega glyph with flame in kintsugi style, cracked and repaired with gold",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1002
+  }
+ },
+ {
+  "id": "bioluminescent-abyss",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#0A1A2F",
+    "#000000",
+    "#00FFD1",
+    "#000000",
+    "#00FFFF",
+    "#00FF88"
+   ]
+  ],
+  "renderers": [
+   "halftone",
+   "sticker",
+   "neon"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "bioluminescent omega glyph with a glowing flame in an abyssal ocean",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1003
+  }
+ },
+ {
+  "id": "cyber-wabi-sabi",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#D3D3D3",
+    "#8B8B8B",
+    "#FFD700",
+    "#000000",
+    "#FFA500",
+    "#FF8C00"
+   ]
+  ],
+  "renderers": [
+   "woodcut",
+   "stencil",
+   "metal"
+  ],
+  "centers": [
+   "dot"
+  ],
+  "prompt": "omega glyph with a flame in a wabi-sabi cyber aesthetic",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1003
+  }
+ },
+ {
+  "id": "dune-solstice",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#2D2D2D",
+    "#1A1A1A",
+    "#FFC300",
+    "#000000",
+    "#FFA500",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "sunburst",
+   "stitch",
+   "flat"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "omega glyph with a flame in a dune solstice desert aesthetic",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1003
+  }
+ },
+ {
+  "id": "futuristic-maori",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#1E1E1E",
+    "#000000",
+    "#F5E6C6",
+    "#000000",
+    "#FFD700",
+    "#FFA500"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "rings",
+   "pixel"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with a flame in a futuristic Maori tribal design",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1003
+  }
+ },
+ {
+  "id": "cosmic-metallurgy",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#1C1C1C",
+    "#000000",
+    "#FF00FF",
+    "#000000",
+    "#FF6666",
+    "#660066"
+   ]
+  ],
+  "renderers": [
+   "constellation",
+   "metal",
+   "hollow"
+  ],
+  "centers": [
+   "none"
+  ],
+  "prompt": "omega glyph with a flame in a cosmic metallurgical design",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1003
+  }
+ },
+ {
+  "id": "neon-renaissance",
+  "trend": "ai-retro",
+  "palettes": [
+   [
+    "#000000",
+    "#1A1A1A",
+    "#FFD700",
+    "#000000",
+    "#FF4500",
+    "#FFA500"
+   ]
+  ],
+  "renderers": [
+   "neon",
+   "extrude",
+   "stencil"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in neon renaissance style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1004
+  }
+ },
+ {
+  "id": "korean-ceramic",
+  "trend": "ai-minimal",
+  "palettes": [
+   [
+    "#F5F5F5",
+    "#CFCFCF",
+    "#000000",
+    "#000000",
+    "#D2691E",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "stitch",
+   "woodcut"
+  ],
+  "centers": [
+   "dot"
+  ],
+  "prompt": "omega glyph with flame in traditional korean ceramic design",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1004
+  }
+ },
+ {
+  "id": "swiss-horology",
+  "trend": "ai-modern",
+  "palettes": [
+   [
+    "#FFFFFF",
+    "#E0E0E0",
+    "#000000",
+    "#000000",
+    "#333333",
+    "#666666"
+   ]
+  ],
+  "renderers": [
+   "flat",
+   "outline",
+   "sunburst"
+  ],
+  "centers": [
+   "seed"
+  ],
+  "prompt": "omega glyph with flame in swiss watchmaker style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1004
+  }
+ },
+ {
+  "id": "norse-essence",
+  "trend": "ai-folk",
+  "palettes": [
+   [
+    "#000000",
+    "#1A1A1A",
+    "#E67E22",
+    "#000000",
+    "#FFD700",
+    "#FF8C00"
+   ]
+  ],
+  "renderers": [
+   "mosaic",
+   "stencil",
+   "woodcut"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "omega glyph with flame in norse tribal design",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1004
+  }
+ },
+ {
+  "id": "african-abstract",
+  "trend": "ai-vibrant",
+  "palettes": [
+   [
+    "#FFFFFF",
+    "#D4AF37",
+    "#000000",
+    "#000000",
+    "#8B0000",
+    "#FF4500"
+   ]
+  ],
+  "renderers": [
+   "halftone",
+   "rings",
+   "sticker"
+  ],
+  "centers": [
+   "none"
+  ],
+  "prompt": "omega glyph with flame in african abstract art style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1004
+  }
+ },
+ {
+  "id": "viking-arcade",
+  "trend": "ai-retro",
+  "palettes": [
+   [
+    "#1E1E1E",
+    "#000000",
+    "#FFD700",
+    "#FF4500",
+    "#FF8C00",
+    "#FFA500"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "extrude",
+   "neon"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "viking rune omega with arcade-style flame",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1005
+  }
+ },
+ {
+  "id": "cyber-surreal",
+  "trend": "ai-digital",
+  "palettes": [
+   [
+    "#000000",
+    "#1A1A1A",
+    "#FF6B6B",
+    "#FFB7C5",
+    "#FFD700",
+    "#FFA07A"
+   ]
+  ],
+  "renderers": [
+   "stencil",
+   "hollow",
+   "glass"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "cyber surreal omega with glowing spark",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1005
+  }
+ },
+ {
+  "id": "maori-abstract",
+  "trend": "ai-modern",
+  "palettes": [
+   [
+    "#000000",
+    "#1E1E1E",
+    "#FF4500",
+    "#FF69B4",
+    "#FFA07A",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "woodcut",
+   "rings",
+   "sticker"
+  ],
+  "centers": [
+   "dot"
+  ],
+  "prompt": "abstract maori pattern omega with central dot",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1005
+  }
+ },
+ {
+  "id": "kaleidoscope-mosaic",
+  "trend": "ai-multimedia",
+  "palettes": [
+   [
+    "#000000",
+    "#000000",
+    "#FF4500",
+    "#FFD700",
+    "#FFA07A",
+    "#FF6B6B"
+   ]
+  ],
+  "renderers": [
+   "mosaic",
+   "sticker",
+   "hollow"
+  ],
+  "centers": [
+   "none"
+  ],
+  "prompt": "kaleidoscope mosaic omega with no central focus",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1005
+  }
+ },
+ {
+  "id": "cyber-renaissance",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#1E1E1E",
+    "#0A0A0A",
+    "#FFD700",
+    "#000000",
+    "#FFA500",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "neon",
+   "extrude",
+   "metal"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in cyber renaissance style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1006
+  }
+ },
+ {
+  "id": "african-geometric",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#111111",
+    "#000000",
+    "#FFD700",
+    "#000000",
+    "#FFA500",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "stitch",
+   "mosaic"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "omega glyph with flame in african geometric pattern",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1006
+  }
+ },
+ {
+  "id": "tibetan-astrology",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#000000",
+    "#111111",
+    "#FFD700",
+    "#000000",
+    "#FFA500",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "stencil",
+   "halftone",
+   "sunburst"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in tibetan astrology style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1006
+  }
+ },
+ {
+  "id": "swedish-nordic",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#111111",
+    "#000000",
+    "#FFD700",
+    "#000000",
+    "#FFA500",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "woodcut",
+   "rings"
+  ],
+  "centers": [
+   "dot"
+  ],
+  "prompt": "omega glyph with flame in swedish nordic style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1006
+  }
+ },
+ {
+  "id": "persian-islamic",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#111111",
+    "#000000",
+    "#FFD700",
+    "#000000",
+    "#FFA500",
+    "#FFD700"
+   ]
+  ],
+  "renderers": [
+   "mosaic",
+   "stitch",
+   "deco"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in persian islamic geometric style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1006
+  }
+ },
+ {
+  "id": "solar-temple",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#FFD93D",
+    "#FFB800",
+    "#FF4F00",
+    "#000000",
+    "#FFA500",
+    "#FFC300"
+   ]
+  ],
+  "renderers": [
+   "metal",
+   "halftone",
+   "extrude"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame in a solar temple, ancient Aztec style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1007
+  }
+ },
+ {
+  "id": "cyber-forest",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#228B22",
+    "#1E4D2B",
+    "#FFD700",
+    "#000000",
+    "#8B4513",
+    "#FF8C00"
+   ]
+  ],
+  "renderers": [
+   "sticker",
+   "pixel",
+   "rings"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "omega glyph with flame in a cyberpunk forest, low poly style",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1007
+  }
+ },
+ {
+  "id": "jade-ritual",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#8FBC8F",
+    "#6B8E23",
+    "#FFD700",
+    "#000000",
+    "#4D4D4D",
+    "#C19A6B"
+   ]
+  ],
+  "renderers": [
+   "woodcut",
+   "mosaic",
+   "sticker"
+  ],
+  "centers": [
+   "dot"
+  ],
+  "prompt": "omega glyph with flame in a jade ritual, traditional Chinese design",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1007
+  }
+ },
+ {
+  "id": "space-sculpt",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#000080",
+    "#000000",
+    "#FFD700",
+    "#FFFFFF",
+    "#00FF00",
+    "#00FFFF"
+   ]
+  ],
+  "renderers": [
+   "constellation",
+   "orbit",
+   "rings"
+  ],
+  "centers": [
+   "flame"
+  ],
+  "prompt": "omega glyph with flame as a space sculpture, abstract and futuristic",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1007
+  }
+ },
+ {
+  "id": "viking-lantern",
+  "trend": "ai-game",
+  "palettes": [
+   [
+    "#FFD700",
+    "#8B4513",
+    "#FF4500",
+    "#000000",
+    "#FF8C00",
+    "#8B0000"
+   ]
+  ],
+  "renderers": [
+   "stitch",
+   "pixel",
+   "hollow"
+  ],
+  "centers": [
+   "spark"
+  ],
+  "prompt": "omega glyph with flame in a viking lantern, hand-drawn and textured",
+  "source": {
+   "model": "qwen3:8b",
+   "seed": 1007
+  }
+ }
+]
