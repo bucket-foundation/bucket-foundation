@@ -4,7 +4,7 @@ import json
 import shutil
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageStat
 
 from emoji import VARIANT_STYLES as VARIANTS
 VARIANTS = ["flat"] + VARIANTS
@@ -24,6 +24,11 @@ def mean_hex(png):
     px = [p for p in im.getdata()]
     r, g, b = (sum(c[i] for c in px) // len(px) for i in range(3))
     return f"#{r:02X}{g:02X}{b:02X}"
+
+
+def center_contrast(path):
+    im = Image.open(path).convert("L").resize((128, 128)).crop((20, 15, 108, 113))
+    return ImageStat.Stat(im).stddev[0]
 
 
 def entry(kind, src, color, label, meta):
@@ -62,8 +67,20 @@ def main():
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(OUT / m["file"], dst)
         e = entry("emoji", f"v/{m['file']}", m["palette"]["b1"], m["name"], f"{m['cat']} · {m['renderer']}{' · canonical' if m['canonical'] else ''}")
-        e.update(cat=m["cat"], set=cats.index(m["cat"]) * 100000 + m["order"] * 10 + (0 if m["canonical"] else 1 + VARIANTS.index(m["renderer"]) % 9), canonical=m["canonical"])
+        e.update(cat=m["cat"], set=cats.index(m["cat"]) * 100000 + m["order"] * 10 + m["seed"], canonical=m["canonical"])
         items.append(e)
+    sc = OUT / "scenes" / "manifest.jsonl"
+    if sc.exists():
+        (SITE / "s").mkdir(exist_ok=True)
+        for line in sc.read_text().splitlines():
+            m = json.loads(line)
+            src = OUT / "scenes" / m["out"]
+            if not src.exists() or center_contrast(src) < 16:
+                continue
+            Image.open(src).convert("RGB").resize((320, 320), Image.LANCZOS).save(SITE / "s" / m["out"], quality=86)
+            e = entry("scene", f"s/{m['out']}", mean_hex(src), m["name"], f"{m['cat']} · sdxl scene · seed {m['seed']}")
+            e.update(cat=m["cat"], set=cats.index(m["cat"]) * 100000 + m["order"] * 10 + 5, canonical=False)
+            items.append(e)
     for e in items:
         e.setdefault("cat", "styles")
         e.setdefault("set", 10**7 + len(e["src"]))
