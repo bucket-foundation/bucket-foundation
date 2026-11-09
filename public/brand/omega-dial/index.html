@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bucket Omega Tool</title>
+<style>
+:root{--ink:#111;--mute:#777;--line:#ddd;--bg:#fff;--teal:#2a9d8f;--red:#e76f51}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#eee;--mute:#999;--line:#333;--bg:#0f0f10}}
+:root[data-theme="dark"]{--ink:#eee;--mute:#999;--line:#333;--bg:#0f0f10}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px Arial,Helvetica,sans-serif}
+header{display:flex;justify-content:space-between;align-items:baseline;padding:18px 16px 0;flex-wrap:wrap;gap:8px}
+h1{font:bold 15px Arial;letter-spacing:.14em;margin:0}
+.ctl button{font:bold 11px Arial;letter-spacing:.1em;border:1.5px solid var(--ink);background:none;color:var(--ink);padding:5px 10px;border-radius:999px;cursor:pointer;margin-left:4px}
+.ctl button.on{background:var(--ink);color:var(--bg)}
+main{display:grid;grid-template-columns:1fr 320px;gap:8px;padding:0 16px}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+#stage{width:100%;aspect-ratio:1700/700;display:block;cursor:grab;touch-action:none}
+aside{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:6px}
+#focus{width:220px;height:220px;border-radius:50px;object-fit:cover;box-shadow:0 10px 30px #0003}
+#name{font:bold 13px Arial;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+#meta{font:12px monospace;color:var(--mute);text-align:center;min-height:2.6em}
+#dial{width:260px;height:260px;cursor:grab;touch-action:none}
+#scale{display:block;width:calc(100% - 32px);height:54px;margin:6px 16px 4px;cursor:pointer;touch-action:none}
+#grid{display:none;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px;padding:8px 16px}
+#grid img{width:100%;aspect-ratio:1;border-radius:20px;cursor:pointer;background:#8883}
+body.grid main,body.grid #scale,body.grid .cap{display:none}body.grid #grid{display:grid}
+#view{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;gap:16px;z-index:9;padding:16px}
+#view.open{display:flex}#view figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:10px;max-width:min(78vw,640px)}
+#view img{width:min(78vw,560px,70vh);aspect-ratio:1;border-radius:22%;box-shadow:0 20px 60px #0005}
+#view .nav{font:bold 34px Arial;width:64px;height:64px;border-radius:50%;border:2px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer;flex:none}
+#view .x{position:absolute;top:14px;right:16px;font:bold 12px Arial;letter-spacing:.1em;border:1.5px solid var(--ink);background:none;color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer}
+#vname{font:bold 14px Arial;letter-spacing:.1em;text-transform:uppercase}#vmeta{font:12px monospace;color:var(--mute);text-align:center}
+#focus{cursor:zoom-in}
+.cap{display:flex;justify-content:space-between;padding:0 16px 18px;font:bold 11px Arial;letter-spacing:.12em;color:var(--mute)}
+</style>
+</head>
+<body>
+<header>
+<h1>BUCKET · OMEGA SPECTRUM</h1>
+<div class="ctl">
+<button data-f="all" class="on">ALL</button><button data-f="vector">VECTOR</button><button data-f="ai">AI</button>
+<button data-v="cylinder" class="on">CYLINDER</button><button data-v="wheel">WHEEL</button><button data-v="grid">GRID</button>
+<button id="play">PLAY</button>
+</div>
+</header>
+<main>
+<canvas id="stage" width="1700" height="700" aria-label="Every omega icon as a slice on a cylinder, in color order"></canvas>
+<aside>
+<img id="focus" alt="">
+<div id="name"></div>
+<div id="meta"></div>
+<canvas id="dial" width="520" height="520" aria-label="Color dial"></canvas>
+</aside>
+</main>
+<div id="grid"></div>
+<div id="view" role="dialog" aria-label="Icon viewer"><button class="x" id="vx">CLOSE</button><button class="nav" id="vl" aria-label="Previous">‹</button><figure><img id="vimg" alt=""><div id="vname"></div><div id="vmeta"></div></figure><button class="nav" id="vr" aria-label="Next">›</button></div>
+<canvas id="scale" aria-label="Full color scale"></canvas>
+<div class="cap"><span id="pos"></span><span>DRAG, SCROLL OR USE ARROW KEYS</span><span id="count"></span></div>
+<script>
+(async()=>{
+const ALL=await (await fetch('data.json')).json();
+let items=ALL,cur=0,target=0,yaw=.45,playing=false,filter='all',mode='cylinder';
+const c=document.getElementById('stage'),g=c.getContext('2d'),W=1700,H=700;
+const R=2.6,X0=-11,X1=11,GAP=.85,teal='#2a9d8f',red='#e76f51';
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const cache=new Map();
+function img(e){let m=cache.get(e.src);if(!m){m=new Image();m.src=e.src;cache.set(e.src,m)}return m}
+function P(x,y,z){const cy=Math.cos(yaw),sy=Math.sin(yaw);
+const X=x*cy-z*sy,Z=x*sy+z*cy,el=.12,Y=y*Math.cos(el)-Z*Math.sin(el),D=Z*Math.cos(el)+y*Math.sin(el),k=30/(30-D),s=58*k;
+return[W/2-40+X*s,H/2-10-Y*s,D,s]}
+function line(pts,col,w,dash){g.strokeStyle=col;g.lineWidth=w;g.setLineDash(dash||[]);g.beginPath();pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.stroke();g.setLineDash([])}
+function lab(t,x,y){g.font='bold 14px Arial';g.fillStyle=css('--ink');g.textAlign='center';g.fillText(t,x,y)}
+const ang=e=>e.chromatic?e.hue*Math.PI/180:Math.PI*(1+e.light);
+function slice(e,x,face){const p=P(x,0,0),rr=R*p[3],sx=Math.sin(yaw)+(1-Math.sin(yaw))*face,grow=1+face*.55,m=img(e);
+g.save();g.translate(p[0],p[1]);g.scale(sx*grow,grow);
+g.beginPath();g.arc(0,0,rr,0,7);g.closePath();g.fillStyle=e.color;g.fill();
+if(m.complete&&m.naturalWidth){g.save();g.clip();g.drawImage(m,-rr,-rr,rr*2,rr*2);g.restore()}
+g.lineWidth=(face>.5?3:1.5)/(sx*grow);g.strokeStyle=face>.5?css('--ink'):'#555';g.stroke();g.restore();
+const a=ang(e),q=P(x,R*Math.cos(a)*grow,R*Math.sin(a)*grow);return q}
+function draw(){
+cur+=(target-cur)*.14;wrap();if(playing){target+=.04;if(target>items.length-1)target=0}
+g.clearRect(0,0,W,H);const ink=css('--ink');
+if(mode==='wheel'){drawWheel();const f=items[((Math.round(cur)%items.length)+items.length)%items.length];if(f)focusTo(f);drawDial();drawScale();requestAnimationFrame(draw);return}
+line([P(X0-.4,0,0),P(X1+.6,0,0)],ink,2,[14,9]);
+const top=[],bot=[];for(let x=X0;x<=X1;x+=.1){top.push(P(x,R,0));bot.push(P(x,-R,0))}line(top,'#bbb',1.5);line(bot,'#bbb',1.5);
+const lo=Math.floor(cur+X0/GAP),hi=Math.ceil(cur+X1/GAP),N=items.length,at=i=>items[((i%N)+N)%N];
+const vis=[];for(let i=lo;i<=hi;i++){const x=(i-cur)*GAP;vis.push([i,x])}
+const rims=[];
+vis.sort((a,b)=>P(a[1],0,0)[2]-P(b[1],0,0)[2]||Math.abs(b[1])-Math.abs(a[1]));
+const order=vis.slice().sort((a,b)=>Math.abs(b[1])-Math.abs(a[1]));
+for(const [i,x] of order){const face=Math.max(0,1-Math.abs(x)/1.2);const q=slice(at(i),x,face);rims.push([x,q])}
+rims.sort((a,b)=>a[0]-b[0]);
+line(rims.map(r=>r[1]),teal,2.5);
+rims.forEach(([x,q])=>{g.fillStyle=teal;g.beginPath();g.arc(q[0],q[1],4,0,7);g.fill()});
+lab('COLOR ORDER ALONG THE AXIS',W*.25,40);lab('HUE AS THE HELIX ANGLE',W*.72,40);
+const f=items[((Math.round(cur)%items.length)+items.length)%items.length];if(f){focusTo(f)}
+drawDial();drawScale();requestAnimationFrame(draw)}
+function drawWheel(){const cx=W/2,cy=H+260,RR=820,n=items.length,span=34;
+for(let k=span;k>=-span;k--){const i=Math.round(cur)+k;const it=items[((i%n)+n)%n];const off=i-cur,a=-Math.PI/2+off*.045,face=Math.max(0,1-Math.abs(off)/1.5);
+const x=cx+RR*Math.cos(a),y=cy+RR*Math.sin(a),sz=58+face*110,m=img(it);
+g.save();g.translate(x,y);g.rotate(a+Math.PI/2);g.beginPath();g.roundRect(-sz/2,-sz/2,sz,sz,sz*.22);g.fillStyle=it.color;g.fill();
+if(m.complete&&m.naturalWidth){g.clip();g.drawImage(m,-sz/2,-sz/2,sz,sz)}g.restore()}
+g.strokeStyle=css('--ink');g.lineWidth=2;g.setLineDash([14,9]);g.beginPath();g.arc(cx,cy,RR-130,-Math.PI*.85,-Math.PI*.15);g.stroke();g.setLineDash([]);
+lab('THE FULL SCALE AS A DIAL',W*.5,40)}
+let shown=null;
+function focusTo(e){if(shown===e)return;shown=e;const el=document.getElementById('focus');el.src=e.src;
+document.getElementById('name').textContent=e.label.replace(/-/g,' ');
+document.getElementById('meta').textContent=`${e.kind} · ${e.meta} · ${e.chromatic?Math.round(e.hue)+'°':'neutral L'+e.light}`;
+document.getElementById('pos').textContent=`SLICE ${Math.round(cur)+1}`}
+const d=document.getElementById('dial'),dg=d.getContext('2d');let wheel=null;
+function buildWheel(){wheel=document.createElement('canvas');wheel.width=wheel.height=520;const w=wheel.getContext('2d'),n=items.length;
+for(let i=0;i<n;i++){const a0=i/n*2*Math.PI-Math.PI/2,a1=(i+1.6)/n*2*Math.PI-Math.PI/2;w.beginPath();w.moveTo(260,260);w.arc(260,260,250,a0,a1);w.closePath();w.fillStyle=items[i].color;w.fill()}
+w.globalCompositeOperation='destination-out';w.beginPath();w.arc(260,260,170,0,7);w.fill()}
+function drawDial(){const n=items.length;dg.clearRect(0,0,520,520);dg.drawImage(wheel,0,0);
+const a=cur/n*2*Math.PI-Math.PI/2;dg.strokeStyle=css('--ink');dg.lineWidth=5;dg.beginPath();dg.moveTo(260+165*Math.cos(a),260+165*Math.sin(a));dg.lineTo(260+258*Math.cos(a),260+258*Math.sin(a));dg.stroke();
+const e=items[Math.round(cur)];if(e){dg.save();dg.beginPath();dg.arc(260,260,150,0,7);dg.clip();const m=img(e);if(m.complete)dg.drawImage(m,110,110,300,300);dg.restore()}}
+const s=document.getElementById('scale'),sg=s.getContext('2d');
+function drawScale(){const w=s.clientWidth*2,h=108;if(s.width!==w){s.width=w;s.height=h}const n=items.length;
+for(let i=0;i<n;i++){sg.fillStyle=items[i].color;sg.fillRect(Math.floor(i/n*w),0,Math.ceil(w/n)+1,h)}
+const x=cur/n*w;sg.fillStyle=css('--ink');sg.fillRect(x-3,0,6,h);sg.fillStyle=css('--bg');sg.fillRect(x-1,0,2,h)}
+function setItems(){const k=shown;buildGrid();items=filter==='all'?ALL:ALL.filter(e=>e.kind===filter);buildWheel();
+const j=k?items.findIndex(e=>e.src===k.src):-1;cur=target=j>=0?j:0;shown=null;
+document.getElementById('count').textContent=`${items.length} SLICES`}
+document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('[data-f]').forEach(x=>x.classList.toggle('on',x===b));setItems()});
+const pb=document.getElementById('play');pb.onclick=()=>{playing=!playing;pb.classList.toggle('on',playing)};
+const clamp=v=>v;const wrap=()=>{const n=items.length;if(cur>=n||cur<0){const k=Math.floor(cur/n)*n;cur-=k;target-=k}};
+c.addEventListener('wheel',e=>{e.preventDefault();target=clamp(target+Math.sign(e.deltaY+e.deltaX)*(e.shiftKey?20:2))},{passive:false});
+let drag=null;c.onpointerdown=e=>{drag={x:e.clientX,t:target,y:yaw};c.setPointerCapture(e.pointerId)};
+c.onpointermove=e=>{if(!drag)return;const r=c.getBoundingClientRect();target=clamp(drag.t-(e.clientX-drag.x)/r.width*W/58/GAP)};
+c.onpointerup=e=>{if(drag&&Math.abs(e.clientX-drag.x)<5)openView();drag=null};
+function dialPick(e){const r=d.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;let a=Math.atan2(y,x)+Math.PI/2;if(a<0)a+=2*Math.PI;target=clamp(Math.round(a/(2*Math.PI)*items.length))}
+let dd=false;d.onpointerdown=e=>{dd=true;d.setPointerCapture(e.pointerId);dialPick(e)};d.onpointermove=e=>dd&&dialPick(e);d.onpointerup=()=>dd=false;
+let sd=false;const sPick=e=>{const r=s.getBoundingClientRect();target=clamp(Math.round((e.clientX-r.left)/r.width*items.length))};
+s.onpointerdown=e=>{sd=true;s.setPointerCapture(e.pointerId);sPick(e)};s.onpointermove=e=>sd&&sPick(e);s.onpointerup=()=>sd=false;
+const grid=document.getElementById('grid');
+function buildGrid(){grid.innerHTML='';const list=filter==='all'?ALL:ALL.filter(e=>e.kind===filter);list.forEach((e,i)=>{const m=document.createElement('img');m.loading='lazy';m.src=e.src;m.title=e.label;m.style.background=e.color;m.onclick=()=>{target=cur=i;openView()};grid.appendChild(m)})}
+const view=document.getElementById('view');let vi=0;
+function showView(){const e=items[vi];document.getElementById('vimg').src=e.src;document.getElementById('vname').textContent=e.label.replace(/-/g,' ');document.getElementById('vmeta').textContent=`${vi+1} / ${items.length} · ${e.kind} · ${e.meta}`;target=vi}
+function openView(){vi=((Math.round(cur)%items.length)+items.length)%items.length;view.classList.add('open');showView()}
+const step=k=>{vi=(vi+k+items.length)%items.length;showView()};
+document.getElementById('vl').onclick=()=>step(-1);document.getElementById('vr').onclick=()=>step(1);
+document.getElementById('vx').onclick=()=>view.classList.remove('open');document.getElementById('focus').onclick=openView;
+view.onclick=e=>{if(e.target===view)view.classList.remove('open')};
+document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{mode=b.dataset.v;document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('on',x===b));document.body.classList.toggle('grid',mode==='grid')});
+addEventListener('keydown',e=>{if(view.classList.contains('open')){if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);if(e.key==='Escape')view.classList.remove('open');return}
+if(e.key==='Enter')openView();if(e.key==='ArrowRight')target=clamp(Math.round(target)+1);if(e.key==='ArrowLeft')target=clamp(Math.round(target)-1);if(e.key===' '){e.preventDefault();pb.click()}});
+setItems();draw();
+})();
+</script>
+</body>
+</html>
