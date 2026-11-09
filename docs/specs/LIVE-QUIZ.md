@@ -7,7 +7,8 @@ Drafted 2026-11-06, revised the same day after the critic review on PR #1211. St
 - **Name.** Stoa, the Athenian porch where teachers met students in public. It fits a classroom and both products. A trademark search in the app and game classes runs before P1a ships.
 - **Look.** The D8 palette from `apple/Bucket/Sources/Polingual/D8Style.swift`: parchment ground, ink type, lapis, vermilion, malachite, plus one new ochre. Tiles sit in one column on phones and a 2 by 2 grid on the board.
 - **Answer marks.** Every tile carries a pigment, a glyph and a letter: lapis wave A, vermilion spark B, malachite leaf C, ochre crescent D. Phones also show the full answer text, so a player who cannot see the board can still play.
-- **Sound.** Four short cues made in-house: join, lock, reveal, finale. No looping music.
+- **Sound.** Everything is synthesized in the browser with Web Audio, so no audio files ship. The board plays an original looping score per phase (lobby, question, reveal, standings, finale) whose layers grow with the player count and whose countdown tightens in the last 5 seconds. Effects cover join, open, lock, tick, reveal, right, wrong, streak and fanfare. A narrator on the board reads each question, says the answer in its own language with a matching system voice, names the leader and counts down the podium, ducking the music while it speaks. The host toggles music, narrator and effects; phones play effects and haptics only, muted with one tap.
+- **Motion.** Tiles rise in sequence, the timer is a ring that turns ochre then vermilion, answer shares fill the tiles at reveal, standings rows slide in with rank arrows, and the finale raises a podium under confetti. Every animation sits behind `prefers-reduced-motion: no-preference`.
 
 ## Rules
 
