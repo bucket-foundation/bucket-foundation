@@ -5,7 +5,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { clockOffset, displayNickname, joinUrl, langName, secondsLeft, team, TEAMS, type Snapshot } from "@/lib/stoa/client";
 import SignIn from "../app/SignIn";
+import { countdownSfx, hostCue, intensity, rankMoves } from "@/lib/stoa/script";
 import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "./parts";
+import { Confetti, Drift, MixBar, Podium, TimerRing, useStage } from "./show";
 import styles from "./stoa.module.css";
 
 const Qr = dynamic(() => import("./Qr"), { ssr: false });
@@ -64,6 +66,11 @@ export default function Host() {
   const [now, setNow] = useState(() => Date.now());
   const [origin, setOrigin] = useState("https://polingual.com");
   const offset = useRef(0);
+  const { stage, mix, setMix, ready, unlock } = useStage({ music: true, voice: true, sfx: true });
+  const prevSnap = useRef<Snapshot | null>(null);
+  const lastBoard = useRef<Snapshot["standings"] | null>(null);
+  const [moves, setMoves] = useState<Record<string, number>>({});
+  const lastLeft = useRef<number | null>(null);
 
   const refresh = useCallback(async () => {
     setAuth((await appAuth().userId()) ? "signed-in" : "signed-out");
@@ -105,6 +112,38 @@ export default function Host() {
     const t = setInterval(() => void poll(), 1000);
     return () => clearInterval(t);
   }, [room, poll]);
+
+  useEffect(() => {
+    if (!snap) {
+      prevSnap.current = null;
+      stage.play("silent");
+      return;
+    }
+    const prev = prevSnap.current;
+    const cue = hostCue(prev, snap);
+    if (cue.track) stage.play(cue.track);
+    stage.setLayers(intensity(snap.room.players));
+    for (const f of cue.sfx ?? []) stage.sfx(f);
+    if (cue.say?.length) stage.say(cue.say);
+    if (snap.room.phase === "board" && prev?.room.phase !== "board") {
+      setMoves(rankMoves(lastBoard.current, snap.standings));
+      lastBoard.current = snap.standings;
+    }
+    prevSnap.current = snap;
+  }, [snap, stage]);
+
+  useEffect(() => {
+    if (!snap || snap.room.phase !== "question" || snap.room.paused) {
+      stage.setUrgent(false);
+      lastLeft.current = null;
+      return;
+    }
+    const left = secondsLeft(snap.room.closes_at, now, offset.current, snap.room.opens_at);
+    const f = countdownSfx(left, lastLeft.current);
+    if (f) stage.sfx(f);
+    stage.setUrgent(left > 0 && left <= 5);
+    lastLeft.current = left;
+  }, [snap, now, stage]);
 
   async function create() {
     setBusy(true);
@@ -269,6 +308,7 @@ export default function Host() {
     if (phase === "lobby")
       return (
         <section className={styles.board} data-testid="board-lobby">
+          <Drift />
           <div className={styles.lobby}>
             <div className={styles.board}>
               <p className={styles.label}>Join at {origin.replace(/^https?:\/\//, "")}/join</p>
@@ -295,13 +335,17 @@ export default function Host() {
     if ((phase === "question" || phase === "reveal") && q) {
       const reveal = phase === "reveal";
       const states: TileState[] = [0, 1, 2, 3].map((i) => (reveal ? (i === q.answer ? "right" : "dim") : "idle"));
+      const total = snap.room.opens_at && snap.room.closes_at ? Math.round((snap.room.closes_at - snap.room.opens_at) / 1000) : 20;
+      const left = secondsLeft(snap.room.closes_at, now, offset.current, snap.room.opens_at);
+      const share = snap.room.players ? Math.min(100, Math.round(((snap.answered ?? 0) / snap.room.players) * 100)) : 0;
       return (
         <section className={styles.board} data-testid={`board-${phase}`}>
           <div className={styles.spread}>
             <span className={styles.stat}>Round {q.round} · Question {q.idx + 1} of {snap.room.total}</span>
             <span className={styles.stat} data-testid="answered">{snap.answered ?? 0} of {snap.room.players} answered</span>
-            <span className={styles.timer}>{snap.room.paused ? "Paused" : reveal ? "" : secondsLeft(snap.room.closes_at, now, offset.current, snap.room.opens_at)}</span>
+            {reveal ? null : <TimerRing left={left} total={total} paused={snap.room.paused} />}
           </div>
+          {!reveal ? <div className={styles.answeredBar} aria-hidden="true"><span style={{ width: `${share}%` }} /></div> : null}
           <Prompt q={q} />
           <Tiles q={q} grid states={states} counts={reveal ? q.counts : null} />
           {controls}
@@ -313,14 +357,15 @@ export default function Host() {
         <section className={styles.board} data-testid="board-standings">
           <h2 className={styles.title}>Round {q?.round ?? ""} standings</h2>
           {snap.team_standings ? <TeamStandings rows={snap.team_standings} /> : null}
-          <Standings rows={snap.team_standings ? snap.standings.slice(0, 5) : snap.standings} />
+          <Standings rows={snap.team_standings ? snap.standings.slice(0, 5) : snap.standings} moves={moves} />
           {controls}
         </section>
       );
     return (
       <section className={styles.board} data-testid="board-finale">
+        <Confetti />
         <h2 className={styles.title}>Final board</h2>
-        {snap.team_standings ? <TeamStandings rows={snap.team_standings} /> : null}
+        {snap.team_standings ? <TeamStandings rows={snap.team_standings} /> : <Podium rows={snap.standings.slice(0, 3)} />}
         <Standings rows={snap.standings.slice(0, 5)} testId="finale-top" />
         {!snap.room.school_mode ? (
           <p className={styles.body} data-testid="board-promo">Keep learning at home with the Polingual app: {APP_URL.replace("https://", "")}</p>
@@ -331,10 +376,11 @@ export default function Host() {
   })();
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} onClick={unlock} onTouchEnd={unlock} onKeyDown={unlock}>
       <header className={styles.bar}>
         <Brand link={!snap?.room.school_mode} />
         {room && snap?.room.school_mode ? <span className={styles.label}>School mode</span> : null}
+        {auth === "signed-in" ? <MixBar mix={mix} setMix={setMix} ready={ready} unlock={unlock} full /> : null}
       </header>
       <main className={styles.main} data-testid="host">
         {view}

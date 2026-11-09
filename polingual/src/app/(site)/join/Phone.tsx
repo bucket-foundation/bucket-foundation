@@ -6,7 +6,11 @@ import { nicknameChoices } from "@/lib/stoa/nicknames";
 import { dropSeat, findSeat, keepSeat, seatStore, type Seat } from "@/lib/stoa/seat";
 import { LiveSocket, type SocketStatus } from "@/lib/stoa/socket";
 import { verifyEvent } from "@/lib/stoa/verify";
-import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "../live/parts";
+import { countdownSfx, phoneCue } from "@/lib/stoa/script";
+import { buzz } from "@/lib/stoa/stage";
+import { MARKS } from "@/lib/stoa/client";
+import { Brand, Glyph, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "../live/parts";
+import { Confetti, MixBar, TimerRing, useStage } from "../live/show";
 import styles from "../live/stoa.module.css";
 
 const APP_URL = "https://apps.apple.com/app/id6825177856";
@@ -43,6 +47,35 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const lastFail = useRef(0);
   const seatRef = useRef<Seat | null>(null);
   const alive = useRef(true);
+  const { stage, mix, setMix, ready: soundReady, unlock } = useStage({ music: false, voice: false, sfx: true });
+  const prevSnap = useRef<Snapshot | null>(null);
+  const lastLeft = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!snap) {
+      prevSnap.current = null;
+      return;
+    }
+    const cue = phoneCue(prevSnap.current, snap);
+    for (const f of cue.sfx ?? []) {
+      stage.sfx(f);
+      if (f === "right" || f === "streak") buzz([40, 60, 40]);
+      if (f === "wrong") buzz(180);
+      if (f === "open") buzz(25);
+    }
+    prevSnap.current = snap;
+  }, [snap, stage]);
+
+  useEffect(() => {
+    if (!snap || snap.room.phase !== "question" || snap.room.paused || snap.player?.choice != null) {
+      lastLeft.current = null;
+      return;
+    }
+    const left = secondsLeft(snap.room.closes_at, now, offset.current, snap.room.opens_at);
+    const f = countdownSfx(left, lastLeft.current);
+    if (f) stage.sfx(f);
+    lastLeft.current = left;
+  }, [snap, now, stage]);
 
   useEffect(() => {
     setNames(nicknameChoices(Math.random));
@@ -188,6 +221,8 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     const s = seatRef.current;
     const q = snap?.question;
     if (!s || !q || snap?.player?.choice != null) return;
+    stage.sfx("lock");
+    buzz(30);
     setSnap((prev) => (prev && prev.player ? { ...prev, player: { ...prev.player, choice } } : prev));
     const r = await fetch("/api/live/answer", { method: "POST", headers: { authorization: `Bearer ${s.token}`, "content-type": "application/json" }, body: JSON.stringify({ idx: q.idx, choice }) }).catch(() => null);
     if (!r || !r.ok) {
@@ -279,6 +314,14 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
           <p className={styles.big}>{name}</p>
           <TeamTag slot={me?.team_slot} />
           <p className={styles.body}>Watch the board. The first question opens when the host starts.</p>
+          <p className={styles.fieldLabel}>Warm up your fingers</p>
+          <div className={styles.warm} data-testid="warm-up">
+            {MARKS.map((m, i) => (
+              <button key={m.letter} type="button" data-pigment={m.pigment} aria-label={`Practice tile ${m.letter}`} onClick={() => { stage.note(i); buzz(15); }}>
+                <Glyph glyph={m.glyph} />
+              </button>
+            ))}
+          </div>
         </section>
       );
     if (phase === "question" && q) {
@@ -289,7 +332,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
         <>
           <div className={styles.spread}>
             <span className={styles.stat}>Question {q.idx + 1} of {snap.room.total}</span>
-            <span className={styles.timer} aria-hidden="true">{snap.room.paused ? "Paused" : left}</span>
+            <TimerRing left={left ?? 0} total={snap.room.opens_at && snap.room.closes_at ? Math.round((snap.room.closes_at - snap.room.opens_at) / 1000) : 20} paused={snap.room.paused} />
           </div>
           <p className={styles.sr} aria-live="polite" data-testid="timer-announce">{announce(left, snap.room.paused)}</p>
           <Prompt q={q} />
@@ -302,11 +345,14 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
       const right = me?.choice != null && me.choice === q.answer;
       const states: TileState[] = [0, 1, 2, 3].map((i) => (i === q.answer ? "right" : "dim"));
       const r = rank(snap.standings, me?.id);
+      const streak = me?.streak ?? 0;
       return (
         <>
+          {phase === "reveal" && right ? <Confetti burst={70} /> : null}
           <p className={styles.banner} data-tone={right ? "right" : "wrong"} data-testid="result">
             {me?.choice == null ? "No answer this time." : right ? "Right." : "Not this one."} {me?.points ?? 0} points{r ? `, place ${r}` : ""}.
           </p>
+          {right && streak >= 2 ? <p className={styles.streak} data-testid="streak">{streak} in a row</p> : null}
           {phase === "board" && snap.team_standings ? <TeamStandings rows={snap.team_standings} mine={me?.team_slot} /> : null}
           {phase === "board" ? <Standings rows={snap.team_standings ? snap.standings.slice(0, 5) : snap.standings} me={me?.id} /> : <Tiles q={q} states={states} />}
         </>
@@ -315,6 +361,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     if (phase === "finale" || phase === "closed")
       return (
         <section className={styles.card} data-testid="phone-finale">
+          {(rank(snap.standings, me?.id) ?? 99) <= 3 ? <Confetti /> : null}
           <p className={styles.label}>Final board</p>
           <p className={styles.big}>{me?.points ?? 0} points</p>
           {snap.team_standings ? <TeamStandings rows={snap.team_standings} mine={me?.team_slot} /> : null}
@@ -328,9 +375,10 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   })();
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} onClick={unlock} onTouchEnd={unlock}>
       <header className={styles.bar}>
         <Brand link={false} />
+        {seat ? <MixBar mix={mix} setMix={setMix} ready={soundReady} unlock={unlock} full={false} /> : null}
         {seat ? <span className={styles.stat} data-testid="phone-status" data-socket={status} data-verified={verified}>{status === "open" ? "Live" : "Reconnecting"}</span> : null}
       </header>
       <main className={`${styles.main} ${styles.phone}`} data-testid="phone">

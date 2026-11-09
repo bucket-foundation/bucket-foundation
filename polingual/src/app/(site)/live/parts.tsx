@@ -26,7 +26,7 @@ export function Prompt({ q }: { q: Pick<Question, "kind" | "prompt"> }) {
   return (
     <div className={styles.prompt} data-testid="prompt">
       <p className={styles.lead} dir="auto">{v.lead}</p>
-      <p className={styles.word} dir="auto" lang={q.kind === "pick_word" ? q.prompt.home_lang : q.kind === "translate" ? q.prompt.from : undefined}>{v.word}</p>
+      <p key={v.word} className={styles.word} dir="auto" lang={q.kind === "pick_word" ? q.prompt.home_lang : q.kind === "translate" ? q.prompt.from : undefined}>{v.word}</p>
       {v.tail ? <p className={styles.tail} dir="auto">{v.tail}</p> : null}
     </div>
   );
@@ -55,7 +55,7 @@ export function Tiles({
         const label = optionLabel(q, i);
         const name = q.kind === "pick_word" ? q.prompt.lang : q.kind === "translate" ? q.prompt.to : undefined;
         return (
-          <li key={mark.letter}>
+          <li key={mark.letter} style={{ "--i": i } as React.CSSProperties}>
             <button
               type="button"
               className={styles.tile}
@@ -64,6 +64,7 @@ export function Tiles({
               data-testid={`tile-${mark.letter}`}
               disabled={disabled || !onPick}
               onClick={() => onPick?.(i)}
+              style={counts ? ({ "--share": `${Math.round(((counts[i] ?? 0) / Math.max(1, counts.reduce((a, b) => a + b, 0))) * 100)}%` } as React.CSSProperties) : undefined}
               aria-label={[mark.letter, mark.glyph, label, states?.[i] === "right" ? "correct" : states?.[i] === "chosen" ? "your answer" : null].filter(Boolean).join(", ")}
             >
               <MarkBadge mark={mark} />
@@ -77,12 +78,22 @@ export function Tiles({
   );
 }
 
-export function Standings({ rows, me, testId }: { rows: Standing[]; me?: string; testId?: string }) {
+export function Move({ by }: { by: number }) {
+  if (!by) return null;
+  return (
+    <span className={styles.move} data-dir={by > 0 ? "up" : "down"} data-testid="rank-move">
+      {by > 0 ? `\u25B2${by}` : `\u25BC${-by}`}
+    </span>
+  );
+}
+
+export function Standings({ rows, me, testId, moves }: { rows: Standing[]; me?: string; testId?: string; moves?: Record<string, number> }) {
   return (
     <ol className={styles.standings} data-testid={testId ?? "standings"}>
-      {rows.map((r) => (
-        <li key={r.player_id} data-me={r.player_id === me}>
+      {rows.map((r, i) => (
+        <li key={r.player_id} data-me={r.player_id === me} style={{ "--i": i } as React.CSSProperties}>
           <span>{displayNickname(r.nickname)}</span>
+          <Move by={moves?.[r.player_id] ?? 0} />
           <span>{r.points}</span>
         </li>
       ))}
@@ -93,10 +104,10 @@ export function Standings({ rows, me, testId }: { rows: Standing[]; me?: string;
 export function TeamStandings({ rows, mine }: { rows: TeamStanding[]; mine?: number | null }) {
   return (
     <ol className={styles.standings} data-testid="team-standings">
-      {rows.map((r) => {
+      {rows.map((r, i) => {
         const t = team(r.team);
         return (
-          <li key={r.team} data-me={r.team === mine} data-pigment={t?.pigment}>
+          <li key={r.team} data-me={r.team === mine} data-pigment={t?.pigment} style={{ "--i": i } as React.CSSProperties}>
             <span>
               Team {t?.name} <span className={styles.members}>{r.members} {r.members === 1 ? "player" : "players"}{r.unisons ? `, ${r.unisons} in unison` : ""}</span>
             </span>
