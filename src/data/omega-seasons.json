@@ -1,0 +1,924 @@
+{
+  "stableMark": {
+    "name": "Gold inverse omega lyre",
+    "svg": "/icon.svg",
+    "png": "/brand/omega-lyre-gold.png",
+    "component": "src/components/InverseOmega.tsx"
+  },
+  "start": "2026-12",
+  "months": 24,
+  "seasons": [
+    {
+      "month": "2026-12",
+      "season": 1,
+      "name": "Long Night",
+      "events": "winter solstice, Dec 21; Nobel week, Dec 10",
+      "hero": {
+        "slug": "time-winter",
+        "label": "Winter",
+        "image": "/brand/seasons/time-winter.webp",
+        "iosIconName": "season-01-time-winter"
+      },
+      "badges": [
+        {
+          "slug": "space-aurora",
+          "label": "Aurora",
+          "image": "/brand/seasons/space-aurora.webp"
+        },
+        {
+          "slug": "time-midnight",
+          "label": "Midnight",
+          "image": "/brand/seasons/time-midnight.webp"
+        },
+        {
+          "slug": "knowledge-physics",
+          "label": "Physics",
+          "image": "/brand/seasons/knowledge-physics.webp"
+        },
+        {
+          "slug": "places-north-pole",
+          "label": "North Pole",
+          "image": "/brand/seasons/places-north-pole.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: physics branch. Nobel week reading list of primary derivations.",
+        "href": "/canon"
+      }
+    },
+    {
+      "month": "2027-01",
+      "season": 2,
+      "name": "First Light",
+      "events": "Perihelion, Jan 3; new year",
+      "hero": {
+        "slug": "time-dawn",
+        "label": "Dawn",
+        "image": "/brand/seasons/time-dawn.webp",
+        "iosIconName": "season-02-time-dawn"
+      },
+      "badges": [
+        {
+          "slug": "space-sun",
+          "label": "Sun",
+          "image": "/brand/seasons/space-sun.webp"
+        },
+        {
+          "slug": "space-earth",
+          "label": "Earth",
+          "image": "/brand/seasons/space-earth.webp"
+        },
+        {
+          "slug": "knowledge-optics",
+          "label": "Optics",
+          "image": "/brand/seasons/knowledge-optics.webp"
+        },
+        {
+          "slug": "time-morning",
+          "label": "Morning",
+          "image": "/brand/seasons/time-morning.webp"
+        }
+      ],
+      "feature": {
+        "text": "Academy recall streaks reset for the year. A daily quiz earns the dawn badge.",
+        "href": "/academy"
+      }
+    },
+    {
+      "month": "2027-02",
+      "season": 3,
+      "name": "Mother Tongue",
+      "events": "International Mother Language Day, Feb 21",
+      "hero": {
+        "slug": "cultures-greek",
+        "label": "Greek",
+        "image": "/brand/seasons/cultures-greek.webp",
+        "iosIconName": "season-03-cultures-greek"
+      },
+      "badges": [
+        {
+          "slug": "languages-arabic",
+          "label": "Arabic",
+          "image": "/brand/seasons/languages-arabic.webp"
+        },
+        {
+          "slug": "languages-chinese",
+          "label": "Chinese",
+          "image": "/brand/seasons/languages-chinese.webp"
+        },
+        {
+          "slug": "languages-swahili",
+          "label": "Swahili",
+          "image": "/brand/seasons/languages-swahili.webp"
+        },
+        {
+          "slug": "languages-quechua",
+          "label": "Quechua",
+          "image": "/brand/seasons/languages-quechua.webp"
+        }
+      ],
+      "feature": {
+        "text": "Polingual: read one canon entry in a second language.",
+        "href": "/research-os/nsm"
+      }
+    },
+    {
+      "month": "2027-03",
+      "season": 4,
+      "name": "Pi Season",
+      "events": "Pi Day, Mar 14; March equinox, Mar 20",
+      "hero": {
+        "slug": "knowledge-geometry",
+        "label": "Geometry",
+        "image": "/brand/seasons/knowledge-geometry.webp",
+        "iosIconName": "season-04-knowledge-geometry"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-mathematics",
+          "label": "Mathematics",
+          "image": "/brand/seasons/knowledge-mathematics.webp"
+        },
+        {
+          "slug": "knowledge-calculus",
+          "label": "Calculus",
+          "image": "/brand/seasons/knowledge-calculus.webp"
+        },
+        {
+          "slug": "knowledge-number-theory",
+          "label": "Number Theory",
+          "image": "/brand/seasons/knowledge-number-theory.webp"
+        },
+        {
+          "slug": "time-spring",
+          "label": "Spring",
+          "image": "/brand/seasons/time-spring.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: mathematics branch. Pi Day quiz track in the academy.",
+        "href": "/canon"
+      }
+    },
+    {
+      "month": "2027-04",
+      "season": 5,
+      "name": "Bucket Year One",
+      "events": "Bucket reactivation anniversary, Apr 14; Earth Day, Apr 22",
+      "hero": {
+        "slug": "space-earth",
+        "label": "Earth",
+        "image": "/brand/seasons/space-earth.webp",
+        "iosIconName": "season-05-space-earth"
+      },
+      "badges": [
+        {
+          "slug": "years-2020s",
+          "label": "2020S",
+          "image": "/brand/seasons/years-2020s.webp"
+        },
+        {
+          "slug": "climates-temperate",
+          "label": "Temperate",
+          "image": "/brand/seasons/climates-temperate.webp"
+        },
+        {
+          "slug": "knowledge-ecology",
+          "label": "Ecology",
+          "image": "/brand/seasons/knowledge-ecology.webp"
+        },
+        {
+          "slug": "knowledge-history",
+          "label": "History",
+          "image": "/brand/seasons/knowledge-history.webp"
+        }
+      ],
+      "feature": {
+        "text": "Anniversary drop. Earth data globe gains a season layer.",
+        "href": "/earth"
+      }
+    },
+    {
+      "month": "2027-05",
+      "season": 6,
+      "name": "Living Cell",
+      "events": "World Bee Day, May 20; Kruse lecture season",
+      "hero": {
+        "slug": "knowledge-biophysics",
+        "label": "Biophysics",
+        "image": "/brand/seasons/knowledge-biophysics.webp",
+        "iosIconName": "season-06-knowledge-biophysics"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-biology",
+          "label": "Biology",
+          "image": "/brand/seasons/knowledge-biology.webp"
+        },
+        {
+          "slug": "knowledge-biochemistry",
+          "label": "Biochemistry",
+          "image": "/brand/seasons/knowledge-biochemistry.webp"
+        },
+        {
+          "slug": "climates-rainforest",
+          "label": "Rainforest",
+          "image": "/brand/seasons/climates-rainforest.webp"
+        },
+        {
+          "slug": "time-noon",
+          "label": "Noon",
+          "image": "/brand/seasons/time-noon.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: biophysics branch. Kruse corpus citations count toward the track.",
+        "href": "/kruse"
+      }
+    },
+    {
+      "month": "2027-06",
+      "season": 7,
+      "name": "Midsummer",
+      "events": "June solstice, Jun 21",
+      "hero": {
+        "slug": "time-summer",
+        "label": "Summer",
+        "image": "/brand/seasons/time-summer.webp",
+        "iosIconName": "season-07-time-summer"
+      },
+      "badges": [
+        {
+          "slug": "space-sun",
+          "label": "Sun",
+          "image": "/brand/seasons/space-sun.webp"
+        },
+        {
+          "slug": "climates-desert",
+          "label": "Desert",
+          "image": "/brand/seasons/climates-desert.webp"
+        },
+        {
+          "slug": "knowledge-thermodynamics",
+          "label": "Thermodynamics",
+          "image": "/brand/seasons/knowledge-thermodynamics.webp"
+        },
+        {
+          "slug": "places-equator",
+          "label": "Equator",
+          "image": "/brand/seasons/places-equator.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: chemistry and thermodynamics. Longest day, longest reading streak.",
+        "href": "/canon"
+      }
+    },
+    {
+      "month": "2027-07",
+      "season": 8,
+      "name": "Moonwalk",
+      "events": "Apollo 11 anniversary, Jul 20",
+      "hero": {
+        "slug": "space-moon",
+        "label": "Moon",
+        "image": "/brand/seasons/space-moon.webp",
+        "iosIconName": "season-08-space-moon"
+      },
+      "badges": [
+        {
+          "slug": "space-rocket",
+          "label": "Rocket",
+          "image": "/brand/seasons/space-rocket.webp"
+        },
+        {
+          "slug": "years-1960s",
+          "label": "1960S",
+          "image": "/brand/seasons/years-1960s.webp"
+        },
+        {
+          "slug": "space-orbit",
+          "label": "Orbit",
+          "image": "/brand/seasons/space-orbit.webp"
+        },
+        {
+          "slug": "space-telescope",
+          "label": "Telescope",
+          "image": "/brand/seasons/space-telescope.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: cosmology branch. Space-age eras in sacred history.",
+        "href": "/sacred-history"
+      }
+    },
+    {
+      "month": "2027-08",
+      "season": 9,
+      "name": "Many Tongues",
+      "events": "International Day of the World's Indigenous Peoples, Aug 9",
+      "hero": {
+        "slug": "cultures-maori",
+        "label": "Maori",
+        "image": "/brand/seasons/cultures-maori.webp",
+        "iosIconName": "season-09-cultures-maori"
+      },
+      "badges": [
+        {
+          "slug": "languages-maori",
+          "label": "Maori",
+          "image": "/brand/seasons/languages-maori.webp"
+        },
+        {
+          "slug": "languages-hawaiian",
+          "label": "Hawaiian",
+          "image": "/brand/seasons/languages-hawaiian.webp"
+        },
+        {
+          "slug": "languages-tibetan",
+          "label": "Tibetan",
+          "image": "/brand/seasons/languages-tibetan.webp"
+        },
+        {
+          "slug": "languages-yoruba",
+          "label": "Yoruba",
+          "image": "/brand/seasons/languages-yoruba.webp"
+        }
+      ],
+      "feature": {
+        "text": "Polingual: endangered-language translations of canon headings.",
+        "href": "/research-os/nsm"
+      }
+    },
+    {
+      "month": "2027-09",
+      "season": 10,
+      "name": "Equinox",
+      "events": "September equinox, Sep 22; International Literacy Day, Sep 8",
+      "hero": {
+        "slug": "time-autumn",
+        "label": "Autumn",
+        "image": "/brand/seasons/time-autumn.webp",
+        "iosIconName": "season-10-time-autumn"
+      },
+      "badges": [
+        {
+          "slug": "time-libra",
+          "label": "Libra",
+          "image": "/brand/seasons/time-libra.webp"
+        },
+        {
+          "slug": "knowledge-linguistics",
+          "label": "Linguistics",
+          "image": "/brand/seasons/knowledge-linguistics.webp"
+        },
+        {
+          "slug": "knowledge-logic",
+          "label": "Logic",
+          "image": "/brand/seasons/knowledge-logic.webp"
+        },
+        {
+          "slug": "time-dusk",
+          "label": "Dusk",
+          "image": "/brand/seasons/time-dusk.webp"
+        }
+      ],
+      "feature": {
+        "text": "Academy fall term. A full lesson ladder earns the scales badge.",
+        "href": "/ladder"
+      }
+    },
+    {
+      "month": "2027-10",
+      "season": 11,
+      "name": "Laureates",
+      "events": "Nobel announcements, first two weeks of October",
+      "hero": {
+        "slug": "knowledge-chemistry",
+        "label": "Chemistry",
+        "image": "/brand/seasons/knowledge-chemistry.webp",
+        "iosIconName": "season-11-knowledge-chemistry"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-quantum",
+          "label": "Quantum",
+          "image": "/brand/seasons/knowledge-quantum.webp"
+        },
+        {
+          "slug": "knowledge-medicine",
+          "label": "Medicine",
+          "image": "/brand/seasons/knowledge-medicine.webp"
+        },
+        {
+          "slug": "knowledge-economics",
+          "label": "Economics",
+          "image": "/brand/seasons/knowledge-economics.webp"
+        },
+        {
+          "slug": "eras-scientific-revolution",
+          "label": "Scientific Revolution",
+          "image": "/brand/seasons/eras-scientific-revolution.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon contributors index: each laureate field links to its foundations.",
+        "href": "/contributors"
+      }
+    },
+    {
+      "month": "2027-11",
+      "season": 12,
+      "name": "Cite Forever",
+      "events": "World Science Day, Nov 10",
+      "hero": {
+        "slug": "knowledge-information",
+        "label": "Information",
+        "image": "/brand/seasons/knowledge-information.webp",
+        "iosIconName": "season-12-knowledge-information"
+      },
+      "badges": [
+        {
+          "slug": "ai-data-ledger",
+          "label": "Data Ledger",
+          "image": "/brand/seasons/ai-data-ledger.webp"
+        },
+        {
+          "slug": "ai-data-token",
+          "label": "Data Token",
+          "image": "/brand/seasons/ai-data-token.webp"
+        },
+        {
+          "slug": "ai-data-search",
+          "label": "Data Search",
+          "image": "/brand/seasons/ai-data-search.webp"
+        },
+        {
+          "slug": "ai-data-citation",
+          "label": "Data Citation",
+          "image": "/brand/seasons/ai-data-citation.webp"
+        }
+      ],
+      "feature": {
+        "text": "Paid-to-cite: first x402 citation earns the ledger badge.",
+        "href": "/cite-forever"
+      }
+    },
+    {
+      "month": "2027-12",
+      "season": 13,
+      "name": "Long Night II",
+      "events": "winter solstice, Dec 22; Nobel week, Dec 10",
+      "hero": {
+        "slug": "space-nebula",
+        "label": "Nebula",
+        "image": "/brand/seasons/space-nebula.webp",
+        "iosIconName": "season-13-space-nebula"
+      },
+      "badges": [
+        {
+          "slug": "space-galaxy",
+          "label": "Galaxy",
+          "image": "/brand/seasons/space-galaxy.webp"
+        },
+        {
+          "slug": "space-black-hole",
+          "label": "Black Hole",
+          "image": "/brand/seasons/space-black-hole.webp"
+        },
+        {
+          "slug": "knowledge-cosmology",
+          "label": "Cosmology",
+          "image": "/brand/seasons/knowledge-cosmology.webp"
+        },
+        {
+          "slug": "time-night",
+          "label": "Night",
+          "image": "/brand/seasons/time-night.webp"
+        }
+      ],
+      "feature": {
+        "text": "Year-two opener. Canon: cosmology deep track.",
+        "href": "/canon"
+      }
+    },
+    {
+      "month": "2028-01",
+      "season": 14,
+      "name": "Deep Time",
+      "events": "Darwin Day lead-in; Perihelion, Jan 5",
+      "hero": {
+        "slug": "eras-deep-time",
+        "label": "Deep Time",
+        "image": "/brand/seasons/eras-deep-time.webp",
+        "iosIconName": "season-14-eras-deep-time"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-geology",
+          "label": "Geology",
+          "image": "/brand/seasons/knowledge-geology.webp"
+        },
+        {
+          "slug": "eras-stone-age",
+          "label": "Stone Age",
+          "image": "/brand/seasons/eras-stone-age.webp"
+        },
+        {
+          "slug": "knowledge-evolution",
+          "label": "Evolution",
+          "image": "/brand/seasons/knowledge-evolution.webp"
+        },
+        {
+          "slug": "climates-tundra",
+          "label": "Tundra",
+          "image": "/brand/seasons/climates-tundra.webp"
+        }
+      ],
+      "feature": {
+        "text": "Sacred history: deep-time era opens.",
+        "href": "/sacred-history"
+      }
+    },
+    {
+      "month": "2028-02",
+      "season": 15,
+      "name": "Script",
+      "events": "International Mother Language Day, Feb 21; leap day, Feb 29",
+      "hero": {
+        "slug": "cultures-hebrew",
+        "label": "Hebrew",
+        "image": "/brand/seasons/cultures-hebrew.webp",
+        "iosIconName": "season-15-cultures-hebrew"
+      },
+      "badges": [
+        {
+          "slug": "languages-latin",
+          "label": "Latin",
+          "image": "/brand/seasons/languages-latin.webp"
+        },
+        {
+          "slug": "languages-norse-runic",
+          "label": "Norse Runic",
+          "image": "/brand/seasons/languages-norse-runic.webp"
+        },
+        {
+          "slug": "languages-sinhala",
+          "label": "Sinhala",
+          "image": "/brand/seasons/languages-sinhala.webp"
+        },
+        {
+          "slug": "languages-georgian",
+          "label": "Georgian",
+          "image": "/brand/seasons/languages-georgian.webp"
+        }
+      ],
+      "feature": {
+        "text": "Polingual: scripts track. Leap-day badge only issues in 2028.",
+        "href": "/research-os/nsm"
+      }
+    },
+    {
+      "month": "2028-03",
+      "season": 16,
+      "name": "Pi Season II",
+      "events": "Pi Day, Mar 14; March equinox, Mar 20",
+      "hero": {
+        "slug": "knowledge-topology",
+        "label": "Topology",
+        "image": "/brand/seasons/knowledge-topology.webp",
+        "iosIconName": "season-16-knowledge-topology"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-probability",
+          "label": "Probability",
+          "image": "/brand/seasons/knowledge-probability.webp"
+        },
+        {
+          "slug": "knowledge-geometry",
+          "label": "Geometry",
+          "image": "/brand/seasons/knowledge-geometry.webp"
+        },
+        {
+          "slug": "knowledge-logic",
+          "label": "Logic",
+          "image": "/brand/seasons/knowledge-logic.webp"
+        },
+        {
+          "slug": "knowledge-computation",
+          "label": "Computation",
+          "image": "/brand/seasons/knowledge-computation.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: information and computation branch.",
+        "href": "/canon"
+      }
+    },
+    {
+      "month": "2028-04",
+      "season": 17,
+      "name": "Bucket Year Two",
+      "events": "Bucket anniversary, Apr 14; Earth Day, Apr 22",
+      "hero": {
+        "slug": "years-2030s",
+        "label": "2030S",
+        "image": "/brand/seasons/years-2030s.webp",
+        "iosIconName": "season-17-years-2030s"
+      },
+      "badges": [
+        {
+          "slug": "years-2050",
+          "label": "2050",
+          "image": "/brand/seasons/years-2050.webp"
+        },
+        {
+          "slug": "years-2100",
+          "label": "2100",
+          "image": "/brand/seasons/years-2100.webp"
+        },
+        {
+          "slug": "space-earth",
+          "label": "Earth",
+          "image": "/brand/seasons/space-earth.webp"
+        },
+        {
+          "slug": "eras-ai-age",
+          "label": "Ai Age",
+          "image": "/brand/seasons/eras-ai-age.webp"
+        }
+      ],
+      "feature": {
+        "text": "Anniversary drop: future-years skins. Protocol and feed402 milestones.",
+        "href": "/protocol"
+      }
+    },
+    {
+      "month": "2028-05",
+      "season": 18,
+      "name": "Mind",
+      "events": "Brain Awareness season; Kruse lecture season",
+      "hero": {
+        "slug": "knowledge-mind",
+        "label": "Mind",
+        "image": "/brand/seasons/knowledge-mind.webp",
+        "iosIconName": "season-18-knowledge-mind"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-neuroscience",
+          "label": "Neuroscience",
+          "image": "/brand/seasons/knowledge-neuroscience.webp"
+        },
+        {
+          "slug": "knowledge-philosophy",
+          "label": "Philosophy",
+          "image": "/brand/seasons/knowledge-philosophy.webp"
+        },
+        {
+          "slug": "ai-data-neural-net",
+          "label": "Data Neural Net",
+          "image": "/brand/seasons/ai-data-neural-net.webp"
+        },
+        {
+          "slug": "time-midnight",
+          "label": "Midnight",
+          "image": "/brand/seasons/time-midnight.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: mind branch.",
+        "href": "/canon"
+      }
+    },
+    {
+      "month": "2028-06",
+      "season": 19,
+      "name": "Midsummer II",
+      "events": "June solstice, Jun 20; World Oceans Day, Jun 8",
+      "hero": {
+        "slug": "climates-reef",
+        "label": "Reef",
+        "image": "/brand/seasons/climates-reef.webp",
+        "iosIconName": "season-19-climates-reef"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-oceanography",
+          "label": "Oceanography",
+          "image": "/brand/seasons/knowledge-oceanography.webp"
+        },
+        {
+          "slug": "climates-oceanic",
+          "label": "Oceanic",
+          "image": "/brand/seasons/climates-oceanic.webp"
+        },
+        {
+          "slug": "places-honolulu",
+          "label": "Honolulu",
+          "image": "/brand/seasons/places-honolulu.webp"
+        },
+        {
+          "slug": "time-summer",
+          "label": "Summer",
+          "image": "/brand/seasons/time-summer.webp"
+        }
+      ],
+      "feature": {
+        "text": "Earth data globe: ocean layer.",
+        "href": "/earth"
+      }
+    },
+    {
+      "month": "2028-07",
+      "season": 20,
+      "name": "Games",
+      "events": "Los Angeles 2028 Summer Olympics open Jul 14",
+      "hero": {
+        "slug": "eras-classical-greece",
+        "label": "Classical Greece",
+        "image": "/brand/seasons/eras-classical-greece.webp",
+        "iosIconName": "season-20-eras-classical-greece"
+      },
+      "badges": [
+        {
+          "slug": "cultures-greek",
+          "label": "Greek",
+          "image": "/brand/seasons/cultures-greek.webp"
+        },
+        {
+          "slug": "places-athens",
+          "label": "Athens",
+          "image": "/brand/seasons/places-athens.webp"
+        },
+        {
+          "slug": "eras-roman",
+          "label": "Roman",
+          "image": "/brand/seasons/eras-roman.webp"
+        },
+        {
+          "slug": "places-san-francisco",
+          "label": "San Francisco",
+          "image": "/brand/seasons/places-san-francisco.webp"
+        }
+      ],
+      "feature": {
+        "text": "Flag atelier: one flag per nation competing.",
+        "href": "/flags"
+      }
+    },
+    {
+      "month": "2028-08",
+      "season": 21,
+      "name": "Eclipse",
+      "events": "Total solar eclipse over Australia, Jul 22; Perseids, Aug 12",
+      "hero": {
+        "slug": "space-eclipse",
+        "label": "Eclipse",
+        "image": "/brand/seasons/space-eclipse.webp",
+        "iosIconName": "season-21-space-eclipse"
+      },
+      "badges": [
+        {
+          "slug": "space-comet",
+          "label": "Comet",
+          "image": "/brand/seasons/space-comet.webp"
+        },
+        {
+          "slug": "space-constellation",
+          "label": "Constellation",
+          "image": "/brand/seasons/space-constellation.webp"
+        },
+        {
+          "slug": "places-sydney",
+          "label": "Sydney",
+          "image": "/brand/seasons/places-sydney.webp"
+        },
+        {
+          "slug": "knowledge-astronomy",
+          "label": "Astronomy",
+          "image": "/brand/seasons/knowledge-astronomy.webp"
+        }
+      ],
+      "feature": {
+        "text": "Canon: cosmology branch. Observation logs cite primary sources.",
+        "href": "/canon"
+      }
+    },
+    {
+      "month": "2028-09",
+      "season": 22,
+      "name": "Equinox II",
+      "events": "September equinox, Sep 22",
+      "hero": {
+        "slug": "eras-renaissance",
+        "label": "Renaissance",
+        "image": "/brand/seasons/eras-renaissance.webp",
+        "iosIconName": "season-22-eras-renaissance"
+      },
+      "badges": [
+        {
+          "slug": "eras-enlightenment",
+          "label": "Enlightenment",
+          "image": "/brand/seasons/eras-enlightenment.webp"
+        },
+        {
+          "slug": "knowledge-art",
+          "label": "Art",
+          "image": "/brand/seasons/knowledge-art.webp"
+        },
+        {
+          "slug": "knowledge-music",
+          "label": "Music",
+          "image": "/brand/seasons/knowledge-music.webp"
+        },
+        {
+          "slug": "time-autumn",
+          "label": "Autumn",
+          "image": "/brand/seasons/time-autumn.webp"
+        }
+      ],
+      "feature": {
+        "text": "Academy fall term. Renaissance thesis track.",
+        "href": "/academy"
+      }
+    },
+    {
+      "month": "2028-10",
+      "season": 23,
+      "name": "Laureates II",
+      "events": "Nobel announcements, October",
+      "hero": {
+        "slug": "knowledge-relativity",
+        "label": "Relativity",
+        "image": "/brand/seasons/knowledge-relativity.webp",
+        "iosIconName": "season-23-knowledge-relativity"
+      },
+      "badges": [
+        {
+          "slug": "knowledge-electromagnetism",
+          "label": "Electromagnetism",
+          "image": "/brand/seasons/knowledge-electromagnetism.webp"
+        },
+        {
+          "slug": "knowledge-materials",
+          "label": "Materials",
+          "image": "/brand/seasons/knowledge-materials.webp"
+        },
+        {
+          "slug": "eras-atomic",
+          "label": "Atomic",
+          "image": "/brand/seasons/eras-atomic.webp"
+        },
+        {
+          "slug": "eras-industrial",
+          "label": "Industrial",
+          "image": "/brand/seasons/eras-industrial.webp"
+        }
+      ],
+      "feature": {
+        "text": "Contributors index adds the year's laureates.",
+        "href": "/contributors"
+      }
+    },
+    {
+      "month": "2028-11",
+      "season": 24,
+      "name": "Ledger",
+      "events": "World Science Day, Nov 10; season two closes",
+      "hero": {
+        "slug": "ai-data-ledger",
+        "label": "Data Ledger",
+        "image": "/brand/seasons/ai-data-ledger.webp",
+        "iosIconName": "season-24-ai-data-ledger"
+      },
+      "badges": [
+        {
+          "slug": "ai-data-graph",
+          "label": "Data Graph",
+          "image": "/brand/seasons/ai-data-graph.webp"
+        },
+        {
+          "slug": "ai-data-embedding",
+          "label": "Data Embedding",
+          "image": "/brand/seasons/ai-data-embedding.webp"
+        },
+        {
+          "slug": "ai-data-agent",
+          "label": "Data Agent",
+          "image": "/brand/seasons/ai-data-agent.webp"
+        },
+        {
+          "slug": "eras-digital",
+          "label": "Digital",
+          "image": "/brand/seasons/eras-digital.webp"
+        }
+      ],
+      "feature": {
+        "text": "feed402: agent queries earn the agent badge. Two-year capstone.",
+        "href": "/protocol"
+      }
+    }
+  ]
+}
