@@ -39,6 +39,8 @@ def omega(g, L, r, curl, y0=15, **_):
 
 
 def center(kind, c):
+    if kind == "none":
+        return ""
     if kind == "flame":
         return (
             f'<path d="M50 38C58 48 64 54 64 62A14 14 0 0 1 36 62C36 54 42 48 50 38Z" fill="{c["a1"]}"/>'

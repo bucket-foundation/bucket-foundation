@@ -12,6 +12,7 @@
 body{margin:0;background:var(--bg);color:var(--ink);font:14px Arial,Helvetica,sans-serif}
 header{display:flex;justify-content:space-between;align-items:baseline;padding:18px 16px 0;flex-wrap:wrap;gap:8px}
 h1{font:bold 15px Arial;letter-spacing:.14em;margin:0}
+#cats{display:flex;flex-wrap:wrap;gap:4px;padding:8px 16px 0}#cats button{font:bold 10px Arial;letter-spacing:.1em;border:1px solid var(--line);background:none;color:var(--mute);padding:4px 9px;border-radius:999px;cursor:pointer;text-transform:uppercase}#cats button.on{border-color:var(--ink);color:var(--ink)}
 .ctl button{font:bold 11px Arial;letter-spacing:.1em;border:1.5px solid var(--ink);background:none;color:var(--ink);padding:5px 10px;border-radius:999px;cursor:pointer;margin-left:4px}
 .ctl button.on{background:var(--ink);color:var(--bg)}
 main{display:grid;grid-template-columns:1fr 320px;gap:8px;padding:0 16px}
@@ -40,11 +41,13 @@ body.grid main,body.grid #scale,body.grid .cap{display:none}body.grid #grid{disp
 <header>
 <h1>BUCKET · OMEGA SPECTRUM</h1>
 <div class="ctl">
-<button data-f="all" class="on">ALL</button><button data-f="vector">VECTOR</button><button data-f="ai">AI</button>
+<button data-f="all" class="on">ALL</button><button data-f="vector">VECTOR</button><button data-f="ai">AI</button><button data-f="emoji">EMOJI</button>
+<button id="sort">BY COLOR</button>
 <button data-v="cylinder" class="on">CYLINDER</button><button data-v="wheel">WHEEL</button><button data-v="grid">GRID</button>
 <button id="play">PLAY</button>
 </div>
 </header>
+<nav id="cats"></nav>
 <main>
 <canvas id="stage" width="1700" height="700" aria-label="Every omega icon as a slice on a cylinder, in color order"></canvas>
 <aside>
@@ -120,7 +123,8 @@ const s=document.getElementById('scale'),sg=s.getContext('2d');
 function drawScale(){const w=s.clientWidth*2,h=108;if(s.width!==w){s.width=w;s.height=h}const n=items.length;
 for(let i=0;i<n;i++){sg.fillStyle=items[i].color;sg.fillRect(Math.floor(i/n*w),0,Math.ceil(w/n)+1,h)}
 const x=cur/n*w;sg.fillStyle=css('--ink');sg.fillRect(x-3,0,6,h);sg.fillStyle=css('--bg');sg.fillRect(x-1,0,2,h)}
-function setItems(){const k=shown;buildGrid();items=filter==='all'?ALL:ALL.filter(e=>e.kind===filter);buildWheel();
+let cat='all',bySet=false;const pick=()=>{let l=ALL.filter(e=>(filter==='all'||e.kind===filter)&&(cat==='all'||e.cat===cat));if(bySet)l=l.slice().sort((a,b)=>a.set-b.set);return l};
+function setItems(){const k=shown;items=pick();buildGrid();buildWheel();
 const j=k?items.findIndex(e=>e.src===k.src):-1;cur=target=j>=0?j:0;shown=null;
 document.getElementById('count').textContent=`${items.length} SLICES`}
 document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('[data-f]').forEach(x=>x.classList.toggle('on',x===b));setItems()});
@@ -135,7 +139,7 @@ let dd=false;d.onpointerdown=e=>{dd=true;d.setPointerCapture(e.pointerId);dialPi
 let sd=false;const sPick=e=>{const r=s.getBoundingClientRect();target=clamp(Math.round((e.clientX-r.left)/r.width*items.length))};
 s.onpointerdown=e=>{sd=true;s.setPointerCapture(e.pointerId);sPick(e)};s.onpointermove=e=>sd&&sPick(e);s.onpointerup=()=>sd=false;
 const grid=document.getElementById('grid');
-function buildGrid(){grid.innerHTML='';const list=filter==='all'?ALL:ALL.filter(e=>e.kind===filter);list.forEach((e,i)=>{const m=document.createElement('img');m.loading='lazy';m.src=e.src;m.title=e.label;m.style.background=e.color;m.onclick=()=>{target=cur=i;openView()};grid.appendChild(m)})}
+function buildGrid(){grid.innerHTML='';items.forEach((e,i)=>{const m=document.createElement('img');m.loading='lazy';m.src=e.src;m.title=e.label;m.style.background=e.color;m.onclick=()=>{target=cur=i;openView()};grid.appendChild(m)})}
 const view=document.getElementById('view');let vi=0;
 function showView(){const e=items[vi];document.getElementById('vimg').src=e.src;document.getElementById('vname').textContent=e.label.replace(/-/g,' ');document.getElementById('vmeta').textContent=`${vi+1} / ${items.length} · ${e.kind} · ${e.meta}`;target=vi}
 function openView(){vi=((Math.round(cur)%items.length)+items.length)%items.length;view.classList.add('open');showView()}
@@ -146,6 +150,8 @@ view.onclick=e=>{if(e.target===view)view.classList.remove('open')};
 document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{mode=b.dataset.v;document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('on',x===b));document.body.classList.toggle('grid',mode==='grid')});
 addEventListener('keydown',e=>{if(view.classList.contains('open')){if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);if(e.key==='Escape')view.classList.remove('open');return}
 if(e.key==='Enter')openView();if(e.key==='ArrowRight')target=clamp(Math.round(target)+1);if(e.key==='ArrowLeft')target=clamp(Math.round(target)-1);if(e.key===' '){e.preventDefault();pb.click()}});
+const cb=document.getElementById('cats');['all',...new Set(ALL.map(e=>e.cat))].forEach(k=>{const b=document.createElement('button');b.textContent=k.replace('-',' ')+' '+(k==='all'?ALL.length:ALL.filter(e=>e.cat===k).length);b.className=k==='all'?'on':'';b.onclick=()=>{cat=k;cb.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));setItems()};cb.appendChild(b)});
+const sb=document.getElementById('sort');sb.onclick=()=>{bySet=!bySet;sb.textContent=bySet?'BY SET':'BY COLOR';setItems()};
 setItems();draw();
 })();
 </script>

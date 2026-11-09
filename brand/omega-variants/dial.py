@@ -6,6 +6,9 @@ from pathlib import Path
 
 from PIL import Image
 
+from emoji import VARIANT_STYLES as VARIANTS
+VARIANTS = ["flat"] + VARIANTS
+
 ROOT = Path(__file__).parent
 OUT = ROOT / "out"
 SITE = ROOT.parents[1] / "public" / "brand" / "omega-dial"
@@ -52,6 +55,18 @@ def main():
         name = m["out"].replace(".png", ".jpg")
         im.save(SITE / "a" / name, quality=86)
         items.append(entry("ai", f"a/{name}", mean_hex(png), m["theme"], f"sdxl s{m['strength']} · seed {m['seed']} · {m['source']}"))
+    cats = ["knowledge", "languages", "eras", "years", "time", "space", "places", "climates", "ai-data", "cultures"]
+    for line in (OUT / "emoji" / "manifest.jsonl").read_text().splitlines():
+        m = json.loads(line)
+        dst = SITE / "v" / m["file"]
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(OUT / m["file"], dst)
+        e = entry("emoji", f"v/{m['file']}", m["palette"]["b1"], m["name"], f"{m['cat']} · {m['renderer']}{' · canonical' if m['canonical'] else ''}")
+        e.update(cat=m["cat"], set=cats.index(m["cat"]) * 100000 + m["order"] * 10 + (0 if m["canonical"] else 1 + VARIANTS.index(m["renderer"]) % 9), canonical=m["canonical"])
+        items.append(e)
+    for e in items:
+        e.setdefault("cat", "styles")
+        e.setdefault("set", 10**7 + len(e["src"]))
     items.sort(key=lambda e: e.pop("key"))
     for i, e in enumerate(items):
         e["i"] = i

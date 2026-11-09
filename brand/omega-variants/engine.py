@@ -99,7 +99,7 @@ def render(spec):
     if r in GEN_FINISHES or r in GEN_MODES:
         gen.SEASONS["_"] = c
         gen.SHAPES["_"] = dict(s, mode=r if r in GEN_MODES else "solid")
-        body = gen.svg("_", "_", r if r in GEN_FINISHES else "flat", kind if kind != "none" else "dot")
+        body = gen.svg("_", "_", r if r in GEN_FINISHES else "flat", kind)
         return body
     if r in WILD:
         wild.P = gen.omega(**s)
