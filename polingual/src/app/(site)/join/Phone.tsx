@@ -375,7 +375,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   })();
 
   return (
-    <div className={styles.page} onPointerDown={unlock}>
+    <div className={styles.page} onClick={unlock} onTouchEnd={unlock}>
       <header className={styles.bar}>
         <Brand link={false} />
         {seat ? <MixBar mix={mix} setMix={setMix} ready={soundReady} unlock={unlock} full={false} /> : null}

@@ -17,12 +17,15 @@ export function useStage(fallback: Mix) {
     stage.current!.mix = m;
     setMixState(m);
     const s = stage.current!;
-    return () => s.stop();
+    s.onReady = setReady;
+    return () => {
+      s.stop();
+      s.onReady = null;
+    };
   }, []);
 
   const unlock = useCallback(() => {
     stage.current!.unlock();
-    setTimeout(() => setReady(stage.current!.ready), 60);
   }, []);
 
   const setMix = useCallback((m: Mix) => {

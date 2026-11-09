@@ -82,6 +82,9 @@ export class Stage {
   private urgent = false;
   private speaking = 0;
   private queue: Line[] = [];
+  private gen = 0;
+  private current: SpeechSynthesisUtterance | null = null;
+  onReady: ((ready: boolean) => void) | null = null;
   mix: Mix;
 
   constructor(mix: Mix) {
@@ -94,6 +97,7 @@ export class Stage {
 
   unlock(): void {
     if (typeof window === "undefined") return;
+    if (this.ctx?.state === "running") return;
     if (!this.ctx) {
       const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!Ctor) return;
@@ -116,9 +120,13 @@ export class Stage {
       this.noise = ctx.createBuffer(1, len, ctx.sampleRate);
       const data = this.noise.getChannelData(0);
       for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+      ctx.onstatechange = () => this.onReady?.(ctx.state === "running");
       this.timer = setInterval(() => this.schedule(), 40);
+      this.nextBar = ctx.currentTime + 0.05;
+      this.bar = 0;
     }
-    void this.ctx.resume();
+    const ctx = this.ctx;
+    void ctx.resume().then(() => this.onReady?.(ctx.state === "running"), () => this.onReady?.(false));
     if (typeof speechSynthesis !== "undefined") speechSynthesis.getVoices();
   }
 
@@ -128,10 +136,7 @@ export class Stage {
     const t = this.ctx?.currentTime ?? 0;
     this.musicBus?.gain.setTargetAtTime(mix.music ? (this.speaking ? 0.1 : 0.32) : 0, t, 0.08);
     this.sfxBus?.gain.setTargetAtTime(mix.sfx ? 0.7 : 0, t, 0.05);
-    if (!mix.voice && typeof speechSynthesis !== "undefined") {
-      this.queue = [];
-      speechSynthesis.cancel();
-    }
+    if (!mix.voice) this.hush();
   }
 
   play(track: Track): void {
@@ -162,15 +167,28 @@ export class Stage {
   stop(): void {
     if (this.timer) clearInterval(this.timer);
     this.timer = null;
-    if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel();
+    this.hush();
     void this.ctx?.close();
     this.ctx = null;
+    this.track = "silent";
+    this.pending = null;
+    this.onReady?.(false);
+  }
+
+  private hush(): void {
+    this.gen++;
+    this.queue = [];
+    this.current = null;
+    if (typeof speechSynthesis !== "undefined") speechSynthesis.cancel();
+    this.duck(false);
   }
 
   private schedule(): void {
     const ctx = this.ctx;
     if (!ctx || ctx.state !== "running") return;
-    while (this.track !== "silent" && this.nextBar < ctx.currentTime + 0.25) {
+    const ahead = typeof document !== "undefined" && document.hidden ? 1.5 : 0.25;
+    if (this.nextBar < ctx.currentTime) this.nextBar = ctx.currentTime + 0.05;
+    while (this.track !== "silent" && this.nextBar < ctx.currentTime + ahead) {
       if (this.pending && this.bar % 2 === 0) {
         this.track = this.pending;
         this.pending = null;
@@ -355,13 +373,13 @@ export class Stage {
 
   say(lines: Line[]): void {
     if (!this.mix.voice || typeof speechSynthesis === "undefined" || !lines.length) return;
-    speechSynthesis.cancel();
+    this.hush();
     this.queue = [...lines];
-    this.speaking = 0;
-    this.next();
+    this.next(this.gen);
   }
 
-  private next(): void {
+  private next(gen: number): void {
+    if (gen !== this.gen) return;
     const line = this.queue.shift();
     if (!line) {
       this.duck(false);
@@ -372,7 +390,7 @@ export class Stage {
     if (line.lang) {
       const tag = bcp47(line.lang);
       const v = pickVoice(voices, tag);
-      if (!v) return this.next();
+      if (!v) return this.next(gen);
       u.voice = v;
       u.lang = tag;
       u.rate = 0.85;
@@ -384,9 +402,10 @@ export class Stage {
       u.rate = 1.04;
       u.pitch = 1.08;
     }
-    u.onstart = () => this.duck(true);
-    u.onend = () => setTimeout(() => this.next(), line.word ? 350 : 120);
-    u.onerror = () => this.next();
+    u.onstart = () => gen === this.gen && this.duck(true);
+    u.onend = () => setTimeout(() => this.next(gen), line.word ? 350 : 120);
+    u.onerror = () => this.next(gen);
+    this.current = u;
     speechSynthesis.speak(u);
   }
 

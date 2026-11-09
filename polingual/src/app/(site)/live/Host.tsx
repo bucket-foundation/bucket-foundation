@@ -343,7 +343,7 @@ export default function Host() {
           <div className={styles.spread}>
             <span className={styles.stat}>Round {q.round} · Question {q.idx + 1} of {snap.room.total}</span>
             <span className={styles.stat} data-testid="answered">{snap.answered ?? 0} of {snap.room.players} answered</span>
-            {reveal ? <span className={styles.timer} /> : <TimerRing left={left} total={total} paused={snap.room.paused} />}
+            {reveal ? null : <TimerRing left={left} total={total} paused={snap.room.paused} />}
           </div>
           {!reveal ? <div className={styles.answeredBar} aria-hidden="true"><span style={{ width: `${share}%` }} /></div> : null}
           <Prompt q={q} />
@@ -376,7 +376,7 @@ export default function Host() {
   })();
 
   return (
-    <div className={styles.page} onPointerDown={unlock} onKeyDown={unlock}>
+    <div className={styles.page} onClick={unlock} onTouchEnd={unlock} onKeyDown={unlock}>
       <header className={styles.bar}>
         <Brand link={!snap?.room.school_mode} />
         {room && snap?.room.school_mode ? <span className={styles.label}>School mode</span> : null}

@@ -174,3 +174,4 @@
 .brand span{white-space:nowrap}
 .bar{flex-wrap:wrap;row-gap:4px}
 .bar .mix .mixBtn{min-height:36px}
+@media (prefers-reduced-motion:reduce){.ringFill,.answeredBar span,.tile::before{transition:none}}
