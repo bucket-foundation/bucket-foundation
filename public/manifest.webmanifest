@@ -5,33 +5,13 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0E0C09",
-  "theme_color": "#0E0C09",
-  "categories": [
-    "education",
-    "science",
-    "research"
-  ],
+  "background_color": "#EFE8D4",
+  "theme_color": "#2E6B6B",
+  "categories": ["education", "science", "research"],
   "lang": "en",
   "dir": "ltr",
   "icons": [
-    {
-      "src": "/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/apple-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "/icon.png",       "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/apple-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any maskable" }
   ]
 }
