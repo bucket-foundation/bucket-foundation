@@ -27,8 +27,8 @@ function state(phase: Phase, players = 6) {
 }
 
 async function room(page: Page, get: () => Phase, players: () => number) {
-  await page.route("**/api/live/rooms/*/state", (r) => r.fulfill({ json: state(get(), players()) }));
   await page.route("**/api/live/rooms/*/*", (r) => r.fulfill({ json: { ok: true } }));
+  await page.route("**/api/live/rooms/*/state", (r) => r.fulfill({ json: state(get(), players()) }));
   await page.route("**/api/live/join", (r) => r.fulfill({ json: { room_id: ROOM, player_id: ME, token: "tok" } }));
   await page.route("**/api/live/answer", (r) => r.fulfill({ json: { ok: true } }));
   await page.route("**/api/live/probe", (r) => r.fulfill({ json: { ok: true } }));

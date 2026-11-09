@@ -171,3 +171,6 @@
 .warm button{transition:transform .08s}
 .warm button:active{transform:translateY(4px) scale(.96)}
 }
+.brand span{white-space:nowrap}
+.bar{flex-wrap:wrap;row-gap:4px}
+.bar .mix .mixBtn{min-height:36px}
