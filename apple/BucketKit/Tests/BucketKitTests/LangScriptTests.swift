@@ -101,3 +101,14 @@ import Testing
     #expect(LangScript.jsLowercased("ΟΔΟΣ ΚΑΙ") == "οδος και")
     #expect(LangScript.jsLowercased("Σ") == "σ")
 }
+
+@Test func listenShowsScriptAndReadingOnlyForNonLatinScripts() {
+    let zh = Exercise(kind: .listen, itemId: "n9", lang: "zh", root: "en", prompt: "九", promptLang: "zh", answer: "nine", answerLang: "en")
+    let ja = Exercise(kind: .listen, itemId: "n9", lang: "ja", root: "en", prompt: "九", promptLang: "ja", answer: "nine", answerLang: "en")
+    let es = Exercise(kind: .listen, itemId: "n9", lang: "es", root: "en", prompt: "nueve", promptLang: "es", answer: "nine", answerLang: "en")
+    let heard = Exercise(kind: .typeHeard, itemId: "n9", lang: "zh", root: "en", prompt: "九", promptLang: "zh", answer: "九", answerLang: "zh")
+    #expect(zh.showsScriptWithSound)
+    #expect(ja.showsScriptWithSound)
+    #expect(!es.showsScriptWithSound)
+    #expect(!heard.showsScriptWithSound)
+}

@@ -202,3 +202,13 @@ private let standings = ShareStandings(group: "Rossi family", rows: [
     let forms = Set(items.compactMap { $0.form("es") })
     #expect(words.allSatisfy { forms.contains($0.form) && !$0.meaning.isEmpty })
 }
+
+@Test func masteredNumberCardNamesFewWords() {
+    let one = [MasteredWord(form: "九", meaning: "nine")]
+    #expect(MasteredWord.named(one, count: 1) == "九 · nine")
+    #expect(MasteredWord.named([MasteredWord(form: "uno", meaning: "")], count: 1) == "uno")
+    #expect(MasteredWord.named([], count: 1) == nil)
+    let four = ["a", "b", "c", "d"].map { MasteredWord(form: $0, meaning: $0) }
+    #expect(MasteredWord.named(four, count: 4) == nil)
+    #expect(MasteredWord.named(Array(four.prefix(2)), count: 9) == nil)
+}

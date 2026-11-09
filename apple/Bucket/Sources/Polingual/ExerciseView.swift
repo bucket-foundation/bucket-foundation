@@ -637,7 +637,8 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard, .spellHeard:
             VStack(spacing: 10) {
-                WordTile(word: answered || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: answered && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
+                let seen = answered || ex.showsScriptWithSound
+                WordTile(word: seen || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: seen && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if answered { PhraseWords(text: ex.prompt, lang: ex.promptLang) }
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
