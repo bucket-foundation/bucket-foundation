@@ -120,7 +120,9 @@ export class Stage {
       this.noise = ctx.createBuffer(1, len, ctx.sampleRate);
       const data = this.noise.getChannelData(0);
       for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
-      ctx.onstatechange = () => this.onReady?.(ctx.state === "running");
+      ctx.onstatechange = () => {
+        if (this.ctx === ctx) this.onReady?.(ctx.state === "running");
+      };
       this.timer = setInterval(() => this.schedule(), 40);
       this.nextBar = ctx.currentTime + 0.05;
       this.bar = 0;
