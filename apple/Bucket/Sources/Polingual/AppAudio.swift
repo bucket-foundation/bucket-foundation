@@ -1,6 +1,7 @@
 import AVFoundation
 import BucketKit
 import MediaPlayer
+import os
 import SwiftUI
 #if os(iOS)
 import UIKit
@@ -25,10 +26,9 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
     @ObservationIgnored private var watch: [Task<Void, Never>] = []
     @ObservationIgnored private var runner: Task<Void, Never>?
     @ObservationIgnored private var clock = PlayClock()
-    @ObservationIgnored private let synth = AVSpeechSynthesizer()
-    @ObservationIgnored private var spoken: CheckedContinuation<Void, Never>?
-    @ObservationIgnored private let silence = AVAudioEngine()
-    @ObservationIgnored private let silenceNode = AVAudioPlayerNode()
+    @ObservationIgnored private var synth = AVSpeechSynthesizer()
+    @ObservationIgnored private var turn = ListenTurn<ObjectIdentifier>()
+    @ObservationIgnored private let log = Logger(subsystem: "foundation.bucket", category: "audio")
     @ObservationIgnored private var resumeAfterInterruption = false
     @ObservationIgnored private var commandsReady = false
 
@@ -75,6 +75,9 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
                 if reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue { self?.pause() }
             }
         }
+        Task { [weak self] in
+            for await _ in center.notifications(named: AVAudioSession.mediaServicesWereResetNotification) { self?.rebuild() }
+        }
         #endif
     }
 
@@ -101,7 +104,6 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         source = .listen
         paused = false
         hold()
-        keepAwake()
         run()
         publish()
         Beta.shared.log("listen_start", ["words": .number(Double(q.cards.count))])
@@ -115,10 +117,10 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         switch source {
         case .radio: player?.pause()
         case .listen:
-            runner?.cancel()
-            runner = nil
-            hushSpeech()
-            silenceNode.pause()
+            if synth.isSpeaking { synth.pauseSpeaking(at: .word) } else {
+                runner?.cancel()
+                runner = nil
+            }
         case nil: break
         }
         publish()
@@ -132,8 +134,7 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         case .radio(let s):
             if let p = player { p.play() } else if let url = s.stream { startRadio(url, id: s.id) }
         case .listen:
-            keepAwake()
-            run()
+            if synth.isPaused { synth.continueSpeaking() } else { run() }
         case nil: break
         }
         publish()
@@ -144,6 +145,7 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         let moved = forward ? queue.next() : queue.previous()
         guard moved || !forward else { return }
         runner?.cancel()
+        runner = nil
         hushSpeech()
         if !paused { run() }
         publish()
@@ -157,17 +159,15 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         hushSpeech()
         player?.pause()
         player = nil
-        if silence.isRunning {
-            silenceNode.stop()
-            silence.stop()
-        }
         let had = source != nil
         source = nil
         paused = false
         queue = ListenQueue(cards: [])
         publish()
         #if os(iOS)
-        if had { try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
+        if had && !LangVoice.shared.synth.isSpeaking {
+            do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) } catch { log.error("session release failed: \(error.localizedDescription)") }
+        }
         #endif
     }
 
@@ -181,13 +181,34 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         }
     }
 
-    private func hold() {
+    func hold() {
         #if os(iOS)
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .spokenAudio, options: [])
-        try? session.setActive(true)
+        do {
+            try session.setCategory(.playback, mode: .spokenAudio, options: [])
+            try session.setActive(true)
+        } catch {
+            log.error("session hold failed: \(error.localizedDescription)")
+        }
         #endif
         commands()
+    }
+
+    private func rebuild() {
+        synth.delegate = nil
+        synth = AVSpeechSynthesizer()
+        synth.delegate = self
+        turn.clear()
+        runner?.cancel()
+        runner = nil
+        player = nil
+        guard let source else { return }
+        hold()
+        guard !paused else { return }
+        switch source {
+        case .radio(let s): if let url = s.stream { startRadio(url, id: s.id) }
+        case .listen: run()
+        }
     }
 
     private func startRadio(_ url: URL, id: String) {
@@ -231,92 +252,79 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
 
     private func run() {
         runner?.cancel()
+        runner = nil
+        hushSpeech()
+        guard let c = queue.current else { return }
+        if let target = LangVoice.shared.voice(c.lang), let meaning = LangVoice.shared.voice(c.meaningLang) {
+            let us = [utterance(c.text, target, gap: ListenQueue.gap), utterance(c.meaning, meaning, gap: ListenQueue.afterMeaning)]
+            turn.expect(us.map(ObjectIdentifier.init))
+            us.forEach(synth.speak)
+            return
+        }
         runner = Task { [weak self] in
-            while let self, !Task.isCancelled {
-                for step in self.queue.steps {
-                    if Task.isCancelled { return }
-                    switch step {
-                    case .say(let text, let lang): await self.say(text, lang)
-                    case .wait(let s): try? await Task.sleep(for: .seconds(s))
-                    }
-                }
+            guard let self else { return }
+            for step in self.queue.steps {
                 if Task.isCancelled { return }
-                if self.clock.tick(5, day: dayKey(Date().timeIntervalSince1970 * 1000)) { TodayPlanStore.shared.finish(TodayActivity.listen.id) }
-                self.queue.next()
-                self.publish()
+                switch step {
+                case .say(let text, let lang): await self.clip(text, lang)
+                case .wait(let s): try? await Task.sleep(for: .seconds(s))
+                }
             }
+            if Task.isCancelled { return }
+            self.advance()
         }
     }
 
-    private func say(_ text: String, _ lang: String) async {
-        if let v = LangVoice.shared.voice(lang) {
-            let u = AVSpeechUtterance(string: text)
-            u.voice = v
-            u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.85
-            await withTaskCancellationHandler {
-                await withCheckedContinuation { c in
-                    spoken?.resume()
-                    spoken = c
-                    synth.speak(u)
-                }
-            } onCancel: {
-                Task { @MainActor [weak self] in self?.hushSpeech() }
-            }
-        } else if let store = LangVoice.shared.store, store.hasClip(lang, text) {
-            let item = AVPlayerItem(url: store.clipURL(lang, text))
-            let p = AVPlayer(playerItem: item)
-            player = p
-            p.play()
-            let ended = Task {
-                for await _ in NotificationCenter.default.notifications(named: AVPlayerItem.didPlayToEndTimeNotification, object: item) { return }
-            }
-            let limit = Task {
-                try? await Task.sleep(for: .seconds(6))
-                ended.cancel()
-            }
-            await withTaskCancellationHandler { await ended.value } onCancel: { ended.cancel() }
-            limit.cancel()
-            p.pause()
-            if player === p { player = nil }
+    private func advance() {
+        if clock.tick(5, day: dayKey(Date().timeIntervalSince1970 * 1000)) { TodayPlanStore.shared.finish(TodayActivity.listen.id) }
+        queue.next()
+        publish()
+        if !paused { run() }
+    }
+
+    private func utterance(_ text: String, _ v: AVSpeechSynthesisVoice, gap: Double) -> AVSpeechUtterance {
+        let u = AVSpeechUtterance(string: text)
+        u.voice = v
+        u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.85
+        u.postUtteranceDelay = gap
+        return u
+    }
+
+    private func clip(_ text: String, _ lang: String) async {
+        guard let store = LangVoice.shared.store, store.hasClip(lang, text) else { return }
+        let item = AVPlayerItem(url: store.clipURL(lang, text))
+        let p = AVPlayer(playerItem: item)
+        player = p
+        p.play()
+        let deadline = Date().addingTimeInterval(6)
+        while !Task.isCancelled, Date() < deadline, item.status != .failed {
+            if item.duration.isNumeric, item.currentTime() >= item.duration { break }
+            try? await Task.sleep(for: .milliseconds(150))
         }
+        p.pause()
+        if player === p { player = nil }
     }
 
     private func hushSpeech() {
+        turn.clear()
         if synth.isSpeaking || synth.isPaused { synth.stopSpeaking(at: .immediate) }
-        spoken?.resume()
-        spoken = nil
         if source == .listen { player?.pause() }
     }
 
+    nonisolated func speechSynthesizer(_ s: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        let id = ObjectIdentifier(utterance)
+        Task { @MainActor [weak self] in
+            guard let self, self.turn.leads(id) else { return }
+            self.publish()
+        }
+    }
+
     nonisolated func speechSynthesizer(_ s: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        let id = ObjectIdentifier(utterance)
         Task { @MainActor [weak self] in
-            self?.spoken?.resume()
-            self?.spoken = nil
+            guard let self, self.turn.finished(id), self.source == .listen else { return }
+            self.advance()
         }
-    }
-
-    nonisolated func speechSynthesizer(_ s: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        Task { @MainActor [weak self] in
-            self?.spoken?.resume()
-            self?.spoken = nil
-        }
-    }
-
-    private func keepAwake() {
-        if silence.attachedNodes.contains(silenceNode) == false {
-            silence.attach(silenceNode)
-            let format = silence.mainMixerNode.outputFormat(forBus: 0)
-            silence.connect(silenceNode, to: silence.mainMixerNode, format: format)
-        }
-        let format = silence.mainMixerNode.outputFormat(forBus: 0)
-        guard format.sampleRate > 0, let buf = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(format.sampleRate)) else { return }
-        buf.frameLength = buf.frameCapacity
-        if !silence.isRunning {
-            silence.prepare()
-            guard (try? silence.start()) != nil else { return }
-        }
-        silenceNode.scheduleBuffer(buf, at: nil, options: .loops)
-        silenceNode.play()
     }
 
     private func commands() {
@@ -324,27 +332,27 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         commandsReady = true
         let c = MPRemoteCommandCenter.shared()
         c.playCommand.addTarget { _ in
-            MainActor.assumeIsolated { AppAudio.shared.resume() }
+            Task { @MainActor in AppAudio.shared.resume() }
             return .success
         }
         c.pauseCommand.addTarget { _ in
-            MainActor.assumeIsolated { AppAudio.shared.pause() }
+            Task { @MainActor in AppAudio.shared.pause() }
             return .success
         }
         c.togglePlayPauseCommand.addTarget { _ in
-            MainActor.assumeIsolated { AppAudio.shared.togglePause() }
+            Task { @MainActor in AppAudio.shared.togglePause() }
             return .success
         }
         c.stopCommand.addTarget { _ in
-            MainActor.assumeIsolated { AppAudio.shared.stop() }
+            Task { @MainActor in AppAudio.shared.stop() }
             return .success
         }
         c.nextTrackCommand.addTarget { _ in
-            MainActor.assumeIsolated { AppAudio.shared.skip(true) }
+            Task { @MainActor in AppAudio.shared.skip(true) }
             return .success
         }
         c.previousTrackCommand.addTarget { _ in
-            MainActor.assumeIsolated { AppAudio.shared.skip(false) }
+            Task { @MainActor in AppAudio.shared.skip(false) }
             return .success
         }
     }
