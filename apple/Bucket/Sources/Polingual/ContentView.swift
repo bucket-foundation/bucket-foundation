@@ -81,90 +81,6 @@ final class ContentStore {
     }
 }
 
-@MainActor
-@Observable
-final class RadioPlayer {
-    static let shared = RadioPlayer()
-    private var player: AVPlayer?
-    private var watch: [Task<Void, Never>] = []
-    private(set) var playing: String?
-    private(set) var failedId: String?
-    private var clock = PlayClock()
-
-    init() {
-        #if os(iOS)
-        Task { [weak self] in
-            for await n in NotificationCenter.default.notifications(named: AVAudioSession.interruptionNotification) {
-                let raw = n.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
-                if raw == AVAudioSession.InterruptionType.began.rawValue { self?.stop() }
-            }
-        }
-        #endif
-    }
-
-    func toggle(_ s: RadioStation) {
-        if playing == s.id {
-            stop()
-            return
-        }
-        stop()
-        guard let url = s.stream else { return }
-        #if os(iOS)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        try? AVAudioSession.sharedInstance().setActive(true)
-        #endif
-        let item = AVPlayerItem(url: url)
-        let p = AVPlayer(playerItem: item)
-        player = p
-        playing = s.id
-        failedId = nil
-        p.play()
-        let id = s.id
-        watch = [
-            Task { [weak self] in
-                for await status in item.publisher(for: \.status).values where status == .failed {
-                    self?.fail(id)
-                    return
-                }
-            },
-            Task { [weak self] in
-                for await _ in NotificationCenter.default.notifications(named: AVPlayerItem.failedToPlayToEndTimeNotification, object: item) {
-                    self?.fail(id)
-                    return
-                }
-            },
-            Task { [weak self] in
-                while !Task.isCancelled {
-                    try? await Task.sleep(for: .seconds(1))
-                    self?.heard()
-                }
-            },
-        ]
-    }
-
-    func heard() {
-        guard player?.timeControlStatus == .playing else { return }
-        if clock.tick(1, day: dayKey(Date().timeIntervalSince1970 * 1000)) { TodayPlanStore.shared.finish(TodayActivity.listen.id) }
-    }
-
-    func fail(_ id: String) {
-        guard playing == id else { return }
-        stop()
-        failedId = id
-    }
-
-    func stop() {
-        watch.forEach { $0.cancel() }
-        watch = []
-        player?.pause()
-        player = nil
-        playing = nil
-        #if os(iOS)
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-        #endif
-    }
-}
-
 extension LangStore {
     var contentLangs: [String] {
         let all = gameLangs
@@ -257,8 +173,6 @@ struct ContentHub: View {
             }
         }
         .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
-        .onChange(of: kind) { _, k in if k != .listen { RadioPlayer.shared.stop() } }
-        .onDisappear { RadioPlayer.shared.stop() }
         .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
         .task {
             await langs.load()
@@ -415,7 +329,7 @@ struct ListenList: View {
     let branch: String?
     let langs: [String]
     @State private var store = ContentStore.shared
-    @State private var radio = RadioPlayer.shared
+    @State private var radio = AppAudio.shared
 
     var body: some View {
         ForEach(langs, id: \.self) { l in
