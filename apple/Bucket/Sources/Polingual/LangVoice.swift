@@ -32,6 +32,10 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     func activate() {
         #if os(iOS)
         guard !LangListener.shared.active else { return }
+        if AppAudio.shared.active {
+            AppAudio.shared.hold()
+            return
+        }
         let session = AVAudioSession.sharedInstance()
         if session.category != .playback || session.mode != .spokenAudio {
             try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
@@ -145,6 +149,7 @@ final class LangListener {
     @ObservationIgnored private let engine = AVAudioEngine()
     @ObservationIgnored private var current: SpeechRun?
     @ObservationIgnored private var stopEarly = false
+    @ObservationIgnored private var resumeAudio = false
     private(set) var live = ""
     var active: Bool { current != nil }
 
@@ -194,6 +199,12 @@ final class LangListener {
     }
 
     private func restorePlayback() {
+        if AppAudio.shared.active {
+            AppAudio.shared.hold()
+            if resumeAudio { AppAudio.shared.resume() }
+            resumeAudio = false
+            return
+        }
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
         #endif
@@ -246,6 +257,8 @@ final class LangListener {
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
         request.requiresOnDeviceRecognition = rec.supportsOnDeviceRecognition
+        resumeAudio = AppAudio.shared.active && !AppAudio.shared.paused
+        AppAudio.shared.pause()
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: [.duckOthers, .defaultToSpeaker])
         try? AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)

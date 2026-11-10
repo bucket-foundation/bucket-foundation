@@ -117,6 +117,7 @@ struct Studio: View {
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage) }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .audioAccessory()
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
         .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
