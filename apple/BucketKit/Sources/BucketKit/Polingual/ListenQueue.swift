@@ -72,4 +72,19 @@ public struct ListenQueue: Equatable, Sendable {
         guard let c = current else { return [] }
         return [.say(text: c.text, lang: c.lang), .wait(Self.gap), .say(text: c.meaning, lang: c.meaningLang), .wait(Self.afterMeaning)]
     }
+
+    public func after(_ i: Int) -> Int { cards.isEmpty ? 0 : (i + 1) % cards.count }
+
+    public func playable(from start: Int, _ can: (ListenCard) -> Bool) -> Int? {
+        guard !cards.isEmpty else { return nil }
+        for k in 0..<cards.count {
+            let i = (max(start, 0) + k) % cards.count
+            if can(cards[i]) { return i }
+        }
+        return nil
+    }
+
+    public mutating func jump(to i: Int) {
+        if cards.indices.contains(i) { index = i }
+    }
 }

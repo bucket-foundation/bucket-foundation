@@ -27,7 +27,7 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
     @ObservationIgnored private var runner: Task<Void, Never>?
     @ObservationIgnored private var clock = PlayClock()
     @ObservationIgnored private var synth = AVSpeechSynthesizer()
-    @ObservationIgnored private var turn = ListenTurn<ObjectIdentifier>()
+    @ObservationIgnored private var turn = ListenTurn()
     @ObservationIgnored private let log = Logger(subsystem: "foundation.bucket", category: "audio")
     @ObservationIgnored private var resumeAfterInterruption = false
     @ObservationIgnored private var commandsReady = false
@@ -142,8 +142,10 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
 
     func skip(_ forward: Bool) {
         guard source == .listen else { return }
+        let start = queue.index
         let moved = forward ? queue.next() : queue.previous()
         guard moved || !forward else { return }
+        if forward, let i = queue.playable(from: queue.index, playable), i != start { queue.jump(to: i) }
         runner?.cancel()
         runner = nil
         hushSpeech()
@@ -250,15 +252,31 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
         failedId = id
     }
 
+    private func playable(_ c: ListenCard) -> Bool { canSay(c.text, c.lang) && canSay(c.meaning, c.meaningLang) }
+
+    private func canSay(_ text: String, _ lang: String) -> Bool {
+        LangVoice.shared.voice(lang) != nil || (LangVoice.shared.store?.hasClip(lang, text) ?? false)
+    }
+
+    private func voices(_ c: ListenCard) -> (AVSpeechSynthesisVoice, AVSpeechSynthesisVoice)? {
+        guard let w = LangVoice.shared.voice(c.lang), let m = LangVoice.shared.voice(c.meaningLang) else { return nil }
+        return (w, m)
+    }
+
     private func run() {
         runner?.cancel()
         runner = nil
         hushSpeech()
+        guard let i = queue.playable(from: queue.index, playable) else {
+            stop()
+            failedId = "listen"
+            return
+        }
+        queue.jump(to: i)
+        publish()
         guard let c = queue.current else { return }
-        if let target = LangVoice.shared.voice(c.lang), let meaning = LangVoice.shared.voice(c.meaningLang) {
-            let us = [utterance(c.text, target, gap: ListenQueue.gap), utterance(c.meaning, meaning, gap: ListenQueue.afterMeaning)]
-            turn.expect(us.map(ObjectIdentifier.init))
-            us.forEach(synth.speak)
+        if let v = voices(c) {
+            enqueue(c, card: i, v)
             return
         }
         runner = Task { [weak self] in
@@ -271,19 +289,31 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
                 }
             }
             if Task.isCancelled { return }
-            self.advance()
+            self.played()
+            self.queue.next()
+            if !self.paused { self.run() }
         }
     }
 
-    private func advance() {
-        if clock.tick(5, day: dayKey(Date().timeIntervalSince1970 * 1000)) { TodayPlanStore.shared.finish(TodayActivity.listen.id) }
-        queue.next()
-        publish()
-        if !paused { run() }
+    private func enqueue(_ c: ListenCard, card: Int, _ v: (AVSpeechSynthesisVoice, AVSpeechSynthesisVoice)) {
+        let word = utterance(c.text, v.0, gap: ListenQueue.gap)
+        let meaning = utterance(c.meaning, v.1, gap: ListenQueue.afterMeaning)
+        turn.enqueue(card: card, word: word.tag, meaning: meaning.tag)
+        synth.speak(word)
+        synth.speak(meaning)
     }
 
-    private func utterance(_ text: String, _ v: AVSpeechSynthesisVoice, gap: Double) -> AVSpeechUtterance {
-        let u = AVSpeechUtterance(string: text)
+    private func lookahead(after card: Int) {
+        guard let n = queue.playable(from: queue.after(card), playable), let c = queue.cards[safe: n], let v = voices(c) else { return }
+        enqueue(c, card: n, v)
+    }
+
+    private func played() {
+        if clock.tick(5, day: dayKey(Date().timeIntervalSince1970 * 1000)) { TodayPlanStore.shared.finish(TodayActivity.listen.id) }
+    }
+
+    private func utterance(_ text: String, _ v: AVSpeechSynthesisVoice, gap: Double) -> TaggedUtterance {
+        let u = TaggedUtterance(string: text)
         u.voice = v
         u.rate = AVSpeechUtteranceDefaultSpeechRate * 0.85
         u.postUtteranceDelay = gap
@@ -312,18 +342,27 @@ final class AppAudio: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     nonisolated func speechSynthesizer(_ s: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        let id = ObjectIdentifier(utterance)
+        guard let tag = (utterance as? TaggedUtterance)?.tag else { return }
         Task { @MainActor [weak self] in
-            guard let self, self.turn.leads(id) else { return }
-            self.publish()
+            guard let self, self.source == .listen else { return }
+            switch self.turn.started(tag) {
+            case .show(let card):
+                self.queue.jump(to: card)
+                self.publish()
+            case .lookahead(let card): self.lookahead(after: card)
+            case nil: break
+            }
         }
     }
 
     nonisolated func speechSynthesizer(_ s: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        let id = ObjectIdentifier(utterance)
+        guard let tag = (utterance as? TaggedUtterance)?.tag else { return }
         Task { @MainActor [weak self] in
-            guard let self, self.turn.finished(id), self.source == .listen else { return }
-            self.advance()
+            guard let self, self.source == .listen, let card = self.turn.finished(tag) else { return }
+            self.played()
+            guard self.turn.isEmpty, !self.paused else { return }
+            self.queue.jump(to: self.queue.after(card))
+            self.run()
         }
     }
 
@@ -489,4 +528,12 @@ struct AudioAccessory: ViewModifier {
 
 extension View {
     func audioAccessory() -> some View { modifier(AudioAccessory()) }
+}
+
+final class TaggedUtterance: AVSpeechUtterance, @unchecked Sendable {
+    let tag = UUID()
+}
+
+extension Array {
+    subscript(safe i: Int) -> Element? { indices.contains(i) ? self[i] : nil }
 }
