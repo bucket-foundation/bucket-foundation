@@ -1,24 +1,12 @@
 import argparse
 import os
 import sys
-from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from asc_setup import ASC
 
 APPS = {"bucket": "6825123451", "polingual": "6825177856"}
 SKIP = ("appreview", "app-review", "apple-review")
-
-
-def link(api, label, group, tester):
-    if not api.apply:
-        print(f"  would {label}")
-        return
-    status, body = api.call("POST", f"/v1/betaGroups/{group}/relationships/betaTesters", {"data": [{"type": "betaTesters", "id": tester}]})
-    if status < 300:
-        print(f"  done  {label}")
-    else:
-        print(f"  FAIL  {label}: {status} {[(e.get('code'), e.get('detail')) for e in body.get('errors', [])]}")
 
 
 def external_groups(api):
@@ -44,17 +32,8 @@ def main():
         if not want:
             continue
         masked = e[:2] + "***@" + e.split("@")[1]
-        found = api.get(f"/v1/betaTesters?filter[email]={quote(e)}&limit=1")["data"]
-        if found:
-            for g in want:
-                link(api, f"add {masked} to {g['attributes']['name']}", g["id"], found[0]["id"])
-            continue
-        first, rest = want[0], want[1:]
-        made = api.write(f"invite {masked} to {first['attributes']['name']}", "POST", "/v1/betaTesters", {"data": {"type": "betaTesters", "attributes": {"email": e}, "relationships": {"betaGroups": {"data": [{"type": "betaGroups", "id": first["id"]}]}}}})
-        tid = (made or {}).get("data", {}).get("id")
-        for g in rest:
-            if tid or not api.apply:
-                link(api, f"add {masked} to {g['attributes']['name']}", g["id"], tid)
+        for g in want:
+            api.write(f"invite {masked} to {g['attributes']['name']}", "POST", "/v1/betaTesters", {"data": {"type": "betaTesters", "attributes": {"email": e}, "relationships": {"betaGroups": {"data": [{"type": "betaGroups", "id": g["id"]}]}}}})
 
 
 if __name__ == "__main__":
