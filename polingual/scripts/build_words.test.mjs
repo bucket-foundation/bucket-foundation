@@ -20,6 +20,18 @@ test("words.json matches the corpus", { skip: !existsSync(CORPUS_DIR) && "apple/
   assert.deepEqual(JSON.parse(readFileSync(OUT_FILE, "utf8")), buildWords());
 });
 
+test("Arabic verbs show the present tense", () => {
+  const words = JSON.parse(readFileSync(OUT_FILE, "utf8")).filter((w) => w.category === "verb");
+  assert.ok(words.length >= 40);
+  for (const w of words) {
+    const ar = w.forms.find((f) => f.lang === "ar");
+    assert.ok(ar, `${w.slug} has no Arabic form`);
+    assert.match(ar.word.replace(/[\u064B-\u0652\u0670]/g, ""), /^[يتأن]/, `${w.slug}: ${ar.word} lacks an imperfect prefix`);
+    assert.ok(ar.roman && ar.ipa, `${w.slug}: Arabic roman or IPA missing`);
+    assert.equal(ar.audio, undefined, `${w.slug}: past-form recording attached`);
+  }
+});
+
 test("page titles drop the marks Wiktionary leaves out of titles", () => {
   assert.equal(pageTitle("ar", "لَيْلَة"), "ليلة");
   assert.equal(pageTitle("he", "לַיְלָה"), "לילה");

@@ -9,6 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import top_words  # noqa: E402
 from top_words import junk_sense, majority_pos, replaceable  # noqa: E402
+from gloss_pins import apply_pin, load_pins  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "learning/app/polingual"
@@ -45,7 +46,7 @@ class ReplacementRuleTest(unittest.TestCase):
 
     def test_pin_overrides_agreement(self):
         senses = [{"gloss": "dung", "pos": "noun"}, {"gloss": "house", "pos": "noun"}]
-        row = replaced("dung", "noun", senses, {"noun": 4}, {("xx", "casa"): "home"})
+        row = replaced("dung", "noun", senses, {"noun": 4}, {("xx", "casa"): {"meaning": "home"}})
         self.assertEqual((row["meaning"], row["pos"]), ("home", "noun"))
 
 
@@ -96,11 +97,10 @@ class CorpusTest(unittest.TestCase):
         self.assertEqual(shipped - reviewed, set())
 
     def test_gloss_pins_hold(self):
-        rows = [line.split("\t") for line in (DATA / "sources/gloss_pins.tsv").read_text(encoding="utf-8").splitlines()[1:] if line]
-        for lang, word, gloss in rows:
-            words = {w["word"]: w["meaning"] for w in json.loads((DATA / f"top1000/{lang}.json").read_text())}
+        for (lang, word), pin in load_pins().items():
+            words = {w["word"]: w for w in json.loads((DATA / f"top1000/{lang}.json").read_text())}
             if word in words:
-                self.assertEqual(words[word], gloss, f"{lang} {word}")
+                self.assertEqual(apply_pin(words[word], pin), words[word], f"{lang} {word}")
 
     def test_replacement_matches_pos(self):
         senses = [{"gloss": "cousin", "pos": "noun"}, {"gloss": "first", "pos": "adj"}, {"gloss": "prime number", "pos": "noun"}]
