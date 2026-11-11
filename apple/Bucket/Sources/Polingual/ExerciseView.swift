@@ -639,6 +639,13 @@ struct Prompt: View {
             VStack(spacing: 10) {
                 WordTile(word: answered || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: answered && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if answered { PhraseWords(text: ex.prompt, lang: ex.promptLang) }
+                if answered, let meaning = ex.meaning {
+                    Text(tapText(meaning, ex.root, color: Palette.muted))
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2).minimumScaleFactor(0.7)
+                        .accessibilityIdentifier("heardMeaning")
+                }
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:
