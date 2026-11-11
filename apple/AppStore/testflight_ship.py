@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from asc_setup import ASC
 
 APPS = {"bucket": "6825123451", "polingual": "6825177856"}
-WHAT = "The latest build with fixes from your feedback. Take a lesson, try your groups, and tell us what feels slow or confusing."
+WHAT = "Arabic verbs now show the present tense, plus fixes from your feedback. Take a lesson, try your groups, and tell us what feels slow or confusing."
 DEMO = ("demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes")
 
 
