@@ -26,7 +26,9 @@ test("Arabic verbs show the present tense", () => {
   for (const w of words) {
     const ar = w.forms.find((f) => f.lang === "ar");
     assert.ok(ar, `${w.slug} has no Arabic form`);
-    assert.match(ar.word.replace(/[\u064B-\u0652\u0670]/g, ""), /^ي/, `${w.slug}: ${ar.word} is not a present-tense form`);
+    assert.match(ar.word.replace(/[\u064B-\u0652\u0670]/g, ""), /^[يتأن]/, `${w.slug}: ${ar.word} lacks an imperfect prefix`);
+    assert.ok(ar.roman && ar.ipa, `${w.slug}: Arabic roman or IPA missing`);
+    assert.equal(ar.audio, undefined, `${w.slug}: past-form recording attached`);
   }
 });
 
