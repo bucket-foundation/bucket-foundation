@@ -1,6 +1,6 @@
-import type { LobbyState, LobbySummary } from "@academy/lobbies";
+import type { LobbyPrompt, LobbyState, LobbySummary } from "@academy/lobbies";
 
-export type { LobbyState, LobbySummary };
+export type { LobbyPrompt, LobbyState, LobbySummary };
 export type WebLobbyState = LobbyState;
 export type AnswerResult = { correct: boolean; points: number; ms: number; lobby: WebLobbyState };
 

@@ -31,7 +31,7 @@ Built so far:
 
 ## Left
 
-- Run `cd polingual && npx tsc --noEmit -p .` and the polingual lobby tests. The type check had not finished at handoff.
+- Run `cd polingual && npx tsc --noEmit -p .` and the polingual lobby tests. The first type check flagged `LobbyPrompt` missing from `client.ts`, now exported; rerun it.
 - Add client tests for `streakOf`, `livesLeft`, `langFlag`, `laneTarget` and the sound mute storage.
 - Run the dev pair (API 3100, web 3101 with `POLINGUAL_LOBBY_BOTS=on`), then play tiles in Playwright at 390 and 1440 widths. Check the reveal and the results CTAs.
 - Put flags on the language lists in `Lobbies.tsx`.
