@@ -44,6 +44,7 @@ public enum Lang {
 
     public static func name(_ code: String) -> String { info[code]?.name ?? code }
     public static func isRTL(_ code: String) -> Bool { info[code]?.rtl ?? false }
+    public static func isLatin(_ code: String) -> Bool { info[code]?.latin ?? true }
 
     public static let maxTargets = 6
     public static let newPerLangPerDay = 5
@@ -666,6 +667,10 @@ public struct LangWord: Sendable, Equatable, Hashable {
     public let lang: String
     public let word: String
     public var reading: Reading?
+}
+
+public extension Exercise {
+    var showsScriptWithSound: Bool { kind == .listen && !Lang.isLatin(promptLang) }
 }
 
 public struct Exercise: Sendable {
