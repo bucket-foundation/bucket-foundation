@@ -10,6 +10,7 @@ struct PolingualApp: App {
     @State private var subs: Subscriptions
     @State private var reminders = Reminders()
     @State private var groups: GroupStore
+    @State private var lobbies: LobbyStore
     @Environment(\.scenePhase) private var phase
     #if os(iOS)
     @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
@@ -32,6 +33,7 @@ struct PolingualApp: App {
         let groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
+        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }))
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
     }
 
@@ -47,6 +49,7 @@ struct PolingualApp: App {
                 .environment(subs)
                 .environment(reminders)
                 .environment(groups)
+                .environment(lobbies)
                 .interfaceLanguage(store)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }

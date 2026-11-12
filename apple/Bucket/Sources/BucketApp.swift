@@ -11,6 +11,7 @@ struct BucketApp: App {
     @State private var gate: Gate
     @State private var reminders = Reminders()
     @State private var groups: GroupStore
+    @State private var lobbies: LobbyStore
     @Environment(\.scenePhase) private var phase
     #if os(iOS)
     @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
@@ -37,6 +38,7 @@ struct BucketApp: App {
         let groups = GroupStore(api: BucketAPI(), token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
+        _lobbies = State(initialValue: LobbyStore(api: BucketAPI(), token: { await account.freshToken() }))
     }
 
     var body: some Scene {
@@ -52,6 +54,7 @@ struct BucketApp: App {
                 .environment(gate)
                 .environment(reminders)
                 .environment(groups)
+                .environment(lobbies)
                 .interfaceLanguage(langs)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
