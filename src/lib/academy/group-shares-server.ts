@@ -1,4 +1,6 @@
 import { DEFAULT_FROM, DEFAULT_NOTIFY_TO } from "@/lib/download/notify";
+import { complete, localLlmConfig } from "@/lib/llm/client";
+import { TRANSLATE_MODEL, TRANSLATE_PER_MINUTE, VOICE_CONTENT_TYPE, type Translator } from "./group-voice";
 import { SHARE_BUCKET, SHARE_ITEM_COLS, SHARE_PER_MINUTE, type SharedItemRow } from "./group-shares";
 import { windowLimiter } from "./groups";
 import { service } from "./groups-server";
@@ -41,6 +43,23 @@ export async function signedImageUrls(paths: string[]): Promise<Map<string, stri
 export async function uploadImage(path: string, bytes: Uint8Array): Promise<void> {
   const res = await service().storage.from(SHARE_BUCKET).upload(path, bytes, { contentType: "image/jpeg", upsert: false });
   if (res.error) throw new Error(`image upload: ${res.error.message}`);
+}
+
+export async function uploadAudio(path: string, bytes: Uint8Array): Promise<void> {
+  const res = await service().storage.from(SHARE_BUCKET).upload(path, bytes, { contentType: VOICE_CONTENT_TYPE, upsert: false });
+  if (res.error) throw new Error(`audio upload: ${res.error.message}`);
+}
+
+export const translateLimited = windowLimiter(TRANSLATE_PER_MINUTE, 60_000);
+
+export const llmTranslator: Translator = async (req) => {
+  const res = await complete({ ...req, maxTokens: 800, anthropicModel: TRANSLATE_MODEL, local: localLlmConfig(20), noProviderStatus: 503 });
+  return res.text;
+};
+
+export async function cacheTranslation(itemId: string, lang: string, text: string): Promise<void> {
+  const res = await service().rpc("cache_voice_translation", { p_item: itemId, p_lang: lang, p_text: text });
+  if (res.error) throw new Error(`cache_voice_translation: ${res.error.message}`);
 }
 
 export async function deleteImage(path: string): Promise<void> {
