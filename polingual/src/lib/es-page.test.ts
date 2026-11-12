@@ -60,3 +60,14 @@ test("no English page string is left on a translated page", () => {
     for (const k of keys.page as string[]) if (page[k] !== k) assert.ok(!html.includes(k), `${l} still has ${k}`);
   }
 });
+
+test("every translated page carries the iPhone link sheet strings in PL_TR", () => {
+  const sheet = ["Polingual is on iPhone. Send yourself the link.", "Email", "Send me the link", "Check your email on your iPhone.", "Close"];
+  for (const k of sheet) assert.ok((keys.modal as string[]).includes(k), k);
+  for (const l of langs) {
+    const html = readFileSync(join(d8, `${l}.html`), "utf8");
+    const tr = JSON.parse(html.match(/<script>window\.PL_TR=(.*?)<\/script>/s)![1].replace(/<\\\//g, "</"));
+    for (const k of sheet) assert.ok(tr[k] && (k === "Email" || tr[k] !== k), `${l} lacks ${k}`);
+  }
+  assert.match(es, /"Check your email on your iPhone\.": "Revisa tu correo en tu iPhone\."/);
+});
