@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 
-const WATCH = path.resolve(__dirname, "..", "polingual", "public", "watch");
+const WATCH = path.resolve(process.cwd(), "polingual", "public", "watch");
 const LANGS = "en es fr it pt de nl sv pl fi ru el ar hi ja zh ko he fa tr cs id vi th ta".split(" ");
 const CREDIT = "(CC) Blender Foundation | studio.blender.org";
 

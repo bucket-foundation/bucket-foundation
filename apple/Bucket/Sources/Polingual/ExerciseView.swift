@@ -637,8 +637,16 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard, .spellHeard:
             VStack(spacing: 10) {
-                WordTile(word: answered || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: answered && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
+                let seen = answered || ex.showsScriptWithSound
+                WordTile(word: seen || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: seen && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if answered { PhraseWords(text: ex.prompt, lang: ex.promptLang) }
+                if answered, let meaning = ex.meaning {
+                    Text(tapText(meaning, ex.root, color: Palette.muted))
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2).minimumScaleFactor(0.7)
+                        .accessibilityIdentifier("heardMeaning")
+                }
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:
@@ -671,7 +679,7 @@ struct Prompt: View {
                 if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
                     HStack(spacing: 10) {
                         ForEach(f.prefix(3), id: \.lang) { w in MiniTile(word: w.word, lang: w.lang, reading: readings ? cousins(w.lang) : nil) }
-                        MiniTile(word: nil, lang: ex.lang, reading: nil)
+                        MiniTile(word: answered ? ex.answer : nil, lang: ex.lang, reading: answered && readings ? ex.answerReading : nil, dashed: true)
                     }
                 }
             }

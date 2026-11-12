@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { adConfig, adShows } from "./ads";
-import { answeredRound, cleanNickname, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tokenFresh, type WebLobbyState } from "./client";
+import { answeredRound, cleanNickname, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
 
 test("ads stay off unless the flag and a valid client are set", () => {
   assert.equal(adConfig({}).mode, "off");
@@ -124,4 +124,12 @@ test("standings, missed words and answered rounds come from server results", () 
   assert.deepEqual(missedWords(lobby), ["fuego"]);
   assert.equal(answeredRound(lobby, 1), true);
   assert.equal(answeredRound(lobby, 2), false);
+});
+
+test("results wait for the server tally, then stop waiting", () => {
+  const lobby = { startedAt: "2026-11-12T00:00:00.000Z", rounds: 5, roundSeconds: 10 };
+  const end = Date.parse(lobby.startedAt) + 50_000;
+  assert.equal(tallyLate(lobby, end + 1000), false);
+  assert.equal(tallyLate(lobby, end + TALLY_WAIT_MS + 1), true);
+  assert.equal(tallyLate({ ...lobby, startedAt: null }, end + 60_000), false);
 });

@@ -37,6 +37,13 @@ func langNewLeft(_ system: LangSystem, _ state: EngineState, now: Double) -> Int
     system.targets.reduce(0) { $0 + max(0, Int(state.newPerDay) - newToday(state, $1, now: now)) }
 }
 
+extension NavigationPath {
+    mutating func replaceTop<V: Hashable>(with route: V) {
+        if !isEmpty { removeLast() }
+        append(route)
+    }
+}
+
 extension View {
     func langDestinations(path: Binding<NavigationPath>) -> some View {
         navigationDestination(for: LangRoute.self) { route in

@@ -4,13 +4,19 @@ import SwiftUI
 struct SharedItemsSection: View {
     let group: LearningGroup
     @Binding var blocking: ModerationTarget?
+    var limit: Int? = SharedItemsSection.preview
     @Environment(GroupStore.self) private var groups
+    @Environment(\.openURL) private var openURL
+    @State private var viewing: SharedItem?
     @State private var reporting: SharedItem?
     @State private var removing: SharedItem?
     @State private var reported = false
     @State private var failure: String?
 
+    static let preview = 3
+
     var list: [SharedItem] { groups.items[group.id] ?? [] }
+    var shown: [SharedItem] { sharedPreview(list, limit: limit) }
 
     var body: some View {
         Section {
@@ -20,11 +26,21 @@ struct SharedItemsSection: View {
                     .font(.callout)
                     .foregroundStyle(Palette.muted)
             }
-            ForEach(list) { item in
-                SharedItemRow(item: item, to: recipient(item))
+            ForEach(shown) { item in
+                Button { viewing = item } label: { SharedItemRow(item: item, to: recipient(item)) }
+                    .buttonStyle(.plain)
                     .swipeActions { actions(item) }
-                    .contextMenu { actions(item) }
+                    .contextMenu {
+                        viewActions(item)
+                        Divider()
+                        actions(item)
+                    }
                     .accessibilityActions { actions(item) }
+            }
+            if shown.count < list.count {
+                NavigationLink { SharedItemsList(groupId: group.id) } label: {
+                    Text("See all \(list.count) shared items").font(.callout.weight(.semibold))
+                }
             }
         } header: {
             Eyebrow(text: "Shared")
@@ -37,6 +53,7 @@ struct SharedItemsSection: View {
             #endif
             await groups.loadItems(group.id)
         }
+        .sheet(item: $viewing) { item in SharedItemView(item: item, to: recipient(item)) }
         .confirmationDialog(String(localized: "Report this item?"), isPresented: Binding(get: { reporting != nil }, set: { if !$0 { reporting = nil } }), titleVisibility: .visible, presenting: reporting) { item in
             ForEach(ReportReason.allCases.filter { $0 != .offensiveName }, id: \.self) { reason in
                 Button(reason.label) { act { try await groups.reportItem(item, reason: reason); reported = true } }
@@ -60,6 +77,22 @@ struct SharedItemsSection: View {
         .alert("That did not work", isPresented: Binding(get: { failure != nil }, set: { if !$0 { failure = nil } }), presenting: failure) { _ in
             Button("OK", role: .cancel) {}
         } message: { Text($0) }
+    }
+
+    @ViewBuilder
+    func viewActions(_ item: SharedItem) -> some View {
+        Button("Open", systemImage: "arrow.up.left.and.arrow.down.right") { viewing = item }
+        if let link = item.link {
+            Button("Open link", systemImage: "safari") { openURL(link) }
+            Button("Copy link", systemImage: "link") { copyShared(link.absoluteString) }
+            ShareLink(item: link) { Label("Share", systemImage: "square.and.arrow.up") }
+        }
+        if let text = item.text {
+            Button("Copy text", systemImage: "doc.on.doc") { copyShared(text) }
+            if item.kind == .text {
+                ShareLink(item: text) { Label("Share", systemImage: "square.and.arrow.up") }
+            }
+        }
     }
 
     @ViewBuilder
@@ -122,9 +155,10 @@ struct SharedItemRow: View {
             switch item.kind {
             case .url:
                 if let link = item.link {
-                    Link(destination: link) {
-                        Label(link.host() ?? link.absoluteString, systemImage: "link").font(.callout.weight(.semibold)).lineLimit(1)
-                    }
+                    Label(link.host() ?? link.absoluteString, systemImage: "link")
+                        .font(.callout.weight(.semibold))
+                        .foregroundStyle(.tint)
+                        .lineLimit(1)
                     Text(link.absoluteString).font(.caption.monospaced()).foregroundStyle(Palette.muted).lineLimit(2)
                 }
                 if let text = item.text { Text(text).font(.callout) }
@@ -144,6 +178,130 @@ struct SharedItemRow: View {
             }
         }
         .padding(.vertical, 2)
+        .contentShape(Rectangle())
         .accessibilityElement(children: item.kind == .voice ? .contain : .combine)
+        .accessibilityAddTraits(.isButton)
+    }
+}
+
+func copyShared(_ text: String) {
+    #if os(iOS)
+    UIPasteboard.general.string = text
+    #else
+    NSPasteboard.general.clearContents()
+    NSPasteboard.general.setString(text, forType: .string)
+    #endif
+}
+
+func sharedImage(_ data: Data) -> Image? {
+    #if os(iOS)
+    UIImage(data: data).map(Image.init(uiImage:))
+    #else
+    NSImage(data: data).map(Image.init(nsImage:))
+    #endif
+}
+
+func sharedPreview(_ list: [SharedItem], limit: Int?) -> [SharedItem] {
+    guard let limit else { return list }
+    return Array(list.prefix(limit))
+}
+
+struct SharedItemsList: View {
+    let groupId: String
+    @Environment(GroupStore.self) private var groups
+    @State private var reporting: ModerationTarget?
+    @State private var blocking: ModerationTarget?
+
+    var body: some View {
+        Group {
+            if let g = groups.group(groupId) {
+                List {
+                    SharedItemsSection(group: g, blocking: $blocking, limit: nil)
+                }
+                .listRowBackground(Palette.card)
+                .scrollContentBackground(.hidden)
+                .navigationTitle(g.name)
+                .inlineTitle()
+                .modifier(Moderation(reporting: $reporting, blocking: $blocking) { _ in })
+            } else {
+                ContentUnavailableView("This group is gone", systemImage: "person.2.slash")
+            }
+        }
+        .paper()
+        .refreshable { await groups.loadItems(groupId) }
+    }
+}
+
+struct SharedItemView: View {
+    let item: SharedItem
+    let to: String?
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
+    @State private var photo: Image?
+    @State private var failed = false
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(spacing: 6) {
+                        if let to {
+                            Image(systemName: "arrow.right").font(.caption2).foregroundStyle(Palette.muted)
+                            Text(to).font(.subheadline).foregroundStyle(Palette.muted)
+                        }
+                        Spacer(minLength: 8)
+                        if let at = item.sentAt { Text(at, style: .relative).font(.caption).foregroundStyle(Palette.muted) }
+                    }
+                    if item.kind == .image { picture }
+                    if let link = item.link {
+                        Button { openURL(link) } label: {
+                            Label(link.host() ?? link.absoluteString, systemImage: "safari").font(.headline)
+                        }
+                        Text(link.absoluteString).font(.callout.monospaced()).foregroundStyle(Palette.muted).textSelection(.enabled)
+                    }
+                    if let text = item.text { Text(text).font(.body).textSelection(.enabled) }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+            }
+            .paper()
+            .navigationTitle(item.mine ? String(localized: "You") : item.fromName)
+            .inlineTitle()
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
+                ToolbarItem(placement: .primaryAction) { share }
+            }
+            .task(id: item.id) { await load() }
+        }
+    }
+
+    @ViewBuilder var picture: some View {
+        if let photo {
+            photo.resizable().scaledToFit().clipShape(RoundedRectangle(cornerRadius: 8))
+        } else if failed {
+            Image(systemName: "photo").font(.largeTitle).foregroundStyle(Palette.muted).frame(maxWidth: .infinity, minHeight: 200)
+        } else {
+            ProgressView().frame(maxWidth: .infinity, minHeight: 200)
+        }
+    }
+
+    @ViewBuilder var share: some View {
+        if let photo {
+            ShareLink(item: photo, preview: SharePreview(item.fromName, image: photo))
+        } else if let link = item.link {
+            ShareLink(item: link)
+        } else if let text = item.text, item.kind == .text {
+            ShareLink(item: text)
+        }
+    }
+
+    func load() async {
+        guard item.kind == .image, photo == nil, let url = item.image else { return }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let image = sharedImage(data) { photo = image } else { failed = true }
+        } catch {
+            failed = true
+        }
     }
 }

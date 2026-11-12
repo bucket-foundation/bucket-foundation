@@ -39,6 +39,14 @@ export async function fetchSpots(env: BetaEnv, send: Fetcher = fetch): Promise<S
   }
 }
 
+export type FoundingStatus = { body: (Spots | { open: false }) & { siteKey?: string }; cache: string };
+
+export async function foundingStatus(env: BetaEnv, send: Fetcher = fetch): Promise<FoundingStatus> {
+  const spots = await fetchSpots(env, send);
+  const siteKey = env.TURNSTILE_SITE_KEY?.trim() || undefined;
+  return { body: { ...(spots ?? { open: false as const }), ...(siteKey ? { siteKey } : {}) }, cache: spots ? "s-maxage=30" : "no-store" };
+}
+
 export function ipHash(ip: string | null, env: BetaEnv): string {
   return createHash("sha256").update(`${env.FOUNDING_IP_SALT?.trim() || "polingual-founding"}:${ip || "unknown"}`).digest("hex");
 }

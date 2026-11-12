@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import vm from "node:vm";
 import { RateLimiter } from "./beta";
-import { claimFounding, codeEmail, fetchSpots, ipHash, parseCodes, type Outcome } from "./founding";
+import { claimFounding, codeEmail, fetchSpots, foundingStatus, ipHash, parseCodes, type Outcome } from "./founding";
 
 const env = { RESEND_API_KEY: "k", POLINGUAL_DB_SERVICE_KEY: "s", POLINGUAL_DB_URL: "https://db.test", TURNSTILE_SECRET_KEY: "ts", TURNSTILE_SITE_KEY: "site" };
 const site = { origin: "https://www.polingual.com", ip: "1.2.3.4", token: "tok" };
@@ -115,6 +115,14 @@ test("spots read from the database and hide when offline", async () => {
   assert.equal(await fetchSpots({}, fake([]).send), null);
   const slow = async () => Promise.reject(new DOMException("timeout", "TimeoutError"));
   assert.equal(await fetchSpots(env, slow), null);
+});
+
+test("founding status answers 200 and keeps the Turnstile key when spots are offline", async () => {
+  const offline = await foundingStatus(env, fake([[500, {}]]).send);
+  assert.deepEqual(offline, { body: { open: false, siteKey: env.TURNSTILE_SITE_KEY }, cache: "no-store" });
+  assert.deepEqual(await foundingStatus({}, fake([]).send), { body: { open: false }, cache: "no-store" });
+  const live = await foundingStatus(env, fake([[200, [{ total: 200, spots_left: 9 }]]]).send);
+  assert.deepEqual(live, { body: { total: 200, left: 9, siteKey: env.TURNSTILE_SITE_KEY }, cache: "s-maxage=30" });
 });
 
 test("ip hash is salted and stable", () => {

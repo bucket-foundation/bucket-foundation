@@ -22,13 +22,13 @@ export function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
   return (
     <header className={styles.hd}>
       <nav className={styles.nav}>
-        <Link className={styles.brand} href={home(loc.code)}>
+        <a className={styles.brand} href={home(loc.code)}>
           <span className={styles.mark}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/d8/mark-pl.svg" alt="" width={38} height={38} />
           </span>
           polingual
-        </Link>
+        </a>
         <Link className={styles.link} href={wordsHref(loc.code)}>{loc.words}</Link>
         <Link className={`${styles.link} ${styles.wide}`} href="/support">{loc.labels.support}</Link>
         <Link className={`${styles.link} ${styles.wide}`} href="/privacy">{loc.labels.privacy}</Link>

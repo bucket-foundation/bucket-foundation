@@ -101,17 +101,19 @@ enum LaunchRouting {
 
 struct Studio: View {
     @Environment(Subscriptions.self) private var subs
+    @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
     @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
     @State private var managing = false
+    @State private var trialReminder: TrialReminder.Outcome?
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
     var body: some View {
-        VStack(spacing: 0) {
-            trial
-            tabs
-        }
-        .background(Palette.paper)
+        tabs
+            .background(Palette.paper)
+            .task(id: TrialReminder.key(subs.access, allowed: reminders.enabled)) {
+                if case .trial(let until) = subs.access { trialReminder = await TrialReminder.schedule(until: until) } else { trialReminder = nil }
+            }
     }
 
     var tabs: some View {
@@ -120,7 +122,7 @@ struct Studio: View {
                 TodayView(opening: { await place($0) })
             }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage) }
+            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed) }
         }
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()
@@ -141,33 +143,6 @@ struct Studio: View {
             }
         }
         #endif
-    }
-
-    @ViewBuilder var trial: some View {
-        if subs.access == .beta {
-            Label(String(localized: "You're a beta tester. Polingual is free for you, and stays free for life after launch."), systemImage: "gift.fill")
-                .font(.subheadline.weight(.bold))
-                .foregroundStyle(.white)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 12)
-                .frame(maxWidth: .infinity)
-                .background(D8.lapis, ignoresSafeAreaEdges: [])
-        } else if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
-            Button(action: manage) {
-                Label(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"), systemImage: "gift.fill")
-                    .font(.subheadline.weight(.bold))
-                    .foregroundStyle(.white)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: .infinity)
-                    .background(D8.lapis, ignoresSafeAreaEdges: [])
-            }
-            .buttonStyle(.plain)
-            .accessibilityHint(String(localized: "Manage your subscription"))
-        }
     }
 
     func place(_ path: Binding<NavigationPath>) async {
