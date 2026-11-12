@@ -123,6 +123,7 @@ func lobbyProblem(_ e: BucketError) -> String {
 struct LobbyRoom: View {
     @Environment(LobbyStore.self) private var lobbies
     @Environment(\.dismiss) private var dismiss
+    @Environment(Account.self) private var account
     @State private var draft = ""
     @State private var problem: String?
 
@@ -305,6 +306,9 @@ struct LobbyRoom: View {
 
     func board(_ l: Lobby) -> some View {
         List {
+            Section { LearnUpsell() }
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
             Section("Final scores") {
                 ForEach(Array(l.standings.enumerated()), id: \.element.id) { n, p in
                     HStack {
@@ -334,6 +338,7 @@ struct LobbyRoom: View {
             Section("Chat") { chatLog(l) }
         }
         .safeAreaInset(edge: .bottom) { chatBar }
+        .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }
     }
 
     func act(_ work: @escaping () async throws -> Void) {
