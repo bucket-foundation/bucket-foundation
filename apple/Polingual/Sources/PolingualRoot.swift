@@ -42,6 +42,7 @@ struct PolingualRoot: View {
         .task { if ProcessInfo.processInfo.arguments.contains("-saveProgress") { savePending = true } }
         #endif
         .onChange(of: account.stage) { old, new in
+            if (new == .signedIn) != (old == .signedIn) { Task { await subs.refresh() } }
             if new == .signedIn && old != .signedIn {
                 savePending = false
                 Task { await store.syncAfterSignIn() }

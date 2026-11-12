@@ -32,7 +32,7 @@ struct PolingualApp: App {
         let groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
-        _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
+        _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()) { await FoundingTester.fetch(user: account.session?.userId, token: await account.freshToken()) })
     }
 
     var body: some Scene {
