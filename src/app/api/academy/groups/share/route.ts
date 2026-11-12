@@ -2,7 +2,8 @@ import { randomUUID } from "node:crypto";
 import type { NextRequest, NextResponse } from "next/server";
 import { hiddenUsers, uuidOrNull } from "@/lib/academy/groups";
 import { imagePath, normalizeShare, shareRpcError, toSharedItem, visibleItems, type SharedItemRow } from "@/lib/academy/group-shares";
-import { deleteImage, itemsOf, reportedBy, shareLimited, signedImageUrls, uploadImage } from "@/lib/academy/group-shares-server";
+import { deleteImage, itemsOf, reportedBy, shareLimited, signedAudioUrls, signedImageUrls, uploadImage } from "@/lib/academy/group-shares-server";
+import { voiceLang } from "@/lib/academy/group-voice";
 import { blocksTouching, configured, fail, json, membersOf, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
@@ -18,14 +19,20 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   if (!uid) return json({ error: "unauthorized" }, 401);
   const groupId = uuidOrNull(req.nextUrl.searchParams.get("groupId"));
   if (!groupId) return json({ error: "bad_request" }, 400);
+  const voice = req.nextUrl.searchParams.get("voice") === "1";
+  const viewerLang = voiceLang(req.nextUrl.searchParams.get("lang"));
   try {
     const members = await membersOf([groupId]);
     if (!members.some((m) => m.user_id === uid)) return json({ error: "not_found" }, 404);
     const [rows, blocks] = await Promise.all([itemsOf(groupId), blocksTouching(uid)]);
     const reported = await reportedBy(uid, rows.map((r) => r.id));
-    const shown = visibleItems(rows, uid, hiddenUsers(blocks, uid), reported);
-    const urls = await signedImageUrls(shown.flatMap((r) => (r.image_path ? [r.image_path] : [])));
-    return json({ items: shown.map((r) => toSharedItem(r, members, uid, r.image_path ? urls.get(r.image_path) ?? null : null)) });
+    const shown = visibleItems(rows, uid, hiddenUsers(blocks, uid), reported, voice);
+    const [images, audio] = await Promise.all([
+      signedImageUrls(shown.flatMap((r) => (r.image_path ? [r.image_path] : []))),
+      signedAudioUrls(shown.flatMap((r) => (r.audio_path ? [r.audio_path] : []))),
+    ]);
+    const signed = (urls: Map<string, string>, p: string | null | undefined) => (p ? urls.get(p) ?? null : null);
+    return json({ items: shown.map((r) => toSharedItem(r, members, uid, { imageUrl: signed(images, r.image_path), audioUrl: signed(audio, r.audio_path), viewerLang })) });
   } catch (err) {
     return fail(err, "share list");
   }
