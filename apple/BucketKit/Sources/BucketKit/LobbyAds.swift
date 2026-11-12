@@ -10,7 +10,7 @@ public struct LobbyAdUnits: Equatable, Sendable {
     public static let testApp = "ca-app-pub-3940256099942544~1458002511"
     public static let testBanner = "ca-app-pub-3940256099942544/2435281174"
     public static let testInterstitial = "ca-app-pub-3940256099942544/4411468910"
-    static let unitPattern = /^ca-app-pub-\d{16}\/\d{10}$/
+    nonisolated(unsafe) static let unitPattern = /^ca-app-pub-\d{16}\/\d{10}$/
 
     public let mode: LobbyAdMode
     public let banner: String
