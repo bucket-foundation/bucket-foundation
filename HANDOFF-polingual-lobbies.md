@@ -42,13 +42,16 @@ Server, BucketKit and iOS, at b87acad854.
 - b0d5adbed8: guest tokens and the merge on sign-in.
 - 866904d709: free games for locked players, the save-progress nudge and the learning upsell.
 - b87acad854: game ids, with a server answer key for each game.
-- Still to do: the iOS AdMob piece of bkt-ukl7j.3, and critic round 2.
+- Server tests 17 of 17 pass. BucketKit tests and the sim build passed at b1d45a6ed0, before the guest, merge, gating and game-id commits. Swift for those commits has not been compiled.
+- Still to do: compile and test the Swift, the iOS AdMob piece of bkt-ukl7j.3, and critic round 2.
 
 The API contract:
 - `POST /api/academy/lobbies` accepts `game`, one of daily, same-word, flags or live. The default is daily.
 - `POST /api/academy/lobbies/guest {nickname, guestId}` returns `{token, userId, expiresAt}`. Send the token as a Bearer on every lobby route.
 - `POST /api/academy/lobbies/guest/merge {guestToken}` runs with the signed-in bearer.
-- Check the bkt-ukl7j notes for the final shape.
+- The server sends the prompts: mode, gloss, choices, lang and answer. Lang and answer stay null while a round is live.
+- `POST answer {lobbyId, round, choice}` returns `{correct, points, ms, lobby}`.
+- The web client renders server prompts. The TS round port on the web branch may be unneeded for lobbies; check before keeping it.
 
 ### feat/polingual-lobbies-web
 
