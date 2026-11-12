@@ -13,6 +13,7 @@ func lobbyJSON(status: String = "lobby", startedAt: String? = nil, version: Int 
         ],
         "messages": [["id": 1, "from": "u2", "name": "Ana", "body": "hola", "at": "2026-11-12T09:59:00Z"]],
         "round": NSNull(),
+        "prompts": [["round": 0, "lang": "es", "gloss": "cat", "choices": ["gato", "perro"], "answer": NSNull()]],
         "results": [["round": 0, "userId": "u2", "correct": true, "ms": 1000, "points": 190]],
     ]
 }
@@ -44,15 +45,11 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(LobbyClock.phase(waiting, at: s) == .waiting)
     }
 
-    @Test func lobbyPromptsMatchForEveryPlayer() throws {
-        let corpus = try translateCorpus()
-        let a = GameRounds.lobby(GameDeck(corpus, root: "en", targets: ["es", "fr"]), seed: 7, count: 5)
-        let b = GameRounds.lobby(GameDeck(corpus, root: "en", targets: ["fr", "es"]), seed: 7, count: 5)
-        let c = GameRounds.lobby(GameDeck(corpus, root: "en", targets: ["es", "fr"]), seed: 8, count: 5)
-        #expect(a.count == 5)
-        #expect(a == b)
-        #expect(a != c)
-        #expect(a.allSatisfy { $0.choices.contains($0.answer) })
+    @Test func promptsComeFromTheServerWithoutTheLiveAnswer() throws {
+        let l = try JSONDecoder().decode(Lobby.self, from: json(lobbyJSON()))
+        let p = try #require(l.prompt(0))
+        #expect(p.gloss == "cat" && p.choices == ["gato", "perro"] && p.answer == nil)
+        #expect(l.prompt(1) == nil)
     }
 }
 
@@ -93,20 +90,19 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(store.current == nil && store.error == .groupNotFound)
     }
 
-    @MainActor @Test func oneAnswerPerRoundReportsCorrectness() async throws {
+    @MainActor @Test func oneAnswerPerRoundTakesTheServerVerdict() async throws {
         let bodies = LockedBox<[[String: Any]]>([])
         let api = BucketAPI(transport: StubTransport { r in
             if let b = r.httpBody, let o = try? JSONSerialization.jsonObject(with: b) as? [String: Any] { bodies.mutate { $0.append(o) } }
-            return (200, json(["lobby": lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")]))
+            return (200, json(["correct": false, "lobby": lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")]))
         }, cacheDir: nil)
         let store = LobbyStore(api: api, token: { "t" })
         try await store.join(code: "ABC123", displayName: "Gia")
-        let prompt = GamePrompt(id: 0, mode: .form, word: GameWord(itemId: "i", lang: "es", form: "gato", gloss: "cat", root: "en"), choices: ["gato", "perro"], answer: "gato")
-        #expect(await store.pick("perro", in: prompt, round: 0) == false)
-        #expect(await store.pick("gato", in: prompt, round: 0) == nil)
-        #expect(store.picks[0] == "perro")
+        #expect(await store.pick("perro", round: 0) == false)
+        #expect(await store.pick("gato", round: 0) == nil)
+        #expect(store.picks[0] == "perro" && store.marks[0] == false)
         let sent = try #require(bodies.value.last)
-        #expect(sent["round"] as? Int == 0 && sent["correct"] as? Bool == false && sent["choice"] as? String == "perro")
+        #expect(sent["round"] as? Int == 0 && sent["correct"] == nil && sent["choice"] as? String == "perro")
     }
 
     @MainActor @Test func serverErrorsSurface() async throws {

@@ -55,6 +55,38 @@ create table if not exists bucket.lobby_answers (
   primary key (lobby_id, user_id, round)
 );
 
+create table if not exists bucket.lobby_prompts (
+  lobby_id uuid   not null references bucket.lobbies (id) on delete cascade,
+  round    int    not null check (round >= 0),
+  lang     text   not null,
+  item_id  text   not null,
+  gloss    text   not null,
+  choices  text[] not null check (cardinality(choices) between 2 and 6),
+  answer   text   not null,
+  primary key (lobby_id, round),
+  check (answer = any (choices))
+);
+
+create table if not exists bucket.lobby_limits (
+  bucket_key text        not null,
+  minute     timestamptz not null,
+  hits       int         not null default 0,
+  primary key (bucket_key, minute)
+);
+
+create or replace function bucket.lobby_take(p_key text, p_limit int)
+returns boolean language plpgsql security definer set search_path = bucket, pg_temp as $$
+declare
+  n int;
+begin
+  delete from bucket.lobby_limits where bucket_key = p_key and minute < date_trunc('minute', clock_timestamp());
+  insert into bucket.lobby_limits (bucket_key, minute, hits)
+  values (p_key, date_trunc('minute', clock_timestamp()), 1)
+  on conflict (bucket_key, minute) do update set hits = bucket.lobby_limits.hits + 1
+  returning hits into n;
+  return n <= p_limit;
+end $$;
+
 create or replace function bucket.is_lobby_player(lid uuid, uid uuid)
 returns boolean language sql stable security definer set search_path = bucket as $$
   select exists (select 1 from bucket.lobby_players p where p.lobby_id = lid and p.user_id = uid);
@@ -64,6 +96,8 @@ alter table bucket.lobbies enable row level security;
 alter table bucket.lobby_players enable row level security;
 alter table bucket.lobby_messages enable row level security;
 alter table bucket.lobby_answers enable row level security;
+alter table bucket.lobby_prompts enable row level security;
+alter table bucket.lobby_limits enable row level security;
 
 drop policy if exists player_select on bucket.lobbies;
 create policy player_select on bucket.lobbies for select using (bucket.is_lobby_player(id, auth.uid()));
@@ -75,6 +109,7 @@ drop policy if exists player_select on bucket.lobby_answers;
 create policy player_select on bucket.lobby_answers for select using (bucket.is_lobby_player(lobby_id, auth.uid()));
 
 revoke insert, update, delete on bucket.lobbies, bucket.lobby_players, bucket.lobby_messages, bucket.lobby_answers from anon, authenticated;
+revoke all on bucket.lobby_prompts, bucket.lobby_limits from anon, authenticated;
 
 create or replace function bucket.lobby_bump()
 returns trigger language plpgsql as $$
@@ -167,3 +202,4 @@ end $$;
 
 revoke execute on function bucket.lobby_answer(uuid, uuid, int, text, boolean, int, int) from public, anon, authenticated;
 revoke execute on function bucket.leave_lobby(uuid, uuid) from public, anon, authenticated;
+revoke execute on function bucket.lobby_take(text, int) from public, anon, authenticated;

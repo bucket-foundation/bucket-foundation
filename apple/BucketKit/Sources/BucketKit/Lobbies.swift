@@ -31,6 +31,15 @@ public struct LobbyRound: Codable, Equatable, Sendable {
     public var endsAt: String
 }
 
+public struct LobbyPrompt: Codable, Equatable, Sendable, Identifiable {
+    public var round: Int
+    public var lang: String
+    public var gloss: String
+    public var choices: [String]
+    public var answer: String?
+    public var id: Int { round }
+}
+
 public struct LobbyResult: Codable, Equatable, Sendable {
     public var round: Int
     public var userId: String
@@ -69,6 +78,7 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var players: [LobbyPlayer]
     public var messages: [LobbyMessage]
     public var round: LobbyRound?
+    public var prompts: [LobbyPrompt]
     public var results: [LobbyResult]
 
     public var me: LobbyPlayer? { players.first { $0.isMe } }
@@ -79,6 +89,7 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var standings: [LobbyPlayer] { players.sorted { ($0.score, $1.name) > ($1.score, $0.name) } }
 
     public func results(for round: Int) -> [LobbyResult] { results.filter { $0.round == round } }
+    public func prompt(_ round: Int) -> LobbyPrompt? { prompts.first { $0.round == round } }
 }
 
 public enum LobbyRules {
@@ -111,14 +122,11 @@ public enum LobbyClock {
     }
 }
 
-extension GameRounds {
-    public static func lobby(_ deck: GameDeck, seed: UInt64, count: Int) -> [GamePrompt] {
-        var rng = SeededRandom(seed: seed)
-        return deck.daily(count: count, using: &rng).enumerated().map { formPrompt($0.offset, $0.element, deck, using: &rng) }
-    }
-}
-
 struct LobbyReply: Decodable { let lobby: Lobby }
+struct AnswerReply: Decodable {
+    let correct: Bool
+    let lobby: Lobby
+}
 struct LobbiesReply: Decodable { let lobbies: [LobbySummary] }
 struct LobbyPoll: Decodable {
     let changed: Bool
@@ -167,11 +175,11 @@ extension BucketAPI {
         return r.lobby
     }
 
-    public func answer(token: String, lobbyId: String, round: Int, choice: String, correct: Bool) async throws -> Lobby {
-        let r: LobbyReply = try await groupCall("api/academy/lobbies/answer", token: token, body: [
-            "lobbyId": .text(lobbyId), "round": .number(round), "choice": .text(choice), "correct": .flag(correct),
+    public func answer(token: String, lobbyId: String, round: Int, choice: String) async throws -> (correct: Bool, lobby: Lobby) {
+        let r: AnswerReply = try await groupCall("api/academy/lobbies/answer", token: token, body: [
+            "lobbyId": .text(lobbyId), "round": .number(round), "choice": .text(choice),
         ])
-        return r.lobby
+        return (r.correct, r.lobby)
     }
 
     func lobbyState(token: String, lobbyId: String, since: Int?) async throws -> LobbyPoll {
@@ -187,6 +195,7 @@ public final class LobbyStore {
     public var open: [LobbySummary] = []
     public private(set) var current: Lobby?
     public private(set) var picks: [Int: String] = [:]
+    public private(set) var marks: [Int: Bool] = [:]
     public private(set) var busy = false
     public private(set) var error: BucketError?
     public private(set) var offset: TimeInterval = 0
@@ -234,6 +243,7 @@ public final class LobbyStore {
         guard let id = current?.id else { return }
         current = nil
         picks = [:]
+        marks = [:]
         open.removeAll { $0.id == id }
         if let t = await token() { try? await api.leaveLobby(token: t, lobbyId: id) }
     }
@@ -255,13 +265,13 @@ public final class LobbyStore {
     }
 
     @discardableResult
-    public func pick(_ choice: String, in prompt: GamePrompt, round: Int) async -> Bool? {
-        guard let id = current?.id, picks[round] == nil else { return nil }
+    public func pick(_ choice: String, round: Int) async -> Bool? {
+        guard let id = current?.id, picks[round] == nil, let t = await token() else { return nil }
         picks[round] = choice
-        let right = choice == prompt.answer
-        guard let t = await token() else { return right }
-        if let fresh = try? await api.answer(token: t, lobbyId: id, round: round, choice: choice, correct: right) { apply(fresh) }
-        return right
+        guard let r = try? await api.answer(token: t, lobbyId: id, round: round, choice: choice) else { return nil }
+        marks[round] = r.correct
+        apply(r.lobby)
+        return r.correct
     }
 
     public func poll() async {
@@ -288,6 +298,7 @@ public final class LobbyStore {
 
     func enter(_ lobby: Lobby) -> Lobby {
         picks = [:]
+        marks = [:]
         current = nil
         apply(lobby)
         return lobby

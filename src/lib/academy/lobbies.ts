@@ -1,4 +1,5 @@
 import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
+import type { LangItem } from "./lang-systems";
 
 export type LobbyStatus = "lobby" | "playing" | "done";
 
@@ -14,6 +15,10 @@ export const MESSAGE_MAX = 200;
 export const STALE_MS = 45_000;
 export const OPEN_WINDOW_MS = 30 * 60_000;
 export const CHAT_PER_MINUTE = 20;
+export const JOIN_PER_MINUTE = 10;
+export const CREATE_PER_MINUTE = 3;
+export const SEEN_EVERY_MS = 10_000;
+export const CHOICES = 4;
 export const BASE_POINTS = 100;
 export const SPEED_POINTS = 100;
 
@@ -60,6 +65,24 @@ export interface LobbyAnswerRow {
   correct: boolean;
   ms: number;
   points: number;
+}
+
+export interface LobbyPromptRow {
+  lobby_id: string;
+  round: number;
+  lang: string;
+  item_id: string;
+  gloss: string;
+  choices: string[];
+  answer: string;
+}
+
+export interface LobbyPrompt {
+  round: number;
+  lang: string;
+  gloss: string;
+  choices: string[];
+  answer: string | null;
 }
 
 export interface LobbyPlayer {
@@ -125,6 +148,7 @@ export interface LobbyState {
   players: LobbyPlayer[];
   messages: LobbyMessage[];
   round: LobbyRound | null;
+  prompts: LobbyPrompt[];
   results: LobbyRoundResult[];
 }
 
@@ -189,6 +213,78 @@ export function normalizeMessage(input: unknown): string | null {
   return s.length >= 1 && s.length <= MESSAGE_MAX ? s : null;
 }
 
+export function seededRandom(seed: string): () => number {
+  let x = BigInt.asUintN(64, BigInt(/^[0-9]+$/.test(seed) ? seed : "1")) || BigInt(1);
+  return () => {
+    x ^= x << BigInt(13);
+    x = BigInt.asUintN(64, x);
+    x ^= x >> BigInt(7);
+    x ^= x << BigInt(17);
+    x = BigInt.asUintN(64, x);
+    return Number(x >> BigInt(11)) / 2 ** 53;
+  };
+}
+
+function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
+  const out = xs.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds">): LobbyPromptRow[] {
+  const rand = seededRandom(lobby.seed);
+  const langs = lobby.targets.slice().sort();
+  const pools = new Map(langs.map((l) => [l, items.filter((i) => i.kind === "word" && i.forms[l] && i.forms[lobby.root] && i.forms[l] !== i.forms[lobby.root])]));
+  const used = new Set<string>();
+  const out: LobbyPromptRow[] = [];
+  const order = new Map(langs.map((l) => [l, shuffled((pools.get(l) ?? []).slice(0, 400), rand)]));
+  for (let k = 0, misses = 0; out.length < lobby.rounds && misses < langs.length; k++) {
+    const lang = langs[k % langs.length];
+    const queue = order.get(lang) ?? [];
+    let item: LangItem | undefined;
+    while (queue.length && !item) {
+      const next = queue.shift() as LangItem;
+      if (!used.has(next.id)) item = next;
+    }
+    if (!item) {
+      misses++;
+      continue;
+    }
+    misses = 0;
+    used.add(item.id);
+    const answer = item.forms[lang];
+    const gloss = item.forms[lobby.root];
+    const pool = pools.get(lang) ?? [];
+    const same = pool.filter((p) => p.category === item!.category);
+    const foils: string[] = [];
+    const taken = new Set([answer.toLowerCase()]);
+    for (const p of [...shuffled(same, rand), ...shuffled(pool.slice(0, 400), rand)]) {
+      if (foils.length >= CHOICES - 1) break;
+      const f = p.forms[lang];
+      if (p.forms[lobby.root]?.toLowerCase() === gloss.toLowerCase() || taken.has(f.toLowerCase())) continue;
+      taken.add(f.toLowerCase());
+      foils.push(f);
+    }
+    if (foils.length === 0) continue;
+    out.push({ lobby_id: lobby.id, round: out.length, lang, item_id: item.id, gloss, choices: shuffled([answer, ...foils], rand), answer });
+  }
+  return out;
+}
+
+export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number | null, done: boolean): LobbyPrompt[] {
+  return rows
+    .filter((r) => done || (current !== null && r.round <= current))
+    .sort((a, b) => a.round - b.round)
+    .map((r) => ({ round: r.round, lang: r.lang, gloss: r.gloss, choices: r.choices, answer: done || (current !== null && r.round < current) ? r.answer : null }));
+}
+
+export function seenDue(lastSeen: string, now: number): boolean {
+  return now - Date.parse(lastSeen) >= SEEN_EVERY_MS;
+}
+
 export type StartDecision = "ok" | "not_host" | "not_lobby" | "need_ready";
 
 export function startDecision(lobby: Pick<LobbyRow, "host_id" | "status">, players: readonly Pick<LobbyPlayerRow, "ready">[], uid: string): StartDecision {
@@ -227,14 +323,16 @@ export function points(correct: boolean, ms: number, roundSeconds: number): numb
   return BASE_POINTS + Math.round(SPEED_POINTS * left);
 }
 
-export type AnswerDecision = { ok: true; ms: number; points: number } | { ok: false; error: "not_playing" | "wrong_round" };
+export type AnswerDecision = { ok: true; correct: boolean; ms: number; points: number } | { ok: false; error: "not_playing" | "wrong_round" | "bad_choice" };
 
-export function answerDecision(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds">, round: number, correct: boolean, now: number): AnswerDecision {
+export function answerDecision(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds">, prompt: Pick<LobbyPromptRow, "round" | "choices" | "answer"> | null, round: number, choice: string, now: number): AnswerDecision {
   if (lobby.status !== "playing") return { ok: false, error: "not_playing" };
   const current = roundAt(lobby, now);
   if (!current || current.index !== round) return { ok: false, error: "wrong_round" };
+  if (!prompt || prompt.round !== round || !prompt.choices.includes(choice)) return { ok: false, error: "bad_choice" };
+  const correct = choice === prompt.answer;
   const ms = Math.max(0, now - Date.parse(current.startsAt));
-  return { ok: true, ms, points: points(correct, ms, lobby.round_seconds) };
+  return { ok: true, correct, ms, points: points(correct, ms, lobby.round_seconds) };
 }
 
 export function nextHost(players: readonly Pick<LobbyPlayerRow, "user_id" | "joined_at">[], leaving: string): string | null {
@@ -250,6 +348,7 @@ export function assembleLobby(
   blocks: readonly BlockRow[],
   uid: string,
   now: number,
+  prompts: readonly LobbyPromptRow[] = [],
 ): LobbyState {
   const hidden = hiddenUsers(blocks, uid);
   const names = new Map(players.map((p) => [p.user_id, p.display_name]));
@@ -289,6 +388,7 @@ export function assembleLobby(
       .slice(-MESSAGE_LIMIT)
       .map((m) => ({ id: m.id, from: m.user_id, name: names.get(m.user_id) ?? "", body: m.body, at: m.created_at })),
     round,
+    prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done"),
     results: revealed.map((a) => ({ round: a.round, userId: a.user_id, correct: a.correct, ms: a.ms, points: a.points })),
   };
 }

@@ -122,11 +122,9 @@ func lobbyProblem(_ e: BucketError) -> String {
 
 struct LobbyRoom: View {
     @Environment(LobbyStore.self) private var lobbies
-    @Environment(LangStore.self) private var langs
     @Environment(\.dismiss) private var dismiss
     @State private var draft = ""
     @State private var problem: String?
-    @State private var prompts: [GamePrompt] = []
 
     var body: some View {
         Group {
@@ -150,13 +148,6 @@ struct LobbyRoom: View {
             }
         }
         .task { await lobbies.follow() }
-        .task(id: lobbies.current?.seed) { deal() }
-        .task(id: langs.status) { deal() }
-    }
-
-    func deal() {
-        guard let l = lobbies.current, let corpus = langs.corpus else { return }
-        prompts = GameRounds.lobby(GameDeck(corpus, root: l.root, targets: l.targets), seed: l.seedValue, count: l.rounds)
     }
 
     @ViewBuilder
@@ -247,8 +238,7 @@ struct LobbyRoom: View {
 
     @ViewBuilder
     func round(_ l: Lobby, _ i: Int, _ remaining: Double) -> some View {
-        if prompts.indices.contains(i) {
-            let p = prompts[i]
+        if let p = l.prompt(i) {
             let picked = lobbies.picks[i]
             VStack(spacing: 16) {
                 HStack {
@@ -258,15 +248,16 @@ struct LobbyRoom: View {
                 }
                 ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(D8.malachite)
                 VStack(spacing: 6) {
-                    FlagTile(lang: p.word.lang, size: 40)
-                    Text(p.word.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                    FlagTile(lang: p.lang, size: 40)
+                    Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
                 }
                 .padding(.vertical, 8)
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
                     ForEach(p.choices, id: \.self) { c in
-                        let state: RowState = picked == nil ? .other : c == p.answer ? .right : c == picked ? .wrong : .other
+                        let mark = lobbies.marks[i]
+                        let state: RowState = c != picked ? .other : mark == true ? .right : mark == false ? .wrong : .other
                         Button {
-                            Task { await lobbies.pick(c, in: p, round: i) }
+                            Task { await lobbies.pick(c, round: i) }
                         } label: {
                             Text(c).font(D8.word(22)).lineLimit(2).minimumScaleFactor(0.5)
                                 .padding(10).frame(maxWidth: .infinity, minHeight: 100)
@@ -327,11 +318,12 @@ struct LobbyRoom: View {
                 }
             }
             Section("Words") {
-                ForEach(Array(prompts.enumerated()), id: \.offset) { n, p in
+                ForEach(l.prompts) { p in
+                    let n = p.round
                     HStack {
-                        FlagTile(lang: p.word.lang, size: 22)
-                        Text(p.word.form).font(.headline)
-                        Text(p.word.gloss).foregroundStyle(Palette.muted)
+                        FlagTile(lang: p.lang, size: 22)
+                        Text(p.answer ?? "").font(.headline)
+                        Text(p.gloss).foregroundStyle(Palette.muted)
                         Spacer()
                         if let mine = l.results.first(where: { $0.round == n && $0.userId == l.me?.userId }) {
                             Image(systemName: mine.correct ? "checkmark" : "xmark").foregroundStyle(mine.correct ? D8.malachite : D8.vermilion)

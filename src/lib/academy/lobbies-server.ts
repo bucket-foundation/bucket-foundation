@@ -1,6 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { blocksTouching, configured, GroupsError, json, readBody, requestUser, service } from "./groups-server";
-import { windowLimiter, type BlockRow } from "./groups";
+import { uuidOrNull, type BlockRow } from "./groups";
 import {
   assembleLobby,
   finished,
@@ -9,6 +9,7 @@ import {
   type LobbyAnswerRow,
   type LobbyMessageRow,
   type LobbyPlayerRow,
+  type LobbyPromptRow,
   type LobbyRow,
   type LobbyState,
 } from "./lobbies";
@@ -17,11 +18,25 @@ export const LOBBIES = "lobbies";
 export const PLAYERS = "lobby_players";
 export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
+export const PROMPTS = "lobby_prompts";
 const LOBBY_COLS = "id,code,host_id,name,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at";
 const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at";
 
-export const chatLimited = windowLimiter(20, 60_000);
-export const lobbyJoinLimited = windowLimiter(10, 60_000);
+export async function limited(key: string, max: number): Promise<boolean> {
+  const res = await service().rpc("lobby_take", { p_key: key, p_limit: max });
+  if (res.error) throw new Error(`limit: ${res.error.message}`);
+  return res.data !== true;
+}
+
+export async function promptsOf(lobbyId: string): Promise<LobbyPromptRow[]> {
+  return check(await service().from(PROMPTS).select("lobby_id,round,lang,item_id,gloss,choices,answer").eq("lobby_id", lobbyId), "prompts") as LobbyPromptRow[];
+}
+
+export function lobbyIdOf(input: unknown): string {
+  const id = uuidOrNull(input);
+  if (!id) throw new GroupsError("bad_request", 400);
+  return id;
+}
 
 function check<T>(res: { data: T | null; error: { message: string } | null }, what: string): T {
   if (res.error) {
@@ -79,21 +94,22 @@ export async function settle(lobby: LobbyRow, now: number): Promise<LobbyRow> {
 }
 
 export async function lobbyState(lobby: LobbyRow, uid: string, now: number, blocks?: BlockRow[]): Promise<LobbyState> {
-  const [players, messages, answers, b] = await Promise.all([
+  const [players, messages, answers, b, prompts] = await Promise.all([
     playersOf([lobby.id]),
     service().from(MESSAGES).select("id,lobby_id,user_id,body,created_at").eq("lobby_id", lobby.id).order("id", { ascending: false }).limit(MESSAGE_LIMIT),
     service().from(ANSWERS).select("lobby_id,user_id,round,choice,correct,ms,points").eq("lobby_id", lobby.id),
     blocks ? Promise.resolve(blocks) : blocksTouching(uid),
+    lobby.status === "lobby" ? Promise.resolve([]) : promptsOf(lobby.id),
   ]);
   const msgs = (check(messages, "messages") as LobbyMessageRow[]).reverse();
-  return assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now);
+  return assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts);
 }
 
 export async function memberLobby(uid: string, lobbyId: unknown): Promise<LobbyRow> {
-  if (typeof lobbyId !== "string" || !/^[0-9a-f-]{36}$/i.test(lobbyId)) throw new GroupsError("bad_request", 400);
-  const lobby = await lobbyById(lobbyId);
+  const id = lobbyIdOf(lobbyId);
+  const lobby = await lobbyById(id);
   if (!lobby) throw new GroupsError("not_found", 404);
-  const rows = check(await service().from(PLAYERS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid).limit(1), "member") as unknown[];
+  const rows = check(await service().from(PLAYERS).select("user_id").eq("lobby_id", id).eq("user_id", uid).limit(1), "member") as unknown[];
   if (rows.length === 0) throw new GroupsError("not_found", 404);
   return lobby;
 }

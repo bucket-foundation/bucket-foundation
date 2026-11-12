@@ -5,6 +5,10 @@ import { join } from "node:path";
 import {
   answerDecision,
   assembleLobby,
+  buildPrompts,
+  seededRandom,
+  seenDue,
+  visiblePrompts,
   finished,
   generateLobbyCode,
   generateSeed,
@@ -97,12 +101,52 @@ test("points reward speed and give nothing for a miss", () => {
   assert.equal(points(false, 0, 10), 0);
 });
 
-test("answers use server time and only the current round", () => {
+test("the server scores the choice against its own answer key", () => {
   const l = lobby({ status: "playing", started_at: new Date(T0).toISOString() });
-  assert.deepEqual(answerDecision(l, 0, true, T0 + 2500), { ok: true, ms: 2500, points: 175 });
-  assert.deepEqual(answerDecision(l, 1, true, T0 + 2500), { ok: false, error: "wrong_round" });
-  assert.deepEqual(answerDecision(l, 0, true, T0 - 10), { ok: false, error: "wrong_round" });
-  assert.deepEqual(answerDecision(lobby(), 0, true, T0), { ok: false, error: "not_playing" });
+  const key = { round: 0, choices: ["gato", "perro", "casa", "mesa"], answer: "gato" };
+  assert.deepEqual(answerDecision(l, key, 0, "gato", T0 + 2500), { ok: true, correct: true, ms: 2500, points: 175 });
+  assert.deepEqual(answerDecision(l, key, 0, "perro", T0 + 2500), { ok: true, correct: false, ms: 2500, points: 0 });
+  assert.deepEqual(answerDecision(l, key, 0, "forged", T0 + 2500), { ok: false, error: "bad_choice" });
+  assert.deepEqual(answerDecision(l, null, 0, "gato", T0 + 2500), { ok: false, error: "bad_choice" });
+  assert.deepEqual(answerDecision(l, key, 1, "gato", T0 + 2500), { ok: false, error: "wrong_round" });
+  assert.deepEqual(answerDecision(l, key, 0, "gato", T0 - 10), { ok: false, error: "wrong_round" });
+  assert.deepEqual(answerDecision(lobby(), key, 0, "gato", T0), { ok: false, error: "not_playing" });
+});
+
+function item(id: string, es: string, en: string, category = "food"): any {
+  return { id, kind: "word", category, gloss: en, forms: { es, en } };
+}
+
+test("prompts are seeded, one word per round, answer among distinct choices", () => {
+  const items = Array.from({ length: 30 }, (_, i) => item(`w${i}`, `es${i}`, `en${i}`, i % 2 ? "food" : "home"));
+  items.push(item("same", "x", "x"));
+  items.push({ ...item("phrase", "p", "q"), kind: "phrase" });
+  const a = buildPrompts(items, lobby({ rounds: 6, seed: "7" }));
+  const b = buildPrompts(items, lobby({ rounds: 6, seed: "7" }));
+  const c = buildPrompts(items, lobby({ rounds: 6, seed: "8" }));
+  assert.equal(a.length, 6);
+  assert.deepEqual(a, b);
+  assert.notDeepEqual(a, c);
+  assert.equal(new Set(a.map((p) => p.item_id)).size, 6);
+  for (const p of a) {
+    assert.ok(p.choices.includes(p.answer));
+    assert.equal(new Set(p.choices).size, p.choices.length);
+    assert.equal(p.choices.length, 4);
+    assert.ok(!["same", "phrase"].includes(p.item_id));
+  }
+  assert.deepEqual(buildPrompts([], lobby()), []);
+  const r = seededRandom("42");
+  const xs = Array.from({ length: 50 }, r);
+  assert.ok(xs.every((x) => x >= 0 && x < 1));
+});
+
+test("players see the current prompt without its answer and past answers after", () => {
+  const rows = [0, 1, 2].map((round) => ({ lobby_id: "L1", round, lang: "es", item_id: `w${round}`, gloss: "g", choices: ["a", "b"], answer: "a" }));
+  assert.deepEqual(visiblePrompts(rows, null, false), []);
+  assert.deepEqual(visiblePrompts(rows, 1, false).map((p) => [p.round, p.answer]), [[0, "a"], [1, null]]);
+  assert.equal(visiblePrompts(rows, null, true).length, 3);
+  assert.equal(seenDue(new Date(T0).toISOString(), T0 + 9_999), false);
+  assert.equal(seenDue(new Date(T0).toISOString(), T0 + 10_000), true);
 });
 
 test("next host is the earliest joiner who stays", () => {
@@ -158,4 +202,6 @@ test("migration keeps lobby tables private and limits joins in the database", ()
   assert.match(sql, /revoke insert, update, delete on bucket\.lobbies/);
   assert.match(sql, /raise exception 'lobby_full'/);
   assert.match(sql, /primary key \(lobby_id, user_id, round\)/);
+  assert.match(sql, /revoke all on bucket\.lobby_prompts, bucket\.lobby_limits from anon, authenticated/);
+  assert.match(sql, /check \(answer = any \(choices\)\)/);
 });
