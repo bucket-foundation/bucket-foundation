@@ -31,9 +31,7 @@ test("/es rewrites to the generated page", async () => {
   assert.ok(r.beforeFiles.some((x: { source: string; destination: string }) => x.source === "/es" && x.destination === "/d8/es.html"));
 });
 
-test("beta modal speaks Spanish on Spanish pages", () => {
-  const js = readFileSync(join(d8, "beta.js"), "utf8");
-  assert.match(js, /TR=window\.PL_TR\|\|\{\}/);
+test("Spanish page carries Spanish beta strings", () => {
   assert.match(es, /window\.PL_TR=\{[^<]*"Join the beta": "Únete a la beta"/);
 });
 
@@ -61,4 +59,15 @@ test("no English page string is left on a translated page", () => {
     const page: Record<string, string> = JSON.parse(readFileSync(join(__dirname, `../../scripts/i18n/${l}.json`), "utf8")).page;
     for (const k of keys.page as string[]) if (page[k] !== k) assert.ok(!html.includes(k), `${l} still has ${k}`);
   }
+});
+
+test("every translated page carries the iPhone link sheet strings in PL_TR", () => {
+  const sheet = ["Polingual is on iPhone. Send yourself the link.", "Email", "Send me the link", "Check your email on your iPhone.", "Close"];
+  for (const k of sheet) assert.ok((keys.modal as string[]).includes(k), k);
+  for (const l of langs) {
+    const html = readFileSync(join(d8, `${l}.html`), "utf8");
+    const tr = JSON.parse(html.match(/<script>window\.PL_TR=(.*?)<\/script>/s)![1].replace(/<\\\//g, "</"));
+    for (const k of sheet) assert.ok(tr[k] && (k === "Email" || tr[k] !== k), `${l} lacks ${k}`);
+  }
+  assert.match(es, /"Check your email on your iPhone\.": "Revisa tu correo en tu iPhone\."/);
 });

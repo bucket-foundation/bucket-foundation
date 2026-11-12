@@ -76,7 +76,7 @@ enum RootScreen: Equatable {
         switch access {
         case .checking: return .loading
         case .locked: return .paywall
-        case .trial, .subscribed: return .studio
+        case .trial, .subscribed, .beta: return .studio
         }
     }
 }

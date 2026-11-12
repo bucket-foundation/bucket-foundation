@@ -32,10 +32,11 @@ enum Access: Equatable, Sendable {
     case locked
     case trial(until: Date)
     case subscribed(productID: String, until: Date?)
+    case beta
 
     var open: Bool {
         switch self {
-        case .trial, .subscribed: true
+        case .trial, .subscribed, .beta: true
         case .checking, .locked: false
         }
     }
@@ -46,9 +47,9 @@ enum Entitlement {
         Plan.paid.contains(r.productID) && r.revoked == nil && !r.upgraded && (r.expires.map { $0 > now } ?? true)
     }
 
-    static func access(_ records: [EntitlementRecord], now: Date) -> Access {
+    static func access(_ records: [EntitlementRecord], now: Date, beta: Bool = false) -> Access {
         let live = records.filter { Self.live($0, now: now) }
-        guard let best = live.max(by: { ($0.expires ?? .distantFuture) < ($1.expires ?? .distantFuture) }) else { return .locked }
+        guard let best = live.max(by: { ($0.expires ?? .distantFuture) < ($1.expires ?? .distantFuture) }) else { return beta ? .beta : .locked }
         if best.introductory, let until = best.expires { return .trial(until: until) }
         return .subscribed(productID: best.productID, until: best.expires)
     }
