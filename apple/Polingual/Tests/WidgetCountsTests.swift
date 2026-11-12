@@ -47,6 +47,17 @@ struct WidgetCountsTests {
         #expect(snap.counts(at: noon.addingTimeInterval(12 * 3600 + 1)).streak == 0)
     }
 
+    @Test func streakWidgetLightsOnlyAfterStudyToday() {
+        let yesterday = WidgetPlan.counts(dueNow: 0, dueLater: [], newToday: 0, newTomorrow: 0, states: [studied(noon.addingTimeInterval(-86_400), streak: 9)], now: noon, calendar: utc)
+        let cold = WidgetSnapshot(streak: yesterday.streak, due: 0, newToday: 0, words: [], gloss: "", updated: noon, dayEnds: yesterday.dayEnds, streakUntil: yesterday.streakUntil)
+        #expect(!cold.studiedToday(at: noon))
+        let today = WidgetPlan.counts(dueNow: 0, dueLater: [], newToday: 0, newTomorrow: 0, states: [studied(noon, streak: 10)], now: noon, calendar: utc)
+        let lit = WidgetSnapshot(streak: today.streak, due: 0, newToday: 0, words: [], gloss: "", updated: noon, dayEnds: today.dayEnds, streakUntil: today.streakUntil)
+        #expect(lit.studiedToday(at: noon))
+        #expect(!lit.studiedToday(at: noon.addingTimeInterval(12 * 3600 + 1)))
+        #expect(!WidgetSnapshot(streak: 0, due: 0, newToday: 0, words: [], gloss: "", updated: noon).studiedToday(at: noon))
+    }
+
     @Test func anOldSnapshotWithoutTheNewFieldsStillDecodes() throws {
         let old = #"{"streak":2,"due":1,"newToday":3,"words":[],"gloss":"night","updated":0}"#
         let snap = try JSONDecoder().decode(WidgetSnapshot.self, from: Data(old.utf8))
