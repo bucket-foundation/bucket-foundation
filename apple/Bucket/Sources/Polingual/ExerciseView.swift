@@ -671,7 +671,7 @@ struct Prompt: View {
                 if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
                     HStack(spacing: 10) {
                         ForEach(f.prefix(3), id: \.lang) { w in MiniTile(word: w.word, lang: w.lang, reading: readings ? cousins(w.lang) : nil) }
-                        MiniTile(word: nil, lang: ex.lang, reading: nil)
+                        MiniTile(word: answered ? ex.answer : nil, lang: ex.lang, reading: answered && readings ? ex.answerReading : nil, dashed: true)
                     }
                 }
             }

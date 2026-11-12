@@ -242,8 +242,27 @@ struct MiniTile: View {
     let word: String?
     let lang: String
     let reading: Reading?
+    var dashed = false
+    @Environment(\.wordTapsHosted) private var hosted
+    @Environment(\.openURL) private var open
 
     var body: some View {
+        let canSay = word.map { LangVoice.shared.canSpeak($0, lang) } ?? false
+        Button {
+            guard let word else { return }
+            if hosted, let url = WordTaps.tileLink(word, lang: lang) { open(url); return }
+            if canSay { LangVoice.shared.speak(word, lang) }
+        } label: {
+            face
+        }
+        .buttonStyle(TilePress())
+        .disabled(word == nil)
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier(dashed ? "cousinAnswer" : "cousinTile")
+        .accessibilityHint(canSay ? "Plays the word" : "")
+    }
+
+    private var face: some View {
         VStack(spacing: 1) {
             Text(word ?? "?").font(D8.word(18)).lineLimit(1).minimumScaleFactor(0.5).foregroundStyle(word == nil ? D8.disabledText : D8.ink)
             Text(readingText(reading) ?? " ").font(.caption2).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
@@ -260,9 +279,8 @@ struct MiniTile: View {
         .background { FlagFace(flag: D8Flag.of(lang)) }
         .modifier(Glaze(radius: 10, lip: 4))
         .overlay {
-            if word == nil { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.muted, style: StrokeStyle(lineWidth: 2, dash: [5, 4])).padding(-3) }
+            if word == nil || dashed { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.muted, style: StrokeStyle(lineWidth: 2, dash: [5, 4])).padding(-3) }
         }
-        .accessibilityElement(children: .combine)
     }
 }
 
