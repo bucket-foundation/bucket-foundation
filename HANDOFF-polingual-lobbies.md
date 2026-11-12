@@ -118,3 +118,30 @@ The output of bkt-g0uss. See its bead notes for the branches merged, skipped and
 - Skipped for a conflict in GroupShares.swift: group-voice-notes.
 - Stale, close them: answer-sound, no-star, one-sound-tile, trial-top, app-icon, engine-articles, translate-embed, wrong-translation.
 - Conflicting and not reviewed: d8-cards, game-stars, media-in-app, meetups, one-tile, polingual-onboarding, polingual-parity, share-people, sound-card, swap-shield.
+
+## Progress 2026-11-12 Mac
+
+| Item | Result |
+|---|---|
+| Critic round 1 fixes | Host limit counts the 30-minute open window, `lobby_take` purges every key, a failed answer frees the round on web and iOS |
+| bkt-ukl7j.7 | `bucket.delete_lobby_user` runs before personal rows in self-serve and admin account deletion |
+| AdMob | Off the 1.0.1 build. SDK link and plist keys wait on `feat/apple-polingual-admob`; lobby ad code stays inert behind `canImport` |
+| Critic round 2, lobbies | Pass, 8.46 |
+| Lobbies into dev | Pushed, `27678d65b` then `7da8deede` |
+| Live migration | `20261112000000_polingual_lobbies` applied to the hosted project in one transaction and recorded in `schema_migrations`; anon RPC gets 401 |
+| Two-device test | iOS `LobbyStore` hosts through `LobbyLiveTests` (runs when `LOBBY_E2E_BASE` is set), a browser joins `/play/<code>` on local Next. 3 rounds, both sides agree. Ran against the hosted DB because local Supabase images do not fit the disk; the 3 test lobbies were deleted. Simulator GUI scripting times out, so the SwiftUI screens were not tapped |
+| Fix from the test | The web room said "Not this time." while an answer was in flight; it now says "Checking" |
+| bkt-g0uss | `integ/apple-merge-2` into dev at `8b628af0b`. Critic pass, 8.25. Conflict markers were committed in 24 Polingual strings files on `wip/apple-merge`; stripped, 69 duplicate keys dropped, 33 strings added. Polingual iOS 91, BucketKit 413, web 455 tests pass. The group-name-route TypeError only shows under tsx; the suite runner passes it |
+
+Beads to file on charizard, labels `needs-founder` and `source-agent`:
+- Per-IP cap on hosted lobbies.
+- Cost of the 1 s lobby poll at scale.
+- AdMob consent (UMP), ATT and App Store privacy labels before `feat/apple-polingual-admob` merges.
+- Close or cap stale open lobbies older than the 30-minute window.
+- `BETA_REQUIRE_TURNSTILE` defaults off, so `/api/beta` skips the human check without a token (critic medium).
+- Unit suite failures on dev untouched by this work: lang-audio, explore-geometry, photon-means-like, release-signing.
+
+Founder inputs still open:
+- `LOBBY_GUEST_SECRET` in Vercel, at least 32 characters. Guest routes return 503 without it.
+- Approval to apply `20261112000100_group_member_chosen_name` to the hosted project. Code falls back when the column is missing.
+- AdMob ids and the web ad env, listed above.
