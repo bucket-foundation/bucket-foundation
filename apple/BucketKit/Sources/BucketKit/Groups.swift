@@ -241,8 +241,9 @@ public struct LearningGroup: Codable, Equatable, Sendable, Identifiable {
     public var members: [GroupMember]
     public var goal: GroupGoal?
     public var cheers: [Cheer]
+    public var chosenName: Bool
 
-    public init(id: String, name: String, kind: GroupKind, code: String, role: GroupRole, members: [GroupMember], goal: GroupGoal? = nil, cheers: [Cheer] = []) {
+    public init(id: String, name: String, kind: GroupKind, code: String, role: GroupRole, members: [GroupMember], goal: GroupGoal? = nil, cheers: [Cheer] = [], chosenName: Bool = true) {
         self.id = id
         self.name = name
         self.kind = kind
@@ -251,9 +252,10 @@ public struct LearningGroup: Codable, Equatable, Sendable, Identifiable {
         self.members = members
         self.goal = goal
         self.cheers = cheers
+        self.chosenName = chosenName
     }
 
-    enum CodingKeys: String, CodingKey { case id, name, kind, code, role, members, goal, cheers }
+    enum CodingKeys: String, CodingKey { case id, name, kind, code, role, members, goal, cheers, chosenName }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -265,6 +267,7 @@ public struct LearningGroup: Codable, Equatable, Sendable, Identifiable {
         members = try c.decode([GroupMember].self, forKey: .members)
         goal = c.value(.goal, nil as GroupGoal?)
         cheers = c.value(.cheers, [])
+        chosenName = c.value(.chosenName, true)
     }
 
     public var isOwner: Bool { role == .owner }
@@ -638,6 +641,8 @@ public final class GroupStore {
 
     public var me: GroupMember? { groups.lazy.compactMap(\.me).first }
 
+    public var needsName: Bool { groups.contains { !$0.chosenName } }
+
     public var people: [(member: GroupMember, groupId: String)] {
         var seen = Set<String>()
         var out: [(GroupMember, String)] = []
@@ -696,6 +701,7 @@ public final class GroupStore {
     public func rename(displayName: String) async throws(BucketError) -> String {
         let name = try await run { try await self.api.renameMember(token: $0, displayName: displayName) }
         for i in groups.indices {
+            groups[i].chosenName = true
             guard let me = groups[i].me?.userId else { continue }
             for j in groups[i].members.indices where groups[i].members[j].isMe { groups[i].members[j].name = name }
             for j in groups[i].cheers.indices where groups[i].cheers[j].from == me { groups[i].cheers[j].fromName = name }

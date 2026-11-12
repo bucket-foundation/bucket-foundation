@@ -391,6 +391,7 @@ func body(_ r: URLRequest) -> [String: String] {
     @Test func renameSendsTheNameAndUpdatesMyRows() async throws {
         var raw = groupJSON
         raw["cheers"] = [["id": "c2", "from": "u1", "fromName": "Gia", "to": "u2", "kind": "cheer", "at": "2026-10-28T09:30:00Z", "seen": false]]
+        raw["chosenName"] = false
         let listed = json(["groups": [raw]])
         let sent = LockedBox<[String: String]>([:])
         let api = BucketAPI(transport: StubTransport { r in
@@ -403,7 +404,9 @@ func body(_ r: URLRequest) -> [String: String] {
         }, cacheDir: nil)
         let store = GroupStore(api: api, token: { "tok" })
         await store.load()
+        #expect(store.needsName)
         #expect(try await store.rename(displayName: "Gianna") == "Gianna")
+        #expect(!store.needsName)
         #expect(sent.value == ["displayName": "Gianna"])
         #expect(store.me?.name == "Gianna")
         #expect(store.group("g1")?.members.first { !$0.isMe }?.name == "Nonna")
@@ -416,6 +419,7 @@ func body(_ r: URLRequest) -> [String: String] {
         }, cacheDir: nil)
         let store = GroupStore(api: api, token: { "tok" })
         await store.load()
+        #expect(!store.needsName)
         await #expect(throws: BucketError.self) { try await store.rename(displayName: "x") }
         #expect(store.me?.name == "Gia")
     }

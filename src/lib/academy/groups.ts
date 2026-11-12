@@ -105,6 +105,7 @@ export interface Group {
   members: Member[];
   goal: GroupGoal | null;
   cheers: Cheer[];
+  chosenName: boolean;
 }
 
 export interface GroupRow {
@@ -142,6 +143,7 @@ export interface MemberRow {
   role: GroupRole;
   display_name: string;
   joined_at: string;
+  chosen_name?: boolean;
 }
 
 export interface BranchRow {
@@ -241,6 +243,11 @@ export function normalizeReportReason(input: unknown): ReportReason | null {
 export function missingTable(error: { code?: string; message?: string } | null | undefined): boolean {
   if (!error) return false;
   return error.code === "42P01" || error.code === "PGRST205" || /relation .* does not exist|could not find the table/i.test(error.message ?? "");
+}
+
+export function missingColumn(error: { code?: string; message?: string } | null | undefined): boolean {
+  if (!error) return false;
+  return error.code === "42703" || error.code === "PGRST204" || /column .* does not exist|could not find the .* column/i.test(error.message ?? "");
 }
 
 export function hiddenUsers(blocks: readonly BlockRow[], me: string): Set<string> {
@@ -571,6 +578,7 @@ export function assembleGroup(
     members: list.filter((m) => !hidden.has(m.userId)),
     goal: groupGoal(group.weekly_goal, list.map((m) => m.weekReviews), weekStart),
     cheers: cheersFor(group.id, cheers.filter((c) => !hidden.has(c.from_id) && !hidden.has(c.to_id)), members, me),
+    chosenName: sorted.find((m) => m.user_id === me)?.chosen_name !== false,
   };
 }
 

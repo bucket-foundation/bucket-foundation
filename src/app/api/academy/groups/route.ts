@@ -9,7 +9,7 @@ import {
   insertGroupWithCode,
   json,
   limitError,
-  MEMBERS,
+  insertMember,
   NAME_NOT_ALLOWED,
   oneGroup,
   preflight,
@@ -51,7 +51,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     if ((await countOwned(uid)) >= MAX_OWNED) return json({ error: "owned_limit" }, 409);
     const group = await insertGroupWithCode({ name, kind, owner_id: uid });
-    const res = await service().from(MEMBERS).insert({ group_id: group.id, user_id: uid, role: "owner", display_name: displayName });
+    const res = await insertMember({ group_id: group.id, user_id: uid, role: "owner", display_name: displayName });
     if (res.error) {
       await service().from(GROUPS).delete().eq("id", group.id);
       const limit = limitError(res.error.message);

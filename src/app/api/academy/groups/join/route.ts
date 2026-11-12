@@ -7,11 +7,11 @@ import {
   configured,
   fail,
   groupByCode,
+  insertMember,
   joinLimited,
   GroupsError,
   json,
   limitError,
-  MEMBERS,
   membersOf,
   membershipsOf,
   NAME_NOT_ALLOWED,
@@ -19,7 +19,6 @@ import {
   preflight,
   readBody,
   requestUser,
-  service,
 } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
@@ -49,7 +48,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (decision === "full") return json({ error: "group_full" }, 409);
     if (decision === "joined_limit") return json({ error: "joined_limit" }, 409);
     if (decision === "ok") {
-      const res = await service().from(MEMBERS).insert({ group_id: group.id, user_id: uid, role: "member", display_name: displayName });
+      const res = await insertMember({ group_id: group.id, user_id: uid, role: "member", display_name: displayName });
       if (res.error && !/duplicate key|unique/i.test(res.error.message)) {
         const limit = limitError(res.error.message);
         if (limit) throw limit;

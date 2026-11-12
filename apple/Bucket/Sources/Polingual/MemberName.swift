@@ -5,8 +5,8 @@ enum MemberName {
     static let storedKey = "groups.displayName"
     static let askedKey = "groups.nameAsked"
 
-    static func ask(signedIn: Bool, loaded: Bool, inGroup: Bool, stored: String, asked: Bool) -> Bool {
-        signedIn && loaded && inGroup && !asked && clean(stored).isEmpty
+    static func ask(signedIn: Bool, loaded: Bool, unchosen: Bool, asked: Bool) -> Bool {
+        signedIn && loaded && unchosen && !asked
     }
 
     static func prefill(stored: String, current: String?) -> String {
@@ -89,7 +89,6 @@ struct MemberNameSheet: View {
 struct MemberNamePrompt: ViewModifier {
     @Environment(Account.self) private var account
     @Environment(GroupStore.self) private var groups
-    @AppStorage(MemberName.storedKey) private var stored = ""
     @AppStorage(MemberName.askedKey) private var asked = false
     @State private var open = false
 
@@ -104,7 +103,7 @@ struct MemberNamePrompt: ViewModifier {
     }
 
     var due: Bool {
-        MemberName.ask(signedIn: account.stage == .signedIn, loaded: groups.loaded, inGroup: !groups.groups.isEmpty, stored: stored, asked: asked)
+        MemberName.ask(signedIn: account.stage == .signedIn, loaded: groups.loaded, unchosen: groups.needsName, asked: asked)
     }
 }
 

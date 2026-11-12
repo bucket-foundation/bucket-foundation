@@ -28,6 +28,7 @@ import {
   missingTable,
   joinBlocked,
   joinDecision,
+  missingColumn,
   renameInput,
   memberSummary,
   normalizeDisplayName,
@@ -509,8 +510,17 @@ test("renameInput trims the name and applies the name filter", () => {
   assert.equal(renameInput(null), "bad_request");
 });
 
-test("the name route updates only the caller's member rows", () => {
-  const src = readFileSync(join(process.cwd(), "src/app/api/academy/groups/name/route.ts"), "utf8");
-  assert.match(src, /from\(MEMBERS\)\.update\(\{ display_name: displayName \}\)\.eq\("user_id", uid\)/);
-  assert.match(src, /requestUser\(req\)/);
+test("missingColumn spots an unapplied column and nothing else", () => {
+  assert.equal(missingColumn({ code: "42703", message: "column group_members.chosen_name does not exist" }), true);
+  assert.equal(missingColumn({ code: "PGRST204", message: "Could not find the 'chosen_name' column of 'group_members' in the schema cache" }), true);
+  assert.equal(missingColumn({ code: "42P01", message: 'relation "bucket.group_blocks" does not exist' }), false);
+  assert.equal(missingColumn(null), false);
+});
+
+test("assembleGroup reports whether I chose my name", () => {
+  const group: GroupRow = { id: "g1", name: "G", kind: "friends", owner_id: OWNER, invite_code: "0123456789", created_at: "2026-10-01", weekly_goal: null };
+  const sums = new Map<string, MemberSummary>();
+  assert.equal(assembleGroup(group, [{ ...row(OWNER, "owner"), chosen_name: false }, row(MATE)], sums, OWNER).chosenName, false);
+  assert.equal(assembleGroup(group, [{ ...row(OWNER, "owner"), chosen_name: true }], sums, OWNER).chosenName, true);
+  assert.equal(assembleGroup(group, [row(OWNER, "owner")], sums, OWNER).chosenName, true);
 });

@@ -2,17 +2,15 @@ import Testing
 @testable import Polingual
 
 struct MemberNameTests {
-    @Test func asksASignedInMemberWhoNeverSavedAName() {
-        #expect(MemberName.ask(signedIn: true, loaded: true, inGroup: true, stored: "", asked: false))
-        #expect(MemberName.ask(signedIn: true, loaded: true, inGroup: true, stored: "   ", asked: false))
+    @Test func asksASignedInMemberWhoNeverChoseAName() {
+        #expect(MemberName.ask(signedIn: true, loaded: true, unchosen: true, asked: false))
     }
 
     @Test func staysQuietOtherwise() {
-        #expect(!MemberName.ask(signedIn: false, loaded: true, inGroup: true, stored: "", asked: false))
-        #expect(!MemberName.ask(signedIn: true, loaded: false, inGroup: true, stored: "", asked: false))
-        #expect(!MemberName.ask(signedIn: true, loaded: true, inGroup: false, stored: "", asked: false))
-        #expect(!MemberName.ask(signedIn: true, loaded: true, inGroup: true, stored: "Gia", asked: false))
-        #expect(!MemberName.ask(signedIn: true, loaded: true, inGroup: true, stored: "", asked: true))
+        #expect(!MemberName.ask(signedIn: false, loaded: true, unchosen: true, asked: false))
+        #expect(!MemberName.ask(signedIn: true, loaded: false, unchosen: true, asked: false))
+        #expect(!MemberName.ask(signedIn: true, loaded: true, unchosen: false, asked: false))
+        #expect(!MemberName.ask(signedIn: true, loaded: true, unchosen: true, asked: true))
     }
 
     @Test func prefillsTheSavedNameThenTheGroupName() {
