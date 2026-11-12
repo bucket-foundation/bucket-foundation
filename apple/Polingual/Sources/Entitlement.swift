@@ -6,6 +6,7 @@ enum Plan {
     static let all = [yearly, monthly]
     static let family = "com.polingual.family.yearly"
     static let lifetime = "com.polingual.lifetime"
+    static let founding = "founding"
     static let extra = [family, lifetime]
     static let paid = all + extra
 
@@ -52,6 +53,12 @@ enum Entitlement {
         guard let best = live.max(by: { ($0.expires ?? .distantFuture) < ($1.expires ?? .distantFuture) }) else { return beta ? .beta : .locked }
         if best.introductory, let until = best.expires { return .trial(until: until) }
         return .subscribed(productID: best.productID, until: best.expires)
+    }
+
+    static func needsFounding(_ access: Access) -> Bool { access == .locked }
+
+    static func withFounding(_ access: Access, founding: Bool) -> Access {
+        needsFounding(access) && founding ? .subscribed(productID: Plan.founding, until: nil) : access
     }
 
     static func trialEligible(history: [EntitlementRecord]) -> Bool {
