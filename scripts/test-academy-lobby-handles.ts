@@ -23,14 +23,14 @@ function stub(replies: Record<string, Reply>): { table: string; ids: unknown[] }
 
 const row = (user_id: string) => ({ lobby_id: "L1", user_id, display_name: user_id, ready: false, score: 0, last_seen: "t", joined_at: "t" });
 
-test("lobby players carry the handle from their profile", async () => {
+test("lobby players carry the handle of a public profile and never a private one", async () => {
   const calls = stub({
-    lobby_players: { data: [row("u1"), row("u2"), row("u1")], error: null },
-    academy_profiles: { data: [{ user_id: "u1", handle: "hana_k" }], error: null },
+    lobby_players: { data: [row("u1"), row("u2"), row("u1"), row("u3")], error: null },
+    academy_profiles: { data: [{ user_id: "u1", handle: "hana_k", is_public: true }, { user_id: "u3", handle: "secret_s", is_public: false }], error: null },
   });
   const out = await namedPlayersOf(["L1"]);
-  assert.deepEqual(out.map((p) => [p.user_id, p.handle]), [["u1", "hana_k"], ["u2", null], ["u1", "hana_k"]]);
-  assert.deepEqual(calls[1], { table: "academy_profiles", ids: ["u1", "u2"] });
+  assert.deepEqual(out.map((p) => [p.user_id, p.handle]), [["u1", "hana_k"], ["u2", null], ["u1", "hana_k"], ["u3", null]]);
+  assert.deepEqual(calls[1], { table: "academy_profiles", ids: ["u1", "u2", "u3"] });
 });
 
 test("a failed handle lookup keeps the lobby working without handles", async () => {

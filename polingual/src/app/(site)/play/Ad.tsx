@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { ADS, adLive, pubId, type AdPlacement, type AdSize } from "@/lib/lobby/ads";
+import { ADS, adLive, adShows, pubId, type AdPlacement, type AdSize } from "@/lib/lobby/ads";
 import { useAdsVisible } from "./AdsContext";
 import styles from "./play.module.css";
 
@@ -55,7 +55,7 @@ export default function Ad({ placement, size, testId }: { placement: AdPlacement
     }
   }, [live, placement]);
 
-  if (!visible) return null;
+  if (!visible || !adShows(ADS, placement)) return null;
   const id = testId ?? `ad-${placement}`;
   const box = size ? { width: size.width, height: size.height } : undefined;
   if (!live) {

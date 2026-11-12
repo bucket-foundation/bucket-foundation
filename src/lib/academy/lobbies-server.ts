@@ -62,12 +62,12 @@ export async function lobbyByCode(code: string): Promise<LobbyRow | null> {
 export async function handlesOf(userIds: string[]): Promise<Map<string, string>> {
   const ids = Array.from(new Set(userIds));
   if (ids.length === 0) return new Map();
-  const res = await service().from(PROFILES).select("user_id,handle").in("user_id", ids);
+  const res = await service().from(PROFILES).select("user_id,handle,is_public").in("user_id", ids);
   if (res.error) {
     console.error("lobby handles", res.error.message);
     return new Map();
   }
-  return new Map((res.data as { user_id: string; handle: string }[]).map((r) => [r.user_id, r.handle]));
+  return new Map((res.data as { user_id: string; handle: string; is_public: boolean }[]).filter((r) => r.is_public === true).map((r) => [r.user_id, r.handle]));
 }
 
 export async function playersOf(ids: string[]): Promise<LobbyPlayerRow[]> {

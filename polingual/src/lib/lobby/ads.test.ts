@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { adConfig, adLayout, entitlementOf, adLive, adsOn, adsTxt, needsConsent, pubId, railSize, showsAds } from "./ads";
+import { adConfig, adLayout, entitlementOf, adLive, adShows, adsOn, adsTxt, needsConsent, pubId, railSize, showsAds } from "./ads";
 
 const CLIENT = "ca-pub-1234567890123456";
 
@@ -14,10 +14,11 @@ test("ads stay off until the flag is set", () => {
 test("the flag without real AdSense ids shows placeholder boxes", () => {
   assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "placeholder" }).mode, "placeholder");
   assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "on" }).mode, "placeholder");
-  assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "adsense" }).mode, "placeholder");
-  assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "adsense", NEXT_PUBLIC_ADSENSE_CLIENT: "pub-1" }).mode, "placeholder");
+  assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "adsense" }).mode, "off");
+  assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "adsense", NEXT_PUBLIC_ADSENSE_CLIENT: "pub-1" }).mode, "off");
   const ph = adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "placeholder", NEXT_PUBLIC_ADSENSE_CLIENT: CLIENT, NEXT_PUBLIC_ADSENSE_SLOT_RAIL: "1234567890" });
   assert.equal(adLive(ph, "rail"), false);
+  assert.equal(adShows(ph, "banner"), true);
 });
 
 test("a placement goes live only with a client and its own slot id", () => {
@@ -26,15 +27,17 @@ test("a placement goes live only with a client and its own slot id", () => {
   assert.equal(adLive(on, "rail"), true);
   assert.equal(adLive(on, "banner"), false);
   assert.equal(adLive(on, "results"), false);
+  assert.equal(adShows(on, "rail"), true);
+  assert.equal(adShows(on, "banner"), false);
 });
 
-test("subscribers and pending checks see no ads", () => {
+test("subscribers, pending checks and failed checks see no ads", () => {
   const ph = adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "placeholder" });
   assert.equal(showsAds(ph, "subscriber"), false);
   assert.equal(showsAds(ph, "checking"), false);
   assert.equal(showsAds(ph, "signed-out"), true);
   assert.equal(showsAds(ph, "free"), true);
-  assert.equal(showsAds(ph, "unknown"), true);
+  assert.equal(showsAds(ph, "unknown"), false);
 });
 
 test("desktop widths get rails and phones get the banner", () => {

@@ -37,12 +37,16 @@ export function adConfig(env: AdEnv): AdConfig {
     results: slot(env.NEXT_PUBLIC_ADSENSE_SLOT_RESULTS),
   };
   if (raw === "placeholder" || raw === "on") return { mode: "placeholder", client: null, slots };
-  if (raw === "adsense" || raw === "adsense-test") return client ? { mode: raw, client, slots } : { mode: "placeholder", client: null, slots };
+  if ((raw === "adsense" || raw === "adsense-test") && client) return { mode: raw, client, slots };
   return { mode: "off", client: null, slots };
 }
 
 export function adsOn(config: AdConfig): boolean {
   return config.mode !== "off";
+}
+
+export function adShows(config: AdConfig, placement: AdPlacement): boolean {
+  return config.mode === "placeholder" || adLive(config, placement);
 }
 
 export function adLive(config: AdConfig, placement: AdPlacement): boolean {
@@ -65,7 +69,7 @@ export type Entitlement = "signed-out" | "subscriber" | "free" | "unknown";
 
 export function showsAds(config: AdConfig, entitlement: Entitlement | "checking"): boolean {
   if (!adsOn(config)) return false;
-  return entitlement === "signed-out" || entitlement === "free" || entitlement === "unknown";
+  return entitlement === "signed-out" || entitlement === "free";
 }
 
 export function pubId(raw: string | undefined): string | null {

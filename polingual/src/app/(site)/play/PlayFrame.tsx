@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { fetchAccess } from "@/lib/app/plans";
-import { ADS, adLayout, adsOn, BANNER, entitlementOf, railSize, showsAds, type AdLayout, type Entitlement } from "@/lib/lobby/ads";
+import { ADS, adLayout, adShows, adsOn, BANNER, entitlementOf, railSize, showsAds, type AdLayout, type Entitlement } from "@/lib/lobby/ads";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { AdsProvider } from "./AdsContext";
@@ -44,8 +44,8 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
   const layout = useAdLayout();
   const entitlement = useEntitlement();
   const visible = showsAds(ADS, entitlement) && layout !== null;
-  const rail = visible && layout ? railSize(layout) : null;
-  const banner = visible && layout === "phone";
+  const rail = visible && layout && adShows(ADS, "rail") ? railSize(layout) : null;
+  const banner = visible && layout === "phone" && adShows(ADS, "banner");
 
   return (
     <AdsProvider value={visible}>
