@@ -140,6 +140,9 @@ targets:
       - path: Polingual/WatchShared
       - path: Polingual/Polingual.storekit
         buildPhase: none
+      - path: BucketKit/Tests/BucketKitTests/Fixtures/library
+        type: folder
+        buildPhase: resources
     info:
       path: Polingual/Info.plist
       properties:
@@ -157,6 +160,9 @@ targets:
       - target: PolingualShare
         destinationFilters: [iOS]
     settings:
+      configs:
+        Release:
+          EXCLUDED_SOURCE_FILE_NAMES: library
       base:
         CODE_SIGN_ENTITLEMENTS: Polingual/Polingual.entitlements
         CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: Polingual/PolingualMac.entitlements

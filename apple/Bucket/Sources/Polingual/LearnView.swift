@@ -241,6 +241,7 @@ struct NewSetTile: View {
 
 struct ContentSection: View {
     @Environment(LangStore.self) private var langs
+    @State private var library = LibraryStore.shared
     let open: (LearnRoute) -> Void
 
     var names: String { langs.contentLangs.prefix(3).map(langName).joined(separator: ", ") }
@@ -257,7 +258,9 @@ struct ContentSection: View {
                 LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: D8.lapis, lip: Color(hex: 0x12326A), item: .activity(.watch), open: { open(.content(.watch)) }) {
                     LearnSymbol(name: "play.rectangle")
                 }
-                LibraryTile { open(.library) }
+                if library.index?.books.isEmpty == false {
+                    LibraryTile { open(.library) }
+                }
                 ForEach(ContentCatalog.topics.prefix(3)) { topic in
                     LearnTile(title: topic.title, detail: branchTitle(topic.branch), face: BranchTile.face(topic.branch), item: .topic(topic), open: { open(.read(topic)) }) {
                         LearnSymbol(name: "text.book.closed")
@@ -271,6 +274,7 @@ struct ContentSection: View {
         }
         .id("content")
         .listRowBackground(Color.clear)
+        .task { await library.loadIndex() }
     }
 }
 

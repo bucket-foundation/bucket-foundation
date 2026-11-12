@@ -11,6 +11,10 @@ public struct LibraryEntry: Codable, Sendable, Equatable, Identifiable {
     public let translation: String
     public let sentences: Int
     public let langs: [String]
+    public let version: Int?
+    public let updated: String?
+
+    public var stamp: String { "\(version ?? 0)|\(updated ?? "")" }
 
     public func title(in order: [String]) -> String {
         LibraryText.pick(title, order) ?? id
@@ -34,6 +38,8 @@ public struct LibraryBook: Codable, Sendable, Equatable, Identifiable {
     public func title(in order: [String]) -> String {
         LibraryText.pick(title, order) ?? id
     }
+
+    public var machine: Bool { translation == "machine" }
 
     public func lines(_ index: Int, langs: [String]) -> [(lang: String, text: String)] {
         guard sentences.indices.contains(index) else { return [] }
@@ -59,6 +65,7 @@ enum LibraryText {
 public struct LibraryAPI: Sendable {
     public static let production = URL(string: "https://www.polingual.com/library/")!
     public static let defaultCache = BucketAPI.offlineDirectory("library")
+    public static let indexMaxAge: TimeInterval = 86_400
 
     public let base: URL
     let transport: Transport
@@ -74,13 +81,31 @@ public struct LibraryAPI: Sendable {
         !id.isEmpty && id.count <= 80 && id.allSatisfy { $0.isASCII && ($0.isLetter || $0.isNumber || $0 == "-" || $0 == "_") }
     }
 
-    public func index() async throws -> LibraryIndex {
-        try await fetch("index.json", preferCache: false)
+    public func index(now: Date = Date()) async throws -> LibraryIndex {
+        let fresh = cacheAge("index.json", now: now).map { $0 < Self.indexMaxAge } ?? false
+        return try await fetch("index.json", preferCache: fresh).value
     }
 
-    public func book(_ id: String) async throws -> LibraryBook {
+    public func book(_ entry: LibraryEntry) async throws -> LibraryBook {
+        try await book(entry.id, stamp: entry.stamp)
+    }
+
+    public func book(_ id: String, stamp: String? = nil) async throws -> LibraryBook {
         guard Self.validId(id) else { throw BucketError.server(404, nil) }
-        return try await fetch("\(id).json", preferCache: true)
+        let current = stamp == nil || savedStamp(id) == stamp
+        let got: (value: LibraryBook, live: Bool) = try await fetch("\(id).json", preferCache: current)
+        if got.live, let stamp, let url = cacheURL("\(id).stamp") { try? Data(stamp.utf8).write(to: url, options: .atomic) }
+        return got.value
+    }
+
+    func savedStamp(_ id: String) -> String? {
+        guard let url = cacheURL("\(id).stamp"), let data = try? Data(contentsOf: url) else { return nil }
+        return String(decoding: data, as: UTF8.self)
+    }
+
+    func cacheAge(_ file: String, now: Date) -> TimeInterval? {
+        guard let url = cacheURL(file), let date = (try? FileManager.default.attributesOfItem(atPath: url.path()))?[.modificationDate] as? Date else { return nil }
+        return now.timeIntervalSince(date)
     }
 
     public func cachedIndex() -> LibraryIndex? { cached("index.json") }
@@ -96,8 +121,8 @@ public struct LibraryAPI: Sendable {
         return try? JSONDecoder().decode(T.self, from: data)
     }
 
-    func fetch<T: Decodable>(_ file: String, preferCache: Bool) async throws -> T {
-        if preferCache, let hit: T = cached(file) { return hit }
+    func fetch<T: Decodable>(_ file: String, preferCache: Bool) async throws -> (value: T, live: Bool) {
+        if preferCache, let hit: T = cached(file) { return (hit, false) }
         do {
             var r = URLRequest(url: base.appending(path: file))
             r.timeoutInterval = 15
@@ -109,9 +134,9 @@ public struct LibraryAPI: Sendable {
                 try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
                 try? data.write(to: url, options: .atomic)
             }
-            return value
+            return (value, true)
         } catch {
-            if let hit: T = cached(file) { return hit }
+            if let hit: T = cached(file) { return (hit, false) }
             throw error
         }
     }

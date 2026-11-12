@@ -15,7 +15,7 @@ final class LibraryStore {
     func loadIndex() async {
         #if DEBUG
         if Launch.flag("-libraryFixture") {
-            index = LibraryFixture.index
+            index = Self.fixture("index")
             return
         }
         #endif
@@ -27,14 +27,23 @@ final class LibraryStore {
     func load(_ id: String) async {
         #if DEBUG
         if Launch.flag("-libraryFixture") {
-            books[id] = LibraryFixture.book(id)
+            books[id] = Self.fixture(id)
             return
         }
         #endif
         guard books[id] == nil else { return }
         failed.remove(id)
-        do { books[id] = try await api.book(id) } catch { failed.insert(id) }
+        let entry = index?.books.first { $0.id == id }
+        do { books[id] = try await api.book(id, stamp: entry?.stamp) } catch { failed.insert(id) }
     }
+
+    #if DEBUG
+    static func fixture<T: Decodable>(_ name: String) -> T? {
+        guard LibraryAPI.validId(name), let url = Bundle.main.url(forResource: name, withExtension: "json", subdirectory: "library"),
+              let data = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode(T.self, from: data)
+    }
+    #endif
 }
 
 extension LangStore {
@@ -74,8 +83,6 @@ struct LibraryList: View {
                             .listRowInsets(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0))
                             .listRowSeparator(.hidden)
                     }
-                } footer: {
-                    Text("Public domain fables, one sentence at a time.")
                 }
                 .listRowBackground(Color.clear)
             } else if store.indexFailed {
@@ -215,7 +222,9 @@ struct LibraryReader: View {
     func header(_ book: LibraryBook) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(book.author).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
-            Label("Machine translation", systemImage: "globe").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+            if book.machine {
+                Label("Machine translation", systemImage: "globe").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+            }
             Text(book.license).font(.caption).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
             if let url = book.sourceURL {
                 Link(destination: url) { Text("Source") }.font(.caption.weight(.semibold)).tint(Palette.green)

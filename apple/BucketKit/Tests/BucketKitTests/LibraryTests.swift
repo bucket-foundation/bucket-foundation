@@ -24,6 +24,11 @@ final class LibraryCalls: @unchecked Sendable {
     #expect(fox.sentences == 3)
     #expect(fox.year == 1867)
     #expect(fox.translation == "machine")
+    #expect(fox.version == 1)
+    #expect(fox.updated == "2026-11-12")
+    #expect(index.books[1].version == nil)
+    #expect(index.books[1].updated == nil)
+    #expect(fox.stamp != index.books[1].stamp)
     #expect(fox.title(in: ["es"]) == "La zorra y las uvas")
     #expect(fox.title(in: ["ja"]) == "The Fox and the Grapes")
 }
@@ -36,6 +41,7 @@ final class LibraryCalls: @unchecked Sendable {
         for s in book.sentences { #expect(Set(s.keys) == ["en", "es", "ar"]) }
         #expect(book.sourceURL?.host() == "www.gutenberg.org")
         #expect(book.license.hasPrefix("Public domain"))
+        #expect(book.machine)
     }
 }
 
@@ -88,4 +94,40 @@ final class LibraryCalls: @unchecked Sendable {
     #expect(progress.sentence("north-wind-and-sun") == 1)
     progress.clear("fox-and-grapes")
     #expect(progress.sentence("fox-and-grapes") == 0)
+}
+
+@Test func libraryIndexIsRefetchedAtMostOnceADay() async throws {
+    let dir = libraryCacheDir()
+    defer { try? FileManager.default.removeItem(at: dir) }
+    let calls = LibraryCalls()
+    let index = try libraryFixture("index")
+    let api = LibraryAPI(transport: StubTransport { r in
+        calls.paths.append(r.url!.lastPathComponent)
+        return (200, index)
+    }, cacheDir: dir)
+    #expect(try await api.index().books.count == 2)
+    #expect(try await api.index(now: Date().addingTimeInterval(3_600)).books.count == 2)
+    #expect(calls.paths == ["index.json"])
+    #expect(try await api.index(now: Date().addingTimeInterval(LibraryAPI.indexMaxAge + 60)).books.count == 2)
+    #expect(calls.paths == ["index.json", "index.json"])
+}
+
+@Test func libraryBookIsRefetchedWhenItsStampChanges() async throws {
+    let dir = libraryCacheDir()
+    defer { try? FileManager.default.removeItem(at: dir) }
+    let calls = LibraryCalls()
+    let fox = try libraryFixture("fox-and-grapes")
+    let api = LibraryAPI(transport: StubTransport { r in
+        calls.paths.append(r.url!.lastPathComponent)
+        return (200, fox)
+    }, cacheDir: dir)
+    _ = try await api.book("fox-and-grapes", stamp: "1|2026-11-12")
+    _ = try await api.book("fox-and-grapes", stamp: "1|2026-11-12")
+    #expect(calls.paths.count == 1)
+    _ = try await api.book("fox-and-grapes", stamp: "2|2026-12-01")
+    #expect(calls.paths.count == 2)
+
+    let offline = LibraryAPI(transport: ThrowingTransport(error: URLError(.notConnectedToInternet)), cacheDir: dir)
+    #expect(try await offline.book("fox-and-grapes", stamp: "3|2027-01-01").id == "fox-and-grapes")
+    #expect(offline.savedStamp("fox-and-grapes") == "2|2026-12-01")
 }
