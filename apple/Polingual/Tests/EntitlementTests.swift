@@ -14,6 +14,9 @@ struct EntitlementTests {
         #expect(Entitlement.access([], now: now, beta: true) == .beta)
         #expect(Entitlement.access([record(revoked: true)], now: now, beta: true) == .beta)
         #expect(!Entitlement.access([], now: now).open)
+        #expect(Subscriptions.freeBetaBuild("YES"))
+        #expect(!Subscriptions.freeBetaBuild("NO"))
+        #expect(!Subscriptions.freeBetaBuild(nil))
     }
 
     @Test func introductoryOfferIsTrial() {

@@ -69,8 +69,13 @@ final class Subscriptions {
     }
 
     static func testFlight() async -> Bool {
+        guard freeBetaBuild(Bundle.main.object(forInfoDictionaryKey: "PolingualFreeBeta") as? String) else { return false }
         guard case .verified(let app) = try? await AppTransaction.shared else { return false }
         return app.environment == .sandbox
+    }
+
+    nonisolated static func freeBetaBuild(_ value: String?) -> Bool {
+        value == "YES"
     }
 
     func restore() async {
