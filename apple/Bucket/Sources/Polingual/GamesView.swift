@@ -200,6 +200,7 @@ struct GamesBoard: View {
                     .padding(.top, 60)
             } else {
                 DailyHero(open: { open(.daily) })
+                LobbiesTile()
                 ForEach(groups.groups.compactMap { GroupQuest($0) }, id: \.group.id) { QuestCard(quest: $0) }
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 14)], spacing: 14) {
                     ForEach(GameKind.allCases.filter { $0 != .daily }) { kind in
@@ -479,6 +480,7 @@ extension LangStore {
 
 struct GameEnd: View {
     @Environment(LangStore.self) private var langs
+    @Environment(Account.self) private var account
     let kind: GameKind
     let score: String
     var line: String?
@@ -544,7 +546,9 @@ struct GameEnd: View {
             if let share { share }
             if let shareObject { ShareObjectButton(shareObject, wide: true) }
             if let again { Button("Play again", action: again).buttonStyle(D8Primary(compact: true)) }
+            LearnUpsell()
         }
+        .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }
         .padding()
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)

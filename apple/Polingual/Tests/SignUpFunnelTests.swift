@@ -14,28 +14,14 @@ struct SignUpFunnelTests {
         #expect(!SaveProgress.offer(signedIn: true))
     }
 
-    @Test func saveSheetShowsOnceAccessOpensForSignedOutBuyer() {
-        let trial = Access.trial(until: Date(timeIntervalSince1970: 1_900_000_000))
-        #expect(SaveProgress.shown(pending: true, signedIn: false, access: trial))
-        #expect(SaveProgress.shown(pending: true, signedIn: false, access: .subscribed(productID: Plan.yearly, until: nil)))
-        #expect(!SaveProgress.shown(pending: true, signedIn: true, access: trial))
-        #expect(!SaveProgress.shown(pending: false, signedIn: false, access: trial))
-        #expect(!SaveProgress.shown(pending: true, signedIn: false, access: .locked))
-        #expect(!SaveProgress.shown(pending: true, signedIn: false, access: .checking))
-    }
-}
-
-struct TrialReminderPermissionTests {
-    @Test func trialPurchaseAsksOnlyWhenUndecided() {
-        #expect(TrialReminder.asks(.notDetermined))
-        #expect(!TrialReminder.asks(.denied))
-        #expect(!TrialReminder.asks(.authorized))
-    }
-
-    @Test func reminderSchedulesOnlyWhenAllowed() {
-        #expect(TrialReminder.allowed(.authorized))
-        #expect(TrialReminder.allowed(.provisional))
-        #expect(!TrialReminder.allowed(.denied))
-        #expect(!TrialReminder.allowed(.notDetermined))
+    @MainActor @Test func saveSheetShowsForAnySignedOutPlayerWithAPendingSave() {
+        #expect(SaveProgress.shown(pending: true, signedIn: false))
+        #expect(!SaveProgress.shown(pending: true, signedIn: true))
+        #expect(!SaveProgress.shown(pending: false, signedIn: false))
+        let defaults = UserDefaults(suiteName: "nudge-\(UUID().uuidString)")!
+        SaveNudge.gameEnded(signedIn: true, defaults: defaults)
+        #expect(!defaults.bool(forKey: SaveNudge.key))
+        SaveNudge.gameEnded(signedIn: false, defaults: defaults)
+        #expect(defaults.bool(forKey: SaveNudge.key))
     }
 }

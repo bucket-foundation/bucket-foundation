@@ -7,6 +7,7 @@ function world(over: Partial<DeleteAccountClients> = {}) {
   const clients: DeleteAccountClients = {
     getUser: async (token) => (log.push(`user ${token}`), token === "good" ? { id: "u1", status: null } : { id: null, status: 401 }),
     deleteRows: async (table, id) => (log.push(`rows ${table} ${id}`), { failed: false }),
+    deleteLobbyData: async (id) => (log.push(`lobbies ${id}`), { failed: false }),
     deleteUser: async (id) => (log.push(`auth ${id}`), { status: null }),
     ...over,
   };
@@ -16,7 +17,7 @@ function world(over: Partial<DeleteAccountClients> = {}) {
 test("rows go before the auth user, for the token's own id", async () => {
   const w = world();
   assert.deepEqual(await deleteAccount(w.clients, "good"), { status: null });
-  assert.deepEqual(w.log, ["user good", ...PERSONAL_TABLES.map((t) => `rows ${t} u1`), "auth u1"]);
+  assert.deepEqual(w.log, ["user good", "lobbies u1", ...PERSONAL_TABLES.map((t) => `rows ${t} u1`), "auth u1"]);
 });
 
 test("an unknown token deletes nothing", async () => {
@@ -37,4 +38,10 @@ test("an auth delete failure is reported", async () => {
 
 test("a lookup outage is not reported as a revoked token", async () => {
   assert.deepEqual(await deleteAccount(world({ getUser: async () => ({ id: null, status: 503 }) }).clients, "good"), { status: 503 });
+});
+
+test("a failed lobby delete stops before any other row or the auth user", async () => {
+  const w = world({ deleteLobbyData: async () => ({ failed: true }) });
+  assert.deepEqual(await deleteAccount(w.clients, "good"), { status: 500 });
+  assert.equal(w.log.some((l) => l.startsWith("rows") || l.startsWith("auth")), false);
 });
