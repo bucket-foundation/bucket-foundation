@@ -36,9 +36,9 @@ const checkTranslations = (id: string, book: Book) => {
     return;
   }
   if (JSON.stringify(Object.keys(map)) !== JSON.stringify(LANGS)) fail(`${id}: translations must list the 25 languages in order`);
-  const kinds = new Set(Object.values(map));
+  const kinds = Array.from(new Set(Object.values(map)));
   for (const k of kinds) if (k !== "human" && k !== "machine") fail(`${id}: translations value ${k} must be human or machine`);
-  const want = kinds.size > 1 ? "mixed" : [...kinds][0];
+  const want = kinds.length > 1 ? "mixed" : kinds[0];
   if (book.translation !== want) fail(`${id}: translation is ${book.translation}, translations map says ${want}`);
   const translators = book.translators ?? {};
   for (const [l, name] of Object.entries(translators)) {
