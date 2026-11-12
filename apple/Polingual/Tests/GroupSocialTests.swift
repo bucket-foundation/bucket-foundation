@@ -40,4 +40,17 @@ struct GroupSocialTests {
         #expect(page.url.absoluteString == "https://www.polingual.com/s/g?c=AAAAAAAAAA&n=Club&k=friends")
         #expect(SharedLink(page.url) == .group("AAAAAAAAAA"))
     }
+
+    func item(_ n: Int) -> SharedItem { SharedItem(id: "i\(n)", groupId: "g", from: "u2", fromName: "Romina", kind: .text, text: "note \(n)", at: "2026-11-0\(n)", mine: false) }
+
+    @Test func groupPagePreviewsTheLatestSharedItems() {
+        let list = (1...5).map(item)
+        #expect(sharedPreview(list, limit: SharedItemsSection.preview).map(\.id) == ["i1", "i2", "i3"])
+        #expect(sharedPreview(Array(list.prefix(2)), limit: SharedItemsSection.preview).count == 2)
+    }
+
+    @Test func seeAllListsEverySharedItem() {
+        let list = (1...5).map(item)
+        #expect(sharedPreview(list, limit: nil) == list)
+    }
 }
