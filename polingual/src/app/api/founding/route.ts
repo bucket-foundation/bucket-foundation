@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(): Promise<NextResponse> {
   const spots = await fetchSpots(process.env);
-  return NextResponse.json(spots ? { ...spots, siteKey: process.env.TURNSTILE_SITE_KEY?.trim() } : { error: "offline" }, { status: spots ? 200 : 503, headers: { "cache-control": spots ? "s-maxage=30" : "no-store" } });
+  return NextResponse.json(spots ? { ...spots, siteKey: process.env.TURNSTILE_SITE_KEY?.trim() } : { open: false }, { headers: { "cache-control": spots ? "s-maxage=30" : "no-store" } });
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {

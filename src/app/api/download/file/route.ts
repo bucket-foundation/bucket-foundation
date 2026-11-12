@@ -24,9 +24,15 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   if (!artifact || !marks || !store) return text("Download not published yet.", 503);
   try {
     if (!(await store.read(link.key))) return text("This link has expired. Request a new one at /download.", 410);
-    if (!(await redeemLink(marks, link.sig, now))) return text("This link was used. Request a new one at /download.", 410);
-    const res = await get(artifact, { access: "private", useCache: false });
-    if (!res || res.statusCode !== 200) return text("Download not published yet.", 503);
+    const res = await get(artifact, { access: "private", useCache: false }).catch((err: unknown) => {
+      console.error("[download] artifact unavailable:", err instanceof Error ? err.message : err);
+      return null;
+    });
+    if (!res || res.statusCode !== 200) return text("Downloads are paused for a moment. Your link still works, so try it again later.", 503);
+    if (!(await redeemLink(marks, link.sig, now))) {
+      await res.stream.cancel().catch(() => undefined);
+      return text("This link was used. Request a new one at /download.", 410);
+    }
     const name = artifact.split("/").pop() ?? "bucket";
     return new NextResponse(res.stream, {
       headers: {
