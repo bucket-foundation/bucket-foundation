@@ -32,6 +32,7 @@ struct PolingualRoot: View {
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .groupInvites()
         .groupsOnToday()
+        .memberNamePrompt()
         .ageRangePrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn, access: subs.access) }, set: { if !$0 { savePending = false } })) {

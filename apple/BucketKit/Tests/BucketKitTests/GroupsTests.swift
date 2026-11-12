@@ -388,6 +388,38 @@ func body(_ r: URLRequest) -> [String: String] {
         #expect(store.group("g1")?.goal == nil)
     }
 
+    @Test func renameSendsTheNameAndUpdatesMyRows() async throws {
+        var raw = groupJSON
+        raw["cheers"] = [["id": "c2", "from": "u1", "fromName": "Gia", "to": "u2", "kind": "cheer", "at": "2026-10-28T09:30:00Z", "seen": false]]
+        let listed = json(["groups": [raw]])
+        let sent = LockedBox<[String: String]>([:])
+        let api = BucketAPI(transport: StubTransport { r in
+            switch r.url!.path {
+            case "/api/academy/groups/name":
+                sent.mutate { $0 = body(r) }
+                return (200, json(["displayName": "Gianna", "groups": 1]))
+            default: return (200, listed)
+            }
+        }, cacheDir: nil)
+        let store = GroupStore(api: api, token: { "tok" })
+        await store.load()
+        #expect(try await store.rename(displayName: "Gianna") == "Gianna")
+        #expect(sent.value == ["displayName": "Gianna"])
+        #expect(store.me?.name == "Gianna")
+        #expect(store.group("g1")?.members.first { !$0.isMe }?.name == "Nonna")
+        #expect(store.group("g1")?.cheers.first?.fromName == "Gianna")
+    }
+
+    @Test func renameRefusalKeepsTheOldName() async throws {
+        let api = BucketAPI(transport: StubTransport { r in
+            r.url!.path == "/api/academy/groups/name" ? (422, json(["error": "name_not_allowed"])) : (200, json(["groups": [groupJSON]]))
+        }, cacheDir: nil)
+        let store = GroupStore(api: api, token: { "tok" })
+        await store.load()
+        await #expect(throws: BucketError.self) { try await store.rename(displayName: "x") }
+        #expect(store.me?.name == "Gia")
+    }
+
     @Test func refusalLeavesTheListAndThrows() async {
         let store = GroupStore(api: BucketAPI(transport: StubTransport { _ in (409, json(["error": "group_full"])) }, cacheDir: nil), token: { "tok" })
         await #expect(throws: BucketError.groupFull) { try await store.join(code: "7K3M9QX2PD", displayName: "Gia") }

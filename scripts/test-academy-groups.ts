@@ -28,6 +28,7 @@ import {
   missingTable,
   joinBlocked,
   joinDecision,
+  renameInput,
   memberSummary,
   normalizeDisplayName,
   normalizeGroupName,
@@ -497,4 +498,19 @@ test("nameAllowed keeps ordinary names", () => {
   for (const name of ["Rossi family", "Scunthorpe United", "Bass Players", "Niger Friends", "Cassandra", "Dick Van Dyke", "Essex crew", "Nonna Lucia", "Hannah", "Pushkin readers", "Associates", "José", "田中"]) {
     assert.equal(nameAllowed(name), true, name);
   }
+});
+
+test("renameInput trims the name and applies the name filter", () => {
+  assert.equal(renameInput({ displayName: "  Nonna   Lucia " }), "Nonna Lucia");
+  assert.equal(renameInput({ displayName: "sh1t head" }), "name_not_allowed");
+  assert.equal(renameInput({ displayName: "   " }), "bad_request");
+  assert.equal(renameInput({ displayName: "a".repeat(41) }), "bad_request");
+  assert.equal(renameInput({ displayName: 7 }), "bad_request");
+  assert.equal(renameInput(null), "bad_request");
+});
+
+test("the name route updates only the caller's member rows", () => {
+  const src = readFileSync(join(process.cwd(), "src/app/api/academy/groups/name/route.ts"), "utf8");
+  assert.match(src, /from\(MEMBERS\)\.update\(\{ display_name: displayName \}\)\.eq\("user_id", uid\)/);
+  assert.match(src, /requestUser\(req\)/);
 });

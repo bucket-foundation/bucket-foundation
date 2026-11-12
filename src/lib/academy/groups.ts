@@ -1,4 +1,5 @@
 import { dayKey } from "./engine";
+import { nameAllowed } from "./groups-names";
 import { memoryState, normalizeMemory } from "./lang-memory";
 import { normalizeSystemsDoc, parseCardId } from "./lang-systems";
 import { masteryFromStability, MASTERED_THRESHOLD, retrievability, rollupBranch, type Corpus, type CorpusAtom, type StoredCard, type StoredEngineState } from "./mastery";
@@ -193,6 +194,12 @@ export function normalizeGroupName(input: unknown): string | null {
 
 export function normalizeDisplayName(input: unknown): string | null {
   return cleanText(input, 40);
+}
+
+export function renameInput(body: Record<string, unknown> | null): string | "bad_request" | "name_not_allowed" {
+  const name = normalizeDisplayName(body?.displayName);
+  if (!name) return "bad_request";
+  return nameAllowed(name) ? name : "name_not_allowed";
 }
 
 export function normalizeKind(input: unknown): GroupKind | null {

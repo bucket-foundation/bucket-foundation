@@ -481,6 +481,7 @@ struct GroupReply: Decodable { let group: LearningGroup }
 struct GroupsReply: Decodable { let groups: [LearningGroup] }
 struct CheerReply: Decodable { let cheer: Cheer }
 struct GoalReply: Decodable { let goal: GroupGoal? }
+struct RenameReply: Decodable { let displayName: String }
 struct BlocksReply: Decodable { let blocks: [GroupBlock] }
 struct RotateReply: Decodable {
     let code: String?
@@ -501,6 +502,11 @@ extension BucketAPI {
     public func joinGroup(token: String, code: String, displayName: String) async throws -> LearningGroup {
         let r: GroupReply = try await groupCall("api/academy/groups/join", token: token, body: ["code": .text(code), "displayName": .text(displayName)])
         return r.group
+    }
+
+    public func renameMember(token: String, displayName: String) async throws -> String {
+        let r: RenameReply = try await groupCall("api/academy/groups/name", token: token, body: ["displayName": .text(displayName)])
+        return r.displayName
     }
 
     public func leaveGroup(token: String, groupId: String) async throws {
@@ -684,6 +690,18 @@ public final class GroupStore {
     @discardableResult
     public func join(code: String, displayName: String) async throws(BucketError) -> LearningGroup {
         upsert(try await run { try await self.api.joinGroup(token: $0, code: code, displayName: displayName) })
+    }
+
+    @discardableResult
+    public func rename(displayName: String) async throws(BucketError) -> String {
+        let name = try await run { try await self.api.renameMember(token: $0, displayName: displayName) }
+        for i in groups.indices {
+            guard let me = groups[i].me?.userId else { continue }
+            for j in groups[i].members.indices where groups[i].members[j].isMe { groups[i].members[j].name = name }
+            for j in groups[i].cheers.indices where groups[i].cheers[j].from == me { groups[i].cheers[j].fromName = name }
+        }
+        publishTargets(donate: false)
+        return name
     }
 
     public func leave(_ groupId: String) async throws(BucketError) {
