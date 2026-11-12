@@ -14,7 +14,7 @@ import { savedNickname, usePlay } from "./usePlay";
 const POLL_MS = 1000;
 const TICK_MS = 200;
 
-type Picked = { round: number; choice: string; correct: boolean; points: number };
+type Picked = { round: number; choice: string; correct: boolean; points: number; pending?: boolean };
 
 function errorOf(err: unknown): string {
   return lobbyError(err instanceof LobbyError ? err.code : undefined);
@@ -132,13 +132,14 @@ export default function Room({ code: rawCode }: { code: string }) {
 
   const answer = async (round: number, choice: string) => {
     if (picked?.round === round || answeredRound(lobby, round)) return;
-    setPicked({ round, choice, correct: false, points: 0 });
+    setPicked({ round, choice, correct: false, points: 0, pending: true });
     const sentAt = Date.now();
     try {
       const res = await api.answer(lobby.id, round, choice);
       setPicked({ round, choice, correct: res.correct, points: res.points });
       take(res.lobby, sentAt);
     } catch (err) {
+      if (!(err instanceof LobbyError && err.code === "already_answered")) setPicked((p) => (p?.round === round ? null : p));
       setError(errorOf(err));
     }
   };
@@ -274,7 +275,7 @@ export default function Room({ code: rawCode }: { code: string }) {
             <ul className={styles.choices}>
               {prompt.choices.map((c) => (
                 <li key={c}>
-                  <button type="button" className={styles.choice} data-state={mine ? (mine.choice === c ? (mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                  <button type="button" className={styles.choice} data-state={mine ? (mine.choice === c ? (mine.pending ? "pending" : mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
                     {prompt.mode === "flag" ? langName(c) : c}
                   </button>
                 </li>

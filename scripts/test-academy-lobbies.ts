@@ -4,6 +4,8 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   answerDecision,
+  hostedSince,
+  OPEN_WINDOW_MS,
   assembleLobby,
   buildPrompts,
   seededRandom,
@@ -248,4 +250,8 @@ test("guest tokens sign a stable user id and refuse tampering or expiry", async 
   assert.equal(g.normalizeGuestId("ok_guest-id-1234567"), "ok_guest-id-1234567");
   assert.equal(g.bearer("Bearer abc"), "abc");
   assert.equal(g.bearer(null), null);
+});
+
+test("the host limit looks back over the open window only", () => {
+  assert.equal(hostedSince(Date.parse("2026-11-12T12:00:00Z")), new Date(Date.parse("2026-11-12T12:00:00Z") - OPEN_WINDOW_MS).toISOString());
 });

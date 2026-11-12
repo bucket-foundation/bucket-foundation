@@ -330,6 +330,10 @@ export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number 
     });
 }
 
+export function hostedSince(now: number): string {
+  return new Date(now - OPEN_WINDOW_MS).toISOString();
+}
+
 export function seenDue(lastSeen: string, now: number): boolean {
   return now - Date.parse(lastSeen) >= SEEN_EVERY_MS;
 }

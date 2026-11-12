@@ -351,7 +351,13 @@ public final class LobbyStore {
     public func pick(_ choice: String, round: Int) async -> Bool? {
         guard let id = current?.id, picks[round] == nil, let t = await anyToken() else { return nil }
         picks[round] = choice
-        guard let r = try? await api.answer(token: t, lobbyId: id, round: round, choice: choice) else { return nil }
+        let r: (correct: Bool, lobby: Lobby)
+        do {
+            r = try await api.answer(token: t, lobbyId: id, round: round, choice: choice)
+        } catch {
+            if (error as? BucketError) != .server(409, "already_answered") { picks[round] = nil }
+            return nil
+        }
         marks[round] = r.correct
         apply(r.lobby)
         return r.correct

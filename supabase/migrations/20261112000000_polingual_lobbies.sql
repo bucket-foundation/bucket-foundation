@@ -76,12 +76,14 @@ create table if not exists bucket.lobby_limits (
   primary key (bucket_key, minute)
 );
 
+create index if not exists lobby_limits_minute_idx on bucket.lobby_limits (minute);
+
 create or replace function bucket.lobby_take(p_key text, p_limit int)
 returns boolean language plpgsql security definer set search_path = bucket, pg_temp as $$
 declare
   n int;
 begin
-  delete from bucket.lobby_limits where bucket_key = p_key and minute < date_trunc('minute', clock_timestamp());
+  delete from bucket.lobby_limits where minute < date_trunc('minute', clock_timestamp());
   insert into bucket.lobby_limits (bucket_key, minute, hits)
   values (p_key, date_trunc('minute', clock_timestamp()), 1)
   on conflict (bucket_key, minute) do update set hits = bucket.lobby_limits.hits + 1
@@ -227,3 +229,22 @@ begin
 end $$;
 
 revoke execute on function bucket.merge_lobby_guest(uuid, uuid) from public, anon, authenticated;
+
+create or replace function bucket.delete_lobby_user(p_user uuid)
+returns int language plpgsql security definer set search_path = bucket as $$
+declare
+  v_lobby uuid;
+  n int := 0;
+begin
+  for v_lobby in select lobby_id from bucket.lobby_players where user_id = p_user loop
+    perform bucket.leave_lobby(v_lobby, p_user);
+    n := n + 1;
+  end loop;
+  delete from bucket.lobby_messages where user_id = p_user;
+  delete from bucket.lobby_answers where user_id = p_user;
+  delete from bucket.lobbies where host_id = p_user;
+  delete from bucket.lobby_limits where bucket_key like '%:' || p_user::text;
+  return n;
+end $$;
+
+revoke execute on function bucket.delete_lobby_user(uuid) from public, anon, authenticated;

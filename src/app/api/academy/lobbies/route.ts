@@ -3,7 +3,7 @@ import { json, preflight } from "@/lib/academy/groups-server";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import { normalizeDisplayName } from "@/lib/academy/groups";
 import { blocksTouching, clientIp, NAME_NOT_ALLOWED, service } from "@/lib/academy/groups-server";
-import { CREATE_PER_MINUTE, generateSeed, MAX_HOSTED, normalizeLobbyConfig, OPEN_WINDOW_MS, openLobbies } from "@/lib/academy/lobbies";
+import { CREATE_PER_MINUTE, generateSeed, hostedSince, MAX_HOSTED, normalizeLobbyConfig, OPEN_WINDOW_MS, openLobbies } from "@/lib/academy/lobbies";
 import { addPlayer, authed, limited, checkLobby, insertLobby, LOBBIES, lobbyFail, lobbyState, openRows } from "@/lib/academy/lobbies-server";
 
 export const runtime = "nodejs";
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!nameAllowed(displayName) || !nameAllowed(config.name)) return json({ error: NAME_NOT_ALLOWED }, 422);
   try {
     if ((await limited(`create:user:${a.uid}`, CREATE_PER_MINUTE)) || (await limited(`create:ip:${clientIp(req)}`, CREATE_PER_MINUTE * 3))) return json({ error: "rate_limited" }, 429);
-    const hosted = checkLobby(await service().from(LOBBIES).select("id").eq("host_id", a.uid).neq("status", "done"), "hosted") as unknown[];
+    const hosted = checkLobby(await service().from(LOBBIES).select("id").eq("host_id", a.uid).neq("status", "done").gte("created_at", hostedSince(Date.now())), "hosted") as unknown[];
     if (hosted.length >= MAX_HOSTED) return json({ error: "hosted_limit" }, 409);
     const lobby = await insertLobby({ host_id: a.uid, name: config.name, game: config.game, root: config.root, targets: config.targets, seed: generateSeed(), listed: config.listed, rounds: config.rounds, round_seconds: config.roundSeconds });
     try {
