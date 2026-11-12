@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { claimFounding, fetchSpots } from "@/lib/founding";
+import { claimFounding, foundingStatus } from "@/lib/founding";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(): Promise<NextResponse> {
-  const spots = await fetchSpots(process.env);
-  return NextResponse.json(spots ? { ...spots, siteKey: process.env.TURNSTILE_SITE_KEY?.trim() } : { open: false }, { headers: { "cache-control": spots ? "s-maxage=30" : "no-store" } });
+  const status = await foundingStatus(process.env);
+  return NextResponse.json(status.body, { headers: { "cache-control": status.cache } });
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {

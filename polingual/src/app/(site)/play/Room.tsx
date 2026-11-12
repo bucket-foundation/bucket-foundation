@@ -315,7 +315,9 @@ export default function Room({ code: rawCode }: { code: string }) {
       ) : null}
       <section className={styles.upsell} data-testid="learn-upsell">
         <b>Learn the words you missed</b>
-        {missed.length ? (
+        {lobby.status !== "done" ? (
+          <p className={app.small} aria-busy="true" data-testid="missed-loading">Counting your answers</p>
+        ) : missed.length ? (
           <ul className={styles.missed}>
             {missed.map((w) => (
               <li key={w}>{w}</li>
