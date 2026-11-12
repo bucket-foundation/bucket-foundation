@@ -591,7 +591,9 @@ extension BucketAPI {
         case (422, "name_not_allowed"): return .nameNotAllowed
         case (422, "text_not_allowed"): return .textNotAllowed
         case (429, "share_limit"): return .shareLimit
+        case (413, "too_long"), (413, "audio_too_large"): return .voiceTooLong
         case (413, _): return .imageTooLarge
+        case (503, "translate_unavailable"): return .translateUnavailable
         case (429, _): return .rateLimited(body["message"])
         default: return .server(status, body["message"] ?? body["error"])
         }
@@ -616,6 +618,7 @@ public final class GroupStore {
     @ObservationIgnored var inFlight: Task<Void, Never>?
     @ObservationIgnored public var donor: ShareDonor?
     @ObservationIgnored public var imageScreen: ImageScreen?
+    @ObservationIgnored public var viewerLang: String = VoiceNote.appLang()
 
     public init(api: BucketAPI, token: @escaping @MainActor () async -> String?) {
         self.api = api
@@ -780,7 +783,22 @@ public final class GroupStore {
 
     public func loadItems(_ groupId: String) async {
         guard let t = await token() else { return }
-        if let list = try? await api.sharedItems(token: t, groupId: groupId) { items[groupId] = list }
+        if let list = try? await api.sharedItems(token: t, groupId: groupId, lang: viewerLang) { items[groupId] = list }
+    }
+
+    @discardableResult
+    public func sendVoice(_ note: VoiceNote, to groupId: String) async throws(BucketError) -> SharedItem {
+        let item = try await run { try await self.api.sendVoiceNote(token: $0, groupId: groupId, note: note) }
+        items[groupId, default: []].insert(item, at: 0)
+        return item
+    }
+
+    public func translate(_ item: SharedItem) async throws(BucketError) {
+        guard item.kind == .voice, item.translation == nil, item.text != nil else { return }
+        let lang = viewerLang
+        let text = try await run { try await self.api.translateVoice(token: $0, itemId: item.id, lang: lang) }
+        guard let i = items[item.groupId]?.firstIndex(where: { $0.id == item.id }) else { return }
+        items[item.groupId]?[i].translation = text
     }
 
     @discardableResult

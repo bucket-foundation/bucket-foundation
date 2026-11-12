@@ -14,6 +14,7 @@ struct SharedItemsSection: View {
 
     var body: some View {
         Section {
+            VoiceNoteComposer(group: group)
             if list.isEmpty {
                 Text("Tap Share in any app and pick \(group.name) to send a link, a photo or a note here.")
                     .font(.callout)
@@ -23,6 +24,7 @@ struct SharedItemsSection: View {
                 SharedItemRow(item: item, to: recipient(item))
                     .swipeActions { actions(item) }
                     .contextMenu { actions(item) }
+                    .accessibilityActions { actions(item) }
             }
         } header: {
             Eyebrow(text: "Shared")
@@ -62,12 +64,13 @@ struct SharedItemsSection: View {
 
     @ViewBuilder
     func actions(_ item: SharedItem) -> some View {
-        if item.mine || group.isOwner {
-            Button("Remove", systemImage: "trash", role: .destructive) { removing = item }
-        }
-        if !item.mine {
-            Button("Report", systemImage: "flag") { reporting = item }.tint(Palette.muted)
-            if let m = group.members.first(where: { $0.userId == item.from }) {
+        ForEach(Array(item.actions(in: group).enumerated()), id: \.offset) { _, action in
+            switch action {
+            case .remove:
+                Button("Remove", systemImage: "trash", role: .destructive) { removing = item }
+            case .report:
+                Button("Report", systemImage: "flag") { reporting = item }.tint(Palette.muted)
+            case .block(let m):
                 Button("Block", systemImage: "hand.raised") { blocking = ModerationTarget(member: m, groupId: group.id) }.tint(D8.vermilion)
             }
         }
@@ -96,6 +99,7 @@ func shareMessage(_ e: BucketError) -> String {
     case .textNotAllowed: String(localized: "That text is not allowed. Try other words.")
     case .imageTooLarge: String(localized: "That image is too large to share.")
     case .imageNotAllowed: String(localized: "This image may be sensitive, so it was not sent.")
+    case .voiceTooLong: String(localized: "Voice notes can be up to 60 seconds.")
     default: groupMessage(e) ?? String(localized: "Something went wrong. Try again.")
     }
 }
@@ -135,9 +139,11 @@ struct SharedItemRow: View {
                 .frame(maxHeight: 220)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 if let text = item.text { Text(text).font(.callout) }
+            case .voice:
+                VoiceNoteBody(item: item)
             }
         }
         .padding(.vertical, 2)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: item.kind == .voice ? .contain : .combine)
     }
 }

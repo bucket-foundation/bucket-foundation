@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { nameAllowed } from "./groups-names";
 import type { MemberRow } from "./groups";
 
-export type ShareKind = "url" | "text" | "image";
+export type ShareKind = "url" | "text" | "image" | "voice";
 
 export interface SharedItemRow {
   id: string;
@@ -13,6 +13,10 @@ export interface SharedItemRow {
   url: string | null;
   body: string | null;
   image_path: string | null;
+  audio_path?: string | null;
+  duration_ms?: number | null;
+  lang?: string | null;
+  translations?: Record<string, string> | null;
   created_at: string;
   held_at: string | null;
   removed_at: string | null;
@@ -28,6 +32,10 @@ export interface SharedItem {
   url: string | null;
   text: string | null;
   imageUrl: string | null;
+  audioUrl?: string | null;
+  durationMs?: number | null;
+  lang?: string | null;
+  translation?: string | null;
   at: string;
   mine: boolean;
 }
@@ -46,7 +54,7 @@ export const MAX_SHARE_TEXT = 1000;
 export const MAX_SHARE_URL = 2048;
 export const MAX_SHARE_IMAGE = 1_572_864;
 export const SHARE_BUCKET = "group-shares";
-export const SHARE_ITEM_COLS = "id,group_id,sender_id,recipient_id,kind,url,body,image_path,created_at,held_at,removed_at";
+export const SHARE_ITEM_COLS = "id,group_id,sender_id,recipient_id,kind,url,body,image_path,audio_path,duration_ms,lang,translations,created_at,held_at,removed_at";
 
 function cleanText(input: unknown): string | null | undefined {
   if (input === undefined || input === null) return null;
@@ -116,12 +124,18 @@ export function imagePath(groupId: string, itemKey: string): string {
   return `${groupId}/${itemKey}.jpg`;
 }
 
-export function visibleItems(rows: readonly SharedItemRow[], me: string, hidden: ReadonlySet<string>, reported: ReadonlySet<string>): SharedItemRow[] {
-  return rows.filter((r) => !r.removed_at && !r.held_at && !hidden.has(r.sender_id) && !reported.has(r.id) && (r.recipient_id === null || r.recipient_id === me || r.sender_id === me));
+export function visibleItems(rows: readonly SharedItemRow[], me: string, hidden: ReadonlySet<string>, reported: ReadonlySet<string>, voice = true): SharedItemRow[] {
+  return rows.filter((r) => (voice || r.kind !== "voice") && !r.removed_at && !r.held_at && !hidden.has(r.sender_id) && !reported.has(r.id) && (r.recipient_id === null || r.recipient_id === me || r.sender_id === me));
 }
 
-export function toSharedItem(row: SharedItemRow, members: readonly MemberRow[], me: string, imageUrl: string | null = null): SharedItem {
-  return {
+export interface ItemMedia {
+  imageUrl?: string | null;
+  audioUrl?: string | null;
+  viewerLang?: string | null;
+}
+
+export function toSharedItem(row: SharedItemRow, members: readonly MemberRow[], me: string, m: ItemMedia = {}): SharedItem {
+  const base: SharedItem = {
     id: row.id,
     groupId: row.group_id,
     from: row.sender_id,
@@ -130,10 +144,18 @@ export function toSharedItem(row: SharedItemRow, members: readonly MemberRow[], 
     kind: row.kind,
     url: row.url,
     text: row.body,
-    imageUrl,
+    imageUrl: m.imageUrl ?? null,
     at: row.created_at,
     mine: row.sender_id === me,
   };
+  if (row.kind !== "voice") return base;
+  return { ...base, audioUrl: m.audioUrl ?? null, durationMs: row.duration_ms ?? null, lang: row.lang ?? null, translation: cachedTranslation(row, m.viewerLang ?? null) };
+}
+
+export function cachedTranslation(row: SharedItemRow, lang: string | null): string | null {
+  if (!lang || !row.body) return null;
+  if (lang === row.lang) return row.body;
+  return row.translations?.[lang] ?? null;
 }
 
 export function shareRpcError(message: string | undefined): { error: string; status: number } | null {
