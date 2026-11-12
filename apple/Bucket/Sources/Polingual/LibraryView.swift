@@ -39,8 +39,9 @@ final class LibraryStore {
 
     #if DEBUG
     static func fixture<T: Decodable>(_ name: String) -> T? {
-        guard LibraryAPI.validId(name), let url = Bundle.main.url(forResource: name, withExtension: "json", subdirectory: "library"),
-              let data = try? Data(contentsOf: url) else { return nil }
+        guard LibraryAPI.validId(name) else { return nil }
+        let url = URL(fileURLWithPath: #filePath).deletingLastPathComponent().appending(path: "../../../BucketKit/Tests/BucketKitTests/Fixtures/library/\(name).json")
+        guard let data = try? Data(contentsOf: url.standardized) else { return nil }
         return try? JSONDecoder().decode(T.self, from: data)
     }
     #endif
