@@ -1,0 +1,177 @@
+{
+  "rng": [
+    "7575888327",
+    "8070950887952051652",
+    "13931920357059763743",
+    "8698583309276795107"
+  ],
+  "zero": "15860402102123842989",
+  "hash": [
+    "14695981039346656037",
+    "2074720953198376243",
+    "16034079580653515509"
+  ],
+  "mixed": "9,6,4,0,8,1,5,3,2,7",
+  "cases": [
+    {
+      "game": "daily",
+      "root": "en",
+      "targets": [
+        "es"
+      ],
+      "seed": "12345678901234567",
+      "rounds": 8,
+      "prompts": [
+        "0\tform\t0\tes\tdrink\tbeber\tbeber\tabeja|bailar|cerrar|beber",
+        "1\tform\t0\tes\tone\tuno\tuno\tpan|uno|nueve|cinco",
+        "2\tform\t0\tes\teight\tocho\tocho\tocho|gato|malo|oso",
+        "3\tform\t0\tes\thusband\tmarido\tmarido\tcerrar|marido|pájaro|limpio",
+        "4\tform\t0\tes\tclean\tlimpio\tlimpio\tnúmero|limpio|pierna|grande",
+        "5\tform\t0\tes\tdance\tbailar\tbailar\tvenir|cerrar|bailar|morir",
+        "6\tform\t0\tes\tbear\toso\toso\toso|pájaro|uno|hija",
+        "7\tform\t0\tes\tfive\tcinco\tcinco\tcomer|cien|uno|cinco"
+      ]
+    },
+    {
+      "game": "daily",
+      "root": "en",
+      "targets": [
+        "fr",
+        "es",
+        "it"
+      ],
+      "seed": "42",
+      "rounds": 10,
+      "prompts": [
+        "0\tform\t0\tes\tbad\tmalo\tmalo\tgrande|malo|hermoso|café",
+        "1\tform\t0\tfr\tdirty\tsale\tsale\tsale|père|brun|mauvais",
+        "2\tform\t0\tit\tcheese\tformaggio\tformaggio\tformaggio|frutto|braccio|birra",
+        "3\tform\t0\tes\tdance\tbailar\tbailar\tcomer|marrón|encontrar|bailar",
+        "4\tform\t0\tfr\tapple\tpomme\tpomme\tbière|fromage|pomme|vache",
+        "5\tform\t0\tit\tbaby\tneonato\tneonato\tfiglia|neonato|cuocere|braccio",
+        "6\tform\t0\tes\teat\tcomer\tcomer\tcomer|bailar|beber|queso",
+        "7\tform\t0\tfr\tfour\tquatre\tquatre\tmourir|manger|quatre|cent",
+        "8\tform\t0\tit\tbread\tpane\tpane\tfrutto|nero|metà|pane",
+        "9\tform\t0\tes\tbone\thueso\thueso\thueso|padre|espalda|comer"
+      ]
+    },
+    {
+      "game": "daily",
+      "root": "es",
+      "targets": [
+        "de",
+        "ja"
+      ],
+      "seed": "18446744073709551615",
+      "rounds": 6,
+      "prompts": [
+        "0\tform\t0\tde\tdie\tsterben\tsterben\tsterben|weinen|essen|hundert",
+        "1\tform\t0\tja\tbread\tパン\tパン\t悪い|パン|買う|兄弟",
+        "2\tform\t0\tde\tcat\tKatze\tKatze\tKatze|braun|Kuh|Kaffee",
+        "3\tform\t0\tja\thusband\t夫\t夫\t猫|友達|兄弟|夫",
+        "4\tform\t0\tde\tcheese\tKäse\tKäse\tBrot|Käse|Frucht|Kind",
+        "5\tform\t0\tja\tcoffee\tコーヒー\tコーヒー\t大きい|パン|料理する|コーヒー"
+      ]
+    },
+    {
+      "game": "daily",
+      "root": "en",
+      "targets": [
+        "zh",
+        "ar"
+      ],
+      "seed": "not-a-number",
+      "rounds": 5,
+      "prompts": [
+        "0\tform\t0\tar\tcoffee\tقَهْوَة\tقَهْوَة\tقَهْوَة|عَسَل|خُبْز|أَزْرَق",
+        "1\tform\t0\tzh\tapple\t苹果\t苹果\t背部|骨头|啤酒|苹果",
+        "2\tform\t0\tar\tbrother\tأَخ\tأَخ\tظَهْر|أَخ|أَب|زَوْج",
+        "3\tform\t0\tzh\tbrown\t棕色\t棕色\t棕色|背部|色|蓝",
+        "4\tform\t0\tar\teight\tثَمَانِيَة\tثَمَانِيَة\tتِسْعَة|مَلَابِس|ثَمَانِيَة|بُرْتُقَالِيّ"
+      ]
+    },
+    {
+      "game": "same-word",
+      "root": "en",
+      "targets": [
+        "es",
+        "it",
+        "fr"
+      ],
+      "seed": "777",
+      "rounds": 12,
+      "prompts": [
+        "0\tform\t0\tes\teight\tocho\tocho\tmitad|ocho|otto|bebé",
+        "1\tform\t0\tit\teight\totto\totto\totto|pane|ocho|orso",
+        "2\tform\t0\tfr\teight\thuit\thuit\tun|ocho|huit|noir",
+        "3\tform\t1\tes\tfive\tcinco\tcinco\tuno|cinco|abeja|cinque",
+        "4\tform\t1\tit\tfive\tcinque\tcinque\tcinque|grande|venire|cinco",
+        "5\tform\t1\tfr\tfive\tcinq\tcinq\tcinq|cinco|beau|café",
+        "6\tform\t2\tes\tfour\tcuatro\tcuatro\tnueve|quattro|cerrar|cuatro",
+        "7\tform\t2\tit\tfour\tquattro\tquattro\tcuatro|metà|otto|quattro",
+        "8\tform\t2\tfr\tfour\tquatre\tquatre\tcuatro|huit|enfant|quatre",
+        "9\tform\t3\tes\thalf\tmitad\tmitad\tqueso|mitad|abeja|metà",
+        "10\tform\t3\tit\thalf\tmetà\tmetà\tmetà|bello|uomo|mitad",
+        "11\tform\t3\tfr\thalf\tmoitié\tmoitié\tmitad|cinq|quatre|moitié"
+      ]
+    },
+    {
+      "game": "same-word",
+      "root": "en",
+      "targets": [
+        "de",
+        "sv"
+      ],
+      "seed": "9001",
+      "rounds": 8,
+      "prompts": [
+        "0\tform\t0\tde\teight\tacht\tacht\tåtta|vier|Zahl|acht",
+        "1\tform\t0\tsv\teight\tåtta\tåtta\tbror|smör|åtta|acht",
+        "2\tform\t1\tde\tfive\tfünf\tfünf\tfünf|Huhn|Bier|fem",
+        "3\tform\t1\tsv\tfive\tfem\tfem\tnio|ett|fünf|fem",
+        "4\tform\t2\tde\tfour\tvier\tvier\tfyra|Kind|vier|Hälfte",
+        "5\tform\t2\tsv\tfour\tfyra\tfyra\tfyra|nio|fågel|vier",
+        "6\tform\t3\tde\thalf\tHälfte\tHälfte\tKaffee|eins|Hälfte|hälft",
+        "7\tform\t3\tsv\thalf\thälft\thälft\thälft|Hälfte|kaffe|fyra"
+      ]
+    },
+    {
+      "game": "flags",
+      "root": "en",
+      "targets": [
+        "es",
+        "pt",
+        "ru"
+      ],
+      "seed": "31337",
+      "rounds": 8,
+      "prompts": [
+        "0\tflag\t0\tes\tleg\tpierna\tes\tpt|vi|nl|es",
+        "1\tflag\t0\tpt\tdrink\tbeber\tpt\tfr|pt|en|nl",
+        "2\tflag\t0\tru\tcow\tкорова\tru\tpt|el|ru|es",
+        "3\tflag\t0\tes\tbeer\tcerveza\tes\tpt|es|cs|en",
+        "4\tflag\t0\tpt\tman\thomem\tpt\tes|fi|pl|pt",
+        "5\tflag\t0\tru\tcry\tплакать\tru\tru|es|pt|el",
+        "6\tflag\t0\tes\tnine\tnueve\tes\tde|fr|es|pt",
+        "7\tflag\t0\tpt\tbee\tabelha\tpt\tsv|es|pt|it"
+      ]
+    },
+    {
+      "game": "flags",
+      "root": "en",
+      "targets": [
+        "ja"
+      ],
+      "seed": "5",
+      "rounds": 6,
+      "prompts": [
+        "0\tflag\t0\tja\tfruit\t果実\tja\tko|zh|ja",
+        "1\tflag\t0\tja\tbutter\tバター\tja\tko|zh|ja",
+        "2\tflag\t0\tja\tclothes\t衣服\tja\tit|ko|ar|ja",
+        "3\tflag\t0\tja\tbone\t骨\tja\tja|zh|ko",
+        "4\tflag\t0\tja\tapple\tりんご\tja\tko|zh|ja",
+        "5\tflag\t0\tja\thoney\t蜂蜜\tja\tko|it|ja|th"
+      ]
+    }
+  ]
+}
