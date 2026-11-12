@@ -124,7 +124,7 @@ async function answerBots(lobby: LobbyRow, players: LobbyPlayerRow[], now: numbe
     const key = `${lobby.id}:${lobby.started_at}:${round.index}:${bot.user_id}`;
     const plan = planAnswer((bot.skill as BotSkill) ?? byId.get(bot.user_id)?.skill ?? "medium", key, lobby.round_seconds);
     if (!plan.answers || elapsed < plan.atMs) continue;
-    await submitAnswer(lobby, bot.user_id, round.index, botChoice(prompt, lobby.root, corpusLookup, plan, key), now);
+    await submitAnswer(lobby, bot.user_id, round.index, botChoice(prompt, lobby.root, corpusLookup, plan, key), Date.parse(round.startsAt) + plan.atMs);
   }
 }
 
@@ -168,8 +168,14 @@ export async function tickLobby(lobby: LobbyRow, now: number): Promise<LobbyRow>
   return current;
 }
 
+let lastEnsure = 0;
+let lastStanding: LobbyRow[] = [];
+export const ENSURE_EVERY_MS = 1000;
+
 export async function ensureStanding(now: number): Promise<LobbyRow[]> {
   if (!botsEnabled()) return [];
+  if (now - lastEnsure < ENSURE_EVERY_MS) return lastStanding;
+  lastEnsure = now;
   const have = checkLobby(await service().from(LOBBIES).select(LOBBY_COLS).not("standing_slot", "is", null), "standing") as LobbyRow[];
   const missing = STANDING_SLOTS.filter((s) => !have.some((l) => l.standing_slot === s.slot));
   for (const s of missing) {
@@ -189,5 +195,6 @@ export async function ensureStanding(now: number): Promise<LobbyRow[]> {
   }
   const out: LobbyRow[] = [];
   for (const l of have) out.push(await tickLobby(l, now));
+  lastStanding = out;
   return out;
 }

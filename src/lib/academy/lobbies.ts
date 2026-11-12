@@ -452,7 +452,7 @@ export function assembleLobby(
         score: p.score,
         isHost: p.user_id === lobby.host_id,
         isMe: p.user_id === uid,
-        online: now - Date.parse(p.last_seen) < STALE_MS,
+        online: p.is_bot === true || now - Date.parse(p.last_seen) < STALE_MS,
         answered: answeredNow.has(p.user_id),
         bot: p.is_bot === true,
         skill: p.is_bot ? p.skill ?? null : null,

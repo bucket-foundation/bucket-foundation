@@ -30,8 +30,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (!lobby) return json({ error: "not_found" }, 404);
     const [players, blocks] = await Promise.all([playersOf([lobby.id]), blocksTouching(a.uid)]);
     if (hiddenUsers(blocks, a.uid).has(lobby.host_id)) return json({ error: "not_found" }, 404);
-    const decision = joinLobbyDecision(lobby, players, a.uid);
-    const bump = decision === "full" && lobby.standing_slot && botsEnabled() ? players.find((p) => p.is_bot && p.user_id !== lobby.host_id) : undefined;
+    const bots = botsEnabled();
+    const decision = joinLobbyDecision(bots ? lobby : { ...lobby, standing_slot: null }, players, a.uid);
+    const bump = decision === "full" && bots && (lobby.standing_slot || lobby.bot_fill) ? players.find((p) => p.is_bot && p.user_id !== lobby.host_id) : undefined;
     if (bump) checkLobby(await service().from(PLAYERS).delete().eq("lobby_id", lobby.id).eq("user_id", bump.user_id), "bot bump");
     if (decision === "full" && !bump) return json({ error: "lobby_full" }, 409);
     if (decision === "started") return json({ error: "lobby_started" }, 409);

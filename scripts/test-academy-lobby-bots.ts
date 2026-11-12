@@ -147,6 +147,7 @@ test("bots are labelled in every player list", () => {
   const bot = state.players.find((p) => p.userId === BOTS[0].userId)!;
   assert.deepEqual([bot.bot, bot.skill, bot.flag], [true, "hard", "ES"]);
   assert.equal(state.players.find((p) => p.userId === "h")!.bot, false);
+  assert.equal(bot.online, true);
   assert.equal(state.standing, true);
 });
 
