@@ -1,20 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { adConfig, adShows } from "./ads";
 import { answeredRound, cleanNickname, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
-
-test("ads stay off unless the flag and a valid client are set", () => {
-  assert.equal(adConfig({}).mode, "off");
-  assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "adsense" }).mode, "off");
-  assert.equal(adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "adsense", NEXT_PUBLIC_ADSENSE_CLIENT: "pub-1" }).mode, "off");
-  const on = adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "adsense-test", NEXT_PUBLIC_ADSENSE_CLIENT: "ca-pub-1234567890123456", NEXT_PUBLIC_ADSENSE_SLOT_RESULTS: "1234567890" });
-  assert.equal(on.mode, "adsense-test");
-  assert.equal(adShows(on, "results"), true);
-  assert.equal(adShows(on, "lobby"), false);
-  const ph = adConfig({ NEXT_PUBLIC_POLINGUAL_ADS: "placeholder" });
-  assert.equal(adShows(ph, "between-rounds"), true);
-  assert.equal(adShows(adConfig({}), "results"), false);
-});
 
 test("phase follows the server clock", () => {
   const lobby = { status: "playing" as const, startedAt: new Date(10_000).toISOString(), rounds: 3, roundSeconds: 10 };

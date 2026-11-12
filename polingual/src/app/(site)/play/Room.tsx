@@ -170,6 +170,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         <li key={p.userId} className={styles.player} data-me={p.isMe}>
           <span>
             {p.name}
+            {p.handle ? <span className={styles.handle} data-testid="player-handle"> @{p.handle}</span> : null}
             {p.isHost ? <span className={styles.tag}> host</span> : null}
             {!p.online ? <span className={styles.tag}> away</span> : null}
           </span>
@@ -240,7 +241,6 @@ export default function Room({ code: rawCode }: { code: string }) {
           {chatBox}
         </div>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
-        <Ad placement="lobby" />
       </div>
     );
   }

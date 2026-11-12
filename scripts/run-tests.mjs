@@ -53,7 +53,7 @@ const SUITES = {
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
       "scripts/test-watch.ts",
-      "scripts/test-academy-{engine,question-types,locale-number,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,placement-cefr,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted,groups,group-shares,group-name-route,lobbies,apns,streak-reminder,review-demo,translation-report}.ts",
+      "scripts/test-academy-{engine,question-types,locale-number,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,placement-cefr,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted,groups,group-shares,group-name-route,lobbies,lobby-handles,apns,streak-reminder,review-demo,translation-report}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-academy-fsrs-fit.ts",
       "scripts/test-academy-delete-account.ts",

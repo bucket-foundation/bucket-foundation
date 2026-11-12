@@ -20,6 +20,7 @@ export const PLAYERS = "lobby_players";
 export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
+export const PROFILES = "academy_profiles";
 const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at";
 const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at";
 
@@ -58,9 +59,26 @@ export async function lobbyByCode(code: string): Promise<LobbyRow | null> {
   return rows[0] ?? null;
 }
 
+export async function handlesOf(userIds: string[]): Promise<Map<string, string>> {
+  const ids = Array.from(new Set(userIds));
+  if (ids.length === 0) return new Map();
+  const res = await service().from(PROFILES).select("user_id,handle,is_public").in("user_id", ids);
+  if (res.error) {
+    console.error("lobby handles", res.error.message);
+    return new Map();
+  }
+  return new Map((res.data as { user_id: string; handle: string; is_public: boolean }[]).filter((r) => r.is_public === true).map((r) => [r.user_id, r.handle]));
+}
+
 export async function playersOf(ids: string[]): Promise<LobbyPlayerRow[]> {
   if (ids.length === 0) return [];
   return check(await service().from(PLAYERS).select(PLAYER_COLS).in("lobby_id", ids), "players") as LobbyPlayerRow[];
+}
+
+export async function namedPlayersOf(ids: string[]): Promise<LobbyPlayerRow[]> {
+  const rows = await playersOf(ids);
+  const handles = await handlesOf(rows.map((r) => r.user_id));
+  return rows.map((r) => ({ ...r, handle: handles.get(r.user_id) ?? null }));
 }
 
 export async function openRows(uid: string, since: string): Promise<{ lobbies: LobbyRow[]; players: LobbyPlayerRow[] }> {
@@ -69,7 +87,7 @@ export async function openRows(uid: string, since: string): Promise<{ lobbies: L
   const mineIds = mine.map((m) => m.lobby_id).filter((id) => !open.some((l) => l.id === id));
   const own = mineIds.length ? (check(await service().from(LOBBIES).select(LOBBY_COLS).in("id", mineIds), "own") as LobbyRow[]) : [];
   const lobbies = [...own, ...open];
-  return { lobbies, players: await playersOf(lobbies.map((l) => l.id)) };
+  return { lobbies, players: await namedPlayersOf(lobbies.map((l) => l.id)) };
 }
 
 export async function insertLobby(row: Omit<LobbyRow, "id" | "code" | "status" | "started_at" | "version" | "created_at">): Promise<LobbyRow> {
@@ -96,7 +114,7 @@ export async function settle(lobby: LobbyRow, now: number): Promise<LobbyRow> {
 
 export async function lobbyState(lobby: LobbyRow, uid: string, now: number, blocks?: BlockRow[]): Promise<LobbyState> {
   const [players, messages, answers, b, prompts] = await Promise.all([
-    playersOf([lobby.id]),
+    namedPlayersOf([lobby.id]),
     service().from(MESSAGES).select("id,lobby_id,user_id,body,created_at").eq("lobby_id", lobby.id).order("id", { ascending: false }).limit(MESSAGE_LIMIT),
     service().from(ANSWERS).select("lobby_id,user_id,round,choice,correct,ms,points").eq("lobby_id", lobby.id),
     blocks ? Promise.resolve(blocks) : blocksTouching(uid),

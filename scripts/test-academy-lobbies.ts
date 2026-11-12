@@ -220,6 +220,15 @@ test("open list shows my lobbies first and hides closed, stale, full or blocked 
   assert.deepEqual(out.map((l) => l.id), ["E", "A"]);
   assert.equal(out[0].isMember, true);
   assert.equal(out[1].host, "H");
+  assert.equal(out[1].hostHandle, null);
+});
+
+test("players and hosts carry their @username when they have one", () => {
+  const ps = [player("h", { handle: "hana_k" }), player("b"), player("g", { handle: null })];
+  const s = assembleLobby(lobby(), ps, [], [], [], "b", T0 + 1000);
+  assert.deepEqual(Object.fromEntries(s.players.map((p) => [p.userId, p.handle])), { h: "hana_k", b: null, g: null });
+  const out = openLobbies([lobby()], ps, [], "b", T0 + 1000);
+  assert.equal(out[0].hostHandle, "hana_k");
 });
 
 test("migration keeps lobby tables private and limits joins in the database", () => {
