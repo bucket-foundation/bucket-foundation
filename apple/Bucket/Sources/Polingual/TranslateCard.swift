@@ -25,6 +25,8 @@ struct TranslateCard: View {
     @Environment(\.colorScheme) private var scheme
     var today = false
     @AppStorage("translate.targets") private var targetsRaw = ""
+    @AppStorage("translate.recent") private var recentRaw = ""
+    @State private var picking = false
     @State private var committed = TranslateCard.debugQuery
     @State private var query = TranslateCard.debugQuery
     @State private var picked: String?
@@ -61,7 +63,9 @@ struct TranslateCard: View {
         return picked.isEmpty ? langs : picked
     }
 
-    var base: [String] { today ? chosen : langs }
+    var base: [String] { chosen }
+
+    var recent: [String] { recentRaw.split(separator: ",").map(String.init).filter { !$0.isEmpty } }
 
     var shown: [String] {
         guard let from, !base.contains(from) else { return base }
@@ -103,8 +107,17 @@ struct TranslateCard: View {
             list.remove(at: i)
         } else {
             list.append(l)
+            recentRaw = LangPicker.remember(l, in: recent).joined(separator: ",")
         }
         setTargets(list)
+    }
+
+    func swapLanguages(detected: String?) {
+        guard let r = LangPicker.swap(from: from, detected: detected, targets: chosen) else { return }
+        from = r.from
+        setTargets(r.targets)
+        recentRaw = LangPicker.remember(r.targets[0], in: recent).joined(separator: ",")
+        haptic(true)
     }
 
     func commit() {
@@ -152,6 +165,19 @@ struct TranslateCard: View {
                     }
                     .layoutPriority(1)
                     .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
+                    if LangPicker.swap(from: from, detected: detected, targets: chosen) != nil {
+                        Button { swapLanguages(detected: detected) } label: {
+                            Image(systemName: "arrow.left.arrow.right")
+                                .font(.system(size: 16, weight: .heavy))
+                                .foregroundStyle(Palette.ink)
+                                .frame(width: 44, height: 44)
+                                .background(D8.face, in: .circle)
+                                .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(Text("Swap languages"))
+                        .accessibilityIdentifier("translate.swap")
+                    }
                     if let detected {
                         Text("Detected: \(Lang.name(detected))")
                             .font(.system(size: 15, weight: .semibold, design: .rounded))
@@ -161,7 +187,7 @@ struct TranslateCard: View {
                     }
                     Spacer(minLength: 0)
                 }
-                if today { targetRow }
+                targetRow
                 HStack(spacing: 10) {
                     Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
                     TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(today ? soft : D8.label))
@@ -285,6 +311,10 @@ struct TranslateCard: View {
                 speechDenied = false
             }
             .onChange(of: from) { picked = nil }
+            .sheet(isPresented: $picking) {
+                TranslateLanguageSheet(chosen: chosen, recent: recent, suggested: langs, all: sources.isEmpty ? Lang.codes : sources, toggle: toggleTarget)
+                    .environment(\.colorScheme, scheme)
+            }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
@@ -367,19 +397,13 @@ struct TranslateCard: View {
                     .background(D8.face, in: .capsule)
                     .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 1.5) }
                 }
-                Menu {
-                    Section("My languages") {
-                        ForEach(langs.filter { !chosen.contains($0) }, id: \.self) { l in Button(Lang.name(l)) { toggleTarget(l) } }
-                    }
-                    Section("More languages") {
-                        ForEach(sources.filter { !chosen.contains($0) && !langs.contains($0) }, id: \.self) { l in Button(Lang.name(l)) { toggleTarget(l) } }
-                    }
-                } label: {
+                Button { picking = true } label: {
                     Image(systemName: "plus").font(.system(size: 15, weight: .heavy)).foregroundStyle(Palette.ink)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 44, height: 44)
                         .background(D8.face, in: .circle)
                         .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
                 }
+                .buttonStyle(.plain)
                 .accessibilityLabel(Text("Add a language"))
                 .accessibilityIdentifier("translate.addTarget")
             }
