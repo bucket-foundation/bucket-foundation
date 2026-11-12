@@ -27,6 +27,7 @@ struct LearnView: View {
                     LearnHeading(text: "Explore")
                     GamesSection { path.append(LearnRoute.game($0)) }
                     ContentSection { path.append($0) }
+                    FilmsSection { path.append(LearnRoute.film($0)) }
                     subjects?.section(open: { path.append($0) }, search: { path.append(LearnRoute.canon) })
                     if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
                 }
@@ -49,6 +50,7 @@ struct LearnView: View {
         }
         .task {
             await langs.load()
+            await FilmStore.shared.load()
             #if DEBUG
             if let game = Launch.value("-openGame").flatMap(GameKind.init(rawValue:)) { path.append(LearnRoute.game(game)) }
             if let kind = Launch.value("-contentKind").flatMap(ContentKind.init(rawValue:)) { path.append(LearnRoute.content(kind)) }
@@ -56,6 +58,10 @@ struct LearnView: View {
             if let book = Launch.value("-openLibrary") {
                 path.append(LearnRoute.library)
                 if book != "list" { path.append(LearnRoute.book(book)) }
+            }
+            if let id = Launch.value("-openFilm") {
+                await FilmStore.shared.load()
+                if let film = FilmStore.shared.films.first(where: { $0.id == id }) { path.append(LearnRoute.film(film)) }
             }
             #endif
             guard let spec = Launch.value("-openLang") else { return }
@@ -126,6 +132,7 @@ struct LearnView: View {
         case .translate: TranslateScreen()
         case .library: LibraryList { path.append(LearnRoute.book($0)) }
         case .book(let id): LibraryReader(id: id).fullHeightSession()
+        case .film(let film): FilmView(film: film).fullHeightSession()
         case .newSet:
             ScrollViewReader { proxy in
                 List {
@@ -328,6 +335,7 @@ enum LearnRoute: Hashable {
     case newSet
     case library
     case book(String)
+    case film(WatchFilm)
 }
 
 struct AtomRoute: Hashable {
