@@ -98,3 +98,13 @@ The output of bkt-g0uss. See its bead notes for the branches merged, skipped and
 - Approval to apply the lobbies migration to the live Supabase project.
 - A TestFlight build approval.
 - Vercel Blob billing.
+
+## Apple Merge Result
+
+`wip/apple-merge` at 069526d35a. Nothing reached dev.
+
+- Merged into the wip branch: polingual-icon, d8-word-tiles, fewer-ctas, letter-word-ink, placement-pop, mini-word-ink, cousin-tile-tap, listen-script, zero-streak-nudge, heard-meaning, shared-items-view, beta-free, library, listen-radio-only, member-names, streak-widget, watch-subtitles.
+- Blocker: `test-academy-group-name-route` fails with a TypeError from member-names. `test-academy-lang-audio` fails on dev too. No Swift build was run.
+- Skipped for a conflict in GroupShares.swift: group-voice-notes.
+- Stale, close them: answer-sound, no-star, one-sound-tile, trial-top, app-icon, engine-articles, translate-embed, wrong-translation.
+- Conflicting and not reviewed: d8-cards, game-stars, media-in-app, meetups, one-tile, polingual-onboarding, polingual-parity, share-people, sound-card, swap-shield.
