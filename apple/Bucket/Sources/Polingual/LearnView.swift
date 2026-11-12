@@ -19,8 +19,6 @@ struct LearnView: View {
                                 path.append(LearnRoute.translate)
                             }
                             .listRowInsets(EdgeInsets())
-                            ListenTile()
-                                .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
                         }
                         .listRowBackground(Color.clear)
                     }
