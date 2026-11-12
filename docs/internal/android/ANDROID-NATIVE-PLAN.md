@@ -147,14 +147,15 @@ New table `bucket.play_purchases`, keyed by `purchase_token`, written by the ser
 | active subscription, auto-renewing | `subscribe`, then `renew` on each renewal |
 | free trial phase | `trial` |
 | canceled, still in paid period | `cancel` |
-| in grace period or on hold | `billing_issue` |
+| in grace period | `billing_issue` |
+| account hold | `expire` until recovery, then `renew` |
 | pending | none stored as an event; no access |
 | replaced through `linkedPurchaseToken` | `expire` on the old token |
 | expired | `expire` |
 | voided or refunded | `refund` |
 | lifetime purchase, acknowledged | `subscribe` with no `expiresAt` |
 
-A server test in `scripts/` feeds each state through the mapping and `entitlementFrom` (AT-06).
+Each Play row maps with `originalTransactionId` set to its `purchase_token`, since `entitlementFrom` groups events by that field. A server test in `scripts/` feeds each state through the mapping and `entitlementFrom` (AT-06).
 
 `delete_account` deletes the user's rows there; Play subscriptions stay active at Google, so the deletion screen tells the person to cancel in Play, as the App Store screen does.
 
