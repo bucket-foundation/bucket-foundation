@@ -700,6 +700,7 @@ public struct Exercise: Sendable {
     public var spoken: [SpokenOption]?
     public var segments: [String]?
     public var hint: String?
+    public var meaning: String?
     public var nativeVoice = false
 
     public init(kind: ExerciseKind, itemId: String, lang: String, root: String, prompt: String, promptLang: String, answer: String, answerLang: String, note: String? = nil) {
@@ -963,6 +964,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
     if roll < 0.85 { return toTarget(.translate) }
     var ex = make(.typeHeard, target, lang, target, lang)
     ex.answerReading = tr
+    ex.meaning = rootWord.isEmpty ? nil : rootWord
     return ex
 }
 
