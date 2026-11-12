@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { allowedSource, emailLimiter, ipLimiter, TESTFLIGHT_URL, type BetaEnv, type BetaRequest, type Fetcher, RateLimiter, UNSUBSCRIBE } from "./beta";
+import { allowedSource, emailLimiter, verifyHuman, ipLimiter, TESTFLIGHT_URL, type BetaEnv, type BetaRequest, type Fetcher, RateLimiter, UNSUBSCRIBE } from "./beta";
 import { parseSignup } from "./signup";
 
 export const FOUNDING_TOTAL = 200;
@@ -9,7 +9,7 @@ export type Spots = { total: number; left: number };
 export type Outcome = "claimed" | "resend" | "recent" | "ip-limit" | "full";
 export type Claim = { code: string | null; outcome: Outcome; left: number };
 export type FoundingResult = { status: number; body: { ok?: true; error?: string; left?: number; full?: true } };
-export type FoundingRequest = BetaRequest & { token?: string | null };
+export type FoundingRequest = BetaRequest;
 
 function rpcBase(env: BetaEnv): string | null {
   const url = env.POLINGUAL_DB_URL?.trim();
@@ -53,21 +53,6 @@ export async function claimCode(email: string, ip: string, key: string, base: st
   if (!r.ok) return null;
   const [row] = (await r.json()) as { code: string | null; outcome: Outcome; spots_left: number }[];
   return row ? { code: row.code, outcome: row.outcome, left: Number(row.spots_left) } : null;
-}
-
-export async function verifyHuman(token: string | null | undefined, ip: string | null, env: BetaEnv, send: Fetcher): Promise<boolean> {
-  const secret = env.TURNSTILE_SECRET_KEY?.trim();
-  if (!secret || !token || token.length > 2048) return false;
-  try {
-    const form = new URLSearchParams({ secret, response: token });
-    if (ip) form.set("remoteip", ip);
-    const r = await send("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form, signal: AbortSignal.timeout(DB_TIMEOUT_MS * 2) });
-    if (!r.ok) return false;
-    const j = (await r.json()) as { success?: boolean; hostname?: string };
-    return j.success === true && (!j.hostname || j.hostname === "polingual.com" || j.hostname === "www.polingual.com");
-  } catch {
-    return false;
-  }
 }
 
 export function codeEmail(to: string, from: string, code: string) {
