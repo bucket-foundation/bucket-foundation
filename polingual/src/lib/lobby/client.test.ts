@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { adConfig, adShows } from "./ads";
-import { cleanNickname, LobbyApi, LobbyError, newGuestId, phaseAt, serverOffset, shareUrl, tokenFresh } from "./client";
+import { answeredRound, cleanNickname, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tokenFresh, type WebLobbyState } from "./client";
 
 test("ads stay off unless the flag and a valid client are set", () => {
   assert.equal(adConfig({}).mode, "off");
@@ -33,7 +33,7 @@ test("guest helpers", () => {
   assert.equal(tokenFresh({ guestId: "g", nickname: "n", token: "t", expiresAt: new Date(200_000).toISOString() }, 100_000), true);
   assert.equal(tokenFresh({ guestId: "g", nickname: "n", token: "t", expiresAt: new Date(120_000).toISOString() }, 100_000), false);
   assert.equal(tokenFresh({ guestId: "g", nickname: "n" }, 0), false);
-  assert.equal(shareUrl("https://polingual.com/", "ABC123"), "https://polingual.com/join/ABC123");
+  assert.equal(shareUrl("https://polingual.com/", "ABC123"), "https://polingual.com/play/ABC123");
 });
 
 test("api sends the bearer and maps errors", async () => {
@@ -50,4 +50,78 @@ test("api sends the bearer and maps errors", async () => {
   assert.equal((seen[0].init.headers as Record<string, string>).authorization, "Bearer tok");
   const off = new LobbyApi({ auth: async () => null, fetch: (async () => { throw new Error("x"); }) as unknown as typeof fetch });
   await assert.rejects(off.state("id", 3), (e: unknown) => e instanceof LobbyError && e.code === "offline");
+});
+
+function fakeApi() {
+  const calls: string[] = [];
+  return {
+    calls,
+    api: {
+      guest: async (id: string, nick: string) => {
+        calls.push(`guest:${id}:${nick}`);
+        return { token: `gt-${nick}`, userId: `g-${id}`, expiresAt: new Date(10_000_000).toISOString() };
+      },
+      merge: async (t: string) => {
+        calls.push(`merge:${t}`);
+      },
+    },
+  };
+}
+
+test("identity prefers the account and merges a fresh guest token once", async () => {
+  const f = fakeApi();
+  const store = memoryGuestStore({ guestId: "aa", nickname: "Ana", token: "gt-old", expiresAt: new Date(10_000_000).toISOString() });
+  const id = await resolveIdentity({ api: f.api, store, account: async () => "acct", now: () => 0 });
+  assert.deepEqual(id, { token: "acct", kind: "account" });
+  assert.deepEqual(f.calls, ["merge:gt-old"]);
+  assert.equal(store.value, null);
+  await resolveIdentity({ api: f.api, store, account: async () => "acct", now: () => 0 });
+  assert.deepEqual(f.calls, ["merge:gt-old"]);
+});
+
+test("identity refreshes a stale guest token before the merge", async () => {
+  const f = fakeApi();
+  const store = memoryGuestStore({ guestId: "aa", nickname: "Ana", token: "gt-old", expiresAt: new Date(1).toISOString() });
+  await resolveIdentity({ api: f.api, store, account: async () => "acct", now: () => 0 });
+  assert.deepEqual(f.calls, ["guest:aa:Ana", "merge:gt-Ana"]);
+  assert.equal(store.value, null);
+});
+
+test("identity keeps the guest when merge fails so a retry can run", async () => {
+  const store = memoryGuestStore({ guestId: "aa", nickname: "Ana", token: "gt", expiresAt: new Date(10_000_000).toISOString() });
+  const api = { guest: fakeApi().api.guest, merge: async () => { throw new Error("down"); } };
+  assert.deepEqual(await resolveIdentity({ api, store, account: async () => "acct", now: () => 0 }), { token: "acct", kind: "account" });
+  assert.equal(store.value?.token, "gt");
+});
+
+test("identity issues a guest token and reuses it until the nickname changes", async () => {
+  const f = fakeApi();
+  const store = memoryGuestStore();
+  assert.equal(await resolveIdentity({ api: f.api, store, account: async () => null, now: () => 0 }), null);
+  const a = await resolveIdentity({ api: f.api, store, account: async () => null, now: () => 0 }, " Ana ");
+  assert.deepEqual(a, { token: "gt-Ana", kind: "guest" });
+  const gid = store.value?.guestId;
+  await resolveIdentity({ api: f.api, store, account: async () => null, now: () => 0 });
+  assert.equal(f.calls.length, 1);
+  await resolveIdentity({ api: f.api, store, account: async () => null, now: () => 0 }, "Bea");
+  assert.equal(f.calls[1], `guest:${gid}:Bea`);
+});
+
+test("standings, missed words and answered rounds come from server results", () => {
+  const lobby = {
+    players: [
+      { userId: "u1", name: "Bo", score: 100, isMe: false },
+      { userId: "u2", name: "Al", score: 300, isMe: true },
+    ],
+    prompts: [
+      { round: 0, answer: "agua" },
+      { round: 1, answer: "fuego" },
+      { round: 2, answer: null },
+    ],
+    results: [{ round: 0, userId: "u2", correct: true }, { round: 1, userId: "u2", correct: false }],
+  } as unknown as WebLobbyState;
+  assert.deepEqual(standings(lobby).map((p) => p.name), ["Al", "Bo"]);
+  assert.deepEqual(missedWords(lobby), ["fuego"]);
+  assert.equal(answeredRound(lobby, 1), true);
+  assert.equal(answeredRound(lobby, 2), false);
 });

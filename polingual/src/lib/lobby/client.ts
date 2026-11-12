@@ -1,7 +1,8 @@
 import type { LobbyState, LobbySummary } from "@academy/lobbies";
 
 export type { LobbyState, LobbySummary };
-export type WebLobbyState = LobbyState & { game?: string };
+export type WebLobbyState = LobbyState;
+export type AnswerResult = { correct: boolean; points: number; ms: number; lobby: WebLobbyState };
 
 export const GUEST_KEY = "polingual-web/guest/v1";
 export const NICK_MAX = 24;
@@ -69,6 +70,12 @@ const ERRORS: Record<string, string> = {
   lobby_started: "That game already started.",
   need_ready: "Two players need to be ready.",
   not_host: "Only the host can start.",
+  already_answered: "You already answered this round.",
+  wrong_round: "That round is over.",
+  not_playing: "The game is not running.",
+  bad_choice: "Pick one of the choices.",
+  no_words: "Those languages have no shared words yet. Pick another set.",
+  bad_guest: "Pick a nickname of 2 to 24 characters.",
   hosted_limit: "You already host three lobbies.",
   rate_limited: "Slow down a moment and try again.",
   name_not_allowed: "Pick a different name.",
@@ -142,8 +149,8 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("/chat", { body: { lobbyId, body } })).lobby;
   }
 
-  async answer(lobbyId: string, round: number, choice: string, correct: boolean): Promise<WebLobbyState> {
-    return (await this.call<{ lobby: WebLobbyState }>("/answer", { body: { lobbyId, round, choice, correct } })).lobby;
+  async answer(lobbyId: string, round: number, choice: string): Promise<AnswerResult> {
+    return this.call<AnswerResult>("/answer", { body: { lobbyId, round, choice } });
   }
 
   async state(lobbyId: string, since?: number): Promise<{ changed: boolean; lobby?: WebLobbyState; now?: string }> {
@@ -178,9 +185,84 @@ export function serverOffset(serverNow: string, sentAt: number, receivedAt: numb
 }
 
 export function joinHref(code: string): string {
-  return `/join/${code}`;
+  return `/play/${code}`;
 }
 
 export function shareUrl(origin: string, code: string): string {
   return `${origin.replace(/\/$/, "")}${joinHref(code)}`;
+}
+
+export interface Identity {
+  token: string;
+  kind: "account" | "guest";
+}
+
+export interface IdentityDeps {
+  api: Pick<LobbyApi, "guest" | "merge">;
+  store: GuestStore;
+  account: () => Promise<string | null>;
+  now: () => number;
+}
+
+export async function resolveIdentity(deps: IdentityDeps, nickname?: string): Promise<Identity | null> {
+  const account = await deps.account();
+  const saved = deps.store.read();
+  if (account) {
+    if (saved) {
+      try {
+        const token = tokenFresh(saved, deps.now()) ? (saved.token as string) : (await deps.api.guest(saved.guestId, saved.nickname)).token;
+        await deps.api.merge(token);
+        deps.store.clear();
+      } catch {
+      }
+    }
+    return { token: account, kind: "account" };
+  }
+  const name = nickname ? cleanNickname(nickname) : saved?.nickname ?? null;
+  if (!name) return null;
+  if (saved && saved.nickname === name && tokenFresh(saved, deps.now())) return { token: saved.token as string, kind: "guest" };
+  const guestId = saved?.guestId ?? newGuestId();
+  const got = await deps.api.guest(guestId, name);
+  deps.store.write({ guestId, nickname: name, token: got.token, userId: got.userId, expiresAt: got.expiresAt });
+  return { token: got.token, kind: "guest" };
+}
+
+export function memoryGuestStore(initial: Guest | null = null): GuestStore & { value: Guest | null } {
+  const box = { value: initial } as GuestStore & { value: Guest | null };
+  box.read = () => box.value;
+  box.write = (g) => {
+    box.value = g;
+  };
+  box.clear = () => {
+    box.value = null;
+  };
+  return box;
+}
+
+export function nicknameOf(store: GuestStore): string | null {
+  return store.read()?.nickname ?? null;
+}
+
+export function myScore(lobby: Pick<LobbyState, "players">): number {
+  return lobby.players.find((p) => p.isMe)?.score ?? 0;
+}
+
+export function standings(lobby: Pick<LobbyState, "players">): LobbyState["players"] {
+  return [...lobby.players].sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+}
+
+export function missedWords(lobby: Pick<LobbyState, "prompts" | "results" | "players">): string[] {
+  const me = lobby.players.find((p) => p.isMe)?.userId;
+  if (!me) return [];
+  const right = new Set(lobby.results.filter((r) => r.userId === me && r.correct).map((r) => r.round));
+  return lobby.prompts.filter((p) => !right.has(p.round) && p.answer).map((p) => p.answer as string);
+}
+
+export function promptFor(lobby: Pick<LobbyState, "prompts">, round: number): LobbyState["prompts"][number] | null {
+  return lobby.prompts.find((p) => p.round === round) ?? null;
+}
+
+export function answeredRound(lobby: Pick<LobbyState, "results" | "players">, round: number): boolean {
+  const me = lobby.players.find((p) => p.isMe)?.userId;
+  return !!me && lobby.results.some((r) => r.userId === me && r.round === round);
 }
