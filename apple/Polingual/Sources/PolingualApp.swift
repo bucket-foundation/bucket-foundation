@@ -19,7 +19,11 @@ struct PolingualApp: App {
     init() {
         InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
+        #if DEBUG
+        let api = BucketAPI(base: BucketAPI.debugBase(arguments: ProcessInfo.processInfo.arguments, environment: ProcessInfo.processInfo.environment) ?? BucketAPI.production)
+        #else
         let api = BucketAPI()
+        #endif
         let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
         let store = LangStore(api: api, token: { await account.freshToken() })
         PushRegistry.shared.api = api

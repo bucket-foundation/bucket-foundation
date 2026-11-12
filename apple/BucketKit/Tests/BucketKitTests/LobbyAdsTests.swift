@@ -33,3 +33,18 @@ struct LobbyAdsTests {
         #expect(pacer.due(finishedGame: true, at: t0.addingTimeInterval(180)))
     }
 }
+
+struct DebugBaseTests {
+    @Test func launchArgumentWinsOverEnvironment() {
+        let url = BucketAPI.debugBase(arguments: ["app", "-bucketBase", "http://127.0.0.1:3000"], environment: ["BUCKET_BASE_URL": "http://10.0.0.2:3000"])
+        #expect(url?.absoluteString == "http://127.0.0.1:3000")
+        #expect(BucketAPI.debugBase(arguments: [], environment: ["BUCKET_BASE_URL": "http://10.0.0.2:3000"])?.host() == "10.0.0.2")
+    }
+
+    @Test func rejectsMissingOrOddValues() {
+        #expect(BucketAPI.debugBase(arguments: [], environment: [:]) == nil)
+        #expect(BucketAPI.debugBase(arguments: ["-bucketBase"], environment: [:]) == nil)
+        #expect(BucketAPI.debugBase(arguments: ["-bucketBase", "file:///etc"], environment: [:]) == nil)
+        #expect(BucketAPI.debugBase(arguments: ["-bucketBase", "nonsense"], environment: [:]) == nil)
+    }
+}
