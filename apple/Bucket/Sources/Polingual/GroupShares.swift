@@ -14,6 +14,7 @@ struct SharedItemsSection: View {
 
     var body: some View {
         Section {
+            VoiceNoteComposer(group: group)
             if list.isEmpty {
                 Text("Tap Share in any app and pick \(group.name) to send a link, a photo or a note here.")
                     .font(.callout)
@@ -96,6 +97,7 @@ func shareMessage(_ e: BucketError) -> String {
     case .textNotAllowed: String(localized: "That text is not allowed. Try other words.")
     case .imageTooLarge: String(localized: "That image is too large to share.")
     case .imageNotAllowed: String(localized: "This image may be sensitive, so it was not sent.")
+    case .voiceTooLong: String(localized: "Voice notes can be up to 60 seconds.")
     default: groupMessage(e) ?? String(localized: "Something went wrong. Try again.")
     }
 }
@@ -135,9 +137,11 @@ struct SharedItemRow: View {
                 .frame(maxHeight: 220)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 if let text = item.text { Text(text).font(.callout) }
+            case .voice:
+                VoiceNoteBody(item: item)
             }
         }
         .padding(.vertical, 2)
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: item.kind == .voice ? .contain : .combine)
     }
 }
