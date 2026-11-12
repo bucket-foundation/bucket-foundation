@@ -48,6 +48,19 @@ final class GamesUITests: XCTestCase {
         XCTAssertFalse(back.buttons["Play again"].exists)
     }
 
+    func testMiniKeyFillsTheActiveSquare() {
+        let app = launch(["-openGame", "mini"])
+        let empty = app.buttons.matching(NSPredicate(format: "label == %@", "Empty square"))
+        XCTAssertTrue(empty.firstMatch.waitForExistence(timeout: 60))
+        let before = empty.count
+        let key = app.buttons.allElementsBoundByIndex.first { $0.label.count == 1 && $0.label.uppercased() == $0.label && $0.isHittable }
+        XCTAssertNotNil(key)
+        key?.tap()
+        key?.tap()
+        XCTAssertEqual(empty.count, before - 2)
+        shot("mini-typed")
+    }
+
     func testSameWordFinishes() {
         let app = launch(["-openGame", "same"])
         playQuiz(app, until: app.buttons["Play again"], name: "same")
