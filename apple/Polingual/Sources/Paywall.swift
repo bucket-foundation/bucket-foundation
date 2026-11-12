@@ -159,7 +159,7 @@ struct Paywall: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             if account.stage != .signedIn {
-                Text("Beta testers: sign in with the account you tested with to keep Polingual free.")
+                Text("Tested Polingual in the beta? Sign in with that account.")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(D8.parchment)
                     .multilineTextAlignment(.center)

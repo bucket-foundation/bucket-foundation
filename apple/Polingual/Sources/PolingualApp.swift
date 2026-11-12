@@ -27,6 +27,7 @@ struct PolingualApp: App {
         LangVoice.shared.store = store
         _account = State(initialValue: account)
         Beta.shared.account = account
+        FoundingTester.remember(user: account.session?.userId)
         _store = State(initialValue: store)
         _gate = State(initialValue: Gate(account: account))
         let groups = GroupStore(api: api, token: { await account.freshToken() })

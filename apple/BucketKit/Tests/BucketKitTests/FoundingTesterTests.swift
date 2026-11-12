@@ -28,7 +28,7 @@ final class FoundingTransport: Transport, @unchecked Sendable {
     #expect(r.value(forHTTPHeaderField: "authorization") == "Bearer tok")
 }
 
-@Test func foundingIsFalseWhenSignedOutWithoutAnyRequest() async {
+@Test func foundingIsFalseWhenNoAccountWasEverSeen() async {
     let t = FoundingTransport([(200, #"{"founding":true}"#)])
     #expect(await FoundingTester.fetch(user: nil, token: nil, transport: t, defaults: UserDefaults(suiteName: UUID().uuidString)!) == false)
     #expect(t.requests.isEmpty)
@@ -41,4 +41,25 @@ final class FoundingTransport: Transport, @unchecked Sendable {
     #expect(await FoundingTester.fetch(user: "u2", token: "tok", transport: FoundingTransport([(503, "")]), defaults: d) == false)
     #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: FoundingTransport([(200, #"{"founding":false}"#)]), defaults: d) == false)
     #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: FoundingTransport([(503, "")]), defaults: d) == false)
+}
+
+@Test func foundingKeepsACachedTrueOffline() async {
+    let d = UserDefaults(suiteName: UUID().uuidString)!
+    #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: FoundingTransport([(200, #"{"founding":true}"#)]), defaults: d))
+    #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: OfflineTransport(), defaults: d))
+}
+
+@Test func foundingKeepsACachedTrueWithoutATokenOrRestoredSession() async {
+    let d = UserDefaults(suiteName: UUID().uuidString)!
+    #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: FoundingTransport([(200, #"{"founding":true}"#)]), defaults: d))
+    let t = FoundingTransport([(200, #"{"founding":false}"#)])
+    #expect(await FoundingTester.fetch(user: "u1", token: nil, transport: t, defaults: d))
+    #expect(await FoundingTester.fetch(user: nil, token: nil, transport: t, defaults: d))
+    #expect(t.requests.isEmpty)
+    FoundingTester.forget(defaults: d)
+    #expect(await FoundingTester.fetch(user: nil, token: nil, transport: t, defaults: d) == false)
+}
+
+struct OfflineTransport: Transport {
+    func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) { throw URLError(.notConnectedToInternet) }
 }
