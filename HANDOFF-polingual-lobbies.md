@@ -101,6 +101,13 @@ The output of bkt-g0uss. See its bead notes for the branches merged, skipped and
 - Approval to apply the lobbies migration to the live Supabase project.
 - A TestFlight build approval.
 - Vercel Blob billing.
+- A `LOBBY_GUEST_SECRET` of at least 32 characters in the server env. Without it the guest routes return 503.
+
+## Lobby Schema Notes
+
+- Lobby tables do not reference the auth users table, so guests can own rows. Deleting an account leaves its lobby rows.
+- No game had a sign-in gate, so bkt-ukl7j.6 removed none.
+- Code: `src/lib/academy/lobbies.ts`, `src/lib/academy/lobby-guests.ts`, `apple/BucketKit/Sources/BucketKit/Lobbies.swift`, `apple/Bucket/Sources/Polingual/Lobbies.swift`, migration `supabase/migrations/20261112000000_polingual_lobbies.sql`.
 
 ## Apple Merge Result
 
