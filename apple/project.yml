@@ -17,6 +17,9 @@ settings:
 packages:
   BucketKit:
     path: BucketKit
+  GoogleMobileAds:
+    url: https://github.com/googleads/swift-package-manager-google-mobile-ads
+    from: 12.0.0
 targets:
   Bucket:
     type: application
@@ -149,8 +152,17 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLName: polingual
             CFBundleURLSchemes: [polingual]
+        GADApplicationIdentifier: $(POLINGUAL_ADMOB_APP_ID)
+        PolingualAds: $(POLINGUAL_ADS)
+        PolingualAdBanner: $(POLINGUAL_AD_BANNER)
+        PolingualAdInterstitial: $(POLINGUAL_AD_INTERSTITIAL)
+        SKAdNetworkItems:
+          - SKAdNetworkIdentifier: cstr6suwn9.skadnetwork
     dependencies:
       - package: BucketKit
+      - package: GoogleMobileAds
+        product: GoogleMobileAds
+        destinationFilters: [iOS]
       - target: PolingualWidgets
       - target: PolingualWatch
         destinationFilters: [iOS]
@@ -182,9 +194,14 @@ targets:
         ENABLE_HARDENED_RUNTIME: YES
         ENABLE_APP_SANDBOX: YES
         ENABLE_OUTGOING_NETWORK_CONNECTIONS: YES
+        POLINGUAL_ADMOB_APP_ID: ca-app-pub-3940256099942544~1458002511
+        POLINGUAL_ADS: "off"
+        POLINGUAL_AD_BANNER: ""
+        POLINGUAL_AD_INTERSTITIAL: ""
       configs:
         Debug:
           CODE_SIGN_ENTITLEMENTS: Polingual/PolingualDebug.entitlements
+          POLINGUAL_ADS: test
   BucketWidgets:
     type: app-extension
     supportedDestinations: [iOS, macOS]

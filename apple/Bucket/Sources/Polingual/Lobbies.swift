@@ -105,6 +105,8 @@ struct LobbiesScreen: View {
             }
         }
         .navigationDestination(isPresented: $inRoom) { LobbyRoom() }
+        .safeAreaInset(edge: .bottom) { LobbyBanner() }
+        .onAppear { LobbyAds.shared.start() }
     }
 
     func act(_ work: @escaping () async throws -> Lobby) {
@@ -144,6 +146,7 @@ struct LobbyRoom: View {
     @Environment(Account.self) private var account
     @State private var draft = ""
     @State private var problem: String?
+    @State private var sawFinish = false
 
     var body: some View {
         Group {
@@ -167,6 +170,7 @@ struct LobbyRoom: View {
             }
         }
         .task { await lobbies.follow() }
+        .onDisappear { LobbyAds.shared.leftRoom(finishedGame: sawFinish) }
     }
 
     @ViewBuilder
@@ -192,7 +196,7 @@ struct LobbyRoom: View {
                         Text("Code").foregroundStyle(Palette.muted)
                         Text(l.code).font(.system(.title2, design: .monospaced).weight(.heavy)).textSelection(.enabled)
                         Spacer()
-                        ShareLink(item: String(localized: "Join my Polingual lobby with code \(l.code)")) { Image(systemName: "square.and.arrow.up") }
+                        ShareLink(item: String(localized: "Join my Polingual lobby with code \(l.code): https://polingual.com/play/\(l.code)")) { Image(systemName: "square.and.arrow.up") }
                     }
                     HStack(spacing: -6) { ForEach(l.targets, id: \.self) { FlagTile(lang: $0, size: 28) } }
                     Text("\(l.game.title), \(l.rounds) rounds, \(l.roundSeconds) seconds each").font(.footnote).foregroundStyle(Palette.muted)
@@ -359,7 +363,10 @@ struct LobbyRoom: View {
             Section("Chat") { chatLog(l) }
         }
         .safeAreaInset(edge: .bottom) { chatBar }
-        .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }
+        .onAppear {
+            sawFinish = true
+            SaveNudge.gameEnded(signedIn: account.stage == .signedIn)
+        }
     }
 
     func act(_ work: @escaping () async throws -> Void) {
