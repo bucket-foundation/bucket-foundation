@@ -33,7 +33,7 @@ struct PolingualApp: App {
         let groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
-        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }))
+        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }, guest: GuestPass(api: api) { UserDefaults.standard.string(forKey: "groups.displayName") ?? "" }))
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
     }
 

@@ -38,7 +38,7 @@ struct BucketApp: App {
         let groups = GroupStore(api: BucketAPI(), token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
-        _lobbies = State(initialValue: LobbyStore(api: BucketAPI(), token: { await account.freshToken() }))
+        _lobbies = State(initialValue: LobbyStore(api: BucketAPI(), token: { await account.freshToken() }, guest: GuestPass(api: BucketAPI()) { UserDefaults.standard.string(forKey: "groups.displayName") ?? "" }))
     }
 
     var body: some Scene {

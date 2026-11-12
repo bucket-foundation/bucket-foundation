@@ -115,7 +115,7 @@ func lobbyProblem(_ e: BucketError) -> String {
     case .server(409, "lobby_started"): String(localized: "That game already started.")
     case .server(409, "hosted_limit"): String(localized: "You host three lobbies already.")
     case .server(409, "need_ready"): String(localized: "Two players need to be ready.")
-    case .revoked: String(localized: "Sign in to play live.")
+    case .revoked: String(localized: "Pick a name to play live.")
     default: e.localizedDescription
     }
 }

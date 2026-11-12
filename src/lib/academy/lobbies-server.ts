@@ -1,5 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { blocksTouching, configured, GroupsError, json, readBody, requestUser, service } from "./groups-server";
+import { bearer, isGuestToken, verifyGuestToken } from "./lobby-guests";
 import { uuidOrNull, type BlockRow } from "./groups";
 import {
   assembleLobby,
@@ -114,9 +115,23 @@ export async function memberLobby(uid: string, lobbyId: unknown): Promise<LobbyR
   return lobby;
 }
 
+export function guestSecret(): string | null {
+  const s = process.env.LOBBY_GUEST_SECRET;
+  return s && s.length >= 32 ? s : null;
+}
+
+export async function lobbyUser(req: NextRequest): Promise<string | null> {
+  const token = bearer(req.headers.get("authorization"));
+  if (token && isGuestToken(token)) {
+    const secret = guestSecret();
+    return secret ? verifyGuestToken(token, secret, Date.now())?.sub ?? null : null;
+  }
+  return requestUser(req);
+}
+
 export async function authed(req: NextRequest, withBody = true): Promise<{ uid: string; body: Record<string, unknown> | null } | NextResponse> {
   if (!configured()) return json({ error: "sync_unavailable" }, 503);
-  const uid = await requestUser(req);
+  const uid = await lobbyUser(req);
   if (!uid) return json({ error: "unauthorized" }, 401);
   return { uid, body: withBody ? await readBody(req) : null };
 }

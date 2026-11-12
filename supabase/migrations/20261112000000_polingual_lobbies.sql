@@ -3,12 +3,13 @@ create schema if not exists bucket;
 create table if not exists bucket.lobbies (
   id            uuid        primary key default gen_random_uuid(),
   code          text        not null unique check (code ~ '^[0-9A-HJKMNP-TV-Z]{6}$'),
-  host_id       uuid        not null references auth.users (id) on delete cascade,
+  host_id       uuid        not null,
   name          text        not null check (char_length(name) between 1 and 40),
   root          text        not null,
   targets       text[]      not null check (cardinality(targets) between 1 and 8),
   seed          text        not null check (seed ~ '^[0-9]{1,20}$'),
   status        text        not null default 'lobby' check (status in ('lobby', 'playing', 'done')),
+  game          text        not null default 'daily' check (game in ('daily', 'same-word', 'flags', 'live')),
   listed        boolean     not null default true,
   rounds        int         not null default 8 check (rounds between 3 and 20),
   round_seconds int         not null default 10 check (round_seconds between 5 and 30),
@@ -22,7 +23,7 @@ create index if not exists lobbies_host_idx on bucket.lobbies (host_id);
 
 create table if not exists bucket.lobby_players (
   lobby_id     uuid        not null references bucket.lobbies (id) on delete cascade,
-  user_id      uuid        not null references auth.users (id) on delete cascade,
+  user_id      uuid        not null,
   display_name text        not null check (char_length(display_name) between 1 and 40),
   ready        boolean     not null default false,
   score        int         not null default 0,
@@ -36,7 +37,7 @@ create index if not exists lobby_players_user_idx on bucket.lobby_players (user_
 create table if not exists bucket.lobby_messages (
   id         bigint      generated always as identity primary key,
   lobby_id   uuid        not null references bucket.lobbies (id) on delete cascade,
-  user_id    uuid        not null references auth.users (id) on delete cascade,
+  user_id    uuid        not null,
   body       text        not null check (char_length(body) between 1 and 200),
   created_at timestamptz not null default now()
 );
@@ -45,7 +46,7 @@ create index if not exists lobby_messages_lobby_idx on bucket.lobby_messages (lo
 
 create table if not exists bucket.lobby_answers (
   lobby_id uuid    not null references bucket.lobbies (id) on delete cascade,
-  user_id  uuid    not null references auth.users (id) on delete cascade,
+  user_id  uuid    not null,
   round    int     not null check (round >= 0),
   choice   text    not null check (char_length(choice) between 1 and 200),
   correct  boolean not null,
@@ -60,6 +61,7 @@ create table if not exists bucket.lobby_prompts (
   round    int    not null check (round >= 0),
   lang     text   not null,
   item_id  text   not null,
+  mode     text   not null default 'form' check (mode in ('form', 'flag')),
   gloss    text   not null,
   choices  text[] not null check (cardinality(choices) between 2 and 6),
   answer   text   not null,
@@ -203,3 +205,25 @@ end $$;
 revoke execute on function bucket.lobby_answer(uuid, uuid, int, text, boolean, int, int) from public, anon, authenticated;
 revoke execute on function bucket.leave_lobby(uuid, uuid) from public, anon, authenticated;
 revoke execute on function bucket.lobby_take(text, int) from public, anon, authenticated;
+
+create or replace function bucket.merge_lobby_guest(p_guest uuid, p_user uuid)
+returns int language plpgsql security definer set search_path = bucket as $$
+declare
+  n int;
+begin
+  if p_guest = p_user then
+    return 0;
+  end if;
+  delete from bucket.lobby_players g using bucket.lobby_players u
+    where g.user_id = p_guest and u.user_id = p_user and u.lobby_id = g.lobby_id;
+  delete from bucket.lobby_answers g using bucket.lobby_answers u
+    where g.user_id = p_guest and u.user_id = p_user and u.lobby_id = g.lobby_id and u.round = g.round;
+  update bucket.lobby_players set user_id = p_user where user_id = p_guest;
+  get diagnostics n = row_count;
+  update bucket.lobby_answers set user_id = p_user where user_id = p_guest;
+  update bucket.lobby_messages set user_id = p_user where user_id = p_guest;
+  update bucket.lobbies set host_id = p_user where host_id = p_guest;
+  return n;
+end $$;
+
+revoke execute on function bucket.merge_lobby_guest(uuid, uuid) from public, anon, authenticated;

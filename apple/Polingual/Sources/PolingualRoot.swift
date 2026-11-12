@@ -7,6 +7,7 @@ struct PolingualRoot: View {
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
     @Environment(Subscriptions.self) private var subs
+    @Environment(LobbyStore.self) private var lobbies
     @AppStorage("polingual.onboarded") private var onboarded = false
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
     @AppStorage(SaveProgress.key) private var savePending = false
@@ -45,6 +46,7 @@ struct PolingualRoot: View {
             if new == .signedIn && old != .signedIn {
                 savePending = false
                 Task { await store.syncAfterSignIn() }
+                Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {

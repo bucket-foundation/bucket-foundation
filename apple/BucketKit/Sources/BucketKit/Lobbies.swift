@@ -122,7 +122,57 @@ public enum LobbyClock {
     }
 }
 
+public struct GuestTicket: Codable, Equatable, Sendable {
+    public var token: String
+    public var userId: String
+    public var expiresAt: String
+}
+
+@MainActor
+public final class GuestPass {
+    let api: BucketAPI
+    let defaults: UserDefaults
+    public var nickname: () -> String
+    var ticket: GuestTicket?
+    static let idKey = "polingual.guestId"
+    static let ticketKey = "polingual.guestTicket"
+
+    public init(api: BucketAPI, defaults: UserDefaults = .standard, nickname: @escaping () -> String) {
+        self.api = api
+        self.defaults = defaults
+        self.nickname = nickname
+        ticket = defaults.data(forKey: Self.ticketKey).flatMap { try? JSONDecoder().decode(GuestTicket.self, from: $0) }
+    }
+
+    public var guestId: String {
+        if let id = defaults.string(forKey: Self.idKey) { return id }
+        let id = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased()
+        defaults.set(id, forKey: Self.idKey)
+        return id
+    }
+
+    public var userId: String? { ticket?.userId }
+
+    public func token(now: Date = Date()) async -> String? {
+        let nick = nickname().trimmingCharacters(in: .whitespacesAndNewlines)
+        if let t = ticket, let exp = parseInstant(t.expiresAt), exp.timeIntervalSince(now) > 3600 { return t.token }
+        guard !nick.isEmpty, let fresh = try? await api.guestTicket(nickname: String(nick.prefix(40)), guestId: guestId) else { return nil }
+        ticket = fresh
+        defaults.set(try? JSONEncoder().encode(fresh), forKey: Self.ticketKey)
+        return fresh.token
+    }
+
+    public func merge(into userToken: String) async {
+        guard let t = ticket else { return }
+        if (try? await api.mergeGuest(token: userToken, guestToken: t.token)) != nil {
+            ticket = nil
+            defaults.removeObject(forKey: Self.ticketKey)
+        }
+    }
+}
+
 struct LobbyReply: Decodable { let lobby: Lobby }
+struct MergeReply: Decodable { let merged: Int }
 struct AnswerReply: Decodable {
     let correct: Bool
     let lobby: Lobby
@@ -135,6 +185,15 @@ struct LobbyPoll: Decodable {
 }
 
 extension BucketAPI {
+    public func guestTicket(nickname: String, guestId: String) async throws -> GuestTicket {
+        try await groupCall("api/academy/lobbies/guest", token: nil, body: ["nickname": .text(nickname), "guestId": .text(guestId)])
+    }
+
+    public func mergeGuest(token: String, guestToken: String) async throws -> Int {
+        let r: MergeReply = try await groupCall("api/academy/lobbies/guest/merge", token: token, body: ["guestToken": .text(guestToken)])
+        return r.merged
+    }
+
     public func lobbies(token: String) async throws -> [LobbySummary] {
         let r: LobbiesReply = try await groupCall("api/academy/lobbies", token: token)
         return r.lobbies
@@ -203,11 +262,23 @@ public final class LobbyStore {
     let api: BucketAPI
     let token: @MainActor () async -> String?
     let clock: @MainActor () -> Date
+    public let guest: GuestPass?
 
-    public init(api: BucketAPI, token: @escaping @MainActor () async -> String?, clock: @escaping @MainActor () -> Date = { Date() }) {
+    public init(api: BucketAPI, token: @escaping @MainActor () async -> String?, guest: GuestPass? = nil, clock: @escaping @MainActor () -> Date = { Date() }) {
         self.api = api
         self.token = token
+        self.guest = guest
         self.clock = clock
+    }
+
+    func anyToken() async -> String? {
+        if let t = await token() { return t }
+        return await guest?.token()
+    }
+
+    public func mergeGuest() async {
+        guard let guest, let t = await token() else { return }
+        await guest.merge(into: t)
     }
 
     public var now: Date { clock().addingTimeInterval(offset) }
@@ -215,7 +286,7 @@ public final class LobbyStore {
     public var phase: LobbyPhase { current.map { LobbyClock.phase($0, at: now) } ?? .waiting }
 
     public func refresh() async {
-        guard let t = await token() else { return }
+        guard let t = await anyToken() else { return }
         do {
             open = try await api.lobbies(token: t)
             error = nil
@@ -245,7 +316,7 @@ public final class LobbyStore {
         picks = [:]
         marks = [:]
         open.removeAll { $0.id == id }
-        if let t = await token() { try? await api.leaveLobby(token: t, lobbyId: id) }
+        if let t = await anyToken() { try? await api.leaveLobby(token: t, lobbyId: id) }
     }
 
     public func setReady(_ ready: Bool) async throws(BucketError) {
@@ -266,7 +337,7 @@ public final class LobbyStore {
 
     @discardableResult
     public func pick(_ choice: String, round: Int) async -> Bool? {
-        guard let id = current?.id, picks[round] == nil, let t = await token() else { return nil }
+        guard let id = current?.id, picks[round] == nil, let t = await anyToken() else { return nil }
         picks[round] = choice
         guard let r = try? await api.answer(token: t, lobbyId: id, round: round, choice: choice) else { return nil }
         marks[round] = r.correct
@@ -275,7 +346,7 @@ public final class LobbyStore {
     }
 
     public func poll() async {
-        guard let lobby = current, let t = await token() else { return }
+        guard let lobby = current, let t = await anyToken() else { return }
         do {
             let r = try await api.lobbyState(token: t, lobbyId: lobby.id, since: lobby.version)
             if let s = r.now.flatMap(parseInstant) { sync(s) }
@@ -316,7 +387,7 @@ public final class LobbyStore {
     func run<T>(_ work: @escaping (String) async throws -> T) async throws(BucketError) -> T {
         busy = true
         defer { busy = false }
-        guard let t = await token() else { throw .revoked }
+        guard let t = await anyToken() else { throw .revoked }
         do { return try await work(t) } catch {
             let e = error as? BucketError ?? .server(0, nil)
             self.error = e

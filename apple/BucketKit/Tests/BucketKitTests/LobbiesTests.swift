@@ -112,3 +112,37 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(store.current == nil)
     }
 }
+
+@Suite struct GuestPassTests {
+    @MainActor @Test func guestsGetATicketAndUseItForLobbies() async throws {
+        let defaults = try #require(UserDefaults(suiteName: "guest-\(UUID().uuidString)"))
+        let auth = LockedBox<[String]>([])
+        let api = BucketAPI(transport: StubTransport { r in
+            auth.mutate { $0.append("\(r.url!.path) \(r.value(forHTTPHeaderField: "authorization") ?? "-")") }
+            if r.url!.path.hasSuffix("/guest") { return (200, json(["token": "g1.abc.def", "userId": "u-guest", "expiresAt": "2099-01-01T00:00:00Z"])) }
+            if r.url!.path.hasSuffix("/merge") { return (200, json(["ok": true, "merged": 1])) }
+            return (200, json(["lobbies": []]))
+        }, cacheDir: nil)
+        let signedIn = LockedBox(false)
+        let pass = GuestPass(api: api, defaults: defaults) { "Gia" }
+        let store = LobbyStore(api: api, token: { signedIn.value ? "user" : nil }, guest: pass)
+        await store.refresh()
+        await store.refresh()
+        #expect(pass.guestId.count == 32 && pass.userId == "u-guest")
+        signedIn.mutate { $0 = true }
+        await store.mergeGuest()
+        #expect(auth.value == [
+            "/api/academy/lobbies/guest -",
+            "/api/academy/lobbies Bearer g1.abc.def",
+            "/api/academy/lobbies Bearer g1.abc.def",
+            "/api/academy/lobbies/guest/merge Bearer user",
+        ])
+        #expect(pass.userId == nil)
+    }
+
+    @MainActor @Test func noNameMeansNoGuestToken() async {
+        let api = BucketAPI(transport: StubTransport { _ in (500, Data()) }, cacheDir: nil)
+        let pass = GuestPass(api: api, defaults: UserDefaults(suiteName: "guest-\(UUID().uuidString)")!) { "  " }
+        #expect(await pass.token() == nil)
+    }
+}

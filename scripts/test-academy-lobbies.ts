@@ -205,3 +205,23 @@ test("migration keeps lobby tables private and limits joins in the database", ()
   assert.match(sql, /revoke all on bucket\.lobby_prompts, bucket\.lobby_limits from anon, authenticated/);
   assert.match(sql, /check \(answer = any \(choices\)\)/);
 });
+
+test("guest tokens sign a stable user id and refuse tampering or expiry", async () => {
+  const g = await import("../src/lib/academy/lobby-guests");
+  const secret = "s".repeat(40);
+  const id = "device-abc-1234567890";
+  const t = g.issueGuestToken(id, "Gia", secret, T0);
+  assert.match(t.userId, /^[0-9a-f]{8}-[0-9a-f]{4}-8[0-9a-f]{3}-a[0-9a-f]{3}-[0-9a-f]{12}$/);
+  assert.equal(t.userId, g.guestUserId(id));
+  assert.equal(g.verifyGuestToken(t.token, secret, T0 + 1000)?.sub, t.userId);
+  assert.equal(g.verifyGuestToken(t.token, "x".repeat(40), T0), null);
+  assert.equal(g.verifyGuestToken(t.token.slice(0, -2) + "AA", secret, T0), null);
+  assert.equal(g.verifyGuestToken(t.token, secret, T0 + g.GUEST_TTL_MS + 1), null);
+  const [body, mac] = t.token.slice(3).split(".");
+  const forged = Buffer.from(JSON.stringify({ ...JSON.parse(Buffer.from(body, "base64url").toString()), sub: "00000000-0000-0000-0000-000000000000" })).toString("base64url");
+  assert.equal(g.verifyGuestToken(`g1.${forged}.${mac}`, secret, T0), null);
+  assert.equal(g.normalizeGuestId("short"), null);
+  assert.equal(g.normalizeGuestId("ok_guest-id-1234567"), "ok_guest-id-1234567");
+  assert.equal(g.bearer("Bearer abc"), "abc");
+  assert.equal(g.bearer(null), null);
+});
