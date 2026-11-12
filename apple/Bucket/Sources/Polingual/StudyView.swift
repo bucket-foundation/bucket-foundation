@@ -168,8 +168,8 @@ struct StudyView: View {
                 let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))
                 columns {
                     VStack(spacing: 16) {
-                        Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
-                            .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
+                        Image(systemName: "checkmark").font(.system(size: 44, weight: .heavy)).foregroundStyle(D8.malachite)
+                            .frame(width: 76, height: 76)
                             .onAppear {
                                 haptic(true)
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
@@ -181,7 +181,6 @@ struct StudyView: View {
                     }
                     .frame(maxWidth: .infinity)
                     VStack(spacing: 16) {
-                        ReminderPrompt()
                         FeedbackLink()
                         ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
                         Button("See progress") {

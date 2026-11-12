@@ -12,8 +12,6 @@ struct Onboarding: View {
     @State private var creating = false
     @State private var failed: String?
 
-    @State private var moreLanguages = false
-
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $step) {
@@ -34,7 +32,6 @@ struct Onboarding: View {
             footer
         }
         .background(Backdrop().ignoresSafeArea())
-        .sheet(isPresented: $moreLanguages) { languagePicker }
         .task { await store.load() }
     }
 
@@ -102,49 +99,11 @@ struct Onboarding: View {
                     Chip(title: p.name, langs: p.targets, on: Set(p.targets.filter { $0 != root }) == Set(targets)) { targets = p.targets.filter { $0 != root } }
                 }
             }
-            Button("More languages · 29") { moreLanguages = true }.buttonStyle(D8Option(align: .center, compact: true))
             if let failed {
                 Text(failed).font(.footnote).foregroundStyle(D8.vermilion)
                 Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
             }
         }
-    }
-
-    var languagePicker: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    HStack {
-                        Text("I already speak").foregroundStyle(Palette.muted)
-                        Spacer()
-                        Picker("I already speak", selection: $root) {
-                            ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
-                        }
-                        .labelsHidden()
-                        .tint(Palette.ink)
-                    }
-                    .onChange(of: root, initial: true) { _, r in
-                        targets.removeAll { $0 == r }
-                        InterfacePick.shared.root = r
-                    }
-                    Text(targets.count == 5 ? String(localized: "Five at most. Tap one to swap it out.") : String(localized: "\(targets.count) of 5 picked"))
-                        .font(.footnote).foregroundStyle(Palette.muted)
-                    FlowLayout(spacing: 8) {
-                        ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                            Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
-                                if let i = targets.firstIndex(of: c) { targets.remove(at: i) } else if targets.count < 5 { targets.append(c) }
-                            }
-                        }
-                    }
-                }
-                .padding(20)
-            }
-            .background(Palette.paper.ignoresSafeArea())
-            .navigationTitle("Languages")
-            .inlineTitle()
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { moreLanguages = false } } }
-        }
-        .presentationDetents([.large])
     }
 
     var footer: some View {
