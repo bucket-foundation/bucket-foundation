@@ -180,6 +180,7 @@ struct ContentHub: View {
         .navigationDestination(item: $openFilm) { FilmView(film: $0).fullHeightSession() }
         .task {
             await langs.load()
+            await FilmStore.shared.load()
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
             if let i = args.firstIndex(of: "-readTopic"), i + 1 < args.count { openTopic = ContentCatalog.topics.first { $0.title == args[i + 1] } }

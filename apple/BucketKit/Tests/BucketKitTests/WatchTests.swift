@@ -20,6 +20,33 @@ import Testing
         #expect(cues.map(\.text) == ["kept"])
     }
 
+    @Test func skipsBlockWithoutArrow() {
+        let cues = VTT.parse("WEBVTT\n\n1\n00:00:01.000 00:00:02.000\nno arrow\n\n2\n00:00:03.000 --> 00:00:04.000\nkept")
+        #expect(cues == [WatchCue(start: 3, end: 4, text: "kept")])
+    }
+
+    @Test func skipsBadTimestamps() {
+        let cues = VTT.parse("WEBVTT\n\n00:aa:01.000 --> 00:00:02.000\nletters\n\n00:00:-1.000 --> 00:00:02.000\nnegative\n\n1:2:3:4.000 --> 00:00:02.000\ntoo many fields\n\n00:00:05.000 --> 00:00:06.000\nkept")
+        #expect(cues.map(\.text) == ["kept"])
+    }
+
+    @Test func stripsByteOrderMarkBeforeABareCue() {
+        let cues = VTT.parse("\u{FEFF}00:00:01.000 --> 00:00:02.000\nfirst")
+        #expect(cues == [WatchCue(start: 1, end: 2, text: "first")])
+    }
+
+    @Test func readsCRLFAndBareCarriageReturns() {
+        let crlf = VTT.parse("WEBVTT\r\n\r\n00:00:01.000 --> 00:00:02.000\r\nline one\r\nline two\r\n")
+        #expect(crlf == [WatchCue(start: 1, end: 2, text: "line one\nline two")])
+        let cr = VTT.parse("WEBVTT\r\r00:00:01.000 --> 00:00:02.000\rsolo\r")
+        #expect(cr.map(\.text) == ["solo"])
+    }
+
+    @Test func dropsEmptyCues() {
+        let cues = VTT.parse("WEBVTT\n\n1\n00:00:01.000 --> 00:00:02.000\n   \n\n2\n00:00:03.000 --> 00:00:04.000\n<i></i>\n\n3\n00:00:05.000 --> 00:00:06.000\nkept")
+        #expect(cues.map(\.text) == ["kept"])
+    }
+
     @Test func secondsAcceptsCommaAndHours() {
         #expect(VTT.seconds("01:00:00,500") == 3600.5)
         #expect(VTT.seconds("00:10") == 10)
@@ -45,7 +72,7 @@ import Testing
     }
 
     static let index = """
-    {"version":1,"films":[{"id":"sintel","title":{"en":"Sintel","ja":"シンテル"},"duration":888.064,"license":"CC BY 3.0","credit":"(CC) Blender Foundation | studio.blender.org","source":"https://studio.blender.org/films/sintel/","video":"https://example.org/s.mp4","poster":"https://example.org/s.png","langs":["en","es","ja"],"cues":26,"translation":"machine","updated":"2026-11-12"}]}
+    {"version":1,"films":[{"id":"sintel","title":{"en":"Sintel","ja":"シンテル"},"duration":888.064,"license":"CC BY 3.0","licenseUrl":"https://creativecommons.org/licenses/by/3.0/","credit":"(CC) Blender Foundation | studio.blender.org","source":"https://studio.blender.org/films/sintel/","video":"https://example.org/s.mp4","poster":"https://example.org/s.png","langs":["en","es","ja"],"cues":26,"translation":"machine","updated":"2026-11-12"}]}
     """
 
     @Test func filmPicksLearnerLanguagesItHas() throws {
@@ -55,6 +82,13 @@ import Testing
         #expect(film.title("ja") == "シンテル")
         #expect(film.title("ko") == "Sintel")
         #expect(film.minutes == 15)
+    }
+
+    @Test func filmWithoutVideoDecodes() throws {
+        let raw = Self.index.replacingOccurrences(of: "\"https://example.org/s.mp4\"", with: "null").replacingOccurrences(of: "\"licenseUrl\":\"https://creativecommons.org/licenses/by/3.0/\",", with: "")
+        let film = try JSONDecoder().decode(WatchIndex.self, from: Data(raw.utf8)).films[0]
+        #expect(film.video == nil)
+        #expect(film.licenseUrl == nil)
     }
 
     @Test func apiFetchesIndexAndCues() async throws {

@@ -13,6 +13,8 @@ final class FilmStore {
     var status: Status = .idle
     var cues: [String: [WatchCue]] = [:]
 
+    var playable: [WatchFilm] { status == .ready ? films.filter { $0.video != nil } : [] }
+
     init() {
         #if DEBUG
         if let base = Launch.value("-watchBase").flatMap(URL.init(string:)) {
@@ -49,34 +51,25 @@ struct FilmsSection: View {
     let open: (WatchFilm) -> Void
 
     var body: some View {
-        Section {
-            switch store.status {
-            case .idle, .loading:
-                ProgressView("Loading films").frame(maxWidth: .infinity)
-            case .failed:
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("The films did not load. Check the connection and try again.").font(.subheadline).foregroundStyle(Palette.muted)
-                    Button("Retry") { Task { await store.load(force: true) } }
-                }
-            case .ready:
+        if !store.playable.isEmpty {
+            Section {
                 ScrollView(.horizontal) {
                     HStack(alignment: .top, spacing: 14) {
-                        ForEach(store.films) { film in
+                        ForEach(store.playable) { film in
                             FilmTile(film: film, langs: film.subtitleLangs(for: langs.contentLangs)) { open(film) }
                         }
                     }
                     .padding(.bottom, 4)
                 }
                 .scrollIndicators(.hidden)
+            } header: {
+                LearnGroupTitle(text: "Films")
             }
-        } header: {
-            LearnGroupTitle(text: "Films")
+            .id("films")
+            .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
         }
-        .id("films")
-        .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))
-        .listRowSeparator(.hidden)
-        .listRowBackground(Color.clear)
-        .task { await store.load() }
     }
 }
 
@@ -127,7 +120,11 @@ struct FilmCredit: View {
             Link(destination: film.source) {
                 Text(verbatim: film.credit).font(.footnote.weight(.semibold))
             }
-            Text(verbatim: film.license).font(.caption).foregroundStyle(Palette.muted)
+            if let deed = film.licenseUrl {
+                Link(destination: deed) { Text(verbatim: film.license).font(.caption) }
+            } else {
+                Text(verbatim: film.license).font(.caption).foregroundStyle(Palette.muted)
+            }
         }
     }
 }
@@ -153,14 +150,16 @@ struct FilmView: View {
                     Text("\(film.minutes) min").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
                     ForEach(shown, id: \.self) { FlagTile(lang: $0, size: 20) }
                 }
-                Button {
-                    playback = FilmStart(at: 0)
-                } label: {
-                    Label("Play", systemImage: "play.fill").frame(maxWidth: .infinity)
+                if film.video != nil {
+                    Button {
+                        playback = FilmStart(at: 0)
+                    } label: {
+                        Label("Play", systemImage: "play.fill").frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(D8.lapis)
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .tint(D8.lapis)
                 Text("Subtitles in \(shown.map(langName).joined(separator: ", "))").font(.subheadline).foregroundStyle(Palette.ink)
                 Text("Subtitles: machine translation of the English original.").font(.footnote).foregroundStyle(Palette.muted)
                 FilmCredit(film: film)
@@ -172,7 +171,9 @@ struct FilmView: View {
         .paper()
         .navigationTitle(film.title(shown[0]))
         .inlineTitle()
-        .filmCover(item: $playback) { FilmPlayer(film: film, langs: shown, start: $0.at) }
+        .filmCover(item: $playback) { start in
+            if let video = film.video { FilmPlayer(film: film, video: video, langs: shown, start: start.at) }
+        }
         #if DEBUG
         .task {
             guard let at = Launch.value("-playFilmAt").flatMap(Double.init) else { return }
@@ -200,21 +201,19 @@ extension View {
 @MainActor
 @Observable
 final class FilmClock {
-    let player: AVPlayer
+    let player = AVPlayer()
+    let url: URL
     var time: Double = 0
+    var failed = false
     @ObservationIgnored private var seeking = false
     @ObservationIgnored private var token: Any?
+    @ObservationIgnored private var statusWatch: NSKeyValueObservation?
 
     init(url: URL, start: Double) {
-        player = AVPlayer(url: url)
+        self.url = url
         time = start
-        seeking = start > 0
-        if seeking {
-            player.seek(to: CMTime(seconds: start, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
-                Task { @MainActor in self?.seeking = false }
-            }
-        }
-        token = player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 5), queue: .main) { [weak self] t in
+        load(at: start)
+        token = player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 10), queue: .main) { [weak self] t in
             MainActor.assumeIsolated {
                 guard let self, !self.seeking, t.isNumeric else { return }
                 self.time = t.seconds
@@ -222,15 +221,38 @@ final class FilmClock {
         }
     }
 
+    func load(at start: Double) {
+        let item = AVPlayerItem(url: url)
+        failed = false
+        statusWatch = item.observe(\.status, options: [.initial, .new]) { [weak self] item, _ in
+            let bad = item.status == .failed
+            Task { @MainActor in if bad { self?.failed = true } }
+        }
+        player.replaceCurrentItem(with: item)
+        seeking = start > 0
+        if seeking {
+            player.seek(to: CMTime(seconds: start, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] _ in
+                Task { @MainActor in self?.seeking = false }
+            }
+        }
+    }
+
+    func retry() {
+        load(at: time)
+        player.play()
+    }
+
     func stop() {
         player.pause()
         if let token { player.removeTimeObserver(token) }
         token = nil
+        statusWatch = nil
     }
 }
 
 struct FilmPlayer: View {
     let film: WatchFilm
+    let video: URL
     let langs: [String]
     var start: Double = 0
     @Environment(\.dismiss) private var dismiss
@@ -245,6 +267,7 @@ struct FilmPlayer: View {
                 if !wide { bar }
                 VideoPlayer(player: clock?.player)
                     .aspectRatio(16 / 9, contentMode: .fit)
+                    .overlay { if clock?.failed == true { failure } }
                     .frame(maxWidth: wide ? geo.size.width * 0.6 : .infinity)
                 VStack(spacing: 0) {
                     if wide { bar }
@@ -258,7 +281,7 @@ struct FilmPlayer: View {
         .wordTaps(reveal: true)
         .task {
             if clock == nil {
-                clock = FilmClock(url: film.video, start: start)
+                clock = FilmClock(url: video, start: start)
                 #if DEBUG
                 if !Launch.flag("-filmHold") { clock?.player.play() }
                 #else
@@ -270,6 +293,23 @@ struct FilmPlayer: View {
             }
         }
         .onDisappear { clock?.stop() }
+    }
+
+    var failure: some View {
+        VStack(spacing: 12) {
+            Text("This film did not play. Check the connection and try again.")
+                .font(.subheadline)
+                .foregroundStyle(.white)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            HStack(spacing: 12) {
+                Button("Retry") { clock?.retry() }.buttonStyle(.borderedProminent).tint(D8.lapis)
+                Button("Close") { dismiss() }.buttonStyle(.bordered).tint(.white)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
     }
 
     var bar: some View {

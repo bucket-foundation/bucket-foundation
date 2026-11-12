@@ -15,7 +15,8 @@ type Film = {
   license: string;
   credit: string;
   source: string;
-  video: string;
+  licenseUrl: string;
+  video: string | null;
   poster: string;
   langs: string[];
   cues: number;
@@ -53,7 +54,8 @@ test("index lists Tears of Steel and Sintel with every field", () => {
     assert.equal(f.credit, CREDIT);
     assert.match(f.license, /^CC BY/);
     assert.ok(f.duration > 600 && f.duration < 1200, `${f.id} duration ${f.duration}`);
-    assert.match(f.video, /^https:\/\//);
+    assert.equal(f.licenseUrl, "https://creativecommons.org/licenses/by/3.0/");
+    if (f.video !== null) assert.match(f.video, /^https:\/\/download\.blender\.org\//);
     assert.match(f.poster, /^https:\/\/www\.polingual\.com\/watch\//);
     assert.match(f.source, /^https:\/\/studio\.blender\.org\//);
     assert.match(f.updated, /^\d{4}-\d\d-\d\d$/);
@@ -94,6 +96,12 @@ for (const film of index.films) {
     assert.ok(en[en.length - 1].end <= film.duration, "last cue past the end");
   });
 }
+
+test("Tears of Steel streams from Blender and Sintel waits for its own host", () => {
+  const video = Object.fromEntries(index.films.map((f) => [f.id, f.video]));
+  assert.equal(video["tears-of-steel"], "https://download.blender.org/demo/movies/ToS/tears_of_steel_720p.mov");
+  assert.equal(video["sintel"], null);
+});
 
 test("no video files in the watch folder", () => {
   const walk = (dir: string): string[] =>

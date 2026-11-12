@@ -52,6 +52,7 @@ struct LearnView: View {
         }
         .task {
             await langs.load()
+            await FilmStore.shared.load()
             #if DEBUG
             if let game = Launch.value("-openGame").flatMap(GameKind.init(rawValue:)) { path.append(LearnRoute.game(game)) }
             if let kind = Launch.value("-contentKind").flatMap(ContentKind.init(rawValue:)) { path.append(LearnRoute.content(kind)) }

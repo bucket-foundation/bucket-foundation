@@ -14,7 +14,7 @@ public struct WatchCue: Sendable, Equatable {
 
 public enum VTT {
     public static func parse(_ source: String) -> [WatchCue] {
-        let text = source.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n")
+        let text = source.replacingOccurrences(of: "\u{FEFF}", with: "").replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n")
         let blocks = text.components(separatedBy: "\n\n")
         var cues: [WatchCue] = []
         for block in blocks {
@@ -38,7 +38,7 @@ public enum VTT {
     public static func seconds(_ stamp: String) -> Double? {
         let s = stamp.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: ",", with: ".")
         let fields = s.split(separator: ":").map(String.init)
-        guard (2...3).contains(fields.count), let last = Double(fields[fields.count - 1]) else { return nil }
+        guard (2...3).contains(fields.count), let last = Double(fields[fields.count - 1]), last >= 0, last < 60 else { return nil }
         var total = last
         var scale = 60.0
         for field in fields.dropLast().reversed() {
@@ -74,9 +74,10 @@ public struct WatchFilm: Codable, Sendable, Equatable, Hashable, Identifiable {
     public let title: [String: String]
     public let duration: Double
     public let license: String
+    public let licenseUrl: URL?
     public let credit: String
     public let source: URL
-    public let video: URL
+    public let video: URL?
     public let poster: URL
     public let langs: [String]
     public let cues: Int
