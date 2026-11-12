@@ -60,6 +60,17 @@ final class FoundingTransport: Transport, @unchecked Sendable {
     #expect(await FoundingTester.fetch(user: nil, token: nil, transport: t, defaults: d) == false)
 }
 
+@Test(arguments: [401, 403]) func foundingClearsTheCachedAnswerWhenTheServerRejectsTheUser(status: Int) async {
+    let d = UserDefaults(suiteName: UUID().uuidString)!
+    #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: FoundingTransport([(200, #"{"founding":true}"#)]), defaults: d))
+    #expect(await FoundingTester.fetch(user: "u2", token: "tok", transport: FoundingTransport([(200, #"{"founding":true}"#)]), defaults: d))
+    #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: FoundingTransport([(status, "")]), defaults: d) == false)
+    #expect(FoundingTester.cached(user: "u1", defaults: d) == false)
+    #expect((d.dictionary(forKey: FoundingTester.cacheKey) as? [String: Bool])?["u1"] == nil)
+    #expect(FoundingTester.cached(user: "u2", defaults: d))
+    #expect(await FoundingTester.fetch(user: "u1", token: "tok", transport: OfflineTransport(), defaults: d) == false)
+}
+
 struct OfflineTransport: Transport {
     func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) { throw URLError(.notConnectedToInternet) }
 }

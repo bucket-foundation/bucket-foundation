@@ -29,10 +29,19 @@ public enum FoundingTester {
         guard let id = user ?? defaults.string(forKey: lastUserKey), let token else { return known }
         var r = URLRequest(url: base.appending(path: "api/polingual/entitlement"), timeoutInterval: 6)
         r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
-        guard let (data, http) = try? await transport.send(r), http.statusCode == 200, let founding = parse(data) else { return known }
+        guard let (data, http) = try? await transport.send(r) else { return known }
+        if http.statusCode == 401 || http.statusCode == 403 {
+            store(nil, for: id, defaults: defaults)
+            return false
+        }
+        guard http.statusCode == 200, let founding = parse(data) else { return known }
+        store(founding, for: id, defaults: defaults)
+        return founding
+    }
+
+    static func store(_ founding: Bool?, for id: String, defaults: UserDefaults) {
         var all = defaults.dictionary(forKey: cacheKey) as? [String: Bool] ?? [:]
         all[id] = founding
         defaults.set(all, forKey: cacheKey)
-        return founding
     }
 }
