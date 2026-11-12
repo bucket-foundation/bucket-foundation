@@ -1,9 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
 const LANGS = ["en", "es", "fr", "it", "pt", "de", "nl", "sv", "pl", "fi", "ru", "el", "ar", "hi", "ja", "zh", "ko", "he", "fa", "tr", "cs", "id", "vi", "th", "ta"];
-const dir = join(dirname(fileURLToPath(import.meta.url)), "..", "polingual", "public", "library");
+const dir = join(__dirname, "..", "polingual", "public", "library");
 const errors: string[] = [];
 const fail = (msg: string) => errors.push(msg);
 
