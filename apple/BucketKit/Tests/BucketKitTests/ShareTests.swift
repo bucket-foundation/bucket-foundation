@@ -133,7 +133,7 @@ final class RecordingDonor: ShareDonor {
         #expect(body(r[0]) == ["groupId": "g1", "to": "u2", "kind": "url", "url": "https://polingual.com", "text": "look"])
         #expect(body(r[1]) == ["groupId": "g1", "kind": "text", "text": "ciao"])
         #expect(body(r[2]) == ["groupId": "g1", "kind": "image", "image": "/9j/"])
-        #expect(r[3].httpMethod != "POST" && r[3].url!.query() == "groupId=g1")
+        #expect(r[3].httpMethod != "POST" && r[3].url!.query() == "groupId=g1&voice=1")
         #expect(r[4].url!.path == "/api/academy/groups/share/report" && body(r[4]) == ["itemId": "i1", "reason": "spam"])
         #expect(r[5].url!.path == "/api/academy/groups/share/remove" && body(r[5]) == ["itemId": "i1"])
         #expect(r.allSatisfy { $0.value(forHTTPHeaderField: "authorization") == "Bearer t" })
