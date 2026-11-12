@@ -75,7 +75,7 @@ enum RootScreen: Equatable {
         switch access {
         case .checking: return .loading
         case .locked: return .paywall
-        case .trial, .subscribed: return .studio
+        case .trial, .subscribed, .beta: return .studio
         }
     }
 }
@@ -138,7 +138,17 @@ struct Studio: View {
     }
 
     @ViewBuilder var trial: some View {
-        if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
+        if subs.access == .beta {
+            Label(String(localized: "You're a beta tester. Polingual is free for you, and stays free for life after launch."), systemImage: "gift.fill")
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(.white)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
+                .frame(maxWidth: .infinity)
+                .background(D8.lapis, ignoresSafeAreaEdges: [])
+        } else if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
             Button(action: manage) {
                 Label(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"), systemImage: "gift.fill")
                     .font(.subheadline.weight(.bold))
