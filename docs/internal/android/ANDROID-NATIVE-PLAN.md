@@ -1,6 +1,6 @@
 # Android Native Plan
 
-Base revision: `c1afe33045` on `dev`, read 2026-11-12 on charizard with Android SDK platforms 31, 35 and 36 and JDK 21. Status: plan, round 1. Platform facts come from `docs/internal/android/android-surfaces-research.md`; a row marked "research" cites its section there. Epic `bkt-292zc`, plan bead `bkt-292zc.1`. Founder question for the plan bead: answer the open decisions AD3 to AD16.
+Base revision: `c1afe33045` on `dev`, read 2026-11-12 on charizard with Android SDK platforms 31, 35 and 36 and JDK 21. Status: plan, round 2 after critic round 1. The plan commit sits directly on `dev` at `c1afe33045`, which was still the `dev` head on 2026-11-12. Platform facts come from `docs/internal/android/android-surfaces-research.md`; a row marked "research" cites its section there. Epic `bkt-292zc`, plan bead `bkt-292zc.1`. Founder question for the plan bead: answer the open decisions AD3 to AD16.
 
 Target outcome: Polingual and Bucket Foundation run as native Kotlin and Jetpack Compose apps on Android phones, tablets, foldables and Chromebooks, on one shared Kotlin core that mirrors BucketKit. A person signs in with the same email code or Google account as on iOS and the web, finds the same progress, and plays a live lobby with iOS and web players on one room code. Wear OS, Android Auto, TV, XR and widgets follow as tracks on the same core.
 
@@ -17,17 +17,17 @@ Decided rows carry `source-founder`. Open rows carry a recommendation.
 | AD3 | One app or two Play listings | open | two listings, `com.polingual.app` and `foundation.bucket.app`, built from one Gradle project with a shared `:core` module, mirroring the two iOS bundle ids. Each listing keeps its own rating, data safety form and billing; Polingual carries ads and subscriptions, Bucket carries neither |
 | AD4 | Shared core language | open | a separate Kotlin core (Android-only JVM modules). KMP would let Swift call the Kotlin core, but BucketKit already exists in Swift with 413 tests, so KMP adds a second source of truth on iOS for no Android gain (research, KMP) |
 | AD5 | Surfaces in the first release | open | phone, tablet, foldable and ChromeOS in one adaptive APK set; Wear OS, Glance widgets and Android Auto second, because a car app puts every later update for every device type behind a manual car review (research, Auto); Android TV and XR deferred until phone ships |
-| AD6 | Sign-in methods | open | email code (existing `session` actions) and Sign in with Google through Credential Manager in the first release; passkeys after the web supports them. Needs a new `session` action `google` (Server Contract) |
+| AD6 | Sign-in methods | open | email code (existing `session` actions) and Sign in with Google through Credential Manager in the first release. Apple plan D4 asked for Google, GitHub and other OAuth providers; on Android, GitHub would run through a Custom Tab PKCE flow and waits for the iOS `pkce` action, so it follows in Polingual 1.1. Passkeys follow web support |
 | AD7 | Play developer account type | open | an organization account under AG Farms LLC (D-U-N-S needed). Personal accounts made after 2023-11-13 need 12 testers opted in for 14 days before production; the organization exemption appears only in a Play community guide, so plan for the closed test either way (research, Play testing) |
-| AD8 | Subscription product ids and prices | open | mirror iOS: `polingual.monthly`, `polingual.yearly` with a 3-day free trial offer, `polingual.family.yearly`, and a one-time `polingual.lifetime` in-app product. Play ids allow dots and lowercase only; prices match the App Store tiers |
+| AD8 | Subscription product ids and prices | open | reuse the iOS ids so `POLINGUAL_PRODUCTS` in `src/lib/app-store/entitlement.ts` covers both stores: subscriptions `com.polingual.monthly` and `com.polingual.yearly` with a 3-day free trial offer, `com.polingual.family.yearly`, and the one-time product `com.polingual.lifetime`; prices match the App Store tiers |
 | AD9 | Ads | open | AdMob in Polingual lobbies only, banner in the lobby and an interstitial between games, behind a remote flag, off by default; UMP consent before any ad request; no ads in Bucket. Same scope as the handoff for iOS |
 | AD10 | Families policy and audience | open | target audience 13 and older on Polingual so the Families policy and its certified-ads-SDK rule do not apply; the age band sheet stays; Bucket keeps the same age gate as iOS |
 | AD11 | Free beta access | open | iOS grants free access on TestFlight. On Android, grant it on debug and internal-test builds through a build flavor, never on production; a server allowlist is the alternative |
 | AD12 | Push notifications | open | Firebase Cloud Messaging with a new `platform: "fcm"` on `/api/academy/push/register`; needs a Firebase project. Defer to the second ship unit; local reminders through WorkManager first |
 | AD13 | Signing | open | Play App Signing with an upload key generated on charizard, kept outside git in `~/.bucket-secrets/android/`, backed up to the founder's password manager |
-| AD14 | Release timing | open | each ship unit releases when its exit criteria pass |
+| AD14 | Release gate | open | the founder approves each ship unit after its exit criteria pass and the 14-day closed test ends; agents never press release in the Play Console |
 | AD15 | Polingual lexicon and corpus licence on Play | open | ship the same bundled corpus as iOS (`apple/Shared/Corpus`, CC-BY-SA material) with the same About and licence screen; this matches the decision already taken for iOS |
-| AD16 | Instant app equivalent of the App Clip | open | none; Google Play Instant status in late 2026 is in the research file, and a web `/play/<code>` link covers quick join |
+| AD16 | App Clip equivalent | open | none in the first release; the research file found no current primary source on Google Play Instant, and the web `/play/<code>` link covers quick join for people without the app |
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ Decided rows carry `source-founder`. Open rows carry a recommendation.
 | Area | Fact | Path |
 |---|---|---|
 | Android code | none on `dev`; branch `feat/android-polingual` holds no commits beyond `dev` | `android/` absent |
-| Shared Swift core | `BucketKit`: API client, session, lobbies, groups, Polingual engine, games, lexicon, today plan, content and radio; 413 tests per the lobbies handoff | `apple/BucketKit/Sources/BucketKit` |
+| Shared Swift core | `BucketKit`: API client, session, lobbies, groups, Polingual engine, games, lexicon, today plan, content and radio; the lobbies handoff reports 413 passing tests; this plan did not rerun them | `apple/BucketKit/Sources/BucketKit` |
 | Apps on iOS | two app targets from one `project.yml`: `Bucket` (`foundation.bucket.app`) and `Polingual` (`com.polingual.app`), each with widgets, share extension and a watch app; `BucketClip` App Clip for Bucket | `apple/project.yml` |
 | Polingual sources | about 60 SwiftUI files: Today, Learn, Account tabs; eight daily games (Daily Set, Mini, Word Groups, Same Word, Speed Match, Which Voice, Flags, Letter Sprint); translate card; Listen radio; lobbies; groups; paywall; onboarding | `apple/Bucket/Sources/Polingual`, `apple/Polingual/Sources` |
 | Bucket sources | Today, Learn, Account; science decks, question cards, canon search, library | `apple/Bucket/Sources` |
@@ -92,6 +92,20 @@ Each iOS feature, its Android counterpart, and the module that owns it. "core" i
 | Watch app | `PolingualWatch` | Wear OS app with a word deck and a Tile (track Wear) | wear |
 | Deep links | `DeepLink`, universal links | Android App Links on `www.bucket.foundation/play/<code>` and `/join/<code>` with `assetlinks.json` | pol |
 | Bucket science study, canon search, library | `ScienceLearn.swift`, `ScienceStudy.swift`, `CanonView.swift`, `Library.swift` | Compose screens on the same core and corpus routes | bkt |
+| Placement test | `PlacementView.swift`, `PlacementCEFR.swift` | same CEFR placement port | core, pol |
+| Alphabet study, sound drills, letter sounds | `AlphabetStudy.swift`, `SoundDrills.swift`, `LetterSounds*.swift`, `CharacterTables.swift`, `ScriptCourse.swift` | Kotlin ports of the tables and Compose drills | core, pol |
+| Tap words, sentence translations | `TapWords.swift`, `SentenceTranslations.swift` | same | pol |
+| Watch films with subtitles | `FilmViews.swift` | Media3 player with the same subtitle source; Today `watch` activity | pol |
+| Wrong translation report | `WrongTranslation.swift` | same `POST /api/academy/translation-report` | pol |
+| Feedback, beta events | `Feedback.swift`, `Beta.swift`, `BetaEvents.swift`, `BetaFlags.swift` | same routes; beta access per AD11 | core, pol |
+| Milestones, streak goal, brag card | `MilestoneMoment.swift`, `Milestones.swift`, `StreakGoal.swift`, `StreakGoalCard.swift`, `GameBrag.swift`, `GameLedger.swift`, `ShareCard.swift` | ports; brag and share cards rendered to a bitmap and sent through the Android share sheet | core, pol |
+| Group compare, shared items, screen share | `GroupCompare.swift`, `ShareObjects.swift`, `SharedItems.swift`, `ScreenShare.swift` | with groups in Polingual 1.1; screen share maps to a screenshot share | pol |
+| Interface language | `InterfaceLanguage.swift`, `*.lproj` | per-app language through `LocaleManager` and `locales_config.xml`; strings converted from `.lproj` to `values-*/strings.xml` by a script | pol |
+| Add to Today, today plan store | `AddToToday.swift`, `TodayPlanStore.swift` | same | core, pol |
+| Reminder consent and plan | `ReminderConsent.swift`, `ReminderPlan.swift` | same rules over WorkManager | core |
+| App Shortcuts and intents | `Shortcuts.swift` | static and dynamic shortcuts in `shortcuts.xml`; App Actions only if the founder asks | pol |
+| Library | `Library.swift`, `LibraryView.swift` | same | core, pol, bkt |
+| Bucket widgets, share extension, watch | `BucketWidgets`, `BucketShare`, `BucketWatch` | Glance widget and `ACTION_SEND` in Bucket 1.0; Bucket on Wear OS deferred with no date | bkt |
 | Bucket App Clip | `BucketClip` | none (AD16) | none |
 | Mac Catalyst and native Mac | `supportedDestinations: [iOS, macOS]` | ChromeOS through the same APK with keyboard and pointer support | pol, bkt |
 
@@ -101,19 +115,30 @@ Every authenticated call sends `authorization: Bearer <access_token>`. Rows mark
 
 | Route | Change | Body | Success | Refusals |
 |---|---|---|---|---|
-| `/api/academy/session` | existing | `otp`, `verify`, `refresh`, `delete_account` | `{access_token, refresh_token, expires_at, user_id}`; delete returns `{ok:true}` | 400 `bad_email`, `bad_code`; 401 `revoked`; 429; 503 |
-| same | new action `google` | `{action:"google", id_token, nonce, app}` | same tokens via GoTrue `signInWithIdToken({provider:"google"})` | 400 `bad_token`, 429 per IP, 403 `signup_closed` |
+| `/api/academy/session` | existing | `otp`, `verify`, `apple`, `refresh`, `delete_account`; `otp` takes `app` and looks it up in `APP_REDIRECTS`, which holds `polingual` only, so Android Polingual sends `app:"polingual"` and Bucket sends none | `{access_token, refresh_token, expires_at, user_id}`; delete returns `{ok:true}` | 400 `bad_email`, `bad_code`; 401 `revoked`; 429; 503 |
+| same | new action `google`, shaped like `apple` | `{action:"google", id_token, nonce, app}` with `app` in `APPLE_APPS` | the handler checks the token locally before GoTrue, as `appleTokenOk` does: RS256 signature against Google JWKS, `iss` `https://accounts.google.com` or `accounts.google.com`, `aud` in a new `GOOGLE_AUDIENCES` env list holding the web client id, `exp` in the future, `nonce` equal to the raw nonce the app hashed; then GoTrue `signInWithIdToken({provider:"google", token, nonce})` and the same tokens. GoTrue links the Google identity to an existing email-code user when the Google email is verified and matches (unverified on the production host, T-26 on iOS covers the same check) | 400 `bad_request`, 429 on `google:ip:<ip>`, 401 `bad_token`, 502 `google_failed` on a GoTrue 5xx |
 | `/api/academy/lobbies/**` | existing | per `apple/BucketKit/Sources/BucketKit/Lobbies.swift` | `{lobby}` and friends | 401, 404, 409 `already_answered`, 429 |
 | `/api/academy/lobbies/guest`, `/guest/merge` | existing | `{nickname, guestId}`, `{guestToken}` | `{token, userId, expiresAt}`, `{merged}` | 503 without `LOBBY_GUEST_SECRET` |
 | `/api/academy/progress` | existing | GET; POST `{branch, data}` | upsert | 401, 403, 503 |
 | `/api/academy/profile` | existing | POST `{handle, display_name, is_public}` | profile | 409 handle taken, 422 |
-| `/api/academy/entitlement` | extend | GET | adds Google Play state: the newest verified Play purchase for the user | 401 |
+| `/api/academy/entitlement` | extend | GET | unchanged shape `{active, productId, expiresAt, trial}` from `entitlementFrom`; the handler feeds it App Store events and Play rows mapped to the same event kinds, so the entitlement with the latest expiry wins whichever store sold it; a lifetime purchase has no expiry and wins | 401 |
 | `/api/play/verify` | new | `{packageName, productId, purchaseToken}` with Bearer | verifies through the Android Publisher API (`purchases.subscriptionsv2.get`, `purchases.products.get`), stores `(user_id, purchase_token, product_id, expiry, state)`, acknowledges | 400, 401, 409 token bound to another user |
 | `/api/play/rtdn` | new | Pub/Sub push with an OIDC token | updates the stored state on renew, cancel, revoke, refund | 401 bad Pub/Sub token |
-| `/api/academy/push/register` | extend, AD12 | `{token, platform:"fcm", app}` | stored | 400 |
+| `/api/academy/push/register` | extend, AD12 | adds an optional `platform` field: absent or `apns` keeps today's `token`, `env`, `bundleId` checks; `fcm` takes `{token, platform:"fcm", bundleId:"com.polingual.app"}` with an FCM token normaliser and no `env` | stored | 400 |
 | `/.well-known/assetlinks.json` | new route | GET | `delegate_permission/common.handle_all_urls` and `common.get_login_creds` for both package names and both SHA-256 fingerprints | none |
 
-New table `bucket.play_purchases` with an RLS policy that only the service role writes. `delete_account` deletes the user's rows there; Play subscriptions stay active at Google, so the deletion screen tells the person to cancel in Play, as the App Store screen does.
+New table `bucket.play_purchases`, keyed by `purchase_token`, written by the service role alone.
+
+| Step | Rule |
+|---|---|
+| Binding | the app sets `obfuscatedAccountId` to sha256 of the Supabase user id at purchase; verify refuses with 409 when the Play record names a different hash or the token row belongs to another user |
+| Idempotency | `purchase_token` is the key; a repeated verify for the same user returns the stored row with 200 |
+| Order | call Google, upsert the row, then acknowledge; a lost response leaves an unacknowledged purchase that the app resends on next launch from `queryPurchasesAsync`; Google refunds a purchase left unacknowledged for 3 days, so the app retries on every launch and on network return |
+| Pending | `PENDING` state stores the row with no access; RTDN or the next launch moves it on |
+| Upgrade, downgrade | `linkedPurchaseToken` marks the old row `replaced` |
+| Refund before store | RTDN for an unknown token fetches it from Google and stores it as ended |
+| RTDN auth | Pub/Sub push with an OIDC token whose `aud` equals a new `PLAY_RTDN_AUDIENCE` env and whose email equals the push service account |
+| Google or server down | the app grants access only from a server answer or from the cached server answer while its `expiresAt` is in the future; no cache means locked, with a retry button | `delete_account` deletes the user's rows there; Play subscriptions stay active at Google, so the deletion screen tells the person to cancel in Play, as the App Store screen does.
 
 ## Architecture
 
@@ -222,8 +247,8 @@ Every server change is additive, so a client rollback needs no server rollback.
 | AT-15 | resizable emulator and ChromeOS window classes compact, medium, expanded | agent |
 | AT-16 | Desktop Head Unit browse and play | agent |
 | AT-17 | Bucket study loop with offline reconnect | agent |
-| AT-18 | Wear emulator deck and Tile | agent |
-| AT-19 | widget renders with and without data | agent |
+| AT-18 | Wear emulator deck and Tile | agent runs, founder confirms |
+| AT-19 | widget renders with and without data | agent runs, founder confirms |
 | AT-20 | Accessibility Scanner and TalkBack walk | agent runs, founder confirms |
 | AT-21 | cross-play: Android emulator, iOS simulator and a browser in one lobby code, 3 rounds, all agree | agent runs, founder confirms |
 
@@ -236,6 +261,7 @@ An unrun test counts as open.
 | Open decisions AD3 to AD16 | `needs-founder` | none |
 | Play account, records, signing, OAuth clients, AdMob ids, product ids | `needs-founder` | AD3, AD7, AD8 |
 | Core modules and parity fixtures | `source-agent` | plan |
+| Swift side of the parity fixtures: export RNG, daily set and engine vectors from BucketKit tests to `apple/BucketKit/Tests/Fixtures/android-parity/` | `source-agent` | plan |
 | Session `google` action and `assetlinks.json` | `source-agent` | AD6 |
 | Play verify, RTDN and `play_purchases` table | `source-agent` | service account |
 | One bead per track | `source-agent` | core |
