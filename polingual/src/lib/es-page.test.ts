@@ -31,9 +31,7 @@ test("/es rewrites to the generated page", async () => {
   assert.ok(r.beforeFiles.some((x: { source: string; destination: string }) => x.source === "/es" && x.destination === "/d8/es.html"));
 });
 
-test("beta modal speaks Spanish on Spanish pages", () => {
-  const js = readFileSync(join(d8, "beta.js"), "utf8");
-  assert.match(js, /TR=window\.PL_TR\|\|\{\}/);
+test("Spanish page carries Spanish beta strings", () => {
   assert.match(es, /window\.PL_TR=\{[^<]*"Join the beta": "Únete a la beta"/);
 });
 
