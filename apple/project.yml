@@ -205,6 +205,8 @@ targets:
       path: Bucket/Widget/Info.plist
       properties:
         CFBundleDisplayName: Bucket
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -235,6 +237,8 @@ targets:
       path: Polingual/Widget/Info.plist
       properties:
         CFBundleDisplayName: Polingual
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
