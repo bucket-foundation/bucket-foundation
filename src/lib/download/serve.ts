@@ -2,7 +2,7 @@ import { checkLink, redeemLink } from "./notify";
 import type { MarkStore } from "./marks";
 import type { WaitlistStore } from "../waitlist/store";
 
-export type Artifact = { statusCode: 200; stream: ReadableStream<Uint8Array> } | { statusCode: number; stream: ReadableStream<Uint8Array> | null };
+export type Artifact = { statusCode: number; stream: ReadableStream<Uint8Array> | null };
 
 export interface ServeDeps {
   secret: string | undefined;

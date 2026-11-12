@@ -180,6 +180,13 @@ export function phaseAt(lobby: Pick<LobbyState, "status" | "startedAt" | "rounds
   return { kind: "round", index, remaining: lobby.roundSeconds * (index + 1) - elapsed };
 }
 
+export const TALLY_WAIT_MS = 5000;
+
+export function tallyLate(lobby: Pick<LobbyState, "startedAt" | "rounds" | "roundSeconds">, now: number): boolean {
+  if (!lobby.startedAt) return false;
+  return now - (Date.parse(lobby.startedAt) + lobby.rounds * lobby.roundSeconds * 1000) > TALLY_WAIT_MS;
+}
+
 export function serverOffset(serverNow: string, sentAt: number, receivedAt: number): number {
   return Date.parse(serverNow) - (sentAt + receivedAt) / 2;
 }

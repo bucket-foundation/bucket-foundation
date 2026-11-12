@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
-import { answeredRound, LobbyError, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { answeredRound, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { gameName, langName } from "./langs";
@@ -315,8 +315,10 @@ export default function Room({ code: rawCode }: { code: string }) {
       ) : null}
       <section className={styles.upsell} data-testid="learn-upsell">
         <b>Learn the words you missed</b>
-        {lobby.status !== "done" ? (
+        {lobby.status !== "done" && !tallyLate(lobby, now + offset) ? (
           <p className={app.small} aria-busy="true" data-testid="missed-loading">Counting your answers</p>
+        ) : lobby.status !== "done" ? (
+          <p className={app.small} data-testid="missed-late">Your answers are saved. Lessons cover every word in this game.</p>
         ) : missed.length ? (
           <ul className={styles.missed}>
             {missed.map((w) => (
