@@ -131,3 +131,16 @@ final class LibraryCalls: @unchecked Sendable {
     #expect(try await offline.book("fox-and-grapes", stamp: "3|2027-01-01").id == "fox-and-grapes")
     #expect(offline.savedStamp("fox-and-grapes") == "2|2026-12-01")
 }
+
+@Test func libraryMixedBookLabelsMachineLanguagesAndCreditsTranslators() throws {
+    let book = try JSONDecoder().decode(LibraryBook.self, from: libraryFixture("busy-ants"))
+    #expect(!book.machine)
+    #expect(book.illustrator == "Deepa Balsavar")
+    #expect(!book.machine(in: ["en", "fr"]))
+    #expect(book.machine(in: ["fr", "es"]))
+    #expect(book.credits(["es", "fr", "ja"]).map(\.name) == ["Sak Untala"])
+    let fox = try JSONDecoder().decode(LibraryBook.self, from: libraryFixture("fox-and-grapes"))
+    #expect(fox.machine(in: ["es"]))
+    #expect(!fox.machine(in: ["en"]))
+    #expect(fox.credits(["es"]).isEmpty)
+}

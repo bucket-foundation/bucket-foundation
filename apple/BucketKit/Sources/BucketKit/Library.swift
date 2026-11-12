@@ -33,6 +33,9 @@ public struct LibraryBook: Codable, Sendable, Equatable, Identifiable {
     public let license: String
     public let source: String
     public let translation: String
+    public let translations: [String: String]?
+    public let translators: [String: String]?
+    public let illustrator: String?
     public let sentences: [[String: String]]
 
     public func title(in order: [String]) -> String {
@@ -40,6 +43,19 @@ public struct LibraryBook: Codable, Sendable, Equatable, Identifiable {
     }
 
     public var machine: Bool { translation == "machine" }
+
+    public func machine(_ lang: String) -> Bool {
+        if let kind = translations?[lang] { return kind == "machine" }
+        return machine && lang != "en"
+    }
+
+    public func machine(in langs: [String]) -> Bool {
+        langs.contains { machine($0) }
+    }
+
+    public func credits(_ langs: [String]) -> [(lang: String, name: String)] {
+        langs.compactMap { l in translators?[l].map { (lang: l, name: $0) } }
+    }
 
     public func lines(_ index: Int, langs: [String]) -> [(lang: String, text: String)] {
         guard sentences.indices.contains(index) else { return [] }
