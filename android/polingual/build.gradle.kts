@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+val TEST_ADMOB_APP = "ca-app-pub-3940256099942544~3347511713"
 val corpusAssets = layout.buildDirectory.dir("corpusAssets")
 val syncCorpus by tasks.registering(Sync::class) {
     from(rootProject.file("../apple/Shared/Corpus"))
@@ -20,8 +21,9 @@ android {
         versionCode = 1
         versionName = "1.0.0"
         buildConfigField("String", "BUCKET_BASE", "\"https://www.bucket.foundation\"")
-        manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+        manifestPlaceholders["admobAppId"] = TEST_ADMOB_APP
         buildConfigField("boolean", "ADS_ENABLED", "true")
+        buildConfigField("boolean", "TEST_ADS", "true")
         buildConfigField("boolean", "FREE_BETA", "false")
     }
     buildTypes {
@@ -29,6 +31,10 @@ android {
             buildConfigField("boolean", "FREE_BETA", "true")
         }
         release {
+            val admob = providers.gradleProperty("polingualAdmobAppId").orNull
+            manifestPlaceholders["admobAppId"] = admob ?: TEST_ADMOB_APP
+            buildConfigField("boolean", "ADS_ENABLED", if (admob != null) "true" else "false")
+            buildConfigField("boolean", "TEST_ADS", "false")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }

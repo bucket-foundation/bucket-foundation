@@ -48,11 +48,12 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     LaunchedEffect(link) {
-        when (link) {
-            is Link.Room -> nav.navigate("lobbies?code=${link.code}")
-            is Link.Translate -> nav.navigate("translate?text=${android.net.Uri.encode(link.text)}")
+        val route = when (link) {
+            is Link.Room -> "lobbies?code=${android.net.Uri.encode(link.code)}"
+            is Link.Translate -> "translate?text=${android.net.Uri.encode(link.text)}"
             null -> return@LaunchedEffect
         }
+        runCatching { nav.navigate(route) }
         consumed()
     }
     NavigationSuiteScaffold(

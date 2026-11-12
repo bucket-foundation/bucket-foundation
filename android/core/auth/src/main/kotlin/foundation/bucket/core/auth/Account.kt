@@ -32,7 +32,7 @@ class Account(
     var email: String = ""
         private set
     val userId: String? get() = session?.userId
-    var beforeSignOut: (suspend () -> Unit)? = null
+    var beforeSignOut: (suspend (force: Boolean) -> Unit)? = null
 
     suspend fun restore() {
         session = vault.load()
@@ -77,8 +77,8 @@ class Account(
         }
     }
 
-    suspend fun signOut() {
-        beforeSignOut?.invoke()
+    suspend fun signOut(force: Boolean = false) {
+        beforeSignOut?.invoke(force)
         lock.withLock {
             session = null
             vault.save(null)

@@ -22,8 +22,8 @@ import kotlinx.coroutines.launch
 fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
     composable("study") { StudyScreen(graph) { nav.popBackStack() } }
     composable("game/{kind}", arguments = listOf(navArgument("kind") { type = NavType.StringType })) { e ->
-        val kind = GameKind.entries.first { it.route == e.arguments?.getString("kind") }
-        GameScreen(graph, kind) { nav.popBackStack() }
+        val kind = GameKind.entries.firstOrNull { it.route == e.arguments?.getString("kind") }
+        if (kind == null) androidx.compose.runtime.LaunchedEffect(Unit) { nav.popBackStack() } else GameScreen(graph, kind) { nav.popBackStack() }
     }
     composable("word/{id}") { e -> WordDetailScreen(graph, e.arguments?.getString("id").orEmpty()) { nav.popBackStack() } }
     composable("translate?text={text}", arguments = listOf(navArgument("text") { type = NavType.StringType; defaultValue = "" })) { e ->
@@ -41,7 +41,8 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
     Card(color = D8.ink) {
         Text("Daily session", style = Type.title, color = D8.parchment)
         Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", color = D8.parchment.copy(alpha = 0.85f))
-        PrimaryButton("Start") { nav.navigate("study") }
+        val access by graph.billing.access.collectAsState()
+        PrimaryButton(if (access.unlocked || access == Access.Checking) "Start" else "Unlock learning") { nav.navigate(if (access.unlocked) "study" else "paywall") }
     }
     Card(color = D8.vermilion, onClick = { nav.navigate("translate") }) {
         Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = D8.parchment)

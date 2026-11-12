@@ -2,8 +2,10 @@
 <data-extraction-rules>
     <cloud-backup>
         <exclude domain="file" path="datastore/polingual.preferences_pb" />
+        <exclude domain="sharedpref" path="polingual.xml" />
     </cloud-backup>
     <device-transfer>
         <exclude domain="file" path="datastore/polingual.preferences_pb" />
+        <exclude domain="sharedpref" path="polingual.xml" />
     </device-transfer>
 </data-extraction-rules>

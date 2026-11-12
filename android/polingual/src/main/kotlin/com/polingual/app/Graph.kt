@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.json.JsonObject
 import java.util.UUID
 
@@ -40,22 +41,31 @@ class Graph(val context: Context) {
     val guest = GuestPass(api, kv, nickname = { state.value?.nickname.orEmpty() })
     val lobbies = LobbyStore(api, userToken = { account.token() }, guest = guest)
     val voice = Voice(context)
+    val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
+    val radio = Radio(context)
+    val billing = Billing(context, this)
+
+    private val syncLock = kotlinx.coroutines.sync.Mutex()
 
     init {
+        scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
+            if (account.stage.value == Stage.SignedIn) syncSystems()
             var last = account.stage.value
             account.stage.collect { stage ->
-                if (stage == Stage.SignedIn && last != Stage.SignedIn && last != Stage.Loading) {
+                if (stage == Stage.SignedIn && last != Stage.SignedIn) {
                     store.update { it.copy(savePrompt = false) }
                     lobbies.mergeGuest()
                     syncSystems()
                 }
-                if (stage == Stage.SignedIn && last == Stage.Loading) syncSystems()
                 last = stage
             }
         }
-        account.beforeSignOut = { store.clearLocal() }
+        account.beforeSignOut = { force ->
+            if (!force && !syncSystems()) throw foundation.bucket.core.model.BucketError.Server(0, "Your language sets did not reach the server. Connect and try again, or your changes on this device will be lost.")
+            store.clearLocal()
+        }
     }
 
     suspend fun createSystem(root: String, targets: List<String>): LangSystem {
@@ -72,14 +82,14 @@ class Graph(val context: Context) {
         scope.launch { syncSystems() }
     }
 
-    suspend fun syncSystems() {
-        val t = account.token() ?: return
-        val branches = api.progressPull(t) ?: return
+    suspend fun syncSystems(): Boolean = syncLock.withLock {
+        val t = account.token() ?: return@withLock false
+        val branches = api.progressPull(t) ?: return@withLock false
         val remote = (branches[SystemsSync.BRANCH] as? JsonObject)?.get("data")
         val cur = store.current()
         val merged = SystemsSync.merge(remote, cur.systems, cur.removedSystems)
         val systems = SystemsSync.systems(merged)
         store.update { it.copy(systems = systems, activeSystem = it.activeSystem?.takeIf { id -> systems.any { s -> s.id == id } } ?: systems.firstOrNull()?.id) }
-        if (merged != remote) api.progressPush(t, SystemsSync.BRANCH, merged)
+        if (merged != remote) api.progressPush(t, SystemsSync.BRANCH, merged) else true
     }
 }

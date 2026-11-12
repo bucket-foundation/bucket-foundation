@@ -3,6 +3,7 @@ package foundation.bucket.core.auth
 import foundation.bucket.core.model.GuestTicket
 import foundation.bucket.core.model.parseInstantMs
 import foundation.bucket.core.net.BucketApi
+import kotlinx.coroutines.sync.withLock
 import java.util.UUID
 
 interface KeyValue {
@@ -29,7 +30,11 @@ class GuestPass(
 
     val userId: String? get() = ticket?.userId
 
-    suspend fun token(): String? {
+    private val lock = kotlinx.coroutines.sync.Mutex()
+
+    suspend fun token(): String? = lock.withLock { mint() }
+
+    private suspend fun mint(): String? {
         ticket?.let { t ->
             val exp = parseInstantMs(t.expiresAt)
             if (exp != null && exp - nowMs() > 3_600_000) return t.token

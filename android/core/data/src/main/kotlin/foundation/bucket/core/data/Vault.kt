@@ -36,10 +36,17 @@ class KeystoreVault(private val context: Context, private val alias: String = "p
             val cipher = Cipher.getInstance("AES/GCM/NoPadding")
             cipher.init(Cipher.DECRYPT_MODE, secret(), GCMParameterSpec(128, raw, 0, 12))
             Json.decodeFromString(Session.serializer(), String(cipher.doFinal(raw, 12, raw.size - 12)))
-        }.getOrNull()
+        }.onFailure { android.util.Log.w("KeystoreVault", "stored session unreadable, signing out", it) }.getOrNull()
     }
 
-    override suspend fun save(session: Session?) {
+    override suspend fun save(session: Session?) = try {
+        write(session)
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        throw foundation.bucket.core.model.BucketError.Server(0, "This device could not store your session. Try again.")
+    }
+
+    private suspend fun write(session: Session?) {
         context.dataStore.edit { prefs ->
             if (session == null) prefs.remove(key) else {
                 val cipher = Cipher.getInstance("AES/GCM/NoPadding")

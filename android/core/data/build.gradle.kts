@@ -17,4 +17,5 @@ dependencies {
     api(libs.ktor.okhttp)
     api(libs.datastore)
     api(libs.coroutines.android)
+    testImplementation(libs.kotlin.test)
 }
