@@ -55,6 +55,9 @@ declare
   silent uuid;
 begin
   assert not has_function_privilege('authenticated', 'bucket.send_voice_note(uuid, uuid, text, text, int, text)', 'execute'), 'clients cannot send voice notes';
+  if to_regclass('storage.buckets') is not null then
+    assert (select not public and file_size_limit = 1048576 and allowed_mime_types = array['audio/mp4'] from storage.buckets where id = 'group-voice'), 'voice audio has its own private bucket capped at 1 MB';
+  end if;
   assert not has_function_privilege('authenticated', 'bucket.cache_voice_translation(uuid, text, text)', 'execute'), 'clients cannot write translations';
 
   select id into note from bucket.send_voice_note(g, owner, 'ciao a tutti', g || '/n.m4a', 4200, 'it');

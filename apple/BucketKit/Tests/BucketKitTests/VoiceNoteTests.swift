@@ -28,6 +28,26 @@ func anyBody(_ r: URLRequest) -> [String: Any] {
         #expect(item.lang == "it" && item.translation == nil)
     }
 
+    @Test func voiceRowsOfferReportBlockAndRemove() throws {
+        var other = Self.item
+        other["from"] = "u2"
+        other["fromName"] = "Nonna"
+        other["mine"] = false
+        let theirs = try JSONDecoder().decode(SharedItem.self, from: json(other))
+        let mine = try JSONDecoder().decode(SharedItem.self, from: json(Self.item))
+        let owned = try groups(sampleGroups)[1]
+        var joined = owned
+        joined.role = .member
+        let nonna = try #require(owned.members.first { $0.userId == "u2" })
+        #expect(theirs.kind == .voice)
+        #expect(theirs.actions(in: joined) == [.report, .block(nonna)])
+        #expect(theirs.actions(in: owned) == [.remove, .report, .block(nonna)])
+        #expect(mine.actions(in: joined) == [.remove])
+        other["from"] = "gone"
+        let departed = try JSONDecoder().decode(SharedItem.self, from: json(other))
+        #expect(departed.actions(in: joined) == [.report])
+    }
+
     @Test func sendAndTranslateUseTheContract() async throws {
         let seen = LockedBox<[URLRequest]>([])
         let api = BucketAPI(transport: StubTransport { r in

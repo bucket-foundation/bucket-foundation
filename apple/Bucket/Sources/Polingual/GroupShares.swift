@@ -24,6 +24,7 @@ struct SharedItemsSection: View {
                 SharedItemRow(item: item, to: recipient(item))
                     .swipeActions { actions(item) }
                     .contextMenu { actions(item) }
+                    .accessibilityActions { actions(item) }
             }
         } header: {
             Eyebrow(text: "Shared")
@@ -63,12 +64,13 @@ struct SharedItemsSection: View {
 
     @ViewBuilder
     func actions(_ item: SharedItem) -> some View {
-        if item.mine || group.isOwner {
-            Button("Remove", systemImage: "trash", role: .destructive) { removing = item }
-        }
-        if !item.mine {
-            Button("Report", systemImage: "flag") { reporting = item }.tint(Palette.muted)
-            if let m = group.members.first(where: { $0.userId == item.from }) {
+        ForEach(Array(item.actions(in: group).enumerated()), id: \.offset) { _, action in
+            switch action {
+            case .remove:
+                Button("Remove", systemImage: "trash", role: .destructive) { removing = item }
+            case .report:
+                Button("Report", systemImage: "flag") { reporting = item }.tint(Palette.muted)
+            case .block(let m):
                 Button("Block", systemImage: "hand.raised") { blocking = ModerationTarget(member: m, groupId: group.id) }.tint(D8.vermilion)
             }
         }

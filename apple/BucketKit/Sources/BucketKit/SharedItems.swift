@@ -75,6 +75,23 @@ public enum SharePayload: Equatable, Sendable {
     }
 }
 
+public enum SharedItemAction: Equatable, Sendable {
+    case remove
+    case report
+    case block(GroupMember)
+}
+
+extension SharedItem {
+    public func actions(in group: LearningGroup) -> [SharedItemAction] {
+        var out: [SharedItemAction] = []
+        if mine || group.isOwner { out.append(.remove) }
+        guard !mine else { return out }
+        out.append(.report)
+        if let sender = group.members.first(where: { $0.userId == from && !$0.isMe }) { out.append(.block(sender)) }
+        return out
+    }
+}
+
 public struct VoiceNote: Equatable, Sendable {
     public static let maxSeconds: TimeInterval = 60
     public static let maxBytes = 1_048_576

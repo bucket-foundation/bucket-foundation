@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import type { NextRequest, NextResponse } from "next/server";
 import { uuidOrNull } from "@/lib/academy/groups";
 import { shareRpcError, toSharedItem, type SharedItemRow } from "@/lib/academy/group-shares";
-import { deleteImage, shareLimited, signedImageUrls, uploadAudio } from "@/lib/academy/group-shares-server";
+import { deleteAudio, shareLimited, signedAudioUrls, uploadAudio } from "@/lib/academy/group-shares-server";
 import { normalizeVoice, voiceErrorStatus, voicePath } from "@/lib/academy/group-voice";
 import { configured, fail, json, membersOf, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 
@@ -33,17 +33,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (res.error) {
       const known = shareRpcError(res.error.message);
       if (known) {
-        await deleteImage(uploaded).catch(() => null);
+        await deleteAudio(uploaded).catch(() => null);
         return json({ error: known.error }, known.status);
       }
       throw new Error(`send_voice_note: ${res.error.message}`);
     }
     const row = (Array.isArray(res.data) ? res.data[0] : res.data) as SharedItemRow | undefined;
     if (!row) throw new Error("send_voice_note: no row");
-    const urls = await signedImageUrls([uploaded]).catch(() => new Map<string, string>());
+    const urls = await signedAudioUrls([uploaded]).catch(() => new Map<string, string>());
     return json({ item: toSharedItem(row, members, uid, { audioUrl: urls.get(uploaded) ?? null, viewerLang: voice.lang }) });
   } catch (err) {
-    if (uploaded) await deleteImage(uploaded).catch(() => null);
+    if (uploaded) await deleteAudio(uploaded).catch(() => null);
     return fail(err, "voice");
   }
 }

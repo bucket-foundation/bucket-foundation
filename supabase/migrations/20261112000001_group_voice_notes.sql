@@ -81,8 +81,9 @@ grant execute on function bucket.cache_voice_translation(uuid, text, text) to se
 do $$
 begin
   if to_regclass('storage.buckets') is not null then
-    update storage.buckets
-      set allowed_mime_types = array['image/jpeg', 'audio/mp4']
-      where id = 'group-shares';
+    insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+      values ('group-voice', 'group-voice', false, 1048576, array['audio/mp4'])
+      on conflict (id) do update
+        set public = false, file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;
   end if;
 end $$;
