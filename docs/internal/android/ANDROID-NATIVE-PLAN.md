@@ -45,6 +45,7 @@ Decided rows carry `source-founder`. Open rows carry a recommendation.
 | Digital Asset Links file at `https://www.bucket.foundation/.well-known/assetlinks.json` for app links and passkeys | 404 today; Server Contract | agent |
 | `LOBBY_GUEST_SECRET` in the Vercel env | open in the lobbies handoff; guest lobby play fails with 503 without it | founder |
 | Firebase project, only if AD12 picks FCM | absent | founder |
+| Server env `GOOGLE_AUDIENCES` with the web client id, and `PLAY_RTDN_AUDIENCE`, in Vercel | absent | founder sets, agent documents in `.env.example` |
 | Toolchain | charizard has SDK platforms 31, 35, 36; platform 37 and AGP 9.1.1 are needed for compileSdk 37; no system image yet; an x86_64 Google APIs image for API 36 is about 1.5 GB | agent |
 
 ## Current State
@@ -89,8 +90,8 @@ Each iOS feature, its Android counterpart, and the module that owns it. "core" i
 | Reminders, word of the day | `Reminders.swift`, `WordOfDayReminder.swift` | WorkManager daily job and `POST_NOTIFICATIONS` permission on API 33+ | pol |
 | Widgets | `PolingualWidget.swift` | Glance app widgets: streak and word of the day | pol |
 | Share extension | `PolingualShare` | `ACTION_SEND` text intent filter opening translate | pol |
-| Watch app | `PolingualWatch` | Wear OS app with a word deck and a Tile (track Wear) | wear |
-| Deep links | `DeepLink`, universal links | Android App Links on `www.bucket.foundation/play/<code>` and `/join/<code>` with `assetlinks.json` | pol |
+| Watch app | `apple/Polingual/Watch`, `apple/Polingual/WatchShared/WatchDeck.swift` | Wear OS app with a word deck and a Tile (track Wear) | wear |
+| Deep links | `DeepLink` used in `apple/Bucket/Sources/BucketApp.swift` and `apple/Polingual/Sources/PolingualRoot.swift` | Android App Links on `www.bucket.foundation/play/<code>` and `/join/<code>` with `assetlinks.json` | pol |
 | Bucket science study, canon search, library | `ScienceLearn.swift`, `ScienceStudy.swift`, `CanonView.swift`, `Library.swift` | Compose screens on the same core and corpus routes | bkt |
 | Placement test | `PlacementView.swift`, `PlacementCEFR.swift` | same CEFR placement port | core, pol |
 | Alphabet study, sound drills, letter sounds | `AlphabetStudy.swift`, `SoundDrills.swift`, `LetterSounds*.swift`, `CharacterTables.swift`, `ScriptCourse.swift` | Kotlin ports of the tables and Compose drills | core, pol |
@@ -116,7 +117,7 @@ Every authenticated call sends `authorization: Bearer <access_token>`. Rows mark
 | Route | Change | Body | Success | Refusals |
 |---|---|---|---|---|
 | `/api/academy/session` | existing | `otp`, `verify`, `apple`, `refresh`, `delete_account`; `otp` takes `app` and looks it up in `APP_REDIRECTS`, which holds `polingual` only, so Android Polingual sends `app:"polingual"` and Bucket sends none | `{access_token, refresh_token, expires_at, user_id}`; delete returns `{ok:true}` | 400 `bad_email`, `bad_code`; 401 `revoked`; 429; 503 |
-| same | new action `google`, shaped like `apple` | `{action:"google", id_token, nonce, app}` with `app` in `APPLE_APPS` | the handler checks the token locally before GoTrue, as `appleTokenOk` does: RS256 signature against Google JWKS, `iss` `https://accounts.google.com` or `accounts.google.com`, `aud` in a new `GOOGLE_AUDIENCES` env list holding the web client id, `exp` in the future, `nonce` equal to the raw nonce the app hashed; then GoTrue `signInWithIdToken({provider:"google", token, nonce})` and the same tokens. GoTrue links the Google identity to an existing email-code user when the Google email is verified and matches (unverified on the production host, T-26 on iOS covers the same check) | 400 `bad_request`, 429 on `google:ip:<ip>`, 401 `bad_token`, 502 `google_failed` on a GoTrue 5xx |
+| same | new action `google`, shaped like `apple` | `{action:"google", id_token, nonce, app}` with `app` in `APPLE_APPS` | the handler checks the token locally before GoTrue, as `appleTokenOk` does: RS256 signature against Google JWKS, `iss` `https://accounts.google.com` or `accounts.google.com`, `aud` in a new `GOOGLE_AUDIENCES` env list holding the web client id, `exp` in the future, `email_verified` equal to `true`, `nonce` equal to the raw nonce the app hashed; then GoTrue `signInWithIdToken({provider:"google", token, nonce})` and the same tokens. GoTrue links the Google identity to an existing email-code user when the Google email is verified and matches (unverified on the production host; listed under Unverified until a recorded check exists) | 400 `bad_request`, 429 on `google:ip:<ip>`, 401 `bad_token`, 502 `google_failed` on a GoTrue 5xx |
 | `/api/academy/lobbies/**` | existing | per `apple/BucketKit/Sources/BucketKit/Lobbies.swift` | `{lobby}` and friends | 401, 404, 409 `already_answered`, 429 |
 | `/api/academy/lobbies/guest`, `/guest/merge` | existing | `{nickname, guestId}`, `{guestToken}` | `{token, userId, expiresAt}`, `{merged}` | 503 without `LOBBY_GUEST_SECRET` |
 | `/api/academy/progress` | existing | GET; POST `{branch, data}` | upsert | 401, 403, 503 |
@@ -138,7 +139,24 @@ New table `bucket.play_purchases`, keyed by `purchase_token`, written by the ser
 | Upgrade, downgrade | `linkedPurchaseToken` marks the old row `replaced` |
 | Refund before store | RTDN for an unknown token fetches it from Google and stores it as ended |
 | RTDN auth | Pub/Sub push with an OIDC token whose `aud` equals a new `PLAY_RTDN_AUDIENCE` env and whose email equals the push service account |
-| Google or server down | the app grants access only from a server answer or from the cached server answer while its `expiresAt` is in the future; no cache means locked, with a retry button | `delete_account` deletes the user's rows there; Play subscriptions stay active at Google, so the deletion screen tells the person to cancel in Play, as the App Store screen does.
+| Google or server down | the app grants access only from a server answer or from the cached server answer while its `expiresAt` is in the future; no cache means locked, with a retry button |
+| Voided or refunded, any product | RTDN `voidedPurchaseNotification` or a refund state marks the row `voided`, which maps to `refund`; a refunded lifetime row stops counting in the entitlement merge |
+
+| Play state | `entitlementFrom` event kind |
+|---|---|
+| active subscription, auto-renewing | `subscribe`, then `renew` on each renewal |
+| free trial phase | `trial` |
+| canceled, still in paid period | `cancel` |
+| in grace period or on hold | `billing_issue` |
+| pending | none stored as an event; no access |
+| replaced through `linkedPurchaseToken` | `expire` on the old token |
+| expired | `expire` |
+| voided or refunded | `refund` |
+| lifetime purchase, acknowledged | `subscribe` with no `expiresAt` |
+
+A server test in `scripts/` feeds each state through the mapping and `entitlementFrom` (AT-06).
+
+`delete_account` deletes the user's rows there; Play subscriptions stay active at Google, so the deletion screen tells the person to cancel in Play, as the App Store screen does.
 
 ## Architecture
 
@@ -235,7 +253,7 @@ Every server change is additive, so a client rollback needs no server rollback.
 | AT-03 | lexicon lookup parity on 200 sampled queries per language | agent |
 | AT-04 | API error mapping table against recorded server replies | agent |
 | AT-05 | session vault: single-flight refresh under 20 callers; 401 clears | agent |
-| AT-06 | `session` `google` and `/api/play/verify` server tests in `scripts/` | agent |
+| AT-06 | server tests in `scripts/`: `session` `google` refuses a bad signature, wrong `aud`, expired token, wrong nonce and `email_verified` false with 401 `bad_token`; `/api/play/verify` idempotency and binding; the Play state mapping table | agent |
 | AT-07 | onboarding to first daily session on an emulator, screenshots | agent |
 | AT-08 | every daily game plays to its result screen | agent |
 | AT-09 | translate with picker recents, search and swap | agent |
@@ -279,6 +297,7 @@ An unrun test counts as open.
 ## Unverified
 
 - Google Play Instant availability (AD16).
+- GoTrue linking of a verified Google email to an existing email-code user on the production auth host.
 - Whether organization Play accounts skip the 12-tester closed test.
 - Android 17 background audio limits on a Media3 service; checked in AT-10 on an API 37 image.
 - GoTrue `signInWithIdToken` for Google on the production auth host with Android client ids.
