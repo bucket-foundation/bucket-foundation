@@ -1,5 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { joinBlocked, joinDecision, normalizeDisplayName, normalizeInviteCode } from "@/lib/academy/groups";
+import { chosenDisplayName, joinBlocked, joinDecision, normalizeDisplayName, normalizeInviteCode } from "@/lib/academy/groups";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import {
   blocksTouching,
@@ -18,7 +18,7 @@ import {
   oneGroup,
   preflight,
   readBody,
-  requestUser,
+  requestAccount,
 } from "@/lib/academy/groups-server";
 
 export const runtime = "nodejs";
@@ -30,8 +30,9 @@ export function OPTIONS(): NextResponse {
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!configured()) return json({ error: "sync_unavailable" }, 503);
-  const uid = await requestUser(req);
-  if (!uid) return json({ error: "unauthorized" }, 401);
+  const account = await requestAccount(req);
+  if (!account) return json({ error: "unauthorized" }, 401);
+  const uid = account.id;
   if (joinLimited(`ip:${clientIp(req)}`) || joinLimited(`user:${uid}`)) return json({ error: "rate_limited" }, 429);
   const body = await readBody(req);
   const displayName = normalizeDisplayName(body?.displayName);
@@ -48,7 +49,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (decision === "full") return json({ error: "group_full" }, 409);
     if (decision === "joined_limit") return json({ error: "joined_limit" }, 409);
     if (decision === "ok") {
-      const res = await insertMember({ group_id: group.id, user_id: uid, role: "member", display_name: displayName });
+      const res = await insertMember({ group_id: group.id, user_id: uid, role: "member", display_name: displayName }, chosenDisplayName(displayName, account.email));
       if (res.error && !/duplicate key|unique/i.test(res.error.message)) {
         const limit = limitError(res.error.message);
         if (limit) throw limit;

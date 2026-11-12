@@ -29,6 +29,7 @@ import {
   joinBlocked,
   joinDecision,
   missingColumn,
+  chosenDisplayName,
   renameInput,
   memberSummary,
   normalizeDisplayName,
@@ -523,4 +524,26 @@ test("assembleGroup reports whether I chose my name", () => {
   assert.equal(assembleGroup(group, [{ ...row(OWNER, "owner"), chosen_name: false }, row(MATE)], sums, OWNER).chosenName, false);
   assert.equal(assembleGroup(group, [{ ...row(OWNER, "owner"), chosen_name: true }], sums, OWNER).chosenName, true);
   assert.equal(assembleGroup(group, [row(OWNER, "owner")], sums, OWNER).chosenName, true);
+});
+
+test("chosenDisplayName treats the email-prefix default as unchosen", () => {
+  assert.equal(chosenDisplayName("ana.rossi", "Ana.Rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Ana", "ana.rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Ana", "ana_7.rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Anarossi", "ana_rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Learner", "ana@example.com"), false);
+  assert.equal(chosenDisplayName("Tester 12", "ana@example.com"), false);
+});
+
+test("chosenDisplayName marks a different name as chosen", () => {
+  assert.equal(chosenDisplayName("Nonna Lucia", "ana.rossi@example.com"), true);
+  assert.equal(chosenDisplayName("ANA", "ana.rossi@example.com"), true);
+  assert.equal(chosenDisplayName("Rossi", "ana.rossi@example.com"), true);
+  assert.equal(chosenDisplayName("Ana", "7@example.com"), true);
+});
+
+test("chosenDisplayName treats a name without an email as unchosen", () => {
+  assert.equal(chosenDisplayName("Nonna Lucia", null), false);
+  assert.equal(chosenDisplayName("Nonna Lucia", undefined), false);
+  assert.equal(chosenDisplayName("Nonna Lucia", ""), false);
 });

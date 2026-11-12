@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import type { NextRequest } from "next/server";
 import * as server from "../src/lib/academy/groups-server";
 import { POST } from "../src/app/api/academy/groups/name/route";
+import { POST as CREATE } from "../src/app/api/academy/groups/route";
+import { POST as JOIN } from "../src/app/api/academy/groups/join/route";
 
 type Call = { table: string; values: Record<string, unknown>; eq: [string, unknown] };
 type Reply = { data: unknown; error: { code?: string; message: string } | null };
@@ -61,4 +63,49 @@ test("refuses signed-out callers, empty names and filtered names without writing
 test("a failed write is a server error", async () => {
   stub("u-4", [{ data: null, error: { code: "42501", message: "permission denied" } }]);
   assert.equal((await POST(request({ displayName: "Gia" }))).status, 500);
+});
+
+function stubInsert(email: string | null): { row: Record<string, unknown>; chosen: boolean }[] {
+  const inserts: { row: Record<string, unknown>; chosen: boolean }[] = [];
+  mutable.configured = () => true;
+  mutable.requestAccount = async () => ({ id: "u-9", email });
+  mutable.joinLimited = () => false;
+  mutable.countOwned = async () => 0;
+  mutable.insertGroupWithCode = async () => ({ id: "g9", name: "G", kind: "friends", owner_id: "u-9", invite_code: "0123456789", created_at: "2026-11-12", weekly_goal: null });
+  mutable.groupByCode = async () => ({ id: "g9", name: "G", kind: "friends", owner_id: "u-1", invite_code: "0123456789", created_at: "2026-11-12", weekly_goal: null });
+  mutable.membersOf = async () => [];
+  mutable.membershipsOf = async () => [];
+  mutable.blocksTouching = async () => [];
+  mutable.oneGroup = async () => ({ id: "g9" });
+  mutable.insertMember = async (row: Record<string, unknown>, chosen: boolean) => {
+    inserts.push({ row, chosen });
+    return { error: null };
+  };
+  return inserts;
+}
+
+function groupsRequest(path: string, body: unknown): NextRequest {
+  return new Request(`https://polingual.com/api/academy/groups${path}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }) as unknown as NextRequest;
+}
+
+test("create marks the name chosen only when it differs from the email default", async () => {
+  let inserts = stubInsert("ana.rossi@example.com");
+  assert.equal((await CREATE(groupsRequest("", { name: "Rossi", kind: "family", displayName: "Ana" }))).status, 200);
+  assert.deepEqual(inserts.map((i) => i.chosen), [false]);
+  inserts = stubInsert("ana.rossi@example.com");
+  assert.equal((await CREATE(groupsRequest("", { name: "Rossi", kind: "family", displayName: "Nonna Lucia" }))).status, 200);
+  assert.deepEqual(inserts.map((i) => i.chosen), [true]);
+  inserts = stubInsert(null);
+  assert.equal((await CREATE(groupsRequest("", { name: "Rossi", kind: "family", displayName: "Nonna Lucia" }))).status, 200);
+  assert.deepEqual(inserts.map((i) => i.chosen), [false]);
+});
+
+test("join marks the name chosen only when it differs from the email default", async () => {
+  let inserts = stubInsert("gia@example.com");
+  assert.equal((await JOIN(groupsRequest("/join", { code: "0123456789", displayName: "gia" }))).status, 200);
+  assert.deepEqual(inserts.map((i) => i.chosen), [false]);
+  inserts = stubInsert("gia@example.com");
+  assert.equal((await JOIN(groupsRequest("/join", { code: "0123456789", displayName: "Zia Gia" }))).status, 200);
+  assert.deepEqual(inserts.map((i) => i.chosen), [true]);
+  assert.equal(inserts[0].row.display_name, "Zia Gia");
 });

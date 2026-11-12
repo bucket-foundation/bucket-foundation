@@ -204,6 +204,16 @@ export function renameInput(body: Record<string, unknown> | null): string | "bad
   return nameAllowed(name) ? name : "name_not_allowed";
 }
 
+export function chosenDisplayName(displayName: string, email: string | null | undefined): boolean {
+  if (!email) return false;
+  if (/^(learner|tester [0-9]+)$/i.test(displayName)) return false;
+  const prefix = email.split("@")[0];
+  if (prefix.toLowerCase() === displayName.toLowerCase()) return false;
+  const letters = prefix.split(".")[0].replace(/[^A-Za-z]/g, "");
+  const initcap = letters ? letters[0].toUpperCase() + letters.slice(1).toLowerCase() : "";
+  return initcap !== displayName;
+}
+
 export function normalizeKind(input: unknown): GroupKind | null {
   return input === "family" || input === "friends" ? input : null;
 }

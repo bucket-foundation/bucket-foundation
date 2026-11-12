@@ -101,6 +101,11 @@ export async function requestUser(req: NextRequest): Promise<string | null> {
   return user?.id ?? null;
 }
 
+export async function requestAccount(req: NextRequest): Promise<{ id: string; email: string | null } | null> {
+  const user = await verifyRequestUser(req);
+  return user?.id ? { id: user.id, email: user.email ?? null } : null;
+}
+
 export async function readBody(req: NextRequest): Promise<Record<string, unknown> | null> {
   try {
     const body = await req.json();
@@ -152,8 +157,8 @@ export async function membershipsOf(uid: string): Promise<MemberRow[]> {
   return (check(await service().from(MEMBERS).select(BASE_MEMBER_COLS).eq("user_id", uid), "memberships read") ?? []) as MemberRow[];
 }
 
-export async function insertMember(row: Omit<MemberRow, "joined_at" | "chosen_name">): Promise<{ error: { message: string } | null }> {
-  const res = await service().from(MEMBERS).insert({ ...row, chosen_name: true });
+export async function insertMember(row: Omit<MemberRow, "joined_at" | "chosen_name">, chosen: boolean): Promise<{ error: { message: string } | null }> {
+  const res = await service().from(MEMBERS).insert({ ...row, chosen_name: chosen });
   if (!missingColumn(res.error)) return res;
   return service().from(MEMBERS).insert(row);
 }
