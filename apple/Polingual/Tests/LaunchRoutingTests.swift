@@ -22,10 +22,10 @@ struct LaunchRoutingTests {
         #expect(LaunchRouting.step(studyFresh: false, firstSystem: "") == .none)
     }
 
-    @Test func paywallGateOpensStudioOnlyForTrialAndSubscribed() {
+    @Test func lockedUsersGetGamesAndTrialOrSubscribedGetTheStudio() {
         #expect(RootScreen.pick(onboarded: false, access: .subscribed(productID: "y", until: nil)) == .onboarding)
         #expect(RootScreen.pick(onboarded: true, access: .checking) == .loading)
-        #expect(RootScreen.pick(onboarded: true, access: .locked) == .paywall)
+        #expect(RootScreen.pick(onboarded: true, access: .locked) == .games)
         #expect(RootScreen.pick(onboarded: true, access: .trial(until: .distantFuture)) == .studio)
         #expect(RootScreen.pick(onboarded: true, access: .subscribed(productID: "y", until: nil)) == .studio)
         #expect(RootScreen.pick(onboarded: true, access: .beta) == .studio)

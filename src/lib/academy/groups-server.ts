@@ -227,7 +227,7 @@ export const lookup: CorpusLookup = (branch) => {
 };
 
 let _lang: LangCorpus | null | undefined;
-function langCorpus(): LangCorpus | null {
+export function langCorpus(): LangCorpus | null {
   if (_lang !== undefined) return _lang;
   const read = (name: string) => {
     try {

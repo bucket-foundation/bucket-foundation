@@ -249,3 +249,14 @@ public enum AgeBand: String, CaseIterable, Sendable {
         }
     }
 }
+
+extension BucketAPI {
+    public static func debugBase(arguments: [String], environment: [String: String]) -> URL? {
+        let raw: String? = {
+            if let i = arguments.firstIndex(of: "-bucketBase"), i + 1 < arguments.count { return arguments[i + 1] }
+            return environment["BUCKET_BASE_URL"]
+        }()
+        guard let raw, let url = URL(string: raw), let scheme = url.scheme, ["http", "https"].contains(scheme), url.host() != nil else { return nil }
+        return url
+    }
+}

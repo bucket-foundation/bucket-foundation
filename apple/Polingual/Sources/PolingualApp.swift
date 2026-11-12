@@ -10,6 +10,7 @@ struct PolingualApp: App {
     @State private var subs: Subscriptions
     @State private var reminders = Reminders()
     @State private var groups: GroupStore
+    @State private var lobbies: LobbyStore
     @Environment(\.scenePhase) private var phase
     #if os(iOS)
     @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
@@ -18,7 +19,11 @@ struct PolingualApp: App {
     init() {
         InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
+        #if DEBUG
+        let api = BucketAPI(base: BucketAPI.debugBase(arguments: ProcessInfo.processInfo.arguments, environment: ProcessInfo.processInfo.environment) ?? BucketAPI.production)
+        #else
         let api = BucketAPI()
+        #endif
         let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
         let store = LangStore(api: api, token: { await account.freshToken() })
         PushRegistry.shared.api = api
@@ -33,6 +38,7 @@ struct PolingualApp: App {
         let groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
+        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }, guest: GuestPass(api: api) { UserDefaults.standard.string(forKey: "groups.displayName") ?? "" }))
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()) { await FoundingTester.fetch(user: account.session?.userId, token: await account.freshToken()) })
     }
 
@@ -48,6 +54,7 @@ struct PolingualApp: App {
                 .environment(subs)
                 .environment(reminders)
                 .environment(groups)
+                .environment(lobbies)
                 .interfaceLanguage(store)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }

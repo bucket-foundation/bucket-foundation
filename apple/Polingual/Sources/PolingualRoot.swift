@@ -7,6 +7,7 @@ struct PolingualRoot: View {
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
     @Environment(Subscriptions.self) private var subs
+    @Environment(LobbyStore.self) private var lobbies
     @AppStorage("polingual.onboarded") private var onboarded = false
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
     @AppStorage(SaveProgress.key) private var savePending = false
@@ -21,8 +22,8 @@ struct PolingualRoot: View {
                 }
             case .loading:
                 ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity).background(Palette.paper.ignoresSafeArea())
-            case .paywall:
-                Paywall()
+            case .games:
+                GamesOnly()
             case .studio:
                 Studio()
             }
@@ -35,7 +36,7 @@ struct PolingualRoot: View {
         .memberNamePrompt()
         .ageRangePrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
-        .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn, access: subs.access) }, set: { if !$0 { savePending = false } })) {
+        .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn) }, set: { if !$0 { savePending = false } })) {
             SaveProgressSheet()
                 .presentationDetents([.large])
         }
@@ -48,6 +49,7 @@ struct PolingualRoot: View {
             if new == .signedIn && old != .signedIn {
                 savePending = false
                 Task { await store.syncAfterSignIn() }
+                Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {
@@ -72,13 +74,13 @@ struct PolingualRoot: View {
 }
 
 enum RootScreen: Equatable {
-    case onboarding, loading, paywall, studio
+    case onboarding, loading, games, studio
 
     static func pick(onboarded: Bool, access: Access) -> RootScreen {
         guard onboarded else { return .onboarding }
         switch access {
         case .checking: return .loading
-        case .locked: return .paywall
+        case .locked: return .games
         case .trial, .subscribed, .beta: return .studio
         }
     }
@@ -192,5 +194,22 @@ extension View {
         #else
         self
         #endif
+    }
+}
+
+struct GamesOnly: View {
+    @State private var paywall = false
+
+    var body: some View {
+        NavigationStack {
+            GamesView(embedded: true)
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Unlock lessons") { paywall = true }.accessibilityIdentifier("unlockLessons")
+                    }
+                }
+        }
+        .environment(\.learnUpsell) { paywall = true }
+        .sheet(isPresented: $paywall) { Paywall() }
     }
 }

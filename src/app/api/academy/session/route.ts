@@ -30,6 +30,7 @@ const deleteAccountFor = (accessToken: string) =>
         return { id: error ? null : (data.user?.id ?? null), status: error ? (error.status ?? 500) : null };
       },
       deleteRows: async (table, userId) => ({ failed: Boolean((await bucketClient().from(table).delete().eq("user_id", userId)).error) }),
+      deleteLobbyData: async (userId) => ({ failed: Boolean((await bucketClient().rpc("delete_lobby_user", { p_user: userId })).error) }),
       revokeApple: (userId) => revokeForAccountDelete(appleTokens, userId),
       deleteUser: async (userId) => {
         const { error } = await adminClient().auth.admin.deleteUser(userId);

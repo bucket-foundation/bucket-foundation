@@ -465,6 +465,7 @@ enum Field: Encodable {
     case text(String)
     case number(Int)
     case list([String])
+    case flag(Bool)
 
     func encode(to encoder: Encoder) throws {
         var c = encoder.singleValueContainer()
@@ -472,6 +473,7 @@ enum Field: Encodable {
         case .text(let s): try c.encode(s)
         case .number(let n): try c.encode(n)
         case .list(let l): try c.encode(l)
+        case .flag(let b): try c.encode(b)
         }
     }
 }
