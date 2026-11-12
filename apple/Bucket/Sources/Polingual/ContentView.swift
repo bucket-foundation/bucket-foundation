@@ -95,6 +95,7 @@ struct ContentHub: View {
     @State private var branch: String?
     @State private var lang: String?
     @State private var openTopic: ContentTopic?
+    @State private var openFilm: WatchFilm?
     let fixed: Bool
     let fromToday: Bool
 
@@ -140,7 +141,9 @@ struct ContentHub: View {
             switch kind {
             case .read: ReadList(branch: branch) { openTopic = $0 }
             case .listen: ListenList(branch: branch, langs: shownLangs)
-            case .watch: WatchList(branch: branch, langs: shownLangs, earns: fromToday)
+            case .watch:
+                FilmsSection { openFilm = $0 }
+                WatchList(branch: branch, langs: shownLangs, earns: fromToday)
             }
             if langs.systems.isEmpty {
                 Section {
@@ -174,6 +177,7 @@ struct ContentHub: View {
         }
         .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
         .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
+        .navigationDestination(item: $openFilm) { FilmView(film: $0).fullHeightSession() }
         .task {
             await langs.load()
             #if DEBUG

@@ -29,6 +29,7 @@ struct LearnView: View {
                     LearnHeading(text: "Explore")
                     GamesSection { path.append(LearnRoute.game($0)) }
                     ContentSection { path.append($0) }
+                    FilmsSection { path.append(LearnRoute.film($0)) }
                     subjects?.section(open: { path.append($0) }, search: { path.append(LearnRoute.canon) })
                     if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
                 }
@@ -55,6 +56,10 @@ struct LearnView: View {
             if let game = Launch.value("-openGame").flatMap(GameKind.init(rawValue:)) { path.append(LearnRoute.game(game)) }
             if let kind = Launch.value("-contentKind").flatMap(ContentKind.init(rawValue:)) { path.append(LearnRoute.content(kind)) }
             if let topic = ContentCatalog.topics.first(where: { $0.title == Launch.value("-readTopic") }) { path.append(LearnRoute.read(topic)) }
+            if let id = Launch.value("-openFilm") {
+                await FilmStore.shared.load()
+                if let film = FilmStore.shared.films.first(where: { $0.id == id }) { path.append(LearnRoute.film(film)) }
+            }
             #endif
             guard let spec = Launch.value("-openLang") else { return }
             let parts = spec.split(separator: ":").map(String.init)
@@ -122,6 +127,7 @@ struct LearnView: View {
         case .read(let topic, let lang): ReadView(topic: topic, langs: readLangs(lang)).fullHeightSession()
         case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
         case .translate: TranslateScreen()
+        case .film(let film): FilmView(film: film).fullHeightSession()
         case .newSet:
             ScrollViewReader { proxy in
                 List {
@@ -317,6 +323,7 @@ enum LearnRoute: Hashable {
     case content(ContentKind)
     case translate
     case newSet
+    case film(WatchFilm)
 }
 
 struct AtomRoute: Hashable {
