@@ -281,7 +281,7 @@ export default function Room({ code: rawCode }: { code: string }) {
                 </li>
               ))}
             </ul>
-            {mine ? <p className={styles.feedback} data-testid="feedback">{mine.points > 0 ? `Right. +${mine.points}` : mine.correct ? "Right." : "Not this time."}</p> : null}
+            {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.points > 0 ? `Right. +${mine.points}` : mine.correct ? "Right." : "Not this time."}</p> : null}
           </>
         ) : (
           <p className={app.muted} aria-busy="true">Loading the round</p>
