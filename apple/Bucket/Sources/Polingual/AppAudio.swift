@@ -274,10 +274,12 @@ struct MiniPlayer: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .combine)
-            Button { audio.togglePause() } label: { Image(systemName: audio.paused ? "play.fill" : "pause.fill") }
-                .accessibilityLabel(Text(audio.paused ? "Play" : "Pause"))
-            Button { audio.stop() } label: { Image(systemName: "stop.fill") }
-                .accessibilityLabel(Text("Stop"))
+            if audio.active {
+                Button { audio.togglePause() } label: { Image(systemName: audio.paused ? "play.fill" : "pause.fill") }
+                    .accessibilityLabel(Text(audio.paused ? "Play" : "Pause"))
+                Button { audio.stop() } label: { Image(systemName: "stop.fill") }
+                    .accessibilityLabel(Text("Stop"))
+            }
         }
         .buttonStyle(.borderless)
         .font(.body)
@@ -293,14 +295,12 @@ struct AudioAccessory: ViewModifier {
         #if os(iOS)
         if #available(iOS 26.1, *) {
             content.tabViewBottomAccessory(isEnabled: audio.active) { MiniPlayer() }
-        } else if audio.active {
-            content.tabViewBottomAccessory { MiniPlayer() }
         } else {
-            content
+            content.tabViewBottomAccessory { MiniPlayer() }
         }
         #else
         content.safeAreaInset(edge: .bottom) {
-            if audio.active { MiniPlayer().padding(.vertical, 8).background(.bar) }
+            MiniPlayer().padding(.vertical, 8).background(.bar).opacity(audio.active ? 1 : 0).frame(height: audio.active ? nil : 0)
         }
         #endif
     }
