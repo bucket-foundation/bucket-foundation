@@ -11,6 +11,8 @@ struct EntitlementTests {
 
     @Test func noRecordsLocks() {
         #expect(Entitlement.access([], now: now) == .locked)
+        #expect(Entitlement.access([], now: now, beta: true) == .beta)
+        #expect(Entitlement.access([record(revoked: true)], now: now, beta: true) == .beta)
         #expect(!Entitlement.access([], now: now).open)
     }
 
