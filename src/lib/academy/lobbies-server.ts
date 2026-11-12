@@ -2,11 +2,18 @@ import type { NextRequest, NextResponse } from "next/server";
 import { blocksTouching, configured, GroupsError, json, readBody, requestUser, service } from "./groups-server";
 import { bearer, isGuestToken, verifyGuestToken } from "./lobby-guests";
 import { uuidOrNull, type BlockRow } from "./groups";
+import { botsEnabled, STANDING_LOBBY_MS } from "./lobby-bots";
+import { langCorpus } from "./groups-server";
+import { LANG_CODES } from "./lang-systems";
 import {
+  answerDecision,
   assembleLobby,
+  buildPrompts,
+  LEAD_MS,
   finished,
   generateLobbyCode,
   MESSAGE_LIMIT,
+  type AnswerDecision,
   type LobbyAnswerRow,
   type LobbyMessageRow,
   type LobbyPlayerRow,
@@ -21,8 +28,8 @@ export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
 export const PROFILES = "academy_profiles";
-const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at";
-const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at";
+export const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
+export const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
 
 export async function limited(key: string, max: number): Promise<boolean> {
   const res = await service().rpc("lobby_take", { p_key: key, p_limit: max });
@@ -112,6 +119,31 @@ export async function settle(lobby: LobbyRow, now: number): Promise<LobbyRow> {
   return rows[0] ?? { ...lobby, status: "done" };
 }
 
+export type StartResult = { ok: true; lobby: LobbyRow } | { ok: false; error: "no_words" | "lobby_started" };
+
+export async function startLobby(lobby: LobbyRow, now: number): Promise<StartResult> {
+  const prompts = buildPrompts(langCorpus()?.items ?? [], lobby, LANG_CODES);
+  if (prompts.length < 3) return { ok: false, error: "no_words" };
+  check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "prompts clear");
+  check(await service().from(PROMPTS).insert(prompts), "prompts");
+  const startedAt = new Date(now + LEAD_MS).toISOString();
+  const rows = check(await service().from(LOBBIES).update({ status: "playing", started_at: startedAt, rounds: prompts.length }).eq("id", lobby.id).eq("status", "lobby").select(LOBBY_COLS), "start") as LobbyRow[];
+  return rows[0] ? { ok: true, lobby: rows[0] } : { ok: false, error: "lobby_started" };
+}
+
+export type SubmitResult = AnswerDecision | { ok: false; error: "not_member" | "already_answered" };
+
+export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, choice: string, now: number): Promise<SubmitResult> {
+  const rows = check(await service().from(PROMPTS).select("round,choices,answer").eq("lobby_id", lobby.id).eq("round", round).limit(1), "prompt") as Pick<LobbyPromptRow, "round" | "choices" | "answer">[];
+  const decision = answerDecision(lobby, rows[0] ?? null, round, choice, now);
+  if (!decision.ok) return decision;
+  const res = await service().rpc("lobby_answer", { p_lobby: lobby.id, p_user: uid, p_round: round, p_choice: choice, p_correct: decision.correct, p_ms: decision.ms, p_points: decision.points });
+  if (res.error) throw new Error(res.error.message);
+  if (res.data === "not_member") return { ok: false, error: "not_member" };
+  if (res.data === "already") return { ok: false, error: "already_answered" };
+  return decision;
+}
+
 export async function lobbyState(lobby: LobbyRow, uid: string, now: number, blocks?: BlockRow[]): Promise<LobbyState> {
   const [players, messages, answers, b, prompts] = await Promise.all([
     namedPlayersOf([lobby.id]),
@@ -121,7 +153,8 @@ export async function lobbyState(lobby: LobbyRow, uid: string, now: number, bloc
     lobby.status === "lobby" ? Promise.resolve([]) : promptsOf(lobby.id),
   ]);
   const msgs = (check(messages, "messages") as LobbyMessageRow[]).reverse();
-  return assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts);
+  const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts, lobby.standing_slot ? new Date(Date.parse(lobby.created_at) + STANDING_LOBBY_MS).toISOString() : null);
+  return { ...state, botsEnabled: botsEnabled() };
 }
 
 export async function memberLobby(uid: string, lobbyId: unknown): Promise<LobbyRow> {

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { answeredRound, cleanNickname, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
+import { answeredRound, botLabel, flagEmoji, cleanNickname, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
 
 test("phase follows the server clock", () => {
   const lobby = { status: "playing" as const, startedAt: new Date(10_000).toISOString(), rounds: 3, roundSeconds: 10 };
@@ -118,4 +118,13 @@ test("results wait for the server tally, then stop waiting", () => {
   assert.equal(tallyLate(lobby, end + 1000), false);
   assert.equal(tallyLate(lobby, end + TALLY_WAIT_MS + 1), true);
   assert.equal(tallyLate({ ...lobby, startedAt: null }, end + 60_000), false);
+});
+
+test("bots render a flag and a skill label", () => {
+  assert.equal(flagEmoji("ES"), "\u{1F1EA}\u{1F1F8}");
+  assert.equal(flagEmoji("es"), "");
+  assert.equal(flagEmoji(null), "");
+  assert.equal(botLabel({ bot: true, skill: "hard" }), "bot · hard");
+  assert.equal(botLabel({ bot: true, skill: null }), "bot");
+  assert.equal(botLabel({ bot: false, skill: null }), null);
 });

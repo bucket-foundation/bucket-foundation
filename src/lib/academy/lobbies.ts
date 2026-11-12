@@ -41,6 +41,8 @@ export interface LobbyRow {
   started_at: string | null;
   version: number;
   created_at: string;
+  standing_slot?: string | null;
+  bot_fill?: boolean;
 }
 
 export interface LobbyPlayerRow {
@@ -52,6 +54,9 @@ export interface LobbyPlayerRow {
   last_seen: string;
   joined_at: string;
   handle?: string | null;
+  is_bot?: boolean;
+  skill?: string | null;
+  flag?: string | null;
 }
 
 export interface LobbyMessageRow {
@@ -102,6 +107,9 @@ export interface LobbyPlayer {
   isMe: boolean;
   online: boolean;
   answered: boolean;
+  bot: boolean;
+  skill: string | null;
+  flag: string | null;
 }
 
 export interface LobbyMessage {
@@ -135,6 +143,8 @@ export interface LobbySummary {
   targets: string[];
   status: LobbyStatus;
   players: number;
+  bots: number;
+  standing: boolean;
   host: string;
   hostHandle: string | null;
   isMember: boolean;
@@ -161,6 +171,10 @@ export interface LobbyState {
   round: LobbyRound | null;
   prompts: LobbyPrompt[];
   results: LobbyRoundResult[];
+  standing: boolean;
+  botFill: boolean;
+  botsEnabled: boolean;
+  nextStartAt: string | null;
 }
 
 export function generateLobbyCode(random: (n: number) => Uint8Array = (n) => crypto.getRandomValues(new Uint8Array(n))): string {
@@ -351,9 +365,9 @@ export function startDecision(lobby: Pick<LobbyRow, "host_id" | "status">, playe
 
 export type JoinLobbyDecision = "already" | "ok" | "full" | "started";
 
-export function joinLobbyDecision(lobby: Pick<LobbyRow, "status">, players: readonly Pick<LobbyPlayerRow, "user_id">[], uid: string): JoinLobbyDecision {
+export function joinLobbyDecision(lobby: Pick<LobbyRow, "status"> & { standing_slot?: string | null }, players: readonly Pick<LobbyPlayerRow, "user_id">[], uid: string): JoinLobbyDecision {
   if (players.some((p) => p.user_id === uid)) return "already";
-  if (lobby.status !== "lobby") return "started";
+  if (lobby.status !== "lobby" && !lobby.standing_slot) return "started";
   return players.length >= LOBBY_CAP ? "full" : "ok";
 }
 
@@ -405,6 +419,7 @@ export function assembleLobby(
   uid: string,
   now: number,
   prompts: readonly LobbyPromptRow[] = [],
+  nextStartAt: string | null = null,
 ): LobbyState {
   const hidden = hiddenUsers(blocks, uid);
   const names = new Map(players.map((p) => [p.user_id, p.display_name]));
@@ -439,6 +454,9 @@ export function assembleLobby(
         isMe: p.user_id === uid,
         online: now - Date.parse(p.last_seen) < STALE_MS,
         answered: answeredNow.has(p.user_id),
+        bot: p.is_bot === true,
+        skill: p.is_bot ? p.skill ?? null : null,
+        flag: p.flag ?? null,
       }))
       .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)),
     messages: messages
@@ -448,6 +466,10 @@ export function assembleLobby(
     round,
     prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done"),
     results: revealed.map((a) => ({ round: a.round, userId: a.user_id, correct: a.correct, ms: a.ms, points: a.points })),
+    standing: !!lobby.standing_slot,
+    botFill: lobby.bot_fill === true,
+    botsEnabled: false,
+    nextStartAt: lobby.standing_slot && lobby.status === "lobby" ? nextStartAt : null,
   };
 }
 
@@ -461,13 +483,15 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
     targets: lobby.targets,
     status: lobby.status,
     players: players.length,
+    bots: players.filter((p) => p.is_bot).length,
+    standing: !!lobby.standing_slot,
     host: players.find((p) => p.user_id === lobby.host_id)?.display_name ?? "",
     hostHandle: players.find((p) => p.user_id === lobby.host_id)?.handle ?? null,
     isMember: players.some((p) => p.user_id === uid),
   };
 }
 
-export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number): LobbySummary[] {
+export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number, bots = false): LobbySummary[] {
   const hidden = hiddenUsers(blocks, uid);
   const blockedLobbies = new Set(blocks.filter((b) => b.blocker_id === uid && b.target_group_id).map((b) => b.target_group_id as string));
   const byLobby = new Map<string, LobbyPlayerRow[]>();
@@ -476,9 +500,10 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
     .filter((l) => {
       const ps = byLobby.get(l.id) ?? [];
       const mine = ps.some((p) => p.user_id === uid);
+      if (l.standing_slot) return bots && (mine || ps.length < LOBBY_CAP);
       if (mine) return l.status !== "done";
       return l.listed && l.status === "lobby" && !hidden.has(l.host_id) && !blockedLobbies.has(l.id) && ps.length > 0 && ps.length < LOBBY_CAP && now - Date.parse(l.created_at) < OPEN_WINDOW_MS;
     })
     .map((l) => lobbySummary(l, byLobby.get(l.id) ?? [], uid))
-    .sort((a, b) => Number(b.isMember) - Number(a.isMember) || b.players - a.players);
+    .sort((a, b) => Number(b.isMember) - Number(a.isMember) || Number(b.standing) - Number(a.standing) || b.players - a.players);
 }
