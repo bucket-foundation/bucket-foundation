@@ -4,12 +4,13 @@ import SwiftUI
 struct StreakGoalCard: View {
     @Environment(LangStore.self) private var store: LangStore?
     let streak: Double
+    var share = true
 
     var body: some View {
         let g = StreakGoal(streak: streak)
         HStack(spacing: 12) {
             summary(g).accessibilityElement(children: .combine)
-            if g.day > 0 {
+            if share && g.day > 0 {
                 ShareObjectButton(.streak(days: g.day, langs: store?.gameLangs ?? [], root: store?.systems.first?.root ?? "en"))
             }
         }

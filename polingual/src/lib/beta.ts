@@ -10,7 +10,8 @@ const API = "https://api.resend.com";
 export const UNSUBSCRIBE = "To leave the beta list, email privacy@polingual.com and we remove your address.";
 const ALLOWED_HOSTS = new Set(["polingual.com", "www.polingual.com"]);
 
-export type BetaRequest = { origin?: string | null; referer?: string | null; ip?: string | null; now?: number };
+export type BetaRequest = { origin?: string | null; referer?: string | null; ip?: string | null; now?: number; token?: string | null };
+const HUMAN_TIMEOUT_MS = 3000;
 
 export function allowedSource(origin?: string | null, referer?: string | null): boolean {
   const src = origin || referer;
@@ -54,6 +55,25 @@ export function welcomeEmail(to: string, from: string) {
   };
 }
 
+export function needsHuman(token: string | null | undefined, env: BetaEnv): boolean {
+  return Boolean(token) || env.BETA_REQUIRE_TURNSTILE?.trim() === "1";
+}
+
+export async function verifyHuman(token: string | null | undefined, ip: string | null, env: BetaEnv, send: Fetcher): Promise<boolean> {
+  const secret = env.TURNSTILE_SECRET_KEY?.trim();
+  if (!secret || !token || token.length > 2048) return false;
+  try {
+    const form = new URLSearchParams({ secret, response: token });
+    if (ip) form.set("remoteip", ip);
+    const r = await send("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form, signal: AbortSignal.timeout(HUMAN_TIMEOUT_MS) });
+    if (!r.ok) return false;
+    const j = (await r.json()) as { success?: boolean; hostname?: string };
+    return j.success === true && (!j.hostname || j.hostname === "polingual.com" || j.hostname === "www.polingual.com");
+  } catch {
+    return false;
+  }
+}
+
 export async function joinBeta(
   body: unknown,
   env: BetaEnv,
@@ -70,6 +90,7 @@ export async function joinBeta(
   const key = env.RESEND_API_KEY?.trim();
   const audience = env.RESEND_BETA_AUDIENCE_ID?.trim();
   if (!key || !audience) return { status: 503, body: { error: "Signups are offline. Try again soon." } };
+  if (needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
   const existing = await send(`${API}/audiences/${audience}/contacts/${encodeURIComponent(parsed.signup.email)}`, { method: "GET", headers });
   if (existing.ok) return { status: 200, body: { ok: true, testflight: TESTFLIGHT_URL } };

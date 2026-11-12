@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import vm from "node:vm";
 import { RateLimiter } from "./beta";
 import { claimFounding, codeEmail, fetchSpots, ipHash, parseCodes, type Outcome } from "./founding";
 
@@ -138,11 +139,77 @@ test("no offer codes are committed", () => {
   assert.match(ignore, /founding-codes\*/);
 });
 
-test("beta modal switches to founding mode only when the API reports open spots and a site key", () => {
-  const js = readFileSync(join(__dirname, "../../public/d8/beta.js"), "utf8");
-  assert.match(js, /if\(!j\|\|!\(j\.left>0\)\|\|!j\.siteKey\)return/);
-  assert.match(js, /turnstile:/);
-  assert.match(js, /testflight\.apple\.com\/join\/B1ctUxn5/);
+const betaJs = readFileSync(join(__dirname, "../../public/d8/beta.js"), "utf8");
+
+function loadBeta(nav: { userAgent: string; platform: string; maxTouchPoints: number }) {
+  const clicks: ((x: unknown) => void)[] = [];
+  const events: string[] = [];
+  const fetches: string[] = [];
+  const el = (): unknown => new Proxy(function () {}, { get: (o: any, k) => (k in o ? o[k] : (o[k] = el())), apply: () => el() });
+  const doc = { referrer: "", documentElement: { lang: "en" }, head: el(), body: el(), querySelector: () => null, createElement: () => el(), addEventListener: (type: string, f: (x: unknown) => void) => type === "click" && clicks.push(f) };
+  const win: Record<string, unknown> = {
+    document: doc,
+    navigator: { ...nav, sendBeacon: () => true },
+    location: { search: "", pathname: "/" },
+    localStorage: { getItem: () => null, setItem: () => {} },
+    crypto: { randomUUID: () => "v" },
+    plPixel: (n: string) => events.push(n),
+    URLSearchParams,
+    URL,
+    CustomEvent: class {},
+    setTimeout: () => 0,
+    addEventListener: () => {},
+    fetch: (url: string) => (fetches.push(url), Promise.resolve({ ok: false })),
+  };
+  win.window = win.self = win.top = win;
+  vm.runInNewContext(betaJs, win);
+  const click = () => {
+    let prevented = false;
+    for (const f of clicks) f({ target: { closest: (sel: string) => (sel.includes("testflight") ? {} : null) }, preventDefault: () => (prevented = true) });
+    return prevented;
+  };
+  return { click, events, fetches };
+}
+
+const iPhone = { userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 26_1 like Mac OS X) AppleWebKit/605.1.15 Version/26.1 Mobile/15E148 Safari/604.1", platform: "iPhone", maxTouchPoints: 5 };
+const iPadOS = { userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/26.1 Safari/605.1.15", platform: "MacIntel", maxTouchPoints: 5 };
+const mac = { ...iPadOS, maxTouchPoints: 0 };
+const android = { userAgent: "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 Chrome/131.0 Mobile Safari/537.36", platform: "Linux armv8l", maxTouchPoints: 5 };
+const windows = { userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36", platform: "Win32", maxTouchPoints: 0 };
+
+test("iPhone and iPadOS beta clicks go straight to TestFlight and never call preventDefault", () => {
+  for (const nav of [iPhone, iPadOS]) {
+    const b = loadBeta(nav);
+    assert.equal(b.click(), false, nav.platform);
+    assert.ok(b.events.includes("testflight_open"));
+  }
+});
+
+test("desktop and Android beta clicks open the email sheet", () => {
+  for (const nav of [mac, android, windows]) {
+    const b = loadBeta(nav);
+    assert.equal(b.click(), true, nav.platform);
+    assert.ok(!b.events.includes("testflight_open"));
+    assert.deepEqual(b.fetches, ["/api/founding"]);
+  }
+});
+
+test("the email sheet posts to /api/beta with the honeypot and reports the request", () => {
+  assert.match(betaJs, /fetch\("\/api\/beta"/);
+  assert.match(betaJs, /type="email" name="email"/);
+  assert.match(betaJs, /name="website"/);
+  assert.match(betaJs, /website:sh\.website\.value/);
+  assert.match(betaJs, /ev\("beta_link_requested"\)/);
+  assert.match(betaJs, /t\("Check your email on your iPhone\."\)/);
+  assert.doesNotMatch(betaJs, /fetch\("\/api\/founding",\{method/);
+});
+
+test("the email sheet loads Turnstile with the founding siteKey and posts its token", () => {
+  assert.match(betaJs, /fetch\("\/api\/founding"\)\.then\(r=>r\.ok\?r\.json\(\):null\)\.then\(j=>\{if\(!j\|\|!j\.siteKey\)return;/);
+  assert.match(betaJs, /w\.className="cf-turnstile";w\.dataset\.sitekey=j\.siteKey/);
+  assert.match(betaJs, /challenges\.cloudflare\.com\/turnstile\/v0\/api\.js/);
+  assert.match(betaJs, /turnstile:\(sh\.querySelector\('\[name="cf-turnstile-response"\]'\)\|\|\{\}\)\.value/);
+  assert.match(betaJs, /window\.turnstile&&window\.turnstile\.reset\(\)/);
 });
 
 test("beta.js loads Vercel analytics once and sends launch events only on success", () => {
@@ -151,7 +218,5 @@ test("beta.js loads Vercel analytics once and sends launch events only on succes
   assert.match(js, /UTM=T0\.s\|\|"direct"/);
   assert.match(js, /sendBeacon\("\/api\/events",b\)/);
   assert.match(js, /if\(top===self\)ev\("page_view"\)/);
-  assert.match(js, /const open=\(\)=>\{ev\('beta_open'\)/);
-  assert.match(js, /if\(r\.ok\)ev\(FD\?'founding_claim':'beta_signup'\)/);
-  assert.match(js, /a\[href\^="https:\/\/testflight\.apple\.com\/join"\][\s\S]*ev\("testflight_open"\)/);
+  assert.match(js, /a\[href\^="https:\/\/testflight\.apple\.com\/join"\][\s\S]*if\(IOS\)\{ev\("testflight_open"\)/);
 });

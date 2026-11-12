@@ -44,6 +44,7 @@ public enum Lang {
 
     public static func name(_ code: String) -> String { info[code]?.name ?? code }
     public static func isRTL(_ code: String) -> Bool { info[code]?.rtl ?? false }
+    public static func isLatin(_ code: String) -> Bool { info[code]?.latin ?? true }
 
     public static let maxTargets = 6
     public static let newPerLangPerDay = 5
@@ -668,6 +669,10 @@ public struct LangWord: Sendable, Equatable, Hashable {
     public var reading: Reading?
 }
 
+public extension Exercise {
+    var showsScriptWithSound: Bool { kind == .listen && !Lang.isLatin(promptLang) }
+}
+
 public struct Exercise: Sendable {
     public var kind: ExerciseKind
     public var itemId: String
@@ -695,6 +700,7 @@ public struct Exercise: Sendable {
     public var spoken: [SpokenOption]?
     public var segments: [String]?
     public var hint: String?
+    public var meaning: String?
     public var nativeVoice = false
 
     public init(kind: ExerciseKind, itemId: String, lang: String, root: String, prompt: String, promptLang: String, answer: String, answerLang: String, note: String? = nil) {
@@ -958,6 +964,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
     if roll < 0.85 { return toTarget(.translate) }
     var ex = make(.typeHeard, target, lang, target, lang)
     ex.answerReading = tr
+    ex.meaning = rootWord.isEmpty ? nil : rootWord
     return ex
 }
 
