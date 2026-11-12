@@ -44,9 +44,9 @@ test("verifies the Turnstile token with the secret before calling Resend", async
   assert.equal(form.get("remoteip"), "1.2.3.4");
 });
 
-test("a missing or failed Turnstile token saves nothing", async () => {
+test("a failed Turnstile token saves nothing, and enforcement blocks a missing one", async () => {
   const none = fake([]);
-  assert.equal((await join({ email: "a@b.co" }, none, { origin: site.origin, ip: "1" })).status, 403);
+  assert.equal((await join({ email: "a@b.co" }, none, { origin: site.origin, ip: "1" }, fresh(), { ...env, BETA_REQUIRE_TURNSTILE: "1" })).status, 403);
   assert.equal(none.checks.length + none.calls.length, 0);
   const failed = fake([], { success: false });
   assert.equal((await join({ email: "a@b.co" }, failed, { ...site, ip: "2" })).status, 403);
@@ -56,10 +56,12 @@ test("a missing or failed Turnstile token saves nothing", async () => {
   assert.equal(foreign.calls.length, 0);
 });
 
-test("returns 503 without the Turnstile secret", async () => {
+test("without a token or enforcement the form still saves, relying on rate limits and the honeypot", async () => {
   const f = fake([]);
-  assert.equal((await join({ email: "a@b.co" }, f, site, fresh(), { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud" })).status, 503);
-  assert.equal(f.calls.length + f.checks.length, 0);
+  const r = await join({ email: "a@b.co" }, f, { origin: site.origin, ip: "9" }, fresh(), { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud" });
+  assert.notEqual(r.status, 403);
+  assert.notEqual(r.status, 503);
+  assert.equal(f.checks.length, 0);
 });
 
 test("does not email an address already in the audience", async () => {

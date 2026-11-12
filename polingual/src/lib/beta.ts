@@ -55,6 +55,10 @@ export function welcomeEmail(to: string, from: string) {
   };
 }
 
+export function needsHuman(token: string | null | undefined, env: BetaEnv): boolean {
+  return Boolean(token) || env.BETA_REQUIRE_TURNSTILE?.trim() === "1";
+}
+
 export async function verifyHuman(token: string | null | undefined, ip: string | null, env: BetaEnv, send: Fetcher): Promise<boolean> {
   const secret = env.TURNSTILE_SECRET_KEY?.trim();
   if (!secret || !token || token.length > 2048) return false;
@@ -85,8 +89,8 @@ export async function joinBeta(
   if (!limits.email.take(parsed.signup.email, req.now)) return TOO_MANY;
   const key = env.RESEND_API_KEY?.trim();
   const audience = env.RESEND_BETA_AUDIENCE_ID?.trim();
-  if (!key || !audience || !env.TURNSTILE_SECRET_KEY?.trim()) return { status: 503, body: { error: "Signups are offline. Try again soon." } };
-  if (!(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
+  if (!key || !audience) return { status: 503, body: { error: "Signups are offline. Try again soon." } };
+  if (needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
   const existing = await send(`${API}/audiences/${audience}/contacts/${encodeURIComponent(parsed.signup.email)}`, { method: "GET", headers });
   if (existing.ok) return { status: 200, body: { ok: true, testflight: TESTFLIGHT_URL } };
