@@ -97,6 +97,15 @@ public struct MasteredWord: Sendable, Hashable {
     }
 }
 
+public extension MasteredWord {
+    static let namedLimit = 3
+
+    static func named(_ words: [MasteredWord], count: Int) -> String? {
+        guard !words.isEmpty, max(count, words.count) <= namedLimit else { return nil }
+        return words.prefix(namedLimit).map { $0.meaning.isEmpty ? $0.form : "\($0.form) · \($0.meaning)" }.joined(separator: "\n")
+    }
+}
+
 public struct ShareForm: Sendable, Hashable {
     public var lang: String
     public var form: String

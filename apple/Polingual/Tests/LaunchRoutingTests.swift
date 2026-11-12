@@ -28,6 +28,7 @@ struct LaunchRoutingTests {
         #expect(RootScreen.pick(onboarded: true, access: .locked) == .games)
         #expect(RootScreen.pick(onboarded: true, access: .trial(until: .distantFuture)) == .studio)
         #expect(RootScreen.pick(onboarded: true, access: .subscribed(productID: "y", until: nil)) == .studio)
+        #expect(RootScreen.pick(onboarded: true, access: .beta) == .studio)
     }
 
     @Test func linkPendingAtMountPicksItsTab() {

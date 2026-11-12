@@ -33,6 +33,7 @@ struct PolingualRoot: View {
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .groupInvites()
         .groupsOnToday()
+        .memberNamePrompt()
         .ageRangePrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn) }, set: { if !$0 { savePending = false } })) {
@@ -77,7 +78,7 @@ enum RootScreen: Equatable {
         switch access {
         case .checking: return .loading
         case .locked: return .games
-        case .trial, .subscribed: return .studio
+        case .trial, .subscribed, .beta: return .studio
         }
     }
 }
@@ -97,17 +98,19 @@ enum LaunchRouting {
 
 struct Studio: View {
     @Environment(Subscriptions.self) private var subs
+    @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
     @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
     @State private var managing = false
+    @State private var trialReminder: TrialReminder.Outcome?
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
     var body: some View {
-        VStack(spacing: 0) {
-            trial
-            tabs
-        }
-        .background(Palette.paper)
+        tabs
+            .background(Palette.paper)
+            .task(id: TrialReminder.key(subs.access, allowed: reminders.enabled)) {
+                if case .trial(let until) = subs.access { trialReminder = await TrialReminder.schedule(until: until) } else { trialReminder = nil }
+            }
     }
 
     var tabs: some View {
@@ -116,7 +119,7 @@ struct Studio: View {
                 TodayView(opening: { await place($0) })
             }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage) }
+            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed) }
         }
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()
@@ -137,23 +140,6 @@ struct Studio: View {
             }
         }
         #endif
-    }
-
-    @ViewBuilder var trial: some View {
-        if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
-            Button(action: manage) {
-                Label(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"), systemImage: "gift.fill")
-                    .font(.subheadline.weight(.bold))
-                    .foregroundStyle(.white)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: .infinity)
-                    .background(D8.lapis, ignoresSafeAreaEdges: [])
-            }
-            .buttonStyle(.plain)
-            .accessibilityHint(String(localized: "Manage your subscription"))
-        }
     }
 
     func place(_ path: Binding<NavigationPath>) async {

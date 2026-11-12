@@ -19,8 +19,6 @@ struct LearnView: View {
                                 path.append(LearnRoute.translate)
                             }
                             .listRowInsets(EdgeInsets())
-                            ListenTile()
-                                .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
                         }
                         .listRowBackground(Color.clear)
                     }
@@ -29,6 +27,7 @@ struct LearnView: View {
                     LearnHeading(text: "Explore")
                     GamesSection { path.append(LearnRoute.game($0)) }
                     ContentSection { path.append($0) }
+                    FilmsSection { path.append(LearnRoute.film($0)) }
                     subjects?.section(open: { path.append($0) }, search: { path.append(LearnRoute.canon) })
                     if let corpus = langs.corpus { LanguageFooter(corpus: corpus) }
                 }
@@ -51,10 +50,19 @@ struct LearnView: View {
         }
         .task {
             await langs.load()
+            await FilmStore.shared.load()
             #if DEBUG
             if let game = Launch.value("-openGame").flatMap(GameKind.init(rawValue:)) { path.append(LearnRoute.game(game)) }
             if let kind = Launch.value("-contentKind").flatMap(ContentKind.init(rawValue:)) { path.append(LearnRoute.content(kind)) }
             if let topic = ContentCatalog.topics.first(where: { $0.title == Launch.value("-readTopic") }) { path.append(LearnRoute.read(topic)) }
+            if let book = Launch.value("-openLibrary") {
+                path.append(LearnRoute.library)
+                if book != "list" { path.append(LearnRoute.book(book)) }
+            }
+            if let id = Launch.value("-openFilm") {
+                await FilmStore.shared.load()
+                if let film = FilmStore.shared.films.first(where: { $0.id == id }) { path.append(LearnRoute.film(film)) }
+            }
             #endif
             guard let spec = Launch.value("-openLang") else { return }
             let parts = spec.split(separator: ":").map(String.init)
@@ -122,6 +130,9 @@ struct LearnView: View {
         case .read(let topic, let lang): ReadView(topic: topic, langs: readLangs(lang)).fullHeightSession()
         case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
         case .translate: TranslateScreen()
+        case .library: LibraryList { path.append(LearnRoute.book($0)) }
+        case .book(let id): LibraryReader(id: id).fullHeightSession()
+        case .film(let film): FilmView(film: film).fullHeightSession()
         case .newSet:
             ScrollViewReader { proxy in
                 List {
@@ -235,6 +246,7 @@ struct NewSetTile: View {
 
 struct ContentSection: View {
     @Environment(LangStore.self) private var langs
+    @State private var library = LibraryStore.shared
     let open: (LearnRoute) -> Void
 
     var names: String { langs.contentLangs.prefix(3).map(langName).joined(separator: ", ") }
@@ -251,6 +263,9 @@ struct ContentSection: View {
                 LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: D8.lapis, lip: Color(hex: 0x12326A), item: .activity(.watch), open: { open(.content(.watch)) }) {
                     LearnSymbol(name: "play.rectangle")
                 }
+                if library.index?.books.isEmpty == false {
+                    LibraryTile { open(.library) }
+                }
                 ForEach(ContentCatalog.topics.prefix(3)) { topic in
                     LearnTile(title: topic.title, detail: branchTitle(topic.branch), face: BranchTile.face(topic.branch), item: .topic(topic), open: { open(.read(topic)) }) {
                         LearnSymbol(name: "text.book.closed")
@@ -264,6 +279,7 @@ struct ContentSection: View {
         }
         .id("content")
         .listRowBackground(Color.clear)
+        .task { await library.loadIndex() }
     }
 }
 
@@ -317,6 +333,9 @@ enum LearnRoute: Hashable {
     case content(ContentKind)
     case translate
     case newSet
+    case library
+    case book(String)
+    case film(WatchFilm)
 }
 
 struct AtomRoute: Hashable {

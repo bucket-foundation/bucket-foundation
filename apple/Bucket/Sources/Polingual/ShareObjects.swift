@@ -123,7 +123,7 @@ struct ShareCardView: View {
             switch style {
             case .banner: FlagBannerCard(lang: lang, word: "\(count)", reading: nil, line: String(localized: "words mastered"))
             case .list: MasteredListCard(lang: lang, count: count, words: words)
-            default: MasteredCard(lang: lang, count: count)
+            default: MasteredCard(lang: lang, count: count, words: words)
             }
         case .flag(let lang, _):
             if style == .plate { FlagPlateCard(lang: lang, dark: true) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: nil) }
@@ -380,6 +380,7 @@ struct TileWallCard: View {
 struct MasteredCard: View {
     let lang: String
     let count: Int
+    var words: [MasteredWord] = []
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -388,6 +389,9 @@ struct MasteredCard: View {
             Text("\(count)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
             Text(count == 1 ? String(localized: "word mastered") : String(localized: "words mastered")).font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
             Text(langName(lang)).font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8))
+            if let named = MasteredWord.named(words, count: count) {
+                Text(named).font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(2).minimumScaleFactor(0.5).padding(.top, 14)
+            }
             Spacer(minLength: 0)
             CardFoot(color: .white)
         }
