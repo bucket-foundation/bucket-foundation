@@ -5,6 +5,15 @@ public enum LobbyStatus: String, Codable, Sendable {
     case lobby, playing, done
 }
 
+public enum LobbyGame: String, Codable, Sendable, CaseIterable, Identifiable {
+    case daily, sameWord = "same-word", flags, live
+    public var id: String { rawValue }
+}
+
+public enum LobbyPromptMode: String, Codable, Sendable {
+    case form, flag
+}
+
 public struct LobbyPlayer: Codable, Equatable, Sendable, Identifiable {
     public var userId: String
     public var name: String
@@ -33,7 +42,8 @@ public struct LobbyRound: Codable, Equatable, Sendable {
 
 public struct LobbyPrompt: Codable, Equatable, Sendable, Identifiable {
     public var round: Int
-    public var lang: String
+    public var mode: LobbyPromptMode
+    public var lang: String?
     public var gloss: String
     public var choices: [String]
     public var answer: String?
@@ -52,6 +62,7 @@ public struct LobbySummary: Codable, Equatable, Sendable, Identifiable {
     public var id: String
     public var code: String
     public var name: String
+    public var game: LobbyGame
     public var root: String
     public var targets: [String]
     public var status: LobbyStatus
@@ -64,6 +75,7 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var id: String
     public var code: String
     public var name: String
+    public var game: LobbyGame
     public var root: String
     public var targets: [String]
     public var seed: String
@@ -199,9 +211,9 @@ extension BucketAPI {
         return r.lobbies
     }
 
-    public func createLobby(token: String, name: String, root: String, targets: [String], rounds: Int, roundSeconds: Int, listed: Bool, displayName: String) async throws -> Lobby {
+    public func createLobby(token: String, name: String, game: LobbyGame = .daily, root: String, targets: [String], rounds: Int, roundSeconds: Int, listed: Bool, displayName: String) async throws -> Lobby {
         let r: LobbyReply = try await groupCall("api/academy/lobbies", token: token, body: [
-            "name": .text(name), "root": .text(root), "targets": .list(targets), "rounds": .number(rounds),
+            "name": .text(name), "game": .text(game.rawValue), "root": .text(root), "targets": .list(targets), "rounds": .number(rounds),
             "roundSeconds": .number(roundSeconds), "listed": .flag(listed), "displayName": .text(displayName),
         ])
         return r.lobby
@@ -296,8 +308,8 @@ public final class LobbyStore {
     }
 
     @discardableResult
-    public func create(name: String, root: String, targets: [String], rounds: Int = 8, roundSeconds: Int = 10, listed: Bool = true, displayName: String) async throws(BucketError) -> Lobby {
-        enter(try await run { try await self.api.createLobby(token: $0, name: name, root: root, targets: targets, rounds: rounds, roundSeconds: roundSeconds, listed: listed, displayName: displayName) })
+    public func create(name: String, game: LobbyGame = .daily, root: String, targets: [String], rounds: Int = 8, roundSeconds: Int = 10, listed: Bool = true, displayName: String) async throws(BucketError) -> Lobby {
+        enter(try await run { try await self.api.createLobby(token: $0, name: name, game: game, root: root, targets: targets, rounds: rounds, roundSeconds: roundSeconds, listed: listed, displayName: displayName) })
     }
 
     @discardableResult

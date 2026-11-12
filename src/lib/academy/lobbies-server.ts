@@ -20,7 +20,7 @@ export const PLAYERS = "lobby_players";
 export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
-const LOBBY_COLS = "id,code,host_id,name,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at";
+const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at";
 const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at";
 
 export async function limited(key: string, max: number): Promise<boolean> {
@@ -30,7 +30,7 @@ export async function limited(key: string, max: number): Promise<boolean> {
 }
 
 export async function promptsOf(lobbyId: string): Promise<LobbyPromptRow[]> {
-  return check(await service().from(PROMPTS).select("lobby_id,round,lang,item_id,gloss,choices,answer").eq("lobby_id", lobbyId), "prompts") as LobbyPromptRow[];
+  return check(await service().from(PROMPTS).select("lobby_id,round,lang,item_id,mode,gloss,choices,answer").eq("lobby_id", lobbyId), "prompts") as LobbyPromptRow[];
 }
 
 export function lobbyIdOf(input: unknown): string {

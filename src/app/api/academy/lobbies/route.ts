@@ -36,7 +36,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if ((await limited(`create:user:${a.uid}`, CREATE_PER_MINUTE)) || (await limited(`create:ip:${clientIp(req)}`, CREATE_PER_MINUTE * 3))) return json({ error: "rate_limited" }, 429);
     const hosted = checkLobby(await service().from(LOBBIES).select("id").eq("host_id", a.uid).neq("status", "done"), "hosted") as unknown[];
     if (hosted.length >= MAX_HOSTED) return json({ error: "hosted_limit" }, 409);
-    const lobby = await insertLobby({ host_id: a.uid, name: config.name, root: config.root, targets: config.targets, seed: generateSeed(), listed: config.listed, rounds: config.rounds, round_seconds: config.roundSeconds });
+    const lobby = await insertLobby({ host_id: a.uid, name: config.name, game: config.game, root: config.root, targets: config.targets, seed: generateSeed(), listed: config.listed, rounds: config.rounds, round_seconds: config.roundSeconds });
     try {
       await addPlayer(lobby.id, a.uid, displayName);
     } catch (err) {

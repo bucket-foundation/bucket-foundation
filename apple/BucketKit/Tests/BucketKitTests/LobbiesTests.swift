@@ -4,7 +4,7 @@ import Testing
 
 func lobbyJSON(status: String = "lobby", startedAt: String? = nil, version: Int = 3, ready: [Bool] = [true, false], isHost: Bool = true) -> [String: Any] {
     [
-        "id": "L1", "code": "ABC123", "name": "Room", "root": "en", "targets": ["es", "fr"], "seed": "18446744073709551615",
+        "id": "L1", "code": "ABC123", "name": "Room", "game": "same-word", "root": "en", "targets": ["es", "fr"], "seed": "18446744073709551615",
         "status": status, "listed": true, "rounds": 3, "roundSeconds": 10, "startedAt": startedAt as Any? ?? NSNull(),
         "version": version, "now": "2026-11-12T10:00:00.000Z", "isHost": isHost,
         "players": [
@@ -13,7 +13,7 @@ func lobbyJSON(status: String = "lobby", startedAt: String? = nil, version: Int 
         ],
         "messages": [["id": 1, "from": "u2", "name": "Ana", "body": "hola", "at": "2026-11-12T09:59:00Z"]],
         "round": NSNull(),
-        "prompts": [["round": 0, "lang": "es", "gloss": "cat", "choices": ["gato", "perro"], "answer": NSNull()]],
+        "prompts": [["round": 0, "mode": "flag", "lang": NSNull(), "gloss": "gato", "choices": ["es", "it"], "answer": NSNull()], ["round": 1, "mode": "form", "lang": "es", "gloss": "cat", "choices": ["gato", "perro"], "answer": NSNull()]],
         "results": [["round": 0, "userId": "u2", "correct": true, "ms": 1000, "points": 190]],
     ]
 }
@@ -47,9 +47,11 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
 
     @Test func promptsComeFromTheServerWithoutTheLiveAnswer() throws {
         let l = try JSONDecoder().decode(Lobby.self, from: json(lobbyJSON()))
-        let p = try #require(l.prompt(0))
-        #expect(p.gloss == "cat" && p.choices == ["gato", "perro"] && p.answer == nil)
-        #expect(l.prompt(1) == nil)
+        let flag = try #require(l.prompt(0))
+        #expect(flag.mode == .flag && flag.lang == nil && flag.choices == ["es", "it"])
+        let p = try #require(l.prompt(1))
+        #expect(p.mode == .form && p.gloss == "cat" && p.choices == ["gato", "perro"] && p.answer == nil)
+        #expect(l.prompt(2) == nil && l.game == .sameWord)
     }
 }
 

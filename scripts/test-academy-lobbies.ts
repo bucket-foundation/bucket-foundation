@@ -30,7 +30,7 @@ const T0 = Date.parse("2026-11-12T10:00:00.000Z");
 
 function lobby(over: Partial<LobbyRow> = {}): LobbyRow {
   return {
-    id: "L1", code: "ABC123", host_id: "h", name: "Room", root: "en", targets: ["es"], seed: "42", status: "lobby", listed: true,
+    id: "L1", code: "ABC123", host_id: "h", name: "Room", game: "daily", root: "en", targets: ["es"], seed: "42", status: "lobby", listed: true,
     rounds: 3, round_seconds: 10, started_at: null, version: 1, created_at: new Date(T0).toISOString(), ...over,
   };
 }
@@ -54,13 +54,17 @@ test("seeds are decimal uint64 strings and never zero", () => {
 });
 
 test("config validates languages, rounds and timing", () => {
-  assert.deepEqual(normalizeLobbyConfig({ root: "en", targets: ["es", "es", "en", "fr"] }), { name: "Polingual lobby", root: "en", targets: ["es", "fr"], rounds: 8, roundSeconds: 10, listed: true });
+  assert.deepEqual(normalizeLobbyConfig({ root: "en", targets: ["es", "es", "en", "fr"] }), { name: "Polingual lobby", game: "daily", root: "en", targets: ["es", "fr"], rounds: 8, roundSeconds: 10, listed: true });
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["en"] }), null);
   assert.equal(normalizeLobbyConfig({ root: "EN!", targets: ["es"] }), null);
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], rounds: 50 }), null);
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], roundSeconds: 2 }), null);
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], listed: false })?.listed, false);
   assert.equal(normalizeLobbyConfig(null), null);
+  assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], game: "flags" })?.game, "flags");
+  assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], game: "chess" }), null);
+  assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], game: "same-word" }), null);
+  assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es", "fr"], game: "same-word" })?.game, "same-word");
 });
 
 test("messages trim and cap at 200", () => {
@@ -140,8 +144,28 @@ test("prompts are seeded, one word per round, answer among distinct choices", ()
   assert.ok(xs.every((x) => x >= 0 && x < 1));
 });
 
+test("each game builds its own answer key and flags hide the language until the round ends", () => {
+  const items = Array.from({ length: 30 }, (_, i) => ({ id: `w${i}`, kind: "word", category: "food", gloss: `en${i}`, forms: { en: `en${i}`, es: `es${i}`, fr: `fr${i}` } })) as any[];
+  const flags = buildPrompts(items, { ...lobby({ rounds: 5, targets: ["es", "fr"] }), game: "flags" }, ["de", "it", "en"]);
+  assert.equal(flags.length, 5);
+  for (const p of flags) {
+    assert.equal(p.mode, "flag");
+    assert.ok(p.choices.includes(p.answer) && p.answer === p.lang && !p.choices.includes("en"));
+    assert.equal(p.gloss, items.find((i) => i.id === p.item_id).forms[p.lang]);
+  }
+  assert.deepEqual(flags.map((p) => p.round), [0, 1, 2, 3, 4]);
+  const live = visiblePrompts(flags, 0, false)[0];
+  assert.equal(live.lang, null);
+  assert.equal(visiblePrompts(flags, 1, false)[0].lang, flags[0].lang);
+  const same = buildPrompts(items, { ...lobby({ rounds: 4, targets: ["fr", "es"] }), game: "same-word" });
+  assert.deepEqual(same.map((p) => p.lang), ["es", "fr", "es", "fr"]);
+  assert.equal(same[0].item_id, same[1].item_id);
+  assert.ok(same.every((p) => p.choices.includes(p.answer)));
+  assert.deepEqual(buildPrompts(items, { ...lobby({ rounds: 4 }), game: "live" }), buildPrompts(items, lobby({ rounds: 4 })));
+});
+
 test("players see the current prompt without its answer and past answers after", () => {
-  const rows = [0, 1, 2].map((round) => ({ lobby_id: "L1", round, lang: "es", item_id: `w${round}`, gloss: "g", choices: ["a", "b"], answer: "a" }));
+  const rows = [0, 1, 2].map((round) => ({ lobby_id: "L1", round, lang: "es", item_id: `w${round}`, mode: "form" as const, gloss: "g", choices: ["a", "b"], answer: "a" }));
   assert.deepEqual(visiblePrompts(rows, null, false), []);
   assert.deepEqual(visiblePrompts(rows, 1, false).map((p) => [p.round, p.answer]), [[0, "a"], [1, null]]);
   assert.equal(visiblePrompts(rows, null, true).length, 3);

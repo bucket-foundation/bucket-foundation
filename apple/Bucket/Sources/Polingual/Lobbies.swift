@@ -1,6 +1,19 @@
 import BucketKit
 import SwiftUI
 
+extension LobbyGame {
+    var title: String {
+        switch self {
+        case .daily: String(localized: "Daily Set")
+        case .sameWord: String(localized: "Same Word")
+        case .flags: String(localized: "Flags")
+        case .live: String(localized: "Live Mix")
+        }
+    }
+
+    func fits(_ targets: [String]) -> Bool { self != .sameWord || targets.count >= 2 }
+}
+
 struct LobbiesTile: View {
     var body: some View {
         NavigationLink {
@@ -22,6 +35,7 @@ struct LobbiesScreen: View {
     @State private var code = ""
     @State private var problem: String?
     @State private var inRoom = false
+    @State private var game = LobbyGame.daily
 
     var name: String { String(displayName.trimmingCharacters(in: .whitespacesAndNewlines).prefix(40)) }
 
@@ -43,9 +57,13 @@ struct LobbiesScreen: View {
                 }
             }
             Section("New lobby") {
-                ForEach(langs.systems) { s in
+                Picker("Game", selection: $game) {
+                    ForEach(LobbyGame.allCases) { Text($0.title).tag($0) }
+                }
+                .accessibilityIdentifier("lobbyGame")
+                ForEach(langs.systems.filter { game.fits($0.targets) }) { s in
                     Button {
-                        act { try await lobbies.create(name: "\(name)'s lobby", root: s.root, targets: s.targets, displayName: name) }
+                        act { try await lobbies.create(name: "\(name)'s lobby", game: game, root: s.root, targets: s.targets, displayName: name) }
                     } label: {
                         HStack(spacing: -6) {
                             ForEach(s.targets.prefix(5), id: \.self) { FlagTile(lang: $0, size: 30) }
@@ -64,7 +82,7 @@ struct LobbiesScreen: View {
                             HStack(spacing: -6) { ForEach(l.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
                             VStack(alignment: .leading) {
                                 Text(l.name).font(.headline).foregroundStyle(Palette.ink)
-                                Text("\(l.host) · \(l.players) of \(LobbyRules.cap)").font(.footnote).foregroundStyle(Palette.muted)
+                                Text("\(l.game.title) · \(l.host) · \(l.players) of \(LobbyRules.cap)").font(.footnote).foregroundStyle(Palette.muted)
                             }
                             .padding(.leading, 10)
                             Spacer()
@@ -177,7 +195,7 @@ struct LobbyRoom: View {
                         ShareLink(item: String(localized: "Join my Polingual lobby with code \(l.code)")) { Image(systemName: "square.and.arrow.up") }
                     }
                     HStack(spacing: -6) { ForEach(l.targets, id: \.self) { FlagTile(lang: $0, size: 28) } }
-                    Text("\(l.rounds) rounds, \(l.roundSeconds) seconds each").font(.footnote).foregroundStyle(Palette.muted)
+                    Text("\(l.game.title), \(l.rounds) rounds, \(l.roundSeconds) seconds each").font(.footnote).foregroundStyle(Palette.muted)
                 }
                 Section("Players") {
                     ForEach(l.players) { p in
@@ -249,7 +267,8 @@ struct LobbyRoom: View {
                 }
                 ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(D8.malachite)
                 VStack(spacing: 6) {
-                    FlagTile(lang: p.lang, size: 40)
+                    if let lang = p.lang, p.mode == .form { FlagTile(lang: lang, size: 40) }
+                    Text(p.mode == .flag ? String(localized: "Which language?") : "").font(.subheadline).foregroundStyle(Palette.muted)
                     Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
                 }
                 .padding(.vertical, 8)
@@ -260,7 +279,9 @@ struct LobbyRoom: View {
                         Button {
                             Task { await lobbies.pick(c, round: i) }
                         } label: {
-                            Text(c).font(D8.word(22)).lineLimit(2).minimumScaleFactor(0.5)
+                            Group {
+                                if p.mode == .flag { FlagTile(lang: c, size: 64) } else { Text(c).font(D8.word(22)).lineLimit(2).minimumScaleFactor(0.5) }
+                            }
                                 .padding(10).frame(maxWidth: .infinity, minHeight: 100)
                                 .foregroundStyle(state == .right ? .white : Palette.ink)
                         }
@@ -325,9 +346,9 @@ struct LobbyRoom: View {
                 ForEach(l.prompts) { p in
                     let n = p.round
                     HStack {
-                        FlagTile(lang: p.lang, size: 22)
-                        Text(p.answer ?? "").font(.headline)
-                        Text(p.gloss).foregroundStyle(Palette.muted)
+                        if let lang = p.lang { FlagTile(lang: lang, size: 22) }
+                        Text(p.mode == .flag ? p.gloss : p.answer ?? "").font(.headline)
+                        Text(p.mode == .flag ? "" : p.gloss).foregroundStyle(Palette.muted)
                         Spacer()
                         if let mine = l.results.first(where: { $0.round == n && $0.userId == l.me?.userId }) {
                             Image(systemName: mine.correct ? "checkmark" : "xmark").foregroundStyle(mine.correct ? D8.malachite : D8.vermilion)

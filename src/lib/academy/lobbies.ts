@@ -2,6 +2,9 @@ import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
 import type { LangItem } from "./lang-systems";
 
 export type LobbyStatus = "lobby" | "playing" | "done";
+export const LOBBY_GAMES = ["daily", "same-word", "flags", "live"] as const;
+export type LobbyGame = (typeof LOBBY_GAMES)[number];
+export type PromptMode = "form" | "flag";
 
 export const LOBBY_CODE_LENGTH = 6;
 export const LOBBY_CAP = 8;
@@ -27,6 +30,7 @@ export interface LobbyRow {
   code: string;
   host_id: string;
   name: string;
+  game: LobbyGame;
   root: string;
   targets: string[];
   seed: string;
@@ -72,6 +76,7 @@ export interface LobbyPromptRow {
   round: number;
   lang: string;
   item_id: string;
+  mode: PromptMode;
   gloss: string;
   choices: string[];
   answer: string;
@@ -79,7 +84,8 @@ export interface LobbyPromptRow {
 
 export interface LobbyPrompt {
   round: number;
-  lang: string;
+  mode: PromptMode;
+  lang: string | null;
   gloss: string;
   choices: string[];
   answer: string | null;
@@ -122,6 +128,7 @@ export interface LobbySummary {
   id: string;
   code: string;
   name: string;
+  game: LobbyGame;
   root: string;
   targets: string[];
   status: LobbyStatus;
@@ -134,6 +141,7 @@ export interface LobbyState {
   id: string;
   code: string;
   name: string;
+  game: LobbyGame;
   root: string;
   targets: string[];
   seed: string;
@@ -178,6 +186,7 @@ const LANG = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})?$/;
 
 export interface LobbyConfig {
   name: string;
+  game: LobbyGame;
   root: string;
   targets: string[];
   rounds: number;
@@ -204,7 +213,10 @@ export function normalizeLobbyConfig(body: Record<string, unknown> | null): Lobb
   const roundSeconds = clampInt(body.roundSeconds, 5, 30, DEFAULT_ROUND_SECONDS);
   if (rounds === null || roundSeconds === null) return null;
   if (name.length > 40) return null;
-  return { name: name || "Polingual lobby", root, targets, rounds, roundSeconds, listed: body.listed !== false };
+  const game = body.game === undefined ? "daily" : (LOBBY_GAMES as readonly unknown[]).includes(body.game) ? (body.game as LobbyGame) : null;
+  if (!game) return null;
+  if (game === "same-word" && targets.length < 2) return null;
+  return { name: name || "Polingual lobby", game, root, targets, rounds, roundSeconds, listed: body.listed !== false };
 }
 
 export function normalizeMessage(input: unknown): string | null {
@@ -234,7 +246,41 @@ function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
   return out;
 }
 
-export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds">): LobbyPromptRow[] {
+export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds"> & { game?: LobbyGame }, flagPool: readonly string[] = []): LobbyPromptRow[] {
+  if (lobby.game === "same-word") return sameWordPrompts(items, lobby);
+  const forms = formPrompts(items, lobby);
+  if (lobby.game !== "flags") return forms;
+  const rand = seededRandom(`${lobby.seed}1`);
+  const langs = [...lobby.targets, ...flagPool.filter((l) => l !== lobby.root && !lobby.targets.includes(l))];
+  return forms
+    .map((p) => {
+      const item = items.find((i) => i.id === p.item_id);
+      const others = shuffled(langs.filter((l) => l !== p.lang && item?.forms[l] !== p.answer), rand).slice(0, CHOICES - 1);
+      return { ...p, mode: "flag" as const, gloss: p.answer, choices: shuffled([p.lang, ...others], rand), answer: p.lang };
+    })
+    .filter((p) => p.choices.length >= 2)
+    .map((p, round) => ({ ...p, round }));
+}
+
+function sameWordPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds">): LobbyPromptRow[] {
+  const rand = seededRandom(lobby.seed);
+  const langs = lobby.targets.slice().sort();
+  const shared = items.filter((i) => i.kind === "word" && i.forms[lobby.root] && langs.every((l) => i.forms[l] && i.forms[l] !== i.forms[lobby.root]));
+  const out: LobbyPromptRow[] = [];
+  for (const item of shuffled(shared.slice(0, 400), rand)) {
+    for (const lang of langs) {
+      if (out.length >= lobby.rounds) return out;
+      const pool = items.filter((p) => p.kind === "word" && p.forms[lang] && p.id !== item.id && p.forms[lang] !== item.forms[lang]);
+      const near = shuffled(pool.filter((p) => p.category === item.category).slice(0, 60), rand).map((p) => p.forms[lang]);
+      const foils = near.filter((f, i) => near.indexOf(f) === i).slice(0, CHOICES - 1);
+      if (foils.length === 0) continue;
+      out.push({ lobby_id: lobby.id, round: out.length, lang, item_id: item.id, mode: "form", gloss: item.forms[lobby.root], choices: shuffled([item.forms[lang], ...foils], rand), answer: item.forms[lang] });
+    }
+  }
+  return out;
+}
+
+function formPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds">): LobbyPromptRow[] {
   const rand = seededRandom(lobby.seed);
   const langs = lobby.targets.slice().sort();
   const pools = new Map(langs.map((l) => [l, items.filter((i) => i.kind === "word" && i.forms[l] && i.forms[lobby.root] && i.forms[l] !== i.forms[lobby.root])]));
@@ -269,7 +315,7 @@ export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "
       foils.push(f);
     }
     if (foils.length === 0) continue;
-    out.push({ lobby_id: lobby.id, round: out.length, lang, item_id: item.id, gloss, choices: shuffled([answer, ...foils], rand), answer });
+    out.push({ lobby_id: lobby.id, round: out.length, lang, item_id: item.id, mode: "form", gloss, choices: shuffled([answer, ...foils], rand), answer });
   }
   return out;
 }
@@ -278,7 +324,10 @@ export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number 
   return rows
     .filter((r) => done || (current !== null && r.round <= current))
     .sort((a, b) => a.round - b.round)
-    .map((r) => ({ round: r.round, lang: r.lang, gloss: r.gloss, choices: r.choices, answer: done || (current !== null && r.round < current) ? r.answer : null }));
+    .map((r) => {
+      const open = done || (current !== null && r.round < current);
+      return { round: r.round, mode: r.mode ?? "form", lang: open || r.mode !== "flag" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+    });
 }
 
 export function seenDue(lastSeen: string, now: number): boolean {
@@ -359,6 +408,7 @@ export function assembleLobby(
     id: lobby.id,
     code: lobby.code,
     name: lobby.name,
+    game: lobby.game ?? "daily",
     root: lobby.root,
     targets: lobby.targets,
     seed: lobby.seed,
@@ -398,6 +448,7 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
     id: lobby.id,
     code: lobby.code,
     name: lobby.name,
+    game: lobby.game ?? "daily",
     root: lobby.root,
     targets: lobby.targets,
     status: lobby.status,

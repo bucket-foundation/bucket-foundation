@@ -1,6 +1,7 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { json, preflight } from "@/lib/academy/groups-server";
 import { langCorpus, service } from "@/lib/academy/groups-server";
+import { LANG_CODES } from "@/lib/academy/lang-systems";
 import { buildPrompts, LEAD_MS, startDecision } from "@/lib/academy/lobbies";
 import { authed, checkLobby, LOBBIES, PROMPTS, lobbyFail, lobbyState, memberLobby, playersOf } from "@/lib/academy/lobbies-server";
 import type { LobbyRow } from "@/lib/academy/lobbies";
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (decision === "not_host") return json({ error: "not_host" }, 403);
     if (decision === "not_lobby") return json({ error: "lobby_started" }, 409);
     if (decision === "need_ready") return json({ error: "need_ready" }, 409);
-    const prompts = buildPrompts(langCorpus()?.items ?? [], lobby);
+    const prompts = buildPrompts(langCorpus()?.items ?? [], lobby, LANG_CODES);
     if (prompts.length < 3) return json({ error: "no_words" }, 422);
     checkLobby(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "prompts clear");
     checkLobby(await service().from(PROMPTS).insert(prompts), "prompts");
