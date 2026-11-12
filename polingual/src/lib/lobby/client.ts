@@ -74,6 +74,7 @@ const ERRORS: Record<string, string> = {
   wrong_round: "That round is over.",
   not_playing: "The game is not running.",
   bad_choice: "Pick one of the choices.",
+  out_of_lives: "Out of lives. Watch the rest and go again.",
   no_words: "Those languages have no shared words yet. Pick another set.",
   bad_guest: "Pick a nickname of 2 to 24 characters.",
   hosted_limit: "You already host three lobbies.",
@@ -263,6 +264,42 @@ export function flagEmoji(code: string | null | undefined): string {
   if (!code || !/^[A-Z]{2}$/.test(code)) return "";
   return String.fromCodePoint(...Array.from(code, (c) => 0x1f1e6 + c.charCodeAt(0) - 65));
 }
+
+const LANG_FLAGS: Record<string, string> = {
+  en: "GB", es: "ES", fr: "FR", it: "IT", pt: "PT", de: "DE", nl: "NL", sv: "SE", da: "DK", no: "NO", nb: "NO", fi: "FI", pl: "PL", cs: "CZ",
+  ru: "RU", uk: "UA", el: "GR", tr: "TR", ar: "SA", he: "IL", fa: "IR", hi: "IN", bn: "BD", ur: "PK", ja: "JP", zh: "CN", ko: "KR",
+  vi: "VN", th: "TH", id: "ID", ms: "MY", tl: "PH", sw: "KE", ro: "RO", hu: "HU", ca: "AD", la: "VA", ga: "IE", cy: "GB", eu: "ES",
+};
+
+export function langFlag(lang: string | null | undefined): string | null {
+  return lang ? LANG_FLAGS[lang.split("-")[0]] ?? null : null;
+}
+
+export function streakOf(lobby: Pick<LobbyState, "results" | "players">): number {
+  const me = lobby.players.find((p) => p.isMe)?.userId;
+  if (!me) return 0;
+  const mine = lobby.results.filter((r) => r.userId === me).sort((a, b) => b.round - a.round);
+  let n = 0;
+  let expect = mine[0]?.round;
+  for (const r of mine) {
+    if (r.round !== expect || !r.correct) break;
+    n++;
+    expect = r.round - 1;
+  }
+  return n;
+}
+
+export function livesLeft(lobby: Pick<LobbyState, "results" | "players">, round: number, lives = 3): number {
+  const me = lobby.players.find((p) => p.isMe)?.userId;
+  const mine = lobby.results.filter((r) => r.userId === me && r.round < round).sort((a, b) => a.round - b.round);
+  if (!mine.length) return lives;
+  const by = new Map(mine.map((r) => [r.round, r.correct]));
+  let left = lives;
+  for (let r = mine[0].round; r < round; r++) if (by.get(r) !== true) left--;
+  return Math.max(0, left);
+}
+
+export const LEARN_HREF = "/app?from=play";
 
 export function botLabel(p: { bot: boolean; skill: string | null }): string | null {
   return p.bot ? (p.skill ? `bot · ${p.skill}` : "bot") : null;

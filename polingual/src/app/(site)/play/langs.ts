@@ -17,6 +17,7 @@ export const GAMES = [
   { id: "daily", name: "Daily words", blurb: "Match the meaning to the word." },
   { id: "same-word", name: "Same word", blurb: "One meaning across languages." },
   { id: "flags", name: "Flags", blurb: "Name the language of each word." },
+  { id: "tiles", name: "Tiles", blurb: "Words fall. Tap every one that means the word on top." },
   { id: "live", name: "Live", blurb: "Fast rounds with a leaderboard after each." },
 ] as const;
 

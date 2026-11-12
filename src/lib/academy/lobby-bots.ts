@@ -1,3 +1,4 @@
+import { parseTile, tappedChoice, tileKnown, TILE_ROUND_SECONDS } from "./lobby-tiles";
 import { LOBBY_CAP, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
 
 export type BotSkill = "easy" | "medium" | "hard";
@@ -46,6 +47,8 @@ export const STANDING_SLOTS: StandingSlot[] = [
   { slot: "daily-romance", name: "Daily words: Romance", game: "daily", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 8, roundSeconds: 10 },
   { slot: "daily-world", name: "Daily words: World", game: "daily", root: "en", targets: ["es", "de", "ja", "ar"], rounds: 8, roundSeconds: 10 },
   { slot: "live-romance", name: "Live: Romance", game: "live", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 8, roundSeconds: 8 },
+  { slot: "tiles-romance", name: "Tiles: Romance", game: "tiles", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 10, roundSeconds: TILE_ROUND_SECONDS },
+  { slot: "tiles-world", name: "Tiles: World", game: "tiles", root: "en", targets: ["es", "de", "ja", "ar"], rounds: 10, roundSeconds: TILE_ROUND_SECONDS },
   { slot: "live-germanic", name: "Live: Germanic", game: "live", root: "en", targets: ["de", "nl", "sv"], rounds: 8, roundSeconds: 8 },
 ];
 
@@ -138,6 +141,22 @@ export function botChoice(prompt: Pick<LobbyPrompt, "mode" | "lang" | "gloss" | 
   const pool = known && !plan.correct ? prompt.choices.filter((c) => c !== known) : prompt.choices;
   if (known && plan.correct) return known;
   return pool[Math.floor(unit(`pick:${key}`) * pool.length)] ?? prompt.choices[0];
+}
+
+export function tileSubmitMs(roundSeconds: number, plannedMs: number): number {
+  const len = roundSeconds * 1000;
+  return Math.round(len * 0.6 + Math.min(1, plannedMs / len) * len * 0.28);
+}
+
+export function botTileChoice(choices: readonly string[], gloss: string, root: string, lookup: FormLookup, skill: BotSkill, key: string): string {
+  const known = new Set(tileKnown(choices.map(parseTile), gloss, root, lookup));
+  const acc = SKILLS[skill].accuracy;
+  const taps: number[] = [];
+  choices.forEach((_, i) => {
+    const roll = unit(`tile:${key}:${i}`);
+    if (known.has(i) ? roll < acc + (1 - acc) / 2 : roll < (1 - acc) / 6) taps.push(i);
+  });
+  return tappedChoice(taps);
 }
 
 export function chatLine(kind: "greet" | "signoff", key: string): string | null {

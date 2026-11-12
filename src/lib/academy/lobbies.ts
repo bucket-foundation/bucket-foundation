@@ -1,10 +1,11 @@
 import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
 import type { LangItem } from "./lang-systems";
+import { buildTilePrompts, parseTapped, tileHistory, tileOutcome, tilePoints } from "./lobby-tiles";
 
 export type LobbyStatus = "lobby" | "playing" | "done";
-export const LOBBY_GAMES = ["daily", "same-word", "flags", "live"] as const;
+export const LOBBY_GAMES = ["daily", "same-word", "flags", "live", "tiles"] as const;
 export type LobbyGame = (typeof LOBBY_GAMES)[number];
-export type PromptMode = "form" | "flag";
+export type PromptMode = "form" | "flag" | "tiles";
 
 export const LOBBY_CODE_LENGTH = 6;
 export const LOBBY_CAP = 8;
@@ -88,6 +89,14 @@ export interface LobbyPromptRow {
   answer: string;
 }
 
+export interface RevealEntry {
+  lang: string;
+  word: string;
+  roman: string | null;
+  meaning: string;
+  correct: boolean;
+}
+
 export interface LobbyPrompt {
   round: number;
   mode: PromptMode;
@@ -95,6 +104,7 @@ export interface LobbyPrompt {
   gloss: string;
   choices: string[];
   answer: string | null;
+  reveal?: RevealEntry[];
 }
 
 export interface LobbyPlayer {
@@ -265,6 +275,7 @@ function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
 
 export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds"> & { game?: LobbyGame }, flagPool: readonly string[] = []): LobbyPromptRow[] {
   if (lobby.game === "same-word") return sameWordPrompts(items, lobby);
+  if (lobby.game === "tiles") return buildTilePrompts(items, lobby, flagPool, seededRandom(`${lobby.seed}7`));
   const forms = formPrompts(items, lobby);
   if (lobby.game !== "flags") return forms;
   const rand = seededRandom(`${lobby.seed}1`);
@@ -337,13 +348,14 @@ function formPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "s
   return out;
 }
 
-export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number | null, done: boolean): LobbyPrompt[] {
+export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number | null, done: boolean, describe?: (row: LobbyPromptRow) => RevealEntry[]): LobbyPrompt[] {
   return rows
     .filter((r) => done || (current !== null && r.round <= current))
     .sort((a, b) => a.round - b.round)
     .map((r) => {
       const open = done || (current !== null && r.round < current);
-      return { round: r.round, mode: r.mode ?? "form", lang: open || r.mode !== "flag" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+      return open && describe ? { ...base, reveal: describe(r) } : base;
     });
 }
 
@@ -405,6 +417,26 @@ export function answerDecision(lobby: Pick<LobbyRow, "status" | "started_at" | "
   return { ok: true, correct, ms, points: points(correct, ms, lobby.round_seconds) };
 }
 
+export function tileAnswerDecision(
+  lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds">,
+  prompt: Pick<LobbyPromptRow, "round" | "choices" | "answer"> | null,
+  round: number,
+  choice: string,
+  now: number,
+  prior: readonly { round: number; correct: boolean }[],
+): AnswerDecision | { ok: false; error: "out_of_lives" } {
+  if (lobby.status !== "playing") return { ok: false, error: "not_playing" };
+  const current = roundAt(lobby, now);
+  if (!current || current.index !== round) return { ok: false, error: "wrong_round" };
+  if (!prompt || prompt.round !== round) return { ok: false, error: "bad_choice" };
+  const tapped = parseTapped(choice, prompt.choices.length);
+  if (!tapped) return { ok: false, error: "bad_choice" };
+  const history = tileHistory(prior, round);
+  if (history.lives <= 0) return { ok: false, error: "out_of_lives" };
+  const outcome = tileOutcome(prompt.answer, tapped);
+  return { ok: true, correct: outcome.perfect, ms: Math.max(0, now - Date.parse(current.startsAt)), points: tilePoints(outcome, history.combo) };
+}
+
 export function nextHost(players: readonly Pick<LobbyPlayerRow, "user_id" | "joined_at">[], leaving: string): string | null {
   const rest = players.filter((p) => p.user_id !== leaving).sort((a, b) => a.joined_at.localeCompare(b.joined_at));
   return rest[0]?.user_id ?? null;
@@ -420,6 +452,7 @@ export function assembleLobby(
   now: number,
   prompts: readonly LobbyPromptRow[] = [],
   nextStartAt: string | null = null,
+  describe?: (row: LobbyPromptRow) => RevealEntry[],
 ): LobbyState {
   const hidden = hiddenUsers(blocks, uid);
   const names = new Map(players.map((p) => [p.user_id, p.display_name]));
@@ -464,7 +497,7 @@ export function assembleLobby(
       .slice(-MESSAGE_LIMIT)
       .map((m) => ({ id: m.id, from: m.user_id, name: names.get(m.user_id) ?? "", body: m.body, at: m.created_at })),
     round,
-    prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done"),
+    prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done", describe),
     results: revealed.map((a) => ({ round: a.round, userId: a.user_id, correct: a.correct, ms: a.ms, points: a.points })),
     standing: !!lobby.standing_slot,
     botFill: lobby.bot_fill === true,

@@ -3,11 +3,16 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
-import { answeredRound, botLabel, flagEmoji, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { tappedChoice } from "@academy/lobby-tiles";
+import { answeredRound, botLabel, flagEmoji, langFlag, LEARN_HREF, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { gameName, langName } from "./langs";
 import Nickname from "./Nickname";
+import Reveal from "./Reveal";
+import Tiles from "./Tiles";
+import { play, readMuted, writeMuted } from "@/lib/lobby/sound";
+import type { LobbySummary } from "@/lib/lobby/client";
 import styles from "./play.module.css";
 import { savedNickname, usePlay } from "./usePlay";
 
@@ -31,6 +36,12 @@ export default function Room({ code: rawCode }: { code: string }) {
   const [picked, setPicked] = useState<Picked | null>(null);
   const [chat, setChat] = useState("");
   const [copied, setCopied] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [next, setNext] = useState<LobbySummary | null>(null);
+  const [busy, setBusy] = useState(false);
+  const lastRound = useRef<string>("");
+  const cheered = useRef<string>("");
+  useEffect(() => setMuted(readMuted(() => window.localStorage)), []);
   const version = useRef<number | undefined>(undefined);
   const ready = state.status === "ready";
   const nickname = state.status === "ready" ? state.nickname : "";
@@ -79,6 +90,33 @@ export default function Room({ code: rawCode }: { code: string }) {
     const t = window.setInterval(() => setNow(Date.now()), TICK_MS);
     return () => window.clearInterval(t);
   }, []);
+
+  const livePhase = lobby ? phaseAt(lobby, now + offset) : null;
+  const roundKey = livePhase?.kind === "round" ? `${lobby?.startedAt}:${livePhase.index}` : livePhase?.kind ?? "";
+  useEffect(() => {
+    if (!roundKey || roundKey === lastRound.current) return;
+    lastRound.current = roundKey;
+    if (roundKey.includes(":")) play("round", muted);
+    if (roundKey === "finished" && cheered.current !== lobby?.startedAt) {
+      cheered.current = lobby?.startedAt ?? "";
+      play("win", muted);
+    }
+  }, [roundKey, muted, lobby?.startedAt]);
+  useEffect(() => {
+    if (livePhase?.kind !== "finished" || !ready || lobby?.standing) return;
+    let stop = false;
+    api
+      .listing()
+      .then((res) => {
+        if (stop) return;
+        const rooms = res.lobbies.filter((l) => l.standing && l.id !== lobby?.id);
+        setNext(rooms.find((l) => l.game === lobby?.game) ?? rooms[0] ?? null);
+      })
+      .catch(() => undefined);
+    return () => {
+      stop = true;
+    };
+  }, [livePhase?.kind, ready, api, lobby?.id, lobby?.game, lobby?.standing]);
 
   if (!code) {
     return (
@@ -138,12 +176,42 @@ export default function Room({ code: rawCode }: { code: string }) {
     try {
       const res = await api.answer(lobby.id, round, choice);
       setPicked({ game, round, choice, correct: res.correct, points: res.points });
+      play(res.correct ? "hit" : "miss", muted);
       take(res.lobby, sentAt);
     } catch (err) {
       if (!(err instanceof LobbyError && err.code === "already_answered")) setPicked((p) => (p?.round === round ? null : p));
       setError(errorOf(err));
     }
   };
+
+  const toggleMute = () => {
+    writeMuted(() => window.localStorage, !muted);
+    setMuted(!muted);
+  };
+
+  const newLobby = async (bots: boolean) => {
+    if (state.status !== "ready" || busy) return;
+    setBusy(true);
+    try {
+      const created = await api.create({ name: `${state.nickname}'s lobby`, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, roundSeconds: lobby.roundSeconds, listed: true, displayName: state.nickname, game: lobby.game, fillBots: bots });
+      if (bots) await api.fillBots(created.id).catch(() => undefined);
+      router.push(`/play/${created.code}`);
+    } catch (err) {
+      setError(errorOf(err));
+      setBusy(false);
+    }
+  };
+
+  const toolbar = (
+    <div className={styles.toolbar}>
+      <span className={styles.flames} data-testid="streak" data-on={streakOf(lobby) >= 2}>
+        {streakOf(lobby) >= 2 ? `🔥 ${streakOf(lobby)} in a row` : ""}
+      </span>
+      <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} data-testid="mute">
+        {muted ? "🔇 Sound off" : "🔊 Sound on"}
+      </button>
+    </div>
+  );
 
   const leave = async () => {
     try {
@@ -212,7 +280,7 @@ export default function Room({ code: rawCode }: { code: string }) {
   const header = (
     <section className={app.stackSm}>
       <p className={app.label}>
-        {gameName(lobby.game)} · {lobby.targets.map(langName).join(", ")}
+        {gameName(lobby.game)} · {lobby.targets.map((l) => `${flagEmoji(langFlag(l))} ${langName(l)}`).join(", ")}
       </p>
       <p className={styles.code} data-testid="room-code">{lobby.code}</p>
     </section>
@@ -224,6 +292,7 @@ export default function Room({ code: rawCode }: { code: string }) {
     return (
       <div className={app.stack} data-testid="room">
         {header}
+        {toolbar}
         <div className={app.row}>
           <button type="button" className={app.ghost} onClick={() => void share()}>{copied ? "Link copied" : "Share link"}</button>
           <button type="button" className={app.link} onClick={() => void leave()}>Leave</button>
@@ -266,17 +335,40 @@ export default function Room({ code: rawCode }: { code: string }) {
 
   if (phase.kind === "round") {
     const prompt = promptFor(lobby, phase.index);
+    const previous = promptFor(lobby, phase.index - 1);
     const mine = picked?.round === phase.index && picked.game === lobby.startedAt ? picked : null;
     const done = !!mine || answeredRound(lobby, phase.index);
+    const elapsed = lobby.roundSeconds * 1000 - phase.remaining * 1000;
+    const lives = lobby.game === "tiles" ? livesLeft(lobby, phase.index) : null;
     return (
       <div className={app.stack} data-testid="room">
+        {toolbar}
         <p className={app.label}>
-          Round {phase.index + 1} of {lobby.rounds} · {myScore(lobby)} points
+          Round {phase.index + 1} of {lobby.rounds} · <span className={styles.scoreNow} key={myScore(lobby)}>{myScore(lobby)}</span> points
+          {lives !== null ? <span className={styles.lives} data-testid="lives"> {"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
         </p>
+        {mine && !mine.pending && mine.points > 0 ? <p className={styles.pop} key={`${mine.game}:${mine.round}`} data-testid="score-pop">+{mine.points}</p> : null}
         <div className={styles.timer} aria-hidden="true">
           <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / lobby.roundSeconds) * 100))}%` }} />
         </div>
-        {prompt ? (
+        {prompt && prompt.mode === "tiles" ? (
+          <>
+            <Tiles
+              key={`${lobby.startedAt}:${phase.index}`}
+              gloss={prompt.gloss}
+              choices={prompt.choices}
+              round={phase.index}
+              rounds={lobby.rounds}
+              roundSeconds={lobby.roundSeconds}
+              elapsedMs={elapsed}
+              muted={muted}
+              locked={done || lives === 0}
+              onSubmit={(t) => void answer(phase.index, tappedChoice(t))}
+            />
+            {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.correct ? `Perfect. +${mine.points}` : mine.points > 0 ? `Close. +${mine.points}` : "Missed some. -1 life"}</p> : null}
+            {lives === 0 ? <p className={styles.feedback}>Out of lives. Watch the rest.</p> : null}
+          </>
+        ) : prompt ? (
           <>
             <div className={styles.prompt}>
               <p className={app.small}>{prompt.mode === "flag" ? "Which language is this word?" : "Pick the word that means"}</p>
@@ -296,9 +388,10 @@ export default function Room({ code: rawCode }: { code: string }) {
         ) : (
           <p className={app.muted} aria-busy="true">Loading the round</p>
         )}
+        {previous?.reveal?.length ? <Reveal prompt={previous} compact /> : null}
         {done ? (
           <>
-            {lobby.game === "live" ? scoreboard : null}
+            {lobby.game === "live" || lobby.game === "tiles" ? scoreboard : null}
             <Ad placement="between-rounds" />
           </>
         ) : null}
@@ -307,15 +400,31 @@ export default function Room({ code: rawCode }: { code: string }) {
     );
   }
 
-  const missed = missedWords(lobby);
+  const missed = missedWords(lobby).filter((w) => !w.includes(","));
+  const startsIn = lobby.nextStartAt ? Math.max(0, Math.ceil((Date.parse(lobby.nextStartAt) - now - offset) / 1000)) : null;
   const guest = state.identity.kind === "guest";
   return (
     <div className={app.stack} data-testid="results">
       <section className={app.stackSm}>
         <p className={app.label}>Game over</p>
-        <h1 className={app.title}>{board[0]?.isMe ? "You won" : `${board[0]?.name ?? "Nobody"} wins`}</h1>
+        <h1 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h1>
       </section>
+      {toolbar}
       {scoreboard}
+      <section className={styles.nextBar} data-testid="next-ctas">
+        {lobby.standing ? (
+          <span className={styles.nextName} data-testid="next-game">Next game: {lobby.name}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
+        ) : next ? (
+          <a className={app.cta} href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</a>
+        ) : null}
+        <button type="button" className={app.ghost} disabled={busy} onClick={() => void newLobby(false)} data-testid="rematch">Rematch</button>
+        <button type="button" className={app.ghost} disabled={busy} onClick={() => void newLobby(true)} data-testid="play-bots">Play with bots</button>
+        <a className={app.cta} href={LEARN_HREF} data-testid="results-learn">Start learning</a>
+      </section>
+      <section className={app.stackSm} data-testid="reveal-all">
+        <h2 className={app.fieldLabel}>Every word in this game</h2>
+        {lobby.prompts.map((p) => (p.reveal?.length ? <Reveal key={p.round} prompt={p} /> : null))}
+      </section>
       {guest ? (
         <section className={styles.upsell} data-testid="save-progress">
           <b>Save your progress</b>
@@ -339,12 +448,11 @@ export default function Room({ code: rawCode }: { code: string }) {
           <p className={app.small}>A clean sweep. Lessons take you further.</p>
         )}
         <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
-        <a className={app.ghost} href="/app">See lessons</a>
+        <a className={app.ghost} href={LEARN_HREF}>See lessons</a>
       </section>
       <Ad placement="results" />
       <div className={app.row}>
-        {lobby.standing ? <p className={app.small} data-testid="standing-next">Stay here. The next game starts in a few seconds.</p> : null}
-        <a className={app.cta} href="/play">{lobby.standing ? "Back to lobbies" : "Play again"}</a>
+        <a className={app.ghost} href="/play">Back to lobbies</a>
       </div>
     </div>
   );

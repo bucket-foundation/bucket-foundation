@@ -22,7 +22,7 @@ export default async function PlayLayout({ children }: { children: React.ReactNo
         <img src="/brand/kit/mark.svg" alt="" width={32} height={32} />
         <span>polingual play</span>
       </a>
-      <a href="/app" className={styles.link}>Learn</a>
+      <a href="/app?from=play" className={styles.cta} style={{ minHeight: 40, fontSize: 16, padding: "0 16px" }} data-testid="start-learning">Start learning</a>
     </header>
   );
   return (
