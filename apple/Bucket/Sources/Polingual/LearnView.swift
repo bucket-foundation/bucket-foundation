@@ -55,6 +55,10 @@ struct LearnView: View {
             if let game = Launch.value("-openGame").flatMap(GameKind.init(rawValue:)) { path.append(LearnRoute.game(game)) }
             if let kind = Launch.value("-contentKind").flatMap(ContentKind.init(rawValue:)) { path.append(LearnRoute.content(kind)) }
             if let topic = ContentCatalog.topics.first(where: { $0.title == Launch.value("-readTopic") }) { path.append(LearnRoute.read(topic)) }
+            if let book = Launch.value("-openLibrary") {
+                path.append(LearnRoute.library)
+                if book != "list" { path.append(LearnRoute.book(book)) }
+            }
             #endif
             guard let spec = Launch.value("-openLang") else { return }
             let parts = spec.split(separator: ":").map(String.init)
@@ -122,6 +126,8 @@ struct LearnView: View {
         case .read(let topic, let lang): ReadView(topic: topic, langs: readLangs(lang)).fullHeightSession()
         case .content(let kind): ContentHub(embedded: true, start: kind).fullHeightSession()
         case .translate: TranslateScreen()
+        case .library: LibraryList { path.append(LearnRoute.book($0)) }
+        case .book(let id): LibraryReader(id: id).fullHeightSession()
         case .newSet:
             ScrollViewReader { proxy in
                 List {
@@ -251,6 +257,7 @@ struct ContentSection: View {
                 LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: D8.lapis, lip: Color(hex: 0x12326A), item: .activity(.watch), open: { open(.content(.watch)) }) {
                     LearnSymbol(name: "play.rectangle")
                 }
+                LibraryTile { open(.library) }
                 ForEach(ContentCatalog.topics.prefix(3)) { topic in
                     LearnTile(title: topic.title, detail: branchTitle(topic.branch), face: BranchTile.face(topic.branch), item: .topic(topic), open: { open(.read(topic)) }) {
                         LearnSymbol(name: "text.book.closed")
@@ -317,6 +324,8 @@ enum LearnRoute: Hashable {
     case content(ContentKind)
     case translate
     case newSet
+    case library
+    case book(String)
 }
 
 struct AtomRoute: Hashable {
