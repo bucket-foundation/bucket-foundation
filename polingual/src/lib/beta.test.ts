@@ -2,20 +2,25 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { allowedSource, joinBeta, RateLimiter, TESTFLIGHT_URL, UNSUBSCRIBE, welcomeEmail } from "./beta";
 
-const env = { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud" };
-const site = { origin: "https://www.polingual.com", ip: "1.2.3.4" };
+const env = { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud", TURNSTILE_SECRET_KEY: "ts" };
+const site = { origin: "https://www.polingual.com", ip: "1.2.3.4", token: "tok" };
 const fresh = () => ({ ip: new RateLimiter(5, 600_000), email: new RateLimiter(2, 3_600_000) });
 
-function fake(statuses: number[]) {
+function fake(statuses: number[], human: unknown = { success: true, hostname: "www.polingual.com" }) {
   const calls: string[] = [];
+  const checks: string[] = [];
   const send = async (url: string, init: RequestInit) => {
+    if (url.includes("turnstile/v0/siteverify")) {
+      checks.push(String(init.body));
+      return new Response(JSON.stringify(human), { status: 200 });
+    }
     calls.push(`${init.method} ${url}`);
     return new Response("{}", { status: statuses[calls.length - 1] ?? 200 });
   };
-  return { calls, send };
+  return { calls, checks, send };
 }
 
-const join = (body: unknown, f: ReturnType<typeof fake>, req: { origin?: string; ip?: string } = site, limits = fresh(), e: Record<string, string> = env) =>
+const join = (body: unknown, f: ReturnType<typeof fake>, req: { origin?: string; ip?: string; token?: string } = site, limits = fresh(), e: Record<string, string> = env) =>
   joinBeta(body, e, f.send, req, limits);
 
 test("saves a new contact, sends the welcome email and returns the link", async () => {
@@ -27,6 +32,36 @@ test("saves a new contact, sends the welcome email and returns the link", async 
   assert.match(f.calls[0], /^GET https:\/\/api\.resend\.com\/audiences\/aud\/contacts\//);
   assert.equal(f.calls[1], "POST https://api.resend.com/audiences/aud/contacts");
   assert.equal(f.calls[2], "POST https://api.resend.com/emails");
+});
+
+test("verifies the Turnstile token with the secret before calling Resend", async () => {
+  const f = fake([200]);
+  assert.equal((await join({ email: "a@b.co" }, f)).status, 200);
+  assert.equal(f.checks.length, 1);
+  const form = new URLSearchParams(f.checks[0]);
+  assert.equal(form.get("secret"), "ts");
+  assert.equal(form.get("response"), "tok");
+  assert.equal(form.get("remoteip"), "1.2.3.4");
+});
+
+test("a failed Turnstile token saves nothing, and enforcement blocks a missing one", async () => {
+  const none = fake([]);
+  assert.equal((await join({ email: "a@b.co" }, none, { origin: site.origin, ip: "1" }, fresh(), { ...env, BETA_REQUIRE_TURNSTILE: "1" })).status, 403);
+  assert.equal(none.checks.length + none.calls.length, 0);
+  const failed = fake([], { success: false });
+  assert.equal((await join({ email: "a@b.co" }, failed, { ...site, ip: "2" })).status, 403);
+  assert.equal(failed.calls.length, 0);
+  const foreign = fake([], { success: true, hostname: "evil.example" });
+  assert.equal((await join({ email: "a@b.co" }, foreign, { ...site, ip: "3" })).status, 403);
+  assert.equal(foreign.calls.length, 0);
+});
+
+test("without a token or enforcement the form still saves, relying on rate limits and the honeypot", async () => {
+  const f = fake([]);
+  const r = await join({ email: "a@b.co" }, f, { origin: site.origin, ip: "9" }, fresh(), { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud" });
+  assert.notEqual(r.status, 403);
+  assert.notEqual(r.status, 503);
+  assert.equal(f.checks.length, 0);
 });
 
 test("does not email an address already in the audience", async () => {

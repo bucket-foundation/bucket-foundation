@@ -8,7 +8,8 @@ Polingual 1.0.1 and Bucket 2.0, from `feat/apple-subject-tiles` once the stack m
 2. Polingual 1.0 must clear review first. Version 1.0.1 starts from the approved build.
 3. Set What to Test on the latest TestFlight builds:
    `python3 -I apple/AppStore/beta_notes.py --apply --app polingual --build <build> --notes @apple/AppStore/notes/<build>-polingual.txt`, then the same with `bucket`.
-4. Install the TestFlight build on an iPhone with an Apple Watch paired and check Watch quick review, the widget and Translate.
+4. Archive Polingual with `apple/scripts/archive-polingual.sh review` for App Review, so the paywall shows. `archive-polingual.sh testflight` sets `POLINGUAL_FREE_BETA=YES` and ends the build number in `.1`: testers skip the paywall and see the free-for-life banner. `asc_setup.py` refuses to attach a `.1` build.
+5. Install the TestFlight build on an iPhone with an Apple Watch paired and check Watch quick review, the widget and Translate.
 
 ## App Store Connect: Polingual 1.0.1
 
