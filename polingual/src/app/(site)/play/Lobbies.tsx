@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { LobbyError, lobbyError, type LobbySummary } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
-import Ad from "./Ad";
 import { GAMES, gameName, LANG_SETS, langName, type GameId } from "./langs";
 import Nickname from "./Nickname";
 import styles from "./play.module.css";
@@ -131,6 +130,7 @@ export default function Lobbies() {
                 <li key={l.id} className={styles.lobbyRow}>
                   <span>
                     <b>{l.name}</b>
+                    {l.hostHandle ? <span className={styles.handle} data-testid="host-handle"> @{l.hostHandle}</span> : null}
                     <br />
                     <span className={styles.tag}>
                       {gameName(l.game)} · {l.targets.map(langName).join(", ")} · {l.players} playing
@@ -148,7 +148,6 @@ export default function Lobbies() {
       ) : null}
 
       {error ? <p className={app.error} role="alert">{error}</p> : null}
-      <Ad placement="lobby" />
     </div>
   );
 }

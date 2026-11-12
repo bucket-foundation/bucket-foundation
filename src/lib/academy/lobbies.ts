@@ -51,6 +51,7 @@ export interface LobbyPlayerRow {
   score: number;
   last_seen: string;
   joined_at: string;
+  handle?: string | null;
 }
 
 export interface LobbyMessageRow {
@@ -94,6 +95,7 @@ export interface LobbyPrompt {
 export interface LobbyPlayer {
   userId: string;
   name: string;
+  handle: string | null;
   ready: boolean;
   score: number;
   isHost: boolean;
@@ -134,6 +136,7 @@ export interface LobbySummary {
   status: LobbyStatus;
   players: number;
   host: string;
+  hostHandle: string | null;
   isMember: boolean;
 }
 
@@ -429,6 +432,7 @@ export function assembleLobby(
       .map((p) => ({
         userId: p.user_id,
         name: p.display_name,
+        handle: p.handle ?? null,
         ready: p.ready,
         score: p.score,
         isHost: p.user_id === lobby.host_id,
@@ -458,6 +462,7 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
     status: lobby.status,
     players: players.length,
     host: players.find((p) => p.user_id === lobby.host_id)?.display_name ?? "",
+    hostHandle: players.find((p) => p.user_id === lobby.host_id)?.handle ?? null,
     isMember: players.some((p) => p.user_id === uid),
   };
 }
