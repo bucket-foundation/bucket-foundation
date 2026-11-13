@@ -6,7 +6,7 @@ const dir = join(__dirname, "..", "polingual", "public", "library");
 const errors: string[] = [];
 const fail = (msg: string) => errors.push(msg);
 
-type Book = { id: string; title: Record<string, string>; sentences: Record<string, string>[]; [k: string]: unknown };
+type Book = { id: string; title: Record<string, string>; sentences: Record<string, string>[]; translation: string; translations?: Record<string, string>; translators?: Record<string, string>; illustrator?: string; [k: string]: unknown };
 type Entry = { id: string; title: Record<string, string>; sentences: number; langs: string[]; updated: string; [k: string]: unknown };
 
 const read = <T>(file: string): T => JSON.parse(readFileSync(join(dir, file), "utf8"));
@@ -26,6 +26,27 @@ const walkStrings = (where: string, v: unknown, skipKeys: Set<string>) => {
   } else if (v && typeof v === "object") {
     for (const [k, x] of Object.entries(v)) if (!skipKeys.has(k)) walkStrings(`${where}.${k}`, x, skipKeys);
   }
+};
+
+const checkTranslations = (id: string, book: Book) => {
+  if (!["machine", "human", "mixed"].includes(book.translation)) fail(`${id}: translation must be machine, human or mixed`);
+  const map = book.translations;
+  if (map === undefined) {
+    if (book.translation !== "machine") fail(`${id}: translations map required unless all machine`);
+    return;
+  }
+  if (JSON.stringify(Object.keys(map)) !== JSON.stringify(LANGS)) fail(`${id}: translations must list the 25 languages in order`);
+  const kinds = Array.from(new Set(Object.values(map)));
+  for (const k of kinds) if (k !== "human" && k !== "machine") fail(`${id}: translations value ${k} must be human or machine`);
+  const want = kinds.length > 1 ? "mixed" : kinds[0];
+  if (book.translation !== want) fail(`${id}: translation is ${book.translation}, translations map says ${want}`);
+  const translators = book.translators ?? {};
+  for (const [l, name] of Object.entries(translators)) {
+    if (map[l] !== "human") fail(`${id}: translator listed for non-human ${l}`);
+    if (typeof name !== "string" || name.trim() === "") fail(`${id}: empty translator for ${l}`);
+  }
+  for (const l of LANGS) if (l !== "en" && map[l] === "human" && !translators[l]) fail(`${id}: human ${l} has no translator`);
+  if (typeof book.illustrator !== "string" || book.illustrator.trim() === "") fail(`${id}: illustrator required when translations are listed`);
 };
 
 const index = read<{ version: number; books: Entry[] }>("index.json");
@@ -58,6 +79,9 @@ for (const entry of index.books) {
     const extra = Object.keys(s).filter((k) => !LANGS.includes(k));
     if (extra.length) fail(`${entry.id} sentence ${i + 1}: unknown keys ${extra.join(", ")}`);
   });
+  checkTranslations(entry.id, book);
+  if (JSON.stringify(entry.translations) !== JSON.stringify(book.translations)) fail(`${entry.id}: index translations differ from book`);
+  if (entry.illustrator !== book.illustrator) fail(`${entry.id}: illustrator differs from index`);
   walkStrings(entry.id, book, new Set(["source"]));
 }
 walkStrings("index", index, new Set(["source"]));
