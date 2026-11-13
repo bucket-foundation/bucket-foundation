@@ -52,10 +52,9 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           aria-label="back to polingual"
         >
           <span
-            className="font-mono text-[10px] uppercase tracking-[0.22em] transition"
-            style={{ color: "var(--ink-faint)" }}
+            className="font-mono text-[10px] uppercase tracking-[0.22em] transition text-[color:var(--ink-faint)]"
           >
-            <span style={{ color: "var(--blue)" }}>←</span> back to search
+            <span className="text-[color:var(--blue)]">←</span> back to search
           </span>
         </Link>
 
@@ -68,20 +67,17 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
         >
           <div className="flex items-baseline gap-3 flex-wrap mb-3">
             <span
-              className="font-mono text-[10px] uppercase tracking-[0.22em] px-2 py-1 rounded-full"
-              style={{ background: "var(--sky-2)", color: "var(--blue)" }}
+              className="font-mono text-[10px] uppercase tracking-[0.22em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--blue)]"
             >
               {langLabel}
             </span>
             <span
-              className="font-mono text-[10px] uppercase tracking-[0.2em]"
-              style={{ color: "var(--ink-faint)" }}
+              className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-faint)]"
             >
               {photon.kind}{photon.pos ? ` · ${photon.pos}` : ""}
             </span>
             <span
-              className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-1 rounded-full"
-              style={{ background: "var(--sky-2)", color: "var(--ink-dim)" }}
+              className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
             >
               {photon.tier}
             </span>
@@ -96,8 +92,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
 
           {photon.ipa && (
             <p
-              className="mt-3 font-mono text-lg md:text-xl"
-              style={{ color: "var(--blue)" }}
+              className="mt-3 font-mono text-lg md:text-xl text-[color:var(--blue)]"
             >
               /{photon.ipa.replace(/^\/|\/$/g, "")}/
             </p>
@@ -106,14 +101,12 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
 
         <section className="mt-8">
           <h2
-            className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3"
-            style={{ color: "var(--blue)" }}
+            className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
           >
             meaning · english
           </h2>
           <p
-            className="text-lg md:text-xl leading-relaxed"
-            style={{ color: "var(--ink)" }}
+            className="text-lg md:text-xl leading-relaxed text-[color:var(--ink)]"
           >
             {photon.meaning_en}
           </p>
@@ -122,8 +115,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
         {photon.relations && photon.relations.length > 0 && (
           <section className="mt-10">
             <h2
-              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3"
-              style={{ color: "var(--blue)" }}
+              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
             >
               relations · {photon.relations.length}
             </h2>
@@ -134,18 +126,13 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
                   className="flex items-baseline gap-3 font-mono text-sm"
                 >
                   <span
-                    className="font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded-full whitespace-nowrap"
-                    style={{
-                      background: "var(--sky-2)",
-                      color: "var(--ink-dim)",
-                    }}
+                    className="font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded-full whitespace-nowrap bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
                   >
                     {r.predicate}
                   </span>
                   <Link
                     href={`/photon/${encodeURIComponent(r.to)}`}
-                    className="hover:underline truncate"
-                    style={{ color: "var(--blue)" }}
+                    className="hover:underline truncate text-[color:var(--blue)]"
                   >
                     {r.to}
                   </Link>
@@ -158,8 +145,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
         {photon.branch && photon.branch.length > 0 && (
           <section className="mt-10">
             <h2
-              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3"
-              style={{ color: "var(--blue)" }}
+              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
             >
               canon branches
             </h2>
@@ -184,13 +170,12 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
         {photon.provenance && (
           <section className="mt-10 pb-12">
             <h2
-              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3"
-              style={{ color: "var(--ink-faint)" }}
+              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--ink-faint)]"
             >
               provenance
             </h2>
-            <p className="font-mono text-sm" style={{ color: "var(--ink-dim)" }}>
-              <span style={{ color: "var(--ink-2)" }}>
+            <p className="font-mono text-sm text-[color:var(--ink-dim)]">
+              <span className="text-[color:var(--ink-2)]">
                 {photon.provenance.source}
               </span>
               {photon.provenance.source_uri && (
@@ -200,8 +185,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
                     href={photon.provenance.source_uri}
                     target="_blank"
                     rel="noreferrer"
-                    className="underline hover:no-underline"
-                    style={{ color: "var(--blue)" }}
+                    className="underline hover:no-underline text-[color:var(--blue)]"
                   >
                     source ↗
                   </a>
@@ -210,7 +194,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
               {photon.provenance.captured_at && (
                 <>
                   {" · "}
-                  <span style={{ color: "var(--ink-faint)" }}>
+                  <span className="text-[color:var(--ink-faint)]">
                     captured {photon.provenance.captured_at.slice(0, 10)}
                   </span>
                 </>

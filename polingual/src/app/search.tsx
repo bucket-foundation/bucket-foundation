@@ -117,8 +117,7 @@ export default function Search() {
             <svg
               width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2"
-              strokeLinecap="round" strokeLinejoin="round"
-              style={{ color: "var(--blue)" }}
+              strokeLinecap="round" strokeLinejoin="round" className="text-[color:var(--blue)]"
               aria-hidden
             >
               <circle cx="11" cy="11" r="7" />
@@ -137,8 +136,7 @@ export default function Search() {
             {q && (
               <button
                 onClick={() => { setQ(""); setResults([]); inputRef.current?.focus(); }}
-                className="text-xl leading-none hover:scale-110 transition px-2"
-                style={{ color: "var(--ink-faint)" }}
+                className="text-xl leading-none hover:scale-110 transition px-2 text-[color:var(--ink-faint)]"
                 aria-label="clear"
                 title="clear"
               >
@@ -160,8 +158,7 @@ export default function Search() {
         {!q && (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
             <span
-              className="text-[10px] font-mono uppercase tracking-[0.2em] mr-1"
-              style={{ color: "var(--ink-faint)" }}
+              className="text-[10px] font-mono uppercase tracking-[0.2em] mr-1 text-[color:var(--ink-faint)]"
             >
               try
             </span>
@@ -179,8 +176,7 @@ export default function Search() {
               >
                 {ex.q}
                 <span
-                  className="ml-2 font-mono text-[9px] uppercase tracking-[0.18em]"
-                  style={{ color: "var(--ink-faint)" }}
+                  className="ml-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--ink-faint)]"
                 >
                   {ex.hint}
                 </span>
@@ -190,8 +186,7 @@ export default function Search() {
         )}
 
         <p
-          className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: "var(--ink-faint)" }}
+          className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--ink-faint)]"
         >
           {q
             ? loading
@@ -208,20 +203,17 @@ export default function Search() {
           <div key={lang} className="mb-8 fade-in">
             <div className="flex items-baseline justify-between mb-3">
               <h2
-                className="font-mono text-[11px] uppercase tracking-[0.22em]"
-                style={{ color: "var(--blue)" }}
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--blue)]"
               >
                 {LANG_LABEL[lang] || lang}
                 <span
-                  className="ml-2 font-mono text-[10px]"
-                  style={{ color: "var(--ink-faint)" }}
+                  className="ml-2 font-mono text-[10px] text-[color:var(--ink-faint)]"
                 >
                   · {lang}
                 </span>
               </h2>
               <span
-                className="font-mono text-[10px] uppercase tracking-[0.18em]"
-                style={{ color: "var(--ink-faint)" }}
+                className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-faint)]"
               >
                 {items.length}
               </span>
@@ -239,15 +231,13 @@ export default function Search() {
                   <div className="flex items-baseline justify-between gap-4">
                     <div className="flex items-baseline gap-3 min-w-0">
                       <span
-                        className="text-2xl md:text-[28px] truncate"
-                        style={{ color: "var(--ink)" }}
+                        className="text-2xl md:text-[28px] truncate text-[color:var(--ink)]"
                       >
                         {p.surface}
                       </span>
                       {p.ipa && (
                         <span
-                          className="font-mono text-xs whitespace-nowrap"
-                          style={{ color: "var(--ink-faint)" }}
+                          className="font-mono text-xs whitespace-nowrap text-[color:var(--ink-faint)]"
                         >
                           {p.ipa}
                         </span>
@@ -255,16 +245,14 @@ export default function Search() {
                     </div>
                     {p.pos && (
                       <span
-                        className="font-mono text-[10px] italic whitespace-nowrap"
-                        style={{ color: "var(--ink-dim)" }}
+                        className="font-mono text-[10px] italic whitespace-nowrap text-[color:var(--ink-dim)]"
                       >
                         {p.pos}
                       </span>
                     )}
                   </div>
                   <p
-                    className="mt-2 text-[15px] leading-relaxed line-clamp-2"
-                    style={{ color: "var(--ink-2)" }}
+                    className="mt-2 text-[15px] leading-relaxed line-clamp-2 text-[color:var(--ink-2)]"
                   >
                     {p.meaning_en}
                   </p>

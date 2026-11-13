@@ -53,19 +53,19 @@ const QUESTIONS = [
 function H2({ id, n, children }: { id: string; n: string; children: React.ReactNode }) {
   return (
     <h2 id={id} className="scroll-mt-8 flex items-baseline gap-3 text-3xl md:text-4xl" style={{ color: "var(--ink)", letterSpacing: "-0.01em" }}>
-      <span style={{ color: "var(--ink)" }}>{n}</span>
+      <span className="text-[color:var(--ink)]">{n}</span>
       {children}
     </h2>
   );
 }
 
 function P({ children }: { children: React.ReactNode }) {
-  return <p className="mt-4 font-sans text-[17px] leading-8 max-w-[68ch]" style={{ color: "var(--ink-2)" }}>{children}</p>;
+  return <p className="mt-4 font-sans text-[17px] leading-8 max-w-[68ch] text-[color:var(--ink-2)]">{children}</p>;
 }
 
 function Formula({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mt-4 rounded-lg px-5 py-3 text-[17px]" style={{ background: "var(--sky-2)", border: "1px solid var(--hairline)", color: "var(--ink)" }}>
+    <div className="mt-4 rounded-lg px-5 py-3 text-[17px] bg-[var(--sky-2)] border-[1px] border-[var(--hairline)] text-[color:var(--ink)]">
       {children}
     </div>
   );
@@ -73,12 +73,12 @@ function Formula({ children }: { children: React.ReactNode }) {
 
 function Table({ head, rows }: { head: string[]; rows: string[][] }) {
   return (
-    <div className="scroll-fade mt-4 overflow-x-auto rounded-lg bg-white" style={{ border: "1px solid var(--hairline)" }}>
+    <div className="scroll-fade mt-4 overflow-x-auto rounded-lg bg-white border-[1px] border-[var(--hairline)]">
       <table className="w-full min-w-[540px] font-sans text-[15px]">
         <thead>
           <tr>
             {head.map((h) => (
-              <th key={h} className="px-4 py-2 text-left font-mono text-[11px] uppercase tracking-[0.18em]" style={{ color: "var(--ink-dim)", borderBottom: "1px solid var(--hairline)" }}>{h}</th>
+              <th key={h} className="px-4 py-2 text-left font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--ink-dim)] border-b-[1px] border-b-[var(--hairline)]">{h}</th>
             ))}
           </tr>
         </thead>
@@ -109,7 +109,7 @@ export default function ResearchPage() {
             <ul className="space-y-2 font-sans text-sm">
               {NAV.map((n) => (
                 <li key={n.id}>
-                  <a href={`#${n.id}`} className="hover:underline" style={{ color: "var(--ink-dim)" }}>{n.label}</a>
+                  <a href={`#${n.id}`} className="hover:underline text-[color:var(--ink-dim)]">{n.label}</a>
                 </li>
               ))}
             </ul>
@@ -118,28 +118,28 @@ export default function ResearchPage() {
 
         <div className="min-w-0 max-w-3xl pb-24">
           <header className="pt-10 md:pt-16">
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em]" style={{ color: "var(--ink-dim)" }}>polingual v0, research notes</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">polingual v0, research notes</p>
             <h1 className="mt-4 leading-[1.05] text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--ink)", letterSpacing: "-0.02em" }}>
-              Every word in every language, <em style={{ color: "var(--blue)" }}>one meaning.</em>
+              Every word in every language, <em className="text-[color:var(--blue)]">one meaning.</em>
             </h1>
-            <p className="mt-6 text-center text-[15px] font-bold" style={{ color: "var(--ink)" }}>Abstract</p>
+            <p className="mt-6 text-center text-[15px] font-bold text-[color:var(--ink)]">Abstract</p>
             <P>
               polingual is a cross-lingual dictionary and an open research project. It holds 6.5 million words in 35
               languages. Each word is a record with an English meaning, two vectors, and links to the same idea in
               other languages.
             </P>
-            <p className="mt-6 font-sans text-[15px]"><a href="/" className="underline" style={{ color: "var(--blue)" }}>Back to search</a></p>
+            <p className="mt-6 font-sans text-[15px]"><a href="/" className="underline text-[color:var(--blue)]">Back to search</a></p>
             <div className="mt-6 max-w-lg">
-              <p className="font-sans text-[15px] font-semibold" style={{ color: "var(--ink)" }}>Speak two languages or more? Get early access to the learner tools.</p>
+              <p className="font-sans text-[15px] font-semibold text-[color:var(--ink)]">Speak two languages or more? Get early access to the learner tools.</p>
               <div className="mt-2"><Signup compact /></div>
             </div>
           </header>
 
           <details className="md:hidden sticky top-0 z-10 -mx-4 mt-8 px-4 py-3 font-sans text-[15px] backdrop-blur" style={{ background: "color-mix(in srgb, var(--sky) 88%, transparent)", borderBottom: "1px solid var(--hairline)" }}>
-            <summary className="cursor-pointer font-semibold" style={{ color: "var(--ink)" }}>Contents</summary>
+            <summary className="cursor-pointer font-semibold text-[color:var(--ink)]">Contents</summary>
             <ul className="mt-2 space-y-2">
               {NAV.map((n) => (
-                <li key={n.id}><a href={`#${n.id}`} style={{ color: "var(--ink-2)" }}>{n.label}</a></li>
+                <li key={n.id}><a href={`#${n.id}`} className="text-[color:var(--ink-2)]">{n.label}</a></li>
               ))}
             </ul>
           </details>
@@ -153,7 +153,7 @@ export default function ResearchPage() {
               written in English. Each dictionary sense gets its own record. Translations stay separate records joined
               by links.
             </P>
-            <pre className="scroll-fade mt-4 overflow-x-auto rounded-lg bg-white px-5 py-4 font-mono text-[12.5px] leading-6" style={{ border: "1px solid var(--hairline)", color: "var(--ink)" }}>{RECORD}</pre>
+            <pre className="scroll-fade mt-4 overflow-x-auto rounded-lg bg-white px-5 py-4 font-mono text-[12.5px] leading-6 border-[1px] border-[var(--hairline)] text-[color:var(--ink)]">{RECORD}</pre>
           </section>
 
           <section className="mt-20">
@@ -222,7 +222,7 @@ export default function ResearchPage() {
             <P>
               Every record carries a confidence tier: nucleus for settled entries, functional for sourced ones, edge
               for contested ones, and unverified for raw imports. The same graph powers{" "}
-              <a href="https://www.bucket.foundation" className="underline" style={{ color: "var(--blue)" }}>bucket.foundation</a>,
+              <a href="https://www.bucket.foundation" className="underline text-[color:var(--blue)]">bucket.foundation</a>,
               which reads it as research claims. polingual reads it as words.
             </P>
           </section>
@@ -260,8 +260,8 @@ export default function ResearchPage() {
             <H2 id="sources" n="5">Sources</H2>
             <P>
               Every record keeps its source URL and capture date. Dictionary data comes from{" "}
-              <a href="https://en.wiktionary.org" className="underline" style={{ color: "var(--blue)" }}>Wiktionary</a>{" "}
-              through <a href="https://kaikki.org" className="underline" style={{ color: "var(--blue)" }}>Kaikki</a>,
+              <a href="https://en.wiktionary.org" className="underline text-[color:var(--blue)]">Wiktionary</a>{" "}
+              through <a href="https://kaikki.org" className="underline text-[color:var(--blue)]">Kaikki</a>,
               under CC BY-SA 4.0.
             </P>
             <Table head={["Source", "Coverage", "Status"]} rows={SOURCES} />
@@ -272,8 +272,8 @@ export default function ResearchPage() {
             <dl className="mt-4 space-y-5">
               {QUESTIONS.map(([t, d]) => (
                 <div key={t}>
-                  <dt className="font-sans text-[15px] font-semibold" style={{ color: "var(--ink)" }}>{t}</dt>
-                  <dd className="mt-1 font-sans text-[15px] leading-7" style={{ color: "var(--ink-2)" }}>{d}</dd>
+                  <dt className="font-sans text-[15px] font-semibold text-[color:var(--ink)]">{t}</dt>
+                  <dd className="mt-1 font-sans text-[15px] leading-7 text-[color:var(--ink-2)]">{d}</dd>
                 </div>
               ))}
             </dl>
@@ -291,14 +291,14 @@ export default function ResearchPage() {
             </div>
           </section>
 
-          <footer className="mt-24 space-y-2 font-sans text-[13px]" style={{ color: "var(--ink-dim)" }}>
+          <footer className="mt-24 space-y-2 font-sans text-[13px] text-[color:var(--ink-dim)]">
             <p>
               Dictionary data from <a href="https://en.wiktionary.org" className="underline">Wiktionary</a> via{" "}
               <a href="https://kaikki.org" className="underline">Kaikki</a>, licensed{" "}
               <a href="https://creativecommons.org/licenses/by-sa/4.0/" className="underline">CC BY-SA 4.0</a>.
             </p>
             <p>
-              Same graph as <a href="https://www.bucket.foundation" className="underline" style={{ color: "var(--blue)" }}>bucket.foundation</a>.
+              Same graph as <a href="https://www.bucket.foundation" className="underline text-[color:var(--blue)]">bucket.foundation</a>.
             </p>
           </footer>
         </div>
