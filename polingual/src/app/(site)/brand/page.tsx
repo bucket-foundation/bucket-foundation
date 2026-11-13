@@ -150,7 +150,7 @@ export default function BrandPage() {
             <div className={styles.heroText}>
               <div className={styles.label}>Polingual brand</div>
               <h1 id="hero-h" className={styles.heroTitle}>One word, <span>every language</span>.</h1>
-              <p className={styles.lede}>The mark, colors, type, artwork and voice behind Polingual. Every file on this page downloads as SVG or PNG.</p>
+              <p className={styles.lede}>The mark, colors, type, artwork and voice behind Polingual. Artwork, logos and marks download as SVG and PNG. Screens download as PNG.</p>
               <div className={styles.ctaRow}>
                 <ButtonLink href={KIT} download size="lg">Download full brand kit</ButtonLink>
                 <ButtonLink href="#artwork" variant="secondary" size="lg">Artwork library</ButtonLink>
@@ -279,7 +279,7 @@ export default function BrandPage() {
             </div>
           </Section>
 
-          <Section id="artwork" n={5} title="The artwork library" dark lede={`${HERO_PIECES.length} hero pieces from the homepage and ${OBJECT_PIECES.length} sticker objects. Each downloads as SVG, or as PNG at 1x and 4x.`}>
+          <Section id="artwork" n={5} title="The artwork library" dark lede={`${HERO_PIECES.length} hero pieces from the homepage and ${OBJECT_PIECES.length} sticker objects. Each piece downloads as SVG and as PNG at 1x and 4x.`}>
             <div className={styles.ctaRow}>
               <ButtonLink href={KIT} download size="md">Download all as ZIP</ButtonLink>
             </div>
@@ -333,7 +333,7 @@ export default function BrandPage() {
               {SCREENS.map((x) => (
                 <li key={x.file}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/brand/screens/${x.file}.png`} alt={`Polingual ${x.label} screen`} loading="lazy" width={390} height={844} />
+                  <img src={`/brand/screens/${x.file}.png`} alt={`Polingual ${x.label} screen`} width={390} height={844} />
                   <span>{x.label}</span>
                   <Dl href={`/brand/screens/${x.file}.png`}>PNG</Dl>
                 </li>
@@ -341,7 +341,7 @@ export default function BrandPage() {
             </ul>
           </Section>
 
-          <Section id="downloads" n={11} title="Every file" dark lede="Press questions go to gianyrox@gmail.com.">
+          <Section id="downloads" n={11} title="Every file" dark lede={<>Press questions go through <a href="/support">Polingual support</a>.</>}>
             <ul className={styles.downloads}>
               {[
                 { name: "Brand kit", meta: "ZIP · logos, all artwork in SVG and PNG, screens, tokens", href: KIT },

@@ -1,8 +1,7 @@
 import { mkdirSync, readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import sharp from "sharp";
 import { zipSync, strToU8 } from "fflate";
-import { PIECES, pieceFile } from "../src/ui/art/brand";
+import { PIECES, embedFonts, pieceFile } from "../src/ui/art/brand";
 import tokens from "../src/ui/tokens.json";
 
 const ROOT = join(__dirname, "..", "public", "brand");
@@ -29,7 +28,7 @@ Polingual teaches one word across many languages and scripts. Hear every word sa
 After 100 days, expect to know 280 words across 4 languages, and remember 95% of them.
 28 languages, each with a top 1,000 words and 300 phrases.
 Site: https://www.polingual.com
-Press: gianyrox@gmail.com
+Press: https://www.polingual.com/support
 
 Colors: paper ${tokens.color.paper}, tyrian ${tokens.color.tyrian}, vermilion ${tokens.color.vermilion}, ink ${tokens.color.ink}
 Type: Fredoka for display, Nunito for text, Space Mono for labels, Noto Sans for scripts
@@ -41,14 +40,19 @@ async function main() {
   if (base) await shoot(base.replace(/\/$/, ""));
   const files: Record<string, Uint8Array> = {};
   const add = (path: string, data: Uint8Array) => (files[`polingual-brand-kit/${path}`] = data);
+  const { chromium } = await import("playwright");
+  const browser = await chromium.launch();
+  const pages = await Promise.all([1, 4].map(async (scale) => [scale, await (await browser.newContext({ deviceScaleFactor: scale })).newPage()] as const));
   for (const p of PIECES) {
-    const svg = Buffer.from(p.svg);
-    add(`artwork/svg/${pieceFile(p)}.svg`, svg);
-    for (const scale of [1, 4]) {
-      const png = await sharp(svg, { density: 72 * scale }).png().toBuffer();
-      add(`artwork/png/${pieceFile(p)}@${scale}x.png`, png);
+    add(`artwork/svg/${pieceFile(p)}.svg`, Buffer.from(p.svg));
+    const svg = await embedFonts(p.svg);
+    for (const [scale, page] of pages) {
+      await page.setContent(`<html><body style="margin:0;background:transparent">${svg}</body></html>`);
+      await page.evaluate(() => document.fonts.ready);
+      add(`artwork/png/${pieceFile(p)}@${scale}x.png`, await page.locator("svg").first().screenshot({ omitBackground: true }));
     }
   }
+  await browser.close();
   for (const f of readdirSync(join(ROOT, "kit"))) add(`logos/${f}`, readFileSync(join(ROOT, "kit", f)));
   for (const [file] of SCREENS) {
     const path = join(ROOT, "screens", `${file}.png`);

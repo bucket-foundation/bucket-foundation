@@ -172,3 +172,6 @@
 .downloads li{background:var(--pl-tyrian-deep);border-radius:var(--pl-radius-lg);padding:var(--pl-space-5);display:flex;flex-direction:column;gap:var(--pl-space-2);align-items:flex-start;box-shadow:0 var(--pl-lip-md) 0 var(--pl-ink)}
 .downloads strong{font:var(--pl-type-heading)}
 .downloads span{font:var(--pl-type-small);opacity:.8}
+.pieceErr{margin:0;min-height:0;font:var(--pl-type-label);font-weight:400;color:var(--pl-vermilion-deep)}
+.showAll{display:none!important;margin-top:var(--pl-space-5)}
+@media(max-width:600px){.library:not([data-all])>li:nth-child(n+13){display:none}.showAll{display:inline-flex!important}}

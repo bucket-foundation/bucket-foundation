@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Pill } from "@/ui";
-import { PIECES, pieceFile, type Piece } from "@/ui/art/brand";
+import { Button, Pill } from "@/ui";
+import { PIECES, embedFonts, pieceFile, type Piece } from "@/ui/art/brand";
 import styles from "./brand.module.css";
 
 function save(blob: Blob, name: string) {
@@ -18,7 +18,8 @@ function save(blob: Blob, name: string) {
 
 const svgUrl = (svg: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 
-export function pngBlob(svg: string, scale: number): Promise<Blob> {
+export async function pngBlob(raw: string, scale: number): Promise<Blob> {
+  const svg = await embedFonts(raw);
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
@@ -37,10 +38,14 @@ export function pngBlob(svg: string, scale: number): Promise<Blob> {
 
 function PieceCard({ p }: { p: Piece }) {
   const [busy, setBusy] = useState(false);
+  const [failed, setFailed] = useState(false);
   const png = async (scale: number) => {
     setBusy(true);
+    setFailed(false);
     try {
       save(await pngBlob(p.svg, scale), `${pieceFile(p)}@${scale}x.png`);
+    } catch {
+      setFailed(true);
     } finally {
       setBusy(false);
     }
@@ -58,6 +63,7 @@ function PieceCard({ p }: { p: Piece }) {
         <button type="button" className={styles.chipBtn} disabled={busy} onClick={() => png(1)} aria-label={`Download ${p.label} PNG at 1x`}>PNG</button>
         <button type="button" className={styles.chipBtn} disabled={busy} onClick={() => png(4)} aria-label={`Download ${p.label} PNG at 4x`}>PNG 4x</button>
       </div>
+      <p className={styles.pieceErr} role="status">{failed ? "PNG export failed. Download the SVG." : ""}</p>
     </li>
   );
 }
@@ -66,6 +72,7 @@ const FILTERS = [["all", "All"], ["hero", "Hero pieces"], ["object", "Sticker ob
 
 export default function ArtLibrary() {
   const [kind, setKind] = useState<(typeof FILTERS)[number][0]>("all");
+  const [all, setAll] = useState(false);
   const shown = useMemo(() => PIECES.filter((p) => kind === "all" || p.kind === kind), [kind]);
   return (
     <>
@@ -76,9 +83,12 @@ export default function ArtLibrary() {
           </Pill>
         ))}
       </div>
-      <ul className={styles.library}>
+      <ul className={styles.library} data-all={all || undefined}>
         {shown.map((p) => <PieceCard key={`${p.kind}-${p.id}`} p={p} />)}
       </ul>
+      {!all && shown.length > 12 ? (
+        <Button className={styles.showAll} variant="secondary" onClick={() => setAll(true)}>Show all {shown.length}</Button>
+      ) : null}
     </>
   );
 }
