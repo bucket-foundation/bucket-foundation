@@ -643,11 +643,11 @@ export default function Room({ code: rawCode }: { code: string }) {
         {lobby.standing || lobby.nextStartAt ? (
           <span className={styles.nextName} data-testid="next-game">Next game{lobby.setup === "single" ? `: ${lobby.name}` : ""}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
         ) : next ? (
-          <ButtonLink href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</ButtonLink>
+          <ButtonLink size="md" href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</ButtonLink>
         ) : null}
         <Button variant="ghost" size="md" disabled={busy} onClick={() => void newLobby(false)} data-testid="rematch">Rematch</Button>
         <Button variant="ghost" size="md" disabled={busy} onClick={() => void newLobby(true)} data-testid="play-bots">Play with bots</Button>
-        <ButtonLink href={LEARN_HREF} data-testid="results-learn">Start learning</ButtonLink>
+        <ButtonLink size="md" href={LEARN_HREF} data-testid="results-learn">Start learning</ButtonLink>
       </section>
       <section className={app.stackSm} data-testid="reveal-all">
         <h2 className={app.fieldLabel}>Every word in this game</h2>

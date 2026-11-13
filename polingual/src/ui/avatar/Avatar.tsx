@@ -23,7 +23,7 @@ const HEAD = { cx: 60, cy: 56, r: 32 };
 
 type Geo = { cx: number; cy: number; r: number };
 const GEO: Record<"full" | "head", Geo> = { full: { cx: 60, cy: 68, r: 52 }, head: { cx: 60, cy: 54, r: 48 } };
-const VIEW: Record<"full" | "head", string> = { full: "0 0 120 140", head: "8 0 104 104" };
+const VIEW: Record<"full" | "head", string> = { full: "0 0 120 140", head: "2 -8 116 116" };
 
 const SHAPES: Record<Look["shape"], { d: string; hands: [number, number, number] }> = {
   round: { d: "M24 124 C24 96 38 82 60 82 C82 82 96 96 96 124 Z", hands: [26, 94, 112] },
@@ -229,10 +229,11 @@ export function Avatar({ look, seed, size = "lg", variant = "full", bounce = fal
         <Outfit look={L} clip={`${id}body`} />
         <circle data-layer="head" cx={HEAD.cx} cy={HEAD.cy} r={HEAD.r} fill={skin} {...ink} />
         <Face look={L} />
-        <Hat look={L} />
+        {full && <Hat look={L} />}
         <Accessory look={L} full={full} />
       </g>
       <Frame look={L} g={g} />
+      {!full && <g filter={`url(#${id}sh)`}><Hat look={L} /></g>}
     </svg>
   );
 }

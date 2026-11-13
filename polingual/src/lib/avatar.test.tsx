@@ -39,7 +39,7 @@ test("every layer option renders in fixed z-order", () => {
         const html = renderToStaticMarkup(<Avatar look={look} size={64} variant={variant} />);
         assert.match(html, /^<svg/);
         const order = [...html.matchAll(/data-layer="([a-z-]+)"/g)].map((m) => m[1]);
-        const rank = ["backdrop", "plinth", "outfit-back", "shape", "skin", "outfit", "head", "face", "hat", "accessory", "frame"];
+        const rank = variant === "full" ? ["backdrop", "plinth", "outfit-back", "shape", "skin", "outfit", "head", "face", "hat", "accessory", "frame"] : ["backdrop", "outfit-back", "shape", "skin", "outfit", "head", "face", "accessory", "frame", "hat"];
         const idx = order.map((o) => rank.indexOf(o));
         assert.ok(idx.every((x) => x >= 0), order.join(","));
         assert.deepEqual(idx, [...idx].sort((a, b) => a - b), `${layer}=${v} ${variant}: ${order.join(",")}`);

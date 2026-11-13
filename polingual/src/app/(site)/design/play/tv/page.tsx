@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ANSWERS, FRIENDS, GROUP_BOARD } from "../mock";
 import { Avatar, Flag, Shape } from "../../../play-kit/parts";
+import { Pill } from "@/ui";
 import s from "../design.module.css";
 
 const PHASES = ["lobby", "question", "reveal", "board", "finale"] as const;
@@ -135,11 +136,11 @@ export default function TvMock() {
       )}
 
       <div className={s.tvCtl} role="group" aria-label="Mockup phase and host controls">
-        {PHASES.map((p) => <button key={p} aria-pressed={phase === p} onClick={() => setPhase(p)}>{p}</button>)}
-        <button>pause</button>
-        <button>skip</button>
-        <button>lock room</button>
-        <button onClick={() => setPhase("lobby")}>play again</button>
+        {PHASES.map((p) => <Pill key={p} active={phase === p} aria-pressed={phase === p} onClick={() => setPhase(p)}>{p}</Pill>)}
+        <Pill>pause</Pill>
+        <Pill>skip</Pill>
+        <Pill>lock room</Pill>
+        <Pill onClick={() => setPhase("lobby")}>play again</Pill>
       </div>
     </div>
   );

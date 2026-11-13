@@ -11,8 +11,8 @@ export function Pill({ active, size, className, type = "button", ...rest }: Butt
   return <button type={type} className={[s.pill, className].filter(Boolean).join(" ")} data-active={active || undefined} data-size={size} {...rest} />;
 }
 
-export function Tag({ size, className, style, ...rest }: HTMLAttributes<HTMLSpanElement> & { size?: "sm" }) {
-  return <span className={[s.pill, className].filter(Boolean).join(" ")} data-size={size} style={{ cursor: "default", ...style }} {...rest} />;
+export function Tag({ size, className, ...rest }: HTMLAttributes<HTMLSpanElement> & { size?: "sm" }) {
+  return <span className={[s.pill, s.tag, className].filter(Boolean).join(" ")} data-size={size} {...rest} />;
 }
 
 export function Badge({ tone, size, className, children, ...rest }: HTMLAttributes<HTMLSpanElement> & { tone?: Tone; size?: "lg"; children: ReactNode }) {

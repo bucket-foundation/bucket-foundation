@@ -91,8 +91,6 @@
 .step{display:flex;flex-direction:column;align-items:center;gap:6px}
 .step div{width:clamp(80px,14vw,180px);border-radius:16px 16px 0 0;display:grid;place-items:center;font-family:"Fredoka",sans-serif;font-size:42px;font-weight:700}
 .tvCtl{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:12px;background:rgba(0,0,0,.25)}
-.tvCtl button{font:inherit;font-weight:800;border:0;border-radius:999px;padding:8px 16px;cursor:pointer;background:rgba(246,238,220,.15);color:var(--parchment)}
-.tvCtl button[aria-pressed=true]{background:var(--vermilion)}
 .phoneWrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
 .phone{width:min(360px,100%);aspect-ratio:9/19;background:var(--tyrian-deep);border-radius:44px;border:10px solid var(--ink);padding:16px;display:flex;flex-direction:column;gap:12px;color:var(--parchment);box-shadow:0 10px 0 rgba(35,31,32,.2)}
 .phone[data-light=true]{background:var(--parchment)}
