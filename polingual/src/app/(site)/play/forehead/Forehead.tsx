@@ -5,14 +5,16 @@ import { FOREHEAD_SECONDS, type ForeheadCard } from "@academy/forehead";
 import { LANGS } from "@academy/lang-systems";
 import { TileFace } from "@/app/tile";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { LEARN_HREF } from "@/lib/lobby/client";
+
 import { play, readMuted } from "@/lib/lobby/sound";
 import { classifyTilt, settled } from "@/lib/lobby/tilt";
 import { bcp47 } from "@/lib/speak";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { LANG_CHOICES, LANG_SETS, langName } from "../langs";
-import { entryReading, FlagSquare } from "../LearnWord";
+import { FlagSquare } from "../LearnWord";
+import GameWorld, { pieceClass, WorldStickers } from "../GameWorld";
+import { LearnPanel, WordReveal } from "../Reveal";
 import { PlayTile } from "../../word/Speak";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
@@ -30,7 +32,7 @@ function local(): Storage | null {
 
 type MotionPermission = { requestPermission?: () => Promise<string> };
 
-export default function Forehead() {
+function ForeheadGame() {
   const [langs, setLangs] = useState<string[]>(LANG_SETS[0].targets);
   const [phase, setPhase] = useState<Phase>("setup");
   const [cards, setCards] = useState<ForeheadCard[]>([]);
@@ -151,7 +153,6 @@ export default function Forehead() {
       <div className={app.stack} data-testid="forehead">
         <section className={app.stackSm}>
           <p className={app.label}>Party mode · one phone</p>
-          <h1 className={app.title}>Forehead</h1>
           <p className={app.muted}>Hold the phone to your forehead, screen out. Friends give clues in any language. Tilt down when you guess it, tilt up to pass. Sixty seconds a round.</p>
         </section>
         <div className={app.stackSm} role="group" aria-label="Languages">
@@ -176,7 +177,8 @@ export default function Forehead() {
 
   if (phase === "count") {
     return (
-      <div className={styles.fhStage} data-testid="fh-count">
+      <div className={styles.fhStage} data-testid="fh-count" data-round="active">
+        <WorldStickers id="forehead" />
         <p className={styles.bigCount} key={count}>{count || "Go"}</p>
         <p className={styles.fhHint}>Put the phone on your forehead</p>
       </div>
@@ -186,17 +188,19 @@ export default function Forehead() {
   if (phase === "play" && cards[index]) {
     const c = cards[index];
     return (
-      <div className={styles.fhStage} data-flash={flash ?? undefined} data-testid="fh-play">
+      <div className={styles.fhStage} data-flash={flash ?? undefined} data-testid="fh-play" data-round="active">
+        <WorldStickers id="forehead" />
         <div className={styles.fhTop}>
           <span className={styles.fhTime} data-testid="fh-time">{left}</span>
           <span className={styles.fhScore}>{results.filter((r) => r.got).length}</span>
         </div>
-        <div className={styles.fhCard}>
+        <div className={`${styles.fhCard} ${pieceClass("ticket")}`}>
           <span className={styles.fhLang}>
             <FlagSquare lang={c.lang} size={28} />
             {langName(c.lang)}
           </span>
-          <b className={styles.fhWord} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="fh-word">{c.form}</b>
+          <span className={styles.fhStub}>{`CARD ${index + 1} · ${FOREHEAD_SECONDS} SECONDS`}</span>
+          <b className={styles.fhWord} style={{ "--len": Math.max(4, Math.max(...c.form.split(" ").map((p) => Array.from(p).length)) + 1) } as React.CSSProperties} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="fh-word">{c.form}</b>
         </div>
         <div className={styles.fhButtons}>
           <button type="button" className={styles.fhPass} onClick={() => mark(false)} data-testid="fh-pass">Pass</button>
@@ -211,36 +215,24 @@ export default function Forehead() {
     <div className={app.stack} data-testid="fh-results">
       <section className={app.stackSm}>
         <p className={app.label}>Round over</p>
-        <h1 className={app.title} data-testid="fh-final">{got} guessed</h1>
+        <h2 className={app.title} data-testid="fh-final">{got} guessed</h2>
         <p className={app.small}>{results.length - got} passed. Tap a card to hear it.</p>
       </section>
-      <ul className={styles.revealGrid}>
-        {results.map((r, i) => (
-          <li key={`${r.card.itemId}:${i}`} className={styles.revealCard} data-correct={r.got} data-testid="fh-card">
-            <TileFace
-              as="div"
-              lang={r.card.lang}
-              code={r.card.lang}
-              label={langName(r.card.lang)}
-              word={r.card.form}
-              reading={entryReading({ reading: r.card.reading, roman: null })}
-              rtl={LANGS[r.card.lang]?.rtl}
-              index={Math.min(i, 3)}
-              play={<PlayTile item={{ id: `fh:${i}`, text: r.card.form, lang: bcp47(r.card.lang) }} label={`Hear ${r.card.form}`} />}
-            />
-            <p className={styles.revealDef}>
-              {r.got ? <b className={styles.revealMark}>✓ </b> : null}
-              {r.card.meaning}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <WordReveal title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} />
+      <LearnPanel missed={results.filter((r) => !r.got).map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning }))} />
       <div className={app.row}>
         <Button onClick={() => void start()} data-testid="fh-again">Play again</Button>
-        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
         <Button variant="quiet" size="sm" onClick={() => setPhase("setup")}>Change languages</Button>
       </div>
       {showAd ? <Ad placement="results" /> : null}
     </div>
+  );
+}
+
+export default function Forehead() {
+  return (
+    <GameWorld id="forehead">
+      <ForeheadGame />
+    </GameWorld>
   );
 }

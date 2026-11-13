@@ -14,6 +14,13 @@ import Ad from "./Ad";
 import { gameName, langName } from "./langs";
 import Nickname from "./Nickname";
 import Reveal, { RevealBanner } from "./Reveal";
+import GameWorld, { pieceClass, WorldStage } from "./GameWorld";
+import { CoinArt, PromptCard } from "./Pieces";
+import RoomQr, { useJoinUrl } from "./RoomQr";
+import world from "./world.module.css";
+import { useLearnIndex } from "./useLearn";
+import { learnEntry, learnHref } from "@/lib/lobby/learn-index";
+import { WORLDS, type WorldId } from "@/ui/art/play";
 import { useAdsVisible } from "./AdsContext";
 import { useAccount } from "./Account";
 import { betweenRoundsAd, interstitialDue } from "@/lib/lobby/ads";
@@ -40,7 +47,7 @@ function errorOf(err: unknown): string {
   return lobbyError(err instanceof LobbyError ? err.code : undefined);
 }
 
-export default function Room({ code: rawCode }: { code: string }) {
+function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId, code: string) => void }) {
   const router = useRouter();
   const code = normalizeLobbyCode(rawCode);
   const { state, api, connect } = usePlay();
@@ -58,6 +65,11 @@ export default function Room({ code: rawCode }: { code: string }) {
   const [kick, setKick] = useState(0);
   const [breaks, setBreaks] = useState<Breaks>({ games: 0, lastInterstitial: null });
   const [interstitial, setInterstitial] = useState(false);
+  const learnIndex = useLearnIndex();
+  const worldId: WorldId = !lobby ? "duel" : lobby.game === "spy" ? "ispy" : lobby.game === "daily" || lobby.game === "live" ? "same-word" : lobby.game in WORLDS ? (lobby.game as WorldId) : "duel";
+  useEffect(() => {
+    if (lobby) onGame(worldId, lobby.code);
+  }, [lobby, worldId, onGame]);
   const [rewarded, setRewarded] = useState(false);
   const adsVisible = useAdsVisible();
   const account = useAccount();
@@ -165,7 +177,7 @@ export default function Room({ code: rawCode }: { code: string }) {
     return (
       <div className={app.stack} data-testid="room-gate">
         <p className={app.label}>Lobby {code}</p>
-        <h1 className={app.title}>Pick a nickname to join</h1>
+        <h2 className={app.title}>Pick a nickname to join</h2>
         {state.status === "error" ? <p className={app.error} role="alert">{state.message}</p> : null}
         {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : <Nickname initial={savedNickname()} onSubmit={(n) => void connect(n)} />}
       </div>
@@ -313,14 +325,16 @@ export default function Room({ code: rawCode }: { code: string }) {
   );
 
   const header = (
-    <section className={app.stackSm}>
-      <p className={app.label}>{gameName(lobby.game)}</p>
-      <p className={styles.langRow} data-testid="room-langs">
-        {lobby.targets.map((l) => (
-          <LangCard key={l} lang={l} />
-        ))}
-      </p>
-      <p className={styles.code} data-testid="room-code">{lobby.code}</p>
+    <section className={`${app.stackSm} ${world.joinCard}`}>
+      <div className={app.stackSm}>
+        <p className={app.label}>{gameName(lobby.game)}</p>
+        <p className={styles.langRow} data-testid="room-langs">
+          {lobby.targets.map((l) => (
+            <LangCard key={l} lang={l} />
+          ))}
+        </p>
+        <p className={styles.code} data-testid="room-code">{lobby.code}</p>
+      </div>
     </section>
   );
 
@@ -389,7 +403,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         </span>
         {rank ? <span className={styles.hudRank} data-testid="my-rank">#{rank} of {lobby.players.length}</span> : null}
         <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
-        {lobby.game === "duel" ? <span className={styles.coins} data-testid="coins" aria-label={`${lobby.coins} coins`}>🪙 {lobby.coins}</span> : null}
+        {lobby.game === "duel" ? <span className={styles.coins} data-testid="coins" aria-label={`${lobby.coins} coins`}><CoinArt size={26} /> {lobby.coins}</span> : null}
         {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
         <Pill size="sm" onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">
           {muted ? "🔇" : "🔊"}
@@ -410,6 +424,7 @@ export default function Room({ code: rawCode }: { code: string }) {
     return (
       <div className={app.stack} data-testid="room">
         {header}
+        <WorldStage id={worldId}>
         <div className={styles.stage}>
           <div className={styles.arena}>
             <p className={styles.bigCount} key={Math.ceil(phase.seconds)} data-testid="countdown">{Math.ceil(phase.seconds)}</p>
@@ -417,6 +432,7 @@ export default function Room({ code: rawCode }: { code: string }) {
           </div>
           {side}
         </div>
+        </WorldStage>
       </div>
     );
   }
@@ -429,6 +445,7 @@ export default function Room({ code: rawCode }: { code: string }) {
     return (
       <div className={app.stack} data-testid="room">
         {hud}
+        <WorldStage id={worldId}>
         <div className={styles.stage}>
           <div className={styles.arena}>
             <div className={styles.nextRound} data-testid="next-round">
@@ -467,6 +484,7 @@ export default function Room({ code: rawCode }: { code: string }) {
           </div>
           {side}
         </div>
+        </WorldStage>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
@@ -479,9 +497,10 @@ export default function Room({ code: rawCode }: { code: string }) {
     const elapsed = lobby.roundSeconds * 1000 - phase.remaining * 1000;
     const stateOf = (c: string) => (mine ? (mine.choice === c ? (mine.pending ? "pending" : mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined);
     return (
-      <div className={app.stack} data-testid="room">
+      <div className={app.stack} data-testid="room" data-round="active">
         {hud}
         {mine && !mine.pending && mine.points > 0 ? <p className={styles.pop} key={`${mine.game}:${mine.round}`} data-testid="score-pop">+{mine.points}</p> : null}
+        <WorldStage id={worldId}>
         <div className={styles.stage}>
           <div className={styles.arena}>
             <div className={styles.timer} aria-hidden="true">
@@ -540,7 +559,7 @@ export default function Room({ code: rawCode }: { code: string }) {
                 <ul className={styles.choices}>
                   {prompt.choices.filter((c) => !prompt.hide?.includes(c)).map((c) => (
                     <li key={c}>
-                      <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                      <button type="button" className={`${styles.choice} ${styles.choiceFlag}`} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
                         <LangCard lang={c} big />
                       </button>
                     </li>
@@ -559,7 +578,7 @@ export default function Room({ code: rawCode }: { code: string }) {
                 <ul className={styles.choices}>
                   {prompt.choices.filter((c) => !prompt.hide?.includes(c)).map((c) => (
                     <li key={c}>
-                      <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                      <button type="button" className={`${styles.choice} ${pieceClass("ticket")}`} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
                         {c}
                       </button>
                     </li>
@@ -570,9 +589,7 @@ export default function Room({ code: rawCode }: { code: string }) {
             ) : prompt && prompt.mode === "mixed" ? (
               <>
                 <div className={styles.prompt}>
-                  <p className={app.small}>Pick the word that means</p>
-                  <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
-                  <p className={app.small}>The tiles mix this room&apos;s languages. One is right.</p>
+                  <PromptCard label="Pick the word that means" gloss={prompt.gloss} note="The tiles mix this room's languages. One is right." />
                 </div>
                 <ul className={styles.choiceTiles}>
                   {prompt.choices.map((c, i) => {
@@ -600,8 +617,7 @@ export default function Room({ code: rawCode }: { code: string }) {
             ) : prompt ? (
               <>
                 <div className={styles.prompt}>
-                  <p className={app.small}>Pick the word that means</p>
-                  <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
+                  <PromptCard label="Pick the word that means" gloss={prompt.gloss} />
                 </div>
                 <ul className={styles.choiceTiles}>
                   {prompt.choices.map((c, i) => (
@@ -627,6 +643,7 @@ export default function Room({ code: rawCode }: { code: string }) {
           </div>
           {side}
         </div>
+        </WorldStage>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
@@ -647,7 +664,7 @@ export default function Room({ code: rawCode }: { code: string }) {
       ) : null}
       <section className={app.stackSm}>
         <p className={app.label}>Game over</p>
-        <h1 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h1>
+        <h2 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h2>
       </section>
       {toolbar}
       {scoreboard}
@@ -680,20 +697,45 @@ export default function Room({ code: rawCode }: { code: string }) {
           <p className={app.small} data-testid="missed-late">Your answers are saved. Lessons cover every word in this game.</p>
         ) : missed.length ? (
           <ul className={styles.missed}>
-            {missed.map((w) => (
-              <li key={w}>{w}</li>
-            ))}
+            {missed.map((w) => {
+              const e = lobby.prompts.flatMap((p) => p.reveal ?? []).find((r) => r.correct && r.word === w);
+              return (
+                <li key={w}>
+                  <a href={learnHref(e ? learnEntry(learnIndex, e.lang, e.word, e.meaning) : null)} data-testid="learn-missed">{w}</a>
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p className={app.small}>A clean sweep. Lessons take you further.</p>
         )}
         <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
-        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>See lessons</ButtonLink>
       </section>
       {breaks.games >= 2 ? <Ad placement="results" /> : null}
       <div className={app.row}>
         <ButtonLink variant="ghost" size="md" href="/play">Back to lobbies</ButtonLink>
       </div>
+    </div>
+  );
+}
+
+export default function Room({ code }: { code: string }) {
+  const [room, setRoom] = useState<{ game: WorldId; code: string | null }>({ game: "duel", code: null });
+  const onGame = useCallback((game: WorldId, c: string) => setRoom((r) => (r.game === game && r.code === c ? r : { game, code: c })), []);
+  return (
+    <GameWorld id={room.game} aside={room.code ? <RoomBadge code={room.code} /> : null}>
+      <RoomGame code={code} onGame={onGame} />
+    </GameWorld>
+  );
+}
+
+function RoomBadge({ code }: { code: string }) {
+  const url = useJoinUrl(code);
+  return (
+    <div className={world.roomBadge} data-testid="room-badge">
+      <span className={world.roomBadgeLabel}>{url ? `Join at ${url.replace(/^https?:\/\//, "").replace(/\/[^/]*$/, "")}` : "Join this room"}</span>
+      <b className={world.roomBadgeCode}>{code}</b>
+      <RoomQr code={code} />
     </div>
   );
 }

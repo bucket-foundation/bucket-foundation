@@ -68,3 +68,17 @@
 .tv .stageArt .sticker,.tv .gutters .sticker{zoom:1.35}
 .tv .tiles{zoom:1.25;bottom:16%}
 }
+
+.toned{position:relative;isolation:isolate;overflow:hidden}
+.toned[data-ground=paper]{background-color:var(--pl-paper)}
+.toned[data-ground=tyrian]{background-color:var(--pl-tyrian)}
+.toned[data-ground=lapis]{background-color:var(--pl-lapis)}
+.toned[data-ground=malachite]{background-color:var(--pl-malachite)}
+.toned[data-ground=ochre]{background-color:var(--pl-ochre)}
+.toned[data-ground=vermilion]{background-color:var(--pl-vermilion)}
+.toned[data-pattern=dots]{background-image:radial-gradient(var(--pl-dot) 1.4px,transparent 1.6px);background-size:18px 18px}
+.toned:not([data-ground=paper]):not([data-ground=ochre])[data-pattern=dots]{background-image:radial-gradient(color-mix(in srgb,var(--pl-white) 24%,transparent) 1.4px,transparent 1.6px)}
+.toned[data-pattern=lattice]::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.25;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='none' stroke='%236FB7C2' stroke-width='2'%3E%3Crect x='27' y='27' width='36' height='36'/%3E%3Crect x='27' y='27' width='36' height='36' transform='rotate(45 45 45)'/%3E%3Cpath d='M0 45h27M63 45h27M45 0v27M45 63v27'/%3E%3C/g%3E%3C/svg%3E")}
+.toned[data-pattern=tile]::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;pointer-events:none;background-image:var(--ground-tile);background-size:110px auto}
+.toned[data-pattern=kente]{background-image:repeating-linear-gradient(90deg,transparent 0 46px,color-mix(in srgb,var(--pl-ochre) 40%,transparent) 46px 58px,color-mix(in srgb,var(--pl-malachite) 40%,transparent) 58px 66px,color-mix(in srgb,var(--pl-vermilion) 40%,transparent) 66px 72px,transparent 72px 118px)}
+.toned[data-pattern=stripes]{background-image:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--pl-white) 10%,transparent) 0 22px,transparent 22px 44px)}
