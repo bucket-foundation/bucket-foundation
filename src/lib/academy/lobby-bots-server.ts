@@ -166,7 +166,7 @@ export async function ensureStanding(now: number): Promise<LobbyRow[]> {
   if (now - lastEnsure < ENSURE_EVERY_MS) return lastStanding;
   lastEnsure = now;
   const have = checkLobby(await service().from(LOBBIES).select(LOBBY_COLS).not("standing_slot", "is", null), "standing") as LobbyRow[];
-  const missing = STANDING_SLOTS.filter((s) => !have.some((l) => l.standing_slot === s.slot));
+  const missing = STANDING_SLOTS.filter((s) => (s.game !== "tiles" || revealEnabled()) && !have.some((l) => l.standing_slot === s.slot));
   for (const s of missing) {
     const host = pickBots(s.slot, 1, new Set())[0];
     const res = await service()

@@ -37,3 +37,7 @@ export function langName(code: string): string {
     return code;
   }
 }
+
+export function roundSecondsFor(game: string): number {
+  return game === "tiles" ? 6 : game === "live" ? 7 : 8;
+}
