@@ -5,8 +5,8 @@ import { useCallback, useEffect, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { LobbyError, lobbyError, type LobbySummary } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
-import Ad from "./Ad";
-import { GAMES, gameName, LANG_SETS, langName, type GameId } from "./langs";
+import { GAMES, gameName, LANG_SETS, roundSecondsFor, type GameId } from "./langs";
+import { LangCard } from "./LearnWord";
 import Nickname from "./Nickname";
 import styles from "./play.module.css";
 import { savedNickname, usePlay } from "./usePlay";
@@ -20,15 +20,19 @@ export default function Lobbies() {
   const [code, setCode] = useState("");
   const [game, setGame] = useState<GameId>("daily");
   const [set, setSet] = useState(LANG_SETS[0].id);
-  const [rounds, setRounds] = useState(8);
+  const [rounds, setRounds] = useState(6);
   const [busy, setBusy] = useState(false);
+  const [botsOn, setBotsOn] = useState(false);
+  const [fill, setFill] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const ready = state.status === "ready";
 
   const refresh = useCallback(async () => {
     if (!ready) return;
     try {
-      setOpen(await api.list());
+      const res = await api.listing();
+      setOpen(res.lobbies);
+      setBotsOn(res.bots);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
     }
@@ -47,7 +51,7 @@ export default function Lobbies() {
     setBusy(true);
     setError(null);
     try {
-      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: chosen.root, targets: chosen.targets, rounds, roundSeconds: game === "live" ? 8 : 10, listed: true, displayName: state.nickname, game });
+      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: chosen.root, targets: chosen.targets, rounds, roundSeconds: roundSecondsFor(game), listed: true, displayName: state.nickname, game, fillBots: botsOn && fill });
       router.push(`/play/${lobby.code}`);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
@@ -109,12 +113,17 @@ export default function Lobbies() {
               <label className={app.field}>
                 Rounds
                 <select value={rounds} onChange={(e) => setRounds(Number(e.target.value))}>
-                  {[5, 8, 12].map((n) => (
+                  {[5, 6, 8].map((n) => (
                     <option key={n} value={n}>{n}</option>
                   ))}
                 </select>
               </label>
             </div>
+            {botsOn ? (
+              <label className={app.small}>
+                <input type="checkbox" checked={fill} onChange={(e) => setFill(e.target.checked)} data-testid="fill-bots-option" /> Fill empty seats with bots after a few seconds
+              </label>
+            ) : null}
             <div>
               <button type="button" className={app.cta} onClick={() => void create()} disabled={busy} data-testid="create">
                 Start lobby
@@ -131,12 +140,19 @@ export default function Lobbies() {
                 <li key={l.id} className={styles.lobbyRow}>
                   <span>
                     <b>{l.name}</b>
+                    {l.standing ? <span className={styles.tag} data-testid="standing-tag"> always on</span> : null}
+                    {l.hostHandle ? <span className={styles.handle} data-testid="host-handle"> @{l.hostHandle}</span> : null}
                     <br />
                     <span className={styles.tag}>
-                      {gameName(l.game)} · {l.targets.map(langName).join(", ")} · {l.players} playing
+                      {gameName(l.game)} · {l.players} playing{l.bots ? ` · ${l.bots} bot${l.bots === 1 ? "" : "s"}` : ""}{l.status === "playing" ? " · in a game" : ""}
+                    </span>
+                    <span className={styles.langRow}>
+                      {l.targets.map((t) => (
+                        <LangCard key={t} lang={t} />
+                      ))}
                     </span>
                   </span>
-                  <button type="button" className={app.ghost} onClick={() => router.push(`/play/${l.code}`)} disabled={l.status !== "lobby" && !l.isMember}>
+                  <button type="button" className={app.ghost} onClick={() => router.push(`/play/${l.code}`)} disabled={l.status !== "lobby" && !l.isMember && !l.standing}>
                     {l.isMember ? "Open" : "Join"}
                   </button>
                 </li>
@@ -148,7 +164,6 @@ export default function Lobbies() {
       ) : null}
 
       {error ? <p className={app.error} role="alert">{error}</p> : null}
-      <Ad placement="lobby" />
     </div>
   );
 }

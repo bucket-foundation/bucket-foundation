@@ -1,18 +1,25 @@
 import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
-import type { LangItem } from "./lang-systems";
+import type { LangItem, Reading } from "./lang-systems";
+import { buildTilePrompts, parseTapped, tileHistory, tileOutcome, tilePoints } from "./lobby-tiles";
 
 export type LobbyStatus = "lobby" | "playing" | "done";
-export const LOBBY_GAMES = ["daily", "same-word", "flags", "live"] as const;
+export const LOBBY_GAMES = ["daily", "same-word", "flags", "live", "tiles"] as const;
 export type LobbyGame = (typeof LOBBY_GAMES)[number];
-export type PromptMode = "form" | "flag";
+export type PromptMode = "form" | "flag" | "tiles";
 
 export const LOBBY_CODE_LENGTH = 6;
 export const LOBBY_CAP = 8;
 export const MIN_READY = 2;
 export const MAX_HOSTED = 3;
 export const LEAD_MS = 3000;
-export const DEFAULT_ROUNDS = 8;
-export const DEFAULT_ROUND_SECONDS = 10;
+export const DEFAULT_ROUNDS = 6;
+export const DEFAULT_ROUND_SECONDS = 8;
+export const REVEAL_SECONDS = 4;
+export const WEB_CLIENT_HEADER = "x-polingual-client";
+
+export function revealEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return env.POLINGUAL_LOBBY_REVEAL === "on";
+}
 export const MESSAGE_LIMIT = 50;
 export const MESSAGE_MAX = 200;
 export const STALE_MS = 45_000;
@@ -38,9 +45,12 @@ export interface LobbyRow {
   listed: boolean;
   rounds: number;
   round_seconds: number;
+  reveal_seconds?: number;
   started_at: string | null;
   version: number;
   created_at: string;
+  standing_slot?: string | null;
+  bot_fill?: boolean;
 }
 
 export interface LobbyPlayerRow {
@@ -51,6 +61,10 @@ export interface LobbyPlayerRow {
   score: number;
   last_seen: string;
   joined_at: string;
+  handle?: string | null;
+  is_bot?: boolean;
+  skill?: string | null;
+  flag?: string | null;
 }
 
 export interface LobbyMessageRow {
@@ -82,6 +96,16 @@ export interface LobbyPromptRow {
   answer: string;
 }
 
+export interface RevealEntry {
+  lang: string;
+  word: string;
+  roman: string | null;
+  reading: Reading | null;
+  meaning: string;
+  gloss: string;
+  correct: boolean;
+}
+
 export interface LobbyPrompt {
   round: number;
   mode: PromptMode;
@@ -89,17 +113,22 @@ export interface LobbyPrompt {
   gloss: string;
   choices: string[];
   answer: string | null;
+  reveal?: RevealEntry[];
 }
 
 export interface LobbyPlayer {
   userId: string;
   name: string;
+  handle: string | null;
   ready: boolean;
   score: number;
   isHost: boolean;
   isMe: boolean;
   online: boolean;
   answered: boolean;
+  bot: boolean;
+  skill: string | null;
+  flag: string | null;
 }
 
 export interface LobbyMessage {
@@ -114,6 +143,7 @@ export interface LobbyRound {
   index: number;
   startsAt: string;
   endsAt: string;
+  reveal?: boolean;
 }
 
 export interface LobbyRoundResult {
@@ -133,7 +163,10 @@ export interface LobbySummary {
   targets: string[];
   status: LobbyStatus;
   players: number;
+  bots: number;
+  standing: boolean;
   host: string;
+  hostHandle: string | null;
   isMember: boolean;
 }
 
@@ -149,6 +182,7 @@ export interface LobbyState {
   listed: boolean;
   rounds: number;
   roundSeconds: number;
+  revealSeconds: number;
   startedAt: string | null;
   version: number;
   now: string;
@@ -158,6 +192,10 @@ export interface LobbyState {
   round: LobbyRound | null;
   prompts: LobbyPrompt[];
   results: LobbyRoundResult[];
+  standing: boolean;
+  botFill: boolean;
+  botsEnabled: boolean;
+  nextStartAt: string | null;
 }
 
 export function generateLobbyCode(random: (n: number) => Uint8Array = (n) => crypto.getRandomValues(new Uint8Array(n))): string {
@@ -191,6 +229,7 @@ export interface LobbyConfig {
   targets: string[];
   rounds: number;
   roundSeconds: number;
+  revealSeconds: number;
   listed: boolean;
 }
 
@@ -216,7 +255,7 @@ export function normalizeLobbyConfig(body: Record<string, unknown> | null): Lobb
   const game = body.game === undefined ? "daily" : (LOBBY_GAMES as readonly unknown[]).includes(body.game) ? (body.game as LobbyGame) : null;
   if (!game) return null;
   if (game === "same-word" && targets.length < 2) return null;
-  return { name: name || "Polingual lobby", game, root, targets, rounds, roundSeconds, listed: body.listed !== false };
+  return { name: name || "Polingual lobby", game, root, targets, rounds, roundSeconds, revealSeconds: body.reveal === true && revealEnabled() ? REVEAL_SECONDS : 0, listed: body.listed !== false };
 }
 
 export function normalizeMessage(input: unknown): string | null {
@@ -248,6 +287,7 @@ function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
 
 export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds"> & { game?: LobbyGame }, flagPool: readonly string[] = []): LobbyPromptRow[] {
   if (lobby.game === "same-word") return sameWordPrompts(items, lobby);
+  if (lobby.game === "tiles") return buildTilePrompts(items, lobby, flagPool, seededRandom(`${lobby.seed}7`));
   const forms = formPrompts(items, lobby);
   if (lobby.game !== "flags") return forms;
   const rand = seededRandom(`${lobby.seed}1`);
@@ -320,13 +360,14 @@ function formPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "s
   return out;
 }
 
-export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number | null, done: boolean): LobbyPrompt[] {
+export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number | null, done: boolean, describe?: (row: LobbyPromptRow) => RevealEntry[], closed = false): LobbyPrompt[] {
   return rows
     .filter((r) => done || (current !== null && r.round <= current))
     .sort((a, b) => a.round - b.round)
     .map((r) => {
-      const open = done || (current !== null && r.round < current);
-      return { round: r.round, mode: r.mode ?? "form", lang: open || r.mode !== "flag" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+      const open = done || (current !== null && (r.round < current || (closed && r.round === current)));
+      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+      return open && describe ? { ...base, reveal: describe(r) } : base;
     });
 }
 
@@ -348,25 +389,35 @@ export function startDecision(lobby: Pick<LobbyRow, "host_id" | "status">, playe
 
 export type JoinLobbyDecision = "already" | "ok" | "full" | "started";
 
-export function joinLobbyDecision(lobby: Pick<LobbyRow, "status">, players: readonly Pick<LobbyPlayerRow, "user_id">[], uid: string): JoinLobbyDecision {
+export function joinLobbyDecision(lobby: Pick<LobbyRow, "status"> & { standing_slot?: string | null }, players: readonly Pick<LobbyPlayerRow, "user_id">[], uid: string): JoinLobbyDecision {
   if (players.some((p) => p.user_id === uid)) return "already";
-  if (lobby.status !== "lobby") return "started";
+  if (lobby.status !== "lobby" && !lobby.standing_slot) return "started";
   return players.length >= LOBBY_CAP ? "full" : "ok";
 }
 
-export function roundAt(lobby: Pick<LobbyRow, "started_at" | "rounds" | "round_seconds">, now: number): LobbyRound | null {
+type Clock = Pick<LobbyRow, "started_at" | "rounds" | "round_seconds" | "reveal_seconds">;
+
+export function gameEndMs(lobby: Clock & { started_at: string }): number {
+  const gap = (lobby.reveal_seconds ?? 0) * 1000;
+  return Date.parse(lobby.started_at) + lobby.rounds * lobby.round_seconds * 1000 + Math.max(0, lobby.rounds - 1) * gap;
+}
+
+export function roundAt(lobby: Clock, now: number): LobbyRound | null {
   if (!lobby.started_at) return null;
   const start = Date.parse(lobby.started_at);
   const len = lobby.round_seconds * 1000;
+  const slot = len + (lobby.reveal_seconds ?? 0) * 1000;
   if (now < start) return { index: -1, startsAt: lobby.started_at, endsAt: lobby.started_at };
-  const index = Math.floor((now - start) / len);
-  if (index >= lobby.rounds) return null;
-  return { index, startsAt: new Date(start + index * len).toISOString(), endsAt: new Date(start + (index + 1) * len).toISOString() };
+  const index = Math.floor((now - start) / slot);
+  if (index >= lobby.rounds || now >= gameEndMs({ ...lobby, started_at: lobby.started_at })) return null;
+  const startsAt = start + index * slot;
+  const round: LobbyRound = { index, startsAt: new Date(startsAt).toISOString(), endsAt: new Date(startsAt + len).toISOString() };
+  return now - startsAt >= len ? { ...round, reveal: true } : round;
 }
 
-export function finished(lobby: Pick<LobbyRow, "started_at" | "rounds" | "round_seconds" | "status">, now: number): boolean {
+export function finished(lobby: Clock & Pick<LobbyRow, "status">, now: number): boolean {
   if (lobby.status !== "playing" || !lobby.started_at) return lobby.status === "done";
-  return now >= Date.parse(lobby.started_at) + lobby.rounds * lobby.round_seconds * 1000;
+  return now >= gameEndMs({ ...lobby, started_at: lobby.started_at });
 }
 
 export function points(correct: boolean, ms: number, roundSeconds: number): number {
@@ -378,14 +429,34 @@ export function points(correct: boolean, ms: number, roundSeconds: number): numb
 
 export type AnswerDecision = { ok: true; correct: boolean; ms: number; points: number } | { ok: false; error: "not_playing" | "wrong_round" | "bad_choice" };
 
-export function answerDecision(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds">, prompt: Pick<LobbyPromptRow, "round" | "choices" | "answer"> | null, round: number, choice: string, now: number): AnswerDecision {
+export function answerDecision(lobby: Clock & Pick<LobbyRow, "status">, prompt: Pick<LobbyPromptRow, "round" | "choices" | "answer"> | null, round: number, choice: string, now: number): AnswerDecision {
   if (lobby.status !== "playing") return { ok: false, error: "not_playing" };
   const current = roundAt(lobby, now);
-  if (!current || current.index !== round) return { ok: false, error: "wrong_round" };
+  if (!current || current.index !== round || current.reveal) return { ok: false, error: "wrong_round" };
   if (!prompt || prompt.round !== round || !prompt.choices.includes(choice)) return { ok: false, error: "bad_choice" };
   const correct = choice === prompt.answer;
   const ms = Math.max(0, now - Date.parse(current.startsAt));
   return { ok: true, correct, ms, points: points(correct, ms, lobby.round_seconds) };
+}
+
+export function tileAnswerDecision(
+  lobby: Clock & Pick<LobbyRow, "status">,
+  prompt: Pick<LobbyPromptRow, "round" | "choices" | "answer"> | null,
+  round: number,
+  choice: string,
+  now: number,
+  prior: readonly { round: number; correct: boolean }[],
+): AnswerDecision | { ok: false; error: "out_of_lives" } {
+  if (lobby.status !== "playing") return { ok: false, error: "not_playing" };
+  const current = roundAt(lobby, now);
+  if (!current || current.index !== round || current.reveal) return { ok: false, error: "wrong_round" };
+  if (!prompt || prompt.round !== round) return { ok: false, error: "bad_choice" };
+  const tapped = parseTapped(choice, prompt.choices.length);
+  if (!tapped) return { ok: false, error: "bad_choice" };
+  const history = tileHistory(prior, round);
+  if (history.lives <= 0) return { ok: false, error: "out_of_lives" };
+  const outcome = tileOutcome(prompt.answer, tapped);
+  return { ok: true, correct: outcome.perfect, ms: Math.max(0, now - Date.parse(current.startsAt)), points: tilePoints(outcome, history.combo) };
 }
 
 export function nextHost(players: readonly Pick<LobbyPlayerRow, "user_id" | "joined_at">[], leaving: string): string | null {
@@ -402,12 +473,14 @@ export function assembleLobby(
   uid: string,
   now: number,
   prompts: readonly LobbyPromptRow[] = [],
+  nextStartAt: string | null = null,
+  describe?: (row: LobbyPromptRow) => RevealEntry[],
 ): LobbyState {
   const hidden = hiddenUsers(blocks, uid);
   const names = new Map(players.map((p) => [p.user_id, p.display_name]));
   const round = lobby.status === "playing" ? roundAt(lobby, now) : null;
-  const answeredNow = new Set(answers.filter((a) => round && a.round === round.index).map((a) => a.user_id));
-  const revealed = answers.filter((a) => !round || a.round < round.index || a.user_id === uid);
+  const answeredNow = new Set(answers.filter((a) => round && !round.reveal && a.round === round.index).map((a) => a.user_id));
+  const revealed = answers.filter((a) => !round || a.round < round.index || (round.reveal && a.round === round.index) || a.user_id === uid);
   return {
     id: lobby.id,
     code: lobby.code,
@@ -420,6 +493,7 @@ export function assembleLobby(
     listed: lobby.listed,
     rounds: lobby.rounds,
     roundSeconds: lobby.round_seconds,
+    revealSeconds: lobby.reveal_seconds ?? 0,
     startedAt: lobby.started_at,
     version: lobby.version,
     now: new Date(now).toISOString(),
@@ -429,12 +503,16 @@ export function assembleLobby(
       .map((p) => ({
         userId: p.user_id,
         name: p.display_name,
+        handle: p.handle ?? null,
         ready: p.ready,
         score: p.score,
         isHost: p.user_id === lobby.host_id,
         isMe: p.user_id === uid,
-        online: now - Date.parse(p.last_seen) < STALE_MS,
+        online: p.is_bot === true || now - Date.parse(p.last_seen) < STALE_MS,
         answered: answeredNow.has(p.user_id),
+        bot: p.is_bot === true,
+        skill: p.is_bot ? p.skill ?? null : null,
+        flag: p.flag ?? null,
       }))
       .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)),
     messages: messages
@@ -442,8 +520,12 @@ export function assembleLobby(
       .slice(-MESSAGE_LIMIT)
       .map((m) => ({ id: m.id, from: m.user_id, name: names.get(m.user_id) ?? "", body: m.body, at: m.created_at })),
     round,
-    prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done"),
+    prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done", describe, round?.reveal === true),
     results: revealed.map((a) => ({ round: a.round, userId: a.user_id, correct: a.correct, ms: a.ms, points: a.points })),
+    standing: !!lobby.standing_slot,
+    botFill: lobby.bot_fill === true,
+    botsEnabled: false,
+    nextStartAt: lobby.standing_slot && lobby.status === "lobby" ? nextStartAt : null,
   };
 }
 
@@ -457,12 +539,15 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
     targets: lobby.targets,
     status: lobby.status,
     players: players.length,
+    bots: players.filter((p) => p.is_bot).length,
+    standing: !!lobby.standing_slot,
     host: players.find((p) => p.user_id === lobby.host_id)?.display_name ?? "",
+    hostHandle: players.find((p) => p.user_id === lobby.host_id)?.handle ?? null,
     isMember: players.some((p) => p.user_id === uid),
   };
 }
 
-export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number): LobbySummary[] {
+export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number, bots = false): LobbySummary[] {
   const hidden = hiddenUsers(blocks, uid);
   const blockedLobbies = new Set(blocks.filter((b) => b.blocker_id === uid && b.target_group_id).map((b) => b.target_group_id as string));
   const byLobby = new Map<string, LobbyPlayerRow[]>();
@@ -471,9 +556,16 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
     .filter((l) => {
       const ps = byLobby.get(l.id) ?? [];
       const mine = ps.some((p) => p.user_id === uid);
+      if (l.standing_slot) return bots && (mine || ps.length < LOBBY_CAP);
       if (mine) return l.status !== "done";
       return l.listed && l.status === "lobby" && !hidden.has(l.host_id) && !blockedLobbies.has(l.id) && ps.length > 0 && ps.length < LOBBY_CAP && now - Date.parse(l.created_at) < OPEN_WINDOW_MS;
     })
     .map((l) => lobbySummary(l, byLobby.get(l.id) ?? [], uid))
-    .sort((a, b) => Number(b.isMember) - Number(a.isMember) || b.players - a.players);
+    .sort((a, b) => Number(b.isMember) - Number(a.isMember) || Number(b.standing) - Number(a.standing) || b.players - a.players);
+}
+
+const NATIVE_GAMES: readonly LobbyGame[] = ["daily", "same-word", "flags", "live"];
+
+export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds">): boolean {
+  return NATIVE_GAMES.includes(lobby.game ?? "daily") && !lobby.reveal_seconds;
 }

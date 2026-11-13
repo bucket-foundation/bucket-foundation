@@ -11,6 +11,10 @@ import {
   seededRandom,
   seenDue,
   visiblePrompts,
+  gameEndMs,
+  nativePlayable,
+  REVEAL_SECONDS,
+  revealEnabled,
   finished,
   generateLobbyCode,
   generateSeed,
@@ -56,7 +60,13 @@ test("seeds are decimal uint64 strings and never zero", () => {
 });
 
 test("config validates languages, rounds and timing", () => {
-  assert.deepEqual(normalizeLobbyConfig({ root: "en", targets: ["es", "es", "en", "fr"] }), { name: "Polingual lobby", game: "daily", root: "en", targets: ["es", "fr"], rounds: 8, roundSeconds: 10, listed: true });
+  assert.deepEqual(normalizeLobbyConfig({ root: "en", targets: ["es", "es", "en", "fr"] }), { name: "Polingual lobby", game: "daily", root: "en", targets: ["es", "fr"], rounds: 6, roundSeconds: 8, revealSeconds: 0, listed: true });
+  assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], reveal: true })?.revealSeconds, 0);
+  process.env.POLINGUAL_LOBBY_REVEAL = "on";
+  assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], reveal: true })?.revealSeconds, REVEAL_SECONDS);
+  delete process.env.POLINGUAL_LOBBY_REVEAL;
+  assert.equal(revealEnabled({ POLINGUAL_LOBBY_REVEAL: "on" }), true);
+  assert.equal(revealEnabled({}), false);
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["en"] }), null);
   assert.equal(normalizeLobbyConfig({ root: "EN!", targets: ["es"] }), null);
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], rounds: 50 }), null);
@@ -98,6 +108,30 @@ test("rounds come from started_at plus index times length", () => {
   assert.equal(finished(l, T0 + 29_999), false);
   assert.equal(finished(l, T0 + 30_000), true);
   assert.equal(roundAt(lobby(), T0), null);
+});
+
+test("a reveal gap holds the next round and closes answers", () => {
+  const l = lobby({ status: "playing", started_at: new Date(T0).toISOString(), reveal_seconds: 3 });
+  assert.equal(gameEndMs({ ...l, started_at: l.started_at! }), T0 + 36_000);
+  assert.deepEqual(roundAt(l, T0 + 9_999), { index: 0, startsAt: new Date(T0).toISOString(), endsAt: new Date(T0 + 10_000).toISOString() });
+  assert.equal(roundAt(l, T0 + 11_000)?.reveal, true);
+  assert.equal(roundAt(l, T0 + 11_000)?.index, 0);
+  assert.deepEqual(roundAt(l, T0 + 13_000), { index: 1, startsAt: new Date(T0 + 13_000).toISOString(), endsAt: new Date(T0 + 23_000).toISOString() });
+  assert.equal(roundAt(l, T0 + 35_999)?.index, 2);
+  assert.equal(roundAt(l, T0 + 36_000), null);
+  assert.equal(finished(l, T0 + 35_999), false);
+  assert.equal(finished(l, T0 + 36_000), true);
+  const key = { round: 0, choices: ["gato", "perro"], answer: "gato" };
+  assert.deepEqual(answerDecision(l, key, 0, "gato", T0 + 11_000), { ok: false, error: "wrong_round" });
+  const rows = [0, 1].map((round) => ({ lobby_id: "l1", round, lang: "es", item_id: `i${round}`, mode: "form" as const, gloss: "cat", choices: ["a", "b"], answer: "a" }));
+  assert.deepEqual(visiblePrompts(rows, 0, false, undefined, true).map((p) => [p.round, p.answer]), [[0, "a"]]);
+  assert.deepEqual(visiblePrompts(rows, 0, false).map((p) => [p.round, p.answer]), [[0, null]]);
+});
+
+test("native clients list only games they can play on the plain clock", () => {
+  assert.equal(nativePlayable(lobby()), true);
+  assert.equal(nativePlayable(lobby({ game: "tiles" })), false);
+  assert.equal(nativePlayable(lobby({ reveal_seconds: 3 })), false);
 });
 
 test("points reward speed and give nothing for a miss", () => {
@@ -220,6 +254,15 @@ test("open list shows my lobbies first and hides closed, stale, full or blocked 
   assert.deepEqual(out.map((l) => l.id), ["E", "A"]);
   assert.equal(out[0].isMember, true);
   assert.equal(out[1].host, "H");
+  assert.equal(out[1].hostHandle, null);
+});
+
+test("players and hosts carry their @username when they have one", () => {
+  const ps = [player("h", { handle: "hana_k" }), player("b"), player("g", { handle: null })];
+  const s = assembleLobby(lobby(), ps, [], [], [], "b", T0 + 1000);
+  assert.deepEqual(Object.fromEntries(s.players.map((p) => [p.userId, p.handle])), { h: "hana_k", b: null, g: null });
+  const out = openLobbies([lobby()], ps, [], "b", T0 + 1000);
+  assert.equal(out[0].hostHandle, "hana_k");
 });
 
 test("migration keeps lobby tables private and limits joins in the database", () => {
