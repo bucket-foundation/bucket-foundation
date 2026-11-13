@@ -147,3 +147,23 @@ export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND
     </div>
   );
 }
+
+export const BANNER_STICKERS: StickerSpot[] = [
+  { name: "azulejo", x: "30%", y: "8%", size: 96, rotate: 8 },
+  { name: "seal", x: "8%", y: "16%", size: 78, rotate: -9, side: "right" },
+  { name: "torn-label", x: "26%", y: "56%", size: 112, rotate: -5 },
+  { name: "kente", x: "2%", y: "70%", size: 120, rotate: -12, side: "right" },
+  { name: "script-ko", x: "60%", y: "44%", size: 30, shadow: false },
+];
+
+export function Banner({ children, stickers = BANNER_STICKERS, testId }: { children: ReactNode; stickers?: StickerSpot[]; testId?: string }) {
+  return (
+    <header className={s.banner} data-testid={testId}>
+      <Ground kind="lattice" className={s.bannerArt}>
+        <div className={s.only} data-at="wide">{stickers.map((p) => <Sticker key={p.name} {...p} />)}</div>
+        <div className={s.only} data-at="narrow">{STRIP_STICKERS.map((p) => <Sticker key={p.name} {...p} />)}</div>
+      </Ground>
+      <div className={s.bannerBody}>{children}</div>
+    </header>
+  );
+}
