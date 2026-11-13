@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Button, Pill } from "@/ui";
+import { Pill } from "@/ui";
 import { PIECES, pieceFile, type Piece } from "@/ui/art/brand";
 import styles from "./brand.module.css";
 
@@ -49,14 +49,14 @@ function PieceCard({ p }: { p: Piece }) {
     <li className={styles.piece} data-kind={p.kind}>
       <div className={styles.pieceStage} data-dark={p.dark || p.kind === "hero" || undefined}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={svgUrl(p.svg)} alt={p.label} loading="lazy" />
+        <img src={svgUrl(p.svg)} alt={p.label} decoding="async" />
       </div>
       <strong>{p.label}</strong>
       <span>{p.origin}</span>
       <div className={styles.pieceDl}>
-        <Button size="sm" variant="secondary" onClick={() => save(new Blob([p.svg], { type: "image/svg+xml" }), `${pieceFile(p)}.svg`)} aria-label={`Download ${p.label} SVG`}>SVG</Button>
-        <Button size="sm" variant="secondary" disabled={busy} onClick={() => png(1)} aria-label={`Download ${p.label} PNG at 1x`}>PNG 1x</Button>
-        <Button size="sm" variant="secondary" disabled={busy} onClick={() => png(4)} aria-label={`Download ${p.label} PNG at 4x`}>PNG 4x</Button>
+        <button type="button" className={styles.chipBtn} onClick={() => save(new Blob([p.svg], { type: "image/svg+xml" }), `${pieceFile(p)}.svg`)} aria-label={`Download ${p.label} SVG`}>SVG</button>
+        <button type="button" className={styles.chipBtn} disabled={busy} onClick={() => png(1)} aria-label={`Download ${p.label} PNG at 1x`}>PNG</button>
+        <button type="button" className={styles.chipBtn} disabled={busy} onClick={() => png(4)} aria-label={`Download ${p.label} PNG at 4x`}>PNG 4x</button>
       </div>
     </li>
   );
