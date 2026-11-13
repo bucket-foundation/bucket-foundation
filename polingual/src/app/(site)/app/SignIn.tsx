@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { appAuth, signInError } from "@/lib/app/auth";
 import styles from "./app.module.css";
-import { Button, Card } from "@/ui";
+import { Button, Field, FlagBand, Input, Sheet, Stage, StreakFlame } from "@/ui";
 
 export type SignInCopy = { label: string; title: string; intro: string };
 
@@ -41,16 +41,17 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
   }
 
   return (
-    <Card as="section" className={styles.card} data-testid="sign-in">
+    <Stage testId="sign-in-stage">
+    <Sheet className={styles.card} data-testid="sign-in">
+      <StreakFlame days={100} caption="Day streak" size={36} />
       <p className={styles.label}>{copy.label}</p>
       <h1 className={styles.title}>{step === "email" ? copy.title : "Check your email"}</h1>
       {step === "email" ? (
         <form onSubmit={send} className={styles.form}>
           <p className={styles.body}>{copy.intro}</p>
-          <label className={styles.field}>
-            <span>Email</span>
-            <input type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} data-testid="email" />
-          </label>
+          <Field label="Email">
+            <Input type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} data-testid="email" />
+          </Field>
           <Button type="submit" disabled={busy}>
             {busy ? "Sending" : "Email me a code"}
           </Button>
@@ -58,10 +59,9 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
       ) : (
         <form onSubmit={verify} className={styles.form}>
           <p className={styles.body}>We sent a code to {email}. Enter it here.</p>
-          <label className={styles.field}>
-            <span>Code</span>
-            <input inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6,10}" required value={code} onChange={(e) => setCode(e.target.value)} data-testid="code" />
-          </label>
+          <Field label="Code">
+            <Input inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6,10}" required value={code} onChange={(e) => setCode(e.target.value)} data-testid="code" />
+          </Field>
           <Button type="submit" disabled={busy}>
             {busy ? "Checking" : "Sign in"}
           </Button>
@@ -71,6 +71,8 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
         </form>
       )}
       {error ? <p role="alert" className={styles.error} data-testid="sign-in-error">{error}</p> : null}
-    </Card>
+    <FlagBand className={styles.sheetBand} />
+    </Sheet>
+    </Stage>
   );
 }

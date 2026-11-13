@@ -2,10 +2,11 @@
 
 import { APP_STORE_URL, PLANS, TESTFLIGHT_URL, type Access } from "@/lib/app/plans";
 import styles from "./app.module.css";
-import { Button, ButtonLink } from "@/ui";
+import { Button, ButtonLink, FlagBand, Stage } from "@/ui";
 
 export default function Paywall({ access, retry }: { access: Access; retry: () => void }) {
   return (
+    <Stage>
     <section className={styles.stack} data-testid="paywall">
       <div>
         <p className={styles.label}>Polingual plans</p>
@@ -29,6 +30,8 @@ export default function Paywall({ access, retry }: { access: Access; retry: () =
       </div>
       {access.status === "unknown" ? <p className={styles.error} data-testid="access-unknown">Your subscription could not be checked. Try again in a minute.</p> : null}
       <p className={styles.small}>Web checkout is coming later. Plans renew through Apple until you cancel in your Apple account settings.</p>
+      <FlagBand />
     </section>
+    </Stage>
   );
 }

@@ -5,7 +5,10 @@
 .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px;padding:0 16px;max-width:1120px;width:100%;margin:0 auto}
 .brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--pl-font-display);font-weight:600;font-size:20px;color:var(--tyrian);text-decoration:none}
 .main{flex:1;display:flex;flex-direction:column;width:100%;max-width:1120px;margin:0 auto;padding:8px 16px 24px}
-.card{max-width:520px;width:100%;margin:24px auto 0}
+.card{max-width:520px;width:100%;margin:0 auto;overflow:hidden;padding-bottom:34px}
+.sheetBand{position:absolute;left:0;right:0;bottom:0}
+.main{padding-top:0;max-width:none}
+.stage .stack{margin-top:0}
 .label{font-family:var(--pl-font-mono)!important;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--vermilion);margin:0}
 .title{font-family:var(--pl-font-display)!important;font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.05;color:var(--tyrian);margin:8px 0 12px}
 .body{font-size:16px;line-height:1.5;color:var(--ink-2);margin:0 0 16px}
@@ -50,7 +53,7 @@
 .streakDay{font-family:var(--pl-font-display)!important;font-weight:700;font-size:clamp(30px,4vw,44px);line-height:1.05}
 .streakNote{font-size:15px}
 .streakBar{height:10px;border-radius:999px;background:rgba(246,238,220,.2);overflow:hidden}
-.streakBar>div{height:100%;background:var(--ochre);border-radius:999px}
+.streakBar>div{height:100%;width:var(--pct,0);background:var(--ochre);border-radius:999px}
 .gapTop{margin-top:16px}
 .soon{align-self:flex-start;font-family:var(--pl-font-mono);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--parchment);background:var(--lapis);border-radius:999px;padding:3px 10px;margin-top:4px}
 .plan[data-available=no] .planPrice{color:var(--ink-2)}

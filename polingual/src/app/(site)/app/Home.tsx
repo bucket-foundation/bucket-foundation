@@ -10,7 +10,7 @@ import NewSystem from "./NewSystem";
 import StreakCard from "./StreakCard";
 import { useSystems } from "./useSystems";
 import styles from "./app.module.css";
-import { ButtonLink, Card, Tag } from "@/ui";
+import { ButtonLink, Card, FlagBand, Stage, Tag } from "@/ui";
 
 export default function Home() {
   const { state, create } = useSystems();
@@ -28,6 +28,7 @@ export default function Home() {
   if (state.status === "error") return <p className={styles.error}>Your languages did not load. Reload the page to try again.</p>;
   if (state.systems.length === 0) return <NewSystem first create={create} />;
   return (
+    <Stage>
     <section className={styles.stack} data-testid="app-home">
       <div>
         <p className={styles.label}>Your language systems</p>
@@ -65,6 +66,8 @@ export default function Home() {
       <Link className={styles.link} href={appHref.create}>
         Add a language system
       </Link>
+      <FlagBand />
     </section>
+    </Stage>
   );
 }

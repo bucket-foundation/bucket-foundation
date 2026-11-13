@@ -1,0 +1,115 @@
+import type { CSSProperties, HTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
+import { Art, type ArtName } from "./art";
+import { FlagTile } from "./FlagTile";
+import s from "./world.module.css";
+
+export type GroundKind = "paper" | "lattice";
+
+export function Ground({ kind = "paper", cut, className, children, style }: { kind?: GroundKind; cut?: boolean; className?: string; children?: ReactNode; style?: CSSProperties }) {
+  return <div className={[s[kind], cut && s.cut, className].filter(Boolean).join(" ")} style={style} data-ground={kind}>{children}</div>;
+}
+
+export type StickerSpot = { name: ArtName; x: string; y: string; size: number; rotate?: number; shadow?: boolean; side?: "left" | "right" };
+
+export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "left" }: StickerSpot) {
+  return (
+    <span className={s.sticker} style={{ [side]: x, top: y, transform: `rotate(${rotate}deg)` }} data-sticker={name}>
+      <Art name={name} size={size} shadow={shadow} />
+    </span>
+  );
+}
+
+const BAND = ["lapis", "paper", "vermilion", "lapis", "paper", "lapis", "white", "vermilion", "paper", "ink", "ochre", "white", "malachite", "vermilion", "ochre", "vermilion"] as const;
+
+export function FlagBand({ className }: { className?: string }) {
+  return (
+    <div className={[s.band, className].filter(Boolean).join(" ")} aria-hidden data-testid="flag-band">
+      {BAND.map((c, i) => <i key={i} style={{ background: `var(--pl-${c})` }} />)}
+    </div>
+  );
+}
+
+export function StreakFlame({ days, caption = "Day streak", onDark, size = 44 }: { days: number | string; caption?: string; onDark?: boolean; size?: number }) {
+  return (
+    <span className={[s.flame, onDark && s.onDark].filter(Boolean).join(" ")} data-testid="streak-flame">
+      <Art name="streak-flame" size={size} />
+      <span>
+        <b className={s.flameNum}>{days}</b>
+        <span className={s.flameCap}>{caption}</span>
+      </span>
+    </span>
+  );
+}
+
+export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
+  return (
+    <label className={s.field}>
+      <span className={s.fieldLabel}>{label}</span>
+      {children}
+      {hint ? <span className={s.hint}>{hint}</span> : null}
+    </label>
+  );
+}
+
+export function Input({ className, ...rest }: InputHTMLAttributes<HTMLInputElement>) {
+  return <input className={[s.input, className].filter(Boolean).join(" ")} {...rest} />;
+}
+
+export function Select({ className, ...rest }: SelectHTMLAttributes<HTMLSelectElement>) {
+  return <select className={[s.input, className].filter(Boolean).join(" ")} {...rest} />;
+}
+
+export function Sheet({ tone, as: Tag = "section", className, children, ...rest }: HTMLAttributes<HTMLElement> & { tone?: "tyrian"; as?: "section" | "div" | "form" }) {
+  return <Tag className={[s.sheet, className].filter(Boolean).join(" ")} data-tone={tone} {...rest}>{children}</Tag>;
+}
+
+export function Tabs<T extends string>({ tabs, value, onChange, label }: { tabs: { id: T; label: string }[]; value: T; onChange: (id: T) => void; label: string }) {
+  return (
+    <div role="tablist" aria-label={label} className={s.tabs}>
+      {tabs.map((t) => (
+        <button key={t.id} type="button" role="tab" aria-selected={t.id === value} className={s.tab} onClick={() => onChange(t.id)}>{t.label}</button>
+      ))}
+    </div>
+  );
+}
+
+export const HERO_STICKERS: StickerSpot[] = [
+  { name: "azulejo", x: "34%", y: "6%", size: 150, rotate: 8 },
+  { name: "ticket", x: "18%", y: "40%", size: 160, rotate: 6 },
+  { name: "seal", x: "62%", y: "36%", size: 130, rotate: -7 },
+  { name: "torn-label", x: "38%", y: "58%", size: 130, rotate: -4 },
+  { name: "pebble", x: "84%", y: "88%", size: 56, rotate: 18 },
+  { name: "kente", x: "62%", y: "72%", size: 200, rotate: -22 },
+  { name: "script-he", x: "78%", y: "14%", size: 60, shadow: false },
+  { name: "script-ru", x: "8%", y: "30%", size: 56, shadow: false },
+  { name: "script-ko", x: "88%", y: "44%", size: 34, shadow: false },
+];
+
+export const BAND_STICKERS: StickerSpot[] = [
+  { name: "azulejo", x: "4%", y: "14%", size: 92, rotate: -8 },
+  { name: "ticket", x: "30%", y: "50%", size: 112, rotate: 6 },
+  { name: "seal", x: "58%", y: "10%", size: 84, rotate: -6 },
+  { name: "torn-label", x: "72%", y: "56%", size: 96, rotate: 5 },
+  { name: "kente", x: "-6%", y: "72%", size: 120, rotate: -18 },
+  { name: "pebble", x: "88%", y: "16%", size: 38, rotate: 16 },
+  { name: "script-he", x: "38%", y: "12%", size: 40, shadow: false },
+];
+
+export function Stage({ children, stickers = HERO_STICKERS, phoneStickers = BAND_STICKERS, testId }: { children: ReactNode; stickers?: StickerSpot[]; phoneStickers?: StickerSpot[]; testId?: string }) {
+  return (
+    <div className={s.stage} data-testid={testId}>
+      <div className={s.stageArt} aria-hidden>
+        <Ground kind="lattice" cut className={s.stageWide}>
+          <div className={s.only} data-at="wide">{stickers.map((p) => <Sticker key={p.name} {...p} />)}</div>
+          <ul className={s.tiles}>
+            <FlagTile lang="es" code="ES" label="Spanish" word="cien" reading="/θjen/" index={0} />
+            <FlagTile lang="de" code="DE" label="German" word="hundert" reading="/ˈhʊndɐt/" index={1} />
+          </ul>
+          <div className={s.only} data-at="narrow">{phoneStickers.map((p) => <Sticker key={p.name} {...p} />)}</div>
+        </Ground>
+      </div>
+      <div className={s.stageBody}>{children}</div>
+    </div>
+  );
+}
+
