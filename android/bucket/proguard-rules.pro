@@ -1,0 +1,5 @@
+-keepattributes *Annotation*, InnerClasses
+-keep,includedescriptorclasses class foundation.bucket.**$$serializer { *; }
+-keepclassmembers class foundation.bucket.** { *** Companion; }
+-keep,includedescriptorclasses class com.polingual.**$$serializer { *; }
+-dontwarn org.slf4j.**
