@@ -3,11 +3,15 @@ import { blocksTouching, configured, GroupsError, json, readBody, requestUser, s
 import { bearer, isGuestToken, verifyGuestToken } from "./lobby-guests";
 import { uuidOrNull, type BlockRow } from "./groups";
 import { botsEnabled, STANDING_LOBBY_MS } from "./lobby-bots";
+import { revealEntries } from "./lobby-reveal";
+import { corpusLookup } from "./lang-lookup";
 import { langCorpus } from "./groups-server";
 import { LANG_CODES } from "./lang-systems";
 import {
   answerDecision,
   assembleLobby,
+  tileAnswerDecision,
+  type RevealEntry,
   buildPrompts,
   LEAD_MS,
   finished,
@@ -20,6 +24,7 @@ import {
   type LobbyPromptRow,
   type LobbyRow,
   type LobbyState,
+  revealEnabled,
 } from "./lobbies";
 
 export const LOBBIES = "lobbies";
@@ -28,7 +33,8 @@ export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
 export const PROFILES = "academy_profiles";
-export const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
+const LOBBY_BASE_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
+export const LOBBY_COLS = (revealEnabled() ? `${LOBBY_BASE_COLS},reveal_seconds` : LOBBY_BASE_COLS) as typeof LOBBY_BASE_COLS;
 export const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
 
 export async function limited(key: string, max: number): Promise<boolean> {
@@ -131,11 +137,13 @@ export async function startLobby(lobby: LobbyRow, now: number): Promise<StartRes
   return rows[0] ? { ok: true, lobby: rows[0] } : { ok: false, error: "lobby_started" };
 }
 
-export type SubmitResult = AnswerDecision | { ok: false; error: "not_member" | "already_answered" };
+export type SubmitResult = AnswerDecision | { ok: false; error: "not_member" | "already_answered" | "out_of_lives" };
 
 export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, choice: string, now: number): Promise<SubmitResult> {
-  const rows = check(await service().from(PROMPTS).select("round,choices,answer").eq("lobby_id", lobby.id).eq("round", round).limit(1), "prompt") as Pick<LobbyPromptRow, "round" | "choices" | "answer">[];
-  const decision = answerDecision(lobby, rows[0] ?? null, round, choice, now);
+  const rows = check(await service().from(PROMPTS).select("round,choices,answer,mode").eq("lobby_id", lobby.id).eq("round", round).limit(1), "prompt") as Pick<LobbyPromptRow, "round" | "choices" | "answer" | "mode">[];
+  const prompt = rows[0] ?? null;
+  const prior = prompt?.mode === "tiles" ? (check(await service().from(ANSWERS).select("round,correct").eq("lobby_id", lobby.id).eq("user_id", uid), "prior") as { round: number; correct: boolean }[]) : [];
+  const decision = prompt?.mode === "tiles" ? tileAnswerDecision(lobby, prompt, round, choice, now, prior) : answerDecision(lobby, prompt, round, choice, now);
   if (!decision.ok) return decision;
   const res = await service().rpc("lobby_answer", { p_lobby: lobby.id, p_user: uid, p_round: round, p_choice: choice, p_correct: decision.correct, p_ms: decision.ms, p_points: decision.points });
   if (res.error) throw new Error(res.error.message);
@@ -153,7 +161,9 @@ export async function lobbyState(lobby: LobbyRow, uid: string, now: number, bloc
     lobby.status === "lobby" ? Promise.resolve([]) : promptsOf(lobby.id),
   ]);
   const msgs = (check(messages, "messages") as LobbyMessageRow[]).reverse();
-  const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts, lobby.standing_slot ? new Date(Date.parse(lobby.created_at) + STANDING_LOBBY_MS).toISOString() : null);
+  const corpus = langCorpus();
+  const describe = (row: LobbyPromptRow): RevealEntry[] => revealEntries(row, lobby.root, corpus?.byId.get(row.item_id) ?? null, corpusLookup);
+  const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts, lobby.standing_slot ? new Date(Date.parse(lobby.created_at) + STANDING_LOBBY_MS).toISOString() : null, describe);
   return { ...state, botsEnabled: botsEnabled() };
 }
 

@@ -1,4 +1,5 @@
-import { LOBBY_CAP, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
+import { parseTile, tappedChoice, tileKnown, TILE_ROUND_SECONDS } from "./lobby-tiles";
+import { gameEndMs, LOBBY_CAP, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
 
 export type BotSkill = "easy" | "medium" | "hard";
 
@@ -43,10 +44,12 @@ export const READY_TO_MS = 3500;
 export const CHAT_CHANCE = 0.35;
 
 export const STANDING_SLOTS: StandingSlot[] = [
-  { slot: "daily-romance", name: "Daily words: Romance", game: "daily", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 8, roundSeconds: 10 },
-  { slot: "daily-world", name: "Daily words: World", game: "daily", root: "en", targets: ["es", "de", "ja", "ar"], rounds: 8, roundSeconds: 10 },
-  { slot: "live-romance", name: "Live: Romance", game: "live", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 8, roundSeconds: 8 },
-  { slot: "live-germanic", name: "Live: Germanic", game: "live", root: "en", targets: ["de", "nl", "sv"], rounds: 8, roundSeconds: 8 },
+  { slot: "daily-romance", name: "Daily words: Romance", game: "daily", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 6, roundSeconds: 8 },
+  { slot: "daily-world", name: "Daily words: World", game: "daily", root: "en", targets: ["es", "de", "ja", "ar"], rounds: 6, roundSeconds: 8 },
+  { slot: "live-romance", name: "Live: Romance", game: "live", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 7, roundSeconds: 7 },
+  { slot: "tiles-romance", name: "Tiles: Romance", game: "tiles", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 8, roundSeconds: TILE_ROUND_SECONDS },
+  { slot: "tiles-world", name: "Tiles: World", game: "tiles", root: "en", targets: ["es", "de", "ja", "ar"], rounds: 8, roundSeconds: TILE_ROUND_SECONDS },
+  { slot: "live-germanic", name: "Live: Germanic", game: "live", root: "en", targets: ["de", "nl", "sv"], rounds: 7, roundSeconds: 7 },
 ];
 
 const ROSTER: [string, string][] = [
@@ -140,6 +143,22 @@ export function botChoice(prompt: Pick<LobbyPrompt, "mode" | "lang" | "gloss" | 
   return pool[Math.floor(unit(`pick:${key}`) * pool.length)] ?? prompt.choices[0];
 }
 
+export function tileSubmitMs(roundSeconds: number, plannedMs: number): number {
+  const len = roundSeconds * 1000;
+  return Math.round(len * 0.6 + Math.min(1, plannedMs / len) * len * 0.28);
+}
+
+export function botTileChoice(choices: readonly string[], gloss: string, root: string, lookup: FormLookup, skill: BotSkill, key: string): string {
+  const known = new Set(tileKnown(choices.map(parseTile), gloss, root, lookup));
+  const acc = SKILLS[skill].accuracy;
+  const taps: number[] = [];
+  choices.forEach((_, i) => {
+    const roll = unit(`tile:${key}:${i}`);
+    if (known.has(i) ? roll < acc + (1 - acc) / 2 : roll < (1 - acc) / 6) taps.push(i);
+  });
+  return tappedChoice(taps);
+}
+
 export function chatLine(kind: "greet" | "signoff", key: string): string | null {
   if (unit(`chat:${kind}:${key}`) >= CHAT_CHANCE) return null;
   const list = kind === "greet" ? GREETINGS : SIGNOFFS;
@@ -148,10 +167,10 @@ export function chatLine(kind: "greet" | "signoff", key: string): string | null 
 
 export type StandingStep = "start" | "reset" | "wait";
 
-export function standingStep(lobby: Pick<LobbyRow, "status" | "created_at" | "started_at" | "rounds" | "round_seconds">, now: number): StandingStep {
+export function standingStep(lobby: Pick<LobbyRow, "status" | "created_at" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds">, now: number): StandingStep {
   if (lobby.status === "lobby") return now - Date.parse(lobby.created_at) >= STANDING_LOBBY_MS ? "start" : "wait";
   if (!lobby.started_at) return "reset";
-  const end = Date.parse(lobby.started_at) + lobby.rounds * lobby.round_seconds * 1000;
+  const end = gameEndMs({ ...lobby, started_at: lobby.started_at });
   return now >= end + STANDING_RESULTS_MS ? "reset" : "wait";
 }
 

@@ -53,7 +53,7 @@ const BLOCK_COLS = "id,blocker_id,target_user_id,target_group_id,name,created_at
 const CORS_HEADERS: Record<string, string> = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, OPTIONS",
-  "access-control-allow-headers": "authorization, content-type",
+  "access-control-allow-headers": "authorization, content-type, x-polingual-client",
   "cache-control": "no-store",
 };
 

@@ -5,7 +5,8 @@ import { useCallback, useEffect, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { LobbyError, lobbyError, type LobbySummary } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
-import { GAMES, gameName, LANG_SETS, langName, type GameId } from "./langs";
+import { GAMES, gameName, LANG_SETS, roundSecondsFor, type GameId } from "./langs";
+import { LangCard } from "./LearnWord";
 import Nickname from "./Nickname";
 import styles from "./play.module.css";
 import { savedNickname, usePlay } from "./usePlay";
@@ -19,7 +20,7 @@ export default function Lobbies() {
   const [code, setCode] = useState("");
   const [game, setGame] = useState<GameId>("daily");
   const [set, setSet] = useState(LANG_SETS[0].id);
-  const [rounds, setRounds] = useState(8);
+  const [rounds, setRounds] = useState(6);
   const [busy, setBusy] = useState(false);
   const [botsOn, setBotsOn] = useState(false);
   const [fill, setFill] = useState(true);
@@ -50,7 +51,7 @@ export default function Lobbies() {
     setBusy(true);
     setError(null);
     try {
-      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: chosen.root, targets: chosen.targets, rounds, roundSeconds: game === "live" ? 8 : 10, listed: true, displayName: state.nickname, game, fillBots: botsOn && fill });
+      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: chosen.root, targets: chosen.targets, rounds, roundSeconds: roundSecondsFor(game), listed: true, displayName: state.nickname, game, fillBots: botsOn && fill });
       router.push(`/play/${lobby.code}`);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
@@ -112,7 +113,7 @@ export default function Lobbies() {
               <label className={app.field}>
                 Rounds
                 <select value={rounds} onChange={(e) => setRounds(Number(e.target.value))}>
-                  {[5, 8, 12].map((n) => (
+                  {[5, 6, 8].map((n) => (
                     <option key={n} value={n}>{n}</option>
                   ))}
                 </select>
@@ -143,7 +144,12 @@ export default function Lobbies() {
                     {l.hostHandle ? <span className={styles.handle} data-testid="host-handle"> @{l.hostHandle}</span> : null}
                     <br />
                     <span className={styles.tag}>
-                      {gameName(l.game)} · {l.targets.map(langName).join(", ")} · {l.players} playing{l.bots ? ` · ${l.bots} bot${l.bots === 1 ? "" : "s"}` : ""}{l.status === "playing" ? " · in a game" : ""}
+                      {gameName(l.game)} · {l.players} playing{l.bots ? ` · ${l.bots} bot${l.bots === 1 ? "" : "s"}` : ""}{l.status === "playing" ? " · in a game" : ""}
+                    </span>
+                    <span className={styles.langRow}>
+                      {l.targets.map((t) => (
+                        <LangCard key={t} lang={t} />
+                      ))}
                     </span>
                   </span>
                   <button type="button" className={app.ghost} onClick={() => router.push(`/play/${l.code}`)} disabled={l.status !== "lobby" && !l.isMember && !l.standing}>

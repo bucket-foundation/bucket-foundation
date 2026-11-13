@@ -3,11 +3,20 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
-import { answeredRound, botLabel, flagEmoji, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { tappedChoice } from "@academy/lobby-tiles";
+import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, ranked, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { LANGS } from "@academy/lang-systems";
+import { TileFace } from "@/app/tile";
+import { LangCard } from "./LearnWord";
+import LiveBoard from "./LiveBoard";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { gameName, langName } from "./langs";
 import Nickname from "./Nickname";
+import Reveal from "./Reveal";
+import Tiles from "./Tiles";
+import { play, readMuted, writeMuted } from "@/lib/lobby/sound";
+import type { LobbySummary } from "@/lib/lobby/client";
 import styles from "./play.module.css";
 import { savedNickname, usePlay } from "./usePlay";
 
@@ -31,6 +40,14 @@ export default function Room({ code: rawCode }: { code: string }) {
   const [picked, setPicked] = useState<Picked | null>(null);
   const [chat, setChat] = useState("");
   const [copied, setCopied] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [next, setNext] = useState<LobbySummary | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [skipped, setSkipped] = useState("");
+  const [kick, setKick] = useState(0);
+  const lastRound = useRef<string>("");
+  const cheered = useRef<string>("");
+  useEffect(() => setMuted(readMuted(() => window.localStorage)), []);
   const version = useRef<number | undefined>(undefined);
   const ready = state.status === "ready";
   const nickname = state.status === "ready" ? state.nickname : "";
@@ -58,7 +75,7 @@ export default function Room({ code: rawCode }: { code: string }) {
   useEffect(() => {
     if (!id) return;
     let busy = false;
-    const t = window.setInterval(async () => {
+    const pull = async () => {
       if (busy) return;
       busy = true;
       const sentAt = Date.now();
@@ -71,14 +88,44 @@ export default function Room({ code: rawCode }: { code: string }) {
       } finally {
         busy = false;
       }
-    }, POLL_MS);
+    };
+    if (kick > 0) void pull();
+    const t = window.setInterval(() => void pull(), POLL_MS);
     return () => window.clearInterval(t);
-  }, [api, id, take]);
+  }, [api, id, take, kick]);
 
   useEffect(() => {
     const t = window.setInterval(() => setNow(Date.now()), TICK_MS);
     return () => window.clearInterval(t);
   }, []);
+
+  const livePhase = lobby ? phaseAt(lobby, now + offset) : null;
+  const roundKey = livePhase?.kind === "round" || livePhase?.kind === "reveal" ? `${lobby?.startedAt}:${livePhase.kind}:${livePhase.index}` : livePhase?.kind ?? "";
+  useEffect(() => {
+    if (!roundKey || roundKey === lastRound.current) return;
+    lastRound.current = roundKey;
+    if (roundKey.includes(":round:")) play("round", muted);
+    if (roundKey.includes(":reveal:") || roundKey === "finished") setKick((k) => k + 1);
+    if (roundKey === "finished" && cheered.current !== lobby?.startedAt) {
+      cheered.current = lobby?.startedAt ?? "";
+      play("win", muted);
+    }
+  }, [roundKey, muted, lobby?.startedAt]);
+  useEffect(() => {
+    if (livePhase?.kind !== "finished" || !ready || lobby?.standing) return;
+    let stop = false;
+    api
+      .listing()
+      .then((res) => {
+        if (stop) return;
+        const rooms = res.lobbies.filter((l) => l.standing && l.id !== lobby?.id);
+        setNext(rooms.find((l) => l.game === lobby?.game) ?? rooms[0] ?? null);
+      })
+      .catch(() => undefined);
+    return () => {
+      stop = true;
+    };
+  }, [livePhase?.kind, ready, api, lobby?.id, lobby?.game, lobby?.standing]);
 
   if (!code) {
     return (
@@ -138,12 +185,42 @@ export default function Room({ code: rawCode }: { code: string }) {
     try {
       const res = await api.answer(lobby.id, round, choice);
       setPicked({ game, round, choice, correct: res.correct, points: res.points });
+      play(res.correct ? "hit" : "miss", muted);
       take(res.lobby, sentAt);
     } catch (err) {
       if (!(err instanceof LobbyError && err.code === "already_answered")) setPicked((p) => (p?.round === round ? null : p));
       setError(errorOf(err));
     }
   };
+
+  const toggleMute = () => {
+    writeMuted(() => window.localStorage, !muted);
+    setMuted(!muted);
+  };
+
+  const newLobby = async (bots: boolean) => {
+    if (state.status !== "ready" || busy) return;
+    setBusy(true);
+    try {
+      const created = await api.create({ name: `${state.nickname}'s lobby`, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, roundSeconds: lobby.roundSeconds, listed: true, displayName: state.nickname, game: lobby.game, fillBots: bots });
+      if (bots) await api.fillBots(created.id).catch(() => undefined);
+      router.push(`/play/${created.code}`);
+    } catch (err) {
+      setError(errorOf(err));
+      setBusy(false);
+    }
+  };
+
+  const toolbar = (
+    <div className={styles.toolbar}>
+      <span className={styles.flames} data-testid="streak" data-on={streakOf(lobby) >= 2}>
+        {streakOf(lobby) >= 2 ? `🔥 ${streakOf(lobby)} in a row` : ""}
+      </span>
+      <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} data-testid="mute">
+        {muted ? "🔇 Sound off" : "🔊 Sound on"}
+      </button>
+    </div>
+  );
 
   const leave = async () => {
     try {
@@ -211,8 +288,11 @@ export default function Room({ code: rawCode }: { code: string }) {
 
   const header = (
     <section className={app.stackSm}>
-      <p className={app.label}>
-        {gameName(lobby.game)} · {lobby.targets.map(langName).join(", ")}
+      <p className={app.label}>{gameName(lobby.game)}</p>
+      <p className={styles.langRow} data-testid="room-langs">
+        {lobby.targets.map((l) => (
+          <LangCard key={l} lang={l} />
+        ))}
       </p>
       <p className={styles.code} data-testid="room-code">{lobby.code}</p>
     </section>
@@ -224,6 +304,7 @@ export default function Room({ code: rawCode }: { code: string }) {
     return (
       <div className={app.stack} data-testid="room">
         {header}
+        {toolbar}
         <div className={app.row}>
           <button type="button" className={app.ghost} onClick={() => void share()}>{copied ? "Link copied" : "Share link"}</button>
           <button type="button" className={app.link} onClick={() => void leave()}>Leave</button>
@@ -255,11 +336,76 @@ export default function Room({ code: rawCode }: { code: string }) {
     );
   }
 
+  const lives = lobby.game === "tiles" && (phase.kind === "round" || phase.kind === "reveal") ? livesLeft(lobby, phase.kind === "round" ? phase.index : phase.index + 1) : null;
+  const streak = streakOf(lobby);
+  const rank = ranked(lobby.players).find((p) => p.isMe)?.rank ?? null;
+  const hud = (
+    <div className={styles.hud} data-testid="hud">
+      <div className={styles.hudRow}>
+        <span className={styles.hudRound} data-testid="round-count">
+          {phase.kind === "round" || phase.kind === "reveal" ? `Round ${phase.index + 1} of ${lobby.rounds}` : `${lobby.rounds} rounds`}
+        </span>
+        <span className={styles.hudScore}>
+          <span className={styles.scoreNow} key={myScore(lobby)} data-testid="my-score">{myScore(lobby)}</span> pts
+        </span>
+        {rank ? <span className={styles.hudRank} data-testid="my-rank">#{rank} of {lobby.players.length}</span> : null}
+        <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
+        {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
+        <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">
+          {muted ? "🔇" : "🔊"}
+        </button>
+      </div>
+      <div className={styles.gameBar} role="progressbar" aria-label="Game progress" aria-valuemin={0} aria-valuemax={lobby.rounds} aria-valuenow={Math.round(gameProgress(phase, lobby.rounds) * lobby.rounds)} data-testid="game-progress">
+        <div style={{ width: `${gameProgress(phase, lobby.rounds) * 100}%` }} />
+      </div>
+    </div>
+  );
+  const side = (
+    <aside className={styles.side}>
+      <LiveBoard players={lobby.players} live={phase.kind === "round"} />
+    </aside>
+  );
+
   if (phase.kind === "countdown") {
     return (
       <div className={app.stack} data-testid="room">
         {header}
-        <p className={styles.promptWord} data-testid="countdown">{Math.ceil(phase.seconds)}</p>
+        <div className={styles.stage}>
+          <div className={styles.arena}>
+            <p className={styles.bigCount} key={Math.ceil(phase.seconds)} data-testid="countdown">{Math.ceil(phase.seconds)}</p>
+            <p className={app.small}>{gameName(lobby.game)} · {lobby.rounds} rounds</p>
+          </div>
+          {side}
+        </div>
+      </div>
+    );
+  }
+
+  if (phase.kind === "reveal") {
+    const prompt = promptFor(lobby, phase.index);
+    const key = `${lobby.startedAt}:${phase.index}`;
+    const hidden = skipped === key;
+    const total = lobby.revealSeconds || 1;
+    return (
+      <div className={app.stack} data-testid="room">
+        {hud}
+        <div className={styles.stage}>
+          <div className={styles.arena}>
+            <div className={styles.nextRound} data-testid="next-round">
+              <span>Next round in <b data-testid="next-round-count">{Math.max(1, Math.ceil(phase.remaining))}</b></span>
+              <div className={styles.timer} aria-hidden="true">
+                <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / total) * 100))}%` }} />
+              </div>
+              {!hidden ? (
+                <button type="button" className={app.ghost} onClick={() => setSkipped(key)} data-testid="skip-reveal">Skip</button>
+              ) : null}
+            </div>
+            {hidden ? null : prompt?.reveal?.length ? <Reveal prompt={prompt} /> : <p className={app.muted} aria-busy="true">Loading the answers</p>}
+            <Ad placement="between-rounds" />
+          </div>
+          {side}
+        </div>
+        {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
   }
@@ -268,54 +414,112 @@ export default function Room({ code: rawCode }: { code: string }) {
     const prompt = promptFor(lobby, phase.index);
     const mine = picked?.round === phase.index && picked.game === lobby.startedAt ? picked : null;
     const done = !!mine || answeredRound(lobby, phase.index);
+    const elapsed = lobby.roundSeconds * 1000 - phase.remaining * 1000;
+    const stateOf = (c: string) => (mine ? (mine.choice === c ? (mine.pending ? "pending" : mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined);
     return (
       <div className={app.stack} data-testid="room">
-        <p className={app.label}>
-          Round {phase.index + 1} of {lobby.rounds} · {myScore(lobby)} points
-        </p>
-        <div className={styles.timer} aria-hidden="true">
-          <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / lobby.roundSeconds) * 100))}%` }} />
-        </div>
-        {prompt ? (
-          <>
-            <div className={styles.prompt}>
-              <p className={app.small}>{prompt.mode === "flag" ? "Which language is this word?" : "Pick the word that means"}</p>
-              <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
+        {hud}
+        {mine && !mine.pending && mine.points > 0 ? <p className={styles.pop} key={`${mine.game}:${mine.round}`} data-testid="score-pop">+{mine.points}</p> : null}
+        <div className={styles.stage}>
+          <div className={styles.arena}>
+            <div className={styles.timer} aria-hidden="true">
+              <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / lobby.roundSeconds) * 100))}%` }} />
             </div>
-            <ul className={styles.choices}>
-              {prompt.choices.map((c) => (
-                <li key={c}>
-                  <button type="button" className={styles.choice} data-state={mine ? (mine.choice === c ? (mine.pending ? "pending" : mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
-                    {prompt.mode === "flag" ? langName(c) : c}
-                  </button>
-                </li>
-              ))}
-            </ul>
-            {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.points > 0 ? `Right. +${mine.points}` : mine.correct ? "Right." : "Not this time."}</p> : null}
-          </>
-        ) : (
-          <p className={app.muted} aria-busy="true">Loading the round</p>
-        )}
-        {done ? (
-          <>
-            {lobby.game === "live" ? scoreboard : null}
-            <Ad placement="between-rounds" />
-          </>
-        ) : null}
+            {prompt && prompt.mode === "tiles" ? (
+              <>
+                <Tiles
+                  key={`${lobby.startedAt}:${phase.index}`}
+                  gloss={prompt.gloss}
+                  choices={prompt.choices}
+                  round={phase.index}
+                  rounds={lobby.rounds}
+                  roundSeconds={lobby.roundSeconds}
+                  elapsedMs={elapsed}
+                  muted={muted}
+                  locked={done || lives === 0}
+                  onSubmit={(t) => void answer(phase.index, tappedChoice(t))}
+                />
+                {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.correct ? `Perfect. +${mine.points}` : mine.points > 0 ? `Close. +${mine.points}` : "Missed some. -1 life"}</p> : null}
+                {lives === 0 ? <p className={styles.feedback}>Out of lives. Watch the rest.</p> : null}
+              </>
+            ) : prompt && prompt.mode === "flag" ? (
+              <>
+                <div className={styles.prompt}>
+                  <p className={app.small}>Which language is this word?</p>
+                  <div className={styles.promptTile}>
+                    <TileFace as="div" lang="" plain word={prompt.gloss} attrs={{ "data-testid": "prompt" }} />
+                  </div>
+                </div>
+                <ul className={styles.choices}>
+                  {prompt.choices.map((c) => (
+                    <li key={c}>
+                      <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                        <LangCard lang={c} big />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : prompt ? (
+              <>
+                <div className={styles.prompt}>
+                  <p className={app.small}>Pick the word that means</p>
+                  <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
+                </div>
+                <ul className={styles.choiceTiles}>
+                  {prompt.choices.map((c, i) => (
+                    <li key={c}>
+                      <TileFace
+                        as="button"
+                        lang={prompt.lang ?? ""}
+                        plain={!prompt.lang}
+                        word={c}
+                        rtl={prompt.lang ? LANGS[prompt.lang]?.rtl : undefined}
+                        index={i}
+                        className={styles.choiceTile}
+                        attrs={{ "data-state": stateOf(c), "data-testid": "choice", disabled: done, onClick: () => void answer(phase.index, c) }}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <p className={app.muted} aria-busy="true">Loading the round</p>
+            )}
+            {mine && prompt?.mode !== "tiles" ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.points > 0 ? `Right. +${mine.points}` : mine.correct ? "Right." : "Not this time."}</p> : null}
+          </div>
+          {side}
+        </div>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
   }
 
-  const missed = missedWords(lobby);
+  const missed = missedWords(lobby).filter((w) => !w.includes(","));
+  const startsIn = lobby.nextStartAt ? Math.max(0, Math.ceil((Date.parse(lobby.nextStartAt) - now - offset) / 1000)) : null;
   const guest = state.identity.kind === "guest";
   return (
     <div className={app.stack} data-testid="results">
       <section className={app.stackSm}>
         <p className={app.label}>Game over</p>
-        <h1 className={app.title}>{board[0]?.isMe ? "You won" : `${board[0]?.name ?? "Nobody"} wins`}</h1>
+        <h1 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h1>
       </section>
+      {toolbar}
       {scoreboard}
+      <section className={styles.nextBar} data-testid="next-ctas">
+        {lobby.standing ? (
+          <span className={styles.nextName} data-testid="next-game">Next game: {lobby.name}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
+        ) : next ? (
+          <a className={app.cta} href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</a>
+        ) : null}
+        <button type="button" className={app.ghost} disabled={busy} onClick={() => void newLobby(false)} data-testid="rematch">Rematch</button>
+        <button type="button" className={app.ghost} disabled={busy} onClick={() => void newLobby(true)} data-testid="play-bots">Play with bots</button>
+        <a className={app.cta} href={LEARN_HREF} data-testid="results-learn">Start learning</a>
+      </section>
+      <section className={app.stackSm} data-testid="reveal-all">
+        <h2 className={app.fieldLabel}>Every word in this game</h2>
+        {lobby.prompts.map((p) => (p.reveal?.length ? <Reveal key={p.round} prompt={p} answersOnly /> : null))}
+      </section>
       {guest ? (
         <section className={styles.upsell} data-testid="save-progress">
           <b>Save your progress</b>
@@ -339,12 +543,11 @@ export default function Room({ code: rawCode }: { code: string }) {
           <p className={app.small}>A clean sweep. Lessons take you further.</p>
         )}
         <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
-        <a className={app.ghost} href="/app">See lessons</a>
+        <a className={app.ghost} href={LEARN_HREF}>See lessons</a>
       </section>
       <Ad placement="results" />
       <div className={app.row}>
-        {lobby.standing ? <p className={app.small} data-testid="standing-next">Stay here. The next game starts in a few seconds.</p> : null}
-        <a className={app.cta} href="/play">{lobby.standing ? "Back to lobbies" : "Play again"}</a>
+        <a className={app.ghost} href="/play">Back to lobbies</a>
       </div>
     </div>
   );
