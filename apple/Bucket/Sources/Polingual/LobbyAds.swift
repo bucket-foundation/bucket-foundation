@@ -12,6 +12,7 @@ import UserMessagingPlatform
 final class LobbyAds {
     static let shared = LobbyAds()
     let units = LobbyAdUnits.from(Bundle.main.infoDictionary ?? [:])
+    var allowed = false
     private(set) var ready = false
     private(set) var privacyOptionsRequired = false
     @ObservationIgnored private var started = false
@@ -20,7 +21,7 @@ final class LobbyAds {
     @ObservationIgnored private var loading = false
 
     func start() {
-        guard units != nil, !started else { return }
+        guard allowed, units != nil, !started else { return }
         started = true
         Task { await gatherConsent() }
     }
@@ -51,7 +52,7 @@ final class LobbyAds {
     }
 
     func preload() {
-        guard ready, let units, interstitial == nil, !loading else { return }
+        guard allowed, ready, let units, interstitial == nil, !loading else { return }
         loading = true
         Task {
             interstitial = try? await InterstitialAd.load(with: units.interstitial, request: Request())
@@ -60,7 +61,7 @@ final class LobbyAds {
     }
 
     func leftRoom(finishedGame: Bool) {
-        guard ready, pacer.due(finishedGame: finishedGame, at: .now) else { return }
+        guard allowed, ready, pacer.due(finishedGame: finishedGame, at: .now) else { return }
         guard let ad = interstitial, let root = Self.topController() else {
             preload()
             return
@@ -81,7 +82,7 @@ final class LobbyAds {
 
 struct LobbyBanner: View {
     var body: some View {
-        if LobbyAds.shared.ready, let units = LobbyAds.shared.units {
+        if LobbyAds.shared.allowed, LobbyAds.shared.ready, let units = LobbyAds.shared.units {
             GeometryReader { geo in
                 BannerRepresentable(unit: units.banner, width: geo.size.width)
             }
@@ -93,7 +94,7 @@ struct LobbyBanner: View {
 
 struct AdPrivacyButton: View {
     var body: some View {
-        if LobbyAds.shared.privacyOptionsRequired {
+        if LobbyAds.shared.allowed, LobbyAds.shared.privacyOptionsRequired {
             Button("Ad privacy choices") { LobbyAds.shared.showPrivacyOptions() }
                 .accessibilityIdentifier("adPrivacyChoices")
         }
@@ -118,6 +119,7 @@ private struct BannerRepresentable: UIViewRepresentable {
 @MainActor
 final class LobbyAds {
     static let shared = LobbyAds()
+    var allowed = false
     func start() {}
     func leftRoom(finishedGame: Bool) {}
 }
