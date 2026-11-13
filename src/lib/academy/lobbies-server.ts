@@ -196,6 +196,10 @@ export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRo
   const here = players.filter((p) => p.is_bot || now - Date.parse(p.last_seen) < STALE_MS).map((p) => p.user_id);
   const game = nextGame(lobby);
   const t = gameTiming(game);
+  check(await service().from(ANSWERS).delete().eq("lobby_id", lobby.id), "again answers");
+  check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "again prompts");
+  check(await service().from(PLAYERS).update({ score: 0, ready: false, continues: 0 }).eq("lobby_id", lobby.id), "again scores");
+  if (here.length) check(await service().from(PLAYERS).update({ ready: true }).eq("lobby_id", lobby.id).in("user_id", here), "again ready");
   const rows = check(
     await service()
       .from(LOBBIES)
@@ -206,10 +210,6 @@ export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRo
     "again",
   ) as LobbyRow[];
   if (!rows[0]) return (await lobbyById(lobby.id)) ?? lobby;
-  check(await service().from(ANSWERS).delete().eq("lobby_id", lobby.id), "again answers");
-  check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "again prompts");
-  check(await service().from(PLAYERS).update({ score: 0, ready: false, continues: 0 }).eq("lobby_id", lobby.id), "again scores");
-  if (here.length) check(await service().from(PLAYERS).update({ ready: true }).eq("lobby_id", lobby.id).in("user_id", here), "again ready");
   return rows[0];
 }
 

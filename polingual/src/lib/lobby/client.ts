@@ -72,6 +72,7 @@ const ERRORS: Record<string, string> = {
   not_host: "Only the host can start.",
   already_answered: "You already answered this round.",
   already_continued: "You already used your continue this game.",
+  has_lives: "You still have lives left.",
   wrong_round: "That round is over.",
   not_playing: "The game is not running.",
   bad_choice: "Pick one of the choices.",
