@@ -29,3 +29,19 @@ object ForeheadDeck {
         return out
     }
 }
+
+enum class Tilt { Score, Pass }
+
+object TiltRules {
+    const val TRIGGER = 6.0
+    const val RESET = 3.0
+
+    fun classify(z: Double?): Tilt? = when {
+        z == null -> null
+        z <= -TRIGGER -> Tilt.Score
+        z >= TRIGGER -> Tilt.Pass
+        else -> null
+    }
+
+    fun settled(z: Double?): Boolean = z != null && kotlin.math.abs(z) <= RESET
+}
