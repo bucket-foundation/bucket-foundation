@@ -123,6 +123,10 @@ export default function Lobbies() {
             <b>Babel Match</b>
             <span className={app.small}>Match-3 with words. Three that mean the same thing clear.</span>
           </a>
+          <a className={styles.soloCard} href="/play/shift" data-testid="solo-shift">
+            <b>Shift</b>
+            <span className={app.small}>Daily letter board. Slide columns to spell words in two languages.</span>
+          </a>
 
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>

@@ -35,3 +35,7 @@ Bead bkt-9gvte.4, branch `feat/polingual-voice-atlas`. Daily five rounds at `/pl
 ## Babel Match
 
 Bead bkt-9gvte.5, branch `feat/polingual-babel-match`. Match-3 at `/play/babel-match`, meanings from `GET /api/academy/babel?langs=&level=` (`src/lib/academy/babel.ts`), board engine in `polingual/src/lib/lobby/babel.ts`. Solo puzzle with no bots. Rewarded five moves, interstitial between levels from level ten. Playtest: `scripts/playtest-babel.mjs`. Next game: Shift.
+
+## Shift
+
+Bead bkt-9gvte.6, branch `feat/polingual-shift`. Daily letter board at `/play/shift`, board from `GET /api/academy/shift` (`src/lib/academy/shift.ts`), play helpers in `polingual/src/lib/lobby/shift-play.ts`. Solo puzzle, no bots. Hint reveals a letter for a rewarded ad. Playtest: `scripts/playtest-shift.mjs`. Next game: Word Snake.
