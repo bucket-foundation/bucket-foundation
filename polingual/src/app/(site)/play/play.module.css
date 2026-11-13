@@ -349,3 +349,5 @@
 .fhStage .fhCard.fhCard{display:flex;flex-direction:column;align-items:center;justify-content:center}
 .fhStage .fhCard.fhCard{container-type:inline-size}
 .fhCard .fhWord{font-size:clamp(36px,calc(160cqw / var(--len,6)),180px);line-height:1.18;padding:0 .1em .12em;overflow-wrap:normal;word-break:normal;max-width:100%}
+.hubGroup{display:flex;flex-direction:column;gap:var(--pl-space-3);margin-bottom:var(--pl-space-5)}
+.hubHeading{font:var(--pl-type-heading);color:var(--pl-tyrian);margin:var(--pl-space-2) 0 0}
