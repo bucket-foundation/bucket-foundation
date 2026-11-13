@@ -330,3 +330,4 @@
 .fhPass{background:var(--pl-vermilion);color:var(--pl-card)}
 .fhGot{background:var(--pl-malachite);color:var(--pl-card)}
 .fhTime,.fhScore{background:var(--pl-card);color:var(--pl-tyrian);border:3px solid var(--pl-ink);border-radius:14px;padding:2px 14px;box-shadow:0 4px 0 var(--pl-ink)}
+@media (max-width:640px){.bmBoard{gap:4px}.bmCell{font-size:clamp(10px,3.1vw,14px)}}

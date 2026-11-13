@@ -93,3 +93,4 @@
 @media (min-width:1800px){.promptGloss{font-size:66px}.promptLabel{font-size:16px}.promptCard{padding:22px 48px 28px}}
 @media (min-width:1800px){.sheet > div{max-width:none}}
 @media (max-width:640px){.world{min-height:calc(100dvh - 120px)}.sheet{flex:1}}
+@media (max-width:640px){.pieceAzulejo.pieceAzulejo{border-width:2px;box-shadow:inset 0 0 0 2px var(--pl-maya),0 3px 0 var(--pl-lapis-deep)}.stage{padding:48px 8px}}
