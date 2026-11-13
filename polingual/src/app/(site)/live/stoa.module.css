@@ -177,3 +177,5 @@
 .ticket .codeInput{border:0;border-bottom:3px dashed var(--pl-hairline-2);background:transparent;font-size:clamp(32px,10vw,44px)!important;font-weight:700;color:var(--pl-ink);padding:6px 0;width:100%;outline:none}
 .ticket .codeInput:focus{border-bottom-color:var(--pl-lapis)}
 @media (min-width:1600px){.code{font-size:200px}.qr{width:420px}.lobby{gap:64px}}
+.wideStickers{display:none;position:absolute;inset:0}
+@media (min-width:1180px){.wideStickers{display:block}}
