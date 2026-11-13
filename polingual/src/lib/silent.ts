@@ -36,3 +36,9 @@ export function subscribeSilent(l: () => void): () => void {
     if (typeof window !== "undefined") window.removeEventListener("storage", onStorage);
   };
 }
+
+export const SOUND_KINDS: ReadonlySet<string> = new Set(["listen", "type-heard", "spell-heard", "speak"]);
+
+export function needsSound(kind: string | undefined): boolean {
+  return !!kind && SOUND_KINDS.has(kind);
+}

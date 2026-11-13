@@ -9,12 +9,28 @@ import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
 import WordCard, { QuizCard } from "./WordCard";
 import styles from "../../app.module.css";
-import { Button, ButtonLink, Card, Meter, Stage } from "@/ui";
+import { useEffect, useState } from "react";
+import { isSilent, needsSound, subscribeSilent } from "@/lib/silent";
+import { Button, ButtonLink, Card, Meter, SilentSwitch, Stage } from "@/ui";
 
 export default function Session({ systemId }: { systemId: string }) {
   const h = useLangSystem(systemId);
   const s = useLangSession(h);
   const { system, corpus, state } = h;
+  const [silent, setSilentState] = useState(false);
+  const [deferred, setDeferred] = useState(0);
+  useEffect(() => {
+    setSilentState(isSilent());
+    return subscribeSilent(() => setSilentState(isSilent()));
+  }, []);
+  const kind = s.ex?.kind;
+  const skip = s.skip;
+  const at = s.i;
+  useEffect(() => {
+    if (!silent || !needsSound(kind)) return;
+    setDeferred((d) => d + 1);
+    skip();
+  }, [silent, kind, at, skip]);
 
   if (h.status === "loading" || (h.status === "ready" && s.queue === null))
     return (
@@ -86,7 +102,13 @@ export default function Session({ systemId }: { systemId: string }) {
           <span className={styles.level} data-testid="counter">
             {s.i + 1} / {s.queue.length} · {state.stats.xp} XP
           </span>
+          <SilentSwitch compact />
         </div>
+        {silent && deferred ? (
+          <p className={styles.small} role="status" data-testid="deferred">
+            {deferred === 1 ? "1 listening card waits" : `${deferred} listening cards wait`} until sound is on. Their schedule stays where it was.
+          </p>
+        ) : null}
         <Meter value={pct} max={100} label="Session progress" />
         <div className={styles.sessionBody} data-testid="session-body">
           <ReadingsContext.Provider value={s.readings}>

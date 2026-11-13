@@ -42,7 +42,7 @@ export default function Mini() {
   });
 
   if (state.status !== "ready") return <DailyWorld id="mini"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="mini"><Results title="Mini" result={state.done} url="https://polingual.com/play/mini" saved={state.saved} onRetry={retry} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="mini"><Results title="Mini" result={state.done} url="https://polingual.com/play/mini" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
   if (!puzzle || !entry) return <DailyWorld id="mini"><Loading state="error" /></DailyWorld>;
 
   const answers = miniAnswers(puzzle);

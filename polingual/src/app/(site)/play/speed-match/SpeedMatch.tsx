@@ -49,7 +49,7 @@ export default function SpeedMatch() {
   });
 
   if (state.status !== "ready") return <DailyWorld id="speed-match"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="speed-match"><Results title="Speed Match" result={state.done} url="https://polingual.com/play/speed-match" saved={state.saved} onRetry={retry} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="speed-match"><Results title="Speed Match" result={state.done} url="https://polingual.com/play/speed-match" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
   if (!game?.playable) return <DailyWorld id="speed-match"><Loading state="error" /></DailyWorld>;
 
   const b = game.board;

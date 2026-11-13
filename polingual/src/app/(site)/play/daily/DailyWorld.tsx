@@ -44,7 +44,7 @@ export function Pips({ pattern, total }: { pattern: string; total: number }) {
   );
 }
 
-export function Results({ title, result, url, saved, onRetry }: { title: string; result: DailyResult; url: string; saved?: SaveState | null; onRetry?: () => void }) {
+export function Results({ title, result, url, saved, onRetry, rootLang = "en" }: { title: string; result: DailyResult; url: string; saved?: SaveState | null; onRetry?: () => void; rootLang?: string }) {
   const entries: RevealEntry[] = result.words.map((w) => ({ lang: w.lang, word: w.form, roman: null, reading: null, meaning: w.gloss, gloss: w.gloss, correct: w.right }));
   const share = shareText(title, result, url);
   return (
@@ -58,7 +58,7 @@ export function Results({ title, result, url, saved, onRetry }: { title: string;
       </div>
       {entries.length ? (
         <ul className={styles.reveal} data-testid="daily-reveal">
-          {entries.map((e, i) => <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} />)}
+          {entries.map((e, i) => <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} rootLang={rootLang} />)}
         </ul>
       ) : null}
       <p className={styles.blurb} role="status" data-testid="daily-saved" data-state={saved ?? "saving"}>

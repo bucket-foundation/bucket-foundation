@@ -18,7 +18,7 @@ export default function DailySet() {
   const [picked, setPicked] = useState<string | null>(null);
 
   if (state.status !== "ready") return <DailyWorld id="daily-set"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="daily-set"><Results title="Daily Set" result={state.done} url="https://polingual.com/play/daily-set" saved={state.saved} onRetry={retry} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="daily-set"><Results title="Daily Set" result={state.done} url="https://polingual.com/play/daily-set" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
   const p = prompts[i];
   if (!p) return <DailyWorld id="daily-set"><Loading state="error" /></DailyWorld>;
 

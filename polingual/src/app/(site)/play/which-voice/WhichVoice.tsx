@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { bcp47, say } from "@/lib/speak";
 import { fnv, mixed, SeededRandom } from "@/lib/daily/rng";
 import { flags, formOf, GameDeck, type GameWord } from "@/lib/daily/words";
-import { Button } from "@/ui";
+import { Button, NeedsSound } from "@/ui";
 import { dayLabel, DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
@@ -36,7 +36,7 @@ export default function WhichVoice() {
   }, [p, state]);
 
   if (state.status !== "ready") return <DailyWorld id="which-voice"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="which-voice"><Results title="Which Voice" result={state.done} url="https://polingual.com/play/which-voice" saved={state.saved} onRetry={retry} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="which-voice"><Results title="Which Voice" result={state.done} url="https://polingual.com/play/which-voice" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
   if (!p) return <DailyWorld id="which-voice"><Loading state="error" /></DailyWorld>;
 
   function choose(c: string) {
@@ -54,6 +54,7 @@ export default function WhichVoice() {
 
   return (
     <DailyWorld id="which-voice">
+      <NeedsSound game="Which Voice">
       <Heading eyebrow={`Which Voice · ${dayLabel(state.day)}`} title="Listen, then pick the language" blurb="Ten words read aloud. Play a word again as often as you like." />
       <Pips pattern={pattern} total={prompts.length} />
       <Button variant="accent" size="xl" onClick={() => say(p.word.form, bcp47(p.word.lang))} data-testid="voice-play">Play the word</Button>
@@ -64,6 +65,7 @@ export default function WhichVoice() {
           </Button>
         ))}
       </div>
+      </NeedsSound>
     </DailyWorld>
   );
 }

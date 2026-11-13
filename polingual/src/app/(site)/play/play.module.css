@@ -351,3 +351,5 @@
 .fhCard .fhWord{font-size:clamp(36px,calc(160cqw / var(--len,6)),180px);line-height:1.18;padding:0 .1em .12em;overflow-wrap:normal;word-break:normal;max-width:100%}
 .hubGroup{display:flex;flex-direction:column;gap:var(--pl-space-3);margin-bottom:var(--pl-space-5)}
 .hubHeading{font:var(--pl-type-heading);color:var(--pl-tyrian);margin:var(--pl-space-2) 0 0}
+.headTools{display:inline-flex;align-items:center;gap:8px}
+.revealRoot{font-family:var(--pl-font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pl-ink-dim)}

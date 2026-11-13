@@ -506,6 +506,14 @@ export interface Exercise {
   level?: number;
   falseFriend?: FalseFriend;
   optionLangs?: Record<string, string>;
+  meaning?: string;
+}
+
+export function withMeaning(ex: Exercise, corpus: LangCorpus): Exercise {
+  if (ex.meaning || ex.kind === "letter") return ex;
+  const item = corpus.byId.get(ex.itemId);
+  const meaning = item ? item.forms[ex.root] || item.gloss : undefined;
+  return meaning ? { ...ex, meaning } : ex;
 }
 
 export function readingLabel(r?: Reading): string | null {

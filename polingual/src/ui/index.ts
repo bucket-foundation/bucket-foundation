@@ -7,3 +7,4 @@ export { cssVars, type CssVarName } from "./vars";
 export { AppNav, type NavItem } from "./AppNav";
 export { SpeakNotice } from "./SpeakNotice";
 export { SilentSwitch } from "./SilentSwitch";
+export { NeedsSound, useSilent } from "./NeedsSound";

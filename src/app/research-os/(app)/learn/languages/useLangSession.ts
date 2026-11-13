@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
-import { buildQueue, cardId, exerciseFor, learnerLevel, letterExerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry, type Reading } from "@/lib/academy/lang-systems";
+import { buildQueue, cardId, exerciseFor, learnerLevel, letterExerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, withMeaning, type Exercise, type QueueEntry, type Reading } from "@/lib/academy/lang-systems";
 import { linkForms, targetFirst, type LinkForm } from "@/lib/academy/lang-layout";
 import { gradeWebMatch } from "@/lib/academy/flag-misses";
 import type { ExerciseResult, MatchGrading } from "./LangExercise";
@@ -52,10 +52,13 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     if (entry.stage === "letter") return letterExerciseFor(entry.lang, system.root, entry.itemId, rng);
     const item = corpus.byId.get(entry.itemId);
     if (!item) return null;
-    if (entry.stage === "match") return matchExercise(corpus, system, item, rng);
+    if (entry.stage === "match") {
+      const m = matchExercise(corpus, system, item, rng);
+      return m ? withMeaning(m, corpus) : m;
+    }
     const card = state.cards[cardId(entry.lang, entry.itemId)];
     const made = exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang), heritage });
-    return h.shared ? targetFirst(corpus, item, made, rng) : made;
+    return withMeaning(h.shared ? targetFirst(corpus, item, made, rng) : made, corpus);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entry, system, corpus, rng]);
 

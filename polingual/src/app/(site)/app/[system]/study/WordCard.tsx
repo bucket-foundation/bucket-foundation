@@ -59,9 +59,9 @@ export default function WordCard({ ex, readings, onNext }: { ex: Exercise; readi
       <HeroTile word={ex.answer} lang={ex.answerLang} reading={ipa} />
       <dl className={styles.wordRows}>
         <div>
-          <dt>Meaning</dt>
-          <dd lang={ex.promptLang} dir={langDir(ex.promptLang)}>
-            {langName(ex.promptLang)}: {ex.prompt}
+          <dt>{langName(ex.promptLang)}</dt>
+          <dd lang={ex.promptLang} dir={langDir(ex.promptLang)} data-testid="intro-meaning">
+            {ex.prompt}
           </dd>
         </div>
         {ipa ? (
