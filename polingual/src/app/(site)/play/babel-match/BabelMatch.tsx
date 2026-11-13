@@ -5,7 +5,7 @@ import { LANGS } from "@academy/lang-systems";
 import { interstitialDue } from "@/lib/lobby/ads";
 import { adjacent, dealer, playable, level as levelOf, matches, points, resolve, rng, SIZE, swapped, type Board, type Cell, type Deal, type Meaning } from "@/lib/lobby/babel";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { LEARN_HREF } from "@/lib/lobby/client";
+
 import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
@@ -178,7 +178,7 @@ function BabelMatchGame() {
                 data-testid="bm-cell"
               >
                 <FlagSquare lang={c.lang} size={12} />
-                <span>{word}</span>
+                <span style={{ "--len": Math.max(4, Array.from(word).length) } as React.CSSProperties}>{word}</span>
               </button>
             );
           })}
@@ -213,7 +213,6 @@ function BabelMatchGame() {
               )
             ) : null}
             {phase === "lost" ? <Button onClick={() => { setLvl((n) => n); setPhase("loading"); setSet((s) => ({ ...s })); }} data-testid="bm-retry">Try again</Button> : null}
-            <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
           </div>
         </section>
       ) : null}

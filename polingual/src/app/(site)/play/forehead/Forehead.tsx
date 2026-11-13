@@ -5,7 +5,7 @@ import { FOREHEAD_SECONDS, type ForeheadCard } from "@academy/forehead";
 import { LANGS } from "@academy/lang-systems";
 import { TileFace } from "@/app/tile";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { LEARN_HREF } from "@/lib/lobby/client";
+
 import { play, readMuted } from "@/lib/lobby/sound";
 import { classifyTilt, settled } from "@/lib/lobby/tilt";
 import { bcp47 } from "@/lib/speak";
@@ -215,14 +215,13 @@ function ForeheadGame() {
     <div className={app.stack} data-testid="fh-results">
       <section className={app.stackSm}>
         <p className={app.label}>Round over</p>
-        <h1 className={app.title} data-testid="fh-final">{got} guessed</h1>
+        <h2 className={app.title} data-testid="fh-final">{got} guessed</h2>
         <p className={app.small}>{results.length - got} passed. Tap a card to hear it.</p>
       </section>
       <WordReveal title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} />
       <LearnPanel missed={results.filter((r) => !r.got).map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning }))} />
       <div className={app.row}>
         <Button onClick={() => void start()} data-testid="fh-again">Play again</Button>
-        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
         <Button variant="quiet" size="sm" onClick={() => setPhase("setup")}>Change languages</Button>
       </div>
       {showAd ? <Ad placement="results" /> : null}

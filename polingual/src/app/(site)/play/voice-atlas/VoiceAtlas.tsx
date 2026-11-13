@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import land from "world-atlas/land-110m.json";
 import { atlasPoints, ATLAS_HOMES, ATLAS_MAX, ATLAS_ROUNDS, nearestHome, type AtlasGhost, type AtlasRound, type LatLon } from "@academy/voice-atlas";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { flagEmoji, LEARN_HREF } from "@/lib/lobby/client";
+import { flagEmoji } from "@/lib/lobby/client";
 import { landPath, MAP_H, MAP_W, project, unproject, type Topology } from "@/lib/lobby/world";
 import { bcp47, play as speak } from "@/lib/speak";
 import app from "../../app/app.module.css";
@@ -127,7 +127,7 @@ function VoiceAtlasGame() {
       <div className={app.stack} data-testid="va-results">
         <section className={app.stackSm}>
           <p className={app.label}>Voice Atlas · {date}</p>
-          <h1 className={app.title} data-testid="va-total">{`${total.toLocaleString("en")} points`}</h1>
+          <h2 className={app.title} data-testid="va-total">{`${total.toLocaleString("en")} points`}</h2>
         </section>
         <WordReveal title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} />
         <LearnPanel missed={guesses.filter((g) => g.points < ATLAS_MAX * 0.5).map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning }))} />
@@ -175,7 +175,6 @@ function VoiceAtlasGame() {
               <Button variant="ghost" size="md" onClick={() => setRewarded(true)} data-testid="va-extra-offer">Watch an ad for an extra round</Button>
             )
           ) : null}
-          <ButtonLink href={LEARN_HREF}>Learn these words</ButtonLink>
           <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
         </div>
         {rewarded ? <Ad placement="rewarded" testId="ad-rewarded" /> : null}

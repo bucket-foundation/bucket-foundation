@@ -154,7 +154,7 @@ function ISpyGame() {
     const rank = [...players].sort((a, b) => b.score - a.score).findIndex((p) => p.isMe) + 1;
     return (
       <div className={app.stack} data-testid="ispy-done">
-        <h1 className={app.title}>{rank === 1 ? "You spied them all first" : `You finished #${rank}`}</h1>
+        <h2 className={app.title}>{rank === 1 ? "You spied them all first" : `You finished #${rank}`}</h2>
         <LiveBoard players={players} live={false} />
         <WordReveal title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} />
         <LearnPanel missed={misses.flatMap((i) => rounds[i]?.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning })) ?? [])} />

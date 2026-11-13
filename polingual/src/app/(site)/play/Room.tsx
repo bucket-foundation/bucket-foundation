@@ -16,7 +16,7 @@ import Nickname from "./Nickname";
 import Reveal, { RevealBanner } from "./Reveal";
 import GameWorld, { pieceClass, WorldStage } from "./GameWorld";
 import { CoinArt, PromptCard } from "./Pieces";
-import RoomQr from "./RoomQr";
+import RoomQr, { useJoinUrl } from "./RoomQr";
 import world from "./world.module.css";
 import { useLearnIndex } from "./useLearn";
 import { learnEntry, learnHref } from "@/lib/lobby/learn-index";
@@ -177,7 +177,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     return (
       <div className={app.stack} data-testid="room-gate">
         <p className={app.label}>Lobby {code}</p>
-        <h1 className={app.title}>Pick a nickname to join</h1>
+        <h2 className={app.title}>Pick a nickname to join</h2>
         {state.status === "error" ? <p className={app.error} role="alert">{state.message}</p> : null}
         {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : <Nickname initial={savedNickname()} onSubmit={(n) => void connect(n)} />}
       </div>
@@ -335,7 +335,6 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
         </p>
         <p className={styles.code} data-testid="room-code">{lobby.code}</p>
       </div>
-      <RoomQr code={lobby.code} />
     </section>
   );
 
@@ -665,7 +664,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
       ) : null}
       <section className={app.stackSm}>
         <p className={app.label}>Game over</p>
-        <h1 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h1>
+        <h2 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h2>
       </section>
       {toolbar}
       {scoreboard}
@@ -711,7 +710,6 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
           <p className={app.small}>A clean sweep. Lessons take you further.</p>
         )}
         <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
-        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>See lessons</ButtonLink>
       </section>
       {breaks.games >= 2 ? <Ad placement="results" /> : null}
       <div className={app.row}>
@@ -732,9 +730,10 @@ export default function Room({ code }: { code: string }) {
 }
 
 function RoomBadge({ code }: { code: string }) {
+  const url = useJoinUrl(code);
   return (
     <div className={world.roomBadge} data-testid="room-badge">
-      <span className={world.roomBadgeLabel}>Join at polingual.com/play</span>
+      <span className={world.roomBadgeLabel}>{url ? `Join at ${url.replace(/^https?:\/\//, "").replace(/\/[^/]*$/, "")}` : "Join this room"}</span>
       <b className={world.roomBadgeCode}>{code}</b>
       <RoomQr code={code} />
     </div>

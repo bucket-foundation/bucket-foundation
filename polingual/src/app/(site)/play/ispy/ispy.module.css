@@ -31,3 +31,4 @@
 .preview{position:relative;rotate:-1deg}
 .preview .thing{cursor:default}
 .previewTag{position:absolute;left:16px;bottom:-12px;z-index:4;background:var(--pl-paper);color:var(--pl-tyrian);border:2px solid var(--pl-ink);border-radius:999px;padding:4px 12px;font-family:"Space Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.06em;box-shadow:0 3px 0 var(--pl-ink)}
+@media (min-width:1800px){.scene{max-width:calc((100dvh - 420px) * 16 / 11);margin-inline:auto}}

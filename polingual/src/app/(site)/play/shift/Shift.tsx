@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ShiftBoard } from "@academy/shift";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { LEARN_HREF } from "@/lib/lobby/client";
+
 import { centerWord, hintFor, rotate } from "@/lib/lobby/shift-play";
 import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
@@ -117,7 +117,6 @@ export default function Shift() {
           <p className={styles.verdictHead}>Board cleared</p>
           <p className={app.small}>{`${found.length} words found. A new board comes tomorrow.`}</p>
           <div className={app.row}>
-            <ButtonLink href={LEARN_HREF}>Learn these words</ButtonLink>
             <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
           </div>
         </section>

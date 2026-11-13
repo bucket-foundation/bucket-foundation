@@ -6,7 +6,7 @@ import { LANGS } from "@academy/lang-systems";
 import { TileFace } from "@/app/tile";
 import { interstitialDue } from "@/lib/lobby/ads";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { flagEmoji, LEARN_HREF } from "@/lib/lobby/client";
+import { flagEmoji } from "@/lib/lobby/client";
 import { readBest, START, step, writeBest, type RunEvent } from "@/lib/lobby/flag-run";
 import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
@@ -255,7 +255,7 @@ function FlagTilesGame() {
       ) : null}
       <section className={app.stackSm}>
         <p className={app.label}>Run over</p>
-        <h1 className={app.title} data-testid="ft-final">{run.score} {run.score === 1 ? "word" : "words"}</h1>
+        <h2 className={app.title} data-testid="ft-final">{run.score} {run.score === 1 ? "word" : "words"}</h2>
         <p className={app.small}>Today&apos;s best: {best}</p>
       </section>
       {verdict}
@@ -276,7 +276,6 @@ function FlagTilesGame() {
       </section>
       <div className={app.row}>
         <Button onClick={() => send({ kind: "start" })} data-testid="ft-again">Run again</Button>
-        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
         <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
       </div>
       <WordReveal title="Words in this run" words={deck.tiles.slice(0, Math.min(run.index + 1, 12)).map((t, i) => ({ lang: t.lang, word: t.form, meaning: t.meaning, correct: i !== run.missed }))} />

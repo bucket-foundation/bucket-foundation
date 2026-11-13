@@ -333,7 +333,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
     <div className={styles.wrap} data-testid="polyword" data-phase={phase} data-account={account} data-round={phase === "playing" ? "active" : undefined}>
       <header className={styles.head}>
         <div className={styles.titleRow}>
-          <h1 className={styles.title}>Polyword</h1>
+          <h2 className={styles.title}>Polyword</h2>
           <span className={styles.streak} data-testid="pw-streak" title="Daily streak">
             🔥 {stats.streak}
           </span>
@@ -483,7 +483,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
                   </div>
                 </div>
               ) : null}
-              <LearnPanel missed={won ? [] : [{ lang, word: puzzle.word, meaning: puzzle.gloss }]} />
+              <LearnPanel cta={!ctas.length} missed={won ? [] : [{ lang, word: puzzle.word, meaning: puzzle.gloss }]} />
               {resultsAd(phase, first, account) ? <Ad placement="results" testId="pw-ad-results" /> : null}
             </section>
           ) : (

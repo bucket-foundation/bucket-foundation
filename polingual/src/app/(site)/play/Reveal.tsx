@@ -93,7 +93,7 @@ export function WordReveal({ title, words, testId = "word-reveal" }: { title: Re
   );
 }
 
-export function LearnPanel({ missed }: { missed: RevealWord[] }) {
+export function LearnPanel({ missed, cta = true }: { missed: RevealWord[]; cta?: boolean }) {
   const index = useLearnIndex();
   const seen = new Set<string>();
   const unique = missed.filter((m) => (seen.has(`${m.lang}:${m.word}`) ? false : (seen.add(`${m.lang}:${m.word}`), true))).slice(0, 8);
@@ -114,7 +114,7 @@ export function LearnPanel({ missed }: { missed: RevealWord[] }) {
           ))}
         </ul>
       ) : null}
-      <ButtonLink href={LEARN_FALLBACK} data-testid="results-start-learning">Start learning</ButtonLink>
+      {cta ? <ButtonLink href={LEARN_FALLBACK} data-testid="results-start-learning">Start learning</ButtonLink> : null}
     </section>
   );
 }

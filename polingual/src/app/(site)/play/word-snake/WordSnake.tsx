@@ -5,7 +5,7 @@ import type { SnakeDeck } from "@academy/word-snake";
 import { BOTS } from "@academy/lobby-bots";
 import { interstitialDue } from "@/lib/lobby/ads";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { LEARN_HREF } from "@/lib/lobby/client";
+
 import { advance, botTarget, collide, eat, makeSnake, WORLD_H, WORLD_W, type Arena, type FieldWord, type Snake } from "@/lib/lobby/snake";
 import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
@@ -17,10 +17,9 @@ import GameWorld, { WorldStage } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill, tokens } from "@/ui";
-import { artDataUrl, type ArtName } from "@/ui/art";
 
 const ROUND_MS = 120_000;
-const COLORS = [tokens.color.lapis, tokens.color.ochre, tokens.color.maya, tokens.color.malachite, tokens.color["lapis-soft"]];
+const COLORS = [tokens.color.lapis, tokens.color.ochre, tokens.color.maya, tokens.color.malachite, tokens.color.vermilion];
 const SKILL: Record<string, number> = { easy: 0.55, medium: 0.8, hard: 0.95 };
 
 type Phase = "setup" | "play" | "dead" | "over";
@@ -47,7 +46,7 @@ function seedRand(seed: number): () => number {
 
 function newArena(rand: () => number): Arena {
   const bots = BOTS.slice(0, 4).map((b, i) => makeSnake(b.userId, b.name, true, SKILL[b.skill] ?? 0.8, { x: 200 + rand() * 1200, y: 150 + rand() * 700 }, rand() * 6.28, COLORS[i + 1]));
-  return { snakes: [makeSnake("me", "You", false, 1, { x: WORLD_W / 2, y: WORLD_H / 2 }, 0, tokens.color.vermilion), ...bots], words: [], nextWord: 0, eaten: [], bad: [] };
+  return { snakes: [makeSnake("me", "You", false, 1, { x: WORLD_W / 2, y: WORLD_H / 2 }, 0, tokens.color.card), ...bots], words: [], nextWord: 0, eaten: [], bad: [] };
 }
 
 function WordSnakeGame() {
@@ -246,7 +245,7 @@ function WordSnakeGame() {
       ) : null}
       <section className={app.stackSm}>
         <p className={app.label}>{phase === "dead" ? "Swallowed" : "Time is up"}</p>
-        <h1 className={app.title} data-testid="ws-final">{`Length ${result?.length ?? 0}`}</h1>
+        <h2 className={app.title} data-testid="ws-final">{`Length ${result?.length ?? 0}`}</h2>
       </section>
       {phase === "dead" && adsVisible && !respawned ? (
         rewarded ? (
@@ -295,7 +294,6 @@ function WordSnakeGame() {
       </section>
       <div className={app.row}>
         <Button onClick={() => void start()} data-testid="ws-again">Play again</Button>
-        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
         <Button variant="quiet" size="sm" onClick={() => setPhase("setup")}>Change language</Button>
       </div>
       {phase === "over" && readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
@@ -313,32 +311,12 @@ function viewOf(c: HTMLCanvasElement, me: Snake): { x: number; y: number; w: num
 }
 
 const C = tokens.color;
-const PROPS: { art: ArtName; x: number; y: number; w: number; tilt: number }[] = [
-  { art: "seal", x: 260, y: 220, w: 110, tilt: -0.14 },
-  { art: "azulejo", x: 1320, y: 180, w: 130, tilt: 0.12 },
-  { art: "pebble", x: 1180, y: 760, w: 90, tilt: 0.2 },
-  { art: "ticket", x: 380, y: 780, w: 200, tilt: -0.08 },
-  { art: "star", x: 820, y: 120, w: 90, tilt: 0.1 },
-  { art: "script-ko", x: 120, y: 520, w: 70, tilt: -0.2 },
-  { art: "script-ru", x: 1480, y: 560, w: 90, tilt: 0.18 },
-  { art: "torn-label", x: 900, y: 880, w: 170, tilt: 0.06 },
-];
 const KENTE: [number, number, number, number][] = [
-  [0, 330, 1600, 430],
-  [520, 0, 700, 1000],
+  [0, 22, WORLD_W, 22],
+  [0, WORLD_H - 22, WORLD_W, WORLD_H - 22],
+  [22, 0, 22, WORLD_H],
+  [WORLD_W - 22, 0, WORLD_W - 22, WORLD_H],
 ];
-const IMAGES = new Map<ArtName, HTMLImageElement>();
-function image(name: ArtName): HTMLImageElement | null {
-  if (typeof Image === "undefined") return null;
-  let img = IMAGES.get(name);
-  if (!img) {
-    img = new Image();
-    img.src = artDataUrl(name);
-    IMAGES.set(name, img);
-  }
-  return img.complete && img.naturalWidth ? img : null;
-}
-
 function kente(ctx: CanvasRenderingContext2D, x0: number, y0: number, x1: number, y1: number, v: { x: number; y: number }) {
   const dx = x1 - x0;
   const dy = y1 - y0;
@@ -396,8 +374,10 @@ function label(ctx: CanvasRenderingContext2D, x: number, y: number, text: string
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(tilt);
-  ctx.fillStyle = "rgba(0,0,0,.35)";
+  ctx.fillStyle = C.ink;
+  ctx.globalAlpha = 0.35;
   ctx.fillRect(-tw / 2 + 4, -12, tw, 30);
+  ctx.globalAlpha = 1;
   ctx.fillStyle = C["paper-2"];
   ctx.beginPath();
   ctx.moveTo(-tw / 2, -15);
@@ -435,17 +415,6 @@ function draw(c: HTMLCanvasElement | null, a: Arena, lang: string) {
   }
   ctx.globalAlpha = 1;
   for (const [x0, y0, x1, y1] of KENTE) kente(ctx, x0, y0, x1, y1, v);
-  for (const p of PROPS) {
-    const img = image(p.art);
-    if (!img) continue;
-    const h = (p.w * img.naturalHeight) / img.naturalWidth;
-    ctx.save();
-    ctx.translate(p.x - v.x, p.y - v.y);
-    ctx.rotate(p.tilt);
-    ctx.globalAlpha = 0.9;
-    ctx.drawImage(img, -p.w / 2, -h / 2, p.w, h);
-    ctx.restore();
-  }
   ctx.strokeStyle = C.ochre;
   ctx.lineWidth = 6;
   ctx.strokeRect(-v.x + 3, -v.y + 3, WORLD_W - 6, WORLD_H - 6);
