@@ -73,7 +73,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
         PLButton("Listen", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(round.form, round.lang) }
         if (peek || guessed != null) WordTile(null, round.form, tilt = 0f) else PLButton("Show the word, half points", variant = ButtonVariant.Quiet, block = false) { peek = true }
         Text("Where is this language spoken? Tap the map, then lock in.", style = Type.small, color = PL.InkDim)
-        Canvas(
+        SceneFrame(Scenes.atlas, inset = 40.dp) { Canvas(
             Modifier.fillMaxWidth().aspectRatio(2f).clip(RoundedCornerShape(12.dp)).pointerInput(guessed) {
                 detectTapGestures { o -> if (guessed == null) pin = Atlas.unproject(o.x / size.width * Atlas.MAP_W, o.y / size.height * Atlas.MAP_H) }
             },
@@ -87,7 +87,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
                 drawLine(PL.Ink, pt(guessed.pin), pt(guessed.home), 2.dp.toPx())
                 drawCircle(PL.Malachite, 7.dp.toPx(), pt(guessed.home))
             }
-        }
+        } }
         if (guessed == null) {
             PrimaryButton("Lock in", enabled = pin != null) {
                 val p = pin ?: return@PrimaryButton

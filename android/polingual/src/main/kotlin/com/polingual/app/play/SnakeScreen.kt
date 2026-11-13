@@ -109,7 +109,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                     Text("Eat ${Lang.name(deck?.lang ?: "")}", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f))
                     Text("${left}s", style = Type.small, color = PL.InkDim)
                 }
-                Canvas(
+                SceneFrame(Scenes.snake, inset = 36.dp) { Canvas(
                     Modifier.fillMaxWidth().aspectRatio(0.8f).clip(RoundedCornerShape(16.dp)).pointerInput(Unit) {
                         awaitEachGesture {
                             val down = awaitFirstDown()
@@ -140,9 +140,22 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                     val k = (size.width / w).toFloat()
                     fun sx(x: Double) = ((x - vx) * k).toFloat()
                     fun sy(y: Double) = ((y - vy) * k).toFloat()
-                    drawRect(PL.Paper)
-                    var gx = -(vx % 50)
-                    while (gx < w) { drawLine(PL.Hairline, Offset((gx * k).toFloat(), 0f), Offset((gx * k).toFloat(), size.height), 1f); gx += 50 }
+                    drawRect(PL.Tyrian)
+                    var gx = -(vx % 80)
+                    while (gx < w) { drawLine(PL.Paper.copy(alpha = 0.07f), Offset((gx * k).toFloat(), 0f), Offset((gx * k).toFloat(), size.height), 1.5f); gx += 80 }
+                    var gy = -(vy % 80)
+                    while (gy < h) { drawLine(PL.Paper.copy(alpha = 0.07f), Offset(0f, (gy * k).toFloat()), Offset(size.width, (gy * k).toFloat()), 1.5f); gy += 80 }
+                    val kente = listOf(PL.Ochre, PL.Malachite, PL.Ochre, PL.Vermilion, PL.Ink)
+                    listOf(260.0, 740.0).forEach { band ->
+                        var x = 0.0
+                        var i = 0
+                        while (x < Snakes.WORLD_W) {
+                            val c = kente[i % kente.size]
+                            val bw = if (c == PL.Ochre) 26.0 else 8.0
+                            drawRect(c.copy(alpha = 0.55f), Offset(sx(x), sy(band)), androidx.compose.ui.geometry.Size((bw * k).toFloat(), (44 * k).toFloat()))
+                            x += bw; i++
+                        }
+                    }
                     a.words.forEach { fw ->
                         val x = sx(fw.x); val y = sy(fw.y)
                         if (x < -200 || y < -60 || x > size.width + 200 || y > size.height + 60) return@forEach
@@ -156,10 +169,10 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                         val path = Path().apply { s.body.forEachIndexed { i, p -> if (i == 0) moveTo(sx(p.x), sy(p.y)) else lineTo(sx(p.x), sy(p.y)) } }
                         drawPath(path, SNAKE_COLORS[s.color % SNAKE_COLORS.size], style = Stroke(14f * k, cap = StrokeCap.Round, join = StrokeJoin.Round))
                         drawCircle(PL.White, 4f * k, Offset(sx(s.body[0].x), sy(s.body[0].y)))
-                        val label = measurer.measure("${s.name} ${s.length}", TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1)
+                        val label = measurer.measure("${s.name} ${s.length}", TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = PL.Paper), softWrap = false, maxLines = 1)
                         drawText(label, topLeft = Offset(sx(s.body[0].x) - label.size.width / 2f, sy(s.body[0].y) - 18 * k - label.size.height))
                     }
-                }
+                } }
             }
             SnakePhase.Dead, SnakePhase.Over -> {
                 val a = arena

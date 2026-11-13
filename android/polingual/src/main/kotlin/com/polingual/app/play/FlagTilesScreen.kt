@@ -23,6 +23,7 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.unit.dp
 import com.polingual.app.Graph
 import com.polingual.app.Type
@@ -89,10 +90,15 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
             }
             RunPhase.Running -> {
                 Row { Text("${run.score}", style = Type.display, color = PL.Vermilion, modifier = Modifier.weight(1f)); Text("Best $best", style = Type.small, color = PL.InkDim) }
-                BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.lg)).background(PL.Paper2)) {
+                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).drawBehind {
+                    val stripes = listOf(PL.Ochre, PL.Malachite, PL.Vermilion, PL.Ink)
+                    val lane = size.width / 4f
+                    for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }
+                    drawRect(PL.Ochre.copy(alpha = 0.18f), size = androidx.compose.ui.geometry.Size(size.width, 10f))
+                }) {
                     if (tile != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordTile(null, tile.form, tilt = 0f) }
-                    Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(3.dp).background(PL.Vermilion))
-                }
+                    Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(6.dp).background(PL.Vermilion))
+                } }
                 Lanes()
             }
             RunPhase.Missed -> {

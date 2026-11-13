@@ -101,7 +101,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
                 Text("${minOf(cleared.size, goal.goal)} / ${goal.goal}", style = Type.title, color = PL.Vermilion, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
                 Text("$score pts", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
             }
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            SceneFrame(Scenes.babel) { Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 board.chunked(Babel.SIZE).forEachIndexed { r, row ->
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         row.forEachIndexed { c, cell ->
@@ -119,7 +119,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
                         }
                     }
                 }
-            }
+            } }
             return@GameFrame
         }
         Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
