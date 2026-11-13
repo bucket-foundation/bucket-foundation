@@ -155,8 +155,13 @@ struct QuizGame: View {
             guard let s = langs.sameWordSystem else { return }
             prompts = GameRounds.sameWord(GameDeck(corpus, root: s.root, targets: s.targets), words: words, using: &rng)
         case .voice:
-            let heard = words.filter { LangVoice.shared.canSpeak($0.form, $0.lang) }
-            prompts = GameRounds.flags(heard, own: langs.gameLangs, mode: .voice, sameForm: clash, using: &rng)
+            if let s = langs.dailySystem {
+                let daily = DailySeed.voice(GameDeck(corpus, root: s.root, targets: s.targets), corpus: corpus, day: dayKey(Date().timeIntervalSince1970 * 1000))
+                prompts = daily.filter { LangVoice.shared.canSpeak($0.word.form, $0.word.lang) }
+            } else {
+                let heard = words.filter { LangVoice.shared.canSpeak($0.form, $0.lang) }
+                prompts = GameRounds.flags(heard, own: langs.gameLangs, mode: .voice, sameForm: clash, using: &rng)
+            }
         default:
             prompts = GameRounds.flags(words, own: langs.gameLangs, mode: .flag, sameForm: clash, using: &rng)
         }
@@ -463,9 +468,15 @@ struct SpeedMatchGame: View {
 
     func deal() {
         guard let corpus = langs.corpus else { return }
-        var rng = SystemRandomNumberGenerator()
-        let deck = GameWords.balanced(GameWords.ordered(langs.freshGameWords(corpus), using: &rng))
-        let fresh = SpeedBoard(deck: deck, slots: vertical == .compact ? 4 : 5, seed: rng.next())
+        let slots = vertical == .compact ? 4 : 5
+        let fresh: SpeedBoard
+        if let s = langs.dailySystem {
+            fresh = DailySeed.speedBoard(GameDeck(corpus, root: s.root, targets: s.targets), day: dayKey(Date().timeIntervalSince1970 * 1000), slots: slots)
+        } else {
+            var rng = SystemRandomNumberGenerator()
+            let deck = GameWords.balanced(GameWords.ordered(langs.freshGameWords(corpus), using: &rng))
+            fresh = SpeedBoard(deck: deck, slots: slots, seed: rng.next())
+        }
         over = false
         best = false
         board = fresh.playable ? fresh : nil
@@ -585,6 +596,7 @@ struct LetterSprintGame: View {
     @Environment(Reminders.self) private var reminders
     @Environment(\.verticalSizeClass) private var vertical
     @State private var words: [GameWord] = []
+    @State private var prompts: [LetterPrompt] = []
     @State private var quiz: Exercise?
     @State private var i = 0
     @State private var results: [Bool] = []
@@ -634,8 +646,9 @@ struct LetterSprintGame: View {
     var missed: [GameWord] { zip(words, results).filter { !$0.1 }.map(\.0) }
 
     func deal() {
-        var rng = SystemRandomNumberGenerator()
-        words = GameLetters.deal(langs.systems, states: langs.states, now: Date().timeIntervalSince1970 * 1000, using: &rng)
+        let root = langs.dailySystem?.root ?? "en"
+        prompts = DailySeed.letters(day: dayKey(Date().timeIntervalSince1970 * 1000), targets: langs.dailySystem?.targets ?? [])
+        words = prompts.map { GameWord(itemId: LangScript.letterItemId($0.ch), lang: $0.lang, form: $0.ch, gloss: $0.sound, root: root) }
         i = 0
         results = []
         over = false
@@ -652,7 +665,11 @@ struct LetterSprintGame: View {
         }
         let w = words[i]
         var rng = Rng(seed: UInt32.random(in: 0...UInt32.max))
-        quiz = GameLetters.quiz(w, &rng)
+        quiz = GameLetters.quiz(w, &rng).map { ex in
+            var ex = ex
+            if prompts.indices.contains(i), prompts[i].ch == ex.answer { ex.options = prompts[i].choices }
+            return ex
+        }
         if let quiz, let s = LetterSounds.lookup(quiz.lang, quiz.answer) { LangVoice.shared.speak(LetterSounds.spoken(quiz.lang, s), quiz.lang) }
     }
 
