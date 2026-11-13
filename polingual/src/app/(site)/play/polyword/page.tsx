@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildBank } from "@/lib/polyword/bank";
 import { WORDS } from "@/lib/words";
+import GameWorld from "../GameWorld";
 import Polyword from "./Polyword";
 
 export const metadata: Metadata = {
@@ -12,5 +13,9 @@ export const metadata: Metadata = {
 const BANK = buildBank(WORDS);
 
 export default function PolywordPage() {
-  return <Polyword bank={BANK} />;
+  return (
+    <GameWorld id="polyword">
+      <Polyword bank={BANK} />
+    </GameWorld>
+  );
 }

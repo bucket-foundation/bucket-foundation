@@ -1,20 +1,26 @@
 import type { CSSProperties, HTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
-import { Art, type ArtName } from "./art";
+import { Art, artDataUrl, type ArtName } from "./art";
 import { FlagTile } from "./FlagTile";
 import { FLAG_STRIPE } from "@/lib/flags";
 import s from "./world.module.css";
 
 export type GroundKind = "paper" | "lattice";
+export type GroundTone = "paper" | "tyrian" | "lapis" | "malachite" | "ochre" | "vermilion";
+export type GroundPattern = "dots" | "lattice" | "tile" | "kente" | "stripes";
 
-export function Ground({ kind = "paper", cut, className, children, style }: { kind?: GroundKind; cut?: boolean; className?: string; children?: ReactNode; style?: CSSProperties }) {
-  return <div className={[s[kind], cut && s.cut, className].filter(Boolean).join(" ")} style={style} data-ground={kind}>{children}</div>;
+export function Ground({ kind = "paper", tone, pattern, tile, cut, className, children, style, testId }: { kind?: GroundKind; tone?: GroundTone; pattern?: GroundPattern; tile?: ArtName; cut?: boolean; className?: string; children?: ReactNode; style?: CSSProperties; testId?: string }) {
+  if (tone) {
+    const tileStyle = tile ? ({ "--ground-tile": `url("${artDataUrl(tile)}")` } as CSSProperties) : undefined;
+    return <div className={[s.toned, cut && s.cut, className].filter(Boolean).join(" ")} style={{ ...tileStyle, ...style }} data-ground={tone} data-pattern={pattern} data-testid={testId}>{children}</div>;
+  }
+  return <div className={[s[kind], cut && s.cut, className].filter(Boolean).join(" ")} style={style} data-ground={kind} data-testid={testId}>{children}</div>;
 }
 
 export type StickerSpot = { name: ArtName; x: string; y: string; size: number; rotate?: number; shadow?: boolean; side?: "left" | "right"; anchor?: "top" | "bottom" };
 
-export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "left", anchor = "top" }: StickerSpot) {
+export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "left", anchor = "top", className }: StickerSpot & { className?: string }) {
   return (
-    <span className={s.sticker} style={{ [side]: x, [anchor]: y, transform: `rotate(${rotate}deg)` }} data-sticker={name}>
+    <span className={className ? `${s.sticker} ${className}` : s.sticker} style={{ [side]: x, [anchor]: y, transform: `rotate(${rotate}deg)` }} data-sticker={name}>
       <Art name={name} size={size} shadow={shadow} />
     </span>
   );

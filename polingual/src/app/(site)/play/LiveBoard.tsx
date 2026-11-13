@@ -3,6 +3,7 @@
 import { botLabel, flagEmoji, ranked, type WebLobbyState } from "@/lib/lobby/client";
 import styles from "./play.module.css";
 import { Avatar } from "@/ui/avatar";
+import { Card } from "@/ui";
 
 const ROW = 40;
 
@@ -13,7 +14,7 @@ export default function LiveBoard({ players, live }: { players: WebLobbyState["p
   return (
     <ol className={styles.board} style={{ height: rows.length * ROW }} data-testid="live-board" aria-label="Scoreboard">
       {order.map((p) => (
-        <li key={p.userId} className={styles.boardRow} data-me={p.isMe} data-answered={live && p.answered} style={{ transform: `translateY(${(at.get(p.userId) ?? 0) * ROW}px)` }} data-testid="board-row">
+        <Card as="li" pad="none" key={p.userId} className={styles.boardRow} data-me={p.isMe} data-answered={live && p.answered} style={{ transform: `translateY(${(at.get(p.userId) ?? 0) * ROW}px)` }} data-testid="board-row">
           <span className={styles.boardRank}>{p.rank}</span>
           <span className={styles.boardName}>
             <Avatar seed={p.name} size="chip" variant="head" label="" />
@@ -24,7 +25,7 @@ export default function LiveBoard({ players, live }: { players: WebLobbyState["p
           </span>
           {live && p.answered ? <span className={styles.boardTick} aria-label="answered">✓</span> : null}
           <span className={styles.boardScore} key={p.score} data-testid="board-score">{p.score}</span>
-        </li>
+        </Card>
       ))}
     </ol>
   );

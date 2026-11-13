@@ -101,7 +101,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
                 Text("${minOf(cleared.size, goal.goal)} / ${goal.goal}", style = Type.title, color = PL.Vermilion, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
                 Text("$score pts", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
             }
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            SceneFrame(Scenes.babel) { Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 board.chunked(Babel.SIZE).forEachIndexed { r, row ->
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         row.forEachIndexed { c, cell ->
@@ -113,18 +113,18 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
                             ) {
                                 FlagSwatch(cell.lang, Modifier.fillMaxWidth().height(6.dp))
                                 Box(Modifier.fillMaxWidth().weight(1f).padding(2.dp), contentAlignment = Alignment.Center) {
-                                    Text(byId[cell.meaning]?.forms?.get(cell.lang).orEmpty(), color = if (sel) PL.Paper else PL.Ink, fontSize = 11.sp, lineHeight = 12.sp, textAlign = TextAlign.Center, maxLines = 3, style = Type.small)
+                                    FitLabel(byId[cell.meaning]?.forms?.get(cell.lang).orEmpty(), Type.small, if (sel) PL.Paper else PL.Ink)
                                 }
                             }
                         }
                     }
                 }
-            }
+            } }
             return@GameFrame
         }
         Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
             SectionTitle("Words you matched")
-            cleared.map { it.meaning }.distinct().mapNotNull { byId[it] }.forEach { m ->
+            if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] }.forEach { m ->
                 Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(PL.Paper2).padding(12.dp)) {
                     Text(m.meaning, style = Type.title, color = PL.Ink)
                     m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }

@@ -5,13 +5,15 @@ import { LANGS } from "@academy/lang-systems";
 import { interstitialDue } from "@/lib/lobby/ads";
 import { adjacent, dealer, playable, level as levelOf, matches, points, resolve, rng, SIZE, swapped, type Board, type Cell, type Deal, type Meaning } from "@/lib/lobby/babel";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { LEARN_HREF } from "@/lib/lobby/client";
+
 import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
+import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
+import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
 
@@ -28,7 +30,7 @@ function local(): Storage | null {
 
 type Phase = "loading" | "play" | "won" | "lost" | "error";
 
-export default function BabelMatch() {
+function BabelMatchGame() {
   const [set, setSet] = useState(SETS[0]);
   const [lvl, setLvl] = useState(1);
   const [meanings, setMeanings] = useState<Meaning[]>([]);
@@ -148,7 +150,6 @@ export default function BabelMatch() {
       ) : null}
       <section className={app.stackSm}>
         <p className={app.label}>Level {lvl}</p>
-        <h1 className={app.title}>Babel Match</h1>
         <p className={app.small}>Swap two neighbours. Three words in a line that mean the same thing clear, in any language.</p>
       </section>
       <div className={styles.hudRow}>
@@ -158,7 +159,8 @@ export default function BabelMatch() {
       </div>
       {phase === "loading" ? <p className={app.muted} aria-busy="true">Dealing</p> : null}
       {phase !== "loading" ? (
-        <div className={styles.bmBoard} style={{ gridTemplateColumns: `repeat(${SIZE}, minmax(0, 1fr))` }} data-testid="bm-board">
+        <WorldStage id="babel-match">
+        <div className={styles.bmBoard} style={{ gridTemplateColumns: `repeat(${SIZE}, minmax(0, 1fr))` }} data-testid="bm-board" data-round={phase === "play" ? "active" : undefined}>
           {board.map((c, i) => {
             const m = byId.get(c.meaning);
             const word = m?.forms[c.lang] ?? "";
@@ -166,7 +168,7 @@ export default function BabelMatch() {
               <button
                 key={c.key}
                 type="button"
-                className={styles.bmCell}
+                className={`${styles.bmCell} ${pieceClass("azulejo")}`}
                 data-picked={picked === i}
                 data-shake={shake === i}
                 data-long={word.length > 7}
@@ -176,11 +178,12 @@ export default function BabelMatch() {
                 data-testid="bm-cell"
               >
                 <FlagSquare lang={c.lang} size={12} />
-                <span>{word}</span>
+                <span style={{ "--len": Math.max(4, Array.from(word).length) } as React.CSSProperties}>{word}</span>
               </button>
             );
           })}
         </div>
+        </WorldStage>
       ) : null}
       {phase === "won" || phase === "lost" ? (
         <section className={styles.verdict} data-result={phase === "won" ? "right" : "wrong"} data-testid="bm-verdict">
@@ -210,9 +213,17 @@ export default function BabelMatch() {
               )
             ) : null}
             {phase === "lost" ? <Button onClick={() => { setLvl((n) => n); setPhase("loading"); setSet((s) => ({ ...s })); }} data-testid="bm-retry">Try again</Button> : null}
-            <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
           </div>
         </section>
+      ) : null}
+      {phase === "won" || phase === "lost" ? (
+        <>
+          <WordReveal title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
+            const m = byId.get(c.meaning);
+            return m ? set.targets.filter((l) => m.forms[l]).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning })) : [];
+          })} />
+          <LearnPanel missed={phase === "lost" ? meanings.filter((m) => !words.some((c) => c.meaning === m.id)).slice(0, 4).flatMap((m) => set.targets.filter((l) => m.forms[l]).slice(0, 1).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning }))) : []} />
+        </>
       ) : null}
       <h2 className={app.fieldLabel}>Languages</h2>
       <div className={styles.chips} role="group" aria-label="Languages">
@@ -227,5 +238,13 @@ export default function BabelMatch() {
       </div>
       <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
     </div>
+  );
+}
+
+export default function BabelMatch() {
+  return (
+    <GameWorld id="babel-match">
+      <BabelMatchGame />
+    </GameWorld>
   );
 }

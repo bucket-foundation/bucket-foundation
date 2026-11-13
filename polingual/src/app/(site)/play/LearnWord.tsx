@@ -6,7 +6,10 @@ import { bcp47 } from "@/lib/speak";
 import { LANGS, readingLabel } from "@academy/lang-systems";
 import type { RevealEntry } from "@academy/lobbies";
 import { PlayTile } from "../word/Speak";
+import { learnEntry, learnHref, rootFor } from "@/lib/lobby/learn-index";
+import { scriptOf } from "@/lib/lobby/script";
 import { langName } from "./langs";
+import { useLearnIndex } from "./useLearn";
 import styles from "./play.module.css";
 
 export function FlagSquare({ lang, size = 22 }: { lang: string; size?: number }) {
@@ -29,6 +32,8 @@ export function entryReading(e: Pick<RevealEntry, "reading" | "roman">): string 
 export function RevealCard({ entry, index }: { entry: RevealEntry; index: number }) {
   const item = { id: `${entry.lang}:${entry.word}:${index}`, text: entry.word, lang: bcp47(entry.lang) };
   const definition = entry.gloss || entry.meaning;
+  const learn = learnEntry(useLearnIndex(), entry.lang, entry.word, entry.meaning);
+  const root = rootFor(learn, entry.lang);
   return (
     <li className={styles.revealCard} data-correct={entry.correct} data-testid="reveal-entry">
       <TileFace
@@ -47,6 +52,12 @@ export function RevealCard({ entry, index }: { entry: RevealEntry; index: number
         {definition ? definition : "No entry for this word yet."}
         {entry.meaning && entry.gloss && entry.meaning.toLowerCase() !== entry.gloss.toLowerCase() ? <span className={styles.revealAlt}> · {entry.meaning}</span> : null}
       </p>
+      <dl className={styles.revealFacts} data-testid="reveal-facts">
+        <div><dt>Language</dt><dd>{langName(entry.lang)}</dd></div>
+        <div><dt>Script</dt><dd data-testid="reveal-script">{scriptOf(entry.word)}</dd></div>
+        {root ? <div><dt>Root</dt><dd data-testid="reveal-root">{root}</dd></div> : null}
+      </dl>
+      <a className={styles.revealLearn} href={learnHref(learn)} data-testid="reveal-learn">Learn {entry.word}</a>
     </li>
   );
 }
