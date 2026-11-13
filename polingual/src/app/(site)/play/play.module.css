@@ -293,9 +293,7 @@
 .fhCard{width:min(92vw,880px);min-height:min(56vh,460px);justify-content:center;color:var(--pl-ink);rotate:-2deg;box-shadow:10px 12px 0 rgba(0,0,0,.35)}
 .fhCard .fhLang{font-family:"Space Mono",monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--pl-tyrian)}
 .fhWord{color:var(--pl-ink)}
-.fhStage > *{position:relative;z-index:1}
-.fhStage > span[aria-hidden]{position:absolute;z-index:0}
-.fhStub{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--pl-ink-dim);order:3}
+.fhStub{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--pl-ink-dim);order:3;border-top:2px dashed var(--pl-ink-faint);padding-top:10px;width:80%;text-align:center}
 .arena{background:var(--pl-paper);background-image:radial-gradient(rgba(35,31,32,.08) 1px,transparent 1.3px);background-size:18px 18px;border:3px solid var(--pl-ink);border-radius:18px;box-shadow:0 6px 0 var(--pl-ink);padding:14px}
 .side{background:var(--pl-tyrian-deep);border:3px solid var(--pl-ink);border-radius:18px;padding:10px;box-shadow:0 6px 0 var(--pl-ink)}
 .side .boardRow{border:2px solid var(--pl-ink);box-shadow:0 3px 0 var(--pl-ink);border-radius:12px;padding:0 10px}
@@ -326,3 +324,9 @@
 }
 .choice.choice{padding:8px 18px}
 @media (min-width:1800px){.choice.choice{font-size:32px}}
+.fhStage .fhCard{display:flex;position:relative;z-index:1;padding:28px 24px}
+.fhTop,.fhButtons{z-index:2}
+.fhPass,.fhGot{border:3px solid var(--pl-ink);box-shadow:0 5px 0 var(--pl-ink);min-height:64px;font-size:20px}
+.fhPass{background:var(--pl-vermilion);color:var(--pl-card)}
+.fhGot{background:var(--pl-malachite);color:var(--pl-card)}
+.fhTime,.fhScore{background:var(--pl-card);color:var(--pl-tyrian);border:3px solid var(--pl-ink);border-radius:14px;padding:2px 14px;box-shadow:0 4px 0 var(--pl-ink)}
