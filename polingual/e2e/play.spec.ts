@@ -158,6 +158,25 @@ for (const width of [390, 1440]) {
       await expect(page.getByTestId("next-round")).toBeVisible();
     });
 
+    for (const game of ["tiles", "daily", "flags"] as Game[]) {
+      test(`${game} keeps every reveal hidden during the round`, async ({ page }) => {
+        await mockRoom(page, game, "round");
+        await expect(page.getByTestId("game-world")).toBeVisible({ timeout: 60_000 });
+        await expect(page.locator("[data-round=active]")).toHaveCount(1, { timeout: 60_000 });
+        for (const id of ["reveal", "reveal-entry", "reveal-facts", "word-reveal", "learn-panel"]) await expect(page.getByTestId(id)).toHaveCount(0);
+        await expect(page.getByTestId("room-qr")).toHaveCount(0);
+      });
+    }
+
+    test("the reveal card names the language, script and lesson link", async ({ page }) => {
+      await mockRoom(page, "tiles", "reveal");
+      const first = page.getByTestId("reveal-entry").first();
+      await expect(first).toBeVisible({ timeout: 60_000 });
+      await expect(first.getByTestId("reveal-script")).toHaveText("Latin");
+      await expect(page.getByTestId("reveal-entry").filter({ hasText: "猫" }).getByTestId("reveal-script")).toHaveText("Han");
+      await expect(first.getByTestId("reveal-learn")).toHaveAttribute("href", /\/word\/cat\?from=play|\/app\?from=play/);
+    });
+
     test("results offer the next game, rematch, bots and learning", async ({ page }) => {
       await mockRoom(page, "tiles", "results");
       await expect(page.getByTestId("results")).toBeVisible({ timeout: 60_000 });
