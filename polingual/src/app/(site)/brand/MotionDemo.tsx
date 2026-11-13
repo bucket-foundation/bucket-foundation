@@ -1,38 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button } from "@/ui";
-import s from "./kit.module.css";
+import { useState } from "react";
+import { Button, tokens } from "@/ui";
+import styles from "./brand.module.css";
+
+const DEMOS = [
+  { key: "press", ms: tokens.motion.press, title: "Press", use: "Buttons sink onto their lip." },
+  { key: "pop", ms: tokens.motion.pop, title: "Pop", use: "Tiles, stickers and badges arrive." },
+  { key: "settle", ms: tokens.motion.settle, title: "Settle", use: "Cards land and rank rows slide." },
+] as const;
 
 export default function MotionDemo() {
   const [run, setRun] = useState(0);
-  const [n, setN] = useState(0);
-
-  useEffect(() => {
-    setN(0);
-    const target = 25;
-    const t = setInterval(() => setN((v) => (v >= target ? v : v + 1)), 24);
-    return () => clearInterval(t);
-  }, [run]);
-
   return (
-    <div className={s.cards}>
-      <div className={s.card}>
-        <div className={s.stage}><div key={`p${run}`} className={`${s.popBox} ${s.popRun}`} /></div>
-        <h3>Pop, 160 ms</h3>
-        <p>Cards and chips enter with a 4 px lift and ease-out.</p>
+    <>
+      <div className={styles.motionGrid}>
+        {DEMOS.map((d) => (
+          <div key={d.key} className={styles.motionCard}>
+            <div className={styles.motionStage}>
+              <span key={`${d.key}-${run}`} className={styles[`m_${d.key}`]} />
+            </div>
+            <strong>{d.title} · {d.ms} ms</strong>
+            <span>{d.use}</span>
+            <code>--pl-motion-{d.key}</code>
+          </div>
+        ))}
       </div>
-      <div className={s.card}>
-        <div className={s.stage}><span className={s.count}>+{n}</span></div>
-        <h3>Count up</h3>
-        <p>Coins and points tick up over 600 ms. The final number is always readable.</p>
-      </div>
-      <div className={s.card}>
-        <div className={s.stage}><span key={`s${run}`} className={`${s.slide} ${s.code}`} style={{ fontSize: 28 }}>▲ 2</span></div>
-        <h3>Rank slide, 300 ms</h3>
-        <p>Leaderboard rows slide to their new place.</p>
-      </div>
-      <Button onClick={() => setRun(run + 1)}>Replay</Button>
-    </div>
+      <p className={styles.cap}>Ease {tokens.motion.ease}, token --pl-motion-ease. Reduced motion turns every demo off.</p>
+      <Button onClick={() => setRun((r) => r + 1)}>Replay motion</Button>
+    </>
   );
 }

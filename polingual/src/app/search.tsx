@@ -104,21 +104,13 @@ export default function Search() {
     <div id="search" className="scroll-mt-6">
       <section className="relative max-w-2xl mx-auto px-5 md:px-8 pb-2">
         <div
-          className="rounded-full bg-white shadow-md transition-all duration-200 ring-1 focus-within:ring-2"
-          style={{
-            boxShadow: "0 4px 14px -2px rgba(15, 37, 64, 0.10)",
-            // @ts-expect-error -- CSS custom prop in style works in modern browsers
-            "--tw-ring-color": "var(--blue)",
-            "--tw-ring-offset-shadow": "0 0 0 0 #fff",
-            ringColor: "var(--blue-soft)",
-          }}
+          className="rounded-full bg-white shadow-[0_4px_0_var(--pl-lip-soft)] transition-all duration-200 ring-1 ring-[color:var(--pl-lapis-soft)] focus-within:ring-2 focus-within:ring-[color:var(--pl-lapis)]"
         >
           <div className="flex items-center px-4 py-3">
             <svg
               width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2"
-              strokeLinecap="round" strokeLinejoin="round"
-              style={{ color: "var(--blue)" }}
+              strokeLinecap="round" strokeLinejoin="round" className="text-[color:var(--blue)]"
               aria-hidden
             >
               <circle cx="11" cy="11" r="7" />
@@ -131,14 +123,12 @@ export default function Search() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="type a word in any language"
-              className="flex-1 bg-transparent px-3 py-1 outline-none text-lg md:text-xl"
-              style={{ fontFamily: "inherit", color: "var(--ink)" }}
+              className="flex-1 bg-transparent px-3 py-1 outline-none text-lg md:text-xl font-[inherit] text-[color:var(--pl-ink)]"
             />
             {q && (
               <button
                 onClick={() => { setQ(""); setResults([]); inputRef.current?.focus(); }}
-                className="text-xl leading-none hover:scale-110 transition px-2"
-                style={{ color: "var(--ink-faint)" }}
+                className="text-xl leading-none hover:scale-110 transition px-2 text-[color:var(--ink-faint)]"
                 aria-label="clear"
                 title="clear"
               >
@@ -146,11 +136,7 @@ export default function Search() {
               </button>
             )}
             <kbd
-              className="hidden md:inline-flex ml-2 px-2 py-0.5 rounded text-[10px] font-mono"
-              style={{
-                background: "var(--sky-2)", color: "var(--ink-dim)",
-                border: `1px solid ${"var(--hairline-2)"}`,
-              }}
+              className="hidden md:inline-flex ml-2 px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--pl-paper-2)] text-[color:var(--pl-ink-dim)] border border-[color:var(--pl-hairline-2)]"
             >
               /
             </kbd>
@@ -160,8 +146,7 @@ export default function Search() {
         {!q && (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
             <span
-              className="text-[10px] font-mono uppercase tracking-[0.2em] mr-1"
-              style={{ color: "var(--ink-faint)" }}
+              className="text-[10px] font-mono uppercase tracking-[0.2em] mr-1 text-[color:var(--ink-faint)]"
             >
               try
             </span>
@@ -169,18 +154,11 @@ export default function Search() {
               <button
                 key={ex.q}
                 onClick={() => setQ(ex.q)}
-                className="rounded-full px-3 py-1 text-sm transition hover:bg-white hover:shadow-sm"
-                style={{
-                  background: "var(--sky-2)",
-                  border: `1px solid ${"var(--hairline)"}`,
-                  color: "var(--ink-2)",
-                  fontFamily: "inherit",
-                }}
+                className="rounded-full px-3 py-1 text-sm transition hover:bg-white hover:shadow-sm bg-[var(--pl-paper-2)] border border-[color:var(--pl-hairline)] text-[color:var(--pl-ink-2)] font-[inherit]"
               >
                 {ex.q}
                 <span
-                  className="ml-2 font-mono text-[9px] uppercase tracking-[0.18em]"
-                  style={{ color: "var(--ink-faint)" }}
+                  className="ml-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--ink-faint)]"
                 >
                   {ex.hint}
                 </span>
@@ -190,8 +168,7 @@ export default function Search() {
         )}
 
         <p
-          className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: "var(--ink-faint)" }}
+          className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--ink-faint)]"
         >
           {q
             ? loading
@@ -208,20 +185,17 @@ export default function Search() {
           <div key={lang} className="mb-8 fade-in">
             <div className="flex items-baseline justify-between mb-3">
               <h2
-                className="font-mono text-[11px] uppercase tracking-[0.22em]"
-                style={{ color: "var(--blue)" }}
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--blue)]"
               >
                 {LANG_LABEL[lang] || lang}
                 <span
-                  className="ml-2 font-mono text-[10px]"
-                  style={{ color: "var(--ink-faint)" }}
+                  className="ml-2 font-mono text-[10px] text-[color:var(--ink-faint)]"
                 >
                   · {lang}
                 </span>
               </h2>
               <span
-                className="font-mono text-[10px] uppercase tracking-[0.18em]"
-                style={{ color: "var(--ink-faint)" }}
+                className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-faint)]"
               >
                 {items.length}
               </span>
@@ -231,23 +205,18 @@ export default function Search() {
                 <Link
                   key={p.id}
                   href={`/photon/${encodeURIComponent(p.id)}`}
-                  className="block rounded-xl bg-white px-5 py-4 transition hover:shadow-md"
-                  style={{
-                    border: `1px solid ${"var(--hairline)"}`,
-                  }}
+                  className="block rounded-xl bg-white px-5 py-4 transition hover:shadow-md border border-[color:var(--pl-hairline)]"
                 >
                   <div className="flex items-baseline justify-between gap-4">
                     <div className="flex items-baseline gap-3 min-w-0">
                       <span
-                        className="text-2xl md:text-[28px] truncate"
-                        style={{ color: "var(--ink)" }}
+                        className="text-2xl md:text-[28px] truncate text-[color:var(--ink)]"
                       >
                         {p.surface}
                       </span>
                       {p.ipa && (
                         <span
-                          className="font-mono text-xs whitespace-nowrap"
-                          style={{ color: "var(--ink-faint)" }}
+                          className="font-mono text-xs whitespace-nowrap text-[color:var(--ink-faint)]"
                         >
                           {p.ipa}
                         </span>
@@ -255,16 +224,14 @@ export default function Search() {
                     </div>
                     {p.pos && (
                       <span
-                        className="font-mono text-[10px] italic whitespace-nowrap"
-                        style={{ color: "var(--ink-dim)" }}
+                        className="font-mono text-[10px] italic whitespace-nowrap text-[color:var(--ink-dim)]"
                       >
                         {p.pos}
                       </span>
                     )}
                   </div>
                   <p
-                    className="mt-2 text-[15px] leading-relaxed line-clamp-2"
-                    style={{ color: "var(--ink-2)" }}
+                    className="mt-2 text-[15px] leading-relaxed line-clamp-2 text-[color:var(--ink-2)]"
                   >
                     {p.meaning_en}
                   </p>

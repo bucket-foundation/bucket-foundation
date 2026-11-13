@@ -22,3 +22,7 @@ dependencies {
     api(libs.compose.icons)
     api(libs.compose.ui.tooling.preview)
 }
+android.testOptions.unitTests.isReturnDefaultValues = true
+dependencies {
+    testImplementation(libs.junit)
+}

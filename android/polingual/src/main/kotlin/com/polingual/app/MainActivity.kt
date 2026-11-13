@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateOf
-import foundation.bucket.core.ui.PolingualTheme
+import foundation.bucket.core.ui.pl.PLTheme
 
 class MainActivity : ComponentActivity() {
     private val link = mutableStateOf<Link?>(null)
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         val graph = (application as PolingualApp).graph
         graph.activity = java.lang.ref.WeakReference(this)
         graph.ads.gather(this)
-        setContent { PolingualTheme { Root(graph, link.value) { link.value = null } } }
+        setContent { PLTheme { Root(graph, link.value) { link.value = null } } }
     }
 
     override fun onNewIntent(intent: Intent) {

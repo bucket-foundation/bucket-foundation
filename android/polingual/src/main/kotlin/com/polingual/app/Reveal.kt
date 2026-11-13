@@ -1,0 +1,44 @@
+package com.polingual.app
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import foundation.bucket.core.engine.LangCorpus
+import foundation.bucket.core.model.Lang
+import foundation.bucket.core.ui.pl.PL
+import foundation.bucket.core.ui.pl.PLSpace
+import foundation.bucket.core.ui.pl.WordTile
+
+object Scripts {
+    private val byLang = mapOf(
+        "ru" to "Cyrillic", "el" to "Greek", "grc" to "Greek", "ar" to "Arabic", "fa" to "Arabic", "he" to "Hebrew",
+        "hi" to "Devanagari", "sa" to "Devanagari", "ja" to "Japanese", "zh" to "Han", "ko" to "Hangul", "th" to "Thai", "ta" to "Tamil",
+    )
+    fun of(lang: String) = byLang[lang] ?: "Latin"
+}
+
+@Composable
+fun WordReveal(lang: String, form: String, gloss: String, itemId: String?, corpus: LangCorpus?, onSpeak: (() -> Unit)?) {
+    val item = itemId?.let { corpus?.byId?.get(it) }
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(PLSpace.s2)) {
+        WordTile(lang, form, ipa = item?.readings?.get(lang)?.let { it.ipa ?: it.roman }, gloss = gloss, onSpeak = onSpeak)
+        RevealRow("Language", Lang.name(lang))
+        RevealRow("Script", Scripts.of(lang))
+        item?.root?.takeIf { it.isNotBlank() }?.let { RevealRow("Root", it) }
+        RevealRow("Definition", item?.note?.takeIf { it.isNotBlank() } ?: gloss)
+    }
+}
+
+@Composable
+private fun RevealRow(label: String, value: String) {
+    Row(horizontalArrangement = Arrangement.spacedBy(PLSpace.s3)) {
+        Text(label.uppercase(), style = Type.caps, color = PL.InkDim, modifier = Modifier.width(96.dp))
+        Text(value, style = Type.small, color = PL.Ink, modifier = Modifier.weight(1f))
+    }
+}

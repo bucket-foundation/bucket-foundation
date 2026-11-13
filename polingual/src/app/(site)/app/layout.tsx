@@ -1,3 +1,4 @@
+import { tokens } from "@/ui/tokens";
 import type { Metadata, Viewport } from "next";
 import AppShell from "./AppShell";
 import styles from "./app.module.css";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#F6EEDC" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: tokens.color.paper };
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
