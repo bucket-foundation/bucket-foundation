@@ -22,7 +22,6 @@ enum WantedWords {
 
 struct TranslateCard: View {
     @Environment(LangStore.self) private var store
-    @Environment(\.colorScheme) private var scheme
     var today = false
     @AppStorage("translate.targets") private var targetsRaw = ""
     @AppStorage("translate.recent") private var recentRaw = ""
@@ -74,10 +73,7 @@ struct TranslateCard: View {
 
     var active: String { today ? committed : query }
 
-    var soft: Color {
-        guard today else { return Palette.muted }
-        return scheme == .dark ? D8.ink.opacity(0.75) : D8.parchment.opacity(0.75)
-    }
+    var soft: Color { Palette.muted }
 
     static var settingsURL: URL? {
         #if os(iOS)
@@ -190,7 +186,7 @@ struct TranslateCard: View {
                 targetRow
                 HStack(spacing: 10) {
                     Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
-                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(today ? soft : D8.label))
+                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(soft))
                         .font(.system(size: 21, weight: .semibold, design: .rounded))
                         .autocorrectionDisabled()
                         .submitLabel(.search)
@@ -297,9 +293,8 @@ struct TranslateCard: View {
             Group {
                 if today {
                     card
-                        .padding(16)
-                        .environment(\.colorScheme, scheme == .dark ? .light : .dark)
-                        .modifier(GameLip(face: scheme == .dark ? D8.parchment : D8.ink, lip: scheme == .dark ? D8.keyline : .black, radius: 22))
+                        .padding(.vertical, 4)
+                        .todayCard()
                         .accessibilityIdentifier("today.translate")
                 } else {
                     card.padding(.vertical, 6)
@@ -452,21 +447,20 @@ struct TranslateCard: View {
                 Label("Translate", systemImage: "arrow.right")
                     .labelStyle(TrailingIcon())
                     .font(D8.word(19))
-                    .foregroundStyle(D8.parchment)
-                    .frame(maxWidth: .infinity, minHeight: 60)
-                    .modifier(GameLip(face: D8.lapis, lip: Color(hex: 0x12326A)))
+                    .frame(minHeight: 52)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(D8Primary())
             .disabled(query.trimmingCharacters(in: .whitespaces).isEmpty)
             .accessibilityIdentifier("translate.go")
             Button { micTapped() } label: {
                 Image(systemName: listening ? "stop.fill" : "mic.fill")
                     .font(.system(size: 26, weight: .bold))
                     .symbolEffect(.variableColor.iterative, isActive: listening)
-                    .foregroundStyle(D8.parchment)
+                    .foregroundStyle(listening ? D8.parchment : D8.vermilion)
                     .frame(width: 60, height: 60)
-                    .background(D8.vermilion, in: .circle)
-                    .background(D8.vermilionLip, in: .circle.offset(y: 5))
+                    .background(listening ? D8.vermilion : D8.face, in: .circle)
+                    .overlay { Circle().strokeBorder(listening ? D8.vermilion : D8.edge, lineWidth: 2) }
+                    .background(listening ? D8.vermilionLip : D8.edge, in: .circle.offset(y: 5))
                     .padding(.bottom, 5)
             }
             .buttonStyle(.plain)
