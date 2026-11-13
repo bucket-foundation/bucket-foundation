@@ -11,6 +11,8 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
+import GameWorld, { pieceClass } from "../GameWorld";
+import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink } from "@/ui";
 
@@ -76,10 +78,9 @@ export default function Shift() {
   const extras = found.filter((w) => !board.targets.some((t) => t.form === w));
 
   return (
+    <GameWorld id="shift" caption={`DAILY BOARD · ${board.date}`} active={!complete}>
     <div className={app.stack} data-testid="shift">
       <section className={app.stackSm}>
-        <p className={app.label}>Daily board · {board.date}</p>
-        <h1 className={app.title}>Shift</h1>
         <p className={app.small}>Slide the columns to spell words in the middle row. Words count in {board.langs.map(langName).join(" or ")}.</p>
       </section>
       <div className={styles.shBoard} data-new={isNew} data-testid="sh-board">
@@ -87,7 +88,7 @@ export default function Shift() {
           <div key={i} className={styles.shCol}>
             <button type="button" className={styles.shArrow} onClick={() => setOffsets((o) => rotate(o, i, -1))} aria-label={`Column ${i + 1} up`} data-testid="sh-up">▲</button>
             <span className={styles.shGhost}>{col[(((offsets[i] - 1) % col.length) + col.length) % col.length]}</span>
-            <b className={styles.shLetter} data-testid="sh-letter">{col[((offsets[i] % col.length) + col.length) % col.length]}</b>
+            <b className={`${styles.shLetter} ${pieceClass("torn-label")}`} data-testid="sh-letter">{col[((offsets[i] % col.length) + col.length) % col.length]}</b>
             <span className={styles.shGhost}>{col[(((offsets[i] + 1) % col.length) + col.length) % col.length]}</span>
             <button type="button" className={styles.shArrow} onClick={() => setOffsets((o) => rotate(o, i, 1))} aria-label={`Column ${i + 1} down`} data-testid="sh-down">▼</button>
           </div>
@@ -118,6 +119,12 @@ export default function Shift() {
             <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
           </div>
         </section>
+      ) : null}
+      {complete ? (
+        <>
+          <WordReveal title="Today's words" words={board.targets.map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning }))} />
+          <LearnPanel missed={Object.keys(hints).flatMap((f) => board.targets.filter((t) => t.form === f).map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning })))} />
+        </>
       ) : adsVisible ? (
         rewarded ? (
           <>
@@ -132,5 +139,6 @@ export default function Shift() {
       )}
       {complete && readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
     </div>
+    </GameWorld>
   );
 }
