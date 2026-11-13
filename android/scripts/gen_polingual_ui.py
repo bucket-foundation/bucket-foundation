@@ -235,6 +235,18 @@ GLYPHS = {
 }
 
 
+OBJECTS = ROOT / "polingual/src/ui/art/objects.tsx"
+
+
+def object_entries():
+    import subprocess
+    src = OBJECTS.read_text()
+    body = src[src.index("const INK"):src.index("export function ObjectArt")]
+    body = body.replace("export const", "const").replace("(n: string, fill: string)", "(n, fill)").replace(": Record<string, string>", "")
+    out = subprocess.run(["node", "-e", body + "\nprocess.stdout.write(JSON.stringify(OBJECT_ART))"], capture_output=True, text=True, check=True).stdout
+    return [{"name": "obj-" + k, "label": k, "viewBox": "0 0 100 100", "dark": False, "body": v} for k, v in json.loads(out).items()]
+
+
 def glyph_entries():
     src = TILE.read_text()
     m = re.search(r"const SPEAKER = \(\s*<svg[^>]*>(.*?)</svg>", src, re.S)
@@ -350,6 +362,113 @@ def flags_kt():
 
 
 APP_RES = ROOT / "android/polingual/src/main/res"
+APP_ASSETS = ROOT / "android/polingual/src/main/assets/play"
+WORDS = ROOT / "polingual/src/data/words.json"
+PW_ORDER = ROOT / "polingual/src/lib/polyword/order.json"
+PW_BANK = ROOT / "polingual/src/lib/polyword/bank.ts"
+
+
+def imul(a, b):
+    return ((a & 0xFFFFFFFF) * (b & 0xFFFFFFFF)) & 0xFFFFFFFF
+
+
+def fnv(s):
+    h = 2166136261
+    for ch in s.encode("utf-16-le").decode("utf-16-le"):
+        for unit in ([ord(ch)] if ord(ch) < 0x10000 else [0xD800 + ((ord(ch) - 0x10000) >> 10), 0xDC00 + ((ord(ch) - 0x10000) & 0x3FF)]):
+            h = imul(h ^ unit, 16777619)
+    return h
+
+
+def mulberry(seed):
+    a = seed
+
+    def nxt():
+        nonlocal a
+        a = (a + 0x6D2B79F5) & 0xFFFFFFFF
+        t = a
+        t = imul(t ^ (t >> 15), t | 1)
+        t ^= (t + imul(t ^ (t >> 7), t | 61)) & 0xFFFFFFFF
+        return ((t ^ (t >> 14)) & 0xFFFFFFFF) / 4294967296
+    return nxt
+
+
+def pw_shuffled(items, seed):
+    out = list(items)
+    r = mulberry(fnv(seed))
+    for i in range(len(out) - 1, 0, -1):
+        j = math.floor(r() * (i + 1))
+        out[i], out[j] = out[j], out[i]
+    return out
+
+
+def pw_fold(raw):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", raw) if not unicodedata.category(c).startswith("M")).lower()
+
+
+def pw_ordered(frozen, current):
+    have = set(current)
+    fresh = [x for x in current if x not in frozen]
+    out = []
+    for slug in frozen:
+        if slug in have:
+            out.append(slug)
+        elif fresh:
+            out.append(fresh.pop(0))
+        elif current:
+            out.append(current[fnv(slug) % len(current)])
+    return out + fresh
+
+
+def ts_list(src, name):
+    m = re.search(r"export const %s = \[([^\]]*)\]" % name, src)
+    return re.findall(r'"([^"]+)"', m.group(1))
+
+
+def play_assets():
+    words = json.loads(WORDS.read_text())
+    slim = []
+    for w in words:
+        e = {k: w[k] for k in ("slug", "en", "gloss", "category", "tier") if k in w}
+        if w.get("note"):
+            e["note"] = w["note"]
+        if w.get("roots"):
+            e["roots"] = w["roots"]
+        e["forms"] = [{k: f[k] for k in ("lang", "word", "ipa", "roman", "kana") if f.get(k)} for f in w["forms"]]
+        slim.append(e)
+    src = PW_BANK.read_text()
+    targets, reveal = ts_list(src, "TARGETS"), ts_list(src, "REVEAL_ORDER")
+    keep = set(targets) | set(reveal)
+    frozen = json.loads(PW_ORDER.read_text())
+    langs, used = {}, set()
+    for lang in targets:
+        seen, picks = set(), []
+        for w in sorted(words, key=lambda x: x["slug"]):
+            form = next((f for f in w["forms"] if f["lang"] == lang), None)
+            if not form:
+                continue
+            key = pw_fold(form["word"])
+            if not re.fullmatch(r"[a-z]+", key) or len(key) not in (5, 6) or key in seen:
+                continue
+            seen.add(key)
+            picks.append(w["slug"])
+            used.add(w["slug"])
+        langs[lang] = pw_ordered(frozen.get(lang, []), pw_shuffled(picks, "polyword:" + lang))
+    bank_words = {}
+    for w in words:
+        if w["slug"] not in used:
+            continue
+        forms = {}
+        for f in w["forms"]:
+            if f["lang"] not in keep or f["lang"] in forms:
+                continue
+            roman = f.get("roman") or f.get("kana")
+            forms[f["lang"]] = {"word": f["word"], "roman": roman} if roman else {"word": f["word"]}
+        bank_words[w["slug"]] = {"gloss": w.get("gloss") or w["en"], "forms": forms}
+    bank = {"targets": targets, "reveal": reveal, "langs": langs, "words": bank_words}
+    dump = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":")) + "\n"
+    return {APP_ASSETS / "words.json": dump(slim), APP_ASSETS / "polyword-bank.json": dump(bank)}
 
 
 def launcher(t):
@@ -387,6 +506,52 @@ def launcher(t):
             APP_RES / "mipmap-anydpi-v26/ic_launcher.xml": icon, APP_RES / "mipmap-anydpi-v26/ic_launcher_round.xml": icon}
 
 
+MAP_W, MAP_H = 720, 360
+
+
+def land_path(topo, name="land"):
+    sx, sy = topo["transform"]["scale"]
+    tx, ty = topo["transform"]["translate"]
+    arcs = []
+    for arc in topo["arcs"]:
+        x = y = 0
+        pts = []
+        for dx, dy in arc:
+            x += dx
+            y += dy
+            pts.append((x * sx + tx, y * sy + ty))
+        arcs.append(pts)
+
+    def ring(idx):
+        out = []
+        for i in idx:
+            a = list(reversed(arcs[~i])) if i < 0 else arcs[i]
+            out.extend(a[1:] if out else a)
+        return out
+    parts = []
+    for g in topo["objects"].get(name, {}).get("geometries", []):
+        polys = [g["arcs"]] if g["type"] == "Polygon" else g["arcs"]
+        for poly in polys:
+            for r in poly:
+                pts = [((lon + 180) / 360 * MAP_W, (90 - lat) / 180 * MAP_H) for lon, lat in ring(r)]
+                if len(pts) < 3:
+                    continue
+                d, prev = "", None
+                for px, py in pts:
+                    jump = prev is not None and abs(px - prev[0]) > MAP_W / 2
+                    d += "%s%.1f %.1f" % ("M" if prev is None or jump else "L", px, py)
+                    prev = (px, py)
+                parts.append(d + "Z")
+    return "".join(parts)
+
+
+def land_asset():
+    for cand in [ROOT / "polingual/node_modules/world-atlas/land-110m.json"] + [Path(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--land=")]:
+        if cand.exists():
+            return {APP_ASSETS / "land.txt": land_path(json.loads(cand.read_text())) + "\n"}
+    return {}
+
+
 def fonts():
     try:
         from fontTools.ttLib import TTFont
@@ -408,7 +573,7 @@ def main():
     s = ART.read_text()
     entries = json.loads(s[s.index("["):s.index("\n] as const") + 2])
     PKG_DIR.mkdir(parents=True, exist_ok=True)
-    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t)}
+    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries() + object_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t), **play_assets(), **land_asset()}
     check = "--check" in sys.argv
     stale = [p for p, body in outputs.items() if not p.exists() or p.read_text() != body]
     if check:

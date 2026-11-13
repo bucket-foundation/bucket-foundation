@@ -27,11 +27,13 @@ android {
         buildConfigField("String", "BANNER_UNIT", "\"ca-app-pub-3940256099942544/9214589741\"")
         buildConfigField("String", "INTERSTITIAL_UNIT", "\"ca-app-pub-3940256099942544/1033173712\"")
         buildConfigField("boolean", "FREE_BETA", "false")
+        buildConfigField("boolean", "FAKE_PLANS", "false")
     }
     buildTypes {
         debug {
             providers.gradleProperty("bucketBase").orNull?.let { buildConfigField("String", "BUCKET_BASE", "\"$it\"") }
             buildConfigField("boolean", "FREE_BETA", providers.gradleProperty("freeBeta").orNull ?: "false")
+            buildConfigField("boolean", "FAKE_PLANS", providers.gradleProperty("fakePlans").orNull ?: "false")
         }
         release {
             val admob = providers.gradleProperty("polingualAdmobAppId").orNull

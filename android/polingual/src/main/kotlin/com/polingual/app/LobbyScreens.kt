@@ -56,7 +56,7 @@ val nativeLobbyGames = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Fla
 
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
-fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
+fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> Unit) {
     val p = LocalPalette.current
     val state by graph.lobbies.state.collectAsState()
     val app by graph.state.collectAsState()
@@ -65,7 +65,7 @@ fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
     var error by remember { mutableStateOf<String?>(null) }
     var joinCode by remember { mutableStateOf(code) }
     var nick by remember(app?.nickname) { mutableStateOf(app?.nickname.orEmpty()) }
-    var game by remember { mutableStateOf(LobbyGame.Daily) }
+    var game by remember { mutableStateOf(nativeLobbyGames.firstOrNull { it.wire == preset } ?: LobbyGame.Daily) }
     var bots by remember { mutableStateOf(false) }
     val signedIn = stage == Stage.SignedIn
     val name = nick.trim()
@@ -238,7 +238,7 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
         mark == true -> Text("Right", color = PL.Malachite, fontWeight = FontWeight.Bold)
         mark == false -> Text("Not this time.", color = PL.Vermilion, fontWeight = FontWeight.Bold)
     }
-    if (reveal) {
+    if (PlayRules.showReveal(answered = false, roundClosed = reveal)) {
         prompt.reveal.firstOrNull { it.correct }?.let { r -> WordReveal(r.lang, r.word, r.meaning, null, null) { graph.voice.speak(r.word, r.lang) } }
         prompt.reveal.filterNot { it.correct }.forEach { r -> Text("${Lang.name(r.lang)}: ${r.word}${r.roman?.let { " ($it)" } ?: ""}, ${r.meaning}", style = Type.small, color = p.muted) }
     }
