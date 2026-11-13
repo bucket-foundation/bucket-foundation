@@ -78,3 +78,11 @@ test("which voice asks ten languages, then keeps today's result", async ({ page 
   await expect(page.getByTestId("daily-score")).toHaveText("10 of 10");
   await revisit(page, "/play/which-voice");
 });
+
+test("letter sprint finds eight letters, then keeps today's result", async ({ page }) => {
+  await open(page, "/play/letter-sprint");
+  await page.getByTestId("letter-start").click({ timeout: 60_000 });
+  for (let n = 0; n < 8; n++) await page.locator("[data-testid=letter-choice][data-answer=yes]").click();
+  await expect(page.getByTestId("daily-score")).toHaveText("8 of 8");
+  await revisit(page, "/play/letter-sprint");
+});
