@@ -6,7 +6,7 @@ import { LANGS } from "@academy/lang-systems";
 import { TileFace } from "@/app/tile";
 import { interstitialDue } from "@/lib/lobby/ads";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
-import { flagEmoji, LEARN_HREF } from "@/lib/lobby/client";
+import { flagEmoji } from "@/lib/lobby/client";
 import { readBest, START, step, writeBest, type RunEvent } from "@/lib/lobby/flag-run";
 import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
@@ -14,6 +14,8 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
+import GameWorld, { WorldStage } from "../GameWorld";
+import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink } from "@/ui";
 
@@ -27,7 +29,7 @@ function local(): Storage | null {
   }
 }
 
-export default function FlagTiles() {
+function FlagTilesGame() {
   const [deck, setDeck] = useState<FlagTilesDeck | null>(null);
   const [board, setBoard] = useState<Ghost[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -154,7 +156,6 @@ export default function FlagTiles() {
       <div className={app.stack} data-testid="flag-tiles">
         <section className={app.stackSm}>
           <p className={app.label}>Daily run · {deck.date}</p>
-          <h1 className={app.title}>Flag Tiles</h1>
           <p className={app.muted}>A word falls. Tap the flag of its language before it lands. Speed rises every ten words, and one miss ends the run.</p>
         </section>
         {lanes}
@@ -174,13 +175,15 @@ export default function FlagTiles() {
           <span className={styles.hudScore} data-testid="ft-score">{run.score}</span>
           <span className={styles.hudRound}>Best {best}</span>
         </div>
-        <div className={styles.ftStage} data-testid="ft-stage">
-          <div className={styles.ftFall} style={{ top: `${progress * 78}%` }} key={run.index}>
-            <TileFace as="div" lang="" plain word={tile.form} rtl={LANGS[tile.lang]?.rtl} attrs={{ "data-testid": "ft-word" }} />
+        <WorldStage id="flag-tiles">
+          <div className={styles.ftStage} data-testid="ft-stage" data-round="active">
+            <div className={styles.ftFall} style={{ top: `${progress * 78}%` }} key={run.index}>
+              <TileFace as="div" lang="" plain word={tile.form} rtl={LANGS[tile.lang]?.rtl} attrs={{ "data-testid": "ft-word" }} />
+            </div>
+            <div className={styles.ftLine} aria-hidden="true" />
           </div>
-          <div className={styles.ftLine} aria-hidden="true" />
-        </div>
-        {lanes}
+          {lanes}
+        </WorldStage>
         <p className={styles.keysHint}>Tap a flag, or press D F J K</p>
       </div>
     );
@@ -219,6 +222,7 @@ export default function FlagTiles() {
       <div className={app.stack} data-testid="flag-tiles">
         <p className={styles.hudScore} data-testid="ft-score">{run.score}</p>
         {verdict}
+        {missedTile ? <WordReveal title="The word that got away" words={[{ lang: missedTile.lang, word: missedTile.form, meaning: missedTile.meaning, correct: false }]} /> : null}
         {adsVisible && !run.continued ? (
           rewarded ? (
             <>
@@ -251,7 +255,7 @@ export default function FlagTiles() {
       ) : null}
       <section className={app.stackSm}>
         <p className={app.label}>Run over</p>
-        <h1 className={app.title} data-testid="ft-final">{run.score} {run.score === 1 ? "word" : "words"}</h1>
+        <h2 className={app.title} data-testid="ft-final">{run.score} {run.score === 1 ? "word" : "words"}</h2>
         <p className={app.small}>Today&apos;s best: {best}</p>
       </section>
       {verdict}
@@ -272,10 +276,19 @@ export default function FlagTiles() {
       </section>
       <div className={app.row}>
         <Button onClick={() => send({ kind: "start" })} data-testid="ft-again">Run again</Button>
-        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
         <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
       </div>
+      <WordReveal title="Words in this run" words={deck.tiles.slice(0, Math.min(run.index + 1, 12)).map((t, i) => ({ lang: t.lang, word: t.form, meaning: t.meaning, correct: i !== run.missed }))} />
+      <LearnPanel missed={missedTile ? [{ lang: missedTile.lang, word: missedTile.form, meaning: missedTile.meaning }] : []} />
       {readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
     </div>
+  );
+}
+
+export default function FlagTiles() {
+  return (
+    <GameWorld id="flag-tiles">
+      <FlagTilesGame />
+    </GameWorld>
   );
 }

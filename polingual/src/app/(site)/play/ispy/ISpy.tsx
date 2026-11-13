@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { SPY_ROUND_SECONDS, spyScene, type SpyRound } from "@academy/ispy";
+import { SPY_ROUND_SECONDS, SPY_SCENES, spyScene, type SpyRound } from "@academy/ispy";
 import type { RevealEntry } from "@academy/lobbies";
 import { LANGS } from "@academy/lang-systems";
 import { award, boardPlayers, botTurns, SPY_BOTS, type Tally } from "@/lib/lobby/ispy-solo";
@@ -9,6 +9,8 @@ import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
 import { LANG_SETS, langName } from "../langs";
 import { RevealCard } from "../LearnWord";
+import GameWorld from "../GameWorld";
+import { LearnPanel, WordReveal } from "../Reveal";
 import LiveBoard from "../LiveBoard";
 import playStyles from "../play.module.css";
 import { ObjectArt } from "@/ui/art/objects";
@@ -22,13 +24,14 @@ type Phase = { kind: "setup" } | { kind: "loading" } | { kind: "error" } | { kin
 const REVEAL_MS = 3200;
 const SETS = [{ id: "mix", label: "Chinese, Russian, Hindi, Spanish", root: "en", targets: ["zh", "ru", "hi", "es"] }, ...LANG_SETS];
 
-export default function ISpy() {
+function ISpyGame() {
   const [set, setSet] = useState(SETS[0]);
   const [rounds, setRounds] = useState<Round[]>([]);
   const [phase, setPhase] = useState<Phase>({ kind: "setup" });
   const [me, setMe] = useState<Tally>({ score: 0, streak: 0 });
   const [bots, setBots] = useState<Record<string, Tally>>({});
   const [answered, setAnswered] = useState<Set<string>>(new Set());
+  const [misses, setMisses] = useState<number[]>([]);
   const [marks, setMarks] = useState<Record<string, SpyMark>>({});
   const [pop, setPop] = useState<{ key: number; points: number } | null>(null);
   const [now, setNow] = useState(0);
@@ -41,6 +44,7 @@ export default function ISpy() {
   const start = useCallback(() => {
     seed.current = String(Date.now());
     setPhase({ kind: "loading" });
+    setMisses([]);
     fetch(`/api/academy/ispy?root=${set.root}&langs=${set.targets.join(",")}&seed=${seed.current}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d: { rounds: Round[] }) => {
@@ -76,6 +80,7 @@ export default function ISpy() {
     const r = rounds[index];
     settleBots(index, SPY_ROUND_SECONDS * 1000);
     setMarks((m) => (correct ? m : { ...m, [r.answer]: "answer" }));
+    if (!correct) setMisses((xs) => (xs.includes(index) ? xs : [...xs, index]));
     setPhase({ kind: "reveal", index, correct });
   }, [rounds, settleBots]);
 
@@ -126,7 +131,6 @@ export default function ISpy() {
   if (phase.kind === "setup" || phase.kind === "loading" || phase.kind === "error") {
     return (
       <div className={app.stack} data-testid="ispy-setup">
-        <h1 className={app.title}>I Spy</h1>
         <p className={app.muted}>A word appears in another language. Find it in the picture before the bots do.</p>
         <div className={styles.setup} role="group" aria-label="Languages">
           {SETS.map((s) => (
@@ -138,6 +142,10 @@ export default function ISpy() {
           <ButtonLink variant="ghost" href="/play">Play with friends</ButtonLink>
         </div>
         {phase.kind === "error" ? <p className={app.small} role="alert">The words did not load. Try again.</p> : null}
+        <div className={styles.preview} data-testid="ispy-preview">
+          <Scene scene={SPY_SCENES[0]} marks={{}} locked onTap={() => undefined} />
+          <span className={styles.previewTag}>{`${SPY_SCENES.length} scenes · ${SPY_SCENES.reduce((n, sc) => n + sc.objects.length, 0)} things to spy`}</span>
+        </div>
       </div>
     );
   }
@@ -146,8 +154,10 @@ export default function ISpy() {
     const rank = [...players].sort((a, b) => b.score - a.score).findIndex((p) => p.isMe) + 1;
     return (
       <div className={app.stack} data-testid="ispy-done">
-        <h1 className={app.title}>{rank === 1 ? "You spied them all first" : `You finished #${rank}`}</h1>
+        <h2 className={app.title}>{rank === 1 ? "You spied them all first" : `You finished #${rank}`}</h2>
         <LiveBoard players={players} live={false} />
+        <WordReveal title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} />
+        <LearnPanel missed={misses.flatMap((i) => rounds[i]?.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning })) ?? [])} />
         <div>
           <Button onClick={start} data-testid="ispy-again">Play again</Button>{" "}
           <ButtonLink variant="ghost" href="/play">Back to games</ButtonLink>
@@ -159,7 +169,7 @@ export default function ISpy() {
   if (!current || !scene) return null;
   const obj = scene.objects.find((o) => o.id === current.answer);
   return (
-    <div className={app.stack} data-testid="ispy-room">
+    <div className={app.stack} data-testid="ispy-room" data-round={phase.kind === "round" ? "active" : "reveal"}>
       {pop ? <p className={playStyles.pop} key={pop.key} data-testid="score-pop">+{pop.points}</p> : null}
       <div className={styles.hud}>
         <span className={app.small}>{scene.name} · round {phase.index + 1} of {rounds.length}</span>
@@ -196,5 +206,13 @@ export default function ISpy() {
         </aside>
       </div>
     </div>
+  );
+}
+
+export default function ISpy() {
+  return (
+    <GameWorld id="ispy">
+      <ISpyGame />
+    </GameWorld>
   );
 }

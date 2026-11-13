@@ -19,7 +19,6 @@ dependencies {
     api(libs.compose.foundation)
     api(libs.compose.material3)
     api(libs.compose.material3.adaptive.nav)
-    api(libs.compose.icons)
     api(libs.compose.ui.tooling.preview)
 }
 android.testOptions.unitTests.isReturnDefaultValues = true

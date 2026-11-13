@@ -167,4 +167,24 @@ class LobbyStoreTest {
         assertEquals(true, p.due(true, 0, 3, 180_000))
         assertEquals(false, p.due(false, null, 5, 0))
     }
+
+    @Test
+    fun duelPowerPostsTheKindAndDecodesCoinsPowersAndHiddenChoices() = runTest {
+        val f = Fake()
+        val duel = lobbyJson().replace("\"game\":\"daily\"", "\"game\":\"duel\"")
+            .replace("\"answer\":null}", "\"answer\":null,\"hide\":[\"nueve\"]},{\"round\":1,\"mode\":\"meaning\",\"lang\":\"es\",\"gloss\":\"perro\",\"choices\":[\"dog\",\"cat\"],\"answer\":null}")
+            .replace("\"extra\":1", "\"extra\":1,\"coins\":3,\"powers\":[{\"round\":1,\"kind\":\"double\"}]")
+        f.routes = { path, _ -> if (path.endsWith("guest")) 200 to """{"token":"g1","userId":"g","expiresAt":"2026-11-13T10:00:00Z"}""" else 200 to """{"lobby":$duel}""" }
+        val store = guestStore(f)
+        store.join("ABC123", "Ana")
+        store.power(foundation.bucket.core.model.PowerKind.Fifty)
+        assertEquals("api/academy/lobbies/power", f.calls.last().first)
+        assertTrue("\"kind\":\"fifty\"" in f.calls.last().second)
+        val l = store.state.value.current!!
+        assertEquals(LobbyGame.Duel, l.game)
+        assertEquals(3, l.coins)
+        assertTrue(l.doubled(1))
+        assertEquals(listOf("nueve"), l.prompt(0)!!.hide)
+        assertEquals(foundation.bucket.core.model.LobbyPromptMode.Meaning, l.prompt(1)!!.mode)
+    }
 }

@@ -5,16 +5,29 @@ const ME = "00000000-0000-4000-8000-0000000000aa";
 const ROUND = 30;
 const GAP = 20;
 
-type Game = "tiles" | "daily" | "flags";
+type Game = "tiles" | "daily" | "flags" | "duel" | "same-word";
 type Screen = "round" | "reveal" | "results";
 
 const PROMPTS: Record<Game, { mode: string; lang: string | null; gloss: string; choices: string[]; answer: string }> = {
   tiles: { mode: "tiles", lang: null, gloss: "cat", choices: ["es:gato", "fr:chat", "de:Hund", "ja:猫", "it:pane", "ar:قطة"], answer: "0,1,3,5" },
   daily: { mode: "form", lang: "es", gloss: "water", choices: ["agua", "pan", "casa", "sol"], answer: "agua" },
   flags: { mode: "flag", lang: null, gloss: "Katze", choices: ["de", "nl", "sv", "fr"], answer: "de" },
+  duel: { mode: "meaning", lang: "fr", gloss: "chat", choices: ["cat", "dog", "bread", "house"], answer: "cat" },
+  "same-word": { mode: "mixed", lang: null, gloss: "cat", choices: ["es:gato", "de:Hund", "fr:pain", "ja:家"], answer: "es:gato" },
 };
 
 const REVEAL: Record<Game, unknown[]> = {
+  duel: [
+    { lang: "fr", word: "chat", roman: null, reading: { ipa: "ʃa" }, meaning: "cat", gloss: "cat, a small domestic feline", correct: true },
+    { lang: "es", word: "gato", roman: null, reading: { ipa: "ˈɡato" }, meaning: "cat", gloss: "cat", correct: true },
+    { lang: "ja", word: "猫", roman: "neko", reading: { kana: "ねこ", roman: "neko" }, meaning: "cat", gloss: "cat", correct: true },
+  ],
+  "same-word": [
+    { lang: "es", word: "gato", roman: null, reading: { ipa: "ˈɡato" }, meaning: "cat", gloss: "cat, a small domestic feline", correct: true },
+    { lang: "de", word: "Hund", roman: null, reading: null, meaning: "dog", gloss: "dog", correct: false },
+    { lang: "fr", word: "pain", roman: null, reading: null, meaning: "bread", gloss: "bread", correct: false },
+    { lang: "ja", word: "家", roman: "ie", reading: { kana: "いえ", roman: "ie" }, meaning: "house", gloss: "house", correct: false },
+  ],
   tiles: [
     { lang: "es", word: "gato", roman: null, reading: { ipa: "ˈɡato" }, meaning: "cat", gloss: "cat, a small domestic feline", correct: true },
     { lang: "fr", word: "chat", roman: null, reading: { ipa: "ʃa" }, meaning: "cat", gloss: "cat, a small domestic feline", correct: true },
@@ -73,6 +86,8 @@ function state(game: Game, screen: Screen, now: number, scores: Record<string, n
     botFill: false,
     botsEnabled: true,
     nextStartAt: screen === "results" ? new Date(now + 9_000).toISOString() : null,
+    coins: 3,
+    powers: [],
   };
 }
 
@@ -94,9 +109,9 @@ async function mockRoom(page: Page, game: Game, screen: Screen) {
   await page.goto("/play/ABC123");
 }
 
-for (const width of [390, 1440]) {
+for (const width of [390, 1440, 1920]) {
   test.describe(`play at ${width}`, () => {
-    test.use({ viewport: { width, height: width === 390 ? 844 : 900 } });
+    test.use({ viewport: { width, height: width === 390 ? 844 : width === 1920 ? 1080 : 900 } });
 
     test("tiles round shows Learn tiles with no language names and a live board", async ({ page }) => {
       await mockRoom(page, "tiles", "round");
@@ -156,6 +171,38 @@ for (const width of [390, 1440]) {
       await page.getByTestId("skip-reveal").click();
       await expect(page.getByTestId("reveal")).toHaveCount(0);
       await expect(page.getByTestId("next-round")).toBeVisible();
+    });
+
+    for (const game of ["tiles", "daily", "flags"] as Game[]) {
+      test(`${game} keeps every reveal hidden during the round`, async ({ page }) => {
+        await mockRoom(page, game, "round");
+        await expect(page.getByTestId("game-world")).toBeVisible({ timeout: 60_000 });
+        await expect(page.locator("[data-round=active]")).toHaveCount(1, { timeout: 60_000 });
+        for (const id of ["reveal", "reveal-entry", "reveal-facts", "word-reveal", "learn-panel"]) await expect(page.getByTestId(id)).toHaveCount(0);
+        await expect(page.getByTestId("room-badge")).toContainText("ABC123");
+      });
+    }
+
+    for (const game of ["duel", "same-word"] as Game[]) {
+      for (const screen of ["round", "reveal", "results"] as Screen[]) {
+        test(`${game} ${screen} wears its world`, async ({ page }) => {
+          await mockRoom(page, game, screen);
+          await expect(page.getByTestId(screen === "results" ? "results" : screen === "reveal" ? "reveal" : "prompt").first()).toBeVisible({ timeout: 60_000 });
+          await expect(page.getByTestId("game-world")).toHaveAttribute("data-world", game);
+          await expect(page.getByTestId("room-badge")).toContainText("ABC123");
+          if (screen === "round") await expect(page.getByTestId("reveal-entry")).toHaveCount(0);
+          if (SHOTS) await page.screenshot({ path: `${SHOTS}/${game}-${screen}-${width}.png`, fullPage: screen === "results" });
+        });
+      }
+    }
+
+    test("the reveal card names the language, script and lesson link", async ({ page }) => {
+      await mockRoom(page, "tiles", "reveal");
+      const first = page.getByTestId("reveal-entry").first();
+      await expect(first).toBeVisible({ timeout: 60_000 });
+      await expect(first.getByTestId("reveal-script")).toHaveText("Latin");
+      await expect(page.getByTestId("reveal-entry").filter({ hasText: "猫" }).getByTestId("reveal-script")).toHaveText("Han");
+      await expect(first.getByTestId("reveal-learn")).toHaveAttribute("href", /\/word\/cat\?from=play|\/app\?from=play/);
     });
 
     test("results offer the next game, rematch, bots and learning", async ({ page }) => {

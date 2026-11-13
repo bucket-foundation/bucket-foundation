@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { needsConsent } from "@/lib/lobby/ads";
+import { tokens } from "@/ui/tokens";
 import styles from "../app/app.module.css";
 import { AccountCta } from "./Account";
 import PlayFrame from "./PlayFrame";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#5B1A4A", viewportFit: "cover" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: tokens.color.tyrian, viewportFit: "cover" };
 
 export default async function PlayLayout({ children }: { children: React.ReactNode }) {
   const country = (await headers()).get("x-vercel-ip-country");
