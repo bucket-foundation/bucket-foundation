@@ -42,12 +42,12 @@ fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, content: @Composabl
 }
 
 @Composable
-fun ColumnScope.Results(graph: Graph, title: String, line: String, again: (() -> Unit)?, reveal: @Composable ColumnScope.() -> Unit = {}) {
+fun ColumnScope.Results(graph: Graph, title: String, line: String, again: (() -> Unit)?, againLabel: String = "Play again", reveal: @Composable ColumnScope.() -> Unit = {}) {
     LaunchedEffect(title) { graph.ads.gameFinished() }
     Text(title, style = Type.display, color = PL.Ink)
     Text(line, style = Type.body, color = PL.InkDim)
     reveal()
-    if (again != null) PrimaryButton("Play again", color = PL.Malachite, onClick = again)
+    if (again != null) PrimaryButton(againLabel, color = PL.Malachite, onClick = again)
     PLButton("Start learning", variant = ButtonVariant.Secondary, onClick = LocalStartLearning.current)
     AdBanner(graph)
 }
