@@ -494,6 +494,52 @@ def launcher(t):
             APP_RES / "mipmap-anydpi-v26/ic_launcher.xml": icon, APP_RES / "mipmap-anydpi-v26/ic_launcher_round.xml": icon}
 
 
+MAP_W, MAP_H = 720, 360
+
+
+def land_path(topo, name="land"):
+    sx, sy = topo["transform"]["scale"]
+    tx, ty = topo["transform"]["translate"]
+    arcs = []
+    for arc in topo["arcs"]:
+        x = y = 0
+        pts = []
+        for dx, dy in arc:
+            x += dx
+            y += dy
+            pts.append((x * sx + tx, y * sy + ty))
+        arcs.append(pts)
+
+    def ring(idx):
+        out = []
+        for i in idx:
+            a = list(reversed(arcs[~i])) if i < 0 else arcs[i]
+            out.extend(a[1:] if out else a)
+        return out
+    parts = []
+    for g in topo["objects"].get(name, {}).get("geometries", []):
+        polys = [g["arcs"]] if g["type"] == "Polygon" else g["arcs"]
+        for poly in polys:
+            for r in poly:
+                pts = [((lon + 180) / 360 * MAP_W, (90 - lat) / 180 * MAP_H) for lon, lat in ring(r)]
+                if len(pts) < 3:
+                    continue
+                d, prev = "", None
+                for px, py in pts:
+                    jump = prev is not None and abs(px - prev[0]) > MAP_W / 2
+                    d += "%s%.1f %.1f" % ("M" if prev is None or jump else "L", px, py)
+                    prev = (px, py)
+                parts.append(d + "Z")
+    return "".join(parts)
+
+
+def land_asset():
+    for cand in [ROOT / "polingual/node_modules/world-atlas/land-110m.json"] + [Path(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--land=")]:
+        if cand.exists():
+            return {APP_ASSETS / "land.txt": land_path(json.loads(cand.read_text())) + "\n"}
+    return {}
+
+
 def fonts():
     try:
         from fontTools.ttLib import TTFont
@@ -515,7 +561,7 @@ def main():
     s = ART.read_text()
     entries = json.loads(s[s.index("["):s.index("\n] as const") + 2])
     PKG_DIR.mkdir(parents=True, exist_ok=True)
-    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t), **play_assets()}
+    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t), **play_assets(), **land_asset()}
     check = "--check" in sys.argv
     stale = [p for p, body in outputs.items() if not p.exists() or p.read_text() != body]
     if check:
