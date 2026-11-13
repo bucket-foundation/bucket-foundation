@@ -214,7 +214,7 @@ export default function Host() {
 
   const view = (() => {
     if (auth === "loading") return null;
-    if (auth === "signed-out") return <Stage><SignIn onSignedIn={() => void refresh()} copy={HOST_COPY} /></Stage>;
+    if (auth === "signed-out") return <Stage><SignIn onSignedIn={() => void refresh()} copy={HOST_COPY} flame={false} /></Stage>;
     if (!room)
       return (
         <Card as="section" className={styles.card} data-testid="host-setup">

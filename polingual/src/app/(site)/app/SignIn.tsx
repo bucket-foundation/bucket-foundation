@@ -13,7 +13,7 @@ const LEARN: SignInCopy = {
   intro: "Use the email from the Polingual app. Your languages, reviews and streak come with you.",
 };
 
-export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () => void; copy?: SignInCopy }) {
+export default function SignIn({ onSignedIn, copy = LEARN, flame = true }: { onSignedIn: () => void; copy?: SignInCopy; flame?: boolean }) {
   const [step, setStep] = useState<"email" | "code">("email");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -42,7 +42,7 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
 
   return (
     <Sheet className={styles.card} data-testid="sign-in">
-      <StreakFlame days={100} caption="Day streak" size={36} />
+      {flame ? <StreakFlame days={100} caption="Day streak" size={36} /> : null}
       <p className={styles.label}>{copy.label}</p>
       <h1 className={styles.title}>{step === "email" ? copy.title : "Check your email"}</h1>
       {step === "email" ? (

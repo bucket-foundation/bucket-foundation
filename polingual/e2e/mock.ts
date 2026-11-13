@@ -37,7 +37,9 @@ export async function mockApi(page: Page, opts: { branches?: MockApi["branches"]
       const b = route.request().postDataJSON() as { handle: string; display_name: string };
       return route.fulfill({ json: { profile: { handle: b.handle, displayName: b.display_name } } });
     }
-    return route.fulfill({ json: { profile: { handle: "ana.learns".replace(".", "_"), displayName: "Ana Sol" } } });
+    if (new URL(route.request().url()).searchParams.get("me") !== "1") return route.fulfill({ status: 400, json: { error: "bad_request" } });
+    if (route.request().headers().authorization !== "Bearer test-access") return route.fulfill({ status: 401, json: { error: "unauthorized" } });
+    return route.fulfill({ json: { profile: { handle: "ana_learns", displayName: "Ana Sol" } } });
   });
   await page.route("**/api/academy/review-log**", (route) => route.fulfill({ status: 404, json: { error: "not_found" } }));
   await page.route("**/api/academy/event**", (route) => route.fulfill({ json: { ok: true } }));

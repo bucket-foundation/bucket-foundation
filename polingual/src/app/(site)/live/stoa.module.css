@@ -176,6 +176,7 @@
 .ticketCap{font:var(--pl-type-label);letter-spacing:.16em;text-transform:uppercase;color:var(--pl-ink-faint)}
 .ticket .codeInput{border:0;border-bottom:3px dashed var(--pl-hairline-2);background:transparent;font-size:clamp(32px,10vw,44px)!important;font-weight:700;color:var(--pl-ink);padding:6px 0;width:100%;outline:none}
 .ticket .codeInput:focus{border-bottom-color:var(--pl-lapis)}
-@media (min-width:1600px){.code{font-size:200px}.qr{width:420px}.lobby{gap:64px}}
+.code{justify-self:start;background:var(--pl-paper);border:3px solid var(--pl-ink);border-radius:10px;padding:.12em .3em;box-shadow:6px 8px 0 var(--pl-shadow);rotate:-1.5deg;max-width:100%}
+@media (min-width:1600px){.board:has(>.lobby){min-height:calc(100dvh - 120px);align-content:center}.code{font-size:150px}.qr{width:440px}.lobby{gap:72px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);max-width:1600px;margin-inline:auto}}
 .wideStickers{display:none;position:absolute;inset:0}
 @media (min-width:1180px){.wideStickers{display:block}}
