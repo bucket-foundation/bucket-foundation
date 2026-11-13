@@ -42,10 +42,19 @@ fun ProductDetails.priceText(): String =
         ?: subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.lastOrNull()?.formattedPrice
         ?: ""
 
+data class PlanOffer(val productId: String, val price: String, val details: ProductDetails?)
+
+object FakePlans {
+    val offers = listOf(PlanOffer(Plan.MONTHLY, "$9.99", null), PlanOffer(Plan.YEARLY, "$59.99", null), PlanOffer(Plan.FAMILY, "$89.99", null), PlanOffer(Plan.LIFETIME, "$149.99", null))
+    fun offers(real: List<ProductDetails>, fake: Boolean): List<PlanOffer> =
+        real.map { PlanOffer(it.productId, it.priceText(), it) }.ifEmpty { if (fake) offers else emptyList() }
+}
+
 @Composable
 fun PaywallScreen(graph: Graph, back: () -> Unit) {
     val p = LocalPalette.current
-    val products by graph.billing.products.collectAsState()
+    val details by graph.billing.products.collectAsState()
+    val products = FakePlans.offers(details, BuildConfig.DEBUG && BuildConfig.FAKE_PLANS)
     val access by graph.billing.access.collectAsState()
     val message by graph.billing.message.collectAsState()
     var chosen by remember { mutableStateOf(Plan.YEARLY) }
@@ -71,13 +80,13 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
                     Text(Plan.title(product.productId), style = Type.title.copy(fontSize = 17.sp()), color = p.ink)
                     if (product.productId == Plan.YEARLY) Pill("Best value", PL.Malachite)
                 }
-                Text(product.priceText(), style = Type.title, color = p.ink)
+                Text(product.price, style = Type.title, color = p.ink)
                 Text("per ${Plan.period(product.productId)}", color = p.muted)
             }
         }
         products.firstOrNull { it.productId == chosen }?.let { product ->
-            Text(Entitlement.disclosure(trial && Plan.hasTrial(product.productId), product.priceText(), Plan.period(product.productId), product.productId == Plan.FAMILY), style = Type.small, color = PL.Paper.copy(alpha = 0.85f))
-            PrimaryButton(if (trial && Plan.hasTrial(product.productId)) "Start free trial" else "Continue") { (context as? Activity)?.let { graph.billing.buy(it, product) } }
+            Text(Entitlement.disclosure(trial && Plan.hasTrial(product.productId), product.price, Plan.period(product.productId), product.productId == Plan.FAMILY), style = Type.small, color = PL.Paper.copy(alpha = 0.85f))
+            PrimaryButton(if (trial && Plan.hasTrial(product.productId)) "Start free trial" else "Continue") { val d = product.details; if (d != null) (context as? Activity)?.let { graph.billing.buy(it, d) } }
         }
         message?.let { Text(it, color = PL.Maya) }
         PlainLink("Restore purchases", onDark = true) { scope.launch { graph.billing.restore() } }
