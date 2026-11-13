@@ -1,3 +1,4 @@
+import { Banner } from "@/ui";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Legal from "@/app/legal";
@@ -28,8 +29,10 @@ export default async function Page({ params }: Props) {
     <Legal>
       <div lang={g.lang}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript([appJsonLd(), faqJsonLd(g.faq)]) }} />
-        <h1>{g.title}</h1>
-        <p className="lede">{g.lede}</p>
+        <Banner testId="guide-banner">
+          <h1>{g.title}</h1>
+          <p className="lede">{g.lede}</p>
+        </Banner>
         {g.sections.map((s) => (
           <section key={s.h}>
             <h2>{s.h}</h2>

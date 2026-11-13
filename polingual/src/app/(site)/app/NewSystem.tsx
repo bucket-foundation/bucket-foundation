@@ -6,7 +6,7 @@ import { LANGS, langName, MAX_TARGETS, validateSystem, type LangSystem, type Sys
 import type { SaveResult } from "@academy/lang-client";
 import { appHref, presetsFor, ROOT_CHOICES, targetChoices, toggleTarget } from "@/lib/app/systems";
 import styles from "./app.module.css";
-import { Button, Pill } from "@/ui";
+import { Button, Field, Pill, Select, Stage } from "@/ui";
 
 const ERROR_TEXT: Record<SystemError, string> = {
   "no-targets": "Pick at least one language to learn.",
@@ -41,20 +41,20 @@ export default function NewSystem({ first = false, systems = [], create }: { fir
   }
 
   return (
+    <Stage>
     <section className={styles.stack} data-testid="new-system">
       <div>
         <p className={styles.label}>{first ? "Welcome" : "New system"}</p>
         <h1 className={styles.title}>Build your language system</h1>
         <p className={styles.body}>Pick the language you think in, then up to {MAX_TARGETS} languages to learn side by side.</p>
       </div>
-      <label className={styles.field}>
-        <span>Root language</span>
-        <select value={root} onChange={(e) => { setRoot(e.target.value); setTargets((t) => t.filter((x) => x !== e.target.value)); }} data-testid="root">
+      <Field label="Root language">
+        <Select value={root} onChange={(e) => { setRoot(e.target.value); setTargets((t) => t.filter((x) => x !== e.target.value)); }} data-testid="root">
           {ROOT_CHOICES.map((c) => (
             <option key={c.code} value={c.code}>{c.name}</option>
           ))}
-        </select>
-      </label>
+        </Select>
+      </Field>
       <div className={styles.stackSm}>
         <p className={styles.fieldLabel}>Presets</p>
         <div className={styles.chips}>
@@ -80,5 +80,6 @@ export default function NewSystem({ first = false, systems = [], create }: { fir
         {busy ? "Saving" : "Continue to placement"}
       </Button>
     </section>
+    </Stage>
   );
 }
