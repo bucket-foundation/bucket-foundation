@@ -16,5 +16,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   if (!corpus) return json({ error: "sync_unavailable" }, 503);
   const deck = flagTilesDeck(corpus.items, date);
   if (deck.langs.length < 4 || deck.tiles.length < 40) return json({ error: "no_words" }, 503);
-  return json({ deck, ghosts: ghosts(date) });
+  const res = json({ deck, ghosts: ghosts(date) });
+  res.headers.set("cache-control", "public, max-age=300");
+  return res;
 }
