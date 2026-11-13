@@ -44,6 +44,6 @@
 .pill[aria-pressed=true]{background:var(--pl-ochre)}
 .pill:disabled{visibility:hidden}
 .letter{font-size:40px!important;min-height:88px}
-@media (min-width:1800px){.card{max-width:900px}.title{font-size:54px}.cell,.block{width:68px;height:68px}}
+@media (min-width:1800px){.world{max-width:1640px}.card{max-width:900px}.title{font-size:54px}.cell,.block{width:68px;height:68px}}
 .stack{display:flex;flex-direction:column;gap:var(--pl-space-4)}
 .clueBtn{background:none;border:0;padding:6px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;min-height:36px}
