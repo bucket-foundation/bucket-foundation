@@ -16,7 +16,8 @@
     "test:live-db": "bash db/test-live.sh",
     "test:live-local": "bash db/test-live-local.sh",
     "test:live-load": "bash db/test-live-load.sh",
-    "test:live-e2e": "bash db/test-live-e2e.sh"
+    "test:live-e2e": "bash db/test-live-e2e.sh",
+    "brand-kit": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs scripts/build_brand_kit.ts"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",

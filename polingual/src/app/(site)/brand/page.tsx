@@ -70,7 +70,7 @@ const VOICE = [
 
 const SCREENS = [
   { file: "home", label: "Homepage" },
-  { file: "learn", label: "Learn" },
+  { file: "app", label: "App" },
   { file: "play", label: "Play" },
   { file: "ispy", label: "I Spy" },
   { file: "word", label: "Word page" },
