@@ -64,7 +64,7 @@
 .sessionBody :global(.text-\[28px\]),.exercise :global(.text-\[28px\]){font:var(--pl-type-word)!important;color:var(--pl-tyrian)!important}
 .sessionBody section:not(.wordCard) button,.exercise button{font-family:var(--pl-font-display)!important;font-weight:600;font-size:17px!important;font-variant:normal!important;letter-spacing:0!important;text-transform:none!important;min-height:44px;padding:0 18px!important;border-radius:var(--pl-radius-md)!important;border:2px solid var(--pl-hairline-2)!important;background:var(--pl-white);color:var(--pl-ink);box-shadow:0 4px 0 var(--pl-hairline-2);transition:transform var(--pl-motion-press),box-shadow var(--pl-motion-press)}
 .sessionBody section:not(.wordCard) button:active,.exercise button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--pl-hairline-2)}
-.sessionBody section:not(.wordCard) button[class*=bg-],.exercise button[class*=bg-]{background:var(--pl-vermilion)!important;color:var(--pl-paper)!important;border-color:var(--pl-vermilion)!important;box-shadow:0 4px 0 var(--pl-vermilion-deep)}
+.sessionBody section:not(.wordCard) button[class*="bg-[color:var(--gold)]"],.exercise button[class*="bg-[color:var(--gold)]"]{background:var(--pl-vermilion)!important;color:var(--pl-paper)!important;border-color:var(--pl-vermilion)!important;box-shadow:0 4px 0 var(--pl-vermilion-deep)}
 .sessionBody section:not(.wordCard) button[class*=underline],.exercise button[class*=underline]{background:var(--pl-lapis-soft)!important;color:var(--pl-lapis-deep)!important;border-color:transparent!important;text-decoration:none!important}
 .sessionBody{border:2px solid var(--pl-hairline);box-shadow:0 4px 0 var(--pl-lip-soft)}
 [data-stage=lattice] .plans{grid-template-columns:repeat(auto-fit,minmax(136px,1fr))}
