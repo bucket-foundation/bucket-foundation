@@ -341,7 +341,7 @@
 .bmCell[data-long=true]{letter-spacing:-.02em}
 @media (min-width:1800px){
   .ftStage{height:calc(100dvh - 640px);min-height:240px}
-  .lanes{height:calc(100dvh - 560px);min-height:260px}
+  .lanes{height:calc(100dvh - 720px);min-height:300px}
 }
 .bmCell{container-type:inline-size}
 .bmCell span{font-size:clamp(11px,calc(150cqw / var(--len,6)),17px);max-width:94%;overflow:hidden;text-overflow:ellipsis}
