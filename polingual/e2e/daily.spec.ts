@@ -53,3 +53,16 @@ test("word groups solves four groups, then keeps today's result", async ({ page 
   await expect(page.getByTestId("daily-score")).toHaveText("4 of 4");
   await revisit(page, "/play/word-groups");
 });
+
+test("speed match pairs fifteen words, then keeps today's result", async ({ page }) => {
+  await open(page, "/play/speed-match");
+  await page.getByTestId("speed-start").click({ timeout: 60_000 });
+  for (let n = 0; n < 15; n++) {
+    const m = page.locator("[data-testid=speed-meaning]:enabled").first();
+    const id = await m.getAttribute("data-id");
+    await m.click();
+    await page.locator(`[data-testid=speed-form][data-id="${id}"]`).click();
+  }
+  await expect(page.getByTestId("daily-score")).toHaveText("15 of 15");
+  await revisit(page, "/play/speed-match");
+});
