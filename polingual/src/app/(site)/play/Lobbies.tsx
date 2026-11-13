@@ -88,6 +88,11 @@ export default function Lobbies() {
         <p className={app.muted}>Start a lobby, share the code, and play together from the app or a browser. No account needed.</p>
       </section>
 
+      <a href="/play/polyword" className={styles.soloCard} data-testid="polyword-link">
+        <b>Polyword</b>
+        <span className={app.small}>One word a day. Every miss shows its meaning in another language.</span>
+      </a>
+
       {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : null}
       {state.status === "error" ? <p className={app.error} role="alert">{state.message}</p> : null}
       {state.status === "needs-name" || state.status === "error" ? <Nickname initial={savedNickname()} onSubmit={(n) => void connect(n)} /> : null}

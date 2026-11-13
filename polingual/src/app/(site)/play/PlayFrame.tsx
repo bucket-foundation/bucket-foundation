@@ -5,7 +5,7 @@ import { ADS, adLayout, adShows, BANNER, railSize, showsAds, type AdLayout } fro
 import { AccountProvider, useEntitlement } from "./Account";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
-import { AdsProvider } from "./AdsContext";
+import { AdsPauseProvider, AdsProvider } from "./AdsContext";
 import Consent from "./Consent";
 import styles from "./play.module.css";
 
@@ -23,12 +23,14 @@ function useAdLayout(): AdLayout | null {
 export default function PlayFrame({ header, consentRequired, children }: { header: React.ReactNode; consentRequired: boolean; children: React.ReactNode }) {
   const layout = useAdLayout();
   const entitlement = useEntitlement();
-  const visible = showsAds(ADS, entitlement) && layout !== null;
+  const [paused, setPaused] = useState(false);
+  const visible = showsAds(ADS, entitlement) && layout !== null && !paused;
   const rail = visible && layout && adShows(ADS, "rail") ? railSize(layout) : null;
   const banner = visible && layout === "phone" && adShows(ADS, "banner");
 
   return (
     <AccountProvider entitlement={entitlement}>
+    <AdsPauseProvider value={setPaused}>
     <AdsProvider value={visible}>
       <div className={banner ? `${app.shell} ${styles.withBanner}` : app.shell} data-testid="play-frame" data-ads={visible ? layout : "off"}>
         {header}
@@ -55,6 +57,7 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
         ) : null}
       </div>
     </AdsProvider>
+    </AdsPauseProvider>
     </AccountProvider>
   );
 }
