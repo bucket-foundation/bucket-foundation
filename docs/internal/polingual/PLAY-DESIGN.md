@@ -128,8 +128,8 @@ Daily rotation of 4 featured items, a catalog by category, coin packs, and the P
 | State | What shows |
 |---|---|
 | guest | browse only; "Sign in to save your coins" |
-| under 13 | coin packs hidden; earn-only shop |
-| 13 to 17 | coin packs behind the store's family approval; monthly cap shown |
+| guest | browse only; coin packs hidden |
+| 13 to 17 | coin packs through the store's family controls on iOS and Android; on web, a parent payer and the $50 web cap |
 | purchase pending | spinner on the pack, coins credited only after server receipt check |
 | refunded | coins removed; items bought with refunded coins stay if the balance covers them, otherwise the balance goes negative and earning pays it back |
 
@@ -157,21 +157,23 @@ Counters on Play home, updated every 5 s from one cached endpoint.
 |---|---|---|
 | Players online | Supabase Realtime presence on channel `play:online`, counted server-side | rounded down to the nearest 10 above 100; hidden under 20 |
 | Rooms filling | `lobbies` with `status='lobby'` and `listed` and a human joined in the last 2 min | exact |
-| Games today | count of `play_results` since local midnight UTC | exact |
+| Games today | count of `play_results` since 00:00 UTC | exact |
 | Countries playing | distinct `country` in presence | exact |
 
-The feed shows the last 30 events from `play_events`, newest first, one line each, with avatar and flag: "Ana won Flags in ROOM K7M2QX", "Garcia family started Same word", "12 players in Tiles room". Rules:
+The feed shows the last 30 events from `play_events`, newest first, one line each, with avatar and flag: "Ana won Flags in a public room", "Garcia family started Same word", "12 players in Tiles room". Rules:
 
 - Only accounts aged 18 or more with `feed_public` on appear by handle. Everyone else appears as "A player from Spain" or not at all.
 - Friends' events show by handle inside the friends row whatever the public setting, since friendship is mutual and consented.
 - Bots never appear as winners in the public feed.
-- Events expire after 24 hours.
+- Events from private, friends-only and group rooms never enter the public feed, and room codes never appear in it; only listed public rooms link, through Join. Test: a private room win produces no public event.
+- Events expire after 24 hours through `play_events_purge()`, run by the same sweep cron that calls `live_purge`.
+- Presence carries the player's display flag and handle only while connected; nothing from presence is stored. Account deletion removes the actor's `play_events` rows.
 
 ## Identity
 
 ### Profile
 
-Handle (3 to 20 chars, lowercase letters, digits and dots, unique, screened against a block list), display flag (a country chosen by the player, defaulting to the IP country on first run, editable), avatar, league, level, languages played. Under-13 accounts pick from generated word-pair handles only, the same nickname keys the live board uses.
+Handle (3 to 20 chars, lowercase letters, digits and dots, unique, screened against a block list), display flag (a country chosen by the player, defaulting to the IP country on first run, editable), avatar, league, level, languages played. Guests pick from generated word-pair handles, the same nickname keys the live board uses.
 
 ### Level
 
@@ -243,7 +245,9 @@ Coins never expire, as App Store guideline 3.1.1 requires for virtual currency b
 - **Idempotent ledger.** `coin_ledger` has `unique (reason, ref, user_id)`; settling a lobby twice credits once.
 - **Win trading.** Placement bonus pays at most 3 times a day for the same set of human opponents. Two accounts that finish 1 and 2 against each other more than 10 times in a week lose placement bonuses for that pair and land in a review queue.
 - **Farming.** Rooms that finish under 40% of the round time on every round, or with all-identical answer timing, settle at zero.
-- **Guest wallets.** Guests earn into a device wallet capped at 500 coins; merge on sign-in keeps up to that cap.
+- **Guest wallets.** Guests earn into `guest_wallets`, keyed by the server-issued guest id the lobbies already use, capped at 500. A fresh guest id per device can farm 500 coins each, so a merge credits at most one guest wallet per account per 30 days, through `merge_guest_wallet(guest, user)`, idempotent on `merged_into`. Test: merging the same wallet twice credits once; a second wallet within 30 days credits zero.
+- **Settle concurrency.** `play_settle(engine, game_id)` inserts into `play_settlements` first; a conflict returns the earlier result and credits nothing. It settles only games in `done` or `finale` with at least one round answered; abandoned games settle nothing.
+- **Negative balance.** A refund may push `coin_balances` below zero. While negative, spending is refused and earning pays the debt first.
 - **Refund abuse.** App Store Server Notifications `REFUND` and Play voided purchases debit the ledger. Three refunds in 90 days lock coin pack purchases on that account.
 - **Rate limits.** Reuse `lobby_take` keys for create, join and settle.
 
@@ -251,7 +255,7 @@ Coins never expire, as App Store guideline 3.1.1 requires for virtual currency b
 
 ### Friends
 
-Mutual friendships only. A request comes from a friend code, a QR, or a shared group. Either side can remove. Blocking hides presence and room invites both ways. Accounts under 13 can add friends only through a family group their parent owns.
+Mutual friendships only. A request comes from a friend code, a QR, or a shared group. Either side can remove. Blocking hides presence and room invites both ways. Guests have no friends list.
 
 ### Groups
 
@@ -267,12 +271,19 @@ TV mode reuses the live board stack in `src/lib/stoa`: signed per-room tokens, `
 
 ### Protocol
 
-1. Host taps Screen = TV. `POST /api/play/tv` creates a `live_rooms` row with `product='polingual'`, `mode='open_floor'`, and `settings.lobby_id` when it comes from a lobby or group. Response: code, host token, topic.
+TV rooms run on the live engine. A TV game that starts from a lobby copies the lobby's players, languages and game into a new live room, marks the lobby `done`, and from then on `live_answers` and `live_scores` own scoring. A lobby never scores and broadcasts at once, so settlement reads one engine per game.
+
+Schema changes, migration `polingual_play_tv`:
+
+- `live_players.user_id uuid null references auth.users on delete set null`, set when a signed-in player joins; unique per room where not null.
+- Hosting needs a signed-in account, since `live_rooms.host_user` is `not null`. Guests can play and cannot host a TV room; the Start sheet asks a guest to sign in when Screen = TV.
+
+1. Signed-in host taps Screen = TV. `POST /api/play/tv` creates a `live_rooms` row with `product='polingual'`, `mode='open_floor'`, and `settings.lobby_id` when it comes from a lobby or group. Response: code, host token, topic.
 2. The TV opens `/play/tv/[code]` with the host token in memory only. It subscribes to the room topic and renders by phase.
-3. Phones open `/join/[code]` from the QR. Signed-in players join with their profile; guests get a nickname key. Join returns a seat token stored in `sessionStorage` for reconnect.
+3. Phones open `/join/[code]` from the QR. Signed-in players join with their profile, and the join route writes `live_players.user_id` from the verified session; guests get a nickname key and a null `user_id`. Join returns a seat token stored in `sessionStorage` for reconnect.
 4. Each phase change is a signed event `{seq, phase, idx, opens_at, closes_at}` broadcast on the topic. Clients ignore any event with `seq` at or below the last seen one.
 5. Answers go to `POST /api/live/answer` with the seat token and choice index. The server stamps receive time and scores against `opens_at` with the player's `grace_ms`.
-6. Finale calls `play_settle` for the room, which credits coins and XP to signed-in players. Guests see their score and a sign-in prompt.
+6. Finale calls `play_settle('live', room_id)`, which reads `live_scores` joined to `live_players.user_id` and credits signed-in players. Rows with a null `user_id` get nothing; guests see their score and a sign-in prompt. M4 test `tv-settle-once`: a room with 3 signed-in players and 2 guests settles twice and credits exactly 3 accounts once.
 
 Host controls on the TV: start, pause, skip, end, lock room, kick, and a "Play again" that keeps the room and players. A host phone can act as remote: open `/play/tv/[code]?remote=1` signed in as host.
 
@@ -308,7 +319,8 @@ Cosmetics are never sold for money directly. One currency keeps refund math simp
 ### Store Rules
 
 - **Apple.** Digital goods used in the app go through IAP (guideline 3.1.1). Purchased virtual currency must not expire. Coins bought on the web may be used in the app under 3.1.3(b) multiplatform services as long as the same packs are also sold in the app. Loot boxes would need odds disclosure; Play has none. Validate with App Store Server API and listen to App Store Server Notifications v2 for refunds.
-- **Google Play.** Digital goods use Play Billing. Consume each coin pack purchase server-side after crediting, then acknowledge. Listen to Real-time Developer Notifications and the Voided Purchases API.
+- **Google Play.** Digital goods use Play Billing. Credit the coins, then consume the purchase server-side; consuming acknowledges it. Listen to Real-time Developer Notifications and the Voided Purchases API.
+- **Verification.** Every store and regulatory claim under Store Rules is unverified against the current text. Bead `bkt-yz1sz` child M5 owns a dated check of Apple 3.1.1 and 3.1.3(b), Play Billing, the EU consumer-authority virtual currency principles, and the Belgian and Dutch loot box rulings before any purchase code merges.
 - **US external links.** Court rulings in 2025 opened link-out purchases in US storefronts for both stores. Rules and fees moved during 2025 and 2026, so M5 starts with a check of current Apple and Google terms before any web link appears inside the apps.
 - **Web.** Stripe Checkout with the buyer's account id in `client_reference_id`; credit on `checkout.session.completed`, debit on `charge.refunded` and disputes. Web purchases require an account aged 18 or more as the payer.
 
@@ -316,11 +328,13 @@ Cosmetics are never sold for money directly. One currency keeps refund math simp
 
 | Age band | Ads | Coin packs | Social | Profile |
 |---|---|---|---|---|
-| under 13 | none in Play; COPPA needs verifiable parental consent before ad data sharing | hidden on web; on iOS and Android only through Ask to Buy or Play family approval | friends via parent's family group; preset chat | generated handle; never in public feed |
-| 13 to 17 | contextual only, no personalization, as Google applies for under-18 accounts | allowed through the store; web shop needs a parent payer; cap $50 a month on web | friends by code or group; preset chat | chosen handle; never in public feed |
+| under 13 | blocked for v1 | blocked | blocked | no account |
+| 13 to 17 | contextual only, no personalization, as Google applies for under-18 accounts | allowed through the store under its own family controls; web packs need a parent payer and a $50 monthly web cap, which binds web only | friends by code or group; preset chat | chosen handle; never in public feed |
 | 18 and over | consented per `Consent.tsx` | allowed | full | opt-in public profile |
 
-Age comes from the existing sign-up age gate; a guest is treated as 13 to 17 until signed in. Apple age rating stays 9+; Google Play target audience stays 13+ unless the founder chooses to enter the Families program. No loot boxes anywhere, which keeps Play clear of Belgian and Dutch gambling rulings and the EU consumer guidance on virtual currencies, which also asks for the real-money price beside a currency price. The shop shows that price in EU and UK storefronts.
+Polingual has no age gate today: no sign-up route in `polingual/src` asks for age. M1 adds one: a birth-year question on account creation, stored as `age_band` only, with under-13 refused an account. A self-declared gate is weak evidence, so every under-18 rule above runs server-side from `age_band`, and guests get the strictest 13 to 17 rules: no packs, preset chat, never in the feed. Under-13 play with accounts, profiles, presence or friends needs a COPPA verifiable parental consent flow, data minimization and a retention table for every field; that is a separate design gated on decision 6.
+
+Apple age rating stays 9+; Google Play target audience stays 13+ outside the Families program. Apple age rating stays 9+; Google Play target audience stays 13+ unless the founder chooses to enter the Families program. No loot boxes anywhere, which keeps Play clear of Belgian and Dutch gambling rulings and the EU consumer guidance on virtual currencies, which also asks for the real-money price beside a currency price. The shop shows that price in EU and UK storefronts.
 
 ## Data Model
 
@@ -333,14 +347,17 @@ player_profiles (user_id pk -> auth.users, handle unique, country char(2), avata
 coin_ledger (id uuid pk, user_id, delta int, reason text, ref text, source text check in
   ('earn','iap_apple','iap_google','stripe','refund','spend','grant'),
   created_at, unique (user_id, reason, ref))
-coin_balances (user_id pk, balance int, updated_at)        -- written in the same tx as ledger
+coin_balances (user_id pk, balance int, updated_at)        -- same tx as ledger; may go negative only from refunds
 cosmetics (id text pk, slot text, rarity text, price int null, earn_rule text null,
   svg_ref text, active bool)
 inventory (user_id, cosmetic_id, acquired_at, via text, pk (user_id, cosmetic_id))
 purchases (id uuid pk, user_id, store text, store_txn_id text, product_id text,
   coins int, status text, raw jsonb, created_at, unique (store, store_txn_id))
-play_results (lobby_id or room_id, user_id, game text, place int, score int,
-  coins int, xp int, settled_at, pk (game_ref, user_id))
+play_results (engine text check in ('lobby','live'), game_id uuid, user_id, game text,
+  place int, score int, coins int, xp int, settled_at, pk (engine, game_id, user_id))
+play_settlements (engine, game_id, settled_at, pk (engine, game_id))  -- settle claims this row first
+guest_wallets (guest_id uuid pk, balance int check (balance between 0 and 500),
+  merged_into uuid null, created_at)
 league_weeks (id, starts_at, ends_at, band text)
 league_members (week_id, user_id, cohort int, tier smallint, points int,
   pk (week_id, user_id))
@@ -360,7 +377,7 @@ Balance changes go through one function, `coin_apply(user, delta, reason, ref, s
 | `/api/play/live` | GET | none | counters and last 30 public events, cached 5 s at the edge |
 | `/api/play/me` | GET, PATCH | user | profile, balance, tier; PATCH handle, country, avatar, feed_public |
 | `/api/play/settle` | POST | service | settle a finished lobby or room; idempotent |
-| `/api/play/tv` | POST | user or guest host | create a live room from a lobby or group |
+| `/api/play/tv` | POST | signed-in user | create a live room from a lobby or group |
 | `/api/play/friends` | GET, POST, DELETE | user | list, request by code, accept, remove, block |
 | `/api/play/groups/[id]/board` | GET | member | weekly group board |
 | `/api/play/groups/[id]/game` | POST | member | start a group game, posts to group |
@@ -377,12 +394,12 @@ Balance changes go through one function, `coin_apply(user, delta, reason, ref, s
 |---|---|---|
 | M0 Design | this doc, mockups, founder decisions | critic pass; founder answers the decisions table |
 | M0b Brand site | `/brand` gains a sticky section nav plus play color, flags, icons, avatar, illustration, motion, components, voice and do and don't sections; shared `play-kit` parts | `/brand` returns 200 with every section anchor; mockups and brand import one `Avatar`, `Shape` and `Flag`; voice lint clean |
-| M1 Identity | `player_profiles`, handle, flag, avatar parts v1 (40 parts), profile card, guest name and flag sheet | profile round-trips on web and iOS; share card renders; account deletion test removes the row |
-| M2 Settle and coins | `play_settle`, `coin_ledger`, `coin_apply`, earn table, results screen deltas | settle runs twice and credits once; property test on ledger balance equals sum of deltas; farming rules covered by tests |
-| M3 Live activity and friends | presence, counters, `play_events`, friends, blocks, friends row | counters within 10% of a load-test truth at 500 simulated players; under-18 never appears in public feed in tests |
-| M4 Groups and TV | `group_games`, group board, start for group, `/api/play/tv`, TV board with avatars, phone controller from lobby | a 10-phone TV game on a real TV over home Wi-Fi with no missed phase; reconnect test passes; group board totals match ledger |
-| M5 Shop and IAP | catalog, coin spend, Stripe packs, StoreKit 2 consumables, Play Billing consumables, refund webhooks | sandbox purchase and refund on each store; teen gates enforced server-side; store review passes |
-| M6 Leagues | weekly cohorts, promotion and demotion, rank badges, Sunday close job | dry-run week on staging with 300 seeded players; promotion counts match spec |
+| M1 Identity `bkt-yz1sz.3` | `player_profiles`, handle, flag, avatar parts v1 (40 parts), profile card, guest name and flag sheet | profile round-trips on web and iOS; share card renders; account deletion test removes the row |
+| M2 Settle and coins `bkt-yz1sz.4` | `play_settle`, `coin_ledger`, `coin_apply`, earn table, results screen deltas | settle runs twice and credits once; property test on ledger balance equals sum of deltas; farming rules covered by tests |
+| M3 Live activity and friends `bkt-yz1sz.5` | presence, counters, `play_events`, friends, blocks, friends row | counters within 10% of a load-test truth at 500 simulated players; under-18 never appears in public feed in tests |
+| M4 Groups and TV `bkt-yz1sz.6` | `group_games`, group board, start for group, `/api/play/tv`, TV board with avatars, phone controller from lobby | a 10-phone TV game on a real TV over home Wi-Fi with no missed phase; reconnect test passes; group board totals match ledger |
+| M5 Shop and IAP `bkt-yz1sz.7` | catalog, coin spend, Stripe packs, StoreKit 2 consumables, Play Billing consumables, refund webhooks | sandbox purchase and refund on each store; teen gates enforced server-side; store review passes |
+| M6 Leagues `bkt-yz1sz.8` | weekly cohorts, promotion and demotion, rank badges, Sunday close job | dry-run week on staging with 300 seeded players; promotion counts match spec |
 
 Each milestone ships behind a flag in `polingual` env and lands on `dev` as its own PR with tests.
 
@@ -407,7 +424,7 @@ These are targets for review, set from public benchmarks and no Polingual data y
 | 3 | Pro coin stipend | none; 300 a month; 2x earn | 300 a month; a multiplier on earn reads as pay-to-win to free players |
 | 4 | Rewarded ads for coins | on for 13+; off | on, 5 a day, ages 13+, never for Pro |
 | 5 | Public feed handles | adults opt-in; everyone anonymized | adults opt-in, everyone else "a player from Spain" |
-| 6 | Under-13 in Play | allowed with parent family group; blocked | allowed through family groups, no ads, no packs on web |
+| 6 | Under-13 in Play | blocked for v1; consent flow later | blocked for v1; design a COPPA consent flow only if family demand shows up |
 | 7 | Web packs in apps | sell in-app and web, share balance; app-only | share one balance under 3.1.3(b); link-out only after M5 terms check |
 | 8 | League count | one league across all games; per game | one league across all games, as `GAMES-RESEARCH.md` Meta Layer proposes |
 | 9 | TV native apps | browser only; tvOS and Android TV now | browser only until TV rooms pass 10% of games |
