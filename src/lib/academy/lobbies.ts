@@ -1,11 +1,20 @@
 import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
 import type { LangItem, Reading } from "./lang-systems";
-import { buildTilePrompts, parseTapped, tileHistory, tileOutcome, tilePoints } from "./lobby-tiles";
+import { buildTilePrompts, parseTapped, tileKey, tileHistory, tileOutcome, tilePoints } from "./lobby-tiles";
 
 export type LobbyStatus = "lobby" | "playing" | "done";
-export const LOBBY_GAMES = ["daily", "same-word", "flags", "live", "tiles"] as const;
+export const LOBBY_GAMES = ["daily", "same-word", "flags", "live", "tiles", "duel"] as const;
 export type LobbyGame = (typeof LOBBY_GAMES)[number];
-export type PromptMode = "form" | "flag" | "tiles";
+export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning";
+export type PowerKind = "double" | "fifty";
+export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
+export const DUEL_ROUNDS = 10;
+export type LobbySetup = "single" | "sequence" | "mix";
+export const AUTO_START_MS = 15_000;
+export function setupGames(env: Record<string, string | undefined> = process.env): LobbyGame[] {
+  const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles"];
+  return duelEnabled(env) ? [...base, "duel"] : base;
+}
 
 export const LOBBY_CODE_LENGTH = 6;
 export const LOBBY_CAP = 8;
@@ -19,6 +28,14 @@ export const WEB_CLIENT_HEADER = "x-polingual-client";
 
 export function revealEnabled(env: Record<string, string | undefined> = process.env): boolean {
   return env.POLINGUAL_LOBBY_REVEAL === "on";
+}
+
+export function duelEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return env.POLINGUAL_LOBBY_DUEL === "on";
+}
+
+export function setupEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return env.POLINGUAL_LOBBY_SETUP === "on";
 }
 export const MESSAGE_LIMIT = 50;
 export const MESSAGE_MAX = 200;
@@ -51,6 +68,9 @@ export interface LobbyRow {
   created_at: string;
   standing_slot?: string | null;
   bot_fill?: boolean;
+  playlist?: LobbyGame[] | null;
+  mix?: boolean;
+  start_at?: string | null;
 }
 
 export interface LobbyPlayerRow {
@@ -65,6 +85,7 @@ export interface LobbyPlayerRow {
   is_bot?: boolean;
   skill?: string | null;
   flag?: string | null;
+  continues?: number;
 }
 
 export interface LobbyMessageRow {
@@ -114,6 +135,7 @@ export interface LobbyPrompt {
   choices: string[];
   answer: string | null;
   reveal?: RevealEntry[];
+  hide?: string[];
 }
 
 export interface LobbyPlayer {
@@ -129,6 +151,8 @@ export interface LobbyPlayer {
   bot: boolean;
   skill: string | null;
   flag: string | null;
+  firstRound: number;
+  continues: number;
 }
 
 export interface LobbyMessage {
@@ -165,6 +189,8 @@ export interface LobbySummary {
   players: number;
   bots: number;
   standing: boolean;
+  setup: LobbySetup;
+  playlist: LobbyGame[];
   host: string;
   hostHandle: string | null;
   isMember: boolean;
@@ -196,6 +222,10 @@ export interface LobbyState {
   botFill: boolean;
   botsEnabled: boolean;
   nextStartAt: string | null;
+  setup: LobbySetup;
+  playlist: LobbyGame[];
+  coins: number;
+  powers: { round: number; kind: PowerKind }[];
 }
 
 export function generateLobbyCode(random: (n: number) => Uint8Array = (n) => crypto.getRandomValues(new Uint8Array(n))): string {
@@ -231,6 +261,34 @@ export interface LobbyConfig {
   roundSeconds: number;
   revealSeconds: number;
   listed: boolean;
+  playlist: LobbyGame[] | null;
+  mix: boolean;
+}
+
+export function setupOf(lobby: Pick<LobbyRow, "playlist" | "mix">): LobbySetup {
+  if (lobby.mix) return "mix";
+  return (lobby.playlist?.length ?? 0) > 1 ? "sequence" : "single";
+}
+
+export function normalizeSetup(body: Record<string, unknown>, game: LobbyGame, targets: readonly string[]): { game: LobbyGame; playlist: LobbyGame[] | null; mix: boolean } | null {
+  if (!setupEnabled()) return { game, playlist: null, mix: false };
+  const setup = body.setup ?? "single";
+  if (setup === "mix") return { game: setupGames().filter((g) => g !== "same-word" || targets.length >= 2)[0], playlist: setupGames().filter((g) => g !== "same-word" || targets.length >= 2), mix: true };
+  if (setup === "single") return { game, playlist: [game], mix: false };
+  if (setup !== "sequence" || !Array.isArray(body.games)) return null;
+  const games = body.games.filter((g, i, all): g is LobbyGame => (setupGames() as readonly unknown[]).includes(g) && all.indexOf(g) === i);
+  if (games.length < 2 || games.length !== body.games.length || games.length > 8) return null;
+  if (games.includes("same-word") && targets.length < 2) return null;
+  return { game: games[0], playlist: games, mix: false };
+}
+
+export function nextGame(lobby: Pick<LobbyRow, "game" | "playlist" | "mix" | "seed" | "targets">): LobbyGame {
+  const list = lobby.playlist?.length ? lobby.playlist : [lobby.game ?? "daily"];
+  if (!lobby.mix) return list[(list.indexOf(lobby.game) + 1) % list.length] ?? list[0];
+  const others = list.filter((g) => g !== lobby.game && (g !== "same-word" || lobby.targets.length >= 2));
+  const rand = seededRandom(`${lobby.seed}9`);
+  for (let i = 0; i < 4; i++) rand();
+  return others[Math.floor(rand() * others.length)] ?? list[0];
 }
 
 function clampInt(input: unknown, lo: number, hi: number, fallback: number): number | null {
@@ -253,9 +311,12 @@ export function normalizeLobbyConfig(body: Record<string, unknown> | null): Lobb
   if (rounds === null || roundSeconds === null) return null;
   if (name.length > 40) return null;
   const game = body.game === undefined ? "daily" : (LOBBY_GAMES as readonly unknown[]).includes(body.game) ? (body.game as LobbyGame) : null;
-  if (!game) return null;
+  if (!game || (game === "duel" && !duelEnabled())) return null;
   if (game === "same-word" && targets.length < 2) return null;
-  return { name: name || "Polingual lobby", game, root, targets, rounds, roundSeconds, revealSeconds: body.reveal === true && revealEnabled() ? REVEAL_SECONDS : 0, listed: body.listed !== false };
+  const setup = normalizeSetup(body, game, targets);
+  if (!setup) return null;
+  const revealSeconds = (body.reveal === true || setup.playlist !== null) && revealEnabled() ? REVEAL_SECONDS : 0;
+  return { name: name || "Polingual lobby", game: setup.game, root, targets, rounds, roundSeconds, revealSeconds, listed: body.listed !== false, playlist: setup.playlist, mix: setup.mix };
 }
 
 export function normalizeMessage(input: unknown): string | null {
@@ -285,11 +346,12 @@ function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
   return out;
 }
 
-export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds"> & { game?: LobbyGame }, flagPool: readonly string[] = []): LobbyPromptRow[] {
+export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds"> & { game?: LobbyGame; playlist?: LobbyGame[] | null }, flagPool: readonly string[] = []): LobbyPromptRow[] {
   if (lobby.game === "same-word") return sameWordPrompts(items, lobby);
   if (lobby.game === "tiles") return buildTilePrompts(items, lobby, flagPool, seededRandom(`${lobby.seed}7`));
+  if (lobby.game === "duel") return duelPrompts(items, lobby, flagPool);
   const forms = formPrompts(items, lobby);
-  if (lobby.game !== "flags") return forms;
+  if (lobby.game !== "flags") return lobby.playlist && lobby.targets.length >= 2 ? mixedPrompts(items, forms, lobby) : forms;
   const rand = seededRandom(`${lobby.seed}1`);
   const langs = [...lobby.targets, ...flagPool.filter((l) => l !== lobby.root && !lobby.targets.includes(l))];
   return forms
@@ -300,6 +362,115 @@ export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "
     })
     .filter((p) => p.choices.length >= 2)
     .map((p, round) => ({ ...p, round }));
+}
+
+export function meaningPrompt(items: readonly LangItem[], p: LobbyPromptRow, root: string, rand: () => number): LobbyPromptRow | null {
+  const item = items.find((i) => i.id === p.item_id);
+  if (!item) return null;
+  const word = item.forms[p.lang];
+  const answer = item.forms[root];
+  const pool = items.filter((i) => i.kind === "word" && i.forms[root] && i.id !== item.id && i.forms[root].toLowerCase() !== answer.toLowerCase());
+  const near = [...shuffled(pool.filter((i) => i.category === item.category).slice(0, 200), rand), ...shuffled(pool.slice(0, 400), rand)];
+  const foils: string[] = [];
+  const taken = new Set([answer.toLowerCase()]);
+  for (const i of near) {
+    if (foils.length >= CHOICES - 1) break;
+    const f = i.forms[root];
+    if (taken.has(f.toLowerCase()) || i.forms[p.lang] === word) continue;
+    taken.add(f.toLowerCase());
+    foils.push(f);
+  }
+  if (foils.length < 2) return null;
+  return { ...p, mode: "meaning", gloss: word, choices: shuffled([answer, ...foils], rand), answer };
+}
+
+export function duelPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds">, flagPool: readonly string[]): LobbyPromptRow[] {
+  const rand = seededRandom(`${lobby.seed}5`);
+  const flags = buildPrompts(items, { ...lobby, game: "flags", rounds: lobby.rounds }, flagPool);
+  const forms = formPrompts(items, { ...lobby, seed: `${lobby.seed}2` });
+  const out: LobbyPromptRow[] = [];
+  for (let r = 0, fi = 0, mi = 0; out.length < lobby.rounds && (fi < flags.length || mi < forms.length); r++) {
+    const meaning = r % 2 === 1;
+    const used = new Set(out.map((o) => o.item_id));
+    if (meaning) {
+      while (mi < forms.length) {
+        const p = forms[mi++];
+        if (used.has(p.item_id)) continue;
+        const m = meaningPrompt(items, p, lobby.root, rand);
+        if (m) {
+          out.push({ ...m, round: out.length });
+          break;
+        }
+      }
+    } else {
+      while (fi < flags.length) {
+        const p = flags[fi++];
+        if (used.has(p.item_id)) continue;
+        out.push({ ...p, round: out.length });
+        break;
+      }
+    }
+  }
+  return out;
+}
+
+export function fiftyHide(choices: readonly string[], answer: string, key: string): string[] {
+  const rand = seededRandom(String(Array.from(key).reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 2_147_483_647, 7) + 1));
+  return shuffled(choices.filter((c) => c !== answer), rand).slice(0, Math.max(0, choices.length - 2));
+}
+
+export interface PowerRow {
+  lobby_id: string;
+  user_id: string;
+  round: number;
+  kind: PowerKind;
+}
+
+export function coinsOf(answers: readonly Pick<LobbyAnswerRow, "user_id" | "correct">[], powers: readonly Pick<PowerRow, "user_id" | "kind">[], uid: string): number {
+  const earned = answers.filter((a) => a.user_id === uid && a.correct).length;
+  const spent = powers.filter((p) => p.user_id === uid).reduce((n, p) => n + POWER_COST[p.kind], 0);
+  return Math.max(0, earned - spent);
+}
+
+export type PowerDecision = { ok: true; round: number } | { ok: false; error: "not_playing" | "wrong_round" | "no_coins" | "bad_request" };
+
+export function powerDecision(lobby: Clock & Pick<LobbyRow, "status" | "game">, kind: unknown, coins: number, now: number): PowerDecision {
+  if (kind !== "double" && kind !== "fifty") return { ok: false, error: "bad_request" };
+  if (lobby.status !== "playing" || lobby.game !== "duel") return { ok: false, error: "not_playing" };
+  const round = roundAt(lobby, now);
+  if (!round || !round.reveal || round.index + 1 >= lobby.rounds) return { ok: false, error: "wrong_round" };
+  if (coins < POWER_COST[kind]) return { ok: false, error: "no_coins" };
+  return { ok: true, round: round.index + 1 };
+}
+
+export function mixedPrompts(items: readonly LangItem[], forms: readonly LobbyPromptRow[], lobby: Pick<LobbyRow, "seed" | "root" | "targets">): LobbyPromptRow[] {
+  const rand = seededRandom(`${lobby.seed}3`);
+  const byId = new Map(items.map((i) => [i.id, i]));
+  const words = items.filter((i) => i.kind === "word" && i.forms[lobby.root]).slice(0, 2000);
+  return forms.map((p) => {
+    const item = byId.get(p.item_id);
+    if (!item) return p;
+    const answer = tileKey({ lang: p.lang, form: p.answer });
+    const others = shuffled(lobby.targets.filter((l) => l !== p.lang), rand);
+    const langs = Array.from({ length: CHOICES - 1 }, (_, i) => others[i % others.length]);
+    const own = new Set(Object.values(item.forms).map((f) => f.toLowerCase()));
+    const taken = new Set([answer]);
+    const same = words.filter((w) => w.category === item.category);
+    const foils: string[] = [];
+    for (const lang of langs) {
+      for (const w of [...shuffled(same.slice(0, 200), rand), ...shuffled(words.slice(0, 400), rand)]) {
+        const f = w.forms[lang];
+        if (!f || w.id === item.id || own.has(f.toLowerCase()) || w.forms[lobby.root].toLowerCase() === p.gloss.toLowerCase()) continue;
+        const key = tileKey({ lang, form: f });
+        if (taken.has(key) || key.length > 60) continue;
+        taken.add(key);
+        foils.push(key);
+        break;
+      }
+    }
+    if (foils.length === 0) return p;
+    return { ...p, mode: "mixed" as const, choices: shuffled([answer, ...foils], rand), answer };
+  });
 }
 
 function sameWordPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds">): LobbyPromptRow[] {
@@ -366,7 +537,7 @@ export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number 
     .sort((a, b) => a.round - b.round)
     .map((r) => {
       const open = done || (current !== null && (r.round < current || (closed && r.round === current)));
-      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" || r.mode === "meaning" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
       return open && describe ? { ...base, reveal: describe(r) } : base;
     });
 }
@@ -446,6 +617,8 @@ export function tileAnswerDecision(
   choice: string,
   now: number,
   prior: readonly { round: number; correct: boolean }[],
+  first = 0,
+  continues = 0,
 ): AnswerDecision | { ok: false; error: "out_of_lives" } {
   if (lobby.status !== "playing") return { ok: false, error: "not_playing" };
   const current = roundAt(lobby, now);
@@ -453,10 +626,17 @@ export function tileAnswerDecision(
   if (!prompt || prompt.round !== round) return { ok: false, error: "bad_choice" };
   const tapped = parseTapped(choice, prompt.choices.length);
   if (!tapped) return { ok: false, error: "bad_choice" };
-  const history = tileHistory(prior, round);
+  const history = tileHistory(prior, round, first, continues);
   if (history.lives <= 0) return { ok: false, error: "out_of_lives" };
   const outcome = tileOutcome(prompt.answer, tapped);
   return { ok: true, correct: outcome.perfect, ms: Math.max(0, now - Date.parse(current.startsAt)), points: tilePoints(outcome, history.combo) };
+}
+
+export function joinedRound(lobby: Clock, joinedAt: string | null | undefined): number {
+  if (!joinedAt || !lobby.started_at) return 0;
+  const r = roundAt(lobby, Date.parse(joinedAt));
+  if (r) return Math.max(0, r.reveal ? r.index + 1 : r.index);
+  return Date.parse(joinedAt) < Date.parse(lobby.started_at) ? 0 : lobby.rounds;
 }
 
 export function nextHost(players: readonly Pick<LobbyPlayerRow, "user_id" | "joined_at">[], leaving: string): string | null {
@@ -475,7 +655,9 @@ export function assembleLobby(
   prompts: readonly LobbyPromptRow[] = [],
   nextStartAt: string | null = null,
   describe?: (row: LobbyPromptRow) => RevealEntry[],
+  powers: readonly PowerRow[] = [],
 ): LobbyState {
+  const mine = powers.filter((p) => p.user_id === uid);
   const hidden = hiddenUsers(blocks, uid);
   const names = new Map(players.map((p) => [p.user_id, p.display_name]));
   const round = lobby.status === "playing" ? roundAt(lobby, now) : null;
@@ -513,6 +695,8 @@ export function assembleLobby(
         bot: p.is_bot === true,
         skill: p.is_bot ? p.skill ?? null : null,
         flag: p.flag ?? null,
+        firstRound: joinedRound(lobby, p.joined_at),
+        continues: p.continues ?? 0,
       }))
       .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)),
     messages: messages
@@ -520,12 +704,19 @@ export function assembleLobby(
       .slice(-MESSAGE_LIMIT)
       .map((m) => ({ id: m.id, from: m.user_id, name: names.get(m.user_id) ?? "", body: m.body, at: m.created_at })),
     round,
-    prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done", describe, round?.reveal === true),
+    prompts: visiblePrompts(prompts, round && round.index >= 0 ? round.index : null, lobby.status === "done", describe, round?.reveal === true).map((p) => {
+      const row = prompts.find((r) => r.round === p.round);
+      return mine.some((m) => m.round === p.round && m.kind === "fifty") && row ? { ...p, hide: fiftyHide(row.choices, row.answer, `${lobby.seed}:${p.round}:${uid}`) } : p;
+    }),
+    coins: coinsOf(answers, powers, uid),
+    powers: mine.map((m) => ({ round: m.round, kind: m.kind })),
     results: revealed.map((a) => ({ round: a.round, userId: a.user_id, correct: a.correct, ms: a.ms, points: a.points })),
     standing: !!lobby.standing_slot,
     botFill: lobby.bot_fill === true,
     botsEnabled: false,
-    nextStartAt: lobby.standing_slot && lobby.status === "lobby" ? nextStartAt : null,
+    nextStartAt,
+    setup: setupOf(lobby),
+    playlist: lobby.playlist ?? [lobby.game ?? "daily"],
   };
 }
 
@@ -541,6 +732,8 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
     players: players.length,
     bots: players.filter((p) => p.is_bot).length,
     standing: !!lobby.standing_slot,
+    setup: setupOf(lobby),
+    playlist: lobby.playlist ?? [lobby.game ?? "daily"],
     host: players.find((p) => p.user_id === lobby.host_id)?.display_name ?? "",
     hostHandle: players.find((p) => p.user_id === lobby.host_id)?.handle ?? null,
     isMember: players.some((p) => p.user_id === uid),
@@ -566,6 +759,6 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
 
 const NATIVE_GAMES: readonly LobbyGame[] = ["daily", "same-word", "flags", "live"];
 
-export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds">): boolean {
-  return NATIVE_GAMES.includes(lobby.game ?? "daily") && !lobby.reveal_seconds;
+export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">): boolean {
+  return NATIVE_GAMES.includes(lobby.game ?? "daily") && !lobby.reveal_seconds && !lobby.playlist;
 }

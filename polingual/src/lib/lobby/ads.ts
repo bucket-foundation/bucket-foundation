@@ -1,4 +1,4 @@
-export type AdPlacement = "rail" | "banner" | "between-rounds" | "results";
+export type AdPlacement = "rail" | "banner" | "between-rounds" | "results" | "interstitial" | "rewarded";
 export type AdMode = "off" | "placeholder" | "adsense-test" | "adsense";
 export type AdSize = { width: number; height: number };
 export type AdLayout = "phone" | "rail-160" | "rail-300";
@@ -35,6 +35,8 @@ export function adConfig(env: AdEnv): AdConfig {
     banner: slot(env.NEXT_PUBLIC_ADSENSE_SLOT_BANNER),
     "between-rounds": slot(env.NEXT_PUBLIC_ADSENSE_SLOT_ROUND),
     results: slot(env.NEXT_PUBLIC_ADSENSE_SLOT_RESULTS),
+    interstitial: null,
+    rewarded: null,
   };
   if (raw === "placeholder" || raw === "on") return { mode: "placeholder", client: null, slots };
   if ((raw === "adsense" || raw === "adsense-test") && client) return { mode: raw, client, slots };
@@ -105,4 +107,28 @@ export function entitlementOf(signedIn: boolean, access: { status: "checking" | 
   if (access?.status === "open") return "subscriber";
   if (access?.status === "locked") return "free";
   return "unknown";
+}
+
+export interface AccountCtaState {
+  signIn: boolean;
+  learn: { label: string; href: string } | null;
+}
+
+export function accountCta(entitlement: Entitlement | "checking"): AccountCtaState {
+  if (entitlement === "signed-out") return { signIn: true, learn: { label: "Start learning", href: "/app?from=play" } };
+  if (entitlement === "subscriber") return { signIn: false, learn: { label: "Continue learning", href: "/app" } };
+  if (entitlement === "free" || entitlement === "unknown") return { signIn: false, learn: { label: "Start learning", href: "/app?from=play" } };
+  return { signIn: false, learn: null };
+}
+
+export const INTERSTITIAL_GAP_MS = 3 * 60_000;
+
+export function interstitialDue(gamesFinished: number, lastShownAt: number | null, now: number): boolean {
+  if (gamesFinished < 2) return false;
+  return lastShownAt === null || now - lastShownAt >= INTERSTITIAL_GAP_MS;
+}
+
+export function betweenRoundsAd(game: string, round: number, gamesFinished: number): boolean {
+  if (gamesFinished < 1 || game === "tiles") return false;
+  return round === 4;
 }

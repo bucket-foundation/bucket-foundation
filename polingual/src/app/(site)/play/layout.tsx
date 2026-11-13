@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { needsConsent } from "@/lib/lobby/ads";
 import styles from "../app/app.module.css";
+import { AccountCta } from "./Account";
 import PlayFrame from "./PlayFrame";
+import play from "./play.module.css";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap";
 
@@ -20,9 +22,9 @@ export default async function PlayLayout({ children }: { children: React.ReactNo
     <header className={styles.bar}>
       <a href="/play" className={styles.brand} aria-label="Polingual games">
         <img src="/brand/kit/mark.svg" alt="" width={32} height={32} />
-        <span>polingual play</span>
+        <span className={play.brandText}>polingual play</span>
       </a>
-      <a href="/app?from=play" className={styles.cta} style={{ minHeight: 40, fontSize: 16, padding: "0 16px" }} data-testid="start-learning">Start learning</a>
+      <AccountCta />
     </header>
   );
   return (
