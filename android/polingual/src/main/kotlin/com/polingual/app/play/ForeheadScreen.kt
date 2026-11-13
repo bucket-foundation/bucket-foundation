@@ -124,7 +124,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
             FhPhase.Done -> {
                 val got = results.count { it.got }
                 Results(graph, "$got guessed", "${results.size - got} passed. Tap a card to hear it.", again = { round += 1 }) {
-                    if (RevealRules.forehead(cards.size - index, left)) { results.firstOrNull()?.let { r -> com.polingual.app.WordReveal(r.card.lang, r.card.form, r.card.meaning, r.card.itemId, null, ipa = r.card.reading?.ipa ?: r.card.reading?.roman) { graph.voice.speak(r.card.form, r.card.lang) } } }
+                    if (RevealRules.forehead(cards.size - index, left)) { results.firstOrNull()?.let { r -> com.polingual.app.WordReveal(r.card.lang, r.card.form, r.card.meaning, r.card.itemId, null, ipa = r.card.reading?.ipa ?: r.card.reading?.roman, rootLang = PlayDecks.ROOT) { graph.voice.speak(r.card.form, r.card.lang) } } }
                     SectionTitle("Every card")
                     results.forEach { r -> WordLine(r.card.lang, r.card.form, (if (r.got) "✓ " else "") + r.card.meaning) }
                 }

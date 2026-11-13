@@ -132,7 +132,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 if (p is SpyPhase.Reveal && RevealRules.iSpy(tapped = p.tapped != null, elapsedMs = if (p.tapped == null) ISpy.ROUND_SECONDS * 1000L else 0L)) {
                     Text(if (p.correct) "Spotted" else "Here it was", style = Type.title, color = if (p.correct) PL.Malachite else PL.Vermilion)
                     val w = remember(r) { PlayAssets.words(graph.context).firstOrNull { it.slug == r.answer || it.form(r.lang)?.word == r.gloss } }
-                    if (w != null) RevealWord(graph, w, r.lang) else com.polingual.app.WordReveal(r.lang, r.gloss, r.answer, r.itemId, null) { graph.voice.speak(r.gloss, r.lang) }
+                    if (w != null) RevealWord(graph, w, r.lang) else com.polingual.app.WordReveal(r.lang, r.gloss, r.answer, r.itemId, null, rootLang = PlayDecks.ROOT) { graph.voice.speak(r.gloss, r.lang) }
                     PrimaryButton(if (index + 1 >= rounds.size) "See results" else "Next") { phase = if (index + 1 >= rounds.size) SpyPhase.Done else SpyPhase.Round(index + 1, System.currentTimeMillis()) }
                 }
             }

@@ -29,7 +29,7 @@ object Streak {
     }
 }
 
-enum class ExerciseKind { Recognize, Produce }
+enum class ExerciseKind(val needsSound: Boolean) { Recognize(false), Produce(false), Listen(true) }
 
 data class Exercise(val word: GameWord, val kind: ExerciseKind, val prompt: String, val answer: String, val options: List<String>, val isNew: Boolean)
 
@@ -107,6 +107,22 @@ class StudySession(
             }
         }
     }
+
+    private val deferred = ArrayDeque<Exercise>()
+    val deferredCount: Int get() = deferred.size
+
+    fun deferSoundCards(): Int {
+        val sound = queue.filter { it.kind.needsSound }
+        queue.removeAll(sound)
+        deferred.addAll(sound)
+        return sound.size
+    }
+
+    fun resumeDeferred() {
+        while (deferred.isNotEmpty()) queue.addLast(deferred.removeFirst())
+    }
+
+    internal fun enqueue(ex: Exercise) { queue.addLast(ex) }
 
     val current: Exercise? get() = queue.firstOrNull()
     val finished: Boolean get() = queue.isEmpty()
