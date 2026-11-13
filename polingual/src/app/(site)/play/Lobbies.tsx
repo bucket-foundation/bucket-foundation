@@ -127,6 +127,10 @@ export default function Lobbies() {
             <b>Shift</b>
             <span className={app.small}>Daily letter board. Slide columns to spell words in two languages.</span>
           </a>
+          <a className={styles.soloCard} href="/play/word-snake" data-testid="solo-word-snake">
+            <b>Word Snake</b>
+            <span className={app.small}>Arena with bot snakes. Eat words in your language, dodge the decoys.</span>
+          </a>
 
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>

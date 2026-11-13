@@ -39,3 +39,7 @@ Bead bkt-9gvte.5, branch `feat/polingual-babel-match`. Match-3 at `/play/babel-m
 ## Shift
 
 Bead bkt-9gvte.6, branch `feat/polingual-shift`. Daily letter board at `/play/shift`, board from `GET /api/academy/shift` (`src/lib/academy/shift.ts`), play helpers in `polingual/src/lib/lobby/shift-play.ts`. Solo puzzle, no bots. Hint reveals a letter for a rewarded ad; the ad step is a placeholder stub until bkt-9s3fi lands. Playtest: `scripts/playtest-shift.mjs`. Next game: Word Snake.
+
+## Word Snake
+
+Bead bkt-9gvte.7, branch `feat/polingual-word-snake`. Canvas arena at `/play/word-snake`, deck from `GET /api/academy/word-snake?langs=&seed=` (`src/lib/academy/word-snake.ts`), engine in `polingual/src/lib/lobby/snake.ts`. Four bot snakes run in the browser; a realtime multiplayer server waits on Flag Duel traffic. Interstitial on death and game end capped at one per three minutes, rewarded respawn is a placeholder stub until bkt-9s3fi. Playtest: `scripts/playtest-word-snake.mjs`. This closes the ranked list in the epic except Polyword, which the Mac builds.
