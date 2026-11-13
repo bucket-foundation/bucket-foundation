@@ -110,6 +110,10 @@ export default function Lobbies() {
             <b>Forehead</b>
             <span className={app.small}>Party mode on one phone. Friends give clues, you tilt to score.</span>
           </a>
+          <a className={styles.soloCard} href="/play/voice-atlas" data-testid="solo-voice-atlas">
+            <b>Voice Atlas</b>
+            <span className={app.small}>Five words a day. Hear one, pin where its language is spoken.</span>
+          </a>
 
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>

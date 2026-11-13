@@ -27,3 +27,7 @@ Bead bkt-9gvte.2, branch `feat/polingual-flag-tiles`. Solo daily run at `/play/f
 ## Forehead
 
 Bead bkt-9gvte.3, branch `feat/polingual-forehead`. One-phone party mode at `/play/forehead`, deck from `GET /api/academy/forehead?langs=&seed=` (`src/lib/academy/forehead.ts`), tilt via `devicemotion` z in `polingual/src/lib/lobby/tilt.ts` with buttons as fallback. No bots by design. Playtest: `scripts/playtest-forehead.mjs`. Next game: Voice Atlas.
+
+## Voice Atlas
+
+Bead bkt-9gvte.4, branch `feat/polingual-voice-atlas`. Daily five rounds at `/play/voice-atlas`, rounds from `GET /api/academy/voice-atlas` (`src/lib/academy/voice-atlas.ts`), map from the `world-atlas` package decoded in `polingual/src/lib/lobby/world.ts`, browser speech for the voice, passport in localStorage. Playtest: `scripts/playtest-voice-atlas.mjs`. Next game: Babel Match.
