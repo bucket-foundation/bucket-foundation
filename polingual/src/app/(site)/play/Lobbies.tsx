@@ -9,13 +9,15 @@ import { GAMES, gameName, roundsFor, LANG_CHOICES, LANG_SETS, langName, roundSec
 import { FlagSquare, LangCard } from "./LearnWord";
 import { useAccount } from "./Account";
 import Nickname from "./Nickname";
+import GameHub from "./GameHub";
+import { Art } from "@/ui/art";
 import styles from "./play.module.css";
 import { savedNickname, usePlay } from "./usePlay";
 import { Button, Pill } from "@/ui";
 
 const LIST_MS = 5000;
 
-export default function Lobbies() {
+export default function Lobbies({ ispyReady = false }: { ispyReady?: boolean }) {
   const router = useRouter();
   const { state, api, connect } = usePlay();
   const [open, setOpen] = useState<LobbySummary[] | null>(null);
@@ -71,6 +73,12 @@ export default function Lobbies() {
     }
   };
 
+  const pick = (g: GameId) => {
+    setMode("single");
+    setGame(g);
+    document.getElementById(ready ? "new-lobby" : "lobby-name")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const join = (e: React.FormEvent) => {
     e.preventDefault();
     const c = normalizeLobbyCode(code);
@@ -83,20 +91,24 @@ export default function Lobbies() {
 
   return (
     <div className={app.stack} data-testid="lobbies">
-      <section className={app.stackSm}>
-        <p className={app.label}>Free to play</p>
-        <h1 className={app.title}>Play with friends</h1>
-        <p className={app.muted}>Start a lobby, share the code, and play together from the app or a browser. No account needed.</p>
+      <section className={styles.hubHead}>
+        <div className={app.stackSm}>
+          <p className={app.label}>Free to play</p>
+          <h1 className={app.title}>Play with friends</h1>
+          <p className={app.muted}>Start a lobby, share the code, and play together from the app or a browser. No account needed.</p>
+        </div>
+        <div className={styles.hubArt} aria-hidden="true">
+          <span style={{ rotate: "-6deg" }}><Art name="ticket" size={130} shadow /></span>
+          <span style={{ rotate: "8deg" }}><Art name="seal" size={74} shadow /></span>
+        </div>
       </section>
 
-      <a href="/play/polyword" className={styles.soloCard} data-testid="polyword-link">
-        <b>Polyword</b>
-        <span className={app.small}>One word a day. Every miss shows its meaning in another language.</span>
-      </a>
+      <GameHub open={open} ispyReady={ispyReady} offered={offered} onPick={pick} />
+
 
       {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : null}
       {state.status === "error" ? <p className={app.error} role="alert">{state.message}</p> : null}
-      {state.status === "needs-name" || state.status === "error" ? <Nickname initial={savedNickname()} onSubmit={(n) => void connect(n)} /> : null}
+      {state.status === "needs-name" || state.status === "error" ? <div id="lobby-name"><Nickname initial={savedNickname()} onSubmit={(n) => void connect(n)} /></div> : null}
 
       {ready ? (
         <>
@@ -108,30 +120,6 @@ export default function Lobbies() {
             <Button type="submit" variant="ghost" size="md" data-testid="join-go">Join</Button>
           </form>
 
-          <a className={styles.soloCard} href="/play/flag-tiles" data-testid="solo-flag-tiles">
-            <b>Flag Tiles</b>
-            <span className={app.small}>Solo daily run. A word falls; tap the flag of its language.</span>
-          </a>
-          <a className={styles.soloCard} href="/play/forehead" data-testid="solo-forehead">
-            <b>Forehead</b>
-            <span className={app.small}>Party mode on one phone. Friends give clues, you tilt to score.</span>
-          </a>
-          <a className={styles.soloCard} href="/play/voice-atlas" data-testid="solo-voice-atlas">
-            <b>Voice Atlas</b>
-            <span className={app.small}>Five words a day. Hear one, pin where its language is spoken.</span>
-          </a>
-          <a className={styles.soloCard} href="/play/babel-match" data-testid="solo-babel-match">
-            <b>Babel Match</b>
-            <span className={app.small}>Match-3 with words. Three that mean the same thing clear.</span>
-          </a>
-          <a className={styles.soloCard} href="/play/shift" data-testid="solo-shift">
-            <b>Shift</b>
-            <span className={app.small}>Daily letter board. Slide columns to spell words in two languages.</span>
-          </a>
-          <a className={styles.soloCard} href="/play/word-snake" data-testid="solo-word-snake">
-            <b>Word Snake</b>
-            <span className={app.small}>Arena with bot snakes. Eat words in your language, dodge the decoys.</span>
-          </a>
 
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>

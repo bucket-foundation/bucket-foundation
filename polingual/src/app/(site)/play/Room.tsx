@@ -641,7 +641,7 @@ export default function Room({ code: rawCode }: { code: string }) {
       {scoreboard}
       <section className={styles.nextBar} data-testid="next-ctas">
         {lobby.standing || lobby.nextStartAt ? (
-          <span className={styles.nextName} data-testid="next-game">Next game{lobby.setup === "single" ? `: ${lobby.name}` : ""}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
+          <span className={styles.nextName} data-testid="next-game">Next game{(lobby.setup ?? "single") === "single" ? `: ${lobby.name}` : ""}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
         ) : next ? (
           <ButtonLink size="md" href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</ButtonLink>
         ) : null}

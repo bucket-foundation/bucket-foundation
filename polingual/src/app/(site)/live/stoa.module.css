@@ -164,3 +164,10 @@
 .bar{flex-wrap:wrap;row-gap:4px}
 @media (prefers-reduced-motion:reduce){.ringFill,.answeredBar span,.tile::before{transition:none}}
 .who{display:inline-flex;align-items:center;gap:10px}
+.playSkin{min-height:100dvh;overflow-x:clip;background-color:#5B1A4A!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='none' stroke='%236FB7C2' stroke-opacity='.2' stroke-width='2'%3E%3Crect x='27' y='27' width='36' height='36'/%3E%3Crect x='27' y='27' width='36' height='36' transform='rotate(45 45 45)'/%3E%3Cpath d='M0 45h27M63 45h27M45 0v27M45 63v27'/%3E%3C/g%3E%3Cpath d='M45 33l3 9 9 3-9 3-3 9-3-9-9-3 9-3z' fill='%23E9A23B' fill-opacity='.2'/%3E%3C/svg%3E")!important}
+.playSkin>.bar{color:#F6EEDC}
+.playSkin>.bar a,.playSkin>.bar span{color:#F6EEDC}
+.playStickers{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.playStickers>span{position:absolute;line-height:0}
+.playSheet{background:var(--parchment);border:3px solid var(--ink);border-radius:24px;box-shadow:8px 10px 0 rgba(0,0,0,.35);padding:24px 18px!important;margin-top:24px!important;width:calc(100% - 32px)!important}
+.playSheet .banner{border:3px solid var(--ink);box-shadow:4px 5px 0 rgba(0,0,0,.3)}
