@@ -257,7 +257,7 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
         mark == false -> Text("Not this time.", color = PL.Vermilion, fontWeight = FontWeight.Bold)
     }
     if (com.polingual.app.play.RevealRules.sameWord(revealPhase = reveal)) {
-        prompt.reveal.firstOrNull { it.correct }?.let { r -> WordReveal(r.lang, r.word, r.meaning, null, null) { graph.voice.speak(r.word, r.lang) } }
+        prompt.reveal.firstOrNull { it.correct }?.let { r -> WordReveal(r.lang, r.word, CardRoot.lobby(r, lobby.root)?.text.orEmpty(), null, null, rootLang = lobby.root) { graph.voice.speak(r.word, r.lang) } }
         prompt.reveal.filterNot { it.correct }.forEach { r -> Text("${Lang.name(r.lang)}: ${r.word}${r.roman?.let { " ($it)" } ?: ""}, ${r.meaning}", style = Type.small, color = p.muted) }
         if (lobby.game == LobbyGame.Duel && index + 1 < lobby.rounds) DuelPowers(graph, lobby, index + 1)
     }

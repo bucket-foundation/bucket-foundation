@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -51,6 +52,12 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
     Page("Study", back = done, stickers = listOf(Sticker("torn-label", Alignment.CenterStart, 100.dp, -7f), Sticker("seal", Alignment.TopEnd, 52.dp, 9f), Sticker("pebble", Alignment.BottomEnd, 40.dp, -6f, dx = (-12).dp))) {
         if (s == null) { EmptyState("ink-dot", "Loading your session."); return@Page }
         tick.let { }
+        val silentNow by graph.silent.collectAsState()
+        LaunchedEffect(silentNow, s) { if (silentNow) s.deferSoundCards() else s.resumeDeferred(); tick += 1 }
+        if (SoundRules.onlySoundLeft(silentNow, s.remaining, s.deferredCount)) {
+            NeedsSound(graph, "The rest of this session")
+            return@Page
+        }
         val ex = s.current
         if (ex == null) {
             EmptyState(if (s.total == 0) "pebble" else "streak-flame", if (s.total == 0) "Nothing due" else "Session done")

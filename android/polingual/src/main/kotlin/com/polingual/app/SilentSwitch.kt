@@ -29,3 +29,15 @@ fun SilentSwitch(graph: Graph, compact: Boolean = false) {
         )
     }
 }
+
+object SoundRules {
+    val soundOnlyGames = setOf(GameKind.Voice, GameKind.Letters)
+    fun needsSoundCard(silent: Boolean, soundOnly: Boolean) = silent && soundOnly
+    fun onlySoundLeft(silent: Boolean, remaining: Int, deferred: Int) = silent && remaining == 0 && deferred > 0
+}
+
+@Composable
+fun NeedsSound(graph: Graph, what: String) {
+    foundation.bucket.core.ui.pl.EmptyState("glyph-speaker", "$what needs sound. Silent mode is on, so it waits until you can listen.")
+    SilentSwitch(graph)
+}
