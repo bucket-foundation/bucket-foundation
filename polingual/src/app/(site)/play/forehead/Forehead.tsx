@@ -43,6 +43,7 @@ export default function Forehead() {
   const [muted, setMuted] = useState(false);
   const [showAd, setShowAd] = useState(false);
   const armed = useRef(true);
+  const loading = useRef(false);
   const endAt = useRef(0);
 
   useEffect(() => setMuted(readMuted(() => window.localStorage)), []);
@@ -109,7 +110,17 @@ export default function Forehead() {
     setShowAd(b.games + 1 >= 2);
   }, [phase, muted]);
 
+  useEffect(() => {
+    if (phase !== "play" && phase !== "count") return;
+    let lock: { release: () => Promise<void> } | null = null;
+    const nav = navigator as Navigator & { wakeLock?: { request: (t: "screen") => Promise<{ release: () => Promise<void> }> } };
+    nav.wakeLock?.request("screen").then((l) => (lock = l)).catch(() => undefined);
+    return () => void lock?.release().catch(() => undefined);
+  }, [phase]);
+
   const start = async () => {
+    if (loading.current) return;
+    loading.current = true;
     setError(null);
     const perm = (globalThis as { DeviceMotionEvent?: MotionPermission }).DeviceMotionEvent;
     let ok = typeof window !== "undefined" && "DeviceMotionEvent" in window && window.matchMedia("(pointer:coarse)").matches;
@@ -129,6 +140,8 @@ export default function Forehead() {
       setPhase("count");
     } catch {
       setError("The deck could not load. Try again.");
+    } finally {
+      loading.current = false;
     }
   };
 

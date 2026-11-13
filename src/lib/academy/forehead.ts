@@ -30,7 +30,7 @@ export function foreheadDeck(items: readonly LangItem[], langs: readonly string[
   const pool = items.filter((i) => i.kind === "word" && i.forms[root] && langs.some((l) => i.forms[l] && i.forms[l] !== i.forms[root]));
   const out: ForeheadCard[] = [];
   const used = new Set<string>();
-  const order = pool.slice(0, 1500);
+  const order = pool.slice();
   for (let i = order.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
