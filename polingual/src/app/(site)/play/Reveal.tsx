@@ -73,10 +73,10 @@ export default function Reveal({ prompt, answersOnly = false }: { prompt: LobbyP
   );
 }
 
-export type RevealWord = { lang: string; word: string; meaning: string; gloss?: string; roman?: string | null; correct?: boolean };
+export type RevealWord = { lang: string; word: string; meaning: string; gloss?: string; roman?: string | null; reading?: RevealEntry["reading"]; correct?: boolean };
 
 export function toEntry(w: RevealWord): RevealEntry {
-  return { lang: w.lang, word: w.word, roman: w.roman ?? null, reading: null, meaning: w.meaning, gloss: w.gloss ?? w.meaning, correct: w.correct ?? true };
+  return { lang: w.lang, word: w.word, roman: w.roman ?? null, reading: w.reading ?? null, meaning: w.meaning, gloss: w.gloss ?? w.meaning, correct: w.correct ?? true };
 }
 
 export function WordReveal({ title, words, testId = "word-reveal" }: { title: React.ReactNode; words: RevealWord[]; testId?: string }) {
