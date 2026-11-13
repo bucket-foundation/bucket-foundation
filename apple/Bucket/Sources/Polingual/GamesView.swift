@@ -323,12 +323,29 @@ struct VoiceTile: View {
 }
 
 struct TranslateScreen: View {
+    @Environment(LangStore.self) private var langs
+
     var body: some View {
         List {
             PLScreenTop(title: "Translate", subtitle: "Any word, every language you study", stickers: Stickers.translate).plListTop()
-            Section { TranslateCard() }
+            if langs.status == .ready && langs.systems.isEmpty {
+                Section {
+                    HStack(spacing: 12) {
+                        PLArtView(.tornLabel).frame(width: 64)
+                        Text("Start a language set in Learn to translate between your languages.")
+                            .font(PL.body.font())
+                            .foregroundStyle(PL.inkDim)
+                    }
+                }
                 .listRowBackground(PL.card)
+            } else if langs.corpus == nil {
+                Section { ProgressView().frame(maxWidth: .infinity) }.listRowBackground(Color.clear)
+            } else {
+                Section { TranslateCard() }
+                    .listRowBackground(PL.card)
+            }
         }
+        .task { await langs.load() }
         .paper()
         .navigationTitle("Translate")
         .plChrome()

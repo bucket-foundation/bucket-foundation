@@ -61,7 +61,7 @@ struct AccountView: View {
                                 Text("Notifications are off, so no reminder comes before the trial ends.").font(.footnote).foregroundStyle(Palette.muted)
                             }
                         }
-                        Button("Manage subscription", systemImage: "creditcard", action: subscription)
+                        Button(action: subscription) { Label { Text("Manage subscription") } icon: { PLArtView(.seal).frame(width: 22) } }
                     } header: {
                         Eyebrow(text: "Subscription")
                     }

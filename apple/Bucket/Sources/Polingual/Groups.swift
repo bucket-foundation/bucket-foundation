@@ -19,6 +19,7 @@ extension GroupKind {
     var label: String { self == .family ? String(localized: "Family") : String(localized: "Friends") }
     var inviteLabel: String { self == .family ? String(localized: "Invite family") : String(localized: "Invite friends") }
     var symbol: String { self == .family ? "house" : "person.2" }
+    var art: PLArt { self == .family ? .azulejo : .bunting }
 }
 
 func asBucket(_ e: any Error) -> BucketError { e as? BucketError ?? .server(0, nil) }
@@ -76,16 +77,16 @@ struct FamilyAndFriends: View {
                         sheet = .create(kind)
                     }
                 } label: {
-                    Label(kind.inviteLabel, systemImage: kind.symbol)
+                    Label { Text(kind.inviteLabel) } icon: { PLArtView(kind.art).frame(width: 26) }
                 }
             }
             Button {
                 if account.stage != .signedIn { signingIn = true } else { sheet = .enterCode }
             } label: {
-                Label("Have an invite code?", systemImage: "ticket")
+                Label { Text("Have an invite code?") } icon: { PLArtView(.ticket).frame(width: 26) }
             }
             if !groups.blocks.isEmpty {
-                NavigationLink { BlockedList() } label: { Label("Blocked", systemImage: "hand.raised") }
+                NavigationLink { BlockedList() } label: { Label { Text("Blocked") } icon: { PLGlyphView(.close, size: 18) } }
             }
         } header: {
             Eyebrow(text: "Family and friends")
@@ -108,8 +109,7 @@ struct GroupRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: group.kind.symbol)
-                .foregroundStyle(Palette.green)
+            PLArtView(group.kind.art)
                 .frame(width: 28)
             VStack(alignment: .leading, spacing: 2) {
                 Text(group.name).font(.headline)
