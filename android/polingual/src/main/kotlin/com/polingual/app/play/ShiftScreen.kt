@@ -56,14 +56,14 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
             Results(graph, "Board cleared", "${found.size} words found. A new board comes tomorrow.", again = null) {
                 b.targets.forEach { t ->
                     val w = remember(t) { PlayAssets.words(graph.context).firstOrNull { it.form(t.lang)?.word?.lowercase() == t.form } }
-                    if (w != null) RevealWord(graph, w, t.lang) else com.polingual.app.WordReveal(t.lang, t.form, t.meaning, null, null) { graph.voice.speak(t.form, t.lang) }
+                    if (RevealRules.shift(found, b.targets)) { if (w != null) RevealWord(graph, w, t.lang) else com.polingual.app.WordReveal(t.lang, t.form, t.meaning, null, null) { graph.voice.speak(t.form, t.lang) } }
                 }
             }
             return@GameFrame
         }
         Text("DAILY BOARD · $date", style = Type.caps, color = PL.InkDim)
         Text("Slide the columns to spell words in the middle row. Words count in ${b.langs.joinToString(" or ") { Lang.name(it) }}.", style = Type.small, color = PL.Ink)
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
+        SceneFrame(Scenes.shift, inset = 40.dp) { Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
             b.columns.forEachIndexed { i, col ->
                 fun at(d: Int) = col[(((offsets[i] + d) % col.size) + col.size) % col.size]
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -76,7 +76,7 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
                     Box(Modifier.size(56.dp, 44.dp).clickable(role = Role.Button, onClickLabel = "Column ${i + 1} down") { offsets = Shift.rotate(offsets, i, 1) }, contentAlignment = Alignment.Center) { Glyph("back", null, PL.Lapis, Modifier.size(22.dp).rotate(-90f)) }
                 }
             }
-        }
+        } }
         Text(b.valid[word]?.let { "$word · ${it.joinToString(", ") { l -> Lang.name(l) }}" } ?: "Keep sliding", style = Type.body, color = if (b.valid[word] != null) PL.Malachite else PL.InkDim)
         SectionTitle("Clues")
         b.targets.forEach { t ->
