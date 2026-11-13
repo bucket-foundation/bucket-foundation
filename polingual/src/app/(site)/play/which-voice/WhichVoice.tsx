@@ -11,17 +11,6 @@ import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import styles from "../daily/daily.module.css";
 
-const WIDE = [
-  { name: "script-he" as const, x: "6%", y: "10%", size: 100, rotate: -6, shadow: false },
-  { name: "seal" as const, x: "4%", y: "54%", size: 120, rotate: 8 },
-  { name: "script-ko" as const, x: "8%", y: "14%", size: 90, rotate: 6, side: "right" as const, shadow: false },
-  { name: "torn-label" as const, x: "3%", y: "56%", size: 160, rotate: -7, side: "right" as const },
-];
-const STRIP = [
-  { name: "seal" as const, x: "0%", y: "10px", size: 60, rotate: -8 },
-  { name: "script-he" as const, x: "36%", y: "20px", size: 60, rotate: 4, shadow: false },
-  { name: "torn-label" as const, x: "2%", y: "12px", size: 96, rotate: 6, side: "right" as const },
-];
 
 export default function WhichVoice() {
   const { state, finish } = useDaily("which-voice");
@@ -46,9 +35,9 @@ export default function WhichVoice() {
     if (p && state.status === "ready" && !state.done) speak(p.word.form, p.word.lang);
   }, [p, state]);
 
-  if (state.status !== "ready") return <DailyWorld wide={WIDE} strip={STRIP}><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld wide={WIDE} strip={STRIP}><Results title="Which Voice" result={state.done} url="https://polingual.com/play/which-voice" /></DailyWorld>;
-  if (!p) return <DailyWorld wide={WIDE} strip={STRIP}><Loading state="error" /></DailyWorld>;
+  if (state.status !== "ready") return <DailyWorld id="which-voice"><Loading state={state.status} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="which-voice"><Results title="Which Voice" result={state.done} url="https://polingual.com/play/which-voice" /></DailyWorld>;
+  if (!p) return <DailyWorld id="which-voice"><Loading state="error" /></DailyWorld>;
 
   function choose(c: string) {
     if (picked || state.status !== "ready") return;
@@ -64,7 +53,7 @@ export default function WhichVoice() {
   }
 
   return (
-    <DailyWorld wide={WIDE} strip={STRIP}>
+    <DailyWorld id="which-voice">
       <Heading eyebrow={`Which Voice · ${state.day}`} title="Listen, then pick the language" blurb="Ten words read aloud. Play a word again as often as you like." />
       <Pips pattern={pattern} total={prompts.length} />
       <Button variant="accent" size="xl" onClick={() => speak(p.word.form, p.word.lang)} data-testid="voice-play">Play the word</Button>

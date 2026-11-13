@@ -25,6 +25,9 @@ test("daily set plays six words, then keeps today's result", async ({ page }) =>
   await expect(page.getByTestId("daily-score")).toHaveText("6 of 6");
   await expect(page.getByTestId("reveal-entry")).toHaveCount(6);
   await revisit(page, "/play/daily-set");
+  await page.goto("/play");
+  await expect(page.getByTestId("daily-state-daily-set")).toHaveText("Done today · 6 of 6", { timeout: 60_000 });
+  await expect(page.getByTestId("daily-state-mini")).toHaveText("Play today's");
 });
 
 test("mini fills every clue, then keeps today's result", async ({ page }) => {

@@ -10,17 +10,6 @@ import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
 
-const WIDE = [
-  { name: "sk-kente" as const, x: "3%", y: "8%", size: 140, rotate: -8 },
-  { name: "sk-mudcloth" as const, x: "6%", y: "56%", size: 130, rotate: 7 },
-  { name: "sk-paisley" as const, x: "4%", y: "10%", size: 130, rotate: 8, side: "right" as const },
-  { name: "calligraphy-ain" as const, x: "6%", y: "58%", size: 120, rotate: -6, side: "right" as const },
-];
-const STRIP = [
-  { name: "sk-kente" as const, x: "0%", y: "8px", size: 76, rotate: -6 },
-  { name: "calligraphy-ain" as const, x: "36%", y: "14px", size: 66, rotate: 6 },
-  { name: "sk-paisley" as const, x: "2%", y: "8px", size: 76, rotate: 7, side: "right" as const },
-];
 
 const THEMES: Record<string, string> = { adjective: "Describing words", animal: "Animals", body: "The body", color: "Colors", family: "Family", food: "Food", nature: "Nature", number: "Numbers", object: "Things", time: "Time", verb: "Verbs" };
 
@@ -46,9 +35,9 @@ export default function WordGroups() {
   const [order, setOrder] = useState<string[] | null>(null);
   const [note, setNote] = useState("");
 
-  if (state.status !== "ready") return <DailyWorld wide={WIDE} strip={STRIP}><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld wide={WIDE} strip={STRIP}><Results title="Word Groups" result={state.done} url="https://polingual.com/play/word-groups" /></DailyWorld>;
-  if (!puzzle) return <DailyWorld wide={WIDE} strip={STRIP}><Loading state="error" /></DailyWorld>;
+  if (state.status !== "ready") return <DailyWorld id="word-groups"><Loading state={state.status} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="word-groups"><Results title="Word Groups" result={state.done} url="https://polingual.com/play/word-groups" /></DailyWorld>;
+  if (!puzzle) return <DailyWorld id="word-groups"><Loading state="error" /></DailyWorld>;
 
   const gone = new Set(puzzle.groups.filter((x) => g.solved.includes(groupId(x))).flatMap((x) => x.words.map(wordId)));
   const ids = (order ?? puzzle.tiles.map(wordId)).filter((id) => !gone.has(id));
@@ -66,7 +55,7 @@ export default function WordGroups() {
   }
 
   return (
-    <DailyWorld wide={WIDE} strip={STRIP}>
+    <DailyWorld id="word-groups">
       <Heading eyebrow={`Word Groups · ${state.day}`} title="Sort sixteen words into four groups" blurb="Groups share a language, a theme or both." />
       {puzzle.groups.filter((x) => g.solved.includes(groupId(x))).map((x, i) => (
         <div key={groupId(x)} className={styles.solved} data-i={i} data-testid="groups-solved">
