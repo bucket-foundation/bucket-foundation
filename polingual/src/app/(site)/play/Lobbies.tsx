@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { LobbyError, lobbyError, type LobbySummary } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
-import { GAMES, gameName, LANG_CHOICES, LANG_SETS, langName, roundSecondsFor, SETUP_MODES, setupValid, type GameId, type SetupMode } from "./langs";
+import { GAMES, gameName, roundsFor, LANG_CHOICES, LANG_SETS, langName, roundSecondsFor, SETUP_MODES, setupValid, type GameId, type SetupMode } from "./langs";
 import { FlagSquare, LangCard } from "./LearnWord";
 import { useAccount } from "./Account";
 import Nickname from "./Nickname";
@@ -27,6 +27,7 @@ export default function Lobbies() {
   const [rounds, setRounds] = useState(6);
   const [busy, setBusy] = useState(false);
   const [botsOn, setBotsOn] = useState(false);
+  const [offered, setOffered] = useState<string[] | null>(null);
   const [fill, setFill] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const ready = state.status === "ready";
@@ -37,6 +38,7 @@ export default function Lobbies() {
       const res = await api.listing();
       setOpen(res.lobbies);
       setBotsOn(res.bots);
+      setOffered(res.games);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
     }
@@ -60,7 +62,7 @@ export default function Lobbies() {
     setBusy(true);
     setError(null);
     try {
-      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: "en", targets: langs, rounds, roundSeconds: roundSecondsFor(first), listed: true, displayName: state.nickname, game: first, fillBots: botsOn && fill, setup: mode, ...(mode === "sequence" ? { games } : {}) });
+      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: "en", targets: langs, rounds: roundsFor(first, rounds), roundSeconds: roundSecondsFor(first), listed: true, displayName: state.nickname, game: first, fillBots: botsOn && fill, setup: mode, ...(mode === "sequence" ? { games } : {}) });
       router.push(`/play/${lobby.code}`);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
@@ -112,7 +114,7 @@ export default function Lobbies() {
             </div>
             {mode !== "mix" ? (
               <div className={styles.games} role="group" aria-label={mode === "single" ? "Game" : "Games in order"}>
-                {GAMES.map((g) => {
+                {GAMES.filter((g) => (offered ? offered.includes(g.id) : g.id !== "duel")).map((g) => {
                   const pos = games.indexOf(g.id);
                   const on = mode === "single" ? game === g.id : pos >= 0;
                   return (

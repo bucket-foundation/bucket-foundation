@@ -153,3 +153,11 @@
 .accountCta{gap:10px}
 .accountCta > *{white-space:nowrap}
 @media (max-width:400px){.brandText{font-size:18px}.ctaPill{padding:0 12px;font-size:15px}}
+.coins{font-family:"Fredoka",sans-serif;font-weight:700;font-size:18px;color:#8A5A00}
+.powers{display:flex;flex-direction:column;gap:8px;border:2px solid var(--ochre);border-radius:16px;padding:12px 14px;background:#FFF6E0}
+.powersHead{margin:0;display:flex;justify-content:space-between;align-items:center;font-family:"Fredoka",sans-serif;font-weight:700;font-size:18px;color:var(--tyrian)}
+.powerRow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.power{min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px;border:2px solid var(--tyrian);background:#fff;font:inherit;cursor:pointer;color:var(--tyrian)}
+.power span{font-size:13px;color:var(--ink-2)}
+.power:disabled{opacity:.45;cursor:default}
+.powerOn{margin:0;text-align:center;font-weight:800;color:#8A5A00}

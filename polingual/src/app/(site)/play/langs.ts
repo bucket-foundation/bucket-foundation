@@ -22,6 +22,7 @@ export const GAMES = [
   { id: "flags", name: "Flags", blurb: "Name the language of each word." },
   { id: "tiles", name: "Tiles", blurb: "Words fall. Tap every one that means the word on top." },
   { id: "live", name: "Live", blurb: "Fast rounds with a leaderboard after each." },
+  { id: "duel", name: "Flag Duel", blurb: "Ten rounds. Name the language, then the meaning. Spend coins on power-ups." },
 ] as const;
 
 export type GameId = (typeof GAMES)[number]["id"];
@@ -41,6 +42,10 @@ export function langName(code: string): string {
 
 export function roundSecondsFor(game: string): number {
   return game === "tiles" ? TILE_ROUND_SECONDS : game === "live" ? 7 : 8;
+}
+
+export function roundsFor(game: string, chosen: number): number {
+  return game === "duel" ? 10 : chosen;
 }
 
 export const LANG_CHOICES = ["es", "fr", "it", "pt", "de", "nl", "sv", "ja", "zh", "ko", "ru", "el", "ar", "hi", "tr"] as const;

@@ -367,6 +367,8 @@ export default function Room({ code: rawCode }: { code: string }) {
     );
   }
 
+  const doubled = (round: number) => lobby.powers.some((p) => p.round === round && p.kind === "double");
+  const buy = (kind: "double" | "fifty") => void act(() => api.power(lobby.id, kind));
   const lives = lobby.game === "tiles" && (phase.kind === "round" || phase.kind === "reveal") ? livesLeft(lobby, phase.kind === "round" ? phase.index : phase.index + 1) : null;
   const streak = streakOf(lobby);
   const rank = ranked(lobby.players).find((p) => p.isMe)?.rank ?? null;
@@ -381,6 +383,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         </span>
         {rank ? <span className={styles.hudRank} data-testid="my-rank">#{rank} of {lobby.players.length}</span> : null}
         <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
+        {lobby.game === "duel" ? <span className={styles.coins} data-testid="coins" aria-label={`${lobby.coins} coins`}>🪙 {lobby.coins}</span> : null}
         {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
         <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">
           {muted ? "🔇" : "🔊"}
@@ -431,6 +434,27 @@ export default function Room({ code: rawCode }: { code: string }) {
                 <button type="button" className={app.ghost} onClick={() => setSkipped(key)} data-testid="skip-reveal">Skip</button>
               ) : null}
             </div>
+            {lobby.game === "duel" && phase.index + 1 < lobby.rounds ? (
+              <section className={styles.powers} data-testid="powers" aria-label="Power-ups">
+                <p className={styles.powersHead}>
+                  Power-up for round {phase.index + 2} <span className={styles.coins}>🪙 {lobby.coins}</span>
+                </p>
+                {lobby.powers.some((p) => p.round === phase.index + 1) ? (
+                  <p className={app.small} data-testid="power-set">{lobby.powers.find((p) => p.round === phase.index + 1)?.kind === "double" ? "Double points is on for the next round." : "50/50 is on for the next round."}</p>
+                ) : (
+                  <div className={styles.powerRow}>
+                    <button type="button" className={styles.power} disabled={lobby.coins < 2} onClick={() => buy("double")} data-testid="power-double">
+                      <b>Double points</b>
+                      <span>2 coins</span>
+                    </button>
+                    <button type="button" className={styles.power} disabled={lobby.coins < 1} onClick={() => buy("fifty")} data-testid="power-fifty">
+                      <b>50/50</b>
+                      <span>1 coin</span>
+                    </button>
+                  </div>
+                )}
+              </section>
+            ) : null}
             {prompt ? <RevealBanner prompt={prompt} pick={picked && picked.round === phase.index && picked.game === lobby.startedAt && !picked.pending ? picked : null} /> : null}
             {hidden ? null : prompt?.reveal?.length ? <Reveal prompt={prompt} /> : <p className={app.muted} aria-busy="true">Loading the answers</p>}
             {betweenRoundsAd(lobby.game, phase.index, breaks.games) ? <Ad placement="between-rounds" /> : null}
@@ -499,7 +523,7 @@ export default function Room({ code: rawCode }: { code: string }) {
                   </div>
                 </div>
                 <ul className={styles.choices}>
-                  {prompt.choices.map((c) => (
+                  {prompt.choices.filter((c) => !prompt.hide?.includes(c)).map((c) => (
                     <li key={c}>
                       <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
                         <LangCard lang={c} big />
@@ -507,6 +531,26 @@ export default function Room({ code: rawCode }: { code: string }) {
                     </li>
                   ))}
                 </ul>
+              </>
+            ) : prompt && prompt.mode === "meaning" ? (
+              <>
+                <div className={styles.prompt}>
+                  <p className={app.small}>What does this word mean?</p>
+                  <div className={styles.promptTile}>
+                    <TileFace as="div" lang={prompt.lang ?? ""} word={prompt.gloss} rtl={prompt.lang ? LANGS[prompt.lang]?.rtl : undefined} attrs={{ "data-testid": "prompt" }} />
+                  </div>
+                  {prompt.lang ? <p className={app.small}>{langName(prompt.lang)}</p> : null}
+                </div>
+                <ul className={styles.choices}>
+                  {prompt.choices.filter((c) => !prompt.hide?.includes(c)).map((c) => (
+                    <li key={c}>
+                      <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                        {c}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                {doubled(phase.index) ? <p className={styles.powerOn} data-testid="double-on">Double points this round</p> : null}
               </>
             ) : prompt && prompt.mode === "mixed" ? (
               <>

@@ -1,6 +1,6 @@
 import { service } from "./groups-server";
 import { corpusLookup } from "./lang-lookup";
-import { gameEndMs, generateLobbyCode, generateSeed, nextGame, REVEAL_SECONDS, revealEnabled, setupEnabled, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
+import { duelEnabled, gameEndMs, generateLobbyCode, generateSeed, nextGame, REVEAL_SECONDS, revealEnabled, setupEnabled, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
 import {
   botChoice,
   botTileChoice,
@@ -23,7 +23,7 @@ import {
   type BotProfile,
   type BotSkill,
 } from "./lobby-bots";
-import { ANSWERS, checkLobby, LOBBIES, LOBBY_COLS, MESSAGES, PLAYERS, playersOf, PROMPTS, promptsOf, settle, startLobby, submitAnswer } from "./lobbies-server";
+import { POWERS, ANSWERS, checkLobby, LOBBIES, LOBBY_COLS, MESSAGES, PLAYERS, playersOf, PROMPTS, promptsOf, settle, startLobby, submitAnswer } from "./lobbies-server";
 
 const byId = new Map(BOTS.map((b) => [b.userId, b]));
 
@@ -74,6 +74,7 @@ async function resetStanding(lobby: LobbyRow, players: LobbyPlayerRow[], now: nu
   if (!rows[0]) return null;
   checkLobby(await service().from(ANSWERS).delete().eq("lobby_id", lobby.id), "standing answers");
   checkLobby(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "standing prompts");
+  if (duelEnabled()) checkLobby(await service().from(POWERS).delete().eq("lobby_id", lobby.id), "standing powers");
   const stale = players.filter((p) => !p.is_bot && now - Date.parse(p.last_seen) >= STALE_MS).map((p) => p.user_id);
   if (stale.length) checkLobby(await service().from(PLAYERS).delete().eq("lobby_id", lobby.id).in("user_id", stale), "standing stale");
   checkLobby(await service().from(PLAYERS).update({ score: 0, ready: false, ...(setupEnabled() ? { continues: 0 } : {}) }).eq("lobby_id", lobby.id), "standing scores");
@@ -170,7 +171,7 @@ export async function ensureStanding(now: number): Promise<LobbyRow[]> {
   if (now - lastEnsure < ENSURE_EVERY_MS) return lastStanding;
   lastEnsure = now;
   const have = checkLobby(await service().from(LOBBIES).select(LOBBY_COLS).not("standing_slot", "is", null), "standing") as LobbyRow[];
-  const missing = STANDING_SLOTS.filter((s) => slotEnabled(s, revealEnabled(), setupEnabled()) && !have.some((l) => l.standing_slot === s.slot));
+  const missing = STANDING_SLOTS.filter((s) => slotEnabled(s, revealEnabled(), setupEnabled(), duelEnabled()) && !have.some((l) => l.standing_slot === s.slot));
   for (const s of missing) {
     const host = pickBots(s.slot, 1, new Set())[0];
     const res = await service()

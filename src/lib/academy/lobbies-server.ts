@@ -25,6 +25,7 @@ import {
   type LobbyPromptRow,
   type LobbyRow,
   type LobbyState,
+  type PowerRow,
   revealEnabled,
   setupEnabled,
   joinedRound,
@@ -40,6 +41,12 @@ export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
 export const PROFILES = "academy_profiles";
+export const POWERS = "lobby_powers";
+
+export async function powersOf(lobby: Pick<LobbyRow, "id" | "game">): Promise<PowerRow[]> {
+  if (lobby.game !== "duel") return [];
+  return check(await service().from(POWERS).select("lobby_id,user_id,round,kind").eq("lobby_id", lobby.id), "powers") as PowerRow[];
+}
 const LOBBY_BASE_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
 export const LOBBY_COLS = `${LOBBY_BASE_COLS}${revealEnabled() ? ",reveal_seconds" : ""}${setupEnabled() ? ",playlist,mix,start_at" : ""}` as typeof LOBBY_BASE_COLS;
 const PLAYER_BASE_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
@@ -155,6 +162,10 @@ export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, 
   const me = tiles ? (check(await service().from(PLAYERS).select(PLAYER_COLS).eq("lobby_id", lobby.id).eq("user_id", uid).limit(1), "joined") as LobbyPlayerRow[])[0] : null;
   const decision = tiles ? tileAnswerDecision(lobby, prompt, round, choice, now, prior, joinedRound(lobby, me?.joined_at), me?.continues ?? 0) : answerDecision(lobby, prompt, round, choice, now);
   if (!decision.ok) return decision;
+  if (lobby.game === "duel" && decision.points > 0) {
+    const boost = check(await service().from(POWERS).select("kind").eq("lobby_id", lobby.id).eq("user_id", uid).eq("round", round).eq("kind", "double").limit(1), "boost") as unknown[];
+    if (boost.length) decision.points *= 2;
+  }
   const res = await service().rpc("lobby_answer", { p_lobby: lobby.id, p_user: uid, p_round: round, p_choice: choice, p_correct: decision.correct, p_ms: decision.ms, p_points: decision.points });
   if (res.error) throw new Error(res.error.message);
   if (res.data === "not_member") return { ok: false, error: "not_member" };
@@ -163,17 +174,18 @@ export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, 
 }
 
 export async function lobbyState(lobby: LobbyRow, uid: string, now: number, blocks?: BlockRow[]): Promise<LobbyState> {
-  const [players, messages, answers, b, prompts] = await Promise.all([
+  const [players, messages, answers, b, prompts, powers] = await Promise.all([
     namedPlayersOf([lobby.id]),
     service().from(MESSAGES).select("id,lobby_id,user_id,body,created_at").eq("lobby_id", lobby.id).order("id", { ascending: false }).limit(MESSAGE_LIMIT),
     service().from(ANSWERS).select("lobby_id,user_id,round,choice,correct,ms,points").eq("lobby_id", lobby.id),
     blocks ? Promise.resolve(blocks) : blocksTouching(uid),
     lobby.status === "lobby" ? Promise.resolve([]) : promptsOf(lobby.id),
+    lobby.status === "lobby" ? Promise.resolve([]) : powersOf(lobby),
   ]);
   const msgs = (check(messages, "messages") as LobbyMessageRow[]).reverse();
   const corpus = langCorpus();
   const describe = (row: LobbyPromptRow): RevealEntry[] => revealEntries(row, lobby.root, corpus?.byId.get(row.item_id) ?? null, corpusLookup);
-  const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts, nextStartOf(lobby), describe);
+  const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts, nextStartOf(lobby), describe, powers);
   return { ...state, botsEnabled: botsEnabled() };
 }
 
@@ -198,6 +210,7 @@ export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRo
   const t = gameTiming(game);
   check(await service().from(ANSWERS).delete().eq("lobby_id", lobby.id), "again answers");
   check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "again prompts");
+  check(await service().from(POWERS).delete().eq("lobby_id", lobby.id), "again powers");
   check(await service().from(PLAYERS).update({ score: 0, ready: false, continues: 0 }).eq("lobby_id", lobby.id), "again scores");
   if (here.length) check(await service().from(PLAYERS).update({ ready: true }).eq("lobby_id", lobby.id).in("user_id", here), "again ready");
   const rows = check(
