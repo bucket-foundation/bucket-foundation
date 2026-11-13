@@ -21,8 +21,8 @@ const SLOTS: Omit<StickerSpot, "name">[] = [
   { x: "10px", y: "4px", size: 44, rotate: 9, side: "right" },
   { x: "12px", y: "6px", size: 44, rotate: 7, anchor: "bottom" },
   { x: "12px", y: "4px", size: 44, rotate: -12, side: "right", anchor: "bottom" },
-  { x: "42%", y: "8px", size: 36, rotate: 12 },
-  { x: "42%", y: "8px", size: 36, rotate: -8, side: "right", anchor: "bottom" },
+  { x: "14px", y: "44%", size: 36, rotate: 12 },
+  { x: "14px", y: "40%", size: 36, rotate: -8, side: "right" },
 ];
 
 function StageStickerSet({ id, clearBottom = false }: { id: WorldId; clearBottom?: boolean }) {
@@ -30,7 +30,7 @@ function StageStickerSet({ id, clearBottom = false }: { id: WorldId; clearBottom
     <div className={styles.stickerLayer} aria-hidden="true">
       {worldOf(id).stage.map((art, i) => {
         const spot = SLOTS[i % SLOTS.length];
-        const placed = clearBottom && spot.anchor === "bottom" ? { ...spot, anchor: "top" as const, y: i === 5 ? "18%" : "30%" } : spot;
+        const placed = clearBottom && spot.anchor === "bottom" ? { ...spot, anchor: "top" as const, y: "28%" } : spot;
         return <Sticker key={i} name={art} {...placed} className={styles.slot} />;
       })}
     </div>
