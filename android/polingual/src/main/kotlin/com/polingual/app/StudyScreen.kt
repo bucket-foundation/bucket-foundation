@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,14 +26,13 @@ import foundation.bucket.core.engine.SeededRandom
 import foundation.bucket.core.engine.StudySession
 import foundation.bucket.core.engine.StudyState
 import foundation.bucket.core.model.Lang
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.ChoiceButton
-import foundation.bucket.core.ui.ChoiceState
-import foundation.bucket.core.ui.D8
+import foundation.bucket.core.ui.pl.Card
+import foundation.bucket.core.ui.pl.ChoiceButton
+import foundation.bucket.core.ui.pl.ChoiceState
+import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Pill
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.Type
+import foundation.bucket.core.ui.pl.Pill
+import foundation.bucket.core.ui.pl.PrimaryButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -50,29 +50,26 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         session = StudySession(corpus, system.root, system.targets, app.study[system.id] ?: StudyState(), today(), System.currentTimeMillis(), SeededRandom(System.nanoTime().toULong()))
     }
     val s = session
-    Page(back = done) {
-        if (s == null) { Text("Loading", color = p.muted); return@Page }
+    var corpus by remember { mutableStateOf<foundation.bucket.core.engine.LangCorpus?>(null) }
+    LaunchedEffect(Unit) { corpus = graph.corpus.load() }
+    Page("Study", back = done, stickers = listOf(Sticker("torn-label", Alignment.CenterStart, 100.dp, -7f), Sticker("seal", Alignment.TopEnd, 52.dp, 9f), Sticker("pebble", Alignment.BottomEnd, 40.dp, -6f, dx = (-12).dp))) {
+        if (s == null) { EmptyState("ink-dot", "Loading your session."); return@Page }
         tick.let { }
         val ex = s.current
         if (ex == null) {
-            Text(if (s.total == 0) "Nothing due" else "Session done", style = Type.display, color = p.ink)
+            EmptyState(if (s.total == 0) "pebble" else "streak-flame", if (s.total == 0) "Nothing due" else "Session done")
             Text(if (s.total == 0) "Come back tomorrow for new words, or play a game." else "${s.correct} of ${s.answered} right. Misses come back in your next session.", color = p.muted)
             PrimaryButton("Back to Today") { done() }
             return@Page
         }
-        LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = D8.malachite)
+        LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(Lang.flag(ex.word.lang))
             Text(Lang.name(ex.word.lang), style = Type.caps, color = p.muted)
-            if (ex.isNew) Pill("New", D8.lapis)
+            if (ex.isNew) Pill("New", PL.Lapis)
         }
-        Card {
-            Text(if (ex.kind == ExerciseKind.Recognize) "What does this mean?" else "Pick the ${Lang.name(ex.word.lang)} word", color = p.muted)
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(ex.prompt, style = Type.word, color = p.ink, modifier = Modifier.weight(1f))
-                if (ex.kind == ExerciseKind.Recognize) IconButton(onClick = { graph.voice.speak(ex.word.form, ex.word.lang) }) { Icon(Icons.AutoMirrored.Outlined.VolumeUp, "Speak") }
-            }
-        }
+        Text(if (ex.kind == ExerciseKind.Recognize) "What does this mean?" else "Pick the ${Lang.name(ex.word.lang)} word", color = p.muted)
+        WordTile(ex.word.lang, ex.prompt, onSpeak = if (ex.kind == ExerciseKind.Recognize) ({ graph.voice.speak(ex.word.form, ex.word.lang) }) else null)
         LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang) }
         ex.options.forEach { o ->
             val state = when {
@@ -81,11 +78,14 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
                 o == picked -> ChoiceState.Wrong
                 else -> ChoiceState.Dim
             }
-            ChoiceButton(o, state) {
-                picked = o
+            ChoiceButton(o, state) { if (picked == null) { picked = o; graph.voice.speak(ex.word.form, ex.word.lang) } }
+        }
+        val chosen = picked
+        if (chosen != null) {
+            WordReveal(ex.word.lang, ex.word.form, ex.word.gloss, ex.word.itemId, corpus) { graph.voice.speak(ex.word.form, ex.word.lang) }
+            PrimaryButton("Next") {
                 scope.launch {
-                    delay(if (o == ex.answer) 600 else 1400)
-                    s.answer(o)
+                    s.answer(chosen)
                     val sys = graph.store.current().system
                     if (sys != null) graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
                     picked = null

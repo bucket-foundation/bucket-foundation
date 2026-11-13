@@ -1,3 +1,4 @@
+import { Banner } from "@/ui";
 import Link from "next/link";
 import Site, { type SiteLocale } from "@/app/site";
 import { Tile, Tiles } from "@/app/tile";
@@ -28,12 +29,14 @@ export function WordView({ w, code }: { w: Word; code: string }) {
   return (
     <Site wide loc={siteLocale(code)}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(ld) }} />
-      <p className={styles.crumbs}>
-        <Link href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
-      </p>
-      <h1>{copy.h1}</h1>
-      {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
-      <p className="lede">{copy.intro}</p>
+      <Banner testId="word-banner">
+        <p className={styles.crumbs}>
+          <Link href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
+        </p>
+        <h1>{copy.h1}</h1>
+        {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
+        <p className="lede">{copy.intro}</p>
+      </Banner>
       <p>{copy.body.join(" ")}</p>
       <div className={styles.legendRow}>
         <p className={styles.legend}>
@@ -129,8 +132,10 @@ export function WordIndexView({ code }: { code: string }) {
   return (
     <Site wide loc={siteLocale(code)}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript([setLd, appJsonLd()]) }} />
-      <h1>{copy.title}</h1>
-      <p className="lede">{copy.description}</p>
+      <Banner testId="word-banner">
+        <h1>{copy.title}</h1>
+        <p className="lede">{copy.description}</p>
+      </Banner>
       <nav>
         <ul className={styles.chips}>
           {themes.map((t) => (

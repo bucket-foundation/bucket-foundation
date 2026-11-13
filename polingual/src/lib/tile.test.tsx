@@ -9,7 +9,7 @@ import { MAX_PX, MIN_PX, ROOM_ICON_CQI, capPx, fitCqi, fitPx, fitVars, wordEm } 
 import { snapshot, stop, toggle } from "./speak";
 import { word } from "./words";
 
-const CSS = readFileSync(join(process.cwd(), "src/app/site.module.css"), "utf8");
+const CSS = readFileSync(join(process.cwd(), "src/ui/flagtile.module.css"), "utf8");
 
 function rule(selector: string): string {
   const at = CSS.indexOf(`${selector}{`);
