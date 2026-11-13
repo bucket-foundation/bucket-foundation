@@ -16,6 +16,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         link.value = Link.from(intent)
         val graph = (application as PolingualApp).graph
+        graph.activity = java.lang.ref.WeakReference(this)
+        graph.ads.gather(this)
         setContent { PolingualTheme { Root(graph, link.value) { link.value = null } } }
     }
 

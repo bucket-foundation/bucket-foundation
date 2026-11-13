@@ -82,18 +82,20 @@ data class GameContext(val system: LangSystem, val app: AppState, val corpus: La
 fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composable (GameContext) -> Unit) {
     var ctx by remember { mutableStateOf<GameContext?>(null) }
     LaunchedEffect(Unit) {
+        graph.ads.enteredGame()
         val app = graph.store.current()
         val system = app.system ?: return@LaunchedEffect
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    Page(kind.title, back = back) {
+    Page(kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }) {
         val c = ctx
         if (c == null) Text("Start a language set in Learn. The games use the words you study.", color = LocalPalette.current.muted) else content(c)
     }
 }
 
 suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String) {
+    ads.gameFinished()
     val key = "${kind.route}|${today()}|${system.id}"
     store.update { it.copy(played = (it.played + (key to pattern)).entries.toList().takeLast(200).associate { e -> e.key to e.value }, savePrompt = account.stage.value != foundation.bucket.core.auth.Stage.SignedIn) }
 }

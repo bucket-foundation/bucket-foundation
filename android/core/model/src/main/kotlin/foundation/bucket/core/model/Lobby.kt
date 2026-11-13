@@ -11,11 +11,12 @@ enum class LobbyGame(val wire: String, val title: String) {
     @SerialName("daily") Daily("daily", "Daily Set"),
     @SerialName("same-word") SameWord("same-word", "Same Word"),
     @SerialName("flags") Flags("flags", "Flags"),
-    @SerialName("live") Live("live", "Live"),
+    @SerialName("live") Live("live", "Live Mix"),
+    @SerialName("tiles") Tiles("tiles", "Word Tiles"),
 }
 
 @Serializable
-enum class LobbyPromptMode { @SerialName("form") Form, @SerialName("flag") Flag }
+enum class LobbyPromptMode { @SerialName("form") Form, @SerialName("flag") Flag, @SerialName("tiles") Tiles }
 
 @Serializable
 data class LobbyPlayer(
@@ -27,13 +28,20 @@ data class LobbyPlayer(
     val isMe: Boolean,
     val online: Boolean,
     val answered: Boolean,
+    val handle: String? = null,
+    val bot: Boolean = false,
+    val skill: String? = null,
+    val flag: String? = null,
 )
 
 @Serializable
 data class LobbyMessage(val id: Int, val from: String, val name: String, val body: String, val at: String)
 
 @Serializable
-data class LobbyRound(val index: Int, val startsAt: String, val endsAt: String)
+data class LobbyRound(val index: Int, val startsAt: String, val endsAt: String, val reveal: Boolean = false)
+
+@Serializable
+data class RevealEntry(val lang: String, val word: String, val roman: String? = null, val meaning: String = "", val gloss: String = "", val correct: Boolean = false)
 
 @Serializable
 data class LobbyPrompt(
@@ -43,6 +51,7 @@ data class LobbyPrompt(
     val gloss: String,
     val choices: List<String>,
     val answer: String? = null,
+    val reveal: List<RevealEntry> = emptyList(),
 )
 
 @Serializable
@@ -60,6 +69,9 @@ data class LobbySummary(
     val players: Int,
     val host: String,
     val isMember: Boolean,
+    val bots: Int = 0,
+    val standing: Boolean = false,
+    val hostHandle: String? = null,
 )
 
 @Serializable
@@ -75,6 +87,7 @@ data class Lobby(
     val listed: Boolean,
     val rounds: Int,
     val roundSeconds: Int,
+    val revealSeconds: Int = 0,
     val startedAt: String? = null,
     val version: Int,
     val now: String,
@@ -84,6 +97,10 @@ data class Lobby(
     val round: LobbyRound? = null,
     val prompts: List<LobbyPrompt>,
     val results: List<LobbyResult>,
+    val standing: Boolean = false,
+    val botFill: Boolean = false,
+    val botsEnabled: Boolean = false,
+    val nextStartAt: String? = null,
 ) {
     val me: LobbyPlayer? get() = players.firstOrNull { it.isMe }
     val readyCount: Int get() = players.count { it.ready }
@@ -104,6 +121,7 @@ sealed interface LobbyPhase {
     data object Waiting : LobbyPhase
     data class Countdown(val seconds: Double) : LobbyPhase
     data class Round(val index: Int, val remaining: Double) : LobbyPhase
+    data class Reveal(val index: Int, val remaining: Double) : LobbyPhase
     data object Finished : LobbyPhase
 }
 
@@ -116,13 +134,13 @@ object LobbyClock {
             if (start == null) LobbyPhase.Waiting else {
                 val elapsed = (nowMs - start) / 1000.0
                 val len = lobby.roundSeconds.toDouble()
+                val slot = len + lobby.revealSeconds
+                val index = if (elapsed < 0) 0 else (elapsed / slot).toInt()
                 when {
                     elapsed < 0 -> LobbyPhase.Countdown(-elapsed)
-                    (elapsed / len).toInt() >= lobby.rounds -> LobbyPhase.Finished
-                    else -> {
-                        val index = (elapsed / len).toInt()
-                        LobbyPhase.Round(index, len * (index + 1) - elapsed)
-                    }
+                    index >= lobby.rounds -> LobbyPhase.Finished
+                    elapsed - index * slot >= len -> LobbyPhase.Reveal(index, slot * (index + 1) - elapsed)
+                    else -> LobbyPhase.Round(index, len - (elapsed - index * slot))
                 }
             }
         }
@@ -131,3 +149,10 @@ object LobbyClock {
 
 fun parseInstantMs(text: String): Long? = runCatching { java.time.Instant.parse(text).toEpochMilli() }.getOrNull()
     ?: runCatching { java.time.OffsetDateTime.parse(text).toInstant().toEpochMilli() }.getOrNull()
+
+object InterstitialPacer {
+    const val MIN_GAP_MS = 180_000L
+
+    fun due(finishedGame: Boolean, lastShownMs: Long?, gamesFinished: Int, nowMs: Long): Boolean =
+        finishedGame && gamesFinished >= 2 && (lastShownMs == null || nowMs - lastShownMs >= MIN_GAP_MS)
+}

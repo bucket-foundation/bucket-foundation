@@ -171,8 +171,8 @@ One Gradle project in `android/`, Gradle wrapper, version catalog in `android/gr
 | `:core:auth` | session vault (DataStore plus Keystore), refresh mutex, Credential Manager Google sign-in, guest pass | `:core:net` |
 | `:core:data` | repositories for systems, progress, lobbies, entitlement; offline corpus from assets | all core |
 | `:core:ui` | Material 3 theme from the iOS palette (`Palette`, `D8`), shared components, adaptive scaffold | `:core:model` |
-| `:app:polingual` | Polingual screens, billing, ads, Media3 service, Glance widget | core |
-| `:app:bucket` | Bucket screens | core |
+| `:polingual` (android/polingual) | Polingual screens, billing, ads, Media3 service, Glance widget | core |
+| `:bucket` (android/bucket) | Bucket screens | core |
 | `:wear:polingual` | Wear OS app and Tile | `:core:engine`, `:core:model` |
 
 | Topic | Choice | Reason |

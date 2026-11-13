@@ -44,11 +44,27 @@ class Billing(context: Context, private val graph: Graph) {
             override fun onBillingSetupFinished(result: BillingResult) { done.complete(result.responseCode == BillingClient.BillingResponseCode.OK) }
             override fun onBillingServiceDisconnected() { if (!done.isCompleted) done.complete(false) }
         })
-        return done.await()
+        return kotlinx.coroutines.withTimeoutOrNull(8_000) { done.await() } ?: false
+    }
+
+    private fun remembered(): Access? {
+        val raw = graph.kv.get(CACHE_KEY) ?: return null
+        val (id, until) = raw.split("|").let { it[0] to (it.getOrNull(1)?.toLongOrNull() ?: 0L) }
+        return if (until > System.currentTimeMillis() && id in Plan.paid) Access.Subscribed(id) else null
+    }
+
+    private fun remember(access: Access) {
+        when (access) {
+            is Access.Subscribed -> graph.kv.set(CACHE_KEY, "${access.productId}|${System.currentTimeMillis() + GRACE_MS}")
+            is Access.Trial -> graph.kv.set(CACHE_KEY, "${access.productId}|${System.currentTimeMillis() + GRACE_MS}")
+            Access.Locked -> graph.kv.set(CACHE_KEY, null)
+            else -> Unit
+        }
     }
 
     suspend fun refresh() {
         if (BuildConfig.FREE_BETA) { _access.value = Access.Beta }
+        remembered()?.let { if (_access.value == Access.Checking) _access.value = it }
         if (!connect()) {
             if (_access.value == Access.Checking) _access.value = if (BuildConfig.FREE_BETA) Access.Beta else Access.Locked
             return
@@ -100,12 +116,15 @@ class Billing(context: Context, private val graph: Graph) {
         }
         trialEligible = Entitlement.trialEligible(records.map { it.productId })
         _access.value = Entitlement.access(records, BuildConfig.FREE_BETA)
+        remember(_access.value)
         if (records.any { it.pending }) _message.value = "Your purchase is pending. Access opens when Google Play confirms it."
     }
 
     fun clearMessage() { _message.value = null }
 
     companion object {
+        const val CACHE_KEY = "polingual.access"
+        const val GRACE_MS = 3L * 24 * 3600 * 1000
         fun accountHash(userId: String): String = MessageDigest.getInstance("SHA-256").digest(userId.toByteArray()).joinToString("") { "%02x".format(it) }
     }
 }

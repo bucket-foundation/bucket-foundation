@@ -66,3 +66,15 @@ fun PolingualTheme(dark: Boolean = isSystemInDarkTheme(), content: @Composable (
         MaterialTheme(colorScheme = scheme, content = content)
     }
 }
+
+@Composable
+fun BucketTheme(dark: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val p = if (dark) DarkPalette else LightPalette
+    val base = if (dark) darkColorScheme() else lightColorScheme()
+    val scheme = base.copy(
+        primary = p.green, onPrimary = p.paper, secondary = p.gold, background = p.paper, surface = p.card, onBackground = p.ink, onSurface = p.ink,
+        surfaceVariant = p.card, onSurfaceVariant = p.muted, outline = p.rule, surfaceContainer = p.card, surfaceContainerLow = p.paper,
+        surfaceContainerHigh = p.card, secondaryContainer = p.rule, onSecondaryContainer = p.ink,
+    )
+    androidx.compose.runtime.CompositionLocalProvider(LocalPalette provides p) { MaterialTheme(colorScheme = scheme, content = content) }
+}

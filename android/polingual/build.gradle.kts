@@ -24,17 +24,22 @@ android {
         manifestPlaceholders["admobAppId"] = TEST_ADMOB_APP
         buildConfigField("boolean", "ADS_ENABLED", "true")
         buildConfigField("boolean", "TEST_ADS", "true")
+        buildConfigField("String", "BANNER_UNIT", "\"ca-app-pub-3940256099942544/9214589741\"")
+        buildConfigField("String", "INTERSTITIAL_UNIT", "\"ca-app-pub-3940256099942544/1033173712\"")
         buildConfigField("boolean", "FREE_BETA", "false")
     }
     buildTypes {
         debug {
-            buildConfigField("boolean", "FREE_BETA", "true")
+            providers.gradleProperty("bucketBase").orNull?.let { buildConfigField("String", "BUCKET_BASE", "\"$it\"") }
+            buildConfigField("boolean", "FREE_BETA", providers.gradleProperty("freeBeta").orNull ?: "false")
         }
         release {
             val admob = providers.gradleProperty("polingualAdmobAppId").orNull
             manifestPlaceholders["admobAppId"] = admob ?: TEST_ADMOB_APP
             buildConfigField("boolean", "ADS_ENABLED", if (admob != null) "true" else "false")
             buildConfigField("boolean", "TEST_ADS", "false")
+            buildConfigField("String", "BANNER_UNIT", "\"${providers.gradleProperty("polingualBannerUnit").orNull ?: ""}\"")
+            buildConfigField("String", "INTERSTITIAL_UNIT", "\"${providers.gradleProperty("polingualInterstitialUnit").orNull ?: ""}\"")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }

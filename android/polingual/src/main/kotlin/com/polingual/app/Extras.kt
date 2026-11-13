@@ -18,6 +18,7 @@ import foundation.bucket.core.ui.PrimaryButton
 import foundation.bucket.core.ui.SectionTitle
 import foundation.bucket.core.ui.Type
 import kotlinx.coroutines.launch
+import androidx.compose.ui.draw.alpha
 
 fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
     composable("study") { StudyScreen(graph) { nav.popBackStack() } }
@@ -36,7 +37,8 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
 fun TodayExtras(graph: Graph, nav: NavHostController) {
     val app by graph.state.collectAsState()
     val p = LocalPalette.current
-    val system = app?.system ?: return
+    val system = app?.system
+    if (system == null) { TodayMore(graph, nav); return }
     val due = app?.study?.get(system.id)?.cards?.values?.count { it.due <= System.currentTimeMillis() } ?: 0
     Card(color = D8.ink) {
         Text("Daily session", style = Type.title, color = D8.parchment)
@@ -54,9 +56,24 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
         val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
         GameTile(k, played) { nav.navigate("game/${k.route}") }
     }
+    AdBanner(graph)
 }
 
 @Composable
 fun LearnExtras(graph: Graph, nav: NavHostController) {
-    LearnedWords(graph, nav)
+    val access by graph.billing.access.collectAsState()
+    if (access == Access.Locked) {
+        LockedPreview(nav)
+        androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.alpha(0.35f)) { androidx.compose.foundation.layout.Column { LearnedWords(graph, nav) } }
+    } else LearnedWords(graph, nav)
+}
+
+@Composable
+fun LockedPreview(nav: NavHostController) {
+    Card(color = D8.ink) {
+        Text("LEARNING", style = Type.caps, color = D8.parchment.copy(alpha = 0.7f))
+        Text("Daily sessions, every word you miss, all your languages", style = Type.title.copy(fontSize = 20.sp()), color = D8.parchment)
+        Text("Games and live rooms stay free. Polingual Pro opens learning and removes ads.", color = D8.parchment.copy(alpha = 0.85f))
+        PrimaryButton("See plans") { nav.navigate("paywall") }
+    }
 }
