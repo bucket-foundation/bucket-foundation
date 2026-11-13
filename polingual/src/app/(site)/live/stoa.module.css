@@ -180,3 +180,4 @@
 @media (min-width:1600px){.board:has(>.lobby){min-height:calc(100dvh - 120px);align-content:center}.code{font-size:150px}.qr{width:440px}.lobby{gap:72px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);max-width:1600px;margin-inline:auto}}
 .wideStickers{display:none;position:absolute;inset:0}
 @media (min-width:1180px){.wideStickers{display:block}}
+@media (min-width:1800px){.main{max-width:none;padding-inline:80px}.bar{max-width:none;padding-inline:80px}}

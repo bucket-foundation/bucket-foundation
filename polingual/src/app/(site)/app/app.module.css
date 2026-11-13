@@ -91,3 +91,5 @@
 @media (min-width:960px){.sessionBody{flex:0 1 auto}}
 @media (min-width:1600px){.title{font-size:60px}.wordTile{--cap:108px}.wordStage{width:min(100%,420px)}.wordCard{grid-template-columns:440px 1fr}.session{max-width:1080px}}
 .streakRow{display:flex;align-items:center;gap:10px}
+@media (min-width:960px){.session{justify-content:center}}
+@media (min-width:1800px){.bar{max-width:none;padding-inline:80px;height:72px}.brand{font-size:26px}}

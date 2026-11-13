@@ -77,7 +77,7 @@ export default function Session({ systemId }: { systemId: string }) {
 
   const pct = Math.round((s.i / s.queue.length) * 100);
   return (
-    <Stage ground="paper" strip={false}>
+    <Stage ground="paper" strip={false} tv={false}>
       <section className={styles.session} data-testid="session">
         <div className={styles.sessionTop}>
           <Link className={styles.small} href={appHref.home}>

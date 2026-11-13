@@ -118,11 +118,11 @@ export const STRIP_STICKERS: StickerSpot[] = [
 
 export type StageGround = "cut" | "paper" | "lattice";
 
-export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND_STICKERS, tiles = true, strip = true, testId }: { children: ReactNode; ground?: StageGround; strip?: boolean; stickers?: StickerSpot[]; phoneStickers?: StickerSpot[]; tiles?: boolean; testId?: string }) {
+export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND_STICKERS, tiles = true, strip = true, tv = true, testId }: { children: ReactNode; ground?: StageGround; strip?: boolean; tv?: boolean; stickers?: StickerSpot[]; phoneStickers?: StickerSpot[]; tiles?: boolean; testId?: string }) {
   if (ground !== "cut") {
     const spots = stickers ?? GUTTER_STICKERS;
     return (
-      <div className={[s.stage, s.flat, s[ground]].join(" ")} data-testid={testId} data-stage={ground}>
+      <div className={[s.stage, s.flat, s[ground], tv && s.tv].filter(Boolean).join(" ")} data-testid={testId} data-stage={ground}>
         <div className={s.gutters} aria-hidden>{spots.map((p) => <Sticker key={p.name} {...p} />)}</div>
         {strip ? <div className={s.strip} aria-hidden>{STRIP_STICKERS.map((p) => <Sticker key={p.name} {...p} />)}</div> : null}
         <div className={s.flatBody}>{children}</div>
@@ -131,7 +131,7 @@ export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND
     );
   }
   return (
-    <div className={s.stage} data-testid={testId} data-stage="cut">
+    <div className={[s.stage, tv && s.tv].filter(Boolean).join(" ")} data-testid={testId} data-stage="cut">
       <div className={s.stageArt} aria-hidden>
         <Ground kind="lattice" cut className={s.stageWide}>
           <div className={s.only} data-at="wide">{(stickers ?? HERO_STICKERS).map((p) => <Sticker key={p.name} {...p} />)}</div>

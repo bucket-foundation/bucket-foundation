@@ -61,3 +61,10 @@
 .bannerArt{position:absolute;top:0;right:0;bottom:0;width:36%;height:auto;margin:0;border-radius:var(--pl-radius-xl);clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)}
 }
 .flags{height:18px}
+@media (min-width:1800px){
+.tv .stageBody{zoom:1.5;padding-left:max(24px,calc((50vw - 640px) / 1.5));max-width:none}
+.tv .stageBody>*{max-width:640px}
+.tv .flatBody{zoom:1.5;max-width:640px}
+.tv .stageArt .sticker,.tv .gutters .sticker{zoom:1.35}
+.tv .tiles{zoom:1.25;bottom:16%}
+}
