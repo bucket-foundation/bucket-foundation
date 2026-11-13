@@ -349,3 +349,4 @@
 .bmCell{container-type:inline-size}
 .bmCell span{font-size:clamp(8px,calc(150cqw / var(--len,6)),17px)}
 .bmCell[data-long=true]{font-size:inherit}
+.fhStage .fhCard.fhCard{display:flex;flex-direction:column;align-items:center;justify-content:center}
