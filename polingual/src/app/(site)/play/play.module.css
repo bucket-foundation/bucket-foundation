@@ -194,3 +194,9 @@
 .vaHome{fill:var(--malachite);stroke:#fff;stroke-width:2}
 .vaLine{stroke:var(--tyrian);stroke-width:2;stroke-dasharray:6 4}
 .vaList{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.bmBoard{display:grid;gap:5px;padding:6px;border-radius:18px;background:var(--tyrian);touch-action:manipulation;user-select:none}
+.bmCell{background:#fff8ea;aspect-ratio:1/1;min-width:0;border:0;border-radius:10px;font:inherit;font-weight:800;font-size:clamp(10px,2.9vw,15px);line-height:1.1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:2px;cursor:pointer;color:var(--ink);overflow:hidden;word-break:break-word;transition:transform .12s ease}
+.bmCell span{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.bmCell[data-picked=true]{box-shadow:0 0 0 3px var(--ochre);transform:scale(1.06)}
+.bmCell[data-shake=true]{animation:shake .3s ease}
+.bmCell[data-long=true]{font-size:clamp(8px,2.3vw,13px);hyphens:auto}

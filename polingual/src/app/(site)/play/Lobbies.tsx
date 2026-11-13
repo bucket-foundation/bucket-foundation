@@ -119,6 +119,10 @@ export default function Lobbies() {
             <b>Voice Atlas</b>
             <span className={app.small}>Five words a day. Hear one, pin where its language is spoken.</span>
           </a>
+          <a className={styles.soloCard} href="/play/babel-match" data-testid="solo-babel-match">
+            <b>Babel Match</b>
+            <span className={app.small}>Match-3 with words. Three that mean the same thing clear.</span>
+          </a>
 
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>

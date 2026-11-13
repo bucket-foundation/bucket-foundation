@@ -31,3 +31,7 @@ Bead bkt-9gvte.3, branch `feat/polingual-forehead`. One-phone party mode at `/pl
 ## Voice Atlas
 
 Bead bkt-9gvte.4, branch `feat/polingual-voice-atlas`. Daily five rounds at `/play/voice-atlas`, rounds from `GET /api/academy/voice-atlas` (`src/lib/academy/voice-atlas.ts`), map from the `world-atlas` package decoded in `polingual/src/lib/lobby/world.ts`, browser speech for the voice, passport in localStorage. Playtest: `scripts/playtest-voice-atlas.mjs`. Next game: Babel Match.
+
+## Babel Match
+
+Bead bkt-9gvte.5, branch `feat/polingual-babel-match`. Match-3 at `/play/babel-match`, meanings from `GET /api/academy/babel?langs=&level=` (`src/lib/academy/babel.ts`), board engine in `polingual/src/lib/lobby/babel.ts`. Solo puzzle with no bots. Rewarded five moves, interstitial between levels from level ten. Playtest: `scripts/playtest-babel.mjs`. Next game: Shift.
