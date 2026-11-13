@@ -113,7 +113,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
                             ) {
                                 FlagSwatch(cell.lang, Modifier.fillMaxWidth().height(6.dp))
                                 Box(Modifier.fillMaxWidth().weight(1f).padding(2.dp), contentAlignment = Alignment.Center) {
-                                    Text(byId[cell.meaning]?.forms?.get(cell.lang).orEmpty(), color = if (sel) PL.Paper else PL.Ink, fontSize = 11.sp, lineHeight = 12.sp, textAlign = TextAlign.Center, maxLines = 3, style = Type.small)
+                                    FitLabel(byId[cell.meaning]?.forms?.get(cell.lang).orEmpty(), Type.small, if (sel) PL.Paper else PL.Ink)
                                 }
                             }
                         }
