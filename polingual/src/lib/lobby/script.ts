@@ -20,6 +20,7 @@ const SCRIPTS: [RegExp, string][] = [
 ];
 
 export function scriptOf(word: string): string {
+  if (/[\u4E00-\u9FFF]/.test(word) && /[\u3040-\u30FF]/.test(word)) return "Kanji and kana";
   for (const [re, name] of SCRIPTS) if (re.test(word)) return name;
   return "Other";
 }

@@ -66,7 +66,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
   const [interstitial, setInterstitial] = useState(false);
   const learnIndex = useLearnIndex();
   useEffect(() => {
-    if (lobby?.game) onGame(lobby.game === "spy" ? "ispy" : lobby.game in WORLDS ? (lobby.game as WorldId) : "duel");
+    if (lobby?.game) onGame(lobby.game === "spy" ? "ispy" : lobby.game === "daily" || lobby.game === "live" ? "same-word" : lobby.game in WORLDS ? (lobby.game as WorldId) : "duel");
   }, [lobby?.game, onGame]);
   const [rewarded, setRewarded] = useState(false);
   const adsVisible = useAdsVisible();

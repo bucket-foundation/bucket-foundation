@@ -12,4 +12,5 @@ test("scriptOf names the writing system of a word", () => {
   assert.equal(scriptOf("מאה"), "Hebrew");
   assert.equal(scriptOf("مئة"), "Arabic");
   assert.equal(scriptOf("123"), "Other");
+  assert.equal(scriptOf("重い"), "Kanji and kana");
 });
