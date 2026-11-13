@@ -48,7 +48,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
         if (!submitted && !reveal && elapsed >= LobbyTiles.submitAtMs(lobby.roundSeconds)) graph.lobbies.pick(LobbyTiles.tappedChoice(tapped), index)
     }
     Text("Tap every word that means", style = Type.small, color = PL.InkDim)
-    WordTile(null, prompt.gloss, tilt = 0f)
+    WordTile(lobby.root, prompt.gloss, tilt = 0f)
     val right = prompt.answer?.split(',')?.filter { it.isNotEmpty() }?.map { it.toInt() }?.toSet().orEmpty()
     BoxWithConstraints(Modifier.fillMaxWidth().height(340.dp).clip(RoundedCornerShape(16.dp)).background(PL.Tyrian)) {
         val laneW = maxWidth / LobbyTiles.LANES

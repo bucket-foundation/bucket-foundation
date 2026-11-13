@@ -288,7 +288,7 @@ private fun Results(lobby: Lobby, again: () -> Unit) {
         }
     }
     SectionTitle("Words")
-    lobby.prompts.forEach { pr -> Text(if (pr.mode == LobbyPromptMode.Flag) "${pr.gloss}: ${pr.answer?.let(Lang::name).orEmpty()}" else "${pr.answer.orEmpty()}: ${pr.gloss}", color = p.ink) }
+    lobby.prompts.forEach { pr -> Text(resultLine(pr), color = p.ink) }
     PrimaryButton("Leave room", color = PL.Lapis, onClick = again)
 }
 
@@ -302,4 +302,11 @@ private fun Chat(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) 
         OutlinedTextField(text, { text = it.take(200) }, singleLine = true, label = { Text("Message") }, modifier = Modifier.weight(1f))
         PlainLink("Send") { val t = text; text = ""; act { graph.lobbies.send(t) } }
     }
+}
+
+fun resultLine(pr: foundation.bucket.core.model.LobbyPrompt): String = when (pr.mode) {
+    LobbyPromptMode.Flag -> "${pr.gloss}: ${pr.answer?.let(Lang::name).orEmpty()}"
+    LobbyPromptMode.Tiles -> "${pr.gloss}: " + pr.answer.orEmpty().split(',').mapNotNull { it.toIntOrNull()?.let(pr.choices::getOrNull) }.joinToString(", ") { foundation.bucket.core.model.LobbyTiles.parse(it).form }
+    LobbyPromptMode.Mixed -> "${pr.gloss}: ${pr.answer?.let { foundation.bucket.core.model.LobbyTiles.parse(it).form }.orEmpty()}"
+    else -> "${pr.answer.orEmpty()}: ${pr.gloss}"
 }
