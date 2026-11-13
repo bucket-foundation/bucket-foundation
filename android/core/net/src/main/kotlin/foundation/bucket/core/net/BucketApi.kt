@@ -78,7 +78,10 @@ class BucketApi(
     suspend fun mergeGuest(token: String, guestToken: String): Int =
         json.parseToJsonElement(call("api/academy/lobbies/guest/merge", token, buildJsonObject { put("guestToken", guestToken) })).jsonObject["merged"]?.jsonPrimitive?.contentOrNull?.toIntOrNull() ?: 0
 
-    suspend fun lobbies(token: String): List<LobbySummary> = decode<LobbiesReply>(call("api/academy/lobbies", token)).lobbies
+    suspend fun lobbies(token: String): LobbiesReply = decode(call("api/academy/lobbies", token))
+
+    suspend fun fillBots(token: String, lobbyId: String): Lobby =
+        lobbyCall("api/academy/lobbies/bots", token, buildJsonObject { put("lobbyId", lobbyId) })
 
     suspend fun createLobby(token: String, name: String, game: LobbyGame, root: String, targets: List<String>, rounds: Int, roundSeconds: Int, listed: Boolean, displayName: String): Lobby =
         lobbyCall("api/academy/lobbies", token, buildJsonObject {
@@ -170,7 +173,7 @@ class BucketApi(
 data class LobbyReply(val lobby: Lobby)
 
 @Serializable
-data class LobbiesReply(val lobbies: List<LobbySummary>)
+data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false)
 
 @Serializable
 data class AnswerReply(val correct: Boolean, val lobby: Lobby)
@@ -200,7 +203,9 @@ fun groupError(status: Int, text: String): BucketError {
     return when {
         status == 401 -> BucketError.Revoked
         status == 404 -> BucketError.NotFound
-        status == 409 && error == "group_full" -> BucketError.RoomFull
+        status == 409 && (error == "group_full" || error == "lobby_full") -> BucketError.RoomFull
+        status == 409 && error == "update_app" -> BucketError.Server(status, "This room plays a game this version does not have yet. Update Polingual or play on the web.")
+        status == 409 && error == "lobby_started" -> BucketError.Server(status, "That game already started.")
         status == 422 && error == "name_not_allowed" -> BucketError.NameNotAllowed
         status == 422 && error == "text_not_allowed" -> BucketError.TextNotAllowed
         status == 429 -> BucketError.RateLimited(body["message"])

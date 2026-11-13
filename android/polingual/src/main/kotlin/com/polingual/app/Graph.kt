@@ -44,6 +44,8 @@ class Graph(val context: Context) {
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
     val radio = Radio(context)
     val billing = Billing(context, this)
+    val ads = Ads(context, this)
+    var activity: java.lang.ref.WeakReference<android.app.Activity>? = null
 
     private val syncLock = kotlinx.coroutines.sync.Mutex()
 

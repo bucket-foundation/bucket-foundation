@@ -14,10 +14,17 @@ import androidx.compose.runtime.setValue
 fun NavGraphBuilder.milestoneRoutes(graph: Graph, nav: NavHostController) {
     composable("listen") { ListenScreen(graph) { nav.popBackStack() } }
     composable("paywall") { PaywallScreen(graph) { nav.popBackStack() } }
+    composable("lobbies?code={code}", arguments = listOf(androidx.navigation.navArgument("code") { type = androidx.navigation.NavType.StringType; defaultValue = "" })) { e ->
+        LobbiesScreen(graph, e.arguments?.getString("code").orEmpty()) { nav.popBackStack() }
+    }
 }
 
 @Composable
 fun TodayMore(graph: Graph, nav: NavHostController) {
+    Card(color = foundation.bucket.core.ui.D8.malachite, onClick = { nav.navigate("lobbies") }) {
+        androidx.compose.material3.Text("Live rooms", style = foundation.bucket.core.ui.Type.title, color = foundation.bucket.core.ui.D8.parchment)
+        androidx.compose.material3.Text("Play the same round with friends, live", color = foundation.bucket.core.ui.D8.parchment.copy(alpha = 0.9f))
+    }
     val now by graph.radio.now.collectAsState()
     Card(color = foundation.bucket.core.ui.D8.lapis, onClick = { nav.navigate("listen") }) {
         androidx.compose.material3.Text("Listen", style = foundation.bucket.core.ui.Type.title, color = foundation.bucket.core.ui.D8.parchment)

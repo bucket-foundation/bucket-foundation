@@ -94,6 +94,7 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
 }
 
 suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String) {
+    ads.gameFinished(activity?.get())
     val key = "${kind.route}|${today()}|${system.id}"
     store.update { it.copy(played = (it.played + (key to pattern)).entries.toList().takeLast(200).associate { e -> e.key to e.value }, savePrompt = account.stage.value != foundation.bucket.core.auth.Stage.SignedIn) }
 }

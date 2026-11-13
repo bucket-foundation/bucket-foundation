@@ -44,7 +44,7 @@ class Billing(context: Context, private val graph: Graph) {
             override fun onBillingSetupFinished(result: BillingResult) { done.complete(result.responseCode == BillingClient.BillingResponseCode.OK) }
             override fun onBillingServiceDisconnected() { if (!done.isCompleted) done.complete(false) }
         })
-        return done.await()
+        return kotlinx.coroutines.withTimeoutOrNull(8_000) { done.await() } ?: false
     }
 
     suspend fun refresh() {
