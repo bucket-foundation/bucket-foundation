@@ -40,3 +40,4 @@
 .world:has([data-round=active]) .decor{opacity:.55}
 .world:has([data-round=active]) .name{font-size:clamp(22px,3.4vw,30px)}
 .world:has([data-round=active]) .hero{width:min(18%,96px)}
+.pieceTicket.pieceTicket,.pieceLabel.pieceLabel{display:inline-block;padding:.12em .7em .18em;border-radius:6px}

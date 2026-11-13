@@ -12,6 +12,8 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
+import GameWorld, { pieceClass } from "../GameWorld";
+import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Tag } from "@/ui";
 
@@ -40,7 +42,7 @@ function stamp(lang: string): string[] {
   }
 }
 
-export default function VoiceAtlas() {
+function VoiceAtlasGame() {
   const [rounds, setRounds] = useState<AtlasRound[] | null>(null);
   const [board, setBoard] = useState<AtlasGhost[]>([]);
   const [date, setDate] = useState("");
@@ -127,6 +129,8 @@ export default function VoiceAtlas() {
           <p className={app.label}>Voice Atlas · {date}</p>
           <h1 className={app.title} data-testid="va-total">{`${total.toLocaleString("en")} points`}</h1>
         </section>
+        <WordReveal title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} />
+        <LearnPanel missed={guesses.filter((g) => g.points < ATLAS_MAX * 0.5).map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning }))} />
         <ul className={styles.vaList}>
           {guesses.map((g, i) => (
             <li key={i} className={styles.player}>
@@ -184,7 +188,7 @@ export default function VoiceAtlas() {
   const [hx, hy] = guessed ? project(guessed.home[1], guessed.home[0]) : [0, 0];
   const [px, py] = pin ? project(pin[1], pin[0]) : [0, 0];
   return (
-    <div className={app.stack} data-testid="voice-atlas">
+    <div className={app.stack} data-testid="voice-atlas" data-round={guessed ? "reveal" : "active"}>
       <div className={styles.hudRow}>
         <span className={styles.hudRound} data-testid="va-round">Round {index + 1} of {limit}</span>
         <span className={styles.hudScore}>{total.toLocaleString("en")}</span>
@@ -192,7 +196,7 @@ export default function VoiceAtlas() {
       <section className={styles.vaPrompt}>
         <Button onClick={listen} data-testid="va-listen">▶ Listen</Button>
         {peek || guessed ? (
-          <b className={styles.promptWord} data-testid="va-word">{round.form}</b>
+          <b className={`${styles.promptWord} ${pieceClass("ticket")}`} data-testid="va-word">{round.form}</b>
         ) : (
           <Button variant="quiet" size="sm" onClick={() => setPeek(true)} data-testid="va-peek">Show the word, half points</Button>
         )}
@@ -219,11 +223,20 @@ export default function VoiceAtlas() {
             <span className={styles.verdictKey}>Means</span>
             <span className={styles.pickLabel}><b>{round.meaning}</b></span>
           </p>
+          <WordReveal title={`Round ${index + 1}`} words={[{ lang: round.lang, word: round.form, meaning: round.meaning }]} />
           <Button onClick={next} data-testid="va-next">{guesses.length >= limit ? "See results" : "Next round"}</Button>
         </section>
       ) : (
         <Button disabled={!pin} onClick={lock} data-testid="va-lock">Lock in</Button>
       )}
     </div>
+  );
+}
+
+export default function VoiceAtlas() {
+  return (
+    <GameWorld id="voice-atlas">
+      <VoiceAtlasGame />
+    </GameWorld>
   );
 }
