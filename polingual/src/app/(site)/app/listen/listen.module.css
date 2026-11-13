@@ -21,4 +21,3 @@
 .stationAct{font:var(--pl-type-label);letter-spacing:.12em;text-transform:uppercase;color:var(--pl-vermilion)}
 .credit{font:var(--pl-type-label);letter-spacing:.1em;text-transform:uppercase;color:var(--pl-paper-2);margin:0}
 @media (max-width:600px){.ticket{grid-template-columns:1fr}.ticketTile{grid-row:auto;width:110px}}
-@media (min-width:1080px){.list{grid-template-columns:1fr 1fr}}
