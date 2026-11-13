@@ -21,21 +21,40 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Type
+import foundation.bucket.core.ui.pl.FlagBand
+import foundation.bucket.core.ui.pl.Ground
+import foundation.bucket.core.ui.pl.GroundBox
+import foundation.bucket.core.ui.pl.PL
+import foundation.bucket.core.ui.pl.PLSpace
+import foundation.bucket.core.ui.pl.Stage
+import foundation.bucket.core.ui.pl.Sticker
 
 @Composable
-fun Page(title: String? = null, back: (() -> Unit)? = null, scroll: Boolean = true, content: @Composable ColumnScope.() -> Unit) {
-    Box(Modifier.fillMaxSize().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
-        Column(
-            Modifier.widthIn(max = 720.dp).fillMaxSize().then(if (scroll) Modifier.verticalScroll(rememberScrollState()) else Modifier).padding(horizontal = 20.dp, vertical = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
-        ) {
-            if (title != null || back != null) Row(verticalAlignment = Alignment.CenterVertically) {
-                if (back != null) IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = LocalPalette.current.ink) }
-                if (title != null) Text(title, style = Type.title, color = LocalPalette.current.ink, modifier = Modifier.fillMaxWidth())
+fun Page(
+    title: String? = null,
+    back: (() -> Unit)? = null,
+    scroll: Boolean = true,
+    ground: Ground = Ground.Paper,
+    stickers: List<Sticker> = emptyList(),
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    val onDark = ground == Ground.Lattice
+    GroundBox(ground, Modifier.fillMaxSize()) {
+        Column(Modifier.fillMaxSize()) {
+            Box(Modifier.weight(1f).fillMaxWidth().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
+                Column(
+                    Modifier.widthIn(max = 720.dp).fillMaxSize().then(if (scroll) Modifier.verticalScroll(rememberScrollState()) else Modifier).padding(horizontal = PLSpace.s4, vertical = PLSpace.s3),
+                    verticalArrangement = Arrangement.spacedBy(PLSpace.s3),
+                ) {
+                    if (title != null || back != null) Row(verticalAlignment = Alignment.CenterVertically) {
+                        if (back != null) IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = if (onDark) PL.Paper else PL.Ink) }
+                        if (title != null) Text(title, style = Type.display, color = if (onDark) PL.Paper else PL.Ink, modifier = Modifier.fillMaxWidth())
+                    }
+                    if (stickers.isNotEmpty()) Stage(stickers, height = 150.dp)
+                    content()
+                }
             }
-            content()
+            FlagBand()
         }
     }
 }

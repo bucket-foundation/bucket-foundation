@@ -25,14 +25,13 @@ import foundation.bucket.core.engine.SeededRandom
 import foundation.bucket.core.engine.StudySession
 import foundation.bucket.core.engine.StudyState
 import foundation.bucket.core.model.Lang
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.ChoiceButton
-import foundation.bucket.core.ui.ChoiceState
-import foundation.bucket.core.ui.D8
+import foundation.bucket.core.ui.pl.Card
+import foundation.bucket.core.ui.pl.ChoiceButton
+import foundation.bucket.core.ui.pl.ChoiceState
+import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Pill
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.Type
+import foundation.bucket.core.ui.pl.Pill
+import foundation.bucket.core.ui.pl.PrimaryButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -60,11 +59,11 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             PrimaryButton("Back to Today") { done() }
             return@Page
         }
-        LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = D8.malachite)
+        LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(Lang.flag(ex.word.lang))
             Text(Lang.name(ex.word.lang), style = Type.caps, color = p.muted)
-            if (ex.isNew) Pill("New", D8.lapis)
+            if (ex.isNew) Pill("New", PL.Lapis)
         }
         Card {
             Text(if (ex.kind == ExerciseKind.Recognize) "What does this mean?" else "Pick the ${Lang.name(ex.word.lang)} word", color = p.muted)

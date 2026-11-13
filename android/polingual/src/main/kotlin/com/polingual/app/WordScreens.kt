@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -39,12 +40,11 @@ import foundation.bucket.core.engine.TranslateAnswer
 import foundation.bucket.core.engine.TranslateEngine
 import foundation.bucket.core.engine.translateSources
 import foundation.bucket.core.model.Lang
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
+import foundation.bucket.core.ui.pl.Card
+import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Pill
-import foundation.bucket.core.ui.SectionTitle
-import foundation.bucket.core.ui.Type
+import foundation.bucket.core.ui.pl.Pill
+import foundation.bucket.core.ui.pl.SectionTitle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -62,7 +62,7 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
         val langs = (system?.targets.orEmpty() + listOfNotNull(system?.root)).ifEmpty { listOf("en") }
         Text(i.form(system?.root ?: "en") ?: i.gloss, style = Type.display, color = p.ink)
         Text(i.gloss, color = p.muted)
-        if (i.root != null) Pill("Shared root: ${i.root}", D8.malachite)
+        if (i.root != null) Pill("Shared root: ${i.root}", PL.Malachite)
         langs.forEach { l ->
             val f = i.form(l) ?: return@forEach
             Card {
@@ -131,7 +131,7 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
         graph.store.update { s -> s.copy(recents = (listOf(q.trim()) + s.recents.filter { it != q.trim() }).take(12)) }
     }
     LaunchedEffect(initial, corpus) { if (initial.isNotBlank() && corpus != null) run(initial) }
-    Page("Translate", back = back) {
+    Page("Translate", back = back, stickers = listOf(Sticker("calligraphy-ain", Alignment.TopStart, 88.dp, -6f), Sticker("ticket", Alignment.TopEnd, 140.dp, 8f, dy = 10.dp), Sticker("script-ru", Alignment.BottomCenter, 90.dp, -3f))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             OutlinedButton(onClick = { picking = "from" }, modifier = Modifier.weight(1f)) { Text(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "Detect") }
             IconButton(onClick = { scope.launch { graph.store.update { it.copy(translateFrom = it.translateTo, translateTo = it.translateFrom) } } }, enabled = from != null || to != null) {
@@ -143,7 +143,7 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
             text, { text = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Type a word or phrase") },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search), keyboardActions = KeyboardActions(onSearch = { run(text) }),
         )
-        foundation.bucket.core.ui.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
+        foundation.bucket.core.ui.pl.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
         val a = answer
         if (a != null) {
             Text("${Lang.flag(a.source)} ${a.headword}", style = Type.word, color = p.ink, )
@@ -188,7 +188,7 @@ fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boole
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 OutlinedTextField(query, { query = it }, singleLine = true, label = { Text("Search") }, modifier = Modifier.fillMaxWidth())
                 if (query.isBlank()) {
-                    if (allowAny) Text(anyLabel, color = D8.vermilion, modifier = Modifier.fillMaxWidth().clickable { pick(null) }.padding(vertical = 10.dp))
+                    if (allowAny) Text(anyLabel, color = PL.Vermilion, modifier = Modifier.fillMaxWidth().clickable { pick(null) }.padding(vertical = 10.dp))
                     SectionTitle("Yours")
                     recents.forEach { l -> PickerRow(l) { pick(l) } }
                     SectionTitle("All")
