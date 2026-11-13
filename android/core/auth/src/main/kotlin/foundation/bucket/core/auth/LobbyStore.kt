@@ -18,6 +18,7 @@ import kotlinx.coroutines.isActive
 
 data class LobbyState(
     val open: List<LobbySummary> = emptyList(),
+    val botsEnabled: Boolean = false,
     val current: Lobby? = null,
     val picks: Map<Int, String> = emptyMap(),
     val marks: Map<Int, Boolean> = emptyMap(),
@@ -48,8 +49,8 @@ class LobbyStore(
     suspend fun refresh() {
         val t = anyToken() ?: return
         try {
-            val open = api.lobbies(t)
-            _state.update { it.copy(open = open, error = null) }
+            val reply = api.lobbies(t)
+            _state.update { it.copy(open = reply.lobbies, botsEnabled = reply.bots, error = null) }
         } catch (e: BucketError) {
             _state.update { it.copy(error = e) }
         }
@@ -73,6 +74,11 @@ class LobbyStore(
     suspend fun setReady(ready: Boolean) {
         val id = _state.value.current?.id ?: return
         apply(run { api.setReady(it, id, ready) })
+    }
+
+    suspend fun fillBots() {
+        val id = _state.value.current?.id ?: return
+        apply(run { api.fillBots(it, id) })
     }
 
     suspend fun start() {

@@ -42,7 +42,7 @@ fun LearnScreen(graph: Graph, nav: NavHostController) {
                 }
                 Text(s.name, style = Type.title.copy(fontSize = 20.sp()), color = p.ink)
                 val learned = app?.study?.get(s.id)?.cards?.size ?: 0
-                Text("$learned words started", color = p.muted)
+                Text(if (learned == 1) "1 word started" else "$learned words started", color = p.muted)
                 if (active) Pill("Active", D8.malachite)
                 PlainLink("Remove") { scope.launch { graph.removeSystem(s.id) } }
             }
