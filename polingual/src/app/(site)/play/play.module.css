@@ -122,3 +122,4 @@
 .hudRank{font-family:"Fredoka",sans-serif;font-weight:700;font-size:16px;color:var(--lapis)}
 @keyframes shake{0%,100%{translate:0}25%{translate:-6px}75%{translate:6px}}
 @media (prefers-reduced-motion:reduce){.boardRow,.revealCard,.bigCount,.boardScore{transition:none;animation:none}}
+.daily{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:16px;border:2px solid var(--malachite);background:#fff8ea;color:var(--ink);text-decoration:none;box-shadow:0 4px 0 var(--malachite)}.daily b{font-family:"Fredoka",sans-serif;font-size:20px;color:var(--malachite)}

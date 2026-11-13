@@ -6,7 +6,7 @@ import { fetchAccess } from "@/lib/app/plans";
 import { ADS, adLayout, adShows, adsOn, BANNER, entitlementOf, railSize, showsAds, type AdLayout, type Entitlement } from "@/lib/lobby/ads";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
-import { AdsProvider } from "./AdsContext";
+import { AdsPauseProvider, AdsProvider } from "./AdsContext";
 import Consent from "./Consent";
 import styles from "./play.module.css";
 
@@ -43,11 +43,13 @@ function useEntitlement(): Entitlement | "checking" {
 export default function PlayFrame({ header, consentRequired, children }: { header: React.ReactNode; consentRequired: boolean; children: React.ReactNode }) {
   const layout = useAdLayout();
   const entitlement = useEntitlement();
-  const visible = showsAds(ADS, entitlement) && layout !== null;
+  const [paused, setPaused] = useState(false);
+  const visible = showsAds(ADS, entitlement) && layout !== null && !paused;
   const rail = visible && layout && adShows(ADS, "rail") ? railSize(layout) : null;
   const banner = visible && layout === "phone" && adShows(ADS, "banner");
 
   return (
+    <AdsPauseProvider value={setPaused}>
     <AdsProvider value={visible}>
       <div className={banner ? `${app.shell} ${styles.withBanner}` : app.shell} data-testid="play-frame" data-ads={visible ? layout : "off"}>
         {header}
@@ -74,5 +76,6 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
         ) : null}
       </div>
     </AdsProvider>
+    </AdsPauseProvider>
   );
 }
