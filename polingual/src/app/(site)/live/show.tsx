@@ -1,6 +1,7 @@
 "use client";
 
 import { tokens } from "@/ui/tokens";
+import { cssVars } from "@/ui/vars";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { displayNickname, MARKS, type Standing } from "@/lib/stoa/client";
 import { loadMix, Stage, type Mix } from "@/lib/stoa/stage";
@@ -159,7 +160,7 @@ export function Drift() {
       {Array.from({ length: 12 }, (_, i) => {
         const m = MARKS[i % 4];
         return (
-          <span key={i} className={styles.driftGlyph} data-pigment={m.pigment} style={{ left: `${(i * 83) % 100}%`, animationDelay: `${-i * 2.3}s`, animationDuration: `${16 + (i % 5) * 3}s` }}>
+          <span key={i} className={styles.driftGlyph} data-pigment={m.pigment} style={cssVars({ "--x": `${(i * 83) % 100}%`, "--delay": `${-i * 2.3}s`, "--dur": `${16 + (i % 5) * 3}s` })}>
             <Glyph glyph={m.glyph} />
           </span>
         );

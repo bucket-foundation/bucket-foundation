@@ -10,7 +10,7 @@ import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState
 import { Confetti, Drift, MixBar, Podium, TimerRing, useStage } from "./show";
 import styles from "./stoa.module.css";
 import { Avatar } from "@/ui/avatar";
-import { Button, Card, Pill, Stage } from "@/ui";
+import { Button, Card, Pill, Stage, cssVars } from "@/ui";
 
 const Qr = dynamic(() => import("./Qr"), { ssr: false });
 
@@ -348,7 +348,7 @@ export default function Host() {
             <span className={styles.stat} data-testid="answered">{snap.answered ?? 0} of {snap.room.players} answered</span>
             {reveal ? null : <TimerRing left={left} total={total} paused={snap.room.paused} />}
           </div>
-          {!reveal ? <div className={styles.answeredBar} aria-hidden="true"><span style={{ width: `${share}%` }} /></div> : null}
+          {!reveal ? <div className={styles.answeredBar} aria-hidden="true"><span style={cssVars({ "--share": `${share}%` })} /></div> : null}
           <Prompt q={q} />
           <Tiles q={q} grid states={states} counts={reveal ? q.counts : null} />
           {controls}

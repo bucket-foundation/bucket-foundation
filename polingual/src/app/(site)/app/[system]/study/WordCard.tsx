@@ -17,7 +17,7 @@ export default function WordCard({ ex, readings, onNext }: { ex: Exercise; readi
     <section className={styles.wordCard} data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang}>
       <span className={styles.wordKind}>New word · {langName(ex.answerLang)}</span>
       <div className={styles.wordStage}>
-        <Sticker name="seal" x="-6px" y="-10px" size={52} rotate={-10} />
+        <Sticker name="seal" side="right" x="-8px" y="-12px" size={52} rotate={10} />
         <Sticker name="torn-label" side="right" anchor="bottom" x="-14px" y="6px" size={84} rotate={8} />
         <FlagTile
           as="div"

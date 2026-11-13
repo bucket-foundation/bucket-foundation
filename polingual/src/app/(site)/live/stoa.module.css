@@ -104,7 +104,7 @@
 .podium li[data-place="2"] .podiumStep{height:clamp(90px,15vh,190px);background:var(--lapis);box-shadow:inset 0 -6px 0 var(--lapis-lip)}
 .podium li[data-place="3"] .podiumStep{height:clamp(64px,10vh,130px);background:var(--malachite);box-shadow:inset 0 -6px 0 var(--malachite-lip)}
 .drift{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.driftGlyph{position:absolute;bottom:-80px;width:clamp(36px,5vw,72px);height:clamp(36px,5vw,72px);opacity:.13}
+.driftGlyph{position:absolute;bottom:-80px;left:var(--x,0);animation-delay:var(--delay,0s);animation-duration:var(--dur,16s);width:clamp(36px,5vw,72px);height:clamp(36px,5vw,72px);opacity:.13}
 .driftGlyph svg{width:100%;height:100%}
 .driftGlyph[data-pigment=lapis]{color:var(--lapis)}
 .driftGlyph[data-pigment=vermilion]{color:var(--vermilion)}
@@ -124,7 +124,7 @@
 .warm button[data-pigment=malachite]{background:var(--malachite);box-shadow:0 5px 0 var(--malachite-lip)}
 .warm button[data-pigment=ochre]{background:var(--ochre);box-shadow:0 5px 0 var(--ochre-lip);color:var(--ink)}
 .answeredBar{height:10px;border-radius:999px;background:var(--hair);overflow:hidden}
-.answeredBar span{display:block;height:100%;background:var(--malachite);border-radius:inherit;transition:width .4s ease-out}
+.answeredBar span{display:block;height:100%;width:var(--share,0%);background:var(--malachite);border-radius:inherit;transition:width .4s ease-out}
 @media (prefers-reduced-motion:no-preference){
 @keyframes stoaPop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
 @keyframes stoaRise{from{transform:translateY(28px);opacity:0}to{transform:none;opacity:1}}
@@ -155,7 +155,7 @@
 .podium li[data-place="3"] .podiumName,.podium li[data-place="3"] .podiumPts{animation:stoaPop .5s both;animation-delay:.9s}
 .podium li[data-place="2"] .podiumName,.podium li[data-place="2"] .podiumPts{animation:stoaPop .5s both;animation-delay:1.9s}
 .podium li[data-place="1"] .podiumName,.podium li[data-place="1"] .podiumPts{animation:stoaPop .6s both;animation-delay:3.1s}
-.driftGlyph{animation:stoaFloat linear infinite}
+.driftGlyph{animation-name:stoaFloat;animation-timing-function:linear;animation-iteration-count:infinite}
 .streak{animation:stoaPop .5s cubic-bezier(.2,.9,.3,1.3) both}
 .warm button{transition:transform .08s}
 .warm button:active{transform:translateY(4px) scale(.96)}
@@ -171,3 +171,9 @@
 .playStickers>span{position:absolute;line-height:0}
 .playSheet{background:var(--parchment);border:3px solid var(--ink);border-radius:24px;box-shadow:8px 10px 0 rgba(0,0,0,.35);padding:24px 18px!important;margin-top:24px!important;width:calc(100% - 32px)!important}
 .playSheet .banner{border:3px solid var(--ink);box-shadow:4px 5px 0 rgba(0,0,0,.3)}
+.ticket{position:relative;display:flex;flex-direction:column;gap:6px;padding:18px 20px 16px;background:var(--pl-paper);border-radius:6px;box-shadow:6px 8px 0 var(--pl-shadow);transform:rotate(-1.5deg);margin:8px 4px}
+.ticket::before{content:"";position:absolute;inset:-5px;border:8px dotted var(--pl-paper);border-radius:10px;pointer-events:none}
+.ticketCap{font:var(--pl-type-label);letter-spacing:.16em;text-transform:uppercase;color:var(--pl-ink-faint)}
+.ticket .codeInput{border:0;border-bottom:3px dashed var(--pl-hairline-2);background:transparent;font-size:clamp(32px,10vw,44px)!important;font-weight:700;color:var(--pl-ink);padding:6px 0;width:100%;outline:none}
+.ticket .codeInput:focus{border-bottom-color:var(--pl-lapis)}
+@media (min-width:1600px){.code{font-size:200px}.qr{width:420px}.lobby{gap:64px}}
