@@ -47,3 +47,29 @@ class LobbyGamesTest {
         assertEquals(true, LobbyGame.Tiles in LobbyGames.offered(emptyList()))
     }
 }
+
+class LobbyTilesVisibleTest {
+    private val schedule = LobbyTiles.schedule(6, 0, 8, 9)
+
+    @Test
+    fun tilesAreInFlightMidRound() {
+        val v = LobbyTiles.visible(schedule, 6, 2_000, emptySet(), reveal = false)
+        assertEquals(listOf(0, 1, 2, 3, 4), v.map { it.slot.index })
+        assertEquals(2000f / 5580f, v.first().progress)
+        assertEquals(true, v.all { it.progress in 0f..1f })
+    }
+
+    @Test
+    fun beforeSpawnAfterLandingAndTappedTilesHide() {
+        assertEquals(listOf(0), LobbyTiles.visible(schedule, 6, 100, emptySet(), false).map { it.slot.index })
+        assertEquals(emptyList(), LobbyTiles.visible(schedule, 6, 9_000, emptySet(), false).map { it.slot.index })
+        assertEquals(listOf(1, 2, 3, 4), LobbyTiles.visible(schedule, 6, 2_000, setOf(0), false).map { it.slot.index })
+        assertEquals(6, LobbyTiles.visible(schedule, 6, 9_000, setOf(0), true).size)
+        assertEquals(3, LobbyTiles.visible(schedule, 3, 2_000, emptySet(), false).size)
+    }
+
+    @Test
+    fun roundStartsStepBySlotLength() {
+        assertEquals(1_000L + 2 * 13_000L, LobbyTiles.roundStartMs(2, 1_000L, 9, 4))
+    }
+}

@@ -57,5 +57,15 @@ object LobbyTiles {
             .filter { (_, p) -> p in 0.0..1.0 }
             .maxByOrNull { it.second }?.first?.index
 
+    data class Falling(val slot: TileSlot, val progress: Float)
+
+    fun visible(schedule: List<TileSlot>, choiceCount: Int, elapsedMs: Long, tapped: Set<Int>, reveal: Boolean): List<Falling> =
+        schedule.filter { it.index < choiceCount }.mapNotNull { slot ->
+            val p = ((elapsedMs - slot.spawnMs).toDouble() / slot.fallMs).toFloat()
+            if (reveal || (p in 0f..1f && slot.index !in tapped)) Falling(slot, p.coerceIn(0f, 1f)) else null
+        }
+
+    fun roundStartMs(roundIndex: Int, startedAtMs: Long, roundSeconds: Int, revealSeconds: Int): Long = startedAtMs + roundIndex * (roundSeconds + revealSeconds) * 1000L
+
     fun submitAtMs(roundSeconds: Int): Long = Math.round(roundSeconds * 1000 * SUBMIT_AT)
 }
