@@ -308,7 +308,6 @@ struct TranslateCard: View {
             .onChange(of: from) { picked = nil }
             .sheet(isPresented: $picking) {
                 TranslateLanguageSheet(chosen: chosen, recent: recent, suggested: langs, all: sources.isEmpty ? Lang.codes : sources, toggle: toggleTarget)
-                    .environment(\.colorScheme, scheme)
             }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
