@@ -13,4 +13,5 @@ sealed class BucketError(override val message: String) : Exception(message) {
     data object NameNotAllowed : BucketError("That name is not allowed. Try another.")
     data object TextNotAllowed : BucketError("That text is not allowed. Try other words.")
     data object Offline : BucketError("No connection. Check your network and try again.")
+    data object SyncPending : BucketError("Your language sets did not reach the server. Connect and try again, or your changes on this device will be lost.")
 }

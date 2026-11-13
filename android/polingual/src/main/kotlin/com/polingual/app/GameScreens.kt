@@ -87,14 +87,14 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    Page(kind.title, back = back) {
+    Page(kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }) {
         val c = ctx
         if (c == null) Text("Start a language set in Learn. The games use the words you study.", color = LocalPalette.current.muted) else content(c)
     }
 }
 
 suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String) {
-    ads.gameFinished(activity?.get())
+    ads.gameFinished()
     val key = "${kind.route}|${today()}|${system.id}"
     store.update { it.copy(played = (it.played + (key to pattern)).entries.toList().takeLast(200).associate { e -> e.key to e.value }, savePrompt = account.stage.value != foundation.bucket.core.auth.Stage.SignedIn) }
 }

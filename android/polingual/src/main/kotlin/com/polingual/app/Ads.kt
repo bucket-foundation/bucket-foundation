@@ -33,10 +33,12 @@ class Ads(private val context: Context, private val graph: Graph) {
     private var lastShownMs: Long? = null
     private var gamesFinished = 0
     private var started = false
+    private var initializing = false
+    private var pending = false
 
     val configured: Boolean get() = BuildConfig.ADS_ENABLED && BuildConfig.BANNER_UNIT.isNotEmpty()
 
-    fun shouldShow(access: Access): Boolean = configured && !access.unlocked && access != Access.Checking
+    fun shouldShow(access: Access): Boolean = AdGate.show(configured, access)
 
     fun gather(activity: Activity) {
         if (!configured || started) return
@@ -54,7 +56,8 @@ class Ads(private val context: Context, private val graph: Graph) {
     fun showPrivacyOptions(activity: Activity) = UserMessagingPlatform.showPrivacyOptionsForm(activity) { }
 
     private fun begin() {
-        if (_ready.value) return
+        if (_ready.value || initializing) return
+        initializing = true
         MobileAds.initialize(context) { _ready.value = true; preload() }
     }
 
@@ -67,8 +70,14 @@ class Ads(private val context: Context, private val graph: Graph) {
         })
     }
 
-    fun gameFinished(activity: Activity?) {
+    fun gameFinished() {
         gamesFinished += 1
+        pending = true
+    }
+
+    fun leftFinishedGame(activity: Activity?) {
+        if (!pending) return
+        pending = false
         val access = graph.billing.access.value
         if (activity == null || !shouldShow(access) || !_ready.value) return
         val now = System.currentTimeMillis()
@@ -90,4 +99,8 @@ fun AdBanner(graph: Graph) {
         modifier = Modifier.fillMaxWidth().height(50.dp).semantics { contentDescription = "Advertisement" },
         factory = { ctx -> AdView(ctx).apply { setAdSize(AdSize.BANNER); adUnitId = BuildConfig.BANNER_UNIT; loadAd(AdRequest.Builder().build()) } },
     )
+}
+
+object AdGate {
+    fun show(configured: Boolean, access: Access): Boolean = configured && !access.unlocked && access != Access.Checking
 }

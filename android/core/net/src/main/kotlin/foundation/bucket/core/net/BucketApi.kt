@@ -124,6 +124,13 @@ class BucketApi(
 
     suspend fun raw(path: String): String = call(path, null)
 
+    suspend fun deckIndex(): foundation.bucket.core.model.DeckIndex = decode(call("academy-app/corpus/index.json", null))
+
+    suspend fun deck(entry: foundation.bucket.core.model.DeckEntry): foundation.bucket.core.model.Deck = decode(call("academy-app/${entry.file}", null))
+
+    suspend fun canonSearch(query: String, topK: Int = 20): foundation.bucket.core.model.CanonSearch =
+        decode(call("api/canon/search", null, query = mapOf("q" to query, "top_k" to topK.toString())))
+
     private suspend fun lobbyCall(path: String, token: String, body: JsonObject): Lobby = decode<LobbyReply>(call(path, token, body)).lobby
 
     private suspend fun session(body: JsonObject, token: String? = null): String = call("api/academy/session", token, body, mapper = ::sessionError)

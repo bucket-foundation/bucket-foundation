@@ -41,3 +41,15 @@ class EntitlementTest {
         assertTrue(Entitlement.disclosure(false, "$49", "once").contains("No subscription"))
     }
 }
+
+class AdGateTest {
+    @Test
+    fun adsOnlyForNonPayingUsersOnceAccessIsKnown() {
+        assertEquals(true, AdGate.show(true, Access.Locked))
+        assertEquals(false, AdGate.show(true, Access.Subscribed(Plan.YEARLY)))
+        assertEquals(false, AdGate.show(true, Access.Trial(Plan.YEARLY)))
+        assertEquals(false, AdGate.show(true, Access.Beta))
+        assertEquals(false, AdGate.show(true, Access.Checking))
+        assertEquals(false, AdGate.show(false, Access.Locked))
+    }
+}

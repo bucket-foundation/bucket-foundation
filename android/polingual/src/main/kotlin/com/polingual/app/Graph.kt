@@ -65,7 +65,7 @@ class Graph(val context: Context) {
             }
         }
         account.beforeSignOut = { force ->
-            if (!force && !syncSystems()) throw foundation.bucket.core.model.BucketError.Server(0, "Your language sets did not reach the server. Connect and try again, or your changes on this device will be lost.")
+            if (!force && !syncSystems()) throw foundation.bucket.core.model.BucketError.SyncPending
             store.clearLocal()
         }
     }

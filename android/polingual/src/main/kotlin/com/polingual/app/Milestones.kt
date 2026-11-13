@@ -36,6 +36,14 @@ fun TodayMore(graph: Graph, nav: NavHostController) {
 @Composable
 fun AccountExtras(graph: Graph, nav: NavHostController) {
     val access by graph.billing.access.collectAsState()
+    val activity = graph.activity?.get()
+    if (activity != null && graph.ads.shouldShow(access) && graph.ads.privacyOptionsRequired(activity)) {
+        foundation.bucket.core.ui.SectionTitle("Ads")
+        Card(onClick = { graph.ads.showPrivacyOptions(activity) }) {
+            androidx.compose.material3.Text("Privacy choices", style = foundation.bucket.core.ui.Type.title.copy(fontSize = 18.sp()))
+            androidx.compose.material3.Text("Change how ads use your data", color = foundation.bucket.core.ui.LocalPalette.current.muted)
+        }
+    }
     foundation.bucket.core.ui.SectionTitle("Subscription")
     Card(onClick = { nav.navigate("paywall") }) {
         androidx.compose.material3.Text(when (val a = access) {
@@ -59,9 +67,10 @@ fun SignedInSection(graph: Graph, nav: NavHostController) {
     var handle by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
     var confirming by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     var busy by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    var pendingSync by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     androidx.compose.runtime.LaunchedEffect(Unit) {
         val t = graph.account.token() ?: return@LaunchedEffect
-        runCatching { graph.api.profile(t) }.getOrNull()?.let { pr -> display = pr.displayName.orEmpty(); handle = pr.handle.orEmpty() }
+        try { graph.api.profile(t)?.let { pr -> display = pr.displayName.orEmpty(); handle = pr.handle.orEmpty() } } catch (e: foundation.bucket.core.model.BucketError) { problem = "Your profile did not load. ${e.message}" }
     }
     fun act(block: suspend () -> Unit) = scope.launch {
         problem = null; note = null; busy = true
@@ -86,8 +95,8 @@ fun SignedInSection(graph: Graph, nav: NavHostController) {
     }
     Card {
         androidx.compose.material3.Text(graph.account.email.ifEmpty { "Signed in" }, color = p.ink)
-        PlainLink("Sign out") { act { graph.account.signOut() } }
-        if (problem?.contains("server") == true) PlainLink("Sign out anyway") { scope.launch { graph.account.signOut(force = true); problem = null } }
+        PlainLink("Sign out") { scope.launch { problem = null; pendingSync = false; try { graph.account.signOut() } catch (e: foundation.bucket.core.model.BucketError.SyncPending) { problem = e.message; pendingSync = true } catch (e: foundation.bucket.core.model.BucketError) { problem = e.message } } }
+        if (pendingSync) PlainLink("Sign out anyway") { scope.launch { graph.account.signOut(force = true); problem = null } }
     }
     Card {
         androidx.compose.material3.Text("Delete account", style = foundation.bucket.core.ui.Type.title)
@@ -95,7 +104,7 @@ fun SignedInSection(graph: Graph, nav: NavHostController) {
         if (!confirming) PlainLink("Delete my account") { confirming = true } else {
             androidx.compose.material3.Text("This cannot be undone.", color = foundation.bucket.core.ui.D8.vermilion)
             foundation.bucket.core.ui.PrimaryButton(if (busy) "Deleting" else "Delete forever", enabled = !busy) {
-                act { graph.account.deleteAccount(); graph.store.clearLocal(); confirming = false }
+                act { try { graph.account.deleteAccount(); graph.store.clearLocal() } finally { confirming = false } }
             }
             PlainLink("Keep my account") { confirming = false }
         }

@@ -15,7 +15,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -137,14 +136,20 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
     var error by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(lobby.id) { graph.lobbies.follow() }
     LaunchedEffect(Unit) { while (true) { now = graph.lobbies.nowMs; delay(200) } }
-    val phase = graph.lobbies.phase.let { foundation.bucket.core.model.LobbyClock.phase(lobby, now) }
-    var finishedCounted by remember(lobby.id) { mutableStateOf(false) }
-    DisposableEffect(lobby.id) { onDispose { } }
+    val phase = foundation.bucket.core.model.LobbyClock.phase(lobby, now)
+    val finished = phase == LobbyPhase.Finished
+    LaunchedEffect(lobby.id, finished) { if (finished) graph.ads.gameFinished() }
+    var confirmLeave by remember { mutableStateOf(false) }
+    fun exit() { graph.ads.leftFinishedGame(graph.activity?.get()); leave() }
     fun act(block: suspend () -> Unit) = scope.launch { error = null; try { block() } catch (e: BucketError) { error = e.message } }
-    Page(lobby.name, back = {
-        if (phase == LobbyPhase.Finished && !finishedCounted) { finishedCounted = true; graph.ads.gameFinished(graph.activity?.get()) }
-        leave()
-    }) {
+    Page(lobby.name, back = { if (phase is LobbyPhase.Round || phase is LobbyPhase.Reveal || phase is LobbyPhase.Countdown) confirmLeave = true else exit() }) {
+        if (confirmLeave) {
+            Text("Leave this game? Your score stays where it is.", color = p.ink)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                PlainLink("Leave") { exit() }
+                PlainLink("Keep playing") { confirmLeave = false }
+            }
+        }
         when (phase) {
             LobbyPhase.Waiting -> Waiting(graph, lobby) { act(it) }
             is LobbyPhase.Countdown -> {
@@ -153,7 +158,7 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
             }
             is LobbyPhase.Round -> Round(graph, lobby, phase.index, phase.remaining, reveal = false)
             is LobbyPhase.Reveal -> Round(graph, lobby, phase.index, phase.remaining, reveal = true)
-            LobbyPhase.Finished -> Results(lobby, again = { act { leave() } })
+            LobbyPhase.Finished -> Results(lobby, again = { exit() })
         }
         error?.let { Text(it, color = D8.vermilion) }
         if (phase == LobbyPhase.Waiting || phase == LobbyPhase.Finished) Chat(graph, lobby) { act(it) }
@@ -226,7 +231,9 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
             picked != null || reveal -> ChoiceState.Dim
             else -> ChoiceState.Idle
         }
-        ChoiceButton(label, s) { scope.launch { graph.lobbies.pick(c, index) } }
+        ChoiceButton(label, if (s == ChoiceState.Idle && (reveal || picked != null)) ChoiceState.Dim else s) {
+            if (!reveal && picked == null) scope.launch { graph.lobbies.pick(c, index) }
+        }
     }
     when {
         picked != null && mark == null -> Text("Checking", color = p.muted)
