@@ -49,7 +49,7 @@ export function RevealCard({ entry, index, rootLang = "en" }: { entry: RevealEnt
       />
       <p className={styles.revealDef} data-testid="reveal-definition">
         {entry.correct ? <b className={styles.revealMark} aria-label="Right answer">✓ </b> : null}
-        {definition ? <><span className={styles.revealRoot} data-testid="reveal-root">{langName(rootLang)}</span> {definition}</> : "No entry for this word yet."}
+        {definition ? <><span className={styles.revealRoot} data-testid="reveal-root-lang">{langName(rootLang)}</span> {definition}</> : "No entry for this word yet."}
         {entry.meaning && entry.gloss && entry.meaning.toLowerCase() !== entry.gloss.toLowerCase() ? <span className={styles.revealAlt}> · {entry.meaning}</span> : null}
       </p>
       <dl className={styles.revealFacts} data-testid="reveal-facts">

@@ -189,7 +189,12 @@ export async function play(item: SpeakItem) {
   stop();
   const t = token;
   const reason = reasonFor(item);
-  if (reason) return set({ id: null, all: false, notice: reason });
+  if (reason) {
+    set({ id: item.id, all: false, notice: reason });
+    await Promise.resolve();
+    if (t === token) set({ id: null, all: false, notice: reason });
+    return;
+  }
   set({ id: item.id, all: false });
   let began = false;
   const watch = setTimeout(() => {

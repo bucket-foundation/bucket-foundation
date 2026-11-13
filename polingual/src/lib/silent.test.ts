@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { isSilent, needsSound, setSilent, subscribeSilent } from "./silent";
@@ -34,7 +35,6 @@ test("the session defers sound questions with skip, which never grades, so their
 });
 
 test("all language versions play together only on the word page", () => {
-  const { execSync } = require("node:child_process") as typeof import("node:child_process");
   const hits = execSync("grep -rl 'playAll' src/app || true", { encoding: "utf8" }).trim().split("\n").filter(Boolean);
   assert.deepEqual(hits, ["src/app/(site)/word/Speak.tsx"]);
 });
