@@ -111,7 +111,7 @@ export function Icons() {
           <Card><Art name="streak-flame" size={40} /><h3 className={s.cardTitle}>Palette fills</h3><p className={s.cardText}>Fill with brand colors only. Ink #231F20 draws every outline at 3 px.</p></Card>
           <Card><Art name="star" size={40} /><h3 className={s.cardTitle}>Hard shadows</h3><p className={s.cardText}>Pieces drop a flat 6 by 8 px shadow at 35% black. No blur.</p></Card>
           <Card><Art name="seal" size={40} /><h3 className={s.cardTitle}>Real scripts</h3><p className={s.cardText}>Words on the pieces come from real languages: 百, शतम्, ἑκατόν, сто.</p></Card>
-          <Card><Art name="ticket" size={40} /><h3 className={s.cardTitle}>Tilt and scatter</h3><p className={s.cardText}>Set pieces at -12 to 12 degrees and let them overlap the edge.</p></Card>
+          <Card><Art name="pebble" size={40} /><h3 className={s.cardTitle}>Tilt and scatter</h3><p className={s.cardText}>Set pieces at -12 to 12 degrees and let them overlap the edge.</p></Card>
         </div>
         <div className={s.avatars}>
           {ANSWER_COLORS.map((a) => (
