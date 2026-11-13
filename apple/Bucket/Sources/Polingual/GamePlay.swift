@@ -46,7 +46,8 @@ enum GameSound {
     }
 
     static func play(right: Bool, combo: Int = 0) {
-        LangVoice.shared.activate()
+        guard LangVoice.shared.allows(.effect) else { return }
+        LangVoice.shared.activate(.effect)
         player = try? AVAudioPlayer(data: data(right: right, combo: combo))
         player?.volume = 0.35
         player?.play()
@@ -175,7 +176,7 @@ struct QuizGame: View {
         haptic(right)
         GameSound.play(right: right, combo: r.combo)
         if !right { shake += 1 }
-        LangVoice.shared.speak(p.word.form, p.word.lang)
+        LangVoice.shared.speak(p.word.form, p.word.lang, kind: .auto)
         pause = Task {
             try? await Task.sleep(for: .seconds(right ? 1.2 : 2.2))
             guard !Task.isCancelled else { return }
@@ -216,7 +217,7 @@ struct QuizGame: View {
         .padding()
         .animation(.spring(duration: 0.3), value: r.answered)
         .task(id: p.id) {
-            if p.mode == .voice { LangVoice.shared.speak(p.word.form, p.word.lang) }
+            if p.mode == .voice { LangVoice.shared.speak(p.word.form, p.word.lang, kind: .auto) }
         }
     }
 

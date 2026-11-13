@@ -272,7 +272,7 @@ struct PlayfulTiles: View {
         }
         if speak {
             let w = Self.night[next]
-            if LangVoice.shared.canSpeak(w.1, w.0) { LangVoice.shared.speak(w.1, w.0) }
+            if LangVoice.shared.canSpeak(w.1, w.0) { LangVoice.shared.speak(w.1, w.0, kind: .auto) }
         }
     }
 }

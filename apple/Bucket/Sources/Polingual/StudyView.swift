@@ -20,6 +20,7 @@ struct StudyView: View {
     @State private var chorus: [VoiceLine] = []
     @State private var introduced: Set<String> = []
     @AppStorage("bucket.lang.readings") private var readings = true
+    @AppStorage(SoundPolicy.silentKey) private var silent = false
     @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
 
     var body: some View {
@@ -234,6 +235,7 @@ struct StudyView: View {
                             makeExercise()
                         }
                         Toggle("Show readings and IPA", systemImage: "character.phonetic", isOn: $readings)
+                        Toggle("Silent mode", isOn: $silent)
                         if let system = store.system(systemId), system.targets.contains(where: { !ScriptCourse.units($0, root: system.root).isEmpty }) {
                             Toggle("Learn the writing", systemImage: "character.textbox", isOn: Binding(get: { WritingMode.on(systemId) }, set: { UserDefaults.standard.set($0, forKey: WritingMode.key(systemId)) }))
                         }

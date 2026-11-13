@@ -136,7 +136,7 @@ struct PairDrill: View {
         }
         .animation(.easeOut(duration: 0.18), value: picked)
         .onAppear {
-            LangVoice.shared.speak(ex.prompt, ex.lang)
+            LangVoice.shared.speak(ex.prompt, ex.lang, kind: .auto)
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
             if args.contains("-pickWrong") { picked = words.first { $0.key != ex.answer }?.key }

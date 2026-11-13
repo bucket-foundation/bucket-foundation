@@ -69,6 +69,7 @@ struct AccountView: View {
                 FamilyAndFriends(signingIn: $signingIn)
                 MyStrength()
                 ReminderSettings()
+                SoundSettings()
                 BetaSharing()
                 FeedbackSettings()
                 #if DEBUG
@@ -372,6 +373,21 @@ struct BetaSharing: View {
             Eyebrow(text: "Beta testing")
         } footer: {
             Text("Sessions, cards answered and completions help us improve the app. No location, contacts or device ids. Turning this off deletes what we hold.")
+        }
+    }
+}
+
+struct SoundSettings: View {
+    @AppStorage(SoundPolicy.silentKey) private var silent = false
+
+    var body: some View {
+        Section {
+            Toggle("Silent mode", isOn: $silent)
+                .accessibilityIdentifier("silentMode")
+        } header: {
+            Eyebrow(text: "Sound")
+        } footer: {
+            Text("Stops sound effects and words that play on their own. A tap on a speaker still plays the word.")
         }
     }
 }

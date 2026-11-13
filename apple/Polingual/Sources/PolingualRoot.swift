@@ -28,6 +28,26 @@ struct PolingualRoot: View {
         }
         .task { if subs.access == .checking { await subs.refresh() } }
         .onChange(of: subs.access, initial: true) { _, access in LobbyAds.shared.allowed = Monetization.showsAds(access) }
+        .modifier(VoiceNoticeCaption())
+        .task { LangVoice.shared.preload() }
+        #if DEBUG
+        .task {
+            guard Launch.flag("-voiceProbe") else { return }
+            try? await Task.sleep(for: .seconds(3))
+            let words = [("hola", "es"), ("bonjour", "fr"), ("ciao", "it"), ("hallo", "de"), ("perro", "es"), ("chien", "fr"), ("cane", "it"), ("Hund", "de")]
+            for (w, l) in words {
+                LangVoice.shared.speak(w, l)
+                try? await Task.sleep(for: .milliseconds(450))
+            }
+            for (w, l) in words.prefix(4) {
+                LangVoice.shared.speak(w, l)
+                try? await Task.sleep(for: .milliseconds(120))
+            }
+            try? await Task.sleep(for: .seconds(2))
+            let l = LangVoice.shared.latency
+            print("voiceProbe samples \(l.samples.count) median \(l.median ?? -1) worst \(l.worst ?? -1) budget \(l.withinBudget)")
+        }
+        #endif
         .onOpenURL { DeepLink.shared.open($0) }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .groupInvites()

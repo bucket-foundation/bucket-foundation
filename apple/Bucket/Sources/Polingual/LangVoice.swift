@@ -6,14 +6,16 @@ import SwiftUI
 @MainActor
 final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = LangVoice()
-    static let startWait: Duration = .seconds(2)
+    static let startWait: Duration = .milliseconds(Int(SoundPolicy.tapBudget * 1000))
     private(set) var synth = AVSpeechSynthesizer()
     private var waiting: ObjectIdentifier?
+    private var tapped: Date?
+    private(set) var latency = TapLatency()
 
     private var player: AVPlayer?
     private var warmed = false
-    private var voices: [AVSpeechSynthesisVoice] = []
-    private var picked: [String: AVSpeechSynthesisVoice?] = [:]
+    private var cache = VoiceCache<AVSpeechSynthesisVoice>()
+    private var preloading = false
     weak var store: LangStore?
 
     override private init() {
@@ -25,11 +27,27 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     private func forgetVoices() {
-        voices = []
-        picked = [:]
+        cache.forget()
+        preload()
     }
 
-    func activate() {
+    var silent: Bool { UserDefaults.standard.bool(forKey: SoundPolicy.silentKey) }
+
+    func allows(_ kind: SoundKind) -> Bool { SoundPolicy.allows(kind, silent: silent) }
+
+    func preload() {
+        guard !preloading, !cache.loaded else { return }
+        preloading = true
+        Task.detached(priority: .userInitiated) {
+            let found = AVSpeechSynthesisVoice.speechVoices()
+            await MainActor.run {
+                LangVoice.shared.preloading = false
+                LangVoice.shared.cache.fill(found)
+            }
+        }
+    }
+
+    func activate(_ kind: SoundKind = .tap) {
         #if os(iOS)
         guard !LangListener.shared.active else { return }
         if AppAudio.shared.active {
@@ -37,8 +55,9 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
             return
         }
         let session = AVAudioSession.sharedInstance()
-        if session.category != .playback || session.mode != .spokenAudio {
-            try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
+        let category: AVAudioSession.Category = SoundPolicy.honorsMuteSwitch(kind) ? .ambient : .playback
+        if session.category != category || session.mode != .spokenAudio {
+            try? session.setCategory(category, mode: .spokenAudio, options: [.mixWithOthers])
         }
         try? session.setActive(true)
         #endif
@@ -53,13 +72,10 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     func voice(_ lang: String) -> AVSpeechSynthesisVoice? {
-        if let hit = picked[lang] { return hit }
-        if voices.isEmpty { voices = AVSpeechSynthesisVoice.speechVoices() }
-        guard !voices.isEmpty else { return nil }
-        let choices = voices.map { LangAudio.Voice(id: $0.identifier, language: $0.language, quality: $0.quality.rawValue, novelty: Self.odd($0)) }
-        let v = LangAudio.pickVoice(choices, lang).flatMap { c in voices.first { $0.identifier == c.id } }
-        picked[lang] = v
-        return v
+        cache.pick(lang, load: { AVSpeechSynthesisVoice.speechVoices() }) { voices, lang in
+            let choices = voices.map { LangAudio.Voice(id: $0.identifier, language: $0.language, quality: $0.quality.rawValue, novelty: Self.odd($0)) }
+            return LangAudio.pickVoice(choices, lang).flatMap { c in voices.first { $0.identifier == c.id } }
+        }
     }
 
     private static func odd(_ v: AVSpeechSynthesisVoice) -> Bool {
@@ -71,13 +87,23 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     @discardableResult
-    func speak(_ text: String, _ lang: String, slow: Bool = false) -> Bool {
-        guard !text.isEmpty else { return false }
-        activate()
-        guard let v = voice(lang) else { return playClip(text, lang) }
-        hush()
-        say([utterance(text, v, rate: slow ? 0.45 : 0.9)], retry: true)
+    func speak(_ text: String, _ lang: String, slow: Bool = false, kind: SoundKind = .tap) -> Bool {
+        guard !text.isEmpty, allows(kind) else { return false }
+        activate(kind)
+        guard let v = voice(lang) else {
+            if playClip(text, lang) { return true }
+            if kind == .tap { VoiceNotice.shared.missing(lang) }
+            return false
+        }
+        start([utterance(text, v, rate: slow ? 0.45 : 0.9)])
         return true
+    }
+
+    private func start(_ us: [AVSpeechUtterance]) {
+        player?.pause()
+        if SoundPolicy.start(busy: synth.isSpeaking || synth.isPaused) == .renewThenSpeak { renew() }
+        tapped = Date()
+        say(us, retry: true)
     }
 
     private func utterance(_ text: String, _ v: AVSpeechSynthesisVoice, rate: Float = 0.9, gap: TimeInterval = 0) -> AVSpeechUtterance {
@@ -116,19 +142,24 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         let id = ObjectIdentifier(utterance)
         Task { @MainActor [weak self] in
-            if self?.waiting == id { self?.waiting = nil }
+            guard let self else { return }
+            if self.waiting == id { self.waiting = nil }
+            if let t = self.tapped {
+                self.latency.record(Date().timeIntervalSince(t))
+                self.tapped = nil
+            }
         }
     }
 
-    func speakTogether(_ lines: [VoiceLine]) {
+    func speakTogether(_ lines: [VoiceLine], kind: SoundKind = .tap) {
+        guard allows(kind) else { return }
         let voiced = lines.compactMap { l in voice(l.lang).map { (l.text, $0) } }
         guard voiced.count > 1 else {
-            if let l = lines.first(where: { voice($0.lang) != nil }) ?? lines.first { speak(l.text, l.lang) }
+            if let l = lines.first(where: { voice($0.lang) != nil }) ?? lines.first { speak(l.text, l.lang, kind: kind) }
             return
         }
-        activate()
-        hush()
-        say(voiced.map { utterance($0.0, $0.1, gap: 0.3) }, retry: true)
+        activate(kind)
+        start(voiced.map { utterance($0.0, $0.1, gap: 0.3) })
     }
 
     func hush() {
