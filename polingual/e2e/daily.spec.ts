@@ -40,3 +40,16 @@ test("mini fills every clue, then keeps today's result", async ({ page }) => {
   await expect(page.getByTestId("daily-score")).toHaveText(/(\d) of \1/);
   await revisit(page, "/play/mini");
 });
+
+test("word groups solves four groups, then keeps today's result", async ({ page }) => {
+  await open(page, "/play/word-groups");
+  await expect(page.getByTestId("groups-tile").first()).toBeVisible({ timeout: 60_000 });
+  for (let k = 0; k < 4; k++) {
+    const group = await page.getByTestId("groups-tile").first().getAttribute("data-group");
+    const tiles = page.locator(`[data-testid=groups-tile][data-group="${group}"]`);
+    for (let n = 0; n < 4; n++) await tiles.nth(n).click();
+    await page.getByTestId("groups-submit").click();
+  }
+  await expect(page.getByTestId("daily-score")).toHaveText("4 of 4");
+  await revisit(page, "/play/word-groups");
+});
