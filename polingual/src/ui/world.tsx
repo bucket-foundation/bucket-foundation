@@ -107,14 +107,22 @@ export const GUTTER_STICKERS: StickerSpot[] = [
   { name: "pebble", x: "7%", y: "84%", size: 48, rotate: 12, side: "right" },
 ];
 
+export const STRIP_STICKERS: StickerSpot[] = [
+  { name: "seal", x: "0%", y: "12px", size: 56, rotate: -8 },
+  { name: "ticket", x: "20%", y: "20px", size: 96, rotate: 5 },
+  { name: "torn-label", x: "2%", y: "16px", size: 88, rotate: -4, side: "right" },
+  { name: "pebble", x: "30%", y: "8px", size: 30, rotate: 12, side: "right" },
+];
+
 export type StageGround = "cut" | "paper" | "lattice";
 
-export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND_STICKERS, tiles = true, testId }: { children: ReactNode; ground?: StageGround; stickers?: StickerSpot[]; phoneStickers?: StickerSpot[]; tiles?: boolean; testId?: string }) {
+export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND_STICKERS, tiles = true, strip = true, testId }: { children: ReactNode; ground?: StageGround; strip?: boolean; stickers?: StickerSpot[]; phoneStickers?: StickerSpot[]; tiles?: boolean; testId?: string }) {
   if (ground !== "cut") {
     const spots = stickers ?? GUTTER_STICKERS;
     return (
       <div className={[s.stage, s.flat, s[ground]].join(" ")} data-testid={testId} data-stage={ground}>
         <div className={s.gutters} aria-hidden>{spots.map((p) => <Sticker key={p.name} {...p} />)}</div>
+        {strip ? <div className={s.strip} aria-hidden>{STRIP_STICKERS.map((p) => <Sticker key={p.name} {...p} />)}</div> : null}
         <div className={s.flatBody}>{children}</div>
         <FlagBand className={s.stageBand} />
       </div>
