@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { adConfig, adLayout, entitlementOf, adLive, adShows, adsOn, adsTxt, needsConsent, pubId, railSize, showsAds } from "./ads";
+import { accountCta, betweenRoundsAd, interstitialDue, INTERSTITIAL_GAP_MS } from "./ads";
 
 const CLIENT = "ca-pub-1234567890123456";
 
@@ -88,4 +89,25 @@ test("/ads.txt serves the publisher line and 404s while the id is unset", async 
     if (prior === undefined) delete process.env.POLINGUAL_ADSENSE_PUB_ID;
     else process.env.POLINGUAL_ADSENSE_PUB_ID = prior;
   }
+});
+
+test("account CTA follows sign-in and plan", () => {
+  assert.deepEqual(accountCta("signed-out"), { signIn: true, learn: { label: "Start learning", href: "/app?from=play" } });
+  assert.deepEqual(accountCta("free"), { signIn: false, learn: { label: "Start learning", href: "/app?from=play" } });
+  assert.deepEqual(accountCta("subscriber"), { signIn: false, learn: { label: "Continue learning", href: "/app" } });
+  assert.deepEqual(accountCta("checking"), { signIn: false, learn: null });
+});
+
+test("no interstitial in the first game, then at most one per three minutes", () => {
+  assert.equal(interstitialDue(1, null, 0), false);
+  assert.equal(interstitialDue(2, null, 0), true);
+  assert.equal(interstitialDue(3, 0, INTERSTITIAL_GAP_MS - 1), false);
+  assert.equal(interstitialDue(3, 0, INTERSTITIAL_GAP_MS), true);
+});
+
+test("between-rounds unit shows after round five and never in the first game or in tiles", () => {
+  assert.equal(betweenRoundsAd("daily", 4, 0), false);
+  assert.equal(betweenRoundsAd("daily", 4, 1), true);
+  assert.equal(betweenRoundsAd("daily", 3, 1), false);
+  assert.equal(betweenRoundsAd("tiles", 4, 1), false);
 });

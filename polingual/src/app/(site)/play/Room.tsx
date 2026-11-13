@@ -13,7 +13,13 @@ import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { gameName, langName } from "./langs";
 import Nickname from "./Nickname";
-import Reveal from "./Reveal";
+import Reveal, { RevealBanner } from "./Reveal";
+import { useAdsVisible } from "./AdsContext";
+import { useAccount } from "./Account";
+import { betweenRoundsAd, interstitialDue } from "@/lib/lobby/ads";
+import { readBreaks, writeBreaks, type Breaks } from "@/lib/lobby/breaks";
+import { parseTile } from "@academy/lobby-tiles";
+import { FlagSquare } from "./LearnWord";
 import Tiles from "./Tiles";
 import { play, readMuted, writeMuted } from "@/lib/lobby/sound";
 import type { LobbySummary } from "@/lib/lobby/client";
@@ -45,6 +51,12 @@ export default function Room({ code: rawCode }: { code: string }) {
   const [busy, setBusy] = useState(false);
   const [skipped, setSkipped] = useState("");
   const [kick, setKick] = useState(0);
+  const [breaks, setBreaks] = useState<Breaks>({ games: 0, lastInterstitial: null });
+  const [interstitial, setInterstitial] = useState(false);
+  const [rewarded, setRewarded] = useState(false);
+  const adsVisible = useAdsVisible();
+  const account = useAccount();
+  useEffect(() => setBreaks(readBreaks(() => window.localStorage)), []);
   const lastRound = useRef<string>("");
   const cheered = useRef<string>("");
   useEffect(() => setMuted(readMuted(() => window.localStorage)), []);
@@ -109,8 +121,16 @@ export default function Room({ code: rawCode }: { code: string }) {
     if (roundKey === "finished" && cheered.current !== lobby?.startedAt) {
       cheered.current = lobby?.startedAt ?? "";
       play("win", muted);
+      const stored = readBreaks(() => window.localStorage);
+      const games = stored.games + 1;
+      const now = Date.now();
+      const show = adsVisible && interstitialDue(games, stored.lastInterstitial, now);
+      const next = { games, lastInterstitial: show ? now : stored.lastInterstitial };
+      writeBreaks(() => window.localStorage, next);
+      setBreaks(next);
+      if (show) setInterstitial(true);
     }
-  }, [roundKey, muted, lobby?.startedAt]);
+  }, [roundKey, muted, lobby?.startedAt, adsVisible]);
   useEffect(() => {
     if (livePhase?.kind !== "finished" || !ready || lobby?.standing) return;
     let stop = false;
@@ -308,6 +328,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         <div className={app.row}>
           <button type="button" className={app.ghost} onClick={() => void share()}>{copied ? "Link copied" : "Share link"}</button>
           <button type="button" className={app.link} onClick={() => void leave()}>Leave</button>
+          {state.identity.kind === "guest" ? <button type="button" className={app.link} onClick={account.openSignIn} data-testid="room-sign-in">Sign in</button> : null}
         </div>
         <div className={styles.split}>
           <section className={app.stackSm}>
@@ -327,7 +348,17 @@ export default function Room({ code: rawCode }: { code: string }) {
                 </button>
               ) : null}
             </div>
-            <p className={app.small}>{lobby.standing ? (startsIn === null ? "The next game starts soon." : `Next game starts in ${startsIn}s.`) : lobby.isHost ? (readyCount < 2 ? "Two players need to be ready to start." : "Everyone ready? Start the game.") : "The host starts when two players are ready."}</p>
+            <div className={styles.startsIn} data-testid="next-start">
+              {startsIn !== null ? (
+                <>
+                  <span>Next game: {gameName(lobby.game)}</span>
+                  <b data-testid="next-start-count">{startsIn}s</b>
+                </>
+              ) : (
+                <span>{lobby.standing ? "The next game starts soon." : readyCount < 2 ? "Starts 15 seconds after two players are ready." : lobby.isHost ? "Everyone ready? Start now or wait for the countdown." : "The host can start now."}</span>
+              )}
+            </div>
+            {lobby.setup !== "single" ? <p className={app.small} data-testid="setup-line">{lobby.setup === "mix" ? "Random mix of games" : `Game set: ${lobby.playlist.map(gameName).join(", ")}`}</p> : null}
           </section>
           {chatBox}
         </div>
@@ -400,8 +431,9 @@ export default function Room({ code: rawCode }: { code: string }) {
                 <button type="button" className={app.ghost} onClick={() => setSkipped(key)} data-testid="skip-reveal">Skip</button>
               ) : null}
             </div>
+            {prompt ? <RevealBanner prompt={prompt} pick={picked && picked.round === phase.index && picked.game === lobby.startedAt && !picked.pending ? picked : null} /> : null}
             {hidden ? null : prompt?.reveal?.length ? <Reveal prompt={prompt} /> : <p className={app.muted} aria-busy="true">Loading the answers</p>}
-            <Ad placement="between-rounds" />
+            {betweenRoundsAd(lobby.game, phase.index, breaks.games) ? <Ad placement="between-rounds" /> : null}
           </div>
           {side}
         </div>
@@ -440,7 +472,23 @@ export default function Room({ code: rawCode }: { code: string }) {
                   onSubmit={(t) => void answer(phase.index, tappedChoice(t))}
                 />
                 {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.correct ? `Perfect. +${mine.points}` : mine.points > 0 ? `Close. +${mine.points}` : "Missed some. -1 life"}</p> : null}
-                {lives === 0 ? <p className={styles.feedback}>Out of lives. Watch the rest.</p> : null}
+                {lives === 0 ? (
+                  <div className={styles.feedback} data-testid="out-of-lives">
+                    <p>Out of lives.</p>
+                    {adsVisible && !me?.continues ? (
+                      rewarded ? (
+                        <>
+                          <Ad placement="rewarded" testId="ad-rewarded" />
+                          <button type="button" className={app.cta} onClick={() => { setRewarded(false); void act(() => api.continueRun(lobby.id)); }} data-testid="continue-claim">Continue with one life</button>
+                        </>
+                      ) : (
+                        <button type="button" className={app.ghost} onClick={() => setRewarded(true)} data-testid="continue-offer">Watch an ad to continue</button>
+                      )
+                    ) : (
+                      <p className={app.small}>Watch the rest of this game.</p>
+                    )}
+                  </div>
+                ) : null}
               </>
             ) : prompt && prompt.mode === "flag" ? (
               <>
@@ -458,6 +506,36 @@ export default function Room({ code: rawCode }: { code: string }) {
                       </button>
                     </li>
                   ))}
+                </ul>
+              </>
+            ) : prompt && prompt.mode === "mixed" ? (
+              <>
+                <div className={styles.prompt}>
+                  <p className={app.small}>Pick the word that means</p>
+                  <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
+                  <p className={app.small}>The tiles mix this room&apos;s languages. One is right.</p>
+                </div>
+                <ul className={styles.choiceTiles}>
+                  {prompt.choices.map((c, i) => {
+                    const t = parseTile(c);
+                    return (
+                      <li key={c}>
+                        <TileFace
+                          as="button"
+                          lang={t.lang}
+                          word={t.form}
+                          rtl={LANGS[t.lang]?.rtl}
+                          index={i}
+                          className={styles.choiceTile}
+                          attrs={{ "data-state": stateOf(c), "data-testid": "choice", "data-lang": t.lang, "aria-label": `${t.form}, ${langName(t.lang)}`, disabled: done, onClick: () => void answer(phase.index, c) }}
+                        />
+                        <span className={styles.choiceLang}>
+                          <FlagSquare lang={t.lang} size={14} />
+                          {langName(t.lang)}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </>
             ) : prompt ? (
@@ -500,6 +578,14 @@ export default function Room({ code: rawCode }: { code: string }) {
   const guest = state.identity.kind === "guest";
   return (
     <div className={app.stack} data-testid="results">
+      {interstitial ? (
+        <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
+          <div className={styles.interstitialBox}>
+            <Ad placement="interstitial" testId="ad-interstitial" />
+            <button type="button" className={app.cta} onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</button>
+          </div>
+        </div>
+      ) : null}
       <section className={app.stackSm}>
         <p className={app.label}>Game over</p>
         <h1 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h1>
@@ -507,8 +593,8 @@ export default function Room({ code: rawCode }: { code: string }) {
       {toolbar}
       {scoreboard}
       <section className={styles.nextBar} data-testid="next-ctas">
-        {lobby.standing ? (
-          <span className={styles.nextName} data-testid="next-game">Next game: {lobby.name}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
+        {lobby.standing || lobby.nextStartAt ? (
+          <span className={styles.nextName} data-testid="next-game">Next game{lobby.setup === "single" ? `: ${lobby.name}` : ""}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
         ) : next ? (
           <a className={app.cta} href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</a>
         ) : null}
@@ -524,7 +610,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         <section className={styles.upsell} data-testid="save-progress">
           <b>Save your progress</b>
           <p className={app.small}>You scored {myScore(lobby)} points. Sign in to keep your streak, stats and game history. Your guest games come with you.</p>
-          <a className={app.cta} href="/app?next=/play">Save my progress</a>
+          <button type="button" className={app.cta} onClick={account.openSignIn} data-testid="save-sign-in">Sign in to save</button>
         </section>
       ) : null}
       <section className={styles.upsell} data-testid="learn-upsell">
@@ -545,7 +631,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
         <a className={app.ghost} href={LEARN_HREF}>See lessons</a>
       </section>
-      <Ad placement="results" />
+      {breaks.games >= 2 ? <Ad placement="results" /> : null}
       <div className={app.row}>
         <a className={app.ghost} href="/play">Back to lobbies</a>
       </div>

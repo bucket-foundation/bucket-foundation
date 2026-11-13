@@ -82,10 +82,10 @@ export interface TileHistory {
   lives: number;
 }
 
-export function tileHistory(prior: readonly { round: number; correct: boolean }[], round: number, first = 0): TileHistory {
+export function tileHistory(prior: readonly { round: number; correct: boolean }[], round: number, first = 0, continues = 0): TileHistory {
   const rows = prior.filter((p) => p.round < round);
   const by = new Map(rows.map((r) => [r.round, r.correct]));
-  let lives = TILE_LIVES;
+  let lives = TILE_LIVES + continues;
   let combo = 0;
   for (let r = first; r < round; r++) {
     if (by.get(r) === true) combo++;

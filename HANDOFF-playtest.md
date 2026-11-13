@@ -12,6 +12,6 @@ Branch `feat/polingual-playtest`, worktree `/home/gian/agfarms/.wt-playtest`. Be
 
 ## Next
 
-- Client: mixed tiles in Room, reveal banner with pick and answer, countdown in every lobby, setup picker in Lobbies, sign-in and CTA states, UX pass, ad slots.
+- Client done: mixed tiles, verdict banner, countdown, setup picker, sign-in sheet and CTA states, ad rules (breaks.ts), rewarded continue route `/continue`. Hosted setup lobbies loop: `againHosted` resets after results.
 - Dev pair run, Playwright 390 and 1440, critic, merge into dev.
 - Part 2: Flag Duel, Polyword.

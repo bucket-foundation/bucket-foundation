@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { appAuth } from "@/lib/app/auth";
-import { fetchAccess } from "@/lib/app/plans";
-import { ADS, adLayout, adShows, adsOn, BANNER, entitlementOf, railSize, showsAds, type AdLayout, type Entitlement } from "@/lib/lobby/ads";
+import { ADS, adLayout, adShows, BANNER, railSize, showsAds, type AdLayout } from "@/lib/lobby/ads";
+import { AccountProvider, useEntitlement } from "./Account";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { AdsProvider } from "./AdsContext";
@@ -21,25 +20,6 @@ function useAdLayout(): AdLayout | null {
   return layout;
 }
 
-function useEntitlement(): Entitlement | "checking" {
-  const [state, setState] = useState<Entitlement | "checking">("checking");
-  useEffect(() => {
-    if (!adsOn(ADS)) return;
-    let stop = false;
-    void (async () => {
-      const userId = await appAuth()
-        .userId()
-        .catch(() => null);
-      const access = userId ? await fetchAccess() : null;
-      if (!stop) setState(entitlementOf(!!userId, access));
-    })();
-    return () => {
-      stop = true;
-    };
-  }, []);
-  return state;
-}
-
 export default function PlayFrame({ header, consentRequired, children }: { header: React.ReactNode; consentRequired: boolean; children: React.ReactNode }) {
   const layout = useAdLayout();
   const entitlement = useEntitlement();
@@ -48,6 +28,7 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
   const banner = visible && layout === "phone" && adShows(ADS, "banner");
 
   return (
+    <AccountProvider entitlement={entitlement}>
     <AdsProvider value={visible}>
       <div className={banner ? `${app.shell} ${styles.withBanner}` : app.shell} data-testid="play-frame" data-ads={visible ? layout : "off"}>
         {header}
@@ -74,5 +55,6 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
         ) : null}
       </div>
     </AdsProvider>
+    </AccountProvider>
   );
 }

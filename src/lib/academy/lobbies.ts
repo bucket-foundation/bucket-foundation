@@ -75,6 +75,7 @@ export interface LobbyPlayerRow {
   is_bot?: boolean;
   skill?: string | null;
   flag?: string | null;
+  continues?: number;
 }
 
 export interface LobbyMessageRow {
@@ -140,6 +141,7 @@ export interface LobbyPlayer {
   skill: string | null;
   flag: string | null;
   firstRound: number;
+  continues: number;
 }
 
 export interface LobbyMessage {
@@ -523,6 +525,7 @@ export function tileAnswerDecision(
   now: number,
   prior: readonly { round: number; correct: boolean }[],
   first = 0,
+  continues = 0,
 ): AnswerDecision | { ok: false; error: "out_of_lives" } {
   if (lobby.status !== "playing") return { ok: false, error: "not_playing" };
   const current = roundAt(lobby, now);
@@ -530,7 +533,7 @@ export function tileAnswerDecision(
   if (!prompt || prompt.round !== round) return { ok: false, error: "bad_choice" };
   const tapped = parseTapped(choice, prompt.choices.length);
   if (!tapped) return { ok: false, error: "bad_choice" };
-  const history = tileHistory(prior, round, first);
+  const history = tileHistory(prior, round, first, continues);
   if (history.lives <= 0) return { ok: false, error: "out_of_lives" };
   const outcome = tileOutcome(prompt.answer, tapped);
   return { ok: true, correct: outcome.perfect, ms: Math.max(0, now - Date.parse(current.startsAt)), points: tilePoints(outcome, history.combo) };
@@ -598,6 +601,7 @@ export function assembleLobby(
         skill: p.is_bot ? p.skill ?? null : null,
         flag: p.flag ?? null,
         firstRound: joinedRound(lobby, p.joined_at),
+        continues: p.continues ?? 0,
       }))
       .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)),
     messages: messages

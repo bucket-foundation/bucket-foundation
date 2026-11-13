@@ -2,7 +2,7 @@ import type { NextRequest, NextResponse } from "next/server";
 import { blocksTouching, configured, GroupsError, json, readBody, requestUser, service } from "./groups-server";
 import { bearer, isGuestToken, verifyGuestToken } from "./lobby-guests";
 import { uuidOrNull, type BlockRow } from "./groups";
-import { botsEnabled, STANDING_LOBBY_MS, STANDING_RESULTS_MS } from "./lobby-bots";
+import { botsEnabled, gameTiming, STANDING_LOBBY_MS, STANDING_RESULTS_MS } from "./lobby-bots";
 import { revealEntries } from "./lobby-reveal";
 import { corpusLookup } from "./lang-lookup";
 import { langCorpus } from "./groups-server";
@@ -14,6 +14,7 @@ import {
   type RevealEntry,
   buildPrompts,
   LEAD_MS,
+  STALE_MS,
   finished,
   generateLobbyCode,
   MESSAGE_LIMIT,
@@ -27,6 +28,8 @@ import {
   revealEnabled,
   setupEnabled,
   joinedRound,
+  nextGame,
+  generateSeed,
   AUTO_START_MS,
   gameEndMs,
 } from "./lobbies";
@@ -39,7 +42,8 @@ export const PROMPTS = "lobby_prompts";
 export const PROFILES = "academy_profiles";
 const LOBBY_BASE_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
 export const LOBBY_COLS = `${LOBBY_BASE_COLS}${revealEnabled() ? ",reveal_seconds" : ""}${setupEnabled() ? ",playlist,mix,start_at" : ""}` as typeof LOBBY_BASE_COLS;
-export const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
+const PLAYER_BASE_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
+export const PLAYER_COLS = (setupEnabled() ? `${PLAYER_BASE_COLS},continues` : PLAYER_BASE_COLS) as typeof PLAYER_BASE_COLS;
 
 export async function limited(key: string, max: number): Promise<boolean> {
   const res = await service().rpc("lobby_take", { p_key: key, p_limit: max });
@@ -148,8 +152,8 @@ export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, 
   const prompt = rows[0] ?? null;
   const tiles = prompt?.mode === "tiles";
   const prior = tiles ? (check(await service().from(ANSWERS).select("round,correct").eq("lobby_id", lobby.id).eq("user_id", uid), "prior") as { round: number; correct: boolean }[]) : [];
-  const joined = tiles ? (check(await service().from(PLAYERS).select("joined_at").eq("lobby_id", lobby.id).eq("user_id", uid).limit(1), "joined") as { joined_at: string }[])[0]?.joined_at : null;
-  const decision = tiles ? tileAnswerDecision(lobby, prompt, round, choice, now, prior, joinedRound(lobby, joined)) : answerDecision(lobby, prompt, round, choice, now);
+  const me = tiles ? (check(await service().from(PLAYERS).select(PLAYER_COLS).eq("lobby_id", lobby.id).eq("user_id", uid).limit(1), "joined") as LobbyPlayerRow[])[0] : null;
+  const decision = tiles ? tileAnswerDecision(lobby, prompt, round, choice, now, prior, joinedRound(lobby, me?.joined_at), me?.continues ?? 0) : answerDecision(lobby, prompt, round, choice, now);
   if (!decision.ok) return decision;
   const res = await service().rpc("lobby_answer", { p_lobby: lobby.id, p_user: uid, p_round: round, p_choice: choice, p_correct: decision.correct, p_ms: decision.ms, p_points: decision.points });
   if (res.error) throw new Error(res.error.message);
@@ -180,7 +184,33 @@ export function nextStartOf(lobby: LobbyRow): string | null {
     if (!lobby.started_at) return null;
     return iso(gameEndMs({ ...lobby, started_at: lobby.started_at }) + STANDING_RESULTS_MS + STANDING_LOBBY_MS);
   }
-  return lobby.status === "lobby" && lobby.start_at ? lobby.start_at : null;
+  if (lobby.status === "lobby") return lobby.start_at ?? null;
+  if (!setupEnabled() || !lobby.playlist || !lobby.started_at) return null;
+  return iso(gameEndMs({ ...lobby, started_at: lobby.started_at }) + STANDING_RESULTS_MS + AUTO_START_MS);
+}
+
+export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRow> {
+  if (!setupEnabled() || lobby.standing_slot || !lobby.playlist || lobby.status !== "done" || !lobby.started_at) return lobby;
+  if (now < gameEndMs({ ...lobby, started_at: lobby.started_at }) + STANDING_RESULTS_MS) return lobby;
+  const players = await playersOf([lobby.id]);
+  const here = players.filter((p) => p.is_bot || now - Date.parse(p.last_seen) < STALE_MS).map((p) => p.user_id);
+  const game = nextGame(lobby);
+  const t = gameTiming(game);
+  const rows = check(
+    await service()
+      .from(LOBBIES)
+      .update({ status: "lobby", started_at: null, seed: generateSeed(), game, rounds: t.rounds, round_seconds: t.roundSeconds, start_at: here.length >= 2 ? new Date(now + AUTO_START_MS).toISOString() : null })
+      .eq("id", lobby.id)
+      .eq("status", "done")
+      .select(LOBBY_COLS),
+    "again",
+  ) as LobbyRow[];
+  if (!rows[0]) return (await lobbyById(lobby.id)) ?? lobby;
+  check(await service().from(ANSWERS).delete().eq("lobby_id", lobby.id), "again answers");
+  check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "again prompts");
+  check(await service().from(PLAYERS).update({ score: 0, ready: false, continues: 0 }).eq("lobby_id", lobby.id), "again scores");
+  if (here.length) check(await service().from(PLAYERS).update({ ready: true }).eq("lobby_id", lobby.id).in("user_id", here), "again ready");
+  return rows[0];
 }
 
 export async function armAutoStart(lobby: LobbyRow, readyCount: number, now: number): Promise<LobbyRow> {
@@ -200,6 +230,7 @@ export async function autoStart(lobby: LobbyRow, now: number): Promise<LobbyRow>
 }
 
 export async function pace(lobby: LobbyRow, now: number): Promise<LobbyRow> {
+  if (lobby.status === "done") lobby = await againHosted(lobby, now);
   if (!setupEnabled() || lobby.standing_slot || lobby.status !== "lobby") return lobby;
   const ready = (await playersOf([lobby.id])).filter((p) => p.ready).length;
   return autoStart(await armAutoStart(lobby, ready, now), now);

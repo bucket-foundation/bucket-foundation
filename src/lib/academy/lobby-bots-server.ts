@@ -76,7 +76,7 @@ async function resetStanding(lobby: LobbyRow, players: LobbyPlayerRow[], now: nu
   checkLobby(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "standing prompts");
   const stale = players.filter((p) => !p.is_bot && now - Date.parse(p.last_seen) >= STALE_MS).map((p) => p.user_id);
   if (stale.length) checkLobby(await service().from(PLAYERS).delete().eq("lobby_id", lobby.id).in("user_id", stale), "standing stale");
-  checkLobby(await service().from(PLAYERS).update({ score: 0, ready: false }).eq("lobby_id", lobby.id), "standing scores");
+  checkLobby(await service().from(PLAYERS).update({ score: 0, ready: false, ...(setupEnabled() ? { continues: 0 } : {}) }).eq("lobby_id", lobby.id), "standing scores");
   const humans = players.filter((p) => !p.is_bot && !stale.includes(p.user_id)).length;
   const bots = players.filter((p) => p.is_bot);
   const extra = bots.length - standingBotTarget(humans);

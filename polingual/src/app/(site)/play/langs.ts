@@ -1,4 +1,5 @@
 import { LANGS } from "@academy/lang-systems";
+import { TILE_ROUND_SECONDS } from "@academy/lobby-tiles";
 
 export interface LangSet {
   id: string;
@@ -39,5 +40,22 @@ export function langName(code: string): string {
 }
 
 export function roundSecondsFor(game: string): number {
-  return game === "tiles" ? 6 : game === "live" ? 7 : 8;
+  return game === "tiles" ? TILE_ROUND_SECONDS : game === "live" ? 7 : 8;
+}
+
+export const LANG_CHOICES = ["es", "fr", "it", "pt", "de", "nl", "sv", "ja", "zh", "ko", "ru", "el", "ar", "hi", "tr"] as const;
+
+export type SetupMode = "single" | "sequence" | "mix";
+
+export const SETUP_MODES: { id: SetupMode; name: string; blurb: string }[] = [
+  { id: "single", name: "One game", blurb: "Play one game again and again." },
+  { id: "sequence", name: "Game set", blurb: "Pick games. They play in order." },
+  { id: "mix", name: "Random mix", blurb: "A random game each time." },
+];
+
+export function setupValid(mode: SetupMode, games: readonly string[], langs: readonly string[]): string | null {
+  if (langs.length < 1) return "Pick at least one language.";
+  if (mode === "sequence" && games.length < 2) return "Pick at least two games for a set.";
+  if ((mode === "single" ? games.slice(0, 1) : mode === "sequence" ? games : []).includes("same-word") && langs.length < 2) return "Same word needs two languages or more.";
+  return null;
 }

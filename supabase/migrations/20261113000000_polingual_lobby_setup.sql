@@ -6,3 +6,7 @@ alter table bucket.lobbies add constraint lobbies_playlist_check check (playlist
 
 alter table bucket.lobby_prompts drop constraint if exists lobby_prompts_mode_check;
 alter table bucket.lobby_prompts add constraint lobby_prompts_mode_check check (mode in ('form', 'flag', 'tiles', 'mixed'));
+
+alter table bucket.lobby_players add column if not exists continues int not null default 0;
+alter table bucket.lobby_players drop constraint if exists lobby_players_continues_check;
+alter table bucket.lobby_players add constraint lobby_players_continues_check check (continues between 0 and 1);

@@ -5,8 +5,9 @@ import { useCallback, useEffect, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { LobbyError, lobbyError, type LobbySummary } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
-import { GAMES, gameName, LANG_SETS, roundSecondsFor, type GameId } from "./langs";
-import { LangCard } from "./LearnWord";
+import { GAMES, gameName, LANG_CHOICES, LANG_SETS, langName, roundSecondsFor, SETUP_MODES, setupValid, type GameId, type SetupMode } from "./langs";
+import { FlagSquare, LangCard } from "./LearnWord";
+import { useAccount } from "./Account";
 import Nickname from "./Nickname";
 import styles from "./play.module.css";
 import { savedNickname, usePlay } from "./usePlay";
@@ -19,7 +20,10 @@ export default function Lobbies() {
   const [open, setOpen] = useState<LobbySummary[] | null>(null);
   const [code, setCode] = useState("");
   const [game, setGame] = useState<GameId>("daily");
-  const [set, setSet] = useState(LANG_SETS[0].id);
+  const [mode, setMode] = useState<SetupMode>("single");
+  const [games, setGames] = useState<GameId[]>(["flags", "daily"]);
+  const [langs, setLangs] = useState<string[]>(LANG_SETS[0].targets);
+  const account = useAccount();
   const [rounds, setRounds] = useState(6);
   const [busy, setBusy] = useState(false);
   const [botsOn, setBotsOn] = useState(false);
@@ -47,11 +51,16 @@ export default function Lobbies() {
 
   const create = async () => {
     if (state.status !== "ready") return;
-    const chosen = LANG_SETS.find((s) => s.id === set) ?? LANG_SETS[0];
+    const invalid = setupValid(mode, mode === "single" ? [game] : games, langs);
+    if (invalid) {
+      setError(invalid);
+      return;
+    }
+    const first = mode === "sequence" ? games[0] : mode === "mix" ? "daily" : game;
     setBusy(true);
     setError(null);
     try {
-      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: chosen.root, targets: chosen.targets, rounds, roundSeconds: roundSecondsFor(game), listed: true, displayName: state.nickname, game, fillBots: botsOn && fill });
+      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: "en", targets: langs, rounds, roundSeconds: roundSecondsFor(first), listed: true, displayName: state.nickname, game: first, fillBots: botsOn && fill, setup: mode, ...(mode === "sequence" ? { games } : {}) });
       router.push(`/play/${lobby.code}`);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
@@ -93,23 +102,57 @@ export default function Lobbies() {
 
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>
-            <div className={styles.games} role="group" aria-label="Game">
-              {GAMES.map((g) => (
-                <button key={g.id} type="button" className={styles.game} aria-pressed={game === g.id} onClick={() => setGame(g.id)} data-testid={`game-${g.id}`}>
-                  <b>{g.name}</b>
-                  <span className={app.small}>{g.blurb}</span>
+            <div className={styles.setupModes} role="group" aria-label="Lobby setup">
+              {SETUP_MODES.map((m) => (
+                <button key={m.id} type="button" className={styles.game} aria-pressed={mode === m.id} onClick={() => setMode(m.id)} data-testid={`setup-${m.id}`}>
+                  <b>{m.name}</b>
+                  <span className={app.small}>{m.blurb}</span>
                 </button>
               ))}
             </div>
+            {mode !== "mix" ? (
+              <div className={styles.games} role="group" aria-label={mode === "single" ? "Game" : "Games in order"}>
+                {GAMES.map((g) => {
+                  const pos = games.indexOf(g.id);
+                  const on = mode === "single" ? game === g.id : pos >= 0;
+                  return (
+                    <button
+                      key={g.id}
+                      type="button"
+                      className={styles.game}
+                      aria-pressed={on}
+                      onClick={() => (mode === "single" ? setGame(g.id) : setGames((xs) => (xs.includes(g.id) ? xs.filter((x) => x !== g.id) : [...xs, g.id])))}
+                      data-testid={`game-${g.id}`}
+                    >
+                      <b>
+                        {g.name}
+                        {mode === "sequence" && pos >= 0 ? <span className={styles.order}> #{pos + 1}</span> : null}
+                      </b>
+                      <span className={app.small}>{g.blurb}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+            <div className={app.stackSm} role="group" aria-label="Languages">
+              <span className={app.fieldLabel}>Languages</span>
+              <div className={styles.chips}>
+                {LANG_SETS.map((s) => (
+                  <button key={s.id} type="button" className={styles.chip} aria-pressed={s.targets.join() === langs.join()} onClick={() => setLangs(s.targets)} data-testid={`lang-set-${s.id}`}>
+                    {s.label}
+                  </button>
+                ))}
+              </div>
+              <div className={styles.chips}>
+                {LANG_CHOICES.map((l) => (
+                  <button key={l} type="button" className={styles.chip} aria-pressed={langs.includes(l)} onClick={() => setLangs((xs) => (xs.includes(l) ? xs.filter((x) => x !== l) : xs.length >= 8 ? xs : [...xs, l]))} data-testid={`lang-${l}`}>
+                    <FlagSquare lang={l} size={18} />
+                    {langName(l)}
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className={app.row}>
-              <label className={app.field}>
-                Languages
-                <select value={set} onChange={(e) => setSet(e.target.value)} data-testid="lang-set">
-                  {LANG_SETS.map((s) => (
-                    <option key={s.id} value={s.id}>{s.label}</option>
-                  ))}
-                </select>
-              </label>
               <label className={app.field}>
                 Rounds
                 <select value={rounds} onChange={(e) => setRounds(Number(e.target.value))}>
@@ -159,7 +202,15 @@ export default function Lobbies() {
               ))}
             </ul>
           </section>
-          <p className={app.small}>Playing as {state.nickname}{state.identity.kind === "guest" ? ". Sign in on the Learn tab to save streaks and stats." : "."}</p>
+          <p className={app.small} data-testid="playing-as">
+            Playing as {state.nickname}
+            {state.identity.kind === "guest" ? (
+              <>
+                {" as a guest. "}
+                <button type="button" className={app.link} onClick={account.openSignIn} data-testid="lobby-sign-in">Sign in</button> to save streaks and stats.
+              </>
+            ) : "."}
+          </p>
         </>
       ) : null}
 
