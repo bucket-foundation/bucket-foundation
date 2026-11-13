@@ -13,6 +13,8 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { LANG_CHOICES, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
+import GameWorld from "../GameWorld";
+import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
 
@@ -47,7 +49,7 @@ function newArena(rand: () => number): Arena {
   return { snakes: [makeSnake("me", "You", false, 1, { x: WORLD_W / 2, y: WORLD_H / 2 }, 0, "#9B2414"), ...bots], words: [], nextWord: 0, eaten: [], bad: [] };
 }
 
-export default function WordSnake() {
+function WordSnakeGame() {
   const [lang, setLang] = useState("es");
   const [phase, setPhase] = useState<Phase>("setup");
   const [deck, setDeck] = useState<SnakeDeck | null>(null);
@@ -196,7 +198,6 @@ export default function WordSnake() {
       <div className={app.stack} data-testid="word-snake">
         <section className={app.stackSm}>
           <p className={app.label}>Arena</p>
-          <h1 className={app.title}>Word Snake</h1>
           <p className={app.muted}>Steer with your finger or mouse. Eat words in your language to grow. Words in other languages shrink you. Touch a bigger snake and you are out.</p>
         </section>
         <div className={styles.chips} role="group" aria-label="Room language">
@@ -224,7 +225,7 @@ export default function WordSnake() {
           <span className={styles.hudRound}>Eat {langName(deck?.lang ?? "")}</span>
           <span className={styles.hudRound}>{hud.left}s</span>
         </div>
-        <canvas ref={canvas} className={styles.wsCanvas} onPointerMove={point} onPointerDown={point} data-testid="ws-canvas" />
+        <canvas ref={canvas} data-round="active" className={styles.wsCanvas} onPointerMove={point} onPointerDown={point} data-testid="ws-canvas" />
       </div>
     );
   }
@@ -256,6 +257,12 @@ export default function WordSnake() {
             <Button onClick={() => setPhase("over")} data-testid="ws-end">See results</Button>
           </div>
         )
+      ) : null}
+      {phase === "over" || respawned || !adsVisible ? (
+        <>
+          <WordReveal title="Words you ate" words={list(result?.eaten ?? []).slice(0, 12).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
+          <LearnPanel missed={list(result?.bad ?? []).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
+        </>
       ) : null}
       <section className={app.stackSm}>
         <h2 className={app.fieldLabel}>Words you ate</h2>
@@ -311,14 +318,8 @@ function draw(c: HTMLCanvasElement | null, a: Arena, lang: string) {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.fillStyle = "#F6EEDC";
   ctx.fillRect(0, 0, v.w, v.h);
-  ctx.strokeStyle = "rgba(0,0,0,.06)";
-  ctx.lineWidth = 1;
-  for (let gx = -(v.x % 50); gx < v.w; gx += 50) {
-    ctx.beginPath();
-    ctx.moveTo(gx, 0);
-    ctx.lineTo(gx, v.h);
-    ctx.stroke();
-  }
+  ctx.fillStyle = "rgba(35,31,32,.14)";
+  for (let gx = -(v.x % 18); gx < v.w; gx += 18) for (let gy = -(v.y % 18); gy < v.h; gy += 18) ctx.fillRect(gx, gy, 2, 2);
   ctx.font = "bold 16px Nunito, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
@@ -327,13 +328,19 @@ function draw(c: HTMLCanvasElement | null, a: Arena, lang: string) {
     const y = w.y - v.y;
     if (x < -80 || y < -30 || x > v.w + 80 || y > v.h + 30) continue;
     const tw = ctx.measureText(w.form).width + 16;
-    ctx.fillStyle = "#fff";
-    ctx.strokeStyle = "rgba(35,31,32,.25)";
+    ctx.fillStyle = "#F3E6C4";
+    ctx.strokeStyle = "#5B1A4A";
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.roundRect(x - tw / 2, y - 14, tw, 28, 10);
+    ctx.moveTo(x - tw / 2, y - 13);
+    for (let k = 1; k <= 6; k++) ctx.lineTo(x - tw / 2 + (tw * k) / 6, y - 13 + (k % 2 ? 2 : -1));
+    ctx.lineTo(x + tw / 2 - 1, y + 14);
+    for (let k = 5; k >= 0; k--) ctx.lineTo(x - tw / 2 + (tw * k) / 6, y + 14 + (k % 2 ? -2 : 1));
+    ctx.closePath();
     ctx.fill();
     ctx.stroke();
-    ctx.fillStyle = "#231F20";
+    ctx.lineWidth = 1;
+    ctx.fillStyle = "#5B1A4A";
     ctx.fillText(w.form, x, y);
   }
   for (const s of a.snakes) {
@@ -358,4 +365,12 @@ function draw(c: HTMLCanvasElement | null, a: Arena, lang: string) {
   ctx.font = "bold 12px Nunito, sans-serif";
   ctx.textAlign = "left";
   ctx.fillText(`Eat ${lang.toUpperCase()}`, 10, 14);
+}
+
+export default function WordSnake() {
+  return (
+    <GameWorld id="word-snake">
+      <WordSnakeGame />
+    </GameWorld>
+  );
 }
