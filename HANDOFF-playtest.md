@@ -13,5 +13,5 @@ Branch `feat/polingual-playtest`, worktree `/home/gian/agfarms/.wt-playtest`. Be
 ## Next
 
 - Client done: mixed tiles, verdict banner, countdown, setup picker, sign-in sheet and CTA states, ad rules (breaks.ts), rewarded continue route `/continue`. Hosted setup lobbies loop: `againHosted` resets after results.
-- Dev pair run, Playwright 390 and 1440, critic, merge into dev.
+- Dev pair verified at 390 and 1440 with `scripts/playtest-lobby.mjs` (SETUP=mix|single GAME=tiles W=390). Next: critic, merge into dev.
 - Part 2: Flag Duel, Polyword.
