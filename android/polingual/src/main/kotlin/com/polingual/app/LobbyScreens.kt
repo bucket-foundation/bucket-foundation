@@ -52,7 +52,7 @@ import foundation.bucket.core.ui.pl.SectionTitle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-val nativeLobbyGames = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live)
+val nativeLobbyGames = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Duel, LobbyGame.Tiles)
 
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
@@ -211,17 +211,35 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     }
     val prompt = lobby.prompt(index)
     if (prompt == null) { Text("Loading the round", color = p.muted); return }
+    if (lobby.game == LobbyGame.Duel) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("Coins ${lobby.coins}", style = Type.small, color = PL.OchreDeep, modifier = Modifier.weight(1f))
+            if (lobby.doubled(index)) foundation.bucket.core.ui.pl.PLBadge("Double points", foundation.bucket.core.ui.pl.BadgeTone.Ochre)
+        }
+    }
+    if (prompt.mode == LobbyPromptMode.Tiles) {
+        TileRound(graph, lobby, prompt, index, remaining, reveal)
+        Players(lobby)
+        return
+    }
     if (prompt.mode == LobbyPromptMode.Flag) {
         Text("Which language?", color = p.muted)
         WordTile(null, prompt.gloss, tilt = 0f)
+    } else if (prompt.mode == LobbyPromptMode.Meaning) {
+        Text("What does this mean?", color = p.muted)
+        WordTile(prompt.lang, prompt.gloss, tilt = 0f)
     } else {
         Text(prompt.lang?.let { "Which is ${Lang.name(it)} for" } ?: "Which word means", color = p.muted)
         WordTile(prompt.lang, prompt.gloss, tilt = 0f)
     }
     val picked = state.picks[index]
     val mark = state.marks[index]
-    prompt.choices.forEach { c ->
-        val label = if (prompt.mode == LobbyPromptMode.Flag) "${Lang.flag(c)}  ${Lang.name(c)}" else c
+    prompt.choices.filter { it !in prompt.hide }.forEach { c ->
+        val label = when (prompt.mode) {
+            LobbyPromptMode.Flag -> "${Lang.flag(c)}  ${Lang.name(c)}"
+            LobbyPromptMode.Mixed -> foundation.bucket.core.model.LobbyTiles.parse(c).let { "${Lang.flag(it.lang)}  ${it.form}" }
+            else -> c
+        }
         val s = when {
             prompt.answer != null && c == prompt.answer -> ChoiceState.Right
             picked == c && mark == false -> ChoiceState.Wrong
@@ -241,8 +259,21 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     if (com.polingual.app.play.RevealRules.sameWord(revealPhase = reveal)) {
         prompt.reveal.firstOrNull { it.correct }?.let { r -> WordReveal(r.lang, r.word, r.meaning, null, null) { graph.voice.speak(r.word, r.lang) } }
         prompt.reveal.filterNot { it.correct }.forEach { r -> Text("${Lang.name(r.lang)}: ${r.word}${r.roman?.let { " ($it)" } ?: ""}, ${r.meaning}", style = Type.small, color = p.muted) }
+        if (lobby.game == LobbyGame.Duel && index + 1 < lobby.rounds) DuelPowers(graph, lobby, index + 1)
     }
     Players(lobby)
+}
+
+@Composable
+private fun DuelPowers(graph: Graph, lobby: Lobby, next: Int) {
+    val scope = rememberCoroutineScope()
+    SectionTitle("Power-up for round ${next + 1}")
+    val set = lobby.powerFor(next)
+    if (set != null) Text(if (set.kind == foundation.bucket.core.model.PowerKind.Double) "Double points is on for the next round." else "50/50 is on for the next round.", style = Type.small, color = PL.Malachite)
+    else Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        foundation.bucket.core.ui.pl.PLButton("Double, 2 coins", Modifier.weight(1f), variant = foundation.bucket.core.ui.pl.ButtonVariant.Gold, size = foundation.bucket.core.ui.pl.ButtonSize.Md, enabled = lobby.coins >= 2) { scope.launch { runCatching { graph.lobbies.power(foundation.bucket.core.model.PowerKind.Double) } } }
+        foundation.bucket.core.ui.pl.PLButton("50/50, 1 coin", Modifier.weight(1f), variant = foundation.bucket.core.ui.pl.ButtonVariant.Accent, size = foundation.bucket.core.ui.pl.ButtonSize.Md, enabled = lobby.coins >= 1) { scope.launch { runCatching { graph.lobbies.power(foundation.bucket.core.model.PowerKind.Fifty) } } }
+    }
 }
 
 @Composable

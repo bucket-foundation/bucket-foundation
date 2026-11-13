@@ -93,6 +93,11 @@ class LobbyStore(
         apply(run { api.chat(it, id, body.take(200)) })
     }
 
+    suspend fun power(kind: foundation.bucket.core.model.PowerKind) {
+        val id = _state.value.current?.id ?: return
+        apply(run { api.power(it, id, kind) })
+    }
+
     suspend fun pick(choice: String, round: Int): Boolean? {
         val id = _state.value.current?.id ?: return null
         if (_state.value.picks.containsKey(round)) return null

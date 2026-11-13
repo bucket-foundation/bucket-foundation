@@ -110,6 +110,9 @@ class BucketApi(
     suspend fun chat(token: String, lobbyId: String, body: String): Lobby =
         lobbyCall("api/academy/lobbies/chat", token, buildJsonObject { put("lobbyId", lobbyId); put("body", body) })
 
+    suspend fun power(token: String, lobbyId: String, kind: foundation.bucket.core.model.PowerKind): Lobby =
+        lobbyCall("api/academy/lobbies/power", token, buildJsonObject { put("lobbyId", lobbyId); put("kind", if (kind == foundation.bucket.core.model.PowerKind.Double) "double" else "fifty") })
+
     suspend fun answer(token: String, lobbyId: String, round: Int, choice: String): AnswerReply =
         decode(call("api/academy/lobbies/answer", token, buildJsonObject { put("lobbyId", lobbyId); put("round", round); put("choice", choice) }))
 
