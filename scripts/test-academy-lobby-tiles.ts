@@ -150,3 +150,10 @@ test("seeded tile builds differ by seed", () => {
   const b = buildTilePrompts(ITEMS, { id: "L", root: "en", targets: ["es"], rounds: 4 }, LANGS, seededRandom("2"));
   assert.notDeepEqual(a, b);
 });
+
+test("lives count from the first round: skipped rounds cost a life", () => {
+  assert.equal(tileHistory([], 3).lives, 0);
+  assert.equal(tileHistory([{ round: 2, correct: true }], 3).lives, 1);
+  assert.equal(tileHistory([], 3, 2).lives, 2);
+  assert.equal(tileHistory([], 0).lives, 3);
+});

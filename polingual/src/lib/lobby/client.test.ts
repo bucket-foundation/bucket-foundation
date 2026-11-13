@@ -145,7 +145,7 @@ test("results wait for the server tally, then stop waiting", () => {
 });
 
 test("ranked shares a rank on ties and keeps everyone, bots included", () => {
-  const p = (userId: string, score: number, bot = false) => ({ userId, name: userId, handle: null, ready: true, score, isHost: false, isMe: userId === "me", online: true, answered: false, bot, skill: bot ? "easy" : null, flag: null });
+  const p = (userId: string, score: number, bot = false) => ({ userId, name: userId, handle: null, ready: true, score, isHost: false, isMe: userId === "me", online: true, answered: false, bot, skill: bot ? "easy" : null, flag: null, firstRound: 0 });
   const rows = ranked([p("a", 100), p("me", 300), p("bot", 100, true), p("z", 0)]);
   assert.deepEqual(rows.map((r) => [r.userId, r.rank]), [["me", 1], ["a", 2], ["bot", 2], ["z", 4]]);
 });

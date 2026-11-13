@@ -3,6 +3,10 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
+  joinedRound,
+  nextGame,
+  normalizeSetup,
+  setupOf,
   answerDecision,
   hostedSince,
   OPEN_WINDOW_MS,
@@ -60,7 +64,7 @@ test("seeds are decimal uint64 strings and never zero", () => {
 });
 
 test("config validates languages, rounds and timing", () => {
-  assert.deepEqual(normalizeLobbyConfig({ root: "en", targets: ["es", "es", "en", "fr"] }), { name: "Polingual lobby", game: "daily", root: "en", targets: ["es", "fr"], rounds: 6, roundSeconds: 8, revealSeconds: 0, listed: true });
+  assert.deepEqual(normalizeLobbyConfig({ root: "en", targets: ["es", "es", "en", "fr"] }), { name: "Polingual lobby", game: "daily", root: "en", targets: ["es", "fr"], rounds: 6, roundSeconds: 8, revealSeconds: 0, listed: true, playlist: null, mix: false });
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], reveal: true })?.revealSeconds, 0);
   process.env.POLINGUAL_LOBBY_REVEAL = "on";
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], reveal: true })?.revealSeconds, REVEAL_SECONDS);
@@ -297,4 +301,55 @@ test("guest tokens sign a stable user id and refuse tampering or expiry", async 
 
 test("the host limit looks back over the open window only", () => {
   assert.equal(hostedSince(Date.parse("2026-11-12T12:00:00Z")), new Date(Date.parse("2026-11-12T12:00:00Z") - OPEN_WINDOW_MS).toISOString());
+});
+
+function multi(id: string, n: number): any {
+  return { id, kind: "word", category: n % 2 ? "food" : "home", gloss: `en${n}`, forms: { en: `en${n}`, es: `es${n}`, fr: `fr${n}`, de: `de${n}` } };
+}
+
+test("mixed prompts span the lobby languages with one right answer", () => {
+  const items = Array.from({ length: 40 }, (_, i) => multi(`m${i}`, i));
+  const rows = buildPrompts(items, { ...lobby({ rounds: 6, seed: "11" }), targets: ["es", "fr", "de"], playlist: ["daily"] });
+  assert.equal(rows.length, 6);
+  for (const r of rows) {
+    assert.equal(r.mode, "mixed");
+    assert.ok(r.choices.includes(r.answer));
+    assert.ok(r.answer.startsWith(`${r.lang}:`));
+    const langs = new Set(r.choices.map((c) => c.slice(0, c.indexOf(":"))));
+    assert.ok(langs.size >= 2);
+    const right = r.choices.filter((c) => items.some((i: any) => i.forms[c.slice(0, c.indexOf(":"))] === c.slice(c.indexOf(":") + 1) && i.forms.en === r.gloss));
+    assert.deepEqual(right, [r.answer]);
+  }
+  const legacy = buildPrompts(items, { ...lobby({ rounds: 6, seed: "11" }), targets: ["es", "fr", "de"] });
+  assert.ok(legacy.every((r) => r.mode === "form"));
+});
+
+test("lobby setup: single, sequence and random mix", () => {
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  process.env.POLINGUAL_LOBBY_SETUP = "on";
+  try {
+    assert.deepEqual(normalizeSetup({}, "flags", ["es"]), { game: "flags", playlist: ["flags"], mix: false });
+    assert.deepEqual(normalizeSetup({ setup: "sequence", games: ["flags", "tiles"] }, "daily", ["es"]), { game: "flags", playlist: ["flags", "tiles"], mix: false });
+    assert.equal(normalizeSetup({ setup: "sequence", games: ["flags"] }, "daily", ["es"]), null);
+    assert.equal(normalizeSetup({ setup: "sequence", games: ["flags", "nope"] }, "daily", ["es"]), null);
+    assert.equal(normalizeSetup({ setup: "sequence", games: ["flags", "same-word"] }, "daily", ["es"]), null);
+    const mix = normalizeSetup({ setup: "mix" }, "daily", ["es"]);
+    assert.ok(mix?.mix && !mix.playlist?.includes("same-word"));
+    assert.equal(setupOf({ playlist: ["flags", "tiles"], mix: false }), "sequence");
+    assert.equal(setupOf({ playlist: ["flags"], mix: false }), "single");
+    assert.equal(nextGame({ game: "flags", playlist: ["flags", "tiles", "daily"], mix: false, seed: "1", targets: ["es"] }), "tiles");
+    assert.equal(nextGame({ game: "daily", playlist: ["flags", "tiles", "daily"], mix: false, seed: "1", targets: ["es"] }), "flags");
+    const picks = new Set(["1", "2", "3", "4", "5", "6", "7", "8"].map((seed) => nextGame({ game: "daily", playlist: ["daily", "flags", "tiles", "live"], mix: true, seed, targets: ["es", "fr"] })));
+    assert.ok(!picks.has("daily") && picks.size >= 2);
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
+});
+
+test("joined round: before the start counts from round zero, mid game from the next open round", () => {
+  const l = { started_at: new Date(T0).toISOString(), rounds: 6, round_seconds: 8, reveal_seconds: 4 };
+  assert.equal(joinedRound(l, new Date(T0 - 5000).toISOString()), 0);
+  assert.equal(joinedRound(l, new Date(T0 + 1000).toISOString()), 0);
+  assert.equal(joinedRound(l, new Date(T0 + 9000).toISOString()), 1);
+  assert.equal(joinedRound(l, new Date(T0 + 13000).toISOString()), 1);
 });

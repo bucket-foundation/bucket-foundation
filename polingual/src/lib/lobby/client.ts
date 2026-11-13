@@ -305,12 +305,12 @@ export function streakOf(lobby: Pick<LobbyState, "results" | "players">): number
 }
 
 export function livesLeft(lobby: Pick<LobbyState, "results" | "players">, round: number, lives = 3): number {
-  const me = lobby.players.find((p) => p.isMe)?.userId;
-  const mine = lobby.results.filter((r) => r.userId === me && r.round < round).sort((a, b) => a.round - b.round);
-  if (!mine.length) return lives;
+  const meP = lobby.players.find((p) => p.isMe);
+  const me = meP?.userId;
+  const mine = lobby.results.filter((r) => r.userId === me && r.round < round);
   const by = new Map(mine.map((r) => [r.round, r.correct]));
   let left = lives;
-  for (let r = mine[0].round; r < round; r++) if (by.get(r) !== true) left--;
+  for (let r = meP?.firstRound ?? 0; r < round; r++) if (by.get(r) !== true) left--;
   return Math.max(0, left);
 }
 
@@ -332,7 +332,7 @@ export function missedWords(lobby: Pick<LobbyState, "prompts" | "results" | "pla
   const me = lobby.players.find((p) => p.isMe)?.userId;
   if (!me) return [];
   const right = new Set(lobby.results.filter((r) => r.userId === me && r.correct).map((r) => r.round));
-  return lobby.prompts.filter((p) => !right.has(p.round) && p.answer).map((p) => p.answer as string);
+  return lobby.prompts.filter((p) => !right.has(p.round) && p.answer).map((p) => (p.mode === "mixed" ? (p.answer as string).slice((p.answer as string).indexOf(":") + 1) : (p.answer as string)));
 }
 
 export function promptFor(lobby: Pick<LobbyState, "prompts">, round: number): LobbyState["prompts"][number] | null {

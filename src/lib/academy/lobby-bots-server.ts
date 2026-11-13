@@ -1,6 +1,6 @@
 import { service } from "./groups-server";
 import { corpusLookup } from "./lang-lookup";
-import { gameEndMs, generateLobbyCode, generateSeed, REVEAL_SECONDS, revealEnabled, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
+import { gameEndMs, generateLobbyCode, generateSeed, nextGame, REVEAL_SECONDS, revealEnabled, setupEnabled, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
 import {
   botChoice,
   botTileChoice,
@@ -9,6 +9,8 @@ import {
   botsEnabled,
   chatLine,
   FILL_SEATS,
+  gameTiming,
+  slotEnabled,
   fillDue,
   pickBots,
   planAnswer,
@@ -62,7 +64,9 @@ export async function fillLobby(lobby: LobbyRow, players: LobbyPlayerRow[], targ
 
 async function resetStanding(lobby: LobbyRow, players: LobbyPlayerRow[], now: number): Promise<LobbyRow | null> {
   const slot = STANDING_SLOTS.find((s) => s.slot === lobby.standing_slot);
-  const timing = slot ? { rounds: slot.rounds, round_seconds: slot.roundSeconds, ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}) } : {};
+  const game = setupEnabled() && lobby.playlist?.length ? nextGame(lobby) : null;
+  const t = game ? gameTiming(game) : slot ? { rounds: slot.rounds, roundSeconds: slot.roundSeconds } : null;
+  const timing = t ? { rounds: t.rounds, round_seconds: t.roundSeconds, ...(game ? { game } : {}), ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}) } : {};
   const rows = checkLobby(
     await service().from(LOBBIES).update({ status: "lobby", started_at: null, seed: generateSeed(), created_at: new Date(now).toISOString(), ...timing }).eq("id", lobby.id).eq("status", lobby.status).select(LOBBY_COLS),
     "standing reset",
@@ -166,13 +170,13 @@ export async function ensureStanding(now: number): Promise<LobbyRow[]> {
   if (now - lastEnsure < ENSURE_EVERY_MS) return lastStanding;
   lastEnsure = now;
   const have = checkLobby(await service().from(LOBBIES).select(LOBBY_COLS).not("standing_slot", "is", null), "standing") as LobbyRow[];
-  const missing = STANDING_SLOTS.filter((s) => (s.game !== "tiles" || revealEnabled()) && !have.some((l) => l.standing_slot === s.slot));
+  const missing = STANDING_SLOTS.filter((s) => slotEnabled(s, revealEnabled(), setupEnabled()) && !have.some((l) => l.standing_slot === s.slot));
   for (const s of missing) {
     const host = pickBots(s.slot, 1, new Set())[0];
     const res = await service()
       .from(LOBBIES)
       .upsert(
-        { code: generateLobbyCode(), host_id: host.userId, name: s.name, game: s.game, root: s.root, targets: s.targets, seed: generateSeed(), listed: true, rounds: s.rounds, round_seconds: s.roundSeconds, ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}), standing_slot: s.slot, created_at: new Date(now).toISOString() },
+        { code: generateLobbyCode(), host_id: host.userId, name: s.name, game: s.game, root: s.root, targets: s.targets, seed: generateSeed(), listed: true, rounds: s.rounds, round_seconds: s.roundSeconds, ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}), ...(setupEnabled() ? { playlist: s.playlist ?? [s.game], mix: s.mix === true } : {}), standing_slot: s.slot, created_at: new Date(now).toISOString() },
         { onConflict: "standing_slot", ignoreDuplicates: true },
       )
       .select(LOBBY_COLS);

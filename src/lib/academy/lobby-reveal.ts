@@ -26,5 +26,11 @@ export function revealEntries(row: Pick<LobbyPromptRow, "mode" | "lang" | "choic
       return entry(t.lang, t.form, root, lookup, right.has(i), right.has(i) ? item : null);
     });
   }
+  if (row.mode === "mixed") {
+    return row.choices.map((key) => {
+      const t = parseTile(key);
+      return entry(t.lang, t.form, root, lookup, key === row.answer, key === row.answer ? item : null);
+    });
+  }
   return row.choices.map((c) => entry(row.lang, c, root, lookup, c === row.answer, c === row.answer ? item : null));
 }
