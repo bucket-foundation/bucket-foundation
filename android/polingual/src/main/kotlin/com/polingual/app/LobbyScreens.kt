@@ -134,7 +134,7 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
     val scope = rememberCoroutineScope()
     var now by remember { mutableLongStateOf(graph.lobbies.nowMs) }
     var error by remember { mutableStateOf<String?>(null) }
-    LaunchedEffect(lobby.id) { graph.lobbies.follow() }
+    LaunchedEffect(lobby.id) { graph.ads.enteredGame(); graph.lobbies.follow() }
     LaunchedEffect(Unit) { while (true) { now = graph.lobbies.nowMs; delay(200) } }
     val phase = foundation.bucket.core.model.LobbyClock.phase(lobby, now)
     val finished = phase == LobbyPhase.Finished

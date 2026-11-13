@@ -70,6 +70,8 @@ class Ads(private val context: Context, private val graph: Graph) {
         })
     }
 
+    fun enteredGame() { pending = false }
+
     fun gameFinished() {
         gamesFinished += 1
         pending = true

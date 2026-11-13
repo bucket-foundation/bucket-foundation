@@ -82,6 +82,7 @@ data class GameContext(val system: LangSystem, val app: AppState, val corpus: La
 fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composable (GameContext) -> Unit) {
     var ctx by remember { mutableStateOf<GameContext?>(null) }
     LaunchedEffect(Unit) {
+        graph.ads.enteredGame()
         val app = graph.store.current()
         val system = app.system ?: return@LaunchedEffect
         val corpus = graph.corpus.load()

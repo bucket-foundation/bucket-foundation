@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "bucket-android"
-include(":core:model", ":core:engine", ":core:net", ":core:auth", ":core:data", ":core:ui", ":polingual")
+include(":core:model", ":core:engine", ":core:net", ":core:auth", ":core:data", ":core:ui", ":polingual", ":bucket")
