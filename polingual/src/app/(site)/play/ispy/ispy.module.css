@@ -28,3 +28,6 @@
 .reveal{display:grid;gap:12px}
 .revealRow{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .setup{display:flex;flex-wrap:wrap;gap:8px}
+.preview{position:relative;rotate:-1deg}
+.preview .thing{cursor:default}
+.previewTag{position:absolute;left:16px;bottom:-12px;z-index:4;background:#F6EEDC;color:#5B1A4A;border:2px solid #231F20;border-radius:999px;padding:4px 12px;font-family:"Space Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.06em;box-shadow:0 3px 0 #231F20}
