@@ -2,15 +2,15 @@ import { FLAGS } from "@/lib/flags";
 import { Avatar, Coins, Flag, Shape, TierBadge } from "../play-kit/parts";
 import { ANSWER_COLORS, TIERS, type Look } from "../play-kit/tokens";
 import { Badge, Button, Card, Pill } from "@/ui";
-import { Icon } from "@/ui/icons";
-import IconGrid from "./IconGrid";
+import { Art } from "@/ui/art";
+import ArtGrid from "./ArtGrid";
 import MotionDemo from "./MotionDemo";
 import styles from "./brand.module.css";
 import s from "./kit.module.css";
 
 export const SECTIONS = [
   ["intro", "Introduction"], ["principles", "Principles"], ["language", "Language"], ["logo", "Logo"], ["color", "Color"], ["type", "Typography"],
-  ["icons", "Iconography"], ["illustration", "Illustration"], ["imagery", "Imagery"], ["avatar", "Avatar"], ["motion", "Motion"], ["components", "Components"], ["downloads", "Downloads"],
+  ["icons", "Artwork"], ["illustration", "Illustration"], ["imagery", "Imagery"], ["avatar", "Avatar"], ["motion", "Motion"], ["components", "Components"], ["downloads", "Downloads"],
 ] as const;
 
 export function SideNav() {
@@ -104,21 +104,21 @@ export function Icons() {
   return (
     <section id="icons" className={styles.section}>
       <div className={styles.wrap}>
-        <div className={styles.label}>Iconography</div>
-        <h2 className={styles.h2}>Chunky icons, ink outlines</h2>
-        <p className={styles.lede}>Flat palette fills inside a 2 unit ink outline on a 24 unit grid, the same hand as the landing page pieces. Round joins, round caps, no gradients. Tap Copy for the SVG source or SVG to save the file.</p>
+        <div className={styles.label}>Artwork</div>
+        <h2 className={styles.h2}>Pieces from the hero</h2>
+        <p className={styles.lede}>Every piece on the homepage hero, drawn once as SVG: tickets, seals, weaves, tiles and scripts from the languages we teach. Save one piece or the full sheet.</p>
         <div className={s.cards}>
-          <Card><Icon name="flame" size={40} /><h3 className={s.cardTitle}>Palette fills</h3><p className={s.cardText}>Fill with brand colors only. Ink #231F20 draws every outline.</p></Card>
-          <Card><Icon name="settings" size={40} /><h3 className={s.cardTitle}>24 unit grid</h3><p className={s.cardText}>Draw inside 2 to 22. The stroke is 2 units, 3 px at 36 px.</p></Card>
-          <Card><Icon name="chat" size={40} /><h3 className={s.cardTitle}>Emoji in chat</h3><p className={s.cardText}>Emoji sit in chat and reactions only. Navigation and buttons use these icons.</p></Card>
-          <Card><Icon name="speaker" size={40} /><h3 className={s.cardTitle}>Label every icon</h3><p className={s.cardText}>An icon button carries an aria-label. Answer shapes match between TV and phone.</p></Card>
+          <Card><Art name="streak-flame" size={40} /><h3 className={s.cardTitle}>Palette fills</h3><p className={s.cardText}>Fill with brand colors only. Ink #231F20 draws every outline at 3 px.</p></Card>
+          <Card><Art name="star" size={40} /><h3 className={s.cardTitle}>Hard shadows</h3><p className={s.cardText}>Pieces drop a flat 6 by 8 px shadow at 35% black. No blur.</p></Card>
+          <Card><Art name="seal" size={40} /><h3 className={s.cardTitle}>Real scripts</h3><p className={s.cardText}>Words on the pieces come from real languages: 百, शतम्, ἑκατόν, сто.</p></Card>
+          <Card><Art name="ticket" size={40} /><h3 className={s.cardTitle}>Tilt and scatter</h3><p className={s.cardText}>Set pieces at -12 to 12 degrees and let them overlap the edge.</p></Card>
         </div>
         <div className={s.avatars}>
           {ANSWER_COLORS.map((a) => (
             <div key={a.hex} className={s.shape} style={{ background: a.hex }}><Shape shape={a.shape} size={40} /></div>
           ))}
         </div>
-        <IconGrid />
+        <ArtGrid />
       </div>
     </section>
   );
@@ -176,9 +176,9 @@ export function Illustration() {
           </Card>
           <Card>
             <div className={s.illus} style={{ background: "#EBDDBE", display: "flex", alignItems: "center", justifyContent: "space-around" }}>
-              <Icon name="burst" size={84} />
-              <Icon name="brush" size={96} />
-              <Icon name="bunting" size={84} />
+              <Art name="star" size={84} />
+              <Art name="brush" size={96} />
+              <Art name="bunting" size={84} />
             </div>
             <h3 className={s.cardTitle}>Landing pieces</h3>
             <p className={s.cardText}>Star bursts, ochre brush strokes and bunting in flat fills with a 3 px ink line and a hard 6 by 8 drop shadow.</p>
@@ -214,8 +214,8 @@ export function Components() {
             <div className={s.word}><small><Flag lang="es" size={12} /> SPANISH</small><b>perro</b><em>/ˈpero/ · dog</em></div>
             <h3 className={s.cardTitle}>Learn word card</h3><p className={s.cardText}>White card, Space Mono language label, the word in Fredoka, reading and meaning below.</p>
           </Card>
-          <Card><Button icon={<Icon name="play" size={20} />}>Play now</Button><h3 className={s.cardTitle}>Primary button</h3><p className={s.cardText}>Vermilion with a #8E2312 lip. One per screen.</p></Card>
-          <Card><Button variant="ghost" size="md" icon={<Icon name="users" size={20} />}>Invite</Button><h3 className={s.cardTitle}>Ghost button</h3><p className={s.cardText}>Tyrian 2 px line for the second action.</p></Card>
+          <Card><Button>Play now</Button><h3 className={s.cardTitle}>Primary button</h3><p className={s.cardText}>Vermilion with a #8E2312 lip. One per screen.</p></Card>
+          <Card><Button variant="ghost" size="md">Invite</Button><h3 className={s.cardTitle}>Ghost button</h3><p className={s.cardText}>Tyrian 2 px line for the second action.</p></Card>
           <Card><div style={{ display: "flex", gap: 8 }}><Pill active>Flags</Pill><Pill>Tiles</Pill></div><h3 className={s.cardTitle}>Pill</h3><p className={s.cardText}>Choices and filters. Selected fills tyrian.</p></Card>
           <Card><div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}><Coins n={1340} /><TierBadge tier={4} /><Badge tone="malachite">New</Badge></div><h3 className={s.cardTitle}>Coins, tiers, badges</h3><p className={s.cardText}>The coin chip opens the shop. The tier badge shows the weekly league.</p></Card>
           <Card><span className={s.code}>K7M2QX</span><h3 className={s.cardTitle}>Room code</h3><p className={s.cardText}>Space Mono, 0.18 em tracking, six characters with no I, L, O or U.</p></Card>
