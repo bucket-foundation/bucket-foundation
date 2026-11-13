@@ -41,8 +41,22 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
     val state by graph.lobbies.state.collectAsState()
     val scope = rememberCoroutineScope()
     val schedule = remember(prompt) { LobbyTiles.schedule(prompt.choices.size, index, lobby.rounds, lobby.roundSeconds) }
-    var tapped by remember(index) { mutableStateOf(emptySet<Int>()) }
-    val elapsed = ((lobby.roundSeconds - remaining) * 1000).toLong()
+    val picked = state.picks[index]?.let { LobbyTiles.parseTapped(it, prompt.choices.size) }?.toSet()
+    var local by remember(index) { mutableStateOf(emptySet<Int>()) }
+    val tapped = picked ?: local
+    val tickElapsed = ((lobby.roundSeconds - remaining) * 1000).toLong()
+    val startedAt = lobby.startedAt?.let { foundation.bucket.core.model.parseInstantMs(it) }
+    val roundStart = startedAt?.let { LobbyTiles.roundStartMs(index, it, lobby.roundSeconds, lobby.revealSeconds) }
+    var frameElapsed by remember(index) { mutableStateOf(tickElapsed) }
+    LaunchedEffect(index, roundStart, reveal) {
+        if (roundStart == null || reveal) return@LaunchedEffect
+        while (true) {
+            androidx.compose.runtime.withFrameMillis { }
+            frameElapsed = System.currentTimeMillis() + state.offsetMs - roundStart
+            if (frameElapsed > lobby.roundSeconds * 1000L) break
+        }
+    }
+    val elapsed = if (roundStart != null && !reveal) frameElapsed else tickElapsed
     val submitted = state.picks[index] != null
     LaunchedEffect(elapsed >= LobbyTiles.submitAtMs(lobby.roundSeconds), reveal) {
         if (!submitted && !reveal && elapsed >= LobbyTiles.submitAtMs(lobby.roundSeconds)) graph.lobbies.pick(LobbyTiles.tappedChoice(tapped), index)
@@ -52,10 +66,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
     val right = prompt.answer?.split(',')?.filter { it.isNotEmpty() }?.map { it.toInt() }?.toSet().orEmpty()
     BoxWithConstraints(Modifier.fillMaxWidth().height(340.dp).clip(RoundedCornerShape(16.dp)).background(PL.Tyrian)) {
         val laneW = maxWidth / LobbyTiles.LANES
-        schedule.forEach { slot ->
-            val p = ((elapsed - slot.spawnMs).toDouble() / slot.fallMs).toFloat()
-            val show = reveal || (p in 0f..1f && slot.index !in tapped)
-            if (!show || slot.index >= prompt.choices.size) return@forEach
+        LobbyTiles.visible(schedule, prompt.choices.size, elapsed, tapped, reveal).forEach { (slot, p) ->
             val t = LobbyTiles.parse(prompt.choices[slot.index])
             val y = if (reveal) (slot.index / LobbyTiles.LANES) * 70f else p * 280f
             val tone = when {
@@ -74,7 +85,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
             Box(
                 Modifier.weight(1f).height(56.dp).clip(RoundedCornerShape(12.dp)).background(PL.Lapis)
                     .clickable(enabled = !reveal && !submitted, role = Role.Button, onClickLabel = "Lane ${lane + 1}") {
-                        LobbyTiles.laneTarget(prompt.choices, schedule, lane, elapsed, tapped)?.let { tapped = tapped + it }
+                        LobbyTiles.laneTarget(prompt.choices, schedule, lane, elapsed, tapped)?.let { local = local + it }
                     },
                 contentAlignment = Alignment.Center,
             ) { Text("Lane ${lane + 1}", style = Type.small, color = PL.Paper) }
