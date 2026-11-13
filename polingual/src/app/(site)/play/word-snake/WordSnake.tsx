@@ -14,6 +14,7 @@ import { useAdsVisible } from "../AdsContext";
 import { LANG_CHOICES, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import styles from "../play.module.css";
+import { Button, ButtonLink, Pill } from "@/ui";
 
 const ROUND_MS = 120_000;
 const COLORS = ["#3B6FB6", "#E9A23B", "#7A4FA0", "#2E8B57", "#C2410C"];
@@ -200,15 +201,15 @@ export default function WordSnake() {
         </section>
         <div className={styles.chips} role="group" aria-label="Room language">
           {LANG_CHOICES.slice(0, 10).map((l) => (
-            <button key={l} type="button" className={styles.chip} aria-pressed={lang === l} onClick={() => setLang(l)} data-testid={`ws-lang-${l}`}>
+            <Pill key={l} aria-pressed={lang === l} onClick={() => setLang(l)} data-testid={`ws-lang-${l}`}>
               <FlagSquare lang={l} size={18} />
               {langName(l)}
-            </button>
+            </Pill>
           ))}
         </div>
         <div className={app.row}>
-          <button type="button" className={app.cta} onClick={() => void start()} data-testid="ws-start">Play</button>
-          <a className={app.ghost} href="/play">Lobbies</a>
+          <Button onClick={() => void start()} data-testid="ws-start">Play</Button>
+          <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
         </div>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
@@ -235,7 +236,7 @@ export default function WordSnake() {
         <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
           <div className={styles.interstitialBox}>
             <Ad placement="interstitial" testId="ad-interstitial" />
-            <button type="button" className={app.cta} onClick={() => setInterstitial(false)}>Close</button>
+            <Button onClick={() => setInterstitial(false)}>Close</Button>
           </div>
         </div>
       ) : null}
@@ -247,12 +248,12 @@ export default function WordSnake() {
         rewarded ? (
           <>
             <Ad placement="rewarded" testId="ad-rewarded" />
-            <button type="button" className={app.cta} onClick={respawn} data-testid="ws-respawn-claim">Respawn at this size</button>
+            <Button onClick={respawn} data-testid="ws-respawn-claim">Respawn at this size</Button>
           </>
         ) : (
           <div className={app.row}>
-            <button type="button" className={app.ghost} onClick={() => setRewarded(true)} data-testid="ws-respawn-offer">Watch an ad to respawn</button>
-            <button type="button" className={app.cta} onClick={() => setPhase("over")} data-testid="ws-end">See results</button>
+            <Button variant="ghost" size="md" onClick={() => setRewarded(true)} data-testid="ws-respawn-offer">Watch an ad to respawn</Button>
+            <Button onClick={() => setPhase("over")} data-testid="ws-end">See results</Button>
           </div>
         )
       ) : null}
@@ -283,9 +284,9 @@ export default function WordSnake() {
         ) : null}
       </section>
       <div className={app.row}>
-        <button type="button" className={app.cta} onClick={() => void start()} data-testid="ws-again">Play again</button>
-        <a className={app.ghost} href={LEARN_HREF}>Learn these words</a>
-        <button type="button" className={app.link} onClick={() => setPhase("setup")}>Change language</button>
+        <Button onClick={() => void start()} data-testid="ws-again">Play again</Button>
+        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
+        <Button variant="quiet" size="sm" onClick={() => setPhase("setup")}>Change language</Button>
       </div>
       {phase === "over" && readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
     </div>

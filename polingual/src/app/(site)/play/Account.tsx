@@ -7,6 +7,7 @@ import { accountCta, entitlementOf, type Entitlement } from "@/lib/lobby/ads";
 import SignIn from "../app/SignIn";
 import app from "../app/app.module.css";
 import styles from "./play.module.css";
+import { Button, ButtonLink } from "@/ui";
 
 type AccountState = { entitlement: Entitlement | "checking"; openSignIn: () => void };
 
@@ -48,7 +49,7 @@ export function AccountProvider({ entitlement, children }: { entitlement: Entitl
       {open ? (
         <div className={styles.sheetBack} role="dialog" aria-modal="true" aria-label="Sign in" data-testid="sign-in-sheet" onClick={(e) => e.target === e.currentTarget && setOpen(false)}>
           <div className={styles.sheet}>
-            <button type="button" className={styles.sheetClose} onClick={() => setOpen(false)} aria-label="Close">×</button>
+            <Button variant="quiet" size="md" iconOnly className={styles.sheetClose} onClick={() => setOpen(false)} aria-label="Close">×</Button>
             <SignIn copy={GAMES_COPY} onSignedIn={() => window.location.reload()} />
           </div>
         </div>
@@ -63,10 +64,10 @@ export function AccountCta() {
   return (
     <div className={styles.accountCta} data-testid="account-cta" data-state={entitlement}>
       {cta.signIn ? (
-        <button type="button" className={app.link} onClick={openSignIn} data-testid="sign-in">Sign in</button>
+        <Button variant="quiet" size="sm" onClick={openSignIn} data-testid="sign-in">Sign in</Button>
       ) : null}
       {cta.learn ? (
-        <a href={cta.learn.href} className={styles.ctaPill} data-testid="start-learning">{cta.learn.label}</a>
+        <ButtonLink href={cta.learn.href} size="sm" data-testid="start-learning">{cta.learn.label}</ButtonLink>
       ) : null}
     </div>
   );

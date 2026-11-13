@@ -2,6 +2,7 @@ import Header from "../Header";
 import { COUNTERS, FEED, FRIENDS, GROUPS, ROOMS } from "../mock";
 import { Avatar, Flag } from "../../../play-kit/parts";
 import s from "../design.module.css";
+import { ButtonLink, Card, buttonClass } from "@/ui";
 
 const GAME_TILES = [
   { name: "Flags", blurb: "Name the language", color: "#D9381E" },
@@ -30,9 +31,9 @@ export default function HomeMock() {
             ))}
           </div>
           <div className={s.row} style={{ position: "relative", zIndex: 1 }}>
-            <a href="/design/play/lobby" className={s.cta}>Quick play</a>
-            <a href="/design/play/lobby" className={s.ghost} style={{ borderColor: "var(--parchment)", color: "var(--parchment)" }}>Start a game</a>
-            <a href="/design/play/controller" className={s.ghost} style={{ borderColor: "var(--parchment)", color: "var(--parchment)" }}>Join with code</a>
+            <ButtonLink href="/design/play/lobby">Quick play</ButtonLink>
+            <ButtonLink href="/design/play/lobby" variant="ghost" size="md" style={{ borderColor: "var(--parchment)", color: "var(--parchment)" }}>Start a game</ButtonLink>
+            <ButtonLink href="/design/play/controller" variant="ghost" size="md" style={{ borderColor: "var(--parchment)", color: "var(--parchment)" }}>Join with code</ButtonLink>
           </div>
         </section>
 
@@ -45,10 +46,10 @@ export default function HomeMock() {
           ))}
         </section>
 
-        <section className={s.card}>
+        <Card as="section">
           <div className={s.between}>
             <h2>Friends playing</h2>
-            <a href="/design/play/profile" className={s.ghost}>Invite</a>
+            <ButtonLink href="/design/play/profile" variant="ghost" size="md">Invite</ButtonLink>
           </div>
           <div className={s.friends} style={{ marginTop: 12 }}>
             {FRIENDS.map((f) => (
@@ -56,14 +57,14 @@ export default function HomeMock() {
                 <Avatar look={f.look} size={64} bounce={f.online} />
                 <div className={s.row} style={{ gap: 6, justifyContent: "center" }}><Flag lang={f.lang} size={12} /><b>{f.handle}</b></div>
                 <small>{f.online ? f.where : "Offline"}</small>
-                {f.online && <a href="/design/play/lobby" className={s.chip} style={{ padding: "4px 12px" }}>Join</a>}
+                {f.online && <ButtonLink href="/design/play/lobby" variant="secondary" size="sm">Join</ButtonLink>}
               </div>
             ))}
           </div>
-        </section>
+        </Card>
 
         <div className={s.grid2}>
-          <section className={s.card}>
+          <Card as="section">
             <div className={s.between}><h2>Rooms filling</h2><span className={s.mono}>37 open</span></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 12 }}>
               {ROOMS.map((r) => (
@@ -78,9 +79,9 @@ export default function HomeMock() {
                 </a>
               ))}
             </div>
-          </section>
+          </Card>
 
-          <section className={s.card}>
+          <Card as="section">
             <h2>Happening now</h2>
             <ul className={s.feed} style={{ marginTop: 12 }}>
               {FEED.map((e, i) => (
@@ -92,25 +93,25 @@ export default function HomeMock() {
                 </li>
               ))}
             </ul>
-          </section>
+          </Card>
         </div>
 
-        <section className={s.card}>
-          <div className={s.between}><h2>My groups</h2><a href="/design/play/lobby" className={s.ghost}>Play with a group</a></div>
+        <Card as="section">
+          <div className={s.between}><h2>My groups</h2><ButtonLink href="/design/play/lobby" variant="ghost" size="md">Play with a group</ButtonLink></div>
           <div className={s.opts} style={{ marginTop: 12 }}>
             {GROUPS.map((g) => (
-              <a key={g.name} href="/design/play/lobby" className={s.opt} style={{ textDecoration: "none", borderColor: g.color }}>
+              <a key={g.name} href="/design/play/lobby" className={buttonClass({ variant: "secondary", size: "md", className: s.opt })} style={{ "--b-line": g.color } as import("react").CSSProperties}>
                 <b>{g.name}</b>
                 <span>{g.members} members, {g.online} online</span>
                 <span className={s.mono} style={{ color: g.color }}>You are #{g.rank} this week</span>
               </a>
             ))}
           </div>
-        </section>
+        </Card>
 
-        <div className={s.card} style={{ minHeight: 90, display: "grid", placeItems: "center", borderStyle: "dashed", background: "rgba(255,255,255,.5)" }}>
+        <Card style={{ minHeight: 90, display: "grid", placeItems: "center", borderStyle: "dashed", background: "rgba(255,255,255,.5)" }}>
           <span className={s.mono} style={{ fontSize: 12, color: "var(--ink-2)" }}>AD SLOT, FREE TIER ONLY</span>
-        </div>
+        </Card>
       </main>
     </>
   );

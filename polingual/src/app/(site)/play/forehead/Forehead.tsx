@@ -15,6 +15,7 @@ import { LANG_CHOICES, LANG_SETS, langName } from "../langs";
 import { entryReading, FlagSquare } from "../LearnWord";
 import { PlayTile } from "../../word/Speak";
 import styles from "../play.module.css";
+import { Button, ButtonLink, Pill } from "@/ui";
 
 type Phase = "setup" | "count" | "play" | "done";
 type Result = { card: ForeheadCard; got: boolean };
@@ -157,16 +158,16 @@ export default function Forehead() {
           <span className={app.fieldLabel}>Languages on the cards</span>
           <div className={styles.chips}>
             {LANG_CHOICES.map((l) => (
-              <button key={l} type="button" className={styles.chip} aria-pressed={langs.includes(l)} onClick={() => setLangs((xs) => (xs.includes(l) ? xs.filter((x) => x !== l) : xs.length >= 6 ? xs : [...xs, l]))} data-testid={`fh-lang-${l}`}>
+              <Pill key={l} aria-pressed={langs.includes(l)} onClick={() => setLangs((xs) => (xs.includes(l) ? xs.filter((x) => x !== l) : xs.length >= 6 ? xs : [...xs, l]))} data-testid={`fh-lang-${l}`}>
                 <FlagSquare lang={l} size={18} />
                 {langName(l)}
-              </button>
+              </Pill>
             ))}
           </div>
         </div>
         <div className={app.row}>
-          <button type="button" className={app.cta} disabled={langs.length === 0} onClick={() => void start()} data-testid="fh-start">Start round</button>
-          <a className={app.ghost} href="/play">Lobbies</a>
+          <Button disabled={langs.length === 0} onClick={() => void start()} data-testid="fh-start">Start round</Button>
+          <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
         </div>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
@@ -235,9 +236,9 @@ export default function Forehead() {
         ))}
       </ul>
       <div className={app.row}>
-        <button type="button" className={app.cta} onClick={() => void start()} data-testid="fh-again">Play again</button>
-        <a className={app.ghost} href={LEARN_HREF}>Learn these words</a>
-        <button type="button" className={app.link} onClick={() => setPhase("setup")}>Change languages</button>
+        <Button onClick={() => void start()} data-testid="fh-again">Play again</Button>
+        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
+        <Button variant="quiet" size="sm" onClick={() => setPhase("setup")}>Change languages</Button>
       </div>
       {showAd ? <Ad placement="results" /> : null}
     </div>

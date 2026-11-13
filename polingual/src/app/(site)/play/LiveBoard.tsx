@@ -2,6 +2,7 @@
 
 import { botLabel, flagEmoji, ranked, type WebLobbyState } from "@/lib/lobby/client";
 import styles from "./play.module.css";
+import { Avatar } from "@/ui/avatar";
 
 const ROW = 40;
 
@@ -15,6 +16,7 @@ export default function LiveBoard({ players, live }: { players: WebLobbyState["p
         <li key={p.userId} className={styles.boardRow} data-me={p.isMe} data-answered={live && p.answered} style={{ transform: `translateY(${(at.get(p.userId) ?? 0) * ROW}px)` }} data-testid="board-row">
           <span className={styles.boardRank}>{p.rank}</span>
           <span className={styles.boardName}>
+            <Avatar seed={p.name} size="chip" variant="head" label="" />
             {p.flag ? <span aria-hidden="true">{flagEmoji(p.flag)} </span> : null}
             {p.isMe ? "You" : p.name}
             {p.bot ? <span className={styles.tag} data-testid="bot-tag"> {botLabel(p)}</span> : null}

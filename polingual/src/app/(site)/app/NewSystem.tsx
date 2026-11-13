@@ -6,6 +6,7 @@ import { LANGS, langName, MAX_TARGETS, validateSystem, type LangSystem, type Sys
 import type { SaveResult } from "@academy/lang-client";
 import { appHref, presetsFor, ROOT_CHOICES, targetChoices, toggleTarget } from "@/lib/app/systems";
 import styles from "./app.module.css";
+import { Button, Pill } from "@/ui";
 
 const ERROR_TEXT: Record<SystemError, string> = {
   "no-targets": "Pick at least one language to learn.",
@@ -58,9 +59,9 @@ export default function NewSystem({ first = false, systems = [], create }: { fir
         <p className={styles.fieldLabel}>Presets</p>
         <div className={styles.chips}>
           {presets.map((p) => (
-            <button key={p.targets.join("-")} type="button" className={styles.preset} aria-pressed={p.targets.length === targets.length && p.targets.every((t) => targets.includes(t))} onClick={() => { setTargets(p.targets); setError(null); }} data-testid="preset">
+            <Pill key={p.targets.join("-")} aria-pressed={p.targets.length === targets.length && p.targets.every((t) => targets.includes(t))} onClick={() => { setTargets(p.targets); setError(null); }} data-testid="preset">
               {p.name} <span className={styles.level}>{p.targets.map(langName).join(", ")}</span>
-            </button>
+            </Pill>
           ))}
         </div>
       </div>
@@ -68,16 +69,16 @@ export default function NewSystem({ first = false, systems = [], create }: { fir
         <p className={styles.fieldLabel}>Favorite languages <span className={styles.level}>{targets.length} of {MAX_TARGETS}</span></p>
         <div className={styles.chips}>
           {choices.map((c) => (
-            <button key={c.code} type="button" lang={LANGS[c.code]?.bcp47} className={styles.pick} aria-pressed={targets.includes(c.code)} onClick={() => { setTargets((t) => toggleTarget(t, c.code, root)); setError(null); }} data-testid={`lang-${c.code}`}>
+            <Pill key={c.code} lang={LANGS[c.code]?.bcp47} aria-pressed={targets.includes(c.code)} onClick={() => { setTargets((t) => toggleTarget(t, c.code, root)); setError(null); }} data-testid={`lang-${c.code}`}>
               {c.name}
-            </button>
+            </Pill>
           ))}
         </div>
       </div>
       {error ? <p role="alert" className={styles.error} data-testid="system-error">{error}</p> : null}
-      <button type="button" className={styles.cta} disabled={busy} onClick={submit} data-testid="create-system">
+      <Button disabled={busy} onClick={submit} data-testid="create-system">
         {busy ? "Saving" : "Continue to placement"}
-      </button>
+      </Button>
     </section>
   );
 }

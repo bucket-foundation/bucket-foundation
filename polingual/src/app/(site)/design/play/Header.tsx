@@ -12,7 +12,7 @@ export default function Header() {
       <div className={s.barRight}>
         <TierBadge tier={ME.tier} small />
         <a href="/design/play/shop" className={s.coins} aria-label={`${ME.coins} coins, open shop`}><span className={s.coin} aria-hidden />{ME.coins.toLocaleString("en-US")}</a>
-        <a href="/design/play/profile" aria-label="Profile"><Avatar look={ME.look} size={36} /></a>
+        <a href="/design/play/profile" aria-label="Profile"><Avatar look={ME.look} size={36} variant="head" /></a>
       </div>
     </header>
   );

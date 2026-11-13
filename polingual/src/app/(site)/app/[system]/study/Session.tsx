@@ -8,6 +8,7 @@ import { appHref } from "@/lib/app/systems";
 import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
 import styles from "../../app.module.css";
+import { Button, ButtonLink, Card } from "@/ui";
 
 export default function Session({ systemId }: { systemId: string }) {
   const h = useLangSystem(systemId);
@@ -18,27 +19,27 @@ export default function Session({ systemId }: { systemId: string }) {
   if (h.status === "error") return <p className={styles.error}>The session did not load. Reload the page to try again.</p>;
   if (!system || !corpus || !s.queue) {
     return (
-      <section className={styles.card}>
+      <Card as="section" className={styles.card}>
         <h1 className={styles.title}>No such language system</h1>
-        <Link className={styles.ghost} href={appHref.home}>Your systems</Link>
-      </section>
+        <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
+      </Card>
     );
   }
 
   if (s.queue.length === 0) {
     return (
-      <section className={styles.card} data-testid="session-empty">
+      <Card as="section" className={styles.card} data-testid="session-empty">
         <p className={styles.label}>{system.name}</p>
         <h1 className={styles.title}>All done for today</h1>
         <p className={styles.body}>You met today&apos;s new words in every language and nothing is due. Come back tomorrow.</p>
-        <Link className={styles.cta} href={appHref.home}>Your systems</Link>
-      </section>
+        <ButtonLink href={appHref.home}>Your systems</ButtonLink>
+      </Card>
     );
   }
 
   if (s.i >= s.queue.length || !s.ex) {
     return (
-      <section className={styles.card} data-testid="session-done">
+      <Card as="section" className={styles.card} data-testid="session-done">
         <p className={styles.label}>{system.name}</p>
         <h1 className={styles.title}>Session done</h1>
         <p className={styles.body} data-testid="session-score">
@@ -46,10 +47,10 @@ export default function Session({ systemId }: { systemId: string }) {
         </p>
         <StreakCard card={streakCard([state], Date.now())} />
         <div className={`${styles.row} ${styles.gapTop}`}>
-          <button type="button" className={styles.cta} onClick={s.restart}>Another round</button>
-          <Link className={styles.ghost} href={appHref.home}>Your systems</Link>
+          <Button onClick={s.restart}>Another round</Button>
+          <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
         </div>
-      </section>
+      </Card>
     );
   }
 
@@ -71,7 +72,7 @@ export default function Session({ systemId }: { systemId: string }) {
         </ReadingsContext.Provider>
       </div>
       <div className={styles.sessionFoot}>
-        <button type="button" className={styles.link} onClick={s.skip} data-testid="skip-exercise">Skip this one</button>
+        <Button variant="quiet" size="sm" onClick={s.skip} data-testid="skip-exercise">Skip this one</Button>
         <label className={styles.toggle}>
           <input type="checkbox" checked={s.readings} onChange={(e) => s.showReadings(e.target.checked)} data-testid="readings-toggle" />
           Readings and IPA

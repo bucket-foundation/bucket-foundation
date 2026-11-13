@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ADS } from "@/lib/lobby/ads";
 import app from "../app/app.module.css";
 import styles from "./play.module.css";
+import { Button } from "@/ui";
 
 export const CONSENT_KEY = "polingual-web/ad-consent/v1";
 
@@ -35,8 +36,8 @@ export default function Consent({ required }: { required: boolean }) {
         Free games run on ads. We and our ad partners use cookies to show and measure them. Pick whether ads may be personalized. <a href="/privacy">Privacy</a>
       </p>
       <div className={app.row}>
-        <button type="button" className={app.ghost} onClick={() => pick("personalized")} data-testid="consent-accept">Accept</button>
-        <button type="button" className={app.ghost} onClick={() => pick("non-personalized")} data-testid="consent-reject">Only necessary</button>
+        <Button variant="ghost" size="md" onClick={() => pick("personalized")} data-testid="consent-accept">Accept</Button>
+        <Button variant="ghost" size="md" onClick={() => pick("non-personalized")} data-testid="consent-reject">Only necessary</Button>
       </div>
     </section>
   );

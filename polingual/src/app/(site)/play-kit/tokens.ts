@@ -1,4 +1,4 @@
-export type Look = { body: string; face: "smile" | "grin" | "wow" | "cool"; hat: "none" | "beret" | "crown" | "cap" | "sombrero"; outfit: "plain" | "scarf" | "cape" | "stripe"; plinth: string };
+export type { Look } from "@/ui/avatar";
 
 export const TIERS = [
   { name: "Parchment", color: "#EBDDBE", ink: "#3A0F2F" },

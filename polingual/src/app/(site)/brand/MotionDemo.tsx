@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "@/ui";
 import s from "./kit.module.css";
 
 export default function MotionDemo() {
@@ -31,7 +32,7 @@ export default function MotionDemo() {
         <h3>Rank slide, 300 ms</h3>
         <p>Leaderboard rows slide to their new place.</p>
       </div>
-      <button className={s.cta} onClick={() => setRun(run + 1)}>Replay</button>
+      <Button onClick={() => setRun(run + 1)}>Replay</Button>
     </div>
   );
 }

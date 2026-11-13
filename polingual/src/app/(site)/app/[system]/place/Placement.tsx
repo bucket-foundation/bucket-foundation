@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { langName } from "@academy/lang-systems";
 import { levelLabel } from "@academy/placement-cefr";
 import { useLangSystem } from "@learn/languages/useLangSystem";
@@ -8,6 +7,7 @@ import { useCefrPlacement } from "@learn/languages/useCefrPlacement";
 import LangExercise from "@learn/languages/LangExercise";
 import { appHref } from "@/lib/app/systems";
 import styles from "../../app.module.css";
+import { Button, ButtonLink, Card } from "@/ui";
 
 export default function Placement({ systemId, lang: requested }: { systemId: string; lang: string | null }) {
   const h = useLangSystem(systemId);
@@ -18,10 +18,10 @@ export default function Placement({ systemId, lang: requested }: { systemId: str
   if (h.status === "error") return <p className={styles.error}>Placement did not load. Reload the page to try again.</p>;
   if (!system || !run.lang) {
     return (
-      <section className={styles.card}>
+      <Card as="section" className={styles.card}>
         <h1 className={styles.title}>No such language system</h1>
-        <Link className={styles.ghost} href={appHref.home}>Your systems</Link>
-      </section>
+        <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
+      </Card>
     );
   }
   const lang = run.lang;
@@ -31,7 +31,7 @@ export default function Placement({ systemId, lang: requested }: { systemId: str
     const known = run.result.placeIds.length;
     const level = levelLabel(run.result);
     return (
-      <section className={styles.card} data-testid="placement-done" data-level={run.result.level}>
+      <Card as="section" className={styles.card} data-testid="placement-done" data-level={run.result.level}>
         <p className={styles.label}>Placement · {langName(lang)}</p>
         <h1 className={styles.title}>Level {level}</h1>
         <p className={styles.body}>
@@ -48,28 +48,28 @@ export default function Placement({ systemId, lang: requested }: { systemId: str
         {h.saveState === "local-only" || h.saveState === "failed" ? <p className={styles.small}>Saved on this device. It syncs when the connection comes back.</p> : null}
         <div className={styles.row}>
           {nextLang ? (
-            <Link className={styles.cta} href={appHref.place(system.id, nextLang)}>Place {langName(nextLang)}</Link>
+            <ButtonLink href={appHref.place(system.id, nextLang)}>Place {langName(nextLang)}</ButtonLink>
           ) : (
-            <Link className={styles.cta} href={appHref.study(system.id)}>Start today</Link>
+            <ButtonLink href={appHref.study(system.id)}>Start today</ButtonLink>
           )}
-          <Link className={styles.ghost} href={appHref.home}>Your systems</Link>
+          <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
         </div>
-      </section>
+      </Card>
     );
   }
 
   if (!run.question) return <p className={styles.muted} aria-busy="true">Picking the next question</p>;
 
   return (
-    <section className={`${styles.card} ${styles.wide}`} data-testid="placement">
+    <Card as="section" className={`${styles.card} ${styles.wide}`} data-testid="placement">
       <p className={styles.label}>Placement · {langName(system.root)} to {langName(lang)}</p>
       <p className={styles.small} data-testid="counter">Question {run.answers.length + 1} · level {run.band}</p>
       <div className={styles.exercise}>
         <LangExercise key={`${run.answers.length}`} ex={run.question.ex} optionReadings={run.readings} onDone={(r) => run.answer(r.every((x) => x.rating > 1))} />
       </div>
-      <button type="button" className={styles.link} onClick={() => run.answer(false)} data-testid="skip">
+      <Button variant="quiet" size="sm" onClick={() => run.answer(false)} data-testid="skip">
         I do not know
-      </button>
-    </section>
+      </Button>
+    </Card>
   );
 }

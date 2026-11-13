@@ -5,15 +5,16 @@ import { LANGS, langName, progressBranch } from "@academy/lang-systems";
 import { appHref, levelText, nextToPlace } from "@/lib/app/systems";
 import { useEffect, useState } from "react";
 import { webProgressStore } from "@academy/progress-store";
-import { streakCard, type StreakCard as Card } from "@/lib/app/streak";
+import { streakCard, type StreakCard as StreakData } from "@/lib/app/streak";
 import NewSystem from "./NewSystem";
 import StreakCard from "./StreakCard";
 import { useSystems } from "./useSystems";
 import styles from "./app.module.css";
+import { ButtonLink, Card, Tag } from "@/ui";
 
 export default function Home() {
   const { state, create } = useSystems();
-  const [card, setCard] = useState<Card | null>(null);
+  const [card, setCard] = useState<StreakData | null>(null);
   const systems = state.status === "ready" ? state.systems : null;
   useEffect(() => {
     if (!systems?.length) return;
@@ -37,27 +38,27 @@ export default function Home() {
         {state.systems.map((s) => {
           const toPlace = nextToPlace(s);
           return (
-            <li key={s.id} className={styles.tile} data-testid="system-tile">
+            <Card as="li" key={s.id} className={styles.tile} data-testid="system-tile">
               <h2 className={styles.tileTitle}>{s.name}</h2>
               <p className={styles.small}>From {langName(s.root)}</p>
               <ul className={styles.chips} aria-label={`${s.name} languages`}>
                 {s.targets.map((t) => (
-                  <li key={t} lang={LANGS[t]?.bcp47} className={styles.chip}>
-                    {langName(t)} <span className={styles.level}>{levelText(s, t)}</span>
+                  <li key={t} lang={LANGS[t]?.bcp47}>
+                    <Tag>{langName(t)} <span className={styles.level}>{levelText(s, t)}</span></Tag>
                   </li>
                 ))}
               </ul>
               <div className={styles.row}>
-                <Link className={styles.cta} href={appHref.study(s.id)}>
+                <ButtonLink href={appHref.study(s.id)}>
                   Start today
-                </Link>
+                </ButtonLink>
                 {toPlace ? (
-                  <Link className={styles.ghost} href={appHref.place(s.id, toPlace)}>
+                  <ButtonLink variant="ghost" size="md" href={appHref.place(s.id, toPlace)}>
                     Place {langName(toPlace)}
-                  </Link>
+                  </ButtonLink>
                 ) : null}
               </div>
-            </li>
+            </Card>
           );
         })}
       </ul>

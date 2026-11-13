@@ -24,7 +24,9 @@ import Tiles from "./Tiles";
 import { play, readMuted, writeMuted } from "@/lib/lobby/sound";
 import type { LobbySummary } from "@/lib/lobby/client";
 import styles from "./play.module.css";
+import { Avatar } from "@/ui/avatar";
 import { savedNickname, usePlay } from "./usePlay";
+import { Button, ButtonLink, Pill } from "@/ui";
 
 const POLL_MS = 1000;
 const TICK_MS = 200;
@@ -151,7 +153,7 @@ export default function Room({ code: rawCode }: { code: string }) {
     return (
       <div className={app.stack}>
         <p className={app.error} role="alert">That code is not valid. Codes have 6 letters and numbers.</p>
-        <a className={app.ghost} href="/play">Back to lobbies</a>
+        <ButtonLink variant="ghost" size="md" href="/play">Back to lobbies</ButtonLink>
       </div>
     );
   }
@@ -174,7 +176,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         {error ? (
           <>
             <p className={app.error} role="alert">{error}</p>
-            <a className={app.ghost} href="/play">Back to lobbies</a>
+            <ButtonLink variant="ghost" size="md" href="/play">Back to lobbies</ButtonLink>
           </>
         ) : (
           <p className={app.muted} aria-busy="true">Joining</p>
@@ -236,9 +238,9 @@ export default function Room({ code: rawCode }: { code: string }) {
       <span className={styles.flames} data-testid="streak" data-on={streakOf(lobby) >= 2}>
         {streakOf(lobby) >= 2 ? `🔥 ${streakOf(lobby)} in a row` : ""}
       </span>
-      <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} data-testid="mute">
+      <Pill size="sm" onClick={toggleMute} aria-pressed={muted} data-testid="mute">
         {muted ? "🔇 Sound off" : "🔊 Sound on"}
-      </button>
+      </Pill>
     </div>
   );
 
@@ -266,7 +268,8 @@ export default function Room({ code: rawCode }: { code: string }) {
     <ol className={styles.players} data-testid="players">
       {board.map((p) => (
         <li key={p.userId} className={styles.player} data-me={p.isMe}>
-          <span>
+          <span className={styles.playerName}>
+            <Avatar seed={p.name} size="xs" variant="head" label="" />
             {p.flag ? <span aria-hidden="true">{flagEmoji(p.flag)} </span> : null}
             {p.name}
             {p.bot ? <span className={styles.tag} data-testid="bot-tag"> {botLabel(p)}</span> : null}
@@ -301,7 +304,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         }}
       >
         <input value={chat} onChange={(e) => setChat(e.target.value)} maxLength={200} placeholder="Say hi" aria-label="Message" data-testid="chat-input" />
-        <button type="submit" className={app.ghost}>Send</button>
+        <Button type="submit" variant="ghost" size="md">Send</Button>
       </form>
     </section>
   );
@@ -326,26 +329,26 @@ export default function Room({ code: rawCode }: { code: string }) {
         {header}
         {toolbar}
         <div className={app.row}>
-          <button type="button" className={app.ghost} onClick={() => void share()}>{copied ? "Link copied" : "Share link"}</button>
-          <button type="button" className={app.link} onClick={() => void leave()}>Leave</button>
-          {state.identity.kind === "guest" ? <button type="button" className={app.link} onClick={account.openSignIn} data-testid="room-sign-in">Sign in</button> : null}
+          <Button variant="ghost" size="md" onClick={() => void share()}>{copied ? "Link copied" : "Share link"}</Button>
+          <Button variant="quiet" size="sm" onClick={() => void leave()}>Leave</Button>
+          {state.identity.kind === "guest" ? <Button variant="quiet" size="sm" onClick={account.openSignIn} data-testid="room-sign-in">Sign in</Button> : null}
         </div>
         <div className={styles.split}>
           <section className={app.stackSm}>
             {scoreboard}
             <div className={app.row}>
-              <button type="button" className={me?.ready ? app.ghost : app.cta} onClick={() => void act(() => api.ready(lobby.id, !me?.ready))} data-testid="ready">
+              <Button variant={me?.ready ? "ghost" : "primary"} size={me?.ready ? "md" : "lg"} onClick={() => void act(() => api.ready(lobby.id, !me?.ready))} data-testid="ready">
                 {me?.ready ? "Not ready" : "Ready"}
-              </button>
+              </Button>
               {lobby.isHost && lobby.botsEnabled && !lobby.botFill ? (
-                <button type="button" className={app.ghost} onClick={() => void act(() => api.fillBots(lobby.id))} data-testid="fill-bots">
+                <Button variant="ghost" size="md" onClick={() => void act(() => api.fillBots(lobby.id))} data-testid="fill-bots">
                   Fill with bots
-                </button>
+                </Button>
               ) : null}
               {lobby.isHost ? (
-                <button type="button" className={app.cta} disabled={readyCount < 2} onClick={() => void act(() => api.start(lobby.id))} data-testid="start">
+                <Button disabled={readyCount < 2} onClick={() => void act(() => api.start(lobby.id))} data-testid="start">
                   Start game
-                </button>
+                </Button>
               ) : null}
             </div>
             <div className={styles.startsIn} data-testid="next-start">
@@ -385,9 +388,9 @@ export default function Room({ code: rawCode }: { code: string }) {
         <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
         {lobby.game === "duel" ? <span className={styles.coins} data-testid="coins" aria-label={`${lobby.coins} coins`}>🪙 {lobby.coins}</span> : null}
         {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
-        <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">
+        <Pill size="sm" onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">
           {muted ? "🔇" : "🔊"}
-        </button>
+        </Pill>
       </div>
       <div className={styles.gameBar} role="progressbar" aria-label="Game progress" aria-valuemin={0} aria-valuemax={lobby.rounds} aria-valuenow={Math.round(gameProgress(phase, lobby.rounds) * lobby.rounds)} data-testid="game-progress">
         <div style={{ width: `${gameProgress(phase, lobby.rounds) * 100}%` }} />
@@ -431,7 +434,7 @@ export default function Room({ code: rawCode }: { code: string }) {
                 <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / total) * 100))}%` }} />
               </div>
               {!hidden ? (
-                <button type="button" className={app.ghost} onClick={() => setSkipped(key)} data-testid="skip-reveal">Skip</button>
+                <Button variant="ghost" size="md" onClick={() => setSkipped(key)} data-testid="skip-reveal">Skip</Button>
               ) : null}
             </div>
             {prompt ? <RevealBanner prompt={prompt} pick={picked && picked.round === phase.index && picked.game === lobby.startedAt && !picked.pending ? picked : null} /> : null}
@@ -503,10 +506,10 @@ export default function Room({ code: rawCode }: { code: string }) {
                       rewarded ? (
                         <>
                           <Ad placement="rewarded" testId="ad-rewarded" />
-                          <button type="button" className={app.cta} onClick={() => { setRewarded(false); void act(() => api.continueRun(lobby.id)); }} data-testid="continue-claim">Continue with one life</button>
+                          <Button onClick={() => { setRewarded(false); void act(() => api.continueRun(lobby.id)); }} data-testid="continue-claim">Continue with one life</Button>
                         </>
                       ) : (
-                        <button type="button" className={app.ghost} onClick={() => setRewarded(true)} data-testid="continue-offer">Watch an ad to continue</button>
+                        <Button variant="ghost" size="md" onClick={() => setRewarded(true)} data-testid="continue-offer">Watch an ad to continue</Button>
                       )
                     ) : (
                       <p className={app.small}>Watch the rest of this game.</p>
@@ -626,7 +629,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
           <div className={styles.interstitialBox}>
             <Ad placement="interstitial" testId="ad-interstitial" />
-            <button type="button" className={app.cta} onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</button>
+            <Button onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</Button>
           </div>
         </div>
       ) : null}
@@ -640,11 +643,11 @@ export default function Room({ code: rawCode }: { code: string }) {
         {lobby.standing || lobby.nextStartAt ? (
           <span className={styles.nextName} data-testid="next-game">Next game{lobby.setup === "single" ? `: ${lobby.name}` : ""}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
         ) : next ? (
-          <a className={app.cta} href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</a>
+          <ButtonLink size="md" href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</ButtonLink>
         ) : null}
-        <button type="button" className={app.ghost} disabled={busy} onClick={() => void newLobby(false)} data-testid="rematch">Rematch</button>
-        <button type="button" className={app.ghost} disabled={busy} onClick={() => void newLobby(true)} data-testid="play-bots">Play with bots</button>
-        <a className={app.cta} href={LEARN_HREF} data-testid="results-learn">Start learning</a>
+        <Button variant="ghost" size="md" disabled={busy} onClick={() => void newLobby(false)} data-testid="rematch">Rematch</Button>
+        <Button variant="ghost" size="md" disabled={busy} onClick={() => void newLobby(true)} data-testid="play-bots">Play with bots</Button>
+        <ButtonLink size="md" href={LEARN_HREF} data-testid="results-learn">Start learning</ButtonLink>
       </section>
       <section className={app.stackSm} data-testid="reveal-all">
         <h2 className={app.fieldLabel}>Every word in this game</h2>
@@ -654,7 +657,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         <section className={styles.upsell} data-testid="save-progress">
           <b>Save your progress</b>
           <p className={app.small}>You scored {myScore(lobby)} points. Sign in to keep your streak, stats and game history. Your guest games come with you.</p>
-          <button type="button" className={app.cta} onClick={account.openSignIn} data-testid="save-sign-in">Sign in to save</button>
+          <Button onClick={account.openSignIn} data-testid="save-sign-in">Sign in to save</Button>
         </section>
       ) : null}
       <section className={styles.upsell} data-testid="learn-upsell">
@@ -673,11 +676,11 @@ export default function Room({ code: rawCode }: { code: string }) {
           <p className={app.small}>A clean sweep. Lessons take you further.</p>
         )}
         <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
-        <a className={app.ghost} href={LEARN_HREF}>See lessons</a>
+        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>See lessons</ButtonLink>
       </section>
       {breaks.games >= 2 ? <Ad placement="results" /> : null}
       <div className={app.row}>
-        <a className={app.ghost} href="/play">Back to lobbies</a>
+        <ButtonLink variant="ghost" size="md" href="/play">Back to lobbies</ButtonLink>
       </div>
     </div>
   );

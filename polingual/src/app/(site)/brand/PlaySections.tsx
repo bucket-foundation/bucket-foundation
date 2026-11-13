@@ -1,14 +1,16 @@
 import { FLAGS } from "@/lib/flags";
 import { Avatar, Coins, Flag, Shape, TierBadge } from "../play-kit/parts";
 import { ANSWER_COLORS, TIERS, type Look } from "../play-kit/tokens";
+import { Badge, Button, Card, Pill } from "@/ui";
+import { Icon } from "@/ui/icons";
+import IconGrid from "./IconGrid";
 import MotionDemo from "./MotionDemo";
 import styles from "./brand.module.css";
 import s from "./kit.module.css";
 
 export const SECTIONS = [
-  ["story", "Story"], ["logo", "Logo"], ["color", "Color"], ["play-color", "Play color"], ["type", "Type"], ["flags", "Flags"], ["tiles", "Tiles"],
-  ["icons", "Icons"], ["avatar", "Avatar"], ["illustration", "Illustration"], ["motion", "Motion"], ["components", "Components"],
-  ["voice", "Voice"], ["screens", "Screens"], ["usage", "Usage"], ["press", "Press kit"],
+  ["intro", "Introduction"], ["principles", "Principles"], ["language", "Language"], ["logo", "Logo"], ["color", "Color"], ["type", "Typography"],
+  ["icons", "Iconography"], ["illustration", "Illustration"], ["imagery", "Imagery"], ["avatar", "Avatar"], ["motion", "Motion"], ["components", "Components"], ["downloads", "Downloads"],
 ] as const;
 
 export function SideNav() {
@@ -29,12 +31,14 @@ const ANSWER_USE: Record<string, string> = {
 };
 
 const LOOKS: Look[] = [
-  { body: "#D9381E", face: "grin", hat: "beret", outfit: "scarf", plinth: "#26428B" },
-  { body: "#E9A23B", face: "smile", hat: "sombrero", outfit: "stripe", plinth: "#5B1A4A" },
-  { body: "#6FB7C2", face: "cool", hat: "cap", outfit: "plain", plinth: "#1E7A5A" },
-  { body: "#26428B", face: "wow", hat: "crown", outfit: "cape", plinth: "#E9A23B" },
-  { body: "#1E7A5A", face: "smile", hat: "none", outfit: "scarf", plinth: "#D9381E" },
+  { backdrop: "maya", plinth: "lapis", shape: "round", skin: "sand", color: "vermilion", outfit: "scarf", face: "grin", hat: "beret", accessory: "pin", frame: "ring" },
+  { backdrop: "parchment", plinth: "tyrian", shape: "bell", skin: "clay", color: "ochre", outfit: "stripe", face: "smile", hat: "sombrero", accessory: "none", frame: "sparkle" },
+  { backdrop: "ochre", plinth: "malachite", shape: "tall", skin: "porcelain", color: "maya", outfit: "vest", face: "proud", hat: "cap", accessory: "shades", frame: "none" },
+  { backdrop: "tyrian", plinth: "ochre", shape: "round", skin: "umber", color: "lapis", outfit: "cape", face: "wow", hat: "crown", accessory: "medal", frame: "laurel" },
+  { backdrop: "maya", plinth: "vermilion", shape: "block", skin: "cocoa", color: "malachite", outfit: "scarf", face: "shy", hat: "none", accessory: "headphones", frame: "none" },
 ];
+
+const SEEDS = ["Brave Otter", "Quiet Heron", "Lucky Fox", "Swift Lynx", "Merry Owl", "Bold Puffin"];
 
 const NAMES: Record<string, string> = {
   en: "English", es: "Spanish", fr: "French", it: "Italian", pt: "Portuguese", de: "German", nl: "Dutch", sv: "Swedish", ru: "Russian", ja: "Japanese",
@@ -101,18 +105,20 @@ export function Icons() {
     <section id="icons" className={styles.section}>
       <div className={styles.wrap}>
         <div className={styles.label}>Iconography</div>
-        <h2 className={styles.h2}>Solid shapes, round corners</h2>
+        <h2 className={styles.h2}>Chunky icons, ink outlines</h2>
+        <p className={styles.lede}>Flat palette fills inside a 2 unit ink outline on a 24 unit grid, the same hand as the landing page pieces. Round joins, round caps, no gradients. Tap Copy for the SVG source or SVG to save the file.</p>
+        <div className={s.cards}>
+          <Card><Icon name="flame" size={40} /><h3 className={s.cardTitle}>Palette fills</h3><p className={s.cardText}>Fill with brand colors only. Ink #231F20 draws every outline.</p></Card>
+          <Card><Icon name="settings" size={40} /><h3 className={s.cardTitle}>24 unit grid</h3><p className={s.cardText}>Draw inside 2 to 22. The stroke is 2 units, 3 px at 36 px.</p></Card>
+          <Card><Icon name="chat" size={40} /><h3 className={s.cardTitle}>Emoji in chat</h3><p className={s.cardText}>Emoji sit in chat and reactions only. Navigation and buttons use these icons.</p></Card>
+          <Card><Icon name="speaker" size={40} /><h3 className={s.cardTitle}>Label every icon</h3><p className={s.cardText}>An icon button carries an aria-label. Answer shapes match between TV and phone.</p></Card>
+        </div>
         <div className={s.avatars}>
           {ANSWER_COLORS.map((a) => (
             <div key={a.hex} className={s.shape} style={{ background: a.hex }}><Shape shape={a.shape} size={40} /></div>
           ))}
         </div>
-        <div className={s.cards}>
-          <div className={s.card}><h3>Filled</h3><p>Icons are solid parchment on a color, or tyrian on parchment. No outlines thinner than 2 px.</p></div>
-          <div className={s.card}><h3>24 px grid</h3><p>Draw on a 24 px square with 2 px padding. Corners round at 2 px on squares.</p></div>
-          <div className={s.card}><h3>Emoji in chat</h3><p>Emoji sit in chat and reactions only. Navigation and buttons use drawn shapes.</p></div>
-          <div className={s.card}><h3>Pair with text</h3><p>An icon button carries an aria-label. On a TV controller the shape on the phone matches the shape beside the words on the TV.</p></div>
-        </div>
+        <IconGrid />
       </div>
     </section>
   );
@@ -124,15 +130,19 @@ export function AvatarSection() {
       <div className={styles.wrap}>
         <div className={styles.label}>Avatar</div>
         <h2 className={styles.h2}>Meet Polly</h2>
-        <p className={styles.lede}>A round parchment head on a soft body, standing on a colored plinth. Every part is a flat SVG layer from a fixed set, so any combination renders on TV, phone, watch and share cards.</p>
+        <p className={styles.lede}>A round head on a soft body, standing on a colored plinth, with an ink outline and a hard offset shadow. Every part is a flat SVG layer from a fixed set, so any combination renders on TV, phone, watch and share cards.</p>
         <div className={s.avatars}>
           {LOOKS.map((l, i) => <Avatar key={i} look={l} size={i === 0 ? 150 : 110} />)}
         </div>
+        <div className={s.avatars} aria-label="Avatars from nicknames">
+          {SEEDS.map((n) => <Avatar key={n} seed={n} size="sm" variant="head" label={n} />)}
+          {SEEDS.map((n) => <Avatar key={`${n}-chip`} seed={n} size="chip" variant="head" label={n} />)}
+        </div>
         <div className={s.cards}>
-          <div className={s.card}><h3>Layers</h3><p>Plinth, body, outfit, head, face, hat. A part never crosses another layer&apos;s slot.</p></div>
-          <div className={s.card}><h3>Brand colors only</h3><p>Body and plinth take the six brand colors. Items add ochre, tyrian and ink details.</p></div>
-          <div className={s.card}><h3>3 px ink outline</h3><p>The head carries a 3 px ink stroke at 120 px. Scale the stroke with the avatar.</p></div>
-          <div className={s.card}><h3>Friendly faces</h3><p>Four faces at launch: smile, grin, wow, shades. No angry or mocking faces.</p></div>
+          <Card><h3 className={s.cardTitle}>Layers</h3><p className={s.cardText}>Backdrop and plinth, body shape, skin, outfit, face, headwear, accessory, tier frame. The order never changes, so any item fits any look.</p></Card>
+          <Card><h3 className={s.cardTitle}>Brand colors only</h3><p className={s.cardText}>Body, plinth and backdrop take the seven brand colors. Skin takes eight tones. Items add ochre, tyrian and ink details.</p></Card>
+          <Card><h3 className={s.cardTitle}>3 px ink outline</h3><p className={s.cardText}>Every part carries a 3 px ink stroke at 120 px with round joins. The head-only cut keeps scoreboards readable at 24 px.</p></Card>
+          <Card><h3 className={s.cardTitle}>Friendly faces</h3><p className={s.cardText}>Eight faces: smile, grin, wow, wink, shy, proud, sleepy, starry. No angry or mocking faces. Players without a saved look get one from their nickname.</p></Card>
         </div>
       </div>
     </section>
@@ -146,24 +156,33 @@ export function Illustration() {
         <div className={styles.label}>Illustration</div>
         <h2 className={styles.h2}>Big shapes, dotted parchment</h2>
         <div className={s.cards}>
-          <div className={s.card}>
+          <Card>
             <div className={s.illus}>
               <span style={{ position: "absolute", right: -40, top: -40, width: 160, height: 160, borderRadius: "50%", background: "#D9381E", opacity: 0.4 }} />
               <span style={{ position: "absolute", left: 20, bottom: 20 }}><Avatar look={LOOKS[0]} size={90} /></span>
               <span style={{ position: "absolute", left: 130, bottom: 28 }}><Flag lang="es" size={34} /></span>
             </div>
-            <h3>Hero bands</h3>
-            <p>Tyrian field, one large vermilion circle bleeding off a corner, a character and a flag.</p>
-          </div>
-          <div className={s.card}>
+            <h3 className={s.cardTitle}>Hero bands</h3>
+            <p className={s.cardText}>Tyrian field, one large vermilion circle bleeding off a corner, a character and a flag.</p>
+          </Card>
+          <Card>
             <div className={s.illus} style={{ background: "#F6EEDC", backgroundImage: "radial-gradient(rgba(35,31,32,.1) 1px,transparent 1.4px)", backgroundSize: "22px 22px" }}>
               <span style={{ position: "absolute", left: 24, top: 30, transform: "rotate(-4deg)" }}><Flag lang="fr" size={44} /></span>
               <span style={{ position: "absolute", left: 110, top: 70, transform: "rotate(3deg)" }}><Flag lang="ja" size={44} /></span>
               <span style={{ position: "absolute", left: 196, top: 36, transform: "rotate(-2deg)" }}><Flag lang="de" size={44} /></span>
             </div>
-            <h3>Scattered tiles</h3>
-            <p>The landing page dot grid at 22 px. Tiles and flags tilt between minus 4 and plus 4 degrees.</p>
-          </div>
+            <h3 className={s.cardTitle}>Scattered tiles</h3>
+            <p className={s.cardText}>The landing page dot grid at 22 px. Tiles and flags tilt between minus 4 and plus 4 degrees.</p>
+          </Card>
+          <Card>
+            <div className={s.illus} style={{ background: "#EBDDBE", display: "flex", alignItems: "center", justifyContent: "space-around" }}>
+              <Icon name="burst" size={84} />
+              <Icon name="brush" size={96} />
+              <Icon name="bunting" size={84} />
+            </div>
+            <h3 className={s.cardTitle}>Landing pieces</h3>
+            <p className={s.cardText}>Star bursts, ochre brush strokes and bunting in flat fills with a 3 px ink line and a hard 6 by 8 drop shadow.</p>
+          </Card>
         </div>
       </div>
     </section>
@@ -190,17 +209,17 @@ export function Components() {
         <div className={styles.label}>Components</div>
         <h2 className={styles.h2}>The parts of every screen</h2>
         <div className={s.cards}>
-          <div className={s.card}><div className={s.game} style={{ background: "#D9381E" }}><b>Flags</b><span>Name the language</span></div><h3>Game tile</h3><p>One brand color per game, Fredoka name, 5 px shadow lip.</p></div>
-          <div className={s.card}>
+          <Card><div className={s.game} style={{ background: "#D9381E" }}><b>Flags</b><span>Name the language</span></div><h3 className={s.cardTitle}>Game tile</h3><p className={s.cardText}>One brand color per game, Fredoka name, 5 px shadow lip.</p></Card>
+          <Card>
             <div className={s.word}><small><Flag lang="es" size={12} /> SPANISH</small><b>perro</b><em>/ˈpero/ · dog</em></div>
-            <h3>Learn word card</h3><p>White card, Space Mono language label, the word in Fredoka, reading and meaning below.</p>
-          </div>
-          <div className={s.card}><button className={s.cta}>Play now</button><h3>Primary CTA</h3><p>Vermilion with a #8E2312 lip. One per screen.</p></div>
-          <div className={s.card}><button className={s.ghost}>Invite</button><h3>Ghost button</h3><p>Tyrian 2 px border for the second action.</p></div>
-          <div className={s.card}><div style={{ display: "flex", gap: 8 }}><span className={`${s.pill} ${s.pillOn}`}>Flags</span><span className={s.pill}>Tiles</span></div><h3>Chip</h3><p>Choices and filters. Selected fills tyrian.</p></div>
-          <div className={s.card}><div style={{ display: "flex", gap: 8, alignItems: "center" }}><Coins n={1340} /><TierBadge tier={4} /></div><h3>Coin chip and tier badge</h3><p>The coin chip opens the shop. The badge shows the weekly league.</p></div>
-          <div className={s.card}><span className={s.code}>K7M2QX</span><h3>Room code</h3><p>Space Mono, 0.18 em tracking, six characters with no I, L, O or U.</p></div>
-          <div className={s.card}><div className={s.ad}>Ad slot</div><h3>Ad slot</h3><p>Dashed hairline box at the ad unit size. Free tier only, never above the fold on phones, never inside a round.</p></div>
+            <h3 className={s.cardTitle}>Learn word card</h3><p className={s.cardText}>White card, Space Mono language label, the word in Fredoka, reading and meaning below.</p>
+          </Card>
+          <Card><Button icon={<Icon name="play" size={20} />}>Play now</Button><h3 className={s.cardTitle}>Primary button</h3><p className={s.cardText}>Vermilion with a #8E2312 lip. One per screen.</p></Card>
+          <Card><Button variant="ghost" size="md" icon={<Icon name="users" size={20} />}>Invite</Button><h3 className={s.cardTitle}>Ghost button</h3><p className={s.cardText}>Tyrian 2 px line for the second action.</p></Card>
+          <Card><div style={{ display: "flex", gap: 8 }}><Pill active>Flags</Pill><Pill>Tiles</Pill></div><h3 className={s.cardTitle}>Pill</h3><p className={s.cardText}>Choices and filters. Selected fills tyrian.</p></Card>
+          <Card><div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}><Coins n={1340} /><TierBadge tier={4} /><Badge tone="malachite">New</Badge></div><h3 className={s.cardTitle}>Coins, tiers, badges</h3><p className={s.cardText}>The coin chip opens the shop. The tier badge shows the weekly league.</p></Card>
+          <Card><span className={s.code}>K7M2QX</span><h3 className={s.cardTitle}>Room code</h3><p className={s.cardText}>Space Mono, 0.18 em tracking, six characters with no I, L, O or U.</p></Card>
+          <Card><div className={s.ad}>Ad slot</div><h3 className={s.cardTitle}>Ad slot</h3><p className={s.cardText}>Dashed hairline box at the ad unit size. Free tier only, never inside a round.</p></Card>
         </div>
       </div>
     </section>
