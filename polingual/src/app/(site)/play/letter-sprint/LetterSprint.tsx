@@ -9,17 +9,6 @@ import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
 
-const WIDE = [
-  { name: "calligraphy-ain" as const, x: "5%", y: "8%", size: 130, rotate: -6 },
-  { name: "script-ru" as const, x: "8%", y: "58%", size: 90, rotate: 8, shadow: false },
-  { name: "calligraphy-yong" as const, x: "5%", y: "10%", size: 130, rotate: 7, side: "right" as const },
-  { name: "brush" as const, x: "4%", y: "58%", size: 130, rotate: -8, side: "right" as const },
-];
-const STRIP = [
-  { name: "calligraphy-ain" as const, x: "0%", y: "10px", size: 70, rotate: -6 },
-  { name: "brush" as const, x: "36%", y: "18px", size: 80, rotate: 6 },
-  { name: "calligraphy-yong" as const, x: "2%", y: "8px", size: 70, rotate: 7, side: "right" as const },
-];
 
 export default function LetterSprint() {
   const { state, finish } = useDaily("letter-sprint");
@@ -51,9 +40,9 @@ export default function LetterSprint() {
     return () => window.clearInterval(t);
   });
 
-  if (state.status !== "ready") return <DailyWorld wide={WIDE} strip={STRIP}><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld wide={WIDE} strip={STRIP}><Results title="Letter Sprint" result={state.done} url="https://polingual.com/play/letter-sprint" /></DailyWorld>;
-  if (!p) return <DailyWorld wide={WIDE} strip={STRIP}><Loading state="error" /></DailyWorld>;
+  if (state.status !== "ready") return <DailyWorld id="letter-sprint"><Loading state={state.status} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="letter-sprint"><Results title="Letter Sprint" result={state.done} url="https://polingual.com/play/letter-sprint" /></DailyWorld>;
+  if (!p) return <DailyWorld id="letter-sprint"><Loading state="error" /></DailyWorld>;
 
   function choose(c: string) {
     const next = pattern + (c === p.ch ? "1" : "0");
@@ -64,7 +53,7 @@ export default function LetterSprint() {
 
   const left = ends ? Math.max(0, Math.ceil((ends - now) / 1000)) : LETTER_SECONDS;
   return (
-    <DailyWorld wide={WIDE} strip={STRIP}>
+    <DailyWorld id="letter-sprint">
       <Heading eyebrow={`Letter Sprint · ${langName(p.lang)} · ${state.day}`} title={ends ? `Find the letter that says “${p.sound}”` : `Eight ${langName(p.lang)} letters`} blurb={ends ? `${left} seconds left` : `Hear a sound, then find its letter. ${LETTER_SECONDS} seconds for all eight.`} />
       {ends ? (
         <>

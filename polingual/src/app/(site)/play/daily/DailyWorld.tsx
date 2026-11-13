@@ -3,19 +3,18 @@
 import type { ReactNode } from "react";
 import type { RevealEntry } from "@academy/lobbies";
 import { LEARN_HREF } from "@/lib/lobby/client";
-import { shareText, type DailyResult } from "@/lib/daily/store";
-import { Button, ButtonLink, Sheet, Sticker, type StickerSpot } from "@/ui";
+import { shareText, type DailyGame, type DailyResult } from "@/lib/daily/store";
+import { Button, ButtonLink } from "@/ui";
+import GameWorld from "../GameWorld";
 import Ad from "../Ad";
 import { RevealCard } from "../LearnWord";
 import styles from "./daily.module.css";
 
-export function DailyWorld({ wide, strip, children }: { wide: StickerSpot[]; strip: StickerSpot[]; children: ReactNode }) {
+export function DailyWorld({ id, children }: { id: DailyGame; children: ReactNode }) {
   return (
-    <div className={styles.world}>
-      <div className={styles.wide} aria-hidden>{wide.map((s) => <Sticker key={s.name} {...s} />)}</div>
-      <div className={styles.strip} aria-hidden>{strip.map((s) => <Sticker key={s.name} {...s} />)}</div>
-      <Sheet className={styles.card}>{children}</Sheet>
-    </div>
+    <GameWorld id={id} active>
+      <div className={styles.card}>{children}</div>
+    </GameWorld>
   );
 }
 

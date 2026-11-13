@@ -9,17 +9,6 @@ import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
 
-const WIDE = [
-  { name: "girih" as const, x: "3%", y: "8%", size: 150, rotate: -7 },
-  { name: "brush" as const, x: "6%", y: "56%", size: 130, rotate: 9 },
-  { name: "script-ru" as const, x: "8%", y: "14%", size: 80, rotate: 6, side: "right" as const, shadow: false },
-  { name: "azulejo-grid" as const, x: "3%", y: "52%", size: 160, rotate: -6, side: "right" as const },
-];
-const STRIP = [
-  { name: "girih" as const, x: "0%", y: "8px", size: 76, rotate: -6 },
-  { name: "brush" as const, x: "34%", y: "18px", size: 80, rotate: 8 },
-  { name: "azulejo-grid" as const, x: "2%", y: "6px", size: 80, rotate: 6, side: "right" as const },
-];
 
 export default function Mini() {
   const { state, finish } = useDaily("mini");
@@ -52,9 +41,9 @@ export default function Mini() {
     return () => window.removeEventListener("keydown", onKey);
   });
 
-  if (state.status !== "ready") return <DailyWorld wide={WIDE} strip={STRIP}><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld wide={WIDE} strip={STRIP}><Results title="Mini" result={state.done} url="https://polingual.com/play/mini" /></DailyWorld>;
-  if (!puzzle || !entry) return <DailyWorld wide={WIDE} strip={STRIP}><Loading state="error" /></DailyWorld>;
+  if (state.status !== "ready") return <DailyWorld id="mini"><Loading state={state.status} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="mini"><Results title="Mini" result={state.done} url="https://polingual.com/play/mini" /></DailyWorld>;
+  if (!puzzle || !entry) return <DailyWorld id="mini"><Loading state="error" /></DailyWorld>;
 
   const answers = miniAnswers(puzzle);
   const { rows, cols } = miniSize(puzzle);
@@ -71,7 +60,7 @@ export default function Mini() {
   }
 
   return (
-    <DailyWorld wide={WIDE} strip={STRIP}>
+    <DailyWorld id="mini">
       <Heading eyebrow={`Mini · ${langName(puzzle.lang)} · ${state.day}`} title="Today's small crossword" blurb="Write each word in the language. Tap a clue or a square to move." />
       <div className={styles.grid} style={cssVars({ "--cols": cols })} data-testid="mini-grid">
         {Array.from({ length: rows * cols }, (_, n) => {

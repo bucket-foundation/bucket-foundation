@@ -1,6 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import type { WorldId } from "@/ui/art/play";
+import { dayKey } from "@/lib/daily/rng";
+import { bookKey, readLocal, type DailyBook } from "@/lib/daily/store";
+import { DAILY_GAMES } from "./daily";
 import { WorldPreview } from "./GameWorld";
 import type { LobbySummary } from "@/lib/lobby/client";
 import type { GameId } from "./langs";
@@ -28,8 +32,53 @@ function countLabel(n: number) {
   return `${n} open ${n === 1 ? "lobby" : "lobbies"}`;
 }
 
+function useBook(): { book: DailyBook; day: string } | null {
+  const [state, setState] = useState<{ book: DailyBook; day: string } | null>(null);
+  useEffect(() => {
+    let storage: Storage | null = null;
+    try {
+      storage = window.localStorage;
+    } catch {
+      storage = null;
+    }
+    setState({ book: readLocal(storage), day: dayKey() });
+  }, []);
+  return state;
+}
+
+function DailyHub() {
+  const today = useBook();
+  return (
+    <section className={styles.hubGroup} data-testid="daily-hub">
+      <h2 className={styles.hubHeading}>Daily</h2>
+      <ul className={styles.hub}>
+        {DAILY_GAMES.map((g) => {
+          const done = today ? today.book[bookKey(g.slug, today.day)] : undefined;
+          return (
+            <li key={g.slug}>
+              <a href={g.href} className={styles.hubCard} data-testid={`daily-${g.slug}`} data-done={done ? "yes" : "no"}>
+                <span className={styles.hubPanel}>
+                  <WorldPreview id={g.slug} />
+                </span>
+                <b>{g.title}</b>
+                <span className={styles.hubBlurb}>{g.blurb}</span>
+                <span className={styles.hubCount} data-live={!done} data-testid={`daily-state-${g.slug}`}>
+                  {done ? `Done today · ${done.score} of ${done.total}` : "Play today's"}
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
 export default function GameHub({ open, ispyReady, offered, onPick }: { open: LobbySummary[] | null; ispyReady: boolean; offered: string[] | null; onPick: (g: GameId) => void }) {
   return (
+    <>
+    <DailyHub />
+    <h2 className={styles.hubHeading}>All games</h2>
     <ul className={styles.hub} data-testid="game-hub">
       {HUB.map((g) => {
         const body = (
@@ -61,5 +110,6 @@ export default function GameHub({ open, ispyReady, offered, onPick }: { open: Lo
         );
       })}
     </ul>
+    </>
   );
 }

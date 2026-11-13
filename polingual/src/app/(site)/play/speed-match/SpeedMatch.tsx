@@ -12,17 +12,6 @@ import styles from "../daily/daily.module.css";
 
 export const SPEED_PAIRS = 15;
 
-const WIDE = [
-  { name: "streak-flame" as const, x: "5%", y: "10%", size: 120, rotate: -6 },
-  { name: "star" as const, x: "8%", y: "58%", size: 100, rotate: 12 },
-  { name: "streak-pot" as const, x: "5%", y: "12%", size: 120, rotate: 8, side: "right" as const },
-  { name: "ink-dot" as const, x: "8%", y: "60%", size: 90, rotate: -8, side: "right" as const },
-];
-const STRIP = [
-  { name: "streak-flame" as const, x: "2%", y: "10px", size: 64, rotate: -6 },
-  { name: "star" as const, x: "40%", y: "20px", size: 52, rotate: 10 },
-  { name: "streak-pot" as const, x: "2%", y: "8px", size: 70, rotate: 7, side: "right" as const },
-];
 
 function speedDeck(deck: GameDeck, day: string, targets: readonly string[]): GameWord[] {
   const rng = new SeededRandom(fnv(`speed|${day}|${deck.root}|${[...targets].sort().join(",")}`));
@@ -59,9 +48,9 @@ export default function SpeedMatch() {
     return () => window.clearInterval(t);
   });
 
-  if (state.status !== "ready") return <DailyWorld wide={WIDE} strip={STRIP}><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld wide={WIDE} strip={STRIP}><Results title="Speed Match" result={state.done} url="https://polingual.com/play/speed-match" /></DailyWorld>;
-  if (!game?.playable) return <DailyWorld wide={WIDE} strip={STRIP}><Loading state="error" /></DailyWorld>;
+  if (state.status !== "ready") return <DailyWorld id="speed-match"><Loading state={state.status} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="speed-match"><Results title="Speed Match" result={state.done} url="https://polingual.com/play/speed-match" /></DailyWorld>;
+  if (!game?.playable) return <DailyWorld id="speed-match"><Loading state="error" /></DailyWorld>;
 
   const b = game.board;
   const left = ends ? Math.max(0, Math.ceil((ends - now) / 1000)) : SPEED_SECONDS;
@@ -76,7 +65,7 @@ export default function SpeedMatch() {
   }
 
   return (
-    <DailyWorld wide={WIDE} strip={STRIP}>
+    <DailyWorld id="speed-match">
       <Heading eyebrow={`Speed Match · ${state.day}`} title={ends ? `${left} seconds` : "Pair each meaning with its word"} blurb={`Match ${SPEED_PAIRS} pairs in ${SPEED_SECONDS} seconds. A miss costs ${SPEED_MISS_PENALTY} seconds; five in a row scores double.`} />
       {ends ? <Pips pattern={pattern.slice(-SPEED_PAIRS)} total={SPEED_PAIRS} /> : <Button onClick={() => setEnds(Date.now() + SPEED_SECONDS * 1000)} data-testid="speed-start">Start the clock</Button>}
       {ends ? (
