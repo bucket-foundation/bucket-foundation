@@ -1,7 +1,7 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { json, preflight } from "@/lib/academy/groups-server";
 import { service } from "@/lib/academy/groups-server";
-import { authed, checkLobby, lobbyFail, lobbyState, memberLobby, PLAYERS } from "@/lib/academy/lobbies-server";
+import { authed, checkLobby, lobbyFail, lobbyState, memberLobby, pace, PLAYERS } from "@/lib/academy/lobbies-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,7 +18,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const lobby = await memberLobby(a.uid, a.body.lobbyId);
     if (lobby.status !== "lobby") return json({ error: "lobby_started" }, 409);
     checkLobby(await service().from(PLAYERS).update({ ready: a.body.ready, last_seen: new Date().toISOString() }).eq("lobby_id", lobby.id).eq("user_id", a.uid), "ready");
-    return json({ lobby: await lobbyState(lobby, a.uid, Date.now()) });
+    const now = Date.now();
+    return json({ lobby: await lobbyState(await pace(lobby, now), a.uid, now) });
   } catch (err) {
     return lobbyFail(err, "ready");
   }

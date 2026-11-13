@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import CopySwatch from "./CopySwatch";
 import styles from "./brand.module.css";
+import { AvatarSection, Components, Flags, Icons, Illustration, Motion, PLAY_VOICE, PlayColor, PlayDos, SideNav } from "./PlaySections";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({ path: "/brand", title: "Polingual Brand", description: "The Polingual brand: the Po mark, colors, type, word tiles, voice, app screens and a press kit download." });
@@ -112,17 +113,6 @@ export default function BrandPage() {
                 Logo files
               </a>
             </div>
-            <nav className={styles.nav} aria-label="Brand sections">
-              <a href="#story">Story</a>
-              <a href="#logo">Logo</a>
-              <a href="#color">Color</a>
-              <a href="#type">Type</a>
-              <a href="#tiles">Tiles</a>
-              <a href="#voice">Voice</a>
-              <a href="#screens">Screens</a>
-              <a href="#usage">Usage</a>
-              <a href="#press">Press kit</a>
-            </nav>
           </div>
           <div className={styles.tiles}>
             {NIGHT.slice(0, 8).map((t) => (
@@ -132,6 +122,8 @@ export default function BrandPage() {
         </div>
         <div className={styles.heroFoot} />
       </section>
+
+      <SideNav />
 
       <section id="story" className={`${styles.section} ${styles.band}`} style={{ paddingTop: 24 }}>
         <div className={`${styles.wrap} ${styles.stat}`}>
@@ -259,6 +251,9 @@ export default function BrandPage() {
         </div>
       </section>
 
+      <PlayColor />
+      <Flags />
+
       <section id="tiles" className={`${styles.section} ${styles.band}`}>
         <div className={styles.wrap}>
           <div className={styles.label}>Word tiles</div>
@@ -273,13 +268,19 @@ export default function BrandPage() {
         </div>
       </section>
 
+      <Icons />
+      <AvatarSection />
+      <Illustration />
+      <Motion />
+      <Components />
+
       <section id="voice" className={styles.section}>
         <div className={styles.wrap}>
           <div className={styles.label}>Voice</div>
           <h2 className={styles.h2}>Say it once, plainly</h2>
           <p className={styles.lede}>Lead with what the learner gets. Numbers carry the claim. No dashes, no hype, no comparisons with rivals.</p>
           <div className={styles.voiceGrid}>
-            {VOICE.map((v) => (
+            {[...VOICE, ...PLAY_VOICE].map((v) => (
               <div key={v.ok} className={styles.pair} style={{ color: "#F6EEDC" }}>
                 <span className={styles.ok}>WRITE</span>
                 <div className={styles.pairText}>{v.ok}</div>
@@ -374,6 +375,7 @@ export default function BrandPage() {
               </div>
             </div>
           </div>
+          <PlayDos />
         </div>
       </section>
 

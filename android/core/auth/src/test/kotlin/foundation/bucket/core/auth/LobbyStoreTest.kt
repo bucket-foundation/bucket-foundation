@@ -112,4 +112,59 @@ class LobbyStoreTest {
         assertTrue("\"guestToken\":\"g1\"" in f.calls.last().second)
         assertNull(kv.get(GuestPass.TICKET_KEY))
     }
+
+    @Test
+    fun revealSlotsSitBetweenRounds() {
+        val base = kotlinx.serialization.json.Json { ignoreUnknownKeys = true }.decodeFromString(foundation.bucket.core.model.Lobby.serializer(), lobbyJson(status = "playing"))
+        val lobby = base.copy(revealSeconds = 4)
+        val start = parseInstantMs("2026-11-12T10:00:00Z")!!
+        assertEquals(LobbyPhase.Round(0, 2.0), LobbyClock.phase(lobby, start + 8000))
+        assertEquals(LobbyPhase.Reveal(0, 2.0), LobbyClock.phase(lobby, start + 12000))
+        assertEquals(LobbyPhase.Round(1, 10.0), LobbyClock.phase(lobby, start + 14000))
+        assertEquals(LobbyPhase.Finished, LobbyClock.phase(lobby, start + 42000))
+    }
+
+    @Test
+    fun decodesBotsHandlesAndReveal() {
+        val json = lobbyJson().replace("\"answered\":false}", "\"answered\":false,\"handle\":\"ana\",\"bot\":true,\"skill\":\"easy\",\"flag\":\"es\"}")
+            .replace("\"answer\":null}", "\"answer\":\"ocho\",\"reveal\":[{\"lang\":\"es\",\"word\":\"ocho\",\"roman\":null,\"reading\":null,\"meaning\":\"eight\",\"gloss\":\"eight\",\"correct\":true}]}")
+            .replace("\"results\":[]", "\"results\":[],\"botsEnabled\":true,\"revealSeconds\":4")
+        val lobby = kotlinx.serialization.json.Json { ignoreUnknownKeys = true }.decodeFromString(foundation.bucket.core.model.Lobby.serializer(), json)
+        assertTrue(lobby.players.single().bot)
+        assertEquals("es", lobby.players.single().flag)
+        assertEquals("ocho", lobby.prompts.single().reveal.single().word)
+        assertTrue(lobby.botsEnabled)
+        assertEquals(4, lobby.revealSeconds)
+    }
+
+    @Test
+    fun hostFillsBots() = runTest {
+        val f = Fake()
+        f.routes = { path, _ -> if (path.endsWith("guest")) 200 to """{"token":"g1","userId":"g","expiresAt":"2026-11-13T10:00:00Z"}""" else 200 to """{"lobby":${lobbyJson(version = 3)}}""" }
+        val store = guestStore(f)
+        store.join("ABC123", "Ana")
+        store.fillBots()
+        assertEquals("api/academy/lobbies/bots", f.calls.last().first)
+        assertEquals(3, store.state.value.current?.version)
+    }
+
+    @Test
+    fun listReadsTheBotsFlag() = runTest {
+        val f = Fake()
+        f.routes = { path, _ -> if (path.endsWith("guest")) 200 to """{"token":"g1","userId":"g","expiresAt":"2026-11-13T10:00:00Z"}""" else 200 to """{"lobbies":[{"id":"L1","code":"ABC123","name":"Room","game":"tiles","root":"en","targets":["es"],"status":"lobby","players":2,"bots":1,"standing":true,"host":"Ana","hostHandle":null,"isMember":false}],"bots":true}""" }
+        val store = guestStore(f)
+        store.refresh()
+        assertTrue(store.state.value.botsEnabled)
+        assertEquals(foundation.bucket.core.model.LobbyGame.Tiles, store.state.value.open.single().game)
+    }
+
+    @Test
+    fun interstitialPacing() {
+        val p = foundation.bucket.core.model.InterstitialPacer
+        assertEquals(false, p.due(true, null, 1, 0))
+        assertEquals(true, p.due(true, null, 2, 0))
+        assertEquals(false, p.due(true, 0, 3, 100_000))
+        assertEquals(true, p.due(true, 0, 3, 180_000))
+        assertEquals(false, p.due(false, null, 5, 0))
+    }
 }

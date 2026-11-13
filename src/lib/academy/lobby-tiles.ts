@@ -2,14 +2,14 @@ import type { LangItem } from "./lang-systems";
 
 export const TILE_LIVES = 3;
 export const TILE_POINTS = 50;
-export const TILE_MIN = 6;
-export const TILE_MAX = 12;
-export const TILE_ROUND_SECONDS = 6;
+export const TILE_MIN = 5;
+export const TILE_MAX = 9;
+export const TILE_ROUND_SECONDS = 9;
 export const TILE_LANES = 4;
 export const TILE_SUBMIT_AT = 0.9;
 export const TILE_SPAWN_SPAN = 0.55;
-export const TILE_FALL_FROM = 0.4;
-export const TILE_FALL_TO = 0.25;
+export const TILE_FALL_FROM = 0.62;
+export const TILE_FALL_TO = 0.42;
 
 export interface Tile {
   lang: string;
@@ -36,9 +36,14 @@ export function parseTile(key: string): Tile {
   return i < 0 ? { lang: "", form: key } : { lang: key.slice(0, i), form: key.slice(i + 1) };
 }
 
+export function tileRamp(round: number, rounds: number): number {
+  if (rounds <= 1) return 0;
+  const x = Math.min(1, Math.max(0, round / (rounds - 1)));
+  return x * x;
+}
+
 export function tileCount(round: number, rounds: number): number {
-  if (rounds <= 1) return TILE_MIN;
-  return Math.min(TILE_MAX, TILE_MIN + Math.round(((TILE_MAX - TILE_MIN) * round) / (rounds - 1)));
+  return Math.min(TILE_MAX, TILE_MIN + Math.round((TILE_MAX - TILE_MIN) * tileRamp(round, rounds)));
 }
 
 export function parseTapped(choice: string, count: number): number[] | null {
@@ -77,12 +82,10 @@ export interface TileHistory {
   lives: number;
 }
 
-export function tileHistory(prior: readonly { round: number; correct: boolean }[], round: number): TileHistory {
-  const rows = prior.filter((p) => p.round < round).sort((a, b) => a.round - b.round);
-  if (rows.length === 0) return { combo: 0, lives: TILE_LIVES };
-  const first = rows[0].round;
+export function tileHistory(prior: readonly { round: number; correct: boolean }[], round: number, first = 0, continues = 0): TileHistory {
+  const rows = prior.filter((p) => p.round < round);
   const by = new Map(rows.map((r) => [r.round, r.correct]));
-  let lives = TILE_LIVES;
+  let lives = TILE_LIVES + continues;
   let combo = 0;
   for (let r = first; r < round; r++) {
     if (by.get(r) === true) combo++;
@@ -166,7 +169,7 @@ export interface TileSchedule {
 
 export function tileSchedule(count: number, round: number, rounds: number, roundSeconds: number): TileSchedule[] {
   const len = roundSeconds * 1000;
-  const ramp = rounds <= 1 ? 0 : round / (rounds - 1);
+  const ramp = tileRamp(round, rounds);
   const fallMs = Math.round(len * (TILE_FALL_FROM - (TILE_FALL_FROM - TILE_FALL_TO) * ramp));
   const span = Math.min(len * TILE_SPAWN_SPAN, len * TILE_SUBMIT_AT - fallMs - 100);
   return Array.from({ length: count }, (_, i) => ({

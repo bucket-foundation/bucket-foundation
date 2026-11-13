@@ -71,6 +71,10 @@ const ERRORS: Record<string, string> = {
   need_ready: "Two players need to be ready.",
   not_host: "Only the host can start.",
   already_answered: "You already answered this round.",
+  already_continued: "You already used your continue this game.",
+  has_lives: "You still have lives left.",
+  no_coins: "Not enough coins for that power-up.",
+  power_used: "You already have a power-up for the next round.",
   wrong_round: "That round is over.",
   not_playing: "The game is not running.",
   bad_choice: "Pick one of the choices.",
@@ -127,16 +131,24 @@ export class LobbyApi {
     return (await this.listing()).lobbies;
   }
 
-  async listing(): Promise<{ lobbies: LobbySummary[]; bots: boolean }> {
-    const res = await this.call<{ lobbies: LobbySummary[]; bots?: boolean }>("", { query: { client: "web" } });
-    return { lobbies: res.lobbies, bots: res.bots === true };
+  async listing(): Promise<{ lobbies: LobbySummary[]; bots: boolean; games: string[] | null }> {
+    const res = await this.call<{ lobbies: LobbySummary[]; bots?: boolean; games?: string[] }>("", { query: { client: "web" } });
+    return { lobbies: res.lobbies, bots: res.bots === true, games: Array.isArray(res.games) ? res.games : null };
   }
 
   async fillBots(lobbyId: string): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/bots", { body: { lobbyId } })).lobby;
   }
 
-  async create(input: { name: string; root: string; targets: string[]; rounds: number; roundSeconds: number; listed: boolean; displayName: string; game: string; fillBots?: boolean }): Promise<WebLobbyState> {
+  async power(lobbyId: string, kind: "double" | "fifty"): Promise<WebLobbyState> {
+    return (await this.call<{ lobby: WebLobbyState }>("/power", { body: { lobbyId, kind } })).lobby;
+  }
+
+  async continueRun(lobbyId: string): Promise<WebLobbyState> {
+    return (await this.call<{ lobby: WebLobbyState }>("/continue", { body: { lobbyId } })).lobby;
+  }
+
+  async create(input: { name: string; root: string; targets: string[]; rounds: number; roundSeconds: number; listed: boolean; displayName: string; game: string; fillBots?: boolean; setup?: string; games?: string[] }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("", { body: { ...input, reveal: true } })).lobby;
   }
 
@@ -305,12 +317,12 @@ export function streakOf(lobby: Pick<LobbyState, "results" | "players">): number
 }
 
 export function livesLeft(lobby: Pick<LobbyState, "results" | "players">, round: number, lives = 3): number {
-  const me = lobby.players.find((p) => p.isMe)?.userId;
-  const mine = lobby.results.filter((r) => r.userId === me && r.round < round).sort((a, b) => a.round - b.round);
-  if (!mine.length) return lives;
+  const meP = lobby.players.find((p) => p.isMe);
+  const me = meP?.userId;
+  const mine = lobby.results.filter((r) => r.userId === me && r.round < round);
   const by = new Map(mine.map((r) => [r.round, r.correct]));
-  let left = lives;
-  for (let r = mine[0].round; r < round; r++) if (by.get(r) !== true) left--;
+  let left = lives + (meP?.continues ?? 0);
+  for (let r = meP?.firstRound ?? 0; r < round; r++) if (by.get(r) !== true) left--;
   return Math.max(0, left);
 }
 
@@ -332,7 +344,7 @@ export function missedWords(lobby: Pick<LobbyState, "prompts" | "results" | "pla
   const me = lobby.players.find((p) => p.isMe)?.userId;
   if (!me) return [];
   const right = new Set(lobby.results.filter((r) => r.userId === me && r.correct).map((r) => r.round));
-  return lobby.prompts.filter((p) => !right.has(p.round) && p.answer).map((p) => p.answer as string);
+  return lobby.prompts.filter((p) => !right.has(p.round) && p.answer).map((p) => (p.mode === "mixed" ? (p.answer as string).slice((p.answer as string).indexOf(":") + 1) : (p.answer as string)));
 }
 
 export function promptFor(lobby: Pick<LobbyState, "prompts">, round: number): LobbyState["prompts"][number] | null {

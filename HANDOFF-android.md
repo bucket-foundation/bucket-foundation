@@ -6,20 +6,19 @@ Branch `feat/android-polingual`, worktree `~/agfarms/.wt-android-polingual`. Pla
 
 | Bead | Milestone | State |
 |---|---|---|
-| bkt-292zc.4 | M1 skeleton, core modules, onboarding, email sign-in, guest pass | done, committed |
-| bkt-292zc.5 | M2 daily session, eight games, word detail, translate with picker | done; critic round 1 scored 7.1, fixes A1 to A7, A10, A11 applied in this WIP commit; round 2 not yet run |
-| bkt-292zc.6 | M3 Listen radio on Media3, Play Billing paywall and restore | code written in this WIP commit; last build started, result unchecked; not run on the emulator |
-| bkt-292zc.7 | M4 lobbies, cross-play, ads, UMP | not started |
-| bkt-292zc.8 | M5 account name, username, delete | not started; critic A8 lands here |
-| bkt-292zc.9 | M6 Bucket app on the shared core | not started |
+| bkt-292zc.4 | M1 skeleton, core, onboarding, email sign-in, guest pass | done |
+| bkt-292zc.5 | M2 daily session, eight games, word detail, translate | done, critic pass 8.2 at 6139c90974 |
+| bkt-292zc.6 | M3 Listen radio, Play Billing paywall | done; radio plays in the background on the emulator; plans need a Play device |
+| bkt-292zc.7 | M4 lobbies, cross-play, bots, ads, UMP, locked preview | done; Android host plus a web guest on one code, scores agree |
+| bkt-292zc.8 | M5 profile, username, delete account | done; checked against a local server on the hosted DB; critic pass 8.2 at 3e9e90ec33 for M3 to M5 |
+| bkt-292zc.9 | M6 Bucket app on the shared core | built at 4cfb871df7; critic running |
 
 ## Next
 
-1. `cd android && ./gradlew test :polingual:assembleDebug`; fix any compile error in `Milestones.kt`, `Billing.kt`, `RadioService.kt`.
-2. Boot `pol37` (`emulator -avd pol37 -no-window -gpu swangle_indirect`), screenshot Listen and Paywall into `android/polingual/screenshots/`, commit M3.
-3. Resume the critic for M2 round 2 with the fix list above.
-4. Build M4 and M5, critic after M5, then merge into dev locally and push dev. Never push main.
-5. M6 Bucket.
+1. Close the M6 critic, merge into dev.
+2. Play verify and RTDN bead before any Play release (critic C4).
+3. Native tiles and reveal lobby modes once the server lets native clients play them.
+4. Founder items below.
 
 ## Monetization Rule
 

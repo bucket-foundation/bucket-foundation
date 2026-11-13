@@ -2,12 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TileFace } from "@/app/tile";
-import { appAuth } from "@/lib/app/auth";
-import { fetchAccess } from "@/lib/app/plans";
 import { SITE } from "@/lib/facts";
-import { ADS, entitlementOf } from "@/lib/lobby/ads";
+import { ADS } from "@/lib/lobby/ads";
 import { TARGETS, type Bank } from "@/lib/polyword/bank";
-import { accountOf, archiveOffer, ctasFor, pauseFrameAds, resultsAd, type Account, type Phase } from "@/lib/polyword/policy";
+import { accountOf, archiveOffer, ctasFor, pauseFrameAds, resultsAd, type Phase } from "@/lib/polyword/policy";
 import { emptyProgress, firstGame, gameOf, isUnlocked, parseProgress, PROGRESS_KEY, statsFor, withGame, withUnlock, type Progress } from "@/lib/polyword/progress";
 import { checkGuess, dateOfDay, dayNumber, finished, keyMarks, MAX_GUESSES, puzzleFor, revealedHints, solved, type Hint } from "@/lib/polyword/puzzle";
 import { installH5, requestReward } from "@/lib/polyword/reward";
@@ -16,6 +14,7 @@ import { bcp47 } from "@/lib/speak";
 import { LANGS } from "@academy/lang-systems";
 import app from "../../app/app.module.css";
 import Ad, { loadAdSense } from "../Ad";
+import { useAccount } from "../Account";
 import { usePauseAds } from "../AdsContext";
 import { FlagSquare, RevealCard } from "../LearnWord";
 import { langName } from "../langs";
@@ -34,24 +33,6 @@ function storage(): Storage | null {
   } catch {
     return null;
   }
-}
-
-function useAccount(): Account {
-  const [account, setAccount] = useState<Account>("checking");
-  useEffect(() => {
-    let stop = false;
-    void (async () => {
-      const userId = await appAuth()
-        .userId()
-        .catch(() => null);
-      const access = userId ? await fetchAccess() : null;
-      if (!stop) setAccount(accountOf(entitlementOf(!!userId, access)));
-    })();
-    return () => {
-      stop = true;
-    };
-  }, []);
-  return account;
 }
 
 function useToday(): number | null {
@@ -110,7 +91,8 @@ function HintTile({ hint, index }: { hint: Hint; index: number }) {
 
 export default function Polyword({ bank }: { bank: Bank }) {
   const today = useToday();
-  const account = useAccount();
+  const { entitlement, openSignIn } = useAccount();
+  const account = accountOf(entitlement);
   const [progress, setProgress] = useState<Progress>(emptyProgress);
   const [loaded, setLoaded] = useState(false);
   const [lang, setLang] = useState<string>("es");
@@ -482,11 +464,17 @@ export default function Polyword({ bank }: { bank: Bank }) {
                     <b>{pro ? "Keep the words you met today." : `Learn ${puzzle.word} and the words around it.`}</b> {pro ? "Your review deck is waiting." : "Polingual teaches one meaning across all your languages at once."}
                   </p>
                   <div className={app.row}>
-                    {ctas.map((c) => (
-                      <a key={c.id} href={c.href} className={c.primary ? app.cta : app.ghost} data-testid={`pw-cta-${c.id}`}>
-                        {c.label}
-                      </a>
-                    ))}
+                    {ctas.map((c) =>
+                      c.id === "sign-in" ? (
+                        <button key={c.id} type="button" className={styles.signIn} onClick={openSignIn} data-testid={`pw-cta-${c.id}`}>
+                          {c.label}
+                        </button>
+                      ) : (
+                        <a key={c.id} href={c.href} className={c.primary ? app.cta : app.ghost} data-testid={`pw-cta-${c.id}`}>
+                          {c.label}
+                        </a>
+                      ),
+                    )}
                   </div>
                 </div>
               ) : null}

@@ -145,7 +145,7 @@ test("results wait for the server tally, then stop waiting", () => {
 });
 
 test("ranked shares a rank on ties and keeps everyone, bots included", () => {
-  const p = (userId: string, score: number, bot = false) => ({ userId, name: userId, handle: null, ready: true, score, isHost: false, isMe: userId === "me", online: true, answered: false, bot, skill: bot ? "easy" : null, flag: null });
+  const p = (userId: string, score: number, bot = false) => ({ userId, name: userId, handle: null, ready: true, score, isHost: false, isMe: userId === "me", online: true, answered: false, bot, skill: bot ? "easy" : null, flag: null, firstRound: 0, continues: 0 });
   const rows = ranked([p("a", 100), p("me", 300), p("bot", 100, true), p("z", 0)]);
   assert.deepEqual(rows.map((r) => [r.userId, r.rank]), [["me", 1], ["a", 2], ["bot", 2], ["z", 4]]);
 });
@@ -156,7 +156,9 @@ test("streak, lives and reveal order", () => {
   assert.equal(streakOf({ players, results: [r(0, false), r(1, true), r(2, true)] }), 2);
   assert.equal(streakOf({ players, results: [r(0, true), r(2, true)] }), 1);
   assert.equal(livesLeft({ players, results: [r(0, false), r(1, true)] }, 3), 1);
-  assert.equal(livesLeft({ players, results: [] }, 2), 3);
+  assert.equal(livesLeft({ players, results: [] }, 2), 1);
+  assert.equal(livesLeft({ players: players.map((p) => ({ ...p, firstRound: 2 })), results: [] }, 2), 3);
+  assert.equal(livesLeft({ players: players.map((p) => ({ ...p, continues: 1 })), results: [] }, 3), 1);
   assert.deepEqual(revealOrder([{ correct: false, w: "a" }, { correct: true, w: "b" }, { correct: true, w: "c" }]).map((e) => e.w), ["b", "c", "a"]);
   assert.equal(langFlag("pt-BR"), "PT");
   assert.equal(langFlag("xx"), null);

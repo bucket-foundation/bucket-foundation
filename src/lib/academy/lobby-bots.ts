@@ -18,6 +18,15 @@ export interface StandingSlot {
   targets: string[];
   rounds: number;
   roundSeconds: number;
+  playlist?: LobbyGame[];
+  mix?: boolean;
+}
+
+export function gameTiming(game: LobbyGame): { rounds: number; roundSeconds: number } {
+  if (game === "tiles") return { rounds: 8, roundSeconds: TILE_ROUND_SECONDS };
+  if (game === "live") return { rounds: 7, roundSeconds: 7 };
+  if (game === "duel") return { rounds: 10, roundSeconds: 8 };
+  return { rounds: 6, roundSeconds: 8 };
 }
 
 export interface SkillProfile {
@@ -50,7 +59,16 @@ export const STANDING_SLOTS: StandingSlot[] = [
   { slot: "tiles-romance", name: "Tiles: Romance", game: "tiles", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 8, roundSeconds: TILE_ROUND_SECONDS },
   { slot: "tiles-world", name: "Tiles: World", game: "tiles", root: "en", targets: ["es", "de", "ja", "ar"], rounds: 8, roundSeconds: TILE_ROUND_SECONDS },
   { slot: "live-germanic", name: "Live: Germanic", game: "live", root: "en", targets: ["de", "nl", "sv"], rounds: 7, roundSeconds: 7 },
+  { slot: "duel-world", name: "Flag Duel: World", game: "duel", root: "en", targets: ["es", "fr", "de", "ja", "ar", "ru"], rounds: 10, roundSeconds: 8 },
+  { slot: "set-romance", name: "Game set: Romance", game: "flags", root: "en", targets: ["es", "fr", "it", "pt"], rounds: 6, roundSeconds: 8, playlist: ["flags", "daily", "tiles", "same-word"] },
+  { slot: "mix-world", name: "Random mix: World", game: "daily", root: "en", targets: ["es", "fr", "de", "ja", "ar", "ko"], rounds: 6, roundSeconds: 8, playlist: ["daily", "same-word", "flags", "live", "tiles"], mix: true },
 ];
+
+export function slotEnabled(s: StandingSlot, reveal: boolean, setup: boolean, duel = false): boolean {
+  if (s.game === "duel") return duel && reveal;
+  if (s.playlist) return setup && reveal;
+  return s.game !== "tiles" || reveal;
+}
 
 const ROSTER: [string, string][] = [
   ["Lucía", "ES"], ["Mateo", "AR"], ["Camille", "FR"], ["Giulia", "IT"], ["João", "BR"], ["Inês", "PT"],
@@ -128,6 +146,19 @@ export type FormLookup = (lang: string, form: string) => readonly { forms: Recor
 export function knownChoice(prompt: Pick<LobbyPrompt, "mode" | "lang" | "gloss" | "choices">, root: string, lookup: FormLookup): string | null {
   if (prompt.mode === "flag") {
     const hits = prompt.choices.filter((lang) => lookup(lang, prompt.gloss).some((i) => !!i.forms[root]));
+    return hits.length === 1 ? hits[0] : null;
+  }
+  if (prompt.mode === "meaning") {
+    if (!prompt.lang) return null;
+    const lang = prompt.lang;
+    const hits = prompt.choices.filter((c) => lookup(lang, prompt.gloss).some((i) => i.forms[root] === c));
+    return hits.length === 1 ? hits[0] : null;
+  }
+  if (prompt.mode === "mixed") {
+    const hits = prompt.choices.filter((c) => {
+      const t = parseTile(c);
+      return lookup(t.lang, t.form).some((i) => i.forms[root] === prompt.gloss);
+    });
     return hits.length === 1 ? hits[0] : null;
   }
   if (!prompt.lang) return null;

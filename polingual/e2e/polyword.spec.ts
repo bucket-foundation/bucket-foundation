@@ -69,6 +69,10 @@ for (const vp of WIDTHS) {
       await expect(page.getByTestId("pw-streak")).toContainText("1");
       await expect(page.getByTestId("pw-cta-start")).toHaveText("Start learning");
       await expect(page.getByTestId("pw-cta-sign-in")).toHaveText("Sign in");
+      await page.getByTestId("pw-cta-sign-in").click();
+      await expect(page.getByTestId("sign-in-sheet")).toBeVisible();
+      await page.keyboard.press("Escape");
+      await page.getByRole("button", { name: "Close" }).click();
       await expect(page.getByTestId("pw-ad-results")).toHaveCount(0);
       await expect(page.getByTestId("ad-rail-left")).toHaveCount(0);
       await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
