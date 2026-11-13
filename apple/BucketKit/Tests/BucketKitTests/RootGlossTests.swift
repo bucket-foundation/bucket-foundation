@@ -12,7 +12,7 @@ struct RootGlossTests {
             for lang in sys.targets where item.form(lang) != nil {
                 for reps in [0, 1, 3, 6] {
                     var card = Card()
-                    card.reps = reps
+                    card.reps = Double(reps)
                     for seed in 0..<12 {
                         var rng = Rng(seed: UInt32(seed))
                         let ex = exerciseFor(corpus, sys, item, lang, card, &rng, speech: true, afterIntro: reps > 0)
