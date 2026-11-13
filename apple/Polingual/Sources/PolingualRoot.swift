@@ -115,11 +115,11 @@ struct Studio: View {
 
     var tabs: some View {
         TabView(selection: $tab) {
-            Tab("Today", systemImage: "sun.max", value: .today) {
+            Tab(value: AppTab.today) {
                 TodayView(opening: { await place($0) })
-            }
-            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed) }
+            } label: { Label { Text("Today") } icon: { PLArt.streakFlame.image(height: 26) } }
+            Tab(value: AppTab.learn) { LearnView() } label: { Label { Text("Learn") } icon: { PLArt.skSeal.image(height: 26) } }
+            Tab(value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed) } label: { Label { Text("Account") } icon: { PLArt.skAzulejo.image(height: 26) } }
         }
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()

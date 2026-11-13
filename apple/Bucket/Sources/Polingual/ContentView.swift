@@ -128,6 +128,9 @@ struct ContentHub: View {
 
     var content: some View {
         List {
+            if kind == .listen {
+                PLScreenTop(title: "Listen", subtitle: "Live radio in your languages", stickers: Stickers.listen, onDark: true).plListTop()
+            }
             if !fixed {
                 Section {
                     Picker("Content", selection: $kind) {
@@ -154,8 +157,12 @@ struct ContentHub: View {
                 .listRowBackground(Color.clear)
             }
         }
-        .paper()
+        .scrollContentBackground(.hidden)
+        .plGround(kind == .listen ? .lattice : .paper)
+        .environment(\.plOnDark, kind == .listen)
+        .foregroundStyle(kind == .listen ? PL.paper : PL.ink)
         .navigationTitle(fixed ? kind.title : String(localized: "Content"))
+        .plChrome()
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Menu {

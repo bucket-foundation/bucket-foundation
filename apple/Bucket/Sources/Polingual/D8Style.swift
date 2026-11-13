@@ -22,7 +22,7 @@ enum D8 {
     static let disabled = PL.paper2
     static let disabledText = PL.inkFaint
 
-    static func word(_ size: CGFloat) -> Font { PL.word.font(scale: size / PL.word.size).weight(.bold) }
+    static func word(_ size: CGFloat) -> Font { PL.title.font(scale: size / PL.title.size) }
     static func caps(_ size: CGFloat) -> Font { PL.label.font(scale: size / PL.label.size) }
 }
 

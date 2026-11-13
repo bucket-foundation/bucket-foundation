@@ -45,13 +45,13 @@ extension Font {
 
 struct Eyebrow: View {
     let text: String
+    @Environment(\.plOnDark) private var onDark
 
     var body: some View {
         Text(LocalizedStringKey(text))
             .textCase(.uppercase)
-            .font(D8.caps(11))
-            .tracking(1.2)
-            .foregroundStyle(Palette.muted)
+            .plType(PL.label)
+            .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
     }
 }
 
@@ -59,8 +59,16 @@ struct PaperBackground: ViewModifier {
     func body(content: Content) -> some View {
         content
             .scrollContentBackground(.hidden)
+            #if BUCKET
             .background(Palette.paper.ignoresSafeArea())
+            #else
+            .plGround(.paper)
+            #endif
     }
+}
+
+extension EnvironmentValues {
+    @Entry var plOnDark = false
 }
 
 extension View {

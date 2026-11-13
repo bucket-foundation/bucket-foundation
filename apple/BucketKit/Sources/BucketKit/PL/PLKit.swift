@@ -27,14 +27,17 @@ public struct PLTypeSpec: Sendable, Equatable {
         }
     }
 
+    public var postScriptName: String {
+        switch family {
+        case .display: weight >= 650 ? "Fredoka-Bold" : weight >= 550 ? "Fredoka-SemiBold" : "Fredoka-Medium"
+        case .body: weight >= 750 ? "Nunito-ExtraBold" : weight >= 650 ? "Nunito-Bold" : weight >= 550 ? "Nunito-SemiBold" : "Nunito-Medium"
+        case .mono: weight >= 600 ? "SpaceMono-Bold" : "SpaceMono-Regular"
+        }
+    }
+
     public func font(scale: CGFloat = 1) -> Font {
         PLFonts.register()
-        let s = size * scale
-        switch family {
-        case .display: return Font.custom("Fredoka", size: s).weight(fontWeight)
-        case .body: return Font.custom("Nunito", size: s).weight(fontWeight)
-        case .mono: return Font.custom(weight >= 600 ? "SpaceMono-Bold" : "SpaceMono-Regular", size: s)
-        }
+        return Font.custom(postScriptName, size: size * scale)
     }
 }
 
@@ -537,5 +540,64 @@ public struct PLStreakFlame: View {
             }
         }
         .accessibilityElement(children: .combine)
+    }
+}
+
+public struct PLStage<Content: View>: View {
+    let stickers: [PLSticker]
+    let height: CGFloat
+    let content: Content
+
+    public init(_ stickers: [PLSticker], height: CGFloat = 120, @ViewBuilder content: () -> Content) {
+        self.stickers = stickers
+        self.height = height
+        self.content = content()
+    }
+
+    public var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            PLStickerLayer(stickers).frame(height: height)
+            content
+        }
+    }
+}
+
+public struct PLHeader: View {
+    let title: String
+    let subtitle: String?
+    let onDark: Bool
+
+    public init(_ title: String, subtitle: String? = nil, onDark: Bool = false) {
+        self.title = title
+        self.subtitle = subtitle
+        self.onDark = onDark
+    }
+
+    public var body: some View {
+        VStack(alignment: .leading, spacing: PL.Space.s1) {
+            Text(LocalizedStringKey(title))
+                .font(PL.title.font())
+                .foregroundStyle(onDark ? PL.paper : PL.ink)
+                .accessibilityAddTraits(.isHeader)
+            if let subtitle {
+                Text(LocalizedStringKey(subtitle))
+                    .font(PL.body.font())
+                    .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+@MainActor
+extension PLArt {
+    public func image(height: CGFloat) -> Image {
+        let renderer = ImageRenderer(content: PLArtView(self).frame(width: height * size.width / size.height, height: height))
+        renderer.scale = 3
+        #if os(macOS)
+        return renderer.nsImage.map { Image(nsImage: $0) } ?? Image(systemName: "circle")
+        #else
+        return renderer.uiImage.map { Image(uiImage: $0).renderingMode(.original) } ?? Image(systemName: "circle")
+        #endif
     }
 }

@@ -14,11 +14,12 @@ OUT = ROOT / "apple/BucketKit/Sources/BucketKit/PL"
 RES = OUT / "Resources"
 
 FONT_FILES = (
-    ("fredoka-latin-wght-normal.woff2", "PLFredoka.ttf"),
-    ("nunito-latin-wght-normal.woff2", "PLNunito.ttf"),
-    ("space-mono-latin-400-normal.woff2", "PLSpaceMono.ttf"),
-    ("space-mono-latin-700-normal.woff2", "PLSpaceMonoBold.ttf"),
+    ("fredoka-latin-wght-normal.woff2", "Fredoka", (500, 600, 700)),
+    ("nunito-latin-wght-normal.woff2", "Nunito", (500, 600, 700, 800)),
+    ("space-mono-latin-400-normal.woff2", "Space Mono", (400,)),
+    ("space-mono-latin-700-normal.woff2", "Space Mono", (700,)),
 )
+WEIGHT_NAMES = {400: "Regular", 500: "Medium", 600: "SemiBold", 700: "Bold", 800: "ExtraBold"}
 
 
 def camel(name):
@@ -100,15 +101,32 @@ def art_swift(entries):
     return "".join(o)
 
 
+def font_files():
+    return [(src, family, w, "%s-%s.ttf" % (family.replace(" ", ""), WEIGHT_NAMES[w])) for src, family, weights in FONT_FILES for w in weights]
+
+
 def fonts():
     from fontTools.ttLib import TTFont
+    from fontTools.varLib import instancer
 
     (RES / "Fonts").mkdir(parents=True, exist_ok=True)
-    for src, dst in FONT_FILES:
+    for src, family, w, dst in font_files():
         target = RES / "Fonts" / dst
         if not target.exists():
             f = TTFont(str(FONTS / src))
             f.flavor = None
+            if "fvar" in f:
+                f = instancer.instantiateVariableFont(f, {"wght": w})
+            sub = WEIGHT_NAMES[w]
+            ps = "%s-%s" % (family.replace(" ", ""), sub)
+            name = f["name"]
+            for rec in list(name.names):
+                if rec.nameID in (1, 2, 3, 4, 6, 16, 17, 25):
+                    name.removeNames(nameID=rec.nameID)
+            for nid, val in ((1, family if sub in ("Regular", "Bold") else "%s %s" % (family, sub)), (2, sub if sub in ("Regular", "Bold") else "Regular"), (3, ps), (4, "%s %s" % (family, sub)), (6, ps), (16, family), (17, sub)):
+                name.setName(val, nid, 3, 1, 0x409)
+                name.setName(val, nid, 1, 0, 0)
+            f["OS/2"].usWeightClass = w
             f.save(str(target))
         local = Path.home() / ".local/share/fonts/polingual" / dst
         if not local.exists():
@@ -151,7 +169,7 @@ def main():
     art.mkdir(parents=True)
     for e in entries:
         (art / (e["name"] + ".pdf")).write_bytes(pdf(e))
-    print("wrote", len(outputs), "swift files,", len(entries), "art pdfs,", len(FONT_FILES), "fonts")
+    print("wrote", len(outputs), "swift files,", len(entries), "art pdfs,", len(font_files()), "fonts")
 
 
 if __name__ == "__main__":

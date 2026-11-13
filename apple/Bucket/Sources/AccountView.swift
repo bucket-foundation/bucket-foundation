@@ -27,6 +27,9 @@ struct AccountView: View {
     var body: some View {
         NavigationStack {
             Form {
+                #if !BUCKET
+                PLScreenTop(title: "Account", subtitle: "Your progress, saved", stickers: Stickers.account).plListTop()
+                #endif
                 switch account.stage {
                 case .signedOut, .codeSent:
                     Section {
@@ -100,6 +103,9 @@ struct AccountView: View {
             .listRowBackground(Palette.card)
             .paper()
             .navigationTitle("Account")
+            #if !BUCKET
+            .plChrome()
+            #endif
             .navigationDestination(item: $openGroup) { GroupView(groupId: $0) }
             .navigationDestination(item: $openMember) { id in
                 if let g = groups.groups.first(where: { $0.members.contains { $0.userId == id } }), let m = g.members.first(where: { $0.userId == id }) {
@@ -192,6 +198,9 @@ struct SignInSheet: View {
     var body: some View {
         NavigationStack {
             Form {
+                #if !BUCKET
+                PLScreenTop(title: "Sign in", subtitle: "Save your streak on every device", stickers: Stickers.signIn).plListTop()
+                #endif
                 switch account.stage {
                 case .signedOut:
                     if !emailOnly {
@@ -242,7 +251,13 @@ struct SignInSheet: View {
                 }
             }
             .listRowBackground(Palette.card)
+            #if BUCKET
             .paper()
+            #else
+            .scrollContentBackground(.hidden)
+            .plGround(.cut(0.78, 0.5))
+            .plChrome()
+            #endif
             .navigationTitle("Sign in")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }

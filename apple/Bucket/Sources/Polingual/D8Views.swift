@@ -291,16 +291,16 @@ struct D8Primary: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed && enabled
         configuration.label
-            .font(.system(size: 18, weight: .heavy, design: .rounded))
-            .foregroundStyle(enabled ? .white : D8.disabledText)
+            .font(PL.heading.font(scale: 18 / PL.heading.size))
+            .foregroundStyle(enabled ? PL.paper : D8.disabledText)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .minimumScaleFactor(0.8)
             .padding(.horizontal, compact ? 18 : 14)
             .padding(.vertical, compact ? 0 : 6)
             .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget)
-            .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: 12))
-            .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: 12).offset(y: pressed ? 1 : 4))
+            .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: PL.Radius.md, style: .continuous))
+            .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: PL.Radius.md, style: .continuous).offset(y: pressed ? 1 : PL.Lip.md))
             .offset(y: pressed ? 3 : 0)
             .padding(.bottom, 4)
     }

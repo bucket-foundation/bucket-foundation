@@ -12,6 +12,7 @@ struct LearnView: View {
         NavigationStack(path: $path) {
             ScrollViewReader { proxy in
                 List {
+                    PLScreenTop(title: "Learn", stickers: Stickers.learn).plListTop()
                     if !langs.systems.isEmpty {
                         Section {
                             VoiceTile {
@@ -42,6 +43,7 @@ struct LearnView: View {
             }
             .paper()
             .navigationTitle("Learn")
+            .plChrome()
             .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .navigationDestination(for: DeckEntry.self) { subjects?.deck($0) }
             .navigationDestination(for: AtomRoute.self) { subjects?.atom($0) }
@@ -157,7 +159,7 @@ struct LearnHeading: View {
     var body: some View {
         Section {
             Text(LocalizedStringKey(text))
-                .font(.serif(.title2, weight: .semibold))
+                .font(PL.heading.font())
                 .foregroundStyle(Palette.ink)
                 .accessibilityAddTraits(.isHeader)
                 .listRowBackground(Color.clear)
@@ -172,7 +174,7 @@ struct LearnGroupTitle: View {
 
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
-            Text(LocalizedStringKey(text)).font(.headline).foregroundStyle(Palette.ink)
+            Text(LocalizedStringKey(text)).font(PL.heading.font(scale: 0.8)).foregroundStyle(PL.ink)
             Spacer()
             if let more {
                 NavigationLink("See all", value: more).font(.subheadline.weight(.semibold))

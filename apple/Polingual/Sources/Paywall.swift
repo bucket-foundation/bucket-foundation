@@ -34,8 +34,8 @@ struct Paywall: View {
             let h = g.size.height
             if g.size.width > g.size.height {
                 ZStack {
-                    Dots().ignoresSafeArea()
-                    SideDiagonal().fill(Color(hex: 0x5B1A4A)).ignoresSafeArea()
+                    PLDotPaper().ignoresSafeArea()
+                    PLStarLattice().mask(SideDiagonal()).ignoresSafeArea()
                     HStack(alignment: .top, spacing: 16) {
                         VStack(alignment: .leading, spacing: 8) {
                             header
@@ -52,10 +52,8 @@ struct Paywall: View {
                 }
             } else {
                 ZStack(alignment: .top) {
-                    Dots().ignoresSafeArea()
-                    Diagonal(top: 0.30, rise: 0.06)
-                        .fill(Color(hex: 0x5B1A4A))
-                        .ignoresSafeArea()
+                    PLDotPaper().ignoresSafeArea()
+                    PLStarLattice().mask(Diagonal(top: 0.30, rise: 0.06)).ignoresSafeArea()
                     VStack(alignment: .leading, spacing: 0) {
                         header
                         art
@@ -95,8 +93,8 @@ struct Paywall: View {
         VStack(alignment: .leading, spacing: 10) {
             PoMark()
             Text(PaywallCopy.headline(trial: subs.trialEligible))
-                .font(.system(size: 40, weight: .heavy, design: .rounded))
-                .foregroundStyle(Palette.ink)
+                .font(PL.title.font(scale: 1.1))
+                .foregroundStyle(PL.ink)
                 .minimumScaleFactor(0.7)
                 .lineLimit(1)
         }
@@ -449,106 +447,35 @@ struct PaywallArt: View {
             do {
                 let bob = { (i: Double) -> CGFloat in still ? 0 : (floating ? 1 : -1) * CGFloat(Int(i).isMultiple(of: 2) ? 4 : -4) }
                 ZStack {
-                    Weave()
-                        .frame(width: w * 0.62, height: 54)
+                    PLArtView(.kente, shadow: true)
+                        .frame(width: w * 0.5)
                         .rotationEffect(.degrees(-9))
-                        .position(x: w * 0.32, y: h * 0.78 + bob(0))
-                    Text("百")
-                        .font(.system(size: 64, weight: .black))
-                        .foregroundStyle(D8.parchment)
-                        .frame(width: 112, height: 112)
-                        .background(D8.vermilion, in: .rect(cornerRadius: 10))
-                        .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(D8.parchment, lineWidth: 4).padding(9))
-                        .shadow(color: .black.opacity(0.25), radius: 0, x: 0, y: 6)
+                        .position(x: w * 0.3, y: h * 0.8 + bob(0))
+                    PLArtView(.seal, shadow: true)
+                        .frame(width: 104)
                         .rotationEffect(.degrees(-7))
-                        .position(x: w * 0.24, y: h * 0.3 + bob(1))
-                    Stamp()
+                        .position(x: w * 0.22, y: h * 0.32 + bob(1))
+                    PLArtView(.ticket, shadow: true)
+                        .frame(width: 170)
                         .rotationEffect(.degrees(5))
-                        .position(x: w * 0.68, y: h * 0.47 + bob(2))
-                    Text("сто")
-                        .font(.system(size: 30, weight: .heavy, design: .rounded))
-                        .foregroundStyle(D8.parchment.opacity(0.8))
-                        .rotationEffect(.degrees(-14))
-                        .position(x: w * 0.1, y: h * 0.58 + bob(3))
-                    Text("מאה")
-                        .font(.system(size: 30, weight: .heavy, design: .rounded))
-                        .foregroundStyle(Color(hex: 0x5B1A4A).opacity(0.85))
-                        .rotationEffect(.degrees(-8))
-                        .position(x: w * 0.6, y: h * 0.12 + bob(4))
-                    Text("शतम्")
-                        .font(.system(size: 26, weight: .heavy))
-                        .foregroundStyle(Color(hex: 0x5B1A4A))
-                        .padding(.horizontal, 14).padding(.vertical, 6)
-                        .background(D8.parchment, in: .rect(cornerRadius: 4))
+                        .position(x: w * 0.62, y: h * 0.5 + bob(2))
+                    PLArtView(.scriptRu)
+                        .frame(width: 70)
+                        .rotationEffect(.degrees(-12))
+                        .position(x: w * 0.08, y: h * 0.6 + bob(3))
+                    PLArtView(.tornLabel, shadow: true)
+                        .frame(width: 104)
                         .rotationEffect(.degrees(-4))
-                        .position(x: w * 0.85, y: h * 0.8 + bob(5))
+                        .position(x: w * 0.84, y: h * 0.82 + bob(5))
                     WordTile(word: "cien", lang: "es", reading: Reading(ipa: "θjen"), size: 92)
                         .rotationEffect(.degrees(8))
-                        .position(x: w * 0.88, y: h * 0.2 + bob(6))
+                        .position(x: w * 0.86, y: h * 0.18 + bob(6))
                 }
             }
         }
         .animation(still ? nil : .easeInOut(duration: 3).repeatForever(autoreverses: true), value: floating)
         .onAppear { floating = true }
         .accessibilityHidden(true)
-    }
-}
-
-struct Stamp: View {
-    var body: some View {
-        VStack(spacing: 4) {
-            Text("ἑκατόν").font(.system(size: 30, weight: .bold, design: .serif)).foregroundStyle(D8.ink)
-            Text("ATHENS · 400 BC").font(D8.caps(9)).tracking(1.2).foregroundStyle(D8.label)
-        }
-        .padding(.horizontal, 22).padding(.vertical, 16)
-        .background(D8.parchment)
-        .overlay(Rectangle().strokeBorder(D8.ink.opacity(0.25), style: StrokeStyle(lineWidth: 2, dash: [3, 3])).padding(5))
-        .mask(Perforated())
-        .shadow(color: .black.opacity(0.25), radius: 0, x: 0, y: 5)
-    }
-}
-
-struct Perforated: Shape {
-    func path(in r: CGRect) -> Path {
-        var p = Path(r)
-        let step: CGFloat = 10, rad: CGFloat = 3
-        var x = r.minX + step / 2
-        while x < r.maxX {
-            p.addEllipse(in: CGRect(x: x - rad, y: r.minY - rad, width: rad * 2, height: rad * 2))
-            p.addEllipse(in: CGRect(x: x - rad, y: r.maxY - rad, width: rad * 2, height: rad * 2))
-            x += step
-        }
-        var y = r.minY + step / 2
-        while y < r.maxY {
-            p.addEllipse(in: CGRect(x: r.minX - rad, y: y - rad, width: rad * 2, height: rad * 2))
-            p.addEllipse(in: CGRect(x: r.maxX - rad, y: y - rad, width: rad * 2, height: rad * 2))
-            y += step
-        }
-        return p
-    }
-}
-
-struct Weave: View {
-    var body: some View {
-        Canvas { ctx, size in
-            let colors: [Color] = [Color(hex: 0xE9A23B), D8.malachite, D8.vermilion, D8.ink, Color(hex: 0xE9A23B)]
-            let cell: CGFloat = 12
-            var col = 0
-            var x: CGFloat = 0
-            while x < size.width {
-                var y: CGFloat = 0
-                var row = 0
-                while y < size.height {
-                    ctx.fill(Path(CGRect(x: x, y: y, width: cell - 1, height: cell - 1)), with: .color(colors[(col + row) % colors.count]))
-                    y += cell
-                    row += 1
-                }
-                x += cell
-                col += 1
-            }
-        }
-        .clipShape(.rect(cornerRadius: 3))
-        .shadow(color: .black.opacity(0.25), radius: 0, x: 0, y: 5)
     }
 }
 
@@ -576,7 +503,7 @@ struct StudentPlan: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Student plan").font(.system(size: 26, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
-            Text(price).font(.title3.weight(.bold)).foregroundStyle(Color(hex: 0x5B1A4A))
+            Text(price).font(.title3.weight(.bold)).foregroundStyle(PL.tyrian)
             Text("Email us from your school address. We reply with a one-time code for the student price.")
                 .font(.body).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
             MailButton(url: Self.mail, address: "support@polingual.com") { Text("Email from my school address") }.buttonStyle(D8Primary())

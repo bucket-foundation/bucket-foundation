@@ -298,6 +298,7 @@ struct TodayView: View {
             } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
+                    PLScreenTop(title: "Today", stickers: Stickers.today)
                     StreakGoalCard(streak: streak, share: later).todayCard()
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
@@ -339,8 +340,10 @@ struct TodayView: View {
             }
             }
             .animation(.easeOut(duration: 0.35), value: loaded)
-            .paper()
+            .scrollContentBackground(.hidden)
+            .plGround(.cut(0.7, 0.42))
             .navigationTitle("Today")
+            .plChrome()
             .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .sheet(item: $session) { subjects?.study($0) }
             .sheet(isPresented: $picking) { TodayPicker(subjects: subjects?.decks) }

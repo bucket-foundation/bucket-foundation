@@ -170,10 +170,17 @@ struct GamesView: View {
 
     var page: some View {
         ScrollView {
-            GamesBoard { open = $0 }.padding()
+            VStack(alignment: .leading, spacing: PL.Space.s4) {
+                PLScreenTop(title: "Games", subtitle: "Free to play, every day", stickers: Stickers.games, onDark: true)
+                GamesBoard(onDark: true) { open = $0 }
+            }
+            .padding(.horizontal, PL.Space.s4)
+            .padding(.bottom, PL.Space.s4)
         }
-        .paper()
+        .scrollContentBackground(.hidden)
+        .plGround(.lattice, band: true)
         .navigationTitle("Games")
+        .plChrome()
         .navigationDestination(item: $open) { $0.screen }
         .task {
             await langs.load()
@@ -188,6 +195,7 @@ struct GamesView: View {
 struct GamesBoard: View {
     @Environment(LangStore.self) private var langs
     @Environment(GroupStore.self) private var groups
+    var onDark = false
     let open: (GameKind) -> Void
 
     var body: some View {
@@ -196,7 +204,7 @@ struct GamesBoard: View {
                 ProgressView().frame(maxWidth: .infinity).padding(.top, 60)
             } else if langs.systems.isEmpty {
                 Text("Start a language set in Learn. The games use the words you study.")
-                    .foregroundStyle(Palette.muted)
+                    .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
                     .padding(.top, 60)
             } else {
                 DailyHero(open: { open(.daily) })
@@ -211,7 +219,7 @@ struct GamesBoard: View {
                 }
                 Text("\(langs.gameWords.count) words from your reviews. A finished game keeps your streak. Misses come back in study.")
                     .font(.footnote)
-                    .foregroundStyle(Palette.muted)
+                    .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
@@ -306,12 +314,13 @@ struct VoiceTile: View {
 struct TranslateScreen: View {
     var body: some View {
         List {
+            PLScreenTop(title: "Translate", subtitle: "Any word, every language you study", stickers: Stickers.translate).plListTop()
             Section { TranslateCard() }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
         }
         .paper()
         .navigationTitle("Translate")
-        .inlineTitle()
+        .plChrome()
     }
 }
 

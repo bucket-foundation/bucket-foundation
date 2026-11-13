@@ -59,7 +59,9 @@ struct PLTokensTests {
 
     @Test func fontsRegister() {
         #expect(PLFonts.register())
-        let names = CTFontManagerCopyAvailableFontFamilyNames() as! [String]
-        for family in ["Fredoka", "Nunito", "Space Mono"] { #expect(names.contains(family), "\(family)") }
+        for spec in PL.type.values {
+            let font = CTFontCreateWithName(spec.postScriptName as CFString, 12, nil)
+            #expect(CTFontCopyPostScriptName(font) as String == spec.postScriptName)
+        }
     }
 }
