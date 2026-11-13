@@ -7,7 +7,7 @@ import { fetchAccess, type Access } from "@/lib/app/plans";
 import Paywall from "./Paywall";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
-import { Button } from "@/ui";
+import { Button, ButtonLink, Stage } from "@/ui";
 
 type AuthState = { status: "loading" } | { status: "signed-out" } | { status: "signed-in"; userId: string };
 
@@ -51,14 +51,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <span>polingual</span>
         </Link>
         {auth.status === "signed-in" ? (
-          <Button variant="quiet" size="sm" onClick={signOut} data-testid="sign-out">
-            Sign out
-          </Button>
+          <span className={styles.row}>
+            <ButtonLink variant="quiet" size="sm" href="/app/account" data-testid="account-link">Account</ButtonLink>
+            <Button variant="quiet" size="sm" onClick={signOut} data-testid="sign-out">
+              Sign out
+            </Button>
+          </span>
         ) : null}
       </header>
       <main className={styles.main}>
         {auth.status === "loading" ? <p className={styles.muted} aria-busy="true">Loading</p> : null}
-        {auth.status === "signed-out" ? <SignIn onSignedIn={refresh} /> : null}
+        {auth.status === "signed-out" ? <Stage testId="sign-in-stage"><SignIn onSignedIn={refresh} /></Stage> : null}
         {auth.status === "signed-in" && access.status === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
         {auth.status === "signed-in" && (access.status === "locked" || access.status === "unknown") ? <Paywall access={access} retry={check} /> : null}
         {auth.status === "signed-in" && access.status === "open" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}

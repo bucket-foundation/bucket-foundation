@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { idle, installedVoices, playAll, playable, snapshot, stop, subscribe, toggle, type SpeakItem } from "@/lib/speak";
-import styles from "@/app/site.module.css";
+import { flagTileStyles as styles } from "@/ui/FlagTile";
 import { Pill } from "@/ui";
 
 function usePlayer() {
