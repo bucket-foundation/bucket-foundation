@@ -37,7 +37,8 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
 fun TodayExtras(graph: Graph, nav: NavHostController) {
     val app by graph.state.collectAsState()
     val p = LocalPalette.current
-    val system = app?.system ?: return
+    val system = app?.system
+    if (system == null) { TodayMore(graph, nav); return }
     val due = app?.study?.get(system.id)?.cards?.values?.count { it.due <= System.currentTimeMillis() } ?: 0
     Card(color = D8.ink) {
         Text("Daily session", style = Type.title, color = D8.parchment)
