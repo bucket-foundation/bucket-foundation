@@ -1,5 +1,7 @@
 "use client";
 
+import { cssVars } from "@/ui/vars";
+
 import { displayNickname, MARKS, optionLabel, promptView, team, type Mark, type Question, type Standing, type TeamStanding } from "@/lib/stoa/client";
 import styles from "./stoa.module.css";
 import { Avatar } from "@/ui/avatar";
@@ -56,7 +58,7 @@ export function Tiles({
         const label = optionLabel(q, i);
         const name = q.kind === "pick_word" ? q.prompt.lang : q.kind === "translate" ? q.prompt.to : undefined;
         return (
-          <li key={mark.letter} style={{ "--i": i } as React.CSSProperties}>
+          <li key={mark.letter} style={cssVars({ "--i": i })}>
             <button
               type="button"
               className={styles.tile}
@@ -65,7 +67,7 @@ export function Tiles({
               data-testid={`tile-${mark.letter}`}
               disabled={disabled || !onPick}
               onClick={() => onPick?.(i)}
-              style={counts ? ({ "--share": `${Math.round(((counts[i] ?? 0) / Math.max(1, counts.reduce((a, b) => a + b, 0))) * 100)}%` } as React.CSSProperties) : undefined}
+              style={counts ? cssVars({ "--share": `${Math.round(((counts[i] ?? 0) / Math.max(1, counts.reduce((a, b) => a + b, 0))) * 100)}%` }) : undefined}
               aria-label={[mark.letter, mark.glyph, label, states?.[i] === "right" ? "correct" : states?.[i] === "chosen" ? "your answer" : null].filter(Boolean).join(", ")}
             >
               <MarkBadge mark={mark} />
@@ -92,7 +94,7 @@ export function Standings({ rows, me, testId, moves }: { rows: Standing[]; me?: 
   return (
     <ol className={styles.standings} data-testid={testId ?? "standings"}>
       {rows.map((r, i) => (
-        <li key={r.player_id} data-me={r.player_id === me} style={{ "--i": i } as React.CSSProperties}>
+        <li key={r.player_id} data-me={r.player_id === me} style={cssVars({ "--i": i })}>
           <span className={styles.who}><Avatar seed={r.nickname} size="sm" variant="head" label="" />{displayNickname(r.nickname)}</span>
           <Move by={moves?.[r.player_id] ?? 0} />
           <span>{r.points}</span>
@@ -108,7 +110,7 @@ export function TeamStandings({ rows, mine }: { rows: TeamStanding[]; mine?: num
       {rows.map((r, i) => {
         const t = team(r.team);
         return (
-          <li key={r.team} data-me={r.team === mine} data-pigment={t?.pigment} style={{ "--i": i } as React.CSSProperties}>
+          <li key={r.team} data-me={r.team === mine} data-pigment={t?.pigment} style={cssVars({ "--i": i })}>
             <span>
               Team {t?.name} <span className={styles.members}>{r.members} {r.members === 1 ? "player" : "players"}{r.unisons ? `, ${r.unisons} in unison` : ""}</span>
             </span>

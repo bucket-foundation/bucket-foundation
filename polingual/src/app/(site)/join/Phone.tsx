@@ -278,8 +278,8 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
           <Card as="form" className={styles.card} onSubmit={submitCode} data-testid="join-code">
             <p className={styles.label}>Join a live room</p>
             <h1 className={styles.title}>Enter the room code</h1>
-            <label className={styles.field}>
-              <span>Code on the board</span>
+            <label className={styles.ticket}>
+              <span className={styles.ticketCap}>Room code · admit one</span>
               <input className={styles.codeInput} value={code} onChange={(e) => setCode(normalizeCode(e.target.value))} inputMode="text" autoCapitalize="characters" autoComplete="off" maxLength={6} size={6} data-testid="code-input" aria-describedby="code-help" />
             </label>
             <p id="code-help" className={styles.muted}>6 letters and numbers.</p>

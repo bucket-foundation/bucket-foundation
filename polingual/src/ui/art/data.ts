@@ -6,7 +6,7 @@ export const ART_DATA = [
   "label": "Ticket stamp",
   "origin": "Greek ἑκατόν, Athens, 400 BC",
   "viewBox": "0 0 260 120",
-  "body": "<rect x=\"4\" y=\"4\" width=\"252\" height=\"112\" fill=\"#F6EEDC\"/><rect x=\"4\" y=\"4\" width=\"252\" height=\"112\" fill=\"none\" stroke=\"#F6EEDC\" stroke-width=\"8\" stroke-dasharray=\"0 14\" stroke-linecap=\"round\"/><text x=\"26\" y=\"62\" font-family=\"Noto Sans\" font-weight=\"800\" font-size=\"44\" fill=\"#231F20\">ἑκατόν</text><text x=\"26\" y=\"94\" font-family=\"Space Mono\" font-weight=\"700\" font-size=\"12\" letter-spacing=\"1.44\" fill=\"#7a6f63\">ATHENS · 400 BC</text>",
+  "body": "<rect x=\"4\" y=\"4\" width=\"252\" height=\"112\" fill=\"#F6EEDC\" stroke=\"#231F20\" stroke-width=\"3\"/><rect x=\"4\" y=\"4\" width=\"252\" height=\"112\" fill=\"none\" stroke=\"#F6EEDC\" stroke-width=\"10\" stroke-dasharray=\"0 14\" stroke-linecap=\"round\"/><text x=\"26\" y=\"62\" font-family=\"Noto Sans\" font-weight=\"800\" font-size=\"44\" fill=\"#231F20\">ἑκατόν</text><text x=\"26\" y=\"94\" font-family=\"Space Mono\" font-weight=\"700\" font-size=\"12\" letter-spacing=\"1.44\" fill=\"#7a6f63\">ATHENS · 400 BC</text>",
   "dark": false
  },
  {
@@ -14,7 +14,7 @@ export const ART_DATA = [
   "label": "Torn label",
   "origin": "Sanskrit शतम्",
   "viewBox": "0 0 220 110",
-  "body": "<polygon points=\"0,9 13,0 31,7 53,1 79,8 110,0 139,7 169,1 194,8 220,2 216,101 194,110 163,103 132,110 101,102 70,110 40,103 13,110 2,99\" fill=\"#EBDDBE\"/><text x=\"110\" y=\"55\" text-anchor=\"middle\" dominant-baseline=\"central\" font-family=\"Noto Sans Devanagari\" font-weight=\"800\" font-size=\"56\" fill=\"#5B1A4A\">शतम्</text>",
+  "body": "<polygon points=\"0,9 13,0 31,7 53,1 79,8 110,0 139,7 169,1 194,8 220,2 216,101 194,110 163,103 132,110 101,102 70,110 40,103 13,110 2,99\" fill=\"#EBDDBE\" stroke=\"#231F20\" stroke-width=\"3\" stroke-linejoin=\"round\"/><text x=\"110\" y=\"55\" text-anchor=\"middle\" dominant-baseline=\"central\" font-family=\"Noto Sans Devanagari\" font-weight=\"800\" font-size=\"56\" fill=\"#5B1A4A\">शतम्</text>",
   "dark": false
  },
  {
@@ -46,7 +46,7 @@ export const ART_DATA = [
   "label": "Azulejo tile",
   "origin": "Portugal, glazed tile",
   "viewBox": "0 0 170 170",
-  "body": "<defs><clipPath id=\"azc\"><rect width=\"170\" height=\"170\" rx=\"6\"/></clipPath></defs><g clip-path=\"url(#azc)\"><rect width=\"170\" height=\"170\" fill=\"#F4F1E8\"/><path d=\"M85 85L176.9 -6.9A130 130 0 0 1 191.5 10.4Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L215.0 85.0A130 130 0 0 1 213.0 107.6Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L176.9 176.9A130 130 0 0 1 159.6 191.5Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L85.0 215.0A130 130 0 0 1 62.4 213.0Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L-6.9 176.9A130 130 0 0 1 -21.5 159.6Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L-45.0 85.0A130 130 0 0 1 -43.0 62.4Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L-6.9 -6.9A130 130 0 0 1 10.4 -21.5Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L85.0 -45.0A130 130 0 0 1 107.6 -43.0Z\" fill=\"#6FB7C2\"/><circle cx=\"0\" cy=\"0\" r=\"40\" fill=\"#26428B\"/><circle cx=\"170\" cy=\"0\" r=\"40\" fill=\"#26428B\"/><circle cx=\"0\" cy=\"170\" r=\"40\" fill=\"#26428B\"/><circle cx=\"170\" cy=\"170\" r=\"40\" fill=\"#26428B\"/><circle cx=\"85\" cy=\"85\" r=\"14\" fill=\"#26428B\"/></g>",
+  "body": "<defs><clipPath id=\"azc\"><rect width=\"170\" height=\"170\" rx=\"6\"/></clipPath></defs><g clip-path=\"url(#azc)\"><rect width=\"170\" height=\"170\" fill=\"#F4F1E8\"/><path d=\"M85 85L176.9 -6.9A130 130 0 0 1 191.5 10.4Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L215.0 85.0A130 130 0 0 1 213.0 107.6Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L176.9 176.9A130 130 0 0 1 159.6 191.5Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L85.0 215.0A130 130 0 0 1 62.4 213.0Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L-6.9 176.9A130 130 0 0 1 -21.5 159.6Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L-45.0 85.0A130 130 0 0 1 -43.0 62.4Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L-6.9 -6.9A130 130 0 0 1 10.4 -21.5Z\" fill=\"#6FB7C2\"/><path d=\"M85 85L85.0 -45.0A130 130 0 0 1 107.6 -43.0Z\" fill=\"#6FB7C2\"/><circle cx=\"0\" cy=\"0\" r=\"40\" fill=\"#26428B\"/><circle cx=\"170\" cy=\"0\" r=\"40\" fill=\"#26428B\"/><circle cx=\"0\" cy=\"170\" r=\"40\" fill=\"#26428B\"/><circle cx=\"170\" cy=\"170\" r=\"40\" fill=\"#26428B\"/><circle cx=\"85\" cy=\"85\" r=\"14\" fill=\"#26428B\"/></g><rect x=\"1.5\" y=\"1.5\" width=\"167\" height=\"167\" rx=\"6\" fill=\"none\" stroke=\"#231F20\" stroke-width=\"3\"/>",
   "dark": false
  },
  {

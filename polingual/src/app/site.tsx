@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { TESTFLIGHT_URL } from "@/lib/beta";
-import { FLAG_STRIPE } from "@/lib/flags";
+import { FlagBand } from "@/ui";
 import styles from "./site.module.css";
 import { ButtonLink } from "@/ui";
 
@@ -42,7 +42,7 @@ export function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
 export function SiteFooter({ loc = EN_SITE }: { loc?: SiteLocale }) {
   return (
     <footer className={styles.ft}>
-      <div className={styles.stripe} style={{ background: FLAG_STRIPE }} />
+      <FlagBand flags />
       <div className={styles.ftrow}>
         <span>{loc.footer.tagline}</span>
         <nav className={styles.fl}>

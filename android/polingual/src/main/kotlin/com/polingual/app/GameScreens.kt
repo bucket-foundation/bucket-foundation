@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -59,15 +60,14 @@ import foundation.bucket.core.engine.WordGroupsRound
 import foundation.bucket.core.engine.mixed
 import foundation.bucket.core.model.Lang
 import foundation.bucket.core.model.LangSystem
-import foundation.bucket.core.ui.ChoiceButton
-import foundation.bucket.core.ui.ChoiceState
-import foundation.bucket.core.ui.D8
-import foundation.bucket.core.ui.FlagTile
+import foundation.bucket.core.ui.pl.ChoiceButton
+import foundation.bucket.core.ui.pl.ChoiceState
+import foundation.bucket.core.ui.pl.PL
+import foundation.bucket.core.ui.pl.FlagTile
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.ResultDots
-import foundation.bucket.core.ui.Type
+import foundation.bucket.core.ui.pl.PlainLink
+import foundation.bucket.core.ui.pl.PrimaryButton
+import foundation.bucket.core.ui.pl.ResultDots
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -88,9 +88,12 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    Page(kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }) {
+    Page(
+        kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
+        stickers = listOf(Sticker(kind.art, Alignment.CenterStart, 70.dp, kind.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("kente", Alignment.BottomEnd, 76.dp, -5f, dx = (-8).dp)),
+    ) {
         val c = ctx
-        if (c == null) Text("Start a language set in Learn. The games use the words you study.", color = LocalPalette.current.muted) else content(c)
+        if (c == null) EmptyState("kente", "Start a language set in Learn. The games use the words you study.") else content(c)
     }
 }
 
@@ -126,7 +129,9 @@ fun Finished(title: String, line: String, results: List<Boolean>, total: Int, ag
     Text(title, style = Type.display, color = p.ink)
     ResultDots(results, total)
     Text(line, color = p.muted)
-    if (again != null) PrimaryButton("Play again", color = D8.malachite, onClick = again)
+    if (again != null) PrimaryButton("Play again", color = PL.Malachite, onClick = again)
+    val learn = LocalStartLearning.current
+    PLButton("Start learning", variant = ButtonVariant.Secondary, onClick = learn)
 }
 
 @Composable
@@ -148,19 +153,16 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     when (prompt.mode) {
         PromptMode.Form -> {
             Text("Which is ${Lang.name(prompt.word.lang)} for", color = p.muted)
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                FlagTile(prompt.word.lang, 44.dp)
-                Text(prompt.word.gloss, style = Type.word, color = p.ink)
-            }
+            WordTile(prompt.word.lang, prompt.word.gloss)
         }
         PromptMode.Flag -> {
             Text("Which language is this?", color = p.muted)
-            Text(prompt.word.form, style = Type.word, color = p.ink)
+            WordTile(null, prompt.word.form)
         }
         PromptMode.Voice -> {
             Text("Listen. Which language is it?", color = p.muted)
             LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
-            PrimaryButton("Play again", color = D8.lapis) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+            PLButton("Play again", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
         }
     }
     val picked = round.picked
@@ -175,11 +177,13 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         ChoiceButton(label, state) {
             round.answer(choice)
             tick += 1
-            if (prompt.mode == PromptMode.Form) graph.voice.speak(prompt.word.form, prompt.word.lang)
-            scope.launch { delay(if (choice == prompt.answer) 700 else 1500); round.advance(); tick += 1 }
+            graph.voice.speak(prompt.word.form, prompt.word.lang)
         }
     }
-    if (picked != null && prompt.mode != PromptMode.Form) Text("${prompt.word.form} means ${prompt.word.gloss}", color = p.muted)
+    if (picked != null) {
+        WordReveal(prompt.word.lang, prompt.word.form, prompt.word.gloss, prompt.word.itemId, c.corpus) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+        PrimaryButton(if (round.results.size >= round.prompts.size) "See results" else "Next word") { round.advance(); tick += 1 }
+    }
 }
 
 @Composable
@@ -199,7 +203,7 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
         Finished("${board.matched} pairs", "${board.missed} misses. ${if (board.combo >= SpeedBoard.HOT_COMBO) "Hot streak." else ""}", emptyList(), 0) { seed += 1 }
         return
     }
-    LinearProgressIndicator(progress = { (remaining / SpeedBoard.SECONDS).toFloat() }, modifier = Modifier.fillMaxWidth(), color = D8.malachite)
+    LinearProgressIndicator(progress = { (remaining / SpeedBoard.SECONDS).toFloat() }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
     Text("${remaining.toInt()} s   ${board.matched} pairs", color = p.muted)
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -215,10 +219,10 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
 fun MatchTile(text: String, selected: Boolean, onClick: () -> Unit) {
     val p = LocalPalette.current
     Box(
-        Modifier.fillMaxWidth().heightIn(min = 64.dp).clip(RoundedCornerShape(14.dp)).background(if (selected) D8.lapis else p.card)
+        Modifier.fillMaxWidth().heightIn(min = 64.dp).clip(RoundedCornerShape(14.dp)).background(if (selected) PL.Lapis else p.card)
             .border(1.dp, p.rule, RoundedCornerShape(14.dp)).clickable(role = Role.Button, onClick = onClick).padding(10.dp),
         contentAlignment = Alignment.Center,
-    ) { Text(text, color = if (selected) D8.parchment else p.ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center) }
+    ) { Text(text, color = if (selected) PL.Paper else p.ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center) }
 }
 
 @Composable
@@ -230,11 +234,11 @@ fun Groups(graph: Graph, c: GameContext) {
     var tick by remember { mutableIntStateOf(0) }
     var note by remember { mutableStateOf("") }
     tick.let { }
-    val colors = listOf(D8.lapis, D8.malachite, D8.vermilion, D8.ink)
+    val colors = listOf(PL.Lapis, PL.Malachite, PL.Vermilion, PL.Ink)
     round.solved.forEachIndexed { i, g ->
         Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(colors[i % 4]).padding(12.dp)) {
-            Text(groupTitle(g.link), style = Type.caps, color = D8.parchment)
-            Text(g.words.joinToString(", ") { it.form }, color = D8.parchment, fontWeight = FontWeight.Bold)
+            Text(groupTitle(g.link), style = Type.caps, color = PL.Paper)
+            Text(g.words.joinToString(", ") { it.form }, color = PL.Paper, fontWeight = FontWeight.Bold)
         }
     }
     if (round.finished) {
@@ -248,16 +252,16 @@ fun Groups(graph: Graph, c: GameContext) {
             row.forEach { w ->
                 val on = w.id in round.selected
                 Box(
-                    Modifier.weight(1f).aspectRatio(1.1f).clip(RoundedCornerShape(12.dp)).background(if (on) D8.ink else p.card)
+                    Modifier.weight(1f).aspectRatio(1.1f).clip(RoundedCornerShape(12.dp)).background(if (on) PL.Ink else p.card)
                         .clickable(role = Role.Checkbox) { round.toggle(w.id); tick += 1 }.padding(4.dp)
                         .semantics { contentDescription = "${w.form}, ${Lang.name(w.lang)}" },
                     contentAlignment = Alignment.Center,
-                ) { Text(w.form, color = if (on) D8.parchment else p.ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, fontSize = 14.sp, maxLines = 2) }
+                ) { Text(w.form, color = if (on) PL.Paper else p.ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, fontSize = 14.sp, maxLines = 2) }
             }
         }
     }
     Text("Mistakes left: ${"●".repeat(round.mistakesLeft)}", color = p.muted)
-    if (note.isNotEmpty()) Text(note, color = D8.vermilion)
+    if (note.isNotEmpty()) Text(note, color = PL.Vermilion)
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         PlainLink("Shuffle") { round.shuffle(SeededRandom(System.nanoTime().toULong())); tick += 1 }
         PlainLink("Deselect") { round.selected.forEach(round::toggle); tick += 1 }
@@ -299,8 +303,8 @@ fun Mini(graph: Graph, c: GameContext) {
                 val live = cell in answers
                 val active = cell == entry.cells.getOrNull(cursor)
                 Box(
-                    Modifier.size(46.dp).clip(RoundedCornerShape(6.dp)).background(if (!live) androidx.compose.ui.graphics.Color.Transparent else if (active) D8.keyline else if (cell in entry.cells) p.card else p.card.copy(alpha = 0.7f))
-                        .then(if (live) Modifier.border(1.dp, if (active) D8.vermilion else p.rule, RoundedCornerShape(6.dp)).clickable {
+                    Modifier.size(46.dp).clip(RoundedCornerShape(6.dp)).background(if (!live) androidx.compose.ui.graphics.Color.Transparent else if (active) PL.Paper3 else if (cell in entry.cells) p.card else p.card.copy(alpha = 0.7f))
+                        .then(if (live) Modifier.border(1.dp, if (active) PL.Vermilion else p.rule, RoundedCornerShape(6.dp)).clickable {
                             val e = puzzle.entries.firstOrNull { it.cells.contains(cell) && it.across == entry.across } ?: puzzle.entries.first { it.cells.contains(cell) }
                             entry = e; cursor = e.cells.indexOf(cell)
                         } else Modifier),
@@ -308,7 +312,7 @@ fun Mini(graph: Graph, c: GameContext) {
                 ) {
                     if (live) {
                         puzzle.numbers[cell]?.let { Text("$it", fontSize = 9.sp, color = p.muted, modifier = Modifier.align(Alignment.TopStart).padding(2.dp)) }
-                        Text(filled[cell].orEmpty(), fontWeight = FontWeight.Bold, color = if (solved) D8.malachite else p.ink, fontSize = 20.sp)
+                        Text(filled[cell].orEmpty(), fontWeight = FontWeight.Bold, color = if (solved) PL.Malachite else p.ink, fontSize = 20.sp)
                     }
                 }
             }
@@ -354,16 +358,20 @@ fun Letters(graph: Graph, c: GameContext) {
     LaunchedEffect(q) { graph.voice.speak(q.word.form, q.word.lang) }
     ResultDots(results.value, prompts.size)
     Text("Listen to the word. Which letter does it start with?", color = p.muted)
-    PrimaryButton("Play again", color = D8.lapis) { graph.voice.speak(q.word.form, q.word.lang) }
+    PLButton("Play again", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(q.word.form, q.word.lang) }
     q.choices.forEach { ch ->
         val state = when { picked == null -> ChoiceState.Idle; ch == q.answer -> ChoiceState.Right; ch == picked -> ChoiceState.Wrong; else -> ChoiceState.Dim }
         ChoiceButton(ch, state) {
-            picked = ch
-            results.value = results.value + (ch == q.answer)
-            scope.launch { delay(900); picked = null; index += 1 }
+            if (picked == null) {
+                picked = ch
+                results.value = results.value + (ch == q.answer)
+            }
         }
     }
-    if (picked != null) Text("${q.word.form} means ${q.word.gloss}", color = p.muted)
+    if (picked != null) {
+        WordReveal(q.word.lang, q.word.form, q.word.gloss, q.word.itemId, c.corpus) { graph.voice.speak(q.word.form, q.word.lang) }
+        PrimaryButton("Next letter") { picked = null; index += 1 }
+    }
 }
 
 object LetterSprint {

@@ -10,13 +10,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
+import foundation.bucket.core.ui.pl.Card
+import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.SectionTitle
-import foundation.bucket.core.ui.Type
+import foundation.bucket.core.ui.pl.PlainLink
+import foundation.bucket.core.ui.pl.PrimaryButton
+import foundation.bucket.core.ui.pl.SectionTitle
 import kotlinx.coroutines.launch
 import androidx.compose.ui.draw.alpha
 
@@ -40,21 +39,20 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
     val system = app?.system
     if (system == null) { TodayMore(graph, nav); return }
     val due = app?.study?.get(system.id)?.cards?.values?.count { it.due <= System.currentTimeMillis() } ?: 0
-    Card(color = D8.ink) {
-        Text("Daily session", style = Type.title, color = D8.parchment)
-        Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", color = D8.parchment.copy(alpha = 0.85f))
+    Card(color = PL.Ink) {
+        Text("Daily session", style = Type.title, color = PL.Paper)
+        Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", color = PL.Paper.copy(alpha = 0.85f))
         val access by graph.billing.access.collectAsState()
         PrimaryButton(if (access.unlocked || access == Access.Checking) "Start" else "Unlock learning") { nav.navigate(if (access.unlocked) "study" else "paywall") }
     }
-    Card(color = D8.vermilion, onClick = { nav.navigate("translate") }) {
-        Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = D8.parchment)
-        Text("Any word, every language you study", color = D8.parchment.copy(alpha = 0.9f))
+    Card(color = PL.Vermilion, onClick = { nav.navigate("translate") }) {
+        Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = PL.Paper)
+        Text("Any word, every language you study", color = PL.Paper.copy(alpha = 0.9f))
     }
     TodayMore(graph, nav)
-    SectionTitle("Daily games")
-    GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> foundation.bucket.core.model.Lang.info[l]?.latin == false } }.forEach { k ->
-        val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
-        GameTile(k, played) { nav.navigate("game/${k.route}") }
+    Card(color = PL.Tyrian, onClick = { nav.navigate(Tab.Play.route) { launchSingleTop = true } }) {
+        Text("Daily games", style = Type.title, color = PL.Paper)
+        Text("${GameKind.entries.count { app?.played(it, system) != null }} of ${GameKind.entries.size} played today. Games are free.", color = PL.Paper.copy(alpha = 0.9f))
     }
     AdBanner(graph)
 }
@@ -70,10 +68,10 @@ fun LearnExtras(graph: Graph, nav: NavHostController) {
 
 @Composable
 fun LockedPreview(nav: NavHostController) {
-    Card(color = D8.ink) {
-        Text("LEARNING", style = Type.caps, color = D8.parchment.copy(alpha = 0.7f))
-        Text("Daily sessions, every word you miss, all your languages", style = Type.title.copy(fontSize = 20.sp()), color = D8.parchment)
-        Text("Games and live rooms stay free. Polingual Pro opens learning and removes ads.", color = D8.parchment.copy(alpha = 0.85f))
+    Card(color = PL.Ink) {
+        Text("LEARNING", style = Type.caps, color = PL.Paper.copy(alpha = 0.7f))
+        Text("Daily sessions, every word you miss, all your languages", style = Type.title.copy(fontSize = 20.sp()), color = PL.Paper)
+        Text("Games and live rooms stay free. Polingual Pro opens learning and removes ads.", color = PL.Paper.copy(alpha = 0.85f))
         PrimaryButton("See plans") { nav.navigate("paywall") }
     }
 }
