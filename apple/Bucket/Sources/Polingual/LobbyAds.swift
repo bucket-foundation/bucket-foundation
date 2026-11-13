@@ -22,6 +22,9 @@ final class LobbyAds {
 
     func start() {
         guard allowed, units != nil, !started else { return }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-adsOff") { return }
+        #endif
         started = true
         Task { await gatherConsent() }
     }

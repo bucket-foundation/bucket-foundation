@@ -164,6 +164,8 @@ def pdf(e):
     import cairosvg
 
     body = e["body"].replace('font-family="Noto Sans SC"', 'font-family="Noto Sans CJK SC"')
+    if re.search("[\uac00-\ud7af]", body):
+        body = body.replace('font-family="Noto Sans"', 'font-family="Noto Sans CJK KR"')
     _, _, w, h = e["viewBox"].split()
     svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="%s" width="%s" height="%s">%s</svg>' % (e["viewBox"], w, h, body)
     data = cairosvg.svg2pdf(bytestring=svg.encode())

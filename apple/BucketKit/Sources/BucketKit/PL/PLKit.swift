@@ -597,7 +597,7 @@ extension PLArt {
         #if os(macOS)
         return renderer.nsImage.map { Image(nsImage: $0) } ?? Image(systemName: "circle")
         #else
-        return renderer.uiImage.map { Image(uiImage: $0).renderingMode(.original) } ?? Image(systemName: "circle")
+        return renderer.uiImage.map { Image(uiImage: $0.withRenderingMode(.alwaysOriginal)) } ?? Image(systemName: "circle")
         #endif
     }
 }
