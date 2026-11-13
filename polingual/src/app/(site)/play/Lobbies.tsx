@@ -106,6 +106,10 @@ export default function Lobbies() {
             <b>Flag Tiles</b>
             <span className={app.small}>Solo daily run. A word falls; tap the flag of its language.</span>
           </a>
+          <a className={styles.soloCard} href="/play/forehead" data-testid="solo-forehead">
+            <b>Forehead</b>
+            <span className={app.small}>Party mode on one phone. Friends give clues, you tilt to score.</span>
+          </a>
 
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>

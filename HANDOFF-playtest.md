@@ -23,3 +23,7 @@ Bead bkt-9gvte.1, branch `feat/polingual-flag-duel`. Flag `POLINGUAL_LOBBY_DUEL=
 ## Flag Tiles
 
 Bead bkt-9gvte.2, branch `feat/polingual-flag-tiles`. Solo daily run at `/play/flag-tiles`, deck from `GET /api/academy/flag-tiles` (`src/lib/academy/flag-tiles.ts`), run logic in `polingual/src/lib/lobby/flag-run.ts`. No migration, no flag. Playtest: `scripts/playtest-flag-tiles.mjs`. Next game: Forehead.
+
+## Forehead
+
+Bead bkt-9gvte.3, branch `feat/polingual-forehead`. One-phone party mode at `/play/forehead`, deck from `GET /api/academy/forehead?langs=&seed=` (`src/lib/academy/forehead.ts`), tilt via `devicemotion` z in `polingual/src/lib/lobby/tilt.ts` with buttons as fallback. No bots by design. Playtest: `scripts/playtest-forehead.mjs`. Next game: Voice Atlas.

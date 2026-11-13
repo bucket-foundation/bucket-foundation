@@ -174,3 +174,16 @@
 .ftLine{position:absolute;left:0;right:0;bottom:8%;height:3px;background:rgba(233,162,59,.8)}
 .soloCard{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:16px;border:2px solid var(--tyrian);background:linear-gradient(90deg,#fff8ea,#FCE7C4);text-decoration:none;color:var(--ink)}
 .soloCard b{font-family:"Fredoka",sans-serif;font-size:20px;color:var(--tyrian)}
+.fhStage{position:fixed;inset:0;z-index:30;background:var(--tyrian);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:16px;box-sizing:border-box;transition:background .2s ease}
+.fhStage[data-flash=got]{background:var(--malachite)}
+.fhStage[data-flash=pass]{background:#9B2414}
+.fhStage .bigCount{color:#fff}
+.fhHint{margin:0;font-weight:800}
+.fhTop{position:absolute;top:12px;left:16px;right:16px;display:flex;justify-content:space-between;font-family:"Fredoka",sans-serif;font-weight:700;font-size:28px}
+.fhCard{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.fhLang{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+.fhWord{font-family:"Fredoka",sans-serif;font-size:clamp(44px,14vw,120px);line-height:1.05;word-break:break-word}
+.fhButtons{position:absolute;bottom:16px;left:16px;right:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fhPass,.fhGot{min-height:56px;border-radius:16px;border:0;font:inherit;font-weight:800;font-size:18px;cursor:pointer}
+.fhPass{background:rgba(255,255,255,.18);color:#fff}
+.fhGot{background:#fff;color:var(--tyrian)}
