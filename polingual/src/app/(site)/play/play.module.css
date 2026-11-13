@@ -205,7 +205,7 @@
 .playerName{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
 .boardName svg{margin-inline-end:6px}
 .playStage{position:relative;overflow-x:clip;background-color:var(--pl-tyrian);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='none' stroke='%236FB7C2' stroke-opacity='.2' stroke-width='2'%3E%3Crect x='27' y='27' width='36' height='36'/%3E%3Crect x='27' y='27' width='36' height='36' transform='rotate(45 45 45)'/%3E%3Cpath d='M0 45h27M63 45h27M45 0v27M45 63v27'/%3E%3C/g%3E%3Cpath d='M45 33l3 9 9 3-9 3-3 9-3-9-9-3 9-3z' fill='%23E9A23B' fill-opacity='.2'/%3E%3C/svg%3E")}
-.playStage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px;background:var(--play-band) center/100% 100%;pointer-events:none}
+.playStage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px;background:var(--play-band) left/auto 100% repeat-x;pointer-events:none}
 .playStage>header,.playStage>.frame,.playStage>.bannerStrip{position:relative;z-index:1}
 .playBar,.playBar a,.playBar [data-testid=sign-in]{color:var(--pl-paper)!important}
 .stickers{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -324,3 +324,5 @@
   .feedback{font-size:28px}
   .hud{font-size:22px}
 }
+.choice.choice{padding:8px 18px}
+@media (min-width:1800px){.choice.choice{font-size:32px}}
