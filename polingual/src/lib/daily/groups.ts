@@ -34,7 +34,7 @@ export function dailyGroups(words: readonly GameWord[], day: string, root: strin
   const seed = `groups|${boardKey(day, root, targets)}`;
   const rng = new SeededRandom(fnv(seed));
   const pool = words
-    .filter((w) => targets.includes(w.lang) && w.form.length <= LONGEST_FORM && !w.form.includes(" "))
+    .filter((w) => targets.includes(w.lang) && w.form.normalize("NFC").length <= LONGEST_FORM && !w.form.includes(" "))
     .map((w) => ({ order: fnv(`${seed}|${wordId(w)}`), w }))
     .sort((a, b) => (a.order < b.order ? -1 : a.order > b.order ? 1 : cmp(wordId(a.w), wordId(b.w))))
     .map((x) => x.w);

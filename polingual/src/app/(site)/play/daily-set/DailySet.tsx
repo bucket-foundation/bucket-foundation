@@ -4,21 +4,21 @@ import { useMemo, useState } from "react";
 import { speak } from "@academy/lang-client";
 import { dailySet, GameDeck } from "@/lib/daily/words";
 import { Button, FlagTile } from "@/ui";
-import { DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
+import { dayLabel, DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
 
 
 export default function DailySet() {
-  const { state, finish } = useDaily("daily-set");
+  const { state, finish, retry } = useDaily("daily-set");
   const prompts = useMemo(() => (state.status === "ready" ? dailySet(new GameDeck(state.corpus, state.system.root, state.system.targets), state.day) : []), [state]);
   const [i, setI] = useState(0);
   const [pattern, setPattern] = useState("");
   const [picked, setPicked] = useState<string | null>(null);
 
   if (state.status !== "ready") return <DailyWorld id="daily-set"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="daily-set"><Results title="Daily Set" result={state.done} url="https://polingual.com/play/daily-set" /></DailyWorld>;
+  if (state.done) return <DailyWorld id="daily-set"><Results title="Daily Set" result={state.done} url="https://polingual.com/play/daily-set" saved={state.saved} onRetry={retry} /></DailyWorld>;
   const p = prompts[i];
   if (!p) return <DailyWorld id="daily-set"><Loading state="error" /></DailyWorld>;
 
@@ -36,7 +36,7 @@ export default function DailySet() {
 
   return (
     <DailyWorld id="daily-set">
-      <Heading eyebrow={`Daily Set · ${state.day}`} title={`Find the ${langName(p.word.lang)} word`} blurb="Six words. The same six for everyone on your languages today." />
+      <Heading eyebrow={`Daily Set · ${dayLabel(state.day)}`} title={`Find the ${langName(p.word.lang)} word`} blurb="Six words. The same six for everyone on your languages today." />
       <Pips pattern={pattern} total={prompts.length} />
       <div className={styles.hero}>
         <FlagTile as="div" lang={state.system.root} code={state.system.root.toUpperCase()} label={`In ${langName(p.word.lang)}?`} word={p.word.gloss} />

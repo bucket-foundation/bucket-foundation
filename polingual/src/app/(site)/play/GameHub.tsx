@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import type { WorldId } from "@/ui/art/play";
-import { dayKey } from "@/lib/daily/rng";
-import { bookKey, readLocal, type DailyBook } from "@/lib/daily/store";
+import { bookKey } from "@/lib/daily/store";
+import { useDailyBook } from "./daily/useDaily";
 import { DAILY_GAMES } from "./daily";
 import { WorldPreview } from "./GameWorld";
 import type { LobbySummary } from "@/lib/lobby/client";
@@ -32,22 +31,8 @@ function countLabel(n: number) {
   return `${n} open ${n === 1 ? "lobby" : "lobbies"}`;
 }
 
-function useBook(): { book: DailyBook; day: string } | null {
-  const [state, setState] = useState<{ book: DailyBook; day: string } | null>(null);
-  useEffect(() => {
-    let storage: Storage | null = null;
-    try {
-      storage = window.localStorage;
-    } catch {
-      storage = null;
-    }
-    setState({ book: readLocal(storage), day: dayKey() });
-  }, []);
-  return state;
-}
-
 function DailyHub() {
-  const today = useBook();
+  const today = useDailyBook();
   return (
     <section className={styles.hubGroup} data-testid="daily-hub">
       <h2 className={styles.hubHeading}>Daily</h2>
@@ -62,8 +47,8 @@ function DailyHub() {
                 </span>
                 <b>{g.title}</b>
                 <span className={styles.hubBlurb}>{g.blurb}</span>
-                <span className={styles.hubCount} data-live={!done} data-testid={`daily-state-${g.slug}`}>
-                  {done ? `Done today · ${done.score} of ${done.total}` : "Play today's"}
+                <span className={styles.hubCount} data-live={!!today && !done} data-testid={`daily-state-${g.slug}`} aria-busy={!today}>
+                  {!today ? "Checking today" : done ? `Done today · ${done.score} of ${done.total}` : "Play today"}
                 </span>
               </a>
             </li>
