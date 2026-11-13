@@ -66,3 +66,15 @@ test("speed match pairs fifteen words, then keeps today's result", async ({ page
   await expect(page.getByTestId("daily-score")).toHaveText("15 of 15");
   await revisit(page, "/play/speed-match");
 });
+
+test("which voice asks ten languages, then keeps today's result", async ({ page }) => {
+  await open(page, "/play/which-voice");
+  for (let n = 0; n < 10; n++) {
+    const right = page.locator("[data-testid=voice-choice][data-answer=yes]");
+    await expect(right).toHaveCount(1, { timeout: 60_000 });
+    await right.click();
+    await page.waitForTimeout(800);
+  }
+  await expect(page.getByTestId("daily-score")).toHaveText("10 of 10");
+  await revisit(page, "/play/which-voice");
+});
