@@ -48,18 +48,40 @@ class Graph(val context: Context) {
     var activity: java.lang.ref.WeakReference<android.app.Activity>? = null
 
     private val syncLock = kotlinx.coroutines.sync.Mutex()
+    private val _daily = kotlinx.coroutines.flow.MutableStateFlow(DailyBook.decode(kv.get(DailyBook.LOCAL_KEY)))
+    val daily: StateFlow<Map<String, DailyResult>> = _daily
+
+    private val dailyRemote = object : ProgressRemote {
+        override suspend fun pull(): Map<String, DailyResult>? = account.token()?.let { t -> api.progressPull(t)?.let(DailyBook::fromBranches) }
+        override suspend fun push(book: Map<String, DailyResult>): Boolean = account.token()?.let { t -> api.progressPush(t, DailyBook.BRANCH, DailyBook.branchData(book)) } ?: false
+    }
+
+    private fun saveDaily(book: Map<String, DailyResult>) { _daily.value = book; kv.set(DailyBook.LOCAL_KEY, DailyBook.encode(book)) }
+
+    fun dailyResult(game: DailyGame, day: String = dayKey()): DailyResult? = _daily.value[DailyBook.key(game, day)]
+
+    fun recordDaily(result: DailyResult) {
+        saveDaily(DailyBook.merge(_daily.value, mapOf(DailyBook.key(DailyGame.entries.first { it.wire == result.game }, result.day) to result)))
+        scope.launch { syncDaily() }
+    }
+
+    suspend fun syncDaily() {
+        if (account.token() == null) return
+        DailyBook.sync(dailyRemote, _daily.value)?.let(::saveDaily)
+    }
 
     init {
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
-            if (account.stage.value == Stage.SignedIn) syncSystems()
+            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncDaily() }
             var last = account.stage.value
             account.stage.collect { stage ->
                 if (stage == Stage.SignedIn && last != Stage.SignedIn) {
                     store.update { it.copy(savePrompt = false) }
                     lobbies.mergeGuest()
                     syncSystems()
+                    syncDaily()
                 }
                 last = stage
             }

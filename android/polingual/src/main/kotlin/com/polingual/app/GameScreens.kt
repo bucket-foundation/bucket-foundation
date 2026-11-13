@@ -1,6 +1,9 @@
 package com.polingual.app
 
+import androidx.compose.runtime.collectAsState
 import foundation.bucket.core.ui.pl.*
+import foundation.bucket.core.engine.DailyGames
+import foundation.bucket.core.engine.DailySpeed
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -91,15 +94,16 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         GameBanner(kind)
         val c = ctx
         if (c != null) {
-            Text("${kind.title.uppercase()} · ${c.system.targets.joinToString(" ") { Lang.name(it) }.uppercase()} · ${today()}", style = Type.caps, color = PL.Vermilion)
+            Text("${kind.title.uppercase()} · ${c.system.targets.joinToString(" ") { Lang.name(it) }.uppercase()} · ${dayKey()}", style = Type.caps, color = PL.Vermilion)
             Text(kind.blurb, style = Type.small, color = PL.InkDim)
         }
         if (c == null) EmptyState("kente", "Start a language set in Learn. The games use the words you study.") else content(c)
     }
 }
 
-suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String) {
+suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String, total: Int = pattern.length) {
     ads.gameFinished()
+    kind.daily()?.let { g -> if (dailyResult(g) == null) recordDaily(DailyResult(g.wire, dayKey(), pattern.count { it == '1' }, total, pattern, System.currentTimeMillis())) }
     val key = "${kind.route}|${today()}|${system.id}"
     store.update { it.copy(played = (it.played + (key to pattern)).entries.toList().takeLast(200).associate { e -> e.key to e.value }, savePrompt = account.stage.value != foundation.bucket.core.auth.Stage.SignedIn) }
 }
@@ -108,13 +112,17 @@ fun AppState.played(kind: GameKind, system: LangSystem?): String? = system?.let 
 
 @Composable
 fun GameScreen(graph: Graph, kind: GameKind, back: () -> Unit) {
+    val book by graph.daily.collectAsState()
+    val played = remember { kind.daily()?.let { book[DailyBook.key(it, dayKey())] } }
     WithGame(graph, kind, back) { c ->
+        val today = played
+        if (today != null) { DoneToday(kind, today); return@WithGame }
         when (kind) {
-            GameKind.Daily -> Quiz(graph, kind, c) { GameRounds.daily(GameDeck(c.corpus, c.system.root, c.system.targets), today()) }
+            GameKind.Daily -> Quiz(graph, kind, c) { GameRounds.daily(GameDeck(c.corpus, c.system.root, c.system.targets), dayKey()) }
             GameKind.Same -> Quiz(graph, kind, c) { GameRounds.sameWord(GameDeck(c.corpus, c.system.root, c.system.targets), c.words, SeededRandom(System.nanoTime().toULong())) }
             GameKind.Flags -> Quiz(graph, kind, c) { GameRounds.flags(c.words, c.system.targets, PromptMode.Flag, sameForm = GameWordPool.sameForm(c.corpus), rng = SeededRandom(System.nanoTime().toULong())) }
             GameKind.Voice -> Quiz(graph, kind, c) {
-                GameRounds.flags(c.words.filter { graph.voice.available(it.lang) }.ifEmpty { c.words }, c.system.targets, PromptMode.Voice, sameForm = GameWordPool.sameForm(c.corpus), rng = SeededRandom(System.nanoTime().toULong()))
+                foundation.bucket.core.engine.DailyGames.voicePrompts(GameDeck(c.corpus, c.system.root, c.system.targets), dayKey(), c.system.targets) { w, l -> l != w.lang && GameWordPool.sameForm(c.corpus)(w, l) }
             }
             GameKind.Match -> SpeedMatch(graph, c)
             GameKind.WordGroups -> Groups(graph, c)
@@ -146,7 +154,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     if (round.prompts.isEmpty()) { Text("Learn a few more words first.", color = p.muted); return }
     if (round.finished) {
         LaunchedEffect(round) { graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" }) }
-        Finished("${round.score} of ${round.prompts.size}", "A finished game keeps your streak. Misses come back in study.", round.results, round.prompts.size, if (kind == GameKind.Daily) null else ({ seed += 1 }))
+        Finished("${round.score} of ${round.prompts.size}", "A finished game keeps your streak. Misses come back in study.", round.results, round.prompts.size, if (kind.daily() != null) null else ({ seed += 1 }))
         return
     }
     val prompt = round.current!!
@@ -189,29 +197,32 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
 
 @Composable
 fun SpeedMatch(graph: Graph, c: GameContext) {
-    var seed by remember { mutableIntStateOf(0) }
-    val board = remember(seed) { SpeedBoard(c.words, SeededRandom(System.nanoTime().toULong())) }
-    var left by remember(seed) { mutableDoubleStateOf(SpeedBoard.SECONDS) }
+    val game = remember { DailySpeed(DailyGames.speedDeck(GameDeck(c.corpus, c.system.root, c.system.targets), dayKey(), c.system.targets), DailyGames.speedBoardSeed(dayKey())) }
+    var left by remember { mutableDoubleStateOf(DailySpeed.SECONDS.toDouble()) }
+    var misses by remember { mutableIntStateOf(0) }
     var tick by remember { mutableIntStateOf(0) }
+    var over by remember { mutableStateOf(false) }
     val p = LocalPalette.current
     tick.let { }
-    LaunchedEffect(board) {
-        while (left - board.penalty > 0 && !board.done) { delay(100); left -= 0.1 }
-        graph.markPlayed(GameKind.Match, c.system, "1".repeat(board.matched))
+    LaunchedEffect(game) {
+        while (left - misses * DailySpeed.MISS_PENALTY > 0 && game.hits < DailyGames.SPEED_PAIRS && game.playable) { delay(100); left -= 0.1 }
+        over = true
+        graph.markPlayed(GameKind.Match, c.system, "1".repeat(minOf(game.hits, DailyGames.SPEED_PAIRS)), total = DailyGames.SPEED_PAIRS)
     }
-    val remaining = maxOf(0.0, left - board.penalty)
-    if (remaining <= 0 || board.done) {
-        Finished("${board.matched} pairs", "${board.missed} misses. ${if (board.combo >= SpeedBoard.HOT_COMBO) "Hot streak." else ""}", emptyList(), 0) { seed += 1 }
+    val remaining = maxOf(0.0, left - misses * DailySpeed.MISS_PENALTY)
+    if (over) {
+        Finished("${game.hits} pairs", "${game.points} points, ${game.missed.size} misses, best run ${game.bestCombo}. New board tomorrow.", List(game.hits) { true }, DailyGames.SPEED_PAIRS, null)
+        game.missed.firstOrNull()?.let { w -> WordReveal(w.lang, w.form, w.gloss, w.itemId, c.corpus) { graph.voice.speak(w.form, w.lang) } }
         return
     }
-    LinearProgressIndicator(progress = { (remaining / SpeedBoard.SECONDS).toFloat() }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
-    Text("${remaining.toInt()} s   ${board.matched} pairs", color = p.muted)
+    LinearProgressIndicator(progress = { (remaining / DailySpeed.SECONDS).toFloat() }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
+    Text("${remaining.toInt()} s   ${game.hits} of ${DailyGames.SPEED_PAIRS} pairs   ${game.points} points", color = p.muted)
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            board.meanings.forEach { w -> MatchTile(w.gloss, board.selectedMeaning == w.id) { board.tapMeaning(w.id); tick += 1 } }
+            game.meanings.forEach { w -> if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile(w.gloss, game.pickedMeaning == w.id) { game.tapMeaning(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } }
         }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            board.forms.forEach { w -> MatchTile("${Lang.flag(w.lang)} ${w.form}", board.selectedForm == w.id) { graph.voice.speak(w.form, w.lang); board.tapForm(w.id); tick += 1 } }
+            game.forms.forEach { w -> if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile("${Lang.flag(w.lang)} ${w.form}", game.pickedForm == w.id) { graph.voice.speak(w.form, w.lang); game.tapForm(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } }
         }
     }
 }
@@ -229,7 +240,7 @@ fun MatchTile(text: String, selected: Boolean, onClick: () -> Unit) {
 @Composable
 fun Groups(graph: Graph, c: GameContext) {
     val p = LocalPalette.current
-    val puzzle = remember { WordGroupsPuzzle.daily(c.puzzleWords, today(), c.system.root, c.system.targets, theme = { c.corpus.byId[it.itemId]?.category }, sameForm = GameWordPool.sameForm(c.corpus)) }
+    val puzzle = remember { WordGroupsPuzzle.daily(c.puzzleWords, dayKey(), c.system.root, c.system.targets, theme = { c.corpus.byId[it.itemId]?.category }, sameForm = GameWordPool.sameForm(c.corpus)) }
     if (puzzle == null) { Text("Learn a few more words to unlock today's board.", color = p.muted); return }
     val round = remember { WordGroupsRound(puzzle) }
     var tick by remember { mutableIntStateOf(0) }
@@ -288,7 +299,7 @@ fun groupTitle(link: foundation.bucket.core.engine.GroupLink): String = when (li
 @Composable
 fun Mini(graph: Graph, c: GameContext) {
     val p = LocalPalette.current
-    val puzzle = remember { MiniPuzzle.daily(c.puzzleWords, today(), c.system.root, c.system.targets) }
+    val puzzle = remember { MiniPuzzle.daily(c.puzzleWords, dayKey(), c.system.root, c.system.targets) }
     if (puzzle == null) { Text("Learn a few more words to unlock today's crossword.", color = p.muted); return }
     val filled = remember { mutableStateMapOf<MiniCell, String>() }
     var entry by remember { mutableStateOf(puzzle.entries.first()) }
@@ -343,34 +354,35 @@ fun Mini(graph: Graph, c: GameContext) {
 @Composable
 fun Letters(graph: Graph, c: GameContext) {
     val p = LocalPalette.current
-    var seed by remember { mutableIntStateOf(0) }
-    val prompts = remember(seed) { LetterSprint.prompts(c.words, SeededRandom(GameSeed.hash("letters|${today()}|$seed"))) }
+    val prompts = remember { com.polingual.app.play.PlayAssets.alphabets(graph.context).let { (heritage, letters) -> DailyGames.letters(dayKey(), c.system.targets, letters, heritage) } }
     if (prompts.isEmpty()) { Text("Letter Sprint needs a language with its own letters, like Greek, Russian or Japanese.", color = p.muted); return }
-    var index by remember(seed) { mutableIntStateOf(0) }
-    val results = remember(seed) { mutableStateOf(listOf<Boolean>()) }
-    var picked by remember(seed) { mutableStateOf<String?>(null) }
-    val scope = rememberCoroutineScope()
-    if (index >= prompts.size) {
-        LaunchedEffect(seed) { graph.markPlayed(GameKind.Letters, c.system, results.value.joinToString("") { if (it) "1" else "0" }) }
-        Finished("${results.value.count { it }} of ${prompts.size}", "Letters come from words you study.", results.value, prompts.size) { seed += 1 }
+    var index by remember { mutableIntStateOf(0) }
+    val results = remember { mutableStateOf(listOf<Boolean>()) }
+    var picked by remember { mutableStateOf<String?>(null) }
+    var left by remember { mutableDoubleStateOf(DailyGames.LETTER_SECONDS.toDouble()) }
+    LaunchedEffect(Unit) { while (left > 0 && index < prompts.size) { delay(100); left -= 0.1 } }
+    if (index >= prompts.size || left <= 0) {
+        LaunchedEffect(Unit) { graph.markPlayed(GameKind.Letters, c.system, prompts.indices.joinToString("") { if (results.value.getOrNull(it) == true) "1" else "0" }) }
+        Finished("${results.value.count { it }} of ${prompts.size}", "${Lang.name(prompts[0].lang)} letters. New set tomorrow.", results.value, prompts.size, null)
         return
     }
     val q = prompts[index]
-    LaunchedEffect(q) { graph.voice.speak(q.word.form, q.word.lang) }
+    LaunchedEffect(q) { graph.voice.speak(q.ch, q.lang) }
     ResultDots(results.value, prompts.size)
-    Text("Listen to the word. Which letter does it start with?", color = p.muted)
-    PLButton("Play again", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(q.word.form, q.word.lang) }
+    Text("${left.toInt()} s · ${Lang.name(q.lang)}", style = Type.caps, color = p.muted)
+    Text("Hear the sound, then find its letter.", color = p.muted)
+    PLButton("Play the sound", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(q.ch, q.lang) }
     q.choices.forEach { ch ->
-        val state = when { picked == null -> ChoiceState.Idle; ch == q.answer -> ChoiceState.Right; ch == picked -> ChoiceState.Wrong; else -> ChoiceState.Dim }
+        val state = when { picked == null -> ChoiceState.Idle; ch == q.ch -> ChoiceState.Right; ch == picked -> ChoiceState.Wrong; else -> ChoiceState.Dim }
         ChoiceButton(ch, state) {
             if (picked == null) {
                 picked = ch
-                results.value = results.value + (ch == q.answer)
+                results.value = results.value + (ch == q.ch)
             }
         }
     }
     if (PlayRules.showReveal(answered = picked != null, roundClosed = false)) {
-        WordReveal(q.word.lang, q.word.form, q.word.gloss, q.word.itemId, c.corpus) { graph.voice.speak(q.word.form, q.word.lang) }
+        Text("${q.ch} sounds like ${q.sound}", style = Type.title, color = PL.Ink)
         PrimaryButton("Next letter") { picked = null; index += 1 }
     }
 }
@@ -387,4 +399,12 @@ object LetterSprint {
             if (pool.size < 3) null else Prompt(w, first, mixed(listOf(first) + mixed(pool, rng).take(3), rng))
         }.take(count)
     }
+}
+
+@Composable
+fun DoneToday(kind: GameKind, r: DailyResult) {
+    Text("Done today", style = Type.display, color = PL.Ink)
+    Text("${r.score} of ${r.total}. A new ${kind.title} comes tomorrow.", style = Type.body, color = PL.InkDim)
+    ResultDots(r.pattern.map { it == '1' }, r.pattern.length)
+    PLButton("Start learning", variant = ButtonVariant.Secondary, onClick = LocalStartLearning.current)
 }
