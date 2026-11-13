@@ -29,7 +29,7 @@ object Streak {
     }
 }
 
-enum class ExerciseKind(val needsSound: Boolean) { Recognize(false), Produce(false), Listen(true) }
+enum class ExerciseKind(val needsSound: Boolean) { Recognize(false), Produce(false), Listen(true), TypeHeard(true) }
 
 data class Exercise(val word: GameWord, val kind: ExerciseKind, val prompt: String, val answer: String, val options: List<String>, val isNew: Boolean)
 

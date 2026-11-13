@@ -90,7 +90,7 @@ class SilentStudyTest {
     }
 
     @Test
-    fun onlyListenCardsNeedSound() {
-        assertEquals(listOf(ExerciseKind.Listen), ExerciseKind.entries.filter { it.needsSound })
+    fun onlyHearingCardsNeedSound() {
+        assertEquals(listOf(ExerciseKind.Listen, ExerciseKind.TypeHeard), ExerciseKind.entries.filter { it.needsSound })
     }
 }

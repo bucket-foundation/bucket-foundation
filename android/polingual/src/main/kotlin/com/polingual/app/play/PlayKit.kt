@@ -3,6 +3,8 @@ package com.polingual.app.play
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -33,13 +35,14 @@ enum class WebGame(val route: String, val title: String, val blurb: String, val 
 }
 
 @Composable
-fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, content: @Composable ColumnScope.() -> Unit) {
+fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, soundOnly: Boolean = false, content: @Composable ColumnScope.() -> Unit) {
+    val silentNow by graph.silent.collectAsState()
     LaunchedEffect(game) { graph.ads.enteredGame() }
     Page(
         game.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
         stickers = listOf(Sticker(game.art, Alignment.CenterStart, 70.dp, game.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 84.dp, -4f, dx = (-8).dp)),
     ) {
-        com.polingual.app.SilentSwitch(graph, compact = true)
+        if (!com.polingual.app.SoundRules.needsSoundCard(silentNow, soundOnly)) com.polingual.app.SilentSwitch(graph, compact = true)
         content()
     }
 }
@@ -63,4 +66,7 @@ fun RevealWord(graph: Graph, word: PlayWord, lang: String) {
 
 object PlayDecks {
     const val ROOT = "en"
+    const val WEB_ACCEPTS_ROOT = false
+
+    fun root(learnerRoot: String?, webAcceptsRoot: Boolean = WEB_ACCEPTS_ROOT): String = if (webAcceptsRoot && !learnerRoot.isNullOrBlank()) learnerRoot else ROOT
 }
