@@ -14,6 +14,12 @@ import Ad from "./Ad";
 import { gameName, langName } from "./langs";
 import Nickname from "./Nickname";
 import Reveal, { RevealBanner } from "./Reveal";
+import GameWorld from "./GameWorld";
+import RoomQr from "./RoomQr";
+import world from "./world.module.css";
+import { useLearnIndex } from "./useLearn";
+import { learnEntry, learnHref } from "@/lib/lobby/learn-index";
+import { WORLDS, type WorldId } from "@/ui/art/play";
 import { useAdsVisible } from "./AdsContext";
 import { useAccount } from "./Account";
 import { betweenRoundsAd, interstitialDue } from "@/lib/lobby/ads";
@@ -40,7 +46,7 @@ function errorOf(err: unknown): string {
   return lobbyError(err instanceof LobbyError ? err.code : undefined);
 }
 
-export default function Room({ code: rawCode }: { code: string }) {
+function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId) => void }) {
   const router = useRouter();
   const code = normalizeLobbyCode(rawCode);
   const { state, api, connect } = usePlay();
@@ -58,6 +64,10 @@ export default function Room({ code: rawCode }: { code: string }) {
   const [kick, setKick] = useState(0);
   const [breaks, setBreaks] = useState<Breaks>({ games: 0, lastInterstitial: null });
   const [interstitial, setInterstitial] = useState(false);
+  const learnIndex = useLearnIndex();
+  useEffect(() => {
+    if (lobby?.game) onGame(lobby.game in WORLDS ? (lobby.game as WorldId) : "duel");
+  }, [lobby?.game, onGame]);
   const [rewarded, setRewarded] = useState(false);
   const adsVisible = useAdsVisible();
   const account = useAccount();
@@ -313,14 +323,17 @@ export default function Room({ code: rawCode }: { code: string }) {
   );
 
   const header = (
-    <section className={app.stackSm}>
-      <p className={app.label}>{gameName(lobby.game)}</p>
-      <p className={styles.langRow} data-testid="room-langs">
-        {lobby.targets.map((l) => (
-          <LangCard key={l} lang={l} />
-        ))}
-      </p>
-      <p className={styles.code} data-testid="room-code">{lobby.code}</p>
+    <section className={`${app.stackSm} ${world.joinCard}`}>
+      <div className={app.stackSm}>
+        <p className={app.label}>{gameName(lobby.game)}</p>
+        <p className={styles.langRow} data-testid="room-langs">
+          {lobby.targets.map((l) => (
+            <LangCard key={l} lang={l} />
+          ))}
+        </p>
+        <p className={styles.code} data-testid="room-code">{lobby.code}</p>
+      </div>
+      <RoomQr code={lobby.code} />
     </section>
   );
 
@@ -479,7 +492,7 @@ export default function Room({ code: rawCode }: { code: string }) {
     const elapsed = lobby.roundSeconds * 1000 - phase.remaining * 1000;
     const stateOf = (c: string) => (mine ? (mine.choice === c ? (mine.pending ? "pending" : mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined);
     return (
-      <div className={app.stack} data-testid="room">
+      <div className={app.stack} data-testid="room" data-round="active">
         {hud}
         {mine && !mine.pending && mine.points > 0 ? <p className={styles.pop} key={`${mine.game}:${mine.round}`} data-testid="score-pop">+{mine.points}</p> : null}
         <div className={styles.stage}>
@@ -680,9 +693,14 @@ export default function Room({ code: rawCode }: { code: string }) {
           <p className={app.small} data-testid="missed-late">Your answers are saved. Lessons cover every word in this game.</p>
         ) : missed.length ? (
           <ul className={styles.missed}>
-            {missed.map((w) => (
-              <li key={w}>{w}</li>
-            ))}
+            {missed.map((w) => {
+              const e = lobby.prompts.flatMap((p) => p.reveal ?? []).find((r) => r.correct && r.word === w);
+              return (
+                <li key={w}>
+                  <a href={learnHref(e ? learnEntry(learnIndex, e.lang, e.word, e.meaning) : null)} data-testid="learn-missed">{w}</a>
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p className={app.small}>A clean sweep. Lessons take you further.</p>
@@ -695,5 +713,14 @@ export default function Room({ code: rawCode }: { code: string }) {
         <ButtonLink variant="ghost" size="md" href="/play">Back to lobbies</ButtonLink>
       </div>
     </div>
+  );
+}
+
+export default function Room({ code }: { code: string }) {
+  const [game, setGame] = useState<WorldId>("duel");
+  return (
+    <GameWorld id={game}>
+      <RoomGame code={code} onGame={setGame} />
+    </GameWorld>
   );
 }

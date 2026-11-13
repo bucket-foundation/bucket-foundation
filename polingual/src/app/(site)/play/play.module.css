@@ -257,3 +257,16 @@
 .learnMissed{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .learnMissed a{display:inline-flex;align-items:center;gap:6px;background:var(--pl-card);color:var(--pl-ink);border-radius:999px;padding:6px 12px;font-weight:800;text-decoration:none;box-shadow:0 3px 0 var(--pl-ink)}
 .learnMissed a span{font-family:"Space Mono",monospace;font-size:11px;color:var(--pl-ink-dim)}
+@media (min-width:1800px){
+  .frame{max-width:1640px}
+  .code{font-size:96px;letter-spacing:.2em}
+  .promptWord{font-size:88px}
+  .choice{min-height:104px;font-size:34px;border-radius:20px}
+  .bigCount{font-size:200px}
+  .hudRound,.hudScore,.hudRank{font-size:26px}
+  .revealHead{font-size:30px}
+  .revealDef{font-size:18px}
+  .revealGrid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .player{font-size:22px;padding:12px 18px}
+  .verdictHead{font-size:34px}
+}
