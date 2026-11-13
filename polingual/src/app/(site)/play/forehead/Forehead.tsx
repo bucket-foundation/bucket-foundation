@@ -13,7 +13,7 @@ import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { LANG_CHOICES, LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
-import GameWorld, { pieceClass } from "../GameWorld";
+import GameWorld, { pieceClass, WorldStickers } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
 import { PlayTile } from "../../word/Speak";
 import styles from "../play.module.css";
@@ -178,6 +178,7 @@ function ForeheadGame() {
   if (phase === "count") {
     return (
       <div className={styles.fhStage} data-testid="fh-count" data-round="active">
+        <WorldStickers id="forehead" />
         <p className={styles.bigCount} key={count}>{count || "Go"}</p>
         <p className={styles.fhHint}>Put the phone on your forehead</p>
       </div>
@@ -188,6 +189,7 @@ function ForeheadGame() {
     const c = cards[index];
     return (
       <div className={styles.fhStage} data-flash={flash ?? undefined} data-testid="fh-play" data-round="active">
+        <WorldStickers id="forehead" />
         <div className={styles.fhTop}>
           <span className={styles.fhTime} data-testid="fh-time">{left}</span>
           <span className={styles.fhScore}>{results.filter((r) => r.got).length}</span>
@@ -197,6 +199,7 @@ function ForeheadGame() {
             <FlagSquare lang={c.lang} size={28} />
             {langName(c.lang)}
           </span>
+          <span className={styles.fhStub}>{`CARD ${index + 1} · ${FOREHEAD_SECONDS} SECONDS`}</span>
           <b className={styles.fhWord} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="fh-word">{c.form}</b>
         </div>
         <div className={styles.fhButtons}>

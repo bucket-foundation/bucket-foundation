@@ -12,7 +12,7 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
-import GameWorld, { pieceClass } from "../GameWorld";
+import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
@@ -159,6 +159,7 @@ function BabelMatchGame() {
       </div>
       {phase === "loading" ? <p className={app.muted} aria-busy="true">Dealing</p> : null}
       {phase !== "loading" ? (
+        <WorldStage id="babel-match">
         <div className={styles.bmBoard} style={{ gridTemplateColumns: `repeat(${SIZE}, minmax(0, 1fr))` }} data-testid="bm-board" data-round={phase === "play" ? "active" : undefined}>
           {board.map((c, i) => {
             const m = byId.get(c.meaning);
@@ -167,7 +168,7 @@ function BabelMatchGame() {
               <button
                 key={c.key}
                 type="button"
-                className={`${styles.bmCell} ${pieceClass("seal")}`}
+                className={`${styles.bmCell} ${pieceClass("azulejo")}`}
                 data-picked={picked === i}
                 data-shake={shake === i}
                 data-long={word.length > 7}
@@ -182,6 +183,7 @@ function BabelMatchGame() {
             );
           })}
         </div>
+        </WorldStage>
       ) : null}
       {phase === "won" || phase === "lost" ? (
         <section className={styles.verdict} data-result={phase === "won" ? "right" : "wrong"} data-testid="bm-verdict">

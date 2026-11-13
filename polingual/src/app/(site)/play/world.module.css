@@ -14,7 +14,7 @@
 .ground[data-pattern=stripes]{background-image:repeating-linear-gradient(-45deg,rgba(255,255,255,.08) 0 18px,transparent 18px 36px)}
 .decor{position:absolute;display:block;pointer-events:none;z-index:0}
 .banner{min-height:150px;display:flex;align-items:flex-end;padding:18px 20px;border-bottom:3px solid var(--pl-ink)}
-.banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:linear-gradient(90deg,#002654 0 12%,#fff 0 24%,#CE1126 0 36%,#0038B8 0 48%,#FF9933 0 60%,#138808 0 72%,#EE1C25 0 84%,#FFDE00 0);opacity:.9}
+.banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:var(--world-band) center/100% 100%}
 .hero{position:absolute;right:4%;top:50%;translate:0 -55%;z-index:0;width:min(30%,170px)}
 .hero svg{width:100%;height:auto}
 .title{position:relative;z-index:1;display:inline-flex;flex-direction:column;gap:2px;background:var(--pl-card);border:3px solid var(--pl-ink);border-radius:16px;padding:8px 16px 10px;box-shadow:0 5px 0 var(--pl-ink);rotate:-1.5deg}
@@ -28,9 +28,9 @@
 .preview{display:block;width:100%;height:100%;min-height:118px;border-radius:14px}
 .previewHero{position:absolute;inset:0;display:grid;place-items:center;z-index:1}
 
-.pieceTicket.pieceTicket{background:var(--pl-card);border:2px dashed var(--pl-ink-faint);border-radius:6px;-webkit-mask:radial-gradient(circle 6px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 6px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
+.pieceTicket.pieceTicket{background:var(--pl-card);border:2px dashed var(--pl-ink-faint);border-radius:6px;-webkit-mask:radial-gradient(circle 6px at 0 50%,transparent 98%,var(--pl-ink)) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,transparent 98%,var(--pl-ink)) right/51% 100% no-repeat;mask:radial-gradient(circle 6px at 0 50%,transparent 98%,var(--pl-ink)) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,transparent 98%,var(--pl-ink)) right/51% 100% no-repeat}
 .pieceSeal.pieceSeal{background:var(--pl-card);color:var(--pl-vermilion-deep);border-radius:10px;box-shadow:inset 0 0 0 3px var(--pl-vermilion),inset 0 0 0 5px var(--pl-card),inset 0 0 0 6px var(--pl-vermilion),0 4px 0 var(--pl-vermilion-deep)}
-.pieceLabel.pieceLabel{background:#F3E6C4;color:var(--pl-tyrian);clip-path:polygon(0 4%,8% 0,22% 5%,40% 0,58% 4%,76% 0,92% 5%,100% 1%,98% 30%,100% 62%,97% 100%,80% 95%,62% 100%,44% 96%,26% 100%,10% 95%,0 99%,3% 60%,0 30%);box-shadow:none}
+.pieceLabel.pieceLabel{background:var(--pl-paper-2);color:var(--pl-tyrian);clip-path:polygon(0 4%,8% 0,22% 5%,40% 0,58% 4%,76% 0,92% 5%,100% 1%,98% 30%,100% 62%,97% 100%,80% 95%,62% 100%,44% 96%,26% 100%,10% 95%,0 99%,3% 60%,0 30%);box-shadow:none}
 .pieceKente.pieceKente{background:repeating-linear-gradient(90deg,var(--pl-ochre) 0 10px,var(--pl-malachite) 10px 14px,var(--pl-ochre) 14px 24px,var(--pl-vermilion) 24px 28px);color:var(--pl-ink)}
 .pieceAzulejo.pieceAzulejo{background:var(--pl-card);border:3px solid var(--pl-lapis);border-radius:12px;box-shadow:inset 0 0 0 4px var(--pl-card),inset 0 0 0 6px var(--pl-maya),0 4px 0 var(--pl-lapis-deep)}
 @media (min-width:1800px){.banner{min-height:220px;padding:28px 36px}.name{font-size:64px}.caption{font-size:15px}.sheet{padding:32px 48px 40px;gap:24px;font-size:20px}.hero{width:min(30%,240px)}}
@@ -47,3 +47,32 @@
 .qr figcaption{font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--pl-tyrian);text-transform:uppercase}
 .joinCard{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (min-width:1800px){.qr figcaption{font-size:16px}}
+
+.stage{position:relative;isolation:isolate;border:3px solid var(--pl-ink);border-radius:var(--pl-radius-lg,20px);box-shadow:0 6px 0 var(--pl-ink);padding:56px 14px;overflow:hidden}
+.stage[data-ground=tyrian]{background-color:var(--pl-tyrian)}
+.stage[data-ground=lapis]{background-color:var(--pl-lapis)}
+.stage[data-ground=malachite]{background-color:var(--pl-malachite)}
+.stage[data-ground=vermilion]{background-color:var(--pl-vermilion-deep)}
+.stage[data-pattern=lattice],.stage[data-pattern=stripes],.stage[data-pattern=kente]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='none' stroke='%236FB7C2' stroke-opacity='.25' stroke-width='2'%3E%3Crect x='27' y='27' width='36' height='36'/%3E%3Crect x='27' y='27' width='36' height='36' transform='rotate(45 45 45)'/%3E%3Cpath d='M0 45h27M63 45h27M45 0v27M45 63v27'/%3E%3C/g%3E%3Cpath d='M45 33l3 9 9 3-9 3-3 9-3-9-9-3 9-3z' fill='%23E9A23B' fill-opacity='.3'/%3E%3C/svg%3E")}
+.stage[data-pattern=azulejo-grid]::before,.stage[data-pattern=girih]::before{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--world-tile);background-size:110px auto;opacity:.2}
+.stageBody{position:relative;z-index:1}
+.stageSticker{position:absolute;z-index:0;pointer-events:none;width:44px}
+.stageSticker[data-slot="0"]{left:10px;top:6px;rotate:-10deg}
+.stageSticker[data-slot="1"]{right:10px;top:4px;rotate:9deg}
+.stageSticker[data-slot="2"]{left:12px;bottom:6px;rotate:7deg}
+.stageSticker[data-slot="3"]{right:12px;bottom:4px;rotate:-12deg}
+.stageSticker[data-slot="4"]{left:42%;top:8px;rotate:12deg;width:36px}
+.stageSticker[data-slot="5"]{left:58%;bottom:8px;rotate:-8deg;width:36px}
+@media (min-width:900px){
+  .stage{padding:40px 120px}
+  .stageSticker{width:84px}
+  .stageSticker[data-slot="0"]{left:18px;top:24px}
+  .stageSticker[data-slot="1"]{right:18px;top:30px}
+  .stageSticker[data-slot="2"]{left:20px;bottom:28px}
+  .stageSticker[data-slot="3"]{right:20px;bottom:24px}
+  .stageSticker[data-slot="4"]{left:22px;top:46%;width:64px}
+  .stageSticker[data-slot="5"]{left:auto;right:24px;bottom:auto;top:44%;width:64px}
+}
+@media (min-width:1800px){.stage{padding:48px 180px}.stageSticker{width:120px}.stageSticker[data-slot="4"],.stageSticker[data-slot="5"]{width:96px}}
+.piecePaper.piecePaper{background:var(--pl-card);color:var(--pl-tyrian);border:3px solid var(--pl-ink);border-radius:14px;box-shadow:0 5px 0 var(--pl-ink)}
+.pieceAzulejo.pieceAzulejo[data-picked=true]{background:var(--pl-ochre);box-shadow:inset 0 0 0 3px var(--pl-ochre),inset 0 0 0 5px var(--pl-card),0 4px 0 var(--pl-ochre-deep)}

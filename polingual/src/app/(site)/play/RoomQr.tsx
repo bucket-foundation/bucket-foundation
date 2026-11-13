@@ -20,7 +20,7 @@ export default function RoomQr({ code }: { code: string }) {
   return (
     <figure className={styles.qr} data-testid="room-qr">
       <svg viewBox={`-2 -2 ${size + 4} ${size + 4}`} role="img" aria-label={`QR code to join ${code}`} shapeRendering="crispEdges">
-        <path d={cells} fill="#231F20" />
+        <path d={cells} style={{ fill: "var(--pl-ink)" }} />
       </svg>
       <figcaption>Scan to join</figcaption>
     </figure>

@@ -13,13 +13,14 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { LANG_CHOICES, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
-import GameWorld from "../GameWorld";
+import GameWorld, { WorldStage } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
-import { Button, ButtonLink, Pill } from "@/ui";
+import { Button, ButtonLink, Pill, tokens } from "@/ui";
+import { artDataUrl, type ArtName } from "@/ui/art";
 
 const ROUND_MS = 120_000;
-const COLORS = ["#3B6FB6", "#E9A23B", "#7A4FA0", "#2E8B57", "#C2410C"];
+const COLORS = [tokens.color.lapis, tokens.color.ochre, tokens.color.maya, tokens.color.malachite, tokens.color["lapis-soft"]];
 const SKILL: Record<string, number> = { easy: 0.55, medium: 0.8, hard: 0.95 };
 
 type Phase = "setup" | "play" | "dead" | "over";
@@ -46,7 +47,7 @@ function seedRand(seed: number): () => number {
 
 function newArena(rand: () => number): Arena {
   const bots = BOTS.slice(0, 4).map((b, i) => makeSnake(b.userId, b.name, true, SKILL[b.skill] ?? 0.8, { x: 200 + rand() * 1200, y: 150 + rand() * 700 }, rand() * 6.28, COLORS[i + 1]));
-  return { snakes: [makeSnake("me", "You", false, 1, { x: WORLD_W / 2, y: WORLD_H / 2 }, 0, "#9B2414"), ...bots], words: [], nextWord: 0, eaten: [], bad: [] };
+  return { snakes: [makeSnake("me", "You", false, 1, { x: WORLD_W / 2, y: WORLD_H / 2 }, 0, tokens.color.vermilion), ...bots], words: [], nextWord: 0, eaten: [], bad: [] };
 }
 
 function WordSnakeGame() {
@@ -225,7 +226,9 @@ function WordSnakeGame() {
           <span className={styles.hudRound}>Eat {langName(deck?.lang ?? "")}</span>
           <span className={styles.hudRound}>{hud.left}s</span>
         </div>
-        <canvas ref={canvas} data-round="active" className={styles.wsCanvas} onPointerMove={point} onPointerDown={point} data-testid="ws-canvas" />
+        <WorldStage id="word-snake">
+          <canvas ref={canvas} data-round="active" className={styles.wsCanvas} onPointerMove={point} onPointerDown={point} data-testid="ws-canvas" />
+        </WorldStage>
       </div>
     );
   }
@@ -309,6 +312,105 @@ function viewOf(c: HTMLCanvasElement, me: Snake): { x: number; y: number; w: num
   return { x, y, w, h };
 }
 
+const C = tokens.color;
+const PROPS: { art: ArtName; x: number; y: number; w: number; tilt: number }[] = [
+  { art: "seal", x: 260, y: 220, w: 110, tilt: -0.14 },
+  { art: "azulejo", x: 1320, y: 180, w: 130, tilt: 0.12 },
+  { art: "pebble", x: 1180, y: 760, w: 90, tilt: 0.2 },
+  { art: "ticket", x: 380, y: 780, w: 200, tilt: -0.08 },
+  { art: "star", x: 820, y: 120, w: 90, tilt: 0.1 },
+  { art: "script-ko", x: 120, y: 520, w: 70, tilt: -0.2 },
+  { art: "script-ru", x: 1480, y: 560, w: 90, tilt: 0.18 },
+  { art: "torn-label", x: 900, y: 880, w: 170, tilt: 0.06 },
+];
+const KENTE: [number, number, number, number][] = [
+  [0, 330, 1600, 430],
+  [520, 0, 700, 1000],
+];
+const IMAGES = new Map<ArtName, HTMLImageElement>();
+function image(name: ArtName): HTMLImageElement | null {
+  if (typeof Image === "undefined") return null;
+  let img = IMAGES.get(name);
+  if (!img) {
+    img = new Image();
+    img.src = artDataUrl(name);
+    IMAGES.set(name, img);
+  }
+  return img.complete && img.naturalWidth ? img : null;
+}
+
+function kente(ctx: CanvasRenderingContext2D, x0: number, y0: number, x1: number, y1: number, v: { x: number; y: number }) {
+  const dx = x1 - x0;
+  const dy = y1 - y0;
+  const len = Math.hypot(dx, dy);
+  ctx.save();
+  ctx.translate(x0 - v.x, y0 - v.y);
+  ctx.rotate(Math.atan2(dy, dx));
+  ctx.globalAlpha = 0.5;
+  const band = [C.ochre, C.malachite, C.ochre, C.vermilion, C.ochre, C.ink];
+  for (let x = 0; x < len; x += 36) {
+    ctx.fillStyle = band[Math.floor(x / 36) % band.length];
+    ctx.fillRect(x, -22, 36, 44);
+  }
+  ctx.fillStyle = C.ink;
+  ctx.globalAlpha = 0.35;
+  ctx.fillRect(0, -3, len, 6);
+  ctx.restore();
+}
+
+function brush(ctx: CanvasRenderingContext2D, s: Snake, v: { x: number; y: number }) {
+  const pts = s.body.map((p) => ({ x: p.x - v.x, y: p.y - v.y }));
+  const n = pts.length;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  for (const pass of [0, 1, 2]) {
+    for (let i = n - 1; i > 0; i--) {
+      const t = 1 - i / n;
+      const w = 6 + 14 * Math.sqrt(t);
+      ctx.strokeStyle = pass === 0 ? C.ink : pass === 1 ? s.color : C.paper;
+      ctx.globalAlpha = pass === 2 ? 0.28 : 1;
+      ctx.lineWidth = pass === 0 ? w + 4 : pass === 1 ? w : Math.max(1.5, w * 0.18);
+      ctx.beginPath();
+      const o = pass === 2 ? w * 0.22 : 0;
+      ctx.moveTo(pts[i].x + o, pts[i].y - o);
+      ctx.lineTo(pts[i - 1].x + o, pts[i - 1].y - o);
+      ctx.stroke();
+    }
+  }
+  ctx.globalAlpha = 1;
+  const h = pts[0];
+  ctx.fillStyle = C.paper;
+  ctx.beginPath();
+  ctx.arc(h.x - 4, h.y - 3, 3.5, 0, 6.29);
+  ctx.arc(h.x + 4, h.y - 3, 3.5, 0, 6.29);
+  ctx.fill();
+  ctx.fillStyle = C.ink;
+  ctx.beginPath();
+  ctx.arc(h.x - 4, h.y - 3, 1.6, 0, 6.29);
+  ctx.arc(h.x + 4, h.y - 3, 1.6, 0, 6.29);
+  ctx.fill();
+}
+
+function label(ctx: CanvasRenderingContext2D, x: number, y: number, text: string, tilt: number) {
+  const tw = ctx.measureText(text).width + 20;
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(tilt);
+  ctx.fillStyle = "rgba(0,0,0,.35)";
+  ctx.fillRect(-tw / 2 + 4, -12, tw, 30);
+  ctx.fillStyle = C["paper-2"];
+  ctx.beginPath();
+  ctx.moveTo(-tw / 2, -15);
+  for (let k = 1; k <= 8; k++) ctx.lineTo(-tw / 2 + (tw * k) / 8, -15 + (k % 2 ? 3 : -1));
+  ctx.lineTo(tw / 2 - 2, 14);
+  for (let k = 7; k >= 0; k--) ctx.lineTo(-tw / 2 + (tw * k) / 8, 14 + (k % 2 ? -3 : 1));
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = C.tyrian;
+  ctx.fillText(text, 0, 0);
+  ctx.restore();
+}
+
 function draw(c: HTMLCanvasElement | null, a: Arena, lang: string) {
   const ctx = c?.getContext("2d");
   const me = a.snakes.find((s) => s.id === "me");
@@ -316,55 +418,58 @@ function draw(c: HTMLCanvasElement | null, a: Arena, lang: string) {
   const v = viewOf(c, me);
   const dpr = Number(c.dataset.dpr ?? 1);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.fillStyle = "#F6EEDC";
+  ctx.fillStyle = C.tyrian;
   ctx.fillRect(0, 0, v.w, v.h);
-  ctx.fillStyle = "rgba(35,31,32,.14)";
-  for (let gx = -(v.x % 18); gx < v.w; gx += 18) for (let gy = -(v.y % 18); gy < v.h; gy += 18) ctx.fillRect(gx, gy, 2, 2);
-  ctx.font = "bold 16px Nunito, sans-serif";
+  ctx.strokeStyle = C.maya;
+  ctx.globalAlpha = 0.16;
+  ctx.lineWidth = 2;
+  for (let gx = -(v.x % 90); gx < v.w + 90; gx += 90) {
+    for (let gy = -(v.y % 90); gy < v.h + 90; gy += 90) {
+      ctx.strokeRect(gx + 27, gy + 27, 36, 36);
+      ctx.save();
+      ctx.translate(gx + 45, gy + 45);
+      ctx.rotate(Math.PI / 4);
+      ctx.strokeRect(-18, -18, 36, 36);
+      ctx.restore();
+    }
+  }
+  ctx.globalAlpha = 1;
+  for (const [x0, y0, x1, y1] of KENTE) kente(ctx, x0, y0, x1, y1, v);
+  for (const p of PROPS) {
+    const img = image(p.art);
+    if (!img) continue;
+    const h = (p.w * img.naturalHeight) / img.naturalWidth;
+    ctx.save();
+    ctx.translate(p.x - v.x, p.y - v.y);
+    ctx.rotate(p.tilt);
+    ctx.globalAlpha = 0.9;
+    ctx.drawImage(img, -p.w / 2, -h / 2, p.w, h);
+    ctx.restore();
+  }
+  ctx.strokeStyle = C.ochre;
+  ctx.lineWidth = 6;
+  ctx.strokeRect(-v.x + 3, -v.y + 3, WORLD_W - 6, WORLD_H - 6);
+  ctx.font = "800 16px Nunito, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   for (const w of a.words) {
     const x = w.x - v.x;
     const y = w.y - v.y;
     if (x < -80 || y < -30 || x > v.w + 80 || y > v.h + 30) continue;
-    const tw = ctx.measureText(w.form).width + 16;
-    ctx.fillStyle = "#F3E6C4";
-    ctx.strokeStyle = "#5B1A4A";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(x - tw / 2, y - 13);
-    for (let k = 1; k <= 6; k++) ctx.lineTo(x - tw / 2 + (tw * k) / 6, y - 13 + (k % 2 ? 2 : -1));
-    ctx.lineTo(x + tw / 2 - 1, y + 14);
-    for (let k = 5; k >= 0; k--) ctx.lineTo(x - tw / 2 + (tw * k) / 6, y + 14 + (k % 2 ? -2 : 1));
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
-    ctx.lineWidth = 1;
-    ctx.fillStyle = "#5B1A4A";
-    ctx.fillText(w.form, x, y);
+    label(ctx, x, y, w.form, ((w.id % 7) - 3) * 0.03);
   }
   for (const s of a.snakes) {
     if (!s.alive) continue;
-    ctx.strokeStyle = s.color;
-    ctx.lineWidth = 14;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.beginPath();
-    s.body.forEach((p, i) => (i ? ctx.lineTo(p.x - v.x, p.y - v.y) : ctx.moveTo(p.x - v.x, p.y - v.y)));
-    ctx.stroke();
-    ctx.fillStyle = "#fff";
-    ctx.beginPath();
-    ctx.arc(s.body[0].x - v.x, s.body[0].y - v.y, 4, 0, 6.29);
-    ctx.fill();
-    ctx.fillStyle = "#231F20";
-    ctx.font = "bold 12px Nunito, sans-serif";
-    ctx.fillText(`${s.name} ${s.length}`, s.body[0].x - v.x, s.body[0].y - v.y - 18);
-    ctx.font = "bold 16px Nunito, sans-serif";
+    brush(ctx, s, v);
+    ctx.fillStyle = C.paper;
+    ctx.font = "800 12px Nunito, sans-serif";
+    ctx.fillText(`${s.name} ${s.length}`, s.body[0].x - v.x, s.body[0].y - v.y - 22);
+    ctx.font = "800 16px Nunito, sans-serif";
   }
-  ctx.fillStyle = "rgba(35,31,32,.5)";
-  ctx.font = "bold 12px Nunito, sans-serif";
+  ctx.fillStyle = C.paper;
+  ctx.font = "700 12px 'Space Mono', monospace";
   ctx.textAlign = "left";
-  ctx.fillText(`Eat ${lang.toUpperCase()}`, 10, 14);
+  ctx.fillText(`EAT ${lang.toUpperCase()}`, 12, 16);
 }
 
 export default function WordSnake() {

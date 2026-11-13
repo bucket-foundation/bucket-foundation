@@ -12,7 +12,7 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
-import GameWorld, { pieceClass } from "../GameWorld";
+import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Tag } from "@/ui";
@@ -202,16 +202,23 @@ function VoiceAtlasGame() {
         )}
         <p className={app.small}>Where is this language spoken? Tap the map, then lock in.</p>
       </section>
+      <WorldStage id="voice-atlas">
       <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className={styles.vaMap} onPointerDown={onMap} role="img" aria-label="World map" data-testid="va-map">
         {map}
-        {pin ? <circle cx={px} cy={py} r={6} className={styles.vaPin} /> : null}
+        {guessed ? <line x1={px} y1={py} x2={hx} y2={hy} className={styles.vaLine} /> : null}
+        {pin ? (
+          <g transform={`translate(${px} ${py}) rotate(-8)`} className={styles.vaStamp}>
+            <rect x={-9} y={-9} width={18} height={18} rx={3} />
+            <rect x={-6} y={-6} width={12} height={12} rx={2} className={styles.vaStampInner} />
+          </g>
+        ) : null}
         {guessed ? (
-          <>
-            <line x1={px} y1={py} x2={hx} y2={hy} className={styles.vaLine} />
-            <circle cx={hx} cy={hy} r={7} className={styles.vaHome} />
-          </>
+          <g transform={`translate(${hx} ${hy})`} className={styles.vaHome}>
+            <path d="M0 -11l3.2 7.8 7.8 3.2-7.8 3.2-3.2 7.8-3.2-7.8-7.8-3.2 7.8-3.2z" />
+          </g>
         ) : null}
       </svg>
+      </WorldStage>
       {guessed ? (
         <section className={styles.verdict} data-result={guessed.points >= ATLAS_MAX * 0.5 ? "right" : "wrong"} data-testid="va-verdict">
           <p className={styles.verdictHead}>+{guessed.points} · {Math.round(guessed.km).toLocaleString("en")} km away</p>

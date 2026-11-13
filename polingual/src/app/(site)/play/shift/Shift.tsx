@@ -11,7 +11,7 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
-import GameWorld, { pieceClass } from "../GameWorld";
+import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink } from "@/ui";
@@ -83,17 +83,19 @@ export default function Shift() {
       <section className={app.stackSm}>
         <p className={app.small}>Slide the columns to spell words in the middle row. Words count in {board.langs.map(langName).join(" or ")}.</p>
       </section>
+      <WorldStage id="shift">
       <div className={styles.shBoard} data-new={isNew} data-testid="sh-board">
         {board.columns.map((col, i) => (
           <div key={i} className={styles.shCol}>
             <button type="button" className={styles.shArrow} onClick={() => setOffsets((o) => rotate(o, i, -1))} aria-label={`Column ${i + 1} up`} data-testid="sh-up">▲</button>
             <span className={styles.shGhost}>{col[(((offsets[i] - 1) % col.length) + col.length) % col.length]}</span>
-            <b className={`${styles.shLetter} ${pieceClass("torn-label")}`} data-testid="sh-letter">{col[((offsets[i] % col.length) + col.length) % col.length]}</b>
+            <b className={`${styles.shLetter} ${pieceClass("paper")}`} data-testid="sh-letter">{col[((offsets[i] % col.length) + col.length) % col.length]}</b>
             <span className={styles.shGhost}>{col[(((offsets[i] + 1) % col.length) + col.length) % col.length]}</span>
             <button type="button" className={styles.shArrow} onClick={() => setOffsets((o) => rotate(o, i, 1))} aria-label={`Column ${i + 1} down`} data-testid="sh-down">▼</button>
           </div>
         ))}
       </div>
+      </WorldStage>
       <p className={styles.feedback} data-testid="sh-status">{board.valid[word] ? `${word} · ${board.valid[word].map(langName).join(", ")}` : "Keep sliding"}</p>
       <section className={app.stackSm}>
         <h2 className={app.fieldLabel}>Clues</h2>

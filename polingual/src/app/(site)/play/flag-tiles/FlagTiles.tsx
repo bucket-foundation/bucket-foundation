@@ -14,7 +14,7 @@ import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
-import GameWorld from "../GameWorld";
+import GameWorld, { WorldStage } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink } from "@/ui";
@@ -175,13 +175,15 @@ function FlagTilesGame() {
           <span className={styles.hudScore} data-testid="ft-score">{run.score}</span>
           <span className={styles.hudRound}>Best {best}</span>
         </div>
-        <div className={styles.ftStage} data-testid="ft-stage" data-round="active">
-          <div className={styles.ftFall} style={{ top: `${progress * 78}%` }} key={run.index}>
-            <TileFace as="div" lang="" plain word={tile.form} rtl={LANGS[tile.lang]?.rtl} attrs={{ "data-testid": "ft-word" }} />
+        <WorldStage id="flag-tiles">
+          <div className={styles.ftStage} data-testid="ft-stage" data-round="active">
+            <div className={styles.ftFall} style={{ top: `${progress * 78}%` }} key={run.index}>
+              <TileFace as="div" lang="" plain word={tile.form} rtl={LANGS[tile.lang]?.rtl} attrs={{ "data-testid": "ft-word" }} />
+            </div>
+            <div className={styles.ftLine} aria-hidden="true" />
           </div>
-          <div className={styles.ftLine} aria-hidden="true" />
-        </div>
-        {lanes}
+          {lanes}
+        </WorldStage>
         <p className={styles.keysHint}>Tap a flag, or press D F J K</p>
       </div>
     );

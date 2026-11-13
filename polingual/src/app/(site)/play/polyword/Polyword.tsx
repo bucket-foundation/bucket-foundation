@@ -20,6 +20,8 @@ import { FlagSquare, RevealCard } from "../LearnWord";
 import { langName } from "../langs";
 import { PlayTile } from "../../word/Speak";
 import { Board, Keyboard } from "./Board";
+import { WorldStage } from "../GameWorld";
+import { LearnPanel } from "../Reveal";
 import styles from "./polyword.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
 
@@ -392,7 +394,9 @@ export default function Polyword({ bank }: { bank: Bank }) {
         </section>
       ) : (
         <>
-          <Board guesses={guesses} draft={draft} answer={puzzle.answer} shake={shake} />
+          <WorldStage id="polyword" className={styles.pwStage}>
+            <Board guesses={guesses} draft={draft} answer={puzzle.answer} shake={shake} />
+          </WorldStage>
 
           <section className={styles.clues} aria-labelledby="pw-clues" data-testid="pw-clues">
             <h2 id="pw-clues" className={styles.h2}>
@@ -479,6 +483,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
                   </div>
                 </div>
               ) : null}
+              <LearnPanel missed={won ? [] : [{ lang, word: puzzle.word, meaning: puzzle.gloss }]} />
               {resultsAd(phase, first, account) ? <Ad placement="results" testId="pw-ad-results" /> : null}
             </section>
           ) : (
