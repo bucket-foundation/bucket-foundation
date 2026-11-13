@@ -39,7 +39,7 @@ import foundation.bucket.core.ui.pl.SectionTitle
 
 @Composable
 fun ShiftScreen(graph: Graph, back: () -> Unit) {
-    val date = remember { today() }
+    val date = remember { com.polingual.app.deckDay() }
     var board by remember { mutableStateOf<ShiftBoard?>(null) }
     var loaded by remember { mutableStateOf(false) }
     var offsets by remember { mutableStateOf<List<Int>>(emptyList()) }

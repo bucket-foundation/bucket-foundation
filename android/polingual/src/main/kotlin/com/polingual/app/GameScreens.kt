@@ -101,9 +101,9 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
     }
 }
 
-suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String, total: Int = pattern.length) {
+suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String, result: ((String, Long) -> DailyResult)? = null) {
     ads.gameFinished()
-    kind.daily()?.let { g -> if (dailyResult(g) == null) recordDaily(DailyResult(g.wire, dayKey(), pattern.count { it == '1' }, total, pattern, System.currentTimeMillis())) }
+    kind.daily()?.let { g -> if (dailyResult(g) == null && result != null) recordDaily(result(dayKey(), System.currentTimeMillis())) }
     val key = "${kind.route}|${today()}|${system.id}"
     store.update { it.copy(played = (it.played + (key to pattern)).entries.toList().takeLast(200).associate { e -> e.key to e.value }, savePrompt = account.stage.value != foundation.bucket.core.auth.Stage.SignedIn) }
 }
@@ -153,7 +153,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     tick.let { }
     if (round.prompts.isEmpty()) { Text("Learn a few more words first.", color = p.muted); return }
     if (round.finished) {
-        LaunchedEffect(round) { graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" }) }
+        LaunchedEffect(round) { graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" }) { day, at -> DailyResults.quiz(kind.daily() ?: DailyGame.DailySet, day, round.prompts, round.results, at) } }
         Finished("${round.score} of ${round.prompts.size}", "A finished game keeps your streak. Misses come back in study.", round.results, round.prompts.size, if (kind.daily() != null) null else ({ seed += 1 }))
         return
     }
@@ -207,7 +207,7 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
     LaunchedEffect(game) {
         while (left - misses * DailySpeed.MISS_PENALTY > 0 && game.hits < DailyGames.SPEED_PAIRS && game.playable) { delay(100); left -= 0.1 }
         over = true
-        graph.markPlayed(GameKind.Match, c.system, "1".repeat(minOf(game.hits, DailyGames.SPEED_PAIRS)), total = DailyGames.SPEED_PAIRS)
+        graph.markPlayed(GameKind.Match, c.system, "1".repeat(minOf(game.hits, DailyGames.SPEED_PAIRS))) { day, at -> DailyResults.speed(day, game.seen, game.missed, game.hits, DailyGames.SPEED_PAIRS, at) }
     }
     val remaining = maxOf(0.0, left - misses * DailySpeed.MISS_PENALTY)
     if (over) {
@@ -255,7 +255,7 @@ fun Groups(graph: Graph, c: GameContext) {
     }
     if (round.finished) {
         if (!round.won) round.unsolved.forEach { g -> Text("${groupTitle(g.link)}: ${g.words.joinToString(", ") { it.form }}", color = p.muted) }
-        LaunchedEffect(Unit) { graph.markPlayed(GameKind.WordGroups, c.system, round.results.joinToString("") { if (it) "1" else "0" }) }
+        LaunchedEffect(Unit) { val pattern = round.results.joinToString("") { if (it) "1" else "0" }; graph.markPlayed(GameKind.WordGroups, c.system, pattern) { day, at -> DailyResults.groups(day, puzzle.groups, round.solved, pattern, at) } }
         Finished(if (round.won) "Solved" else "Out of tries", "${round.mistakes} mistakes. New board tomorrow.", round.results, round.results.size, null)
         return
     }
@@ -306,7 +306,7 @@ fun Mini(graph: Graph, c: GameContext) {
     var cursor by remember { mutableIntStateOf(0) }
     val answers = puzzle.answers
     val solved = answers.all { (k, v) -> filled[k] == v }
-    LaunchedEffect(solved) { if (solved) graph.markPlayed(GameKind.Mini, c.system, "1") }
+    LaunchedEffect(solved) { if (solved) graph.markPlayed(GameKind.Mini, c.system, "1") { day, at -> DailyResults.mini(day, puzzle.entries, puzzle.entries.map { e -> e.cells.zip(e.letters).all { (cell, l) -> filled[cell] == l } }, at) } }
     Text("${Lang.flag(puzzle.lang)} ${Lang.name(puzzle.lang)}", style = Type.caps, color = p.muted)
     Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
         for (r in 0 until puzzle.rows) Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
@@ -362,7 +362,7 @@ fun Letters(graph: Graph, c: GameContext) {
     var left by remember { mutableDoubleStateOf(DailyGames.LETTER_SECONDS.toDouble()) }
     LaunchedEffect(Unit) { while (left > 0 && index < prompts.size) { delay(100); left -= 0.1 } }
     if (index >= prompts.size || left <= 0) {
-        LaunchedEffect(Unit) { graph.markPlayed(GameKind.Letters, c.system, prompts.indices.joinToString("") { if (results.value.getOrNull(it) == true) "1" else "0" }) }
+        LaunchedEffect(Unit) { graph.markPlayed(GameKind.Letters, c.system, prompts.indices.joinToString("") { if (results.value.getOrNull(it) == true) "1" else "0" }) { day, at -> DailyResults.letters(day, prompts, results.value, at) } }
         Finished("${results.value.count { it }} of ${prompts.size}", "${Lang.name(prompts[0].lang)} letters. New set tomorrow.", results.value, prompts.size, null)
         return
     }

@@ -81,3 +81,5 @@ object DailyBook {
         return null
     }
 }
+
+fun deckDay(now: java.time.Instant = java.time.Instant.now()): String = now.toString().take(10)

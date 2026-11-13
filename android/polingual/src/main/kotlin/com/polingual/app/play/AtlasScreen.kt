@@ -39,7 +39,7 @@ private data class AtlasGuess(val round: AtlasRound, val pin: LatLon, val home: 
 
 @Composable
 fun AtlasScreen(graph: Graph, back: () -> Unit) {
-    val date = remember { today() }
+    val date = remember { com.polingual.app.deckDay() }
     val land = remember { PathParser().parsePathString(graph.context.assets.open("play/land.txt").bufferedReader().use { it.readText().trim() }).toPath() }
     var rounds by remember { mutableStateOf<List<AtlasRound>?>(null) }
     var index by remember { mutableIntStateOf(0) }
