@@ -200,7 +200,7 @@ function ForeheadGame() {
             {langName(c.lang)}
           </span>
           <span className={styles.fhStub}>{`CARD ${index + 1} · ${FOREHEAD_SECONDS} SECONDS`}</span>
-          <b className={styles.fhWord} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="fh-word">{c.form}</b>
+          <b className={styles.fhWord} style={{ "--len": Math.max(4, Math.max(...c.form.split(" ").map((p) => Array.from(p).length)) + 1) } as React.CSSProperties} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="fh-word">{c.form}</b>
         </div>
         <div className={styles.fhButtons}>
           <button type="button" className={styles.fhPass} onClick={() => mark(false)} data-testid="fh-pass">Pass</button>
