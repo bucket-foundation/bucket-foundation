@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.compose.icons)
     implementation(project(":core:data"))
     implementation(project(":core:ui"))
     implementation(libs.activity.compose)
