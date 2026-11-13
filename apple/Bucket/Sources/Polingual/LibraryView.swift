@@ -223,10 +223,17 @@ struct LibraryReader: View {
     func header(_ book: LibraryBook) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(book.author).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
-            if book.machine {
+            if let illustrator = book.illustrator {
+                Label { Text(verbatim: illustrator) } icon: { Image(systemName: "paintbrush") }
+                    .font(.caption).foregroundStyle(Palette.muted)
+            }
+            if book.machine(in: shown) {
                 Label("Machine translation", systemImage: "globe").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
             }
             Text(book.license).font(.caption).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
+            ForEach(book.credits(shown), id: \.lang) { c in
+                Text(verbatim: "\(c.lang.uppercased()) · \(c.name)").font(.caption).foregroundStyle(Palette.muted)
+            }
             if let url = book.sourceURL {
                 Link(destination: url) { Text("Source") }.font(.caption.weight(.semibold)).tint(Palette.green)
             }
