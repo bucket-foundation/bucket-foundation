@@ -69,7 +69,8 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
         navigationSuiteColors = NavigationSuiteDefaults.colors(navigationBarContainerColor = PL.Card, navigationRailContainerColor = PL.Card),
         containerColor = PL.Paper,
     ) {
-        androidx.compose.runtime.CompositionLocalProvider(LocalStartLearning provides { nav.navigate(Tab.Learn.route) { launchSingleTop = true } }) {
+        val access by graph.billing.access.collectAsState()
+        androidx.compose.runtime.CompositionLocalProvider(LocalStartLearning provides { nav.navigate(PlayRules.startLearningRoute(access)) { launchSingleTop = true } }) {
             Box(Modifier.fillMaxSize()) { Routes(graph, nav) }
         }
     }

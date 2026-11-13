@@ -176,7 +176,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
             graph.voice.speak(prompt.word.form, prompt.word.lang)
         }
     }
-    if (picked != null) {
+    if (PlayRules.showReveal(answered = picked != null, roundClosed = false)) {
         WordReveal(prompt.word.lang, prompt.word.form, prompt.word.gloss, prompt.word.itemId, c.corpus) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
         PrimaryButton(if (round.results.size >= round.prompts.size) "See results" else "Next word") { round.advance(); tick += 1 }
     }
@@ -364,7 +364,7 @@ fun Letters(graph: Graph, c: GameContext) {
             }
         }
     }
-    if (picked != null) {
+    if (PlayRules.showReveal(answered = picked != null, roundClosed = false)) {
         WordReveal(q.word.lang, q.word.form, q.word.gloss, q.word.itemId, c.corpus) { graph.voice.speak(q.word.form, q.word.lang) }
         PrimaryButton("Next letter") { picked = null; index += 1 }
     }
