@@ -331,13 +331,13 @@
 .fhGot{background:var(--pl-malachite);color:var(--pl-card)}
 .fhTime,.fhScore{background:var(--pl-card);color:var(--pl-tyrian);border:3px solid var(--pl-ink);border-radius:14px;padding:2px 14px;box-shadow:0 4px 0 var(--pl-ink)}
 @media (max-width:640px){.bmBoard{gap:4px}.bmCell{font-size:clamp(10px,3.1vw,14px)}}
-.fhStage .fhCard{gap:14px;min-height:0;width:min(88vw,760px);padding:24px 24px 36px}
+.fhStage .fhCard{flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:0;width:min(88vw,760px);padding:24px 24px 36px}
 .fhCard .fhWord{font-family:"Fredoka",sans-serif;font-weight:600;font-size:clamp(56px,15vw,132px);line-height:1.05;text-align:center;margin-top:4px}
 .fhStage > span[data-slot="2"],.fhStage > span[data-slot="3"]{bottom:auto;top:30%}
 .fhStage > span[data-slot="5"]{display:none}
 .fhStage > span[data-slot="4"]{top:90px}
 @media (min-width:1800px){.fhCard .fhWord{font-size:180px}.fhStub{font-size:18px}.fhCard .fhLang{font-size:20px}}
-.revealGrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.revealGrid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
 .revealCard > div{min-height:160px}
 .bmCell{word-break:normal;overflow-wrap:normal;hyphens:none}
 .bmCell span{white-space:nowrap}
