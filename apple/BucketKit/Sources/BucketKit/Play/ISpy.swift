@@ -112,7 +112,7 @@ public enum ISpy {
     public static func points(correct: Bool, ms: Int, roundSeconds: Int, streak: Int) -> Int {
         guard correct else { return 0 }
         let left = min(1, max(0, 1 - Double(ms) / Double(roundSeconds * 1000)))
-        return base + jsRound(Double(speed) * left) + min(max(streak, 0), streakCap) * streakStep
+        return base + playRound(Double(speed) * left) + min(max(streak, 0), streakCap) * streakStep
     }
 
     public static func award(_ t: SpyTally, correct: Bool, ms: Int, roundSeconds: Int) -> (SpyTally, Int) {
@@ -124,7 +124,7 @@ public enum ISpy {
         let len = Double(roundSeconds * 1000)
         return bots.map { b in
             let key = "\(seed):\(round):\(b.id)"
-            return BotTurn(botId: b.id, atMs: jsRound(len * (b.from + (b.to - b.from) * unit("at:\(key)"))), correct: unit("ok:\(key)") < b.accuracy)
+            return BotTurn(botId: b.id, atMs: playRound(len * (b.from + (b.to - b.from) * unit("at:\(key)"))), correct: unit("ok:\(key)") < b.accuracy)
         }
     }
 

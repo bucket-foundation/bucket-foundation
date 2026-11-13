@@ -89,7 +89,7 @@ public enum Atlas {
         homes[lang]?.map { Nearest(home: $0, km: distanceKm(pin, $0)) }.min { $0.km < $1.km }
     }
 
-    public static func points(_ km: Double) -> Int { km <= 150 ? max : jsRound(Double(max) * exp(-(km - 150) / scaleKm)) }
+    public static func points(_ km: Double) -> Int { km <= 150 ? max : playRound(Double(max) * exp(-(km - 150) / scaleKm)) }
 
     public static func project(lon: Double, lat: Double) -> (x: Double, y: Double) { ((lon + 180) / 360 * mapW, (90 - lat) / 180 * mapH) }
 

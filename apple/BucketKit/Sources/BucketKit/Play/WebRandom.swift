@@ -79,4 +79,4 @@ func stableSorted<T, K: Comparable>(_ xs: [T], by key: (T) -> K, descending: Boo
     }.map(\.element)
 }
 
-func jsRound(_ x: Double) -> Int { Int((x + 0.5).rounded(.down)) }
+func playRound(_ x: Double) -> Int { Int((x + 0.5).rounded(.down)) }

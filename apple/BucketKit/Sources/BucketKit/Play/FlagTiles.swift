@@ -81,7 +81,7 @@ public enum FlagTilesRules {
         return n
     }
 
-    public static func fallMs(_ index: Int) -> Int { max(fallMinMs, jsRound(Double(fallStartMs) * pow(fallFactor, Double(index / step)))) }
+    public static func fallMs(_ index: Int) -> Int { max(fallMinMs, playRound(Double(fallStartMs) * pow(fallFactor, Double(index / step)))) }
 
     public static func deck(_ items: [LangItem], date: String, root: String = "en") -> FlagTilesDeck {
         var rand = WebRandom(WebRandom.seedOf("flag-tiles:\(date)"))
@@ -148,10 +148,10 @@ public enum Lanes {
 
     public static func schedule(count: Int, round: Int, rounds: Int, roundSeconds: Int) -> [TileSchedule] {
         let len = Double(roundSeconds * 1000)
-        let fall = jsRound(len * (fallFrom - (fallFrom - fallTo) * ramp(round: round, rounds: rounds)))
+        let fall = playRound(len * (fallFrom - (fallFrom - fallTo) * ramp(round: round, rounds: rounds)))
         let span = min(len * spawnSpan, len * submitAt - Double(fall) - 100)
         return (0..<max(0, count)).map { i in
-            TileSchedule(index: i, lane: (i * 3 + round) % tileLanes, spawnMs: count <= 1 ? 0 : jsRound(span * Double(i) / Double(count - 1)), fallMs: fall)
+            TileSchedule(index: i, lane: (i * 3 + round) % tileLanes, spawnMs: count <= 1 ? 0 : playRound(span * Double(i) / Double(count - 1)), fallMs: fall)
         }
     }
 
