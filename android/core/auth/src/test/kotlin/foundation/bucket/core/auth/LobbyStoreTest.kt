@@ -33,6 +33,7 @@ class LobbyStoreTest {
         assertEquals("Bearer g1", f.auth.last())
         assertTrue("\"game\":\"daily\"" in f.calls.last().second)
         assertTrue("\"targets\":[\"es\"]" in f.calls.last().second)
+        assertTrue("\"reveal\":true" in f.calls.last().second)
         assertTrue(kv.get(GuestPass.TICKET_KEY)!!.contains("g1"))
     }
 

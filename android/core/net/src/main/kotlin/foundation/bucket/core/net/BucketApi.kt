@@ -87,7 +87,7 @@ class BucketApi(
         lobbyCall("api/academy/lobbies", token, buildJsonObject {
             put("name", name); put("game", game.wire); put("root", root)
             put("targets", kotlinx.serialization.json.JsonArray(targets.map(::JsonPrimitive)))
-            put("rounds", rounds); put("roundSeconds", roundSeconds); put("listed", listed); put("displayName", displayName)
+            put("rounds", rounds); put("roundSeconds", roundSeconds); put("listed", listed); put("displayName", displayName); put("reveal", true)
         })
 
     suspend fun joinLobby(token: String, code: String? = null, lobbyId: String? = null, displayName: String): Lobby =
