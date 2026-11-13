@@ -8,14 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test --test-timeout=60000 src/lib/word-i18n.test.tsx src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/landing-words.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts src/lib/speak.test.tsx src/lib/tile.test.tsx src/lib/avatar.test.tsx src/lib/stoa/*.test.ts src/lib/stoa/*.test.tsx src/lib/lobby/*.test.ts src/lib/polyword/*.test.ts scripts/indexnow.test.mjs scripts/build_words.test.mjs",
+    "test": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test --test-timeout=60000 src/lib/word-i18n.test.tsx src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/landing-words.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts src/lib/speak.test.tsx src/lib/tile.test.tsx src/lib/avatar.test.tsx src/lib/stoa/*.test.ts src/lib/stoa/*.test.tsx src/lib/lobby/*.test.ts src/lib/polyword/*.test.ts scripts/indexnow.test.mjs scripts/build_words.test.mjs scripts/build_tokens.test.mjs src/lib/brand-art.test.ts",
+    "tokens": "node scripts/build_tokens.mjs",
     "words": "node scripts/build_words.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "test:db": "bash db/test-founding.sh",
     "test:live-db": "bash db/test-live.sh",
     "test:live-local": "bash db/test-live-local.sh",
     "test:live-load": "bash db/test-live-load.sh",
-    "test:live-e2e": "bash db/test-live-e2e.sh"
+    "test:live-e2e": "bash db/test-live-e2e.sh",
+    "brand-kit": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs scripts/build_brand_kit.ts"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
