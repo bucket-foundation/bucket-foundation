@@ -88,7 +88,12 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
         stickers = listOf(Sticker(kind.art, Alignment.CenterStart, 70.dp, kind.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("kente", Alignment.BottomEnd, 76.dp, -5f, dx = (-8).dp)),
     ) {
+        GameBanner(kind)
         val c = ctx
+        if (c != null) {
+            Text("${kind.title.uppercase()} · ${c.system.targets.joinToString(" ") { Lang.name(it) }.uppercase()} · ${today()}", style = Type.caps, color = PL.Vermilion)
+            Text(kind.blurb, style = Type.small, color = PL.InkDim)
+        }
         if (c == null) EmptyState("kente", "Start a language set in Learn. The games use the words you study.") else content(c)
     }
 }
@@ -248,7 +253,7 @@ fun Groups(graph: Graph, c: GameContext) {
             row.forEach { w ->
                 val on = w.id in round.selected
                 Box(
-                    Modifier.weight(1f).aspectRatio(1.1f).clip(RoundedCornerShape(12.dp)).background(if (on) PL.Ink else p.card)
+                    Modifier.weight(1f).aspectRatio(1.1f).clip(RoundedCornerShape(12.dp)).background(if (on) PL.Ink else PL.White).border(2.dp, if (on) PL.Ink else PL.Hairline2, RoundedCornerShape(12.dp))
                         .clickable(role = Role.Checkbox) { round.toggle(w.id); tick += 1 }.padding(4.dp)
                         .semantics { contentDescription = "${w.form}, ${Lang.name(w.lang)}" },
                     contentAlignment = Alignment.Center,
@@ -299,7 +304,7 @@ fun Mini(graph: Graph, c: GameContext) {
                 val live = cell in answers
                 val active = cell == entry.cells.getOrNull(cursor)
                 Box(
-                    Modifier.size(46.dp).clip(RoundedCornerShape(6.dp)).background(if (!live) androidx.compose.ui.graphics.Color.Transparent else if (active) PL.Paper3 else if (cell in entry.cells) p.card else p.card.copy(alpha = 0.7f))
+                    Modifier.size(46.dp).clip(RoundedCornerShape(6.dp)).background(if (!live) PL.TyrianDeep else if (active) PL.LapisSoft else PL.White)
                         .then(if (live) Modifier.border(1.dp, if (active) PL.Vermilion else p.rule, RoundedCornerShape(6.dp)).clickable {
                             val e = puzzle.entries.firstOrNull { it.cells.contains(cell) && it.across == entry.across } ?: puzzle.entries.first { it.cells.contains(cell) }
                             entry = e; cursor = e.cells.indexOf(cell)
