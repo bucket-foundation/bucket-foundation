@@ -13,10 +13,18 @@ enum class LobbyGame(val wire: String, val title: String) {
     @SerialName("flags") Flags("flags", "Flags"),
     @SerialName("live") Live("live", "Live Mix"),
     @SerialName("tiles") Tiles("tiles", "Word Tiles"),
+    @SerialName("duel") Duel("duel", "Flag Duel"),
+    @SerialName("spy") Spy("spy", "I Spy"),
 }
 
 @Serializable
-enum class LobbyPromptMode { @SerialName("form") Form, @SerialName("flag") Flag, @SerialName("tiles") Tiles }
+enum class LobbyPromptMode { @SerialName("form") Form, @SerialName("flag") Flag, @SerialName("tiles") Tiles, @SerialName("mixed") Mixed, @SerialName("meaning") Meaning, @SerialName("spy") Spy }
+
+@Serializable
+enum class PowerKind(val cost: Int) { @SerialName("double") Double(2), @SerialName("fifty") Fifty(1) }
+
+@Serializable
+data class LobbyPower(val round: Int, val kind: PowerKind)
 
 @Serializable
 data class LobbyPlayer(
@@ -52,6 +60,7 @@ data class LobbyPrompt(
     val choices: List<String>,
     val answer: String? = null,
     val reveal: List<RevealEntry> = emptyList(),
+    val hide: List<String> = emptyList(),
 )
 
 @Serializable
@@ -101,6 +110,8 @@ data class Lobby(
     val botFill: Boolean = false,
     val botsEnabled: Boolean = false,
     val nextStartAt: String? = null,
+    val coins: Int = 0,
+    val powers: List<LobbyPower> = emptyList(),
 ) {
     val me: LobbyPlayer? get() = players.firstOrNull { it.isMe }
     val readyCount: Int get() = players.count { it.ready }
@@ -108,6 +119,8 @@ data class Lobby(
     val standings: List<LobbyPlayer> get() = players.sortedWith(compareByDescending<LobbyPlayer> { it.score }.thenBy { it.name })
     fun prompt(round: Int) = prompts.firstOrNull { it.round == round }
     fun results(round: Int) = results.filter { it.round == round }
+    fun doubled(round: Int) = powers.any { it.round == round && it.kind == PowerKind.Double }
+    fun powerFor(round: Int) = powers.firstOrNull { it.round == round }
 }
 
 object LobbyRules {

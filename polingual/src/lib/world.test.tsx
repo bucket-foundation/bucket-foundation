@@ -6,6 +6,10 @@ import { Field, FlagBand, FlagTile, Ground, Input, Sheet, Stage, Sticker, Streak
 test("grounds render each kind", () => {
   assert.match(renderToStaticMarkup(<Ground kind="lattice" cut />), /data-ground="lattice"/);
   assert.match(renderToStaticMarkup(<Ground />), /data-ground="paper"/);
+  const toned = renderToStaticMarkup(<Ground tone="lapis" pattern="tile" tile="azulejo" testId="g" />);
+  assert.match(toned, /data-ground="lapis"/);
+  assert.match(toned, /data-pattern="tile"/);
+  assert.match(toned, /--ground-tile/);
 });
 
 test("sticker places hero art", () => {
