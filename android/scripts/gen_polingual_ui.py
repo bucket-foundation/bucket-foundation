@@ -350,6 +350,113 @@ def flags_kt():
 
 
 APP_RES = ROOT / "android/polingual/src/main/res"
+APP_ASSETS = ROOT / "android/polingual/src/main/assets/play"
+WORDS = ROOT / "polingual/src/data/words.json"
+PW_ORDER = ROOT / "polingual/src/lib/polyword/order.json"
+PW_BANK = ROOT / "polingual/src/lib/polyword/bank.ts"
+
+
+def imul(a, b):
+    return ((a & 0xFFFFFFFF) * (b & 0xFFFFFFFF)) & 0xFFFFFFFF
+
+
+def fnv(s):
+    h = 2166136261
+    for ch in s.encode("utf-16-le").decode("utf-16-le"):
+        for unit in ([ord(ch)] if ord(ch) < 0x10000 else [0xD800 + ((ord(ch) - 0x10000) >> 10), 0xDC00 + ((ord(ch) - 0x10000) & 0x3FF)]):
+            h = imul(h ^ unit, 16777619)
+    return h
+
+
+def mulberry(seed):
+    a = seed
+
+    def nxt():
+        nonlocal a
+        a = (a + 0x6D2B79F5) & 0xFFFFFFFF
+        t = a
+        t = imul(t ^ (t >> 15), t | 1)
+        t ^= (t + imul(t ^ (t >> 7), t | 61)) & 0xFFFFFFFF
+        return ((t ^ (t >> 14)) & 0xFFFFFFFF) / 4294967296
+    return nxt
+
+
+def pw_shuffled(items, seed):
+    out = list(items)
+    r = mulberry(fnv(seed))
+    for i in range(len(out) - 1, 0, -1):
+        j = math.floor(r() * (i + 1))
+        out[i], out[j] = out[j], out[i]
+    return out
+
+
+def pw_fold(raw):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", raw) if not unicodedata.category(c).startswith("M")).lower()
+
+
+def pw_ordered(frozen, current):
+    have = set(current)
+    fresh = [x for x in current if x not in frozen]
+    out = []
+    for slug in frozen:
+        if slug in have:
+            out.append(slug)
+        elif fresh:
+            out.append(fresh.pop(0))
+        elif current:
+            out.append(current[fnv(slug) % len(current)])
+    return out + fresh
+
+
+def ts_list(src, name):
+    m = re.search(r"export const %s = \[([^\]]*)\]" % name, src)
+    return re.findall(r'"([^"]+)"', m.group(1))
+
+
+def play_assets():
+    words = json.loads(WORDS.read_text())
+    slim = []
+    for w in words:
+        e = {k: w[k] for k in ("slug", "en", "gloss", "category", "tier") if k in w}
+        if w.get("note"):
+            e["note"] = w["note"]
+        if w.get("roots"):
+            e["roots"] = w["roots"]
+        e["forms"] = [{k: f[k] for k in ("lang", "word", "ipa", "roman", "kana") if f.get(k)} for f in w["forms"]]
+        slim.append(e)
+    src = PW_BANK.read_text()
+    targets, reveal = ts_list(src, "TARGETS"), ts_list(src, "REVEAL_ORDER")
+    keep = set(targets) | set(reveal)
+    frozen = json.loads(PW_ORDER.read_text())
+    langs, used = {}, set()
+    for lang in targets:
+        seen, picks = set(), []
+        for w in sorted(words, key=lambda x: x["slug"]):
+            form = next((f for f in w["forms"] if f["lang"] == lang), None)
+            if not form:
+                continue
+            key = pw_fold(form["word"])
+            if not re.fullmatch(r"[a-z]+", key) or len(key) not in (5, 6) or key in seen:
+                continue
+            seen.add(key)
+            picks.append(w["slug"])
+            used.add(w["slug"])
+        langs[lang] = pw_ordered(frozen.get(lang, []), pw_shuffled(picks, "polyword:" + lang))
+    bank_words = {}
+    for w in words:
+        if w["slug"] not in used:
+            continue
+        forms = {}
+        for f in w["forms"]:
+            if f["lang"] not in keep or f["lang"] in forms:
+                continue
+            roman = f.get("roman") or f.get("kana")
+            forms[f["lang"]] = {"word": f["word"], "roman": roman} if roman else {"word": f["word"]}
+        bank_words[w["slug"]] = {"gloss": w.get("gloss") or w["en"], "forms": forms}
+    bank = {"targets": targets, "reveal": reveal, "langs": langs, "words": bank_words}
+    dump = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":")) + "\n"
+    return {APP_ASSETS / "words.json": dump(slim), APP_ASSETS / "polyword-bank.json": dump(bank)}
 
 
 def launcher(t):
@@ -408,7 +515,7 @@ def main():
     s = ART.read_text()
     entries = json.loads(s[s.index("["):s.index("\n] as const") + 2])
     PKG_DIR.mkdir(parents=True, exist_ok=True)
-    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t)}
+    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t), **play_assets()}
     check = "--check" in sys.argv
     stale = [p for p, body in outputs.items() if not p.exists() or p.read_text() != body]
     if check:

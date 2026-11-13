@@ -29,6 +29,7 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
     composable("translate?text={text}", arguments = listOf(navArgument("text") { type = NavType.StringType; defaultValue = "" })) { e ->
         TranslateScreen(graph, e.arguments?.getString("text").orEmpty()) { nav.popBackStack() }
     }
+    com.polingual.app.play.playRoutes(this, graph, nav)
     milestoneRoutes(graph, nav)
 }
 

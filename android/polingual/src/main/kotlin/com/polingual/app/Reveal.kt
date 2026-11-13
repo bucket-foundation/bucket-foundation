@@ -24,14 +24,14 @@ object Scripts {
 }
 
 @Composable
-fun WordReveal(lang: String, form: String, gloss: String, itemId: String?, corpus: LangCorpus?, onSpeak: (() -> Unit)?) {
+fun WordReveal(lang: String, form: String, gloss: String, itemId: String?, corpus: LangCorpus?, ipa: String? = null, root: String? = null, definition: String? = null, onSpeak: (() -> Unit)?) {
     val item = itemId?.let { corpus?.byId?.get(it) }
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(PLSpace.s2)) {
-        WordTile(lang, form, ipa = item?.readings?.get(lang)?.let { it.ipa ?: it.roman }, gloss = gloss, onSpeak = onSpeak)
+        WordTile(lang, form, ipa = ipa ?: item?.readings?.get(lang)?.let { it.ipa ?: it.roman }, gloss = gloss, onSpeak = onSpeak)
         RevealRow("Language", Lang.name(lang))
         RevealRow("Script", Scripts.of(lang))
-        item?.root?.takeIf { it.isNotBlank() }?.let { RevealRow("Root", it) }
-        RevealRow("Definition", item?.note?.takeIf { it.isNotBlank() } ?: gloss)
+        (root ?: item?.root)?.takeIf { it.isNotBlank() }?.let { RevealRow("Root", it) }
+        RevealRow("Definition", definition ?: item?.note?.takeIf { it.isNotBlank() } ?: gloss)
     }
 }
 

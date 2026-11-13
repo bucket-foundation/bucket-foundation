@@ -37,6 +37,10 @@ fun PlayScreen(graph: Graph, nav: NavHostController) {
             val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
             GameTile(k, played) { nav.navigate("game/${k.route}") }
         }
+        SectionTitle("More games", onDark = true)
+        com.polingual.app.play.WebGame.entries.filter { it.route in com.polingual.app.play.WebGames.ready }.forEach { g ->
+            com.polingual.app.play.WebGameTile(g) { nav.navigate("play/${g.route}") }
+        }
         AdBanner(graph)
     }
 }

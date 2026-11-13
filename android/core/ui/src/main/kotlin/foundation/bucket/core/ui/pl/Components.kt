@@ -225,6 +225,11 @@ fun FlagSwatch(lang: String, modifier: Modifier) {
     Box(modifier.drawBehind {
         if (layers.isEmpty()) drawRect(PL.Paper3)
         layers.forEach { l ->
+            if (l.kind == 4) {
+                l.colors.drop(1).firstOrNull { it != 0L }?.let { drawRect(Color(it)) }
+                if (l.colors[0] != 0L) drawCircle(Color(l.colors[0]), radius = l.ends[0] * size.minDimension * 1.4f)
+                return@forEach
+            }
             var start = 0f
             l.colors.forEachIndexed { i, c ->
                 val end = l.ends[i]
@@ -235,7 +240,7 @@ fun FlagSwatch(lang: String, modifier: Modifier) {
                         1 -> drawRect(col, Offset(0f, start * size.height), Size(size.width, (end - start) * size.height))
                         2 -> drawRect(col, Offset(start * size.width, 0f), Size((end - start) * size.width, size.height))
                         3 -> if (i == 0) drawRect(col) else drawPath(androidx.compose.ui.graphics.Path().apply { moveTo(size.width, 0f); lineTo(size.width, size.height); lineTo(0f, size.height); close() }, col)
-                        4 -> if (i == 0) drawCircle(col, radius = end * size.minDimension * 1.4f) else Unit
+                        4 -> if (i == 0) Unit else Unit
                     }
                 }
                 start = end
