@@ -3,6 +3,7 @@ export const PLAN_DOCS = [
   { slug: "android-research", title: "Android Surfaces Research", file: "docs/internal/android/android-surfaces-research.md" },
   { slug: "apple-plan", title: "Apple Native Plan", file: "docs/internal/APPLE-NATIVE-PLAN.md" },
   { slug: "polingual-games", title: "Polingual Games Research", file: "docs/internal/polingual/GAMES-RESEARCH.md" },
+  { slug: "polingual-play", title: "Polingual Play Design", file: "docs/internal/polingual/PLAY-DESIGN.md" },
 ] as const;
 
 export const plansEnabled = () => process.env.NODE_ENV !== "production";
