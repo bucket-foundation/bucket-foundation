@@ -223,6 +223,10 @@ struct LibraryReader: View {
     func header(_ book: LibraryBook) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(book.author).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+            if let illustrator = book.illustrator {
+                Label { Text(verbatim: illustrator) } icon: { Image(systemName: "paintbrush") }
+                    .font(.caption).foregroundStyle(Palette.muted)
+            }
             if book.machine(in: shown) {
                 Label("Machine translation", systemImage: "globe").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
             }
