@@ -18,14 +18,16 @@ object ScienceStudy {
 
     fun queue(decks: Map<String, Deck>, state: ScienceState, day: String, now: Long, maxReviews: Int = 30): List<StudyCard> {
         val newLeft = if (state.newDay == day) NEW_PER_DAY - state.newToday else NEW_PER_DAY
-        val all = decks.flatMap { (id, d) -> d.atoms.filter { it.quiz.isNotEmpty() || it.summary.isNotBlank() }.map { id to it } }
+        val all = decks.flatMap { (id, d) -> d.atoms.filter(::studyable).map { id to it } }
         val due = all.filter { (id, a) -> state.cards["$id:${a.id}"]?.let { it.due <= now } == true }
             .sortedBy { (id, a) -> state.cards.getValue("$id:${a.id}").due }.take(maxReviews)
         val fresh = all.filter { (id, a) -> "$id:${a.id}" !in state.cards }
-            .filter { (id, a) -> a.requires.all { r -> state.cards["$id:$r"]?.reps?.let { it > 0 } ?: decks[id]?.atoms?.none { it.id == r } ?: true } }
+            .filter { (id, a) -> a.requires.all { r -> state.cards["$id:$r"]?.reps?.let { it > 0 } ?: decks[id]?.atoms?.firstOrNull { it.id == r }?.let { !studyable(it) } ?: true } }
             .take(maxOf(0, newLeft))
         return due.map { (id, a) -> card(id, a, false) } + fresh.map { (id, a) -> card(id, a, true) }
     }
+
+    fun studyable(a: Atom) = a.quiz.isNotEmpty() || a.summary.isNotBlank()
 
     private fun card(deckId: String, atom: Atom, isNew: Boolean): StudyCard {
         val q = atom.quiz.firstOrNull { it.level == "recall" } ?: atom.quiz.firstOrNull()

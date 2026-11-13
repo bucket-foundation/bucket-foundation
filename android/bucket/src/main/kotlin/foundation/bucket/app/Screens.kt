@@ -112,7 +112,7 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
     val state by graph.science.collectAsState()
     var decks by remember { mutableStateOf<Map<String, Deck>?>(null) }
     var error by remember { mutableStateOf<String?>(null) }
-    LaunchedEffect(Unit) { try { decks = graph.allDecks() } catch (e: BucketError) { error = e.message } }
+    LaunchedEffect(Unit) { try { decks = graph.allDecks() } catch (e: BucketError) { error = e.message } catch (e: kotlinx.serialization.SerializationException) { error = "The canon did not load. Try again later." } }
     Page {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
@@ -150,8 +150,11 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
     var shown by remember { mutableStateOf(false) }
     var right by remember { mutableStateOf(0) }
     var count by remember { mutableStateOf(0) }
-    LaunchedEffect(Unit) { queue = runCatching { ScienceStudy.queue(graph.allDecks(), graph.current(), today(), System.currentTimeMillis()) }.getOrDefault(emptyList()) }
+    var failed by remember { mutableStateOf<String?>(null) }
+    var attempt by remember { mutableStateOf(0) }
+    LaunchedEffect(attempt) { failed = null; try { queue = ScienceStudy.queue(graph.allDecks(), graph.current(), today(), System.currentTimeMillis()) } catch (e: BucketError) { failed = e.message } }
     Page(back = done) {
+        failed?.let { Text(it, color = foundation.bucket.core.ui.D8.vermilion); PrimaryButton("Try again", color = p.green) { attempt += 1 }; return@Page }
         val q = queue ?: run { CircularProgressIndicator(color = p.green); return@Page }
         val card = q.firstOrNull()
         if (card == null) {
@@ -172,7 +175,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         }
         fun grade(ok: Boolean) = scope.launch {
             count += 1; if (ok) right += 1
-            graph.saveScience(ScienceStudy.grade(graph.current(), card, ok, today(), System.currentTimeMillis()))
+            graph.updateScience { ScienceStudy.grade(it, card, ok, today(), System.currentTimeMillis()) }
             queue = q.drop(1) + if (ok) emptyList() else listOf(card.copy(isNew = false))
             shown = false
         }
@@ -208,8 +211,11 @@ fun DeckScreen(graph: Graph, nav: NavHostController, id: String) {
     val state by graph.science.collectAsState()
     var deck by remember { mutableStateOf<Deck?>(null) }
     var title by remember { mutableStateOf("") }
-    LaunchedEffect(id) { graph.index().firstOrNull { it.id == id }?.let { title = it.title; deck = runCatching { graph.deck(it) }.getOrNull() } }
+    var failed by remember { mutableStateOf<String?>(null) }
+    var attempt by remember { mutableStateOf(0) }
+    LaunchedEffect(id, attempt) { failed = null; try { graph.index().firstOrNull { it.id == id }?.let { title = it.title; deck = graph.deck(it) } ?: run { failed = "That subject is gone." } } catch (e: BucketError) { failed = e.message } }
     Page(title, back = { nav.popBackStack() }) {
+        failed?.let { Text(it, color = foundation.bucket.core.ui.D8.vermilion); PrimaryButton("Try again", color = p.green) { attempt += 1 }; return@Page }
         val d = deck ?: run { CircularProgressIndicator(color = p.green); return@Page }
         d.meta.note?.let { Text(it, color = p.muted) }
         Text("${d.atoms.count { state.cards["$id:${it.id}"]?.reps?.let { r -> r > 0 } == true }} of ${d.atoms.size} studied", color = p.muted)
@@ -230,8 +236,11 @@ fun AtomScreen(graph: Graph, deckId: String, atomId: String, back: () -> Unit) {
     val p = LocalPalette.current
     var atom by remember { mutableStateOf<Atom?>(null) }
     var revealed by remember { mutableStateOf(setOf<Int>()) }
-    LaunchedEffect(atomId) { graph.index().firstOrNull { it.id == deckId }?.let { atom = runCatching { graph.deck(it) }.getOrNull()?.atoms?.firstOrNull { a -> a.id == atomId } } }
+    var failed by remember { mutableStateOf<String?>(null) }
+    var attempt by remember { mutableStateOf(0) }
+    LaunchedEffect(atomId, attempt) { failed = null; try { atom = graph.index().firstOrNull { it.id == deckId }?.let { graph.deck(it) }?.atoms?.firstOrNull { a -> a.id == atomId }; if (atom == null) failed = "That atom is gone." } catch (e: BucketError) { failed = e.message } }
     Page(back = back) {
+        failed?.let { Text(it, color = foundation.bucket.core.ui.D8.vermilion); PrimaryButton("Try again", color = p.green) { attempt += 1 }; return@Page }
         val a = atom ?: run { CircularProgressIndicator(color = p.green); return@Page }
         Text(a.title, style = Type.display.copy(fontSize = 28.sp), color = p.ink)
         a.equation?.let { Card { Text(TexLite.render(it), fontFamily = androidx.compose.ui.text.font.FontFamily.Serif, fontSize = 22.sp, color = p.ink) } }
@@ -240,7 +249,7 @@ fun AtomScreen(graph: Graph, deckId: String, atomId: String, back: () -> Unit) {
             SectionTitle(when (k) { "eli5" -> "Simply put"; "core" -> "Core"; else -> "Deeper" })
             Text(text, color = p.ink)
         }
-        a.lesson?.let { SectionTitle("Lesson"); Text(it.replace(Regex("[#*_`]"), ""), color = p.ink) }
+        a.lesson?.let { SectionTitle("Lesson"); Text(Lessons.plain(it), color = p.ink) }
         if (a.quiz.isNotEmpty()) SectionTitle("Test yourself")
         a.quiz.forEachIndexed { i, q ->
             Card(onClick = { revealed = revealed + i }) {
@@ -271,7 +280,7 @@ fun CanonScreen(graph: Graph) {
         error?.let { Text(it, color = foundation.bucket.core.ui.D8.vermilion) }
         hits?.let { if (it.isEmpty()) Text("No canon entries match.", color = p.muted) }
         hits?.forEach { h ->
-            Card(onClick = h.url?.let { u -> { context.startActivity(Intent(Intent.ACTION_VIEW, (if (u.startsWith("http")) u else "https://www.bucket.foundation$u").toUri())) } }) {
+            Card(onClick = CanonLinks.safe(h.url)?.let { u -> { context.startActivity(Intent(Intent.ACTION_VIEW, u.toUri())) } }) {
                 Text("${h.branch} · ${h.concept}", style = Type.caps, color = p.gold)
                 Text(h.title, color = p.ink, fontWeight = FontWeight.Bold)
                 Text(h.excerpt, color = p.muted)
@@ -303,7 +312,7 @@ fun AccountScreen(graph: Graph) {
                     Text("Deletes your account and your progress on every device.", color = p.muted)
                     if (!confirming) PlainLink("Delete my account") { confirming = true } else {
                         Text("This cannot be undone.", color = foundation.bucket.core.ui.D8.vermilion)
-                        PrimaryButton("Delete forever") { run { try { graph.account.deleteAccount(); graph.saveScience(ScienceState()) } finally { confirming = false } } }
+                        PrimaryButton("Delete forever") { run { try { graph.deleteAccount() } finally { confirming = false } } }
                         PlainLink("Keep my account") { confirming = false }
                     }
                 }
@@ -316,7 +325,7 @@ fun AccountScreen(graph: Graph) {
             }
             else -> Card {
                 Text("Sign in", style = Type.title, color = p.ink)
-                Text("Get a code by email. Your progress follows you to the web and every device.", color = p.muted)
+                Text("Get a code by email. Study progress stays on this device for now.", color = p.muted)
                 OutlinedTextField(email, { email = it }, singleLine = true, label = { Text("Email") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
                 PrimaryButton("Email me a code", enabled = email.contains("@"), color = p.green) { run { graph.account.requestCode(email) } }
             }

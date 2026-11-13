@@ -41,3 +41,32 @@ class ScienceStudyTest {
         assertEquals(0, ScienceStudy.queue(mapOf("d" to deck), ScienceState(newToday = 5, newDay = "2026-11-13"), "2026-11-13", 0).size)
     }
 }
+
+class BucketSafetyTest {
+    @Test
+    fun prerequisiteThatCannotBeStudiedDoesNotBlock() {
+        val deck = Deck(atoms = listOf(Atom("empty", "Empty"), Atom("x", "X", requires = listOf("empty"), summary = "x")))
+        assertEquals(listOf("x"), ScienceStudy.queue(mapOf("d" to deck), ScienceState(), "2026-11-13", 0).map { it.atom.id })
+    }
+
+    @Test
+    fun canonLinksStayOnBucketHttps() {
+        assertEquals("https://www.bucket.foundation/canon/7", CanonLinks.safe("/canon/7"))
+        assertEquals("https://bucket.foundation/c", CanonLinks.safe("https://bucket.foundation/c"))
+        assertEquals(null, CanonLinks.safe("http://www.bucket.foundation/c"))
+        assertEquals(null, CanonLinks.safe("https://evil.example/c"))
+        assertEquals(null, CanonLinks.safe("//evil.example/c"))
+    }
+
+    @Test
+    fun deckCacheNamesCannotEscape() {
+        val n = DeckFiles.name("../../etc/passwd")
+        assertTrue('/' !in n && !n.contains(".."))
+        assertTrue(n != DeckFiles.name("etcpasswd"))
+    }
+
+    @Test
+    fun lessonsKeepIdentifiersAndMath() {
+        assertEquals("Heat flow\nUse snake_case and a*b and bold", Lessons.plain("## Heat flow\nUse `snake_case` and a*b and **bold**"))
+    }
+}
