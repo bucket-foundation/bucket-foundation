@@ -238,7 +238,7 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
         mark == true -> Text("Right", color = PL.Malachite, fontWeight = FontWeight.Bold)
         mark == false -> Text("Not this time.", color = PL.Vermilion, fontWeight = FontWeight.Bold)
     }
-    if (PlayRules.showReveal(answered = false, roundClosed = reveal)) {
+    if (com.polingual.app.play.RevealRules.sameWord(revealPhase = reveal)) {
         prompt.reveal.firstOrNull { it.correct }?.let { r -> WordReveal(r.lang, r.word, r.meaning, null, null) { graph.voice.speak(r.word, r.lang) } }
         prompt.reveal.filterNot { it.correct }.forEach { r -> Text("${Lang.name(r.lang)}: ${r.word}${r.roman?.let { " ($it)" } ?: ""}, ${r.meaning}", style = Type.small, color = p.muted) }
     }

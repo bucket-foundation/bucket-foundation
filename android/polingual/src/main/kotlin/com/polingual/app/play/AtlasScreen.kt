@@ -96,7 +96,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
             }
         } else {
             Text("+${guessed.points} · ${"%,d".format(Math.round(guessed.km))} km away", style = Type.title, color = if (guessed.points >= Atlas.MAX / 2) PL.Malachite else PL.Vermilion)
-            com.polingual.app.WordReveal(round.lang, round.form, round.meaning, round.itemId, null) { graph.voice.speak(round.form, round.lang) }
+            if (RevealRules.atlas(guessed != null)) { com.polingual.app.WordReveal(round.lang, round.form, round.meaning, round.itemId, null) { graph.voice.speak(round.form, round.lang) } }
             PrimaryButton(if (guesses.size >= limit) "See results" else "Next round") { pin = null; peek = false; index += 1 }
         }
     }

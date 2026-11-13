@@ -129,7 +129,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                     }
                 }
                 Board(me, bots)
-                if (p is SpyPhase.Reveal) {
+                if (p is SpyPhase.Reveal && RevealRules.iSpy(tapped = p.tapped != null, elapsedMs = if (p.tapped == null) ISpy.ROUND_SECONDS * 1000L else 0L)) {
                     Text(if (p.correct) "Spotted" else "Here it was", style = Type.title, color = if (p.correct) PL.Malachite else PL.Vermilion)
                     val w = remember(r) { PlayAssets.words(graph.context).firstOrNull { it.slug == r.answer || it.form(r.lang)?.word == r.gloss } }
                     if (w != null) RevealWord(graph, w, r.lang) else com.polingual.app.WordReveal(r.lang, r.gloss, r.answer, r.itemId, null) { graph.voice.speak(r.gloss, r.lang) }

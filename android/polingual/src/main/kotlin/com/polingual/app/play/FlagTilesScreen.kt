@@ -100,7 +100,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
                 Text(if (run.picked == null) "Too slow" else "Wrong flag", style = Type.title, color = PL.Ink)
                 val missed = d.tiles[(run.missed ?: 0) % d.tiles.size]
                 val word = remember(missed) { com.polingual.app.play.PlayAssets.words(graph.context).firstOrNull { w -> w.form(missed.lang)?.word == missed.form } }
-                if (word != null) RevealWord(graph, word, missed.lang) else com.polingual.app.WordReveal(missed.lang, missed.form, missed.meaning, missed.itemId, null) { graph.voice.speak(missed.form, missed.lang) }
+                if (RevealRules.flagTiles(run)) { if (word != null) RevealWord(graph, word, missed.lang) else com.polingual.app.WordReveal(missed.lang, missed.form, missed.meaning, missed.itemId, null) { graph.voice.speak(missed.form, missed.lang) } }
                 run.picked?.let { Text("You picked ${Lang.name(d.langs[it])}.", style = Type.small, color = PL.InkDim) }
                 PrimaryButton("See results") { run = FlagTilesRules.step(run, RunEvent.End) }
             }
