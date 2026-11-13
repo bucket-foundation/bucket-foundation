@@ -5,7 +5,10 @@ import type { RevealEntry } from "@academy/lobbies";
 import { LEARN_HREF } from "@/lib/lobby/client";
 import { shareText, type DailyGame, type DailyResult } from "@/lib/daily/store";
 import { Button, ButtonLink } from "@/ui";
-import GameWorld from "../GameWorld";
+import GameWorld, { WorldStickers } from "../GameWorld";
+import { Art } from "@/ui/art";
+import { FlagTile } from "@/ui";
+import { world } from "@/ui/art/play";
 import Ad from "../Ad";
 import { RevealCard } from "../LearnWord";
 import styles from "./daily.module.css";
@@ -13,7 +16,10 @@ import styles from "./daily.module.css";
 export function DailyWorld({ id, children }: { id: DailyGame; children: ReactNode }) {
   return (
     <GameWorld id={id} active>
-      <div className={styles.card}>{children}</div>
+      <div className={styles.sheet}>
+        <div className={styles.corners}><WorldStickers id={id} /></div>
+        <div className={styles.card}>{children}</div>
+      </div>
     </GameWorld>
   );
 }
@@ -60,4 +66,17 @@ export function Results({ title, result, url }: { title: string; result: DailyRe
 
 export function Loading({ state }: { state: "loading" | "error" }) {
   return state === "loading" ? <p className={styles.blurb} aria-busy="true">Setting out today&apos;s puzzle</p> : <p className={styles.blurb} role="alert">Today&apos;s puzzle did not load. Reload the page to try again.</p>;
+}
+
+export function Intro({ id, langs }: { id: DailyGame; langs: readonly string[] }) {
+  return (
+    <div className={styles.intro} data-testid="daily-intro">
+      <span className={styles.introArt} aria-hidden><Art name={world(id).hero} size={150} shadow /></span>
+      <ul className={styles.introTiles} aria-hidden>
+        {langs.slice(0, 3).map((l, i) => (
+          <FlagTile key={l} lang={l} code={l.toUpperCase()} word="?" index={i} />
+        ))}
+      </ul>
+    </div>
+  );
 }

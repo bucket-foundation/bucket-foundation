@@ -6,7 +6,7 @@ import { Speed, SPEED_MISS_PENALTY, SPEED_SECONDS } from "@/lib/daily/speed";
 import { balanced, GameDeck, wordId, type GameWord } from "@/lib/daily/words";
 import { mixed, SeededRandom } from "@/lib/daily/rng";
 import { Button } from "@/ui";
-import { DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
+import { DailyWorld, Heading, Intro, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import styles from "../daily/daily.module.css";
 
@@ -67,7 +67,7 @@ export default function SpeedMatch() {
   return (
     <DailyWorld id="speed-match">
       <Heading eyebrow={`Speed Match · ${state.day}`} title={ends ? `${left} seconds` : "Pair each meaning with its word"} blurb={`Match ${SPEED_PAIRS} pairs in ${SPEED_SECONDS} seconds. A miss costs ${SPEED_MISS_PENALTY} seconds; five in a row scores double.`} />
-      {ends ? <Pips pattern={pattern.slice(-SPEED_PAIRS)} total={SPEED_PAIRS} /> : <Button onClick={() => setEnds(Date.now() + SPEED_SECONDS * 1000)} data-testid="speed-start">Start the clock</Button>}
+      {ends ? <Pips pattern={pattern.slice(-SPEED_PAIRS)} total={SPEED_PAIRS} /> : <><Intro id="speed-match" langs={state.system.targets} /><Button onClick={() => setEnds(Date.now() + SPEED_SECONDS * 1000)} data-testid="speed-start">Start the clock</Button></>}
       {ends ? (
         <div className={styles.board} data-testid="speed-board">
           <div>

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { speak } from "@academy/lang-client";
 import { dailyLetters, LETTER_SECONDS } from "@/lib/daily/letters";
 import { Button } from "@/ui";
-import { DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
+import { DailyWorld, Heading, Intro, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
@@ -68,7 +68,10 @@ export default function LetterSprint() {
           </div>
         </>
       ) : (
-        <Button onClick={() => setEnds(Date.now() + LETTER_SECONDS * 1000)} data-testid="letter-start">Start the clock</Button>
+        <>
+          <Intro id="letter-sprint" langs={[p.lang]} />
+          <Button onClick={() => setEnds(Date.now() + LETTER_SECONDS * 1000)} data-testid="letter-start">Start the clock</Button>
+        </>
       )}
     </DailyWorld>
   );
