@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { speak } from "@academy/lang-client";
+import { bcp47, say } from "@/lib/speak";
 import { dailyLetters, LETTER_SECONDS } from "@/lib/daily/letters";
 import { Button } from "@/ui";
 import { dayLabel, DailyWorld, Heading, Intro, Loading, Pips, Results } from "../daily/DailyWorld";
@@ -28,7 +28,7 @@ export default function LetterSprint() {
   }
 
   useEffect(() => {
-    if (ends && p) speak(p.ch, p.lang);
+    if (ends && p) say(p.ch, bcp47(p.lang), { auto: true });
   }, [ends, p]);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function LetterSprint() {
       {ends ? (
         <>
           <Pips pattern={pattern} total={prompts.length} />
-          <Button variant="accent" size="md" onClick={() => speak(p.ch, p.lang)}>Hear it again</Button>
+          <Button variant="accent" size="md" onClick={() => say(p.ch, bcp47(p.lang))}>Hear it again</Button>
           <div className={styles.choices}>
             {p.choices.map((c) => (
               <button key={c} type="button" className={`${styles.pill} ${styles.letter}`} lang={p.lang} onClick={() => choose(c)} data-testid="letter-choice" data-answer={c === p.ch ? "yes" : "no"}>

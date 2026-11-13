@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { speak } from "@academy/lang-client";
+import { bcp47, say } from "@/lib/speak";
 import { fnv, mixed, SeededRandom } from "@/lib/daily/rng";
 import { flags, formOf, GameDeck, type GameWord } from "@/lib/daily/words";
 import { Button } from "@/ui";
@@ -32,7 +32,7 @@ export default function WhichVoice() {
   const p = prompts[i];
 
   useEffect(() => {
-    if (p && state.status === "ready" && !state.done) speak(p.word.form, p.word.lang);
+    if (p && state.status === "ready" && !state.done) say(p.word.form, bcp47(p.word.lang), { auto: true });
   }, [p, state]);
 
   if (state.status !== "ready") return <DailyWorld id="which-voice"><Loading state={state.status} /></DailyWorld>;
@@ -56,7 +56,7 @@ export default function WhichVoice() {
     <DailyWorld id="which-voice">
       <Heading eyebrow={`Which Voice · ${dayLabel(state.day)}`} title="Listen, then pick the language" blurb="Ten words read aloud. Play a word again as often as you like." />
       <Pips pattern={pattern} total={prompts.length} />
-      <Button variant="accent" size="xl" onClick={() => speak(p.word.form, p.word.lang)} data-testid="voice-play">Play the word</Button>
+      <Button variant="accent" size="xl" onClick={() => say(p.word.form, bcp47(p.word.lang))} data-testid="voice-play">Play the word</Button>
       <div className={styles.choices}>
         {p.choices.map((c) => (
           <Button key={c} variant={picked ? (c === p.answer ? "success" : c === picked ? "primary" : "secondary") : "secondary"} icon={<FlagSquare lang={c} />} onClick={() => choose(c)} data-testid="voice-choice" data-answer={c === p.answer ? "yes" : "no"}>

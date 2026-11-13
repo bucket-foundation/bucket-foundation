@@ -5,3 +5,5 @@ export { Ground, Sticker, FlagBand, StreakFlame, Field, Input, Select, Sheet, Ta
 export { FlagTile, FlagTiles, type FlagTileProps } from "./FlagTile";
 export { cssVars, type CssVarName } from "./vars";
 export { AppNav, type NavItem } from "./AppNav";
+export { SpeakNotice } from "./SpeakNotice";
+export { SilentSwitch } from "./SilentSwitch";

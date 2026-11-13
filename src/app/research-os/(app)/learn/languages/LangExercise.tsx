@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
-import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
+import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speakAuto, speechSupported } from "@/lib/academy/lang-client";
 import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, readingLabel, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
 import { judgeSpelled } from "@/lib/academy/lang-script";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
@@ -278,8 +278,8 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
     setMatchDone(false);
     setBuilt([]);
     started.current = Date.now();
-    if (ex.kind === "listen" || ex.kind === "type-heard") speak(ex.prompt, ex.promptLang);
-    if (ex.kind === "intro") speak(ex.answer, ex.answerLang);
+    if (ex.kind === "listen" || ex.kind === "type-heard") speakAuto(ex.prompt, ex.promptLang);
+    if (ex.kind === "intro") speakAuto(ex.answer, ex.answerLang);
   }, [ex]);
 
   const slow = () => Date.now() - started.current > 15000;

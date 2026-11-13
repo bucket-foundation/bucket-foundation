@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import type { LangCorpus } from "@academy/lang-systems";
 import { langName, LANGS } from "@academy/lang-systems";
-import { loadLangCorpus, speak } from "@academy/lang-client";
+import { loadLangCorpus } from "@academy/lang-client";
+import { bcp47, say } from "@/lib/speak";
 import { pickerGroups, pushRecent, readRecent, suggestions, translate, translateSources, type TranslateAnswer } from "@/lib/translate/engine";
 import { WORD_SLUGS } from "@/lib/translate/slugs";
 import { Button, ButtonLink, Field, FlagTile, Input, Sheet, Stage } from "@/ui";
@@ -123,7 +124,7 @@ export default function Translate() {
             <ul className={styles.tiles}>
               {Object.entries(answer.rows).map(([l, w], i) => (
                 <li key={l} className={styles.tileCell}>
-                  <FlagTile as="div" lang={l} code={l.toUpperCase()} label={langName(l)} word={w} index={i} reading={corpus?.byId.get(answer.itemId)?.readings[l]?.ipa ?? corpus?.byId.get(answer.itemId)?.readings[l]?.roman} play={<button type="button" className={flagTileStyles.play} aria-label={`Hear ${w} in ${langName(l)}`} onClick={() => speak(w, l)} />} />
+                  <FlagTile as="div" lang={l} code={l.toUpperCase()} label={langName(l)} word={w} index={i} reading={corpus?.byId.get(answer.itemId)?.readings[l]?.ipa ?? corpus?.byId.get(answer.itemId)?.readings[l]?.roman} play={<button type="button" className={flagTileStyles.play} aria-label={`Hear ${w} in ${langName(l)}`} onClick={() => say(w, bcp47(l))} />} />
                   {WORD_SLUGS.has(answer.itemId) ? <ButtonLink variant="quiet" size="sm" href={`/word/${answer.itemId}`} data-testid="translate-word-link">Open the word page</ButtonLink> : null}
                 </li>
               ))}

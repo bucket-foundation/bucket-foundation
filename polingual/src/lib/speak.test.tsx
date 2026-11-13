@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
-import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, resetPlayer, snapshot, stop, type SpeakItem } from "./speak";
+import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, reasonFor, resetPlayer, say, snapshot, START_MS, stop, type SpeakItem } from "./speak";
 import { LANGS, WORDS, word } from "./words";
 import { graphemes, longestToken } from "./tile-fit";
 import { WordView } from "../app/(site)/word/views";
@@ -199,3 +199,48 @@ test("hear all reuses one audio element so iOS keeps the unlock from the tap", a
   assert.deepEqual(snapshot(), { id: null, all: false });
 });
 
+
+test("rapid taps each start their word and the last tap holds the player", async () => {
+  installFakes();
+  resetPlayer();
+  const before = spoken.length;
+  const words = ["uno", "dos", "tres", "cuatro", "cinco"];
+  const runs = words.map((w, i) => play({ id: `t${i}`, text: w, lang: "es-ES" }));
+  await tick();
+  const said = spoken.slice(before).map((u) => u.text);
+  assert.equal(said[said.length - 1], "cinco");
+  assert.equal(snapshot().id, "t4");
+  stop();
+  await Promise.all(runs);
+});
+
+test("a tap on a language with no voice explains why at once", async () => {
+  installFakes();
+  resetPlayer();
+  assert.equal(reasonFor({ lang: "ja-JP" }), "This device has no Japanese voice.");
+  await play({ id: "ja", text: "猫", lang: "ja-JP" });
+  assert.equal(snapshot().notice, "This device has no Japanese voice.");
+});
+
+test("a tap that makes no sound within 300 ms shows a reason", async () => {
+  installFakes();
+  resetPlayer();
+  const run = play({ id: "q", text: "silencio", lang: "es-ES" });
+  await new Promise((r) => setTimeout(r, START_MS + 60));
+  assert.match(snapshot().notice ?? "", /No sound yet/);
+  stop();
+  await run;
+});
+
+test("automatic audio stays quiet in silent mode while a tap still speaks", async () => {
+  installFakes();
+  resetPlayer();
+  const before = spoken.length;
+  say("hola", "es-ES", { auto: true, silent: true });
+  await tick();
+  assert.equal(spoken.length, before);
+  say("hola", "es-ES", { silent: true });
+  await tick();
+  assert.equal(spoken.length, before + 1);
+  stop();
+});

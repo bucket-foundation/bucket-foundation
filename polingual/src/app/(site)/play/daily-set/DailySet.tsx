@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { speak } from "@academy/lang-client";
+import { bcp47, say } from "@/lib/speak";
 import { dailySet, GameDeck } from "@/lib/daily/words";
 import { Button, FlagTile } from "@/ui";
 import { dayLabel, DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
@@ -43,7 +43,7 @@ export default function DailySet() {
       </div>
       <div className={styles.choices} data-testid="daily-choices">
         {p.choices.map((c) => (
-          <Button key={c} variant={picked ? (c === p.answer ? "success" : c === picked ? "primary" : "secondary") : "secondary"} onClick={() => { speak(c, p.word.lang); choose(c); }} data-testid="daily-choice" data-answer={c === p.answer ? "yes" : "no"}>
+          <Button key={c} variant={picked ? (c === p.answer ? "success" : c === picked ? "primary" : "secondary") : "secondary"} onClick={() => { say(c, bcp47(p.word.lang)); choose(c); }} data-testid="daily-choice" data-answer={c === p.answer ? "yes" : "no"}>
             {c}
           </Button>
         ))}
