@@ -21,6 +21,9 @@ import { readBreaks, writeBreaks, type Breaks } from "@/lib/lobby/breaks";
 import { parseTile } from "@academy/lobby-tiles";
 import { FlagSquare } from "./LearnWord";
 import Tiles from "./Tiles";
+import Scene from "./ispy/Scene";
+import spyStyles from "./ispy/ispy.module.css";
+import { sceneOfChoices } from "@academy/ispy";
 import { play, readMuted, writeMuted } from "@/lib/lobby/sound";
 import type { LobbySummary } from "@/lib/lobby/client";
 import styles from "./play.module.css";
@@ -517,6 +520,15 @@ export default function Room({ code: rawCode }: { code: string }) {
                   </div>
                 ) : null}
               </>
+            ) : prompt && prompt.mode === "spy" && sceneOfChoices(prompt.choices) ? (
+              <>
+                <div className={spyStyles.spy}>
+                  <span className={spyStyles.spyLead}>I spy…</span>
+                  <span className={spyStyles.spyWord} lang={prompt.lang ?? undefined} dir={prompt.lang && LANGS[prompt.lang]?.rtl ? "rtl" : undefined} data-testid="prompt">{prompt.gloss}</span>
+                  {prompt.lang ? <span className={app.small}>{langName(prompt.lang)}</span> : null}
+                </div>
+                <Scene scene={sceneOfChoices(prompt.choices)!} marks={mine ? { [mine.choice]: mine.pending ? "answer" : mine.correct ? "right" : "wrong" } : {}} locked={done} onTap={(c) => void answer(phase.index, c)} />
+              </>
             ) : prompt && prompt.mode === "flag" ? (
               <>
                 <div className={styles.prompt}>
@@ -641,7 +653,7 @@ export default function Room({ code: rawCode }: { code: string }) {
       {scoreboard}
       <section className={styles.nextBar} data-testid="next-ctas">
         {lobby.standing || lobby.nextStartAt ? (
-          <span className={styles.nextName} data-testid="next-game">Next game{lobby.setup === "single" ? `: ${lobby.name}` : ""}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
+          <span className={styles.nextName} data-testid="next-game">Next game{(lobby.setup ?? "single") === "single" ? `: ${lobby.name}` : ""}{startsIn !== null ? ` in ${startsIn}s` : " in a few seconds"}</span>
         ) : next ? (
           <ButtonLink size="md" href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</ButtonLink>
         ) : null}

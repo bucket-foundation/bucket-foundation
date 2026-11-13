@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { Badge, ButtonLink, Card } from "@/ui";
-import { Icon } from "@/ui/icons";
 import CopySwatch from "./CopySwatch";
 import styles from "./brand.module.css";
 import { AvatarSection, Components, Flags, Icons, Illustration, Motion, PLAY_VOICE, PlayColor, PlayDos, SideNav } from "./PlaySections";
@@ -158,7 +157,7 @@ function Sub({ title, children, action }: { title: string; children: ReactNode; 
 }
 
 function Dl({ href, children = "Download" }: { href: string; children?: ReactNode }) {
-  return <ButtonLink href={href} download variant="secondary" size="sm" icon={<Icon name="download" size={18} />}>{children}</ButtonLink>;
+  return <ButtonLink href={href} download variant="secondary" size="sm">{children}</ButtonLink>;
 }
 
 function TileView({ t }: { t: Tile }) {
@@ -191,7 +190,7 @@ export default function BrandPage() {
             </h1>
             <p className={styles.lede}>The mark, colors, type, icons, tiles and voice behind Polingual. Use this guide when you write about us, design for us or build on the app.</p>
             <div className={styles.ctaRow}>
-              <ButtonLink href="/brand/polingual-press-kit.zip" download size="lg" icon={<Icon name="download" size={22} />}>
+              <ButtonLink href="/brand/polingual-press-kit.zip" download size="lg">
                 Download full brand kit
               </ButtonLink>
               <ButtonLink href="#logo" variant="secondary" size="lg">
@@ -253,7 +252,7 @@ export default function BrandPage() {
           <h2 className={styles.h2}>Principles</h2>
           <ol className={styles.numbered}>
             {PRINCIPLES.map((p) => (
-              <li key={p.t}><strong>{p.t}.</strong> {p.d}</li>
+              <li key={p.t}><span><strong>{p.t}.</strong> {p.d}</span></li>
             ))}
           </ol>
         </div>
@@ -266,21 +265,21 @@ export default function BrandPage() {
           <Sub title="Narrative threads">
             <ol className={styles.numbered}>
               {THREADS.map((p) => (
-                <li key={p.t}><strong>{p.t}.</strong> {p.d}</li>
+                <li key={p.t}><span><strong>{p.t}.</strong> {p.d}</span></li>
               ))}
             </ol>
           </Sub>
           <Sub title="Talking points">
             <ul className={styles.checks}>
               {TALKING.map((x) => (
-                <li key={x}><Icon name="check" size={24} />{x}</li>
+                <li key={x}>{x}</li>
               ))}
             </ul>
           </Sub>
           <Sub title="Words we use">
             <ol className={styles.numbered}>
               {TERMS.map((p) => (
-                <li key={p.t}><strong>{p.t}.</strong> {p.d}</li>
+                <li key={p.t}><span><strong>{p.t}.</strong> {p.d}</span></li>
               ))}
             </ol>
           </Sub>
@@ -515,13 +514,13 @@ export default function BrandPage() {
               <Card key={d.href} tone="ink">
                 <h3 className={s.cardTitle} style={{ color: "#F6EEDC" }}>{d.name}</h3>
                 <p className={s.cardText} style={{ color: "rgba(246,238,220,.75)" }}>{d.meta}</p>
-                <ButtonLink href={d.href} download onDark variant="secondary" size="sm" icon={<Icon name="download" size={18} />}>Download</ButtonLink>
+                <ButtonLink href={d.href} download onDark variant="secondary" size="sm">Download</ButtonLink>
               </Card>
             ))}
           </div>
           <div className={styles.ctaRow}>
-            <ButtonLink href="/brand/polingual-press-kit.zip" download size="xl" icon={<Icon name="download" size={24} />}>Download full brand kit</ButtonLink>
-            <ButtonLink href="#top" variant="ghost" onDark size="xl" icon={<Icon name="arrow-up" size={22} />}>Back to top</ButtonLink>
+            <ButtonLink href="/brand/polingual-press-kit.zip" download size="xl">Download full brand kit</ButtonLink>
+            <ButtonLink href="#top" variant="ghost" onDark size="xl">Back to top</ButtonLink>
           </div>
         </div>
       </section>

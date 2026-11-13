@@ -154,6 +154,13 @@ export function knownChoice(prompt: Pick<LobbyPrompt, "mode" | "lang" | "gloss" 
     const hits = prompt.choices.filter((c) => lookup(lang, prompt.gloss).some((i) => i.forms[root] === c));
     return hits.length === 1 ? hits[0] : null;
   }
+  if (prompt.mode === "spy") {
+    if (!prompt.lang) return null;
+    const lang = prompt.lang;
+    const known = lookup(lang, prompt.gloss).map((i) => i.forms.en);
+    const hits = prompt.choices.filter((c, i, all) => all.indexOf(c) === i && known.includes(c));
+    return hits.length === 1 ? hits[0] : null;
+  }
   if (prompt.mode === "mixed") {
     const hits = prompt.choices.filter((c) => {
       const t = parseTile(c);

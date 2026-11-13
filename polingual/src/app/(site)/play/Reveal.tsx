@@ -13,7 +13,7 @@ export interface PickLabel {
 
 export function choiceLabel(prompt: Pick<LobbyPrompt, "mode" | "lang">, choice: string): PickLabel {
   if (prompt.mode === "flag") return { word: null, lang: choice };
-  if (prompt.mode === "meaning") return { word: choice, lang: null };
+  if (prompt.mode === "meaning" || prompt.mode === "spy") return { word: choice, lang: null };
   if (prompt.mode === "mixed") {
     const t = parseTile(choice);
     return { word: t.form, lang: t.lang };

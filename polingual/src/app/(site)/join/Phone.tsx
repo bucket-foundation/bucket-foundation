@@ -13,6 +13,7 @@ import { MARKS } from "@/lib/stoa/client";
 import { Brand, Glyph, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "../live/parts";
 import { Confetti, MixBar, TimerRing, useStage } from "../live/show";
 import styles from "../live/stoa.module.css";
+import JoinStickers from "./JoinStickers";
 import { Button, ButtonLink, Card, Pill } from "@/ui";
 
 const APP_URL = "https://apps.apple.com/app/id6825177856";
@@ -378,13 +379,14 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   })();
 
   return (
-    <div className={styles.page} onClick={unlock} onTouchEnd={unlock}>
+    <div className={`${styles.page} ${styles.playSkin}`} onClick={unlock} onTouchEnd={unlock}>
+      <JoinStickers />
       <header className={styles.bar}>
         <Brand link={false} />
         {seat ? <MixBar mix={mix} setMix={setMix} ready={soundReady} unlock={unlock} full={false} /> : null}
         {seat ? <span className={styles.stat} data-testid="phone-status" data-socket={status} data-verified={verified}>{status === "open" ? "Live" : "Reconnecting"}</span> : null}
       </header>
-      <main className={`${styles.main} ${styles.phone}`} data-testid="phone">
+      <main className={`${styles.main} ${styles.phone} ${styles.playSheet}`} data-testid="phone">
         {body}
         {seat ? (
           <Button variant="ghost" size="md" onClick={() => leave()} data-testid="leave">Leave game</Button>

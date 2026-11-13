@@ -115,6 +115,7 @@
 .subGrid .sub{margin-top:16px}
 .numbered{counter-reset:n;list-style:none;padding:0;margin:16px 0 0;display:grid;gap:14px;max-width:46em}
 .numbered li{counter-increment:n;display:grid;grid-template-columns:44px 1fr;font-size:18px;line-height:1.5}
+.numbered li>span{grid-column:2}
 .numbered li::before{content:counter(n,decimal-leading-zero);font-family:"Space Mono",monospace;font-weight:700;color:var(--vermilion)}
 .checks{list-style:none;padding:0;margin:0;display:grid;gap:12px}
 .checks li{display:flex;gap:12px;align-items:center;font-size:18px}

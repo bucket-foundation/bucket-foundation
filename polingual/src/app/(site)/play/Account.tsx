@@ -64,7 +64,7 @@ export function AccountCta() {
   return (
     <div className={styles.accountCta} data-testid="account-cta" data-state={entitlement}>
       {cta.signIn ? (
-        <Button variant="quiet" size="sm" onClick={openSignIn} data-testid="sign-in">Sign in</Button>
+        <Button variant="quiet" size="sm" onDark onClick={openSignIn} data-testid="sign-in">Sign in</Button>
       ) : null}
       {cta.learn ? (
         <ButtonLink href={cta.learn.href} size="sm" data-testid="start-learning">{cta.learn.label}</ButtonLink>

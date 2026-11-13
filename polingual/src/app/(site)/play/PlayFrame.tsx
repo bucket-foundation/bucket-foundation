@@ -8,6 +8,7 @@ import Ad from "./Ad";
 import { AdsPauseProvider, AdsProvider } from "./AdsContext";
 import Consent from "./Consent";
 import styles from "./play.module.css";
+import { SheetPeek, StageStickers } from "./Stickers";
 
 function useAdLayout(): AdLayout | null {
   const [layout, setLayout] = useState<AdLayout | null>(null);
@@ -32,7 +33,8 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
     <AccountProvider entitlement={entitlement}>
     <AdsPauseProvider value={setPaused}>
     <AdsProvider value={visible}>
-      <div className={banner ? `${app.shell} ${styles.withBanner}` : app.shell} data-testid="play-frame" data-ads={visible ? layout : "off"}>
+      <div className={banner ? `${app.shell} ${styles.playStage} ${styles.withBanner}` : `${app.shell} ${styles.playStage}`} data-testid="play-frame" data-ads={visible ? layout : "off"}>
+        <StageStickers />
         {header}
         <div className={styles.frame} data-rails={rail ? layout : undefined} data-testid="play-scroll">
           {rail ? (
@@ -41,6 +43,7 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
             </div>
           ) : null}
           <main className={styles.center}>
+            <SheetPeek />
             {visible ? <Consent required={consentRequired} /> : null}
             {children}
           </main>

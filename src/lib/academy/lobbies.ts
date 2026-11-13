@@ -1,18 +1,19 @@
 import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
 import type { LangItem, Reading } from "./lang-systems";
+import { spyRounds } from "./ispy";
 import { buildTilePrompts, parseTapped, tileKey, tileHistory, tileOutcome, tilePoints } from "./lobby-tiles";
 
 export type LobbyStatus = "lobby" | "playing" | "done";
-export const LOBBY_GAMES = ["daily", "same-word", "flags", "live", "tiles", "duel"] as const;
+export const LOBBY_GAMES = ["daily", "same-word", "flags", "live", "tiles", "duel", "spy"] as const;
 export type LobbyGame = (typeof LOBBY_GAMES)[number];
-export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning";
+export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning" | "spy";
 export type PowerKind = "double" | "fifty";
 export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
 export const DUEL_ROUNDS = 10;
 export type LobbySetup = "single" | "sequence" | "mix";
 export const AUTO_START_MS = 15_000;
 export function setupGames(env: Record<string, string | undefined> = process.env): LobbyGame[] {
-  const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles"];
+  const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles", "spy"];
   return duelEnabled(env) ? [...base, "duel"] : base;
 }
 
@@ -350,6 +351,7 @@ export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "
   if (lobby.game === "same-word") return sameWordPrompts(items, lobby);
   if (lobby.game === "tiles") return buildTilePrompts(items, lobby, flagPool, seededRandom(`${lobby.seed}7`));
   if (lobby.game === "duel") return duelPrompts(items, lobby, flagPool);
+  if (lobby.game === "spy") return spyRounds(items, lobby).map((r) => ({ lobby_id: lobby.id, round: r.round, lang: r.lang, item_id: r.item_id, mode: r.mode, gloss: r.gloss, choices: r.choices, answer: r.answer }));
   const forms = formPrompts(items, lobby);
   if (lobby.game !== "flags") return lobby.playlist && lobby.targets.length >= 2 ? mixedPrompts(items, forms, lobby) : forms;
   const rand = seededRandom(`${lobby.seed}1`);
