@@ -44,7 +44,7 @@ struct AccountView: View {
                     Section {
                         LabeledContent("Status", value: "Signed in")
                         if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
-                        if !groups.groups.isEmpty { MemberNameRow() }
+                        MemberNameRow()
                         Button("Sign out", role: .destructive) {
                             Beta.shared.signedOut()
                             Task { await account.signOutAfterSync() }

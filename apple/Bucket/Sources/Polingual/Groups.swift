@@ -36,6 +36,8 @@ func groupMessage(_ e: BucketError?) -> String? {
     case .cheerLimit: String(localized: "You sent them 3 today. Try again tomorrow.")
     case .nudgeNotNeeded: String(localized: "They already studied today.")
     case .nameNotAllowed: String(localized: "That name is not allowed. Try another.")
+    case .handleTaken: String(localized: "That username is taken. Try another.")
+    case .handleInvalid: String(localized: "3 to 32 lowercase letters, numbers, - or _.")
     default: String(localized: "Something went wrong. Try again.")
     }
 }
