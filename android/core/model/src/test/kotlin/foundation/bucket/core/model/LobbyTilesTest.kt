@@ -37,3 +37,13 @@ class LobbyTilesTest {
         assertEquals(Tile("es", "gato:x"), LobbyTiles.parse("es:gato:x"))
     }
 }
+
+class LobbyGamesTest {
+    @Test
+    fun duelShowsOnlyWhenTheServerOffersIt() {
+        assertEquals(listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Tiles), LobbyGames.offered(listOf("daily", "same-word", "flags", "live", "tiles", "spy")))
+        assertEquals(LobbyGames.native, LobbyGames.offered(listOf("daily", "same-word", "flags", "live", "tiles", "spy", "duel")))
+        assertEquals(false, LobbyGame.Duel in LobbyGames.offered(emptyList()))
+        assertEquals(true, LobbyGame.Tiles in LobbyGames.offered(emptyList()))
+    }
+}
