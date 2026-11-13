@@ -1,26 +1,45 @@
 "use client";
 
 import { useState } from "react";
+import { tokens, type ColorToken } from "@/ui";
 import styles from "./brand.module.css";
 
-export default function CopySwatch({ name, hex, ink, role }: { name: string; hex: string; ink: string; role: string }) {
-  const [copied, setCopied] = useState(false);
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(hex);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
-    } catch {
-      setCopied(false);
-    }
+function luminance(value: string) {
+  const hex = value.match(/^#([0-9a-f]{6})$/i);
+  if (hex) {
+    const n = parseInt(hex[1], 16);
+    return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
   }
+  return 1;
+}
 
+export default function CopySwatch({ name, role }: { name: ColorToken; role?: string }) {
+  const value = tokens.color[name];
+  const [copied, setCopied] = useState("");
+  const copy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(text);
+      setTimeout(() => setCopied(""), 1600);
+    } catch {
+      setCopied("");
+    }
+  };
+  const dark = luminance(value) < 0.55;
   return (
-    <button type="button" onClick={copy} className={styles.swatch} style={{ background: hex, color: ink }} aria-label={`Copy ${name} ${hex}`}>
-      <span className={styles.swName}>{name}</span>
-      <span className={styles.swRole}>{role}</span>
-      <span className={styles.swHex} aria-live="polite">{copied ? "copied" : hex}</span>
-    </button>
+    <div className={styles.swatch} data-dark={dark || undefined}>
+      <div className={styles.swChip} style={{ background: `var(--pl-${name})` }} />
+      <div className={styles.swBody}>
+        <span className={styles.swName}>{name}</span>
+        {role ? <span className={styles.swRole}>{role}</span> : null}
+        <button type="button" className={styles.swCopy} onClick={() => copy(value)} aria-label={`Copy ${name} value ${value}`}>
+          {value}
+        </button>
+        <button type="button" className={styles.swCopy} onClick={() => copy(`var(--pl-${name})`)} aria-label={`Copy ${name} CSS variable`}>
+          --pl-{name}
+        </button>
+        <span className={styles.swCopied} aria-live="polite">{copied ? "Copied" : ""}</span>
+      </div>
+    </div>
   );
 }

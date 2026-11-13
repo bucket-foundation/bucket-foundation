@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Link from "next/link";
 import "./globals.css";
 import Site from "./site";
 import { ROOT_VIEWPORT } from "./root-meta";
@@ -14,7 +13,7 @@ export default function GlobalNotFound() {
       <body>
         <Site>
           <h1>Page not found</h1>
-          <p className="lede">This page does not exist. <Link href="/">Go to the Polingual home page</Link>.</p>
+          <p className="lede">This page does not exist. <a href="/">Go to the Polingual home page</a>.</p>
         </Site>
       </body>
     </html>

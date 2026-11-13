@@ -86,6 +86,6 @@ public enum ReminderPlan {
         } else {
             lead = "\(f.count) reviews are due. A few minutes keeps them in long-term memory."
         }
-        return f.streak > 0 ? "\(lead) Your streak is \(f.streak) \(f.streak == 1 ? "day" : "days")." : lead
+        return f.streak > 0 ? "\(lead) Your streak is \(f.streak) \(f.streak == 1 ? "day" : "days")." : "Your streak is at zero. Start a lesson to light it again. \(lead)"
     }
 }

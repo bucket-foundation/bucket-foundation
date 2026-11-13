@@ -8,27 +8,37 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test src/lib/word-i18n.test.tsx src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/landing-words.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts src/lib/speak.test.tsx scripts/indexnow.test.mjs scripts/build_words.test.mjs",
+    "test": "npx --yes tsx@4.21.0 --experimental-test-module-mocks --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs --test --test-timeout=60000 src/lib/word-i18n.test.tsx src/lib/site.test.tsx src/lib/meta.test.ts src/lib/share.test.tsx src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts src/lib/landing-words.test.ts src/lib/facts.test.ts src/lib/es-page.test.ts src/lib/founding.test.ts src/lib/events.test.ts src/lib/app/*.test.ts src/lib/words.test.ts src/lib/speak.test.tsx src/lib/tile.test.tsx src/lib/avatar.test.tsx src/lib/stoa/*.test.ts src/lib/stoa/*.test.tsx src/lib/lobby/*.test.ts src/lib/polyword/*.test.ts src/lib/daily/*.test.ts scripts/indexnow.test.mjs scripts/build_words.test.mjs scripts/build_tokens.test.mjs src/lib/brand-art.test.ts src/lib/world.test.tsx src/lib/no-hex.test.ts",
+    "tokens": "node scripts/build_tokens.mjs",
     "words": "node scripts/build_words.mjs",
     "indexnow": "node scripts/indexnow.mjs",
-    "test:db": "bash db/test-founding.sh"
+    "test:db": "bash db/test-founding.sh",
+    "test:live-db": "bash db/test-live.sh",
+    "test:live-local": "bash db/test-live-local.sh",
+    "test:live-load": "bash db/test-live-load.sh",
+    "test:live-e2e": "bash db/test-live-e2e.sh",
+    "brand-kit": "npx --yes tsx@4.21.0 --tsconfig tsconfig.test.json --require ./scripts/css-stub.cjs scripts/build_brand_kit.ts"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
     "katex": "^0.19.0",
     "next": "^15.0.0",
+    "qrcode-generator": "1.4.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "world-atlas": "2.0.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4.0.0",
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
+    "@types/jsdom": "21.1.7",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.20",
+    "jsdom": "25.0.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.0",
-    "typescript": "^5.7.0"
+    "typescript": "5.9.3"
   }
 }

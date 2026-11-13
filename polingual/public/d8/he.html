@@ -519,18 +519,6 @@ html,body{height:100%!important;overflow:hidden!important}
 #app .stk4{top:clamp(58px,9.6dvh,104px);font-size:clamp(16px,2.6dvh,22px)}
 #app .stk5{top:clamp(60px,10dvh,110px);width:clamp(20px,3.4dvh,30px)}
 }
-#dk .ws,#app .ws{--bg:#F6EEDC;--ink:#231F20;--cta:#D9381E;--muted:#5d5650;--line:#E3D6B8;flex:none;display:flex;align-items:center;gap:10px;font-family:Nunito,sans-serif;color:var(--ink);background:var(--bg);border-top:2px solid var(--line);padding-block:10px;padding-inline:32px;position:relative;z-index:2}
-.ws .wsl{flex:none;font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.ws .wsc{flex:1 1 auto;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0 5px}
-.ws .wsc::-webkit-scrollbar{display:none}
-.ws .wsc a{flex:none;padding:5px 14px;border-radius:999px;background:#fff;color:var(--ink);text-decoration:none;font-weight:800;font-size:15px;line-height:1.3;white-space:nowrap;box-shadow:inset 0 0 0 2px var(--line),0 3px 0 var(--line)}
-.ws .wsc a:hover{box-shadow:inset 0 0 0 2px var(--ink),0 3px 0 var(--ink)}
-.ws .wsa{flex:none;color:var(--cta);font-weight:800;font-size:15px;text-decoration:none;white-space:nowrap}
-.ws .wsa:hover{text-decoration:underline}
-.ws a:focus-visible{outline:3px solid #D9381E;outline-offset:2px}
-@media (max-height:520px){#dk .ws{padding-block:4px}#dk .ws .wsc a{padding:2px 10px;font-size:13px}}
-@media (min-width:2000px){#dk .ws .wsl{font-size:15px}#dk .ws .wsc a,#dk .ws .wsa{font-size:20px}}
-#app .ws{flex-wrap:nowrap;gap:10px;padding-block:clamp(4px,1dvh,10px) 0;padding-inline:0;border-top:0;background:transparent}
 .hw{margin:0;font-family:Nunito,sans-serif;font-weight:800;font-size:15px;line-height:1.3}
 .hw a{color:#26428B;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 .hw a:hover{color:#D9381E}
@@ -540,10 +528,6 @@ html,body{height:100%!important;overflow:hidden!important}
 #app .hw{font-size:clamp(12px,1.9dvh,15px)}
 #app .in{position:relative}
 #app .wtop{position:absolute;inset-inline-end:18px;top:clamp(14px,3.2dvh,34px);font-family:Nunito,sans-serif;font-weight:800;font-size:clamp(14px,2.2dvh,17px);color:#231F20;text-decoration:none}
-@media (max-height:600px){#app .hw{display:none}}
-#app .ws .wsl{display:none}
-#app .ws .wsc a{font-size:14px;padding:4px 12px}
-#app .ws .wsa{font-size:14px}
 </style><style>h1,h2,p,small,b,span,a,.pill,.btn{unicode-bidi:plaintext}</style></head><body>
 <div id="app">
  <div class="in">
@@ -552,8 +536,7 @@ html,body{height:100%!important;overflow:hidden!important}
   <div class="streak" aria-label="100 ימים ברצף"><svg viewBox="0 0 34 44" aria-hidden="true"><defs><linearGradient id="apf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F28C28"/><stop offset="1" stop-color="#D9381E"/></linearGradient></defs><path d="M17 1c3 8 14 13 14 26a14 14 0 0 1-28 0c0-7 4-11 6-14 1 4 3 6 5 7-1-7 0-13 3-19z" fill="url(#apf)"/><path d="M17 23c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 1 2 2 3 3 3-1-3-1-6 0-8z" fill="#F6EEDC"/></svg><div><b>100</b><small>ימים ברצף</small></div></div>
   <p class="stat">אחרי 100 ימים תכירו כ-280 מילים ב-4 שפות ותזכרו 95% מהן.</p>
   <div class="grid4" id="app-grid"></div>
-  <p class="hw" dir="rtl"><a href="/he/word/hundred">ראו את מֵאָה ב29 שפות</a></p>
-  <nav class="ws" aria-label="עיון במילים" dir="rtl"><span class="wsl">עיון במילים</span><div class="wsc"><a href="/he/word/water">מַיִם</a><a href="/he/word/night">לַיְלָה</a><a href="/he/word/fire">מְדוּרָה</a><a href="/he/word/one">אַחַת</a><a href="/he/word/friend">יָדִיד</a><a href="/he/word/heart">לֵב</a><a href="/he/word/sun">שֶׁמֶשׁ</a><a href="/he/word/moon">יָרֵחַ</a><a href="/he/word/bread">לֶחֶם</a><a href="/he/word/star">כּוֹכָב</a></div><a class="wsa" href="/he/word">לכל 244 המילים</a></nav>
+  <p class="hw" dir="rtl"><a href="/he/word">עיון ב־244 מילים ב־29 שפות</a></p>
  </div>
  <div class="wrapb"><span class="stk1">ἑκατόν</span><span class="stk2">百</span><span class="stk3" aria-hidden="true"></span><span class="stk4" aria-hidden="true">сто</span><span class="stk5" aria-hidden="true"></span>
  <div class="band">
@@ -599,7 +582,6 @@ html,body{height:100%!important;overflow:hidden!important}
  </div>
  <div class="cards" data-slot="flag-tiles" data-tiles="text" data-cycle="2200"></div>
  <div class="r" data-slot="art" id="art">
-  <img src="art/hero.svg" onload="art.classList.add('has-art')" onerror="this.remove()" alt="">
   <div class="fb"></div>
  </div>
  
@@ -624,7 +606,7 @@ html,body{height:100%!important;overflow:hidden!important}
  <h1>לימוד שפות ללומדים <em>רב-לשוניים</em>.</h1>
  <div class="stk"><svg viewBox="0 0 34 44" aria-hidden="true"><path d="M17 1c3 8 14 13 14 26a14 14 0 0 1-28 0c0-7 4-11 6-14 1 4 3 6 5 7-1-7 0-13 3-19z" fill="#E8602A"/><path d="M17 23c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 1 2 2 3 3 3-1-3-1-6 0-8z" fill="#F6EEDC"/></svg><div><b>100</b><small>ימים ברצף</small></div><p>אחרי 100 ימים תכירו כ-280 מילים ב-4 שפות ותזכרו 95% מהן.</p></div>
  <div class="g4" id="hc-grid"></div><div class="probe" id="hc-probe"></div>
- <p class="hw" dir="rtl"><a href="/he/word/hundred">ראו את מֵאָה ב29 שפות</a></p>
+ <p class="hw" dir="rtl"><a href="/he/word">עיון ב־244 מילים ב־29 שפות</a></p>
  <a class="btn btn-p" href="https://testflight.apple.com/join/B1ctUxn5" data-slot="appstore" rel="noopener">הצטרפו לבטא ב-TestFlight</a>
 </div>
 <div class="pz" id="pz" aria-hidden="true"></div>
@@ -642,10 +624,9 @@ html,body{height:100%!important;overflow:hidden!important}
  <div class="ink red" data-a="0.86,0.22" style="--r:0deg;--dx:-3px;--dy:3px;--dur:7.2s;"></div>
 </div>
 </main>
-<nav class="ws" aria-label="עיון במילים" dir="rtl"><span class="wsl">עיון במילים</span><div class="wsc"><a href="/he/word/water">מַיִם</a><a href="/he/word/night">לַיְלָה</a><a href="/he/word/fire">מְדוּרָה</a><a href="/he/word/one">אַחַת</a><a href="/he/word/friend">יָדִיד</a><a href="/he/word/heart">לֵב</a><a href="/he/word/sun">שֶׁמֶשׁ</a><a href="/he/word/moon">יָרֵחַ</a><a href="/he/word/bread">לֶחֶם</a><a href="/he/word/star">כּוֹכָב</a></div><a class="wsa" href="/he/word">לכל 244 המילים</a></nav>
 <footer class="ft"><div class="wrap ftrow">
   <span>Polingual · ל-iPhone ול-iPad</span>
-  <nav class="fl2"><a href="/he/word">מילים</a><a href="/privacy">פרטיות</a><a href="/terms">תנאים</a><a href="/support">תמיכה</a><select class="lsel" aria-label="Language" onchange="location.href=this.value" style="font:inherit;font-size:inherit;color:inherit;background:transparent;border:0;cursor:pointer;margin-left:12px"><option value="/" lang="en">English</option><option value="/ar" lang="ar">العربية</option><option value="/cs" lang="cs">Čeština</option><option value="/de" lang="de">Deutsch</option><option value="/el" lang="el">Ελληνικά</option><option value="/es" lang="es">Español</option><option value="/fa" lang="fa">فارسی</option><option value="/fi" lang="fi">Suomi</option><option value="/fr" lang="fr">Français</option><option value="/he" lang="he" selected>עברית</option><option value="/hi" lang="hi">हिन्दी</option><option value="/id" lang="id">Bahasa Indonesia</option><option value="/it" lang="it">Italiano</option><option value="/ja" lang="ja">日本語</option><option value="/ko" lang="ko">한국어</option><option value="/nl" lang="nl">Nederlands</option><option value="/pl" lang="pl">Polski</option><option value="/pt" lang="pt">Português</option><option value="/ru" lang="ru">Русский</option><option value="/sv" lang="sv">Svenska</option><option value="/ta" lang="ta">தமிழ்</option><option value="/th" lang="th">ไทย</option><option value="/tr" lang="tr">Türkçe</option><option value="/vi" lang="vi">Tiếng Việt</option><option value="/zh" lang="zh">简体中文</option></select></nav>
+  <nav class="fl2"><a href="/privacy">פרטיות</a><a href="/terms">תנאים</a><a href="/support">תמיכה</a><select class="lsel" aria-label="Language" onchange="location.href=this.value" style="font:inherit;font-size:inherit;color:inherit;background:transparent;border:0;cursor:pointer;margin-left:12px"><option value="/" lang="en">English</option><option value="/ar" lang="ar">العربية</option><option value="/cs" lang="cs">Čeština</option><option value="/de" lang="de">Deutsch</option><option value="/el" lang="el">Ελληνικά</option><option value="/es" lang="es">Español</option><option value="/fa" lang="fa">فارسی</option><option value="/fi" lang="fi">Suomi</option><option value="/fr" lang="fr">Français</option><option value="/he" lang="he" selected>עברית</option><option value="/hi" lang="hi">हिन्दी</option><option value="/id" lang="id">Bahasa Indonesia</option><option value="/it" lang="it">Italiano</option><option value="/ja" lang="ja">日本語</option><option value="/ko" lang="ko">한국어</option><option value="/nl" lang="nl">Nederlands</option><option value="/pl" lang="pl">Polski</option><option value="/pt" lang="pt">Português</option><option value="/ru" lang="ru">Русский</option><option value="/sv" lang="sv">Svenska</option><option value="/ta" lang="ta">தமிழ்</option><option value="/th" lang="th">ไทย</option><option value="/tr" lang="tr">Türkçe</option><option value="/vi" lang="vi">Tiếng Việt</option><option value="/zh" lang="zh">简体中文</option></select></nav>
   <span>נתוני מילים: <a href="https://en.wiktionary.org" style="color:inherit">Wiktionary</a> via <a href="https://kaikki.org" style="color:inherit">Kaikki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:inherit">CC BY-SA 4.0</a></span>
  </div></footer>
 </div>
@@ -734,7 +715,7 @@ function lay(){const w=hero.clientWidth,h=hero.clientHeight;if(!w||!h)return;
  if(hc){hc.dataset.t=t.toFixed(4);const xr=hc.offsetLeft+Math.min(hc.offsetWidth,340);const yl=c[1]+(c[0]-xr)*Math.tan(th);hc.style.bottom=Math.max(0,h-Math.min(h,yl)+14)+"px";if(window.hcZ)window.hcZ()}}
 lay();addEventListener("resize",lay);document.fonts.ready.then(lay)})()</script>
 
-<script>window.PL_TR={"Join the beta": "הצטרפו לבטא", "Leave your email and we will send you updates. Then install Polingual through TestFlight on your iPhone.": "השאירו אימייל ונשלח לכם עדכונים. אחר כך התקינו את Polingual דרך TestFlight ב-iPhone.", "Join and open TestFlight": "הצטרפות ופתיחת TestFlight", "We store your email with Resend to send the TestFlight invite.": "אנחנו שומרים את האימייל שלכם ב-Resend כדי לשלוח את ההזמנה ל-TestFlight.", "Privacy policy": "מדיניות פרטיות", "Saving…": "שומר…", "Something went wrong. Try again.": "משהו השתבש. נסו שוב.", "You are on the list.": "אתם ברשימה.", "Open TestFlight anyway": "לפתוח את TestFlight בכל זאת", "Open TestFlight": "פתיחת TestFlight", "Install Polingual": "התקנת Polingual", "Apple's page installs TestFlight if you need it. Then tap View in TestFlight and Install.": "הדף של Apple יתקין את TestFlight אם צריך. אחר כך הקישו על הצג ב-TestFlight ועל התקן.", "TestFlight asked for a code?": "TestFlight ביקש קוד?", "Open the invite in TestFlight": "פתחו את ההזמנה ב-TestFlight", "Could not reach the signup service.": "לא הצלחנו להתחבר לשירות ההרשמה.", "Claim a founding spot": "תפסו מקום של מייסדים", "Leave your email and we send you a one-time offer code, one per person.": "השאירו אימייל ונשלח לכם קוד הטבה חד-פעמי, אחד לכל אדם.", "Send my code": "שלחו לי קוד", "We keep your email with your code in our database and send it with Resend. ": "אנחנו שומרים את האימייל שלכם עם הקוד במסד הנתונים שלנו ושולחים אותו דרך Resend. ", "Your spot is saved. Check your email for your one-time code.": "המקום שלכם שמור. בדקו את האימייל לקבלת הקוד החד-פעמי.", "founding spots left": "מקומות מייסדים נותרו", "you@example.com": "you@example.com"}</script>
+<script>window.PL_TR={"Join the beta": "הצטרפו לבטא", "Leave your email and we will send you updates. Then install Polingual through TestFlight on your iPhone.": "השאירו אימייל ונשלח לכם עדכונים. אחר כך התקינו את Polingual דרך TestFlight ב-iPhone.", "Join and open TestFlight": "הצטרפות ופתיחת TestFlight", "We store your email with Resend to send the TestFlight invite.": "אנחנו שומרים את האימייל שלכם ב-Resend כדי לשלוח את ההזמנה ל-TestFlight.", "Privacy policy": "מדיניות פרטיות", "Saving…": "שומר…", "Something went wrong. Try again.": "משהו השתבש. נסו שוב.", "You are on the list.": "אתם ברשימה.", "Open TestFlight anyway": "לפתוח את TestFlight בכל זאת", "Open TestFlight": "פתיחת TestFlight", "Install Polingual": "התקנת Polingual", "Apple's page installs TestFlight if you need it. Then tap View in TestFlight and Install.": "הדף של Apple יתקין את TestFlight אם צריך. אחר כך הקישו על הצג ב-TestFlight ועל התקן.", "TestFlight asked for a code?": "TestFlight ביקש קוד?", "Open the invite in TestFlight": "פתחו את ההזמנה ב-TestFlight", "Could not reach the signup service.": "לא הצלחנו להתחבר לשירות ההרשמה.", "Claim a founding spot": "תפסו מקום של מייסדים", "Leave your email and we send you a one-time offer code, one per person.": "השאירו אימייל ונשלח לכם קוד הטבה חד-פעמי, אחד לכל אדם.", "Send my code": "שלחו לי קוד", "We keep your email with your code in our database and send it with Resend. ": "אנחנו שומרים את האימייל שלכם עם הקוד במסד הנתונים שלנו ושולחים אותו דרך Resend. ", "Your spot is saved. Check your email for your one-time code.": "המקום שלכם שמור. בדקו את האימייל לקבלת הקוד החד-פעמי.", "founding spots left": "מקומות מייסדים נותרו", "you@example.com": "you@example.com", "Polingual is on iPhone. Send yourself the link.": "Polingual זמינה ל-iPhone. שלחו לעצמכם את הקישור.", "Email": "אימייל", "Send me the link": "שלחו לי את הקישור", "Check your email on your iPhone.": "בדקו את האימייל ב-iPhone.", "Close": "סגירה"}</script>
 <script src="/d8/beta.js"></script>
 <script src="/d8/share.js"></script>
 <script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script>

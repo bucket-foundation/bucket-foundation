@@ -1,3 +1,4 @@
+import { Banner } from "@/ui";
 import Link from "next/link";
 import Site, { type SiteLocale } from "@/app/site";
 import { Tile, Tiles } from "@/app/tile";
@@ -8,6 +9,7 @@ import { appJsonLd, jsonLdScript, SITE } from "@/lib/facts";
 import { GUIDES } from "@/lib/guides";
 import { LANGS, WORDS, breadcrumbJsonLd, ctaHref, relatedWords, wordJsonLd, wordsByTheme, type Word } from "@/lib/words";
 import { capitalizeIn, fill, langLabel, localIndexCopy, localPath, localWordCopy, localeInfo, orderedForms, strings, wordLocalPath } from "@/lib/word-i18n";
+import { ButtonLink } from "@/ui";
 
 export function siteLocale(code: string): SiteLocale {
   const info = localeInfo(code);
@@ -27,12 +29,14 @@ export function WordView({ w, code }: { w: Word; code: string }) {
   return (
     <Site wide loc={siteLocale(code)}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(ld) }} />
-      <p className={styles.crumbs}>
-        <Link href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
-      </p>
-      <h1>{copy.h1}</h1>
-      {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
-      <p className="lede">{copy.intro}</p>
+      <Banner testId="word-banner">
+        <p className={styles.crumbs}>
+          <Link href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
+        </p>
+        <h1>{copy.h1}</h1>
+        {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
+        <p className="lede">{copy.intro}</p>
+      </Banner>
       <p>{copy.body.join(" ")}</p>
       <div className={styles.legendRow}>
         <p className={styles.legend}>
@@ -43,7 +47,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
       <Tiles>
         {forms.map((f, i) => {
           const reading = [f.ipa ? `/${f.ipa}/` : "", f.kana, f.roman].filter(Boolean).join(" · ");
-          return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} play={<PlayTile item={items[i]} label={fill(s.listen, { word: f.word })} />} />;
+          return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} index={i} play={<PlayTile item={items[i]} label={fill(s.listen, { word: f.word })} />} />;
         })}
       </Tiles>
       {recorded.length > 0 && (
@@ -87,7 +91,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
         </section>
       )}
       <div className={styles.ctaRow}>
-        <a className={styles.cta} href={code === "en" ? ctaHref(w) : `/${code}?utm_source=seo&utm_campaign=word_${w.slug}`}>{copy.cta}</a>
+        <ButtonLink href={code === "en" ? ctaHref(w) : `/${code}?utm_source=seo&utm_campaign=word_${w.slug}`}>{copy.cta}</ButtonLink>
       </div>
       <h2>{s.related}</h2>
       <ul className={styles.chips}>
@@ -128,8 +132,10 @@ export function WordIndexView({ code }: { code: string }) {
   return (
     <Site wide loc={siteLocale(code)}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript([setLd, appJsonLd()]) }} />
-      <h1>{copy.title}</h1>
-      <p className="lede">{copy.description}</p>
+      <Banner testId="word-banner">
+        <h1>{copy.title}</h1>
+        <p className="lede">{copy.description}</p>
+      </Banner>
       <nav>
         <ul className={styles.chips}>
           {themes.map((t) => (
@@ -150,7 +156,7 @@ export function WordIndexView({ code }: { code: string }) {
         </section>
       ))}
       <div className={styles.ctaRow}>
-        <a className={styles.cta} href={`${code === "en" ? "/" : `/${code}`}?utm_source=seo&utm_campaign=word_index`}>{copy.cta}</a>
+        <ButtonLink href={`${code === "en" ? "/" : `/${code}`}?utm_source=seo&utm_campaign=word_index`}>{copy.cta}</ButtonLink>
       </div>
     </Site>
   );

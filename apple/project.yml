@@ -145,8 +145,8 @@ targets:
       properties:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
-        UIBackgroundModes: [audio]
         NSUserActivityTypes: [INSendMessageIntent]
+        PolingualFreeBeta: $(POLINGUAL_FREE_BETA)
         CFBundleURLTypes:
           - CFBundleURLName: polingual
             CFBundleURLSchemes: [polingual]
@@ -163,6 +163,7 @@ targets:
         CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: Polingual/PolingualMac.entitlements
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app
         PRODUCT_NAME: Polingual
+        POLINGUAL_FREE_BETA: "NO"
         MARKETING_VERSION: "1.0.1"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1,2"

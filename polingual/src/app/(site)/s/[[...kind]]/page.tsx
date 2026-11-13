@@ -4,6 +4,7 @@ import Site from "@/app/site";
 import { Tile, Tiles } from "@/app/tile";
 import styles from "@/app/site.module.css";
 import { installHref, isRtl, langName, ogPath, sharePath, shareKind, shareView, type Params } from "@/lib/share";
+import { ButtonLink, Card } from "@/ui";
 
 type Props = { params: Promise<{ kind?: string[] }>; searchParams: Promise<Params> };
 
@@ -47,13 +48,13 @@ export default async function SharePage({ params, searchParams }: Props) {
         </ul>
       ) : null}
       {view.code ? (
-        <div className={styles.card}>
+        <Card className={styles.card}>
           Invite code <strong className={styles.code}>{view.code}</strong>. Open this link on your iPhone after you install Polingual to join the group.
-        </div>
+        </Card>
       ) : null}
       <div className={styles.ctaRow}>
-        <a className={styles.cta} href={installHref(kind)}>Get Polingual</a>
-        <a className={styles.ctaS} href="/word">Browse words</a>
+        <ButtonLink href={installHref(kind)}>Get Polingual</ButtonLink>
+        <ButtonLink variant="secondary" href="/word">Browse words</ButtonLink>
       </div>
       <p className="lede">Learn several languages at once on iPhone and iPad.</p>
     </Site>

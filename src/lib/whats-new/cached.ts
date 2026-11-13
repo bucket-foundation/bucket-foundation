@@ -8,7 +8,7 @@ export const LEGACY_ENTRIES = (whatsNewData as { entries: LegacyEntry[] }).entri
 
 export const cachedPublished: () => Promise<StoredEntry[]> = unstable_cache(() => publishedEntries(getWhatsNewStore()), ["whats-new-published"], {
   tags: [WHATS_NEW_TAG],
-  revalidate: 300,
+  revalidate: 86400,
 });
 
 export async function publicWhatsNew(): Promise<PublicEntry[]> {

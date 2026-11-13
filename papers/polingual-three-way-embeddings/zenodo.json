@@ -1,0 +1,55 @@
+{
+  "title": "Three-Way Word Embeddings for Polingual: Script, Sound and Meaning, and a Re-Ranked Lexicon",
+  "upload_type": "publication",
+  "publication_type": "report",
+  "version": "2.0.0",
+  "description": "<p>Polingual translates single words offline from a Wiktionary lexicon for 28 languages. The lexicon lists English meanings in English frequency order, so a rare sense can come first: Hebrew akhil (edible) was the first translation of English good. We embed 529,131 words of 29 languages four ways: rendered script pixels with a small CNN, character n-grams, phonetic features from Wiktionary IPA with a grapheme model for words without IPA, and LaBSE meaning vectors, plus a joint projection of all four. Meaning vectors then re-rank every translation pair, with gloss senses added as candidates. On the held-out half of an independent Tatoeba-aligned word set, the first English sense shown is right for 68.3% of words, up from 58.0%. For English to target words, a model audit of 100 changed first answers finds 91 right after re-ranking and 60 before. Language graphs drawn from the embeddings show script similarity staying inside a script family while phonetic similarity crosses scripts. Every definition has a Lean 4 counterpart.</p>",
+  "creators": [
+    {
+      "name": "Dichio, Gianangelo",
+      "affiliation": "Bucket Foundation"
+    }
+  ],
+  "keywords": [
+    "bilingual lexicon induction",
+    "word embeddings",
+    "multilingual embeddings",
+    "phonetic embeddings",
+    "visual text representations",
+    "LaBSE",
+    "Wiktionary",
+    "WikiPron",
+    "Tatoeba",
+    "re-ranking",
+    "language learning",
+    "Lean theorem prover"
+  ],
+  "license": "cc-by-sa-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "communities": [
+    {
+      "identifier": "open-science"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/bucket-foundation/bucket-foundation",
+      "relation": "isPartOf",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/papers/polingual-three-way-embeddings/main.tex",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-preprint",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/apple/scripts/embed",
+      "relation": "isDerivedFrom",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ]
+}

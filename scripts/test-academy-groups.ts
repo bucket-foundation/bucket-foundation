@@ -28,6 +28,9 @@ import {
   missingTable,
   joinBlocked,
   joinDecision,
+  missingColumn,
+  chosenDisplayName,
+  renameInput,
   memberSummary,
   normalizeDisplayName,
   normalizeGroupName,
@@ -497,4 +500,50 @@ test("nameAllowed keeps ordinary names", () => {
   for (const name of ["Rossi family", "Scunthorpe United", "Bass Players", "Niger Friends", "Cassandra", "Dick Van Dyke", "Essex crew", "Nonna Lucia", "Hannah", "Pushkin readers", "Associates", "José", "田中"]) {
     assert.equal(nameAllowed(name), true, name);
   }
+});
+
+test("renameInput trims the name and applies the name filter", () => {
+  assert.equal(renameInput({ displayName: "  Nonna   Lucia " }), "Nonna Lucia");
+  assert.equal(renameInput({ displayName: "sh1t head" }), "name_not_allowed");
+  assert.equal(renameInput({ displayName: "   " }), "bad_request");
+  assert.equal(renameInput({ displayName: "a".repeat(41) }), "bad_request");
+  assert.equal(renameInput({ displayName: 7 }), "bad_request");
+  assert.equal(renameInput(null), "bad_request");
+});
+
+test("missingColumn spots an unapplied column and nothing else", () => {
+  assert.equal(missingColumn({ code: "42703", message: "column group_members.chosen_name does not exist" }), true);
+  assert.equal(missingColumn({ code: "PGRST204", message: "Could not find the 'chosen_name' column of 'group_members' in the schema cache" }), true);
+  assert.equal(missingColumn({ code: "42P01", message: 'relation "bucket.group_blocks" does not exist' }), false);
+  assert.equal(missingColumn(null), false);
+});
+
+test("assembleGroup reports whether I chose my name", () => {
+  const group: GroupRow = { id: "g1", name: "G", kind: "friends", owner_id: OWNER, invite_code: "0123456789", created_at: "2026-10-01", weekly_goal: null };
+  const sums = new Map<string, MemberSummary>();
+  assert.equal(assembleGroup(group, [{ ...row(OWNER, "owner"), chosen_name: false }, row(MATE)], sums, OWNER).chosenName, false);
+  assert.equal(assembleGroup(group, [{ ...row(OWNER, "owner"), chosen_name: true }], sums, OWNER).chosenName, true);
+  assert.equal(assembleGroup(group, [row(OWNER, "owner")], sums, OWNER).chosenName, true);
+});
+
+test("chosenDisplayName treats the email-prefix default as unchosen", () => {
+  assert.equal(chosenDisplayName("ana.rossi", "Ana.Rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Ana", "ana.rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Ana", "ana_7.rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Anarossi", "ana_rossi@example.com"), false);
+  assert.equal(chosenDisplayName("Learner", "ana@example.com"), false);
+  assert.equal(chosenDisplayName("Tester 12", "ana@example.com"), false);
+});
+
+test("chosenDisplayName marks a different name as chosen", () => {
+  assert.equal(chosenDisplayName("Nonna Lucia", "ana.rossi@example.com"), true);
+  assert.equal(chosenDisplayName("ANA", "ana.rossi@example.com"), true);
+  assert.equal(chosenDisplayName("Rossi", "ana.rossi@example.com"), true);
+  assert.equal(chosenDisplayName("Ana", "7@example.com"), true);
+});
+
+test("chosenDisplayName treats a name without an email as unchosen", () => {
+  assert.equal(chosenDisplayName("Nonna Lucia", null), false);
+  assert.equal(chosenDisplayName("Nonna Lucia", undefined), false);
+  assert.equal(chosenDisplayName("Nonna Lucia", ""), false);
 });

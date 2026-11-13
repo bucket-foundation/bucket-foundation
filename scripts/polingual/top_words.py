@@ -8,6 +8,7 @@ from pathlib import Path
 
 from wordfreq import get_frequency_dict, zipf_frequency
 
+from gloss_pins import apply_pin, load_pins
 from wordlist_qa import defects, fold
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -119,15 +120,7 @@ STRIP_MARKS = re.compile(r"[\u0300-\u036f\u064b-\u065f\u0670\u0591-\u05c7]")
 GLOSS_WORD = re.compile(r"[a-z]+(?:[ -][a-z]+)*")
 
 
-def gloss_pins() -> dict[tuple[str, str], str]:
-    path = SOURCES / "gloss_pins.tsv"
-    if not path.exists():
-        return {}
-    rows = [line.split("\t") for line in path.read_text(encoding="utf-8").splitlines()[1:] if line]
-    return {(lang, word): gloss for lang, word, gloss in rows}
-
-
-PINS = gloss_pins()
+PINS = load_pins()
 
 
 def strip_marks(word: str) -> str:
@@ -308,15 +301,16 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = N
         if fold(surface) in seen:
             continue
         pinned = PINS.get((lang, surface))
-        agreed = pinned or (agreed_sense(meaning, options, votes.get((lang, strip_marks(surface)), {})) if votes else None)
-        if agreed and not pinned and agreed != meaning:
+        agreed = None if pinned else (agreed_sense(meaning, options, votes.get((lang, strip_marks(surface)), {})) if votes else None)
+        if agreed and agreed != meaning:
             pos = major
-        row = clean({"word": surface, "meaning": agreed or meaning, "pos": pos}, lang, senses)
+        row = {"word": surface, "meaning": meaning, "pos": pos} if pinned else clean({"word": surface, "meaning": agreed or meaning, "pos": pos}, lang, senses)
         if not row:
             continue
         seen.add(fold(surface))
         rank = len(out) + 1
-        out.append({"rank": rank, "word": surface, "meaning": row["meaning"], "pos": pos, "ipa": ipa, "zipf": zipf, "score": score, "band": band_of(rank)})
+        entry = {"rank": rank, "word": surface, "meaning": row["meaning"], "pos": pos, "ipa": ipa, "zipf": zipf, "score": score, "band": band_of(rank)}
+        out.append(apply_pin(entry, pinned) if pinned else entry)
         if len(out) == n:
             break
     return out
