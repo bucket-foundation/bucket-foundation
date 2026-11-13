@@ -22,7 +22,7 @@ import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.PLCard
 
 object WebGames {
-    val ready = setOf("polyword")
+    val ready = setOf("polyword", "flag-tiles")
 }
 
 @Composable
@@ -41,4 +41,5 @@ fun WebGameTile(game: WebGame, onClick: () -> Unit) {
 fun playRoutes(builder: NavGraphBuilder, graph: Graph, nav: NavHostController) {
     val back: () -> Unit = { nav.popBackStack() }
     builder.composable("play/polyword") { PolywordScreen(graph, back) }
+    builder.composable("play/flag-tiles") { FlagTilesScreen(graph, back) }
 }
