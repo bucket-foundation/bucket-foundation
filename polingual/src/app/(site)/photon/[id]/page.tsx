@@ -59,11 +59,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
         </Link>
 
         <header
-          className="mt-6 rounded-2xl bg-white p-6 md:p-8"
-          style={{
-            border: `1px solid var(--hairline)`,
-            boxShadow: "0 2px 12px -4px rgba(15, 37, 64, 0.08)",
-          }}
+          className="mt-6 rounded-2xl bg-white p-6 md:p-8 border border-[color:var(--pl-hairline)] shadow-[0_4px_0_var(--pl-lip-soft)]"
         >
           <div className="flex items-baseline gap-3 flex-wrap mb-3">
             <span
@@ -84,8 +80,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </div>
 
           <h1
-            className="text-[clamp(2.6rem,7vw,5rem)] leading-[1.05]"
-            style={{ color: "var(--ink)", letterSpacing: "-0.015em" }}
+            className="text-[clamp(2.6rem,7vw,5rem)] leading-[1.05] text-[color:var(--pl-ink)] tracking-[-0.015em]"
           >
             {photon.surface}
           </h1>
@@ -153,12 +148,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
               {photon.branch.map((b) => (
                 <span
                   key={b}
-                  className="font-mono text-[10px] uppercase tracking-[0.18em] px-3 py-1.5 rounded-full"
-                  style={{
-                    background: "var(--sky-2)",
-                    color: "var(--ink-2)",
-                    border: `1px solid var(--hairline)`,
-                  }}
+                  className="font-mono text-[10px] uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-[var(--pl-paper-2)] text-[color:var(--pl-ink-2)] border border-[color:var(--pl-hairline)]"
                 >
                   {b}
                 </span>

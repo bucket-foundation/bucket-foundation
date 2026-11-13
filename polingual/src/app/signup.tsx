@@ -8,7 +8,7 @@ const CAPTURE_URL = process.env.NEXT_PUBLIC_CAPTURE_URL || "https://www.bucket.f
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "done" } | { kind: "error"; message: string };
 
 const field =
-  "w-full rounded-lg bg-white px-4 py-3 text-base outline-none ring-1 focus:ring-2 font-sans";
+  "w-full rounded-lg bg-white px-4 py-3 text-base outline-none ring-1 focus:ring-2 font-sans text-[color:var(--pl-ink)] ring-[color:var(--pl-lapis-soft)]";
 
 export default function Signup({ compact = false }: { compact?: boolean }) {
   const [state, setState] = useState<State>({ kind: "idle" });
@@ -39,13 +39,11 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
     );
   }
 
-  const ringStyle = { color: "var(--ink)", "--tw-ring-color": "var(--blue-soft)" } as React.CSSProperties;
-
   if (compact) {
     return (
       <form onSubmit={submit} className="flex flex-col gap-2 sm:flex-row">
         <label className="sr-only" htmlFor="hero-email">Email</label>
-        <input id="hero-email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={`${field} sm:flex-1`} style={ringStyle} />
+        <input id="hero-email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={`${field} sm:flex-1`} />
         <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
         <Button type="submit" variant="accent" size="md" disabled={state.kind === "sending"}>
           {state.kind === "sending" ? "Sending" : "Get early access"}
@@ -63,21 +61,19 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
     );
   }
 
-  const ring = ringStyle;
-
   return (
     <form onSubmit={submit} className="space-y-3">
       <label className="block">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-dim)]">Email</span>
-        <input name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={`${field} mt-1`} style={ring} />
+        <input name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={`${field} mt-1`} />
       </label>
       <label className="block">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-dim)]">Languages you speak, optional</span>
-        <input name="speaks" maxLength={160} placeholder="English, Spanish" className={`${field} mt-1`} style={ring} />
+        <input name="speaks" maxLength={160} placeholder="English, Spanish" className={`${field} mt-1`} />
       </label>
       <label className="block">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-dim)]">Languages you are learning, optional</span>
-        <input name="learning" maxLength={160} placeholder="Japanese" className={`${field} mt-1`} style={ring} />
+        <input name="learning" maxLength={160} placeholder="Japanese" className={`${field} mt-1`} />
       </label>
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
       <Button type="submit" variant="accent" size="md" block disabled={state.kind === "sending"}>

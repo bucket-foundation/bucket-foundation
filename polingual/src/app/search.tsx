@@ -104,14 +104,7 @@ export default function Search() {
     <div id="search" className="scroll-mt-6">
       <section className="relative max-w-2xl mx-auto px-5 md:px-8 pb-2">
         <div
-          className="rounded-full bg-white shadow-md transition-all duration-200 ring-1 focus-within:ring-2"
-          style={{
-            boxShadow: "0 4px 14px -2px rgba(15, 37, 64, 0.10)",
-            // @ts-expect-error -- CSS custom prop in style works in modern browsers
-            "--tw-ring-color": "var(--blue)",
-            "--tw-ring-offset-shadow": "0 0 0 0 var(--pl-white)",
-            ringColor: "var(--blue-soft)",
-          }}
+          className="rounded-full bg-white shadow-[0_4px_0_var(--pl-lip-soft)] transition-all duration-200 ring-1 ring-[color:var(--pl-lapis-soft)] focus-within:ring-2 focus-within:ring-[color:var(--pl-lapis)]"
         >
           <div className="flex items-center px-4 py-3">
             <svg
@@ -130,8 +123,7 @@ export default function Search() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="type a word in any language"
-              className="flex-1 bg-transparent px-3 py-1 outline-none text-lg md:text-xl"
-              style={{ fontFamily: "inherit", color: "var(--ink)" }}
+              className="flex-1 bg-transparent px-3 py-1 outline-none text-lg md:text-xl font-[inherit] text-[color:var(--pl-ink)]"
             />
             {q && (
               <button
@@ -144,11 +136,7 @@ export default function Search() {
               </button>
             )}
             <kbd
-              className="hidden md:inline-flex ml-2 px-2 py-0.5 rounded text-[10px] font-mono"
-              style={{
-                background: "var(--sky-2)", color: "var(--ink-dim)",
-                border: `1px solid ${"var(--hairline-2)"}`,
-              }}
+              className="hidden md:inline-flex ml-2 px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--pl-paper-2)] text-[color:var(--pl-ink-dim)] border border-[color:var(--pl-hairline-2)]"
             >
               /
             </kbd>
@@ -166,13 +154,7 @@ export default function Search() {
               <button
                 key={ex.q}
                 onClick={() => setQ(ex.q)}
-                className="rounded-full px-3 py-1 text-sm transition hover:bg-white hover:shadow-sm"
-                style={{
-                  background: "var(--sky-2)",
-                  border: `1px solid ${"var(--hairline)"}`,
-                  color: "var(--ink-2)",
-                  fontFamily: "inherit",
-                }}
+                className="rounded-full px-3 py-1 text-sm transition hover:bg-white hover:shadow-sm bg-[var(--pl-paper-2)] border border-[color:var(--pl-hairline)] text-[color:var(--pl-ink-2)] font-[inherit]"
               >
                 {ex.q}
                 <span
@@ -223,10 +205,7 @@ export default function Search() {
                 <Link
                   key={p.id}
                   href={`/photon/${encodeURIComponent(p.id)}`}
-                  className="block rounded-xl bg-white px-5 py-4 transition hover:shadow-md"
-                  style={{
-                    border: `1px solid ${"var(--hairline)"}`,
-                  }}
+                  className="block rounded-xl bg-white px-5 py-4 transition hover:shadow-md border border-[color:var(--pl-hairline)]"
                 >
                   <div className="flex items-baseline justify-between gap-4">
                     <div className="flex items-baseline gap-3 min-w-0">

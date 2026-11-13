@@ -52,7 +52,7 @@ const QUESTIONS = [
 
 function H2({ id, n, children }: { id: string; n: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className="scroll-mt-8 flex items-baseline gap-3 text-3xl md:text-4xl" style={{ color: "var(--ink)", letterSpacing: "-0.01em" }}>
+    <h2 id={id} className="scroll-mt-8 flex items-baseline gap-3 text-3xl md:text-4xl text-[color:var(--pl-ink)] tracking-[-0.01em]">
       <span className="text-[color:var(--ink)]">{n}</span>
       {children}
     </h2>
@@ -86,7 +86,7 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
           {rows.map((r) => (
             <tr key={r[0]}>
               {r.map((c, i) => (
-                <td key={i} className={`px-4 py-2 align-top ${i === 0 ? "font-mono text-[13px]" : ""}`} style={{ color: "var(--ink-2)", borderTop: "1px solid var(--hairline)" }}>{c}</td>
+                <td key={i} className={`px-4 py-2 align-top text-[color:var(--pl-ink-2)] border-t border-[color:var(--pl-hairline)] ${i === 0 ? "font-mono text-[13px]" : ""}`}>{c}</td>
               ))}
             </tr>
           ))}
@@ -119,7 +119,7 @@ export default function ResearchPage() {
         <div className="min-w-0 max-w-3xl pb-24">
           <header className="pt-10 md:pt-16">
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">polingual v0, research notes</p>
-            <h1 className="mt-4 leading-[1.05] text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--ink)", letterSpacing: "-0.02em" }}>
+            <h1 className="mt-4 leading-[1.05] text-[clamp(2.2rem,5vw,3.8rem)] text-[color:var(--pl-ink)] tracking-[-0.02em]">
               Every word in every language, <em className="text-[color:var(--blue)]">one meaning.</em>
             </h1>
             <p className="mt-6 text-center text-[15px] font-bold text-[color:var(--ink)]">Abstract</p>
@@ -135,7 +135,7 @@ export default function ResearchPage() {
             </div>
           </header>
 
-          <details className="md:hidden sticky top-0 z-10 -mx-4 mt-8 px-4 py-3 font-sans text-[15px] backdrop-blur" style={{ background: "color-mix(in srgb, var(--sky) 88%, transparent)", borderBottom: "1px solid var(--hairline)" }}>
+          <details className="md:hidden sticky top-0 z-10 -mx-4 mt-8 px-4 py-3 font-sans text-[15px] backdrop-blur bg-[color-mix(in_srgb,var(--pl-paper)_88%,transparent)] border-b border-[color:var(--pl-hairline)]">
             <summary className="cursor-pointer font-semibold text-[color:var(--ink)]">Contents</summary>
             <ul className="mt-2 space-y-2">
               {NAV.map((n) => (

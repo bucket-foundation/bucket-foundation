@@ -1,6 +1,7 @@
 import type { CSSProperties, HTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
 import { Art, type ArtName } from "./art";
 import { FlagTile } from "./FlagTile";
+import { FLAG_STRIPE } from "@/lib/flags";
 import s from "./world.module.css";
 
 export type GroundKind = "paper" | "lattice";
@@ -9,11 +10,11 @@ export function Ground({ kind = "paper", cut, className, children, style }: { ki
   return <div className={[s[kind], cut && s.cut, className].filter(Boolean).join(" ")} style={style} data-ground={kind}>{children}</div>;
 }
 
-export type StickerSpot = { name: ArtName; x: string; y: string; size: number; rotate?: number; shadow?: boolean; side?: "left" | "right" };
+export type StickerSpot = { name: ArtName; x: string; y: string; size: number; rotate?: number; shadow?: boolean; side?: "left" | "right"; anchor?: "top" | "bottom" };
 
-export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "left" }: StickerSpot) {
+export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "left", anchor = "top" }: StickerSpot) {
   return (
-    <span className={s.sticker} style={{ [side]: x, top: y, transform: `rotate(${rotate}deg)` }} data-sticker={name}>
+    <span className={s.sticker} style={{ [side]: x, [anchor]: y, transform: `rotate(${rotate}deg)` }} data-sticker={name}>
       <Art name={name} size={size} shadow={shadow} />
     </span>
   );
@@ -21,7 +22,8 @@ export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "l
 
 const BAND = ["lapis", "paper", "vermilion", "lapis", "paper", "lapis", "white", "vermilion", "paper", "ink", "ochre", "white", "malachite", "vermilion", "ochre", "vermilion"] as const;
 
-export function FlagBand({ className }: { className?: string }) {
+export function FlagBand({ className, flags }: { className?: string; flags?: boolean }) {
+  if (flags) return <div className={[s.band, s.flags, className].filter(Boolean).join(" ")} aria-hidden data-testid="flag-band" style={{ background: FLAG_STRIPE }} />;
   return (
     <div className={[s.band, className].filter(Boolean).join(" ")} aria-hidden data-testid="flag-band">
       {BAND.map((c, i) => <i key={i} style={{ background: `var(--pl-${c})` }} />)}
