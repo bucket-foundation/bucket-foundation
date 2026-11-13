@@ -19,7 +19,7 @@ const HUB: HubGame[] = [
   { key: "flags", name: "Flags", blurb: "Name the language of each word.", art: "bunting", rotate: 4, testId: "hub-flags", lobby: "flags" },
   { key: "tiles", name: "Tiles", blurb: "Words fall. Tap every one that means the word on top.", art: "azulejo-grid", rotate: 10, testId: "hub-tiles", lobby: "tiles" },
   { key: "ispy", name: "I Spy", blurb: "Spot the thing, say it in the language of the round.", art: "star", rotate: -12, testId: "hub-ispy", href: "/play/ispy" },
-  { key: "polyword", name: "Polyword", blurb: "One word a day. Every miss shows its meaning in another language.", art: "calligraphy-yong", rotate: 6, testId: "polyword-link", href: "/play/polyword" },
+  { key: "polyword", name: "Polyword", blurb: "One word a day. Every miss shows its meaning in another language.", art: "streak-flame", rotate: 6, testId: "polyword-link", href: "/play/polyword" },
 ];
 
 function countLabel(n: number) {

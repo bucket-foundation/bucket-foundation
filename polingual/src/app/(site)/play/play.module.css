@@ -210,7 +210,7 @@
 .playBar,.playBar a,.playBar [data-testid=sign-in]{color:#F6EEDC!important}
 .stickers{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .sticker{position:absolute;display:block;line-height:0}
-@media (max-width:1180px){.stickerWide{opacity:.55;scale:.7}}
+@media (max-width:1439px){.stickerWide{display:none}}
 @media (max-width:700px){.sticker{display:none}}
 .playStage .frame{padding-bottom:40px}
 .playStage .center{position:relative;background:var(--parchment);border:3px solid var(--ink);border-radius:24px;box-shadow:8px 10px 0 rgba(0,0,0,.35);padding:clamp(18px,3vw,36px) clamp(14px,3vw,36px) clamp(22px,3vw,36px);margin-top:18px}

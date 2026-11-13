@@ -252,7 +252,7 @@ export default function BrandPage() {
           <h2 className={styles.h2}>Principles</h2>
           <ol className={styles.numbered}>
             {PRINCIPLES.map((p) => (
-              <li key={p.t}><strong>{p.t}.</strong> {p.d}</li>
+              <li key={p.t}><span><strong>{p.t}.</strong> {p.d}</span></li>
             ))}
           </ol>
         </div>
@@ -265,7 +265,7 @@ export default function BrandPage() {
           <Sub title="Narrative threads">
             <ol className={styles.numbered}>
               {THREADS.map((p) => (
-                <li key={p.t}><strong>{p.t}.</strong> {p.d}</li>
+                <li key={p.t}><span><strong>{p.t}.</strong> {p.d}</span></li>
               ))}
             </ol>
           </Sub>
@@ -279,7 +279,7 @@ export default function BrandPage() {
           <Sub title="Words we use">
             <ol className={styles.numbered}>
               {TERMS.map((p) => (
-                <li key={p.t}><strong>{p.t}.</strong> {p.d}</li>
+                <li key={p.t}><span><strong>{p.t}.</strong> {p.d}</span></li>
               ))}
             </ol>
           </Sub>
