@@ -3,6 +3,7 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { idle, installedVoices, playAll, playable, snapshot, stop, subscribe, toggle, type SpeakItem } from "@/lib/speak";
 import styles from "@/app/site.module.css";
+import { Pill } from "@/ui";
 
 function usePlayer() {
   return useSyncExternalStore(subscribe, snapshot, idle);
@@ -58,10 +59,10 @@ export function HearAll({ items, label, stopLabel }: { items: SpeakItem[]; label
   const ready = items.filter((i) => (i.src ? true : voices !== null && playable(i, voices)));
   if (ready.length < 2) return null;
   return (
-    <button type="button" className={styles.hearAll} data-playing={player.all || undefined} onClick={() => (player.all ? stop() : void playAll(ready))}>
+    <Pill data-playing={player.all || undefined} onClick={() => (player.all ? stop() : void playAll(ready))}>
       {player.all ? <StopIcon /> : <SpeakerIcon />}
       <span>{player.all ? stopLabel : label}</span>
-    </button>
+    </Pill>
   );
 }
 

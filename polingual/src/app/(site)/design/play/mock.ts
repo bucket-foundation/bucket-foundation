@@ -1,4 +1,4 @@
-import type { Look } from "../../play-kit/tokens";
+import type { Layer, Look } from "@/ui/avatar";
 
 export type { Look };
 export { TIERS } from "../../play-kit/tokens";
@@ -13,14 +13,14 @@ export const ME: Player = {
   tier: 4,
   level: 14,
   coins: 1340,
-  look: { body: "#D9381E", face: "grin", hat: "beret", outfit: "scarf", plinth: "#26428B" },
+  look: { backdrop: "maya", plinth: "lapis", shape: "round", skin: "sand", color: "vermilion", outfit: "scarf", face: "grin", hat: "beret", accessory: "pin", frame: "ring" },
 };
 
 export const FRIENDS: Player[] = [
-  { handle: "ana.sol", lang: "es", country: "Spain", tier: 5, level: 22, coins: 0, look: { body: "#E9A23B", face: "smile", hat: "sombrero", outfit: "stripe", plinth: "#5B1A4A" }, online: true, where: "Flags room, 6 of 8" },
-  { handle: "kenji", lang: "ja", country: "Japan", tier: 3, level: 9, coins: 0, look: { body: "#6FB7C2", face: "cool", hat: "cap", outfit: "plain", plinth: "#1E7A5A" }, online: true, where: "Tiles, round 4" },
-  { handle: "lea.b", lang: "fr", country: "France", tier: 6, level: 31, coins: 0, look: { body: "#26428B", face: "wow", hat: "crown", outfit: "cape", plinth: "#E9A23B" }, online: true, where: "In the lobby" },
-  { handle: "omar.k", lang: "ar", country: "Egypt", tier: 2, level: 5, coins: 0, look: { body: "#1E7A5A", face: "smile", hat: "none", outfit: "scarf", plinth: "#D9381E" }, online: false },
+  { handle: "ana.sol", lang: "es", country: "Spain", tier: 5, level: 22, coins: 0, look: { backdrop: "parchment", plinth: "tyrian", shape: "bell", skin: "clay", color: "ochre", outfit: "stripe", face: "smile", hat: "sombrero", accessory: "none", frame: "sparkle" }, online: true, where: "Flags room, 6 of 8" },
+  { handle: "kenji", lang: "ja", country: "Japan", tier: 3, level: 9, coins: 0, look: { backdrop: "ochre", plinth: "malachite", shape: "tall", skin: "porcelain", color: "maya", outfit: "vest", face: "proud", hat: "cap", accessory: "shades", frame: "none" }, online: true, where: "Tiles, round 4" },
+  { handle: "lea.b", lang: "fr", country: "France", tier: 6, level: 31, coins: 0, look: { backdrop: "tyrian", plinth: "ochre", shape: "round", skin: "umber", color: "lapis", outfit: "cape", face: "wow", hat: "crown", accessory: "medal", frame: "laurel" }, online: true, where: "In the lobby" },
+  { handle: "omar.k", lang: "ar", country: "Egypt", tier: 2, level: 5, coins: 0, look: { backdrop: "maya", plinth: "vermilion", shape: "block", skin: "cocoa", color: "malachite", outfit: "scarf", face: "shy", hat: "none", accessory: "headphones", frame: "none" }, online: false },
 ];
 
 export const COUNTERS = [
@@ -51,10 +51,10 @@ export const GROUPS = [
 ];
 
 export const GROUP_BOARD = [
-  { handle: "nonna.r", lang: "it", points: 940, look: { body: "#5B1A4A", face: "smile" as const, hat: "crown" as const, outfit: "cape" as const, plinth: "#E9A23B" } },
+  { handle: "nonna.r", lang: "it", points: 940, look: { backdrop: "ochre", plinth: "ochre", shape: "bell", skin: "honey", color: "tyrian", outfit: "cape", face: "proud", hat: "crown", accessory: "glasses", frame: "rays" } as Look },
   { handle: "gio.polly", lang: "it", points: 815, look: ME.look },
-  { handle: "sofi", lang: "it", points: 610, look: { body: "#6FB7C2", face: "wow" as const, hat: "cap" as const, outfit: "stripe" as const, plinth: "#1E7A5A" } },
-  { handle: "marco", lang: "it", points: 240, look: { body: "#E9A23B", face: "cool" as const, hat: "none" as const, outfit: "plain" as const, plinth: "#26428B" } },
+  { handle: "sofi", lang: "it", points: 610, look: { backdrop: "vermilion", plinth: "malachite", shape: "tall", skin: "sand", color: "maya", outfit: "stripe", face: "starry", hat: "beanie", accessory: "none", frame: "none" } as Look },
+  { handle: "marco", lang: "it", points: 240, look: { backdrop: "lapis", plinth: "lapis", shape: "block", skin: "umber", color: "ochre", outfit: "bowtie", face: "wink", hat: "fez", accessory: "none", frame: "none" } as Look },
 ];
 
 export const ANSWERS = [
@@ -64,15 +64,20 @@ export const ANSWERS = [
   { color: "#1E7A5A", shape: "square", text: "bread" },
 ] as const;
 
-export const SHOP = [
-  { id: "beret", name: "Paris beret", slot: "hat", rarity: "Common", price: 150, owned: true },
-  { id: "sombrero", name: "Fiesta sombrero", slot: "hat", rarity: "Rare", price: 400, owned: false },
-  { id: "crown", name: "Lapis crown", slot: "hat", rarity: "Epic", price: 900, owned: false },
-  { id: "cape", name: "Flag cape", slot: "outfit", rarity: "Rare", price: 400, owned: false },
-  { id: "stripe", name: "Sailor stripe", slot: "outfit", rarity: "Common", price: 150, owned: true },
-  { id: "cap", name: "Tokyo cap", slot: "hat", rarity: "Common", price: 150, owned: false },
-  { id: "plinth-gold", name: "Gold plinth", slot: "plinth", rarity: "Legendary", price: 2000, owned: false },
-  { id: "plinth-maya", name: "Maya plinth", slot: "plinth", rarity: "Earn only", price: 0, owned: false },
+export const SHOP: { id: string; name: string; slot: Layer; v: string; rarity: string; price: number; owned: boolean }[] = [
+  { id: "beret", name: "Paris beret", slot: "hat", v: "beret", rarity: "Common", price: 150, owned: true },
+  { id: "sombrero", name: "Fiesta sombrero", slot: "hat", v: "sombrero", rarity: "Rare", price: 400, owned: false },
+  { id: "crown", name: "Lapis crown", slot: "hat", v: "crown", rarity: "Epic", price: 900, owned: false },
+  { id: "laurel", name: "Olympian laurel", slot: "hat", v: "laurel", rarity: "Epic", price: 900, owned: false },
+  { id: "cape", name: "Flag cape", slot: "outfit", v: "cape", rarity: "Rare", price: 400, owned: false },
+  { id: "stripe", name: "Sailor stripe", slot: "outfit", v: "stripe", rarity: "Common", price: 150, owned: true },
+  { id: "cap", name: "Tokyo cap", slot: "hat", v: "cap", rarity: "Common", price: 150, owned: false },
+  { id: "starry", name: "Starry eyes", slot: "face", v: "starry", rarity: "Rare", price: 400, owned: false },
+  { id: "headphones", name: "Listening kit", slot: "accessory", v: "headphones", rarity: "Common", price: 150, owned: false },
+  { id: "monocle", name: "Professor monocle", slot: "accessory", v: "monocle", rarity: "Rare", price: 400, owned: false },
+  { id: "plinth-gold", name: "Gold plinth", slot: "plinth", v: "ochre", rarity: "Legendary", price: 2000, owned: false },
+  { id: "plinth-maya", name: "Maya plinth", slot: "plinth", v: "maya", rarity: "Earn only", price: 0, owned: false },
+  { id: "frame-rays", name: "Sun rays", slot: "frame", v: "rays", rarity: "Legendary", price: 2000, owned: false },
 ];
 
 export const PACKS = [

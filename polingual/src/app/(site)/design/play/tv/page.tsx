@@ -102,7 +102,7 @@ export default function TvMock() {
             {ROSTER.slice(0, 5).map((p, i) => (
               <div key={p.handle} className={`${s.boardRow} ${s.pop}`} style={{ animationDelay: `${i * 90}ms` }}>
                 <span className={s.mono} style={{ color: "#E9A23B" }}>{i + 1}</span>
-                <Avatar look={p.look} size={44} />
+                <Avatar look={p.look} size={44} variant="head" />
                 <Flag lang={p.lang} size={16} />
                 {p.handle}
                 {i === 1 && <span className={s.mono} style={{ fontSize: 14, color: "#3BD18A" }}>▲2</span>}

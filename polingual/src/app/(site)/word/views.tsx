@@ -8,6 +8,7 @@ import { appJsonLd, jsonLdScript, SITE } from "@/lib/facts";
 import { GUIDES } from "@/lib/guides";
 import { LANGS, WORDS, breadcrumbJsonLd, ctaHref, relatedWords, wordJsonLd, wordsByTheme, type Word } from "@/lib/words";
 import { capitalizeIn, fill, langLabel, localIndexCopy, localPath, localWordCopy, localeInfo, orderedForms, strings, wordLocalPath } from "@/lib/word-i18n";
+import { ButtonLink } from "@/ui";
 
 export function siteLocale(code: string): SiteLocale {
   const info = localeInfo(code);
@@ -87,7 +88,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
         </section>
       )}
       <div className={styles.ctaRow}>
-        <a className={styles.cta} href={code === "en" ? ctaHref(w) : `/${code}?utm_source=seo&utm_campaign=word_${w.slug}`}>{copy.cta}</a>
+        <ButtonLink href={code === "en" ? ctaHref(w) : `/${code}?utm_source=seo&utm_campaign=word_${w.slug}`}>{copy.cta}</ButtonLink>
       </div>
       <h2>{s.related}</h2>
       <ul className={styles.chips}>
@@ -150,7 +151,7 @@ export function WordIndexView({ code }: { code: string }) {
         </section>
       ))}
       <div className={styles.ctaRow}>
-        <a className={styles.cta} href={`${code === "en" ? "/" : `/${code}`}?utm_source=seo&utm_campaign=word_index`}>{copy.cta}</a>
+        <ButtonLink href={`${code === "en" ? "/" : `/${code}`}?utm_source=seo&utm_campaign=word_index`}>{copy.cta}</ButtonLink>
       </div>
     </Site>
   );

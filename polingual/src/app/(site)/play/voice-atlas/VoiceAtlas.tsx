@@ -13,6 +13,7 @@ import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import styles from "../play.module.css";
+import { Button, ButtonLink, Tag } from "@/ui";
 
 const LAND = landPath(land as unknown as Topology);
 const PASSPORT_KEY = "polingual-web/passport/v1";
@@ -143,7 +144,7 @@ export default function VoiceAtlas() {
           <p className={app.small}>{`${passport.length} of ${Object.keys(ATLAS_HOMES).length} languages stamped`}</p>
           <div className={styles.chips} data-testid="va-passport">
             {passport.map((l) => (
-              <span key={l} className={styles.chip}><FlagSquare lang={l} size={18} />{langName(l)}</span>
+              <Tag key={l}><FlagSquare lang={l} size={18} />{langName(l)}</Tag>
             ))}
           </div>
         </section>
@@ -165,13 +166,13 @@ export default function VoiceAtlas() {
         <div className={app.row}>
           {adsVisible && limit === ATLAS_ROUNDS && rounds.length > ATLAS_ROUNDS ? (
             rewarded ? (
-              <button type="button" className={app.cta} onClick={() => { setRewarded(false); setLimit(ATLAS_ROUNDS + 1); }} data-testid="va-extra-claim">Play the extra round</button>
+              <Button onClick={() => { setRewarded(false); setLimit(ATLAS_ROUNDS + 1); }} data-testid="va-extra-claim">Play the extra round</Button>
             ) : (
-              <button type="button" className={app.ghost} onClick={() => setRewarded(true)} data-testid="va-extra-offer">Watch an ad for an extra round</button>
+              <Button variant="ghost" size="md" onClick={() => setRewarded(true)} data-testid="va-extra-offer">Watch an ad for an extra round</Button>
             )
           ) : null}
-          <a className={app.cta} href={LEARN_HREF}>Learn these words</a>
-          <a className={app.ghost} href="/play">Lobbies</a>
+          <ButtonLink href={LEARN_HREF}>Learn these words</ButtonLink>
+          <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
         </div>
         {rewarded ? <Ad placement="rewarded" testId="ad-rewarded" /> : null}
         {readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
@@ -189,11 +190,11 @@ export default function VoiceAtlas() {
         <span className={styles.hudScore}>{total.toLocaleString("en")}</span>
       </div>
       <section className={styles.vaPrompt}>
-        <button type="button" className={app.cta} onClick={listen} data-testid="va-listen">▶ Listen</button>
+        <Button onClick={listen} data-testid="va-listen">▶ Listen</Button>
         {peek || guessed ? (
           <b className={styles.promptWord} data-testid="va-word">{round.form}</b>
         ) : (
-          <button type="button" className={app.link} onClick={() => setPeek(true)} data-testid="va-peek">Show the word, half points</button>
+          <Button variant="quiet" size="sm" onClick={() => setPeek(true)} data-testid="va-peek">Show the word, half points</Button>
         )}
         <p className={app.small}>Where is this language spoken? Tap the map, then lock in.</p>
       </section>
@@ -218,10 +219,10 @@ export default function VoiceAtlas() {
             <span className={styles.verdictKey}>Means</span>
             <span className={styles.pickLabel}><b>{round.meaning}</b></span>
           </p>
-          <button type="button" className={app.cta} onClick={next} data-testid="va-next">{guesses.length >= limit ? "See results" : "Next round"}</button>
+          <Button onClick={next} data-testid="va-next">{guesses.length >= limit ? "See results" : "Next round"}</Button>
         </section>
       ) : (
-        <button type="button" className={app.cta} disabled={!pin} onClick={lock} data-testid="va-lock">Lock in</button>
+        <Button disabled={!pin} onClick={lock} data-testid="va-lock">Lock in</Button>
       )}
     </div>
   );

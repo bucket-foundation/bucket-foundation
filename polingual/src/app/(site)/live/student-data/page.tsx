@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Brand } from "../parts";
 import styles from "../stoa.module.css";
+import { Card } from "@/ui";
 
 export const metadata: Metadata = {
   title: "Student data in Polingual Live",
@@ -15,7 +16,7 @@ export default function StudentDataPage() {
         <Brand />
       </header>
       <main className={styles.main}>
-        <article className={`${styles.card} ${styles.doc}`} data-testid="student-data">
+        <Card as="article" className={`${styles.card} ${styles.doc}`} data-testid="student-data">
           <p className={styles.label}>Polingual Live</p>
           <h1 className={styles.title}>Student data</h1>
           <p className={styles.body}>Players join a live room on their phones with a room code. They make no account and we ask them for no personal details.</p>
@@ -49,7 +50,7 @@ export default function StudentDataPage() {
           <p>
             Write to <a href="mailto:support@polingual.com">support@polingual.com</a>. Hosts agree to the <a href="/live/terms">host terms</a>.
           </p>
-        </article>
+        </Card>
       </main>
     </div>
   );

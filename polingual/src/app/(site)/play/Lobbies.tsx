@@ -11,6 +11,7 @@ import { useAccount } from "./Account";
 import Nickname from "./Nickname";
 import styles from "./play.module.css";
 import { savedNickname, usePlay } from "./usePlay";
+import { Button, Pill } from "@/ui";
 
 const LIST_MS = 5000;
 
@@ -104,7 +105,7 @@ export default function Lobbies() {
               Join with a code
               <input value={code} onChange={(e) => setCode(e.target.value)} maxLength={8} autoCapitalize="characters" placeholder="ABC123" data-testid="join-code" />
             </label>
-            <button type="submit" className={app.ghost} data-testid="join-go">Join</button>
+            <Button type="submit" variant="ghost" size="md" data-testid="join-go">Join</Button>
           </form>
 
           <a className={styles.soloCard} href="/play/flag-tiles" data-testid="solo-flag-tiles">
@@ -170,17 +171,17 @@ export default function Lobbies() {
               <span className={app.fieldLabel}>Languages</span>
               <div className={styles.chips}>
                 {LANG_SETS.map((s) => (
-                  <button key={s.id} type="button" className={styles.chip} aria-pressed={s.targets.join() === langs.join()} onClick={() => setLangs(s.targets)} data-testid={`lang-set-${s.id}`}>
+                  <Pill key={s.id} aria-pressed={s.targets.join() === langs.join()} onClick={() => setLangs(s.targets)} data-testid={`lang-set-${s.id}`}>
                     {s.label}
-                  </button>
+                  </Pill>
                 ))}
               </div>
               <div className={styles.chips}>
                 {LANG_CHOICES.map((l) => (
-                  <button key={l} type="button" className={styles.chip} aria-pressed={langs.includes(l)} onClick={() => setLangs((xs) => (xs.includes(l) ? xs.filter((x) => x !== l) : xs.length >= 8 ? xs : [...xs, l]))} data-testid={`lang-${l}`}>
+                  <Pill key={l} aria-pressed={langs.includes(l)} onClick={() => setLangs((xs) => (xs.includes(l) ? xs.filter((x) => x !== l) : xs.length >= 8 ? xs : [...xs, l]))} data-testid={`lang-${l}`}>
                     <FlagSquare lang={l} size={18} />
                     {langName(l)}
-                  </button>
+                  </Pill>
                 ))}
               </div>
             </div>
@@ -200,9 +201,9 @@ export default function Lobbies() {
               </label>
             ) : null}
             <div>
-              <button type="button" className={app.cta} onClick={() => void create()} disabled={busy} data-testid="create">
+              <Button onClick={() => void create()} disabled={busy} data-testid="create">
                 Start lobby
-              </button>
+              </Button>
             </div>
           </section>
 
@@ -227,9 +228,9 @@ export default function Lobbies() {
                       ))}
                     </span>
                   </span>
-                  <button type="button" className={app.ghost} onClick={() => router.push(`/play/${l.code}`)} disabled={l.status !== "lobby" && !l.isMember && !l.standing}>
+                  <Button variant="ghost" size="md" onClick={() => router.push(`/play/${l.code}`)} disabled={l.status !== "lobby" && !l.isMember && !l.standing}>
                     {l.isMember ? "Open" : "Join"}
-                  </button>
+                  </Button>
                 </li>
               ))}
             </ul>
@@ -239,7 +240,7 @@ export default function Lobbies() {
             {state.identity.kind === "guest" ? (
               <>
                 {" as a guest. "}
-                <button type="button" className={app.link} onClick={account.openSignIn} data-testid="lobby-sign-in">Sign in</button> to save streaks and stats.
+                <Button variant="quiet" size="sm" onClick={account.openSignIn} data-testid="lobby-sign-in">Sign in</Button> to save streaks and stats.
               </>
             ) : "."}
           </p>

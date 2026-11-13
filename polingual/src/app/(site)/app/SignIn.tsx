@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { appAuth, signInError } from "@/lib/app/auth";
 import styles from "./app.module.css";
+import { Button, Card } from "@/ui";
 
 export type SignInCopy = { label: string; title: string; intro: string };
 
@@ -40,7 +41,7 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
   }
 
   return (
-    <section className={styles.card} data-testid="sign-in">
+    <Card as="section" className={styles.card} data-testid="sign-in">
       <p className={styles.label}>{copy.label}</p>
       <h1 className={styles.title}>{step === "email" ? copy.title : "Check your email"}</h1>
       {step === "email" ? (
@@ -50,9 +51,9 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
             <span>Email</span>
             <input type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} data-testid="email" />
           </label>
-          <button type="submit" className={styles.cta} disabled={busy}>
+          <Button type="submit" disabled={busy}>
             {busy ? "Sending" : "Email me a code"}
-          </button>
+          </Button>
         </form>
       ) : (
         <form onSubmit={verify} className={styles.form}>
@@ -61,15 +62,15 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
             <span>Code</span>
             <input inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6,10}" required value={code} onChange={(e) => setCode(e.target.value)} data-testid="code" />
           </label>
-          <button type="submit" className={styles.cta} disabled={busy}>
+          <Button type="submit" disabled={busy}>
             {busy ? "Checking" : "Sign in"}
-          </button>
-          <button type="button" className={styles.link} onClick={() => { setStep("email"); setCode(""); setError(null); }}>
+          </Button>
+          <Button variant="quiet" size="sm" onClick={() => { setStep("email"); setCode(""); setError(null); }}>
             Use a different email
-          </button>
+          </Button>
         </form>
       )}
       {error ? <p role="alert" className={styles.error} data-testid="sign-in-error">{error}</p> : null}
-    </section>
+    </Card>
   );
 }

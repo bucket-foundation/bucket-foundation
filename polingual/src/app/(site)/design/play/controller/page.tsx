@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ANSWERS, ME } from "../mock";
 import { Avatar, Coins, Flag, Shape } from "../../../play-kit/parts";
 import s from "../design.module.css";
+import { Button } from "@/ui";
 
 type Step = "join" | "in" | "answer" | "result";
 
@@ -28,7 +29,7 @@ function Controller({ remote }: { remote: boolean }) {
             <h2 style={{ color: "var(--tyrian)" }}>Join a game</h2>
             <input aria-label="Room code" value={code} onChange={(e) => setCode(e.target.value.toUpperCase().slice(0, 6))} className={s.mono} style={{ fontSize: 30, letterSpacing: ".2em", textAlign: "center", width: "100%", padding: 12, borderRadius: 14, border: "2px solid var(--hair)" }} />
             <div className={s.row} style={{ justifyContent: "center" }}><Avatar look={ME.look} size={48} /><b>{ME.handle}</b><Flag lang={ME.lang} size={14} /></div>
-            <button className={s.cta} style={{ width: "100%" }} onClick={() => setStep("in")}>Join</button>
+            <Button style={{ width: "100%" }} onClick={() => setStep("in")}>Join</Button>
           </div>
         )}
         {step === "in" && (
@@ -36,7 +37,7 @@ function Controller({ remote }: { remote: boolean }) {
             <Avatar look={ME.look} size={140} bounce />
             <h2>You&apos;re in!</h2>
             <p style={{ margin: 0 }}>{remote ? "Playing from afar. The question shows here too." : "Look at the TV. Your buttons appear here."}</p>
-            <button className={s.cta} onClick={() => setStep("answer")}>Next: round starts</button>
+            <Button onClick={() => setStep("answer")}>Next: round starts</Button>
           </div>
         )}
         {step === "answer" && (
@@ -66,7 +67,7 @@ function Controller({ remote }: { remote: boolean }) {
             <span className={s.mono} style={{ fontSize: 30 }}>{picked === 0 ? "+840" : "+0"}</span>
             <p style={{ margin: 0 }}>{picked === 0 ? "2nd place, 120 behind nonna.r" : "perro means dog. Added to missed words."}</p>
             <Coins n={ME.coins} />
-            <button className={s.ghost} style={{ borderColor: "#F6EEDC", color: "#F6EEDC" }} onClick={() => { setPicked(null); setStep("answer"); }}>Next round</button>
+            <Button variant="ghost" size="md" style={{ borderColor: "#F6EEDC", color: "#F6EEDC" }} onClick={() => { setPicked(null); setStep("answer"); }}>Next round</Button>
           </div>
         )}
       </div>

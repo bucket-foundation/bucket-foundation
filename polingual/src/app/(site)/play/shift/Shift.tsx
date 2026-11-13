@@ -12,6 +12,7 @@ import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import styles from "../play.module.css";
+import { Button, ButtonLink } from "@/ui";
 
 function local(): Storage | null {
   try {
@@ -113,21 +114,21 @@ export default function Shift() {
           <p className={styles.verdictHead}>Board cleared</p>
           <p className={app.small}>{`${found.length} words found. A new board comes tomorrow.`}</p>
           <div className={app.row}>
-            <a className={app.cta} href={LEARN_HREF}>Learn these words</a>
-            <a className={app.ghost} href="/play">Lobbies</a>
+            <ButtonLink href={LEARN_HREF}>Learn these words</ButtonLink>
+            <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
           </div>
         </section>
       ) : adsVisible ? (
         rewarded ? (
           <>
             <Ad placement="rewarded" testId="ad-rewarded" />
-            <button type="button" className={app.cta} onClick={hint} data-testid="sh-hint-claim">Reveal a letter</button>
+            <Button onClick={hint} data-testid="sh-hint-claim">Reveal a letter</Button>
           </>
         ) : (
-          <button type="button" className={app.ghost} onClick={() => setRewarded(true)} data-testid="sh-hint-offer">Watch an ad for a hint</button>
+          <Button variant="ghost" size="md" onClick={() => setRewarded(true)} data-testid="sh-hint-offer">Watch an ad for a hint</Button>
         )
       ) : (
-        <button type="button" className={app.ghost} onClick={hint} data-testid="sh-hint">Reveal a letter</button>
+        <Button variant="ghost" size="md" onClick={hint} data-testid="sh-hint">Reveal a letter</Button>
       )}
       {complete && readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
     </div>

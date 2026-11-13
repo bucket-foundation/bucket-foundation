@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Brand } from "../parts";
 import styles from "../stoa.module.css";
+import { Card } from "@/ui";
 
 export const metadata: Metadata = {
   title: "Host terms for Polingual Live",
@@ -15,7 +16,7 @@ export default function HostTermsPage() {
         <Brand />
       </header>
       <main className={styles.main}>
-        <article className={`${styles.card} ${styles.doc}`} data-testid="host-terms-page">
+        <Card as="article" className={`${styles.card} ${styles.doc}`} data-testid="host-terms-page">
           <p className={styles.label}>Polingual Live</p>
           <h1 className={styles.title}>Host terms</h1>
           <p className={styles.body}>You accept these terms with a checkbox before you open your first room. The acceptance is saved in that browser only: we keep no record on our servers of who accepted or when, and a new browser asks again.</p>
@@ -50,7 +51,7 @@ export default function HostTermsPage() {
           <p>
             Questions: <a href="mailto:support@polingual.com">support@polingual.com</a>
           </p>
-        </article>
+        </Card>
       </main>
     </div>
   );

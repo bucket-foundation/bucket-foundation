@@ -5,6 +5,7 @@ import { displayNickname, MARKS, type Standing } from "@/lib/stoa/client";
 import { loadMix, Stage, type Mix } from "@/lib/stoa/stage";
 import { Glyph } from "./parts";
 import styles from "./stoa.module.css";
+import { Button, Pill } from "@/ui";
 
 export function useStage(fallback: Mix) {
   const stage = useRef<Stage | null>(null);
@@ -39,14 +40,14 @@ export function useStage(fallback: Mix) {
 export function MixBar({ mix, setMix, ready, unlock, full }: { mix: Mix; setMix: (m: Mix) => void; ready: boolean; unlock: () => void; full: boolean }) {
   if (!ready)
     return (
-      <button type="button" className={styles.soundOn} onClick={unlock} data-testid="sound-on">
+      <Button variant="accent" size="sm" onClick={unlock} data-testid="sound-on">
         <span aria-hidden="true">♪</span> Sound on
-      </button>
+      </Button>
     );
   const t = (k: keyof Mix, label: string) => (
-    <button type="button" className={styles.mixBtn} aria-pressed={mix[k]} onClick={() => setMix({ ...mix, [k]: !mix[k] })} data-testid={`mix-${k}`}>
+    <Pill size="sm" aria-pressed={mix[k]} onClick={() => setMix({ ...mix, [k]: !mix[k] })} data-testid={`mix-${k}`}>
       {label}
-    </button>
+    </Pill>
   );
   return (
     <div className={styles.mix} role="group" aria-label="Sound">

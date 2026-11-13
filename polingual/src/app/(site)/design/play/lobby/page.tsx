@@ -5,6 +5,7 @@ import Header from "../Header";
 import { FRIENDS, GROUP_BOARD, GROUPS, ME } from "../mock";
 import { Avatar, Flag } from "../../../play-kit/parts";
 import s from "../design.module.css";
+import { Button, ButtonLink, Card, Pill, buttonClass } from "@/ui";
 
 const GAMES = ["Flags", "Same word", "Tiles", "Daily words", "Live"];
 const SETS = [
@@ -44,67 +45,67 @@ export default function LobbyMock() {
         {!open && (
           <div className={s.grid2}>
             <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-              <section className={s.card}>
+              <Card as="section">
                 <h2 style={{ fontSize: 20 }}>Game</h2>
                 <div className={s.row} style={{ marginTop: 10 }}>
-                  {GAMES.map((g) => <button key={g} className={s.chip} aria-pressed={game === g} onClick={() => setGame(g)}>{g}</button>)}
+                  {GAMES.map((g) => <Pill key={g} aria-pressed={game === g} onClick={() => setGame(g)}>{g}</Pill>)}
                 </div>
                 <h2 style={{ fontSize: 20, marginTop: 16 }}>Languages</h2>
                 <div className={s.row} style={{ marginTop: 10 }}>
                   {SETS.map((x) => (
-                    <button key={x.id} className={s.chip} aria-pressed={set === x.id} onClick={() => setSet(x.id)}>
+                    <Pill key={x.id} aria-pressed={set === x.id} onClick={() => setSet(x.id)}>
                       {x.langs.map((l) => <Flag key={l} lang={l} size={12} />)}
-                    </button>
+                    </Pill>
                   ))}
                 </div>
-              </section>
-              <section className={s.card}>
+              </Card>
+              <Card as="section">
                 <h2 style={{ fontSize: 20 }}>Who</h2>
                 <div className={s.opts} style={{ marginTop: 10 }}>
                   {WHO.map((w) => (
-                    <button key={w.id} className={s.opt} aria-pressed={who === w.id} onClick={() => setWho(w.id)}><b>{w.name}</b><span>{w.blurb}</span></button>
+                    <button key={w.id} className={buttonClass({ variant: "secondary", size: "md", className: s.opt })} aria-pressed={who === w.id} onClick={() => setWho(w.id)}><b>{w.name}</b><span>{w.blurb}</span></button>
                   ))}
                 </div>
                 {who === "group" && (
                   <div className={s.row} style={{ marginTop: 12 }}>
-                    {GROUPS.map((g) => <button key={g.name} className={s.chip} aria-pressed={group === g.name} onClick={() => setGroup(g.name)}><span className={s.dot} style={{ background: g.color }} />{g.name}</button>)}
+                    {GROUPS.map((g) => <Pill key={g.name} aria-pressed={group === g.name} onClick={() => setGroup(g.name)}><span className={s.dot} style={{ background: g.color }} />{g.name}</Pill>)}
                   </div>
                 )}
-              </section>
-              <section className={s.card}>
+              </Card>
+              <Card as="section">
                 <h2 style={{ fontSize: 20 }}>Screen</h2>
                 <div className={s.opts} style={{ marginTop: 10 }}>
                   {SCREEN.map((x) => (
-                    <button key={x.id} className={s.opt} aria-pressed={screen === x.id} onClick={() => setScreen(x.id)}><b>{x.name}</b><span>{x.blurb}</span></button>
+                    <button key={x.id} className={buttonClass({ variant: "secondary", size: "md", className: s.opt })} aria-pressed={screen === x.id} onClick={() => setScreen(x.id)}><b>{x.name}</b><span>{x.blurb}</span></button>
                   ))}
                 </div>
-              </section>
-              <button className={s.cta} onClick={() => setOpen(true)}>{screen === "tv" ? "Open on this screen as TV" : "Create room"}</button>
+              </Card>
+              <Button onClick={() => setOpen(true)}>{screen === "tv" ? "Open on this screen as TV" : "Create room"}</Button>
             </div>
 
             {who === "group" && (
-              <section className={s.card}>
+              <Card as="section">
                 <div className={s.between}><h2>{group}</h2><span className={s.mono}>THIS WEEK</span></div>
                 <p className={s.muted} style={{ margin: "6px 0 12px" }}>Group games count double on this board. Closes Sunday 20:00.</p>
                 <ol className={s.feed}>
                   {GROUP_BOARD.map((p, i) => (
                     <li key={p.handle} style={{ borderColor: p.handle === ME.handle ? "var(--lapis)" : undefined }}>
                       <span className={s.mono} style={{ width: 20 }}>{i + 1}</span>
-                      <Avatar look={p.look} size={34} />
+                      <Avatar look={p.look} size={34} variant="head" />
                       <Flag lang={p.lang} size={12} />
                       <b>{p.handle}</b>
                       <time className={s.mono} style={{ fontSize: 14, color: "var(--tyrian)" }}>{p.points}</time>
                     </li>
                   ))}
                 </ol>
-              </section>
+              </Card>
             )}
           </div>
         )}
 
         {open && (
           <div className={s.grid2}>
-            <section className={s.card} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <Card as="section" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div className={s.between}>
                 <div>
                   <p className={s.label}>Room code</p>
@@ -116,26 +117,26 @@ export default function LobbyMock() {
                 {players.map((p) => (
                   <div key={p.handle} className={`${s.player} ${s.pop}`}><Avatar look={p.look} size={56} bounce /><span className={s.row} style={{ gap: 4 }}><Flag lang={p.lang} size={11} />{p.handle}</span></div>
                 ))}
-                <div className={s.player} data-bot="true"><Avatar look={{ body: "#8A8076", face: "smile", hat: "none", outfit: "plain", plinth: "#EBDDBE" }} size={56} /><span>bot fills in 20 s</span></div>
+                <div className={s.player} data-bot="true"><Avatar look={{ color: "parchment", skin: "parchment", plinth: "parchment", face: "sleepy" }} size={56} /><span>bot fills in 20 s</span></div>
               </div>
               <div className={s.row}>
-                {screen === "tv" ? <a className={s.cta} href="/design/play/tv">Show on TV</a> : <button className={s.cta}>Start</button>}
-                <button className={s.ghost}>Invite</button>
-                <button className={s.ghost} onClick={() => setOpen(false)}>Back</button>
+                {screen === "tv" ? <ButtonLink href="/design/play/tv">Show on TV</ButtonLink> : <Button>Start</Button>}
+                <Button variant="ghost" size="md">Invite</Button>
+                <Button variant="ghost" size="md" onClick={() => setOpen(false)}>Back</Button>
               </div>
               <p className={s.note}>{who === "group" ? `Everyone in ${group} got a push: "${ME.handle} started ${game}".` : "Friends see this room in Friends playing."}</p>
-            </section>
-            <section className={s.card}>
+            </Card>
+            <Card as="section">
               <h2 style={{ fontSize: 20 }}>Chat</h2>
               <ul className={s.feed} style={{ marginTop: 10 }}>
                 <li><b>nonna.r</b> I am ready!</li>
                 <li><b>sofi</b> 👋</li>
               </ul>
               <div className={s.row} style={{ marginTop: 10 }}>
-                {["Good luck", "Ready", "Rematch?", "🎉"].map((q) => <button key={q} className={s.chip}>{q}</button>)}
+                {["Good luck", "Ready", "Rematch?", "🎉"].map((q) => <Pill key={q}>{q}</Pill>)}
               </div>
               <p className={s.note} style={{ marginTop: 10 }}>Under-18 players see preset phrases only.</p>
-            </section>
+            </Card>
           </div>
         )}
       </main>

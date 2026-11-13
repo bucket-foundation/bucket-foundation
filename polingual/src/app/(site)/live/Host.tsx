@@ -9,6 +9,8 @@ import { countdownSfx, hostCue, intensity, rankMoves } from "@/lib/stoa/script";
 import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "./parts";
 import { Confetti, Drift, MixBar, Podium, TimerRing, useStage } from "./show";
 import styles from "./stoa.module.css";
+import { Avatar } from "@/ui/avatar";
+import { Button, Card, Pill } from "@/ui";
 
 const Qr = dynamic(() => import("./Qr"), { ssr: false });
 
@@ -215,7 +217,7 @@ export default function Host() {
     if (auth === "signed-out") return <SignIn onSignedIn={() => void refresh()} copy={HOST_COPY} />;
     if (!room)
       return (
-        <section className={styles.card} data-testid="host-setup">
+        <Card as="section" className={styles.card} data-testid="host-setup">
           <p className={styles.label}>Host a live room</p>
           <h1 className={styles.title}>Open a room for your class</h1>
           <p className={styles.body}>Players join on their phones with a code. Three rounds of five questions, 20 seconds each.</p>
@@ -229,17 +231,17 @@ export default function Host() {
           <ul className={styles.chips}>
             {TARGETS.filter((t) => t !== home).map((t) => (
               <li key={t}>
-                <button type="button" className={styles.pick} aria-pressed={targets.includes(t)} onClick={() => toggleTarget(t)} data-testid={`target-${t}`}>{langName(t)}</button>
+                <Pill aria-pressed={targets.includes(t)} onClick={() => toggleTarget(t)} data-testid={`target-${t}`}>{langName(t)}</Pill>
               </li>
             ))}
           </ul>
           <p className={styles.fieldLabel}>Mode</p>
           <ul className={styles.chips}>
             <li>
-              <button type="button" className={styles.pick} aria-pressed={mode === "open_floor"} onClick={() => setMode("open_floor")} data-testid="mode-open">Open Floor: every player for themselves</button>
+              <Pill aria-pressed={mode === "open_floor"} onClick={() => setMode("open_floor")} data-testid="mode-open">Open Floor: every player for themselves</Pill>
             </li>
             <li>
-              <button type="button" className={styles.pick} aria-pressed={mode === "chorus"} onClick={() => setMode("chorus")} data-testid="mode-chorus">Chorus: teams</button>
+              <Pill aria-pressed={mode === "chorus"} onClick={() => setMode("chorus")} data-testid="mode-chorus">Chorus: teams</Pill>
             </li>
           </ul>
           {mode === "chorus" ? (
@@ -260,10 +262,10 @@ export default function Host() {
               I accept the <a href="/live/terms">host terms</a>. Players&rsquo; data is covered on the <a href="/live/student-data">student data page</a>.
             </span>
           </label>
-          <button type="button" className={styles.cta} disabled={busy || targets.length === 0 || !terms} onClick={() => void create()} data-testid="create-room">
+          <Button disabled={busy || targets.length === 0 || !terms} onClick={() => void create()} data-testid="create-room">
             {busy ? "Opening" : "Open the room"}
-          </button>
-        </section>
+          </Button>
+        </Card>
       );
     if (!snap) return <p className={styles.muted}>Opening the room.</p>;
     const phase = snap.room.phase;
@@ -272,11 +274,12 @@ export default function Host() {
     const teams = snap.room.mode === "chorus" ? snap.room.teams ?? 2 : 0;
     const chip = (p: { id: string; nickname: string; team_slot?: number | null }) => (
       <li key={p.id} className={styles.player}>
+        <Avatar seed={p.nickname} size="xs" variant="head" label="" />
         {displayNickname(p.nickname)}
         {teams ? (
-          <button type="button" className={styles.remove} aria-label={`Move ${displayNickname(p.nickname)} to Team ${team(((p.team_slot ?? 0) + 1) % teams)?.name}`} onClick={() => void act("move", p.id, { team: ((p.team_slot ?? 0) + 1) % teams })} data-testid="move">⇄</button>
+          <Button variant="quiet" size="md" iconOnly aria-label={`Move ${displayNickname(p.nickname)} to Team ${team(((p.team_slot ?? 0) + 1) % teams)?.name}`} onClick={() => void act("move", p.id, { team: ((p.team_slot ?? 0) + 1) % teams })} data-testid="move">⇄</Button>
         ) : null}
-        <button type="button" className={styles.remove} aria-label={`Remove ${displayNickname(p.nickname)}`} onClick={() => void act("remove", p.id)}>×</button>
+        <Button variant="quiet" size="md" iconOnly aria-label={`Remove ${displayNickname(p.nickname)}`} onClick={() => void act("remove", p.id)}>×</Button>
       </li>
     );
     const roster = snap.roster ?? [];
@@ -284,23 +287,23 @@ export default function Host() {
       <div className={styles.controls} data-testid="host-controls">
         {phase === "lobby" ? (
           <>
-            <button type="button" className={styles.cta} onClick={() => void act("start")} disabled={snap.room.players === 0} data-testid="start">Start</button>
-            <button type="button" className={styles.ghost} aria-pressed={snap.room.locked} onClick={() => void act(snap.room.locked ? "unlock" : "lock")} data-testid="lock">
+            <Button onClick={() => void act("start")} disabled={snap.room.players === 0} data-testid="start">Start</Button>
+            <Button variant="ghost" size="md" aria-pressed={snap.room.locked} onClick={() => void act(snap.room.locked ? "unlock" : "lock")} data-testid="lock">
               {snap.room.locked ? "Room locked" : "Lock room"}
-            </button>
+            </Button>
           </>
         ) : null}
         {phase === "question" || phase === "reveal" || phase === "board" ? (
           <>
-            <button type="button" className={styles.ghost} onClick={() => void act(snap.room.paused ? "resume" : "pause")} data-testid="pause">{snap.room.paused ? "Resume" : "Pause"}</button>
-            <button type="button" className={styles.ghost} onClick={() => void act("skip")} data-testid="skip">Next</button>
+            <Button variant="ghost" size="md" onClick={() => void act(snap.room.paused ? "resume" : "pause")} data-testid="pause">{snap.room.paused ? "Resume" : "Pause"}</Button>
+            <Button variant="ghost" size="md" onClick={() => void act("skip")} data-testid="skip">Next</Button>
           </>
         ) : null}
-        {phase !== "closed" ? <button type="button" className={styles.ghost} onClick={() => void act("end")} data-testid="end">End room</button> : null}
+        {phase !== "closed" ? <Button variant="ghost" size="md" onClick={() => void act("end")} data-testid="end">End room</Button> : null}
         {phase === "closed" || phase === "finale" ? (
           <>
-            <button type="button" className={styles.ghost} onClick={() => void download()} data-testid="download">Download results</button>
-            <button type="button" className={styles.ghost} onClick={newRoom} data-testid="new-room">New room</button>
+            <Button variant="ghost" size="md" onClick={() => void download()} data-testid="download">Download results</Button>
+            <Button variant="ghost" size="md" onClick={newRoom} data-testid="new-room">New room</Button>
           </>
         ) : null}
       </div>
