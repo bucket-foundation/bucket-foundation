@@ -127,7 +127,7 @@ export class LobbyApi {
   }
 
   async listing(): Promise<{ lobbies: LobbySummary[]; bots: boolean }> {
-    const res = await this.call<{ lobbies: LobbySummary[]; bots?: boolean }>("");
+    const res = await this.call<{ lobbies: LobbySummary[]; bots?: boolean }>("", { query: { client: "web" } });
     return { lobbies: res.lobbies, bots: res.bots === true };
   }
 
@@ -136,7 +136,7 @@ export class LobbyApi {
   }
 
   async create(input: { name: string; root: string; targets: string[]; rounds: number; roundSeconds: number; listed: boolean; displayName: string; game: string; fillBots?: boolean }): Promise<WebLobbyState> {
-    return (await this.call<{ lobby: WebLobbyState }>("", { body: input })).lobby;
+    return (await this.call<{ lobby: WebLobbyState }>("", { body: { ...input, reveal: true } })).lobby;
   }
 
   async join(input: { code?: string; lobbyId?: string; displayName: string }): Promise<WebLobbyState> {
@@ -178,23 +178,37 @@ export class LobbyApi {
   }
 }
 
-export type Phase = { kind: "waiting" } | { kind: "countdown"; seconds: number } | { kind: "round"; index: number; remaining: number } | { kind: "finished" };
+export type Phase =
+  | { kind: "waiting" }
+  | { kind: "countdown"; seconds: number }
+  | { kind: "round"; index: number; remaining: number }
+  | { kind: "reveal"; index: number; remaining: number }
+  | { kind: "finished" };
 
-export function phaseAt(lobby: Pick<LobbyState, "status" | "startedAt" | "rounds" | "roundSeconds">, now: number): Phase {
+type Clock = Pick<LobbyState, "startedAt" | "rounds" | "roundSeconds"> & { revealSeconds?: number };
+
+export function gameSeconds(lobby: Omit<Clock, "startedAt">): number {
+  return lobby.rounds * lobby.roundSeconds + Math.max(0, lobby.rounds - 1) * (lobby.revealSeconds ?? 0);
+}
+
+export function phaseAt(lobby: Clock & Pick<LobbyState, "status">, now: number): Phase {
   if (lobby.status === "lobby") return { kind: "waiting" };
   if (lobby.status === "done" || !lobby.startedAt) return lobby.status === "done" ? { kind: "finished" } : { kind: "waiting" };
   const elapsed = (now - Date.parse(lobby.startedAt)) / 1000;
   if (elapsed < 0) return { kind: "countdown", seconds: -elapsed };
-  const index = Math.floor(elapsed / lobby.roundSeconds);
-  if (index >= lobby.rounds) return { kind: "finished" };
-  return { kind: "round", index, remaining: lobby.roundSeconds * (index + 1) - elapsed };
+  if (elapsed >= gameSeconds(lobby)) return { kind: "finished" };
+  const slot = lobby.roundSeconds + (lobby.revealSeconds ?? 0);
+  const index = Math.floor(elapsed / slot);
+  const into = elapsed - index * slot;
+  if (into < lobby.roundSeconds) return { kind: "round", index, remaining: lobby.roundSeconds - into };
+  return { kind: "reveal", index, remaining: slot - into };
 }
 
 export const TALLY_WAIT_MS = 5000;
 
-export function tallyLate(lobby: Pick<LobbyState, "startedAt" | "rounds" | "roundSeconds">, now: number): boolean {
+export function tallyLate(lobby: Clock, now: number): boolean {
   if (!lobby.startedAt) return false;
-  return now - (Date.parse(lobby.startedAt) + lobby.rounds * lobby.roundSeconds * 1000) > TALLY_WAIT_MS;
+  return now - (Date.parse(lobby.startedAt) + gameSeconds(lobby) * 1000) > TALLY_WAIT_MS;
 }
 
 export function serverOffset(serverNow: string, sentAt: number, receivedAt: number): number {
@@ -327,4 +341,22 @@ export function promptFor(lobby: Pick<LobbyState, "prompts">, round: number): Lo
 export function answeredRound(lobby: Pick<LobbyState, "results" | "players">, round: number): boolean {
   const me = lobby.players.find((p) => p.isMe)?.userId;
   return !!me && lobby.results.some((r) => r.userId === me && r.round === round);
+}
+
+export type RankedPlayer = LobbyState["players"][number] & { rank: number };
+
+export function ranked(players: LobbyState["players"]): RankedPlayer[] {
+  const sorted = [...players].sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  return sorted.map((p, i) => ({ ...p, rank: i > 0 && sorted[i - 1].score === p.score ? sorted.findIndex((q) => q.score === p.score) + 1 : i + 1 }));
+}
+
+export function gameProgress(phase: Phase, rounds: number): number {
+  if (phase.kind === "finished") return 1;
+  if (phase.kind === "round") return Math.min(1, phase.index / rounds);
+  if (phase.kind === "reveal") return Math.min(1, (phase.index + 1) / rounds);
+  return 0;
+}
+
+export function revealOrder<T extends { correct: boolean }>(entries: readonly T[]): T[] {
+  return [...entries.filter((e) => e.correct), ...entries.filter((e) => !e.correct)];
 }

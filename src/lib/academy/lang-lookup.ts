@@ -1,7 +1,7 @@
 import { langCorpus } from "./groups-server";
 import type { LangItem } from "./lang-systems";
 
-export type LangWord = Pick<LangItem, "forms" | "readings">;
+export type LangWord = Pick<LangItem, "forms" | "readings" | "gloss">;
 
 let index: Map<string, LangWord[]> | null = null;
 

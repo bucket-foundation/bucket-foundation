@@ -4,7 +4,11 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { tappedChoice } from "@academy/lobby-tiles";
-import { answeredRound, botLabel, flagEmoji, langFlag, LEARN_HREF, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { LANGS } from "@academy/lang-systems";
+import { TileFace } from "@/app/tile";
+import { LangCard } from "./LearnWord";
+import LiveBoard from "./LiveBoard";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { gameName, langName } from "./langs";
@@ -39,6 +43,8 @@ export default function Room({ code: rawCode }: { code: string }) {
   const [muted, setMuted] = useState(false);
   const [next, setNext] = useState<LobbySummary | null>(null);
   const [busy, setBusy] = useState(false);
+  const [skipped, setSkipped] = useState("");
+  const [kick, setKick] = useState(0);
   const lastRound = useRef<string>("");
   const cheered = useRef<string>("");
   useEffect(() => setMuted(readMuted(() => window.localStorage)), []);
@@ -69,7 +75,7 @@ export default function Room({ code: rawCode }: { code: string }) {
   useEffect(() => {
     if (!id) return;
     let busy = false;
-    const t = window.setInterval(async () => {
+    const pull = async () => {
       if (busy) return;
       busy = true;
       const sentAt = Date.now();
@@ -82,9 +88,11 @@ export default function Room({ code: rawCode }: { code: string }) {
       } finally {
         busy = false;
       }
-    }, POLL_MS);
+    };
+    if (kick > 0) void pull();
+    const t = window.setInterval(() => void pull(), POLL_MS);
     return () => window.clearInterval(t);
-  }, [api, id, take]);
+  }, [api, id, take, kick]);
 
   useEffect(() => {
     const t = window.setInterval(() => setNow(Date.now()), TICK_MS);
@@ -92,11 +100,12 @@ export default function Room({ code: rawCode }: { code: string }) {
   }, []);
 
   const livePhase = lobby ? phaseAt(lobby, now + offset) : null;
-  const roundKey = livePhase?.kind === "round" ? `${lobby?.startedAt}:${livePhase.index}` : livePhase?.kind ?? "";
+  const roundKey = livePhase?.kind === "round" || livePhase?.kind === "reveal" ? `${lobby?.startedAt}:${livePhase.kind}:${livePhase.index}` : livePhase?.kind ?? "";
   useEffect(() => {
     if (!roundKey || roundKey === lastRound.current) return;
     lastRound.current = roundKey;
-    if (roundKey.includes(":")) play("round", muted);
+    if (roundKey.includes(":round:")) play("round", muted);
+    if (roundKey.includes(":reveal:") || roundKey === "finished") setKick((k) => k + 1);
     if (roundKey === "finished" && cheered.current !== lobby?.startedAt) {
       cheered.current = lobby?.startedAt ?? "";
       play("win", muted);
@@ -279,8 +288,11 @@ export default function Room({ code: rawCode }: { code: string }) {
 
   const header = (
     <section className={app.stackSm}>
-      <p className={app.label}>
-        {gameName(lobby.game)} · {lobby.targets.map((l) => `${flagEmoji(langFlag(l))} ${langName(l)}`).join(", ")}
+      <p className={app.label}>{gameName(lobby.game)}</p>
+      <p className={styles.langRow} data-testid="room-langs">
+        {lobby.targets.map((l) => (
+          <LangCard key={l} lang={l} />
+        ))}
       </p>
       <p className={styles.code} data-testid="room-code">{lobby.code}</p>
     </section>
@@ -324,77 +336,158 @@ export default function Room({ code: rawCode }: { code: string }) {
     );
   }
 
+  const lives = lobby.game === "tiles" && (phase.kind === "round" || phase.kind === "reveal") ? livesLeft(lobby, phase.kind === "round" ? phase.index : phase.index + 1) : null;
+  const streak = streakOf(lobby);
+  const hud = (
+    <div className={styles.hud} data-testid="hud">
+      <div className={styles.hudRow}>
+        <span className={styles.hudRound} data-testid="round-count">
+          {phase.kind === "round" || phase.kind === "reveal" ? `Round ${phase.index + 1} of ${lobby.rounds}` : `${lobby.rounds} rounds`}
+        </span>
+        <span className={styles.hudScore}>
+          <span className={styles.scoreNow} key={myScore(lobby)} data-testid="my-score">{myScore(lobby)}</span> pts
+        </span>
+        <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
+        {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
+        <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">
+          {muted ? "🔇" : "🔊"}
+        </button>
+      </div>
+      <div className={styles.gameBar} role="progressbar" aria-label="Game progress" aria-valuemin={0} aria-valuemax={lobby.rounds} aria-valuenow={Math.round(gameProgress(phase, lobby.rounds) * lobby.rounds)} data-testid="game-progress">
+        <div style={{ width: `${gameProgress(phase, lobby.rounds) * 100}%` }} />
+      </div>
+    </div>
+  );
+  const side = (
+    <aside className={styles.side}>
+      <LiveBoard players={lobby.players} live={phase.kind === "round"} />
+    </aside>
+  );
+
   if (phase.kind === "countdown") {
     return (
       <div className={app.stack} data-testid="room">
         {header}
-        <p className={styles.promptWord} data-testid="countdown">{Math.ceil(phase.seconds)}</p>
+        <div className={styles.stage}>
+          <div className={styles.arena}>
+            <p className={styles.bigCount} key={Math.ceil(phase.seconds)} data-testid="countdown">{Math.ceil(phase.seconds)}</p>
+            <p className={app.small}>{gameName(lobby.game)} · {lobby.rounds} rounds</p>
+          </div>
+          {side}
+        </div>
+      </div>
+    );
+  }
+
+  if (phase.kind === "reveal") {
+    const prompt = promptFor(lobby, phase.index);
+    const key = `${lobby.startedAt}:${phase.index}`;
+    const hidden = skipped === key;
+    const total = lobby.revealSeconds || 1;
+    return (
+      <div className={app.stack} data-testid="room">
+        {hud}
+        <div className={styles.stage}>
+          <div className={styles.arena}>
+            <div className={styles.nextRound} data-testid="next-round">
+              <span>Next round in <b data-testid="next-round-count">{Math.max(1, Math.ceil(phase.remaining))}</b></span>
+              <div className={styles.timer} aria-hidden="true">
+                <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / total) * 100))}%` }} />
+              </div>
+              {!hidden ? (
+                <button type="button" className={app.ghost} onClick={() => setSkipped(key)} data-testid="skip-reveal">Skip</button>
+              ) : null}
+            </div>
+            {hidden ? null : prompt?.reveal?.length ? <Reveal prompt={prompt} /> : <p className={app.muted} aria-busy="true">Loading the answers</p>}
+            <Ad placement="between-rounds" />
+          </div>
+          {side}
+        </div>
+        {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
   }
 
   if (phase.kind === "round") {
     const prompt = promptFor(lobby, phase.index);
-    const previous = promptFor(lobby, phase.index - 1);
     const mine = picked?.round === phase.index && picked.game === lobby.startedAt ? picked : null;
     const done = !!mine || answeredRound(lobby, phase.index);
     const elapsed = lobby.roundSeconds * 1000 - phase.remaining * 1000;
-    const lives = lobby.game === "tiles" ? livesLeft(lobby, phase.index) : null;
+    const stateOf = (c: string) => (mine ? (mine.choice === c ? (mine.pending ? "pending" : mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined);
     return (
       <div className={app.stack} data-testid="room">
-        {toolbar}
-        <p className={app.label}>
-          Round {phase.index + 1} of {lobby.rounds} · <span className={styles.scoreNow} key={myScore(lobby)}>{myScore(lobby)}</span> points
-          {lives !== null ? <span className={styles.lives} data-testid="lives"> {"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
-        </p>
+        {hud}
         {mine && !mine.pending && mine.points > 0 ? <p className={styles.pop} key={`${mine.game}:${mine.round}`} data-testid="score-pop">+{mine.points}</p> : null}
-        <div className={styles.timer} aria-hidden="true">
-          <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / lobby.roundSeconds) * 100))}%` }} />
-        </div>
-        {prompt && prompt.mode === "tiles" ? (
-          <>
-            <Tiles
-              key={`${lobby.startedAt}:${phase.index}`}
-              gloss={prompt.gloss}
-              choices={prompt.choices}
-              round={phase.index}
-              rounds={lobby.rounds}
-              roundSeconds={lobby.roundSeconds}
-              elapsedMs={elapsed}
-              muted={muted}
-              locked={done || lives === 0}
-              onSubmit={(t) => void answer(phase.index, tappedChoice(t))}
-            />
-            {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.correct ? `Perfect. +${mine.points}` : mine.points > 0 ? `Close. +${mine.points}` : "Missed some. -1 life"}</p> : null}
-            {lives === 0 ? <p className={styles.feedback}>Out of lives. Watch the rest.</p> : null}
-          </>
-        ) : prompt ? (
-          <>
-            <div className={styles.prompt}>
-              <p className={app.small}>{prompt.mode === "flag" ? "Which language is this word?" : "Pick the word that means"}</p>
-              <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
+        <div className={styles.stage}>
+          <div className={styles.arena}>
+            <div className={styles.timer} aria-hidden="true">
+              <div className={styles.timerFill} style={{ width: `${Math.max(0, Math.min(100, (phase.remaining / lobby.roundSeconds) * 100))}%` }} />
             </div>
-            <ul className={styles.choices}>
-              {prompt.choices.map((c) => (
-                <li key={c}>
-                  <button type="button" className={styles.choice} data-state={mine ? (mine.choice === c ? (mine.pending ? "pending" : mine.correct ? "right" : "wrong") : "dim") : done ? "dim" : undefined} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
-                    {prompt.mode === "flag" ? langName(c) : c}
-                  </button>
-                </li>
-              ))}
-            </ul>
-            {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.points > 0 ? `Right. +${mine.points}` : mine.correct ? "Right." : "Not this time."}</p> : null}
-          </>
-        ) : (
-          <p className={app.muted} aria-busy="true">Loading the round</p>
-        )}
-        {previous?.reveal?.length ? <Reveal prompt={previous} compact /> : null}
-        {done ? (
-          <>
-            {lobby.game === "live" || lobby.game === "tiles" ? scoreboard : null}
-            <Ad placement="between-rounds" />
-          </>
-        ) : null}
+            {prompt && prompt.mode === "tiles" ? (
+              <>
+                <Tiles
+                  key={`${lobby.startedAt}:${phase.index}`}
+                  gloss={prompt.gloss}
+                  choices={prompt.choices}
+                  round={phase.index}
+                  rounds={lobby.rounds}
+                  roundSeconds={lobby.roundSeconds}
+                  elapsedMs={elapsed}
+                  muted={muted}
+                  locked={done || lives === 0}
+                  onSubmit={(t) => void answer(phase.index, tappedChoice(t))}
+                />
+                {mine ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.correct ? `Perfect. +${mine.points}` : mine.points > 0 ? `Close. +${mine.points}` : "Missed some. -1 life"}</p> : null}
+                {lives === 0 ? <p className={styles.feedback}>Out of lives. Watch the rest.</p> : null}
+              </>
+            ) : prompt && prompt.mode === "flag" ? (
+              <>
+                <div className={styles.prompt}>
+                  <p className={app.small}>Which language is this word?</p>
+                  <div className={styles.promptTile}>
+                    <TileFace as="div" lang="" plain word={prompt.gloss} attrs={{ "data-testid": "prompt" }} />
+                  </div>
+                </div>
+                <ul className={styles.choices}>
+                  {prompt.choices.map((c) => (
+                    <li key={c}>
+                      <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                        <LangCard lang={c} big />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : prompt ? (
+              <>
+                <div className={styles.prompt}>
+                  <p className={app.small}>Pick the word that means</p>
+                  <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
+                </div>
+                <ul className={styles.choiceTiles}>
+                  {prompt.choices.map((c, i) => (
+                    <li key={c}>
+                      <TileFace
+                        as="button"
+                        lang={prompt.lang ?? ""}
+                        plain={!prompt.lang}
+                        word={c}
+                        rtl={prompt.lang ? LANGS[prompt.lang]?.rtl : undefined}
+                        index={i}
+                        className={styles.choiceTile}
+                        attrs={{ "data-state": stateOf(c), "data-testid": "choice", disabled: done, onClick: () => void answer(phase.index, c) }}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <p className={app.muted} aria-busy="true">Loading the round</p>
+            )}
+            {mine && prompt?.mode !== "tiles" ? <p className={styles.feedback} data-testid="feedback" aria-busy={mine.pending}>{mine.pending ? "Checking" : mine.points > 0 ? `Right. +${mine.points}` : mine.correct ? "Right." : "Not this time."}</p> : null}
+          </div>
+          {side}
+        </div>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
@@ -423,7 +516,7 @@ export default function Room({ code: rawCode }: { code: string }) {
       </section>
       <section className={app.stackSm} data-testid="reveal-all">
         <h2 className={app.fieldLabel}>Every word in this game</h2>
-        {lobby.prompts.map((p) => (p.reveal?.length ? <Reveal key={p.round} prompt={p} /> : null))}
+        {lobby.prompts.map((p) => (p.reveal?.length ? <Reveal key={p.round} prompt={p} answersOnly /> : null))}
       </section>
       {guest ? (
         <section className={styles.upsell} data-testid="save-progress">

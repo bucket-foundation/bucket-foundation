@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { answeredRound, botLabel, flagEmoji, cleanNickname, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
+import { answeredRound, botLabel, flagEmoji, cleanNickname, gameProgress, gameSeconds, langFlag, livesLeft, ranked, revealOrder, streakOf, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
 
 test("phase follows the server clock", () => {
   const lobby = { status: "playing" as const, startedAt: new Date(10_000).toISOString(), rounds: 3, roundSeconds: 10 };
@@ -10,6 +10,27 @@ test("phase follows the server clock", () => {
   assert.deepEqual(phaseAt({ ...lobby, status: "lobby" }, 0), { kind: "waiting" });
   assert.deepEqual(phaseAt({ ...lobby, status: "done" }, 0), { kind: "finished" });
   assert.equal(serverOffset(new Date(1_500).toISOString(), 1_000, 1_000), 500);
+});
+
+test("a reveal gap sits between rounds and none after the last", () => {
+  const lobby = { status: "playing" as const, startedAt: new Date(10_000).toISOString(), rounds: 3, roundSeconds: 8, revealSeconds: 4 };
+  assert.equal(gameSeconds(lobby), 32);
+  assert.deepEqual(phaseAt(lobby, 17_000), { kind: "round", index: 0, remaining: 1 });
+  assert.deepEqual(phaseAt(lobby, 19_000), { kind: "reveal", index: 0, remaining: 3 });
+  assert.deepEqual(phaseAt(lobby, 22_000), { kind: "round", index: 1, remaining: 8 });
+  assert.deepEqual(phaseAt(lobby, 41_000), { kind: "round", index: 2, remaining: 1 });
+  assert.deepEqual(phaseAt(lobby, 42_000), { kind: "finished" });
+  assert.equal(gameProgress({ kind: "round", index: 1, remaining: 3 }, 3), 1 / 3);
+  assert.equal(gameProgress({ kind: "reveal", index: 1, remaining: 3 }, 3), 2 / 3);
+  assert.equal(gameProgress({ kind: "finished" }, 3), 1);
+  assert.equal(gameProgress({ kind: "waiting" }, 3), 0);
+});
+
+test("standard games run 60 to 90 seconds", () => {
+  for (const g of [{ rounds: 6, roundSeconds: 8 }, { rounds: 7, roundSeconds: 7 }, { rounds: 8, roundSeconds: 6 }]) {
+    const s = gameSeconds({ ...g, revealSeconds: 4 });
+    assert.ok(s >= 60 && s <= 90, `${g.rounds}x${g.roundSeconds} runs ${s}s`);
+  }
 });
 
 test("guest helpers", () => {
@@ -118,6 +139,27 @@ test("results wait for the server tally, then stop waiting", () => {
   assert.equal(tallyLate(lobby, end + 1000), false);
   assert.equal(tallyLate(lobby, end + TALLY_WAIT_MS + 1), true);
   assert.equal(tallyLate({ ...lobby, startedAt: null }, end + 60_000), false);
+  const gapped = { ...lobby, revealSeconds: 4 };
+  assert.equal(tallyLate(gapped, end + 16_000 + TALLY_WAIT_MS), false);
+  assert.equal(tallyLate(gapped, end + 16_000 + TALLY_WAIT_MS + 1), true);
+});
+
+test("ranked shares a rank on ties and keeps everyone, bots included", () => {
+  const p = (userId: string, score: number, bot = false) => ({ userId, name: userId, handle: null, ready: true, score, isHost: false, isMe: userId === "me", online: true, answered: false, bot, skill: bot ? "easy" : null, flag: null });
+  const rows = ranked([p("a", 100), p("me", 300), p("bot", 100, true), p("z", 0)]);
+  assert.deepEqual(rows.map((r) => [r.userId, r.rank]), [["me", 1], ["a", 2], ["bot", 2], ["z", 4]]);
+});
+
+test("streak, lives and reveal order", () => {
+  const players = [{ userId: "me", isMe: true }] as WebLobbyState["players"];
+  const r = (round: number, correct: boolean) => ({ round, userId: "me", correct, ms: 0, points: 0 });
+  assert.equal(streakOf({ players, results: [r(0, false), r(1, true), r(2, true)] }), 2);
+  assert.equal(streakOf({ players, results: [r(0, true), r(2, true)] }), 1);
+  assert.equal(livesLeft({ players, results: [r(0, false), r(1, true)] }, 3), 1);
+  assert.equal(livesLeft({ players, results: [] }, 2), 3);
+  assert.deepEqual(revealOrder([{ correct: false, w: "a" }, { correct: true, w: "b" }, { correct: true, w: "c" }]).map((e) => e.w), ["b", "c", "a"]);
+  assert.equal(langFlag("pt-BR"), "PT");
+  assert.equal(langFlag("xx"), null);
 });
 
 test("bots render a flag and a skill label", () => {

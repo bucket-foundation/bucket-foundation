@@ -32,7 +32,7 @@ export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
 export const PROFILES = "academy_profiles";
-export const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
+export const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,reveal_seconds,started_at,version,created_at,standing_slot,bot_fill";
 export const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
 
 export async function limited(key: string, max: number): Promise<boolean> {

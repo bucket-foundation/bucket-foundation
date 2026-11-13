@@ -1,3 +1,5 @@
+import { LANGS } from "@academy/lang-systems";
+
 export interface LangSet {
   id: string;
   label: string;
@@ -28,6 +30,7 @@ export function gameName(id: string): string {
 }
 
 export function langName(code: string): string {
+  if (LANGS[code]) return LANGS[code].name;
   try {
     return new Intl.DisplayNames(["en"], { type: "language" }).of(code) ?? code;
   } catch {
