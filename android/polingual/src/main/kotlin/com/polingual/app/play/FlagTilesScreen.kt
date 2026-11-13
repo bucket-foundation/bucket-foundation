@@ -39,7 +39,7 @@ import foundation.bucket.core.ui.pl.WordTile
 
 @Composable
 fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
-    val date = remember { today() }
+    val date = remember { com.polingual.app.deckDay() }
     var deck by remember { mutableStateOf<FlagTilesDeck?>(null) }
     var run by remember { mutableStateOf(RunState()) }
     var progress by remember { mutableFloatStateOf(0f) }

@@ -31,6 +31,22 @@
   "lettersLang": "fa",
   "letters": "ه=h:میهب;خ=kh:خعبی;س=s:عردس;ح=h:طظضح;و=v:نثوص;ی=y:یظذب;ژ=zh:ژداس;ث=s:مذپث"
  },
+ "es,fr|2027-1-5": {
+  "daily": "es:hard:alto/duro/feliz/lleno;fr:star:étoile/soleil/feuille/arbre;es:soup:arroz/té/miel/sopa;fr:mouth:cerveau/visage/bouche/genou;es:nose:boca/nariz/mano/oreja;fr:big:propre/sale/léger/grand",
+  "mini": "fr 1d@0,3:CENT;2a@1,2:SEPT;3d@2,1:HUIT;4a@3,0:QUATRE;5a@5,1:TROIS keys=ABCDEHILMNOPQRSTUX",
+  "groups": "es/number=four,hundred,five,six;fr/number=number,seven,one,five;fr/family=wife,man,daughter,son;es/family=friend,child,father,person tiles=wife,number,seven,son,man,father,friend,person,six,five,hundred,daughter,four,five,one,child",
+  "speedDeck": "es:car,fr:house,es:sister,fr:easy,es:sky,fr:half,es:shoe,fr:buy,es:ball,fr:water,es:snake,fr:good,es:table,fr:finger,es:poor,fr:salt,es:wind,fr:three,es:empty,fr:neck,es:small,fr:brown,es:dirty,fr:wet",
+  "speedSteps": [
+   "es:sky,fr:house,es:car,fr:easy,es:sister/es:sister,es:car,es:sky,fr:easy,fr:house",
+   "-,fr:house,es:car,fr:easy,es:sister/es:sister,es:car,-,fr:easy,fr:house|1|0",
+   "fr:half,es:shoe,es:car,fr:easy,es:sister/es:sister,es:car,es:shoe,fr:easy,fr:half|2|1",
+   "-,es:shoe,es:car,fr:easy,es:sister/es:sister,es:car,es:shoe,fr:easy,-|3|1",
+   "fr:buy,es:ball,es:car,fr:easy,es:sister/es:sister,es:car,es:ball,fr:easy,fr:buy|4|1"
+  ],
+  "voice": "es:sky:es/fr/fi/nl;fr:poor:nl/es/it/fr;es:bird:es/vi/it/fr;fr:wood:fr/sv/es/tr;es:shirt:sv/it/es/fr;fr:full:cs/fr/es/it;es:dirty:cs/es/fr/vi;fr:daughter:fr/nl/sv/es;es:beach:es/fr/en/id;fr:snow:vi/fr/pt/es",
+  "lettersLang": "ko",
+  "letters": "ㅁ=m:ㅇㅁㅗㅛ;ㅇ=ng:ㅓㅍㅎㅇ;ㅓ=eo:ㅓㅅㅗㅡ;ㅍ=p:ㅍㅗㅏㅂ;ㅣ=i:ㅂㅣㅑㄴ;ㅡ=eu:ㅜㅡㅠㅋ;ㅏ=a:ㅏㄹㅗㅜ;ㅗ=o:ㅗㅍㅡㅅ"
+ },
  "de,it,pt|2026-11-12": {
   "daily": "de:five:fünf/drei/zehn/eins;it:sheep:maiale/ragno/pecora/ape;pt:window:camisa/escola/janela/ponte;de:young:hart/jung/gut/neu;it:bone:sangue/dente/osso/gamba;pt:table:bola/cama/igreja/mesa",
   "mini": "de 1a@0,0:SECHS;1d@0,0:SIEBEN;2d@0,3:HÄLFTE;3d@2,5:NEUN;4a@5,2:ZEHN keys=ABCEFHILNRSTUVZÄÜ",
@@ -63,6 +79,22 @@
   "lettersLang": "fa",
   "letters": "ه=h:میهب;خ=kh:خعبی;س=s:عردس;ح=h:طظضح;و=v:نثوص;ی=y:یظذب;ژ=zh:ژداس;ث=s:مذپث"
  },
+ "de,it,pt|2027-1-5": {
+  "daily": "de:grass:Gras/Wolke/Blume/Feuer;it:bag:sedia/ponte/soldi/borsa;pt:pig:porco/vaca/urso/rato;de:bird:Huhn/Hund/Vogel/Maus;it:egg:topo/pesce/uovo/vacca;pt:tree:pedra/árvore/folha/fogo",
+  "mini": "de 1a@0,0:SECHS;1d@0,0:SIEBEN;2d@0,3:HÄLFTE;3d@2,5:NEUN;4a@5,2:ZEHN keys=ABCEFHILNRSTUVZÄÜ",
+  "groups": "de/number=zero,nine,hundred,seven;it/number=one,six,number,thousand;de/family=child,sister,people,name;pt/number=ten,two,five,thousand tiles=nine,sister,six,zero,name,hundred,seven,people,child,one,five,thousand,thousand,ten,number,two",
+  "speedDeck": "de:egg,it:year,pt:leg,de:weak,it:minute,pt:husband,de:island,it:warm,pt:hour,de:snow,it:sun,pt:poor,de:month,it:six,pt:tomorrow,de:paper,it:finger,pt:butter,de:beautiful,it:red,pt:fish,de:week,it:bear,pt:night,de:rain,it:daughter,pt:house,de:child,it:moon,pt:light,de:leaf,it:arm,pt:stone,de:coffee,it:easy,pt:tree",
+  "speedSteps": [
+   "it:minute,it:year,de:egg,de:weak,pt:leg/pt:leg,de:egg,it:minute,de:weak,it:year",
+   "-,it:year,de:egg,de:weak,pt:leg/pt:leg,de:egg,-,de:weak,it:year|1|0",
+   "pt:husband,de:island,de:egg,de:weak,pt:leg/pt:leg,de:egg,de:island,de:weak,pt:husband|2|1",
+   "-,de:island,de:egg,de:weak,pt:leg/pt:leg,de:egg,de:island,de:weak,-|3|1",
+   "it:warm,pt:hour,de:egg,de:weak,pt:leg/pt:leg,de:egg,pt:hour,de:weak,it:warm|4|1"
+  ],
+  "voice": "de:fish:de/it/pt/fi;it:white:en/it/pt/de;pt:mouth:pt/de/it/vi;de:nine:it/pt/de/fi;it:school:de/it/pt/vi;pt:bed:it/de/pt/tr;de:cow:tr/it/de/pt;it:nose:it/pt/fi/de;pt:hat:pt/de/it/nl;de:hot:pt/it/nl/de",
+  "lettersLang": "ko",
+  "letters": "ㅁ=m:ㅇㅁㅗㅛ;ㅇ=ng:ㅓㅍㅎㅇ;ㅓ=eo:ㅓㅅㅗㅡ;ㅍ=p:ㅍㅗㅏㅂ;ㅣ=i:ㅂㅣㅑㄴ;ㅡ=eu:ㅜㅡㅠㅋ;ㅏ=a:ㅏㄹㅗㅜ;ㅗ=o:ㅗㅍㅡㅅ"
+ },
  "ru,ja,es|2026-11-12": {
   "daily": "es:road:camino/libro/pelota/barco;ja:red:赤い/悪い/白い/浜辺;ru:cloud:облако/ветер/дерево/звезда;es:bone:pierna/hueso/lengua/mano;ja:heavy:重い/古い/高い/軽い;ru:hour:ночь/сегодня/час/чай",
   "mini": "ru 1d@0,3:ПЯТЬ;2a@1,0:ДЕВЯТЬ;3a@3,0:СЕМЬ;3d@3,0:СТО;4a@5,0:ОДИН keys=АВДЕИЛМНОПРСТЧШЫЬЯ",
@@ -94,6 +126,22 @@
   "voice": "ru:lake:es/el/ru/ja;ja:back:ja/zh/ko;es:four:nl/vi/en/es;ru:long:es/el/ru/ja;ja:chair:ja/ru/ko/es;es:eye:pl/tr/nl/es;ru:egg:ja/ru/es/el;ja:three:ko/ru/es/ja;es:key:id/es/en/tr;ru:car:ja/es/el/ru",
   "lettersLang": "ru",
   "letters": "с=s:хфъс;ф=f:фчгл;у=u:угеф;д=d:цфдё;ё=yo:ёсъе;п=p:эпъа;з=z:зивэ;к=k:эрёк"
+ },
+ "ru,ja,es|2027-1-5": {
+  "daily": "es:fire:nieve/cielo/árbol/fuego;ja:laugh:読む/笑う/飛ぶ/聞く;ru:dog:пчела/волк/птица/собака;es:house:bolsa/silla/casa/papel;ja:six:九/四/腕/六;ru:full:хороший/полный/большой/низкий",
+  "mini": "ru 1d@0,5:ДЕВЯТЬ;2a@1,0:ЧЕТЫРЕ;2d@1,0:ЧИСЛО;3a@3,0:СЕМЬ;4a@5,0:ОДИН keys=АВДЕИЛМНОПРСТЧШЫЬЯ",
+  "groups": "ja/number=zero,five,seven,number;es/family=daughter,child,people,person;ja/family=baby,father,wife,mother;ru/family=daughter,child,friend,husband tiles=child,husband,mother,zero,friend,people,person,child,five,wife,seven,baby,daughter,number,father,daughter",
+  "speedDeck": "ru:time,ja:friend,es:tree,ru:slow,ja:long,es:bed,ru:potato,ja:green,es:wood,ru:car,ja:brain,es:person,ru:pig,ja:mouse,es:clock,ru:nose,ja:white,es:star,ru:blue,ja:school,es:hundred,ru:thousand,ja:meat,es:pink,ru:egg,ja:weak,es:brain,ru:rice,ja:ball,es:sky,ru:moon,ja:key,es:orange,ru:music,ja:hand,es:butter",
+  "speedSteps": [
+   "ja:long,ja:friend,ru:time,ru:slow,es:tree/es:tree,ru:time,ja:long,ru:slow,ja:friend",
+   "-,ja:friend,ru:time,ru:slow,es:tree/es:tree,ru:time,-,ru:slow,ja:friend|1|0",
+   "es:bed,ru:potato,ru:time,ru:slow,es:tree/es:tree,ru:time,ru:potato,ru:slow,es:bed|2|1",
+   "-,ru:potato,ru:time,ru:slow,es:tree/es:tree,ru:time,ru:potato,ru:slow,-|3|1",
+   "ja:green,es:wood,ru:time,ru:slow,es:tree/es:tree,ru:time,es:wood,ru:slow,ja:green|4|1"
+  ],
+  "voice": "ru:person:ru/ja/es/el;ja:people:ko/zh/ja;es:bridge:de/es/nl/it;ru:long:ru/ja/el/es;ja:chair:ja/ko/es/ru;es:sad:cs/es/de/fi;ru:father:el/es/ja/ru;ja:door:ja/ko/zh;es:yellow:es/pl/vi/pt;ru:old:ru/es/ja/el",
+  "lettersLang": "ja",
+  "letters": "む=mu:むつホる;セ=se:マセリヒ;と=to:とへはの;ミ=mi:イチミヒ;ヤ=ya:ワヤヲア;ほ=ho:おへちほ;け=ke:ソろけつ;に=ni:んナにヲ"
  },
  "rng": {
   "next": [

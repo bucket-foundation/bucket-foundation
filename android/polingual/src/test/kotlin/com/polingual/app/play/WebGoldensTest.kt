@@ -49,3 +49,29 @@ class WebGoldensTest {
         assertEquals(str("polywordFr40"), Polyword.puzzleFor(bank, "fr", 40)!!.slug)
     }
 }
+
+class DayKeyGoldensTest {
+    private val golden = kotlinx.serialization.json.Json.parseToJsonElement(javaClass.classLoader!!.getResource("web-goldens.json")!!.readText()).jsonObject
+    private fun list(k: String) = golden.getValue(k).jsonArray.map { it.jsonPrimitive.content }
+    private val items = TestCorpus.corpus.items
+
+    @Test
+    fun deckGamesUseTheUtcIsoDayLikeTheWebRoutes() {
+        assertEquals("2027-01-05", com.polingual.app.deckDay(java.time.Instant.parse("2027-01-05T23:30:00Z")))
+        assertEquals("2027-01-05", com.polingual.app.deckDay(java.time.Instant.parse("2027-01-05T00:10:00Z")))
+        assertEquals(list("shift20270105"), Shift.board(items, "2027-01-05")!!.targets.map { "${it.lang}:${it.form}" })
+        assertEquals(list("flagTiles20270105"), FlagTilesRules.deck(items, "2027-01-05").tiles.take(8).map { "${it.lang}:${it.form}" })
+        assertEquals(list("atlas20270105"), Atlas.rounds(items, "2027-01-05").map { "${it.lang}:${it.itemId}" })
+    }
+
+    @Test
+    fun polywordCountsLocalDaysForASingleDigitDate() {
+        val bank: PolywordBank = PlayAssets.json.decodeFromString(java.io.File(TestCorpus.repo, "android/polingual/src/main/assets/play/polyword-bank.json").readText())
+        val day = Polyword.dayNumber(java.time.LocalDate.of(2027, 1, 5))
+        assertEquals(golden.getValue("polywordDay20270105").jsonPrimitive.content.toInt(), day)
+        assertEquals(golden.getValue("polywordEs20270105").jsonPrimitive.content, Polyword.puzzleFor(bank, "es", day)!!.slug)
+    }
+
+    @Test
+    fun dailyGamesUseTheUnpaddedLocalDay() = assertEquals("2027-1-5", com.polingual.app.dayKey(java.time.LocalDate.of(2027, 1, 5)))
+}

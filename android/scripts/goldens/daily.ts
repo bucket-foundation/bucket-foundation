@@ -17,7 +17,7 @@ const alphabets = Object.fromEntries(HERITAGE_LANGS.map((l) => [l, alphabetUnit(
 writeFileSync(`${root}android/polingual/src/main/assets/play/alphabets.json`, JSON.stringify({ heritage: HERITAGE_LANGS, letters: alphabets }) + "\n");
 
 const sets = [["es", "fr"], ["de", "it", "pt"], ["ru", "ja", "es"]];
-const days = ["2026-11-12", "2026-11-13"];
+const days = ["2026-11-12", "2026-11-13", "2027-1-5"];
 const out: Record<string, unknown> = {};
 for (const targets of sets) for (const day of days) {
   const key = `${targets.join(",")}|${day}`;
