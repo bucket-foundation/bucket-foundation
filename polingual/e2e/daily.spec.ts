@@ -26,3 +26,17 @@ test("daily set plays six words, then keeps today's result", async ({ page }) =>
   await expect(page.getByTestId("reveal-entry")).toHaveCount(6);
   await revisit(page, "/play/daily-set");
 });
+
+test("mini fills every clue, then keeps today's result", async ({ page }) => {
+  await open(page, "/play/mini");
+  const clues = page.getByTestId("mini-clue");
+  await expect(clues.first()).toBeVisible({ timeout: 60_000 });
+  for (let n = 0; n < (await clues.count()); n++) {
+    const answer = (await clues.nth(n).getAttribute("data-answer")) ?? "";
+    await clues.nth(n).click();
+    for (const ch of answer) await page.keyboard.type(ch);
+  }
+  await page.getByTestId("mini-check").click();
+  await expect(page.getByTestId("daily-score")).toHaveText(/(\d) of \1/);
+  await revisit(page, "/play/mini");
+});
