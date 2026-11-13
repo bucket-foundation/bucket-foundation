@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LANGS } from "@academy/lang-systems";
 import { interstitialDue } from "@/lib/lobby/ads";
-import { adjacent, dealer, fresh, level as levelOf, matches, points, resolve, rng, SIZE, swapped, type Board, type Cell, type Deal, type Meaning } from "@/lib/lobby/babel";
+import { adjacent, dealer, playable, level as levelOf, matches, points, resolve, rng, SIZE, swapped, type Board, type Cell, type Deal, type Meaning } from "@/lib/lobby/babel";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 import { LEARN_HREF } from "@/lib/lobby/client";
 import { play, readMuted } from "@/lib/lobby/sound";
@@ -65,7 +65,7 @@ export default function BabelMatch() {
         const rand = rng(lvl * 7919 + set.id.length);
         deal.current = dealer(d.meanings, set.targets, rand, 0);
         setMeanings(d.meanings);
-        setBoard(fresh(deal.current));
+        setBoard(playable(deal.current));
         setMoves(levelOf(lvl).moves);
         setCleared([]);
         setScore(0);
@@ -123,7 +123,7 @@ export default function BabelMatch() {
     play("hit", muted);
     const nextCleared = [...cleared, ...out.cleared];
     const left = moves - 1;
-    setBoard(out.board);
+    setBoard(playable(deal.current, out.board));
     setCleared(nextCleared);
     setScore((s) => s + points(out.cleared.length, out.cascades));
     setMoves(left);

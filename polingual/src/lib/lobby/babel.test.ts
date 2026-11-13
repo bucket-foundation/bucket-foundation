@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { adjacent, dealer, fresh, level, matches, resolve, rng, SIZE, swapped, type Board, type Meaning } from "./babel";
+import { hasMove, playable, adjacent, dealer, fresh, level, matches, resolve, rng, SIZE, swapped, type Board, type Meaning } from "./babel";
 
 const meanings: Meaning[] = ["dog", "cat", "sun", "sea", "tree"].map((m) => ({ id: m, meaning: m, forms: { es: `${m}-es`, fr: `${m}-fr`, de: `${m}-de` } }));
 
@@ -38,4 +38,14 @@ test("only neighbours swap", () => {
 test("levels get harder", () => {
   assert.ok(level(5).goal > level(1).goal);
   assert.ok(level(10).moves <= level(1).moves);
+});
+
+test("playable boards always hold a legal swap and no ready-made match", () => {
+  for (let seed = 1; seed < 30; seed++) {
+    const b = playable(dealer(meanings, ["es", "fr", "de"], rng(seed)));
+    assert.equal(matches(b).size, 0);
+    assert.equal(hasMove(b), true);
+  }
+  const dead: Board = Array.from({ length: SIZE * SIZE }, (_, i) => ({ key: i, meaning: ["dog", "cat", "sun"][(Math.floor(i / SIZE) + i) % 3], lang: "es" }));
+  assert.equal(hasMove(dead), false);
 });

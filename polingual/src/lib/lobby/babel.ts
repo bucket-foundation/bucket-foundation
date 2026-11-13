@@ -125,6 +125,26 @@ export function resolve(board: Board, deal: Deal): Resolve {
   return { board: current, cleared, cascades };
 }
 
+export function hasMove(board: Board): boolean {
+  for (let i = 0; i < SIZE * SIZE; i++) {
+    for (const j of [i + 1, i + SIZE]) {
+      if (j >= SIZE * SIZE || !adjacent(i, j)) continue;
+      if (matches(swapped(board, i, j)).size) return true;
+    }
+  }
+  return false;
+}
+
+export function playable(deal: Deal, start?: Board): Board {
+  let board = start ?? fresh(deal);
+  for (let tries = 0; tries < 50; tries++) {
+    if (matches(board).size) board = resolve(board, deal).board;
+    if (hasMove(board) && !matches(board).size) return board;
+    board = fresh(deal);
+  }
+  return board;
+}
+
 export interface Level {
   number: number;
   goal: number;
