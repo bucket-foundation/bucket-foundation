@@ -7,6 +7,7 @@ import LangExercise, { ReadingsContext } from "@learn/languages/LangExercise";
 import { appHref } from "@/lib/app/systems";
 import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
+import WordCard from "./WordCard";
 import styles from "../../app.module.css";
 import { Button, ButtonLink, Card, Meter, Stage } from "@/ui";
 
@@ -73,7 +74,7 @@ export default function Session({ systemId }: { systemId: string }) {
       <Meter value={pct} max={100} label="Session progress" />
       <div className={styles.sessionBody} data-testid="session-body">
         <ReadingsContext.Provider value={s.readings}>
-          <LangExercise key={`${s.i}-${s.entry?.itemId}-${s.entry?.lang}-${s.entry?.stage}`} ex={s.ex} onDone={s.onDone} optionReadings={s.optionReadings} links={s.links} targetLayout={!!h.shared} match={s.match} />
+          {s.ex?.kind === "intro" ? <WordCard key={`${s.i}-${s.entry?.itemId}`} ex={s.ex} readings={s.readings} onNext={() => s.onDone([])} /> : <LangExercise key={`${s.i}-${s.entry?.itemId}-${s.entry?.lang}-${s.entry?.stage}`} ex={s.ex} onDone={s.onDone} optionReadings={s.optionReadings} links={s.links} targetLayout={!!h.shared} match={s.match} />}
         </ReadingsContext.Provider>
       </div>
       <div className={styles.sessionFoot}>

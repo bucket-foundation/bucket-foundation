@@ -25,8 +25,8 @@ export default function Paywall({ access, retry }: { access: Access; retry: () =
       </ul>
       <div className={styles.row}>
         <ButtonLink href={APP_STORE_URL} target="_blank" rel="noreferrer" data-testid="app-store-link">Subscribe in the app</ButtonLink>
-        <ButtonLink variant="ghost" size="md" href={TESTFLIGHT_URL} target="_blank" rel="noreferrer">Join the beta</ButtonLink>
-        <Button variant="quiet" size="sm" onClick={retry} data-testid="recheck">I subscribed, check again</Button>
+        <ButtonLink variant="ghost" size="md" onDark href={TESTFLIGHT_URL} target="_blank" rel="noreferrer">Join the beta</ButtonLink>
+        <Button variant="quiet" size="sm" onDark onClick={retry} data-testid="recheck">I subscribed, check again</Button>
       </div>
       {access.status === "unknown" ? <p className={styles.error} data-testid="access-unknown">Your subscription could not be checked. Try again in a minute.</p> : null}
       <p className={styles.small}>Web checkout is coming later. Plans renew through Apple until you cancel in your Apple account settings.</p>

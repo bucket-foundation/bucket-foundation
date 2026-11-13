@@ -7,7 +7,7 @@ import { fetchAccess, type Access } from "@/lib/app/plans";
 import Paywall from "./Paywall";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
-import { Button, Stage } from "@/ui";
+import { Button, ButtonLink, Stage } from "@/ui";
 
 type AuthState = { status: "loading" } | { status: "signed-out" } | { status: "signed-in"; userId: string };
 
@@ -51,9 +51,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <span>polingual</span>
         </Link>
         {auth.status === "signed-in" ? (
-          <Button variant="quiet" size="sm" onClick={signOut} data-testid="sign-out">
-            Sign out
-          </Button>
+          <span className={styles.row}>
+            <ButtonLink variant="quiet" size="sm" href="/app/account" data-testid="account-link">Account</ButtonLink>
+            <Button variant="quiet" size="sm" onClick={signOut} data-testid="sign-out">
+              Sign out
+            </Button>
+          </span>
         ) : null}
       </header>
       <main className={styles.main}>
