@@ -1,0 +1,111 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import type { LangCorpus } from "@academy/lang-systems";
+import { langName } from "@academy/lang-systems";
+import { loadLangCorpus } from "@academy/lang-client";
+import { usePlayer } from "@/lib/listen/player";
+import { radioName, radioStations, type RadioStation } from "@/lib/listen/radio";
+import { Button, FlagTile, Pill, Sheet, Stage } from "@/ui";
+import { Art } from "@/ui/art";
+import { useSystems } from "../useSystems";
+import styles from "./listen.module.css";
+
+const STICKERS = [
+  { name: "bunting" as const, x: "4%", y: "8%", size: 190, rotate: -6 },
+  { name: "script-ko" as const, x: "10%", y: "48%", size: 80, rotate: 8, shadow: false },
+  { name: "seal" as const, x: "6%", y: "12%", size: 120, rotate: 9, side: "right" as const },
+  { name: "kente" as const, x: "3%", y: "64%", size: 180, rotate: -10, side: "right" as const },
+];
+
+const LATIN = /^[\p{Script=Latin}\p{P}\p{N}\s]+$/u;
+
+function heard(corpus: LangCorpus | null, lang: string): { word: string; reading?: string } | null {
+  const item = corpus?.byId.get("hear");
+  const word = item?.forms[lang];
+  if (!word) return null;
+  const r = item?.readings[lang];
+  return { word, reading: LATIN.test(word) ? undefined : (r?.roman ?? r?.kana ?? r?.ipa) };
+}
+
+export default function Listen() {
+  const { state } = useSystems();
+  const player = usePlayer();
+  const langs = useMemo(() => {
+    const t = state.status === "ready" ? [...new Set(state.systems.flatMap((s) => s.targets))].filter((l) => radioName(l)) : [];
+    return t.length ? t : ["es", "fr"];
+  }, [state]);
+  const [lang, setLang] = useState<string | null>(null);
+  const active = lang ?? player.lang ?? langs[0];
+  const [stations, setStations] = useState<RadioStation[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [corpus, setCorpus] = useState<LangCorpus | null>(null);
+
+  useEffect(() => {
+    void loadLangCorpus().then(setCorpus);
+  }, []);
+  useEffect(() => {
+    let live = true;
+    setStations(null);
+    setError(null);
+    radioStations(active)
+      .then((s) => live && setStations(s))
+      .catch(() => live && (setStations([]), setError("The station list did not load. Check your connection and try again.")));
+    return () => {
+      live = false;
+    };
+  }, [active]);
+
+  const now = player.station;
+  const word = heard(corpus, player.lang ?? active);
+
+  return (
+    <Stage ground="cut" stickers={STICKERS} tiles={false}>
+      <Sheet tone="tyrian" className={styles.sheet} data-testid="listen">
+        <p className={styles.eyebrow}>Listen</p>
+        <h1 className={styles.title}>Live radio in the languages you study</h1>
+        <p className={styles.body}>It keeps playing while you move around Polingual.</p>
+        <div className={styles.langs} role="tablist" aria-label="Radio language">
+          {langs.map((l) => (
+            <Pill key={l} role="tab" aria-selected={l === active} active={l === active} onClick={() => setLang(l)} data-testid={`radio-lang-${l}`}>{langName(l)}</Pill>
+          ))}
+        </div>
+        {now ? (
+          <div className={styles.ticket} data-testid="now-playing">
+            <div className={styles.ticketText}>
+              <span className={styles.ticketCap}>Now playing · {langName(player.lang ?? active)}</span>
+              <b className={styles.ticketName}>{now.name}</b>
+              <span className={styles.ticketMeta}>{player.error ?? (player.buffering ? "Tuning in" : [now.country, now.tags.split(",").slice(0, 2).join(", ")].filter(Boolean).join(" · "))}</span>
+            </div>
+            {word ? (
+              <div className={styles.ticketTile} data-testid="now-word">
+                <FlagTile as="div" lang={player.lang ?? active} code={(player.lang ?? active).toUpperCase()} label="hear" word={word.word} reading={word.reading} />
+              </div>
+            ) : null}
+            <Button size="lg" variant={player.playing ? "secondary" : "primary"} onClick={player.toggle} data-testid="now-toggle">{player.playing ? "Pause" : "Play"}</Button>
+          </div>
+        ) : null}
+        {stations === null ? <p className={styles.body} aria-busy="true">Finding stations</p> : null}
+        {stations?.length === 0 ? <p className={styles.body} role="status">{error ?? `No stations found for ${langName(active)}.`}</p> : null}
+        <ul className={styles.list}>
+          {stations?.map((s) => {
+            const on = now?.stationuuid === s.stationuuid && player.playing;
+            return (
+              <li key={s.stationuuid}>
+                <button type="button" className={styles.station} aria-pressed={on} onClick={() => (now?.stationuuid === s.stationuuid ? player.toggle() : player.play(s, active))} data-testid="station">
+                  <span className={styles.stationArt} aria-hidden><Art name={on ? "streak-flame" : "ticket"} size={40} /></span>
+                  <span className={styles.stationText}>
+                    <b>{s.name}</b>
+                    <span>{[s.country, s.tags.split(",").slice(0, 2).join(", ")].filter(Boolean).join(" · ")}</span>
+                  </span>
+                  <span className={styles.stationAct}>{on ? "Pause" : "Play"}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+        <p className={styles.credit}>Stations from radio-browser.info</p>
+      </Sheet>
+    </Stage>
+  );
+}
