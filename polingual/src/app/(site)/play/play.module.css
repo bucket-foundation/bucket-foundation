@@ -296,3 +296,31 @@
 .fhStage > *{position:relative;z-index:1}
 .fhStage > span[aria-hidden]{position:absolute;z-index:0}
 .fhStub{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--pl-ink-dim);order:3}
+.arena{background:var(--pl-paper);background-image:radial-gradient(rgba(35,31,32,.08) 1px,transparent 1.3px);background-size:18px 18px;border:3px solid var(--pl-ink);border-radius:18px;box-shadow:0 6px 0 var(--pl-ink);padding:14px}
+.side{background:var(--pl-tyrian-deep);border:3px solid var(--pl-ink);border-radius:18px;padding:10px;box-shadow:0 6px 0 var(--pl-ink)}
+.side .boardRow{border:2px solid var(--pl-ink);box-shadow:0 3px 0 var(--pl-ink);border-radius:12px;padding:0 10px}
+.prompt{display:flex;flex-direction:column;align-items:center}
+.choice{background:var(--pl-card);border:3px solid var(--pl-ink);box-shadow:0 5px 0 var(--pl-ink);border-radius:14px;min-height:72px}
+.choices li:nth-child(odd) .choice{rotate:-1.2deg}
+.choices li:nth-child(even) .choice{rotate:1.2deg}
+.choice:not(:disabled):active{translate:0 3px;box-shadow:0 2px 0 var(--pl-ink)}
+.choiceFlag{background:var(--pl-card);padding:10px 8px 14px}
+.choiceFlag::before{content:"";display:block;height:8px;margin:-4px -2px 8px;border-radius:6px;background:var(--pl-paper-2)}
+.choice[data-state=right]{background:var(--pl-malachite);color:var(--pl-card)}
+.choice[data-state=wrong]{background:var(--pl-vermilion-deep);color:var(--pl-card)}
+.coins{display:inline-flex;align-items:center;gap:6px}
+@media (max-width:640px){.playStage .frame{padding-bottom:16px}.arena{padding:10px}}
+@media (min-width:1800px){
+  .frame{max-width:none;padding-inline:170px}
+  .frame[data-rails]{max-width:none}
+  .playStage .center{margin-top:8px}
+  .stage{grid-template-columns:minmax(0,1fr) 440px;gap:28px}
+  .arena{padding:28px 36px}
+  .choices{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+  .choice{min-height:120px;font-size:36px}
+  .choiceTiles{gap:24px}
+  .prompt{padding:8px 0 20px}
+  .boardRow{font-size:20px}
+  .feedback{font-size:28px}
+  .hud{font-size:22px}
+}

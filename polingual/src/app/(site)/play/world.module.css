@@ -76,3 +76,20 @@
 @media (min-width:1800px){.stage{padding:48px 180px}.stageSticker{width:120px}.stageSticker[data-slot="4"],.stageSticker[data-slot="5"]{width:96px}}
 .piecePaper.piecePaper{background:var(--pl-card);color:var(--pl-tyrian);border:3px solid var(--pl-ink);border-radius:14px;box-shadow:0 5px 0 var(--pl-ink)}
 .pieceAzulejo.pieceAzulejo[data-picked=true]{background:var(--pl-ochre);box-shadow:inset 0 0 0 3px var(--pl-ochre),inset 0 0 0 5px var(--pl-card),0 4px 0 var(--pl-ochre-deep)}
+.banner::after{background:var(--world-band) left/auto 100% repeat-x}
+.aside{position:relative;z-index:2;margin-left:auto;align-self:center}
+.roomBadge{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;align-items:center;gap:2px 12px;background:var(--pl-card);border:3px solid var(--pl-ink);border-radius:16px;padding:6px 8px 6px 14px;box-shadow:0 5px 0 var(--pl-ink);rotate:1.5deg}
+.roomBadgeLabel{grid-column:1;font-family:"Space Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pl-ink-dim)}
+.roomBadgeCode{grid-column:1;font-family:"Space Mono",monospace;font-size:24px;letter-spacing:.16em;color:var(--pl-tyrian)}
+.roomBadge .qr{grid-column:2;grid-row:1/3;width:64px;padding:3px;border-width:2px;box-shadow:none;rotate:0deg}
+.roomBadge .qr figcaption{display:none}
+@media (max-width:640px){.roomBadge{grid-template-columns:auto}.roomBadge .qr,.roomBadgeLabel{display:none}.roomBadgeCode{font-size:16px}}
+@media (min-width:1800px){.roomBadgeCode{font-size:44px}.roomBadgeLabel{font-size:14px}.roomBadge .qr{width:120px}}
+.promptCard{display:inline-flex;flex-direction:column;align-items:center;gap:6px;margin:4px auto 8px;padding:16px 28px 20px;min-width:min(320px,80%);background:var(--pl-card);border:3px solid var(--pl-ink);border-radius:20px;box-shadow:0 8px 0 var(--pl-ink);rotate:-1.5deg;position:relative;overflow:hidden}
+.promptCard::before{content:"";position:absolute;left:10px;right:10px;top:8px;height:28%;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0));pointer-events:none}
+.promptLabel{font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pl-vermilion)}
+.promptGloss{font-family:"Fredoka",sans-serif;font-weight:600;font-size:var(--pl-type-word-size,44px);font-size:clamp(34px,7vw,44px);line-height:1;color:var(--pl-ink)}
+.promptNote{font-size:13px;color:var(--pl-ink-dim)}
+@media (min-width:1800px){.promptGloss{font-size:66px}.promptLabel{font-size:16px}.promptCard{padding:22px 48px 28px}}
+@media (min-width:1800px){.sheet > div{max-width:none}}
+@media (max-width:640px){.world{min-height:calc(100dvh - 120px)}.sheet{flex:1}}

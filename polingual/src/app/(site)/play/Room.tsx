@@ -14,7 +14,8 @@ import Ad from "./Ad";
 import { gameName, langName } from "./langs";
 import Nickname from "./Nickname";
 import Reveal, { RevealBanner } from "./Reveal";
-import GameWorld from "./GameWorld";
+import GameWorld, { pieceClass, WorldStage } from "./GameWorld";
+import { CoinArt, PromptCard } from "./Pieces";
 import RoomQr from "./RoomQr";
 import world from "./world.module.css";
 import { useLearnIndex } from "./useLearn";
@@ -46,7 +47,7 @@ function errorOf(err: unknown): string {
   return lobbyError(err instanceof LobbyError ? err.code : undefined);
 }
 
-function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId) => void }) {
+function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId, code: string) => void }) {
   const router = useRouter();
   const code = normalizeLobbyCode(rawCode);
   const { state, api, connect } = usePlay();
@@ -65,9 +66,10 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
   const [breaks, setBreaks] = useState<Breaks>({ games: 0, lastInterstitial: null });
   const [interstitial, setInterstitial] = useState(false);
   const learnIndex = useLearnIndex();
+  const worldId: WorldId = !lobby ? "duel" : lobby.game === "spy" ? "ispy" : lobby.game === "daily" || lobby.game === "live" ? "same-word" : lobby.game in WORLDS ? (lobby.game as WorldId) : "duel";
   useEffect(() => {
-    if (lobby?.game) onGame(lobby.game === "spy" ? "ispy" : lobby.game === "daily" || lobby.game === "live" ? "same-word" : lobby.game in WORLDS ? (lobby.game as WorldId) : "duel");
-  }, [lobby?.game, onGame]);
+    if (lobby) onGame(worldId, lobby.code);
+  }, [lobby, worldId, onGame]);
   const [rewarded, setRewarded] = useState(false);
   const adsVisible = useAdsVisible();
   const account = useAccount();
@@ -402,7 +404,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
         </span>
         {rank ? <span className={styles.hudRank} data-testid="my-rank">#{rank} of {lobby.players.length}</span> : null}
         <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
-        {lobby.game === "duel" ? <span className={styles.coins} data-testid="coins" aria-label={`${lobby.coins} coins`}>🪙 {lobby.coins}</span> : null}
+        {lobby.game === "duel" ? <span className={styles.coins} data-testid="coins" aria-label={`${lobby.coins} coins`}><CoinArt size={26} /> {lobby.coins}</span> : null}
         {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
         <Pill size="sm" onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">
           {muted ? "🔇" : "🔊"}
@@ -423,6 +425,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     return (
       <div className={app.stack} data-testid="room">
         {header}
+        <WorldStage id={worldId}>
         <div className={styles.stage}>
           <div className={styles.arena}>
             <p className={styles.bigCount} key={Math.ceil(phase.seconds)} data-testid="countdown">{Math.ceil(phase.seconds)}</p>
@@ -430,6 +433,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
           </div>
           {side}
         </div>
+        </WorldStage>
       </div>
     );
   }
@@ -442,6 +446,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     return (
       <div className={app.stack} data-testid="room">
         {hud}
+        <WorldStage id={worldId}>
         <div className={styles.stage}>
           <div className={styles.arena}>
             <div className={styles.nextRound} data-testid="next-round">
@@ -480,6 +485,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
           </div>
           {side}
         </div>
+        </WorldStage>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
@@ -495,6 +501,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
       <div className={app.stack} data-testid="room" data-round="active">
         {hud}
         {mine && !mine.pending && mine.points > 0 ? <p className={styles.pop} key={`${mine.game}:${mine.round}`} data-testid="score-pop">+{mine.points}</p> : null}
+        <WorldStage id={worldId}>
         <div className={styles.stage}>
           <div className={styles.arena}>
             <div className={styles.timer} aria-hidden="true">
@@ -553,7 +560,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
                 <ul className={styles.choices}>
                   {prompt.choices.filter((c) => !prompt.hide?.includes(c)).map((c) => (
                     <li key={c}>
-                      <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                      <button type="button" className={`${styles.choice} ${styles.choiceFlag}`} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
                         <LangCard lang={c} big />
                       </button>
                     </li>
@@ -572,7 +579,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
                 <ul className={styles.choices}>
                   {prompt.choices.filter((c) => !prompt.hide?.includes(c)).map((c) => (
                     <li key={c}>
-                      <button type="button" className={styles.choice} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
+                      <button type="button" className={`${styles.choice} ${pieceClass("ticket")}`} data-state={stateOf(c)} disabled={done} onClick={() => void answer(phase.index, c)} data-testid="choice">
                         {c}
                       </button>
                     </li>
@@ -583,9 +590,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
             ) : prompt && prompt.mode === "mixed" ? (
               <>
                 <div className={styles.prompt}>
-                  <p className={app.small}>Pick the word that means</p>
-                  <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
-                  <p className={app.small}>The tiles mix this room&apos;s languages. One is right.</p>
+                  <PromptCard label="Pick the word that means" gloss={prompt.gloss} note="The tiles mix this room's languages. One is right." />
                 </div>
                 <ul className={styles.choiceTiles}>
                   {prompt.choices.map((c, i) => {
@@ -613,8 +618,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
             ) : prompt ? (
               <>
                 <div className={styles.prompt}>
-                  <p className={app.small}>Pick the word that means</p>
-                  <p className={styles.promptWord} data-testid="prompt">{prompt.gloss}</p>
+                  <PromptCard label="Pick the word that means" gloss={prompt.gloss} />
                 </div>
                 <ul className={styles.choiceTiles}>
                   {prompt.choices.map((c, i) => (
@@ -640,6 +644,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
           </div>
           {side}
         </div>
+        </WorldStage>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
       </div>
     );
@@ -717,10 +722,21 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
 }
 
 export default function Room({ code }: { code: string }) {
-  const [game, setGame] = useState<WorldId>("duel");
+  const [room, setRoom] = useState<{ game: WorldId; code: string | null }>({ game: "duel", code: null });
+  const onGame = useCallback((game: WorldId, c: string) => setRoom((r) => (r.game === game && r.code === c ? r : { game, code: c })), []);
   return (
-    <GameWorld id={game}>
-      <RoomGame code={code} onGame={setGame} />
+    <GameWorld id={room.game} aside={room.code ? <RoomBadge code={room.code} /> : null}>
+      <RoomGame code={code} onGame={onGame} />
     </GameWorld>
+  );
+}
+
+function RoomBadge({ code }: { code: string }) {
+  return (
+    <div className={world.roomBadge} data-testid="room-badge">
+      <span className={world.roomBadgeLabel}>Join at polingual.com/play</span>
+      <b className={world.roomBadgeCode}>{code}</b>
+      <RoomQr code={code} />
+    </div>
   );
 }

@@ -40,3 +40,14 @@ export type WorldId = keyof typeof WORLDS;
 export function world(id: WorldId): World {
   return WORLDS[id];
 }
+
+export function CoinArt({ size = 24, className }: { size?: number; className?: string }) {
+  return (
+    <svg viewBox="0 0 40 44" width={size} height={(size * 44) / 40} className={className} aria-hidden="true" style={{ overflow: "visible", verticalAlign: "middle" }}>
+      <ellipse cx="20" cy="24" rx="18" ry="18" fill="var(--pl-ochre-deep)" stroke="var(--pl-ink)" strokeWidth="2.5" />
+      <circle cx="20" cy="20" r="18" fill="var(--pl-ochre)" stroke="var(--pl-ink)" strokeWidth="2.5" />
+      <circle cx="20" cy="20" r="12.5" fill="none" stroke="var(--pl-ochre-deep)" strokeWidth="2" />
+      <path d="M20 11.5l2.6 6 6 2.5-6 2.6-2.6 6-2.6-6-6-2.6 6-2.5z" fill="var(--pl-card)" stroke="var(--pl-ink)" strokeWidth="1.2" />
+    </svg>
+  );
+}

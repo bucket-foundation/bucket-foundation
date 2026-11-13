@@ -60,7 +60,7 @@ export function WorldPreview({ id }: { id: WorldId }) {
   );
 }
 
-export default function GameWorld({ id, title, caption, active = false, children }: { id: WorldId; title?: ReactNode; caption?: ReactNode; active?: boolean; children: ReactNode }) {
+export default function GameWorld({ id, title, caption, active = false, aside, children }: { id: WorldId; title?: ReactNode; caption?: ReactNode; active?: boolean; aside?: ReactNode; children: ReactNode }) {
   const w = worldOf(id);
   return (
     <section className={styles.world} data-world={w.id} data-piece={w.piece} data-active={active} data-testid="game-world" style={{ "--world-accent": w.accent, "--world-band": BAND } as CSSProperties}>
@@ -70,6 +70,7 @@ export default function GameWorld({ id, title, caption, active = false, children
           <p className={styles.caption}>{caption ?? w.caption}</p>
           <h1 className={styles.name}>{title ?? w.name}</h1>
         </div>
+        {aside ? <div className={styles.aside}>{aside}</div> : null}
       </WorldGround>
       <div className={styles.sheet}>{children}</div>
     </section>
