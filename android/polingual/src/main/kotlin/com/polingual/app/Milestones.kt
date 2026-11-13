@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import foundation.bucket.core.ui.Card
 import foundation.bucket.core.ui.PlainLink
 import kotlinx.coroutines.launch
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.navigation.compose.composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
@@ -51,17 +52,53 @@ fun AccountExtras(graph: Graph, nav: NavHostController) {
 @Composable
 fun SignedInSection(graph: Graph, nav: NavHostController) {
     val scope = androidx.compose.runtime.rememberCoroutineScope()
+    val p = foundation.bucket.core.ui.LocalPalette.current
     var problem by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf<String?>(null) }
+    var note by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf<String?>(null) }
+    var display by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
+    var handle by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf("") }
+    var confirming by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    var busy by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        val t = graph.account.token() ?: return@LaunchedEffect
+        runCatching { graph.api.profile(t) }.getOrNull()?.let { pr -> display = pr.displayName.orEmpty(); handle = pr.handle.orEmpty() }
+    }
+    fun act(block: suspend () -> Unit) = scope.launch {
+        problem = null; note = null; busy = true
+        try { block() } catch (e: foundation.bucket.core.model.BucketError) { problem = e.message } finally { busy = false }
+    }
     Card {
-        androidx.compose.material3.Text("Signed in", style = foundation.bucket.core.ui.Type.title)
-        PlainLink("Sign out") {
-            scope.launch {
-                try { graph.account.signOut() } catch (e: foundation.bucket.core.model.BucketError) { problem = e.message }
+        androidx.compose.material3.Text("Profile", style = foundation.bucket.core.ui.Type.title)
+        androidx.compose.material3.OutlinedTextField(display, { display = it.take(60) }, singleLine = true, label = { androidx.compose.material3.Text("Display name") }, modifier = androidx.compose.ui.Modifier.fillMaxWidth())
+        androidx.compose.material3.OutlinedTextField(handle, { handle = it.lowercase().filter { c -> c.isLetterOrDigit() || c == '-' || c == '_' }.take(32) }, singleLine = true,
+            label = { androidx.compose.material3.Text("Username") }, prefix = { androidx.compose.material3.Text("@") }, modifier = androidx.compose.ui.Modifier.fillMaxWidth())
+        androidx.compose.material3.Text("3 to 32 lowercase letters, numbers, - or _.", color = p.muted)
+        foundation.bucket.core.ui.PrimaryButton(if (busy) "Saving" else "Save profile", enabled = !busy && handle.length >= 3, color = foundation.bucket.core.ui.D8.lapis) {
+            act {
+                val t = graph.account.token() ?: throw foundation.bucket.core.model.BucketError.Revoked
+                val saved = graph.api.saveProfile(t, handle, display.trim())
+                display = saved.displayName.orEmpty(); handle = saved.handle.orEmpty()
+                if (display.isNotBlank()) graph.store.update { it.copy(nickname = display) }
+                note = "Saved."
             }
         }
-        problem?.let {
-            androidx.compose.material3.Text(it, color = foundation.bucket.core.ui.D8.vermilion)
-            PlainLink("Sign out anyway") { scope.launch { graph.account.signOut(force = true); problem = null } }
+        note?.let { androidx.compose.material3.Text(it, color = foundation.bucket.core.ui.D8.malachite) }
+    }
+    Card {
+        androidx.compose.material3.Text(graph.account.email.ifEmpty { "Signed in" }, color = p.ink)
+        PlainLink("Sign out") { act { graph.account.signOut() } }
+        if (problem?.contains("server") == true) PlainLink("Sign out anyway") { scope.launch { graph.account.signOut(force = true); problem = null } }
+    }
+    Card {
+        androidx.compose.material3.Text("Delete account", style = foundation.bucket.core.ui.Type.title)
+        androidx.compose.material3.Text("Deletes your account, progress, profile and live room history on every device. A Google Play subscription keeps billing until you cancel it in Google Play.", color = p.muted)
+        if (!confirming) PlainLink("Delete my account") { confirming = true } else {
+            androidx.compose.material3.Text("This cannot be undone.", color = foundation.bucket.core.ui.D8.vermilion)
+            foundation.bucket.core.ui.PrimaryButton(if (busy) "Deleting" else "Delete forever", enabled = !busy) {
+                act { graph.account.deleteAccount(); graph.store.clearLocal(); confirming = false }
+            }
+            PlainLink("Keep my account") { confirming = false }
         }
     }
+    problem?.let { androidx.compose.material3.Text(it, color = foundation.bucket.core.ui.D8.vermilion) }
 }
