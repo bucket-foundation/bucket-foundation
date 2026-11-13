@@ -38,6 +38,8 @@ export default function FlagTiles() {
   const [interstitial, setInterstitial] = useState(false);
   const adsVisible = useAdsVisible();
   const tileStart = useRef(0);
+  const counted = useRef(-1);
+  const runs = useRef(0);
 
   useEffect(() => {
     setMuted(readMuted(() => window.localStorage));
@@ -54,7 +56,10 @@ export default function FlagTiles() {
   const tile = deck && run.phase !== "ready" ? deck.tiles[(run.missed ?? run.index) % deck.tiles.length] : null;
   const answer = tile && deck ? deck.langs.indexOf(tile.lang) : -1;
 
-  const send = useCallback((e: RunEvent) => setRun((s) => step(s, e)), []);
+  const send = useCallback((e: RunEvent) => {
+    if (e.kind === "start") runs.current += 1;
+    setRun((s) => step(s, e));
+  }, []);
 
   useEffect(() => {
     if (run.phase !== "running") return;
@@ -72,12 +77,22 @@ export default function FlagTiles() {
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    let hiddenAt = 0;
+    const onVis = () => {
+      if (document.hidden) hiddenAt = performance.now();
+      else if (hiddenAt) tileStart.current += performance.now() - hiddenAt;
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", onVis);
+    };
   }, [run.phase, run.index, send]);
 
   useEffect(() => {
     if (run.phase === "missed") play("miss", muted);
-    if (run.phase === "over" && deck) {
+    if (run.phase === "over" && deck && counted.current !== runs.current) {
+      counted.current = runs.current;
       setBest(writeBest(local, deck.date, run.score));
       const stored = readBreaks(local);
       const games = stored.games + 1;
@@ -100,7 +115,7 @@ export default function FlagTiles() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const lane = KEYS[e.key.toLowerCase()];
-      if (lane === undefined) return;
+      if (lane === undefined || e.repeat) return;
       e.preventDefault();
       tap(lane);
     };
