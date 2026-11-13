@@ -18,14 +18,14 @@
 .hero>div{width:min(100%,260px)}
 .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--pl-space-3)}
 .clock{font:var(--pl-type-label);font-size:14px;letter-spacing:.12em;color:var(--pl-ink-dim)}
-.grid{display:grid;gap:4px;justify-content:center;margin:0 auto}
-.cell{width:48px;height:48px;border-radius:8px;border:2px solid var(--pl-ink);background:var(--pl-white);display:grid;place-items:center;position:relative;font:var(--pl-type-heading);color:var(--pl-ink);cursor:pointer;padding:0}
+.grid{display:grid;grid-template-columns:repeat(var(--cols,5),auto);gap:4px;justify-content:center;margin:0 auto}
+.cell{width:clamp(34px,10.5vw,48px);height:clamp(34px,10.5vw,48px);border-radius:8px;border:2px solid var(--pl-ink);background:var(--pl-white);display:grid;place-items:center;position:relative;font:var(--pl-type-heading);color:var(--pl-ink);cursor:pointer;padding:0}
 .cell[data-on=true]{background:var(--pl-ochre)}
 .cell[data-word=true]{background:var(--pl-lapis-soft)}
 .cell[data-right=true]{background:var(--pl-malachite);color:var(--pl-paper)}
 .cell[data-wrong=true]{background:var(--pl-vermilion);color:var(--pl-paper)}
 .cell sup{position:absolute;top:2px;left:4px;font:var(--pl-type-label);font-size:9px}
-.block{width:48px;height:48px;border-radius:8px;background:var(--pl-tyrian-deep)}
+.block{width:clamp(34px,10.5vw,48px);height:clamp(34px,10.5vw,48px);border-radius:8px;background:var(--pl-tyrian-deep)}
 .clues{margin:0;padding:0;list-style:none;display:grid;gap:6px;font:var(--pl-type-small)}
 .clues li[data-active=true]{color:var(--pl-vermilion)}
 .keys{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
@@ -46,3 +46,4 @@
 .letter{font-size:40px!important;min-height:88px}
 @media (min-width:1800px){.card{max-width:900px}.title{font-size:54px}.cell,.block{width:68px;height:68px}}
 .stack{display:flex;flex-direction:column;gap:var(--pl-space-4)}
+.clueBtn{background:none;border:0;padding:6px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;min-height:36px}
