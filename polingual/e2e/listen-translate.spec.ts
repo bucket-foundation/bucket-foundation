@@ -64,6 +64,7 @@ for (const width of [390, 1440]) {
       await expect(page.getByTestId("now-playing")).toContainText("Radio Uno");
       await expect(page.getByTestId("now-word")).toContainText("oír");
       await page.getByTestId("nav-translate").click();
+      await expect(page.getByTestId("translate")).toBeVisible({ timeout: 60_000 });
       await expect(page.getByTestId("mini-player")).toContainText("Radio Uno");
       await page.getByTestId("nav-home").click();
       await expect(page.getByTestId("mini-player")).toBeVisible();

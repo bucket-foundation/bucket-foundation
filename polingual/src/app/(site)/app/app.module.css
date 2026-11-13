@@ -100,3 +100,6 @@
 .miniName span{display:block;font:var(--pl-type-label);color:var(--pl-ink-dim);text-transform:uppercase;letter-spacing:.1em}
 @media (min-width:860px){.mini{left:auto;right:24px;bottom:24px;width:360px}}
 @media (min-width:860px){.bar{max-width:1280px}}
+@media (max-width:859px){.session{height:calc(100dvh - 56px - 96px - 84px)}}
+.shell{--pl-chrome:140px}
+@media (min-width:860px){.shell{--pl-chrome:56px}}
