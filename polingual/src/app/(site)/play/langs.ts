@@ -1,3 +1,5 @@
+import { LANGS } from "@academy/lang-systems";
+
 export interface LangSet {
   id: string;
   label: string;
@@ -17,6 +19,7 @@ export const GAMES = [
   { id: "daily", name: "Daily words", blurb: "Match the meaning to the word." },
   { id: "same-word", name: "Same word", blurb: "One meaning across languages." },
   { id: "flags", name: "Flags", blurb: "Name the language of each word." },
+  { id: "tiles", name: "Tiles", blurb: "Words fall. Tap every one that means the word on top." },
   { id: "live", name: "Live", blurb: "Fast rounds with a leaderboard after each." },
 ] as const;
 
@@ -27,9 +30,14 @@ export function gameName(id: string): string {
 }
 
 export function langName(code: string): string {
+  if (LANGS[code]) return LANGS[code].name;
   try {
     return new Intl.DisplayNames(["en"], { type: "language" }).of(code) ?? code;
   } catch {
     return code;
   }
+}
+
+export function roundSecondsFor(game: string): number {
+  return game === "tiles" ? 6 : game === "live" ? 7 : 8;
 }

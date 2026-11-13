@@ -1,7 +1,10 @@
-import { langCorpus, service } from "./groups-server";
-import { generateLobbyCode, generateSeed, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
+import { service } from "./groups-server";
+import { corpusLookup } from "./lang-lookup";
+import { gameEndMs, generateLobbyCode, generateSeed, REVEAL_SECONDS, revealEnabled, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
 import {
   botChoice,
+  botTileChoice,
+  tileSubmitMs,
   BOTS,
   botsEnabled,
   chatLine,
@@ -17,27 +20,8 @@ import {
   TICK_LEASE_MS,
   type BotProfile,
   type BotSkill,
-  type FormLookup,
 } from "./lobby-bots";
 import { ANSWERS, checkLobby, LOBBIES, LOBBY_COLS, MESSAGES, PLAYERS, playersOf, PROMPTS, promptsOf, settle, startLobby, submitAnswer } from "./lobbies-server";
-
-let _index: Map<string, { forms: Record<string, string> }[]> | null = null;
-
-export const corpusLookup: FormLookup = (lang, form) => {
-  if (!_index) {
-    _index = new Map();
-    for (const item of langCorpus()?.items ?? []) {
-      if (item.kind !== "word") continue;
-      for (const [l, f] of Object.entries(item.forms)) {
-        const key = `${l}\u0000${f}`;
-        const list = _index.get(key);
-        if (list) list.push(item);
-        else _index.set(key, [item]);
-      }
-    }
-  }
-  return _index.get(`${lang}\u0000${form}`) ?? [];
-};
 
 const byId = new Map(BOTS.map((b) => [b.userId, b]));
 
@@ -77,8 +61,10 @@ export async function fillLobby(lobby: LobbyRow, players: LobbyPlayerRow[], targ
 }
 
 async function resetStanding(lobby: LobbyRow, players: LobbyPlayerRow[], now: number): Promise<LobbyRow | null> {
+  const slot = STANDING_SLOTS.find((s) => s.slot === lobby.standing_slot);
+  const timing = slot ? { rounds: slot.rounds, round_seconds: slot.roundSeconds, ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}) } : {};
   const rows = checkLobby(
-    await service().from(LOBBIES).update({ status: "lobby", started_at: null, seed: generateSeed(), created_at: new Date(now).toISOString() }).eq("id", lobby.id).eq("status", lobby.status).select(LOBBY_COLS),
+    await service().from(LOBBIES).update({ status: "lobby", started_at: null, seed: generateSeed(), created_at: new Date(now).toISOString(), ...timing }).eq("id", lobby.id).eq("status", lobby.status).select(LOBBY_COLS),
     "standing reset",
   ) as LobbyRow[];
   if (!rows[0]) return null;
@@ -111,7 +97,7 @@ async function readyBots(lobby: LobbyRow, players: LobbyPlayerRow[], now: number
 
 async function answerBots(lobby: LobbyRow, players: LobbyPlayerRow[], now: number): Promise<void> {
   const round = roundAt(lobby, now);
-  if (!round || round.index < 0) return;
+  if (!round || round.index < 0 || round.reveal) return;
   const answered = new Set(
     (checkLobby(await service().from(ANSWERS).select("user_id").eq("lobby_id", lobby.id).eq("round", round.index), "bot answers") as { user_id: string }[]).map((r) => r.user_id),
   );
@@ -123,14 +109,17 @@ async function answerBots(lobby: LobbyRow, players: LobbyPlayerRow[], now: numbe
   for (const bot of waiting) {
     const key = `${lobby.id}:${lobby.started_at}:${round.index}:${bot.user_id}`;
     const plan = planAnswer((bot.skill as BotSkill) ?? byId.get(bot.user_id)?.skill ?? "medium", key, lobby.round_seconds);
-    if (!plan.answers || elapsed < plan.atMs) continue;
-    await submitAnswer(lobby, bot.user_id, round.index, botChoice(prompt, lobby.root, corpusLookup, plan, key), Date.parse(round.startsAt) + plan.atMs);
+    const atMs = prompt.mode === "tiles" ? tileSubmitMs(lobby.round_seconds, plan.atMs) : plan.atMs;
+    if (!plan.answers || elapsed < atMs) continue;
+    const skill = (bot.skill as BotSkill) ?? "medium";
+    const choice = prompt.mode === "tiles" ? botTileChoice(prompt.choices, prompt.gloss, lobby.root, corpusLookup, skill, key) : botChoice(prompt, lobby.root, corpusLookup, plan, key);
+    await submitAnswer(lobby, bot.user_id, round.index, choice, Date.parse(round.startsAt) + atMs);
   }
 }
 
 async function signOff(lobby: LobbyRow, players: LobbyPlayerRow[]): Promise<void> {
   if (!lobby.started_at) return;
-  const end = new Date(Date.parse(lobby.started_at) + lobby.rounds * lobby.round_seconds * 1000).toISOString();
+  const end = new Date(gameEndMs({ ...lobby, started_at: lobby.started_at })).toISOString();
   const spoke = await spokeSince(lobby.id, end);
   for (const bot of players.filter((p) => p.is_bot && !spoke.has(p.user_id))) {
     const line = chatLine("signoff", `${lobby.id}:${lobby.started_at}:${bot.user_id}`);
@@ -177,13 +166,13 @@ export async function ensureStanding(now: number): Promise<LobbyRow[]> {
   if (now - lastEnsure < ENSURE_EVERY_MS) return lastStanding;
   lastEnsure = now;
   const have = checkLobby(await service().from(LOBBIES).select(LOBBY_COLS).not("standing_slot", "is", null), "standing") as LobbyRow[];
-  const missing = STANDING_SLOTS.filter((s) => !have.some((l) => l.standing_slot === s.slot));
+  const missing = STANDING_SLOTS.filter((s) => (s.game !== "tiles" || revealEnabled()) && !have.some((l) => l.standing_slot === s.slot));
   for (const s of missing) {
     const host = pickBots(s.slot, 1, new Set())[0];
     const res = await service()
       .from(LOBBIES)
       .upsert(
-        { code: generateLobbyCode(), host_id: host.userId, name: s.name, game: s.game, root: s.root, targets: s.targets, seed: generateSeed(), listed: true, rounds: s.rounds, round_seconds: s.roundSeconds, standing_slot: s.slot, created_at: new Date(now).toISOString() },
+        { code: generateLobbyCode(), host_id: host.userId, name: s.name, game: s.game, root: s.root, targets: s.targets, seed: generateSeed(), listed: true, rounds: s.rounds, round_seconds: s.roundSeconds, ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}), standing_slot: s.slot, created_at: new Date(now).toISOString() },
         { onConflict: "standing_slot", ignoreDuplicates: true },
       )
       .select(LOBBY_COLS);
