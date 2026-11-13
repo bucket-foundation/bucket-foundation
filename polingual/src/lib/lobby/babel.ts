@@ -52,13 +52,12 @@ export function matches(board: Board): Set<number> {
     for (let c = 0; c < SIZE; c++) {
       for (const [dr, dc] of [[0, 1], [1, 0]]) {
         const run = [r * SIZE + c];
-        while (true) {
-          const prev = board[run[run.length - 1]];
-          const nr = Math.floor(run[run.length - 1] / SIZE) + dr;
-          const nc = (run[run.length - 1] % SIZE) + dc;
-          const next = at(board, nr, nc);
-          if (!next || next.meaning !== prev.meaning) break;
+        for (let next = at(board, r + dr, c + dc); next && next.meaning === board[run[run.length - 1]].meaning; ) {
+          const last = run[run.length - 1];
+          const nr = Math.floor(last / SIZE) + dr;
+          const nc = (last % SIZE) + dc;
           run.push(nr * SIZE + nc);
+          next = at(board, nr + dr, nc + dc);
         }
         if (run.length >= MATCH) for (const i of run) out.add(i);
       }
