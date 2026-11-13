@@ -60,6 +60,7 @@ struct OptionButton: View {
 }
 
 struct ExerciseView: View {
+    @Environment(LangStore.self) private var langs
     let ex: Exercise
     let readings: Bool
     let reading: (String, String) -> Reading?
@@ -97,6 +98,8 @@ struct ExerciseView: View {
 
     func r(_ form: String, _ lang: String) -> Reading? { readings ? reading(form, lang) : nil }
 
+    var completed: Bool { verdict != nil || picked != nil || matchDone }
+
     var headerText: String {
         let level = ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? ""
         let letter = ex.itemId == LangScript.letterItemId(ex.answer)
@@ -113,6 +116,9 @@ struct ExerciseView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
             if !compactTyping { CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 26 : 44) }
+            if completed, !RootGloss.letterKinds.contains(ex.kind), let gloss = RootGloss.text(ex, langs.corpus) {
+                RootGlossLine(lang: ex.root, text: gloss)
+            }
             switch ex.kind {
             case .intro where ex.spoken != nil: PairMeet(ex: ex) { onDone([]) }
             case .intro: intro
@@ -706,5 +712,22 @@ struct OptionKey: ViewModifier {
         } else {
             content
         }
+    }
+}
+
+struct RootGlossLine: View {
+    let lang: String
+    let text: String
+
+    var body: some View {
+        HStack(spacing: PL.Space.s2) {
+            Text(Lang.name(lang)).plType(PL.label).foregroundStyle(PL.inkDim)
+            Text(text).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.7)
+        }
+        .padding(.horizontal, PL.Space.s3)
+        .padding(.vertical, PL.Space.s2)
+        .background(PL.paper2, in: .rect(cornerRadius: PL.Radius.sm))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("rootGloss")
     }
 }
