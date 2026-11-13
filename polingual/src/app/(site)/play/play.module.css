@@ -270,3 +270,4 @@
   .player{font-size:22px;padding:12px 18px}
   .verdictHead{font-size:34px}
 }
+.playStage .center:has([data-testid=game-world]){padding:0;overflow:hidden}

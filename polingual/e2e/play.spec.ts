@@ -94,9 +94,9 @@ async function mockRoom(page: Page, game: Game, screen: Screen) {
   await page.goto("/play/ABC123");
 }
 
-for (const width of [390, 1440]) {
+for (const width of [390, 1440, 1920]) {
   test.describe(`play at ${width}`, () => {
-    test.use({ viewport: { width, height: width === 390 ? 844 : 900 } });
+    test.use({ viewport: { width, height: width === 390 ? 844 : width === 1920 ? 1080 : 900 } });
 
     test("tiles round shows Learn tiles with no language names and a live board", async ({ page }) => {
       await mockRoom(page, "tiles", "round");

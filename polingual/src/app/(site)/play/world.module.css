@@ -1,4 +1,4 @@
-.world{--world-accent:var(--pl-vermilion);display:flex;flex-direction:column;border-radius:var(--pl-radius-xl,24px);overflow:hidden;background:var(--pl-paper);border:3px solid var(--pl-ink);box-shadow:0 8px 0 var(--pl-ink)}
+.world{--world-accent:var(--pl-vermilion);display:flex;flex-direction:column;flex:1;overflow:hidden;background:var(--pl-paper)}
 .ground{position:relative;overflow:hidden;isolation:isolate}
 .ground[data-ground=paper]{background-color:var(--pl-paper)}
 .ground[data-ground=tyrian]{background-color:var(--pl-tyrian)}
