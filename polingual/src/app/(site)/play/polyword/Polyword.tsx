@@ -21,6 +21,7 @@ import { langName } from "../langs";
 import { PlayTile } from "../../word/Speak";
 import { Board, Keyboard } from "./Board";
 import styles from "./polyword.module.css";
+import { Button, ButtonLink, Pill } from "@/ui";
 
 const SHARE_URL = `${SITE}/play/polyword`;
 const PLACEHOLDER_AD_MS = 5000;
@@ -341,14 +342,14 @@ export default function Polyword({ bank }: { bank: Bank }) {
           </p>
           <span className={styles.nav}>
             {view === "archive" || !isToday ? (
-              <button type="button" className={styles.tab} onClick={() => openDay(today)} data-testid="pw-today">
+              <Pill onClick={() => openDay(today)} data-testid="pw-today">
                 Today
-              </button>
+              </Pill>
             ) : null}
             {view === "game" ? (
-              <button type="button" className={styles.tab} onClick={() => setView("archive")} data-testid="pw-archive-open">
+              <Pill onClick={() => setView("archive")} data-testid="pw-archive-open">
                 Archive
-              </button>
+              </Pill>
             ) : null}
           </span>
         </div>
@@ -446,12 +447,12 @@ export default function Polyword({ bank }: { bank: Bank }) {
                 ))}
               </ol>
               <div className={styles.actions}>
-                <button type="button" className={app.cta} onClick={() => void share()} data-testid="pw-share">
+                <Button onClick={() => void share()} data-testid="pw-share">
                   Share {won ? `${guesses.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`}
-                </button>
-                <button type="button" className={app.ghost} onClick={() => setView("archive")} data-testid="pw-more">
+                </Button>
+                <Button variant="ghost" size="md" onClick={() => setView("archive")} data-testid="pw-more">
                   Play past puzzles
-                </button>
+                </Button>
               </div>
               {isToday ? (
                 <p className={app.small}>
@@ -466,13 +467,13 @@ export default function Polyword({ bank }: { bank: Bank }) {
                   <div className={app.row}>
                     {ctas.map((c) =>
                       c.id === "sign-in" ? (
-                        <button key={c.id} type="button" className={styles.signIn} onClick={openSignIn} data-testid={`pw-cta-${c.id}`}>
+                        <Button key={c.id} variant="ghost" size="md" onDark onClick={openSignIn} data-testid={`pw-cta-${c.id}`}>
                           {c.label}
-                        </button>
+                        </Button>
                       ) : (
-                        <a key={c.id} href={c.href} className={c.primary ? app.cta : app.ghost} data-testid={`pw-cta-${c.id}`}>
+                        <ButtonLink key={c.id} href={c.href} variant={c.primary ? "primary" : "ghost"} size={c.primary ? "lg" : "md"} data-testid={`pw-cta-${c.id}`}>
                           {c.label}
-                        </a>
+                        </ButtonLink>
                       ),
                     )}
                   </div>
@@ -503,20 +504,20 @@ export default function Polyword({ bank }: { bank: Bank }) {
                 </p>
                 <div className={styles.sheetActions}>
                   {!offer.pro && offer.rewarded ? (
-                    <button type="button" className={app.cta} onClick={() => void watch(unlock.day)} data-testid="pw-watch">
+                    <Button onClick={() => void watch(unlock.day)} data-testid="pw-watch">
                       Watch an ad
-                    </button>
+                    </Button>
                   ) : null}
-                  <a href="/app?from=polyword-archive" className={!offer.pro && offer.rewarded ? app.ghost : app.cta} data-testid="pw-pro">
+                  <ButtonLink href="/app?from=polyword-archive" variant={!offer.pro && offer.rewarded ? "ghost" : "primary"} size={!offer.pro && offer.rewarded ? "md" : "lg"} data-testid="pw-pro">
                     Go Pro
-                  </a>
+                  </ButtonLink>
                 </div>
               </>
             )}
             {unlock.state !== "watching" || ADS.mode !== "placeholder" ? (
-              <button type="button" className={styles.close} onClick={closeSheet} data-testid="pw-unlock-close">
+              <Button variant="quiet" size="sm" onClick={closeSheet} data-testid="pw-unlock-close">
                 Not now
-              </button>
+              </Button>
             ) : null}
           </div>
         </div>

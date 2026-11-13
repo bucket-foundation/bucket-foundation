@@ -13,6 +13,7 @@ import { useAdsVisible } from "../AdsContext";
 import { LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import styles from "../play.module.css";
+import { Button, ButtonLink, Pill } from "@/ui";
 
 const LEVEL_KEY = "polingual-web/babel-level/v1";
 const SETS = LANG_SETS.filter((s) => s.targets.length >= 3).map((s) => ({ ...s, targets: s.targets.slice(0, 3) }));
@@ -141,7 +142,7 @@ export default function BabelMatch() {
         <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
           <div className={styles.interstitialBox}>
             <Ad placement="interstitial" testId="ad-interstitial" />
-            <button type="button" className={app.cta} onClick={() => setInterstitial(false)}>Close</button>
+            <Button onClick={() => setInterstitial(false)}>Close</Button>
           </div>
         </div>
       ) : null}
@@ -197,34 +198,34 @@ export default function BabelMatch() {
           </ul>
           <div className={app.row}>
             {phase === "won" ? (
-              <button type="button" className={app.cta} onClick={() => setLvl((n) => n + 1)} data-testid="bm-next">Next level</button>
+              <Button onClick={() => setLvl((n) => n + 1)} data-testid="bm-next">Next level</Button>
             ) : adsVisible && !extra ? (
               rewarded ? (
                 <>
                   <Ad placement="rewarded" testId="ad-rewarded" />
-                  <button type="button" className={app.cta} onClick={() => { setRewarded(false); setExtra(true); setMoves(5); setPhase("play"); }} data-testid="bm-extra-claim">Take five moves</button>
+                  <Button onClick={() => { setRewarded(false); setExtra(true); setMoves(5); setPhase("play"); }} data-testid="bm-extra-claim">Take five moves</Button>
                 </>
               ) : (
-                <button type="button" className={app.ghost} onClick={() => setRewarded(true)} data-testid="bm-extra-offer">Watch an ad for five moves</button>
+                <Button variant="ghost" size="md" onClick={() => setRewarded(true)} data-testid="bm-extra-offer">Watch an ad for five moves</Button>
               )
             ) : null}
-            {phase === "lost" ? <button type="button" className={app.cta} onClick={() => { setLvl((n) => n); setPhase("loading"); setSet((s) => ({ ...s })); }} data-testid="bm-retry">Try again</button> : null}
-            <a className={app.ghost} href={LEARN_HREF}>Learn these words</a>
+            {phase === "lost" ? <Button onClick={() => { setLvl((n) => n); setPhase("loading"); setSet((s) => ({ ...s })); }} data-testid="bm-retry">Try again</Button> : null}
+            <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
           </div>
         </section>
       ) : null}
       <h2 className={app.fieldLabel}>Languages</h2>
       <div className={styles.chips} role="group" aria-label="Languages">
         {SETS.map((s) => (
-          <button key={s.id} type="button" className={styles.chip} aria-pressed={s.id === set.id} onClick={() => setSet(s)} data-testid={`bm-set-${s.id}`}>
+          <Pill key={s.id} aria-pressed={s.id === set.id} onClick={() => setSet(s)} data-testid={`bm-set-${s.id}`}>
             {s.targets.map((l) => (
               <FlagSquare key={l} lang={l} size={16} />
             ))}
             {s.targets.map(langName).join(", ")}
-          </button>
+          </Pill>
         ))}
       </div>
-      <a className={app.ghost} href="/play">Lobbies</a>
+      <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
     </div>
   );
 }

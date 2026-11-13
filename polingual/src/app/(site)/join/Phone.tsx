@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { clockOffset, displayNickname, joinError, normalizeCode, rank, secondsLeft, type Snapshot } from "@/lib/stoa/client";
 import { nicknameChoices } from "@/lib/stoa/nicknames";
+import { Avatar } from "@/ui/avatar";
 import { dropSeat, findSeat, keepSeat, seatStore, type Seat } from "@/lib/stoa/seat";
 import { LiveSocket, type SocketStatus } from "@/lib/stoa/socket";
 import { verifyEvent } from "@/lib/stoa/verify";
@@ -12,6 +13,7 @@ import { MARKS } from "@/lib/stoa/client";
 import { Brand, Glyph, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState } from "../live/parts";
 import { Confetti, MixBar, TimerRing, useStage } from "../live/show";
 import styles from "../live/stoa.module.css";
+import { Button, ButtonLink, Card, Pill } from "@/ui";
 
 const APP_URL = "https://apps.apple.com/app/id6825177856";
 
@@ -260,19 +262,19 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     if (!seat) {
       if (back && step === "name")
         return (
-          <section className={styles.card} data-testid="join-back">
+          <Card as="section" className={styles.card} data-testid="join-back">
             <p className={styles.label}>Room {back.code}</p>
             <h1 className={styles.title}>Welcome back</h1>
             <p className={styles.body}>This phone already has a seat in this room.</p>
-            <button type="button" className={styles.cta} onClick={() => resume(back)} data-testid="continue">
+            <Button onClick={() => resume(back)} data-testid="continue">
               {back.nickname ? `Continue as ${displayNickname(back.nickname)}` : "Continue with my seat"}
-            </button>
-            <button type="button" className={styles.ghost} onClick={() => fresh(back)} data-testid="someone-new">Join as someone new</button>
-          </section>
+            </Button>
+            <Button variant="ghost" size="md" onClick={() => fresh(back)} data-testid="someone-new">Join as someone new</Button>
+          </Card>
         );
       if (step === "code")
         return (
-          <form className={styles.card} onSubmit={submitCode} data-testid="join-code">
+          <Card as="form" className={styles.card} onSubmit={submitCode} data-testid="join-code">
             <p className={styles.label}>Join a live room</p>
             <h1 className={styles.title}>Enter the room code</h1>
             <label className={styles.field}>
@@ -281,25 +283,25 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
             </label>
             <p id="code-help" className={styles.muted}>6 letters and numbers.</p>
             <p className={styles.muted}>No account and no personal details. <a href="/live/student-data" data-testid="student-data-link">How we handle student data</a></p>
-            <button type="submit" className={styles.cta} disabled={code.length !== 6}>Next</button>
-          </form>
+            <Button type="submit" disabled={code.length !== 6}>Next</Button>
+          </Card>
         );
       return (
-        <section className={styles.card} data-testid="join-name">
+        <Card as="section" className={styles.card} data-testid="join-name">
           <p className={styles.label}>Room {code}</p>
           <h1 className={styles.title}>Pick your name</h1>
           <ul className={styles.chips}>
             {names.map((n) => (
               <li key={n}>
-                <button type="button" className={styles.pick} disabled={busy} onClick={() => void join(n)} data-testid="nickname">{displayNickname(n)}</button>
+                <Pill disabled={busy} onClick={() => void join(n)} data-testid="nickname">{displayNickname(n)}</Pill>
               </li>
             ))}
           </ul>
           <div className={styles.row}>
-            <button type="button" className={styles.ghost} onClick={() => setNames(nicknameChoices(Math.random))}>Other names</button>
-            <button type="button" className={styles.ghost} onClick={() => setStep("code")}>Change code</button>
+            <Button variant="ghost" size="md" onClick={() => setNames(nicknameChoices(Math.random))}>Other names</Button>
+            <Button variant="ghost" size="md" onClick={() => setStep("code")}>Change code</Button>
           </div>
-        </section>
+        </Card>
       );
     }
     if (!snap) return <p className={styles.muted}>Connecting to the room.</p>;
@@ -309,8 +311,9 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     const name = me ? displayNickname(me.nickname) : "";
     if (phase === "lobby")
       return (
-        <section className={styles.card} data-testid="phone-lobby">
+        <Card as="section" className={styles.card} data-testid="phone-lobby">
           <p className={styles.label}>You are in</p>
+          {me ? <Avatar seed={me.nickname} size="xl" bounce label="" /> : null}
           <p className={styles.big}>{name}</p>
           <TeamTag slot={me?.team_slot} />
           <p className={styles.body}>Watch the board. The first question opens when the host starts.</p>
@@ -322,7 +325,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
               </button>
             ))}
           </div>
-        </section>
+        </Card>
       );
     if (phase === "question" && q) {
       const chosen = me?.choice ?? null;
@@ -360,16 +363,16 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     }
     if (phase === "finale" || phase === "closed")
       return (
-        <section className={styles.card} data-testid="phone-finale">
+        <Card as="section" className={styles.card} data-testid="phone-finale">
           {(rank(snap.standings, me?.id) ?? 99) <= 3 ? <Confetti /> : null}
           <p className={styles.label}>Final board</p>
           <p className={styles.big}>{me?.points ?? 0} points</p>
           {snap.team_standings ? <TeamStandings rows={snap.team_standings} mine={me?.team_slot} /> : null}
           <Standings rows={snap.standings.slice(0, 5)} me={me?.id} />
           {!snap.room.school_mode ? (
-            <a className={styles.ghost} href={APP_URL} data-testid="app-link">Keep learning with Polingual</a>
+            <ButtonLink variant="ghost" size="md" href={APP_URL} data-testid="app-link">Keep learning with Polingual</ButtonLink>
           ) : null}
-        </section>
+        </Card>
       );
     return <p className={styles.muted}>Waiting for the board.</p>;
   })();
@@ -384,7 +387,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
       <main className={`${styles.main} ${styles.phone}`} data-testid="phone">
         {body}
         {seat ? (
-          <button type="button" className={styles.ghost} onClick={() => leave()} data-testid="leave">Leave game</button>
+          <Button variant="ghost" size="md" onClick={() => leave()} data-testid="leave">Leave game</Button>
         ) : null}
         {error ? <p role="alert" className={styles.error} data-testid="phone-error">{error}</p> : null}
       </main>

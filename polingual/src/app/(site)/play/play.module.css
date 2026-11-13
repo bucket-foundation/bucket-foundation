@@ -48,7 +48,6 @@
 .flames{font-family:"Fredoka",sans-serif;font-weight:700;font-size:18px;color:var(--vermilion)}
 .flames[data-on=true]{animation:flame .9s ease-in-out infinite alternate}
 @keyframes flame{from{transform:scale(1) rotate(-2deg)}to{transform:scale(1.08) rotate(2deg)}}
-.mute{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--hair);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--tyrian)}
 .scoreNow{display:inline-block;animation:bump .35s ease-out}
 @keyframes bump{from{transform:scale(1.5);color:var(--malachite)}to{transform:scale(1)}}
 .lives{color:var(--vermilion);letter-spacing:.1em;font-size:16px}
@@ -92,7 +91,6 @@
 .hudRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .hudRound{font-family:"Space Mono",monospace;font-weight:700;font-size:13px;color:var(--ink-2);text-transform:uppercase}
 .hudScore{display:inline-flex;align-items:baseline;gap:4px;font-family:"Fredoka",sans-serif;font-weight:700;font-size:22px;color:var(--tyrian)}
-.hudRow .mute{margin-inline-start:auto}
 .gameBar{height:10px;border-radius:999px;background:var(--parchment-2);overflow:hidden}
 .gameBar > div{height:100%;background:linear-gradient(90deg,var(--malachite),var(--lapis));transition:width .4s ease}
 .stage{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
@@ -123,7 +121,6 @@
 @keyframes shake{0%,100%{translate:0}25%{translate:-6px}75%{translate:6px}}
 @media (prefers-reduced-motion:reduce){.boardRow,.revealCard,.bigCount,.boardScore{transition:none;animation:none}}
 .accountCta{display:flex;align-items:center;gap:12px}
-.ctaPill{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;background:var(--vermilion);color:#fff;font-weight:800;font-size:16px;text-decoration:none;white-space:nowrap}
 .sheetBack{position:fixed;inset:0;z-index:50;background:rgba(35,31,32,.45);display:flex;align-items:flex-end;justify-content:center}
 @media (min-width:640px){.sheetBack{align-items:center}}
 .sheet{position:relative;width:100%;max-width:480px;max-height:90dvh;overflow-y:auto;background:var(--parchment);border-radius:20px 20px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom));box-sizing:border-box}
@@ -146,8 +143,6 @@
 .interstitialBox{width:100%;max-width:420px;background:var(--parchment);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px}
 .setupModes{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border-radius:999px;border:2px solid var(--hair);background:#fff;font:inherit;font-weight:700;cursor:pointer}
-.chip[aria-pressed=true]{border-color:var(--tyrian);background:#fff8ea}
 .order{font-family:"Space Mono",monospace;font-size:12px;color:var(--tyrian)}
 .brandText{white-space:nowrap}
 .accountCta{gap:10px}
@@ -207,3 +202,5 @@
 .shGhost{font-family:"Fredoka",sans-serif;font-size:22px;color:rgba(255,255,255,.45);min-height:28px}
 .shLetter{display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1/1;border-radius:14px;background:#fff8ea;color:var(--tyrian);font-family:"Fredoka",sans-serif;font-size:clamp(28px,8vw,40px)}
 .wsCanvas{width:100%;height:min(64dvh,620px);border-radius:16px;touch-action:none;display:block;border:2px solid var(--hair)}
+.playerName{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.boardName svg{margin-inline-end:6px}

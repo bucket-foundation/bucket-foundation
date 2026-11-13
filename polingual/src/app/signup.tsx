@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/ui";
 
 const CAPTURE_URL = process.env.NEXT_PUBLIC_CAPTURE_URL || "https://www.bucket.foundation/api/capture";
 
@@ -46,9 +47,9 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
         <label className="sr-only" htmlFor="hero-email">Email</label>
         <input id="hero-email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={`${field} sm:flex-1`} style={ringStyle} />
         <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
-        <button type="submit" disabled={state.kind === "sending"} className="rounded-lg px-5 py-3 font-sans text-base font-semibold text-white disabled:opacity-60" style={{ background: "var(--blue)" }}>
+        <Button type="submit" variant="accent" size="md" disabled={state.kind === "sending"}>
           {state.kind === "sending" ? "Sending" : "Get early access"}
-        </button>
+        </Button>
         {state.kind === "error" && <p role="alert" className="font-sans text-sm sm:basis-full" style={{ color: "var(--burgundy)" }}>{state.message}</p>}
       </form>
     );
@@ -79,14 +80,9 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
         <input name="learning" maxLength={160} placeholder="Japanese" className={`${field} mt-1`} style={ring} />
       </label>
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
-      <button
-        type="submit"
-        disabled={state.kind === "sending"}
-        className="w-full rounded-lg px-4 py-3 font-sans text-base text-white transition disabled:opacity-60"
-        style={{ background: "var(--blue)" }}
-      >
+      <Button type="submit" variant="accent" size="md" block disabled={state.kind === "sending"}>
         {state.kind === "sending" ? "Sending" : "Join the learner list"}
-      </button>
+      </Button>
       {state.kind === "error" && (
         <p role="alert" className="font-sans text-sm" style={{ color: "var(--burgundy)" }}>{state.message}</p>
       )}

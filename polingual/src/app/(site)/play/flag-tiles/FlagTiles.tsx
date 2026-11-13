@@ -15,6 +15,7 @@ import { useAdsVisible } from "../AdsContext";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import styles from "../play.module.css";
+import { Button, ButtonLink } from "@/ui";
 
 const KEYS: Record<string, number> = { d: 0, f: 1, j: 2, k: 3, "1": 0, "2": 1, "3": 2, "4": 3 };
 
@@ -158,8 +159,8 @@ export default function FlagTiles() {
         </section>
         {lanes}
         <div className={app.row}>
-          <button type="button" className={app.cta} onClick={() => send({ kind: "start" })} data-testid="ft-start">Start run</button>
-          <a className={app.ghost} href="/play">Lobbies</a>
+          <Button onClick={() => send({ kind: "start" })} data-testid="ft-start">Start run</Button>
+          <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
         </div>
         <p className={app.small}>Today&apos;s best: {best}</p>
       </div>
@@ -222,16 +223,16 @@ export default function FlagTiles() {
           rewarded ? (
             <>
               <Ad placement="rewarded" testId="ad-rewarded" />
-              <button type="button" className={app.cta} onClick={() => { setRewarded(false); send({ kind: "continue" }); }} data-testid="ft-continue-claim">Continue the run</button>
+              <Button onClick={() => { setRewarded(false); send({ kind: "continue" }); }} data-testid="ft-continue-claim">Continue the run</Button>
             </>
           ) : (
             <div className={app.row}>
-              <button type="button" className={app.ghost} onClick={() => setRewarded(true)} data-testid="ft-continue-offer">Watch an ad to continue</button>
-              <button type="button" className={app.cta} onClick={() => send({ kind: "end" })} data-testid="ft-end">See results</button>
+              <Button variant="ghost" size="md" onClick={() => setRewarded(true)} data-testid="ft-continue-offer">Watch an ad to continue</Button>
+              <Button onClick={() => send({ kind: "end" })} data-testid="ft-end">See results</Button>
             </div>
           )
         ) : (
-          <button type="button" className={app.cta} onClick={() => send({ kind: "end" })} data-testid="ft-end">See results</button>
+          <Button onClick={() => send({ kind: "end" })} data-testid="ft-end">See results</Button>
         )}
       </div>
     );
@@ -244,7 +245,7 @@ export default function FlagTiles() {
         <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
           <div className={styles.interstitialBox}>
             <Ad placement="interstitial" testId="ad-interstitial" />
-            <button type="button" className={app.cta} onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</button>
+            <Button onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</Button>
           </div>
         </div>
       ) : null}
@@ -270,9 +271,9 @@ export default function FlagTiles() {
         </ol>
       </section>
       <div className={app.row}>
-        <button type="button" className={app.cta} onClick={() => send({ kind: "start" })} data-testid="ft-again">Run again</button>
-        <a className={app.ghost} href={LEARN_HREF}>Learn these words</a>
-        <a className={app.ghost} href="/play">Lobbies</a>
+        <Button onClick={() => send({ kind: "start" })} data-testid="ft-again">Run again</Button>
+        <ButtonLink variant="ghost" size="md" href={LEARN_HREF}>Learn these words</ButtonLink>
+        <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
       </div>
       {readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
     </div>

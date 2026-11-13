@@ -18,8 +18,6 @@
 .heroTitle{font-family:"Fredoka",sans-serif;font-weight:700;font-size:clamp(42px,7vw,92px);line-height:.98;margin:.15em 0 .3em;color:var(--ink)}
 .heroTitle span{color:var(--vermilion)}
 .ctaRow{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-.cta{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:12px;background:var(--vermilion);color:var(--parchment);font-family:"Fredoka",sans-serif;font-weight:600;font-size:18px;box-shadow:0 4px 0 #8E2312}
-.ctaGhost{background:var(--parchment);color:var(--tyrian);box-shadow:0 4px 0 rgba(35,31,32,.25);border:2px solid var(--tyrian)}
 .heroFoot{height:clamp(60px,10vw,120px);background:var(--tyrian);clip-path:polygon(0 60%,100% 0,100% 100%,0 100%);margin-top:clamp(24px,5vw,56px)}
 .nav{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:22px;font-family:"Space Mono",monospace;font-size:12px}
 .nav a{color:var(--tyrian)}
@@ -65,9 +63,7 @@
 
 .swGrid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr);margin-top:32px}
 @media(min-width:768px){.swGrid{grid-template-columns:repeat(4,1fr)}}
-.swatch{all:unset;box-sizing:border-box;cursor:pointer;border-radius:18px;min-height:140px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;box-shadow:0 6px 0 rgba(35,31,32,.22);transition:transform .15s}
-.swatch:hover{transform:translateY(-4px) rotate(-1deg)}
-.swatch:focus-visible{outline:3px solid var(--vermilion);outline-offset:3px}
+.swatch{box-sizing:border-box;display:flex;flex-direction:column;gap:4px;border-radius:18px;min-height:140px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;box-shadow:0 6px 0 rgba(35,31,32,.22);transition:transform .15s}
 .swName{font-family:"Fredoka",sans-serif;font-weight:700;font-size:20px}
 .swRole{font-size:13px;opacity:.85}
 .swHex{font-family:"Space Mono",monospace;font-size:13px;margin-top:6px;font-weight:700}
@@ -108,7 +104,19 @@
 .page p,.page li,.page a{font-family:"Nunito",system-ui,sans-serif;text-align:left;hyphens:manual}
 .page .statLine{font-family:"Fredoka",sans-serif}
 .page .note,.page .cap,.page .kitList li,.page .nav a,.page .topLink,.page .dl a{font-family:"Space Mono",monospace}
-.page .cta{font-family:"Fredoka",sans-serif}
 .miniTiles .tile{width:92px}
 .miniTiles .tile b{font-size:16px}
 .miniTiles .tile i{display:none}
+.sub{margin-top:clamp(32px,5vw,56px)}
+.subHead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.subHead .h3{margin:0}
+.band .h3{color:var(--ochre)}
+.subGrid{display:grid;gap:8px 32px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.subGrid .sub{margin-top:16px}
+.numbered{counter-reset:n;list-style:none;padding:0;margin:16px 0 0;display:grid;gap:14px;max-width:46em}
+.numbered li{counter-increment:n;display:grid;grid-template-columns:44px 1fr;font-size:18px;line-height:1.5}
+.numbered li::before{content:counter(n,decimal-leading-zero);font-family:"Space Mono",monospace;font-weight:700;color:var(--vermilion)}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:center;font-size:18px}
+.markStage{background:var(--parchment);border-radius:22px;padding:24px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.specimen{font-size:clamp(56px,9vw,120px);line-height:1;color:var(--tyrian);margin:8px 0}

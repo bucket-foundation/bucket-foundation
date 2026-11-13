@@ -2,6 +2,7 @@ import { SCREENS } from "./screens";
 import { FRIENDS, ME } from "./mock";
 import { Avatar } from "../../play-kit/parts";
 import s from "./design.module.css";
+import { Card } from "@/ui";
 
 const LOOKS = [ME.look, ...FRIENDS.map((f) => f.look)];
 
@@ -13,14 +14,14 @@ export default function DesignIndex() {
       <p className={s.muted}>Spec: docs/internal/polingual/PLAY-DESIGN.md. Mock data throughout.</p>
       <div className={s.index}>
         {SCREENS.map((x, i) => (
-          <a key={x.href} href={x.href} className={`${s.card} ${s.pop}`}>
-            <div className={s.row}>
+          <a key={x.href} href={x.href} className={s.pop}>
+            <Card interactive className={s.row}>
               <Avatar look={LOOKS[i % LOOKS.length]} size={56} />
               <div>
                 <h2>{x.name}</h2>
                 <p className={s.muted}>{x.blurb}</p>
               </div>
-            </div>
+            </Card>
           </a>
         ))}
       </div>

@@ -2,6 +2,7 @@
 
 import { displayNickname, MARKS, optionLabel, promptView, team, type Mark, type Question, type Standing, type TeamStanding } from "@/lib/stoa/client";
 import styles from "./stoa.module.css";
+import { Avatar } from "@/ui/avatar";
 
 
 export function Glyph({ glyph }: { glyph: Mark["glyph"] }) {
@@ -92,7 +93,7 @@ export function Standings({ rows, me, testId, moves }: { rows: Standing[]; me?: 
     <ol className={styles.standings} data-testid={testId ?? "standings"}>
       {rows.map((r, i) => (
         <li key={r.player_id} data-me={r.player_id === me} style={{ "--i": i } as React.CSSProperties}>
-          <span>{displayNickname(r.nickname)}</span>
+          <span className={styles.who}><Avatar seed={r.nickname} size="sm" variant="head" label="" />{displayNickname(r.nickname)}</span>
           <Move by={moves?.[r.player_id] ?? 0} />
           <span>{r.points}</span>
         </li>
