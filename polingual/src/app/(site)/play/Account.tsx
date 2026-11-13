@@ -66,9 +66,7 @@ export function AccountCta() {
       {cta.signIn ? (
         <Button variant="quiet" size="sm" onDark onClick={openSignIn} data-testid="sign-in">Sign in</Button>
       ) : null}
-      {cta.learn ? (
-        <ButtonLink href={cta.learn.href} size="sm" data-testid="start-learning">{cta.learn.label}</ButtonLink>
-      ) : null}
+      <ButtonLink href={cta.learn?.href ?? "/app?from=play"} size="sm" data-testid="start-learning">{cta.learn?.label ?? "Start learning"}</ButtonLink>
     </div>
   );
 }
