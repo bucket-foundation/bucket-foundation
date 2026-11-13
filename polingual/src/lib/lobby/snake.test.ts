@@ -36,3 +36,9 @@ test("the smaller of two touching snakes dies", () => {
   const out2 = collide({ snakes: [{ ...big, length: 4 }, { ...small, length: 30 }], words: [], nextWord: 0, eaten: [], bad: [] });
   assert.deepEqual(out2.died, ["big"]);
 });
+
+test("head-on contact counts", () => {
+  const a = { ...makeSnake("a", "A", true, 1, { x: 300, y: 300 }, 0, "#000"), length: 20 };
+  const b = makeSnake("me", "You", false, 1, { x: 305, y: 300 }, Math.PI, "#000");
+  assert.ok(collide({ snakes: [a, b], words: [], nextWord: 0, eaten: [], bad: [] }).died.includes("me"));
+});

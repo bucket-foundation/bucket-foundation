@@ -143,7 +143,7 @@ export function collide(arena: Arena): StepResult {
     if (!s.alive) return s;
     for (const o of arena.snakes) {
       if (o.id === s.id || !o.alive) continue;
-      const hit = o.body.slice(1).some((p) => dist(s.body[0], p) < HIT_R);
+      const hit = o.body.some((p) => dist(s.body[0], p) < HIT_R);
       if (hit && s.length <= o.length) {
         died.push(s.id);
         return { ...s, alive: false };

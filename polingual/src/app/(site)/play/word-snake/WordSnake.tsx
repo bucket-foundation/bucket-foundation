@@ -159,8 +159,8 @@ export default function WordSnake() {
       const me = a.snakes.find((s) => s.id === "me");
       const left = Math.max(0, Math.ceil((endAt.current - Date.now()) / 1000));
       setHud({ length: me?.length ?? 0, left });
-      if (!me?.alive) return finish(true);
       if (left <= 0) return finish(false);
+      if (!me?.alive) return finish(true);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -184,7 +184,7 @@ export default function WordSnake() {
     if (!a) return;
     const me = a.snakes.find((s) => s.id === "me");
     arena.current = { ...a, snakes: a.snakes.map((s) => (s.id === "me" ? { ...makeSnake("me", "You", false, 1, { x: WORLD_W / 2, y: WORLD_H / 2 }, 0, s.color), length: me?.length ?? s.length } : s)) };
-    endAt.current = Date.now() + Math.max(20_000, hud.left * 1000);
+    endAt.current = Date.now() + Math.max(5_000, hud.left * 1000);
     setRespawned(true);
     setRewarded(false);
     setPhase("play");
