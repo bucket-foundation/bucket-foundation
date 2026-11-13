@@ -40,7 +40,10 @@ class Graph(val context: Context) {
     val state: StateFlow<AppState?> = store.state.stateIn(scope, SharingStarted.Eagerly, null)
     val guest = GuestPass(api, kv, nickname = { state.value?.nickname.orEmpty() })
     val lobbies = LobbyStore(api, userToken = { account.token() }, guest = guest)
-    val voice = Voice(context)
+    private val silentSetting = SilentSetting(kv)
+    val silent: StateFlow<Boolean> = silentSetting.on
+    fun setSilent(on: Boolean) = silentSetting.set(on)
+    val voice = Voice(context) { silentSetting.on.value }
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
     val radio = Radio(context)
     val billing = Billing(context, this)

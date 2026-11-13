@@ -38,6 +38,8 @@ fun TodayMore(graph: Graph, nav: NavHostController) {
 
 @Composable
 fun AccountExtras(graph: Graph, nav: NavHostController) {
+    foundation.bucket.core.ui.pl.SectionTitle("Sound")
+    Card { SilentSwitch(graph) }
     val access by graph.billing.access.collectAsState()
     val activity = graph.activity?.get()
     if (activity != null && graph.ads.shouldShow(access) && graph.ads.privacyOptionsRequired(activity)) {

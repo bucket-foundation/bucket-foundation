@@ -80,7 +80,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
     LaunchedEffect(phase) {
         val p = phase
         if (p !is SpyPhase.Round) return@LaunchedEffect
-        graph.voice.speak(rounds[p.index].gloss, rounds[p.index].lang)
+        graph.voice.speak(rounds[p.index].gloss, rounds[p.index].lang, auto = true)
         while (true) {
             now = System.currentTimeMillis()
             if (now - p.startedAt >= ISpy.ROUND_SECONDS * 1000L) { settle(p.index); phase = SpyPhase.Reveal(p.index, false, null); break }

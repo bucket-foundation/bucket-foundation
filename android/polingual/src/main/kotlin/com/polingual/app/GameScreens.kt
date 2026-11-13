@@ -92,6 +92,7 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         stickers = listOf(Sticker(kind.art, Alignment.CenterStart, 70.dp, kind.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("kente", Alignment.BottomEnd, 76.dp, -5f, dx = (-8).dp)),
     ) {
         GameBanner(kind)
+        SilentSwitch(graph, compact = true)
         val c = ctx
         if (c != null) {
             Text("${kind.title.uppercase()} · ${c.system.targets.joinToString(" ") { Lang.name(it) }.uppercase()} · ${dayKey()}", style = Type.caps, color = PL.Vermilion)
@@ -170,7 +171,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         }
         PromptMode.Voice -> {
             Text("Listen. Which language is it?", color = p.muted)
-            LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+            LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang, auto = true) }
             PLButton("Play again", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
         }
     }
@@ -186,7 +187,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         ChoiceButton(label, state) {
             round.answer(choice)
             tick += 1
-            graph.voice.speak(prompt.word.form, prompt.word.lang)
+            graph.voice.speak(prompt.word.form, prompt.word.lang, auto = true)
         }
     }
     if (PlayRules.showReveal(answered = picked != null, roundClosed = false)) {
@@ -222,7 +223,7 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
             game.meanings.forEach { w -> if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile(w.gloss, game.pickedMeaning == w.id) { game.tapMeaning(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } }
         }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            game.forms.forEach { w -> if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile("${Lang.flag(w.lang)} ${w.form}", game.pickedForm == w.id) { graph.voice.speak(w.form, w.lang); game.tapForm(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } }
+            game.forms.forEach { w -> if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile("${Lang.flag(w.lang)} ${w.form}", game.pickedForm == w.id) { graph.voice.speak(w.form, w.lang, auto = true); game.tapForm(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } }
         }
     }
 }
@@ -257,6 +258,10 @@ fun Groups(graph: Graph, c: GameContext) {
         if (!round.won) round.unsolved.forEach { g -> Text("${groupTitle(g.link)}: ${g.words.joinToString(", ") { it.form }}", color = p.muted) }
         LaunchedEffect(Unit) { val pattern = round.results.joinToString("") { if (it) "1" else "0" }; graph.markPlayed(GameKind.WordGroups, c.system, pattern) { day, at -> DailyResults.groups(day, puzzle.groups, round.solved, pattern, at) } }
         Finished(if (round.won) "Solved" else "Out of tries", "${round.mistakes} mistakes. New board tomorrow.", round.results, round.results.size, null)
+        puzzle.groups.forEach { g ->
+            SectionTitle(groupTitle(g.link))
+            g.words.zip(CardRoot.groups(g)).forEach { (w, t) -> com.polingual.app.play.WordLine(w.lang, w.form, t?.let { "${Lang.name(it.lang)}: ${it.text}" } ?: "") }
+        }
         return
     }
     round.tiles.chunked(4).forEach { row ->
@@ -331,7 +336,11 @@ fun Mini(graph: Graph, c: GameContext) {
         }
     }
     Text("${entry.number}${if (entry.across) " across" else " down"}: ${entry.word.gloss}", color = p.ink, fontWeight = FontWeight.Bold)
-    if (solved) { Finished("Solved", "New crossword tomorrow.", listOf(true), 1, null); return }
+    if (solved) {
+        Finished("Solved", "New crossword tomorrow.", listOf(true), 1, null)
+        puzzle.entries.forEach { e -> CardRoot.mini(e)?.let { t -> com.polingual.app.play.WordLine(e.word.lang, e.word.form, "${Lang.name(t.lang)}: ${t.text}") } }
+        return
+    }
     FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         (puzzle.keys + "⌫").forEach { k ->
             Box(Modifier.size(44.dp).clip(RoundedCornerShape(8.dp)).background(p.card).border(1.dp, p.rule, RoundedCornerShape(8.dp)).clickable(role = Role.Button) {
@@ -367,7 +376,7 @@ fun Letters(graph: Graph, c: GameContext) {
         return
     }
     val q = prompts[index]
-    LaunchedEffect(q) { graph.voice.speak(q.ch, q.lang) }
+    LaunchedEffect(q) { graph.voice.speak(q.ch, q.lang, auto = true) }
     ResultDots(results.value, prompts.size)
     Text("${left.toInt()} s · ${Lang.name(q.lang)}", style = Type.caps, color = p.muted)
     Text("Hear the sound, then find its letter.", color = p.muted)
