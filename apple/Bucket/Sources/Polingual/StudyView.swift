@@ -11,6 +11,7 @@ struct StudyView: View {
     @State private var queue: [QueueEntry]?
     @State private var i = 0
     @State private var graded = 0
+    @State private var deferred = 0
     @State private var correct = 0
     @State private var xpStart = 0.0
     @State private var rng = Rng(seed: UInt32(UInt64(Date().timeIntervalSince1970 * 1000) % 2147483647))
@@ -105,6 +106,7 @@ struct StudyView: View {
             if fresh { introduced.insert(key) }
             currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter\(fresh ? "-intro" : "")"
             cardStart = .now
+            if let ex = current, !SilentDeck.shows(ex.kind, spoken: ex.spoken != nil, silent: silent) { deferred += 1; current = nil }
             if current == nil { self.i += 1; makeExercise() }
             return
         }
@@ -120,7 +122,13 @@ struct StudyView: View {
             let crossed = !Beta.shared.flags.crossLanguageOptions ? made : crossLanguageOptions(made, item, system, &rng)
             current = crossed
         }
-        if let ex = current, ex.kind == .intro || ex.kind == .match {
+        if let ex = current, !SilentDeck.shows(ex.kind, spoken: ex.spoken != nil, silent: silent) {
+            deferred += 1
+            i += 1
+            makeExercise()
+            return
+        }
+        if let ex = current, SilentDeck.chorusAllowed(ex.kind) {
             if AudioPace.due(audioOffers) {
                 let lead = VoiceLine(lang: ex.answerLang, text: ex.kind == .intro ? ex.answer : item.form(ex.answerLang) ?? "")
                 chorus = AudioPace.chorus(lead: lead, targets: system.targets, root: system.root, form: item.form)
@@ -164,6 +172,21 @@ struct StudyView: View {
         let state = store.state(systemId)
         if queue.isEmpty {
             StateMessage(title: "Nothing due", detail: "You have met today's new words in every language of this set. Come back tomorrow.", retry: nil)
+        } else if (i >= queue.count || current == nil) && SilentDeck.onlySound(graded: graded, deferred: deferred) {
+            VStack(spacing: PL.Space.s4) {
+                PLArtView(.scriptKo).frame(width: 70).padding(PL.Space.s3).background(PL.tyrian, in: .rect(cornerRadius: PL.Radius.md))
+                Text("Every card left needs sound").font(PL.heading.font())
+                Text("Silent mode saved \(deferred) listening cards for later. Their schedule waits until you hear them.")
+                    .font(PL.body.font()).foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
+                Button("Turn off silent mode") {
+                    silent = false
+                    deferred = 0
+                    i = 0
+                    makeExercise()
+                }
+                .buttonStyle(.pl(.primary))
+            }
+            .padding(PL.Space.s5)
         } else if i >= queue.count || current == nil {
             FitPage(center: true) {
                 let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))

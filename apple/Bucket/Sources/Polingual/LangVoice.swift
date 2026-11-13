@@ -151,8 +151,12 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
         }
     }
 
-    func speakTogether(_ lines: [VoiceLine], kind: SoundKind = .tap) {
+    func speakTogether(_ lines: [VoiceLine], kind: SoundKind = .tap, intro: Bool = false) {
         guard allows(kind) else { return }
+        guard intro else {
+            if let l = lines.first(where: { voice($0.lang) != nil }) ?? lines.first { speak(l.text, l.lang, kind: kind) }
+            return
+        }
         let voiced = lines.compactMap { l in voice(l.lang).map { (l.text, $0) } }
         guard voiced.count > 1 else {
             if let l = lines.first(where: { voice($0.lang) != nil }) ?? lines.first { speak(l.text, l.lang, kind: kind) }

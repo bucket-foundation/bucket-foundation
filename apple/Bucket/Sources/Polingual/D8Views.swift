@@ -204,13 +204,14 @@ struct AnswerRow: View {
         HStack(spacing: 10) {
             if flag { FlagTile(lang: lang, size: state == .right ? 30 : 26) }
             VStack(alignment: .leading, spacing: 1) {
+                Text(langName(lang)).plType(PL.label).foregroundStyle(PL.inkDim)
                 HStack(spacing: 6) {
-                    Text(tapText(word, lang)).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
+                    Text(tapText(word, lang)).font(PL.heading.font(scale: (state == .right ? 19 : 17) / PL.heading.size))
                         .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
                     if let tag { Text(tag).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted) }
                     if canSay {
                         Button { LangVoice.shared.speak(spoken, lang) } label: {
-                            Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted).frame(minWidth: FitScale.naturalTarget, minHeight: FitScale.naturalTarget).contentShape(.rect).padding(.vertical, -9)
+                            PLGlyphView(.speaker, size: 15).foregroundStyle(PL.inkDim).frame(minWidth: FitScale.naturalTarget, minHeight: FitScale.naturalTarget).contentShape(.rect).padding(.vertical, -9)
                         }
                         .buttonStyle(.plain)
                         .accessibilityHint("Plays the word")
@@ -221,7 +222,7 @@ struct AnswerRow: View {
             }
             Spacer(minLength: 0)
             if state != .other {
-                Image(systemName: state == .right ? "checkmark" : "xmark").font(.system(size: 12, weight: .heavy)).foregroundStyle(.white)
+                PLGlyphView(state == .right ? .check : .close, size: 12).foregroundStyle(PL.paper)
                     .frame(width: 22, height: 22).background(state == .right ? D8.malachite : D8.vermilion, in: .circle)
             }
         }

@@ -149,7 +149,7 @@ struct ExerciseView: View {
             #endif
             started = Date()
             if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang, kind: .auto) }
-            if let say = letterSay, ex.kind != .letterSound { LangVoice.shared.speak(say, ex.lang, kind: .auto) } else if ex.kind == .intro { LangVoice.shared.speakTogether(chorus, kind: .auto) }
+            if let say = letterSay, ex.kind != .letterSound { LangVoice.shared.speak(say, ex.lang, kind: .auto) } else if ex.kind == .intro { LangVoice.shared.speakTogether(chorus, kind: .auto, intro: true) }
         }
     }
 
@@ -240,7 +240,7 @@ struct ExerciseView: View {
                     Button("Check") {
                         matchDone = true
                         haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
-                        LangVoice.shared.speakTogether(chorus)
+                        LangVoice.shared.speakTogether(chorus, intro: true)
                     }
                         .buttonStyle(D8Primary())
                         .disabled(assign.count < pairs.count)

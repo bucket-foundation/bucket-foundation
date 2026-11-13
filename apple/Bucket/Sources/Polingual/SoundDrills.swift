@@ -207,7 +207,7 @@ struct LetterSoundDrill: View {
         if o.key == ex.answer {
             LangVoice.shared.speak(say, ex.lang)
         } else {
-            LangVoice.shared.speakTogether([VoiceLine(lang: ex.lang, text: o.say), VoiceLine(lang: ex.lang, text: say)])
+            LangVoice.shared.speak(say, ex.lang)
         }
     }
 }

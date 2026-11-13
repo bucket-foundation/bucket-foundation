@@ -52,3 +52,41 @@ struct SoundPolicyTests {
         #expect(!l.withinBudget)
     }
 }
+
+struct SilentDeckTests {
+    @Test func silentModeDefersEverySoundCardAndKeepsVisualOnes() {
+        for k in SilentDeck.soundKinds { #expect(!SilentDeck.shows(k, silent: true)) }
+        for k in [ExerciseKind.choose, .reverse, .translate, .cloze, .match, .gender, .conjugate] {
+            #expect(SilentDeck.shows(k, silent: true))
+        }
+        for k in SilentDeck.soundKinds { #expect(SilentDeck.shows(k, silent: false)) }
+        #expect(!SilentDeck.shows(.intro, spoken: true, silent: true))
+    }
+
+    @Test func deferredCardsReturnWithTheirScheduleUntouched() {
+        let ids = ["a", "b", "c", "d"]
+        let kinds: [ExerciseKind] = [.choose, .listen, .typeHeard, .reverse]
+        var state = EngineState()
+        let quiet = SilentDeck.pass(kinds, silent: true)
+        #expect(quiet.shown == [0, 3])
+        #expect(quiet.deferred == [1, 2])
+        for i in quiet.shown { state = gradeCard(state, "es", ids[i], 3, now: 1_000) }
+        for i in quiet.deferred { #expect(state.cards[cardId("es", ids[i])] == nil) }
+        for i in quiet.shown { #expect(state.cards[cardId("es", ids[i])] != nil) }
+        let back = SilentDeck.pass(quiet.deferred.map { kinds[$0] }, silent: false)
+        #expect(back.shown.count == quiet.deferred.count)
+        #expect(back.deferred.isEmpty)
+    }
+
+    @Test func soundOnlySessionIsReported() {
+        #expect(SilentDeck.onlySound(graded: 0, deferred: 3))
+        #expect(!SilentDeck.onlySound(graded: 1, deferred: 3))
+        #expect(!SilentDeck.onlySound(graded: 0, deferred: 0))
+    }
+
+    @Test func chorusOnlyOnTheIntroCard() {
+        #expect(SilentDeck.chorusAllowed(.intro))
+        #expect(!SilentDeck.chorusAllowed(.match))
+        #expect(!SilentDeck.chorusAllowed(.choose))
+    }
+}

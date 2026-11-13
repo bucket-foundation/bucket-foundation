@@ -64,3 +64,32 @@ public struct TapLatency: Sendable {
 
     public var withinBudget: Bool { (worst ?? 0) <= SoundPolicy.tapBudget }
 }
+
+public enum SilentDeck {
+    public static let soundKinds: Set<ExerciseKind> = [.listen, .typeHeard, .spellHeard, .speak, .letterSound, .minimalPair, .blend]
+
+    public static func needsSound(_ kind: ExerciseKind, spoken: Bool = false) -> Bool {
+        soundKinds.contains(kind) || spoken
+    }
+
+    public static func shows(_ kind: ExerciseKind, spoken: Bool = false, silent: Bool) -> Bool {
+        !silent || !needsSound(kind, spoken: spoken)
+    }
+
+    public struct Pass: Sendable, Equatable {
+        public var shown: [Int] = []
+        public var deferred: [Int] = []
+    }
+
+    public static func pass(_ kinds: [ExerciseKind], silent: Bool) -> Pass {
+        var p = Pass()
+        for (i, k) in kinds.enumerated() {
+            if shows(k, silent: silent) { p.shown.append(i) } else { p.deferred.append(i) }
+        }
+        return p
+    }
+
+    public static func onlySound(graded: Int, deferred: Int) -> Bool { graded == 0 && deferred > 0 }
+
+    public static func chorusAllowed(_ kind: ExerciseKind) -> Bool { kind == .intro }
+}
