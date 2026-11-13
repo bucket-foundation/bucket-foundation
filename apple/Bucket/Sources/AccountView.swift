@@ -131,6 +131,9 @@ struct AccountView: View {
                 if account.stage == .signedIn { await groups.load() } else { groups.clear() }
             }
             .sheet(isPresented: $signingIn) { SignInSheet() }
+            #if DEBUG
+            .task { if ProcessInfo.processInfo.arguments.contains("-showSignIn") { signingIn = true } }
+            #endif
             .sheet(isPresented: $emailing) { SignInSheet(emailOnly: true) }
             .sheet(isPresented: $confirmingDelete) {
                 DeleteAccountSheet {

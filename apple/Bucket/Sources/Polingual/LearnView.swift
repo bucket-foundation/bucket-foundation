@@ -55,6 +55,7 @@ struct LearnView: View {
             await FilmStore.shared.load()
             #if DEBUG
             if let game = Launch.value("-openGame").flatMap(GameKind.init(rawValue:)) { path.append(LearnRoute.game(game)) }
+            if Launch.flag("-openTranslate") { path.append(LearnRoute.translate) }
             if let kind = Launch.value("-contentKind").flatMap(ContentKind.init(rawValue:)) { path.append(LearnRoute.content(kind)) }
             if let topic = ContentCatalog.topics.first(where: { $0.title == Launch.value("-readTopic") }) { path.append(LearnRoute.read(topic)) }
             if let book = Launch.value("-openLibrary") {

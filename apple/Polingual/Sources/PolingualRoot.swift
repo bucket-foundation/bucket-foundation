@@ -183,5 +183,8 @@ struct GamesOnly: View {
         }
         .environment(\.learnUpsell) { paywall = true }
         .sheet(isPresented: $paywall) { Paywall() }
+        #if DEBUG
+        .task { if Launch.flag("-showPaywall") { paywall = true } }
+        #endif
     }
 }
