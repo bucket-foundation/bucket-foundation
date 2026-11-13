@@ -22,9 +22,10 @@ enum WantedWords {
 
 struct TranslateCard: View {
     @Environment(LangStore.self) private var store
-    @Environment(\.colorScheme) private var scheme
     var today = false
     @AppStorage("translate.targets") private var targetsRaw = ""
+    @AppStorage("translate.recent") private var recentRaw = ""
+    @State private var picking = false
     @State private var committed = TranslateCard.debugQuery
     @State private var query = TranslateCard.debugQuery
     @State private var picked: String?
@@ -61,7 +62,9 @@ struct TranslateCard: View {
         return picked.isEmpty ? langs : picked
     }
 
-    var base: [String] { today ? chosen : langs }
+    var base: [String] { chosen }
+
+    var recent: [String] { recentRaw.split(separator: ",").map(String.init).filter { !$0.isEmpty } }
 
     var shown: [String] {
         guard let from, !base.contains(from) else { return base }
@@ -70,10 +73,7 @@ struct TranslateCard: View {
 
     var active: String { today ? committed : query }
 
-    var soft: Color {
-        guard today else { return Palette.muted }
-        return scheme == .dark ? D8.ink.opacity(0.75) : D8.parchment.opacity(0.75)
-    }
+    var soft: Color { Palette.muted }
 
     static var settingsURL: URL? {
         #if os(iOS)
@@ -103,8 +103,17 @@ struct TranslateCard: View {
             list.remove(at: i)
         } else {
             list.append(l)
+            recentRaw = LangPicker.remember(l, in: recent).joined(separator: ",")
         }
         setTargets(list)
+    }
+
+    func swapLanguages(detected: String?) {
+        guard let r = LangPicker.swap(from: from, detected: detected, targets: chosen) else { return }
+        from = r.from
+        setTargets(r.targets)
+        recentRaw = LangPicker.remember(r.targets[0], in: recent).joined(separator: ",")
+        haptic(true)
     }
 
     func commit() {
@@ -152,6 +161,19 @@ struct TranslateCard: View {
                     }
                     .layoutPriority(1)
                     .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
+                    if LangPicker.swap(from: from, detected: detected, targets: chosen) != nil {
+                        Button { swapLanguages(detected: detected) } label: {
+                            Image(systemName: "arrow.left.arrow.right")
+                                .font(.system(size: 16, weight: .heavy))
+                                .foregroundStyle(Palette.ink)
+                                .frame(width: 44, height: 44)
+                                .background(D8.face, in: .circle)
+                                .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(Text("Swap languages"))
+                        .accessibilityIdentifier("translate.swap")
+                    }
                     if let detected {
                         Text("Detected: \(Lang.name(detected))")
                             .font(.system(size: 15, weight: .semibold, design: .rounded))
@@ -161,10 +183,10 @@ struct TranslateCard: View {
                     }
                     Spacer(minLength: 0)
                 }
-                if today { targetRow }
+                targetRow
                 HStack(spacing: 10) {
                     PLGlyphView(.search, size: 22).foregroundStyle(PL.lapis)
-                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(today ? soft : D8.label))
+                    TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(soft))
                         .font(PL.heading.font(scale: 21 / PL.heading.size))
                         .autocorrectionDisabled()
                         .submitLabel(.search)
@@ -269,9 +291,8 @@ struct TranslateCard: View {
             Group {
                 if today {
                     card
-                        .padding(16)
-                        .environment(\.colorScheme, scheme == .dark ? .light : .dark)
-                        .modifier(GameLip(face: scheme == .dark ? D8.parchment : D8.ink, lip: scheme == .dark ? D8.keyline : .black, radius: 22))
+                        .padding(.vertical, 4)
+                        .todayCard()
                         .accessibilityIdentifier("today.translate")
                 } else {
                     card.padding(.vertical, 6)
@@ -283,6 +304,10 @@ struct TranslateCard: View {
                 speechDenied = false
             }
             .onChange(of: from) { picked = nil }
+            .sheet(isPresented: $picking) {
+                TranslateLanguageSheet(chosen: chosen, recent: recent, suggested: langs, all: sources.isEmpty ? Lang.codes : sources, toggle: toggleTarget)
+                    .environment(\.colorScheme, scheme)
+            }
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
@@ -365,19 +390,13 @@ struct TranslateCard: View {
                     .background(D8.face, in: .capsule)
                     .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 1.5) }
                 }
-                Menu {
-                    Section("My languages") {
-                        ForEach(langs.filter { !chosen.contains($0) }, id: \.self) { l in Button(Lang.name(l)) { toggleTarget(l) } }
-                    }
-                    Section("More languages") {
-                        ForEach(sources.filter { !chosen.contains($0) && !langs.contains($0) }, id: \.self) { l in Button(Lang.name(l)) { toggleTarget(l) } }
-                    }
-                } label: {
+                Button { picking = true } label: {
                     PLGlyphView(.plus, size: 15).foregroundStyle(PL.ink)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 44, height: 44)
                         .background(D8.face, in: .circle)
                         .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
                 }
+                .buttonStyle(.plain)
                 .accessibilityLabel(Text("Add a language"))
                 .accessibilityIdentifier("translate.addTarget")
             }
@@ -426,19 +445,18 @@ struct TranslateCard: View {
                 Label("Translate", systemImage: "arrow.right")
                     .labelStyle(TrailingIcon())
                     .font(D8.word(19))
-                    .foregroundStyle(D8.parchment)
-                    .frame(maxWidth: .infinity, minHeight: 60)
-                    .modifier(GameLip(face: D8.lapis, lip: Color(hex: 0x12326A)))
+                    .frame(minHeight: 52)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(D8Primary())
             .disabled(query.trimmingCharacters(in: .whitespaces).isEmpty)
             .accessibilityIdentifier("translate.go")
             Button { micTapped() } label: {
                 PLGlyphView(listening ? .stop : .mic, size: 26)
-                    .foregroundStyle(D8.parchment)
+                    .foregroundStyle(listening ? PL.paper : PL.vermilion)
                     .frame(width: 60, height: 60)
-                    .background(D8.vermilion, in: .circle)
-                    .background(D8.vermilionLip, in: .circle.offset(y: 5))
+                    .background(listening ? D8.vermilion : D8.face, in: .circle)
+                    .overlay { Circle().strokeBorder(listening ? D8.vermilion : D8.edge, lineWidth: 2) }
+                    .background(listening ? D8.vermilionLip : D8.edge, in: .circle.offset(y: 5))
                     .padding(.bottom, 5)
             }
             .buttonStyle(.plain)
