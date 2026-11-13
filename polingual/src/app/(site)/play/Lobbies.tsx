@@ -102,6 +102,11 @@ export default function Lobbies() {
             <button type="submit" className={app.ghost} data-testid="join-go">Join</button>
           </form>
 
+          <a className={styles.soloCard} href="/play/flag-tiles" data-testid="solo-flag-tiles">
+            <b>Flag Tiles</b>
+            <span className={app.small}>Solo daily run. A word falls; tap the flag of its language.</span>
+          </a>
+
           <section className={app.stackSm} aria-labelledby="new-lobby">
             <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>
             <div className={styles.setupModes} role="group" aria-label="Lobby setup">

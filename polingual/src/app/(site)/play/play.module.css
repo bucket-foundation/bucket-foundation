@@ -161,3 +161,16 @@
 .power span{font-size:13px;color:var(--ink-2)}
 .power:disabled{opacity:.45;cursor:default}
 .powerOn{margin:0;text-align:center;font-weight:800;color:#8A5A00}
+.ftLanes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;touch-action:manipulation;user-select:none}
+.ftLane{min-height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-radius:16px;border:2px solid var(--hair);background:#fff;font:inherit;font-weight:800;font-size:13px;color:var(--ink);cursor:pointer;padding:6px 2px}
+.ftLane span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ftLane:active{scale:.95}
+.ftLane[data-state=right]{border-color:var(--malachite);box-shadow:0 0 0 3px var(--malachite)}
+.ftLane[data-state=wrong]{border-color:#9B2414;box-shadow:0 0 0 3px #9B2414}
+.ftLane[data-state=dim]{opacity:.5}
+.ftStage{position:relative;height:min(46vh,420px);min-height:260px;border-radius:20px;background:linear-gradient(180deg,var(--tyrian) 0%,var(--lapis) 100%);overflow:hidden}
+.ftFall{position:absolute;left:50%;width:min(200px,52vw);translate:-50% 0}
+.ftFall > div{width:100%}
+.ftLine{position:absolute;left:0;right:0;bottom:8%;height:3px;background:rgba(233,162,59,.8)}
+.soloCard{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:16px;border:2px solid var(--tyrian);background:linear-gradient(90deg,#fff8ea,#FCE7C4);text-decoration:none;color:var(--ink)}
+.soloCard b{font-family:"Fredoka",sans-serif;font-size:20px;color:var(--tyrian)}

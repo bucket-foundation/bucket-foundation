@@ -19,3 +19,7 @@ Branch `feat/polingual-playtest`, worktree `/home/gian/agfarms/.wt-playtest`. Be
 ## Flag Duel
 
 Bead bkt-9gvte.1, branch `feat/polingual-flag-duel`. Flag `POLINGUAL_LOBBY_DUEL=on`, migration `20261113100000_polingual_flag_duel.sql`. Game `duel`: even rounds name the language, odd rounds pick the meaning; coins from right answers buy double points or 50/50 for the next round (`/lobbies/power`). Standing slot `duel-world`. Tests `scripts/test-academy-lobby-duel.ts`. Polyword is built on the Mac; skip it. Next game here: Flag Tiles.
+
+## Flag Tiles
+
+Bead bkt-9gvte.2, branch `feat/polingual-flag-tiles`. Solo daily run at `/play/flag-tiles`, deck from `GET /api/academy/flag-tiles` (`src/lib/academy/flag-tiles.ts`), run logic in `polingual/src/lib/lobby/flag-run.ts`. No migration, no flag. Playtest: `scripts/playtest-flag-tiles.mjs`. Next game: Forehead.
