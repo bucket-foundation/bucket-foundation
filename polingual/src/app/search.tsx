@@ -109,7 +109,7 @@ export default function Search() {
             boxShadow: "0 4px 14px -2px rgba(15, 37, 64, 0.10)",
             // @ts-expect-error -- CSS custom prop in style works in modern browsers
             "--tw-ring-color": "var(--blue)",
-            "--tw-ring-offset-shadow": "0 0 0 0 #fff",
+            "--tw-ring-offset-shadow": "0 0 0 0 var(--pl-white)",
             ringColor: "var(--blue-soft)",
           }}
         >

@@ -21,7 +21,7 @@ const SPEAKER = (
   </svg>
 );
 
-export const PLAIN_FACE = "linear-gradient(135deg,#F6EEDC 0 50%,#E3D6B8 0)";
+export const PLAIN_FACE = "linear-gradient(135deg,var(--pl-paper) 0 50%,var(--pl-paper-3) 0)";
 
 export function TileFace({ lang, code, label, word, reading, rtl, play, index = 0, plain = false, as: Tag = "li", className, style, attrs }: TileFaceProps) {
   const fit = fitVars(word, reading) as React.CSSProperties;

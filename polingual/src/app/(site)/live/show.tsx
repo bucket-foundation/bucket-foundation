@@ -1,5 +1,6 @@
 "use client";
 
+import { tokens } from "@/ui/tokens";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { displayNickname, MARKS, type Standing } from "@/lib/stoa/client";
 import { loadMix, Stage, type Mix } from "@/lib/stoa/stage";
@@ -74,7 +75,7 @@ export function TimerRing({ left, total, paused }: { left: number; total: number
   );
 }
 
-const COLORS = ["#1F4E9A", "#D9381E", "#1E7A5A", "#E9A23B", "#5B1A4A", "#F6EEDC"];
+const COLORS = (["lapis", "vermilion", "malachite", "ochre", "tyrian", "paper"] as const).map((k) => tokens.color[k]);
 
 export function Confetti({ burst = 160, testId = "confetti" }: { burst?: number; testId?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
