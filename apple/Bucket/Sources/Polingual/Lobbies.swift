@@ -93,6 +93,7 @@ struct LobbiesScreen: View {
                 }
             }
             if let problem { Section { Text(problem).foregroundStyle(D8.vermilion) } }
+            Section { AdPrivacyButton() }
         }
         .paper()
         .navigationTitle("Live Lobbies")
