@@ -8,6 +8,10 @@ extension LobbyGame {
         case .sameWord: String(localized: "Same Word")
         case .flags: String(localized: "Flags")
         case .live: String(localized: "Live Mix")
+        case .tiles: String(localized: "Tiles")
+        case .duel: String(localized: "Flag Duel")
+        case .spy: String(localized: "I Spy")
+        case .other: String(localized: "Game")
         }
     }
 
@@ -58,7 +62,7 @@ struct LobbiesScreen: View {
             }
             Section("New lobby") {
                 Picker("Game", selection: $game) {
-                    ForEach(LobbyGame.allCases) { Text($0.title).tag($0) }
+                    ForEach(LobbyGame.hostable) { Text($0.title).tag($0) }
                 }
                 .accessibilityIdentifier("lobbyGame")
                 ForEach(langs.systems.filter { game.fits($0.targets) }) { s in
@@ -147,6 +151,7 @@ struct LobbyRoom: View {
     @State private var draft = ""
     @State private var problem: String?
     @State private var sawFinish = false
+    @State private var tapped: [Int: Set<Int>] = [:]
 
     var body: some View {
         Group {
@@ -184,6 +189,7 @@ struct LobbyRoom: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .round(let i, let remaining): round(l, i, remaining)
+        case .reveal(let i, let remaining): reveal(l, i, remaining)
         case .finished: board(l)
         }
     }
@@ -261,7 +267,11 @@ struct LobbyRoom: View {
 
     @ViewBuilder
     func round(_ l: Lobby, _ i: Int, _ remaining: Double) -> some View {
-        if let p = l.prompt(i) {
+        if let p = l.prompt(i), p.mode == .tiles {
+            tilesRound(l, p, remaining)
+        } else if let p = l.prompt(i), p.mode == .spy || p.mode == .other {
+            onWeb(l, p, remaining)
+        } else if let p = l.prompt(i) {
             let picked = lobbies.picks[i]
             VStack(spacing: 16) {
                 HStack {
@@ -271,7 +281,7 @@ struct LobbyRoom: View {
                 }
                 ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(D8.malachite)
                 VStack(spacing: 6) {
-                    if let lang = p.lang, p.mode == .form { FlagTile(lang: lang, size: 40) }
+                    if let lang = p.lang, p.mode != .flag { FlagTile(lang: lang, size: 40) }
                     Text(p.mode == .flag ? String(localized: "Which language?") : "").font(.subheadline).foregroundStyle(Palette.muted)
                     Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
                 }
@@ -308,6 +318,108 @@ struct LobbyRoom: View {
         } else {
             GameWaiting(message: String(localized: "Loading the words for this lobby."))
         }
+    }
+
+    func roundHeader(_ l: Lobby, _ i: Int, _ remaining: Double) -> some View {
+        VStack(spacing: 10) {
+            HStack {
+                Text("Round \(i + 1) of \(l.rounds)").font(.headline).foregroundStyle(Palette.ink)
+                Spacer()
+                Text("\(Int(remaining.rounded(.up)))s").font(.headline.monospacedDigit()).foregroundStyle(remaining < 3 ? D8.vermilion : Palette.ink)
+            }
+            ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(D8.malachite)
+        }
+    }
+
+    func tilesRound(_ l: Lobby, _ p: LobbyPrompt, _ remaining: Double) -> some View {
+        let i = p.round
+        let tiles = LobbyTiles.tiles(p)
+        let mine = tapped[i] ?? []
+        let sent = lobbies.picks[i] != nil
+        return VStack(spacing: 14) {
+            roundHeader(l, i, remaining)
+            Text("Tap every word for \(p.gloss)").font(D8.word(24)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), spacing: 10)], spacing: 10) {
+                ForEach(Array(tiles.enumerated()), id: \.offset) { n, t in
+                    let on = mine.contains(n)
+                    let state: RowState = !on ? .other : lobbies.marks[i] == false ? .wrong : .right
+                    Button {
+                        guard !sent else { return }
+                        if on { tapped[i, default: []].remove(n) } else { tapped[i, default: []].insert(n) }
+                    } label: {
+                        HStack(spacing: 8) {
+                            if !t.lang.isEmpty { FlagTile(lang: t.lang, size: 24) }
+                            Text(t.form).font(D8.word(19)).lineLimit(2).minimumScaleFactor(0.5)
+                        }
+                        .padding(8).frame(maxWidth: .infinity, minHeight: 56)
+                        .foregroundStyle(state == .right ? .white : Palette.ink)
+                    }
+                    .buttonStyle(GameChoiceStyle(state: state))
+                    .disabled(sent)
+                    .accessibilityIdentifier("lobby-tile")
+                }
+            }
+            Button("Done") { submitTiles(i) }
+                .buttonStyle(.borderedProminent)
+                .tint(D8.malachite)
+                .disabled(sent)
+                .accessibilityIdentifier("lobby-tiles-done")
+            if i > 0 { lastRound(l, i - 1) }
+            Spacer(minLength: 0)
+        }
+        .padding()
+        .onChange(of: LobbyTiles.submitDue(remaining: remaining, roundSeconds: l.roundSeconds), initial: true) { _, due in
+            if due { submitTiles(i) }
+        }
+    }
+
+    func submitTiles(_ i: Int) {
+        guard lobbies.picks[i] == nil else { return }
+        let choice = LobbyTiles.choice(tapped[i] ?? [])
+        Task { await lobbies.pick(choice, round: i) }
+    }
+
+    func onWeb(_ l: Lobby, _ p: LobbyPrompt, _ remaining: Double) -> some View {
+        VStack(spacing: 16) {
+            roundHeader(l, p.round, remaining)
+            Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+            Text("This round plays on polingual.com.").foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+            if let url = URL(string: "https://polingual.com/play/\(l.code)") {
+                Link("Open polingual.com", destination: url)
+                    .buttonStyle(.borderedProminent)
+                    .tint(D8.malachite)
+            }
+            Spacer(minLength: 0)
+        }
+        .padding()
+    }
+
+    func reveal(_ l: Lobby, _ i: Int, _ remaining: Double) -> some View {
+        VStack(spacing: 16) {
+            HStack {
+                Text("Round \(i + 1) of \(l.rounds)").font(.headline).foregroundStyle(Palette.ink)
+                Spacer()
+                Text("Next round").font(.subheadline).foregroundStyle(Palette.muted)
+                Text("\(Int(remaining.rounded(.up)))s").font(.headline.monospacedDigit()).foregroundStyle(Palette.ink)
+            }
+            if let p = l.prompt(i) {
+                VStack(spacing: 6) {
+                    if let lang = p.lang, p.mode != .flag { FlagTile(lang: lang, size: 40) }
+                    Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                    if p.mode == .flag, let a = p.answer { FlagTile(lang: a, size: 56) }
+                    else if p.mode.choosesText, let a = p.answer { Text(a).font(D8.word(24)).foregroundStyle(D8.malachite) }
+                    else if p.mode == .tiles, let right = LobbyTiles.answer(p) {
+                        let tiles = LobbyTiles.tiles(p)
+                        ForEach(right.sorted().filter { $0 < tiles.count }, id: \.self) { n in
+                            Text(tiles[n].form).font(D8.word(20)).foregroundStyle(D8.malachite)
+                        }
+                    }
+                }
+            }
+            lastRound(l, i)
+            Spacer(minLength: 0)
+        }
+        .padding()
     }
 
     func lastRound(_ l: Lobby, _ i: Int) -> some View {

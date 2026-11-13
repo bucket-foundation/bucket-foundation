@@ -6,12 +6,23 @@ public enum LobbyStatus: String, Codable, Sendable {
 }
 
 public enum LobbyGame: String, Codable, Sendable, CaseIterable, Identifiable {
-    case daily, sameWord = "same-word", flags, live
+    case daily, sameWord = "same-word", flags, live, tiles, duel, spy, other
     public var id: String { rawValue }
+    public static let hostable: [LobbyGame] = [.daily, .sameWord, .flags, .live, .tiles]
+
+    public init(from decoder: Decoder) throws {
+        self = LobbyGame(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .other
+    }
 }
 
 public enum LobbyPromptMode: String, Codable, Sendable {
-    case form, flag
+    case form, flag, tiles, mixed, meaning, spy, other
+
+    public var choosesText: Bool { self == .form || self == .mixed || self == .meaning }
+
+    public init(from decoder: Decoder) throws {
+        self = LobbyPromptMode(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .other
+    }
 }
 
 public struct LobbyPlayer: Codable, Equatable, Sendable, Identifiable {
@@ -38,6 +49,7 @@ public struct LobbyRound: Codable, Equatable, Sendable {
     public var index: Int
     public var startsAt: String
     public var endsAt: String
+    public var reveal: Bool?
 }
 
 public struct LobbyPrompt: Codable, Equatable, Sendable, Identifiable {
@@ -83,6 +95,7 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var listed: Bool
     public var rounds: Int
     public var roundSeconds: Int
+    public var revealSeconds: Int?
     public var startedAt: String?
     public var version: Int
     public var now: String
@@ -99,6 +112,9 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var seedValue: UInt64 { UInt64(seed) ?? GameSeed.hash(seed) }
     public var start: Date? { startedAt.flatMap(parseInstant) }
     public var standings: [LobbyPlayer] { players.sorted { ($0.score, $1.name) > ($1.score, $0.name) } }
+    public var revealGap: Double { Double(max(0, revealSeconds ?? 0)) }
+    public var slotSeconds: Double { Double(roundSeconds) + revealGap }
+    public var playSeconds: Double { Double(rounds * roundSeconds) + Double(max(0, rounds - 1)) * revealGap }
 
     public func results(for round: Int) -> [LobbyResult] { results.filter { $0.round == round } }
     public func prompt(_ round: Int) -> LobbyPrompt? { prompts.first { $0.round == round } }
@@ -114,6 +130,7 @@ public enum LobbyPhase: Equatable, Sendable {
     case waiting
     case countdown(Double)
     case round(index: Int, remaining: Double)
+    case reveal(index: Int, remaining: Double)
     case finished
 }
 
@@ -126,11 +143,49 @@ public enum LobbyClock {
             guard let start = lobby.start else { return .waiting }
             let elapsed = now.timeIntervalSince(start)
             if elapsed < 0 { return .countdown(-elapsed) }
+            if elapsed >= lobby.playSeconds || lobby.slotSeconds <= 0 { return .finished }
             let len = Double(lobby.roundSeconds)
-            let index = Int(elapsed / len)
+            let index = Int(elapsed / lobby.slotSeconds)
             if index >= lobby.rounds { return .finished }
-            return .round(index: index, remaining: len * Double(index + 1) - elapsed)
+            let into = elapsed - Double(index) * lobby.slotSeconds
+            if into >= len { return .reveal(index: index, remaining: lobby.slotSeconds - into) }
+            return .round(index: index, remaining: len - into)
         }
+    }
+}
+
+public struct LobbyTile: Equatable, Sendable {
+    public var lang: String
+    public var form: String
+
+    public init(key: String) {
+        if let i = key.firstIndex(of: ":") {
+            lang = String(key[..<i])
+            form = String(key[key.index(after: i)...])
+        } else {
+            lang = ""
+            form = key
+        }
+    }
+}
+
+public enum LobbyTiles {
+    public static let submitAt = 0.9
+
+    public static func tiles(_ prompt: LobbyPrompt) -> [LobbyTile] { prompt.choices.map(LobbyTile.init(key:)) }
+
+    public static func choice(_ tapped: Set<Int>) -> String {
+        tapped.isEmpty ? "-" : tapped.sorted().map(String.init).joined(separator: ",")
+    }
+
+    public static func answer(_ prompt: LobbyPrompt) -> Set<Int>? {
+        guard let a = prompt.answer else { return nil }
+        if a.isEmpty || a == "-" { return [] }
+        return Set(a.split(separator: ",").compactMap { Int($0) })
+    }
+
+    public static func submitDue(remaining: Double, roundSeconds: Int) -> Bool {
+        remaining <= Double(roundSeconds) * (1 - submitAt)
     }
 }
 
