@@ -1,5 +1,9 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -10,19 +14,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.navigation.NavHostController
 import foundation.bucket.core.auth.Stage
 import foundation.bucket.core.model.BucketError
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
+import foundation.bucket.core.ui.pl.Card
+import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.SectionTitle
-import foundation.bucket.core.ui.Type
+import foundation.bucket.core.ui.pl.PlainLink
+import foundation.bucket.core.ui.pl.PrimaryButton
+import foundation.bucket.core.ui.pl.SectionTitle
 import kotlinx.coroutines.launch
 
 @Composable
@@ -30,7 +32,7 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
     val stage by graph.account.stage.collectAsState()
     val app by graph.state.collectAsState()
     val p = LocalPalette.current
-    Page("Account") {
+    Page("Account", stickers = listOf(Sticker("script-he", Alignment.CenterStart, 90.dp, -8f), Sticker("azulejo", Alignment.TopEnd, 62.dp, 10f), Sticker("ink-dot", Alignment.BottomEnd, 36.dp, -5f, dx = (-8).dp))) {
         when (stage) {
             Stage.SignedIn -> SignedInSection(graph, nav)
             else -> SignInCard(graph, stage)
@@ -75,6 +77,6 @@ fun SignInCard(graph: Graph, stage: Stage) {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
             PrimaryButton(if (busy) "Sending" else "Email me a code", enabled = email.contains("@") && !busy) { run { graph.account.requestCode(email) } }
         }
-        error?.let { Text(it, color = D8.vermilion) }
+        error?.let { Text(it, color = PL.Vermilion) }
     }
 }
