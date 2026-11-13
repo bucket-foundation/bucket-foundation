@@ -51,6 +51,7 @@ export default function VoiceAtlas() {
   const [passport, setPassport] = useState<string[]>([]);
   const [rewarded, setRewarded] = useState(false);
   const [counted, setCounted] = useState(false);
+  const [peek, setPeek] = useState(false);
   const adsVisible = useAdsVisible();
 
   useEffect(() => {
@@ -72,6 +73,7 @@ export default function VoiceAtlas() {
   const guessed = guesses.find((g) => g.round === round) ?? null;
   const done = index >= limit;
   const total = guesses.reduce((n, g) => n + g.points, 0);
+  const daily = guesses.slice(0, ATLAS_ROUNDS).reduce((n, g) => n + g.points, 0);
 
   useEffect(() => {
     if (!done || counted) return;
@@ -95,13 +97,14 @@ export default function VoiceAtlas() {
     if (!round || !pin) return;
     const near = nearestHome(round.lang, pin);
     if (!near) return;
-    const points = atlasPoints(near.km);
+    const points = Math.round(atlasPoints(near.km) / (peek ? 2 : 1));
     setGuesses((g) => [...g, { round, pin, home: near.home, km: near.km, points }]);
     if (points >= ATLAS_MAX * 0.5) setPassport(stamp(round.lang));
   };
 
   const next = () => {
     setPin(null);
+    setPeek(false);
     setIndex((i) => i + 1);
   };
 
@@ -116,7 +119,7 @@ export default function VoiceAtlas() {
   if (!rounds || (!round && !done)) return <p className={app.muted} aria-busy="true">Loading today&apos;s voices</p>;
 
   if (done) {
-    const rows = [...board.map((g) => ({ name: g.name, flag: g.flag as string | null, score: g.score, bot: g.skill as string | null, me: false })), { name: "You", flag: null, score: total, bot: null, me: true }].sort((a, b) => b.score - a.score);
+    const rows = [...board.map((g) => ({ name: g.name, flag: g.flag as string | null, score: g.score, bot: g.skill as string | null, me: false })), { name: "You", flag: null, score: daily, bot: null, me: true }].sort((a, b) => b.score - a.score);
     return (
       <div className={app.stack} data-testid="va-results">
         <section className={app.stackSm}>
@@ -187,7 +190,11 @@ export default function VoiceAtlas() {
       </div>
       <section className={styles.vaPrompt}>
         <button type="button" className={app.cta} onClick={listen} data-testid="va-listen">▶ Listen</button>
-        <b className={styles.promptWord} data-testid="va-word">{round.form}</b>
+        {peek || guessed ? (
+          <b className={styles.promptWord} data-testid="va-word">{round.form}</b>
+        ) : (
+          <button type="button" className={app.link} onClick={() => setPeek(true)} data-testid="va-peek">Show the word, half points</button>
+        )}
         <p className={app.small}>Where is this language spoken? Tap the map, then lock in.</p>
       </section>
       <svg viewBox={`0 0 ${MAP_W} ${MAP_H}`} className={styles.vaMap} onPointerDown={onMap} role="img" aria-label="World map" data-testid="va-map">
