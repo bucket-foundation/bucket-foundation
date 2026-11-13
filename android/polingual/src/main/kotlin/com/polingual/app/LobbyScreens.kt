@@ -91,7 +91,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> U
         Card {
             Text("Start a room", style = Type.caps, color = p.muted)
             androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                nativeLobbyGames.forEach { g -> PLPill(g.title, active = g == game) { game = g } }
+                foundation.bucket.core.model.LobbyGames.offered(state.games).forEach { g -> PLPill(g.title, active = g == game) { game = g } }
             }
             if (state.botsEnabled) Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("Fill empty seats with bots", color = p.ink, modifier = Modifier.weight(1f))

@@ -183,7 +183,7 @@ class BucketApi(
 data class LobbyReply(val lobby: Lobby)
 
 @Serializable
-data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false)
+data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false, val games: List<String> = emptyList())
 
 @Serializable
 data class AnswerReply(val correct: Boolean, val lobby: Lobby)
