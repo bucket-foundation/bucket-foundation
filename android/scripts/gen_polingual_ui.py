@@ -235,6 +235,18 @@ GLYPHS = {
 }
 
 
+OBJECTS = ROOT / "polingual/src/ui/art/objects.tsx"
+
+
+def object_entries():
+    import subprocess
+    src = OBJECTS.read_text()
+    body = src[src.index("const INK"):src.index("export function ObjectArt")]
+    body = body.replace("export const", "const").replace("(n: string, fill: string)", "(n, fill)").replace(": Record<string, string>", "")
+    out = subprocess.run(["node", "-e", body + "\nprocess.stdout.write(JSON.stringify(OBJECT_ART))"], capture_output=True, text=True, check=True).stdout
+    return [{"name": "obj-" + k, "label": k, "viewBox": "0 0 100 100", "dark": False, "body": v} for k, v in json.loads(out).items()]
+
+
 def glyph_entries():
     src = TILE.read_text()
     m = re.search(r"const SPEAKER = \(\s*<svg[^>]*>(.*?)</svg>", src, re.S)
@@ -561,7 +573,7 @@ def main():
     s = ART.read_text()
     entries = json.loads(s[s.index("["):s.index("\n] as const") + 2])
     PKG_DIR.mkdir(parents=True, exist_ok=True)
-    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t), **play_assets(), **land_asset()}
+    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries() + object_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t), **play_assets(), **land_asset()}
     check = "--check" in sys.argv
     stale = [p for p, body in outputs.items() if not p.exists() or p.read_text() != body]
     if check:

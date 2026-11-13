@@ -22,7 +22,7 @@ import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.PLCard
 
 object WebGames {
-    val ready = setOf("polyword", "flag-tiles", "babel-match", "shift", "word-snake", "voice-atlas", "forehead")
+    val ready = setOf("polyword", "flag-tiles", "babel-match", "shift", "word-snake", "voice-atlas", "forehead", "ispy")
 }
 
 @Composable
@@ -47,4 +47,5 @@ fun playRoutes(builder: NavGraphBuilder, graph: Graph, nav: NavHostController) {
     builder.composable("play/word-snake") { SnakeScreen(graph, back) }
     builder.composable("play/voice-atlas") { AtlasScreen(graph, back) }
     builder.composable("play/forehead") { ForeheadScreen(graph, back) }
+    builder.composable("play/ispy") { ISpyScreen(graph, back) }
 }
