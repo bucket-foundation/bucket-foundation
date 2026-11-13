@@ -33,7 +33,18 @@ The manifests and the draft agree on Email Address, User ID, Product Interaction
 | Purchase History | Collected, linked, App Functionality, once the App Store notifications webhook (bkt-hikdo) stores purchases | Subscription events tied to the user |
 | Crash Data, Performance Data | Not collected | The draft lists them, but neither app sends crash or performance data; Apple's own crash reports do not count |
 
-Tracking stays No. If ad pixels ever run inside the apps, tracking changes to Yes and the apps need an App Tracking Transparency prompt.
+Bucket tracking stays No. Polingual tracking changes to Yes from the first build carrying AdMob (`feat/apple-polingual-admob`); 1.0.1 has no AdMob and keeps No. Add these Polingual rows from Google's disclosure for SDK 13.12, all used for tracking, purpose Third-Party Advertising and Analytics:
+
+| Data type | Set it to | Why |
+|---|---|---|
+| Device ID | Collected, unlinked to identity, used for tracking | IDFA after the App Tracking Transparency prompt, or an app-scoped id |
+| Advertising Data | Collected, unlinked to identity, used for tracking | Ads the person has seen |
+| Coarse Location | Collected, unlinked to identity, used for tracking | Derived from the IP address |
+| Product Interaction | Add Third-Party Advertising to the existing row, used for tracking | Taps and video views on ads |
+| Performance Data | Collected, linked, Third-Party Advertising and Analytics | Launch time and hang rate the SDK sends |
+| Crash Data, Other Diagnostic Data | Collected, unlinked to identity, Analytics | SDK crash logs |
+
+Before the first AdMob build ships: set the GDPR and IDFA messages in AdMob Privacy and messaging, add `app-ads.txt` on polingual.com with the `pub-9735211554999350` line, and update the Polingual privacy policy to name Google as an ad partner.
 
 ## Entitlements
 

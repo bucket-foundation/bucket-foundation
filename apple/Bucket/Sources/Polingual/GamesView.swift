@@ -141,6 +141,7 @@ extension LangStore {
     @discardableResult
     func recordGame(_ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true) -> Bool {
         let before = gameBest(kind.rawValue)
+        GameTally.finished += 1
         let touched = kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
@@ -155,10 +156,16 @@ extension LangStore {
     }
 }
 
+@MainActor
+enum GameTally {
+    static var finished = 0
+}
+
 struct GamesView: View {
     @Environment(LangStore.self) private var langs
     var embedded = false
     @State private var open: GameKind?
+    @State private var finishedAtOpen = 0
 
     var body: some View {
         if embedded {
@@ -182,6 +189,10 @@ struct GamesView: View {
         .navigationTitle("Games")
         .plChrome()
         .navigationDestination(item: $open) { $0.screen }
+        .onChange(of: open) { old, new in
+            if new != nil { finishedAtOpen = GameTally.finished }
+            if old != nil, new == nil { LobbyAds.shared.leftRoom(finishedGame: GameTally.finished > finishedAtOpen) }
+        }
         .task {
             await langs.load()
             #if DEBUG
