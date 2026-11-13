@@ -20,7 +20,7 @@ fun SilentSwitch(graph: Graph, compact: Boolean = false) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Column(Modifier.weight(1f)) {
             Text("Silent mode", style = if (compact) Type.small else Type.title, color = PL.Ink)
-            if (!compact) Text("No sound effects or automatic audio. A speaker tap still plays.", style = Type.small, color = PL.InkDim)
+            if (!compact) Text("Skips listening questions until you can hear again, and plays nothing on its own. A speaker tap still plays.", style = Type.small, color = PL.InkDim)
         }
         Switch(
             checked = silent, onCheckedChange = graph::setSilent,
