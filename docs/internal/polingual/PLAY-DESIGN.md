@@ -144,7 +144,7 @@ Friend list with presence, requests in and out, invite link and QR. Friends come
 ## Flows
 
 1. **Guest to player.** Open `/play`, tap Quick play, pick a name from the word-pair generator and a flag, play. After the first game: "Save your coins and rank" sign-in sheet. Sign-in calls `merge_lobby_guest` plus a new `merge_guest_wallet`.
-2. **Family game night on TV.** Parent opens Play on a laptop plugged into the TV, Start a game, Who = Family group, Screen = TV. The TV shows the code and QR. Kids scan, the phone opens `/join/CODE` with their avatar from the group. Ten rounds, podium, coins land in each account.
+2. **Family game night on TV.** Parent opens Play on a laptop plugged into the TV, Start a game, Who = Family group, Screen = TV. The TV shows the code and QR. Family members aged 13 and up scan and join with their own accounts and avatars; anyone without an account joins as a guest with a word-pair name. Ten rounds, podium, coins land in each account.
 3. **Compete in a group.** Every scored game a member plays counts toward the group's weekly board. Group games count double on that board. Sunday 20:00 local time to the group owner, the board closes and the winner gets a plinth badge.
 4. **Friends playing now.** Home shows "Ana is in a Flags room, 6 of 8". Tap joins the room when it is public or friends-only.
 5. **Buy a hat.** Shop, tap item, confirm coin spend, item equips. Short of coins: pack sheet opens with the smallest pack that covers the gap.
@@ -247,6 +247,7 @@ Coins never expire, as App Store guideline 3.1.1 requires for virtual currency b
 - **Farming.** Rooms that finish under 40% of the round time on every round, or with all-identical answer timing, settle at zero.
 - **Guest wallets.** Guests earn into `guest_wallets`, keyed by the server-issued guest id the lobbies already use, capped at 500. A fresh guest id per device can farm 500 coins each, so a merge credits at most one guest wallet per account per 30 days, through `merge_guest_wallet(guest, user)`, idempotent on `merged_into`. Test: merging the same wallet twice credits once; a second wallet within 30 days credits zero.
 - **Settle concurrency.** `play_settle(engine, game_id)` inserts into `play_settlements` first; a conflict returns the earlier result and credits nothing. It settles only games in `done` or `finale` with at least one round answered; abandoned games settle nothing.
+- **Atomic settle.** The claim row, the `play_results` rows and every `coin_apply` ledger write commit in one transaction; a crash rolls all of them back and a retry settles from scratch. M2 test `settle-fault`: abort after the claim insert, retry, and each account is credited exactly once.
 - **Negative balance.** A refund may push `coin_balances` below zero. While negative, spending is refused and earning pays the debt first.
 - **Refund abuse.** App Store Server Notifications `REFUND` and Play voided purchases debit the ledger. Three refunds in 90 days lock coin pack purchases on that account.
 - **Rate limits.** Reuse `lobby_take` keys for create, join and settle.
@@ -277,6 +278,8 @@ Schema changes, migration `polingual_play_tv`:
 
 - `live_players.user_id uuid null references auth.users on delete set null`, set when a signed-in player joins; unique per room where not null.
 - Hosting needs a signed-in account, since `live_rooms.host_user` is `not null`. Guests can play and cannot host a TV room; the Start sheet asks a guest to sign in when Screen = TV.
+
+Handoff runs as one RPC, `lobby_to_live(lobby_id)`, in one transaction: insert the live room, insert one `live_players` row per human lobby player with `user_id` and a nickname key, mark the lobby `done`. Any failure rolls back and the lobby stays open with an error toast. Bots stay in the lobby engine and do not cross to a TV room; the TV game runs with humans only. Players who drop during the copy still get a seat and rejoin by QR. M4 test `handoff-rollback`: a forced insert failure leaves the lobby in `lobby` with its players.
 
 1. Signed-in host taps Screen = TV. `POST /api/play/tv` creates a `live_rooms` row with `product='polingual'`, `mode='open_floor'`, and `settings.lobby_id` when it comes from a lobby or group. Response: code, host token, topic.
 2. The TV opens `/play/tv/[code]` with the host token in memory only. It subscribes to the room topic and renders by phase.
@@ -334,7 +337,7 @@ Cosmetics are never sold for money directly. One currency keeps refund math simp
 
 Polingual has no age gate today: no sign-up route in `polingual/src` asks for age. M1 adds one: a birth-year question on account creation, stored as `age_band` only, with under-13 refused an account. A self-declared gate is weak evidence, so every under-18 rule above runs server-side from `age_band`, and guests get the strictest 13 to 17 rules: no packs, preset chat, never in the feed. Under-13 play with accounts, profiles, presence or friends needs a COPPA verifiable parental consent flow, data minimization and a retention table for every field; that is a separate design gated on decision 6.
 
-Apple age rating stays 9+; Google Play target audience stays 13+ outside the Families program. Apple age rating stays 9+; Google Play target audience stays 13+ unless the founder chooses to enter the Families program. No loot boxes anywhere, which keeps Play clear of Belgian and Dutch gambling rulings and the EU consumer guidance on virtual currencies, which also asks for the real-money price beside a currency price. The shop shows that price in EU and UK storefronts.
+Apple age rating stays 9+, which rates content; account eligibility is a separate rule enforced by the age gate. Google Play target audience stays 13+ outside the Families program. M1 test `age-band-forged`: a client that sends its own `age_band` or skips the gate cannot buy packs or appear in the feed. No loot boxes anywhere, which keeps Play clear of Belgian and Dutch gambling rulings and the EU consumer guidance on virtual currencies, which also asks for the real-money price beside a currency price. The shop shows that price in EU and UK storefronts.
 
 ## Data Model
 
@@ -401,7 +404,7 @@ Balance changes go through one function, `coin_apply(user, delta, reason, ref, s
 | M5 Shop and IAP `bkt-yz1sz.7` | catalog, coin spend, Stripe packs, StoreKit 2 consumables, Play Billing consumables, refund webhooks | sandbox purchase and refund on each store; teen gates enforced server-side; store review passes |
 | M6 Leagues `bkt-yz1sz.8` | weekly cohorts, promotion and demotion, rank badges, Sunday close job | dry-run week on staging with 300 seeded players; promotion counts match spec |
 
-Each milestone ships behind a flag in `polingual` env and lands on `dev` as its own PR with tests.
+Dependencies in `bd`: M2 `.4` needs M1 `.3`; M4 `.6` needs M2; M5 `.7` needs M2 and `bkt-zapwl`; M3 `.5` and M6 `.8` need M1. Each milestone ships behind a flag in `polingual` env and lands on `dev` as its own PR with tests.
 
 ## Metrics
 
