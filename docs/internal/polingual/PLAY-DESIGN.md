@@ -26,6 +26,8 @@ Missing today: persistent player profile, coins, avatar, rank, friends, a live a
 
 Play keeps the landing page's look: parchment field with the 22 px dot grid, chunky Fredoka headlines in tyrian, vermilion buttons with a dark lip shadow (`0 4px 0 #8E2312`), Space Mono for codes, counters and labels, flags as CSS gradients from `src/lib/flags.ts`.
 
+The public brand site at `/brand` holds every token, component and rule below, with downloads; Play and the mockups import its shared parts from `polingual/src/app/(site)/play-kit`.
+
 Play adds energy on top of that base:
 
 - **Answer colors.** Four answer slots, each a brand color plus a shape so color-blind players can play: vermilion triangle, lapis diamond, ochre circle, malachite square. The TV and the phone share them.
@@ -374,6 +376,7 @@ Balance changes go through one function, `coin_apply(user, delta, reason, ref, s
 | Milestone | Scope | Exit criteria |
 |---|---|---|
 | M0 Design | this doc, mockups, founder decisions | critic pass; founder answers the decisions table |
+| M0b Brand site | `/brand` gains a sticky section nav plus play color, flags, icons, avatar, illustration, motion, components, voice and do and don't sections; shared `play-kit` parts | `/brand` returns 200 with every section anchor; mockups and brand import one `Avatar`, `Shape` and `Flag`; voice lint clean |
 | M1 Identity | `player_profiles`, handle, flag, avatar parts v1 (40 parts), profile card, guest name and flag sheet | profile round-trips on web and iOS; share card renders; account deletion test removes the row |
 | M2 Settle and coins | `play_settle`, `coin_ledger`, `coin_apply`, earn table, results screen deltas | settle runs twice and credits once; property test on ledger balance equals sum of deltas; farming rules covered by tests |
 | M3 Live activity and friends | presence, counters, `play_events`, friends, blocks, friends row | counters within 10% of a load-test truth at 500 simulated players; under-18 never appears in public feed in tests |
