@@ -41,7 +41,9 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
     val state by graph.lobbies.state.collectAsState()
     val scope = rememberCoroutineScope()
     val schedule = remember(prompt) { LobbyTiles.schedule(prompt.choices.size, index, lobby.rounds, lobby.roundSeconds) }
-    var tapped by remember(index) { mutableStateOf(emptySet<Int>()) }
+    val picked = state.picks[index]?.let { LobbyTiles.parseTapped(it, prompt.choices.size) }?.toSet()
+    var local by remember(index) { mutableStateOf(emptySet<Int>()) }
+    val tapped = picked ?: local
     val tickElapsed = ((lobby.roundSeconds - remaining) * 1000).toLong()
     val startedAt = lobby.startedAt?.let { foundation.bucket.core.model.parseInstantMs(it) }
     val roundStart = startedAt?.let { LobbyTiles.roundStartMs(index, it, lobby.roundSeconds, lobby.revealSeconds) }
@@ -83,7 +85,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
             Box(
                 Modifier.weight(1f).height(56.dp).clip(RoundedCornerShape(12.dp)).background(PL.Lapis)
                     .clickable(enabled = !reveal && !submitted, role = Role.Button, onClickLabel = "Lane ${lane + 1}") {
-                        LobbyTiles.laneTarget(prompt.choices, schedule, lane, elapsed, tapped)?.let { tapped = tapped + it }
+                        LobbyTiles.laneTarget(prompt.choices, schedule, lane, elapsed, tapped)?.let { local = local + it }
                     },
                 contentAlignment = Alignment.Center,
             ) { Text("Lane ${lane + 1}", style = Type.small, color = PL.Paper) }

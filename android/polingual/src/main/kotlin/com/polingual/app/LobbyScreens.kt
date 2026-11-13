@@ -73,7 +73,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> U
         error = null
         if (!signedIn && name.isEmpty()) { error = "Pick a name to play live."; return@launch }
         if (name != app?.nickname) graph.store.update { it.copy(nickname = name) }
-        try { block() } catch (e: BucketError) { error = e.message }
+        try { block() } catch (e: BucketError) { error = LobbyErrors.text(e) }
     }
     LaunchedEffect(Unit) { graph.lobbies.refresh() }
     LaunchedEffect(code) { if (code.isNotBlank() && (signedIn || name.isNotEmpty()) && state.current == null) act { graph.lobbies.join(code, name.ifEmpty { "Player" }) } }
@@ -142,7 +142,7 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
     LaunchedEffect(lobby.id, finished) { if (finished) graph.ads.gameFinished() }
     var confirmLeave by remember { mutableStateOf(false) }
     fun exit() { graph.ads.leftFinishedGame(graph.activity?.get()); leave() }
-    fun act(block: suspend () -> Unit) = scope.launch { error = null; try { block() } catch (e: BucketError) { error = e.message } }
+    fun act(block: suspend () -> Unit) = scope.launch { error = null; try { block() } catch (e: BucketError) { error = LobbyErrors.text(e) } }
     Page(lobby.name, ground = Ground.Lattice, panel = true, stickers = listOf(Sticker("pebble", Alignment.CenterStart, 60.dp, -12f), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 90.dp, -4f, dx = (-8).dp)), back = { if (phase is LobbyPhase.Round || phase is LobbyPhase.Reveal || phase is LobbyPhase.Countdown) confirmLeave = true else exit() }) {
         if (confirmLeave) {
             Text("Leave this game? Your score stays where it is.", color = p.ink)
