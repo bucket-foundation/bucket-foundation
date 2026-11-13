@@ -122,10 +122,19 @@ export class LobbyApi {
   }
 
   async list(): Promise<LobbySummary[]> {
-    return (await this.call<{ lobbies: LobbySummary[] }>("")).lobbies;
+    return (await this.listing()).lobbies;
   }
 
-  async create(input: { name: string; root: string; targets: string[]; rounds: number; roundSeconds: number; listed: boolean; displayName: string; game: string }): Promise<WebLobbyState> {
+  async listing(): Promise<{ lobbies: LobbySummary[]; bots: boolean }> {
+    const res = await this.call<{ lobbies: LobbySummary[]; bots?: boolean }>("");
+    return { lobbies: res.lobbies, bots: res.bots === true };
+  }
+
+  async fillBots(lobbyId: string): Promise<WebLobbyState> {
+    return (await this.call<{ lobby: WebLobbyState }>("/bots", { body: { lobbyId } })).lobby;
+  }
+
+  async create(input: { name: string; root: string; targets: string[]; rounds: number; roundSeconds: number; listed: boolean; displayName: string; game: string; fillBots?: boolean }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("", { body: input })).lobby;
   }
 
@@ -248,6 +257,15 @@ export function memoryGuestStore(initial: Guest | null = null): GuestStore & { v
 
 export function nicknameOf(store: GuestStore): string | null {
   return store.read()?.nickname ?? null;
+}
+
+export function flagEmoji(code: string | null | undefined): string {
+  if (!code || !/^[A-Z]{2}$/.test(code)) return "";
+  return String.fromCodePoint(...Array.from(code, (c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+}
+
+export function botLabel(p: { bot: boolean; skill: string | null }): string | null {
+  return p.bot ? (p.skill ? `bot · ${p.skill}` : "bot") : null;
 }
 
 export function myScore(lobby: Pick<LobbyState, "players">): number {

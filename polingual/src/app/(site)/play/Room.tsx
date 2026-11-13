@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
-import { answeredRound, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { answeredRound, botLabel, flagEmoji, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
 import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { gameName, langName } from "./langs";
@@ -14,7 +14,7 @@ import { savedNickname, usePlay } from "./usePlay";
 const POLL_MS = 1000;
 const TICK_MS = 200;
 
-type Picked = { round: number; choice: string; correct: boolean; points: number; pending?: boolean };
+type Picked = { game: string | null; round: number; choice: string; correct: boolean; points: number; pending?: boolean };
 
 function errorOf(err: unknown): string {
   return lobbyError(err instanceof LobbyError ? err.code : undefined);
@@ -131,12 +131,13 @@ export default function Room({ code: rawCode }: { code: string }) {
   };
 
   const answer = async (round: number, choice: string) => {
-    if (picked?.round === round || answeredRound(lobby, round)) return;
-    setPicked({ round, choice, correct: false, points: 0, pending: true });
+    if ((picked?.round === round && picked.game === lobby.startedAt) || answeredRound(lobby, round)) return;
+    const game = lobby.startedAt;
+    setPicked({ game, round, choice, correct: false, points: 0, pending: true });
     const sentAt = Date.now();
     try {
       const res = await api.answer(lobby.id, round, choice);
-      setPicked({ round, choice, correct: res.correct, points: res.points });
+      setPicked({ game, round, choice, correct: res.correct, points: res.points });
       take(res.lobby, sentAt);
     } catch (err) {
       if (!(err instanceof LobbyError && err.code === "already_answered")) setPicked((p) => (p?.round === round ? null : p));
@@ -169,7 +170,10 @@ export default function Room({ code: rawCode }: { code: string }) {
       {board.map((p) => (
         <li key={p.userId} className={styles.player} data-me={p.isMe}>
           <span>
+            {p.flag ? <span aria-hidden="true">{flagEmoji(p.flag)} </span> : null}
             {p.name}
+            {p.bot ? <span className={styles.tag} data-testid="bot-tag"> {botLabel(p)}</span> : null}
+            {p.handle ? <span className={styles.handle} data-testid="player-handle"> @{p.handle}</span> : null}
             {p.isHost ? <span className={styles.tag}> host</span> : null}
             {!p.online ? <span className={styles.tag}> away</span> : null}
           </span>
@@ -184,7 +188,8 @@ export default function Room({ code: rawCode }: { code: string }) {
       <ul className={styles.messages} data-testid="messages">
         {lobby.messages.map((m) => (
           <li key={m.id}>
-            <b>{m.name}</b> {m.body}
+            <b>{m.name}</b>
+            {lobby.players.some((p) => p.userId === m.from && p.bot) ? <span className={styles.tag}> bot</span> : null} {m.body}
           </li>
         ))}
       </ul>
@@ -215,6 +220,7 @@ export default function Room({ code: rawCode }: { code: string }) {
 
   if (phase.kind === "waiting") {
     const readyCount = lobby.players.filter((p) => p.ready).length;
+    const startsIn = lobby.nextStartAt ? Math.max(0, Math.ceil((Date.parse(lobby.nextStartAt) - now - offset) / 1000)) : null;
     return (
       <div className={app.stack} data-testid="room">
         {header}
@@ -229,18 +235,22 @@ export default function Room({ code: rawCode }: { code: string }) {
               <button type="button" className={me?.ready ? app.ghost : app.cta} onClick={() => void act(() => api.ready(lobby.id, !me?.ready))} data-testid="ready">
                 {me?.ready ? "Not ready" : "Ready"}
               </button>
+              {lobby.isHost && lobby.botsEnabled && !lobby.botFill ? (
+                <button type="button" className={app.ghost} onClick={() => void act(() => api.fillBots(lobby.id))} data-testid="fill-bots">
+                  Fill with bots
+                </button>
+              ) : null}
               {lobby.isHost ? (
                 <button type="button" className={app.cta} disabled={readyCount < 2} onClick={() => void act(() => api.start(lobby.id))} data-testid="start">
                   Start game
                 </button>
               ) : null}
             </div>
-            <p className={app.small}>{lobby.isHost ? (readyCount < 2 ? "Two players need to be ready to start." : "Everyone ready? Start the game.") : "The host starts when two players are ready."}</p>
+            <p className={app.small}>{lobby.standing ? (startsIn === null ? "The next game starts soon." : `Next game starts in ${startsIn}s.`) : lobby.isHost ? (readyCount < 2 ? "Two players need to be ready to start." : "Everyone ready? Start the game.") : "The host starts when two players are ready."}</p>
           </section>
           {chatBox}
         </div>
         {error ? <p className={app.error} role="alert">{error}</p> : null}
-        <Ad placement="lobby" />
       </div>
     );
   }
@@ -256,7 +266,7 @@ export default function Room({ code: rawCode }: { code: string }) {
 
   if (phase.kind === "round") {
     const prompt = promptFor(lobby, phase.index);
-    const mine = picked?.round === phase.index ? picked : null;
+    const mine = picked?.round === phase.index && picked.game === lobby.startedAt ? picked : null;
     const done = !!mine || answeredRound(lobby, phase.index);
     return (
       <div className={app.stack} data-testid="room">
@@ -333,7 +343,8 @@ export default function Room({ code: rawCode }: { code: string }) {
       </section>
       <Ad placement="results" />
       <div className={app.row}>
-        <a className={app.cta} href="/play">Play again</a>
+        {lobby.standing ? <p className={app.small} data-testid="standing-next">Stay here. The next game starts in a few seconds.</p> : null}
+        <a className={app.cta} href="/play">{lobby.standing ? "Back to lobbies" : "Play again"}</a>
       </div>
     </div>
   );
