@@ -28,6 +28,7 @@ import {
   type PowerRow,
   revealEnabled,
   setupEnabled,
+  duelEnabled,
   joinedRound,
   nextGame,
   generateSeed,
@@ -210,7 +211,7 @@ export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRo
   const t = gameTiming(game);
   check(await service().from(ANSWERS).delete().eq("lobby_id", lobby.id), "again answers");
   check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "again prompts");
-  check(await service().from(POWERS).delete().eq("lobby_id", lobby.id), "again powers");
+  if (duelEnabled()) check(await service().from(POWERS).delete().eq("lobby_id", lobby.id), "again powers");
   check(await service().from(PLAYERS).update({ score: 0, ready: false, continues: 0 }).eq("lobby_id", lobby.id), "again scores");
   if (here.length) check(await service().from(PLAYERS).update({ ready: true }).eq("lobby_id", lobby.id).in("user_id", here), "again ready");
   const rows = check(
