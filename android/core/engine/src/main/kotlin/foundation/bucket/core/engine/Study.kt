@@ -45,6 +45,18 @@ object Scheduler {
     }
 }
 
+object ExercisePicker {
+    fun kind(isNew: Boolean, reps: Int, lapsed: Boolean, latin: Boolean, roll: Double): ExerciseKind = when {
+        isNew -> ExerciseKind.Recognize
+        reps <= 1 || lapsed -> if (roll < 0.5) ExerciseKind.Recognize else ExerciseKind.Produce
+        reps == 2 -> if (roll < 0.5) ExerciseKind.Listen else ExerciseKind.Produce
+        !latin -> if (roll < 0.8) ExerciseKind.Listen else ExerciseKind.Recognize
+        roll < 0.6 -> ExerciseKind.Produce
+        roll < 0.85 -> ExerciseKind.Recognize
+        else -> ExerciseKind.TypeHeard
+    }
+}
+
 class StudySession(
     corpus: LangCorpus,
     private val root: String,
@@ -80,13 +92,19 @@ class StudySession(
         total = queue.size
     }
 
+    private fun roll(): Double = (rng.next() shr 11).toDouble() / 9007199254740992.0
+
     private fun exercise(w: GameWord, isNew: Boolean): Exercise {
-        val produce = !isNew && rng.next() % 2uL == 0uL
-        return if (produce) {
-            Exercise(w, ExerciseKind.Produce, w.gloss, w.form, mixed(listOf(w.form) + deck.foils(w, rng = rng), rng), false)
-        } else {
-            val wrong = mixed(deck.pool(w.lang).filter { it.gloss != w.gloss }, rng).map { it.gloss }.distinct().take(3)
-            Exercise(w, ExerciseKind.Recognize, w.form, w.gloss, mixed(listOf(w.gloss) + wrong, rng), isNew)
+        val reps = state.cards[w.id]?.reps ?: 0
+        val lapsed = (state.cards[w.id]?.lapses ?: 0) > 0
+        val kind = ExercisePicker.kind(isNew, reps, lapsed, foundation.bucket.core.model.Lang.info[w.lang]?.latin != false, roll())
+        return when (kind) {
+            ExerciseKind.Produce -> Exercise(w, ExerciseKind.Produce, w.gloss, w.form, mixed(listOf(w.form) + deck.foils(w, rng = rng), rng), false)
+            ExerciseKind.TypeHeard -> Exercise(w, ExerciseKind.TypeHeard, w.form, w.form, emptyList(), false)
+            else -> {
+                val wrong = mixed(deck.pool(w.lang).filter { it.gloss != w.gloss }, rng).map { it.gloss }.distinct().take(3)
+                Exercise(w, kind, w.form, w.gloss, mixed(listOf(w.gloss) + wrong, rng), isNew)
+            }
         }
     }
 
@@ -94,9 +112,17 @@ class StudySession(
     val finished: Boolean get() = queue.isEmpty()
     val remaining: Int get() = queue.size
 
-    fun answer(choice: String): Boolean {
+    fun answerTyped(text: String): Verdict {
+        val ex = current ?: return Verdict.Wrong
+        val v = Typed.judge(text, listOf(ex.answer), ex.word.lang)
+        grade(v != Verdict.Wrong)
+        return v
+    }
+
+    fun answer(choice: String): Boolean = grade(choice == current?.answer)
+
+    private fun grade(ok: Boolean): Boolean {
         val ex = queue.removeFirst()
-        val ok = choice == ex.answer
         answered += 1
         if (ok) correct += 1
         val id = ex.word.id
