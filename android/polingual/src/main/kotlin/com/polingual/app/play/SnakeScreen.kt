@@ -152,15 +152,17 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                         while (x < Snakes.WORLD_W) {
                             val c = kente[i % kente.size]
                             val bw = if (c == PL.Ochre) 26.0 else 8.0
-                            drawRect(c.copy(alpha = 0.55f), Offset(sx(x), sy(band)), androidx.compose.ui.geometry.Size((bw * k).toFloat(), (44 * k).toFloat()))
+                            drawRect(c.copy(alpha = 0.55f), Offset(sx(x), sy(band)), androidx.compose.ui.geometry.Size((bw * k).toFloat(), 44 * k))
                             x += bw; i++
                         }
                     }
                     a.words.forEach { fw ->
-                        val x = sx(fw.x); val y = sy(fw.y)
-                        if (x < -200 || y < -60 || x > size.width + 200 || y > size.height + 60) return@forEach
+                        val y = sy(fw.y)
+                        val rawX = sx(fw.x)
+                        if (rawX < -200 || y < -60 || rawX > size.width + 200 || y > size.height + 60) return@forEach
                         val r = measurer.measure(fw.form, TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1)
                         val tw = r.size.width + 24f
+                        val x = FitRules.clampCenter(rawX, tw, size.width)
                         drawRoundRect(PL.White, Offset(x - tw / 2, y - 18.dp.toPx() / 1f), Size(tw, 36.dp.toPx() / 1f), CornerRadius(12f))
                         drawRoundRect(PL.Hairline2, Offset(x - tw / 2, y - 18.dp.toPx()), Size(tw, 36.dp.toPx()), CornerRadius(12f), style = Stroke(2f))
                         drawText(r, topLeft = Offset(x - r.size.width / 2f, y - r.size.height / 2f))
@@ -170,7 +172,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                         drawPath(path, SNAKE_COLORS[s.color % SNAKE_COLORS.size], style = Stroke(14f * k, cap = StrokeCap.Round, join = StrokeJoin.Round))
                         drawCircle(PL.White, 4f * k, Offset(sx(s.body[0].x), sy(s.body[0].y)))
                         val label = measurer.measure("${s.name} ${s.length}", TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = PL.Paper), softWrap = false, maxLines = 1)
-                        drawText(label, topLeft = Offset(sx(s.body[0].x) - label.size.width / 2f, sy(s.body[0].y) - 18 * k - label.size.height))
+                        drawText(label, topLeft = Offset(FitRules.clampCenter(sx(s.body[0].x), label.size.width.toFloat(), size.width) - label.size.width / 2f, sy(s.body[0].y) - 18 * k - label.size.height))
                     }
                 } }
             }
