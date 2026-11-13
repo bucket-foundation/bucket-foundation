@@ -32,7 +32,22 @@ const choice = page.getByTestId("choice").nth(1);
 if (await choice.isVisible().catch(() => false)) await choice.click();
 await page.getByTestId("verdict").or(page.getByTestId("reveal")).first().waitFor({ timeout: 30000 });
 await shot("reveal");
-await page.getByTestId("results").waitFor({ timeout: 180000 });
+if (game === "duel" && setup === "single") {
+  for (let i = 0; i < 9; i++) {
+    await page.getByTestId("choice").first().waitFor({ timeout: 20000 }).catch(() => undefined);
+    const c = page.getByTestId("choice").nth(i % 3);
+    if (await c.isEnabled().catch(() => false)) await c.click().catch(() => undefined);
+    await page.getByTestId("powers").waitFor({ timeout: 20000 }).catch(() => undefined);
+    const fifty = page.getByTestId("power-fifty");
+    if (await fifty.isEnabled().catch(() => false)) {
+      await fifty.click();
+      await page.getByTestId("power-set").waitFor({ timeout: 5000 }).catch(() => undefined);
+      await shot("power");
+      break;
+    }
+  }
+}
+await page.getByTestId("results").waitFor({ timeout: 240000 });
 await shot("results");
 await page.getByTestId("next-game").waitFor();
 console.log(JSON.stringify({ width, setup, errors, next: await page.getByTestId("next-game").innerText(), overflow: await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth) }));

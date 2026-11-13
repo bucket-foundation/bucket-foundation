@@ -434,6 +434,7 @@ export default function Room({ code: rawCode }: { code: string }) {
                 <button type="button" className={app.ghost} onClick={() => setSkipped(key)} data-testid="skip-reveal">Skip</button>
               ) : null}
             </div>
+            {prompt ? <RevealBanner prompt={prompt} pick={picked && picked.round === phase.index && picked.game === lobby.startedAt && !picked.pending ? picked : null} /> : null}
             {lobby.game === "duel" && phase.index + 1 < lobby.rounds ? (
               <section className={styles.powers} data-testid="powers" aria-label="Power-ups">
                 <p className={styles.powersHead}>
@@ -455,7 +456,6 @@ export default function Room({ code: rawCode }: { code: string }) {
                 )}
               </section>
             ) : null}
-            {prompt ? <RevealBanner prompt={prompt} pick={picked && picked.round === phase.index && picked.game === lobby.startedAt && !picked.pending ? picked : null} /> : null}
             {hidden ? null : prompt?.reveal?.length ? <Reveal prompt={prompt} /> : <p className={app.muted} aria-busy="true">Loading the answers</p>}
             {betweenRoundsAd(lobby.game, phase.index, breaks.games) ? <Ad placement="between-rounds" /> : null}
           </div>

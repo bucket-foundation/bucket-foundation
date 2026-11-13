@@ -15,3 +15,7 @@ Branch `feat/polingual-playtest`, worktree `/home/gian/agfarms/.wt-playtest`. Be
 - Client done: mixed tiles, verdict banner, countdown, setup picker, sign-in sheet and CTA states, ad rules (breaks.ts), rewarded continue route `/continue`. Hosted setup lobbies loop: `againHosted` resets after results.
 - Dev pair verified at 390 and 1440 with `scripts/playtest-lobby.mjs` (SETUP=mix|single GAME=tiles W=390). Next: critic, merge into dev.
 - Part 2: Flag Duel, Polyword.
+
+## Flag Duel
+
+Bead bkt-9gvte.1, branch `feat/polingual-flag-duel`. Flag `POLINGUAL_LOBBY_DUEL=on`, migration `20261113100000_polingual_flag_duel.sql`. Game `duel`: even rounds name the language, odd rounds pick the meaning; coins from right answers buy double points or 50/50 for the next round (`/lobbies/power`). Standing slot `duel-world`. Tests `scripts/test-academy-lobby-duel.ts`. Polyword is built on the Mac; skip it. Next game here: Flag Tiles.
