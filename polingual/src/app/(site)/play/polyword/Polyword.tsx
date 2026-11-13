@@ -328,7 +328,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
   const isToday = puzzle.day === today;
 
   return (
-    <div className={styles.wrap} data-testid="polyword" data-phase={phase} data-account={account}>
+    <div className={styles.wrap} data-testid="polyword" data-phase={phase} data-account={account} data-round={phase === "playing" ? "active" : undefined}>
       <header className={styles.head}>
         <div className={styles.titleRow}>
           <h1 className={styles.title}>Polyword</h1>
