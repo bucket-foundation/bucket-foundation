@@ -29,6 +29,11 @@ export function revealEntries(row: Pick<LobbyPromptRow, "mode" | "lang" | "choic
   if (row.mode === "meaning") {
     return [entry(row.lang, item?.forms[row.lang] ?? row.choices[0], root, lookup, true, item), ...row.choices.filter((c) => c !== row.answer).map((c) => entry(root, c, root, lookup, false))];
   }
+  if (row.mode === "spy") {
+    const word = item?.forms[row.lang] ?? row.answer;
+    const own = entry(row.lang, word, root, lookup, true, item);
+    return item?.forms[root] && root !== row.lang ? [own, entry(root, item.forms[root], root, lookup, false, item)] : [own];
+  }
   if (row.mode === "mixed") {
     return row.choices.map((key) => {
       const t = parseTile(key);
