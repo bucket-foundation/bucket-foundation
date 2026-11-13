@@ -6,6 +6,7 @@ export interface DailyResult {
   score: number;
   total: number;
   pattern: string;
+  savedAt: number;
   words: { lang: string; itemId: string; form: string; gloss: string; right: boolean }[];
 }
 
@@ -17,10 +18,22 @@ const KEEP = 120;
 
 export const bookKey = (game: DailyGame, day: string) => `${game}|${day}`;
 
+function earlier(x: DailyResult | undefined, y: DailyResult | undefined): DailyResult | undefined {
+  if (!x) return y;
+  if (!y) return x;
+  return (y.savedAt ?? Infinity) < (x.savedAt ?? Infinity) ? y : x;
+}
+
 export function mergeBooks(a: DailyBook, b: DailyBook): DailyBook {
-  const all = { ...b, ...a };
-  const keys = Object.keys(all).sort((x, y) => (all[y].day > all[x].day ? 1 : -1)).slice(0, KEEP);
+  const all: DailyBook = {};
+  for (const k of new Set([...Object.keys(a), ...Object.keys(b)])) all[k] = earlier(a[k], b[k])!;
+  const keys = Object.keys(all).sort((x, y) => (all[y].savedAt ?? 0) - (all[x].savedAt ?? 0)).slice(0, KEEP);
   return Object.fromEntries(keys.map((k) => [k, all[k]]));
+}
+
+export function sameBook(a: DailyBook, b: DailyBook): boolean {
+  const ka = Object.keys(a);
+  return ka.length === Object.keys(b).length && ka.every((k) => b[k] && b[k].savedAt === a[k].savedAt && b[k].pattern === a[k].pattern);
 }
 
 export function readLocal(storage: Storage | null): DailyBook {
@@ -70,17 +83,41 @@ export async function pushBook(deps: SyncDeps, book: DailyBook): Promise<boolean
   }
 }
 
-export async function recordResult(result: DailyResult, storage: Storage | null, deps: SyncDeps | null): Promise<DailyBook> {
-  let book = mergeBooks({ [bookKey(result.game, result.day)]: result }, readLocal(storage));
-  writeLocal(storage, book);
-  if (deps) {
+export type SaveState = "account" | "device" | "failed";
+
+export async function syncBook(deps: SyncDeps, local: DailyBook, tries = 3): Promise<DailyBook | null> {
+  let book = local;
+  for (let n = 0; n < tries; n++) {
     const remote = await pullBook(deps);
-    if (remote) {
-      book = mergeBooks(book, remote);
-      writeLocal(storage, book);
-      await pushBook(deps, book);
-    }
+    if (!remote) return null;
+    book = mergeBooks(book, remote);
+    if (sameBook(book, remote)) return book;
+    if (!(await pushBook(deps, book))) continue;
+    const check = await pullBook(deps);
+    if (check && sameBook(mergeBooks(book, check), check)) return mergeBooks(book, check);
+    if (check) book = mergeBooks(book, check);
   }
+  return null;
+}
+
+export async function recordResult(result: DailyResult, storage: Storage | null, deps: SyncDeps | null): Promise<{ book: DailyBook; saved: SaveState }> {
+  let book = mergeBooks(readLocal(storage), { [bookKey(result.game, result.day)]: result });
+  writeLocal(storage, book);
+  if (!deps || !(await deps.token())) return { book, saved: "device" };
+  const synced = await syncBook(deps, book);
+  if (!synced) return { book, saved: "failed" };
+  book = synced;
+  writeLocal(storage, book);
+  return { book, saved: "account" };
+}
+
+export async function loadBook(storage: Storage | null, deps: SyncDeps | null): Promise<DailyBook> {
+  const local = readLocal(storage);
+  if (!deps || !(await deps.token())) return local;
+  const remote = await pullBook(deps);
+  if (!remote) return local;
+  const book = mergeBooks(local, remote);
+  writeLocal(storage, book);
   return book;
 }
 

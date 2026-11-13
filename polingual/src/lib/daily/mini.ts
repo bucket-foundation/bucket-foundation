@@ -26,7 +26,7 @@ export function cells(e: Pick<MiniEntry, "letters" | "row" | "col" | "across">):
 }
 
 export function miniLetters(form: string): string[] | null {
-  const chars = Array.from(form);
+  const chars = Array.from(form.normalize("NFC"));
   if (chars.length < 3 || chars.length > MINI_SIDE || !chars.every((c) => /\p{L}/u.test(c))) return null;
   return chars.map((c) => {
     const up = c.toUpperCase();

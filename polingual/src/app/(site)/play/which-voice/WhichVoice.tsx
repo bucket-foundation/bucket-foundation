@@ -5,7 +5,7 @@ import { speak } from "@academy/lang-client";
 import { fnv, mixed, SeededRandom } from "@/lib/daily/rng";
 import { flags, formOf, GameDeck, type GameWord } from "@/lib/daily/words";
 import { Button } from "@/ui";
-import { DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
+import { dayLabel, DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
@@ -13,7 +13,7 @@ import styles from "../daily/daily.module.css";
 
 
 export default function WhichVoice() {
-  const { state, finish } = useDaily("which-voice");
+  const { state, finish, retry } = useDaily("which-voice");
   const prompts = useMemo(() => {
     if (state.status !== "ready") return [];
     const { root, targets } = state.system;
@@ -36,7 +36,7 @@ export default function WhichVoice() {
   }, [p, state]);
 
   if (state.status !== "ready") return <DailyWorld id="which-voice"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="which-voice"><Results title="Which Voice" result={state.done} url="https://polingual.com/play/which-voice" /></DailyWorld>;
+  if (state.done) return <DailyWorld id="which-voice"><Results title="Which Voice" result={state.done} url="https://polingual.com/play/which-voice" saved={state.saved} onRetry={retry} /></DailyWorld>;
   if (!p) return <DailyWorld id="which-voice"><Loading state="error" /></DailyWorld>;
 
   function choose(c: string) {
@@ -54,7 +54,7 @@ export default function WhichVoice() {
 
   return (
     <DailyWorld id="which-voice">
-      <Heading eyebrow={`Which Voice · ${state.day}`} title="Listen, then pick the language" blurb="Ten words read aloud. Play a word again as often as you like." />
+      <Heading eyebrow={`Which Voice · ${dayLabel(state.day)}`} title="Listen, then pick the language" blurb="Ten words read aloud. Play a word again as often as you like." />
       <Pips pattern={pattern} total={prompts.length} />
       <Button variant="accent" size="xl" onClick={() => speak(p.word.form, p.word.lang)} data-testid="voice-play">Play the word</Button>
       <div className={styles.choices}>

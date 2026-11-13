@@ -4,14 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { cellKey, cells, dailyMini, miniAnswers, miniSize, type MiniEntry } from "@/lib/daily/mini";
 import { starter } from "@/lib/daily/words";
 import { Button, cssVars } from "@/ui";
-import { DailyWorld, Heading, Loading, Results } from "../daily/DailyWorld";
+import { dayLabel, DailyWorld, Heading, Loading, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
 
 
 export default function Mini() {
-  const { state, finish } = useDaily("mini");
+  const { state, finish, retry } = useDaily("mini");
   const puzzle = useMemo(() => (state.status === "ready" ? dailyMini(starter(state.system.root, state.system.targets, state.corpus), state.day, state.system.root, state.system.targets) : null), [state]);
   const [fill, setFill] = useState<Record<string, string>>({});
   const [active, setActive] = useState(0);
@@ -42,7 +42,7 @@ export default function Mini() {
   });
 
   if (state.status !== "ready") return <DailyWorld id="mini"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="mini"><Results title="Mini" result={state.done} url="https://polingual.com/play/mini" /></DailyWorld>;
+  if (state.done) return <DailyWorld id="mini"><Results title="Mini" result={state.done} url="https://polingual.com/play/mini" saved={state.saved} onRetry={retry} /></DailyWorld>;
   if (!puzzle || !entry) return <DailyWorld id="mini"><Loading state="error" /></DailyWorld>;
 
   const answers = miniAnswers(puzzle);
@@ -61,7 +61,7 @@ export default function Mini() {
 
   return (
     <DailyWorld id="mini">
-      <Heading eyebrow={`Mini · ${langName(puzzle.lang)} · ${state.day}`} title="Today's small crossword" blurb="Write each word in the language. Tap a clue or a square to move." />
+      <Heading eyebrow={`Mini · ${langName(puzzle.lang)} · ${dayLabel(state.day)}`} title="Today's small crossword" blurb="Write each word in the language. Tap a clue or a square to move." />
       <div className={styles.grid} style={cssVars({ "--cols": cols })} data-testid="mini-grid">
         {Array.from({ length: rows * cols }, (_, n) => {
           const r = Math.floor(n / cols);

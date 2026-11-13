@@ -5,7 +5,7 @@ import { formOf, starter, wordId } from "@/lib/daily/words";
 import { dailyGroups, emptyGroups, GROUP_MISTAKES, groupId, groupsFinished, groupsMistakes, submitGroup, toggleTile, type GroupLink } from "@/lib/daily/groups";
 import { mixed, SeededRandom } from "@/lib/daily/rng";
 import { Button } from "@/ui";
-import { DailyWorld, Heading, Loading, Results } from "../daily/DailyWorld";
+import { dayLabel, DailyWorld, Heading, Loading, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
@@ -22,7 +22,7 @@ function linkName(l: GroupLink): string {
 const NOTE: Record<string, string> = { oneAway: "One away.", miss: "Not a group.", repeated: "Already tried.", solved: "Group found." };
 
 export default function WordGroups() {
-  const { state, finish } = useDaily("word-groups");
+  const { state, finish, retry } = useDaily("word-groups");
   const puzzle = useMemo(() => {
     if (state.status !== "ready") return null;
     const c = state.corpus;
@@ -36,7 +36,7 @@ export default function WordGroups() {
   const [note, setNote] = useState("");
 
   if (state.status !== "ready") return <DailyWorld id="word-groups"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="word-groups"><Results title="Word Groups" result={state.done} url="https://polingual.com/play/word-groups" /></DailyWorld>;
+  if (state.done) return <DailyWorld id="word-groups"><Results title="Word Groups" result={state.done} url="https://polingual.com/play/word-groups" saved={state.saved} onRetry={retry} /></DailyWorld>;
   if (!puzzle) return <DailyWorld id="word-groups"><Loading state="error" /></DailyWorld>;
 
   const gone = new Set(puzzle.groups.filter((x) => g.solved.includes(groupId(x))).flatMap((x) => x.words.map(wordId)));
@@ -56,7 +56,7 @@ export default function WordGroups() {
 
   return (
     <DailyWorld id="word-groups">
-      <Heading eyebrow={`Word Groups · ${state.day}`} title="Sort sixteen words into four groups" blurb="Groups share a language, a theme or both." />
+      <Heading eyebrow={`Word Groups · ${dayLabel(state.day)}`} title="Sort sixteen words into four groups" blurb="Groups share a language, a theme or both." />
       {puzzle.groups.filter((x) => g.solved.includes(groupId(x))).map((x, i) => (
         <div key={groupId(x)} className={styles.solved} data-i={i} data-testid="groups-solved">
           <b>{linkName(x.link)}</b>

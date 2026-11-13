@@ -4,14 +4,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { speak } from "@academy/lang-client";
 import { dailyLetters, LETTER_SECONDS } from "@/lib/daily/letters";
 import { Button } from "@/ui";
-import { DailyWorld, Heading, Intro, Loading, Pips, Results } from "../daily/DailyWorld";
+import { dayLabel, DailyWorld, Heading, Intro, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
 import styles from "../daily/daily.module.css";
 
 
 export default function LetterSprint() {
-  const { state, finish } = useDaily("letter-sprint");
+  const { state, finish, retry } = useDaily("letter-sprint");
   const prompts = useMemo(() => (state.status === "ready" ? dailyLetters(state.day, state.system.targets) : []), [state]);
   const [i, setI] = useState(0);
   const [pattern, setPattern] = useState("");
@@ -41,7 +41,7 @@ export default function LetterSprint() {
   });
 
   if (state.status !== "ready") return <DailyWorld id="letter-sprint"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="letter-sprint"><Results title="Letter Sprint" result={state.done} url="https://polingual.com/play/letter-sprint" /></DailyWorld>;
+  if (state.done) return <DailyWorld id="letter-sprint"><Results title="Letter Sprint" result={state.done} url="https://polingual.com/play/letter-sprint" saved={state.saved} onRetry={retry} /></DailyWorld>;
   if (!p) return <DailyWorld id="letter-sprint"><Loading state="error" /></DailyWorld>;
 
   function choose(c: string) {
@@ -54,7 +54,7 @@ export default function LetterSprint() {
   const left = ends ? Math.max(0, Math.ceil((ends - now) / 1000)) : LETTER_SECONDS;
   return (
     <DailyWorld id="letter-sprint">
-      <Heading eyebrow={`Letter Sprint · ${langName(p.lang)} · ${state.day}`} title={ends ? `Find the letter that says “${p.sound}”` : `Eight ${langName(p.lang)} letters`} blurb={ends ? `${left} seconds left` : `Hear a sound, then find its letter. ${LETTER_SECONDS} seconds for all eight.`} />
+      <Heading eyebrow={`Letter Sprint · ${langName(p.lang)} · ${dayLabel(state.day)}`} title={ends ? `Find the letter that says “${p.sound}”` : `Eight ${langName(p.lang)} letters`} blurb={ends ? `${left} seconds left` : `Hear a sound, then find its letter. ${LETTER_SECONDS} seconds for all eight.`} />
       {ends ? (
         <>
           <Pips pattern={pattern} total={prompts.length} />

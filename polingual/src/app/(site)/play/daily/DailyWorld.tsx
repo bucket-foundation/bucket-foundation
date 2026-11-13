@@ -3,7 +3,9 @@
 import type { ReactNode } from "react";
 import type { RevealEntry } from "@academy/lobbies";
 import { LEARN_HREF } from "@/lib/lobby/client";
-import { shareText, type DailyGame, type DailyResult } from "@/lib/daily/store";
+import { shareText, type DailyGame, type DailyResult, type SaveState } from "@/lib/daily/store";
+import { readBreaks } from "@/lib/lobby/breaks";
+import { local } from "./useDaily";
 import { Button, ButtonLink } from "@/ui";
 import GameWorld, { WorldStickers } from "../GameWorld";
 import { Art } from "@/ui/art";
@@ -42,12 +44,12 @@ export function Pips({ pattern, total }: { pattern: string; total: number }) {
   );
 }
 
-export function Results({ title, result, url }: { title: string; result: DailyResult; url: string }) {
+export function Results({ title, result, url, saved, onRetry }: { title: string; result: DailyResult; url: string; saved?: SaveState | null; onRetry?: () => void }) {
   const entries: RevealEntry[] = result.words.map((w) => ({ lang: w.lang, word: w.form, roman: null, reading: null, meaning: w.gloss, gloss: w.gloss, correct: w.right }));
   const share = shareText(title, result, url);
   return (
     <section data-testid="daily-results" className={styles.stack}>
-      <Heading eyebrow={`${title} · ${result.day}`} title="Today's result" blurb="A new one comes tomorrow." />
+      <Heading eyebrow={`${title} · ${dayLabel(result.day)}`} title="Today's result" blurb="A new one comes tomorrow." />
       <p className={styles.score} data-testid="daily-score">{result.score} of {result.total}</p>
       <Pips pattern={result.pattern} total={result.total} />
       <div className={styles.row}>
@@ -59,7 +61,11 @@ export function Results({ title, result, url }: { title: string; result: DailyRe
           {entries.map((e, i) => <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} />)}
         </ul>
       ) : null}
-      <Ad placement="results" testId="daily-ad-results" />
+      <p className={styles.blurb} role="status" data-testid="daily-saved" data-state={saved ?? "saving"}>
+        {saved === "account" ? "Saved to your account." : saved === "device" ? "Saved on this device. Sign in to keep it." : saved === "failed" ? "Could not save. " : "Saving."}
+        {saved === "failed" && onRetry ? <Button variant="quiet" size="sm" onClick={onRetry} data-testid="daily-retry">Retry</Button> : null}
+      </p>
+      {readBreaks(local).games >= 2 ? <Ad placement="results" testId="daily-ad-results" /> : null}
     </section>
   );
 }
@@ -79,4 +85,9 @@ export function Intro({ id, langs }: { id: DailyGame; langs: readonly string[] }
       </ul>
     </div>
   );
+}
+
+export function dayLabel(day: string): string {
+  const [y, m, d] = day.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString(undefined, { weekday: "short", month: "long", day: "numeric" });
 }
