@@ -29,6 +29,7 @@ enum class WebGame(val route: String, val title: String, val blurb: String, val 
     Atlas("voice-atlas", "Voice Atlas", "Five words a day. Hear one, pin where its language is spoken.", "azulejo", 8f),
     Forehead("forehead", "Forehead", "Party mode on one phone. Friends give clues, you tilt to score.", "ticket", 6f),
     ISpy("ispy", "I Spy", "Spot the thing, say it in the language of the round.", "star", -12f),
+    SameWord("same-word", "Same Word", "One meaning across languages. A live room with friends.", "seal", -7f),
 }
 
 @Composable

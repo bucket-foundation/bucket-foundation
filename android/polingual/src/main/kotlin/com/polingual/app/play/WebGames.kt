@@ -22,7 +22,7 @@ import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.PLCard
 
 object WebGames {
-    val ready = setOf("polyword", "flag-tiles", "babel-match", "shift", "word-snake", "voice-atlas", "forehead", "ispy")
+    val ready = setOf("polyword", "flag-tiles", "babel-match", "shift", "word-snake", "voice-atlas", "forehead", "ispy", "same-word")
 }
 
 @Composable
@@ -48,4 +48,5 @@ fun playRoutes(builder: NavGraphBuilder, graph: Graph, nav: NavHostController) {
     builder.composable("play/voice-atlas") { AtlasScreen(graph, back) }
     builder.composable("play/forehead") { ForeheadScreen(graph, back) }
     builder.composable("play/ispy") { ISpyScreen(graph, back) }
+    builder.composable("play/same-word") { androidx.compose.runtime.LaunchedEffect(Unit) { nav.navigate("lobbies?game=same-word") { popUpTo("play/same-word") { inclusive = true } } } }
 }
