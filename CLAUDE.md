@@ -22,10 +22,6 @@ Set by the founder on 2026-09-18: Bucket runs on this machine first, and hosted 
 - **Beads**: local `bd` against the Dolt database at `.beads/dolt` (server on 127.0.0.1:3309). `npm run beads:export` snapshots it to the git-tracked `.beads/issues.jsonl`. An agent-proposed bead carries the labels `needs-founder` and `source-agent` and stays deferred until the founder clears it; a founder-sourced bead carries `source-founder` instead. `.beads/BEADS-PENDING.jsonl` is retired, its rows were imported on 2026-09-23, and the file stays frozen.
 - **Public site**: still ships. `dev` promotes to `main`, and Vercel builds `main` for bucket.foundation.
 
-## Known Infra Gaps
-
-1. **No `NSMotionUsageDescription`** on DerbyFish iOS (needed for Path B sensor capture, tracked as cross-venture `dbt-` bead).
-
 ## Repo
 
 This venture is a single repo (cloned from `gianyrox/bucket-foundation`, pending transfer to `AGFarms/bucket-foundation` on formal nonprofit filing or a proper nonprofit legal entity).
@@ -173,6 +169,7 @@ Language surface on the photon substrate. Contract and vision: `docs/specs/PHOTO
 
 - Full index: 6,564,942 photons, 35 languages, LaBSE-768 plus 64-d phonetic vectors with HNSW, in local docker `bucket-pgvector` on 127.0.0.1:5433, table `photons_full`. API `services/photon-api/server_pg.py` on :8090.
 - The hosted fallback API and the store that held the authoritative `relations` jsonb metadata (translation and etymology edges) are gone for good. With `POLINGUAL_API_URL` and `POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes no network call: `semantic` and `lookup` answer from `_intake/photons/all.json`, a 43 MB slice holding every word in the shipped language decks with precomputed means-like neighbors (`scripts/photon/build_deck_slice.py`). The full index and vectors stay a desktop download pack.
+- **Design system.** Every Polingual screen on web, iOS and Android follows `docs/design/POLINGUAL-DESIGN.md`: tokens from `polingual/src/ui/tokens.json`, art from `src/ui/art`, components from `@/ui` only, and web-to-app parity. A screen that breaks it fails review.
 - Data is Wiktionary via Kaikki, CC-BY-SA, and must be attributed.
 - Build pipeline, sizing, gotchas and infra history: `docs/internal/OPERATIONS.md`.
 
