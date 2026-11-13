@@ -67,5 +67,9 @@ object LobbyTiles {
 
     fun roundStartMs(roundIndex: Int, startedAtMs: Long, roundSeconds: Int, revealSeconds: Int): Long = startedAtMs + roundIndex * (roundSeconds + revealSeconds) * 1000L
 
+    fun shownTaps(submitted: String?, local: Set<Int>, count: Int): Set<Int> = submitted?.let { parseTapped(it, count) }?.toSet() ?: local
+
+    fun frameElapsed(nowMs: Long, offsetMs: Long, roundStartMs: Long): Long = nowMs + offsetMs - roundStartMs
+
     fun submitAtMs(roundSeconds: Int): Long = Math.round(roundSeconds * 1000 * SUBMIT_AT)
 }

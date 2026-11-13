@@ -41,9 +41,8 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
     val state by graph.lobbies.state.collectAsState()
     val scope = rememberCoroutineScope()
     val schedule = remember(prompt) { LobbyTiles.schedule(prompt.choices.size, index, lobby.rounds, lobby.roundSeconds) }
-    val picked = state.picks[index]?.let { LobbyTiles.parseTapped(it, prompt.choices.size) }?.toSet()
     var local by remember(index) { mutableStateOf(emptySet<Int>()) }
-    val tapped = picked ?: local
+    val tapped = LobbyTiles.shownTaps(state.picks[index], local, prompt.choices.size)
     val tickElapsed = ((lobby.roundSeconds - remaining) * 1000).toLong()
     val startedAt = lobby.startedAt?.let { foundation.bucket.core.model.parseInstantMs(it) }
     val roundStart = startedAt?.let { LobbyTiles.roundStartMs(index, it, lobby.roundSeconds, lobby.revealSeconds) }
@@ -52,7 +51,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
         if (roundStart == null || reveal) return@LaunchedEffect
         while (true) {
             androidx.compose.runtime.withFrameMillis { }
-            frameElapsed = System.currentTimeMillis() + state.offsetMs - roundStart
+            frameElapsed = LobbyTiles.frameElapsed(System.currentTimeMillis(), state.offsetMs, roundStart)
             if (frameElapsed > lobby.roundSeconds * 1000L) break
         }
     }
