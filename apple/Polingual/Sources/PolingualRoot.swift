@@ -123,7 +123,7 @@ struct Studio: View {
                 NavigationStack {
                     GamesView(embedded: true)
                         .safeAreaInset(edge: .bottom) { LobbyBanner() }
-                        .onAppear { LobbyAds.shared.start() }
+                        .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
                 }
                 .environment(\.learnUpsell, upsell)
             }
