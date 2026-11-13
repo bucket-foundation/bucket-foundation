@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import foundation.bucket.core.ui.pl.PLTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +20,13 @@ class MainActivity : ComponentActivity() {
         val graph = (application as PolingualApp).graph
         graph.activity = java.lang.ref.WeakReference(this)
         graph.ads.gather(this)
-        setContent { PLTheme { Root(graph, link.value) { link.value = null } } }
+        setContent {
+            PLTheme {
+                val problem by graph.voice.problem.collectAsState()
+                androidx.compose.runtime.LaunchedEffect(problem) { problem?.let { android.widget.Toast.makeText(this@MainActivity, it, android.widget.Toast.LENGTH_SHORT).show() } }
+                Root(graph, link.value) { link.value = null }
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent) {

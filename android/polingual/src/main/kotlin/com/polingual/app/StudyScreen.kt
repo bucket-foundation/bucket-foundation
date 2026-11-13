@@ -58,6 +58,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             PrimaryButton("Back to Today") { done() }
             return@Page
         }
+        SilentSwitch(graph, compact = true)
         LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(Lang.flag(ex.word.lang))
@@ -66,7 +67,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         }
         Text(if (ex.kind == ExerciseKind.Recognize) "What does this mean?" else "Pick the ${Lang.name(ex.word.lang)} word", color = p.muted)
         WordTile(ex.word.lang, ex.prompt, onSpeak = if (ex.kind == ExerciseKind.Recognize) ({ graph.voice.speak(ex.word.form, ex.word.lang) }) else null)
-        LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang) }
+        LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
         ex.options.forEach { o ->
             val state = when {
                 picked == null -> ChoiceState.Idle
@@ -74,7 +75,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
                 o == picked -> ChoiceState.Wrong
                 else -> ChoiceState.Dim
             }
-            ChoiceButton(o, state) { if (picked == null) { picked = o; graph.voice.speak(ex.word.form, ex.word.lang) } }
+            ChoiceButton(o, state) { if (picked == null) { picked = o; graph.voice.speak(ex.word.form, ex.word.lang, auto = true) } }
         }
         val chosen = picked
         if (chosen != null) {

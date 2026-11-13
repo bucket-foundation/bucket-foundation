@@ -68,7 +68,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
         }
         val round = rs[index]
         val guessed = guesses.firstOrNull { it.round == round }
-        LaunchedEffect(round) { graph.voice.speak(round.form, round.lang) }
+        LaunchedEffect(round) { graph.voice.speak(round.form, round.lang, auto = true) }
         Row { Text("Round ${index + 1} of $limit", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f)); Text("$total", style = Type.title, color = PL.Vermilion) }
         PLButton("Listen", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(round.form, round.lang) }
         if (peek || guessed != null) WordTile(null, round.form, tilt = 0f) else PLButton("Show the word, half points", variant = ButtonVariant.Quiet, block = false) { peek = true }

@@ -38,8 +38,10 @@ fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, content: @Composabl
     Page(
         game.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
         stickers = listOf(Sticker(game.art, Alignment.CenterStart, 70.dp, game.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 84.dp, -4f, dx = (-8).dp)),
-        content = content,
-    )
+    ) {
+        com.polingual.app.SilentSwitch(graph, compact = true)
+        content()
+    }
 }
 
 @Composable
