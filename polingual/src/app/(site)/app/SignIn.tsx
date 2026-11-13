@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { appAuth, signInError } from "@/lib/app/auth";
 import styles from "./app.module.css";
-import { Button, Field, FlagBand, Input, Sheet, Stage, StreakFlame } from "@/ui";
+import { Button, Field, FlagBand, Input, Sheet, StreakFlame } from "@/ui";
 
 export type SignInCopy = { label: string; title: string; intro: string };
 
@@ -41,7 +41,6 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
   }
 
   return (
-    <Stage testId="sign-in-stage">
     <Sheet className={styles.card} data-testid="sign-in">
       <StreakFlame days={100} caption="Day streak" size={36} />
       <p className={styles.label}>{copy.label}</p>
@@ -73,6 +72,5 @@ export default function SignIn({ onSignedIn, copy = LEARN }: { onSignedIn: () =>
       {error ? <p role="alert" className={styles.error} data-testid="sign-in-error">{error}</p> : null}
     <FlagBand className={styles.sheetBand} />
     </Sheet>
-    </Stage>
   );
 }

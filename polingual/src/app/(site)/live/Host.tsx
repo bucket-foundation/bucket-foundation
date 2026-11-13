@@ -10,7 +10,7 @@ import { Brand, Prompt, Standings, TeamStandings, TeamTag, Tiles, type TileState
 import { Confetti, Drift, MixBar, Podium, TimerRing, useStage } from "./show";
 import styles from "./stoa.module.css";
 import { Avatar } from "@/ui/avatar";
-import { Button, Card, Pill } from "@/ui";
+import { Button, Card, Pill, Stage } from "@/ui";
 
 const Qr = dynamic(() => import("./Qr"), { ssr: false });
 
@@ -214,7 +214,7 @@ export default function Host() {
 
   const view = (() => {
     if (auth === "loading") return null;
-    if (auth === "signed-out") return <SignIn onSignedIn={() => void refresh()} copy={HOST_COPY} />;
+    if (auth === "signed-out") return <Stage><SignIn onSignedIn={() => void refresh()} copy={HOST_COPY} /></Stage>;
     if (!room)
       return (
         <Card as="section" className={styles.card} data-testid="host-setup">
