@@ -7,21 +7,23 @@ import { useCefrPlacement } from "@learn/languages/useCefrPlacement";
 import LangExercise from "@learn/languages/LangExercise";
 import { appHref } from "@/lib/app/systems";
 import styles from "../../app.module.css";
-import { Button, ButtonLink, Card } from "@/ui";
+import { Button, ButtonLink, Card, Stage } from "@/ui";
 
 export default function Placement({ systemId, lang: requested }: { systemId: string; lang: string | null }) {
   const h = useLangSystem(systemId);
   const run = useCefrPlacement(h, requested);
   const { system } = h;
 
-  if (h.status === "loading") return <p className={styles.muted} aria-busy="true">Loading placement</p>;
-  if (h.status === "error") return <p className={styles.error}>Placement did not load. Reload the page to try again.</p>;
+  if (h.status === "loading") return <Stage ground="paper"><p className={styles.muted} aria-busy="true">Loading placement</p></Stage>;
+  if (h.status === "error") return <Stage ground="paper"><p className={styles.error}>Placement did not load. Reload the page to try again.</p></Stage>;
   if (!system || !run.lang) {
     return (
+      <Stage ground="paper">
       <Card as="section" className={styles.card}>
         <h1 className={styles.title}>No such language system</h1>
         <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
       </Card>
+      </Stage>
     );
   }
   const lang = run.lang;
@@ -31,6 +33,7 @@ export default function Placement({ systemId, lang: requested }: { systemId: str
     const known = run.result.placeIds.length;
     const level = levelLabel(run.result);
     return (
+      <Stage ground="paper">
       <Card as="section" className={styles.card} data-testid="placement-done" data-level={run.result.level}>
         <p className={styles.label}>Placement · {langName(lang)}</p>
         <h1 className={styles.title}>Level {level}</h1>
@@ -55,12 +58,14 @@ export default function Placement({ systemId, lang: requested }: { systemId: str
           <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
         </div>
       </Card>
+      </Stage>
     );
   }
 
-  if (!run.question) return <p className={styles.muted} aria-busy="true">Picking the next question</p>;
+  if (!run.question) return <Stage ground="paper"><p className={styles.muted} aria-busy="true">Picking the next question</p></Stage>;
 
   return (
+    <Stage ground="paper">
     <Card as="section" className={`${styles.card} ${styles.wide}`} data-testid="placement">
       <p className={styles.label}>Placement · {langName(system.root)} to {langName(lang)}</p>
       <p className={styles.small} data-testid="counter">Question {run.answers.length + 1} · level {run.band}</p>
@@ -71,5 +76,6 @@ export default function Placement({ systemId, lang: requested }: { systemId: str
         I do not know
       </Button>
     </Card>
+    </Stage>
   );
 }

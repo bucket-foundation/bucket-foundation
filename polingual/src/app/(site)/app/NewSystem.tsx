@@ -6,7 +6,7 @@ import { LANGS, langName, MAX_TARGETS, validateSystem, type LangSystem, type Sys
 import type { SaveResult } from "@academy/lang-client";
 import { appHref, presetsFor, ROOT_CHOICES, targetChoices, toggleTarget } from "@/lib/app/systems";
 import styles from "./app.module.css";
-import { Button, Field, FlagBand, Pill, Select, Stage } from "@/ui";
+import { Button, Field, Pill, Select, Stage } from "@/ui";
 
 const ERROR_TEXT: Record<SystemError, string> = {
   "no-targets": "Pick at least one language to learn.",
@@ -79,7 +79,6 @@ export default function NewSystem({ first = false, systems = [], create }: { fir
       <Button disabled={busy} onClick={submit} data-testid="create-system">
         {busy ? "Saving" : "Continue to placement"}
       </Button>
-      <FlagBand />
     </section>
     </Stage>
   );

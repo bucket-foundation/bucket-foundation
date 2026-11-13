@@ -36,7 +36,7 @@
 .fieldLabel{font-weight:700;font-size:14px;margin:0}
 .bands{margin:0 0 16px;padding-left:20px;font-size:15px;color:var(--ink-2)}
 .exercise{margin:12px 0}
-.session{display:flex;flex-direction:column;gap:10px;width:100%;max-width:720px;margin:0 auto;height:calc(100dvh - 56px - 32px);min-height:0}
+.session{display:flex;flex-direction:column;gap:10px;width:100%;max-width:720px;margin:0 auto;height:calc(100dvh - 56px - 96px);min-height:0}
 .sessionTop{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .progress{height:8px;border-radius:999px;background:var(--parchment-2);overflow:hidden;flex:none}
 .progress>div{height:100%;background:var(--ochre);border-radius:999px;transition:width .2s}
@@ -57,3 +57,7 @@
 .gapTop{margin-top:16px}
 .soon{align-self:flex-start;font-family:var(--pl-font-mono);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--parchment);background:var(--lapis);border-radius:999px;padding:3px 10px;margin-top:4px}
 .plan[data-available=no] .planPrice{color:var(--ink-2)}
+[data-stage=lattice] .title,[data-stage=lattice] .label{color:var(--pl-paper)}
+[data-stage=lattice] .label{color:var(--pl-ochre)}
+[data-stage=lattice] .body,[data-stage=lattice] .small{color:var(--pl-paper-2)}
+[data-stage=lattice] .plan .small{color:var(--pl-ink-dim)}

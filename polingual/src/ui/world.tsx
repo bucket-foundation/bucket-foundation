@@ -73,6 +73,10 @@ export function Tabs<T extends string>({ tabs, value, onChange, label }: { tabs:
   );
 }
 
+export function Meter({ value, max, label, onDark, ...rest }: { value: number; max: number; label: string; onDark?: boolean } & Record<`data-${string}`, string>) {
+  return <progress className={s.meter} value={value} max={max} aria-label={label} data-on={onDark ? "dark" : undefined} {...rest} />;
+}
+
 export const HERO_STICKERS: StickerSpot[] = [
   { name: "azulejo", x: "34%", y: "6%", size: 150, rotate: 8 },
   { name: "ticket", x: "18%", y: "40%", size: 160, rotate: 6 },
@@ -95,21 +99,43 @@ export const BAND_STICKERS: StickerSpot[] = [
   { name: "script-he", x: "38%", y: "12%", size: 40, shadow: false },
 ];
 
-export function Stage({ children, stickers = HERO_STICKERS, phoneStickers = BAND_STICKERS, testId }: { children: ReactNode; stickers?: StickerSpot[]; phoneStickers?: StickerSpot[]; testId?: string }) {
+export const GUTTER_STICKERS: StickerSpot[] = [
+  { name: "seal", x: "3%", y: "14%", size: 96, rotate: -8 },
+  { name: "ticket", x: "2%", y: "58%", size: 150, rotate: 6 },
+  { name: "azulejo", x: "3%", y: "10%", size: 110, rotate: 9, side: "right" },
+  { name: "torn-label", x: "2%", y: "52%", size: 130, rotate: -5, side: "right" },
+  { name: "pebble", x: "7%", y: "84%", size: 48, rotate: 12, side: "right" },
+];
+
+export type StageGround = "cut" | "paper" | "lattice";
+
+export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND_STICKERS, tiles = true, testId }: { children: ReactNode; ground?: StageGround; stickers?: StickerSpot[]; phoneStickers?: StickerSpot[]; tiles?: boolean; testId?: string }) {
+  if (ground !== "cut") {
+    const spots = stickers ?? GUTTER_STICKERS;
+    return (
+      <div className={[s.stage, s.flat, s[ground]].join(" ")} data-testid={testId} data-stage={ground}>
+        <div className={s.gutters} aria-hidden>{spots.map((p) => <Sticker key={p.name} {...p} />)}</div>
+        <div className={s.flatBody}>{children}</div>
+        <FlagBand className={s.stageBand} />
+      </div>
+    );
+  }
   return (
-    <div className={s.stage} data-testid={testId}>
+    <div className={s.stage} data-testid={testId} data-stage="cut">
       <div className={s.stageArt} aria-hidden>
         <Ground kind="lattice" cut className={s.stageWide}>
-          <div className={s.only} data-at="wide">{stickers.map((p) => <Sticker key={p.name} {...p} />)}</div>
-          <ul className={s.tiles}>
-            <FlagTile lang="es" code="ES" label="Spanish" word="cien" reading="/θjen/" index={0} />
-            <FlagTile lang="de" code="DE" label="German" word="hundert" reading="/ˈhʊndɐt/" index={1} />
-          </ul>
+          <div className={s.only} data-at="wide">{(stickers ?? HERO_STICKERS).map((p) => <Sticker key={p.name} {...p} />)}</div>
+          {tiles ? (
+            <ul className={s.tiles}>
+              <FlagTile lang="es" code="ES" label="Spanish" word="cien" reading="/θjen/" index={0} />
+              <FlagTile lang="de" code="DE" label="German" word="hundert" reading="/ˈhʊndɐt/" index={1} />
+            </ul>
+          ) : null}
           <div className={s.only} data-at="narrow">{phoneStickers.map((p) => <Sticker key={p.name} {...p} />)}</div>
         </Ground>
       </div>
       <div className={s.stageBody}>{children}</div>
+      <FlagBand className={s.stageBand} />
     </div>
   );
 }
-

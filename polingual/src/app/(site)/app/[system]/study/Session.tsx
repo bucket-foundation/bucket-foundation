@@ -8,7 +8,7 @@ import { appHref } from "@/lib/app/systems";
 import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
 import styles from "../../app.module.css";
-import { Button, ButtonLink, Card } from "@/ui";
+import { Button, ButtonLink, Card, Meter, Stage } from "@/ui";
 
 export default function Session({ systemId }: { systemId: string }) {
   const h = useLangSystem(systemId);
@@ -16,29 +16,34 @@ export default function Session({ systemId }: { systemId: string }) {
   const { system, corpus, state } = h;
 
   if (h.status === "loading" || (h.status === "ready" && s.queue === null)) return <p className={styles.muted} aria-busy="true">Building today&apos;s session</p>;
-  if (h.status === "error") return <p className={styles.error}>The session did not load. Reload the page to try again.</p>;
+  if (h.status === "error") return <Stage ground="paper"><p className={styles.error}>The session did not load. Reload the page to try again.</p></Stage>;
   if (!system || !corpus || !s.queue) {
     return (
+      <Stage ground="paper">
       <Card as="section" className={styles.card}>
         <h1 className={styles.title}>No such language system</h1>
         <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
       </Card>
+      </Stage>
     );
   }
 
   if (s.queue.length === 0) {
     return (
+      <Stage ground="paper">
       <Card as="section" className={styles.card} data-testid="session-empty">
         <p className={styles.label}>{system.name}</p>
         <h1 className={styles.title}>All done for today</h1>
         <p className={styles.body}>You met today&apos;s new words in every language and nothing is due. Come back tomorrow.</p>
         <ButtonLink href={appHref.home}>Your systems</ButtonLink>
       </Card>
+      </Stage>
     );
   }
 
   if (s.i >= s.queue.length || !s.ex) {
     return (
+      <Stage ground="paper">
       <Card as="section" className={styles.card} data-testid="session-done">
         <p className={styles.label}>{system.name}</p>
         <h1 className={styles.title}>Session done</h1>
@@ -51,11 +56,13 @@ export default function Session({ systemId }: { systemId: string }) {
           <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
         </div>
       </Card>
+      </Stage>
     );
   }
 
   const pct = Math.round((s.i / s.queue.length) * 100);
   return (
+    <Stage ground="paper">
     <section className={styles.session} data-testid="session">
       <div className={styles.sessionTop}>
         <Link className={styles.small} href={appHref.home}>{system.name}</Link>
@@ -63,9 +70,7 @@ export default function Session({ systemId }: { systemId: string }) {
           {s.i + 1} / {s.queue.length} · {state.stats.xp} XP
         </span>
       </div>
-      <div className={styles.progress} role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label="Session progress">
-        <div style={{ width: `${pct}%` }} />
-      </div>
+      <Meter value={pct} max={100} label="Session progress" />
       <div className={styles.sessionBody} data-testid="session-body">
         <ReadingsContext.Provider value={s.readings}>
           <LangExercise key={`${s.i}-${s.entry?.itemId}-${s.entry?.lang}-${s.entry?.stage}`} ex={s.ex} onDone={s.onDone} optionReadings={s.optionReadings} links={s.links} targetLayout={!!h.shared} match={s.match} />
@@ -79,5 +84,6 @@ export default function Session({ systemId }: { systemId: string }) {
         </label>
       </div>
     </section>
+    </Stage>
   );
 }

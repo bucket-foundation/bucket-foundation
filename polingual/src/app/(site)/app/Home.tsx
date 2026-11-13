@@ -10,7 +10,7 @@ import NewSystem from "./NewSystem";
 import StreakCard from "./StreakCard";
 import { useSystems } from "./useSystems";
 import styles from "./app.module.css";
-import { ButtonLink, Card, FlagBand, Stage, Tag } from "@/ui";
+import { ButtonLink, Card, Stage, Tag } from "@/ui";
 
 export default function Home() {
   const { state, create } = useSystems();
@@ -66,7 +66,6 @@ export default function Home() {
       <Link className={styles.link} href={appHref.create}>
         Add a language system
       </Link>
-      <FlagBand />
     </section>
     </Stage>
   );
