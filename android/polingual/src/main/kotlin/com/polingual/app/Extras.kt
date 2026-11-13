@@ -50,10 +50,9 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
         Text("Any word, every language you study", color = PL.Paper.copy(alpha = 0.9f))
     }
     TodayMore(graph, nav)
-    SectionTitle("Daily games")
-    GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> foundation.bucket.core.model.Lang.info[l]?.latin == false } }.forEach { k ->
-        val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
-        GameTile(k, played) { nav.navigate("game/${k.route}") }
+    Card(color = PL.Tyrian, onClick = { nav.navigate(Tab.Play.route) { launchSingleTop = true } }) {
+        Text("Daily games", style = Type.title, color = PL.Paper)
+        Text("${GameKind.entries.count { app?.played(it, system) != null }} of ${GameKind.entries.size} played today. Games are free.", color = PL.Paper.copy(alpha = 0.9f))
     }
     AdBanner(graph)
 }

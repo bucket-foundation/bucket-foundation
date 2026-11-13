@@ -32,7 +32,7 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
     val stage by graph.account.stage.collectAsState()
     val app by graph.state.collectAsState()
     val p = LocalPalette.current
-    Page("Account", stickers = listOf(Sticker("azulejo", Alignment.TopStart, 84.dp, -10f), Sticker("script-he", Alignment.TopEnd, 100.dp, 7f, dy = 14.dp), Sticker("ink-dot", Alignment.BottomCenter, 44.dp, 0f))) {
+    Page("Account", stickers = listOf(Sticker("script-he", Alignment.CenterStart, 90.dp, -8f), Sticker("azulejo", Alignment.TopEnd, 62.dp, 10f), Sticker("ink-dot", Alignment.BottomEnd, 36.dp, -5f, dx = (-8).dp))) {
         when (stage) {
             Stage.SignedIn -> SignedInSection(graph, nav)
             else -> SignInCard(graph, stage)

@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -53,6 +54,7 @@ import kotlinx.coroutines.launch
 
 val nativeLobbyGames = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live)
 
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
 fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
     val p = LocalPalette.current
@@ -76,7 +78,7 @@ fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
     LaunchedEffect(Unit) { graph.lobbies.refresh() }
     LaunchedEffect(code) { if (code.isNotBlank() && (signedIn || name.isNotEmpty()) && state.current == null) act { graph.lobbies.join(code, name.ifEmpty { "Player" }) } }
     if (state.current != null) { RoomScreen(graph) { scope.launch { graph.lobbies.leave() } }; return }
-    Page("Live rooms", back = back) {
+    Page("Live rooms", back = back, ground = Ground.Lattice, panel = true, stickers = listOf(Sticker("pebble", Alignment.CenterStart, 60.dp, -12f), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 90.dp, -4f, dx = (-8).dp))) {
         Text("Play the same round with friends, live. Web and iPhone players join with the same code.", color = p.muted)
         OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, label = { Text(if (signedIn) "Display name" else "Your name") }, modifier = Modifier.fillMaxWidth())
         Card {
@@ -88,8 +90,8 @@ fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
         val system = app?.system
         Card {
             Text("Start a room", style = Type.caps, color = p.muted)
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                nativeLobbyGames.forEach { g -> FilterChip(selected = g == game, onClick = { game = g }, label = { Text(g.title) }) }
+            androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                nativeLobbyGames.forEach { g -> PLPill(g.title, active = g == game) { game = g } }
             }
             if (state.botsEnabled) Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("Fill empty seats with bots", color = p.ink, modifier = Modifier.weight(1f))
@@ -141,7 +143,7 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
     var confirmLeave by remember { mutableStateOf(false) }
     fun exit() { graph.ads.leftFinishedGame(graph.activity?.get()); leave() }
     fun act(block: suspend () -> Unit) = scope.launch { error = null; try { block() } catch (e: BucketError) { error = e.message } }
-    Page(lobby.name, back = { if (phase is LobbyPhase.Round || phase is LobbyPhase.Reveal || phase is LobbyPhase.Countdown) confirmLeave = true else exit() }) {
+    Page(lobby.name, ground = Ground.Lattice, panel = true, stickers = listOf(Sticker("pebble", Alignment.CenterStart, 60.dp, -12f), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 90.dp, -4f, dx = (-8).dp)), back = { if (phase is LobbyPhase.Round || phase is LobbyPhase.Reveal || phase is LobbyPhase.Countdown) confirmLeave = true else exit() }) {
         if (confirmLeave) {
             Text("Leave this game? Your score stays where it is.", color = p.ink)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -211,13 +213,10 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     if (prompt == null) { Text("Loading the round", color = p.muted); return }
     if (prompt.mode == LobbyPromptMode.Flag) {
         Text("Which language?", color = p.muted)
-        Text(prompt.gloss, style = Type.word, color = p.ink)
+        WordTile(null, prompt.gloss, tilt = 0f)
     } else {
         Text(prompt.lang?.let { "Which is ${Lang.name(it)} for" } ?: "Which word means", color = p.muted)
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            prompt.lang?.let { Text(Lang.flag(it), fontSize = 30.sp) }
-            Text(prompt.gloss, style = Type.word, color = p.ink)
-        }
+        WordTile(prompt.lang, prompt.gloss, tilt = 0f)
     }
     val picked = state.picks[index]
     val mark = state.marks[index]
@@ -239,7 +238,10 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
         mark == true -> Text("Right", color = PL.Malachite, fontWeight = FontWeight.Bold)
         mark == false -> Text("Not this time.", color = PL.Vermilion, fontWeight = FontWeight.Bold)
     }
-    if (reveal) prompt.reveal.forEach { r -> Text("${Lang.flag(r.lang)} ${r.word}${r.roman?.let { " ($it)" } ?: ""}: ${r.meaning}", color = if (r.correct) PL.Malachite else p.muted) }
+    if (reveal) {
+        prompt.reveal.firstOrNull { it.correct }?.let { r -> WordReveal(r.lang, r.word, r.meaning, null, null) { graph.voice.speak(r.word, r.lang) } }
+        prompt.reveal.filterNot { it.correct }.forEach { r -> Text("${Lang.name(r.lang)}: ${r.word}${r.roman?.let { " ($it)" } ?: ""}, ${r.meaning}", style = Type.small, color = p.muted) }
+    }
     Players(lobby)
 }
 

@@ -9,6 +9,7 @@ Beads `bkt-pp8hw.6` and `bkt-pp8hw.8`. Rules: `docs/design/POLINGUAL-DESIGN.md`.
 | Tokens | `polingual/src/ui/tokens.json` | `pl/Tokens.kt`: `PL`, `PLRadius`, `PLSpace`, `PLLip`, `PLMotion`, `PLTypeSpecs` | `python3 android/scripts/gen_polingual_ui.py` |
 | Art | `polingual/src/ui/art/data.ts` | `pl/ArtData.kt`, drawn by `pl/Art.kt` | same script: SVG bodies become path, group, clip, tile pattern and label nodes |
 | Flags | `polingual/src/lib/flags.ts` | `pl/Flags.kt`, drawn by `FlagSwatch` | same script: CSS gradients become stripe, diagonal and disc layers |
+| Launcher | Fredoka "Po" on vermilion | `polingual/src/main/res/mipmap-anydpi-v26`, `drawable/ic_launcher_*.xml` | same script |
 | Fonts | `polingual/public/fonts/stoa` | `core/ui/src/main/res/font/pl_*.ttf` | same script, woff2 to ttf |
 | Type | `tokens.json` type | `pl/Theme.kt`: `PLType`, `PLFonts`, `PLTheme` | hand written over the generated specs |
 
@@ -39,8 +40,9 @@ Beads `bkt-pp8hw.6` and `bkt-pp8hw.8`. Rules: `docs/design/POLINGUAL-DESIGN.md`.
 | Account and sign-in | `AccountScreen.kt`, `Milestones.kt` | paper | azulejo, script-he, ink-dot | `SignInCard` with email code, nickname card, subscription and privacy cards |
 | Paywall | `Paywall.kt` | lattice | ticket, seal, streak-flame, kente; pebble empty state | plan cards with ochre selection, one primary button, quiet links on dark |
 | Onboarding | `Onboarding.kt` | diagonal | seal mark, stage of ticket, seal, torn-label, kente, pebble | `StreakFlame` card, `FlagTile` row, `PLPill` presets and languages |
-| Games hub | `GamesHub.kt`, in Today | diagonal under the tile list | star, azulejo-grid, blocks, seal, pebble, azulejo, bunting, torn-label | `PLCard` tyrian tone with tilted art sticker |
-| Tab bar | `Root.kt` | card | streak-flame, seal, azulejo as tab icons | `NavigationSuiteScaffold` in paper and card colors |
+| Play tab | `PlayScreen.kt`, `GamesHub.kt` | lattice | star, azulejo-grid, blocks, seal, pebble, azulejo, bunting, torn-label | `PLCard` tyrian tone with tilted art sticker |
+| Games, lobby, study | `GameScreens.kt`, `LobbyScreens.kt`, `StudyScreen.kt`, `Reveal.kt` | lattice with a paper panel; study on paper | game art, seal, kente, bunting | `WordTile` prompt, `WordReveal` with word, language, script, root, definition and a Next button between rounds, Start learning on results |
+| Tab bar | `Root.kt` | card | streak-flame, seal, blocks, azulejo for Today, Learn, Play, Account | `NavigationSuiteScaffold` in paper and card colors |
 
 Billing, ads and entitlement code (`Billing.kt`, `Ads.kt`, `Entitlement.kt`) is unchanged.
 
@@ -48,12 +50,10 @@ Billing, ads and entitlement code (`Billing.kt`, `Ads.kt`, `Entitlement.kt`) is 
 
 | Gap | State |
 |---|---|
-| Material icons remain for back, play, pause, speaker and swap in `Common.kt`, `ListenScreen.kt`, `WordScreens.kt`, `GameScreens.kt` | replace with art or drawn glyphs once the web adds them to `src/ui/art` |
-| `GameScreens.kt`, `LobbyScreens.kt`, `StudyScreen.kt` use the new tokens and components through the shared imports and still need their own layouts, stickers and `WordTile` reveal | next pass |
+| Back, play, pause and swap glyphs are drawn in the generator; the speaker comes from `src/app/tile.tsx` | move all five into `src/ui/art` on web |
 | `OutlinedTextField` and `FilterChip` still come from Material in forms and the language picker | needs a `Field` component on web first, then the port |
 | Art labels render in the system font for Noto families | add Noto subsets if the system font misses a glyph |
 | `cs` flag drops its triangle, `en` and `el` lose their sized canton layer | extend the flag converter for sized layers |
-| Launcher icons live in gitignored PNGs | commit through a vector launcher icon |
 
 ## Play Games Gap
 

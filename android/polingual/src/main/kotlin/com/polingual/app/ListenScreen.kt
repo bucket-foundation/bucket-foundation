@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import androidx.compose.foundation.layout.size
 import foundation.bucket.core.ui.pl.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,7 +48,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
         error = null
         try { stations = graph.radioApi.stations(lang) } catch (e: BucketError) { error = e.message; stations = emptyList() }
     }
-    Page("Listen", back = back, ground = Ground.Lattice, stickers = listOf(Sticker("script-ko", Alignment.TopStart, 96.dp, -8f), Sticker("seal", Alignment.TopEnd, 84.dp, 9f, dy = 10.dp), Sticker("bunting", Alignment.BottomCenter, 150.dp, -3f))) {
+    Page("Listen", back = back, ground = Ground.Lattice, stickers = listOf(Sticker("script-ko", Alignment.CenterStart, 70.dp, -8f), Sticker("seal", Alignment.TopEnd, 60.dp, 10f), Sticker("bunting", Alignment.BottomEnd, 100.dp, -5f, dx = (-8).dp))) {
         Text("Live radio in the languages you study. It keeps playing when you leave the app.", style = Type.body, color = PL.Paper)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             langs.forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang) { lang = l } }
@@ -57,7 +58,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
                 Text("NOW PLAYING", style = Type.caps, color = PL.Paper.copy(alpha = 0.7f))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(s.name, style = Type.title.copy(fontSize = 20.sp()), color = PL.Paper, modifier = Modifier.weight(1f))
-                    if (now.buffering) CircularProgressIndicator(color = PL.Paper) else Icon(if (now.playing) Icons.Filled.Pause else Icons.Filled.PlayArrow, if (now.playing) "Pause" else "Play", tint = PL.Paper)
+                    if (now.buffering) CircularProgressIndicator(color = PL.Paper) else Glyph(if (now.playing) "pause" else "play", if (now.playing) "Pause" else "Play", PL.Paper, Modifier.size(28.dp))
                 }
                 now.error?.let { Text(it, color = PL.Paper) }
             }
@@ -74,7 +75,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
                             Text(s.name, color = p.ink, style = Type.caps.copy(fontSize = 15.sp()))
                             Text(listOf(s.country, s.tags.split(",").take(2).joinToString(", ")).filter { it.isNotBlank() }.joinToString(" · "), color = p.muted)
                         }
-                        Icon(if (active && now.playing) Icons.Filled.Pause else Icons.Filled.PlayArrow, if (active && now.playing) "Pause ${s.name}" else "Play ${s.name}", tint = PL.Vermilion)
+                        Glyph(if (active && now.playing) "pause" else "play", if (active && now.playing) "Pause ${s.name}" else "Play ${s.name}", PL.Vermilion, Modifier.size(28.dp))
                     }
                 }
             }

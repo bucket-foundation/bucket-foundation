@@ -111,6 +111,7 @@ private fun Welcome() {
             Sticker("pebble", Alignment.Center, 54.dp, -12f, dx = 30.dp),
         ),
         height = 230.dp,
+        outline = true,
     )
     PLCard { StreakFlame(100) }
 }

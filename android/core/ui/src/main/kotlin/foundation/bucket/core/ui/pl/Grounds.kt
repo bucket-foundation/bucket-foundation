@@ -119,11 +119,11 @@ fun StreakFlame(count: Int, modifier: Modifier = Modifier, onDark: Boolean = fal
 data class Sticker(val art: String, val align: Alignment, val width: Dp, val rotate: Float, val dx: Dp = 0.dp, val dy: Dp = 0.dp)
 
 @Composable
-fun Stage(stickers: List<Sticker>, modifier: Modifier = Modifier, height: Dp = 200.dp, content: @Composable BoxScope.() -> Unit = {}) {
+fun Stage(stickers: List<Sticker>, modifier: Modifier = Modifier, height: Dp = 200.dp, outline: Boolean = false, content: @Composable BoxScope.() -> Unit = {}) {
     BoxWithConstraints(modifier.fillMaxWidth().height(height)) {
         val scale = (maxWidth / 390.dp).coerceIn(0.7f, 1.4f)
         stickers.forEach { s ->
-            Art(s.art, Modifier.align(s.align).offset(s.dx, s.dy).width(s.width * scale).rotate(s.rotate.coerceIn(-14f, 14f)), shadow = true)
+            Art(s.art, Modifier.align(s.align).offset(s.dx, s.dy).width(s.width * scale).rotate(s.rotate.coerceIn(-14f, 14f)), shadow = true, outline = outline)
         }
         Box(Modifier.align(Alignment.Center), content = content)
     }
@@ -138,21 +138,17 @@ fun EmptyState(art: String, line: String, modifier: Modifier = Modifier, onDark:
 }
 
 @Composable
-fun WordTile(lang: String, word: String, modifier: Modifier = Modifier, ipa: String? = null, gloss: String? = null, tilt: Float = -2f, onSpeak: (() -> Unit)? = null) {
+fun WordTile(lang: String?, word: String, modifier: Modifier = Modifier, ipa: String? = null, gloss: String? = null, tilt: Float = -2f, onSpeak: (() -> Unit)? = null) {
     val shape = RoundedCornerShape(PLRadius.xl)
     Box(modifier.widthIn(max = 420.dp).fillMaxWidth().rotate(tilt).padding(bottom = PLLip.lg)) {
         Box(Modifier.matchParentSize().offset(y = PLLip.lg).clip(shape).background(PL.TyrianDeep))
         Column(Modifier.fillMaxWidth().clip(shape).background(PL.Card)) {
-            FlagSwatch(lang, Modifier.fillMaxWidth().height(14.dp))
+            if (lang != null) FlagSwatch(lang, Modifier.fillMaxWidth().height(14.dp)) else Box(Modifier.fillMaxWidth().height(14.dp).background(PL.Paper3))
             Column(Modifier.padding(PLSpace.s5), verticalArrangement = Arrangement.spacedBy(PLSpace.s2)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(Lang.name(lang).uppercase(), style = PLType.label, color = PL.InkDim, modifier = Modifier.weight(1f))
+                    Text(lang?.let { Lang.name(it).uppercase() } ?: "WHICH LANGUAGE?", style = PLType.label, color = PL.InkDim, modifier = Modifier.weight(1f))
                     if (onSpeak != null) Box(Modifier.size(44.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Lapis).clickable(role = Role.Button, onClickLabel = "Play audio", onClick = onSpeak), contentAlignment = Alignment.Center) {
-                        Canvas(Modifier.size(20.dp)) {
-                            val w = size.width
-                            drawPath(Path().apply { moveTo(0f, w * .375f); lineTo(w * .29f, w * .375f); lineTo(w * .5f, w * .2f); lineTo(w * .5f, w * .8f); lineTo(w * .29f, w * .625f); lineTo(0f, w * .625f); close() }, PL.Paper)
-                            drawArc(PL.Paper, -50f, 100f, false, Offset(w * .35f, w * .25f), androidx.compose.ui.geometry.Size(w * .5f, w * .5f), style = androidx.compose.ui.graphics.drawscope.Stroke(w * .09f))
-                        }
+                        Glyph("speaker", null, PL.Paper, Modifier.size(22.dp))
                     }
                 }
                 Text(word, style = PLType.word, color = PL.Ink)

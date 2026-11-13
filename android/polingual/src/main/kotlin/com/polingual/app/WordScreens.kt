@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import androidx.compose.foundation.layout.size
 import foundation.bucket.core.ui.pl.*
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
@@ -73,7 +74,7 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
                         Text(f, style = Type.word, color = p.ink)
                         i.readings[l]?.let { r -> listOfNotNull(r.roman, r.kana, r.ipa?.let { "/$it/".replace("//", "/") }).joinToString("  ").takeIf { it.isNotEmpty() }?.let { Text(it, color = p.muted) } }
                     }
-                    IconButton(onClick = { graph.voice.speak(f, l) }) { Icon(Icons.AutoMirrored.Outlined.VolumeUp, "Speak ${Lang.name(l)}") }
+                    IconButton(onClick = { graph.voice.speak(f, l) }) { Glyph("speaker", "Speak ${Lang.name(l)}", PL.Lapis, Modifier.size(24.dp)) }
                 }
             }
         }
@@ -131,11 +132,11 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
         graph.store.update { s -> s.copy(recents = (listOf(q.trim()) + s.recents.filter { it != q.trim() }).take(12)) }
     }
     LaunchedEffect(initial, corpus) { if (initial.isNotBlank() && corpus != null) run(initial) }
-    Page("Translate", back = back, stickers = listOf(Sticker("calligraphy-ain", Alignment.TopStart, 88.dp, -6f), Sticker("ticket", Alignment.TopEnd, 140.dp, 8f, dy = 10.dp), Sticker("script-ru", Alignment.BottomCenter, 90.dp, -3f))) {
+    Page("Translate", back = back, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("calligraphy-ain", Alignment.TopEnd, 52.dp, 10f), Sticker("script-ru", Alignment.BottomEnd, 70.dp, -5f, dx = (-8).dp))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             OutlinedButton(onClick = { picking = "from" }, modifier = Modifier.weight(1f)) { Text(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "Detect") }
             IconButton(onClick = { scope.launch { graph.store.update { it.copy(translateFrom = it.translateTo, translateTo = it.translateFrom) } } }, enabled = from != null || to != null) {
-                Icon(Icons.Filled.SwapHoriz, "Swap languages")
+                Glyph("swap", "Swap languages", PL.Ink, Modifier.size(24.dp))
             }
             OutlinedButton(onClick = { picking = "to" }, modifier = Modifier.weight(1f)) { Text(to?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "My languages") }
         }
@@ -154,7 +155,7 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
                             Text("${Lang.flag(l)} ${Lang.name(l)}", style = Type.caps, color = p.muted)
                             Text(f, style = Type.word.copy(fontSize = 22.sp()), color = p.ink)
                         }
-                        IconButton(onClick = { graph.voice.speak(f, l) }) { Icon(Icons.AutoMirrored.Outlined.VolumeUp, "Speak") }
+                        IconButton(onClick = { graph.voice.speak(f, l) }) { Glyph("speaker", "Speak", PL.Lapis, Modifier.size(24.dp)) }
                     }
                 }
             }

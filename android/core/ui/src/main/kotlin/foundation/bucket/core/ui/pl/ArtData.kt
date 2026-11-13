@@ -28,7 +28,12 @@ object ArtLibrary {
     private fun aSkSeal() = ArtPiece("sk-seal", "Seal swatch", 0f, 0f, 48f, 48f, false, listOf(ArtNode.Shape("M0 0H48V48H0Z", ArtPaint.Tile(8f, 8f, listOf(ArtNode.Shape("M0 0H8V8H0Z", ArtPaint.Solid(0xFFD9381E), null, 1f, null, false, false, 1f, false), ArtNode.Shape("M0 4h4V0M4 8V4h4", null, 0xFFF6EEDC, 1f, null, false, false, 1f, false))), null, 1f, null, false, false, 1f, false)))
     private fun aSkPaisley() = ArtPiece("sk-paisley", "Paisley swatch", 0f, 0f, 48f, 48f, false, listOf(ArtNode.Shape("M0 0H48V48H0Z", ArtPaint.Tile(14f, 14f, listOf(ArtNode.Shape("M0 0H14V14H0Z", ArtPaint.Solid(0xFF8E2312), null, 1f, null, false, false, 1f, false), ArtNode.Shape("M7 3c3 0 4 3 2 5-1 1-3 2-5 4 0-3-1-4-1-6 0-2 2-3 4-3z", ArtPaint.Solid(0xFFE9A23B), null, 1f, null, false, false, 1f, false), ArtNode.Shape("M6 6A1 1 0 1 0 8 6A1 1 0 1 0 6 6Z", ArtPaint.Solid(0xFF8E2312), null, 1f, null, false, false, 1f, false))), null, 1f, null, false, false, 1f, false)))
     private fun aSkMudcloth() = ArtPiece("sk-mudcloth", "Mudcloth swatch", 0f, 0f, 48f, 48f, false, listOf(ArtNode.Shape("M0 0H48V48H0Z", ArtPaint.Tile(10f, 10f, listOf(ArtNode.Shape("M0 0H10V10H0Z", ArtPaint.Solid(0xFF3B2A1E), null, 1f, null, false, false, 1f, false), ArtNode.Shape("M1 2h8M1 8h8", ArtPaint.Solid(0xFF000000), 0xFFEBDDBE, 1.2f, floatArrayOf(2f, 1.5f), false, false, 1f, false), ArtNode.Shape("M4 5A1 1 0 1 0 6 5A1 1 0 1 0 4 5Z", ArtPaint.Solid(0xFFEBDDBE), null, 1f, null, false, false, 1f, false))), null, 1f, null, false, false, 1f, false)))
-    val names: List<String> = listOf("ticket", "torn-label", "seal", "kente", "pebble", "azulejo", "azulejo-grid", "girih", "flag-band", "streak-flame", "streak-pot", "star", "blocks", "brush", "bunting", "script-ru", "script-ko", "script-he", "calligraphy-ain", "calligraphy-yong", "ink-dot", "sk-kente", "sk-azulejo", "sk-girih", "sk-seal", "sk-paisley", "sk-mudcloth")
+    private fun aGlyphSpeaker() = ArtPiece("glyph-speaker", "Speaker", 0f, 0f, 24f, 24f, false, listOf(ArtNode.Shape("M3 9v6h4l5 4V5L7 9H3z", ArtPaint.Solid(0xFF000000), null, 1f, null, false, false, 1f, false), ArtNode.Shape("M16 8a5 5 0 0 1 0 8M18.5 5.5a8.5 8.5 0 0 1 0 13", null, 0xFF231F20, 2f, null, true, false, 1f, false)))
+    private fun aGlyphBack() = ArtPiece("glyph-back", "Back", 0f, 0f, 24f, 24f, false, listOf(ArtNode.Shape("M15 5l-7 7 7 7", null, 0xFF231F20, 3f, null, true, true, 1f, false)))
+    private fun aGlyphPlay() = ArtPiece("glyph-play", "Play", 0f, 0f, 24f, 24f, false, listOf(ArtNode.Shape("M8 5v14l11-7z", ArtPaint.Solid(0xFF231F20), null, 1f, null, false, false, 1f, false)))
+    private fun aGlyphPause() = ArtPiece("glyph-pause", "Pause", 0f, 0f, 24f, 24f, false, listOf(ArtNode.Shape("M7 5H9A1 1 0 0 1 10 6V18A1 1 0 0 1 9 19H7A1 1 0 0 1 6 18V6A1 1 0 0 1 7 5Z", ArtPaint.Solid(0xFF231F20), null, 1f, null, false, false, 1f, false), ArtNode.Shape("M15 5H17A1 1 0 0 1 18 6V18A1 1 0 0 1 17 19H15A1 1 0 0 1 14 18V6A1 1 0 0 1 15 5Z", ArtPaint.Solid(0xFF231F20), null, 1f, null, false, false, 1f, false)))
+    private fun aGlyphSwap() = ArtPiece("glyph-swap", "Swap", 0f, 0f, 24f, 24f, false, listOf(ArtNode.Shape("M4 8h14l-4-4M20 16H6l4 4", null, 0xFF231F20, 3f, null, true, true, 1f, false)))
+    val names: List<String> = listOf("ticket", "torn-label", "seal", "kente", "pebble", "azulejo", "azulejo-grid", "girih", "flag-band", "streak-flame", "streak-pot", "star", "blocks", "brush", "bunting", "script-ru", "script-ko", "script-he", "calligraphy-ain", "calligraphy-yong", "ink-dot", "sk-kente", "sk-azulejo", "sk-girih", "sk-seal", "sk-paisley", "sk-mudcloth", "glyph-speaker", "glyph-back", "glyph-play", "glyph-pause", "glyph-swap")
     private val cache = HashMap<String, ArtPiece>()
     operator fun get(name: String): ArtPiece = cache.getOrPut(name) {
         when (name) {
@@ -59,6 +64,11 @@ object ArtLibrary {
             "sk-seal" -> aSkSeal()
             "sk-paisley" -> aSkPaisley()
             "sk-mudcloth" -> aSkMudcloth()
+            "glyph-speaker" -> aGlyphSpeaker()
+            "glyph-back" -> aGlyphBack()
+            "glyph-play" -> aGlyphPlay()
+            "glyph-pause" -> aGlyphPause()
+            "glyph-swap" -> aGlyphSwap()
             else -> error("unknown art $name")
         }
     }

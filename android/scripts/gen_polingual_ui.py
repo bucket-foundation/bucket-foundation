@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TOKENS = ROOT / "polingual/src/ui/tokens.json"
 ART = ROOT / "polingual/src/ui/art/data.ts"
 FLAGS = ROOT / "polingual/src/lib/flags.ts"
+TILE = ROOT / "polingual/src/app/tile.tsx"
 FONTS = ROOT / "polingual/public/fonts/stoa"
 PKG_DIR = ROOT / "android/core/ui/src/main/kotlin/foundation/bucket/core/ui/pl"
 RES_FONT = ROOT / "android/core/ui/src/main/res/font"
@@ -225,6 +226,26 @@ class Conv:
         return inner
 
 
+GLYPH_STROKE = 'fill="none" stroke="#231F20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"'
+GLYPHS = {
+    "glyph-back": '<path d="M15 5l-7 7 7 7" %s/>' % GLYPH_STROKE,
+    "glyph-play": '<path d="M8 5v14l11-7z" fill="#231F20"/>',
+    "glyph-pause": '<rect x="6" y="5" width="4" height="14" rx="1" fill="#231F20"/><rect x="14" y="5" width="4" height="14" rx="1" fill="#231F20"/>',
+    "glyph-swap": '<path d="M4 8h14l-4-4M20 16H6l4 4" %s/>' % GLYPH_STROKE,
+}
+
+
+def glyph_entries():
+    src = TILE.read_text()
+    m = re.search(r"const SPEAKER = \(\s*<svg[^>]*>(.*?)</svg>", src, re.S)
+    speaker = m.group(1).replace('fill="currentColor"', 'fill="#231F20"').replace('stroke="currentColor"', 'stroke="#231F20"')
+    speaker = re.sub(r"(\w)([A-Z])(\w*)=", lambda x: x.group(1) + "-" + x.group(2).lower() + x.group(3) + "=", speaker)
+    out = [{"name": "glyph-speaker", "label": "Speaker", "viewBox": "0 0 24 24", "dark": False, "body": speaker}]
+    for k, v in GLYPHS.items():
+        out.append({"name": k, "label": k[6:].title(), "viewBox": "0 0 24 24", "dark": False, "body": v})
+    return out
+
+
 def art_kt(entries):
     out = [HEADER, "object ArtLibrary {\n"]
     names = []
@@ -328,6 +349,44 @@ def flags_kt():
     return "".join(out)
 
 
+APP_RES = ROOT / "android/polingual/src/main/res"
+
+
+def launcher(t):
+    from fontTools.ttLib import TTFont
+    from fontTools.varLib.instancer import instantiateVariableFont
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    font = instantiateVariableFont(TTFont(str(FONTS / "fredoka-latin-wght-normal.woff2")), {"wght": 700})
+    gs = font.getGlyphSet()
+    cmap = font.getBestCmap()
+    upm = font["head"].unitsPerEm
+    names = [cmap[ord(c)] for c in "Po"]
+    width = sum(gs[n].width for n in names)
+    scale = 40.0 / upm
+    x0 = 54 - width * scale / 2
+    cap = font["OS/2"].sCapHeight
+    y0 = 54 + cap * scale / 2
+    paths = []
+    x = 0
+    for n in names:
+        pen = SVGPathPen(gs, ntos=lambda v: "%g" % round(v, 2))
+        gs[n].draw(TransformPen(pen, (scale, 0, 0, -scale, x0 + x * scale, y0)))
+        paths.append(pen.getCommands())
+        x += gs[n].width
+    paper = "#%06X" % (argb(t["color"]["paper"]) & 0xFFFFFF)
+    verm = "#%06X" % (argb(t["color"]["vermilion"]) & 0xFFFFFF)
+    fg = ('<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">\n'
+          '    <path android:strokeColor="%s" android:strokeWidth="2.5" android:pathData="M26 26h56v56h-56z"/>\n' % paper
+          + "".join('    <path android:fillColor="%s" android:pathData="%s"/>\n' % (paper, d) for d in paths) + "</vector>\n")
+    bg = ('<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">\n'
+          '    <path android:fillColor="%s" android:pathData="M0 0h108v108h-108z"/>\n</vector>\n' % verm)
+    icon = ('<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">\n    <background android:drawable="@drawable/ic_launcher_background"/>\n'
+            '    <foreground android:drawable="@drawable/ic_launcher_foreground"/>\n    <monochrome android:drawable="@drawable/ic_launcher_foreground"/>\n</adaptive-icon>\n')
+    return {APP_RES / "drawable/ic_launcher_foreground.xml": fg, APP_RES / "drawable/ic_launcher_background.xml": bg,
+            APP_RES / "mipmap-anydpi-v26/ic_launcher.xml": icon, APP_RES / "mipmap-anydpi-v26/ic_launcher_round.xml": icon}
+
+
 def fonts():
     try:
         from fontTools.ttLib import TTFont
@@ -349,7 +408,7 @@ def main():
     s = ART.read_text()
     entries = json.loads(s[s.index("["):s.index("\n] as const") + 2])
     PKG_DIR.mkdir(parents=True, exist_ok=True)
-    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries), PKG_DIR / "Flags.kt": flags_kt()}
+    outputs = {PKG_DIR / "Tokens.kt": tokens_kt(t), PKG_DIR / "ArtData.kt": art_kt(entries + glyph_entries()), PKG_DIR / "Flags.kt": flags_kt(), **launcher(t)}
     check = "--check" in sys.argv
     stale = [p for p, body in outputs.items() if not p.exists() or p.read_text() != body]
     if check:
@@ -358,6 +417,7 @@ def main():
             sys.exit(1)
         return
     for p, body in outputs.items():
+        p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(body)
     fonts()
 

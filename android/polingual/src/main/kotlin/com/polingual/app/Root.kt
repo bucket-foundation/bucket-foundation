@@ -32,6 +32,7 @@ import foundation.bucket.core.ui.LocalPalette
 enum class Tab(val route: String, val label: String, val art: String) {
     Today("today", "Today", "streak-flame"),
     Learn("learn", "Learn", "seal"),
+    Play("play", "Play", "blocks"),
     Account("account", "Account", "azulejo"),
 }
 
@@ -74,7 +75,9 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
         navigationSuiteColors = NavigationSuiteDefaults.colors(navigationBarContainerColor = PL.Card, navigationRailContainerColor = PL.Card),
         containerColor = PL.Paper,
     ) {
-        Box(Modifier.fillMaxSize()) { Routes(graph, nav) }
+        androidx.compose.runtime.CompositionLocalProvider(LocalStartLearning provides { nav.navigate(Tab.Learn.route) { launchSingleTop = true } }) {
+            Box(Modifier.fillMaxSize()) { Routes(graph, nav) }
+        }
     }
 }
 
@@ -83,8 +86,11 @@ fun Routes(graph: Graph, nav: NavHostController) {
     NavHost(nav, startDestination = Tab.Today.route) {
         composable(Tab.Today.route) { TodayScreen(graph, nav) }
         composable(Tab.Learn.route) { LearnScreen(graph, nav) }
+        composable(Tab.Play.route) { PlayScreen(graph, nav) }
         composable(Tab.Account.route) { AccountScreen(graph, nav) }
         composable("system/new") { NewSystemScreen(graph) { nav.popBackStack() } }
         extraRoutes(graph, nav)
     }
 }
+
+val LocalStartLearning = androidx.compose.runtime.staticCompositionLocalOf<() -> Unit> { {} }

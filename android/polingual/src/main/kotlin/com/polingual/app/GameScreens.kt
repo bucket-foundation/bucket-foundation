@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -87,9 +88,12 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    Page(kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }) {
+    Page(
+        kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
+        stickers = listOf(Sticker(kind.art, Alignment.CenterStart, 70.dp, kind.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("kente", Alignment.BottomEnd, 76.dp, -5f, dx = (-8).dp)),
+    ) {
         val c = ctx
-        if (c == null) Text("Start a language set in Learn. The games use the words you study.", color = LocalPalette.current.muted) else content(c)
+        if (c == null) EmptyState("kente", "Start a language set in Learn. The games use the words you study.") else content(c)
     }
 }
 
@@ -126,6 +130,8 @@ fun Finished(title: String, line: String, results: List<Boolean>, total: Int, ag
     ResultDots(results, total)
     Text(line, color = p.muted)
     if (again != null) PrimaryButton("Play again", color = PL.Malachite, onClick = again)
+    val learn = LocalStartLearning.current
+    PLButton("Start learning", variant = ButtonVariant.Secondary, onClick = learn)
 }
 
 @Composable
@@ -147,19 +153,16 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     when (prompt.mode) {
         PromptMode.Form -> {
             Text("Which is ${Lang.name(prompt.word.lang)} for", color = p.muted)
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                FlagTile(prompt.word.lang, 44.dp)
-                Text(prompt.word.gloss, style = Type.word, color = p.ink)
-            }
+            WordTile(prompt.word.lang, prompt.word.gloss)
         }
         PromptMode.Flag -> {
             Text("Which language is this?", color = p.muted)
-            Text(prompt.word.form, style = Type.word, color = p.ink)
+            WordTile(null, prompt.word.form)
         }
         PromptMode.Voice -> {
             Text("Listen. Which language is it?", color = p.muted)
             LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
-            PrimaryButton("Play again", color = PL.Lapis) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+            PLButton("Play again", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
         }
     }
     val picked = round.picked
@@ -174,11 +177,13 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         ChoiceButton(label, state) {
             round.answer(choice)
             tick += 1
-            if (prompt.mode == PromptMode.Form) graph.voice.speak(prompt.word.form, prompt.word.lang)
-            scope.launch { delay(if (choice == prompt.answer) 700 else 1500); round.advance(); tick += 1 }
+            graph.voice.speak(prompt.word.form, prompt.word.lang)
         }
     }
-    if (picked != null && prompt.mode != PromptMode.Form) Text("${prompt.word.form} means ${prompt.word.gloss}", color = p.muted)
+    if (picked != null) {
+        WordReveal(prompt.word.lang, prompt.word.form, prompt.word.gloss, prompt.word.itemId, c.corpus) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+        PrimaryButton(if (round.results.size >= round.prompts.size) "See results" else "Next word") { round.advance(); tick += 1 }
+    }
 }
 
 @Composable
@@ -353,16 +358,20 @@ fun Letters(graph: Graph, c: GameContext) {
     LaunchedEffect(q) { graph.voice.speak(q.word.form, q.word.lang) }
     ResultDots(results.value, prompts.size)
     Text("Listen to the word. Which letter does it start with?", color = p.muted)
-    PrimaryButton("Play again", color = PL.Lapis) { graph.voice.speak(q.word.form, q.word.lang) }
+    PLButton("Play again", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(q.word.form, q.word.lang) }
     q.choices.forEach { ch ->
         val state = when { picked == null -> ChoiceState.Idle; ch == q.answer -> ChoiceState.Right; ch == picked -> ChoiceState.Wrong; else -> ChoiceState.Dim }
         ChoiceButton(ch, state) {
-            picked = ch
-            results.value = results.value + (ch == q.answer)
-            scope.launch { delay(900); picked = null; index += 1 }
+            if (picked == null) {
+                picked = ch
+                results.value = results.value + (ch == q.answer)
+            }
         }
     }
-    if (picked != null) Text("${q.word.form} means ${q.word.gloss}", color = p.muted)
+    if (picked != null) {
+        WordReveal(q.word.lang, q.word.form, q.word.gloss, q.word.itemId, c.corpus) { graph.voice.speak(q.word.form, q.word.lang) }
+        PrimaryButton("Next letter") { picked = null; index += 1 }
+    }
 }
 
 object LetterSprint {

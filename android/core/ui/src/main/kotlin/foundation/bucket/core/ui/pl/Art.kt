@@ -29,6 +29,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 sealed interface ArtPaint {
@@ -114,17 +115,24 @@ fun DrawScope.drawArt(piece: ArtPiece, measurer: TextMeasurer, tint: Color? = nu
 }
 
 @Composable
-fun Art(name: String, modifier: Modifier = Modifier, shadow: Boolean = false, description: String? = null) {
+fun Art(name: String, modifier: Modifier = Modifier, shadow: Boolean = false, outline: Boolean = false, tint: Color? = null, description: String? = null) {
     val piece = remember(name) { ArtLibrary[name] }
     val measurer = rememberTextMeasurer()
     val m = modifier.aspectRatio(piece.w / piece.h)
     Canvas(if (description != null) m.semantics { contentDescription = description } else m) {
+        val u = size.width / 96f
         if (shadow) {
-            val u = size.width / 96f
             drawIntoCanvas { it.saveLayer(androidx.compose.ui.geometry.Rect(Offset.Zero, size).inflate(16f * u), Paint().apply { alpha = 0.35f }) }
             translate(6f * u, 8f * u) { drawArt(piece, measurer, Color.Black) }
             drawIntoCanvas { it.restore() }
         }
-        drawArt(piece, measurer)
+        if (outline) {
+            val o = 1.5.dp.toPx()
+            listOf(-o to 0f, o to 0f, 0f to -o, 0f to o).forEach { (dx, dy) -> translate(dx, dy) { drawArt(piece, measurer, PL.Ink) } }
+        }
+        drawArt(piece, measurer, tint)
     }
 }
+
+@Composable
+fun Glyph(name: String, description: String?, tint: Color, modifier: Modifier = Modifier) = Art("glyph-$name", modifier, tint = tint, description = description)

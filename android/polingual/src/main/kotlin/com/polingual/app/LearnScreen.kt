@@ -32,7 +32,7 @@ fun LearnScreen(graph: Graph, nav: NavHostController) {
     val app by graph.state.collectAsState()
     val p = LocalPalette.current
     val scope = rememberCoroutineScope()
-    Page("Learn", stickers = listOf(Sticker("torn-label", Alignment.TopStart, 130.dp, -7f, dy = 12.dp), Sticker("calligraphy-yong", Alignment.TopEnd, 80.dp, 8f), Sticker("pebble", Alignment.BottomCenter, 56.dp, -4f))) {
+    Page("Learn", stickers = listOf(Sticker("torn-label", Alignment.CenterStart, 110.dp, -8f), Sticker("calligraphy-yong", Alignment.TopEnd, 60.dp, 10f), Sticker("pebble", Alignment.BottomEnd, 40.dp, -5f, dx = (-8).dp))) {
         SectionTitle("Your language sets")
         val systems = app?.systems.orEmpty()
         if (systems.isEmpty()) EmptyState("kente", "Start a language set. The games use the words you study.")

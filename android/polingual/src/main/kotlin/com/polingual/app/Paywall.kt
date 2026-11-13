@@ -53,7 +53,7 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
     val context = LocalContext.current
     LaunchedEffect(Unit) { graph.billing.refresh() }
     val trial = graph.billing.trialEligible
-    Page(back = back, ground = Ground.Lattice, stickers = listOf(Sticker("ticket", Alignment.TopStart, 150.dp, -9f, dy = 8.dp), Sticker("seal", Alignment.TopEnd, 84.dp, 11f), Sticker("streak-flame", Alignment.BottomCenter, 44.dp, 4f), Sticker("kente", Alignment.BottomEnd, 120.dp, -5f))) {
+    Page(back = back, ground = Ground.Lattice, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 60.dp, 10f), Sticker("kente", Alignment.BottomEnd, 80.dp, -5f, dx = (-8).dp))) {
         Text(if (trial) "${Plan.TRIAL_DAYS} days free" else "Keep learning", style = Type.display, color = PL.Paper)
         Text("Daily sessions, every language set, and your words on every device. Games and live rooms stay free.", style = Type.body, color = PL.Paper.copy(alpha = 0.9f))
         if (access.unlocked) {

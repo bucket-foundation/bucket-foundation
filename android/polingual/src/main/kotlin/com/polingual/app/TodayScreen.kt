@@ -24,12 +24,9 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
     val p = LocalPalette.current
     val system = app?.system
     val study = system?.let { app?.study?.get(it.id) }
-    Page(ground = Ground.Diagonal, stickers = listOf(Sticker("ticket", Alignment.TopStart, 140.dp, -8f, dy = 6.dp), Sticker("seal", Alignment.TopEnd, 78.dp, 10f), Sticker("torn-label", Alignment.BottomStart, 120.dp, 5f, dx = 20.dp), Sticker("script-ru", Alignment.BottomEnd, 90.dp, -6f))) {
+    Page("Today", ground = Ground.Diagonal, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 58.dp, 10f), Sticker("script-ru", Alignment.BottomEnd, 72.dp, -5f, dx = (-8).dp))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            Column(Modifier.weight(1f)) {
-                Text("Today", style = Type.display, color = p.ink)
-                Text(system?.name ?: "No language set yet", color = p.muted)
-            }
+            Text(system?.name ?: "No language set yet", style = Type.body, color = p.muted, modifier = Modifier.weight(1f))
             StreakFlame(Streak.count(study?.days.orEmpty(), today()))
         }
         if (system != null) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { system.targets.forEach { FlagTile(it, 44.dp) } }
