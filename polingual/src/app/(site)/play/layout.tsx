@@ -14,14 +14,14 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#F6EEDC", viewportFit: "cover" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#5B1A4A", viewportFit: "cover" };
 
 export default async function PlayLayout({ children }: { children: React.ReactNode }) {
   const country = (await headers()).get("x-vercel-ip-country");
   const header = (
-    <header className={styles.bar}>
+    <header className={`${styles.bar} ${play.playBar}`}>
       <a href="/play" className={styles.brand} aria-label="Polingual games">
-        <img src="/brand/kit/mark.svg" alt="" width={32} height={32} />
+        <img src="/brand/kit/mark-on-dark.svg" alt="" width={32} height={32} />
         <span className={play.brandText}>polingual play</span>
       </a>
       <AccountCta />
