@@ -34,7 +34,7 @@ fun PlayScreen(graph: Graph, nav: NavHostController) {
             EmptyState("kente", "Pick languages first. The games use the words you study.", onDark = true)
             PLButton("Pick languages", variant = ButtonVariant.Accent) { nav.navigate("system/new") }
         } else GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> Lang.info[l]?.latin == false } }.forEach { k ->
-            val played = dailyLine(graph, k) ?: app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
+            val played = dailyLine(graph, k)
             GameTile(k, played) { nav.navigate("game/${k.route}") }
         }
         SectionTitle("More games", onDark = true)
