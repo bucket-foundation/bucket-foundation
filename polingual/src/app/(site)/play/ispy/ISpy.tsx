@@ -11,6 +11,7 @@ import { LANG_SETS, langName } from "../langs";
 import { RevealCard } from "../LearnWord";
 import LiveBoard from "../LiveBoard";
 import playStyles from "../play.module.css";
+import { ObjectArt } from "@/ui/art/objects";
 import Scene, { type SpyMark } from "./Scene";
 import styles from "./ispy.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
@@ -178,7 +179,7 @@ export default function ISpy() {
           {phase.kind === "reveal" ? (
             <div className={styles.reveal} data-testid="spy-reveal">
               <div className={styles.revealRow}>
-                <span className={styles.revealGlyph} aria-hidden="true">{obj?.glyph}</span>
+                {obj ? <ObjectArt id={obj.id} size={64} /> : null}
                 <b>{phase.correct ? "✓ Spotted" : "Here it was"}</b>
                 <Button size="sm" variant="ghost" onClick={next}>Next</Button>
               </div>

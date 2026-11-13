@@ -1,14 +1,18 @@
 "use client";
 
 import type { SpyDecor, SpyScene } from "@academy/ispy";
+import { Art } from "@/ui/art";
+import { ObjectArt } from "@/ui/art/objects";
 import styles from "./ispy.module.css";
 
 export type SpyMark = "right" | "wrong" | "answer";
 
 function Decor({ d }: { d: SpyDecor }) {
-  const style = { left: `${d.x}%`, top: `${d.y}%`, transform: `rotate(${d.tilt}deg)`, "--sz": `${d.size}cqw` } as React.CSSProperties;
-  if (d.kind === "script") return <span className={styles.script} style={style} aria-hidden="true">{d.text}</span>;
-  return <span className={styles[d.kind]} style={style} aria-hidden="true" />;
+  return (
+    <span className={styles.decor} style={{ left: `${d.x}%`, top: `${d.y}%`, width: `${d.size}%`, transform: `rotate(${d.tilt}deg)` }} aria-hidden="true">
+      <Art name={d.art} size={100} style={{ width: "100%", height: "auto" }} />
+    </span>
+  );
 }
 
 export default function Scene({ scene, marks, locked, onTap }: { scene: SpyScene; marks: Record<string, SpyMark>; locked: boolean; onTap: (id: string) => void }) {
@@ -27,10 +31,10 @@ export default function Scene({ scene, marks, locked, onTap }: { scene: SpyScene
           data-testid="spy-object"
           data-id={o.id}
           disabled={locked}
-          aria-label="object"
+          aria-label="Picture"
           onClick={() => onTap(o.id)}
         >
-          <span className={styles.glyph}>{o.glyph}</span>
+          <ObjectArt id={o.id} className={styles.glyph} />
         </button>
       ))}
     </div>

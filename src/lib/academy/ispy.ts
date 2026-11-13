@@ -4,7 +4,6 @@ export type SpyArt = "torn" | "stamp" | "seal" | "kente" | "azu" | "paisley" | "
 
 export interface SpyObject {
   id: string;
-  glyph: string;
   art: SpyArt;
   x: number;
   y: number;
@@ -12,8 +11,7 @@ export interface SpyObject {
 }
 
 export interface SpyDecor {
-  kind: "script" | "kente" | "azu" | "lattice" | "paisley";
-  text?: string;
+  art: "calligraphy-ain" | "calligraphy-yong" | "script-ru" | "script-he" | "script-ko" | "kente" | "azulejo" | "girih" | "pebble" | "bunting" | "ink-dot";
   x: number;
   y: number;
   size: number;
@@ -29,15 +27,14 @@ export interface SpyScene {
 
 const ARTS: SpyArt[] = ["torn", "stamp", "seal", "kente", "azu", "paisley", "tag"];
 
-function laid(entries: [string, string][], seed: number): SpyObject[] {
+function laid(ids: string[], seed: number): SpyObject[] {
   const cols = 5;
-  return entries.map(([id, glyph], i) => {
+  return ids.map((id, i) => {
     const r = Math.floor(i / cols);
     const c = i % cols;
     const jitter = ((i * 37 + seed * 11) % 9) - 4;
     return {
       id,
-      glyph,
       art: ARTS[(i + seed) % ARTS.length],
       x: 11 + c * 18 + (r % 2 ? 4 : 0) + jitter * 0.5,
       y: 11 + r * 24 + (((i * 13 + seed) % 7) - 3) * 1.2,
@@ -47,15 +44,16 @@ function laid(entries: [string, string][], seed: number): SpyObject[] {
 }
 
 const DECOR: SpyDecor[] = [
-  { kind: "script", text: "ع", x: 2, y: 4, size: 22, tilt: -8 },
-  { kind: "script", text: "永", x: 74, y: 58, size: 20, tilt: 9 },
-  { kind: "script", text: "मेला", x: 38, y: 82, size: 7, tilt: -6 },
-  { kind: "script", text: "сто", x: 84, y: 6, size: 6, tilt: 18 },
-  { kind: "script", text: "מאה", x: 48, y: 2, size: 5, tilt: -12 },
-  { kind: "kente", x: -4, y: 90, size: 34, tilt: -3 },
-  { kind: "azu", x: 92, y: 84, size: 12, tilt: 8 },
-  { kind: "lattice", x: 58, y: 30, size: 26, tilt: 0 },
-  { kind: "paisley", x: 0, y: 44, size: 7, tilt: 20 },
+  { art: "calligraphy-ain", x: 2, y: 4, size: 26, tilt: -8 },
+  { art: "calligraphy-yong", x: 72, y: 56, size: 24, tilt: 9 },
+  { art: "script-ru", x: 84, y: 4, size: 12, tilt: 18 },
+  { art: "script-he", x: 46, y: 0, size: 10, tilt: -12 },
+  { art: "script-ko", x: 30, y: 84, size: 10, tilt: -6 },
+  { art: "girih", x: 56, y: 28, size: 22, tilt: 0 },
+  { art: "kente", x: -4, y: 90, size: 34, tilt: -3 },
+  { art: "azulejo", x: 90, y: 82, size: 14, tilt: 8 },
+  { art: "pebble", x: -2, y: 42, size: 7, tilt: 20 },
+  { art: "bunting", x: 18, y: -3, size: 22, tilt: 2 },
 ];
 
 export const SPY_SCENES: SpyScene[] = [
@@ -65,10 +63,10 @@ export const SPY_SCENES: SpyScene[] = [
     decor: DECOR,
     objects: laid(
       [
-        ["bread", "🍞"], ["fish", "🐟"], ["apple", "🍎"], ["egg", "🥚"], ["milk", "🥛"],
-        ["cheese", "🧀"], ["meat", "🥩"], ["rice", "🍚"], ["orange", "🍊"], ["chicken", "🐔"],
-        ["coffee", "☕"], ["tea", "🍵"], ["salt", "🧂"], ["wine", "🍷"], ["money", "💰"],
-        ["bag", "👜"], ["knife", "🔪"], ["flower", "🌸"], ["hundred", "💯"], ["cow", "🐄"],
+        "bread", "fish", "apple", "egg", "milk",
+        "cheese", "meat", "rice", "orange", "chicken",
+        "coffee", "tea", "salt", "wine", "money",
+        "bag", "knife", "flower", "hundred", "cow",
       ],
       0,
     ),
@@ -79,10 +77,10 @@ export const SPY_SCENES: SpyScene[] = [
     decor: DECOR,
     objects: laid(
       [
-        ["car", "🚗"], ["dog", "🐕"], ["cat", "🐈"], ["house", "🏠"], ["tree", "🌳"],
-        ["sun", "☀️"], ["bird", "🐦"], ["horse", "🐎"], ["door", "🚪"], ["window", "🪟"],
-        ["hat", "🎩"], ["shoe", "👟"], ["key", "🔑"], ["road", "🛣️"], ["stone", "🪨"],
-        ["child", "🧒"], ["star", "⭐"], ["moon", "🌙"], ["city", "🏙️"], ["flower", "🌻"],
+        "car", "dog", "cat", "house", "tree",
+        "sun", "bird", "horse", "door", "window",
+        "hat", "shoe", "key", "road", "stone",
+        "child", "star", "moon", "city", "flower",
       ],
       3,
     ),
@@ -93,10 +91,10 @@ export const SPY_SCENES: SpyScene[] = [
     decor: DECOR,
     objects: laid(
       [
-        ["book", "📕"], ["paper", "📄"], ["letter", "✉️"], ["clock", "🕰️"], ["chair", "🪑"],
-        ["ball", "⚽"], ["school", "🏫"], ["one", "1️⃣"], ["two", "2️⃣"], ["three", "3️⃣"],
-        ["shirt", "👕"], ["apple", "🍏"], ["child", "👧"], ["window", "🪟"], ["door", "🚪"],
-        ["bag", "🎒"], ["key", "🗝️"], ["water", "💧"], ["hundred", "💯"], ["hat", "🧢"],
+        "book", "paper", "letter", "clock", "chair",
+        "ball", "school", "one", "two", "three",
+        "shirt", "apple", "child", "window", "door",
+        "bag", "key", "water", "hundred", "hat",
       ],
       5,
     ),
@@ -107,10 +105,10 @@ export const SPY_SCENES: SpyScene[] = [
     decor: DECOR,
     objects: laid(
       [
-        ["sea", "🌊"], ["boat", "⛵"], ["fish", "🐠"], ["bird", "🕊️"], ["sun", "🌞"],
-        ["mountain", "⛰️"], ["river", "🏞️"], ["water", "💧"], ["stone", "🪨"], ["fire", "🔥"],
-        ["star", "🌟"], ["moon", "🌙"], ["house", "🛖"], ["tree", "🌴"], ["dog", "🐕"],
-        ["bread", "🥖"], ["wine", "🍷"], ["money", "🪙"], ["hat", "👒"], ["key", "🔑"],
+        "sea", "boat", "fish", "bird", "sun",
+        "mountain", "river", "water", "stone", "fire",
+        "star", "moon", "house", "tree", "dog",
+        "bread", "wine", "money", "hat", "key",
       ],
       2,
     ),

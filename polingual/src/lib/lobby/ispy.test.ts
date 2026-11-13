@@ -85,3 +85,9 @@ test("reveal shows the word and its root meaning", () => {
   const e = revealEntries({ mode: "spy", lang: "zh", choices: ["fish"], answer: "fish" }, "en", item, () => []);
   assert.deepEqual(e.map((x) => [x.lang, x.word, x.correct]), [["zh", "fish-zh", true], ["en", "fish", false]]);
 });
+
+test("every scene object has an illustration", async () => {
+  const { OBJECT_ART } = await import("@/ui/art/objects");
+  const missing = ids.filter((id) => !OBJECT_ART[id]);
+  assert.deepEqual(missing, []);
+});
