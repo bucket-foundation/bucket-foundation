@@ -38,4 +38,4 @@ Bead bkt-9gvte.5, branch `feat/polingual-babel-match`. Match-3 at `/play/babel-m
 
 ## Shift
 
-Bead bkt-9gvte.6, branch `feat/polingual-shift`. Daily letter board at `/play/shift`, board from `GET /api/academy/shift` (`src/lib/academy/shift.ts`), play helpers in `polingual/src/lib/lobby/shift-play.ts`. Solo puzzle, no bots. Hint reveals a letter for a rewarded ad. Playtest: `scripts/playtest-shift.mjs`. Next game: Word Snake.
+Bead bkt-9gvte.6, branch `feat/polingual-shift`. Daily letter board at `/play/shift`, board from `GET /api/academy/shift` (`src/lib/academy/shift.ts`), play helpers in `polingual/src/lib/lobby/shift-play.ts`. Solo puzzle, no bots. Hint reveals a letter for a rewarded ad; the ad step is a placeholder stub until bkt-9s3fi lands. Playtest: `scripts/playtest-shift.mjs`. Next game: Word Snake.

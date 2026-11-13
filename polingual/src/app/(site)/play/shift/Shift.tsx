@@ -67,7 +67,7 @@ export default function Shift() {
   if (!board) return <p className={app.muted} aria-busy="true">Loading today&apos;s board</p>;
 
   const hint = () => {
-    const t = targetsLeft[0];
+    const t = targetsLeft.find((x) => (hints[x.form] ?? 0) < Array.from(x.form).length);
     if (!t) return;
     setHints((h) => ({ ...h, [t.form]: Math.min(Array.from(t.form).length, (h[t.form] ?? 0) + 1) }));
     setRewarded(false);
