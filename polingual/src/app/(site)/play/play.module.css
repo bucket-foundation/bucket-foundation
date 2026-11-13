@@ -91,7 +91,7 @@
 .hud{display:flex;flex-direction:column;gap:6px;position:sticky;top:0;z-index:5;background:var(--parchment);padding:6px 0}
 .hudRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .hudRound{font-family:"Space Mono",monospace;font-weight:700;font-size:13px;color:var(--ink-2);text-transform:uppercase}
-.hudScore{font-family:"Fredoka",sans-serif;font-weight:700;font-size:22px;color:var(--tyrian)}
+.hudScore{display:inline-flex;align-items:baseline;gap:4px;font-family:"Fredoka",sans-serif;font-weight:700;font-size:22px;color:var(--tyrian)}
 .hudRow .mute{margin-inline-start:auto}
 .gameBar{height:10px;border-radius:999px;background:var(--parchment-2);overflow:hidden}
 .gameBar > div{height:100%;background:linear-gradient(90deg,var(--malachite),var(--lapis));transition:width .4s ease}
@@ -118,5 +118,7 @@
 .choiceTile[data-state=pending]{box-shadow:0 0 0 5px var(--ochre)}
 .choiceTile[data-state=dim]{opacity:.5}
 .choiceTile:not(:disabled):active{scale:.95}
+@media (max-width:600px){.lanes{height:44vh;min-height:280px}.choiceTiles .choiceTile{aspect-ratio:3/2}.promptTile{width:min(160px,45vw)}}
+.hudRank{font-family:"Fredoka",sans-serif;font-weight:700;font-size:16px;color:var(--lapis)}
 @keyframes shake{0%,100%{translate:0}25%{translate:-6px}75%{translate:6px}}
 @media (prefers-reduced-motion:reduce){.boardRow,.revealCard,.bigCount,.boardScore{transition:none;animation:none}}

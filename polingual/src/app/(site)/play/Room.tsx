@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { tappedChoice } from "@academy/lobby-tiles";
-import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, ranked, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
 import { LANGS } from "@academy/lang-systems";
 import { TileFace } from "@/app/tile";
 import { LangCard } from "./LearnWord";
@@ -338,6 +338,7 @@ export default function Room({ code: rawCode }: { code: string }) {
 
   const lives = lobby.game === "tiles" && (phase.kind === "round" || phase.kind === "reveal") ? livesLeft(lobby, phase.kind === "round" ? phase.index : phase.index + 1) : null;
   const streak = streakOf(lobby);
+  const rank = ranked(lobby.players).find((p) => p.isMe)?.rank ?? null;
   const hud = (
     <div className={styles.hud} data-testid="hud">
       <div className={styles.hudRow}>
@@ -347,6 +348,7 @@ export default function Room({ code: rawCode }: { code: string }) {
         <span className={styles.hudScore}>
           <span className={styles.scoreNow} key={myScore(lobby)} data-testid="my-score">{myScore(lobby)}</span> pts
         </span>
+        {rank ? <span className={styles.hudRank} data-testid="my-rank">#{rank} of {lobby.players.length}</span> : null}
         <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
         {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{"♥".repeat(lives)}{"♡".repeat(Math.max(0, 3 - lives))}</span> : null}
         <button type="button" className={styles.mute} onClick={toggleMute} aria-pressed={muted} aria-label={muted ? "Sound off" : "Sound on"} data-testid="mute">

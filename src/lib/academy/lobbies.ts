@@ -15,6 +15,11 @@ export const LEAD_MS = 3000;
 export const DEFAULT_ROUNDS = 6;
 export const DEFAULT_ROUND_SECONDS = 8;
 export const REVEAL_SECONDS = 4;
+export const WEB_CLIENT_HEADER = "x-polingual-client";
+
+export function revealEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return env.POLINGUAL_LOBBY_REVEAL === "on";
+}
 export const MESSAGE_LIMIT = 50;
 export const MESSAGE_MAX = 200;
 export const STALE_MS = 45_000;
@@ -250,7 +255,7 @@ export function normalizeLobbyConfig(body: Record<string, unknown> | null): Lobb
   const game = body.game === undefined ? "daily" : (LOBBY_GAMES as readonly unknown[]).includes(body.game) ? (body.game as LobbyGame) : null;
   if (!game) return null;
   if (game === "same-word" && targets.length < 2) return null;
-  return { name: name || "Polingual lobby", game, root, targets, rounds, roundSeconds, revealSeconds: body.reveal === true ? REVEAL_SECONDS : 0, listed: body.listed !== false };
+  return { name: name || "Polingual lobby", game, root, targets, rounds, roundSeconds, revealSeconds: body.reveal === true && revealEnabled() ? REVEAL_SECONDS : 0, listed: body.listed !== false };
 }
 
 export function normalizeMessage(input: unknown): string | null {

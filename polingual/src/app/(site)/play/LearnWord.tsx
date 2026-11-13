@@ -39,7 +39,7 @@ export function RevealCard({ entry, index }: { entry: RevealEntry; index: number
         word={entry.word}
         reading={entryReading(entry)}
         rtl={LANGS[entry.lang]?.rtl}
-        index={index}
+        index={Math.min(index, 3)}
         play={<PlayTile item={item} label={`Hear ${entry.word} in ${langName(entry.lang)}`} />}
       />
       <p className={styles.revealDef} data-testid="reveal-definition">

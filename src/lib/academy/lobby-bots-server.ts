@@ -1,6 +1,6 @@
 import { service } from "./groups-server";
 import { corpusLookup } from "./lang-lookup";
-import { gameEndMs, generateLobbyCode, generateSeed, REVEAL_SECONDS, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
+import { gameEndMs, generateLobbyCode, generateSeed, REVEAL_SECONDS, revealEnabled, roundAt, STALE_MS, visiblePrompts, type LobbyPlayerRow, type LobbyRow } from "./lobbies";
 import {
   botChoice,
   botTileChoice,
@@ -62,7 +62,7 @@ export async function fillLobby(lobby: LobbyRow, players: LobbyPlayerRow[], targ
 
 async function resetStanding(lobby: LobbyRow, players: LobbyPlayerRow[], now: number): Promise<LobbyRow | null> {
   const slot = STANDING_SLOTS.find((s) => s.slot === lobby.standing_slot);
-  const timing = slot ? { rounds: slot.rounds, round_seconds: slot.roundSeconds, reveal_seconds: REVEAL_SECONDS } : {};
+  const timing = slot ? { rounds: slot.rounds, round_seconds: slot.roundSeconds, ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}) } : {};
   const rows = checkLobby(
     await service().from(LOBBIES).update({ status: "lobby", started_at: null, seed: generateSeed(), created_at: new Date(now).toISOString(), ...timing }).eq("id", lobby.id).eq("status", lobby.status).select(LOBBY_COLS),
     "standing reset",
@@ -172,7 +172,7 @@ export async function ensureStanding(now: number): Promise<LobbyRow[]> {
     const res = await service()
       .from(LOBBIES)
       .upsert(
-        { code: generateLobbyCode(), host_id: host.userId, name: s.name, game: s.game, root: s.root, targets: s.targets, seed: generateSeed(), listed: true, rounds: s.rounds, round_seconds: s.roundSeconds, reveal_seconds: REVEAL_SECONDS, standing_slot: s.slot, created_at: new Date(now).toISOString() },
+        { code: generateLobbyCode(), host_id: host.userId, name: s.name, game: s.game, root: s.root, targets: s.targets, seed: generateSeed(), listed: true, rounds: s.rounds, round_seconds: s.roundSeconds, ...(revealEnabled() ? { reveal_seconds: REVEAL_SECONDS } : {}), standing_slot: s.slot, created_at: new Date(now).toISOString() },
         { onConflict: "standing_slot", ignoreDuplicates: true },
       )
       .select(LOBBY_COLS);

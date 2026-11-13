@@ -14,6 +14,7 @@ import {
   gameEndMs,
   nativePlayable,
   REVEAL_SECONDS,
+  revealEnabled,
   finished,
   generateLobbyCode,
   generateSeed,
@@ -60,7 +61,12 @@ test("seeds are decimal uint64 strings and never zero", () => {
 
 test("config validates languages, rounds and timing", () => {
   assert.deepEqual(normalizeLobbyConfig({ root: "en", targets: ["es", "es", "en", "fr"] }), { name: "Polingual lobby", game: "daily", root: "en", targets: ["es", "fr"], rounds: 6, roundSeconds: 8, revealSeconds: 0, listed: true });
+  assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], reveal: true })?.revealSeconds, 0);
+  process.env.POLINGUAL_LOBBY_REVEAL = "on";
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], reveal: true })?.revealSeconds, REVEAL_SECONDS);
+  delete process.env.POLINGUAL_LOBBY_REVEAL;
+  assert.equal(revealEnabled({ POLINGUAL_LOBBY_REVEAL: "on" }), true);
+  assert.equal(revealEnabled({}), false);
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["en"] }), null);
   assert.equal(normalizeLobbyConfig({ root: "EN!", targets: ["es"] }), null);
   assert.equal(normalizeLobbyConfig({ root: "en", targets: ["es"], rounds: 50 }), null);

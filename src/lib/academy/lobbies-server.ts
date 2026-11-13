@@ -24,6 +24,7 @@ import {
   type LobbyPromptRow,
   type LobbyRow,
   type LobbyState,
+  revealEnabled,
 } from "./lobbies";
 
 export const LOBBIES = "lobbies";
@@ -32,7 +33,8 @@ export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
 export const PROFILES = "academy_profiles";
-export const LOBBY_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,reveal_seconds,started_at,version,created_at,standing_slot,bot_fill";
+const LOBBY_BASE_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
+export const LOBBY_COLS = (revealEnabled() ? `${LOBBY_BASE_COLS},reveal_seconds` : LOBBY_BASE_COLS) as typeof LOBBY_BASE_COLS;
 export const PLAYER_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
 
 export async function limited(key: string, max: number): Promise<boolean> {

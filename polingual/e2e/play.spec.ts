@@ -37,9 +37,9 @@ const REVEAL: Record<Game, unknown[]> = {
   ],
 };
 
-function state(game: Game, screen: Screen, now: number, scores: Record<string, number>) {
+function state(game: Game, screen: Screen, now: number, scores: Record<string, number>, t0: number) {
   const status = screen === "results" ? "done" : "playing";
-  const startedAt = new Date(now - (screen === "round" ? 1_000 : screen === "reveal" ? (ROUND + 1) * 1000 : 600_000)).toISOString();
+  const startedAt = new Date(t0 - (screen === "round" ? 1_000 : screen === "reveal" ? (ROUND + 1) * 1000 : 600_000)).toISOString();
   const p = PROMPTS[game];
   const open = screen !== "round";
   return {
@@ -78,16 +78,18 @@ function state(game: Game, screen: Screen, now: number, scores: Record<string, n
 
 async function mockRoom(page: Page, game: Game, screen: Screen) {
   const scores: Record<string, number> = { [ME]: 0, h: 120, b1: 60, b2: 200 };
-  await page.addInitScript((me) => window.localStorage.setItem("polingual-web/guest/v1", JSON.stringify({ guestId: "g1", nickname: "Ana", token: "pl-guest.test", userId: me, expiresAt: new Date(Date.now() + 3_600_000).toISOString() })), ME);
+  const t0 = Date.now() + 8_000;
+  await page.addInitScript(() => window.localStorage.setItem("polingual-web/lobby-nick/v1", "Ana"));
+  await page.route("**/api/academy/lobbies/guest/merge", (r) => r.fulfill({ json: { ok: true } }));
   await page.route("**/api/academy/lobbies/guest", (r) => r.fulfill({ json: { token: "pl-guest.test", userId: ME, expiresAt: new Date(Date.now() + 3_600_000).toISOString() } }));
   await page.route("**/api/academy/lobbies?**", (r) => r.fulfill({ json: { lobbies: [], bots: true } }));
-  await page.route("**/api/academy/lobbies/join", (r) => r.fulfill({ json: { lobby: state(game, screen, Date.now(), scores) } }));
-  await page.route("**/api/academy/lobbies/state**", (r) => r.fulfill({ json: { changed: true, lobby: state(game, screen, Date.now(), scores) } }));
+  await page.route("**/api/academy/lobbies/join", (r) => r.fulfill({ json: { lobby: state(game, screen, Date.now(), scores, t0) } }));
+  await page.route("**/api/academy/lobbies/state**", (r) => r.fulfill({ json: { changed: true, lobby: state(game, screen, Date.now(), scores, t0) } }));
   await page.route("**/api/academy/lobbies/answer", (r) => {
     const body = r.request().postDataJSON() as { choice: string };
     const correct = body.choice === PROMPTS[game].answer;
     scores[ME] += correct ? 290 : 0;
-    r.fulfill({ json: { correct, points: correct ? 290 : 0, ms: 900, lobby: state(game, screen, Date.now(), scores) } });
+    r.fulfill({ json: { correct, points: correct ? 290 : 0, ms: 900, lobby: state(game, screen, Date.now(), scores, t0) } });
   });
   await page.goto("/play/ABC123");
 }
@@ -127,6 +129,7 @@ for (const width of [390, 1440]) {
       await expect(page.getByTestId("feedback")).toContainText("Right");
       await expect(page.getByTestId("my-score")).toHaveText("290");
       await expect(mine).toHaveAttribute("style", /translateY\(0px\)/);
+      await expect(page.getByTestId("my-rank")).toHaveText("#1 of 4");
       if (SHOTS) await page.screenshot({ path: `${SHOTS}/daily-round-${width}.png` });
     });
 

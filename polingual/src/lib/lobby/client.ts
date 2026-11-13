@@ -85,6 +85,7 @@ const ERRORS: Record<string, string> = {
   bad_request: "Check the details and try again.",
   sync_unavailable: "Lobbies are offline right now. Try again soon.",
   offline: "No connection. Check your network.",
+  update_app: "This game needs the newest app. Open it on polingual.com.",
 };
 
 export function lobbyError(code: string | undefined): string {
@@ -107,7 +108,7 @@ export class LobbyApi {
 
   private async call<T>(path: string, init: { method?: string; body?: unknown; query?: Record<string, string> } = {}): Promise<T> {
     const q = init.query ? `?${new URLSearchParams(init.query)}` : "";
-    const headers: Record<string, string> = { accept: "application/json" };
+    const headers: Record<string, string> = { accept: "application/json", "x-polingual-client": "web" };
     const token = await this.deps.auth();
     if (token) headers.authorization = `Bearer ${token}`;
     if (init.body !== undefined) headers["content-type"] = "application/json";
