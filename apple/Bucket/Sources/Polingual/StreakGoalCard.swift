@@ -19,11 +19,9 @@ struct StreakGoalCard: View {
 
     func summary(_ g: StreakGoal) -> some View {
         HStack(spacing: 12) {
-            Image(systemName: "flame.fill")
-                .font(.system(size: 30))
-                .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
+            PLArtView(.streakFlame).frame(height: 34)
             VStack(alignment: .leading, spacing: 5) {
-                Text(title(g)).font(.system(size: 19, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(title(g)).font(PL.heading.font(scale: 19 / PL.heading.size)).foregroundStyle(PL.ink)
                 ProgressView(value: g.fraction).tint(D8.vermilion)
                 Text(detail(g)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
             }

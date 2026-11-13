@@ -25,6 +25,13 @@ public enum PL {
         "maya": 0x6FB7C2,
         "hairline": 0x231F20,
         "hairline-2": 0x231F20,
+        "paper-dim": 0xC9BFAE,
+        "error": 0x9B2414,
+        "dot": 0x231F20,
+        "lip-soft": 0x231F20,
+        "cream-veil": 0xF6EEDC,
+        "gloss": 0xFFFFFF,
+        "shadow": 0x000000,
     ]
 
     public static let colorAlpha: [String: Double] = [
@@ -51,6 +58,13 @@ public enum PL {
         "maya": 1,
         "hairline": 0.12,
         "hairline-2": 0.22,
+        "paper-dim": 1,
+        "error": 1,
+        "dot": 0.07,
+        "lip-soft": 0.08,
+        "cream-veil": 0.92,
+        "gloss": 0.45,
+        "shadow": 0.35,
     ]
 
     public static let paper = Color(plHex: 0xF6EEDC, alpha: 1)
@@ -76,6 +90,13 @@ public enum PL {
     public static let maya = Color(plHex: 0x6FB7C2, alpha: 1)
     public static let hairline = Color(plHex: 0x231F20, alpha: 0.12)
     public static let hairline2 = Color(plHex: 0x231F20, alpha: 0.22)
+    public static let paperDim = Color(plHex: 0xC9BFAE, alpha: 1)
+    public static let error = Color(plHex: 0x9B2414, alpha: 1)
+    public static let dot = Color(plHex: 0x231F20, alpha: 0.07)
+    public static let lipSoft = Color(plHex: 0x231F20, alpha: 0.08)
+    public static let creamVeil = Color(plHex: 0xF6EEDC, alpha: 0.92)
+    public static let gloss = Color(plHex: 0xFFFFFF, alpha: 0.45)
+    public static let shadow = Color(plHex: 0x000000, alpha: 0.35)
 
     public static let type: [String: PLTypeSpec] = [
         "hero": PLTypeSpec(family: .display, size: 52, weight: 700, line: 1.05),

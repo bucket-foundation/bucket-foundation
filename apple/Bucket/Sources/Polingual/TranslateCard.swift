@@ -137,12 +137,12 @@ struct TranslateCard: View {
                         }
                     } label: {
                         HStack(spacing: 6) {
-                            if let from { FlagTile(lang: from, size: 22) } else { Image(systemName: "sparkle.magnifyingglass").font(.system(size: 18, weight: .semibold)) }
+                            if let from { FlagTile(lang: from, size: 22) } else { PLGlyphView(.search, size: 18) }
                             Text(from.map(Lang.name) ?? String(localized: "Detect"))
-                                .font(.system(size: 17, weight: .bold, design: .rounded))
+                                .font(PL.heading.font(scale: 17 / PL.heading.size))
                                 .lineLimit(1)
                                 .fixedSize()
-                            Image(systemName: "chevron.down").font(.system(size: 13, weight: .bold))
+                            PLGlyphView(.chevronDown, size: 13)
                         }
                         .foregroundStyle(Palette.ink)
                         .padding(.horizontal, 12)
@@ -163,9 +163,9 @@ struct TranslateCard: View {
                 }
                 if today { targetRow }
                 HStack(spacing: 10) {
-                    Image(systemName: "character.bubble.fill").font(.system(size: 22)).foregroundStyle(D8.lapis)
+                    PLGlyphView(.search, size: 22).foregroundStyle(PL.lapis)
                     TextField("Translate a word", text: $query, prompt: Text("Translate a word").foregroundStyle(today ? soft : D8.label))
-                        .font(.system(size: 21, weight: .semibold, design: .rounded))
+                        .font(PL.heading.font(scale: 21 / PL.heading.size))
                         .autocorrectionDisabled()
                         .submitLabel(.search)
                         .focused($focused)
@@ -173,7 +173,7 @@ struct TranslateCard: View {
                             if today { commit() } else if let id = picked ?? hits.first?.itemId { add(id, corpus) }
                         }
                     if !query.isEmpty {
-                        Button { query = ""; committed = "" } label: { Image(systemName: "xmark.circle.fill").font(.system(size: 20)).foregroundStyle(soft) }
+                        Button { query = ""; committed = "" } label: { PLGlyphView(.close, size: 16).foregroundStyle(soft).frame(width: 44, height: 44) }
                             .buttonStyle(.borderless)
                             .accessibilityLabel("Clear")
                     }
@@ -187,9 +187,7 @@ struct TranslateCard: View {
                 } else {
                     Button { micTapped() } label: {
                         HStack(spacing: 12) {
-                            Image(systemName: listening ? "stop.fill" : "mic.fill")
-                                .font(.system(size: 30, weight: .bold))
-                                .symbolEffect(.variableColor.iterative, isActive: listening)
+                            PLGlyphView(listening ? .stop : .mic, size: 30)
                             Text(listening ? String(localized: "Stop") : String(localized: "Tap and speak")).font(D8.word(21))
                         }
                         .foregroundStyle(D8.parchment)
@@ -351,7 +349,7 @@ struct TranslateCard: View {
                         Text(Lang.name(l)).font(.system(size: 15, weight: .bold, design: .rounded)).padding(.leading, 4)
                         if chosen.count > 1 {
                             Button { toggleTarget(l) } label: {
-                                Image(systemName: "xmark").font(.system(size: 11, weight: .heavy)).foregroundStyle(soft)
+                                PLGlyphView(.close, size: 11).foregroundStyle(soft)
                                     .frame(width: 32, height: 36)
                                     .contentShape(.rect)
                             }
@@ -375,7 +373,7 @@ struct TranslateCard: View {
                         ForEach(sources.filter { !chosen.contains($0) && !langs.contains($0) }, id: \.self) { l in Button(Lang.name(l)) { toggleTarget(l) } }
                     }
                 } label: {
-                    Image(systemName: "plus").font(.system(size: 15, weight: .heavy)).foregroundStyle(Palette.ink)
+                    PLGlyphView(.plus, size: 15).foregroundStyle(PL.ink)
                         .frame(width: 36, height: 36)
                         .background(D8.face, in: .circle)
                         .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
@@ -436,9 +434,7 @@ struct TranslateCard: View {
             .disabled(query.trimmingCharacters(in: .whitespaces).isEmpty)
             .accessibilityIdentifier("translate.go")
             Button { micTapped() } label: {
-                Image(systemName: listening ? "stop.fill" : "mic.fill")
-                    .font(.system(size: 26, weight: .bold))
-                    .symbolEffect(.variableColor.iterative, isActive: listening)
+                PLGlyphView(listening ? .stop : .mic, size: 26)
                     .foregroundStyle(D8.parchment)
                     .frame(width: 60, height: 60)
                     .background(D8.vermilion, in: .circle)

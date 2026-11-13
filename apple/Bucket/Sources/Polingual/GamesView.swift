@@ -306,7 +306,7 @@ struct VoiceTile: View {
     var body: some View {
         Button(action: open) {
             HStack(spacing: 16) {
-                Image(systemName: "mic.fill").font(.system(size: 34, weight: .bold)).foregroundStyle(D8.vermilion)
+                PLGlyphView(.mic, size: 34).foregroundStyle(PL.vermilion)
                     .frame(width: 68, height: 68).background(D8.parchment, in: .circle)
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Translate").font(D8.word(24)).foregroundStyle(D8.parchment)

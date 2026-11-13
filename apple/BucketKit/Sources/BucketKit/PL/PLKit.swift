@@ -601,3 +601,69 @@ extension PLArt {
         #endif
     }
 }
+
+public struct PLGlyphShape: Shape {
+    let glyph: PLGlyph
+
+    public init(_ glyph: PLGlyph) { self.glyph = glyph }
+
+    public func path(in rect: CGRect) -> Path {
+        let raw = PLGlyphShape.parse(glyph.path)
+        let s = min(rect.width, rect.height) / 24
+        return raw.applying(CGAffineTransform(translationX: rect.midX - 12 * s, y: rect.midY - 12 * s).scaledBy(x: s, y: s))
+    }
+
+    static func parse(_ d: String) -> Path {
+        var p = Path()
+        var tokens: [String] = []
+        var cur = ""
+        for ch in d {
+            if ch.isLetter {
+                if !cur.isEmpty { tokens.append(cur); cur = "" }
+                tokens.append(String(ch))
+            } else if ch == " " || ch == "," {
+                if !cur.isEmpty { tokens.append(cur); cur = "" }
+            } else {
+                cur.append(ch)
+            }
+        }
+        if !cur.isEmpty { tokens.append(cur) }
+        var i = 0
+        var cmd = "M"
+        var pt = CGPoint.zero
+        func n() -> CGFloat { defer { i += 1 }; return CGFloat(Double(tokens[i]) ?? 0) }
+        while i < tokens.count {
+            if tokens[i].first?.isLetter == true { cmd = tokens[i]; i += 1 }
+            switch cmd {
+            case "M": pt = CGPoint(x: n(), y: n()); p.move(to: pt); cmd = "L"
+            case "L": pt = CGPoint(x: n(), y: n()); p.addLine(to: pt)
+            case "H": pt.x = n(); p.addLine(to: pt)
+            case "V": pt.y = n(); p.addLine(to: pt)
+            case "C":
+                let c1 = CGPoint(x: n(), y: n()), c2 = CGPoint(x: n(), y: n())
+                pt = CGPoint(x: n(), y: n())
+                p.addCurve(to: pt, control1: c1, control2: c2)
+            case "Z": p.closeSubpath()
+            default: i += 1
+            }
+        }
+        return p
+    }
+}
+
+public struct PLGlyphView: View {
+    let glyph: PLGlyph
+    let size: CGFloat
+
+    public init(_ glyph: PLGlyph, size: CGFloat = 20) {
+        self.glyph = glyph
+        self.size = size
+    }
+
+    public var body: some View {
+        PLGlyphShape(glyph)
+            .stroke(.foreground, style: StrokeStyle(lineWidth: max(1.5, size * 0.11), lineCap: .round, lineJoin: .round))
+            .frame(width: size, height: size)
+            .accessibilityHidden(true)
+    }
+}

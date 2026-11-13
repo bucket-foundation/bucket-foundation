@@ -140,7 +140,7 @@ struct WideTile: View {
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundStyle(D8.ink)
-                    if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: 17)).foregroundStyle(D8.ink.opacity(0.55)) }
+                    if canSay { PLGlyphView(.speaker, size: 17).foregroundStyle(D8.ink.opacity(0.55)) }
                 }
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 if let r = readingText(reading) {
@@ -167,9 +167,8 @@ struct WideTile: View {
             }
             .overlay(alignment: .topTrailing) {
                 if state == .right {
-                    Image(systemName: "checkmark")
-                        .font(.system(size: 13, weight: .heavy))
-                        .foregroundStyle(.white)
+                    PLGlyphView(.check, size: 14)
+                        .foregroundStyle(PL.paper)
                         .frame(width: 26, height: 26)
                         .background(D8.malachite, in: .circle)
                         .offset(x: 8, y: -8)

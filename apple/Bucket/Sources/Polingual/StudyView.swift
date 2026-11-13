@@ -168,7 +168,7 @@ struct StudyView: View {
                 let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))
                 columns {
                     VStack(spacing: 16) {
-                        Image(systemName: "checkmark").font(.system(size: 44, weight: .heavy)).foregroundStyle(D8.malachite)
+                        PLGlyphView(.check, size: 44).foregroundStyle(PL.malachite)
                             .frame(width: 76, height: 76)
                             .onAppear {
                                 haptic(true)

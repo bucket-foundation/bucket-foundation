@@ -244,7 +244,7 @@ struct SignInSheet: View {
                         Text("Code sent to \(to).")
                     }
                 case .signedIn:
-                    Section { Label("Signed in", systemImage: "checkmark.circle.fill") }
+                    Section { Label { Text("Signed in") } icon: { PLGlyphView(.check, size: 18).foregroundStyle(PL.malachite) } }
                 }
                 if let error = account.error {
                     Section { Text(error).foregroundStyle(.red) }

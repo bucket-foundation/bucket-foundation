@@ -144,7 +144,7 @@ struct TodayWidgetFace: View {
                     Circle().stroke(vivid ? D8.parchment.opacity(0.3) : Palette.rule, lineWidth: 5)
                     Circle().trim(from: 0, to: progress).stroke(vivid ? D8.parchment : D8.malachite, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
                     if done {
-                        Image(systemName: "checkmark").font(.subheadline.weight(.heavy)).foregroundStyle(D8.malachite)
+                        PLGlyphView(.check, size: 16).foregroundStyle(PL.malachite)
                     } else if let left {
                         Text("\(left)").font(.system(size: 15, weight: .heavy, design: .rounded)).foregroundStyle(ink).monospacedDigit().minimumScaleFactor(0.6).padding(6)
                     } else if let symbol {
@@ -199,7 +199,7 @@ struct TodayAddWidget: View {
     var body: some View {
         Button(action: open) {
             VStack(spacing: 8) {
-                Image(systemName: "plus").font(.system(size: 26, weight: .bold))
+                PLGlyphView(.plus, size: 26)
                 Text("Add to Today").font(.subheadline.weight(.bold))
             }
             .foregroundStyle(Palette.muted)
@@ -241,9 +241,10 @@ struct TodayPickTile: View {
         } label: {
             TodayWidgetFace(symbol: entry.symbol, branch: entry.branch, flags: entry.flags, title: entry.title, detail: entry.detail, left: nil, progress: 0, done: false, look: entry.look, badgeRoom: 26)
                 .overlay(alignment: .bottomTrailing) {
-                    Image(systemName: on ? "checkmark.circle.fill" : "plus.circle.fill")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundStyle(on ? D8.malachite : Palette.muted, D8.face)
+                    PLGlyphView(on ? .check : .plus, size: 14)
+                        .foregroundStyle(PL.paper)
+                        .frame(width: 26, height: 26)
+                        .background(on ? PL.malachite : PL.inkDim, in: .circle)
                         .padding(10)
                         .padding(.bottom, 5)
                 }
