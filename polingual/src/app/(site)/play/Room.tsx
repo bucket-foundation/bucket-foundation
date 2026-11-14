@@ -2,6 +2,7 @@
 
 import Interstitial from "./Interstitial";
 import RoomMissed from "./RoomMissed";
+import { RoomChat, RoomHeader } from "./RoomParts";
 import { useNow } from "@/lib/hooks/clock";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -296,45 +297,9 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     </ol>
   );
 
-  const chatBox = (
-    <section className={styles.chat} aria-label="Chat">
-      <ul className={styles.messages} data-testid="messages">
-        {lobby.messages.map((m) => (
-          <li key={m.id}>
-            <b>{m.name}</b>
-            {lobby.players.some((p) => p.userId === m.from && p.bot) ? <span className={styles.tag}> bot</span> : null} {m.body}
-          </li>
-        ))}
-      </ul>
-      <form
-        className={styles.chatForm}
-        onSubmit={(e) => {
-          e.preventDefault();
-          const body = chat.trim();
-          if (!body) return;
-          setChat("");
-          void act(() => api.chat(lobby.id, body));
-        }}
-      >
-        <input value={chat} onChange={(e) => setChat(e.target.value)} maxLength={200} placeholder="Say hi" aria-label="Message" data-testid="chat-input" />
-        <Button type="submit" variant="ghost" size="md">Send</Button>
-      </form>
-    </section>
-  );
+  const chatBox = <RoomChat lobby={lobby} chat={chat} setChat={setChat} onSend={(body) => void act(() => api.chat(lobby.id, body))} />;
 
-  const header = (
-    <section className={`${app.stackSm} ${world.joinCard}`}>
-      <div className={app.stackSm}>
-        <p className={app.label}>{gameName(lobby.game)}</p>
-        <p className={styles.langRow} data-testid="room-langs">
-          {lobby.targets.map((l) => (
-            <LangCard key={l} lang={l} />
-          ))}
-        </p>
-        <p className={styles.code} data-testid="room-code">{lobby.code}</p>
-      </div>
-    </section>
-  );
+  const header = <RoomHeader lobby={lobby} />;
 
   if (phase.kind === "waiting") {
     const readyCount = lobby.players.filter((p) => p.ready).length;
