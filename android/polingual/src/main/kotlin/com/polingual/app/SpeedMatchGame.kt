@@ -104,10 +104,7 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
 
 @Composable
 fun MatchTile(text: String, selected: Boolean, onClick: () -> Unit) {
-    val p = LocalPalette.current
-    Box(
-        Modifier.fillMaxWidth().heightIn(min = 64.dp).clip(RoundedCornerShape(14.dp)).background(if (selected) PL.Lapis else p.card)
-            .border(1.dp, p.rule, RoundedCornerShape(14.dp)).clickable(role = Role.Button, onClick = onClick).padding(10.dp),
-        contentAlignment = Alignment.Center,
-    ) { Text(text, color = if (selected) PL.Paper else p.ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center) }
+    foundation.bucket.core.ui.pl.PLTile(selected, Modifier.fillMaxWidth().heightIn(min = 64.dp), onClick = onClick) {
+        Text(text, color = if (selected) PL.Paper else PL.Ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, modifier = Modifier.padding(10.dp))
+    }
 }

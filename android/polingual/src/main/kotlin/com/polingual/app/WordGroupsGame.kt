@@ -100,12 +100,10 @@ fun Groups(graph: Graph, c: GameContext) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             row.forEach { w ->
                 val on = w.id in round.selected
-                Box(
-                    Modifier.weight(1f).aspectRatio(1.1f).clip(RoundedCornerShape(12.dp)).background(if (on) PL.Ink else PL.White).border(2.dp, if (on) PL.Ink else PL.Hairline2, RoundedCornerShape(12.dp))
-                        .clickable(role = Role.Checkbox) { round.toggle(w.id); tick += 1 }.padding(4.dp)
-                        .semantics { contentDescription = "${w.form}, ${Lang.name(w.lang)}" },
-                    contentAlignment = Alignment.Center,
-                ) { Text(w.form, color = if (on) PL.Paper else p.ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, fontSize = 14.sp, maxLines = 2) }
+                foundation.bucket.core.ui.pl.PLTile(
+                    on, Modifier.weight(1f).aspectRatio(1.1f).semantics { contentDescription = "${w.form}, ${Lang.name(w.lang)}" }, selectedColor = PL.Ink,
+                    onClick = { round.toggle(w.id); tick += 1 },
+                ) { Text(w.form, color = if (on) PL.Paper else PL.Ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, fontSize = 14.sp, maxLines = 2, modifier = Modifier.padding(4.dp)) }
             }
         }
     }
