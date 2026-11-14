@@ -8,7 +8,7 @@ import { loadLangCorpus } from "@academy/lang-client";
 import { bcp47, say } from "@/lib/speak";
 import { pickerGroups, pushRecent, readRecent, suggestions, translate, translateSources, type TranslateAnswer } from "@/lib/translate/engine";
 import { WORD_SLUGS } from "@/lib/translate/slugs";
-import { Button, ButtonLink, Field, FlagTile, Input, Sheet, Stage } from "@/ui";
+import { Button, ButtonLink, Eyebrow, Field, FlagTile, Input, Sheet, Stage, Title } from "@/ui";
 import { flagTileStyles } from "@/ui/FlagTile";
 import { useSystems } from "../useSystems";
 import styles from "./translate.module.css";
@@ -97,8 +97,8 @@ export default function Translate() {
   return (
     <Stage ground="cut" stickers={STICKERS} tiles={false}>
       <Sheet className={styles.sheet} data-testid="translate">
-        <p className={styles.eyebrow}>Translate</p>
-        <h1 className={styles.title}>Translate a word into your languages</h1>
+        <Eyebrow>Translate</Eyebrow>
+        <Title>Translate a word into your languages</Title>
         <div className={styles.langs}>
           <Picker label="From" value={source} all={all} mine={mine} onPick={(l) => { setSource(l); setAnswer(null); }} testId="pick-source" />
           <Button variant="ghost" size="md" aria-label="Swap languages" onClick={() => { setSource(target); setTarget(source); setAnswer(null); }} data-testid="swap">Swap</Button>

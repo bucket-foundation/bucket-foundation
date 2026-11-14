@@ -38,3 +38,9 @@ test("stage keeps content in its own column", () => {
   assert.match(html, /data-testid="st"/);
   assert.match(html, /aria-hidden="true"[\s\S]*data-sticker="seal"[\s\S]*<p>hello<\/p>/);
 });
+
+test("type primitives render their roles", async () => {
+  const { Eyebrow, Lede, Stack, Title } = await import("../ui");
+  const html = renderToStaticMarkup(<Stack><Eyebrow>Daily</Eyebrow><Title onDark>Hi</Title><Lede>Body</Lede></Stack>);
+  assert.match(html, /<p[^>]*>Daily<\/p><h1[^>]*data-dark="true"[^>]*>Hi<\/h1><p[^>]*>Body<\/p>/);
+});

@@ -6,7 +6,7 @@ import { langName } from "@academy/lang-systems";
 import { loadLangCorpus } from "@academy/lang-client";
 import { usePlayer } from "@/lib/listen/player";
 import { radioName, radioStations, type RadioStation } from "@/lib/listen/radio";
-import { Button, FlagTile, Pill, Sheet, Stage } from "@/ui";
+import { Button, Eyebrow, FlagTile, Lede, Pill, Sheet, Stage, Title } from "@/ui";
 import { Art } from "@/ui/art";
 import { useSystems } from "../useSystems";
 import styles from "./listen.module.css";
@@ -62,9 +62,9 @@ export default function Listen() {
   return (
     <Stage ground="cut" stickers={STICKERS} tiles={false}>
       <Sheet tone="tyrian" className={styles.sheet} data-testid="listen">
-        <p className={styles.eyebrow}>Listen</p>
-        <h1 className={styles.title}>Live radio in the languages you study</h1>
-        <p className={styles.body}>It keeps playing while you move around Polingual.</p>
+        <Eyebrow onDark>Listen</Eyebrow>
+        <Title onDark>Live radio in the languages you study</Title>
+        <Lede onDark>It keeps playing while you move around Polingual.</Lede>
         <div className={styles.langs} role="tablist" aria-label="Radio language">
           {langs.map((l) => (
             <Pill key={l} role="tab" aria-selected={l === active} active={l === active} onClick={() => setLang(l)} data-testid={`radio-lang-${l}`}>{langName(l)}</Pill>

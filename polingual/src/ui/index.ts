@@ -9,3 +9,4 @@ export { SpeakNotice } from "./SpeakNotice";
 export { SilentSwitch } from "./SilentSwitch";
 export { NeedsSound, useSilent } from "./NeedsSound";
 export { SpeechGuard } from "./SpeechGuard";
+export { Eyebrow, Title, Lede, Stack } from "./Type";

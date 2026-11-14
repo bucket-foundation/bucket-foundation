@@ -6,7 +6,7 @@ import { LEARN_HREF } from "@/lib/lobby/client";
 import { shareText, type DailyGame, type DailyResult, type SaveState } from "@/lib/daily/store";
 import { readBreaks } from "@/lib/lobby/breaks";
 import { local } from "@/lib/storage";
-import { Button, ButtonLink } from "@/ui";
+import { Button, ButtonLink, Eyebrow, Lede, Title } from "@/ui";
 import GameWorld, { WorldStickers } from "../GameWorld";
 import { Art } from "@/ui/art";
 import { FlagTile } from "@/ui";
@@ -29,9 +29,9 @@ export function DailyWorld({ id, children }: { id: DailyGame; children: ReactNod
 export function Heading({ eyebrow, title, blurb }: { eyebrow: string; title: string; blurb?: string }) {
   return (
     <div>
-      <p className={styles.eyebrow}>{eyebrow}</p>
-      <h1 className={styles.title}>{title}</h1>
-      {blurb ? <p className={styles.blurb}>{blurb}</p> : null}
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <Title>{title}</Title>
+      {blurb ? <Lede>{blurb}</Lede> : null}
     </div>
   );
 }
