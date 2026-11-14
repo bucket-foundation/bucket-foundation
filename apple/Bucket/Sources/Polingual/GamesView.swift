@@ -399,7 +399,7 @@ struct QuestCard: View {
                 Image(systemName: quest.complete ? "checkmark.seal.fill" : "person.2.fill").foregroundStyle(quest.complete ? D8.malachite : D8.vermilion)
                 Text("\(quest.group.name) quest").font(.headline).foregroundStyle(Palette.ink)
                 Spacer(minLength: 0)
-                Text("\(quest.done) of \(quest.target)").font(.subheadline.weight(.heavy).monospacedDigit()).foregroundStyle(Palette.ink)
+                Text("\(quest.shownDone) of \(quest.target)").font(.subheadline.weight(.heavy).monospacedDigit()).foregroundStyle(Palette.ink)
             }
             ProgressView(value: quest.progress).tint(quest.complete ? D8.malachite : D8.vermilion)
             Text(quest.complete ? String(localized: "Quest done. New one Monday.") : String(localized: "Words this week. \(quest.active.count) of \(quest.group.members.count) playing."))
