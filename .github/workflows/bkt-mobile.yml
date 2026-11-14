@@ -221,6 +221,8 @@ jobs:
         run: |
           xcodebuild -project App.xcodeproj -scheme App -configuration Release -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath "$RUNNER_TEMP/dd-sim" CODE_SIGNING_ALLOWED=NO build
+      - name: smoke script test
+        run: bash packages/bkt-mobile/scripts/ios-smoke.test.sh
       - name: simulator smoke
         run: bash packages/bkt-mobile/scripts/ios-smoke.sh "$RUNNER_TEMP/dd-sim/Build/Products/Release-iphonesimulator/App.app"
       - name: collect
