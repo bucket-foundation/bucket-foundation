@@ -5,6 +5,7 @@ struct StreakGoalCard: View {
     @Environment(LangStore.self) private var store: LangStore?
     let streak: Double
     var share = true
+    var expected: ExpectedLearning?
 
     var body: some View {
         let g = StreakGoal(streak: streak)
@@ -26,6 +27,9 @@ struct StreakGoalCard: View {
                 Text(title(g)).font(.system(size: 19, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
                 ProgressView(value: g.fraction).tint(D8.vermilion)
                 Text(detail(g)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+                if g.day > 0, let line = expectedLine(expected) {
+                    Text(line).font(.caption).foregroundStyle(Palette.muted)
+                }
             }
         }
     }
@@ -39,5 +43,12 @@ struct StreakGoalCard: View {
         if g.day == 0 { return String(localized: "Study today to count day 1.") }
         if g.reached { return String(localized: "100 days reached. Keep it going.") }
         return g.left == 1 ? String(localized: "1 day to 100") : String(localized: "\(g.left) days to 100")
+    }
+
+    func expectedLine(_ e: ExpectedLearning?) -> String? {
+        guard let e, !e.isEmpty else { return nil }
+        if e.concepts == 0 { return String(localized: "Expected: about \(e.words) words learned") }
+        if e.words == 0 { return String(localized: "Expected: about \(e.concepts) concepts learned") }
+        return String(localized: "Expected: about \(e.words) words and \(e.concepts) concepts learned")
     }
 }
