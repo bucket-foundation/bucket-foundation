@@ -6,9 +6,11 @@ public struct PreparedDeck: Sendable {
     public let atoms: [Atom]
     public let encompassing: [String: [EncEdge]]
     public let byId: [String: Atom]
+    public let questionsFile: String
 
-    public init(branch: String, atoms raw: [Atom]) {
+    public init(branch: String, atoms raw: [Atom], questionsFile: String? = nil) {
         self.branch = branch
+        self.questionsFile = questionsFile ?? "corpus/questions/\(branch).json"
         atoms = withLeverage(raw)
         encompassing = buildEncompassingMap(atoms)
         byId = Dictionary(atoms.map { ($0.id, $0) }, uniquingKeysWith: { _, b in b })

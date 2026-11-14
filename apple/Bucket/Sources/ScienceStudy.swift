@@ -228,7 +228,7 @@ struct StudySession: View {
                 return
             }
             #endif
-            questions = try? await BucketAPI().questionDeck(deck.branch)
+            questions = try? await BucketAPI().questions(at: deck.questionsFile)
         }
     }
 

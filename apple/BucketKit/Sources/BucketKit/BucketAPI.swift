@@ -93,7 +93,26 @@ public struct BucketAPI: Sendable {
     }
 
     public func questionDeck(_ branch: String) async throws -> QuestionDeck {
-        try await cached("academy-app/corpus/questions/\(branch).json")
+        try await questions(at: "corpus/questions/\(branch).json")
+    }
+
+    public func questions(at file: String) async throws -> QuestionDeck {
+        try await cached("academy-app/\(file)")
+    }
+
+    @discardableResult
+    public func saveOffline(_ entries: [DeckEntry]) async -> Int {
+        var saved = 0
+        for entry in entries where !entry.isLanguage {
+            for file in [entry.file, entry.questionsFile] {
+                let path = "academy-app/\(file)"
+                guard let url = cacheURL(path), !FileManager.default.fileExists(atPath: url.path) else { continue }
+                guard let data = try? await raw(path) else { continue }
+                try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+                if (try? data.write(to: url, options: .atomic)) != nil { saved += 1 }
+            }
+        }
+        return saved
     }
 
     func cacheURL(_ path: String) -> URL? {
