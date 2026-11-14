@@ -101,18 +101,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
         toast?.let { Text(it, color = PL.Vermilion) }
         if (!over) {
             val keys = remember(guesses, puzzle.answer) { Polyword.keyMarks(guesses, puzzle.answer) }
-            listOf("qwertyuiop", "asdfghjkl", "zxcvbnm").forEach { row ->
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)) {
-                    row.forEach { c ->
-                        val m = keys[c]
-                        Box(
-                            Modifier.weight(1f).heightIn(min = 46.dp).clip(RoundedCornerShape(8.dp)).background(if (m == null) PL.Paper2 else markColor(m))
-                                .clickable(role = Role.Button) { if (draft.length < puzzle.answer.length) draft += c; toast = null },
-                            contentAlignment = Alignment.Center,
-                        ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, fontSize = 16.sp, style = Type.small) }
-                    }
-                }
-            }
+            PolyKeyboard(keys) { c -> if (draft.length < puzzle.answer.length) draft += c; toast = null }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 PLButton("Delete", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Md) { draft = draft.dropLast(1) }
                 PLButton("Enter", Modifier.weight(1f), size = ButtonSize.Md) {
@@ -134,4 +123,20 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
             }
         }
     }
+}
+
+@Composable
+private fun PolyKeyboard(keys: Map<Char, Mark>, onKey: (Char) -> Unit) {
+            listOf("qwertyuiop", "asdfghjkl", "zxcvbnm").forEach { row ->
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)) {
+                    row.forEach { c ->
+                        val m = keys[c]
+                        Box(
+                            Modifier.weight(1f).heightIn(min = 46.dp).clip(RoundedCornerShape(8.dp)).background(if (m == null) PL.Paper2 else markColor(m))
+                                .clickable(role = Role.Button) { onKey(c) },
+                            contentAlignment = Alignment.Center,
+                        ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, fontSize = 16.sp, style = Type.small) }
+                    }
+                }
+            }
 }
