@@ -91,11 +91,14 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
             ) { Text("Lane ${lane + 1}", style = Type.small, color = PL.Paper) }
         }
     }
-    if (reveal && prompt.answer != null) {
-        val o = LobbyTiles.outcome(prompt.answer!!, tapped.toList())
-        Text(if (o.perfect) "Perfect" else "${o.hits} right, ${o.wrong} wrong, ${o.missed} missed", style = Type.title, color = if (o.perfect) PL.Malachite else PL.Vermilion)
-        prompt.choices.mapIndexedNotNull { i, c -> if (i in right) LobbyTiles.parse(c) else null }.forEach { t ->
-            Text("${Lang.name(t.lang)}: ${t.form}", style = Type.small, color = PL.Ink)
-        }
+    if (reveal && prompt.answer != null) TileOutcomeView(prompt, right, tapped)
+}
+
+@Composable
+private fun TileOutcomeView(prompt: LobbyPrompt, right: Set<Int>, tapped: Set<Int>) {
+    val o = LobbyTiles.outcome(prompt.answer!!, tapped.toList())
+    Text(if (o.perfect) "Perfect" else "${o.hits} right, ${o.wrong} wrong, ${o.missed} missed", style = Type.title, color = if (o.perfect) PL.Malachite else PL.Vermilion)
+    prompt.choices.mapIndexedNotNull { i, c -> if (i in right) LobbyTiles.parse(c) else null }.forEach { t ->
+        Text("${Lang.name(t.lang)}: ${t.form}", style = Type.small, color = PL.Ink)
     }
 }

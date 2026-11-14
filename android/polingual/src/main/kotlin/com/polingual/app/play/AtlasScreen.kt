@@ -58,14 +58,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
         val limit = minOf(Atlas.ROUNDS, rs.size)
         val total = guesses.sumOf { it.points }
         if (index >= limit) {
-            Results(graph, "$total points", "Five voices a day. New ones tomorrow.", again = null) {
-                guesses.firstOrNull()?.let { g ->
-                    PlayReveal(graph, g.round.lang, g.round.form, g.round.meaning, deckRoot, g.round.itemId)
-                }
-                guesses.drop(1).forEach { g -> WordLine(g.round.lang, g.round.form, "${Lang.name(g.round.lang)} · ${g.round.meaning} · +${g.points}") }
-                SectionTitle("Today's board")
-                Leaderboard(Boards.fromGhosts(Atlas.ghosts(date), total))
-            }
+            Results(graph, "$total points", "Five voices a day. New ones tomorrow.", again = null) { AtlasWords(graph, guesses, deckRoot, Boards.fromGhosts(Atlas.ghosts(date), total)) }
             return@GameFrame
         }
         val round = rs[index]
@@ -102,4 +95,12 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
             PrimaryButton(if (guesses.size >= limit) "See results" else "Next round") { pin = null; peek = false; index += 1 }
         }
     }
+}
+
+@Composable
+private fun AtlasWords(graph: Graph, guesses: List<AtlasGuess>, root: String, board: List<BoardRow>) {
+    guesses.firstOrNull()?.let { g -> PlayReveal(graph, g.round.lang, g.round.form, g.round.meaning, root, g.round.itemId) }
+    guesses.drop(1).forEach { g -> WordLine(g.round.lang, g.round.form, "${Lang.name(g.round.lang)} · ${g.round.meaning} · +${g.points}") }
+    SectionTitle("Today's board")
+    Leaderboard(board)
 }

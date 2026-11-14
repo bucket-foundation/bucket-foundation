@@ -91,13 +91,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
     }
     GameFrame(graph, WebGame.ISpy, back) {
         when (val p = phase) {
-            SpyPhase.Setup -> {
-                Text("A word appears in another language. Find it in the picture before the bots do.", style = Type.body, color = PL.Ink)
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    ISpy.SETS.forEach { s -> PLPill(s.label, active = s == set, small = true) { set = s } }
-                }
-                PrimaryButton(if (loading) "Setting the scene" else "Play solo", enabled = !loading) { seed = DealSeeds.fresh(); loading = true }
-            }
+            SpyPhase.Setup -> SpySetup(set, loading, { set = it }) { seed = DealSeeds.fresh(); loading = true }
             is SpyPhase.Round, is SpyPhase.Reveal -> {
                 val index = if (p is SpyPhase.Round) p.index else (p as SpyPhase.Reveal).index
                 val r = rounds[index]
@@ -115,9 +109,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 }
                 Board(me, bots)
                 if (p is SpyPhase.Reveal && RevealRules.iSpy(tapped = p.tapped != null, elapsedMs = if (p.tapped == null) ISpy.ROUND_SECONDS * 1000L else 0L)) {
-                    Text(if (p.correct) "Spotted" else "Here it was", style = Type.title, color = if (p.correct) PL.Malachite else PL.Vermilion)
-                    PlayReveal(graph, r.lang, r.gloss, r.answer, PlayDecks.ROOT, r.itemId, slug = r.answer)
-                    PrimaryButton(if (index + 1 >= rounds.size) "See results" else "Next") { phase = if (index + 1 >= rounds.size) SpyPhase.Done else SpyPhase.Round(index + 1, System.currentTimeMillis()) }
+                    SpyReveal(graph, r, p.correct, last = index + 1 >= rounds.size) { phase = if (index + 1 >= rounds.size) SpyPhase.Done else SpyPhase.Round(index + 1, System.currentTimeMillis()) }
                 }
             }
             SpyPhase.Done -> {
@@ -156,4 +148,21 @@ private fun SpyStage(scene: SpyScene, marks: Map<String, androidx.compose.ui.gra
                         }
                     }
                 }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun SpySetup(set: LangSet, loading: Boolean, onSet: (LangSet) -> Unit, onPlay: () -> Unit) {
+    Text("A word appears in another language. Find it in the picture before the bots do.", style = Type.body, color = PL.Ink)
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        ISpy.SETS.forEach { s -> PLPill(s.label, active = s == set, small = true) { onSet(s) } }
+    }
+    PrimaryButton(if (loading) "Setting the scene" else "Play solo", enabled = !loading, onClick = onPlay)
+}
+
+@Composable
+private fun SpyReveal(graph: Graph, r: SpyRound, correct: Boolean, last: Boolean, onNext: () -> Unit) {
+    Text(if (correct) "Spotted" else "Here it was", style = Type.title, color = if (correct) PL.Malachite else PL.Vermilion)
+    PlayReveal(graph, r.lang, r.gloss, r.answer, PlayDecks.ROOT, r.itemId, slug = r.answer)
+    PrimaryButton(if (last) "See results" else "Next", onClick = onNext)
 }

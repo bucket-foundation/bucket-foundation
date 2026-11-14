@@ -91,9 +91,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
         }
     }
     GameFrame(graph, WebGame.Babel, back) {
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            sets.forEach { s -> PLPill(s.targets.joinToString(" ") { Lang.flag(it) }, active = s == set, small = true) { set = s } }
-        }
+        BabelSets(sets, set) { set = it }
         if (phase == BabelPhase.Loading) { EmptyState("blocks", "Dealing level $lvl."); return@GameFrame }
         if (phase == BabelPhase.Play) {
             BabelHud(lvl, moves, cleared.size, goal.goal, score)
@@ -148,5 +146,13 @@ private fun BabelMatched(meanings: List<Meaning>) {
             Text(m.meaning, style = Type.title, color = PL.Ink)
             m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
         }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun BabelSets(sets: List<LangSet>, set: LangSet, onSet: (LangSet) -> Unit) {
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        sets.forEach { s -> PLPill(s.targets.joinToString(" ") { Lang.flag(it) }, active = s == set, small = true) { onSet(s) } }
     }
 }
