@@ -87,3 +87,28 @@ func betaFile() -> URL { FileManager.default.temporaryDirectory.appending(path: 
     await beta.log(BetaEvent(name: "app_open", sessionId: nil), owner: "user-b")
     #expect(await beta.flush(token: "tok-b", owner: "user-b") == BetaFlush(sent: 1, kept: 0))
 }
+
+@Test func streakBandsSplitAtSevenThirtyAndHundred() {
+    #expect(StreakBand.of(0) == .under7 && StreakBand.of(6) == .under7)
+    #expect(StreakBand.of(7) == .week && StreakBand.of(29) == .week)
+    #expect(StreakBand.of(30) == .month && StreakBand.of(99) == .month)
+    #expect(StreakBand.of(100) == .hundred && StreakBand.of(400) == .hundred)
+    #expect(StreakBand.of(-3) == .under7)
+}
+
+@Test func answeredEventsCarryStreakDayOnlyWhenGiven() {
+    let with = BetaEvent.answeredProps(deck: "lang:fr", correct: true, ms: 800, kind: "recall", streak: 31)
+    #expect(with["streak_day"] == .number(31) && with["streak_band"] == .string("30-99"))
+    let without = BetaEvent.answeredProps(deck: "lang:fr", correct: true, ms: 800, kind: "recall")
+    #expect(without["streak_day"] == nil && without["streak_band"] == nil)
+}
+
+@Test func wordEventsNameLanguageItemStageAndStreak() throws {
+    let props = BetaEvent.wordProps(lang: "nl", itemId: "learn", stage: "intro", streak: 7)
+    #expect(props["lang"] == .string("nl") && props["item"] == .string("learn") && props["stage"] == .string("intro"))
+    #expect(props["streak_day"] == .number(7) && props["streak_band"] == .string("7-29"))
+    let body = try JSONEncoder().encode(BetaEvent(name: "word_heard", sessionId: "s", props: props))
+    let json = try #require(try JSONSerialization.jsonObject(with: body) as? [String: Any])
+    let sent = try #require(json["props"] as? [String: Any])
+    #expect(sent["streak_band"] as? String == "7-29" && sent["streak_day"] as? Double == 7)
+}

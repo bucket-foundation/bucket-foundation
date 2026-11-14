@@ -48,8 +48,16 @@ final class Beta {
         log("session_start", ["deck": .string(deck)])
     }
 
-    func answered(_ deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil) {
-        log("card_answered", BetaEvent.answeredProps(deck: deck, correct: correct, ms: ms, kind: kind, question: question))
+    func answered(_ deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil, streak: Int? = nil) {
+        log("card_answered", BetaEvent.answeredProps(deck: deck, correct: correct, ms: ms, kind: kind, question: question, streak: streak))
+    }
+
+    func wordSeen(_ lang: String, _ itemId: String, stage: String, streak: Int) {
+        log("word_seen", BetaEvent.wordProps(lang: lang, itemId: itemId, stage: stage, streak: streak))
+    }
+
+    func wordsHeard(_ langs: [String], _ itemId: String, stage: String, streak: Int) {
+        for lang in Set(langs).sorted() { log("word_heard", BetaEvent.wordProps(lang: lang, itemId: itemId, stage: stage, streak: streak)) }
     }
 
     func studyEnded(_ deck: String, graded: Int, correct: Int) {

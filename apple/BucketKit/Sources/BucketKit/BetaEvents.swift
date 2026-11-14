@@ -151,12 +151,37 @@ public actor BetaEvents {
 }
 
 extension BetaEvent {
-    public static func answeredProps(deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil) -> [String: JSONScalar] {
+    public static func answeredProps(deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil, streak: Int? = nil) -> [String: JSONScalar] {
         var props: [String: JSONScalar] = ["deck": .string(deck), "correct": .bool(correct), "ms": .number(Double(ms)), "kind": .string(kind)]
         if let question {
             props["question_kind"] = .string(question.kind.rawValue)
             props["applied"] = .bool(question.applied == true)
         }
+        if let streak { props.merge(streakProps(streak)) { $1 } }
         return props
+    }
+
+    public static func wordProps(lang: String, itemId: String, stage: String, streak: Int) -> [String: JSONScalar] {
+        ["lang": .string(lang), "item": .string(itemId), "stage": .string(stage)].merging(streakProps(streak)) { $1 }
+    }
+
+    public static func streakProps(_ day: Int) -> [String: JSONScalar] {
+        ["streak_day": .number(Double(max(0, day))), "streak_band": .string(StreakBand.of(day).rawValue)]
+    }
+}
+
+public enum StreakBand: String, CaseIterable, Sendable {
+    case under7 = "0-6"
+    case week = "7-29"
+    case month = "30-99"
+    case hundred = "100+"
+
+    public static func of(_ day: Int) -> StreakBand {
+        switch day {
+        case 100...: .hundred
+        case 30...: .month
+        case 7...: .week
+        default: .under7
+        }
     }
 }
