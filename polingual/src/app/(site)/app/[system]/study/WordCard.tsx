@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
-import { bcp47, say } from "@/lib/speak";
+import { bcp47, cancelSpeech, say } from "@/lib/speak";
 import { langDir, langName, type Exercise, type Reading } from "@/lib/academy/lang-systems";
 import { Button, FlagTile, Sticker } from "@/ui";
 import { flagTileStyles } from "@/ui/FlagTile";
@@ -36,6 +36,7 @@ function HeroTile({ word, lang, reading, plain }: { word: string; lang: string; 
 }
 
 export function QuizCard({ ex, readings, children }: { ex: Exercise; readings: boolean; children: ReactNode }) {
+  useEffect(() => () => cancelSpeech(), [ex]);
   if (ex.kind === "match" || !ex.prompt) return <>{children}</>;
   const hidden = HIDDEN.has(ex.kind);
   return (
@@ -51,6 +52,7 @@ export function QuizCard({ ex, readings, children }: { ex: Exercise; readings: b
 export default function WordCard({ ex, readings, onNext }: { ex: Exercise; readings: boolean; onNext: () => void }) {
   useEffect(() => {
     say(ex.answer, bcp47(ex.answerLang), { auto: true });
+    return () => cancelSpeech();
   }, [ex]);
   const ipa = readingText(ex.answerReading, readings);
   return (

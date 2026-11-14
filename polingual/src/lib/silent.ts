@@ -30,10 +30,10 @@ export function setSilent(on: boolean, store: Storage | null = storage()): void 
 export function subscribeSilent(l: () => void): () => void {
   listeners.add(l);
   const onStorage = (e: StorageEvent) => e.key === MUTE_KEY && l();
-  if (typeof window !== "undefined") window.addEventListener("storage", onStorage);
+  if (typeof window !== "undefined" && typeof window.addEventListener === "function") window.addEventListener("storage", onStorage);
   return () => {
     listeners.delete(l);
-    if (typeof window !== "undefined") window.removeEventListener("storage", onStorage);
+    if (typeof window !== "undefined" && typeof window.removeEventListener === "function") window.removeEventListener("storage", onStorage);
   };
 }
 

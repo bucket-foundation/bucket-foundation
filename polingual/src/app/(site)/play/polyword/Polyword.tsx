@@ -1,5 +1,6 @@
 "use client";
 
+import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TileFace } from "@/app/tile";
 import { SITE } from "@/lib/facts";
@@ -7,7 +8,7 @@ import { ADS } from "@/lib/lobby/ads";
 import { TARGETS, type Bank } from "@/lib/polyword/bank";
 import { accountOf, archiveOffer, ctasFor, pauseFrameAds, resultsAd, type Phase } from "@/lib/polyword/policy";
 import { emptyProgress, firstGame, gameOf, isUnlocked, parseProgress, PROGRESS_KEY, statsFor, withGame, withUnlock, type Progress } from "@/lib/polyword/progress";
-import { checkGuess, dateOfDay, dayNumber, finished, keyMarks, MAX_GUESSES, puzzleFor, revealedHints, solved, type Hint } from "@/lib/polyword/puzzle";
+import { checkGuess, dateOfDay, dayNumber, finished, keyMarks, MAX_GUESSES, puzzleFor, revealedHints, solved, type Hint, meaningIn } from "@/lib/polyword/puzzle";
 import { installH5, requestReward } from "@/lib/polyword/reward";
 import { shareText } from "@/lib/polyword/share";
 import { bcp47 } from "@/lib/speak";
@@ -171,6 +172,8 @@ export default function Polyword({ bank }: { bank: Bank }) {
   }, []);
 
   const puzzle = useMemo(() => (day ? puzzleFor(bank, lang, day) : null), [bank, lang, day]);
+  const learnerRoot = useLearnerRoot();
+  const rootMeaning = puzzle ? meaningIn(bank, puzzle, learnerRoot ?? "en") : { lang: "en", text: "" };
   const game = puzzle ? gameOf(progress, lang, puzzle.day) : undefined;
   const guesses = useMemo(() => game?.guesses ?? [], [game]);
   const over = puzzle ? finished(guesses, puzzle.answer) : false;
@@ -422,7 +425,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
                 {won ? (guesses.length === 1 ? "First try!" : `Solved in ${guesses.length}`) : "Next time"}
               </h2>
               <ul className={styles.answer}>
-                <RevealCard entry={{ lang, word: puzzle.word, roman: puzzle.roman ?? null, reading: null, meaning: puzzle.gloss, gloss: puzzle.gloss, correct: won }} index={0} rootLang="en" />
+                <RevealCard entry={{ lang, word: puzzle.word, roman: puzzle.roman ?? null, reading: null, meaning: rootMeaning.text, gloss: rootMeaning.text, correct: won }} index={0} rootLang={rootMeaning.lang} />
               </ul>
               <dl className={styles.stats} data-testid="pw-stats">
                 <div>

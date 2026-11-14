@@ -10,7 +10,7 @@ import { fetchAccess, type Access } from "@/lib/app/plans";
 import Paywall from "./Paywall";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
-import { AppNav, Button, Stage, type NavItem } from "@/ui";
+import { AppNav, Button, SpeechGuard, Stage, type NavItem } from "@/ui";
 import { Art } from "@/ui/art";
 
 type AuthState = { status: "loading" } | { status: "signed-out" } | { status: "signed-in"; userId: string };
@@ -106,6 +106,7 @@ function Shell({ children }: { children: React.ReactNode }) {
         {!open && auth.status === "signed-in" && access.status === "open" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
       </main>
       <MiniPlayer />
+      <SpeechGuard />
     </div>
   );
 }

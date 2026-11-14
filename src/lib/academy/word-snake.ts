@@ -13,10 +13,10 @@ export interface SnakeDeck {
   decoys: SnakeWord[];
 }
 
-export function snakeDeck(items: readonly LangItem[], lang: string, others: readonly string[], seed: string): SnakeDeck {
-  const good = foreheadDeck(items, [lang], seed, "en", 80).map((c) => ({ form: c.form, lang: c.lang, meaning: c.meaning }));
+export function snakeDeck(items: readonly LangItem[], lang: string, others: readonly string[], seed: string, root = "en"): SnakeDeck {
+  const good = foreheadDeck(items, [lang], seed, root, 80).map((c) => ({ form: c.form, lang: c.lang, meaning: c.meaning }));
   const forms = new Set(good.map((g) => g.form.toLowerCase()));
-  const decoys = foreheadDeck(items, others.filter((o) => o !== lang), `${seed}1`, "en", 80)
+  const decoys = foreheadDeck(items, others.filter((o) => o !== lang && o !== root), `${seed}1`, root, 80)
     .filter((c) => !forms.has(c.form.toLowerCase()))
     .map((c) => ({ form: c.form, lang: c.lang, meaning: c.meaning }));
   return { lang, good, decoys };

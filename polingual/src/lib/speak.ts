@@ -1,4 +1,4 @@
-import { isSilent } from "./silent";
+import { isSilent, subscribeSilent } from "./silent";
 export type SpeakItem = { id: string; text: string; lang: string; src?: string };
 export type VoiceLike = { lang: string; name: string };
 export type SpeakSource<V extends VoiceLike = VoiceLike> = { kind: "recording"; src: string; voice?: V } | { kind: "voice"; voice: V };
@@ -134,15 +134,20 @@ export function stationAudio(): HTMLAudioElement {
   return station;
 }
 
-function duck(on: boolean) {
-  if (!station || station.paused) return;
+let stationVolume = 1;
+
+function duck(on: boolean): boolean {
   if (on) {
+    if (!station || station.paused) return false;
+    if (ducked === 0) stationVolume = station.volume;
     ducked += 1;
-    station.volume = DUCK;
-  } else if (ducked > 0) {
-    ducked -= 1;
-    if (ducked === 0) station.volume = 1;
+    station.volume = Math.min(stationVolume, DUCK);
+    return true;
   }
+  if (ducked === 0) return false;
+  ducked -= 1;
+  if (ducked === 0 && station) station.volume = stationVolume;
+  return true;
 }
 
 function release() {
@@ -153,6 +158,8 @@ function release() {
 
 export function stop() {
   token++;
+  speaking = null;
+  drop();
   synth()?.cancel();
   release();
   set(IDLE);
@@ -210,9 +217,51 @@ function playOne(item: SpeakItem, onStart: () => void = () => undefined): Promis
   });
 }
 
-export async function play(item: SpeakItem) {
+export const FINISH_MS = 1500;
+export const CUT_GAP_MS = 60;
+
+type Speaking = { t: number; startedAt: number | null; est: number };
+let speaking: Speaking | null = null;
+let pending: { item: SpeakItem; resolve: () => void } | null = null;
+
+export function estimateMs(text: string): number {
+  return Math.max(600, Array.from(text).length * 95);
+}
+
+function drop(): void {
+  const p = pending;
+  pending = null;
+  p?.resolve();
+}
+
+export function cancelSpeech(): void {
+  drop();
+  stop();
+}
+
+let silentHooked = false;
+
+export function play(item: SpeakItem): Promise<void> {
+  if (!silentHooked) {
+    silentHooked = true;
+    subscribeSilent(() => isSilent() && cancelSpeech());
+  }
+  const now = Date.now();
+  if (speaking?.startedAt != null && speaking.est - (now - speaking.startedAt) <= FINISH_MS) {
+    drop();
+    return new Promise<void>((resolve) => {
+      pending = { item, resolve };
+    });
+  }
+  drop();
+  const cut = speaking !== null;
   token++;
+  synth()?.cancel();
   release();
+  return start(item, cut ? CUT_GAP_MS : 0);
+}
+
+async function start(item: SpeakItem, gap: number): Promise<void> {
   const t = token;
   const reason = reasonFor(item);
   if (reason) {
@@ -222,17 +271,33 @@ export async function play(item: SpeakItem) {
     return;
   }
   set({ id: item.id, all: false });
+  if (gap) await new Promise((r) => setTimeout(r, gap));
+  if (t !== token) return;
+  speaking = { t, startedAt: null, est: estimateMs(item.text) };
   let began = false;
   const watch = setTimeout(() => {
     if (!began && t === token) set({ ...state, notice: "No sound yet. Check the volume and that the tab is not muted." });
   }, START_MS);
-  duck(true);
-  await playOne(item, () => {
-    began = true;
-    if (t === token && state.notice) set({ ...state, notice: null });
-  });
-  duck(false);
-  clearTimeout(watch);
+  const ducking = duck(true);
+  try {
+    await playOne(item, () => {
+      began = true;
+      if (speaking?.t === t) speaking.startedAt = Date.now();
+      if (t === token && state.notice) set({ ...state, notice: null });
+    });
+  } finally {
+    if (ducking) duck(false);
+    clearTimeout(watch);
+  }
+  if (speaking?.t === t) speaking = null;
+  const next = pending;
+  if (next && t === token) {
+    pending = null;
+    token++;
+    await start(next.item, 0);
+    next.resolve();
+    return;
+  }
   if (t === token) set(state.notice ? { id: null, all: false, notice: state.notice } : IDLE);
 }
 

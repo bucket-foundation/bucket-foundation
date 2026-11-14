@@ -10,6 +10,7 @@ import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
+import { useLearnerRoot } from "../daily/useDaily";
 import { LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
@@ -47,6 +48,7 @@ function BabelMatchGame() {
   const [muted, setMuted] = useState(false);
   const deal = useRef<Deal | null>(null);
   const adsVisible = useAdsVisible();
+  const root = useLearnerRoot();
   const goal = levelOf(lvl);
 
   useEffect(() => {
@@ -59,9 +61,10 @@ function BabelMatchGame() {
   }, []);
 
   useEffect(() => {
+    if (!root) return;
     let stop = false;
     setPhase("loading");
-    fetch(`/api/academy/babel?langs=${set.targets.join(",")}&level=${lvl}`)
+    fetch(`/api/academy/babel?langs=${set.targets.join(",")}&level=${lvl}&root=${root}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d: { meanings: Meaning[] }) => {
         if (stop) return;
@@ -80,7 +83,7 @@ function BabelMatchGame() {
     return () => {
       stop = true;
     };
-  }, [lvl, set]);
+  }, [lvl, set, root]);
 
   const byId = useMemo(() => new Map(meanings.map((m) => [m.id, m])), [meanings]);
 
@@ -218,7 +221,7 @@ function BabelMatchGame() {
       ) : null}
       {phase === "won" || phase === "lost" ? (
         <>
-          <WordReveal rootLang={"en"} title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
+          <WordReveal rootLang={root ?? "en"} title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
             const m = byId.get(c.meaning);
             return m ? set.targets.filter((l) => m.forms[l]).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning })) : [];
           })} />

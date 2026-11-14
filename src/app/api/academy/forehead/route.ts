@@ -1,4 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server";
+import { deckRoot } from "@/lib/academy/deck-root";
 import { json, langCorpus, preflight } from "@/lib/academy/groups-server";
 import { foreheadDeck, foreheadLangs, foreheadSeed } from "@/lib/academy/forehead";
 
@@ -16,7 +17,8 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   if (!langs || !seed) return json({ error: "bad_request" }, 400);
   const corpus = langCorpus();
   if (!corpus) return json({ error: "sync_unavailable" }, 503);
-  const cards = foreheadDeck(corpus.items, langs, seed);
+  const root = deckRoot(params.get("root"), corpus.items);
+  const cards = foreheadDeck(corpus.items, langs.filter((l) => l !== root), seed, root);
   if (cards.length < 10) return json({ error: "no_words" }, 503);
   return json({ cards });
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SPY_ROUND_SECONDS, SPY_SCENES, spyScene, type SpyRound } from "@academy/ispy";
 import type { RevealEntry } from "@academy/lobbies";
@@ -26,6 +27,7 @@ const SETS = [{ id: "mix", label: "Chinese, Russian, Hindi, Spanish", root: "en"
 
 function ISpyGame() {
   const [set, setSet] = useState(SETS[0]);
+  const root = useLearnerRoot();
   const [rounds, setRounds] = useState<Round[]>([]);
   const [phase, setPhase] = useState<Phase>({ kind: "setup" });
   const [me, setMe] = useState<Tally>({ score: 0, streak: 0 });
@@ -45,7 +47,7 @@ function ISpyGame() {
     seed.current = String(Date.now());
     setPhase({ kind: "loading" });
     setMisses([]);
-    fetch(`/api/academy/ispy?root=${set.root}&langs=${set.targets.join(",")}&seed=${seed.current}`, { cache: "no-store" })
+    fetch(`/api/academy/ispy?root=${root ?? set.root}&langs=${set.targets.join(",")}&seed=${seed.current}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d: { rounds: Round[] }) => {
         setRounds(d.rounds);
@@ -156,7 +158,7 @@ function ISpyGame() {
       <div className={app.stack} data-testid="ispy-done">
         <h2 className={app.title}>{rank === 1 ? "You spied them all first" : `You finished #${rank}`}</h2>
         <LiveBoard players={players} live={false} />
-        <WordReveal rootLang={"en"} title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} />
+        <WordReveal rootLang={root ?? "en"} title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} />
         <LearnPanel missed={misses.flatMap((i) => rounds[i]?.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning })) ?? [])} />
         <div>
           <Button onClick={start} data-testid="ispy-again">Play again</Button>{" "}
@@ -195,7 +197,7 @@ function ISpyGame() {
               </div>
               <ul className={playStyles.revealGrid}>
                 {current.reveal.map((e, i) => (
-                  <RevealCard key={`${e.lang}:${i}`} entry={e} index={i} rootLang={"en"} />
+                  <RevealCard key={`${e.lang}:${i}`} entry={e} index={i} rootLang={root ?? "en"} />
                 ))}
               </ul>
             </div>

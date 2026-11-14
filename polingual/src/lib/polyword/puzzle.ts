@@ -108,3 +108,8 @@ export function revealedHints(puzzle: Pick<Puzzle, "hints" | "answer">, guesses:
   const misses = guesses.filter((g) => g !== puzzle.answer).length;
   return finished(guesses, puzzle.answer) ? puzzle.hints : puzzle.hints.slice(0, misses);
 }
+
+export function meaningIn(bank: Bank, puzzle: Pick<Puzzle, "slug" | "gloss">, root: string): { lang: string; text: string } {
+  const f = root === "en" ? undefined : bank.words[puzzle.slug]?.forms[root];
+  return f ? { lang: root, text: f.word } : { lang: "en", text: puzzle.gloss };
+}
