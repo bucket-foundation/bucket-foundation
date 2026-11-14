@@ -100,7 +100,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
         }
         toast?.let { Text(it, color = PL.Vermilion) }
         if (!over) {
-            val keys = Polyword.keyMarks(guesses, puzzle.answer)
+            val keys = remember(guesses, puzzle.answer) { Polyword.keyMarks(guesses, puzzle.answer) }
             listOf("qwertyuiop", "asdfghjkl", "zxcvbnm").forEach { row ->
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)) {
                     row.forEach { c ->

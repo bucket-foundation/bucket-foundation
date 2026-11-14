@@ -49,7 +49,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
     var pin by remember { mutableStateOf<LatLon?>(null) }
     var peek by remember { mutableStateOf(false) }
     var guesses by remember { mutableStateOf<List<AtlasGuess>>(emptyList()) }
-    LaunchedEffect(Unit) { rounds = Atlas.rounds(graph.corpus.load().items, date, root = deckRoot) }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; rounds = com.polingual.app.offMain { Atlas.rounds(items, date, root = deckRoot) } }
     val rs = rounds
     GameFrame(graph, WebGame.Atlas, back, soundOnly = true) {
         val silentNow by graph.silent.collectAsState()

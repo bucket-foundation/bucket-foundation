@@ -64,11 +64,13 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
     var left by remember { mutableIntStateOf((Snakes.ROUND_MS / 1000).toInt()) }
     var round by remember { mutableIntStateOf(0) }
     val measurer = rememberTextMeasurer()
+    val chips = remember { HashMap<String, androidx.compose.ui.text.TextLayoutResult>() }
     val scope = rememberCoroutineScope()
     LaunchedEffect(round) {
         if (round == 0) return@LaunchedEffect
         val others = Snakes.LANG_CHOICES.filter { it != lang }.take(5)
-        val d = Snakes.deck(graph.corpus.load().items, lang, others, (1 + (Math.random() * 1e12).toLong()).toString())
+        val items = graph.corpus.load().items
+        val d = com.polingual.app.offMain { Snakes.deck(items, lang, others, (1 + (Math.random() * 1e12).toLong()).toString()) }
         val rng = XorRng(System.currentTimeMillis().toInt())
         val rand = rng::next
         val bots = Bots.all.take(4).mapIndexed { i, b -> Snakes.make(b.userId, b.name, true, Snakes.SKILL[b.skill] ?: 0.8, Pt(200 + rand() * 1200, 150 + rand() * 700), rand() * 6.28, i + 1) }
@@ -160,7 +162,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                         val y = sy(fw.y)
                         val rawX = sx(fw.x)
                         if (rawX < -200 || y < -60 || rawX > size.width + 200 || y > size.height + 60) return@forEach
-                        val r = measurer.measure(fw.form, TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1)
+                        val r = chips.getOrPut(fw.form) { measurer.measure(fw.form, TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1) }
                         val tw = r.size.width + 24f
                         val x = FitRules.clampCenter(rawX, tw, size.width)
                         drawRoundRect(PL.White, Offset(x - tw / 2, y - 18.dp.toPx() / 1f), Size(tw, 36.dp.toPx() / 1f), CornerRadius(12f))

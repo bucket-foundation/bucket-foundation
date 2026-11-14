@@ -59,13 +59,14 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
     val goal = Babel.level(lvl)
     LaunchedEffect(lvl, set, attempt) {
         phase = BabelPhase.Loading
-        val m = Babel.meanings(graph.corpus.load().items, set.targets, lvl)
+        val items = graph.corpus.load().items
+        val m = com.polingual.app.offMain { Babel.meanings(items, set.targets, lvl) }
         val rng = XorRng(lvl * 7919 + set.id.length)
         val d = Dealer(m, set.targets, rng::next, 0)
         meanings = m; deal = d; board = Babel.playable(d); moves = goal.moves; cleared = emptyList(); score = 0; picked = null
         phase = if (m.size < Babel.MEANINGS) BabelPhase.Loading else BabelPhase.Play
     }
-    val byId = meanings.associateBy { it.id }
+    val byId = remember(meanings) { meanings.associateBy { it.id } }
     fun tap(i: Int) {
         val d = deal ?: return
         if (phase != BabelPhase.Play) return

@@ -67,7 +67,8 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
     }
     LaunchedEffect(round) {
         if (round == 0) return@LaunchedEffect
-        cards = ForeheadDeck.deck(graph.corpus.load().items, langs, (1 + (Math.random() * 1e12).toLong()).toString())
+        val items = graph.corpus.load().items
+        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, langs, (1 + (Math.random() * 1e12).toLong()).toString()) }
         index = 0; results = emptyList(); left = ForeheadDeck.SECONDS; count = 3; phase = FhPhase.Count
         while (count > 0) { delay(1000); count -= 1 }
         phase = FhPhase.Play

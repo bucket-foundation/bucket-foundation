@@ -84,7 +84,7 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         val app = graph.store.current()
         val system = app.system ?: return@LaunchedEffect
         val corpus = graph.corpus.load()
-        ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
+        ctx = GameContext(system, app, corpus, offMain { GameWordPool.words(system, app, corpus) })
     }
     GameScaffold(graph, kind.title, kind.art, kind.tilt, "kente", kind in SoundRules.soundOnlyGames, back, banner = { GameBanner(kind) }) {
         val c = ctx

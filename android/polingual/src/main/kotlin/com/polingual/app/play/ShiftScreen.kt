@@ -46,7 +46,7 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
     var offsets by remember { mutableStateOf<List<Int>>(emptyList()) }
     var found by remember { mutableStateOf<List<String>>(emptyList()) }
     var hints by remember { mutableStateOf<Map<String, Int>>(emptyMap()) }
-    LaunchedEffect(Unit) { board = Shift.board(graph.corpus.load().items, date, root = deckRoot); offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; board = com.polingual.app.offMain { Shift.board(items, date, root = deckRoot) }; offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
     val b = board
     val word = if (b != null && offsets.isNotEmpty()) Shift.centerWord(b.columns, offsets) else ""
     LaunchedEffect(word) { if (b != null && b.valid[word] != null && word !in found) found = found + word }
