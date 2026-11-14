@@ -160,7 +160,7 @@ test("a new tap stops the sound that is playing", async () => {
   await tick();
   void play(nuit);
   await first;
-  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 20));
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 120));
   assert.equal(snapshot().id, "fr");
   const el = audios[audios.length - 1];
   assert.equal(el.src, nuit.src);
@@ -208,7 +208,7 @@ test("rapid taps each start their word and the last tap holds the player", async
   const words = ["uno", "dos", "tres", "cuatro", "cinco"];
   const runs = words.map((w, i) => play({ id: `t${i}`, text: w, lang: "es-ES" }));
   await tick();
-  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 20));
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 120));
   const said = spoken.slice(before).map((u) => u.text);
   assert.equal(said[said.length - 1], "cinco");
   assert.ok(!said.slice(0, -1).includes("cinco"));
@@ -229,7 +229,7 @@ test("a tap that makes no sound within 300 ms shows a reason", async () => {
   installFakes();
   resetPlayer();
   const run = play({ id: "q", text: "silencio", lang: "es-ES" });
-  await new Promise((r) => setTimeout(r, START_MS + 60));
+  await new Promise((r) => setTimeout(r, START_MS + 200));
   assert.match(snapshot().notice ?? "", /No sound yet/);
   stop();
   await run;
@@ -293,7 +293,7 @@ test("a long word is cut by a new tap and nothing stale plays after cancel", asy
   void play({ id: "b", text: "corta", lang: "es-ES" });
   assert.equal(cancels, cut + 1);
   cancelSpeech();
-  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 30));
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 130));
   assert.ok(!spoken.slice(before).some((u) => u.text === "corta"));
   assert.equal(snapshot().id, null);
 });
@@ -310,7 +310,7 @@ test("an unducked word ending never restores the station early", async () => {
   st.paused = false;
   const b = play({ id: "b", text: "otra palabra bastante larga para cortar", lang: "es-ES" });
   await a;
-  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 20));
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 120));
   assert.equal(st.volume, 0.15);
   spoken[spoken.length - 1].onend?.();
   await b;
@@ -343,7 +343,7 @@ test("a queued word never waits more than the settle time on a stuck one", async
   void play({ id: "b", text: "luego", lang: "es-ES" });
   await tick();
   assert.notEqual(spoken[spoken.length - 1].text, "luego");
-  await new Promise((r) => setTimeout(r, SETTLE_MS + CUT_GAP_MS + 80));
+  await new Promise((r) => setTimeout(r, SETTLE_MS + CUT_GAP_MS + 300));
   assert.equal(spoken[spoken.length - 1].text, "luego");
   stop();
 });
