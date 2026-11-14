@@ -106,10 +106,10 @@ public enum Snakes {
     public static let skill = ["easy": 0.55, "medium": 0.8, "hard": 0.95]
     public static let langChoices = ["es", "fr", "it", "pt", "de", "nl", "sv", "ja", "zh", "ko", "ru", "el", "ar", "hi", "tr"]
 
-    public static func deck(_ items: [LangItem], lang: String, others: [String], seed: String) -> SnakeDeck {
-        let good = ForeheadDeck.deck(items, langs: [lang], seed: seed, root: "en", size: 80).map { SnakeWord(form: $0.form, lang: $0.lang, meaning: $0.meaning) }
+    public static func deck(_ items: [LangItem], lang: String, others: [String], seed: String, root: String = PlayDecks.root) -> SnakeDeck {
+        let good = ForeheadDeck.deck(items, langs: [lang], seed: seed, root: root, size: 80).map { SnakeWord(form: $0.form, lang: $0.lang, meaning: $0.meaning) }
         let forms = Set(good.map { $0.form.lowercased() })
-        let decoys = ForeheadDeck.deck(items, langs: others.filter { $0 != lang }, seed: "\(seed)1", root: "en", size: 80)
+        let decoys = ForeheadDeck.deck(items, langs: others.filter { $0 != lang && $0 != root }, seed: "\(seed)1", root: root, size: 80)
             .filter { !forms.contains($0.form.lowercased()) }.map { SnakeWord(form: $0.form, lang: $0.lang, meaning: $0.meaning) }
         return SnakeDeck(lang: lang, good: good, decoys: decoys)
     }
@@ -201,6 +201,20 @@ public enum Snakes {
             nextWord += 1
         }
         return Arena(snakes: snakes, words: words, nextWord: nextWord, eaten: eaten, bad: bad)
+    }
+
+    public static func tick(_ a0: Arena, aim: Double?, deck: SnakeDeck, rand: () -> Double, dt: Double) -> Arena {
+        var a = a0
+        a.snakes = a0.snakes.map { s in s.alive ? advance(s, target: s.bot ? botTarget(s, words: a0.words, rand: rand) : aim ?? s.angle, dt: dt) : s }
+        a = eat(a, deck: deck, rand: rand)
+        var out = collide(a).arena
+        out.snakes = out.snakes.map { s in
+            guard s.bot && !s.alive else { return s }
+            let x = 100 + rand() * 1400
+            let y = 100 + rand() * 800
+            return make(id: s.id, name: s.name, bot: true, skill: s.skill, at: Pt(x, y), angle: rand() * 6.28, color: s.color)
+        }
+        return out
     }
 
     public static func collide(_ arena: Arena) -> Collision {

@@ -51,10 +51,11 @@ public enum Shift {
         letters(target).enumerated().map { $0.offset < revealed ? $0.element : "_" }.joined(separator: " ")
     }
 
-    public static func board(_ items: [LangItem], date: String, root: String = "en", length: Int = length) -> ShiftBoard? {
+    public static func board(_ items: [LangItem], date: String, root: String = PlayDecks.root, length: Int = length) -> ShiftBoard? {
         var rand = WebRandom(WebRandom.seedOf("shift:\(date)"))
         let words = items.filter { $0.kind == .word && $0.form(root) != nil }
-        let all = langs.enumerated().flatMap { i, a in langs.dropFirst(i + 1).map { [a, $0] } }
+        let pool = langs.filter { $0 != root }
+        let all = pool.enumerated().flatMap { i, a in pool.dropFirst(i + 1).map { [a, $0] } }
         for pair in rand.shuffled(all) {
             var targets: [ShiftTarget] = []
             var seen = Set<String>()

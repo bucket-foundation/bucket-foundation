@@ -56,7 +56,7 @@ public enum Atlas {
         "tr": [LatLon(41.0, 29.0), LatLon(39.9, 32.9)],
     ]
 
-    public static func rounds(_ items: [LangItem], date: String, count: Int = rounds + 1, root: String = "en") -> [AtlasRound] {
+    public static func rounds(_ items: [LangItem], date: String, count: Int = rounds + 1, root: String = PlayDecks.root) -> [AtlasRound] {
         var rand = WebRandom(WebRandom.seedOf("voice-atlas:\(date)"))
         let words = items.filter { $0.kind == .word && $0.form(root) != nil }
         var out: [AtlasRound] = []
@@ -64,7 +64,7 @@ public enum Atlas {
         var tries = 0
         while out.count < count && tries < 400 {
             tries += 1
-            let free = homeLangs.filter { !used.contains($0) }
+            let free = homeLangs.filter { $0 != root && !used.contains($0) }
             if free.isEmpty { break }
             let lang = free[rand.below(free.count)]
             let pool = words.filter { w in w.form(lang).map { $0 != w.form(root) && $0.utf16.count <= 24 } ?? false }

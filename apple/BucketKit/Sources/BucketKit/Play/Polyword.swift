@@ -124,6 +124,11 @@ public enum Polyword {
         return PolyPuzzle(lang: lang, day: day, slug: slug, word: form.word, answer: fold(form.word), gloss: entry.gloss, roman: form.roman, hints: hintsFor(entry.forms, lang: lang, order: bank.reveal))
     }
 
+    public static func meaningIn(_ bank: PolywordBank, slug: String, gloss: String, root: String) -> (lang: String, text: String) {
+        if root != "en", let f = bank.words[slug]?.forms[root] { return (root, f.word) }
+        return ("en", gloss)
+    }
+
     public static func score(_ guess: String, _ answer: String) -> [PolyMark] {
         let g = Array(guess), a = Array(answer)
         var marks = Array(repeating: PolyMark.miss, count: a.count)

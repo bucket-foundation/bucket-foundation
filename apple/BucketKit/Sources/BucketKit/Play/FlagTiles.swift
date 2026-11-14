@@ -81,12 +81,20 @@ public enum FlagTilesRules {
         return n
     }
 
+    public static func laneMarks(_ run: RunState, answer: Int, lanes: Int = lanes) -> [Bool?] {
+        (0..<lanes).map { i in
+            guard run.phase == .missed || run.phase == .over else { return nil }
+            if i == answer { return true }
+            return i == run.picked ? false : nil
+        }
+    }
+
     public static func fallMs(_ index: Int) -> Int { max(fallMinMs, playRound(Double(fallStartMs) * pow(fallFactor, Double(index / step)))) }
 
-    public static func deck(_ items: [LangItem], date: String, root: String = "en") -> FlagTilesDeck {
+    public static func deck(_ items: [LangItem], date: String, root: String = PlayDecks.root) -> FlagTilesDeck {
         var rand = WebRandom(WebRandom.seedOf("flag-tiles:\(date)"))
         let words = items.filter { $0.kind == .word && $0.form(root) != nil }
-        let usable = pool.filter { l in words.lazy.filter { $0.form(l) != nil }.count >= 40 }
+        let usable = pool.filter { l in l != root && words.lazy.filter { $0.form(l) != nil }.count >= 40 }
         let langs = Array(rand.shuffled(usable).prefix(lanes)).sorted()
         var tiles: [FlagRunTile] = []
         var seen = Set<String>()
