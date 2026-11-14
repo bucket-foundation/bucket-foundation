@@ -85,9 +85,9 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             WordTile(ex.word.lang, ex.prompt, onSpeak = if (ex.kind == ExerciseKind.Recognize) ({ graph.voice.speak(ex.word.form, ex.word.lang) }) else null)
             LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
         }
-        if (ex.kind == ExerciseKind.TypeHeard) {
+        if (ex.kind == ExerciseKind.TypeHeard || ex.kind == ExerciseKind.SpellHeard) {
             if (typedVerdict == null) {
-                androidx.compose.material3.OutlinedTextField(typed, { typed = it }, singleLine = true, label = { Text("Type what you hear") }, modifier = Modifier.fillMaxWidth())
+                androidx.compose.material3.OutlinedTextField(typed, { typed = it }, singleLine = true, label = { Text(if (ex.kind == ExerciseKind.SpellHeard) "Spell it in its own script" else "Type what you hear") }, modifier = Modifier.fillMaxWidth())
                 PrimaryButton("Check", enabled = typed.isNotBlank()) { typedVerdict = foundation.bucket.core.engine.Typed.judge(typed, listOf(ex.answer), ex.word.lang) }
             } else {
                 Text(StudyCopy.verdict(typedVerdict!!, ex.answer), style = Type.title, color = if (typedVerdict == foundation.bucket.core.engine.Verdict.Wrong) PL.Vermilion else PL.Malachite)

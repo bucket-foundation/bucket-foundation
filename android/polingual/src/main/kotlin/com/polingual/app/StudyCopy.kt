@@ -10,6 +10,7 @@ object StudyCopy {
         ExerciseKind.Produce -> "Pick the $language word"
         ExerciseKind.Listen -> "Listen, then pick the meaning"
         ExerciseKind.TypeHeard -> "Type what you hear in $language"
+        ExerciseKind.SpellHeard -> "Spell what you hear in its own script"
     }
 
     fun showsScriptWithSound(kind: ExerciseKind, lang: String): Boolean = kind == ExerciseKind.Listen && Lang.info[lang]?.latin == false

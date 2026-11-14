@@ -8,13 +8,18 @@ class ListenCardsTest {
     private val corpus = CorpusFixture.corpus
 
     @Test
-    fun pickerFollowsTheIosLadder() {
+    fun pickerFollowsTheIosLadderInLangSystemsSwift() {
         assertEquals(ExerciseKind.Recognize, ExercisePicker.kind(isNew = true, reps = 0, lapsed = false, latin = true, roll = 0.1))
-        assertEquals(ExerciseKind.Listen, ExercisePicker.kind(false, 2, false, true, 0.2))
-        assertEquals(ExerciseKind.Produce, ExercisePicker.kind(false, 2, false, true, 0.7))
-        assertEquals(ExerciseKind.Listen, ExercisePicker.kind(false, 5, false, latin = false, roll = 0.5))
-        assertEquals(ExerciseKind.TypeHeard, ExercisePicker.kind(false, 5, false, true, 0.9))
-        assertEquals(ExerciseKind.Recognize, ExercisePicker.kind(false, 5, true, true, 0.1))
+        assertEquals(ExerciseKind.Produce, ExercisePicker.kind(false, 1, false, true, 0.9), "LangSystems.swift:909 reps <= 1 or lapsed picks choose")
+        assertEquals(ExerciseKind.Produce, ExercisePicker.kind(false, 5, true, true, 0.1), "LangSystems.swift:909 lapsed picks choose")
+        assertEquals(ExerciseKind.Listen, ExercisePicker.kind(false, 2, false, true, 0.49), "LangSystems.swift:922 reps == 2, roll < 0.5 listen")
+        assertEquals(ExerciseKind.Recognize, ExercisePicker.kind(false, 2, false, true, 0.5), "LangSystems.swift:922 reps == 2 else reverse")
+        assertEquals(ExerciseKind.Listen, ExercisePicker.kind(false, 5, false, latin = false, roll = 0.79), "LangSystems.swift:957 non-Latin roll < 0.8 listen")
+        assertEquals(ExerciseKind.Produce, ExercisePicker.kind(false, 5, false, latin = false, roll = 0.8), "LangSystems.swift:957 non-Latin else choose")
+        assertEquals(ExerciseKind.Produce, ExercisePicker.kind(false, 5, false, true, 0.84), "LangSystems.swift:964 roll < 0.85 translate")
+        assertEquals(ExerciseKind.TypeHeard, ExercisePicker.kind(false, 5, false, true, 0.85), "LangSystems.swift:965 type what you hear")
+        assertEquals(ExerciseKind.SpellHeard, ExercisePicker.kind(false, 3, false, latin = false, roll = 0.1, heritage = true), "LangSystems.swift:879 heritage non-Latin spells what it hears")
+        assertEquals(ExerciseKind.Produce, ExercisePicker.kind(false, 3, false, latin = true, roll = 0.1, heritage = true))
     }
 
     @Test
@@ -40,6 +45,8 @@ class ListenCardsTest {
             generateSequence { s.current?.also { s.answer(it.answer) } }.map { it.kind }.toList()
         }.toSet()
         assertTrue(ExerciseKind.TypeHeard in kinds)
+        val heritage = StudySession(corpus, "en", listOf("ru"), matured(listOf("ru"), 3), "2026-11-13", 10, SeededRandom(1uL), newPerLang = 0, heritage = setOf("ru"))
+        assertEquals(ExerciseKind.SpellHeard, heritage.current?.kind)
         val listen = StudySession(corpus, "en", listOf("fr"), matured(listOf("fr"), 2), "2026-11-13", 10, SeededRandom(3uL), newPerLang = 0)
         val seen = generateSequence { listen.current?.also { listen.answer(it.answer) } }.map { it.kind }.toList()
         assertTrue(ExerciseKind.Listen in seen)
