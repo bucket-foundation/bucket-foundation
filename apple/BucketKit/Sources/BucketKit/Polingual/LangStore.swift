@@ -142,7 +142,9 @@ public final class LangStore {
     }
 
     func loadClips() async -> [String: Set<String>] {
-        guard let d = try? await api.raw("\(LangAudio.base)/index.json"), let j = try? JSON.parse(d) else { return [:] }
+        let fresh = try? await api.raw("\(LangAudio.base)/index.json")
+        if let fresh { cache.write("clip-index.json", fresh) }
+        guard let d = fresh ?? cache.read("clip-index.json"), let j = try? JSON.parse(d) else { return [:] }
         var out: [String: Set<String>] = [:]
         for (l, keys) in j.object?.entries ?? [] { out[l] = Set(keys.stringArray ?? []) }
         return out
@@ -334,6 +336,31 @@ public final class LangStore {
             }
         }
         disk.write("guest-lesson.json", Data())
+    }
+
+    public func resync() async {
+        guard status != .loading, let server = await pull(), let t = await token() else { return }
+        let remoteDoc = SystemsDoc(js: server[Self.systemsBranch]?["data"])
+        let doc = mergeSystems(readLocalSystems(), remoteDoc)
+        writeLocalSystems(doc)
+        systems = doc.systems
+        var statuses: [Int] = []
+        if hasLocalSystems, doc != remoteDoc { statuses.append(await api.progressPush(token: t, branch: Self.systemsBranch, data: doc.js)) }
+        for s in systems {
+            let branch = progressBranch(s)
+            let stored = readLocal(branch)
+            let remote = server[branch].map { spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now()) }
+            let merged = remote.map { mergeState(states[s.id] ?? stored, $0) } ?? states[s.id] ?? stored ?? EngineState()
+            states[s.id] = merged
+            if stored != merged { writeLocal(branch, merged) }
+            if server[branch].map({ EngineState(js: $0["data"]) }) != merged {
+                statuses.append(await api.progressPush(token: t, branch: branch, data: merged.js))
+            }
+            pending[branch] = nil
+        }
+        if statuses.contains(403) { saveState = .needsProfile }
+        else if statuses.allSatisfy({ (200..<300).contains($0) }) { if saveState != .idle { saveState = .synced } }
+        else { saveState = .localOnly }
     }
 
     public func flush() async {

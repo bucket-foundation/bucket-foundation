@@ -369,6 +369,9 @@ struct TodayView: View {
                 WatchDwell.returned()
                 Task { await plan.pull() }
             }
+            .onChange(of: NetworkWatch.shared.online) { _, up in
+                if up { Task { await plan.pull() } }
+            }
             .onChange(of: account.stage) { old, new in
                 if new == .signedOut && old == .signedIn && account.endedByUser { plan.clearLocal() }
             }
