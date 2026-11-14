@@ -35,9 +35,9 @@ function PhoneLobby({ snap, onNote }: { snap: Snapshot; onNote: (i: number) => v
       <p className={styles.fieldLabel}>Warm up your fingers</p>
       <div className={styles.warm} data-testid="warm-up">
         {MARKS.map((m, i) => (
-          <button key={m.letter} type="button" data-pigment={m.pigment} aria-label={`Practice tile ${m.letter}`} onClick={() => { onNote(i); buzz(15); }}>
+          <Button bare key={m.letter} data-pigment={m.pigment} aria-label={`Practice tile ${m.letter}`} onClick={() => { onNote(i); buzz(15); }}>
             <Glyph glyph={m.glyph} />
-          </button>
+          </Button>
         ))}
       </div>
     </Card>

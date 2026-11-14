@@ -1,6 +1,7 @@
 "use client";
 
 import { cssVars } from "@/ui/vars";
+import { Button } from "@/ui";
 
 import { displayNickname, MARKS, optionLabel, promptView, team, type Mark, type Question, type Standing, type TeamStanding } from "@/lib/stoa/client";
 import styles from "./stoa.module.css";
@@ -59,8 +60,8 @@ export function Tiles({
         const name = q.kind === "pick_word" ? q.prompt.lang : q.kind === "translate" ? q.prompt.to : undefined;
         return (
           <li key={mark.letter} style={cssVars({ "--i": i })}>
-            <button
-              type="button"
+            <Button
+              bare
               className={styles.tile}
               data-pigment={mark.pigment}
               data-state={states?.[i] ?? "idle"}
@@ -73,7 +74,7 @@ export function Tiles({
               <MarkBadge mark={mark} />
               <span className={styles.text} dir="auto" lang={name}>{label}</span>
               {counts ? <span className={styles.count}>{counts[i] ?? 0}</span> : null}
-            </button>
+            </Button>
           </li>
         );
       })}

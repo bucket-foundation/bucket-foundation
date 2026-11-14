@@ -61,14 +61,14 @@ function Powers({ g, round }: { g: LiveRoom; round: number }) {
         <p className={app.small} data-testid="power-set">{note}</p>
       ) : (
         <div className={styles.powerRow}>
-          <button type="button" className={styles.power} disabled={lobby.coins < 2} onClick={() => buy("double")} data-testid="power-double">
+          <Button bare className={styles.power} disabled={lobby.coins < 2} onClick={() => buy("double")} data-testid="power-double">
             <b>Double points</b>
             <span>2 coins</span>
-          </button>
-          <button type="button" className={styles.power} disabled={lobby.coins < 1} onClick={() => buy("fifty")} data-testid="power-fifty">
+          </Button>
+          <Button bare className={styles.power} disabled={lobby.coins < 1} onClick={() => buy("fifty")} data-testid="power-fifty">
             <b>50/50</b>
             <span>1 coin</span>
-          </button>
+          </Button>
         </div>
       )}
     </section>
