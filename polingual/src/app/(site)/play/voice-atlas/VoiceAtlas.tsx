@@ -21,6 +21,12 @@ import { Button, ButtonLink, Tag } from "@/ui";
 
 let landCache: string | null = null;
 
+const LAND_HOLD = "M60,70 C90,40 170,40 200,80 C220,110 180,150 140,150 C110,170 70,140 60,110 Z M240,60 C300,30 420,40 470,70 C520,100 500,150 450,160 C420,190 380,230 340,210 C300,190 280,150 250,130 C230,110 220,80 240,60 Z M150,190 C170,180 190,200 185,240 C180,280 160,300 150,280 C140,250 135,210 150,190 Z M470,220 C500,210 530,230 520,250 C505,270 470,265 465,245 Z";
+
+function LandHold() {
+  return <path d={LAND_HOLD} transform="scale(1.3 1.1)" className={styles.vaLand} opacity={0.5} data-testid="land-loading" />;
+}
+
 function useLand(): string {
   const [d, setD] = useState(landCache ?? "");
   useEffect(() => {
@@ -125,7 +131,7 @@ function VoiceAtlasGame() {
   };
 
   const land = useLand();
-  const map = useMemo(() => <path d={land} className={styles.vaLand} />, [land]);
+  const map = useMemo(() => (land ? <path d={land} className={styles.vaLand} /> : <LandHold />), [land]);
 
   if (error) return <p className={app.error} role="alert">{error}</p>;
   if (!rounds || (!round && !done)) return <p className={app.muted} aria-busy="true">Loading today&apos;s voices</p>;

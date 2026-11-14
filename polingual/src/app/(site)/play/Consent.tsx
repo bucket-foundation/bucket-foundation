@@ -6,7 +6,7 @@ import app from "../app/app.module.css";
 import styles from "./play.module.css";
 import { Button } from "@/ui";
 
-const CONSENT_KEY = "polingual-web/ad-consent/v1";
+export const CONSENT_KEY = "polingual-web/ad-consent/v1";
 
 function stored(): string | null {
   try {

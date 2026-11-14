@@ -2,6 +2,7 @@
 
 import Interstitial from "./Interstitial";
 import RoomMissed from "./RoomMissed";
+import { SceneHold, TilesHold } from "./LazyHolds";
 import { RoomChat, RoomHeader } from "./RoomParts";
 import { useNow } from "@/lib/hooks/clock";
 import dynamic from "next/dynamic";
@@ -39,8 +40,8 @@ import { Avatar } from "@/ui/avatar";
 import { savedNickname, usePlay } from "./usePlay";
 import { Button, ButtonLink, Pill } from "@/ui";
 
-const Tiles = dynamic(() => import("./Tiles"));
-const Scene = dynamic(() => import("./ispy/Scene"));
+const Tiles = dynamic(() => import("./Tiles"), { loading: () => <TilesHold /> });
+const Scene = dynamic(() => import("./ispy/Scene"), { loading: () => <SceneHold /> });
 
 const POLL_MS = 1000;
 const TICK_MS = 200;

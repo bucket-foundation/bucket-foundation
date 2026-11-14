@@ -19,9 +19,12 @@ export function secondsLeft(ends: number | null, now: number, full: number): num
 export function useDeadline(ends: number | null, onEnd: () => void): number {
   const now = useNow(250, ends !== null);
   const fire = useRef(onEnd);
+  const done = useRef<number | null>(null);
   fire.current = onEnd;
   useEffect(() => {
-    if (ends !== null && now >= ends) fire.current();
+    if (ends === null || now < ends || done.current === ends) return;
+    done.current = ends;
+    fire.current();
   }, [ends, now]);
   return now;
 }
