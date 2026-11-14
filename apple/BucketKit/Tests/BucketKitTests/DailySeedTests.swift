@@ -56,4 +56,42 @@ struct DailySeedTests {
         #expect(DailySeed.speedDeck(deck, day: "2026-11-12") != DailySeed.speedDeck(deck, day: "2026-11-13"))
         #expect(DailySeed.letters(day: "2026-11-13", targets: []).allSatisfy { $0.choices.count == 4 && $0.choices.contains($0.ch) })
     }
+
+    static let daily: [(targets: [String], day: String, g: JSValue)] = {
+        let url = Bundle.module.url(forResource: "daily-goldens", withExtension: "json", subdirectory: "Fixtures/play")!
+        let o = try! JSON.parse(Data(contentsOf: url)).object!.entries
+        return o.filter { $0.0.contains("|") }.map { k, v in
+            let parts = k.split(separator: "|").map(String.init)
+            return (parts[0].split(separator: ",").map(String.init), parts[1], v)
+        }
+    }()
+
+    @Test func dailyGoldensFromDevMatch() {
+        let corpus = PlayFixtures.corpus
+        for c in Self.daily {
+            let deck = GameDeck(corpus, root: "en", targets: c.targets)
+            let words = DailySeed.speedDeck(deck, day: c.day)
+            #expect(words.map(\.id).joined(separator: ",") == c.g["speedDeck"]?.string, "\(c.targets) \(c.day)")
+            var s = SpeedBoard(deck: words, seed: GameSeed.hash("speed-board|\(c.day)"))
+            func board() -> String { "\(s.meanings.map { $0?.id ?? "-" }.joined(separator: ","))/\(s.forms.map { $0?.id ?? "-" }.joined(separator: ","))" }
+            var steps = [board()]
+            for n in 0..<4 {
+                let first = s.meanings.compactMap { $0 }.first!
+                let other = s.forms.compactMap { $0 }.first { $0.id != first.id }!
+                if n == 1 {
+                    _ = s.tapMeaning(first.id)
+                    _ = s.tapForm(other.id)
+                }
+                _ = s.tapMeaning(first.id)
+                _ = s.tapForm(first.id)
+                steps.append("\(board())|\(s.points)|\(s.missed.count)")
+            }
+            #expect(steps == c.g["speedSteps"]?.stringArray, "\(c.targets) \(c.day)")
+            let voice = DailySeed.voice(deck, corpus: corpus, day: c.day).map { "\($0.word.id):\($0.choices.joined(separator: "/"))" }.joined(separator: ";")
+            #expect(voice == c.g["voice"]?.string, "\(c.targets) \(c.day)")
+            #expect(DailySeed.letterLang(day: c.day, targets: c.targets) == c.g["lettersLang"]?.string)
+            let letters = DailySeed.letters(day: c.day, targets: c.targets).map { "\($0.ch)=\($0.sound):\($0.choices.joined())" }.joined(separator: ";")
+            #expect(letters == c.g["letters"]?.string, "\(c.targets) \(c.day)")
+        }
+    }
 }

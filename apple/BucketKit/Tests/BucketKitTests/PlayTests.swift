@@ -450,4 +450,40 @@ struct PlayTests {
     @Test func webGamesListEveryReadyRoute() {
         #expect(Set(WebGame.allCases.map(\.route)) == WebGames.ready)
     }
+
+    @Test func dayKeysAndRootDecksMatchTheWeb() throws {
+        let items = F.corpus.items
+        #expect(PlayDecks.deckDay(ISO8601DateFormatter().date(from: "2027-01-05T23:30:00Z")!) == "2027-01-05")
+        #expect(PlayDecks.deckDay(ISO8601DateFormatter().date(from: "2027-01-05T00:10:00Z")!) == "2027-01-05")
+        #expect(try #require(Shift.board(items, date: "2027-01-05")).targets.map { "\($0.lang):\($0.form)" } == F.list("shift20270105"))
+        #expect(FlagTilesRules.deck(items, date: "2027-01-05").tiles.prefix(8).map { "\($0.lang):\($0.form)" } == F.list("flagTiles20270105"))
+        #expect(Atlas.rounds(items, date: "2027-01-05").map { "\($0.lang):\($0.itemId)" } == F.list("atlas20270105"))
+        let day = Polyword.dayNumber(PolyDate(2027, 1, 5))
+        #expect(String(day) == F.str("polywordDay20270105"))
+        #expect(Polyword.puzzleFor(F.bank, lang: "es", day: day)?.slug == F.str("polywordEs20270105"))
+        #expect(["es", "de", "la", "xx", "EN", nil].map { PlayDecks.root($0, items: items) } == F.list("deckRoots"))
+        #expect(try #require(Shift.board(items, date: "2026-11-13", root: "es")).targets.map { "\($0.lang):\($0.form):\($0.meaning)" } == F.list("shiftEs"))
+        let d = FlagTilesRules.deck(items, date: "2026-11-13", root: "de")
+        #expect([d.langs.joined(separator: ",")] + d.tiles.prefix(8).map { "\($0.lang):\($0.form):\($0.meaning)" } == F.list("flagTilesDe"))
+        #expect(Atlas.rounds(items, date: "2026-11-13", root: "fr").map { "\($0.lang):\($0.itemId):\($0.meaning)" } == F.list("atlasFr"))
+    }
+
+    @Test func laneMarksBoardsLookupSeedsAndToggle() {
+        #expect(FlagTilesRules.laneMarks(RunState(phase: .running), answer: 2) == [nil, nil, nil, nil])
+        #expect(FlagTilesRules.laneMarks(RunState(phase: .missed, picked: 0), answer: 2) == [false, nil, true, nil])
+        let rows = Boards.fromGhosts([Ghost(name: "Ana", flag: "ES", skill: "easy", score: 10), Ghost(name: "Kai", flag: "NZ", skill: "hard", score: 30)], you: 20)
+        #expect(rows.map(\.score) == [30, 20, 10] && rows.first { $0.me }?.name == "You")
+        let w = PlayWord(slug: "dog", en: "dog", gloss: "dog", forms: [PlayForm(lang: "es", word: "Perro")])
+        #expect(PlayLookup.word([w], lang: "es", form: "perro") == w)
+        #expect(PlayLookup.word([w], lang: "fr", form: "chien", slug: "dog") == w)
+        #expect(PlayLookup.word([w], lang: "fr", form: "chien") == nil)
+        #expect(DealSeeds.fresh { 0.25 } == "250000000001")
+        #expect(DealSeeds.ensure("") { 0.5 } == "500000000001")
+        #expect(DealSeeds.ensure("7") { 0.9 } == "7")
+        #expect(ForeheadRules.toggle(["es"], "fr") == ["es", "fr"])
+        #expect(ForeheadRules.toggle(["es", "fr"], "fr") == ["es"])
+        #expect(ForeheadRules.toggle(["a", "b", "c", "d", "e", "f"], "g").count == 6)
+        let m = Polyword.meaningIn(F.bank, slug: "x", gloss: "dog", root: "en")
+        #expect(m.lang == "en" && m.text == "dog")
+    }
 }

@@ -6,6 +6,14 @@ public struct PlayForm: Codable, Sendable, Equatable, Hashable {
     public var ipa: String?
     public var roman: String?
     public var kana: String?
+
+    public init(lang: String, word: String, ipa: String? = nil, roman: String? = nil, kana: String? = nil) {
+        self.lang = lang
+        self.word = word
+        self.ipa = ipa
+        self.roman = roman
+        self.kana = kana
+    }
 }
 
 public struct RootCluster: Codable, Sendable, Equatable, Hashable {
@@ -24,6 +32,17 @@ public struct PlayWord: Codable, Sendable, Equatable, Hashable {
     public let forms: [PlayForm]
 
     enum CodingKeys: String, CodingKey { case slug, en, gloss, category, tier, note, roots, forms }
+
+    public init(slug: String, en: String, gloss: String, category: String = "", tier: Double = 0, note: String? = nil, roots: [RootCluster] = [], forms: [PlayForm]) {
+        self.slug = slug
+        self.en = en
+        self.gloss = gloss
+        self.category = category
+        self.tier = tier
+        self.note = note
+        self.roots = roots
+        self.forms = forms
+    }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
