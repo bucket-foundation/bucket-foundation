@@ -10,6 +10,16 @@ public enum AccountTokenFailure: String, Error, Equatable, Sendable {
     case unavailable
     case server
     case decode
+
+    init(refreshError: Error) {
+        switch refreshError {
+        case let e as URLError where e.code == .timedOut: self = .timeout
+        case is URLError: self = .offline
+        case BucketError.unavailable: self = .unavailable
+        case BucketError.decoding: self = .decode
+        default: self = .server
+        }
+    }
 }
 
 extension BucketAPI {
@@ -101,7 +111,7 @@ public final class AccountTokens {
     public func fetch(for account: Account) async -> Result<UUID, AccountTokenFailure> {
         guard let userId = account.session?.userId else { return .failure(.signedOut) }
         if let id = cached(for: userId) { return .success(id) }
-        guard let bearer = await account.freshToken() else { return .failure(account.session == nil ? .unauthorized : .offline) }
+        guard let bearer = await account.freshToken() else { return .failure(account.session == nil ? .unauthorized : account.lastRefreshFailure ?? .offline) }
         guard account.session?.userId == userId else { return .failure(.userChanged) }
         do {
             let id = try await api.appAccountToken(token: bearer)
