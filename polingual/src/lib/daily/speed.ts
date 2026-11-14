@@ -5,7 +5,7 @@ export const SPEED_SECONDS = 60;
 export const SPEED_MISS_PENALTY = 2;
 export const SPEED_HOT_COMBO = 5;
 
-export interface SpeedBoard {
+interface SpeedBoard {
   meanings: (GameWord | null)[];
   forms: (GameWord | null)[];
   pickedMeaning: string | null;
@@ -19,7 +19,7 @@ export interface SpeedBoard {
   next: number;
 }
 
-export type SpeedOutcome = { kind: "picked" } | { kind: "matched"; word: GameWord } | { kind: "missed"; word: GameWord } | { kind: "ignored" };
+type SpeedOutcome = { kind: "picked" } | { kind: "matched"; word: GameWord } | { kind: "missed"; word: GameWord } | { kind: "ignored" };
 
 export class Speed {
   board: SpeedBoard;

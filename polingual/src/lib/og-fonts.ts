@@ -1,4 +1,4 @@
-export type OgFont = { name: string; data: ArrayBuffer; weight: 400 | 700; style: "normal" };
+type OgFont = { name: string; data: ArrayBuffer; weight: 400 | 700; style: "normal" };
 
 const SCRIPT_FAMILIES: [string, RegExp][] = [
   ["Noto Sans JP", /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/],
@@ -10,7 +10,7 @@ const SCRIPT_FAMILIES: [string, RegExp][] = [
   ["Noto Sans Tamil", /[\u0b80-\u0bff]/],
 ];
 
-export const OG_FAMILIES = ["Noto Sans", ...SCRIPT_FAMILIES.map(([family]) => family)];
+const OG_FAMILIES = ["Noto Sans", ...SCRIPT_FAMILIES.map(([family]) => family)];
 
 export const OG_FONT_STACK = OG_FAMILIES.map((f) => `"${f}"`).join(", ");
 

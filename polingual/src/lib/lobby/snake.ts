@@ -1,19 +1,19 @@
 export const WORLD_W = 1600;
 export const WORLD_H = 1000;
-export const SPEED = 140;
-export const TURN = 3.2;
-export const SEG = 9;
+const SPEED = 140;
+const TURN = 3.2;
+const SEG = 9;
 export const START_LEN = 8;
 export const MIN_LEN = 4;
 export const GROW = 3;
 export const SHRINK = 3;
-export const EAT_R = 26;
-export const HIT_R = 10;
+const EAT_R = 26;
+const HIT_R = 10;
 export const WORDS_ON_FIELD = 18;
-export const GOOD_SHARE = 0.55;
-export const BOT_MAX = 30;
+const GOOD_SHARE = 0.55;
+const BOT_MAX = 30;
 
-export interface Pt {
+interface Pt {
   x: number;
   y: number;
 }
@@ -48,7 +48,7 @@ export interface Arena {
   bad: FieldWord[];
 }
 
-export type Rand = () => number;
+type Rand = () => number;
 
 export function makeSnake(id: string, name: string, bot: boolean, skill: number, at: Pt, angle: number, color: string): Snake {
   const body = Array.from({ length: START_LEN }, (_, i) => ({ x: at.x - Math.cos(angle) * SEG * i, y: at.y - Math.sin(angle) * SEG * i }));
@@ -59,7 +59,7 @@ export function dist(a: Pt, b: Pt): number {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
 
-export function wrapAngle(a: number): number {
+function wrapAngle(a: number): number {
   while (a > Math.PI) a -= 2 * Math.PI;
   while (a < -Math.PI) a += 2 * Math.PI;
   return a;
@@ -95,7 +95,7 @@ export function advance(s: Snake, target: number, dt: number): Snake {
   return { ...s, angle: a, body: out };
 }
 
-export function spawnWord(arena: Pick<Arena, "nextWord">, good: boolean, pool: { good: readonly Omit<FieldWord, "id" | "x" | "y" | "good">[]; decoys: readonly Omit<FieldWord, "id" | "x" | "y" | "good">[] }, rand: Rand): FieldWord {
+function spawnWord(arena: Pick<Arena, "nextWord">, good: boolean, pool: { good: readonly Omit<FieldWord, "id" | "x" | "y" | "good">[]; decoys: readonly Omit<FieldWord, "id" | "x" | "y" | "good">[] }, rand: Rand): FieldWord {
   const list = good ? pool.good : pool.decoys;
   const w = list[Math.floor(rand() * list.length)];
   return { ...w, id: arena.nextWord, x: 60 + rand() * (WORLD_W - 120), y: 60 + rand() * (WORLD_H - 120), good };
@@ -109,7 +109,7 @@ export function botTarget(s: Snake, words: readonly FieldWord[], rand: Rand): nu
   return Math.atan2(best.y - head.y, best.x - head.x);
 }
 
-export interface StepResult {
+interface StepResult {
   arena: Arena;
   died: string[];
 }

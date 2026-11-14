@@ -1,7 +1,7 @@
 import { dayKey, type EngineState } from "@academy/engine";
 import { DAY_MS } from "@academy/fsrs";
 
-export const STREAK_GOAL = 100;
+const STREAK_GOAL = 100;
 
 export interface StreakCard {
   day: number;

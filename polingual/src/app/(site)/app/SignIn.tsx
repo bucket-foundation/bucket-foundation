@@ -5,7 +5,7 @@ import { appAuth, signInError } from "@/lib/app/auth";
 import styles from "./app.module.css";
 import { Button, Field, FlagBand, Input, Sheet, StreakFlame } from "@/ui";
 
-export type SignInCopy = { label: string; title: string; intro: string };
+type SignInCopy = { label: string; title: string; intro: string };
 
 const LEARN: SignInCopy = {
   label: "Polingual on the web",

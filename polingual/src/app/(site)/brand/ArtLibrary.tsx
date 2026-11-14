@@ -18,7 +18,7 @@ function save(blob: Blob, name: string) {
 
 const svgUrl = (svg: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 
-export async function pngBlob(raw: string, scale: number): Promise<Blob> {
+async function pngBlob(raw: string, scale: number): Promise<Blob> {
   const svg = await embedFonts(raw);
   return new Promise((resolve, reject) => {
     const img = new Image();

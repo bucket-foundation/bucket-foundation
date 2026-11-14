@@ -1,9 +1,9 @@
 import type { ArtName } from "./index";
 
-export type WorldGround = "paper" | "tyrian" | "lapis" | "malachite" | "ochre" | "vermilion";
-export type WorldPattern = "dots" | "lattice" | "azulejo-grid" | "girih" | "kente" | "stripes";
-export type WorldPiece = "flag-tile" | "ticket" | "seal" | "torn-label" | "kente" | "azulejo";
-export type WorldDecor = { art: ArtName; x: number; y: number; size: number; tilt: number };
+type WorldGround = "paper" | "tyrian" | "lapis" | "malachite" | "ochre" | "vermilion";
+type WorldPattern = "dots" | "lattice" | "azulejo-grid" | "girih" | "kente" | "stripes";
+type WorldPiece = "flag-tile" | "ticket" | "seal" | "torn-label" | "kente" | "azulejo";
+type WorldDecor = { art: ArtName; x: number; y: number; size: number; tilt: number };
 
 export type World = {
   id: string;

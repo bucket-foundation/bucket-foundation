@@ -1,7 +1,7 @@
 import type { LangCorpus } from "@academy/lang-systems";
 import { LANG_CODES } from "@/lib/daily/words";
 
-export interface TranslateHit {
+interface TranslateHit {
   itemId: string;
   matchedLang: string;
   exact: boolean;

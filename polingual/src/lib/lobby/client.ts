@@ -2,9 +2,9 @@ import type { LobbyPrompt, LobbyState, LobbySummary } from "@academy/lobbies";
 
 export type { LobbyPrompt, LobbyState, LobbySummary };
 export type WebLobbyState = LobbyState;
-export type AnswerResult = { correct: boolean; points: number; ms: number; lobby: WebLobbyState };
+type AnswerResult = { correct: boolean; points: number; ms: number; lobby: WebLobbyState };
 
-export const GUEST_KEY = "polingual-web/guest/v1";
+const GUEST_KEY = "polingual-web/guest/v1";
 export const NICK_MAX = 24;
 export const POLL_MS = 1000;
 const BASE = "/api/academy/lobbies";
@@ -17,7 +17,7 @@ export interface Guest {
   expiresAt?: string;
 }
 
-export interface GuestStore {
+interface GuestStore {
   read(): Guest | null;
   write(g: Guest): void;
   clear(): void;
@@ -102,7 +102,7 @@ export class LobbyError extends Error {
   }
 }
 
-export interface LobbyApiDeps {
+interface LobbyApiDeps {
   fetch: typeof fetch;
   auth: () => Promise<string | null>;
 }
@@ -228,7 +228,7 @@ export function serverOffset(serverNow: string, sentAt: number, receivedAt: numb
   return Date.parse(serverNow) - (sentAt + receivedAt) / 2;
 }
 
-export function joinHref(code: string): string {
+function joinHref(code: string): string {
   return `/play/${code}`;
 }
 
@@ -241,7 +241,7 @@ export interface Identity {
   kind: "account" | "guest";
 }
 
-export interface IdentityDeps {
+interface IdentityDeps {
   api: Pick<LobbyApi, "guest" | "merge">;
   store: GuestStore;
   account: () => Promise<string | null>;
@@ -281,10 +281,6 @@ export function memoryGuestStore(initial: Guest | null = null): GuestStore & { v
     box.value = null;
   };
   return box;
-}
-
-export function nicknameOf(store: GuestStore): string | null {
-  return store.read()?.nickname ?? null;
 }
 
 export function flagEmoji(code: string | null | undefined): string {
@@ -356,7 +352,7 @@ export function answeredRound(lobby: Pick<LobbyState, "results" | "players">, ro
   return !!me && lobby.results.some((r) => r.userId === me && r.round === round);
 }
 
-export type RankedPlayer = LobbyState["players"][number] & { rank: number };
+type RankedPlayer = LobbyState["players"][number] & { rank: number };
 
 export function ranked(players: LobbyState["players"]): RankedPlayer[] {
   const sorted = [...players].sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));

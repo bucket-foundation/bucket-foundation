@@ -10,12 +10,12 @@ import { FlagSquare, RevealCard } from "./LearnWord";
 import { langName } from "./langs";
 import styles from "./play.module.css";
 
-export interface PickLabel {
+interface PickLabel {
   word: string | null;
   lang: string | null;
 }
 
-export function choiceLabel(prompt: Pick<LobbyPrompt, "mode" | "lang">, choice: string): PickLabel {
+function choiceLabel(prompt: Pick<LobbyPrompt, "mode" | "lang">, choice: string): PickLabel {
   if (prompt.mode === "flag") return { word: null, lang: choice };
   if (prompt.mode === "meaning" || prompt.mode === "spy") return { word: choice, lang: null };
   if (prompt.mode === "mixed") {
@@ -73,9 +73,9 @@ export default function Reveal({ prompt, rootLang, answersOnly = false }: { prom
   );
 }
 
-export type RevealWord = { lang: string; word: string; meaning: string; gloss?: string; roman?: string | null; reading?: RevealEntry["reading"]; correct?: boolean };
+type RevealWord = { lang: string; word: string; meaning: string; gloss?: string; roman?: string | null; reading?: RevealEntry["reading"]; correct?: boolean };
 
-export function toEntry(w: RevealWord): RevealEntry {
+function toEntry(w: RevealWord): RevealEntry {
   return { lang: w.lang, word: w.word, roman: w.roman ?? null, reading: w.reading ?? null, meaning: w.meaning, gloss: w.gloss ?? w.meaning, correct: w.correct ?? true };
 }
 

@@ -10,10 +10,6 @@ const NOTES: Record<Cue, [number, number][]> = {
   win: [[523, 0.1], [659, 0.1], [784, 0.1], [1047, 0.18]],
 };
 
-export function cueNotes(cue: Cue): [number, number][] {
-  return NOTES[cue];
-}
-
 export function readMuted(storage: () => Storage | null): boolean {
   try {
     return storage()?.getItem(MUTE_KEY) === "1";

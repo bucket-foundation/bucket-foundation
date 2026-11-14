@@ -3,13 +3,13 @@ export type AdMode = "off" | "placeholder" | "adsense-test" | "adsense";
 export type AdSize = { width: number; height: number };
 export type AdLayout = "phone" | "rail-160" | "rail-300";
 
-export interface AdConfig {
+interface AdConfig {
   mode: AdMode;
   client: string | null;
   slots: Record<AdPlacement, string | null>;
 }
 
-export interface AdEnv {
+interface AdEnv {
   NEXT_PUBLIC_POLINGUAL_ADS?: string;
   NEXT_PUBLIC_ADSENSE_CLIENT?: string;
   NEXT_PUBLIC_ADSENSE_SLOT_RAIL?: string;
@@ -22,8 +22,8 @@ const CLIENT = /^ca-pub-\d{10,20}$/;
 const SLOT = /^\d{6,12}$/;
 const PUB = /^(?:ca-)?(pub-\d{10,20})$/;
 
-export const RAIL_MIN = 1000;
-export const WIDE_RAIL_MIN = 1360;
+const RAIL_MIN = 1000;
+const WIDE_RAIL_MIN = 1360;
 export const BANNER: AdSize = { width: 320, height: 50 };
 
 export function adConfig(env: AdEnv): AdConfig {
@@ -84,7 +84,7 @@ export function adsTxt(raw: string | undefined): string | null {
   return id ? `google.com, ${id}, DIRECT, f08c47fec0942fa0\n` : null;
 }
 
-export const CONSENT_COUNTRIES: ReadonlySet<string> = new Set([
+const CONSENT_COUNTRIES: ReadonlySet<string> = new Set([
   "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE",
   "IS", "LI", "NO", "GB", "UK", "CH",
 ]);
@@ -109,7 +109,7 @@ export function entitlementOf(signedIn: boolean, access: { status: "checking" | 
   return "unknown";
 }
 
-export interface AccountCtaState {
+interface AccountCtaState {
   signIn: boolean;
   learn: { label: string; href: string } | null;
 }

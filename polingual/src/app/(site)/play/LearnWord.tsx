@@ -25,7 +25,7 @@ export function LangCard({ lang, big = false }: { lang: string; big?: boolean })
   );
 }
 
-export function entryReading(e: Pick<RevealEntry, "reading" | "roman">): string | undefined {
+function entryReading(e: Pick<RevealEntry, "reading" | "roman">): string | undefined {
   return readingLabel(e.reading ?? undefined) ?? e.roman ?? undefined;
 }
 

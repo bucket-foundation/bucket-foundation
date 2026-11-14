@@ -15,7 +15,7 @@ export function Glyph({ glyph }: { glyph: Mark["glyph"] }) {
   return <svg {...common}><path d="M16 3a9 9 0 1 0 5 15A7 7 0 0 1 16 3Z" /></svg>;
 }
 
-export function MarkBadge({ mark }: { mark: Mark }) {
+function MarkBadge({ mark }: { mark: Mark }) {
   return (
     <span className={styles.mark}>
       <Glyph glyph={mark.glyph} />

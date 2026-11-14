@@ -11,7 +11,7 @@ import { dayLabel, DailyWorld, Heading, Intro, Loading, Pips, Results } from "..
 import { useDaily } from "../daily/useDaily";
 import styles from "../daily/daily.module.css";
 
-export const SPEED_PAIRS = 15;
+const SPEED_PAIRS = 15;
 
 
 function speedDeck(deck: GameDeck, day: string, targets: readonly string[]): GameWord[] {

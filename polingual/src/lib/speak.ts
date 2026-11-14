@@ -1,7 +1,7 @@
 import { isSilent, subscribeSilent } from "./silent";
 export type SpeakItem = { id: string; text: string; lang: string; src?: string };
 export type VoiceLike = { lang: string; name: string };
-export type SpeakSource<V extends VoiceLike = VoiceLike> = { kind: "recording"; src: string; voice?: V } | { kind: "voice"; voice: V };
+type SpeakSource<V extends VoiceLike = VoiceLike> = { kind: "recording"; src: string; voice?: V } | { kind: "voice"; voice: V };
 
 export const BCP47: Record<string, string> = {
   en: "en-US", es: "es-ES", fr: "fr-FR", it: "it-IT", pt: "pt-BR", de: "de-DE", nl: "nl-NL", sv: "sv-SE",
@@ -39,7 +39,7 @@ export function playable<V extends VoiceLike>(item: Pick<SpeakItem, "lang" | "sr
   return pickSource(item, voices) !== undefined;
 }
 
-export type PlayerState = { id: string | null; all: boolean; notice?: string | null };
+type PlayerState = { id: string | null; all: boolean; notice?: string | null };
 
 const IDLE: PlayerState = { id: null, all: false };
 export const START_MS = 300;
@@ -85,7 +85,7 @@ function synth(): SpeechSynthesis | undefined {
 
 let voiceCache: SpeechSynthesisVoice[] = [];
 
-export function preloadVoices(): SpeechSynthesisVoice[] {
+function preloadVoices(): SpeechSynthesisVoice[] {
   const s = synth();
   if (!s) return voiceCache;
   const got = s.getVoices();
