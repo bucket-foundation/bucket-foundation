@@ -10,6 +10,7 @@ struct QuestionCard: View {
     @State private var sequence: [Int] = []
     @State private var matches: [String: String] = [:]
     @State private var result: QuestionGrade?
+    @State private var hint: DecimalHint?
 
     var q: Question { presented.question }
 
@@ -56,8 +57,16 @@ struct QuestionCard: View {
                 if let e = q.explain { Text(LessonText.inline(superscripts(e))).font(.subheadline).foregroundStyle(Palette.muted) }
                 Button("Continue") { onRate(result.rating) }.buttonStyle(D8Primary())
             } else {
+                if let hint {
+                    Text("Use \(hint.whole) or \(hint.other) to make the decimal mark clear.")
+                        .font(.subheadline).foregroundStyle(Palette.ink)
+                }
                 Button("Check") {
-                    let g = QuestionEngine.grade(q, response)
+                    let g = QuestionEngine.grade(q, response, locale: Locale.current.identifier(.bcp47))
+                    if let h = g.hint {
+                        withAnimation(.snappy) { hint = h }
+                        return
+                    }
                     haptic(g.correct)
                     withAnimation(.snappy) { result = g }
                 }
@@ -112,6 +121,7 @@ struct QuestionCard: View {
             .background(D8.face, in: .rect(cornerRadius: 12))
             .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.edge, lineWidth: 2) }
             .disabled(result != nil)
+            .onChange(of: typed) { hint = nil }
         case .order:
             Text("Tap the steps in order.").font(.caption).foregroundStyle(Palette.muted)
             ForEach(presented.order, id: \.self) { i in

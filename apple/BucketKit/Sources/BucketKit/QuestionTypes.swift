@@ -60,6 +60,7 @@ public struct QuestionGrade: Sendable, Equatable {
     public let correct: Bool
     public let score: Double
     public let rating: Int
+    public var hint: DecimalHint? = nil
 }
 
 public struct PresentedQuestion: Sendable {
@@ -116,20 +117,20 @@ public enum QuestionEngine {
         return QuestionGrade(correct: s == 1, score: s, rating: s == 1 ? 3 : s >= 0.5 ? 2 : 1)
     }
 
-    public static func parseNumber(_ v: String) -> Double {
-        var t = v.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: ",", with: "")
-        t = t.components(separatedBy: .whitespaces).joined()
-        if let r = t.range(of: "[×xX]10\\^?", options: .regularExpression) { t.replaceSubrange(r, with: "e") }
-        if t.hasSuffix("%") { t.removeLast() }
-        guard t.range(of: "^[-+]?([0-9]+\\.?[0-9]*|\\.[0-9]+)([eE][-+]?[0-9]+)?$", options: .regularExpression) != nil else { return .nan }
-        return Double(t) ?? .nan
+    public static func parseNumber(_ v: String, locale: String? = nil) -> Double {
+        LocaleNumber.value(v, locale: locale) ?? .nan
     }
 
-    public static func grade(_ q: Question, _ r: QuestionResponse) -> QuestionGrade {
+    public static func grade(_ q: Question, _ r: QuestionResponse, locale: String? = nil) -> QuestionGrade {
         switch (q.kind, r) {
         case (.pick, .pick(let c)): return result(Double(c) == q.answer ? 1 : 0)
         case (.calculate, .calculate(let v)):
-            let x = parseNumber(v)
+            let x = parseNumber(v, locale: locale)
+            if !x.isFinite, !LocaleNumber.isEnglish(locale), case .ambiguous(_, _, _, let whole, let other) = LocaleNumber.parse(v) {
+                var g = result(0)
+                g.hint = DecimalHint(whole: whole, other: other)
+                return g
+            }
             guard x.isFinite, let a = q.answer else { return result(0) }
             let tol = max(q.tol ?? 0, abs(a) * (q.relTol ?? 0), 1e-9)
             return result(abs(x - a) <= tol ? 1 : 0)
