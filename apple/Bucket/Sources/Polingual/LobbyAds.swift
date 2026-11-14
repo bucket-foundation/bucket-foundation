@@ -1,28 +1,58 @@
 import BucketKit
 import SwiftUI
 
-#if os(iOS) && canImport(GoogleMobileAds)
+#if os(iOS) && canImport(GoogleMobileAds) && canImport(UserMessagingPlatform)
+import AppTrackingTransparency
 import GoogleMobileAds
 import UIKit
+import UserMessagingPlatform
 
 @MainActor
+@Observable
 final class LobbyAds {
     static let shared = LobbyAds()
     let units = LobbyAdUnits.from(Bundle.main.infoDictionary ?? [:])
-    private var started = false
-    private var pacer = InterstitialPacer()
-    private var interstitial: InterstitialAd?
-    private var loading = false
+    var allowed = false
+    private(set) var ready = false
+    private(set) var privacyOptionsRequired = false
+    @ObservationIgnored private var started = false
+    @ObservationIgnored private var pacer = InterstitialPacer()
+    @ObservationIgnored private var interstitial: InterstitialAd?
+    @ObservationIgnored private var loading = false
 
     func start() {
-        guard units != nil, !started else { return }
+        guard allowed, units != nil, !started else { return }
         started = true
-        MobileAds.shared.start(completionHandler: nil)
+        Task { await gatherConsent() }
+    }
+
+    private func gatherConsent() async {
+        let consent = ConsentInformation.shared
+        try? await consent.requestConsentInfoUpdate(with: RequestParameters())
+        if let root = Self.topController() { try? await ConsentForm.loadAndPresentIfRequired(from: root) }
+        privacyOptionsRequired = consent.privacyOptionsRequirementStatus == .required
+        if ATTrackingManager.trackingAuthorizationStatus == .notDetermined {
+            _ = await ATTrackingManager.requestTrackingAuthorization()
+        }
+        guard consent.canRequestAds else {
+            started = false
+            return
+        }
+        _ = await MobileAds.shared.start()
+        ready = true
         preload()
     }
 
+    func showPrivacyOptions() {
+        guard let root = Self.topController() else { return }
+        Task {
+            try? await ConsentForm.presentPrivacyOptionsForm(from: root)
+            if !ConsentInformation.shared.canRequestAds { ready = false }
+        }
+    }
+
     func preload() {
-        guard let units, interstitial == nil, !loading else { return }
+        guard allowed, ready, let units, interstitial == nil, !loading else { return }
         loading = true
         Task {
             interstitial = try? await InterstitialAd.load(with: units.interstitial, request: Request())
@@ -31,7 +61,7 @@ final class LobbyAds {
     }
 
     func leftRoom(finishedGame: Bool) {
-        guard units != nil, pacer.due(finishedGame: finishedGame, at: .now) else { return }
+        guard allowed, ready, pacer.due(finishedGame: finishedGame, at: .now) else { return }
         guard let ad = interstitial, let root = Self.topController() else {
             preload()
             return
@@ -52,12 +82,21 @@ final class LobbyAds {
 
 struct LobbyBanner: View {
     var body: some View {
-        if let units = LobbyAds.shared.units {
+        if LobbyAds.shared.allowed, LobbyAds.shared.ready, let units = LobbyAds.shared.units {
             GeometryReader { geo in
                 BannerRepresentable(unit: units.banner, width: geo.size.width)
             }
             .frame(height: 50)
             .accessibilityIdentifier("lobbyBanner")
+        }
+    }
+}
+
+struct AdPrivacyButton: View {
+    var body: some View {
+        if LobbyAds.shared.allowed, LobbyAds.shared.privacyOptionsRequired {
+            Button("Ad privacy choices") { LobbyAds.shared.showPrivacyOptions() }
+                .accessibilityIdentifier("adPrivacyChoices")
         }
     }
 }
@@ -80,11 +119,16 @@ private struct BannerRepresentable: UIViewRepresentable {
 @MainActor
 final class LobbyAds {
     static let shared = LobbyAds()
+    var allowed = false
     func start() {}
     func leftRoom(finishedGame: Bool) {}
 }
 
 struct LobbyBanner: View {
+    var body: some View { EmptyView() }
+}
+
+struct AdPrivacyButton: View {
     var body: some View { EmptyView() }
 }
 #endif

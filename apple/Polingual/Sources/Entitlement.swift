@@ -52,6 +52,16 @@ enum Access: Equatable, Sendable {
     }
 }
 
+enum Monetization {
+    static func showsAds(_ access: Access) -> Bool { access == .locked }
+
+    static func locked(_ tab: AppTab, access: Access) -> Bool {
+        !access.open && (tab == .today || tab == .learn)
+    }
+
+    static func startTab(access: Access) -> AppTab { access.open ? .today : .games }
+}
+
 enum Entitlement {
     static func live(_ r: EntitlementRecord, now: Date) -> Bool {
         Plan.paid.contains(r.productID) && r.revoked == nil && !r.upgraded && (r.expires.map { $0 > now } ?? true)

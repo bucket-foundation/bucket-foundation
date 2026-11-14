@@ -97,6 +97,7 @@ struct LobbiesScreen: View {
                 }
             }
             if let problem { Section { Text(problem).foregroundStyle(D8.vermilion) } }
+            Section { AdPrivacyButton() }
         }
         .paper()
         .navigationTitle("Live Lobbies")
@@ -110,7 +111,7 @@ struct LobbiesScreen: View {
         }
         .navigationDestination(isPresented: $inRoom) { LobbyRoom() }
         .safeAreaInset(edge: .bottom) { LobbyBanner() }
-        .onAppear { LobbyAds.shared.start() }
+        .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
     }
 
     func act(_ work: @escaping () async throws -> Lobby) {
