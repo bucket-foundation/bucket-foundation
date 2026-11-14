@@ -12,7 +12,10 @@ extension ShareObject {
         case .system(_, _, let targets, _, _): String(localized: "Learning \(targets.map(langName).joined(separator: ", ")) together on \(Feedback.appName)")
         case .language(let lang, _), .flag(let lang, _): String(localized: "Learning \(langName(lang)) on \(Feedback.appName)")
         case .mastered(let lang, let count, _, let words):
-            String(localized: "\(count) words mastered in \(langName(lang)) on \(Feedback.appName)") + (words.isEmpty ? "" : ": " + words.prefix(12).map(\.form).joined(separator: ", "))
+            String(localized: "\(count) words mastered in \(langName(lang)) on \(Feedback.appName)") + (words.isEmpty ? "" : ": " + words.map(\.form).joined(separator: ", "))
+        case .masteredAll(let sets, _):
+            String(localized: "\(sets.total) words mastered in \(sets.langs.map(langName).joined(separator: ", ")) on \(Feedback.appName)")
+                + sets.filter { !$0.words.isEmpty }.map { "\n\(langName($0.lang)): " + $0.words.map(\.form).joined(separator: ", ") }.joined()
         case .word(_, let gloss, let forms): "\(gloss): " + forms.prefix(6).map(\.form).joined(separator: " · ")
         case .tile(let form, let gloss, _): form.form == gloss ? form.form : "\(form.form): \(gloss)"
         case .score(let s): String(localized: "\(s.right) of \(s.total) right in \(s.source) on \(Feedback.appName)")
@@ -27,7 +30,7 @@ extension ShareObject {
         case .streak: String(localized: "Share your streak")
         case .system: String(localized: "Share your language system")
         case .language: String(localized: "Share this language")
-        case .mastered: String(localized: "Share your words")
+        case .mastered, .masteredAll: String(localized: "Share your words")
         case .word: String(localized: "Share this word")
         case .tile: String(localized: "Share this tile")
         case .flag: String(localized: "Share this flag")
@@ -43,6 +46,7 @@ extension ShareObject {
         case .system(let name, _, _, _, _): name
         case .language(let lang, _): langName(lang)
         case .mastered(let lang, let count, _, _): String(localized: "\(count) \(langName(lang)) words")
+        case .masteredAll(let sets, _): String(localized: "\(sets.total) words mastered")
         case .word(_, let gloss, _): gloss
         case .tile(let form, _, _): form.form
         case .flag(let lang, _): String(localized: "\(langName(lang)) flag")
@@ -61,25 +65,40 @@ extension LangStore {
         let now = Date().timeIntervalSince1970 * 1000
         let streak = langStreak(self)
         var out: [ShareObject] = streak > 0 ? [.streak(days: streak, langs: gameLangs, root: root)] : []
-        var mastered: [String: Int] = [:]
-        var best: [String: LangSystem] = [:]
         for s in systems {
             let learned = corpus.map { systemSummary(s, $0, state(s.id), now: now).started } ?? 0
             out.append(.system(name: s.name, root: s.root, targets: s.targets, streak: streak, learned: learned))
-            guard let corpus else { continue }
+        }
+        out += masteredShares(root: root)
+        out += gameLangs.map { .language($0, root: root) }
+        out += gameLangs.map { .flag($0, root: root) }
+        return out
+    }
+}
+
+extension LangStore {
+    var masteredSets: [MasteredSet] {
+        guard let corpus else { return [] }
+        let now = Date().timeIntervalSince1970 * 1000
+        var mastered: [String: Int] = [:]
+        var best: [String: LangSystem] = [:]
+        for s in systems {
             for p in langProgress(s, corpus, state(s.id), now: now) where Int(p.mastered) > mastered[p.lang] ?? 0 {
                 mastered[p.lang] = Int(p.mastered)
                 best[p.lang] = s
             }
         }
-        out += mastered.filter { $0.value > 0 }.sorted { $0.value > $1.value }.map { lang, count in
-            var words: [MasteredWord] = []
-            if let s = best[lang], let corpus { words = masteredWords(s, corpus, state(s.id), lang: lang) }
-            return .mastered(lang: lang, count: count, root: root, words: words)
+        return mastered.filter { $0.value > 0 }.sorted { $0.value > $1.value || ($0.value == $1.value && $0.key < $1.key) }.map { lang, count in
+            MasteredSet(lang: lang, count: count, words: best[lang].map { masteredWords($0, corpus, state($0.id), lang: lang) } ?? [])
         }
-        out += gameLangs.map { .language($0, root: root) }
-        out += gameLangs.map { .flag($0, root: root) }
-        return out
+    }
+
+    func masteredShares(root: String, first lang: String? = nil) -> [ShareObject] {
+        let sets = masteredSets
+        let one = sets.map { ShareObject.mastered(lang: $0.lang, count: $0.count, root: root, words: $0.words) }
+        let all: [ShareObject] = sets.count > 1 ? [.masteredAll(sets: sets, root: root)] : []
+        guard let lang, let i = sets.firstIndex(where: { $0.lang == lang }) else { return all + one }
+        return [one[i]] + all + one.enumerated().filter { $0.offset != i }.map(\.element)
     }
 }
 
@@ -125,6 +144,8 @@ struct ShareCardView: View {
             case .list: MasteredListCard(lang: lang, count: count, words: words)
             default: MasteredCard(lang: lang, count: count, words: words)
             }
+        case .masteredAll(let sets, _):
+            if style == .list { MasteredAllCard(sets: sets) } else { MasteredTotalCard(sets: sets) }
         case .flag(let lang, _):
             if style == .plate { FlagPlateCard(lang: lang, dark: true) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: nil) }
         case .word(_, let gloss, let forms):
@@ -419,19 +440,113 @@ struct MasteredListCard: View {
                 }
             }
             .padding(.bottom, 20)
-            if big { Spacer(minLength: 0) }
-            VStack(alignment: .leading, spacing: big ? 18 : 7) {
-                ForEach(Array(words.prefix(Self.shown).enumerated()), id: \.offset) { _, w in
-                    HStack(alignment: .firstTextBaseline, spacing: 10) {
-                        Text(w.form).font(.system(size: big ? 48 : 24, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
-                        Spacer(minLength: 8)
-                        Text(w.meaning).font(.system(size: big ? 28 : 18, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
-                    }
-                }
-                if max(count, words.count) > Self.shown {
-                    Text(verbatim: "+\(max(count, words.count) - Self.shown)").font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7))
+            if words.count > Self.shown {
+                MasteredWordFlow(sets: [MasteredSet(lang: lang, count: count, words: words)], flags: false)
+                    .frame(maxHeight: .infinity, alignment: .topLeading)
+            } else {
+                if big { Spacer(minLength: 0) }
+                rows(big: big)
+                Spacer(minLength: 0)
+            }
+            CardFoot(color: .white)
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(D8.malachite)
+    }
+
+    func rows(big: Bool) -> some View {
+        VStack(alignment: .leading, spacing: big ? 18 : 7) {
+            ForEach(Array(words.prefix(Self.shown).enumerated()), id: \.offset) { _, w in
+                HStack(alignment: .firstTextBaseline, spacing: 10) {
+                    Text(w.form).font(.system(size: big ? 48 : 24, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                    Spacer(minLength: 8)
+                    Text(w.meaning).font(.system(size: big ? 28 : 18, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
                 }
             }
+            if count > words.count {
+                Text(verbatim: "+\(count - words.count)").font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7))
+            }
+        }
+    }
+}
+
+struct MasteredWordFlow: View {
+    static let cap = 240
+    let sets: [MasteredSet]
+    var flags = true
+
+    var body: some View {
+        ViewThatFits(in: .vertical) {
+            block(34)
+            block(28)
+            block(23)
+            block(19)
+            block(16)
+            block(13)
+            block(11)
+            block(9, cap: Self.cap)
+        }
+    }
+
+    func block(_ size: CGFloat, cap: Int = .max) -> some View {
+        let shown = MasteredWordFlow.shown(sets, cap: cap)
+        let hidden = sets.total - shown.reduce(0) { $0 + $1.words.count }
+        return VStack(alignment: .leading, spacing: size * 0.7) {
+            ForEach(shown, id: \.lang) { set in
+                FlowLayout(spacing: size * 0.55) {
+                    if flags { FlagTile(lang: set.lang, size: size * 1.4) }
+                    ForEach(Array(set.words.enumerated()), id: \.offset) { _, w in
+                        Text(w.form).font(.system(size: size, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1)
+                    }
+                }
+            }
+            if hidden > 0 {
+                Text(verbatim: "+\(hidden)").font(.system(size: max(size, 16), weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    static func shown(_ sets: [MasteredSet], cap: Int) -> [MasteredSet] {
+        var left = cap
+        return sets.compactMap { set in
+            guard left > 0, !set.words.isEmpty else { return nil }
+            let words = Array(set.words.prefix(left))
+            left -= words.count
+            return MasteredSet(lang: set.lang, count: set.count, words: words)
+        }
+    }
+}
+
+struct MasteredAllCard: View {
+    let sets: [MasteredSet]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("\(sets.total) words mastered").font(.system(size: 34, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+            Text(sets.langs.map(langName).joined(separator: ", ")).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(2).minimumScaleFactor(0.6)
+                .padding(.bottom, 20)
+            MasteredWordFlow(sets: sets)
+                .frame(maxHeight: .infinity, alignment: .topLeading)
+            CardFoot(color: .white).padding(.top, 12)
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(D8.malachite)
+    }
+}
+
+struct MasteredTotalCard: View {
+    let sets: [MasteredSet]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            CardFlags(langs: sets.langs, size: 72)
+            Spacer(minLength: 0)
+            Text("\(sets.total)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+            Text("words mastered").font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
+            Text(sets.langs.map(langName).joined(separator: ", ")).font(.system(size: 26, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(2).minimumScaleFactor(0.6)
             Spacer(minLength: 0)
             CardFoot(color: .white)
         }
@@ -786,6 +901,10 @@ struct ShareObjectButton: View {
     @State private var open: ShareChoice?
 
     init(_ objects: ShareObject..., wide: Bool = false) {
+        self.init(objects: objects, wide: wide)
+    }
+
+    init(objects: [ShareObject], wide: Bool = false) {
         options = objects.map(ShareOption.init)
         self.wide = wide
     }
