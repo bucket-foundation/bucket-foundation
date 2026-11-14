@@ -19,19 +19,48 @@ final class SignUpFunnelUITests: XCTestCase {
         add(a)
     }
 
-    func testOnboardingReachesPaywallInTwoTaps() throws {
+    func passConsent(_ app: XCUIApplication) {
+        let consent = app.buttons["Continue"]
+        if consent.waitForExistence(timeout: 15) { consent.tap() }
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let decline = springboard.buttons["Ask App Not to Track"]
+        if decline.waitForExistence(timeout: 10) { decline.tap() }
+    }
+
+    func dismissStoreSignIn(_ app: XCUIApplication) {
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        for owner in [app, springboard] {
+            let cancel = owner.alerts.buttons["Cancel"]
+            if cancel.waitForExistence(timeout: 5) { cancel.tap() }
+        }
+    }
+
+    func testOnboardingLandsFreeUserOnGamesInTwoTaps() throws {
         let app = launch([])
         guard app.buttons["Get started"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
         app.buttons["Get started"].tap()
         XCTAssertTrue(app.buttons["Continue"].waitForExistence(timeout: 10))
         shot("onboarding-languages")
         app.buttons["Continue"].tap()
-        let paywall = app.buttons["Restore"]
+        let games = app.navigationBars["Games"]
         let home = app.navigationBars["Today"]
         let deadline = Date().addingTimeInterval(60)
-        while !paywall.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
-        XCTAssertTrue(paywall.exists || home.exists, "Onboarding did not leave after two taps")
-        shot(paywall.exists ? "paywall" : "home-already-subscribed")
+        while !games.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
+        XCTAssertTrue(games.exists || home.exists, "Onboarding did not leave after two taps")
+        shot(games.exists ? "games-free" : "home-already-subscribed")
+    }
+
+    func testLockedTodayOpensPaywall() throws {
+        let app = launch(["-polingual.onboarded", "YES"])
+        guard app.navigationBars["Games"].waitForExistence(timeout: 60) else { throw XCTSkip("Subscribed on this simulator") }
+        passConsent(app)
+        app.buttons["Today"].firstMatch.tap()
+        let plans = app.buttons["See plans"]
+        XCTAssertTrue(plans.waitForExistence(timeout: 20))
+        plans.tap()
+        XCTAssertTrue(app.buttons["Restore"].waitForExistence(timeout: 20))
+        dismissStoreSignIn(app)
+        shot("paywall")
     }
 
     func testSaveProgressOffersAppleThenEmail() throws {
@@ -54,8 +83,9 @@ final class SignUpFunnelUITests: XCTestCase {
 
     func testAccountListsAppleFirst() throws {
         let app = launch(["-polingual.onboarded", "YES", "-polingualOpen"])
-        XCTAssertTrue(app.navigationBars["Today"].waitForExistence(timeout: 60))
-        app.buttons["Account"].firstMatch.tap()
+        let account = app.buttons["Account"].firstMatch
+        XCTAssertTrue(account.waitForExistence(timeout: 60))
+        account.tap()
         let email = app.buttons["Sign in with email"]
         guard email.waitForExistence(timeout: 20) else { throw XCTSkip("Signed in on this simulator") }
         let apple = app.buttons["Sign in with Apple"]
