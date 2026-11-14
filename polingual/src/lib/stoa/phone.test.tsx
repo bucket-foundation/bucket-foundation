@@ -307,8 +307,8 @@ test("the screens keep D8 tokens, self-hosted fonts, RTL-safe tiles and the QR o
   for (const token of ["--lapis:var(--pl-lapis)", "--malachite:var(--pl-malachite)", "--malachite-lip:var(--pl-malachite-deep)", "--vermilion:var(--pl-vermilion)", "--parchment:var(--pl-paper)", "--ink:var(--pl-ink)", "--hair:var(--pl-paper-3)"]) assert.ok(css.includes(token), token);
   assert.ok(!/\.tiles\{[^}]*direction/.test(css), "phone tiles follow the page direction");
   assert.ok(/\.tiles\.grid\{direction:ltr/.test(css), "the board grid keeps A to D in place");
-  assert.match(readFileSync(join(app, "live/Host.tsx"), "utf8"), /variant="quiet" size="md" iconOnly/);
+  assert.match(readFileSync(join(app, "live/host/Board.tsx"), "utf8"), /variant="quiet" size="md" iconOnly/);
   for (const f of ["live/layout.tsx", "join/layout.tsx", "join/Phone.tsx", "live/parts.tsx"]) assert.ok(!readFileSync(join(app, f), "utf8").includes("googleapis"), f);
   for (const f of ["join/Phone.tsx", "live/parts.tsx"]) assert.ok(!readFileSync(join(app, f), "utf8").includes("qrcode-generator"), f);
-  assert.match(readFileSync(join(app, "live/Host.tsx"), "utf8"), /dynamic\(\(\) => import\("\.\/Qr"\)/);
+  assert.match(readFileSync(join(app, "live/host/Board.tsx"), "utf8"), /dynamic\(\(\) => import\("\.\.\/Qr"\)/);
 });
