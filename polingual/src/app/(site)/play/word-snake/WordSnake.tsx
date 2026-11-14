@@ -1,5 +1,6 @@
 "use client";
 
+import GameResults from "../GameResults";
 import Interstitial from "../Interstitial";
 import { local } from "@/lib/storage";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -17,7 +18,6 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { LANG_CHOICES, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { WorldStage } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill, tokens } from "@/ui";
 
@@ -252,8 +252,7 @@ function WordSnakeGame() {
       ) : null}
       {phase === "over" || respawned || !adsVisible ? (
         <>
-          <WordReveal rootLang={root ?? "en"} title="Words you ate" words={list(result?.eaten ?? []).slice(0, 12).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
-          <LearnPanel missed={list(result?.bad ?? []).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
+          <GameResults rootLang={root ?? "en"} title="Words you ate" words={list(result?.eaten ?? []).slice(0, 12).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} missed={list(result?.bad ?? []).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
         </>
       ) : null}
       <section className={app.stackSm}>

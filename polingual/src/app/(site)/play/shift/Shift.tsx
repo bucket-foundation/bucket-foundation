@@ -1,5 +1,6 @@
 "use client";
 
+import GameResults from "../GameResults";
 import { local } from "@/lib/storage";
 import { useEffect, useMemo, useState } from "react";
 import type { ShiftBoard } from "@academy/shift";
@@ -14,7 +15,6 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink } from "@/ui";
 
@@ -120,8 +120,7 @@ export default function Shift() {
       ) : null}
       {complete ? (
         <>
-          <WordReveal rootLang={root ?? "en"} title="Today's words" words={board.targets.map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning }))} />
-          <LearnPanel missed={Object.keys(hints).flatMap((f) => board.targets.filter((t) => t.form === f).map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning })))} />
+          <GameResults rootLang={root ?? "en"} title="Today's words" words={board.targets.map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning }))} missed={Object.keys(hints).flatMap((f) => board.targets.filter((t) => t.form === f).map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning })))} />
         </>
       ) : adsVisible ? (
         rewarded ? (

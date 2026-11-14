@@ -1,5 +1,6 @@
 "use client";
 
+import GameResults from "../GameResults";
 import Interstitial from "../Interstitial";
 import { local } from "@/lib/storage";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -16,7 +17,6 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
 
@@ -209,11 +209,10 @@ function BabelMatchGame() {
       ) : null}
       {phase === "won" || phase === "lost" ? (
         <>
-          <WordReveal rootLang={root ?? "en"} title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
+          <GameResults rootLang={root ?? "en"} title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
             const m = byId.get(c.meaning);
             return m ? set.targets.filter((l) => m.forms[l]).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning })) : [];
-          })} />
-          <LearnPanel missed={phase === "lost" ? meanings.filter((m) => !words.some((c) => c.meaning === m.id)).slice(0, 4).flatMap((m) => set.targets.filter((l) => m.forms[l]).slice(0, 1).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning }))) : []} />
+          })} missed={phase === "lost" ? meanings.filter((m) => !words.some((c) => c.meaning === m.id)).slice(0, 4).flatMap((m) => set.targets.filter((l) => m.forms[l]).slice(0, 1).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning }))) : []} />
         </>
       ) : null}
       <h2 className={app.fieldLabel}>Languages</h2>

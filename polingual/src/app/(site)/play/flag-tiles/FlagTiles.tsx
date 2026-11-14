@@ -1,5 +1,6 @@
 "use client";
 
+import GameResults from "../GameResults";
 import Interstitial from "../Interstitial";
 import { local } from "@/lib/storage";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -18,7 +19,7 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { WorldStage } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
+import { WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink } from "@/ui";
 
@@ -269,9 +270,7 @@ function FlagTilesGame() {
         <Button onClick={() => send({ kind: "start" })} data-testid="ft-again">Run again</Button>
         <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
       </div>
-      <WordReveal rootLang={root ?? "en"} title="Words in this run" words={deck.tiles.slice(0, Math.min(run.index + 1, 12)).map((t, i) => ({ lang: t.lang, word: t.form, meaning: t.meaning, correct: i !== run.missed }))} />
-      <LearnPanel missed={missedTile ? [{ lang: missedTile.lang, word: missedTile.form, meaning: missedTile.meaning }] : []} />
-      {readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
+      <GameResults rootLang={root ?? "en"} title="Words in this run" words={deck.tiles.slice(0, Math.min(run.index + 1, 12)).map((t, i) => ({ lang: t.lang, word: t.form, meaning: t.meaning, correct: i !== run.missed }))} missed={missedTile ? [{ lang: missedTile.lang, word: missedTile.form, meaning: missedTile.meaning }] : []} ad />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import GameResults from "../GameResults";
 import { local } from "@/lib/storage";
 import { useEffect, useMemo, useState } from "react";
 import { atlasPoints, ATLAS_HOMES, ATLAS_MAX, ATLAS_ROUNDS, nearestHome, type AtlasGhost, type AtlasRound, type LatLon } from "@academy/voice-atlas";
@@ -14,7 +15,7 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
+import { WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Tag } from "@/ui";
 
@@ -137,8 +138,7 @@ function VoiceAtlasGame() {
           <p className={app.label}>Voice Atlas · {date}</p>
           <h2 className={app.title} data-testid="va-total">{`${total.toLocaleString("en")} points`}</h2>
         </section>
-        <WordReveal rootLang={root ?? "en"} title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} />
-        <LearnPanel missed={guesses.filter((g) => g.points < ATLAS_MAX * 0.5).map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning }))} />
+        <GameResults rootLang={root ?? "en"} title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} missed={guesses.filter((g) => g.points < ATLAS_MAX * 0.5).map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning }))} />
         <ul className={styles.vaList}>
           {guesses.map((g, i) => (
             <li key={i} className={styles.player}>
