@@ -25,7 +25,7 @@ object Spelled {
         val out = mutableListOf<Int>()
         var gap = false
         for (c in cps(n)) {
-            if (Character.isWhitespace(c) || c in punct) { gap = true; continue }
+            if (Character.isWhitespace(c) || Character.isSpaceChar(c) || c in punct) { gap = true; continue }
             if (gap && out.isNotEmpty()) out += ' '.code
             gap = false
             out += c
