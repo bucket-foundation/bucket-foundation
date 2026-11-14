@@ -79,3 +79,14 @@ class ListenCardsTest {
         assertEquals(ex.word.form, ex.answer)
     }
 }
+
+class LadderGapTest {
+    @Test
+    fun sentenceClozeAndSpeakRungsAreNotPortedAndFallThroughAsIosDoesWithoutThem() {
+        val notPorted = setOf("sentence", "wordbank", "cloze", "speak", "translate-typed", "cognate", "false-friend", "intro")
+        val androidKinds = ExerciseKind.entries.map { it.name.lowercase() }.toSet()
+        assertTrue(notPorted.none { it in androidKinds }, "LangSystems.swift:925, :949 and :963 deal sentence, cloze and speak only when the data or speech exists")
+        assertEquals(ExerciseKind.Produce, ExercisePicker.kind(false, 5, false, true, 0.3), "with no sentence (:925), no cloze (:949) and no speech (:963), iOS lands on translate (:964)")
+        assertEquals(ExerciseKind.Listen, ExercisePicker.kind(false, 5, false, false, 0.3), "non-Latin without sentence or cloze lands on listen (:957)")
+    }
+}
