@@ -1,8 +1,8 @@
-export const BEST_KEY = "polingual-web/flag-tiles-best/v1";
+const BEST_KEY = "polingual-web/flag-tiles-best/v1";
 
-export type RunPhase = "ready" | "running" | "missed" | "over";
+type RunPhase = "ready" | "running" | "missed" | "over";
 
-export interface RunState {
+interface RunState {
   phase: RunPhase;
   index: number;
   score: number;

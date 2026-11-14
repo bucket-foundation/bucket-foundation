@@ -8,7 +8,7 @@ import { LANE_KEYS, laneTarget } from "@/lib/lobby/lanes";
 import { play } from "@/lib/lobby/sound";
 import styles from "./play.module.css";
 
-export interface TilesProps {
+interface TilesProps {
   gloss: string;
   choices: string[];
   round: number;

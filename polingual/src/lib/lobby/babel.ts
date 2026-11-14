@@ -106,7 +106,7 @@ export function collapse(board: Board, gone: ReadonlySet<number>, deal: Deal): B
   return out;
 }
 
-export interface Resolve {
+interface Resolve {
   board: Board;
   cleared: Cell[];
   cascades: number;

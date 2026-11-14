@@ -27,7 +27,7 @@ const RTL = new Set(["ar", "fa", "he", "ur", "yi"]);
 
 const GRAPHEMES = new Intl.Segmenter("en", { granularity: "grapheme" });
 
-export function graphemeSlice(text: string, max: number): string {
+function graphemeSlice(text: string, max: number): string {
   let out = "";
   let n = 0;
   for (const { segment } of GRAPHEMES.segment(text)) {

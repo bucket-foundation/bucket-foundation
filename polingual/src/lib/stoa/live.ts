@@ -14,12 +14,12 @@ type DbResult = { room_id: string; topic: string; topics?: string[]; sign_key: s
 export const CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 export const CODE = /^[0-9A-HJKMNP-TV-Z]{6}$/;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-export const HOST_ACTIONS = ["start", "pause", "resume", "skip", "end", "lock", "unlock", "kick_all", "rotate"] as const;
-export const PLAYER_ACTIONS = ["move", "rename", "remove", "time"] as const;
+const HOST_ACTIONS = ["start", "pause", "resume", "skip", "end", "lock", "unlock", "kick_all", "rotate"] as const;
+const PLAYER_ACTIONS = ["move", "rename", "remove", "time"] as const;
 export const DB_TIMEOUT_MS = 4000;
-export const GRACE_CAP_MS = 1000;
-export const SWEEP_CONCURRENCY = 5;
-export const SWEEP_BUDGET_MS = 3000;
+const GRACE_CAP_MS = 1000;
+const SWEEP_CONCURRENCY = 5;
+const SWEEP_BUDGET_MS = 3000;
 
 const STATUS: Record<string, number> = {
   no_room: 404, no_player: 404, not_host: 403, removed: 403, stale_token: 409, too_many_rooms: 429,
@@ -69,7 +69,7 @@ export function postgrestRpc(env: StoaEnv, send: Fetcher): Rpc {
   };
 }
 
-export async function verifyHostUser(token: string | null, env: StoaEnv, send: Fetcher): Promise<string | null> {
+async function verifyHostUser(token: string | null, env: StoaEnv, send: Fetcher): Promise<string | null> {
   if (!token || token.length > 4096) return null;
   try {
     const r = await send(`${base(env)}/auth/v1/user`, {
@@ -89,7 +89,7 @@ function realtime(env: StoaEnv, topic: string) {
   return { url: base(env), key: env.POLINGUAL_DB_ANON_KEY!.trim(), topic: `stoa:${topic}` };
 }
 
-export function signLast(res: DbResult, env: StoaEnv): SignedEvent | null {
+function signLast(res: DbResult, env: StoaEnv): SignedEvent | null {
   const last = res.events?.[res.events.length - 1];
   if (!last || !res.sign_key) return null;
   const key = openSignKey(res.room_id, res.sign_key, env);
@@ -327,8 +327,8 @@ export async function playerAction(roomId: string, playerId: string, action: str
   return { status: 200, body: { ok: true, token_version: res.token_version } };
 }
 
-export type SummaryRow = { nickname: string; team?: number | null; points: number; correct: number };
-export const TEAM_NAMES = ["Lapis", "Vermilion", "Malachite", "Ochre"] as const;
+type SummaryRow = { nickname: string; team?: number | null; points: number; correct: number };
+const TEAM_NAMES = ["Lapis", "Vermilion", "Malachite", "Ochre"] as const;
 
 export function summaryCsv(rows: SummaryRow[], chorus = false): string {
   const lines = [chorus ? "rank,nickname,team,points,correct" : "rank,nickname,points,correct"];
@@ -352,7 +352,7 @@ export async function roomSummary(roomId: string, authorization: string | null, 
   return { status: 200, body: { code: res.code, csv: summaryCsv(res.rows ?? [], res.mode === "chorus") } };
 }
 
-export function sweepAllowed(authorization: string | null, env: StoaEnv): boolean {
+function sweepAllowed(authorization: string | null, env: StoaEnv): boolean {
   const want = env.STOA_SWEEP_SECRET?.trim();
   const got = bearer(authorization);
   if (!want || want.length < 32 || !got) return false;

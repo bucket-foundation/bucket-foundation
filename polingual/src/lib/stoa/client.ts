@@ -83,7 +83,7 @@ export function optionLabel(q: Pick<Question, "kind" | "options">, i: number): s
   return q.kind === "which_language" ? langName(o) : o;
 }
 
-export type PromptView = { lead: string; word: string; tail: string | null };
+type PromptView = { lead: string; word: string; tail: string | null };
 
 export function promptView(q: Pick<Question, "kind" | "prompt">): PromptView {
   if (q.kind === "which_language") return { lead: "Which language is this?", word: q.prompt.word ?? "", tail: null };
@@ -114,7 +114,7 @@ export function normalizeCode(raw: string): string {
     .slice(0, 6);
 }
 
-export const JOIN_ERRORS: Record<string, string> = {
+const JOIN_ERRORS: Record<string, string> = {
   no_room: "No open room has that code. Check the code on the board.",
   room_full: "This room is full.",
   name_taken: "Someone took that name. Pick another one.",

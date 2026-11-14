@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useCallback, useEffect, useState } from "react";
 import type { LangCorpus } from "@academy/lang-systems";
 import { loadLangCorpus } from "@academy/lang-client";
@@ -8,23 +9,16 @@ import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 import { dayKey } from "@/lib/daily/rng";
 import { bookKey, loadBook, recordResult, type DailyBook, type DailyGame, type DailyResult, type SaveState, type SyncDeps } from "@/lib/daily/store";
 
-export const GUEST_SYSTEM = { root: "en", targets: ["es", "fr", "de"] };
+const GUEST_SYSTEM = { root: "en", targets: ["es", "fr", "de"] };
 
-export type DailySystem = { root: string; targets: string[] };
+type DailySystem = { root: string; targets: string[] };
 
-export function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
-export function syncDeps(): SyncDeps {
+function syncDeps(): SyncDeps {
   return { fetch: window.fetch.bind(window), token: () => appAuth().mobile.accessToken().catch(() => null) };
 }
 
-export async function accountSystem(d: SyncDeps): Promise<DailySystem | null> {
+async function accountSystem(d: SyncDeps): Promise<DailySystem | null> {
   try {
     const t = await d.token();
     if (!t) return null;
@@ -50,7 +44,7 @@ export function useDailyBook(): { book: DailyBook; day: string } | null {
   return state;
 }
 
-export type DailyState =
+type DailyState =
   | { status: "loading" }
   | { status: "error" }
   | { status: "ready"; corpus: LangCorpus; system: DailySystem; day: string; done: DailyResult | null; signedIn: boolean; saved: SaveState | null };
@@ -110,3 +104,4 @@ export function useLearnerRoot(): string | null {
   }, []);
   return root;
 }
+

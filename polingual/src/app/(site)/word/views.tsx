@@ -11,7 +11,7 @@ import { LANGS, WORDS, breadcrumbJsonLd, ctaHref, relatedWords, wordJsonLd, word
 import { capitalizeIn, fill, langLabel, localIndexCopy, localPath, localWordCopy, localeInfo, orderedForms, strings, wordLocalPath } from "@/lib/word-i18n";
 import { ButtonLink } from "@/ui";
 
-export function siteLocale(code: string): SiteLocale {
+function siteLocale(code: string): SiteLocale {
   const info = localeInfo(code);
   const s = strings(code);
   return { code, rtl: info.rtl, words: s.words, labels: info.labels, footer: { tagline: s.footerTagline, data: s.footerData, published: s.footerPublished } };

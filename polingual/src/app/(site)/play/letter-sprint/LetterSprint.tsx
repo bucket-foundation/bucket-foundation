@@ -1,5 +1,6 @@
 "use client";
 
+import { secondsLeft, useDeadline } from "@/lib/hooks/clock";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { bcp47, say } from "@/lib/speak";
 import { dailyLetters, LETTER_SECONDS } from "@/lib/daily/letters";
@@ -16,7 +17,6 @@ export default function LetterSprint() {
   const [i, setI] = useState(0);
   const [pattern, setPattern] = useState("");
   const [ends, setEnds] = useState<number | null>(null);
-  const [now, setNow] = useState(() => Date.now());
   const over = useRef(false);
   const p = prompts[i];
 
@@ -31,14 +31,7 @@ export default function LetterSprint() {
     if (ends && p) say(p.ch, bcp47(p.lang), { auto: true });
   }, [ends, p]);
 
-  useEffect(() => {
-    if (!ends) return;
-    const t = window.setInterval(() => {
-      setNow(Date.now());
-      if (Date.now() >= ends) end(pattern);
-    }, 250);
-    return () => window.clearInterval(t);
-  });
+  const now = useDeadline(ends, () => end(pattern));
 
   if (state.status !== "ready") return <DailyWorld id="letter-sprint"><Loading state={state.status} /></DailyWorld>;
   if (state.done) return <DailyWorld id="letter-sprint"><Results title="Letter Sprint" result={state.done} url="https://polingual.com/play/letter-sprint" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
@@ -51,7 +44,7 @@ export default function LetterSprint() {
     else end(next);
   }
 
-  const left = ends ? Math.max(0, Math.ceil((ends - now) / 1000)) : LETTER_SECONDS;
+  const left = secondsLeft(ends, now, LETTER_SECONDS);
   return (
     <DailyWorld id="letter-sprint">
       <NeedsSound game="Letter Sprint">

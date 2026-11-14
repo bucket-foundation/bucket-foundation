@@ -1,12 +1,10 @@
 import { fold, REVEAL_ORDER, type Bank, type HintForm } from "./bank";
 
 export const MAX_GUESSES = 6;
-export const EPOCH = { y: 2026, m: 11, d: 1 };
+const EPOCH = { y: 2026, m: 11, d: 1 };
 const DAY_MS = 86_400_000;
 
 export type Mark = "hit" | "near" | "miss";
-export type KeyMark = Mark | undefined;
-
 export interface Hint {
   lang: string;
   word: string;
@@ -34,7 +32,7 @@ export function dateOfDay(day: number): Date {
   return new Date(Date.UTC(EPOCH.y, EPOCH.m - 1, EPOCH.d) + (day - 1) * DAY_MS);
 }
 
-export function hintsFor(forms: Record<string, HintForm>, lang: string, count = MAX_GUESSES - 1): Hint[] {
+function hintsFor(forms: Record<string, HintForm>, lang: string, count = MAX_GUESSES - 1): Hint[] {
   const out: Hint[] = [];
   for (const l of REVEAL_ORDER) {
     if (l === lang || !forms[l]) continue;
@@ -86,7 +84,7 @@ export function keyMarks(guesses: readonly string[], answer: string): Record<str
   return out;
 }
 
-export type GuessCheck = { ok: true; guess: string } | { ok: false; reason: "short" | "letters" | "repeat" };
+type GuessCheck = { ok: true; guess: string } | { ok: false; reason: "short" | "letters" | "repeat" };
 
 export function checkGuess(raw: string, answer: string, previous: readonly string[]): GuessCheck {
   const guess = fold(raw.trim());

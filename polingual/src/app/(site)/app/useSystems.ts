@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { loadSystems, saveSystems, type SaveResult } from "@academy/lang-client";
 import { createSystem, type LangSystem } from "@academy/lang-systems";
 
-export type SystemsState = { status: "loading" } | { status: "error" } | { status: "ready"; systems: LangSystem[] };
+type SystemsState = { status: "loading" } | { status: "error" } | { status: "ready"; systems: LangSystem[] };
 
 export function useSystems() {
   const [state, setState] = useState<SystemsState>({ status: "loading" });

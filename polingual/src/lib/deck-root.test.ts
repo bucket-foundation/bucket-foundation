@@ -59,3 +59,12 @@ test("deck cache urls keep only date and root", async () => {
   const { canonicalDeckUrl } = await import("@academy/deck-root");
   assert.equal(canonicalDeckUrl(new URL("https://x.test/api/academy/shift?utm=1&root=fr&date=2026-11-13&z=2")).search, "?date=2026-11-13&root=fr");
 });
+
+test("babel drops the root from its languages and still needs two", async () => {
+  const { langsWithoutRoot, hasExtraParams } = await import("@academy/deck-root");
+  assert.deepEqual(langsWithoutRoot(["es", "fr", "de"], "fr"), ["es", "de"]);
+  assert.equal(langsWithoutRoot(["es", "fr"], "fr"), null);
+  assert.equal(langsWithoutRoot(["es", "fr", "de", "it", "pt"], "en"), null);
+  assert.equal(hasExtraParams(new URL("https://x.test/a?langs=es&seed=1&root=fr"), ["langs", "seed", "root"]), false);
+  assert.equal(hasExtraParams(new URL("https://x.test/a?langs=es&utm=1"), ["langs", "seed", "root"]), true);
+});

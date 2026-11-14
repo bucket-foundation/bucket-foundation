@@ -5,7 +5,7 @@ import { ART_DATA } from "./data";
 
 export type ArtName = (typeof ART_DATA)[number]["name"];
 
-export type ArtProps = {
+type ArtProps = {
   size?: number;
   className?: string;
   title?: string;
@@ -61,34 +61,6 @@ const make = (name: ArtName) => {
   return C;
 };
 
-export const TicketArt = make("ticket");
-export const TornLabelArt = make("torn-label");
-export const SealArt = make("seal");
-export const KenteArt = make("kente");
-export const PebbleArt = make("pebble");
-export const AzulejoArt = make("azulejo");
-export const AzulejoGridArt = make("azulejo-grid");
-export const GirihArt = make("girih");
-export const FlagBandArt = make("flag-band");
-export const StreakFlameArt = make("streak-flame");
-export const StreakPotArt = make("streak-pot");
-export const StarArt = make("star");
-export const BlocksArt = make("blocks");
-export const BrushArt = make("brush");
-export const BuntingArt = make("bunting");
-export const ScriptRuArt = make("script-ru");
-export const ScriptKoArt = make("script-ko");
-export const ScriptHeArt = make("script-he");
-export const CalligraphyAinArt = make("calligraphy-ain");
-export const CalligraphyYongArt = make("calligraphy-yong");
-export const InkDotArt = make("ink-dot");
-export const KenteSwatchArt = make("sk-kente");
-export const AzulejoSwatchArt = make("sk-azulejo");
-export const GirihSwatchArt = make("sk-girih");
-export const SealSwatchArt = make("sk-seal");
-export const PaisleySwatchArt = make("sk-paisley");
-export const MudclothSwatchArt = make("sk-mudcloth");
-
-export type ArtEntry = { name: ArtName; label: string; origin: string; dark: boolean; Component: (p: ArtProps) => React.JSX.Element };
+type ArtEntry = { name: ArtName; label: string; origin: string; dark: boolean; Component: (p: ArtProps) => React.JSX.Element };
 
 export const ART: ArtEntry[] = ART_DATA.map((d) => ({ name: d.name, label: d.label, origin: d.origin, dark: d.dark, Component: make(d.name) }));

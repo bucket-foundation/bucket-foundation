@@ -10,7 +10,7 @@ import { OG_DESCRIPTION_MAX } from "./meta";
 export const SITE_LANGS = SITE_LANGS_JSON as string[];
 export const WORD_LOCALES = ["en", ...SITE_LANGS];
 
-export type WordStrings = {
+type WordStrings = {
   sep: string;
   words: string;
   title: string;
@@ -43,8 +43,8 @@ export type WordStrings = {
   themes: Record<string, string>;
 };
 
-export type LocaleInfo = { code: string; name: string; locale: string; hreflang: string; rtl: boolean; labels: SiteLabels };
-export type SiteLabels = { beta: string; support: string; privacy: string; terms: string };
+type LocaleInfo = { code: string; name: string; locale: string; hreflang: string; rtl: boolean; labels: SiteLabels };
+type SiteLabels = { beta: string; support: string; privacy: string; terms: string };
 
 const PLACEHOLDER = /\{(\w+)\}/g;
 const RTL_LOCALES = new Set(["ar", "fa", "he"]);
@@ -80,7 +80,7 @@ export function validateBundles(bundles: Record<string, unknown>, locales: strin
   return problems;
 }
 
-export function validateSiteBundles(bundles: Record<string, unknown>, locales: string[]): string[] {
+function validateSiteBundles(bundles: Record<string, unknown>, locales: string[]): string[] {
   const problems: string[] = [];
   for (const code of locales) {
     const b = bundles[code] as { name?: string; locale?: string; hreflang?: string; page?: Record<string, string> } | undefined;
@@ -109,7 +109,7 @@ function stripTag(s: string): string {
   return s.replace(/^>|<$/g, "");
 }
 
-export function bareHreflang(tag: string): string {
+function bareHreflang(tag: string): string {
   const [lang, sub] = tag.split("-");
   return sub && sub.length === 4 ? `${lang}-${sub}` : lang;
 }
@@ -157,7 +157,7 @@ export function wordLocalPath(code: string, w: Word): string {
   return localPath(code, wordPath(w));
 }
 
-export function formIn(w: Word, code: string): WordForm | undefined {
+function formIn(w: Word, code: string): WordForm | undefined {
   return w.forms.find((f) => f.lang === code);
 }
 

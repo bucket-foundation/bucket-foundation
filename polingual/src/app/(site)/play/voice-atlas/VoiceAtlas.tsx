@@ -1,7 +1,8 @@
 "use client";
 
+import GameResults from "../GameResults";
+import { local } from "@/lib/storage";
 import { useEffect, useMemo, useState } from "react";
-import land from "world-atlas/land-110m.json";
 import { atlasPoints, ATLAS_HOMES, ATLAS_MAX, ATLAS_ROUNDS, nearestHome, type AtlasGhost, type AtlasRound, type LatLon } from "@academy/voice-atlas";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 import { flagEmoji } from "@/lib/lobby/client";
@@ -14,22 +15,37 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
+import { WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Tag } from "@/ui";
 
-const LAND = landPath(land as unknown as Topology);
+let landCache: string | null = null;
+
+const LAND_HOLD = "M60,70 C90,40 170,40 200,80 C220,110 180,150 140,150 C110,170 70,140 60,110 Z M240,60 C300,30 420,40 470,70 C520,100 500,150 450,160 C420,190 380,230 340,210 C300,190 280,150 250,130 C230,110 220,80 240,60 Z M150,190 C170,180 190,200 185,240 C180,280 160,300 150,280 C140,250 135,210 150,190 Z M470,220 C500,210 530,230 520,250 C505,270 470,265 465,245 Z";
+
+function LandHold() {
+  return <path d={LAND_HOLD} transform="scale(1.3 1.1)" className={styles.vaLand} opacity={0.5} data-testid="land-loading" />;
+}
+
+function useLand(): string {
+  const [d, setD] = useState(landCache ?? "");
+  useEffect(() => {
+    if (landCache) return;
+    let live = true;
+    void import("world-atlas/land-110m.json").then((m) => {
+      landCache = landPath((m.default ?? m) as unknown as Topology);
+      if (live) setD(landCache);
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
+  return d;
+}
 const PASSPORT_KEY = "polingual-web/passport/v1";
 
 type Guess = { round: AtlasRound; pin: LatLon; home: LatLon; km: number; points: number };
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 function stamp(lang: string): string[] {
   try {
@@ -114,12 +130,8 @@ function VoiceAtlasGame() {
     setIndex((i) => i + 1);
   };
 
-  const map = useMemo(
-    () => (
-      <path d={LAND} className={styles.vaLand} />
-    ),
-    [],
-  );
+  const land = useLand();
+  const map = useMemo(() => (land ? <path d={land} className={styles.vaLand} /> : <LandHold />), [land]);
 
   if (error) return <p className={app.error} role="alert">{error}</p>;
   if (!rounds || (!round && !done)) return <p className={app.muted} aria-busy="true">Loading today&apos;s voices</p>;
@@ -132,8 +144,7 @@ function VoiceAtlasGame() {
           <p className={app.label}>Voice Atlas · {date}</p>
           <h2 className={app.title} data-testid="va-total">{`${total.toLocaleString("en")} points`}</h2>
         </section>
-        <WordReveal rootLang={root ?? "en"} title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} />
-        <LearnPanel missed={guesses.filter((g) => g.points < ATLAS_MAX * 0.5).map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning }))} />
+        <GameResults rootLang={root ?? "en"} title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} missed={guesses.filter((g) => g.points < ATLAS_MAX * 0.5).map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning }))} />
         <ul className={styles.vaList}>
           {guesses.map((g, i) => (
             <li key={i} className={styles.player}>

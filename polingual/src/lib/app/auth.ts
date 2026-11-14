@@ -2,7 +2,7 @@ import { createMobileSync, type MobileSync } from "@academy/mobile-sync";
 import { parseSession, type StoredSession, type TokenVault } from "@academy/token-store";
 
 export const SESSION_KEY = "polingual-web/session/v1";
-export const APP_ID = "polingual";
+const APP_ID = "polingual";
 const SESSION_PATH = "/api/academy/session";
 
 export class BrowserVault implements TokenVault {
@@ -48,7 +48,7 @@ export function bearerFetch(inner: typeof fetch, token: () => Promise<string | n
   return wrapped as typeof fetch;
 }
 
-export interface AppAuth {
+interface AppAuth {
   mobile: MobileSync;
   userId(): Promise<string | null>;
 }

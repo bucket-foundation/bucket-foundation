@@ -1,7 +1,7 @@
 import { spyPoints } from "@academy/ispy";
 import type { LobbyPlayer } from "@academy/lobbies";
 
-export interface SpyBot {
+interface SpyBot {
   id: string;
   name: string;
   skill: "easy" | "medium" | "hard";
@@ -23,7 +23,7 @@ export function unit(key: string): number {
   return h / 2 ** 32;
 }
 
-export interface BotTurn {
+interface BotTurn {
   botId: string;
   atMs: number;
   correct: boolean;

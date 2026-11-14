@@ -4,14 +4,14 @@ import { fnv, mixed, SeededRandom } from "./rng";
 export const LETTER_ROUND = 8;
 export const LETTER_SECONDS = 90;
 
-export interface LetterPrompt {
+interface LetterPrompt {
   lang: string;
   ch: string;
   sound: string;
   choices: string[];
 }
 
-export function letterLang(day: string, targets: readonly string[]): string {
+function letterLang(day: string, targets: readonly string[]): string {
   const own = [...targets].sort().filter((l) => alphabetUnit(l));
   const pool = own.length ? own : HERITAGE_LANGS.filter((l) => alphabetUnit(l)).sort();
   return pool[Number(fnv(`letters-lang|${day}`) % BigInt(pool.length))];

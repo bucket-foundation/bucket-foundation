@@ -1,5 +1,8 @@
 "use client";
 
+import GameResults from "../GameResults";
+import Interstitial from "../Interstitial";
+import { local } from "@/lib/storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LANGS } from "@academy/lang-systems";
 import { interstitialDue } from "@/lib/lobby/ads";
@@ -14,20 +17,12 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
 
 const LEVEL_KEY = "polingual-web/babel-level/v1";
 const SETS = LANG_SETS.filter((s) => s.targets.length >= 3).map((s) => ({ ...s, targets: s.targets.slice(0, 3) }));
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 type Phase = "loading" | "play" | "won" | "lost" | "error";
 
@@ -143,14 +138,7 @@ function BabelMatchGame() {
 
   return (
     <div className={app.stack} data-testid="babel">
-      {interstitial ? (
-        <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
-          <div className={styles.interstitialBox}>
-            <Ad placement="interstitial" testId="ad-interstitial" />
-            <Button onClick={() => setInterstitial(false)}>Close</Button>
-          </div>
-        </div>
-      ) : null}
+      <Interstitial open={interstitial} onClose={() => setInterstitial(false)} />
       <section className={app.stackSm}>
         <p className={app.label}>Level {lvl}</p>
         <p className={app.small}>Swap two neighbours. Three words in a line that mean the same thing clear, in any language.</p>
@@ -221,11 +209,10 @@ function BabelMatchGame() {
       ) : null}
       {phase === "won" || phase === "lost" ? (
         <>
-          <WordReveal rootLang={root ?? "en"} title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
+          <GameResults rootLang={root ?? "en"} title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
             const m = byId.get(c.meaning);
             return m ? set.targets.filter((l) => m.forms[l]).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning })) : [];
-          })} />
-          <LearnPanel missed={phase === "lost" ? meanings.filter((m) => !words.some((c) => c.meaning === m.id)).slice(0, 4).flatMap((m) => set.targets.filter((l) => m.forms[l]).slice(0, 1).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning }))) : []} />
+          })} missed={phase === "lost" ? meanings.filter((m) => !words.some((c) => c.meaning === m.id)).slice(0, 4).flatMap((m) => set.targets.filter((l) => m.forms[l]).slice(0, 1).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning }))) : []} />
         </>
       ) : null}
       <h2 className={app.fieldLabel}>Languages</h2>

@@ -56,7 +56,7 @@ export function loadMix(fallback: Mix): Mix {
   }
 }
 
-export function saveMix(mix: Mix): void {
+function saveMix(mix: Mix): void {
   try {
     localStorage.setItem(MIX_KEY, JSON.stringify(mix));
   } catch {

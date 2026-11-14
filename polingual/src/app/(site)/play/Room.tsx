@@ -1,10 +1,16 @@
 "use client";
 
+import Interstitial from "./Interstitial";
+import RoomMissed from "./RoomMissed";
+import { SceneHold, TilesHold } from "./LazyHolds";
+import { RoomChat, RoomHeader } from "./RoomParts";
+import { useNow } from "@/lib/hooks/clock";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { tappedChoice } from "@academy/lobby-tiles";
-import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, ranked, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, ranked, livesLeft, streakOf, LobbyError, lobbyError, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
 import { LANGS } from "@academy/lang-systems";
 import { TileFace } from "@/app/tile";
 import { LangCard } from "./LearnWord";
@@ -18,8 +24,6 @@ import GameWorld, { pieceClass, WorldStage } from "./GameWorld";
 import { CoinArt, PromptCard } from "./Pieces";
 import RoomQr, { useJoinUrl } from "./RoomQr";
 import world from "./world.module.css";
-import { useLearnIndex } from "./useLearn";
-import { learnEntry, learnHref } from "@/lib/lobby/learn-index";
 import { WORLDS, type WorldId } from "@/ui/art/play";
 import { useAdsVisible } from "./AdsContext";
 import { useAccount } from "./Account";
@@ -27,8 +31,6 @@ import { betweenRoundsAd, interstitialDue } from "@/lib/lobby/ads";
 import { readBreaks, writeBreaks, type Breaks } from "@/lib/lobby/breaks";
 import { parseTile } from "@academy/lobby-tiles";
 import { FlagSquare } from "./LearnWord";
-import Tiles from "./Tiles";
-import Scene from "./ispy/Scene";
 import spyStyles from "./ispy/ispy.module.css";
 import { sceneOfChoices } from "@academy/ispy";
 import { play, readMuted, writeMuted } from "@/lib/lobby/sound";
@@ -37,6 +39,9 @@ import styles from "./play.module.css";
 import { Avatar } from "@/ui/avatar";
 import { savedNickname, usePlay } from "./usePlay";
 import { Button, ButtonLink, Pill } from "@/ui";
+
+const Tiles = dynamic(() => import("./Tiles"), { loading: () => <TilesHold /> });
+const Scene = dynamic(() => import("./ispy/Scene"), { loading: () => <SceneHold /> });
 
 const POLL_MS = 1000;
 const TICK_MS = 200;
@@ -54,7 +59,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
   const [lobby, setLobby] = useState<WebLobbyState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [offset, setOffset] = useState(0);
-  const [now, setNow] = useState(() => Date.now());
+  const now = useNow(TICK_MS);
   const [picked, setPicked] = useState<Picked | null>(null);
   const [chat, setChat] = useState("");
   const [copied, setCopied] = useState(false);
@@ -65,7 +70,6 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
   const [kick, setKick] = useState(0);
   const [breaks, setBreaks] = useState<Breaks>({ games: 0, lastInterstitial: null });
   const [interstitial, setInterstitial] = useState(false);
-  const learnIndex = useLearnIndex();
   const worldId: WorldId = !lobby ? "duel" : lobby.game === "spy" ? "ispy" : lobby.game === "daily" || lobby.game === "live" ? "same-word" : lobby.game in WORLDS ? (lobby.game as WorldId) : "duel";
   useEffect(() => {
     if (lobby) onGame(worldId, lobby.code);
@@ -123,10 +127,6 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     return () => window.clearInterval(t);
   }, [api, id, take, kick]);
 
-  useEffect(() => {
-    const t = window.setInterval(() => setNow(Date.now()), TICK_MS);
-    return () => window.clearInterval(t);
-  }, []);
 
   const livePhase = lobby ? phaseAt(lobby, now + offset) : null;
   const roundKey = livePhase?.kind === "round" || livePhase?.kind === "reveal" ? `${lobby?.startedAt}:${livePhase.kind}:${livePhase.index}` : livePhase?.kind ?? "";
@@ -298,45 +298,9 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     </ol>
   );
 
-  const chatBox = (
-    <section className={styles.chat} aria-label="Chat">
-      <ul className={styles.messages} data-testid="messages">
-        {lobby.messages.map((m) => (
-          <li key={m.id}>
-            <b>{m.name}</b>
-            {lobby.players.some((p) => p.userId === m.from && p.bot) ? <span className={styles.tag}> bot</span> : null} {m.body}
-          </li>
-        ))}
-      </ul>
-      <form
-        className={styles.chatForm}
-        onSubmit={(e) => {
-          e.preventDefault();
-          const body = chat.trim();
-          if (!body) return;
-          setChat("");
-          void act(() => api.chat(lobby.id, body));
-        }}
-      >
-        <input value={chat} onChange={(e) => setChat(e.target.value)} maxLength={200} placeholder="Say hi" aria-label="Message" data-testid="chat-input" />
-        <Button type="submit" variant="ghost" size="md">Send</Button>
-      </form>
-    </section>
-  );
+  const chatBox = <RoomChat lobby={lobby} chat={chat} setChat={setChat} onSend={(body) => void act(() => api.chat(lobby.id, body))} />;
 
-  const header = (
-    <section className={`${app.stackSm} ${world.joinCard}`}>
-      <div className={app.stackSm}>
-        <p className={app.label}>{gameName(lobby.game)}</p>
-        <p className={styles.langRow} data-testid="room-langs">
-          {lobby.targets.map((l) => (
-            <LangCard key={l} lang={l} />
-          ))}
-        </p>
-        <p className={styles.code} data-testid="room-code">{lobby.code}</p>
-      </div>
-    </section>
-  );
+  const header = <RoomHeader lobby={lobby} />;
 
   if (phase.kind === "waiting") {
     const readyCount = lobby.players.filter((p) => p.ready).length;
@@ -649,19 +613,11 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     );
   }
 
-  const missed = missedWords(lobby).filter((w) => !w.includes(","));
   const startsIn = lobby.nextStartAt ? Math.max(0, Math.ceil((Date.parse(lobby.nextStartAt) - now - offset) / 1000)) : null;
   const guest = state.identity.kind === "guest";
   return (
     <div className={app.stack} data-testid="results">
-      {interstitial ? (
-        <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
-          <div className={styles.interstitialBox}>
-            <Ad placement="interstitial" testId="ad-interstitial" />
-            <Button onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</Button>
-          </div>
-        </div>
-      ) : null}
+      <Interstitial open={interstitial} onClose={() => setInterstitial(false)} />
       <section className={app.stackSm}>
         <p className={app.label}>Game over</p>
         <h2 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h2>
@@ -689,28 +645,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
           <Button onClick={account.openSignIn} data-testid="save-sign-in">Sign in to save</Button>
         </section>
       ) : null}
-      <section className={styles.upsell} data-testid="learn-upsell">
-        <b>Learn the words you missed</b>
-        {lobby.status !== "done" && !tallyLate(lobby, now + offset) ? (
-          <p className={app.small} aria-busy="true" data-testid="missed-loading">Counting your answers</p>
-        ) : lobby.status !== "done" ? (
-          <p className={app.small} data-testid="missed-late">Your answers are saved. Lessons cover every word in this game.</p>
-        ) : missed.length ? (
-          <ul className={styles.missed}>
-            {missed.map((w) => {
-              const e = lobby.prompts.flatMap((p) => p.reveal ?? []).find((r) => r.correct && r.word === w);
-              return (
-                <li key={w}>
-                  <a href={learnHref(e ? learnEntry(learnIndex, e.lang, e.word, e.meaning) : null)} data-testid="learn-missed">{w}</a>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p className={app.small}>A clean sweep. Lessons take you further.</p>
-        )}
-        <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
-      </section>
+      <RoomMissed lobby={lobby} at={now + offset} />
       {breaks.games >= 2 ? <Ad placement="results" /> : null}
       <div className={app.row}>
         <ButtonLink variant="ghost" size="md" href="/play">Back to lobbies</ButtonLink>

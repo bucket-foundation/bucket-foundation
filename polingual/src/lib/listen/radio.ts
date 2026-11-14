@@ -11,8 +11,8 @@ export interface RadioStation {
   votes: number;
 }
 
-export const RADIO_FALLBACK = ["de1.api.radio-browser.info", "fi1.api.radio-browser.info", "de2.api.radio-browser.info", "nl1.api.radio-browser.info"];
-export const RADIO_MIN_VOTES = 10;
+const RADIO_FALLBACK = ["de1.api.radio-browser.info", "fi1.api.radio-browser.info", "de2.api.radio-browser.info", "nl1.api.radio-browser.info"];
+const RADIO_MIN_VOTES = 10;
 const NAMES: Record<string, string> = { zh: "chinese", grc: "", ang: "", sa: "sanskrit", fa: "persian", el: "greek" };
 
 export function radioName(lang: string): string | null {
@@ -38,7 +38,7 @@ export function filterStations(all: RadioStation[], limit: number): RadioStation
     .slice(0, limit);
 }
 
-export async function radioHosts(f: typeof fetch): Promise<string[]> {
+async function radioHosts(f: typeof fetch): Promise<string[]> {
   try {
     const r = await f("https://all.api.radio-browser.info/json/servers");
     const list = (await r.json()) as { name: string }[];

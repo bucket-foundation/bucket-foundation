@@ -37,7 +37,7 @@ export function subscribeSilent(l: () => void): () => void {
   };
 }
 
-export const SOUND_KINDS: ReadonlySet<string> = new Set(["listen", "type-heard", "spell-heard", "speak"]);
+const SOUND_KINDS: ReadonlySet<string> = new Set(["listen", "type-heard", "spell-heard", "speak"]);
 
 export function needsSound(kind: string | undefined): boolean {
   return !!kind && SOUND_KINDS.has(kind);

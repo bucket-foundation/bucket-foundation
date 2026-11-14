@@ -1,5 +1,6 @@
 "use client";
 
+import GameResults from "../GameResults";
 import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { SPY_ROUND_SECONDS, SPY_SCENES, spyScene, type SpyRound } from "@academy/ispy";
@@ -11,7 +12,6 @@ import app from "../../app/app.module.css";
 import { LANG_SETS, langName } from "../langs";
 import { RevealCard } from "../LearnWord";
 import GameWorld from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
 import LiveBoard from "../LiveBoard";
 import playStyles from "../play.module.css";
 import { ObjectArt } from "@/ui/art/objects";
@@ -158,8 +158,7 @@ function ISpyGame() {
       <div className={app.stack} data-testid="ispy-done">
         <h2 className={app.title}>{rank === 1 ? "You spied them all first" : `You finished #${rank}`}</h2>
         <LiveBoard players={players} live={false} />
-        <WordReveal rootLang={root ?? "en"} title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} />
-        <LearnPanel missed={misses.flatMap((i) => rounds[i]?.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning })) ?? [])} />
+        <GameResults rootLang={root ?? "en"} title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} missed={misses.flatMap((i) => rounds[i]?.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning })) ?? [])} />
         <div>
           <Button onClick={start} data-testid="ispy-again">Play again</Button>{" "}
           <ButtonLink variant="ghost" href="/play">Back to games</ButtonLink>

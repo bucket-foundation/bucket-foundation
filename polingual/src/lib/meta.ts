@@ -27,7 +27,7 @@ export function absoluteUrl(path: string): string {
   return `${SITE}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-export type PageMetaInput = {
+type PageMetaInput = {
   path: string;
   title: string;
   description: string;

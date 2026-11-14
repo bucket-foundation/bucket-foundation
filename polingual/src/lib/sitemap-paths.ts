@@ -8,11 +8,11 @@ export function sitemapPaths(): string[] {
 }
 
 export const SITEMAP_MAX_URLS = 45_000;
-export const SITEMAP_MAX_BYTES = 45_000_000;
+const SITEMAP_MAX_BYTES = 45_000_000;
 const URLSET_OVERHEAD = 200;
 const ENTRY_OVERHEAD = 160;
 
-export function entryBytes(url: string): number {
+function entryBytes(url: string): number {
   return Buffer.byteLength(url, "utf8") + ENTRY_OVERHEAD;
 }
 

@@ -20,13 +20,13 @@ export const pieceFile = (p: Piece) => `polingual-${p.kind}-${p.id}`;
 
 const WEIGHTS: Record<string, string> = { Fredoka: "400;600;700", Nunito: "400;700;800;900", "Space Mono": "400;700" };
 
-export function fontFamilies(svg: string) {
+function fontFamilies(svg: string) {
   const names = new Set<string>();
   for (const m of svg.matchAll(/font-family="([^"]+)"/g)) names.add(m[1].split(",")[0].trim().replace(/^['"]|['"]$/g, ""));
   return [...names];
 }
 
-export function svgText(svg: string) {
+function svgText(svg: string) {
   const out: string[] = [];
   for (const m of svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)) out.push(m[1]);
   return [...new Set(out.join("").replace(/\s/g, ""))].join("") + " ";

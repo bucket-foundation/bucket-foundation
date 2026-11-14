@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import type { WorldId } from "@/ui/art/play";
 import { bookKey } from "@/lib/daily/store";
 import { useDailyBook } from "./daily/useDaily";
@@ -59,7 +60,7 @@ function DailyHub() {
   );
 }
 
-export default function GameHub({ open, ispyReady, offered, onPick }: { open: LobbySummary[] | null; ispyReady: boolean; offered: string[] | null; onPick: (g: GameId) => void }) {
+function GameHub({ open, ispyReady, offered, onPick }: { open: LobbySummary[] | null; ispyReady: boolean; offered: string[] | null; onPick: (g: GameId) => void }) {
   return (
     <>
     <DailyHub />
@@ -98,3 +99,5 @@ export default function GameHub({ open, ispyReady, offered, onPick }: { open: Lo
     </>
   );
 }
+
+export default memo(GameHub);

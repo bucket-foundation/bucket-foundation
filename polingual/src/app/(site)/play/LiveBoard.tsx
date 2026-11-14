@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { botLabel, flagEmoji, ranked, type WebLobbyState } from "@/lib/lobby/client";
 import styles from "./play.module.css";
 import { Avatar } from "@/ui/avatar";
@@ -7,7 +8,7 @@ import { Card } from "@/ui";
 
 const ROW = 40;
 
-export default function LiveBoard({ players, live }: { players: WebLobbyState["players"]; live: boolean }) {
+function LiveBoard({ players, live }: { players: WebLobbyState["players"]; live: boolean }) {
   const rows = ranked(players);
   const order = [...rows].sort((a, b) => a.userId.localeCompare(b.userId));
   const at = new Map(rows.map((p, i) => [p.userId, i]));
@@ -30,3 +31,5 @@ export default function LiveBoard({ players, live }: { players: WebLobbyState["p
     </ol>
   );
 }
+
+export default memo(LiveBoard);

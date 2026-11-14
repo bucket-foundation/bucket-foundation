@@ -1,4 +1,4 @@
-export type RewardOutcome = "viewed" | "dismissed" | "unavailable";
+type RewardOutcome = "viewed" | "dismissed" | "unavailable";
 
 type BreakConfig = {
   type: "reward";

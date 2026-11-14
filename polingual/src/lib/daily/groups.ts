@@ -1,20 +1,20 @@
 import { fnv, mixed, SeededRandom } from "./rng";
 import { wordId, type GameWord } from "./words";
 
-export const GROUP_COUNT = 4;
-export const GROUP_SIZE = 4;
+const GROUP_COUNT = 4;
+const GROUP_SIZE = 4;
 export const GROUP_MISTAKES = 4;
 const LONGEST_FORM = 14;
-export const GROUP_THEMES = ["adjective", "animal", "body", "color", "family", "food", "nature", "number", "object", "time", "verb"];
+const GROUP_THEMES = ["adjective", "animal", "body", "color", "family", "food", "nature", "number", "object", "time", "verb"];
 
 export type GroupLink = { kind: "language"; lang: string } | { kind: "theme"; theme: string } | { kind: "languageTheme"; lang: string; theme: string };
 
-export interface WordGroup {
+interface WordGroup {
   link: GroupLink;
   words: GameWord[];
 }
 
-export interface GroupsPuzzle {
+interface GroupsPuzzle {
   groups: WordGroup[];
   tiles: GameWord[];
 }
@@ -24,7 +24,7 @@ export const groupId = (g: WordGroup) => g.words.map(wordId).sort().join(",");
 const linkKey = (l: GroupLink) => (l.kind === "language" ? `l:${l.lang}` : l.kind === "theme" ? `t:${l.theme}` : `c:${l.lang}:${l.theme}`);
 const cmp = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
-export function boardKey(day: string, root: string, targets: readonly string[]): string {
+function boardKey(day: string, root: string, targets: readonly string[]): string {
   return `${day}|${root}|${[...new Set(targets)].sort().join(",")}`;
 }
 
@@ -85,9 +85,9 @@ function pick(words: readonly GameWord[], partition: Partition, theme: (w: GameW
   return groups.length === GROUP_COUNT ? groups : null;
 }
 
-export type GroupsOutcome = "solved" | "oneAway" | "miss" | "repeated" | "ignored";
+type GroupsOutcome = "solved" | "oneAway" | "miss" | "repeated" | "ignored";
 
-export interface GroupsState {
+interface GroupsState {
   selected: string[];
   solved: string[];
   pattern: string;

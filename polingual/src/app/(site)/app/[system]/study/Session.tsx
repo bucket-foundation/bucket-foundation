@@ -9,22 +9,16 @@ import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
 import WordCard, { QuizCard } from "./WordCard";
 import styles from "../../app.module.css";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import { deferredCards, subscribeDeferred } from "@academy/lang-deferred";
 import { langName } from "@academy/lang-systems";
-import { isSilent, subscribeSilent } from "@/lib/silent";
 import { Button, ButtonLink, Card, Meter, SilentSwitch, Stage } from "@/ui";
 
 export default function Session({ systemId }: { systemId: string }) {
   const h = useLangSystem(systemId);
   const s = useLangSession(h);
   const { system, corpus, state } = h;
-  const [silent, setSilentState] = useState(false);
   const deferred = useSyncExternalStore(subscribeDeferred, deferredCards, deferredCards);
-  useEffect(() => {
-    setSilentState(isSilent());
-    return subscribeSilent(() => setSilentState(isSilent()));
-  }, []);
 
   if (h.status === "loading" || (h.status === "ready" && s.queue === null))
     return (

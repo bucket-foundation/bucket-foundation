@@ -10,7 +10,7 @@ export function accountOf(e: Entitlement | "checking"): Account {
   return "free";
 }
 
-export interface Cta {
+interface Cta {
   id: "sign-in" | "start" | "continue";
   label: string;
   href: string;
@@ -35,7 +35,7 @@ export function resultsAd(phase: Phase, first: boolean, account: Account): boole
   return phase === "done" && !first && (account === "signed-out" || account === "free");
 }
 
-export type ArchiveOffer = { pro: true } | { pro: false; rewarded: boolean };
+type ArchiveOffer = { pro: true } | { pro: false; rewarded: boolean };
 
 export function archiveOffer(account: Account, mode: AdMode, rewardReady: boolean): ArchiveOffer {
   if (account === "paid") return { pro: true };

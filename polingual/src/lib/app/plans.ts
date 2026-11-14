@@ -16,7 +16,6 @@ export const PLANS: Plan[] = [
 ];
 
 export const TESTFLIGHT_URL = "https://testflight.apple.com/join/B1ctUxn5";
-export const MANAGE_URL = "https://apps.apple.com/account/subscriptions";
 export const APP_STORE_URL = "https://apps.apple.com/app/id6825177856";
 
 export interface Access {

@@ -3,8 +3,7 @@
 import { useEffect, type ReactNode } from "react";
 import { bcp47, cancelSpeech, say } from "@/lib/speak";
 import { langDir, langName, type Exercise, type Reading } from "@/lib/academy/lang-systems";
-import { Button, FlagTile, Sticker } from "@/ui";
-import { flagTileStyles } from "@/ui/FlagTile";
+import { Button, FlagTile, Sticker, TileButton } from "@/ui";
 import styles from "../../app.module.css";
 
 const HIDDEN = new Set(["listen", "type-heard", "spell-heard"]);
@@ -29,7 +28,7 @@ function HeroTile({ word, lang, reading, plain }: { word: string; lang: string; 
         reading={reading}
         plain={plain}
         rtl={langDir(lang) === "rtl"}
-        play={<button type="button" className={flagTileStyles.play} aria-label={`Play ${plain ? "the word" : word}`} onClick={() => say(word, bcp47(lang))} />}
+        play={<TileButton label={`Play ${plain ? "the word" : word}`} onClick={() => say(word, bcp47(lang))} />}
       />
     </div>
   );

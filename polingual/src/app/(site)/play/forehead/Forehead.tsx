@@ -1,35 +1,26 @@
 "use client";
 
+import GameResults from "../GameResults";
+import { local } from "@/lib/storage";
 import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FOREHEAD_SECONDS, type ForeheadCard } from "@academy/forehead";
 import { LANGS } from "@academy/lang-systems";
-import { TileFace } from "@/app/tile";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 
 import { play, readMuted } from "@/lib/lobby/sound";
 import { classifyTilt, settled } from "@/lib/lobby/tilt";
-import { bcp47 } from "@/lib/speak";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { LANG_CHOICES, LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStickers } from "../GameWorld";
-import { LearnPanel, WordReveal } from "../Reveal";
-import { PlayTile } from "../../word/Speak";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
 
 type Phase = "setup" | "count" | "play" | "done";
 type Result = { card: ForeheadCard; got: boolean };
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 type MotionPermission = { requestPermission?: () => Promise<string> };
 
@@ -220,8 +211,7 @@ function ForeheadGame() {
         <h2 className={app.title} data-testid="fh-final">{got} guessed</h2>
         <p className={app.small}>{results.length - got} passed. Tap a card to hear it.</p>
       </section>
-      <WordReveal rootLang={root ?? "en"} title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} />
-      <LearnPanel missed={results.filter((r) => !r.got).map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning }))} />
+      <GameResults rootLang={root ?? "en"} title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} missed={results.filter((r) => !r.got).map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning }))} />
       <div className={app.row}>
         <Button onClick={() => void start()} data-testid="fh-again">Play again</Button>
         <Button variant="quiet" size="sm" onClick={() => setPhase("setup")}>Change languages</Button>
