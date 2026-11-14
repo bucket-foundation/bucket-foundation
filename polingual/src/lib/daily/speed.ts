@@ -1,5 +1,5 @@
-import { mixed, SeededRandom } from "./rng";
-import { wordId, type GameWord } from "./words";
+import { fnv, mixed, SeededRandom } from "./rng";
+import { balanced, wordId, type GameDeck, type GameWord } from "./words";
 
 export const SPEED_SECONDS = 60;
 export const SPEED_MISS_PENALTY = 2;
@@ -112,4 +112,9 @@ export class Speed {
     this.refill();
     return { kind: "matched", word };
   }
+}
+
+export function speedDeck(deck: GameDeck, day: string, targets: readonly string[]): GameWord[] {
+  const rng = new SeededRandom(fnv(`speed|${day}|${deck.root}|${[...targets].sort().join(",")}`));
+  return balanced(targets.flatMap((l) => mixed(deck.pool(l).slice(0, 200), rng).slice(0, 12).map((e) => deck.word(e.itemId, l)!)));
 }

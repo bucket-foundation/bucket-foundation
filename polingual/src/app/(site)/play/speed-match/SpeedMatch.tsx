@@ -1,11 +1,11 @@
 "use client";
 
+import { speedDeck } from "@/lib/daily/speed";
 import { secondsLeft, useDeadline } from "@/lib/hooks/clock";
 import { useMemo, useRef, useState } from "react";
 import { fnv } from "@/lib/daily/rng";
 import { Speed, SPEED_MISS_PENALTY, SPEED_SECONDS } from "@/lib/daily/speed";
-import { balanced, GameDeck, wordId, type GameWord } from "@/lib/daily/words";
-import { mixed, SeededRandom } from "@/lib/daily/rng";
+import { GameDeck, wordId } from "@/lib/daily/words";
 import { Button } from "@/ui";
 import { dayLabel, DailyWorld, Heading, Intro, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
@@ -14,10 +14,6 @@ import styles from "../daily/daily.module.css";
 const SPEED_PAIRS = 15;
 
 
-function speedDeck(deck: GameDeck, day: string, targets: readonly string[]): GameWord[] {
-  const rng = new SeededRandom(fnv(`speed|${day}|${deck.root}|${[...targets].sort().join(",")}`));
-  return balanced(targets.flatMap((l) => mixed(deck.pool(l).slice(0, 200), rng).slice(0, 12).map((e) => deck.word(e.itemId, l)!)));
-}
 
 export default function SpeedMatch() {
   const { state, finish, retry } = useDaily("speed-match");

@@ -1,12 +1,12 @@
 "use client";
 
+import { newArena, seedRand } from "@/lib/lobby/snake-arena";
 import { draw, viewOf } from "./draw";
 import GameResults from "../GameResults";
 import Interstitial from "../Interstitial";
 import { local } from "@/lib/storage";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SnakeDeck } from "@academy/word-snake";
-import { BOTS } from "@academy/lobby-bots";
 import { interstitialDue } from "@/lib/lobby/ads";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 
@@ -20,31 +20,12 @@ import { LANG_CHOICES, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { WorldStage } from "../GameWorld";
 import styles from "../play.module.css";
-import { Button, ButtonLink, Pill, tokens } from "@/ui";
+import { Button, ButtonLink, Pill } from "@/ui";
 
 const ROUND_MS = 120_000;
-const COLORS = [tokens.color.lapis, tokens.color.ochre, tokens.color.maya, tokens.color.malachite, tokens.color.vermilion];
-const SKILL: Record<string, number> = { easy: 0.55, medium: 0.8, hard: 0.95 };
 
 type Phase = "setup" | "play" | "dead" | "over";
 
-
-function seedRand(seed: number): () => number {
-  let x = seed >>> 0 || 1;
-  return () => {
-    x ^= x << 13;
-    x >>>= 0;
-    x ^= x >>> 17;
-    x ^= x << 5;
-    x >>>= 0;
-    return x / 2 ** 32;
-  };
-}
-
-function newArena(rand: () => number): Arena {
-  const bots = BOTS.slice(0, 4).map((b, i) => makeSnake(b.userId, b.name, true, SKILL[b.skill] ?? 0.8, { x: 200 + rand() * 1200, y: 150 + rand() * 700 }, rand() * 6.28, COLORS[i + 1]));
-  return { snakes: [makeSnake("me", "You", false, 1, { x: WORLD_W / 2, y: WORLD_H / 2 }, 0, tokens.color.card), ...bots], words: [], nextWord: 0, eaten: [], bad: [] };
-}
 
 function WordSnakeGame() {
   const [lang, setLang] = useState("es");
