@@ -21,3 +21,7 @@ object StudyCopy {
         Verdict.Wrong -> "It was $answer"
     }
 }
+
+object StudyHeritage {
+    fun of(targets: List<String>, heritage: List<String>): Set<String> = targets.filter { it in heritage }.toSet()
+}
