@@ -81,19 +81,12 @@ data class GameContext(val system: LangSystem, val app: AppState, val corpus: La
 fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composable (GameContext) -> Unit) {
     var ctx by remember { mutableStateOf<GameContext?>(null) }
     LaunchedEffect(Unit) {
-        graph.ads.enteredGame()
         val app = graph.store.current()
         val system = app.system ?: return@LaunchedEffect
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    Page(
-        kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
-        stickers = listOf(Sticker(kind.art, Alignment.CenterStart, 70.dp, kind.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("kente", Alignment.BottomEnd, 76.dp, -5f, dx = (-8).dp)),
-    ) {
-        GameBanner(kind)
-        val silentTop by graph.silent.collectAsState()
-        if (!SoundRules.needsSoundCard(silentTop, kind in SoundRules.soundOnlyGames)) SilentSwitch(graph, compact = true)
+    GameScaffold(graph, kind.title, kind.art, kind.tilt, "kente", kind in SoundRules.soundOnlyGames, back, banner = { GameBanner(kind) }) {
         val c = ctx
         if (c != null) {
             Text("${kind.title.uppercase()} · ${c.system.targets.joinToString(" ") { Lang.name(it) }.uppercase()} · ${dayKey()}", style = Type.caps, color = PL.Vermilion)
@@ -136,15 +129,7 @@ fun GameScreen(graph: Graph, kind: GameKind, back: () -> Unit) {
 }
 
 @Composable
-fun Finished(title: String, line: String, results: List<Boolean>, total: Int, again: (() -> Unit)?) {
-    val p = LocalPalette.current
-    Text(title, style = Type.display, color = p.ink)
-    ResultDots(results, total)
-    Text(line, color = p.muted)
-    if (again != null) PrimaryButton("Play again", color = PL.Malachite, onClick = again)
-    val learn = LocalStartLearning.current
-    PLButton("Start learning", variant = ButtonVariant.Secondary, onClick = learn)
-}
+fun Finished(title: String, line: String, results: List<Boolean>, total: Int, again: (() -> Unit)?) = ResultBlock(title, line, results to total, again)
 
 @Composable
 fun DoneToday(kind: GameKind, r: DailyResult) {
