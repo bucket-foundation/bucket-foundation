@@ -126,6 +126,11 @@ struct StudyView: View {
             }
             audioOffers += 1
         }
+        if current != nil {
+            let streak = langStreak(store)
+            Beta.shared.wordSeen(entry.lang, entry.itemId, stage: entry.stage.rawValue, streak: streak)
+            if !chorus.isEmpty { Beta.shared.wordsHeard(chorus.map(\.lang), entry.itemId, stage: entry.stage.rawValue, streak: streak) }
+        }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
         cardStart = .now
     }
@@ -143,7 +148,8 @@ struct StudyView: View {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
         }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
-        for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }
+        let streak = langStreak(store)
+        for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "", streak: streak) }
         if !results.isEmpty {
             reminders.noteStudy()
             if gate.guest && !store.guestMayStudy(systemId) { gate.require(apply) } else { apply() }
