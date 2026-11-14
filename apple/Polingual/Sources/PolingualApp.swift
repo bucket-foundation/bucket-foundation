@@ -104,7 +104,7 @@ struct PolingualApp: App {
                     WatchBridge.shared.start(store)
                     #endif
                 }
-                .tint(Palette.green)
+                .tint(PL.tyrian)
         }
         #if os(macOS)
         .defaultSize(width: 1180, height: 820)
