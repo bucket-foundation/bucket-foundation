@@ -83,10 +83,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
             val now = withFrameNanos { it }
             val dt = minOf(0.05, (now - last) / 1e9)
             last = now
-            a = a.copy(snakes = a.snakes.map { s -> if (!s.alive) s else Snakes.advance(s, if (s.bot) Snakes.botTarget(s, a.words, rand) else aim ?: s.angle, dt) })
-            a = Snakes.eat(a, d, rand)
-            val c = Snakes.collide(a)
-            a = c.arena.copy(snakes = c.arena.snakes.map { s -> if (s.bot && !s.alive) Snakes.make(s.id, s.name, true, s.skill, Pt(100 + rand() * 1400, 100 + rand() * 800), rand() * 6.28, s.color) else s })
+            a = Snakes.tick(a, aim, d, rand, dt)
             arena = a
             left = maxOf(0, ((end - System.currentTimeMillis() + 999) / 1000).toInt())
             val me = a.snakes.first { it.id == "me" }
@@ -96,14 +93,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
     }
     GameFrame(graph, WebGame.Snake, back) {
         when (phase) {
-            SnakePhase.Setup -> {
-                Text("ARENA", style = Type.caps, color = PL.InkDim)
-                Text("Steer with your finger. Eat words in your language to grow. Words in other languages shrink you. Touch a bigger snake and you are out.", style = Type.body, color = PL.Ink)
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Snakes.LANG_CHOICES.take(10).forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang, small = true) { lang = l } }
-                }
-                PrimaryButton("Play") { dealSeed = DealSeeds.fresh(); round += 1 }
-            }
+            SnakePhase.Setup -> SnakeSetup(lang, { lang = it }) { dealSeed = DealSeeds.fresh(); round += 1 }
             SnakePhase.Play -> {
                 val a = arena ?: run { EmptyState("brush", "Building the arena."); return@GameFrame }
                 val me = a.snakes.first { it.id == "me" }
@@ -118,18 +108,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                 val a = arena
                 val me = a?.snakes?.firstOrNull { it.id == "me" }
                 Results(graph, "Length ${me?.length ?: 0}", if (phase == SnakePhase.Dead) "Swallowed by a bigger snake." else "Time is up.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
-                    val eaten = a?.eaten.orEmpty().distinctBy { "${it.lang}:${it.form}" }
-                    SectionTitle("Words you ate")
-                    if (eaten.isEmpty()) Text("None this round.", style = Type.small, color = PL.InkDim)
-                    eaten.firstOrNull()?.let { fw ->
-                        if (RevealRules.snake(me?.alive ?: false, left)) PlayReveal(graph, fw.lang, fw.form, fw.meaning, PlayDecks.ROOT)
-                    }
-                    eaten.drop(1).forEach { fw -> WordLine(fw.lang, fw.form, fw.meaning) }
-                    val bad = a?.bad.orEmpty().distinctBy { "${it.lang}:${it.form}" }
-                    if (bad.isNotEmpty()) {
-                        SectionTitle("Decoys")
-                        bad.forEach { fw -> WordLine(fw.lang, fw.form, "${Lang.name(fw.lang)} · ${fw.meaning}") }
-                    }
+                    SnakeWords(graph, a, me, left)
                 }
                 foundation.bucket.core.ui.pl.PlainLink("Change language") { phase = SnakePhase.Setup }
             }
@@ -173,6 +152,38 @@ private fun SnakeArena(a: Arena, me: Snake, current: () -> Arena?, onAim: (Doubl
                         }
                     },
                 ) {
+                    drawArena(a, me, measurer, chips)
+                } }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun SnakeSetup(lang: String, onLang: (String) -> Unit, onPlay: () -> Unit) {
+    Text("ARENA", style = Type.caps, color = PL.InkDim)
+    Text("Steer with your finger. Eat words in your language to grow. Words in other languages shrink you. Touch a bigger snake and you are out.", style = Type.body, color = PL.Ink)
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Snakes.LANG_CHOICES.take(10).forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang, small = true) { onLang(l) } }
+    }
+    PrimaryButton("Play", onClick = onPlay)
+}
+
+@Composable
+private fun SnakeWords(graph: Graph, a: Arena?, me: Snake?, left: Int) {
+    val eaten = a?.eaten.orEmpty().distinctBy { "${it.lang}:${it.form}" }
+    SectionTitle("Words you ate")
+    if (eaten.isEmpty()) Text("None this round.", style = Type.small, color = PL.InkDim)
+    eaten.firstOrNull()?.let { fw ->
+        if (RevealRules.snake(me?.alive ?: false, left)) PlayReveal(graph, fw.lang, fw.form, fw.meaning, PlayDecks.ROOT)
+    }
+    eaten.drop(1).forEach { fw -> WordLine(fw.lang, fw.form, fw.meaning) }
+    val bad = a?.bad.orEmpty().distinctBy { "${it.lang}:${it.form}" }
+    if (bad.isNotEmpty()) {
+        SectionTitle("Decoys")
+        bad.forEach { fw -> WordLine(fw.lang, fw.form, "${Lang.name(fw.lang)} · ${fw.meaning}") }
+    }
+}
+
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawArena(a: Arena, me: Snake, measurer: androidx.compose.ui.text.TextMeasurer, chips: HashMap<String, androidx.compose.ui.text.TextLayoutResult>) {
                     val w = minOf(Snakes.WORLD_W, size.width / density * 1.2)
                     val h = minOf(Snakes.WORLD_H, size.height / density * 1.2)
                     val vx = (me.body[0].x - w / 2).coerceIn(0.0, Snakes.WORLD_W - w)
@@ -214,5 +225,4 @@ private fun SnakeArena(a: Arena, me: Snake, current: () -> Arena?, onAim: (Doubl
                         val label = measurer.measure("${s.name} ${s.length}", TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = PL.Paper), softWrap = false, maxLines = 1)
                         drawText(label, topLeft = Offset(FitRules.clampCenter(sx(s.body[0].x), label.size.width.toFloat(), size.width) - label.size.width / 2f, sy(s.body[0].y) - 18 * k - label.size.height))
                     }
-                } }
 }
