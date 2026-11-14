@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
-import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, reasonFor, resetPlayer, say, snapshot, START_MS, stationAudio, stop, CUT_GAP_MS, cancelSpeech, estimateMs, FINISH_MS, type SpeakItem } from "./speak";
+import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, reasonFor, resetPlayer, say, snapshot, START_MS, stationAudio, stop, CUT_GAP_MS, cancelSpeech, estimateMs, FINISH_MS, SETTLE_MS, type SpeakItem } from "./speak";
 import { LANGS, WORDS, word } from "./words";
 import { graphemes, longestToken } from "./tile-fit";
 import { WordView } from "../app/(site)/word/views";
@@ -332,4 +332,18 @@ test("turning silent mode on cuts the word that is speaking", async () => {
   assert.equal(cancels, before + 1);
   assert.equal(snapshot().id, null);
   setSilent(false);
+});
+
+test("a queued word never waits more than the settle time on a stuck one", async () => {
+  installFakes();
+  resetPlayer();
+  void play({ id: "a", text: "sí", lang: "es-ES" });
+  await tick();
+  (spoken[spoken.length - 1] as { onstart?: () => void }).onstart?.();
+  void play({ id: "b", text: "luego", lang: "es-ES" });
+  await tick();
+  assert.notEqual(spoken[spoken.length - 1].text, "luego");
+  await new Promise((r) => setTimeout(r, SETTLE_MS + CUT_GAP_MS + 80));
+  assert.equal(spoken[spoken.length - 1].text, "luego");
+  stop();
 });

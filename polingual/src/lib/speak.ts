@@ -219,6 +219,7 @@ function playOne(item: SpeakItem, onStart: () => void = () => undefined): Promis
 
 export const FINISH_MS = 1500;
 export const CUT_GAP_MS = 60;
+export const SETTLE_MS = 4000;
 
 type Speaking = { t: number; startedAt: number | null; est: number };
 let speaking: Speaking | null = null;
@@ -251,6 +252,16 @@ export function play(item: SpeakItem): Promise<void> {
     drop();
     return new Promise<void>((resolve) => {
       pending = { item, resolve };
+      const waiting = pending;
+      setTimeout(() => {
+        if (pending !== waiting) return;
+        pending = null;
+        token++;
+        speaking = null;
+        synth()?.cancel();
+        release();
+        void start(waiting.item, CUT_GAP_MS).then(resolve);
+      }, SETTLE_MS);
     });
   }
   drop();

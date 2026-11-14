@@ -1,5 +1,8 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { deckRoot } from "@/lib/academy/deck-root";
+import { canonicalDeckUrl, deckRoot, hasExtraParams } from "@/lib/academy/deck-root";
+import { NextResponse as Res } from "next/server";
+
+const KEYS = ["langs", "seed", "root"];
 import { json, langCorpus, preflight } from "@/lib/academy/groups-server";
 import { foreheadLangs, foreheadSeed } from "@/lib/academy/forehead";
 import { snakeDeck } from "@/lib/academy/word-snake";
@@ -12,7 +15,9 @@ export function OPTIONS(): NextResponse {
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  const params = new URL(req.url).searchParams;
+  const url = new URL(req.url);
+  if (hasExtraParams(url, KEYS)) return Res.redirect(canonicalDeckUrl(url, KEYS), 308);
+  const params = url.searchParams;
   const langs = foreheadLangs(params.get("langs"));
   const seed = foreheadSeed(params.get("seed"));
   if (!langs || langs.length < 2 || !seed) return json({ error: "bad_request" }, 400);
