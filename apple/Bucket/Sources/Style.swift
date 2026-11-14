@@ -6,7 +6,11 @@ enum Palette {
     static let card = Color(light: 0xF7F2E4, dark: 0x2A2620)
     static let ink = Color(light: 0x23201A, dark: 0xECE5D3)
     static let muted = Color(light: 0x6B6455, dark: 0xA79F8C)
+    #if BUCKET
     static let green = Color(light: 0x3B5E2B, dark: 0x8DB87A)
+    #else
+    static let green = PL.tyrian
+    #endif
     static let gold = Color(light: 0xB08A2E, dark: 0xD9B45A)
     static let rule = Color(light: 0xD8CFB6, dark: 0x3A352C)
 }
