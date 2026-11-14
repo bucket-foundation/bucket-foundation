@@ -119,7 +119,7 @@ struct Studio: View {
                 TodayView(opening: { await place($0) })
             }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed) }
+            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) }
         }
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()
