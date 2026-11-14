@@ -64,7 +64,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
     var phase by remember { mutableStateOf<SpyPhase>(SpyPhase.Setup) }
     var me by remember { mutableStateOf(Tally()) }
     var bots by remember { mutableStateOf<Map<String, Tally>>(emptyMap()) }
-    var seed by remember { mutableStateOf("1") }
+    var seed by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("1") }
     var now by remember { mutableLongStateOf(0L) }
     var loading by remember { mutableStateOf(false) }
     fun settle(index: Int) {
@@ -73,7 +73,6 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
     }
     LaunchedEffect(loading) {
         if (!loading) return@LaunchedEffect
-        seed = System.currentTimeMillis().toString()
         val items = graph.corpus.load().items
         rounds = com.polingual.app.offMain { ISpy.rounds(items, seed, "en", set.targets, ISpy.ROUNDS) }
         me = Tally(); bots = emptyMap(); loading = false
@@ -96,7 +95,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     ISpy.SETS.forEach { s -> PLPill(s.label, active = s == set, small = true) { set = s } }
                 }
-                PrimaryButton(if (loading) "Setting the scene" else "Play solo", enabled = !loading) { loading = true }
+                PrimaryButton(if (loading) "Setting the scene" else "Play solo", enabled = !loading) { seed = DealSeeds.fresh(); loading = true }
             }
             is SpyPhase.Round, is SpyPhase.Reveal -> {
                 val index = if (p is SpyPhase.Round) p.index else (p as SpyPhase.Reveal).index
@@ -122,7 +121,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
             }
             SpyPhase.Done -> {
                 val rank = (bots.values.map { it.score } + me.score).sortedDescending().indexOf(me.score) + 1
-                Results(graph, if (rank == 1) "You spied them all first" else "You finished #$rank", "${me.score} points across ${rounds.size} rounds.", again = { loading = true }) {
+                Results(graph, if (rank == 1) "You spied them all first" else "You finished #$rank", "${me.score} points across ${rounds.size} rounds.", again = { seed = DealSeeds.fresh(); loading = true }) {
                     Board(me, bots)
                 }
             }

@@ -62,7 +62,8 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
     var arena by remember { mutableStateOf<Arena?>(null) }
     var aim by remember { mutableStateOf<Double?>(null) }
     var left by remember { mutableIntStateOf((Snakes.ROUND_MS / 1000).toInt()) }
-    var round by remember { mutableIntStateOf(0) }
+    var round by androidx.compose.runtime.saveable.rememberSaveable { mutableIntStateOf(0) }
+    var dealSeed by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("") }
     val measurer = rememberTextMeasurer()
     val chips = remember { HashMap<String, androidx.compose.ui.text.TextLayoutResult>() }
     val scope = rememberCoroutineScope()
@@ -70,7 +71,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
         if (round == 0) return@LaunchedEffect
         val others = Snakes.LANG_CHOICES.filter { it != lang }.take(5)
         val items = graph.corpus.load().items
-        val d = com.polingual.app.offMain { Snakes.deck(items, lang, others, (1 + (Math.random() * 1e12).toLong()).toString()) }
+        val d = com.polingual.app.offMain { Snakes.deck(items, lang, others, dealSeed.ifEmpty { DealSeeds.fresh() }) }
         val rng = XorRng(System.currentTimeMillis().toInt())
         val rand = rng::next
         val bots = Bots.all.take(4).mapIndexed { i, b -> Snakes.make(b.userId, b.name, true, Snakes.SKILL[b.skill] ?: 0.8, Pt(200 + rand() * 1200, 150 + rand() * 700), rand() * 6.28, i + 1) }
@@ -101,7 +102,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Snakes.LANG_CHOICES.take(10).forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang, small = true) { lang = l } }
                 }
-                PrimaryButton("Play") { round += 1 }
+                PrimaryButton("Play") { dealSeed = DealSeeds.fresh(); round += 1 }
             }
             SnakePhase.Play -> {
                 val a = arena ?: run { EmptyState("brush", "Building the arena."); return@GameFrame }
@@ -116,7 +117,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
             SnakePhase.Dead, SnakePhase.Over -> {
                 val a = arena
                 val me = a?.snakes?.firstOrNull { it.id == "me" }
-                Results(graph, "Length ${me?.length ?: 0}", if (phase == SnakePhase.Dead) "Swallowed by a bigger snake." else "Time is up.", again = { round += 1 }) {
+                Results(graph, "Length ${me?.length ?: 0}", if (phase == SnakePhase.Dead) "Swallowed by a bigger snake." else "Time is up.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
                     val eaten = a?.eaten.orEmpty().distinctBy { "${it.lang}:${it.form}" }
                     SectionTitle("Words you ate")
                     if (eaten.isEmpty()) Text("None this round.", style = Type.small, color = PL.InkDim)

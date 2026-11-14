@@ -39,3 +39,7 @@ fun PlayReveal(graph: Graph, lang: String, form: String, meaning: String, rootLa
     if (word != null) RevealWord(graph, word, lang, rootLang)
     else WordReveal(lang, form, meaning, itemId, null, rootLang = rootLang) { graph.voice.speak(form, lang) }
 }
+
+object DealSeeds {
+    fun fresh(random: () -> Double = Math::random): String = (1 + (random() * 1e12).toLong()).toString()
+}

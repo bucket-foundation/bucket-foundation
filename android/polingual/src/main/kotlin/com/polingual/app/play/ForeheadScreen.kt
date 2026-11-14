@@ -57,7 +57,8 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
     var results by remember { mutableStateOf<List<FhResult>>(emptyList()) }
     var left by remember { mutableIntStateOf(ForeheadDeck.SECONDS) }
     var count by remember { mutableIntStateOf(3) }
-    var round by remember { mutableIntStateOf(0) }
+    var round by androidx.compose.runtime.saveable.rememberSaveable { mutableIntStateOf(0) }
+    var dealSeed by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("") }
     fun mark(got: Boolean) {
         val c = cards.getOrNull(index) ?: return
         if (phase != FhPhase.Play) return
@@ -68,7 +69,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
     LaunchedEffect(round) {
         if (round == 0) return@LaunchedEffect
         val items = graph.corpus.load().items
-        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, langs, (1 + (Math.random() * 1e12).toLong()).toString()) }
+        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, langs, dealSeed.ifEmpty { DealSeeds.fresh() }) }
         index = 0; results = emptyList(); left = ForeheadDeck.SECONDS; count = 3; phase = FhPhase.Count
         while (count > 0) { delay(1000); count -= 1 }
         phase = FhPhase.Play
@@ -100,7 +101,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Snakes.LANG_CHOICES.forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l in langs, small = true) { langs = if (l in langs) langs - l else if (langs.size >= 6) langs else langs + l } }
                 }
-                PrimaryButton("Start round", enabled = langs.isNotEmpty()) { round += 1 }
+                PrimaryButton("Start round", enabled = langs.isNotEmpty()) { dealSeed = DealSeeds.fresh(); round += 1 }
             }
             FhPhase.Count -> Box(Modifier.fillMaxWidth().height(320.dp), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -115,7 +116,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
             }
             FhPhase.Done -> {
                 val got = results.count { it.got }
-                Results(graph, "$got guessed", "${results.size - got} passed. Tap a card to hear it.", again = { round += 1 }) {
+                Results(graph, "$got guessed", "${results.size - got} passed. Tap a card to hear it.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
                     if (RevealRules.forehead(cards.size - index, left)) { results.firstOrNull()?.let { r -> com.polingual.app.WordReveal(r.card.lang, r.card.form, r.card.meaning, r.card.itemId, null, ipa = r.card.reading?.ipa ?: r.card.reading?.roman, rootLang = PlayDecks.ROOT) { graph.voice.speak(r.card.form, r.card.lang) } } }
                     SectionTitle("Every card")
                     results.forEach { r -> WordLine(r.card.lang, r.card.form, (if (r.got) "✓ " else "") + r.card.meaning) }
