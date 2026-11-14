@@ -1,5 +1,6 @@
 "use client";
 
+import Interstitial from "./Interstitial";
 import { useNow } from "@/lib/hooks/clock";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -651,14 +652,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
   const guest = state.identity.kind === "guest";
   return (
     <div className={app.stack} data-testid="results">
-      {interstitial ? (
-        <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
-          <div className={styles.interstitialBox}>
-            <Ad placement="interstitial" testId="ad-interstitial" />
-            <Button onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</Button>
-          </div>
-        </div>
-      ) : null}
+      <Interstitial open={interstitial} onClose={() => setInterstitial(false)} />
       <section className={app.stackSm}>
         <p className={app.label}>Game over</p>
         <h2 className={app.title}>{board[0]?.isMe ? "🏆 You won" : `${board[0]?.name ?? "Nobody"} wins`}</h2>

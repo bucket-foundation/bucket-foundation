@@ -1,5 +1,6 @@
 "use client";
 
+import Interstitial from "../Interstitial";
 import { local } from "@/lib/storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LANGS } from "@academy/lang-systems";
@@ -137,14 +138,7 @@ function BabelMatchGame() {
 
   return (
     <div className={app.stack} data-testid="babel">
-      {interstitial ? (
-        <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
-          <div className={styles.interstitialBox}>
-            <Ad placement="interstitial" testId="ad-interstitial" />
-            <Button onClick={() => setInterstitial(false)}>Close</Button>
-          </div>
-        </div>
-      ) : null}
+      <Interstitial open={interstitial} onClose={() => setInterstitial(false)} />
       <section className={app.stackSm}>
         <p className={app.label}>Level {lvl}</p>
         <p className={app.small}>Swap two neighbours. Three words in a line that mean the same thing clear, in any language.</p>

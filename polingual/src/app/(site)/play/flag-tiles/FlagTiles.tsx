@@ -1,5 +1,6 @@
 "use client";
 
+import Interstitial from "../Interstitial";
 import { local } from "@/lib/storage";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fallMs, type FlagTilesDeck, type Ghost } from "@academy/flag-tiles";
@@ -242,14 +243,7 @@ function FlagTilesGame() {
   const rows = [...board.map((g) => ({ name: g.name, flag: g.flag, score: g.score, bot: g.skill, me: false })), { name: "You", flag: null as string | null, score: run.score, bot: null as string | null, me: true }].sort((a, b) => b.score - a.score);
   return (
     <div className={app.stack} data-testid="ft-results">
-      {interstitial ? (
-        <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
-          <div className={styles.interstitialBox}>
-            <Ad placement="interstitial" testId="ad-interstitial" />
-            <Button onClick={() => setInterstitial(false)} data-testid="interstitial-close">Close</Button>
-          </div>
-        </div>
-      ) : null}
+      <Interstitial open={interstitial} onClose={() => setInterstitial(false)} />
       <section className={app.stackSm}>
         <p className={app.label}>Run over</p>
         <h2 className={app.title} data-testid="ft-final">{run.score} {run.score === 1 ? "word" : "words"}</h2>

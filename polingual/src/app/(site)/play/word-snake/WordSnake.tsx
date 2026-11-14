@@ -1,5 +1,6 @@
 "use client";
 
+import Interstitial from "../Interstitial";
 import { local } from "@/lib/storage";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SnakeDeck } from "@academy/word-snake";
@@ -231,14 +232,7 @@ function WordSnakeGame() {
   const list = (words: FieldWord[]) => Array.from(new Map(words.map((w) => [`${w.lang}:${w.form}`, w])).values());
   return (
     <div className={app.stack} data-testid="ws-results">
-      {interstitial ? (
-        <div className={styles.interstitial} role="dialog" aria-modal="true" aria-label="Advertisement" data-testid="interstitial">
-          <div className={styles.interstitialBox}>
-            <Ad placement="interstitial" testId="ad-interstitial" />
-            <Button onClick={() => setInterstitial(false)}>Close</Button>
-          </div>
-        </div>
-      ) : null}
+      <Interstitial open={interstitial} onClose={() => setInterstitial(false)} />
       <section className={app.stackSm}>
         <p className={app.label}>{phase === "dead" ? "Swallowed" : "Time is up"}</p>
         <h2 className={app.title} data-testid="ws-final">{`Length ${result?.length ?? 0}`}</h2>
