@@ -1,5 +1,6 @@
 "use client";
 
+import { secondsLeft, useDeadline } from "@/lib/hooks/clock";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { fnv } from "@/lib/daily/rng";
 import { Speed, SPEED_MISS_PENALTY, SPEED_SECONDS } from "@/lib/daily/speed";
@@ -28,7 +29,6 @@ export default function SpeedMatch() {
   const [, tick] = useState(0);
   const [pattern, setPattern] = useState("");
   const [ends, setEnds] = useState<number | null>(null);
-  const [now, setNow] = useState(() => Date.now());
   const over = useRef(false);
 
   function end(p: string) {
@@ -39,21 +39,14 @@ export default function SpeedMatch() {
     void finish({ game: "speed-match", day: state.day, score: game.board.hits, total: SPEED_PAIRS, pattern: p.padEnd(SPEED_PAIRS, "0").slice(0, SPEED_PAIRS), words: words.map((w) => ({ lang: w.lang, itemId: w.itemId, form: w.form, gloss: w.gloss, right: !missed.has(wordId(w)) })) });
   }
 
-  useEffect(() => {
-    if (!ends) return;
-    const t = window.setInterval(() => {
-      setNow(Date.now());
-      if (Date.now() >= ends) end(pattern);
-    }, 250);
-    return () => window.clearInterval(t);
-  });
+  const now = useDeadline(ends, () => end(pattern));
 
   if (state.status !== "ready") return <DailyWorld id="speed-match"><Loading state={state.status} /></DailyWorld>;
   if (state.done) return <DailyWorld id="speed-match"><Results title="Speed Match" result={state.done} url="https://polingual.com/play/speed-match" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
   if (!game?.playable) return <DailyWorld id="speed-match"><Loading state="error" /></DailyWorld>;
 
   const b = game.board;
-  const left = ends ? Math.max(0, Math.ceil((ends - now) / 1000)) : SPEED_SECONDS;
+  const left = secondsLeft(ends, now, SPEED_SECONDS);
 
   function after(kind: string) {
     if (kind !== "matched" && kind !== "missed") return tick((x) => x + 1);

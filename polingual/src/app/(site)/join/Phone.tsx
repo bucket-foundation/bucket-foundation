@@ -1,5 +1,6 @@
 "use client";
 
+import { useNow } from "@/lib/hooks/clock";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { clockOffset, displayNickname, joinError, normalizeCode, rank, secondsLeft, type Snapshot } from "@/lib/stoa/client";
 import { nicknameChoices } from "@/lib/stoa/nicknames";
@@ -42,7 +43,7 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
   const [snap, setSnap] = useState<Snapshot | null>(null);
   const [status, setStatus] = useState<SocketStatus>("connecting");
   const [verified, setVerified] = useState(0);
-  const [now, setNow] = useState(() => Date.now());
+  const now = useNow(250);
   const seq = useRef(0);
   const offset = useRef(0);
   const socket = useRef<LiveSocket | null>(null);
@@ -86,10 +87,6 @@ export default function Phone({ initialCode }: { initialCode?: string }) {
     setReady(true);
   }, []);
 
-  useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 250);
-    return () => clearInterval(t);
-  }, []);
 
   const leave = useCallback((message?: string) => {
     socket.current?.stop();

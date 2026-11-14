@@ -1,5 +1,6 @@
 "use client";
 
+import { useNow } from "@/lib/hooks/clock";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
@@ -54,7 +55,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
   const [lobby, setLobby] = useState<WebLobbyState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [offset, setOffset] = useState(0);
-  const [now, setNow] = useState(() => Date.now());
+  const now = useNow(TICK_MS);
   const [picked, setPicked] = useState<Picked | null>(null);
   const [chat, setChat] = useState("");
   const [copied, setCopied] = useState(false);
@@ -123,10 +124,6 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     return () => window.clearInterval(t);
   }, [api, id, take, kick]);
 
-  useEffect(() => {
-    const t = window.setInterval(() => setNow(Date.now()), TICK_MS);
-    return () => window.clearInterval(t);
-  }, []);
 
   const livePhase = lobby ? phaseAt(lobby, now + offset) : null;
   const roundKey = livePhase?.kind === "round" || livePhase?.kind === "reveal" ? `${lobby?.startedAt}:${livePhase.kind}:${livePhase.index}` : livePhase?.kind ?? "";
