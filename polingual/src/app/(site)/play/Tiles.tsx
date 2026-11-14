@@ -8,6 +8,8 @@ import { LANE_KEYS, laneTarget } from "@/lib/lobby/lanes";
 import { play } from "@/lib/lobby/sound";
 import styles from "./play.module.css";
 
+type Slot = ReturnType<typeof tileSchedule>[number];
+
 interface TilesProps {
   gloss: string;
   choices: string[];
@@ -33,21 +35,7 @@ export default function Tiles({ gloss, choices, round, rounds, roundSeconds, ela
     setTapped((prev) => new Set(prev).add(index));
   };
 
-  const tapRef = useRef(tap);
-  tapRef.current = tap;
-  const stateRef = useRef({ elapsedMs, tapped });
-  stateRef.current = { elapsedMs, tapped };
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      const lane = LANE_KEYS[e.key.toLowerCase()];
-      if (lane === undefined) return;
-      e.preventDefault();
-      tapRef.current(laneTarget(choices, schedule, lane, stateRef.current.elapsedMs, stateRef.current.tapped));
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [choices, schedule]);
+  useTileKeys(tap, choices, schedule, elapsedMs, tapped);
 
   useEffect(() => {
     if (sent.current || locked) return;
@@ -68,37 +56,55 @@ export default function Tiles({ gloss, choices, round, rounds, roundSeconds, ela
           <div key={lane} className={styles.lane} onPointerDown={() => tap(laneTarget(choices, schedule, lane, elapsedMs, tapped))} data-testid="lane">
             {schedule
               .filter((s) => s.lane === lane && s.index < choices.length)
-              .map((s) => {
-                const progress = (elapsedMs - s.spawnMs) / s.fallMs;
-                if (progress < -0.05 || progress > 1.1) return null;
-                const t = parseTile(choices[s.index]);
-                const top = Math.max(-12, Math.min(100, progress * 100)) - 12;
-                return (
-                  <TileFace
-                    key={s.index}
-                    as="button"
-                    lang={t.lang}
-                    word={t.form}
-                    rtl={LANGS[t.lang]?.rtl}
-                    className={styles.fallTile}
-                    style={{ top: `${top}%`, transform: "none", animation: "none", padding: 0 }}
-                    attrs={{
-                      "data-tapped": tapped.has(s.index),
-                      "data-testid": "tile",
-                      "data-index": s.index,
-                      "aria-label": t.form,
-                      onPointerDown: (e: React.PointerEvent<HTMLElement>) => {
-                        e.stopPropagation();
-                        tap(s.index);
-                      },
-                    }}
-                  />
-                );
-              })}
+              .map((s) => <FallingTile key={s.index} slot={s} choice={choices[s.index]} elapsedMs={elapsedMs} tapped={tapped.has(s.index)} onTap={() => tap(s.index)} />)}
           </div>
         ))}
       </div>
       <p className={styles.keysHint}>Tap tiles, or press D F J K</p>
     </div>
+  );
+}
+
+function useTileKeys(tap: (index: number | null) => void, choices: string[], schedule: Slot[], elapsedMs: number, tapped: Set<number>) {
+  const tapRef = useRef(tap);
+  tapRef.current = tap;
+  const stateRef = useRef({ elapsedMs, tapped });
+  stateRef.current = { elapsedMs, tapped };
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const lane = LANE_KEYS[e.key.toLowerCase()];
+      if (lane === undefined) return;
+      e.preventDefault();
+      tapRef.current(laneTarget(choices, schedule, lane, stateRef.current.elapsedMs, stateRef.current.tapped));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [choices, schedule]);
+}
+
+function FallingTile({ slot, choice, elapsedMs, tapped, onTap }: { slot: Slot; choice: string; elapsedMs: number; tapped: boolean; onTap: () => void }) {
+  const progress = (elapsedMs - slot.spawnMs) / slot.fallMs;
+  if (progress < -0.05 || progress > 1.1) return null;
+  const t = parseTile(choice);
+  const top = Math.max(-12, Math.min(100, progress * 100)) - 12;
+  return (
+    <TileFace
+      as="button"
+      lang={t.lang}
+      word={t.form}
+      rtl={LANGS[t.lang]?.rtl}
+      className={styles.fallTile}
+      style={{ top: `${top}%`, transform: "none", animation: "none", padding: 0 }}
+      attrs={{
+        "data-tapped": tapped,
+        "data-testid": "tile",
+        "data-index": slot.index,
+        "aria-label": t.form,
+        onPointerDown: (e: React.PointerEvent<HTMLElement>) => {
+          e.stopPropagation();
+          onTap();
+        },
+      }}
+    />
   );
 }
