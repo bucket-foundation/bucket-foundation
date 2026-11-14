@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import com.polingual.app.WordCard
 import android.content.Intent
 import androidx.compose.foundation.background
@@ -78,21 +79,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
             graph.kv.set("polyword.games", PlayAssets.json.encodeToString(saver, saved))
         }
         Text("#$today  ${puzzle.answer.length} letters in ${Lang.name(lang)}. Six guesses.", style = Type.small, color = PL.InkDim)
-        repeat(Polyword.MAX_GUESSES) { r ->
-            val g = guesses.getOrNull(r)
-            val marks = g?.let { Polyword.score(it, puzzle.answer) }
-            val text = g ?: if (r == guesses.size && !over) draft else ""
-            Row(Modifier.fillMaxWidth().padding(horizontal = 24.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                repeat(puzzle.answer.length) { i ->
-                    val m = marks?.get(i)
-                    Box(
-                        Modifier.weight(1f).aspectRatio(1f).clip(RoundedCornerShape(PLRadius.sm)).background(markColor(m))
-                            .border(2.dp, if (m == null) PL.Hairline2 else Color.Transparent, RoundedCornerShape(PLRadius.sm)),
-                        contentAlignment = Alignment.Center,
-                    ) { Text(text.getOrNull(i)?.uppercase() ?: "", style = Type.title, color = if (m == null) PL.Ink else PL.Paper) }
-                }
-            }
-        }
+        PolyBoard(puzzle.answer, guesses, if (over) "" else draft)
         val hints = Polyword.revealedHints(puzzle.hints, puzzle.answer, guesses)
         if (hints.isNotEmpty()) {
             SectionTitle("Meaning in other languages")
@@ -102,13 +89,10 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
         if (!over) {
             val keys = remember(guesses, puzzle.answer) { Polyword.keyMarks(guesses, puzzle.answer) }
             PolyKeyboard(keys) { c -> if (draft.length < puzzle.answer.length) draft += c; toast = null }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                PLButton("Delete", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Md) { draft = draft.dropLast(1) }
-                PLButton("Enter", Modifier.weight(1f), size = ButtonSize.Md) {
-                    when (val c = Polyword.checkGuess(draft, puzzle.answer, guesses)) {
-                        is GuessCheck.Ok -> { save(guesses + c.guess); draft = "" }
-                        is GuessCheck.Bad -> toast = when (c.reason) { "short" -> "Use ${puzzle.answer.length} letters."; "repeat" -> "You tried that word."; else -> "Letters a to z only." }
-                    }
+            PolyActions({ draft = draft.dropLast(1) }) {
+                when (val c = Polyword.checkGuess(draft, puzzle.answer, guesses)) {
+                    is GuessCheck.Ok -> { save(guesses + c.guess); draft = "" }
+                    is GuessCheck.Bad -> toast = PolyCopy.bad(c.reason, puzzle.answer.length)
                 }
             }
         } else {
@@ -116,10 +100,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
             Results(graph, if (won) "Solved in ${guesses.size}" else "The word was ${puzzle.word}", "Streak ${stats.streak}. Best ${stats.best}. New word tomorrow.", again = null) {
                 val word = remember(puzzle.slug) { PlayAssets.words(context).firstOrNull { it.slug == puzzle.slug } }
                 if (RevealRules.polyword(guesses, puzzle.answer)) { if (word != null) RevealWord(graph, word, lang) else WordCard(lang, puzzle.word, gloss = puzzle.gloss) }
-                PLButton("Share", variant = ButtonVariant.Accent) {
-                    val text = Polyword.shareText(lang, today, puzzle.answer, puzzle.hints, guesses, "https://www.polingual.com/play/polyword") { Lang.flag(it) }
-                    context.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text), null))
-                }
+                ShareButton(Polyword.shareText(lang, today, puzzle.answer, puzzle.hints, guesses, "https://www.polingual.com/play/polyword") { Lang.flag(it) })
             }
         }
     }
@@ -132,11 +113,50 @@ private fun PolyKeyboard(keys: Map<Char, Mark>, onKey: (Char) -> Unit) {
                     row.forEach { c ->
                         val m = keys[c]
                         Box(
-                            Modifier.weight(1f).heightIn(min = 46.dp).clip(RoundedCornerShape(8.dp)).background(if (m == null) PL.Paper2 else markColor(m))
+                            Modifier.weight(1f).heightIn(min = 46.dp).plSurface(if (m == null) PL.Paper2 else markColor(m), 8.dp)
                                 .clickable(role = Role.Button) { onKey(c) },
                             contentAlignment = Alignment.Center,
                         ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, fontSize = 16.sp, style = Type.small) }
                     }
                 }
             }
+}
+
+object PolyCopy {
+    fun bad(reason: String, length: Int): String = when (reason) { "short" -> "Use $length letters."; "repeat" -> "You tried that word."; else -> "Letters a to z only." }
+}
+
+@Composable
+private fun PolyBoard(answer: String, guesses: List<String>, draft: String) {
+    repeat(Polyword.MAX_GUESSES) { r ->
+        val g = guesses.getOrNull(r)
+        val marks = g?.let { Polyword.score(it, answer) }
+        val text = g ?: if (r == guesses.size) draft else ""
+        Row(Modifier.fillMaxWidth().padding(horizontal = 24.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            repeat(answer.length) { i ->
+                val m = marks?.get(i)
+                Box(
+                    Modifier.weight(1f).aspectRatio(1f).plSurface(markColor(m), PLRadius.sm)
+                        .border(2.dp, if (m == null) PL.Hairline2 else Color.Transparent, RoundedCornerShape(PLRadius.sm)),
+                    contentAlignment = Alignment.Center,
+                ) { Text(text.getOrNull(i)?.uppercase() ?: "", style = Type.title, color = if (m == null) PL.Ink else PL.Paper) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun PolyActions(onDelete: () -> Unit, onEnter: () -> Unit) {
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        PLButton("Delete", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Md, onClick = onDelete)
+        PLButton("Enter", Modifier.weight(1f), size = ButtonSize.Md, onClick = onEnter)
+    }
+}
+
+@Composable
+private fun ShareButton(text: String) {
+    val context = LocalContext.current
+    PLButton("Share", variant = ButtonVariant.Accent) {
+        context.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text), null))
+    }
 }

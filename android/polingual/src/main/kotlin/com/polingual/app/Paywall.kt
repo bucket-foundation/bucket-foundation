@@ -73,7 +73,7 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
         products.forEach { product ->
             val on = product.productId == chosen
             Column(
-                Modifier.fillMaxWidth().clip(RoundedCornerShape(PLRadius.lg)).background(PL.Card).border(if (on) 4.dp else 2.dp, if (on) PL.Ochre else PL.Hairline2, RoundedCornerShape(PLRadius.lg))
+                Modifier.fillMaxWidth().plSurface(PL.Card, PLRadius.lg).border(if (on) 4.dp else 2.dp, if (on) PL.Ochre else PL.Hairline2, RoundedCornerShape(PLRadius.lg))
                     .clickable(role = Role.RadioButton) { chosen = product.productId }.padding(16.dp),
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

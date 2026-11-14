@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.plSurface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -63,7 +64,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
     Text("Tap every word that means", style = Type.small, color = PL.InkDim)
     WordCard(lobby.root, prompt.gloss, tilt = 0f)
     val right = prompt.answer?.split(',')?.filter { it.isNotEmpty() }?.map { it.toInt() }?.toSet().orEmpty()
-    BoxWithConstraints(Modifier.fillMaxWidth().height(340.dp).clip(RoundedCornerShape(16.dp)).background(PL.Tyrian)) {
+    BoxWithConstraints(Modifier.fillMaxWidth().height(340.dp).plSurface(PL.Tyrian, 16.dp)) {
         val laneW = maxWidth / LobbyTiles.LANES
         LobbyTiles.visible(schedule, prompt.choices.size, elapsed, tapped, reveal).forEach { (slot, p) ->
             val t = LobbyTiles.parse(prompt.choices[slot.index])
@@ -73,7 +74,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
                 reveal && slot.index in tapped -> PL.Vermilion
                 else -> PL.Card
             }
-            Box(Modifier.offset(laneW * slot.lane, y.dp).width(laneW).padding(3.dp).clip(RoundedCornerShape(10.dp)).background(tone)) {
+            Box(Modifier.offset(laneW * slot.lane, y.dp).width(laneW).padding(3.dp).plSurface(tone, 10.dp)) {
                 FlagSwatch(t.lang, Modifier.fillMaxWidth().height(5.dp))
                 com.polingual.app.play.FitLabel(t.form, Type.small, if (tone == PL.Card) PL.Ink else PL.Paper, Modifier.padding(top = 8.dp, bottom = 6.dp, start = 3.dp, end = 3.dp).fillMaxWidth())
             }
@@ -82,7 +83,7 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
         repeat(LobbyTiles.LANES) { lane ->
             Box(
-                Modifier.weight(1f).height(56.dp).clip(RoundedCornerShape(12.dp)).background(PL.Lapis)
+                Modifier.weight(1f).height(56.dp).plSurface(PL.Lapis, 12.dp)
                     .clickable(enabled = !reveal && !submitted, role = Role.Button, onClickLabel = "Lane ${lane + 1}") {
                         LobbyTiles.laneTarget(prompt.choices, schedule, lane, elapsed, tapped)?.let { local = local + it }
                     },
@@ -90,11 +91,14 @@ fun TileRound(graph: Graph, lobby: Lobby, prompt: LobbyPrompt, index: Int, remai
             ) { Text("Lane ${lane + 1}", style = Type.small, color = PL.Paper) }
         }
     }
-    if (reveal && prompt.answer != null) {
-        val o = LobbyTiles.outcome(prompt.answer!!, tapped.toList())
-        Text(if (o.perfect) "Perfect" else "${o.hits} right, ${o.wrong} wrong, ${o.missed} missed", style = Type.title, color = if (o.perfect) PL.Malachite else PL.Vermilion)
-        prompt.choices.mapIndexedNotNull { i, c -> if (i in right) LobbyTiles.parse(c) else null }.forEach { t ->
-            Text("${Lang.name(t.lang)}: ${t.form}", style = Type.small, color = PL.Ink)
-        }
+    if (reveal && prompt.answer != null) TileOutcomeView(prompt, right, tapped)
+}
+
+@Composable
+private fun TileOutcomeView(prompt: LobbyPrompt, right: Set<Int>, tapped: Set<Int>) {
+    val o = LobbyTiles.outcome(prompt.answer!!, tapped.toList())
+    Text(if (o.perfect) "Perfect" else "${o.hits} right, ${o.wrong} wrong, ${o.missed} missed", style = Type.title, color = if (o.perfect) PL.Malachite else PL.Vermilion)
+    prompt.choices.mapIndexedNotNull { i, c -> if (i in right) LobbyTiles.parse(c) else null }.forEach { t ->
+        Text("${Lang.name(t.lang)}: ${t.form}", style = Type.small, color = PL.Ink)
     }
 }

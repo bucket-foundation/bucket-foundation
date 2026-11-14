@@ -81,12 +81,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> U
     Page("Live rooms", back = back, ground = Ground.Lattice, panel = true, stickers = listOf(Sticker("pebble", Alignment.CenterStart, 60.dp, -12f), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 90.dp, -4f, dx = (-8).dp))) {
         Text("Play the same round with friends, live. Web and iPhone players join with the same code.", color = p.muted)
         OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, label = { Text(if (signedIn) "Display name" else "Your name") }, modifier = Modifier.fillMaxWidth())
-        Card {
-            Text("Join with a code", style = Type.caps, color = p.muted)
-            OutlinedTextField(joinCode, { joinCode = it.filter(Char::isLetterOrDigit).uppercase().take(LobbyRules.CODE_LENGTH) }, singleLine = true, label = { Text("Room code") },
-                keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters), modifier = Modifier.fillMaxWidth())
-            PrimaryButton("Join", enabled = joinCode.length == LobbyRules.CODE_LENGTH && !state.busy, color = PL.Malachite) { act { graph.lobbies.join(joinCode, name.ifEmpty { "Player" }) } }
-        }
+        JoinByCode(joinCode, { joinCode = it }, enabled = joinCode.length == LobbyRules.CODE_LENGTH && !state.busy) { act { graph.lobbies.join(joinCode, name.ifEmpty { "Player" }) } }
         val system = app?.system
         Card {
             Text("Start a room", style = Type.caps, color = p.muted)
@@ -107,21 +102,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> U
             }
         }
         error?.let { Text(it, color = PL.Vermilion) }
-        SectionTitle("Open rooms")
-        val open = state.open.filter { it.game in nativeLobbyGames }
-        if (open.isEmpty()) Text("No open rooms right now. Start one and share the code.", color = p.muted)
-        open.forEach { l ->
-            Card(onClick = { act { graph.lobbies.join(l, name.ifEmpty { "Player" }) } }) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text(l.name, color = p.ink, fontWeight = FontWeight.Bold)
-                        Text("${l.game.title} · ${l.host} · ${l.players} of ${LobbyRules.CAP}${if (l.bots > 0) " · ${l.bots} bots" else ""}", color = p.muted)
-                        Text(l.targets.joinToString(" ") { Lang.flag(it) })
-                    }
-                    if (l.isMember) Pill("Rejoin", PL.Malachite)
-                }
-            }
-        }
+        OpenRooms(state.open.filter { it.game in nativeLobbyGames }) { l -> act { graph.lobbies.join(l, name.ifEmpty { "Player" }) } }
         PlainLink("Refresh") { scope.launch { graph.lobbies.refresh() } }
         AdBanner(graph)
     }
@@ -189,8 +170,8 @@ private fun Waiting(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Uni
 private fun Players(lobby: Lobby) {
     val p = LocalPalette.current
     lobby.standings.forEach { pl ->
-        Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(p.card).padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Box(Modifier.size(10.dp).clip(RoundedCornerShape(50)).background(if (pl.online || pl.bot) PL.Malachite else p.rule))
+        Row(Modifier.fillMaxWidth().plSurface(p.card, 12.dp).padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Box(Modifier.size(10.dp).plSurface(if (pl.online || pl.bot) PL.Malachite else p.rule, foundation.bucket.core.ui.pl.PLRadius.pill))
             Text(listOfNotNull(pl.flag?.let(Lang::flag), pl.name).joinToString(" "), color = p.ink, fontWeight = if (pl.isMe) FontWeight.ExtraBold else FontWeight.Normal, modifier = Modifier.weight(1f))
             if (pl.bot) Pill("Bot", PL.Lapis)
             if (pl.isHost) Pill("Host", PL.Vermilion)
@@ -205,18 +186,9 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     val p = LocalPalette.current
     val state by graph.lobbies.state.collectAsState()
     val scope = rememberCoroutineScope()
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Round ${index + 1} of ${lobby.rounds}", style = Type.title.copy(fontSize = 18.sp), color = p.ink, modifier = Modifier.weight(1f))
-        Text("${kotlin.math.ceil(remaining).toInt()}s", style = Type.title.copy(fontSize = 18.sp), color = if (remaining < 3 && !reveal) PL.Vermilion else p.ink)
-    }
+    RoundHeader(lobby, index, remaining, reveal)
     val prompt = lobby.prompt(index)
     if (prompt == null) { Text("Loading the round", color = p.muted); return }
-    if (lobby.game == LobbyGame.Duel) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Coins ${lobby.coins}", style = Type.small, color = PL.OchreDeep, modifier = Modifier.weight(1f))
-            if (lobby.doubled(index)) foundation.bucket.core.ui.pl.PLBadge("Double points", foundation.bucket.core.ui.pl.BadgeTone.Ochre)
-        }
-    }
     if (prompt.mode == LobbyPromptMode.Tiles) {
         TileRound(graph, lobby, prompt, index, remaining, reveal)
         Players(lobby)
@@ -309,4 +281,46 @@ fun resultLine(pr: foundation.bucket.core.model.LobbyPrompt): String = when (pr.
     LobbyPromptMode.Tiles -> "${pr.gloss}: " + pr.answer.orEmpty().split(',').mapNotNull { it.toIntOrNull()?.let(pr.choices::getOrNull) }.joinToString(", ") { foundation.bucket.core.model.LobbyTiles.parse(it).form }
     LobbyPromptMode.Mixed -> "${pr.gloss}: ${pr.answer?.let { foundation.bucket.core.model.LobbyTiles.parse(it).form }.orEmpty()}"
     else -> "${pr.answer.orEmpty()}: ${pr.gloss}"
+}
+
+@Composable
+private fun JoinByCode(code: String, onCode: (String) -> Unit, enabled: Boolean, onJoin: () -> Unit) {
+    Card {
+        Text("Join with a code", style = Type.caps, color = PL.InkDim)
+        OutlinedTextField(code, { onCode(it.filter(Char::isLetterOrDigit).uppercase().take(LobbyRules.CODE_LENGTH)) }, singleLine = true, label = { Text("Room code") },
+            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters), modifier = Modifier.fillMaxWidth())
+        PrimaryButton("Join", enabled = enabled, color = PL.Malachite, onClick = onJoin)
+    }
+}
+
+@Composable
+private fun OpenRooms(open: List<foundation.bucket.core.model.LobbySummary>, onJoin: (foundation.bucket.core.model.LobbySummary) -> Unit) {
+    SectionTitle("Open rooms")
+    if (open.isEmpty()) Text("No open rooms right now. Start one and share the code.", color = PL.InkDim)
+    open.forEach { l ->
+        Card(onClick = { onJoin(l) }) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text(l.name, color = PL.Ink, fontWeight = FontWeight.Bold)
+                    Text("${l.game.title} · ${l.host} · ${l.players} of ${LobbyRules.CAP}${if (l.bots > 0) " · ${l.bots} bots" else ""}", color = PL.InkDim)
+                    Text(l.targets.joinToString(" ") { Lang.flag(it) })
+                }
+                if (l.isMember) Pill("Rejoin", PL.Malachite)
+            }
+        }
+    }
+}
+
+@Composable
+private fun RoundHeader(lobby: Lobby, index: Int, remaining: Double, reveal: Boolean) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text("Round ${index + 1} of ${lobby.rounds}", style = Type.title.copy(fontSize = 18.sp), color = PL.Ink, modifier = Modifier.weight(1f))
+        Text("${kotlin.math.ceil(remaining).toInt()}s", style = Type.title.copy(fontSize = 18.sp), color = if (remaining < 3 && !reveal) PL.Vermilion else PL.Ink)
+    }
+    if (lobby.game == LobbyGame.Duel) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("Coins ${lobby.coins}", style = Type.small, color = PL.OchreDeep, modifier = Modifier.weight(1f))
+            if (lobby.doubled(index)) foundation.bucket.core.ui.pl.PLBadge("Double points", foundation.bucket.core.ui.pl.BadgeTone.Ochre)
+        }
+    }
 }

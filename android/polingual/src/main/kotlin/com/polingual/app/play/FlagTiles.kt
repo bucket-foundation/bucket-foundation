@@ -38,6 +38,10 @@ object FlagTilesRules {
         else -> s
     }
 
+    fun laneMarks(run: RunState, answer: Int, lanes: Int = LANES): List<Boolean?> = (0 until lanes).map { i ->
+        if (run.phase == RunPhase.Missed || run.phase == RunPhase.Over) when (i) { answer -> true; run.picked -> false; else -> null } else null
+    }
+
     fun fallMs(index: Int): Int = maxOf(FALL_MIN_MS, Math.round(FALL_START_MS * Math.pow(FALL_FACTOR, (index / STEP).toDouble())).toInt())
 
     fun deck(items: List<LangItem>, date: String, root: String = PlayDecks.ROOT): FlagTilesDeck {

@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import com.polingual.app.WordCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -67,33 +68,19 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
     GameFrame(graph, WebGame.FlagTiles, back) {
         if (d == null) { EmptyState("kente", "Loading today's tiles."); return@GameFrame }
         if (d.langs.size < 4 || d.tiles.size < 40) { EmptyState("pebble", "Flag Tiles needs more words in the bundled corpus."); return@GameFrame }
-        @Composable
-        fun Lanes() {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                d.langs.forEachIndexed { i, l ->
-                    val state = when {
-                        run.phase == RunPhase.Missed || run.phase == RunPhase.Over -> if (i == answer) PL.Malachite else if (i == run.picked) PL.Vermilion else null
-                        else -> null
-                    }
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        FlagTile(l, 64.dp, selected = state == PL.Vermilion) { if (run.phase == RunPhase.Running && answer >= 0) run = FlagTilesRules.step(run, RunEvent.Tap(i, answer)) }
-                        Text(Lang.name(l), style = Type.small, color = state ?: PL.Ink)
-                    }
-                }
-            }
-        }
+        val lanes: @Composable () -> Unit = { FlagLanes(d.langs, FlagTilesRules.laneMarks(run, answer).map { m -> when (m) { true -> PL.Malachite; false -> PL.Vermilion; null -> null } }) { i -> if (run.phase == RunPhase.Running && answer >= 0) run = FlagTilesRules.step(run, RunEvent.Tap(i, answer)) } }
         when (run.phase) {
             RunPhase.Ready -> {
                 Text("DAILY RUN · $date", style = Type.caps, color = PL.InkDim)
                 Text("A word falls. Tap the flag of its language before it lands. Speed rises every ten words, and one miss ends the run.", style = Type.body, color = PL.Ink)
-                Lanes()
+                lanes()
                 PrimaryButton("Start run") { run = FlagTilesRules.step(run, RunEvent.Start) }
                 Text("Today's best: $best", style = Type.small, color = PL.InkDim)
             }
             RunPhase.Running -> {
                 Row { Text("${run.score}", style = Type.display, color = PL.Vermilion, modifier = Modifier.weight(1f)); Text("Best $best", style = Type.small, color = PL.InkDim) }
                 FallStage(tile?.form, progress)
-                Lanes()
+                lanes()
             }
             RunPhase.Missed -> {
                 Text("${run.score}", style = Type.display, color = PL.Vermilion)
@@ -113,7 +100,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
 
 @Composable
 private fun FallStage(form: String?, progress: Float) {
-                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).drawBehind {
+                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).plSurface(PL.Paper, PLRadius.md).drawBehind {
                     val stripes = listOf(PL.Ochre, PL.Malachite, PL.Vermilion, PL.Ink)
                     val lane = size.width / 4f
                     for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }
@@ -122,4 +109,17 @@ private fun FallStage(form: String?, progress: Float) {
                     if (form != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordCard(null, form, tilt = 0f) }
                     Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(6.dp).background(PL.Vermilion))
                 } }
+}
+
+@Composable
+private fun FlagLanes(langs: List<String>, tones: List<androidx.compose.ui.graphics.Color?>, onTap: (Int) -> Unit) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+        langs.forEachIndexed { i, l ->
+            val tone = tones.getOrNull(i)
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                FlagTile(l, 64.dp, selected = tone == PL.Vermilion) { onTap(i) }
+                Text(Lang.name(l), style = Type.small, color = tone ?: PL.Ink)
+            }
+        }
+    }
 }

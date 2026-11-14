@@ -23,3 +23,13 @@ class StudyCopyTest {
         assertEquals("Close enough: árbol", StudyCopy.verdict(Verdict.Close, "árbol"))
     }
 }
+
+class StudyHeritageTest {
+    @Test
+    fun heritageComesFromTheAlphabetList() {
+        val heritage = com.polingual.app.play.PlayAssets.json.parseToJsonElement(java.io.File(com.polingual.app.play.TestCorpus.repo, "android/polingual/src/main/assets/play/alphabets.json").readText())
+            .let { (it as kotlinx.serialization.json.JsonObject).getValue("heritage") as kotlinx.serialization.json.JsonArray }.map { (it as kotlinx.serialization.json.JsonPrimitive).content }
+        assertEquals(setOf("ru", "ja"), StudyHeritage.of(listOf("es", "ru", "ja"), heritage))
+        assertEquals(emptySet(), StudyHeritage.of(listOf("es", "fr"), heritage))
+    }
+}

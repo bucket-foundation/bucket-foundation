@@ -131,7 +131,7 @@ class StudySession(
 
     fun answerTyped(text: String): Verdict {
         val ex = current ?: return Verdict.Wrong
-        val v = Typed.judge(text, listOf(ex.answer), ex.word.lang)
+        val v = if (ex.kind == ExerciseKind.SpellHeard) Spelled.judge(text, listOf(ex.answer), ex.word.lang) else Typed.judge(text, listOf(ex.answer), ex.word.lang)
         grade(v != Verdict.Wrong)
         return v
     }

@@ -81,7 +81,7 @@ fun Groups(graph: Graph, c: GameContext) {
     tick.let { }
     val colors = listOf(PL.Lapis, PL.Malachite, PL.Vermilion, PL.Ink)
     round.solved.forEachIndexed { i, g ->
-        Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(colors[i % 4]).padding(12.dp)) {
+        Column(Modifier.fillMaxWidth().plSurface(colors[i % 4], 14.dp).padding(12.dp)) {
             Text(groupTitle(g.link), style = Type.caps, color = PL.Paper)
             Text(g.words.joinToString(", ") { it.form }, color = PL.Paper, fontWeight = FontWeight.Bold)
         }

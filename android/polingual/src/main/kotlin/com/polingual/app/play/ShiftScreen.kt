@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -63,13 +64,13 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
         }
         Text("DAILY BOARD · $date", style = Type.caps, color = PL.InkDim)
         Text("Slide the columns to spell words in the middle row. Words count in ${b.langs.joinToString(" or ") { Lang.name(it) }}.", style = Type.small, color = PL.Ink)
-        SceneFrame(Scenes.shift, inset = 40.dp) { Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
+        SceneFrame(Scenes.shift, inset = 40.dp) { Row(Modifier.fillMaxWidth().plSurface(PL.Paper, PLRadius.md).padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
             b.columns.forEachIndexed { i, col ->
                 fun at(d: Int) = col[(((offsets[i] + d) % col.size) + col.size) % col.size]
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Box(Modifier.size(56.dp, 44.dp).clickable(role = Role.Button, onClickLabel = "Column ${i + 1} up") { offsets = Shift.rotate(offsets, i, -1) }, contentAlignment = Alignment.Center) { Glyph("back", null, PL.Lapis, Modifier.size(22.dp).rotate(90f)) }
                     Text(at(-1).uppercase(), style = Type.title, color = PL.InkFaint)
-                    Box(Modifier.size(64.dp).clip(RoundedCornerShape(PLRadius.md)).background(if (b.valid[word] != null) PL.Malachite else PL.Ink), contentAlignment = Alignment.Center) {
+                    Box(Modifier.size(64.dp).plSurface(if (b.valid[word] != null) PL.Malachite else PL.Ink, PLRadius.md), contentAlignment = Alignment.Center) {
                         Text(at(0).uppercase(), style = Type.display, color = PL.Paper)
                     }
                     Text(at(1).uppercase(), style = Type.title, color = PL.InkFaint)

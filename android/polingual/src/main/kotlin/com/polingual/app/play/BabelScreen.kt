@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -90,29 +91,15 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
         }
     }
     GameFrame(graph, WebGame.Babel, back) {
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            sets.forEach { s -> PLPill(s.targets.joinToString(" ") { Lang.flag(it) }, active = s == set, small = true) { set = s } }
-        }
+        BabelSets(sets, set) { set = it }
         if (phase == BabelPhase.Loading) { EmptyState("blocks", "Dealing level $lvl."); return@GameFrame }
         if (phase == BabelPhase.Play) {
-            Text("LEVEL $lvl", style = Type.caps, color = PL.InkDim)
-            Text("Swap two neighbours. Three words that mean the same thing in a line clear, in any language.", style = Type.small, color = PL.Ink)
-            Row {
-                Text("$moves moves", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f))
-                Text("${minOf(cleared.size, goal.goal)} / ${goal.goal}", style = Type.title, color = PL.Vermilion, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
-                Text("$score pts", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
-            }
+            BabelHud(lvl, moves, cleared.size, goal.goal, score)
             BabelBoard(board, picked, byId, ::tap)
             return@GameFrame
         }
         Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
-            SectionTitle("Words you matched")
-            if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] }.forEach { m ->
-                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(PL.Paper2).padding(12.dp)) {
-                    Text(m.meaning, style = Type.title, color = PL.Ink)
-                    m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
-                }
-            }
+            BabelMatched(if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] } else emptyList())
         }
     }
 }
@@ -122,11 +109,11 @@ private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meanin
             SceneFrame(Scenes.babel) { Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 board.chunked(Babel.SIZE).forEachIndexed { r, row ->
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        row.forEachIndexed { c, cell ->
+                        row.forEachIndexed { c, cell -> androidx.compose.runtime.key(cell.key) {
                             val i = r * Babel.SIZE + c
                             val sel = picked == i
                             Column(
-                                Modifier.weight(1f).aspectRatio(1f).clip(RoundedCornerShape(10.dp)).background(if (sel) PL.Lapis else PL.White)
+                                Modifier.weight(1f).aspectRatio(1f).plSurface(if (sel) PL.Lapis else PL.White, 10.dp)
                                     .border(2.dp, if (sel) PL.LapisDeep else PL.Hairline2, RoundedCornerShape(10.dp)).clickable(role = Role.Button) { tap(i) },
                             ) {
                                 FlagSwatch(cell.lang, Modifier.fillMaxWidth().height(6.dp))
@@ -134,8 +121,38 @@ private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meanin
                                     FitLabel(byId[cell.meaning]?.forms?.get(cell.lang).orEmpty(), Type.small, if (sel) PL.Paper else PL.Ink)
                                 }
                             }
-                        }
+                        } }
                     }
                 }
             } }
+}
+
+@Composable
+private fun BabelHud(lvl: Int, moves: Int, cleared: Int, goal: Int, score: Int) {
+    Text("LEVEL $lvl", style = Type.caps, color = PL.InkDim)
+    Text("Swap two neighbours. Three words that mean the same thing in a line clear, in any language.", style = Type.small, color = PL.Ink)
+    Row {
+        Text("$moves moves", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f))
+        Text("${minOf(cleared, goal)} / $goal", style = Type.title, color = PL.Vermilion, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
+        Text("$score pts", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
+    }
+}
+
+@Composable
+private fun BabelMatched(meanings: List<Meaning>) {
+    SectionTitle("Words you matched")
+    meanings.forEach { m ->
+        Column(Modifier.fillMaxWidth().plSurface(PL.Paper2, 12.dp).padding(12.dp)) {
+            Text(m.meaning, style = Type.title, color = PL.Ink)
+            m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
+        }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun BabelSets(sets: List<LangSet>, set: LangSet, onSet: (LangSet) -> Unit) {
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        sets.forEach { s -> PLPill(s.targets.joinToString(" ") { Lang.flag(it) }, active = s == set, small = true) { onSet(s) } }
+    }
 }
