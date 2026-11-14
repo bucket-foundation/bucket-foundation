@@ -218,7 +218,7 @@ function ForeheadGame() {
         <h2 className={app.title} data-testid="fh-final">{got} guessed</h2>
         <p className={app.small}>{results.length - got} passed. Tap a card to hear it.</p>
       </section>
-      <WordReveal title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} />
+      <WordReveal rootLang={"en"} title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} />
       <LearnPanel missed={results.filter((r) => !r.got).map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning }))} />
       <div className={app.row}>
         <Button onClick={() => void start()} data-testid="fh-again">Play again</Button>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
-import { speak } from "@/lib/academy/lang-client";
+import { bcp47, say } from "@/lib/speak";
 import { langDir, langName, type Exercise, type Reading } from "@/lib/academy/lang-systems";
 import { Button, FlagTile, Sticker } from "@/ui";
 import { flagTileStyles } from "@/ui/FlagTile";
@@ -29,7 +29,7 @@ function HeroTile({ word, lang, reading, plain }: { word: string; lang: string; 
         reading={reading}
         plain={plain}
         rtl={langDir(lang) === "rtl"}
-        play={<button type="button" className={flagTileStyles.play} aria-label={`Play ${plain ? "the word" : word}`} onClick={() => speak(word, lang)} />}
+        play={<button type="button" className={flagTileStyles.play} aria-label={`Play ${plain ? "the word" : word}`} onClick={() => say(word, bcp47(lang))} />}
       />
     </div>
   );
@@ -50,7 +50,7 @@ export function QuizCard({ ex, readings, children }: { ex: Exercise; readings: b
 
 export default function WordCard({ ex, readings, onNext }: { ex: Exercise; readings: boolean; onNext: () => void }) {
   useEffect(() => {
-    speak(ex.answer, ex.answerLang);
+    say(ex.answer, bcp47(ex.answerLang), { auto: true });
   }, [ex]);
   const ipa = readingText(ex.answerReading, readings);
   return (
@@ -59,9 +59,9 @@ export default function WordCard({ ex, readings, onNext }: { ex: Exercise; readi
       <HeroTile word={ex.answer} lang={ex.answerLang} reading={ipa} />
       <dl className={styles.wordRows}>
         <div>
-          <dt>Meaning</dt>
-          <dd lang={ex.promptLang} dir={langDir(ex.promptLang)}>
-            {langName(ex.promptLang)}: {ex.prompt}
+          <dt>{langName(ex.promptLang)}</dt>
+          <dd lang={ex.promptLang} dir={langDir(ex.promptLang)} data-testid="intro-meaning">
+            {ex.prompt}
           </dd>
         </div>
         {ipa ? (

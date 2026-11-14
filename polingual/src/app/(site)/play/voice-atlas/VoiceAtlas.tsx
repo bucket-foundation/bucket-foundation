@@ -10,6 +10,7 @@ import { bcp47, play as speak } from "@/lib/speak";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
+import { useLearnerRoot } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
@@ -56,13 +57,15 @@ function VoiceAtlasGame() {
   const [counted, setCounted] = useState(false);
   const [peek, setPeek] = useState(false);
   const adsVisible = useAdsVisible();
+  const root = useLearnerRoot();
 
   useEffect(() => {
+    if (!root) return;
     try {
       setPassport(JSON.parse(local()?.getItem(PASSPORT_KEY) ?? "[]"));
     } catch {
     }
-    fetch("/api/academy/voice-atlas")
+    fetch(`/api/academy/voice-atlas?root=${root}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d: { date: string; rounds: AtlasRound[]; ghosts: AtlasGhost[] }) => {
         setRounds(d.rounds);
@@ -70,7 +73,7 @@ function VoiceAtlasGame() {
         setDate(d.date);
       })
       .catch(() => setError("Voice Atlas could not load. Try again in a minute."));
-  }, []);
+  }, [root]);
 
   const round = rounds?.[index] ?? null;
   const guessed = guesses.find((g) => g.round === round) ?? null;
@@ -129,7 +132,7 @@ function VoiceAtlasGame() {
           <p className={app.label}>Voice Atlas · {date}</p>
           <h2 className={app.title} data-testid="va-total">{`${total.toLocaleString("en")} points`}</h2>
         </section>
-        <WordReveal title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} />
+        <WordReveal rootLang={root ?? "en"} title="Today's voices" words={guesses.map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning, correct: g.points >= ATLAS_MAX * 0.5 }))} />
         <LearnPanel missed={guesses.filter((g) => g.points < ATLAS_MAX * 0.5).map((g) => ({ lang: g.round.lang, word: g.round.form, meaning: g.round.meaning }))} />
         <ul className={styles.vaList}>
           {guesses.map((g, i) => (
@@ -229,7 +232,7 @@ function VoiceAtlasGame() {
             <span className={styles.verdictKey}>Means</span>
             <span className={styles.pickLabel}><b>{round.meaning}</b></span>
           </p>
-          <WordReveal title={`Round ${index + 1}`} words={[{ lang: round.lang, word: round.form, meaning: round.meaning }]} />
+          <WordReveal rootLang={root ?? "en"} title={`Round ${index + 1}`} words={[{ lang: round.lang, word: round.form, meaning: round.meaning }]} />
           <Button onClick={next} data-testid="va-next">{guesses.length >= limit ? "See results" : "Next round"}</Button>
         </section>
       ) : (

@@ -218,7 +218,7 @@ function BabelMatchGame() {
       ) : null}
       {phase === "won" || phase === "lost" ? (
         <>
-          <WordReveal title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
+          <WordReveal rootLang={"en"} title={`Level ${lvl} words`} words={words.slice(0, 4).flatMap((c) => {
             const m = byId.get(c.meaning);
             return m ? set.targets.filter((l) => m.forms[l]).map((l) => ({ lang: l, word: m.forms[l], meaning: m.meaning })) : [];
           })} />

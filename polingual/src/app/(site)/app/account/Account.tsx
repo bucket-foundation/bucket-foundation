@@ -6,7 +6,7 @@ import { cleanHandle, loadProfile, saveProfile, type Profile, type ProfileDeps }
 import { Avatar, lookFromSeed } from "@/ui/avatar";
 import { useSession } from "../AppShell";
 import styles from "../app.module.css";
-import { Button, ButtonLink, Field, Input, Sheet, Stage } from "@/ui";
+import { Button, ButtonLink, Field, Input, Sheet, SilentSwitch, Stage } from "@/ui";
 
 const deps = (): ProfileDeps => ({ fetch: window.fetch.bind(window), token: () => appAuth().mobile.accessToken() });
 
@@ -107,6 +107,13 @@ export default function Account() {
             ) : null}
           </form>
         ) : null}
+        <div className={styles.silentRow}>
+          <div>
+            <p className={styles.label}>Silent mode</p>
+            <p className={styles.small}>For places where you cannot hear. Listening cards wait for later and nothing plays on its own. Tapping a speaker still plays the word. Saved on this device.</p>
+          </div>
+          <SilentSwitch />
+        </div>
         <Button variant="secondary" size="md" onClick={signOut} data-testid="account-sign-out">
           Sign out
         </Button>

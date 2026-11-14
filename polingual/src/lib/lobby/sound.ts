@@ -33,6 +33,11 @@ let ctx: AudioContext | null = null;
 
 export function play(cue: Cue, muted: boolean): void {
   if (muted || typeof window === "undefined") return;
+  try {
+    if (window.localStorage.getItem(MUTE_KEY) === "1") return;
+  } catch {
+    return;
+  }
   const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
   if (!Ctor) return;
   try {

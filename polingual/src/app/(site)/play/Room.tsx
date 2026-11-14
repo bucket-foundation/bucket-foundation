@@ -479,7 +479,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
                 )}
               </section>
             ) : null}
-            {hidden ? null : prompt?.reveal?.length ? <Reveal prompt={prompt} /> : <p className={app.muted} aria-busy="true">Loading the answers</p>}
+            {hidden ? null : prompt?.reveal?.length ? <Reveal prompt={prompt} rootLang={lobby.root} /> : <p className={app.muted} aria-busy="true">Loading the answers</p>}
             {betweenRoundsAd(lobby.game, phase.index, breaks.games) ? <Ad placement="between-rounds" /> : null}
           </div>
           {side}
@@ -680,7 +680,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
       </section>
       <section className={app.stackSm} data-testid="reveal-all">
         <h2 className={app.fieldLabel}>Every word in this game</h2>
-        {lobby.prompts.map((p) => (p.reveal?.length ? <Reveal key={p.round} prompt={p} answersOnly /> : null))}
+        {lobby.prompts.map((p) => (p.reveal?.length ? <Reveal key={p.round} prompt={p} rootLang={lobby.root} answersOnly /> : null))}
       </section>
       {guest ? (
         <section className={styles.upsell} data-testid="save-progress">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { speak } from "@academy/lang-client";
+import { bcp47, say } from "@/lib/speak";
 import { dailySet, GameDeck } from "@/lib/daily/words";
 import { Button, FlagTile } from "@/ui";
 import { dayLabel, DailyWorld, Heading, Loading, Pips, Results } from "../daily/DailyWorld";
@@ -18,7 +18,7 @@ export default function DailySet() {
   const [picked, setPicked] = useState<string | null>(null);
 
   if (state.status !== "ready") return <DailyWorld id="daily-set"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="daily-set"><Results title="Daily Set" result={state.done} url="https://polingual.com/play/daily-set" saved={state.saved} onRetry={retry} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="daily-set"><Results title="Daily Set" result={state.done} url="https://polingual.com/play/daily-set" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
   const p = prompts[i];
   if (!p) return <DailyWorld id="daily-set"><Loading state="error" /></DailyWorld>;
 
@@ -43,7 +43,7 @@ export default function DailySet() {
       </div>
       <div className={styles.choices} data-testid="daily-choices">
         {p.choices.map((c) => (
-          <Button key={c} variant={picked ? (c === p.answer ? "success" : c === picked ? "primary" : "secondary") : "secondary"} onClick={() => { speak(c, p.word.lang); choose(c); }} data-testid="daily-choice" data-answer={c === p.answer ? "yes" : "no"}>
+          <Button key={c} variant={picked ? (c === p.answer ? "success" : c === picked ? "primary" : "secondary") : "secondary"} onClick={() => { say(c, bcp47(p.word.lang)); choose(c); }} data-testid="daily-choice" data-answer={c === p.answer ? "yes" : "no"}>
             {c}
           </Button>
         ))}

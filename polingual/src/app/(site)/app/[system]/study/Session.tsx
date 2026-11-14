@@ -9,12 +9,22 @@ import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
 import WordCard, { QuizCard } from "./WordCard";
 import styles from "../../app.module.css";
-import { Button, ButtonLink, Card, Meter, Stage } from "@/ui";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { deferredCards, subscribeDeferred } from "@academy/lang-deferred";
+import { langName } from "@academy/lang-systems";
+import { isSilent, subscribeSilent } from "@/lib/silent";
+import { Button, ButtonLink, Card, Meter, SilentSwitch, Stage } from "@/ui";
 
 export default function Session({ systemId }: { systemId: string }) {
   const h = useLangSystem(systemId);
   const s = useLangSession(h);
   const { system, corpus, state } = h;
+  const [silent, setSilentState] = useState(false);
+  const deferred = useSyncExternalStore(subscribeDeferred, deferredCards, deferredCards);
+  useEffect(() => {
+    setSilentState(isSilent());
+    return subscribeSilent(() => setSilentState(isSilent()));
+  }, []);
 
   if (h.status === "loading" || (h.status === "ready" && s.queue === null))
     return (
@@ -86,7 +96,20 @@ export default function Session({ systemId }: { systemId: string }) {
           <span className={styles.level} data-testid="counter">
             {s.i + 1} / {s.queue.length} · {state.stats.xp} XP
           </span>
+          <SilentSwitch compact />
         </div>
+        {deferred.length ? (
+          <details className={styles.deferred} data-testid="deferred">
+            <summary>{deferred.length === 1 ? "1 listening card waits" : `${deferred.length} listening cards wait`} for sound. Their schedule stays where it was.</summary>
+            <ul>
+              {deferred.map((d) => (
+                <li key={d.key} lang={d.lang} data-testid="deferred-card">
+                  {d.word} <span>{langName(d.lang)} · {d.kind === "speak" ? "say it" : "listen"}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
         <Meter value={pct} max={100} label="Session progress" />
         <div className={styles.sessionBody} data-testid="session-body">
           <ReadingsContext.Provider value={s.readings}>

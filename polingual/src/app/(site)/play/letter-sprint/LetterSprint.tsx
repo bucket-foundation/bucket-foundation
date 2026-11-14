@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { speak } from "@academy/lang-client";
+import { bcp47, say } from "@/lib/speak";
 import { dailyLetters, LETTER_SECONDS } from "@/lib/daily/letters";
-import { Button } from "@/ui";
+import { Button, NeedsSound } from "@/ui";
 import { dayLabel, DailyWorld, Heading, Intro, Loading, Pips, Results } from "../daily/DailyWorld";
 import { useDaily } from "../daily/useDaily";
 import { langName } from "../langs";
@@ -28,7 +28,7 @@ export default function LetterSprint() {
   }
 
   useEffect(() => {
-    if (ends && p) speak(p.ch, p.lang);
+    if (ends && p) say(p.ch, bcp47(p.lang), { auto: true });
   }, [ends, p]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function LetterSprint() {
   });
 
   if (state.status !== "ready") return <DailyWorld id="letter-sprint"><Loading state={state.status} /></DailyWorld>;
-  if (state.done) return <DailyWorld id="letter-sprint"><Results title="Letter Sprint" result={state.done} url="https://polingual.com/play/letter-sprint" saved={state.saved} onRetry={retry} /></DailyWorld>;
+  if (state.done) return <DailyWorld id="letter-sprint"><Results title="Letter Sprint" result={state.done} url="https://polingual.com/play/letter-sprint" saved={state.saved} onRetry={retry} rootLang={state.system.root} /></DailyWorld>;
   if (!p) return <DailyWorld id="letter-sprint"><Loading state="error" /></DailyWorld>;
 
   function choose(c: string) {
@@ -54,11 +54,12 @@ export default function LetterSprint() {
   const left = ends ? Math.max(0, Math.ceil((ends - now) / 1000)) : LETTER_SECONDS;
   return (
     <DailyWorld id="letter-sprint">
+      <NeedsSound game="Letter Sprint">
       <Heading eyebrow={`Letter Sprint · ${langName(p.lang)} · ${dayLabel(state.day)}`} title={ends ? `Find the letter that says “${p.sound}”` : `Eight ${langName(p.lang)} letters`} blurb={ends ? `${left} seconds left` : `Hear a sound, then find its letter. ${LETTER_SECONDS} seconds for all eight.`} />
       {ends ? (
         <>
           <Pips pattern={pattern} total={prompts.length} />
-          <Button variant="accent" size="md" onClick={() => speak(p.ch, p.lang)}>Hear it again</Button>
+          <Button variant="accent" size="md" onClick={() => say(p.ch, bcp47(p.lang))}>Hear it again</Button>
           <div className={styles.choices}>
             {p.choices.map((c) => (
               <button key={c} type="button" className={`${styles.pill} ${styles.letter}`} lang={p.lang} onClick={() => choose(c)} data-testid="letter-choice" data-answer={c === p.ch ? "yes" : "no"}>
@@ -73,6 +74,7 @@ export default function LetterSprint() {
           <Button onClick={() => setEnds(Date.now() + LETTER_SECONDS * 1000)} data-testid="letter-start">Start the clock</Button>
         </>
       )}
+      </NeedsSound>
     </DailyWorld>
   );
 }

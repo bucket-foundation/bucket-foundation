@@ -156,7 +156,7 @@ function ISpyGame() {
       <div className={app.stack} data-testid="ispy-done">
         <h2 className={app.title}>{rank === 1 ? "You spied them all first" : `You finished #${rank}`}</h2>
         <LiveBoard players={players} live={false} />
-        <WordReveal title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} />
+        <WordReveal rootLang={"en"} title="Everything you spied" words={rounds.flatMap((r, i) => r.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning, gloss: e.gloss, roman: e.roman, reading: e.reading, correct: !misses.includes(i) })))} />
         <LearnPanel missed={misses.flatMap((i) => rounds[i]?.reveal.filter((e) => e.correct).slice(0, 1).map((e) => ({ lang: e.lang, word: e.word, meaning: e.meaning })) ?? [])} />
         <div>
           <Button onClick={start} data-testid="ispy-again">Play again</Button>{" "}
@@ -195,7 +195,7 @@ function ISpyGame() {
               </div>
               <ul className={playStyles.revealGrid}>
                 {current.reveal.map((e, i) => (
-                  <RevealCard key={`${e.lang}:${i}`} entry={e} index={i} />
+                  <RevealCard key={`${e.lang}:${i}`} entry={e} index={i} rootLang={"en"} />
                 ))}
               </ul>
             </div>

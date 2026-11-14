@@ -24,7 +24,7 @@ export function syncDeps(): SyncDeps {
   return { fetch: window.fetch.bind(window), token: () => appAuth().mobile.accessToken().catch(() => null) };
 }
 
-async function accountSystem(d: SyncDeps): Promise<DailySystem | null> {
+export async function accountSystem(d: SyncDeps): Promise<DailySystem | null> {
   try {
     const t = await d.token();
     if (!t) return null;
@@ -42,7 +42,7 @@ export function useDailyBook(): { book: DailyBook; day: string } | null {
   const [state, setState] = useState<{ book: DailyBook; day: string } | null>(null);
   useEffect(() => {
     let live = true;
-    void loadBook(local(), syncDeps()).then((book) => live && setState({ book, day: dayKey() }));
+    void loadBook(local(), syncDeps()).then(({ book }) => live && setState({ book, day: dayKey() }));
     return () => {
       live = false;
     };
@@ -62,12 +62,13 @@ export function useDaily(game: DailyGame) {
     void (async () => {
       const d = syncDeps();
       const signedIn = Boolean(await d.token());
-      const [corpus, system, book] = await Promise.all([loadLangCorpus(), accountSystem(d), loadBook(local(), d)]);
+      const [corpus, system, loaded] = await Promise.all([loadLangCorpus(), accountSystem(d), loadBook(local(), d)]);
+      const book = loaded.book;
       if (!live) return;
       if (!corpus) return setState({ status: "error" });
       const day = dayKey();
       const done = book[bookKey(game, day)] ?? null;
-      setState({ status: "ready", corpus, system: system ?? GUEST_SYSTEM, day, done, signedIn, saved: done ? (signedIn ? "account" : "device") : null });
+      setState({ status: "ready", corpus, system: system ?? GUEST_SYSTEM, day, done, signedIn, saved: done ? loaded.source : null });
     })();
     return () => {
       live = false;
@@ -96,4 +97,16 @@ export function useDaily(game: DailyGame) {
   }, [state, save]);
 
   return { state, finish, retry };
+}
+
+export function useLearnerRoot(): string | null {
+  const [root, setRoot] = useState<string | null>(null);
+  useEffect(() => {
+    let live = true;
+    void accountSystem(syncDeps()).then((s) => live && setRoot(s?.root ?? "en"));
+    return () => {
+      live = false;
+    };
+  }, []);
+  return root;
 }

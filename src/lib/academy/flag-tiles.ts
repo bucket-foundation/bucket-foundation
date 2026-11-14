@@ -55,7 +55,7 @@ function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
 export function flagTilesDeck(items: readonly LangItem[], date: string, root = "en"): FlagTilesDeck {
   const rand = seededRandom(seedOf(`flag-tiles:${date}`));
   const words = items.filter((i) => i.kind === "word" && i.forms[root]);
-  const usable = FT_POOL.filter((l) => words.filter((w) => w.forms[l]).length >= 40);
+  const usable = FT_POOL.filter((l) => l !== root && words.filter((w) => w.forms[l]).length >= 40);
   const langs = shuffled(usable, rand).slice(0, FT_LANES).sort();
   const tiles: FlagTile[] = [];
   const seen = new Set<string>();

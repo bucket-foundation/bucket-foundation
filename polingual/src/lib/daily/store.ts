@@ -111,14 +111,17 @@ export async function recordResult(result: DailyResult, storage: Storage | null,
   return { book, saved: "account" };
 }
 
-export async function loadBook(storage: Storage | null, deps: SyncDeps | null): Promise<DailyBook> {
+export type LoadedBook = { book: DailyBook; source: "account" | "device" };
+
+export async function loadBook(storage: Storage | null, deps: SyncDeps | null): Promise<LoadedBook> {
   const local = readLocal(storage);
-  if (!deps || !(await deps.token())) return local;
+  if (!deps || !(await deps.token())) return { book: local, source: "device" };
   const remote = await pullBook(deps);
-  if (!remote) return local;
-  const book = mergeBooks(local, remote);
+  if (!remote) return { book: local, source: "device" };
+  let book = mergeBooks(local, remote);
+  if (!sameBook(book, remote)) book = (await syncBook(deps, book)) ?? book;
   writeLocal(storage, book);
-  return book;
+  return { book, source: "account" };
 }
 
 export function shareText(title: string, r: DailyResult, url: string): string {

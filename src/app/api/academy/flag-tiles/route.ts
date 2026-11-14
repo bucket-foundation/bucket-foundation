@@ -1,4 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server";
+import { deckRoot } from "@/lib/academy/deck-root";
 import { json, langCorpus, preflight } from "@/lib/academy/groups-server";
 import { deckDate, flagTilesDeck, ghosts } from "@/lib/academy/flag-tiles";
 
@@ -10,11 +11,12 @@ export function OPTIONS(): NextResponse {
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  const date = deckDate(new URL(req.url).searchParams.get("date"), Date.now());
+  const url = new URL(req.url);
+  const date = deckDate(url.searchParams.get("date"), Date.now());
   if (!date) return json({ error: "bad_request" }, 400);
   const corpus = langCorpus();
   if (!corpus) return json({ error: "sync_unavailable" }, 503);
-  const deck = flagTilesDeck(corpus.items, date);
+  const deck = flagTilesDeck(corpus.items, date, deckRoot(url.searchParams.get("root"), corpus.items));
   if (deck.langs.length < 4 || deck.tiles.length < 40) return json({ error: "no_words" }, 503);
   const res = json({ deck, ghosts: ghosts(date) });
   res.headers.set("cache-control", "public, max-age=300");
