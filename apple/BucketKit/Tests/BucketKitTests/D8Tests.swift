@@ -319,6 +319,51 @@ import Testing
     #expect(EngineState(js: spread.js).cards["fr:w0"]?.spread == true)
 }
 
+func placedPile(_ count: Int, now: Double) -> EngineState {
+    var st = EngineState()
+    for i in 0..<count {
+        var c = Card(state: "review")
+        c.reps = 1
+        c.stability = 3.2
+        c.lastReview = now - 3 * DAY_MS
+        c.due = now
+        c.placed = true
+        st.cards["fr:w\(i)"] = c
+    }
+    return st
+}
+
+func placedDays(_ st: EngineState, now: Double) -> [Int: Int] {
+    var perDay: [Int: Int] = [:]
+    for (_, c) in st.cards.entries { perDay[Int(((c.due ?? 0) - now) / DAY_MS), default: 0] += 1 }
+    return perDay
+}
+
+@Test(arguments: [PLACED_PER_DAY * PLACED_SPREAD_DAYS, PLACED_PER_DAY * PLACED_SPREAD_DAYS + 1, PLACED_PER_DAY * PLACED_SPREAD_DAYS + PLACED_PER_DAY + 1])
+func placedSpreadFillsEveryDayToTheCapBeforeOverflowing(count: Int) {
+    let now = 1_792_508_400_000.0
+    let perDay = placedDays(spreadingUntouchedPlaced(placedPile(count, now: now), now: now), now: now)
+    let window = (1...PLACED_SPREAD_DAYS).map { perDay[$0] ?? 0 }
+    #expect(window == Array(repeating: PLACED_PER_DAY, count: PLACED_SPREAD_DAYS))
+    let overflow = count - PLACED_PER_DAY * PLACED_SPREAD_DAYS
+    let late = perDay.filter { $0.key > PLACED_SPREAD_DAYS }
+    #expect(late.values.reduce(0, +) == overflow)
+    #expect(late.values.allSatisfy { $0 <= PLACED_PER_DAY })
+    #expect(late.isEmpty || late.keys.min() == PLACED_SPREAD_DAYS + 1)
+}
+
+@Test func twoDevicesSpreadingTheSamePileAgreeAfterSync() {
+    let t0 = 1_792_508_400_000.0
+    let pile = placedPile(311, now: t0)
+    let phone = spreadingUntouchedPlaced(pile, now: t0)
+    let tablet = spreadingUntouchedPlaced(pile, now: t0 + 2 * 3_600_000)
+    let onPhone = spreadingUntouchedPlaced(mergeState(phone, tablet), now: t0 + DAY_MS)
+    let onTablet = spreadingUntouchedPlaced(mergeState(tablet, onPhone), now: t0 + DAY_MS)
+    #expect(onPhone.cards == onTablet.cards)
+    #expect(onPhone.cards.entries.allSatisfy { $0.value.spread == true })
+    #expect(placedDays(onPhone, now: t0 + 2 * 3_600_000).values.allSatisfy { $0 <= PLACED_PER_DAY })
+}
+
 @Test func placedReviewsAreCappedBehindRealReviews() throws {
     let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
     let utc = TimeZone(identifier: "UTC")!
