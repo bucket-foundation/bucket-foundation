@@ -13,7 +13,7 @@ export interface MiniEntry {
   number: number;
 }
 
-interface MiniPuzzle {
+export interface MiniPuzzle {
   lang: string;
   entries: MiniEntry[];
   keys: string[];
