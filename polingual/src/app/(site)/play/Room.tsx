@@ -3,6 +3,7 @@
 import Interstitial from "./Interstitial";
 import RoomMissed from "./RoomMissed";
 import { useNow } from "@/lib/hooks/clock";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
@@ -28,8 +29,6 @@ import { betweenRoundsAd, interstitialDue } from "@/lib/lobby/ads";
 import { readBreaks, writeBreaks, type Breaks } from "@/lib/lobby/breaks";
 import { parseTile } from "@academy/lobby-tiles";
 import { FlagSquare } from "./LearnWord";
-import Tiles from "./Tiles";
-import Scene from "./ispy/Scene";
 import spyStyles from "./ispy/ispy.module.css";
 import { sceneOfChoices } from "@academy/ispy";
 import { play, readMuted, writeMuted } from "@/lib/lobby/sound";
@@ -38,6 +37,9 @@ import styles from "./play.module.css";
 import { Avatar } from "@/ui/avatar";
 import { savedNickname, usePlay } from "./usePlay";
 import { Button, ButtonLink, Pill } from "@/ui";
+
+const Tiles = dynamic(() => import("./Tiles"));
+const Scene = dynamic(() => import("./ispy/Scene"));
 
 const POLL_MS = 1000;
 const TICK_MS = 200;

@@ -2,7 +2,6 @@
 
 import { local } from "@/lib/storage";
 import { useEffect, useMemo, useState } from "react";
-import land from "world-atlas/land-110m.json";
 import { atlasPoints, ATLAS_HOMES, ATLAS_MAX, ATLAS_ROUNDS, nearestHome, type AtlasGhost, type AtlasRound, type LatLon } from "@academy/voice-atlas";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 import { flagEmoji } from "@/lib/lobby/client";
@@ -19,7 +18,23 @@ import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Tag } from "@/ui";
 
-const LAND = landPath(land as unknown as Topology);
+let landCache: string | null = null;
+
+function useLand(): string {
+  const [d, setD] = useState(landCache ?? "");
+  useEffect(() => {
+    if (landCache) return;
+    let live = true;
+    void import("world-atlas/land-110m.json").then((m) => {
+      landCache = landPath((m.default ?? m) as unknown as Topology);
+      if (live) setD(landCache);
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
+  return d;
+}
 const PASSPORT_KEY = "polingual-web/passport/v1";
 
 type Guess = { round: AtlasRound; pin: LatLon; home: LatLon; km: number; points: number };
@@ -108,12 +123,8 @@ function VoiceAtlasGame() {
     setIndex((i) => i + 1);
   };
 
-  const map = useMemo(
-    () => (
-      <path d={LAND} className={styles.vaLand} />
-    ),
-    [],
-  );
+  const land = useLand();
+  const map = useMemo(() => <path d={land} className={styles.vaLand} />, [land]);
 
   if (error) return <p className={app.error} role="alert">{error}</p>;
   if (!rounds || (!round && !done)) return <p className={app.muted} aria-busy="true">Loading today&apos;s voices</p>;
