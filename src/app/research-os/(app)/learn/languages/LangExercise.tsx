@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
-import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speakAuto, speechSupported } from "@/lib/academy/lang-client";
+import { autoSpeakAllowed, canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speakAuto, speechSupported } from "@/lib/academy/lang-client";
+import { deferCard, needsSound } from "@/lib/academy/lang-deferred";
 import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, readingLabel, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
 import { judgeSpelled } from "@/lib/academy/lang-script";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
@@ -296,6 +297,15 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
     if (ex.kind === "listen" || ex.kind === "type-heard") speakAuto(ex.prompt, ex.promptLang);
     if (ex.kind === "intro") speakAuto(ex.answer, ex.answerLang);
   }, [ex]);
+
+  const silentSkip = needsSound(ex.kind) && !autoSpeakAllowed();
+  useEffect(() => {
+    if (!silentSkip) return;
+    deferCard({ itemId: ex.itemId, lang: ex.lang, kind: ex.kind, word: ex.answerLang === ex.lang ? ex.answer : ex.prompt });
+    const t = window.setTimeout(() => onDone([]), 0);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ex, silentSkip]);
 
   const slow = () => Date.now() - started.current > 15000;
   const finish = (ok: boolean, v?: Verdict) => onDone([{ lang: ex.lang, rating: v ? verdictRating(v, slow()) : ok ? (slow() ? 2 : 3) : 1 }]);

@@ -124,12 +124,37 @@ export function reasonFor(item: Pick<SpeakItem, "lang" | "src">): string | null 
   return null;
 }
 
-export function stop() {
-  token++;
-  synth()?.cancel();
+let station: HTMLAudioElement | null = null;
+let ducked = 0;
+const DUCK = 0.15;
+
+export function stationAudio(): HTMLAudioElement {
+  station ??= new Audio();
+  station.preload = "none";
+  return station;
+}
+
+function duck(on: boolean) {
+  if (!station || station.paused) return;
+  if (on) {
+    ducked += 1;
+    station.volume = DUCK;
+  } else if (ducked > 0) {
+    ducked -= 1;
+    if (ducked === 0) station.volume = 1;
+  }
+}
+
+function release() {
   const f = finish;
   finish = null;
   f?.();
+}
+
+export function stop() {
+  token++;
+  synth()?.cancel();
+  release();
   set(IDLE);
 }
 
@@ -186,7 +211,8 @@ function playOne(item: SpeakItem, onStart: () => void = () => undefined): Promis
 }
 
 export async function play(item: SpeakItem) {
-  stop();
+  token++;
+  release();
   const t = token;
   const reason = reasonFor(item);
   if (reason) {
@@ -200,10 +226,12 @@ export async function play(item: SpeakItem) {
   const watch = setTimeout(() => {
     if (!began && t === token) set({ ...state, notice: "No sound yet. Check the volume and that the tab is not muted." });
   }, START_MS);
+  duck(true);
   await playOne(item, () => {
     began = true;
     if (t === token && state.notice) set({ ...state, notice: null });
   });
+  duck(false);
   clearTimeout(watch);
   if (t === token) set(state.notice ? { id: null, all: false, notice: state.notice } : IDLE);
 }

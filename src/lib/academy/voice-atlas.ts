@@ -46,7 +46,7 @@ function seedOf(key: string): string {
 
 export function atlasRounds(items: readonly LangItem[], date: string, count = ATLAS_ROUNDS + 1, root = "en"): AtlasRound[] {
   const rand = seededRandom(seedOf(`voice-atlas:${date}`));
-  const langs = Object.keys(ATLAS_HOMES);
+  const langs = Object.keys(ATLAS_HOMES).filter((l) => l !== root);
   const words = items.filter((i) => i.kind === "word" && i.forms[root]);
   const out: AtlasRound[] = [];
   const usedLangs = new Set<string>();

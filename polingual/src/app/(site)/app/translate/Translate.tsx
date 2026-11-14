@@ -30,6 +30,13 @@ const STICKERS = [
 function Picker({ label, value, all, mine, onPick, testId }: { label: string; value: string; all: string[]; mine: string[]; onPick: (l: string) => void; testId: string }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
+  useEffect(() => {
+    if (!open) return;
+    document.body.dataset.sheet = "open";
+    return () => {
+      delete document.body.dataset.sheet;
+    };
+  }, [open]);
   const groups = pickerGroups(all, mine, open ? readRecent(local()) : [], q, langName);
   const choose = (l: string) => {
     pushRecent(local(), l);

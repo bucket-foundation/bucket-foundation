@@ -12,6 +12,7 @@ import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
+import { useLearnerRoot } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { WorldStage } from "../GameWorld";
@@ -40,13 +41,15 @@ function FlagTilesGame() {
   const [rewarded, setRewarded] = useState(false);
   const [interstitial, setInterstitial] = useState(false);
   const adsVisible = useAdsVisible();
+  const root = useLearnerRoot();
   const tileStart = useRef(0);
   const counted = useRef(-1);
   const runs = useRef(0);
 
   useEffect(() => {
+    if (!root) return;
     setMuted(readMuted(() => window.localStorage));
-    fetch("/api/academy/flag-tiles", { cache: "no-store" })
+    fetch(`/api/academy/flag-tiles?root=${root}`, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d: { deck: FlagTilesDeck; ghosts: Ghost[] }) => {
         setDeck(d.deck);
@@ -54,7 +57,7 @@ function FlagTilesGame() {
         setBest(readBest(local, d.deck.date));
       })
       .catch(() => setError("Flag Tiles could not load. Try again in a minute."));
-  }, []);
+  }, [root]);
 
   const tile = deck && run.phase !== "ready" ? deck.tiles[(run.missed ?? run.index) % deck.tiles.length] : null;
   const answer = tile && deck ? deck.langs.indexOf(tile.lang) : -1;
@@ -222,7 +225,7 @@ function FlagTilesGame() {
       <div className={app.stack} data-testid="flag-tiles">
         <p className={styles.hudScore} data-testid="ft-score">{run.score}</p>
         {verdict}
-        {missedTile ? <WordReveal title="The word that got away" words={[{ lang: missedTile.lang, word: missedTile.form, meaning: missedTile.meaning, correct: false }]} /> : null}
+        {missedTile ? <WordReveal rootLang={root ?? "en"} title="The word that got away" words={[{ lang: missedTile.lang, word: missedTile.form, meaning: missedTile.meaning, correct: false }]} /> : null}
         {adsVisible && !run.continued ? (
           rewarded ? (
             <>
@@ -278,7 +281,7 @@ function FlagTilesGame() {
         <Button onClick={() => send({ kind: "start" })} data-testid="ft-again">Run again</Button>
         <ButtonLink variant="ghost" size="md" href="/play">Lobbies</ButtonLink>
       </div>
-      <WordReveal title="Words in this run" words={deck.tiles.slice(0, Math.min(run.index + 1, 12)).map((t, i) => ({ lang: t.lang, word: t.form, meaning: t.meaning, correct: i !== run.missed }))} />
+      <WordReveal rootLang={root ?? "en"} title="Words in this run" words={deck.tiles.slice(0, Math.min(run.index + 1, 12)).map((t, i) => ({ lang: t.lang, word: t.form, meaning: t.meaning, correct: i !== run.missed }))} />
       <LearnPanel missed={missedTile ? [{ lang: missedTile.lang, word: missedTile.form, meaning: missedTile.meaning }] : []} />
       {readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
     </div>

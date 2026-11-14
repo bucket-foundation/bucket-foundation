@@ -262,7 +262,7 @@ function WordSnakeGame() {
       ) : null}
       {phase === "over" || respawned || !adsVisible ? (
         <>
-          <WordReveal title="Words you ate" words={list(result?.eaten ?? []).slice(0, 12).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
+          <WordReveal rootLang={"en"} title="Words you ate" words={list(result?.eaten ?? []).slice(0, 12).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
           <LearnPanel missed={list(result?.bad ?? []).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
         </>
       ) : null}

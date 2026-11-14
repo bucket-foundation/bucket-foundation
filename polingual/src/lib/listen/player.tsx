@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { stationAudio } from "@/lib/speak";
 import { streamOf, type RadioStation } from "./radio";
 
 export type NowPlaying = { station: RadioStation | null; lang: string | null; playing: boolean; buffering: boolean; error: string | null };
@@ -20,17 +21,18 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const [now, setNow] = useState<NowPlaying>({ station: null, lang: null, playing: false, buffering: false, error: null });
 
   useEffect(() => {
-    const a = new Audio();
-    a.preload = "none";
+    const a = stationAudio();
     audio.current = a;
-    const on = (patch: Partial<NowPlaying>) => () => setNow((n) => ({ ...n, ...patch }));
-    a.addEventListener("playing", on({ playing: true, buffering: false, error: null }));
-    a.addEventListener("pause", on({ playing: false }));
-    a.addEventListener("waiting", on({ buffering: true }));
-    a.addEventListener("error", on({ playing: false, buffering: false, error: "This station stopped. Pick another." }));
+    const handlers: [string, () => void][] = [
+      ["playing", () => setNow((n) => ({ ...n, playing: true, buffering: false, error: null }))],
+      ["pause", () => setNow((n) => ({ ...n, playing: false }))],
+      ["waiting", () => setNow((n) => ({ ...n, buffering: true }))],
+      ["error", () => setNow((n) => ({ ...n, playing: false, buffering: false, error: n.station ? "This station stopped. Pick another." : null }))],
+    ];
+    for (const [e, h] of handlers) a.addEventListener(e, h);
     return () => {
+      for (const [e, h] of handlers) a.removeEventListener(e, h);
       a.pause();
-      a.src = "";
     };
   }, []);
 

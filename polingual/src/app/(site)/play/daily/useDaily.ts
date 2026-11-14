@@ -24,7 +24,7 @@ export function syncDeps(): SyncDeps {
   return { fetch: window.fetch.bind(window), token: () => appAuth().mobile.accessToken().catch(() => null) };
 }
 
-async function accountSystem(d: SyncDeps): Promise<DailySystem | null> {
+export async function accountSystem(d: SyncDeps): Promise<DailySystem | null> {
   try {
     const t = await d.token();
     if (!t) return null;
@@ -97,4 +97,16 @@ export function useDaily(game: DailyGame) {
   }, [state, save]);
 
   return { state, finish, retry };
+}
+
+export function useLearnerRoot(): string | null {
+  const [root, setRoot] = useState<string | null>(null);
+  useEffect(() => {
+    let live = true;
+    void accountSystem(syncDeps()).then((s) => live && setRoot(s?.root ?? "en"));
+    return () => {
+      live = false;
+    };
+  }, []);
+  return root;
 }

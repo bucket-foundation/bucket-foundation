@@ -9,6 +9,7 @@ import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
+import { useLearnerRoot } from "../daily/useDaily";
 import { langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStage } from "../GameWorld";
@@ -34,17 +35,19 @@ export default function Shift() {
   const [muted, setMuted] = useState(false);
   const [counted, setCounted] = useState(false);
   const adsVisible = useAdsVisible();
+  const root = useLearnerRoot();
 
   useEffect(() => {
+    if (!root) return;
     setMuted(readMuted(() => window.localStorage));
-    fetch("/api/academy/shift")
+    fetch(`/api/academy/shift?root=${root}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d: { board: ShiftBoard }) => {
         setBoard(d.board);
         setOffsets(d.board.columns.map(() => 0));
       })
       .catch(() => setError("Shift could not load. Try again in a minute."));
-  }, []);
+  }, [root]);
 
   const word = board && offsets.length ? centerWord(board.columns, offsets) : "";
   const isNew = !!board && !!board.valid[word] && !found.includes(word);
@@ -123,7 +126,7 @@ export default function Shift() {
       ) : null}
       {complete ? (
         <>
-          <WordReveal title="Today's words" words={board.targets.map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning }))} />
+          <WordReveal rootLang={root ?? "en"} title="Today's words" words={board.targets.map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning }))} />
           <LearnPanel missed={Object.keys(hints).flatMap((f) => board.targets.filter((t) => t.form === f).map((t) => ({ lang: t.lang, word: t.form, meaning: t.meaning })))} />
         </>
       ) : adsVisible ? (

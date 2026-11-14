@@ -55,7 +55,7 @@ export function RevealBanner({ prompt, pick }: { prompt: LobbyPrompt; pick: { ch
   );
 }
 
-export default function Reveal({ prompt, answersOnly = false }: { prompt: LobbyPrompt; answersOnly?: boolean }) {
+export default function Reveal({ prompt, rootLang, answersOnly = false }: { prompt: LobbyPrompt; rootLang: string; answersOnly?: boolean }) {
   const all = revealOrder(prompt.reveal ?? []);
   const entries = answersOnly ? all.filter((e) => e.correct) : all;
   const title = prompt.mode === "flag" ? all.find((e) => e.correct)?.meaning || prompt.gloss : prompt.gloss;
@@ -66,7 +66,7 @@ export default function Reveal({ prompt, answersOnly = false }: { prompt: LobbyP
       </p>
       <ul className={styles.revealGrid} data-answers-only={answersOnly}>
         {entries.map((e, i) => (
-          <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} />
+          <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} rootLang={rootLang} />
         ))}
       </ul>
     </section>
@@ -79,14 +79,14 @@ export function toEntry(w: RevealWord): RevealEntry {
   return { lang: w.lang, word: w.word, roman: w.roman ?? null, reading: w.reading ?? null, meaning: w.meaning, gloss: w.gloss ?? w.meaning, correct: w.correct ?? true };
 }
 
-export function WordReveal({ title, words, testId = "word-reveal" }: { title: React.ReactNode; words: RevealWord[]; testId?: string }) {
+export function WordReveal({ title, words, rootLang, testId = "word-reveal" }: { title: React.ReactNode; words: RevealWord[]; rootLang: string; testId?: string }) {
   if (words.length === 0) return null;
   return (
     <section className={styles.wordReveal} data-testid={testId}>
       <p className={styles.revealHead}>{title}</p>
       <ul className={styles.revealGrid}>
         {words.map((w, i) => (
-          <RevealCard key={`${w.lang}:${w.word}:${i}`} entry={toEntry(w)} index={i} />
+          <RevealCard key={`${w.lang}:${w.word}:${i}`} entry={toEntry(w)} index={i} rootLang={rootLang} />
         ))}
       </ul>
     </section>

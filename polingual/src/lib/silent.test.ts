@@ -27,11 +27,16 @@ test("only voice and sound questions wait in silent mode", () => {
   for (const k of ["intro", "choose", "reverse", "translate", "cloze", "match", "gender", "letter"]) assert.equal(needsSound(k), false, k);
 });
 
-test("the session defers sound questions with skip, which never grades, so their schedule stays", () => {
-  const session = readFileSync(join(process.cwd(), "src/app/(site)/app/[system]/study/Session.tsx"), "utf8");
-  assert.match(session, /if \(!silent \|\| !needsSound\(kind\)\) return;[\s\S]*skip\(\);/);
+test("deferred cards are kept once each and the exercise moves on without a grade", async () => {
+  const { clearDeferred, deferCard, deferredCards } = await import("@academy/lang-deferred");
+  clearDeferred();
+  assert.equal(deferCard({ itemId: "hear", lang: "es", kind: "listen", word: "oír" }), true);
+  assert.equal(deferCard({ itemId: "hear", lang: "es", kind: "listen", word: "oír" }), false);
+  assert.equal(deferredCards().length, 1);
+  const ex = readFileSync(join(process.cwd(), "../src/app/research-os/(app)/learn/languages/LangExercise.tsx"), "utf8");
+  assert.match(ex, /deferCard\([\s\S]*onDone\(\[\]\)/);
   const hook = readFileSync(join(process.cwd(), "../src/app/research-os/(app)/learn/languages/useLangSession.ts"), "utf8");
-  assert.match(hook, /const skip = useCallback\(\(\) => setI\(\(x\) => x \+ 1\), \[\]\);/);
+  assert.match(hook, /for \(const r of results\) \{\n\s+h\.grade/);
 });
 
 test("all language versions play together only on the word page", () => {

@@ -29,7 +29,7 @@ export function entryReading(e: Pick<RevealEntry, "reading" | "roman">): string 
   return readingLabel(e.reading ?? undefined) ?? e.roman ?? undefined;
 }
 
-export function RevealCard({ entry, index, rootLang = "en" }: { entry: RevealEntry; index: number; rootLang?: string }) {
+export function RevealCard({ entry, index, rootLang }: { entry: RevealEntry; index: number; rootLang: string }) {
   const item = { id: `${entry.lang}:${entry.word}:${index}`, text: entry.word, lang: bcp47(entry.lang) };
   const definition = entry.gloss || entry.meaning;
   const learn = learnEntry(useLearnIndex(), entry.lang, entry.word, entry.meaning);

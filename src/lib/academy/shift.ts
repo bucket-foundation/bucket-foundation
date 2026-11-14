@@ -50,7 +50,8 @@ export function spellable(word: string, columns: readonly string[][]): boolean {
 export function shiftBoard(items: readonly LangItem[], date: string, root = "en", length = SHIFT_LENGTH): ShiftBoard | null {
   const rand = seededRandom(seedOf(`shift:${date}`));
   const words = items.filter((i) => i.kind === "word" && i.forms[root]);
-  const pairs = shuffled(SHIFT_LANGS.flatMap((a, i) => SHIFT_LANGS.slice(i + 1).map((b) => [a, b])), rand);
+  const pool = SHIFT_LANGS.filter((l) => l !== root);
+  const pairs = shuffled(pool.flatMap((a, i) => pool.slice(i + 1).map((b) => [a, b])), rand);
   for (const langs of pairs) {
     const targets: ShiftTarget[] = [];
     const seen = new Set<string>();

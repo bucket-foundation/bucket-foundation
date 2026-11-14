@@ -422,7 +422,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
                 {won ? (guesses.length === 1 ? "First try!" : `Solved in ${guesses.length}`) : "Next time"}
               </h2>
               <ul className={styles.answer}>
-                <RevealCard entry={{ lang, word: puzzle.word, roman: puzzle.roman ?? null, reading: null, meaning: puzzle.gloss, gloss: puzzle.gloss, correct: won }} index={0} />
+                <RevealCard entry={{ lang, word: puzzle.word, roman: puzzle.roman ?? null, reading: null, meaning: puzzle.gloss, gloss: puzzle.gloss, correct: won }} index={0} rootLang="en" />
               </ul>
               <dl className={styles.stats} data-testid="pw-stats">
                 <div>
