@@ -45,6 +45,44 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(LobbyClock.phase(waiting, at: s) == .waiting)
     }
 
+    @Test func revealGapMatchesTheWebClock() throws {
+        var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00.000Z")
+        raw["revealSeconds"] = 4
+        let l = try JSONDecoder().decode(Lobby.self, from: json(raw))
+        let s = try #require(l.start)
+        #expect(l.playSeconds == 38)
+        #expect(LobbyClock.phase(l, at: s.addingTimeInterval(9)) == .round(index: 0, remaining: 1))
+        #expect(LobbyClock.phase(l, at: s.addingTimeInterval(11)) == .reveal(index: 0, remaining: 3))
+        #expect(LobbyClock.phase(l, at: s.addingTimeInterval(14)) == .round(index: 1, remaining: 10))
+        #expect(LobbyClock.phase(l, at: s.addingTimeInterval(37)) == .round(index: 2, remaining: 1))
+        #expect(LobbyClock.phase(l, at: s.addingTimeInterval(38)) == .finished)
+    }
+
+    @Test func newWebGamesDecodeAndUnknownOnesFallBack() throws {
+        for (raw, game) in [("tiles", LobbyGame.tiles), ("duel", .duel), ("spy", .spy), ("pinball", .other)] {
+            var j = lobbyJSON()
+            j["game"] = raw
+            j["prompts"] = [["round": 0, "mode": raw == "pinball" ? "pinball" : "tiles", "lang": "es", "gloss": "cat", "choices": ["es:gato", "fr:chat"], "answer": NSNull()]]
+            let l = try JSONDecoder().decode(Lobby.self, from: json(j))
+            #expect(l.game == game)
+            #expect(l.prompt(0)?.mode == (raw == "pinball" ? .other : .tiles))
+        }
+        #expect(!LobbyGame.hostable.contains(.other) && !LobbyGame.hostable.contains(.spy))
+        #expect(LobbyPromptMode.meaning.choosesText && !LobbyPromptMode.tiles.choosesText)
+    }
+
+    @Test func tilesSendTappedIndicesTheWayTheServerParsesThem() throws {
+        let p = LobbyPrompt(round: 0, mode: .tiles, lang: "es", gloss: "cat", choices: ["es:gato", "fr:chat", "de:Hund", "plain"], answer: "0,1")
+        #expect(LobbyTiles.tiles(p).map(\.lang) == ["es", "fr", "de", ""])
+        #expect(LobbyTiles.tiles(p).last?.form == "plain")
+        #expect(LobbyTile(key: "ja:ねこ:x").form == "ねこ:x")
+        #expect(LobbyTiles.choice([3, 0, 1]) == "0,1,3")
+        #expect(LobbyTiles.choice([]) == "-")
+        #expect(LobbyTiles.answer(p) == [0, 1])
+        #expect(LobbyTiles.submitDue(remaining: 0.8, roundSeconds: 9))
+        #expect(!LobbyTiles.submitDue(remaining: 2, roundSeconds: 9))
+    }
+
     @Test func promptsComeFromTheServerWithoutTheLiveAnswer() throws {
         let l = try JSONDecoder().decode(Lobby.self, from: json(lobbyJSON()))
         let flag = try #require(l.prompt(0))
