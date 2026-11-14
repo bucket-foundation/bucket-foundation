@@ -19,6 +19,7 @@ struct Paywall: View {
     @State private var student = false
     @State private var tokens = AccountTokens()
     @State private var freeBeta = false
+    @State private var nothingToOffer = false
     @State private var otherOptions = Launch.flag("-otherOptions")
     let family: Bool
 
@@ -28,6 +29,7 @@ struct Paywall: View {
     }
 
     var product: Product? { products.first { $0.id == chosen } }
+    var switching: Bool { subs.current != nil && subs.access.open }
 
     var body: some View {
         GeometryReader { g in
@@ -72,7 +74,7 @@ struct Paywall: View {
             }
         }
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
-        .task { await load() }
+        .task(id: subs.current) { await load() }
         .task { freeBeta = await FreeBeta.active() }
         .task(id: account.session?.userId) { _ = await fetchToken(at: "prefetch") }
         .sheet(isPresented: $signingIn) { SignInSheet() }
@@ -116,7 +118,15 @@ struct Paywall: View {
 
     var purchase: some View {
         VStack(spacing: 12) {
-            if products.isEmpty {
+            if nothingToOffer {
+                Text(subs.current == Plan.family ? String(localized: "Polingual Family is open on this Apple Account.") : String(localized: "Polingual is open on this Apple Account."))
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(D8.parchment)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(minHeight: 84)
+                    .accessibilityIdentifier("planOpen")
+            } else if products.isEmpty {
                 VStack(spacing: 10) {
                     if loading {
                         ProgressView().tint(D8.parchment)
@@ -140,11 +150,13 @@ struct Paywall: View {
                 }
                 .frame(minHeight: 84)
             }
-            Button(buying ? String(localized: "One moment") : chosen == Plan.lifetime ? String(localized: "Buy once") : subs.trialEligible && Plan.hasTrial(chosen) ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
-                Task { await buy() }
+            if !nothingToOffer {
+                Button(buying ? String(localized: "One moment") : switching ? String(localized: "Switch to \(PlanCard.title(chosen))") : chosen == Plan.lifetime ? String(localized: "Buy once") : subs.trialEligible && Plan.hasTrial(chosen) ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
+                    Task { await buy() }
+                }
+                .buttonStyle(D8Primary())
+                .disabled(product == nil || buying)
             }
-            .buttonStyle(D8Primary())
-            .disabled(product == nil || buying)
             if freeBeta {
                 Text(FreeBeta.note)
                     .font(.footnote)
@@ -154,7 +166,7 @@ struct Paywall: View {
             }
             if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true) }
             if let product {
-                Text(PaywallCopy.disclosure(trial: subs.trialEligible && Plan.hasTrial(product.id), price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
+                Text(PaywallCopy.disclosure(trial: !switching && subs.trialEligible && Plan.hasTrial(product.id), price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
                     .font(.system(size: 12))
                     .foregroundStyle(D8.parchment.opacity(0.85))
                     .multilineTextAlignment(.center)
@@ -179,8 +191,9 @@ struct Paywall: View {
 
     func load() async {
         loading = true
-        let ids = Plan.shown(extra: PaywallFlags.extraPlans || family)
-        let found = (try? await Product.products(for: ids)) ?? []
+        let ids = Plan.offered(Plan.shown(extra: PaywallFlags.extraPlans || family), current: subs.access.open ? subs.current : nil, family: family)
+        nothingToOffer = ids.isEmpty
+        let found = ids.isEmpty ? [] : (try? await Product.products(for: ids)) ?? []
         products = ids.compactMap { id in found.first { $0.id == id } }
         if !products.contains(where: { $0.id == chosen }), let first = products.first { chosen = first.id }
         loading = false

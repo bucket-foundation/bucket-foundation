@@ -109,4 +109,38 @@ struct EntitlementTests {
         #expect(TrialReminder.action(productID: Plan.lifetime, introductory: true) == .cancel)
         #expect(TrialReminder.action(productID: Plan.family, introductory: true) == .cancel)
     }
+
+    @Test func lockedSeesEveryShownPlan() {
+        let all = Plan.shown(extra: true)
+        #expect(Plan.offered(all, current: nil) == all)
+        #expect(Plan.offered(Plan.all, current: nil, family: true) == Plan.all)
+    }
+
+    @Test func yearlyAndFamilyCrossgrade() {
+        let all = Plan.shown(extra: true)
+        #expect(Plan.offered(all, current: Plan.yearly) == [Plan.family])
+        #expect(Plan.offered(all, current: Plan.yearly, family: true) == [Plan.family])
+        #expect(Plan.offered(all, current: Plan.family) == [Plan.yearly])
+        #expect(Plan.offered(all, current: Plan.family, family: true).isEmpty)
+    }
+
+    @Test func monthlyUpgradesToYearlyOrFamily() {
+        #expect(Plan.offered(Plan.shown(extra: true), current: Plan.monthly) == [Plan.yearly, Plan.family])
+        #expect(Plan.offered(Plan.shown(extra: false), current: Plan.monthly) == [Plan.yearly])
+    }
+
+    @Test func openAccessHidesPlanCardsWithNoSwitch() {
+        #expect(Plan.offered(Plan.shown(extra: false), current: Plan.yearly).isEmpty)
+        #expect(Plan.offered(Plan.shown(extra: true), current: Plan.lifetime).isEmpty)
+    }
+
+    @Test func currentIsTheLiveRecordThatRunsLongest() {
+        let monthly = record(Plan.monthly, expiresIn: 86_400)
+        let yearly = record(Plan.yearly, expiresIn: 300 * 86_400)
+        #expect(Entitlement.current([monthly, yearly], now: now) == Plan.yearly)
+        #expect(Entitlement.current([record(Plan.yearly, intro: true)], now: now) == Plan.yearly)
+        #expect(Entitlement.current([record(Plan.lifetime, expiresIn: nil), yearly], now: now) == Plan.lifetime)
+        #expect(Entitlement.current([record(Plan.family, upgraded: true), monthly], now: now) == Plan.monthly)
+        #expect(Entitlement.current([record(expiresIn: -1)], now: now) == nil)
+    }
 }
