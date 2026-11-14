@@ -1,11 +1,11 @@
 import { allowedSource, RateLimiter, type BetaEnv, type Fetcher } from "./beta";
 
-export const EVENT_NAMES = ["page_view", "beta_open", "beta_signup", "founding_claim", "testflight_open", "share"] as const;
-export type EventName = (typeof EVENT_NAMES)[number];
+const EVENT_NAMES = ["page_view", "beta_open", "beta_signup", "founding_claim", "testflight_open", "share"] as const;
+type EventName = (typeof EVENT_NAMES)[number];
 export const MAX_EVENTS = 20;
-export const EVENTS_TIMEOUT_MS = 1500;
+const EVENTS_TIMEOUT_MS = 1500;
 
-export type WebEvent = {
+type WebEvent = {
   visitor: string;
   name: EventName;
   path: string | null;
@@ -16,13 +16,13 @@ export type WebEvent = {
   lang: string | null;
 };
 
-export type EventsRequest = { origin?: string | null; referer?: string | null; ip?: string | null; country?: string | null; now?: number };
-export type EventsResult = { status: number; body: { ok?: true; stored?: number; error?: string } };
+type EventsRequest = { origin?: string | null; referer?: string | null; ip?: string | null; country?: string | null; now?: number };
+type EventsResult = { status: number; body: { ok?: true; stored?: number; error?: string } };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const TAG = /[^a-z0-9_.-]/g;
 
-export const eventsLimiter = new RateLimiter(120, 60_000);
+const eventsLimiter = new RateLimiter(120, 60_000);
 
 function tag(v: unknown, max: number): string | null {
   if (typeof v !== "string") return null;
@@ -66,7 +66,7 @@ export function parseEvents(body: unknown): WebEvent[] | null {
   return out;
 }
 
-export function eventsConfigured(env: BetaEnv): boolean {
+function eventsConfigured(env: BetaEnv): boolean {
   return Boolean(env.POLINGUAL_DB_URL?.trim() && env.POLINGUAL_DB_SERVICE_KEY?.trim());
 }
 

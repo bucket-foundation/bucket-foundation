@@ -1,4 +1,4 @@
-export const EVENT_VERSION = "stoa/v1";
+const EVENT_VERSION = "stoa/v1";
 export const MAX_EVENT_AGE_MS = 30_000;
 
 export type SignedEvent = {
@@ -12,12 +12,6 @@ export type SignedEvent = {
 
 export function eventMessage(roomId: string, seq: number, type: string, issuedAt: number, bodyHashHex: string): string {
   return [EVENT_VERSION, roomId, String(seq), type, String(issuedAt), bodyHashHex].join("\n");
-}
-
-export function toBase64Url(bytes: Uint8Array): string {
-  let s = "";
-  for (const b of bytes) s += String.fromCharCode(b);
-  return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 export function fromBase64Url(text: string): Uint8Array | null {

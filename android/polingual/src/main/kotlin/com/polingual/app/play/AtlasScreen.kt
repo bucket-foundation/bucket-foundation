@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import com.polingual.app.WordCard
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -39,39 +41,32 @@ private data class AtlasGuess(val round: AtlasRound, val pin: LatLon, val home: 
 
 @Composable
 fun AtlasScreen(graph: Graph, back: () -> Unit) {
-    val date = remember { today() }
+    val date = remember { com.polingual.app.deckDay() }
+    var deckRoot by remember { mutableStateOf(PlayDecks.ROOT) }
     val land = remember { PathParser().parsePathString(graph.context.assets.open("play/land.txt").bufferedReader().use { it.readText().trim() }).toPath() }
     var rounds by remember { mutableStateOf<List<AtlasRound>?>(null) }
     var index by remember { mutableIntStateOf(0) }
     var pin by remember { mutableStateOf<LatLon?>(null) }
     var peek by remember { mutableStateOf(false) }
     var guesses by remember { mutableStateOf<List<AtlasGuess>>(emptyList()) }
-    LaunchedEffect(Unit) { rounds = Atlas.rounds(graph.corpus.load().items, date) }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); rounds = com.polingual.app.offMain { Atlas.rounds(items, date, root = deckRoot) } }
     val rs = rounds
-    GameFrame(graph, WebGame.Atlas, back) {
+    GameFrame(graph, WebGame.Atlas, back, soundOnly = true) {
+        val silentNow by graph.silent.collectAsState()
+        if (com.polingual.app.SoundRules.needsSoundCard(silentNow, true)) { com.polingual.app.NeedsSound(graph, "Voice Atlas"); return@GameFrame }
         if (rs == null) { EmptyState("azulejo", "Loading today's voices."); return@GameFrame }
         val limit = minOf(Atlas.ROUNDS, rs.size)
         val total = guesses.sumOf { it.points }
         if (index >= limit) {
-            Results(graph, "$total points", "Five voices a day. New ones tomorrow.", again = null) {
-                guesses.firstOrNull()?.let { g ->
-                    val w = remember(g) { PlayAssets.words(graph.context).firstOrNull { it.form(g.round.lang)?.word == g.round.form } }
-                    if (w != null) RevealWord(graph, w, g.round.lang) else com.polingual.app.WordReveal(g.round.lang, g.round.form, g.round.meaning, g.round.itemId, null) { graph.voice.speak(g.round.form, g.round.lang) }
-                }
-                guesses.drop(1).forEach { g -> WordLine(g.round.lang, g.round.form, "${Lang.name(g.round.lang)} · ${g.round.meaning} · +${g.points}") }
-                SectionTitle("Today's board")
-                (Atlas.ghosts(date).map { Triple("${Bots.countryFlag(it.flag)} ${it.name}", it.score, false) } + Triple("You", total, true)).sortedByDescending { it.second }.forEachIndexed { i, (n, s, me) ->
-                    Row { Text("${i + 1}  $n", style = Type.body, color = if (me) PL.Vermilion else PL.Ink, modifier = Modifier.weight(1f)); Text("$s", style = Type.body, color = PL.Ink) }
-                }
-            }
+            Results(graph, "$total points", "Five voices a day. New ones tomorrow.", again = null) { AtlasWords(graph, guesses, deckRoot, Boards.fromGhosts(Atlas.ghosts(date), total)) }
             return@GameFrame
         }
         val round = rs[index]
         val guessed = guesses.firstOrNull { it.round == round }
-        LaunchedEffect(round) { graph.voice.speak(round.form, round.lang) }
+        LaunchedEffect(round) { graph.voice.speak(round.form, round.lang, auto = true) }
         Row { Text("Round ${index + 1} of $limit", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f)); Text("$total", style = Type.title, color = PL.Vermilion) }
         PLButton("Listen", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(round.form, round.lang) }
-        if (peek || guessed != null) WordTile(null, round.form, tilt = 0f) else PLButton("Show the word, half points", variant = ButtonVariant.Quiet, block = false) { peek = true }
+        if (peek || guessed != null) WordCard(null, round.form, tilt = 0f) else PLButton("Show the word, half points", variant = ButtonVariant.Quiet, block = false) { peek = true }
         Text("Where is this language spoken? Tap the map, then lock in.", style = Type.small, color = PL.InkDim)
         SceneFrame(Scenes.atlas, inset = 40.dp) { Canvas(
             Modifier.fillMaxWidth().aspectRatio(2f).clip(RoundedCornerShape(12.dp)).pointerInput(guessed) {
@@ -96,8 +91,16 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
             }
         } else {
             Text("+${guessed.points} · ${"%,d".format(Math.round(guessed.km))} km away", style = Type.title, color = if (guessed.points >= Atlas.MAX / 2) PL.Malachite else PL.Vermilion)
-            if (RevealRules.atlas(guessed != null)) { com.polingual.app.WordReveal(round.lang, round.form, round.meaning, round.itemId, null) { graph.voice.speak(round.form, round.lang) } }
+            if (RevealRules.atlas(guessed != null)) { com.polingual.app.WordReveal(round.lang, round.form, round.meaning, round.itemId, null, rootLang = deckRoot) { graph.voice.speak(round.form, round.lang) } }
             PrimaryButton(if (guesses.size >= limit) "See results" else "Next round") { pin = null; peek = false; index += 1 }
         }
     }
+}
+
+@Composable
+private fun AtlasWords(graph: Graph, guesses: List<AtlasGuess>, root: String, board: List<BoardRow>) {
+    guesses.firstOrNull()?.let { g -> PlayReveal(graph, g.round.lang, g.round.form, g.round.meaning, root, g.round.itemId) }
+    guesses.drop(1).forEach { g -> WordLine(g.round.lang, g.round.form, "${Lang.name(g.round.lang)} · ${g.round.meaning} · +${g.points}") }
+    SectionTitle("Today's board")
+    Leaderboard(board)
 }

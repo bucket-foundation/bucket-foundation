@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LANGS, langName, progressBranch } from "@academy/lang-systems";
+import { LANGS, langName, progressBranch, type LangSystem } from "@academy/lang-systems";
 import { appHref, levelText, nextToPlace } from "@/lib/app/systems";
 import { useEffect, useState } from "react";
 import { webProgressStore } from "@academy/progress-store";
@@ -12,10 +12,8 @@ import { useSystems } from "./useSystems";
 import styles from "./app.module.css";
 import { ButtonLink, Card, Stage, Tag } from "@/ui";
 
-export default function Home() {
-  const { state, create } = useSystems();
+function useStreakCard(systems: LangSystem[] | null) {
   const [card, setCard] = useState<StreakData | null>(null);
-  const systems = state.status === "ready" ? state.systems : null;
   useEffect(() => {
     if (!systems?.length) return;
     let live = true;
@@ -27,6 +25,39 @@ export default function Home() {
       live = false;
     };
   }, [systems]);
+  return card;
+}
+
+function SystemTile({ s }: { s: LangSystem }) {
+  const toPlace = nextToPlace(s);
+  return (
+    <Card as="li" className={styles.tile} data-testid="system-tile">
+      <h2 className={styles.tileTitle}>{s.name}</h2>
+      <p className={styles.small}>From {langName(s.root)}</p>
+      <ul className={styles.chips} aria-label={`${s.name} languages`}>
+        {s.targets.map((t) => (
+          <li key={t} lang={LANGS[t]?.bcp47}>
+            <Tag>
+              {langName(t)} <span className={styles.level}>{levelText(s, t)}</span>
+            </Tag>
+          </li>
+        ))}
+      </ul>
+      <div className={styles.row}>
+        <ButtonLink href={appHref.study(s.id)}>Start today</ButtonLink>
+        {toPlace ? (
+          <ButtonLink variant="ghost" size="md" href={appHref.place(s.id, toPlace)}>
+            Place {langName(toPlace)}
+          </ButtonLink>
+        ) : null}
+      </div>
+    </Card>
+  );
+}
+
+export default function Home() {
+  const { state, create } = useSystems();
+  const card = useStreakCard(state.status === "ready" ? state.systems : null);
   if (state.status === "loading")
     return (
       <p className={styles.muted} aria-busy="true">
@@ -44,32 +75,9 @@ export default function Home() {
         </div>
         {card ? <StreakCard card={card} /> : null}
         <ul className={styles.grid}>
-          {state.systems.map((s) => {
-            const toPlace = nextToPlace(s);
-            return (
-              <Card as="li" key={s.id} className={styles.tile} data-testid="system-tile">
-                <h2 className={styles.tileTitle}>{s.name}</h2>
-                <p className={styles.small}>From {langName(s.root)}</p>
-                <ul className={styles.chips} aria-label={`${s.name} languages`}>
-                  {s.targets.map((t) => (
-                    <li key={t} lang={LANGS[t]?.bcp47}>
-                      <Tag>
-                        {langName(t)} <span className={styles.level}>{levelText(s, t)}</span>
-                      </Tag>
-                    </li>
-                  ))}
-                </ul>
-                <div className={styles.row}>
-                  <ButtonLink href={appHref.study(s.id)}>Start today</ButtonLink>
-                  {toPlace ? (
-                    <ButtonLink variant="ghost" size="md" href={appHref.place(s.id, toPlace)}>
-                      Place {langName(toPlace)}
-                    </ButtonLink>
-                  ) : null}
-                </div>
-              </Card>
-            );
-          })}
+          {state.systems.map((s) => (
+            <SystemTile key={s.id} s={s} />
+          ))}
         </ul>
         <Link className={styles.link} href={appHref.create}>
           Add a language system

@@ -115,7 +115,7 @@ export const GUTTER_STICKERS: StickerSpot[] = [
   { name: "pebble", x: "7%", y: "84%", size: 48, rotate: 12, side: "right" },
 ];
 
-export const STRIP_STICKERS: StickerSpot[] = [
+const STRIP_STICKERS: StickerSpot[] = [
   { name: "seal", x: "0%", y: "12px", size: 56, rotate: -8 },
   { name: "ticket", x: "20%", y: "20px", size: 96, rotate: 5 },
   { name: "torn-label", x: "2%", y: "16px", size: 88, rotate: -4, side: "right" },
@@ -156,7 +156,7 @@ export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND
   );
 }
 
-export const BANNER_STICKERS: StickerSpot[] = [
+const BANNER_STICKERS: StickerSpot[] = [
   { name: "azulejo", x: "30%", y: "8%", size: 96, rotate: 8 },
   { name: "seal", x: "8%", y: "16%", size: 78, rotate: -9, side: "right" },
   { name: "torn-label", x: "26%", y: "56%", size: 112, rotate: -5 },

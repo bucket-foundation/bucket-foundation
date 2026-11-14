@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
-import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
+import { autoSpeakAllowed, canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speakAuto, speechSupported } from "@/lib/academy/lang-client";
+import { deferCard, needsSound } from "@/lib/academy/lang-deferred";
 import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, readingLabel, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
 import { judgeSpelled } from "@/lib/academy/lang-script";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
@@ -121,23 +122,38 @@ function FalseFriendNote({ ex }: { ex: Exercise }) {
   );
 }
 
+export function MeaningLine({ ex }: { ex: Exercise }) {
+  if (!ex.meaning || ex.kind === "letter") return null;
+  return (
+    <div className="mt-1 text-[13px] text-[color:var(--basalt-2)]" data-testid="feedback-meaning">
+      <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">{langName(ex.root)}</span> <span lang={ex.root} dir={langDir(ex.root)}>{ex.meaning}</span>
+    </div>
+  );
+}
+
+export function Feedback({ ok, verdict, ex, onNext }: { ok: boolean; verdict?: Verdict; ex: Exercise; onNext: () => void }) {
+  return <FeedbackView ok={ok} verdict={verdict} ex={ex} onNext={onNext} />;
+}
+
 function shownAnswer(ex: Exercise): string {
   if (ex.kind === "gender") return `${ex.answer}${ex.cloze?.after ?? ""}`;
   if (ex.kind === "conjugate") return ex.person?.endsWith("'") ? `${ex.person}${ex.answer}` : `${ex.person} ${ex.answer}`;
   return ex.answer;
 }
 
-function Feedback({ ok, verdict, ex, onNext }: { ok: boolean; verdict?: Verdict; ex: Exercise; onNext: () => void }) {
+function FeedbackView({ ok, verdict, ex, onNext }: { ok: boolean; verdict?: Verdict; ex: Exercise; onNext: () => void }) {
   const ref = useRef<HTMLButtonElement>(null);
   useEffect(() => ref.current?.focus(), []);
   const targetText = ex.answerLang === ex.lang ? ex.answer : ex.prompt;
   return (
     <div className="mt-4 border-t border-[color:var(--hairline)] pt-3" role="status">
       <div className="text-[14px] text-[color:var(--basalt)]" data-testid="verdict">
-        {ok ? (verdict === "close" ? "Close. Check the spelling and accents:" : "Right:") : "The answer:"} <strong lang={ex.answerLang} dir={langDir(ex.answerLang)}>{shownAnswer(ex)}</strong>
+        {ok ? (verdict === "close" ? "Close. Check the spelling and accents:" : "Right:") : "The answer:"} <strong lang={ex.answerLang} dir={langDir(ex.answerLang)}>{shownAnswer(ex)}</strong>{" "}
+        <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]" data-testid="feedback-lang">{langName(ex.answerLang)}</span>
         <SpeakButton text={ex.kind === "gender" ? shownAnswer(ex) : targetText} lang={ex.lang} />
       </div>
       <ReadingLine reading={ex.answerLang === ex.lang ? ex.answerReading : ex.promptReading} testId="feedback-reading" />
+      <MeaningLine ex={ex} />
       <Family ex={ex} />
       <FalseFriendNote ex={ex} />
       {ex.note && (!ok || ex.kind === "conjugate" || ex.kind === "gender") && <p className="mt-2 text-[12px] leading-[1.6] text-[color:var(--basalt-3)]">{ex.note}</p>}
@@ -278,9 +294,18 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
     setMatchDone(false);
     setBuilt([]);
     started.current = Date.now();
-    if (ex.kind === "listen" || ex.kind === "type-heard") speak(ex.prompt, ex.promptLang);
-    if (ex.kind === "intro") speak(ex.answer, ex.answerLang);
+    if (ex.kind === "listen" || ex.kind === "type-heard") speakAuto(ex.prompt, ex.promptLang);
+    if (ex.kind === "intro") speakAuto(ex.answer, ex.answerLang);
   }, [ex]);
+
+  const silentSkip = needsSound(ex.kind) && !autoSpeakAllowed();
+  useEffect(() => {
+    if (!silentSkip) return;
+    deferCard({ itemId: ex.itemId, lang: ex.lang, kind: ex.kind, word: ex.answerLang === ex.lang ? ex.answer : ex.prompt });
+    const t = window.setTimeout(() => onDone([]), 0);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ex, silentSkip]);
 
   const slow = () => Date.now() - started.current > 15000;
   const finish = (ok: boolean, v?: Verdict) => onDone([{ lang: ex.lang, rating: v ? verdictRating(v, slow()) : ok ? (slow() ? 2 : 3) : 1 }]);

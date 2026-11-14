@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useCallback, useEffect, useState } from "react";
 import type { LangCorpus } from "@academy/lang-systems";
 import { loadLangCorpus } from "@academy/lang-client";
@@ -8,19 +9,12 @@ import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 import { dayKey } from "@/lib/daily/rng";
 import { bookKey, loadBook, recordResult, type DailyBook, type DailyGame, type DailyResult, type SaveState, type SyncDeps } from "@/lib/daily/store";
 
-export const GUEST_SYSTEM = { root: "en", targets: ["es", "fr", "de"] };
+const GUEST_SYSTEM = { root: "en", targets: ["es", "fr", "de"] };
 
-export type DailySystem = { root: string; targets: string[] };
+type DailySystem = { root: string; targets: string[] };
 
-export function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
-export function syncDeps(): SyncDeps {
+function syncDeps(): SyncDeps {
   return { fetch: window.fetch.bind(window), token: () => appAuth().mobile.accessToken().catch(() => null) };
 }
 
@@ -42,7 +36,7 @@ export function useDailyBook(): { book: DailyBook; day: string } | null {
   const [state, setState] = useState<{ book: DailyBook; day: string } | null>(null);
   useEffect(() => {
     let live = true;
-    void loadBook(local(), syncDeps()).then((book) => live && setState({ book, day: dayKey() }));
+    void loadBook(local(), syncDeps()).then(({ book }) => live && setState({ book, day: dayKey() }));
     return () => {
       live = false;
     };
@@ -50,7 +44,7 @@ export function useDailyBook(): { book: DailyBook; day: string } | null {
   return state;
 }
 
-export type DailyState =
+type DailyState =
   | { status: "loading" }
   | { status: "error" }
   | { status: "ready"; corpus: LangCorpus; system: DailySystem; day: string; done: DailyResult | null; signedIn: boolean; saved: SaveState | null };
@@ -62,12 +56,13 @@ export function useDaily(game: DailyGame) {
     void (async () => {
       const d = syncDeps();
       const signedIn = Boolean(await d.token());
-      const [corpus, system, book] = await Promise.all([loadLangCorpus(), accountSystem(d), loadBook(local(), d)]);
+      const [corpus, system, loaded] = await Promise.all([loadLangCorpus(), accountSystem(d), loadBook(local(), d)]);
+      const book = loaded.book;
       if (!live) return;
       if (!corpus) return setState({ status: "error" });
       const day = dayKey();
       const done = book[bookKey(game, day)] ?? null;
-      setState({ status: "ready", corpus, system: system ?? GUEST_SYSTEM, day, done, signedIn, saved: done ? (signedIn ? "account" : "device") : null });
+      setState({ status: "ready", corpus, system: system ?? GUEST_SYSTEM, day, done, signedIn, saved: done ? loaded.source : null });
     })();
     return () => {
       live = false;
@@ -97,3 +92,16 @@ export function useDaily(game: DailyGame) {
 
   return { state, finish, retry };
 }
+
+export function useLearnerRoot(): string | null {
+  const [root, setRoot] = useState<string | null>(null);
+  useEffect(() => {
+    let live = true;
+    void accountSystem(syncDeps()).then((s) => live && setRoot(s?.root ?? "en"));
+    return () => {
+      live = false;
+    };
+  }, []);
+  return root;
+}
+

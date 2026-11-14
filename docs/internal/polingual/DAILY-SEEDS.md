@@ -23,9 +23,9 @@ Six games run once a day on polingual.com/play. The web code in `polingual/src/l
 
 | Game | Seed string | Words |
 |---|---|---|
-| Daily Set | `{day}|{root}|{targets}` | `GameDeck` pools, 400 per language |
-| Mini | `mini|{day}|{root}|{targets}` | starter words, 12 per language |
-| Word Groups | `groups|{day}|{root}|{targets as a set}`; tile order `groups|...|{lang}:{itemId}` | starter words, 60 per language |
+| Daily Set | `{day}\|{root}\|{targets}` | `GameDeck` pools, 400 per language |
+| Mini | `mini\|{day}\|{root}\|{targets}` | starter words, 12 per language |
+| Word Groups | `groups\|{day}\|{root}\|{targets as a set}`; tile order `groups\|...\|{lang}:{itemId}` | starter words, 60 per language |
 
 The apps build Mini and Word Groups from learned words once a learner has eight or more. The web uses starter words, which match a new account on the apps.
 
@@ -35,9 +35,9 @@ The apps deal these three from the system RNG today. They adopt these seeds next
 
 | Game | Seed strings | Deal |
 |---|---|---|
-| Speed Match | deck `speed|{day}|{root}|{targets}`, board `speed-board|{day}` | 12 words per language from the first 200 of each pool, balanced; 15 pairs or 60 seconds |
-| Which Voice | `voice|{day}|{root}|{targets}` | 6 words per language from the first 200, then `flags` with mode voice, 10 prompts |
-| Letter Sprint | language `letters-lang|{day}` mod the sorted script languages; deal `letters|{day}|{lang}` | 8 letters from the alphabet unit, three foils with a different sound |
+| Speed Match | deck `speed\|{day}\|{root}\|{targets}`, board `speed-board\|{day}` | 12 words per language from the first 200 of each pool, balanced; 15 pairs or 60 seconds |
+| Which Voice | `voice\|{day}\|{root}\|{targets}` | 6 words per language from the first 200, then `flags` with mode voice, 10 prompts |
+| Letter Sprint | language `letters-lang\|{day}` mod the sorted script languages; deal `letters\|{day}\|{lang}` | 8 letters from the alphabet unit, three foils with a different sound |
 
 Letter Sprint picks a script language from the system targets; with none, it picks from every script language.
 

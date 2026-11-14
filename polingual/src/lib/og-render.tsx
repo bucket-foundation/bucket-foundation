@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import { ImageResponse } from "next/og";
 import type { OgFontSet } from "./og-fonts";
 
-export const OG_SIZE = { width: 1200, height: 630 };
+const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CACHE_OK = "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800";
 export const OG_CACHE_FAIL = "no-store";
 

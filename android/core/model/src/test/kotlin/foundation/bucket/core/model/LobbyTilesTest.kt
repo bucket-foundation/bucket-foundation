@@ -73,3 +73,21 @@ class LobbyTilesVisibleTest {
         assertEquals(1_000L + 2 * 13_000L, LobbyTiles.roundStartMs(2, 1_000L, 9, 4))
     }
 }
+
+class LobbyTilesFrameTest {
+    @Test
+    fun frameClockCountsFromTheServerRoundStart() {
+        val start = LobbyTiles.roundStartMs(1, 10_000L, 9, 4)
+        assertEquals(23_000L, start)
+        assertEquals(2_500L, LobbyTiles.frameElapsed(nowMs = 25_000L, offsetMs = 500L, roundStartMs = start))
+        assertEquals(6, LobbyTiles.visible(LobbyTiles.schedule(6, 1, 8, 9), 6, LobbyTiles.frameElapsed(25_000L, 500L, start), emptySet(), false).size)
+    }
+
+    @Test
+    fun revealShowsTheSubmittedTapsOverLocalOnes() {
+        assertEquals(setOf(1, 3), LobbyTiles.shownTaps("3,1", setOf(0), 5))
+        assertEquals(setOf(0), LobbyTiles.shownTaps(null, setOf(0), 5))
+        assertEquals(emptySet(), LobbyTiles.shownTaps("-", setOf(2), 5))
+        assertEquals(setOf(2), LobbyTiles.shownTaps("9", setOf(2), 5))
+    }
+}

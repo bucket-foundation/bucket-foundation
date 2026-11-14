@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -39,13 +40,14 @@ import foundation.bucket.core.ui.pl.SectionTitle
 
 @Composable
 fun ShiftScreen(graph: Graph, back: () -> Unit) {
-    val date = remember { today() }
+    val date = remember { com.polingual.app.deckDay() }
+    var deckRoot by remember { mutableStateOf(PlayDecks.ROOT) }
     var board by remember { mutableStateOf<ShiftBoard?>(null) }
     var loaded by remember { mutableStateOf(false) }
     var offsets by remember { mutableStateOf<List<Int>>(emptyList()) }
     var found by remember { mutableStateOf<List<String>>(emptyList()) }
     var hints by remember { mutableStateOf<Map<String, Int>>(emptyMap()) }
-    LaunchedEffect(Unit) { board = Shift.board(graph.corpus.load().items, date); offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); board = com.polingual.app.offMain { Shift.board(items, date, root = deckRoot) }; offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
     val b = board
     val word = if (b != null && offsets.isNotEmpty()) Shift.centerWord(b.columns, offsets) else ""
     LaunchedEffect(word) { if (b != null && b.valid[word] != null && word !in found) found = found + word }
@@ -55,21 +57,20 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
         if (left.isEmpty()) {
             Results(graph, "Board cleared", "${found.size} words found. A new board comes tomorrow.", again = null) {
                 b.targets.forEach { t ->
-                    val w = remember(t) { PlayAssets.words(graph.context).firstOrNull { it.form(t.lang)?.word?.lowercase() == t.form } }
-                    if (RevealRules.shift(found, b.targets)) { if (w != null) RevealWord(graph, w, t.lang) else com.polingual.app.WordReveal(t.lang, t.form, t.meaning, null, null) { graph.voice.speak(t.form, t.lang) } }
+                    if (RevealRules.shift(found, b.targets)) PlayReveal(graph, t.lang, t.form, t.meaning, deckRoot)
                 }
             }
             return@GameFrame
         }
         Text("DAILY BOARD · $date", style = Type.caps, color = PL.InkDim)
         Text("Slide the columns to spell words in the middle row. Words count in ${b.langs.joinToString(" or ") { Lang.name(it) }}.", style = Type.small, color = PL.Ink)
-        SceneFrame(Scenes.shift, inset = 40.dp) { Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
+        SceneFrame(Scenes.shift, inset = 40.dp) { Row(Modifier.fillMaxWidth().plSurface(PL.Paper, PLRadius.md).padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
             b.columns.forEachIndexed { i, col ->
                 fun at(d: Int) = col[(((offsets[i] + d) % col.size) + col.size) % col.size]
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Box(Modifier.size(56.dp, 44.dp).clickable(role = Role.Button, onClickLabel = "Column ${i + 1} up") { offsets = Shift.rotate(offsets, i, -1) }, contentAlignment = Alignment.Center) { Glyph("back", null, PL.Lapis, Modifier.size(22.dp).rotate(90f)) }
                     Text(at(-1).uppercase(), style = Type.title, color = PL.InkFaint)
-                    Box(Modifier.size(64.dp).clip(RoundedCornerShape(PLRadius.md)).background(if (b.valid[word] != null) PL.Malachite else PL.Ink), contentAlignment = Alignment.Center) {
+                    Box(Modifier.size(64.dp).plSurface(if (b.valid[word] != null) PL.Malachite else PL.Ink, PLRadius.md), contentAlignment = Alignment.Center) {
                         Text(at(0).uppercase(), style = Type.display, color = PL.Paper)
                     }
                     Text(at(1).uppercase(), style = Type.title, color = PL.InkFaint)

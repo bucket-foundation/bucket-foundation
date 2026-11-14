@@ -27,7 +27,7 @@ const RTL = new Set(["ar", "fa", "he", "ur", "yi"]);
 
 const GRAPHEMES = new Intl.Segmenter("en", { granularity: "grapheme" });
 
-export function graphemeSlice(text: string, max: number): string {
+function graphemeSlice(text: string, max: number): string {
   let out = "";
   let n = 0;
   for (const { segment } of GRAPHEMES.segment(text)) {
@@ -110,85 +110,102 @@ const BASE: Omit<ShareView, "kind"> = {
   code: "",
 };
 
+function wordView(params: Params): Omit<ShareView, "kind"> {
+  const forms = parseForms(one(params, "f", 400));
+  const gloss = one(params, "g", 60);
+  if (!gloss || forms.length === 0) return BASE;
+  return {
+    ...BASE,
+    eyebrow: forms.length === 1 ? `A word in ${langName(forms[0].lang)}` : `One word in ${forms.length} languages`,
+    title: capitalize(gloss),
+    description: `${forms.map((f) => `${langName(f.lang)} ${f.form}`).join(", ")}. Learn them together in Polingual.`,
+    forms,
+  };
+}
+
+function langsView(params: Params): Omit<ShareView, "kind"> {
+  const langs = parseLangs(one(params, "l", 80));
+  if (langs.length === 0) return BASE;
+  const streak = count(params, "s", 100000);
+  const root = one(params, "r", 8);
+  const from = root && !langs.includes(root) ? ` from ${langName(root)}` : "";
+  return {
+    ...BASE,
+    eyebrow: streak > 1 ? `${streak} day streak` : langs.length === 1 ? "A language on Polingual" : "Languages together",
+    title: langs.length === 1 ? `Learning ${langName(langs[0])}` : `Learning ${joinNames(langs)} together`,
+    description: `Learn ${joinNames(langs)}${from} in Polingual: one review queue, every word spoken aloud.`,
+    langs,
+    streak,
+  };
+}
+
+function deckView(params: Params): Omit<ShareView, "kind"> {
+  const t = one(params, "t", 80);
+  if (!t) return BASE;
+  return { ...BASE, eyebrow: "A Polingual course", title: t, description: `Study ${t} in Polingual with lessons, quizzes and daily review.` };
+}
+
+function lessonView(params: Params): Omit<ShareView, "kind"> {
+  const t = one(params, "t", 80);
+  if (!t) return BASE;
+  return { ...BASE, eyebrow: one(params, "b", 60) || "Polingual lesson", title: t, description: one(params, "q", 160) || `Learn ${t} in Polingual.` };
+}
+
+function scoreView(params: Params): Omit<ShareView, "kind"> {
+  const source = one(params, "t", 60);
+  const right = count(params, "p", 100000);
+  const total = count(params, "m", 100000);
+  if (!source || total === 0) return BASE;
+  const langs = parseLangs(one(params, "l", 80));
+  const streak = count(params, "s", 100000);
+  return {
+    ...BASE,
+    eyebrow: `${source} score`,
+    title: `${Math.min(right, total)} of ${total} right`,
+    description: langs.length > 0 ? `Practicing ${joinNames(langs)} in Polingual. Try to beat it.` : "Practicing languages in Polingual. Try to beat it.",
+    langs,
+    streak,
+  };
+}
+
+function clipView(params: Params): Omit<ShareView, "kind"> {
+  const t = one(params, "t", 80);
+  if (!t) return BASE;
+  const source = one(params, "b", 60) || "Polingual";
+  const at = one(params, "at", 7);
+  return {
+    ...BASE,
+    eyebrow: at ? `${source}, play from ${clockLabel(count(params, "at", 1000000))}` : source,
+    title: t,
+    description: one(params, "q", 160) || "Read, listen and watch in the languages you study in Polingual.",
+  };
+}
+
+function groupView(params: Params): Omit<ShareView, "kind"> {
+  const code = one(params, "c", 10).toUpperCase();
+  const name = one(params, "n", 60);
+  if (!CODE_RE.test(code) || !name) return BASE;
+  return {
+    ...BASE,
+    eyebrow: one(params, "k", 10) === "family" ? "Family group" : "Friends group",
+    title: `Join ${name} on Polingual`,
+    description: `You are invited to learn languages together with ${name}. Join on Polingual to see each other's languages and streaks.`,
+    code,
+  };
+}
+
+const BUILDERS: Partial<Record<ShareKind, (params: Params) => Omit<ShareView, "kind">>> = {
+  w: wordView,
+  l: langsView,
+  d: deckView,
+  a: lessonView,
+  x: scoreView,
+  c: clipView,
+  g: groupView,
+};
+
 function build(kind: ShareKind, params: Params): Omit<ShareView, "kind"> {
-  if (kind === "w") {
-    const forms = parseForms(one(params, "f", 400));
-    const gloss = one(params, "g", 60);
-    if (!gloss || forms.length === 0) return BASE;
-    return {
-      ...BASE,
-      eyebrow: forms.length === 1 ? `A word in ${langName(forms[0].lang)}` : `One word in ${forms.length} languages`,
-      title: capitalize(gloss),
-      description: `${forms.map((f) => `${langName(f.lang)} ${f.form}`).join(", ")}. Learn them together in Polingual.`,
-      forms,
-    };
-  }
-  if (kind === "l") {
-    const langs = parseLangs(one(params, "l", 80));
-    if (langs.length === 0) return BASE;
-    const streak = count(params, "s", 100000);
-    const root = one(params, "r", 8);
-    const from = root && !langs.includes(root) ? ` from ${langName(root)}` : "";
-    return {
-      ...BASE,
-      eyebrow: streak > 1 ? `${streak} day streak` : langs.length === 1 ? "A language on Polingual" : "Languages together",
-      title: langs.length === 1 ? `Learning ${langName(langs[0])}` : `Learning ${joinNames(langs)} together`,
-      description: `Learn ${joinNames(langs)}${from} in Polingual: one review queue, every word spoken aloud.`,
-      langs,
-      streak,
-    };
-  }
-  if (kind === "d") {
-    const t = one(params, "t", 80);
-    if (!t) return BASE;
-    return { ...BASE, eyebrow: "A Polingual course", title: t, description: `Study ${t} in Polingual with lessons, quizzes and daily review.` };
-  }
-  if (kind === "a") {
-    const t = one(params, "t", 80);
-    if (!t) return BASE;
-    return { ...BASE, eyebrow: one(params, "b", 60) || "Polingual lesson", title: t, description: one(params, "q", 160) || `Learn ${t} in Polingual.` };
-  }
-  if (kind === "x") {
-    const source = one(params, "t", 60);
-    const right = count(params, "p", 100000);
-    const total = count(params, "m", 100000);
-    if (!source || total === 0) return BASE;
-    const langs = parseLangs(one(params, "l", 80));
-    const streak = count(params, "s", 100000);
-    return {
-      ...BASE,
-      eyebrow: `${source} score`,
-      title: `${Math.min(right, total)} of ${total} right`,
-      description: langs.length > 0 ? `Practicing ${joinNames(langs)} in Polingual. Try to beat it.` : "Practicing languages in Polingual. Try to beat it.",
-      langs,
-      streak,
-    };
-  }
-  if (kind === "c") {
-    const t = one(params, "t", 80);
-    if (!t) return BASE;
-    const source = one(params, "b", 60) || "Polingual";
-    const at = one(params, "at", 7);
-    return {
-      ...BASE,
-      eyebrow: at ? `${source}, play from ${clockLabel(count(params, "at", 1000000))}` : source,
-      title: t,
-      description: one(params, "q", 160) || "Read, listen and watch in the languages you study in Polingual.",
-    };
-  }
-  if (kind === "g") {
-    const code = one(params, "c", 10).toUpperCase();
-    const name = one(params, "n", 60);
-    if (!CODE_RE.test(code) || !name) return BASE;
-    return {
-      ...BASE,
-      eyebrow: one(params, "k", 10) === "family" ? "Family group" : "Friends group",
-      title: `Join ${name} on Polingual`,
-      description: `You are invited to learn languages together with ${name}. Join on Polingual to see each other's languages and streaks.`,
-      code,
-    };
-  }
-  return BASE;
+  return BUILDERS[kind]?.(params) ?? BASE;
 }
 
 export function shareView(kind: ShareKind, params: Params): ShareView {

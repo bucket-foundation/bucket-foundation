@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { tokens, type ColorToken } from "@/ui";
+import { Button, tokens, type ColorToken } from "@/ui";
 import styles from "./brand.module.css";
 
 function luminance(value: string) {
@@ -32,12 +32,12 @@ export default function CopySwatch({ name, role }: { name: ColorToken; role?: st
       <div className={styles.swBody}>
         <span className={styles.swName}>{name}</span>
         {role ? <span className={styles.swRole}>{role}</span> : null}
-        <button type="button" className={styles.swCopy} onClick={() => copy(value)} aria-label={`Copy ${name} value ${value}`}>
+        <Button bare className={styles.swCopy} onClick={() => copy(value)} aria-label={`Copy ${name} value ${value}`}>
           {value}
-        </button>
-        <button type="button" className={styles.swCopy} onClick={() => copy(`var(--pl-${name})`)} aria-label={`Copy ${name} CSS variable`}>
+        </Button>
+        <Button bare className={styles.swCopy} onClick={() => copy(`var(--pl-${name})`)} aria-label={`Copy ${name} CSS variable`}>
           --pl-{name}
-        </button>
+        </Button>
         <span className={styles.swCopied} aria-live="polite">{copied ? "Copied" : ""}</span>
       </div>
     </div>

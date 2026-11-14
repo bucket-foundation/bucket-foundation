@@ -34,7 +34,7 @@ fun PlayScreen(graph: Graph, nav: NavHostController) {
             EmptyState("kente", "Pick languages first. The games use the words you study.", onDark = true)
             PLButton("Pick languages", variant = ButtonVariant.Accent) { nav.navigate("system/new") }
         } else GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> Lang.info[l]?.latin == false } }.forEach { k ->
-            val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
+            val played = dailyLine(graph, k)
             GameTile(k, played) { nav.navigate("game/${k.route}") }
         }
         SectionTitle("More games", onDark = true)
@@ -43,4 +43,12 @@ fun PlayScreen(graph: Graph, nav: NavHostController) {
         }
         AdBanner(graph)
     }
+}
+
+@Composable
+fun dailyLine(graph: Graph, kind: GameKind): String? {
+    val book by graph.daily.collectAsState()
+    val game = kind.daily() ?: return null
+    val r = book[DailyBook.key(game, dayKey())]
+    return if (r != null) "Done today · ${r.score} of ${r.total}" else "Play today · ${kind.blurb}"
 }

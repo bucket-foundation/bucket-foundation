@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
-import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, resetPlayer, snapshot, stop, type SpeakItem } from "./speak";
+import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, reasonFor, resetPlayer, say, snapshot, START_MS, stationAudio, stop, CUT_GAP_MS, cancelSpeech, estimateMs, FINISH_MS, SETTLE_MS, type SpeakItem } from "./speak";
 import { LANGS, WORDS, word } from "./words";
 import { graphemes, longestToken } from "./tile-fit";
 import { WordView } from "../app/(site)/word/views";
@@ -160,6 +160,7 @@ test("a new tap stops the sound that is playing", async () => {
   await tick();
   void play(nuit);
   await first;
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 120));
   assert.equal(snapshot().id, "fr");
   const el = audios[audios.length - 1];
   assert.equal(el.src, nuit.src);
@@ -199,3 +200,150 @@ test("hear all reuses one audio element so iOS keeps the unlock from the tap", a
   assert.deepEqual(snapshot(), { id: null, all: false });
 });
 
+
+test("rapid taps each start their word and the last tap holds the player", async () => {
+  installFakes();
+  resetPlayer();
+  const before = spoken.length;
+  const words = ["uno", "dos", "tres", "cuatro", "cinco"];
+  const runs = words.map((w, i) => play({ id: `t${i}`, text: w, lang: "es-ES" }));
+  await tick();
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 120));
+  const said = spoken.slice(before).map((u) => u.text);
+  assert.equal(said[said.length - 1], "cinco");
+  assert.ok(!said.slice(0, -1).includes("cinco"));
+  assert.equal(snapshot().id, "t4");
+  stop();
+  await Promise.all(runs);
+});
+
+test("a tap on a language with no voice explains why at once", async () => {
+  installFakes();
+  resetPlayer();
+  assert.equal(reasonFor({ lang: "ja-JP" }), "This device has no Japanese voice.");
+  await play({ id: "ja", text: "猫", lang: "ja-JP" });
+  assert.equal(snapshot().notice, "This device has no Japanese voice.");
+});
+
+test("a tap that makes no sound within 300 ms shows a reason", async () => {
+  installFakes();
+  resetPlayer();
+  const run = play({ id: "q", text: "silencio", lang: "es-ES" });
+  await new Promise((r) => setTimeout(r, START_MS + 200));
+  assert.match(snapshot().notice ?? "", /No sound yet/);
+  stop();
+  await run;
+});
+
+test("automatic audio stays quiet in silent mode while a tap still speaks", async () => {
+  installFakes();
+  resetPlayer();
+  const before = spoken.length;
+  say("hola", "es-ES", { auto: true, silent: true });
+  await tick();
+  assert.equal(spoken.length, before);
+  say("hola", "es-ES", { silent: true });
+  await tick();
+  assert.equal(spoken.length, before + 1);
+  stop();
+});
+
+test("a word tap ducks the radio station and restores it after", async () => {
+  installFakes();
+  resetPlayer();
+  const st = stationAudio() as unknown as { paused: boolean; volume: number };
+  st.paused = false;
+  st.volume = 1;
+  const run = play({ id: "d", text: "uno", lang: "es-ES" });
+  await tick();
+  assert.equal(st.volume, 0.15);
+  spoken[spoken.length - 1].onend?.();
+  await run;
+  assert.equal(st.volume, 1);
+});
+
+test("a word under 1.5 s from done finishes, then only the latest tap plays", async () => {
+  installFakes();
+  resetPlayer();
+  const before = spoken.length;
+  void play({ id: "a", text: "sí", lang: "es-ES" });
+  await tick();
+  const first = spoken[spoken.length - 1] as { text: string; onend?: () => void; onstart?: () => void };
+  first.onstart?.();
+  assert.ok(estimateMs("sí") <= FINISH_MS);
+  void play({ id: "b", text: "dos", lang: "es-ES" });
+  void play({ id: "c", text: "tres", lang: "es-ES" });
+  await tick();
+  assert.equal(spoken.length, before + 1);
+  first.onend?.();
+  await tick();
+  await tick();
+  assert.deepEqual(spoken.slice(before).map((u) => u.text), ["sí", "tres"]);
+  stop();
+});
+
+test("a long word is cut by a new tap and nothing stale plays after cancel", async () => {
+  installFakes();
+  resetPlayer();
+  const before = spoken.length;
+  void play({ id: "a", text: "a very long sentence that keeps speaking for a while", lang: "es-ES" });
+  await tick();
+  (spoken[spoken.length - 1] as { onstart?: () => void }).onstart?.();
+  const cut = cancels;
+  void play({ id: "b", text: "corta", lang: "es-ES" });
+  assert.equal(cancels, cut + 1);
+  cancelSpeech();
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 130));
+  assert.ok(!spoken.slice(before).some((u) => u.text === "corta"));
+  assert.equal(snapshot().id, null);
+});
+
+test("an unducked word ending never restores the station early", async () => {
+  installFakes();
+  resetPlayer();
+  const st = stationAudio() as unknown as { paused: boolean; volume: number };
+  st.paused = true;
+  st.volume = 0.7;
+  const a = play({ id: "a", text: "a long phrase that keeps speaking on and on", lang: "es-ES" });
+  await tick();
+  (spoken[spoken.length - 1] as { onstart?: () => void }).onstart?.();
+  st.paused = false;
+  const b = play({ id: "b", text: "otra palabra bastante larga para cortar", lang: "es-ES" });
+  await a;
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 120));
+  assert.equal(st.volume, 0.15);
+  spoken[spoken.length - 1].onend?.();
+  await b;
+  assert.equal(st.volume, 0.7);
+});
+
+test("turning silent mode on cuts the word that is speaking", async () => {
+  installFakes();
+  resetPlayer();
+  const mem = new Map<string, string>();
+  (globalThis as unknown as { window: Record<string, unknown> }).window.localStorage = { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v) };
+  (globalThis as unknown as { window: Record<string, unknown> }).window.addEventListener = () => undefined;
+  (globalThis as unknown as { window: Record<string, unknown> }).window.removeEventListener = () => undefined;
+  void play({ id: "s", text: "silencio por favor", lang: "es-ES" });
+  await tick();
+  const { setSilent } = await import("./silent");
+  const before = cancels;
+  setSilent(true);
+  assert.equal(cancels, before + 1);
+  assert.equal(snapshot().id, null);
+  setSilent(false);
+});
+
+test("a queued word never waits more than the settle time on a stuck one", async () => {
+  installFakes();
+  resetPlayer();
+  void play({ id: "a", text: "sí", lang: "es-ES" });
+  await tick();
+  (spoken[spoken.length - 1] as { onstart?: () => void }).onstart?.();
+  void play({ id: "b", text: "luego", lang: "es-ES" });
+  await tick();
+  assert.notEqual(spoken[spoken.length - 1].text, "luego");
+  await new Promise((r) => setTimeout(r, SETTLE_MS + CUT_GAP_MS + 300));
+  assert.equal(spoken[spoken.length - 1].text, "luego");
+  stop();
+});

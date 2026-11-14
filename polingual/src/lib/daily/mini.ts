@@ -1,8 +1,8 @@
 import { fnv, SeededRandom } from "./rng";
 import { wordId, type GameWord } from "./words";
 
-export const MINI_SIDE = 6;
-export const MINI_WANTED = 5;
+const MINI_SIDE = 6;
+const MINI_WANTED = 5;
 
 export interface MiniEntry {
   word: GameWord;

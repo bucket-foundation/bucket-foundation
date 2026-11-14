@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { readingsByForm, seededRng, type Exercise, type Reading } from "@/lib/academy/lang-systems";
+import { readingsByForm, seededRng, withMeaning, type Exercise, type Reading } from "@/lib/academy/lang-systems";
 import { bandsAvailable, cefrPlacement, cefrQuestion, cefrStep, levelLabel, type CefrAnswer, type CefrPlacement, type CefrTask, type PlacementSource, type TopWord } from "@/lib/academy/placement-cefr";
 import { loadTopWords, speechSupported } from "@/lib/academy/lang-client";
 import type { LangSystemHandle } from "./useLangSystem";
@@ -62,7 +62,7 @@ export function useCefrPlacement(h: LangSystemHandle, requested: string | null):
     if (step.done) return finish(step);
     const next = cefrQuestion(src, step.next!.band, step.next!.task, seen, rng, { speech: speechSupported() });
     if (!next) return finish({ ...step, done: true, unknownFrom: step.next!.band });
-    setQ(next);
+    setQ({ ...next, ex: withMeaning(next.ex, src.corpus) });
   }, [src, answers, seen, q, result, rng, h, available]);
 
   const readings = useMemo(() => (corpus && lang ? readingsByForm(corpus, lang) : {}), [corpus, lang]);

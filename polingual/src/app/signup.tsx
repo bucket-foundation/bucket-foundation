@@ -10,7 +10,7 @@ type State = { kind: "idle" } | { kind: "sending" } | { kind: "done" } | { kind:
 const field =
   "w-full rounded-lg bg-white px-4 py-3 text-base outline-none ring-1 focus:ring-2 font-sans text-[color:var(--pl-ink)] ring-[color:var(--pl-lapis-soft)]";
 
-export default function Signup({ compact = false }: { compact?: boolean }) {
+function useSignup() {
   const [state, setState] = useState<State>({ kind: "idle" });
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -30,6 +30,12 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
       setState({ kind: "error", message: err instanceof Error ? err.message : "Signup failed." });
     }
   }
+
+  return { state, submit };
+}
+
+export default function Signup({ compact = false }: { compact?: boolean }) {
+  const { state, submit } = useSignup();
 
   if (state.kind === "done" && compact) {
     return (

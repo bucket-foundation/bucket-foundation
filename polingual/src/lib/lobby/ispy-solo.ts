@@ -1,7 +1,7 @@
 import { spyPoints } from "@academy/ispy";
 import type { LobbyPlayer } from "@academy/lobbies";
 
-export interface SpyBot {
+interface SpyBot {
   id: string;
   name: string;
   skill: "easy" | "medium" | "hard";
@@ -23,7 +23,7 @@ export function unit(key: string): number {
   return h / 2 ** 32;
 }
 
-export interface BotTurn {
+interface BotTurn {
   botId: string;
   atMs: number;
   correct: boolean;
@@ -53,4 +53,18 @@ export function boardPlayers(me: { name: string; score: number; answered: boolea
     { ...base, userId: "me", name: me.name, score: me.score, isMe: true, answered: me.answered, bot: false, skill: null, flag: null },
     ...bots.map((b) => ({ ...base, userId: b.id, name: b.name, score: tallies[b.id]?.score ?? 0, isMe: false, answered: answered.has(b.id), bot: true, skill: b.skill, flag: b.flag })),
   ];
+}
+
+export function myRank(players: readonly LobbyPlayer[]): number {
+  return [...players].sort((a, b) => b.score - a.score).findIndex((p) => p.isMe) + 1;
+}
+
+export function roundLeft(now: number, startedAt: number, roundSeconds: number): number {
+  return Math.max(0, 1 - (now - startedAt) / (roundSeconds * 1000));
+}
+
+export function settle(tallies: Record<string, Tally>, turns: readonly BotTurn[], roundSeconds: number): Record<string, Tally> {
+  const next = { ...tallies };
+  for (const t of turns) next[t.botId] = award(next[t.botId] ?? { score: 0, streak: 0 }, t.correct, t.atMs, roundSeconds);
+  return next;
 }

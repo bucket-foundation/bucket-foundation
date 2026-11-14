@@ -31,7 +31,7 @@ export function mergeBooks(a: DailyBook, b: DailyBook): DailyBook {
   return Object.fromEntries(keys.map((k) => [k, all[k]]));
 }
 
-export function sameBook(a: DailyBook, b: DailyBook): boolean {
+function sameBook(a: DailyBook, b: DailyBook): boolean {
   const ka = Object.keys(a);
   return ka.length === Object.keys(b).length && ka.every((k) => b[k] && b[k].savedAt === a[k].savedAt && b[k].pattern === a[k].pattern);
 }
@@ -63,7 +63,7 @@ async function call(deps: SyncDeps, init?: RequestInit): Promise<Response | null
   return deps.fetch("/api/academy/progress", { ...init, headers, cache: "no-store" });
 }
 
-export async function pullBook(deps: SyncDeps): Promise<DailyBook | null> {
+async function pullBook(deps: SyncDeps): Promise<DailyBook | null> {
   try {
     const r = await call(deps);
     if (!r?.ok) return null;
@@ -74,7 +74,7 @@ export async function pullBook(deps: SyncDeps): Promise<DailyBook | null> {
   }
 }
 
-export async function pushBook(deps: SyncDeps, book: DailyBook): Promise<boolean> {
+async function pushBook(deps: SyncDeps, book: DailyBook): Promise<boolean> {
   try {
     const r = await call(deps, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ branch: DAILY_BRANCH, data: { results: book } }) });
     return !!r?.ok;
@@ -85,7 +85,7 @@ export async function pushBook(deps: SyncDeps, book: DailyBook): Promise<boolean
 
 export type SaveState = "account" | "device" | "failed";
 
-export async function syncBook(deps: SyncDeps, local: DailyBook, tries = 3): Promise<DailyBook | null> {
+async function syncBook(deps: SyncDeps, local: DailyBook, tries = 3): Promise<DailyBook | null> {
   let book = local;
   for (let n = 0; n < tries; n++) {
     const remote = await pullBook(deps);
@@ -111,14 +111,17 @@ export async function recordResult(result: DailyResult, storage: Storage | null,
   return { book, saved: "account" };
 }
 
-export async function loadBook(storage: Storage | null, deps: SyncDeps | null): Promise<DailyBook> {
+type LoadedBook = { book: DailyBook; source: "account" | "device" };
+
+export async function loadBook(storage: Storage | null, deps: SyncDeps | null): Promise<LoadedBook> {
   const local = readLocal(storage);
-  if (!deps || !(await deps.token())) return local;
+  if (!deps || !(await deps.token())) return { book: local, source: "device" };
   const remote = await pullBook(deps);
-  if (!remote) return local;
-  const book = mergeBooks(local, remote);
+  if (!remote) return { book: local, source: "device" };
+  let book = mergeBooks(local, remote);
+  if (!sameBook(book, remote)) book = (await syncBook(deps, book)) ?? book;
   writeLocal(storage, book);
-  return book;
+  return { book, source: "account" };
 }
 
 export function shareText(title: string, r: DailyResult, url: string): string {

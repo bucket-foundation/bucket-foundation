@@ -70,7 +70,8 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
         containerColor = PL.Paper,
     ) {
         val access by graph.billing.access.collectAsState()
-        androidx.compose.runtime.CompositionLocalProvider(LocalStartLearning provides { nav.navigate(PlayRules.startLearningRoute(access)) { launchSingleTop = true } }) {
+        val rootLang = graph.state.collectAsState().value?.system?.root ?: "en"
+        androidx.compose.runtime.CompositionLocalProvider(LocalRootLang provides rootLang, LocalStartLearning provides { nav.navigate(PlayRules.startLearningRoute(access)) { launchSingleTop = true } }) {
             Box(Modifier.fillMaxSize()) { Routes(graph, nav) }
         }
     }

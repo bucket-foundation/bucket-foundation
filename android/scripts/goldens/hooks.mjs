@@ -12,7 +12,27 @@ export async function resolve(spec, ctx, next) {
   }
   return next(spec, ctx);
 }
+const PARAM_PROPERTY = /constructor\(([^)]*)\)\s*\{/s;
+
+function lowerParamProperties(src) {
+  const m = src.match(PARAM_PROPERTY);
+  if (!m || !/\b(private|public|protected|readonly)\s+\w+/.test(m[1])) return src;
+  const fields = [];
+  const params = m[1].replace(/\b(?:private|public|protected|readonly)\s+(?:readonly\s+)?(\w+)(\s*:[^,=]+)?/g, (_, name, type) => {
+    fields.push(`  ${name}${type ?? ""};`);
+    return `${name}${type ?? ""}`;
+  });
+  const assigns = fields.map((f) => f.trim().split(/[:;]/)[0]).map((n) => `this.${n} = ${n};`).join(" ");
+  return src.replace(m[0], `${fields.join("\n")}\n  constructor(${params}) { ${assigns}`);
+}
+
 export async function load(url, ctx, next) {
   if (url.endsWith(".json")) return next(url, { ...ctx, importAttributes: { type: "json" } });
+  if (url.endsWith(".ts")) {
+    const r = await next(url, { ...ctx, format: "module-typescript" });
+    const src = typeof r.source === "string" ? r.source : new TextDecoder().decode(r.source);
+    const fixed = lowerParamProperties(src);
+    return fixed === src ? r : { ...r, source: fixed };
+  }
   return next(url, ctx);
 }

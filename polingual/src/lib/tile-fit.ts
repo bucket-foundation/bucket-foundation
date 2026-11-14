@@ -27,7 +27,7 @@ export function longestToken(word: string): number {
   return Math.max(1, ...tokens(word).map(graphemes));
 }
 
-export function tokenEm(token: string): number {
+function tokenEm(token: string): number {
   const hit = SCRIPTS.find(([re]) => re.test(token));
   const [per, base] = hit ? [hit[1], hit[2]] : LATIN;
   return per * graphemes(token) + base;
@@ -38,10 +38,10 @@ export function wordEm(word: string): number {
 }
 
 export const MAX_PX = 54;
-export const MULTI_PX = 24;
-export const TWO_LINE_READING_PX = 44;
+const MULTI_PX = 24;
+const TWO_LINE_READING_PX = 44;
 export const MIN_PX = 12;
-export const ROOM_CQI = 77;
+const ROOM_CQI = 77;
 export const ROOM_ICON_CQI = 74;
 
 export function capPx(word: string, reading = ""): number {

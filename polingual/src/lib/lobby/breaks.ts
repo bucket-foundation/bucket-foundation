@@ -5,7 +5,7 @@ export interface Breaks {
   lastInterstitial: number | null;
 }
 
-export interface BreakStore {
+interface BreakStore {
   getItem(key: string): string | null;
   setItem(key: string, value: string): void;
 }

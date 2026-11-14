@@ -18,7 +18,7 @@ function save(blob: Blob, name: string) {
 
 const svgUrl = (svg: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 
-export async function pngBlob(raw: string, scale: number): Promise<Blob> {
+async function pngBlob(raw: string, scale: number): Promise<Blob> {
   const svg = await embedFonts(raw);
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -59,9 +59,9 @@ function PieceCard({ p }: { p: Piece }) {
       <strong>{p.label}</strong>
       <span>{p.origin}</span>
       <div className={styles.pieceDl}>
-        <button type="button" className={styles.chipBtn} onClick={() => save(new Blob([p.svg], { type: "image/svg+xml" }), `${pieceFile(p)}.svg`)} aria-label={`Download ${p.label} SVG`}>SVG</button>
-        <button type="button" className={styles.chipBtn} disabled={busy} onClick={() => png(1)} aria-label={`Download ${p.label} PNG at 1x`}>PNG</button>
-        <button type="button" className={styles.chipBtn} disabled={busy} onClick={() => png(4)} aria-label={`Download ${p.label} PNG at 4x`}>PNG 4x</button>
+        <Button bare className={styles.chipBtn} onClick={() => save(new Blob([p.svg], { type: "image/svg+xml" }), `${pieceFile(p)}.svg`)} aria-label={`Download ${p.label} SVG`}>SVG</Button>
+        <Button bare className={styles.chipBtn} disabled={busy} onClick={() => png(1)} aria-label={`Download ${p.label} PNG at 1x`}>PNG</Button>
+        <Button bare className={styles.chipBtn} disabled={busy} onClick={() => png(4)} aria-label={`Download ${p.label} PNG at 4x`}>PNG 4x</Button>
       </div>
       <p className={styles.pieceErr} role="status">{failed ? "PNG export failed. Download the SVG." : ""}</p>
     </li>
