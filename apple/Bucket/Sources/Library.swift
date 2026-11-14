@@ -25,7 +25,10 @@ final class Library {
         if case .ready = index { return }
         index = .loading
         do {
-            index = .ready(try await api.deckIndex().decks)
+            let decks = try await api.deckIndex().decks
+            index = .ready(decks)
+            let api = api
+            Task.detached(priority: .background) { await api.saveOffline(decks) }
         } catch {
             index = .failed(error.localizedDescription)
         }
@@ -39,7 +42,7 @@ final class Library {
     func prepared(_ entry: DeckEntry) async -> PreparedDeck? {
         if let p = prepared[entry.id] { return p }
         guard let d = await deck(entry) else { return nil }
-        let p = PreparedDeck(branch: entry.id, atoms: d.atoms)
+        let p = PreparedDeck(branch: entry.id, atoms: d.atoms, questionsFile: entry.questionsFile)
         prepared[entry.id] = p
         return p
     }
