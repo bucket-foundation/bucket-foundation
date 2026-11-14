@@ -41,3 +41,12 @@ class ForeheadRulesTest {
         assertEquals(six, ForeheadRules.toggle(six, "g"))
     }
 }
+
+class DealSeedEnsureTest {
+    @Test
+    fun anEmptySavedSeedIsFilledOnceAndThenKept() {
+        val first = DealSeeds.ensure("") { 0.5 }
+        assertEquals("500000000001", first)
+        assertEquals(first, DealSeeds.ensure(first) { 0.9 })
+    }
+}

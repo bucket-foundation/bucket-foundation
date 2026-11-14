@@ -42,12 +42,12 @@ import foundation.bucket.core.ui.pl.WordTile
 @Composable
 fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
     val date = remember { com.polingual.app.deckDay() }
-    val deckRoot = PlayDecks.root(graph.state.value?.system?.root)
+    var deckRoot by remember { mutableStateOf(PlayDecks.ROOT) }
     var deck by remember { mutableStateOf<FlagTilesDeck?>(null) }
     var run by remember { mutableStateOf(RunState()) }
     var progress by remember { mutableFloatStateOf(0f) }
     var best by remember { mutableStateOf(graph.kv.get("flagtiles.best.$date")?.toIntOrNull() ?: 0) }
-    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deck = com.polingual.app.offMain { FlagTilesRules.deck(items, date, root = deckRoot) } }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); deck = com.polingual.app.offMain { FlagTilesRules.deck(items, date, root = deckRoot) } }
     val d = deck
     val tile = if (d != null && run.phase != RunPhase.Ready && d.tiles.isNotEmpty()) d.tiles[(run.missed ?: run.index) % d.tiles.size] else null
     val answer = if (tile != null && d != null) d.langs.indexOf(tile.lang) else -1

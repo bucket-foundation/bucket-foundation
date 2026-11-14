@@ -47,7 +47,7 @@ object FlagTilesRules {
     fun deck(items: List<LangItem>, date: String, root: String = PlayDecks.ROOT): FlagTilesDeck {
         val rand = WebRandom(WebRandom.seedOf("flag-tiles:$date"))
         val words = items.filter { it.kind == ItemKind.Word && it.form(root) != null }
-        val usable = POOL.filter { l -> words.count { it.form(l) != null } >= 40 }
+        val usable = POOL.filter { l -> l != root && words.count { it.form(l) != null } >= 40 }
         val langs = rand.shuffled(usable).take(LANES).sorted()
         val tiles = mutableListOf<FlagTile>()
         val seen = HashSet<String>()

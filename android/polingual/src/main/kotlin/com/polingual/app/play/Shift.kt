@@ -36,7 +36,8 @@ object Shift {
     fun board(items: List<LangItem>, date: String, root: String = PlayDecks.ROOT, length: Int = LENGTH): ShiftBoard? {
         val rand = WebRandom(WebRandom.seedOf("shift:$date"))
         val words = items.filter { it.kind == ItemKind.Word && it.form(root) != null }
-        val pairs = rand.shuffled(LANGS.flatMapIndexed { i, a -> LANGS.drop(i + 1).map { b -> listOf(a, b) } })
+        val pool = LANGS.filter { it != root }
+        val pairs = rand.shuffled(pool.flatMapIndexed { i, a -> pool.drop(i + 1).map { b -> listOf(a, b) } })
         for (langs in pairs) {
             val targets = mutableListOf<ShiftTarget>()
             val seen = HashSet<String>()

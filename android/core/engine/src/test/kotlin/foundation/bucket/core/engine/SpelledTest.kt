@@ -33,3 +33,12 @@ class SpelledTest {
         assertEquals(Verdict.Exact, Spelled.judge("ｲﾇ", listOf("イヌ"), "ja"), "LangScript.swift:70 NFKC for width scripts")
     }
 }
+
+class SpelledSpaceTest {
+    @Test
+    fun noBreakSpaceSeparatesWordsLikeSwiftIsWhitespace() {
+        assertEquals("до свидания", Spelled.base("до свидания", "ru"), "LangScript.swift:74 isWhitespace includes U+00A0")
+        assertEquals(Verdict.Exact, Spelled.judge("до свидания", listOf("до свидания"), "ru"))
+        assertEquals("a b", Spelled.base("a b", "ru"))
+    }
+}

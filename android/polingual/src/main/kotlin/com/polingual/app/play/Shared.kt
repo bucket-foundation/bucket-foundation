@@ -51,6 +51,8 @@ fun PlayReveal(graph: Graph, lang: String, form: String, meaning: String, rootLa
 
 object DealSeeds {
     fun fresh(random: () -> Double = Math::random): String = (1 + (random() * 1e12).toLong()).toString()
+
+    fun ensure(saved: String, random: () -> Double = Math::random): String = saved.ifEmpty { fresh(random) }
 }
 
 @OptIn(ExperimentalLayoutApi::class)
