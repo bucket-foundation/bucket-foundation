@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import com.polingual.app.WordCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -45,7 +46,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
     var run by remember { mutableStateOf(RunState()) }
     var progress by remember { mutableFloatStateOf(0f) }
     var best by remember { mutableStateOf(graph.kv.get("flagtiles.best.$date")?.toIntOrNull() ?: 0) }
-    LaunchedEffect(Unit) { deck = FlagTilesRules.deck(graph.corpus.load().items, date, root = deckRoot) }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deck = com.polingual.app.offMain { FlagTilesRules.deck(items, date, root = deckRoot) } }
     val d = deck
     val tile = if (d != null && run.phase != RunPhase.Ready && d.tiles.isNotEmpty()) d.tiles[(run.missed ?: run.index) % d.tiles.size] else null
     val answer = if (tile != null && d != null) d.langs.indexOf(tile.lang) else -1
@@ -91,33 +92,34 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
             }
             RunPhase.Running -> {
                 Row { Text("${run.score}", style = Type.display, color = PL.Vermilion, modifier = Modifier.weight(1f)); Text("Best $best", style = Type.small, color = PL.InkDim) }
-                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).drawBehind {
-                    val stripes = listOf(PL.Ochre, PL.Malachite, PL.Vermilion, PL.Ink)
-                    val lane = size.width / 4f
-                    for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }
-                    drawRect(PL.Ochre.copy(alpha = 0.18f), size = androidx.compose.ui.geometry.Size(size.width, 10f))
-                }) {
-                    if (tile != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordTile(null, tile.form, tilt = 0f) }
-                    Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(6.dp).background(PL.Vermilion))
-                } }
+                FallStage(tile?.form, progress)
                 Lanes()
             }
             RunPhase.Missed -> {
                 Text("${run.score}", style = Type.display, color = PL.Vermilion)
                 Text(if (run.picked == null) "Too slow" else "Wrong flag", style = Type.title, color = PL.Ink)
                 val missed = d.tiles[(run.missed ?: 0) % d.tiles.size]
-                val word = remember(missed) { com.polingual.app.play.PlayAssets.words(graph.context).firstOrNull { w -> w.form(missed.lang)?.word == missed.form } }
-                if (RevealRules.flagTiles(run)) { if (word != null) RevealWord(graph, word, missed.lang) else com.polingual.app.WordReveal(missed.lang, missed.form, missed.meaning, missed.itemId, null, rootLang = deckRoot) { graph.voice.speak(missed.form, missed.lang) } }
+                if (RevealRules.flagTiles(run)) PlayReveal(graph, missed.lang, missed.form, missed.meaning, deckRoot, missed.itemId)
                 run.picked?.let { Text("You picked ${Lang.name(d.langs[it])}.", style = Type.small, color = PL.InkDim) }
                 PrimaryButton("See results") { run = FlagTilesRules.step(run, RunEvent.End) }
             }
             RunPhase.Over -> Results(graph, "${run.score} words", "Today's best: $best. New deck tomorrow.", again = { run = FlagTilesRules.step(run, RunEvent.Start) }) {
                 SectionTitle("Today's board")
-                val rows = (FlagTilesRules.ghosts(date).map { Triple("${Bots.countryFlag(it.flag)} ${it.name}", it.score, false) } + Triple("You", run.score, true)).sortedByDescending { it.second }
-                rows.forEachIndexed { i, (name, score, me) ->
-                    Row { Text("${i + 1}  $name", style = Type.body, color = if (me) PL.Vermilion else PL.Ink, modifier = Modifier.weight(1f)); Text("$score", style = Type.body, color = PL.Ink) }
-                }
+                Leaderboard(Boards.fromGhosts(FlagTilesRules.ghosts(date), run.score))
             }
         }
     }
+}
+
+@Composable
+private fun FallStage(form: String?, progress: Float) {
+                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).drawBehind {
+                    val stripes = listOf(PL.Ochre, PL.Malachite, PL.Vermilion, PL.Ink)
+                    val lane = size.width / 4f
+                    for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }
+                    drawRect(PL.Ochre.copy(alpha = 0.18f), size = androidx.compose.ui.geometry.Size(size.width, 10f))
+                }) {
+                    if (form != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordCard(null, form, tilt = 0f) }
+                    Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(6.dp).background(PL.Vermilion))
+                } }
 }

@@ -67,7 +67,8 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
     }
     LaunchedEffect(round) {
         if (round == 0) return@LaunchedEffect
-        cards = ForeheadDeck.deck(graph.corpus.load().items, langs, (1 + (Math.random() * 1e12).toLong()).toString())
+        val items = graph.corpus.load().items
+        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, langs, (1 + (Math.random() * 1e12).toLong()).toString()) }
         index = 0; results = emptyList(); left = ForeheadDeck.SECONDS; count = 3; phase = FhPhase.Count
         while (count > 0) { delay(1000); count -= 1 }
         phase = FhPhase.Play
@@ -110,16 +111,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
             FhPhase.Play -> {
                 val c = cards.getOrNull(index)
                 if (c == null) { EmptyState("ticket", "Out of cards."); return@GameFrame }
-                Row { Text("$left", style = Type.display, color = PL.Ink, modifier = Modifier.weight(1f)); Text("${results.count { it.got }}", style = Type.display, color = PL.Malachite) }
-                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(PL.Tyrian).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text("${Lang.flag(c.lang)} ${Lang.name(c.lang).uppercase()}", style = Type.caps, color = PL.Paper.copy(alpha = 0.8f))
-                    Text(c.form, style = Type.word.copy(fontSize = 56.sp, lineHeight = 60.sp), color = PL.Paper, textAlign = TextAlign.Center)
-                    (c.reading?.roman ?: c.reading?.kana)?.let { Text(it, style = Type.body, color = PL.Paper.copy(alpha = 0.8f)) }
-                }
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    PLButton("Pass", Modifier.weight(1f), variant = ButtonVariant.Secondary) { mark(false) }
-                    PLButton("Got it", Modifier.weight(1f), variant = ButtonVariant.Success) { mark(true) }
-                }
+                ForeheadCardView(c, left, results.count { it.got }, ::mark)
             }
             FhPhase.Done -> {
                 val got = results.count { it.got }
@@ -132,4 +124,18 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
             }
         }
     }
+}
+
+@Composable
+private fun ForeheadCardView(c: ForeheadCard, left: Int, got: Int, mark: (Boolean) -> Unit) {
+                Row { Text("$left", style = Type.display, color = PL.Ink, modifier = Modifier.weight(1f)); Text("$got", style = Type.display, color = PL.Malachite) }
+                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(PL.Tyrian).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("${Lang.flag(c.lang)} ${Lang.name(c.lang).uppercase()}", style = Type.caps, color = PL.Paper.copy(alpha = 0.8f))
+                    Text(c.form, style = Type.word.copy(fontSize = 56.sp, lineHeight = 60.sp), color = PL.Paper, textAlign = TextAlign.Center)
+                    (c.reading?.roman ?: c.reading?.kana)?.let { Text(it, style = Type.body, color = PL.Paper.copy(alpha = 0.8f)) }
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    PLButton("Pass", Modifier.weight(1f), variant = ButtonVariant.Secondary) { mark(false) }
+                    PLButton("Got it", Modifier.weight(1f), variant = ButtonVariant.Success) { mark(true) }
+                }
 }

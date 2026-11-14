@@ -35,33 +35,19 @@ enum class WebGame(val route: String, val title: String, val blurb: String, val 
 }
 
 @Composable
-fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, soundOnly: Boolean = false, content: @Composable ColumnScope.() -> Unit) {
-    val silentNow by graph.silent.collectAsState()
-    LaunchedEffect(game) { graph.ads.enteredGame() }
-    Page(
-        game.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
-        stickers = listOf(Sticker(game.art, Alignment.CenterStart, 70.dp, game.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 84.dp, -4f, dx = (-8).dp)),
-    ) {
-        if (!com.polingual.app.SoundRules.needsSoundCard(silentNow, soundOnly)) com.polingual.app.SilentSwitch(graph, compact = true)
-        content()
-    }
-}
+fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, soundOnly: Boolean = false, content: @Composable ColumnScope.() -> Unit) =
+    com.polingual.app.GameScaffold(graph, game.title, game.art, game.tilt, "bunting", soundOnly, back, content = content)
 
 @Composable
 fun ColumnScope.Results(graph: Graph, title: String, line: String, again: (() -> Unit)?, againLabel: String = "Play again", reveal: @Composable ColumnScope.() -> Unit = {}) {
     LaunchedEffect(title) { graph.ads.gameFinished() }
-    Text(title, style = Type.display, color = PL.Ink)
-    Text(line, style = Type.body, color = PL.InkDim)
-    reveal()
-    if (again != null) PrimaryButton(againLabel, color = PL.Malachite, onClick = again)
-    PLButton("Start learning", variant = ButtonVariant.Secondary, onClick = LocalStartLearning.current)
-    AdBanner(graph)
+    com.polingual.app.ResultBlock(title, line, null, again, againLabel, ad = { AdBanner(graph) }) { reveal() }
 }
 
 @Composable
-fun RevealWord(graph: Graph, word: PlayWord, lang: String) {
+fun RevealWord(graph: Graph, word: PlayWord, lang: String, rootLang: String = PlayDecks.ROOT) {
     val f = word.form(lang) ?: return
-    WordReveal(lang, f.word, word.gloss, null, null, ipa = f.ipa ?: f.roman ?: f.kana, root = word.root(lang), definition = word.note ?: word.gloss, rootLang = PlayDecks.ROOT) { graph.voice.speak(f.word, lang) }
+    WordReveal(lang, f.word, word.gloss, null, null, ipa = f.ipa ?: f.roman ?: f.kana, root = word.root(lang), definition = word.note ?: word.gloss, rootLang = rootLang) { graph.voice.speak(f.word, lang) }
 }
 
 object PlayDecks {

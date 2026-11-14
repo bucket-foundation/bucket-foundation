@@ -32,13 +32,25 @@ object Scripts {
 @Composable
 fun WordReveal(lang: String, form: String, gloss: String, itemId: String?, corpus: LangCorpus?, ipa: String? = null, root: String? = null, definition: String? = null, rootLang: String = LocalRootLang.current, onSpeak: (() -> Unit)?) {
     val item = itemId?.let { corpus?.byId?.get(it) }
+    WordCard(
+        lang, form, ipa = ipa ?: item?.readings?.get(lang)?.let { it.ipa ?: it.roman }, gloss = gloss, onSpeak = onSpeak,
+        details = WordDetails(rootLang, gloss, root ?: item?.root, definition ?: item?.note?.takeIf { it.isNotBlank() } ?: gloss),
+    )
+}
+
+data class WordDetails(val rootLang: String, val translation: String, val root: String?, val definition: String)
+
+@Composable
+fun WordCard(lang: String?, word: String, ipa: String? = null, gloss: String? = null, tilt: Float = -2f, onSpeak: (() -> Unit)? = null, details: WordDetails? = null) {
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(PLSpace.s2)) {
-        WordTile(lang, form, ipa = ipa ?: item?.readings?.get(lang)?.let { it.ipa ?: it.roman }, gloss = gloss, onSpeak = onSpeak)
-        RootLine(rootLang, gloss)
-        RevealRow("Language", Lang.name(lang))
-        RevealRow("Script", Scripts.of(lang))
-        (root ?: item?.root)?.takeIf { it.isNotBlank() }?.let { RevealRow("Root", it) }
-        RevealRow("Definition", definition ?: item?.note?.takeIf { it.isNotBlank() } ?: gloss, capped = true)
+        WordTile(lang, word, ipa = ipa, gloss = gloss, tilt = tilt, onSpeak = onSpeak)
+        if (details != null && lang != null) {
+            RootLine(details.rootLang, details.translation)
+            RevealRow("Language", Lang.name(lang))
+            RevealRow("Script", Scripts.of(lang))
+            details.root?.takeIf { it.isNotBlank() }?.let { RevealRow("Root", it) }
+            RevealRow("Definition", details.definition, capped = true)
+        }
     }
 }
 

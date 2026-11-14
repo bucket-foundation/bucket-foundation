@@ -260,3 +260,10 @@ fun FlagTile(lang: String, size: Dp = 56.dp, selected: Boolean = false, onClick:
     }
 }
 
+
+@Composable
+fun PLTile(selected: Boolean, modifier: Modifier = Modifier, selectedColor: Color = PL.Lapis, onClick: (() -> Unit)? = null, content: @Composable () -> Unit) {
+    val shape = RoundedCornerShape(PLRadius.md)
+    val base = modifier.clip(shape).background(if (selected) selectedColor else PL.White).border(2.dp, if (selected) selectedColor else PL.Hairline2, shape)
+    Box((if (onClick != null) base.clickable(role = Role.Button, onClick = onClick) else base), contentAlignment = Alignment.Center) { content() }
+}
