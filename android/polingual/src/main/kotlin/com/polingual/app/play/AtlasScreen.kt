@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import com.polingual.app.WordCard
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Row
@@ -72,7 +73,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
         LaunchedEffect(round) { graph.voice.speak(round.form, round.lang, auto = true) }
         Row { Text("Round ${index + 1} of $limit", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f)); Text("$total", style = Type.title, color = PL.Vermilion) }
         PLButton("Listen", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(round.form, round.lang) }
-        if (peek || guessed != null) WordTile(null, round.form, tilt = 0f) else PLButton("Show the word, half points", variant = ButtonVariant.Quiet, block = false) { peek = true }
+        if (peek || guessed != null) WordCard(null, round.form, tilt = 0f) else PLButton("Show the word, half points", variant = ButtonVariant.Quiet, block = false) { peek = true }
         Text("Where is this language spoken? Tap the map, then lock in.", style = Type.small, color = PL.InkDim)
         SceneFrame(Scenes.atlas, inset = 40.dp) { Canvas(
             Modifier.fillMaxWidth().aspectRatio(2f).clip(RoundedCornerShape(12.dp)).pointerInput(guessed) {

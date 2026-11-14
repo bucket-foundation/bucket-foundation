@@ -79,10 +79,10 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         if (hearing) {
             val seen = picked != null || typedVerdict != null || StudyCopy.showsScriptWithSound(ex.kind, ex.word.lang)
             val reading = corpus?.byId?.get(ex.word.itemId)?.readings?.get(ex.word.lang)?.let { it.roman ?: it.kana ?: it.ipa }
-            WordTile(ex.word.lang, if (seen) ex.word.form else "· · ·", ipa = if (seen) reading else null, onSpeak = { graph.voice.speak(ex.word.form, ex.word.lang) })
+            WordCard(ex.word.lang, if (seen) ex.word.form else "· · ·", ipa = if (seen) reading else null, onSpeak = { graph.voice.speak(ex.word.form, ex.word.lang) })
             LaunchedEffect(ex) { graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
         } else {
-            WordTile(ex.word.lang, ex.prompt, onSpeak = if (ex.kind == ExerciseKind.Recognize) ({ graph.voice.speak(ex.word.form, ex.word.lang) }) else null)
+            WordCard(ex.word.lang, ex.prompt, onSpeak = if (ex.kind == ExerciseKind.Recognize) ({ graph.voice.speak(ex.word.form, ex.word.lang) }) else null)
             LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
         }
         if (ex.kind == ExerciseKind.TypeHeard || ex.kind == ExerciseKind.SpellHeard) {

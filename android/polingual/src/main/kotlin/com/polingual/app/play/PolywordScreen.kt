@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import com.polingual.app.WordCard
 import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -95,7 +96,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
         val hints = Polyword.revealedHints(puzzle.hints, puzzle.answer, guesses)
         if (hints.isNotEmpty()) {
             SectionTitle("Meaning in other languages")
-            hints.forEach { h -> WordTile(h.lang, h.word, ipa = h.roman, tilt = 0f) }
+            hints.forEach { h -> WordCard(h.lang, h.word, ipa = h.roman, tilt = 0f) }
         }
         toast?.let { Text(it, color = PL.Vermilion) }
         if (!over) {
@@ -125,7 +126,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
             val stats = Polyword.stats(saved.filterKeys { it.startsWith("$lang:") }.mapKeys { it.key.substringAfter(':').toInt() }.mapValues { PolyGame(it.value.guesses, it.value.done, it.value.won) }, today)
             Results(graph, if (won) "Solved in ${guesses.size}" else "The word was ${puzzle.word}", "Streak ${stats.streak}. Best ${stats.best}. New word tomorrow.", again = null) {
                 val word = remember(puzzle.slug) { PlayAssets.words(context).firstOrNull { it.slug == puzzle.slug } }
-                if (RevealRules.polyword(guesses, puzzle.answer)) { if (word != null) RevealWord(graph, word, lang) else WordTile(lang, puzzle.word, gloss = puzzle.gloss) }
+                if (RevealRules.polyword(guesses, puzzle.answer)) { if (word != null) RevealWord(graph, word, lang) else WordCard(lang, puzzle.word, gloss = puzzle.gloss) }
                 PLButton("Share", variant = ButtonVariant.Accent) {
                     val text = Polyword.shareText(lang, today, puzzle.answer, puzzle.hints, guesses, "https://www.polingual.com/play/polyword") { Lang.flag(it) }
                     context.startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text), null))

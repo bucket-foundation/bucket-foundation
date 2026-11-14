@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import com.polingual.app.WordCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -101,7 +102,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 val r = rounds[index]
                 val scene = ISpy.scene(r.scene)!!
                 Text("${scene.name} · round ${index + 1} of ${rounds.size}", style = Type.small, color = PL.InkDim)
-                WordTile(r.lang, r.gloss, tilt = 0f, onSpeak = { graph.voice.speak(r.gloss, r.lang) })
+                WordCard(r.lang, r.gloss, tilt = 0f, onSpeak = { graph.voice.speak(r.gloss, r.lang) })
                 if (p is SpyPhase.Round) LinearProgressIndicator(progress = { (1f - (now - p.startedAt) / (ISpy.ROUND_SECONDS * 1000f)).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = PL.Vermilion, trackColor = PL.Paper3)
                 val marks = if (p is SpyPhase.Reveal) buildMap { put(r.answer, PL.Malachite); if (p.tapped != null && !p.correct) put(p.tapped, PL.Vermilion) } else emptyMap()
                 BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).clip(RoundedCornerShape(20.dp)).background(PL.Tyrian).drawBehind {

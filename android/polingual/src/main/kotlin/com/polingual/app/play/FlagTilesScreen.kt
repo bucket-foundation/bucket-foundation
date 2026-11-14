@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import com.polingual.app.WordCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -97,7 +98,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
                     for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }
                     drawRect(PL.Ochre.copy(alpha = 0.18f), size = androidx.compose.ui.geometry.Size(size.width, 10f))
                 }) {
-                    if (tile != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordTile(null, tile.form, tilt = 0f) }
+                    if (tile != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordCard(null, tile.form, tilt = 0f) }
                     Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(6.dp).background(PL.Vermilion))
                 } }
                 Lanes()

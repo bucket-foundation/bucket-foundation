@@ -224,13 +224,13 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     }
     if (prompt.mode == LobbyPromptMode.Flag) {
         Text("Which language?", color = p.muted)
-        WordTile(null, prompt.gloss, tilt = 0f)
+        WordCard(null, prompt.gloss, tilt = 0f)
     } else if (prompt.mode == LobbyPromptMode.Meaning) {
         Text("What does this mean?", color = p.muted)
-        WordTile(prompt.lang, prompt.gloss, tilt = 0f)
+        WordCard(prompt.lang, prompt.gloss, tilt = 0f)
     } else {
         Text(prompt.lang?.let { "Which is ${Lang.name(it)} for" } ?: "Which word means", color = p.muted)
-        WordTile(prompt.lang, prompt.gloss, tilt = 0f)
+        WordCard(prompt.lang, prompt.gloss, tilt = 0f)
     }
     val picked = state.picks[index]
     val mark = state.marks[index]

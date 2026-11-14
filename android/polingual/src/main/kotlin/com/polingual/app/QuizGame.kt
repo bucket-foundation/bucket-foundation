@@ -89,11 +89,11 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     when (prompt.mode) {
         PromptMode.Form -> {
             Text("Which is ${Lang.name(prompt.word.lang)} for", color = p.muted)
-            WordTile(prompt.word.lang, prompt.word.gloss)
+            WordCard(prompt.word.lang, prompt.word.gloss)
         }
         PromptMode.Flag -> {
             Text("Which language is this?", color = p.muted)
-            WordTile(null, prompt.word.form)
+            WordCard(null, prompt.word.form)
         }
         PromptMode.Voice -> {
             Text("Listen. Which language is it?", color = p.muted)
