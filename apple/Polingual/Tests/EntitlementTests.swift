@@ -1,4 +1,5 @@
 import Foundation
+import StoreKit
 import Testing
 @testable import Polingual
 
@@ -76,6 +77,30 @@ struct EntitlementTests {
         #expect(!PaywallCopy.renewal(trial: false).contains("days free"))
         #expect(PaywallCopy.disclosure(trial: true, price: "$59.99", period: "year").hasPrefix("3 days free, then $59.99 a year."))
         #expect(PaywallCopy.disclosure(trial: false, price: "$9.99", period: "month").contains("24 hours"))
+    }
+
+    @Test func trialLengthFollowsTheStoreOffer() {
+        #expect(TrialLength.days(unit: .day, value: 3, periods: 1) == 3)
+        #expect(TrialLength.days(unit: .week, value: 1, periods: 1) == 7)
+        #expect(TrialLength.days(unit: .week, value: 1, periods: 2) == 14)
+        #expect(TrialLength.days(unit: .month, value: 1, periods: 1) == 30)
+        #expect(TrialLength.days(nil) == nil)
+    }
+
+    @Test func trialLengthPrefersTheChosenPlan() {
+        let offers: [(id: String, days: Int?)] = [(Plan.yearly, 7), (Plan.monthly, 3), (Plan.lifetime, 14)]
+        #expect(TrialLength.pick(offers, chosen: Plan.monthly) == 3)
+        #expect(TrialLength.pick(offers, chosen: Plan.yearly) == 7)
+        #expect(TrialLength.pick(offers, chosen: Plan.lifetime) == 7)
+        #expect(TrialLength.pick([(Plan.yearly, nil), (Plan.monthly, 3)], chosen: Plan.yearly) == 3)
+        #expect(TrialLength.pick([], chosen: Plan.yearly) == Plan.trialDays)
+        #expect(TrialLength.pick([(Plan.lifetime, 14)], chosen: Plan.lifetime) == Plan.trialDays)
+    }
+
+    @Test func paywallCopyNamesTheStoreTrialLength() {
+        #expect(PaywallCopy.headline(trial: true, days: 7) == "7 days free")
+        #expect(PaywallCopy.disclosure(trial: true, days: 7, price: "$59.99", period: "year").hasPrefix("7 days free, then $59.99 a year."))
+        #expect(PaywallCopy.renewal(trial: true, days: 14).contains("14 days free"))
     }
 
     @Test func lifetimeNeverExpiresAndFamilyIsASubscription() {

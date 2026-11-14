@@ -29,6 +29,8 @@ struct Paywall: View {
 
     var product: Product? { products.first { $0.id == chosen } }
 
+    var trialDays: Int { TrialLength.shown(products, chosen: chosen) }
+
     var body: some View {
         GeometryReader { g in
             let h = g.size.height
@@ -94,7 +96,7 @@ struct Paywall: View {
     var header: some View {
         VStack(alignment: .leading, spacing: 10) {
             PoMark()
-            Text(PaywallCopy.headline(trial: subs.trialEligible))
+            Text(PaywallCopy.headline(trial: subs.trialEligible, days: trialDays))
                 .font(.system(size: 40, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
                 .minimumScaleFactor(0.7)
@@ -140,7 +142,7 @@ struct Paywall: View {
                 }
                 .frame(minHeight: 84)
             }
-            Button(buying ? String(localized: "One moment") : chosen == Plan.lifetime ? String(localized: "Buy once") : subs.trialEligible && Plan.hasTrial(chosen) ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
+            Button(buying ? String(localized: "One moment") : chosen == Plan.lifetime ? String(localized: "Buy once") : subs.trialEligible && Plan.hasTrial(chosen) ? String(localized: "Start \(trialDays) days free") : String(localized: "Subscribe")) {
                 Task { await buy() }
             }
             .buttonStyle(D8Primary())
@@ -154,7 +156,7 @@ struct Paywall: View {
             }
             if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true) }
             if let product {
-                Text(PaywallCopy.disclosure(trial: subs.trialEligible && Plan.hasTrial(product.id), price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
+                Text(PaywallCopy.disclosure(trial: subs.trialEligible && Plan.hasTrial(product.id), days: trialDays, price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
                     .font(.system(size: 12))
                     .foregroundStyle(D8.parchment.opacity(0.85))
                     .multilineTextAlignment(.center)
@@ -367,25 +369,52 @@ enum FreeBeta {
 }
 
 enum PaywallCopy {
-    static func headline(trial: Bool) -> String {
-        trial ? String(localized: "\(Plan.trialDays) days free") : String(localized: "Keep learning")
+    static func headline(trial: Bool, days: Int = Plan.trialDays) -> String {
+        trial ? String(localized: "\(days) days free") : String(localized: "Keep learning")
     }
 
-    static func disclosure(trial: Bool, price: String, period: String, family: Bool = false) -> String {
+    static func disclosure(trial: Bool, days: Int = Plan.trialDays, price: String, period: String, family: Bool = false) -> String {
         if period == "once" { return String(localized: "\(price) once. Charged to your Apple Account. No subscription and no renewal.") }
         let share = family ? " " + String(localized: "Share it with up to 5 family members through Family Sharing.") : ""
-        return base(trial: trial, price: price, period: period) + share
+        return base(trial: trial, days: days, price: price, period: period) + share
     }
 
-    static func base(trial: Bool, price: String, period: String) -> String {
+    static func base(trial: Bool, days: Int = Plan.trialDays, price: String, period: String) -> String {
         let per = period == "year" ? String(localized: "\(price) a year") : String(localized: "\(price) a month")
-        let lead = trial ? String(localized: "\(Plan.trialDays) days free, then \(per).") : String(localized: "\(per).")
+        let lead = trial ? String(localized: "\(days) days free, then \(per).") : String(localized: "\(per).")
         return lead + " " + String(localized: "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings.")
     }
 
-    static func renewal(trial: Bool) -> String {
-        let start = trial ? "New subscribers get \(Plan.trialDays) days free, then the price shown. Cancel during the trial and you pay nothing. " : ""
+    static func renewal(trial: Bool, days: Int = Plan.trialDays) -> String {
+        let start = trial ? "New subscribers get \(days) days free, then the price shown. Cancel during the trial and you pay nothing. " : ""
         return start + "Payment is charged to your Apple Account when you confirm. The plan renews automatically at the price shown unless you cancel at least 24 hours before the period ends. Cancel any time in Settings."
+    }
+}
+
+enum TrialLength {
+    static func days(unit: Product.SubscriptionPeriod.Unit, value: Int, periods: Int) -> Int {
+        let per = switch unit {
+        case .day: 1
+        case .week: 7
+        case .month: 30
+        case .year: 365
+        @unknown default: 1
+        }
+        return per * max(value, 1) * max(periods, 1)
+    }
+
+    static func days(_ offer: Product.SubscriptionOffer?) -> Int? {
+        guard let offer, offer.paymentMode == .freeTrial else { return nil }
+        return days(unit: offer.period.unit, value: offer.period.value, periods: offer.periodCount)
+    }
+
+    static func pick(_ offers: [(id: String, days: Int?)], chosen: String) -> Int {
+        let trials = offers.filter { Plan.hasTrial($0.id) }
+        return trials.first { $0.id == chosen }?.days ?? trials.lazy.compactMap(\.days).first ?? Plan.trialDays
+    }
+
+    static func shown(_ products: [Product], chosen: String) -> Int {
+        pick(products.map { ($0.id, days($0.subscription?.introductoryOffer)) }, chosen: chosen)
     }
 }
 
