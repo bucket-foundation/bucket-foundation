@@ -22,7 +22,9 @@ data class BoardRow(val name: String, val score: Int, val me: Boolean)
 object Boards {
     fun withYou(others: List<BoardRow>, you: Int): List<BoardRow> = (others + BoardRow("You", you, true)).sortedByDescending { it.score }
 
-    fun fromGhosts(ghosts: List<Ghost>, you: Int): List<BoardRow> = withYou(ghosts.map { BoardRow("${Bots.countryFlag(it.flag)} ${it.name}", it.score, false) }, you)
+    fun named(flag: String, name: String, score: Int) = BoardRow("${Bots.countryFlag(flag)} $name", score, false)
+
+    fun fromGhosts(ghosts: List<Ghost>, you: Int): List<BoardRow> = withYou(ghosts.map { named(it.flag, it.name, it.score) }, you)
 }
 
 object PlayLookup {

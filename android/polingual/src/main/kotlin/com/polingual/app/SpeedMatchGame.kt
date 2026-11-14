@@ -94,10 +94,10 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
     Text("${remaining.toInt()} s   ${game.hits} of ${DailyGames.SPEED_PAIRS} pairs   ${game.points} points", color = p.muted)
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            game.meanings.forEach { w -> if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile(w.gloss, game.pickedMeaning == w.id) { game.tapMeaning(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } }
+            game.meanings.forEachIndexed { slot, w -> androidx.compose.runtime.key(w?.id ?: "slot$slot") { if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile(w.gloss, game.pickedMeaning == w.id) { game.tapMeaning(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } } }
         }
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            game.forms.forEach { w -> if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile("${Lang.flag(w.lang)} ${w.form}", game.pickedForm == w.id) { graph.voice.speak(w.form, w.lang, auto = true); game.tapForm(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } }
+            game.forms.forEachIndexed { slot, w -> androidx.compose.runtime.key(w?.id ?: "slot$slot") { if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile("${Lang.flag(w.lang)} ${w.form}", game.pickedForm == w.id) { graph.voice.speak(w.form, w.lang, auto = true); game.tapForm(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } } }
         }
     }
 }

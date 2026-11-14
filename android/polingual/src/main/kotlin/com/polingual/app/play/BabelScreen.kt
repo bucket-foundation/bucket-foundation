@@ -109,7 +109,7 @@ private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meanin
             SceneFrame(Scenes.babel) { Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 board.chunked(Babel.SIZE).forEachIndexed { r, row ->
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        row.forEachIndexed { c, cell ->
+                        row.forEachIndexed { c, cell -> androidx.compose.runtime.key(cell.key) {
                             val i = r * Babel.SIZE + c
                             val sel = picked == i
                             Column(
@@ -121,7 +121,7 @@ private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meanin
                                     FitLabel(byId[cell.meaning]?.forms?.get(cell.lang).orEmpty(), Type.small, if (sel) PL.Paper else PL.Ink)
                                 }
                             }
-                        }
+                        } }
                     }
                 }
             } }

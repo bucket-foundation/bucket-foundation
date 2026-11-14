@@ -96,9 +96,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 val index = if (p is SpyPhase.Round) p.index else (p as SpyPhase.Reveal).index
                 val r = rounds[index]
                 val scene = ISpy.scene(r.scene)!!
-                Text("${scene.name} · round ${index + 1} of ${rounds.size}", style = Type.small, color = PL.InkDim)
-                WordCard(r.lang, r.gloss, tilt = 0f, onSpeak = { graph.voice.speak(r.gloss, r.lang) })
-                if (p is SpyPhase.Round) LinearProgressIndicator(progress = { (1f - (now - p.startedAt) / (ISpy.ROUND_SECONDS * 1000f)).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = PL.Vermilion, trackColor = PL.Paper3)
+                SpyHud(graph, "${scene.name} · round ${index + 1} of ${rounds.size}", r, if (p is SpyPhase.Round) (1f - (now - p.startedAt) / (ISpy.ROUND_SECONDS * 1000f)).coerceIn(0f, 1f) else null)
                 val marks = if (p is SpyPhase.Reveal) buildMap { put(r.answer, PL.Malachite); if (p.tapped != null && !p.correct) put(p.tapped, PL.Vermilion) } else emptyMap()
                 SpyStage(scene, marks, p is SpyPhase.Round) { id ->
                     val ps = phase as? SpyPhase.Round ?: return@SpyStage
@@ -125,7 +123,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
 @Composable
 private fun Board(me: Tally, bots: Map<String, Tally>) {
     SectionTitle("Board")
-    Leaderboard(Boards.withYou(ISpy.BOTS.map { BoardRow("${Bots.countryFlag(it.flag)} ${it.name}", bots[it.id]?.score ?: 0, false) }, me.score), numbered = false)
+    Leaderboard(Boards.withYou(ISpy.BOTS.map { Boards.named(it.flag, it.name, bots[it.id]?.score ?: 0) }, me.score), numbered = false)
 }
 
 @Composable
@@ -165,4 +163,11 @@ private fun SpyReveal(graph: Graph, r: SpyRound, correct: Boolean, last: Boolean
     Text(if (correct) "Spotted" else "Here it was", style = Type.title, color = if (correct) PL.Malachite else PL.Vermilion)
     PlayReveal(graph, r.lang, r.gloss, r.answer, PlayDecks.ROOT, r.itemId, slug = r.answer)
     PrimaryButton(if (last) "See results" else "Next", onClick = onNext)
+}
+
+@Composable
+private fun SpyHud(graph: Graph, line: String, r: SpyRound, progress: Float?) {
+    Text(line, style = Type.small, color = PL.InkDim)
+    WordCard(r.lang, r.gloss, tilt = 0f, onSpeak = { graph.voice.speak(r.gloss, r.lang) })
+    if (progress != null) LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth(), color = PL.Vermilion, trackColor = PL.Paper3)
 }
