@@ -73,3 +73,14 @@ public enum FlagMisses {
         return next
     }
 }
+
+public struct ChoiceGrade: Equatable {
+    public let rating: Rating
+    public let slip: String?
+}
+
+public func choiceGrade(_ ex: Exercise, picked: String, slow: Bool) -> ChoiceGrade {
+    if (ex.accept ?? [ex.answer]).contains(picked) { return ChoiceGrade(rating: slow ? 2 : 3, slip: nil) }
+    let lang = ex.optionLangs?[picked]
+    return ChoiceGrade(rating: 1, slip: lang == ex.answerLang ? nil : lang)
+}

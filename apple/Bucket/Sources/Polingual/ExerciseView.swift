@@ -65,6 +65,7 @@ struct ExerciseView: View {
     let reading: (String, String) -> Reading?
     let onDone: ([ExerciseResult]) -> Void
     var flagNamed: (String) -> Bool = { _ in true }
+    var onSlip: (String) -> Void = { _ in }
     var onMatch: (([String: String]) -> Void)?
     var chorus: [VoiceLine] = []
 
@@ -93,6 +94,12 @@ struct ExerciseView: View {
 
     func finish(_ ok: Bool, _ v: Verdict? = nil) {
         onDone([ExerciseResult(lang: ex.lang, rating: v.map { verdictRating($0, hesitated: slow) } ?? (ok ? (slow ? 2 : 3) : 1))])
+    }
+
+    func finishChoice(_ picked: String) {
+        let grade = choiceGrade(ex, picked: picked, slow: slow)
+        if let slip = grade.slip { onSlip(slip) }
+        onDone([ExerciseResult(lang: ex.lang, rating: grade.rating)])
     }
 
     func r(_ form: String, _ lang: String) -> Reading? { readings ? reading(form, lang) : nil }
@@ -319,7 +326,7 @@ struct ExerciseView: View {
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
-                    Button("Continue") { finish(accepted.contains(picked)) }
+                    Button("Continue") { finishChoice(picked) }
                         .buttonStyle(D8Primary())
                         .keyboardShortcut(.defaultAction)
                         .onAppear { haptic(accepted.contains(picked)) }
