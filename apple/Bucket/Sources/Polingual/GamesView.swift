@@ -3,6 +3,7 @@ import SwiftUI
 
 enum GameKind: String, CaseIterable, Identifiable, Hashable {
     case daily, mini, wordGroups, same, match, voice, flags, letters
+    case polyword, flagTiles, babel, shift, snake, atlas, forehead, ispy, duel, tiles
 
     var id: String { rawValue }
 
@@ -16,6 +17,16 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .voice: String(localized: "Which Voice")
         case .flags: String(localized: "Flags")
         case .letters: String(localized: "Letter Sprint")
+        case .polyword: String(localized: "Polyword")
+        case .flagTiles: String(localized: "Flag Tiles")
+        case .babel: String(localized: "Babel Match")
+        case .shift: String(localized: "Shift")
+        case .snake: String(localized: "Word Snake")
+        case .atlas: String(localized: "Voice Atlas")
+        case .forehead: String(localized: "Forehead")
+        case .ispy: String(localized: "I Spy")
+        case .duel: String(localized: "Flag Duel")
+        case .tiles: String(localized: "Tiles")
         }
     }
 
@@ -29,6 +40,16 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .voice: String(localized: "Listen, then pick the flag.")
         case .flags: String(localized: "Read a word, then pick its flag.")
         case .letters: String(localized: "Hear a sound, then find its letter.")
+        case .polyword: String(localized: "One word a day. Every miss shows its meaning in another language.")
+        case .flagTiles: String(localized: "Solo daily run. A word falls; tap the flag of its language.")
+        case .babel: String(localized: "Match-3 with words. Three that mean the same thing clear.")
+        case .shift: String(localized: "Daily letter board. Slide columns to spell words in two languages.")
+        case .snake: String(localized: "Arena with bot snakes. Eat words in your language, dodge the decoys.")
+        case .atlas: String(localized: "Five words a day. Hear one, pin where its language is spoken.")
+        case .forehead: String(localized: "Party mode on one phone. Friends give clues, you tilt to score.")
+        case .ispy: String(localized: "Spot the thing, say it in the language of the round.")
+        case .duel: String(localized: "Ten rounds. Name the language, then the meaning.")
+        case .tiles: String(localized: "Words fall. Tap every one that means the word on top.")
         }
     }
 
@@ -42,6 +63,23 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .voice: "waveform"
         case .flags: "flag.fill"
         case .letters: "character"
+        default: "gamecontroller.fill"
+        }
+    }
+
+    var art: PLArt? {
+        switch self {
+        case .polyword: .streakFlame
+        case .flagTiles: .kente
+        case .babel: .blocks
+        case .shift: .tornLabel
+        case .snake: .brush
+        case .atlas: .azulejo
+        case .forehead: .ticket
+        case .ispy: .star
+        case .duel: .seal
+        case .tiles: .azulejoGrid
+        default: nil
         }
     }
 
@@ -50,6 +88,9 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .daily, .voice, .wordGroups: D8.lapis
         case .same, .letters, .mini: D8.vermilion
         case .match, .flags: D8.malachite
+        case .polyword, .babel, .forehead, .tiles: PL.tyrian
+        case .flagTiles, .snake, .duel: PL.vermilion
+        case .shift, .atlas, .ispy: PL.lapis
         }
     }
 
@@ -58,6 +99,9 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .daily, .voice, .wordGroups: Color(hex: 0x12326A)
         case .same, .letters, .mini: D8.vermilionLip
         case .match, .flags: D8.malachiteLip
+        case .polyword, .babel, .forehead, .tiles: PL.tyrianDeep
+        case .flagTiles, .snake, .duel: PL.vermilionDeep
+        case .shift, .atlas, .ispy: PL.lapisDeep
         }
     }
 
@@ -68,6 +112,16 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .letters: LetterSprintGame().fullHeightSession()
         case .mini: MiniGame().fullHeightSession()
         case .wordGroups: WordGroupsGame().fullHeightSession()
+        case .polyword: PolywordGame()
+        case .flagTiles: FlagTilesGame()
+        case .babel: BabelGame()
+        case .shift: ShiftGame()
+        case .snake: SnakeGame()
+        case .atlas: AtlasGame()
+        case .forehead: ForeheadGame()
+        case .ispy: ISpyGame()
+        case .duel: DuelGame()
+        case .tiles: TilesGame()
         }
     }
 }
@@ -400,10 +454,16 @@ struct GameTile: View {
     var body: some View {
         Button(action: open) {
             VStack(alignment: .leading, spacing: 6) {
-                Image(systemName: kind.symbol)
-                    .font(.system(size: 26, weight: .bold))
-                    .foregroundStyle(D8.parchment)
-                    .frame(height: 34)
+                Group {
+                    if let art = kind.art {
+                        PLArtView(art, shadow: true).frame(width: 44, height: 34)
+                    } else {
+                        Image(systemName: kind.symbol)
+                            .font(.system(size: 26, weight: .bold))
+                            .foregroundStyle(D8.parchment)
+                    }
+                }
+                .frame(height: 34)
                 Text(kind.title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
                 Text(enabled ? kind.detail : String(localized: "Add a second language to play."))
                     .font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
