@@ -184,6 +184,42 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
 
 @MainActor
 @Observable
+final class VoiceNotice {
+    static let shared = VoiceNotice()
+    var message: String?
+    @ObservationIgnored private var clear: Task<Void, Never>?
+
+    func missing(_ lang: String) {
+        message = String(localized: "No \(Lang.name(lang)) voice on this device. Add one in Settings, Accessibility, Spoken Content, Voices.")
+        clear?.cancel()
+        clear = Task { @MainActor in
+            try? await Task.sleep(for: .seconds(4))
+            if !Task.isCancelled { self.message = nil }
+        }
+    }
+}
+
+struct VoiceNoticeCaption: ViewModifier {
+    @State private var notice = VoiceNotice.shared
+
+    func body(content: Content) -> some View {
+        content.overlay(alignment: .top) {
+            if let m = notice.message {
+                Text(m)
+                    .font(PL.small.font())
+                    .foregroundStyle(PL.paper)
+                    .padding(PL.Space.s3)
+                    .background(PL.ink, in: .rect(cornerRadius: PL.Radius.md))
+                    .padding(.horizontal, PL.Space.s4)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
+        }
+        .animation(.easeOut(duration: PL.Motion.pop), value: notice.message)
+    }
+}
+
+@MainActor
+@Observable
 final class LangListener {
     static let shared = LangListener()
     @ObservationIgnored private let engine = AVAudioEngine()
