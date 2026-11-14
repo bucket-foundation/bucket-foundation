@@ -403,15 +403,20 @@ struct LobbyRoom: View {
                 Text("\(Int(remaining.rounded(.up)))s").font(.headline.monospacedDigit()).foregroundStyle(Palette.ink)
             }
             if let p = l.prompt(i) {
-                VStack(spacing: 6) {
-                    if let lang = p.lang, p.mode != .flag { FlagTile(lang: lang, size: 40) }
-                    Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
-                    if p.mode == .flag, let a = p.answer { FlagTile(lang: a, size: 56) }
-                    else if p.mode.choosesText, let a = p.answer { Text(a).font(D8.word(24)).foregroundStyle(D8.malachite) }
-                    else if p.mode == .tiles, let right = LobbyTiles.answer(p) {
-                        let tiles = LobbyTiles.tiles(p)
-                        ForEach(right.sorted().filter { $0 < tiles.count }, id: \.self) { n in
-                            Text(tiles[n].form).font(D8.word(20)).foregroundStyle(D8.malachite)
+                if !p.revealOrdered.isEmpty {
+                    verdict(p, i)
+                    revealWords(p)
+                } else {
+                    VStack(spacing: 6) {
+                        if let lang = p.lang, p.mode != .flag { FlagTile(lang: lang, size: 40) }
+                        Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                        if p.mode == .flag, let a = p.answer { FlagTile(lang: a, size: 56) }
+                        else if p.mode.choosesText, let a = p.answer { Text(a).font(D8.word(24)).foregroundStyle(D8.malachite) }
+                        else if p.mode == .tiles, let right = LobbyTiles.answer(p) {
+                            let tiles = LobbyTiles.tiles(p)
+                            ForEach(right.sorted().filter { $0 < tiles.count }, id: \.self) { n in
+                                Text(tiles[n].form).font(D8.word(20)).foregroundStyle(D8.malachite)
+                            }
                         }
                     }
                 }
@@ -420,6 +425,69 @@ struct LobbyRoom: View {
             Spacer(minLength: 0)
         }
         .padding()
+    }
+
+    @ViewBuilder
+    func verdict(_ p: LobbyPrompt, _ i: Int) -> some View {
+        if p.mode != .tiles, let answer = p.answer {
+            let pick = lobbies.picks[i]
+            let right = pick.map { $0 == answer }
+            VStack(alignment: .leading, spacing: 4) {
+                Text(right == true ? String(localized: "You got it") : right == false ? String(localized: "Not this time") : String(localized: "Time is up"))
+                    .font(.headline).foregroundStyle(right == true ? D8.malachite : right == false ? D8.vermilion : Palette.ink)
+                choiceLine(String(localized: "Answer"), p.label(answer))
+                if let pick, pick != answer { choiceLine(String(localized: "You picked"), p.label(pick)) }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityElement(children: .combine)
+        }
+    }
+
+    func choiceLine(_ key: String, _ label: LobbyChoiceLabel) -> some View {
+        HStack(spacing: 6) {
+            Text(key).font(.caption.weight(.heavy)).foregroundStyle(Palette.muted)
+            if let lang = label.lang { FlagTile(lang: lang, size: 18) }
+            if let word = label.word { Text(word).font(.subheadline.weight(.bold)).foregroundStyle(Palette.ink) }
+            if let lang = label.lang { Text(langName(lang)).font(.subheadline).foregroundStyle(Palette.muted) }
+        }
+    }
+
+    func revealWords(_ p: LobbyPrompt) -> some View {
+        let entries = p.revealOrdered
+        return VStack(alignment: .leading, spacing: 6) {
+            Text(p.mode == .flag ? entries.first(where: \.correct)?.meaning ?? p.gloss : p.gloss)
+                .font(D8.word(22)).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.6)
+            ViewThatFits(in: .vertical) {
+                revealGrid(entries)
+                ScrollView { revealGrid(entries) }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    func revealGrid(_ entries: [LobbyRevealEntry]) -> some View {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 8)], spacing: 8) {
+            ForEach(Array(entries.enumerated()), id: \.offset) { _, e in
+                HStack(alignment: .top, spacing: 8) {
+                    FlagTile(lang: e.lang, size: 28)
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(e.word).font(D8.word(18)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
+                        if let roman = e.roman, !roman.isEmpty, roman != e.word {
+                            Text(roman).font(.caption).foregroundStyle(Palette.muted).lineLimit(1)
+                        }
+                        Text(langName(e.lang)).font(.caption2.weight(.heavy)).foregroundStyle(Palette.muted).lineLimit(1)
+                        Text(e.meaning).font(.caption).foregroundStyle(Palette.ink).lineLimit(2)
+                    }
+                    Spacer(minLength: 0)
+                    if e.correct { Image(systemName: "checkmark.circle.fill").foregroundStyle(D8.malachite) }
+                }
+                .padding(8)
+                .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                .background(Palette.card, in: .rect(cornerRadius: 10))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(e.correct ? D8.malachite : .clear, lineWidth: 2))
+                .accessibilityElement(children: .combine)
+            }
+        }
     }
 
     func lastRound(_ l: Lobby, _ i: Int) -> some View {
