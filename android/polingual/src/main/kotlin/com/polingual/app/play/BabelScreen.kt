@@ -102,6 +102,23 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
                 Text("${minOf(cleared.size, goal.goal)} / ${goal.goal}", style = Type.title, color = PL.Vermilion, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
                 Text("$score pts", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
             }
+            BabelBoard(board, picked, byId, ::tap)
+            return@GameFrame
+        }
+        Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
+            SectionTitle("Words you matched")
+            if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] }.forEach { m ->
+                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(PL.Paper2).padding(12.dp)) {
+                    Text(m.meaning, style = Type.title, color = PL.Ink)
+                    m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meaning>, tap: (Int) -> Unit) {
             SceneFrame(Scenes.babel) { Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 board.chunked(Babel.SIZE).forEachIndexed { r, row ->
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -121,16 +138,4 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
                     }
                 }
             } }
-            return@GameFrame
-        }
-        Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
-            SectionTitle("Words you matched")
-            if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] }.forEach { m ->
-                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(PL.Paper2).padding(12.dp)) {
-                    Text(m.meaning, style = Type.title, color = PL.Ink)
-                    m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
-                }
-            }
-        }
-    }
 }

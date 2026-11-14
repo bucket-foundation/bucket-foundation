@@ -106,29 +106,12 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 WordCard(r.lang, r.gloss, tilt = 0f, onSpeak = { graph.voice.speak(r.gloss, r.lang) })
                 if (p is SpyPhase.Round) LinearProgressIndicator(progress = { (1f - (now - p.startedAt) / (ISpy.ROUND_SECONDS * 1000f)).coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth(), color = PL.Vermilion, trackColor = PL.Paper3)
                 val marks = if (p is SpyPhase.Reveal) buildMap { put(r.answer, PL.Malachite); if (p.tapped != null && !p.correct) put(p.tapped, PL.Vermilion) } else emptyMap()
-                BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).clip(RoundedCornerShape(20.dp)).background(PL.Tyrian).drawBehind {
-                    drawPath(Path().apply { moveTo(0f, 0f); lineTo(size.width * 0.38f, 0f); lineTo(size.width * 0.22f, size.height); lineTo(0f, size.height); close() }, PL.TyrianDeep)
-                }) {
-                    scene.decor.forEach { d -> Art(d.art, Modifier.width(maxWidth * (d.size / 100).toFloat()).offset(maxWidth * (d.x / 100).toFloat(), maxHeight * (d.y / 100).toFloat()).rotate(d.tilt.toFloat())) }
-                    val tile = maxWidth * 0.15f
-                    scene.objects.forEach { o ->
-                        val mark = marks[o.id]
-                        Box(
-                            Modifier.offset(maxWidth * (o.x / 100).toFloat() - tile / 2, maxHeight * (o.y / 100).toFloat() - tile / 2).size(tile).rotate(o.tilt.toFloat())
-                                .then(if (mark != null) Modifier.border(4.dp, mark, RoundedCornerShape(8.dp)) else Modifier)
-                                .clickable(enabled = p is SpyPhase.Round, role = Role.Button, onClickLabel = "Picture") {
-                                    val ps = phase as? SpyPhase.Round ?: return@clickable
-                                    val correct = o.id == r.answer
-                                    me = ISpy.award(me, correct, System.currentTimeMillis() - ps.startedAt, ISpy.ROUND_SECONDS).first
-                                    settle(ps.index)
-                                    phase = SpyPhase.Reveal(ps.index, correct, o.id)
-                                },
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Art(TILE_ART[o.art % TILE_ART.size], Modifier.size(tile))
-                            Art("obj-${o.id}", Modifier.size(tile * 0.78f))
-                        }
-                    }
+                SpyStage(scene, marks, p is SpyPhase.Round) { id ->
+                    val ps = phase as? SpyPhase.Round ?: return@SpyStage
+                    val correct = id == r.answer
+                    me = ISpy.award(me, correct, System.currentTimeMillis() - ps.startedAt, ISpy.ROUND_SECONDS).first
+                    settle(ps.index)
+                    phase = SpyPhase.Reveal(ps.index, correct, id)
                 }
                 Board(me, bots)
                 if (p is SpyPhase.Reveal && RevealRules.iSpy(tapped = p.tapped != null, elapsedMs = if (p.tapped == null) ISpy.ROUND_SECONDS * 1000L else 0L)) {
@@ -151,4 +134,26 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
 private fun Board(me: Tally, bots: Map<String, Tally>) {
     SectionTitle("Board")
     Leaderboard(Boards.withYou(ISpy.BOTS.map { BoardRow("${Bots.countryFlag(it.flag)} ${it.name}", bots[it.id]?.score ?: 0, false) }, me.score), numbered = false)
+}
+
+@Composable
+private fun SpyStage(scene: SpyScene, marks: Map<String, androidx.compose.ui.graphics.Color>, enabled: Boolean, onTap: (String) -> Unit) {
+                BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).clip(RoundedCornerShape(20.dp)).background(PL.Tyrian).drawBehind {
+                    drawPath(Path().apply { moveTo(0f, 0f); lineTo(size.width * 0.38f, 0f); lineTo(size.width * 0.22f, size.height); lineTo(0f, size.height); close() }, PL.TyrianDeep)
+                }) {
+                    scene.decor.forEach { d -> Art(d.art, Modifier.width(maxWidth * (d.size / 100).toFloat()).offset(maxWidth * (d.x / 100).toFloat(), maxHeight * (d.y / 100).toFloat()).rotate(d.tilt.toFloat())) }
+                    val tile = maxWidth * 0.15f
+                    scene.objects.forEach { o ->
+                        val mark = marks[o.id]
+                        Box(
+                            Modifier.offset(maxWidth * (o.x / 100).toFloat() - tile / 2, maxHeight * (o.y / 100).toFloat() - tile / 2).size(tile).rotate(o.tilt.toFloat())
+                                .then(if (mark != null) Modifier.border(4.dp, mark, RoundedCornerShape(8.dp)) else Modifier)
+                                .clickable(enabled = enabled, role = Role.Button, onClickLabel = "Picture") { onTap(o.id) },
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Art(TILE_ART[o.art % TILE_ART.size], Modifier.size(tile))
+                            Art("obj-${o.id}", Modifier.size(tile * 0.78f))
+                        }
+                    }
+                }
 }
