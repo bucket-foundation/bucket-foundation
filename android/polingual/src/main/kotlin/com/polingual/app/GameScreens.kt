@@ -92,7 +92,8 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         stickers = listOf(Sticker(kind.art, Alignment.CenterStart, 70.dp, kind.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("kente", Alignment.BottomEnd, 76.dp, -5f, dx = (-8).dp)),
     ) {
         GameBanner(kind)
-        SilentSwitch(graph, compact = true)
+        val silentTop by graph.silent.collectAsState()
+        if (!SoundRules.needsSoundCard(silentTop, kind in SoundRules.soundOnlyGames)) SilentSwitch(graph, compact = true)
         val c = ctx
         if (c != null) {
             Text("${kind.title.uppercase()} · ${c.system.targets.joinToString(" ") { Lang.name(it) }.uppercase()} · ${dayKey()}", style = Type.caps, color = PL.Vermilion)
@@ -118,6 +119,8 @@ fun GameScreen(graph: Graph, kind: GameKind, back: () -> Unit) {
     WithGame(graph, kind, back) { c ->
         val today = played
         if (today != null) { DoneToday(kind, today); return@WithGame }
+        val silentNow by graph.silent.collectAsState()
+        if (SoundRules.needsSoundCard(silentNow, kind in SoundRules.soundOnlyGames)) { NeedsSound(graph, kind.title); return@WithGame }
         when (kind) {
             GameKind.Daily -> Quiz(graph, kind, c) { GameRounds.daily(GameDeck(c.corpus, c.system.root, c.system.targets), dayKey()) }
             GameKind.Same -> Quiz(graph, kind, c) { GameRounds.sameWord(GameDeck(c.corpus, c.system.root, c.system.targets), c.words, SeededRandom(System.nanoTime().toULong())) }

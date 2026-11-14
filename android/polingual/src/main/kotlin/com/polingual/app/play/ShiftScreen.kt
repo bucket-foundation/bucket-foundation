@@ -40,12 +40,13 @@ import foundation.bucket.core.ui.pl.SectionTitle
 @Composable
 fun ShiftScreen(graph: Graph, back: () -> Unit) {
     val date = remember { com.polingual.app.deckDay() }
+    val deckRoot = PlayDecks.root(graph.state.value?.system?.root)
     var board by remember { mutableStateOf<ShiftBoard?>(null) }
     var loaded by remember { mutableStateOf(false) }
     var offsets by remember { mutableStateOf<List<Int>>(emptyList()) }
     var found by remember { mutableStateOf<List<String>>(emptyList()) }
     var hints by remember { mutableStateOf<Map<String, Int>>(emptyMap()) }
-    LaunchedEffect(Unit) { board = Shift.board(graph.corpus.load().items, date); offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
+    LaunchedEffect(Unit) { board = Shift.board(graph.corpus.load().items, date, root = deckRoot); offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
     val b = board
     val word = if (b != null && offsets.isNotEmpty()) Shift.centerWord(b.columns, offsets) else ""
     LaunchedEffect(word) { if (b != null && b.valid[word] != null && word !in found) found = found + word }
@@ -56,7 +57,7 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
             Results(graph, "Board cleared", "${found.size} words found. A new board comes tomorrow.", again = null) {
                 b.targets.forEach { t ->
                     val w = remember(t) { PlayAssets.words(graph.context).firstOrNull { it.form(t.lang)?.word?.lowercase() == t.form } }
-                    if (RevealRules.shift(found, b.targets)) { if (w != null) RevealWord(graph, w, t.lang) else com.polingual.app.WordReveal(t.lang, t.form, t.meaning, null, null) { graph.voice.speak(t.form, t.lang) } }
+                    if (RevealRules.shift(found, b.targets)) { if (w != null) RevealWord(graph, w, t.lang) else com.polingual.app.WordReveal(t.lang, t.form, t.meaning, null, null, rootLang = deckRoot) { graph.voice.speak(t.form, t.lang) } }
                 }
             }
             return@GameFrame

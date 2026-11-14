@@ -43,7 +43,6 @@ class VoiceController(private val engine: SpeechEngine, private val now: () -> L
         val tag = Lang.bcp47(lang)
         if (!engine.ready) {
             pending = Triple(text, tag, now())
-            _problem.value = "Voices are still loading. Your word plays as soon as they are ready."
             return SpeakResult.Waiting
         }
         if (voices().isNotEmpty() && !available(lang)) {
@@ -73,7 +72,11 @@ class VoiceController(private val engine: SpeechEngine, private val now: () -> L
 
     fun onStarted(id: String): Long? = taps.remove(id)?.let { now() - it }
 
-    fun checkSlow(limitMs: Long = 300) {
+    companion object {
+        const val SLOW_MS = 300L
+    }
+
+    fun checkSlow(limitMs: Long = SLOW_MS) {
         val p = pending ?: return
         if (now() - p.third >= limitMs) _problem.value = "Voices are still loading. Your word plays as soon as they are ready."
     }
@@ -114,5 +117,9 @@ class Voice(context: Context, silent: () -> Boolean) {
 
     fun available(lang: String): Boolean = controller.available(lang)
 
-    fun speak(text: String, lang: String, auto: Boolean = false): SpeakResult = controller.speak(text, lang, auto)
+    private val main = android.os.Handler(android.os.Looper.getMainLooper())
+
+    fun speak(text: String, lang: String, auto: Boolean = false): SpeakResult = controller.speak(text, lang, auto).also {
+        if (it == SpeakResult.Waiting) main.postDelayed({ controller.checkSlow() }, VoiceController.SLOW_MS)
+    }
 }

@@ -40,11 +40,12 @@ import foundation.bucket.core.ui.pl.WordTile
 @Composable
 fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
     val date = remember { com.polingual.app.deckDay() }
+    val deckRoot = PlayDecks.root(graph.state.value?.system?.root)
     var deck by remember { mutableStateOf<FlagTilesDeck?>(null) }
     var run by remember { mutableStateOf(RunState()) }
     var progress by remember { mutableFloatStateOf(0f) }
     var best by remember { mutableStateOf(graph.kv.get("flagtiles.best.$date")?.toIntOrNull() ?: 0) }
-    LaunchedEffect(Unit) { deck = FlagTilesRules.deck(graph.corpus.load().items, date) }
+    LaunchedEffect(Unit) { deck = FlagTilesRules.deck(graph.corpus.load().items, date, root = deckRoot) }
     val d = deck
     val tile = if (d != null && run.phase != RunPhase.Ready && d.tiles.isNotEmpty()) d.tiles[(run.missed ?: run.index) % d.tiles.size] else null
     val answer = if (tile != null && d != null) d.langs.indexOf(tile.lang) else -1
@@ -106,7 +107,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
                 Text(if (run.picked == null) "Too slow" else "Wrong flag", style = Type.title, color = PL.Ink)
                 val missed = d.tiles[(run.missed ?: 0) % d.tiles.size]
                 val word = remember(missed) { com.polingual.app.play.PlayAssets.words(graph.context).firstOrNull { w -> w.form(missed.lang)?.word == missed.form } }
-                if (RevealRules.flagTiles(run)) { if (word != null) RevealWord(graph, word, missed.lang) else com.polingual.app.WordReveal(missed.lang, missed.form, missed.meaning, missed.itemId, null) { graph.voice.speak(missed.form, missed.lang) } }
+                if (RevealRules.flagTiles(run)) { if (word != null) RevealWord(graph, word, missed.lang) else com.polingual.app.WordReveal(missed.lang, missed.form, missed.meaning, missed.itemId, null, rootLang = deckRoot) { graph.voice.speak(missed.form, missed.lang) } }
                 run.picked?.let { Text("You picked ${Lang.name(d.langs[it])}.", style = Type.small, color = PL.InkDim) }
                 PrimaryButton("See results") { run = FlagTilesRules.step(run, RunEvent.End) }
             }
