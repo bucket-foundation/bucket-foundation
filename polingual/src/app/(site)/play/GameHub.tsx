@@ -2,6 +2,7 @@
 
 import { memo } from "react";
 import type { WorldId } from "@/ui/art/play";
+import { Button } from "@/ui";
 import { bookKey } from "@/lib/daily/store";
 import { useDailyBook } from "./daily/useDaily";
 import { DAILY_GAMES } from "./daily";
@@ -90,7 +91,7 @@ function GameHub({ open, ispyReady, offered, onPick }: { open: LobbySummary[] | 
             {"href" in g ? (
               <a href={g.href} className={styles.hubCard} data-testid={g.testId}>{body}</a>
             ) : (
-              <button type="button" className={styles.hubCard} data-testid={g.testId} onClick={() => onPick(g.lobby)}>{body}</button>
+              <Button bare className={styles.hubCard} data-testid={g.testId} onClick={() => onPick(g.lobby)}>{body}</Button>
             )}
           </li>
         );

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/ui";
 import { MAX_GUESSES, score, type Mark } from "@/lib/polyword/puzzle";
 import styles from "./polyword.module.css";
 
@@ -49,19 +50,19 @@ export function Keyboard({ marks, onKey, disabled }: { marks: Record<string, Mar
       {ROWS.map((row, r) => (
         <div key={row} className={styles.keyRow}>
           {r === 2 ? (
-            <button type="button" className={styles.key} data-wide onClick={() => onKey("enter")} disabled={disabled} data-testid="pw-enter">
+            <Button bare className={styles.key} data-wide onClick={() => onKey("enter")} disabled={disabled} data-testid="pw-enter">
               Enter
-            </button>
+            </Button>
           ) : null}
           {row.split("").map((k) => (
-            <button key={k} type="button" className={styles.key} data-mark={marks[k]} onClick={() => onKey(k)} disabled={disabled} aria-label={marks[k] ? `${k}, ${MARK_LABEL[marks[k]]}` : k} data-testid={`pw-key-${k}`}>
+            <Button bare key={k} className={styles.key} data-mark={marks[k]} onClick={() => onKey(k)} disabled={disabled} aria-label={marks[k] ? `${k}, ${MARK_LABEL[marks[k]]}` : k} data-testid={`pw-key-${k}`}>
               {k}
-            </button>
+            </Button>
           ))}
           {r === 2 ? (
-            <button type="button" className={styles.key} data-wide onClick={() => onKey("back")} disabled={disabled} aria-label="Delete letter" data-testid="pw-back">
+            <Button bare className={styles.key} data-wide onClick={() => onKey("back")} disabled={disabled} aria-label="Delete letter" data-testid="pw-back">
               ⌫
-            </button>
+            </Button>
           ) : null}
         </div>
       ))}

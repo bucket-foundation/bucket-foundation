@@ -1,68 +1,12 @@
 import { bcp47, pickVoice } from "../speak";
 import type { Line, Sfx, Track } from "./script";
+import { saveMix, type Mix } from "./mix";
+import { playSfx } from "./sfx";
+import { hz, SONGS, type Song } from "./songs";
+import { Synth } from "./synth";
 
-type Song = { bpm: number; chords: number[][]; bass: number[]; arp: number[]; melody?: (number | null)[] };
-
-export const SONGS: Record<Exclude<Track, "silent">, Song> = {
-  lobby: {
-    bpm: 98,
-    chords: [[62, 65, 69, 72], [67, 71, 74, 77], [69, 72, 76, 79], [67, 71, 74, 77]],
-    bass: [38, 43, 45, 43],
-    arp: [0, 2, 1, 3, 2, 1, 0, 2, 1, 3, 2, 3, 1, 2, 0, 1],
-    melody: [74, null, 77, null, 76, 74, null, 72, 69, null, 72, null, 74, null, null, null],
-  },
-  question: {
-    bpm: 128,
-    chords: [[57, 60, 64, 69], [53, 57, 60, 65], [55, 59, 62, 67], [52, 56, 59, 64]],
-    bass: [33, 29, 31, 28],
-    arp: [0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 3, 2, 1, 0],
-  },
-  reveal: {
-    bpm: 90,
-    chords: [[60, 64, 67, 72], [60, 64, 67, 72], [65, 69, 72, 77], [67, 71, 74, 79]],
-    bass: [36, 36, 41, 43],
-    arp: [0, 2, 3, 2, 0, 2, 3, 2, 0, 2, 3, 2, 0, 2, 3, 2],
-  },
-  board: {
-    bpm: 112,
-    chords: [[65, 69, 72, 76], [60, 64, 67, 72], [67, 71, 74, 79], [69, 72, 76, 81]],
-    bass: [41, 36, 43, 45],
-    arp: [0, 1, 2, 3, 0, 1, 2, 3, 3, 2, 1, 0, 3, 2, 1, 0],
-    melody: [76, null, 79, 77, 76, null, 72, null, 74, 76, null, 79, 81, null, null, null],
-  },
-  finale: {
-    bpm: 120,
-    chords: [[58, 62, 65, 70], [63, 67, 70, 75], [65, 69, 72, 77], [58, 62, 65, 70]],
-    bass: [34, 39, 41, 34],
-    arp: [0, 1, 2, 3, 2, 3, 1, 2, 0, 1, 2, 3, 3, 2, 1, 0],
-    melody: [82, null, 82, 84, 86, null, 84, 82, 79, null, 82, null, 77, null, null, null],
-  },
-};
-
-export function hz(midi: number): number {
-  return 440 * Math.pow(2, (midi - 69) / 12);
-}
-
-export type Mix = { music: boolean; voice: boolean; sfx: boolean };
-
-const MIX_KEY = "stoa/mix/v1";
-
-export function loadMix(fallback: Mix): Mix {
-  try {
-    const raw = localStorage.getItem(MIX_KEY);
-    return raw ? { ...fallback, ...(JSON.parse(raw) as Partial<Mix>) } : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-function saveMix(mix: Mix): void {
-  try {
-    localStorage.setItem(MIX_KEY, JSON.stringify(mix));
-  } catch {
-    return;
-  }
-}
+export { hz, SONGS } from "./songs";
+export { loadMix, type Mix } from "./mix";
 
 const NICE_VOICE = /(premium|enhanced|natural|neural|siri|google us english|samantha|ava|zoe|aria|jenny)/i;
 
@@ -73,6 +17,7 @@ export class Stage {
   private sfxBus: GainNode | null = null;
   private filter: BiquadFilterNode | null = null;
   private noise: AudioBuffer | null = null;
+  private synth: Synth | null = null;
   private timer: ReturnType<typeof setInterval> | null = null;
   private track: Track = "silent";
   private pending: Track | null = null;
@@ -120,6 +65,7 @@ export class Stage {
       this.noise = ctx.createBuffer(1, len, ctx.sampleRate);
       const data = this.noise.getChannelData(0);
       for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+      this.synth = new Synth(ctx, this.noise);
       ctx.onstatechange = () => {
         if (this.ctx === ctx) this.onReady?.(ctx.state === "running");
       };
@@ -231,39 +177,6 @@ export class Stage {
     if (this.urgent && track === "question") for (let b = 0; b < 4; b++) this.bell(t0 + b * beat, 93, 0.12, 0.05);
   }
 
-  private env(g: GainNode, t: number, peak: number, attack: number, decay: number): void {
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(Math.max(peak, 0.0002), t + attack);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + attack + decay);
-  }
-
-  private osc(type: OscillatorType, freq: number, t: number, dur: number, peak: number, bus: AudioNode, attack = 0.005): OscillatorNode {
-    const ctx = this.ctx!;
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.type = type;
-    o.frequency.setValueAtTime(freq, t);
-    this.env(g, t, peak, attack, dur);
-    o.connect(g).connect(bus);
-    o.start(t);
-    o.stop(t + attack + dur + 0.05);
-    return o;
-  }
-
-  private noiseHit(t: number, dur: number, peak: number, type: BiquadFilterType, freq: number, bus: AudioNode): void {
-    const ctx = this.ctx!;
-    const src = ctx.createBufferSource();
-    src.buffer = this.noise;
-    const f = ctx.createBiquadFilter();
-    f.type = type;
-    f.frequency.value = freq;
-    const g = ctx.createGain();
-    this.env(g, t, peak, 0.002, dur);
-    src.connect(f).connect(g).connect(bus);
-    src.start(t, Math.random() * 0.5);
-    src.stop(t + dur + 0.05);
-  }
-
   private kick(t: number): void {
     const o = this.osc("sine", 150, t, 0.22, 0.55, this.musicBus!);
     o.frequency.exponentialRampToValueAtTime(42, t + 0.14);
@@ -302,68 +215,18 @@ export class Stage {
     }
   }
 
+  private osc(type: OscillatorType, freq: number, t: number, dur: number, peak: number, bus: AudioNode, attack = 0.005): OscillatorNode {
+    return this.synth!.osc(type, freq, t, dur, peak, bus, attack);
+  }
+
+  private noiseHit(t: number, dur: number, peak: number, type: BiquadFilterType, freq: number, bus: AudioNode): void {
+    this.synth!.noiseHit(t, dur, peak, type, freq, bus);
+  }
+
   sfx(name: Sfx): void {
     const ctx = this.ctx;
     if (!ctx || ctx.state !== "running" || !this.mix.sfx) return;
-    const t = ctx.currentTime + 0.01;
-    const bus = this.sfxBus!;
-    const up = (notes: number[], gap: number, type: OscillatorType, peak: number, dur = 0.25) => notes.forEach((n, i) => this.osc(type, hz(n), t + i * gap, dur, peak, bus));
-    if (name === "join") {
-      const o = this.osc("sine", 520, t, 0.16, 0.35, bus);
-      o.frequency.exponentialRampToValueAtTime(1300, t + 0.1);
-    } else if (name === "open") {
-      up([72, 79, 84], 0.06, "triangle", 0.3, 0.3);
-      this.noiseHit(t, 0.35, 0.12, "bandpass", 3000, bus);
-    } else if (name === "lock") {
-      this.osc("square", 880, t, 0.05, 0.08, bus);
-      this.noiseHit(t, 0.03, 0.15, "highpass", 4000, bus);
-    } else if (name === "tick") this.osc("sine", 1200, t, 0.06, 0.25, bus);
-    else if (name === "tock") {
-      this.osc("square", 660, t, 0.1, 0.18, bus);
-      this.osc("sine", 1320, t, 0.08, 0.2, bus);
-    } else if (name === "reveal") {
-      const ctx2 = ctx;
-      const src = ctx2.createBufferSource();
-      src.buffer = this.noise;
-      const f = ctx2.createBiquadFilter();
-      f.type = "bandpass";
-      f.Q.value = 2;
-      f.frequency.setValueAtTime(400, t);
-      f.frequency.exponentialRampToValueAtTime(6000, t + 0.45);
-      const g = ctx2.createGain();
-      this.env(g, t, 0.35, 0.3, 0.25);
-      src.connect(f).connect(g).connect(bus);
-      src.start(t);
-      src.stop(t + 0.7);
-      [60, 64, 67, 72].forEach((n) => this.osc("triangle", hz(n), t + 0.45, 0.9, 0.16, bus, 0.01));
-    } else if (name === "right") up([72, 76, 79, 84], 0.07, "triangle", 0.35, 0.35);
-    else if (name === "streak") {
-      up([72, 76, 79, 84, 88, 91], 0.05, "triangle", 0.32, 0.3);
-      this.noiseHit(t + 0.3, 0.5, 0.1, "highpass", 6000, bus);
-    } else if (name === "wrong") {
-      const o = this.osc("sawtooth", 220, t, 0.4, 0.2, bus);
-      o.frequency.exponentialRampToValueAtTime(110, t + 0.35);
-    } else if (name === "whoosh") {
-      const src = ctx.createBufferSource();
-      src.buffer = this.noise;
-      const f = ctx.createBiquadFilter();
-      f.type = "bandpass";
-      f.frequency.setValueAtTime(5000, t);
-      f.frequency.exponentialRampToValueAtTime(300, t + 0.4);
-      const g = ctx.createGain();
-      this.env(g, t, 0.3, 0.08, 0.35);
-      src.connect(f).connect(g).connect(bus);
-      src.start(t);
-      src.stop(t + 0.5);
-    } else if (name === "climb") up([67, 72], 0.08, "sine", 0.25, 0.2);
-    else if (name === "fanfare") {
-      [[70, 74, 77], [70, 74, 77], [75, 79, 82], [77, 81, 84], [82, 86, 89]].forEach((c, i) => {
-        const at = t + [0, 0.18, 0.36, 0.62, 0.9][i];
-        c.forEach((n) => this.osc("sawtooth", hz(n), at, i === 4 ? 1.4 : 0.16, 0.06, bus));
-        c.forEach((n) => this.osc("triangle", hz(n), at, i === 4 ? 1.4 : 0.16, 0.1, bus));
-      });
-      for (let i = 0; i < 12; i++) this.noiseHit(t + 0.9 + i * 0.04, 0.05, 0.08, "bandpass", 2500 + i * 300, bus);
-    }
+    playSfx(this.synth!, name, ctx.currentTime + 0.01, this.sfxBus!);
   }
 
   note(i: number): void {
