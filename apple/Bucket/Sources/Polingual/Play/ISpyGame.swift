@@ -74,11 +74,16 @@ struct ISpyGame: View {
                 ForEach(Array(scene.objects.enumerated()), id: \.offset) { _, o in
                     Button { tap(o.id, r) } label: {
                         ZStack {
-                            PLArtView(Self.tileArt[o.art % Self.tileArt.count]).frame(width: tile, height: tile)
-                            Text(labels[o.id] ?? o.id).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.4).padding(2)
-                                .background(PL.card.opacity(0.92), in: .rect(cornerRadius: 4))
-                                .frame(width: tile)
+                            if let drawn = PLArt(rawValue: "object-\(o.id)") {
+                                PLArtView(drawn).frame(width: tile, height: tile)
+                            } else {
+                                PLArtView(Self.tileArt[o.art % Self.tileArt.count]).frame(width: tile, height: tile)
+                                Text(labels[o.id] ?? o.id).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.4).padding(2)
+                                    .background(PL.card.opacity(0.92), in: .rect(cornerRadius: 4))
+                                    .frame(width: tile)
+                            }
                         }
+                        .accessibilityLabel(Text(labels[o.id] ?? o.id))
                         .overlay {
                             if closed && o.id == r.answer { RoundedRectangle(cornerRadius: 8).stroke(PL.malachite, lineWidth: 4) }
                             else if closed && o.id == tapped { RoundedRectangle(cornerRadius: 8).stroke(PL.vermilion, lineWidth: 4) }

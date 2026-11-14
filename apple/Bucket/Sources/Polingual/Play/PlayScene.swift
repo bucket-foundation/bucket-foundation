@@ -82,7 +82,7 @@ struct PlayLabel: View {
     var onDark = true
 
     var body: some View {
-        Text(text.uppercased()).font(PL.label.font()).tracking(1.2).foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
+        Text(LocalizedStringKey(text)).textCase(.uppercase).font(PL.label.font()).tracking(1.2).foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
     }
 }
 
@@ -139,8 +139,8 @@ struct PlayResults: View {
         VStack(alignment: .leading, spacing: PL.Space.s4) {
             PLCard(.tyrian) {
                 VStack(alignment: .leading, spacing: PL.Space.s2) {
-                    Text(title).font(PL.title.font()).foregroundStyle(PL.paper).accessibilityIdentifier("playResults")
-                    Text(line).font(PL.body.font()).foregroundStyle(PL.paper.opacity(0.9))
+                    Text(LocalizedStringKey(title)).font(PL.title.font()).foregroundStyle(PL.paper).accessibilityIdentifier("playResults")
+                    Text(LocalizedStringKey(line)).font(PL.body.font()).foregroundStyle(PL.paper.opacity(0.9))
                 }
             }
             if !board.isEmpty {
@@ -157,7 +157,7 @@ struct PlayResults: View {
                 }
             }
             ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
-            if let again { Button(againLabel, action: again).buttonStyle(.pl(.primary, size: .lg)) }
+            if let again { Button(LocalizedStringKey(againLabel), action: again).buttonStyle(.pl(.primary, size: .lg)) }
             StartLearningButton()
         }
     }
@@ -170,7 +170,7 @@ struct PlayNote: View {
     var body: some View {
         HStack(spacing: PL.Space.s3) {
             PLArtView(art).frame(width: 44)
-            Text(text).font(PL.body.font()).foregroundStyle(PL.paper)
+            Text(LocalizedStringKey(text)).font(PL.body.font()).foregroundStyle(PL.paper)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

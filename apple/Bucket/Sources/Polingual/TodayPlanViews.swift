@@ -148,7 +148,7 @@ struct TodayWidgetFace: View {
                     } else if let left {
                         Text("\(left)").font(.system(size: 15, weight: .heavy, design: .rounded)).foregroundStyle(ink).monospacedDigit().minimumScaleFactor(0.6).padding(6)
                     } else if let symbol {
-                        Image(systemName: symbol).font(.subheadline.weight(.bold)).foregroundStyle(ink)
+                        SymbolArt(name: symbol, size: 15).foregroundStyle(ink)
                     }
                 }
                 .frame(width: 48, height: 48)

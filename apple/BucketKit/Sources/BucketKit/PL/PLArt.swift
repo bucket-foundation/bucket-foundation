@@ -28,6 +28,62 @@ public enum PLArt: String, CaseIterable, Sendable {
     case skSeal = "sk-seal"
     case skPaisley = "sk-paisley"
     case skMudcloth = "sk-mudcloth"
+    case objectApple = "object-apple"
+    case objectBag = "object-bag"
+    case objectBall = "object-ball"
+    case objectBird = "object-bird"
+    case objectBoat = "object-boat"
+    case objectBook = "object-book"
+    case objectBread = "object-bread"
+    case objectCar = "object-car"
+    case objectCat = "object-cat"
+    case objectChair = "object-chair"
+    case objectCheese = "object-cheese"
+    case objectChicken = "object-chicken"
+    case objectChild = "object-child"
+    case objectCity = "object-city"
+    case objectClock = "object-clock"
+    case objectCoffee = "object-coffee"
+    case objectCow = "object-cow"
+    case objectDog = "object-dog"
+    case objectDoor = "object-door"
+    case objectEgg = "object-egg"
+    case objectFire = "object-fire"
+    case objectFish = "object-fish"
+    case objectFlower = "object-flower"
+    case objectHat = "object-hat"
+    case objectHorse = "object-horse"
+    case objectHouse = "object-house"
+    case objectHundred = "object-hundred"
+    case objectKey = "object-key"
+    case objectKnife = "object-knife"
+    case objectLetter = "object-letter"
+    case objectMeat = "object-meat"
+    case objectMilk = "object-milk"
+    case objectMoney = "object-money"
+    case objectMoon = "object-moon"
+    case objectMountain = "object-mountain"
+    case objectOne = "object-one"
+    case objectOrange = "object-orange"
+    case objectPaper = "object-paper"
+    case objectRice = "object-rice"
+    case objectRiver = "object-river"
+    case objectRoad = "object-road"
+    case objectSalt = "object-salt"
+    case objectSchool = "object-school"
+    case objectSea = "object-sea"
+    case objectShirt = "object-shirt"
+    case objectShoe = "object-shoe"
+    case objectStar = "object-star"
+    case objectStone = "object-stone"
+    case objectSun = "object-sun"
+    case objectTea = "object-tea"
+    case objectThree = "object-three"
+    case objectTree = "object-tree"
+    case objectTwo = "object-two"
+    case objectWater = "object-water"
+    case objectWindow = "object-window"
+    case objectWine = "object-wine"
 
     public var label: String {
         switch self {
@@ -58,6 +114,62 @@ public enum PLArt: String, CaseIterable, Sendable {
         case .skSeal: "Seal swatch"
         case .skPaisley: "Paisley swatch"
         case .skMudcloth: "Mudcloth swatch"
+        case .objectApple: "apple"
+        case .objectBag: "bag"
+        case .objectBall: "ball"
+        case .objectBird: "bird"
+        case .objectBoat: "boat"
+        case .objectBook: "book"
+        case .objectBread: "bread"
+        case .objectCar: "car"
+        case .objectCat: "cat"
+        case .objectChair: "chair"
+        case .objectCheese: "cheese"
+        case .objectChicken: "chicken"
+        case .objectChild: "child"
+        case .objectCity: "city"
+        case .objectClock: "clock"
+        case .objectCoffee: "coffee"
+        case .objectCow: "cow"
+        case .objectDog: "dog"
+        case .objectDoor: "door"
+        case .objectEgg: "egg"
+        case .objectFire: "fire"
+        case .objectFish: "fish"
+        case .objectFlower: "flower"
+        case .objectHat: "hat"
+        case .objectHorse: "horse"
+        case .objectHouse: "house"
+        case .objectHundred: "hundred"
+        case .objectKey: "key"
+        case .objectKnife: "knife"
+        case .objectLetter: "letter"
+        case .objectMeat: "meat"
+        case .objectMilk: "milk"
+        case .objectMoney: "money"
+        case .objectMoon: "moon"
+        case .objectMountain: "mountain"
+        case .objectOne: "one"
+        case .objectOrange: "orange"
+        case .objectPaper: "paper"
+        case .objectRice: "rice"
+        case .objectRiver: "river"
+        case .objectRoad: "road"
+        case .objectSalt: "salt"
+        case .objectSchool: "school"
+        case .objectSea: "sea"
+        case .objectShirt: "shirt"
+        case .objectShoe: "shoe"
+        case .objectStar: "star"
+        case .objectStone: "stone"
+        case .objectSun: "sun"
+        case .objectTea: "tea"
+        case .objectThree: "three"
+        case .objectTree: "tree"
+        case .objectTwo: "two"
+        case .objectWater: "water"
+        case .objectWindow: "window"
+        case .objectWine: "wine"
         }
     }
 
@@ -90,6 +202,62 @@ public enum PLArt: String, CaseIterable, Sendable {
         case .skSeal: CGSize(width: 48, height: 48)
         case .skPaisley: CGSize(width: 48, height: 48)
         case .skMudcloth: CGSize(width: 48, height: 48)
+        case .objectApple: CGSize(width: 100, height: 100)
+        case .objectBag: CGSize(width: 100, height: 100)
+        case .objectBall: CGSize(width: 100, height: 100)
+        case .objectBird: CGSize(width: 100, height: 100)
+        case .objectBoat: CGSize(width: 100, height: 100)
+        case .objectBook: CGSize(width: 100, height: 100)
+        case .objectBread: CGSize(width: 100, height: 100)
+        case .objectCar: CGSize(width: 100, height: 100)
+        case .objectCat: CGSize(width: 100, height: 100)
+        case .objectChair: CGSize(width: 100, height: 100)
+        case .objectCheese: CGSize(width: 100, height: 100)
+        case .objectChicken: CGSize(width: 100, height: 100)
+        case .objectChild: CGSize(width: 100, height: 100)
+        case .objectCity: CGSize(width: 100, height: 100)
+        case .objectClock: CGSize(width: 100, height: 100)
+        case .objectCoffee: CGSize(width: 100, height: 100)
+        case .objectCow: CGSize(width: 100, height: 100)
+        case .objectDog: CGSize(width: 100, height: 100)
+        case .objectDoor: CGSize(width: 100, height: 100)
+        case .objectEgg: CGSize(width: 100, height: 100)
+        case .objectFire: CGSize(width: 100, height: 100)
+        case .objectFish: CGSize(width: 100, height: 100)
+        case .objectFlower: CGSize(width: 100, height: 100)
+        case .objectHat: CGSize(width: 100, height: 100)
+        case .objectHorse: CGSize(width: 100, height: 100)
+        case .objectHouse: CGSize(width: 100, height: 100)
+        case .objectHundred: CGSize(width: 100, height: 100)
+        case .objectKey: CGSize(width: 100, height: 100)
+        case .objectKnife: CGSize(width: 100, height: 100)
+        case .objectLetter: CGSize(width: 100, height: 100)
+        case .objectMeat: CGSize(width: 100, height: 100)
+        case .objectMilk: CGSize(width: 100, height: 100)
+        case .objectMoney: CGSize(width: 100, height: 100)
+        case .objectMoon: CGSize(width: 100, height: 100)
+        case .objectMountain: CGSize(width: 100, height: 100)
+        case .objectOne: CGSize(width: 100, height: 100)
+        case .objectOrange: CGSize(width: 100, height: 100)
+        case .objectPaper: CGSize(width: 100, height: 100)
+        case .objectRice: CGSize(width: 100, height: 100)
+        case .objectRiver: CGSize(width: 100, height: 100)
+        case .objectRoad: CGSize(width: 100, height: 100)
+        case .objectSalt: CGSize(width: 100, height: 100)
+        case .objectSchool: CGSize(width: 100, height: 100)
+        case .objectSea: CGSize(width: 100, height: 100)
+        case .objectShirt: CGSize(width: 100, height: 100)
+        case .objectShoe: CGSize(width: 100, height: 100)
+        case .objectStar: CGSize(width: 100, height: 100)
+        case .objectStone: CGSize(width: 100, height: 100)
+        case .objectSun: CGSize(width: 100, height: 100)
+        case .objectTea: CGSize(width: 100, height: 100)
+        case .objectThree: CGSize(width: 100, height: 100)
+        case .objectTree: CGSize(width: 100, height: 100)
+        case .objectTwo: CGSize(width: 100, height: 100)
+        case .objectWater: CGSize(width: 100, height: 100)
+        case .objectWindow: CGSize(width: 100, height: 100)
+        case .objectWine: CGSize(width: 100, height: 100)
         }
     }
 
@@ -122,6 +290,62 @@ public enum PLArt: String, CaseIterable, Sendable {
         case .skSeal: false
         case .skPaisley: false
         case .skMudcloth: false
+        case .objectApple: false
+        case .objectBag: false
+        case .objectBall: false
+        case .objectBird: false
+        case .objectBoat: false
+        case .objectBook: false
+        case .objectBread: false
+        case .objectCar: false
+        case .objectCat: false
+        case .objectChair: false
+        case .objectCheese: false
+        case .objectChicken: false
+        case .objectChild: false
+        case .objectCity: false
+        case .objectClock: false
+        case .objectCoffee: false
+        case .objectCow: false
+        case .objectDog: false
+        case .objectDoor: false
+        case .objectEgg: false
+        case .objectFire: false
+        case .objectFish: false
+        case .objectFlower: false
+        case .objectHat: false
+        case .objectHorse: false
+        case .objectHouse: false
+        case .objectHundred: false
+        case .objectKey: false
+        case .objectKnife: false
+        case .objectLetter: false
+        case .objectMeat: false
+        case .objectMilk: false
+        case .objectMoney: false
+        case .objectMoon: false
+        case .objectMountain: false
+        case .objectOne: false
+        case .objectOrange: false
+        case .objectPaper: false
+        case .objectRice: false
+        case .objectRiver: false
+        case .objectRoad: false
+        case .objectSalt: false
+        case .objectSchool: false
+        case .objectSea: false
+        case .objectShirt: false
+        case .objectShoe: false
+        case .objectStar: false
+        case .objectStone: false
+        case .objectSun: false
+        case .objectTea: false
+        case .objectThree: false
+        case .objectTree: false
+        case .objectTwo: false
+        case .objectWater: false
+        case .objectWindow: false
+        case .objectWine: false
         }
     }
 }

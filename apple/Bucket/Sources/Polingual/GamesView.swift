@@ -53,7 +53,9 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
-    var symbol: String {
+    var symbol: String { art.map { "art:\($0.rawValue)" } ?? legacySymbol }
+
+    var legacySymbol: String {
         switch self {
         case .daily: "calendar"
         case .mini: "square.grid.3x3.fill"
@@ -79,7 +81,14 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .ispy: .star
         case .duel: .seal
         case .tiles: .azulejoGrid
-        default: nil
+        case .daily: .skSeal
+        case .mini: .skAzulejo
+        case .wordGroups: .skGirih
+        case .same: .skKente
+        case .match: .skPaisley
+        case .voice: .objectBird
+        case .flags: .bunting
+        case .letters: .skMudcloth
         }
     }
 
@@ -134,7 +143,7 @@ struct TileRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            Image(systemName: symbol)
+            SymbolArt(name: symbol, size: 26)
                 .font(.title2)
                 .foregroundStyle(D8.parchment)
                 .frame(width: 48, height: 48)
@@ -649,5 +658,18 @@ struct GameEnd: View {
         .padding()
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
+    }
+}
+
+struct SymbolArt: View {
+    let name: String
+    var size: CGFloat = 20
+
+    var body: some View {
+        if name.hasPrefix("art:"), let art = PLArt(rawValue: String(name.dropFirst(4))) {
+            PLArtView(art).frame(width: size * 1.3, height: size)
+        } else {
+            Image(systemName: name).font(.system(size: size, weight: .bold))
+        }
     }
 }

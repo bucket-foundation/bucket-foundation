@@ -62,9 +62,11 @@ struct TranslateLanguageSheet: View {
                     }
                 }
                 Spacer(minLength: 8)
-                Image(systemName: on ? "checkmark.circle.fill" : "circle")
-                    .font(.system(size: 24, weight: .semibold))
-                    .foregroundStyle(on ? D8.vermilion : D8.edge)
+                PLGlyphView(.check, size: 14)
+                    .foregroundStyle(on ? PL.paper : .clear)
+                    .frame(width: 26, height: 26)
+                    .background(on ? PL.vermilion : PL.card, in: .circle)
+                    .overlay { Circle().strokeBorder(on ? PL.vermilion : PL.paper3, lineWidth: 2) }
             }
             .frame(minHeight: 48)
             .contentShape(.rect)

@@ -53,7 +53,8 @@ struct PLTokensTests {
     @Test func artMatchesSource() throws {
         let src = try String(contentsOf: Self.root.appendingPathComponent("polingual/src/ui/art/data.ts"), encoding: .utf8)
         let names = src.matches(of: /"name": "([^"]+)"/).map { String($0.1) }
-        #expect(names == PLArt.allCases.map(\.rawValue))
+        #expect(names == PLArt.allCases.map(\.rawValue).filter { !$0.hasPrefix("object-") })
+        #expect(PLArt.allCases.filter { $0.rawValue.hasPrefix("object-") }.count >= 50)
         for art in PLArt.allCases { #expect(art.available, "\(art.rawValue)") }
     }
 

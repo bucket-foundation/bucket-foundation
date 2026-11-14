@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 TOKENS = ROOT / "polingual/src/ui/tokens.json"
 ART = ROOT / "polingual/src/ui/art/data.ts"
+OBJECTS = ROOT / "polingual/src/ui/art/objects.tsx"
 FONTS = ROOT / "polingual/public/fonts/stoa"
 OUT = ROOT / "apple/BucketKit/Sources/BucketKit/PL"
 RES = OUT / "Resources"
@@ -108,6 +109,26 @@ def art_entries():
     return json.loads(s[start:end])
 
 
+def object_entries():
+    src = OBJECTS.read_text()
+    consts = dict(re.findall(r'^const ([A-Z]+) = "([^"]*)";', src, re.M))
+    for k, v in re.findall(r'^const ([A-Z]) = `([^`]*)`;', src, re.M):
+        consts[k] = re.sub(r"\$\{(\w+)\}", lambda m: consts[m.group(1)], v)
+    body = src[src.index("OBJECT_ART"):]
+    body = body[body.index("{") + 1:body.index("\n};")]
+    out = []
+    for m in re.finditer(r'^\s*(\w+): (?:`([^`]*)`|num\("([^"]+)", (\w+)\)),$', body, re.M):
+        name, tpl, n, fill = m.groups()
+        if tpl is None:
+            size = 34 if len(n) > 1 else 50
+            tpl = ('<rect x="18" y="14" width="64" height="72" rx="12" fill="%s" %s/><text x="50" y="52" text-anchor="middle" dominant-baseline="central" '
+                   'font-family="Fredoka" font-weight="700" font-size="%d" fill="%s" stroke="%s" stroke-width="2">%s</text>') % (consts[fill], consts["O"], size, consts["CREAM"], consts["INK"], n)
+        else:
+            tpl = re.sub(r"\$\{(\w+)\}", lambda q: consts[q.group(1)], tpl)
+        out.append({"name": "object-" + name, "label": name, "viewBox": "0 0 100 100", "body": tpl, "dark": False})
+    return out
+
+
 def art_swift(entries):
     o = ["import CoreGraphics\n\n", "public enum PLArt: String, CaseIterable, Sendable {\n"]
     for e in entries:
@@ -175,7 +196,7 @@ def pdf(e):
 def main():
     check = "--check" in sys.argv
     t = json.loads(TOKENS.read_text())
-    entries = art_entries()
+    entries = art_entries() + object_entries()
     outputs = {OUT / "PLTokens.swift": tokens_swift(t), OUT / "PLArt.swift": art_swift(entries), OUT / "PLGlyph.swift": glyphs_swift()}
     stale = [p for p, body in outputs.items() if not p.exists() or p.read_text() != body]
     names = {e["name"] for e in entries}
