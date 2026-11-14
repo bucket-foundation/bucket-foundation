@@ -57,10 +57,10 @@ function Grid({ puzzle, fill, pos, onTap }: { puzzle: MiniPuzzle; fill: MiniFill
         const k = cellKey(r, c);
         if (!answers.has(k)) return <span key={k} className={styles.block} aria-hidden />;
         return (
-          <button key={k} type="button" className={styles.cell} data-on={r === ar && c === ac} data-word={inWord.has(k)} aria-label={`Row ${r + 1} column ${c + 1}`} onClick={() => onTap(r, c)}>
+          <Button bare key={k} className={styles.cell} data-on={r === ar && c === ac} data-word={inWord.has(k)} aria-label={`Row ${r + 1} column ${c + 1}`} onClick={() => onTap(r, c)}>
             {numbers.has(k) ? <sup>{numbers.get(k)}</sup> : null}
             {fill[k] ?? ""}
-          </button>
+          </Button>
         );
       })}
     </div>
@@ -72,9 +72,9 @@ function Clues({ puzzle, active, onPick }: { puzzle: MiniPuzzle; active: number;
     <ol className={styles.clues}>
       {puzzle.entries.map((e, i) => (
         <li key={`${e.number}${e.across}`} data-active={i === active}>
-          <button type="button" className={styles.clueBtn} onClick={() => onPick(i)} data-testid="mini-clue" data-answer={e.letters.join("")}>
+          <Button bare className={styles.clueBtn} onClick={() => onPick(i)} data-testid="mini-clue" data-answer={e.letters.join("")}>
             <b>{e.number} {e.across ? "across" : "down"}</b> {e.word.gloss} · {e.letters.length} letters
-          </button>
+          </Button>
         </li>
       ))}
     </ol>

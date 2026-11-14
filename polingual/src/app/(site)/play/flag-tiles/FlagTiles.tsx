@@ -101,10 +101,10 @@ function Lanes({ g }: { g: Ready }) {
   return (
     <div className={styles.ftLanes} role="group" aria-label="Language lanes">
       {g.deck.langs.map((l, i) => (
-        <button key={l} type="button" className={styles.ftLane} onPointerDown={(e) => { e.preventDefault(); g.tap(i); }} data-state={laneState(g.run, i, g.answer)} data-testid="ft-lane" aria-label={langName(l)}>
+        <Button bare key={l} className={styles.ftLane} onPointerDown={(e) => { e.preventDefault(); g.tap(i); }} data-state={laneState(g.run, i, g.answer)} data-testid="ft-lane" aria-label={langName(l)}>
           <FlagSquare lang={l} size={40} />
           <span>{langName(l)}</span>
-        </button>
+        </Button>
       ))}
     </div>
   );

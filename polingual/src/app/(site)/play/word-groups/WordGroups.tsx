@@ -32,9 +32,9 @@ function Tiles({ puzzle, ids, g, onToggle }: { puzzle: Puzzle; ids: string[]; g:
         const w = byId.get(id)!;
         const group = puzzle.groups.findIndex((x) => x.words.some((y) => wordId(y) === id));
         return (
-          <button key={id} type="button" className={styles.tile} aria-pressed={g.selected.includes(id)} lang={w.lang} onClick={() => onToggle(id)} data-testid="groups-tile" data-group={group}>
+          <Button bare key={id} className={styles.tile} aria-pressed={g.selected.includes(id)} lang={w.lang} onClick={() => onToggle(id)} data-testid="groups-tile" data-group={group}>
             {w.form}
-          </button>
+          </Button>
         );
       })}
     </div>

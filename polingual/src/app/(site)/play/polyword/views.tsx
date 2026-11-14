@@ -10,7 +10,7 @@ import { FlagSquare } from "../LearnWord";
 import { langName } from "../langs";
 import styles from "./polyword.module.css";
 import { HintTile, shortDate } from "./parts";
-import { Pill } from "@/ui";
+import { Button, Pill } from "@/ui";
 
 type HeaderProps = { bank: Bank; lang: string; puzzle: Puzzle; streak: number; isToday: boolean; view: "game" | "archive"; onToday: () => void; onArchive: () => void; onLang: (l: string) => void };
 
@@ -34,10 +34,10 @@ export function Header({ bank, lang, puzzle, streak, isToday, view, onToday, onA
       </div>
       <div className={styles.langs} role="group" aria-label="Language" data-testid="pw-langs">
         {TARGETS.filter((l) => bank.langs[l]?.length).map((l) => (
-          <button key={l} type="button" className={styles.lang} aria-pressed={l === lang} onClick={() => onLang(l)} title={langName(l)} data-testid={`pw-lang-${l}`}>
+          <Button bare key={l} className={styles.lang} aria-pressed={l === lang} onClick={() => onLang(l)} title={langName(l)} data-testid={`pw-lang-${l}`}>
             <FlagSquare lang={l} size={20} />
             <span>{l.toUpperCase()}</span>
-          </button>
+          </Button>
         ))}
       </div>
     </header>
@@ -56,11 +56,11 @@ export function Archive({ progress, lang, today, pro, onDay }: { progress: Progr
           const state = dayState(gameOf(progress, lang, d), isUnlocked(progress, lang, d, today, pro));
           return (
             <li key={d}>
-              <button type="button" className={styles.day} data-state={state} onClick={() => onDay(d)} data-testid={`pw-day-${d}`} aria-label={`Puzzle ${d}, ${shortDate(d)}, ${state}`}>
+              <Button bare className={styles.day} data-state={state} onClick={() => onDay(d)} data-testid={`pw-day-${d}`} aria-label={`Puzzle ${d}, ${shortDate(d)}, ${state}`}>
                 <b>#{d}</b>
                 <span>{shortDate(d)}</span>
                 <i aria-hidden="true">{DAY_ICON[state]}</i>
-              </button>
+              </Button>
             </li>
           );
         })}

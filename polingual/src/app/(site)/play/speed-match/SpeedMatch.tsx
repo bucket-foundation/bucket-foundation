@@ -20,16 +20,16 @@ function SpeedBoard({ game, after }: { game: Speed; after: (kind: string) => voi
     <div className={styles.board} data-testid="speed-board">
       <div>
         {b.meanings.map((w, i) => (
-          <button key={`m${i}`} type="button" className={styles.pill} disabled={!w} aria-pressed={!!w && b.pickedMeaning === wordId(w)} onClick={() => w && after(game.tapMeaning(wordId(w)).kind)} data-testid="speed-meaning" data-id={w ? wordId(w) : ""}>
+          <Button bare key={`m${i}`} className={styles.pill} disabled={!w} aria-pressed={!!w && b.pickedMeaning === wordId(w)} onClick={() => w && after(game.tapMeaning(wordId(w)).kind)} data-testid="speed-meaning" data-id={w ? wordId(w) : ""}>
             {w?.gloss}
-          </button>
+          </Button>
         ))}
       </div>
       <div>
         {b.forms.map((w, i) => (
-          <button key={`f${i}`} type="button" className={styles.pill} disabled={!w} aria-pressed={!!w && b.pickedForm === wordId(w)} lang={w?.lang} onClick={() => w && after(game.tapForm(wordId(w)).kind)} data-testid="speed-form" data-id={w ? wordId(w) : ""}>
+          <Button bare key={`f${i}`} className={styles.pill} disabled={!w} aria-pressed={!!w && b.pickedForm === wordId(w)} lang={w?.lang} onClick={() => w && after(game.tapForm(wordId(w)).kind)} data-testid="speed-form" data-id={w ? wordId(w) : ""}>
             {w?.form}
-          </button>
+          </Button>
         ))}
       </div>
     </div>

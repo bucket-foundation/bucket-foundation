@@ -219,8 +219,8 @@ function Card({ g, c }: { g: Game; c: ForeheadCard }) {
         <b className={styles.fhWord} style={{ "--len": cardFit(c.form) } as React.CSSProperties} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="fh-word">{c.form}</b>
       </div>
       <div className={styles.fhButtons}>
-        <button type="button" className={styles.fhPass} onClick={() => g.mark(false)} data-testid="fh-pass">Pass</button>
-        <button type="button" className={styles.fhGot} onClick={() => g.mark(true)} data-testid="fh-got">Got it</button>
+        <Button bare className={styles.fhPass} onClick={() => g.mark(false)} data-testid="fh-pass">Pass</Button>
+        <Button bare className={styles.fhGot} onClick={() => g.mark(true)} data-testid="fh-got">Got it</Button>
       </div>
     </div>
   );

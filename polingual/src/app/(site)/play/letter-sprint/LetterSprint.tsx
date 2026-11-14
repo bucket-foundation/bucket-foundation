@@ -18,9 +18,9 @@ function Letters({ p, onChoose }: { p: Prompt; onChoose: (c: string) => void }) 
   return (
     <div className={styles.choices}>
       {p.choices.map((c) => (
-        <button key={c} type="button" className={`${styles.pill} ${styles.letter}`} lang={p.lang} onClick={() => onChoose(c)} data-testid="letter-choice" data-answer={c === p.ch ? "yes" : "no"}>
+        <Button bare key={c} className={`${styles.pill} ${styles.letter}`} lang={p.lang} onClick={() => onChoose(c)} data-testid="letter-choice" data-answer={c === p.ch ? "yes" : "no"}>
           {c}
-        </button>
+        </Button>
       ))}
     </div>
   );

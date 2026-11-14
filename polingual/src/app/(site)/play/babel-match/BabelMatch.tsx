@@ -139,10 +139,10 @@ function Cells({ g, byId }: { g: Game; byId: Map<string, Meaning> }) {
       {g.board.map((c, i) => {
         const word = byId.get(c.meaning)?.forms[c.lang] ?? "";
         return (
-          <button key={c.key} type="button" className={`${styles.bmCell} ${pieceClass("azulejo")}`} data-picked={g.picked === i} data-shake={g.shake === i} data-long={word.length > 7} onClick={() => g.tap(i)} aria-label={`${word}, ${langName(c.lang)}`} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="bm-cell">
+          <Button bare key={c.key} className={`${styles.bmCell} ${pieceClass("azulejo")}`} data-picked={g.picked === i} data-shake={g.shake === i} data-long={word.length > 7} onClick={() => g.tap(i)} aria-label={`${word}, ${langName(c.lang)}`} dir={LANGS[c.lang]?.rtl ? "rtl" : undefined} data-testid="bm-cell">
             <FlagSquare lang={c.lang} size={12} />
             <span style={{ "--len": Math.max(4, Array.from(word).length) } as React.CSSProperties}>{word}</span>
-          </button>
+          </Button>
         );
       })}
     </div>

@@ -63,11 +63,11 @@ function Columns({ board, offsets, isNew, onRotate }: { board: ShiftBoard; offse
     <div className={styles.shBoard} data-new={isNew} data-testid="sh-board">
       {board.columns.map((col, i) => (
         <div key={i} className={styles.shCol}>
-          <button type="button" className={styles.shArrow} onClick={() => onRotate(i, -1)} aria-label={`Column ${i + 1} up`} data-testid="sh-up">▲</button>
+          <Button bare className={styles.shArrow} onClick={() => onRotate(i, -1)} aria-label={`Column ${i + 1} up`} data-testid="sh-up">▲</Button>
           <span className={styles.shGhost}>{letterAt(col, offsets[i] - 1)}</span>
           <b className={`${styles.shLetter} ${pieceClass("paper")}`} data-testid="sh-letter">{letterAt(col, offsets[i])}</b>
           <span className={styles.shGhost}>{letterAt(col, offsets[i] + 1)}</span>
-          <button type="button" className={styles.shArrow} onClick={() => onRotate(i, 1)} aria-label={`Column ${i + 1} down`} data-testid="sh-down">▼</button>
+          <Button bare className={styles.shArrow} onClick={() => onRotate(i, 1)} aria-label={`Column ${i + 1} down`} data-testid="sh-down">▼</Button>
         </div>
       ))}
     </div>
