@@ -7,7 +7,8 @@ import { flagTilesDeck } from "@academy/flag-tiles";
 import { buildLangCorpus } from "@academy/lang-systems";
 import { shiftBoard } from "@academy/shift";
 import { buildBank } from "@/lib/polyword/bank";
-import { puzzleFor } from "@/lib/polyword/puzzle";
+import { dayNumber, puzzleFor } from "@/lib/polyword/puzzle";
+import { atlasRounds } from "@academy/voice-atlas";
 
 const root = fileURLToPath(new URL("../../../", import.meta.url));
 const read = (n: string) => JSON.parse(readFileSync(`${root}apple/Shared/Corpus/${n}`, "utf8"));
@@ -29,5 +30,10 @@ const out = {
   polywordBankSha256: createHash("sha256").update(canon).digest("hex"),
   polywordEs13: puzzleFor(bank, "es", 13)!.slug,
   polywordFr40: puzzleFor(bank, "fr", 40)!.slug,
+  polywordDay20270105: dayNumber(new Date(2027, 0, 5, 12)),
+  polywordEs20270105: puzzleFor(bank, "es", dayNumber(new Date(2027, 0, 5, 12)))!.slug,
+  shift20270105: shiftBoard(corpus.items, "2027-01-05")!.targets.map((t) => `${t.lang}:${t.form}`),
+  flagTiles20270105: flagTilesDeck(corpus.items, "2027-01-05").tiles.slice(0, 8).map((t) => `${t.lang}:${t.form}`),
+  atlas20270105: atlasRounds(corpus.items, "2027-01-05").map((r) => `${r.lang}:${r.itemId}`),
 };
 writeFileSync(`${root}android/polingual/src/test/resources/web-goldens.json`, JSON.stringify(out, null, 1) + "\n");
