@@ -12,7 +12,7 @@ export function deferCard(c: Omit<DeferredCard, "key">): boolean {
   const key = `${c.itemId}|${c.lang}|${c.kind}`;
   if (cards.some((x) => x.key === key)) return false;
   cards = [...cards, { ...c, key }];
-  for (const l of listeners) l();
+  listeners.forEach((l) => l());
   return true;
 }
 
@@ -22,7 +22,7 @@ export function deferredCards(): DeferredCard[] {
 
 export function clearDeferred(): void {
   cards = [];
-  for (const l of listeners) l();
+  listeners.forEach((l) => l());
 }
 
 export function subscribeDeferred(l: () => void): () => void {
