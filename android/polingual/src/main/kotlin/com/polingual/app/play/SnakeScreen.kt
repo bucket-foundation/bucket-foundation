@@ -71,7 +71,8 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
         if (round == 0) return@LaunchedEffect
         val others = Snakes.LANG_CHOICES.filter { it != lang }.take(5)
         val items = graph.corpus.load().items
-        val d = com.polingual.app.offMain { Snakes.deck(items, lang, others, dealSeed.ifEmpty { DealSeeds.fresh() }) }
+        val seed = DealSeeds.ensure(dealSeed).also { dealSeed = it }
+        val d = com.polingual.app.offMain { Snakes.deck(items, lang, others, seed) }
         val rng = XorRng(System.currentTimeMillis().toInt())
         val rand = rng::next
         val bots = Bots.all.take(4).mapIndexed { i, b -> Snakes.make(b.userId, b.name, true, Snakes.SKILL[b.skill] ?: 0.8, Pt(200 + rand() * 1200, 150 + rand() * 700), rand() * 6.28, i + 1) }
@@ -81,9 +82,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
         var last = withFrameNanos { it }
         while (true) {
             val now = withFrameNanos { it }
-            val dt = minOf(0.05, (now - last) / 1e9)
-            last = now
-            a = Snakes.tick(a, aim, d, rand, dt)
+            a = Snakes.tick(a, aim, d, rand, minOf(0.05, (now - last) / 1e9)).also { last = now }
             arena = a
             left = maxOf(0, ((end - System.currentTimeMillis() + 999) / 1000).toInt())
             val me = a.snakes.first { it.id == "me" }

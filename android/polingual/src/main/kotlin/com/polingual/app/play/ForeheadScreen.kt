@@ -70,7 +70,8 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
     LaunchedEffect(round) {
         if (round == 0) return@LaunchedEffect
         val items = graph.corpus.load().items
-        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, langs, dealSeed.ifEmpty { DealSeeds.fresh() }) }
+        val seed = DealSeeds.ensure(dealSeed).also { dealSeed = it }
+        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, langs, seed) }
         index = 0; results = emptyList(); left = ForeheadDeck.SECONDS; count = 3; phase = FhPhase.Count
         while (count > 0) { delay(1000); count -= 1 }
         phase = FhPhase.Play
