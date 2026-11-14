@@ -442,3 +442,34 @@ import Testing
         #expect(font < side * 0.2, "\(phrase) at \(font)")
     }
 }
+
+@Test func pickThenCheckGradesTheCheckedOption() {
+    var ex = Exercise(kind: .choose, itemId: "night", lang: "es", root: "en", prompt: "night", promptLang: "en", answer: "noche", answerLang: "es")
+    ex.options = ["noche", "nuit", "notte", "día"]
+    ex.optionLangs = ["noche": "es", "nuit": "fr", "notte": "it", "día": "es"]
+    #expect(choiceGrade(ex, picked: "noche", slow: false) == ChoiceGrade(rating: 3, slip: nil))
+    #expect(choiceGrade(ex, picked: "noche", slow: true) == ChoiceGrade(rating: 2, slip: nil))
+    #expect(choiceGrade(ex, picked: "día", slow: false) == ChoiceGrade(rating: 1, slip: nil))
+}
+
+@Test func crossLanguageDistractorRatesAgainAndBringsTheNameBack() {
+    var ex = Exercise(kind: .choose, itemId: "night", lang: "es", root: "en", prompt: "night", promptLang: "en", answer: "noche", answerLang: "es")
+    ex.options = ["noche", "nuit", "notte"]
+    ex.optionLangs = ["noche": "es", "nuit": "fr", "notte": "it"]
+    let grade = choiceGrade(ex, picked: "nuit", slow: false)
+    #expect(grade == ChoiceGrade(rating: 1, slip: "fr"))
+    var st = EngineState()
+    for _ in 0..<FlagMisses.hitsToHideName { st = FlagMisses.recordingHit(st, "fr") }
+    #expect(!FlagMisses.showsName(st, "fr"))
+    st = FlagMisses.recording(st, grade.slip!)
+    #expect(FlagMisses.showsName(st, "fr"))
+    #expect(FlagMisses.count(st, "fr") == 1)
+}
+
+@Test func acceptedAlternativesGradeRightWithoutOptionLanguages() {
+    var ex = Exercise(kind: .choose, itemId: "car", lang: "es", root: "en", prompt: "car", promptLang: "en", answer: "coche", answerLang: "es")
+    ex.accept = ["coche", "carro"]
+    ex.options = ["carro", "casa", "perro"]
+    #expect(choiceGrade(ex, picked: "carro", slow: false) == ChoiceGrade(rating: 3, slip: nil))
+    #expect(choiceGrade(ex, picked: "casa", slow: false) == ChoiceGrade(rating: 1, slip: nil))
+}
