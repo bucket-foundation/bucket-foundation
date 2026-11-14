@@ -62,19 +62,10 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             return@Page
         }
         val ex = s.current
-        if (ex == null) {
-            EmptyState(if (s.total == 0) "pebble" else "streak-flame", if (s.total == 0) "Nothing due" else "Session done")
-            Text(if (s.total == 0) "Come back tomorrow for new words, or play a game." else "${s.correct} of ${s.answered} right. Misses come back in your next session.", color = p.muted)
-            PrimaryButton("Back to Today") { done() }
-            return@Page
-        }
+        if (ex == null) { SessionDone(s, done); return@Page }
         SilentSwitch(graph, compact = true)
         LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Text(Lang.flag(ex.word.lang))
-            Text(Lang.name(ex.word.lang), style = Type.caps, color = p.muted)
-            if (ex.isNew) Pill("New", PL.Lapis)
-        }
+        ExerciseHeader(ex)
         Text(StudyCopy.instruction(ex.kind, Lang.name(ex.word.lang)), color = p.muted)
         ExercisePrompt(graph, ex, corpus, revealed = picked != null || typedVerdict != null)
         if (ex.kind == ExerciseKind.TypeHeard || ex.kind == ExerciseKind.SpellHeard) TypedAnswer(ex, typed, typedVerdict, { typed = it }, { typedVerdict = it })
@@ -87,31 +78,9 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             }
             ChoiceButton(o, state) { if (picked == null) { picked = o; graph.voice.speak(ex.word.form, ex.word.lang, auto = true) } }
         }
-        if (typedVerdict != null) {
-            WordReveal(ex.word.lang, ex.word.form, ex.word.gloss, ex.word.itemId, corpus) { graph.voice.speak(ex.word.form, ex.word.lang) }
-            PrimaryButton("Next") {
-                scope.launch {
-                    s.answerTyped(typed)
-                    val sys = graph.store.current().system
-                    if (sys != null) graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
-                    typed = ""; typedVerdict = null
-                    tick += 1
-                }
-            }
-        }
-        val chosen = picked
-        if (chosen != null) {
-            WordReveal(ex.word.lang, ex.word.form, ex.word.gloss, ex.word.itemId, corpus) { graph.voice.speak(ex.word.form, ex.word.lang) }
-            PrimaryButton("Next") {
-                scope.launch {
-                    s.answer(chosen)
-                    val sys = graph.store.current().system
-                    if (sys != null) graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
-                    picked = null
-                    tick += 1
-                }
-            }
-        }
+        val save: (() -> Unit) -> Unit = { reset -> scope.launch { saveStudy(graph, s); reset(); tick += 1 } }
+        if (typedVerdict != null) AnsweredNext(ex, corpus, graph) { s.answerTyped(typed); save { typed = ""; typedVerdict = null } }
+        picked?.let { chosen -> AnsweredNext(ex, corpus, graph) { s.answer(chosen); save { picked = null } } }
     }
 }
 
@@ -135,5 +104,32 @@ private fun TypedAnswer(ex: foundation.bucket.core.engine.Exercise, typed: Strin
         PrimaryButton("Check", enabled = typed.isNotBlank()) { onCheck(foundation.bucket.core.engine.Typed.judge(typed, listOf(ex.answer), ex.word.lang)) }
     } else {
         Text(StudyCopy.verdict(verdict, ex.answer), style = Type.title, color = if (verdict == foundation.bucket.core.engine.Verdict.Wrong) PL.Vermilion else PL.Malachite)
+    }
+}
+
+private suspend fun saveStudy(graph: Graph, s: StudySession) {
+    val sys = graph.store.current().system ?: return
+    graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
+}
+
+@Composable
+private fun AnsweredNext(ex: foundation.bucket.core.engine.Exercise, corpus: foundation.bucket.core.engine.LangCorpus?, graph: Graph, next: () -> Unit) {
+    WordReveal(ex.word.lang, ex.word.form, ex.word.gloss, ex.word.itemId, corpus) { graph.voice.speak(ex.word.form, ex.word.lang) }
+    PrimaryButton("Next", onClick = next)
+}
+
+@Composable
+private fun SessionDone(s: StudySession, done: () -> Unit) {
+    EmptyState(if (s.total == 0) "pebble" else "streak-flame", if (s.total == 0) "Nothing due" else "Session done")
+    Text(if (s.total == 0) "Come back tomorrow for new words, or play a game." else "${s.correct} of ${s.answered} right. Misses come back in your next session.", color = PL.InkDim)
+    PrimaryButton("Back to Today", onClick = done)
+}
+
+@Composable
+private fun ExerciseHeader(ex: foundation.bucket.core.engine.Exercise) {
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+        Text(Lang.flag(ex.word.lang))
+        Text(Lang.name(ex.word.lang), style = Type.caps, color = PL.InkDim)
+        if (ex.isNew) Pill("New", PL.Lapis)
     }
 }

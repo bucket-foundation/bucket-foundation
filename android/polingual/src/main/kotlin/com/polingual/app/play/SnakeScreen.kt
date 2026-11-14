@@ -93,7 +93,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
     }
     GameFrame(graph, WebGame.Snake, back) {
         when (phase) {
-            SnakePhase.Setup -> SnakeSetup(lang, { lang = it }) { dealSeed = DealSeeds.fresh(); round += 1 }
+            SnakePhase.Setup -> GameSetup("ARENA", "Steer with your finger. Eat words in your language to grow. Words in other languages shrink you. Touch a bigger snake and you are out.", Snakes.LANG_CHOICES.take(10), { it == lang }, { lang = it }, "Play") { dealSeed = DealSeeds.fresh(); round += 1 }
             SnakePhase.Play -> {
                 val a = arena ?: run { EmptyState("brush", "Building the arena."); return@GameFrame }
                 val me = a.snakes.first { it.id == "me" }
@@ -156,16 +156,6 @@ private fun SnakeArena(a: Arena, me: Snake, current: () -> Arena?, onAim: (Doubl
                 } }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-private fun SnakeSetup(lang: String, onLang: (String) -> Unit, onPlay: () -> Unit) {
-    Text("ARENA", style = Type.caps, color = PL.InkDim)
-    Text("Steer with your finger. Eat words in your language to grow. Words in other languages shrink you. Touch a bigger snake and you are out.", style = Type.body, color = PL.Ink)
-    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Snakes.LANG_CHOICES.take(10).forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang, small = true) { onLang(l) } }
-    }
-    PrimaryButton("Play", onClick = onPlay)
-}
 
 @Composable
 private fun SnakeWords(graph: Graph, a: Arena?, me: Snake?, left: Int) {

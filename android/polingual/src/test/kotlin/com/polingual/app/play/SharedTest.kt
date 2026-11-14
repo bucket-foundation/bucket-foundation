@@ -31,3 +31,13 @@ class DealSeedsTest {
         assertEquals(ISpy.rounds(items, seed, "en", listOf("es"), 10), ISpy.rounds(items, seed, "en", listOf("es"), 10))
     }
 }
+
+class ForeheadRulesTest {
+    @Test
+    fun toggleAddsRemovesAndCapsAtSix() {
+        assertEquals(listOf("es", "fr"), ForeheadRules.toggle(listOf("es"), "fr"))
+        assertEquals(listOf("es"), ForeheadRules.toggle(listOf("es", "fr"), "fr"))
+        val six = listOf("a", "b", "c", "d", "e", "f")
+        assertEquals(six, ForeheadRules.toggle(six, "g"))
+    }
+}

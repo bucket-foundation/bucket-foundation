@@ -96,20 +96,11 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
     }
     GameFrame(graph, WebGame.Forehead, back) {
         when (phase) {
-            FhPhase.Setup -> {
-                Text("PARTY MODE · ONE PHONE", style = Type.caps, color = PL.InkDim)
-                Text("Hold the phone to your forehead, screen out. Friends give clues in any language. Tilt down when you guess it, tilt up to pass. Sixty seconds a round.", style = Type.body, color = PL.Ink)
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Snakes.LANG_CHOICES.forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l in langs, small = true) { langs = if (l in langs) langs - l else if (langs.size >= 6) langs else langs + l } }
-                }
-                PrimaryButton("Start round", enabled = langs.isNotEmpty()) { dealSeed = DealSeeds.fresh(); round += 1 }
-            }
-            FhPhase.Count -> Box(Modifier.fillMaxWidth().height(320.dp), contentAlignment = Alignment.Center) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(if (count > 0) "$count" else "Go", style = Type.display.copy(fontSize = 120.sp, lineHeight = 120.sp), color = PL.Vermilion)
-                    Text("Put the phone on your forehead", style = Type.body, color = PL.InkDim)
-                }
-            }
+            FhPhase.Setup -> GameSetup(
+                "PARTY MODE · ONE PHONE", "Hold the phone to your forehead, screen out. Friends give clues in any language. Tilt down when you guess it, tilt up to pass. Sixty seconds a round.",
+                Snakes.LANG_CHOICES, { it in langs }, { l -> langs = ForeheadRules.toggle(langs, l) }, "Start round", langs.isNotEmpty(),
+            ) { dealSeed = DealSeeds.fresh(); round += 1 }
+            FhPhase.Count -> Countdown(count)
             FhPhase.Play -> {
                 val c = cards.getOrNull(index)
                 if (c == null) { EmptyState("ticket", "Out of cards."); return@GameFrame }
@@ -118,9 +109,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
             FhPhase.Done -> {
                 val got = results.count { it.got }
                 Results(graph, "$got guessed", "${results.size - got} passed. Tap a card to hear it.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
-                    if (RevealRules.forehead(cards.size - index, left)) { results.firstOrNull()?.let { r -> com.polingual.app.WordReveal(r.card.lang, r.card.form, r.card.meaning, r.card.itemId, null, ipa = r.card.reading?.ipa ?: r.card.reading?.roman, rootLang = PlayDecks.ROOT) { graph.voice.speak(r.card.form, r.card.lang) } } }
-                    SectionTitle("Every card")
-                    results.forEach { r -> WordLine(r.card.lang, r.card.form, (if (r.got) "✓ " else "") + r.card.meaning) }
+                    ForeheadWords(graph, results.map { it.card to it.got }, RevealRules.forehead(cards.size - index, left))
                 }
                 PlainLink("Change languages") { phase = FhPhase.Setup }
             }
@@ -140,4 +129,25 @@ private fun ForeheadCardView(c: ForeheadCard, left: Int, got: Int, mark: (Boolea
                     PLButton("Pass", Modifier.weight(1f), variant = ButtonVariant.Secondary) { mark(false) }
                     PLButton("Got it", Modifier.weight(1f), variant = ButtonVariant.Success) { mark(true) }
                 }
+}
+
+object ForeheadRules {
+    fun toggle(langs: List<String>, l: String): List<String> = if (l in langs) langs - l else if (langs.size >= 6) langs else langs + l
+}
+
+@Composable
+private fun Countdown(count: Int) {
+    Box(Modifier.fillMaxWidth().height(320.dp), contentAlignment = Alignment.Center) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(if (count > 0) "$count" else "Go", style = Type.display.copy(fontSize = 120.sp, lineHeight = 120.sp), color = PL.Vermilion)
+            Text("Put the phone on your forehead", style = Type.body, color = PL.InkDim)
+        }
+    }
+}
+
+@Composable
+private fun ForeheadWords(graph: Graph, cards: List<Pair<ForeheadCard, Boolean>>, reveal: Boolean) {
+    if (reveal) cards.firstOrNull()?.first?.let { c -> com.polingual.app.WordReveal(c.lang, c.form, c.meaning, c.itemId, null, ipa = c.reading?.ipa ?: c.reading?.roman, rootLang = PlayDecks.ROOT) { graph.voice.speak(c.form, c.lang) } }
+    SectionTitle("Every card")
+    cards.forEach { (c, got) -> WordLine(c.lang, c.form, (if (got) "✓ " else "") + c.meaning) }
 }

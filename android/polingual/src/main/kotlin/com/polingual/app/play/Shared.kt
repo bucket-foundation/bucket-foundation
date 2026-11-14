@@ -1,6 +1,13 @@
 package com.polingual.app.play
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.ui.unit.dp
+import foundation.bucket.core.model.Lang
+import foundation.bucket.core.ui.pl.PLPill
+import foundation.bucket.core.ui.pl.PrimaryButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -42,4 +49,15 @@ fun PlayReveal(graph: Graph, lang: String, form: String, meaning: String, rootLa
 
 object DealSeeds {
     fun fresh(random: () -> Double = Math::random): String = (1 + (random() * 1e12).toLong()).toString()
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun GameSetup(eyebrow: String, blurb: String, langs: List<String>, isOn: (String) -> Boolean, onTap: (String) -> Unit, start: String, enabled: Boolean = true, onStart: () -> Unit) {
+    Text(eyebrow, style = Type.caps, color = PL.InkDim)
+    Text(blurb, style = Type.body, color = PL.Ink)
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        langs.forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = isOn(l), small = true) { onTap(l) } }
+    }
+    PrimaryButton(start, enabled = enabled, onClick = onStart)
 }
