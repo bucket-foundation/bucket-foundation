@@ -11,6 +11,7 @@ import { play, readMuted } from "@/lib/lobby/sound";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { useAdsVisible } from "../AdsContext";
+import { useLearnerRoot } from "../daily/useDaily";
 import { LANG_CHOICES, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { WorldStage } from "../GameWorld";
@@ -66,6 +67,7 @@ function WordSnakeGame() {
   const rand = useRef(seedRand(1));
   const endAt = useRef(0);
   const adsVisible = useAdsVisible();
+  const root = useLearnerRoot();
 
   useEffect(() => setMuted(readMuted(() => window.localStorage)), []);
 
@@ -73,7 +75,7 @@ function WordSnakeGame() {
     setError(null);
     const others = LANG_CHOICES.filter((l) => l !== lang).slice(0, 5);
     try {
-      const res = await fetch(`/api/academy/word-snake?langs=${[lang, ...others].join(",")}&seed=${1 + Math.floor(Math.random() * 1e12)}`);
+      const res = await fetch(`/api/academy/word-snake?langs=${[lang, ...others].join(",")}&seed=${1 + Math.floor(Math.random() * 1e12)}&root=${root ?? "en"}`);
       if (!res.ok) throw new Error(String(res.status));
       const d = (await res.json()) as { deck: SnakeDeck };
       rand.current = seedRand(Date.now());
@@ -262,7 +264,7 @@ function WordSnakeGame() {
       ) : null}
       {phase === "over" || respawned || !adsVisible ? (
         <>
-          <WordReveal rootLang={"en"} title="Words you ate" words={list(result?.eaten ?? []).slice(0, 12).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
+          <WordReveal rootLang={root ?? "en"} title="Words you ate" words={list(result?.eaten ?? []).slice(0, 12).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
           <LearnPanel missed={list(result?.bad ?? []).map((w) => ({ lang: w.lang, word: w.form, meaning: w.meaning }))} />
         </>
       ) : null}

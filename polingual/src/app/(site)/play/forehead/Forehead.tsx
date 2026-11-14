@@ -1,5 +1,6 @@
 "use client";
 
+import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FOREHEAD_SECONDS, type ForeheadCard } from "@academy/forehead";
 import { LANGS } from "@academy/lang-systems";
@@ -34,6 +35,7 @@ type MotionPermission = { requestPermission?: () => Promise<string> };
 
 function ForeheadGame() {
   const [langs, setLangs] = useState<string[]>(LANG_SETS[0].targets);
+  const root = useLearnerRoot();
   const [phase, setPhase] = useState<Phase>("setup");
   const [cards, setCards] = useState<ForeheadCard[]>([]);
   const [index, setIndex] = useState(0);
@@ -131,7 +133,7 @@ function ForeheadGame() {
     setMotion(ok);
     const seed = String(1 + Math.floor(Math.random() * 1e12));
     try {
-      const res = await fetch(`/api/academy/forehead?langs=${langs.join(",")}&seed=${seed}`, { cache: "no-store" });
+      const res = await fetch(`/api/academy/forehead?langs=${langs.join(",")}&seed=${seed}&root=${root ?? "en"}`, { cache: "no-store" });
       if (!res.ok) throw new Error(String(res.status));
       const data = (await res.json()) as { cards: ForeheadCard[] };
       setCards(data.cards);
@@ -218,7 +220,7 @@ function ForeheadGame() {
         <h2 className={app.title} data-testid="fh-final">{got} guessed</h2>
         <p className={app.small}>{results.length - got} passed. Tap a card to hear it.</p>
       </section>
-      <WordReveal rootLang={"en"} title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} />
+      <WordReveal rootLang={root ?? "en"} title="This round's cards" words={results.map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning, reading: r.card.reading, correct: r.got }))} />
       <LearnPanel missed={results.filter((r) => !r.got).map((r) => ({ lang: r.card.lang, word: r.card.form, meaning: r.card.meaning }))} />
       <div className={app.row}>
         <Button onClick={() => void start()} data-testid="fh-again">Play again</Button>

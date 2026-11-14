@@ -33,3 +33,29 @@ test("shift and voice atlas carry the root meaning", () => {
     assert.equal(r.meaning, items.find((i) => i.id === r.itemId)!.forms.de);
   }
 });
+
+test("babel, forehead and snake decks take a non-English root and keep English goldens without one", async () => {
+  const { babelMeanings } = await import("@academy/babel");
+  const { foreheadDeck } = await import("@academy/forehead");
+  const { snakeDeck } = await import("@academy/word-snake");
+  const fr = babelMeanings(items, ["es", "de", "it"], 1, "fr");
+  assert.equal(fr[0].meaning, items.find((i) => i.id === fr[0].id)!.forms.fr);
+  assert.deepEqual(babelMeanings(items, ["es", "de", "it"], 1), babelMeanings(items, ["es", "de", "it"], 1, "en"));
+  const fh = foreheadDeck(items, ["es", "de"], "42", "de");
+  for (const c of fh) assert.notEqual(c.lang, "de");
+  const snake = snakeDeck(items, "es", ["fr", "it"], "7", "it");
+  assert.ok(snake.decoys.every((d) => d.lang !== "it"));
+  assert.deepEqual(snakeDeck(items, "es", ["fr", "it"], "7"), snakeDeck(items, "es", ["fr", "it"], "7", "en"));
+});
+
+test("polyword reveals its meaning in the learner's root when the bank has it", async () => {
+  const { meaningIn } = await import("./polyword/puzzle");
+  const bank = { langs: { es: ["eight"] }, words: { eight: { gloss: "eight", forms: { es: { word: "ocho" }, fr: { word: "huit" } } } } };
+  assert.deepEqual(meaningIn(bank, { slug: "eight", gloss: "eight" }, "fr"), { lang: "fr", text: "huit" });
+  assert.deepEqual(meaningIn(bank, { slug: "eight", gloss: "eight" }, "ko"), { lang: "en", text: "eight" });
+});
+
+test("deck cache urls keep only date and root", async () => {
+  const { canonicalDeckUrl } = await import("@academy/deck-root");
+  assert.equal(canonicalDeckUrl(new URL("https://x.test/api/academy/shift?utm=1&root=fr&date=2026-11-13&z=2")).search, "?date=2026-11-13&root=fr");
+});
