@@ -15,6 +15,7 @@ struct AccountView: View {
     var subscription: (() -> Void)?
     var trialDaysLeft: Int?
     var trialReminderOff = false
+    var betaFree = false
     #if DEBUG
     @State private var demoShown = false
     #endif
@@ -52,6 +53,11 @@ struct AccountView: View {
                 }
                 if let subscription {
                     Section {
+                        if betaFree {
+                            Label(String(localized: "You're a beta tester. Polingual is free for you, and stays free for life after launch."), systemImage: "gift.fill")
+                                .font(.subheadline.weight(.bold))
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                         if let trialDaysLeft {
                             LabeledContent("Free trial", value: trialDaysLeft == 1 ? String(localized: "1 day left") : String(localized: "\(trialDaysLeft) days left"))
                             if trialReminderOff {
