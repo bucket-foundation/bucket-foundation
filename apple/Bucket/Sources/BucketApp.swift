@@ -33,7 +33,11 @@ struct BucketApp: App {
         #else
         let shift = 0.0
         #endif
-        _science = State(initialValue: ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift }))
+        let science = ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift })
+        _science = State(initialValue: science)
+        NetworkWatch.shared.onReconnect { await langs.resync() }
+        NetworkWatch.shared.onReconnect { await science.resync() }
+        NetworkWatch.shared.start()
         _gate = State(initialValue: Gate(account: account))
         let groups = GroupStore(api: BucketAPI(), token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
@@ -61,6 +65,7 @@ struct BucketApp: App {
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
                         if p == .active {
+                            NetworkWatch.shared.resync()
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG

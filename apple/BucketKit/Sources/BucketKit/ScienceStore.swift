@@ -166,6 +166,15 @@ public final class ScienceStore {
         saveState = .idle
     }
 
+    public func resync() async {
+        guard await token() != nil, !localBranches().isEmpty else { return }
+        let before = pulled
+        pulled = false
+        await syncAfterSignIn()
+        if pulled, saveState == .localOnly { saveState = .synced }
+        if !pulled { pulled = before }
+    }
+
     public func syncAfterSignIn() async {
         guard let server = await pull(), let t = await token() else { return }
         for b in localBranches() {

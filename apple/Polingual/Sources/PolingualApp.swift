@@ -30,6 +30,8 @@ struct PolingualApp: App {
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
         LangVoice.shared.store = store
+        NetworkWatch.shared.onReconnect { await store.resync() }
+        NetworkWatch.shared.start()
         _account = State(initialValue: account)
         Beta.shared.account = account
         _store = State(initialValue: store)
@@ -60,6 +62,7 @@ struct PolingualApp: App {
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
                         if p == .active {
+                            NetworkWatch.shared.resync()
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG
