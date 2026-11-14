@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SnakeDeck } from "@academy/word-snake";
 import { BOTS } from "@academy/lobby-bots";
@@ -25,13 +26,6 @@ const SKILL: Record<string, number> = { easy: 0.55, medium: 0.8, hard: 0.95 };
 
 type Phase = "setup" | "play" | "dead" | "over";
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 function seedRand(seed: number): () => number {
   let x = seed >>> 0 || 1;

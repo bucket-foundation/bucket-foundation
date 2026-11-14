@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useCallback, useEffect, useState } from "react";
 import type { LangCorpus } from "@academy/lang-systems";
 import { loadLangCorpus } from "@academy/lang-client";
@@ -12,13 +13,6 @@ export const GUEST_SYSTEM = { root: "en", targets: ["es", "fr", "de"] };
 
 export type DailySystem = { root: string; targets: string[] };
 
-export function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 export function syncDeps(): SyncDeps {
   return { fetch: window.fetch.bind(window), token: () => appAuth().mobile.accessToken().catch(() => null) };
@@ -110,3 +104,4 @@ export function useLearnerRoot(): string | null {
   }, []);
   return root;
 }
+

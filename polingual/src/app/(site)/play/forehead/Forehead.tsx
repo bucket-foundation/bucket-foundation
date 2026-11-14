@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FOREHEAD_SECONDS, type ForeheadCard } from "@academy/forehead";
@@ -23,13 +24,6 @@ import { Button, ButtonLink, Pill } from "@/ui";
 type Phase = "setup" | "count" | "play" | "done";
 type Result = { card: ForeheadCard; got: boolean };
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 type MotionPermission = { requestPermission?: () => Promise<string> };
 

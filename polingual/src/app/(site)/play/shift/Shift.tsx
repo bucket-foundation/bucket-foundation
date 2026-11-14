@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useEffect, useMemo, useState } from "react";
 import type { ShiftBoard } from "@academy/shift";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
@@ -17,13 +18,6 @@ import { LearnPanel, WordReveal } from "../Reveal";
 import styles from "../play.module.css";
 import { Button, ButtonLink } from "@/ui";
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 export default function Shift() {
   const [board, setBoard] = useState<ShiftBoard | null>(null);

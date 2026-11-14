@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fallMs, type FlagTilesDeck, type Ghost } from "@academy/flag-tiles";
 import { LANGS } from "@academy/lang-systems";
@@ -22,13 +23,6 @@ import { Button, ButtonLink } from "@/ui";
 
 const KEYS: Record<string, number> = { d: 0, f: 1, j: 2, k: 3, "1": 0, "2": 1, "3": 2, "4": 3 };
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 function FlagTilesGame() {
   const [deck, setDeck] = useState<FlagTilesDeck | null>(null);

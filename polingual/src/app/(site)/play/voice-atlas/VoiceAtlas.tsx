@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useEffect, useMemo, useState } from "react";
 import land from "world-atlas/land-110m.json";
 import { atlasPoints, ATLAS_HOMES, ATLAS_MAX, ATLAS_ROUNDS, nearestHome, type AtlasGhost, type AtlasRound, type LatLon } from "@academy/voice-atlas";
@@ -23,13 +24,6 @@ const PASSPORT_KEY = "polingual-web/passport/v1";
 
 type Guess = { round: AtlasRound; pin: LatLon; home: LatLon; km: number; points: number };
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 function stamp(lang: string): string[] {
   try {

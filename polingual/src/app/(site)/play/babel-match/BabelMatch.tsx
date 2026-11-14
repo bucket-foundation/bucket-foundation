@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LANGS } from "@academy/lang-systems";
 import { interstitialDue } from "@/lib/lobby/ads";
@@ -21,13 +22,6 @@ import { Button, ButtonLink, Pill } from "@/ui";
 const LEVEL_KEY = "polingual-web/babel-level/v1";
 const SETS = LANG_SETS.filter((s) => s.targets.length >= 3).map((s) => ({ ...s, targets: s.targets.slice(0, 3) }));
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 type Phase = "loading" | "play" | "won" | "lost" | "error";
 

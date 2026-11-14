@@ -1,18 +1,12 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { browserGuestStore, cleanNickname, LobbyApi, LobbyError, lobbyError, resolveIdentity, type Identity } from "@/lib/lobby/client";
 
 export const NICK_KEY = "polingual-web/lobby-nick/v1";
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 export function savedNickname(): string {
   try {

@@ -1,5 +1,6 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import type { LangCorpus } from "@academy/lang-systems";
 import { langName, LANGS } from "@academy/lang-systems";
@@ -12,13 +13,6 @@ import { flagTileStyles } from "@/ui/FlagTile";
 import { useSystems } from "../useSystems";
 import styles from "./translate.module.css";
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 const STICKERS = [
   { name: "ticket" as const, x: "2%", y: "16%", size: 170, rotate: -8 },
