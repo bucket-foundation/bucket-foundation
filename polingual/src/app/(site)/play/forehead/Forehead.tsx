@@ -5,19 +5,16 @@ import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FOREHEAD_SECONDS, type ForeheadCard } from "@academy/forehead";
 import { LANGS } from "@academy/lang-systems";
-import { TileFace } from "@/app/tile";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 
 import { play, readMuted } from "@/lib/lobby/sound";
 import { classifyTilt, settled } from "@/lib/lobby/tilt";
-import { bcp47 } from "@/lib/speak";
 import app from "../../app/app.module.css";
 import Ad from "../Ad";
 import { LANG_CHOICES, LANG_SETS, langName } from "../langs";
 import { FlagSquare } from "../LearnWord";
 import GameWorld, { pieceClass, WorldStickers } from "../GameWorld";
 import { LearnPanel, WordReveal } from "../Reveal";
-import { PlayTile } from "../../word/Speak";
 import styles from "../play.module.css";
 import { Button, ButtonLink, Pill } from "@/ui";
 

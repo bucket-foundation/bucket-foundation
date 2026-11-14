@@ -1,12 +1,13 @@
 "use client";
 
 import Interstitial from "./Interstitial";
+import RoomMissed from "./RoomMissed";
 import { useNow } from "@/lib/hooks/clock";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { tappedChoice } from "@academy/lobby-tiles";
-import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, ranked, livesLeft, streakOf, LobbyError, tallyLate, lobbyError, missedWords, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
+import { answeredRound, botLabel, flagEmoji, gameProgress, LEARN_HREF, ranked, livesLeft, streakOf, LobbyError, lobbyError, myScore, phaseAt, promptFor, serverOffset, shareUrl, standings, type WebLobbyState } from "@/lib/lobby/client";
 import { LANGS } from "@academy/lang-systems";
 import { TileFace } from "@/app/tile";
 import { LangCard } from "./LearnWord";
@@ -20,8 +21,6 @@ import GameWorld, { pieceClass, WorldStage } from "./GameWorld";
 import { CoinArt, PromptCard } from "./Pieces";
 import RoomQr, { useJoinUrl } from "./RoomQr";
 import world from "./world.module.css";
-import { useLearnIndex } from "./useLearn";
-import { learnEntry, learnHref } from "@/lib/lobby/learn-index";
 import { WORLDS, type WorldId } from "@/ui/art/play";
 import { useAdsVisible } from "./AdsContext";
 import { useAccount } from "./Account";
@@ -67,7 +66,6 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
   const [kick, setKick] = useState(0);
   const [breaks, setBreaks] = useState<Breaks>({ games: 0, lastInterstitial: null });
   const [interstitial, setInterstitial] = useState(false);
-  const learnIndex = useLearnIndex();
   const worldId: WorldId = !lobby ? "duel" : lobby.game === "spy" ? "ispy" : lobby.game === "daily" || lobby.game === "live" ? "same-word" : lobby.game in WORLDS ? (lobby.game as WorldId) : "duel";
   useEffect(() => {
     if (lobby) onGame(worldId, lobby.code);
@@ -647,7 +645,6 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
     );
   }
 
-  const missed = missedWords(lobby).filter((w) => !w.includes(","));
   const startsIn = lobby.nextStartAt ? Math.max(0, Math.ceil((Date.parse(lobby.nextStartAt) - now - offset) / 1000)) : null;
   const guest = state.identity.kind === "guest";
   return (
@@ -680,28 +677,7 @@ function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId
           <Button onClick={account.openSignIn} data-testid="save-sign-in">Sign in to save</Button>
         </section>
       ) : null}
-      <section className={styles.upsell} data-testid="learn-upsell">
-        <b>Learn the words you missed</b>
-        {lobby.status !== "done" && !tallyLate(lobby, now + offset) ? (
-          <p className={app.small} aria-busy="true" data-testid="missed-loading">Counting your answers</p>
-        ) : lobby.status !== "done" ? (
-          <p className={app.small} data-testid="missed-late">Your answers are saved. Lessons cover every word in this game.</p>
-        ) : missed.length ? (
-          <ul className={styles.missed}>
-            {missed.map((w) => {
-              const e = lobby.prompts.flatMap((p) => p.reveal ?? []).find((r) => r.correct && r.word === w);
-              return (
-                <li key={w}>
-                  <a href={learnHref(e ? learnEntry(learnIndex, e.lang, e.word, e.meaning) : null)} data-testid="learn-missed">{w}</a>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p className={app.small}>A clean sweep. Lessons take you further.</p>
-        )}
-        <p className={app.small}>Lessons and courses come with a Polingual subscription.</p>
-      </section>
+      <RoomMissed lobby={lobby} at={now + offset} />
       {breaks.games >= 2 ? <Ad placement="results" /> : null}
       <div className={app.row}>
         <ButtonLink variant="ghost" size="md" href="/play">Back to lobbies</ButtonLink>

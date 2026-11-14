@@ -1,7 +1,7 @@
 "use client";
 
 import { secondsLeft, useDeadline } from "@/lib/hooks/clock";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { fnv } from "@/lib/daily/rng";
 import { Speed, SPEED_MISS_PENALTY, SPEED_SECONDS } from "@/lib/daily/speed";
 import { balanced, GameDeck, wordId, type GameWord } from "@/lib/daily/words";
