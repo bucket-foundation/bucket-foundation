@@ -56,9 +56,14 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
         if let hit = picked[lang] { return hit }
         if voices.isEmpty { voices = AVSpeechSynthesisVoice.speechVoices() }
         guard !voices.isEmpty else { return nil }
-        let v = LangAudio.pickVoice(voices.map(\.language), lang).flatMap { tag in voices.first { $0.language == tag } }
+        let choices = voices.map { LangAudio.Voice(id: $0.identifier, language: $0.language, quality: $0.quality.rawValue, novelty: Self.odd($0)) }
+        let v = LangAudio.pickVoice(choices, lang).flatMap { c in voices.first { $0.identifier == c.id } }
         picked[lang] = v
         return v
+    }
+
+    private static func odd(_ v: AVSpeechSynthesisVoice) -> Bool {
+        v.voiceTraits.contains(.isNoveltyVoice) || v.voiceTraits.contains(.isPersonalVoice)
     }
 
     func canSpeak(_ text: String, _ lang: String) -> Bool {
