@@ -158,3 +158,16 @@ export function level(n: number): Level {
 export function points(cleared: number, cascades: number): number {
   return cleared * 10 * Math.max(1, cascades);
 }
+
+export type Tap = { pick: number | null } | { swap: [number, number] };
+
+export function tapStep(picked: number | null, i: number): Tap {
+  if (picked === null) return { pick: i };
+  if (picked === i) return { pick: null };
+  if (!adjacent(picked, i)) return { pick: i };
+  return { swap: [picked, i] };
+}
+
+export function seenMeanings(cleared: readonly Cell[]): Cell[] {
+  return Array.from(new Map(cleared.map((c) => [`${c.meaning}`, c])).values());
+}
