@@ -92,15 +92,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
             }
             RunPhase.Running -> {
                 Row { Text("${run.score}", style = Type.display, color = PL.Vermilion, modifier = Modifier.weight(1f)); Text("Best $best", style = Type.small, color = PL.InkDim) }
-                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).drawBehind {
-                    val stripes = listOf(PL.Ochre, PL.Malachite, PL.Vermilion, PL.Ink)
-                    val lane = size.width / 4f
-                    for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }
-                    drawRect(PL.Ochre.copy(alpha = 0.18f), size = androidx.compose.ui.geometry.Size(size.width, 10f))
-                }) {
-                    if (tile != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordCard(null, tile.form, tilt = 0f) }
-                    Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(6.dp).background(PL.Vermilion))
-                } }
+                FallStage(tile?.form, progress)
                 Lanes()
             }
             RunPhase.Missed -> {
@@ -117,4 +109,17 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
             }
         }
     }
+}
+
+@Composable
+private fun FallStage(form: String?, progress: Float) {
+                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).drawBehind {
+                    val stripes = listOf(PL.Ochre, PL.Malachite, PL.Vermilion, PL.Ink)
+                    val lane = size.width / 4f
+                    for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }
+                    drawRect(PL.Ochre.copy(alpha = 0.18f), size = androidx.compose.ui.geometry.Size(size.width, 10f))
+                }) {
+                    if (form != null) Box(Modifier.align(Alignment.TopCenter).offset(y = (maxHeight - 120.dp) * progress).padding(horizontal = 24.dp)) { WordCard(null, form, tilt = 0f) }
+                    Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(6.dp).background(PL.Vermilion))
+                } }
 }

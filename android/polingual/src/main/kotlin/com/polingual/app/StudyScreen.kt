@@ -74,25 +74,9 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             Text(Lang.name(ex.word.lang), style = Type.caps, color = p.muted)
             if (ex.isNew) Pill("New", PL.Lapis)
         }
-        val hearing = ex.kind.needsSound
         Text(StudyCopy.instruction(ex.kind, Lang.name(ex.word.lang)), color = p.muted)
-        if (hearing) {
-            val seen = picked != null || typedVerdict != null || StudyCopy.showsScriptWithSound(ex.kind, ex.word.lang)
-            val reading = corpus?.byId?.get(ex.word.itemId)?.readings?.get(ex.word.lang)?.let { it.roman ?: it.kana ?: it.ipa }
-            WordCard(ex.word.lang, if (seen) ex.word.form else "· · ·", ipa = if (seen) reading else null, onSpeak = { graph.voice.speak(ex.word.form, ex.word.lang) })
-            LaunchedEffect(ex) { graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
-        } else {
-            WordCard(ex.word.lang, ex.prompt, onSpeak = if (ex.kind == ExerciseKind.Recognize) ({ graph.voice.speak(ex.word.form, ex.word.lang) }) else null)
-            LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
-        }
-        if (ex.kind == ExerciseKind.TypeHeard || ex.kind == ExerciseKind.SpellHeard) {
-            if (typedVerdict == null) {
-                androidx.compose.material3.OutlinedTextField(typed, { typed = it }, singleLine = true, label = { Text(if (ex.kind == ExerciseKind.SpellHeard) "Spell it in its own script" else "Type what you hear") }, modifier = Modifier.fillMaxWidth())
-                PrimaryButton("Check", enabled = typed.isNotBlank()) { typedVerdict = foundation.bucket.core.engine.Typed.judge(typed, listOf(ex.answer), ex.word.lang) }
-            } else {
-                Text(StudyCopy.verdict(typedVerdict!!, ex.answer), style = Type.title, color = if (typedVerdict == foundation.bucket.core.engine.Verdict.Wrong) PL.Vermilion else PL.Malachite)
-            }
-        }
+        ExercisePrompt(graph, ex, corpus, revealed = picked != null || typedVerdict != null)
+        if (ex.kind == ExerciseKind.TypeHeard || ex.kind == ExerciseKind.SpellHeard) TypedAnswer(ex, typed, typedVerdict, { typed = it }, { typedVerdict = it })
         ex.options.forEach { o ->
             val state = when {
                 picked == null -> ChoiceState.Idle
@@ -127,5 +111,28 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun ExercisePrompt(graph: Graph, ex: foundation.bucket.core.engine.Exercise, corpus: foundation.bucket.core.engine.LangCorpus?, revealed: Boolean) {
+    if (ex.kind.needsSound) {
+        val seen = revealed || StudyCopy.showsScriptWithSound(ex.kind, ex.word.lang)
+        val reading = corpus?.byId?.get(ex.word.itemId)?.readings?.get(ex.word.lang)?.let { it.roman ?: it.kana ?: it.ipa }
+        WordCard(ex.word.lang, if (seen) ex.word.form else "· · ·", ipa = if (seen) reading else null, onSpeak = { graph.voice.speak(ex.word.form, ex.word.lang) })
+        LaunchedEffect(ex) { graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
+    } else {
+        WordCard(ex.word.lang, ex.prompt, onSpeak = if (ex.kind == ExerciseKind.Recognize) ({ graph.voice.speak(ex.word.form, ex.word.lang) }) else null)
+        LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang, auto = true) }
+    }
+}
+
+@Composable
+private fun TypedAnswer(ex: foundation.bucket.core.engine.Exercise, typed: String, verdict: foundation.bucket.core.engine.Verdict?, onType: (String) -> Unit, onCheck: (foundation.bucket.core.engine.Verdict) -> Unit) {
+    if (verdict == null) {
+        androidx.compose.material3.OutlinedTextField(typed, onType, singleLine = true, label = { Text(if (ex.kind == ExerciseKind.SpellHeard) "Spell it in its own script" else "Type what you hear") }, modifier = Modifier.fillMaxWidth())
+        PrimaryButton("Check", enabled = typed.isNotBlank()) { onCheck(foundation.bucket.core.engine.Typed.judge(typed, listOf(ex.answer), ex.word.lang)) }
+    } else {
+        Text(StudyCopy.verdict(verdict, ex.answer), style = Type.title, color = if (verdict == foundation.bucket.core.engine.Verdict.Wrong) PL.Vermilion else PL.Malachite)
     }
 }
