@@ -2,96 +2,32 @@
 
 import { useLearnerRoot } from "../daily/useDaily";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { TileFace } from "@/app/tile";
 import { SITE } from "@/lib/facts";
 import { ADS } from "@/lib/lobby/ads";
 import { TARGETS, type Bank } from "@/lib/polyword/bank";
 import { accountOf, archiveOffer, ctasFor, pauseFrameAds, resultsAd, type Phase } from "@/lib/polyword/policy";
 import { emptyProgress, firstGame, gameOf, isUnlocked, parseProgress, PROGRESS_KEY, statsFor, withGame, withUnlock, type Progress } from "@/lib/polyword/progress";
-import { checkGuess, dateOfDay, dayNumber, finished, keyMarks, MAX_GUESSES, puzzleFor, revealedHints, solved, type Hint, meaningIn } from "@/lib/polyword/puzzle";
+import { checkGuess, finished, keyMarks, MAX_GUESSES, puzzleFor, revealedHints, solved, meaningIn } from "@/lib/polyword/puzzle";
 import { installH5, requestReward } from "@/lib/polyword/reward";
 import { shareText } from "@/lib/polyword/share";
-import { bcp47 } from "@/lib/speak";
-import { LANGS } from "@academy/lang-systems";
 import app from "../../app/app.module.css";
 import Ad, { loadAdSense } from "../Ad";
 import { useAccount } from "../Account";
 import { usePauseAds } from "../AdsContext";
 import { FlagSquare, RevealCard } from "../LearnWord";
 import { langName } from "../langs";
-import { PlayTile } from "../../word/Speak";
 import { Board, Keyboard } from "./Board";
 import { WorldStage } from "../GameWorld";
 import { LearnPanel } from "../Reveal";
 import styles from "./polyword.module.css";
+import { Countdown, HintTile, shortDate, useToday } from "./parts";
+import { local } from "@/lib/storage";
 import { Button, ButtonLink, Pill } from "@/ui";
 
 const SHARE_URL = `${SITE}/play/polyword`;
 const PLACEHOLDER_AD_MS = 5000;
 
 type Unlock = { day: number; state: "offer" | "watching" | "nofill" | "dismissed" } | null;
-
-function storage(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
-
-function useToday(): number | null {
-  const [today, setToday] = useState<number | null>(null);
-  useEffect(() => {
-    const tick = () => setToday(dayNumber(new Date()));
-    tick();
-    const t = window.setInterval(tick, 30_000);
-    document.addEventListener("visibilitychange", tick);
-    return () => {
-      window.clearInterval(t);
-      document.removeEventListener("visibilitychange", tick);
-    };
-  }, []);
-  return today;
-}
-
-function shortDate(day: number): string {
-  return dateOfDay(day).toLocaleDateString("en", { month: "short", day: "numeric", timeZone: "UTC" });
-}
-
-function Countdown() {
-  const [left, setLeft] = useState("");
-  useEffect(() => {
-    const tick = () => {
-      const now = new Date();
-      const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-      const s = Math.max(0, Math.floor((next.getTime() - now.getTime()) / 1000));
-      setLeft(`${Math.floor(s / 3600)}h ${String(Math.floor((s % 3600) / 60)).padStart(2, "0")}m`);
-    };
-    tick();
-    const t = window.setInterval(tick, 20_000);
-    return () => window.clearInterval(t);
-  }, []);
-  return <span data-testid="pw-countdown">{left}</span>;
-}
-
-function HintTile({ hint, index }: { hint: Hint; index: number }) {
-  const item = { id: `pw:${hint.lang}:${hint.word}`, text: hint.word, lang: bcp47(hint.lang) };
-  return (
-    <TileFace
-      as="li"
-      lang={hint.lang}
-      code={hint.lang}
-      label={langName(hint.lang)}
-      word={hint.word}
-      reading={hint.roman}
-      rtl={LANGS[hint.lang]?.rtl}
-      index={index}
-      className={styles.hint}
-      attrs={{ "data-testid": "pw-hint" }}
-      play={<PlayTile item={item} label={`Hear ${hint.word} in ${langName(hint.lang)}`} />}
-    />
-  );
-}
 
 export default function Polyword({ bank }: { bank: Bank }) {
   const today = useToday();
@@ -111,7 +47,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
   const sheet = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const p = parseProgress(storage()?.getItem(PROGRESS_KEY) ?? null);
+    const p = parseProgress(local()?.getItem(PROGRESS_KEY) ?? null);
     setProgress(p);
     if (p.lang && bank.langs[p.lang]?.length) setLang(p.lang);
     setLoaded(true);
@@ -157,7 +93,7 @@ export default function Polyword({ bank }: { bank: Bank }) {
     if (!dirty.current) return;
     dirty.current = false;
     try {
-      storage()?.setItem(PROGRESS_KEY, JSON.stringify(progress));
+      local()?.setItem(PROGRESS_KEY, JSON.stringify(progress));
     } catch {
       flash("This browser is not saving your progress");
     }
