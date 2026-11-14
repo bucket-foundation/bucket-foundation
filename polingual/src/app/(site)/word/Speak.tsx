@@ -2,8 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { idle, installedVoices, playAll, playable, snapshot, stop, subscribe, toggle, type SpeakItem } from "@/lib/speak";
-import { flagTileStyles as styles } from "@/ui/FlagTile";
-import { Pill } from "@/ui";
+import { Pill, TileButton } from "@/ui";
 
 function usePlayer() {
   return useSyncExternalStore(subscribe, snapshot, idle);
@@ -48,8 +47,7 @@ export function PlayTile({ item, label }: { item: SpeakItem; label: string }) {
   if (!show) return null;
   const on = player.id === item.id;
   return (
-    <button type="button" className={styles.play} data-playing={on || undefined} aria-pressed={on} aria-label={label} onClick={() => toggle(item, on)}>
-    </button>
+    <TileButton label={label} playing={on} onClick={() => toggle(item, on)} />
   );
 }
 
