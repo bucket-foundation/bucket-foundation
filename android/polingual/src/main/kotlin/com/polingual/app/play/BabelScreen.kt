@@ -96,24 +96,12 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
         }
         if (phase == BabelPhase.Loading) { EmptyState("blocks", "Dealing level $lvl."); return@GameFrame }
         if (phase == BabelPhase.Play) {
-            Text("LEVEL $lvl", style = Type.caps, color = PL.InkDim)
-            Text("Swap two neighbours. Three words that mean the same thing in a line clear, in any language.", style = Type.small, color = PL.Ink)
-            Row {
-                Text("$moves moves", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f))
-                Text("${minOf(cleared.size, goal.goal)} / ${goal.goal}", style = Type.title, color = PL.Vermilion, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
-                Text("$score pts", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
-            }
+            BabelHud(lvl, moves, cleared.size, goal.goal, score)
             BabelBoard(board, picked, byId, ::tap)
             return@GameFrame
         }
         Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
-            SectionTitle("Words you matched")
-            if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] }.forEach { m ->
-                Column(Modifier.fillMaxWidth().plSurface(PL.Paper2, 12.dp).padding(12.dp)) {
-                    Text(m.meaning, style = Type.title, color = PL.Ink)
-                    m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
-                }
-            }
+            BabelMatched(if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] } else emptyList())
         }
     }
 }
@@ -139,4 +127,26 @@ private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meanin
                     }
                 }
             } }
+}
+
+@Composable
+private fun BabelHud(lvl: Int, moves: Int, cleared: Int, goal: Int, score: Int) {
+    Text("LEVEL $lvl", style = Type.caps, color = PL.InkDim)
+    Text("Swap two neighbours. Three words that mean the same thing in a line clear, in any language.", style = Type.small, color = PL.Ink)
+    Row {
+        Text("$moves moves", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f))
+        Text("${minOf(cleared, goal)} / $goal", style = Type.title, color = PL.Vermilion, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
+        Text("$score pts", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f), textAlign = TextAlign.End)
+    }
+}
+
+@Composable
+private fun BabelMatched(meanings: List<Meaning>) {
+    SectionTitle("Words you matched")
+    meanings.forEach { m ->
+        Column(Modifier.fillMaxWidth().plSurface(PL.Paper2, 12.dp).padding(12.dp)) {
+            Text(m.meaning, style = Type.title, color = PL.Ink)
+            m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
+        }
+    }
 }

@@ -78,22 +78,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
         while (phase == FhPhase.Play) { left = maxOf(0, ((end - System.currentTimeMillis() + 999) / 1000).toInt()); if (left == 0) phase = FhPhase.Done; delay(200) }
     }
     val context = graph.context
-    DisposableEffect(phase) {
-        if (phase != FhPhase.Play) return@DisposableEffect onDispose { }
-        val sm = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        val sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        var armed = false
-        val listener = object : SensorEventListener {
-            override fun onSensorChanged(e: SensorEvent) {
-                val z = e.values[2].toDouble()
-                if (!armed) { if (TiltRules.settled(z)) armed = true; return }
-                TiltRules.classify(z)?.let { armed = false; mark(it == Tilt.Score) }
-            }
-            override fun onAccuracyChanged(s: Sensor?, a: Int) {}
-        }
-        if (sensor != null) sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME)
-        onDispose { sm.unregisterListener(listener) }
-    }
+    TiltSensor(phase == FhPhase.Play) { mark(it) }
     GameFrame(graph, WebGame.Forehead, back) {
         when (phase) {
             FhPhase.Setup -> GameSetup(
@@ -150,4 +135,25 @@ private fun ForeheadWords(graph: Graph, cards: List<Pair<ForeheadCard, Boolean>>
     if (reveal) cards.firstOrNull()?.first?.let { c -> com.polingual.app.WordReveal(c.lang, c.form, c.meaning, c.itemId, null, ipa = c.reading?.ipa ?: c.reading?.roman, rootLang = PlayDecks.ROOT) { graph.voice.speak(c.form, c.lang) } }
     SectionTitle("Every card")
     cards.forEach { (c, got) -> WordLine(c.lang, c.form, (if (got) "✓ " else "") + c.meaning) }
+}
+
+@Composable
+private fun TiltSensor(active: Boolean, onTilt: (Boolean) -> Unit) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    DisposableEffect(active) {
+        if (!active) return@DisposableEffect onDispose { }
+        val sm = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        var armed = false
+        val listener = object : SensorEventListener {
+            override fun onSensorChanged(e: SensorEvent) {
+                val z = e.values[2].toDouble()
+                if (!armed) { if (TiltRules.settled(z)) armed = true; return }
+                TiltRules.classify(z)?.let { armed = false; onTilt(it == Tilt.Score) }
+            }
+            override fun onAccuracyChanged(s: Sensor?, a: Int) {}
+        }
+        if (sensor != null) sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME)
+        onDispose { sm.unregisterListener(listener) }
+    }
 }
