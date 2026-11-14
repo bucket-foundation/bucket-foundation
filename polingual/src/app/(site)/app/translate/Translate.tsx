@@ -50,7 +50,7 @@ function Picker({ label, value, all, mine, onPick, testId }: { label: string; va
                 <p className={styles.menuHead}>{title}</p>
                 <div className={styles.menuList}>
                   {list.map((l) => (
-                    <button key={l} type="button" className={styles.menuItem} aria-pressed={l === value} onClick={() => choose(l)} data-testid={`${testId}-${l}`}>{langName(l)}</button>
+                    <Button bare key={l} className={styles.menuItem} aria-pressed={l === value} onClick={() => choose(l)} data-testid={`${testId}-${l}`}>{langName(l)}</Button>
                   ))}
                 </div>
               </div>
@@ -58,6 +58,34 @@ function Picker({ label, value, all, mine, onPick, testId }: { label: string; va
           )}
         </div>
       ) : null}
+    </div>
+  );
+}
+
+function Hints({ hints, onPick }: { hints: { itemId: string; form: string }[]; onPick: (form: string) => void }) {
+  if (!hints.length) return null;
+  return (
+    <div className={styles.hints}>
+      {hints.map((h) => (
+        <Button bare key={h.itemId} className={styles.hint} onClick={() => onPick(h.form)}>{h.form}</Button>
+      ))}
+    </div>
+  );
+}
+
+function Results({ answer, corpus }: { answer: TranslateAnswer; corpus: LangCorpus | null | undefined }) {
+  const readings = corpus?.byId.get(answer.itemId)?.readings;
+  return (
+    <div data-testid="translate-results">
+      <p className={styles.note}>{langName(answer.source)}: <b>{answer.headword}</b></p>
+      <ul className={styles.tiles}>
+        {Object.entries(answer.rows).map(([l, w], i) => (
+          <li key={l} className={styles.tileCell}>
+            <FlagTile as="div" lang={l} code={l.toUpperCase()} label={langName(l)} word={w} index={i} reading={readings?.[l]?.ipa ?? readings?.[l]?.roman} play={<TileButton label={`Hear ${w} in ${langName(l)}`} onClick={() => say(w, bcp47(l))} />} />
+            {WORD_SLUGS.has(answer.itemId) ? <ButtonLink variant="quiet" size="sm" href={`/word/${answer.itemId}`} data-testid="translate-word-link">Open the word page</ButtonLink> : null}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -109,28 +137,10 @@ export default function Translate() {
           </Field>
           <Button type="submit" disabled={!text.trim() || !corpus} data-testid="translate-go">{corpus === undefined ? "Loading words" : "Translate"}</Button>
         </form>
-        {hints.length ? (
-          <div className={styles.hints}>
-            {hints.map((h) => (
-              <button key={h.itemId} type="button" className={styles.hint} onClick={() => { setText(h.form); run(undefined, h.form); }}>{h.form}</button>
-            ))}
-          </div>
-        ) : null}
+        <Hints hints={hints} onPick={(form) => { setText(form); run(undefined, form); }} />
         {corpus === null ? <p className={styles.note} role="alert">The word list did not load. Reload the page to try again.</p> : null}
         {answer === "none" ? <p className={styles.note} role="status" data-testid="translate-none">No match in the course words yet. Try a single common word.</p> : null}
-        {answer && answer !== "none" ? (
-          <div data-testid="translate-results">
-            <p className={styles.note}>{langName(answer.source)}: <b>{answer.headword}</b></p>
-            <ul className={styles.tiles}>
-              {Object.entries(answer.rows).map(([l, w], i) => (
-                <li key={l} className={styles.tileCell}>
-                  <FlagTile as="div" lang={l} code={l.toUpperCase()} label={langName(l)} word={w} index={i} reading={corpus?.byId.get(answer.itemId)?.readings[l]?.ipa ?? corpus?.byId.get(answer.itemId)?.readings[l]?.roman} play={<TileButton label={`Hear ${w} in ${langName(l)}`} onClick={() => say(w, bcp47(l))} />} />
-                  {WORD_SLUGS.has(answer.itemId) ? <ButtonLink variant="quiet" size="sm" href={`/word/${answer.itemId}`} data-testid="translate-word-link">Open the word page</ButtonLink> : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        {answer && answer !== "none" ? <Results answer={answer} corpus={corpus} /> : null}
       </Sheet>
     </Stage>
   );
