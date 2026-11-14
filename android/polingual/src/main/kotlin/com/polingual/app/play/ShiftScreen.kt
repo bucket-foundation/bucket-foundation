@@ -56,8 +56,7 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
         if (left.isEmpty()) {
             Results(graph, "Board cleared", "${found.size} words found. A new board comes tomorrow.", again = null) {
                 b.targets.forEach { t ->
-                    val w = remember(t) { PlayAssets.words(graph.context).firstOrNull { it.form(t.lang)?.word?.lowercase() == t.form } }
-                    if (RevealRules.shift(found, b.targets)) { if (w != null) RevealWord(graph, w, t.lang) else com.polingual.app.WordReveal(t.lang, t.form, t.meaning, null, null, rootLang = deckRoot) { graph.voice.speak(t.form, t.lang) } }
+                    if (RevealRules.shift(found, b.targets)) PlayReveal(graph, t.lang, t.form, t.meaning, deckRoot)
                 }
             }
             return@GameFrame

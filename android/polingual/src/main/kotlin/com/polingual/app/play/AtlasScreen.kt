@@ -59,14 +59,11 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
         if (index >= limit) {
             Results(graph, "$total points", "Five voices a day. New ones tomorrow.", again = null) {
                 guesses.firstOrNull()?.let { g ->
-                    val w = remember(g) { PlayAssets.words(graph.context).firstOrNull { it.form(g.round.lang)?.word == g.round.form } }
-                    if (w != null) RevealWord(graph, w, g.round.lang) else com.polingual.app.WordReveal(g.round.lang, g.round.form, g.round.meaning, g.round.itemId, null, rootLang = deckRoot) { graph.voice.speak(g.round.form, g.round.lang) }
+                    PlayReveal(graph, g.round.lang, g.round.form, g.round.meaning, deckRoot, g.round.itemId)
                 }
                 guesses.drop(1).forEach { g -> WordLine(g.round.lang, g.round.form, "${Lang.name(g.round.lang)} · ${g.round.meaning} · +${g.points}") }
                 SectionTitle("Today's board")
-                (Atlas.ghosts(date).map { Triple("${Bots.countryFlag(it.flag)} ${it.name}", it.score, false) } + Triple("You", total, true)).sortedByDescending { it.second }.forEachIndexed { i, (n, s, me) ->
-                    Row { Text("${i + 1}  $n", style = Type.body, color = if (me) PL.Vermilion else PL.Ink, modifier = Modifier.weight(1f)); Text("$s", style = Type.body, color = PL.Ink) }
-                }
+                Leaderboard(Boards.fromGhosts(Atlas.ghosts(date), total))
             }
             return@GameFrame
         }

@@ -59,9 +59,9 @@ fun ColumnScope.Results(graph: Graph, title: String, line: String, again: (() ->
 }
 
 @Composable
-fun RevealWord(graph: Graph, word: PlayWord, lang: String) {
+fun RevealWord(graph: Graph, word: PlayWord, lang: String, rootLang: String = PlayDecks.ROOT) {
     val f = word.form(lang) ?: return
-    WordReveal(lang, f.word, word.gloss, null, null, ipa = f.ipa ?: f.roman ?: f.kana, root = word.root(lang), definition = word.note ?: word.gloss, rootLang = PlayDecks.ROOT) { graph.voice.speak(f.word, lang) }
+    WordReveal(lang, f.word, word.gloss, null, null, ipa = f.ipa ?: f.roman ?: f.kana, root = word.root(lang), definition = word.note ?: word.gloss, rootLang = rootLang) { graph.voice.speak(f.word, lang) }
 }
 
 object PlayDecks {

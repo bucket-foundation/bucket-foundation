@@ -106,17 +106,13 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
                 Text("${run.score}", style = Type.display, color = PL.Vermilion)
                 Text(if (run.picked == null) "Too slow" else "Wrong flag", style = Type.title, color = PL.Ink)
                 val missed = d.tiles[(run.missed ?: 0) % d.tiles.size]
-                val word = remember(missed) { com.polingual.app.play.PlayAssets.words(graph.context).firstOrNull { w -> w.form(missed.lang)?.word == missed.form } }
-                if (RevealRules.flagTiles(run)) { if (word != null) RevealWord(graph, word, missed.lang) else com.polingual.app.WordReveal(missed.lang, missed.form, missed.meaning, missed.itemId, null, rootLang = deckRoot) { graph.voice.speak(missed.form, missed.lang) } }
+                if (RevealRules.flagTiles(run)) PlayReveal(graph, missed.lang, missed.form, missed.meaning, deckRoot, missed.itemId)
                 run.picked?.let { Text("You picked ${Lang.name(d.langs[it])}.", style = Type.small, color = PL.InkDim) }
                 PrimaryButton("See results") { run = FlagTilesRules.step(run, RunEvent.End) }
             }
             RunPhase.Over -> Results(graph, "${run.score} words", "Today's best: $best. New deck tomorrow.", again = { run = FlagTilesRules.step(run, RunEvent.Start) }) {
                 SectionTitle("Today's board")
-                val rows = (FlagTilesRules.ghosts(date).map { Triple("${Bots.countryFlag(it.flag)} ${it.name}", it.score, false) } + Triple("You", run.score, true)).sortedByDescending { it.second }
-                rows.forEachIndexed { i, (name, score, me) ->
-                    Row { Text("${i + 1}  $name", style = Type.body, color = if (me) PL.Vermilion else PL.Ink, modifier = Modifier.weight(1f)); Text("$score", style = Type.body, color = PL.Ink) }
-                }
+                Leaderboard(Boards.fromGhosts(FlagTilesRules.ghosts(date), run.score))
             }
         }
     }

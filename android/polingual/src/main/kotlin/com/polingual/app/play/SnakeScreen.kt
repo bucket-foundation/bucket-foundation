@@ -184,8 +184,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                     SectionTitle("Words you ate")
                     if (eaten.isEmpty()) Text("None this round.", style = Type.small, color = PL.InkDim)
                     eaten.firstOrNull()?.let { fw ->
-                        val word = remember(fw) { PlayAssets.words(graph.context).firstOrNull { it.form(fw.lang)?.word == fw.form } }
-                        if (RevealRules.snake(me?.alive ?: false, left)) { if (word != null) RevealWord(graph, word, fw.lang) else com.polingual.app.WordReveal(fw.lang, fw.form, fw.meaning, null, null, rootLang = PlayDecks.ROOT) { graph.voice.speak(fw.form, fw.lang) } }
+                        if (RevealRules.snake(me?.alive ?: false, left)) PlayReveal(graph, fw.lang, fw.form, fw.meaning, PlayDecks.ROOT)
                     }
                     eaten.drop(1).forEach { fw -> WordLine(fw.lang, fw.form, fw.meaning) }
                     val bad = a?.bad.orEmpty().distinctBy { "${it.lang}:${it.form}" }
