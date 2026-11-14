@@ -18,7 +18,7 @@ enum PlayFixtures {
     }()
 
     static func list(_ k: String) -> [String] { golden[k]!.stringArray! }
-    static func str(_ k: String) -> String { golden[k]!.string! }
+    static func str(_ k: String) -> String { golden[k]!.string ?? golden[k]!.number.map { String(Int($0)) }! }
 
     static let meanings = ["dog", "cat", "sun", "sea", "tree"].map { m in Meaning(id: m, meaning: m, forms: ["es": "\(m)-es", "fr": "\(m)-fr", "de": "\(m)-de"]) }
     static func deal(_ seed: Int32, start: Int = 0) -> Dealer { Dealer(meanings, ["es", "fr", "de"], XorRng(seed), start: start) }
