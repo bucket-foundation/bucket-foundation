@@ -212,8 +212,11 @@ struct Paywall: View {
         buying = true
         note = nil
         defer { buying = false }
-        guard let options = try? PurchaseOptions.make(await fetchToken(at: "purchase")).get() else {
-            note = String(localized: "We could not link this purchase to your account. Check your connection and tap again.")
+        let options: Set<Product.PurchaseOption>
+        switch PurchaseOptions.make(await fetchToken(at: "purchase")) {
+        case .success(let o): options = o
+        case .failure(let f):
+            note = PurchaseOptions.note(for: f)
             return
         }
         do {
@@ -311,6 +314,24 @@ enum PurchaseOptions {
         case .success(let id): .success([.appAccountToken(id)])
         case .failure(.signedOut): .success([])
         case .failure(let f): .failure(f)
+        }
+    }
+
+    enum NoteKind: Equatable { case signIn, server, connection }
+
+    static func noteKind(for failure: AccountTokenFailure) -> NoteKind {
+        switch failure {
+        case .unauthorized, .userChanged, .signedOut: .signIn
+        case .unavailable, .server, .decode: .server
+        case .timeout, .offline: .connection
+        }
+    }
+
+    static func note(for failure: AccountTokenFailure) -> String {
+        switch noteKind(for: failure) {
+        case .signIn: String(localized: "Your session ended. Sign in again to link this purchase to your account.")
+        case .server: String(localized: "Our server could not link this purchase to your account. Try again in a minute.")
+        case .connection: String(localized: "We could not link this purchase to your account. Check your connection and tap again.")
         }
     }
 }
