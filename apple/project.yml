@@ -151,6 +151,7 @@ targets:
       properties:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UIBackgroundModes: [audio]
         NSUserActivityTypes: [INSendMessageIntent]
         PolingualFreeBeta: $(POLINGUAL_FREE_BETA)
         GADApplicationIdentifier: $(POLINGUAL_GAD_APP_ID)
