@@ -13,10 +13,10 @@ export function LobbySetup({ s }: { s: LobbiesState }) {
       <h2 id="new-lobby" className={app.fieldLabel}>Start a lobby</h2>
       <div className={styles.setupModes} role="group" aria-label="Lobby setup">
         {SETUP_MODES.map((m) => (
-          <button key={m.id} type="button" className={styles.game} aria-pressed={s.mode === m.id} onClick={() => s.setMode(m.id)} data-testid={`setup-${m.id}`}>
+          <Button bare key={m.id} className={styles.game} aria-pressed={s.mode === m.id} onClick={() => s.setMode(m.id)} data-testid={`setup-${m.id}`}>
             <b>{m.name}</b>
             <span className={app.small}>{m.blurb}</span>
-          </button>
+          </Button>
         ))}
       </div>
       {s.mode !== "mix" ? <GamePicker s={s} /> : null}
@@ -54,13 +54,13 @@ function GamePicker({ s }: { s: LobbiesState }) {
         const pos = games.indexOf(g.id);
         const on = mode === "single" ? s.game === g.id : pos >= 0;
         return (
-          <button key={g.id} type="button" className={styles.game} aria-pressed={on} onClick={() => toggle(g.id)} data-testid={`game-${g.id}`}>
+          <Button bare key={g.id} className={styles.game} aria-pressed={on} onClick={() => toggle(g.id)} data-testid={`game-${g.id}`}>
             <b>
               {g.name}
               {mode === "sequence" && pos >= 0 ? <span className={styles.order}> #{pos + 1}</span> : null}
             </b>
             <span className={app.small}>{g.blurb}</span>
-          </button>
+          </Button>
         );
       })}
     </div>

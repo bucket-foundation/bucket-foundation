@@ -6,6 +6,7 @@ import { sceneOfChoices } from "@academy/ispy";
 import { parseTile } from "@academy/lobby-tiles";
 import { TileFace } from "@/app/tile";
 import type { LobbyPrompt } from "@/lib/lobby/client";
+import { Button } from "@/ui";
 import { choiceState, type Picked } from "@/lib/lobby/room";
 import app from "../../app/app.module.css";
 import { pieceClass } from "../GameWorld";
@@ -59,9 +60,9 @@ function ListChoices({ g, index, mine, done, prompt, flag }: WithPrompt & { flag
       <ul className={styles.choices}>
         {prompt.choices.filter((c) => !prompt.hide?.includes(c)).map((c) => (
           <li key={c}>
-            <button type="button" className={`${styles.choice} ${flag ? styles.choiceFlag : pieceClass("ticket")}`} data-state={choiceState(mine, done, c)} disabled={done} onClick={() => void g.answer(index, c)} data-testid="choice">
+            <Button bare className={`${styles.choice} ${flag ? styles.choiceFlag : pieceClass("ticket")}`} data-state={choiceState(mine, done, c)} disabled={done} onClick={() => void g.answer(index, c)} data-testid="choice">
               {flag ? <LangCard lang={c} big /> : c}
-            </button>
+            </Button>
           </li>
         ))}
       </ul>
