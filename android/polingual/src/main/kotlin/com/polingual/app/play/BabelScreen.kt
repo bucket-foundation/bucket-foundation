@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -108,7 +109,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
         Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
             SectionTitle("Words you matched")
             if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] }.forEach { m ->
-                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(PL.Paper2).padding(12.dp)) {
+                Column(Modifier.fillMaxWidth().plSurface(PL.Paper2, 12.dp).padding(12.dp)) {
                     Text(m.meaning, style = Type.title, color = PL.Ink)
                     m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
                 }
@@ -126,7 +127,7 @@ private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meanin
                             val i = r * Babel.SIZE + c
                             val sel = picked == i
                             Column(
-                                Modifier.weight(1f).aspectRatio(1f).clip(RoundedCornerShape(10.dp)).background(if (sel) PL.Lapis else PL.White)
+                                Modifier.weight(1f).aspectRatio(1f).plSurface(if (sel) PL.Lapis else PL.White, 10.dp)
                                     .border(2.dp, if (sel) PL.LapisDeep else PL.Hairline2, RoundedCornerShape(10.dp)).clickable(role = Role.Button) { tap(i) },
                             ) {
                                 FlagSwatch(cell.lang, Modifier.fillMaxWidth().height(6.dp))

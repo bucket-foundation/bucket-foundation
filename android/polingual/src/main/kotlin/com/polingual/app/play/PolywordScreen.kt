@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import com.polingual.app.WordCard
 import android.content.Intent
 import androidx.compose.foundation.background
@@ -86,7 +87,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
                 repeat(puzzle.answer.length) { i ->
                     val m = marks?.get(i)
                     Box(
-                        Modifier.weight(1f).aspectRatio(1f).clip(RoundedCornerShape(PLRadius.sm)).background(markColor(m))
+                        Modifier.weight(1f).aspectRatio(1f).plSurface(markColor(m), PLRadius.sm)
                             .border(2.dp, if (m == null) PL.Hairline2 else Color.Transparent, RoundedCornerShape(PLRadius.sm)),
                         contentAlignment = Alignment.Center,
                     ) { Text(text.getOrNull(i)?.uppercase() ?: "", style = Type.title, color = if (m == null) PL.Ink else PL.Paper) }
@@ -132,7 +133,7 @@ private fun PolyKeyboard(keys: Map<Char, Mark>, onKey: (Char) -> Unit) {
                     row.forEach { c ->
                         val m = keys[c]
                         Box(
-                            Modifier.weight(1f).heightIn(min = 46.dp).clip(RoundedCornerShape(8.dp)).background(if (m == null) PL.Paper2 else markColor(m))
+                            Modifier.weight(1f).heightIn(min = 46.dp).plSurface(if (m == null) PL.Paper2 else markColor(m), 8.dp)
                                 .clickable(role = Role.Button) { onKey(c) },
                             contentAlignment = Alignment.Center,
                         ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, fontSize = 16.sp, style = Type.small) }

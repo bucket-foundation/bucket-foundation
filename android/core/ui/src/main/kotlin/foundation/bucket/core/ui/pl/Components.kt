@@ -267,3 +267,5 @@ fun PLTile(selected: Boolean, modifier: Modifier = Modifier, selectedColor: Colo
     val base = modifier.clip(shape).background(if (selected) selectedColor else PL.White).border(2.dp, if (selected) selectedColor else PL.Hairline2, shape)
     Box((if (onClick != null) base.clickable(role = Role.Button, onClick = onClick) else base), contentAlignment = Alignment.Center) { content() }
 }
+
+fun Modifier.plSurface(color: Color, radius: Dp = PLRadius.md): Modifier = this.clip(RoundedCornerShape(radius)).background(color)

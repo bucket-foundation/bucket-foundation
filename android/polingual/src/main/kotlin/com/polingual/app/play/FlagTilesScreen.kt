@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import com.polingual.app.WordCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -113,7 +114,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
 
 @Composable
 private fun FallStage(form: String?, progress: Float) {
-                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(PLRadius.md)).background(PL.Paper).drawBehind {
+                SceneFrame(Scenes.flagTiles) { BoxWithConstraints(Modifier.fillMaxWidth().height(300.dp).plSurface(PL.Paper, PLRadius.md).drawBehind {
                     val stripes = listOf(PL.Ochre, PL.Malachite, PL.Vermilion, PL.Ink)
                     val lane = size.width / 4f
                     for (i in 1 until 4) stripes.forEachIndexed { k, c -> drawRect(c, androidx.compose.ui.geometry.Offset(lane * i - 6f + k * 3f, 0f), androidx.compose.ui.geometry.Size(3f, size.height)) }

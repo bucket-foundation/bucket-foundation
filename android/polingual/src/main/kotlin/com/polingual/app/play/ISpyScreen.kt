@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import com.polingual.app.WordCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -137,7 +138,7 @@ private fun Board(me: Tally, bots: Map<String, Tally>) {
 
 @Composable
 private fun SpyStage(scene: SpyScene, marks: Map<String, androidx.compose.ui.graphics.Color>, enabled: Boolean, onTap: (String) -> Unit) {
-                BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).clip(RoundedCornerShape(20.dp)).background(PL.Tyrian).drawBehind {
+                BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).plSurface(PL.Tyrian, 20.dp).drawBehind {
                     drawPath(Path().apply { moveTo(0f, 0f); lineTo(size.width * 0.38f, 0f); lineTo(size.width * 0.22f, size.height); lineTo(0f, size.height); close() }, PL.TyrianDeep)
                 }) {
                     scene.decor.forEach { d -> Art(d.art, Modifier.width(maxWidth * (d.size / 100).toFloat()).offset(maxWidth * (d.x / 100).toFloat(), maxHeight * (d.y / 100).toFloat()).rotate(d.tilt.toFloat())) }

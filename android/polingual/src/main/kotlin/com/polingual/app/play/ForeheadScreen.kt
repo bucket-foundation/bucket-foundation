@@ -1,5 +1,6 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.plSurface
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -130,7 +131,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
 @Composable
 private fun ForeheadCardView(c: ForeheadCard, left: Int, got: Int, mark: (Boolean) -> Unit) {
                 Row { Text("$left", style = Type.display, color = PL.Ink, modifier = Modifier.weight(1f)); Text("$got", style = Type.display, color = PL.Malachite) }
-                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(24.dp)).background(PL.Tyrian).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Column(Modifier.fillMaxWidth().plSurface(PL.Tyrian, 24.dp).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text("${Lang.flag(c.lang)} ${Lang.name(c.lang).uppercase()}", style = Type.caps, color = PL.Paper.copy(alpha = 0.8f))
                     Text(c.form, style = Type.word.copy(fontSize = 56.sp, lineHeight = 60.sp), color = PL.Paper, textAlign = TextAlign.Center)
                     (c.reading?.roman ?: c.reading?.kana)?.let { Text(it, style = Type.body, color = PL.Paper.copy(alpha = 0.8f)) }

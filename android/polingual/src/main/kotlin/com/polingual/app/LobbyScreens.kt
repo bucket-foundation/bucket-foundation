@@ -189,8 +189,8 @@ private fun Waiting(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Uni
 private fun Players(lobby: Lobby) {
     val p = LocalPalette.current
     lobby.standings.forEach { pl ->
-        Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(p.card).padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Box(Modifier.size(10.dp).clip(RoundedCornerShape(50)).background(if (pl.online || pl.bot) PL.Malachite else p.rule))
+        Row(Modifier.fillMaxWidth().plSurface(p.card, 12.dp).padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Box(Modifier.size(10.dp).plSurface(if (pl.online || pl.bot) PL.Malachite else p.rule, foundation.bucket.core.ui.pl.PLRadius.pill))
             Text(listOfNotNull(pl.flag?.let(Lang::flag), pl.name).joinToString(" "), color = p.ink, fontWeight = if (pl.isMe) FontWeight.ExtraBold else FontWeight.Normal, modifier = Modifier.weight(1f))
             if (pl.bot) Pill("Bot", PL.Lapis)
             if (pl.isHost) Pill("Host", PL.Vermilion)

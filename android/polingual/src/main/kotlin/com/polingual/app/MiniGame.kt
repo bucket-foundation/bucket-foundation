@@ -90,7 +90,7 @@ fun Mini(graph: Graph, c: GameContext) {
                 val live = cell in answers
                 val active = cell == entry.cells.getOrNull(cursor)
                 Box(
-                    Modifier.size(46.dp).clip(RoundedCornerShape(6.dp)).background(if (!live) PL.TyrianDeep else if (active) PL.LapisSoft else PL.White)
+                    Modifier.size(46.dp).plSurface(if (!live) PL.TyrianDeep else if (active) PL.LapisSoft else PL.White, 6.dp)
                         .then(if (live) Modifier.border(1.dp, if (active) PL.Vermilion else p.rule, RoundedCornerShape(6.dp)).clickable {
                             val e = puzzle.entries.firstOrNull { it.cells.contains(cell) && it.across == entry.across } ?: puzzle.entries.first { it.cells.contains(cell) }
                             entry = e; cursor = e.cells.indexOf(cell)
@@ -113,7 +113,7 @@ fun Mini(graph: Graph, c: GameContext) {
     }
     FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         (puzzle.keys + "⌫").forEach { k ->
-            Box(Modifier.size(44.dp).clip(RoundedCornerShape(8.dp)).background(p.card).border(1.dp, p.rule, RoundedCornerShape(8.dp)).clickable(role = Role.Button) {
+            Box(Modifier.size(44.dp).plSurface(p.card, 8.dp).border(1.dp, p.rule, RoundedCornerShape(8.dp)).clickable(role = Role.Button) {
                 if (k == "⌫") {
                     entry.cells.getOrNull(cursor)?.let { filled.remove(it) }
                     if (cursor > 0) cursor -= 1
