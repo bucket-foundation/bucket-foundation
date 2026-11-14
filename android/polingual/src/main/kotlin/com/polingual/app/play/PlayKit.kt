@@ -52,7 +52,10 @@ fun RevealWord(graph: Graph, word: PlayWord, lang: String, rootLang: String = Pl
 
 object PlayDecks {
     const val ROOT = "en"
-    const val WEB_ACCEPTS_ROOT = false
+    private val LANG = Regex("^[a-z]{2,3}$")
 
-    fun root(learnerRoot: String?, webAcceptsRoot: Boolean = WEB_ACCEPTS_ROOT): String = if (webAcceptsRoot && !learnerRoot.isNullOrBlank()) learnerRoot else ROOT
+    fun root(learnerRoot: String?, items: List<foundation.bucket.core.engine.LangItem>, min: Int = 200): String {
+        if (learnerRoot == null || !LANG.matches(learnerRoot)) return ROOT
+        return if (items.count { it.kind == foundation.bucket.core.engine.ItemKind.Word && it.form(learnerRoot) != null } >= min) learnerRoot else ROOT
+    }
 }

@@ -42,14 +42,14 @@ private data class AtlasGuess(val round: AtlasRound, val pin: LatLon, val home: 
 @Composable
 fun AtlasScreen(graph: Graph, back: () -> Unit) {
     val date = remember { com.polingual.app.deckDay() }
-    val deckRoot = PlayDecks.root(graph.state.value?.system?.root)
+    var deckRoot by remember { mutableStateOf(PlayDecks.ROOT) }
     val land = remember { PathParser().parsePathString(graph.context.assets.open("play/land.txt").bufferedReader().use { it.readText().trim() }).toPath() }
     var rounds by remember { mutableStateOf<List<AtlasRound>?>(null) }
     var index by remember { mutableIntStateOf(0) }
     var pin by remember { mutableStateOf<LatLon?>(null) }
     var peek by remember { mutableStateOf(false) }
     var guesses by remember { mutableStateOf<List<AtlasGuess>>(emptyList()) }
-    LaunchedEffect(Unit) { val items = graph.corpus.load().items; rounds = com.polingual.app.offMain { Atlas.rounds(items, date, root = deckRoot) } }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); rounds = com.polingual.app.offMain { Atlas.rounds(items, date, root = deckRoot) } }
     val rs = rounds
     GameFrame(graph, WebGame.Atlas, back, soundOnly = true) {
         val silentNow by graph.silent.collectAsState()

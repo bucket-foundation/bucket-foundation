@@ -40,7 +40,7 @@ object Atlas {
 
     fun rounds(items: List<LangItem>, date: String, count: Int = ROUNDS + 1, root: String = PlayDecks.ROOT): List<AtlasRound> {
         val rand = WebRandom(WebRandom.seedOf("voice-atlas:$date"))
-        val langs = HOMES.keys.toList()
+        val langs = HOMES.keys.filter { it != root }
         val words = items.filter { it.kind == ItemKind.Word && it.form(root) != null }
         val out = mutableListOf<AtlasRound>()
         val used = HashSet<String>()

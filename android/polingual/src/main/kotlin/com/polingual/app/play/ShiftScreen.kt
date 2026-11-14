@@ -41,13 +41,13 @@ import foundation.bucket.core.ui.pl.SectionTitle
 @Composable
 fun ShiftScreen(graph: Graph, back: () -> Unit) {
     val date = remember { com.polingual.app.deckDay() }
-    val deckRoot = PlayDecks.root(graph.state.value?.system?.root)
+    var deckRoot by remember { mutableStateOf(PlayDecks.ROOT) }
     var board by remember { mutableStateOf<ShiftBoard?>(null) }
     var loaded by remember { mutableStateOf(false) }
     var offsets by remember { mutableStateOf<List<Int>>(emptyList()) }
     var found by remember { mutableStateOf<List<String>>(emptyList()) }
     var hints by remember { mutableStateOf<Map<String, Int>>(emptyMap()) }
-    LaunchedEffect(Unit) { val items = graph.corpus.load().items; board = com.polingual.app.offMain { Shift.board(items, date, root = deckRoot) }; offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); board = com.polingual.app.offMain { Shift.board(items, date, root = deckRoot) }; offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
     val b = board
     val word = if (b != null && offsets.isNotEmpty()) Shift.centerWord(b.columns, offsets) else ""
     LaunchedEffect(word) { if (b != null && b.valid[word] != null && word !in found) found = found + word }
