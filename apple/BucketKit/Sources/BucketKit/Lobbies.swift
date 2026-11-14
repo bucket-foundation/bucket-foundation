@@ -59,7 +59,38 @@ public struct LobbyPrompt: Codable, Equatable, Sendable, Identifiable {
     public var gloss: String
     public var choices: [String]
     public var answer: String?
+    public var reveal: [LobbyRevealEntry]?
     public var id: Int { round }
+
+    public var revealOrdered: [LobbyRevealEntry] {
+        let all = reveal ?? []
+        return all.filter(\.correct) + all.filter { !$0.correct }
+    }
+
+    public func label(_ choice: String) -> LobbyChoiceLabel {
+        switch mode {
+        case .flag: return LobbyChoiceLabel(word: nil, lang: choice)
+        case .meaning, .spy: return LobbyChoiceLabel(word: choice, lang: nil)
+        case .mixed:
+            let t = LobbyTile(key: choice)
+            return LobbyChoiceLabel(word: t.form, lang: t.lang.isEmpty ? nil : t.lang)
+        default: return LobbyChoiceLabel(word: choice, lang: lang)
+        }
+    }
+}
+
+public struct LobbyRevealEntry: Codable, Equatable, Sendable {
+    public var lang: String
+    public var word: String
+    public var roman: String?
+    public var meaning: String
+    public var gloss: String?
+    public var correct: Bool
+}
+
+public struct LobbyChoiceLabel: Equatable, Sendable {
+    public var word: String?
+    public var lang: String?
 }
 
 public struct LobbyResult: Codable, Equatable, Sendable {

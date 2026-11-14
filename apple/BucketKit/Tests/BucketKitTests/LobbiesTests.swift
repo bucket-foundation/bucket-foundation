@@ -91,6 +91,27 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(p.mode == .form && p.gloss == "cat" && p.choices == ["gato", "perro"] && p.answer == nil)
         #expect(l.prompt(2) == nil && l.game == .sameWord)
     }
+
+    @Test func revealEntriesDecodeWithTheAnswerFirst() throws {
+        let raw: [String: Any] = ["round": 0, "mode": "form", "lang": "ja", "gloss": "cat", "choices": ["ねこ", "いぬ"], "answer": "ねこ", "reveal": [
+            ["lang": "ja", "word": "いぬ", "roman": "inu", "reading": ["kind": "kana"], "meaning": "dog", "gloss": "dog", "correct": false],
+            ["lang": "ja", "word": "ねこ", "roman": NSNull(), "reading": NSNull(), "meaning": "cat", "correct": true],
+        ]]
+        let p = try JSONDecoder().decode(LobbyPrompt.self, from: json(raw))
+        #expect(p.revealOrdered.map(\.word) == ["ねこ", "いぬ"])
+        #expect(p.revealOrdered[1].roman == "inu" && p.revealOrdered[0].gloss == nil)
+        let bare = try JSONDecoder().decode(LobbyPrompt.self, from: json(["round": 1, "mode": "form", "lang": "es", "gloss": "cat", "choices": ["gato"], "answer": NSNull()]))
+        #expect(bare.reveal == nil && bare.revealOrdered.isEmpty)
+    }
+
+    @Test func choiceLabelsNameTheWordAndItsLanguage() {
+        func prompt(_ mode: LobbyPromptMode) -> LobbyPrompt { LobbyPrompt(round: 0, mode: mode, lang: "es", gloss: "cat", choices: [], answer: nil) }
+        #expect(prompt(.form).label("gato") == LobbyChoiceLabel(word: "gato", lang: "es"))
+        #expect(prompt(.flag).label("it") == LobbyChoiceLabel(word: nil, lang: "it"))
+        #expect(prompt(.meaning).label("cat") == LobbyChoiceLabel(word: "cat", lang: nil))
+        #expect(prompt(.mixed).label("fr:chat") == LobbyChoiceLabel(word: "chat", lang: "fr"))
+        #expect(prompt(.mixed).label("plain") == LobbyChoiceLabel(word: "plain", lang: nil))
+    }
 }
 
 @Suite struct LobbyStoreTests {
