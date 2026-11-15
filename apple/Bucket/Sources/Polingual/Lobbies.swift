@@ -501,6 +501,7 @@ struct LobbyRoom: View {
                     Image(systemName: pl.answered ? "checkmark.circle.fill" : "circle")
                         .foregroundStyle(pl.answered ? D8.malachite : Palette.muted)
                         .accessibilityLabel(pl.name)
+                        .accessibilityValue(pl.answered ? String(localized: "Answered") : String(localized: "Waiting"))
                 }
                 Text(verbatim: "\(l.standings.filter(\.answered).count)/\(l.standings.count)")
                     .font(.caption.weight(.semibold))
