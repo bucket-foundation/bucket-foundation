@@ -1117,7 +1117,7 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
             return placedRoom >= 0
         }
         .map { SessionCard(itemId: $0.0.itemId, lang: $0.0.lang) }
-    let room = max(0, size - min(due.count, size), min(newFloor, size))
+    let room = max(0, size - min(due.count, size), min(newFloor, size / 3))
     var fresh: [SessionCard] = []
     var budget: [String: Int] = [:]
     var unlocked: [String: Set<Int>] = [:]

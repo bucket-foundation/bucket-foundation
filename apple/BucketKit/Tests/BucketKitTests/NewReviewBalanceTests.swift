@@ -88,6 +88,38 @@ import Testing
         #expect(firstNew < 3)
     }
 
+    @Test func shortSessionKeepsMostSlotsForReviews() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["fr"], [], now: now)
+        let st = backlog(corpus, "fr", 31)
+        let plan = planSession(sys, corpus, st, now: now, size: 4, tz: utc, newFloor: Lang.newPerSessionFloor)
+        #expect(plan.count == 4)
+        #expect(plan.filter { isNew(st, $0) }.count == 1)
+    }
+
+    @Test func floorHoldsAcrossSeveralTargetLanguages() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["fr", "es"], [], now: now)
+        var st = backlog(corpus, "fr", 20)
+        for (k, v) in backlog(corpus, "es", 20).cards.entries { st.cards[k] = v }
+        let plan = planSession(sys, corpus, st, now: now, size: 14, tz: utc, newFloor: Lang.newPerSessionFloor)
+        #expect(plan.count == 14)
+        let fresh = plan.filter { isNew(st, $0) }
+        #expect(fresh.count == Lang.newPerSessionFloor)
+        #expect(Set(fresh.map(\.lang)) == ["fr", "es"])
+    }
+
+    @Test func fewerNewWordsThanTheFloorGiveTheRestToReviews() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["fr"], [], now: now)
+        var st = backlog(corpus, "fr", 31)
+        let spent = corpus.items.filter { isVocab($0) && $0.form("fr") != nil }.dropFirst(31).prefix(Lang.newPerLangPerDay - 2)
+        for item in spent { st = gradeCard(st, "fr", item.id, 3, now: now - 1_000, tz: "UTC") }
+        let plan = planSession(sys, corpus, st, now: now, size: 14, tz: utc, newFloor: Lang.newPerSessionFloor)
+        #expect(plan.count == 14)
+        #expect(plan.filter { isNew(st, $0) }.count == 2)
+    }
+
     @Test func blendPlacesNewCardsAtEvenSlots() {
         let reviews = (0..<10).map { SessionCard(itemId: "r\($0)", lang: "fr") }
         let fresh = (0..<4).map { SessionCard(itemId: "n\($0)", lang: "fr") }
