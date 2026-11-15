@@ -11,6 +11,7 @@ public struct LobbyAdUnits: Equatable, Sendable {
     public static let testBanner = "ca-app-pub-3940256099942544/2435281174"
     public static let testInterstitial = "ca-app-pub-3940256099942544/4411468910"
     nonisolated(unsafe) static let unitPattern = /^ca-app-pub-\d{16}\/\d{10}$/
+    nonisolated(unsafe) static let appPattern = /^ca-app-pub-\d{16}~\d{10}$/
 
     public let mode: LobbyAdMode
     public let banner: String
@@ -22,11 +23,15 @@ public struct LobbyAdUnits: Equatable, Sendable {
         case .off:
             return nil
         case .test:
+            guard info["GADApplicationIdentifier"] as? String == testApp else { return nil }
             return LobbyAdUnits(mode: .test, banner: testBanner, interstitial: testInterstitial)
         case .live:
-            guard let banner = info["PolingualAdBanner"] as? String, let interstitial = info["PolingualAdInterstitial"] as? String,
+            guard let app = info["GADApplicationIdentifier"] as? String, app.wholeMatch(of: appPattern) != nil, app != testApp,
+                  let banner = info["PolingualAdBanner"] as? String, let interstitial = info["PolingualAdInterstitial"] as? String,
                   banner.wholeMatch(of: unitPattern) != nil, interstitial.wholeMatch(of: unitPattern) != nil,
-                  banner != testBanner, interstitial != testInterstitial
+                  banner != testBanner, interstitial != testInterstitial,
+                  app.split(separator: "~").first == banner.split(separator: "/").first,
+                  app.split(separator: "~").first == interstitial.split(separator: "/").first
             else { return nil }
             return LobbyAdUnits(mode: .live, banner: banner, interstitial: interstitial)
         }

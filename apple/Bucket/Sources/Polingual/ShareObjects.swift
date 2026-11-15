@@ -816,7 +816,7 @@ struct ShareObjectButton: View {
     }
 
     var icon: some View {
-        Image(systemName: "square.and.arrow.up").font(.headline)
+        PLGlyphView(.share, size: 20)
     }
 }
 
@@ -860,7 +860,7 @@ struct ScreenShareButton: View {
 
     var body: some View {
         #if os(iOS)
-        Button { ScreenShare.shared.offer(store.shareables) } label: { Image(systemName: "square.and.arrow.up") }
+        Button { ScreenShare.shared.offer(store.shareables) } label: { PLGlyphView(.share, size: 20) }
             .tint(Palette.ink)
             .accessibilityLabel(Text("Share"))
             .accessibilityIdentifier("screenShare")

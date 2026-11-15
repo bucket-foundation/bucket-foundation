@@ -1,7 +1,7 @@
 import BucketKit
 import Foundation
 
-enum AppTab: String, Hashable { case today, learn, account }
+enum AppTab: String, Hashable { case today, learn, games, account }
 
 extension SharedLink {
     var tab: AppTab {

@@ -506,6 +506,7 @@ public func createSystem(_ root: String, _ targets: [String], _ existing: [LangS
 
 public func progressBranch(_ s: LangSystem) -> String { String("lang-sys-\(s.id)".prefix(64)) }
 public func cardId(_ lang: String, _ itemId: String) -> String { "\(lang):\(itemId)" }
+public func isSentenceCard(_ id: String) -> Bool { parseCardId(id).itemId.hasPrefix("sent:") }
 
 public func parseCardId(_ id: String) -> (lang: String, itemId: String) {
     guard let i = id.firstIndex(of: ":") else { return ("", id) }
@@ -816,7 +817,7 @@ public func joinTokens(_ tokens: [String], _ lang: String) -> String {
 }
 
 public func learnerLevel(_ state: EngineState, _ lang: String) -> Int {
-    let n = state.cards.keys.filter { state.cards.started($0) && $0.hasPrefix("\(lang):") && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
+    let n = state.cards.keys.filter { state.cards.started($0) && $0.hasPrefix("\(lang):") && !isSentenceCard($0) && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
     return n < 60 ? 1 : n < 150 ? 2 : 3
 }
 
@@ -849,7 +850,7 @@ public func relevantNote(_ note: String?, _ system: LangSystem) -> String? {
     return names.contains(where: { note.contains($0) }) ? note : nil
 }
 
-public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: LangItem, _ lang: String, _ card: Card?, _ rng: inout Rng, speech: Bool = false, afterIntro: Bool = false, level: Int? = nil, heritage: Bool = false) -> Exercise {
+public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: LangItem, _ lang: String, _ card: Card?, _ rng: inout Rng, speech: Bool = false, afterIntro: Bool = false, level: Int? = nil, heritage: Bool = false, mix: ExerciseMix = .open) -> Exercise {
     let root = system.root
     let target = item.forms[lang] ?? ""
     let rootWord = item.forms[root] ?? ""
@@ -876,7 +877,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         ex.falseFriend = ff
         return ex
     }
-    if heritage && !latin && card != nil { return spellHeard(item, lang, root, tr) }
+    if heritage && !latin && card != nil && mix.sound { return spellHeard(item, lang, root, tr) }
     func choices(_ right: String, _ l: String, _ other: String) -> [String] {
         let d = distractors(corpus, item, l, other, &rng)
         return shuffle([right] + d, &rng)
@@ -897,7 +898,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
     let lapsed = card != nil && (card?.lapses ?? 0) > 0 && card?.state == "relearning"
     let roll = rng.next()
 
-    if let ff, reps >= 1, roll < 0.35 {
+    if let ff, mix.compare, reps >= 1, roll < 0.35 {
         let d = distractors(corpus, item, root, lang, &rng, 2)
         let options = shuffle(unique([rootWord, ff.looksLike] + d), &rng)
         var ex = make(.falseFriend, target, lang, rootWord, root)
@@ -907,7 +908,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         return ex
     }
     if reps <= 1 || lapsed {
-        if !family.isEmpty && sharedRootLangs(item, system).contains(lang) {
+        if mix.compare && !family.isEmpty && sharedRootLangs(item, system).contains(lang) {
             let options = choices(target, lang, root)
             var ex = toTarget(.cognate)
             ex.options = options
@@ -919,10 +920,10 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         ex.options = options
         return ex
     }
-    if reps == 2 { return roll < 0.5 ? toRoot(.listen) : toRoot(.reverse) }
+    if reps == 2 { return roll < 0.5 && mix.sound ? toRoot(.listen) : toRoot(.reverse) }
 
     let sent = item.kind == .word ? sentenceFor(corpus, item, lang, root, &rng, level: level ?? 3) : nil
-    if let sent, roll < 0.45 {
+    if let sent, roll < 0.45 || mix.sentenceFirst {
         let text = sent.s.t[lang]!
         var common = make(.sentence, sent.s.t[root] ?? "", root, text, lang)
         common.level = sent.s.lv?[lang]
@@ -954,14 +955,14 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         return ex
     }
     if !latin {
-        if roll < 0.8 { return toRoot(.listen) }
+        if roll < 0.8 && mix.sound { return toRoot(.listen) }
         let options = choices(target, lang, root)
         var ex = toTarget(.choose)
         ex.options = options
         return ex
     }
-    if speech && roll < 0.7 { return toTarget(.speak) }
-    if roll < 0.85 { return toTarget(.translate) }
+    if speech && mix.sound && roll < 0.7 { return toTarget(.speak) }
+    if roll < 0.85 || !mix.sound { return toTarget(.translate) }
     var ex = make(.typeHeard, target, lang, target, lang)
     ex.answerReading = tr
     ex.meaning = rootWord.isEmpty ? nil : rootWord
@@ -1037,7 +1038,7 @@ public func matchExercise(_ corpus: LangCorpus, _ system: LangSystem, _ item: La
 
 public func newToday(_ state: EngineState, _ lang: String, now: Double, tz: TimeZone = .current) -> Int {
     let dk = dayKey(now, tz: tz)
-    return state.cards.entries.filter { parseCardId($0.key).lang == lang && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
+    return state.cards.entries.filter { parseCardId($0.key).lang == lang && !isSentenceCard($0.key) && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
 }
 
 public struct UnitStatus: Sendable, Identifiable {
@@ -1151,10 +1152,15 @@ public func queueNew(_ state: EngineState, _ lang: String, _ itemId: String, now
     return next
 }
 
-public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil) -> EngineState {
+public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil, counted: Bool = true) -> EngineState {
     let id = cardId(lang, itemId)
     let wasNew = !state.cards.started(id)
-    var next = grade(state, id: id, rating: rating, level: "recall", now: now, tz: tz)
+    var next = state
+    if counted {
+        next = grade(state, id: id, rating: rating, level: "recall", now: now, tz: tz)
+    } else {
+        next.cards[id] = state.fsrs.review(state.cards[id] ?? Card(state: "new"), rating, now: now)
+    }
     if wasNew { next.cards[id]!.introduced = dayKey(now, tzName: tz) } else if let i = state.cards[id]?.introduced { next.cards[id]!.introduced = i }
     return next
 }
