@@ -64,7 +64,7 @@ struct PolingualApp: App {
                     backgroundSafe {
                         if p == .active {
                             await store.retryPending()
-                            NetworkWatch.shared.resync()
+                            await NetworkWatch.shared.resync().value
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG

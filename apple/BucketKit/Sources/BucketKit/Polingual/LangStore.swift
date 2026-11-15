@@ -483,6 +483,7 @@ public final class LangStore {
         case 401: .localOnly
         case 403: .needsProfile
         case 0: .offline
+        case 409: .refused
         default: .failed
         }
     }
@@ -588,10 +589,17 @@ public final class LangStore {
             states[s.id] = merged
             if stored != merged { writeLocal(branch, merged) }
             if server[branch].map({ EngineState(js: $0["data"]) }) != merged {
+                let gen = generation[branch, default: 0]
                 let status = await send(t, branch, merged.js, over: server, epoch: mine)
                 guard epoch == mine else { return }
                 statuses.append(status)
-                if (200..<300).contains(status) { pending[branch] = nil }
+                if status == 409 {
+                    let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
+                    refusedUntil[branch] = (now() + wait, wait)
+                } else if (200..<300).contains(status) {
+                    refusedUntil[branch] = nil
+                    if generation[branch, default: 0] == gen { pending[branch] = nil } else { await push(s.id, branch) }
+                }
             } else {
                 pending[branch] = nil
             }

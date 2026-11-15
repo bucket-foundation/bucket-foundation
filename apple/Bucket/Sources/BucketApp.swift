@@ -67,7 +67,7 @@ struct BucketApp: App {
                     backgroundSafe {
                         if p == .active {
                             await langs.retryPending()
-                            NetworkWatch.shared.resync()
+                            await NetworkWatch.shared.resync().value
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG

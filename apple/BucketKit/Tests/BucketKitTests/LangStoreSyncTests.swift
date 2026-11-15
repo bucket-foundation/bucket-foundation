@@ -286,6 +286,32 @@ final class LangServer: @unchecked Sendable {
         #expect(s.saveState == .synced)
     }
 
+    @Test func gradeDuringResyncPushReachesTheServer() async {
+        let server = seeded()
+        let gate = PostGate(inner: server.api)
+        gate.open.mutate { $0 = true }
+        let s = LangStore(api: BucketAPI(transport: gate), disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
+        await s.load()
+        server.online.mutate { $0 = false }
+        s.grade(Self.system.id, lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        server.online.mutate { $0 = true }
+        gate.open.mutate { $0 = false }
+        let syncing = Task { await s.resync() }
+        while !gate.waiting.value { await Task.yield() }
+        s.grade(Self.system.id, lang: "es", itemId: "gracias", rating: 3)
+        gate.open.mutate { $0 = true }
+        await syncing.value
+        #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "gracias")))
+        #expect(!s.hasUnsyncedWork)
+    }
+
+    @Test func blankOverwriteMapsToRefused() {
+        #expect(LangStore.failure(409) == .refused)
+        #expect(LangStore.failure(503) == .failed)
+        #expect(LangStore.failure(0) == .offline)
+    }
+
     @Test func signInDuringLoadWaitsForFreshSystems() async {
         let server = seeded()
         let gate = LockedBox(false)

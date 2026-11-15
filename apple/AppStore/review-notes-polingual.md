@@ -18,6 +18,9 @@ Code: [REVIEW_DEMO_CODE value, entered by hand in App Store Connect]
 The account has a language set, progress and a group named Review Family with a second member, Sam, so report and block can be tried on Sam. Deleting this account ends the demo, so please test deletion on a new account made with Sign in with Apple or your own email.
 Account deletion: Account, Delete account, Delete account and data.
 
+BACKGROUND AUDIO
+UIBackgroundModes audio serves Listen, the language radio on the Home tab. Start a station in Listen and press the Home button: the station keeps playing and the Lock Screen shows play and pause.
+
 USER-GENERATED CONTENT
 Family and friends groups are private and join only by invite link or code. The only free text is the group name and each member's display name. There is no chat and no media.
 Filtering: the server rejects profanity in group and display names.
