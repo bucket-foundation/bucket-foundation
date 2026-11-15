@@ -608,7 +608,7 @@ public final class LangStore {
         if statuses.allSatisfy({ (200..<300).contains($0) }) { pending[Self.systemsBranch] = nil }
         savePending()
         if let bad = statuses.first(where: { !(200..<300).contains($0) }) { saveState = Self.failure(statuses.contains(403) ? 403 : bad) }
-        else if saveState != .idle { saveState = .synced }
+        else if saveState != .idle && pending.isEmpty { saveState = .synced }
     }
 
     public func flush() async {
