@@ -84,6 +84,21 @@ import Testing
         #expect(Double(round.tally.sounds) <= SessionMix.soundShare(started: 0) * Double(round.tally.asked))
     }
 
+    @Test func cappedSoundSkipsAContrastPairInsteadOfAskingForItsLetter() throws {
+        let sys = try createSystem("en", ["es"], now: 0)
+        let entry = QueueEntry(itemId: LangScript.letterItemId("pero/perro"), lang: "es", stage: .letter)
+        var rng = Rng(seed: 3)
+        #expect(!SessionMix.soundAllowed(SoundTally(), started: 0))
+        #expect(SessionMix.letterExercise(entry, sys, EngineState(), tally: SoundTally(), &rng) == nil)
+        #expect(ScriptCourse.drill(.letter, "es", "en", entry.itemId, &rng) == nil)
+        #expect(ScriptCourse.drill(.blend, "es", "en", entry.itemId, &rng) == nil)
+        var open = SoundTally()
+        for k in 0..<9 { open.record(.choose, key: "\(k)") }
+        #expect(SessionMix.letterExercise(entry, sys, EngineState(), tally: open, &rng)?.kind == .minimalPair)
+        let plain = QueueEntry(itemId: LangScript.letterItemId("ñ"), lang: "es", stage: .letter)
+        #expect(SessionMix.letterExercise(plain, sys, EngineState(), tally: SoundTally(), &rng)?.kind != nil)
+    }
+
     @Test func tallyCountsAKeyOnceAndRestartClearsIt() {
         var round = StudyRound([])
         round.record(.listen, key: "0")

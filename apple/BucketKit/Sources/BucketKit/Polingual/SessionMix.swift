@@ -202,7 +202,7 @@ public enum SessionMix {
     public static func letterExercise(_ entry: QueueEntry, _ system: LangSystem, _ state: EngineState, tally: SoundTally, _ rng: inout Rng) -> Exercise? {
         let made = ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng, state: state)
         guard let made, soundKinds.contains(made.kind), !soundAllowed(tally, started: startedCount(state, system)) else { return made }
-        return ScriptCourse.drill(.letter, entry.lang, system.root, entry.itemId, &rng, state: state) ?? made
+        return ScriptCourse.drill(.letter, entry.lang, system.root, entry.itemId, &rng, state: state)
     }
 
     public static func exercise(_ entry: QueueEntry, _ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, tally: SoundTally, _ rng: inout Rng, speech: Bool = false, heritage: Bool = false) -> Exercise? {
