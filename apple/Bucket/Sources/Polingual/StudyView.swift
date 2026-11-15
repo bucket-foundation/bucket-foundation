@@ -158,7 +158,7 @@ struct StudyView: View {
         let sentenceId = current?.sentenceId
         let apply = {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
-            if let sid = sentenceId { for r in results { store.grade(systemId, lang: r.lang, itemId: SessionMix.sentenceItemId(sid), rating: r.rating) } }
+            if let sid = sentenceId { for r in results { store.grade(systemId, lang: r.lang, itemId: SessionMix.sentenceItemId(sid), rating: r.rating, counted: false) } }
         }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
         for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }

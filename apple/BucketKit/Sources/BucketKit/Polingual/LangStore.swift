@@ -325,9 +325,9 @@ public final class LangStore {
         if let i = systems.firstIndex(where: { $0.id == s.id }) { systems[i] = s }
     }
 
-    public func grade(_ systemId: String, lang: String, itemId: String, rating: Rating) {
+    public func grade(_ systemId: String, lang: String, itemId: String, rating: Rating, counted: Bool = true) {
         guard let s = system(systemId) else { return }
-        commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier))
+        commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier, counted: counted))
     }
 
     public func queue(_ systemId: String, lang: String, itemId: String) {
