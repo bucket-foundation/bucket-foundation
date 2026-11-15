@@ -83,7 +83,7 @@ final class LangServer: @unchecked Sendable {
         s.grade("s1", lang: "es", itemId: "adios", rating: 3)
         await s.flush()
         #expect(s.hasUnsyncedWork)
-        #expect(s.saveState == .localOnly)
+        #expect(s.saveState == .offline)
         server.online.mutate { $0 = true }
         let relaunched = store(server, disk, signedIn: LockedBox(true))
         #expect(relaunched.hasUnsyncedWork)

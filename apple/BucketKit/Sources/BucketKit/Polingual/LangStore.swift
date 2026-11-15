@@ -396,10 +396,10 @@ public final class LangStore {
         inFlight.insert(branch)
         defer { inFlight.remove(branch) }
         let gen = generation[branch, default: 0]
-        let mine = epoch
+        let ep = epoch
         let server = await pull()
         let t = await token()
-        guard epoch == mine else { return }
+        guard epoch == ep else { return }
         guard let server, let t else {
             saveState = t == nil ? .localOnly : .offline
             return
@@ -411,7 +411,7 @@ public final class LangStore {
             writeLocal(branch, merged)
         }
         let status = await send(t, branch, merged.js, over: server)
-        guard epoch == mine else { return }
+        guard epoch == ep else { return }
         if status == 409 {
             let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
             refusedUntil[branch] = (now() + wait, wait)

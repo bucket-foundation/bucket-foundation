@@ -141,12 +141,12 @@ public final class ScienceStore {
     }
 
     func push(_ branch: String) async {
-        let mine = epoch
+        let ep = epoch
         guard let server = await pull(), let t = await token() else {
             saveState = .localOnly
             return
         }
-        if Task.isCancelled || epoch != mine { return }
+        if Task.isCancelled || epoch != ep { return }
         saveState = .saving
         let mine = state(branch)
         let merged = server[branch].map { mergeState(mine, EngineState(js: $0["data"])) } ?? mine
