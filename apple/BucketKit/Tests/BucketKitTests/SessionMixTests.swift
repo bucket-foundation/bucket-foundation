@@ -194,4 +194,25 @@ import Testing
         #expect(learnerLevel(state, "es") == 1)
         #expect(GameLedger.queue(sys, state).isEmpty)
     }
+
+    @Test func sentenceGradeMovesTheScheduleWithoutCountingTwice() throws {
+        let now = 1_700_000_000_000.0
+        let word = cardId("es", "w1")
+        let sentence = cardId("es", SessionMix.sentenceItemId("s1"))
+        var state = gradeCard(EngineState(), "es", "w1", 3, now: now, tz: "UTC")
+        let once = state
+        state = gradeCard(state, "es", SessionMix.sentenceItemId("s1"), 3, now: now, tz: "UTC", counted: false)
+        let day = dayKey(now, tzName: "UTC")
+        #expect(state.history[day]?.new == 1)
+        #expect(state.history[day]?.reviews == 0)
+        #expect(state.xp == once.xp)
+        #expect(state.streak == once.streak)
+        #expect(state.prof[sentence] == nil)
+        #expect(state.cards.started(sentence))
+        #expect(state.cards[sentence]?.introduced == day)
+        #expect(state.cards[word] == once.cards[word])
+        let again = gradeCard(state, "es", SessionMix.sentenceItemId("s1"), 1, now: now + 60_000, tz: "UTC", counted: false)
+        #expect(again.cards[sentence]?.lastReview != state.cards[sentence]?.lastReview)
+        #expect(again.history[day]?.reviews == 0)
+    }
 }

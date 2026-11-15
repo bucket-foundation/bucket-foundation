@@ -1152,10 +1152,15 @@ public func queueNew(_ state: EngineState, _ lang: String, _ itemId: String, now
     return next
 }
 
-public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil) -> EngineState {
+public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil, counted: Bool = true) -> EngineState {
     let id = cardId(lang, itemId)
     let wasNew = !state.cards.started(id)
-    var next = grade(state, id: id, rating: rating, level: "recall", now: now, tz: tz)
+    var next = state
+    if counted {
+        next = grade(state, id: id, rating: rating, level: "recall", now: now, tz: tz)
+    } else {
+        next.cards[id] = state.fsrs.review(state.cards[id] ?? Card(state: "new"), rating, now: now)
+    }
     if wasNew { next.cards[id]!.introduced = dayKey(now, tzName: tz) } else if let i = state.cards[id]?.introduced { next.cards[id]!.introduced = i }
     return next
 }
