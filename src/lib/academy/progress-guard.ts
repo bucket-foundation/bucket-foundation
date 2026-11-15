@@ -19,3 +19,8 @@ export function isBlankProgress(data: unknown): boolean {
 export function blankOverwrites(updates: Record<string, unknown>, existing: Record<string, unknown>): string[] {
   return Object.keys(updates).filter((b) => isBlankProgress(updates[b]) && b in existing && !isBlankProgress(existing[b]));
 }
+
+export function pushSettled(status: number): boolean {
+  if (status === 409) console.error("academy progress: server refused a blank overwrite, entry dropped");
+  return (status >= 200 && status < 300) || status === 409;
+}

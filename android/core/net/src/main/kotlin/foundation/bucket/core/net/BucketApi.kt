@@ -68,9 +68,9 @@ class BucketApi(
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()
 
-    suspend fun progressPush(token: String, branch: String, data: JsonElement): Boolean = runCatching {
+    suspend fun progressPush(token: String, branch: String, data: JsonElement): PushResult = runCatching {
         call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data) }, mapper = ::groupError)
-    }.isSuccess
+    }.fold(onSuccess = { PushResult.Written }, onFailure = { e -> if (e is BucketError.Server && e.status == 409) PushResult.Refused else PushResult.Failed })
 
     suspend fun guestTicket(nickname: String, guestId: String): GuestTicket =
         decode(call("api/academy/lobbies/guest", null, buildJsonObject { put("nickname", nickname); put("guestId", guestId) }))
@@ -230,4 +230,10 @@ fun profileError(status: Int, text: String): BucketError {
         "invalid_handle" -> BucketError.Server(status, body["message"] ?: "Usernames are 3 to 32 lowercase letters, numbers, - or _.")
         else -> groupError(status, text)
     }
+}
+
+enum class PushResult {
+    Written, Refused, Failed;
+
+    val settled: Boolean get() = this != Failed
 }
