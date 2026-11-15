@@ -2,6 +2,7 @@ package foundation.bucket.core.data
 
 import android.content.Context
 import foundation.bucket.core.engine.CorpusLoader
+import foundation.bucket.core.engine.FrequencyRank
 import foundation.bucket.core.engine.LangCorpus
 import foundation.bucket.core.engine.LexiconShelf
 import kotlinx.coroutines.Dispatchers
@@ -21,5 +22,9 @@ class CorpusRepo(private val context: Context) {
         corpus ?: withContext(Dispatchers.IO) {
             CorpusLoader.parse(read("lang-core.json"), read("lang-cognates.json"), read("lang-phrases.json"), read("lang-layers.json"))
         }.also { corpus = it }
+    }
+
+    suspend fun frequency(langs: List<String>): FrequencyRank = withContext(Dispatchers.IO) {
+        FrequencyRank.parse(langs.mapNotNull { l -> read("top1000/$l.json")?.let { l to it } }.toMap())
     }
 }

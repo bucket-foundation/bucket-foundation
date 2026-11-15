@@ -46,13 +46,13 @@ object Scheduler {
 }
 
 object ExercisePicker {
-    fun kind(isNew: Boolean, reps: Int, lapsed: Boolean, latin: Boolean, roll: Double, heritage: Boolean = false): ExerciseKind = when {
+    fun kind(isNew: Boolean, reps: Int, lapsed: Boolean, latin: Boolean, roll: Double, heritage: Boolean = false, sound: Boolean = true): ExerciseKind = when {
         isNew -> ExerciseKind.Recognize
-        heritage && !latin -> ExerciseKind.SpellHeard
+        heritage && !latin && sound -> ExerciseKind.SpellHeard
         reps <= 1 || lapsed -> ExerciseKind.Produce
-        reps == 2 -> if (roll < 0.5) ExerciseKind.Listen else ExerciseKind.Recognize
-        !latin -> if (roll < 0.8) ExerciseKind.Listen else ExerciseKind.Produce
-        roll < 0.85 -> ExerciseKind.Produce
+        reps == 2 -> if (roll < 0.5 && sound) ExerciseKind.Listen else ExerciseKind.Recognize
+        !latin -> if (roll < 0.8 && sound) ExerciseKind.Listen else ExerciseKind.Produce
+        roll < 0.85 || !sound -> ExerciseKind.Produce
         else -> ExerciseKind.TypeHeard
     }
 }
@@ -68,7 +68,11 @@ class StudySession(
     newPerLang: Int = 5,
     private val heritage: Set<String> = emptySet(),
     maxReviews: Int = 30,
+    freq: FrequencyRank? = null,
+    private val roll: (() -> Double)? = null,
 ) {
+    val tally = SoundTally()
+    private var planned = 0
     private val deck = GameDeck(corpus, root, targets)
     var state: StudyState = if (state.newDay == day) state else state.copy(newDay = day, newToday = emptyMap())
         private set
@@ -85,20 +89,24 @@ class StudySession(
             .mapNotNull { (id, _) -> deck.word(id.substringAfter(':'), id.substringBefore(':')) }
         val fresh = targets.flatMap { l ->
             val left = newPerLang - (this.state.newToday[l] ?: 0)
-            deck.pool(l).asSequence().filter { "$l:${it.itemId}" !in this.state.cards }.take(maxOf(0, left))
+            val pool = deck.pool(l)
+            val ordered = if (freq == null) pool else pool.sortedBy { e -> corpus.byId[e.itemId]?.let { freq.rank(it, l) } ?: FrequencyRank.UNRANKED }
+            ordered.asSequence().filter { "$l:${it.itemId}" !in this.state.cards }.take(maxOf(0, left))
                 .map { GameWord(it.itemId, l, it.form, it.gloss, root, GameWords.STARTER_RANK) }.toList()
         }
-        val ordered = GameWords.balanced(due) + GameWords.balanced(fresh)
+        val ordered = SessionMix.alternate(GameWords.balanced(due) + GameWords.balanced(fresh), { it.lang })
         ordered.forEach { queue.addLast(exercise(it, isNew = it.rank == GameWords.STARTER_RANK)) }
         total = queue.size
     }
 
-    private fun roll(): Double = (rng.next() shr 11).toDouble() / 9007199254740992.0
+    private fun roll(): Double = roll?.invoke() ?: ((rng.next() shr 11).toDouble() / 9007199254740992.0)
 
     private fun exercise(w: GameWord, isNew: Boolean): Exercise {
         val reps = state.cards[w.id]?.reps ?: 0
         val lapsed = (state.cards[w.id]?.lapses ?: 0) > 0
-        val kind = ExercisePicker.kind(isNew, reps, lapsed, foundation.bucket.core.model.Lang.info[w.lang]?.latin != false, roll(), heritage = w.lang in heritage)
+        val sound = SessionMix.soundAllowed(tally, SessionMix.startedCount(state, targets))
+        val kind = ExercisePicker.kind(isNew, reps, lapsed, foundation.bucket.core.model.Lang.info[w.lang]?.latin != false, roll(), heritage = w.lang in heritage, sound = sound)
+        if (!isNew) tally.record(kind, (planned++).toString())
         return when (kind) {
             ExerciseKind.Produce -> Exercise(w, ExerciseKind.Produce, w.gloss, w.form, mixed(listOf(w.form) + deck.foils(w, rng = rng), rng), false)
             ExerciseKind.TypeHeard, ExerciseKind.SpellHeard -> Exercise(w, kind, w.form, w.form, emptyList(), false)
