@@ -52,4 +52,11 @@ export function Tiles({ children }: { children: React.ReactNode }) {
 export type FlagTileProps = TileFaceProps;
 export const FlagTile = TileFace;
 export const FlagTiles = Tiles;
-export const flagTileStyles = styles;
+
+export function TileButton({ label, onClick, playing, children }: { label: string; onClick: () => void; playing?: boolean; children?: React.ReactNode }) {
+  return (
+    <button type="button" className={styles.play} data-playing={playing || undefined} aria-pressed={playing === undefined ? undefined : playing} aria-label={label} onClick={onClick}>
+      {children}
+    </button>
+  );
+}

@@ -4,12 +4,12 @@ import { FlagBand } from "@/ui";
 import styles from "./site.module.css";
 import { ButtonLink } from "@/ui";
 
-export const SITE_FONTS =
+const SITE_FONTS =
   "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Hebrew:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+Tamil:wght@700&family=Noto+Sans+Thai:wght@700&family=Noto+Sans+JP:wght@700&family=Noto+Sans+KR:wght@700&display=swap";
 
 export type SiteLocale = { code: string; rtl: boolean; words: string; labels: { beta: string; support: string; privacy: string; terms: string }; footer: { tagline: string; data: string; published: string } };
 
-export const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" }, footer: { tagline: "Polingual · for iPhone and iPad", data: "Word data:", published: "Published by AGFarms LLC." } };
+const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" }, footer: { tagline: "Polingual · for iPhone and iPad", data: "Word data:", published: "Published by AGFarms LLC." } };
 
 function home(code: string): string {
   return code === "en" ? "/" : `/${code}`;
@@ -19,7 +19,7 @@ function wordsHref(code: string): string {
   return code === "en" ? "/word" : `/${code}/word`;
 }
 
-export function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
+function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
   return (
     <header className={styles.hd}>
       <nav className={styles.nav}>

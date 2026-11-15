@@ -5,7 +5,6 @@ import { appAuth } from "@/lib/app/auth";
 import { fetchAccess } from "@/lib/app/plans";
 import { accountCta, entitlementOf, type Entitlement } from "@/lib/lobby/ads";
 import SignIn from "../app/SignIn";
-import app from "../app/app.module.css";
 import styles from "./play.module.css";
 import { Button, ButtonLink } from "@/ui";
 

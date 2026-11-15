@@ -30,14 +30,27 @@ object Scripts {
 }
 
 @Composable
-fun WordReveal(lang: String, form: String, gloss: String, itemId: String?, corpus: LangCorpus?, ipa: String? = null, root: String? = null, definition: String? = null, onSpeak: (() -> Unit)?) {
+fun WordReveal(lang: String, form: String, gloss: String, itemId: String?, corpus: LangCorpus?, ipa: String? = null, root: String? = null, definition: String? = null, rootLang: String = LocalRootLang.current, onSpeak: (() -> Unit)?) {
     val item = itemId?.let { corpus?.byId?.get(it) }
+    WordCard(
+        lang, form, ipa = ipa ?: item?.readings?.get(lang)?.let { it.ipa ?: it.roman }, gloss = gloss, onSpeak = onSpeak,
+        details = WordDetails(rootLang, gloss, root ?: item?.root, definition ?: item?.note?.takeIf { it.isNotBlank() } ?: gloss),
+    )
+}
+
+data class WordDetails(val rootLang: String, val translation: String, val root: String?, val definition: String)
+
+@Composable
+fun WordCard(lang: String?, word: String, ipa: String? = null, gloss: String? = null, tilt: Float = -2f, onSpeak: (() -> Unit)? = null, details: WordDetails? = null) {
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(PLSpace.s2)) {
-        WordTile(lang, form, ipa = ipa ?: item?.readings?.get(lang)?.let { it.ipa ?: it.roman }, gloss = gloss, onSpeak = onSpeak)
-        RevealRow("Language", Lang.name(lang))
-        RevealRow("Script", Scripts.of(lang))
-        (root ?: item?.root)?.takeIf { it.isNotBlank() }?.let { RevealRow("Root", it) }
-        RevealRow("Definition", definition ?: item?.note?.takeIf { it.isNotBlank() } ?: gloss, capped = true)
+        WordTile(lang, word, ipa = ipa, gloss = gloss, tilt = tilt, onSpeak = onSpeak)
+        if (details != null && lang != null) {
+            RootLine(details.rootLang, details.translation)
+            RevealRow("Language", Lang.name(lang))
+            RevealRow("Script", Scripts.of(lang))
+            details.root?.takeIf { it.isNotBlank() }?.let { RevealRow("Root", it) }
+            RevealRow("Definition", details.definition, capped = true)
+        }
     }
 }
 
@@ -60,4 +73,36 @@ private fun RevealRow(label: String, value: String, capped: Boolean = false) {
 
 object RevealLimits {
     const val DEFINITION_LINES = 3
+}
+
+val LocalRootLang = androidx.compose.runtime.staticCompositionLocalOf { "en" }
+
+@Composable
+fun RootLine(rootLang: String, gloss: String) {
+    if (gloss.isBlank()) return
+    RevealRow("In ${Lang.name(rootLang)}", gloss)
+}
+
+data class RootTranslation(val lang: String, val text: String)
+
+object RootTranslations {
+    fun of(rootLang: String, gloss: String?): RootTranslation? = gloss?.trim()?.takeIf { it.isNotEmpty() }?.let { RootTranslation(rootLang, it) }
+}
+
+object CardRoot {
+    fun study(ex: foundation.bucket.core.engine.Exercise) = RootTranslations.of(ex.word.root, ex.word.gloss)
+    fun quiz(p: foundation.bucket.core.engine.GamePrompt) = RootTranslations.of(p.word.root, p.word.gloss)
+    fun speed(w: foundation.bucket.core.engine.GameWord) = RootTranslations.of(w.root, w.gloss)
+    fun groups(g: foundation.bucket.core.engine.WordGroup) = g.words.map { RootTranslations.of(it.root, it.gloss) }
+    fun mini(e: foundation.bucket.core.engine.MiniEntry) = RootTranslations.of(e.word.root, e.word.gloss)
+    fun flagTile(t: com.polingual.app.play.FlagTile, root: String) = RootTranslations.of(root, t.meaning)
+    fun babel(m: com.polingual.app.play.Meaning, root: String) = RootTranslations.of(root, m.meaning)
+    fun shift(t: com.polingual.app.play.ShiftTarget, root: String) = RootTranslations.of(root, t.meaning)
+    fun snake(w: com.polingual.app.play.FieldWord, root: String) = RootTranslations.of(root, w.meaning)
+    fun atlas(r: com.polingual.app.play.AtlasRound, root: String) = RootTranslations.of(root, r.meaning)
+    fun forehead(c: com.polingual.app.play.ForeheadCard, root: String) = RootTranslations.of(root, c.meaning)
+    fun iSpy(r: com.polingual.app.play.SpyRound, root: String) = RootTranslations.of(root, r.answer)
+    fun polyword(p: com.polingual.app.play.PolyPuzzle, root: String) = RootTranslations.of(root, p.gloss)
+    fun lobby(e: foundation.bucket.core.model.RevealEntry, root: String) = RootTranslations.of(root, e.meaning.ifBlank { e.gloss })
+    fun letter(p: foundation.bucket.core.engine.LetterPrompt, root: String) = RootTranslations.of(root, p.sound)
 }

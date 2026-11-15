@@ -13,6 +13,28 @@ const STATS = [
   ["64", "sound dimensions"],
 ];
 
+function ArchiveFoot() {
+  return (
+    <>
+      <section className="mt-16 rounded-xl bg-white px-5 py-6 md:px-8 border-[1px] border-[var(--hairline)]">
+        <Tex block>{String.raw`\mathrm{score}_{\alpha}(q, w) = \alpha \, d\big(s(q), s(w)\big) + (1 - \alpha)\, d\big(p(q), p(w)\big)`}</Tex>
+        <p className="mt-3 text-[16px] leading-7 text-center text-[color:var(--ink-2)]">
+          Each word has a meaning vector <Tex>{String.raw`s`}</Tex> and a sound vector <Tex>{String.raw`p`}</Tex>.
+          Close on both means a cognate.{" "}
+          <a href="/research#math" className="underline text-[color:var(--blue)]">The math</a>
+        </p>
+      </section>
+
+      <footer className="mt-16 text-center text-[13px] text-[color:var(--ink-dim)]">
+        Data from <a href="https://en.wiktionary.org" className="underline">Wiktionary</a> via{" "}
+        <a href="https://kaikki.org" className="underline">Kaikki</a>,{" "}
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" className="underline">CC BY-SA 4.0</a>. Same graph as{" "}
+        <a href="https://www.bucket.foundation" className="underline">bucket.foundation</a>.
+      </footer>
+    </>
+  );
+}
+
 export default function HomePage() {
   return (
     <Site bare>
@@ -56,21 +78,7 @@ export default function HomePage() {
           <Signup compact />
         </section>
 
-        <section className="mt-16 rounded-xl bg-white px-5 py-6 md:px-8 border-[1px] border-[var(--hairline)]">
-          <Tex block>{String.raw`\mathrm{score}_{\alpha}(q, w) = \alpha \, d\big(s(q), s(w)\big) + (1 - \alpha)\, d\big(p(q), p(w)\big)`}</Tex>
-          <p className="mt-3 text-[16px] leading-7 text-center text-[color:var(--ink-2)]">
-            Each word has a meaning vector <Tex>{String.raw`s`}</Tex> and a sound vector <Tex>{String.raw`p`}</Tex>.
-            Close on both means a cognate.{" "}
-            <a href="/research#math" className="underline text-[color:var(--blue)]">The math</a>
-          </p>
-        </section>
-
-        <footer className="mt-16 text-center text-[13px] text-[color:var(--ink-dim)]">
-          Data from <a href="https://en.wiktionary.org" className="underline">Wiktionary</a> via{" "}
-          <a href="https://kaikki.org" className="underline">Kaikki</a>,{" "}
-          <a href="https://creativecommons.org/licenses/by-sa/4.0/" className="underline">CC BY-SA 4.0</a>. Same graph as{" "}
-          <a href="https://www.bucket.foundation" className="underline">bucket.foundation</a>.
-        </footer>
+        <ArchiveFoot />
       </div>
     </div>
     </Site>

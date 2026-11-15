@@ -38,6 +38,14 @@ object PlayAssets {
     val json = Json { ignoreUnknownKeys = true }
     @Volatile private var words: List<PlayWord>? = null
     @Volatile private var bank: PolywordBank? = null
+    @Volatile private var alpha: Pair<List<String>, Map<String, List<foundation.bucket.core.engine.Letter>>>? = null
+
+    fun alphabets(context: Context): Pair<List<String>, Map<String, List<foundation.bucket.core.engine.Letter>>> = alpha ?: run {
+        val o = json.parseToJsonElement(read(context, "play/alphabets.json")) as kotlinx.serialization.json.JsonObject
+        val heritage = (o.getValue("heritage") as kotlinx.serialization.json.JsonArray).map { (it as kotlinx.serialization.json.JsonPrimitive).content }
+        val letters = (o.getValue("letters") as kotlinx.serialization.json.JsonObject).mapValues { (_, v) -> (v as kotlinx.serialization.json.JsonArray).map { e -> (e as kotlinx.serialization.json.JsonObject).let { foundation.bucket.core.engine.Letter((it.getValue("ch") as kotlinx.serialization.json.JsonPrimitive).content, (it.getValue("sound") as kotlinx.serialization.json.JsonPrimitive).content) } } }
+        (heritage to letters).also { alpha = it }
+    }
 
     fun words(context: Context): List<PlayWord> = words ?: json.decodeFromString<List<PlayWord>>(read(context, "play/words.json")).also { words = it }
     fun bank(context: Context): PolywordBank = bank ?: json.decodeFromString<PolywordBank>(read(context, "play/polyword-bank.json")).also { bank = it }

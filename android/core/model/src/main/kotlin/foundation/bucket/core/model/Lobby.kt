@@ -123,6 +123,16 @@ data class Lobby(
     fun powerFor(round: Int) = powers.firstOrNull { it.round == round }
 }
 
+object LobbyGames {
+    val native = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Duel, LobbyGame.Tiles)
+    private val fallback = setOf("daily", "same-word", "flags", "live", "tiles")
+
+    fun offered(server: List<String>): List<LobbyGame> {
+        val allowed = server.ifEmpty { fallback.toList() }.toSet()
+        return native.filter { it.wire in allowed }
+    }
+}
+
 object LobbyRules {
     const val MIN_READY = 2
     const val CAP = 8

@@ -3,6 +3,8 @@ package com.polingual.app.play
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -33,28 +35,27 @@ enum class WebGame(val route: String, val title: String, val blurb: String, val 
 }
 
 @Composable
-fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, content: @Composable ColumnScope.() -> Unit) {
-    LaunchedEffect(game) { graph.ads.enteredGame() }
-    Page(
-        game.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, ground = Ground.Lattice, panel = true,
-        stickers = listOf(Sticker(game.art, Alignment.CenterStart, 70.dp, game.tilt), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 84.dp, -4f, dx = (-8).dp)),
-        content = content,
-    )
-}
+fun GameFrame(graph: Graph, game: WebGame, back: () -> Unit, soundOnly: Boolean = false, content: @Composable ColumnScope.() -> Unit) =
+    com.polingual.app.GameScaffold(graph, game.title, game.art, game.tilt, "bunting", soundOnly, back, content = content)
 
 @Composable
 fun ColumnScope.Results(graph: Graph, title: String, line: String, again: (() -> Unit)?, againLabel: String = "Play again", reveal: @Composable ColumnScope.() -> Unit = {}) {
     LaunchedEffect(title) { graph.ads.gameFinished() }
-    Text(title, style = Type.display, color = PL.Ink)
-    Text(line, style = Type.body, color = PL.InkDim)
-    reveal()
-    if (again != null) PrimaryButton(againLabel, color = PL.Malachite, onClick = again)
-    PLButton("Start learning", variant = ButtonVariant.Secondary, onClick = LocalStartLearning.current)
-    AdBanner(graph)
+    com.polingual.app.ResultBlock(title, line, null, again, againLabel, ad = { AdBanner(graph) }) { reveal() }
 }
 
 @Composable
-fun RevealWord(graph: Graph, word: PlayWord, lang: String) {
+fun RevealWord(graph: Graph, word: PlayWord, lang: String, rootLang: String = PlayDecks.ROOT) {
     val f = word.form(lang) ?: return
-    WordReveal(lang, f.word, word.gloss, null, null, ipa = f.ipa ?: f.roman ?: f.kana, root = word.root(lang), definition = word.note ?: word.gloss) { graph.voice.speak(f.word, lang) }
+    WordReveal(lang, f.word, word.gloss, null, null, ipa = f.ipa ?: f.roman ?: f.kana, root = word.root(lang), definition = word.note ?: word.gloss, rootLang = rootLang) { graph.voice.speak(f.word, lang) }
+}
+
+object PlayDecks {
+    const val ROOT = "en"
+    private val LANG = Regex("^[a-z]{2,3}$")
+
+    fun root(learnerRoot: String?, items: List<foundation.bucket.core.engine.LangItem>, min: Int = 200): String {
+        if (learnerRoot == null || !LANG.matches(learnerRoot)) return ROOT
+        return if (items.count { it.kind == foundation.bucket.core.engine.ItemKind.Word && it.form(learnerRoot) != null } >= min) learnerRoot else ROOT
+    }
 }

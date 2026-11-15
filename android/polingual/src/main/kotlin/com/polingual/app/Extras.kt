@@ -53,7 +53,8 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
     TodayMore(graph, nav)
     Card(color = PL.Tyrian, onClick = { nav.navigate(Tab.Play.route) { launchSingleTop = true } }) {
         Text("Daily games", style = Type.title, color = PL.Paper)
-        Text("${GameKind.entries.count { app?.played(it, system) != null }} of ${GameKind.entries.size} played today. Games are free.", color = PL.Paper.copy(alpha = 0.9f))
+        val book by graph.daily.collectAsState()
+        Text("${DailyGame.entries.count { book[DailyBook.key(it, dayKey())] != null }} of ${DailyGame.entries.size} played today. Games are free.", color = PL.Paper.copy(alpha = 0.9f))
     }
     AdBanner(graph)
 }

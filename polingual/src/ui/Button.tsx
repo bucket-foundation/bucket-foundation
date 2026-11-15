@@ -11,9 +11,9 @@ export function buttonClass({ variant = "primary", size = "lg", block, onDark, i
   return [s.btn, s[variant], s[size], block && s.block, onDark && s.onDark, iconOnly && s.iconOnly, className].filter(Boolean).join(" ");
 }
 
-export function Button({ variant, size, block, onDark, icon, iconOnly, className, children, type = "button", ...rest }: Shared & ButtonHTMLAttributes<HTMLButtonElement>) {
+export function Button({ variant, size, block, onDark, icon, iconOnly, bare, className, children, type = "button", ...rest }: Shared & { bare?: boolean } & ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button type={type} className={buttonClass({ variant, size, block, onDark, iconOnly, className })} {...rest}>
+    <button type={type} className={bare ? className : buttonClass({ variant, size, block, onDark, iconOnly, className })} {...rest}>
       {icon && <span className={s.icon} aria-hidden>{icon}</span>}
       {children}
     </button>

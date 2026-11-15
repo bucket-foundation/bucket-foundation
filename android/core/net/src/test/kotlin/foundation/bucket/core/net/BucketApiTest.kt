@@ -87,4 +87,5 @@ class ScienceApiTest {
         assertTrue(seen.last().contains("q=entropy") && seen.last().contains("top_k=20"))
         assertEquals("/academy-app/corpus/physics.json?", seen[1])
     }
+
 }

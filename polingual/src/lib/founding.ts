@@ -2,14 +2,14 @@ import { createHash } from "node:crypto";
 import { allowedSource, emailLimiter, verifyHuman, ipLimiter, TESTFLIGHT_URL, type BetaEnv, type BetaRequest, type Fetcher, RateLimiter, UNSUBSCRIBE } from "./beta";
 import { parseSignup } from "./signup";
 
-export const FOUNDING_TOTAL = 200;
+const FOUNDING_TOTAL = 200;
 export const DB_TIMEOUT_MS = 1500;
 
-export type Spots = { total: number; left: number };
+type Spots = { total: number; left: number };
 export type Outcome = "claimed" | "resend" | "recent" | "ip-limit" | "full";
 export type Claim = { code: string | null; outcome: Outcome; left: number };
-export type FoundingResult = { status: number; body: { ok?: true; error?: string; left?: number; full?: true } };
-export type FoundingRequest = BetaRequest;
+type FoundingResult = { status: number; body: { ok?: true; error?: string; left?: number; full?: true } };
+type FoundingRequest = BetaRequest;
 
 function rpcBase(env: BetaEnv): string | null {
   const url = env.POLINGUAL_DB_URL?.trim();
@@ -20,7 +20,7 @@ function rpcHeaders(key: string) {
   return { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Content-Profile": "polingual", "Accept-Profile": "polingual" };
 }
 
-export function foundingConfigured(env: BetaEnv): boolean {
+function foundingConfigured(env: BetaEnv): boolean {
   return Boolean(rpcBase(env) && env.POLINGUAL_DB_SERVICE_KEY?.trim() && env.RESEND_API_KEY?.trim() && env.TURNSTILE_SECRET_KEY?.trim() && env.TURNSTILE_SITE_KEY?.trim());
 }
 
@@ -39,7 +39,7 @@ export async function fetchSpots(env: BetaEnv, send: Fetcher = fetch): Promise<S
   }
 }
 
-export type FoundingStatus = { body: (Spots | { open: false }) & { siteKey?: string }; cache: string };
+type FoundingStatus = { body: (Spots | { open: false }) & { siteKey?: string }; cache: string };
 
 export async function foundingStatus(env: BetaEnv, send: Fetcher = fetch): Promise<FoundingStatus> {
   const spots = await fetchSpots(env, send);
@@ -51,7 +51,7 @@ export function ipHash(ip: string | null, env: BetaEnv): string {
   return createHash("sha256").update(`${env.FOUNDING_IP_SALT?.trim() || "polingual-founding"}:${ip || "unknown"}`).digest("hex");
 }
 
-export async function claimCode(email: string, ip: string, key: string, base: string, send: Fetcher): Promise<Claim | null> {
+async function claimCode(email: string, ip: string, key: string, base: string, send: Fetcher): Promise<Claim | null> {
   const r = await send(`${base}/claim_founding_code`, {
     method: "POST",
     headers: rpcHeaders(key),

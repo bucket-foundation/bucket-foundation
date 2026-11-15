@@ -7,12 +7,12 @@ export function normalizeHandle(input: string): string | null {
 }
 
 export type Profile = { handle: string; displayName: string };
-export type ProfileLoad = { status: "ready"; profile: Profile | null } | { status: "signed-out" } | { status: "error" };
-export type ProfileSave = { ok: true; profile: Profile } | { ok: false; error: string; signIn?: boolean };
+type ProfileLoad = { status: "ready"; profile: Profile | null } | { status: "signed-out" } | { status: "error" };
+type ProfileSave = { ok: true; profile: Profile } | { ok: false; error: string; signIn?: boolean };
 export type ProfileDeps = { fetch: typeof fetch; token: () => Promise<string | null> };
 
 export const PROFILE_ME = "/api/academy/profile?me=1";
-export const PROFILE_SAVE = "/api/academy/profile";
+const PROFILE_SAVE = "/api/academy/profile";
 export const SIGN_IN_AGAIN = "Sign in again to save.";
 
 export function cleanHandle(input: string): { handle: string } | { error: string } {
