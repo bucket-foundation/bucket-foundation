@@ -148,7 +148,7 @@ struct Studio: View {
                 }
                 .environment(\.learnUpsell, upsell)
             } label: { Label { Text("Play") } icon: { PLArt.blocks.image(height: 24) } }
-            Tab(value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
+            Tab(value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
         }
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()

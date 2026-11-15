@@ -319,6 +319,51 @@ import Testing
     #expect(EngineState(js: spread.js).cards["fr:w0"]?.spread == true)
 }
 
+func placedPile(_ count: Int, now: Double) -> EngineState {
+    var st = EngineState()
+    for i in 0..<count {
+        var c = Card(state: "review")
+        c.reps = 1
+        c.stability = 3.2
+        c.lastReview = now - 3 * DAY_MS
+        c.due = now
+        c.placed = true
+        st.cards["fr:w\(i)"] = c
+    }
+    return st
+}
+
+func placedDays(_ st: EngineState, now: Double) -> [Int: Int] {
+    var perDay: [Int: Int] = [:]
+    for (_, c) in st.cards.entries { perDay[Int(((c.due ?? 0) - now) / DAY_MS), default: 0] += 1 }
+    return perDay
+}
+
+@Test(arguments: [PLACED_PER_DAY * PLACED_SPREAD_DAYS, PLACED_PER_DAY * PLACED_SPREAD_DAYS + 1, PLACED_PER_DAY * PLACED_SPREAD_DAYS + PLACED_PER_DAY + 1])
+func placedSpreadFillsEveryDayToTheCapBeforeOverflowing(count: Int) {
+    let now = 1_792_508_400_000.0
+    let perDay = placedDays(spreadingUntouchedPlaced(placedPile(count, now: now), now: now), now: now)
+    let window = (1...PLACED_SPREAD_DAYS).map { perDay[$0] ?? 0 }
+    #expect(window == Array(repeating: PLACED_PER_DAY, count: PLACED_SPREAD_DAYS))
+    let overflow = count - PLACED_PER_DAY * PLACED_SPREAD_DAYS
+    let late = perDay.filter { $0.key > PLACED_SPREAD_DAYS }
+    #expect(late.values.reduce(0, +) == overflow)
+    #expect(late.values.allSatisfy { $0 <= PLACED_PER_DAY })
+    #expect(late.isEmpty || late.keys.min() == PLACED_SPREAD_DAYS + 1)
+}
+
+@Test func twoDevicesSpreadingTheSamePileAgreeAfterSync() {
+    let t0 = 1_792_508_400_000.0
+    let pile = placedPile(311, now: t0)
+    let phone = spreadingUntouchedPlaced(pile, now: t0)
+    let tablet = spreadingUntouchedPlaced(pile, now: t0 + 2 * 3_600_000)
+    let onPhone = spreadingUntouchedPlaced(mergeState(phone, tablet), now: t0 + DAY_MS)
+    let onTablet = spreadingUntouchedPlaced(mergeState(tablet, onPhone), now: t0 + DAY_MS)
+    #expect(onPhone.cards == onTablet.cards)
+    #expect(onPhone.cards.entries.allSatisfy { $0.value.spread == true })
+    #expect(placedDays(onPhone, now: t0 + 2 * 3_600_000).values.allSatisfy { $0 <= PLACED_PER_DAY })
+}
+
 @Test func placedReviewsAreCappedBehindRealReviews() throws {
     let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
     let utc = TimeZone(identifier: "UTC")!
@@ -441,4 +486,35 @@ import Testing
         #expect(font >= side * 0.085, "\(phrase) at \(font)")
         #expect(font < side * 0.2, "\(phrase) at \(font)")
     }
+}
+
+@Test func pickThenCheckGradesTheCheckedOption() {
+    var ex = Exercise(kind: .choose, itemId: "night", lang: "es", root: "en", prompt: "night", promptLang: "en", answer: "noche", answerLang: "es")
+    ex.options = ["noche", "nuit", "notte", "día"]
+    ex.optionLangs = ["noche": "es", "nuit": "fr", "notte": "it", "día": "es"]
+    #expect(choiceGrade(ex, picked: "noche", slow: false) == ChoiceGrade(rating: 3, slip: nil))
+    #expect(choiceGrade(ex, picked: "noche", slow: true) == ChoiceGrade(rating: 2, slip: nil))
+    #expect(choiceGrade(ex, picked: "día", slow: false) == ChoiceGrade(rating: 1, slip: nil))
+}
+
+@Test func crossLanguageDistractorRatesAgainAndBringsTheNameBack() {
+    var ex = Exercise(kind: .choose, itemId: "night", lang: "es", root: "en", prompt: "night", promptLang: "en", answer: "noche", answerLang: "es")
+    ex.options = ["noche", "nuit", "notte"]
+    ex.optionLangs = ["noche": "es", "nuit": "fr", "notte": "it"]
+    let grade = choiceGrade(ex, picked: "nuit", slow: false)
+    #expect(grade == ChoiceGrade(rating: 1, slip: "fr"))
+    var st = EngineState()
+    for _ in 0..<FlagMisses.hitsToHideName { st = FlagMisses.recordingHit(st, "fr") }
+    #expect(!FlagMisses.showsName(st, "fr"))
+    st = FlagMisses.recording(st, grade.slip!)
+    #expect(FlagMisses.showsName(st, "fr"))
+    #expect(FlagMisses.count(st, "fr") == 1)
+}
+
+@Test func acceptedAlternativesGradeRightWithoutOptionLanguages() {
+    var ex = Exercise(kind: .choose, itemId: "car", lang: "es", root: "en", prompt: "car", promptLang: "en", answer: "coche", answerLang: "es")
+    ex.accept = ["coche", "carro"]
+    ex.options = ["carro", "casa", "perro"]
+    #expect(choiceGrade(ex, picked: "carro", slow: false) == ChoiceGrade(rating: 3, slip: nil))
+    #expect(choiceGrade(ex, picked: "casa", slow: false) == ChoiceGrade(rating: 1, slip: nil))
 }

@@ -69,6 +69,7 @@ public final class Account {
     }
 
     @ObservationIgnored private var refreshing: Task<String?, Never>?
+    @ObservationIgnored public private(set) var lastRefreshFailure: AccountTokenFailure?
 
     public func freshToken(now: @escaping @Sendable () -> Date = { .now }) async -> String? {
         guard let s = session else { return nil }
@@ -88,15 +89,18 @@ public final class Account {
                 let next = try await self.api.refresh(s)
                 try self.store.save(next)
                 self.session = next
+                self.lastRefreshFailure = nil
                 return next.accessToken
             } catch BucketError.revoked {
                 if let stored = self.newer(than: s), !stored.expires(within: 0, now: now()) {
                     self.session = stored
                     return stored.accessToken
                 }
+                self.lastRefreshFailure = .unauthorized
                 self.end(.expired)
                 return nil
             } catch {
+                self.lastRefreshFailure = AccountTokenFailure(refreshError: error)
                 return s.expires(within: 0, now: now()) ? nil : s.accessToken
             }
         }

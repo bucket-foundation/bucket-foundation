@@ -246,6 +246,72 @@ final class LangServer: @unchecked Sendable {
         #expect(!s.hasLocalSystems)
     }
 
+    @Test func signOutDuringResyncWritesNothingBack() async {
+        let server = seeded()
+        let gate = LockedBox(true)
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(true)
+        let s = LangStore(api: BucketAPI(transport: PullGate(inner: server.api, gate: gate)), disk: disk, cache: MemoryLangDisk(), seed: { _ in nil }, token: { signedIn.value ? "t" : nil }, now: { 2_000 })
+        await s.load()
+        server.online.mutate { $0 = false }
+        s.grade(Self.system.id, lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        #expect(s.hasUnsyncedWork)
+        server.online.mutate { $0 = true }
+        server.posts.mutate { $0 = [] }
+        gate.mutate { $0 = false }
+        let syncing = Task { await s.resync() }
+        try? await Task.sleep(for: .milliseconds(100))
+        s.clearLocal()
+        gate.mutate { $0 = true }
+        await syncing.value
+        #expect(s.systems.isEmpty)
+        #expect(!s.hasLocalSystems)
+        #expect(server.posts.value.isEmpty)
+    }
+
+    @Test func resyncKeepsRefusedWorkQueued() async {
+        let server = seeded()
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
+        await s.load()
+        server.postStatus.mutate { $0 = 503 }
+        s.grade(Self.system.id, lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        await s.resync()
+        #expect(s.hasUnsyncedWork)
+        #expect(s.saveState == .failed)
+        server.postStatus.mutate { $0 = nil }
+        await s.resync()
+        #expect(!s.hasUnsyncedWork)
+        #expect(s.saveState == .synced)
+    }
+
+    @Test func gradeDuringResyncPushReachesTheServer() async {
+        let server = seeded()
+        let gate = PostGate(inner: server.api)
+        gate.open.mutate { $0 = true }
+        let s = LangStore(api: BucketAPI(transport: gate), disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
+        await s.load()
+        server.online.mutate { $0 = false }
+        s.grade(Self.system.id, lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        server.online.mutate { $0 = true }
+        gate.open.mutate { $0 = false }
+        let syncing = Task { await s.resync() }
+        while !gate.waiting.value { await Task.yield() }
+        s.grade(Self.system.id, lang: "es", itemId: "gracias", rating: 3)
+        gate.open.mutate { $0 = true }
+        await syncing.value
+        #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "gracias")))
+        #expect(!s.hasUnsyncedWork)
+    }
+
+    @Test func blankOverwriteMapsToRefused() {
+        #expect(LangStore.failure(409) == .refused)
+        #expect(LangStore.failure(503) == .failed)
+        #expect(LangStore.failure(0) == .offline)
+    }
+
     @Test func signInDuringLoadWaitsForFreshSystems() async {
         let server = seeded()
         let gate = LockedBox(false)

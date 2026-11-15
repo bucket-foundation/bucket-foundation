@@ -6,9 +6,11 @@ public struct PreparedDeck: Sendable {
     public let atoms: [Atom]
     public let encompassing: [String: [EncEdge]]
     public let byId: [String: Atom]
+    public let questionsFile: String
 
-    public init(branch: String, atoms raw: [Atom]) {
+    public init(branch: String, atoms raw: [Atom], questionsFile: String? = nil) {
         self.branch = branch
+        self.questionsFile = questionsFile ?? "corpus/questions/\(branch).json"
         atoms = withLeverage(raw)
         encompassing = buildEncompassingMap(atoms)
         byId = Dictionary(atoms.map { ($0.id, $0) }, uniquingKeysWith: { _, b in b })
@@ -189,6 +191,15 @@ public final class ScienceStore {
         states = [:]
         pulled = false
         saveState = .idle
+    }
+
+    public func resync() async {
+        guard await token() != nil, !localBranches().isEmpty else { return }
+        let before = pulled
+        pulled = false
+        await syncAfterSignIn()
+        if pulled, saveState == .localOnly { saveState = .synced }
+        if !pulled { pulled = before }
     }
 
     public func syncAfterSignIn() async {

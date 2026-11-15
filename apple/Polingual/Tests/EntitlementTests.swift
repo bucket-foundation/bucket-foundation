@@ -1,4 +1,5 @@
 import Foundation
+import StoreKit
 import Testing
 @testable import Polingual
 
@@ -78,6 +79,30 @@ struct EntitlementTests {
         #expect(PaywallCopy.disclosure(trial: false, price: "$9.99", period: "month").contains("24 hours"))
     }
 
+    @Test func trialLengthFollowsTheStoreOffer() {
+        #expect(TrialLength.days(unit: .day, value: 3, periods: 1) == 3)
+        #expect(TrialLength.days(unit: .week, value: 1, periods: 1) == 7)
+        #expect(TrialLength.days(unit: .week, value: 1, periods: 2) == 14)
+        #expect(TrialLength.days(unit: .month, value: 1, periods: 1) == 30)
+        #expect(TrialLength.days(nil) == nil)
+    }
+
+    @Test func trialLengthPrefersTheChosenPlan() {
+        let offers: [(id: String, days: Int?)] = [(Plan.yearly, 7), (Plan.monthly, 3), (Plan.lifetime, 14)]
+        #expect(TrialLength.pick(offers, chosen: Plan.monthly) == 3)
+        #expect(TrialLength.pick(offers, chosen: Plan.yearly) == 7)
+        #expect(TrialLength.pick(offers, chosen: Plan.lifetime) == 7)
+        #expect(TrialLength.pick([(Plan.yearly, nil), (Plan.monthly, 3)], chosen: Plan.yearly) == 3)
+        #expect(TrialLength.pick([], chosen: Plan.yearly) == Plan.trialDays)
+        #expect(TrialLength.pick([(Plan.lifetime, 14)], chosen: Plan.lifetime) == Plan.trialDays)
+    }
+
+    @Test func paywallCopyNamesTheStoreTrialLength() {
+        #expect(PaywallCopy.headline(trial: true, days: 7) == "7 days free")
+        #expect(PaywallCopy.disclosure(trial: true, days: 7, price: "$59.99", period: "year").hasPrefix("7 days free, then $59.99 a year."))
+        #expect(PaywallCopy.renewal(trial: true, days: 14).contains("14 days free"))
+    }
+
     @Test func lifetimeNeverExpiresAndFamilyIsASubscription() {
         #expect(Entitlement.access([record(Plan.lifetime, expiresIn: nil)], now: now) == .subscribed(productID: Plan.lifetime, until: nil))
         #expect(Entitlement.access([record(Plan.family)], now: now).open)
@@ -108,5 +133,39 @@ struct EntitlementTests {
         #expect(TrialReminder.action(productID: Plan.family, introductory: false) == .cancel)
         #expect(TrialReminder.action(productID: Plan.lifetime, introductory: true) == .cancel)
         #expect(TrialReminder.action(productID: Plan.family, introductory: true) == .cancel)
+    }
+
+    @Test func lockedSeesEveryShownPlan() {
+        let all = Plan.shown(extra: true)
+        #expect(Plan.offered(all, current: nil) == all)
+        #expect(Plan.offered(Plan.all, current: nil, family: true) == Plan.all)
+    }
+
+    @Test func yearlyAndFamilyCrossgrade() {
+        let all = Plan.shown(extra: true)
+        #expect(Plan.offered(all, current: Plan.yearly) == [Plan.family])
+        #expect(Plan.offered(all, current: Plan.yearly, family: true) == [Plan.family])
+        #expect(Plan.offered(all, current: Plan.family) == [Plan.yearly])
+        #expect(Plan.offered(all, current: Plan.family, family: true).isEmpty)
+    }
+
+    @Test func monthlyUpgradesToYearlyOrFamily() {
+        #expect(Plan.offered(Plan.shown(extra: true), current: Plan.monthly) == [Plan.yearly, Plan.family])
+        #expect(Plan.offered(Plan.shown(extra: false), current: Plan.monthly) == [Plan.yearly])
+    }
+
+    @Test func openAccessHidesPlanCardsWithNoSwitch() {
+        #expect(Plan.offered(Plan.shown(extra: false), current: Plan.yearly).isEmpty)
+        #expect(Plan.offered(Plan.shown(extra: true), current: Plan.lifetime).isEmpty)
+    }
+
+    @Test func currentIsTheLiveRecordThatRunsLongest() {
+        let monthly = record(Plan.monthly, expiresIn: 86_400)
+        let yearly = record(Plan.yearly, expiresIn: 300 * 86_400)
+        #expect(Entitlement.current([monthly, yearly], now: now) == Plan.yearly)
+        #expect(Entitlement.current([record(Plan.yearly, intro: true)], now: now) == Plan.yearly)
+        #expect(Entitlement.current([record(Plan.lifetime, expiresIn: nil), yearly], now: now) == Plan.lifetime)
+        #expect(Entitlement.current([record(Plan.family, upgraded: true), monthly], now: now) == Plan.monthly)
+        #expect(Entitlement.current([record(expiresIn: -1)], now: now) == nil)
     }
 }
