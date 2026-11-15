@@ -18,6 +18,14 @@ struct StoreKitTests {
         return s
     }
 
+    func settle(_ subs: Subscriptions) async {
+        for _ in 0..<40 {
+            await subs.refresh()
+            if subs.access != .locked { return }
+            try? await Task.sleep(for: .milliseconds(100))
+        }
+    }
+
     @Test func productsCarryAThreeDayFreeTrial() async throws {
         _ = try session()
         let products = try await Product.products(for: Plan.all)
@@ -39,7 +47,7 @@ struct StoreKitTests {
         #expect(subs.trialEligible)
         let monthly = try #require(try await Product.products(for: [Plan.monthly]).first)
         _ = try await Self.shared!.buyProduct(identifier: monthly.id)
-        await subs.refresh()
+        await settle(subs)
         guard case .trial = subs.access else {
             Issue.record("expected trial, got \(subs.access)")
             return
@@ -52,7 +60,7 @@ struct StoreKitTests {
         let subs = Subscriptions()
         let yearly = try #require(try await Product.products(for: [Plan.yearly]).first)
         _ = try await Self.shared!.buyProduct(identifier: yearly.id)
-        await subs.refresh()
+        await settle(subs)
         #expect(subs.access.open)
         try s.expireSubscription(productIdentifier: Plan.yearly)
         for _ in 0..<20 where subs.access != .locked {
@@ -71,7 +79,7 @@ struct StoreKitTests {
         #expect(family.subscription != nil)
         #expect(family.isFamilyShareable)
         _ = try await Self.shared!.buyProduct(identifier: family.id)
-        await subs.refresh()
+        await settle(subs)
         guard case .subscribed(let id, let until) = subs.access else {
             Issue.record("expected subscribed, got \(subs.access)")
             return
@@ -88,7 +96,7 @@ struct StoreKitTests {
         let lifetime = try #require(try await Product.products(for: [Plan.lifetime]).first)
         #expect(lifetime.type == .nonConsumable)
         _ = try await Self.shared!.buyProduct(identifier: lifetime.id)
-        await subs.refresh()
+        await settle(subs)
         #expect(subs.access == .subscribed(productID: Plan.lifetime, until: nil))
         #expect(subs.access.open)
     }
