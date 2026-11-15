@@ -9,6 +9,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class WebGoldensTest {
     private val golden: JsonObject = Json.parseToJsonElement(javaClass.classLoader!!.getResource("web-goldens.json")!!.readText()).jsonObject
@@ -33,6 +34,13 @@ class WebGoldensTest {
             listOf("b", "c", "d", "e").map { foundation.bucket.core.engine.QueueEntry(it, "es") } + listOf("f", "g").map { foundation.bucket.core.engine.QueueEntry(it, "fr") }
         assertEquals(list("sessionMixAlternate"), m.alternate(q).map { "${it.lang}:${it.itemId}:${it.stage.name.lowercase()}" })
         val f = foundation.bucket.core.engine.FrequencyRank.parse(mapOf("es" to File(TestCorpus.repo, "apple/Shared/Corpus/top1000/es.json").readText()))
+        var card = foundation.bucket.core.engine.CardState()
+        val ms = (1..8).map { card = foundation.bucket.core.engine.Scheduler.grade(card, true, 0); m.mastery(card) }
+        val android = listOf(0.5, 0.8).map { bar -> ms.indexOfFirst { it >= bar } + 1 }
+        assertEquals(listOf(4, 5), android)
+        val web = list("sessionMixHistoryGates").map { it.substringAfter(':').toInt() }
+        assertEquals(listOf(3, 3), web)
+        assertTrue(android.zip(web).all { (a, w) -> a - w in 0..2 })
         assertEquals(list("sessionMixCurriculumEs"), m.curriculum(TestCorpus.corpus, "en", "es", f).take(40).map { "${it.id}:${f.rank(it, "es")}" })
     }
 

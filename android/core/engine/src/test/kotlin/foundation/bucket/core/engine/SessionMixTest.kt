@@ -116,4 +116,46 @@ class SessionMixTest {
         assertTrue(SessionMix.isSentenceCard("es:sent:s1") && !SessionMix.isSentenceCard("es:w-1"))
         assertEquals(0, SessionMix.startedCount(state, listOf("es")))
     }
+
+    @Test
+    fun soundShareStepsAtFortyAndOneFifty() {
+        assertEquals(listOf(0.1, 0.25, 0.25, 0.4), listOf(39, 40, 149, 150).map { SessionMix.soundShare(it) })
+    }
+
+    private fun capRun(started: Int, n: Int): String {
+        val t = SoundTally()
+        return (0 until n).joinToString("") { k ->
+            val yes = SessionMix.soundAllowed(t, started)
+            t.record(if (yes) ExerciseKind.Listen else ExerciseKind.Produce, "$k")
+            if (yes) "T" else "F"
+        }
+    }
+
+    @Test
+    fun soundAllowedFollowsTheCapOverASequence() {
+        assertEquals("FFFFFFFFFTFFFFFFFFFT", capRun(0, 20))
+        assertEquals("FFFTFFFT", capRun(40, 8))
+        assertEquals("FFTFTFFTFT", capRun(150, 10))
+    }
+
+    @Test
+    fun masteryBarSitsBetween079And081() {
+        val at = { m: Double -> StudyState(cards = mapOf("fr:x" to CardState(reps = 5, intervalDays = -21 * kotlin.math.ln(1 - m)), "es:x" to CardState(reps = 5, intervalDays = -21 * kotlin.math.ln(1 - m)))) }
+        assertFalse(SessionMix.mastered(at(0.79), "fr", "x"))
+        assertTrue(SessionMix.mastered(at(0.81), "fr", "x"))
+        val item = corpus.items.first { it.form("fr") != null && it.form("es") != null }
+        val match = listOf(QueueEntry(item.id, "fr", Stage.Match))
+        val state = { m: Double -> StudyState(cards = listOf("fr", "es").associate { "$it:${item.id}" to CardState(reps = 5, intervalDays = -21 * kotlin.math.ln(1 - m)) }) }
+        assertTrue(SessionMix.gateComparisons(match, listOf("fr", "es"), corpus, state(0.79)).isEmpty())
+        assertEquals(match, SessionMix.gateComparisons(match, listOf("fr", "es"), corpus, state(0.81)))
+    }
+
+    @Test
+    fun aForcedSoundRollIsCappedInTheRealSession() {
+        val due = StudyState(cards = GameDeck(corpus, "en", listOf("fr")).pool("fr").take(20).associate { "fr:${it.itemId}" to CardState(reps = 2, intervalDays = 1.0) })
+        val s = StudySession(corpus, "en", listOf("fr"), due, "2026-11-13", Scheduler.DAY_MS * 2, SeededRandom(1uL), newPerLang = 0, roll = { 0.0 })
+        val kinds = generateSequence { s.current?.also { s.answer(it.answer) } }.map { it.kind }.toList()
+        assertEquals(20, kinds.size)
+        assertEquals(listOf(9, 19), kinds.withIndex().filter { it.value.needsSound }.map { it.index })
+    }
 }

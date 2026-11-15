@@ -47,7 +47,10 @@ class ListenCardsTest {
         }.toSet()
         assertTrue(ExerciseKind.TypeHeard in kinds)
         val heritage = StudySession(corpus, "en", listOf("ru"), matured(listOf("ru"), 3), "2026-11-13", 10, SeededRandom(1uL), newPerLang = 0, heritage = setOf("ru"))
-        assertTrue(ExerciseKind.SpellHeard in generateSequence { heritage.current?.also { heritage.answer(it.answer) } }.map { it.kind }.toList())
+        val heritageKinds = generateSequence { heritage.current?.also { heritage.answer(it.answer) } }.map { it.kind }.toList()
+        val firstOpen = heritageKinds.indices.first { k -> heritageKinds.take(k).count { it.needsSound } + 1 <= SessionMix.soundShare(SessionMix.startedCount(matured(listOf("ru"), 3), listOf("ru"))) * (k + 1) }
+        assertEquals(ExerciseKind.SpellHeard, heritageKinds[firstOpen])
+        assertTrue(heritageKinds.take(firstOpen).none { it.needsSound })
         val listen = StudySession(corpus, "en", listOf("fr"), matured(listOf("fr"), 2), "2026-11-13", 10, SeededRandom(3uL), newPerLang = 0)
         val seen = generateSequence { listen.current?.also { listen.answer(it.answer) } }.map { it.kind }.toList()
         assertTrue(ExerciseKind.Listen in seen)

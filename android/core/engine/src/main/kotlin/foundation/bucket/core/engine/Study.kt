@@ -69,6 +69,7 @@ class StudySession(
     private val heritage: Set<String> = emptySet(),
     maxReviews: Int = 30,
     freq: FrequencyRank? = null,
+    private val roll: (() -> Double)? = null,
 ) {
     val tally = SoundTally()
     private var planned = 0
@@ -98,7 +99,7 @@ class StudySession(
         total = queue.size
     }
 
-    private fun roll(): Double = (rng.next() shr 11).toDouble() / 9007199254740992.0
+    private fun roll(): Double = roll?.invoke() ?: ((rng.next() shr 11).toDouble() / 9007199254740992.0)
 
     private fun exercise(w: GameWord, isNew: Boolean): Exercise {
         val reps = state.cards[w.id]?.reps ?: 0
