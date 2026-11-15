@@ -96,7 +96,7 @@ public final class LangStore {
             return doc.systems.isEmpty && doc.removed.isEmpty
         }
         let s = EngineState(js: data)
-        return s.cards.isEmpty && s.prof.isEmpty && s.history.isEmpty && s.xp == 0
+        return s.cards.count + s.prof.count + s.history.count == 0 && s.xp == 0
     }
 
     func send(_ token: String, _ branch: String, _ data: JSValue, over server: JSObject) async -> Int {
