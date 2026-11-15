@@ -35,7 +35,7 @@ export function parseProgress(raw: string | null): Progress {
   }
 }
 
-export function gameKey(lang: string, day: number): string {
+function gameKey(lang: string, day: number): string {
   return `${lang}:${day}`;
 }
 

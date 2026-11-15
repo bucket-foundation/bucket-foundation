@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { hasMove, playable, adjacent, dealer, fresh, level, matches, resolve, rng, SIZE, swapped, type Board, type Meaning } from "./babel";
+import { hasMove, seenMeanings, tapStep, playable, adjacent, dealer, fresh, level, matches, resolve, rng, SIZE, swapped, type Board, type Meaning } from "./babel";
 
 const meanings: Meaning[] = ["dog", "cat", "sun", "sea", "tree"].map((m) => ({ id: m, meaning: m, forms: { es: `${m}-es`, fr: `${m}-fr`, de: `${m}-de` } }));
 
@@ -48,4 +48,16 @@ test("playable boards always hold a legal swap and no ready-made match", () => {
   }
   const dead: Board = Array.from({ length: SIZE * SIZE }, (_, i) => ({ key: i, meaning: ["dog", "cat", "sun"][(Math.floor(i / SIZE) + i) % 3], lang: "es" }));
   assert.equal(hasMove(dead), false);
+});
+
+test("tapStep picks, unpicks, repicks a far cell and swaps a neighbour", () => {
+  assert.deepEqual(tapStep(null, 4), { pick: 4 });
+  assert.deepEqual(tapStep(4, 4), { pick: null });
+  assert.deepEqual(tapStep(0, SIZE + 1), { pick: SIZE + 1 });
+  assert.deepEqual(tapStep(0, 1), { swap: [0, 1] });
+});
+
+test("seenMeanings keeps one cell per cleared meaning in first-cleared order", () => {
+  const cells = [{ key: 1, meaning: "dog", lang: "es" }, { key: 2, meaning: "dog", lang: "fr" }, { key: 3, meaning: "cat", lang: "de" }];
+  assert.deepEqual(seenMeanings(cells).map((c) => c.key), [2, 3]);
 });

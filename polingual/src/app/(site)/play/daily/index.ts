@@ -1,7 +1,7 @@
 import type { ArtName } from "@/ui/art";
 import type { DailyGame } from "@/lib/daily/store";
 
-export interface DailyGameCard {
+interface DailyGameCard {
   slug: DailyGame;
   href: string;
   title: string;

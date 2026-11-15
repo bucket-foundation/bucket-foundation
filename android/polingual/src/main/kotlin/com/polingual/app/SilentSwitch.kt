@@ -20,7 +20,7 @@ fun SilentSwitch(graph: Graph, compact: Boolean = false) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Column(Modifier.weight(1f)) {
             Text("Silent mode", style = if (compact) Type.small else Type.title, color = PL.Ink)
-            if (!compact) Text("No sound effects or automatic audio. A speaker tap still plays.", style = Type.small, color = PL.InkDim)
+            if (!compact) Text("Skips listening questions until you can hear again, and plays nothing on its own. A speaker tap still plays.", style = Type.small, color = PL.InkDim)
         }
         Switch(
             checked = silent, onCheckedChange = graph::setSilent,
@@ -28,4 +28,16 @@ fun SilentSwitch(graph: Graph, compact: Boolean = false) {
             colors = SwitchDefaults.colors(checkedTrackColor = PL.Lapis, checkedThumbColor = PL.Paper),
         )
     }
+}
+
+object SoundRules {
+    val soundOnlyGames = setOf(GameKind.Voice, GameKind.Letters)
+    fun needsSoundCard(silent: Boolean, soundOnly: Boolean) = silent && soundOnly
+    fun onlySoundLeft(silent: Boolean, remaining: Int, deferred: Int) = silent && remaining == 0 && deferred > 0
+}
+
+@Composable
+fun NeedsSound(graph: Graph, what: String) {
+    foundation.bucket.core.ui.pl.EmptyState("glyph-speaker", "$what needs sound. Silent mode is on, so it waits until you can listen.")
+    SilentSwitch(graph)
 }

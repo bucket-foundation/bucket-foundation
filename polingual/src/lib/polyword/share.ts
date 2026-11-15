@@ -1,6 +1,6 @@
 import { MAX_GUESSES, score, solved, type Mark, type Puzzle } from "./puzzle";
 
-export const FLAG_EMOJI: Record<string, string> = {
+const FLAG_EMOJI: Record<string, string> = {
   en: "🇬🇧", es: "🇪🇸", fr: "🇫🇷", it: "🇮🇹", pt: "🇵🇹", de: "🇩🇪", nl: "🇳🇱", sv: "🇸🇪", ru: "🇷🇺", ja: "🇯🇵", ar: "🇪🇬", el: "🇬🇷", fi: "🇫🇮", hi: "🇮🇳", ko: "🇰🇷", pl: "🇵🇱", zh: "🇨🇳", cs: "🇨🇿", tr: "🇹🇷", id: "🇮🇩", vi: "🇻🇳", he: "🇮🇱", fa: "🇮🇷", th: "🇹🇭",
 };
 

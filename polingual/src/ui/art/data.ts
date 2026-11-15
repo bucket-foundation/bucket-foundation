@@ -1,4 +1,4 @@
-export type ArtData = { name: string; label: string; origin: string; viewBox: string; body: string; dark: boolean };
+type ArtData = { name: string; label: string; origin: string; viewBox: string; body: string; dark: boolean };
 
 export const ART_DATA = [
  {

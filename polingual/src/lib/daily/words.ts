@@ -3,8 +3,8 @@ import { dailySeed, mixed, SeededRandom } from "./rng";
 
 export const LANG_CODES = ["en", "es", "fr", "it", "pt", "de", "nl", "sv", "pl", "fi", "ru", "el", "ar", "hi", "ja", "zh", "ko", "he", "fa", "tr", "cs", "id", "vi", "th", "ta", "la", "grc", "sa", "ang"];
 
-export const STARTER_RANK = 3;
-export const HELD_RANK = 2;
+const STARTER_RANK = 3;
+const HELD_RANK = 2;
 
 export interface GameWord {
   itemId: string;
@@ -151,13 +151,13 @@ export class GameDeck {
   }
 }
 
-export const DAILY_LENGTH = 6;
-export const QUIZ_LENGTH = 10;
+const DAILY_LENGTH = 6;
+const QUIZ_LENGTH = 10;
 const DAILY_POOL = 400;
 
 export type PromptMode = "form" | "flag" | "voice";
 
-export interface GamePrompt {
+interface GamePrompt {
   id: number;
   mode: PromptMode;
   word: GameWord;

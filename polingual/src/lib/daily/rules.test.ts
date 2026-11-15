@@ -116,7 +116,18 @@ test("saving merges per key, retries a failed write and reports the state", asyn
   assert.equal((await recordResult(res("mini", "2026-11-13", 1), memory(), fakeAccount({}, { token: null }).deps)).saved, "device");
   assert.equal((await recordResult(res("mini", "2026-11-13", 1), memory(), fakeAccount({}, { failPosts: 9 }).deps)).saved, "failed");
   const loaded = await loadBook(memory(), acct.deps);
-  assert.ok(loaded[bookKey("mini", "2026-11-12")]);
+  assert.ok(loaded.book[bookKey("mini", "2026-11-12")]);
+  assert.equal(loaded.source, "account");
+  assert.equal((await loadBook(memory(), fakeAccount({}, { failPosts: 0, token: null }).deps)).source, "device");
+});
+
+test("signing in pushes guest results to the account", async () => {
+  const store = memory();
+  await recordResult(res("word-groups", "2026-11-12", 10), store, null);
+  const acct = fakeAccount({ [bookKey("mini", "2026-11-11")]: res("mini", "2026-11-11", 5) });
+  const loaded = await loadBook(store, acct.deps);
+  assert.equal(loaded.source, "account");
+  assert.deepEqual(Object.keys(acct.remote()).sort(), ["mini|2026-11-11", "word-groups|2026-11-12"]);
 });
 
 test("share text is a grid", () => {

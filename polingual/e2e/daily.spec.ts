@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import { mockCorpus } from "./daily-mock";
+import { mockApi, signIn } from "./mock";
 
 async function open(page: Page, path: string) {
   await mockCorpus(page);
@@ -91,7 +92,6 @@ test("letter sprint finds eight letters, then keeps today's result", async ({ pa
 });
 
 test("a second device shows the account's saved result and saves without replaying", async ({ page }) => {
-  const { mockApi, signIn } = await import("./mock");
   const now = new Date();
   const day = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
   const saved = { game: "daily-set", day, score: 3, total: 6, pattern: "101010", savedAt: 1, words: [] };

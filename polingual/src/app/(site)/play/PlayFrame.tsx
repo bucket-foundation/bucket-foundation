@@ -7,6 +7,7 @@ import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { AdsPauseProvider, AdsProvider } from "./AdsContext";
 import Consent from "./Consent";
+import { SpeechGuard } from "@/ui";
 import styles from "./play.module.css";
 import { SheetPeek, StageStickers } from "./Stickers";
 import { artDataUrl } from "@/ui/art";
@@ -39,6 +40,7 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
       <div className={banner ? `${app.shell} ${styles.playStage} ${styles.withBanner}` : `${app.shell} ${styles.playStage}`} data-testid="play-frame" data-ads={visible ? layout : "off"} style={BAND}>
         <StageStickers />
         {header}
+        <SpeechGuard />
         <div className={styles.frame} data-rails={rail ? layout : undefined} data-testid="play-scroll">
           {rail ? (
             <div className={styles.rail}>

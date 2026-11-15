@@ -142,20 +142,8 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
         )
         foundation.bucket.core.ui.pl.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
         val a = answer
-        if (a != null) {
-            Text("${Lang.flag(a.source)} ${a.headword}", style = Type.word, color = p.ink, )
-            a.rows.forEach { (l, f) ->
-                Card {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Column(Modifier.weight(1f)) {
-                            Text("${Lang.flag(l)} ${Lang.name(l)}", style = Type.caps, color = p.muted)
-                            Text(f, style = Type.word.copy(fontSize = 22.sp()), color = p.ink)
-                        }
-                        IconButton(onClick = { graph.voice.speak(f, l) }) { Glyph("speaker", "Speak", PL.Lapis, Modifier.size(24.dp)) }
-                    }
-                }
-            }
-        } else if (searched) Text("No translation found. Try one word, or pick the source language.", color = p.muted)
+        if (a != null) TranslationRows(a.source, a.headword, a.rows) { f, l -> graph.voice.speak(f, l) }
+        else if (searched) Text("No translation found. Try one word, or pick the source language.", color = p.muted)
         val recents = app?.recents.orEmpty()
         if (recents.isNotEmpty()) {
             SectionTitle("Recent")
@@ -200,4 +188,20 @@ fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boole
 @Composable
 private fun PickerRow(lang: String, onClick: () -> Unit) {
     Text("${Lang.flag(lang)}  ${Lang.name(lang)}", color = LocalPalette.current.ink, modifier = Modifier.fillMaxWidth().clickable(onClick = onClick).padding(vertical = 10.dp))
+}
+
+@Composable
+private fun TranslationRows(source: String, headword: String, rows: Map<String, String>, speak: (String, String) -> Unit) {
+    Text("${Lang.flag(source)} $headword", style = Type.word, color = PL.Ink)
+    rows.forEach { (l, f) ->
+        Card {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text("${Lang.flag(l)} ${Lang.name(l)}", style = Type.caps, color = PL.InkDim)
+                    Text(f, style = Type.word.copy(fontSize = 22.sp()), color = PL.Ink)
+                }
+                IconButton(onClick = { speak(f, l) }) { Glyph("speaker", "Speak", PL.Lapis, Modifier.size(24.dp)) }
+            }
+        }
+    }
 }

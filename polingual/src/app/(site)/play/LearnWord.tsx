@@ -25,11 +25,11 @@ export function LangCard({ lang, big = false }: { lang: string; big?: boolean })
   );
 }
 
-export function entryReading(e: Pick<RevealEntry, "reading" | "roman">): string | undefined {
+function entryReading(e: Pick<RevealEntry, "reading" | "roman">): string | undefined {
   return readingLabel(e.reading ?? undefined) ?? e.roman ?? undefined;
 }
 
-export function RevealCard({ entry, index }: { entry: RevealEntry; index: number }) {
+export function RevealCard({ entry, index, rootLang }: { entry: RevealEntry; index: number; rootLang: string }) {
   const item = { id: `${entry.lang}:${entry.word}:${index}`, text: entry.word, lang: bcp47(entry.lang) };
   const definition = entry.gloss || entry.meaning;
   const learn = learnEntry(useLearnIndex(), entry.lang, entry.word, entry.meaning);
@@ -49,7 +49,7 @@ export function RevealCard({ entry, index }: { entry: RevealEntry; index: number
       />
       <p className={styles.revealDef} data-testid="reveal-definition">
         {entry.correct ? <b className={styles.revealMark} aria-label="Right answer">✓ </b> : null}
-        {definition ? definition : "No entry for this word yet."}
+        {definition ? <><span className={styles.revealRoot} data-testid="reveal-root-lang">{langName(rootLang)}</span> {definition}</> : "No entry for this word yet."}
         {entry.meaning && entry.gloss && entry.meaning.toLowerCase() !== entry.gloss.toLowerCase() ? <span className={styles.revealAlt}> · {entry.meaning}</span> : null}
       </p>
       <dl className={styles.revealFacts} data-testid="reveal-facts">

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/ui";
 import type { SpyDecor, SpyScene } from "@academy/ispy";
 import { Art } from "@/ui/art";
 import { ObjectArt } from "@/ui/art/objects";
@@ -22,9 +23,9 @@ export default function Scene({ scene, marks, locked, onTap }: { scene: SpyScene
         <Decor key={i} d={d} />
       ))}
       {scene.objects.map((o) => (
-        <button
+        <Button bare
           key={o.id}
-          type="button"
+         
           className={`${styles.thing} ${styles[`art_${o.art}`]}`}
           style={{ left: `${o.x}%`, top: `${o.y}%`, "--tilt": `${o.tilt}deg` } as React.CSSProperties}
           data-mark={marks[o.id]}
@@ -35,7 +36,7 @@ export default function Scene({ scene, marks, locked, onTap }: { scene: SpyScene
           onClick={() => onTap(o.id)}
         >
           <ObjectArt id={o.id} className={styles.glyph} />
-        </button>
+        </Button>
       ))}
     </div>
   );

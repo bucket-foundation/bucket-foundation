@@ -1,6 +1,6 @@
 "use client";
 
-import { langName } from "@academy/lang-systems";
+import { langName, type LangSystem } from "@academy/lang-systems";
 import { levelLabel } from "@academy/placement-cefr";
 import { useLangSystem } from "@learn/languages/useLangSystem";
 import { useCefrPlacement } from "@learn/languages/useCefrPlacement";
@@ -8,6 +8,42 @@ import LangExercise from "@learn/languages/LangExercise";
 import { appHref } from "@/lib/app/systems";
 import styles from "../../app.module.css";
 import { Button, ButtonLink, Card, Stage } from "@/ui";
+
+type PlacementResult = NonNullable<ReturnType<typeof useCefrPlacement>["result"]>;
+
+function PlacementDone({ h, system, lang, result, asked }: { h: ReturnType<typeof useLangSystem>; system: LangSystem; lang: string; result: PlacementResult; asked: number }) {
+  const nextLang = system.targets.find((t) => t !== lang && system.placement[t] === undefined);
+  const known = result.placeIds.length;
+  const level = levelLabel(result);
+  return (
+    <Stage ground="paper">
+      <Card as="section" className={styles.card} data-testid="placement-done" data-level={result.level}>
+        <p className={styles.label}>Placement · {langName(lang)}</p>
+        <h1 className={styles.title}>Level {level}</h1>
+        <p className={styles.body}>
+          {asked} questions. {known ? `${known} words you got right start as known.` : "You start from the first words."}
+          {result.mapping === "none" ? " This language has no CEFR exam, so the level is a Polingual band." : " Levels map Polingual word bands to CEFR. No exam has checked them yet."}
+        </p>
+        <ul className={styles.bands} data-testid="bands">
+          {result.bands.map((b) => (
+            <li key={b.band}>
+              {b.band}: {b.right} of {b.asked} right, {b.passed ? "passed" : "not passed"}
+            </li>
+          ))}
+        </ul>
+        {h.saveState === "local-only" || h.saveState === "failed" ? <p className={styles.small}>Saved on this device. It syncs when the connection comes back.</p> : null}
+        <div className={styles.row}>
+          {nextLang ? (
+            <ButtonLink href={appHref.place(system.id, nextLang)}>Place {langName(nextLang)}</ButtonLink>
+          ) : (
+            <ButtonLink href={appHref.study(system.id)}>Start today</ButtonLink>
+          )}
+          <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
+        </div>
+      </Card>
+    </Stage>
+  );
+}
 
 export default function Placement({ systemId, lang: requested }: { systemId: string; lang: string | null }) {
   const h = useLangSystem(systemId);
@@ -28,39 +64,7 @@ export default function Placement({ systemId, lang: requested }: { systemId: str
   }
   const lang = run.lang;
 
-  if (run.result) {
-    const nextLang = system.targets.find((t) => t !== lang && system.placement[t] === undefined);
-    const known = run.result.placeIds.length;
-    const level = levelLabel(run.result);
-    return (
-      <Stage ground="paper">
-      <Card as="section" className={styles.card} data-testid="placement-done" data-level={run.result.level}>
-        <p className={styles.label}>Placement · {langName(lang)}</p>
-        <h1 className={styles.title}>Level {level}</h1>
-        <p className={styles.body}>
-          {run.answers.length} questions. {known ? `${known} words you got right start as known.` : "You start from the first words."}
-          {run.result.mapping === "none" ? " This language has no CEFR exam, so the level is a Polingual band." : " Levels map Polingual word bands to CEFR. No exam has checked them yet."}
-        </p>
-        <ul className={styles.bands} data-testid="bands">
-          {run.result.bands.map((b) => (
-            <li key={b.band}>
-              {b.band}: {b.right} of {b.asked} right, {b.passed ? "passed" : "not passed"}
-            </li>
-          ))}
-        </ul>
-        {h.saveState === "local-only" || h.saveState === "failed" ? <p className={styles.small}>Saved on this device. It syncs when the connection comes back.</p> : null}
-        <div className={styles.row}>
-          {nextLang ? (
-            <ButtonLink href={appHref.place(system.id, nextLang)}>Place {langName(nextLang)}</ButtonLink>
-          ) : (
-            <ButtonLink href={appHref.study(system.id)}>Start today</ButtonLink>
-          )}
-          <ButtonLink variant="ghost" size="md" href={appHref.home}>Your systems</ButtonLink>
-        </div>
-      </Card>
-      </Stage>
-    );
-  }
+  if (run.result) return <PlacementDone h={h} system={system} lang={lang} result={run.result} asked={run.answers.length} />;
 
   if (!run.question) return <Stage ground="paper"><p className={styles.muted} aria-busy="true">Picking the next question</p></Stage>;
 

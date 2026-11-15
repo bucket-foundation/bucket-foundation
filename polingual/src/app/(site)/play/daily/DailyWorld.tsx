@@ -5,8 +5,8 @@ import type { RevealEntry } from "@academy/lobbies";
 import { LEARN_HREF } from "@/lib/lobby/client";
 import { shareText, type DailyGame, type DailyResult, type SaveState } from "@/lib/daily/store";
 import { readBreaks } from "@/lib/lobby/breaks";
-import { local } from "./useDaily";
-import { Button, ButtonLink } from "@/ui";
+import { local } from "@/lib/storage";
+import { Button, ButtonLink, Eyebrow, Lede, Title } from "@/ui";
 import GameWorld, { WorldStickers } from "../GameWorld";
 import { Art } from "@/ui/art";
 import { FlagTile } from "@/ui";
@@ -29,9 +29,9 @@ export function DailyWorld({ id, children }: { id: DailyGame; children: ReactNod
 export function Heading({ eyebrow, title, blurb }: { eyebrow: string; title: string; blurb?: string }) {
   return (
     <div>
-      <p className={styles.eyebrow}>{eyebrow}</p>
-      <h1 className={styles.title}>{title}</h1>
-      {blurb ? <p className={styles.blurb}>{blurb}</p> : null}
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <Title>{title}</Title>
+      {blurb ? <Lede>{blurb}</Lede> : null}
     </div>
   );
 }
@@ -44,7 +44,7 @@ export function Pips({ pattern, total }: { pattern: string; total: number }) {
   );
 }
 
-export function Results({ title, result, url, saved, onRetry }: { title: string; result: DailyResult; url: string; saved?: SaveState | null; onRetry?: () => void }) {
+export function Results({ title, result, url, saved, onRetry, rootLang = "en" }: { title: string; result: DailyResult; url: string; saved?: SaveState | null; onRetry?: () => void; rootLang?: string }) {
   const entries: RevealEntry[] = result.words.map((w) => ({ lang: w.lang, word: w.form, roman: null, reading: null, meaning: w.gloss, gloss: w.gloss, correct: w.right }));
   const share = shareText(title, result, url);
   return (
@@ -58,7 +58,7 @@ export function Results({ title, result, url, saved, onRetry }: { title: string;
       </div>
       {entries.length ? (
         <ul className={styles.reveal} data-testid="daily-reveal">
-          {entries.map((e, i) => <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} />)}
+          {entries.map((e, i) => <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} rootLang={rootLang} />)}
         </ul>
       ) : null}
       <p className={styles.blurb} role="status" data-testid="daily-saved" data-state={saved ?? "saving"}>

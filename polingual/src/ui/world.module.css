@@ -20,7 +20,7 @@
 .tab{border:0;background:transparent;font:var(--pl-type-small);font-weight:800;color:var(--pl-ink);padding:8px 16px;border-radius:var(--pl-radius-pill);cursor:pointer;min-height:40px}
 .tab[aria-selected=true]{background:var(--pl-lapis);color:var(--pl-paper);box-shadow:0 3px 0 var(--pl-lapis-deep)}
 .tab:focus-visible{outline:3px solid var(--pl-lapis);outline-offset:2px}
-.stage{position:relative;margin:0 -16px;min-height:calc(100dvh - 56px);display:grid;grid-template-rows:auto 1fr;overflow:hidden}
+.stage{position:relative;margin:0 -16px;min-height:calc(100dvh - var(--pl-chrome,56px));display:grid;grid-template-rows:auto 1fr;overflow:hidden}
 .stageArt{position:relative;height:230px}
 .stageBody{position:relative;z-index:2;padding:24px 16px 48px;width:100%;max-width:560px;margin:0 auto}
 @media (min-width:960px){

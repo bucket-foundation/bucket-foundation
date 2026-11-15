@@ -74,6 +74,12 @@ class Graph(val context: Context) {
     }
 
     init {
+        scope.launch(Dispatchers.IO) {
+            com.polingual.app.play.PlayAssets.words(context)
+            com.polingual.app.play.PlayAssets.bank(context)
+            com.polingual.app.play.PlayAssets.alphabets(context)
+            corpus.load()
+        }
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()

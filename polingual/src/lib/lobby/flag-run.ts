@@ -1,6 +1,6 @@
-export const BEST_KEY = "polingual-web/flag-tiles-best/v1";
+const BEST_KEY = "polingual-web/flag-tiles-best/v1";
 
-export type RunPhase = "ready" | "running" | "missed" | "over";
+type RunPhase = "ready" | "running" | "missed" | "over";
 
 export interface RunState {
   phase: RunPhase;
@@ -46,4 +46,19 @@ export function writeBest(store: () => Storage | null, date: string, score: numb
   } catch {
     return score;
   }
+}
+
+export type LaneState = "right" | "wrong" | "dim" | undefined;
+
+export function laneState(s: RunState, lane: number, answer: number): LaneState {
+  if (s.phase !== "missed" && s.phase !== "over") return undefined;
+  return lane === answer ? "right" : lane === s.picked ? "wrong" : "dim";
+}
+
+type GhostRow = { name: string; flag: string; skill: string; score: number };
+export type BoardRow = { name: string; flag: string | null; score: number; bot: string | null; me: boolean };
+
+export function boardRows(ghosts: readonly GhostRow[], score: number): BoardRow[] {
+  const rows: BoardRow[] = [...ghosts.map((g) => ({ name: g.name, flag: g.flag, score: g.score, bot: g.skill, me: false })), { name: "You", flag: null, score, bot: null, me: true }];
+  return rows.sort((a, b) => b.score - a.score);
 }

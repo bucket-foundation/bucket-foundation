@@ -110,6 +110,13 @@ object Snakes {
         return Arena(snakes, list, nextWord, eaten, bad)
     }
 
+    fun tick(a0: Arena, aim: Double?, deck: SnakeDeck, rand: () -> Double, dt: Double): Arena {
+        var a = a0.copy(snakes = a0.snakes.map { s -> if (!s.alive) s else advance(s, if (s.bot) botTarget(s, a0.words, rand) else aim ?: s.angle, dt) })
+        a = eat(a, deck, rand)
+        val c = collide(a)
+        return c.arena.copy(snakes = c.arena.snakes.map { s -> if (s.bot && !s.alive) make(s.id, s.name, true, s.skill, Pt(100 + rand() * 1400, 100 + rand() * 800), rand() * 6.28, s.color) else s })
+    }
+
     fun collide(arena: Arena): Collision {
         val died = mutableListOf<String>()
         val snakes = arena.snakes.map { s ->

@@ -14,7 +14,7 @@ export type QuestionBuilder = (seed: number, settings: RoomSettings) => LiveQues
 
 export const ROUNDS = 3;
 export const PER_ROUND = 5;
-export const WINDOW_MS = 20_000;
+const WINDOW_MS = 20_000;
 
 export function parseSettings(raw: unknown): RoomSettings | null {
   const o = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};

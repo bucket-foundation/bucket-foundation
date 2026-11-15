@@ -1,7 +1,7 @@
 export type Tilt = "score" | "pass" | null;
 
-export const TILT_TRIGGER = 6;
-export const TILT_RESET = 3;
+const TILT_TRIGGER = 6;
+const TILT_RESET = 3;
 
 export function classifyTilt(z: number | null): Tilt {
   if (z === null) return null;

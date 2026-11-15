@@ -62,13 +62,17 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
     var arena by remember { mutableStateOf<Arena?>(null) }
     var aim by remember { mutableStateOf<Double?>(null) }
     var left by remember { mutableIntStateOf((Snakes.ROUND_MS / 1000).toInt()) }
-    var round by remember { mutableIntStateOf(0) }
+    var round by androidx.compose.runtime.saveable.rememberSaveable { mutableIntStateOf(0) }
+    var dealSeed by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("") }
     val measurer = rememberTextMeasurer()
+    val chips = remember { HashMap<String, androidx.compose.ui.text.TextLayoutResult>() }
     val scope = rememberCoroutineScope()
     LaunchedEffect(round) {
         if (round == 0) return@LaunchedEffect
         val others = Snakes.LANG_CHOICES.filter { it != lang }.take(5)
-        val d = Snakes.deck(graph.corpus.load().items, lang, others, (1 + (Math.random() * 1e12).toLong()).toString())
+        val items = graph.corpus.load().items
+        val seed = DealSeeds.ensure(dealSeed).also { dealSeed = it }
+        val d = com.polingual.app.offMain { Snakes.deck(items, lang, others, seed) }
         val rng = XorRng(System.currentTimeMillis().toInt())
         val rand = rng::next
         val bots = Bots.all.take(4).mapIndexed { i, b -> Snakes.make(b.userId, b.name, true, Snakes.SKILL[b.skill] ?: 0.8, Pt(200 + rand() * 1200, 150 + rand() * 700), rand() * 6.28, i + 1) }
@@ -78,12 +82,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
         var last = withFrameNanos { it }
         while (true) {
             val now = withFrameNanos { it }
-            val dt = minOf(0.05, (now - last) / 1e9)
-            last = now
-            a = a.copy(snakes = a.snakes.map { s -> if (!s.alive) s else Snakes.advance(s, if (s.bot) Snakes.botTarget(s, a.words, rand) else aim ?: s.angle, dt) })
-            a = Snakes.eat(a, d, rand)
-            val c = Snakes.collide(a)
-            a = c.arena.copy(snakes = c.arena.snakes.map { s -> if (s.bot && !s.alive) Snakes.make(s.id, s.name, true, s.skill, Pt(100 + rand() * 1400, 100 + rand() * 800), rand() * 6.28, s.color) else s })
+            a = Snakes.tick(a, aim, d, rand, minOf(0.05, (now - last) / 1e9)).also { last = now }
             arena = a
             left = maxOf(0, ((end - System.currentTimeMillis() + 999) / 1000).toInt())
             val me = a.snakes.first { it.id == "me" }
@@ -93,14 +92,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
     }
     GameFrame(graph, WebGame.Snake, back) {
         when (phase) {
-            SnakePhase.Setup -> {
-                Text("ARENA", style = Type.caps, color = PL.InkDim)
-                Text("Steer with your finger. Eat words in your language to grow. Words in other languages shrink you. Touch a bigger snake and you are out.", style = Type.body, color = PL.Ink)
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Snakes.LANG_CHOICES.take(10).forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang, small = true) { lang = l } }
-                }
-                PrimaryButton("Play") { round += 1 }
-            }
+            SnakePhase.Setup -> GameSetup("ARENA", "Steer with your finger. Eat words in your language to grow. Words in other languages shrink you. Touch a bigger snake and you are out.", Snakes.LANG_CHOICES.take(10), { it == lang }, { lang = it }, "Play") { dealSeed = DealSeeds.fresh(); round += 1 }
             SnakePhase.Play -> {
                 val a = arena ?: run { EmptyState("brush", "Building the arena."); return@GameFrame }
                 val me = a.snakes.first { it.id == "me" }
@@ -109,19 +101,45 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                     Text("Eat ${Lang.name(deck?.lang ?: "")}", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f))
                     Text("${left}s", style = Type.small, color = PL.InkDim)
                 }
-                SceneFrame(Scenes.snake, inset = 36.dp) { Canvas(
+                SnakeArena(a, me, { arena }, { aim = it }, measurer, chips)
+            }
+            SnakePhase.Dead, SnakePhase.Over -> {
+                val a = arena
+                val me = a?.snakes?.firstOrNull { it.id == "me" }
+                Results(graph, "Length ${me?.length ?: 0}", if (phase == SnakePhase.Dead) "Swallowed by a bigger snake." else "Time is up.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
+                    SnakeWords(graph, a, me, left)
+                }
+                foundation.bucket.core.ui.pl.PlainLink("Change language") { phase = SnakePhase.Setup }
+            }
+        }
+    }
+}
+
+@Composable
+fun WordLine(lang: String, form: String, meaning: String) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        FlagSwatch(lang, Modifier.size(22.dp, 16.dp).clip(RoundedCornerShape(3.dp)))
+        Text(form, style = Type.body.copy(fontWeight = FontWeight.Bold), color = PL.Ink)
+        Text(Lang.name(lang), style = Type.caps, color = PL.InkDim)
+        Text(meaning, style = Type.small, color = PL.InkDim)
+    }
+}
+
+@Composable
+private fun SnakeArena(a: Arena, me: Snake, current: () -> Arena?, onAim: (Double) -> Unit, measurer: androidx.compose.ui.text.TextMeasurer, chips: HashMap<String, androidx.compose.ui.text.TextLayoutResult>) {
+    SceneFrame(Scenes.snake, inset = 36.dp) { Canvas(
                     Modifier.fillMaxWidth().aspectRatio(0.8f).clip(RoundedCornerShape(16.dp)).pointerInput(Unit) {
                         awaitEachGesture {
                             val down = awaitFirstDown()
                             fun point(p: Offset) {
-                                val cur = arena?.snakes?.firstOrNull { it.id == "me" } ?: return
+                                val cur = current()?.snakes?.firstOrNull { it.id == "me" } ?: return
                                 val w = minOf(Snakes.WORLD_W, size.width / density.toDouble() * 1.2)
                                 val h = minOf(Snakes.WORLD_H, size.height / density.toDouble() * 1.2)
                                 val vx = (cur.body[0].x - w / 2).coerceIn(0.0, Snakes.WORLD_W - w)
                                 val vy = (cur.body[0].y - h / 2).coerceIn(0.0, Snakes.WORLD_H - h)
                                 val wx = vx + p.x / size.width * w
                                 val wy = vy + p.y / size.height * h
-                                aim = atan2(wy - cur.body[0].y, wx - cur.body[0].x)
+                                onAim(atan2(wy - cur.body[0].y, wx - cur.body[0].x))
                             }
                             point(down.position)
                             while (true) {
@@ -133,6 +151,28 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                         }
                     },
                 ) {
+                    drawArena(a, me, measurer, chips)
+                } }
+}
+
+
+@Composable
+private fun SnakeWords(graph: Graph, a: Arena?, me: Snake?, left: Int) {
+    val eaten = a?.eaten.orEmpty().distinctBy { "${it.lang}:${it.form}" }
+    SectionTitle("Words you ate")
+    if (eaten.isEmpty()) Text("None this round.", style = Type.small, color = PL.InkDim)
+    eaten.firstOrNull()?.let { fw ->
+        if (RevealRules.snake(me?.alive ?: false, left)) PlayReveal(graph, fw.lang, fw.form, fw.meaning, PlayDecks.ROOT)
+    }
+    eaten.drop(1).forEach { fw -> WordLine(fw.lang, fw.form, fw.meaning) }
+    val bad = a?.bad.orEmpty().distinctBy { "${it.lang}:${it.form}" }
+    if (bad.isNotEmpty()) {
+        SectionTitle("Decoys")
+        bad.forEach { fw -> WordLine(fw.lang, fw.form, "${Lang.name(fw.lang)} · ${fw.meaning}") }
+    }
+}
+
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawArena(a: Arena, me: Snake, measurer: androidx.compose.ui.text.TextMeasurer, chips: HashMap<String, androidx.compose.ui.text.TextLayoutResult>) {
                     val w = minOf(Snakes.WORLD_W, size.width / density * 1.2)
                     val h = minOf(Snakes.WORLD_H, size.height / density * 1.2)
                     val vx = (me.body[0].x - w / 2).coerceIn(0.0, Snakes.WORLD_W - w)
@@ -160,7 +200,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                         val y = sy(fw.y)
                         val rawX = sx(fw.x)
                         if (rawX < -200 || y < -60 || rawX > size.width + 200 || y > size.height + 60) return@forEach
-                        val r = measurer.measure(fw.form, TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1)
+                        val r = chips.getOrPut(fw.form) { measurer.measure(fw.form, TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1) }
                         val tw = r.size.width + 24f
                         val x = FitRules.clampCenter(rawX, tw, size.width)
                         drawRoundRect(PL.White, Offset(x - tw / 2, y - 18.dp.toPx() / 1f), Size(tw, 36.dp.toPx() / 1f), CornerRadius(12f))
@@ -174,37 +214,4 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
                         val label = measurer.measure("${s.name} ${s.length}", TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = PL.Paper), softWrap = false, maxLines = 1)
                         drawText(label, topLeft = Offset(FitRules.clampCenter(sx(s.body[0].x), label.size.width.toFloat(), size.width) - label.size.width / 2f, sy(s.body[0].y) - 18 * k - label.size.height))
                     }
-                } }
-            }
-            SnakePhase.Dead, SnakePhase.Over -> {
-                val a = arena
-                val me = a?.snakes?.firstOrNull { it.id == "me" }
-                Results(graph, "Length ${me?.length ?: 0}", if (phase == SnakePhase.Dead) "Swallowed by a bigger snake." else "Time is up.", again = { round += 1 }) {
-                    val eaten = a?.eaten.orEmpty().distinctBy { "${it.lang}:${it.form}" }
-                    SectionTitle("Words you ate")
-                    if (eaten.isEmpty()) Text("None this round.", style = Type.small, color = PL.InkDim)
-                    eaten.firstOrNull()?.let { fw ->
-                        val word = remember(fw) { PlayAssets.words(graph.context).firstOrNull { it.form(fw.lang)?.word == fw.form } }
-                        if (RevealRules.snake(me?.alive ?: false, left)) { if (word != null) RevealWord(graph, word, fw.lang) else com.polingual.app.WordReveal(fw.lang, fw.form, fw.meaning, null, null) { graph.voice.speak(fw.form, fw.lang) } }
-                    }
-                    eaten.drop(1).forEach { fw -> WordLine(fw.lang, fw.form, fw.meaning) }
-                    val bad = a?.bad.orEmpty().distinctBy { "${it.lang}:${it.form}" }
-                    if (bad.isNotEmpty()) {
-                        SectionTitle("Decoys")
-                        bad.forEach { fw -> WordLine(fw.lang, fw.form, "${Lang.name(fw.lang)} · ${fw.meaning}") }
-                    }
-                }
-                foundation.bucket.core.ui.pl.PlainLink("Change language") { phase = SnakePhase.Setup }
-            }
-        }
-    }
-}
-
-@Composable
-fun WordLine(lang: String, form: String, meaning: String) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        FlagSwatch(lang, Modifier.size(22.dp, 16.dp).clip(RoundedCornerShape(3.dp)))
-        Text(form, style = Type.body.copy(fontWeight = FontWeight.Bold), color = PL.Ink)
-        Text(meaning, style = Type.small, color = PL.InkDim)
-    }
 }

@@ -1,7 +1,7 @@
 import data from "../data/words.json";
 import { SITE } from "./facts";
 
-export type WordAudio = { src: string; file: string; license: string; by?: string; licenseUrl?: string };
+type WordAudio = { src: string; file: string; license: string; by?: string; licenseUrl?: string };
 export type WordForm = { lang: string; word: string; ipa?: string; roman?: string; kana?: string; audio?: WordAudio };
 export type RootCluster = { root: string; langs: string[] };
 export type Word = { slug: string; en: string; gloss: string; category: string; tier: number; forms: WordForm[]; note?: string; roots?: RootCluster[] };
@@ -61,10 +61,6 @@ export const THEMES: { id: string; name: string }[] = [
 ];
 
 export const OG_LANGS = ["es", "ru", "el", "ja", "ko", "th"];
-
-export function themeName(id: string): string {
-  return THEMES.find((t) => t.id === id)?.name ?? id;
-}
 
 export function wordsByTheme(): { id: string; name: string; words: Word[] }[] {
   return THEMES.map((t) => ({ ...t, words: WORDS.filter((w) => w.category === t.id).sort((a, b) => a.en.localeCompare(b.en)) })).filter((t) => t.words.length);

@@ -45,3 +45,11 @@ class FlagTilesTest {
         assertEquals(g.sortedByDescending { it.score }, g)
     }
 }
+
+class FlagLaneMarksTest {
+    @Test
+    fun aMissMarksTheAnswerAndThePick() {
+        assertEquals(listOf(null, null, null, null), FlagTilesRules.laneMarks(RunState(phase = RunPhase.Running), 2))
+        assertEquals(listOf(false, null, true, null), FlagTilesRules.laneMarks(RunState(phase = RunPhase.Missed, picked = 0), 2))
+    }
+}

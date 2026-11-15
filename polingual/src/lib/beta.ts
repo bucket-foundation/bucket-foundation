@@ -4,7 +4,7 @@ export const TESTFLIGHT_URL = "https://testflight.apple.com/join/B1ctUxn5";
 
 export type BetaEnv = Record<string, string | undefined>;
 export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
-export type BetaResult = { status: number; body: { ok?: true; error?: string; testflight?: string } };
+type BetaResult = { status: number; body: { ok?: true; error?: string; testflight?: string } };
 
 const API = "https://api.resend.com";
 export const UNSUBSCRIBE = "To leave the beta list, email privacy@polingual.com and we remove your address.";
@@ -55,7 +55,7 @@ export function welcomeEmail(to: string, from: string) {
   };
 }
 
-export function needsHuman(token: string | null | undefined, env: BetaEnv): boolean {
+function needsHuman(token: string | null | undefined, env: BetaEnv): boolean {
   return Boolean(token) || env.BETA_REQUIRE_TURNSTILE?.trim() === "1";
 }
 

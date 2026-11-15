@@ -55,19 +55,44 @@ class SoundTest {
     }
 
     @Test
-    fun coldStartTapPlaysWhenVoicesArriveAndSaysWhy() {
+    fun coldStartPlaysOnlyTheLatestTapOnceReady() {
         val e = FakeEngine().apply { isReady = false }
         val v = VoiceController(e, { clock }, silent = { false })
         assertIs<SpeakResult.Waiting>(v.speak("chat", "fr"))
-        assertTrue(v.problem.value!!.contains("loading"))
-        assertTrue(e.spoken.isEmpty())
+        assertIs<SpeakResult.Waiting>(v.speak("chien", "fr"))
         clock = 250
         e.isReady = true
         v.onReady()
-        assertEquals("chat", e.spoken.single().substringBefore('@'))
-        assertNull(v.problem.value)
+        assertEquals(listOf("chien"), e.spoken.map { it.substringBefore('@') })
+        v.onReady()
+        assertEquals(1, e.spoken.size)
         clock = 280
         assertEquals(280L, v.onStarted(e.spoken.single().substringAfter('#')))
+    }
+
+    @Test
+    fun aSlowStartShowsTheReasonAfterThreeHundredMilliseconds() {
+        val e = FakeEngine().apply { isReady = false }
+        val v = VoiceController(e, { clock }, silent = { false })
+        v.speak("chat", "fr")
+        clock = 299
+        v.checkSlow()
+        assertNull(v.problem.value)
+        clock = 300
+        v.checkSlow()
+        assertTrue(v.problem.value!!.contains("loading"))
+        e.isReady = true
+        v.onReady()
+        assertNull(v.problem.value)
+    }
+
+    @Test
+    fun eachPlayIsOneWordInOneLanguage() {
+        val e = FakeEngine()
+        val v = VoiceController(e, { clock }, silent = { false })
+        v.speak("perro", "es")
+        v.speak("chien", "fr")
+        assertEquals(listOf("perro@es-ES", "chien@fr-FR"), e.spoken.map { it.substringBefore('#') })
     }
 
     @Test
@@ -87,5 +112,22 @@ class SoundTest {
         val r = v.speak("こんにちは", "ja")
         assertIs<SpeakResult.Unavailable>(r)
         assertTrue(r.reason.contains("Japanese"))
+    }
+}
+
+class SoundRulesTest {
+    @Test
+    fun soundOnlyGamesShowTheNeedsSoundCardOnlyWhenSilent() {
+        assertTrue(SoundRules.needsSoundCard(silent = true, soundOnly = GameKind.Voice in SoundRules.soundOnlyGames))
+        assertTrue(SoundRules.needsSoundCard(silent = true, soundOnly = GameKind.Letters in SoundRules.soundOnlyGames))
+        assertFalse(SoundRules.needsSoundCard(silent = true, soundOnly = GameKind.Daily in SoundRules.soundOnlyGames))
+        assertFalse(SoundRules.needsSoundCard(silent = false, soundOnly = true))
+    }
+
+    @Test
+    fun aSessionOfOnlySoundQuestionsSaysSo() {
+        assertTrue(SoundRules.onlySoundLeft(silent = true, remaining = 0, deferred = 3))
+        assertFalse(SoundRules.onlySoundLeft(silent = true, remaining = 2, deferred = 3))
+        assertFalse(SoundRules.onlySoundLeft(silent = false, remaining = 0, deferred = 3))
     }
 }

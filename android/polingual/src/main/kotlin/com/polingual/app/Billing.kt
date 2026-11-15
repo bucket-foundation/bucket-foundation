@@ -120,7 +120,6 @@ class Billing(context: Context, private val graph: Graph) {
         if (records.any { it.pending }) _message.value = "Your purchase is pending. Access opens when Google Play confirms it."
     }
 
-    fun clearMessage() { _message.value = null }
 
     companion object {
         const val CACHE_KEY = "polingual.access"
