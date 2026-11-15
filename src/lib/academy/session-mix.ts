@@ -31,7 +31,7 @@ export type CurriculumStage = "word" | "phrase" | "sentence";
 export const OPEN_MIX: Required<ExerciseMix> = { sound: true, compare: true, sentenceFirst: false };
 export const MASTERY_BAR = 0.8;
 export const FALSE_FRIEND_BAR = 0.5;
-export const SOUND_KINDS: ReadonlySet<ExerciseKind> = new Set<ExerciseKind>(["listen", "type-heard", "speak", "spell-heard"]);
+export const SOUND_KINDS: ReadonlySet<ExerciseKind> = new Set<ExerciseKind>(["listen", "type-heard", "speak", "spell-heard", "letter-sound", "minimal-pair"]);
 export const COMPARE_KINDS: ReadonlySet<ExerciseKind> = new Set<ExerciseKind>(["match", "false-friend", "cognate"]);
 
 export class SoundTally {
@@ -267,6 +267,12 @@ export function session(
   return alternate(spacedChecks([...(opts.lead ?? []), ...replay, ...main]));
 }
 
+export function letterSessionExercise(entry: QueueEntry, system: LangSystem, state: EngineState, tally: SoundTally, rng: Rng, drill = letterExerciseFor): Exercise | null {
+  const made = drill(entry.lang, system.root, entry.itemId, rng);
+  if (!made || !SOUND_KINDS.has(made.kind) || soundAllowed(tally, startedCount(state, system))) return made;
+  return letterExerciseFor(entry.lang, system.root, entry.itemId, rng) ?? made;
+}
+
 export function exerciseMix(system: LangSystem, item: LangItem, lang: string, state: EngineState, tally: SoundTally): Required<ExerciseMix> {
   const family = sharedRootLangs(item, system).filter((l) => l !== lang);
   const compare = item.falseFriends[lang] ? mastered(state, lang, item.id, FALSE_FRIEND_BAR) : compareReady(item, state, family);
@@ -282,7 +288,7 @@ export function sessionExercise(
   rng: Rng,
   opts: { speech?: boolean; heritage?: boolean } = {}
 ): Exercise | null {
-  if (entry.stage === "letter") return letterExerciseFor(entry.lang, system.root, entry.itemId, rng);
+  if (entry.stage === "letter") return letterSessionExercise(entry, system, state, tally, rng);
   const item = corpus.byId.get(entry.itemId);
   if (!item) return null;
   if (entry.stage === "match") return matchExercise(corpus, system, item, rng);
@@ -293,6 +299,10 @@ export function sessionExercise(
     heritage: opts.heritage,
     mix: exerciseMix(system, item, entry.lang, state, tally),
   });
+}
+
+export function tallyKey(entry: QueueEntry, index: number): string {
+  return `${index}|${cardId(entry.lang, entry.itemId)}|${entry.stage}`;
 }
 
 export function longestRun(queue: QueueEntry[]): number {

@@ -12,8 +12,10 @@ import {
   isVocab,
   learnerLevel,
   letterQueue,
+  type Exercise,
   newToday,
   seededRng,
+  usable,
   type LangCard,
   type QueueEntry,
 } from "../src/lib/academy/lang-systems";
@@ -25,6 +27,9 @@ import {
   exerciseMix,
   FrequencyRank,
   gateComparisons,
+  letterSessionExercise,
+  mastered,
+  soundAllowed,
   longestRun,
   mastery,
   masteryTable,
@@ -144,19 +149,14 @@ const gaps = (q: QueueEntry[]) =>
   const sys = createSystem("en", ["es", "fr", "ru"], [], 0);
   let same = true;
   for (const item of corpus.items.slice(0, 60))
-    for (const lang of sys.targets.filter((l) => item.forms[l]))
+    for (const lang of sys.targets.filter((l) => usable(item, sys.root, l)))
       for (const reps of [0, 1, 2, 5])
         for (let k = 0; k < 6; k++) {
           const card: LangCard | undefined = reps === 0 ? undefined : { state: "review", reps };
           const a = seededRng(k);
           const b = seededRng(k);
           const o = { speech: true, afterIntro: k % 2 === 0, heritage: k % 3 === 0 };
-          let x;
-          try {
-            x = exerciseFor(corpus, sys, item, lang, card, a, o);
-          } catch {
-            continue;
-          }
+          const x = exerciseFor(corpus, sys, item, lang, card, a, o);
           const y = exerciseFor(corpus, sys, item, lang, card, b, { ...o, mix: OPEN_MIX });
           if (JSON.stringify(x) !== JSON.stringify(y) || a() !== b()) same = false;
         }
@@ -214,6 +214,62 @@ const gaps = (q: QueueEntry[]) =>
   ok(newToday(state, "es", NOW) === 0, "sentence cards stay out of the new-card budget");
   ok(startedCount(state, sys) === 0, "sentence cards stay out of the started count");
   ok(learnerLevel(state, "es") === 1, "sentence cards stay out of the learner level");
+}
+
+{
+  ok(soundShare(39) === 0.1 && soundShare(40) === 0.25 && soundShare(149) === 0.25 && soundShare(150) === 0.4, "sound share steps at 40 and 150 started cards");
+  const run = (started: number, n: number) => {
+    const t = new SoundTally();
+    let out = "";
+    for (let k = 0; k < n; k++) {
+      const yes = soundAllowed(t, started);
+      out += yes ? "T" : "F";
+      t.record(yes ? "listen" : "choose", String(k));
+    }
+    return out;
+  };
+  ok(run(0, 20) === "FFFFFFFFFTFFFFFFFFFT", `a beginner hears one sound question in ten (${run(0, 20)})`);
+  ok(run(40, 8) === "FFFTFFFT", `the middle tier hears one in four (${run(40, 8)})`);
+  ok(run(150, 10) === "FFTFTFFTFT", `the top tier hears two in five (${run(150, 10)})`);
+}
+
+{
+  const sys = createSystem("en", ["fr", "es"], [], 0);
+  const item = corpus.items.find((i) => isVocab(i) && i.forms.fr && i.forms.es && i.forms.en)!;
+  const at = (m: number): EngineState => {
+    const s = empty();
+    const stability = -21 * Math.log(1 - m);
+    s.cards[cardId("fr", item.id)] = { state: "review", stability, reps: 5 };
+    s.cards[cardId("es", item.id)] = { state: "review", stability, reps: 5 };
+    return s;
+  };
+  ok(!mastered(at(0.79), "fr", item.id) && mastered(at(0.81), "fr", item.id), "mastery bar sits between 0.79 and 0.81");
+  const match: QueueEntry[] = [{ itemId: item.id, lang: "fr", stage: "match" }];
+  ok(gateComparisons(match, sys, corpus, at(0.79)).length === 0 && gateComparisons(match, sys, corpus, at(0.81)).length === 1, "comparison gate opens between 0.79 and 0.81");
+}
+
+{
+  const sys = createSystem("en", ["es"], [], 0);
+  const item = corpus.items.find((i) => i.kind === "word" && usable(i, "en", "es") && !i.falseFriends.es)!;
+  const state = empty();
+  state.cards[cardId("es", item.id)] = { state: "review", reps: 2, stability: 3 };
+  const entry: QueueEntry = { itemId: item.id, lang: "es", stage: "review" };
+  const low = () => 0;
+  const fresh = new SoundTally();
+  ok(sessionExercise(entry, sys, corpus, state, fresh, low)!.kind === "reverse", "a forced listen roll is swapped while the cap is full");
+  const open = new SoundTally();
+  for (let k = 0; k < 9; k++) open.record("choose", String(k));
+  ok(sessionExercise(entry, sys, corpus, state, open, low)!.kind === "listen", "the same roll plays once the cap has room");
+}
+
+{
+  const sys = createSystem("en", ["ru"], [], 0);
+  const id = letterQueue(sys, empty(), NOW)[0];
+  const heard = (lang: string, root: string, itemId: string): Exercise => ({ itemId, lang, root, kind: "letter-sound", prompt: "", promptLang: lang, answer: "", answerLang: lang });
+  ok(letterSessionExercise(id, sys, empty(), new SoundTally(), seededRng(1), heard)!.kind === "letter", "a blocked sound letter falls back to the letter drill");
+  const open = new SoundTally();
+  for (let k = 0; k < 9; k++) open.record("choose", String(k));
+  ok(letterSessionExercise(id, sys, empty(), open, seededRng(1), heard)!.kind === "letter-sound", "a sound letter plays once the cap has room");
 }
 
 if (failures) {

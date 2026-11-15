@@ -38,6 +38,8 @@ const KIND_LABEL: Record<Exercise["kind"], string> = {
   "false-friend": "false friend",
   "spell-heard": "spell what you hear",
   letter: "find the letter",
+  "letter-sound": "hear the letter",
+  "minimal-pair": "which sound",
 };
 
 export function ReadingLine({ reading, testId }: { reading?: Reading; testId?: string }) {

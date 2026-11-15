@@ -484,7 +484,9 @@ export type ExerciseKind =
   | "conjugate"
   | "false-friend"
   | "spell-heard"
-  | "letter";
+  | "letter"
+  | "letter-sound"
+  | "minimal-pair";
 
 export interface Exercise {
   kind: ExerciseKind;
@@ -658,7 +660,7 @@ export function exerciseFor(
   const family = sharedRootLangs(item, system).filter((l) => l !== lang).map((l) => ({ lang: l, word: item.forms[l], reading: item.readings[l] }));
   const ff = item.falseFriends[lang];
 
-  if (item.kind === "gender") return genderExercise(item, lang, root, rng);
+  if (item.kind === "gender" && ARTICLES[lang] && item.gender[lang]) return genderExercise(item, lang, root, rng);
   if (item.kind === "conj") return conjExercise(corpus, item, lang, root, reps, rng);
 
   if (!card && !opts.afterIntro) {
