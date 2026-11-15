@@ -53,15 +53,17 @@ struct PlayScene<Content: View>: View {
     let stickers: [PLSticker]
     @ViewBuilder let content: () -> Content
 
+    var headerStickers: [PLSticker] {
+        [PLSticker(game.art ?? .seal, .topTrailing, width: 64, x: -8, y: 4, angle: 8),
+         PLSticker(.star, .bottomTrailing, width: 36, x: -84, y: -2, angle: -10),
+         PLSticker(.scriptRu, .bottomTrailing, width: 46, x: -4, y: 0, angle: -6, shadow: false)]
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: PL.Space.s4) {
-                HStack(alignment: .bottom) {
-                    PLHeader(game.title, subtitle: game.detail, onDark: true)
-                    StartLearningButton(size: .sm, full: false)
-                }
-                .frame(minHeight: 92, alignment: .bottomLeading)
-                .background { PLStickerLayer(stickers).padding(.trailing, 120) }
+                PLScreenTop(title: game.title, subtitle: game.detail, stickers: headerStickers, onDark: true)
+                StartLearningButton(size: .sm, full: false)
                 content()
             }
             .padding(.horizontal, PL.Space.s4)
