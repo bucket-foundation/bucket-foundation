@@ -31,3 +31,13 @@ struct ServerTokenTransport: Transport {
     }
     #expect(try PurchaseOptions.make(.failure(.signedOut)).get().isEmpty)
 }
+
+@Test func thePurchaseNoteNamesTheCause() {
+    #expect(PurchaseOptions.noteKind(for: .unauthorized) == .signIn)
+    #expect(PurchaseOptions.noteKind(for: .userChanged) == .signIn)
+    #expect(PurchaseOptions.noteKind(for: .server) == .server)
+    #expect(PurchaseOptions.noteKind(for: .unavailable) == .server)
+    #expect(PurchaseOptions.noteKind(for: .decode) == .server)
+    #expect(PurchaseOptions.noteKind(for: .offline) == .connection)
+    #expect(PurchaseOptions.noteKind(for: .timeout) == .connection)
+}

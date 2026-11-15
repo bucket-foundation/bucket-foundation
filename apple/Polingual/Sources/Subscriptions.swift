@@ -17,6 +17,7 @@ extension Notification.Name {
 final class Subscriptions {
     private(set) var access = Access.checking
     private(set) var trialEligible = true
+    private(set) var current: String?
     private(set) var epoch = 0
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private var resets: Task<Void, Never>?
@@ -26,6 +27,7 @@ final class Subscriptions {
         self.founding = founding
         if let forced {
             access = forced
+            if case .subscribed(let id, _) = forced { current = id }
             return
         }
         updates = Task { [weak self] in
@@ -69,6 +71,7 @@ final class Subscriptions {
         } else {
             access = purchased
         }
+        self.current = Entitlement.current(current, now: .now)
         trialEligible = Entitlement.trialEligible(history: history)
         if let product = try? await Product.products(for: Plan.all).first, let sub = product.subscription {
             trialEligible = await sub.isEligibleForIntroOffer
@@ -112,6 +115,7 @@ final class Subscriptions {
     func grantDevPass() {
         UserDefaults.standard.set(true, forKey: "polingual.devPass")
         access = .subscribed(productID: Plan.yearly, until: nil)
+        current = Plan.yearly
     }
     #endif
 }

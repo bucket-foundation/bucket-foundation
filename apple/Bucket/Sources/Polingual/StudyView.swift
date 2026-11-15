@@ -142,6 +142,11 @@ struct StudyView: View {
             }
             audioOffers += 1
         }
+        if current != nil {
+            let streak = langStreak(store)
+            Beta.shared.wordSeen(entry.lang, entry.itemId, stage: entry.stage.rawValue, streak: streak)
+            if !chorus.isEmpty { Beta.shared.wordsHeard(chorus.map(\.lang), entry.itemId, stage: entry.stage.rawValue, streak: streak) }
+        }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
         cardStart = .now
     }
@@ -161,7 +166,8 @@ struct StudyView: View {
             if let sid = sentenceId { for r in results { store.grade(systemId, lang: r.lang, itemId: SessionMix.sentenceItemId(sid), rating: r.rating, counted: false) } }
         }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
-        for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }
+        let streak = langStreak(store)
+        for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "", streak: streak) }
         if !results.isEmpty {
             reminders.noteStudy()
             if gate.guest && !store.guestMayStudy(systemId) { gate.require(apply) } else { apply() }
@@ -246,6 +252,7 @@ struct StudyView: View {
                 }
                 ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done,
                              flagNamed: { store.showsFlagName(systemId, lang: $0) },
+                             onSlip: { store.recordFlagMiss(systemId, lang: $0) },
                              onMatch: { assign in
                                  let rated = store.gradeMatchFlags(systemId, ex.pairs ?? [], assign)
                                  done(rated.compactMap { r in r.rating.map { ExerciseResult(lang: r.lang, rating: $0) } })
