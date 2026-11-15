@@ -306,7 +306,10 @@ struct TranslateCard: View {
             .onChange(of: from) { picked = nil }
             .sheet(isPresented: $picking) {
                 TranslateLanguageSheet(chosen: chosen, recent: recent, suggested: langs, all: sources.isEmpty ? Lang.codes : sources, toggle: toggleTarget)
+                    .environment(\.colorScheme, .light)
+                    .preferredColorScheme(.light)
             }
+            .environment(\.colorScheme, .light)
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in

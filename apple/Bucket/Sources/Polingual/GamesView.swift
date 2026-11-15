@@ -412,6 +412,7 @@ struct TranslateScreen: View {
         .paper()
         .navigationTitle("Translate")
         .plChrome()
+        .environment(\.colorScheme, .light)
     }
 }
 
