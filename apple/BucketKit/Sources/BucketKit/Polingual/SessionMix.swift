@@ -184,7 +184,7 @@ public enum SessionMix {
     }
 
     public static func queue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, freq: FrequencyRank, size: Int = 14, tz: TimeZone = .current, heritage: Bool = false) -> [QueueEntry] {
-        let built = buildQueue(system, frequencyFirst(corpus, freq, langs: system.targets), state, now: now, size: size, tz: tz, heritage: heritage)
+        let built = buildQueue(system, frequencyFirst(corpus, freq, langs: system.targets), state, now: now, size: size, tz: tz, heritage: heritage, newFloor: Lang.newPerSessionFloor)
         return gateComparisons(built, system, corpus, state)
     }
 

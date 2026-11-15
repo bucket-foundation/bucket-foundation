@@ -48,6 +48,7 @@ public enum Lang {
 
     public static let maxTargets = 6
     public static let newPerLangPerDay = 5
+    public static let newPerSessionFloor = 4
     public static let placementTiers: [Double] = [0, 2, 4, 6, 8, 10]
     public static let placementItemsPerTier = 3
     public static let placementPassPerTier = 2
@@ -1101,7 +1102,7 @@ func placedReviewedToday(_ state: EngineState, now: Double, tz: TimeZone) -> Int
     }.count
 }
 
-public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current) -> [SessionCard] {
+public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, newFloor: Int = 0) -> [SessionCard] {
     var placedRoom = max(0, PLACED_PER_DAY - placedReviewedToday(state, now: now, tz: tz))
     let due = state.cards.entries
         .map { (parseCardId($0.key), $0.value) }
@@ -1115,9 +1116,8 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
             placedRoom -= 1
             return placedRoom >= 0
         }
-        .prefix(size)
         .map { SessionCard(itemId: $0.0.itemId, lang: $0.0.lang) }
-    let room = max(0, size - due.count)
+    let room = max(0, size - min(due.count, size), min(newFloor, size / 3))
     var fresh: [SessionCard] = []
     var budget: [String: Int] = [:]
     var unlocked: [String: Set<Int>] = [:]
@@ -1139,7 +1139,24 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
             budget[l]! -= 1
         }
     }
-    return interleave(Array(due)) + fresh
+    let reviews = interleave(Array(due.prefix(size - fresh.count)))
+    return newFloor > 0 ? blendNew(reviews, fresh) : reviews + fresh
+}
+
+public func blendNew(_ reviews: [SessionCard], _ fresh: [SessionCard]) -> [SessionCard] {
+    guard !reviews.isEmpty, !fresh.isEmpty else { return reviews + fresh }
+    let total = reviews.count + fresh.count
+    var out: [SessionCard] = []
+    var r = 0, f = 0
+    while out.count < total {
+        let slotForNew = (2 * f + 1) * total <= 2 * (out.count + 1) * fresh.count
+        if f < fresh.count && (slotForNew || r == reviews.count) {
+            out.append(fresh[f]); f += 1
+        } else {
+            out.append(reviews[r]); r += 1
+        }
+    }
+    return out
 }
 
 public func queueNew(_ state: EngineState, _ lang: String, _ itemId: String, now: Double) -> EngineState {
@@ -1298,8 +1315,8 @@ func matchPick(_ candidates: [String], _ system: LangSystem, _ corpus: LangCorpu
     return pool[Int(placedHash(seed) % UInt32(pool.count))]
 }
 
-public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, heritage: Bool = false) -> [QueueEntry] {
-    let plan = planSession(system, corpus, state, now: now, size: size, tz: tz)
+public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, heritage: Bool = false, newFloor: Int = 0) -> [QueueEntry] {
+    let plan = planSession(system, corpus, state, now: now, size: size, tz: tz, newFloor: newFloor)
     var out: [QueueEntry] = heritage ? letterQueue(system, state, now: now) : []
     var pending: [(at: Int, e: QueueEntry)] = []
     for c in plan {
