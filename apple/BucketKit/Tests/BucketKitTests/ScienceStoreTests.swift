@@ -61,6 +61,29 @@ struct ProgressServer: Sendable {
         #expect(EngineState(js: server.branches.value[d.branch]) == s)
     }
 
+    @Test func signOutDuringSuspendedMergePushLeavesNothingBehind() async throws {
+        let server = ProgressServer()
+        let disk = MemoryLangDisk()
+        let d = try deck()
+        let utc = { @MainActor in TimeZone(identifier: "UTC")! }
+        let offline = ScienceStore(api: BucketAPI(transport: server.transport), disk: disk, token: { nil }, now: { 1_000_000 }, tz: utc)
+        let a = try #require(offline.route(d).first)
+        offline.grade(d, id: a.id, rating: 3, level: "recall")
+        let other = try #require(route(EngineState(), d.atoms, now: 0, tz: utc()).dropFirst().first)
+        server.branches.mutate { $0[d.branch] = grade(EngineState(), id: other.id, rating: 4, now: 500_000, tz: "UTC").js }
+        let gate = PostGate(inner: BucketAPI(transport: server.transport))
+        let signedIn = LockedBox(true)
+        let store = ScienceStore(api: BucketAPI(transport: gate), disk: disk, token: { signedIn.value ? "t" : nil }, now: { 2_000_000 }, tz: utc)
+        let loading = Task { await store.load([d.branch]) }
+        while !gate.waiting.value { await Task.yield() }
+        signedIn.mutate { $0 = false }
+        store.clearLocal()
+        gate.open.mutate { $0 = true }
+        await loading.value
+        #expect(store.states.isEmpty)
+        #expect(disk.names.isEmpty)
+    }
+
     @Test func signInUploadsBranchesTheServerLacks() async throws {
         let server = ProgressServer()
         let disk = MemoryLangDisk()

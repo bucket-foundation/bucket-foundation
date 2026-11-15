@@ -67,8 +67,8 @@ final class LangServer: @unchecked Sendable {
         let server = seeded()
         let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
         let pull = await server.api.progressPull(token: "t")!
-        let status = await s.send("t", Self.branch, EngineState().js, over: pull)
-        let systems = await s.send("t", LangStore.systemsBranch, SystemsDoc().js, over: pull)
+        let status = await s.send("t", Self.branch, EngineState().js, over: pull, epoch: s.epoch)
+        let systems = await s.send("t", LangStore.systemsBranch, SystemsDoc().js, over: pull, epoch: s.epoch)
         #expect(status == 409 && systems == 409)
         #expect(server.posts.value.isEmpty)
         #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "hola")))
@@ -243,7 +243,7 @@ final class LangServer: @unchecked Sendable {
         var settingsOnly = EngineState()
         settingsOnly.newPerDay = 9
         let pull = await server.api.progressPull(token: "t")!
-        #expect(await s.send("t", Self.branch, settingsOnly.js, over: pull) == 409)
+        #expect(await s.send("t", Self.branch, settingsOnly.js, over: pull, epoch: s.epoch) == 409)
         #expect(server.posts.value.isEmpty)
     }
 
@@ -298,6 +298,42 @@ final class LangServer: @unchecked Sendable {
         s.clearLocal(accountDeleted: true)
         #expect(disk.read("held-user-c.json") == nil)
     }
+
+    @Test func staleEpochPersistAndHealWriteNothing() async {
+        let server = seeded()
+        let disk = MemoryLangDisk()
+        let s = store(server, disk, signedIn: LockedBox(true))
+        await s.load()
+        let old = s.epoch
+        s.clearLocal()
+        await s.persistSystems(upsert: Self.system, epoch: old)
+        await s.healPlacements(epoch: old)
+        #expect(!s.hasLocalSystems)
+        #expect(s.systems.isEmpty)
+        #expect(server.posts.value.isEmpty)
+    }
+
+    @Test func signOutDuringSignInSyncSendsNothingForTheOldAccount() async {
+        let server = LangServer()
+        let gate = LockedBox(true)
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(false)
+        let s = LangStore(api: BucketAPI(transport: PullGate(inner: server.api, gate: gate)), disk: disk, cache: MemoryLangDisk(), seed: { _ in nil }, token: { signedIn.value ? "t" : nil }, now: { 2_000 })
+        await s.load()
+        _ = try? await s.create(root: "en", targets: ["es"])
+        s.grade(s.systems.first!.id, lang: "es", itemId: "hola", rating: 3)
+        await s.flush()
+        gate.mutate { $0 = false }
+        signedIn.mutate { $0 = true }
+        let signIn = Task { await s.syncAfterSignIn(account: "user-a") }
+        try? await Task.sleep(for: .milliseconds(50))
+        s.clearLocal()
+        gate.mutate { $0 = true }
+        await signIn.value
+        #expect(server.posts.value.isEmpty)
+        #expect(s.systems.isEmpty && !s.hasLocalSystems)
+    }
+
 }
 
 final class PostGate: Transport, @unchecked Sendable {

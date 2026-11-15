@@ -94,17 +94,18 @@ public final class ScienceStore {
     }
 
     func loadNow(_ branches: [String]) async {
-        let mine = epoch
+        let ep = epoch
         for b in branches where states[b] == nil { states[b] = readLocal(b) ?? EngineState() }
-        guard let server = await pull(), epoch == mine else { return }
+        guard let server = await pull(), epoch == ep else { return }
         for b in branches {
-            guard epoch == mine else { return }
-            states[b] = await merge(b, server)
+            guard let merged = await merge(b, server, epoch: ep), epoch == ep else { return }
+            states[b] = merged
         }
         pulled = true
     }
 
-    func merge(_ branch: String, _ server: JSObject) async -> EngineState {
+    func merge(_ branch: String, _ server: JSObject, epoch ep: Int) async -> EngineState? {
+        guard epoch == ep else { return nil }
         let local = readLocal(branch)
         guard let remoteJS = server[branch]?["data"] else { return local ?? EngineState() }
         let remote = EngineState(js: remoteJS)
@@ -113,8 +114,18 @@ public final class ScienceStore {
             writeLocal(branch, merged)
             remember(branch)
         }
-        if remote != merged, let t = await token() { _ = await api.progressPush(token: t, branch: branch, data: merged.js) }
+        if remote != merged {
+            let t = await token()
+            guard epoch == ep else { return nil }
+            if let t { _ = await send(t, branch, merged.js, epoch: ep) }
+            guard epoch == ep else { return nil }
+        }
         return merged
+    }
+
+    func send(_ token: String, _ branch: String, _ data: JSValue, epoch ep: Int) async -> Int {
+        guard epoch == ep else { return 0 }
+        return await api.progressPush(token: token, branch: branch, data: data)
     }
 
     public func grade(_ deck: PreparedDeck, id: String, rating: Rating, level: String) {
@@ -132,9 +143,11 @@ public final class ScienceStore {
     }
 
     public func flush() async {
+        let ep = epoch
         let open = pushes
         pushes = [:]
         for (branch, task) in open {
+            guard epoch == ep else { return }
             task.cancel()
             await push(branch)
         }
@@ -142,11 +155,14 @@ public final class ScienceStore {
 
     func push(_ branch: String) async {
         let ep = epoch
-        guard let server = await pull(), let t = await token() else {
+        let server = await pull()
+        let t = await token()
+        guard epoch == ep else { return }
+        guard let server, let t else {
             saveState = .localOnly
             return
         }
-        if Task.isCancelled || epoch != ep { return }
+        if Task.isCancelled { return }
         saveState = .saving
         let mine = state(branch)
         let merged = server[branch].map { mergeState(mine, EngineState(js: $0["data"])) } ?? mine
@@ -154,7 +170,8 @@ public final class ScienceStore {
             states[branch] = merged
             writeLocal(branch, merged)
         }
-        let status = await api.progressPush(token: t, branch: branch, data: merged.js)
+        let status = await send(t, branch, merged.js, epoch: ep)
+        guard epoch == ep else { return }
         if Task.isCancelled && !(200..<300).contains(status) {
             saveState = .idle
             return
@@ -162,7 +179,7 @@ public final class ScienceStore {
         saveState = status == 403 ? .needsProfile : (200..<300).contains(status) ? .synced : .localOnly
     }
 
-    @ObservationIgnored private var epoch = 0
+    @ObservationIgnored private(set) var epoch = 0
 
     public func clearLocal() {
         for t in pushes.values { t.cancel() }
@@ -175,14 +192,20 @@ public final class ScienceStore {
     }
 
     public func syncAfterSignIn() async {
-        guard let server = await pull(), let t = await token() else { return }
+        let ep = epoch
+        let server = await pull()
+        let t = await token()
+        guard epoch == ep, let server, let t else { return }
         for b in localBranches() {
+            guard epoch == ep else { return }
             if server[b] != nil {
-                states[b] = await merge(b, server)
+                guard let merged = await merge(b, server, epoch: ep), epoch == ep else { return }
+                states[b] = merged
             } else if let local = readLocal(b) {
-                _ = await api.progressPush(token: t, branch: b, data: local.js)
+                _ = await send(t, b, local.js, epoch: ep)
             }
         }
+        guard epoch == ep else { return }
         pulled = true
     }
 }

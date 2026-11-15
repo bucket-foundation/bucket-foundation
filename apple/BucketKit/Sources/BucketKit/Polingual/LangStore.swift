@@ -69,8 +69,8 @@ public final class LangStore {
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
     @ObservationIgnored private var generation: [String: Int] = [:]
-    @ObservationIgnored private var epoch = 0
-    @ObservationIgnored private var inFlight: Set<String> = []
+    @ObservationIgnored private(set) var epoch = 0
+    @ObservationIgnored private var inFlight: [String: Int] = [:]
     @ObservationIgnored private var refusedUntil: [String: (at: Double, wait: Double)] = [:]
     public static let heldTTL: Double = 30 * 24 * 3600 * 1000
     public static let unknownOwner = "unknown-owner"
@@ -109,7 +109,8 @@ public final class LangStore {
         return s.cards.count + s.prof.count + s.history.count == 0 && s.xp == 0
     }
 
-    func send(_ token: String, _ branch: String, _ data: JSValue, over server: JSObject) async -> Int {
+    func send(_ token: String, _ branch: String, _ data: JSValue, over server: JSObject, epoch ep: Int) async -> Int {
+        guard epoch == ep else { return 0 }
         if Self.isBlank(branch, data) && !Self.isBlank(branch, server[branch]?["data"]) { return 409 }
         return await api.progressPush(token: token, branch: branch, data: data)
     }
@@ -149,8 +150,10 @@ public final class LangStore {
         states = st
         status = corpus == nil ? .error : .ready
         if server != nil {
-            await healPlacements()
+            await healPlacements(epoch: mine)
+            guard epoch == mine else { return }
             await retryPending()
+            guard epoch == mine else { return }
         }
         if reloadAfter {
             reloadAfter = false
@@ -160,7 +163,9 @@ public final class LangStore {
     }
 
     public func retryPending() async {
+        let ep = epoch
         for (branch, systemId) in pending where pushes[branch] == nil {
+            guard epoch == ep else { return }
             if let r = refusedUntil[branch], now() < r.at { continue }
             await push(systemId, branch)
         }
@@ -170,9 +175,9 @@ public final class LangStore {
         while status == .loading { try? await Task.sleep(for: .milliseconds(20)) }
     }
 
-    func healPlacements() async {
+    func healPlacements(epoch ep: Int) async {
         for s in systems {
-            guard let corpus else { return }
+            guard epoch == ep, let corpus else { return }
             let stale = stalePlacements(s, state(s.id), corpus)
             guard !stale.isEmpty else { continue }
             var next = s
@@ -182,7 +187,7 @@ public final class LangStore {
             }
             next.updatedAt = now()
             replace(next)
-            await persistSystems(upsert: next)
+            await persistSystems(upsert: next, epoch: ep)
         }
     }
 
@@ -256,11 +261,18 @@ public final class LangStore {
         let remote = EngineState(js: remoteJS)
         let merged = mergeState(local, spreadingUntouchedPlaced(remote, now: now()))
         if stored != merged { writeLocal(branch, merged) }
-        if remote != merged, let server, let t = await token() { _ = await send(t, branch, merged.js, over: server) }
+        if remote != merged, let server {
+            let t = await token()
+            guard epoch == mine else { return nil }
+            if let t { _ = await send(t, branch, merged.js, over: server, epoch: mine) }
+            guard epoch == mine else { return nil }
+        }
         return merged
     }
 
-    public func persistSystems(upsert: LangSystem? = nil, remove: String? = nil) async {
+    public func persistSystems(upsert: LangSystem? = nil, remove: String? = nil, epoch given: Int? = nil) async {
+        let mine = given ?? epoch
+        guard epoch == mine else { return }
         saveState = .saving
         let delta = SystemsDoc(systems: upsert.map { [$0] } ?? [], removed: remove.map { [$0: now()] } ?? [:])
         var doc = mergeSystems(readLocalSystems(), delta)
@@ -268,7 +280,7 @@ public final class LangStore {
         systems = doc.systems
         for wait in [0.0, 0.8, 2.5] {
             if wait > 0 { try? await Task.sleep(for: .seconds(wait)) }
-            let mine = epoch
+            guard epoch == mine else { return }
             let server = await pull()
             let t = await token()
             guard epoch == mine else { return }
@@ -279,7 +291,8 @@ public final class LangStore {
             doc = mergeSystems(mergeSystems(doc, SystemsDoc(js: server[Self.systemsBranch]?["data"])), delta)
             writeLocalSystems(doc)
             systems = doc.systems
-            let status = await send(t, Self.systemsBranch, doc.js, over: server)
+            let status = await send(t, Self.systemsBranch, doc.js, over: server, epoch: mine)
+            guard epoch == mine else { return }
             if status == 409 { saveState = .refused; print("LangStore: server refused a blank systems overwrite"); return }
             if status == 401 { saveState = .localOnly; return }
             if status == 403 { saveState = .needsProfile; return }
@@ -392,11 +405,11 @@ public final class LangStore {
     }
 
     func push(_ systemId: String, _ branch: String) async {
-        guard !inFlight.contains(branch) else { return }
-        inFlight.insert(branch)
-        defer { inFlight.remove(branch) }
-        let gen = generation[branch, default: 0]
         let ep = epoch
+        guard inFlight[branch] == nil else { return }
+        inFlight[branch] = ep
+        defer { if inFlight[branch] == ep { inFlight[branch] = nil } }
+        let gen = generation[branch, default: 0]
         let server = await pull()
         let t = await token()
         guard epoch == ep else { return }
@@ -410,7 +423,7 @@ public final class LangStore {
             states[systemId] = merged
             writeLocal(branch, merged)
         }
-        let status = await send(t, branch, merged.js, over: server)
+        let status = await send(t, branch, merged.js, over: server, epoch: ep)
         guard epoch == ep else { return }
         if status == 409 {
             let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
@@ -491,17 +504,24 @@ public final class LangStore {
     }
 
     public func syncAfterSignIn(account: String) async {
+        let ep = epoch
         restoreHeld(account)
         setOwner(account)
-        if hasLocalSystems { await persistSystems() }
+        if hasLocalSystems { await persistSystems(epoch: ep) }
+        guard epoch == ep else { return }
         await waitForLoad()
+        guard epoch == ep else { return }
         status = .idle
         await load(force: true)
-        guard let server = await pull(), let t = await token() else { return }
+        guard epoch == ep else { return }
+        let server = await pull()
+        let t = await token()
+        guard epoch == ep, let server, let t else { return }
         for s in systems {
             let branch = progressBranch(s)
             if server[branch] == nil, let local = readLocal(branch) {
-                _ = await send(t, branch, local.js, over: server)
+                _ = await send(t, branch, local.js, over: server, epoch: ep)
+                guard epoch == ep else { return }
             }
         }
         disk.write("guest-lesson.json", Data())
@@ -510,7 +530,11 @@ public final class LangStore {
     public func flush() async {
         for t in pushes.values { t.cancel() }
         pushes = [:]
-        for (branch, systemId) in pending { await push(systemId, branch) }
+        let ep = epoch
+        for (branch, systemId) in pending {
+            guard epoch == ep else { return }
+            await push(systemId, branch)
+        }
     }
 
     public func clearLocal(accountDeleted: Bool = false) {
@@ -531,7 +555,7 @@ public final class LangStore {
         saveState = .idle
         reloadAfter = false
         epoch += 1
-        inFlight = []
+        inFlight = [:]
         refusedUntil = [:]
         status = .idle
     }
