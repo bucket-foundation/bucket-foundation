@@ -100,7 +100,7 @@ public enum SessionMix {
     public static func sentenceItemId(_ sentenceId: String) -> String { "sent:\(sentenceId)" }
 
     public static func startedCount(_ state: EngineState, _ system: LangSystem) -> Int {
-        state.cards.entries.filter { system.targets.contains(parseCardId($0.key).lang) && isStarted($0.value) }.count
+        state.cards.entries.filter { system.targets.contains(parseCardId($0.key).lang) && !isSentenceCard($0.key) && isStarted($0.value) }.count
     }
 
     public static func soundShare(started: Int) -> Double {

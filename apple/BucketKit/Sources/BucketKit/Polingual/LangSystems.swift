@@ -506,6 +506,7 @@ public func createSystem(_ root: String, _ targets: [String], _ existing: [LangS
 
 public func progressBranch(_ s: LangSystem) -> String { String("lang-sys-\(s.id)".prefix(64)) }
 public func cardId(_ lang: String, _ itemId: String) -> String { "\(lang):\(itemId)" }
+public func isSentenceCard(_ id: String) -> Bool { parseCardId(id).itemId.hasPrefix("sent:") }
 
 public func parseCardId(_ id: String) -> (lang: String, itemId: String) {
     guard let i = id.firstIndex(of: ":") else { return ("", id) }
@@ -816,7 +817,7 @@ public func joinTokens(_ tokens: [String], _ lang: String) -> String {
 }
 
 public func learnerLevel(_ state: EngineState, _ lang: String) -> Int {
-    let n = state.cards.keys.filter { state.cards.started($0) && $0.hasPrefix("\(lang):") && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
+    let n = state.cards.keys.filter { state.cards.started($0) && $0.hasPrefix("\(lang):") && !isSentenceCard($0) && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
     return n < 60 ? 1 : n < 150 ? 2 : 3
 }
 
@@ -1037,7 +1038,7 @@ public func matchExercise(_ corpus: LangCorpus, _ system: LangSystem, _ item: La
 
 public func newToday(_ state: EngineState, _ lang: String, now: Double, tz: TimeZone = .current) -> Int {
     let dk = dayKey(now, tz: tz)
-    return state.cards.entries.filter { parseCardId($0.key).lang == lang && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
+    return state.cards.entries.filter { parseCardId($0.key).lang == lang && !isSentenceCard($0.key) && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
 }
 
 public struct UnitStatus: Sendable, Identifiable {

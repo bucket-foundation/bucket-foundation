@@ -180,3 +180,18 @@ import Testing
         #expect(SessionMix.exerciseMix(sys, item, lang, state, tally: SoundTally()).compare)
     }
 }
+
+@Suite struct SentenceCardTests {
+    @Test func sentenceCardsStayOutOfWordBudgetsAndCounts() throws {
+        let sys = try createSystem("en", ["es"], now: 0)
+        let now = 1_700_000_000_000.0
+        let utc = TimeZone(identifier: "UTC")!
+        var state = EngineState()
+        for k in 0..<70 { state = gradeCard(state, "es", SessionMix.sentenceItemId("s\(k)"), 3, now: now, tz: "UTC") }
+        #expect(isSentenceCard(cardId("es", "sent:s1")) && !isSentenceCard(cardId("es", "w-1")))
+        #expect(newToday(state, "es", now: now, tz: utc) == 0)
+        #expect(SessionMix.startedCount(state, sys) == 0)
+        #expect(learnerLevel(state, "es") == 1)
+        #expect(GameLedger.queue(sys, state).isEmpty)
+    }
+}
