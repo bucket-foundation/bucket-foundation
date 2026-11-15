@@ -25,6 +25,18 @@ class WebGoldensTest {
     }
 
     @Test
+    fun sessionMixMatchesTheWeb() {
+        val m = foundation.bucket.core.engine.SessionMix
+        assertEquals(list("sessionMixSoundShare"), listOf(0, 39, 40, 149, 150, 500).map { m.soundShare(it).toString() })
+        assertEquals(list("sessionMixMastery"), listOf(0.0, 16.0, 34.0, 200.0).map { "%.6f".format(java.util.Locale.ROOT, m.mastery(foundation.bucket.core.engine.CardState(reps = 1, intervalDays = it))) })
+        val q = listOf(foundation.bucket.core.engine.QueueEntry("a", "es", foundation.bucket.core.engine.Stage.Intro), foundation.bucket.core.engine.QueueEntry("a", "es", foundation.bucket.core.engine.Stage.Check)) +
+            listOf("b", "c", "d", "e").map { foundation.bucket.core.engine.QueueEntry(it, "es") } + listOf("f", "g").map { foundation.bucket.core.engine.QueueEntry(it, "fr") }
+        assertEquals(list("sessionMixAlternate"), m.alternate(q).map { "${it.lang}:${it.itemId}:${it.stage.name.lowercase()}" })
+        val f = foundation.bucket.core.engine.FrequencyRank.parse(mapOf("es" to File(TestCorpus.repo, "apple/Shared/Corpus/top1000/es.json").readText()))
+        assertEquals(list("sessionMixCurriculumEs"), m.curriculum(TestCorpus.corpus, "en", "es", f).take(40).map { "${it.id}:${f.rank(it, "es")}" })
+    }
+
+    @Test
     fun shiftBoardMatchesTheWeb() {
         val b = Shift.board(TestCorpus.corpus.items, "2026-11-13")!!
         assertEquals(list("shiftLangs"), b.langs)
