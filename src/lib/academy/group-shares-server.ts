@@ -1,4 +1,6 @@
 import { DEFAULT_FROM, DEFAULT_NOTIFY_TO } from "@/lib/download/notify";
+import { complete, localLlmConfig } from "@/lib/llm/client";
+import { AUDIO_URL_SECONDS, TRANSLATE_MODEL, TRANSLATE_PER_MINUTE, VOICE_BUCKET, VOICE_CONTENT_TYPE, bucketFor, type Translator } from "./group-voice";
 import { SHARE_BUCKET, SHARE_ITEM_COLS, SHARE_PER_MINUTE, type SharedItemRow } from "./group-shares";
 import { windowLimiter } from "./groups";
 import { service } from "./groups-server";
@@ -29,10 +31,18 @@ export async function reportedBy(uid: string, itemIds: string[]): Promise<Set<st
   return new Set((res.data ?? []).map((r: { item_id: string }) => r.item_id));
 }
 
-export async function signedImageUrls(paths: string[]): Promise<Map<string, string>> {
+export function signedImageUrls(paths: string[]): Promise<Map<string, string>> {
+  return signedUrls(SHARE_BUCKET, paths, SIGNED_URL_SECONDS);
+}
+
+export function signedAudioUrls(paths: string[]): Promise<Map<string, string>> {
+  return signedUrls(VOICE_BUCKET, paths, AUDIO_URL_SECONDS);
+}
+
+async function signedUrls(bucket: string, paths: string[], seconds: number): Promise<Map<string, string>> {
   const out = new Map<string, string>();
   if (paths.length === 0) return out;
-  const res = await service().storage.from(SHARE_BUCKET).createSignedUrls(paths, SIGNED_URL_SECONDS);
+  const res = await service().storage.from(bucket).createSignedUrls(paths, seconds);
   if (res.error) throw new Error(`signed urls: ${res.error.message}`);
   for (const s of res.data ?? []) if (s.path && s.signedUrl) out.set(s.path, s.signedUrl);
   return out;
@@ -43,8 +53,29 @@ export async function uploadImage(path: string, bytes: Uint8Array): Promise<void
   if (res.error) throw new Error(`image upload: ${res.error.message}`);
 }
 
+export async function uploadAudio(path: string, bytes: Uint8Array): Promise<void> {
+  const res = await service().storage.from(VOICE_BUCKET).upload(path, bytes, { contentType: VOICE_CONTENT_TYPE, upsert: false });
+  if (res.error) throw new Error(`audio upload: ${res.error.message}`);
+}
+
+export const translateLimited = windowLimiter(TRANSLATE_PER_MINUTE, 60_000);
+
+export const llmTranslator: Translator = async (req) => {
+  const res = await complete({ ...req, maxTokens: 800, anthropicModel: TRANSLATE_MODEL, local: localLlmConfig(20), noProviderStatus: 503 });
+  return res.text;
+};
+
+export async function cacheTranslation(itemId: string, lang: string, text: string): Promise<void> {
+  const res = await service().rpc("cache_voice_translation", { p_item: itemId, p_lang: lang, p_text: text });
+  if (res.error) throw new Error(`cache_voice_translation: ${res.error.message}`);
+}
+
 export async function deleteImage(path: string): Promise<void> {
   await service().storage.from(SHARE_BUCKET).remove([path]);
+}
+
+export async function deleteAudio(path: string): Promise<void> {
+  await service().storage.from(VOICE_BUCKET).remove([path]);
 }
 
 export const PURGE = "group_share_purge";
@@ -54,8 +85,12 @@ export async function drainPurge(limit = 100): Promise<number> {
   if (res.error) throw new Error(`purge read: ${res.error.message}`);
   const paths = (res.data ?? []).map((r: { path: string }) => r.path);
   if (paths.length === 0) return 0;
-  const removed = await service().storage.from(SHARE_BUCKET).remove(paths);
-  if (removed.error) throw new Error(`purge remove: ${removed.error.message}`);
+  for (const bucket of [SHARE_BUCKET, VOICE_BUCKET]) {
+    const mine = paths.filter((p) => bucketFor(p) === bucket);
+    if (mine.length === 0) continue;
+    const removed = await service().storage.from(bucket).remove(mine);
+    if (removed.error) throw new Error(`purge remove: ${removed.error.message}`);
+  }
   const done = await service().from(PURGE).delete().in("path", paths);
   if (done.error) throw new Error(`purge clear: ${done.error.message}`);
   return paths.length;

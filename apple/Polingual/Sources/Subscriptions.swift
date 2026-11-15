@@ -21,8 +21,10 @@ final class Subscriptions {
     private(set) var epoch = 0
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private var resets: Task<Void, Never>?
+    @ObservationIgnored private let founding: (@MainActor () async -> Bool)?
 
-    init(forced: Access? = nil) {
+    init(forced: Access? = nil, founding: (@MainActor () async -> Bool)? = nil) {
+        self.founding = founding
         if let forced {
             access = forced
             if case .subscribed(let id, _) = forced { current = id }
@@ -63,7 +65,12 @@ final class Subscriptions {
         for await result in Transaction.all {
             if case .verified(let t) = result { history.append(EntitlementRecord(t)) }
         }
-        access = Entitlement.access(current, now: .now, beta: await Self.testFlight())
+        let purchased = Entitlement.access(current, now: .now, beta: await Self.testFlight())
+        if Entitlement.needsFounding(purchased), let founding {
+            access = Entitlement.withFounding(purchased, founding: await founding())
+        } else {
+            access = purchased
+        }
         self.current = Entitlement.current(current, now: .now)
         trialEligible = Entitlement.trialEligible(history: history)
         if let product = try? await Product.products(for: Plan.all).first, let sub = product.subscription {

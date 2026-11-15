@@ -135,6 +135,17 @@ struct EntitlementTests {
         #expect(TrialReminder.action(productID: Plan.family, introductory: true) == .cancel)
     }
 
+    @Test func foundingOpensOnlyWhenNothingIsPurchased() {
+        #expect(Entitlement.withFounding(.locked, founding: true) == .subscribed(productID: Plan.founding, until: nil))
+        #expect(Entitlement.withFounding(.locked, founding: false) == .locked)
+        let paid = Access.subscribed(productID: Plan.yearly, until: now)
+        #expect(Entitlement.withFounding(paid, founding: true) == paid)
+        let trial = Access.trial(until: now)
+        #expect(Entitlement.withFounding(trial, founding: true) == trial)
+        #expect(!Entitlement.needsFounding(paid))
+        #expect(Entitlement.needsFounding(.locked))
+    }
+
     @Test func lockedSeesEveryShownPlan() {
         let all = Plan.shown(extra: true)
         #expect(Plan.offered(all, current: nil) == all)

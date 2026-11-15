@@ -75,7 +75,7 @@ test("visible items drop blocked senders, reported items and other people's dire
 
 test("items carry the sender name and mark my own", () => {
   const members: MemberRow[] = [{ group_id: "g1", user_id: "u1", role: "owner", display_name: "Gia", joined_at: "" }];
-  const item = toSharedItem(row({}), members, "u1", "https://signed");
+  const item = toSharedItem(row({}), members, "u1", { imageUrl: "https://signed" });
   assert.equal(item.fromName, "Gia");
   assert.equal(item.mine, true);
   assert.equal(item.imageUrl, "https://signed");

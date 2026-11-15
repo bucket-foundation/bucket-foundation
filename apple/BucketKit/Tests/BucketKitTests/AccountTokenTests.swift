@@ -122,7 +122,14 @@ final class FlakyTransport: Transport, @unchecked Sendable {
     }
 }
 
-@Test func keychainVaultKeepsOneTokenPerUser() {
+private let keychainWorks: Bool = {
+    let probe: [String: Any] = [kSecClass as String: kSecClassGenericPassword, kSecAttrService as String: "foundation.bucket.test.probe.\(UUID())", kSecAttrAccount as String: "probe"]
+    let status = SecItemAdd(probe.merging([kSecValueData as String: Data([1])]) { $1 } as CFDictionary, nil)
+    SecItemDelete(probe as CFDictionary)
+    return status == errSecSuccess
+}()
+
+@Test(.enabled(if: keychainWorks)) func keychainVaultKeepsOneTokenPerUser() {
     let vault = KeychainAccountTokenVault(service: "foundation.bucket.test.\(UUID())")
     let a = UUID(), b = UUID()
     vault.save(a, for: "user-1")
