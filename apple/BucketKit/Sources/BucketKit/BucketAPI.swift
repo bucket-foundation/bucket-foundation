@@ -21,6 +21,8 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case imageNotAllowed
     case voiceTooLong
     case translateUnavailable
+    case handleTaken
+    case handleInvalid
 
     public var errorDescription: String? {
         switch self {
@@ -44,6 +46,8 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .imageNotAllowed: "This image may be sensitive, so it was not sent."
         case .voiceTooLong: "Voice notes can be up to 60 seconds."
         case .translateUnavailable: "Translation is unavailable right now."
+        case .handleTaken: "That username is taken. Try another."
+        case .handleInvalid: "Usernames are 3 to 32 lowercase letters, numbers, - or _."
         }
     }
 }

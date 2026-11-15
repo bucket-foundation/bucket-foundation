@@ -136,7 +136,7 @@ struct PairDrill: View {
         }
         .animation(.easeOut(duration: 0.18), value: picked)
         .onAppear {
-            LangVoice.shared.speak(ex.prompt, ex.lang)
+            LangVoice.shared.speak(ex.prompt, ex.lang, kind: .auto)
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
             if args.contains("-pickWrong") { picked = words.first { $0.key != ex.answer }?.key }
@@ -207,7 +207,7 @@ struct LetterSoundDrill: View {
         if o.key == ex.answer {
             LangVoice.shared.speak(say, ex.lang)
         } else {
-            LangVoice.shared.speakTogether([VoiceLine(lang: ex.lang, text: o.say), VoiceLine(lang: ex.lang, text: say)])
+            LangVoice.shared.speak(say, ex.lang)
         }
     }
 }

@@ -33,7 +33,7 @@ Apple: Sign in with Apple, StoreKit, App Store Server Notifications, push notifi
 Wikipedia API: article text in Content.
 Radio Browser (radio-browser.info): station directory, and the app plays third-party radio streams it lists.
 YouTube: Watch rows open a YouTube search outside the app.
-No advertising, tracking or third-party analytics SDK. The app calls no third-party AI service.
+Google AdMob (Google Mobile Ads SDK 13.12 and User Messaging Platform 3.1): a banner on Live Lobbies and an interstitial at most every three minutes after a finished lobby game. The Google consent form shows where the law requires it, then the App Tracking Transparency prompt. A person who declines tracking still gets every game, with non-personalized ads. Ad privacy choices at the foot of Live Lobbies reopens the consent form. No third-party analytics SDK. The app calls no third-party AI service.
 
 REGIONAL DIFFERENCES
 The app has no region-specific code. Features and content are the same everywhere. Prices and currency follow the App Store storefront. Speech and Translation depend on the languages Apple supports on the device. Radio stations and YouTube results vary by what those services offer.

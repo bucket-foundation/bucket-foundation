@@ -335,7 +335,7 @@ struct LetterQuiz: View {
                     LangVoice.shared.speak(say, ex.lang)
                 } else {
                     shake += 1
-                    LangVoice.shared.speakTogether([VoiceLine(lang: ex.lang, text: mine), VoiceLine(lang: ex.lang, text: say)])
+                    LangVoice.shared.speak(say, ex.lang)
                 }
                 plays += 1
             } else {

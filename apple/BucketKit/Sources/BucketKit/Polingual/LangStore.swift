@@ -1,11 +1,12 @@
 import Foundation
 import Observation
 
-public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, failed, needsProfile }
+public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, offline, failed, needsProfile, refused }
 
 public protocol LangDisk: Sendable {
     func read(_ name: String) -> Data?
     func write(_ name: String, _ data: Data)
+    func remove(_ name: String)
     func removeAll()
 }
 
@@ -20,6 +21,8 @@ public struct FileLangDisk: LangDisk {
     public func read(_ name: String) -> Data? { try? Data(contentsOf: root.appending(path: name)) }
     public func write(_ name: String, _ data: Data) { try? data.write(to: root.appending(path: name), options: .atomic) }
 
+    public func remove(_ name: String) { try? FileManager.default.removeItem(at: root.appending(path: name)) }
+
     public func removeAll() {
         let fm = FileManager.default
         for f in (try? fm.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)) ?? [] { try? fm.removeItem(at: f) }
@@ -32,6 +35,7 @@ public final class MemoryLangDisk: LangDisk, @unchecked Sendable {
     public init() {}
     public func read(_ name: String) -> Data? { lock.withLock { files[name] } }
     public func write(_ name: String, _ data: Data) { lock.withLock { files[name] = data } }
+    public func remove(_ name: String) { lock.withLock { files[name] = nil } }
     public func removeAll() { lock.withLock { files.removeAll() } }
     public var names: [String] { lock.withLock { Array(files.keys) } }
 }
@@ -64,6 +68,13 @@ public final class LangStore {
     let now: @MainActor () -> Double
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
+    @ObservationIgnored private var generation: [String: Int] = [:]
+    @ObservationIgnored private(set) var epoch = 0
+    @ObservationIgnored private var inFlight: [String: Int] = [:]
+    @ObservationIgnored private var refusedUntil: [String: (at: Double, wait: Double)] = [:]
+    public static let heldTTL: Double = 30 * 24 * 3600 * 1000
+    public static let unknownOwner = "unknown-owner"
+    @ObservationIgnored private var reloadAfter = false
 
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
@@ -72,6 +83,36 @@ public final class LangStore {
         self.seed = seed
         self.token = token
         self.now = now
+        self.pending = Self.readPending(disk)
+    }
+
+    static func readPending(_ disk: LangDisk) -> [String: String] {
+        guard let d = disk.read("pending.json"), let j = try? JSON.parse(d), let o = j.object else { return [:] }
+        var out: [String: String] = [:]
+        for (k, v) in o.entries { if let id = v.string { out[k] = id } }
+        return out
+    }
+
+    func savePending() {
+        disk.write("pending.json", JSON.data(.object(JSObject(pending.keys.sorted().map { ($0, .string(pending[$0]!)) }))))
+    }
+
+    public var hasUnsyncedWork: Bool { !pending.isEmpty }
+
+    static func isBlank(_ branch: String, _ data: JSValue?) -> Bool {
+        guard let data else { return true }
+        if branch == systemsBranch {
+            let doc = SystemsDoc(js: data)
+            return doc.systems.isEmpty && doc.removed.isEmpty
+        }
+        let s = EngineState(js: data)
+        return s.cards.count + s.prof.count + s.history.count == 0 && s.xp == 0
+    }
+
+    func send(_ token: String, _ branch: String, _ data: JSValue, over server: JSObject, epoch ep: Int) async -> Int {
+        guard epoch == ep else { return 0 }
+        if Self.isBlank(branch, data) && !Self.isBlank(branch, server[branch]?["data"]) { return 409 }
+        return await api.progressPush(token: token, branch: branch, data: data)
     }
 
     public static let bundled: @Sendable (String) -> Data? = { name in
@@ -82,25 +123,65 @@ public final class LangStore {
     public func system(_ id: String) -> LangSystem? { systems.first { $0.id == id } }
 
     public func load(force: Bool = false) async {
-        if status == .loading || (status == .ready && !force) { return }
+        if status == .loading {
+            if force { reloadAfter = true }
+            return
+        }
+        if status == .ready && !force { return }
         status = .loading
+        reloadAfter = false
+        let mine = epoch
         async let c = loadCorpus()
         async let clipIndex = loadClips()
         let server = await pull()
+        guard epoch == mine else { return }
         let list = loadSystems(server)
         var st: [String: EngineState] = [:]
-        for s in list { st[s.id] = await loadBranch(progressBranch(s), server) }
-        corpus = await c
-        clips = await clipIndex
+        for s in list {
+            guard epoch == mine, let state = await loadBranch(progressBranch(s), server, epoch: mine) else { return }
+            st[s.id] = state
+        }
+        let loadedCorpus = await c
+        let loadedClips = await clipIndex
+        guard epoch == mine else { return }
+        corpus = loadedCorpus
+        clips = loadedClips
         systems = list
         states = st
         status = corpus == nil ? .error : .ready
-        if server != nil { await healPlacements() }
+        if server != nil {
+            await healPlacements(epoch: mine)
+            guard epoch == mine else { return }
+            await retryPending()
+            guard epoch == mine else { return }
+        }
+        if reloadAfter {
+            reloadAfter = false
+            status = .idle
+            await load(force: true)
+        }
     }
 
-    func healPlacements() async {
+    public func retryPending() async {
+        let ep = epoch
+        for (branch, systemId) in pending where pushes[branch] == nil {
+            guard epoch == ep else { return }
+            if let r = refusedUntil[branch], now() < r.at { continue }
+            await deliver(systemId, branch, epoch: ep)
+        }
+    }
+
+    func deliver(_ systemId: String, _ branch: String, epoch ep: Int) async {
+        if branch == Self.systemsBranch { await persistSystems(epoch: ep) } else { await push(systemId, branch) }
+    }
+
+    func waitForLoad() async {
+        while status == .loading { try? await Task.sleep(for: .milliseconds(20)) }
+    }
+
+    func healPlacements(epoch ep: Int) async {
         for s in systems {
-            guard let corpus else { return }
+            guard epoch == ep, let corpus else { return }
             let stale = stalePlacements(s, state(s.id), corpus)
             guard !stale.isEmpty else { continue }
             var next = s
@@ -110,7 +191,7 @@ public final class LangStore {
             }
             next.updatedAt = now()
             replace(next)
-            await persistSystems(upsert: next)
+            await persistSystems(upsert: next, epoch: ep)
         }
     }
 
@@ -173,7 +254,8 @@ public final class LangStore {
 
     func writeLocal(_ branch: String, _ s: EngineState) { disk.write("branch-\(branch).json", JSON.data(s.js)) }
 
-    func loadBranch(_ branch: String, _ server: JSObject?) async -> EngineState {
+    func loadBranch(_ branch: String, _ server: JSObject?, epoch mine: Int) async -> EngineState? {
+        guard epoch == mine else { return nil }
         let stored = readLocal(branch)
         let local = stored.map { spreadingUntouchedPlaced($0, now: now()) }
         guard let remoteJS = server?[branch]?["data"] else {
@@ -183,29 +265,61 @@ public final class LangStore {
         let remote = EngineState(js: remoteJS)
         let merged = mergeState(local, spreadingUntouchedPlaced(remote, now: now()))
         if stored != merged { writeLocal(branch, merged) }
-        if remote != merged, let t = await token() { _ = await api.progressPush(token: t, branch: branch, data: merged.js) }
+        if remote != merged, let server {
+            let t = await token()
+            guard epoch == mine else { return nil }
+            if let t { _ = await send(t, branch, merged.js, over: server, epoch: mine) }
+            guard epoch == mine else { return nil }
+        }
         return merged
     }
 
-    public func persistSystems(upsert: LangSystem? = nil, remove: String? = nil) async {
+    public func persistSystems(upsert: LangSystem? = nil, remove: String? = nil, epoch given: Int? = nil) async {
+        let mine = given ?? epoch
+        guard epoch == mine else { return }
         saveState = .saving
         let delta = SystemsDoc(systems: upsert.map { [$0] } ?? [], removed: remove.map { [$0: now()] } ?? [:])
         var doc = mergeSystems(readLocalSystems(), delta)
         writeLocalSystems(doc)
         systems = doc.systems
+        let branch = Self.systemsBranch
+        pending[branch] = branch
+        generation[branch, default: 0] += 1
+        savePending()
+        let gen = generation[branch, default: 0]
         for wait in [0.0, 0.8, 2.5] {
             if wait > 0 { try? await Task.sleep(for: .seconds(wait)) }
-            guard let server = await pull(), let t = await token() else {
-                saveState = .localOnly
+            guard epoch == mine else { return }
+            let server = await pull()
+            let t = await token()
+            guard epoch == mine else { return }
+            guard let server, let t else {
+                saveState = t == nil ? .localOnly : .offline
                 return
             }
             doc = mergeSystems(mergeSystems(doc, SystemsDoc(js: server[Self.systemsBranch]?["data"])), delta)
             writeLocalSystems(doc)
             systems = doc.systems
-            let status = await api.progressPush(token: t, branch: Self.systemsBranch, data: doc.js)
+            let status = await send(t, Self.systemsBranch, doc.js, over: server, epoch: mine)
+            guard epoch == mine else { return }
+            if status == 409 {
+                let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
+                refusedUntil[branch] = (now() + wait, wait)
+                saveState = .refused
+                print("LangStore: server refused a blank systems overwrite")
+                return
+            }
             if status == 401 { saveState = .localOnly; return }
             if status == 403 { saveState = .needsProfile; return }
-            if (200..<300).contains(status) { saveState = .synced; return }
+            if (200..<300).contains(status) {
+                refusedUntil[branch] = nil
+                if generation[branch, default: 0] == gen {
+                    pending[branch] = nil
+                    savePending()
+                }
+                saveState = .synced
+                return
+            }
         }
         saveState = .failed
     }
@@ -234,9 +348,9 @@ public final class LangStore {
         if let i = systems.firstIndex(where: { $0.id == s.id }) { systems[i] = s }
     }
 
-    public func grade(_ systemId: String, lang: String, itemId: String, rating: Rating) {
+    public func grade(_ systemId: String, lang: String, itemId: String, rating: Rating, counted: Bool = true) {
         guard let s = system(systemId) else { return }
-        commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier))
+        commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier, counted: counted))
     }
 
     public func queue(_ systemId: String, lang: String, itemId: String) {
@@ -303,55 +417,184 @@ public final class LangStore {
         writeLocal(branch, next)
         pushes[branch]?.cancel()
         pending[branch] = s.id
+        generation[branch, default: 0] += 1
+        savePending()
         pushes[branch] = Task { [weak self] in
             try? await Task.sleep(for: .seconds(1.2))
             guard !Task.isCancelled, let self else { return }
+            self.pushes[branch] = nil
             await self.push(s.id, branch)
         }
     }
 
     func push(_ systemId: String, _ branch: String) async {
-        guard let server = await pull(), let t = await token() else { return }
+        let ep = epoch
+        guard inFlight[branch] == nil else { return }
+        inFlight[branch] = ep
+        defer { if inFlight[branch] == ep { inFlight[branch] = nil } }
+        var id = systemId
+        while await pushOnce(id, branch, epoch: ep), epoch == ep, let next = pending[branch] {
+            id = next
+        }
+    }
+
+    func pushOnce(_ systemId: String, _ branch: String, epoch ep: Int) async -> Bool {
+        let gen = generation[branch, default: 0]
+        let server = await pull()
+        let t = await token()
+        guard epoch == ep else { return false }
+        guard let server, let t else {
+            saveState = t == nil ? .localOnly : .offline
+            return false
+        }
         let mine = state(systemId)
         let merged = server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
         if merged != mine {
             states[systemId] = merged
             writeLocal(branch, merged)
         }
-        let status = await api.progressPush(token: t, branch: branch, data: merged.js)
-        if status == 403 { saveState = .needsProfile } else if !(200..<300).contains(status) { saveState = .localOnly }
+        let status = await send(t, branch, merged.js, over: server, epoch: ep)
+        guard epoch == ep else { return false }
+        if status == 409 {
+            let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
+            refusedUntil[branch] = (now() + wait, wait)
+            saveState = .refused
+            print("LangStore: server refused a blank overwrite of \(branch)")
+            return false
+        }
+        if (200..<300).contains(status) {
+            refusedUntil[branch] = nil
+            let settled = generation[branch, default: 0] == gen
+            if settled && pending[branch] == systemId {
+                pending[branch] = nil
+                savePending()
+            }
+            saveState = .synced
+            return !settled
+        }
+        switch status {
+        case 401: saveState = .localOnly
+        case 403: saveState = .needsProfile
+        case 0: saveState = .offline
+        default: saveState = .failed
+        }
+        return false
     }
 
-    public func syncAfterSignIn() async {
-        if hasLocalSystems { await persistSystems() }
-        guard let server = await pull(), let t = await token() else { return }
+    func heldOwners() -> [String] {
+        disk.read("held-index.json").flatMap { try? JSON.parse($0) }?.stringArray ?? []
+    }
+
+    func writeHeldOwners(_ owners: [String]) {
+        disk.write("held-index.json", JSON.data(.array(owners.map(JSValue.string))))
+    }
+
+    func holdPending() -> [(String, Data)] {
+        var kept = heldOwners().compactMap { o in disk.read("held-\(o).json").map { ("held-\(o).json", $0) } }
+        guard !pending.isEmpty else { return kept }
+        let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }).flatMap { $0.isEmpty ? nil : $0 } ?? Self.unknownOwner
+        var branches = JSObject()
+        for b in pending.keys.sorted() { if let st = readLocal(b) { branches[b] = st.js } }
+        let prior = disk.read("held-\(owner).json").flatMap { try? JSON.parse($0) }
+        var priorBranches = prior?["branches"]?.object ?? JSObject()
+        for (k, v) in branches.entries { priorBranches[k] = mergeState(EngineState(js: priorBranches[k]), EngineState(js: v)).js }
+        var pend = prior?["pending"]?.object ?? JSObject()
+        for (k, v) in pending { pend[k] = .string(v) }
+        let systems = mergeSystems(SystemsDoc(js: prior?["systems"]), readLocalSystems())
+        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend)), ("at", .number(now()))])))
+        kept.removeAll { $0.0 == "held-\(owner).json" }
+        kept.append(("held-\(owner).json", blob))
+        return kept
+    }
+
+    func pruneHeld() {
+        for o in heldOwners() {
+            let at = disk.read("held-\(o).json").flatMap { try? JSON.parse($0) }?["at"]?.number ?? 0
+            if now() - at > Self.heldTTL { dropHeld(o) }
+        }
+    }
+
+    func dropHeld(_ account: String) {
+        disk.remove("held-\(account).json")
+        writeHeldOwners(heldOwners().filter { $0 != account })
+    }
+
+    public func wipeHeld(account: String) { dropHeld(account) }
+
+    public func setOwner(_ account: String) {
+        disk.write("owner.json", Data(account.utf8))
+    }
+
+    public func connectivityChanged(online: Bool) async {
+        if online { await retryPending() }
+    }
+
+    func restoreHeld(_ account: String) {
+        guard account != Self.unknownOwner else { return }
+        pruneHeld()
+        guard let d = disk.read("held-\(account).json"), let j = try? JSON.parse(d) else { return }
+        writeLocalSystems(mergeSystems(readLocalSystems(), SystemsDoc(js: j["systems"])))
+        for (b, v) in j["branches"]?.object?.entries ?? [] { writeLocal(b, mergeState(readLocal(b), EngineState(js: v))) }
+        for (b, v) in j["pending"]?.object?.entries ?? [] { if let id = v.string { pending[b] = id } }
+        savePending()
+        dropHeld(account)
+    }
+
+    public func syncAfterSignIn(account: String) async {
+        let ep = epoch
+        restoreHeld(account)
+        setOwner(account)
+        if hasLocalSystems { await persistSystems(epoch: ep) }
+        guard epoch == ep else { return }
+        await waitForLoad()
+        guard epoch == ep else { return }
+        status = .idle
+        await load(force: true)
+        guard epoch == ep else { return }
+        let server = await pull()
+        let t = await token()
+        guard epoch == ep, let server, let t else { return }
         for s in systems {
             let branch = progressBranch(s)
-            if server[branch] != nil {
-                states[s.id] = await loadBranch(branch, server)
-            } else if let local = readLocal(branch) {
-                _ = await api.progressPush(token: t, branch: branch, data: local.js)
+            if server[branch] == nil, let local = readLocal(branch) {
+                _ = await send(t, branch, local.js, over: server, epoch: ep)
+                guard epoch == ep else { return }
             }
         }
         disk.write("guest-lesson.json", Data())
     }
 
     public func flush() async {
-        let open = pending
         for t in pushes.values { t.cancel() }
         pushes = [:]
-        pending = [:]
-        for (branch, systemId) in open { await push(systemId, branch) }
+        let ep = epoch
+        for (branch, systemId) in pending {
+            guard epoch == ep else { return }
+            await deliver(systemId, branch, epoch: ep)
+        }
     }
 
-    public func clearLocal() {
+    public func clearLocal(accountDeleted: Bool = false) {
         for t in pushes.values { t.cancel() }
         pushes = [:]
+        if accountDeleted {
+            if let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }) { dropHeld(owner) }
+            pending = [:]
+        }
+        pruneHeld()
+        let held = holdPending()
         pending = [:]
         disk.removeAll()
+        for (name, data) in held { disk.write(name, data) }
+        if !held.isEmpty { writeHeldOwners(held.map { String($0.0.dropFirst(5).dropLast(5)) }) }
         systems = []
         states = [:]
         saveState = .idle
+        reloadAfter = false
+        epoch += 1
+        inFlight = [:]
+        refusedUntil = [:]
+        status = .idle
     }
 
     public func guestMayStudy(_ systemId: String) -> Bool {

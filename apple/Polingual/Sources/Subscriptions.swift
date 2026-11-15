@@ -95,6 +95,9 @@ final class Subscriptions {
         if ProcessInfo.processInfo.arguments.contains("-polingualBeta") {
             return .beta
         }
+        if ProcessInfo.processInfo.arguments.contains("-polingualLocked") {
+            return .locked
+        }
         if ProcessInfo.processInfo.arguments.contains("-polingualTrial") {
             return .trial(until: Date().addingTimeInterval(2.5 * 86_400))
         }

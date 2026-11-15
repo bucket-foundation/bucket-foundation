@@ -64,7 +64,7 @@ struct AgeRangeSheet: View {
         defer { saving = false }
         guard await account.setAgeBand(band) else { failed = true; return }
         if band == .child { askParent = true; return }
-        await langs.syncAfterSignIn()
+        await langs.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner)
         await langs.flush()
         await groups.load()
         dismiss()

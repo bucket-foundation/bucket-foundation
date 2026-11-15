@@ -599,6 +599,8 @@ extension BucketAPI {
         case (409, "cheer_limit"): return .cheerLimit
         case (409, "nudge_not_needed"): return .nudgeNotNeeded
         case (409, "group_full"): return .groupFull
+        case (409, "handle_taken"): return .handleTaken
+        case (400, "invalid_handle"): return .handleInvalid
         case (422, "name_not_allowed"): return .nameNotAllowed
         case (422, "text_not_allowed"): return .textNotAllowed
         case (429, "share_limit"): return .shareLimit
@@ -618,6 +620,7 @@ public final class GroupStore {
         didSet { version += 1 }
     }
     public var blocks: [GroupBlock] = []
+    public var profile: AccountProfile?
     public var items: [String: [SharedItem]] = [:]
     public private(set) var loaded = false
     public private(set) var busy = false
@@ -851,6 +854,7 @@ public final class GroupStore {
         items = [:]
         groups = []
         blocks = []
+        profile = nil
         loaded = false
         loadError = nil
     }
