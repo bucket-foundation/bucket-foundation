@@ -71,10 +71,14 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = spacedChecks(asked + replay + WritingMode.queue(system, state, now: now, corpus: corpus) + SessionMix.queue(system, corpus, state, now: now).filter { !replay.contains($0) })
+        queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+    }
+
+    func frequency(_ system: LangSystem) -> FrequencyRank {
+        FrequencyRank(Dictionary(uniqueKeysWithValues: system.targets.compactMap { l in LangStore.topWords(l).map { (l, $0) } }))
     }
 
     func makeExercise() {
@@ -101,9 +105,10 @@ struct StudyView: View {
         if entry.stage == .letter {
             let key = cardId(entry.lang, entry.itemId)
             let fresh = !store.state(systemId).cards.has(key) && !introduced.contains(key)
-            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng, state: store.state(systemId))
+            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : SessionMix.letterExercise(entry, system, store.state(systemId), tally: tally, &rng)
             if fresh { introduced.insert(key) }
             currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter\(fresh ? "-intro" : "")"
+            if let ex = current { tally.record(ex.kind, key: "\(i)") }
             cardStart = .now
             if current == nil { self.i += 1; makeExercise() }
             return
@@ -119,7 +124,7 @@ struct StudyView: View {
             let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang), heritage: HeritageMode.on(systemId), mix: SessionMix.exerciseMix(system, item, entry.lang, state, tally: tally))
             let crossed = !Beta.shared.flags.crossLanguageOptions ? made : crossLanguageOptions(made, item, system, &rng)
             current = crossed
-            tally.record(crossed.kind)
+            tally.record(crossed.kind, key: "\(i)")
         }
         if let ex = current, ex.kind == .intro || ex.kind == .match {
             if AudioPace.due(audioOffers) {
@@ -141,8 +146,10 @@ struct StudyView: View {
             return
         }
         var next = q
+        let sentenceId = current?.sentenceId
         let apply = {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
+            if let sid = sentenceId { for r in results { store.grade(systemId, lang: r.lang, itemId: SessionMix.sentenceItemId(sid), rating: r.rating) } }
         }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
         for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }
@@ -191,7 +198,8 @@ struct StudyView: View {
                         .buttonStyle(D8Primary())
                         Button("Another round") {
                             let now = Date().timeIntervalSince1970 * 1000
-                            self.queue = spacedChecks(WritingMode.queue(system, state, now: now, corpus: corpus) + SessionMix.queue(system, corpus, state, now: now))
+                            self.queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
+                            tally = SoundTally()
                             i = 0
                             graded = 0
                             correct = 0
