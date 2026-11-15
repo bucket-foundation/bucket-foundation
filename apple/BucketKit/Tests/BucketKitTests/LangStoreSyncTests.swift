@@ -8,11 +8,13 @@ final class LangServer: @unchecked Sendable {
     let online = LockedBox(true)
     let refuse = LockedBox(false)
     let refusals = LockedBox(0)
+    let postStatus = LockedBox<Int?>(nil)
 
     var api: BucketAPI {
         BucketAPI(transport: StubTransport { [self] r in
             guard online.value else { return (503, Data()) }
             guard r.url?.path.hasSuffix("api/academy/progress") == true else { return (404, Data()) }
+            if r.httpMethod == "POST", let code = postStatus.value { return (code, Data()) }
             if r.httpMethod == "POST" && refuse.value { refusals.mutate { $0 += 1 }; return (409, Data(#"{"error":"blank_overwrite"}"#.utf8)) }
             if r.httpMethod == "POST", let b = r.httpBody, let j = try? JSON.parse(b), let branch = j["branch"]?.string {
                 posts.mutate { $0.append(branch) }
@@ -235,6 +237,18 @@ final class LangServer: @unchecked Sendable {
         s.grade("s1", lang: "es", itemId: "adios", rating: 3)
         await s.flush()
         #expect(s.saveState == .offline)
+    }
+
+    @Test(arguments: [(503, SaveResult.failed), (500, .failed), (401, .localOnly), (403, .needsProfile)])
+    func rejectedPushNamesTheCause(code: Int, expected: SaveResult) async {
+        let server = seeded()
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
+        await s.load()
+        server.postStatus.mutate { $0 = code }
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        #expect(s.saveState == expected)
+        #expect(s.hasUnsyncedWork)
     }
 
     @Test func settingsOnlyStateCountsAsBlankOverStudiedServer() async {

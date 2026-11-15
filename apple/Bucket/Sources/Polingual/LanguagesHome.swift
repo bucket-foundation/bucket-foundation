@@ -15,7 +15,7 @@ struct SaveNotice: View {
     var body: some View {
         switch state {
         case .failed:
-            Text("Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync.").noticeStyle()
+            Text("Your language systems did not reach the server. They are saved on this device; the next change retries the sync.").noticeStyle()
         case .localOnly:
             Text("Saved on this device. Sign in to sync your language systems.").noticeStyle()
         case .offline:
