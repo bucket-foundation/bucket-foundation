@@ -7,12 +7,13 @@ final class LangServer: @unchecked Sendable {
     let posts = LockedBox<[String]>([])
     let online = LockedBox(true)
     let refuse = LockedBox(false)
+    let refusals = LockedBox(0)
 
     var api: BucketAPI {
         BucketAPI(transport: StubTransport { [self] r in
             guard online.value else { return (503, Data()) }
             guard r.url?.path.hasSuffix("api/academy/progress") == true else { return (404, Data()) }
-            if r.httpMethod == "POST" && refuse.value { return (409, Data(#"{"error":"blank_overwrite"}"#.utf8)) }
+            if r.httpMethod == "POST" && refuse.value { refusals.mutate { $0 += 1 }; return (409, Data(#"{"error":"blank_overwrite"}"#.utf8)) }
             if r.httpMethod == "POST", let b = r.httpBody, let j = try? JSON.parse(b), let branch = j["branch"]?.string {
                 posts.mutate { $0.append(branch) }
                 branches.mutate { $0[branch] = j["data"] }
@@ -165,7 +166,7 @@ final class LangServer: @unchecked Sendable {
         #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "gracias")))
     }
 
-    @Test func refusedPushKeepsWorkAndShowsRefused() async {
+    @Test func refusedPushKeepsWorkShowsRefusedAndBacksOff() async {
         let server = seeded()
         let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
         await s.load()
@@ -174,6 +175,66 @@ final class LangServer: @unchecked Sendable {
         await s.flush()
         #expect(s.saveState == .refused)
         #expect(s.hasUnsyncedWork)
+        let refusedPosts = server.refusals.value
+        await s.retryPending()
+        await s.connectivityChanged(online: true)
+        #expect(server.refusals.value == refusedPosts)
+    }
+
+    @Test func foregroundReconnectAndLoadShareOnePush() async {
+        let server = seeded()
+        let gate = PostGate(inner: server.api)
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true), api: BucketAPI(transport: gate))
+        await s.load()
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        let a = Task { await s.flush() }
+        while !gate.waiting.value { await Task.yield() }
+        await s.connectivityChanged(online: true)
+        await s.retryPending()
+        gate.open.mutate { $0 = true }
+        await a.value
+        #expect(server.posts.value.filter { $0 == Self.branch }.count == 1)
+    }
+
+    @Test func signOutDuringLoadKeepsPreviousAccountOffDisk() async {
+        let server = seeded()
+        let gate = LockedBox(false)
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(true)
+        let s = LangStore(api: BucketAPI(transport: PullGate(inner: server.api, gate: gate)), disk: disk, cache: MemoryLangDisk(), seed: { _ in nil }, token: { signedIn.value ? "t" : nil }, now: { 2_000 })
+        let loading = Task { await s.load() }
+        try? await Task.sleep(for: .milliseconds(100))
+        signedIn.mutate { $0 = false }
+        s.clearLocal()
+        gate.mutate { $0 = true }
+        await loading.value
+        #expect(s.systems.isEmpty)
+        #expect(!s.hasLocalSystems)
+    }
+
+    @Test func signInDuringLoadWaitsForFreshSystems() async {
+        let server = seeded()
+        let gate = LockedBox(false)
+        let s = LangStore(api: BucketAPI(transport: PullGate(inner: server.api, gate: gate)), disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
+        let loading = Task { await s.load() }
+        try? await Task.sleep(for: .milliseconds(50))
+        let signIn = Task { await s.syncAfterSignIn(account: "user-a") }
+        try? await Task.sleep(for: .milliseconds(50))
+        gate.mutate { $0 = true }
+        await loading.value
+        await signIn.value
+        #expect(s.systems.map(\.id) == ["s1"])
+        #expect(s.state("s1").cards.has(cardId("es", "hola")))
+    }
+
+    @Test func offlineWhileSignedInShowsOffline() async {
+        let server = seeded()
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
+        await s.load()
+        server.online.mutate { $0 = false }
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        #expect(s.saveState == .offline)
     }
 
     @Test func settingsOnlyStateCountsAsBlankOverStudiedServer() async {
@@ -250,6 +311,15 @@ final class PostGate: Transport, @unchecked Sendable {
             waiting.mutate { $0 = true }
             while !open.value { try await Task.sleep(for: .milliseconds(5)) }
         }
+        return try await inner.transport.send(request)
+    }
+}
+
+struct PullGate: Transport {
+    let inner: BucketAPI
+    let gate: LockedBox<Bool>
+    func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+        if request.httpMethod != "POST" { while !gate.value { try await Task.sleep(for: .milliseconds(10)) } }
         return try await inner.transport.send(request)
     }
 }

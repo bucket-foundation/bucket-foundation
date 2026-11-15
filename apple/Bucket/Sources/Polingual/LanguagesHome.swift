@@ -18,6 +18,8 @@ struct SaveNotice: View {
             Text("Your language systems did not reach the server after three tries. They are saved on this device; the next change retries the sync.").noticeStyle()
         case .localOnly:
             Text("Saved on this device. Sign in to sync your language systems.").noticeStyle()
+        case .offline:
+            Text("Saved on this device. It syncs when the connection returns.").noticeStyle()
         case .refused:
             Text("Saved on this device. The server kept its copy because this one was empty; it retries after your next study.").noticeStyle()
         case .needsProfile:

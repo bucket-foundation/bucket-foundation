@@ -94,9 +94,13 @@ public final class ScienceStore {
     }
 
     func loadNow(_ branches: [String]) async {
+        let mine = epoch
         for b in branches where states[b] == nil { states[b] = readLocal(b) ?? EngineState() }
-        guard let server = await pull() else { return }
-        for b in branches { states[b] = await merge(b, server) }
+        guard let server = await pull(), epoch == mine else { return }
+        for b in branches {
+            guard epoch == mine else { return }
+            states[b] = await merge(b, server)
+        }
         pulled = true
     }
 
@@ -137,11 +141,12 @@ public final class ScienceStore {
     }
 
     func push(_ branch: String) async {
+        let mine = epoch
         guard let server = await pull(), let t = await token() else {
             saveState = .localOnly
             return
         }
-        if Task.isCancelled { return }
+        if Task.isCancelled || epoch != mine { return }
         saveState = .saving
         let mine = state(branch)
         let merged = server[branch].map { mergeState(mine, EngineState(js: $0["data"])) } ?? mine
@@ -157,9 +162,12 @@ public final class ScienceStore {
         saveState = status == 403 ? .needsProfile : (200..<300).contains(status) ? .synced : .localOnly
     }
 
+    @ObservationIgnored private var epoch = 0
+
     public func clearLocal() {
         for t in pushes.values { t.cancel() }
         pushes = [:]
+        epoch += 1
         disk.removeAll()
         states = [:]
         pulled = false

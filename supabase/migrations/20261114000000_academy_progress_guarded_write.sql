@@ -25,7 +25,7 @@ declare
   written text[] := '{}';
   refused text[] := '{}';
 begin
-  for r in select value from jsonb_array_elements(p_rows) loop
+  for r in select value from jsonb_array_elements(p_rows) order by value->>'branch' loop
     perform pg_advisory_xact_lock(hashtextextended(p_user::text || '/' || (r->>'branch'), 0));
     select data into cur from bucket.academy_progress where user_id = p_user and branch = r->>'branch' for update;
     if not p_reset and bucket.academy_progress_weight(r->'data') = 0 and cur is not null and bucket.academy_progress_weight(cur) > 0 then

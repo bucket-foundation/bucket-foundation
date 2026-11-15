@@ -1,7 +1,7 @@
 import Foundation
 import Observation
 
-public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, failed, needsProfile, refused }
+public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, offline, failed, needsProfile, refused }
 
 public protocol LangDisk: Sendable {
     func read(_ name: String) -> Data?
@@ -69,6 +69,9 @@ public final class LangStore {
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
     @ObservationIgnored private var generation: [String: Int] = [:]
+    @ObservationIgnored private var epoch = 0
+    @ObservationIgnored private var inFlight: Set<String> = []
+    @ObservationIgnored private var refusedUntil: [String: (at: Double, wait: Double)] = [:]
     public static let heldTTL: Double = 30 * 24 * 3600 * 1000
     public static let unknownOwner = "unknown-owner"
     @ObservationIgnored private var reloadAfter = false
@@ -126,14 +129,22 @@ public final class LangStore {
         if status == .ready && !force { return }
         status = .loading
         reloadAfter = false
+        let mine = epoch
         async let c = loadCorpus()
         async let clipIndex = loadClips()
         let server = await pull()
+        guard epoch == mine else { return }
         let list = loadSystems(server)
         var st: [String: EngineState] = [:]
-        for s in list { st[s.id] = await loadBranch(progressBranch(s), server) }
-        corpus = await c
-        clips = await clipIndex
+        for s in list {
+            guard epoch == mine, let state = await loadBranch(progressBranch(s), server, epoch: mine) else { return }
+            st[s.id] = state
+        }
+        let loadedCorpus = await c
+        let loadedClips = await clipIndex
+        guard epoch == mine else { return }
+        corpus = loadedCorpus
+        clips = loadedClips
         systems = list
         states = st
         status = corpus == nil ? .error : .ready
@@ -149,7 +160,14 @@ public final class LangStore {
     }
 
     public func retryPending() async {
-        for (branch, systemId) in pending where pushes[branch] == nil { await push(systemId, branch) }
+        for (branch, systemId) in pending where pushes[branch] == nil {
+            if let r = refusedUntil[branch], now() < r.at { continue }
+            await push(systemId, branch)
+        }
+    }
+
+    func waitForLoad() async {
+        while status == .loading { try? await Task.sleep(for: .milliseconds(20)) }
     }
 
     func healPlacements() async {
@@ -227,7 +245,8 @@ public final class LangStore {
 
     func writeLocal(_ branch: String, _ s: EngineState) { disk.write("branch-\(branch).json", JSON.data(s.js)) }
 
-    func loadBranch(_ branch: String, _ server: JSObject?) async -> EngineState {
+    func loadBranch(_ branch: String, _ server: JSObject?, epoch mine: Int) async -> EngineState? {
+        guard epoch == mine else { return nil }
         let stored = readLocal(branch)
         let local = stored.map { spreadingUntouchedPlaced($0, now: now()) }
         guard let remoteJS = server?[branch]?["data"] else {
@@ -249,8 +268,12 @@ public final class LangStore {
         systems = doc.systems
         for wait in [0.0, 0.8, 2.5] {
             if wait > 0 { try? await Task.sleep(for: .seconds(wait)) }
-            guard let server = await pull(), let t = await token() else {
-                saveState = .localOnly
+            let mine = epoch
+            let server = await pull()
+            let t = await token()
+            guard epoch == mine else { return }
+            guard let server, let t else {
+                saveState = t == nil ? .localOnly : .offline
                 return
             }
             doc = mergeSystems(mergeSystems(doc, SystemsDoc(js: server[Self.systemsBranch]?["data"])), delta)
@@ -369,9 +392,16 @@ public final class LangStore {
     }
 
     func push(_ systemId: String, _ branch: String) async {
+        guard !inFlight.contains(branch) else { return }
+        inFlight.insert(branch)
+        defer { inFlight.remove(branch) }
         let gen = generation[branch, default: 0]
-        guard let server = await pull(), let t = await token() else {
-            saveState = .localOnly
+        let mine = epoch
+        let server = await pull()
+        let t = await token()
+        guard epoch == mine else { return }
+        guard let server, let t else {
+            saveState = t == nil ? .localOnly : .offline
             return
         }
         let mine = state(systemId)
@@ -381,12 +411,16 @@ public final class LangStore {
             writeLocal(branch, merged)
         }
         let status = await send(t, branch, merged.js, over: server)
+        guard epoch == mine else { return }
         if status == 409 {
+            let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
+            refusedUntil[branch] = (now() + wait, wait)
             saveState = .refused
             print("LangStore: server refused a blank overwrite of \(branch)")
             return
         }
         if (200..<300).contains(status) {
+            refusedUntil[branch] = nil
             if generation[branch, default: 0] == gen && pending[branch] == systemId {
                 pending[branch] = nil
                 savePending()
@@ -460,7 +494,8 @@ public final class LangStore {
         restoreHeld(account)
         setOwner(account)
         if hasLocalSystems { await persistSystems() }
-        status = status == .loading ? status : .idle
+        await waitForLoad()
+        status = .idle
         await load(force: true)
         guard let server = await pull(), let t = await token() else { return }
         for s in systems {
@@ -495,7 +530,10 @@ public final class LangStore {
         states = [:]
         saveState = .idle
         reloadAfter = false
-        if status != .loading { status = .idle }
+        epoch += 1
+        inFlight = []
+        refusedUntil = [:]
+        status = .idle
     }
 
     public func guestMayStudy(_ systemId: String) -> Bool {

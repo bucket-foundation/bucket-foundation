@@ -55,7 +55,7 @@ struct PolingualApp: App {
                 .environment(groups)
                 .environment(lobbies)
                 .interfaceLanguage(store)
-                .task { Connectivity.shared.watch { online in Task { await store.connectivityChanged(online: online) } } }
+                .task { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }

@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { blankOverwrites, isBlankProgress, pushSettled } from "../src/lib/academy/progress-guard";
+import fs from "node:fs";
+import path from "node:path";
+import { blankOverwrites, isBlankProgress, progressWeight, pushSettled } from "../src/lib/academy/progress-guard";
 
 const studied = { cards: { "es:hola": { reps: 2 } }, prof: {}, settings: { newPerDay: 4 }, stats: { xp: 10, history: { "2026-11-14": { new: 1, reviews: 1 } } } };
 const fresh = { cards: {}, prof: {}, settings: { newPerDay: 4, requestRetention: 0.9 }, stats: { xp: 0, streak: 0, lastStudyDay: null, history: {} } };
@@ -40,4 +42,9 @@ test("a 409 blank_overwrite settles the outbox entry and other failures keep it"
   } finally {
     console.error = err;
   }
+});
+
+test("progressWeight matches the shared fixture the SQL check reads", () => {
+  const cases = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "progress-weight.json"), "utf8")) as { name: string; data: unknown; weight: number }[];
+  for (const c of cases) assert.equal(progressWeight(c.data), c.weight, c.name);
 });
