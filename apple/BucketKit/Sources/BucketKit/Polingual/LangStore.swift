@@ -223,7 +223,9 @@ public final class LangStore {
     }
 
     func loadClips() async -> [String: Set<String>] {
-        guard let d = try? await api.raw("\(LangAudio.base)/index.json"), let j = try? JSON.parse(d) else { return [:] }
+        let fresh = try? await api.raw("\(LangAudio.base)/index.json")
+        if let fresh { cache.write("clip-index.json", fresh) }
+        guard let d = fresh ?? cache.read("clip-index.json"), let j = try? JSON.parse(d) else { return [:] }
         var out: [String: Set<String>] = [:]
         for (l, keys) in j.object?.entries ?? [] { out[l] = Set(keys.stringArray ?? []) }
         return out
@@ -472,13 +474,17 @@ public final class LangStore {
             saveState = .synced
             return !settled
         }
-        switch status {
-        case 401: saveState = .localOnly
-        case 403: saveState = .needsProfile
-        case 0: saveState = .offline
-        default: saveState = .failed
-        }
+        saveState = Self.failure(status)
         return false
+    }
+
+    static func failure(_ status: Int) -> SaveResult {
+        switch status {
+        case 401: .localOnly
+        case 403: .needsProfile
+        case 0: .offline
+        default: .failed
+        }
     }
 
     func heldOwners() -> [String] {
@@ -562,6 +568,39 @@ public final class LangStore {
             }
         }
         disk.write("guest-lesson.json", Data())
+    }
+
+    public func resync() async {
+        let mine = epoch
+        guard status != .loading, let server = await pull(), let t = await token(), epoch == mine else { return }
+        let remoteDoc = SystemsDoc(js: server[Self.systemsBranch]?["data"])
+        let doc = mergeSystems(readLocalSystems(), remoteDoc)
+        writeLocalSystems(doc)
+        systems = doc.systems
+        var statuses: [Int] = []
+        if hasLocalSystems, doc != remoteDoc { statuses.append(await send(t, Self.systemsBranch, doc.js, over: server, epoch: mine)) }
+        for s in systems {
+            guard epoch == mine else { return }
+            let branch = progressBranch(s)
+            let stored = readLocal(branch)
+            let remote = server[branch].map { spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now()) }
+            let merged = remote.map { mergeState(states[s.id] ?? stored, $0) } ?? states[s.id] ?? stored ?? EngineState()
+            states[s.id] = merged
+            if stored != merged { writeLocal(branch, merged) }
+            if server[branch].map({ EngineState(js: $0["data"]) }) != merged {
+                let status = await send(t, branch, merged.js, over: server, epoch: mine)
+                guard epoch == mine else { return }
+                statuses.append(status)
+                if (200..<300).contains(status) { pending[branch] = nil }
+            } else {
+                pending[branch] = nil
+            }
+        }
+        guard epoch == mine else { return }
+        if statuses.allSatisfy({ (200..<300).contains($0) }) { pending[Self.systemsBranch] = nil }
+        savePending()
+        if let bad = statuses.first(where: { !(200..<300).contains($0) }) { saveState = Self.failure(statuses.contains(403) ? 403 : bad) }
+        else if saveState != .idle { saveState = .synced }
     }
 
     public func flush() async {

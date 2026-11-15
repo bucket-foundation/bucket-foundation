@@ -465,6 +465,7 @@ public struct GroupQuest: Sendable, Equatable {
 
     public var progress: Double { target > 0 ? min(1, Double(done) / Double(target)) : 0 }
     public var complete: Bool { done >= target }
+    public var shownDone: Int { min(done, target) }
     public var nudgeable: [GroupMember] { group.members.filter { !$0.isMe && !$0.studiedToday } }
 }
 

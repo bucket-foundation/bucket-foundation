@@ -30,6 +30,8 @@ struct PolingualApp: App {
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
         LangVoice.shared.store = store
+        NetworkWatch.shared.onReconnect { await store.resync() }
+        NetworkWatch.shared.start()
         _account = State(initialValue: account)
         Beta.shared.account = account
         _store = State(initialValue: store)
@@ -62,6 +64,7 @@ struct PolingualApp: App {
                     backgroundSafe {
                         if p == .active {
                             await store.retryPending()
+                            NetworkWatch.shared.resync()
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG
