@@ -61,7 +61,7 @@ public struct GameLedger: Sendable, Equatable {
     public static func queue(_ system: LangSystem, _ state: EngineState, limit: Int = perSession) -> [QueueEntry] {
         let open = GameLedger(state).pending(state).compactMap { id -> QueueEntry? in
             let p = parseCardId(id)
-            guard system.targets.contains(p.lang) else { return nil }
+            guard system.targets.contains(p.lang), !isSentenceCard(id) else { return nil }
             return QueueEntry(itemId: p.itemId, lang: p.lang, stage: p.itemId.hasPrefix("abc:") ? .letter : .review)
         }
         return Array(open.prefix(limit))

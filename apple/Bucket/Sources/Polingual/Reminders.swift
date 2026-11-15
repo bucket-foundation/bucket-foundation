@@ -26,7 +26,7 @@ func langDue(_ store: LangStore) -> [(due: Double, label: String?)] {
     var out: [(due: Double, label: String?)] = []
     for sys in store.systems {
         for (id, card) in store.state(sys.id).cards.entries {
-            guard let due = card.due else { continue }
+            guard let due = card.due, !isSentenceCard(id) else { continue }
             let p = parseCardId(id)
             guard sys.targets.contains(p.lang) else { continue }
             out.append((due, store.corpus?.byId[p.itemId]?.form(p.lang)))
