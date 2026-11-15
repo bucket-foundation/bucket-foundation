@@ -1,11 +1,12 @@
 import Foundation
 import Observation
 
-public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, failed, needsProfile }
+public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, failed, needsProfile, refused }
 
 public protocol LangDisk: Sendable {
     func read(_ name: String) -> Data?
     func write(_ name: String, _ data: Data)
+    func remove(_ name: String)
     func removeAll()
 }
 
@@ -20,6 +21,8 @@ public struct FileLangDisk: LangDisk {
     public func read(_ name: String) -> Data? { try? Data(contentsOf: root.appending(path: name)) }
     public func write(_ name: String, _ data: Data) { try? data.write(to: root.appending(path: name), options: .atomic) }
 
+    public func remove(_ name: String) { try? FileManager.default.removeItem(at: root.appending(path: name)) }
+
     public func removeAll() {
         let fm = FileManager.default
         for f in (try? fm.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)) ?? [] { try? fm.removeItem(at: f) }
@@ -32,6 +35,7 @@ public final class MemoryLangDisk: LangDisk, @unchecked Sendable {
     public init() {}
     public func read(_ name: String) -> Data? { lock.withLock { files[name] } }
     public func write(_ name: String, _ data: Data) { lock.withLock { files[name] = data } }
+    public func remove(_ name: String) { lock.withLock { files[name] = nil } }
     public func removeAll() { lock.withLock { files.removeAll() } }
     public var names: [String] { lock.withLock { Array(files.keys) } }
 }
@@ -64,6 +68,9 @@ public final class LangStore {
     let now: @MainActor () -> Double
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
+    @ObservationIgnored private var generation: [String: Int] = [:]
+    public static let heldTTL: Double = 30 * 24 * 3600 * 1000
+    public static let unknownOwner = "unknown-owner"
     @ObservationIgnored private var reloadAfter = false
 
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
@@ -250,7 +257,7 @@ public final class LangStore {
             writeLocalSystems(doc)
             systems = doc.systems
             let status = await send(t, Self.systemsBranch, doc.js, over: server)
-            if status == 409 { saveState = .synced; return }
+            if status == 409 { saveState = .refused; print("LangStore: server refused a blank systems overwrite"); return }
             if status == 401 { saveState = .localOnly; return }
             if status == 403 { saveState = .needsProfile; return }
             if (200..<300).contains(status) { saveState = .synced; return }
@@ -351,6 +358,7 @@ public final class LangStore {
         writeLocal(branch, next)
         pushes[branch]?.cancel()
         pending[branch] = s.id
+        generation[branch, default: 0] += 1
         savePending()
         pushes[branch] = Task { [weak self] in
             try? await Task.sleep(for: .seconds(1.2))
@@ -361,6 +369,7 @@ public final class LangStore {
     }
 
     func push(_ systemId: String, _ branch: String) async {
+        let gen = generation[branch, default: 0]
         guard let server = await pull(), let t = await token() else {
             saveState = .localOnly
             return
@@ -372,9 +381,16 @@ public final class LangStore {
             writeLocal(branch, merged)
         }
         let status = await send(t, branch, merged.js, over: server)
-        if (200..<300).contains(status) || status == 409 {
-            pending[branch] = nil
-            savePending()
+        if status == 409 {
+            saveState = .refused
+            print("LangStore: server refused a blank overwrite of \(branch)")
+            return
+        }
+        if (200..<300).contains(status) {
+            if generation[branch, default: 0] == gen && pending[branch] == systemId {
+                pending[branch] = nil
+                savePending()
+            }
             saveState = .synced
             return
         }
@@ -391,7 +407,8 @@ public final class LangStore {
 
     func holdPending() -> [(String, Data)] {
         var kept = heldOwners().compactMap { o in disk.read("held-\(o).json").map { ("held-\(o).json", $0) } }
-        guard !pending.isEmpty, let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }), !owner.isEmpty else { return kept }
+        guard !pending.isEmpty else { return kept }
+        let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }).flatMap { $0.isEmpty ? nil : $0 } ?? Self.unknownOwner
         var branches = JSObject()
         for b in pending.keys.sorted() { if let st = readLocal(b) { branches[b] = st.js } }
         let prior = disk.read("held-\(owner).json").flatMap { try? JSON.parse($0) }
@@ -400,27 +417,48 @@ public final class LangStore {
         var pend = prior?["pending"]?.object ?? JSObject()
         for (k, v) in pending { pend[k] = .string(v) }
         let systems = mergeSystems(SystemsDoc(js: prior?["systems"]), readLocalSystems())
-        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend))])))
+        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend)), ("at", .number(now()))])))
         kept.removeAll { $0.0 == "held-\(owner).json" }
         kept.append(("held-\(owner).json", blob))
         return kept
     }
 
+    func pruneHeld() {
+        for o in heldOwners() {
+            let at = disk.read("held-\(o).json").flatMap { try? JSON.parse($0) }?["at"]?.number ?? 0
+            if now() - at > Self.heldTTL { dropHeld(o) }
+        }
+    }
+
+    func dropHeld(_ account: String) {
+        disk.remove("held-\(account).json")
+        writeHeldOwners(heldOwners().filter { $0 != account })
+    }
+
+    public func wipeHeld(account: String) { dropHeld(account) }
+
+    public func setOwner(_ account: String) {
+        disk.write("owner.json", Data(account.utf8))
+    }
+
+    public func connectivityChanged(online: Bool) async {
+        if online { await retryPending() }
+    }
+
     func restoreHeld(_ account: String) {
+        guard account != Self.unknownOwner else { return }
+        pruneHeld()
         guard let d = disk.read("held-\(account).json"), let j = try? JSON.parse(d) else { return }
         writeLocalSystems(mergeSystems(readLocalSystems(), SystemsDoc(js: j["systems"])))
         for (b, v) in j["branches"]?.object?.entries ?? [] { writeLocal(b, mergeState(readLocal(b), EngineState(js: v))) }
         for (b, v) in j["pending"]?.object?.entries ?? [] { if let id = v.string { pending[b] = id } }
         savePending()
-        disk.write("held-\(account).json", Data())
-        writeHeldOwners(heldOwners().filter { $0 != account })
+        dropHeld(account)
     }
 
-    public func syncAfterSignIn(account: String? = nil) async {
-        if let account {
-            restoreHeld(account)
-            disk.write("owner.json", Data(account.utf8))
-        }
+    public func syncAfterSignIn(account: String) async {
+        restoreHeld(account)
+        setOwner(account)
         if hasLocalSystems { await persistSystems() }
         status = status == .loading ? status : .idle
         await load(force: true)
@@ -440,9 +478,14 @@ public final class LangStore {
         for (branch, systemId) in pending { await push(systemId, branch) }
     }
 
-    public func clearLocal() {
+    public func clearLocal(accountDeleted: Bool = false) {
         for t in pushes.values { t.cancel() }
         pushes = [:]
+        if accountDeleted {
+            if let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }) { dropHeld(owner) }
+            pending = [:]
+        }
+        pruneHeld()
         let held = holdPending()
         pending = [:]
         disk.removeAll()

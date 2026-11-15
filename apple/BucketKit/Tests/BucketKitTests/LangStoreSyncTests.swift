@@ -6,11 +6,13 @@ final class LangServer: @unchecked Sendable {
     let branches = LockedBox<[String: JSValue]>([:])
     let posts = LockedBox<[String]>([])
     let online = LockedBox(true)
+    let refuse = LockedBox(false)
 
     var api: BucketAPI {
         BucketAPI(transport: StubTransport { [self] r in
             guard online.value else { return (503, Data()) }
             guard r.url?.path.hasSuffix("api/academy/progress") == true else { return (404, Data()) }
+            if r.httpMethod == "POST" && refuse.value { return (409, Data(#"{"error":"blank_overwrite"}"#.utf8)) }
             if r.httpMethod == "POST", let b = r.httpBody, let j = try? JSON.parse(b), let branch = j["branch"]?.string {
                 posts.mutate { $0.append(branch) }
                 branches.mutate { $0[branch] = j["data"] }
@@ -39,8 +41,8 @@ final class LangServer: @unchecked Sendable {
         return server
     }
 
-    func store(_ server: LangServer, _ disk: LangDisk, signedIn: LockedBox<Bool>) -> LangStore {
-        LangStore(api: server.api, disk: disk, cache: MemoryLangDisk(), seed: { _ in nil }, token: { signedIn.value ? "t" : nil }, now: { 2_000 })
+    func store(_ server: LangServer, _ disk: LangDisk, signedIn: LockedBox<Bool>, api: BucketAPI? = nil, clock: LockedBox<Double> = LockedBox(2_000)) -> LangStore {
+        LangStore(api: api ?? server.api, disk: disk, cache: MemoryLangDisk(), seed: { _ in nil }, token: { signedIn.value ? "t" : nil }, now: { clock.value })
     }
 
     @Test func signInAfterSignOutShowsServerProgress() async {
@@ -54,7 +56,7 @@ final class LangServer: @unchecked Sendable {
         s.clearLocal()
         #expect(s.systems.isEmpty)
         signedIn.mutate { $0 = true }
-        await s.syncAfterSignIn()
+        await s.syncAfterSignIn(account: "user-a")
         #expect(s.systems.map(\.id) == ["s1"])
         #expect(s.state("s1").cards.has(cardId("es", "hola")))
         #expect(server.posts.value.isEmpty)
@@ -101,7 +103,7 @@ final class LangServer: @unchecked Sendable {
         s.grade(id, lang: "es", itemId: "hola", rating: 3)
         await s.flush()
         signedIn.mutate { $0 = true }
-        await s.syncAfterSignIn()
+        await s.syncAfterSignIn(account: "user-a")
         let branch = progressBranch(s.systems.first!)
         #expect(EngineState(js: server.branches.value[branch]).cards.has(cardId("es", "hola")))
         #expect(!s.hasUnsyncedWork)
@@ -130,5 +132,124 @@ final class LangServer: @unchecked Sendable {
         let saved = EngineState(js: server.branches.value[Self.branch])
         #expect(saved.cards.has(cardId("es", "adios")) && saved.cards.has(cardId("es", "hola")))
         #expect(!s.hasUnsyncedWork)
+    }
+
+    @Test func reconnectWithoutRelaunchPushesQueuedWork() async {
+        let server = seeded()
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
+        await s.load()
+        server.online.mutate { $0 = false }
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        #expect(s.hasUnsyncedWork)
+        server.online.mutate { $0 = true }
+        await s.connectivityChanged(online: true)
+        #expect(!s.hasUnsyncedWork)
+        #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "adios")))
+    }
+
+    @Test func secondGradeDuringSuspendedPushStaysPending() async {
+        let server = seeded()
+        let gate = PostGate(inner: server.api)
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true), api: BucketAPI(transport: gate))
+        await s.load()
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        let first = Task { await s.push("s1", Self.branch) }
+        while !gate.waiting.value { await Task.yield() }
+        s.grade("s1", lang: "es", itemId: "gracias", rating: 3)
+        gate.open.mutate { $0 = true }
+        await first.value
+        #expect(s.hasUnsyncedWork)
+        await s.flush()
+        #expect(!s.hasUnsyncedWork)
+        #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "gracias")))
+    }
+
+    @Test func refusedPushKeepsWorkAndShowsRefused() async {
+        let server = seeded()
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
+        await s.load()
+        server.refuse.mutate { $0 = true }
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        #expect(s.saveState == .refused)
+        #expect(s.hasUnsyncedWork)
+    }
+
+    @Test func settingsOnlyStateCountsAsBlankOverStudiedServer() async {
+        let server = seeded()
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
+        var settingsOnly = EngineState()
+        settingsOnly.newPerDay = 9
+        let pull = await server.api.progressPull(token: "t")!
+        #expect(await s.send("t", Self.branch, settingsOnly.js, over: pull) == 409)
+        #expect(server.posts.value.isEmpty)
+    }
+
+    @Test func unknownAccountSignOutHoldsWorkAndNeverDeliversIt() async {
+        let server = seeded()
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(true)
+        let s = store(server, disk, signedIn: signedIn)
+        await s.syncAfterSignIn(account: LangStore.unknownOwner)
+        server.online.mutate { $0 = false }
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        signedIn.mutate { $0 = false }
+        s.clearLocal()
+        #expect(disk.read("held-\(LangStore.unknownOwner).json") != nil)
+        server.online.mutate { $0 = true }
+        signedIn.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(!EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "adios")))
+    }
+
+    @Test func heldWorkIsDeletedAfterRestoreExpiresAndWipesOnDelete() async {
+        let server = seeded()
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(true)
+        let clock = LockedBox<Double>(2_000)
+        let s = store(server, disk, signedIn: signedIn, clock: clock)
+        func holdOffline(_ id: String, _ item: String) async {
+            await s.syncAfterSignIn(account: id)
+            server.online.mutate { $0 = false }
+            s.grade("s1", lang: "es", itemId: item, rating: 3)
+            await s.flush()
+            signedIn.mutate { $0 = false }
+            s.clearLocal()
+            server.online.mutate { $0 = true }
+            signedIn.mutate { $0 = true }
+        }
+        await holdOffline("user-a", "uno")
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(disk.read("held-user-a.json") == nil)
+        s.clearLocal()
+        await holdOffline("user-b", "dos")
+        clock.mutate { $0 += LangStore.heldTTL + 1 }
+        await s.syncAfterSignIn(account: "user-b")
+        #expect(disk.read("held-user-b.json") == nil)
+        #expect(!EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "dos")))
+        s.clearLocal()
+        clock.mutate { $0 = 2_000 }
+        await holdOffline("user-c", "tres")
+        #expect(disk.read("held-user-c.json") != nil)
+        s.setOwner("user-c")
+        s.clearLocal(accountDeleted: true)
+        #expect(disk.read("held-user-c.json") == nil)
+    }
+}
+
+final class PostGate: Transport, @unchecked Sendable {
+    let inner: BucketAPI
+    let waiting = LockedBox(false)
+    let open = LockedBox(false)
+    init(inner: BucketAPI) { self.inner = inner }
+
+    func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+        if request.httpMethod == "POST" && !open.value {
+            waiting.mutate { $0 = true }
+            while !open.value { try await Task.sleep(for: .milliseconds(5)) }
+        }
+        return try await inner.transport.send(request)
     }
 }
