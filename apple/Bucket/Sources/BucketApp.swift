@@ -141,7 +141,7 @@ struct RootView: View {
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {
-                Task { await langs.syncAfterSignIn() }
+                Task { await langs.syncAfterSignIn(account: account.session?.userId) }
                 Task { await science.syncAfterSignIn() }
                 Task { await PushRegistry.shared.refresh() }
             }

@@ -46,7 +46,7 @@ struct PolingualRoot: View {
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {
                 savePending = false
-                Task { await store.syncAfterSignIn() }
+                Task { await store.syncAfterSignIn(account: account.session?.userId) }
                 Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }

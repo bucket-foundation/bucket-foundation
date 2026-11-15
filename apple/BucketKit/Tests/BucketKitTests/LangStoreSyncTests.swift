@@ -106,4 +106,29 @@ final class LangServer: @unchecked Sendable {
         #expect(EngineState(js: server.branches.value[branch]).cards.has(cardId("es", "hola")))
         #expect(!s.hasUnsyncedWork)
     }
+
+    @Test func offlineSignOutKeepsWorkForThatAccountOnly() async {
+        let server = seeded()
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(true)
+        let s = store(server, disk, signedIn: signedIn)
+        await s.syncAfterSignIn(account: "user-a")
+        server.online.mutate { $0 = false }
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        signedIn.mutate { $0 = false }
+        s.clearLocal()
+        #expect(s.systems.isEmpty && !s.hasUnsyncedWork)
+        server.online.mutate { $0 = true }
+        signedIn.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-b")
+        #expect(!EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "adios")))
+        signedIn.mutate { $0 = false }
+        s.clearLocal()
+        signedIn.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-a")
+        let saved = EngineState(js: server.branches.value[Self.branch])
+        #expect(saved.cards.has(cardId("es", "adios")) && saved.cards.has(cardId("es", "hola")))
+        #expect(!s.hasUnsyncedWork)
+    }
 }

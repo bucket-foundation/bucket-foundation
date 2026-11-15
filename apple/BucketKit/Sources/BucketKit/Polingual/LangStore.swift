@@ -381,7 +381,46 @@ public final class LangStore {
         if status == 403 { saveState = .needsProfile } else if !(200..<300).contains(status) { saveState = .localOnly }
     }
 
-    public func syncAfterSignIn() async {
+    func heldOwners() -> [String] {
+        disk.read("held-index.json").flatMap { try? JSON.parse($0) }?.stringArray ?? []
+    }
+
+    func writeHeldOwners(_ owners: [String]) {
+        disk.write("held-index.json", JSON.data(.array(owners.map(JSValue.string))))
+    }
+
+    func holdPending() -> [(String, Data)] {
+        var kept = heldOwners().compactMap { o in disk.read("held-\(o).json").map { ("held-\(o).json", $0) } }
+        guard !pending.isEmpty, let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }), !owner.isEmpty else { return kept }
+        var branches = JSObject()
+        for b in pending.keys.sorted() { if let st = readLocal(b) { branches[b] = st.js } }
+        let prior = disk.read("held-\(owner).json").flatMap { try? JSON.parse($0) }
+        var priorBranches = prior?["branches"]?.object ?? JSObject()
+        for (k, v) in branches.entries { priorBranches[k] = mergeState(EngineState(js: priorBranches[k]), EngineState(js: v)).js }
+        var pend = prior?["pending"]?.object ?? JSObject()
+        for (k, v) in pending { pend[k] = .string(v) }
+        let systems = mergeSystems(SystemsDoc(js: prior?["systems"]), readLocalSystems())
+        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend))])))
+        kept.removeAll { $0.0 == "held-\(owner).json" }
+        kept.append(("held-\(owner).json", blob))
+        return kept
+    }
+
+    func restoreHeld(_ account: String) {
+        guard let d = disk.read("held-\(account).json"), let j = try? JSON.parse(d) else { return }
+        writeLocalSystems(mergeSystems(readLocalSystems(), SystemsDoc(js: j["systems"])))
+        for (b, v) in j["branches"]?.object?.entries ?? [] { writeLocal(b, mergeState(readLocal(b), EngineState(js: v))) }
+        for (b, v) in j["pending"]?.object?.entries ?? [] { if let id = v.string { pending[b] = id } }
+        savePending()
+        disk.write("held-\(account).json", Data())
+        writeHeldOwners(heldOwners().filter { $0 != account })
+    }
+
+    public func syncAfterSignIn(account: String? = nil) async {
+        if let account {
+            restoreHeld(account)
+            disk.write("owner.json", Data(account.utf8))
+        }
         if hasLocalSystems { await persistSystems() }
         status = status == .loading ? status : .idle
         await load(force: true)
@@ -404,8 +443,11 @@ public final class LangStore {
     public func clearLocal() {
         for t in pushes.values { t.cancel() }
         pushes = [:]
+        let held = holdPending()
         pending = [:]
         disk.removeAll()
+        for (name, data) in held { disk.write(name, data) }
+        if !held.isEmpty { writeHeldOwners(held.map { String($0.0.dropFirst(5).dropLast(5)) }) }
         systems = []
         states = [:]
         saveState = .idle
