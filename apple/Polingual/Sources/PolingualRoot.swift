@@ -74,7 +74,7 @@ struct PolingualRoot: View {
                 reminders.reset()
             }
         }
-        .task {
+        .task(id: account.session?.userId) {
             if let id = account.session?.userId { store.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()

@@ -167,8 +167,12 @@ public final class LangStore {
         for (branch, systemId) in pending where pushes[branch] == nil {
             guard epoch == ep else { return }
             if let r = refusedUntil[branch], now() < r.at { continue }
-            await push(systemId, branch)
+            await deliver(systemId, branch, epoch: ep)
         }
+    }
+
+    func deliver(_ systemId: String, _ branch: String, epoch ep: Int) async {
+        if branch == Self.systemsBranch { await persistSystems(epoch: ep) } else { await push(systemId, branch) }
     }
 
     func waitForLoad() async {
@@ -278,6 +282,11 @@ public final class LangStore {
         var doc = mergeSystems(readLocalSystems(), delta)
         writeLocalSystems(doc)
         systems = doc.systems
+        let branch = Self.systemsBranch
+        pending[branch] = branch
+        generation[branch, default: 0] += 1
+        savePending()
+        let gen = generation[branch, default: 0]
         for wait in [0.0, 0.8, 2.5] {
             if wait > 0 { try? await Task.sleep(for: .seconds(wait)) }
             guard epoch == mine else { return }
@@ -293,10 +302,24 @@ public final class LangStore {
             systems = doc.systems
             let status = await send(t, Self.systemsBranch, doc.js, over: server, epoch: mine)
             guard epoch == mine else { return }
-            if status == 409 { saveState = .refused; print("LangStore: server refused a blank systems overwrite"); return }
+            if status == 409 {
+                let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
+                refusedUntil[branch] = (now() + wait, wait)
+                saveState = .refused
+                print("LangStore: server refused a blank systems overwrite")
+                return
+            }
             if status == 401 { saveState = .localOnly; return }
             if status == 403 { saveState = .needsProfile; return }
-            if (200..<300).contains(status) { saveState = .synced; return }
+            if (200..<300).contains(status) {
+                refusedUntil[branch] = nil
+                if generation[branch, default: 0] == gen {
+                    pending[branch] = nil
+                    savePending()
+                }
+                saveState = .synced
+                return
+            }
         }
         saveState = .failed
     }
@@ -409,13 +432,20 @@ public final class LangStore {
         guard inFlight[branch] == nil else { return }
         inFlight[branch] = ep
         defer { if inFlight[branch] == ep { inFlight[branch] = nil } }
+        var id = systemId
+        while await pushOnce(id, branch, epoch: ep), epoch == ep, let next = pending[branch] {
+            id = next
+        }
+    }
+
+    func pushOnce(_ systemId: String, _ branch: String, epoch ep: Int) async -> Bool {
         let gen = generation[branch, default: 0]
         let server = await pull()
         let t = await token()
-        guard epoch == ep else { return }
+        guard epoch == ep else { return false }
         guard let server, let t else {
             saveState = t == nil ? .localOnly : .offline
-            return
+            return false
         }
         let mine = state(systemId)
         let merged = server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
@@ -424,22 +454,23 @@ public final class LangStore {
             writeLocal(branch, merged)
         }
         let status = await send(t, branch, merged.js, over: server, epoch: ep)
-        guard epoch == ep else { return }
+        guard epoch == ep else { return false }
         if status == 409 {
             let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
             refusedUntil[branch] = (now() + wait, wait)
             saveState = .refused
             print("LangStore: server refused a blank overwrite of \(branch)")
-            return
+            return false
         }
         if (200..<300).contains(status) {
             refusedUntil[branch] = nil
-            if generation[branch, default: 0] == gen && pending[branch] == systemId {
+            let settled = generation[branch, default: 0] == gen
+            if settled && pending[branch] == systemId {
                 pending[branch] = nil
                 savePending()
             }
             saveState = .synced
-            return
+            return !settled
         }
         switch status {
         case 401: saveState = .localOnly
@@ -447,6 +478,7 @@ public final class LangStore {
         case 0: saveState = .offline
         default: saveState = .failed
         }
+        return false
     }
 
     func heldOwners() -> [String] {
@@ -538,7 +570,7 @@ public final class LangStore {
         let ep = epoch
         for (branch, systemId) in pending {
             guard epoch == ep else { return }
-            await push(systemId, branch)
+            await deliver(systemId, branch, epoch: ep)
         }
     }
 

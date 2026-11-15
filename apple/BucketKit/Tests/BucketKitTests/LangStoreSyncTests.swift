@@ -151,7 +151,7 @@ final class LangServer: @unchecked Sendable {
         #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "adios")))
     }
 
-    @Test func secondGradeDuringSuspendedPushStaysPending() async {
+    @Test func secondGradeDuringSuspendedPushIsPushedRightAfter() async {
         let server = seeded()
         let gate = PostGate(inner: server.api)
         let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true), api: BucketAPI(transport: gate))
@@ -160,12 +160,44 @@ final class LangServer: @unchecked Sendable {
         let first = Task { await s.push("s1", Self.branch) }
         while !gate.waiting.value { await Task.yield() }
         s.grade("s1", lang: "es", itemId: "gracias", rating: 3)
+        await s.push("s1", Self.branch)
         gate.open.mutate { $0 = true }
         await first.value
-        #expect(s.hasUnsyncedWork)
-        await s.flush()
         #expect(!s.hasUnsyncedWork)
         #expect(EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "gracias")))
+    }
+
+    @Test func offlineSystemsEditSurvivesSignOutAndReachesTheServer() async {
+        let server = seeded()
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(true)
+        let s = store(server, disk, signedIn: signedIn)
+        await s.syncAfterSignIn(account: "user-a")
+        server.online.mutate { $0 = false }
+        let added = try? await s.create(root: "en", targets: ["fr"])
+        #expect(s.saveState == .offline)
+        #expect(s.hasUnsyncedWork)
+        let relaunched = store(server, disk, signedIn: signedIn)
+        #expect(relaunched.hasUnsyncedWork)
+        signedIn.mutate { $0 = false }
+        relaunched.clearLocal()
+        #expect(relaunched.systems.isEmpty)
+        server.online.mutate { $0 = true }
+        signedIn.mutate { $0 = true }
+        await relaunched.syncAfterSignIn(account: "user-a")
+        let ids = SystemsDoc(js: server.branches.value[LangStore.systemsBranch]).systems.map(\.id)
+        #expect(added.map { ids.contains($0.id) } == true)
+        #expect(ids.contains("s1"))
+        #expect(!relaunched.hasUnsyncedWork)
+    }
+
+    @Test func syncedSystemsEditLeavesNothingPending() async {
+        let server = seeded()
+        let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))
+        await s.load()
+        _ = try? await s.create(root: "en", targets: ["fr"])
+        #expect(s.saveState == .synced)
+        #expect(!s.hasUnsyncedWork)
     }
 
     @Test func refusedPushKeepsWorkShowsRefusedAndBacksOff() async {

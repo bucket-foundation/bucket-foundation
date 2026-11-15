@@ -171,7 +171,7 @@ struct RootView: View {
             reminders.reset()
         }
         #endif
-        .task {
+        .task(id: account.session?.userId) {
             if let id = account.session?.userId { langs.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
