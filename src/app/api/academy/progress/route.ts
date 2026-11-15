@@ -4,6 +4,7 @@ import { verifyRequestUser } from "@/lib/auth/verify";
 import { syncAcademyMastery } from "@/lib/research-os/learn-sync";
 import { decideLearnWrite, readAgeBand } from "@/lib/research-os/learn-gate";
 import { serverVerifyDevice } from "@/lib/academy/device-server";
+import { blankOverwrites } from "@/lib/academy/progress-guard";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -126,6 +127,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   for (const branch of branches) {
     if (!BRANCH_RE.test(branch)) return json({ error: "bad_request" }, 400);
   }
+
+  const current = await service()
+    .from(TABLE)
+    .select("branch,data")
+    .eq("user_id", uid)
+    .in("branch", branches);
+  if (current.error) return json({ error: "read_failed" }, 500);
+  const existing: Record<string, unknown> = {};
+  for (const row of (current.data || []) as { branch: string; data: unknown }[]) existing[row.branch] = row.data;
+  const refused = blankOverwrites(updates, existing);
+  if (refused.length > 0) return json({ error: "blank_overwrite", branches: refused }, 409);
 
   const now = new Date().toISOString();
   const rows = branches.map((branch) => ({

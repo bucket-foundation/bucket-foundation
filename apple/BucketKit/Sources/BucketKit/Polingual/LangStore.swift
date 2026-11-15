@@ -64,6 +64,7 @@ public final class LangStore {
     let now: @MainActor () -> Double
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
+    @ObservationIgnored private var reloadAfter = false
 
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
@@ -72,6 +73,35 @@ public final class LangStore {
         self.seed = seed
         self.token = token
         self.now = now
+        self.pending = Self.readPending(disk)
+    }
+
+    static func readPending(_ disk: LangDisk) -> [String: String] {
+        guard let d = disk.read("pending.json"), let j = try? JSON.parse(d), let o = j.object else { return [:] }
+        var out: [String: String] = [:]
+        for (k, v) in o.entries { if let id = v.string { out[k] = id } }
+        return out
+    }
+
+    func savePending() {
+        disk.write("pending.json", JSON.data(.object(JSObject(pending.keys.sorted().map { ($0, .string(pending[$0]!)) }))))
+    }
+
+    public var hasUnsyncedWork: Bool { !pending.isEmpty }
+
+    static func isBlank(_ branch: String, _ data: JSValue?) -> Bool {
+        guard let data else { return true }
+        if branch == systemsBranch {
+            let doc = SystemsDoc(js: data)
+            return doc.systems.isEmpty && doc.removed.isEmpty
+        }
+        let s = EngineState(js: data)
+        return s.cards.isEmpty && s.prof.isEmpty && s.history.isEmpty && s.xp == 0
+    }
+
+    func send(_ token: String, _ branch: String, _ data: JSValue, over server: JSObject) async -> Int {
+        if Self.isBlank(branch, data) && !Self.isBlank(branch, server[branch]?["data"]) { return 409 }
+        return await api.progressPush(token: token, branch: branch, data: data)
     }
 
     public static let bundled: @Sendable (String) -> Data? = { name in
@@ -82,8 +112,13 @@ public final class LangStore {
     public func system(_ id: String) -> LangSystem? { systems.first { $0.id == id } }
 
     public func load(force: Bool = false) async {
-        if status == .loading || (status == .ready && !force) { return }
+        if status == .loading {
+            if force { reloadAfter = true }
+            return
+        }
+        if status == .ready && !force { return }
         status = .loading
+        reloadAfter = false
         async let c = loadCorpus()
         async let clipIndex = loadClips()
         let server = await pull()
@@ -95,7 +130,19 @@ public final class LangStore {
         systems = list
         states = st
         status = corpus == nil ? .error : .ready
-        if server != nil { await healPlacements() }
+        if server != nil {
+            await healPlacements()
+            await retryPending()
+        }
+        if reloadAfter {
+            reloadAfter = false
+            status = .idle
+            await load(force: true)
+        }
+    }
+
+    public func retryPending() async {
+        for (branch, systemId) in pending where pushes[branch] == nil { await push(systemId, branch) }
     }
 
     func healPlacements() async {
@@ -183,7 +230,7 @@ public final class LangStore {
         let remote = EngineState(js: remoteJS)
         let merged = mergeState(local, spreadingUntouchedPlaced(remote, now: now()))
         if stored != merged { writeLocal(branch, merged) }
-        if remote != merged, let t = await token() { _ = await api.progressPush(token: t, branch: branch, data: merged.js) }
+        if remote != merged, let server, let t = await token() { _ = await send(t, branch, merged.js, over: server) }
         return merged
     }
 
@@ -202,7 +249,8 @@ public final class LangStore {
             doc = mergeSystems(mergeSystems(doc, SystemsDoc(js: server[Self.systemsBranch]?["data"])), delta)
             writeLocalSystems(doc)
             systems = doc.systems
-            let status = await api.progressPush(token: t, branch: Self.systemsBranch, data: doc.js)
+            let status = await send(t, Self.systemsBranch, doc.js, over: server)
+            if status == 409 { saveState = .synced; return }
             if status == 401 { saveState = .localOnly; return }
             if status == 403 { saveState = .needsProfile; return }
             if (200..<300).contains(status) { saveState = .synced; return }
@@ -303,45 +351,54 @@ public final class LangStore {
         writeLocal(branch, next)
         pushes[branch]?.cancel()
         pending[branch] = s.id
+        savePending()
         pushes[branch] = Task { [weak self] in
             try? await Task.sleep(for: .seconds(1.2))
             guard !Task.isCancelled, let self else { return }
+            self.pushes[branch] = nil
             await self.push(s.id, branch)
         }
     }
 
     func push(_ systemId: String, _ branch: String) async {
-        guard let server = await pull(), let t = await token() else { return }
+        guard let server = await pull(), let t = await token() else {
+            saveState = .localOnly
+            return
+        }
         let mine = state(systemId)
         let merged = server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
         if merged != mine {
             states[systemId] = merged
             writeLocal(branch, merged)
         }
-        let status = await api.progressPush(token: t, branch: branch, data: merged.js)
+        let status = await send(t, branch, merged.js, over: server)
+        if (200..<300).contains(status) || status == 409 {
+            pending[branch] = nil
+            savePending()
+            saveState = .synced
+            return
+        }
         if status == 403 { saveState = .needsProfile } else if !(200..<300).contains(status) { saveState = .localOnly }
     }
 
     public func syncAfterSignIn() async {
         if hasLocalSystems { await persistSystems() }
+        status = status == .loading ? status : .idle
+        await load(force: true)
         guard let server = await pull(), let t = await token() else { return }
         for s in systems {
             let branch = progressBranch(s)
-            if server[branch] != nil {
-                states[s.id] = await loadBranch(branch, server)
-            } else if let local = readLocal(branch) {
-                _ = await api.progressPush(token: t, branch: branch, data: local.js)
+            if server[branch] == nil, let local = readLocal(branch) {
+                _ = await send(t, branch, local.js, over: server)
             }
         }
         disk.write("guest-lesson.json", Data())
     }
 
     public func flush() async {
-        let open = pending
         for t in pushes.values { t.cancel() }
         pushes = [:]
-        pending = [:]
-        for (branch, systemId) in open { await push(systemId, branch) }
+        for (branch, systemId) in pending { await push(systemId, branch) }
     }
 
     public func clearLocal() {
@@ -352,6 +409,8 @@ public final class LangStore {
         systems = []
         states = [:]
         saveState = .idle
+        reloadAfter = false
+        if status != .loading { status = .idle }
     }
 
     public func guestMayStudy(_ systemId: String) -> Bool {
