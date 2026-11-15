@@ -9,6 +9,7 @@ struct StudyView: View {
     @Binding var path: NavigationPath
     let systemId: String
     @State private var queue: [QueueEntry]?
+    @State private var tally = SoundTally()
     @State private var i = 0
     @State private var graded = 0
     @State private var correct = 0
@@ -70,7 +71,7 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = spacedChecks(asked + replay + WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now).filter { !replay.contains($0) })
+        queue = spacedChecks(asked + replay + WritingMode.queue(system, state, now: now, corpus: corpus) + SessionMix.queue(system, corpus, state, now: now).filter { !replay.contains($0) })
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
@@ -115,9 +116,10 @@ struct StudyView: View {
         if entry.stage == .match {
             current = matchExercise(corpus, system, item, &rng)
         } else {
-            let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang), heritage: HeritageMode.on(systemId))
+            let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang), heritage: HeritageMode.on(systemId), mix: SessionMix.exerciseMix(system, item, entry.lang, state, tally: tally))
             let crossed = !Beta.shared.flags.crossLanguageOptions ? made : crossLanguageOptions(made, item, system, &rng)
             current = crossed
+            tally.record(crossed.kind)
         }
         if let ex = current, ex.kind == .intro || ex.kind == .match {
             if AudioPace.due(audioOffers) {
@@ -189,7 +191,7 @@ struct StudyView: View {
                         .buttonStyle(D8Primary())
                         Button("Another round") {
                             let now = Date().timeIntervalSince1970 * 1000
-                            self.queue = spacedChecks(WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now))
+                            self.queue = spacedChecks(WritingMode.queue(system, state, now: now, corpus: corpus) + SessionMix.queue(system, corpus, state, now: now))
                             i = 0
                             graded = 0
                             correct = 0
