@@ -393,6 +393,10 @@ export function cardId(lang: string, itemId: string): string {
   return `${lang}:${itemId}`;
 }
 
+export function isSentenceCard(id: string): boolean {
+  return parseCardId(id).itemId.startsWith("sent:");
+}
+
 export function parseCardId(id: string): { lang: string; itemId: string } {
   const i = id.indexOf(":");
   return i < 0 ? { lang: "", itemId: id } : { lang: id.slice(0, i), itemId: id.slice(i + 1) };
@@ -524,6 +528,12 @@ export function readingLabel(r?: Reading): string | null {
 
 export type Rng = () => number;
 
+export interface ExerciseMix {
+  sound?: boolean;
+  compare?: boolean;
+  sentenceFirst?: boolean;
+}
+
 export function seededRng(seed: number): Rng {
   let s = seed >>> 0;
   return () => {
@@ -591,7 +601,7 @@ export function joinTokens(tokens: string[], lang: string): string {
 export const LEVEL_LABEL: Record<number, string> = { 1: "A1", 2: "A2", 3: "B1" };
 
 export function learnerLevel(state: EngineState, lang: string): number {
-  const n = Object.keys(state.cards).filter((id) => isStarted(state.cards[id]) && id.startsWith(`${lang}:`) && !id.startsWith(`${lang}:g-`) && !id.startsWith(`${lang}:c-`)).length;
+  const n = Object.keys(state.cards).filter((id) => isStarted(state.cards[id]) && id.startsWith(`${lang}:`) && !isSentenceCard(id) && !id.startsWith(`${lang}:g-`) && !id.startsWith(`${lang}:c-`)).length;
   return n < 60 ? 1 : n < 150 ? 2 : 3;
 }
 
@@ -634,8 +644,9 @@ export function exerciseFor(
   lang: string,
   card: LangCard | undefined,
   rng: Rng,
-  opts: { speech?: boolean; afterIntro?: boolean; level?: number; heritage?: boolean } = {}
+  opts: { speech?: boolean; afterIntro?: boolean; level?: number; heritage?: boolean; mix?: ExerciseMix } = {}
 ): Exercise {
+  const mix = { sound: true, compare: true, sentenceFirst: false, ...opts.mix };
   const root = system.root;
   const target = item.forms[lang];
   const rootWord = item.forms[root];
@@ -653,25 +664,25 @@ export function exerciseFor(
   if (!card && !opts.afterIntro) {
     return { ...base, kind: "intro", prompt: rootWord, promptLang: root, answer: target, answerLang: lang, family, answerReading: tr, promptReading: rr, falseFriend: ff };
   }
-  if (opts.heritage && !latin && card) return spellHeard(item, lang, root, tr);
+  if (opts.heritage && !latin && card && mix.sound) return spellHeard(item, lang, root, tr);
   const choices = (right: string, l: string, other: string) => shuffle([right, ...distractors(corpus, item, l, other, rng)], rng);
   const toTarget = (kind: ExerciseKind, extra: Partial<Exercise> = {}): Exercise => ({ ...base, kind, prompt: rootWord, promptLang: root, answer: target, answerLang: lang, promptReading: rr, answerReading: tr, ...extra });
   const toRoot = (kind: ExerciseKind): Exercise => ({ ...base, kind, prompt: target, promptLang: lang, answer: rootWord, answerLang: root, promptReading: tr, answerReading: rr, options: choices(rootWord, root, lang) });
   const lapsed = !!card && (card.lapses ?? 0) > 0 && card.state === "relearning";
   const roll = rng();
 
-  if (ff && reps >= 1 && roll < 0.35) {
+  if (ff && mix.compare && reps >= 1 && roll < 0.35) {
     const options = shuffle([rootWord, ff.looksLike, ...distractors(corpus, item, root, lang, rng, 2)].filter((x, i, a) => a.indexOf(x) === i), rng);
     return { ...base, kind: "false-friend", prompt: target, promptLang: lang, answer: rootWord, answerLang: root, options, promptReading: tr, falseFriend: ff };
   }
   if (reps <= 1 || lapsed) {
-    if (family.length > 0 && sharedRootLangs(item, system).includes(lang)) return toTarget("cognate", { options: choices(target, lang, root), family });
+    if (mix.compare && family.length > 0 && sharedRootLangs(item, system).includes(lang)) return toTarget("cognate", { options: choices(target, lang, root), family });
     return toTarget("choose", { options: choices(target, lang, root) });
   }
-  if (reps === 2) return roll < 0.5 ? toRoot("listen") : toRoot("reverse");
+  if (reps === 2) return roll < 0.5 && mix.sound ? toRoot("listen") : toRoot("reverse");
 
   const sent = item.kind === "word" ? sentenceFor(corpus, item, lang, root, rng, opts.level ?? 3) : null;
-  if (sent && roll < 0.45) {
+  if (sent && (roll < 0.45 || mix.sentenceFirst)) {
     const text = sent.s.t[lang];
     const common = { ...base, level: sent.s.lv?.[lang], prompt: sent.s.t[root], promptLang: root, answer: text, answerLang: lang, sentenceId: sent.id, answerReading: sent.s.r[lang] ? { roman: sent.s.r[lang] } : undefined, promptReading: sent.s.r[root] ? { roman: sent.s.r[root] } : undefined };
     const toks = tokenize(text, lang, sent.s.jaTokens);
@@ -684,9 +695,9 @@ export function exerciseFor(
   }
   const cloze = clozeFor(item, lang);
   if (cloze && roll < 0.6) return toTarget("cloze", { options: choices(target, lang, root), cloze });
-  if (!latin) return roll < 0.8 ? toRoot("listen") : toTarget("choose", { options: choices(target, lang, root) });
-  if (opts.speech && roll < 0.7) return toTarget("speak");
-  if (roll < 0.85) return toTarget("translate");
+  if (!latin) return roll < 0.8 && mix.sound ? toRoot("listen") : toTarget("choose", { options: choices(target, lang, root) });
+  if (opts.speech && mix.sound && roll < 0.7) return toTarget("speak");
+  if (roll < 0.85 || !mix.sound) return toTarget("translate");
   return { ...base, kind: "type-heard", prompt: target, promptLang: lang, answer: target, answerLang: lang, answerReading: tr };
 }
 
@@ -843,7 +854,7 @@ function cardsOf(state: EngineState): Record<string, LangCard> {
 
 export function newToday(state: EngineState, lang: string, now: number = Date.now()): number {
   const dk = dayKey(now);
-  return Object.entries(cardsOf(state)).filter(([id, c]) => parseCardId(id).lang === lang && c.introduced === dk && !c.placed).length;
+  return Object.entries(cardsOf(state)).filter(([id, c]) => parseCardId(id).lang === lang && !isSentenceCard(id) && c.introduced === dk && !c.placed).length;
 }
 
 export interface UnitStatus {
