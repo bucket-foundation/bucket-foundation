@@ -441,7 +441,12 @@ public final class LangStore {
             saveState = .synced
             return
         }
-        if status == 403 { saveState = .needsProfile } else if !(200..<300).contains(status) { saveState = .localOnly }
+        switch status {
+        case 401: saveState = .localOnly
+        case 403: saveState = .needsProfile
+        case 0: saveState = .offline
+        default: saveState = .failed
+        }
     }
 
     func heldOwners() -> [String] {
