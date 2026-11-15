@@ -38,7 +38,7 @@ struct StoreKitTests {
         #expect(subs.access == .locked)
         #expect(subs.trialEligible)
         let monthly = try #require(try await Product.products(for: [Plan.monthly]).first)
-        _ = try await monthly.purchase()
+        _ = try await Self.shared!.buyProduct(identifier: monthly.id)
         await subs.refresh()
         guard case .trial = subs.access else {
             Issue.record("expected trial, got \(subs.access)")
@@ -51,7 +51,7 @@ struct StoreKitTests {
         let s = try session()
         let subs = Subscriptions()
         let yearly = try #require(try await Product.products(for: [Plan.yearly]).first)
-        _ = try await yearly.purchase()
+        _ = try await Self.shared!.buyProduct(identifier: yearly.id)
         await subs.refresh()
         #expect(subs.access.open)
         try s.expireSubscription(productIdentifier: Plan.yearly)
@@ -70,7 +70,7 @@ struct StoreKitTests {
         let family = try #require(try await Product.products(for: [Plan.family]).first)
         #expect(family.subscription != nil)
         #expect(family.isFamilyShareable)
-        _ = try await family.purchase()
+        _ = try await Self.shared!.buyProduct(identifier: family.id)
         await subs.refresh()
         guard case .subscribed(let id, let until) = subs.access else {
             Issue.record("expected subscribed, got \(subs.access)")
@@ -87,7 +87,7 @@ struct StoreKitTests {
         #expect(subs.access == .locked)
         let lifetime = try #require(try await Product.products(for: [Plan.lifetime]).first)
         #expect(lifetime.type == .nonConsumable)
-        _ = try await lifetime.purchase()
+        _ = try await Self.shared!.buyProduct(identifier: lifetime.id)
         await subs.refresh()
         #expect(subs.access == .subscribed(productID: Plan.lifetime, until: nil))
         #expect(subs.access.open)
@@ -100,7 +100,7 @@ struct StoreKitTests {
         try await Task.sleep(for: .seconds(25))
         if ProcessInfo.processInfo.environment["POLINGUAL_SHOTS"] == "buy" {
             let yearly = try #require(try await Product.products(for: [Plan.yearly]).first)
-            _ = try await yearly.purchase()
+            _ = try await Self.shared!.buyProduct(identifier: yearly.id)
             NotificationCenter.default.post(name: .polingualStoreReset, object: nil)
             try await Task.sleep(for: .seconds(25))
         }
