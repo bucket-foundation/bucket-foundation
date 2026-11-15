@@ -56,7 +56,7 @@ class Graph(val context: Context) {
 
     private val dailyRemote = object : ProgressRemote {
         override suspend fun pull(): Map<String, DailyResult>? = account.token()?.let { t -> api.progressPull(t)?.let(DailyBook::fromBranches) }
-        override suspend fun push(book: Map<String, DailyResult>): Boolean = account.token()?.let { t -> api.progressPush(t, DailyBook.BRANCH, DailyBook.branchData(book)) } ?: false
+        override suspend fun push(book: Map<String, DailyResult>): Boolean = account.token()?.let { t -> api.progressPush(t, DailyBook.BRANCH, DailyBook.branchData(book)).settled } ?: false
     }
 
     private fun saveDaily(book: Map<String, DailyResult>) { _daily.value = book; kv.set(DailyBook.LOCAL_KEY, DailyBook.encode(book)) }
@@ -123,6 +123,6 @@ class Graph(val context: Context) {
         val merged = SystemsSync.merge(remote, cur.systems, cur.removedSystems)
         val systems = SystemsSync.systems(merged)
         store.update { it.copy(systems = systems, activeSystem = it.activeSystem?.takeIf { id -> systems.any { s -> s.id == id } } ?: systems.firstOrNull()?.id) }
-        if (merged != remote) api.progressPush(t, SystemsSync.BRANCH, merged) else true
+        if (merged != remote) api.progressPush(t, SystemsSync.BRANCH, merged).also { if (it == foundation.bucket.core.net.PushResult.Refused) android.util.Log.w("polingual", "server refused a blank systems overwrite") }.settled else true
     }
 }

@@ -1,18 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { verifyRequestUser } from "@/lib/auth/verify";
-import { syncAcademyMastery } from "@/lib/research-os/learn-sync";
-import { decideLearnWrite, readAgeBand } from "@/lib/research-os/learn-gate";
-import { serverVerifyDevice } from "@/lib/academy/device-server";
+import { progressDeps as deps, writeProgress } from "@/lib/academy/progress-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
-const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-const SCHEMA = "bucket";
 const TABLE = "academy_progress";
 
 const BRANCH_RE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
@@ -35,34 +26,15 @@ export function OPTIONS(): NextResponse {
   return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
 }
 
-function configured(): boolean {
-  return Boolean(SUPABASE_URL && ANON_KEY && SERVICE_ROLE_KEY);
-}
-
-let _svc: SupabaseClient | null = null;
-function service(): SupabaseClient {
-  if (_svc) return _svc;
-  _svc = createClient(SUPABASE_URL as string, SERVICE_ROLE_KEY as string, {
-    db: { schema: SCHEMA },
-    auth: { persistSession: false, autoRefreshToken: false },
-  }) as unknown as SupabaseClient;
-  return _svc;
-}
-
-async function verifyUser(req: NextRequest): Promise<string | null> {
-  const user = await verifyRequestUser(req);
-  return user?.id ?? null;
-}
-
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  if (!configured()) return json({ error: "sync_unavailable" }, 503);
+  if (!deps.configured()) return json({ error: "sync_unavailable" }, 503);
 
-  const uid = await verifyUser(req);
+  const uid = await deps.verifyUser(req);
   if (!uid) return json({ error: "unauthorized" }, 401);
-  const device = await serverVerifyDevice(req, uid, "");
+  const device = await deps.verifyDevice(req, uid, "");
   if (!device.ok) return json({ error: "device_refused", reason: device.reason }, 401);
 
-  const { data, error } = await service()
+  const { data, error } = await deps.service()
     .from(TABLE)
     .select("branch,data,updated_at")
     .eq("user_id", uid);
@@ -80,17 +52,17 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  if (!configured()) return json({ error: "sync_unavailable" }, 503);
+  if (!deps.configured()) return json({ error: "sync_unavailable" }, 503);
 
   const text = await req.text().catch(() => "");
-  const uid = await verifyUser(req);
+  const uid = await deps.verifyUser(req);
   if (!uid) return json({ error: "unauthorized" }, 401);
-  const device = await serverVerifyDevice(req, uid, text);
+  const device = await deps.verifyDevice(req, uid, text);
   if (!device.ok) return json({ error: "device_refused", reason: device.reason }, 401);
 
-  const band = await readAgeBand(uid);
+  const band = await deps.readAgeBand(uid);
   if (!band.ok) return json({ error: "consent_unavailable" }, 503);
-  const gate = decideLearnWrite(band.band, band.consent ?? null);
+  const gate = deps.decideLearnWrite(band.band, band.consent ?? null);
   if (!gate.allowed) return json({ error: gate.reason, message: gate.message, needsProfile: gate.reason === "no_profile" }, 403);
 
   let body: unknown;
@@ -103,7 +75,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return json({ error: "bad_request" }, 400);
   }
 
-  const b = body as { branch?: unknown; data?: unknown; branches?: unknown };
+  const b = body as { branch?: unknown; data?: unknown; branches?: unknown; reset?: unknown };
   const updates: Record<string, unknown> = {};
 
   if (typeof b.branch === "string") {
@@ -127,28 +99,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (!BRANCH_RE.test(branch)) return json({ error: "bad_request" }, 400);
   }
 
-  const now = new Date().toISOString();
-  const rows = branches.map((branch) => ({
-    user_id: uid,
-    branch,
-    data: updates[branch] ?? {},
-    updated_at: now,
-    fold_key: null,
-  }));
-
-  const { error } = await service()
-    .from(TABLE)
-    .upsert(rows, { onConflict: "user_id,branch" });
-
-  if (error) return json({ error: "write_failed" }, 500);
+  const result = await writeProgress(uid, updates, b.reset === true);
+  if (!result) return json({ error: "write_failed" }, 500);
+  if (result.written.length === 0) return json({ error: "blank_overwrite", branches: result.refused }, 409);
 
   let advanced = 0;
-  for (const row of rows) {
+  for (const branch of result.written) {
     try {
-      advanced += (await syncAcademyMastery(uid, row.branch, row.data)).advanced;
+      advanced += (await deps.syncMastery(uid, branch, updates[branch] ?? {})).advanced;
     } catch {
     }
   }
 
-  return json({ ok: true, written: rows.length, advanced });
+  return json({ ok: true, written: result.written.length, refused: result.refused, advanced });
 }

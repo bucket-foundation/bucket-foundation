@@ -65,16 +65,17 @@ struct PolingualRoot: View {
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {
                 savePending = false
-                Task { await store.syncAfterSignIn() }
+                Task { await store.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
                 Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {
-                store.clearLocal()
+                store.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
             }
         }
         .task {
+            if let id = account.session?.userId { store.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
                 await store.flush()
