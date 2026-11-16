@@ -36,9 +36,13 @@ final class Beta {
         Task {
             let token = await account.freshToken()
             flags = await BetaFlags.fetch(app: BucketAPI.appName, token: token)
-            _ = await events.flush(token: token, owner: account.session?.userId)
+            flush(token: token, owner: account.session?.userId)
         }
         TranslationReporter.shared.flush()
+    }
+
+    private func flush(token: String?, owner: String?) {
+        ordered.run { [events] in _ = await events.flush(token: token, owner: owner) }
     }
 
     func signedOut() {
@@ -47,7 +51,7 @@ final class Beta {
 
     func background(_ account: Account) {
         self.account = account
-        Task { _ = await events.flush(token: await account.freshToken(), owner: account.session?.userId) }
+        Task { flush(token: await account.freshToken(), owner: account.session?.userId) }
     }
 
     func studyStarted(_ deck: String) {

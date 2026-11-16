@@ -19,6 +19,13 @@ public struct BetaEvent: Codable, Sendable, Equatable {
         self.sessionId = sessionId
         self.props = props
     }
+
+    public static let heldAgeLimit = 29.0 * 86_400
+
+    public func restamped(at now: Date) -> BetaEvent {
+        guard let then = ISO8601DateFormatter().date(from: ts), now.timeIntervalSince(then) > Self.heldAgeLimit else { return self }
+        return BetaEvent(id: id, name: name, at: now, sessionId: sessionId, props: props)
+    }
 }
 
 public enum JSONScalar: Codable, Sendable, Equatable {
@@ -95,19 +102,19 @@ public actor BetaEvents {
         defaults.set(try? JSONEncoder().encode(next), forKey: Self.heldKey)
     }
 
-    func adoptHeld(owner: String) {
+    func adoptHeld(owner: String, now: Date) {
         let waiting = held
         guard !waiting.isEmpty else { return }
         defaults.removeObject(forKey: Self.heldKey)
-        for event in waiting { log(event, owner: owner) }
+        for event in waiting { log(event.restamped(at: now), owner: owner) }
     }
 
     public var pendingOptOut: Bool? { defaults.object(forKey: Self.pendingKey) as? Bool }
 
-    public func flush(token: String?, owner: String?) async -> BetaFlush {
+    public func flush(token: String?, owner: String?, now: Date = .now) async -> BetaFlush {
         if let token, let pending = pendingOptOut { await sendOptOut(pending, token: token) }
         if let owner, self.owner != nil, self.owner != owner { dropQueue() }
-        if let owner { adoptHeld(owner: owner) }
+        if let owner { adoptHeld(owner: owner, now: now) }
         guard let token, owner != nil, !flushing, !queue.isEmpty, !optedOut else { return BetaFlush(sent: 0, kept: queue.count) }
         flushing = true
         defer { flushing = false }

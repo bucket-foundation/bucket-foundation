@@ -92,6 +92,49 @@ import Testing
         #expect(!s.hasUnsyncedWork)
     }
 
+    @Test func aNewerAccountListReplacesAnOlderGuestAnswerAtSignIn() async {
+        let server = LangServer()
+        let signedIn = LockedBox(false)
+        let s = store(server, signedIn: signedIn, clock: LockedBox(1_000))
+        await s.load()
+        await s.setKnown(["es"])
+        server.branches.mutate { $0[Self.branch] = KnownLanguages(["fr", "en"], at: 5_000).js }
+        signedIn.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(s.known == KnownLanguages(["en", "fr"], at: 5_000))
+        #expect(saved(server) == KnownLanguages(["en", "fr"], at: 5_000))
+        #expect(!server.posts.value.contains(Self.branch) && !s.hasUnsyncedWork)
+    }
+
+    @Test func aNewerGuestAnswerReplacesAnOlderAccountListAtSignIn() async {
+        let server = LangServer()
+        let signedIn = LockedBox(false)
+        let s = store(server, signedIn: signedIn, clock: LockedBox(5_000))
+        await s.load()
+        await s.setKnown(["es"])
+        server.branches.mutate { $0[Self.branch] = KnownLanguages(["fr", "en"], at: 1_000).js }
+        signedIn.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(s.known.codes == ["es"] && saved(server).codes == ["es"])
+        #expect(!s.hasUnsyncedWork)
+    }
+
+    @Test func theNextAccountSeesItsOwnListAfterASyncedSignOut() async {
+        let server = LangServer()
+        let signedIn = LockedBox(true)
+        let s = store(server, signedIn: signedIn, clock: LockedBox(9_000))
+        await s.syncAfterSignIn(account: "user-a")
+        await s.setKnown(["it", "en"])
+        #expect(!s.hasUnsyncedWork)
+        s.clearLocal()
+        server.branches.mutate { $0[Self.branch] = KnownLanguages(["ja"], at: 1_000).js }
+        server.posts.mutate { $0 = [] }
+        await s.syncAfterSignIn(account: "user-b")
+        #expect(s.known == KnownLanguages(["ja"], at: 1_000))
+        #expect(saved(server) == KnownLanguages(["ja"], at: 1_000))
+        #expect(server.posts.value.isEmpty && !s.hasUnsyncedWork)
+    }
+
     @Test func offlineChangeSurvivesRelaunchAndSyncsOnReconnect() async {
         let server = LangServer()
         let disk = MemoryLangDisk()

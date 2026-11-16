@@ -207,3 +207,27 @@ func betaFile() -> URL { FileManager.default.temporaryDirectory.appending(path: 
         #expect(await beta.owner == nil)
     }
 }
+
+@Test func aHeldEventPastTheServerAgeLimitIsRestampedAtSignIn() async throws {
+    let d = UUID().uuidString
+    let t = RecordingTransport([200])
+    let beta = BetaEvents(app: "polingual", transport: t, file: betaFile(), suite: d)
+    let made = Date(timeIntervalSince1970: 1_800_000_000)
+    let props = try #require(BetaEvent.knownProps(KnownLanguages(["en", "es"]), source: .onboarding))
+    let old = BetaEvent(name: BetaEvent.knownName, at: made, sessionId: "s", props: props)
+    await beta.hold(old)
+    let later = made.addingTimeInterval(40 * 86_400)
+    #expect(await beta.flush(token: "tok", owner: "user-a", now: later) == BetaFlush(sent: 1, kept: 0))
+    let sent = try JSONSerialization.jsonObject(with: t.bodies[0]) as! [String: Any]
+    let event = try #require((sent["events"] as? [[String: Any]])?.first)
+    #expect(event["ts"] as? String == ISO8601DateFormatter().string(from: later))
+    #expect(event["id"] as? String == old.id)
+    #expect((event["props"] as? [String: Any])?["codes"] as? String == "en,es")
+}
+
+@Test func aRecentHeldEventKeepsItsTimeAtSignIn() {
+    let made = Date(timeIntervalSince1970: 1_800_000_000)
+    let event = BetaEvent(name: BetaEvent.knownName, at: made, sessionId: nil)
+    #expect(event.restamped(at: made.addingTimeInterval(28 * 86_400)) == event)
+    #expect(event.restamped(at: made.addingTimeInterval(30 * 86_400)).ts != event.ts)
+}
