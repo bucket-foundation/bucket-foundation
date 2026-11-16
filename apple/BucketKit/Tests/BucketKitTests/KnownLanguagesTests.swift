@@ -86,4 +86,85 @@ import Testing
         #expect(known.eventCodes.wholeMatch(of: pattern) != nil)
         #expect(KnownLanguages(["ang"]).eventCodes == "ang")
     }
+
+    @Test func starterTargetsSkipKnownLanguagesAndTheRoot() {
+        #expect(KnownLanguages.starter.allSatisfy(Lang.codes.contains))
+        #expect(KnownLanguages(["en"]).starterTargets(root: "en") == ["fr", "es", "it"])
+        #expect(KnownLanguages(["en", "es", "fr"]).starterTargets(root: "es") == ["it", "de", "pt"])
+        let all = KnownLanguages(KnownLanguages.starter + ["en"])
+        let rest = all.starterTargets(root: "en")
+        #expect(rest.count == 3)
+        #expect(rest.allSatisfy { !all.codes.contains($0) && !KnownLanguages.classical.contains($0) })
+    }
+}
+
+@Suite struct KnownPicksTests {
+    @Test func aNewLearnerStartsWithTheDeviceLanguage() {
+        let picks = KnownPicks(device: "en")
+        #expect(picks.known.codes == ["en"])
+        #expect(picks.root == "en")
+        #expect(picks.targets == ["fr", "es", "it"])
+        #expect(picks.ready)
+    }
+
+    @Test func aStoredListReplacesTheDeviceDefault() {
+        let picks = KnownPicks(device: "en", stored: KnownLanguages(["es", "pt"], at: 4))
+        #expect(picks.known.codes == ["es", "pt"])
+        #expect(picks.root == "es")
+        #expect(!picks.targets.contains("es"))
+        #expect(!picks.targets.contains("pt"))
+    }
+
+    @Test func pickingSpanishAndEnglishWithSpanishAsBaseDropsBothFromTargets() {
+        var picks = KnownPicks(device: "en")
+        picks.toggle("es", at: 10)
+        #expect(picks.root == "en")
+        #expect(picks.bases == ["en", "es"])
+        picks.choose(base: "es")
+        #expect(picks.root == "es")
+        #expect(picks.targets == ["fr", "it"])
+        #expect(picks.known.at == 10)
+    }
+
+    @Test func droppingTheChosenBaseFallsBackToTheDeviceRule() {
+        var picks = KnownPicks(device: "en")
+        picks.toggle("fr", at: 1)
+        picks.choose(base: "fr")
+        picks.toggle("fr", at: 2)
+        #expect(picks.known.codes == ["en"])
+        #expect(picks.root == "en")
+    }
+
+    @Test func theLastKnownLanguageStaysSelected() {
+        var picks = KnownPicks(device: "de")
+        picks.toggle("de", at: 1)
+        #expect(picks.known.codes == ["de"])
+    }
+
+    @Test func aBaseOutsideTheKnownListIsRefused() {
+        var picks = KnownPicks(device: "en")
+        picks.choose(base: "ja")
+        #expect(picks.root == "en")
+        #expect(picks.chosenBase == nil)
+    }
+
+    @Test func targetsRefillWhenEveryPickBecomesKnown() {
+        var picks = KnownPicks(device: "en")
+        picks.pick(["es", "pt"])
+        picks.toggle("es", at: 1)
+        #expect(picks.targets == ["pt"])
+        picks.toggle("pt", at: 2)
+        #expect(picks.targets == ["fr", "it", "de"])
+    }
+
+    @Test func presetsLoseKnownLanguagesEmptyOnesAndRepeats() {
+        var picks = KnownPicks(device: "en")
+        picks.toggle("es", at: 1)
+        picks.toggle("pt", at: 2)
+        let shown = picks.presets(Lang.presets)
+        #expect(shown.map(\.name) == ["Romance", "East Asian", "Germanic"])
+        #expect(shown[0].targets == ["fr", "it"])
+        picks.pick(Lang.presets[0].targets)
+        #expect(picks.targets == ["fr", "it"])
+    }
 }

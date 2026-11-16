@@ -62,4 +62,71 @@ public struct KnownLanguages: Sendable, Equatable {
     }
 
     public var eventCodes: String { codes.prefix(Self.eventCodeLimit).joined(separator: ",") }
+
+    public static let starter = ["fr", "es", "it", "de", "pt", "nl", "ja", "zh"]
+
+    public func starterTargets(root: String, count: Int = 3) -> [String] {
+        let open = { (list: [String]) in list.filter { $0 != root && !codes.contains($0) } }
+        let lead = open(Self.starter)
+        return Array((lead.isEmpty ? open(Lang.codes.filter { !Self.classical.contains($0) }) : lead).prefix(count))
+    }
+}
+
+public struct KnownPicks: Sendable, Equatable {
+    public let device: String
+    public private(set) var known: KnownLanguages
+    public private(set) var chosenBase: String?
+    public private(set) var targets: [String]
+
+    public init(device: String, stored: KnownLanguages = KnownLanguages([])) {
+        self.device = device
+        known = stored.isBlank ? KnownLanguages([device]) : stored
+        targets = []
+        targets = known.starterTargets(root: root)
+    }
+
+    public var root: String {
+        if let chosenBase, known.codes.contains(chosenBase) { return chosenBase }
+        return known.base(device: device)
+    }
+
+    public var bases: [String] {
+        let order = KnownLanguages.speakable(device: device)
+        return known.codes.sorted { (order.firstIndex(of: $0) ?? order.count) < (order.firstIndex(of: $1) ?? order.count) }
+    }
+
+    public var ready: Bool { !known.isBlank }
+
+    public mutating func toggle(_ code: String, at now: Double) {
+        known = known.isBlank ? KnownLanguages([code], at: now) : known.toggled(code, at: now)
+        settle()
+    }
+
+    public mutating func choose(base code: String) {
+        guard known.codes.contains(code) else { return }
+        chosenBase = code
+        settle()
+    }
+
+    public mutating func pick(_ preset: [String]) {
+        targets = open(preset)
+    }
+
+    public func open(_ list: [String]) -> [String] {
+        known.learnable(list).filter { $0 != root }
+    }
+
+    public func presets(_ all: [(name: String, targets: [String])]) -> [(name: String, targets: [String])] {
+        var seen = Set<Set<String>>()
+        return all.compactMap { p in
+            let left = open(p.targets)
+            guard !left.isEmpty, seen.insert(Set(left)).inserted else { return nil }
+            return (p.name, left)
+        }
+    }
+
+    mutating func settle() {
+        targets = open(targets)
+        if targets.isEmpty { targets = known.starterTargets(root: root) }
+    }
 }
