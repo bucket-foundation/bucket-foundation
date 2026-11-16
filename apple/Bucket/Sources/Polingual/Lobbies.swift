@@ -516,6 +516,7 @@ struct LobbyRoom: View {
                         .lineLimit(1)
                         .fixedSize()
                         .foregroundStyle(pl.answered ? D8.malachite : Palette.muted)
+                        .accessibilityValue(pl.answered ? String(localized: "Answered") : String(localized: "Waiting"))
                 }
             }
             HStack(spacing: 6) {

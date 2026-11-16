@@ -207,6 +207,7 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(await pass.token() == nil)
     }
 
+    #if DEBUG
     @MainActor @Test func stagedLobbySitsInRoundTwoAndNeverPolls() async {
         let calls = LockedBox(0)
         let api = BucketAPI(transport: StubTransport { _ in
@@ -228,4 +229,5 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         await store.leave()
         #expect(calls.value == 0 && store.current == nil && !store.staged)
     }
+    #endif
 }
