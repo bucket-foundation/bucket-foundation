@@ -142,4 +142,102 @@ import Testing
         await s.syncAfterSignIn(account: "user-b")
         #expect(s.known.isBlank && saved(server).isBlank)
     }
+
+    @Test func aNewerLocalListWithALostQueueEntryStillSyncs() async {
+        let server = LangServer()
+        server.branches.mutate { $0[Self.branch] = KnownLanguages(["fr"], at: 1).js }
+        let disk = MemoryLangDisk()
+        disk.write("known.json", JSON.data(KnownLanguages(["fr", "de"], at: 500).js))
+        let s = store(server, disk)
+        #expect(!s.hasUnsyncedWork)
+        await s.load()
+        #expect(s.known.codes == ["de", "fr"] && saved(server).codes == ["de", "fr"])
+        #expect(!s.hasUnsyncedWork)
+    }
+
+    @Test func aRefusedPushWaitsOutTheBackoff() async {
+        let server = LangServer()
+        let clock = LockedBox<Double>(1_000)
+        let s = store(server, clock: clock)
+        await s.load()
+        server.refuse.mutate { $0 = true }
+        await s.setKnown(["en"])
+        #expect(s.saveState == .refused && server.refusals.value == 1)
+        clock.mutate { $0 = 2_000 }
+        await s.setKnown(["en", "es"])
+        await s.retryPending()
+        #expect(server.refusals.value == 1 && s.hasUnsyncedWork)
+        server.refuse.mutate { $0 = false }
+        clock.mutate { $0 = 60_000 }
+        await s.retryPending()
+        #expect(saved(server).codes == ["en", "es"] && !s.hasUnsyncedWork)
+    }
+
+    @Test func aChangeDuringASuspendedPushIsPushedRightAfter() async {
+        let server = LangServer()
+        let gate = PostGate(inner: server.api)
+        let clock = LockedBox<Double>(1_000)
+        let s = LangStore(api: BucketAPI(transport: gate), disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { clock.value })
+        await s.load()
+        let first = Task { await s.setKnown(["en"]) }
+        while !gate.waiting.value { await Task.yield() }
+        clock.mutate { $0 = 2_000 }
+        await s.setKnown(["en", "zh"])
+        gate.open.mutate { $0 = true }
+        await first.value
+        #expect(saved(server) == KnownLanguages(["en", "zh"], at: 2_000))
+        #expect(server.posts.value == [Self.branch, Self.branch])
+        #expect(!s.hasUnsyncedWork)
+    }
+
+    @Test func signOutDuringAPushLeavesNothingBehindForTheNextAccount() async {
+        let server = LangServer()
+        let gate = PostGate(inner: server.api)
+        let s = LangStore(api: BucketAPI(transport: gate), disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
+        await s.syncAfterSignIn(account: "user-a")
+        let first = Task { await s.setKnown(["ru"]) }
+        while !gate.waiting.value { await Task.yield() }
+        s.clearLocal()
+        gate.open.mutate { $0 = true }
+        await first.value
+        #expect(s.known.isBlank && !s.hasUnsyncedWork)
+        server.branches.mutate { $0[Self.branch] = nil }
+        server.posts.mutate { $0 = [] }
+        await s.syncAfterSignIn(account: "user-b")
+        #expect(s.known.isBlank && saved(server).isBlank && server.posts.value.isEmpty)
+        await s.setKnown(["tr"])
+        #expect(saved(server).codes == ["tr"])
+    }
+
+    @Test func accountDeletionDropsTheHeldAnswer() async {
+        let server = LangServer()
+        let disk = MemoryLangDisk()
+        let s = store(server, disk)
+        await s.syncAfterSignIn(account: "user-a")
+        server.online.mutate { $0 = false }
+        await s.setKnown(["sv"])
+        s.clearLocal(accountDeleted: true)
+        #expect(s.known.isBlank && !s.hasUnsyncedWork)
+        #expect(disk.read("known.json") == nil && disk.read("held-user-a.json") == nil)
+        server.online.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(s.known.isBlank && saved(server).isBlank)
+    }
+
+    @Test func resyncTakesANewerServerListAndPushesAQueuedLocalOne() async {
+        let server = LangServer()
+        let clock = LockedBox<Double>(1_000)
+        let s = store(server, clock: clock)
+        await s.load()
+        await s.setKnown(["en"])
+        server.branches.mutate { $0[Self.branch] = KnownLanguages(["en", "nl"], at: 5_000).js }
+        await s.resync()
+        #expect(s.known.codes == ["en", "nl"] && !s.hasUnsyncedWork)
+        server.online.mutate { $0 = false }
+        clock.mutate { $0 = 9_000 }
+        await s.setKnown(["en", "pl"])
+        server.online.mutate { $0 = true }
+        await s.resync()
+        #expect(saved(server) == KnownLanguages(["en", "pl"], at: 9_000) && !s.hasUnsyncedWork)
+    }
 }

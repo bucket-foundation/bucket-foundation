@@ -259,8 +259,13 @@ public final class LangStore {
 
     func loadKnown(_ server: JSObject?) -> KnownLanguages {
         let stored = readLocalKnown()
-        let merged = KnownLanguages.merged(stored, KnownLanguages(js: server?[KnownLanguages.branch]?["data"]))
+        let remote = KnownLanguages(js: server?[KnownLanguages.branch]?["data"])
+        let merged = KnownLanguages.merged(stored, remote)
         if merged != stored { writeLocalKnown(merged) }
+        if server != nil, !merged.isBlank, merged != remote, pending[KnownLanguages.branch] == nil {
+            pending[KnownLanguages.branch] = KnownLanguages.branch
+            savePending()
+        }
         return merged
     }
 
@@ -273,6 +278,7 @@ public final class LangStore {
         pending[branch] = branch
         generation[branch, default: 0] += 1
         savePending()
+        if let r = refusedUntil[branch], now() < r.at { return }
         await persistKnown()
     }
 
