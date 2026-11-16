@@ -40,5 +40,32 @@ q "select polingual.forget_founding_email('a@x.co')"
 [ "$(q "select has_function_privilege('anon', 'polingual.founding_spots()', 'execute')")" = f ] || fail "anon cannot read spots"
 [ "$(q "select has_function_privilege('anon', 'polingual.claim_founding_code(text, text, int)', 'execute')")" = f ] || fail "anon cannot claim"
 
-q "truncate polingual.founding_codes, polingual.founding_attempts"
+q "truncate polingual.founding_families, polingual.founding_attempts"
+[ "$(q "select total || ':' || spots_left from polingual.founding_family_spots()")" = 500:500 ] || fail "family spots start at 500"
+[ "$(q "select outcome || ':' || spots_left from polingual.claim_founding_family('fam@x.co', 'fip1')")" = claimed:499 ] || fail "first family claim"
+[ "$(q "select outcome from polingual.claim_founding_family('fam@x.co', 'fip1')")" = recent ] || fail "same family email within 10 minutes resends nothing"
+q "update polingual.founding_families set sent_at = now() - interval '11 minutes' where email = 'fam@x.co'"
+[ "$(q "select outcome from polingual.claim_founding_family('fam@x.co', 'fip1')")" = resend ] || fail "family resend after 10 minutes"
+
+for i in $(seq 1 20); do q "select 1 from polingual.claim_founding_family('fdrain$i@x.co', 'fip-drain')" >/dev/null; done
+[ "$(q "select count(*) from polingual.founding_families where email like 'fdrain%'")" = 3 ] || fail "20 family claims from one ip took more than 3 spots"
+
+q "truncate polingual.founding_families, polingual.founding_attempts"
+q "insert into polingual.founding_families (email) select 'seed' || g || '@x.co' from generate_series(1, 495) g"
+pids=()
+for i in $(seq 1 20); do q "select outcome from polingual.claim_founding_family('cap$i@x.co', 'fip-cap-$i')" > "/tmp/founding-cap-$$-$i" 2>&1 & pids+=($!); done
+for p in "${pids[@]}"; do wait "$p" || fail "a concurrent family claim errored"; done
+[ "$(q "select count(*) from polingual.founding_families")" = 500 ] || fail "20 concurrent claims on 5 open spots did not stop at 500"
+[ "$(cat /tmp/founding-cap-$$-* | grep -c claimed)" = 5 ] || fail "exactly 5 concurrent claims report claimed"
+[ "$(cat /tmp/founding-cap-$$-* | grep -c full)" = 15 ] || fail "the other 15 report full"
+rm -f /tmp/founding-cap-$$-*
+[ "$(q "select outcome || ':' || spots_left from polingual.claim_founding_family('late@x.co', 'fip-late')")" = full:0 ] || fail "family 501 is refused"
+[ "$(q "select outcome from polingual.claim_founding_family('seed1@x.co', 'fip-seed')")" = resend ] || fail "a holder still gets a resend when full"
+
+q "select polingual.forget_founding_email('seed1@x.co')"
+[ "$(q "select spots_left from polingual.founding_family_spots()")" = 1 ] || fail "forget frees the family spot"
+[ "$(q "select has_function_privilege('anon', 'polingual.claim_founding_family(text, text, int, int)', 'execute')")" = f ] || fail "anon cannot claim a family spot"
+[ "$(q "select has_function_privilege('anon', 'polingual.founding_family_spots(int)', 'execute')")" = f ] || fail "anon cannot read family spots"
+
+q "truncate polingual.founding_codes, polingual.founding_attempts, polingual.founding_families"
 echo "founding.sql: all checks pass"

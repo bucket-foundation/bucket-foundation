@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import vm from "node:vm";
 import { RateLimiter } from "./beta";
-import { claimFounding, codeEmail, fetchSpots, foundingStatus, ipHash, parseCodes, type Outcome } from "./founding";
+import { claimFounding, familyEmail, fetchSpots, FOUNDING_FAMILIES, foundingStatus, ipHash, parseCodes, type Outcome } from "./founding";
 
 const env = { RESEND_API_KEY: "k", POLINGUAL_DB_SERVICE_KEY: "s", POLINGUAL_DB_URL: "https://db.test", TURNSTILE_SECRET_KEY: "ts", TURNSTILE_SITE_KEY: "site" };
 const site = { origin: "https://www.polingual.com", ip: "1.2.3.4", token: "tok" };
@@ -21,24 +21,25 @@ function fake(replies: Reply[]) {
   return { calls, send };
 }
 const human: Reply = [200, { success: true, hostname: "www.polingual.com" }];
-const row = (code: string | null, outcome: Outcome, left = 100): Reply => [200, [{ code, outcome, spots_left: left }]];
+const row = (outcome: Outcome, left = 100): Reply => [200, [{ outcome, spots_left: left }]];
 
-test("verifies the human, claims one code and emails it", async () => {
-  const f = fake([human, row("ABC123", "claimed", 199), [200, {}]]);
+test("verifies the human, claims one family spot under the 500 cap and emails the confirmation", async () => {
+  const f = fake([human, row("claimed", 499), [200, {}]]);
   const r = await claimFounding({ email: "Ana@Example.com" }, env, f.send, site, fresh());
   assert.equal(r.status, 200);
-  assert.equal(r.body.left, 199);
+  assert.equal(r.body.left, 499);
   assert.match(f.calls[0].url, /turnstile\/v0\/siteverify/);
-  assert.equal(f.calls[1].url, "https://db.test/rest/v1/rpc/claim_founding_code");
-  assert.deepEqual(JSON.parse(f.calls[1].body), { p_email: "ana@example.com", p_ip_hash: ipHash("1.2.3.4", env) });
-  assert.match(f.calls[2].body, /ABC123/);
+  assert.equal(f.calls[1].url, "https://db.test/rest/v1/rpc/claim_founding_family");
+  assert.deepEqual(JSON.parse(f.calls[1].body), { p_email: "ana@example.com", p_ip_hash: ipHash("1.2.3.4", env), p_cap: 500 });
+  assert.match(f.calls[2].body, /founding family spot/);
+  assert.match(f.calls[2].body, /ana@example\.com/);
 });
 
-test("a forged origin with no human token takes no code", async () => {
+test("a forged origin with no human token takes no spot", async () => {
   const f = fake([[200, { success: false }]]);
   const r = await claimFounding({ email: "a@b.co" }, env, f.send, { ...site, token: "forged" }, fresh());
   assert.equal(r.status, 403);
-  assert.ok(!f.calls.some((c) => c.url.includes("claim_founding_code")));
+  assert.ok(!f.calls.some((c) => c.url.includes("claim_founding_family")));
 });
 
 test("missing token never reaches the database", async () => {
@@ -51,10 +52,10 @@ test("50 scripted claims from one network with fresh limiters stay under the dat
   let taken = 0;
   const send = async (url: string) => {
     if (url.includes("siteverify")) return new Response(JSON.stringify({ success: true }));
-    if (url.includes("claim_founding_code")) {
+    if (url.includes("claim_founding_family")) {
       const outcome = taken < 3 ? "claimed" : "ip-limit";
       if (outcome === "claimed") taken++;
-      return new Response(JSON.stringify([{ code: outcome === "claimed" ? `C${taken}XXXXX` : null, outcome, spots_left: 200 - taken }]));
+      return new Response(JSON.stringify([{ outcome, spots_left: 500 - taken }]));
     }
     return new Response("{}");
   };
@@ -65,27 +66,31 @@ test("50 scripted claims from one network with fresh limiters stay under the dat
 });
 
 test("a recent repeat for the same email sends no second email", async () => {
-  const f = fake([human, row(null, "recent")]);
+  const f = fake([human, row("recent")]);
   const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
   assert.equal(r.status, 200);
   assert.equal(f.calls.length, 2);
 });
 
-test("reports full when no code is left", async () => {
-  const f = fake([human, row(null, "full", 0)]);
+test("family 501 is refused and gets no email", async () => {
+  const f = fake([human, row("full", 0)]);
   const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
   assert.equal(r.status, 409);
   assert.equal(r.body.full, true);
+  assert.equal(r.body.left, 0);
+  assert.match(r.body.error ?? "", /All 500 founding family spots are taken/);
+  assert.equal(f.calls.length, 2);
 });
 
-test("never returns the code in the response body", async () => {
-  const f = fake([human, row("SECRET99", "claimed", 5), [200, {}]]);
+test("a holder who asks again after 10 minutes gets the confirmation resent", async () => {
+  const f = fake([human, row("resend", 12), [200, {}]]);
   const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
-  assert.ok(!JSON.stringify(r.body).includes("SECRET99"));
+  assert.equal(r.status, 200);
+  assert.equal(f.calls[2].url, "https://api.resend.com/emails");
 });
 
 test("a failed email keeps the spot and says when to retry", async () => {
-  const f = fake([human, row("ABC123", "claimed", 3), [500, {}]]);
+  const f = fake([human, row("claimed", 3), [500, {}]]);
   const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
   assert.equal(r.status, 502);
   assert.match(r.body.error ?? "", /10 minutes/);
@@ -109,7 +114,11 @@ test("rejects other origins and honeypot hits", async () => {
 });
 
 test("spots read from the database and hide when offline", async () => {
-  assert.deepEqual(await fetchSpots(env, fake([[200, [{ total: 200, spots_left: 17 }]]]).send), { total: 200, left: 17 });
+  assert.deepEqual(await fetchSpots(env, fake([[200, [{ total: 500, spots_left: 417 }]]]).send), { total: 500, left: 417 });
+  const read = fake([[200, [{ total: 500, spots_left: 1 }]]]);
+  await fetchSpots(env, read.send);
+  assert.equal(read.calls[0].url, "https://db.test/rest/v1/rpc/founding_family_spots");
+  assert.deepEqual(JSON.parse(read.calls[0].body), { p_cap: FOUNDING_FAMILIES });
   assert.equal(await fetchSpots(env, fake([[500, {}]]).send), null);
   assert.equal(await fetchSpots(env, fake([[200, [{ total: 0, spots_left: 0 }]]]).send), null);
   assert.equal(await fetchSpots({}, fake([]).send), null);
@@ -121,8 +130,8 @@ test("founding status answers 200 and keeps the Turnstile key when spots are off
   const offline = await foundingStatus(env, fake([[500, {}]]).send);
   assert.deepEqual(offline, { body: { open: false, siteKey: env.TURNSTILE_SITE_KEY }, cache: "no-store" });
   assert.deepEqual(await foundingStatus({}, fake([]).send), { body: { open: false }, cache: "no-store" });
-  const live = await foundingStatus(env, fake([[200, [{ total: 200, spots_left: 9 }]]]).send);
-  assert.deepEqual(live, { body: { total: 200, left: 9, siteKey: env.TURNSTILE_SITE_KEY }, cache: "s-maxage=30" });
+  const live = await foundingStatus(env, fake([[200, [{ total: 500, spots_left: 9 }]]]).send);
+  assert.deepEqual(live, { body: { total: 500, left: 9, siteKey: env.TURNSTILE_SITE_KEY }, cache: "s-maxage=30" });
 });
 
 test("ip hash is salted and stable", () => {
@@ -135,12 +144,16 @@ test("parseCodes trims, uppercases and dedupes", () => {
   assert.deepEqual(parseCodes("abc123, ABC123\nzz9999  bad\n"), ["ABC123", "ZZ9999"]);
 });
 
-test("code email points at the App Store listing and the redeem link", () => {
-  const m = codeEmail("a@b.co", "P <p@x.co>", "ABC123");
-  assert.match(m.text, /ABC123/);
-  assert.match(m.text, /apps\.apple\.com\/app\/id6825177856/);
-  assert.doesNotMatch(m.text + m.html, /testflight|Bucket beta/i);
-  assert.match(m.text, /apps\.apple\.com\/redeem/);
+test("the confirmation email states the offer, the App Store link and how to leave", () => {
+  const m = familyEmail("a@b.co", "P <p@x.co>");
+  assert.equal(m.subject, "Your Polingual founding family spot");
+  for (const body of [m.text, m.html]) {
+    assert.match(body, /one of 500 Polingual founding family spots/);
+    assert.match(body, /Family plan free for life, for up to 6 people through Apple Family Sharing/);
+    assert.match(body, /apps\.apple\.com\/app\/id6825177856/);
+    assert.match(body, /privacy@polingual\.com/);
+    assert.doesNotMatch(body, /testflight|offer code|\u2014|\u2013/i);
+  }
 });
 
 test("no offer codes are committed", () => {
@@ -221,4 +234,56 @@ test("beta.js loads Vercel analytics once and sends launch events only on succes
   assert.match(js, /if\(top===self\)ev\("page_view"\)/);
   assert.match(js, /a\[href\^="https:\/\/apps\.apple\.com\/app\/id6825177856"\]'\)\)ev\("testflight_open"\)/);
   assert.doesNotMatch(js, /testflight\.apple\.com/);
+});
+
+const foundingJs = readFileSync(join(__dirname, "../../public/d8/founding.js"), "utf8");
+const homeHtml = readFileSync(join(__dirname, "../../public/d8/index.html"), "utf8");
+
+async function loadOffer(lang: string, status: unknown) {
+  const row = () => {
+    const count = { textContent: "" };
+    return { hidden: true, count, querySelector: (sel: string) => (sel === ".ffn" ? count : { addEventListener: () => {} }) };
+  };
+  const rows = [row(), row()];
+  const win: Record<string, unknown> = {
+    document: { documentElement: { lang }, querySelectorAll: () => rows },
+    fetch: async () => new Response(JSON.stringify(status)),
+    addEventListener: () => {},
+    setTimeout: () => 0,
+  };
+  win.window = win;
+  vm.runInNewContext(foundingJs, win);
+  await new Promise((r) => setImmediate(r));
+  await new Promise((r) => setImmediate(r));
+  return rows;
+}
+
+test("the home page carries the founding family offer under both App Store buttons", () => {
+  const offers = [...homeHtml.matchAll(/data-slot="appstore" rel="noopener">Download on the App Store<\/a>\s*<p class="hw ff" hidden><button type="button">([^<]+)<span class="ffn"><\/span><\/button><\/p>/g)];
+  assert.equal(offers.length, 2);
+  for (const o of offers) assert.equal(o[1], "Founding family, free for life · ");
+  assert.match(homeHtml, /<script src="\/d8\/founding\.js"><\/script>/);
+});
+
+test("the offer shows the live count once founding signups are open", async () => {
+  const rows = await loadOffer("en", { total: 500, left: 417, siteKey: "k" });
+  for (const r of rows) {
+    assert.equal(r.hidden, false);
+    assert.equal(r.count.textContent, "417 of 500 left");
+  }
+  assert.equal((await loadOffer("en", { total: 500, left: 0 }))[0].count.textContent, "All 500 spots are taken");
+});
+
+test("the offer stays hidden while signups are offline and on translated pages", async () => {
+  assert.equal((await loadOffer("en", { open: false }))[0].hidden, true);
+  assert.equal((await loadOffer("es", { total: 500, left: 417 }))[0].hidden, true);
+});
+
+test("the offer sheet states the ruling and posts the claim with the human check", () => {
+  assert.match(foundingJs, /const HEAD = "Founding family, free for life";/);
+  assert.match(foundingJs, /The first 500 families to sign up get the Polingual Family plan free for life, for up to 6 people through Apple Family Sharing\./);
+  assert.match(foundingJs, /fetch\("\/api\/founding", \{ method: "POST"/);
+  assert.match(foundingJs, /turnstile: token/);
+  assert.match(foundingJs, /website: sheet\.website\.value/);
+  assert.doesNotMatch(foundingJs, /[—–]/);
 });
