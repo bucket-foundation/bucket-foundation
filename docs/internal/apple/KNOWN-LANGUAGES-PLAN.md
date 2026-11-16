@@ -1,6 +1,6 @@
 # Known Languages Onboarding Plan
 
-Bead bkt-pgr06.2, epic bkt-pgr06. Status: plan, critic round 2. Round 1 scored 6.2 with one high finding, the weight guard claim; fixed by moving storage to its own branch. Founder question: which share of new Polingual learners already speak two or more languages, and does asking change which set they build?
+Bead bkt-pgr06.2, epic bkt-pgr06. Status: plan passed critic round 2 at 8.1, after round 1 at 6.2. Open findings filed as beads: bkt-pgr06.2.1 guest events dropped at sign-in, bkt-pgr06.2.2 handler test that a lang-known write leaves mastery alone, bkt-pgr06.2.3 server guard against an empty lang-known. Founder question: which share of new Polingual learners already speak two or more languages, and does asking change which set they build?
 
 ## Goal
 
