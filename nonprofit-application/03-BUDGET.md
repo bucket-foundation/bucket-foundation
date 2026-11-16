@@ -1,105 +1,68 @@
-# Budget, 12-month projection
+# Three-Year Budget Template
 
-> small-budget projection. The Foundation is volunteer-run in year one. The point of this budget is to show that the Foundation **does not need money to operate**, it needs money to scale author payouts. Cash and in-kind are listed separately.
+Form 1023 Part VI asks a new organisation for three years of projected revenue and expenses ([Instructions for Form 1023](https://www.irs.gov/instructions/i1023)). The rows below follow the Part VI statement. Check the row order against the live Pay.gov form before filing.
 
-**Reporting period:** 2026-05-01 → 2027-04-30 (assumes sponsor onboarding completes in Q2 2026)
-**Currency:** USD
-**Reporting basis:** cash
+The founder fills every cell marked "fill". The baseline column carries the May 2026 envelope, which had no marketplace and no Polingual licence.
 
----
+## Assumptions To Set First
 
-## 1. Income
+| Assumption | Value | Owner |
+|---|---|---|
+| Fiscal year end | fill | Founder |
+| Year 1 start | Date of incorporation | Founder |
+| Marketplace opens | After the determination letter | Board |
+| Foundation share kept from each marketplace gift | fill, shown on every gift page | Board |
+| Polingual royalty basis | Set by independent valuation | Independent directors |
+| Paid staff | None in year 1 | Board |
+| Program price to the public | $0 | Founder ruling |
 
-| Line | Source | Confidence | Low | Expected | High |
-|---|---|---|---:|---:|---:|
-| I-1 | Citation fees (reference bucket) | speculative | $0 | $250 | $5,000 |
-| I-2 | Individual donations | speculative | $0 | $500 | $2,500 |
-| I-3 | Open-science grants (Mozilla / Sloan / PL Network / equivalent) | aspirational | $0 | $0 | $25,000 |
-| I-4 | In-kind hosting / RPC / storage credits | likely | $1,000 | $2,500 | $5,000 |
-| I-5 | Founder personal gap funding (capped) | committed | $600 | $1,200 | $1,200 |
-| | **Total cash income (excl. in-kind)** | | **$600** | **$1,950** | **$33,700** |
-| | **Total in-kind** | | **$1,000** | **$2,500** | **$5,000** |
+## Revenue
 
-## 2. Expenses
+| Line | Year 1 | Year 2 | Year 3 | May baseline, year 1 to 3 |
+|---|---|---|---|---|
+| 1. Gifts, grants and contributions: general | fill | fill | fill | $1,700 / $15,000 / $50,000 |
+| 1. Gifts, grants and contributions: marketplace, restricted | $0 | fill | fill | None |
+| 2. Membership fees | $0 | $0 | $0 | $0 |
+| 3. Gross investment income, including Polingual royalties | fill | fill | fill | None |
+| 4. Net unrelated business income | $0 | $0 | $0 | $0 |
+| 7. Other revenue | fill | fill | fill | None |
+| 9. Gross receipts from exempt activities | $0 | $0 | $0 | $250 in year 1 |
+| **13. Total revenue** | fill | fill | fill | $1,950 / $15,000 / $50,000 |
 
-### 2a. Operating expenses
+Programs are free, so line 9 stays at $0 unless the board adopts a fee.
 
-| Line | Item | Low | Expected | High |
-|---|---|---:|---:|---:|
-| E-1 | Domain `bucket.foundation` annual registration | $40 | $40 | $40 |
-| E-2 | Hosting (Vercel hobby / equivalent) | $0 | $240 | $480 |
-| E-3 | RPC + storage (Walrus, Pinata, Base RPC) | $0 | $300 | $1,200 |
-| E-4 | x402 buyer wallet gas + service fees (Base L2) | $50 | $200 | $1,000 |
-| E-5 | Email + transactional (Postmark / Resend equivalent) | $0 | $120 | $240 |
-| E-6 | Accounting / sponsor fee (assume 10% of cash pass-through) | $60 | $195 | $3,370 |
-| E-7 | One-time legal review of fiscal sponsorship agreement | $0 | $300 | $800 |
-| E-8 | Misc. (ICANN tax, fees, contingencies) | $50 | $100 | $300 |
-| | **Subtotal, operating expenses** | **$200** | **$1,495** | **$7,430** |
+## Expenses
 
-### 2b. Programmatic expenses
+| Line | Year 1 | Year 2 | Year 3 | Note |
+|---|---|---|---|---|
+| 14. Fundraising | fill | fill | fill | Card processing on gifts |
+| 15. Grants paid: marketplace regrants | $0 | fill | fill | Paid from restricted gifts |
+| 15. Grants paid: other | fill | fill | fill | |
+| 17. Compensation of officers and directors | $0 | $0 | $0 | Directors serve unpaid |
+| 18. Other salaries | $0 | fill | fill | |
+| 20. Occupancy | $0 | $0 | $0 | No office |
+| 22. Professional fees | fill | fill | fill | Counsel, accountant, Form 990 |
+| 23. Other: hosting and data | fill | fill | fill | |
+| 23. Other: state filings and registrations | fill | fill | fill | See `10-FILING-ORDER.md` |
+| 23. Other: insurance | fill | fill | fill | Directors and officers cover |
+| **24. Total expenses** | fill | fill | fill | |
 
-| Line | Item | Low | Expected | High |
-|---|---|---:|---:|---:|
-| P-1 | Author payouts from citation revenue (≥80% of I-1) | $0 | $200 | $4,000 |
-| P-2 | Grants to mirror operators in low-bandwidth regions | $0 | $0 | $5,000 |
-| P-3 | Test-vector and conformance corpus development | $0 | $0 | $2,500 |
-| P-4 | Documentation translations (ES, PT, FR, ZH) | $0 | $0 | $1,500 |
-| P-5 | Conference / workshop travel (one trip) | $0 | $0 | $1,500 |
-| | **Subtotal, programmatic expenses** | **$0** | **$200** | **$14,500** |
+## Formation Costs In Year 1
 
-### 2c. Compensation
+| Cost | Amount | Source |
+|---|---|---|
+| Government fees | $680 to $896 by state | `10-FILING-ORDER.md` |
+| Counsel | Quote needed | None |
+| Registered agent | Quote needed in Delaware | None |
 
-| Line | Item | Low | Expected | High |
-|---|---|---:|---:|---:|
-| C-1 | Founding maintainer salary | $0 | $0 | $0 |
-| C-2 | Contractor fees (eng / design) | $0 | $0 | $0 |
-| C-3 | Board member compensation | $0 | $0 | $0 |
-| | **Subtotal, compensation** | **$0** | **$0** | **$0** |
+## Checks Before Filing
 
-> **Compensation is zero in year one.** If the Foundation later compensates anyone, it will be at fair-market rate, against documented deliverables, with board approval (or public disclosure absent a board), and disclosed in the next quarterly report.
+| Check | Rule | Source |
+|---|---|---|
+| Any year above $50,000 in total revenue | Form 1023-EZ is closed, and Form 990-N is closed for that year | [Form 1023-EZ worksheet](https://www.irs.gov/instructions/i1023ez), [Form 990-N](https://www.irs.gov/charities-non-profits/annual-electronic-filing-requirement-for-small-exempt-organizations-form-990-n-e-postcard) |
+| Founder gifts and any one donor | Count as public support up to 2% of total support each | [Schedule A instructions](https://www.irs.gov/pub/irs-pdf/i990sa.pdf) |
+| Royalties | Excluded from unrelated business income when the payer is not a controlled company | [Publication 598](https://www.irs.gov/publications/p598) |
+| Marketplace gifts | Restricted funds, tracked by project, never mixed with operating cash | `docs/specs/RESEARCH-DONATION-MARKETPLACE.md` |
+| Founder loans | None. Founder money enters as a gift with no claim on the Foundation. | Confirm with counsel |
 
-### 2d. Total expenses
-
-| | Low | Expected | High |
-|---|---:|---:|---:|
-| **Total cash expenses** | **$200** | **$1,695** | **$21,930** |
-
-## 3. Net position
-
-| Scenario | Cash income | Cash expense | Surplus / (Deficit) |
-|---|---:|---:|---:|
-| Low | $600 | $200 | $400 |
-| Expected | $1,950 | $1,695 | $255 |
-| High | $33,700 | $21,930 | $11,770 |
-
-In all three scenarios the Foundation is **cashflow-positive or breakeven**. The high-side surplus would be allocated under § 4 below.
-
-## 4. Surplus allocation policy
-
-If revenue exceeds operating expenses + planned programmatic expenses, the surplus is allocated in this fixed order:
-
-1. **Author payouts**, top up author payouts toward the ≥80% target if any quarter fell short.
-2. **Mirror subsidies**, fund mirror operators in low-bandwidth or sanctioned regions (subject to sponsor compliance review).
-3. **Test-vector and conformance corpus**, fund the development of independent-implementation test vectors.
-4. **Operating reserve**, accumulate an operating reserve up to a maximum of 12 months of operating expenses (line E-1 through E-8 expected column = ~$1,500 → reserve cap ~$18,000).
-5. **Grants out** to other open-access infrastructure projects.
-
-The Foundation will **not** accumulate cash reserves above 12 months of operating expenses. Surplus above the reserve cap flows back to lines 1-3 and 5.
-
-## 5. Multi-year envelope
-
-| Year | Expected cash income | Expected cash expense | Notes |
-|---|---:|---:|---|
-| Y1 (2026-05 → 2027-04) | $1,950 | $1,695 | Sponsored project, volunteer-run |
-| Y2 (2027-05 → 2028-04) | $15,000 | $12,000 | First grant cycle, first author payouts at scale |
-| Y3 (2028-05 → 2029-04) | $50,000 | $40,000 | Decision point on direct 501(c)(3) filing vs. continuation under sponsor |
-
-These multi-year numbers are illustrative. The Foundation does not commit to them and will not accept funding conditioned on hitting them.
-
-## 6. What this budget proves
-
-1. **The Foundation is not asking the sponsor to underwrite a salary.** Compensation is zero.
-2. **The Foundation is not asking for grant capital it has not yet earned.** Year-one expected income is under $2,000 cash.
-3. **The Foundation has a hard cap on how much money it will ever sit on** (12 months of operations, ~$18k).
-4. **The Foundation has a written rule for what to do with surplus** (author payouts first, operating reserve last).
-5. **Founder gap funding is a fixed, capped commitment**, bounded so it creates no founder claim over the Foundation.
+Confirm the line placement of royalties and of marketplace gifts with an accountant before filing.
