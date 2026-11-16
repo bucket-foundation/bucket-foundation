@@ -25,6 +25,7 @@ Use tokens by name: `var(--pl-vermilion)` on web, `PL.vermilion` on iOS, `PL.Ver
 | Dark ground | `tyrian`, with the star lattice |
 | Text | `ink`, `ink-dim` on paper; `paper` on tyrian |
 | Colored text on paper | `vermilion-ink` at 5.12:1 and `ochre-ink` at 5.09:1; `vermilion` and `ochre-deep` only at 24px and up |
+| Ink token grounds | `vermilion-ink` and `ochre-ink` meet 4.5:1 on `paper`, `card` and `paper-2` (4.64:1 and 4.61:1). On `paper-3` they fall to 4.11:1 and 4.08:1, so use `ink` there and on every darker ground |
 | Primary action | `vermilion` with `vermilion-deep` lip |
 | Secondary action | `lapis` with `lapis-deep` lip |
 | Success, correct | `malachite` |

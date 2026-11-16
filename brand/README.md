@@ -45,6 +45,6 @@ Each product has one logo file. Every shipped icon is rendered from it.
 - A source is a square SVG with `<rect id="ground">` and a `data-radius` for rounded outputs.
 - `npm run brand:icons` writes web favicons and the Bucket share card, iOS, Watch and Android icon sets, desktop icons and `brand/logo/icons.lock.json`.
 - `npm run brand:check` fails when a source or a committed icon differs from the lock, or when a fresh render differs by more than 2 levels per channel. CI runs it in `brand-icons.yml`.
-- Web builds rerun the script in `prebuild`. `apple/scripts/archive-polingual.sh` reruns it before each archive.
+- Web builds rerun the script in `prebuild`. `apple/scripts/archive-polingual.sh` reruns it before each archive. Both fail when the render cannot run. `--soft` is for local use and prints a warning per skipped product.
 - Beta badge: `node scripts/brand/build-icons.mjs --only apple,android --badge 2026-11-15`, or `ICON_BADGE=1` on the archive script. Badged files fail the check, so they stay out of commits.
 - To change a logo, edit `current.svg`, run `npm run brand:icons` and commit the result. Never edit an icon file by hand.

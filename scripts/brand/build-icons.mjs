@@ -282,7 +282,10 @@ async function main() {
   const lock = existsSync(lockPath) ? JSON.parse(readFileSync(lockPath, "utf8")) : {};
   const problems = [];
   if (!sharp && !args.check) {
-    if (args.soft) return console.warn("brand icons: sharp is not installed, kept the committed icons");
+    if (args.soft) {
+      for (const name of args.products) console.warn(`brand icons: WARNING skipped ${name}, sharp is not installed, the committed ${name} icons stay`);
+      return;
+    }
     throw new Error("sharp is not installed, run npm ci at the repo root");
   }
   if (!sharp && args.check && !args.soft) throw new Error("sharp is not installed, run npm ci at the repo root");
@@ -290,7 +293,7 @@ async function main() {
     const product = PRODUCTS[name];
     if (!existsSync(abs(product.source))) {
       if (args.soft) {
-        console.warn(`brand icons: ${product.source} is not in this checkout, kept the committed ${name} icons`);
+        console.warn(`brand icons: WARNING skipped ${name}, ${product.source} is not in this checkout, the committed ${name} icons stay`);
         continue;
       }
       throw new Error(`${product.source} is missing`);
@@ -342,7 +345,8 @@ async function main() {
       console.error("run npm run brand:icons and commit the result");
       process.exit(1);
     }
-    console.log(`brand icons: committed icons match their sources${sharp ? "" : ", lock only"}`);
+    if (!sharp) for (const name of args.products) console.warn(`brand icons: WARNING skipped the ${name} render comparison, sharp is not installed, lock hashes only`);
+    console.log("brand icons: committed icons match their sources");
   } else if (!args.badge) {
     writeFileSync(lockPath, `${JSON.stringify(lock, null, 2)}\n`);
   }

@@ -9,7 +9,7 @@ case "$mode" in
   *) echo "mode must be testflight or review"; exit 64 ;;
 esac
 cd "$(dirname "$0")/.."
-icons=(node ../scripts/brand/build-icons.mjs --product polingual --only apple --soft)
+icons=(node ../scripts/brand/build-icons.mjs --product polingual --only apple)
 if [ -n "${ICON_BADGE:-}" ]; then
   trap '"${icons[@]}"' EXIT
   "${icons[@]}" --badge "$(date +%Y-%m-%d)"
