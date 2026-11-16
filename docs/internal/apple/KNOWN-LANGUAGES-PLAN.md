@@ -61,7 +61,7 @@ Proficiency levels per language, placement tests for known languages and the lex
 
 ## Steps
 
-0. Web: allow `known_languages_set` in `BETA_EVENT_NAMES`, with a handler test.
+0. Web: allow `known_languages_set` in `BETA_EVENT_NAMES`, with a handler test. The `bucket.beta_events` name check lists event names, so migration `20261116000000_beta_events_known_languages_set.sql` ships on the same branch, `feat/beta-known-languages-event`, and is applied to the hosted database before the ingest change reaches `main`.
 1. BucketKit `KnownLanguages` with tests.
 2. `LangStore.known` on the `lang-known` branch with load, push and merge, tests with the stub transport.
 3. Onboarding `speak` step and target filtering, UI test.
