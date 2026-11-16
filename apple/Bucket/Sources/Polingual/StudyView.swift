@@ -204,9 +204,10 @@ struct StudyView: View {
             .padding(PL.Space.s5)
         } else if i >= queue.count || current == nil {
             FitPage(center: true) {
-                let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))
+                let gap = vertical == .compact ? 10.0 : 16.0
+                let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: gap))
                 columns {
-                    VStack(spacing: 16) {
+                    VStack(spacing: gap) {
                         PLGlyphView(.check, size: 44).foregroundStyle(PL.malachite)
                             .frame(width: 76, height: 76)
                             .onAppear {
@@ -217,16 +218,18 @@ struct StudyView: View {
                         Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
                             .foregroundStyle(Palette.muted)
                             .monospacedDigit()
+                        if vertical == .compact {
+                            FeedbackLink()
+                            ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
+                        }
                     }
                     .frame(maxWidth: .infinity)
-                    VStack(spacing: 16) {
-                        FeedbackLink()
-                        ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
-                        Button("See progress") {
-                            path.replaceTop(with: LangRoute.system(system.id))
+                    VStack(spacing: gap) {
+                        if vertical != .compact {
+                            FeedbackLink()
+                            ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
                         }
-                        .buttonStyle(D8Primary())
-                        Button("Another round") {
+                        Button("Next lesson") {
                             let now = Date().timeIntervalSince1970 * 1000
                             self.queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
                             tally = SoundTally()
@@ -236,11 +239,23 @@ struct StudyView: View {
                             xpStart = state.xp
                             makeExercise()
                         }
+                        .buttonStyle(D8Primary())
+                        ForEach(NextLesson.otherSets(after: system.id, systems: store.systems, lastStudyDay: { store.state($0).lastStudyDay })) { other in
+                            Button {
+                                path.replaceTop(with: LangRoute.study(other.id))
+                            } label: {
+                                Label(other.title, systemImage: "arrow.right").lineLimit(1).minimumScaleFactor(0.7)
+                            }
+                            .buttonStyle(D8Option(align: .center))
+                        }
+                        Button("See progress") {
+                            path.replaceTop(with: LangRoute.system(system.id))
+                        }
                         .buttonStyle(D8Option(align: .center))
                     }
                     .frame(maxWidth: .infinity)
                 }
-                .padding(vertical == .compact ? 12 : 24)
+                .padding(vertical == .compact ? 8 : 24)
             }
             .modifier(AskForReview(streak: Int(state.streak), graded: graded, correct: correct))
         } else if let ex = current {

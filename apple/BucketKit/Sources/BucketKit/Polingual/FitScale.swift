@@ -8,6 +8,10 @@ public enum FitScale {
         return max(floor, min(1, available / content))
     }
 
+    public static func settled(_ current: Double, _ measured: Double) -> Double {
+        abs(measured - current) < 1 ? current : measured
+    }
+
     public static func overflows(content: Double, available: Double, scale: Double) -> Bool {
         content * scale > available + 0.5
     }
