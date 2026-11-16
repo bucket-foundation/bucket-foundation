@@ -3,12 +3,14 @@ Base Info Memo.
 
 > **Status:** 2026-05-03. Decision-oriented gap analysis assembled by Operations pillar (bead `bkt-ikk`) ahead of any filing or sponsor outreach. **Nothing has been filed. No sponsor has been contacted.** This memo only assembles the facts and recommendations that need founder sign-off before files 01-07 can be submitted.
 
+> **Update 2026-11-16.** The founder chose direct incorporation as a 501(c)(3). `07-FORM-1023-DECISION.md` replaces section 2, and `10-FILING-ORDER.md` carries current fees. Sections 3 to 6 stay as background.
+
 ---
 
 ## 1. Gap analysis
 What's missing before files 01-07 are file-ready.
 
-Reading files `00-COVER-LETTER.md` through `07-FORM-1023-EZ-WORKSHEET.md` end-to-end, the packet is well-drafted but **not file-ready**. Concrete gaps:
+Reading files `00-COVER-LETTER.md` through `07-FORM-1023-DECISION.md` end-to-end, the packet is well-drafted but **not file-ready**. Concrete gaps:
 
 | # | Gap | Where it bites | Severity |
 |---|---|---|---|
@@ -152,7 +154,7 @@ Founder resides in NY/NJ. Either is workable; the differentiator is regulatory a
 
 **Recommendation:** Incorporate in **the state where Bucket will primarily operate / where founder is domiciled at the time of filing**. If founder is NJ-resident: file NJ. If NY-resident: file NY (accept higher compliance burden, NY's rigor is reputationally useful for an open-research nonprofit). Either is materially better than Delaware.
 
-**Action item for founder:** confirm domicile as of intended filing date. Then we discard `06-ARTICLES-OF-INCORPORATION-DRAFT.md` (DE) and draft a state-specific replacement.
+**Action item for founder:** confirm domicile as of intended filing date. Then we discard `06-ARTICLES-DELAWARE.md` (DE) and draft a state-specific replacement.
 
 ---
 
