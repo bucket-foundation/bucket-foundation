@@ -170,10 +170,12 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 .stone-basalt  {
   background-color: rgba(31, 28, 22, 0.92);
   color: var(--bone);
+  --gold-text: var(--gold);
 }
 .stone-aegean  {
   background-color: rgba(18, 56, 56, 0.9);
   color: var(--bone);
+  --gold-text: var(--gold);
 }
 .stone-basalt *:where([class*="text-[color:var(--basalt)]"],
                      [class*="text-[color:var(--basalt-2)]"],

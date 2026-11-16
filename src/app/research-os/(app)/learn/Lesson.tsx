@@ -59,7 +59,7 @@ export default function Lesson({ atom, full = true }: { atom: Atom; full?: boole
                 onClick={() => setDepth(d.key)}
                 className={
                   "small-caps text-[10px] tracking-[0.18em] px-3 py-2 border-b-2 -mb-px min-h-[40px] " +
-                  (depth === d.key ? "border-[color:var(--gold)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)]")
+                  (depth === d.key ? "border-[color:var(--gold-text)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)]")
                 }
               >
                 {d.label}

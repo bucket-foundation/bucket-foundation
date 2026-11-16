@@ -24,6 +24,7 @@ Use tokens by name: `var(--pl-vermilion)` on web, `PL.vermilion` on iOS, `PL.Ver
 | Light ground | `paper`, with the dot grid |
 | Dark ground | `tyrian`, with the star lattice |
 | Text | `ink`, `ink-dim` on paper; `paper` on tyrian |
+| Colored text on paper | `vermilion-ink` at 5.12:1 and `ochre-ink` at 5.09:1; `vermilion` and `ochre-deep` only at 24px and up |
 | Primary action | `vermilion` with `vermilion-deep` lip |
 | Secondary action | `lapis` with `lapis-deep` lip |
 | Success, correct | `malachite` |

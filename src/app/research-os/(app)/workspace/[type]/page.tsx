@@ -23,7 +23,7 @@ export default function WorkspaceTypePage({ params }: { params: { type: string }
         <ul className="mt-6 grid gap-3 md:grid-cols-2">
           {items.map((item) => (
             <li key={item.id} data-workspace-item={item.id} className="border border-[color:var(--hairline)] bg-[color:var(--bone)] p-4">
-              <Link href={item.href} className="font-display text-[15px] uppercase text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4">
+              <Link href={item.href} className="font-display text-[15px] uppercase text-[color:var(--basalt)] underline decoration-[color:var(--gold-text)] underline-offset-4">
                 {item.title}
               </Link>
               <p className="mt-2 text-[13px] leading-[1.5] text-[color:var(--basalt-2)]">{item.line}</p>

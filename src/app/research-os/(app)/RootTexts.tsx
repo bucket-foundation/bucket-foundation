@@ -12,7 +12,7 @@ export default function RootTexts({ texts, lang, uncertain, rootUncertain }: { t
             )}
           </p>
           {t.samples.map((s) => (
-            <blockquote key={s.ref} className="border-l-2 border-[color:var(--gold)] pl-3 text-[15px] leading-[1.9] text-[color:var(--basalt-2)]">
+            <blockquote key={s.ref} className="border-l-2 border-[color:var(--gold-text)] pl-3 text-[15px] leading-[1.9] text-[color:var(--basalt-2)]">
               <span lang={lang} dir="rtl" className="block">
                 {s.text}
               </span>

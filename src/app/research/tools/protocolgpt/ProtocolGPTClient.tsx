@@ -66,7 +66,7 @@ export default function ProtocolGPTClient() {
             onChange={(e) => setMethods(e.target.value)}
             placeholder={EXAMPLE}
             rows={7}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>
@@ -78,7 +78,7 @@ export default function ProtocolGPTClient() {
             type="button"
             onClick={() => setMethods(EXAMPLE)}
             disabled={busy}
-            className="text-[12px] small-caps tracking-[0.1em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 disabled:opacity-50"
+            className="text-[12px] small-caps tracking-[0.1em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4 disabled:opacity-50"
           >
             load example
           </button>
@@ -194,7 +194,7 @@ function ProtocolView({ result }: { result: ResultEnvelope }) {
             {out.safety_flags.map((h, i) => (
               <div
                 key={i}
-                className="border-l-2 border-[color:var(--gold)] bg-[color:var(--bone)] pl-4 py-2"
+                className="border-l-2 border-[color:var(--gold-text)] bg-[color:var(--bone)] pl-4 py-2"
               >
                 <div className="text-[13px] font-display text-[color:var(--basalt)]">⚠ {h.flag}</div>
                 <p className="text-[12px] leading-[1.5] text-[color:var(--basalt-2)] mt-0.5">

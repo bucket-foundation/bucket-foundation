@@ -148,14 +148,14 @@
 .accountCta{gap:10px}
 .accountCta > *{white-space:nowrap}
 @media (max-width:400px){.brandText{font-size:18px}.ctaPill{padding:0 12px;font-size:15px}}
-.coins{font-family:"Fredoka",sans-serif;font-weight:700;font-size:18px;color:var(--pl-ochre-deep)}
+.coins{font-family:"Fredoka",sans-serif;font-weight:700;font-size:18px;color:var(--pl-ochre-ink)}
 .powers{display:flex;flex-direction:column;gap:8px;border:2px solid var(--ochre);border-radius:16px;padding:12px 14px;background:var(--pl-card)}
 .powersHead{margin:0;display:flex;justify-content:space-between;align-items:center;font-family:"Fredoka",sans-serif;font-weight:700;font-size:18px;color:var(--tyrian)}
 .powerRow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .power{min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px;border:2px solid var(--tyrian);background:var(--pl-white);font:inherit;cursor:pointer;color:var(--tyrian)}
 .power span{font-size:13px;color:var(--ink-2)}
 .power:disabled{opacity:.45;cursor:default}
-.powerOn{margin:0;text-align:center;font-weight:800;color:var(--pl-ochre-deep)}
+.powerOn{margin:0;text-align:center;font-weight:800;color:var(--pl-ochre-ink)}
 .ftLanes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;touch-action:manipulation;user-select:none}
 .ftLane{min-height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-radius:16px;border:2px solid var(--hair);background:var(--pl-white);font:inherit;font-weight:800;font-size:13px;color:var(--ink);cursor:pointer;padding:6px 2px}
 .ftLane span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -249,7 +249,7 @@
 .revealFacts div{display:flex;gap:4px;align-items:baseline}
 .revealFacts dt{font:var(--pl-type-label);text-transform:uppercase;letter-spacing:.1em;color:var(--pl-ink)}
 .revealFacts dd{margin:0;font-weight:800;color:var(--pl-tyrian-deep)}
-.revealLearn{align-self:center;font-weight:800;font-size:13px;color:var(--pl-vermilion);text-decoration:underline;text-underline-offset:3px}
+.revealLearn{align-self:center;font-weight:800;font-size:13px;color:var(--pl-vermilion-ink);text-decoration:underline;text-underline-offset:3px}
 .wordReveal{background:var(--pl-card);border:3px solid var(--pl-ink);border-radius:20px;box-shadow:0 6px 0 var(--pl-ink);padding:14px 16px 18px;display:flex;flex-direction:column;gap:12px;animation:slide .3s ease-out}
 .learnPanel{display:flex;flex-direction:column;gap:12px;background:var(--pl-tyrian);color:var(--pl-card);border:3px solid var(--pl-ink);border-radius:20px;box-shadow:0 6px 0 var(--pl-ink);padding:16px 18px}
 .learnPanel h2{margin:0;font-family:"Fredoka",sans-serif;font-size:24px;color:var(--pl-card)}

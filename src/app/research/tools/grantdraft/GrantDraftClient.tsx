@@ -64,7 +64,7 @@ export default function GrantDraftClient() {
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             placeholder="biomolecular condensates and phase separation"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -106,7 +106,7 @@ function DraftView({ result }: { result: ResultEnvelope }) {
                   href={a.grounded_in.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-1 inline-block text-[11px] small-caps tracking-[0.1em] text-[color:var(--basalt-3)] underline decoration-[color:var(--gold)] underline-offset-4"
+                  className="mt-1 inline-block text-[11px] small-caps tracking-[0.1em] text-[color:var(--basalt-3)] underline decoration-[color:var(--gold-text)] underline-offset-4"
                 >
                   grounded in: {a.grounded_in.title} ({usd(a.grounded_in.amount_usd)})
                 </a>
@@ -147,7 +147,7 @@ function DraftView({ result }: { result: ResultEnvelope }) {
                   href={g.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[15px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+                  className="text-[15px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4"
                 >
                   {g.title}
                 </a>

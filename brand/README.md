@@ -35,3 +35,16 @@ Bucket did carry over the Kala Earth Ambient palette and carved-stone CSS
 (site 0.1.0, 2026-04-23), the tagline pair, the canon globe (2026-05-01) and
 the stone title cards in `gtm/video-v5`. The filled workshop is
 `workshop/BUCKET-FOUNDATION.md`. The plan that uses it is `docs/growth/BRAND-PLAN.md`.
+
+## Logo Standard
+
+Each product has one logo file. Every shipped icon is rendered from it.
+
+- Bucket: `brand/logo/bucket/current.svg`, the Grid ℧ from `_round2/assets/grid2/marks/mho.svg`. The founder ranked Grid first for logo and mark in `_round2/FOUNDER-FEEDBACK.md`.
+- Polingual: `brand/logo/polingual/current.svg`, the Po mark on tyrian.
+- A source is a square SVG with `<rect id="ground">` and a `data-radius` for rounded outputs.
+- `npm run brand:icons` writes web favicons and the Bucket share card, iOS, Watch and Android icon sets, desktop icons and `brand/logo/icons.lock.json`.
+- `npm run brand:check` fails when a source or a committed icon differs from the lock, or when a fresh render differs by more than 2 levels per channel. CI runs it in `brand-icons.yml`.
+- Web builds rerun the script in `prebuild`. `apple/scripts/archive-polingual.sh` reruns it before each archive.
+- Beta badge: `node scripts/brand/build-icons.mjs --only apple,android --badge 2026-11-15`, or `ICON_BADGE=1` on the archive script. Badged files fail the check, so they stay out of commits.
+- To change a logo, edit `current.svg`, run `npm run brand:icons` and commit the result. Never edit an icon file by hand.

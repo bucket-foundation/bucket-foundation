@@ -12,7 +12,7 @@ export default function SignInGate({ signedIn, children }: { signedIn: boolean; 
       <span className="text-[13px] text-[color:var(--basalt-2)]">Sign in to continue.</span>
       <Link
         href={signInUrl(pathname)}
-        className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)]"
+        className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold-text)] text-[color:var(--basalt)]"
       >
         sign in
       </Link>

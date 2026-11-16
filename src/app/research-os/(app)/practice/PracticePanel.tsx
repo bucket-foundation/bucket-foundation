@@ -64,7 +64,7 @@ export default function PracticePanel({ node, compact = false }: { node: string;
               type="button"
               aria-pressed={tab === m.kind}
               onClick={() => setTab(m.kind)}
-              className={"small-caps text-[10px] tracking-[0.14em] px-3 py-3 min-h-[44px] border-b-2 " + (tab === m.kind ? "border-[color:var(--gold)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-3)]")}
+              className={"small-caps text-[10px] tracking-[0.14em] px-3 py-3 min-h-[44px] border-b-2 " + (tab === m.kind ? "border-[color:var(--gold-text)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-3)]")}
             >
               {LABEL[m.kind]} · {count}
             </button>

@@ -77,7 +77,7 @@ export default function UnitDimCheckClient() {
             value={op}
             onChange={(e) => setOp(e.target.value as Op)}
             disabled={busy}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-3 py-2 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] max-w-xs"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-3 py-2 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] max-w-xs"
           >
             <option value="check">check equation consistency</option>
             <option value="convert">convert a value</option>
@@ -92,7 +92,7 @@ export default function UnitDimCheckClient() {
               value={equation}
               onChange={(e) => setEquation(e.target.value)}
               placeholder="e.g. N = kg*m/s^2   (use '=' once)"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
               disabled={busy}
             />
           </label>
@@ -104,21 +104,21 @@ export default function UnitDimCheckClient() {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               placeholder="value (e.g. 1)"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] w-32"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] w-32"
               disabled={busy}
             />
             <input
               value={fromU}
               onChange={(e) => setFromU(e.target.value)}
               placeholder="from (e.g. km)"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] w-36"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] w-36"
               disabled={busy}
             />
             <input
               value={toU}
               onChange={(e) => setToU(e.target.value)}
               placeholder="to (e.g. m)"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] w-36"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] w-36"
               disabled={busy}
             />
           </div>
@@ -131,7 +131,7 @@ export default function UnitDimCheckClient() {
               value={unit}
               onChange={(e) => setUnit(e.target.value)}
               placeholder="e.g. J/(mol*K)"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] max-w-xs"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] max-w-xs"
               disabled={busy}
             />
           </label>
@@ -166,7 +166,7 @@ function UnitView({ result }: { result: ResultEnvelope }) {
 
       {out.op === "check" && (
         <div
-          className={`border p-5 ${out.consistent ? "border-[color:var(--gold)]" : "border-[color:var(--basalt)]"} bg-[color:var(--bone)]`}
+          className={`border p-5 ${out.consistent ? "border-[color:var(--gold-text)]" : "border-[color:var(--basalt)]"} bg-[color:var(--bone)]`}
         >
           <div className="font-display uppercase text-[18px] text-[color:var(--basalt)]">{out.verdict}</div>
           <div className="mt-3 text-[14px] font-mono text-[color:var(--basalt-2)]">

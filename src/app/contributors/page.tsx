@@ -41,7 +41,7 @@ export default function Page() {
           {CANON_BRANCHES.map((b, i) => (
             <span key={b.slug}>
               {i > 0 && ", "}
-              <Link href={`/canon/${b.slug}`} className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
+              <Link href={`/canon/${b.slug}`} className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]">
                 {b.name}
               </Link>
             </span>
@@ -58,7 +58,7 @@ export default function Page() {
             No contributors yet. Be the first:{" "}
             <a
               href="https://github.com/bucket-foundation/bucket-foundation/blob/main/CONTRIBUTING.md"
-              className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+              className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
             >
               CONTRIBUTING.md
             </a>
@@ -74,7 +74,7 @@ export default function Page() {
               className="group bg-[color:var(--bone-2)] p-6 hover:bg-[color:var(--bone-3)] transition block"
             >
               <div className="flex items-baseline justify-between mb-2">
-                <div className="font-serif-display text-lg text-[color:var(--parchment)] group-hover:text-[color:var(--gold)]">
+                <div className="font-serif-display text-lg text-[color:var(--parchment)] group-hover:text-[color:var(--gold-text)]">
                   @{r.handle}
                 </div>
                 <div className="small-caps text-[10px] text-[color:var(--gold-dim)]">

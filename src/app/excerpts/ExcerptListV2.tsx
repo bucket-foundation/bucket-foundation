@@ -71,7 +71,7 @@ export function ExcerptListV2({
             return (
               <li
                 key={`${c.concept}/${c.slug}`}
-                className="border-l-2 border-[color:var(--hairline)] pl-4 transition hover:border-[color:var(--gold)]"
+                className="border-l-2 border-[color:var(--hairline)] pl-4 transition hover:border-[color:var(--gold-text)]"
               >
                 <div className="mb-1 flex flex-wrap items-baseline gap-3 text-xs uppercase tracking-[0.18em]" style={dim}>
                   {showConcept && <span>{c.concept.replace(/-/g, " ")}</span>}
@@ -82,7 +82,7 @@ export function ExcerptListV2({
                     href={c.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline-offset-4 hover:text-[color:var(--gold)] hover:underline"
+                    className="underline-offset-4 hover:text-[color:var(--gold-text)] hover:underline"
                   >
                     {c.timestamp} ↗
                   </a>

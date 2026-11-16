@@ -10,7 +10,7 @@ const STORAGE_KEY = "bucket.waitlist.key";
 const INPUT =
   "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON =
-  "px-4 py-2 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
+  "px-4 py-2 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 const TH = "text-left px-2 py-2 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)] whitespace-nowrap";
 const TD = "px-2 py-2 text-[13px] text-[color:var(--basalt)] whitespace-nowrap";
 

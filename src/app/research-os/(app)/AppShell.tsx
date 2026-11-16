@@ -105,7 +105,7 @@ export default function AppShell({ user, host, children }: { user: ShellUser | n
                 aria-current={on ? "page" : undefined}
                 className={
                   "small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap border-b-2 min-h-[44px] inline-flex items-center " +
-                  (on ? "border-[color:var(--gold)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-3)]")
+                  (on ? "border-[color:var(--gold-text)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-3)]")
                 }
               >
                 {it.label}
@@ -149,7 +149,7 @@ export default function AppShell({ user, host, children }: { user: ShellUser | n
                           aria-current={on ? "page" : undefined}
                           className={
                             "block px-3 py-2 rounded-sm border-l-2 transition " +
-                            (on ? "border-[color:var(--gold)] bg-[color:var(--bone)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)] hover:bg-[color:var(--bone)]/60")
+                            (on ? "border-[color:var(--gold-text)] bg-[color:var(--bone)] text-[color:var(--basalt)]" : "border-transparent text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)] hover:bg-[color:var(--bone)]/60")
                           }
                         >
                           <div className="text-[13px]">{it.label}</div>

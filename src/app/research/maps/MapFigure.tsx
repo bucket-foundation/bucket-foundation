@@ -19,7 +19,7 @@ export default function MapFigure({
     <main className="stone-bone relative">
       <div className="mx-auto max-w-[2400px] px-4 py-8 md:px-10">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-[13px]">
-          <Link href="/research/maps" className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+          <Link href="/research/maps" className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4">
             All research maps
           </Link>
           {actions}

@@ -40,7 +40,7 @@ export default function ScreenServerClient() {
             onChange={(e) => setSmiles(e.target.value)}
             placeholder={"CCO\nc1ccccc1\nCC(=O)Oc1ccccc1C(=O)O"}
             rows={6}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

@@ -64,7 +64,7 @@ export default function QuantumBioRAGClient() {
             onChange={(e) => setClaim(e.target.value)}
             placeholder="Quantum coherence enhances photosynthetic energy transfer."
             rows={3}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>
@@ -85,7 +85,7 @@ function StrengthBar({ score }: { score: number }) {
   return (
     <div className="h-2 w-full bg-[color:var(--hairline)]">
       <div
-        className="h-2 bg-[color:var(--gold)]"
+        className="h-2 bg-[color:var(--gold-text)]"
         style={{ width: `${Math.round(score * 100)}%` }}
       />
     </div>
@@ -107,7 +107,7 @@ function EvidenceList({ title, rows, tone }: { title: string; rows: Row[]; tone:
                 href={r.url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[15px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+                className="text-[15px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4"
               >
                 {r.title}
               </a>
@@ -119,7 +119,7 @@ function EvidenceList({ title, rows, tone }: { title: string; rows: Row[]; tone:
               {[r.venue, r.year, `${r.cited_by_count} cites`].filter(Boolean).join(" · ")}
             </div>
             {r.evidence && (
-              <p className="mt-2 text-[13px] leading-[1.6] text-[color:var(--basalt-2)] italic border-l-2 border-[color:var(--gold)] pl-3">
+              <p className="mt-2 text-[13px] leading-[1.6] text-[color:var(--basalt-2)] italic border-l-2 border-[color:var(--gold-text)] pl-3">
                 “{r.evidence}”
               </p>
             )}

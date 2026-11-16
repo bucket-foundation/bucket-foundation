@@ -29,7 +29,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         className="mb-3 text-xs uppercase tracking-[0.22em]"
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
       >
-        <Link href="/canon/bridges" className="hover:text-[color:var(--gold)]">
+        <Link href="/canon/bridges" className="hover:text-[color:var(--gold-text)]">
           ← bridges
         </Link>
       </p>

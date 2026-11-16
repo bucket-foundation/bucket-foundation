@@ -62,7 +62,7 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
 
   if (rows.length === 0) return null;
   return (
-    <div className="mb-3 p-3 border border-[color:var(--gold)] bg-[color:var(--bone-2)]/70 text-[12px]">
+    <div className="mb-3 p-3 border border-[color:var(--gold-text)] bg-[color:var(--bone-2)]/70 text-[12px]">
       <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--gold-deep)] mb-1">assigned</div>
       <ul className="grid gap-1">
         {rows.map((a) => {
@@ -76,7 +76,7 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
             {!targetIsLinkable(a) ? (
               <span className="text-[color:var(--basalt-3)]">· target not shared with you</span>
             ) : href && a.targetSlug !== currentTarget ? (
-              <Link href={href} className="underline decoration-[color:var(--gold)] underline-offset-4">
+              <Link href={href} className="underline decoration-[color:var(--gold-text)] underline-offset-4">
                 open {a.targetTitle} →
               </Link>
             ) : (

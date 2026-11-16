@@ -48,7 +48,7 @@ export default function BranchEntriesTable({
         onClick={() => { if (active) setAsc(!asc); else { setSortKey(key); setAsc(true); } }}
         className={`small-caps text-[10px] tracking-[0.1em] px-2 py-1 border ${
           active
-            ? "text-[color:var(--gold)] border-[color:var(--gold)]"
+            ? "text-[color:var(--gold-text)] border-[color:var(--gold-text)]"
             : "text-[color:var(--parchment-dim)] border-[color:var(--hairline)]"
         }`}
       >
@@ -65,7 +65,7 @@ export default function BranchEntriesTable({
           placeholder="filter…"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="text-sm bg-[color:var(--bone-2)] border border-[color:var(--hairline)] px-3 py-1 outline-none focus:border-[color:var(--gold)]"
+          className="text-sm bg-[color:var(--bone-2)] border border-[color:var(--hairline)] px-3 py-1 outline-none focus:border-[color:var(--gold-text)]"
         />
         {sortBtn("subfolder", "sub-folder")}
         {sortBtn("title", "title")}

@@ -159,7 +159,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
               <input value={contact} onChange={(e) => setContact(e.target.value)} placeholder="parent or guardian email, kept hashed" className="flex-1 min-w-[12rem] bg-transparent border border-[color:var(--hairline)] rounded px-2 py-1" />
             </div>
             <div>
-              <button type="button" disabled={busy} onClick={() => void requestConsent()} className="px-3 py-1.5 rounded border border-[color:var(--gold)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+              <button type="button" disabled={busy} onClick={() => void requestConsent()} className="px-3 py-1.5 rounded border border-[color:var(--gold-text)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
                 ask for consent
               </button>
             </div>
@@ -201,7 +201,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
                 )}
               </div>
               <div>
-                <button type="button" disabled={busy} onClick={() => void savePayee()} className="px-3 py-1.5 rounded border border-[color:var(--gold)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+                <button type="button" disabled={busy} onClick={() => void savePayee()} className="px-3 py-1.5 rounded border border-[color:var(--gold-text)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
                   save payee
                 </button>
               </div>

@@ -65,7 +65,7 @@ export default function ToxinChannelFinderClient() {
             value={toxin}
             onChange={(e) => setToxin(e.target.value)}
             placeholder="omega-conotoxin MVIIA  ·  apamin  ·  CKGKGAKCSRLMYDCCTGSCRSGKC"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -160,7 +160,7 @@ function ToxinView({ result }: { result: ResultEnvelope }) {
                     href={e.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[12px] text-[color:var(--basalt-2)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-2"
+                    className="text-[12px] text-[color:var(--basalt-2)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-2"
                   >
                     {e.title} {e.year ? `(${e.year})` : ""}
                   </a>

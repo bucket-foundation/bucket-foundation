@@ -20,7 +20,7 @@
 .cell sup{position:absolute;top:2px;left:4px;font:var(--pl-type-label);font-size:9px}
 .block{width:clamp(34px,10.5vw,48px);height:clamp(34px,10.5vw,48px);border-radius:8px;background:var(--pl-tyrian-deep)}
 .clues{margin:0;padding:0;list-style:none;display:grid;gap:6px;font:var(--pl-type-small)}
-.clues li[data-active=true]{color:var(--pl-vermilion)}
+.clues li[data-active=true]{color:var(--pl-vermilion-ink)}
 .keys{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .tile{min-height:64px;border-radius:var(--pl-radius-md);border:2px solid var(--pl-ink);background:var(--pl-card);box-shadow:0 4px 0 var(--pl-ink);font:var(--pl-type-small);font-weight:800;color:var(--pl-ink);cursor:pointer;padding:4px;overflow-wrap:anywhere}

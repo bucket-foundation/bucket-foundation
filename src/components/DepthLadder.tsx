@@ -88,13 +88,13 @@ export default function DepthLadder({
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.14em]">
           <Link
             href="/mission"
-            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold-text)] underline-offset-4"
           >
             why this ladder is the mission →
           </Link>
           <Link
             href="/research/agent"
-            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold-text)] underline-offset-4"
           >
             the terminal rung · research agent →
           </Link>
@@ -170,7 +170,7 @@ function Rung({
               href={s.href}
               className="group flex items-baseline gap-3 text-[13px] text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)]"
             >
-              <span className="small-caps text-[10px] tracking-[0.14em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 shrink-0">
+              <span className="small-caps text-[10px] tracking-[0.14em] text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4 shrink-0">
                 {s.label} →
               </span>
               <span className="leading-[1.55]">{s.note}</span>

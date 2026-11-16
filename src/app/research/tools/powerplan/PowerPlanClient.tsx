@@ -97,7 +97,7 @@ export default function PowerPlanClient() {
         placeholder={ph}
         inputMode="decimal"
         disabled={busy || disabled}
-        className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] disabled:opacity-40"
+        className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] disabled:opacity-40"
       />
     </label>
   );
@@ -109,14 +109,14 @@ export default function PowerPlanClient() {
           <label className="flex flex-col gap-2">
             <FieldLabel>test</FieldLabel>
             <select value={test} onChange={(e) => setTest(e.target.value)} disabled={busy}
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]">
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]">
               {TESTS.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
             </select>
           </label>
           <label className="flex flex-col gap-2">
             <FieldLabel>solve for</FieldLabel>
             <select value={solveFor} onChange={(e) => setSolveFor(e.target.value)} disabled={busy}
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]">
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]">
               {SOLVE.filter(([v]) => !(isProp && v === "effect_size")).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
             </select>
           </label>

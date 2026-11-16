@@ -25,7 +25,7 @@ export default function Page({ params }: { params: { concept: string } }) {
         className="mb-3 text-xs uppercase tracking-[0.22em]"
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
       >
-        <Link href="/excerpts" className="hover:text-[color:var(--gold)]">
+        <Link href="/excerpts" className="hover:text-[color:var(--gold-text)]">
           ← source excerpts
         </Link>
       </p>

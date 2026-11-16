@@ -13,13 +13,13 @@ export default function EventCard({ event }: { event: FeedEvent }) {
       <div className="flex items-start gap-4">
         <div
           aria-hidden
-          className="font-mono-mark text-lg text-[color:var(--gold)] shrink-0 w-8 text-center"
+          className="font-mono-mark text-lg text-[color:var(--gold-text)] shrink-0 w-8 text-center"
         >
           {TYPE_GLYPH[event.type]}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2 small-caps text-[10px]">
-            <span className="text-[color:var(--gold)]">
+            <span className="text-[color:var(--gold-text)]">
               {TYPE_LABEL[event.type]}
             </span>
             {event.branch && (
@@ -45,7 +45,7 @@ export default function EventCard({ event }: { event: FeedEvent }) {
               href={commitUrl(event)}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[color:var(--gold)]"
+              className="hover:text-[color:var(--gold-text)]"
             >
               {event.title}
             </a>
@@ -54,7 +54,7 @@ export default function EventCard({ event }: { event: FeedEvent }) {
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[color:var(--parchment-dim)]">
             <Link
               href={`/contributors/${event.author_github}`}
-              className="small-caps text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+              className="small-caps text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
             >
               @{event.author_github}
             </Link>
@@ -66,7 +66,7 @@ export default function EventCard({ event }: { event: FeedEvent }) {
                 href={`https://doi.org/${event.doi}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[color:var(--gold)] truncate"
+                className="hover:text-[color:var(--gold-text)] truncate"
               >
                 doi:{event.doi}
               </a>
@@ -76,7 +76,7 @@ export default function EventCard({ event }: { event: FeedEvent }) {
                 href={`https://github.com/bucket-foundation/bucket-foundation/pull/${event.pr_number}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[color:var(--gold)]"
+                className="hover:text-[color:var(--gold-text)]"
               >
                 #{event.pr_number}
               </a>

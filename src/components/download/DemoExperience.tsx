@@ -25,7 +25,7 @@ export default function DemoExperience({ detected, installers, windowed, device,
         <h1>Learn in your browser today.</h1>
         <p data-polingual-line>Polingual language study is inside Bucket: read words across 35 languages by sound, spelling and root.</p>
         <div className="flex flex-col gap-2" data-start-learning>
-          <TrackedLink href={START_LEARNING_HREF} event="start_learning_click" from="download_page" className="min-h-[44px] inline-flex items-center justify-center px-6 py-3 rounded-sm bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] small-caps text-[12px] tracking-[0.14em]">Start learning</TrackedLink>
+          <TrackedLink href={START_LEARNING_HREF} event="start_learning_click" from="download_page" className="min-h-[44px] inline-flex items-center justify-center px-6 py-3 rounded-sm bg-[color:var(--gold-text)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] small-caps text-[12px] tracking-[0.14em]">Start learning</TrackedLink>
           <p className="text-[13px] text-[color:var(--basalt-2)]">Open a lesson now. No account needed to start.</p>
         </div>
         <h2 className="mt-6 text-[15px] font-semibold">Or download Bucket</h2>

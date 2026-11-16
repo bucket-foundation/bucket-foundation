@@ -122,8 +122,8 @@ export default function FeedFilters({ events }: { events: FeedEvent[] }) {
                   className={
                     "small-caps text-[10px] px-2.5 py-1 border hairline transition " +
                     (on
-                      ? "bg-[color:var(--gold)] text-[color:var(--basalt)]"
-                      : "bg-[color:var(--bone-2)] text-[color:var(--parchment-dim)] hover:text-[color:var(--gold)]")
+                      ? "bg-[color:var(--gold-text)] text-[color:var(--basalt)]"
+                      : "bg-[color:var(--bone-2)] text-[color:var(--parchment-dim)] hover:text-[color:var(--gold-text)]")
                   }
                 >
                   {TYPE_LABEL[t]}
@@ -144,7 +144,7 @@ export default function FeedFilters({ events }: { events: FeedEvent[] }) {
         <div>
           {grouped.map(([day, items]) => (
             <section key={day} className="mb-10">
-              <h2 className="small-caps text-[11px] text-[color:var(--gold)] mb-3 pb-2 border-b hairline">
+              <h2 className="small-caps text-[11px] text-[color:var(--gold-text)] mb-3 pb-2 border-b hairline">
                 {formatDayHeader(day)}
               </h2>
               <div className="bg-[color:var(--hairline)]">

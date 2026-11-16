@@ -50,7 +50,7 @@ export default function StabilityDesignerClient() {
             onChange={(e) => setSequence(e.target.value)}
             placeholder="MKTAYIAKQR..."
             rows={3}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>
@@ -64,7 +64,7 @@ export default function StabilityDesignerClient() {
               disabled={busy}
               className={`text-[12px] small-caps tracking-[0.12em] px-4 py-2 border transition-colors ${
                 mode === m
-                  ? "border-[color:var(--gold)] text-[color:var(--basalt)] bg-[color:var(--bone)]"
+                  ? "border-[color:var(--gold-text)] text-[color:var(--basalt)] bg-[color:var(--bone)]"
                   : "border-[color:var(--hairline)] text-[color:var(--basalt-3)]"
               }`}
             >
@@ -82,7 +82,7 @@ export default function StabilityDesignerClient() {
               value={mutation}
               onChange={(e) => setMutation(e.target.value)}
               placeholder="A23V"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] max-w-[200px]"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] max-w-[200px]"
               disabled={busy}
             />
           </label>
@@ -95,7 +95,7 @@ export default function StabilityDesignerClient() {
               value={position}
               onChange={(e) => setPosition(e.target.value.replace(/[^0-9]/g, ""))}
               placeholder="23"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] max-w-[200px]"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] max-w-[200px]"
               disabled={busy}
             />
           </label>

@@ -121,7 +121,7 @@ export default function LoopPanel() {
   return (
     <section aria-label="Your loop" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
       {cols.map((c, i) => (
-        <div key={c.name} className={"relative bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)] p-4 border-t-2 " + (c.lit ? "border-[color:var(--gold)]" : "border-[color:var(--hairline)]")}>
+        <div key={c.name} className={"relative bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)] p-4 border-t-2 " + (c.lit ? "border-[color:var(--gold-text)]" : "border-[color:var(--hairline)]")}>
           <div className="flex items-baseline justify-between gap-2">
             <div className="small-caps text-[10px] tracking-[0.2em] text-[color:var(--aegean-deep)]">{c.name}</div>
             <span aria-hidden className="text-[10px] text-[color:var(--basalt-3)] [font-variant-numeric:tabular-nums]">{i + 1}</span>

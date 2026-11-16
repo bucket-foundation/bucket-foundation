@@ -48,7 +48,7 @@ export default function Page() {
             <Link
               key={b.slug}
               href={`/canon/bridges/${b.slug}`}
-              className="block rounded-md border border-[color:var(--hairline)] p-6 transition hover:border-[color:var(--gold)]"
+              className="block rounded-md border border-[color:var(--hairline)] p-6 transition hover:border-[color:var(--gold-text)]"
             >
               <div className="flex items-baseline justify-between">
                 <h3
@@ -100,7 +100,7 @@ export default function Page() {
               <Link
                 key={b.slug}
                 href={`/canon/bridges/detected/${b.slug}`}
-                className="block rounded-md border border-[color:var(--hairline)] p-5 transition hover:border-[color:var(--gold)]"
+                className="block rounded-md border border-[color:var(--hairline)] p-5 transition hover:border-[color:var(--gold-text)]"
               >
                 <div className="flex items-baseline justify-between gap-4">
                   <h3
@@ -148,7 +148,7 @@ export default function Page() {
             <Link
               key={b.slug}
               href={`/canon/bridges/${b.slug}`}
-              className="flex items-baseline justify-between rounded-md border border-[color:var(--hairline)] px-4 py-3 transition hover:border-[color:var(--gold)]"
+              className="flex items-baseline justify-between rounded-md border border-[color:var(--hairline)] px-4 py-3 transition hover:border-[color:var(--gold-text)]"
             >
               <span style={{ fontFamily: "var(--font-fraunces)", fontWeight: 500 }}>
                 {b.title}

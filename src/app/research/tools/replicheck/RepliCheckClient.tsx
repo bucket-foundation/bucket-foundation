@@ -79,7 +79,7 @@ export default function RepliCheckClient() {
             onChange={(e) => setText(e.target.value)}
             placeholder="Reaction times differed, t(24) = 2.13, p = .002. The control showed M = 2.19, SD = 0.8, n = 10…"
             rows={7}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

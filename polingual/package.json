@@ -5,6 +5,7 @@
   "description": "every word in every language, one meaning. Language-focused frontend on the photon substrate.",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "if [ -f ../scripts/brand/build-icons.mjs ]; then node ../scripts/brand/build-icons.mjs --product polingual --only web --soft; fi",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

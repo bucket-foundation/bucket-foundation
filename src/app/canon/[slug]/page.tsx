@@ -62,7 +62,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     <main className="min-h-screen">
       <header className="border-b hairline">
         <div className="max-w-5xl mx-auto px-4 md:px-6 pt-14 md:pt-24 pb-10 md:pb-16">
-          <div className="small-caps text-[11px] text-[color:var(--gold)] mb-6">
+          <div className="small-caps text-[11px] text-[color:var(--gold-text)] mb-6">
             <Link href="/canon" className="hover:text-[color:var(--basalt)]">§ canon</Link>{" "}
             <span className="text-[color:var(--parchment-dim)]">/ {numeral}</span>
           </div>
@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             {name}
           </h1>
           <div className="mt-6 flex flex-wrap items-center gap-3 small-caps text-[10px]">
-            <span className="border border-[color:var(--hairline)] px-2 py-1 text-[color:var(--gold)]">
+            <span className="border border-[color:var(--hairline)] px-2 py-1 text-[color:var(--gold-text)]">
               {status}
             </span>
             {fs && (
@@ -155,7 +155,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                   <h3 className="font-serif-display text-lg text-[color:var(--basalt)] mb-3 capitalize">
                     <Link
                       href={`/excerpts/${concept}`}
-                      className="hover:text-[color:var(--gold)]"
+                      className="hover:text-[color:var(--gold-text)]"
                     >
                       {concept.replace(/-/g, " ")}
                     </Link>
@@ -168,7 +168,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                       <li key={c.slug} className="text-[14px] leading-relaxed">
                         <Link
                           href={`/excerpts/${c.concept}/${c.slug}`}
-                          className="text-[color:var(--basalt-2)] hover:text-[color:var(--gold)]"
+                          className="text-[color:var(--basalt-2)] hover:text-[color:var(--gold-text)]"
                         >
                           {c.title.length > 110 ? c.title.slice(0, 110) + "…" : c.title}
                         </Link>
@@ -178,7 +178,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                       <li className="text-[11px] small-caps">
                         <Link
                           href={`/excerpts/${concept}`}
-                          className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
+                          className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]"
                         >
                           + {claims.length - 6} more →
                         </Link>
@@ -231,7 +231,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <a
                   key={s}
                   href={`https://github.com/bucket-foundation/bucket-foundation/tree/main/bucket-canon/${fs.dir}/${s}`}
-                  className="text-xs text-[color:var(--basalt-2)] border hairline px-3 py-1.5 small-caps hover:text-[color:var(--gold)] hover:border-[color:var(--gold)] transition"
+                  className="text-xs text-[color:var(--basalt-2)] border hairline px-3 py-1.5 small-caps hover:text-[color:var(--gold-text)] hover:border-[color:var(--gold-text)] transition"
                 >
                   {s}
                 </a>
@@ -269,18 +269,18 @@ export default function Page({ params }: { params: { slug: string } }) {
           {fs && (
             <a
               href={`https://github.com/bucket-foundation/bucket-foundation/tree/main/bucket-canon/${fs.dir}`}
-              className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
+              className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]"
             >
               open on github ↗
             </a>
           )}
-          <a href={DRIVE_URL} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+          <a href={DRIVE_URL} className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
             bucketdrive ↗
           </a>
-          <Link href={`/canon/${params.slug}/feed.xml`} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+          <Link href={`/canon/${params.slug}/feed.xml`} className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
             branch feed ↗
           </Link>
-          <Link href="/contribute" className="text-[color:var(--basalt)] hover:text-[color:var(--gold)]">
+          <Link href="/contribute" className="text-[color:var(--basalt)] hover:text-[color:var(--gold-text)]">
             contribute canon →
           </Link>
         </div>

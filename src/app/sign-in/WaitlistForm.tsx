@@ -8,7 +8,7 @@ import { signupTrouble } from "@/lib/auth/sign-in-words";
 const INPUT =
   "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON =
-  "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
+  "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 const LABEL =
   "small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]";
 
@@ -69,7 +69,7 @@ export default function WaitlistForm({ wanted }: { wanted: string | null }) {
         <div
           ref={doneRef}
           tabIndex={-1}
-          className="mt-8 border-l-2 border-[color:var(--gold)] pl-4 py-1 focus:outline-none"
+          className="mt-8 border-l-2 border-[color:var(--gold-text)] pl-4 py-1 focus:outline-none"
         >
           <p className="text-[15px] text-[color:var(--basalt)]">
             You are on the list.

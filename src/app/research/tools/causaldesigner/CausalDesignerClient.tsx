@@ -76,7 +76,7 @@ export default function CausalDesignerClient() {
         value={value}
         onChange={(e) => set(e.target.value)}
         placeholder={ph}
-        className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+        className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
         disabled={busy}
       />
     </label>
@@ -99,7 +99,7 @@ export default function CausalDesignerClient() {
             onChange={(e) => setEdges(e.target.value)}
             placeholder="gene -> smoking, gene -> cancer, smoking -> cancer"
             rows={3}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

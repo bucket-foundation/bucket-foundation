@@ -11,7 +11,7 @@ export default function MapBlock({
   const concept = p.type === "canon_entry" && typeof p.concept === "string" ? p.concept : null;
   const branchSlug = (node.branch ?? "").replace(/^\d+-/, "");
   const q = new URLSearchParams({ q: node.title }).toString();
-  const link = "underline decoration-[color:var(--gold)] underline-offset-4 hover:text-[color:var(--basalt)]";
+  const link = "underline decoration-[color:var(--gold-text)] underline-offset-4 hover:text-[color:var(--basalt)]";
 
   return (
     <div className="mt-3 border-t border-[color:var(--hairline)] pt-3 text-[12px] text-[color:var(--basalt-2)]">

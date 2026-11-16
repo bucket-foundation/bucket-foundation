@@ -6,14 +6,14 @@ export default function ProductionCard({ production }: { production: Production 
   return (
     <article id={production.id} className="border hairline bg-[color:var(--bone-2)] p-6 md:p-8">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 small-caps text-[10px]">
-        <span className="text-[color:var(--gold)]">production</span>
+        <span className="text-[color:var(--gold-text)]">production</span>
         <span className="text-[color:var(--parchment-dim)]">· {production.date}</span>
         {production.pr !== undefined && production.pr !== null && (
           <a
             href={production.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[color:var(--parchment-dim)] hover:text-[color:var(--gold)]"
+            className="text-[color:var(--parchment-dim)] hover:text-[color:var(--gold-text)]"
           >
             · #{production.pr} {production.status === "open" ? "open" : "merged"}
           </a>
@@ -50,7 +50,7 @@ export default function ProductionCard({ production }: { production: Production 
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
+              className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]"
             >
               {link.label} ↗
             </a>

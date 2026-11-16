@@ -69,7 +69,7 @@ export default function SourcesSection({ data, quotes, onQuote, onChanged }: { d
         )}
         {error && <p className="text-[12px] text-[color:var(--crimson)]">{error}</p>}
         {got && (
-          <blockquote className="border-l-2 border-[color:var(--gold)] pl-4 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
+          <blockquote className="border-l-2 border-[color:var(--gold-text)] pl-4 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
             {got.quotable_span}
             <footer className="mt-1 text-[12px] text-[color:var(--basalt-3)]">
               {got.citation}

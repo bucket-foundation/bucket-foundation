@@ -112,7 +112,7 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
                         <button
                           onClick={() => prefer(c, s.silverId)}
                           disabled={busy === `c:${s.silverId}:${c.role}`}
-                          className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+                          className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50"
                         >
                           prefer
                         </button>
@@ -149,7 +149,7 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
                         <button
                           onClick={() => link(l, c.qid)}
                           disabled={busy === key}
-                          className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+                          className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50"
                         >
                           link {c.qid}
                         </button>
@@ -220,7 +220,7 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
                         onClick={() => decide(f, "approve")}
                         disabled={busy === key || !f.subjectExists || !f.linked}
                         title={!f.subjectExists ? "Approve the node proposal for this subject first." : !f.linked ? "Link the Wikidata identity first." : undefined}
-                        className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+                        className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50"
                       >
                         approve
                       </button>
@@ -250,7 +250,7 @@ export default function HistoryReview({ headers }: { headers: Record<string, str
                   <button
                     onClick={() => decideNode(p.id, "approved")}
                     disabled={busy === `n:${p.id}`}
-                    className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+                    className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50"
                   >
                     create node
                   </button>

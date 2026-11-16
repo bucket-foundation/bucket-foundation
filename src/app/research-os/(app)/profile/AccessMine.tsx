@@ -76,7 +76,7 @@ export default function AccessMine({ token }: { token: string | null }) {
         <ul className="grid gap-1 text-[14px]">
           {mine.owned.map((n) => (
             <li key={n.id} className="flex flex-wrap items-center gap-2">
-              <Link href={`/research-os/workspace?node=${n.slug}`} className="underline decoration-[color:var(--gold)] underline-offset-4">
+              <Link href={`/research-os/workspace?node=${n.slug}`} className="underline decoration-[color:var(--gold-text)] underline-offset-4">
                 {n.title}
               </Link>
               <span className="px-2 py-0.5 rounded-full border border-[color:var(--hairline)] small-caps text-[10px] tracking-[0.14em]">{n.visibility}</span>
@@ -118,7 +118,7 @@ export default function AccessMine({ token }: { token: string | null }) {
             type="button"
             disabled={busy || !title.trim()}
             onClick={() => void submitImport()}
-            className="px-3 py-1.5 rounded border border-[color:var(--gold)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold)] hover:text-[color:var(--basalt)] disabled:opacity-50"
+            className="px-3 py-1.5 rounded border border-[color:var(--gold-text)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold-text)] hover:text-[color:var(--basalt)] disabled:opacity-50"
           >
             import as a private node
           </button>

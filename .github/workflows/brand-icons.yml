@@ -1,0 +1,43 @@
+name: brand-icons
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths:
+      - "brand/logo/**"
+      - "scripts/brand/**"
+      - "src/app/*icon*"
+      - "src/app/*-image.png"
+      - "polingual/src/app/icon.svg"
+      - "polingual/public/logo.svg"
+      - "polingual/public/favicon.ico"
+      - "polingual/public/d8/icon-*.png"
+      - "polingual/public/d8/mark-pl.svg"
+      - "polingual/public/brand/kit/app-icon-1024.png"
+      - "apple/**/AppIcon.appiconset/**"
+      - "packages/bkt-mobile/ios/App/App/Assets.xcassets/AppIcon.appiconset/**"
+      - "packages/bkt-mobile/android/app/src/main/res/**"
+      - "android/*/src/main/res/**"
+      - "packages/*/src-tauri/icons/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/brand-icons.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: brand-icons-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: committed icons match their logo source
+        run: npm run brand:check

@@ -50,7 +50,7 @@ export default function MethodsMatcherClient() {
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="How do I detect synaptic currents in patch-clamp recordings?"
             rows={3}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

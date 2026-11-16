@@ -9,6 +9,13 @@ case "$mode" in
   *) echo "mode must be testflight or review"; exit 64 ;;
 esac
 cd "$(dirname "$0")/.."
+icons=(node ../scripts/brand/build-icons.mjs --product polingual --only apple --soft)
+if [ -n "${ICON_BADGE:-}" ]; then
+  trap '"${icons[@]}"' EXIT
+  "${icons[@]}" --badge "$(date +%Y-%m-%d)"
+else
+  "${icons[@]}"
+fi
 xcodegen generate -q
 ~/code/.wt/buildq sudo launchctl asuser 501 sudo -u g env PATH=/opt/homebrew/bin:/usr/bin:/bin HOME=/Users/g LANG=en_US.UTF-8 \
   xcodebuild archive -project Bucket.xcodeproj -scheme Polingual -configuration Release \

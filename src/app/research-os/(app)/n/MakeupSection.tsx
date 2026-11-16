@@ -91,7 +91,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                     <li key={p.id}>
                       <Link
                         href={`/research-os/n/${encodeURIComponent(p.slug)}`}
-                        className="inline-flex items-baseline gap-1.5 px-2 py-1 text-[12.5px] border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/60 hover:border-[color:var(--gold)]"
+                        className="inline-flex items-baseline gap-1.5 px-2 py-1 text-[12.5px] border border-[color:var(--hairline)] bg-[color:var(--bone-2)]/60 hover:border-[color:var(--gold-text)]"
                         title={`${branchName(p.branch)}${p.paths > 1 ? ` · reached by ${p.paths} paths` : ""}`}
                       >
                         <span className="text-[color:var(--basalt)]">{p.title}</span>
@@ -109,7 +109,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                   <ul className="flex flex-col gap-1">
                     {m.evidence.items.map((ev) => (
                       <li key={ev.id} className="text-[12.5px] leading-[1.45]">
-                        <Link href={`/research-os/n/${encodeURIComponent(ev.slug)}`} className="text-[color:var(--basalt-2)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                        <Link href={`/research-os/n/${encodeURIComponent(ev.slug)}`} className="text-[color:var(--basalt-2)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold-text)]">
                           {ev.title}
                         </Link>
                       </li>
@@ -124,7 +124,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                   {m.factors.map((f, i) => (
                     <span key={f.id}>
                       {i > 0 && ", "}
-                      <Link href={`/research-os/n/${encodeURIComponent(f.slug)}`} className="underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                      <Link href={`/research-os/n/${encodeURIComponent(f.slug)}`} className="underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold-text)]">
                         {f.title}
                       </Link>
                       {f.throughEvidence && <span className="text-[color:var(--basalt-3)]"> · through its evidence</span>}
@@ -170,7 +170,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                         <div>
                         <span className="text-[color:var(--basalt-3)]">rests on </span>
                         {p.factor.id ? (
-                          <Link href={`/research-os/n/${encodeURIComponent(p.factor.slug)}`} className="text-[color:var(--basalt)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                          <Link href={`/research-os/n/${encodeURIComponent(p.factor.slug)}`} className="text-[color:var(--basalt)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold-text)]">
                             {p.factor.title}
                           </Link>
                         ) : (
@@ -218,7 +218,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
               {waiting > 0 && canReview && (
                 <Link
                   href={`/research-os/edges#target-${encodeURIComponent(slug)}`}
-                  className="inline-block small-caps text-[10.5px] tracking-[0.16em] px-3 py-2 bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-bright)]"
+                  className="inline-block small-caps text-[10.5px] tracking-[0.16em] px-3 py-2 bg-[color:var(--gold-text)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-bright)]"
                 >
                   review these
                 </Link>
@@ -232,7 +232,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
               <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-1">nearest by makeup</h3>
               <p className="text-[12px] text-[color:var(--basalt-3)] mb-2 max-w-[68ch]">
                 Ideas built from the same primes, scored by cosine from 0 to 1. Rare primes count for more, and a prime every idea holds counts for nothing.{" "}
-                <Link href={`/research-os/attend?ids=${encodeURIComponent(slug)}`} className="underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                <Link href={`/research-os/attend?ids=${encodeURIComponent(slug)}`} className="underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold-text)]">
                   Rank the whole graph from here
                 </Link>
                 .
@@ -243,7 +243,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                     <span className="w-[42px] shrink-0 text-[11.5px] tabular-nums text-[color:var(--basalt-3)]" title="cosine similarity over shared primes">
                       {n.score.toFixed(2)}
                     </span>
-                    <Link href={`/research-os/n/${encodeURIComponent(n.slug)}`} className="text-[color:var(--basalt)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                    <Link href={`/research-os/n/${encodeURIComponent(n.slug)}`} className="text-[color:var(--basalt)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold-text)]">
                       {n.title}
                     </Link>
                     {n.branch !== branch && <span className="text-[10.5px] small-caps text-[color:var(--gold-deep)]">{branchName(n.branch)}</span>}

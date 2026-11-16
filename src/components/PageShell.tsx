@@ -16,7 +16,7 @@ export default function PageShell({
       <header className="border-b hairline">
         <div className="max-w-3xl mx-auto px-4 md:px-6 pt-14 md:pt-24 pb-10 md:pb-16">
           {eyebrow && (
-            <div className="small-caps text-[11px] text-[color:var(--gold)] mb-6">
+            <div className="small-caps text-[11px] text-[color:var(--gold-text)] mb-6">
               {eyebrow}
             </div>
           )}

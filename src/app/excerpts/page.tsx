@@ -63,7 +63,7 @@ export default function Page() {
             <Link
               key={concept}
               href={`/excerpts/${concept}`}
-              className="group flex items-baseline justify-between rounded-md border border-[color:var(--hairline)] px-4 py-3 transition hover:border-[color:var(--gold)]"
+              className="group flex items-baseline justify-between rounded-md border border-[color:var(--hairline)] px-4 py-3 transition hover:border-[color:var(--gold-text)]"
             >
               <span
                 className="capitalize"

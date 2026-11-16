@@ -61,7 +61,7 @@ export default function PaperRadarClient() {
             onChange={(e) => setInterests(e.target.value)}
             placeholder="cryo-EM heterogeneity, protein dynamics, allostery"
             rows={3}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>
@@ -100,7 +100,7 @@ function FeedView({ result }: { result: ResultEnvelope }) {
                 href={p.url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[16px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+                className="text-[16px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4"
               >
                 {p.title}
               </a>
