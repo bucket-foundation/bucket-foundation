@@ -53,13 +53,27 @@ q "truncate polingual.founding_families, polingual.founding_attempts"
 [ "$(confirm tok-nope)" = invalid:500 ] || fail "an unknown token confirms nothing"
 [ "$(confirm tok-fam)" = confirmed:499 ] || fail "confirming takes one spot"
 [ "$(confirm tok-fam)" = already:499 ] || fail "a second confirm takes no second spot"
-[ "$(claim fam@x.co tok-fam3 fip1)" = confirmed:499 ] || fail "a confirmed family that signs up again is told so"
+[ "$(claim fam@x.co tok-fam3 fip1)" = recent:499 ] || fail "a confirmed family that signs up again within 10 minutes gets no second email"
+q "update polingual.founding_families set sent_at = now() - interval '11 minutes' where email = 'fam@x.co'"
+[ "$(claim fam@x.co tok-fam4 fip1)" = confirmed:499 ] || fail "a confirmed family gets its confirmation again after 10 minutes"
+[ "$(confirm tok-fam4)" = invalid:499 ] || fail "a repeat signup does not replace a confirmed token"
 [ "$(q "select address from polingual.confirm_founding_family('tok-fam')")" = fam@x.co ] || fail "confirm returns the address to email"
 
 q "select 1 from polingual.claim_founding_family('late@x.co', 'late@x.co', 'tok-old', 'fip2')" >/dev/null
 q "update polingual.founding_families set sent_at = now() - interval '11 minutes' where email = 'late@x.co'"
 [ "$(claim late@x.co tok-new fip2)" = resend:499 ] || fail "family resend after 10 minutes"
 [ "$(confirm tok-old)" = invalid:499 ] || fail "a resend retires the old link"
+
+q "insert into polingual.founding_families (email, address, token_hash, sent_at) values ('old@x.co', 'old@x.co', 'tok-expired', now() - interval '8 days'), ('week@x.co', 'week@x.co', 'tok-week', now() - interval '6 days')"
+[ "$(confirm tok-expired)" = invalid:499 ] || fail "a confirm link older than 7 days is dead"
+[ "$(q "select count(*) from polingual.founding_families where email = 'old@x.co'")" = 0 ] || fail "an expired pending row is purged"
+[ "$(confirm tok-week)" = confirmed:498 ] || fail "a 6 day old link still confirms"
+q "insert into polingual.founding_families (email, address, token_hash, sent_at) values ('old2@x.co', 'old2@x.co', 'tok-expired2', now() - interval '8 days')"
+q "update polingual.founding_families set sent_at = now() - interval '30 days' where email = 'fam@x.co'"
+[ "$(claim fresh@x.co tok-fresh fip3)" = pending:498 ] || fail "claim after a purge"
+[ "$(q "select count(*) from polingual.founding_families where email = 'old2@x.co'")" = 0 ] || fail "the claim path purges expired pending rows"
+[ "$(q "select count(*) from polingual.founding_families where email = 'fam@x.co' and confirmed_at is not null")" = 1 ] || fail "a confirmed row never expires"
+[ "$(claim old2@x.co tok-again fip3)" = pending:498 ] || fail "an expired address can sign up again"
 
 for i in $(seq 1 20); do q "select 1 from polingual.claim_founding_family('fdrain$i@x.co', 'fdrain$i@x.co', 'tok-drain-$i', 'fip-drain')" >/dev/null; done
 [ "$(q "select count(*) from polingual.founding_families where email like 'fdrain%'")" = 3 ] || fail "20 family claims from one ip made more than 3 rows"
@@ -75,12 +89,13 @@ for p in "${pids[@]}"; do wait "$p" || fail "a concurrent family confirm errored
 [ "$(seen cap confirmed)" = 5 ] || fail "exactly 5 concurrent confirms report confirmed"
 [ "$(seen cap full)" = 15 ] || fail "the other 15 report full"
 [ "$(claim new@x.co tok-new2 fip-late)" = full:0 ] || fail "family 501 is refused"
-[ "$(claim seed1@x.co tok-x fip-seed)" = confirmed:0 ] || fail "a holder is still recognized when full"
+[ "$(claim seed1@x.co tok-x fip-seed)" = full:0 ] || fail "a full list answers a holder and a stranger alike"
 
 q "select polingual.forget_founding_email('seed1@x.co')"
 [ "$(q "select spots_left from polingual.founding_family_spots()")" = 1 ] || fail "forget frees the family spot"
 [ "$(q "select has_function_privilege('anon', 'polingual.claim_founding_family(text, text, text, text, int, int)', 'execute')")" = f ] || fail "anon cannot claim a family spot"
 [ "$(q "select has_function_privilege('anon', 'polingual.confirm_founding_family(text, int)', 'execute')")" = f ] || fail "anon cannot confirm a family spot"
+[ "$(q "select has_function_privilege('anon', 'polingual.purge_founding_pending(int)', 'execute')")" = f ] || fail "anon cannot purge"
 [ "$(q "select has_function_privilege('anon', 'polingual.founding_family_spots(int)', 'execute')")" = f ] || fail "anon cannot read family spots"
 
 q "drop table polingual.test_outcomes"

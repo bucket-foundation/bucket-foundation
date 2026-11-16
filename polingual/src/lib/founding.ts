@@ -150,9 +150,9 @@ export async function claimFounding(
   const left = Number(row.spots_left);
   if (row.outcome === "full") return FULL;
   if (row.outcome === "ip-limit") return TOO_MANY;
-  if (row.outcome === "confirmed") return { status: 200, body: { ok: true, left, confirmed: true } };
   if (row.outcome === "recent") return { status: 200, body: { ok: true, left } };
-  const sent = await mail(resend, confirmEmail(parsed.signup.email, sender(env), token), send);
+  const message = row.outcome === "confirmed" ? familyEmail(parsed.signup.email, sender(env)) : confirmEmail(parsed.signup.email, sender(env), token);
+  const sent = await mail(resend, message, send);
   if (!sent.ok) return { status: 502, body: { error: "The confirmation email failed. Submit the same address again in 10 minutes to resend it." } };
   return { status: 200, body: { ok: true, left } };
 }

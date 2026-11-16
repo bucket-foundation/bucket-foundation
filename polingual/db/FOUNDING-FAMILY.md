@@ -10,6 +10,8 @@ Founder ruling, 2026-11-16: the first 500 families who sign up at polingual.com 
 
 A spot counts once it is confirmed. The home page counter and the cap of 500 both read confirmed rows. Gmail addresses lose dots, every address loses its plus tag, so one inbox holds one spot. One network can start 3 signups a day.
 
+A confirm link works for 7 days from the last email. `purge_founding_pending` deletes older unconfirmed rows, and both the claim and the confirm call it. A signup from a confirmed address gets the same response as a new one and the confirmation email again.
+
 ## Redemption
 
 Default path: when family plans open, each confirmed founding family gets an App Store offer code or a RevenueCat promotional entitlement, granted by email to the confirmed address.

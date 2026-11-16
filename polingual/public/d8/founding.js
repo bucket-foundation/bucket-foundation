@@ -46,7 +46,7 @@
       if (typeof j.left === "number") spots.left = j.left;
       if (!r.ok) throw new Error(j.error || "Something went wrong. Try again.");
       sheet.dataset.done = "1";
-      note.textContent = j.confirmed ? "Your spot is already confirmed." : "Check your email and confirm your spot.";
+      note.textContent = "Check your email for your founding family link.";
       try { window.plEv && window.plEv("founding_claim"); } catch (_) {}
     } catch (err) {
       note.className = "m err";

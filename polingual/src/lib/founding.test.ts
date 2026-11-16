@@ -89,13 +89,17 @@ test("50 scripted claims from one network with fresh limiters stay under the dat
   assert.equal(results.filter((r) => r.status === 429).length, 47);
 });
 
-test("a recent repeat sends no second email and a confirmed family is told so", async () => {
+test("a recent repeat sends no second email and a confirmed address answers like a fresh signup", async () => {
   const recent = fake([human, row("recent")]);
   assert.equal((await claimFounding({ email: "a@b.co" }, env, recent.send, site, fresh())).status, 200);
   assert.equal(recent.calls.length, 2);
-  const done = fake([human, row("confirmed", 7)]);
-  assert.deepEqual((await claimFounding({ email: "a@b.co" }, env, done.send, site, fresh())).body, { ok: true, left: 7, confirmed: true });
-  assert.equal(done.calls.length, 2);
+  const done = fake([human, row("confirmed", 7), [200, {}]]);
+  const fresh1 = fake([human, row("pending", 7), [200, {}]]);
+  const held = await claimFounding({ email: "a@b.co" }, env, done.send, site, fresh());
+  assert.deepEqual(held, await claimFounding({ email: "a@b.co" }, env, fresh1.send, site, fresh()));
+  assert.deepEqual(held, { status: 200, body: { ok: true, left: 7 } });
+  assert.match(done.calls[2].body, /Your spot is confirmed/);
+  assert.doesNotMatch(done.calls[2].body, /founding\?token=/);
 });
 
 test("a signup after 500 confirmed families is refused and gets no email", async () => {
@@ -332,8 +336,8 @@ test("the offer stays hidden while signups are offline and on translated pages",
 test("the offer sheet states the ruling and posts the claim with the human check", () => {
   assert.match(foundingJs, /const HEAD = "Founding family, free for life";/);
   assert.ok(foundingJs.includes(`const OFFER = "${OFFER}";`));
-  assert.match(foundingJs, /j\.confirmed \? "Your spot is already confirmed\." : "Check your email and confirm your spot\."/);
-  assert.doesNotMatch(foundingJs, /Your spot is saved/);
+  assert.match(foundingJs, /note\.textContent = "Check your email for your founding family link\.";/);
+  assert.doesNotMatch(foundingJs, /Your spot is saved|already confirmed|j\.confirmed/);
   assert.match(foundingJs, /fetch\("\/api\/founding", \{ method: "POST"/);
   assert.match(foundingJs, /turnstile: token/);
   assert.match(foundingJs, /website: sheet\.website\.value/);
