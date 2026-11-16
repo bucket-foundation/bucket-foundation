@@ -7,6 +7,7 @@ struct Onboarding: View {
     @Environment(LangStore.self) private var store
     @Environment(\.accessibilityReduceMotion) private var still
     let finish: (String?) -> Void
+    @State private var knownSent = false
     @State private var step = PolingualLaunch.value("-onboardingStep").flatMap(Int.init).flatMap(Step.init(rawValue:)) ?? .welcome
     @State private var picks = KnownPicks(device: InterfaceLanguage.deviceRoot)
     @State private var creating = false
@@ -201,7 +202,10 @@ struct Onboarding: View {
         defer { creating = false }
         await store.load()
         if let codes = picks.codesToSave(over: store.known) { await store.setKnown(codes) }
-        Beta.shared.knownLanguagesSet(store.known, source: .onboarding)
+        if !knownSent {
+            knownSent = true
+            Beta.shared.knownLanguagesSet(store.known, source: .onboarding)
+        }
         let existing = store.systems.first { $0.root == root && Set($0.targets) == Set(targets) }
         if let existing { finish(existing.id); return }
         do {

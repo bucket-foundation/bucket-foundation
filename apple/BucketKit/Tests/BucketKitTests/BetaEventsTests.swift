@@ -178,3 +178,32 @@ func betaFile() -> URL { FileManager.default.temporaryDirectory.appending(path: 
     #expect(await b.held.isEmpty)
     #expect(t.bodies.isEmpty)
 }
+
+@Test func onlyASignedOutLearnerHoldsAnEventForSignIn() async throws {
+    #expect(BetaRoute.of(owner: "user-a", signedIn: true) == .log("user-a"))
+    #expect(BetaRoute.of(owner: nil, signedIn: false) == .hold)
+    #expect(BetaRoute.of(owner: nil, signedIn: true) == .drop)
+    let event = try #require(BetaEvent.known(KnownLanguages(["en"]), source: .settings, sessionId: nil))
+    let beta = BetaEvents(app: "polingual", transport: RecordingTransport([]), file: betaFile(), suite: UUID().uuidString)
+    await beta.record(event, route: .drop)
+    #expect(await beta.pending == 0)
+    #expect(await beta.held.isEmpty)
+    await beta.record(event, route: .hold)
+    #expect(await beta.held == [event])
+    await beta.record(event, route: .log("user-a"))
+    #expect(await beta.pending == 1)
+    #expect(await beta.owner == "user-a")
+}
+
+@MainActor @Test func aLogBeforeSignOutNeverLandsAfterIt() async {
+    let t = RecordingTransport([])
+    for _ in 0..<20 {
+        let beta = BetaEvents(app: "polingual", transport: t, file: betaFile(), suite: UUID().uuidString)
+        let ordered = OrderedTasks()
+        for _ in 0..<5 { ordered.run { await beta.log(BetaEvent(name: "app_open", sessionId: nil), owner: "user-a") } }
+        ordered.run { await beta.clearQueue() }
+        await ordered.drain()
+        #expect(await beta.pending == 0)
+        #expect(await beta.owner == nil)
+    }
+}

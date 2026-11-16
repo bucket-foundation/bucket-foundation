@@ -147,6 +147,14 @@ public actor BetaEvents {
         if pendingOptOut == out { defaults.removeObject(forKey: Self.pendingKey) }
     }
 
+    public func record(_ event: BetaEvent, route: BetaRoute) {
+        switch route {
+        case .log(let owner): log(event, owner: owner)
+        case .hold: hold(event)
+        case .drop: break
+        }
+    }
+
     public func clearQueue() {
         defaults.removeObject(forKey: Self.heldKey)
         dropQueue()
@@ -204,6 +212,32 @@ extension BetaEvent {
     public static func streakProps(_ day: Int) -> [String: JSONScalar] {
         ["streak_day": .number(Double(max(0, day))), "streak_band": .string(StreakBand.of(day).rawValue)]
     }
+}
+
+public enum BetaRoute: Equatable, Sendable {
+    case log(String), hold, drop
+
+    public static func of(owner: String?, signedIn: Bool) -> BetaRoute {
+        if let owner { return .log(owner) }
+        return signedIn ? .drop : .hold
+    }
+}
+
+@MainActor
+public final class OrderedTasks {
+    private var tail: Task<Void, Never>?
+
+    public init() {}
+
+    public func run(_ work: @escaping @Sendable () async -> Void) {
+        let before = tail
+        tail = Task {
+            await before?.value
+            await work()
+        }
+    }
+
+    public func drain() async { await tail?.value }
 }
 
 public enum KnownSource: String, CaseIterable, Sendable {

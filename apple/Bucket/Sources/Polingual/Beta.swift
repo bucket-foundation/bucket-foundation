@@ -10,6 +10,7 @@ final class Beta {
     private var sessionId = UUID().uuidString.lowercased()
     private var sessionStarted: Date?
     weak var account: Account?
+    private let ordered = OrderedTasks()
 
     init() {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -19,15 +20,13 @@ final class Beta {
     func log(_ name: String, _ props: [String: JSONScalar] = [:]) {
         guard let owner = account?.session?.userId else { return }
         let event = BetaEvent(name: name, sessionId: sessionId, props: props)
-        Task { await events.log(event, owner: owner) }
+        ordered.run { [events] in await events.log(event, owner: owner) }
     }
 
     func knownLanguagesSet(_ known: KnownLanguages, source: KnownSource) {
         guard let event = BetaEvent.known(known, source: source, sessionId: sessionId) else { return }
-        let owner = account?.session?.userId
-        Task {
-            if let owner { await events.log(event, owner: owner) } else { await events.hold(event) }
-        }
+        let route = BetaRoute.of(owner: account?.session?.userId, signedIn: account?.stage == .signedIn)
+        ordered.run { [events] in await events.record(event, route: route) }
     }
 
     func foreground(_ account: Account) {
@@ -43,7 +42,7 @@ final class Beta {
     }
 
     func signedOut() {
-        Task { await events.clearQueue() }
+        ordered.run { [events] in await events.clearQueue() }
     }
 
     func background(_ account: Account) {
