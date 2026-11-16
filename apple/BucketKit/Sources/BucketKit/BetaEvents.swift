@@ -50,6 +50,7 @@ public actor BetaEvents {
     public static let optOutKey = "beta.optedOut"
     public static let pendingKey = "beta.optOutPending"
     public static let ownerKey = "beta.queueOwner"
+    public static let heldKey = "beta.heldForSignIn"
 
     let app: String
     let base: URL
@@ -84,11 +85,29 @@ public actor BetaEvents {
         save()
     }
 
+    public var held: [BetaEvent] {
+        defaults.data(forKey: Self.heldKey).flatMap { try? JSONDecoder().decode([BetaEvent].self, from: $0) } ?? []
+    }
+
+    public func hold(_ event: BetaEvent) {
+        guard !optedOut else { return }
+        let next = held.filter { $0.name != event.name } + [event]
+        defaults.set(try? JSONEncoder().encode(next), forKey: Self.heldKey)
+    }
+
+    func adoptHeld(owner: String) {
+        let waiting = held
+        guard !waiting.isEmpty else { return }
+        defaults.removeObject(forKey: Self.heldKey)
+        for event in waiting { log(event, owner: owner) }
+    }
+
     public var pendingOptOut: Bool? { defaults.object(forKey: Self.pendingKey) as? Bool }
 
     public func flush(token: String?, owner: String?) async -> BetaFlush {
         if let token, let pending = pendingOptOut { await sendOptOut(pending, token: token) }
-        if let owner, self.owner != nil, self.owner != owner { clearQueue() }
+        if let owner, self.owner != nil, self.owner != owner { dropQueue() }
+        if let owner { adoptHeld(owner: owner) }
         guard let token, owner != nil, !flushing, !queue.isEmpty, !optedOut else { return BetaFlush(sent: 0, kept: queue.count) }
         flushing = true
         defer { flushing = false }
@@ -112,6 +131,7 @@ public actor BetaEvents {
         defaults.set(out, forKey: Self.pendingKey)
         if out {
             queue = []
+            defaults.removeObject(forKey: Self.heldKey)
             save()
         }
         if let token { await sendOptOut(out, token: token) }
@@ -128,6 +148,11 @@ public actor BetaEvents {
     }
 
     public func clearQueue() {
+        defaults.removeObject(forKey: Self.heldKey)
+        dropQueue()
+    }
+
+    func dropQueue() {
         queue = []
         defaults.removeObject(forKey: Self.ownerKey)
         save()
@@ -165,9 +190,25 @@ extension BetaEvent {
         ["lang": .string(lang), "item": .string(itemId), "stage": .string(stage)].merging(streakProps(streak)) { $1 }
     }
 
+    public static func knownProps(_ known: KnownLanguages, source: KnownSource) -> [String: JSONScalar]? {
+        guard !known.isBlank else { return nil }
+        return ["count": .number(Double(min(known.codes.count, 40))), "codes": .string(known.eventCodes), "source": .string(source.rawValue)]
+    }
+
+    public static func known(_ known: KnownLanguages, source: KnownSource, sessionId: String?) -> BetaEvent? {
+        knownProps(known, source: source).map { BetaEvent(name: knownName, sessionId: sessionId, props: $0) }
+    }
+
+    public static let knownName = "known_languages_set"
+
     public static func streakProps(_ day: Int) -> [String: JSONScalar] {
         ["streak_day": .number(Double(max(0, day))), "streak_band": .string(StreakBand.of(day).rawValue)]
     }
+}
+
+public enum KnownSource: String, CaseIterable, Sendable {
+    case onboarding, settings
+    case updateSheet = "update_sheet"
 }
 
 public enum StreakBand: String, CaseIterable, Sendable {

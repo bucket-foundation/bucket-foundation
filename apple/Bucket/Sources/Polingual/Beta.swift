@@ -22,6 +22,14 @@ final class Beta {
         Task { await events.log(event, owner: owner) }
     }
 
+    func knownLanguagesSet(_ known: KnownLanguages, source: KnownSource) {
+        guard let event = BetaEvent.known(known, source: source, sessionId: sessionId) else { return }
+        let owner = account?.session?.userId
+        Task {
+            if let owner { await events.log(event, owner: owner) } else { await events.hold(event) }
+        }
+    }
+
     func foreground(_ account: Account) {
         self.account = account
         sessionId = UUID().uuidString.lowercased()

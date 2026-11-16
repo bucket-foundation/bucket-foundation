@@ -201,6 +201,7 @@ struct Onboarding: View {
         defer { creating = false }
         await store.load()
         if let codes = picks.codesToSave(over: store.known) { await store.setKnown(codes) }
+        Beta.shared.knownLanguagesSet(store.known, source: .onboarding)
         let existing = store.systems.first { $0.root == root && Set($0.targets) == Set(targets) }
         if let existing { finish(existing.id); return }
         do {

@@ -65,7 +65,9 @@ struct KnownLanguagesSheet: View {
     func save() async {
         saving = true
         defer { saving = false }
-        if let codes = picks.codesToSave(over: store.known) { await store.setKnown(codes) }
+        let changed = picks.codesToSave(over: store.known)
+        if let changed { await store.setKnown(changed) }
+        if mode == .update || changed != nil { Beta.shared.knownLanguagesSet(store.known, source: mode == .update ? .updateSheet : .settings) }
         chosen(picks.root)
         dismiss()
     }
