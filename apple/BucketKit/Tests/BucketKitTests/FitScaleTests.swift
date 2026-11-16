@@ -42,5 +42,6 @@ import Testing
     @Test func aWholePointChangeIsTaken() {
         #expect(FitScale.settled(324.5, 326) == 326)
         #expect(FitScale.settled(324.5, 0) == 0)
+        #expect(FitScale.settled(0.4, 0) == 0)
     }
 }

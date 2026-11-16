@@ -63,6 +63,10 @@ struct StudyView: View {
         return .word(item, system)
     }
 
+    #if DEBUG
+    static var tappedNextSet = false
+    #endif
+
     func startIfReady() {
         guard queue == nil, store.status == .ready, let system = store.system(systemId), let corpus = store.corpus else { return }
         let state = store.state(systemId)
@@ -257,6 +261,15 @@ struct StudyView: View {
                 }
                 .padding(vertical == .compact ? 8 : 24)
             }
+            #if DEBUG
+            .task {
+                guard ProcessInfo.processInfo.arguments.contains("-tapNextSet"), !Self.tappedNextSet else { return }
+                guard let other = NextLesson.otherSets(after: system.id, systems: store.systems, lastStudyDay: { store.state($0).lastStudyDay }).first else { return }
+                Self.tappedNextSet = true
+                try? await Task.sleep(for: .seconds(3))
+                path.replaceTop(with: LangRoute.study(other.id))
+            }
+            #endif
             .modifier(AskForReview(streak: Int(state.streak), graded: graded, correct: correct))
         } else if let ex = current {
             let maps = readingMaps(ex, corpus)

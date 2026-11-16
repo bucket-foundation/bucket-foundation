@@ -9,7 +9,7 @@ public enum FitScale {
     }
 
     public static func settled(_ current: Double, _ measured: Double) -> Double {
-        abs(measured - current) < 1 ? current : measured
+        measured > 0 && abs(measured - current) < 1 ? current : measured
     }
 
     public static func overflows(content: Double, available: Double, scale: Double) -> Bool {
