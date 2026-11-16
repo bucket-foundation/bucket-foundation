@@ -1,6 +1,6 @@
 # Game Tech Stack for Polingual Play
 
-Research date 2026-11-15. Local inputs read: `docs/internal/polingual/GAMES-RESEARCH.md`, `docs/internal/polingual/PLAY-IDEAL-STATE.md`, `/Users/g/reports/Polingual Play games market.md` (which recommends Phaser 4 for web), and the shipped game code in `/Users/g/code/bucket-foundation`. No earlier repo research on engines, Rust, Bevy, Defold or Rive exists beyond the market report's engine table.
+Research date 2026-11-15. Local inputs read: `docs/internal/polingual/GAMES-RESEARCH.md`, `docs/internal/polingual/PLAY-IDEAL-STATE.md`, `docs/internal/polingual/research/01-play-games-market.md` (which recommends Phaser 4 for web), and the shipped game code in `the repo`. No earlier repo research on engines, Rust, Bevy, Defold or Rive exists beyond the market report's engine table.
 
 ## What the shipped code looks like today
 
