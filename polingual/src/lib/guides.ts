@@ -28,7 +28,7 @@ export const GUIDES: Guide[] = [
       { q: "Is it bad to learn two languages at once?", a: "It works when the daily load stays small and review covers every language. Pairing related languages, such as Spanish and Portuguese, lets each one reinforce the other." },
       { q: "How many languages can I study in Polingual?", a: "Up to six in one language set, from a list of 29." },
     ],
-    cta: "Join the free beta",
+    cta: "Download on the App Store",
   },
   {
     slug: "learn-spanish-and-french-together",
@@ -61,13 +61,13 @@ export const GUIDES: Guide[] = [
       { q: "Is a third language easier for bilinguals?", a: "Bilinguals can link new words to two known languages, and related languages share many words." },
       { q: "Is there a Spanish version?", a: "Yes. The app and polingual.com/es are in Spanish." },
     ],
-    cta: "Join the free beta",
+    cta: "Download on the App Store",
   },
   {
     slug: "aprender-frances-sabiendo-espanol",
     lang: "es",
     title: "Aprende francés e italiano desde el español",
-    description: "Si hablas español e inglés, aprende un tercer idioma con las palabras que ya conoces. Beta gratis para iPhone.",
+    description: "Si hablas español e inglés, aprende un tercer idioma con las palabras que ya conoces. Para iPhone y iPad.",
     lede: "El español comparte raíces con el francés, el italiano y el portugués. Polingual te muestra cada palabra en todos tus idiomas a la vez.",
     sections: [
       { h: "Una palabra en todos tus idiomas", p: "Ves cada significado con su palabra en español, inglés y el idioma nuevo, con audio para cada una." },
@@ -77,7 +77,7 @@ export const GUIDES: Guide[] = [
       { q: "¿Es más fácil el francés si hablo español?", a: "Sí, muchas palabras vienen del latín en los dos idiomas, como cien y cent." },
       { q: "¿La app está en español?", a: "Sí. Toda la app está en español y en inglés." },
     ],
-    cta: "Únete a la beta gratis",
+    cta: "Descárgala en el App Store",
   },
 ];
 

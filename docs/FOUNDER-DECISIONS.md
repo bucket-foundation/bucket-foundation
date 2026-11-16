@@ -28,5 +28,10 @@ A ruling given in one session is invisible to every other one. On 2026-09-21 two
 
 | Date | Decision | Asked in | Carried by |
 |---|---|---|---|
+| 2026-11-16 | FD-8 direction: Bucket Foundation is the entity of record. Polingual is licensed or spun into a new company that hires. The exact structure waits on counsel | Founder quiz, briefing session | Counsel bead, source-founder |
+| 2026-11-16 | Polingual preorder incentive: founding family, free for life, first 500 families, up to 6 members through Apple Family Sharing | Founder quiz, briefing session | polingual.com founding flow PR |
+| 2026-11-16 | Merge policy: the parent agent merges PRs into dev after the critic passes above 8.0 and CI is green | Founder quiz, briefing session | Agent workflow |
+| 2026-11-16 | Agent-filed P3 and P4 beads are released from the founder gate; 122 released | Founder quiz, briefing session | bd labels |
+| 2026-11-16 | Bucket Foundation is always free. Bucket takes desktop work features. Polingual stays language learning and intercomprehension | Founder quiz, briefing session | Product scope |
 | 2026-09-24 | PR-074: creating a class grants no staff powers. Staff is the `RESEARCH_OS_REVIEWER_EMAILS` allowlist; a class teacher acts on their own classes only | bkt-0343, a founder-sourced launch bead | `fix/staff-roles` |
 | 2026-09-21 | The 599 transcript cards under `bucket-canon/*/sub-claims/` are source excerpts and out of canon. They keep citing their video and timestamp, they move from `/canon/claims` to `/excerpts`, their graph kind is `excerpt` and their provenance type is `source_excerpt`. A card rejoins canon when it names its foundation and a person promotes it | the `bkt-nuc` session, as a posed question | #208, with the map filter in #195 and the promotion gate held on `fix/canon-claims-promotion-gate` until the first card is curated |

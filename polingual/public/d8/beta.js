@@ -16,5 +16,4 @@ try{const r=await fetch("/api/beta",{method:"POST",headers:{"Content-Type":"appl
 if(!r.ok)throw new Error(window.PL_TR?t("Something went wrong. Try again."):j.error||"Something went wrong. Try again.");ev("beta_link_requested");sh.querySelector(".r").hidden=true;m.textContent=t("Check your email on your iPhone.")}
 catch(err){m.className="m err";m.textContent=err instanceof TypeError?t("Could not reach the signup service."):err.message;try{window.turnstile&&window.turnstile.reset()}catch(_){}}};return sh};
 const open=()=>{const s=sheet();s.hidden=false;setTimeout(()=>s.email.focus(),30)};
-document.addEventListener("click",x=>{const a=x.target.closest&&x.target.closest('a[href^="https://testflight.apple.com/join"]');if(!a)return;if(IOS){ev("testflight_open");return}x.preventDefault();
-try{if(top!==self){top.dispatchEvent(new CustomEvent("pl-beta"));return}}catch(_){}open()},true);addEventListener("pl-beta",()=>{if(top===self)open()});})();
+document.addEventListener("click",x=>{if(x.target.closest&&x.target.closest('a[href^="https://apps.apple.com/app/id6825177856"]'))ev("testflight_open")},true);addEventListener("pl-beta",()=>{if(top===self)open()});})();
