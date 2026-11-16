@@ -91,12 +91,15 @@ struct KnownLanguagesPrompt: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .onChange(of: due, initial: true) { _, now in if now { open = true } }
-            .onChange(of: phase) { _, now in if now == .active, due { open = true } }
-            .task(id: open) {
-                guard open else { return }
-                try? await Task.sleep(for: .seconds(2))
-                if !Task.isCancelled, !shown { open = false }
+            .task(id: Offer(due: due, active: phase == .active)) {
+                while due, phase == .active, !shown, !Task.isCancelled {
+                    open = true
+                    try? await Task.sleep(for: .seconds(KnownPrompt.offerSeconds))
+                    if shown { return }
+                    open = false
+                    if Task.isCancelled { return }
+                    try? await Task.sleep(for: .seconds(KnownPrompt.retrySeconds))
+                }
             }
             .sheet(isPresented: $open, onDismiss: {
                 if shown { askedOwners = KnownPrompt.marking(askedOwners, owner: owner) }
@@ -109,6 +112,11 @@ struct KnownLanguagesPrompt: ViewModifier {
             .task { if Launch.flag("-knownLanguages") { open = true } }
             #endif
     }
+}
+
+private struct Offer: Hashable {
+    let due: Bool
+    let active: Bool
 }
 
 extension View {
