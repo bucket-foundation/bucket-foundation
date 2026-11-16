@@ -3,7 +3,7 @@ import type { Question } from "../academy/question-types";
 export const BETA_APPS = ["bucket", "polingual", "web"] as const;
 export type BetaApp = (typeof BETA_APPS)[number];
 
-export const BETA_EVENT_NAMES = ["app_open", "session_start", "session_end", "card_shown", "card_answered", "lesson_complete", "account_token_failed"] as const;
+export const BETA_EVENT_NAMES = ["app_open", "session_start", "session_end", "card_shown", "card_answered", "lesson_complete", "account_token_failed", "known_languages_set"] as const;
 export type BetaEventName = (typeof BETA_EVENT_NAMES)[number];
 
 export const BETA_LIMITS = {
@@ -73,14 +73,33 @@ const SHORT_RE = /^[a-z0-9_.-]{1,32}$/;
 
 export const STRICT_PROPS: Partial<Record<BetaEventName, readonly string[]>> = {
   account_token_failed: ["kind", "stage"],
+  known_languages_set: ["count", "codes", "source"],
+};
+
+export const KNOWN_LANGUAGES_SOURCES = ["onboarding", "settings", "update_sheet"] as const;
+const KNOWN_CODES_RE = /^[a-z]{2,3}(,[a-z]{2,3}){0,7}$/;
+
+type PropRule = (v: PropValue | undefined) => boolean;
+
+const shortString: PropRule = (v) => v === undefined || (typeof v === "string" && SHORT_RE.test(v));
+
+const PROP_RULES: Partial<Record<BetaEventName, Record<string, PropRule>>> = {
+  known_languages_set: {
+    count: (v) => typeof v === "number" && Number.isInteger(v) && v >= 1 && v <= 40,
+    codes: (v) => typeof v === "string" && KNOWN_CODES_RE.test(v),
+    source: (v) => typeof v === "string" && (KNOWN_LANGUAGES_SOURCES as readonly string[]).includes(v),
+  },
 };
 
 function strictProps(name: BetaEventName, props: Record<string, PropValue>): Parsed<Record<string, PropValue>> {
   const allowed = STRICT_PROPS[name];
   if (!allowed) return { ok: true, value: props };
-  for (const [k, v] of Object.entries(props)) {
+  for (const k of Object.keys(props)) {
     if (!allowed.includes(k)) return { ok: false, error: "forbidden_prop" };
-    if (typeof v !== "string" || !SHORT_RE.test(v)) return { ok: false, error: "bad_prop_value" };
+  }
+  const rules = PROP_RULES[name] ?? {};
+  for (const k of allowed) {
+    if (!(rules[k] ?? shortString)(props[k])) return { ok: false, error: "bad_prop_value" };
   }
   return { ok: true, value: props };
 }

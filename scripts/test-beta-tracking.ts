@@ -189,3 +189,32 @@ test("account_token_failed takes kind and stage only", () => {
   assert.equal(bad({ kind: "x".repeat(33) }), "bad_prop_value");
   assert.equal(bad({ kind: 1 }), "bad_prop_value");
 });
+
+test("known_languages_set takes a count, a code list and a source", async () => {
+  const good = { count: 2, codes: "es,en", source: "onboarding" };
+  const check = (props: Record<string, unknown>) => {
+    const r = parseBatch({ app: "polingual", events: [ev({ name: "known_languages_set", props })] }, NOW);
+    return r.ok ? (r.value.rejected[0]?.error ?? "ok") : r.error;
+  };
+  assert.equal(check(good), "ok");
+  assert.equal(check({ ...good, source: "settings" }), "ok");
+  assert.equal(check({ ...good, source: "update_sheet" }), "ok");
+  assert.equal(check({ count: 8, codes: "en,es,fr,pt,zh,hi,ar,grc", source: "settings" }), "ok");
+  assert.equal(check({ ...good, codes: "es,en,fr,pt,zh,hi,ar,de,nl" }), "bad_prop_value");
+  assert.equal(check({ ...good, codes: "ES,en" }), "bad_prop_value");
+  assert.equal(check({ ...good, codes: "es, en" }), "bad_prop_value");
+  assert.equal(check({ ...good, codes: "" }), "bad_prop_value");
+  assert.equal(check({ ...good, source: "web" }), "bad_prop_value");
+  assert.equal(check({ ...good, count: 0 }), "bad_prop_value");
+  assert.equal(check({ ...good, count: 41 }), "bad_prop_value");
+  assert.equal(check({ ...good, count: 1.5 }), "bad_prop_value");
+  assert.equal(check({ ...good, count: "2" }), "bad_prop_value");
+  assert.equal(check({ count: 2, codes: "es,en" }), "bad_prop_value");
+  assert.equal(check({ ...good, name: "Ana" }), "forbidden_prop");
+
+  const store = memory();
+  const res = await ingest(store)(post({ app: "polingual", events: [ev({ name: "known_languages_set", props: good }), ev({ name: "known_languages_set", props: { ...good, source: "web" } })] }));
+  assert.equal(res.status, 200);
+  const body = await res.json();
+  assert.deepEqual([body.accepted, body.rejected], [1, [{ index: 1, error: "bad_prop_value" }]]);
+});
