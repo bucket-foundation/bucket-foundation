@@ -251,22 +251,27 @@ struct TranslateCard: View {
                             SentenceTranslations(text: text, source: source, targets: unmet, fallback: lexicon, soft: soft)
                                 .id(unmet.joined(separator: ","))
                         }
-                        HStack(spacing: 10) {
-                            if added.contains(id) {
-                                Label("Added to your next session", systemImage: "checkmark.circle.fill")
-                                    .font(.subheadline.weight(.semibold))
-                                    .foregroundStyle(D8.malachite)
-                            } else {
-                                Button("Add to my deck") { add(id, corpus) }
-                                    .buttonStyle(D8Option(align: .center, compact: true))
+                        let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
+                        let report = ReportSubject(lang: source ?? from ?? langs.first ?? "en", itemId: id, text: text,
+                                                   shown: words.filter { $0.lang != source }.map { "\($0.lang): \($0.form)" }.joined(separator: "; "), context: "translate:word")
+                        let share = ShareObjectButton(.word(id: id, gloss: text, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
+                        ViewThatFits(in: .horizontal) {
+                            HStack(spacing: 10) {
+                                deckControl(id, corpus).fixedSize()
+                                share
+                                Spacer(minLength: 0)
+                                WrongTranslationLink(subject: report)
                             }
-                            let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
-                            ShareObjectButton(.word(id: id, gloss: text, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
-                            Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: text, forms: words))
-                            Spacer(minLength: 0)
-                            WrongTranslationLink(subject: ReportSubject(lang: source ?? from ?? langs.first ?? "en", itemId: id, text: text,
-                                                                        shown: words.filter { $0.lang != source }.map { "\($0.lang): \($0.form)" }.joined(separator: "; "), context: "translate:word"))
+                            VStack(alignment: .leading, spacing: 8) {
+                                deckControl(id, corpus)
+                                HStack(spacing: 10) {
+                                    share
+                                    Spacer(minLength: 0)
+                                    WrongTranslationLink(subject: report)
+                                }
+                            }
                         }
+                        .background { Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: text, forms: words)) }
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
                         if !similar.isEmpty {
@@ -464,6 +469,17 @@ struct TranslateCard: View {
             .buttonStyle(.plain)
             .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
             .accessibilityIdentifier("translate.mic")
+        }
+    }
+
+    @ViewBuilder func deckControl(_ id: String, _ corpus: LangCorpus) -> some View {
+        if added.contains(id) {
+            Label("Added to your next session", systemImage: "checkmark.circle.fill")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(D8.malachite)
+        } else {
+            Button("Add to my deck") { add(id, corpus) }
+                .buttonStyle(D8Option(align: .center, compact: true))
         }
     }
 

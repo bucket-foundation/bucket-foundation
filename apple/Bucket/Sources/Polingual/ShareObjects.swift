@@ -840,6 +840,8 @@ struct ObjectShareCards: View {
                         copy()
                     } label: {
                         Label(copied ? String(localized: "Copied") : String(localized: "Copy link"), systemImage: copied ? "checkmark" : "link")
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.6)
                     }
                     .buttonStyle(D8Option(align: .center))
                     send
