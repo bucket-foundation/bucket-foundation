@@ -71,7 +71,7 @@ export default function Page({ params }: { params: { handle: string } }) {
           href={`https://github.com/${stats.handle}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+          className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
         >
           github.com/{stats.handle} ↗
         </a>
@@ -84,7 +84,7 @@ export default function Page({ params }: { params: { handle: string } }) {
       <div>
         {Array.from(grouped.entries()).map(([day, items]) => (
           <section key={day} className="mb-10">
-            <h3 className="small-caps text-[11px] text-[color:var(--gold)] mb-3 pb-2 border-b hairline">
+            <h3 className="small-caps text-[11px] text-[color:var(--gold-text)] mb-3 pb-2 border-b hairline">
               {formatDayHeader(day)}
             </h3>
             <div className="bg-[color:var(--hairline)]">

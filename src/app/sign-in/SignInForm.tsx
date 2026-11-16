@@ -12,7 +12,7 @@ import { useSession } from "@/providers/SessionProvider";
 type Step = "email" | "code" | "done";
 
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
-const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
+const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
 export default function SignInForm({ next, allowNewAccounts = true, linkError = null, onSignedIn }: { next: string | null; allowNewAccounts?: boolean; linkError?: string | null; onSignedIn?: () => void | Promise<void> }) {
   const { user, loading } = useSession();

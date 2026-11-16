@@ -68,7 +68,7 @@ export default function MaterialsFeaturizerClient() {
             value={formula}
             onChange={(e) => setFormula(e.target.value)}
             placeholder="e.g. Fe2O3, GaAs, La0.7Sr0.3MnO3, Mg(OH)2"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>

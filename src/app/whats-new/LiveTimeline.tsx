@@ -14,13 +14,13 @@ export function SmallRow({ entry, time }: { entry: TimelineEntry; time: string |
   return (
     <li id={entry.id} className="py-2 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
       <span className="w-20 shrink-0 small-caps text-[10px] text-[color:var(--parchment-dim)]">{time ?? "no time"}</span>
-      <span className="small-caps text-[10px] text-[color:var(--gold)]">{CATEGORY_LABEL[kind] ?? kind}</span>
+      <span className="small-caps text-[10px] text-[color:var(--gold-text)]">{CATEGORY_LABEL[kind] ?? kind}</span>
       {machine && <span className="border hairline px-1 small-caps text-[10px] text-[color:var(--basalt)]">made by a machine</span>}
       {entry.autopublished === true && <span className="small-caps text-[10px] text-[color:var(--parchment-dim)]">not reviewed by a person</span>}
       <span className={`flex-1 min-w-[12rem] text-[color:var(--basalt)] ${entry.state === "refuted" ? "line-through decoration-1" : ""}`}>{String(entry.title ?? "")}</span>
       {state && <span className={`small-caps text-[10px] ${entry.state === "refuted" ? "text-[color:var(--basalt)] font-semibold" : "text-[color:var(--parchment-dim)]"}`}>{state}</span>}
       {link && (
-        <a href={link.href} target="_blank" rel="noopener noreferrer" className="small-caps text-[10px] text-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+        <a href={link.href} target="_blank" rel="noopener noreferrer" className="small-caps text-[10px] text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
           {link.label} ↗
         </a>
       )}

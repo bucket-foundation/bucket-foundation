@@ -28,7 +28,7 @@ export default function GrowthReportView({ data }: { data: GrowthReport & { trun
                 <span className="text-[11px] text-[color:var(--basalt-3)]">{s.source}</span>
               </div>
               {s.count !== null && top ? (
-                <div className="h-[6px] bg-[color:var(--gold)]" style={{ width: `${Math.max(2, Math.min(100, (s.count / top) * 100))}%` }} />
+                <div className="h-[6px] bg-[color:var(--gold-text)]" style={{ width: `${Math.max(2, Math.min(100, (s.count / top) * 100))}%` }} />
               ) : null}
             </li>
           ))}

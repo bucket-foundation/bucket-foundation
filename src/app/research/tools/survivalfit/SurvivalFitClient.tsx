@@ -88,7 +88,7 @@ export default function SurvivalFitClient() {
             value={durations}
             onChange={(e) => setDurations(e.target.value)}
             placeholder="e.g. 6 7 10 13 1 1 2 3"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -100,7 +100,7 @@ export default function SurvivalFitClient() {
             value={events}
             onChange={(e) => setEvents(e.target.value)}
             placeholder="e.g. 1 1 1 1 1 1 1 1"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -112,7 +112,7 @@ export default function SurvivalFitClient() {
             value={groups}
             onChange={(e) => setGroups(e.target.value)}
             placeholder="e.g. A A A A B B B B"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -195,7 +195,7 @@ function SurvivalView({ result }: { result: ResultEnvelope }) {
 
       {out.logrank && (
         <div
-          className={`border p-5 mb-2 ${out.logrank["significant_at_0.05"] ? "border-[color:var(--gold)]" : "border-[color:var(--hairline)]"} bg-[color:var(--bone)]`}
+          className={`border p-5 mb-2 ${out.logrank["significant_at_0.05"] ? "border-[color:var(--gold-text)]" : "border-[color:var(--hairline)]"} bg-[color:var(--bone)]`}
         >
           <div className="small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-2">
             log-rank test ({out.logrank.group1} vs {out.logrank.group2})

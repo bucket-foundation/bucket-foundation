@@ -75,7 +75,7 @@ export default function GeoSummaryClient() {
             onChange={(e) => setValues(e.target.value)}
             placeholder="12.1, 12.4, NaN, 12.9, 13.2, 13.0, 13.6, ..."
             rows={6}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>
@@ -88,7 +88,7 @@ export default function GeoSummaryClient() {
             onChange={(e) => setPeriod(e.target.value)}
             placeholder="e.g. 12 (monthly)"
             inputMode="numeric"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-2.5 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>

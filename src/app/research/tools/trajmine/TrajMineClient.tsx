@@ -40,7 +40,7 @@ export default function TrajMineClient() {
               disabled={busy}
               className={`text-[12px] small-caps tracking-[0.12em] px-4 py-2 border transition-colors ${
                 demo === "md"
-                  ? "border-[color:var(--gold)] text-[color:var(--basalt)] bg-[color:var(--bone)]"
+                  ? "border-[color:var(--gold-text)] text-[color:var(--basalt)] bg-[color:var(--bone)]"
                   : "border-[color:var(--hairline)] text-[color:var(--basalt-3)]"
               }`}
             >
@@ -52,7 +52,7 @@ export default function TrajMineClient() {
               disabled={busy}
               className={`text-[12px] small-caps tracking-[0.12em] px-4 py-2 border transition-colors ${
                 demo === "static"
-                  ? "border-[color:var(--gold)] text-[color:var(--basalt)] bg-[color:var(--bone)]"
+                  ? "border-[color:var(--gold-text)] text-[color:var(--basalt)] bg-[color:var(--bone)]"
                   : "border-[color:var(--hairline)] text-[color:var(--basalt-3)]"
               }`}
             >

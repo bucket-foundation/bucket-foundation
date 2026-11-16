@@ -57,7 +57,7 @@ export default function AccountForm({ initialHandle, initialDisplayName, availab
         <input id="account-name" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="How teachers and peers see you" className={INPUT + " mt-1"} disabled={!available} maxLength={80} />
       </div>
       <div className="flex items-center gap-3">
-        <button type="submit" disabled={busy || !available} className="px-4 py-2 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]">
+        <button type="submit" disabled={busy || !available} className="px-4 py-2 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]">
           {busy ? "saving" : "save"}
         </button>
         {saved && <span className="text-[12px] text-[color:var(--laurel-deep)]">Saved.</span>}

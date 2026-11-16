@@ -64,7 +64,7 @@ export default function DirectionsBlock({
       key={n.id}
       type="button"
       onClick={() => onSelect(n)}
-      className={`px-2 py-0.5 rounded-full border text-[11px] hover:border-[color:var(--gold)] ${tone}`}
+      className={`px-2 py-0.5 rounded-full border text-[11px] hover:border-[color:var(--gold-text)] ${tone}`}
       title={n.kind}
     >
       {n.title}
@@ -88,7 +88,7 @@ export default function DirectionsBlock({
       {d.frontier.length > 0 && (
         <div className="mt-2 flex flex-wrap items-center gap-1">
           <span className="text-[color:var(--gold-deep)] mr-1">frontier</span>
-          {d.frontier.map((n) => chip(n, "border-[color:var(--gold)]"))}
+          {d.frontier.map((n) => chip(n, "border-[color:var(--gold-text)]"))}
         </div>
       )}
       {d.openQuestions.length > 0 && (

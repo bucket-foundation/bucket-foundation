@@ -16,6 +16,6 @@
 .stationText{flex:1;min-width:0;display:flex;flex-direction:column}
 .stationText b{font:var(--pl-type-small);font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stationText span{font:var(--pl-type-small);color:var(--pl-ink-dim)}
-.stationAct{font:var(--pl-type-label);letter-spacing:.12em;text-transform:uppercase;color:var(--pl-vermilion)}
+.stationAct{font:var(--pl-type-label);letter-spacing:.12em;text-transform:uppercase;color:var(--pl-vermilion-ink)}
 .credit{font:var(--pl-type-label);letter-spacing:.1em;text-transform:uppercase;color:var(--pl-paper-2);margin:0}
 @media (max-width:600px){.ticket{grid-template-columns:1fr}.ticketTile{grid-row:auto;width:110px}}

@@ -38,7 +38,7 @@ export default function ProteinScoutClient() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="MKTAYIAKQR... or P0DTC2"
             rows={4}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

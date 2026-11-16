@@ -60,7 +60,7 @@ export default function ChromatinAccessClient() {
             onChange={(e) => setSeq(e.target.value)}
             placeholder="GCGCGCGC…TATAAAA…GGGCGG…"
             rows={5}
-            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

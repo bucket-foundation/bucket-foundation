@@ -110,7 +110,7 @@ function H2({ id, children }: { id: string; children: React.ReactNode }) {
 
 function H3({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="font-serif-display text-xl text-[color:var(--gold)] small-caps mt-9 mb-3">
+    <h3 className="font-serif-display text-xl text-[color:var(--gold-text)] small-caps mt-9 mb-3">
       {children}
     </h3>
   );
@@ -125,7 +125,7 @@ export default function Page() {
     >
       <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">
         <div className="p-5 border hairline bg-[color:var(--bone-3)] text-sm">
-          <div className="small-caps text-[11px] text-[color:var(--gold)] mb-2">
+          <div className="small-caps text-[11px] text-[color:var(--gold-text)] mb-2">
             references
           </div>
           <ul className="space-y-1">
@@ -133,7 +133,7 @@ export default function Page() {
               Normative rule:{" "}
               <Link
                 href="/protocol"
-                className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+                className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
               >
                 PROTOCOL.md §3.1
               </Link>
@@ -142,7 +142,7 @@ export default function Page() {
               Agent trust model:{" "}
               <a
                 href="/llms-full.txt"
-                className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+                className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
               >
                 /llms-full.txt §4
               </a>
@@ -151,7 +151,7 @@ export default function Page() {
               Envelope shape:{" "}
               <Link
                 href="/protocol/envelope"
-                className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+                className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
               >
                 /protocol/envelope
               </Link>
@@ -161,7 +161,7 @@ export default function Page() {
               Source (MIT):{" "}
               <a
                 href="https://github.com/gianyrox/bucket-foundation"
-                className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+                className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
               >
                 gianyrox/bucket-foundation
               </a>{" "}
@@ -243,7 +243,7 @@ export default function Page() {
           from the recorded session; it is reproduced unedited because the
           quote <em>is</em> the finding.
         </p>
-        <blockquote className="my-6 border-l-2 border-[color:var(--gold)] pl-5 italic text-[color:var(--parchment)] space-y-4 text-base">
+        <blockquote className="my-6 border-l-2 border-[color:var(--gold-text)] pl-5 italic text-[color:var(--parchment)] space-y-4 text-base">
           <p>
             I&apos;ll help research mitochondrial ATP synthesis, but I want to
             be transparent about a few things before proceeding.
@@ -414,7 +414,7 @@ export default function Page() {
         <p>
           <a
             href="/llms-full.txt"
-            className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+            className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
           >
             /llms-full.txt §4
           </a>{" "}
@@ -427,7 +427,7 @@ export default function Page() {
           normative in{" "}
           <Link
             href="/protocol"
-            className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+            className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
           >
             PROTOCOL.md §3.1
           </Link>{" "}
@@ -439,11 +439,11 @@ export default function Page() {
           The same request,{" "}
           <code>GET /api/research?q=mitochondrial+ATP+synthesis&amp;tier=insight</code>.
         </p>
-        <p className="small-caps text-[12px] text-[color:var(--gold)] mt-6 mb-0">
+        <p className="small-caps text-[12px] text-[color:var(--gold-text)] mt-6 mb-0">
           before — HTTP 402, flow dead-ends
         </p>
         <CodeBlock code={BEFORE} lang="jsonc" title="before — pay-to-proceed" />
-        <p className="small-caps text-[12px] text-[color:var(--gold)] mt-6 mb-0">
+        <p className="small-caps text-[12px] text-[color:var(--gold-text)] mt-6 mb-0">
           after — HTTP 200, x-bucket-source: canon-fallback
         </p>
         <CodeBlock code={AFTER} lang="jsonc" title="after — paid-to-cite, structurally inert" />
@@ -453,7 +453,7 @@ export default function Page() {
         </p>
         <dl className="space-y-5 mt-4">
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)] text-[0.95em]">
+            <dt className="font-mono-mark text-[color:var(--gold-text)] text-[0.95em]">
               &ldquo;pay an x402 challenge read out of a{" "}
               <code>receipt.challenge</code> field&rdquo;
             </dt>
@@ -463,7 +463,7 @@ export default function Page() {
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)] text-[0.95em]">
+            <dt className="font-mono-mark text-[color:var(--gold-text)] text-[0.95em]">
               &ldquo;execute financial actions … defined by content I&apos;d
               retrieve&rdquo;
             </dt>
@@ -473,7 +473,7 @@ export default function Page() {
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)] text-[0.95em]">
+            <dt className="font-mono-mark text-[color:var(--gold-text)] text-[0.95em]">
               &ldquo;the mechanism of a prompt-injection or a pay-to-proceed
               trap&rdquo;
             </dt>
@@ -484,7 +484,7 @@ export default function Page() {
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)] text-[0.95em]">
+            <dt className="font-mono-mark text-[color:var(--gold-text)] text-[0.95em]">
               ChatGPT: &ldquo;no wallet → can&apos;t pay → nothing to cite&rdquo;
             </dt>
             <dd className="pl-4 mt-1">
@@ -508,7 +508,7 @@ export default function Page() {
           bucket.foundation. It generalises to any protocol that mixes content
           retrieval with payment.
         </p>
-        <blockquote className="my-6 border-l-2 border-[color:var(--gold)] pl-5 text-[color:var(--parchment)]">
+        <blockquote className="my-6 border-l-2 border-[color:var(--gold-text)] pl-5 text-[color:var(--parchment)]">
           A correctly safety-trained autonomous agent should refuse to perform a
           payment that a just-fetched document instructs it to perform. Do not
           design a protocol that depends on overriding that refusal. Design the
@@ -573,34 +573,34 @@ export default function Page() {
 
         <hr className="my-12 border-t hairline" />
         <p className="text-sm text-[color:var(--parchment-dim)]">
-          <span className="small-caps text-[color:var(--gold)]">
+          <span className="small-caps text-[color:var(--gold-text)]">
             build the past. build history. bucket is the new renaissance.
           </span>{" "}
           Markdown source of this document:{" "}
           <a
             href="https://github.com/gianyrox/bucket-foundation/blob/main/docs/AGENT-TRUST.md"
-            className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+            className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
           >
             docs/AGENT-TRUST.md
           </a>
           . Normative rule:{" "}
           <Link
             href="/protocol"
-            className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+            className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
           >
             PROTOCOL.md §3.1
           </Link>
           . Trust model:{" "}
           <a
             href="/llms-full.txt"
-            className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+            className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
           >
             /llms-full.txt §4
           </a>
           . Envelope:{" "}
           <Link
             href="/protocol/envelope"
-            className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]"
+            className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]"
           >
             /protocol/envelope
           </Link>

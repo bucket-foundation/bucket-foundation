@@ -51,7 +51,7 @@ export default function LearnBlock({
     <div className="mt-3 border-t border-[color:var(--hairline)] pt-3 text-[12px] text-[color:var(--basalt-2)]">
       <div className="flex flex-wrap items-center gap-2">
         <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)]">learn</span>
-        <Link href={target.href} className="underline decoration-[color:var(--gold)] underline-offset-4 hover:text-[color:var(--basalt)]">
+        <Link href={target.href} className="underline decoration-[color:var(--gold-text)] underline-offset-4 hover:text-[color:var(--basalt)]">
           {target.atomId ? "open the lesson" : `open the ${target.branchFile.replace(/^\d+-/, "")} lessons`} →
         </Link>
         {recall && recall.seen && (

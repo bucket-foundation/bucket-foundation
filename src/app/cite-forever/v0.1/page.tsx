@@ -89,7 +89,7 @@ export default function Page() {
         </h2>
         <p>
           Every response from a feed402/0.2 endpoint carries a{" "}
-          <code className="font-mono-mark text-[color:var(--gold)]">cite</code> block.
+          <code className="font-mono-mark text-[color:var(--gold-text)]">cite</code> block.
           That block binds three things — the price, the payout wallet, and this
           license — into a machine-enforceable contract.
         </p>
@@ -109,15 +109,15 @@ export default function Page() {
             <strong className="text-[color:var(--parchment)]">Cite with payment.</strong>{" "}
             If you cite a canon artifact as a primary source in a published work
             (paper, book, blog post, LLM output surfaced to users, product feature),
-            pay the <code className="font-mono-mark text-[color:var(--gold)]">cite.price_usd</code>{" "}
-            to <code className="font-mono-mark text-[color:var(--gold)]">cite.payout_wallet</code>{" "}
+            pay the <code className="font-mono-mark text-[color:var(--gold-text)]">cite.price_usd</code>{" "}
+            to <code className="font-mono-mark text-[color:var(--gold-text)]">cite.payout_wallet</code>{" "}
             over the x402 rail on Base. Once paid, the citation is valid forever; no
             renewal, no subscription.
           </li>
           <li>
             <strong className="text-[color:var(--parchment)]">Provenance is public.</strong>{" "}
             Every citation transaction is on-chain. The{" "}
-            <code className="font-mono-mark text-[color:var(--gold)]">provenance</code>{" "}
+            <code className="font-mono-mark text-[color:var(--gold-text)]">provenance</code>{" "}
             array on each envelope records the retrieval and citation chain.
           </li>
           <li>
@@ -128,7 +128,7 @@ export default function Page() {
           </li>
           <li>
             <strong className="text-[color:var(--parchment)]">Forever means forever.</strong>{" "}
-            This license is version-pinned. <code className="font-mono-mark text-[color:var(--gold)]">v0.1</code>{" "}
+            This license is version-pinned. <code className="font-mono-mark text-[color:var(--gold-text)]">v0.1</code>{" "}
             means v0.1; future versions live at their own canonical URLs and never
             retroactively apply.
           </li>
@@ -147,30 +147,30 @@ export default function Page() {
         </p>
 
         <div className="mt-12 p-6 border hairline bg-[color:var(--bone-3)] text-sm">
-          <div className="small-caps text-[11px] text-[color:var(--gold)] mb-3">
+          <div className="small-caps text-[11px] text-[color:var(--gold-text)] mb-3">
             canonical
           </div>
           <div className="font-mono-mark text-[color:var(--parchment)]">
             https://www.bucket.foundation/cite-forever/v0.1
           </div>
-          <div className="mt-4 small-caps text-[11px] text-[color:var(--gold)] mb-3">
+          <div className="mt-4 small-caps text-[11px] text-[color:var(--gold-text)] mb-3">
             see also
           </div>
           <ul className="space-y-1">
             <li>
-              <Link href="/protocol" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
+              <Link href="/protocol" className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]">
                 /protocol
               </Link>{" "}
               — feed402/0.2 spec
             </li>
             <li>
-              <Link href="/protocol/envelope" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
+              <Link href="/protocol/envelope" className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]">
                 /protocol/envelope
               </Link>{" "}
               — the full envelope shape
             </li>
             <li>
-              <Link href="/governance" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
+              <Link href="/governance" className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]">
                 /governance
               </Link>{" "}
               — nonprofit structure

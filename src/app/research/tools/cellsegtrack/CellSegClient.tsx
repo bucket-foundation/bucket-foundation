@@ -76,7 +76,7 @@ export default function CellSegClient() {
             onChange={(e) => setImgText(e.target.value)}
             placeholder={"0 0 5 80 80 5 0\n0 0 8 90 88 6 0\n…"}
             rows={5}
-            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[12px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[12px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

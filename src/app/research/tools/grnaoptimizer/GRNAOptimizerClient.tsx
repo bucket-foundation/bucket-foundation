@@ -73,7 +73,7 @@ export default function GRNAOptimizerClient() {
             onChange={(e) => setSequence(e.target.value)}
             placeholder={EXAMPLE}
             rows={4}
-            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>
@@ -85,7 +85,7 @@ export default function GRNAOptimizerClient() {
             value={pam}
             onChange={(e) => setPam(e.target.value.toUpperCase())}
             placeholder="NGG"
-            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>

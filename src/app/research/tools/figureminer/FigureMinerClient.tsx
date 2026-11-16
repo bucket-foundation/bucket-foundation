@@ -70,7 +70,7 @@ export default function FigureMinerClient() {
             onChange={(e) => setText(e.target.value)}
             placeholder="Figure 1. Knockdown reduced expression (n = 12, p < 0.001)…"
             rows={6}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] leading-[1.6] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>

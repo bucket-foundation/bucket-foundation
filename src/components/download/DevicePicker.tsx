@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { detectFromHints, deviceLinks, type DetectedDevice, type DeviceLinks } from "@/lib/download/device";
 
 const PRIMARY =
-  "w-full px-5 py-4 text-[16px] font-semibold bg-[color:var(--gold)] text-[color:var(--basalt)] min-h-[52px] flex items-center justify-center text-center";
+  "w-full px-5 py-4 text-[16px] font-semibold bg-[color:var(--gold-text)] text-[color:var(--basalt)] min-h-[52px] flex items-center justify-center text-center";
 const PRIMARY_OFF =
   "w-full px-5 py-4 text-[15px] border border-[color:var(--hairline)] text-[color:var(--basalt-2)] min-h-[52px] flex items-center justify-center text-center";
 const SMALL = "underline text-[13px] text-[color:var(--basalt-2)] min-h-[44px] inline-flex items-center";

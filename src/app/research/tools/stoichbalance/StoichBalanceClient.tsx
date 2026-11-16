@@ -62,7 +62,7 @@ export default function StoichBalanceClient() {
             value={equation}
             onChange={(e) => setEquation(e.target.value)}
             placeholder="e.g. C3H8 + O2 -> CO2 + H2O   (use -> or =)"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>

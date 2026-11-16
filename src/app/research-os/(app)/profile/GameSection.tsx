@@ -55,7 +55,7 @@ export default function GameSection({ token }: { token: string | null }) {
         </div>
       </div>
       <div className="mt-3 h-1.5 w-full max-w-md bg-[color:var(--hairline)] rounded overflow-hidden" aria-label={`${pct}% to the next level`}>
-        <div className="h-full bg-[color:var(--gold)]" style={{ width: `${pct}%` }} />
+        <div className="h-full bg-[color:var(--gold-text)]" style={{ width: `${pct}%` }} />
       </div>
       <p className="mt-2 text-[12px] text-[color:var(--basalt-3)]">
         {game.span - game.into} xp to level {game.level + 1}. XP comes from each node&rsquo;s first rise to a new level: awareness 10, understanding 25,

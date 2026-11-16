@@ -38,9 +38,9 @@ const STATE_NOTE: Record<string, string> = {
 
 const STATE_TONE: Record<string, string> = {
   candidate: "text-[color:var(--parchment-dim)]",
-  tested: "text-[color:var(--gold)]",
+  tested: "text-[color:var(--gold-text)]",
   refuted: "text-[color:var(--basalt)] line-through decoration-1",
-  proved: "text-[color:var(--gold)]",
+  proved: "text-[color:var(--gold-text)]",
 };
 
 export default function GenerationCard({ generation, parentTitle, draftBy }: { generation: Generation; parentTitle?: string; draftBy?: string }) {
@@ -68,14 +68,14 @@ export default function GenerationCard({ generation, parentTitle, draftBy }: { g
       <ul className="flex flex-wrap gap-x-4 gap-y-1 small-caps text-[10px]">
         {g.parent && parentTitle && (
           <li>
-            <a href={`#${g.parent}`} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+            <a href={`#${g.parent}`} className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
               from {parentTitle}
             </a>
           </li>
         )}
         {(g.evidence ?? []).map((href, i) => (
           <li key={href}>
-            <a href={href} target="_blank" rel="noopener noreferrer" className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+            <a href={href} target="_blank" rel="noopener noreferrer" className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
               evidence {i + 1} ↗
             </a>
           </li>

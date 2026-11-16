@@ -33,14 +33,14 @@ export default function Page({ params }: { params: { concept: string; slug: stri
         className="mb-3 text-xs uppercase tracking-[0.22em]"
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
       >
-        <Link href={`/excerpts/${c.concept}`} className="hover:text-[color:var(--gold)]">
+        <Link href={`/excerpts/${c.concept}`} className="hover:text-[color:var(--gold-text)]">
           ← {c.concept.replace(/-/g, " ")}
         </Link>
       </p>
 
       <article>
         <blockquote
-          className="border-l-2 border-[color:var(--gold)] pl-6 text-2xl leading-[1.4] md:text-[1.7rem]"
+          className="border-l-2 border-[color:var(--gold-text)] pl-6 text-2xl leading-[1.4] md:text-[1.7rem]"
           style={{ fontFamily: "var(--font-fraunces)" }}
         >
           {c.excerpt}
@@ -60,7 +60,7 @@ export default function Page({ params }: { params: { concept: string; slug: stri
                 href={c.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline-offset-4 hover:text-[color:var(--gold)] hover:underline"
+                className="underline-offset-4 hover:text-[color:var(--gold-text)] hover:underline"
               >
                 {c.videoTitle} · {c.timestamp} ↗
               </a>

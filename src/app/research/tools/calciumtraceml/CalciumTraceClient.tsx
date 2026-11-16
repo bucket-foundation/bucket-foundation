@@ -77,7 +77,7 @@ export default function CalciumTraceClient() {
             onChange={(e) => setTraceText(e.target.value)}
             placeholder="100.2, 101.4, 160.0, 142.3, 118.0, …"
             rows={4}
-            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] resize-y"
+            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[13px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] resize-y"
             disabled={busy}
           />
         </label>
@@ -88,7 +88,7 @@ export default function CalciumTraceClient() {
           <input
             value={fs}
             onChange={(e) => setFs(e.target.value)}
-            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="font-mono bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>

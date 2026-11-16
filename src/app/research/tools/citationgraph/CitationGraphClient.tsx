@@ -72,7 +72,7 @@ export default function CitationGraphClient() {
             value={paper}
             onChange={(e) => setPaper(e.target.value)}
             placeholder="10.1038/nature12373  ·  W2755950973  ·  proton coupled electron transfer in photosystem II"
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -97,7 +97,7 @@ function NodeRow({ n }: { n: Node }) {
           href={n.url}
           target="_blank"
           rel="noreferrer"
-          className="text-[15px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+          className="text-[15px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4"
         >
           {n.title || n.id}
         </a>
@@ -137,7 +137,7 @@ function CGView({ result }: { result: ResultEnvelope }) {
           href={out.seed.url}
           target="_blank"
           rel="noreferrer"
-          className="text-[18px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+          className="text-[18px] font-display leading-[1.4] text-[color:var(--basalt)] hover:text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold-text)] underline-offset-4"
         >
           {out.seed.title}
         </a>

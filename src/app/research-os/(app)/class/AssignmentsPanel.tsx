@@ -127,7 +127,7 @@ export default function AssignmentsPanel({
               type="button"
               disabled={busy || !title.trim() || !targetSlug}
               onClick={() => void post({ action: "create", targetSlug, title, instructions, dueAt: dueAt ? new Date(dueAt + "T23:59:59Z").toISOString() : undefined, requiresProduction })}
-              className="px-3 py-1.5 rounded border border-[color:var(--gold)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold)] hover:text-[color:var(--basalt)] disabled:opacity-50"
+              className="px-3 py-1.5 rounded border border-[color:var(--gold-text)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold-text)] hover:text-[color:var(--basalt)] disabled:opacity-50"
             >
               assign to the class
             </button>

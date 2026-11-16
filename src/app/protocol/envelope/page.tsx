@@ -81,21 +81,21 @@ export default function Page() {
         </h2>
         <dl className="space-y-5">
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">data</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">data</dt>
             <dd className="pl-4 mt-1">
               Tier-specific payload. <em>raw</em> → full records, <em>query</em> → ranked
               citations, <em>insight</em> → synthesis.
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">citation</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">citation</dt>
             <dd className="pl-4 mt-1">
               Who said it, when, where, under what upstream license. Always includes a{" "}
               <code>canonical_url</code>.
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">receipt</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">receipt</dt>
             <dd className="pl-4 mt-1">
               Proof of payment. <code>tx</code>, <code>paid_at</code>,{" "}
               <code>buyer_wallet</code>, <code>status</code>. This is what auditors
@@ -103,31 +103,31 @@ export default function Page() {
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">cite</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">cite</dt>
             <dd className="pl-4 mt-1">
               The forward-looking commitment. <code>price_usd</code>,{" "}
               <code>payout_wallet</code>, <code>license</code> — bound together, this is
               the contract you accept if you re-cite this artifact. License URL always
               resolves to{" "}
-              <Link href="/cite-forever/v0.1" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
+              <Link href="/cite-forever/v0.1" className="text-[color:var(--gold-text)] hover:text-[color:var(--parchment)]">
                 /cite-forever/v0.1
               </Link>
               .
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">tags</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">tags</dt>
             <dd className="pl-4 mt-1">Free-form topic tags. Useful for filtering.</dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">canon_tier</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">canon_tier</dt>
             <dd className="pl-4 mt-1">
               One of <code>candidate</code>, <code>cited</code>, <code>canon</code>.
               Canon = axiom, real math, law, principle, primary derivation.
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">foundation_branches</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">foundation_branches</dt>
             <dd className="pl-4 mt-1">
               One or more of the eight branches:{" "}
               <code>01-mathematics</code>, <code>02-physics</code>,{" "}
@@ -137,7 +137,7 @@ export default function Page() {
             </dd>
           </div>
           <div>
-            <dt className="font-mono-mark text-[color:var(--gold)]">provenance</dt>
+            <dt className="font-mono-mark text-[color:var(--gold-text)]">provenance</dt>
             <dd className="pl-4 mt-1">
               Append-only log of actions on this envelope —{" "}
               <code>{"{ action, at, by, via }"}</code>. The chain of custody.

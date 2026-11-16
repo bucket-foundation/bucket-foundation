@@ -12,7 +12,7 @@ import { NAME_MAX, RESEARCH_MAX, WAITLIST_ROLES } from "@/lib/waitlist/core";
 const INPUT =
   "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON =
-  "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]";
+  "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold-text)] text-[color:var(--basalt)] disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]";
 const LABEL = "small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]";
 const CHECK = "text-[13px] text-[color:var(--basalt-2)] flex items-start gap-3";
 

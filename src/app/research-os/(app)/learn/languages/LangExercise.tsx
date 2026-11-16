@@ -477,7 +477,7 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
       {mc && ex.options && (
         <div className={"mt-4 grid gap-2 " + (ex.kind === "sentence" ? "" : "sm:grid-cols-2")} role="group" aria-label="choices">
           {ex.options.map((o) => {
-            const state = picked === null ? "" : isRight(o) ? "bg-[color:var(--gold)]" : o === picked ? "opacity-60 line-through" : "";
+            const state = picked === null ? "" : isRight(o) ? "bg-[color:var(--gold-text)]" : o === picked ? "opacity-60 line-through" : "";
             const showReading = ex.answerLang === ex.lang && ex.kind !== "gender" && ex.kind !== "conjugate";
             return (
               <button

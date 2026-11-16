@@ -105,7 +105,7 @@ export default function Page() {
                   </span>
                   <Link
                     href={`/excerpts/${c.concept}`}
-                    className="hover:text-[color:var(--gold)]"
+                    className="hover:text-[color:var(--gold-text)]"
                   >
                     {c.concept.replace(/-/g, " ")}
                   </Link>

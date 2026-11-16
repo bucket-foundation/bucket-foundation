@@ -16,7 +16,7 @@ export default function WorkspaceTabBar() {
               <Link
                 aria-current={on ? "page" : undefined}
                 href={workspaceHref(type)}
-                className={`inline-block px-3 py-2 text-[12px] small-caps tracking-[0.12em] ${on ? "border-b-2 border-[color:var(--gold)] text-[color:var(--basalt)]" : "text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)]"}`}
+                className={`inline-block px-3 py-2 text-[12px] small-caps tracking-[0.12em] ${on ? "border-b-2 border-[color:var(--gold-text)] text-[color:var(--basalt)]" : "text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)]"}`}
               >
                 {WORKSPACE_TABS[type].title}
               </Link>

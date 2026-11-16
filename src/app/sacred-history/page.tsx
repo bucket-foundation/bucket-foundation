@@ -169,7 +169,7 @@ export default function SacredHistoryPage() {
           Sibling corpus to the foundations canon — peer of the longevity canon,
           not an eighth canon branch. Generated {sh.generatedAt.slice(0, 10)} ·
           local model · $0 paid AI spend ·{" "}
-          <Link href="/canon" className="hover:text-[color:var(--gold)]">
+          <Link href="/canon" className="hover:text-[color:var(--gold-text)]">
             see the canon →
           </Link>
         </p>
@@ -210,7 +210,7 @@ function SectionHead({
 
 function TimelineRow({ e }: { e: SHEvent }) {
   return (
-    <li className="flex gap-5 border-l-2 border-[color:var(--hairline)] py-3 pl-5 transition hover:border-[color:var(--gold)]">
+    <li className="flex gap-5 border-l-2 border-[color:var(--hairline)] py-3 pl-5 transition hover:border-[color:var(--gold-text)]">
       <span
         className="w-24 shrink-0 pt-0.5 text-sm tabular-nums"
         style={{ ...MONO, color: "var(--parchment-dim)" }}
@@ -223,7 +223,7 @@ function TimelineRow({ e }: { e: SHEvent }) {
           {e.disputed && (
             <span
               className="text-[10px] uppercase tracking-[0.15em]"
-              style={{ ...MONO, color: "var(--gold)" }}
+              style={{ ...MONO, color: "var(--gold-text)" }}
             >
               date disputed
             </span>
@@ -249,7 +249,7 @@ function TimelineRow({ e }: { e: SHEvent }) {
             href={e.wikidataUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 inline-block text-xs hover:text-[color:var(--gold)]"
+            className="mt-1 inline-block text-xs hover:text-[color:var(--gold-text)]"
             style={{ ...MONO, color: "var(--parchment-dim)" }}
           >
             {e.wikidata} ↗
@@ -262,7 +262,7 @@ function TimelineRow({ e }: { e: SHEvent }) {
 
 function FigureCard({ f }: { f: SHFigure }) {
   return (
-    <article className="rounded-md border border-[color:var(--hairline)] px-5 py-4 transition hover:border-[color:var(--gold)]">
+    <article className="rounded-md border border-[color:var(--hairline)] px-5 py-4 transition hover:border-[color:var(--gold-text)]">
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="text-lg" style={{ ...SERIF, fontWeight: 500 }}>
           {f.label}
@@ -308,7 +308,7 @@ function FigureCard({ f }: { f: SHFigure }) {
           href={f.wikidataUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-block text-xs hover:text-[color:var(--gold)]"
+          className="mt-3 inline-block text-xs hover:text-[color:var(--gold-text)]"
           style={{ ...MONO, color: "var(--parchment-dim)" }}
         >
           {f.wikidata} ↗
@@ -321,11 +321,11 @@ function FigureCard({ f }: { f: SHFigure }) {
 function ClaimCard({ c }: { c: SHCorrelation }) {
   const conf = c.confidence;
   return (
-    <article className="rounded-md border border-[color:var(--hairline)] px-5 py-5 transition hover:border-[color:var(--gold)]">
+    <article className="rounded-md border border-[color:var(--hairline)] px-5 py-5 transition hover:border-[color:var(--gold-text)]">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
         <span
           className="text-[10px] uppercase tracking-[0.18em]"
-          style={{ ...MONO, color: "var(--gold)" }}
+          style={{ ...MONO, color: "var(--gold-text)" }}
         >
           {c.stance}
         </span>
@@ -369,7 +369,7 @@ function ClaimCard({ c }: { c: SHCorrelation }) {
       {c.evidence.length > 0 && (
         <details className="mt-4 group">
           <summary
-            className="cursor-pointer text-xs uppercase tracking-[0.15em] hover:text-[color:var(--gold)]"
+            className="cursor-pointer text-xs uppercase tracking-[0.15em] hover:text-[color:var(--gold-text)]"
             style={{ ...MONO, color: "var(--parchment-dim)" }}
           >
             Evidence ({c.evidence.length})
@@ -454,7 +454,7 @@ function SidePill({
         href={`https://www.wikidata.org/wiki/${wikidata}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:text-[color:var(--gold)]"
+        className="hover:text-[color:var(--gold-text)]"
       >
         {inner}
       </a>

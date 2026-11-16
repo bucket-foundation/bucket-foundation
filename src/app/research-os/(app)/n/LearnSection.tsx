@@ -46,7 +46,7 @@ export default function LearnSection({ data }: { data: NodeData }) {
       ) : (
         <div className="flex flex-col gap-3">
           {node.workedExample?.text ? (
-            <blockquote className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)] border-l-2 border-[color:var(--gold)] pl-4 whitespace-pre-line">{node.workedExample.text.slice(0, 2400)}</blockquote>
+            <blockquote className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)] border-l-2 border-[color:var(--gold-text)] pl-4 whitespace-pre-line">{node.workedExample.text.slice(0, 2400)}</blockquote>
           ) : (
             <p className="text-[13px] text-[color:var(--basalt-3)]">No lesson yet for this node. Its summary above and its sources below are what there is to learn from.</p>
           )}

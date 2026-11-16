@@ -80,7 +80,7 @@ export default function TimeSeriesForecastClient() {
             onChange={(e) => setValues(e.target.value)}
             placeholder="e.g. 10, 12, 14, 11, 13, 15, 12, 14, 16, ..."
             rows={3}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -93,7 +93,7 @@ export default function TimeSeriesForecastClient() {
               value={period}
               onChange={(e) => setPeriod(e.target.value)}
               placeholder="e.g. 12"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] w-40"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] w-40"
               disabled={busy}
             />
           </label>
@@ -103,7 +103,7 @@ export default function TimeSeriesForecastClient() {
               value={horizon}
               onChange={(e) => setHorizon(e.target.value)}
               placeholder="6"
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)] w-28"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[15px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)] w-28"
               disabled={busy}
             />
           </label>
@@ -150,7 +150,7 @@ function ForecastView({ result }: { result: ResultEnvelope }) {
       </div>
 
       {bt && (
-        <div className={`border p-5 mb-2 ${beatsNaive ? "border-[color:var(--gold)]" : "border-[color:var(--hairline)]"} bg-[color:var(--bone)]`}>
+        <div className={`border p-5 mb-2 ${beatsNaive ? "border-[color:var(--gold-text)]" : "border-[color:var(--hairline)]"} bg-[color:var(--bone)]`}>
           <div className="small-caps tracking-[0.12em] text-[color:var(--basalt-3)] mb-2">
             holdout backtest ({bt.holdout_size} points)
           </div>

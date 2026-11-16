@@ -56,7 +56,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             Canonical form
           </h2>
           <blockquote
-            className="border-l-4 border-[color:var(--gold)] pl-6 text-2xl italic"
+            className="border-l-4 border-[color:var(--gold-text)] pl-6 text-2xl italic"
             style={{ fontFamily: "var(--font-fraunces)" }}
           >
             {b.canonicalForm}
@@ -94,7 +94,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               <Link
                 key={br}
                 href={`/canon/${br}`}
-                className="rounded-full border border-[color:var(--hairline)] px-3 py-1 text-xs uppercase tracking-[0.16em] hover:border-[color:var(--gold)]"
+                className="rounded-full border border-[color:var(--hairline)] px-3 py-1 text-xs uppercase tracking-[0.16em] hover:border-[color:var(--gold-text)]"
                 style={{ fontFamily: "var(--font-jetbrains)" }}
               >
                 {br}

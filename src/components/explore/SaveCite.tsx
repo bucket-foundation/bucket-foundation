@@ -42,7 +42,7 @@ export const COPY = {
 } as const;
 
 const mono = { fontFamily: "var(--font-jetbrains)" };
-const FOCUS = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--gold)]";
+const FOCUS = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--gold-text)]";
 const BUTTON = `border hairline px-2 py-1 text-xs ${FOCUS}`;
 
 function browserStorage(): StorageLike | null {

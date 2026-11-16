@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "icons": "tauri icon ../../apple/Polingual/Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png -o src-tauri/icons",
+    "icons": "node ../../scripts/brand/build-icons.mjs --product polingual --only desktop",
     "dev": "tauri dev",
     "build": "tauri build",
     "test": "bun test scripts && cd src-tauri && cargo test"

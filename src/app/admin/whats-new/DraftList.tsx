@@ -42,7 +42,7 @@ export default function DraftList({ drafts }: { drafts: Draft[] }) {
             {productions.map((p) => (
               <article key={p.id} id={p.id} className="border hairline bg-[color:var(--bone-2)] p-6 md:p-8">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-3 small-caps text-[10px]">
-                  <span className="text-[color:var(--gold)]">production</span>
+                  <span className="text-[color:var(--gold-text)]">production</span>
                   <span className="text-[color:var(--parchment-dim)]">· {p.date}</span>
                   <span className="text-[color:var(--parchment-dim)]">· draft by {p.poster}, not published</span>
                   {p.source && p.source !== "own" && <span className="text-[color:var(--basalt)]">· not own work, cannot be published</span>}
@@ -57,7 +57,7 @@ export default function DraftList({ drafts }: { drafts: Draft[] }) {
                 <ul className="flex flex-wrap gap-x-4 gap-y-1 small-caps text-[10px]">
                   {(p.links ?? []).map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">
+                      <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-[color:var(--gold-text)] hover:text-[color:var(--basalt)]">
                         {link.label} ↗
                       </a>
                     </li>

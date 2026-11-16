@@ -70,7 +70,7 @@ export default function SeqAlignClient() {
             onChange={(e) => setSeqA(e.target.value)}
             placeholder="e.g. HEAGAWGHEE  (protein or nucleotide; FASTA header ok)"
             rows={2}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -83,7 +83,7 @@ export default function SeqAlignClient() {
             onChange={(e) => setSeqB(e.target.value)}
             placeholder="e.g. PAWHEAE"
             rows={2}
-            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+            className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-4 py-3 text-[14px] font-mono text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             disabled={busy}
           />
         </label>
@@ -94,7 +94,7 @@ export default function SeqAlignClient() {
               value={mode}
               onChange={(e) => setMode(e.target.value)}
               disabled={busy}
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-3 py-2 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-3 py-2 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             >
               <option value="global">global (Needleman-Wunsch)</option>
               <option value="local">local (Smith-Waterman)</option>
@@ -106,7 +106,7 @@ export default function SeqAlignClient() {
               value={matrix}
               onChange={(e) => setMatrix(e.target.value)}
               disabled={busy}
-              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-3 py-2 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold)]"
+              className="bg-[color:var(--bone)] border border-[color:var(--hairline)] px-3 py-2 text-[14px] text-[color:var(--basalt)] outline-none focus:border-[color:var(--gold-text)]"
             >
               <option value="auto">auto</option>
               <option value="blosum62">BLOSUM62 (protein)</option>
