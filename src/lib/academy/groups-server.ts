@@ -20,6 +20,7 @@ import {
   windowLimiter,
   visibleGroupIds,
   memberSummary,
+  missingColumn,
   missingTable,
   type BlockRow,
   type BranchRow,
@@ -45,13 +46,14 @@ const PROGRESS = "academy_progress";
 const GROUP_COLS = "id,name,kind,owner_id,invite_code,weekly_goal,created_at";
 export const CHEER_COLS = "id,group_id,from_id,to_id,kind,created_at,seen_at";
 const CHEER_WINDOW_MS = 7 * 86_400_000;
-const MEMBER_COLS = "group_id,user_id,role,display_name,joined_at";
+const BASE_MEMBER_COLS = "group_id,user_id,role,display_name,joined_at";
+const MEMBER_COLS = `${BASE_MEMBER_COLS},chosen_name`;
 const BLOCK_COLS = "id,blocker_id,target_user_id,target_group_id,name,created_at";
 
 const CORS_HEADERS: Record<string, string> = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, OPTIONS",
-  "access-control-allow-headers": "authorization, content-type",
+  "access-control-allow-headers": "authorization, content-type, x-polingual-client",
   "cache-control": "no-store",
 };
 
@@ -99,6 +101,11 @@ export async function requestUser(req: NextRequest): Promise<string | null> {
   return user?.id ?? null;
 }
 
+export async function requestAccount(req: NextRequest): Promise<{ id: string; email: string | null } | null> {
+  const user = await verifyRequestUser(req);
+  return user?.id ? { id: user.id, email: user.email ?? null } : null;
+}
+
 export async function readBody(req: NextRequest): Promise<Record<string, unknown> | null> {
   try {
     const body = await req.json();
@@ -139,11 +146,21 @@ export async function groupByCode(code: string): Promise<GroupRow | null> {
 
 export async function membersOf(groupIds: string[]): Promise<MemberRow[]> {
   if (groupIds.length === 0) return [];
-  return (check(await service().from(MEMBERS).select(MEMBER_COLS).in("group_id", groupIds), "members read") ?? []) as MemberRow[];
+  const res = await service().from(MEMBERS).select(MEMBER_COLS).in("group_id", groupIds);
+  if (!missingColumn(res.error)) return (check(res, "members read") ?? []) as MemberRow[];
+  return (check(await service().from(MEMBERS).select(BASE_MEMBER_COLS).in("group_id", groupIds), "members read") ?? []) as MemberRow[];
 }
 
 export async function membershipsOf(uid: string): Promise<MemberRow[]> {
-  return (check(await service().from(MEMBERS).select(MEMBER_COLS).eq("user_id", uid), "memberships read") ?? []) as MemberRow[];
+  const res = await service().from(MEMBERS).select(MEMBER_COLS).eq("user_id", uid);
+  if (!missingColumn(res.error)) return (check(res, "memberships read") ?? []) as MemberRow[];
+  return (check(await service().from(MEMBERS).select(BASE_MEMBER_COLS).eq("user_id", uid), "memberships read") ?? []) as MemberRow[];
+}
+
+export async function insertMember(row: Omit<MemberRow, "joined_at" | "chosen_name">, chosen: boolean): Promise<{ error: { message: string } | null }> {
+  const res = await service().from(MEMBERS).insert({ ...row, chosen_name: chosen });
+  if (!missingColumn(res.error)) return res;
+  return service().from(MEMBERS).insert(row);
 }
 
 export async function blocksTouching(uid: string): Promise<BlockRow[]> {
@@ -210,7 +227,7 @@ export const lookup: CorpusLookup = (branch) => {
 };
 
 let _lang: LangCorpus | null | undefined;
-function langCorpus(): LangCorpus | null {
+export function langCorpus(): LangCorpus | null {
   if (_lang !== undefined) return _lang;
   const read = (name: string) => {
     try {

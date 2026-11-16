@@ -2,7 +2,7 @@ import { LANGS, WORDS, type Word } from "../words";
 import { PER_ROUND, ROUNDS, type LiveQuestion, type QuestionKind, type RoomSettings } from "./questions";
 
 export const ROUND_TIERS: [number, number][] = [[0, 3], [3, 6], [6, 10]];
-export const FAMILY_SHARE = 0.4;
+const FAMILY_SHARE = 0.4;
 export const MAX_WIDEN = 2;
 
 export const FAMILIES: Record<string, string> = {
@@ -138,7 +138,7 @@ export function translateInto(from: string, settings: RoomSettings, rng: Rng): s
   return others.length ? others[Math.floor(rng() * others.length)] : settings.home;
 }
 
-export function roundKinds(rng: Rng): QuestionKind[] {
+function roundKinds(rng: Rng): QuestionKind[] {
   return shuffle<QuestionKind>(["pick_word", "pick_word", "translate", "which_language", "which_language"], rng);
 }
 

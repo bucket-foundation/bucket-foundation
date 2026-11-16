@@ -128,6 +128,10 @@ def listing_description(path):
     return text[start + len("## Description"):end].strip()
 
 
+def free_beta_build(version):
+    return version.endswith(".1")
+
+
 def rel(kind, id_):
     return {"data": {"type": kind, "id": id_}}
 
@@ -198,7 +202,9 @@ def setup_app(api, cfg, contact, free_price):
               {"data": {"type": "appStoreVersions", "id": ver["id"], "attributes": attrs}})
 
     build = next((b for b in api.all(f"/v1/builds?filter[app]={app}&filter[version]={cfg['build']}") if b["attributes"]["processingState"] == "VALID"), None)
-    if build:
+    if free_beta_build(str(cfg["build"])):
+        print(f"  FAIL  build {cfg['build']} is a free-beta TestFlight build; archive with scripts/archive-polingual.sh review")
+    elif build:
         api.write(f"attach build {cfg['build']}", "PATCH", f"/v1/appStoreVersions/{ver['id']}/relationships/build", rel("builds", build["id"]))
     else:
         print(f"  FAIL  build {cfg['build']} is not processed yet")

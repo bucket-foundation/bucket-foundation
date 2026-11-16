@@ -1,0 +1,12 @@
+[
+  { "name": "null", "data": null, "weight": 0 },
+  { "name": "empty object", "data": {}, "weight": 0 },
+  { "name": "fresh engine state", "data": { "cards": {}, "prof": {}, "settings": { "newPerDay": 4, "requestRetention": 0.9 }, "stats": { "xp": 0, "streak": 0, "lastStudyDay": null, "history": {} } }, "weight": 0 },
+  { "name": "settings only", "data": { "settings": { "newPerDay": 9 } }, "weight": 0 },
+  { "name": "empty systems doc", "data": { "systems": [], "removed": {} }, "weight": 0 },
+  { "name": "one card", "data": { "cards": { "es:hola": { "reps": 1 } } }, "weight": 1 },
+  { "name": "studied state", "data": { "cards": { "a": {}, "b": {} }, "prof": { "es": { "theta": 0 } }, "stats": { "xp": 10, "history": { "2026-11-14": { "new": 1 } } } }, "weight": 5 },
+  { "name": "xp only", "data": { "stats": { "xp": 3 } }, "weight": 1 },
+  { "name": "systems doc", "data": { "systems": [{ "id": "s1" }], "removed": { "s0": 1 } }, "weight": 2 },
+  { "name": "array", "data": [1, 2], "weight": 0 }
+]

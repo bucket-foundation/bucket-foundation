@@ -1,3 +1,4 @@
+import { pushSettled } from "./progress-guard";
 import { createReviewSync, heldAction, type Fetcher, type ReviewEvent, type ReviewSync } from "./review-sync";
 import type { StoredSession, TokenVault } from "./token-store";
 import type { EngineState } from "./engine";
@@ -96,7 +97,7 @@ export function createMobileSync(deps: MobileSyncDeps): MobileSync {
     fetch: (input, init) => authed(relative(input), init ?? {}),
     uuid,
     readLocal: deps.readLocal,
-    pushSnapshot: async (branch, state) => (await authed("/api/academy/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ branch, data: state }) })).ok,
+    pushSnapshot: async (branch, state) => pushSettled((await authed("/api/academy/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ branch, data: state }) })).status),
     now,
     lock: (fn) => fn(),
     onProblem: (p, n) => console.error(`bucket sync: ${p} (${n})`),

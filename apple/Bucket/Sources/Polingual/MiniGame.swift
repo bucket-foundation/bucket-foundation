@@ -100,16 +100,19 @@ struct MiniGame: View {
     func tile(_ cell: MiniCell, _ p: MiniPuzzle, number: Int?, size: CGFloat) -> some View {
         let done = p.entries.contains { $0.cells.contains(cell) && solved($0) }
         let inWord = entry?.cells.contains(cell) == true
+        let fill: Color = done ? D8.malachite : inWord ? Color(hex: 0xF3D98B) : D8.face
+        let ink: Color = done ? D8.parchment : inWord ? D8.ink : Palette.ink
+        let mark: Color = done ? D8.parchment : inWord ? D8.ink.opacity(0.6) : Palette.muted
         return Button { select(cell, p) } label: {
             ZStack(alignment: .topLeading) {
                 Text(filled[cell] ?? "").font(.system(size: size * 0.5, weight: .heavy, design: .rounded))
-                    .foregroundStyle(done ? D8.parchment : Palette.ink)
+                    .foregroundStyle(ink)
                     .frame(width: size, height: size)
                 if let number {
-                    Text("\(number)").font(.system(size: 10, weight: .bold)).foregroundStyle(done ? D8.parchment : Palette.muted).padding(3)
+                    Text("\(number)").font(.system(size: 10, weight: .bold)).foregroundStyle(mark).padding(3)
                 }
             }
-            .background(done ? D8.malachite : inWord ? Color(hex: 0xF3D98B) : D8.face, in: .rect(cornerRadius: 8))
+            .background(fill, in: .rect(cornerRadius: 8))
             .overlay { RoundedRectangle(cornerRadius: 8).strokeBorder(cursor == cell ? D8.vermilion : D8.edge, lineWidth: cursor == cell ? 3 : 2) }
         }
         .buttonStyle(.plain)

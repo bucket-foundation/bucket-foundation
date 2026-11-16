@@ -18,6 +18,7 @@ struct PlacementView: View {
     @AppStorage("bucket.lang.readings") private var readings = true
     @AppStorage("bucket.lang.placeQueue") private var queue = ""
     @State private var picking = false
+    @State private var confirming = false
     @State private var known = Set<String>()
 
     var body: some View {
@@ -72,16 +73,18 @@ struct PlacementView: View {
     }
 
     func confirmKnown(_ system: LangSystem) {
+        guard !confirming else { return }
+        confirming = true
         let order = system.targets.filter { known.contains($0) }
         queue = order.joined(separator: ",")
         Task {
             for l in system.targets where !known.contains(l) { await store.unplace(system.id, lang: l) }
             picking = false
+            confirming = false
             if let first = order.first {
                 begin(first)
             } else {
-                path.removeLast()
-                path.append(LangRoute.study(system.id))
+                path.replaceTop(with: LangRoute.study(system.id))
             }
         }
     }
@@ -113,6 +116,7 @@ struct PlacementView: View {
                 }
                 Button(known.isEmpty ? String(localized: "Start from the first words") : String(localized: "Test my level")) { confirmKnown(system) }
                     .buttonStyle(D8Primary())
+                    .disabled(confirming)
             }
             .padding(sideways ? 12 : 20)
             .frame(maxWidth: sideways ? 900 : 680, alignment: .leading)
@@ -181,21 +185,18 @@ struct PlacementView: View {
                         if let nextLang {
                             Button("Place \(langName(nextLang))") {
                                 queue = queued.joined(separator: ",")
-                                path.removeLast()
-                                path.append(LangRoute.place(system.id, nextLang))
+                                path.replaceTop(with: LangRoute.place(system.id, nextLang))
                             }
                             .buttonStyle(D8Primary())
                         } else {
                             Button("Start studying") {
                                 queue = ""
-                                path.removeLast()
-                                path.append(LangRoute.study(system.id))
+                                path.replaceTop(with: LangRoute.study(system.id))
                             }
                             .buttonStyle(D8Primary())
                         }
                         Button("Progress") {
-                            path.removeLast()
-                            path.append(LangRoute.system(system.id))
+                            path.replaceTop(with: LangRoute.system(system.id))
                         }
                         .buttonStyle(D8Option(align: .center))
                     }

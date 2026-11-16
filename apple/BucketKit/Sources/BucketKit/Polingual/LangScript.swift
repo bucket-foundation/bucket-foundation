@@ -217,6 +217,7 @@ public func spellHeard(_ item: LangItem, _ lang: String, _ root: String, _ readi
     ex.accept = [target]
     ex.promptReading = reading
     ex.answerReading = reading
+    ex.meaning = item.forms[root].flatMap { $0.isEmpty || root == lang ? nil : $0 }
     return ex
 }
 

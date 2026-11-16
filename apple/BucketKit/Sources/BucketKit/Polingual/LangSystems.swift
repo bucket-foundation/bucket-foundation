@@ -44,9 +44,11 @@ public enum Lang {
 
     public static func name(_ code: String) -> String { info[code]?.name ?? code }
     public static func isRTL(_ code: String) -> Bool { info[code]?.rtl ?? false }
+    public static func isLatin(_ code: String) -> Bool { info[code]?.latin ?? true }
 
     public static let maxTargets = 6
     public static let newPerLangPerDay = 5
+    public static let newPerSessionFloor = 4
     public static let placementTiers: [Double] = [0, 2, 4, 6, 8, 10]
     public static let placementItemsPerTier = 3
     public static let placementPassPerTier = 2
@@ -505,6 +507,7 @@ public func createSystem(_ root: String, _ targets: [String], _ existing: [LangS
 
 public func progressBranch(_ s: LangSystem) -> String { String("lang-sys-\(s.id)".prefix(64)) }
 public func cardId(_ lang: String, _ itemId: String) -> String { "\(lang):\(itemId)" }
+public func isSentenceCard(_ id: String) -> Bool { parseCardId(id).itemId.hasPrefix("sent:") }
 
 public func parseCardId(_ id: String) -> (lang: String, itemId: String) {
     guard let i = id.firstIndex(of: ":") else { return ("", id) }
@@ -668,6 +671,10 @@ public struct LangWord: Sendable, Equatable, Hashable {
     public var reading: Reading?
 }
 
+public extension Exercise {
+    var showsScriptWithSound: Bool { kind == .listen && !Lang.isLatin(promptLang) }
+}
+
 public struct Exercise: Sendable {
     public var kind: ExerciseKind
     public var itemId: String
@@ -695,6 +702,7 @@ public struct Exercise: Sendable {
     public var spoken: [SpokenOption]?
     public var segments: [String]?
     public var hint: String?
+    public var meaning: String?
     public var nativeVoice = false
 
     public init(kind: ExerciseKind, itemId: String, lang: String, root: String, prompt: String, promptLang: String, answer: String, answerLang: String, note: String? = nil) {
@@ -810,7 +818,7 @@ public func joinTokens(_ tokens: [String], _ lang: String) -> String {
 }
 
 public func learnerLevel(_ state: EngineState, _ lang: String) -> Int {
-    let n = state.cards.keys.filter { state.cards.started($0) && $0.hasPrefix("\(lang):") && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
+    let n = state.cards.keys.filter { state.cards.started($0) && $0.hasPrefix("\(lang):") && !isSentenceCard($0) && !$0.hasPrefix("\(lang):g-") && !$0.hasPrefix("\(lang):c-") }.count
     return n < 60 ? 1 : n < 150 ? 2 : 3
 }
 
@@ -843,7 +851,7 @@ public func relevantNote(_ note: String?, _ system: LangSystem) -> String? {
     return names.contains(where: { note.contains($0) }) ? note : nil
 }
 
-public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: LangItem, _ lang: String, _ card: Card?, _ rng: inout Rng, speech: Bool = false, afterIntro: Bool = false, level: Int? = nil, heritage: Bool = false) -> Exercise {
+public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: LangItem, _ lang: String, _ card: Card?, _ rng: inout Rng, speech: Bool = false, afterIntro: Bool = false, level: Int? = nil, heritage: Bool = false, mix: ExerciseMix = .open) -> Exercise {
     let root = system.root
     let target = item.forms[lang] ?? ""
     let rootWord = item.forms[root] ?? ""
@@ -870,7 +878,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         ex.falseFriend = ff
         return ex
     }
-    if heritage && !latin && card != nil { return spellHeard(item, lang, root, tr) }
+    if heritage && !latin && card != nil && mix.sound { return spellHeard(item, lang, root, tr) }
     func choices(_ right: String, _ l: String, _ other: String) -> [String] {
         let d = distractors(corpus, item, l, other, &rng)
         return shuffle([right] + d, &rng)
@@ -891,7 +899,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
     let lapsed = card != nil && (card?.lapses ?? 0) > 0 && card?.state == "relearning"
     let roll = rng.next()
 
-    if let ff, reps >= 1, roll < 0.35 {
+    if let ff, mix.compare, reps >= 1, roll < 0.35 {
         let d = distractors(corpus, item, root, lang, &rng, 2)
         let options = shuffle(unique([rootWord, ff.looksLike] + d), &rng)
         var ex = make(.falseFriend, target, lang, rootWord, root)
@@ -901,7 +909,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         return ex
     }
     if reps <= 1 || lapsed {
-        if !family.isEmpty && sharedRootLangs(item, system).contains(lang) {
+        if mix.compare && !family.isEmpty && sharedRootLangs(item, system).contains(lang) {
             let options = choices(target, lang, root)
             var ex = toTarget(.cognate)
             ex.options = options
@@ -913,10 +921,10 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         ex.options = options
         return ex
     }
-    if reps == 2 { return roll < 0.5 ? toRoot(.listen) : toRoot(.reverse) }
+    if reps == 2 { return roll < 0.5 && mix.sound ? toRoot(.listen) : toRoot(.reverse) }
 
     let sent = item.kind == .word ? sentenceFor(corpus, item, lang, root, &rng, level: level ?? 3) : nil
-    if let sent, roll < 0.45 {
+    if let sent, roll < 0.45 || mix.sentenceFirst {
         let text = sent.s.t[lang]!
         var common = make(.sentence, sent.s.t[root] ?? "", root, text, lang)
         common.level = sent.s.lv?[lang]
@@ -948,16 +956,17 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
         return ex
     }
     if !latin {
-        if roll < 0.8 { return toRoot(.listen) }
+        if roll < 0.8 && mix.sound { return toRoot(.listen) }
         let options = choices(target, lang, root)
         var ex = toTarget(.choose)
         ex.options = options
         return ex
     }
-    if speech && roll < 0.7 { return toTarget(.speak) }
-    if roll < 0.85 { return toTarget(.translate) }
+    if speech && mix.sound && roll < 0.7 { return toTarget(.speak) }
+    if roll < 0.85 || !mix.sound { return toTarget(.translate) }
     var ex = make(.typeHeard, target, lang, target, lang)
     ex.answerReading = tr
+    ex.meaning = rootWord.isEmpty ? nil : rootWord
     return ex
 }
 
@@ -1030,7 +1039,7 @@ public func matchExercise(_ corpus: LangCorpus, _ system: LangSystem, _ item: La
 
 public func newToday(_ state: EngineState, _ lang: String, now: Double, tz: TimeZone = .current) -> Int {
     let dk = dayKey(now, tz: tz)
-    return state.cards.entries.filter { parseCardId($0.key).lang == lang && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
+    return state.cards.entries.filter { parseCardId($0.key).lang == lang && !isSentenceCard($0.key) && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
 }
 
 public struct UnitStatus: Sendable, Identifiable {
@@ -1093,7 +1102,7 @@ func placedReviewedToday(_ state: EngineState, now: Double, tz: TimeZone) -> Int
     }.count
 }
 
-public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current) -> [SessionCard] {
+public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, newFloor: Int = 0) -> [SessionCard] {
     var placedRoom = max(0, PLACED_PER_DAY - placedReviewedToday(state, now: now, tz: tz))
     let due = state.cards.entries
         .map { (parseCardId($0.key), $0.value) }
@@ -1107,9 +1116,8 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
             placedRoom -= 1
             return placedRoom >= 0
         }
-        .prefix(size)
         .map { SessionCard(itemId: $0.0.itemId, lang: $0.0.lang) }
-    let room = max(0, size - due.count)
+    let room = max(0, size - min(due.count, size), min(newFloor, size / 3))
     var fresh: [SessionCard] = []
     var budget: [String: Int] = [:]
     var unlocked: [String: Set<Int>] = [:]
@@ -1131,7 +1139,24 @@ public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: Eng
             budget[l]! -= 1
         }
     }
-    return interleave(Array(due)) + fresh
+    let reviews = interleave(Array(due.prefix(size - fresh.count)))
+    return newFloor > 0 ? blendNew(reviews, fresh) : reviews + fresh
+}
+
+public func blendNew(_ reviews: [SessionCard], _ fresh: [SessionCard]) -> [SessionCard] {
+    guard !reviews.isEmpty, !fresh.isEmpty else { return reviews + fresh }
+    let total = reviews.count + fresh.count
+    var out: [SessionCard] = []
+    var r = 0, f = 0
+    while out.count < total {
+        let slotForNew = (2 * f + 1) * total <= 2 * (out.count + 1) * fresh.count
+        if f < fresh.count && (slotForNew || r == reviews.count) {
+            out.append(fresh[f]); f += 1
+        } else {
+            out.append(reviews[r]); r += 1
+        }
+    }
+    return out
 }
 
 public func queueNew(_ state: EngineState, _ lang: String, _ itemId: String, now: Double) -> EngineState {
@@ -1144,10 +1169,15 @@ public func queueNew(_ state: EngineState, _ lang: String, _ itemId: String, now
     return next
 }
 
-public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil) -> EngineState {
+public func gradeCard(_ state: EngineState, _ lang: String, _ itemId: String, _ rating: Rating, now: Double, tz: String? = nil, counted: Bool = true) -> EngineState {
     let id = cardId(lang, itemId)
     let wasNew = !state.cards.started(id)
-    var next = grade(state, id: id, rating: rating, level: "recall", now: now, tz: tz)
+    var next = state
+    if counted {
+        next = grade(state, id: id, rating: rating, level: "recall", now: now, tz: tz)
+    } else {
+        next.cards[id] = state.fsrs.review(state.cards[id] ?? Card(state: "new"), rating, now: now)
+    }
     if wasNew { next.cards[id]!.introduced = dayKey(now, tzName: tz) } else if let i = state.cards[id]?.introduced { next.cards[id]!.introduced = i }
     return next
 }
@@ -1285,8 +1315,8 @@ func matchPick(_ candidates: [String], _ system: LangSystem, _ corpus: LangCorpu
     return pool[Int(placedHash(seed) % UInt32(pool.count))]
 }
 
-public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, heritage: Bool = false) -> [QueueEntry] {
-    let plan = planSession(system, corpus, state, now: now, size: size, tz: tz)
+public func buildQueue(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current, heritage: Bool = false, newFloor: Int = 0) -> [QueueEntry] {
+    let plan = planSession(system, corpus, state, now: now, size: size, tz: tz, newFloor: newFloor)
     var out: [QueueEntry] = heritage ? letterQueue(system, state, now: now) : []
     var pending: [(at: Int, e: QueueEntry)] = []
     for c in plan {

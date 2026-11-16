@@ -184,6 +184,18 @@ private let standings = ShareStandings(group: "Rossi family", rows: [
     #expect(ShareObject.mastered(lang: "es", count: 2, root: "en", words: words).route == ShareObject.mastered(lang: "es", count: 2, root: "en").route)
 }
 
+@Test func masteredAllSharesEveryLanguageTogether() {
+    let sets = [MasteredSet(lang: "sv", count: 10, words: (0..<10).map { MasteredWord(form: "ord\($0)", meaning: "word \($0)") }),
+                MasteredSet(lang: "de", count: 3, words: [MasteredWord(form: "Nacht", meaning: "night")])]
+    let all = ShareObject.masteredAll(sets: sets, root: "en")
+    #expect(sets.total == 13)
+    #expect(sets.langs == ["sv", "de"])
+    #expect(all.styles == [.list, .number])
+    #expect(all.kind == "mastered-all")
+    #expect(all.route == ShareRoute.langs(["sv", "de"], root: "en"))
+    #expect(ShareObject.masteredAll(sets: [MasteredSet(lang: "sv", count: 2)], root: "en").styles == [.number])
+}
+
 @Test func masteredWordsMatchTheMasteredCount() throws {
     let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
     let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
@@ -201,4 +213,14 @@ private let standings = ShareStandings(group: "Rossi family", rows: [
     #expect(words.count == progress.mastered)
     let forms = Set(items.compactMap { $0.form("es") })
     #expect(words.allSatisfy { forms.contains($0.form) && !$0.meaning.isEmpty })
+}
+
+@Test func masteredNumberCardNamesFewWords() {
+    let one = [MasteredWord(form: "九", meaning: "nine")]
+    #expect(MasteredWord.named(one, count: 1) == "九 · nine")
+    #expect(MasteredWord.named([MasteredWord(form: "uno", meaning: "")], count: 1) == "uno")
+    #expect(MasteredWord.named([], count: 1) == nil)
+    let four = ["a", "b", "c", "d"].map { MasteredWord(form: $0, meaning: $0) }
+    #expect(MasteredWord.named(four, count: 4) == nil)
+    #expect(MasteredWord.named(Array(four.prefix(2)), count: 9) == nil)
 }

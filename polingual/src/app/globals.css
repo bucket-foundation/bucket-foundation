@@ -1,27 +1,28 @@
 @import "tailwindcss";
+@import "../ui/tokens.css";
 @source "../../../src/app/research-os/(app)/learn/languages/LangExercise.tsx";
 @source "../../../src/components/ui/index.tsx";
 
 :root {
-  --sky:        #F6EEDC;
-  --sky-2:      #EFE3C8;
-  --sky-3:      #E3D6B8;
+  --sky:        var(--pl-paper);
+  --sky-2:      var(--pl-paper-2);
+  --sky-3:      var(--pl-paper-3);
   --hairline:   rgba(35, 31, 32, 0.12);
   --hairline-2: rgba(35, 31, 32, 0.22);
 
-  --ink:        #231F20;
-  --ink-2:      #3A0F2F;
-  --ink-dim:    #5D5650;
-  --ink-faint:  #8A8076;
+  --ink:        var(--pl-ink);
+  --ink-2:      var(--pl-ink-2);
+  --ink-dim:    var(--pl-ink-dim);
+  --ink-faint:  var(--pl-ink-faint);
 
-  --blue:       #26428B;
-  --blue-deep:  #1C3270;
-  --blue-soft:  #C9D3EA;
-  --gold:       #E9A23B;
-  --burgundy:   #5B1A4A;
-  --purple:     #5B1A4A;
-  --cta:        #D9381E;
-  --teal:       #6FB7C2;
+  --blue:       var(--pl-lapis);
+  --blue-deep:  var(--pl-lapis-deep);
+  --blue-soft:  var(--pl-lapis-soft);
+  --gold:       var(--pl-ochre);
+  --burgundy:   var(--pl-tyrian);
+  --purple:     var(--pl-tyrian);
+  --cta:        var(--pl-vermilion);
+  --teal:       var(--pl-maya);
 }
 
 html, body {
@@ -55,7 +56,7 @@ html, body {
 }
 
 .scroll-fade {
-  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to right, black calc(100% - 28px), transparent);
 }
 @media (min-width: 768px) {
   .scroll-fade { mask-image: none; }

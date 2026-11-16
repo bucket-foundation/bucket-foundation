@@ -9,8 +9,10 @@ struct StudyView: View {
     @Binding var path: NavigationPath
     let systemId: String
     @State private var queue: [QueueEntry]?
+    @State private var tally = SoundTally()
     @State private var i = 0
     @State private var graded = 0
+    @State private var deferred = 0
     @State private var correct = 0
     @State private var xpStart = 0.0
     @State private var rng = Rng(seed: UInt32(UInt64(Date().timeIntervalSince1970 * 1000) % 2147483647))
@@ -20,6 +22,7 @@ struct StudyView: View {
     @State private var chorus: [VoiceLine] = []
     @State private var introduced: Set<String> = []
     @AppStorage("bucket.lang.readings") private var readings = true
+    @AppStorage(SoundPolicy.silentKey) private var silent = false
     @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
 
     var body: some View {
@@ -70,10 +73,14 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = spacedChecks(asked + replay + WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now).filter { !replay.contains($0) })
+        queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+    }
+
+    func frequency(_ system: LangSystem) -> FrequencyRank {
+        FrequencyRank(Dictionary(uniqueKeysWithValues: system.targets.compactMap { l in LangStore.topWords(l).map { (l, $0) } }))
     }
 
     func makeExercise() {
@@ -100,10 +107,12 @@ struct StudyView: View {
         if entry.stage == .letter {
             let key = cardId(entry.lang, entry.itemId)
             let fresh = !store.state(systemId).cards.has(key) && !introduced.contains(key)
-            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : ScriptCourse.exercise(entry.lang, system.root, entry.itemId, &rng, state: store.state(systemId))
+            current = fresh ? ScriptCourse.intro(entry.lang, system.root, entry.itemId) : SessionMix.letterExercise(entry, system, store.state(systemId), tally: tally, &rng)
             if fresh { introduced.insert(key) }
             currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter\(fresh ? "-intro" : "")"
+            if let ex = current { tally.record(ex.kind, key: "\(i)") }
             cardStart = .now
+            if let ex = current, !SilentDeck.shows(ex.kind, spoken: ex.spoken != nil, silent: silent) { deferred += 1; current = nil }
             if current == nil { self.i += 1; makeExercise() }
             return
         }
@@ -115,16 +124,28 @@ struct StudyView: View {
         if entry.stage == .match {
             current = matchExercise(corpus, system, item, &rng)
         } else {
-            let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang), heritage: HeritageMode.on(systemId))
+            let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang), heritage: HeritageMode.on(systemId), mix: SessionMix.exerciseMix(system, item, entry.lang, state, tally: tally))
             let crossed = !Beta.shared.flags.crossLanguageOptions ? made : crossLanguageOptions(made, item, system, &rng)
             current = crossed
+            tally.record(crossed.kind, key: "\(i)")
         }
-        if let ex = current, ex.kind == .intro || ex.kind == .match {
+        if let ex = current, !SilentDeck.shows(ex.kind, spoken: ex.spoken != nil, silent: silent) {
+            deferred += 1
+            i += 1
+            makeExercise()
+            return
+        }
+        if let ex = current, SilentDeck.chorusAllowed(ex.kind) {
             if AudioPace.due(audioOffers) {
                 let lead = VoiceLine(lang: ex.answerLang, text: ex.kind == .intro ? ex.answer : item.form(ex.answerLang) ?? "")
                 chorus = AudioPace.chorus(lead: lead, targets: system.targets, root: system.root, form: item.form)
             }
             audioOffers += 1
+        }
+        if current != nil {
+            let streak = langStreak(store)
+            Beta.shared.wordSeen(entry.lang, entry.itemId, stage: entry.stage.rawValue, streak: streak)
+            if !chorus.isEmpty { Beta.shared.wordsHeard(chorus.map(\.lang), entry.itemId, stage: entry.stage.rawValue, streak: streak) }
         }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
         cardStart = .now
@@ -139,11 +160,14 @@ struct StudyView: View {
             return
         }
         var next = q
+        let sentenceId = current?.sentenceId
         let apply = {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
+            if let sid = sentenceId { for r in results { store.grade(systemId, lang: r.lang, itemId: SessionMix.sentenceItemId(sid), rating: r.rating, counted: false) } }
         }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
-        for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }
+        let streak = langStreak(store)
+        for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "", streak: streak) }
         if !results.isEmpty {
             reminders.noteStudy()
             if gate.guest && !store.guestMayStudy(systemId) { gate.require(apply) } else { apply() }
@@ -163,13 +187,28 @@ struct StudyView: View {
         let state = store.state(systemId)
         if queue.isEmpty {
             StateMessage(title: "Nothing due", detail: "You have met today's new words in every language of this set. Come back tomorrow.", retry: nil)
+        } else if (i >= queue.count || current == nil) && SilentDeck.onlySound(graded: graded, deferred: deferred) {
+            VStack(spacing: PL.Space.s4) {
+                PLArtView(.scriptKo).frame(width: 70).padding(PL.Space.s3).background(PL.tyrian, in: .rect(cornerRadius: PL.Radius.md))
+                Text("Every card left needs sound").font(PL.heading.font())
+                Text("Silent mode saved \(deferred) listening cards for later. Their schedule waits until you hear them.")
+                    .font(PL.body.font()).foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
+                Button("Turn off silent mode") {
+                    silent = false
+                    deferred = 0
+                    i = 0
+                    makeExercise()
+                }
+                .buttonStyle(.pl(.primary))
+            }
+            .padding(PL.Space.s5)
         } else if i >= queue.count || current == nil {
             FitPage(center: true) {
                 let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))
                 columns {
                     VStack(spacing: 16) {
-                        Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
-                            .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
+                        PLGlyphView(.check, size: 44).foregroundStyle(PL.malachite)
+                            .frame(width: 76, height: 76)
                             .onAppear {
                                 haptic(true)
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
@@ -181,17 +220,16 @@ struct StudyView: View {
                     }
                     .frame(maxWidth: .infinity)
                     VStack(spacing: 16) {
-                        ReminderPrompt()
                         FeedbackLink()
                         ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
                         Button("See progress") {
-                            path.removeLast()
-                            path.append(LangRoute.system(system.id))
+                            path.replaceTop(with: LangRoute.system(system.id))
                         }
                         .buttonStyle(D8Primary())
                         Button("Another round") {
                             let now = Date().timeIntervalSince1970 * 1000
-                            self.queue = spacedChecks(WritingMode.queue(system, state, now: now, corpus: corpus) + buildQueue(system, corpus, state, now: now))
+                            self.queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
+                            tally = SoundTally()
                             i = 0
                             graded = 0
                             correct = 0
@@ -214,6 +252,7 @@ struct StudyView: View {
                 }
                 ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done,
                              flagNamed: { store.showsFlagName(systemId, lang: $0) },
+                             onSlip: { store.recordFlagMiss(systemId, lang: $0) },
                              onMatch: { assign in
                                  let rated = store.gradeMatchFlags(systemId, ex.pairs ?? [], assign)
                                  done(rated.compactMap { r in r.rating.map { ExerciseResult(lang: r.lang, rating: $0) } })
@@ -236,6 +275,7 @@ struct StudyView: View {
                             makeExercise()
                         }
                         Toggle("Show readings and IPA", systemImage: "character.phonetic", isOn: $readings)
+                        Toggle("Silent mode", isOn: $silent)
                         if let system = store.system(systemId), system.targets.contains(where: { !ScriptCourse.units($0, root: system.root).isEmpty }) {
                             Toggle("Learn the writing", systemImage: "character.textbox", isOn: Binding(get: { WritingMode.on(systemId) }, set: { UserDefaults.standard.set($0, forKey: WritingMode.key(systemId)) }))
                         }

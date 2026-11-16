@@ -1,10 +1,13 @@
 "use client";
 
+import { tokens } from "@/ui/tokens";
+import { cssVars } from "@/ui/vars";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { displayNickname, MARKS, type Standing } from "@/lib/stoa/client";
 import { loadMix, Stage, type Mix } from "@/lib/stoa/stage";
 import { Glyph } from "./parts";
 import styles from "./stoa.module.css";
+import { Button, Pill } from "@/ui";
 
 export function useStage(fallback: Mix) {
   const stage = useRef<Stage | null>(null);
@@ -39,14 +42,14 @@ export function useStage(fallback: Mix) {
 export function MixBar({ mix, setMix, ready, unlock, full }: { mix: Mix; setMix: (m: Mix) => void; ready: boolean; unlock: () => void; full: boolean }) {
   if (!ready)
     return (
-      <button type="button" className={styles.soundOn} onClick={unlock} data-testid="sound-on">
+      <Button variant="accent" size="sm" onClick={unlock} data-testid="sound-on">
         <span aria-hidden="true">♪</span> Sound on
-      </button>
+      </Button>
     );
   const t = (k: keyof Mix, label: string) => (
-    <button type="button" className={styles.mixBtn} aria-pressed={mix[k]} onClick={() => setMix({ ...mix, [k]: !mix[k] })} data-testid={`mix-${k}`}>
+    <Pill size="sm" aria-pressed={mix[k]} onClick={() => setMix({ ...mix, [k]: !mix[k] })} data-testid={`mix-${k}`}>
       {label}
-    </button>
+    </Pill>
   );
   return (
     <div className={styles.mix} role="group" aria-label="Sound">
@@ -73,7 +76,7 @@ export function TimerRing({ left, total, paused }: { left: number; total: number
   );
 }
 
-const COLORS = ["#1F4E9A", "#D9381E", "#1E7A5A", "#E9A23B", "#5B1A4A", "#F6EEDC"];
+const COLORS = (["lapis", "vermilion", "malachite", "ochre", "tyrian", "paper"] as const).map((k) => tokens.color[k]);
 
 export function Confetti({ burst = 160, testId = "confetti" }: { burst?: number; testId?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -157,7 +160,7 @@ export function Drift() {
       {Array.from({ length: 12 }, (_, i) => {
         const m = MARKS[i % 4];
         return (
-          <span key={i} className={styles.driftGlyph} data-pigment={m.pigment} style={{ left: `${(i * 83) % 100}%`, animationDelay: `${-i * 2.3}s`, animationDuration: `${16 + (i % 5) * 3}s` }}>
+          <span key={i} className={styles.driftGlyph} data-pigment={m.pigment} style={cssVars({ "--x": `${(i * 83) % 100}%`, "--delay": `${-i * 2.3}s`, "--dur": `${16 + (i % 5) * 3}s` })}>
             <Glyph glyph={m.glyph} />
           </span>
         );

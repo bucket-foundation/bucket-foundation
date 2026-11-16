@@ -19,6 +19,8 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case textNotAllowed
     case imageTooLarge
     case imageNotAllowed
+    case handleTaken
+    case handleInvalid
 
     public var errorDescription: String? {
         switch self {
@@ -40,6 +42,8 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .textNotAllowed: "That text is not allowed. Try other words."
         case .imageTooLarge: "That image is too large to share."
         case .imageNotAllowed: "This image may be sensitive, so it was not sent."
+        case .handleTaken: "That username is taken. Try another."
+        case .handleInvalid: "Usernames are 3 to 32 lowercase letters, numbers, - or _."
         }
     }
 }
@@ -93,7 +97,26 @@ public struct BucketAPI: Sendable {
     }
 
     public func questionDeck(_ branch: String) async throws -> QuestionDeck {
-        try await cached("academy-app/corpus/questions/\(branch).json")
+        try await questions(at: "corpus/questions/\(branch).json")
+    }
+
+    public func questions(at file: String) async throws -> QuestionDeck {
+        try await cached("academy-app/\(file)")
+    }
+
+    @discardableResult
+    public func saveOffline(_ entries: [DeckEntry]) async -> Int {
+        var saved = 0
+        for entry in entries where !entry.isLanguage {
+            for file in [entry.file, entry.questionsFile] {
+                let path = "academy-app/\(file)"
+                guard let url = cacheURL(path), !FileManager.default.fileExists(atPath: url.path) else { continue }
+                guard let data = try? await raw(path) else { continue }
+                try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+                if (try? data.write(to: url, options: .atomic)) != nil { saved += 1 }
+            }
+        }
+        return saved
     }
 
     func cacheURL(_ path: String) -> URL? {
@@ -243,5 +266,16 @@ public enum AgeBand: String, CaseIterable, Sendable {
         case .teen: "13 to 17"
         case .child: "Under 13"
         }
+    }
+}
+
+extension BucketAPI {
+    public static func debugBase(arguments: [String], environment: [String: String]) -> URL? {
+        let raw: String? = {
+            if let i = arguments.firstIndex(of: "-bucketBase"), i + 1 < arguments.count { return arguments[i + 1] }
+            return environment["BUCKET_BASE_URL"]
+        }()
+        guard let raw, let url = URL(string: raw), let scheme = url.scheme, ["http", "https"].contains(scheme), url.host() != nil else { return nil }
+        return url
     }
 }

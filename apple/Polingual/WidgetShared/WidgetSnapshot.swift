@@ -39,6 +39,11 @@ struct WidgetSnapshot: Codable, Equatable {
         return WidgetCounts(streak: alive ? streak : 0, due: due + later, new: newDay ? newTomorrow ?? newToday : newToday)
     }
 
+    func studiedToday(at date: Date) -> Bool {
+        guard let until = streakUntil, let ends = dayEnds, date < ends, date < until, streak > 0 else { return false }
+        return until > ends
+    }
+
     func changes(after date: Date, limit: Int = 40) -> [Date] {
         let horizon = date.addingTimeInterval(86_400)
         var times = (dueAt ?? []).filter { $0 > date && $0 <= horizon }

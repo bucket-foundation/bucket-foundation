@@ -78,6 +78,36 @@ export type SearchResult = {
   took_ms: number;
 };
 
+function searchUrls(safe: string, topK: number, opts: SearchOptions): string[] {
+  const baseParams: Record<string, string | number> = {
+    select: SELECT_COLS,
+    limit: topK,
+  };
+  if (opts.lang) baseParams["lang"] = `eq.${opts.lang}`;
+  if (opts.kind) baseParams["kind"] = `eq.${opts.kind}`;
+  return [
+    buildUrl("photons", { ...baseParams, surface: `ilike.${safe}` }),
+    buildUrl("photons", { ...baseParams, surface: `ilike.${safe}*` }),
+    buildUrl("photons", { ...baseParams, surface: `ilike.*${safe}*` }),
+    buildUrl("photons", { ...baseParams, meaning_tsv: `fts(english).${safe.split(/\s+/).filter(Boolean).join("&")}` }),
+  ];
+}
+
+function mergeBuckets(buckets: Photon[][], topK: number): Photon[] {
+  const seen = new Set<string>();
+  const out: Photon[] = [];
+  for (const bucket of buckets) {
+    for (const p of bucket) {
+      if (seen.has(p.id)) continue;
+      seen.add(p.id);
+      out.push(p);
+      if (out.length >= topK) break;
+    }
+    if (out.length >= topK) break;
+  }
+  return out;
+}
+
 export async function searchPhotons(
   query: string,
   opts: SearchOptions = {}
@@ -93,29 +123,7 @@ export async function searchPhotons(
 
   const safe = q.replace(/[%,()]/g, " ");
 
-  const baseParams: Record<string, string | number> = {
-    select: SELECT_COLS,
-    limit: topK,
-  };
-  if (opts.lang) baseParams["lang"] = `eq.${opts.lang}`;
-  if (opts.kind) baseParams["kind"] = `eq.${opts.kind}`;
-
-  const exactUrl = buildUrl("photons", {
-    ...baseParams,
-    surface: `ilike.${safe}`,
-  });
-  const prefixUrl = buildUrl("photons", {
-    ...baseParams,
-    surface: `ilike.${safe}*`,
-  });
-  const containsUrl = buildUrl("photons", {
-    ...baseParams,
-    surface: `ilike.*${safe}*`,
-  });
-  const ftsUrl = buildUrl("photons", {
-    ...baseParams,
-    meaning_tsv: `fts(english).${safe.split(/\s+/).filter(Boolean).join("&")}`,
-  });
+  const [exactUrl, prefixUrl, containsUrl, ftsUrl] = searchUrls(safe, topK, opts);
 
   const headers = pgrstHeaders();
   const [exact, prefix, contains, fts] = await Promise.all([
@@ -125,17 +133,7 @@ export async function searchPhotons(
     fetch(ftsUrl, { headers, next: { revalidate: 30 } }).then(safeJson),
   ]);
 
-  const seen = new Set<string>();
-  const out: Photon[] = [];
-  for (const bucket of [exact, prefix, contains, fts] as Photon[][]) {
-    for (const p of bucket) {
-      if (seen.has(p.id)) continue;
-      seen.add(p.id);
-      out.push(p);
-      if (out.length >= topK) break;
-    }
-    if (out.length >= topK) break;
-  }
+  const out = mergeBuckets([exact, prefix, contains, fts] as Photon[][], topK);
 
   return {
     query: q,

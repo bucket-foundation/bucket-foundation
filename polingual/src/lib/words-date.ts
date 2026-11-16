@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 export const WORDS_FILE = join(process.cwd(), "src/data/words.json");
 
-export function gitDate(file: string): Date | undefined {
+function gitDate(file: string): Date | undefined {
   try {
     const out = execFileSync("git", ["log", "-1", "--format=%cI", "--", file], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
     const d = new Date(out);

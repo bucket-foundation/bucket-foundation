@@ -1,0 +1,21 @@
+import { chromium } from "playwright";
+
+const base = process.env.PLAY_BASE ?? "http://localhost:3101";
+const out = process.env.SHOTS ?? "shots";
+const width = Number(process.env.W ?? 390);
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width, height: width < 600 ? 844 : 900 } });
+const errors = [];
+page.on("pageerror", (e) => errors.push(e.message));
+const shot = (n) => page.screenshot({ path: `${out}/${width}-fh-${n}.png` });
+await page.goto(`${base}/play/forehead`);
+await page.getByTestId("fh-start").waitFor();
+await shot("setup");
+await page.getByTestId("fh-start").click();
+await page.getByTestId("fh-play").waitFor({ timeout: 15000 });
+await shot("play");
+for (let i = 0; i < 6; i++) await page.getByTestId(i % 2 ? "fh-pass" : "fh-got").click();
+await page.getByTestId("fh-results").waitFor({ timeout: 100000 });
+await shot("results");
+console.log(JSON.stringify({ width, errors, final: await page.getByTestId("fh-final").innerText(), cards: await page.getByTestId("fh-card").count(), overflow: await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth) }));
+await browser.close();

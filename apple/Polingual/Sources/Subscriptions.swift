@@ -17,6 +17,7 @@ extension Notification.Name {
 final class Subscriptions {
     private(set) var access = Access.checking
     private(set) var trialEligible = true
+    private(set) var current: String?
     private(set) var epoch = 0
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private var resets: Task<Void, Never>?
@@ -24,6 +25,7 @@ final class Subscriptions {
     init(forced: Access? = nil) {
         if let forced {
             access = forced
+            if case .subscribed(let id, _) = forced { current = id }
             return
         }
         updates = Task { [weak self] in
@@ -61,11 +63,22 @@ final class Subscriptions {
         for await result in Transaction.all {
             if case .verified(let t) = result { history.append(EntitlementRecord(t)) }
         }
-        access = Entitlement.access(current, now: .now)
+        access = Entitlement.access(current, now: .now, beta: await Self.testFlight())
+        self.current = Entitlement.current(current, now: .now)
         trialEligible = Entitlement.trialEligible(history: history)
         if let product = try? await Product.products(for: Plan.all).first, let sub = product.subscription {
             trialEligible = await sub.isEligibleForIntroOffer
         }
+    }
+
+    static func testFlight() async -> Bool {
+        guard freeBetaBuild(Bundle.main.object(forInfoDictionaryKey: "PolingualFreeBeta") as? String) else { return false }
+        guard case .verified(let app) = try? await AppTransaction.shared else { return false }
+        return app.environment == .sandbox
+    }
+
+    nonisolated static func freeBetaBuild(_ value: String?) -> Bool {
+        value == "YES"
     }
 
     func restore() async {
@@ -75,6 +88,12 @@ final class Subscriptions {
 
     static func launchOverride() -> Access? {
         #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-polingualBeta") {
+            return .beta
+        }
+        if ProcessInfo.processInfo.arguments.contains("-polingualLocked") {
+            return .locked
+        }
         if ProcessInfo.processInfo.arguments.contains("-polingualTrial") {
             return .trial(until: Date().addingTimeInterval(2.5 * 86_400))
         }
@@ -89,6 +108,7 @@ final class Subscriptions {
     func grantDevPass() {
         UserDefaults.standard.set(true, forKey: "polingual.devPass")
         access = .subscribed(productID: Plan.yearly, until: nil)
+        current = Plan.yearly
     }
     #endif
 }

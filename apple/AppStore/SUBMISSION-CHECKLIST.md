@@ -8,7 +8,8 @@ Polingual 1.0.1 and Bucket 2.0, from `feat/apple-subject-tiles` once the stack m
 2. Polingual 1.0 must clear review first. Version 1.0.1 starts from the approved build.
 3. Set What to Test on the latest TestFlight builds:
    `python3 -I apple/AppStore/beta_notes.py --apply --app polingual --build <build> --notes @apple/AppStore/notes/<build>-polingual.txt`, then the same with `bucket`.
-4. Install the TestFlight build on an iPhone with an Apple Watch paired and check Watch quick review, the widget and Translate.
+4. Archive Polingual with `apple/scripts/archive-polingual.sh review` for App Review, so the paywall shows. `archive-polingual.sh testflight` sets `POLINGUAL_FREE_BETA=YES` and ends the build number in `.1`: testers skip the paywall and see the free-for-life banner. `asc_setup.py` refuses to attach a `.1` build.
+5. Install the TestFlight build on an iPhone with an Apple Watch paired and check Watch quick review, the widget and Translate.
 
 ## App Store Connect: Polingual 1.0.1
 
@@ -32,7 +33,18 @@ The manifests and the draft agree on Email Address, User ID, Product Interaction
 | Purchase History | Collected, linked, App Functionality, once the App Store notifications webhook (bkt-hikdo) stores purchases | Subscription events tied to the user |
 | Crash Data, Performance Data | Not collected | The draft lists them, but neither app sends crash or performance data; Apple's own crash reports do not count |
 
-Tracking stays No. If ad pixels ever run inside the apps, tracking changes to Yes and the apps need an App Tracking Transparency prompt.
+Bucket tracking stays No. Polingual tracking changes to Yes from the first build carrying AdMob (`feat/apple-polingual-admob`); 1.0.1 has no AdMob and keeps No. Add these Polingual rows from Google's disclosure for SDK 13.12, all used for tracking, purpose Third-Party Advertising and Analytics:
+
+| Data type | Set it to | Why |
+|---|---|---|
+| Device ID | Collected, unlinked to identity, used for tracking | IDFA after the App Tracking Transparency prompt, or an app-scoped id |
+| Advertising Data | Collected, unlinked to identity, used for tracking | Ads the person has seen |
+| Coarse Location | Collected, unlinked to identity, used for tracking | Derived from the IP address |
+| Product Interaction | Add Third-Party Advertising to the existing row, used for tracking | Taps and video views on ads |
+| Performance Data | Collected, linked, Third-Party Advertising and Analytics | Launch time and hang rate the SDK sends |
+| Crash Data, Other Diagnostic Data | Collected, unlinked to identity, Analytics | SDK crash logs |
+
+Before the first AdMob build ships: set the GDPR and IDFA messages in AdMob Privacy and messaging, add `app-ads.txt` on polingual.com with the `pub-9735211554999350` line, and update the Polingual privacy policy to name Google as an ad partner.
 
 ## Entitlements
 

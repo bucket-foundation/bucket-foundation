@@ -7,6 +7,7 @@ struct PolingualRoot: View {
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
     @Environment(Subscriptions.self) private var subs
+    @Environment(LobbyStore.self) private var lobbies
     @AppStorage("polingual.onboarded") private var onboarded = false
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
     @AppStorage(SaveProgress.key) private var savePending = false
@@ -21,20 +22,40 @@ struct PolingualRoot: View {
                 }
             case .loading:
                 ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity).background(Palette.paper.ignoresSafeArea())
-            case .paywall:
-                Paywall()
             case .studio:
-                Studio()
+                Studio(access: subs.access)
             }
         }
         .task { if subs.access == .checking { await subs.refresh() } }
+        .onChange(of: subs.access, initial: true) { _, access in LobbyAds.shared.allowed = Monetization.showsAds(access) }
+        .modifier(VoiceNoticeCaption())
+        .task { LangVoice.shared.preload() }
+        #if DEBUG
+        .task {
+            guard Launch.flag("-voiceProbe") else { return }
+            try? await Task.sleep(for: .seconds(3))
+            let words = [("hola", "es"), ("bonjour", "fr"), ("ciao", "it"), ("hallo", "de"), ("perro", "es"), ("chien", "fr"), ("cane", "it"), ("Hund", "de")]
+            for (w, l) in words {
+                LangVoice.shared.speak(w, l)
+                try? await Task.sleep(for: .milliseconds(450))
+            }
+            for (w, l) in words.prefix(4) {
+                LangVoice.shared.speak(w, l)
+                try? await Task.sleep(for: .milliseconds(120))
+            }
+            try? await Task.sleep(for: .seconds(2))
+            let l = LangVoice.shared.latency
+            print("voiceProbe samples \(l.samples.count) median \(l.median ?? -1) worst \(l.worst ?? -1) budget \(l.withinBudget)")
+        }
+        #endif
         .onOpenURL { DeepLink.shared.open($0) }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .groupInvites()
         .groupsOnToday()
+        .memberNamePrompt()
         .ageRangePrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
-        .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn, access: subs.access) }, set: { if !$0 { savePending = false } })) {
+        .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn) }, set: { if !$0 { savePending = false } })) {
             SaveProgressSheet()
                 .presentationDetents([.large])
         }
@@ -44,15 +65,17 @@ struct PolingualRoot: View {
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {
                 savePending = false
-                Task { await store.syncAfterSignIn() }
+                Task { await store.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
+                Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {
-                store.clearLocal()
+                store.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
             }
         }
-        .task {
+        .task(id: account.session?.userId) {
+            if let id = account.session?.userId { store.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
                 await store.flush()
@@ -68,15 +91,11 @@ struct PolingualRoot: View {
 }
 
 enum RootScreen: Equatable {
-    case onboarding, loading, paywall, studio
+    case onboarding, loading, studio
 
     static func pick(onboarded: Bool, access: Access) -> RootScreen {
         guard onboarded else { return .onboarding }
-        switch access {
-        case .checking: return .loading
-        case .locked: return .paywall
-        case .trial, .subscribed: return .studio
-        }
+        return access == .checking ? .loading : .studio
     }
 }
 
@@ -95,31 +114,50 @@ enum LaunchRouting {
 
 struct Studio: View {
     @Environment(Subscriptions.self) private var subs
+    @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
-    @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
+    @State private var tab: AppTab
     @State private var managing = false
+    @State private var paywall = false
+    @State private var trialReminder: TrialReminder.Outcome?
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
+    init(access: Access) {
+        _tab = State(initialValue: Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? Monetization.startTab(access: access))
+    }
+
     var body: some View {
-        VStack(spacing: 0) {
-            trial
-            tabs
-        }
-        .background(Palette.paper)
+        tabs
+            .background(Palette.paper)
+            .task(id: TrialReminder.key(subs.access, allowed: reminders.enabled)) {
+                if case .trial(let until) = subs.access { trialReminder = await TrialReminder.schedule(until: until) } else { trialReminder = nil }
+            }
     }
 
     var tabs: some View {
         TabView(selection: $tab) {
-            Tab("Today", systemImage: "sun.max", value: .today) {
-                TodayView(opening: { await place($0) })
-            }
-            Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView(subscription: manage) }
+            Tab(value: AppTab.today) {
+                gated(.today) { TodayView(opening: { await place($0) }) }
+            } label: { Label { Text("Today") } icon: { PLArt.streakFlame.image(height: 26) } }
+            Tab(value: AppTab.learn) { gated(.learn) { LearnView() } } label: { Label { Text("Learn") } icon: { PLArt.seal.image(height: 24) } }
+            Tab(value: AppTab.games) {
+                NavigationStack {
+                    GamesView(embedded: true)
+                        .safeAreaInset(edge: .bottom) { LobbyBanner() }
+                        .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
+                }
+                .environment(\.learnUpsell, upsell)
+            } label: { Label { Text("Play") } icon: { PLArt.blocks.image(height: 24) } }
+            Tab(value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
         }
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
+        .sheet(isPresented: $paywall) { Paywall() }
+        #if DEBUG
+        .task { if Launch.flag("-showPaywall") { paywall = true } }
+        #endif
         .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
             tab = LaunchRouting.tab(for: link, current: tab)
             if link == .home { DeepLink.shared.pending = nil }
@@ -137,20 +175,16 @@ struct Studio: View {
         #endif
     }
 
-    @ViewBuilder var trial: some View {
-        if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
-            Button(action: manage) {
-                Label(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"), systemImage: "gift.fill")
-                    .font(.subheadline.weight(.bold))
-                    .foregroundStyle(.white)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: .infinity)
-                    .background(D8.lapis, ignoresSafeAreaEdges: [])
-            }
-            .buttonStyle(.plain)
-            .accessibilityHint(String(localized: "Manage your subscription"))
+    var upsell: (@MainActor () -> Void)? {
+        if subs.access.open { return nil }
+        return { paywall = true }
+    }
+
+    @ViewBuilder func gated<Content: View>(_ tab: AppTab, @ViewBuilder _ content: () -> Content) -> some View {
+        if Monetization.locked(tab, access: subs.access) {
+            LockedPreview(unlock: { paywall = true }, content: content)
+        } else {
+            content()
         }
     }
 
@@ -178,5 +212,42 @@ extension View {
         #else
         self
         #endif
+    }
+}
+
+struct LockedPreview<Content: View>: View {
+    let unlock: () -> Void
+    let content: Content
+
+    init(unlock: @escaping () -> Void, @ViewBuilder content: () -> Content) {
+        self.unlock = unlock
+        self.content = content()
+    }
+
+    var body: some View {
+        content
+            .allowsHitTesting(false)
+            .blur(radius: 4)
+            .accessibilityHidden(true)
+            .overlay(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack(spacing: 10) {
+                        PLArtView(.seal).frame(width: 28)
+                        Text("Lessons need a subscription").font(PL.heading.font(scale: 0.8)).foregroundStyle(PL.ink)
+                    }
+                    Text("Subscribe for daily lessons and courses that bring every word back at the right time, with no ads. Every game stays free.")
+                        .font(PL.small.font())
+                        .foregroundStyle(PL.inkDim)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Button("See plans", action: unlock)
+                        .buttonStyle(.pl(.primary))
+                    .accessibilityIdentifier("unlockLessons")
+                }
+                .padding(16)
+                .frame(maxWidth: 520)
+                .background(Palette.card, in: .rect(cornerRadius: 16))
+                .shadow(color: .black.opacity(0.15), radius: 10, y: 2)
+                .padding()
+            }
     }
 }

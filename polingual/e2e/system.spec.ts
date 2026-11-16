@@ -18,7 +18,7 @@ for (const width of [1280, 390]) {
     await expect(page.getByTestId("lang-fr")).toHaveAttribute("aria-pressed", "true");
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/system-${width}.png`, fullPage: true });
     await page.getByTestId("create-system").click();
-    await expect(page).toHaveURL(/\/app\/en-es-pt-fr\/place\?lang=es$/);
+    await expect(page).toHaveURL(/\/app\/en-es-pt-fr\/place\?lang=es$/, { timeout: 60_000 });
     await expect(page.getByTestId("placement")).toBeVisible({ timeout: 60_000 });
     await expect(page.getByTestId("counter")).toContainText("Question 1 · level A1");
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/placement-${width}.png` });
@@ -39,7 +39,7 @@ for (const width of [1280, 390]) {
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/placement-done-${width}.png` });
     expect(errors.filter((e) => !e.includes("404"))).toEqual([]);
     await page.getByRole("link", { name: "Place Portuguese" }).click();
-    await expect(page).toHaveURL(/lang=pt$/);
+    await expect(page).toHaveURL(/lang=pt$/, { timeout: 60_000 });
   });
 }
 

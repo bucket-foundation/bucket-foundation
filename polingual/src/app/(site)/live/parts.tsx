@@ -1,7 +1,11 @@
 "use client";
 
+import { cssVars } from "@/ui/vars";
+import { Button } from "@/ui";
+
 import { displayNickname, MARKS, optionLabel, promptView, team, type Mark, type Question, type Standing, type TeamStanding } from "@/lib/stoa/client";
 import styles from "./stoa.module.css";
+import { Avatar } from "@/ui/avatar";
 
 
 export function Glyph({ glyph }: { glyph: Mark["glyph"] }) {
@@ -12,7 +16,7 @@ export function Glyph({ glyph }: { glyph: Mark["glyph"] }) {
   return <svg {...common}><path d="M16 3a9 9 0 1 0 5 15A7 7 0 0 1 16 3Z" /></svg>;
 }
 
-export function MarkBadge({ mark }: { mark: Mark }) {
+function MarkBadge({ mark }: { mark: Mark }) {
   return (
     <span className={styles.mark}>
       <Glyph glyph={mark.glyph} />
@@ -55,22 +59,22 @@ export function Tiles({
         const label = optionLabel(q, i);
         const name = q.kind === "pick_word" ? q.prompt.lang : q.kind === "translate" ? q.prompt.to : undefined;
         return (
-          <li key={mark.letter} style={{ "--i": i } as React.CSSProperties}>
-            <button
-              type="button"
+          <li key={mark.letter} style={cssVars({ "--i": i })}>
+            <Button
+              bare
               className={styles.tile}
               data-pigment={mark.pigment}
               data-state={states?.[i] ?? "idle"}
               data-testid={`tile-${mark.letter}`}
               disabled={disabled || !onPick}
               onClick={() => onPick?.(i)}
-              style={counts ? ({ "--share": `${Math.round(((counts[i] ?? 0) / Math.max(1, counts.reduce((a, b) => a + b, 0))) * 100)}%` } as React.CSSProperties) : undefined}
+              style={counts ? cssVars({ "--share": `${Math.round(((counts[i] ?? 0) / Math.max(1, counts.reduce((a, b) => a + b, 0))) * 100)}%` }) : undefined}
               aria-label={[mark.letter, mark.glyph, label, states?.[i] === "right" ? "correct" : states?.[i] === "chosen" ? "your answer" : null].filter(Boolean).join(", ")}
             >
               <MarkBadge mark={mark} />
               <span className={styles.text} dir="auto" lang={name}>{label}</span>
               {counts ? <span className={styles.count}>{counts[i] ?? 0}</span> : null}
-            </button>
+            </Button>
           </li>
         );
       })}
@@ -91,8 +95,8 @@ export function Standings({ rows, me, testId, moves }: { rows: Standing[]; me?: 
   return (
     <ol className={styles.standings} data-testid={testId ?? "standings"}>
       {rows.map((r, i) => (
-        <li key={r.player_id} data-me={r.player_id === me} style={{ "--i": i } as React.CSSProperties}>
-          <span>{displayNickname(r.nickname)}</span>
+        <li key={r.player_id} data-me={r.player_id === me} style={cssVars({ "--i": i })}>
+          <span className={styles.who}><Avatar seed={r.nickname} size="sm" variant="head" label="" />{displayNickname(r.nickname)}</span>
           <Move by={moves?.[r.player_id] ?? 0} />
           <span>{r.points}</span>
         </li>
@@ -107,7 +111,7 @@ export function TeamStandings({ rows, mine }: { rows: TeamStanding[]; mine?: num
       {rows.map((r, i) => {
         const t = team(r.team);
         return (
-          <li key={r.team} data-me={r.team === mine} data-pigment={t?.pigment} style={{ "--i": i } as React.CSSProperties}>
+          <li key={r.team} data-me={r.team === mine} data-pigment={t?.pigment} style={cssVars({ "--i": i })}>
             <span>
               Team {t?.name} <span className={styles.members}>{r.members} {r.members === 1 ? "player" : "players"}{r.unisons ? `, ${r.unisons} in unison` : ""}</span>
             </span>

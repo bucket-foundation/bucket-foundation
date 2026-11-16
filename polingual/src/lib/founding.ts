@@ -1,15 +1,15 @@
 import { createHash } from "node:crypto";
-import { allowedSource, emailLimiter, ipLimiter, TESTFLIGHT_URL, type BetaEnv, type BetaRequest, type Fetcher, RateLimiter, UNSUBSCRIBE } from "./beta";
+import { allowedSource, emailLimiter, verifyHuman, ipLimiter, TESTFLIGHT_URL, type BetaEnv, type BetaRequest, type Fetcher, RateLimiter, UNSUBSCRIBE } from "./beta";
 import { parseSignup } from "./signup";
 
-export const FOUNDING_TOTAL = 200;
+const FOUNDING_TOTAL = 200;
 export const DB_TIMEOUT_MS = 1500;
 
-export type Spots = { total: number; left: number };
+type Spots = { total: number; left: number };
 export type Outcome = "claimed" | "resend" | "recent" | "ip-limit" | "full";
 export type Claim = { code: string | null; outcome: Outcome; left: number };
-export type FoundingResult = { status: number; body: { ok?: true; error?: string; left?: number; full?: true } };
-export type FoundingRequest = BetaRequest & { token?: string | null };
+type FoundingResult = { status: number; body: { ok?: true; error?: string; left?: number; full?: true } };
+type FoundingRequest = BetaRequest;
 
 function rpcBase(env: BetaEnv): string | null {
   const url = env.POLINGUAL_DB_URL?.trim();
@@ -20,7 +20,7 @@ function rpcHeaders(key: string) {
   return { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Content-Profile": "polingual", "Accept-Profile": "polingual" };
 }
 
-export function foundingConfigured(env: BetaEnv): boolean {
+function foundingConfigured(env: BetaEnv): boolean {
   return Boolean(rpcBase(env) && env.POLINGUAL_DB_SERVICE_KEY?.trim() && env.RESEND_API_KEY?.trim() && env.TURNSTILE_SECRET_KEY?.trim() && env.TURNSTILE_SITE_KEY?.trim());
 }
 
@@ -39,11 +39,19 @@ export async function fetchSpots(env: BetaEnv, send: Fetcher = fetch): Promise<S
   }
 }
 
+type FoundingStatus = { body: (Spots | { open: false }) & { siteKey?: string }; cache: string };
+
+export async function foundingStatus(env: BetaEnv, send: Fetcher = fetch): Promise<FoundingStatus> {
+  const spots = await fetchSpots(env, send);
+  const siteKey = env.TURNSTILE_SITE_KEY?.trim() || undefined;
+  return { body: { ...(spots ?? { open: false as const }), ...(siteKey ? { siteKey } : {}) }, cache: spots ? "s-maxage=30" : "no-store" };
+}
+
 export function ipHash(ip: string | null, env: BetaEnv): string {
   return createHash("sha256").update(`${env.FOUNDING_IP_SALT?.trim() || "polingual-founding"}:${ip || "unknown"}`).digest("hex");
 }
 
-export async function claimCode(email: string, ip: string, key: string, base: string, send: Fetcher): Promise<Claim | null> {
+async function claimCode(email: string, ip: string, key: string, base: string, send: Fetcher): Promise<Claim | null> {
   const r = await send(`${base}/claim_founding_code`, {
     method: "POST",
     headers: rpcHeaders(key),
@@ -53,21 +61,6 @@ export async function claimCode(email: string, ip: string, key: string, base: st
   if (!r.ok) return null;
   const [row] = (await r.json()) as { code: string | null; outcome: Outcome; spots_left: number }[];
   return row ? { code: row.code, outcome: row.outcome, left: Number(row.spots_left) } : null;
-}
-
-export async function verifyHuman(token: string | null | undefined, ip: string | null, env: BetaEnv, send: Fetcher): Promise<boolean> {
-  const secret = env.TURNSTILE_SECRET_KEY?.trim();
-  if (!secret || !token || token.length > 2048) return false;
-  try {
-    const form = new URLSearchParams({ secret, response: token });
-    if (ip) form.set("remoteip", ip);
-    const r = await send("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form, signal: AbortSignal.timeout(DB_TIMEOUT_MS * 2) });
-    if (!r.ok) return false;
-    const j = (await r.json()) as { success?: boolean; hostname?: string };
-    return j.success === true && (!j.hostname || j.hostname === "polingual.com" || j.hostname === "www.polingual.com");
-  } catch {
-    return false;
-  }
 }
 
 export function codeEmail(to: string, from: string, code: string) {

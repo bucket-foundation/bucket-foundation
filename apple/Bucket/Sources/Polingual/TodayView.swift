@@ -161,6 +161,10 @@ struct TodayView: View {
         return cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
     }
 
+    func expectedLearning(_ streak: Double) -> ExpectedLearning {
+        ExpectedLearning(streak: StreakGoal(streak: streak).day, languages: langs.systems.map { .init(langs.state($0.id), languages: $0.targets.count) }, decks: deckStates.map { .init($0) })
+    }
+
     func resting(_ item: Item, _ now: Double) -> Bool {
         guard case .activity(.alphabet(let lang)) = item, !plan.isDone(item.id), let system = alphabetSystem(lang) else { return false }
         return !letterQueue(system, langs.state(system.id), now: now).contains { $0.lang == lang }
@@ -290,6 +294,7 @@ struct TodayView: View {
             + langs.systems.reduce(0) { t, s in t + langs.state(s.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
         let pending = planned.filter { hasWork($0, now) }
         let finished = planned.filter { !hasWork($0, now) }
+        let later = TodayExtras.shown(days: deckStates.flatMap { Array($0.history.keys) } + langs.systems.flatMap { Array(langs.state($0.id).history.keys) }, today: today)
         NavigationStack(path: $path) {
             Group {
             if !loaded {
@@ -297,7 +302,8 @@ struct TodayView: View {
             } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    StreakGoalCard(streak: streak).todayCard()
+                    PLScreenTop(title: "Today", stickers: Stickers.today)
+                    StreakGoalCard(streak: streak, share: later, expected: expectedLearning(streak)).todayCard()
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
                             hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
@@ -324,9 +330,11 @@ struct TodayView: View {
                             TodayAddWidget { picking = true }
                         }
                     }
-                    TodayStrip(card: true)
-                    if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
-                        ReminderPrompt().padding(.vertical, 6).todayCard()
+                    if later {
+                        TodayStrip(card: true)
+                        if !reminders.enabled && (!planned.isEmpty || reminders.stuckOff) {
+                            ReminderPrompt().padding(.vertical, 6).todayCard()
+                        }
                     }
                 }
                 .padding(.horizontal, 16)
@@ -336,8 +344,10 @@ struct TodayView: View {
             }
             }
             .animation(.easeOut(duration: 0.35), value: loaded)
-            .paper()
+            .scrollContentBackground(.hidden)
+            .plGround(.cut(0.7, 0.42))
             .navigationTitle("Today")
+            .plChrome()
             .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .sheet(item: $session) { subjects?.study($0) }
             .sheet(isPresented: $picking) { TodayPicker(subjects: subjects?.decks) }
@@ -366,6 +376,9 @@ struct TodayView: View {
                 WatchDwell.returned()
                 Task { await plan.pull() }
             }
+            .onChange(of: NetworkWatch.shared.online) { _, up in
+                if up { Task { await plan.pull() } }
+            }
             .onChange(of: account.stage) { old, new in
                 if new == .signedOut && old == .signedIn && account.endedByUser { plan.clearLocal() }
             }
@@ -389,6 +402,15 @@ struct TodayView: View {
             }
         }
         .modifier(MilestoneMoments(ready: loaded && session == nil && !picking && path.isEmpty))
+    }
+}
+
+enum TodayExtras {
+    static func shown(days: [String], today: String) -> Bool {
+        #if DEBUG
+        if Launch.flag("-dayTwo") { return true }
+        #endif
+        return days.contains { $0 != today }
     }
 }
 

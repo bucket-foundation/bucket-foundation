@@ -140,7 +140,7 @@ struct WideTile: View {
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                         .foregroundStyle(D8.ink)
-                    if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: 17)).foregroundStyle(D8.ink.opacity(0.55)) }
+                    if canSay { PLGlyphView(.speaker, size: 17).foregroundStyle(D8.ink.opacity(0.55)) }
                 }
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 if let r = readingText(reading) {
@@ -167,9 +167,8 @@ struct WideTile: View {
             }
             .overlay(alignment: .topTrailing) {
                 if state == .right {
-                    Image(systemName: "checkmark")
-                        .font(.system(size: 13, weight: .heavy))
-                        .foregroundStyle(.white)
+                    PLGlyphView(.check, size: 14)
+                        .foregroundStyle(PL.paper)
                         .frame(width: 26, height: 26)
                         .background(D8.malachite, in: .circle)
                         .offset(x: 8, y: -8)
@@ -205,13 +204,14 @@ struct AnswerRow: View {
         HStack(spacing: 10) {
             if flag { FlagTile(lang: lang, size: state == .right ? 30 : 26) }
             VStack(alignment: .leading, spacing: 1) {
+                Text(langName(lang)).plType(PL.label).foregroundStyle(PL.inkDim)
                 HStack(spacing: 6) {
-                    Text(tapText(word, lang)).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
+                    Text(tapText(word, lang)).font(PL.heading.font(scale: (state == .right ? 19 : 17) / PL.heading.size))
                         .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
                     if let tag { Text(tag).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted) }
                     if canSay {
                         Button { LangVoice.shared.speak(spoken, lang) } label: {
-                            Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted).frame(minWidth: FitScale.naturalTarget, minHeight: FitScale.naturalTarget).contentShape(.rect).padding(.vertical, -9)
+                            PLGlyphView(.speaker, size: 15).foregroundStyle(PL.inkDim).frame(minWidth: FitScale.naturalTarget, minHeight: FitScale.naturalTarget).contentShape(.rect).padding(.vertical, -9)
                         }
                         .buttonStyle(.plain)
                         .accessibilityHint("Plays the word")
@@ -222,7 +222,7 @@ struct AnswerRow: View {
             }
             Spacer(minLength: 0)
             if state != .other {
-                Image(systemName: state == .right ? "checkmark" : "xmark").font(.system(size: 12, weight: .heavy)).foregroundStyle(.white)
+                PLGlyphView(state == .right ? .check : .close, size: 12).foregroundStyle(PL.paper)
                     .frame(width: 22, height: 22).background(state == .right ? D8.malachite : D8.vermilion, in: .circle)
             }
         }
@@ -242,8 +242,27 @@ struct MiniTile: View {
     let word: String?
     let lang: String
     let reading: Reading?
+    var dashed = false
+    @Environment(\.wordTapsHosted) private var hosted
+    @Environment(\.openURL) private var open
 
     var body: some View {
+        let canSay = word.map { LangVoice.shared.canSpeak($0, lang) } ?? false
+        Button {
+            guard let word else { return }
+            if hosted, let url = WordTaps.tileLink(word, lang: lang) { open(url); return }
+            if canSay { LangVoice.shared.speak(word, lang) }
+        } label: {
+            face
+        }
+        .buttonStyle(TilePress())
+        .disabled(word == nil)
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier(dashed ? "cousinAnswer" : "cousinTile")
+        .accessibilityHint(canSay ? "Plays the word" : "")
+    }
+
+    private var face: some View {
         VStack(spacing: 1) {
             Text(word ?? "?").font(D8.word(18)).lineLimit(1).minimumScaleFactor(0.5).foregroundStyle(word == nil ? D8.disabledText : D8.ink)
             Text(readingText(reading) ?? " ").font(.caption2).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
@@ -260,9 +279,8 @@ struct MiniTile: View {
         .background { FlagFace(flag: D8Flag.of(lang)) }
         .modifier(Glaze(radius: 10, lip: 4))
         .overlay {
-            if word == nil { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.muted, style: StrokeStyle(lineWidth: 2, dash: [5, 4])).padding(-3) }
+            if word == nil || dashed { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.muted, style: StrokeStyle(lineWidth: 2, dash: [5, 4])).padding(-3) }
         }
-        .accessibilityElement(children: .combine)
     }
 }
 
@@ -273,16 +291,16 @@ struct D8Primary: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed && enabled
         configuration.label
-            .font(.system(size: 18, weight: .heavy, design: .rounded))
-            .foregroundStyle(enabled ? .white : D8.disabledText)
+            .font(PL.heading.font(scale: 18 / PL.heading.size))
+            .foregroundStyle(enabled ? PL.paper : D8.disabledText)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .minimumScaleFactor(0.8)
             .padding(.horizontal, compact ? 18 : 14)
             .padding(.vertical, compact ? 0 : 6)
             .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget)
-            .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: 12))
-            .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: 12).offset(y: pressed ? 1 : 4))
+            .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: PL.Radius.md, style: .continuous))
+            .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: PL.Radius.md, style: .continuous).offset(y: pressed ? 1 : PL.Lip.md))
             .offset(y: pressed ? 3 : 0)
             .padding(.bottom, 4)
     }

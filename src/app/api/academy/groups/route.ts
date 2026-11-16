@@ -1,5 +1,5 @@
 import type { NextRequest, NextResponse } from "next/server";
-import { MAX_OWNED, normalizeDisplayName, normalizeGroupName, normalizeKind, validTimeZone } from "@/lib/academy/groups";
+import { chosenDisplayName, MAX_OWNED, normalizeDisplayName, normalizeGroupName, normalizeKind, validTimeZone } from "@/lib/academy/groups";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import {
   configured,
@@ -9,11 +9,12 @@ import {
   insertGroupWithCode,
   json,
   limitError,
-  MEMBERS,
+  insertMember,
   NAME_NOT_ALLOWED,
   oneGroup,
   preflight,
   readBody,
+  requestAccount,
   requestUser,
   service,
   GROUPS,
@@ -40,8 +41,9 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!configured()) return json({ error: "sync_unavailable" }, 503);
-  const uid = await requestUser(req);
-  if (!uid) return json({ error: "unauthorized" }, 401);
+  const account = await requestAccount(req);
+  if (!account) return json({ error: "unauthorized" }, 401);
+  const uid = account.id;
   const body = await readBody(req);
   const name = normalizeGroupName(body?.name);
   const kind = normalizeKind(body?.kind);
@@ -51,7 +53,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     if ((await countOwned(uid)) >= MAX_OWNED) return json({ error: "owned_limit" }, 409);
     const group = await insertGroupWithCode({ name, kind, owner_id: uid });
-    const res = await service().from(MEMBERS).insert({ group_id: group.id, user_id: uid, role: "owner", display_name: displayName });
+    const res = await insertMember({ group_id: group.id, user_id: uid, role: "owner", display_name: displayName }, chosenDisplayName(displayName, account.email));
     if (res.error) {
       await service().from(GROUPS).delete().eq("id", group.id);
       const limit = limitError(res.error.message);

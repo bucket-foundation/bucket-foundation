@@ -214,6 +214,7 @@ test("account deletion revokes Apple first, and a revoke step that cannot queue 
   const clients = (revokeApple: (id: string) => Promise<{ failed: boolean }>) => ({
     getUser: async () => ({ id: "u1", status: null }),
     revokeApple,
+    deleteLobbyData: async () => ({ failed: false }),
     deleteRows: async (t: string) => (log.push(`rows ${t}`), { failed: false }),
     deleteUser: async () => (log.push("auth"), { status: null }),
   });

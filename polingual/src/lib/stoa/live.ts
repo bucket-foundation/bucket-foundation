@@ -3,93 +3,35 @@ import type { SignedEvent } from "./event";
 import { bearer, createRoomKeys, hostToken, openSignKey, playerAccess, playerToken, readToken, roomSecrets, signEvent, stoaConfigured, type HostClaims, type PlayerClaims, type StoaEnv } from "./keys";
 import { isNickname } from "./nicknames";
 import { parseSettings, type QuestionBuilder } from "./questions";
+import { base, dbConfigured, DB_TIMEOUT_MS, realtime, STATUS, UUID, verifyHostUser, type Fetcher, type Rpc } from "./live-db";
+import { CODE, medianGrace, networkOf, newCode, parseMode, summaryCsv, type SummaryRow } from "./live-net";
 
-export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
+export { clientIpFrom, CODE, CODE_ALPHABET, medianGrace, networkOf, newCode, parseMode, summaryCsv } from "./live-net";
+export { dbConfigured, DB_TIMEOUT_MS, postgrestRpc, type Fetcher, type Rpc } from "./live-db";
+
 export type LiveResult = { status: number; body: Record<string, unknown> };
-export type Rpc = (fn: string, args: Record<string, unknown>) => Promise<{ data: unknown } | { error: string }>;
 export type LiveDeps = { env: StoaEnv; rpc: Rpc; send: Fetcher; build: QuestionBuilder; now?: () => number; random?: (max: number) => number };
 type DbEvent = { seq: number; type: string; issued_at: number; payload: unknown };
 type DbResult = { room_id: string; topic: string; topics?: string[]; sign_key: string; events: DbEvent[]; error?: string } & Record<string, unknown>;
 
-export const CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
-export const CODE = /^[0-9A-HJKMNP-TV-Z]{6}$/;
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-export const HOST_ACTIONS = ["start", "pause", "resume", "skip", "end", "lock", "unlock", "kick_all", "rotate"] as const;
-export const PLAYER_ACTIONS = ["move", "rename", "remove", "time"] as const;
-export const DB_TIMEOUT_MS = 4000;
-export const GRACE_CAP_MS = 1000;
-export const SWEEP_CONCURRENCY = 5;
-export const SWEEP_BUDGET_MS = 3000;
-
-const STATUS: Record<string, number> = {
-  no_room: 404, no_player: 404, not_host: 403, removed: 403, stale_token: 409, too_many_rooms: 429,
-  room_full: 409, name_taken: 409, not_open: 409, late: 409, duplicate: 409, paused: 409, bad_phase: 409, closed: 409,
-  bad_action: 400, team: 400, code_taken: 503, slow_down: 429, too_soon: 429, locked: 409, bad_settings: 400,
-};
-
-const IP = /^[0-9a-fA-F:.]{2,45}$/;
-
-export function clientIpFrom(headers: { get(name: string): string | null }): string | null {
-  const real = headers.get("x-real-ip")?.trim();
-  return real && IP.test(real) ? real : null;
-}
+const HOST_ACTIONS = ["start", "pause", "resume", "skip", "end", "lock", "unlock", "kick_all", "rotate"] as const;
+const PLAYER_ACTIONS = ["move", "rename", "remove", "time"] as const;
+const SWEEP_CONCURRENCY = 5;
+const SWEEP_BUDGET_MS = 3000;
 
 export function ipKey(ip: string | null, env: StoaEnv): string {
   const [secret] = roomSecrets(env);
   return createHmac("sha256", secret).update(`stoa:ip:${networkOf(ip)}`).digest("hex").slice(0, 32);
 }
 
-export function dbConfigured(env: StoaEnv): boolean {
-  return Boolean(env.POLINGUAL_DB_URL?.trim() && env.POLINGUAL_DB_SERVICE_KEY?.trim() && env.POLINGUAL_DB_ANON_KEY?.trim());
+
+export function netKey(roomId: string, ip: string | null, env: StoaEnv): string {
+  const [secret] = roomSecrets(env);
+  return createHmac("sha256", secret).update(`stoa:net:${roomId}:${networkOf(ip)}`).digest("hex").slice(0, 32);
 }
 
-function base(env: StoaEnv): string {
-  return env.POLINGUAL_DB_URL!.trim().replace(/\/$/, "");
-}
 
-export function postgrestRpc(env: StoaEnv, send: Fetcher): Rpc {
-  return async (fn, args) => {
-    const key = env.POLINGUAL_DB_SERVICE_KEY!.trim();
-    try {
-      const r = await send(`${base(env)}/rest/v1/rpc/${fn}`, {
-        method: "POST",
-        headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Content-Profile": "bucket", "Accept-Profile": "bucket" },
-        body: JSON.stringify(args),
-        signal: AbortSignal.timeout(DB_TIMEOUT_MS),
-      });
-      const body = await r.json().catch(() => null);
-      if (!r.ok) {
-        const msg = body && typeof body === "object" ? String((body as { message?: unknown }).message ?? "") : "";
-        return { error: msg in STATUS ? msg : "db" };
-      }
-      return { data: body };
-    } catch {
-      return { error: "db" };
-    }
-  };
-}
-
-export async function verifyHostUser(token: string | null, env: StoaEnv, send: Fetcher): Promise<string | null> {
-  if (!token || token.length > 4096) return null;
-  try {
-    const r = await send(`${base(env)}/auth/v1/user`, {
-      method: "GET",
-      headers: { apikey: env.POLINGUAL_DB_ANON_KEY!.trim(), Authorization: `Bearer ${token}` },
-      signal: AbortSignal.timeout(DB_TIMEOUT_MS),
-    });
-    if (!r.ok) return null;
-    const u = (await r.json()) as { id?: unknown };
-    return typeof u.id === "string" && UUID.test(u.id) ? u.id : null;
-  } catch {
-    return null;
-  }
-}
-
-function realtime(env: StoaEnv, topic: string) {
-  return { url: base(env), key: env.POLINGUAL_DB_ANON_KEY!.trim(), topic: `stoa:${topic}` };
-}
-
-export function signLast(res: DbResult, env: StoaEnv): SignedEvent | null {
+function signLast(res: DbResult, env: StoaEnv): SignedEvent | null {
   const last = res.events?.[res.events.length - 1];
   if (!last || !res.sign_key) return null;
   const key = openSignKey(res.room_id, res.sign_key, env);
@@ -137,20 +79,6 @@ function isResult(v: DbResult | LiveResult): v is LiveResult {
 
 function ready(env: StoaEnv): LiveResult | null {
   return stoaConfigured(env) && dbConfigured(env) ? null : { status: 503, body: { error: "offline" } };
-}
-
-export function newCode(random: (max: number) => number = randomInt): string {
-  let s = "";
-  for (let i = 0; i < 6; i++) s += CODE_ALPHABET[random(CODE_ALPHABET.length)];
-  return s;
-}
-
-export function parseMode(b: Record<string, unknown>): { mode: "open_floor" } | { mode: "chorus"; teams: number } | null {
-  const mode = b.mode ?? "open_floor";
-  if (mode === "open_floor") return { mode };
-  if (mode !== "chorus") return null;
-  const teams = b.teams ?? 2;
-  return Number.isInteger(teams) && (teams as number) >= 2 && (teams as number) <= 4 ? { mode, teams: teams as number } : null;
 }
 
 export async function createRoom(authorization: string | null, body: unknown, deps: LiveDeps): Promise<LiveResult> {
@@ -245,37 +173,6 @@ export async function submitAnswer(authorization: string | null, body: unknown, 
   return { status: 200, body: { received_at: res.received_at } };
 }
 
-export function medianGrace(samples: unknown): number | null {
-  if (!Array.isArray(samples)) return null;
-  const delays = samples
-    .slice(0, 20)
-    .map((s) => (s && typeof s === "object" ? Number((s as Record<string, unknown>).received_at) - Number((s as Record<string, unknown>).sent_at) : NaN))
-    .filter((d) => Number.isFinite(d))
-    .sort((a, b) => a - b);
-  if (delays.length < 3) return null;
-  const mid = delays.length >> 1;
-  const m = delays.length % 2 ? delays[mid] : (delays[mid - 1] + delays[mid]) / 2;
-  return Math.round(Math.min(GRACE_CAP_MS, Math.max(0, m)));
-}
-
-export function networkOf(ip: string | null): string {
-  const raw = (ip ?? "").trim().toLowerCase();
-  if (!raw) return "unknown";
-  const mapped = /^::ffff:(\d{1,3}(?:\.\d{1,3}){3})$/.exec(raw);
-  if (mapped) return mapped[1];
-  if (!raw.includes(":")) return raw;
-  const [head, tail] = raw.split("::");
-  const left = head ? head.split(":") : [];
-  const right = tail !== undefined && tail ? tail.split(":") : [];
-  const groups = tail === undefined ? left : [...left, ...Array(Math.max(0, 8 - left.length - right.length)).fill("0"), ...right];
-  return `${groups.slice(0, 4).map((g) => (g.replace(/^0+(?=.)/, "") || "0")).join(":")}::/64`;
-}
-
-export function netKey(roomId: string, ip: string | null, env: StoaEnv): string {
-  const [secret] = roomSecrets(env);
-  return createHmac("sha256", secret).update(`stoa:net:${roomId}:${networkOf(ip)}`).digest("hex").slice(0, 32);
-}
-
 export async function submitProbe(authorization: string | null, body: unknown, deps: LiveDeps, ip: string | null = null): Promise<LiveResult> {
   const off = ready(deps.env);
   if (off) return off;
@@ -327,21 +224,6 @@ export async function playerAction(roomId: string, playerId: string, action: str
   return { status: 200, body: { ok: true, token_version: res.token_version } };
 }
 
-export type SummaryRow = { nickname: string; team?: number | null; points: number; correct: number };
-export const TEAM_NAMES = ["Lapis", "Vermilion", "Malachite", "Ochre"] as const;
-
-export function summaryCsv(rows: SummaryRow[], chorus = false): string {
-  const lines = [chorus ? "rank,nickname,team,points,correct" : "rank,nickname,points,correct"];
-  const points = rows.map((r) => Math.trunc(Number(r.points) || 0));
-  rows.forEach((r, i) => {
-    const name = /^[a-z]+-[a-z]+$/.test(r.nickname) ? r.nickname : "";
-    const rank = points.filter((p) => p > points[i]).length + 1;
-    const team = chorus ? [TEAM_NAMES[r.team ?? -1] ?? ""] : [];
-    lines.push([rank, name, ...team, points[i], Math.trunc(Number(r.correct) || 0)].join(","));
-  });
-  return lines.join("\r\n") + "\r\n";
-}
-
 export async function roomSummary(roomId: string, authorization: string | null, deps: LiveDeps): Promise<LiveResult> {
   const c = await hostClaims(roomId, authorization, deps);
   if ("status" in c) return c;
@@ -352,7 +234,7 @@ export async function roomSummary(roomId: string, authorization: string | null, 
   return { status: 200, body: { code: res.code, csv: summaryCsv(res.rows ?? [], res.mode === "chorus") } };
 }
 
-export function sweepAllowed(authorization: string | null, env: StoaEnv): boolean {
+function sweepAllowed(authorization: string | null, env: StoaEnv): boolean {
   const want = env.STOA_SWEEP_SECRET?.trim();
   const got = bearer(authorization);
   if (!want || want.length < 32 || !got) return false;

@@ -95,6 +95,7 @@ struct ContentHub: View {
     @State private var branch: String?
     @State private var lang: String?
     @State private var openTopic: ContentTopic?
+    @State private var openFilm: WatchFilm?
     let fixed: Bool
     let fromToday: Bool
 
@@ -127,6 +128,9 @@ struct ContentHub: View {
 
     var content: some View {
         List {
+            if kind == .listen {
+                PLScreenTop(title: "Listen", subtitle: "Live radio in your languages", stickers: Stickers.listen, onDark: true).plListTop()
+            }
             if !fixed {
                 Section {
                     Picker("Content", selection: $kind) {
@@ -140,7 +144,9 @@ struct ContentHub: View {
             switch kind {
             case .read: ReadList(branch: branch) { openTopic = $0 }
             case .listen: ListenList(branch: branch, langs: shownLangs)
-            case .watch: WatchList(branch: branch, langs: shownLangs, earns: fromToday)
+            case .watch:
+                FilmsSection { openFilm = $0 }
+                WatchList(branch: branch, langs: shownLangs, earns: fromToday)
             }
             if langs.systems.isEmpty {
                 Section {
@@ -151,8 +157,12 @@ struct ContentHub: View {
                 .listRowBackground(Color.clear)
             }
         }
-        .paper()
+        .scrollContentBackground(.hidden)
+        .plGround(kind == .listen ? .lattice : .paper)
+        .environment(\.plOnDark, kind == .listen)
+        .foregroundStyle(kind == .listen ? PL.paper : PL.ink)
         .navigationTitle(fixed ? kind.title : String(localized: "Content"))
+        .plChrome()
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Menu {
@@ -174,8 +184,10 @@ struct ContentHub: View {
         }
         .navigationDestination(for: ContentTopic.self) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
         .navigationDestination(item: $openTopic) { ReadView(topic: $0, langs: shownLangs).fullHeightSession() }
+        .navigationDestination(item: $openFilm) { FilmView(film: $0).fullHeightSession() }
         .task {
             await langs.load()
+            await FilmStore.shared.load()
             #if DEBUG
             let args = ProcessInfo.processInfo.arguments
             if let i = args.firstIndex(of: "-readTopic"), i + 1 < args.count { openTopic = ContentCatalog.topics.first { $0.title == args[i + 1] } }

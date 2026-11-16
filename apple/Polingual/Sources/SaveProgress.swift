@@ -2,12 +2,12 @@ import BucketKit
 import SwiftUI
 
 enum SaveProgress {
-    static let key = "polingual.saveProgress"
+    static let key = SaveNudge.key
 
     static func offer(signedIn: Bool) -> Bool { !signedIn }
 
-    static func shown(pending: Bool, signedIn: Bool, access: Access) -> Bool {
-        pending && !signedIn && access.open
+    static func shown(pending: Bool, signedIn: Bool) -> Bool {
+        pending && !signedIn
     }
 }
 
@@ -24,7 +24,7 @@ struct SaveProgressSheet: View {
                     .font(.system(size: 34, weight: .heavy, design: .rounded))
                     .foregroundStyle(Palette.ink)
                     .fixedSize(horizontal: false, vertical: true)
-                Text("Your trial is on. Sign in so your words and streak stay with you.")
+                Text("Sign in so your words, streak and scores stay with you.")
                     .font(.body)
                     .foregroundStyle(Palette.muted)
                     .fixedSize(horizontal: false, vertical: true)

@@ -101,3 +101,37 @@ import Testing
     #expect(LangScript.jsLowercased("ΟΔΟΣ ΚΑΙ") == "οδος και")
     #expect(LangScript.jsLowercased("Σ") == "σ")
 }
+
+@Test func listenShowsScriptAndReadingOnlyForNonLatinScripts() {
+    let zh = Exercise(kind: .listen, itemId: "n9", lang: "zh", root: "en", prompt: "九", promptLang: "zh", answer: "nine", answerLang: "en")
+    let ja = Exercise(kind: .listen, itemId: "n9", lang: "ja", root: "en", prompt: "九", promptLang: "ja", answer: "nine", answerLang: "en")
+    let es = Exercise(kind: .listen, itemId: "n9", lang: "es", root: "en", prompt: "nueve", promptLang: "es", answer: "nine", answerLang: "en")
+    let heard = Exercise(kind: .typeHeard, itemId: "n9", lang: "zh", root: "en", prompt: "九", promptLang: "zh", answer: "九", answerLang: "zh")
+    #expect(zh.showsScriptWithSound)
+    #expect(ja.showsScriptWithSound)
+    #expect(!es.showsScriptWithSound)
+    #expect(!heard.showsScriptWithSound)
+}
+
+@Test func heardExercisesCarryTheRootMeaning() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    let sys = try createSystem("en", ["ru", "nl", "es"], [], now: 1)
+    var card = Card()
+    card.reps = 3
+    let ru = try #require(corpus.items.first { $0.kind == .word && $0.form("ru") != nil && $0.form("en") != nil })
+    var rng = Rng(seed: 1)
+    let spelled = exerciseFor(corpus, sys, ru, "ru", card, &rng, heritage: true)
+    #expect(spelled.kind == .spellHeard && spelled.meaning == ru.form("en"))
+    let latin = corpus.items.filter { $0.kind == .word && $0.form("en") != nil && ($0.form("nl") ?? $0.form("es")) != nil }
+    var typed: [(Exercise, LangItem)] = []
+    for item in latin.prefix(40) {
+        let lang = item.form("nl") != nil ? "nl" : "es"
+        for k in 0..<30 {
+            var r = Rng(seed: UInt32(k))
+            let ex = exerciseFor(corpus, sys, item, lang, card, &r)
+            if ex.kind == .typeHeard { typed.append((ex, item)) }
+        }
+    }
+    #expect(!typed.isEmpty)
+    #expect(typed.allSatisfy { ex, item in ex.meaning == item.form("en") })
+}

@@ -60,11 +60,13 @@ struct OptionButton: View {
 }
 
 struct ExerciseView: View {
+    @Environment(LangStore.self) private var langs
     let ex: Exercise
     let readings: Bool
     let reading: (String, String) -> Reading?
     let onDone: ([ExerciseResult]) -> Void
     var flagNamed: (String) -> Bool = { _ in true }
+    var onSlip: (String) -> Void = { _ in }
     var onMatch: (([String: String]) -> Void)?
     var chorus: [VoiceLine] = []
 
@@ -95,7 +97,15 @@ struct ExerciseView: View {
         onDone([ExerciseResult(lang: ex.lang, rating: v.map { verdictRating($0, hesitated: slow) } ?? (ok ? (slow ? 2 : 3) : 1))])
     }
 
+    func finishChoice(_ picked: String) {
+        let grade = choiceGrade(ex, picked: picked, slow: slow)
+        if let slip = grade.slip { onSlip(slip) }
+        onDone([ExerciseResult(lang: ex.lang, rating: grade.rating)])
+    }
+
     func r(_ form: String, _ lang: String) -> Reading? { readings ? reading(form, lang) : nil }
+
+    var completed: Bool { verdict != nil || picked != nil || matchDone }
 
     var headerText: String {
         let level = ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? ""
@@ -113,6 +123,9 @@ struct ExerciseView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
             if !compactTyping { CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 26 : 44) }
+            if completed, !RootGloss.letterKinds.contains(ex.kind), let gloss = RootGloss.text(ex, langs.corpus) {
+                RootGlossLine(lang: ex.root, text: gloss)
+            }
             switch ex.kind {
             case .intro where ex.spoken != nil: PairMeet(ex: ex) { onDone([]) }
             case .intro: intro
@@ -142,8 +155,8 @@ struct ExerciseView: View {
             }
             #endif
             started = Date()
-            if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang) }
-            if let say = letterSay, ex.kind != .letterSound { LangVoice.shared.speak(say, ex.lang) } else if ex.kind == .intro { LangVoice.shared.speakTogether(chorus) }
+            if ex.kind == .listen || ex.kind == .typeHeard || ex.kind == .spellHeard { LangVoice.shared.speak(ex.prompt, ex.promptLang, kind: .auto) }
+            if let say = letterSay, ex.kind != .letterSound { LangVoice.shared.speak(say, ex.lang, kind: .auto) } else if ex.kind == .intro { LangVoice.shared.speakTogether(chorus, kind: .auto, intro: true) }
         }
     }
 
@@ -234,7 +247,7 @@ struct ExerciseView: View {
                     Button("Check") {
                         matchDone = true
                         haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
-                        LangVoice.shared.speakTogether(chorus)
+                        LangVoice.shared.speakTogether(chorus, intro: true)
                     }
                         .buttonStyle(D8Primary())
                         .disabled(assign.count < pairs.count)
@@ -319,7 +332,7 @@ struct ExerciseView: View {
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
-                    Button("Continue") { finish(accepted.contains(picked)) }
+                    Button("Continue") { finishChoice(picked) }
                         .buttonStyle(D8Primary())
                         .keyboardShortcut(.defaultAction)
                         .onAppear { haptic(accepted.contains(picked)) }
@@ -637,8 +650,16 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard, .spellHeard:
             VStack(spacing: 10) {
-                WordTile(word: answered || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: answered && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
+                let seen = answered || ex.showsScriptWithSound
+                WordTile(word: seen || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: seen && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if answered { PhraseWords(text: ex.prompt, lang: ex.promptLang) }
+                if answered, let meaning = ex.meaning {
+                    Text(tapText(meaning, ex.root, color: Palette.muted))
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2).minimumScaleFactor(0.7)
+                        .accessibilityIdentifier("heardMeaning")
+                }
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:
@@ -671,7 +692,7 @@ struct Prompt: View {
                 if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
                     HStack(spacing: 10) {
                         ForEach(f.prefix(3), id: \.lang) { w in MiniTile(word: w.word, lang: w.lang, reading: readings ? cousins(w.lang) : nil) }
-                        MiniTile(word: nil, lang: ex.lang, reading: nil)
+                        MiniTile(word: answered ? ex.answer : nil, lang: ex.lang, reading: answered && readings ? ex.answerReading : nil, dashed: true)
                     }
                 }
             }
@@ -698,5 +719,22 @@ struct OptionKey: ViewModifier {
         } else {
             content
         }
+    }
+}
+
+struct RootGlossLine: View {
+    let lang: String
+    let text: String
+
+    var body: some View {
+        HStack(spacing: PL.Space.s2) {
+            Text(Lang.name(lang)).plType(PL.label).foregroundStyle(PL.inkDim)
+            Text(text).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.7)
+        }
+        .padding(.horizontal, PL.Space.s3)
+        .padding(.vertical, PL.Space.s2)
+        .background(PL.paper2, in: .rect(cornerRadius: PL.Radius.sm))
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("rootGloss")
     }
 }

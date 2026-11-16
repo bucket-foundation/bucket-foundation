@@ -111,6 +111,7 @@ function supabaseSource(): AdminSource | null {
       },
       revokeApple: (id) => revokeForAccountDelete(appleTokens, id),
       deleteUser: async (id) => {
+        must("delete lobby data", await bucket().rpc("delete_lobby_user", { p_user: id }));
         for (const table of PERSONAL_TABLES) must("delete " + table, await bucket().from(table).delete().eq("user_id", id));
         const { error } = await authAdmin().auth.admin.deleteUser(id);
         if (error) throw new Error(`auth delete: ${error.message}`);

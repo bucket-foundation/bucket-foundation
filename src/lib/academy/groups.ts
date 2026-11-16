@@ -1,4 +1,5 @@
 import { dayKey } from "./engine";
+import { nameAllowed } from "./groups-names";
 import { memoryState, normalizeMemory } from "./lang-memory";
 import { normalizeSystemsDoc, parseCardId } from "./lang-systems";
 import { masteryFromStability, MASTERED_THRESHOLD, retrievability, rollupBranch, type Corpus, type CorpusAtom, type StoredCard, type StoredEngineState } from "./mastery";
@@ -104,6 +105,7 @@ export interface Group {
   members: Member[];
   goal: GroupGoal | null;
   cheers: Cheer[];
+  chosenName: boolean;
 }
 
 export interface GroupRow {
@@ -141,6 +143,7 @@ export interface MemberRow {
   role: GroupRole;
   display_name: string;
   joined_at: string;
+  chosen_name?: boolean;
 }
 
 export interface BranchRow {
@@ -195,6 +198,22 @@ export function normalizeDisplayName(input: unknown): string | null {
   return cleanText(input, 40);
 }
 
+export function renameInput(body: Record<string, unknown> | null): string | "bad_request" | "name_not_allowed" {
+  const name = normalizeDisplayName(body?.displayName);
+  if (!name) return "bad_request";
+  return nameAllowed(name) ? name : "name_not_allowed";
+}
+
+export function chosenDisplayName(displayName: string, email: string | null | undefined): boolean {
+  if (!email) return false;
+  if (/^(learner|tester [0-9]+)$/i.test(displayName)) return false;
+  const prefix = email.split("@")[0];
+  if (prefix.toLowerCase() === displayName.toLowerCase()) return false;
+  const letters = prefix.split(".")[0].replace(/[^A-Za-z]/g, "");
+  const initcap = letters ? letters[0].toUpperCase() + letters.slice(1).toLowerCase() : "";
+  return initcap !== displayName;
+}
+
 export function normalizeKind(input: unknown): GroupKind | null {
   return input === "family" || input === "friends" ? input : null;
 }
@@ -234,6 +253,11 @@ export function normalizeReportReason(input: unknown): ReportReason | null {
 export function missingTable(error: { code?: string; message?: string } | null | undefined): boolean {
   if (!error) return false;
   return error.code === "42P01" || error.code === "PGRST205" || /relation .* does not exist|could not find the table/i.test(error.message ?? "");
+}
+
+export function missingColumn(error: { code?: string; message?: string } | null | undefined): boolean {
+  if (!error) return false;
+  return error.code === "42703" || error.code === "PGRST204" || /column .* does not exist|could not find the .* column/i.test(error.message ?? "");
 }
 
 export function hiddenUsers(blocks: readonly BlockRow[], me: string): Set<string> {
@@ -564,6 +588,7 @@ export function assembleGroup(
     members: list.filter((m) => !hidden.has(m.userId)),
     goal: groupGoal(group.weekly_goal, list.map((m) => m.weekReviews), weekStart),
     cheers: cheersFor(group.id, cheers.filter((c) => !hidden.has(c.from_id) && !hidden.has(c.to_id)), members, me),
+    chosenName: sorted.find((m) => m.user_id === me)?.chosen_name !== false,
   };
 }
 

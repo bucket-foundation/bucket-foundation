@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { idle, installedVoices, playAll, playable, snapshot, stop, subscribe, toggle, type SpeakItem } from "@/lib/speak";
-import styles from "@/app/site.module.css";
+import { Pill, TileButton } from "@/ui";
 
 function usePlayer() {
   return useSyncExternalStore(subscribe, snapshot, idle);
@@ -47,8 +47,7 @@ export function PlayTile({ item, label }: { item: SpeakItem; label: string }) {
   if (!show) return null;
   const on = player.id === item.id;
   return (
-    <button type="button" className={styles.play} data-playing={on || undefined} aria-pressed={on} aria-label={label} onClick={() => toggle(item, on)}>
-    </button>
+    <TileButton label={label} playing={on} onClick={() => toggle(item, on)} />
   );
 }
 
@@ -58,10 +57,10 @@ export function HearAll({ items, label, stopLabel }: { items: SpeakItem[]; label
   const ready = items.filter((i) => (i.src ? true : voices !== null && playable(i, voices)));
   if (ready.length < 2) return null;
   return (
-    <button type="button" className={styles.hearAll} data-playing={player.all || undefined} onClick={() => (player.all ? stop() : void playAll(ready))}>
+    <Pill data-playing={player.all || undefined} onClick={() => (player.all ? stop() : void playAll(ready))}>
       {player.all ? <StopIcon /> : <SpeakerIcon />}
       <span>{player.all ? stopLabel : label}</span>
-    </button>
+    </Pill>
   );
 }
 

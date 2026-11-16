@@ -7,38 +7,37 @@ import LangExercise, { ReadingsContext } from "@learn/languages/LangExercise";
 import { appHref } from "@/lib/app/systems";
 import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
+import WordCard, { QuizCard } from "./WordCard";
 import styles from "../../app.module.css";
+import { useSyncExternalStore } from "react";
+import { deferredCards, subscribeDeferred } from "@academy/lang-deferred";
+import { langName } from "@academy/lang-systems";
+import { Button, ButtonLink, Card, Meter, SilentSwitch, Stage } from "@/ui";
 
-export default function Session({ systemId }: { systemId: string }) {
-  const h = useLangSystem(systemId);
-  const s = useLangSession(h);
-  const { system, corpus, state } = h;
+type Lang = ReturnType<typeof useLangSystem>;
+type Run = ReturnType<typeof useLangSession>;
 
-  if (h.status === "loading" || (h.status === "ready" && s.queue === null)) return <p className={styles.muted} aria-busy="true">Building today&apos;s session</p>;
-  if (h.status === "error") return <p className={styles.error}>The session did not load. Reload the page to try again.</p>;
-  if (!system || !corpus || !s.queue) {
-    return (
-      <section className={styles.card}>
-        <h1 className={styles.title}>No such language system</h1>
-        <Link className={styles.ghost} href={appHref.home}>Your systems</Link>
-      </section>
-    );
-  }
+function DeferredCards() {
+  const deferred = useSyncExternalStore(subscribeDeferred, deferredCards, deferredCards);
+  if (!deferred.length) return null;
+  return (
+    <details className={styles.deferred} data-testid="deferred">
+      <summary>{deferred.length === 1 ? "1 listening card waits" : `${deferred.length} listening cards wait`} for sound. Their schedule stays where it was.</summary>
+      <ul>
+        {deferred.map((d) => (
+          <li key={d.key} lang={d.lang} data-testid="deferred-card">
+            {d.word} <span>{langName(d.lang)} · {d.kind === "speak" ? "say it" : "listen"}</span>
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
+}
 
-  if (s.queue.length === 0) {
-    return (
-      <section className={styles.card} data-testid="session-empty">
-        <p className={styles.label}>{system.name}</p>
-        <h1 className={styles.title}>All done for today</h1>
-        <p className={styles.body}>You met today&apos;s new words in every language and nothing is due. Come back tomorrow.</p>
-        <Link className={styles.cta} href={appHref.home}>Your systems</Link>
-      </section>
-    );
-  }
-
-  if (s.i >= s.queue.length || !s.ex) {
-    return (
-      <section className={styles.card} data-testid="session-done">
+function SessionDone({ s, system, state }: { s: Run; system: NonNullable<Lang["system"]>; state: Lang["state"] }) {
+  return (
+    <Stage ground="paper">
+      <Card as="section" className={styles.card} data-testid="session-done">
         <p className={styles.label}>{system.name}</p>
         <h1 className={styles.title}>Session done</h1>
         <p className={styles.body} data-testid="session-score">
@@ -46,37 +45,109 @@ export default function Session({ systemId }: { systemId: string }) {
         </p>
         <StreakCard card={streakCard([state], Date.now())} />
         <div className={`${styles.row} ${styles.gapTop}`}>
-          <button type="button" className={styles.cta} onClick={s.restart}>Another round</button>
-          <Link className={styles.ghost} href={appHref.home}>Your systems</Link>
+          <Button onClick={s.restart}>Another round</Button>
+          <ButtonLink variant="ghost" size="md" href={appHref.home}>
+            Your systems
+          </ButtonLink>
+        </div>
+      </Card>
+    </Stage>
+  );
+}
+
+function ActiveSession({ h, s, queue, ex }: { h: Lang; s: Run; queue: NonNullable<Run["queue"]>; ex: NonNullable<Run["ex"]> }) {
+  const { system, state } = h;
+  const pct = Math.round((s.i / queue.length) * 100);
+  return (
+    <Stage ground="paper" strip={false} tv={false}>
+      <section className={styles.session} data-testid="session">
+        <div className={styles.sessionTop}>
+          <Link className={styles.small} href={appHref.home}>
+            {system?.name}
+          </Link>
+          <span className={styles.level} data-testid="counter">
+            {s.i + 1} / {queue.length} · {state.stats.xp} XP
+          </span>
+          <SilentSwitch compact />
+        </div>
+        <DeferredCards />
+        <Meter value={pct} max={100} label="Session progress" />
+        <div className={styles.sessionBody} data-testid="session-body">
+          <ReadingsContext.Provider value={s.readings}>
+            {ex.kind === "intro" ? (
+              <WordCard key={`${s.i}-${s.entry?.itemId}`} ex={ex} readings={s.readings} onNext={() => s.onDone([])} />
+            ) : (
+              <QuizCard ex={ex} readings={s.readings}>
+                <LangExercise
+                  key={`${s.i}-${s.entry?.itemId}-${s.entry?.lang}-${s.entry?.stage}`}
+                  ex={ex}
+                  onDone={s.onDone}
+                  optionReadings={s.optionReadings}
+                  links={s.links}
+                  targetLayout={!!h.shared}
+                  match={s.match}
+                />
+              </QuizCard>
+            )}
+          </ReadingsContext.Provider>
+        </div>
+        <div className={styles.sessionFoot}>
+          <Button variant="quiet" size="sm" onClick={s.skip} data-testid="skip-exercise">
+            Skip this one
+          </Button>
+          <label className={styles.toggle}>
+            <input type="checkbox" checked={s.readings} onChange={(e) => s.showReadings(e.target.checked)} data-testid="readings-toggle" />
+            Readings and IPA
+          </label>
         </div>
       </section>
+    </Stage>
+  );
+}
+
+export default function Session({ systemId }: { systemId: string }) {
+  const h = useLangSystem(systemId);
+  const s = useLangSession(h);
+  const { system, corpus, state } = h;
+
+  if (h.status === "loading" || (h.status === "ready" && s.queue === null))
+    return (
+      <p className={styles.muted} aria-busy="true">
+        Building today&apos;s session
+      </p>
+    );
+  if (h.status === "error")
+    return (
+      <Stage ground="paper">
+        <p className={styles.error}>The session did not load. Reload the page to try again.</p>
+      </Stage>
+    );
+  if (!system || !corpus || !s.queue) {
+    return (
+      <Stage ground="paper">
+        <Card as="section" className={styles.card}>
+          <h1 className={styles.title}>No such language system</h1>
+          <ButtonLink variant="ghost" size="md" href={appHref.home}>
+            Your systems
+          </ButtonLink>
+        </Card>
+      </Stage>
     );
   }
 
-  const pct = Math.round((s.i / s.queue.length) * 100);
-  return (
-    <section className={styles.session} data-testid="session">
-      <div className={styles.sessionTop}>
-        <Link className={styles.small} href={appHref.home}>{system.name}</Link>
-        <span className={styles.level} data-testid="counter">
-          {s.i + 1} / {s.queue.length} · {state.stats.xp} XP
-        </span>
-      </div>
-      <div className={styles.progress} role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} aria-label="Session progress">
-        <div style={{ width: `${pct}%` }} />
-      </div>
-      <div className={styles.sessionBody} data-testid="session-body">
-        <ReadingsContext.Provider value={s.readings}>
-          <LangExercise key={`${s.i}-${s.entry?.itemId}-${s.entry?.lang}-${s.entry?.stage}`} ex={s.ex} onDone={s.onDone} optionReadings={s.optionReadings} links={s.links} targetLayout={!!h.shared} match={s.match} />
-        </ReadingsContext.Provider>
-      </div>
-      <div className={styles.sessionFoot}>
-        <button type="button" className={styles.link} onClick={s.skip} data-testid="skip-exercise">Skip this one</button>
-        <label className={styles.toggle}>
-          <input type="checkbox" checked={s.readings} onChange={(e) => s.showReadings(e.target.checked)} data-testid="readings-toggle" />
-          Readings and IPA
-        </label>
-      </div>
-    </section>
-  );
+  if (s.queue.length === 0) {
+    return (
+      <Stage ground="paper">
+        <Card as="section" className={styles.card} data-testid="session-empty">
+          <p className={styles.label}>{system.name}</p>
+          <h1 className={styles.title}>All done for today</h1>
+          <p className={styles.body}>You met today&apos;s new words in every language and nothing is due. Come back tomorrow.</p>
+          <ButtonLink href={appHref.home}>Your systems</ButtonLink>
+        </Card>
+      </Stage>
+    );
+  }
+
+  if (s.i >= s.queue.length || !s.ex) return <SessionDone s={s} system={system} state={state} />;
+  return <ActiveSession h={h} s={s} queue={s.queue} ex={s.ex} />;
 }

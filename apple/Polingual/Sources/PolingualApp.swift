@@ -10,6 +10,7 @@ struct PolingualApp: App {
     @State private var subs: Subscriptions
     @State private var reminders = Reminders()
     @State private var groups: GroupStore
+    @State private var lobbies: LobbyStore
     @Environment(\.scenePhase) private var phase
     #if os(iOS)
     @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
@@ -18,13 +19,19 @@ struct PolingualApp: App {
     init() {
         InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
+        #if DEBUG
+        let api = BucketAPI(base: BucketAPI.debugBase(arguments: ProcessInfo.processInfo.arguments, environment: ProcessInfo.processInfo.environment) ?? BucketAPI.production)
+        #else
         let api = BucketAPI()
+        #endif
         let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
         let store = LangStore(api: api, token: { await account.freshToken() })
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
         LangVoice.shared.store = store
+        NetworkWatch.shared.onReconnect { await store.resync() }
+        NetworkWatch.shared.start()
         _account = State(initialValue: account)
         Beta.shared.account = account
         _store = State(initialValue: store)
@@ -32,6 +39,7 @@ struct PolingualApp: App {
         let groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
+        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }, guest: GuestPass(api: api) { UserDefaults.standard.string(forKey: "groups.displayName") ?? "" }))
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
     }
 
@@ -47,12 +55,16 @@ struct PolingualApp: App {
                 .environment(subs)
                 .environment(reminders)
                 .environment(groups)
+                .environment(lobbies)
                 .interfaceLanguage(store)
+                .task { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
                         if p == .active {
+                            await store.retryPending()
+                            await NetworkWatch.shared.resync().value
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG
@@ -97,7 +109,7 @@ struct PolingualApp: App {
                     WatchBridge.shared.start(store)
                     #endif
                 }
-                .tint(Palette.green)
+                .tint(PL.tyrian)
         }
         #if os(macOS)
         .defaultSize(width: 1180, height: 820)
