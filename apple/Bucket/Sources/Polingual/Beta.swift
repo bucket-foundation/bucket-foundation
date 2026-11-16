@@ -34,9 +34,11 @@ final class Beta {
         sessionId = UUID().uuidString.lowercased()
         log("app_open")
         Task {
+            let owner = account.session?.userId
             let token = await account.freshToken()
             flags = await BetaFlags.fetch(app: BucketAPI.appName, token: token)
-            flush(token: token, owner: account.session?.userId)
+            guard account.session?.userId == owner else { return }
+            flush(token: token, owner: owner)
         }
         TranslationReporter.shared.flush()
     }
@@ -51,7 +53,12 @@ final class Beta {
 
     func background(_ account: Account) {
         self.account = account
-        Task { flush(token: await account.freshToken(), owner: account.session?.userId) }
+        Task {
+            let owner = account.session?.userId
+            let token = await account.freshToken()
+            guard account.session?.userId == owner else { return }
+            flush(token: token, owner: owner)
+        }
     }
 
     func studyStarted(_ deck: String) {
