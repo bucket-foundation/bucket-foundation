@@ -135,10 +135,11 @@ test("parseCodes trims, uppercases and dedupes", () => {
   assert.deepEqual(parseCodes("abc123, ABC123\nzz9999  bad\n"), ["ABC123", "ZZ9999"]);
 });
 
-test("code email points at the Bucket beta and the redeem link", () => {
+test("code email points at the App Store listing and the redeem link", () => {
   const m = codeEmail("a@b.co", "P <p@x.co>", "ABC123");
   assert.match(m.text, /ABC123/);
-  assert.match(m.text, /Bucket beta/);
+  assert.match(m.text, /apps\.apple\.com\/app\/id6825177856/);
+  assert.doesNotMatch(m.text + m.html, /testflight|Bucket beta/i);
   assert.match(m.text, /apps\.apple\.com\/redeem/);
 });
 
