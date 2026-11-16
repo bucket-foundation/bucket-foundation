@@ -179,4 +179,37 @@ import Testing
         picks.pick(Lang.presets[0].targets)
         #expect(picks.targets == ["fr", "it"])
     }
+
+    func set(_ root: String, at: Double) -> LangSystem { LangSystem(id: "s\(Int(at))", name: root, root: root, targets: ["fr"], createdAt: at) }
+
+    @Test func thePromptWaitsForALoadedLearnerWithASetAndNoAnswer() {
+        let blank = KnownLanguages([])
+        let sets = [set("en", at: 1)]
+        #expect(KnownPrompt.due(known: blank, systems: sets, ready: true, signedIn: false, pulled: false, asked: false))
+        #expect(KnownPrompt.due(known: blank, systems: sets, ready: true, signedIn: true, pulled: true, asked: false))
+        #expect(!KnownPrompt.due(known: blank, systems: sets, ready: true, signedIn: true, pulled: false, asked: false))
+        #expect(!KnownPrompt.due(known: blank, systems: sets, ready: false, signedIn: false, pulled: false, asked: false))
+        #expect(!KnownPrompt.due(known: blank, systems: [], ready: true, signedIn: false, pulled: false, asked: false))
+        #expect(!KnownPrompt.due(known: blank, systems: sets, ready: true, signedIn: false, pulled: false, asked: true))
+        #expect(!KnownPrompt.due(known: KnownLanguages(["en"], at: 1), systems: sets, ready: true, signedIn: false, pulled: false, asked: false))
+    }
+
+    @Test func thePromptStartsFromTheNewestSetsRoot() {
+        let picks = KnownPrompt.seed(systems: [set("en", at: 1), set("es", at: 9), set("fr", at: 4)], device: "en")
+        #expect(picks.known.codes == ["es"])
+        #expect(picks.root == "es")
+        #expect(!picks.touched)
+        #expect(picks.codesToSave(over: KnownLanguages([])) == ["es"])
+    }
+
+    @Test func thePromptFallsBackToTheDeviceLanguage() {
+        #expect(KnownPrompt.seed(systems: [], device: "de").known.codes == ["de"])
+        #expect(KnownPrompt.seed(systems: [set("la", at: 3)], device: "de").known.codes == ["de"])
+    }
+
+    @Test func theSettingsRowListsSpokenLanguagesDeviceFirst() {
+        let name = { (c: String) in c.uppercased() }
+        #expect(KnownPrompt.summary(KnownLanguages(["es", "en", "ja"], at: 1), device: "es", name: name) == "ES, EN, JA")
+        #expect(KnownPrompt.summary(KnownLanguages([]), device: "fr", name: name) == "FR")
+    }
 }

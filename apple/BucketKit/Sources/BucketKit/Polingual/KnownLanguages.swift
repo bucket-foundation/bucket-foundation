@@ -137,3 +137,22 @@ public struct KnownPicks: Sendable, Equatable {
         if targets.isEmpty { targets = known.starterTargets(root: root) }
     }
 }
+
+public enum KnownPrompt {
+    public static let askedKey = "polingual.knownAsked"
+
+    public static func due(known: KnownLanguages, systems: [LangSystem], ready: Bool, signedIn: Bool, pulled: Bool, asked: Bool) -> Bool {
+        guard ready, !asked, known.isBlank, !systems.isEmpty else { return false }
+        return !signedIn || pulled
+    }
+
+    public static func seed(systems: [LangSystem], device: String) -> KnownPicks {
+        let newest = systems.max { $0.createdAt < $1.createdAt }?.root
+        let lead = newest.flatMap { KnownLanguages.speakable(device: device).contains($0) ? $0 : nil }
+        return KnownPicks(device: lead ?? device)
+    }
+
+    public static func summary(_ known: KnownLanguages, device: String, name: (String) -> String) -> String {
+        KnownPicks(device: device, stored: known).bases.map(name).joined(separator: ", ")
+    }
+}

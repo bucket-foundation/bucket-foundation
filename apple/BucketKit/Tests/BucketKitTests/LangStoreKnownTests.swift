@@ -240,4 +240,17 @@ import Testing
         await s.resync()
         #expect(saved(server) == KnownLanguages(["en", "pl"], at: 9_000) && !s.hasUnsyncedWork)
     }
+
+    @Test func pulledTracksWhetherTheServerAnswered() async {
+        let server = LangServer()
+        let signedIn = LockedBox(false)
+        let s = store(server, signedIn: signedIn)
+        await s.load()
+        #expect(!s.pulled)
+        signedIn.mutate { $0 = true }
+        await s.load(force: true)
+        #expect(s.pulled)
+        s.clearLocal()
+        #expect(!s.pulled)
+    }
 }

@@ -57,6 +57,7 @@ public final class LangStore {
     }
     public private(set) var systems: [LangSystem] = []
     public private(set) var known = KnownLanguages([])
+    public private(set) var pulled = false
     public private(set) var states: [String: EngineState] = [:]
     public private(set) var saveState = SaveResult.idle
     public private(set) var clips: [String: Set<String>] = [:]
@@ -151,6 +152,7 @@ public final class LangStore {
         clips = loadedClips
         systems = list
         states = st
+        pulled = server != nil
         status = corpus == nil ? .error : .ready
         if server != nil {
             await healPlacements(epoch: mine)
@@ -724,6 +726,7 @@ public final class LangStore {
         epoch += 1
         inFlight = [:]
         refusedUntil = [:]
+        pulled = false
         status = .idle
     }
 
