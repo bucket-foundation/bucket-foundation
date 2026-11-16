@@ -135,10 +135,11 @@ test("parseCodes trims, uppercases and dedupes", () => {
   assert.deepEqual(parseCodes("abc123, ABC123\nzz9999  bad\n"), ["ABC123", "ZZ9999"]);
 });
 
-test("code email points at the Bucket beta and the redeem link", () => {
+test("code email points at the App Store listing and the redeem link", () => {
   const m = codeEmail("a@b.co", "P <p@x.co>", "ABC123");
   assert.match(m.text, /ABC123/);
-  assert.match(m.text, /Bucket beta/);
+  assert.match(m.text, /apps\.apple\.com\/app\/id6825177856/);
+  assert.doesNotMatch(m.text + m.html, /testflight|Bucket beta/i);
   assert.match(m.text, /apps\.apple\.com\/redeem/);
 });
 
@@ -173,7 +174,7 @@ function loadBeta(nav: { userAgent: string; platform: string; maxTouchPoints: nu
   vm.runInNewContext(betaJs, win);
   const click = () => {
     let prevented = false;
-    for (const f of clicks) f({ target: { closest: (sel: string) => (sel.includes("testflight") ? {} : null) }, preventDefault: () => (prevented = true) });
+    for (const f of clicks) f({ target: { closest: (sel: string) => (sel.includes("apps.apple.com/app/id6825177856") ? {} : null) }, preventDefault: () => (prevented = true) });
     return prevented;
   };
   return { click, events, fetches };
@@ -185,20 +186,12 @@ const mac = { ...iPadOS, maxTouchPoints: 0 };
 const android = { userAgent: "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 Chrome/131.0 Mobile Safari/537.36", platform: "Linux armv8l", maxTouchPoints: 5 };
 const windows = { userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36", platform: "Win32", maxTouchPoints: 0 };
 
-test("iPhone and iPadOS beta clicks go straight to TestFlight and never call preventDefault", () => {
-  for (const nav of [iPhone, iPadOS]) {
+test("App Store clicks go straight to the listing on every device and record the open", () => {
+  for (const nav of [iPhone, iPadOS, mac, android, windows]) {
     const b = loadBeta(nav);
     assert.equal(b.click(), false, nav.platform);
     assert.ok(b.events.includes("testflight_open"));
-  }
-});
-
-test("desktop and Android beta clicks open the email sheet", () => {
-  for (const nav of [mac, android, windows]) {
-    const b = loadBeta(nav);
-    assert.equal(b.click(), true, nav.platform);
-    assert.ok(!b.events.includes("testflight_open"));
-    assert.deepEqual(b.fetches, ["/api/founding"]);
+    assert.deepEqual(b.fetches, []);
   }
 });
 
@@ -226,5 +219,6 @@ test("beta.js loads Vercel analytics once and sends launch events only on succes
   assert.match(js, /UTM=T0\.s\|\|"direct"/);
   assert.match(js, /sendBeacon\("\/api\/events",b\)/);
   assert.match(js, /if\(top===self\)ev\("page_view"\)/);
-  assert.match(js, /a\[href\^="https:\/\/testflight\.apple\.com\/join"\][\s\S]*if\(IOS\)\{ev\("testflight_open"\)/);
+  assert.match(js, /a\[href\^="https:\/\/apps\.apple\.com\/app\/id6825177856"\]'\)\)ev\("testflight_open"\)/);
+  assert.doesNotMatch(js, /testflight\.apple\.com/);
 });

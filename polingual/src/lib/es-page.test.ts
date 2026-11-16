@@ -11,7 +11,7 @@ test("es page is Spanish and canonical at /es", () => {
   assert.match(es, /<html lang="es">/);
   assert.match(es, /<link rel="canonical" href="https:\/\/www\.polingual\.com\/es">/);
   assert.match(es, /tercer<\/em> idioma/);
-  assert.ok(!/Join the beta|Language learning|day streak/.test(es.replace(/<script>window\.PL_TR=.*?<\/script>/s, "")));
+  assert.ok(!/Join the beta|Get the app|Download on the App Store|Language learning|day streak/.test(es.replace(/<script>window\.PL_TR=.*?<\/script>/s, "")));
 });
 
 test("both pages pair through hreflang", () => {
@@ -21,8 +21,14 @@ test("both pages pair through hreflang", () => {
   }
 });
 
-test("es keeps the Bucket beta call to action", () => {
-  assert.match(es, /testflight\.apple\.com\/join\/B1ctUxn5/);
+test("every home page links the App Store listing and no TestFlight invite", () => {
+  for (const f of ["index.html", "es.html", "landing.html", "mobile.html", "slide.html"]) {
+    const html = readFileSync(join(d8, f), "utf8");
+    assert.match(html, /href="https:\/\/apps\.apple\.com\/app\/id6825177856"/, f);
+    assert.doesNotMatch(html, /testflight\.apple\.com/, f);
+  }
+  assert.match(en, />Download on the App Store</);
+  assert.match(es, />Descárgala en el App Store</);
 });
 
 test("/es rewrites to the generated page", async () => {

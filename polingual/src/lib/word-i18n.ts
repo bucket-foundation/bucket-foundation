@@ -44,7 +44,7 @@ type WordStrings = {
 };
 
 type LocaleInfo = { code: string; name: string; locale: string; hreflang: string; rtl: boolean; labels: SiteLabels };
-type SiteLabels = { beta: string; support: string; privacy: string; terms: string };
+type SiteLabels = { app: string; support: string; privacy: string; terms: string };
 
 const PLACEHOLDER = /\{(\w+)\}/g;
 const RTL_LOCALES = new Set(["ar", "fa", "he"]);
@@ -89,7 +89,7 @@ function validateSiteBundles(bundles: Record<string, unknown>, locales: string[]
       continue;
     }
     for (const k of ["name", "locale", "hreflang"] as const) if (!b[k]) problems.push(`${code}: missing key ${k}`);
-    for (const k of [">Join the beta<", ">Support<", ">Privacy<", ">Terms<"]) if (!b.page?.[k]) problems.push(`${code}: missing key page.${k}`);
+    for (const k of [">Get the app<", ">Support<", ">Privacy<", ">Terms<"]) if (!b.page?.[k]) problems.push(`${code}: missing key page.${k}`);
   }
   return problems;
 }
@@ -115,7 +115,7 @@ function bareHreflang(tag: string): string {
 }
 
 export function localeInfo(code: string): LocaleInfo {
-  if (code === "en") return { code, name: "English", locale: "en_US", hreflang: "en", rtl: false, labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" } };
+  if (code === "en") return { code, name: "English", locale: "en_US", hreflang: "en", rtl: false, labels: { app: "Get the app", support: "Support", privacy: "Privacy", terms: "Terms" } };
   const b = SITE_BUNDLES[code] as { name: string; locale: string; hreflang: string; page: Record<string, string> };
   return {
     code,
@@ -123,7 +123,7 @@ export function localeInfo(code: string): LocaleInfo {
     locale: b.locale,
     hreflang: bareHreflang(b.hreflang),
     rtl: RTL_LOCALES.has(code),
-    labels: { beta: stripTag(b.page[">Join the beta<"]), support: stripTag(b.page[">Support<"]), privacy: stripTag(b.page[">Privacy<"]), terms: stripTag(b.page[">Terms<"]) },
+    labels: { app: stripTag(b.page[">Get the app<"]), support: stripTag(b.page[">Support<"]), privacy: stripTag(b.page[">Privacy<"]), terms: stripTag(b.page[">Terms<"]) },
   };
 }
 

@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
-import { allowedSource, emailLimiter, verifyHuman, ipLimiter, TESTFLIGHT_URL, type BetaEnv, type BetaRequest, type Fetcher, RateLimiter, UNSUBSCRIBE } from "./beta";
+import { APP_STORE_URL } from "./facts";
+import { allowedSource, emailLimiter, verifyHuman, ipLimiter, type BetaEnv, type BetaRequest, type Fetcher, RateLimiter, UNSUBSCRIBE } from "./beta";
 import { parseSignup } from "./signup";
 
 const FOUNDING_TOTAL = 200;
@@ -69,8 +70,8 @@ export function codeEmail(to: string, from: string, code: string) {
     from,
     to: [to],
     subject: "Your Polingual founding spot",
-    text: `You hold one of ${FOUNDING_TOTAL} Polingual founding spots.\n\nYour one-time offer code: ${code}\n\nPolingual language systems run in the Bucket beta today. Join it through TestFlight:\n${TESTFLIGHT_URL}\n\nWhen Polingual is on the App Store, redeem your code on your iPhone:\n${redeem}\n\nThe code works once.\n\n${UNSUBSCRIBE}\n\nPolingual`,
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>You hold one of ${FOUNDING_TOTAL} Polingual founding spots.</p><p>Your one-time offer code: <b style="font-family:monospace;font-size:18px">${code}</b></p><p>Polingual language systems run in the Bucket beta today. <a href="${TESTFLIGHT_URL}">Join it through TestFlight</a>.</p><p>When Polingual is on the App Store, redeem your code on your iPhone:</p><p><a href="${redeem}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Redeem on iPhone</a></p><p style="font-size:13px;color:#5d5650">The code works once. ${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+    text: `You hold one of ${FOUNDING_TOTAL} Polingual founding spots.\n\nYour one-time offer code: ${code}\n\nPolingual is on the App Store. Download it on your iPhone:\n${APP_STORE_URL}\n\nThen redeem your code on your iPhone:\n${redeem}\n\nThe code works once.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>You hold one of ${FOUNDING_TOTAL} Polingual founding spots.</p><p>Your one-time offer code: <b style="font-family:monospace;font-size:18px">${code}</b></p><p>Polingual is on the App Store. <a href="${APP_STORE_URL}">Download it on your iPhone</a>.</p><p>Then redeem your code on your iPhone:</p><p><a href="${redeem}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Redeem on iPhone</a></p><p style="font-size:13px;color:#5d5650">The code works once. ${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
   };
 }
 
