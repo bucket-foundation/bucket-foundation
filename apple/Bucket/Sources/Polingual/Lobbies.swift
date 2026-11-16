@@ -32,6 +32,27 @@ struct LobbiesTile: View {
     }
 }
 
+struct StagedLobbyHook: ViewModifier {
+    #if DEBUG
+    @Environment(LobbyStore.self) private var lobbies
+    @State private var open = false
+    #endif
+
+    func body(content: Content) -> some View {
+        #if DEBUG
+        content
+            .navigationDestination(isPresented: $open) { LobbyRoom() }
+            .task {
+                guard !lobbies.staged, let players = Launch.value("-lobbyStage").flatMap(Int.init) else { return }
+                lobbies.stage(players: players, mode: Launch.value("-lobbyStageMode").flatMap(LobbyPromptMode.init(rawValue:)) ?? .form)
+                open = true
+            }
+        #else
+        content
+        #endif
+    }
+}
+
 struct LobbiesScreen: View {
     @Environment(LobbyStore.self) private var lobbies
     @Environment(LangStore.self) private var langs
@@ -167,6 +188,7 @@ struct LobbyRoom: View {
         .paper()
         .navigationTitle(lobbies.current?.name ?? "")
         .inlineTitle()
+        .fullHeightSession()
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Leave") {
@@ -274,7 +296,7 @@ struct LobbyRoom: View {
             onWeb(l, p, remaining)
         } else if let p = l.prompt(i) {
             let picked = lobbies.picks[i]
-            VStack(spacing: 16) {
+            FitPage { VStack(spacing: 16) {
                 HStack {
                     Text("Round \(i + 1) of \(l.rounds)").font(.headline).foregroundStyle(Palette.ink)
                     Spacer()
@@ -305,17 +327,11 @@ struct LobbyRoom: View {
                         .accessibilityIdentifier("lobby-choice")
                     }
                 }
-                HStack(spacing: 8) {
-                    ForEach(l.standings) { pl in
-                        Label(pl.name, systemImage: pl.answered ? "checkmark.circle.fill" : "circle")
-                            .font(.caption.weight(.semibold))
-                            .foregroundStyle(pl.answered ? D8.malachite : Palette.muted)
-                    }
-                }
+                answered(l)
                 if i > 0 { lastRound(l, i - 1) }
                 Spacer(minLength: 0)
             }
-            .padding()
+            .padding() }
         } else {
             GameWaiting(message: String(localized: "Loading the words for this lobby."))
         }
@@ -337,7 +353,7 @@ struct LobbyRoom: View {
         let tiles = LobbyTilePicks.tiles(p)
         let mine = tapped[i] ?? []
         let sent = lobbies.picks[i] != nil
-        return VStack(spacing: 14) {
+        return FitPage { VStack(spacing: 14) {
             roundHeader(l, i, remaining)
             Text("Tap every word for \(p.gloss)").font(D8.word(24)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), spacing: 10)], spacing: 10) {
@@ -368,7 +384,7 @@ struct LobbyRoom: View {
             if i > 0 { lastRound(l, i - 1) }
             Spacer(minLength: 0)
         }
-        .padding()
+        .padding() }
         .onChange(of: LobbyTilePicks.submitDue(remaining: remaining, roundSeconds: l.roundSeconds), initial: true) { _, due in
             if due { submitTiles(i) }
         }
@@ -487,6 +503,32 @@ struct LobbyRoom: View {
                 .background(Palette.card, in: .rect(cornerRadius: 10))
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(e.correct ? D8.malachite : .clear, lineWidth: 2))
                 .accessibilityElement(children: .combine)
+            }
+        }
+    }
+
+    func answered(_ l: Lobby) -> some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 8) {
+                ForEach(l.standings) { pl in
+                    Label(pl.name, systemImage: pl.answered ? "checkmark.circle.fill" : "circle")
+                        .font(.caption.weight(.semibold))
+                        .lineLimit(1)
+                        .fixedSize()
+                        .foregroundStyle(pl.answered ? D8.malachite : Palette.muted)
+                        .accessibilityValue(pl.answered ? String(localized: "Answered") : String(localized: "Waiting"))
+                }
+            }
+            HStack(spacing: 6) {
+                ForEach(l.standings) { pl in
+                    Image(systemName: pl.answered ? "checkmark.circle.fill" : "circle")
+                        .foregroundStyle(pl.answered ? D8.malachite : Palette.muted)
+                        .accessibilityLabel(pl.name)
+                        .accessibilityValue(pl.answered ? String(localized: "Answered") : String(localized: "Waiting"))
+                }
+                Text(verbatim: "\(l.standings.filter(\.answered).count)/\(l.standings.count)")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Palette.muted)
             }
         }
     }

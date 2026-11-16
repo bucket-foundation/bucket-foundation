@@ -49,6 +49,7 @@ struct LearnView: View {
             .navigationDestination(for: AtomRoute.self) { subjects?.atom($0) }
             .navigationDestination(for: LearnRoute.self) { destination($0) }
             .langDestinations(path: $path)
+            .modifier(StagedLobbyHook())
         }
         .task {
             await langs.load()

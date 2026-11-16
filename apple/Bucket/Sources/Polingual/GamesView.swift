@@ -252,6 +252,7 @@ struct GamesView: View {
         .navigationTitle("Games")
         .plChrome()
         .navigationDestination(item: $open) { $0.screen }
+        .modifier(StagedLobbyHook())
         .onChange(of: open) { old, new in
             if new != nil { finishedAtOpen = GameTally.finished }
             if old != nil, new == nil { LobbyAds.shared.leftRoom(finishedGame: GameTally.finished > finishedAtOpen) }

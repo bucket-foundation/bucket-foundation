@@ -356,6 +356,7 @@ public final class LobbyStore {
     public private(set) var busy = false
     public private(set) var error: BucketError?
     public private(set) var offset: TimeInterval = 0
+    public private(set) var staged = false
 
     let api: BucketAPI
     let token: @MainActor () async -> String?
@@ -411,6 +412,12 @@ public final class LobbyStore {
     public func leave() async {
         guard let id = current?.id else { return }
         current = nil
+        if staged {
+            staged = false
+            picks = [:]
+            marks = [:]
+            return
+        }
         picks = [:]
         marks = [:]
         open.removeAll { $0.id == id }
@@ -450,7 +457,7 @@ public final class LobbyStore {
     }
 
     public func poll() async {
-        guard let lobby = current, let t = await anyToken() else { return }
+        guard !staged, let lobby = current, let t = await anyToken() else { return }
         do {
             let r = try await api.lobbyState(token: t, lobbyId: lobby.id, since: lobby.version)
             if let s = r.now.flatMap(parseInstant) { sync(s) }
@@ -470,6 +477,15 @@ public final class LobbyStore {
             try? await Task.sleep(for: .seconds(LobbyRules.pollSeconds))
         }
     }
+
+    #if DEBUG
+    public func stage(players: Int, mode: LobbyPromptMode = .form) {
+        staged = true
+        picks = [:]
+        marks = [:]
+        current = Lobby.staged(players: players, mode: mode, now: now)
+    }
+    #endif
 
     func enter(_ lobby: Lobby) -> Lobby {
         picks = [:]
@@ -499,3 +515,36 @@ public final class LobbyStore {
         }
     }
 }
+
+#if DEBUG
+extension Lobby {
+    static let stagedNames = ["Alexandria", "Maximilian", "Bernadette", "Christopher", "Evangeline", "Sebastian", "Wilhelmina", "Bartholomew"]
+
+    static func staged(players: Int, mode: LobbyPromptMode, now: Date) -> Lobby {
+        let count = min(max(players, 1), LobbyRules.cap)
+        let stamp = ISO8601DateFormatter()
+        let seconds = 600
+        let people = (0..<count).map { n in
+            LobbyPlayer(userId: "staged-\(n)", name: stagedNames[n], ready: true, score: (count - n) * 120, isHost: n == 0, isMe: n == 0, online: true, answered: n % 2 == 1)
+        }
+        let tiles = ["es:agua", "fr:eau", "it:acqua", "pt:água", "de:Wasser", "nl:water", "es:fuego", "fr:feu", "it:fuoco", "pt:fogo", "de:Feuer", "nl:vuur"]
+        let words = ["mariposa", "mantequilla", "marinero", "mariscos"]
+        let prompts = (0..<2).map { r in
+            mode == .tiles
+                ? LobbyPrompt(round: r, mode: .tiles, lang: nil, gloss: "water", choices: tiles, answer: r == 0 ? "0,1,2,3,4,5" : nil, reveal: nil)
+                : LobbyPrompt(round: r, mode: mode, lang: "es", gloss: "the butterfly", choices: words, answer: r == 0 ? words[0] : nil, reveal: nil)
+        }
+        let results = people.enumerated().filter { $0.offset != count - 1 }.map { n, p in
+            LobbyResult(round: 0, userId: p.userId, correct: n % 3 != 2, ms: 1200 + n * 400, points: n % 3 != 2 ? 120 - n * 10 : 0)
+        }
+        let start = now.addingTimeInterval(-Double(seconds) - 5)
+        return Lobby(
+            id: "staged", code: "STAGED", name: "Staged lobby", game: mode == .tiles ? .tiles : .daily, root: "en", targets: ["es", "fr", "it", "pt", "de", "nl"],
+            seed: "staged", status: .playing, listed: false, rounds: 8, roundSeconds: seconds, revealSeconds: 0, startedAt: stamp.string(from: start),
+            version: 1, now: stamp.string(from: now), isHost: true, players: people, messages: [],
+            round: LobbyRound(index: 1, startsAt: stamp.string(from: now.addingTimeInterval(-5)), endsAt: stamp.string(from: now.addingTimeInterval(Double(seconds) - 5)), reveal: false),
+            prompts: prompts, results: results
+        )
+    }
+}
+#endif
