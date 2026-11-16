@@ -14,6 +14,14 @@ public struct KnownLanguages: Sendable, Equatable {
         self.at = at
     }
 
+    public init(js: JSValue?) {
+        self.init(js?["codes"]?.stringArray ?? [], at: js?["at"]?.number ?? 0)
+    }
+
+    public var js: JSValue {
+        .object(JSObject([("codes", .array(codes.map(JSValue.string))), ("at", .number(at))]))
+    }
+
     public var isBlank: Bool { codes.isEmpty }
 
     public static func speakable(device: String) -> [String] {
