@@ -62,3 +62,29 @@ test("a settings-only push and a partial state pass through as written", async (
   assert.equal(res.status, 200);
   assert.deepEqual(calls[0].args.p_rows.map((r) => r.branch), ["s", "p"]);
 });
+
+function failing(result: { data: unknown; error: { message: string } | null }): string[] {
+  stub(() => ({ written: [], refused: [] }));
+  (progressDeps as unknown as Record<string, unknown>).service = () => ({ rpc: async () => result });
+  const logged: string[] = [];
+  test.mock.method(console, "error", (...parts: unknown[]) => void logged.push(parts.join(" ")));
+  return logged;
+}
+
+test("a database error on the write returns 500 write_failed and logs the cause", async () => {
+  const logged = failing({ data: null, error: { message: "connection reset" } });
+  const res = await POST(post({ branch: "lang-sys-s1", data: studied }));
+  test.mock.restoreAll();
+  assert.equal(res.status, 500);
+  assert.deepEqual(await res.json(), { error: "write_failed" });
+  assert.deepEqual(logged, ["[academy/progress] write failed: connection reset"]);
+});
+
+test("a write that answers with no result returns 500 write_failed", async () => {
+  const logged = failing({ data: null, error: null });
+  const res = await POST(post({ branch: "lang-sys-s1", data: studied }));
+  test.mock.restoreAll();
+  assert.equal(res.status, 500);
+  assert.deepEqual(await res.json(), { error: "write_failed" });
+  assert.deepEqual(logged, ["[academy/progress] write returned no result"]);
+});
