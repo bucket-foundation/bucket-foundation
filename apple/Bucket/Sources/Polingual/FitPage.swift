@@ -15,7 +15,7 @@ struct FitPage<Content: View>: View {
                 content
                     .frame(width: box.size.width)
                     .fixedSize(horizontal: false, vertical: true)
-                    .onGeometryChange(for: Double.self) { $0.size.height } action: { natural = $0 }
+                    .onGeometryChange(for: Double.self) { $0.size.height } action: { natural = FitScale.settled(natural, $0) }
                     .scaleEffect(scale, anchor: center ? .center : .top)
                     .frame(width: box.size.width, height: max(height, natural * scale), alignment: center ? .center : .top)
                     .opacity(natural > 0 ? 1 : 0)
