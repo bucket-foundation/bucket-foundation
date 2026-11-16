@@ -3,12 +3,7 @@ package com.polingual.app
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountCircle
-import androidx.compose.material.icons.outlined.MenuBook
-import androidx.compose.material.icons.outlined.WbSunny
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
@@ -21,7 +16,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -75,7 +69,9 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
         navigationSuiteColors = NavigationSuiteDefaults.colors(navigationBarContainerColor = PL.Card, navigationRailContainerColor = PL.Card),
         containerColor = PL.Paper,
     ) {
-        androidx.compose.runtime.CompositionLocalProvider(LocalStartLearning provides { nav.navigate(Tab.Learn.route) { launchSingleTop = true } }) {
+        val access by graph.billing.access.collectAsState()
+        val rootLang = graph.state.collectAsState().value?.system?.root ?: "en"
+        androidx.compose.runtime.CompositionLocalProvider(LocalRootLang provides rootLang, LocalStartLearning provides { nav.navigate(PlayRules.startLearningRoute(access)) { launchSingleTop = true } }) {
             Box(Modifier.fillMaxSize()) { Routes(graph, nav) }
         }
     }

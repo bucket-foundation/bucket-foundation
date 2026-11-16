@@ -6,6 +6,7 @@ struct MilestoneMoment: View {
     let milestone: Milestone
     let root: String
     let langs: [String]
+    var mastered: [ShareObject] = []
     @State private var shown = false
 
     var title: String {
@@ -23,10 +24,10 @@ struct MilestoneMoment: View {
         }
     }
 
-    var object: ShareObject {
+    var objects: [ShareObject] {
         switch milestone.kind {
-        case .mastered(let lang, let count): .mastered(lang: lang, count: count, root: root)
-        case .streak(let days): .streak(days: days, langs: langs, root: root)
+        case .mastered(let lang, let count): mastered.isEmpty ? [.mastered(lang: lang, count: count, root: root)] : mastered
+        case .streak(let days): [.streak(days: days, langs: langs, root: root)]
         }
     }
 
@@ -46,7 +47,7 @@ struct MilestoneMoment: View {
                 .rotationEffect(.degrees(shown ? 0 : -8))
             Text(title).font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
             Text(detail).font(.headline).foregroundStyle(Palette.muted)
-            ShareObjectButton(object, wide: true).padding(.top, 6)
+            ShareObjectButton(objects: objects, wide: true).padding(.top, 6)
             Button("Keep going") { dismiss() }.buttonStyle(.borderless).font(.headline).tint(Palette.ink)
         }
         .padding(24)
@@ -82,9 +83,16 @@ struct MilestoneMoments: ViewModifier {
         moment = next
     }
 
+    var root: String { store.systems.first?.root ?? "en" }
+
+    func shares(_ milestone: Milestone) -> [ShareObject] {
+        guard case .mastered(let lang, _) = milestone.kind else { return [] }
+        return store.masteredShares(root: root, first: lang)
+    }
+
     func body(content: Content) -> some View {
         content
-            .sheet(item: $moment) { MilestoneMoment(milestone: $0, root: store.systems.first?.root ?? "en", langs: store.gameLangs) }
+            .sheet(item: $moment) { MilestoneMoment(milestone: $0, root: root, langs: store.gameLangs, mastered: shares($0)) }
             .onChange(of: ready, initial: true) { check() }
             .onChange(of: store.status) { check() }
             .onAppear { check() }

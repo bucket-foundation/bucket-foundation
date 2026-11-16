@@ -6,6 +6,10 @@ import { Field, FlagBand, FlagTile, Ground, Input, Sheet, Stage, Sticker, Streak
 test("grounds render each kind", () => {
   assert.match(renderToStaticMarkup(<Ground kind="lattice" cut />), /data-ground="lattice"/);
   assert.match(renderToStaticMarkup(<Ground />), /data-ground="paper"/);
+  const toned = renderToStaticMarkup(<Ground tone="lapis" pattern="tile" tile="azulejo" testId="g" />);
+  assert.match(toned, /data-ground="lapis"/);
+  assert.match(toned, /data-pattern="tile"/);
+  assert.match(toned, /--ground-tile/);
 });
 
 test("sticker places hero art", () => {
@@ -33,4 +37,10 @@ test("stage keeps content in its own column", () => {
   const html = renderToStaticMarkup(<Stage testId="st"><p>hello</p></Stage>);
   assert.match(html, /data-testid="st"/);
   assert.match(html, /aria-hidden="true"[\s\S]*data-sticker="seal"[\s\S]*<p>hello<\/p>/);
+});
+
+test("type primitives render their roles", async () => {
+  const { Eyebrow, Lede, Stack, Title } = await import("../ui");
+  const html = renderToStaticMarkup(<Stack><Eyebrow>Daily</Eyebrow><Title onDark>Hi</Title><Lede>Body</Lede></Stack>);
+  assert.match(html, /<p[^>]*>Daily<\/p><h1[^>]*data-dark="true"[^>]*>Hi<\/h1><p[^>]*>Body<\/p>/);
 });

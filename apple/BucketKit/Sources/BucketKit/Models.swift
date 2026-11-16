@@ -23,6 +23,8 @@ public struct DeckEntry: Decodable, Sendable, Identifiable, Hashable {
     }
 
     public var isLanguage: Bool { kind == "language" || id.hasPrefix("lang") }
+
+    public var questionsFile: String { "corpus/questions/" + (file.split(separator: "/").last.map(String.init) ?? "\(id).json") }
 }
 
 public struct Deck: Decodable, Sendable {

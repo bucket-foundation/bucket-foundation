@@ -15,8 +15,11 @@ import androidx.compose.runtime.setValue
 fun NavGraphBuilder.milestoneRoutes(graph: Graph, nav: NavHostController) {
     composable("listen") { ListenScreen(graph) { nav.popBackStack() } }
     composable("paywall") { PaywallScreen(graph) { nav.popBackStack() } }
-    composable("lobbies?code={code}", arguments = listOf(androidx.navigation.navArgument("code") { type = androidx.navigation.NavType.StringType; defaultValue = "" })) { e ->
-        LobbiesScreen(graph, e.arguments?.getString("code").orEmpty()) { nav.popBackStack() }
+    composable("lobbies?code={code}&game={game}", arguments = listOf(
+        androidx.navigation.navArgument("code") { type = androidx.navigation.NavType.StringType; defaultValue = "" },
+        androidx.navigation.navArgument("game") { type = androidx.navigation.NavType.StringType; defaultValue = "" },
+    )) { e ->
+        LobbiesScreen(graph, e.arguments?.getString("code").orEmpty(), e.arguments?.getString("game").orEmpty()) { nav.popBackStack() }
     }
 }
 
@@ -35,6 +38,8 @@ fun TodayMore(graph: Graph, nav: NavHostController) {
 
 @Composable
 fun AccountExtras(graph: Graph, nav: NavHostController) {
+    foundation.bucket.core.ui.pl.SectionTitle("Sound")
+    Card { SilentSwitch(graph) }
     val access by graph.billing.access.collectAsState()
     val activity = graph.activity?.get()
     if (activity != null && graph.ads.shouldShow(access) && graph.ads.privacyOptionsRequired(activity)) {

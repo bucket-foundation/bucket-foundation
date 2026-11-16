@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { needsConsent } from "@/lib/lobby/ads";
+import { tokens } from "@/ui/tokens";
 import styles from "../app/app.module.css";
 import { AccountCta } from "./Account";
 import PlayFrame from "./PlayFrame";
+import { SilentSwitch } from "@/ui";
 import play from "./play.module.css";
 
 const FONTS = "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap";
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#5B1A4A", viewportFit: "cover" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: tokens.color.tyrian, viewportFit: "cover" };
 
 export default async function PlayLayout({ children }: { children: React.ReactNode }) {
   const country = (await headers()).get("x-vercel-ip-country");
@@ -24,7 +26,10 @@ export default async function PlayLayout({ children }: { children: React.ReactNo
         <img src="/brand/kit/mark-on-dark.svg" alt="" width={32} height={32} />
         <span className={play.brandText}>polingual play</span>
       </a>
-      <AccountCta />
+      <span className={play.headTools}>
+        <SilentSwitch onDark compact />
+        <AccountCta />
+      </span>
     </header>
   );
   return (

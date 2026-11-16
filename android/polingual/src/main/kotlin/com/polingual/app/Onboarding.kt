@@ -67,7 +67,7 @@ fun Onboarding(graph: Graph) {
             }
             Row(Modifier.fillMaxWidth().padding(vertical = 12.dp), horizontalArrangement = Arrangement.Center) {
                 repeat(2) { i ->
-                    Box(Modifier.padding(4.dp).size(if (i == step) 22.dp else 8.dp, 8.dp).clip(RoundedCornerShape(50)).background(if (i == step) PL.Vermilion else p.rule))
+                    Box(Modifier.padding(4.dp).size(if (i == step) 22.dp else 8.dp, 8.dp).plSurface(if (i == step) PL.Vermilion else p.rule, foundation.bucket.core.ui.pl.PLRadius.pill))
                 }
             }
             PrimaryButton(
@@ -122,7 +122,7 @@ fun Languages(root: String, targets: List<String>, onChange: (List<String>) -> U
     val p = LocalPalette.current
     Text("Which languages?", style = Type.display, color = p.ink)
     Text("Each word comes back in every language you pick.", color = p.muted)
-    Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(PLRadius.lg)).background(PL.Card).border(2.dp, PL.Hairline, RoundedCornerShape(PLRadius.lg)).padding(PLSpace.s3), horizontalArrangement = Arrangement.spacedBy(PLSpace.s3)) {
+    Row(Modifier.fillMaxWidth().plSurface(PL.Card, PLRadius.lg).border(2.dp, PL.Hairline, RoundedCornerShape(PLRadius.lg)).padding(PLSpace.s3), horizontalArrangement = Arrangement.spacedBy(PLSpace.s3)) {
         if (targets.isEmpty()) Text("Pick at least one.", color = p.muted, modifier = Modifier.height(76.dp))
         targets.forEach { l ->
             Column(horizontalAlignment = Alignment.CenterHorizontally) {

@@ -1,4 +1,5 @@
 "use client";
+import { pushSettled } from "./progress-guard";
 
 import { mergeState, normalizeState, type EngineState } from "./engine";
 import { watchReconnect } from "./reconnect";
@@ -59,7 +60,7 @@ export async function pullServer(): Promise<ServerBranches | null> {
 export async function pushBranch(branch: string, state: EngineState): Promise<boolean> {
   try {
     const res = await fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ branch, data: state }) });
-    return res.ok;
+    return pushSettled(res.status);
   } catch {
     return false;
   }

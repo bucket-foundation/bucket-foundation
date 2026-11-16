@@ -167,6 +167,20 @@ function playClip(text: string, lang: string): boolean {
   }
 }
 
+export const SILENT_KEY = "polingual-web/play-muted/v1";
+
+export function autoSpeakAllowed(): boolean {
+  try {
+    return typeof window === "undefined" || window.localStorage.getItem(SILENT_KEY) !== "1";
+  } catch {
+    return true;
+  }
+}
+
+export function speakAuto(text: string, lang: string): boolean {
+  return autoSpeakAllowed() ? speak(text, lang) : false;
+}
+
 export function speak(text: string, lang: string): boolean {
   if (typeof window === "undefined" || !text) return false;
   const voice = voiceFor(lang);

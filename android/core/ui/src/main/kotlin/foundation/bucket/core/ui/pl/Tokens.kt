@@ -27,6 +27,13 @@ object PL {
     val Maya = Color(0xFF6FB7C2)
     val Hairline = Color(0x1F231F20)
     val Hairline2 = Color(0x38231F20)
+    val PaperDim = Color(0xFFC9BFAE)
+    val Error = Color(0xFF9B2414)
+    val Dot = Color(0x12231F20)
+    val LipSoft = Color(0x14231F20)
+    val CreamVeil = Color(0xEBF6EEDC)
+    val Gloss = Color(0x73FFFFFF)
+    val Shadow = Color(0x59000000)
     val colors: Map<String, Color> = mapOf(
         "paper" to Paper,
         "paper-2" to Paper2,
@@ -51,6 +58,13 @@ object PL {
         "maya" to Maya,
         "hairline" to Hairline,
         "hairline-2" to Hairline2,
+        "paper-dim" to PaperDim,
+        "error" to Error,
+        "dot" to Dot,
+        "lip-soft" to LipSoft,
+        "cream-veil" to CreamVeil,
+        "gloss" to Gloss,
+        "shadow" to Shadow,
     )
 }
 

@@ -30,7 +30,7 @@ export function trackFor(phase: Snapshot["room"]["phase"] | undefined): Track {
   return "silent";
 }
 
-export function questionLine(q: Pick<Question, "kind" | "prompt">): Line[] {
+function questionLine(q: Pick<Question, "kind" | "prompt">): Line[] {
   if (q.kind === "which_language") return [{ text: "Which language is this?" }];
   if (q.kind === "translate") return [{ text: `Translate from ${langName(q.prompt.from ?? "")} into ${langName(q.prompt.to ?? "")}.` }];
   return [{ text: `Pick the word for ${q.prompt.home ?? ""}, in ${langName(q.prompt.lang ?? "")}.` }];

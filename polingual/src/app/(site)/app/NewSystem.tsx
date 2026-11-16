@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { LANGS, langName, MAX_TARGETS, validateSystem, type LangSystem, type SystemError } from "@academy/lang-systems";
 import type { SaveResult } from "@academy/lang-client";
 import { appHref, presetsFor, ROOT_CHOICES, targetChoices, toggleTarget } from "@/lib/app/systems";
@@ -16,14 +16,41 @@ const ERROR_TEXT: Record<SystemError, string> = {
   duplicate: "You already have this system.",
 };
 
+function TargetPicker({ root, targets, setTargets, clearError }: { root: string; targets: string[]; setTargets: Dispatch<SetStateAction<string[]>>; clearError: () => void }) {
+  const presets = useMemo(() => presetsFor(root), [root]);
+  const choices = useMemo(() => targetChoices(root), [root]);
+  return (
+    <>
+      <div className={styles.stackSm}>
+        <p className={styles.fieldLabel}>Presets</p>
+        <div className={styles.chips}>
+          {presets.map((p) => (
+            <Pill key={p.targets.join("-")} aria-pressed={p.targets.length === targets.length && p.targets.every((t) => targets.includes(t))} onClick={() => { setTargets(p.targets); clearError(); }} data-testid="preset">
+              {p.name} <span className={styles.level}>{p.targets.map(langName).join(", ")}</span>
+            </Pill>
+          ))}
+        </div>
+      </div>
+      <div className={styles.stackSm}>
+        <p className={styles.fieldLabel}>Favorite languages <span className={styles.level}>{targets.length} of {MAX_TARGETS}</span></p>
+        <div className={styles.chips}>
+          {choices.map((c) => (
+            <Pill key={c.code} lang={LANGS[c.code]?.bcp47} aria-pressed={targets.includes(c.code)} onClick={() => { setTargets((t) => toggleTarget(t, c.code, root)); clearError(); }} data-testid={`lang-${c.code}`}>
+              {c.name}
+            </Pill>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function NewSystem({ first = false, systems = [], create }: { first?: boolean; systems?: LangSystem[]; create: (root: string, targets: string[]) => Promise<{ system: LangSystem; result: SaveResult }> }) {
   const router = useRouter();
   const [root, setRoot] = useState("en");
   const [targets, setTargets] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const presets = useMemo(() => presetsFor(root), [root]);
-  const choices = useMemo(() => targetChoices(root), [root]);
 
   async function submit() {
     const err = validateSystem(root, targets, systems);
@@ -55,26 +82,7 @@ export default function NewSystem({ first = false, systems = [], create }: { fir
           ))}
         </Select>
       </Field>
-      <div className={styles.stackSm}>
-        <p className={styles.fieldLabel}>Presets</p>
-        <div className={styles.chips}>
-          {presets.map((p) => (
-            <Pill key={p.targets.join("-")} aria-pressed={p.targets.length === targets.length && p.targets.every((t) => targets.includes(t))} onClick={() => { setTargets(p.targets); setError(null); }} data-testid="preset">
-              {p.name} <span className={styles.level}>{p.targets.map(langName).join(", ")}</span>
-            </Pill>
-          ))}
-        </div>
-      </div>
-      <div className={styles.stackSm}>
-        <p className={styles.fieldLabel}>Favorite languages <span className={styles.level}>{targets.length} of {MAX_TARGETS}</span></p>
-        <div className={styles.chips}>
-          {choices.map((c) => (
-            <Pill key={c.code} lang={LANGS[c.code]?.bcp47} aria-pressed={targets.includes(c.code)} onClick={() => { setTargets((t) => toggleTarget(t, c.code, root)); setError(null); }} data-testid={`lang-${c.code}`}>
-              {c.name}
-            </Pill>
-          ))}
-        </div>
-      </div>
+      <TargetPicker root={root} targets={targets} setTargets={setTargets} clearError={() => setError(null)} />
       {error ? <p role="alert" className={styles.error} data-testid="system-error">{error}</p> : null}
       <Button disabled={busy} onClick={submit} data-testid="create-system">
         {busy ? "Saving" : "Continue to placement"}

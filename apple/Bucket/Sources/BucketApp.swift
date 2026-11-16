@@ -33,7 +33,11 @@ struct BucketApp: App {
         #else
         let shift = 0.0
         #endif
-        _science = State(initialValue: ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift }))
+        let science = ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift })
+        _science = State(initialValue: science)
+        NetworkWatch.shared.onReconnect { await langs.resync() }
+        NetworkWatch.shared.onReconnect { await science.resync() }
+        NetworkWatch.shared.start()
         _gate = State(initialValue: Gate(account: account))
         let groups = GroupStore(api: BucketAPI(), token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
@@ -56,11 +60,14 @@ struct BucketApp: App {
                 .environment(groups)
                 .environment(lobbies)
                 .interfaceLanguage(langs)
+                .task { Connectivity.shared.watch("lang-store") { online in Task { await langs.connectivityChanged(online: online) } } }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
                         if p == .active {
+                            await langs.retryPending()
+                            await NetworkWatch.shared.resync().value
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG
@@ -141,13 +148,13 @@ struct RootView: View {
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {
-                Task { await langs.syncAfterSignIn() }
+                Task { await langs.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
                 Task { await science.syncAfterSignIn() }
                 Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {
                 science.clearLocal()
-                langs.clearLocal()
+                langs.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
             }
         }
@@ -169,7 +176,8 @@ struct RootView: View {
             reminders.reset()
         }
         #endif
-        .task {
+        .task(id: account.session?.userId) {
+            if let id = account.session?.userId { langs.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
                 await science.flush()

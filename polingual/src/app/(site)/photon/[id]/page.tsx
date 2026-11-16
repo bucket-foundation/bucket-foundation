@@ -36,6 +36,141 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return pageMeta({ path: `/photon/${encodeURIComponent(photon.id)}`, title, documentTitle: `${title} · Polingual`, description, type: "article" });
 }
 
+function PhotonHeader({ photon, langLabel }: { photon: Photon; langLabel: string }) {
+  return (
+    <header
+      className="mt-6 rounded-2xl bg-white p-6 md:p-8 border border-[color:var(--pl-hairline)] shadow-[0_4px_0_var(--pl-lip-soft)]"
+    >
+      <div className="flex items-baseline gap-3 flex-wrap mb-3">
+        <span
+          className="font-mono text-[10px] uppercase tracking-[0.22em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--blue)]"
+        >
+          {langLabel}
+        </span>
+        <span
+          className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-faint)]"
+        >
+          {photon.kind}{photon.pos ? ` · ${photon.pos}` : ""}
+        </span>
+        <span
+          className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
+        >
+          {photon.tier}
+        </span>
+      </div>
+
+      <h1
+        className="text-[clamp(2.6rem,7vw,5rem)] leading-[1.05] text-[color:var(--pl-ink)] tracking-[-0.015em]"
+      >
+        {photon.surface}
+      </h1>
+
+      {photon.ipa && (
+        <p
+          className="mt-3 font-mono text-lg md:text-xl text-[color:var(--blue)]"
+        >
+          /{photon.ipa.replace(/^\/|\/$/g, "")}/
+        </p>
+      )}
+    </header>
+  );
+}
+
+function Relations({ photon }: { photon: Photon }) {
+  if (!(photon.relations && photon.relations.length > 0)) return null;
+  return (
+    <section className="mt-10">
+      <h2
+        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
+      >
+        relations · {photon.relations.length}
+      </h2>
+      <ul className="space-y-1.5">
+        {photon.relations.map((r, i) => (
+          <li
+            key={i}
+            className="flex items-baseline gap-3 font-mono text-sm"
+          >
+            <span
+              className="font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded-full whitespace-nowrap bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
+            >
+              {r.predicate}
+            </span>
+            <Link
+              href={`/photon/${encodeURIComponent(r.to)}`}
+              className="hover:underline truncate text-[color:var(--blue)]"
+            >
+              {r.to}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function Branches({ photon }: { photon: Photon }) {
+  if (!(photon.branch && photon.branch.length > 0)) return null;
+  return (
+    <section className="mt-10">
+      <h2
+        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
+      >
+        canon branches
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        {photon.branch.map((b) => (
+          <span
+            key={b}
+            className="font-mono text-[10px] uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-[var(--pl-paper-2)] text-[color:var(--pl-ink-2)] border border-[color:var(--pl-hairline)]"
+          >
+            {b}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Provenance({ photon }: { photon: Photon }) {
+  if (!photon.provenance) return null;
+  return (
+    <section className="mt-10 pb-12">
+      <h2
+        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--ink-faint)]"
+      >
+        provenance
+      </h2>
+      <p className="font-mono text-sm text-[color:var(--ink-dim)]">
+        <span className="text-[color:var(--ink-2)]">
+          {photon.provenance.source}
+        </span>
+        {photon.provenance.source_uri && (
+          <>
+            {" · "}
+            <a
+              href={photon.provenance.source_uri}
+              target="_blank"
+              rel="noreferrer"
+              className="underline hover:no-underline text-[color:var(--blue)]"
+            >
+              source ↗
+            </a>
+          </>
+        )}
+        {photon.provenance.captured_at && (
+          <>
+            {" · "}
+            <span className="text-[color:var(--ink-faint)]">
+              captured {photon.provenance.captured_at.slice(0, 10)}
+            </span>
+          </>
+        )}
+      </p>
+    </section>
+  );
+}
+
 export default async function WordPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const photon = await fetchPhoton(decodeURIComponent(id));
@@ -58,41 +193,7 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </span>
         </Link>
 
-        <header
-          className="mt-6 rounded-2xl bg-white p-6 md:p-8 border border-[color:var(--pl-hairline)] shadow-[0_4px_0_var(--pl-lip-soft)]"
-        >
-          <div className="flex items-baseline gap-3 flex-wrap mb-3">
-            <span
-              className="font-mono text-[10px] uppercase tracking-[0.22em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--blue)]"
-            >
-              {langLabel}
-            </span>
-            <span
-              className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-faint)]"
-            >
-              {photon.kind}{photon.pos ? ` · ${photon.pos}` : ""}
-            </span>
-            <span
-              className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
-            >
-              {photon.tier}
-            </span>
-          </div>
-
-          <h1
-            className="text-[clamp(2.6rem,7vw,5rem)] leading-[1.05] text-[color:var(--pl-ink)] tracking-[-0.015em]"
-          >
-            {photon.surface}
-          </h1>
-
-          {photon.ipa && (
-            <p
-              className="mt-3 font-mono text-lg md:text-xl text-[color:var(--blue)]"
-            >
-              /{photon.ipa.replace(/^\/|\/$/g, "")}/
-            </p>
-          )}
-        </header>
+        <PhotonHeader photon={photon} langLabel={langLabel} />
 
         <section className="mt-8">
           <h2
@@ -107,91 +208,11 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           </p>
         </section>
 
-        {photon.relations && photon.relations.length > 0 && (
-          <section className="mt-10">
-            <h2
-              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
-            >
-              relations · {photon.relations.length}
-            </h2>
-            <ul className="space-y-1.5">
-              {photon.relations.map((r, i) => (
-                <li
-                  key={i}
-                  className="flex items-baseline gap-3 font-mono text-sm"
-                >
-                  <span
-                    className="font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded-full whitespace-nowrap bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
-                  >
-                    {r.predicate}
-                  </span>
-                  <Link
-                    href={`/photon/${encodeURIComponent(r.to)}`}
-                    className="hover:underline truncate text-[color:var(--blue)]"
-                  >
-                    {r.to}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+        <Relations photon={photon} />
 
-        {photon.branch && photon.branch.length > 0 && (
-          <section className="mt-10">
-            <h2
-              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
-            >
-              canon branches
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {photon.branch.map((b) => (
-                <span
-                  key={b}
-                  className="font-mono text-[10px] uppercase tracking-[0.18em] px-3 py-1.5 rounded-full bg-[var(--pl-paper-2)] text-[color:var(--pl-ink-2)] border border-[color:var(--pl-hairline)]"
-                >
-                  {b}
-                </span>
-              ))}
-            </div>
-          </section>
-        )}
+        <Branches photon={photon} />
 
-        {photon.provenance && (
-          <section className="mt-10 pb-12">
-            <h2
-              className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--ink-faint)]"
-            >
-              provenance
-            </h2>
-            <p className="font-mono text-sm text-[color:var(--ink-dim)]">
-              <span className="text-[color:var(--ink-2)]">
-                {photon.provenance.source}
-              </span>
-              {photon.provenance.source_uri && (
-                <>
-                  {" · "}
-                  <a
-                    href={photon.provenance.source_uri}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="underline hover:no-underline text-[color:var(--blue)]"
-                  >
-                    source ↗
-                  </a>
-                </>
-              )}
-              {photon.provenance.captured_at && (
-                <>
-                  {" · "}
-                  <span className="text-[color:var(--ink-faint)]">
-                    captured {photon.provenance.captured_at.slice(0, 10)}
-                  </span>
-                </>
-              )}
-            </p>
-          </section>
-        )}
+        <Provenance photon={photon} />
       </div>
     </div>
     </Site>

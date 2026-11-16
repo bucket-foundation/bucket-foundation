@@ -5,7 +5,7 @@ import type { LangItem } from "@academy/lang-systems";
 import { buildPrompts } from "@academy/lobbies";
 import { knownChoice } from "@academy/lobby-bots";
 import { revealEntries } from "@academy/lobby-reveal";
-import { award, boardPlayers, botTurns, SPY_BOTS } from "./ispy-solo";
+import { award, boardPlayers, botTurns, myRank, roundLeft, settle, SPY_BOTS } from "./ispy-solo";
 
 function word(id: string, forms: Record<string, string>): LangItem {
   return { id, kind: "word", baseId: id, tier: 0, unit: 0, category: "object", gloss: id, forms: { en: id, ...forms }, readings: {}, root: null, cognateLangs: [], example: {}, sentences: {}, gender: {} } as unknown as LangItem;
@@ -90,4 +90,21 @@ test("every scene object has an illustration", async () => {
   const { OBJECT_ART } = await import("@/ui/art/objects");
   const missing = ids.filter((id) => !OBJECT_ART[id]);
   assert.deepEqual(missing, []);
+});
+
+test("myRank places you by score among the bots", () => {
+  const players = boardPlayers({ name: "You", score: 50, answered: false }, SPY_BOTS.slice(0, 2), { [SPY_BOTS[0].id]: { score: 90, streak: 0 } }, new Set());
+  assert.equal(myRank(players), 2);
+});
+
+test("roundLeft falls from one to zero across the round", () => {
+  assert.equal(roundLeft(1000, 1000, 10), 1);
+  assert.equal(roundLeft(6000, 1000, 10), 0.5);
+  assert.equal(roundLeft(99_000, 1000, 10), 0);
+});
+
+test("settle awards each bot turn on top of its tally", () => {
+  const id = SPY_BOTS[0].id;
+  const out = settle({}, [{ botId: id, correct: true, atMs: 1000 }], 10);
+  assert.deepEqual(out[id], award({ score: 0, streak: 0 }, true, 1000, 10));
 });

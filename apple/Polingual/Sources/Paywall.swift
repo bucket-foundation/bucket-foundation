@@ -19,6 +19,7 @@ struct Paywall: View {
     @State private var student = false
     @State private var tokens = AccountTokens()
     @State private var freeBeta = false
+    @State private var nothingToOffer = false
     @State private var otherOptions = Launch.flag("-otherOptions")
     let family: Bool
 
@@ -28,14 +29,17 @@ struct Paywall: View {
     }
 
     var product: Product? { products.first { $0.id == chosen } }
+    var switching: Bool { subs.current != nil && subs.access.open }
+
+    var trialDays: Int { TrialLength.shown(products, chosen: chosen) }
 
     var body: some View {
         GeometryReader { g in
             let h = g.size.height
             if g.size.width > g.size.height {
                 ZStack {
-                    Dots().ignoresSafeArea()
-                    SideDiagonal().fill(Color(hex: 0x5B1A4A)).ignoresSafeArea()
+                    PLDotPaper().ignoresSafeArea()
+                    PLStarLattice().mask(SideDiagonal()).ignoresSafeArea()
                     HStack(alignment: .top, spacing: 16) {
                         VStack(alignment: .leading, spacing: 8) {
                             header
@@ -52,10 +56,8 @@ struct Paywall: View {
                 }
             } else {
                 ZStack(alignment: .top) {
-                    Dots().ignoresSafeArea()
-                    Diagonal(top: 0.30, rise: 0.06)
-                        .fill(Color(hex: 0x5B1A4A))
-                        .ignoresSafeArea()
+                    PLDotPaper().ignoresSafeArea()
+                    PLStarLattice().mask(Diagonal(top: 0.30, rise: 0.06)).ignoresSafeArea()
                     VStack(alignment: .leading, spacing: 0) {
                         header
                         art
@@ -72,7 +74,7 @@ struct Paywall: View {
             }
         }
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
-        .task { await load() }
+        .task(id: subs.current) { await load() }
         .task { freeBeta = await FreeBeta.active() }
         .task(id: account.session?.userId) { _ = await fetchToken(at: "prefetch") }
         .sheet(isPresented: $signingIn) { SignInSheet() }
@@ -94,9 +96,9 @@ struct Paywall: View {
     var header: some View {
         VStack(alignment: .leading, spacing: 10) {
             PoMark()
-            Text(PaywallCopy.headline(trial: subs.trialEligible))
-                .font(.system(size: 40, weight: .heavy, design: .rounded))
-                .foregroundStyle(Palette.ink)
+            Text(PaywallCopy.headline(trial: subs.trialEligible, days: trialDays))
+                .font(PL.title.font(scale: 1.1))
+                .foregroundStyle(PL.ink)
                 .minimumScaleFactor(0.7)
                 .lineLimit(1)
         }
@@ -116,7 +118,15 @@ struct Paywall: View {
 
     var purchase: some View {
         VStack(spacing: 12) {
-            if products.isEmpty {
+            if nothingToOffer {
+                Text(subs.current == Plan.family ? String(localized: "Polingual Family is open on this Apple Account.") : String(localized: "Polingual is open on this Apple Account."))
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(D8.parchment)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(minHeight: 84)
+                    .accessibilityIdentifier("planOpen")
+            } else if products.isEmpty {
                 VStack(spacing: 10) {
                     if loading {
                         ProgressView().tint(D8.parchment)
@@ -140,11 +150,13 @@ struct Paywall: View {
                 }
                 .frame(minHeight: 84)
             }
-            Button(buying ? String(localized: "One moment") : chosen == Plan.lifetime ? String(localized: "Buy once") : subs.trialEligible && Plan.hasTrial(chosen) ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
-                Task { await buy() }
+            if !nothingToOffer {
+                Button(buying ? String(localized: "One moment") : switching ? String(localized: "Switch to \(PlanCard.title(chosen))") : chosen == Plan.lifetime ? String(localized: "Buy once") : subs.trialEligible && Plan.hasTrial(chosen) ? String(localized: "Start \(trialDays) days free") : String(localized: "Subscribe")) {
+                    Task { await buy() }
+                }
+                .buttonStyle(D8Primary())
+                .disabled(product == nil || buying)
             }
-            .buttonStyle(D8Primary())
-            .disabled(product == nil || buying)
             if freeBeta {
                 Text(FreeBeta.note)
                     .font(.footnote)
@@ -154,7 +166,7 @@ struct Paywall: View {
             }
             if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true) }
             if let product {
-                Text(PaywallCopy.disclosure(trial: subs.trialEligible && Plan.hasTrial(product.id), price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
+                Text(PaywallCopy.disclosure(trial: !switching && subs.trialEligible && Plan.hasTrial(product.id), days: trialDays, price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
                     .font(.system(size: 12))
                     .foregroundStyle(D8.parchment.opacity(0.85))
                     .multilineTextAlignment(.center)
@@ -179,8 +191,9 @@ struct Paywall: View {
 
     func load() async {
         loading = true
-        let ids = Plan.shown(extra: PaywallFlags.extraPlans || family)
-        let found = (try? await Product.products(for: ids)) ?? []
+        let ids = Plan.offered(Plan.shown(extra: PaywallFlags.extraPlans || family), current: subs.access.open ? subs.current : nil, family: family)
+        nothingToOffer = ids.isEmpty
+        let found = ids.isEmpty ? [] : (try? await Product.products(for: ids)) ?? []
         products = ids.compactMap { id in found.first { $0.id == id } }
         if !products.contains(where: { $0.id == chosen }), let first = products.first { chosen = first.id }
         loading = false
@@ -199,8 +212,11 @@ struct Paywall: View {
         buying = true
         note = nil
         defer { buying = false }
-        guard let options = try? PurchaseOptions.make(await fetchToken(at: "purchase")).get() else {
-            note = String(localized: "We could not link this purchase to your account. Check your connection and tap again.")
+        let options: Set<Product.PurchaseOption>
+        switch PurchaseOptions.make(await fetchToken(at: "purchase")) {
+        case .success(let o): options = o
+        case .failure(let f):
+            note = PurchaseOptions.note(for: f)
             return
         }
         do {
@@ -300,6 +316,24 @@ enum PurchaseOptions {
         case .failure(let f): .failure(f)
         }
     }
+
+    enum NoteKind: Equatable { case signIn, server, connection }
+
+    static func noteKind(for failure: AccountTokenFailure) -> NoteKind {
+        switch failure {
+        case .unauthorized, .userChanged, .signedOut: .signIn
+        case .unavailable, .server, .decode: .server
+        case .timeout, .offline: .connection
+        }
+    }
+
+    static func note(for failure: AccountTokenFailure) -> String {
+        switch noteKind(for: failure) {
+        case .signIn: String(localized: "Your session ended. Sign in again to link this purchase to your account.")
+        case .server: String(localized: "Our server could not link this purchase to your account. Try again in a minute.")
+        case .connection: String(localized: "We could not link this purchase to your account. Check your connection and tap again.")
+        }
+    }
 }
 
 @MainActor
@@ -367,25 +401,52 @@ enum FreeBeta {
 }
 
 enum PaywallCopy {
-    static func headline(trial: Bool) -> String {
-        trial ? String(localized: "\(Plan.trialDays) days free") : String(localized: "Keep learning")
+    static func headline(trial: Bool, days: Int = Plan.trialDays) -> String {
+        trial ? String(localized: "\(days) days free") : String(localized: "Keep learning")
     }
 
-    static func disclosure(trial: Bool, price: String, period: String, family: Bool = false) -> String {
+    static func disclosure(trial: Bool, days: Int = Plan.trialDays, price: String, period: String, family: Bool = false) -> String {
         if period == "once" { return String(localized: "\(price) once. Charged to your Apple Account. No subscription and no renewal.") }
         let share = family ? " " + String(localized: "Share it with up to 5 family members through Family Sharing.") : ""
-        return base(trial: trial, price: price, period: period) + share
+        return base(trial: trial, days: days, price: price, period: period) + share
     }
 
-    static func base(trial: Bool, price: String, period: String) -> String {
+    static func base(trial: Bool, days: Int = Plan.trialDays, price: String, period: String) -> String {
         let per = period == "year" ? String(localized: "\(price) a year") : String(localized: "\(price) a month")
-        let lead = trial ? String(localized: "\(Plan.trialDays) days free, then \(per).") : String(localized: "\(per).")
+        let lead = trial ? String(localized: "\(days) days free, then \(per).") : String(localized: "\(per).")
         return lead + " " + String(localized: "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings.")
     }
 
-    static func renewal(trial: Bool) -> String {
-        let start = trial ? "New subscribers get \(Plan.trialDays) days free, then the price shown. Cancel during the trial and you pay nothing. " : ""
+    static func renewal(trial: Bool, days: Int = Plan.trialDays) -> String {
+        let start = trial ? "New subscribers get \(days) days free, then the price shown. Cancel during the trial and you pay nothing. " : ""
         return start + "Payment is charged to your Apple Account when you confirm. The plan renews automatically at the price shown unless you cancel at least 24 hours before the period ends. Cancel any time in Settings."
+    }
+}
+
+enum TrialLength {
+    static func days(unit: Product.SubscriptionPeriod.Unit, value: Int, periods: Int) -> Int {
+        let per = switch unit {
+        case .day: 1
+        case .week: 7
+        case .month: 30
+        case .year: 365
+        @unknown default: 1
+        }
+        return per * max(value, 1) * max(periods, 1)
+    }
+
+    static func days(_ offer: Product.SubscriptionOffer?) -> Int? {
+        guard let offer, offer.paymentMode == .freeTrial else { return nil }
+        return days(unit: offer.period.unit, value: offer.period.value, periods: offer.periodCount)
+    }
+
+    static func pick(_ offers: [(id: String, days: Int?)], chosen: String) -> Int {
+        let trials = offers.filter { Plan.hasTrial($0.id) }
+        return trials.first { $0.id == chosen }?.days ?? trials.lazy.compactMap(\.days).first ?? Plan.trialDays
+    }
+
+    static func shown(_ products: [Product], chosen: String) -> Int {
+        pick(products.map { ($0.id, days($0.subscription?.introductoryOffer)) }, chosen: chosen)
     }
 }
 
@@ -449,106 +510,35 @@ struct PaywallArt: View {
             do {
                 let bob = { (i: Double) -> CGFloat in still ? 0 : (floating ? 1 : -1) * CGFloat(Int(i).isMultiple(of: 2) ? 4 : -4) }
                 ZStack {
-                    Weave()
-                        .frame(width: w * 0.62, height: 54)
+                    PLArtView(.kente, shadow: true)
+                        .frame(width: w * 0.5)
                         .rotationEffect(.degrees(-9))
-                        .position(x: w * 0.32, y: h * 0.78 + bob(0))
-                    Text("百")
-                        .font(.system(size: 64, weight: .black))
-                        .foregroundStyle(D8.parchment)
-                        .frame(width: 112, height: 112)
-                        .background(D8.vermilion, in: .rect(cornerRadius: 10))
-                        .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(D8.parchment, lineWidth: 4).padding(9))
-                        .shadow(color: .black.opacity(0.25), radius: 0, x: 0, y: 6)
+                        .position(x: w * 0.3, y: h * 0.8 + bob(0))
+                    PLArtView(.seal, shadow: true)
+                        .frame(width: 104)
                         .rotationEffect(.degrees(-7))
-                        .position(x: w * 0.24, y: h * 0.3 + bob(1))
-                    Stamp()
+                        .position(x: w * 0.22, y: h * 0.32 + bob(1))
+                    PLArtView(.ticket, shadow: true)
+                        .frame(width: 170)
                         .rotationEffect(.degrees(5))
-                        .position(x: w * 0.68, y: h * 0.47 + bob(2))
-                    Text("сто")
-                        .font(.system(size: 30, weight: .heavy, design: .rounded))
-                        .foregroundStyle(D8.parchment.opacity(0.8))
-                        .rotationEffect(.degrees(-14))
-                        .position(x: w * 0.1, y: h * 0.58 + bob(3))
-                    Text("מאה")
-                        .font(.system(size: 30, weight: .heavy, design: .rounded))
-                        .foregroundStyle(Color(hex: 0x5B1A4A).opacity(0.85))
-                        .rotationEffect(.degrees(-8))
-                        .position(x: w * 0.6, y: h * 0.12 + bob(4))
-                    Text("शतम्")
-                        .font(.system(size: 26, weight: .heavy))
-                        .foregroundStyle(Color(hex: 0x5B1A4A))
-                        .padding(.horizontal, 14).padding(.vertical, 6)
-                        .background(D8.parchment, in: .rect(cornerRadius: 4))
+                        .position(x: w * 0.62, y: h * 0.5 + bob(2))
+                    PLArtView(.scriptRu)
+                        .frame(width: 70)
+                        .rotationEffect(.degrees(-12))
+                        .position(x: w * 0.08, y: h * 0.6 + bob(3))
+                    PLArtView(.tornLabel, shadow: true)
+                        .frame(width: 104)
                         .rotationEffect(.degrees(-4))
-                        .position(x: w * 0.85, y: h * 0.8 + bob(5))
+                        .position(x: w * 0.84, y: h * 0.82 + bob(5))
                     WordTile(word: "cien", lang: "es", reading: Reading(ipa: "θjen"), size: 92)
                         .rotationEffect(.degrees(8))
-                        .position(x: w * 0.88, y: h * 0.2 + bob(6))
+                        .position(x: w * 0.86, y: h * 0.18 + bob(6))
                 }
             }
         }
         .animation(still ? nil : .easeInOut(duration: 3).repeatForever(autoreverses: true), value: floating)
         .onAppear { floating = true }
         .accessibilityHidden(true)
-    }
-}
-
-struct Stamp: View {
-    var body: some View {
-        VStack(spacing: 4) {
-            Text("ἑκατόν").font(.system(size: 30, weight: .bold, design: .serif)).foregroundStyle(D8.ink)
-            Text("ATHENS · 400 BC").font(D8.caps(9)).tracking(1.2).foregroundStyle(D8.label)
-        }
-        .padding(.horizontal, 22).padding(.vertical, 16)
-        .background(D8.parchment)
-        .overlay(Rectangle().strokeBorder(D8.ink.opacity(0.25), style: StrokeStyle(lineWidth: 2, dash: [3, 3])).padding(5))
-        .mask(Perforated())
-        .shadow(color: .black.opacity(0.25), radius: 0, x: 0, y: 5)
-    }
-}
-
-struct Perforated: Shape {
-    func path(in r: CGRect) -> Path {
-        var p = Path(r)
-        let step: CGFloat = 10, rad: CGFloat = 3
-        var x = r.minX + step / 2
-        while x < r.maxX {
-            p.addEllipse(in: CGRect(x: x - rad, y: r.minY - rad, width: rad * 2, height: rad * 2))
-            p.addEllipse(in: CGRect(x: x - rad, y: r.maxY - rad, width: rad * 2, height: rad * 2))
-            x += step
-        }
-        var y = r.minY + step / 2
-        while y < r.maxY {
-            p.addEllipse(in: CGRect(x: r.minX - rad, y: y - rad, width: rad * 2, height: rad * 2))
-            p.addEllipse(in: CGRect(x: r.maxX - rad, y: y - rad, width: rad * 2, height: rad * 2))
-            y += step
-        }
-        return p
-    }
-}
-
-struct Weave: View {
-    var body: some View {
-        Canvas { ctx, size in
-            let colors: [Color] = [Color(hex: 0xE9A23B), D8.malachite, D8.vermilion, D8.ink, Color(hex: 0xE9A23B)]
-            let cell: CGFloat = 12
-            var col = 0
-            var x: CGFloat = 0
-            while x < size.width {
-                var y: CGFloat = 0
-                var row = 0
-                while y < size.height {
-                    ctx.fill(Path(CGRect(x: x, y: y, width: cell - 1, height: cell - 1)), with: .color(colors[(col + row) % colors.count]))
-                    y += cell
-                    row += 1
-                }
-                x += cell
-                col += 1
-            }
-        }
-        .clipShape(.rect(cornerRadius: 3))
-        .shadow(color: .black.opacity(0.25), radius: 0, x: 0, y: 5)
     }
 }
 
@@ -576,7 +566,7 @@ struct StudentPlan: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Student plan").font(.system(size: 26, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
-            Text(price).font(.title3.weight(.bold)).foregroundStyle(Color(hex: 0x5B1A4A))
+            Text(price).font(.title3.weight(.bold)).foregroundStyle(PL.tyrian)
             Text("Email us from your school address. We reply with a one-time code for the student price.")
                 .font(.body).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
             MailButton(url: Self.mail, address: "support@polingual.com") { Text("Email from my school address") }.buttonStyle(D8Primary())

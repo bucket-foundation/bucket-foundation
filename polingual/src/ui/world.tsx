@@ -1,20 +1,26 @@
 import type { CSSProperties, HTMLAttributes, InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react";
-import { Art, type ArtName } from "./art";
+import { Art, artDataUrl, type ArtName } from "./art";
 import { FlagTile } from "./FlagTile";
 import { FLAG_STRIPE } from "@/lib/flags";
 import s from "./world.module.css";
 
 export type GroundKind = "paper" | "lattice";
+export type GroundTone = "paper" | "tyrian" | "lapis" | "malachite" | "ochre" | "vermilion";
+export type GroundPattern = "dots" | "lattice" | "tile" | "kente" | "stripes";
 
-export function Ground({ kind = "paper", cut, className, children, style }: { kind?: GroundKind; cut?: boolean; className?: string; children?: ReactNode; style?: CSSProperties }) {
-  return <div className={[s[kind], cut && s.cut, className].filter(Boolean).join(" ")} style={style} data-ground={kind}>{children}</div>;
+export function Ground({ kind = "paper", tone, pattern, tile, cut, className, children, style, testId }: { kind?: GroundKind; tone?: GroundTone; pattern?: GroundPattern; tile?: ArtName; cut?: boolean; className?: string; children?: ReactNode; style?: CSSProperties; testId?: string }) {
+  if (tone) {
+    const tileStyle = tile ? ({ "--ground-tile": `url("${artDataUrl(tile)}")` } as CSSProperties) : undefined;
+    return <div className={[s.toned, cut && s.cut, className].filter(Boolean).join(" ")} style={{ ...tileStyle, ...style }} data-ground={tone} data-pattern={pattern} data-testid={testId}>{children}</div>;
+  }
+  return <div className={[s[kind], cut && s.cut, className].filter(Boolean).join(" ")} style={style} data-ground={kind} data-testid={testId}>{children}</div>;
 }
 
 export type StickerSpot = { name: ArtName; x: string; y: string; size: number; rotate?: number; shadow?: boolean; side?: "left" | "right"; anchor?: "top" | "bottom" };
 
-export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "left", anchor = "top" }: StickerSpot) {
+export function Sticker({ name, x, y, size, rotate = 0, shadow = true, side = "left", anchor = "top", className }: StickerSpot & { className?: string }) {
   return (
-    <span className={s.sticker} style={{ [side]: x, [anchor]: y, transform: `rotate(${rotate}deg)` }} data-sticker={name}>
+    <span className={className ? `${s.sticker} ${className}` : s.sticker} style={{ [side]: x, [anchor]: y, transform: `rotate(${rotate}deg)` }} data-sticker={name}>
       <Art name={name} size={size} shadow={shadow} />
     </span>
   );
@@ -109,7 +115,7 @@ export const GUTTER_STICKERS: StickerSpot[] = [
   { name: "pebble", x: "7%", y: "84%", size: 48, rotate: 12, side: "right" },
 ];
 
-export const STRIP_STICKERS: StickerSpot[] = [
+const STRIP_STICKERS: StickerSpot[] = [
   { name: "seal", x: "0%", y: "12px", size: 56, rotate: -8 },
   { name: "ticket", x: "20%", y: "20px", size: 96, rotate: 5 },
   { name: "torn-label", x: "2%", y: "16px", size: 88, rotate: -4, side: "right" },
@@ -150,7 +156,7 @@ export function Stage({ children, ground = "cut", stickers, phoneStickers = BAND
   );
 }
 
-export const BANNER_STICKERS: StickerSpot[] = [
+const BANNER_STICKERS: StickerSpot[] = [
   { name: "azulejo", x: "30%", y: "8%", size: 96, rotate: 8 },
   { name: "seal", x: "8%", y: "16%", size: 78, rotate: -9, side: "right" },
   { name: "torn-label", x: "26%", y: "56%", size: 112, rotate: -5 },

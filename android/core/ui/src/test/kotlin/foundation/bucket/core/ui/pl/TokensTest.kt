@@ -59,7 +59,7 @@ class TokensTest {
     fun everyArtPieceBuilds() {
         val src = File(repo, "polingual/src/ui/art/data.ts").readText()
         val names = Regex("\"name\": \"([^\"]+)\"").findAll(src).map { it.groupValues[1] }.toList()
-        assertEquals(names, ArtLibrary.names.filterNot { it.startsWith("glyph-") })
+        assertEquals(names, ArtLibrary.names.filterNot { it.startsWith("glyph-") || it.startsWith("obj-") })
         listOf("speaker", "back", "play", "pause", "swap").forEach { assertTrue(it, "glyph-$it" in ArtLibrary.names) }
         names.forEach { assertTrue(it, ArtLibrary[it].nodes.isNotEmpty()) }
     }

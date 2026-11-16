@@ -41,13 +41,20 @@ class BucketApiTest {
     @Test
     fun progressPushSendsBranchAndData() = runTest {
         val seen = mutableListOf<String>()
-        assertTrue(api(200, "{}", seen).progressPush("t", "lang-systems", JsonPrimitive(1)))
+        assertEquals(PushResult.Written, api(200, "{}", seen).progressPush("t", "lang-systems", JsonPrimitive(1)))
         assertEquals("""POST /api/academy/progress? {"branch":"lang-systems","data":1}""", seen.single())
     }
 
     @Test
     fun progressPushReportsFailure() = runTest {
-        assertEquals(false, api(503, """{"error":"sync_unavailable"}""").progressPush("t", "x", JsonPrimitive(1)))
+        assertEquals(PushResult.Failed, api(503, """{"error":"sync_unavailable"}""").progressPush("t", "x", JsonPrimitive(1)))
+    }
+
+    @Test
+    fun progressPushReportsBlankOverwriteAsRefusedAndSettled() = runTest {
+        val r = api(409, """{"error":"blank_overwrite","branches":["x"]}""").progressPush("t", "x", JsonPrimitive(1))
+        assertEquals(PushResult.Refused, r)
+        assertTrue(r.settled)
     }
 
     @Test
@@ -87,4 +94,5 @@ class ScienceApiTest {
         assertTrue(seen.last().contains("q=entropy") && seen.last().contains("top_k=20"))
         assertEquals("/academy-app/corpus/physics.json?", seen[1])
     }
+
 }
