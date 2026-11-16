@@ -32,7 +32,14 @@ export type ProgressWrite = { written: string[]; refused: string[] };
 export async function writeProgress(uid: string, updates: Record<string, unknown>, reset: boolean): Promise<ProgressWrite | null> {
   const rows = Object.keys(updates).map((branch) => ({ branch, data: updates[branch] ?? {} }));
   const { data, error } = await progressDeps.service().rpc("academy_progress_write", { p_user: uid, p_rows: rows, p_reset: reset });
-  if (error || !data) return null;
+  if (error) {
+    console.error("[academy/progress] write failed:", error.message);
+    return null;
+  }
+  if (!data) {
+    console.error("[academy/progress] write returned no result");
+    return null;
+  }
   const d = data as { written?: unknown; refused?: unknown };
   const list = (v: unknown) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : []);
   return { written: list(d.written), refused: list(d.refused) };
