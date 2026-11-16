@@ -285,6 +285,13 @@ func words(_ n: Int) -> [GameWord] {
         #expect(quest.idle.map(\.userId) == ["c", "d"])
         #expect(quest.nudgeable.map(\.userId) == ["c", "d"])
         #expect(!quest.complete)
+        #expect(quest.shownDone == 100)
+        var over = group
+        over.goal = GroupGoal(weekly: 201, done: 463)
+        let past = GroupQuest(over)!
+        #expect(past.complete)
+        #expect(past.shownDone == past.target)
+        #expect(past.progress == 1)
         var off = group
         off.goal = nil
         #expect(GroupQuest(off) == nil)

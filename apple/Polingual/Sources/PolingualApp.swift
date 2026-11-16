@@ -30,6 +30,8 @@ struct PolingualApp: App {
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
         LangVoice.shared.store = store
+        NetworkWatch.shared.onReconnect { await store.resync() }
+        NetworkWatch.shared.start()
         _account = State(initialValue: account)
         Beta.shared.account = account
         _store = State(initialValue: store)
@@ -55,11 +57,14 @@ struct PolingualApp: App {
                 .environment(groups)
                 .environment(lobbies)
                 .interfaceLanguage(store)
+                .task { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe {
                         if p == .active {
+                            await store.retryPending()
+                            await NetworkWatch.shared.resync().value
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
                             #if DEBUG
@@ -104,7 +109,7 @@ struct PolingualApp: App {
                     WatchBridge.shared.start(store)
                     #endif
                 }
-                .tint(Palette.green)
+                .tint(PL.tyrian)
         }
         #if os(macOS)
         .defaultSize(width: 1180, height: 820)

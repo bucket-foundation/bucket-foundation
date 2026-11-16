@@ -14,11 +14,11 @@ export default function Page() {
       <ul>
       <li>Email address, when you sign in. We use it to send your one-time sign-in code and, if you agree, emails about your trial and subscription.</li>
       <li>Learning progress, when you sign in: your language systems, placement results and review history. We store it so it syncs across your devices, the Bucket app and bucket.foundation.</li>
-      <li>Email address, when you join the beta. We store it with Resend, our email provider, to send your TestFlight invite and beta updates. We keep it until the beta ends or you ask us to delete it.</li>
-      <li>Email address, when you claim a founding spot. We store it in our database next to the one-time offer code it received, so each address gets one code, and send the code with Resend. We keep it until the offer ends or you ask us to delete it.</li>
+      <li>Email address, when you ask for the download link or joined the beta. We store it with Resend, our email provider, to send your App Store link and updates. We keep it until the beta ends or you ask us to delete it.</li>
+      <li>Email address, when you claim a founding spot. We store it in our database with the time you claimed it and whether you confirmed it, so each address holds one spot, and send your confirmation link with Resend. We keep it until the offer ends or you ask us to delete it.</li>
       <li>A hash of your IP address when you claim a founding spot, kept for one day to limit claims from one network.</li>
       <li>A user id that ties your progress to your account.</li>
-      <li>Website visits on polingual.com: a random visitor id kept in your browser, the page, the campaign tag in the link you followed, the site that sent you, your country from the network, and whether you opened the beta form, joined, or tapped TestFlight. We store it in our own database to see which posts bring people. It holds no IP address, name or email. Vercel, our web host, also counts page views without cookies.</li>
+      <li>Website visits on polingual.com: a random visitor id kept in your browser, the page, the campaign tag in the link you followed, the site that sent you, your country from the network, and whether you opened the signup form, joined, or tapped the App Store link. We store it in our own database to see which posts bring people. It holds no IP address, name or email. Vercel, our web host, also counts page views without cookies.</li>
       </ul>
       <p>Without sign-in or a beta signup, your progress stays on your device and we receive none of it.</p>
       <h2>What we do not collect</h2>

@@ -152,6 +152,7 @@ public enum ScriptCourse {
 
     public static func drill(_ kind: ExerciseKind, _ lang: String, _ root: String, _ itemId: String, _ rng: inout Rng, state: EngineState? = nil) -> Exercise? {
         guard let (unit, letter) = found(lang, root, itemId) else { return nil }
+        if kind != .minimalPair, SoundContrasts.lookup(lang, letter.ch) != nil { return nil }
         switch kind {
         case .minimalPair: return contrastDrill(unit, letter, itemId, root, &rng)
         case .letterSound: return letterToSound(unit, letter, itemId, root, &rng)

@@ -106,6 +106,23 @@ public extension MasteredWord {
     }
 }
 
+public struct MasteredSet: Sendable, Hashable {
+    public var lang: String
+    public var count: Int
+    public var words: [MasteredWord]
+
+    public init(lang: String, count: Int, words: [MasteredWord] = []) {
+        self.lang = lang
+        self.count = count
+        self.words = words
+    }
+}
+
+public extension Array where Element == MasteredSet {
+    var total: Int { reduce(0) { $0 + Swift.max($1.count, $1.words.count) } }
+    var langs: [String] { map(\.lang) }
+}
+
 public struct ShareForm: Sendable, Hashable {
     public var lang: String
     public var form: String
@@ -226,6 +243,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
     case system(name: String, root: String, targets: [String], streak: Int, learned: Int)
     case language(String, root: String)
     case mastered(lang: String, count: Int, root: String, words: [MasteredWord] = [])
+    case masteredAll(sets: [MasteredSet], root: String)
     case word(id: String, gloss: String, forms: [ShareForm])
     case tile(form: ShareForm, gloss: String, reading: String?)
     case flag(String, root: String)
@@ -241,6 +259,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .system: "system"
         case .language: "language"
         case .mastered: "mastered"
+        case .masteredAll: "mastered-all"
         case .word: "word"
         case .tile: "tile"
         case .flag: "flag"
@@ -255,6 +274,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .streak(let days, let langs, let root): .langs(langs, root: root, streak: days)
         case .system(_, let root, let targets, let streak, _): .langs(targets, root: root, streak: streak)
         case .language(let lang, let root), .flag(let lang, let root), .mastered(let lang, _, let root, _): .langs([lang], root: root)
+        case .masteredAll(let sets, let root): .langs(sets.langs, root: root)
         case .word(let id, let gloss, let forms): .word(id: id, gloss: gloss, forms: forms)
         case .tile(let form, let gloss, _): .word(id: form.form, gloss: gloss, forms: [form])
         case .score(let s): .score(s)
@@ -269,6 +289,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .system: [.tree, .wall, .ledger]
         case .language: [.banner, .plate]
         case .mastered(_, _, _, let words): words.isEmpty ? [.number, .banner] : [.list, .number, .banner]
+        case .masteredAll(let sets, _): sets.allSatisfy(\.words.isEmpty) ? [.number] : [.list, .number]
         case .word(_, _, let forms): forms.count > 1 ? [.stack, .wall, .tile] : [.tile, .stack]
         case .tile: [.tile, .banner]
         case .flag: [.banner, .plate]

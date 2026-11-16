@@ -1,3 +1,4 @@
+import { pushSettled } from "./progress-guard";
 import { randomBytes, randomUUID } from "node:crypto";
 import type { EngineState } from "./engine";
 import { canonicalRequest, DEVICE_HEADER, formatDeviceHeader } from "./device-sign";
@@ -125,7 +126,7 @@ export function createRemoteSync(deps: RemoteDeps): RemoteSync {
     fetch: (input, init) => signedFetch(relative(input), init ?? {}),
     uuid: randomUUID,
     readLocal: deps.readLocal,
-    pushSnapshot: async (branch, state) => (await signedFetch("/api/academy/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ branch, data: state }) })).ok,
+    pushSnapshot: async (branch, state) => pushSettled((await signedFetch("/api/academy/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ branch, data: state }) })).status),
     now,
     lock: (fn) => fn(),
     deviceId: deps.device.id,

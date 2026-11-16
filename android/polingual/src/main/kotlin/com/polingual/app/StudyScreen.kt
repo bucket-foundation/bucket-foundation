@@ -47,7 +47,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         val system = app.system ?: return@LaunchedEffect
         val corpus = graph.corpus.load()
         val heritage = StudyHeritage.of(system.targets, com.polingual.app.play.PlayAssets.alphabets(graph.context).first)
-        session = StudySession(corpus, system.root, system.targets, app.study[system.id] ?: StudyState(), today(), System.currentTimeMillis(), SeededRandom(System.nanoTime().toULong()), heritage = heritage)
+        session = StudySession(corpus, system.root, system.targets, app.study[system.id] ?: StudyState(), today(), System.currentTimeMillis(), SeededRandom(System.nanoTime().toULong()), heritage = heritage, freq = graph.corpus.frequency(system.targets))
     }
     val s = session
     var corpus by remember { mutableStateOf<foundation.bucket.core.engine.LangCorpus?>(null) }

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { allowedSource, joinBeta, RateLimiter, TESTFLIGHT_URL, UNSUBSCRIBE, welcomeEmail } from "./beta";
+import { allowedSource, joinBeta, RateLimiter, UNSUBSCRIBE, welcomeEmail } from "./beta";
+import { APP_STORE_URL } from "./facts";
 
 const env = { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud", TURNSTILE_SECRET_KEY: "ts" };
 const site = { origin: "https://www.polingual.com", ip: "1.2.3.4", token: "tok" };
@@ -27,7 +28,7 @@ test("saves a new contact, sends the welcome email and returns the link", async 
   const f = fake([404, 200, 200]);
   const r = await join({ email: "Ana@Example.com" }, f);
   assert.equal(r.status, 200);
-  assert.equal(r.body.testflight, TESTFLIGHT_URL);
+  assert.equal(r.body.appStore, APP_STORE_URL);
   assert.equal(f.calls.length, 3);
   assert.match(f.calls[0], /^GET https:\/\/api\.resend\.com\/audiences\/aud\/contacts\//);
   assert.equal(f.calls[1], "POST https://api.resend.com/audiences/aud/contacts");
@@ -68,7 +69,7 @@ test("does not email an address already in the audience", async () => {
   const f = fake([200]);
   const r = await join({ email: "a@b.co" }, f);
   assert.equal(r.status, 200);
-  assert.equal(r.body.testflight, TESTFLIGHT_URL);
+  assert.equal(r.body.appStore, APP_STORE_URL);
   assert.equal(f.calls.length, 1);
 });
 

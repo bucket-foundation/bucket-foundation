@@ -161,6 +161,10 @@ struct TodayView: View {
         return cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
     }
 
+    func expectedLearning(_ streak: Double) -> ExpectedLearning {
+        ExpectedLearning(streak: StreakGoal(streak: streak).day, languages: langs.systems.map { .init(langs.state($0.id), languages: $0.targets.count) }, decks: deckStates.map { .init($0) })
+    }
+
     func resting(_ item: Item, _ now: Double) -> Bool {
         guard case .activity(.alphabet(let lang)) = item, !plan.isDone(item.id), let system = alphabetSystem(lang) else { return false }
         return !letterQueue(system, langs.state(system.id), now: now).contains { $0.lang == lang }
@@ -298,7 +302,8 @@ struct TodayView: View {
             } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    StreakGoalCard(streak: streak, share: later).todayCard()
+                    PLScreenTop(title: "Today", stickers: Stickers.today)
+                    StreakGoalCard(streak: streak, share: later, expected: expectedLearning(streak)).todayCard()
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
                             hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
@@ -339,8 +344,10 @@ struct TodayView: View {
             }
             }
             .animation(.easeOut(duration: 0.35), value: loaded)
-            .paper()
+            .scrollContentBackground(.hidden)
+            .plGround(.cut(0.7, 0.42))
             .navigationTitle("Today")
+            .plChrome()
             .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .sheet(item: $session) { subjects?.study($0) }
             .sheet(isPresented: $picking) { TodayPicker(subjects: subjects?.decks) }
@@ -368,6 +375,9 @@ struct TodayView: View {
                 guard p == .active else { return }
                 WatchDwell.returned()
                 Task { await plan.pull() }
+            }
+            .onChange(of: NetworkWatch.shared.online) { _, up in
+                if up { Task { await plan.pull() } }
             }
             .onChange(of: account.stage) { old, new in
                 if new == .signedOut && old == .signedIn && account.endedByUser { plan.clearLocal() }

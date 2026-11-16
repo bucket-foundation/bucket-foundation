@@ -9,6 +9,7 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class WebGoldensTest {
     private val golden: JsonObject = Json.parseToJsonElement(javaClass.classLoader!!.getResource("web-goldens.json")!!.readText()).jsonObject
@@ -22,6 +23,25 @@ class WebGoldensTest {
         assertEquals(list("babelFresh7"), Babel.fresh(deal(7)).map { "${it.meaning}:${it.lang}" })
         assertEquals(list("babelPlayable42"), Babel.playable(deal(42)).map { "${it.key}:${it.meaning}:${it.lang}" })
         assertEquals(list("babelMeanings"), Babel.meanings(TestCorpus.corpus.items, listOf("es", "fr", "it"), 3).map { it.id })
+    }
+
+    @Test
+    fun sessionMixMatchesTheWeb() {
+        val m = foundation.bucket.core.engine.SessionMix
+        assertEquals(list("sessionMixSoundShare"), listOf(0, 39, 40, 149, 150, 500).map { m.soundShare(it).toString() })
+        assertEquals(list("sessionMixMastery"), listOf(0.0, 16.0, 34.0, 200.0).map { "%.6f".format(java.util.Locale.ROOT, m.mastery(foundation.bucket.core.engine.CardState(reps = 1, intervalDays = it))) })
+        val q = listOf(foundation.bucket.core.engine.QueueEntry("a", "es", foundation.bucket.core.engine.Stage.Intro), foundation.bucket.core.engine.QueueEntry("a", "es", foundation.bucket.core.engine.Stage.Check)) +
+            listOf("b", "c", "d", "e").map { foundation.bucket.core.engine.QueueEntry(it, "es") } + listOf("f", "g").map { foundation.bucket.core.engine.QueueEntry(it, "fr") }
+        assertEquals(list("sessionMixAlternate"), m.alternate(q).map { "${it.lang}:${it.itemId}:${it.stage.name.lowercase()}" })
+        val f = foundation.bucket.core.engine.FrequencyRank.parse(mapOf("es" to File(TestCorpus.repo, "apple/Shared/Corpus/top1000/es.json").readText()))
+        var card = foundation.bucket.core.engine.CardState()
+        val ms = (1..8).map { card = foundation.bucket.core.engine.Scheduler.grade(card, true, 0); m.mastery(card) }
+        val android = listOf(0.5, 0.8).map { bar -> ms.indexOfFirst { it >= bar } + 1 }
+        assertEquals(listOf(4, 5), android)
+        val web = list("sessionMixHistoryGates").map { it.substringAfter(':').toInt() }
+        assertEquals(listOf(3, 3), web)
+        assertTrue(android.zip(web).all { (a, w) -> a - w in 0..2 })
+        assertEquals(list("sessionMixCurriculumEs"), m.curriculum(TestCorpus.corpus, "en", "es", f).take(40).map { "${it.id}:${f.rank(it, "es")}" })
     }
 
     @Test

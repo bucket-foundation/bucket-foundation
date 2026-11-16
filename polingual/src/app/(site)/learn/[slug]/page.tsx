@@ -2,7 +2,7 @@ import { Banner } from "@/ui";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Legal from "@/app/legal";
-import { appJsonLd, faqJsonLd, jsonLdScript } from "@/lib/facts";
+import { APP_STORE_URL, appJsonLd, faqJsonLd, jsonLdScript } from "@/lib/facts";
 import { GUIDES, guide } from "@/lib/guides";
 import { pageMeta } from "@/lib/meta";
 
@@ -46,7 +46,7 @@ export default async function Page({ params }: Props) {
             <p>{f.a}</p>
           </section>
         ))}
-        <p><a href={`${home}?utm_source=seo&utm_campaign=${g.slug}`}>{g.cta}</a></p>
+        <p><a href={APP_STORE_URL}>{g.cta}</a></p>
       </div>
     </Legal>
   );

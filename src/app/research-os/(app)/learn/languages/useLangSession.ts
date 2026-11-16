@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
-import { buildQueue, cardId, exerciseFor, learnerLevel, letterExerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, withMeaning, type Exercise, type QueueEntry, type Reading } from "@/lib/academy/lang-systems";
+import { loadTopWords, readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
+import { exerciseMix, FrequencyRank, letterSessionExercise, session as mixSession, SoundTally, tallyKey } from "@/lib/academy/session-mix";
+import { cardId, exerciseFor, learnerLevel, matchExercise, readingsByForm, requeueAfterMiss, seededRng, withMeaning, type Exercise, type QueueEntry, type Reading } from "@/lib/academy/lang-systems";
 import { linkForms, targetFirst, type LinkForm } from "@/lib/academy/lang-layout";
 import { gradeWebMatch } from "@/lib/academy/flag-misses";
 import type { ExerciseResult, MatchGrading } from "./LangExercise";
@@ -37,19 +38,39 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
   const rng = useMemo(() => seededRng(Date.now() % 2147483647), []);
   const [readings, setReadings] = useState(true);
   useEffect(() => setReadings(readReadingsPref()), []);
+  const tally = useRef(new SoundTally());
+  const [freq, setFreq] = useState<FrequencyRank | null>(null);
+  const targetsKey = system?.targets.join(",") ?? "";
 
   useEffect(() => {
-    if (h.status === "ready" && system && corpus && queue === null) {
+    if (!targetsKey) return;
+    let live = true;
+    const langs = targetsKey.split(",");
+    Promise.all(langs.map((l) => loadTopWords(l).then((w) => [l, w ?? []] as const))).then((pairs) => {
+      if (live) setFreq(new FrequencyRank(Object.fromEntries(pairs)));
+    });
+    return () => {
+      live = false;
+    };
+  }, [targetsKey]);
+
+  useEffect(() => {
+    if (h.status === "ready" && system && corpus && freq && queue === null) {
       xpStart.current = state.stats.xp;
-      setQueue(buildQueue(system, corpus, state, Date.now(), 14, { heritage }));
+      tally.current = new SoundTally();
+      setQueue(mixSession(system, corpus, state, Date.now(), freq, { heritage }));
     }
-  }, [h.status, system, corpus, state, queue, heritage]);
+  }, [h.status, system, corpus, state, queue, heritage, freq]);
 
   const entry = queue?.[i];
   const unitTitle = entry && corpus ? corpus.units[corpus.byId.get(entry.itemId)?.unit ?? -1]?.title : undefined;
   const ex: Exercise | null = useMemo(() => {
     if (!entry || !system || !corpus) return null;
-    if (entry.stage === "letter") return letterExerciseFor(entry.lang, system.root, entry.itemId, rng);
+    if (entry.stage === "letter") {
+      const l = letterSessionExercise(entry, system, state, tally.current, rng);
+      if (l) tally.current.record(l.kind, tallyKey(entry, i));
+      return l;
+    }
     const item = corpus.byId.get(entry.itemId);
     if (!item) return null;
     if (entry.stage === "match") {
@@ -57,7 +78,9 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
       return m ? withMeaning(m, corpus) : m;
     }
     const card = state.cards[cardId(entry.lang, entry.itemId)];
-    const made = exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang), heritage });
+    const mix = exerciseMix(system, item, entry.lang, state, tally.current);
+    const made = exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang), heritage, mix });
+    tally.current.record(made.kind, tallyKey(entry, i));
     return withMeaning(h.shared ? targetFirst(corpus, item, made, rng) : made, corpus);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entry, system, corpus, rng]);
@@ -101,13 +124,14 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
 
   const skip = useCallback(() => setI((x) => x + 1), []);
   const restart = useCallback(() => {
-    if (!system || !corpus) return;
-    setQueue(buildQueue(system, corpus, state, Date.now(), 14, { heritage }));
+    if (!system || !corpus || !freq) return;
+    tally.current = new SoundTally();
+    setQueue(mixSession(system, corpus, state, Date.now(), freq, { heritage }));
     setI(0);
     setGraded(0);
     setCorrect(0);
     xpStart.current = state.stats.xp;
-  }, [system, corpus, state, heritage]);
+  }, [system, corpus, state, heritage, freq]);
   const showReadings = useCallback((on: boolean) => {
     setReadings(on);
     writeReadingsPref(on);
