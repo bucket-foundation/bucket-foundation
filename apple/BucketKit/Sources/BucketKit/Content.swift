@@ -44,6 +44,12 @@ public enum ContentCatalog {
         lang == "grc" ? nil : lang
     }
 
+    public static func readLangs(_ targets: [String], roots: [String]) -> [String] {
+        var seen = Set(targets)
+        let home = (roots.isEmpty ? ["en"] : roots).filter { seen.insert($0).inserted }
+        return Array(targets.prefix(1)) + home + Array(targets.dropFirst())
+    }
+
     static let branchWords: [(String, [String])] = [
         ("01", ["math"]), ("02", ["physics", "science"]), ("03", ["chemistry"]),
         ("04", ["technology", "tech", "computer"]), ("05", ["health", "medicine", "biology"]),

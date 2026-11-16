@@ -86,6 +86,11 @@ extension LangStore {
         let all = gameLangs
         return all.isEmpty ? ["es", "fr"] : all
     }
+
+    var homeLangs: [String] {
+        var seen = Set<String>()
+        return systems.map(\.root).filter { seen.insert($0).inserted }
+    }
 }
 
 struct ContentHub: View {
@@ -237,7 +242,15 @@ struct ReadList: View {
 
 struct ReadView: View {
     let topic: ContentTopic
-    let langs: [String]
+    let targets: [String]
+    @Environment(LangStore.self) private var store
+
+    init(topic: ContentTopic, langs: [String]) {
+        self.topic = topic
+        targets = langs
+    }
+
+    var langs: [String] { ContentCatalog.readLangs(targets, roots: store.homeLangs) }
     @State private var titles: [String: String] = [:]
     @State private var texts: [String: WikiSummary] = [:]
     @State private var loading = true
@@ -316,20 +329,21 @@ struct ReadView: View {
     }
 
     func load() async {
-        let store = ContentStore.shared
+        let content = ContentStore.shared
         loading = true
         failed = false
-        for l in langs { if let t = titles[l] { store.failed.remove("\(l):\(t)") } }
-        guard let found = await store.titles(for: topic) else {
+        for l in langs { if let t = titles[l] { content.failed.remove("\(l):\(t)") } }
+        guard let found = await content.titles(for: topic) else {
             failed = true
             loading = false
             return
         }
         titles = found
         await withTaskGroup(of: (String, WikiSummary?).self) { group in
+            let langs = langs
             for l in langs {
                 guard let t = titles[l] else { continue }
-                group.addTask { await (l, store.summary(l, t)) }
+                group.addTask { await (l, content.summary(l, t)) }
             }
             for await (l, s) in group { if let s { texts[l] = s } }
         }
