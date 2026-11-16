@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import vm from "node:vm";
 import { RateLimiter } from "./beta";
-import { claimFounding, familyEmail, fetchSpots, FOUNDING_FAMILIES, foundingStatus, ipHash, parseCodes, type Outcome } from "./founding";
+import { claimFounding, confirmEmail, confirmFounding, familyEmail, familyKey, fetchSpots, FOUNDING_FAMILIES, OFFER, tokenHash, type ConfirmOutcome, foundingStatus, ipHash, parseCodes, type Outcome } from "./founding";
 
 const env = { RESEND_API_KEY: "k", POLINGUAL_DB_SERVICE_KEY: "s", POLINGUAL_DB_URL: "https://db.test", TURNSTILE_SECRET_KEY: "ts", TURNSTILE_SITE_KEY: "site" };
 const site = { origin: "https://www.polingual.com", ip: "1.2.3.4", token: "tok" };
@@ -23,16 +23,40 @@ function fake(replies: Reply[]) {
 const human: Reply = [200, { success: true, hostname: "www.polingual.com" }];
 const row = (outcome: Outcome, left = 100): Reply => [200, [{ outcome, spots_left: left }]];
 
-test("verifies the human, claims one family spot under the 500 cap and emails the confirmation", async () => {
-  const f = fake([human, row("claimed", 499), [200, {}]]);
-  const r = await claimFounding({ email: "Ana@Example.com" }, env, f.send, site, fresh());
-  assert.equal(r.status, 200);
-  assert.equal(r.body.left, 499);
+const confirmRow = (outcome: ConfirmOutcome, address: string | null, left = 100): Reply => [200, [{ outcome, address, spots_left: left }]];
+const TOKEN = "ab".repeat(32);
+
+test("a signup stores a pending claim and emails a confirm link, taking no spot", async () => {
+  const f = fake([human, row("pending", 500), [200, {}]]);
+  const r = await claimFounding({ email: "Ana.Lopez+kids@Gmail.com" }, env, f.send, site, fresh());
+  assert.deepEqual(r, { status: 200, body: { ok: true, left: 500 } });
   assert.match(f.calls[0].url, /turnstile\/v0\/siteverify/);
   assert.equal(f.calls[1].url, "https://db.test/rest/v1/rpc/claim_founding_family");
-  assert.deepEqual(JSON.parse(f.calls[1].body), { p_email: "ana@example.com", p_ip_hash: ipHash("1.2.3.4", env), p_cap: 500 });
-  assert.match(f.calls[2].body, /founding family spot/);
-  assert.match(f.calls[2].body, /ana@example\.com/);
+  const args = JSON.parse(f.calls[1].body);
+  assert.equal(args.p_email, "analopez@gmail.com");
+  assert.equal(args.p_address, "ana.lopez+kids@gmail.com");
+  assert.equal(args.p_ip_hash, ipHash("1.2.3.4", env));
+  assert.equal(args.p_cap, 500);
+  const mail = JSON.parse(f.calls[2].body);
+  assert.deepEqual(mail.to, ["ana.lopez+kids@gmail.com"]);
+  const token = mail.text.match(/polingual\.com\/founding\?token=([0-9a-f]{64})/)[1];
+  assert.equal(args.p_token_hash, tokenHash(token));
+  assert.ok(!JSON.stringify(r.body).includes(token));
+});
+
+test("Gmail dots and plus tags on any domain fold into one family key", () => {
+  assert.equal(familyKey("a.n.a+x@gmail.com"), "ana@gmail.com");
+  assert.equal(familyKey("ana@googlemail.com"), "ana@gmail.com");
+  assert.equal(familyKey("ana.lopez+kids@example.com"), "ana.lopez@example.com");
+  assert.equal(familyKey("Ana@Example.com"), "ana@example.com");
+});
+
+test("aliases of one inbox share one email rate limit", async () => {
+  const limits = fresh();
+  const send = async (url: string) => new Response(JSON.stringify(url.includes("siteverify") ? { success: true } : url.includes("rpc") ? [{ outcome: "recent", spots_left: 9 }] : {}));
+  const codes = [];
+  for (const email of ["ana@gmail.com", "a.na@gmail.com", "ana+1@gmail.com"]) codes.push((await claimFounding({ email }, env, send, site, limits)).status);
+  assert.deepEqual(codes, [200, 200, 429]);
 });
 
 test("a forged origin with no human token takes no spot", async () => {
@@ -53,9 +77,9 @@ test("50 scripted claims from one network with fresh limiters stay under the dat
   const send = async (url: string) => {
     if (url.includes("siteverify")) return new Response(JSON.stringify({ success: true }));
     if (url.includes("claim_founding_family")) {
-      const outcome = taken < 3 ? "claimed" : "ip-limit";
-      if (outcome === "claimed") taken++;
-      return new Response(JSON.stringify([{ outcome, spots_left: 500 - taken }]));
+      const outcome = taken < 3 ? "pending" : "ip-limit";
+      if (outcome === "pending") taken++;
+      return new Response(JSON.stringify([{ outcome, spots_left: 500 }]));
     }
     return new Response("{}");
   };
@@ -65,35 +89,52 @@ test("50 scripted claims from one network with fresh limiters stay under the dat
   assert.equal(results.filter((r) => r.status === 429).length, 47);
 });
 
-test("a recent repeat for the same email sends no second email", async () => {
-  const f = fake([human, row("recent")]);
-  const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
-  assert.equal(r.status, 200);
-  assert.equal(f.calls.length, 2);
+test("a recent repeat sends no second email and a confirmed family is told so", async () => {
+  const recent = fake([human, row("recent")]);
+  assert.equal((await claimFounding({ email: "a@b.co" }, env, recent.send, site, fresh())).status, 200);
+  assert.equal(recent.calls.length, 2);
+  const done = fake([human, row("confirmed", 7)]);
+  assert.deepEqual((await claimFounding({ email: "a@b.co" }, env, done.send, site, fresh())).body, { ok: true, left: 7, confirmed: true });
+  assert.equal(done.calls.length, 2);
 });
 
-test("family 501 is refused and gets no email", async () => {
+test("a signup after 500 confirmed families is refused and gets no email", async () => {
   const f = fake([human, row("full", 0)]);
   const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
   assert.equal(r.status, 409);
-  assert.equal(r.body.full, true);
-  assert.equal(r.body.left, 0);
-  assert.match(r.body.error ?? "", /All 500 founding family spots are taken/);
+  assert.deepEqual(r.body, { error: "All 500 founding family spots are taken.", full: true, left: 0 });
   assert.equal(f.calls.length, 2);
 });
 
-test("a holder who asks again after 10 minutes gets the confirmation resent", async () => {
-  const f = fake([human, row("resend", 12), [200, {}]]);
-  const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
-  assert.equal(r.status, 200);
-  assert.equal(f.calls[2].url, "https://api.resend.com/emails");
-});
-
-test("a failed email keeps the spot and says when to retry", async () => {
-  const f = fake([human, row("claimed", 3), [500, {}]]);
+test("a failed confirm email says when to retry", async () => {
+  const f = fake([human, row("pending", 3), [500, {}]]);
   const r = await claimFounding({ email: "a@b.co" }, env, f.send, site, fresh());
   assert.equal(r.status, 502);
   assert.match(r.body.error ?? "", /10 minutes/);
+});
+
+test("confirming a token takes the spot and emails the confirmation to the stored address", async () => {
+  const f = fake([confirmRow("confirmed", "ana@example.com", 499), [200, {}]]);
+  const r = await confirmFounding({ token: TOKEN }, env, f.send, site, new RateLimiter(5, 600_000));
+  assert.deepEqual(r, { status: 200, body: { ok: true, left: 499, confirmed: true } });
+  assert.equal(f.calls[0].url, "https://db.test/rest/v1/rpc/confirm_founding_family");
+  assert.deepEqual(JSON.parse(f.calls[0].body), { p_token_hash: tokenHash(TOKEN), p_cap: 500 });
+  assert.deepEqual(JSON.parse(f.calls[1].body).to, ["ana@example.com"]);
+  assert.match(f.calls[1].body, /Your spot is confirmed/);
+});
+
+test("a second confirm sends no second email, and bad, unknown or late tokens take no spot", async () => {
+  const again = fake([confirmRow("already", "ana@example.com", 499)]);
+  assert.equal((await confirmFounding({ token: TOKEN }, env, again.send, site, new RateLimiter(5, 600_000))).status, 200);
+  assert.equal(again.calls.length, 1);
+  const bad = fake([]);
+  assert.equal((await confirmFounding({ token: "nope" }, env, bad.send, site, new RateLimiter(5, 600_000))).status, 400);
+  assert.equal(bad.calls.length, 0);
+  assert.equal((await confirmFounding({ token: TOKEN }, env, fake([confirmRow("invalid", null)]).send, site, new RateLimiter(5, 600_000))).status, 404);
+  const late = await confirmFounding({ token: TOKEN }, env, fake([confirmRow("full", "x@y.co", 0)]).send, site, new RateLimiter(5, 600_000));
+  assert.equal(late.status, 409);
+  assert.equal(late.body.full, true);
+  assert.equal((await confirmFounding({ token: TOKEN }, env, bad.send, { ...site, origin: "https://evil.example" }, new RateLimiter(5, 600_000))).status, 403);
 });
 
 test("offline until every key is set", async () => {
@@ -109,7 +150,10 @@ test("offline until every key is set", async () => {
 test("rejects other origins and honeypot hits", async () => {
   const f = fake([]);
   assert.equal((await claimFounding({ email: "a@b.co" }, env, f.send, { ...site, origin: "https://evil.example" }, fresh())).status, 403);
-  assert.equal((await claimFounding({ email: "a@b.co", website: "x" }, env, f.send, site, fresh())).status, 200);
+  const bot = await claimFounding({ email: "a@b.co", website: "x" }, env, f.send, site, fresh());
+  assert.equal(bot.status, 400);
+  assert.equal(bot.body.ok, undefined);
+  assert.match(bot.body.error ?? "", /did not go through/);
   assert.equal(f.calls.length, 0);
 });
 
@@ -144,15 +188,21 @@ test("parseCodes trims, uppercases and dedupes", () => {
   assert.deepEqual(parseCodes("abc123, ABC123\nzz9999  bad\n"), ["ABC123", "ZZ9999"]);
 });
 
-test("the confirmation email states the offer, the App Store link and how to leave", () => {
-  const m = familyEmail("a@b.co", "P <p@x.co>");
-  assert.equal(m.subject, "Your Polingual founding family spot");
-  for (const body of [m.text, m.html]) {
+test("both emails carry the delivered promise and neither names an unbuilt step", () => {
+  const ask = confirmEmail("a@b.co", "P <p@x.co>", TOKEN);
+  const done = familyEmail("a@b.co", "P <p@x.co>");
+  assert.equal(OFFER, "Founding families get the Family plan free for life. We email your code when family plans open.");
+  assert.equal(ask.subject, "Confirm your Polingual founding family spot");
+  assert.equal(done.subject, "Your Polingual founding family spot");
+  for (const body of [ask.text, ask.html, done.text, done.html]) {
+    assert.ok(body.includes(OFFER));
+    assert.doesNotMatch(body, /testflight|\u2014|\u2013/i);
+  }
+  for (const body of [ask.text, ask.html]) assert.ok(body.includes(`https://www.polingual.com/founding?token=${TOKEN}`));
+  for (const body of [done.text, done.html]) {
     assert.match(body, /one of 500 Polingual founding family spots/);
-    assert.match(body, /Family plan free for life, for up to 6 people through Apple Family Sharing/);
     assert.match(body, /apps\.apple\.com\/app\/id6825177856/);
     assert.match(body, /privacy@polingual\.com/);
-    assert.doesNotMatch(body, /testflight|offer code|\u2014|\u2013/i);
   }
 });
 
@@ -281,7 +331,9 @@ test("the offer stays hidden while signups are offline and on translated pages",
 
 test("the offer sheet states the ruling and posts the claim with the human check", () => {
   assert.match(foundingJs, /const HEAD = "Founding family, free for life";/);
-  assert.match(foundingJs, /The first 500 families to sign up get the Polingual Family plan free for life, for up to 6 people through Apple Family Sharing\./);
+  assert.ok(foundingJs.includes(`const OFFER = "${OFFER}";`));
+  assert.match(foundingJs, /j\.confirmed \? "Your spot is already confirmed\." : "Check your email and confirm your spot\."/);
+  assert.doesNotMatch(foundingJs, /Your spot is saved/);
   assert.match(foundingJs, /fetch\("\/api\/founding", \{ method: "POST"/);
   assert.match(foundingJs, /turnstile: token/);
   assert.match(foundingJs, /website: sheet\.website\.value/);

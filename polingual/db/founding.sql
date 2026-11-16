@@ -72,13 +72,16 @@ $$;
 
 create table if not exists polingual.founding_families (
   email text primary key,
+  address text not null,
+  token_hash text not null unique,
   claimed_at timestamptz not null default now(),
-  sent_at timestamptz
+  sent_at timestamptz,
+  confirmed_at timestamptz
 );
 
 alter table polingual.founding_families enable row level security;
 
-create or replace function polingual.claim_founding_family(p_email text, p_ip_hash text, p_ip_limit int default 3, p_cap int default 500)
+create or replace function polingual.claim_founding_family(p_email text, p_address text, p_token_hash text, p_ip_hash text, p_ip_limit int default 3, p_cap int default 500)
 returns table (outcome text, spots_left bigint)
 language plpgsql
 security definer
@@ -86,31 +89,62 @@ set search_path = polingual
 as $$
 declare
   v_sent timestamptz;
+  v_confirmed timestamptz;
   v_found boolean;
   v_outcome text;
 begin
   perform pg_advisory_xact_lock(hashtext('founding-family-cap'));
-  select true, f.sent_at into v_found, v_sent from founding_families f where f.email = p_email;
-  if v_found then
+  select true, f.sent_at, f.confirmed_at into v_found, v_sent, v_confirmed from founding_families f where f.email = p_email;
+  if v_confirmed is not null then
+    v_outcome := 'confirmed';
+  elsif (select count(*) from founding_families f where f.confirmed_at is not null) >= p_cap then
+    v_outcome := 'full';
+  elsif v_found then
     if v_sent is null or v_sent < now() - interval '10 minutes' then
-      update founding_families f set sent_at = now() where f.email = p_email;
+      update founding_families f set sent_at = now(), token_hash = p_token_hash, address = p_address where f.email = p_email;
       v_outcome := 'resend';
     else
       v_outcome := 'recent';
     end if;
   else
     delete from founding_attempts a where a.at < now() - interval '1 day';
-    if (select count(*) from founding_families) >= p_cap then
-      v_outcome := 'full';
-    elsif (select count(*) from founding_attempts a where a.ip_hash = p_ip_hash and a.at > now() - interval '1 day') >= p_ip_limit then
+    if (select count(*) from founding_attempts a where a.ip_hash = p_ip_hash and a.at > now() - interval '1 day') >= p_ip_limit then
       v_outcome := 'ip-limit';
     else
-      insert into founding_families (email, sent_at) values (p_email, now());
+      insert into founding_families (email, address, token_hash, sent_at) values (p_email, p_address, p_token_hash, now());
       insert into founding_attempts (ip_hash) values (p_ip_hash);
-      v_outcome := 'claimed';
+      v_outcome := 'pending';
     end if;
   end if;
-  return query select v_outcome, greatest(p_cap - (select count(*) from founding_families), 0);
+  return query select v_outcome, greatest(p_cap - (select count(*) from founding_families f where f.confirmed_at is not null), 0);
+end;
+$$;
+
+create or replace function polingual.confirm_founding_family(p_token_hash text, p_cap int default 500)
+returns table (outcome text, address text, spots_left bigint)
+language plpgsql
+security definer
+set search_path = polingual
+as $$
+declare
+  v_email text;
+  v_address text;
+  v_confirmed timestamptz;
+  v_outcome text;
+begin
+  perform pg_advisory_xact_lock(hashtext('founding-family-cap'));
+  select f.email, f.address, f.confirmed_at into v_email, v_address, v_confirmed from founding_families f where f.token_hash = p_token_hash;
+  if v_email is null then
+    v_outcome := 'invalid';
+  elsif v_confirmed is not null then
+    v_outcome := 'already';
+  elsif (select count(*) from founding_families f where f.confirmed_at is not null) >= p_cap then
+    v_outcome := 'full';
+  else
+    update founding_families f set confirmed_at = now() where f.email = v_email;
+    v_outcome := 'confirmed';
+  end if;
+  return query select v_outcome, v_address, greatest(p_cap - (select count(*) from founding_families f where f.confirmed_at is not null), 0);
 end;
 $$;
 
@@ -120,7 +154,7 @@ language sql
 security definer
 set search_path = polingual
 as $$
-  select p_cap::bigint, greatest(p_cap - count(*), 0) from founding_families;
+  select p_cap::bigint, greatest(p_cap - count(*) filter (where confirmed_at is not null), 0) from founding_families;
 $$;
 
 create or replace function polingual.forget_founding_email(p_email text)
@@ -130,7 +164,7 @@ security definer
 set search_path = polingual
 as $$
   update founding_codes set email = 'forgotten:' || md5(email), sent_at = null where email = p_email;
-  delete from founding_families where email = p_email;
+  delete from founding_families where email = p_email or address = p_email;
 $$;
 
 revoke all on polingual.founding_codes, polingual.founding_attempts, polingual.founding_families from public, anon, authenticated;
@@ -140,7 +174,9 @@ revoke all on function polingual.forget_founding_email(text) from public, anon, 
 grant execute on function polingual.claim_founding_code(text, text, int) to service_role;
 grant execute on function polingual.founding_spots() to service_role;
 grant execute on function polingual.forget_founding_email(text) to service_role;
-revoke all on function polingual.claim_founding_family(text, text, int, int) from public, anon, authenticated;
+revoke all on function polingual.claim_founding_family(text, text, text, text, int, int) from public, anon, authenticated;
+revoke all on function polingual.confirm_founding_family(text, int) from public, anon, authenticated;
 revoke all on function polingual.founding_family_spots(int) from public, anon, authenticated;
-grant execute on function polingual.claim_founding_family(text, text, int, int) to service_role;
+grant execute on function polingual.claim_founding_family(text, text, text, text, int, int) to service_role;
+grant execute on function polingual.confirm_founding_family(text, int) to service_role;
 grant execute on function polingual.founding_family_spots(int) to service_role;

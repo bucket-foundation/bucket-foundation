@@ -28,3 +28,25 @@ jobs:
           cache-dependency-path: polingual/package-lock.json
       - run: npm ci --no-audit --no-fund
       - run: npm test
+
+  db:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      FOUNDING_TEST_DB_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+      - run: psql "$FOUNDING_TEST_DB_URL" -v ON_ERROR_STOP=1 -qc "create role anon; create role authenticated; create role service_role;"
+      - run: bash polingual/db/test-founding.sh

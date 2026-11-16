@@ -2,7 +2,7 @@
   const rows = [...document.querySelectorAll(".ff")];
   if (!rows.length || (document.documentElement.lang || "en") !== "en") return;
   const HEAD = "Founding family, free for life";
-  const OFFER = "The first 500 families to sign up get the Polingual Family plan free for life, for up to 6 people through Apple Family Sharing.";
+  const OFFER = "Founding families get the Family plan free for life. We email your code when family plans open.";
   const CSS = `.ff-sh{position:fixed;left:16px;right:16px;bottom:16px;margin:0 auto;max-width:460px;background:#F6EEDC;color:#231F20;border-radius:18px;padding:20px;box-shadow:0 8px 0 rgba(0,0,0,.25),0 0 0 2px #E3D6B8;font-family:Nunito,sans-serif;z-index:99}
 .ff-sh[hidden],.ff-sh [hidden]{display:none}.ff-sh h2{font-family:Fredoka,sans-serif;font-size:22px;margin:0 32px 8px 0;line-height:1.25}.ff-sh p{margin:0 0 10px;font-size:15px;line-height:1.4}
 .ff-sh .n{font-family:'Space Mono',monospace;font-weight:700;color:#5B1A4A}.ff-sh .r{display:flex;gap:8px;flex-wrap:wrap}
@@ -46,7 +46,7 @@
       if (typeof j.left === "number") spots.left = j.left;
       if (!r.ok) throw new Error(j.error || "Something went wrong. Try again.");
       sheet.dataset.done = "1";
-      note.textContent = "Your spot is saved. Check your email.";
+      note.textContent = j.confirmed ? "Your spot is already confirmed." : "Check your email and confirm your spot.";
       try { window.plEv && window.plEv("founding_claim"); } catch (_) {}
     } catch (err) {
       note.className = "m err";
@@ -63,7 +63,7 @@
     sheet.className = "ff-sh";
     sheet.noValidate = true;
     sheet.setAttribute("aria-label", HEAD);
-    sheet.innerHTML = `<button type="button" class="x" aria-label="Close">×</button><h2>${HEAD}</h2><p>${OFFER}</p><p class="n"></p><div class="r"><input type="email" name="email" autocomplete="email" required aria-label="Email" placeholder="you@example.com"><button type="submit">Claim a spot</button></div><input class="hp" tabindex="-1" autocomplete="off" name="website" aria-hidden="true"><p class="m" aria-live="polite"></p><p class="s">One spot per family. We keep your email in our database and send your confirmation with Resend. <a href="/privacy" target="_blank" rel="noopener">Privacy policy</a></p>`;
+    sheet.innerHTML = `<button type="button" class="x" aria-label="Close">×</button><h2>${HEAD}</h2><p>${OFFER}</p><p class="n"></p><div class="r"><input type="email" name="email" autocomplete="email" required aria-label="Email" placeholder="you@example.com"><button type="submit">Claim a spot</button></div><input class="hp" tabindex="-1" autocomplete="off" name="website" aria-hidden="true"><p class="m" aria-live="polite"></p><p class="s">Spots go to the first 500 families who confirm by email. One spot per family, up to 6 people through Apple Family Sharing. We keep your email in our database and send your confirmation with Resend. <a href="/privacy" target="_blank" rel="noopener">Privacy policy</a></p>`;
     document.body.appendChild(sheet);
     sheet.querySelector(".x").onclick = () => { sheet.hidden = true; };
     addEventListener("keydown", (k) => { if (k.key === "Escape") sheet.hidden = true; });
