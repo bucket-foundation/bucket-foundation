@@ -97,6 +97,13 @@ public struct KnownPicks: Sendable, Equatable {
 
     public var ready: Bool { !known.isBlank }
 
+    public var touched: Bool { known.at > 0 }
+
+    public func codesToSave(over stored: KnownLanguages) -> [String]? {
+        guard ready else { return nil }
+        return touched || stored.isBlank ? known.codes : nil
+    }
+
     public mutating func toggle(_ code: String, at now: Double) {
         known = known.isBlank ? KnownLanguages([code], at: now) : known.toggled(code, at: now)
         settle()

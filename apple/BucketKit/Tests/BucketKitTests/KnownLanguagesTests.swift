@@ -148,6 +148,18 @@ import Testing
         #expect(picks.chosenBase == nil)
     }
 
+    @Test func anUntouchedDefaultNeverReplacesAStoredList() {
+        let stored = KnownLanguages(["es", "pt"], at: 4)
+        let untouched = KnownPicks(device: "en")
+        #expect(!untouched.touched)
+        #expect(untouched.codesToSave(over: stored) == nil)
+        #expect(untouched.codesToSave(over: KnownLanguages([])) == ["en"])
+        var edited = untouched
+        edited.toggle("fr", at: 9)
+        #expect(edited.touched)
+        #expect(edited.codesToSave(over: stored) == ["en", "fr"])
+    }
+
     @Test func targetsRefillWhenEveryPickBecomesKnown() {
         var picks = KnownPicks(device: "en")
         picks.pick(["es", "pt"])

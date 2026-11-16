@@ -5,6 +5,7 @@ struct Onboarding: View {
     enum Step: Int, CaseIterable { case welcome, speak, languages }
 
     @Environment(LangStore.self) private var store
+    @Environment(\.accessibilityReduceMotion) private var still
     let finish: (String?) -> Void
     @State private var step = PolingualLaunch.value("-onboardingStep").flatMap(Int.init).flatMap(Step.init(rawValue:)) ?? .welcome
     @State private var picks = KnownPicks(device: InterfaceLanguage.deviceRoot)
@@ -33,7 +34,7 @@ struct Onboarding: View {
         .background(Backdrop().ignoresSafeArea())
         .task {
             await store.load()
-            if !store.known.isBlank, picks.known.at == 0 { picks = KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known) }
+            if !store.known.isBlank, !picks.touched { picks = KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known) }
         }
     }
 
@@ -83,6 +84,7 @@ struct Onboarding: View {
             Text("Which languages do you speak?")
                 .font(PL.title.font(scale: 0.94))
                 .foregroundStyle(PL.ink)
+                .accessibilityAddTraits(.isHeader)
                 .minimumScaleFactor(0.6)
                 .fixedSize(horizontal: false, vertical: true)
             Text("Pick every one you can hold a conversation in.")
@@ -116,7 +118,7 @@ struct Onboarding: View {
                 .transition(.opacity)
             }
         }
-        .animation(.spring(duration: 0.3), value: picks.bases)
+        .animation(still ? nil : .spring(duration: 0.3), value: picks.bases)
     }
 
     var languages: some View {
@@ -198,8 +200,7 @@ struct Onboarding: View {
         creating = true
         defer { creating = false }
         await store.load()
-        let codes = picks.known.codes
-        Task { await store.setKnown(codes) }
+        if let codes = picks.codesToSave(over: store.known) { await store.setKnown(codes) }
         let existing = store.systems.first { $0.root == root && Set($0.targets) == Set(targets) }
         if let existing { finish(existing.id); return }
         do {
