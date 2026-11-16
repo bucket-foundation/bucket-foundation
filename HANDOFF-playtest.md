@@ -1,6 +1,6 @@
 # Handoff: Polingual Playtest
 
-Branch `feat/polingual-playtest`, worktree `/home/gian/agfarms/.wt-playtest`. Beads: bkt-ukl7j.10, bkt-toqs9, then epic bkt-9gvte.
+Branch `feat/polingual-playtest`, worktree `.wt-playtest` beside the main checkout. Beads: bkt-ukl7j.10, bkt-toqs9, then epic bkt-9gvte.
 
 ## Flags
 
