@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TESTFLIGHT_URL } from "@/lib/beta";
+import { APP_STORE_URL } from "@/lib/facts";
 import { FlagBand } from "@/ui";
 import styles from "./site.module.css";
 import { ButtonLink } from "@/ui";
@@ -7,9 +7,9 @@ import { ButtonLink } from "@/ui";
 const SITE_FONTS =
   "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Hebrew:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+Tamil:wght@700&family=Noto+Sans+Thai:wght@700&family=Noto+Sans+JP:wght@700&family=Noto+Sans+KR:wght@700&display=swap";
 
-export type SiteLocale = { code: string; rtl: boolean; words: string; labels: { beta: string; support: string; privacy: string; terms: string }; footer: { tagline: string; data: string; published: string } };
+export type SiteLocale = { code: string; rtl: boolean; words: string; labels: { app: string; support: string; privacy: string; terms: string }; footer: { tagline: string; data: string; published: string } };
 
-const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" }, footer: { tagline: "Polingual · for iPhone and iPad", data: "Word data:", published: "Published by AGFarms LLC." } };
+const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { app: "Get the app", support: "Support", privacy: "Privacy", terms: "Terms" }, footer: { tagline: "Polingual · for iPhone and iPad", data: "Word data:", published: "Published by AGFarms LLC." } };
 
 function home(code: string): string {
   return code === "en" ? "/" : `/${code}`;
@@ -33,7 +33,7 @@ function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
         <Link className={styles.link} href={wordsHref(loc.code)}>{loc.words}</Link>
         <Link className={`${styles.link} ${styles.wide}`} href="/support">{loc.labels.support}</Link>
         <Link className={`${styles.link} ${styles.wide}`} href="/privacy">{loc.labels.privacy}</Link>
-        <ButtonLink size="sm" className={styles.btnP} href={TESTFLIGHT_URL} rel="noopener">{loc.labels.beta}</ButtonLink>
+        <ButtonLink size="sm" className={styles.btnP} href={APP_STORE_URL} rel="noopener">{loc.labels.app}</ButtonLink>
       </nav>
     </header>
   );

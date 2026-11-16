@@ -387,16 +387,17 @@ struct Diagonal: Shape {
 enum FreeBeta {
     static let note = String(localized: "You are on the TestFlight beta. Apple does not charge for purchases here, so any plan is free while you test.")
 
-    static func shows(environment: AppStore.Environment, flag: String?) -> Bool {
-        environment == .sandbox && flag == "on"
+    static func shows(environment: AppStore.Environment, flag: String?, betaBuild: Bool) -> Bool {
+        betaBuild && environment == .sandbox && flag == "on"
     }
 
     static func active() async -> Bool {
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-freeBeta") { return true }
         #endif
-        guard case .verified(let t) = try? await AppTransaction.shared else { return false }
-        return shows(environment: t.environment, flag: Beta.shared.flags.value("free_beta_note"))
+        let betaBuild = Subscriptions.freeBetaBuild(Bundle.main.object(forInfoDictionaryKey: "PolingualFreeBeta") as? String)
+        guard betaBuild, case .verified(let t) = try? await AppTransaction.shared else { return false }
+        return shows(environment: t.environment, flag: Beta.shared.flags.value("free_beta_note"), betaBuild: betaBuild)
     }
 }
 
