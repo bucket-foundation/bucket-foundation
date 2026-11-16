@@ -2,7 +2,7 @@
 
 `bucket.foundation` is a **nonprofit** project. Here is the plain-English, non-legal explanation of how it is run, what it owns, what it does not own, and how decisions get made.
 
-> **Legal status:** nonprofit, formalization in progress. Jurisdiction, fiscal sponsor, and tax status will be listed here once filed. Until then, treat this document as a statement of intent from the founding maintainer. It is not yet a binding charter.
+> **Legal status:** no entity exists yet. On 2026-11-16 the founder chose direct incorporation as a 501(c)(3) with programs that stay free. The filing packet is in `nonprofit-application/`. Until the corporation forms, treat this document as a statement of intent from the founding maintainer. It is not yet a binding charter.
 
 ---
 

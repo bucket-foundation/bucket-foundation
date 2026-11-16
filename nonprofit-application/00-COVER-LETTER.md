@@ -30,8 +30,8 @@ I am writing to apply for fiscal sponsorship of **bucket.foundation**, an open-s
 | `03-BUDGET.md` | 12-month projected budget |
 | `04-BOARD-AND-GOVERNANCE.md` | Governance structure & founding maintainer |
 | `05-CONFLICT-OF-INTEREST-POLICY.md` | Adopted COI policy |
-| `06-ARTICLES-OF-INCORPORATION-DRAFT.md` | Delaware nonprofit articles (alternate path) |
-| `07-FORM-1023-EZ-WORKSHEET.md` | IRS eligibility worksheet (alternate path) |
+| `06-ARTICLES-DELAWARE.md` | Delaware nonprofit articles (alternate path) |
+| `07-FORM-1023-DECISION.md` | IRS eligibility worksheet (alternate path) |
 
 The supporting governance document `docs/foundation/GOVERNANCE.md` lives at the root of the repository and forms part of this application by reference.
 
