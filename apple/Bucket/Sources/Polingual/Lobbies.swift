@@ -32,6 +32,27 @@ struct LobbiesTile: View {
     }
 }
 
+struct StagedLobbyHook: ViewModifier {
+    #if DEBUG
+    @Environment(LobbyStore.self) private var lobbies
+    @State private var open = false
+    #endif
+
+    func body(content: Content) -> some View {
+        #if DEBUG
+        content
+            .navigationDestination(isPresented: $open) { LobbyRoom() }
+            .task {
+                guard !lobbies.staged, let players = Launch.value("-lobbyStage").flatMap(Int.init) else { return }
+                lobbies.stage(players: players, mode: Launch.value("-lobbyStageMode").flatMap(LobbyPromptMode.init(rawValue:)) ?? .form)
+                open = true
+            }
+        #else
+        content
+        #endif
+    }
+}
+
 struct LobbiesScreen: View {
     @Environment(LobbyStore.self) private var lobbies
     @Environment(LangStore.self) private var langs
@@ -167,6 +188,7 @@ struct LobbyRoom: View {
         .paper()
         .navigationTitle(lobbies.current?.name ?? "")
         .inlineTitle()
+        .fullHeightSession()
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Leave") {

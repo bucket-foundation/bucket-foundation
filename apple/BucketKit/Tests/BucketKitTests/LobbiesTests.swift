@@ -206,4 +206,26 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         let pass = GuestPass(api: api, defaults: UserDefaults(suiteName: "guest-\(UUID().uuidString)")!) { "  " }
         #expect(await pass.token() == nil)
     }
+
+    @MainActor @Test func stagedLobbySitsInRoundTwoAndNeverPolls() async {
+        let calls = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { _ in
+            calls.mutate { $0 += 1 }
+            return (404, Data())
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        store.stage(players: 6, mode: .tiles)
+        await store.poll()
+        #expect(calls.value == 0)
+        #expect(store.current?.standings.count == 6)
+        #expect(store.current?.results(for: 0).count == 5)
+        #expect(store.current?.prompt(1)?.mode == .tiles)
+        guard case .round(let index, let remaining) = store.phase else {
+            Issue.record("staged lobby is outside a round")
+            return
+        }
+        #expect(index == 1 && remaining > 500)
+        await store.leave()
+        #expect(calls.value == 0 && store.current == nil && !store.staged)
+    }
 }
