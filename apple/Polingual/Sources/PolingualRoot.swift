@@ -54,12 +54,12 @@ struct PolingualRoot: View {
         .groupsOnToday()
         .memberNamePrompt()
         .ageRangePrompt()
-        .knownLanguagesPrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn) }, set: { if !$0 { savePending = false } })) {
             SaveProgressSheet()
                 .presentationDetents([.large])
         }
+        .knownLanguagesPrompt(busy: !onboarded || gate.asking || SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
         #if DEBUG
         .task { if ProcessInfo.processInfo.arguments.contains("-saveProgress") { savePending = true } }
         #endif

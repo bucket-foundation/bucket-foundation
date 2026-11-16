@@ -212,4 +212,29 @@ import Testing
         #expect(KnownPrompt.summary(KnownLanguages(["es", "en", "ja"], at: 1), device: "es", name: name) == "ES, EN, JA")
         #expect(KnownPrompt.summary(KnownLanguages([]), device: "fr", name: name) == "FR")
     }
+
+    @Test func thePromptYieldsToAnotherOpenSheet() {
+        let sets = [set("en", at: 1)]
+        #expect(!KnownPrompt.due(known: KnownLanguages([]), systems: sets, ready: true, signedIn: false, pulled: false, asked: false, busy: true))
+    }
+
+    @Test func eachAccountIsAskedOnce() {
+        var owners = ""
+        #expect(!KnownPrompt.asked(owners, owner: nil))
+        owners = KnownPrompt.marking(owners, owner: nil)
+        #expect(KnownPrompt.asked(owners, owner: nil))
+        #expect(!KnownPrompt.asked(owners, owner: "a"))
+        owners = KnownPrompt.marking(owners, owner: "a")
+        owners = KnownPrompt.marking(owners, owner: "a")
+        #expect(owners == "guest,a")
+        #expect(KnownPrompt.asked(owners, owner: "a"))
+        #expect(!KnownPrompt.asked(owners, owner: "ab"))
+    }
+
+    @Test func theNewSetRootFollowsTheSpokenList() {
+        #expect(KnownPrompt.root(current: "en", known: KnownLanguages([]), device: "de") == "en")
+        #expect(KnownPrompt.root(current: "es", known: KnownLanguages(["en", "es"], at: 1), device: "en") == "es")
+        #expect(KnownPrompt.root(current: "en", known: KnownLanguages(["es", "pt"], at: 1), device: "pt") == "pt")
+        #expect(KnownPrompt.root(current: "en", known: KnownLanguages(["es", "ja"], at: 1), device: "en") == "es")
+    }
 }

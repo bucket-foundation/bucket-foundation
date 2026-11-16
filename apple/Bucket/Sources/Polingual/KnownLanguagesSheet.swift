@@ -74,18 +74,36 @@ struct KnownLanguagesSheet: View {
 struct KnownLanguagesPrompt: ViewModifier {
     @Environment(LangStore.self) private var store
     @Environment(Account.self) private var account
-    @AppStorage(KnownPrompt.askedKey) private var asked = false
+    @Environment(\.scenePhase) private var phase
+    @AppStorage(KnownPrompt.askedKey) private var askedOwners = ""
+    let busy: Bool
     @State private var open = false
+    @State private var shown = false
+
+    var owner: String? { account.session?.userId }
 
     var due: Bool {
-        KnownPrompt.due(known: store.known, systems: store.systems, ready: store.status == .ready, signedIn: account.stage == .signedIn, pulled: store.pulled, asked: asked)
+        KnownPrompt.due(
+            known: store.known, systems: store.systems, ready: store.status == .ready, signedIn: account.stage == .signedIn, pulled: store.pulled,
+            asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy
+        )
     }
 
     func body(content: Content) -> some View {
         content
             .onChange(of: due, initial: true) { _, now in if now { open = true } }
-            .sheet(isPresented: $open, onDismiss: { asked = true }) {
+            .onChange(of: phase) { _, now in if now == .active, due { open = true } }
+            .task(id: open) {
+                guard open else { return }
+                try? await Task.sleep(for: .seconds(2))
+                if !Task.isCancelled, !shown { open = false }
+            }
+            .sheet(isPresented: $open, onDismiss: {
+                if shown { askedOwners = KnownPrompt.marking(askedOwners, owner: owner) }
+                shown = false
+            }) {
                 KnownLanguagesSheet(mode: .update, picks: KnownPrompt.seed(systems: store.systems, device: InterfaceLanguage.deviceRoot))
+                    .onAppear { shown = true }
             }
             #if DEBUG
             .task { if Launch.flag("-knownLanguages") { open = true } }
@@ -94,5 +112,5 @@ struct KnownLanguagesPrompt: ViewModifier {
 }
 
 extension View {
-    func knownLanguagesPrompt() -> some View { modifier(KnownLanguagesPrompt()) }
+    func knownLanguagesPrompt(busy: Bool) -> some View { modifier(KnownLanguagesPrompt(busy: busy)) }
 }

@@ -127,7 +127,7 @@ struct LanguageSections: View {
             }
             .tint(Palette.ink)
             .onChange(of: store.known, initial: true) { _, known in
-                if !known.isBlank, !known.codes.contains(root) { root = KnownPicks(device: InterfaceLanguage.deviceRoot, stored: known).root }
+                root = KnownPrompt.root(current: root, known: known, device: InterfaceLanguage.deviceRoot)
             }
             .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
             .sheet(isPresented: $speaking) {

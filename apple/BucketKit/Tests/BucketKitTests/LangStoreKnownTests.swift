@@ -250,6 +250,9 @@ import Testing
         signedIn.mutate { $0 = true }
         await s.load(force: true)
         #expect(s.pulled)
+        server.online.mutate { $0 = false }
+        await s.load(force: true)
+        #expect(s.pulled)
         s.clearLocal()
         #expect(!s.pulled)
     }

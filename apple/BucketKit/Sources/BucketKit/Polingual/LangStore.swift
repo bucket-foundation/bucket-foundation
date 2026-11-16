@@ -152,7 +152,7 @@ public final class LangStore {
         clips = loadedClips
         systems = list
         states = st
-        pulled = server != nil
+        pulled = pulled || server != nil
         status = corpus == nil ? .error : .ready
         if server != nil {
             await healPlacements(epoch: mine)
