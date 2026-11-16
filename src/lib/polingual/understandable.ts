@@ -41,16 +41,25 @@ export function soundKey(item: LangItem, lang: string): string {
   return ipa.normalize("NFD").replace(MARKS, "").replace(IPA_MODIFIERS, "");
 }
 
-export function levenshteinSimilarity(a: string, b: string): number {
+export function damerauSimilarity(a: string, b: string): number {
   const longest = Math.max(a.length, b.length);
   if (longest === 0 || a.length === 0 || b.length === 0) return 0;
   return 1 - editDistance(a, b) / longest;
 }
 
 export function formMatch(item: LangItem, known: string, target: string): FormMatch {
-  const spelling = levenshteinSimilarity(spellingKey(item, known), spellingKey(item, target));
-  const sound = levenshteinSimilarity(soundKey(item, known), soundKey(item, target));
+  const spelling = damerauSimilarity(spellingKey(item, known), spellingKey(item, target));
+  const sound = damerauSimilarity(soundKey(item, known), soundKey(item, target));
   return sound > spelling ? { channel: "sound", similarity: sound } : { channel: "spelling", similarity: spelling };
+}
+
+function interferes(item: LangItem, word: string, from: string): boolean {
+  const ff = item.falseFriends[word];
+  return !!ff && (ff.crossWith ? ff.crossWith.lang : "en") === from;
+}
+
+export function falseFriendPair(item: LangItem, a: string, b: string): boolean {
+  return interferes(item, a, b) || interferes(item, b, a);
 }
 
 export function targetLexicon(corpus: LangCorpus, target: string): LangItem[] {
@@ -68,7 +77,7 @@ export function understandableSet(
   for (const item of targetLexicon(corpus, targetLanguage)) {
     let best: { lang: string; match: FormMatch } | null = null;
     for (const lang of known) {
-      if (!item.forms[lang]) continue;
+      if (!item.forms[lang] || falseFriendPair(item, lang, targetLanguage)) continue;
       const match = formMatch(item, lang, targetLanguage);
       if (!best || match.similarity > best.match.similarity) best = { lang, match };
     }

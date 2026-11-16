@@ -1,17 +1,18 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FORM_THRESHOLD, levenshteinSimilarity, pairCoverage, soundKey, spellingKey, targetLexicon, understandableSet } from "../src/lib/polingual/understandable";
+import { falseFriendPair, formMatch, FORM_THRESHOLD, damerauSimilarity, pairCoverage, soundKey, spellingKey, targetLexicon, understandableSet } from "../src/lib/polingual/understandable";
 import { allPairs, loadCorpus, rootExamples, rootSeedReport } from "./polingual/root-seed";
 
 const corpus = loadCorpus();
 const words = (known: string[], target: string) => new Map(understandableSet(known, target, corpus).map((u) => [u.word, u]));
 const item = (lang: string, word: string) => corpus.items.find((i) => i.kind === "word" && i.forms[lang] === word)!;
 
-test("levenshteinSimilarity is one minus distance over the longer length", () => {
-  assert.equal(levenshteinSimilarity("mano", "mano"), 1);
-  assert.equal(levenshteinSimilarity("noche", "notte"), 0.6);
-  assert.equal(levenshteinSimilarity("perro", "cane"), 0);
-  assert.equal(levenshteinSimilarity("", "cane"), 0);
+test("damerauSimilarity is one minus distance over the longer length, a swap costing one", () => {
+  assert.equal(damerauSimilarity("mano", "mano"), 1);
+  assert.equal(damerauSimilarity("noche", "notte"), 0.6);
+  assert.equal(damerauSimilarity("perro", "cane"), 0);
+  assert.equal(damerauSimilarity("", "cane"), 0);
+  assert.equal(damerauSimilarity("abcd", "abdc"), 0.75);
 });
 
 test("keys fold accents, case, romanization and IPA marks", () => {
@@ -99,4 +100,26 @@ test("the report covers every ordered pair and its examples pass the rule", () =
     assert.ok(e.root.startsWith("*"));
     assert.ok(Object.keys(e.forms).length >= 3);
   }
+});
+
+test("a listed false friend pair never explains a word", () => {
+  const long = item("es", "largo");
+  assert.equal(long.falseFriends.es?.looksLike, "large");
+  assert.ok(formMatch(long, "en", "es").similarity >= 0.4);
+  assert.ok(falseFriendPair(long, "en", "es") && falseFriendPair(long, "es", "en"));
+  assert.ok(!falseFriendPair(long, "it", "es"));
+  assert.ok(!understandableSet(["en"], "es", corpus, 0.4).some((u) => u.itemId === long.id));
+  assert.ok(!understandableSet(["es"], "en", corpus, 0.4).some((u) => u.itemId === long.id));
+  assert.equal(understandableSet(["en", "it"], "es", corpus).find((u) => u.itemId === long.id)?.via.lang, "it");
+});
+
+test("the relation is symmetric", () => {
+  const ids = (k: string, t: string, th?: number) => understandableSet([k], t, corpus, th).map((u) => u.itemId).sort();
+  for (const [a, b] of [["es", "it"], ["es", "fr"], ["en", "de"], ["ru", "pl"], ["en", "ja"], ["it", "pt"]]) {
+    assert.deepEqual(ids(a, b), ids(b, a), `${a} ${b}`);
+    assert.equal(pairCoverage([a], b, corpus).understood, pairCoverage([b], a, corpus).understood);
+  }
+  assert.deepEqual(ids("en", "es", 0.4), ids("es", "en", 0.4));
+  const hand = item("es", "mano");
+  assert.deepEqual(formMatch(hand, "es", "fr"), formMatch(hand, "fr", "es"));
 });
