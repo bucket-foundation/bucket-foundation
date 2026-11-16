@@ -6,7 +6,7 @@ import { DAILY_BRANCH, type DailyBook } from "./store";
 
 const root = join(process.cwd(), "../src");
 const at = (p: string) => pathToFileURL(join(root, p)).href;
-const upserts: unknown[] = [];
+const writes: { p_user: string; p_rows: { branch: string; data: unknown }[]; p_reset: boolean }[] = [];
 
 process.env.NEXT_PUBLIC_SUPABASE_URL = "http://127.0.0.1:9";
 process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = "anon";
@@ -16,7 +16,7 @@ mock.module(at("lib/auth/verify.ts"), { namedExports: { verifyRequestUser: async
 mock.module(at("lib/academy/device-server.ts"), { namedExports: { serverVerifyDevice: async () => ({ ok: true }) } });
 mock.module(at("lib/research-os/learn-gate.ts"), { namedExports: { readAgeBand: async () => ({ ok: true, band: "adult", consent: null }), decideLearnWrite: () => ({ allowed: true }) } });
 mock.module(at("lib/research-os/learn-sync.ts"), { namedExports: { syncAcademyMastery: async () => ({ advanced: 0 }) } });
-mock.module("@supabase/supabase-js", { namedExports: { createClient: () => ({ from: () => ({ upsert: async (rows: unknown) => (upserts.push(rows), { error: null }) }) }) } });
+mock.module("@supabase/supabase-js", { namedExports: { createClient: () => ({ rpc: async (_fn: string, args: (typeof writes)[number]) => (writes.push(args), { data: { written: args.p_rows.map((r) => r.branch), refused: [] }, error: null }) }) } });
 
 test("the progress route accepts the polingual-daily branch at a full book's size", async () => {
   const { POST } = await import(at("app/api/academy/progress/route.ts"));
@@ -29,7 +29,9 @@ test("the progress route accepts the polingual-daily branch at a full book's siz
   assert.ok(body.length > 100_000);
   const res = await POST(new Request("http://localhost/api/academy/progress", { method: "POST", body, headers: { authorization: "Bearer t" } }) as never);
   assert.equal(res.status, 200);
-  assert.equal((upserts[0] as { branch: string }[])[0].branch, DAILY_BRANCH);
+  assert.equal(writes[0].p_user, "u1");
+  assert.equal(writes[0].p_rows[0].branch, DAILY_BRANCH);
+  assert.deepEqual(writes[0].p_rows[0].data, { results });
   const bad = await POST(new Request("http://localhost/api/academy/progress", { method: "POST", body: JSON.stringify({ branch: "-bad", data: {} }) }) as never);
   assert.equal(bad.status, 400);
 });
