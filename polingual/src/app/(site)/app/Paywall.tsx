@@ -1,6 +1,6 @@
 "use client";
 
-import { APP_STORE_URL, PLANS, TESTFLIGHT_URL, type Access } from "@/lib/app/plans";
+import { APP_STORE_URL, PLANS, type Access } from "@/lib/app/plans";
 import styles from "./app.module.css";
 import { Button, ButtonLink, Stage } from "@/ui";
 
@@ -36,9 +36,6 @@ export default function Paywall({ access, retry }: { access: Access; retry: () =
         <div className={styles.row}>
           <ButtonLink href={APP_STORE_URL} target="_blank" rel="noreferrer" data-testid="app-store-link">
             Subscribe in the app
-          </ButtonLink>
-          <ButtonLink variant="ghost" size="md" onDark href={TESTFLIGHT_URL} target="_blank" rel="noreferrer">
-            Join the beta
           </ButtonLink>
           <Button variant="quiet" size="sm" onDark onClick={retry} data-testid="recheck">
             I subscribed, check again

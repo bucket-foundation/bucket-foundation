@@ -1,97 +1,51 @@
-# bucket.foundation
+# Bucket Foundation Formation Packet
 
-Nonprofit Reinstatement Application Packet.
+Status on 2026-11-16: no entity exists, no EIN, no directors named, nothing filed.
 
-> **Status:** Draft, 2026-04-14. Not yet submitted to any sponsor or filed with any government.
+Founder ruling of 2026-11-16: Bucket Foundation incorporates as its own 501(c)(3). Its programs stay free. Polingual, the paid language app, moves to a separate for-profit company under a licence or a spinout. The Foundation adds a marketplace where taxpayers fund research and receive the deduction the Foundation provides.
 
-This folder is the application packet to **reinstate bucket.foundation as an active nonprofit project** after a 14-month dormancy (Feb 2025 → Apr 2026), and to formalize its status either through a fiscal sponsor or, as an alternate path, through direct incorporation as a Delaware nonstock nonprofit corporation followed by a § 501(c)(3) determination from the IRS.
+Nothing here is legal advice. Every row marked "confirm with counsel" is a legal judgment that a nonprofit attorney settles before filing.
 
-## What "reinstated" means here
+## Files
 
-bucket.foundation has **never been a registered legal entity**. There is no struck-off corporation to revive in the strict sense. The word *reinstated* is used in this packet to mean:
-
-> **Reactivating bucket.foundation as a publicly committed nonprofit project, with a written charter, a written conflict-of-interest policy, a written budget, a fiscal sponsor (or formal incorporation), and a public governance process, after a period of dormancy.**
-
-If a sponsor or government office uses *reinstatement* to mean strictly "restoration of a previously dissolved entity," that is not what is happening here. The Foundation is being **established** as a formal nonprofit for the first time, and the founding maintainer is willing to amend any document in this packet to use whichever vocabulary the receiving party prefers.
-
-## Files in this packet
-
-| # | File | Purpose |
+| File | Purpose | State |
 |---|---|---|
-| 00 | `00-COVER-LETTER.md` | One-page cover letter to a prospective fiscal sponsor |
-| 01 | `01-APPLICATION.md` | Master application form, reusable across sponsors and intake systems |
-| 02 | `02-NARRATIVE.md` | Mission, activities, and public-benefit narrative (lifts into IRS Form 1023 Part IV) |
-| 03 | `03-BUDGET.md` | 12-month projected budget (year 1 sponsored project) |
-| 04 | `04-BOARD-AND-GOVERNANCE.md` | Decision rules today, after sponsor onboarding, and after a board is seated |
-| 05 | `05-CONFLICT-OF-INTEREST-POLICY.md` | Adopted COI policy, modeled on IRS Form 1023 Appendix A sample |
-| 06 | `06-ARTICLES-OF-INCORPORATION-DRAFT.md` | Delaware nonstock nonprofit articles (alternate path, draft only) |
-| 07 | `07-FORM-1023-EZ-WORKSHEET.md` | IRS Form 1023-EZ eligibility self-assessment (alternate path, planning only) |
+| `07-FORM-1023-DECISION.md` | Form 1023 against Form 1023-EZ, all 34 worksheet questions | Current |
+| `10-FILING-ORDER.md` | Each filing in order with fee, wait and source | Current |
+| `06-ARTICLES-NEW-YORK.md` | Certificate of incorporation draft, New York | Draft, pick one state |
+| `06-ARTICLES-NEW-JERSEY.md` | Certificate of incorporation draft, New Jersey | Draft, pick one state |
+| `06-ARTICLES-DELAWARE.md` | Certificate of incorporation draft, Delaware | Draft, pick one state |
+| `08-BYLAWS-OUTLINE.md` | Bylaws outline for counsel to turn into bylaws | Outline |
+| `05-CONFLICT-OF-INTEREST-POLICY.md` | Policy text, updated for the for-profit spinout | Board adopts |
+| `05A-CONFLICT-POLICY-CHECK.md` | Policy checked against the IRS sample and New York law | Current |
+| `03-BUDGET.md` | Three-year budget in Form 1023 Part VI line order | Template |
+| `02-NARRATIVE.md` | Form 1023 Part IV narrative with the marketplace and the licence | Draft |
+| `09-BOARD-RECRUITMENT-BRIEF.md` | Seats, independence rules, the ask | Current |
+| `11-FOR-PROFIT-LICENCE-TERMS.md` | Terms the Polingual licence needs | Term sheet for counsel |
+| `00-BASE-INFO-MEMO.md` | May 2026 gap analysis | History |
+| `00-COVER-LETTER.md`, `01-APPLICATION.md`, `04-BOARD-AND-GOVERNANCE.md` | Fiscal sponsor path | Fallback, see below |
 
-The repository-root files **`docs/foundation/GOVERNANCE.md`**, **`docs/foundation/PROTOCOL.md`**, **`README.md`**, and **`LICENSE`** are part of this application by reference.
+The marketplace design lives in `docs/specs/RESEARCH-DONATION-MARKETPLACE.md`. Bead epic `bkt-y5d0q` tracks every founder action and build slice.
 
-## Two parallel paths
+## Verdict
 
-The packet is structured to support two paths in parallel, so the founding maintainer is not blocked by a single decision-maker:
+File the full Form 1023. Three worksheet questions decide it: question 1 on gross receipts above $50,000, question 26 on donor advised funds, question 34 on digital assets. `07-FORM-1023-DECISION.md` has the full table.
 
-### Path A, Fiscal sponsorship
+## Founder Inputs
 
-```
-Submit packet to one or more of:
-  • Open Collective Foundation (OCF)
-  • Code for Science & Society (CS&S)
-  • Software Freedom Conservancy (SFC)
-  • NumFOCUS
-  • Aspiration / Allied Media Projects (broader scope)
+Six facts block every filing. Only the founder holds them.
 
-→ Sponsor reviews packet
-→ Sponsor signs standard fiscal sponsorship agreement
-→ Founding maintainer transfers domain + wallet to sponsor or co-custody
-→ Foundation begins operating as a sponsored project
-→ Tax-deductible donations enabled immediately
+| Input | Used in |
+|---|---|
+| State of domicile on the filing date | Picks the articles draft |
+| Legal name, checked against the state name search | Articles, EIN, Form 1023 |
+| Three directors, two of them independent of the founder | Articles, Form 1023 Part I |
+| Registered agent | Articles in New Jersey and Delaware |
+| Mailing address that can appear in public records | Articles, EIN, Form 1023 |
+| Fiscal year end | Bylaws, Form 1023 Part II |
 
-Time to operational: 4–12 weeks
-One-time cost: ≤ $300 (legal review of agreement)
-Ongoing cost: 5–10% of pass-through revenue (sponsor fee)
-```
+The repository is public. Addresses and tax identifiers stay out of it and go straight into the state and IRS forms.
 
-### Path B
+## Fiscal Sponsor Fallback
 
-Direct incorporation + § 501.
-
-```
-File Delaware Articles of Incorporation (06-...)
-→ Recruit 3-director board
-→ Adopt Bylaws + COI Policy
-→ Apply for EIN (Form SS-4)
-→ Open bank account
-→ File IRS Form 1023-EZ (07-...) once eligibility re-confirmed
-→ Wait 30–90 days for IRS determination
-→ Foundation operates as a direct § 501(c)(3)
-
-Time to operational: 4–9 months
-One-time cost: ~$1,500–$3,000 (filing + counsel)
-Ongoing cost: ~$300–$600/yr (registered agent + Delaware franchise + state charitable registration)
-```
-
-**The packet contains everything needed for either path.** The founding maintainer's preference is Path A first, with Path B held in reserve in case Path A is unavailable, declined, or becomes structurally undesirable.
-
-## What this packet is not
-
-- It is **not** a contract.
-- It is **not** legal advice. The Articles draft and the Form 1023-EZ worksheet **must** be reviewed by counsel before any filing.
-- It is **not** a fundraising solicitation. The Foundation is not currently raising money. No donation page exists. No grants are pending.
-- It is **not** a claim that the Foundation has § 501(c)(3) status, IRS recognition, or fiscal sponsor acceptance. It is an application for those things.
-- It is **not** a binding commitment to any specific jurisdiction, sponsor, or filing path.
-
-## Audit trail
-
-This packet was drafted on **2026-04-14** by the founding maintainer, in personal capacity, with assistance from the AGFarms Nucleus orchestrator (an internal tooling assistant). All factual statements about the Foundation's current state, prior history, and intended future activities are the personal representations of the founding maintainer and have not been independently verified.
-
-The packet will be versioned along with the rest of the repository. Substantive amendments will be recorded in the git history and noted at the top of the affected file.
-
----
-
-**Founding maintainer:** Gian Dichio (@gianyrox)
-**Contact:** gianyrox@gmail.com
-**Repository:** https://github.com/gianyrox/bucket-foundation
-**Date of packet:** 2026-04-14
+The sponsor files stay in the folder for one use: a sponsor can receive deductible gifts for the marketplace during the IRS wait. `docs/specs/RESEARCH-DONATION-MARKETPLACE.md` covers what a sponsor permits. The cover letter still names Open Collective Foundation, which dissolved in 2024, so it needs an edit before any sponsor reads it.

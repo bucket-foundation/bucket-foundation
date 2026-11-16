@@ -1,10 +1,9 @@
+import { APP_STORE_URL } from "./facts";
 import { parseSignup } from "./signup";
-
-export const TESTFLIGHT_URL = "https://testflight.apple.com/join/B1ctUxn5";
 
 export type BetaEnv = Record<string, string | undefined>;
 export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
-type BetaResult = { status: number; body: { ok?: true; error?: string; testflight?: string } };
+type BetaResult = { status: number; body: { ok?: true; error?: string; appStore?: string } };
 
 const API = "https://api.resend.com";
 export const UNSUBSCRIBE = "To leave the beta list, email privacy@polingual.com and we remove your address.";
@@ -49,9 +48,9 @@ export function welcomeEmail(to: string, from: string) {
   return {
     from,
     to: [to],
-    subject: "Your Polingual beta link",
-    text: `Thanks for joining the Polingual beta.\n\nOn your iPhone, open this link:\n${TESTFLIGHT_URL}\n\nApple's page installs TestFlight, its free beta app, if you need it. Then tap View in TestFlight and Install. If TestFlight asks for a code, open the link above again.\n\nReply to this email with the languages you speak and the ones you want next.\n\n${UNSUBSCRIBE}\n\nPolingual`,
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>Thanks for joining the Polingual beta.</p><p><a href="${TESTFLIGHT_URL}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install Polingual</a></p><p>Apple's page installs TestFlight, its free beta app, if you need it. Then tap View in TestFlight and Install. If TestFlight asks for a code, tap the button again.</p><p>Reply with the languages you speak and the ones you want next.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+    subject: "Your Polingual link",
+    text: `Polingual is on the App Store.\n\nOn your iPhone, open this link:\n${APP_STORE_URL}\n\nTap Get to install it.\n\nReply to this email with the languages you speak and the ones you want next.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>Polingual is on the App Store.</p><p><a href="${APP_STORE_URL}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install Polingual</a></p><p>Open it on your iPhone and tap Get.</p><p>Reply with the languages you speak and the ones you want next.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
   };
 }
 
@@ -85,7 +84,7 @@ export async function joinBeta(
   if (!limits.ip.take(req.ip || "unknown", req.now)) return TOO_MANY;
   const parsed = parseSignup(body);
   if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
-  if (parsed.suspect) return { status: 200, body: { ok: true, testflight: TESTFLIGHT_URL } };
+  if (parsed.suspect) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   if (!limits.email.take(parsed.signup.email, req.now)) return TOO_MANY;
   const key = env.RESEND_API_KEY?.trim();
   const audience = env.RESEND_BETA_AUDIENCE_ID?.trim();
@@ -93,16 +92,16 @@ export async function joinBeta(
   if (needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
   const existing = await send(`${API}/audiences/${audience}/contacts/${encodeURIComponent(parsed.signup.email)}`, { method: "GET", headers });
-  if (existing.ok) return { status: 200, body: { ok: true, testflight: TESTFLIGHT_URL } };
+  if (existing.ok) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   const contact = await send(`${API}/audiences/${audience}/contacts`, {
     method: "POST",
     headers,
     body: JSON.stringify({ email: parsed.signup.email, unsubscribed: false }),
   });
-  if (contact.status === 409) return { status: 200, body: { ok: true, testflight: TESTFLIGHT_URL } };
+  if (contact.status === 409) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   if (!contact.ok) return { status: 502, body: { error: "Your signup did not save. Try again in a minute." } };
   const from = env.BETA_FROM?.trim() || "Polingual <hello@bucket.foundation>";
   const mail = await send(`${API}/emails`, { method: "POST", headers, body: JSON.stringify(welcomeEmail(parsed.signup.email, from)) });
   if (!mail.ok) console.error("[beta] welcome email failed", mail.status);
-  return { status: 200, body: { ok: true, testflight: TESTFLIGHT_URL } };
+  return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
 }

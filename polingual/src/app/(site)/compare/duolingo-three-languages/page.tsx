@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Legal from "@/app/legal";
-import { FAQ, FACTS, faqJsonLd, jsonLdScript } from "@/lib/facts";
+import { APP_STORE_URL, FAQ, FACTS, faqJsonLd, jsonLdScript } from "@/lib/facts";
 import { pageMeta } from "@/lib/meta";
 
 const CHECKED = "2026-10-25";
@@ -15,7 +15,7 @@ const ROWS: [string, string, string][] = [
   ["Review queue", "One spaced review queue mixes every language in the set", "Practice runs inside each course"],
   ["Word presentation", "A meaning appears once with its word in each of your languages", "Words appear in the lessons of one course"],
   ["Platforms", FACTS.platforms, "Android, iOS and iPadOS apps"],
-  ["Price", "Free in the Bucket beta on TestFlight", "Free with ads; a subscription removes ads"],
+  ["Price", "$9.99 a month or $59.99 a year, with a 3-day free trial", "Free with ads; a subscription removes ads"],
 ];
 
 export default function Page() {
@@ -46,7 +46,7 @@ export default function Page() {
         </section>
       ))}
       <p>Duolingo facts from <a href="https://en.wikipedia.org/wiki/Duolingo">Wikipedia: Duolingo</a>, checked {CHECKED}. Polingual facts from the app.</p>
-      <p><a href="/">Join the beta</a></p>
+      <p><a href={APP_STORE_URL}>Download on the App Store</a></p>
     </Legal>
   );
 }

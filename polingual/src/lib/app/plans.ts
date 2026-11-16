@@ -15,8 +15,7 @@ export const PLANS: Plan[] = [
   { id: "student", name: "Student", price: "$29.99", cadence: "a year", productId: null },
 ];
 
-export const TESTFLIGHT_URL = "https://testflight.apple.com/join/B1ctUxn5";
-export const APP_STORE_URL = "https://apps.apple.com/app/id6825177856";
+export { APP_STORE_URL } from "../facts";
 
 export interface Access {
   status: "checking" | "open" | "locked" | "unknown";
