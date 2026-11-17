@@ -319,7 +319,7 @@ struct TranslateCard: View {
             .environment(\.colorScheme, .light)
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
-            .onDisappear { TranslateCard.lexicons.reserve(0) }
+            .onDisappear { TranslateCard.lexicons.release() }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
                 guard on, !today else { return }
                 DeepLink.shared.listen = false

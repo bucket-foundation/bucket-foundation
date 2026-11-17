@@ -16,6 +16,7 @@ struct SentenceTranslations: View {
     @State private var round = 0
     @State private var downloading: String?
     @State private var failed: Set<String> = []
+    @State private var settled = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -44,7 +45,7 @@ struct SentenceTranslations: View {
                         }
                         Spacer(minLength: 4)
                         PlayButton(text: g, lang: l)
-                    } else if waiting {
+                    } else if waiting && !settled {
                         ProgressView()
                     } else if needsDownload.contains(l) {
                         VStack(alignment: .leading, spacing: 6) {
@@ -69,6 +70,7 @@ struct SentenceTranslations: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .task(id: "\(source)|\(targets.joined(separator: ","))|\(text)|\(round)") { await run() }
+        .onChange(of: waiting, initial: true) { _, on in if !on { settled = true } }
         .translationTask(download) { session in
             let target = downloading
             do {

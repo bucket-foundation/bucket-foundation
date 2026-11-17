@@ -195,8 +195,12 @@ public final class LexiconShelf: @unchecked Sendable {
     }
 
     public func reserve(_ count: Int) {
+        lock.withLock { room = max(room, min(count, max(base, LexiconShelf.ceiling))) }
+    }
+
+    public func release() {
         lock.withLock {
-            room = min(max(base, count), max(base, LexiconShelf.ceiling))
+            room = base
             while recent.count > room { cache[recent.removeFirst()] = nil }
         }
     }

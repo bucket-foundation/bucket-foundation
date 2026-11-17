@@ -130,9 +130,19 @@ func lexiconShelf() -> LexiconShelf {
     #expect(shelf.loaded == query)
     shelf.reserve(40)
     #expect(shelf.capacity == LexiconShelf.ceiling)
-    shelf.reserve(0)
+    shelf.release()
     #expect(shelf.capacity == 4)
     #expect(shelf.loaded == ["de", "es", "fr", "it"])
+}
+
+@Test func lexiconShelfKeepsItsRoomWhenTheQueryShrinks() {
+    let shelf = LexiconShelf { lang in try? (Data("w\tx\n".utf8) as NSData).compressed(using: .zlib) as Data }
+    let query = ["ja", "en", "de", "es", "fr", "it"]
+    shelf.reserve(query.count)
+    for l in query { #expect(shelf.lexicon(l) != nil) }
+    shelf.reserve(2)
+    #expect(shelf.capacity == query.count)
+    #expect(shelf.loaded == query)
 }
 
 @Test func deckHitGlossesTargetsTheDeckLacks() throws {
