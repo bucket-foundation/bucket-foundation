@@ -172,6 +172,12 @@ public enum LobbyRules {
     public static let raceHeader = ["x-polingual-race": "1"]
     public static let raceScoreMax = 100_000
 
+    public static let retryableRefusals: Set<Int> = [408, 425, 429]
+
+    public static func scoreRefusalIsFinal(_ status: Int) -> Bool {
+        (400..<500).contains(status) && !retryableRefusals.contains(status)
+    }
+
     public static func raceScore(points: Int?, hits: Int) -> Int {
         min(max(0, points ?? hits * 100), raceScoreMax)
     }
@@ -528,7 +534,7 @@ public final class LobbyStore {
             if fresh.id == current?.id { apply(fresh) }
             return true
         } catch {
-            if let e = error as? BucketError, case .server(let status, _) = e, (400..<500).contains(status) { raceScoreSent = true }
+            if let e = error as? BucketError, case .server(let status, _) = e, LobbyRules.scoreRefusalIsFinal(status) { raceScoreSent = true }
             return false
         }
     }

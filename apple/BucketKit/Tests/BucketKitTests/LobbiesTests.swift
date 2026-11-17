@@ -215,6 +215,31 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(hits.value == 1)
     }
 
+    @MainActor @Test(arguments: [408, 425, 429]) func aTimedOutOrThrottledScoreIsSentAgain(_ status: Int) async throws {
+        let hits = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { r in
+            var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")
+            raw["game"] = "snake"
+            if r.url!.path.hasSuffix("/score") {
+                hits.mutate { $0 += 1 }
+                return hits.value == 1 ? (status, json(["error": "busy"])) : (200, json(["score": 7, "lobby": raw]))
+            }
+            if r.url!.path.hasSuffix("/state") { return (200, json(["changed": false, "version": 3, "now": "2026-11-12T10:00:00Z"])) }
+            return (200, json(["lobby": raw]))
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(await store.postScore(7) == false && !store.raceScoreSent)
+        await store.poll()
+        #expect(hits.value == 2 && store.raceScoreSent && store.raceScore == 7)
+    }
+
+    @Test func scoreRefusalsEndOnClientErrorsExceptTimeoutsAndThrottles() {
+        #expect(LobbyRules.scoreRefusalIsFinal(409) && LobbyRules.scoreRefusalIsFinal(400))
+        #expect(!LobbyRules.scoreRefusalIsFinal(408) && !LobbyRules.scoreRefusalIsFinal(429))
+        #expect(!LobbyRules.scoreRefusalIsFinal(500) && !LobbyRules.scoreRefusalIsFinal(0))
+    }
+
     @Test func raceScoreFallsBackToHitsAndStaysInRange() {
         #expect(LobbyRules.raceScore(points: 420, hits: 3) == 420)
         #expect(LobbyRules.raceScore(points: nil, hits: 3) == 300)
