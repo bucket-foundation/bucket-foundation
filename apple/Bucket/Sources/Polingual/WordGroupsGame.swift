@@ -137,6 +137,7 @@ struct WordGroupsGame: View {
                 Button("Deselect") { round?.clear() }.buttonStyle(D8Option(align: .center, compact: true)).disabled(r.selected.isEmpty)
                 Button("Submit") { submit() }.buttonStyle(D8Primary(compact: true)).disabled(!r.canSubmit).accessibilityIdentifier("groups.submit")
             }
+            .lineLimit(1).minimumScaleFactor(0.7)
         }
         .padding()
         .frame(maxWidth: 520)

@@ -75,6 +75,8 @@ extension View {
             .paper()
             .navigationTitle(sideways ? "" : title)
             .inlineTitle()
+            .toolbar { ToolbarItem(placement: .principal) { Text(sideways ? "" : title).font(.headline).foregroundStyle(D8.ink).accessibilityAddTraits(.isHeader) } }
+            .environment(\.colorScheme, .light)
             #if os(iOS)
             .onAppear { ScreenShare.shared.quiet += 1 }
             .onDisappear { ScreenShare.shared.quiet -= 1 }
