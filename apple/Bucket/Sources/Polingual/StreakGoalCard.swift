@@ -4,11 +4,12 @@ import SwiftUI
 struct StreakGoalCard: View {
     @Environment(LangStore.self) private var store: LangStore?
     let streak: Double
+    var pending = false
     var share = true
     var expected: ExpectedLearning?
 
     var body: some View {
-        let g = StreakGoal(streak: streak)
+        let g = StreakGoal(streak: streak, pending: pending)
         HStack(spacing: 12) {
             summary(g).accessibilityElement(children: .combine)
             if share && g.day > 0 {
@@ -34,11 +35,12 @@ struct StreakGoalCard: View {
 
     func title(_ g: StreakGoal) -> String {
         if g.day == 0 { return String(localized: "Start your 100-day streak") }
-        return g.reached ? String(localized: "Day \(g.day)") : String(localized: "Day \(g.day) of 100")
+        return g.todayReached ? String(localized: "Day \(g.today)") : String(localized: "Day \(g.today) of 100")
     }
 
     func detail(_ g: StreakGoal) -> String {
         if g.day == 0 { return String(localized: "Study today to count day 1.") }
+        if g.pending { return String(localized: "Study today to count day \(g.today).") }
         if g.reached { return String(localized: "100 days reached. Keep it going.") }
         return g.left == 1 ? String(localized: "1 day to 100") : String(localized: "\(g.left) days to 100")
     }
