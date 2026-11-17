@@ -50,6 +50,7 @@ struct AtlasGame: View {
     @State private var zoom = AtlasZoom()
     @State private var pinchFrom: AtlasZoom?
     @State private var dragFrom: AtlasZoom?
+    @State private var dragBase = CGSize.zero
 
     var silent: Bool { LangVoice.shared.silent }
     var round: AtlasRound? { index < rounds.count ? rounds[index] : nil }
@@ -93,8 +94,7 @@ struct AtlasGame: View {
                     LangVoice.shared.speak(r.form, r.lang)
                     heard = heard || silent
                 } label: {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .font(.system(size: 22, weight: .semibold))
+                    PLGlyphView(.speaker, size: 28)
                         .foregroundStyle(PL.tyrian)
                         .frame(width: 52, height: 52)
                         .background(PL.paper, in: .circle)
@@ -140,9 +140,10 @@ struct AtlasGame: View {
                 DragGesture(minimumDistance: 8)
                     .onChanged { v in
                         guard pinchFrom == nil else { return }
+                        if dragFrom == nil { dragBase = v.translation }
                         let from = dragFrom ?? zoom
                         dragFrom = from
-                        zoom = from.moved(by: v.translation, in: geo.size)
+                        zoom = from.moved(by: CGSize(width: v.translation.width - dragBase.width, height: v.translation.height - dragBase.height), in: geo.size)
                     }
                     .onEnded { _ in dragFrom = nil },
                 isEnabled: zoom.zoomed
@@ -155,7 +156,10 @@ struct AtlasGame: View {
                         dragFrom = nil
                         zoom = from.scaled(to: from.scale * v.magnification, around: v.startLocation, in: geo.size)
                     }
-                    .onEnded { _ in pinchFrom = nil }
+                    .onEnded { _ in
+                        pinchFrom = nil
+                        dragFrom = nil
+                    }
             )
             .overlay(alignment: .bottomTrailing) {
                 HStack(spacing: 0) {
