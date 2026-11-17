@@ -56,6 +56,31 @@ struct PlayTests {
         #expect(try #require(Polyword.puzzleFor(F.bank, lang: "fr", day: 40)).slug == F.str("polywordFr40"))
     }
 
+    @Test func atlasZoomKeepsThePinchedPointUnderTheFinger() {
+        let size = CGSize(width: 360, height: 180)
+        let finger = CGPoint(x: 190, y: 50)
+        let z = AtlasZoom().scaled(to: 4, around: finger, in: size)
+        #expect(z.scale == 4)
+        let held = z.content(finger)
+        #expect(abs(held.x - 190) < 0.001 && abs(held.y - 50) < 0.001)
+        let back = z.screen(held)
+        #expect(abs(back.x - finger.x) < 0.001 && abs(back.y - finger.y) < 0.001)
+    }
+
+    @Test func atlasZoomStaysInsideTheMap() {
+        let size = CGSize(width: 360, height: 180)
+        #expect(AtlasZoom().scaled(to: 0.3, around: .zero, in: size) == AtlasZoom())
+        #expect(AtlasZoom().scaled(to: 40, around: .zero, in: size).scale == AtlasZoom.most)
+        #expect(AtlasZoom().moved(by: CGSize(width: -50, height: 30), in: size) == AtlasZoom())
+        let z = AtlasZoom().scaled(to: 2, around: CGPoint(x: 180, y: 90), in: size)
+        #expect(z.offset == CGSize(width: -180, height: -90))
+        let far = z.moved(by: CGSize(width: -900, height: 900), in: size)
+        #expect(far.offset == CGSize(width: -360, height: 0))
+        let corner = z.scaled(to: 2, around: CGPoint(x: 360, y: 180), in: size).moved(by: CGSize(width: -900, height: -900), in: size)
+        #expect(corner.content(CGPoint(x: 360, y: 180)) == CGPoint(x: 360, y: 180))
+        #expect(far.scaled(to: 1, around: CGPoint(x: 10, y: 10), in: size) == AtlasZoom())
+    }
+
     @Test func atlasProjectionRoundTrips() {
         let (x, y) = Atlas.project(lon: 2.4, lat: 48.9)
         let p = Atlas.unproject(x: x, y: y)
