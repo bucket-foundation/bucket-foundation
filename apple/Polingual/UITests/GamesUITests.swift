@@ -74,6 +74,16 @@ final class GamesUITests: XCTestCase {
         shot("polyword-board")
     }
 
+    func testLearnListsNoGames() {
+        let app = launch([])
+        let content = app.staticTexts["Content"]
+        for _ in 0..<4 where !content.exists { app.swipeUp() }
+        XCTAssertTrue(content.waitForExistence(timeout: 60))
+        XCTAssertFalse(app.staticTexts["Games"].exists)
+        XCTAssertFalse(app.staticTexts["Daily Set"].exists)
+        shot("learn-no-games")
+    }
+
     func testSameWordFinishes() {
         let app = launch(["-openGame", "same"])
         playQuiz(app, until: app.buttons["Play again"], name: "same")

@@ -5,6 +5,7 @@ struct LearnView: View {
     @Environment(LangStore.self) private var langs
     @State private var path = NavigationPath()
     var subjects: (any Subjects)?
+    var games = true
 
     var decks: [DeckEntry] { subjects?.decks ?? [] }
 
@@ -26,7 +27,7 @@ struct LearnView: View {
                     LearnHeading(text: langs.systems.isEmpty ? "Languages" : "Your languages")
                     languages(proxy)
                     LearnHeading(text: "Explore")
-                    GamesSection { path.append(LearnRoute.game($0)) }
+                    if games { GamesSection { path.append(LearnRoute.game($0)) } }
                     ContentSection { path.append($0) }
                     FilmsSection { path.append(LearnRoute.film($0)) }
                     subjects?.section(open: { path.append($0) }, search: { path.append(LearnRoute.canon) })
