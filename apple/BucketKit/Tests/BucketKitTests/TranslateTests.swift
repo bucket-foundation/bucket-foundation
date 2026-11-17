@@ -128,10 +128,11 @@ func lexiconShelf() -> LexiconShelf {
     shelf.reserve(query.count)
     for l in query { #expect(shelf.lexicon(l) != nil) }
     #expect(shelf.loaded == query)
-    shelf.reserve(2)
-    #expect(shelf.capacity == 6)
     shelf.reserve(40)
     #expect(shelf.capacity == LexiconShelf.ceiling)
+    shelf.reserve(0)
+    #expect(shelf.capacity == 4)
+    #expect(shelf.loaded == ["de", "es", "fr", "it"])
 }
 
 @Test func deckHitGlossesTargetsTheDeckLacks() throws {
