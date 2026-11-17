@@ -57,6 +57,7 @@ struct PolingualApp: App {
                 .environment(groups)
                 .environment(lobbies)
                 .interfaceLanguage(store)
+                .preferredColorScheme(.light)
                 .task { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
