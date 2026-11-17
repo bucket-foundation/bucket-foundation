@@ -319,6 +319,7 @@ struct GameLip: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .environment(\.colorScheme, .light)
             .background(face, in: .rect(cornerRadius: radius))
             .background(lip, in: .rect(cornerRadius: radius).offset(y: 5))
             .padding(.bottom, 5)

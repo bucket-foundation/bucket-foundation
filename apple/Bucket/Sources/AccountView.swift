@@ -29,7 +29,7 @@ struct AccountView: View {
         NavigationStack {
             Form {
                 #if !BUCKET
-                PLScreenTop(title: "Account", subtitle: "Your progress, saved", stickers: Stickers.account).plListTop()
+                PLScreenTop(title: "Account", stickers: Stickers.account).plListTop()
                 #endif
                 switch account.stage {
                 case .signedOut, .codeSent:

@@ -123,8 +123,8 @@ struct MiniGame: View {
         HStack(spacing: 10) {
             FlagTile(lang: e.word.lang, size: 28)
             VStack(alignment: .leading, spacing: 2) {
-                Text(e.across ? String(localized: "\(e.number) across · \(e.letters.count) letters") : String(localized: "\(e.number) down · \(e.letters.count) letters"))
-                    .font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                Text(verbatim: langName(e.word.lang) + " · " + (e.across ? String(localized: "\(e.number) across · \(e.letters.count) letters") : String(localized: "\(e.number) down · \(e.letters.count) letters")))
+                    .font(.caption.weight(.bold)).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
                 Text(e.word.gloss).font(.headline).foregroundStyle(Palette.ink).lineLimit(2)
             }
             Spacer(minLength: 0)

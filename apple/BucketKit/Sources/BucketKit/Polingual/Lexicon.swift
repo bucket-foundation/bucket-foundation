@@ -182,11 +182,27 @@ public final class LexiconShelf: @unchecked Sendable {
     private var recent: [String] = []
     private var missing: Set<String> = []
     let load: @Sendable (String) -> Data?
-    public let capacity: Int
+    private var room: Int
+    private let base: Int
+    public static let ceiling = 12
+
+    public var capacity: Int { lock.withLock { room } }
 
     public init(capacity: Int = 4, load: @escaping @Sendable (String) -> Data? = LexiconShelf.bundled) {
-        self.capacity = max(1, capacity)
+        self.base = max(1, capacity)
+        self.room = max(1, capacity)
         self.load = load
+    }
+
+    public func reserve(_ count: Int) {
+        lock.withLock { room = max(room, min(count, max(base, LexiconShelf.ceiling))) }
+    }
+
+    public func release() {
+        lock.withLock {
+            room = base
+            while recent.count > room { cache[recent.removeFirst()] = nil }
+        }
     }
 
     public static let bundled: @Sendable (String) -> Data? = { lang in
@@ -221,7 +237,7 @@ public final class LexiconShelf: @unchecked Sendable {
             cache[lang] = lex
             recent.removeAll { $0 == lang }
             recent.append(lang)
-            while recent.count > capacity { cache[recent.removeFirst()] = nil }
+            while recent.count > room { cache[recent.removeFirst()] = nil }
         }
         return lex
     }

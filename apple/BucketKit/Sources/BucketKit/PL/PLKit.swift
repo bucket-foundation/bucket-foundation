@@ -168,12 +168,14 @@ public struct PLButtonStyle: ButtonStyle {
     var variant: PLButtonVariant
     var size: PLButtonSize
     var full: Bool
+    var pad: CGFloat
     @Environment(\.isEnabled) private var enabled
 
-    public init(_ variant: PLButtonVariant = .primary, size: PLButtonSize = .md, full: Bool = true) {
+    public init(_ variant: PLButtonVariant = .primary, size: PLButtonSize = .md, full: Bool = true, pad: CGFloat = PL.Space.s5) {
         self.variant = variant
         self.size = size
         self.full = full
+        self.pad = pad
     }
 
     public func makeBody(configuration: Configuration) -> some View {
@@ -184,7 +186,7 @@ public struct PLButtonStyle: ButtonStyle {
             .font(PL.heading.font(scale: size.text / PL.heading.size))
             .foregroundStyle(enabled ? variant.text : PL.inkFaint)
             .multilineTextAlignment(.center)
-            .padding(.horizontal, PL.Space.s5)
+            .padding(.horizontal, pad)
             .frame(maxWidth: full ? .infinity : nil, minHeight: size.height)
             .background(enabled ? variant.face : PL.paper3, in: shape)
             .overlay { if variant == .ghost { shape.strokeBorder(PL.hairline2, lineWidth: 2) } }
@@ -197,8 +199,8 @@ public struct PLButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == PLButtonStyle {
-    public static func pl(_ variant: PLButtonVariant = .primary, size: PLButtonSize = .md, full: Bool = true) -> PLButtonStyle {
-        PLButtonStyle(variant, size: size, full: full)
+    public static func pl(_ variant: PLButtonVariant = .primary, size: PLButtonSize = .md, full: Bool = true, pad: CGFloat = PL.Space.s5) -> PLButtonStyle {
+        PLButtonStyle(variant, size: size, full: full, pad: pad)
     }
 }
 
