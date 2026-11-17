@@ -35,18 +35,21 @@ final class SignUpFunnelUITests: XCTestCase {
         }
     }
 
-    func testOnboardingLandsFreeUserOnGamesInTwoTaps() throws {
+    func testOnboardingLandsFreeUserOnGamesInThreeTaps() throws {
         let app = launch([])
         guard app.buttons["Get started"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
         app.buttons["Get started"].tap()
-        XCTAssertTrue(app.buttons["Continue"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Which languages do you speak?"].waitForExistence(timeout: 10))
+        shot("onboarding-speak")
+        app.buttons["Continue"].tap()
+        XCTAssertTrue(app.staticTexts["Which languages?"].waitForExistence(timeout: 10))
         shot("onboarding-languages")
         app.buttons["Continue"].tap()
-        let games = app.navigationBars["Games"]
-        let home = app.navigationBars["Today"]
+        let games = app.buttons["Play"]
+        let home = app.buttons["Today"]
         let deadline = Date().addingTimeInterval(60)
         while !games.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
-        XCTAssertTrue(games.exists || home.exists, "Onboarding did not leave after two taps")
+        XCTAssertTrue(games.exists || home.exists, "Onboarding did not leave after three taps")
         shot(games.exists ? "games-free" : "home-already-subscribed")
     }
 
