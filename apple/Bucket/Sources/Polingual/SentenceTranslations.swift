@@ -7,6 +7,7 @@ struct SentenceTranslations: View {
     let source: String
     let targets: [String]
     var fallback: [String: String] = [:]
+    var waiting = false
     var soft = Palette.muted
     @State private var results: [String: String] = [:]
     @State private var needsDownload: Set<String> = []
@@ -43,6 +44,8 @@ struct SentenceTranslations: View {
                         }
                         Spacer(minLength: 4)
                         PlayButton(text: g, lang: l)
+                    } else if waiting {
+                        ProgressView()
                     } else if needsDownload.contains(l) {
                         VStack(alignment: .leading, spacing: 6) {
                             if failed.contains(l) {
