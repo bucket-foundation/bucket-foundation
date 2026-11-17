@@ -163,9 +163,9 @@ struct AtlasGame: View {
             )
             .overlay(alignment: .bottomTrailing) {
                 HStack(spacing: 0) {
-                    zoomButton("minus", "Zoom out") { zoom = zoom.scaled(to: zoom.scale / AtlasZoom.step, around: centre, in: geo.size) }
+                    zoomButton(.minus, "Zoom out") { zoom = zoom.scaled(to: zoom.scale / AtlasZoom.step, around: centre, in: geo.size) }
                         .disabled(!zoom.zoomed)
-                    zoomButton("plus", "Zoom in") { zoom = zoom.scaled(to: zoom.scale * AtlasZoom.step, around: centre, in: geo.size) }
+                    zoomButton(.plus, "Zoom in") { zoom = zoom.scaled(to: zoom.scale * AtlasZoom.step, around: centre, in: geo.size) }
                         .disabled(zoom.scale >= AtlasZoom.most)
                 }
                 .padding(4)
@@ -176,12 +176,11 @@ struct AtlasGame: View {
         .clipShape(.rect(cornerRadius: 12))
     }
 
-    func zoomButton(_ symbol: String, _ label: LocalizedStringKey, _ act: @escaping () -> Void) -> some View {
+    func zoomButton(_ glyph: PLGlyph, _ label: LocalizedStringKey, _ act: @escaping () -> Void) -> some View {
         Button {
             withAnimation(.easeOut(duration: 0.2)) { act() }
         } label: {
-            Image(systemName: symbol)
-                .font(.system(size: 15, weight: .bold))
+            PLGlyphView(glyph, size: 16)
                 .foregroundStyle(PL.ink)
                 .frame(width: 32, height: 32)
                 .background(PL.paper.opacity(0.92), in: .circle)

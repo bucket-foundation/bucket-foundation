@@ -56,6 +56,16 @@ struct PlayTests {
         #expect(try #require(Polyword.puzzleFor(F.bank, lang: "fr", day: 40)).slug == F.str("polywordFr40"))
     }
 
+    @Test func everyGlyphDrawsInsideItsBox() {
+        let box = CGRect(x: 0, y: 0, width: 24, height: 24)
+        for glyph in PLGlyph.allCases {
+            let drawn = PLGlyphShape(glyph).path(in: box).boundingRect
+            #expect(drawn.width > 0 || drawn.height > 0, "\(glyph.rawValue)")
+            #expect(box.contains(drawn), "\(glyph.rawValue)")
+        }
+        #expect(PLGlyphShape(.minus).path(in: box).boundingRect == CGRect(x: 5, y: 12, width: 14, height: 0))
+    }
+
     @Test func atlasZoomKeepsThePinchedPointUnderTheFinger() {
         let size = CGSize(width: 360, height: 180)
         let finger = CGPoint(x: 190, y: 50)
