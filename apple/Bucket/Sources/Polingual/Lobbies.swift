@@ -42,20 +42,16 @@ extension LobbyGame {
 @MainActor
 enum LobbyRace {
     static weak var store: LobbyStore?
-    static var visible = false
+    static let gate = LobbyRaceGate()
 
     static var seed: UInt64? {
-        guard visible, let lobby = store?.current, lobby.game.isRace, lobby.status == .playing else { return nil }
+        guard gate.isOpen, let lobby = store?.current, lobby.game.isRace, lobby.status == .playing else { return nil }
         return lobby.seedValue
     }
 
-    static func begin(_ store: LobbyStore) {
+    static func begin(_ store: LobbyStore, hold: LobbyRaceGate.Hold) {
         self.store = store
-        visible = true
-    }
-
-    static func end() {
-        visible = false
+        gate.open(hold)
     }
 
     static func finished(_ kind: GameKind, score: Int) {
@@ -87,6 +83,7 @@ struct LobbyRaceView: View {
     let remaining: Double
     @Environment(LobbyStore.self) private var lobbies
     @State private var armed = false
+    @State private var hold = LobbyRaceGate.Hold()
 
     var clock: String {
         let s = Int(remaining.rounded(.up))
@@ -103,10 +100,9 @@ struct LobbyRaceView: View {
             }
         }
         .onAppear {
-            LobbyRace.begin(lobbies)
+            LobbyRace.begin(lobbies, hold: hold)
             armed = true
         }
-        .onDisappear { LobbyRace.end() }
     }
 
     var header: some View {

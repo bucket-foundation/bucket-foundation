@@ -189,6 +189,21 @@ public enum LobbyRaceSeed {
     public static func deal(_ seed: UInt64) -> String { String(1 + seed % 1_000_000_000_000) }
 }
 
+@MainActor
+public final class LobbyRaceGate {
+    public final class Hold {
+        public init() {}
+    }
+
+    private weak var hold: Hold?
+
+    public init() {}
+
+    public var isOpen: Bool { hold != nil }
+
+    public func open(_ hold: Hold) { self.hold = hold }
+}
+
 public enum LobbyPhase: Equatable, Sendable {
     case waiting
     case countdown(Double)

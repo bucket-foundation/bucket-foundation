@@ -336,6 +336,26 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(await pass.token() == nil)
     }
 
+    @MainActor @Test func raceGateStaysOpenWhileItsHoldLives() {
+        let gate = LobbyRaceGate()
+        #expect(!gate.isOpen)
+        var hold: LobbyRaceGate.Hold? = LobbyRaceGate.Hold()
+        gate.open(hold!)
+        #expect(gate.isOpen)
+        hold = nil
+        #expect(!gate.isOpen)
+    }
+
+    @MainActor @Test func raceGateFollowsTheNewestHold() {
+        let gate = LobbyRaceGate()
+        var first: LobbyRaceGate.Hold? = LobbyRaceGate.Hold()
+        let second = LobbyRaceGate.Hold()
+        gate.open(first!)
+        gate.open(second)
+        first = nil
+        #expect(gate.isOpen)
+    }
+
     #if DEBUG
     @MainActor @Test func stagedLobbySitsInRoundTwoAndNeverPolls() async {
         let calls = LockedBox(0)
