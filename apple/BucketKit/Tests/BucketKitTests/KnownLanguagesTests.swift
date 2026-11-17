@@ -182,6 +182,12 @@ import Testing
 
     func set(_ root: String, at: Double) -> LangSystem { LangSystem(id: "s\(Int(at))", name: root, root: root, targets: ["fr"], createdAt: at) }
 
+    @Test func thePromptStopsRetryingAfterTheLimit() {
+        #expect(KnownPrompt.retries(after: 0))
+        #expect(KnownPrompt.retries(after: KnownPrompt.retryLimit - 1))
+        #expect(!KnownPrompt.retries(after: KnownPrompt.retryLimit))
+    }
+
     @Test func thePromptWaitsForALoadedLearnerWithASetAndNoAnswer() {
         let blank = KnownLanguages([])
         let sets = [set("en", at: 1)]

@@ -143,6 +143,11 @@ public enum KnownPrompt {
     public static let guest = "guest"
     public static let offerSeconds = 2.0
     public static let retrySeconds = 4.0
+    public static let retryLimit = 15
+
+    public static func retries(after attempts: Int) -> Bool {
+        attempts < retryLimit
+    }
 
     public static func due(known: KnownLanguages, systems: [LangSystem], ready: Bool, signedIn: Bool, pulled: Bool, asked: Bool, busy: Bool = false) -> Bool {
         guard ready, !asked, !busy, known.isBlank, !systems.isEmpty else { return false }

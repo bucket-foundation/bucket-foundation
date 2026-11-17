@@ -94,7 +94,9 @@ struct KnownLanguagesPrompt: ViewModifier {
     func body(content: Content) -> some View {
         content
             .task(id: Offer(due: due, active: phase == .active)) {
-                while due, phase == .active, !shown, !Task.isCancelled {
+                var attempts = 0
+                while due, phase == .active, !shown, !Task.isCancelled, KnownPrompt.retries(after: attempts) {
+                    attempts += 1
                     open = true
                     try? await Task.sleep(for: .seconds(KnownPrompt.offerSeconds))
                     if shown { return }
