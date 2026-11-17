@@ -13,7 +13,7 @@ function roman(item: Word | null | undefined, lang: string): string | null {
 const SENSE_LIMIT = 3;
 
 function joined(values: (string | undefined)[]): string {
-  return [...new Set(values.filter((v): v is string => !!v))].slice(0, SENSE_LIMIT).join("; ");
+  return Array.from(new Set(values.filter((v): v is string => !!v))).slice(0, SENSE_LIMIT).join("; ");
 }
 
 function foilSenses(lang: string, word: string, root: string, lookup: Lookup, answer: Word | null): readonly Word[] {

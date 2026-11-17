@@ -147,8 +147,8 @@ test("reveal names every tile with language, word, romanization and meaning", ()
 
 test("a homograph foil shows its own senses and never the answer's", () => {
   const answer = { forms: { en: "bench", es: "banco" }, gloss: "seat", readings: { es: { roman: "banko" } } };
-  const bank = { forms: { en: "bank", es: "banco" }, gloss: "money house" };
-  const shoal = { forms: { en: "shoal", es: "banco" }, gloss: "fish" };
+  const bank = { forms: { en: "bank", es: "banco" }, gloss: "money house", readings: {} };
+  const shoal = { forms: { en: "shoal", es: "banco" }, gloss: "fish", readings: {} };
   const cat = { forms: { en: "cat", es: "gato" }, gloss: "animal", readings: { es: { roman: "gato" } } };
   const all = [answer, bank, shoal, cat];
   const find = (lang: string, form: string) => all.filter((w) => (w.forms as Record<string, string>)[lang] === form);
@@ -157,10 +157,10 @@ test("a homograph foil shows its own senses and never the answer's", () => {
   assert.equal(tiles[0].roman, null);
   const twin = revealEntries({ mode: "form", lang: "es", choices: ["banco", "gato"], answer: "banco" }, "en", bank, find);
   assert.deepEqual(twin.map((e) => [e.meaning, e.gloss]), [["bank", "money house"], ["cat", "animal"]]);
-  const other = { forms: { en: "bench", es: "banca" }, gloss: "seat" };
+  const other = { forms: { en: "bench", es: "banca" }, gloss: "seat", readings: {} };
   const mixed = revealEntries({ mode: "form", lang: "es", choices: ["banca", "banco"], answer: "banca" }, "en", other, find);
   assert.deepEqual([mixed[1].meaning, mixed[1].gloss], ["bank; shoal", "money house; fish"]);
-  const four = [...all, { forms: { en: "pew", es: "banco" }, gloss: "church" }];
+  const four = [...all, { forms: { en: "pew", es: "banco" }, gloss: "church", readings: {} }];
   const capped = revealEntries({ mode: "form", lang: "es", choices: ["banco", "gato"], answer: "gato" }, "en", cat, (l, f) => four.filter((w) => (w.forms as Record<string, string>)[l] === f));
   assert.equal(capped[0].meaning, "bench; bank; shoal");
 });
