@@ -2,9 +2,9 @@ import XCTest
 
 @MainActor
 final class GamesUITests: XCTestCase {
-    private func launch(_ extra: [String]) -> XCUIApplication {
+    private func launch(_ extra: [String], orientation: String? = nil) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO"] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO"] + extra
         app.launch()
         return app
     }
@@ -61,25 +61,44 @@ final class GamesUITests: XCTestCase {
         shot("mini-typed")
     }
 
-    func testPolywordKeyboardFitsTheScreen() {
-        let app = launch(["-openGame", "polyword"])
+    private func checkPolywordBoard(_ app: XCUIApplication, shot name: String) {
         let keys = app.buttons.matching(identifier: "polyword.key")
         XCTAssertTrue(keys.firstMatch.waitForExistence(timeout: 60))
         let screen = app.windows.firstMatch.frame
+        let enter = app.buttons["polyword.enter"]
+        let delete = app.buttons["polyword.delete"]
         XCTAssertEqual(keys.count, 26)
-        for key in keys.allElementsBoundByIndex {
+        for key in keys.allElementsBoundByIndex + [enter, delete] {
             XCTAssertGreaterThanOrEqual(key.frame.minX, screen.minX)
             XCTAssertLessThanOrEqual(key.frame.maxX, screen.maxX)
             XCTAssertLessThanOrEqual(key.frame.maxY, screen.maxY)
             XCTAssertTrue(key.isHittable)
         }
-        for name in ["polyword.enter", "polyword.delete"] {
-            XCTAssertLessThanOrEqual(app.buttons[name].frame.maxY, screen.maxY)
-            XCTAssertGreaterThanOrEqual(app.buttons[name].frame.minX, screen.minX)
-            XCTAssertLessThanOrEqual(app.buttons[name].frame.maxX, screen.maxX)
-        }
-        keys.element(boundBy: 0).tap()
-        shot("polyword-board")
+        let typed = app.staticTexts.matching(NSPredicate(format: "label IN %@", ["Q", "W", "E", "R", "T"]))
+        XCTAssertFalse(enter.isEnabled)
+        for letter in ["Q", "W", "E", "R", "T"] { keys.matching(NSPredicate(format: "label == %@", letter)).firstMatch.tap() }
+        XCTAssertEqual(typed.count, 5)
+        XCTAssertTrue(typed.firstMatch.isHittable, "The active row is hidden")
+        XCTAssertTrue(enter.isEnabled)
+        shot(name)
+        delete.tap()
+        XCTAssertEqual(typed.count, 4)
+        XCTAssertFalse(enter.isEnabled)
+    }
+
+    func testPolywordKeyboardFitsTheScreen() {
+        checkPolywordBoard(launch(["-openGame", "polyword"]), shot: "polyword-board")
+    }
+
+    func testPolywordKeyboardFitsInLandscape() {
+        checkPolywordBoard(launch(["-openGame", "polyword"], orientation: "landscape"), shot: "polyword-landscape")
+    }
+
+    func testPolywordResultHidesTheKeyboard() {
+        let app = launch(["-openGame", "polyword", "-endGame"])
+        XCTAssertTrue(app.staticTexts["playResults"].waitForExistence(timeout: 60))
+        XCTAssertEqual(app.buttons.matching(identifier: "polyword.key").count, 0)
+        XCTAssertFalse(app.buttons["polyword.enter"].exists)
     }
 
     func testSameWordFinishes() {

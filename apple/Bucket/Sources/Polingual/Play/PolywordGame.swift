@@ -3,6 +3,7 @@ import SwiftUI
 
 struct PolywordGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AppStorage("polingual.polyword.games") private var saved = ""
     @State private var lang = ""
     @State private var typed = ""
@@ -55,8 +56,8 @@ struct PolywordGame: View {
                         .background(PL.tyrian.ignoresSafeArea(edges: .bottom))
                 }
             }
-            .onChange(of: PolywordFocus(key: key, row: guesses.count, typed: typed.count), initial: true) { _, focus in
-                withAnimation { proxy.scrollTo(focus.row, anchor: .center) }
+            .onChange(of: PolywordFocus(key: key, row: guesses.count), initial: true) { _, focus in
+                withAnimation(reduceMotion ? nil : .default) { proxy.scrollTo(focus.row, anchor: .center) }
             }
         }
         .task {
@@ -103,12 +104,12 @@ struct PolywordGame: View {
                     if let r = h.roman { Text(r).font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.8)) }
                 }
             }
-            if let problem { Text(problem).font(PL.small.font()).foregroundStyle(PL.ochre) }
         }
     }
 
     func keyboard(_ marks: [Character: PolyMark], size: Int, answer: String) -> some View {
         VStack(spacing: PL.Space.s1) {
+            if let problem { Text(problem).font(PL.small.font()).foregroundStyle(PL.ochre).frame(maxWidth: .infinity, alignment: .leading).accessibilityIdentifier("polyword.problem") }
             keyRow("qwertyuiop", marks, size)
             keyRow("asdfghjkl", marks, size)
             HStack(spacing: PL.Space.s1) {
@@ -189,7 +190,6 @@ struct PolywordGame: View {
 struct PolywordFocus: Equatable {
     let key: String
     let row: Int
-    let typed: Int
 }
 
 struct AnyShake: ViewModifier {
