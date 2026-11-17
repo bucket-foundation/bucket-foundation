@@ -3,7 +3,7 @@ import { json, preflight } from "@/lib/academy/groups-server";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import { normalizeDisplayName } from "@/lib/academy/groups";
 import { blocksTouching, clientIp, NAME_NOT_ALLOWED, service } from "@/lib/academy/groups-server";
-import { setupGames, CREATE_PER_MINUTE, generateSeed, hostedSince, MAX_HOSTED, nativePlayable, WEB_CLIENT_HEADER, normalizeLobbyConfig, OPEN_WINDOW_MS, openLobbies } from "@/lib/academy/lobbies";
+import { setupGames, CREATE_PER_MINUTE, generateSeed, hostedSince, MAX_HOSTED, nativePlayable, raceGames, raceVisible, RACE_CLIENT_HEADER, WEB_CLIENT_HEADER, normalizeLobbyConfig, OPEN_WINDOW_MS, openLobbies } from "@/lib/academy/lobbies";
 import { botsEnabled } from "@/lib/academy/lobby-bots";
 import { ensureStanding } from "@/lib/academy/lobby-bots-server";
 import { addPlayer, authed, limited, checkLobby, insertLobby, LOBBIES, lobbyFail, lobbyState, namedPlayersOf, openRows } from "@/lib/academy/lobbies-server";
@@ -27,8 +27,9 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const all = [...lobbies, ...extra];
     const allPlayers = extra.length ? [...players, ...(await namedPlayersOf(extra.map((l) => l.id)))] : players;
     const web = new URL(req.url).searchParams.get("client") === "web" || req.headers.get(WEB_CLIENT_HEADER) === "web";
-    const shown = web ? all : all.filter(nativePlayable);
-    return json({ lobbies: openLobbies(shown, allPlayers, blocks, a.uid, now, bots), bots, games: setupGames() });
+    const race = req.headers.get(RACE_CLIENT_HEADER) === "1";
+    const shown = web ? all.filter((l) => raceVisible(l, race)) : all.filter((l) => nativePlayable(l, race));
+    return json({ lobbies: openLobbies(shown, allPlayers, blocks, a.uid, now, bots), bots, games: setupGames(), race: race ? raceGames() : [] });
   } catch (err) {
     return lobbyFail(err, "list");
   }

@@ -6,9 +6,14 @@ public enum LobbyStatus: String, Codable, Sendable {
 }
 
 public enum LobbyGame: String, Codable, Sendable, CaseIterable, Identifiable {
-    case daily, sameWord = "same-word", flags, live, tiles, duel, spy, other
+    case daily, sameWord = "same-word", flags, live, tiles, duel, spy
+    case mini, wordGroups = "word-groups", match, voice, letters, polyword, flagTiles = "flag-tiles"
+    case babel, shift, snake, atlas, forehead, ispy, flagDuel = "flag-duel"
+    case other
     public var id: String { rawValue }
     public static let hostable: [LobbyGame] = [.daily, .sameWord, .flags, .live, .tiles]
+    public static let race: [LobbyGame] = [.mini, .wordGroups, .match, .voice, .letters, .polyword, .flagTiles, .babel, .shift, .snake, .atlas, .forehead, .ispy, .flagDuel]
+    public var isRace: Bool { Self.race.contains(self) }
 
     public init(from decoder: Decoder) throws {
         self = LobbyGame(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .other
@@ -148,6 +153,11 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var playSeconds: Double { Double(rounds * roundSeconds) + Double(max(0, rounds - 1)) * revealGap }
 
     public func results(for round: Int) -> [LobbyResult] { results.filter { $0.round == round } }
+    public func raceRemaining(at now: Date) -> Double {
+        guard let start else { return 0 }
+        return max(0, playSeconds - now.timeIntervalSince(start))
+    }
+    public var raceFinishers: Set<String> { Set(results.map(\.userId)) }
     public func prompt(_ round: Int) -> LobbyPrompt? { prompts.first { $0.round == round } }
 }
 
@@ -155,6 +165,18 @@ public enum LobbyRules {
     public static let minReady = 2
     public static let cap = 8
     public static let pollSeconds = 1.0
+    public static let raceHeader = ["x-polingual-race": "1"]
+    public static let raceScoreMax = 100_000
+
+    public static func raceScore(points: Int?, hits: Int) -> Int {
+        min(max(0, points ?? hits * 100), raceScoreMax)
+    }
+}
+
+public enum LobbyRaceSeed {
+    public static func dayKey(_ seed: UInt64) -> String { "race-\(seed)" }
+    public static func dayNumber(_ seed: UInt64) -> Int { 1_000_000 + Int(seed % 1_000_000) }
+    public static func deal(_ seed: UInt64) -> String { String(1 + seed % 1_000_000_000_000) }
 }
 
 public enum LobbyPhase: Equatable, Sendable {
@@ -163,6 +185,13 @@ public enum LobbyPhase: Equatable, Sendable {
     case round(index: Int, remaining: Double)
     case reveal(index: Int, remaining: Double)
     case finished
+
+    public var playing: Bool {
+        switch self {
+        case .round, .reveal: true
+        default: false
+        }
+    }
 }
 
 public enum LobbyClock {
@@ -275,7 +304,14 @@ struct AnswerReply: Decodable {
     let correct: Bool
     let lobby: Lobby
 }
-struct LobbiesReply: Decodable { let lobbies: [LobbySummary] }
+struct LobbiesReply: Decodable {
+    let lobbies: [LobbySummary]
+    let race: [LobbyGame]?
+}
+struct ScoreReply: Decodable {
+    let score: Int
+    let lobby: Lobby
+}
 struct LobbyPoll: Decodable {
     let changed: Bool
     let lobby: Lobby?
@@ -293,8 +329,16 @@ extension BucketAPI {
     }
 
     public func lobbies(token: String) async throws -> [LobbySummary] {
-        let r: LobbiesReply = try await groupCall("api/academy/lobbies", token: token)
-        return r.lobbies
+        try await lobbyList(token: token).lobbies
+    }
+
+    func lobbyList(token: String) async throws -> LobbiesReply {
+        try await groupCall("api/academy/lobbies", token: token, headers: LobbyRules.raceHeader)
+    }
+
+    public func raceScore(token: String, lobbyId: String, score: Int) async throws -> Lobby {
+        let r: ScoreReply = try await groupCall("api/academy/lobbies/score", token: token, body: ["lobbyId": .text(lobbyId), "score": .number(score)])
+        return r.lobby
     }
 
     public func createLobby(token: String, name: String, game: LobbyGame = .daily, root: String, targets: [String], rounds: Int, roundSeconds: Int, listed: Bool, displayName: String) async throws -> Lobby {
@@ -309,7 +353,7 @@ extension BucketAPI {
         var body: [String: Field] = ["displayName": .text(displayName)]
         if let code { body["code"] = .text(code) }
         if let lobbyId { body["lobbyId"] = .text(lobbyId) }
-        let r: LobbyReply = try await groupCall("api/academy/lobbies/join", token: token, body: body)
+        let r: LobbyReply = try await groupCall("api/academy/lobbies/join", token: token, body: body, headers: LobbyRules.raceHeader)
         return r.lobby
     }
 
@@ -357,6 +401,10 @@ public final class LobbyStore {
     public private(set) var error: BucketError?
     public private(set) var offset: TimeInterval = 0
     public private(set) var staged = false
+    public private(set) var raceGames: [LobbyGame] = []
+    public private(set) var raceScore: Int?
+
+    public var hostable: [LobbyGame] { LobbyGame.hostable + raceGames.filter(\.isRace) }
 
     let api: BucketAPI
     let token: @MainActor () async -> String?
@@ -387,7 +435,9 @@ public final class LobbyStore {
     public func refresh() async {
         guard let t = await anyToken() else { return }
         do {
-            open = try await api.lobbies(token: t)
+            let list = try await api.lobbyList(token: t)
+            open = list.lobbies
+            raceGames = list.race ?? []
             error = nil
         } catch {
             self.error = error as? BucketError ?? .server(0, nil)
@@ -456,6 +506,19 @@ public final class LobbyStore {
         return r.correct
     }
 
+    @discardableResult
+    public func postScore(_ score: Int) async -> Bool {
+        guard let lobby = current, lobby.game.isRace, lobby.status == .playing, raceScore == nil, let t = await anyToken() else { return false }
+        raceScore = score
+        do {
+            apply(try await api.raceScore(token: t, lobbyId: lobby.id, score: score))
+            return true
+        } catch {
+            if (error as? BucketError) != .server(409, "already_answered") { raceScore = nil }
+            return false
+        }
+    }
+
     public func poll() async {
         guard !staged, let lobby = current, let t = await anyToken() else { return }
         do {
@@ -490,6 +553,7 @@ public final class LobbyStore {
     func enter(_ lobby: Lobby) -> Lobby {
         picks = [:]
         marks = [:]
+        raceScore = nil
         current = nil
         apply(lobby)
         return lobby
@@ -497,6 +561,7 @@ public final class LobbyStore {
 
     func apply(_ lobby: Lobby) {
         if let s = parseInstant(lobby.now) { sync(s) }
+        if lobby.status == .lobby { raceScore = nil }
         current = lobby
     }
 

@@ -105,7 +105,7 @@ struct SnakeGame: View {
     func start() {
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
-        let d = Snakes.deck(corpus.items, lang: lang, others: Snakes.langChoices, seed: DealSeeds.fresh(), root: root)
+        let d = Snakes.deck(corpus.items, lang: lang, others: Snakes.langChoices, seed: LobbyRace.dealSeed(), root: root)
         guard !d.good.isEmpty, !d.decoys.isEmpty else { return }
         var snakes = [Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(800, 500), angle: 0, color: 0)]
         let skills = ["easy", "medium", "hard", "medium", "easy"]
