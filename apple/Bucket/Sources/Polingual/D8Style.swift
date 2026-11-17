@@ -35,7 +35,8 @@ struct D8Option: ButtonStyle {
         let down = selected || configuration.isPressed
         configuration.label
             .font(PL.heading.font(scale: 18 / PL.heading.size))
-            .foregroundStyle(Palette.ink)
+            .foregroundStyle(D8.ink)
+            .environment(\.colorScheme, .light)
             .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget, alignment: align)
             .padding(.horizontal, 16)
             .background(selected ? D8.pickedFace : D8.face, in: .rect(cornerRadius: PL.Radius.md))
