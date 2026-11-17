@@ -61,6 +61,19 @@ final class GamesUITests: XCTestCase {
         shot("mini-typed")
     }
 
+    func testPolywordKeyboardFitsTheScreen() {
+        let app = launch(["-openGame", "polyword"])
+        let keys = app.buttons.matching(identifier: "polyword.key")
+        XCTAssertTrue(keys.firstMatch.waitForExistence(timeout: 60))
+        let screen = app.windows.firstMatch.frame
+        XCTAssertEqual(keys.count, 26)
+        for key in keys.allElementsBoundByIndex {
+            XCTAssertGreaterThanOrEqual(key.frame.minX, screen.minX)
+            XCTAssertLessThanOrEqual(key.frame.maxX, screen.maxX)
+        }
+        shot("polyword-board")
+    }
+
     func testSameWordFinishes() {
         let app = launch(["-openGame", "same"])
         playQuiz(app, until: app.buttons["Play again"], name: "same")
