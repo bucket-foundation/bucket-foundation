@@ -47,6 +47,10 @@ struct AtlasGame: View {
     @State private var heard = false
     @State private var root = "en"
     @State private var recorded = false
+    @State private var zoom = AtlasZoom()
+    @State private var pinchFrom: AtlasZoom?
+    @State private var dragFrom: AtlasZoom?
+    @State private var dragBase = CGSize.zero
 
     var silent: Bool { LangVoice.shared.silent }
     var round: AtlasRound? { index < rounds.count ? rounds[index] : nil }
@@ -90,7 +94,10 @@ struct AtlasGame: View {
                     LangVoice.shared.speak(r.form, r.lang)
                     heard = heard || silent
                 } label: {
-                    PLGlyphView(.speaker, size: 26).foregroundStyle(PL.paper).frame(width: 48, height: 48)
+                    PLGlyphView(.speaker, size: 28)
+                        .foregroundStyle(PL.tyrian)
+                        .frame(width: 52, height: 52)
+                        .background(PL.paper, in: .circle)
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Play the word")
@@ -109,22 +116,79 @@ struct AtlasGame: View {
     func map(_ r: AtlasRound) -> some View {
         GeometryReader { geo in
             let k = geo.size.width / Atlas.mapW
+            let centre = CGPoint(x: geo.size.width / 2, y: geo.size.height / 2)
             ZStack(alignment: .topLeading) {
-                LandPath.land.applying(CGAffineTransform(scaleX: k, y: k)).fill(PL.paper2)
+                LandPath.land.applying(CGAffineTransform(a: k * zoom.scale, b: 0, c: 0, d: k * zoom.scale, tx: zoom.offset.width, ty: zoom.offset.height)).fill(PL.paper2)
                 if let pin {
                     let p = Atlas.project(lon: pin.lon, lat: pin.lat)
-                    PLGlyphView(.plus, size: 20).foregroundStyle(PL.vermilion).position(x: p.x * k, y: p.y * k)
+                    PLGlyphView(.plus, size: 20).foregroundStyle(PL.vermilion).position(zoom.screen(CGPoint(x: p.x * k, y: p.y * k)))
                 }
                 if let locked {
                     let h = Atlas.project(lon: locked.home.lon, lat: locked.home.lat)
-                    Circle().fill(PL.malachite).frame(width: 14, height: 14).position(x: h.x * k, y: h.y * k)
+                    Circle().fill(PL.malachite).frame(width: 14, height: 14).position(zoom.screen(CGPoint(x: h.x * k, y: h.y * k)))
                 }
             }
+            .frame(width: geo.size.width, height: geo.size.height, alignment: .topLeading)
+            .clipped()
             .contentShape(.rect)
-            .onTapGesture { p in if locked == nil { pin = Atlas.unproject(x: p.x / k, y: p.y / k) } }
+            .onTapGesture { p in
+                guard locked == nil else { return }
+                let c = zoom.content(p)
+                pin = Atlas.unproject(x: c.x / k, y: c.y / k)
+            }
+            .gesture(
+                DragGesture(minimumDistance: 8)
+                    .onChanged { v in
+                        guard pinchFrom == nil else { return }
+                        if dragFrom == nil { dragBase = v.translation }
+                        let from = dragFrom ?? zoom
+                        dragFrom = from
+                        zoom = from.moved(by: CGSize(width: v.translation.width - dragBase.width, height: v.translation.height - dragBase.height), in: geo.size)
+                    }
+                    .onEnded { _ in dragFrom = nil },
+                isEnabled: zoom.zoomed
+            )
+            .simultaneousGesture(
+                MagnifyGesture()
+                    .onChanged { v in
+                        let from = pinchFrom ?? zoom
+                        pinchFrom = from
+                        dragFrom = nil
+                        zoom = from.scaled(to: from.scale * v.magnification, around: v.startLocation, in: geo.size)
+                    }
+                    .onEnded { _ in
+                        pinchFrom = nil
+                        dragFrom = nil
+                    }
+            )
+            .overlay(alignment: .bottomTrailing) {
+                HStack(spacing: 0) {
+                    zoomButton(.minus, "Zoom out") { zoom = zoom.scaled(to: zoom.scale / AtlasZoom.step, around: centre, in: geo.size) }
+                        .disabled(!zoom.zoomed)
+                    zoomButton(.plus, "Zoom in") { zoom = zoom.scaled(to: zoom.scale * AtlasZoom.step, around: centre, in: geo.size) }
+                        .disabled(zoom.scale >= AtlasZoom.most)
+                }
+                .padding(4)
+            }
         }
         .aspectRatio(Atlas.mapW / Atlas.mapH, contentMode: .fit)
-        .background(PL.lapisDeep, in: .rect(cornerRadius: 12))
+        .background(PL.lapisDeep)
+        .clipShape(.rect(cornerRadius: 12))
+    }
+
+    func zoomButton(_ glyph: PLGlyph, _ label: LocalizedStringKey, _ act: @escaping () -> Void) -> some View {
+        Button {
+            withAnimation(.easeOut(duration: 0.2)) { act() }
+        } label: {
+            PLGlyphView(glyph, size: 16)
+                .foregroundStyle(PL.ink)
+                .frame(width: 32, height: 32)
+                .background(PL.paper.opacity(0.92), in: .circle)
+                .frame(width: FitScale.naturalTarget, height: FitScale.naturalTarget)
+                .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(label)
     }
 
     func lock(_ r: AtlasRound) {
@@ -140,6 +204,7 @@ struct AtlasGame: View {
         pin = nil
         locked = nil
         heard = false
+        zoom = AtlasZoom()
     }
 
     var results: some View {

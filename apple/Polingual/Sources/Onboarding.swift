@@ -270,14 +270,17 @@ struct PlayfulTiles: View {
 
     var body: some View {
         GeometryReader { g in
-            let side = compact ? min((g.size.width - 48) / 4, g.size.height - 16, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
+            let fit = NightTiles.fit(width: g.size.width, height: g.size.height, compact: compact)
+            let side = fit.side
             VStack(spacing: 12) {
                 if !compact {
                     Text(accented("One word, **night**, in every language", D8.lapis))
                         .font(PL.heading.font(scale: 0.75))
                         .foregroundStyle(PL.inkDim)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
                 }
-                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
+                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: fit.row ? 12 : 16), count: fit.row ? 4 : 2), spacing: 16) {
                     ForEach(0..<4, id: \.self) { i in
                         let w = Self.night[slots[i]]
                         WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) {

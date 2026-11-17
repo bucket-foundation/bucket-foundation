@@ -61,6 +61,7 @@ struct GameChoiceStyle: ButtonStyle {
         let face: Color = state == .right ? D8.malachite : state == .wrong ? D8.wrongFace : D8.face
         let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.edge
         configuration.label
+            .environment(\.colorScheme, .light)
             .background(face, in: .rect(cornerRadius: 16))
             .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(lip, lineWidth: 2) }
             .background(lip, in: .rect(cornerRadius: 16).offset(y: configuration.isPressed ? 1 : 4))
@@ -75,7 +76,10 @@ extension View {
             .paper()
             .navigationTitle(sideways ? "" : title)
             .inlineTitle()
+            .toolbar { ToolbarItem(placement: .principal) { Text(sideways ? "" : title).font(.headline).foregroundStyle(D8.ink).accessibilityAddTraits(.isHeader) } }
+            .environment(\.colorScheme, .light)
             #if os(iOS)
+            .toolbarColorScheme(.light, for: .navigationBar)
             .onAppear { ScreenShare.shared.quiet += 1 }
             .onDisappear { ScreenShare.shared.quiet -= 1 }
             #endif

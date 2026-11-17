@@ -113,6 +113,7 @@ struct TodayTileSkin: ViewModifier {
             content.modifier(GameLip(face: face, lip: look.lip ?? face, radius: radius))
         } else {
             content
+                .environment(\.colorScheme, .light)
                 .background(D8.face, in: .rect(cornerRadius: radius))
                 .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(D8.edge, lineWidth: 2) }
                 .background(D8.edge, in: .rect(cornerRadius: radius).offset(y: 5))

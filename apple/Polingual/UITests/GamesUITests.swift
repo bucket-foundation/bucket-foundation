@@ -4,7 +4,7 @@ import XCTest
 final class GamesUITests: XCTestCase {
     private func launch(_ extra: [String]) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40"] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO"] + extra
         app.launch()
         return app
     }
@@ -59,6 +59,19 @@ final class GamesUITests: XCTestCase {
         key?.tap()
         XCTAssertEqual(empty.count, before - 2)
         shot("mini-typed")
+    }
+
+    func testPolywordKeyboardFitsTheScreen() {
+        let app = launch(["-openGame", "polyword"])
+        let keys = app.buttons.matching(identifier: "polyword.key")
+        XCTAssertTrue(keys.firstMatch.waitForExistence(timeout: 60))
+        let screen = app.windows.firstMatch.frame
+        XCTAssertEqual(keys.count, 26)
+        for key in keys.allElementsBoundByIndex {
+            XCTAssertGreaterThanOrEqual(key.frame.minX, screen.minX)
+            XCTAssertLessThanOrEqual(key.frame.maxX, screen.maxX)
+        }
+        shot("polyword-board")
     }
 
     func testSameWordFinishes() {

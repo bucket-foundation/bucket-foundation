@@ -71,6 +71,7 @@ struct PolywordGame: View {
                         Text(i < chars.count ? String(chars[i]).uppercased() : " ")
                             .font(PL.heading.font())
                             .foregroundStyle(i < score.count ? PL.paper : PL.ink)
+                            .lineLimit(1).minimumScaleFactor(0.5)
                             .frame(maxWidth: .infinity, minHeight: 48)
                             .background(i < score.count ? color(score[i]) : PL.card, in: .rect(cornerRadius: 8))
                     }
@@ -96,7 +97,9 @@ struct PolywordGame: View {
                 HStack(spacing: PL.Space.s1) {
                     ForEach(Array(row), id: \.self) { ch in
                         Button(String(ch).uppercased()) { if typed.count < size { typed.append(ch); problem = nil } }
-                            .buttonStyle(.pl(variant(marks[ch]), size: .sm, full: true))
+                            .buttonStyle(.pl(variant(marks[ch]), size: .sm, full: true, pad: 0))
+                            .lineLimit(1).minimumScaleFactor(0.6)
+                            .accessibilityIdentifier("polyword.key")
                     }
                 }
             }
