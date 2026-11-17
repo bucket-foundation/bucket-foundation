@@ -222,6 +222,13 @@ public enum TodayStatus: Equatable, Sendable {
 
     public static let riskHour = 20
 
+    public var dayInPlay: Int? {
+        switch self {
+        case .keep(let streak, _), .atRisk(let streak, _): streak + 1
+        default: nil
+        }
+    }
+
     public static func evaluate(streak: Int, studiedToday: Bool, items: Int, itemsLeft: Int, now: Date, calendar cal: Calendar = .current) -> TodayStatus {
         if studiedToday { return itemsLeft > 0 ? .secured(streak: streak, itemsLeft: itemsLeft) : .done(streak: streak) }
         if streak == 0 { return items == 0 ? .empty : .start }
