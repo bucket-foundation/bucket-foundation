@@ -145,6 +145,26 @@ test("reveal names every tile with language, word, romanization and meaning", ()
   assert.deepEqual(flag.map((e) => [e.lang, e.word, e.correct]), [["fr", "fr4", true], ["de", "de4", false]]);
 });
 
+test("a homograph foil shows its own senses and never the answer's", () => {
+  const answer = { forms: { en: "bench", es: "banco" }, gloss: "seat", readings: { es: { roman: "banko" } } };
+  const bank = { forms: { en: "bank", es: "banco" }, gloss: "money house" };
+  const shoal = { forms: { en: "shoal", es: "banco" }, gloss: "fish" };
+  const cat = { forms: { en: "cat", es: "gato" }, gloss: "animal", readings: { es: { roman: "gato" } } };
+  const all = [answer, bank, shoal, cat];
+  const find = (lang: string, form: string) => all.filter((w) => (w.forms as Record<string, string>)[lang] === form);
+  const tiles = revealEntries({ mode: "mixed", lang: "es", choices: ["es:banco", "es:gato"], answer: "es:gato" }, "en", cat, find);
+  assert.deepEqual(tiles.map((e) => [e.meaning, e.gloss, e.correct]), [["bench; bank; shoal", "seat; money house; fish", false], ["cat", "animal", true]]);
+  assert.equal(tiles[0].roman, null);
+  const twin = revealEntries({ mode: "form", lang: "es", choices: ["banco", "gato"], answer: "banco" }, "en", bank, find);
+  assert.deepEqual(twin.map((e) => [e.meaning, e.gloss]), [["bank", "money house"], ["cat", "animal"]]);
+  const other = { forms: { en: "bench", es: "banca" }, gloss: "seat" };
+  const mixed = revealEntries({ mode: "form", lang: "es", choices: ["banca", "banco"], answer: "banca" }, "en", other, find);
+  assert.deepEqual([mixed[1].meaning, mixed[1].gloss], ["bank; shoal", "money house; fish"]);
+  const four = [...all, { forms: { en: "pew", es: "banco" }, gloss: "church" }];
+  const capped = revealEntries({ mode: "form", lang: "es", choices: ["banco", "gato"], answer: "gato" }, "en", cat, (l, f) => four.filter((w) => (w.forms as Record<string, string>)[l] === f));
+  assert.equal(capped[0].meaning, "bench; bank; shoal");
+});
+
 test("seeded tile builds differ by seed", () => {
   const a = buildTilePrompts(ITEMS, { id: "L", root: "en", targets: ["es"], rounds: 4 }, LANGS, seededRandom("1"));
   const b = buildTilePrompts(ITEMS, { id: "L", root: "en", targets: ["es"], rounds: 4 }, LANGS, seededRandom("2"));
