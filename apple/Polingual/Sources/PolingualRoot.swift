@@ -139,7 +139,7 @@ struct Studio: View {
             Tab(value: AppTab.today) {
                 gated(.today) { TodayView(opening: { await place($0) }) }
             } label: { Label { Text("Today") } icon: { PLArt.streakFlame.image(height: 26) } }
-            Tab(value: AppTab.learn) { gated(.learn) { LearnView() } } label: { Label { Text("Learn") } icon: { PLArt.seal.image(height: 24) } }
+            Tab(value: AppTab.learn) { gated(.learn) { LearnView(games: false) } } label: { Label { Text("Learn") } icon: { PLArt.seal.image(height: 24) } }
             Tab(value: AppTab.games) {
                 NavigationStack {
                     GamesView(embedded: true)
