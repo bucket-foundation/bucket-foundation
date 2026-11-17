@@ -225,6 +225,38 @@ import Testing
         #expect(SessionMix.core(sys, corpus, done, now: now, freq: f, tz: utc).isEmpty)
     }
 
+    @Test func commonWordsSkipCardsTheRoundAlreadyHolds() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["es"], now: 0)
+        let f = try freq(["es"])
+        let day = 86_400_000.0
+        let list = Array(SessionMix.curriculum(corpus, sys, "es", f).prefix(8))
+        var state = EngineState()
+        for item in list { state.cards[cardId("es", item.id)] = learning(now - day, due: now + 5 * day) }
+        let lead = [QueueEntry(itemId: list[0].id, lang: "es", stage: .review)]
+        let replay = [QueueEntry(itemId: list[1].id, lang: "es", stage: .check)]
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: f, lead: lead, replay: replay, tz: utc)
+        #expect(q.filter { $0.itemId == list[0].id }.count == 1)
+        #expect(q.filter { $0.itemId == list[1].id } == replay)
+        #expect(q.contains(QueueEntry(itemId: list[2].id, lang: "es", stage: .review)))
+        #expect(gaps(q).allSatisfy { $0 >= Lang.checkGap })
+    }
+
+    @Test func reviewedTodayFollowsTheLearnerTimeZone() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["es"], now: 0)
+        let f = try freq(["es"])
+        let hour = 3_600_000.0
+        let item = try #require(SessionMix.curriculum(corpus, sys, "es", f).first)
+        var state = EngineState()
+        state.cards[cardId("es", item.id)] = learning(now - 3 * hour, due: now + 120 * hour)
+        let moscow = try #require(TimeZone(identifier: "Europe/Moscow"))
+        #expect(dayKey(now, tz: utc) == dayKey(now - 3 * hour, tz: utc))
+        #expect(dayKey(now, tz: moscow) != dayKey(now - 3 * hour, tz: moscow))
+        #expect(SessionMix.core(sys, corpus, state, now: now, freq: f, tz: utc).isEmpty)
+        #expect(SessionMix.core(sys, corpus, state, now: now, freq: f, tz: moscow).map(\.itemId) == [item.id])
+    }
+
     @Test func comparisonsWaitForMastery() throws {
         let corpus = try corpus()
         let sys = try createSystem("en", ["fr", "es"], now: 0)

@@ -35,7 +35,7 @@ struct StreakGoalCard: View {
 
     func title(_ g: StreakGoal) -> String {
         if g.day == 0 { return String(localized: "Start your 100-day streak") }
-        return g.today >= StreakGoal.target ? String(localized: "Day \(g.today)") : String(localized: "Day \(g.today) of 100")
+        return g.todayReached ? String(localized: "Day \(g.today)") : String(localized: "Day \(g.today) of 100")
     }
 
     func detail(_ g: StreakGoal) -> String {

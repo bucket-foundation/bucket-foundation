@@ -10,6 +10,7 @@ public struct StreakGoal: Equatable, Sendable {
     public let pending: Bool
 
     public var today: Int { pending ? day + 1 : day }
+    public var todayReached: Bool { today >= Self.target }
 
     public init(streak: Double, pending: Bool = false) {
         day = streak.isFinite ? max(0, Int(min(streak, 1_000_000))) : 0

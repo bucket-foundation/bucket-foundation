@@ -21,7 +21,9 @@ import Testing
         #expect(StreakGoal(streak: 27).today == 27)
         let fresh = StreakGoal(streak: 0, pending: true)
         #expect(!fresh.pending && fresh.today == 0)
-        #expect(StreakGoal(streak: 99, pending: true).today == StreakGoal.target)
+        let last = StreakGoal(streak: 99, pending: true)
+        #expect(last.today == StreakGoal.target && last.todayReached && !last.reached)
+        #expect(!StreakGoal(streak: 98, pending: true).todayReached)
     }
 
     @Test func yesterdaysStreakIsPendingUntilTodayCounts() {
