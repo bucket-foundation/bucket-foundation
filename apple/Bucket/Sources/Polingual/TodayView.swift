@@ -134,10 +134,11 @@ struct TodayView: View {
         }
     }
 
-    var streak: Double {
-        let now = Date().timeIntervalSince1970 * 1000
-        return (deckStates.map { liveStreak($0, now: now) } + langs.systems.map { liveStreak(langs.state($0.id), now: now) }).max() ?? 0
+    var live: LiveStreak {
+        LiveStreak(deckStates + langs.systems.map { langs.state($0.id) }, now: Date().timeIntervalSince1970 * 1000)
     }
+
+    var streak: Double { live.days }
 
     func startNext() {
         guard let next = nextUp(Date().timeIntervalSince1970 * 1000) ?? items.first else { return }
@@ -303,10 +304,10 @@ struct TodayView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     PLScreenTop(title: "Today", stickers: Stickers.today)
-                    StreakGoalCard(streak: streak, share: later, expected: expectedLearning(streak)).todayCard()
+                    StreakGoalCard(streak: streak, pending: live.pending && done == 0, share: later, expected: expectedLearning(streak)).todayCard()
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
-                            hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
+                            hero(context.date, studied: done > 0 || live.countsToday, pending: pending, planned: planned, now: now)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         Divider().overlay(Palette.rule)

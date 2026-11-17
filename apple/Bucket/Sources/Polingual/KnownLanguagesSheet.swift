@@ -16,6 +16,11 @@ struct KnownLanguagesSheet: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
+                    Text("Which languages do you speak?")
+                        .font(PL.title.font(scale: 0.94))
+                        .foregroundStyle(PL.ink)
+                        .accessibilityAddTraits(.isHeader)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text("Pick every one you can hold a conversation in.")
                         .foregroundStyle(Palette.muted)
                         .fixedSize(horizontal: false, vertical: true)
@@ -51,7 +56,6 @@ struct KnownLanguagesSheet: View {
                     .padding()
                     .background(Palette.paper)
             }
-            .navigationTitle("Which languages do you speak?")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

@@ -168,6 +168,63 @@ import Testing
         #expect(q.filter { $0.stage == .check }.count == q.filter { $0.stage == .intro }.count)
     }
 
+    func learning(_ at: Double, due: Double) -> Card {
+        var c = Card(state: "review")
+        c.stability = 6
+        c.reps = 2
+        c.lastReview = at
+        c.due = due
+        return c
+    }
+
+    @Test func commonUnmasteredWordsReturnBeforeTheyAreDue() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["es"], now: 0)
+        let f = try freq(["es"])
+        let day = 86_400_000.0
+        let list = Array(SessionMix.curriculum(corpus, sys, "es", f).prefix(10))
+        var state = EngineState()
+        for item in list.reversed() { state.cards[cardId("es", item.id)] = learning(now - day, due: now + 5 * day) }
+        let picked = SessionMix.core(sys, corpus, state, now: now, freq: f, tz: utc)
+        #expect(picked.map(\.itemId) == list.prefix(SessionMix.coreFloor).map(\.id))
+        #expect(picked.allSatisfy { $0.stage == .review && $0.lang == "es" })
+        let ranks = picked.map { f.rank(corpus.byId[$0.itemId]!, "es") }
+        #expect(ranks == ranks.sorted())
+
+        state.cards[cardId("es", list[0].id)] = masteredCard()
+        state.cards[cardId("es", list[1].id)] = learning(now - 1000, due: now + 5 * day)
+        state.cards[cardId("es", list[2].id)] = learning(now - day, due: now - 1)
+        let next = SessionMix.core(sys, corpus, state, now: now, freq: f, taken: [cardId("es", list[3].id)], tz: utc)
+        #expect(next.map(\.itemId) == list[4..<8].map(\.id))
+    }
+
+    @Test func sessionAddsCommonWordsAndFillsAPracticeRound() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["es"], now: 0)
+        let f = try freq(["es"])
+        let day = 86_400_000.0
+        let list = Array(SessionMix.curriculum(corpus, sys, "es", f).prefix(20))
+        var state = EngineState()
+        for item in list { state.cards[cardId("es", item.id)] = learning(now - day, due: now + 5 * day) }
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: f, tz: utc)
+        let early = q.filter { $0.stage == .review }
+        #expect(early.count >= SessionMix.coreFloor)
+        #expect(Set(early.map(\.itemId)).isSubset(of: Set(list.map(\.id))))
+        #expect(Set(q.map { "\($0.stage)|\($0.lang)|\($0.itemId)" }).count == q.count)
+        #expect(q.contains { $0.stage == .intro })
+
+        var spent = state
+        for item in list.prefix(Lang.newPerLangPerDay) { spent.cards[cardId("es", item.id)]?.introduced = dayKey(now, tz: utc) }
+        let none = SessionMix.queue(sys, corpus, spent, now: now, freq: f, tz: utc)
+        #expect(!none.contains { $0.stage == .intro })
+        let practice = SessionMix.session(sys, corpus, spent, now: now, freq: f, tz: utc)
+        #expect(practice.filter { $0.stage == .review }.count == max(SessionMix.coreFloor, SessionMix.roundSize - none.count))
+
+        var done = state
+        for item in list { done.cards[cardId("es", item.id)] = learning(now - 1000, due: now + 5 * day) }
+        #expect(SessionMix.core(sys, corpus, done, now: now, freq: f, tz: utc).isEmpty)
+    }
+
     @Test func comparisonsWaitForMastery() throws {
         let corpus = try corpus()
         let sys = try createSystem("en", ["fr", "es"], now: 0)
