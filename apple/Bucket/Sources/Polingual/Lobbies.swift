@@ -41,17 +41,26 @@ extension LobbyGame {
 
 @MainActor
 enum LobbyRace {
-    static var seed: UInt64?
-    static var onFinish: ((GameKind, Int) -> Void)?
+    static weak var store: LobbyStore?
+    static var visible = false
 
-    static func begin(seed: UInt64, onFinish: @escaping (GameKind, Int) -> Void) {
-        self.seed = seed
-        self.onFinish = onFinish
+    static var seed: UInt64? {
+        guard visible, let lobby = store?.current, lobby.game.isRace, lobby.status == .playing else { return nil }
+        return lobby.seedValue
+    }
+
+    static func begin(_ store: LobbyStore) {
+        self.store = store
+        visible = true
     }
 
     static func end() {
-        seed = nil
-        onFinish = nil
+        visible = false
+    }
+
+    static func finished(_ kind: GameKind, score: Int) {
+        guard seed != nil, let store, store.current?.game.raceKind == kind else { return }
+        Task { await store.postScore(score) }
     }
 
     static func dealSeed() -> String { seed.map(LobbyRaceSeed.deal) ?? DealSeeds.fresh() }
@@ -94,12 +103,7 @@ struct LobbyRaceView: View {
             }
         }
         .onAppear {
-            let kind = lobby.game.raceKind
-            let store = lobbies
-            LobbyRace.begin(seed: lobby.seedValue) { played, score in
-                guard played == kind else { return }
-                Task { await store.postScore(score) }
-            }
+            LobbyRace.begin(lobbies)
             armed = true
         }
         .onDisappear { LobbyRace.end() }

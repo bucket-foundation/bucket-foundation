@@ -681,6 +681,10 @@ export function raceOver(players: readonly Pick<LobbyPlayerRow, "user_id" | "is_
   return people.length > 0 && people.every((p) => done.has(p.user_id));
 }
 
+export function raceMs(answers: readonly Pick<LobbyAnswerRow, "user_id" | "ms">[], uid: string): number {
+  return answers.find((a) => a.user_id === uid)?.ms ?? Number.MAX_SAFE_INTEGER;
+}
+
 export function raceVisible(lobby: Pick<LobbyRow, "game">, raceClient: boolean): boolean {
   return !isRace(lobby.game) || raceClient;
 }
@@ -745,7 +749,7 @@ export function assembleLobby(
         firstRound: joinedRound(lobby, p.joined_at),
         continues: p.continues ?? 0,
       }))
-      .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)),
+      .sort((a, b) => b.score - a.score || (race ? raceMs(answers, a.userId) - raceMs(answers, b.userId) : 0) || a.name.localeCompare(b.name)),
     messages: messages
       .filter((m) => !hidden.has(m.user_id))
       .slice(-MESSAGE_LIMIT)

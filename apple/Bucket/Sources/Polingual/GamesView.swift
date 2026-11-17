@@ -205,7 +205,7 @@ extension LangStore {
     func recordGame(_ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true) -> Bool {
         let before = gameBest(kind.rawValue)
         GameTally.finished += 1
-        LobbyRace.onFinish?(kind, LobbyRules.raceScore(points: points, hits: hits))
+        LobbyRace.finished(kind, score: LobbyRules.raceScore(points: points, hits: hits))
         let touched = kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }

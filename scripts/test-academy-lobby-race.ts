@@ -15,6 +15,7 @@ import {
   RACE_SCORE_MAX,
   raceDecision,
   raceGames,
+  raceMs,
   raceOver,
   raceVisible,
   type LobbyRow,
@@ -105,6 +106,14 @@ test("race state shows every posted score and who has finished", () => {
   assert.deepEqual(state.prompts, []);
   assert.deepEqual(state.players.map((p) => [p.userId, p.score, p.answered]), [["u2", 900, true], ["u1", 0, false]]);
   assert.deepEqual(state.results, [{ round: 0, userId: "u2", correct: true, ms: 40_000, points: 900 }]);
+});
+
+test("equal race scores rank by the faster finish, then by name", () => {
+  const answer = (user_id: string, ms: number) => ({ lobby_id: "l1", user_id, round: 0, choice: "score", correct: true, ms, points: 500 });
+  const state = assembleLobby(lobby(), [player("ana", 500), player("bo", 500), player("cy", 500), player("di")], [], [answer("ana", 90_000), answer("bo", 40_000), answer("cy", 40_000)], [], "ana", T0 + 200_000);
+  assert.deepEqual(state.players.map((p) => p.userId), ["bo", "cy", "ana", "di"]);
+  assert.equal(raceMs([answer("bo", 40_000)], "bo"), 40_000);
+  assert.equal(raceMs([], "bo"), Number.MAX_SAFE_INTEGER);
 });
 
 test("the migration lists every lobby game", () => {

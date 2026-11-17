@@ -147,7 +147,11 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var canStart: Bool { isHost && status == .lobby && readyCount >= LobbyRules.minReady }
     public var seedValue: UInt64 { UInt64(seed) ?? GameSeed.hash(seed) }
     public var start: Date? { startedAt.flatMap(parseInstant) }
-    public var standings: [LobbyPlayer] { players.sorted { ($0.score, $1.name) > ($1.score, $0.name) } }
+    public var standings: [LobbyPlayer] {
+        guard game.isRace else { return players.sorted { ($0.score, $1.name) > ($1.score, $0.name) } }
+        let ms = Dictionary(results.map { ($0.userId, $0.ms) }, uniquingKeysWith: { a, _ in a })
+        return players.sorted { ($0.score, ms[$1.userId] ?? .max, $1.name) > ($1.score, ms[$0.userId] ?? .max, $0.name) }
+    }
     public var revealGap: Double { Double(max(0, revealSeconds ?? 0)) }
     public var slotSeconds: Double { Double(roundSeconds) + revealGap }
     public var playSeconds: Double { Double(rounds * roundSeconds) + Double(max(0, rounds - 1)) * revealGap }
@@ -345,7 +349,7 @@ extension BucketAPI {
         let r: LobbyReply = try await groupCall("api/academy/lobbies", token: token, body: [
             "name": .text(name), "game": .text(game.rawValue), "root": .text(root), "targets": .list(targets), "rounds": .number(rounds),
             "roundSeconds": .number(roundSeconds), "listed": .flag(listed), "displayName": .text(displayName),
-        ])
+        ], headers: LobbyRules.raceHeader)
         return r.lobby
     }
 
@@ -403,6 +407,7 @@ public final class LobbyStore {
     public private(set) var staged = false
     public private(set) var raceGames: [LobbyGame] = []
     public private(set) var raceScore: Int?
+    public private(set) var raceScoreSent = false
 
     public var hostable: [LobbyGame] { LobbyGame.hostable + raceGames.filter(\.isRace) }
 
@@ -508,19 +513,29 @@ public final class LobbyStore {
 
     @discardableResult
     public func postScore(_ score: Int) async -> Bool {
-        guard let lobby = current, lobby.game.isRace, lobby.status == .playing, raceScore == nil, let t = await anyToken() else { return false }
+        guard let lobby = current, lobby.game.isRace, lobby.status == .playing, raceScore == nil else { return false }
         raceScore = score
+        raceScoreSent = false
+        return await sendScore()
+    }
+
+    @discardableResult
+    func sendScore() async -> Bool {
+        guard let lobby = current, lobby.game.isRace, lobby.status == .playing, let score = raceScore, !raceScoreSent, let t = await anyToken() else { return false }
         do {
-            apply(try await api.raceScore(token: t, lobbyId: lobby.id, score: score))
+            let fresh = try await api.raceScore(token: t, lobbyId: lobby.id, score: score)
+            raceScoreSent = true
+            if fresh.id == current?.id { apply(fresh) }
             return true
         } catch {
-            if (error as? BucketError) != .server(409, "already_answered") { raceScore = nil }
+            if let e = error as? BucketError, case .server(let status, _) = e, (400..<500).contains(status) { raceScoreSent = true }
             return false
         }
     }
 
     public func poll() async {
         guard !staged, let lobby = current, let t = await anyToken() else { return }
+        await sendScore()
         do {
             let r = try await api.lobbyState(token: t, lobbyId: lobby.id, since: lobby.version)
             if let s = r.now.flatMap(parseInstant) { sync(s) }
@@ -553,7 +568,7 @@ public final class LobbyStore {
     func enter(_ lobby: Lobby) -> Lobby {
         picks = [:]
         marks = [:]
-        raceScore = nil
+        clearRaceScore()
         current = nil
         apply(lobby)
         return lobby
@@ -561,8 +576,13 @@ public final class LobbyStore {
 
     func apply(_ lobby: Lobby) {
         if let s = parseInstant(lobby.now) { sync(s) }
-        if lobby.status == .lobby { raceScore = nil }
+        if lobby.status == .lobby { clearRaceScore() }
         current = lobby
+    }
+
+    func clearRaceScore() {
+        raceScore = nil
+        raceScoreSent = false
     }
 
     func sync(_ server: Date) {

@@ -191,10 +191,15 @@ export async function submitRaceScore(lobby: LobbyRow, uid: string, score: unkno
   if (res.error) throw new Error(res.error.message);
   if (res.data === "not_member") return { ok: false, error: "not_member" };
   if (res.data === "already") return { ok: false, error: "already_answered" };
+  return { ok: true, score: decision.score, lobby: await closeRace(lobby) };
+}
+
+export async function closeRace(lobby: LobbyRow): Promise<LobbyRow> {
+  if (!isRace(lobby.game) || lobby.status !== "playing") return lobby;
   const [players, answers] = await Promise.all([playersOf([lobby.id]), service().from(ANSWERS).select("user_id").eq("lobby_id", lobby.id)]);
-  if (!raceOver(players, check(answers, "race answers") as { user_id: string }[])) return { ok: true, score: decision.score, lobby };
+  if (!raceOver(players, check(answers, "race answers") as { user_id: string }[])) return lobby;
   const rows = check(await service().from(LOBBIES).update({ status: "done" }).eq("id", lobby.id).eq("status", "playing").select(LOBBY_COLS), "race done") as LobbyRow[];
-  return { ok: true, score: decision.score, lobby: rows[0] ?? { ...lobby, status: "done" } };
+  return rows[0] ?? { ...lobby, status: "done" };
 }
 
 export async function lobbyState(lobby: LobbyRow, uid: string, now: number, blocks?: BlockRow[]): Promise<LobbyState> {

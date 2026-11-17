@@ -185,6 +185,36 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(!LobbyClock.phase(l, at: s.addingTimeInterval(-1)).playing && !LobbyClock.phase(l, at: s.addingTimeInterval(300)).playing)
     }
 
+    @Test func equalRaceScoresRankByTheFasterFinish() throws {
+        var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00.000Z")
+        raw["game"] = "mini"
+        raw["players"] = ["ana", "bo", "cy"].map { ["userId": $0, "name": $0, "ready": true, "score": $0 == "cy" ? 0 : 500, "isHost": false, "isMe": false, "online": true, "answered": $0 != "cy"] as [String: Any] }
+        raw["results"] = [["round": 0, "userId": "ana", "correct": true, "ms": 90_000, "points": 500], ["round": 0, "userId": "bo", "correct": true, "ms": 40_000, "points": 500]]
+        let l = try JSONDecoder().decode(Lobby.self, from: json(raw))
+        #expect(l.standings.map(\.userId) == ["bo", "ana", "cy"])
+        raw["game"] = "daily"
+        #expect(try JSONDecoder().decode(Lobby.self, from: json(raw)).standings.map(\.userId) == ["ana", "bo", "cy"])
+    }
+
+    @MainActor @Test func aRefusedScoreIsNotSentAgain() async throws {
+        let hits = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { r in
+            var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")
+            raw["game"] = "snake"
+            if r.url!.path.hasSuffix("/score") {
+                hits.mutate { $0 += 1 }
+                return (409, json(["error": "already_answered"]))
+            }
+            if r.url!.path.hasSuffix("/state") { return (200, json(["changed": false, "version": 3, "now": "2026-11-12T10:00:00Z"])) }
+            return (200, json(["lobby": raw]))
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(await store.postScore(7) == false && store.raceScoreSent)
+        await store.poll()
+        #expect(hits.value == 1)
+    }
+
     @Test func raceScoreFallsBackToHitsAndStaysInRange() {
         #expect(LobbyRules.raceScore(points: 420, hits: 3) == 420)
         #expect(LobbyRules.raceScore(points: nil, hits: 3) == 300)
@@ -230,9 +260,11 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         }, cacheDir: nil)
         let store = LobbyStore(api: api, token: { "t" })
         try await store.join(code: "ABC123", displayName: "Gia")
-        #expect(await store.postScore(7) == false && store.raceScore == nil)
+        #expect(await store.postScore(7) == false && store.raceScore == 7 && !store.raceScoreSent)
+        #expect(await store.postScore(9) == false && store.raceScore == 7)
         fail.mutate { $0 = false }
-        #expect(await store.postScore(7) && store.raceScore == 7)
+        await store.poll()
+        #expect(store.raceScore == 7 && store.raceScoreSent)
         game.mutate { $0 = "daily" }
         try await store.join(code: "ABC123", displayName: "Gia")
         #expect(await store.postScore(7) == false && store.raceScore == nil)
