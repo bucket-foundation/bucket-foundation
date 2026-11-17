@@ -22,8 +22,8 @@ struct TodayHero: View {
         switch status {
         case .empty: String(localized: "Choose what to learn")
         case .start: String(localized: "Start your streak today")
-        case .keep(let n, _): String(localized: "Day \(n + 1): keep your streak")
-        case .atRisk(let n, _): String(localized: "Your \(n)-day streak ends at midnight")
+        case .keep: String(localized: "Day \(status.dayInPlay ?? 1): keep your streak")
+        case .atRisk: String(localized: "Day \(status.dayInPlay ?? 1): your streak ends at midnight")
         case .secured(let n, _): String(localized: "Day \(n) is safe")
         case .done: String(localized: "Done for today")
         }
