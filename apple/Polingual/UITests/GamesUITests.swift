@@ -70,7 +70,15 @@ final class GamesUITests: XCTestCase {
         for key in keys.allElementsBoundByIndex {
             XCTAssertGreaterThanOrEqual(key.frame.minX, screen.minX)
             XCTAssertLessThanOrEqual(key.frame.maxX, screen.maxX)
+            XCTAssertLessThanOrEqual(key.frame.maxY, screen.maxY)
+            XCTAssertTrue(key.isHittable)
         }
+        for name in ["polyword.enter", "polyword.delete"] {
+            XCTAssertLessThanOrEqual(app.buttons[name].frame.maxY, screen.maxY)
+            XCTAssertGreaterThanOrEqual(app.buttons[name].frame.minX, screen.minX)
+            XCTAssertLessThanOrEqual(app.buttons[name].frame.maxX, screen.maxX)
+        }
+        keys.element(boundBy: 0).tap()
         shot("polyword-board")
     }
 

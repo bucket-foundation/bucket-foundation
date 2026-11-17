@@ -32,13 +32,31 @@ struct PolywordGame: View {
         saved = s.keys.sorted().suffix(60).map { "\($0)=\(s[$0]!.joined(separator: ","))" }.joined(separator: "\n")
     }
 
+    var playing: PolyPuzzle? {
+        guard let p = puzzle, !Polyword.finished(guesses, p.answer), !PlayLaunch.endGame else { return nil }
+        return p
+    }
+
     var body: some View {
-        PlayScene(game: .polyword, stickers: playStickers(.streakFlame, .ticket)) {
-            if let bank, let puzzle {
-                langPicker(bank)
-                if Polyword.finished(guesses, puzzle.answer) || PlayLaunch.endGame { results(bank, puzzle) } else { board(puzzle) }
-            } else {
-                PlayNote(text: "Polyword has no word for your languages yet.")
+        ScrollViewReader { proxy in
+            PlayScene(game: .polyword, stickers: playStickers(.streakFlame, .ticket)) {
+                if let bank, let puzzle {
+                    langPicker(bank)
+                    if playing == nil { results(bank, puzzle) } else { board(puzzle) }
+                } else {
+                    PlayNote(text: "Polyword has no word for your languages yet.")
+                }
+            }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if let p = playing {
+                    keyboard(Polyword.keyMarks(guesses, p.answer), size: p.answer.count, answer: p.answer)
+                        .padding(.horizontal, PL.Space.s4)
+                        .padding(.vertical, PL.Space.s2)
+                        .background(PL.tyrian.ignoresSafeArea(edges: .bottom))
+                }
+            }
+            .onChange(of: PolywordFocus(key: key, row: guesses.count, typed: typed.count), initial: true) { _, focus in
+                withAnimation { proxy.scrollTo(focus.row, anchor: .center) }
             }
         }
         .task {
@@ -58,9 +76,8 @@ struct PolywordGame: View {
     }
 
     func board(_ p: PolyPuzzle) -> some View {
-        let marks = Polyword.keyMarks(guesses, p.answer)
         let size = p.answer.count
-        return VStack(alignment: .leading, spacing: PL.Space.s3) {
+        return VStack(alignment: .leading, spacing: PL.Space.s2) {
             PlayLabel(text: "\(Lang.name(lang)) · #\(day) · \(size) letters")
             ForEach(0..<Polyword.maxGuesses, id: \.self) { row in
                 HStack(spacing: PL.Space.s1) {
@@ -72,11 +89,12 @@ struct PolywordGame: View {
                             .font(PL.heading.font())
                             .foregroundStyle(i < score.count ? PL.paper : PL.ink)
                             .lineLimit(1).minimumScaleFactor(0.5)
-                            .frame(maxWidth: .infinity, minHeight: 48)
+                            .frame(maxWidth: .infinity, minHeight: 44)
                             .background(i < score.count ? color(score[i]) : PL.card, in: .rect(cornerRadius: 8))
                     }
                 }
                 .modifier(row == guesses.count ? AnyShake(trigger: shake) : AnyShake(trigger: 0))
+                .id(row)
             }
             ForEach(Polyword.revealedHints(p.hints, answer: p.answer, guesses: guesses), id: \.lang) { h in
                 HStack(spacing: PL.Space.s2) {
@@ -86,26 +104,37 @@ struct PolywordGame: View {
                 }
             }
             if let problem { Text(problem).font(PL.small.font()).foregroundStyle(PL.ochre) }
-            keyboard(marks, size: size, answer: p.answer)
         }
     }
 
     func keyboard(_ marks: [Character: PolyMark], size: Int, answer: String) -> some View {
-        let rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
-        return VStack(spacing: PL.Space.s1) {
-            ForEach(rows, id: \.self) { row in
-                HStack(spacing: PL.Space.s1) {
-                    ForEach(Array(row), id: \.self) { ch in
-                        Button(String(ch).uppercased()) { if typed.count < size { typed.append(ch); problem = nil } }
-                            .buttonStyle(.pl(variant(marks[ch]), size: .sm, full: true, pad: 0))
-                            .lineLimit(1).minimumScaleFactor(0.6)
-                            .accessibilityIdentifier("polyword.key")
-                    }
-                }
+        VStack(spacing: PL.Space.s1) {
+            keyRow("qwertyuiop", marks, size)
+            keyRow("asdfghjkl", marks, size)
+            HStack(spacing: PL.Space.s1) {
+                Button("Enter") { submit(answer) }
+                    .buttonStyle(.pl(.primary, size: .sm, full: true, pad: 0))
+                    .lineLimit(1).minimumScaleFactor(0.6)
+                    .frame(width: 58)
+                    .disabled(typed.count != size)
+                    .accessibilityIdentifier("polyword.enter")
+                keyRow("zxcvbnm", marks, size)
+                Button("Delete") { if !typed.isEmpty { typed.removeLast() } }
+                    .buttonStyle(.pl(.ghost, size: .sm, full: true, pad: 0))
+                    .lineLimit(1).minimumScaleFactor(0.6)
+                    .frame(width: 58)
+                    .accessibilityIdentifier("polyword.delete")
             }
-            HStack(spacing: PL.Space.s2) {
-                Button("Delete") { if !typed.isEmpty { typed.removeLast() } }.buttonStyle(.pl(.quiet, size: .md))
-                Button("Enter") { submit(answer) }.buttonStyle(.pl(.primary, size: .md)).disabled(typed.count != size)
+        }
+    }
+
+    func keyRow(_ row: String, _ marks: [Character: PolyMark], _ size: Int) -> some View {
+        HStack(spacing: PL.Space.s1) {
+            ForEach(Array(row), id: \.self) { ch in
+                Button(String(ch).uppercased()) { if typed.count < size { typed.append(ch); problem = nil } }
+                    .buttonStyle(.pl(variant(marks[ch]), size: .sm, full: true, pad: 0))
+                    .lineLimit(1).minimumScaleFactor(0.6)
+                    .accessibilityIdentifier("polyword.key")
             }
         }
     }
@@ -155,6 +184,12 @@ struct PolywordGame: View {
         case nil: .ghost
         }
     }
+}
+
+struct PolywordFocus: Equatable {
+    let key: String
+    let row: Int
+    let typed: Int
 }
 
 struct AnyShake: ViewModifier {
