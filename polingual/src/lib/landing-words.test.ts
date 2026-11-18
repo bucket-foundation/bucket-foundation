@@ -30,6 +30,7 @@ const parsed = new Map(
   }),
 );
 const en = parsed.get("index.html")!;
+const footerLinks = JSON.parse(readFileSync(join(__dirname, "footer-links.json"), "utf8")) as { key: string; label: string; href: string }[];
 
 test("the landing ships in 25 languages", () => {
   assert.equal(pages.length, 25);
@@ -38,14 +39,26 @@ test("the landing ships in 25 languages", () => {
 for (const { code, file, base } of pages) {
   const p = parsed.get(file)!;
 
-  test(`${file} headers link Words to ${base}/word and footers do not`, () => {
+  test(`${file} headers link Words to ${base}/word and Play to /play`, () => {
     const wl = p.header.find((a) => a.attrs["data-slot"] === "words");
     assert.equal(wl?.attrs.href, `${base}/word`);
     assert.equal(p.appTop?.attrs.href, `${base}/word`);
-    assert.equal(p.footers.length, 4);
-    for (const links of p.footers) assert.ok(!links.some((a) => a.attrs.href === `${base}/word` || a.text === wl?.text), `${file} footer links Words`);
+    const play = p.header.find((a) => a.attrs["data-slot"] === "play");
+    assert.equal(play?.attrs.href, "/play");
+    assert.ok(p.html.includes(`<a href="/play">${play?.text}</a></span>`), `${file} phone header lacks Play`);
+    if (code !== "en") assert.notEqual(play?.text, "Play", `${file} Play untranslated`);
     assert.equal(p.appTop?.text, wl?.text);
     if (code !== "en") assert.notEqual(wl?.text, "Words", `${file} label untranslated`);
+  });
+
+  test(`${file} carries the shared footer links in every layout`, () => {
+    assert.equal(p.footers.length, 4);
+    const want = footerLinks.map((l) => (l.key === "words" ? `${base}/word` : l.href));
+    assert.deepEqual(footerLinks.map((l) => l.key), ["play", "words", "guides", "privacy", "terms", "support", "appstore"]);
+    for (const links of p.footers) {
+      const hrefs = links.map((a) => a.attrs.href);
+      for (const href of want) assert.ok(hrefs.includes(href), `${file} footer lacks ${href}`);
+    }
   });
 
   test(`${file} has one browse link under each tile grid to ${base}/word`, () => {
