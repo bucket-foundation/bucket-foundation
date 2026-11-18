@@ -12,6 +12,11 @@ struct SnakeGame: View {
     @State private var over = false
     @State private var root = "en"
     @State private var recorded = false
+    @State private var shielded = true
+    @State private var touch: Pt?
+    @State private var field = CGSize.zero
+    @Environment(\.playRoom) private var playRoom
+    @ScaledMetric private var chrome: CGFloat = 190
 
     var me: Snake? { arena?.snakes.first { !$0.bot } }
 
@@ -53,30 +58,52 @@ struct SnakeGame: View {
                 PlayLabel(text: "\(left)s")
             }
             GeometryReader { geo in
-                let k = geo.size.width / Snakes.worldW
-                Canvas { ctx, _ in
-                    for w in a.words {
-                        ctx.draw(Text(w.form).font(PL.small.font()).foregroundStyle(PL.paper), at: CGPoint(x: w.x * k, y: w.y * k))
-                    }
-                    let colors = [PL.vermilion, PL.ochre, PL.maya, PL.malachite, PL.lapisSoft, PL.paper]
-                    for s in a.snakes where s.alive {
-                        var path = Path()
-                        for (i, p) in s.body.enumerated() {
-                            let pt = CGPoint(x: p.x * k, y: p.y * k)
-                            if i == 0 { path.move(to: pt) } else { path.addLine(to: pt) }
-                        }
-                        ctx.stroke(path, with: .color(colors[s.color % colors.count]), style: StrokeStyle(lineWidth: s.bot ? 6 : 9, lineCap: .round, lineJoin: .round))
-                    }
-                }
-                .background(PL.tyrianDeep, in: .rect(cornerRadius: 16))
-                .contentShape(.rect)
-                .gesture(DragGesture(minimumDistance: 0).onChanged { g in
-                    guard let head = me?.body.first else { return }
-                    aim = atan2(g.location.y / k - head.y, g.location.x / k - head.x)
-                })
+                let head = me?.body.first ?? Pt(Snakes.worldW / 2, Snakes.worldH / 2)
+                let v = Snakes.view(head: head, width: geo.size.width, height: geo.size.height)
+                Canvas { ctx, _ in draw(&ctx, a, v) }
+                    .background(PL.tyrianDeep)
+                    .clipShape(.rect(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(PL.ink, lineWidth: 3))
+                    .contentShape(.rect)
+                    .gesture(DragGesture(minimumDistance: 0).onChanged { g in
+                        touch = Pt(g.location.x, g.location.y)
+                        field = geo.size
+                        aim = Snakes.heldAim(head: head, width: geo.size.width, height: geo.size.height, touch: Pt(g.location.x, g.location.y), current: aim)
+                    }.onEnded { _ in touch = nil })
+                    .accessibilityElement()
+                    .accessibilityLabel("Steer with your finger. Eat words in your language to grow. Decoys from other languages shrink you.")
+                    .accessibilityIdentifier("snakeArena")
             }
-            .aspectRatio(Snakes.worldW / Snakes.worldH, contentMode: .fit)
+            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 260))
             Button("End round") { over = true }.buttonStyle(.pl(.quiet, size: .sm))
+        }
+    }
+
+    func draw(_ ctx: inout GraphicsContext, _ a: Arena, _ v: SnakeView) {
+        let wall = CGRect(x: 3 - v.x, y: 3 - v.y, width: Snakes.worldW - 6, height: Snakes.worldH - 6)
+        ctx.stroke(Path(wall), with: .color(PL.ochre), lineWidth: 6)
+        for w in a.words where v.shows(Pt(w.x, w.y), margin: 80) {
+            let text = ctx.resolve(Text(w.form).font(PL.body.font()).fontWeight(.heavy).foregroundStyle(PL.tyrian))
+            let size = text.measure(in: CGSize(width: 240, height: 40))
+            let at = CGPoint(x: w.x - v.x, y: w.y - v.y)
+            let plate = CGRect(x: at.x - size.width / 2 - 10, y: at.y - size.height / 2 - 4, width: size.width + 20, height: size.height + 8)
+            ctx.fill(Path(roundedRect: plate.offsetBy(dx: 3, dy: 3), cornerRadius: 6), with: .color(PL.ink.opacity(0.35)))
+            ctx.fill(Path(roundedRect: plate, cornerRadius: 6), with: .color(PL.paper2))
+            ctx.draw(text, at: at)
+        }
+        let colors = [PL.vermilion, PL.ochre, PL.maya, PL.malachite, PL.lapisSoft, PL.paper]
+        for s in a.snakes where s.alive {
+            var path = Path()
+            for (i, p) in s.body.enumerated() {
+                let pt = CGPoint(x: p.x - v.x, y: p.y - v.y)
+                if i == 0 { path.move(to: pt) } else { path.addLine(to: pt) }
+            }
+            let width: CGFloat = s.bot ? 13 : 16
+            let fade = !s.bot && shielded ? 0.55 : 1
+            ctx.stroke(path, with: .color(PL.ink.opacity(fade)), style: StrokeStyle(lineWidth: width + 4, lineCap: .round, lineJoin: .round))
+            ctx.stroke(path, with: .color(colors[s.color % colors.count].opacity(fade)), style: StrokeStyle(lineWidth: width, lineCap: .round, lineJoin: .round))
+            let h = CGPoint(x: s.body[0].x - v.x, y: s.body[0].y - v.y)
+            ctx.draw(Text("\(s.name) \(s.length)").font(PL.label.font()).foregroundStyle(PL.paper), at: CGPoint(x: h.x, y: h.y - 22))
         }
     }
 
@@ -111,12 +138,14 @@ struct SnakeGame: View {
         var snakes = [Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(800, 500), angle: 0, color: 0)]
         let skills = ["easy", "medium", "hard", "medium", "easy"]
         for (i, b) in Bots.all.shuffled().prefix(5).enumerated() {
-            let at = Pt(200 + Double.random(in: 0..<1200), 150 + Double.random(in: 0..<700))
+            let at = Snakes.botStart(away: Pt(800, 500)) { Double.random(in: 0..<1) }
             snakes.append(Snakes.make(id: b.userId, name: b.name, bot: true, skill: Snakes.skill[skills[i]] ?? 0.8, at: at, angle: Double.random(in: -3...3), color: i + 1))
         }
         deck = d
         aim = nil
+        touch = nil
         recorded = false
+        shielded = true
         startedAt = Date()
         left = Snakes.roundMs / 1000
         arena = Snakes.eat(Arena(snakes: snakes, words: [], nextWord: 0), deck: d) { Double.random(in: 0..<1) }
@@ -131,7 +160,12 @@ struct SnakeGame: View {
             let dt = min(0.05, now.timeIntervalSince(last))
             last = now
             let before = (a.eaten.count, a.bad.count)
-            let next = Snakes.tick(a, aim: aim, deck: d, rand: { Double.random(in: 0..<1) }, dt: dt)
+            if let touch, let head = a.snakes.first(where: { !$0.bot })?.body.first {
+                aim = Snakes.heldAim(head: head, width: field.width, height: field.height, touch: touch, current: aim)
+            }
+            let shield = Snakes.shielded(elapsedMs: Int(now.timeIntervalSince(startedAt) * 1000))
+            if shield != shielded { shielded = shield }
+            let next = Snakes.tick(a, aim: aim, deck: d, rand: { Double.random(in: 0..<1) }, dt: dt, shield: shield)
             if next.eaten.count > before.0 { PlaySound.effect(true, combo: next.eaten.count) }
             if next.bad.count > before.1 { PlaySound.effect(false) }
             arena = next
