@@ -151,6 +151,12 @@ public enum Snakes {
         return atan2(t.y - head.y, t.x - head.x)
     }
 
+    public static func heldAim(head: Pt, width: Double, height: Double, touch: Pt, current: Double?) -> Double? {
+        let v = view(head: head, width: width, height: height)
+        guard dist(v.world(touch), head) >= seg else { return current }
+        return aim(head: head, view: v, touch: touch)
+    }
+
     public static func shielded(elapsedMs: Int) -> Bool { elapsedMs < graceMs }
 
     public static func botStart(away from: Pt, rand: () -> Double) -> Pt {

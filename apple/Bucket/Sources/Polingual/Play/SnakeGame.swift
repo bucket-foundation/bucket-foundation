@@ -13,6 +13,8 @@ struct SnakeGame: View {
     @State private var root = "en"
     @State private var recorded = false
     @State private var shielded = true
+    @State private var touch: Pt?
+    @State private var field = CGSize.zero
     @Environment(\.playRoom) private var playRoom
     @ScaledMetric private var chrome: CGFloat = 190
 
@@ -64,8 +66,10 @@ struct SnakeGame: View {
                     .overlay(RoundedRectangle(cornerRadius: 16).stroke(PL.ink, lineWidth: 3))
                     .contentShape(.rect)
                     .gesture(DragGesture(minimumDistance: 0).onChanged { g in
-                        aim = Snakes.aim(head: head, view: v, touch: Pt(g.location.x, g.location.y))
-                    })
+                        touch = Pt(g.location.x, g.location.y)
+                        field = geo.size
+                        aim = Snakes.heldAim(head: head, width: geo.size.width, height: geo.size.height, touch: Pt(g.location.x, g.location.y), current: aim)
+                    }.onEnded { _ in touch = nil })
                     .accessibilityElement()
                     .accessibilityLabel("Steer with your finger. Eat words in your language to grow. Decoys from other languages shrink you.")
                     .accessibilityIdentifier("snakeArena")
@@ -139,6 +143,7 @@ struct SnakeGame: View {
         }
         deck = d
         aim = nil
+        touch = nil
         recorded = false
         shielded = true
         startedAt = Date()
@@ -155,6 +160,9 @@ struct SnakeGame: View {
             let dt = min(0.05, now.timeIntervalSince(last))
             last = now
             let before = (a.eaten.count, a.bad.count)
+            if let touch, let head = a.snakes.first(where: { !$0.bot })?.body.first {
+                aim = Snakes.heldAim(head: head, width: field.width, height: field.height, touch: touch, current: aim)
+            }
             let shield = Snakes.shielded(elapsedMs: Int(now.timeIntervalSince(startedAt) * 1000))
             if shield != shielded { shielded = shield }
             let next = Snakes.tick(a, aim: aim, deck: d, rand: { Double.random(in: 0..<1) }, dt: dt, shield: shield)

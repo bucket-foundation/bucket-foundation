@@ -547,6 +547,15 @@ struct PlayTests {
         #expect(abs(Snakes.aim(head: corner, view: edge, touch: Pt(105, 5))) < 0.0001)
     }
 
+    @Test func snakeHeldFingerKeepsSteeringAsTheViewMoves() {
+        let touch = Pt(300, 210)
+        let first = Snakes.heldAim(head: Pt(800, 500), width: 360, height: 420, touch: touch, current: nil)
+        #expect(abs((first ?? 9) - 0) < 0.0001)
+        let below = Snakes.heldAim(head: Pt(5, 5), width: 360, height: 420, touch: Pt(5, 300), current: first)
+        #expect(abs((below ?? 9) - .pi / 2) < 0.0001)
+        #expect(Snakes.heldAim(head: Pt(800, 500), width: 360, height: 420, touch: Pt(181, 211), current: 1.25) == 1.25)
+    }
+
     @Test func snakeShieldKeepsThePlayerAliveAtTheStart() {
         var big = Snakes.make(id: "big", name: "Big", bot: true, skill: 1, at: Pt(300, 300), angle: 0, color: 0)
         big.length = 20
