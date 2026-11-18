@@ -1,4 +1,5 @@
 import type { GrowthReport } from "@/lib/growth/report";
+import { RevenueDaily, RevenueFigures, RevenueProducts } from "./RevenueView";
 
 const H2 = "small-caps text-[12px] tracking-[0.18em] text-[color:var(--basalt-2)] mb-3";
 const TH = "text-left px-2 py-2 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)] whitespace-nowrap";
@@ -17,6 +18,8 @@ export default function GrowthReportView({ data }: { data: GrowthReport & { trun
         Generated {data.generatedAt.slice(0, 16).replace("T", " ")} UTC. App Store Connect snapshot {data.snapshotAt ? data.snapshotAt.slice(0, 16).replace("T", " ") + " UTC" : "not taken yet"}.
         {data.truncated ? " Event cap reached: counts are partial." : ""}
       </p>
+      {data.revenue && <RevenueFigures revenue={data.revenue} />}
+      <div className="grid gap-10 lg:grid-cols-2">
       <div>
         <h2 className={H2}>Funnel</h2>
         <ol className="flex flex-col gap-2">
@@ -37,6 +40,9 @@ export default function GrowthReportView({ data }: { data: GrowthReport & { trun
           Retention of testers: D1 {pct(data.retention[1])}, D7 {pct(data.retention[7])}, D30 {pct(data.retention[30])}.
         </p>
       </div>
+      {data.revenue && <RevenueProducts revenue={data.revenue} />}
+      </div>
+      {data.revenue && <RevenueDaily revenue={data.revenue} />}
       <div>
         <h2 className={H2}>Signups by week</h2>
         <p className="text-[13px] text-[color:var(--basalt-2)]">{data.signupsByWeek.map((w) => `${w.week}: ${w.count}`).join(" · ") || "-"}</p>

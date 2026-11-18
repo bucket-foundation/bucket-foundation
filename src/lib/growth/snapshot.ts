@@ -1,3 +1,5 @@
+import { parseRevenue, type SnapshotRevenue } from "./revenue";
+
 export const GROWTH_APPS = ["bucket", "polingual"] as const;
 export type GrowthApp = (typeof GROWTH_APPS)[number];
 
@@ -31,6 +33,7 @@ export interface GrowthSnapshot {
   testers: SnapshotTester[];
   builds: SnapshotBuild[];
   visits?: SnapshotVisits | null;
+  revenue?: SnapshotRevenue | null;
 }
 
 function parseVisits(v: unknown): SnapshotVisits | null | undefined {
@@ -96,5 +99,7 @@ export function parseSnapshot(raw: unknown): Parsed<GrowthSnapshot> {
   if (builds.some((b) => b === null)) return { ok: false, error: "bad_build" };
   const visits = parseVisits(raw.visits);
   if (visits === undefined) return { ok: false, error: "bad_visits" };
-  return { ok: true, value: { takenAt, testers: testers as SnapshotTester[], builds: builds as SnapshotBuild[], visits } };
+  const revenue = parseRevenue(raw.revenue);
+  if (revenue === undefined) return { ok: false, error: "bad_revenue" };
+  return { ok: true, value: { takenAt, testers: testers as SnapshotTester[], builds: builds as SnapshotBuild[], visits, revenue } };
 }
