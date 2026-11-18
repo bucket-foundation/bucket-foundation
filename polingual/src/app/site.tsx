@@ -19,6 +19,8 @@ function wordsHref(code: string): string {
   return code === "en" ? "/word" : `/${code}/word`;
 }
 
+const TEACHERS: Record<string, { href: string; label: string }> = { en: { href: "/teachers", label: "Teachers" }, es: { href: "/es/teachers", label: "Docentes" } };
+
 function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
   return (
     <header className={styles.hd}>
@@ -40,6 +42,7 @@ function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
 }
 
 export function SiteFooter({ loc = EN_SITE }: { loc?: SiteLocale }) {
+  const teachers = TEACHERS[loc.code];
   return (
     <footer className={styles.ft}>
       <FlagBand flags />
@@ -50,6 +53,7 @@ export function SiteFooter({ loc = EN_SITE }: { loc?: SiteLocale }) {
           <Link href="/privacy">{loc.labels.privacy}</Link>
           <Link href="/terms">{loc.labels.terms}</Link>
           <Link href="/support">{loc.labels.support}</Link>
+          {teachers ? <Link href={teachers.href} data-testid="footer-teachers">{teachers.label}</Link> : null}
         </nav>
         <span>
           {loc.footer.data} <a href="https://en.wiktionary.org">Wiktionary</a> · <a href="https://kaikki.org">Kaikki</a> · <a href="https://commons.wikimedia.org">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. <span dir="auto">{loc.footer.published}</span>
