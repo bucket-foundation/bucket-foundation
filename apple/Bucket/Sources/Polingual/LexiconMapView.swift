@@ -21,17 +21,90 @@ extension LexiconWordState {
     }
 }
 
-extension LangStore {
-    func lexiconMap(now: Double = Date().timeIntervalSince1970 * 1000) -> LexiconMap? {
-        guard let corpus else { return nil }
-        return LexiconMap(root: systems.first?.root ?? "en", learning: systems.map { ($0, state($0.id)) }, corpus: corpus, now: now)
-    }
+@MainActor
+@Observable
+final class LexiconMapCache {
+    static let shared = LexiconMapCache()
+    private(set) var map: LexiconMap?
+    private(set) var version = 0
+    private var systems: [LangSystem] = []
+    private var states: [String: EngineState] = [:]
+    private var day = ""
+    private var run = 0
 
+    func refresh(_ store: LangStore) async {
+        guard let corpus = store.corpus else { return }
+        let now = Date().timeIntervalSince1970 * 1000
+        let today = dayKey(now)
+        let systems = store.systems
+        let states = store.states
+        if map != nil, systems == self.systems, states == self.states, today == day { return }
+        self.systems = systems
+        self.states = states
+        day = today
+        run += 1
+        let mine = run
+        let learning = systems.map { (system: $0, state: states[$0.id] ?? EngineState()) }
+        let root = systems.first?.root ?? "en"
+        let built = await Task.detached(priority: .userInitiated) { LexiconMap(root: root, learning: learning, corpus: corpus, now: now) }.value
+        guard mine == run else { return }
+        map = built
+        version += 1
+    }
+}
+
+struct LexiconMapFresh: ViewModifier {
+    @Environment(LangStore.self) private var store
+
+    func body(content: Content) -> some View {
+        content
+            .task(id: store.status) {
+                await store.load()
+                await LexiconMapCache.shared.refresh(store)
+            }
+            .onChange(of: store.states) { Task { await LexiconMapCache.shared.refresh(store) } }
+            .onChange(of: store.systems) { Task { await LexiconMapCache.shared.refresh(store) } }
+    }
+}
+
+extension LangStore {
     func lexiconShares(_ map: LexiconMap, first lang: String? = nil) -> [ShareObject] {
-        let learning = map.languages.filter(\.learning).map(\.lang)
         let mastered = masteredShares(root: map.root, first: lang)
         if let lang { return mastered.isEmpty || map.language(lang)?.counts.mastered == 0 ? [.language(lang, root: map.root)] : mastered }
-        return mastered + systems.map { .system(name: $0.name, root: $0.root, targets: $0.targets, streak: Int(state($0.id).streak), learned: map.counts.seen) } + learning.map { .language($0, root: map.root) }
+        return mastered + systems.map { .system(name: $0.name, root: $0.root, targets: $0.targets, streak: Int(state($0.id).streak), learned: map.counts.seen) } + map.learning.map { .language($0.lang, root: map.root) }
+    }
+}
+
+struct LexiconMark: View {
+    let state: LexiconWordState
+    var size: CGFloat = 12
+
+    var body: some View {
+        switch state {
+        case .unseen: EmptyView()
+        case .started: Circle().fill(D8.ink).frame(width: size * 0.3, height: size * 0.3)
+        case .known:
+            HStack(spacing: size * 0.14) {
+                Circle().fill(PL.paper).frame(width: size * 0.3, height: size * 0.3)
+                Circle().fill(PL.paper).frame(width: size * 0.3, height: size * 0.3)
+            }
+        case .mastered: PLGlyphView(.check, size: size * 0.7).foregroundStyle(PL.paper)
+        }
+    }
+}
+
+struct LexiconSwatch: View {
+    let state: LexiconWordState
+    var on = false
+
+    var body: some View {
+        GeometryReader { g in
+            RoundedRectangle(cornerRadius: g.size.width * 0.18)
+                .fill(state.tint)
+                .overlay { RoundedRectangle(cornerRadius: g.size.width * 0.18).strokeBorder(on ? D8.ink : D8.edge, lineWidth: on ? 3 : 1) }
+                .overlay { LexiconMark(state: state, size: g.size.width) }
+        }
+        .aspectRatio(1, contentMode: .fit)
     }
 }
 
@@ -92,7 +165,7 @@ struct LexiconLegend: View {
         FlowLayout(spacing: 12) {
             ForEach(LexiconWordState.allCases.reversed(), id: \.self) { s in
                 HStack(spacing: 5) {
-                    RoundedRectangle(cornerRadius: 3).fill(s.tint).overlay { RoundedRectangle(cornerRadius: 3).strokeBorder(D8.edge, lineWidth: 1) }.frame(width: 12, height: 12)
+                    LexiconSwatch(state: s).frame(width: 18, height: 18)
                     Text(verbatim: "\(s.label) \(counts[s])")
                 }
                 .accessibilityElement(children: .combine)
@@ -107,36 +180,52 @@ struct LexiconLegend: View {
 struct LexiconSummary: View {
     let counts: LexiconCounts
     let finish: Double?
+    let pace: Double
+    var learning = true
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("\(counts.learned) of \(counts.total) words learned").font(.headline).foregroundStyle(Palette.ink)
-            Text("\(counts.left) words left").font(.subheadline).foregroundStyle(Palette.muted)
-            if let finish {
-                let month = Date(timeIntervalSince1970: finish / 1000).formatted(.dateTime.month(.wide).year().locale(InterfaceLanguage.locale))
-                Text("At your pace you finish in \(month).").noticeStyle()
-            } else if counts.left > 0 {
-                Text("Learn a new word to set your finish date.").noticeStyle()
+            if counts.total == 0 {
+                Text("Pick the languages to learn together.").font(.subheadline).foregroundStyle(Palette.muted)
+            } else {
+                Text("\(counts.learned) of \(counts.total) words learned").font(.headline).foregroundStyle(Palette.ink)
+                Text(counts.left == 1 ? String(localized: "1 word left") : String(localized: "\(counts.left) words left")).font(.subheadline).foregroundStyle(Palette.muted)
+                if let finish {
+                    let month = Date(timeIntervalSince1970: finish / 1000).formatted(.dateTime.month(.wide).year().locale(InterfaceLanguage.locale))
+                    Text("At your pace you finish in \(month).").noticeStyle()
+                } else if counts.left > 0, let pace = LexiconPace(pace) {
+                    Text(Self.text(pace)).noticeStyle()
+                } else if counts.left > 0, learning {
+                    Text("Learn a new word to set your finish date.").noticeStyle()
+                }
             }
         }
         .monospacedDigit()
         .fixedSize(horizontal: false, vertical: true)
     }
+
+    static func text(_ pace: LexiconPace) -> String {
+        switch pace {
+        case .day(1): String(localized: "1 word a day")
+        case .day(let n): String(localized: "\(n) words a day")
+        case .week(1): String(localized: "1 word a week")
+        case .week(let n): String(localized: "\(n) words a week")
+        }
+    }
 }
 
 struct LexiconMapSection: View {
-    @Environment(LangStore.self) private var store
-    @State private var map: LexiconMap?
+    @State private var cache = LexiconMapCache.shared
 
     var body: some View {
         Section {
-            if let map {
+            if let map = cache.map {
                 NavigationLink {
                     LexiconMapView()
                 } label: {
                     HStack(spacing: 14) {
                         LexiconRing(counts: map.counts, size: 84)
-                        LexiconSummary(counts: map.counts, finish: map.finish(now: Date().timeIntervalSince1970 * 1000))
+                        LexiconSummary(counts: map.counts, finish: map.finish(now: Date().timeIntervalSince1970 * 1000), pace: map.pace)
                     }
                     .padding(.vertical, 4)
                 }
@@ -147,20 +236,18 @@ struct LexiconMapSection: View {
         } header: {
             Eyebrow(text: "Lexicon map")
         }
-        .task(id: store.status) {
-            await store.load()
-            map = store.lexiconMap()
-        }
+        .modifier(LexiconMapFresh())
     }
 }
 
 struct LexiconMapView: View {
     @Environment(LangStore.self) private var store
-    @State private var map: LexiconMap?
+    @State private var cache = LexiconMapCache.shared
+    @State private var shares: [ShareObject] = []
 
     var body: some View {
         Group {
-            if let map {
+            if let map = cache.map {
                 content(map)
             } else {
                 ProgressView()
@@ -170,24 +257,18 @@ struct LexiconMapView: View {
         .navigationTitle("Lexicon map")
         .inlineTitle()
         .toolbar {
-            if let map {
-                ToolbarItem(placement: .primaryAction) { ShareObjectButton(objects: store.lexiconShares(map)) }
-            }
+            ToolbarItem(placement: .primaryAction) { ShareObjectButton(objects: shares) }
         }
-        .task(id: store.status) {
-            await store.load()
-            map = store.lexiconMap()
-        }
+        .modifier(LexiconMapFresh())
+        .task(id: cache.version) { shares = cache.map.map { store.lexiconShares($0) } ?? [] }
     }
 
     func content(_ map: LexiconMap) -> some View {
-        let learning = map.languages.filter(\.learning)
-        let rest = map.languages.filter { !$0.learning }
-        return List {
+        List {
             Section {
                 VStack(spacing: 12) {
                     LexiconRing(counts: map.counts, size: 160)
-                    LexiconSummary(counts: map.counts, finish: map.finish(now: Date().timeIntervalSince1970 * 1000))
+                    LexiconSummary(counts: map.counts, finish: map.finish(now: Date().timeIntervalSince1970 * 1000), pace: map.pace)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     LexiconLegend(counts: map.counts)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -195,17 +276,17 @@ struct LexiconMapView: View {
                 .padding(.vertical, 6)
             }
             .listRowBackground(Palette.card)
-            if !learning.isEmpty {
+            if !map.learning.isEmpty {
                 Section {
-                    ForEach(learning) { row($0, map) }
+                    ForEach(map.learning) { row($0) }
                 } header: {
                     Eyebrow(text: "Your languages")
                 }
                 .listRowBackground(Palette.card)
             }
-            if !rest.isEmpty {
+            if !map.others.isEmpty {
                 Section {
-                    ForEach(rest) { row($0, map) }
+                    ForEach(map.others) { row($0) }
                 } header: {
                     Eyebrow(text: "More languages")
                 }
@@ -214,7 +295,7 @@ struct LexiconMapView: View {
         }
     }
 
-    func row(_ l: LexiconLanguage, _ map: LexiconMap) -> some View {
+    func row(_ l: LexiconLanguage) -> some View {
         NavigationLink {
             LexiconLanguageView(lang: l.lang)
         } label: {
@@ -223,7 +304,7 @@ struct LexiconMapView: View {
                     FlagTile(lang: l.lang, size: 26)
                     Text(langName(l.lang)).font(.headline).foregroundStyle(Palette.ink)
                     Spacer()
-                    Text("\(l.counts.left) left").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text(l.counts.left == 1 ? String(localized: "1 left") : String(localized: "\(l.counts.left) left")).font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                 }
                 LexiconBar(counts: l.counts)
             }
@@ -236,14 +317,13 @@ struct LexiconMapView: View {
 struct LexiconLanguageView: View {
     @Environment(LangStore.self) private var store
     let lang: String
-    @State private var language: LexiconLanguage?
-    @State private var root = "en"
+    @State private var cache = LexiconMapCache.shared
     @State private var shares: [ShareObject] = []
     @State private var picked: LexiconWord?
 
     var body: some View {
         Group {
-            if let language {
+            if let language = cache.map?.language(lang) {
                 content(language)
             } else {
                 ProgressView()
@@ -259,13 +339,8 @@ struct LexiconLanguageView: View {
         .safeAreaInset(edge: .bottom) {
             if let picked { detail(picked) }
         }
-        .task(id: store.status) {
-            await store.load()
-            guard let map = store.lexiconMap() else { return }
-            language = map.language(lang)
-            root = map.root
-            shares = store.lexiconShares(map, first: lang)
-        }
+        .modifier(LexiconMapFresh())
+        .task(id: cache.version) { shares = cache.map.map { store.lexiconShares($0, first: lang) } ?? [] }
     }
 
     func content(_ l: LexiconLanguage) -> some View {
@@ -274,7 +349,7 @@ struct LexiconLanguageView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(spacing: 14) {
                         LexiconRing(counts: l.counts, size: 84)
-                        LexiconSummary(counts: l.counts, finish: l.finish(now: Date().timeIntervalSince1970 * 1000))
+                        LexiconSummary(counts: l.counts, finish: l.finish(now: Date().timeIntervalSince1970 * 1000), pace: l.pace, learning: l.learning)
                     }
                     LexiconLegend(counts: l.counts)
                     Text("Tap a tile to hear the word.").noticeStyle()
@@ -287,7 +362,7 @@ struct LexiconLanguageView: View {
                             Spacer()
                             Text("\(g.counts.learned) of \(g.counts.total)").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                         }
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 30, maximum: 40), spacing: 5)], spacing: 5) {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 44, maximum: 56), spacing: 0)], spacing: 0) {
                             ForEach(g.words) { tile($0) }
                         }
                     }
@@ -298,15 +373,14 @@ struct LexiconLanguageView: View {
     }
 
     func tile(_ w: LexiconWord) -> some View {
-        let on = picked?.id == w.id
-        return Button {
+        Button {
             picked = w
             if LangVoice.shared.canSpeak(w.form, w.lang) { LangVoice.shared.speak(w.form, w.lang) }
         } label: {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(w.state.tint)
-                .overlay { RoundedRectangle(cornerRadius: 6).strokeBorder(on ? D8.ink : D8.edge, lineWidth: on ? 3 : 1) }
-                .aspectRatio(1, contentMode: .fit)
+            LexiconSwatch(state: w.state, on: picked?.id == w.id)
+                .padding(2)
+                .frame(minWidth: 44, minHeight: 44)
+                .contentShape(.rect)
         }
         .buttonStyle(TilePress())
         .accessibilityLabel(Text(verbatim: "\(w.form), \(w.meaning), \(w.state.label)"))

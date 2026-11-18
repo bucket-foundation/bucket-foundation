@@ -80,15 +80,30 @@ public struct LexiconLanguage: Sendable, Identifiable {
     public func finish(now: Double) -> Double? { LexiconMap.finish(left: counts.left, pace: pace, now: now) }
 }
 
+public enum LexiconPace: Sendable, Equatable {
+    case day(Int)
+    case week(Int)
+
+    public init?(_ perDay: Double) {
+        guard perDay > 0 else { return nil }
+        self = perDay >= 1 ? .day(Int(perDay.rounded())) : .week(max(1, Int((perDay * 7).rounded())))
+    }
+}
+
 public struct LexiconMap: Sendable {
     public static let knownAt = 0.5
     public static let masteredAt = 0.8
     public static let paceDays = 14
+    public static let finishCapDays = 730.0
 
     public let root: String
     public let languages: [LexiconLanguage]
     public let counts: LexiconCounts
+    public let lexicon: LexiconCounts
     public let pace: Double
+
+    public var learning: [LexiconLanguage] { languages.filter(\.learning) }
+    public var others: [LexiconLanguage] { languages.filter { !$0.learning } }
 
     public static func state(_ card: Card?, fsrs: FSRS = FSRS()) -> LexiconWordState {
         guard let card, isStarted(card) else { return .unseen }
@@ -99,7 +114,8 @@ public struct LexiconMap: Sendable {
 
     public static func finish(left: Int, pace: Double, now: Double) -> Double? {
         guard left > 0, pace > 0 else { return nil }
-        return now + (Double(left) / pace).rounded(.up) * DAY_MS
+        let days = (Double(left) / pace).rounded(.up)
+        return days <= finishCapDays ? now + days * DAY_MS : nil
     }
 
     public init(root: String, langs: [String] = Lang.codes, learning: [(system: LangSystem, state: EngineState)], corpus: LangCorpus, now: Double, tz: TimeZone = .current) {
@@ -135,7 +151,8 @@ public struct LexiconMap: Sendable {
             return LexiconLanguage(lang: lang, learning: active.contains(lang), groups: groups, counts: groups.reduce(LexiconCounts()) { $0 + $1.counts }, pace: Double(recent) / Double(Self.paceDays))
         }
         self.root = root
-        counts = languages.reduce(LexiconCounts()) { $0 + $1.counts }
+        counts = languages.filter(\.learning).reduce(LexiconCounts()) { $0 + $1.counts }
+        lexicon = languages.reduce(LexiconCounts()) { $0 + $1.counts }
         pace = languages.reduce(0) { $0 + $1.pace }
     }
 
