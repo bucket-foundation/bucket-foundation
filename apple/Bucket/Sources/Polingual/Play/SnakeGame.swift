@@ -15,8 +15,7 @@ struct SnakeGame: View {
     @State private var shielded = true
     @State private var touch: Pt?
     @State private var field = CGSize.zero
-    @Environment(\.playRoom) private var playRoom
-    @ScaledMetric private var chrome: CGFloat = 190
+    @ScaledMetric private var chrome: CGFloat = 54
 
     var me: Snake? { arena?.snakes.first { !$0.bot } }
 
@@ -53,9 +52,10 @@ struct SnakeGame: View {
     func field(_ a: Arena, _ d: SnakeDeck) -> some View {
         VStack(spacing: PL.Space.s2) {
             HStack {
-                PlayLabel(text: "\(Lang.name(d.lang)) · length \(me?.length ?? 0)")
+                PlayLabel(text: "\(Lang.name(d.lang)) · length \(me?.length ?? 0)").lineLimit(1).minimumScaleFactor(0.6)
                 Spacer()
                 PlayLabel(text: "\(left)s")
+                Button("End round") { over = true }.buttonStyle(.pl(.ghost, size: .sm, full: false))
             }
             GeometryReader { geo in
                 let head = me?.body.first ?? Pt(Snakes.worldW / 2, Snakes.worldH / 2)
@@ -74,8 +74,7 @@ struct SnakeGame: View {
                     .accessibilityLabel("Steer with your finger. Eat words in your language to grow. Decoys from other languages shrink you.")
                     .accessibilityIdentifier("snakeArena")
             }
-            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 260))
-            Button("End round") { over = true }.buttonStyle(.pl(.quiet, size: .sm))
+            .playBoard(chrome: chrome, least: 200)
         }
     }
 
