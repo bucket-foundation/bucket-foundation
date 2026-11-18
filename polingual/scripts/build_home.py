@@ -33,14 +33,17 @@ def picker(cur):
     return SEL + "".join(f'<option value="{href}" lang="{k}"{" selected" if k == cur else ""}>{name}</option>' for k, href, name in opts) + "</select>"
 
 
-FOOT = '<a href="/terms">Terms</a><a href="/support">Support</a>'
-HEAD = '<a class="l" href="/privacy">Privacy</a>'
-if out.count(FOOT) < 2 or out.count(HEAD) != 1:
+LINKS = json.loads((D.parent.parent / "src" / "lib" / "footer-links.json").read_text())
+REL = ' rel="noopener"'
+FOOT = "".join(f'<a href="{l["href"]}"{REL if l["href"].startswith("http") else ""}>{l["label"]}</a>' for l in LINKS)
+HEAD = '<a class="l" href="/support">Support</a>'
+out, footers = re.subn(r'<span class="fx">.*?</span>', lambda m: '<span class="fx">' + FOOT + "__LANGSEL__</span>", out, flags=re.S)
+if footers != 3 or out.count(HEAD) != 1:
     raise SystemExit("language picker anchors moved")
 out = re.sub(r'<p class="hw">.*?</p>', "__HW__", out, flags=re.S)
 if out.count("__HW__") != 2:
     raise SystemExit("browse link anchors moved")
-out = out.replace(FOOT, FOOT + "__LANGSEL__").replace(HEAD, HEAD + "__LANGSEL__")
+out = out.replace(HEAD, HEAD + "__LANGSEL__")
 out = out.replace('<link rel="canonical"', ALT + '<link rel="canonical"', 1)
 (D / "index.html").write_text(out.replace("__LANGSEL__", picker("en")).replace("__HW__", browse("en", EN_STRIP)))
 (D.parent.parent / "src" / "lib" / "site-langs.json").write_text(json.dumps(list(LANGS)) + "\n")
