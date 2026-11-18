@@ -13,6 +13,15 @@ struct ScreenShareTests {
         #expect(SharedLink(page.url) == .word("night"))
     }
 
+    @Test func shareLinkOpensInviteOnToday() {
+        #expect(SharedLink(URL(string: "https://www.polingual.com/s/share")!) == .share)
+        #expect(SharedLink(URL(string: "https://polingual.com/s/share?utm_source=beta")!) == .share)
+        #expect(SharedLink(URL(string: "polingual://share")!) == .share)
+        #expect(SharedLink(URL(string: "polingual://voice")!) == .voice)
+        #expect(SharedLink(URL(string: "https://example.com/s/share")!) == nil)
+        #expect(SharedLink.share.tab == .today)
+    }
+
     @Test func langsAtomAndDeckLinksParse() {
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/l?l=fr.es.it&r=en")!) == .langs(root: "en", targets: ["fr", "es", "it"]))
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/a?d=physics&id=newton-2")!) == .atom(deck: "physics", atom: "newton-2"))

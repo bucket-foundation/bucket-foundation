@@ -138,6 +138,7 @@ struct RootView: View {
         .groupsOnToday()
         .ageRangePrompt()
         .onOpenURL { DeepLink.shared.open($0) }
+        .inviteShareOnLink()
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .onChange(of: DeepLink.shared.pending) { _, link in
             guard let link else { return }

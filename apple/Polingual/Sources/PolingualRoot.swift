@@ -52,6 +52,7 @@ struct PolingualRoot: View {
         }
         #endif
         .onOpenURL { DeepLink.shared.open($0) }
+        .inviteShareOnLink()
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .groupInvites()
         .groupsOnToday()
