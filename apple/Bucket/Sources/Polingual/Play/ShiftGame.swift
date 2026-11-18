@@ -10,6 +10,8 @@ struct ShiftGame: View {
     @State private var gaveUp = false
     @State private var root = "en"
     @State private var recorded = false
+    @State private var entered = false
+    @State private var practice = false
 
     var word: String { board.map { Shift.centerWord($0.columns, offsets) } ?? "" }
     var done: Bool { gaveUp || PlayLaunch.endGame || board.map { RevealRules.shift(found: found, targets: $0.targets) } ?? false }
@@ -17,7 +19,13 @@ struct ShiftGame: View {
     var body: some View {
         PlayScene(game: .shift, stickers: playStickers(.tornLabel, .scriptRu)) {
             if let board {
-                if done { results(board) } else { play(board) }
+                if !entered && !practice {
+                    PlayedToday(kind: .shift) { retry(board) }
+                } else if done {
+                    results(board)
+                } else {
+                    play(board)
+                }
             } else {
                 ProgressView().tint(PL.paper)
             }
@@ -26,6 +34,7 @@ struct ShiftGame: View {
             await langs.load()
             guard board == nil, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
+            entered = !DailyLedger.shared.hasPlayed(.shift)
             board = Shift.board(corpus.items, date: PlayDecks.deckDay(), root: root)
             offsets = Array(repeating: 0, count: board?.length ?? 0)
         }
@@ -82,19 +91,29 @@ struct ShiftGame: View {
         if let l = ls.first { LangVoice.shared.speak(w, l) }
     }
 
+    func retry(_ b: ShiftBoard) {
+        practice = true
+        found = []
+        hints = [:]
+        gaveUp = false
+        offsets = Array(repeating: 0, count: b.length)
+    }
+
     func results(_ b: ShiftBoard) -> some View {
         let hit = b.targets.filter { found.contains($0.form) }.count
         return PlayResults(
             title: "\(hit) of \(b.targets.count) found",
-            line: "\(found.count) words spelled. A new board arrives tomorrow.",
+            line: practice ? "Practice round done. Your first result stands." : "\(found.count) words spelled. A new board arrives tomorrow.",
             reveals: b.targets.map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) },
             root: root,
-            share: (.shift, .marks(b.targets.map { found.contains($0.form) })),
+            share: practice ? nil : (.shift, .marks(b.targets.map { found.contains($0.form) })),
+            retry: (.shift, { retry(b) }),
             again: nil
         )
         .onAppear {
-            guard !recorded else { return }
+            guard !recorded, !practice else { return }
             recorded = true
+            DailyLedger.shared.markPlayed(.shift)
             let corpus = langs.corpus
             let words = b.targets.map { t in PlayedWord(itemId: corpus?.items.first { $0.form(t.lang)?.lowercased() == t.form }?.id ?? t.meaning, lang: t.lang, form: t.form, gloss: t.meaning, right: found.contains(t.form)) }
             langs.recordPlay(.shift, words, points: hit)

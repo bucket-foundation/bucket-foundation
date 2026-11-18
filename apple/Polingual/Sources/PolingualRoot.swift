@@ -27,7 +27,10 @@ struct PolingualRoot: View {
             }
         }
         .task { if subs.access == .checking { await subs.refresh() } }
-        .onChange(of: subs.access, initial: true) { _, access in LobbyAds.shared.allowed = Monetization.showsAds(access) }
+        .onChange(of: subs.access, initial: true) { _, access in
+            LobbyAds.shared.allowed = Monetization.showsAds(access)
+            DailyLedger.shared.capped = Monetization.capped(access)
+        }
         .modifier(VoiceNoticeCaption())
         .task { LangVoice.shared.preload() }
         #if DEBUG
@@ -156,6 +159,7 @@ struct Studio: View {
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
         .sheet(isPresented: $paywall) { Paywall() }
+        .environment(\.limitPaywall, limitPaywall)
         #if DEBUG
         .task { if Launch.flag("-showPaywall") { paywall = true } }
         #endif
@@ -174,6 +178,11 @@ struct Studio: View {
             }
         }
         #endif
+    }
+
+    var limitPaywall: (@MainActor () -> Void)? {
+        guard Monetization.capped(subs.access) else { return nil }
+        return { paywall = true }
     }
 
     var upsell: (@MainActor () -> Void)? {

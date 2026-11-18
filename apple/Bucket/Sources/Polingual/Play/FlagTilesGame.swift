@@ -7,13 +7,18 @@ struct FlagTilesGame: View {
     @State private var run = RunState()
     @State private var drop = false
     @State private var root = "en"
+    @State private var recorded = false
+    @State private var entered = false
+    @State private var practice = false
 
     var tile: FlagRunTile? { deck.flatMap { run.index < $0.tiles.count ? $0.tiles[run.index] : nil } }
     var answer: Int { tile.flatMap { t in deck?.langs.firstIndex(of: t.lang) } ?? -1 }
 
     var body: some View {
         PlayScene(game: .flagTiles, stickers: playStickers(.kente, .bunting)) {
-            if let deck {
+            if deck != nil, !entered, !practice {
+                PlayedToday(kind: .flagTiles) { retry() }
+            } else if let deck {
                 switch run.phase {
                 case .ready: ready(deck)
                 case .running: field(deck)
@@ -28,6 +33,7 @@ struct FlagTilesGame: View {
             await langs.load()
             guard deck == nil, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
+            entered = !DailyLedger.shared.hasPlayed(.flagTiles)
             deck = FlagTilesRules.deck(corpus.items, date: PlayDecks.deckDay(), root: root)
             if PlayLaunch.endGame { run = RunState(phase: .over, index: 3, score: 3) }
         }
@@ -98,19 +104,28 @@ struct FlagTilesGame: View {
         }
     }
 
+    func retry() {
+        practice = true
+        run = FlagTilesRules.step(RunState(), .start)
+    }
+
     func results(_ deck: FlagTilesDeck) -> some View {
         let seen = Array(deck.tiles.prefix(min(deck.tiles.count, run.index + 1)))
         let missedIndex = run.missed
         return PlayResults(
             title: "\(run.score) words",
-            line: "Same deck for everyone today. Come back tomorrow for new lanes.",
+            line: practice ? "Practice round done. Your first result stands." : "Same deck for everyone today. Come back tomorrow for new lanes.",
             reveals: playWords(seen.suffix(4).reversed().map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) }),
             root: root,
             board: Boards.fromGhosts(FlagTilesRules.ghosts(date: deck.date), you: run.score),
-            share: (.flagTiles, .points(run.score, marks: [])),
-            again: { run = FlagTilesRules.step(RunState(), .start) }
+            share: practice ? nil : (.flagTiles, .points(run.score, marks: [])),
+            retry: (.flagTiles, { retry() }),
+            again: nil
         )
         .onAppear {
+            guard !recorded, !practice else { return }
+            recorded = true
+            DailyLedger.shared.markPlayed(.flagTiles)
             let words = seen.enumerated().map { i, t in PlayedWord(itemId: t.itemId, lang: t.lang, form: t.form, gloss: t.meaning, right: i != missedIndex) }
             langs.recordPlay(.flagTiles, words, points: run.score)
         }

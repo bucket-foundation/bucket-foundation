@@ -159,6 +159,7 @@ targets:
         PolingualAds: $(POLINGUAL_ADS)
         PolingualAdBanner: $(POLINGUAL_AD_BANNER)
         PolingualAdInterstitial: $(POLINGUAL_AD_INTERSTITIAL)
+        PolingualAdRewarded: $(POLINGUAL_AD_REWARDED)
         NSUserTrackingUsageDescription: Polingual uses this to show ads that fit you better between games. Ads keep the games free. You can say no and still play every game.
         SKAdNetworkItems:
           - SKAdNetworkIdentifier: cstr6suwn9.skadnetwork
@@ -259,11 +260,13 @@ targets:
           POLINGUAL_GAD_APP_ID: ca-app-pub-3940256099942544~1458002511
           POLINGUAL_AD_BANNER: ""
           POLINGUAL_AD_INTERSTITIAL: ""
+          POLINGUAL_AD_REWARDED: ""
         Release:
           POLINGUAL_ADS: live
           POLINGUAL_GAD_APP_ID: ca-app-pub-9735211554999350~3234425502
           POLINGUAL_AD_BANNER: ca-app-pub-9735211554999350/3274128968
           POLINGUAL_AD_INTERSTITIAL: ca-app-pub-9735211554999350/4047833788
+          POLINGUAL_AD_REWARDED: ""
   BucketWidgets:
     type: app-extension
     supportedDestinations: [iOS, macOS]

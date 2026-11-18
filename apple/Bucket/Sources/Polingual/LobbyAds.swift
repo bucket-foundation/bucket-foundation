@@ -19,6 +19,20 @@ final class LobbyAds {
     @ObservationIgnored private var pacer = InterstitialPacer()
     @ObservationIgnored private var interstitial: InterstitialAd?
     @ObservationIgnored private var loading = false
+    @ObservationIgnored private var reward: RewardWatch?
+
+    func showRewarded() async -> AdOutcome {
+        guard allowed, ready, let unit = units?.rewarded, let root = Self.topController() else { return .unavailable }
+        guard let ad = try? await RewardedAd.load(with: unit, request: Request()) else { return .unavailable }
+        let outcome: AdOutcome = await withCheckedContinuation { done in
+            let watch = RewardWatch { done.resume(returning: $0) }
+            reward = watch
+            ad.fullScreenContentDelegate = watch
+            ad.present(from: root) { watch.earned = true }
+        }
+        reward = nil
+        return outcome
+    }
 
     func start() {
         guard allowed, units != nil, !started else { return }
@@ -83,6 +97,23 @@ final class LobbyAds {
     }
 }
 
+@MainActor
+final class RewardWatch: NSObject, @preconcurrency FullScreenContentDelegate {
+    var earned = false
+    private var finish: ((AdOutcome) -> Void)?
+
+    init(finish: @escaping (AdOutcome) -> Void) { self.finish = finish }
+
+    private func end(_ outcome: AdOutcome) {
+        finish?(outcome)
+        finish = nil
+    }
+
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) { end(earned ? .earned : .skipped) }
+
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) { end(.unavailable) }
+}
+
 struct LobbyBanner: View {
     var body: some View {
         if LobbyAds.shared.allowed, LobbyAds.shared.ready, let units = LobbyAds.shared.units {
@@ -125,6 +156,7 @@ final class LobbyAds {
     var allowed = false
     func start() {}
     func leftRoom(finishedGame: Bool) {}
+    func showRewarded() async -> AdOutcome { .unavailable }
 }
 
 struct LobbyBanner: View {

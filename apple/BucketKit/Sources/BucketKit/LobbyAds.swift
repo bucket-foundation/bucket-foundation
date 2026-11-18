@@ -10,12 +10,22 @@ public struct LobbyAdUnits: Equatable, Sendable {
     public static let testApp = "ca-app-pub-3940256099942544~1458002511"
     public static let testBanner = "ca-app-pub-3940256099942544/2435281174"
     public static let testInterstitial = "ca-app-pub-3940256099942544/4411468910"
+    public static let testRewarded = "ca-app-pub-3940256099942544/1712485313"
     nonisolated(unsafe) static let unitPattern = /^ca-app-pub-\d{16}\/\d{10}$/
     nonisolated(unsafe) static let appPattern = /^ca-app-pub-\d{16}~\d{10}$/
 
     public let mode: LobbyAdMode
     public let banner: String
     public let interstitial: String
+    public var rewarded: String?
+
+    static func liveRewarded(_ info: [String: Any], app: String) -> String? {
+        guard let unit = (info["PolingualAdRewarded"] as? String)?.trimmingCharacters(in: .whitespaces),
+              unit.wholeMatch(of: unitPattern) != nil, unit != testRewarded,
+              app.split(separator: "~").first == unit.split(separator: "/").first
+        else { return nil }
+        return unit
+    }
 
     public static func from(_ info: [String: Any]) -> LobbyAdUnits? {
         let raw = (info["PolingualAds"] as? String)?.trimmingCharacters(in: .whitespaces).lowercased() ?? "off"
@@ -24,7 +34,7 @@ public struct LobbyAdUnits: Equatable, Sendable {
             return nil
         case .test:
             guard info["GADApplicationIdentifier"] as? String == testApp else { return nil }
-            return LobbyAdUnits(mode: .test, banner: testBanner, interstitial: testInterstitial)
+            return LobbyAdUnits(mode: .test, banner: testBanner, interstitial: testInterstitial, rewarded: testRewarded)
         case .live:
             guard let app = info["GADApplicationIdentifier"] as? String, app.wholeMatch(of: appPattern) != nil, app != testApp,
                   let banner = info["PolingualAdBanner"] as? String, let interstitial = info["PolingualAdInterstitial"] as? String,
@@ -33,7 +43,7 @@ public struct LobbyAdUnits: Equatable, Sendable {
                   app.split(separator: "~").first == banner.split(separator: "/").first,
                   app.split(separator: "~").first == interstitial.split(separator: "/").first
             else { return nil }
-            return LobbyAdUnits(mode: .live, banner: banner, interstitial: interstitial)
+            return LobbyAdUnits(mode: .live, banner: banner, interstitial: interstitial, rewarded: liveRewarded(info, app: app))
         }
     }
 }
