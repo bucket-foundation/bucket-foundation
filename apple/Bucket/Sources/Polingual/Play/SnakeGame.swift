@@ -16,7 +16,7 @@ struct SnakeGame: View {
     var me: Snake? { arena?.snakes.first { !$0.bot } }
 
     var body: some View {
-        PlayScene(game: .snake, stickers: playStickers(.brush, .scriptKo)) {
+        PlayScene(game: .snake) {
             if over || PlayLaunch.endGame {
                 results
             } else if let arena, let deck {

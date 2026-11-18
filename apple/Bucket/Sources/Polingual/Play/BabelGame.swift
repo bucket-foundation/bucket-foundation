@@ -19,7 +19,7 @@ struct BabelGame: View {
     var done: Bool { RevealRules.babel(cleared: cleared.count, goal: level.goal, movesLeft: moves) || PlayLaunch.endGame }
 
     var body: some View {
-        PlayScene(game: .babel, stickers: playStickers(.blocks, .azulejo)) {
+        PlayScene(game: .babel) {
             if board.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if done {

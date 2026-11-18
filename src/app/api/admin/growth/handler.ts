@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { buildReport, summarizeGroup } from "@/lib/beta/metrics";
 import type { BetaStore } from "@/lib/beta/store";
 import { buildGrowthReport, type GrowthReport } from "@/lib/growth/report";
+import { mergeRevenue } from "@/lib/growth/revenue";
 import { parseSnapshot, SNAPSHOT_LIMITS } from "@/lib/growth/snapshot";
 import type { SnapshotStore } from "@/lib/growth/store";
 import type { WaitlistEntry } from "@/lib/waitlist/core";
@@ -73,8 +74,9 @@ export async function handleGrowthSnapshot(req: NextRequest, deps: GrowthDeps): 
   const parsed = parseSnapshot(raw);
   if (!parsed.ok) return json({ error: parsed.error }, 400);
   try {
-    await snapshots.save(parsed.value);
-    return json({ ok: true, testers: parsed.value.testers.length, builds: parsed.value.builds.length });
+    const previous = await snapshots.latest();
+    await snapshots.save({ ...parsed.value, revenue: mergeRevenue(previous?.revenue, parsed.value.revenue, parsed.value.takenAt) });
+    return json({ ok: true, testers: parsed.value.testers.length, builds: parsed.value.builds.length, ...(parsed.warning ? { warning: parsed.warning } : {}) });
   } catch (err) {
     console.error("[admin/growth] snapshot save failed:", err instanceof Error ? err.message : err);
     return json({ error: "write_failed" }, 500);

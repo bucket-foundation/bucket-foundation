@@ -30,6 +30,7 @@ struct MiniGame: View {
     @State private var started = Date.now
     @State private var time: Int?
     @State private var showed = false
+    @State private var round = PracticeRound()
 
     var day: String { dayKey(Date().timeIntervalSince1970 * 1000) }
     var entry: MiniEntry? { puzzle?.entries.first { $0.id == entryId } }
@@ -39,7 +40,7 @@ struct MiniGame: View {
     var body: some View {
         ScrollView {
             if let time, let puzzle {
-                GameEnd(kind: .mini, score: MiniRecord.clock(time), line: showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow."), missed: showed ? puzzle.entries.map(\.word) : [], shape: .time(seconds: time, cells: GameBrag.miniCells(puzzle)), sharing: !showed, shareObject: showed ? nil : langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: puzzle.entries.count, total: puzzle.entries.count), again: nil)
+                GameEnd(kind: .mini, score: MiniRecord.clock(time), line: round.score.map(PracticeLine.text) ?? (showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow.")), missed: showed ? puzzle.entries.map(\.word) : [], shape: .time(seconds: time, cells: GameBrag.miniCells(puzzle)), sharing: !showed, shareObject: showed ? nil : langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: puzzle.entries.count, total: puzzle.entries.count), retry: { retry(puzzle) }, again: nil)
             } else if let puzzle {
                 board(puzzle)
             } else {
@@ -199,8 +200,25 @@ struct MiniGame: View {
         finish(p)
     }
 
+    func retry(_ p: MiniPuzzle) {
+        guard let first = p.entries.first else { return }
+        round.begin()
+        showed = false
+        filled = [:]
+        entryId = first.id
+        cursor = first.cells.first
+        started = .now
+        time = nil
+    }
+
     func finish(_ p: MiniPuzzle) {
         guard time == nil else { return }
+        if round.practicing {
+            _ = round.finish(score: showed ? nil : MiniRecord.clock(max(1, Int(Date.now.timeIntervalSince(started)))))
+            showed = UserDefaults.standard.bool(forKey: MiniRecord.shownKey(day))
+            time = MiniRecord.seconds(day)
+            return
+        }
         let seconds = max(1, Int(Date.now.timeIntervalSince(started)))
         time = seconds
         if showed { UserDefaults.standard.set(true, forKey: MiniRecord.shownKey(day)) }

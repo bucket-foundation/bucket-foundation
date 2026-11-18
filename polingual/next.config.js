@@ -14,7 +14,11 @@ const nextConfig = {
     };
   },
   async redirects() {
-    return [{ source: "/word/:id(photon.*)", destination: "/photon/:id", permanent: true }];
+    return [
+      { source: "/word/:id(photon.*)", destination: "/photon/:id", permanent: true },
+      { source: "/admin", destination: `${SYNC_BASE}/admin/growth`, permanent: false },
+      { source: "/:path*", has: [{ type: "host", value: "admin.polingual.com" }], destination: `${SYNC_BASE}/admin/growth`, permanent: false },
+    ];
   },
   reactStrictMode: true,
   experimental: { externalDir: true, globalNotFound: true },

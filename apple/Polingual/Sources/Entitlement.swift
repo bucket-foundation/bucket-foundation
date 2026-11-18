@@ -55,6 +55,8 @@ enum Access: Equatable, Sendable {
 enum Monetization {
     static func showsAds(_ access: Access) -> Bool { access == .locked }
 
+    static func capped(_ access: Access) -> Bool { access == .locked || access == .beta }
+
     static func locked(_ tab: AppTab, access: Access) -> Bool {
         !access.open && (tab == .today || tab == .learn)
     }
