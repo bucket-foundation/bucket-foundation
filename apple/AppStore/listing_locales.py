@@ -6,10 +6,24 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from asc_setup import ASC, POLINGUAL, ROOT, rel
 
+SHOWN = ("name", "subtitle", "keywords")
 EDITABLE = {"PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED", "INVALID_BINARY"}
 
 
+def plan(existing, locale, attrs):
+    old = existing["attributes"] if existing else {}
+    for key, value in attrs.items():
+        if old.get(key) == value:
+            continue
+        if key in SHOWN:
+            print(f"  plan  {locale} {key}: {old.get(key)!r} -> {value!r}")
+        else:
+            print(f"  plan  {locale} {key} changes")
+
+
 def upsert(api, label, kind, existing, parent_rel, parent_id, locale, attrs):
+    if not api.apply:
+        plan(existing, locale, attrs)
     if existing:
         api.write(f"{label} {locale}", "PATCH", f"/v1/{kind}/{existing['id']}",
                   {"data": {"type": kind, "id": existing["id"], "attributes": attrs}})
@@ -31,7 +45,10 @@ def main():
     ver = next((v for v in versions if v["attributes"]["appStoreState"] in EDITABLE), None)
     if info is None and ver is None:
         print(f"  skip  no editable version yet ({[v['attributes']['appStoreState'] for v in versions]}); rerun once 1.0.1 exists")
-        return
+        if args.apply or not infos or not versions:
+            return
+        print("  plan  compared against the live listing, nothing is written")
+        info, ver = infos[0], versions[0]
     if info:
         have = {l["attributes"]["locale"]: l for l in api.all(f"/v1/appInfos/{info['id']}/appInfoLocalizations")}
         for loc, t in locales.items():
