@@ -132,7 +132,7 @@ const EN: TeachersCopy = {
       { h: "Time", p: "10 minutes" },
       { h: "Level", p: "Any" },
       { h: "Goal", p: "Students recognize and recall words in the languages the class studies." },
-      { h: "Materials", p: "A projector or shared screen, one phone per student or per pair, and the student handout." },
+      { h: "Materials", p: "A projector or shared screen and a phone for each student or pair. Print one handout for each student." },
     ],
     beforeTitle: "Before class",
     before: [
@@ -184,8 +184,8 @@ const ES: TeachersCopy = {
   steps: [
     { h: "Abre el tablero", p: `Abre ${LIVE_ADDRESS} en el proyector del aula e inicia sesión con tu correo. Elige el idioma de las preguntas y hasta ${TARGET_LIMIT} idiomas para el juego. El tablero y los teléfonos muestran los botones en inglés.` },
     { h: "El alumnado entra", p: `El tablero muestra un código de sala de 6 caracteres y un código QR. Cada estudiante escanea el QR o abre ${JOIN_ADDRESS} y escribe el código. Luego elige un apodo entre los nombres que aparecen.` },
-    { h: "Jueguen la partida", p: `La partida tiene ${ROUNDS} rondas de ${PER_ROUND} preguntas, con ${ANSWER_SECONDS} segundos para cada una. Cada pregunta tiene cuatro respuestas y cada estudiante toca una en su teléfono.` },
-    { h: "Lean el tablero", p: "El tablero muestra la clasificación después de cada ronda y un tablero final. Descarga el archivo de resultados para guardar los puntos por apodo." },
+    { h: "Dirige la partida", p: `La partida tiene ${ROUNDS} rondas de ${PER_ROUND} preguntas, con ${ANSWER_SECONDS} segundos para cada una. Cada pregunta tiene cuatro respuestas y cada estudiante toca una en su teléfono.` },
+    { h: "Lee el tablero", p: "El tablero muestra la clasificación después de cada ronda y un tablero final. Descarga el archivo de resultados para guardar los puntos por apodo." },
   ],
   questionsTitle: "Preguntas",
   questions: "La mayoría de las preguntas piden elegir una palabra o una traducción en uno de los idiomas del juego. Otras muestran una palabra y preguntan de qué idioma es. Una clase que estudia español y francés recibe los dos en la misma partida.",
@@ -220,12 +220,12 @@ const ES: TeachersCopy = {
       { h: "Tiempo", p: "10 minutos" },
       { h: "Nivel", p: "Cualquiera" },
       { h: "Objetivo", p: "El alumnado reconoce y recuerda palabras en los idiomas que estudia la clase." },
-      { h: "Materiales", p: "Un proyector o pantalla compartida, un teléfono por estudiante o por pareja, y la hoja para estudiantes." },
+      { h: "Materiales", p: "Un proyector o pantalla compartida y un teléfono por estudiante o por pareja. Imprime una hoja para cada estudiante." },
     ],
     beforeTitle: "Antes de la clase",
     before: [
       `Abre ${LIVE_ADDRESS} en la computadora del aula, inicia sesión con tu correo y acepta los términos para anfitriones.`,
-      "Elige el idioma de las preguntas y los idiomas del juego. Activa School mode.",
+      "Elige el idioma de las preguntas y los idiomas del juego. Activa School mode. Los botones del juego, como Lock room y Start, aparecen en inglés.",
     ],
     tableTitle: "En clase",
     head: { when: "Minuto", what: "Paso", how: "Qué pasa" },
@@ -233,7 +233,7 @@ const ES: TeachersCopy = {
       { when: "0 a 1", what: "Abre la sala", how: "Pulsa Open the room. El tablero muestra el código de sala y un código QR." },
       { when: "1 a 3", what: "Entrada", how: `Cada estudiante abre ${JOIN_ADDRESS}, escribe el código y elige un apodo. Cierra la sala con Lock room cuando todos estén dentro y pulsa Start.` },
       { when: "3 a 9", what: "Partida", how: `${ROUNDS} rondas de ${PER_ROUND} preguntas, ${ANSWER_SECONDS} segundos cada una. Cuando aparezca cada respuesta, la clase dice la palabra en voz alta. Pausa cuando una palabra necesite un minuto.` },
-      { when: "9 a 10", what: "Repaso", how: "Lean el tablero final. Cada estudiante escribe en la hoja las palabras que vio. Descarga el archivo de resultados." },
+      { when: "9 a 10", what: "Repaso", how: "Lee el tablero final con la clase. Cada estudiante escribe en la hoja las palabras que vio. Descarga el archivo de resultados." },
     ],
     afterTitle: "Después de la clase",
     after: [
