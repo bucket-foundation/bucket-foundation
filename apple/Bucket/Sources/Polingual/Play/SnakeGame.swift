@@ -52,7 +52,7 @@ struct SnakeGame: View {
     func field(_ a: Arena, _ d: SnakeDeck) -> some View {
         VStack(spacing: PL.Space.s2) {
             HStack {
-                PlayLabel(text: "\(Lang.name(d.lang)) · length \(me?.length ?? 0)")
+                PlayLabel(text: "\(Lang.name(d.lang)) · length \(me?.length ?? 0)").lineLimit(1).minimumScaleFactor(0.6)
                 Spacer()
                 PlayLabel(text: "\(left)s")
                 Button("End round") { over = true }.buttonStyle(.pl(.ghost, size: .sm, full: false))

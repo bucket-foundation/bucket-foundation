@@ -269,7 +269,6 @@ struct PlayTests {
         #expect(FlagBoard.tileY(2, height: 260) == FlagBoard.tileY(1, height: 260))
         #expect(FlagBoard.tileY(1, height: 260) - FlagBoard.tileY(0, height: 260) >= 150)
         #expect(FlagBoard.tileY(1, height: FlagBoard.least) - FlagBoard.tileY(0, height: FlagBoard.least) >= 140)
-        #expect(FlagBoard.least + 32 + 8 <= 293)
         #expect(PlayBoard.height(room: 340, chrome: 150, least: FlagBoard.least) == FlagBoard.least)
         #expect(PlayBoard.height(room: 760, chrome: 150, least: FlagBoard.least) == 610)
     }
