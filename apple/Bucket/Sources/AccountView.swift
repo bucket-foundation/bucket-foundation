@@ -31,6 +31,7 @@ struct AccountView: View {
                 #if !BUCKET
                 PLScreenTop(title: "Account", stickers: Stickers.account).plListTop()
                 #endif
+                LexiconMapSection()
                 switch account.stage {
                 case .signedOut, .codeSent:
                     Section {
