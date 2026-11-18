@@ -47,4 +47,4 @@
 .code{font-family:var(--pl-font-mono);letter-spacing:2px}
 .bare{flex:1;width:100%}
 @media print{.hd,.ft{display:none}.site{background:none;min-height:0;display:block}.main,.mainWide{padding:0;max-width:none}}
-@media (max-width:420px){.wordmark{display:none}.nav{flex-wrap:wrap;gap:8px 12px}}
+@media (max-width:420px){.wordmark{display:none}.nav{gap:10px;padding:10px 12px}.link{font-size:14px;white-space:nowrap}.nav .btnP{font-size:13px;padding-inline:10px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}}

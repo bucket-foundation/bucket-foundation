@@ -23,7 +23,7 @@ const parsed = new Map(
     return [file, {
       html,
       header: anchors(blocks(html, /<header class="hd">/, "header")[0]?.body ?? ""),
-      footers: [...blocks(html, /<footer class="ft">/, "footer"), ...blocks(html, /<nav class="fl2">/, "nav")].map((b) => anchors(b.body)),
+      footers: [...blocks(html, /<footer class="ft">/, "footer"), ...blocks(html, /<nav class="fl2"[^>]*>/, "nav")].map((b) => anchors(b.body)),
       appTop: anchors(blocks(html, /<div id="app">/, "h1")[0]?.body ?? "").find((a) => a.attrs.class === "wtop"),
       browse: blocks(html, /<p class="hw"[^>]*>/, "p").map((b) => ({ dir: b.attrs.dir, links: anchors(b.body) })),
     }];
@@ -59,6 +59,20 @@ for (const { code, file, base } of pages) {
       const hrefs = links.map((a) => a.attrs.href);
       for (const href of want) assert.ok(hrefs.includes(href), `${file} footer lacks ${href}`);
     }
+  });
+
+  test(`${file} footers carry the shell credit row and labelled navs`, () => {
+    const bundle = JSON.parse(readFileSync(join(root, "src/i18n/words", `${code}.json`), "utf8")) as { footerTagline: string; footerPublished: string };
+    const credits = blocks(p.html, /<span class="fc">/, "span");
+    assert.equal(credits.length, 3);
+    for (const c of credits) {
+      assert.ok(c.body.includes(bundle.footerTagline) && c.body.includes(bundle.footerPublished), `${file} credit`);
+      for (const name of ["Wiktionary", "Kaikki", "Wikimedia Commons", "CC BY-SA 4.0"]) assert.ok(c.body.includes(`>${name}</a>`), `${file} ${name}`);
+    }
+    const labels = [...p.html.matchAll(/<nav[^>]*aria-label="([^"]+)"/g)].map((m) => m[1]);
+    assert.equal(labels.length, 3);
+    assert.equal(new Set(labels).size, 2);
+    if (code !== "en") assert.ok(!labels.includes("Main") && !labels.includes("Footer"), `${file} nav labels untranslated`);
   });
 
   test(`${file} has one browse link under each tile grid to ${base}/word`, () => {

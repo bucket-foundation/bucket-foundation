@@ -4,8 +4,11 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import Site from "../app/site";
+import LearnPage, { metadata as learnMeta } from "../app/(site)/learn/page";
+import { GUIDES } from "./guides";
+import { siteLocale } from "../app/(site)/word/views";
 import { Tile, Tiles } from "../app/tile";
-import { APP_STORE_URL } from "./facts";
+import { APP_STORE_URL, SITE } from "./facts";
 import { FLAG_STRIPE } from "./flags";
 
 const APP = join(__dirname, "../app");
@@ -31,6 +34,26 @@ test("the shared shell renders the Po logo, the App Store CTA and the flag foote
   for (const href of ["/play", "/word", "/learn", "/teachers", "/privacy", "/terms", "/support", APP_STORE_URL]) assert.ok(footer.includes(`href="${href}"`), href);
   assert.match(html, /Wiktionary/);
   assert.match(html, /<p>body<\/p>/);
+});
+
+test("the header and footer navs carry distinct labels in the page language", () => {
+  const en = renderToStaticMarkup(<Site><p>body</p></Site>);
+  assert.match(en, /<nav[^>]*aria-label="Main"/);
+  assert.match(en, /<nav[^>]*aria-label="Footer"/);
+  const es = renderToStaticMarkup(<Site loc={siteLocale("es")}><p>body</p></Site>);
+  assert.match(es, /<nav[^>]*aria-label="Principal"/);
+  assert.match(es, /<nav[^>]*aria-label="Pie de página"/);
+  assert.match(es, /href="\/es\/teachers"[^>]*>Docentes</);
+});
+
+test("the guides index lists every guide and has its own canonical", () => {
+  const html = renderToStaticMarkup(<LearnPage />);
+  assert.match(html, /<h1>Guides<\/h1>/);
+  for (const g of GUIDES) {
+    assert.ok(html.includes(`href="/learn/${g.slug}"`), g.slug);
+    assert.ok(html.includes(g.title), g.title);
+  }
+  assert.equal(learnMeta.alternates?.canonical, `${SITE}/learn`);
 });
 
 test("tiles carry the language code, the word and an ltr reading", () => {

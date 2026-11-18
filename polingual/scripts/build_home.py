@@ -37,6 +37,20 @@ LINKS = json.loads((D.parent.parent / "src" / "lib" / "footer-links.json").read_
 REL = ' rel="noopener"'
 FOOT = "".join(f'<a href="{l["href"]}"{REL if l["href"].startswith("http") else ""}>{l["label"]}</a>' for l in LINKS)
 HEAD = '<a class="l" href="/support">Support</a>'
+BUNDLES = D.parent.parent / "src" / "i18n" / "words"
+SOURCES = [("https://en.wiktionary.org", "Wiktionary"), ("https://kaikki.org", "Kaikki"), ("https://commons.wikimedia.org", "Wikimedia Commons"), ("https://creativecommons.org/licenses/by-sa/4.0/", "CC BY-SA 4.0")]
+
+
+def credit(code):
+    b = json.loads((BUNDLES / f"{code}.json").read_text())
+    links = " · ".join(f'<a href="{href}">{name}</a>' for href, name in SOURCES)
+    text = {k: escape(b[k], quote=False) for k in ("footerTagline", "footerData", "footerPublished")}
+    return f'{text["footerTagline"]} · {text["footerData"]} {links}. <bdi>{text["footerPublished"]}</bdi>'
+
+
+out, credits = re.subn(r'<span class="fc">.*?</span>', lambda m: '<span class="fc">__CREDIT__</span>', out, flags=re.S)
+if credits != 3:
+    raise SystemExit("footer credit anchors moved")
 out, footers = re.subn(r'<span class="fx">.*?</span>', lambda m: '<span class="fx">' + FOOT + "__LANGSEL__</span>", out, flags=re.S)
 if footers != 3 or out.count(HEAD) != 1:
     raise SystemExit("language picker anchors moved")
@@ -45,7 +59,7 @@ if out.count("__HW__") != 2:
     raise SystemExit("browse link anchors moved")
 out = out.replace(HEAD, HEAD + "__LANGSEL__")
 out = out.replace('<link rel="canonical"', ALT + '<link rel="canonical"', 1)
-(D / "index.html").write_text(out.replace("__LANGSEL__", picker("en")).replace("__HW__", browse("en", EN_STRIP)))
+(D / "index.html").write_text(out.replace("__CREDIT__", credit("en")).replace("__LANGSEL__", picker("en")).replace("__HW__", browse("en", EN_STRIP)))
 (D.parent.parent / "src" / "lib" / "site-langs.json").write_text(json.dumps(list(LANGS)) + "\n")
 
 
@@ -74,6 +88,7 @@ def localize(code, lang):
         html = html.replace('href="/teachers"', 'href="/es/teachers"')
     html = html.replace('href="/word"', f'href="/{code}/word"').replace("__HW__", browse(code, lang["strip"]))
     tr = json.dumps(lang["modal"], ensure_ascii=False).replace("</", "<\\/")
+    html = html.replace("__CREDIT__", credit(code))
     return html.replace('<script src="/d8/beta.js">', f"<script>window.PL_TR={tr}</script>\n<script src=\"/d8/beta.js\">", 1)
 
 
