@@ -1,7 +1,7 @@
 import Foundation
 
 public struct GameShare: Sendable, Equatable {
-    public enum Shape: Sendable, Equatable {
+    public enum Shape: Codable, Sendable, Equatable {
         case guesses(rows: [[PolyMark]], solved: Bool, limit: Int)
         case groups(order: [Int], attempts: [Bool], total: Int)
         case marks([Bool])

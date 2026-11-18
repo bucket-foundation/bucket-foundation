@@ -20,10 +20,24 @@ final class LobbyAds {
     @ObservationIgnored private var interstitial: InterstitialAd?
     @ObservationIgnored private var loading = false
     @ObservationIgnored private var reward: RewardWatch?
+    @ObservationIgnored private var rewarded: RewardedAd?
+    @ObservationIgnored private var loadingRewarded = false
+    private(set) var rewardedReady = false
+
+    func preloadRewarded() {
+        guard allowed, ready, let unit = units?.rewarded, rewarded == nil, !loadingRewarded else { return }
+        loadingRewarded = true
+        Task {
+            rewarded = try? await RewardedAd.load(with: unit, request: Request())
+            rewardedReady = rewarded != nil
+            loadingRewarded = false
+        }
+    }
 
     func showRewarded() async -> AdOutcome {
-        guard allowed, ready, let unit = units?.rewarded, let root = Self.topController() else { return .unavailable }
-        guard let ad = try? await RewardedAd.load(with: unit, request: Request()) else { return .unavailable }
+        guard allowed, ready, let ad = rewarded, let root = Self.topController() else { return .unavailable }
+        rewarded = nil
+        rewardedReady = false
         let outcome: AdOutcome = await withCheckedContinuation { done in
             let watch = RewardWatch { done.resume(returning: $0) }
             reward = watch
@@ -31,6 +45,7 @@ final class LobbyAds {
             ad.present(from: root) { watch.earned = true }
         }
         reward = nil
+        preloadRewarded()
         return outcome
     }
 
@@ -58,13 +73,18 @@ final class LobbyAds {
         _ = await MobileAds.shared.start()
         ready = true
         preload()
+        preloadRewarded()
     }
 
     func showPrivacyOptions() {
         guard let root = Self.topController() else { return }
         Task {
             try? await ConsentForm.presentPrivacyOptionsForm(from: root)
-            if !ConsentInformation.shared.canRequestAds { ready = false }
+            if !ConsentInformation.shared.canRequestAds {
+                ready = false
+                rewarded = nil
+                rewardedReady = false
+            }
         }
     }
 
@@ -156,6 +176,8 @@ final class LobbyAds {
     var allowed = false
     func start() {}
     func leftRoom(finishedGame: Bool) {}
+    var rewardedReady: Bool { false }
+    func preloadRewarded() {}
     func showRewarded() async -> AdOutcome { .unavailable }
 }
 

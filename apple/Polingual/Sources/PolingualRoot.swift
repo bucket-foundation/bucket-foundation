@@ -160,6 +160,7 @@ struct Studio: View {
         .manageSubscriptions(isPresented: $managing)
         .sheet(isPresented: $paywall) { Paywall() }
         .environment(\.limitPaywall, limitPaywall)
+        .modifier(GrantNoticeToast())
         #if DEBUG
         .task { if Launch.flag("-showPaywall") { paywall = true } }
         #endif

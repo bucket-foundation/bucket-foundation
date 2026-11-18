@@ -10,8 +10,8 @@ struct PolywordGame: View {
     @State private var problem: String?
     @State private var shake = 0
     @State private var recorded = false
-    @State private var practiceGuesses: [String]?
-    @State private var practiced = false
+    @State private var practice: [String: [String]] = [:]
+    @State private var practiceScore: [String: String] = [:]
 
     var bank: PolywordBank? { PlayAssets.bank }
     var day: Int { Polyword.dayNumber(localPolyDate()) }
@@ -27,7 +27,7 @@ struct PolywordGame: View {
         return out
     }
 
-    var guesses: [String] { practiceGuesses ?? store[key] ?? [] }
+    var guesses: [String] { practice[key] ?? store[key] ?? [] }
 
     func save(_ g: [String]) {
         var s = store
@@ -72,7 +72,7 @@ struct PolywordGame: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: PL.Space.s2) {
                 ForEach(bank.targets, id: \.self) { l in
-                    Button { lang = l; typed = ""; practiceGuesses = nil } label: { PLPill(Lang.name(l), active: l == lang) }.buttonStyle(.plain)
+                    Button { lang = l; typed = "" } label: { PLPill(Lang.name(l), active: l == lang) }.buttonStyle(.plain)
                 }
             }
         }
@@ -149,13 +149,13 @@ struct PolywordGame: View {
             shake += 1
         case .ok(let g):
             let next = guesses + [g]
-            if practiceGuesses == nil {
+            if practice[key] == nil {
                 save(next)
             } else if Polyword.finished(next, answer) {
-                practiceGuesses = nil
-                practiced = true
+                practice[key] = nil
+                practiceScore[key] = "\(Polyword.solved(next, answer) ? String(next.count) : "X")/\(Polyword.maxGuesses)"
             } else {
-                practiceGuesses = next
+                practice[key] = next
             }
             typed = ""
             PlaySound.effect(g == answer)
@@ -167,11 +167,11 @@ struct PolywordGame: View {
         let meaning = Polyword.meaningIn(bank, slug: p.slug, gloss: p.gloss, root: langs.playRoot)
         return PlayResults(
             title: won ? "Solved in \(guesses.count)" : "Out of guesses",
-            line: practiced ? "Practice round done. Your first result stands." : "A new word arrives tomorrow.",
+            line: practiceScore[key].map(PracticeLine.text) ?? "A new word arrives tomorrow.",
             reveals: [PlayRevealItem(lang: p.lang, form: p.word, meaning: meaning.text)],
             root: meaning.lang,
             share: (.polyword, .guesses(rows: guesses.map { Polyword.score($0, p.answer) }, solved: won, limit: Polyword.maxGuesses)),
-            retry: (.polyword, { practiceGuesses = []; typed = "" }),
+            retry: (.polyword, nil, { practice[key] = []; typed = "" }),
             again: nil
         )
         .onAppear {

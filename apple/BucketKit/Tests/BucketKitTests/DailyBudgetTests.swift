@@ -23,8 +23,9 @@ import Testing
         #expect(DailyLimits(flags: flags) == DailyLimits(newWords: 20, cards: 100))
     }
 
-    @Test func unreadableFlagsFallBackToTheDefaults() {
-        let flags = BetaFlags(values: ["daily_new_words": "lots", "daily_cards": "-5"])
+    @Test(arguments: ["lots", "-5", "0", ""])
+    func badOrZeroFlagsFallBackToTheDefaults(_ value: String) {
+        let flags = BetaFlags(values: ["daily_new_words": value, "daily_cards": value])
         #expect(DailyLimits(flags: flags) == Self.limits)
     }
 
@@ -44,8 +45,8 @@ import Testing
         #expect(b.cardsLeft(Self.limits, capped: false) == nil)
         #expect(b.newWordsLeft(Self.limits, capped: false) == nil)
         #expect(!b.spent(Self.limits, capped: false))
-        #expect(b.lessonGate(Self.limits, capped: false, dueReviews: 0) == .open(newWords: .max))
-        #expect(b.retryOffer("daily", capped: false) == .free)
+        #expect(b.lessonGate(Self.limits, capped: false, dueReviews: 0) == .open(newWords: .max, cards: .max))
+        #expect(b.retryOffer("daily", deck: Self.day, capped: false, adReady: true) == .free)
     }
 
     @Test func cardCapSpendsTheBudget() {
@@ -59,27 +60,50 @@ import Testing
         var b = DailyBudget(day: Self.day)
         b.charge(newWords: 2, cards: 57, day: Self.day)
         #expect(b.newWordsLeft(Self.limits, capped: true) == 3)
+        #expect(b.lessonGate(Self.limits, capped: true, dueReviews: 9) == .open(newWords: 3, cards: 3))
     }
 
     @Test func newWordCapLeavesReviewCardsOpen() {
         var b = DailyBudget(day: Self.day)
         b.charge(newWords: 12, cards: 24, day: Self.day)
-        #expect(b.lessonGate(Self.limits, capped: true, dueReviews: 0) == .open(newWords: 0))
-        #expect(!b.spent(Self.limits, capped: true))
+        #expect(b.lessonGate(Self.limits, capped: true, dueReviews: 0) == .open(newWords: 0, cards: 36))
     }
 
-    @Test func budgetResetsOnANewDay() {
+    @Test func countsResetOnALaterDay() {
         var b = Self.spentBudget()
         b.grantCards(day: Self.day)
-        b.markPlayed("shift", day: Self.day)
-        b.grantRetry("daily", capped: true, day: Self.day)
-        let next = b.on("2026-11-19")
-        #expect(next == DailyBudget(day: "2026-11-19"))
         b.charge(cards: 3, day: "2026-11-19")
+        #expect(b.day == "2026-11-19")
         #expect(b.cards == 3)
+        #expect(b.newWords == 0)
         #expect(b.adGrants == 0)
-        #expect(!b.hasPlayed("shift"))
-        #expect(b.retriesLeft("daily") == 2)
+    }
+
+    @Test func clockMovedBackKeepsTheHighWaterDay() {
+        var b = Self.spentBudget()
+        b.grantCards(day: Self.day)
+        b.grantCards(day: Self.day)
+        let back = b.on("2026-11-17")
+        #expect(back == b)
+        b.charge(cards: 5, day: "2026-11-10")
+        #expect(b.day == Self.day)
+        #expect(b.cards == 65)
+        let again = b.grantCards(day: "2026-11-10")
+        #expect(!again)
+        #expect(b.on("garbage") == b)
+    }
+
+    @Test func clockMovedBackNeverReopensAnAttemptOrRetries() {
+        var b = DailyBudget(day: Self.day)
+        b.markPlayed("atlas", deck: Self.day)
+        b.grantRetry("atlas", deck: Self.day, capped: true)
+        #expect(b.hasPlayed("atlas", deck: "2026-11-17"))
+        #expect(b.retriesLeft("atlas", deck: "2026-11-17") == 0)
+        #expect(b.retryOffer("atlas", deck: "2026-11-17", capped: true, adReady: true) == .none)
+        let granted = b.grantRetry("atlas", deck: "2026-11-17", capped: true)
+        #expect(!granted)
+        b.markPlayed("atlas", deck: "2026-11-17")
+        #expect(b.attempts["atlas"]?.deck == Self.day)
     }
 
     @Test func resetIsTheNextLocalMidnight() throws {
@@ -89,34 +113,22 @@ import Testing
         let evening = try #require(cal.date(from: DateComponents(year: 2026, month: 11, day: 18, hour: 23, minute: 30)))
         let midnight = try #require(cal.date(from: DateComponents(year: 2026, month: 11, day: 19)))
         #expect(DailyBudget.resetsAt(evening, tz: tz) == midnight)
-        let ms = evening.timeIntervalSince1970 * 1000
-        #expect(dayKey(ms, tz: tz) == "2026-11-18")
+        #expect(dayKey(evening.timeIntervalSince1970 * 1000, tz: tz) == "2026-11-18")
         #expect(dayKey(midnight.timeIntervalSince1970 * 1000, tz: tz) == "2026-11-19")
     }
 
-    @Test func resetFollowsTheClockChange() throws {
-        let tz = try #require(TimeZone(identifier: "America/New_York"))
-        var cal = Calendar(identifier: .gregorian)
-        cal.timeZone = tz
-        let noon = try #require(cal.date(from: DateComponents(year: 2026, month: 11, day: 1, hour: 12)))
-        let next = try #require(cal.date(from: DateComponents(year: 2026, month: 11, day: 2)))
-        #expect(DailyBudget.resetsAt(noon, tz: tz) == next)
-    }
-
-    @Test func anAdAddsTenCardsTwiceADay() {
+    @Test func aGrantAddsTenCardsTwiceADay() {
         var b = Self.spentBudget()
-        #expect(b.canWatchForCards)
-        let granted1 = b.grantCards(day: Self.day)
-        #expect(granted1)
+        #expect(b.cardGrantsLeft == 2)
+        let one = b.grantCards(day: Self.day)
+        #expect(one)
         #expect(b.cardsLeft(Self.limits, capped: true) == 10)
-        #expect(!b.spent(Self.limits, capped: true))
         b.charge(cards: 10, day: Self.day)
-        let granted2 = b.grantCards(day: Self.day)
-        #expect(granted2)
+        let two = b.grantCards(day: Self.day)
+        #expect(two)
         #expect(b.cardCap(Self.limits) == 80)
-        #expect(!b.canWatchForCards)
-        let granted3 = b.grantCards(day: Self.day)
-        #expect(!granted3)
+        let three = b.grantCards(day: Self.day)
+        #expect(!three)
         #expect(b.cardCap(Self.limits) == 80)
     }
 
@@ -126,60 +138,162 @@ import Testing
         #expect(b.lessonGate(Self.limits, capped: true, dueReviews: 0) == .limit)
     }
 
-    @Test func retriesCostAnAdAndStopAtTwoPerGame() {
+    @Test func retriesStopAtTwoPerGame() {
         var b = DailyBudget(day: Self.day)
-        #expect(b.retryOffer("daily", capped: true) == .ad(left: 2))
-        let granted4 = b.grantRetry("daily", capped: true, day: Self.day)
-        #expect(granted4)
-        #expect(b.retryOffer("daily", capped: true) == .ad(left: 1))
-        let granted5 = b.grantRetry("daily", capped: true, day: Self.day)
-        #expect(granted5)
-        #expect(b.retryOffer("daily", capped: true) == .none)
-        let granted6 = b.grantRetry("daily", capped: true, day: Self.day)
-        #expect(!granted6)
-        #expect(b.retryOffer("mini", capped: true) == .ad(left: 2))
+        #expect(b.retryOffer("daily", deck: Self.day, capped: true, adReady: true) == .ad(left: 2))
+        b.grantRetry("daily", deck: Self.day, capped: true)
+        #expect(b.retryOffer("daily", deck: Self.day, capped: true, adReady: true) == .ad(left: 1))
+        b.grantRetry("daily", deck: Self.day, capped: true)
+        #expect(b.retryOffer("daily", deck: Self.day, capped: true, adReady: true) == .none)
+        let third = b.grantRetry("daily", deck: Self.day, capped: true)
+        #expect(!third)
+        #expect(b.retryOffer("mini", deck: Self.day, capped: true, adReady: true) == .ad(left: 2))
+    }
+
+    @Test func noReadyAdMakesThePlainOfferWithinTheSameCap() {
+        var b = DailyBudget(day: Self.day)
+        #expect(b.retryOffer("daily", deck: Self.day, capped: true, adReady: false) == .plain(left: 2))
+        b.grantRetry("daily", deck: Self.day, capped: true)
+        b.grantRetry("daily", deck: Self.day, capped: true)
+        #expect(b.retryOffer("daily", deck: Self.day, capped: true, adReady: false) == .none)
     }
 
     @Test func subscribersRetryFreelyWithoutSpendingRetries() {
         var b = DailyBudget(day: Self.day)
         for _ in 0..<5 {
-            let granted = b.grantRetry("daily", capped: false, day: Self.day)
+            let granted = b.grantRetry("daily", deck: Self.day, capped: false)
             #expect(granted)
         }
-        #expect(b.retriesLeft("daily") == 2)
+        #expect(b.retriesLeft("daily", deck: Self.day) == 2)
     }
 
-    @Test func retryLeavesTheFirstAttemptAndCardsAlone() {
+    @Test func retryLeavesTheFirstResultAndCardsAlone() {
         var b = DailyBudget(day: Self.day)
         b.charge(cards: 6, day: Self.day)
-        b.markPlayed("shift", day: Self.day)
-        let before = b
-        b.grantRetry("shift", capped: true, day: Self.day)
-        #expect(b.cards == before.cards)
-        #expect(b.played == before.played)
-        #expect(b.hasPlayed("shift"))
+        b.markPlayed("shift", deck: Self.day, title: "3 of 4 found", shape: .marks([true, true, true, false]))
+        b.grantRetry("shift", deck: Self.day, capped: true)
+        b.markPlayed("shift", deck: Self.day, title: "4 of 4 found", shape: .marks([true, true, true, true]))
+        #expect(b.cards == 6)
+        #expect(b.first("shift", deck: Self.day)?.title == "3 of 4 found")
+        #expect(b.first("shift", deck: Self.day)?.shape == .marks([true, true, true, false]))
+        #expect(b.first("shift", deck: Self.day)?.retries == 1)
     }
 
-    @Test func failedAdStillGrantsAndSkippedAdDoesNot() {
-        #expect(AdOutcome.earned.grants)
-        #expect(AdOutcome.unavailable.grants)
-        #expect(!AdOutcome.skipped.grants)
-        #expect(AdOutcome.unavailable.via == "fallback")
-        #expect(AdOutcome.earned.via == "ad")
+    @Test func utcDeckRollsBeforeLocalMidnight() throws {
+        let tz = try #require(TimeZone(identifier: "America/Los_Angeles"))
+        let afternoon = Date(timeIntervalSince1970: 1_795_042_800)
+        let evening = afternoon.addingTimeInterval(3 * 3600)
+        #expect(dayKey(afternoon.timeIntervalSince1970 * 1000, tz: tz) == dayKey(evening.timeIntervalSince1970 * 1000, tz: tz))
+        let oldDeck = DailyDeck.key("atlas", now: afternoon, tz: tz)
+        let newDeck = DailyDeck.key("atlas", now: evening, tz: tz)
+        #expect(oldDeck != newDeck)
+        var b = DailyBudget(day: dayKey(afternoon.timeIntervalSince1970 * 1000, tz: tz))
+        b.markPlayed("atlas", deck: oldDeck, title: "9000 points")
+        b.grantRetry("atlas", deck: oldDeck, capped: true)
+        b.grantRetry("atlas", deck: oldDeck, capped: true)
+        #expect(b.hasPlayed("atlas", deck: oldDeck))
+        #expect(!b.hasPlayed("atlas", deck: newDeck))
+        #expect(b.first("atlas", deck: newDeck) == nil)
+        #expect(b.retriesLeft("atlas", deck: newDeck) == 2)
+        b.markPlayed("atlas", deck: newDeck, title: "12000 points")
+        #expect(b.first("atlas", deck: newDeck)?.title == "12000 points")
+        #expect(b.hasPlayed("atlas", deck: oldDeck))
+        #expect(b.retriesLeft("atlas", deck: oldDeck) == 0)
     }
 
-    @Test func ledgerSurvivesASaveAndRollsOverOnLoad() throws {
+    @Test func localMidnightComesBeforeTheUtcDeckRolls() throws {
+        let tz = try #require(TimeZone(identifier: "Asia/Tokyo"))
+        let lateNight = Date(timeIntervalSince1970: 1_795_010_400)
+        let afterMidnight = lateNight.addingTimeInterval(3 * 3600)
+        let before = dayKey(lateNight.timeIntervalSince1970 * 1000, tz: tz)
+        let after = dayKey(afterMidnight.timeIntervalSince1970 * 1000, tz: tz)
+        #expect(before != after)
+        let deck = DailyDeck.key("shift", now: lateNight, tz: tz)
+        #expect(DailyDeck.key("shift", now: afterMidnight, tz: tz) == deck)
+        var b = DailyBudget(day: before)
+        b.charge(cards: 60, day: before)
+        b.markPlayed("shift", deck: deck, title: "3 of 4 found")
+        b.grantRetry("shift", deck: deck, capped: true)
+        b.charge(cards: 1, day: after)
+        #expect(b.cards == 1)
+        #expect(b.hasPlayed("shift", deck: deck))
+        #expect(b.first("shift", deck: deck)?.title == "3 of 4 found")
+        #expect(b.retriesLeft("shift", deck: deck) == 1)
+        #expect(DailyDeck.key("daily", now: afterMidnight, tz: tz) == after)
+    }
+
+    @Test func seededPlayGamesUseTheUtcDeckAndTheRestUseTheLocalDay() throws {
+        let tz = try #require(TimeZone(identifier: "America/Los_Angeles"))
+        let evening = Date(timeIntervalSince1970: 1_795_053_600)
+        for game in ["atlas", "shift", "flagTiles"] { #expect(DailyDeck.key(game, now: evening, tz: tz) == PlayDecks.deckDay(evening)) }
+        for game in ["daily", "mini", "wordGroups", "polyword"] { #expect(DailyDeck.key(game, now: evening, tz: tz) == dayKey(evening.timeIntervalSince1970 * 1000, tz: tz)) }
+        #expect(DailyDeck.later("2026-11-19", than: "2026-11-18"))
+        #expect(DailyDeck.later("2027-01-01", than: "2026-12-31"))
+        #expect(!DailyDeck.later("2026-11-18", than: "2026-11-18"))
+        #expect(DailyDeck.later("2026-11-9", than: "2026-11-08"))
+    }
+
+    @Test func practiceRoundRecordsNothing() {
+        var round = PracticeRound()
+        let first = round.finish()
+        #expect(first)
+        #expect(round.recorded)
+        let repeated = round.finish()
+        #expect(!repeated)
+        round.begin()
+        #expect(round.practicing)
+        let practice = round.finish(score: "4 of 4 found")
+        #expect(!practice)
+        #expect(!round.practicing)
+        #expect(round.score == "4 of 4 found")
+        round.begin()
+        #expect(round.score == nil)
+    }
+
+    @Test func practiceBeforeAnyRecordStillRecordsNothing() {
+        var round = PracticeRound()
+        round.begin()
+        let practice = round.finish(score: "1:05")
+        #expect(!practice)
+        #expect(!round.recorded)
+    }
+
+    @Test func budgetRoundTripsThroughCodable() throws {
+        var b = DailyBudget(day: Self.day)
+        b.charge(newWords: 3, cards: 9, day: Self.day)
+        b.markPlayed("polyword", deck: Self.day, title: "3/6", shape: .guesses(rows: [[.hit, .near, .miss]], solved: true, limit: 6))
+        b.grantRetry("polyword", deck: Self.day, capped: true)
+        let data = try JSONEncoder().encode(b)
+        #expect(try JSONDecoder().decode(DailyBudget.self, from: data) == b)
+    }
+
+    @Test func defaultsVaultSavesAndLoads() throws {
         let name = "daily-budget-test"
         let defaults = try #require(UserDefaults(suiteName: name))
         defaults.removePersistentDomain(forName: name)
         defer { defaults.removePersistentDomain(forName: name) }
+        let vault = DefaultsBudgetVault(defaults, key: "k")
+        #expect(vault.load() == nil)
         var b = DailyBudget(day: Self.day)
-        b.charge(newWords: 3, cards: 9, day: Self.day)
-        b.grantRetry("mini", capped: true, day: Self.day)
-        b.save(defaults, key: "k")
-        #expect(DailyBudget.load(defaults, key: "k", day: Self.day) == b)
-        #expect(DailyBudget.load(defaults, key: "k", day: "2026-11-19") == DailyBudget(day: "2026-11-19"))
-        #expect(DailyBudget.load(defaults, key: "missing", day: Self.day) == DailyBudget(day: Self.day))
+        b.charge(cards: 9, day: Self.day)
+        vault.save(b)
+        #expect(vault.load() == b)
+    }
+
+    @Test func pairedVaultTakesTheHighWaterCopy() {
+        var old = DailyBudget(day: "2026-11-17")
+        old.charge(cards: 50, day: "2026-11-17")
+        var fresh = DailyBudget(day: Self.day)
+        fresh.charge(cards: 2, day: Self.day)
+        #expect(PairedBudgetVault(MemoryBudgetVault(old), MemoryBudgetVault(fresh)).load() == fresh)
+        #expect(PairedBudgetVault(MemoryBudgetVault(fresh), MemoryBudgetVault(nil)).load() == fresh)
+        var more = fresh
+        more.charge(cards: 5, day: Self.day)
+        #expect(PairedBudgetVault(MemoryBudgetVault(fresh), MemoryBudgetVault(more)).load() == more)
+        let a = MemoryBudgetVault(), b = MemoryBudgetVault()
+        PairedBudgetVault(a, b).save(more)
+        #expect(a.load() == more)
+        #expect(b.load() == more)
     }
 
     static let queue = [
@@ -187,24 +301,259 @@ import Testing
         QueueEntry(itemId: "cat", lang: "es", stage: .review),
         QueueEntry(itemId: "sun", lang: "es", stage: .intro), QueueEntry(itemId: "sun", lang: "es", stage: .check),
         QueueEntry(itemId: "sea", lang: "es", stage: .review),
+        QueueEntry(itemId: "sky", lang: "es", stage: .review),
     ]
     static func isNew(_ e: QueueEntry) -> Bool { ["dog", "sun"].contains(e.itemId) }
     static func isDue(_ e: QueueEntry) -> Bool { e.itemId == "cat" }
+    static func trim(_ gate: LessonGate) -> [String] { LessonTrim.queue(queue, gate: gate, isNew: isNew, isDue: isDue).map(\.itemId) }
 
     @Test func openGateKeepsOnlyTheAllowedNewWords() {
-        let one = LessonTrim.queue(Self.queue, gate: .open(newWords: 1), isNew: Self.isNew, isDue: Self.isDue)
-        #expect(one.map(\.itemId) == ["dog", "dog", "cat", "sea"])
-        let none = LessonTrim.queue(Self.queue, gate: .open(newWords: 0), isNew: Self.isNew, isDue: Self.isDue)
-        #expect(none.map(\.itemId) == ["cat", "sea"])
-        #expect(LessonTrim.queue(Self.queue, gate: .open(newWords: .max), isNew: Self.isNew, isDue: Self.isDue) == Self.queue)
+        #expect(Self.trim(.open(newWords: 1, cards: 60)) == ["dog", "dog", "cat", "sea", "sky"])
+        #expect(Self.trim(.open(newWords: 0, cards: 60)) == ["cat", "sea", "sky"])
+        #expect(Self.trim(.open(newWords: .max, cards: .max)) == Self.queue.map(\.itemId))
+    }
+
+    @Test func sessionIsTrimmedToTheCardsLeft() {
+        #expect(Self.trim(.open(newWords: 12, cards: 1)) == ["cat"])
+        #expect(Self.trim(.open(newWords: 12, cards: 2)) == ["dog", "dog", "cat"])
+        #expect(Self.trim(.open(newWords: 12, cards: 3)) == ["dog", "dog", "cat", "sun", "sun"])
+        #expect(Self.trim(.open(newWords: 0, cards: 2)) == ["cat", "sea"])
+        #expect(Self.trim(.open(newWords: 0, cards: 3)) == ["cat", "sea", "sky"])
     }
 
     @Test func reviewsOnlyKeepsDueCards() {
-        let kept = LessonTrim.queue(Self.queue, gate: .reviewsOnly, isNew: Self.isNew, isDue: Self.isDue)
-        #expect(kept.map(\.itemId) == ["cat"])
+        #expect(Self.trim(.reviewsOnly) == ["cat"])
     }
 
     @Test func limitGateEmptiesTheSession() {
-        #expect(LessonTrim.queue(Self.queue, gate: .limit, isNew: Self.isNew, isDue: Self.isDue).isEmpty)
+        #expect(Self.trim(.limit).isEmpty)
+    }
+}
+
+@MainActor
+@Suite struct DailyLedgerTests {
+    @MainActor
+    final class World {
+        var now = Date(timeIntervalSince1970: 1_795_042_800)
+        var tz = TimeZone(identifier: "America/Los_Angeles")!
+        var outcome = AdOutcome.earned
+        var ready = true
+        var shown = 0
+        var events: [(name: String, props: [String: JSONScalar])] = []
+        var flags = BetaFlags()
+        let vault = MemoryBudgetVault()
+
+        func ledger(capped: Bool = true) -> DailyLedger {
+            let l = DailyLedger(
+                vault: vault,
+                clock: { self.now },
+                tz: { self.tz },
+                flags: { self.flags },
+                ad: { self.shown += 1; return self.outcome },
+                adReady: { self.ready },
+                log: { self.events.append(($0, $1)) }
+            )
+            l.capped = capped
+            return l
+        }
+
+        func names() -> [String] { events.map(\.name) }
+    }
+
+    @Test func chargesPersistAndReload() {
+        let w = World()
+        let l = w.ledger()
+        l.charge(newWords: 2, cards: 7)
+        #expect(w.vault.load()?.cards == 7)
+        let again = w.ledger()
+        #expect(again.now.cards == 7)
+        #expect(again.now.newWords == 2)
+    }
+
+    @Test func budgetSpendsAndReopensAtLocalMidnight() {
+        let w = World()
+        let l = w.ledger()
+        l.charge(cards: 60)
+        #expect(l.spent)
+        #expect(l.gate(dueReviews: 0) == .limit)
+        #expect(l.gate(dueReviews: 2) == .reviewsOnly)
+        w.now = DailyBudget.resetsAt(w.now, tz: w.tz).addingTimeInterval(60)
+        #expect(!l.spent)
+        #expect(l.now.cards == 0)
+    }
+
+    @Test func clockMovedBackDoesNotReopenTheBudget() {
+        let w = World()
+        let l = w.ledger()
+        l.charge(cards: 60)
+        w.now = w.now.addingTimeInterval(-3 * 86_400)
+        #expect(l.spent)
+        #expect(w.ledger().spent)
+    }
+
+    @Test func subscribersAreNeverSpentAndRetryWithoutAds() async {
+        let w = World()
+        let l = w.ledger(capped: false)
+        l.charge(cards: 500)
+        #expect(!l.spent)
+        #expect(l.retryOffer("daily") == .free)
+        let result = await l.retry("daily")
+        #expect(result == .free)
+        #expect(w.shown == 0)
+        #expect(w.events.isEmpty)
+        #expect(l.cardOffer == .free)
+    }
+
+    @Test func earnedAdGrantsTheRetryAndLogsBothEvents() async {
+        let w = World()
+        let l = w.ledger()
+        #expect(l.retryOffer("daily") == .ad(left: 2))
+        let result = await l.retry("daily")
+        #expect(result == .ad)
+        #expect(l.retryOffer("daily") == .ad(left: 1))
+        #expect(w.names() == ["retry_ad_shown", "retry_granted"])
+        #expect(w.events.last?.props["via"] == .string("ad"))
+        #expect(w.events.last?.props["game"] == .string("daily"))
+    }
+
+    @Test func skippedAdGrantsNothing() async {
+        let w = World()
+        w.outcome = .skipped
+        let l = w.ledger()
+        let result = await l.retry("daily")
+        #expect(result == .skipped)
+        #expect(!result.granted)
+        #expect(l.retryOffer("daily") == .ad(left: 2))
+        #expect(w.names() == ["retry_ad_shown"])
+    }
+
+    @Test func failedAdStillGrantsAndLogsTheFallback() async {
+        let w = World()
+        w.outcome = .unavailable
+        let l = w.ledger()
+        let result = await l.retry("mini")
+        #expect(result == .fallback)
+        #expect(result.granted)
+        #expect(l.retryOffer("mini") == .ad(left: 1))
+        #expect(w.names() == ["retry_granted"])
+        #expect(w.events.last?.props["via"] == .string("fallback"))
+    }
+
+    @Test func noReadyAdOffersAPlainRetryAndNeverCallsTheAd() async {
+        let w = World()
+        w.ready = false
+        let l = w.ledger()
+        #expect(l.retryOffer("daily") == .plain(left: 2))
+        #expect(l.cardOffer == .plain(left: 2))
+        let one = await l.retry("daily")
+        let two = await l.retry("daily")
+        let three = await l.retry("daily")
+        #expect(one == .plain)
+        #expect(two == .plain)
+        #expect(three == .refused)
+        #expect(w.shown == 0)
+        #expect(l.retryOffer("daily") == .none)
+        #expect(w.names() == ["retry_granted", "retry_granted"])
+        #expect(w.events.last?.props["via"] == .string("plain"))
+    }
+
+    @Test func moreCardsReopensTheBudgetTwiceADay() async {
+        let w = World()
+        let l = w.ledger()
+        l.charge(cards: 60)
+        #expect(l.cardOffer == .ad(left: 2))
+        let one = await l.moreCards(place: "lesson")
+        #expect(one == .ad)
+        #expect(!l.spent)
+        l.charge(cards: 10)
+        let two = await l.moreCards(place: "lesson")
+        #expect(two.granted)
+        l.charge(cards: 10)
+        #expect(l.spent)
+        #expect(l.cardOffer == .none)
+        let three = await l.moreCards(place: "lesson")
+        #expect(three == .refused)
+        #expect(w.shown == 2)
+        #expect(w.events.filter { $0.name == "retry_granted" }.allSatisfy { $0.props["for"] == .string("cards") })
+    }
+
+    @Test func retryWritesNothingButTheRetryCount() async {
+        let w = World()
+        let l = w.ledger()
+        l.charge(cards: 6)
+        l.markPlayed("shift", title: "3 of 4 found", shape: .marks([true, true, true, false]))
+        let before = l.now
+        _ = await l.retry("shift")
+        l.markPlayed("shift", title: "4 of 4 found", shape: .marks([true, true, true, true]))
+        #expect(l.now.cards == before.cards)
+        #expect(l.first("shift")?.title == "3 of 4 found")
+        #expect(l.first("shift")?.shape == before.first("shift", deck: l.deck("shift"))?.shape)
+        #expect(l.first("shift")?.retries == 1)
+    }
+
+    @Test func utcDeckRollOpensANewFirstAttemptWhileTheLocalDayHolds() async {
+        let w = World()
+        let l = w.ledger()
+        l.charge(cards: 12)
+        let oldDeck = l.deck("atlas")
+        l.markPlayed("atlas", title: "9000 points")
+        _ = await l.retry("atlas")
+        _ = await l.retry("atlas")
+        #expect(l.retryOffer("atlas") == .none)
+        let day = l.today
+        w.now = w.now.addingTimeInterval(3 * 3600)
+        #expect(l.today == day)
+        #expect(l.deck("atlas") != oldDeck)
+        #expect(!l.hasPlayed("atlas"))
+        #expect(l.first("atlas") == nil)
+        #expect(l.retryOffer("atlas") == .ad(left: 2))
+        #expect(l.now.cards == 12)
+        #expect(l.hasPlayed("atlas", deck: oldDeck))
+        #expect(l.retryOffer("atlas", deck: oldDeck) == .none)
+        l.markPlayed("atlas", title: "12000 points")
+        #expect(l.first("atlas")?.title == "12000 points")
+    }
+
+    @Test func localMidnightKeepsTheUtcDeckPlayed() async {
+        let w = World()
+        w.tz = TimeZone(identifier: "Asia/Tokyo")!
+        w.now = Date(timeIntervalSince1970: 1_795_010_400)
+        let l = w.ledger()
+        l.charge(cards: 60)
+        l.markPlayed("flagTiles", title: "14 words")
+        _ = await l.retry("flagTiles")
+        let day = l.today
+        let deck = l.deck("flagTiles")
+        w.now = w.now.addingTimeInterval(3 * 3600)
+        #expect(l.today != day)
+        #expect(l.deck("flagTiles") == deck)
+        #expect(!l.spent)
+        #expect(l.hasPlayed("flagTiles"))
+        #expect(l.first("flagTiles")?.title == "14 words")
+        #expect(l.retryOffer("flagTiles") == .ad(left: 1))
+    }
+
+    @Test func limitAndPaywallEventsCarryThePlace() {
+        let w = World()
+        let l = w.ledger()
+        l.charge(newWords: 3, cards: 60)
+        l.limitHit("lesson")
+        l.paywallTap("retry:daily")
+        #expect(w.names() == ["limit_hit", "limit_paywall_tap"])
+        #expect(w.events[0].props["place"] == .string("lesson"))
+        #expect(w.events[0].props["cards"] == .number(60))
+        #expect(w.events[1].props["from"] == .string("retry:daily"))
+    }
+
+    @Test func flagChangesMoveTheCapWithoutARelease() {
+        let w = World()
+        let l = w.ledger()
+        l.charge(cards: 60)
+        #expect(l.spent)
+        w.flags = BetaFlags(values: ["daily_cards": "100"])
+        #expect(!l.spent)
+        w.flags = BetaFlags(values: ["daily_cards": "0"])
+        #expect(l.spent)
+        #expect(l.limits.cards == 60)
     }
 }

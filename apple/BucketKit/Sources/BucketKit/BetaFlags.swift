@@ -18,7 +18,7 @@ public struct BetaFlags: Sendable, Equatable {
     public var dailyCards: Int { count("daily_cards") }
 
     func count(_ experiment: String) -> Int {
-        if let n = values[experiment].flatMap({ Int($0) }), n >= 0 { return n }
+        if let n = values[experiment].flatMap({ Int($0) }), n > 0 { return n }
         return Self.fallback[experiment].flatMap { Int($0) } ?? 0
     }
 

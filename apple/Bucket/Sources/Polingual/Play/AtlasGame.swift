@@ -46,9 +46,9 @@ struct AtlasGame: View {
     @State private var scores: [Int] = []
     @State private var heard = false
     @State private var root = "en"
-    @State private var recorded = false
     @State private var entered = false
-    @State private var practice = false
+    @State private var practice = PracticeRound()
+    @State private var day = PlayDecks.deckDay()
     @State private var zoom = AtlasZoom()
     @State private var pinchFrom: AtlasZoom?
     @State private var dragFrom: AtlasZoom?
@@ -62,8 +62,8 @@ struct AtlasGame: View {
         PlayScene(game: .atlas, stickers: playStickers(.azulejo, .girih)) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
-            } else if !entered && !practice {
-                PlayedToday(kind: .atlas) { retry() }
+            } else if !entered && !practice.practicing {
+                RecordedRound(kind: .atlas, deck: day, practice: practice.score, root: root) { retry() }
             } else if let round, !PlayLaunch.endGame {
                 play(round)
             } else {
@@ -74,8 +74,8 @@ struct AtlasGame: View {
             await langs.load()
             guard rounds.isEmpty, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
-            entered = !DailyLedger.shared.hasPlayed(.atlas)
-            rounds = Array(Atlas.rounds(corpus.items, date: PlayDecks.deckDay(), root: root).prefix(Atlas.rounds))
+            entered = !DailyLedger.shared.hasPlayed(.atlas, deck: day)
+            rounds = Array(Atlas.rounds(corpus.items, date: day, root: root).prefix(Atlas.rounds))
         }
         .task(id: index) {
             guard let round, !silent else { return }
@@ -213,7 +213,7 @@ struct AtlasGame: View {
     }
 
     func retry() {
-        practice = true
+        practice.begin()
         scores = []
         index = 0
         pin = nil
@@ -223,20 +223,24 @@ struct AtlasGame: View {
     }
 
     var results: some View {
-        PlayResults(
-            title: "\(total) points",
-            line: practice ? "Practice round done. Your first result stands." : "Five words a day. Same words for everyone.",
+        let title = "\(total) points"
+        let shape = GameShare.Shape.points(total, marks: scores.map { $0 > Atlas.max / 2 })
+        return PlayResults(
+            title: title,
+            line: "Five words a day. Same words for everyone.",
             reveals: rounds.prefix(max(scores.count, 1)).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) },
             root: root,
-            board: Boards.fromGhosts(Atlas.ghosts(date: PlayDecks.deckDay()), you: total),
-            share: practice ? nil : (.atlas, .points(total, marks: scores.map { $0 > Atlas.max / 2 })),
-            retry: (.atlas, { retry() }),
+            board: Boards.fromGhosts(Atlas.ghosts(date: day), you: total),
+            share: practice.practicing ? nil : (.atlas, shape),
+            retry: practice.practicing ? nil : (.atlas, day, { retry() }),
             again: nil
         )
         .onAppear {
-            guard !recorded, !practice else { return }
-            recorded = true
-            DailyLedger.shared.markPlayed(.atlas)
+            let practicing = practice.practicing
+            let record = practice.finish(score: title)
+            if practicing { entered = false }
+            guard record else { return }
+            DailyLedger.shared.markPlayed(.atlas, deck: day, title: title, shape: shape)
             let words = zip(rounds, scores).map { r, s in PlayedWord(itemId: r.itemId, lang: r.lang, form: r.form, gloss: r.meaning, right: s > Atlas.max / 2) }
             langs.recordPlay(.atlas, words, points: total)
         }

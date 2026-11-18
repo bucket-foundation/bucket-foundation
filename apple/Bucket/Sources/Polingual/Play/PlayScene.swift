@@ -136,7 +136,7 @@ struct PlayResults: View {
     var board: [BoardRow] = []
     var againLabel = "Play again"
     var share: (kind: GameKind, shape: GameShare.Shape)?
-    var retry: (kind: GameKind, start: () -> Void)?
+    var retry: (kind: GameKind, deck: String?, start: () -> Void)?
     let again: (() -> Void)?
     @Environment(LangStore.self) private var langs
 
@@ -163,7 +163,7 @@ struct PlayResults: View {
             }
             ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
             if let share { GameShareButton(kind: share.kind, text: langs.shareText(share.kind, share.shape), style: .pl(.primary, size: .lg)) }
-            if let retry { TryAgainOffer(kind: retry.kind, start: retry.start) }
+            if let retry { TryAgainOffer(kind: retry.kind, deck: retry.deck, start: retry.start) }
             if let again {
                 if let kind = share?.kind, DailyLedger.shared.spent {
                     DailyLimitCard(place: "game:\(kind.rawValue)")

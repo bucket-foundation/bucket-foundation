@@ -50,6 +50,7 @@ struct StudyView: View {
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
         .onChange(of: DailyLedger.shared.spent) { _, spent in
             guard limited, !spent else { return }
+            limited = false
             queue = nil
             startIfReady()
         }

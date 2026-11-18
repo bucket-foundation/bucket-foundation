@@ -86,8 +86,7 @@ struct WordGroupsGame: View {
     @Environment(Reminders.self) private var reminders
     @State private var round: WordGroupsRound?
     @State private var closed: WordGroupsSave?
-    @State private var practice = false
-    @State private var practiced = false
+    @State private var practice = PracticeRound()
     @State private var note: String?
     @State private var shakes = 0
     @State private var rng = SeededRandom(seed: UInt64(Date().timeIntervalSince1970))
@@ -200,7 +199,7 @@ struct WordGroupsGame: View {
                 }
                 .padding([.horizontal, .top])
             }
-            GameEnd(kind: .wordGroups, score: score, line: practiced ? String(localized: "Practice round done. Your first result stands.") : save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow."), results: save.results, missed: round?.unsolved.flatMap(\.words) ?? [], shape: .groups(order: GameShare.groupOrder(solved: save.solved, groups: round?.puzzle.groups.map(\.id) ?? []), attempts: save.results, total: total), shareObject: langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), retry: round.map { r in { retry(r.puzzle) } }, again: nil)
+            GameEnd(kind: .wordGroups, score: score, line: practice.score.map(PracticeLine.text) ?? (save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow.")), results: save.results, missed: round?.unsolved.flatMap(\.words) ?? [], shape: .groups(order: GameShare.groupOrder(solved: save.solved, groups: round?.puzzle.groups.map(\.id) ?? []), attempts: save.results, total: total), shareObject: langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), retry: round.map { r in { retry(r.puzzle) } }, again: nil)
         }
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
@@ -226,7 +225,7 @@ struct WordGroupsGame: View {
         case .repeated: note = String(localized: "Already tried")
         case .ignored: return
         }
-        if let board, !practice { WordGroupsRecord.save(r.save, board) }
+        if let board, !practice.practicing { WordGroupsRecord.save(r.save, board) }
         if r.finished { finish(r) }
     }
 
@@ -236,16 +235,15 @@ struct WordGroupsGame: View {
     }
 
     func retry(_ puzzle: WordGroupsPuzzle) {
-        practice = true
+        practice.begin()
         note = nil
         round = WordGroupsRound(puzzle)
         closed = nil
     }
 
     func finish(_ r: WordGroupsRound) {
-        if practice {
-            practice = false
-            practiced = true
+        if practice.practicing {
+            _ = practice.finish(score: String(localized: "\(r.solved.count) of \(WordGroupsPuzzle.groupCount) groups"))
             guard let board, let saved = WordGroupsRecord.load(board) else { return }
             round = WordGroupsRound(r.puzzle, resuming: saved)
             withAnimation(.spring(duration: 0.35)) { closed = saved }

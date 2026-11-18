@@ -5,73 +5,60 @@ extension EnvironmentValues {
     @Entry var limitPaywall: (@MainActor () -> Void)?
 }
 
+extension DailyLedger {
+    static let shared = DailyLedger(
+        vault: PairedBudgetVault(),
+        flags: { Beta.shared.flags },
+        ad: {
+            let outcome = await LobbyAds.shared.showRewarded()
+            GrantNotice.shared.show(outcome)
+            return outcome
+        },
+        adReady: { LobbyAds.shared.allowed && LobbyAds.shared.rewardedReady },
+        log: { Beta.shared.log($0, $1) }
+    )
+
+    func hasPlayed(_ kind: GameKind, deck: String) -> Bool { hasPlayed(kind.rawValue, deck: deck) }
+    func first(_ kind: GameKind, deck: String) -> DailyAttempt? { first(kind.rawValue, deck: deck) }
+    func markPlayed(_ kind: GameKind, deck: String, title: String, shape: GameShare.Shape) { markPlayed(kind.rawValue, deck: deck, title: title, shape: shape) }
+}
+
 @MainActor
 @Observable
-final class DailyLedger {
-    static let shared = DailyLedger()
-    static let key = "polingual.dailyBudget"
+final class GrantNotice {
+    static let shared = GrantNotice()
+    private(set) var text: String?
+    @ObservationIgnored private var clear: Task<Void, Never>?
 
-    var capped = false
-    private(set) var budget: DailyBudget
-    @ObservationIgnored var ad: @MainActor () async -> AdOutcome = { await LobbyAds.shared.showRewarded() }
-    @ObservationIgnored private let defaults: UserDefaults
-
-    init(defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-        budget = DailyBudget.load(defaults, key: Self.key, day: dayKey(Date().timeIntervalSince1970 * 1000))
+    func show(_ outcome: AdOutcome) {
+        switch outcome {
+        case .earned: return
+        case .skipped: text = String(localized: "The ad closed early, so nothing was added.")
+        case .unavailable: text = String(localized: "The ad did not play. This one is free.")
+        }
+        clear?.cancel()
+        clear = Task {
+            try? await Task.sleep(for: .seconds(5))
+            if !Task.isCancelled { text = nil }
+        }
     }
+}
 
-    var today: String { dayKey(Date().timeIntervalSince1970 * 1000) }
-    var limits: DailyLimits { DailyLimits(flags: Beta.shared.flags) }
-    var now: DailyBudget { budget.on(today) }
-    var spent: Bool { now.spent(limits, capped: capped) }
-
-    private func update(_ change: (inout DailyBudget) -> Void) {
-        var next = now
-        change(&next)
-        budget = next
-        next.save(defaults, key: Self.key)
-    }
-
-    func charge(newWords: Int = 0, cards: Int) {
-        let day = today
-        update { $0.charge(newWords: newWords, cards: cards, day: day) }
-    }
-
-    func gate(dueReviews: Int) -> LessonGate { now.lessonGate(limits, capped: capped, dueReviews: dueReviews) }
-
-    func hasPlayed(_ kind: GameKind) -> Bool { now.hasPlayed(kind.rawValue) }
-
-    func markPlayed(_ kind: GameKind) {
-        let day = today
-        update { $0.markPlayed(kind.rawValue, day: day) }
-    }
-
-    func retryOffer(_ kind: GameKind) -> RetryOffer { now.retryOffer(kind.rawValue, capped: capped) }
-
-    func retry(_ kind: GameKind) async -> Bool {
-        guard capped else { return true }
-        guard now.retriesLeft(kind.rawValue) > 0 else { return false }
-        guard let via = await watch(for: "retry", game: kind.rawValue) else { return false }
-        let day = today
-        update { $0.grantRetry(kind.rawValue, capped: true, day: day) }
-        Beta.shared.log("retry_granted", ["for": .string("retry"), "game": .string(kind.rawValue), "via": .string(via)])
-        return true
-    }
-
-    func moreCards(place: String) async -> Bool {
-        guard capped, now.canWatchForCards else { return false }
-        guard let via = await watch(for: "cards", game: place) else { return false }
-        let day = today
-        update { $0.grantCards(day: day) }
-        Beta.shared.log("retry_granted", ["for": .string("cards"), "game": .string(place), "via": .string(via)])
-        return true
-    }
-
-    private func watch(for reason: String, game: String) async -> String? {
-        let outcome = await ad()
-        if outcome != .unavailable { Beta.shared.log("retry_ad_shown", ["for": .string(reason), "game": .string(game)]) }
-        return outcome.grants ? outcome.via : nil
+struct GrantNoticeToast: ViewModifier {
+    func body(content: Content) -> some View {
+        content.overlay(alignment: .top) {
+            if let text = GrantNotice.shared.text {
+                Text(text)
+                    .font(PL.small.font()).foregroundStyle(PL.paper)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, PL.Space.s4).padding(.vertical, PL.Space.s2)
+                    .background(PL.ink, in: .capsule)
+                    .padding(PL.Space.s3)
+                    .transition(.opacity)
+                    .accessibilityIdentifier("grantNotice")
+            }
+        }
+        .animation(.default, value: GrantNotice.shared.text)
     }
 }
 
@@ -82,7 +69,7 @@ struct SubscribeOffer: View {
     var body: some View {
         if let paywall {
             Button("Subscribe for unlimited learning with no ads") {
-                Beta.shared.log("limit_paywall_tap", ["from": .string(place)])
+                DailyLedger.shared.paywallTap(place)
                 paywall()
             }
             .buttonStyle(.pl(.quiet, size: .sm))
@@ -93,38 +80,46 @@ struct SubscribeOffer: View {
 
 struct TryAgainOffer: View {
     let kind: GameKind
+    var deck: String?
     let start: () -> Void
     @State private var busy = false
 
     var body: some View {
-        switch DailyLedger.shared.retryOffer(kind) {
-        case .free:
-            Button("Try again", action: start).buttonStyle(.pl(.secondary, size: .lg)).accessibilityIdentifier("tryAgain")
-        case .ad(let left):
-            VStack(spacing: PL.Space.s2) {
+        let offer = DailyLedger.shared.retryOffer(kind.rawValue, deck: deck)
+        VStack(spacing: PL.Space.s2) {
+            switch offer {
+            case .free:
+                Button("Try again", action: start).buttonStyle(.pl(.secondary, size: .lg)).accessibilityIdentifier("tryAgain")
+            case .ad(let left), .plain(let left):
                 Button("Try again") {
                     busy = true
                     Task {
-                        if await DailyLedger.shared.retry(kind) { start() }
+                        if await DailyLedger.shared.retry(kind.rawValue, deck: deck).granted { start() }
                         busy = false
                     }
                 }
                 .buttonStyle(.pl(.secondary, size: .lg))
                 .disabled(busy)
                 .accessibilityIdentifier("tryAgain")
-                Text("Watch one ad to try again. Retries left today: \(left).")
-                    .font(PL.small.font()).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                if case .ad = offer { caption(String(localized: "Watch one ad to try again.")) }
+                caption(String(localized: "Retries left today: \(left)."))
+                SubscribeOffer(place: "retry:\(kind.rawValue)")
+            case .none:
                 SubscribeOffer(place: "retry:\(kind.rawValue)")
             }
-        case .none:
-            SubscribeOffer(place: "retry:\(kind.rawValue)")
         }
+        .task { LobbyAds.shared.preloadRewarded() }
+    }
+
+    func caption(_ text: String) -> some View {
+        Text(text).font(PL.small.font()).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
     }
 }
 
 struct DailyLimitCard: View {
     let place: String
     @State private var busy = false
+    @State private var skipped = false
 
     var body: some View {
         let ledger = DailyLedger.shared
@@ -134,23 +129,31 @@ struct DailyLimitCard: View {
                 Text("New words today: \(ledger.now.newWords). Cards today: \(ledger.now.cards).")
                     .font(PL.body.font()).foregroundStyle(PL.ink).monospacedDigit()
                 Text("Your daily limit resets at midnight.").font(PL.small.font()).foregroundStyle(PL.inkDim)
-                if ledger.now.canWatchForCards {
-                    Button("Watch an ad for \(DailyLimits.adCards) more cards") {
-                        busy = true
-                        Task {
-                            _ = await ledger.moreCards(place: place)
-                            busy = false
-                        }
-                    }
-                    .buttonStyle(.pl(.primary))
-                    .disabled(busy)
-                    .accessibilityIdentifier("limitMoreCards")
+                switch ledger.cardOffer {
+                case .ad: more(String(localized: "Watch an ad for \(DailyLimits.adCards) more cards"))
+                case .plain: more(String(localized: "Get \(DailyLimits.adCards) more cards"))
+                case .free, .none: EmptyView()
                 }
+                if skipped { Text("The ad closed early, so nothing was added.").font(PL.small.font()).foregroundStyle(PL.inkDim) }
                 SubscribeOffer(place: place)
             }
         }
         .accessibilityIdentifier("dailyLimitCard")
-        .onAppear { Beta.shared.log("limit_hit", ["place": .string(place), "cards": .number(Double(ledger.now.cards)), "new": .number(Double(ledger.now.newWords))]) }
+        .onAppear { ledger.limitHit(place) }
+        .task { LobbyAds.shared.preloadRewarded() }
+    }
+
+    func more(_ title: String) -> some View {
+        Button(title) {
+            busy = true
+            Task {
+                skipped = await DailyLedger.shared.moreCards(place: place) == .skipped
+                busy = false
+            }
+        }
+        .buttonStyle(.pl(.primary))
+        .disabled(busy)
+        .accessibilityIdentifier("limitMoreCards")
     }
 }
 
@@ -175,14 +178,26 @@ struct DailyLimitGate<Content: View>: View {
     }
 }
 
-struct PlayedToday: View {
+enum PracticeLine {
+    static func text(_ score: String) -> String { String(localized: "Practice round: \(score). Your first result stands.") }
+}
+
+struct RecordedRound: View {
     let kind: GameKind
-    let start: () -> Void
+    let deck: String
+    var practice: String?
+    let root: String
+    let retry: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: PL.Space.s4) {
-            PlayNote(text: "You played today's round. A new one arrives tomorrow.")
-            TryAgainOffer(kind: kind, start: start)
-        }
+        let first = DailyLedger.shared.first(kind, deck: deck)
+        PlayResults(
+            title: first?.title ?? kind.title,
+            line: practice.map(PracticeLine.text) ?? "You played today's round. A new one arrives tomorrow.",
+            root: root,
+            share: first?.shape.map { (kind, $0) },
+            retry: (kind, deck, retry),
+            again: nil
+        )
     }
 }

@@ -103,8 +103,7 @@ struct QuizGame: View {
     @State private var run: GameRun?
     @State private var best = false
     @State private var replayed = false
-    @State private var practice = false
-    @State private var practiced = false
+    @State private var round = PracticeRound()
     @State private var shake = 0
     @State private var pause: Task<Void, Never>?
 
@@ -195,9 +194,8 @@ struct QuizGame: View {
         r.advance()
         run = r
         guard r.done else { return }
-        if practice {
-            practice = false
-            practiced = true
+        if round.practicing {
+            _ = round.finish(score: String(localized: "\(r.hits) of \(r.results.count)"))
             if let s = langs.dailySystem, let done = langs.gameDaily(s.id) {
                 replayed = true
                 run = GameRun(r.prompts, replaying: done)
@@ -271,7 +269,7 @@ struct QuizGame: View {
     func end(_ r: GameRun) -> some View {
         GameEnd(kind: kind,
                 score: String(localized: "\(r.hits) of \(r.results.count)"),
-                line: kind == .daily ? practiced ? String(localized: "Practice round done. Your first result stands.") : String(localized: "New set tomorrow.") : nil,
+                line: kind == .daily ? round.score.map(PracticeLine.text) ?? String(localized: "New set tomorrow.") : nil,
                 best: best,
                 results: r.results,
                 missed: r.missed,
@@ -283,7 +281,7 @@ struct QuizGame: View {
 
     func retry(_ prompts: [GamePrompt]) {
         pause?.cancel()
-        practice = true
+        round.begin()
         replayed = false
         run = GameRun(prompts)
     }
