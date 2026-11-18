@@ -116,6 +116,7 @@ struct ForeheadGame: View {
             line: "\(marks.filter { !$0 }.count) passed. Hand the phone to the next player.",
             reveals: Array(shown.map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) }.prefix(8)),
             root: root,
+            share: (.forehead, .marks(marks)),
             again: { over = false; start() }
         )
         .onAppear {

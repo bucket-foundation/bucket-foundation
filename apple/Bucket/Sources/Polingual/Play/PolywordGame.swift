@@ -160,6 +160,7 @@ struct PolywordGame: View {
             line: "A new word arrives tomorrow.",
             reveals: [PlayRevealItem(lang: p.lang, form: p.word, meaning: meaning.text)],
             root: meaning.lang,
+            share: (.polyword, .guesses(rows: guesses.map { Polyword.score($0, p.answer) }, solved: won, limit: Polyword.maxGuesses)),
             again: nil
         )
         .onAppear {

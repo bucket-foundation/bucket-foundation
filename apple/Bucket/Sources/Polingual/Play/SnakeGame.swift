@@ -89,6 +89,7 @@ struct SnakeGame: View {
             line: "\(eaten.count) words eaten, \(bad.count) decoys.",
             reveals: Array(reveals.prefix(6)),
             root: root,
+            share: (.snake, .points(me?.length ?? Snakes.startLen, marks: [])),
             again: { over = false; start() }
         )
         .onAppear {

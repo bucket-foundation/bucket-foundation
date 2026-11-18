@@ -135,7 +135,9 @@ struct PlayResults: View {
     let root: String
     var board: [BoardRow] = []
     var againLabel = "Play again"
+    var share: (kind: GameKind, shape: GameShare.Shape)?
     let again: (() -> Void)?
+    @Environment(LangStore.self) private var langs
 
     var body: some View {
         VStack(alignment: .leading, spacing: PL.Space.s4) {
@@ -159,6 +161,7 @@ struct PlayResults: View {
                 }
             }
             ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
+            if let share { GameShareButton(kind: share.kind, text: langs.shareText(share.kind, share.shape), style: .pl(.primary, size: .lg)) }
             if let again { Button(LocalizedStringKey(againLabel), action: again).buttonStyle(.pl(.primary, size: .lg)) }
             StartLearningButton()
         }

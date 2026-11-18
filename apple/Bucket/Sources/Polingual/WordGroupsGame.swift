@@ -198,10 +198,16 @@ struct WordGroupsGame: View {
                 }
                 .padding([.horizontal, .top])
             }
-            GameEnd(kind: .wordGroups, score: score, line: save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow."), results: save.results, missed: round?.unsolved.flatMap(\.words) ?? [], shareObject: langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), again: nil)
+            GameEnd(kind: .wordGroups, score: score, line: save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow."), results: save.results, missed: round?.unsolved.flatMap(\.words) ?? [], shape: .groups(order: order(save), attempts: save.results, total: total), shareObject: langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), again: nil)
         }
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
+    }
+
+    func order(_ save: WordGroupsSave) -> [Int] {
+        let ids = round?.puzzle.groups.map(\.id) ?? []
+        let found = save.solved.compactMap { ids.firstIndex(of: $0) }
+        return found.count == save.solved.count ? found : Array(save.solved.indices)
     }
 
     func shuffle() {

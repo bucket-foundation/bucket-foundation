@@ -110,6 +110,7 @@ struct ISpyGame: View {
             reveals: Array(zip(rounds, results).map { r, _ in PlayRevealItem(lang: r.lang, form: r.gloss, meaning: labels[r.answer] ?? r.answer) }.prefix(6)),
             root: root,
             board: Boards.withYou(rows, you: me.score),
+            share: (.ispy, .points(me.score, marks: results)),
             again: { deal() }
         )
         .onAppear {

@@ -264,7 +264,7 @@ struct QuizGame: View {
                 best: best,
                 results: r.results,
                 missed: r.missed,
-                share: kind == .daily ? AnyView(DailyShare(prompts: r.prompts, results: r.results)) : nil,
+                share: kind == .daily ? AnyView(DailyShare(prompts: r.prompts, results: r.results, message: langs.shareText(kind, .marks(r.results)))) : nil,
                 shareObject: kind == .daily ? nil : langs.gameScore(kind.title, right: r.hits, total: r.results.count),
                 again: kind == .daily ? nil : { deal() })
     }
@@ -372,11 +372,8 @@ struct DailyShareCard: View {
 struct DailyShare: View {
     let prompts: [GamePrompt]
     let results: [Bool]
+    let message: String
     @State private var image: Image?
-
-    var message: String {
-        String(localized: "Daily Set: \(results.filter { $0 }.count) of \(results.count) on \(Feedback.appName). Same words for everyone today. \(Share.appLink.absoluteString)")
-    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -386,6 +383,7 @@ struct DailyShare: View {
                     Label("Share the card", systemImage: "photo")
                 }
                 .buttonStyle(D8Option(align: .center))
+                .modifier(GameShareLog(kind: .daily, form: "image"))
             }
         }
         .task { if image == nil { image = render() } }
@@ -451,6 +449,7 @@ struct SpeedMatchGame: View {
                         GameEnd(kind: .match, score: String(localized: "\(board.points) points"),
                                 line: String(localized: "\(board.hits) pairs. Longest run \(board.bestCombo)."),
                                 best: best, missed: board.missed,
+                                shape: .points(board.points, marks: []),
                                 shareObject: langs.gameScore(GameKind.match.title, right: board.hits, total: board.hits + board.missed.count),
                                 again: { deal() })
                     } else {

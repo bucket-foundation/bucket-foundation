@@ -67,6 +67,7 @@ struct DuelGame: View {
             line: "\(marks.filter { $0 }.count) of \(marks.count) rounds right on both questions.",
             reveals: Array(zip(prompts, marks).filter { !$0.1 }.map { PlayRevealItem(lang: $0.0.word.lang, form: $0.0.word.form, meaning: $0.0.word.gloss) }.prefix(6)),
             root: langs.playRoot,
+            share: (.duel, .points(points, marks: marks)),
             again: { deal() }
         )
         .onAppear {
