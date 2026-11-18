@@ -174,6 +174,44 @@ public struct FlagStream: Sendable, Equatable {
     }
 }
 
+public struct FlagClock: Sendable, Equatable {
+    public static let easeMs = 180.0
+
+    public var offset: Double
+    public var jump: Double
+
+    public init(offset: Double = 0, jump: Double = 0) {
+        self.offset = offset
+        self.jump = jump
+    }
+
+    public func at(_ sinceMs: Double) -> Double { offset + sinceMs - jump * max(0, 1 - sinceMs / Self.easeMs) }
+
+    public func caughtUp(_ sinceMs: Double, next index: Int, in stream: FlagStream) -> FlagClock {
+        let now = at(sinceMs)
+        let target = stream.caughtUp(now, next: index)
+        return FlagClock(offset: target, jump: target - now)
+    }
+
+    public func landsInMs(_ index: Int, in stream: FlagStream, sinceMs: Double) -> Int {
+        Int((stream.landsInMs(index, clockMs: offset) - sinceMs).rounded(.up))
+    }
+}
+
+public enum FlagBoard {
+    public static let least: CGFloat = 260
+    public static let compactUnder: CGFloat = 320
+    public static let tile: CGFloat = 52
+
+    public static func compact(_ height: CGFloat) -> Bool { height < compactUnder }
+
+    public static func foot(_ height: CGFloat) -> CGFloat { compact(height) ? 52 : 84 }
+
+    public static func tileY(_ progress: Double, height: CGFloat) -> CGFloat {
+        tile / 2 + max(0, height - foot(height) - tile) * CGFloat(min(1, max(0, progress)))
+    }
+}
+
 public struct TileSchedule: Sendable, Equatable {
     public let index: Int
     public let lane: Int

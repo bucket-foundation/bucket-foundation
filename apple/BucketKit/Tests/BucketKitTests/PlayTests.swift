@@ -242,6 +242,36 @@ struct PlayTests {
         #expect(FlagStream(count: 0).rows(from: 0, clockMs: 0).isEmpty)
     }
 
+    @Test func flagClockEasesTheCatchUpWithoutAJump() {
+        let s = FlagStream(count: 240)
+        let start = FlagClock(offset: s.clock(placing: 0, at: 0))
+        #expect(start.at(250) == 250)
+        #expect(start.landsInMs(0, in: s, sinceMs: 400) == 3000)
+        let fast = start.caughtUp(250, next: 1, in: s)
+        #expect(fast.at(0) == 250)
+        #expect(fast.jump > 0)
+        #expect(fast.at(FlagClock.easeMs) == s.clock(placing: 1, at: FlagStream.lead) + FlagClock.easeMs)
+        #expect(fast.at(90) > fast.at(0) && fast.at(90) < fast.at(FlagClock.easeMs))
+        #expect(fast.landsInMs(1, in: s, sinceMs: 0) == Int((3400 * (1 - FlagStream.lead)).rounded(.up)))
+        let slow = start.caughtUp(3300, next: 1, in: s)
+        #expect(slow.jump == 0 && slow.at(0) == 3300)
+        #expect(slow.landsInMs(1, in: s, sinceMs: 0) == 1360 + 3400 - 3300)
+        #expect(start.landsInMs(0, in: s, sinceMs: 5000) < 0)
+    }
+
+    @Test func flagBoardFitsShortScreensAndLandsWordsAboveTheFlags() {
+        #expect(FlagBoard.compact(FlagBoard.least))
+        #expect(!FlagBoard.compact(440))
+        #expect(FlagBoard.foot(260) >= 44)
+        #expect(FlagBoard.tileY(0, height: 440) == FlagBoard.tile / 2)
+        #expect(FlagBoard.tileY(1, height: 440) + FlagBoard.tile / 2 == 440 - FlagBoard.foot(440))
+        #expect(FlagBoard.tileY(1, height: 260) + FlagBoard.tile / 2 == 260 - FlagBoard.foot(260))
+        #expect(FlagBoard.tileY(2, height: 260) == FlagBoard.tileY(1, height: 260))
+        #expect(FlagBoard.tileY(1, height: 260) - FlagBoard.tileY(0, height: 260) >= 150)
+        #expect(PlayBoard.height(room: 340, chrome: 150, least: FlagBoard.least) == FlagBoard.least)
+        #expect(PlayBoard.height(room: 760, chrome: 150, least: FlagBoard.least) == 610)
+    }
+
     @Test func flagTilesFallSpeedsUpEveryTenWordsToAFloor() {
         #expect(FlagTilesRules.fallMs(0) == 3400)
         #expect(FlagTilesRules.fallMs(9) == 3400)

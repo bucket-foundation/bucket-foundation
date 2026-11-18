@@ -9,9 +9,9 @@ struct FlagTilesGame: View {
     @State private var run = RunState()
     @State private var stream = FlagStream(count: 0)
     @State private var origin = Date()
-    @State private var offset = 0.0
-    @State private var jump = 0.0
+    @State private var clock = FlagClock()
     @State private var flash: Int?
+    @State private var flashes = 0
     @State private var root = "en"
     @State private var entered = false
     @State private var round = PracticeRound()
@@ -46,7 +46,7 @@ struct FlagTilesGame: View {
             if PlayLaunch.endGame { run = RunState(phase: .over, index: 3, score: 3) }
         }
         .task(id: "\(run.index)-\(run.phase)") { await land() }
-        .task(id: flash) {
+        .task(id: flashes) {
             guard flash != nil else { return }
             try? await Task.sleep(for: .milliseconds(160))
             if !Task.isCancelled { flash = nil }
@@ -72,17 +72,18 @@ struct FlagTilesGame: View {
             }
             TimelineView(.animation) { tl in
                 GeometryReader { geo in
-                    let rows = stream.rows(from: run.index, clockMs: clock(tl.date))
+                    let rows = stream.rows(from: run.index, clockMs: clock.at(since(tl.date)))
+                    let compact = FlagBoard.compact(geo.size.height)
                     ZStack(alignment: .topLeading) {
                         HStack(spacing: 0) {
                             ForEach(Array(deck.langs.enumerated()), id: \.offset) { i, l in
                                 Button { tap(i) } label: {
                                     VStack(spacing: PL.Space.s1) {
                                         Spacer(minLength: 0)
-                                        PlayFlag(lang: l, size: 44)
-                                        PlayLabel(text: Lang.name(l)).lineLimit(1).minimumScaleFactor(0.6)
+                                        PlayFlag(lang: l, size: compact ? 36 : 44)
+                                        if !compact { PlayLabel(text: Lang.name(l)).lineLimit(1).minimumScaleFactor(0.6) }
                                     }
-                                    .padding(.bottom, PL.Space.s2)
+                                    .padding(.bottom, compact ? PL.Space.s1 : PL.Space.s2)
                                     .padding(.horizontal, 2)
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                                     .background(PL.paper.opacity(flash == i ? 0.3 : i.isMultiple(of: 2) ? 0.08 : 0.14))
@@ -90,6 +91,7 @@ struct FlagTilesGame: View {
                                 }
                                 .buttonStyle(.plain)
                                 .accessibilityLabel(Lang.name(l))
+                                .accessibilityValue(tile?.form ?? "")
                                 .accessibilityIdentifier("flagLane-\(i)")
                             }
                         }
@@ -98,21 +100,19 @@ struct FlagTilesGame: View {
                             Text(deck.tiles[row.index].form)
                                 .font(PL.heading.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
                                 .padding(.horizontal, PL.Space.s3)
-                                .frame(width: min(geo.size.width * 0.72, 280), height: Self.tile)
+                                .frame(width: min(geo.size.width * 0.72, 280), height: FlagBoard.tile)
                                 .background(PL.card, in: .rect(cornerRadius: 10))
                                 .opacity(row.index == run.index ? 1 : 0.55)
-                                .position(x: geo.size.width / 2, y: Self.tile / 2 + max(0, geo.size.height - Self.foot - Self.tile) * row.progress)
+                                .position(x: geo.size.width / 2, y: FlagBoard.tileY(row.progress, height: geo.size.height))
                                 .allowsHitTesting(false)
+                                .accessibilityHidden(row.index != run.index)
                         }
                     }
                 }
             }
-            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 440))
+            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: FlagBoard.least))
         }
     }
-
-    static let tile: CGFloat = 52
-    static let foot: CGFloat = 84
 
     func missed(_ deck: FlagTilesDeck) -> some View {
         let marks = FlagTilesRules.laneMarks(run, answer: answer)
@@ -165,43 +165,38 @@ struct FlagTilesGame: View {
         }
     }
 
-    func clock(_ now: Date) -> Double {
-        let t = now.timeIntervalSince(origin)
-        return offset + t * 1000 - jump * max(0, 1 - t / 0.18)
-    }
+    func since(_ now: Date) -> Double { now.timeIntervalSince(origin) * 1000 }
 
     func begin(_ event: RunEvent) {
         run = FlagTilesRules.step(run, event)
         guard run.phase == .running else { return }
         origin = Date()
-        offset = stream.clock(placing: run.index, at: 0)
-        jump = 0
+        clock = FlagClock(offset: stream.clock(placing: run.index, at: 0))
     }
 
     func tap(_ lane: Int) {
         guard run.phase == .running else { return }
         let right = lane == answer
         let now = Date()
-        let at = clock(now)
+        let elapsed = since(now)
         run = FlagTilesRules.step(run, .tap(lane: lane, answer: answer))
         flash = lane
+        flashes += 1
         PlaySound.effect(right, combo: run.score)
         guard run.phase == .running else { return }
         if run.index >= (deck?.tiles.count ?? 0) {
             run = FlagTilesRules.step(FlagTilesRules.step(run, .timeout), .end)
             return
         }
-        let target = stream.caughtUp(at, next: run.index)
-        jump = target - at
-        offset = target
+        clock = clock.caughtUp(elapsed, next: run.index, in: stream)
         origin = now
     }
 
     func land() async {
         guard run.phase == .running else { return }
         let index = run.index
-        let wait = stream.landsInMs(index, clockMs: offset) - Date().timeIntervalSince(origin) * 1000
-        if wait > 0 { try? await Task.sleep(for: .milliseconds(Int(wait))) }
+        let wait = clock.landsInMs(index, in: stream, sinceMs: since(Date()))
+        if wait > 0 { try? await Task.sleep(for: .milliseconds(wait)) }
         guard !Task.isCancelled, run.phase == .running, run.index == index else { return }
         PlaySound.effect(false)
         run = FlagTilesRules.step(run, .timeout)

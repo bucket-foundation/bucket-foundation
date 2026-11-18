@@ -63,6 +63,7 @@ struct BabelGame: View {
                         .overlay { if hint.contains(i) { RoundedRectangle(cornerRadius: 8).stroke(PL.ochre, lineWidth: 3) } }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel(cellLabel(cell))
                 }
             }
             .gameShake(shake)
@@ -72,14 +73,21 @@ struct BabelGame: View {
                         if marked { mark(n, size: 16) }
                         Text(meanings[id]?.meaning ?? "").font(PL.small.font()).foregroundStyle(PL.paper).lineLimit(1).minimumScaleFactor(0.6)
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(marked ? "\(n + 1), \(meanings[id]?.meaning ?? "")" : meanings[id]?.meaning ?? "")
                 }
             }
-            .accessibilityElement(children: .combine)
             .accessibilityIdentifier("babelKey")
             Button("Show a move") { hint = Babel.hint(board) ?? [] }
                 .buttonStyle(.pl(.ghost, size: .sm))
                 .accessibilityIdentifier("babelHint")
         }
+    }
+
+    func cellLabel(_ cell: Cell) -> String {
+        let form = meanings[cell.meaning]?.forms[cell.lang] ?? cell.meaning
+        guard marked, let n = order.firstIndex(of: cell.meaning) else { return "\(form), \(Lang.name(cell.lang))" }
+        return "\(form), \(Lang.name(cell.lang)), meaning \(n + 1)"
     }
 
     var pickedLine: String? {
