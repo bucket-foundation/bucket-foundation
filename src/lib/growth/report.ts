@@ -1,6 +1,7 @@
 import type { BetaReport, CohortSummary, RetentionDay } from "@/lib/beta/metrics";
 import type { BetaTester, StoredBetaEvent } from "@/lib/beta/store";
 import { buildActivity, type ActivityReport } from "./activity";
+import { buildRevenueReport, type RevenueReport } from "./revenue";
 import type { WaitlistEntry } from "@/lib/waitlist/core";
 import { GROWTH_APPS, type GrowthApp, type GrowthSnapshot, type SnapshotBuild } from "./snapshot";
 
@@ -27,6 +28,7 @@ export interface GrowthReport {
   cadence: Record<GrowthApp, CadenceBuild[]>;
   medianDaysBetweenBuilds: Record<GrowthApp, number | null>;
   activity: ActivityReport;
+  revenue: RevenueReport;
 }
 
 export function weekStart(iso: string): string {
@@ -97,5 +99,6 @@ export function buildGrowthReport(input: {
     cadence,
     medianDaysBetweenBuilds: medianDays,
     activity: buildActivity(input.testers ?? [], input.events ?? [], now),
+    revenue: buildRevenueReport(snap?.revenue),
   };
 }

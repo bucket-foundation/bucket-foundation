@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from beta_feedback import APPS, client
+import revenue_reports
 
 REPO = os.environ.get("BUCKET_REPO", os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 MAX_NOTES = 50
@@ -88,20 +89,27 @@ def builds(api, app_id, app):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--dry-run", action="store_true", help="print counts, send nothing")
+    p.add_argument("--revenue-days", type=int, default=30, help="days of Sales and Trends reports to read")
     args = p.parse_args()
     api = client()
     snap = {"takenAt": datetime.now(timezone.utc).isoformat(), "testers": [], "builds": [], "visits": visits()}
     for app, app_id in APPS.items():
         snap["testers"] += testers(api, app_id, app)
         snap["builds"] += builds(api, app_id, app)
+    url, key = os.environ.get("GROWTH_SNAPSHOT_URL", ""), os.environ.get("WAITLIST_ADMIN_KEY", "")
+    stored = revenue_reports.read_stored(url, key) if url and key else None
+    snap["revenue"] = revenue_reports.collect(api, days=max(1, min(90, args.revenue_days)), stored=stored)
     if args.dry_run:
+        rev = snap["revenue"]
+        print("revenue " + " ".join(f"{k} {'no data yet' if rev[k] is None else len(rev[k]['rows'])}" for k in ("sales", "subscriptions", "events")) + f" known {rev['known']} notes {rev['notes']}")
         print(f"testers {len(snap['testers'])} builds {len(snap['builds'])} notes {sum(len(b['notes']) for b in snap['builds'])} visits {snap['visits']}")
         return
     url = os.environ["GROWTH_SNAPSHOT_URL"]
     req = urllib.request.Request(url, method="POST", data=json.dumps(snap).encode(),
                                  headers={"Authorization": "Bearer " + os.environ["WAITLIST_ADMIN_KEY"], "Content-Type": "application/json"})
     with urllib.request.urlopen(req) as r:
-        print(f"snapshot sent: {r.status}")
+        warning = json.loads(r.read() or b"{}").get("warning")
+        print(f"snapshot sent: {r.status}" + (f", warning {warning}: revenue was dropped" if warning else ""))
 
 
 if __name__ == "__main__":
