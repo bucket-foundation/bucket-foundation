@@ -4,10 +4,14 @@ import SwiftUI
 struct FlagTilesGame: View {
     @Environment(LangStore.self) private var langs
     @Environment(\.playRoom) private var playRoom
-    @ScaledMetric private var chrome: CGFloat = 240
+    @ScaledMetric private var chrome: CGFloat = 150
     @State private var deck: FlagTilesDeck?
     @State private var run = RunState()
-    @State private var drop = false
+    @State private var stream = FlagStream(count: 0)
+    @State private var origin = Date()
+    @State private var offset = 0.0
+    @State private var jump = 0.0
+    @State private var flash: Int?
     @State private var root = "en"
     @State private var entered = false
     @State private var round = PracticeRound()
@@ -36,19 +40,26 @@ struct FlagTilesGame: View {
             guard deck == nil, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
             entered = !DailyLedger.shared.hasPlayed(.flagTiles, deck: day)
-            deck = FlagTilesRules.deck(corpus.items, date: day, root: root)
+            let dealt = FlagTilesRules.deck(corpus.items, date: day, root: root)
+            stream = FlagStream(count: dealt.tiles.count)
+            deck = dealt
             if PlayLaunch.endGame { run = RunState(phase: .over, index: 3, score: 3) }
         }
-        .task(id: "\(run.index)-\(run.phase)") { await fall() }
+        .task(id: "\(run.index)-\(run.phase)") { await land() }
+        .task(id: flash) {
+            guard flash != nil else { return }
+            try? await Task.sleep(for: .milliseconds(160))
+            if !Task.isCancelled { flash = nil }
+        }
     }
 
     func ready(_ deck: FlagTilesDeck) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s4) {
             PlayLabel(text: "Today's lanes")
             HStack(spacing: PL.Space.s3) { ForEach(deck.langs, id: \.self) { PlayFlag(lang: $0, size: 44) } }
-            Text("A word falls. Tap the flag of its language before it lands. One miss ends the run; you may continue once.")
+            Text("Words fall in a stream. Tap the lane of the lowest word's language before it lands. One miss ends the run; you may continue once.")
                 .font(PL.body.font()).foregroundStyle(PL.paper)
-            Button("Start") { run = FlagTilesRules.step(run, .start) }.buttonStyle(.pl(.primary, size: .lg))
+            Button("Start") { begin(.start) }.buttonStyle(.pl(.primary, size: .lg))
         }
     }
 
@@ -59,33 +70,49 @@ struct FlagTilesGame: View {
                 Spacer()
                 PlayLabel(text: "Word \(run.index + 1)")
             }
-            GeometryReader { geo in
-                ZStack(alignment: .topLeading) {
-                    if let tile {
-                        PLCard {
-                            Text(tile.form).font(PL.heading.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
+            TimelineView(.animation) { tl in
+                GeometryReader { geo in
+                    let rows = stream.rows(from: run.index, clockMs: clock(tl.date))
+                    ZStack(alignment: .topLeading) {
+                        HStack(spacing: 0) {
+                            ForEach(Array(deck.langs.enumerated()), id: \.offset) { i, l in
+                                Button { tap(i) } label: {
+                                    VStack(spacing: PL.Space.s1) {
+                                        Spacer(minLength: 0)
+                                        PlayFlag(lang: l, size: 44)
+                                        PlayLabel(text: Lang.name(l)).lineLimit(1).minimumScaleFactor(0.6)
+                                    }
+                                    .padding(.bottom, PL.Space.s2)
+                                    .padding(.horizontal, 2)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(PL.paper.opacity(flash == i ? 0.3 : i.isMultiple(of: 2) ? 0.08 : 0.14))
+                                    .contentShape(.rect)
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel(Lang.name(l))
+                                .accessibilityIdentifier("flagLane-\(i)")
+                            }
                         }
-                        .frame(width: min(geo.size.width * 0.7, 260))
-                        .position(x: geo.size.width / 2, y: drop ? geo.size.height - 40 : 40)
+                        .clipShape(.rect(cornerRadius: 12))
+                        ForEach(rows, id: \.index) { row in
+                            Text(deck.tiles[row.index].form)
+                                .font(PL.heading.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
+                                .padding(.horizontal, PL.Space.s3)
+                                .frame(width: min(geo.size.width * 0.72, 280), height: Self.tile)
+                                .background(PL.card, in: .rect(cornerRadius: 10))
+                                .opacity(row.index == run.index ? 1 : 0.55)
+                                .position(x: geo.size.width / 2, y: Self.tile / 2 + max(0, geo.size.height - Self.foot - Self.tile) * row.progress)
+                                .allowsHitTesting(false)
+                        }
                     }
                 }
             }
-            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 360))
-            HStack(spacing: PL.Space.s2) {
-                ForEach(Array(deck.langs.enumerated()), id: \.offset) { i, l in
-                    Button { tap(i) } label: {
-                        VStack(spacing: PL.Space.s1) {
-                            PlayFlag(lang: l, size: 48)
-                            PlayLabel(text: Lang.name(l))
-                        }
-                        .frame(maxWidth: .infinity, minHeight: 80)
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(Lang.name(l))
-                }
-            }
+            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 440))
         }
     }
+
+    static let tile: CGFloat = 52
+    static let foot: CGFloat = 84
 
     func missed(_ deck: FlagTilesDeck) -> some View {
         let marks = FlagTilesRules.laneMarks(run, answer: answer)
@@ -101,14 +128,15 @@ struct FlagTilesGame: View {
                 }
             }
             if let tile, RevealRules.flagTiles(run) { PlayReveal(lang: tile.lang, form: tile.form, meaning: tile.meaning, root: root) }
-            if !run.continued { Button("Continue once") { run = FlagTilesRules.step(run, .continue) }.buttonStyle(.pl(.primary, size: .lg)) }
+            if !run.continued { Button("Continue once") { begin(.continue) }.buttonStyle(.pl(.primary, size: .lg)) }
             Button("End run") { run = FlagTilesRules.step(run, .end) }.buttonStyle(.pl(run.continued ? .primary : .ghost, size: .md))
         }
     }
 
     func retry() {
         round.begin()
-        run = FlagTilesRules.step(RunState(), .start)
+        run = RunState()
+        begin(.start)
     }
 
     func results(_ deck: FlagTilesDeck) -> some View {
@@ -137,22 +165,43 @@ struct FlagTilesGame: View {
         }
     }
 
+    func clock(_ now: Date) -> Double {
+        let t = now.timeIntervalSince(origin)
+        return offset + t * 1000 - jump * max(0, 1 - t / 0.18)
+    }
+
+    func begin(_ event: RunEvent) {
+        run = FlagTilesRules.step(run, event)
+        guard run.phase == .running else { return }
+        origin = Date()
+        offset = stream.clock(placing: run.index, at: 0)
+        jump = 0
+    }
+
     func tap(_ lane: Int) {
         guard run.phase == .running else { return }
         let right = lane == answer
+        let now = Date()
+        let at = clock(now)
         run = FlagTilesRules.step(run, .tap(lane: lane, answer: answer))
+        flash = lane
         PlaySound.effect(right, combo: run.score)
-        if run.phase == .running, run.index >= (deck?.tiles.count ?? 0) { run = FlagTilesRules.step(FlagTilesRules.step(run, .timeout), .end) }
+        guard run.phase == .running else { return }
+        if run.index >= (deck?.tiles.count ?? 0) {
+            run = FlagTilesRules.step(FlagTilesRules.step(run, .timeout), .end)
+            return
+        }
+        let target = stream.caughtUp(at, next: run.index)
+        jump = target - at
+        offset = target
+        origin = now
     }
 
-    func fall() async {
+    func land() async {
         guard run.phase == .running else { return }
-        let ms = FlagTilesRules.fallMs(run.index)
-        drop = false
-        try? await Task.sleep(for: .milliseconds(30))
-        withAnimation(.linear(duration: Double(ms) / 1000)) { drop = true }
         let index = run.index
-        try? await Task.sleep(for: .milliseconds(ms))
+        let wait = stream.landsInMs(index, clockMs: offset) - Date().timeIntervalSince(origin) * 1000
+        if wait > 0 { try? await Task.sleep(for: .milliseconds(Int(wait))) }
         guard !Task.isCancelled, run.phase == .running, run.index == index else { return }
         PlaySound.effect(false)
         run = FlagTilesRules.step(run, .timeout)

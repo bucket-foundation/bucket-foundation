@@ -125,6 +125,55 @@ public enum FlagTilesRules {
     }
 }
 
+public struct FlagRow: Sendable, Equatable {
+    public let index: Int
+    public let progress: Double
+}
+
+public struct FlagStream: Sendable, Equatable {
+    public static let gap = 0.4
+    public static let lead = 0.3
+    public static let ahead = 4
+
+    public let spawns: [Double]
+
+    public init(count: Int) {
+        var at = 0.0
+        var out: [Double] = []
+        out.reserveCapacity(max(0, count))
+        for i in 0..<max(0, count) {
+            out.append(at)
+            at += Double(FlagTilesRules.fallMs(i)) * Self.gap
+        }
+        spawns = out
+    }
+
+    public func progress(_ index: Int, clockMs: Double) -> Double {
+        guard spawns.indices.contains(index) else { return 0 }
+        return (clockMs - spawns[index]) / Double(FlagTilesRules.fallMs(index))
+    }
+
+    public func clock(placing index: Int, at progress: Double) -> Double {
+        guard spawns.indices.contains(index) else { return spawns.last ?? 0 }
+        return spawns[index] + progress * Double(FlagTilesRules.fallMs(index))
+    }
+
+    public func landsInMs(_ index: Int, clockMs: Double) -> Double { max(0, clock(placing: index, at: 1) - clockMs) }
+
+    public func caughtUp(_ clockMs: Double, next index: Int) -> Double {
+        guard spawns.indices.contains(index) else { return clockMs }
+        return max(clockMs, clock(placing: index, at: Self.lead))
+    }
+
+    public func rows(from index: Int, clockMs: Double) -> [FlagRow] {
+        guard index >= 0, index < spawns.count else { return [] }
+        return (index..<min(spawns.count, index + Self.ahead)).compactMap { i in
+            let p = progress(i, clockMs: clockMs)
+            return p >= 0 ? FlagRow(index: i, progress: min(1, p)) : nil
+        }
+    }
+}
+
 public struct TileSchedule: Sendable, Equatable {
     public let index: Int
     public let lane: Int
