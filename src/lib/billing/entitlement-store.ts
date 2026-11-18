@@ -22,13 +22,13 @@ export async function recordEntitlement(e: Entitlement): Promise<boolean> {
   return !error;
 }
 
-export async function readEntitlement(userId: string, product: string): Promise<Entitlement | null | undefined> {
+export async function readEntitlement(userId: string, product: string): Promise<Entitlement | null> {
   const { data, error } = await client()
     .from("academy_entitlements")
     .select("user_id,product,status,plan,current_period_end")
     .eq("user_id", userId)
     .eq("product", product)
     .maybeSingle();
-  if (error) return undefined;
+  if (error) throw new Error(`academy_entitlements read failed: ${error.message}`);
   return (data as Entitlement | null) ?? null;
 }
