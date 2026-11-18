@@ -4,6 +4,8 @@ import Security
 public struct WebEntitlement: Codable, Sendable, Equatable {
     public static let webPrefix = "web."
     public static let openEndedGrace: TimeInterval = 3 * 86_400
+    public static let freshFor: TimeInterval = 7 * 86_400
+    public static let clockSkew: TimeInterval = 300
 
     public let userId: String
     public let productId: String
@@ -18,8 +20,11 @@ public struct WebEntitlement: Codable, Sendable, Equatable {
     }
 
     public var until: Date { expires ?? fetched.addingTimeInterval(Self.openEndedGrace) }
+    public var lapse: Date { min(until, fetched.addingTimeInterval(Self.freshFor)) }
 
-    public func valid(for user: String?, now: Date) -> Bool { user == userId && until > now }
+    public func valid(for user: String?, now: Date) -> Bool {
+        user == userId && now < lapse && now >= fetched.addingTimeInterval(-Self.clockSkew)
+    }
 
     static func date(_ raw: String) -> Date? {
         let plain = raw.replacing(/\.\d+/, with: "")
@@ -54,7 +59,7 @@ extension BucketAPI {
         var r = URLRequest(url: base.appending(path: "api/academy/entitlement"))
         r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         r.cachePolicy = .reloadIgnoringLocalCacheData
-        guard let (data, http) = try? await transport.send(r), http.statusCode == 200 else { return .failed }
+        guard let (data, http) = try? await transport.send(r), (200..<300).contains(http.statusCode) else { return .failed }
         return WebEntitlement.parse(data, userId: userId, now: now)
     }
 }
@@ -125,6 +130,9 @@ public struct KeychainWebEntitlementVault: WebEntitlementVault {
 public final class WebMembership {
     public private(set) var cached: WebEntitlement?
     public private(set) var userId: String?
+    public private(set) var lapses = 0
+    @ObservationIgnored private var lapseWatch: Task<Void, Never>?
+    @ObservationIgnored let wait: @MainActor (TimeInterval) async -> Void
     @ObservationIgnored let vault: any WebEntitlementVault
     @ObservationIgnored let fetch: @MainActor (_ token: String, _ userId: String) async -> WebEntitlementReply
     @ObservationIgnored let clock: @MainActor () -> Date
@@ -133,21 +141,37 @@ public final class WebMembership {
         vault: any WebEntitlementVault,
         userId: String? = nil,
         clock: @escaping @MainActor () -> Date = { Date() },
+        wait: @escaping @MainActor (TimeInterval) async -> Void = { try? await Task.sleep(for: .seconds($0)) },
         fetch: @escaping @MainActor (_ token: String, _ userId: String) async -> WebEntitlementReply
     ) {
         self.vault = vault
         self.fetch = fetch
         self.clock = clock
+        self.wait = wait
         self.userId = userId
         cached = vault.load()
+        watchLapse()
+    }
+
+    func watchLapse() {
+        lapseWatch?.cancel()
+        guard let cached else { return }
+        let delay = cached.lapse.timeIntervalSince(clock())
+        guard delay > 0 else { return }
+        lapseWatch = Task { [weak self] in
+            await self?.wait(delay + 1)
+            guard !Task.isCancelled else { return }
+            self?.lapses += 1
+        }
     }
 
     public var active: WebEntitlement? {
+        _ = lapses
         guard let cached, cached.valid(for: userId, now: clock()) else { return nil }
         return cached
     }
 
-    public func tier(store: MemberTier) -> MemberTier { MemberTier.merged(store: store, web: cached, userId: userId, now: clock()).tier }
+    public func tier(store: MemberTier) -> MemberTier { MemberTier.merged(store: store, web: active, userId: userId, now: clock()).tier }
 
     public func refresh(userId user: String?, token: @MainActor () async -> String?) async {
         userId = user
@@ -163,6 +187,7 @@ public final class WebMembership {
         case .entitled(let found):
             cached = found
             vault.save(found)
+            watchLapse()
         case .none:
             drop()
         case .failed:
@@ -174,5 +199,6 @@ public final class WebMembership {
         guard cached != nil || vault.load() != nil else { return }
         cached = nil
         vault.clear()
+        watchLapse()
     }
 }

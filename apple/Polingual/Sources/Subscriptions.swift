@@ -24,8 +24,8 @@ final class Subscriptions {
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private var resets: Task<Void, Never>?
 
-    var access: Access { Entitlement.merged(store, web: web.cached, userId: web.userId, now: .now) }
-    var webMember: WebEntitlement? { Entitlement.webMember(store, web: web.cached, userId: web.userId, now: .now) }
+    var access: Access { Entitlement.merged(store, web: web.active, userId: web.userId, now: .now) }
+    var webMember: WebEntitlement? { Entitlement.webMember(store, web: web.active, userId: web.userId, now: .now) }
 
     init(forced: Access? = nil, web: WebMembership = WebMembership(vault: MemoryWebEntitlementVault()) { _, _ in .failed }) {
         self.web = web

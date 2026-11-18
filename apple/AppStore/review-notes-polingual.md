@@ -44,6 +44,11 @@ The app has no region-specific code. Features and content are the same everywher
 REGULATED OR THIRD-PARTY MATERIAL
 Polingual is not a regulated service. It includes third-party language data under open licences: Wiktionary via Kaikki (CC BY-SA), Tatoeba sentences (CC BY 2.0 FR), Wikipedia text (CC BY-SA), wordfreq, CC-CEDICT, FrequencyWords, Dickinson College Commentaries and the Digital Corpus of Sanskrit word lists. Pronunciation clips are generated with eSpeak NG. Radio streams and YouTube videos belong to their owners and are not hosted by us.
 
+## Web Memberships
+
+Polingual is a multiplatform service under guideline 3.1.3(b): a membership held on a polingual.com account opens the same lessons the in-app subscriptions open, and those subscriptions stay on sale in the app. The app has no purchase link, no code entry and no mention of buying elsewhere.
+A web member sees one line in Account, "Membership active until" and the date, and manages that membership at polingual.com.
+
 ## Open Items
 
 | Item | What is unknown or missing |

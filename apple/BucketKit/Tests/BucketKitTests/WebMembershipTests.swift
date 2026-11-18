@@ -45,14 +45,75 @@ struct EntitlementTransport: Transport {
         #expect(Self.parse(#"{"active":true,"productId":"web.polingual.gift.year","expiresAt":"next year"}"#) == .failed)
     }
 
+    @Test func datedGrantNeedsARefreshWithinSevenDays() {
+        let grant = Self.web()
+        #expect(grant.lapse == Self.now.addingTimeInterval(7 * 86_400))
+        #expect(grant.valid(for: "u1", now: Self.now.addingTimeInterval(6 * 86_400)))
+        #expect(!grant.valid(for: "u1", now: Self.now.addingTimeInterval(7 * 86_400 + 1)))
+        #expect(MemberTier.merged(store: .locked, web: grant, userId: "u1", now: Self.now.addingTimeInterval(30 * 86_400)).tier == .locked)
+        #expect(MemberTier.merged(store: .subscribed, web: grant, userId: "u1", now: Self.now.addingTimeInterval(30 * 86_400)).tier == .subscribed)
+    }
+
+    @Test func grantEndingSoonLapsesAtItsExpiry() {
+        let soon = Self.web(expires: Self.now.addingTimeInterval(3_600))
+        #expect(soon.lapse == Self.now.addingTimeInterval(3_600))
+        #expect(!soon.valid(for: "u1", now: Self.now.addingTimeInterval(3_601)))
+    }
+
+    @Test func clockSetBackBeforeTheFetchIsRejected() {
+        let grant = Self.web()
+        #expect(grant.valid(for: "u1", now: Self.now.addingTimeInterval(-120)))
+        #expect(!grant.valid(for: "u1", now: Self.now.addingTimeInterval(-600)))
+        #expect(!grant.valid(for: "u1", now: Self.now.addingTimeInterval(-30 * 86_400)))
+    }
+
+    @Test func tamperedCacheIsIgnored() throws {
+        let future = Self.web(expires: Self.now.addingTimeInterval(10 * 365 * 86_400), fetched: Self.now.addingTimeInterval(5 * 365 * 86_400))
+        #expect(!future.valid(for: "u1", now: Self.now))
+        let old = Self.web(expires: Self.now.addingTimeInterval(10 * 365 * 86_400), fetched: Self.now.addingTimeInterval(-30 * 86_400))
+        #expect(!old.valid(for: "u1", now: Self.now))
+        #expect(!Self.web("u9").valid(for: "u1", now: Self.now))
+        #expect((try? JSONDecoder().decode(WebEntitlement.self, from: Data(#"{"userId":"u1","productId":"web.x"}"#.utf8))) == nil)
+        #expect((try? JSONDecoder().decode(WebEntitlement.self, from: Data("garbage".utf8))) == nil)
+    }
+
+    static func keychainWorks() -> Bool {
+        let vault = KeychainWebEntitlementVault(service: "com.polingual.webmembership.probe")
+        vault.save(web())
+        defer { vault.clear() }
+        return vault.load() != nil
+    }
+
+    @Test(.enabled(if: keychainWorks()))
+    func keychainVaultRoundTrips() {
+        let vault = KeychainWebEntitlementVault(service: "com.polingual.webmembership.test")
+        vault.clear()
+        defer { vault.clear() }
+        #expect(vault.load() == nil)
+        vault.save(Self.web())
+        #expect(vault.load() == Self.web())
+        let renewed = Self.web(expires: Self.year.addingTimeInterval(86_400))
+        vault.save(renewed)
+        #expect(vault.load() == renewed)
+        vault.clear()
+        #expect(vault.load() == nil)
+    }
+
+    @Test func entitlementRoundTripsThroughCodable() throws {
+        let data = try JSONEncoder().encode(Self.web())
+        #expect(try JSONDecoder().decode(WebEntitlement.self, from: data) == Self.web())
+        let open = Self.web(expires: nil)
+        #expect(try JSONDecoder().decode(WebEntitlement.self, from: JSONEncoder().encode(open)) == open)
+    }
+
     @Test func openEndedGrantLastsThreeDaysPastTheFetch() {
         let open = Self.web(expires: nil)
         #expect(open.valid(for: "u1", now: Self.now.addingTimeInterval(2 * 86_400)))
         #expect(!open.valid(for: "u1", now: Self.now.addingTimeInterval(4 * 86_400)))
     }
 
-    @Test(arguments: [200, 401, 404, 500, 502, 503])
-    func onlyA200IsRead(_ status: Int) async {
+    @Test(arguments: [200, 301, 401, 403, 404, 500, 502, 503])
+    func onlySuccessIsRead(_ status: Int) async {
         let body = #"{"active":true,"productId":"web.polingual.gift.year","expiresAt":"2027-11-18T23:00:00Z","trial":false}"#
         let api = BucketAPI(transport: EntitlementTransport(status: status, body: body))
         let reply = await api.webEntitlement(token: "tok", userId: "u1", now: Self.now)
@@ -133,10 +194,22 @@ struct EntitlementTransport: Transport {
         var calls = 0
         let vault = MemoryWebEntitlementVault()
 
-        func membership(userId: String? = nil) -> WebMembership {
-            WebMembership(vault: vault, userId: userId, clock: { self.now }) { _, _ in
+        var during: (@MainActor () async -> Void)?
+        var waits: [TimeInterval] = []
+        var release: CheckedContinuation<Void, Never>?
+
+        func membership(userId: String? = nil, holdLapse: Bool = false) -> WebMembership {
+            WebMembership(
+                vault: vault, userId: userId, clock: { self.now },
+                wait: { delay in
+                    self.waits.append(delay)
+                    if holdLapse { await withCheckedContinuation { self.release = $0 } } else { try? await Task.sleep(for: .seconds(3_600)) }
+                }
+            ) { _, _ in
                 self.calls += 1
-                return self.reply
+                let reply = self.reply
+                await self.during?()
+                return reply
             }
         }
     }
@@ -215,6 +288,77 @@ struct EntitlementTransport: Transport {
         await m.refresh(userId: "u2") { "tok" }
         #expect(m.active == nil)
         #expect(w.vault.load() == nil)
+        #expect(m.tier(store: .locked) == .locked)
+    }
+
+    @Test func staleCacheIsIgnoredUntilASuccessfulRefresh() async {
+        let w = World()
+        let first = w.membership()
+        await first.refresh(userId: "u1") { "tok" }
+        w.now = w.now.addingTimeInterval(8 * 86_400)
+        w.reply = .failed
+        let m = w.membership(userId: "u1")
+        #expect(m.active == nil)
+        #expect(m.tier(store: .locked) == .locked)
+        #expect(m.tier(store: .subscribed) == .subscribed)
+        await m.refresh(userId: "u1") { "tok" }
+        #expect(m.tier(store: .locked) == .locked)
+        #expect(w.vault.load() != nil)
+        w.reply = .entitled(WebEntitlementTests.web(fetched: w.now))
+        await m.refresh(userId: "u1") { "tok" }
+        #expect(m.tier(store: .locked) == .subscribed)
+    }
+
+    @Test func clockSetBackHidesTheCachedGrant() async {
+        let w = World()
+        let m = w.membership()
+        await m.refresh(userId: "u1") { "tok" }
+        w.now = w.now.addingTimeInterval(-86_400)
+        #expect(m.active == nil)
+        #expect(m.tier(store: .locked) == .locked)
+    }
+
+    @Test func lateReplyForTheOldAccountIsDiscarded() async {
+        let w = World()
+        let m = w.membership()
+        w.during = {
+            w.during = nil
+            w.reply = .failed
+            await m.refresh(userId: "u2") { "tok" }
+        }
+        await m.refresh(userId: "u1") { "tok" }
+        #expect(m.userId == "u2")
+        #expect(m.cached == nil)
+        #expect(w.vault.load() == nil)
+        #expect(m.tier(store: .locked) == .locked)
+        #expect(w.calls == 2)
+    }
+
+    @Test func lateReplyAfterSignOutIsDiscarded() async {
+        let w = World()
+        let m = w.membership()
+        w.during = {
+            w.during = nil
+            await m.refresh(userId: nil) { "tok" }
+        }
+        await m.refresh(userId: "u1") { "tok" }
+        #expect(m.userId == nil)
+        #expect(m.cached == nil)
+        #expect(w.vault.load() == nil)
+    }
+
+    @Test func lapseIsReevaluatedMidSession() async {
+        let w = World()
+        w.reply = .entitled(WebEntitlementTests.web(expires: w.now.addingTimeInterval(3_600)))
+        let m = w.membership(holdLapse: true)
+        await m.refresh(userId: "u1") { "tok" }
+        #expect(m.tier(store: .locked) == .subscribed)
+        while w.release == nil { await Task.yield() }
+        #expect(w.waits.last == 3_601)
+        w.now = w.now.addingTimeInterval(3_602)
+        w.release?.resume()
+        while m.lapses == 0 { await Task.yield() }
+        #expect(m.active == nil)
         #expect(m.tier(store: .locked) == .locked)
     }
 
