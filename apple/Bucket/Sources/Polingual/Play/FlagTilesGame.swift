@@ -3,8 +3,7 @@ import SwiftUI
 
 struct FlagTilesGame: View {
     @Environment(LangStore.self) private var langs
-    @Environment(\.playRoom) private var playRoom
-    @ScaledMetric private var chrome: CGFloat = 150
+    @ScaledMetric private var chrome: CGFloat = 32
     @State private var deck: FlagTilesDeck?
     @State private var run = RunState()
     @State private var stream = FlagStream(count: 0)
@@ -110,7 +109,7 @@ struct FlagTilesGame: View {
                     }
                 }
             }
-            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: FlagBoard.least))
+            .playBoard(chrome: chrome, least: FlagBoard.least)
         }
     }
 

@@ -101,10 +101,66 @@ final class GamesUITests: XCTestCase {
         XCTAssertFalse(app.buttons["polyword.enter"].exists)
     }
 
+    private func checkBabelBoard(orientation: String, shot name: String) {
+        let app = launch(["-openGame", "babel"], orientation: orientation)
+        let cells = app.buttons.matching(identifier: "babelCell")
+        let hint = app.buttons["babelHint"]
+        XCTAssertTrue(cells.firstMatch.waitForExistence(timeout: 60))
+        let screen = app.windows.firstMatch.frame
+        XCTAssertEqual(cells.count, 36)
+        for cell in cells.allElementsBoundByIndex + [hint] {
+            XCTAssertGreaterThanOrEqual(cell.frame.minY, screen.minY)
+            XCTAssertLessThanOrEqual(cell.frame.maxY, screen.maxY)
+            XCTAssertGreaterThanOrEqual(cell.frame.height, 44)
+            XCTAssertTrue(cell.isHittable)
+        }
+        XCTAssertTrue(app.staticTexts["playTitle"].isHittable)
+        XCTAssertTrue(app.buttons["startLearning"].isHittable)
+        shot(name)
+    }
+
+    func testBabelBoardFitsTheScreen() {
+        checkBabelBoard(orientation: "portrait", shot: "babel-board")
+    }
+
+    func testBabelBoardFitsInLandscape() {
+        checkBabelBoard(orientation: "landscape", shot: "babel-landscape")
+    }
+
+    private func checkPlayStarts(_ game: String, start: String, board: XCUIElementQuery, orientation: String) {
+        let app = launch(["-openGame", game], orientation: orientation)
+        XCTAssertTrue(app.buttons[start].waitForExistence(timeout: 60))
+        app.buttons[start].tap()
+        XCTAssertTrue(board.firstMatch.waitForExistence(timeout: 20))
+        let screen = app.windows.firstMatch.frame
+        shot("\(game)-\(orientation)")
+        XCTAssertGreaterThanOrEqual(board.firstMatch.frame.minY, screen.minY)
+        XCTAssertLessThanOrEqual(board.firstMatch.frame.maxY, screen.maxY, "\(game) board runs past the screen in \(orientation)")
+        XCTAssertGreaterThanOrEqual(board.firstMatch.frame.height, orientation == "portrait" ? screen.height * 0.5 : 200, "\(game) board leaves the screen unused in \(orientation)")
+    }
+
+    func testFlagTilesStartsInBothOrientations() {
+        for orientation in ["portrait", "landscape"] {
+            checkPlayStarts("flagTiles", start: "Start", board: XCUIApplication().buttons.matching(identifier: "flagLane-0"), orientation: orientation)
+        }
+    }
+
+    func testWordSnakeStartsInBothOrientations() {
+        for orientation in ["portrait", "landscape"] {
+            checkPlayStarts("snake", start: "Start", board: XCUIApplication().descendants(matching: .any).matching(identifier: "snakeArena"), orientation: orientation)
+            XCTAssertTrue(XCUIApplication().buttons["End round"].isHittable)
+        }
+    }
+
+    func testTilesStartsInBothOrientations() {
+        for orientation in ["portrait", "landscape"] {
+            checkPlayStarts("tiles", start: "Go", board: XCUIApplication().descendants(matching: .any).matching(identifier: "tilesBoard"), orientation: orientation)
+        }
+    }
+
     func testLearnListsNoGames() {
-        let app = launch([])
+        let app = launch(["-learnScroll", "content"])
         let content = app.staticTexts["Content"]
-        for _ in 0..<4 where !content.exists { app.swipeUp() }
         XCTAssertTrue(content.waitForExistence(timeout: 60))
         XCTAssertFalse(app.staticTexts["Games"].exists)
         XCTAssertFalse(app.staticTexts["Daily Set"].exists)

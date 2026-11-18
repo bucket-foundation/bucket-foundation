@@ -52,7 +52,27 @@ extension EnvironmentValues {
     @Entry var playRoom: CGFloat = 0
 }
 
+struct PlayBoardFrame: ViewModifier {
+    @Environment(\.playRoom) private var room
+    @Environment(\.verticalSizeClass) private var vertical
+    let chrome: CGFloat
+    let least: CGFloat
+
+    func body(content: Content) -> some View {
+        content.frame(height: PlayBoard.height(room: room, chrome: chrome + PlayFoot.pad(vertical), least: least))
+    }
+}
+
+enum PlayFoot {
+    static func pad(_ vertical: UserInterfaceSizeClass?) -> CGFloat { vertical == .compact ? PL.Space.s2 : PL.Space.s6 }
+}
+
+extension View {
+    func playBoard(chrome: CGFloat, least: CGFloat) -> some View { modifier(PlayBoardFrame(chrome: chrome, least: least)) }
+}
+
 struct PlayScene<Content: View>: View {
+    @Environment(\.verticalSizeClass) private var vertical
     let game: GameKind
     @ViewBuilder let content: () -> Content
 
@@ -62,7 +82,21 @@ struct PlayScene<Content: View>: View {
         }
         .plGround(.lattice, band: true)
         .navigationTitle(game.title)
-        .plChrome()
+        .inlineTitle()
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(game.title)
+                    .font(PL.heading.font())
+                    .foregroundStyle(PL.paper)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityIdentifier("playTitle")
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                StartLearningButton(size: .sm, full: false)
+            }
+        }
         .fullHeightSession()
         .onDisappear { LangVoice.shared.hush() }
         .accessibilityIdentifier("play-\(game.rawValue)")
@@ -71,21 +105,10 @@ struct PlayScene<Content: View>: View {
     var page: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: PL.Space.s4) {
-                HStack(spacing: PL.Space.s3) {
-                    Text(game.title)
-                        .font(PL.heading.font())
-                        .foregroundStyle(PL.paper)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.6)
-                        .accessibilityAddTraits(.isHeader)
-                        .accessibilityIdentifier("playTitle")
-                    Spacer(minLength: PL.Space.s2)
-                    StartLearningButton(size: .sm, full: false)
-                }
                 content()
             }
             .padding(.horizontal, PL.Space.s4)
-            .padding(.bottom, PL.Space.s6)
+            .padding(.bottom, PlayFoot.pad(vertical))
         }
         .scrollContentBackground(.hidden)
     }

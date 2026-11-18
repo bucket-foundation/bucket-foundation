@@ -3,8 +3,8 @@ import SwiftUI
 
 struct TilesGame: View {
     @Environment(LangStore.self) private var langs
-    @Environment(\.playRoom) private var playRoom
-    @ScaledMetric private var chrome: CGFloat = 250
+    @Environment(\.verticalSizeClass) private var vertical
+    @ScaledMetric private var chrome: CGFloat = 132
     @State private var rounds: [TileRound] = []
     @State private var index = 0
     @State private var startedAt: Date?
@@ -34,7 +34,9 @@ struct TilesGame: View {
         .task(id: "\(index)-\(startedAt?.timeIntervalSince1970 ?? 0)") { await clock() }
     }
 
-    func play(_ r: TileRound) -> some View {
+    var wide: Bool { vertical == .compact }
+
+    func prompt(_ r: TileRound) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s3) {
             HStack {
                 PlayLabel(text: "Round \(index + 1) · \(points) points")
@@ -48,6 +50,23 @@ struct TilesGame: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
+        }
+    }
+
+    @ViewBuilder func play(_ r: TileRound) -> some View {
+        if wide, outcome == nil, let startedAt {
+            HStack(alignment: .top, spacing: PL.Space.s4) {
+                prompt(r).frame(width: 240)
+                field(r, startedAt)
+            }
+        } else {
+            stacked(r)
+        }
+    }
+
+    func stacked(_ r: TileRound) -> some View {
+        VStack(alignment: .leading, spacing: PL.Space.s3) {
+            prompt(r)
             if let outcome {
                 Text(outcome.perfect ? "Perfect" : "\(outcome.hits) right, \(outcome.wrong) wrong, \(outcome.missed) missed")
                     .font(PL.heading.font()).foregroundStyle(outcome.perfect ? PL.malachite : PL.ochre)
@@ -84,7 +103,13 @@ struct TilesGame: View {
                 }
             }
         }
-        .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 380))
+        .playBoard(chrome: wide ? 4 : chrome, least: wide ? 220 : 380)
+        .background {
+            RoundedRectangle(cornerRadius: 12).fill(PL.paper.opacity(0.08))
+                .accessibilityElement()
+                .accessibilityLabel("Falling words")
+                .accessibilityIdentifier("tilesBoard")
+        }
     }
 
     var results: some View {

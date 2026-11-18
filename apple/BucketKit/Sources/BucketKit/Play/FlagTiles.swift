@@ -199,7 +199,7 @@ public struct FlagClock: Sendable, Equatable {
 }
 
 public enum FlagBoard {
-    public static let least: CGFloat = 260
+    public static let least: CGFloat = 248
     public static let compactUnder: CGFloat = 320
     public static let tile: CGFloat = 52
 
