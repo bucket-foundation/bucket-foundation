@@ -112,6 +112,7 @@ export function giftForm(cfg: GiftConfig, req: GiftRequest): URLSearchParams {
   f.set("customer_email", req.buyerEmail);
   f.set("locale", req.locale);
   f.set("metadata[product]", GIFT_PRODUCT);
+  f.set("payment_intent_data[metadata][product]", GIFT_PRODUCT);
   f.set("metadata[recipient_email]", req.recipientEmail);
   f.set("metadata[recipient_name]", req.recipientName);
   f.set("metadata[deliver_on]", req.deliverOn);
@@ -146,30 +147,34 @@ export function isGiftEvent(event: unknown): boolean {
   return (e.type ?? "").startsWith("checkout.session.") && e.meta.product === GIFT_PRODUCT;
 }
 
-export function giftFromEvent(event: unknown, now: number): GiftPurchase | null {
+export type AttentionReason = "no_payment_intent" | "bad_buyer_email" | "bad_recipient";
+
+export interface GiftAttention extends Omit<GiftPurchase, "paymentIntent" | "buyerEmail" | "recipientEmail" | "recipientName"> {
+  paymentIntent: string | null;
+  buyerEmail: string | null;
+  recipientEmail: string | null;
+  recipientName: string | null;
+  reason: AttentionReason;
+}
+
+function paidGiftSession(event: unknown, now: number): Omit<GiftAttention, "reason"> | null {
   const e = eventParts(event);
   if (!isGiftEvent(event) || !(GIFT_PAID_EVENTS as readonly string[]).includes(e.type ?? "")) return null;
   const o = e.object;
   const meta = e.meta;
   const sessionId = str(o.id);
-  const paymentIntent = str(o.payment_intent);
-  if (!e.id || !sessionId || !paymentIntent || o.mode !== "payment" || o.payment_status !== "paid") return null;
+  if (!e.id || !sessionId || o.mode !== "payment" || o.payment_status !== "paid") return null;
   const details = (o.customer_details ?? {}) as Obj;
-  const buyerEmail = email(o.customer_email) ?? email(details.email);
-  const recipientEmail = email(meta.recipient_email);
-  const recipientName = line(meta.recipient_name).slice(0, GIFT_LIMITS.name);
-  const deliverOn = typeof meta.deliver_on === "string" && validDay(meta.deliver_on) ? meta.deliver_on : utcDay(now);
-  if (!buyerEmail || !recipientEmail || !recipientName) return null;
   return {
     eventId: e.id,
     sessionId,
-    paymentIntent,
+    paymentIntent: str(o.payment_intent),
     paidAt: new Date(e.created !== null ? e.created * 1000 : now).toISOString(),
-    buyerEmail,
-    recipientEmail,
-    recipientName,
+    buyerEmail: email(o.customer_email) ?? email(details.email),
+    recipientEmail: email(meta.recipient_email),
+    recipientName: line(meta.recipient_name).slice(0, GIFT_LIMITS.name) || null,
     note: line(meta.note).slice(0, GIFT_LIMITS.note) || null,
-    deliverOn,
+    deliverOn: typeof meta.deliver_on === "string" && validDay(meta.deliver_on) ? meta.deliver_on : utcDay(now),
     locale: meta.locale === "es" ? "es" : "en",
     amountSubtotal: int(o.amount_subtotal),
     amountTotal: int(o.amount_total),
@@ -177,15 +182,45 @@ export function giftFromEvent(event: unknown, now: number): GiftPurchase | null 
   };
 }
 
+function attentionReason(s: Omit<GiftAttention, "reason">): AttentionReason | null {
+  if (!s.paymentIntent) return "no_payment_intent";
+  if (!s.buyerEmail) return "bad_buyer_email";
+  return s.recipientEmail && s.recipientName ? null : "bad_recipient";
+}
+
+export function giftFromEvent(event: unknown, now: number): GiftPurchase | null {
+  const s = paidGiftSession(event, now);
+  return s && !attentionReason(s) ? (s as GiftPurchase) : null;
+}
+
+export function attentionFromEvent(event: unknown, now: number): GiftAttention | null {
+  const s = paidGiftSession(event, now);
+  const reason = s ? attentionReason(s) : null;
+  return s && reason ? { ...s, reason } : null;
+}
+
 export type VoidReason = "refund" | "dispute" | "price_mismatch";
 
-export function voidFromEvent(event: unknown): { paymentIntent: string; reason: VoidReason } | null {
+export interface GiftVoid {
+  paymentIntent: string;
+  reason: VoidReason;
+  gift: boolean;
+}
+
+export function voidFromEvent(event: unknown): GiftVoid | null {
   const e = eventParts(event);
   const paymentIntent = str(e.object.payment_intent);
   if (!paymentIntent) return null;
-  if (e.type === "charge.refunded") return e.object.refunded === true ? { paymentIntent, reason: "refund" } : null;
-  if (e.type === "charge.dispute.created" || e.type === "charge.dispute.funds_withdrawn") return { paymentIntent, reason: "dispute" };
+  const gift = e.meta.product === GIFT_PRODUCT;
+  if (e.type === "charge.refunded") return e.object.refunded === true ? { paymentIntent, reason: "refund", gift } : null;
+  if (e.type === "charge.dispute.created" || e.type === "charge.dispute.funds_withdrawn") return { paymentIntent, reason: "dispute", gift };
   return null;
+}
+
+export function isGiftPaymentFrom(body: unknown): boolean | null {
+  const pi = (body && typeof body === "object" ? body : null) as { id?: unknown; metadata?: unknown } | null;
+  if (!pi || typeof pi.id !== "string") return null;
+  return ((pi.metadata ?? {}) as Obj).product === GIFT_PRODUCT;
 }
 
 export interface LineItem {
@@ -240,8 +275,10 @@ export function giftCodeHash(code: string): string {
   return createHash("sha256").update(`polingual-gift:v1:${code}`).digest("hex");
 }
 
-export interface GiftRow extends Omit<GiftPurchase, "recipientEmail" | "recipientName"> {
+export interface GiftRow extends Omit<GiftPurchase, "paymentIntent" | "buyerEmail" | "recipientEmail" | "recipientName"> {
   id: string;
+  paymentIntent: string | null;
+  buyerEmail: string | null;
   recipientEmail: string | null;
   recipientName: string | null;
   expiresAt: string;
@@ -251,6 +288,7 @@ export interface GiftRow extends Omit<GiftPurchase, "recipientEmail" | "recipien
   redeemedAt: string | null;
   voidedAt: string | null;
   voidReason: VoidReason | null;
+  attentionReason: AttentionReason | null;
 }
 
 export type RedeemOutcome = "redeemed" | "already" | "used" | "expired" | "invalid" | "subscribed" | "void";
@@ -258,6 +296,8 @@ export type VoidOutcome = { outcome: "voided" | "already" | "held"; revoked: boo
 
 export interface GiftStore {
   record(purchase: GiftPurchase, expiresAt: string, deliverAfter: string, voidReason: VoidReason | null): Promise<GiftRow>;
+  recordAttention(attention: GiftAttention): Promise<GiftRow>;
+  knownSessions(sessionIds: string[]): Promise<string[]>;
   setCodeHash(id: string, codeHash: string): Promise<void>;
   markReceipt(id: string, at: string): Promise<void>;
   markDelivered(id: string, at: string): Promise<void>;
@@ -333,7 +373,7 @@ function footer(why: string, postalAddress: string): { text: string; html: strin
 }
 
 export function renderReceipt(gift: GiftRow, postalAddress: string): GiftEmail {
-  if (!gift.recipientEmail || !gift.recipientName) throw new Error("gift has no recipient");
+  if (!gift.recipientEmail || !gift.recipientName || !gift.buyerEmail) throw new Error("gift has no recipient");
   const c = COPY[gift.locale];
   const amount = giftAmount(gift.amountTotal, gift.currency, gift.locale);
   const lines = [c.receiptLead(gift.recipientName), ...(amount ? [c.paid(amount)] : []), c.arrives(gift.recipientEmail, longDay(gift.deliverOn, gift.locale)), c.help];
@@ -351,7 +391,7 @@ export function redeemUrl(site: string, locale: GiftLocale, code: string): strin
 }
 
 export function renderGiftEmail(gift: GiftRow, rawCode: string, site: string, postalAddress: string): GiftEmail {
-  if (!gift.recipientEmail || !gift.recipientName) throw new Error("gift has no recipient");
+  if (!gift.recipientEmail || !gift.recipientName || !gift.buyerEmail) throw new Error("gift has no recipient");
   const c = COPY[gift.locale];
   const code = formatGiftCode(rawCode);
   const link = redeemUrl(site, gift.locale, rawCode);
@@ -394,20 +434,23 @@ export interface GiftFulfilDeps {
   price: () => string | null;
   lineItems: (sessionId: string) => Promise<LineItem[] | null>;
   paymentState: (paymentIntent: string) => Promise<PaymentState | null>;
+  isGiftPayment: (paymentIntent: string) => Promise<boolean | null>;
+  paidSessions: (sinceSeconds: number) => Promise<string[] | null>;
+  alert: (subject: string, lines: string[], idempotencyKey: string) => Promise<boolean>;
   send: (email: GiftEmail, idempotencyKey: string) => Promise<boolean>;
   now: () => number;
   code?: () => string;
 }
 
 async function sendReceipt(deps: GiftFulfilDeps, store: GiftStore, gift: GiftRow, postal: string): Promise<boolean> {
-  if (gift.receiptSentAt || gift.voidedAt) return true;
+  if (gift.receiptSentAt || gift.voidedAt || gift.attentionReason) return true;
   if (!(await deps.send(renderReceipt(gift, postal), `polingual-gift/receipt/${gift.id}`))) return false;
   await store.markReceipt(gift.id, new Date(deps.now()).toISOString());
   return true;
 }
 
 async function deliver(deps: GiftFulfilDeps, store: GiftStore, gift: GiftRow, postal: string): Promise<boolean> {
-  if (gift.deliveredAt || gift.redeemedAt || gift.voidedAt || !gift.recipientEmail) return true;
+  if (gift.deliveredAt || gift.redeemedAt || gift.voidedAt || gift.attentionReason || !gift.recipientEmail) return true;
   const code = (deps.code ?? newGiftCode)();
   const hash = giftCodeHash(code);
   await store.setCodeHash(gift.id, hash);
@@ -416,18 +459,52 @@ async function deliver(deps: GiftFulfilDeps, store: GiftStore, gift: GiftRow, po
   return true;
 }
 
-async function handleVoid(deps: GiftFulfilDeps, v: { paymentIntent: string; reason: VoidReason }): Promise<HandlerResult> {
+async function handleVoid(deps: GiftFulfilDeps, v: GiftVoid): Promise<HandlerResult> {
   const store = deps.store();
   if (!store) return { status: 503, body: { error: "gifts_unavailable" } };
+  const gift = v.gift || (await deps.isGiftPayment(v.paymentIntent));
+  if (gift === null) return { status: 502, body: { error: "payment_check_failed" } };
+  if (!gift) return { status: 200, body: { received: true, ignored: true } };
   const r = await store.voidByPayment(v.paymentIntent, v.reason, new Date(deps.now()).toISOString());
   if (r.outcome === "voided") console.warn("[polingual-gift] voided", v.reason, r.revoked ? "entitlement ended" : "before redeem");
   return { status: 200, body: { received: true, void: r.outcome, revoked: r.revoked } };
+}
+
+async function handleAttention(deps: GiftFulfilDeps, a: GiftAttention): Promise<HandlerResult> {
+  const store = deps.store();
+  if (!store) return { status: 503, body: { error: "gifts_unavailable" } };
+  const gift = await store.recordAttention(a);
+  console.error("[polingual-gift] paid session needs attention:", gift.id, a.reason, a.sessionId);
+  const lines = [`A buyer paid for a Polingual gift and nothing was issued. Reason: ${a.reason}.`, `Checkout session: ${a.sessionId}`, `Payment intent: ${a.paymentIntent ?? "none"}`, `Gift row: ${gift.id}`, "Refund the payment in Stripe or fix the details and issue the gift by hand."];
+  if (!(await deps.alert("Polingual gift needs attention", lines, `polingual-gift/attention/${a.sessionId}`))) console.error("[polingual-gift] attention alert failed:", gift.id);
+  return { status: 200, body: { received: true, gift: gift.id, issued: false, attention: a.reason } };
+}
+
+export const RECONCILE_DAYS = 7;
+export const RECONCILE_HOUR_UTC = 14;
+
+export async function reconcileGifts(deps: GiftFulfilDeps): Promise<{ paid: number; missing: string[] } | null> {
+  const store = deps.store();
+  if (!store) return null;
+  const now = deps.now();
+  const paid = await deps.paidSessions(Math.floor((now - RECONCILE_DAYS * DAY_MS) / 1000));
+  if (!paid) return null;
+  const known = new Set(paid.length ? await store.knownSessions(paid) : []);
+  const missing = paid.filter((id) => !known.has(id));
+  if (missing.length) {
+    console.error("[polingual-gift] paid sessions with no gift row:", missing.join(", "));
+    const lines = [`${missing.length} paid Polingual gift sessions from the last ${RECONCILE_DAYS} days have no gift row.`, ...missing.map((id) => `Checkout session: ${id}`), "Nothing was issued for them. Resend the webhook event from Stripe or refund the payment."];
+    if (!(await deps.alert("Polingual gifts paid with no gift row", lines, `polingual-gift/reconcile/${utcDay(now)}`))) console.error("[polingual-gift] reconcile alert failed");
+  }
+  return { paid: paid.length, missing };
 }
 
 export async function handleGiftEvent(deps: GiftFulfilDeps, event: unknown): Promise<HandlerResult | null> {
   const voided = voidFromEvent(event);
   if (voided) return handleVoid(deps, voided);
   if (!isGiftEvent(event)) return null;
+  const attention = attentionFromEvent(event, deps.now());
+  if (attention) return handleAttention(deps, attention);
   const purchase = giftFromEvent(event, deps.now());
   if (!purchase) return { status: 200, body: { received: true, ignored: true } };
   const store = deps.store();

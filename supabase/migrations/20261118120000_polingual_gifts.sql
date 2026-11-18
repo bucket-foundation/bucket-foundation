@@ -2,9 +2,9 @@ create table if not exists bucket.polingual_gifts (
   id                    uuid        primary key default gen_random_uuid(),
   stripe_event_id       text        not null unique,
   stripe_session_id     text        not null unique,
-  stripe_payment_intent text        not null unique,
+  stripe_payment_intent text        unique,
   paid_at               timestamptz not null,
-  buyer_email           text        not null check (length(buyer_email) <= 254),
+  buyer_email           text        check (buyer_email is null or length(buyer_email) <= 254),
   recipient_email       text        check (recipient_email is null or length(recipient_email) <= 254),
   recipient_name        text        check (recipient_name is null or length(recipient_name) between 1 and 80),
   note                  text        check (note is null or length(note) <= 300),
@@ -22,12 +22,13 @@ create table if not exists bucket.polingual_gifts (
   redeemed_at           timestamptz,
   voided_at             timestamptz,
   void_reason           text        check (void_reason is null or void_reason in ('refund', 'dispute', 'price_mismatch')),
+  attention_reason      text        check (attention_reason is null or attention_reason in ('no_payment_intent', 'bad_buyer_email', 'bad_recipient')),
   pii_purged_at         timestamptz,
   created_at            timestamptz not null default now(),
   constraint polingual_gifts_void_pair check ((voided_at is null) = (void_reason is null))
 );
 
-create index if not exists polingual_gifts_due_idx on bucket.polingual_gifts (deliver_after) where delivered_at is null and redeemed_at is null and voided_at is null;
+create index if not exists polingual_gifts_due_idx on bucket.polingual_gifts (deliver_after) where delivered_at is null and redeemed_at is null and voided_at is null and attention_reason is null;
 
 create table if not exists bucket.polingual_gift_voids (
   stripe_payment_intent text        primary key,
@@ -52,6 +53,9 @@ as $$
 declare
   v bucket.polingual_gift_voids%rowtype;
 begin
+  if new.stripe_payment_intent is null then
+    return new;
+  end if;
   perform pg_advisory_xact_lock(hashtextextended('polingual-gift:' || new.stripe_payment_intent, 0));
   select * into v from bucket.polingual_gift_voids where stripe_payment_intent = new.stripe_payment_intent;
   if found and new.voided_at is null then

@@ -30,9 +30,11 @@ import {
   type LineItem,
   type VoidReason,
   type PaymentState,
+  attentionFromEvent,
+  reconcileGifts,
   paymentStateFrom,
 } from "../src/lib/billing/polingual-gift";
-import { fetchLineItems, fetchPaymentState, sendGiftEmail } from "../src/lib/billing/gift-store";
+import { fetchIsGiftPayment, fetchLineItems, fetchPaidGiftSessions, fetchPaymentState, sendGiftEmail } from "../src/lib/billing/gift-store";
 import { layeredLimiter } from "../src/lib/capture/handler";
 import { rateLimiter } from "../src/lib/download/handler";
 import { sharedRateLimiter, type MarkStore } from "../src/lib/download/marks";
@@ -73,7 +75,7 @@ function event(over: Record<string, unknown> = {}, meta: Record<string, unknown>
   };
 }
 
-const charge = (type: string, over: Record<string, unknown> = {}) => ({ id: `evt_${type}`, type, created: PAID, data: { object: { payment_intent: "pi_1", refunded: true, ...over } } });
+const charge = (type: string, over: Record<string, unknown> = {}) => ({ id: `evt_${type}`, type, created: PAID, data: { object: { payment_intent: "pi_1", refunded: true, ...(type === "charge.refunded" ? { metadata: { product: "polingual_gift" } } : {}), ...over } } });
 
 type Grant = { until: string; active: boolean; source: "gift" | "stripe" };
 
@@ -92,14 +94,23 @@ function memoryStore() {
       if (have) return { ...have };
       const held = voids.get(p.paymentIntent);
       const reason = voidReason ?? held?.reason ?? null;
-      const row = { ...p, id: `gift_${rows.length + 1}`, codeHash: null, expiresAt, deliverAfter: after, receiptSentAt: null, deliveredAt: null, redeemedAt: null, redeemedBy: null, voidedAt: reason ? (held?.at ?? p.paidAt) : null, voidReason: reason, purgedAt: null };
+      const row = { ...p, id: `gift_${rows.length + 1}`, codeHash: null, expiresAt, deliverAfter: after, receiptSentAt: null, deliveredAt: null, redeemedAt: null, redeemedBy: null, voidedAt: reason ? (held?.at ?? p.paidAt) : null, voidReason: reason, attentionReason: null, purgedAt: null };
       rows.push(row);
       return { ...row };
     },
+    recordAttention: async (a) => {
+      const have = rows.find((r) => r.sessionId === a.sessionId);
+      if (have) return { ...have };
+      const { reason, ...rest } = a;
+      const row = { ...rest, id: `gift_${rows.length + 1}`, codeHash: null, expiresAt: a.paidAt, deliverAfter: a.paidAt, receiptSentAt: null, deliveredAt: null, redeemedAt: null, redeemedBy: null, voidedAt: null, voidReason: null, attentionReason: reason, purgedAt: null };
+      rows.push(row);
+      return { ...row };
+    },
+    knownSessions: async (ids) => rows.filter((r) => ids.includes(r.sessionId)).map((r) => r.sessionId),
     setCodeHash: async (id, hash) => void (rows.find((r) => r.id === id)!.codeHash = hash),
     markReceipt: async (id, at) => void (rows.find((r) => r.id === id)!.receiptSentAt = at),
     markDelivered: async (id, at) => void (rows.find((r) => r.id === id)!.deliveredAt = at),
-    due: async (at, limit) => rows.filter((r) => !r.deliveredAt && !r.redeemedAt && !r.voidedAt && r.recipientEmail && r.deliverAfter <= at).slice(0, limit).map((r) => ({ ...r })),
+    due: async (at, limit) => rows.filter((r) => !r.deliveredAt && !r.redeemedAt && !r.voidedAt && !r.attentionReason && r.recipientEmail && r.deliverAfter <= at).slice(0, limit).map((r) => ({ ...r })),
     redeem: async (codeHash, userId, at) => {
       const g = rows.find((r) => r.codeHash === codeHash);
       const out = (outcome: RedeemOutcome, until: string | null = null) => ({ outcome, until });
@@ -132,7 +143,7 @@ function memoryStore() {
       return old.length;
     },
   };
-  return { rows, store, access };
+  return { rows, store, access, voids };
 }
 
 function fulfil(now = NOW, ok: (e: GiftEmail) => boolean = () => true, items: LineItem[] | null = [ITEM], state: PaymentState | null = "clear") {
@@ -140,6 +151,8 @@ function fulfil(now = NOW, ok: (e: GiftEmail) => boolean = () => true, items: Li
   const sent: { email: GiftEmail; key: string }[] = [];
   const clock = { now };
   const asked: string[] = [];
+  const alerts: { subject: string; lines: string[]; key: string }[] = [];
+  const stripe: { gift: boolean | null; paid: string[] | null } = { gift: true, paid: [] };
   let n = 0;
   const deps: GiftFulfilDeps = {
     store: () => mem.store,
@@ -148,6 +161,9 @@ function fulfil(now = NOW, ok: (e: GiftEmail) => boolean = () => true, items: Li
     price: () => "price_gift",
     lineItems: async (id) => (asked.push(id), items),
     paymentState: async (pi) => (asked.push(pi), state),
+    isGiftPayment: async () => stripe.gift,
+    paidSessions: async () => stripe.paid,
+    alert: async (subject, lines, key) => (alerts.push({ subject, lines, key }), true),
     send: async (email, key) => {
       if (!ok(email)) return false;
       sent.push({ email, key });
@@ -158,7 +174,7 @@ function fulfil(now = NOW, ok: (e: GiftEmail) => boolean = () => true, items: Li
   };
   const redeem = (code: unknown, user: string | null, at = clock.now) => handleRedeem({ store: () => mem.store, userId: async () => user, limited: open, ip: "1.1.1.1", now: () => at }, { code });
   const codeOf = (i: number) => sent.filter((s) => s.key.includes("/deliver/"))[i].email.text.match(/[A-Z2-9]{4}(-[A-Z2-9]{4}){3}/)![0];
-  return { ...mem, sent, deps, clock, asked, redeem, codeOf };
+  return { ...mem, sent, deps, clock, asked, redeem, codeOf, alerts, stripe };
 }
 
 async function delivered(f: ReturnType<typeof fulfil>, ev: unknown = event({}, { deliver_on: "2026-12-01" })) {
@@ -206,6 +222,7 @@ test("checkout builds a one-time payment session and is limited per IP and per b
   assert.equal(f.get("customer_email"), "buyer@example.com");
   assert.equal(f.get("success_url"), "https://www.polingual.com/es/gift?paid=1");
   assert.equal(f.get("cancel_url"), "https://www.polingual.com/es/gift");
+  assert.equal(f.get("payment_intent_data[metadata][product]"), "polingual_gift");
   assert.deepEqual([f.get("metadata[product]"), f.get("metadata[recipient_email]"), f.get("metadata[recipient_name]"), f.get("metadata[deliver_on]"), f.get("metadata[locale]"), f.get("metadata[note]")], ["polingual_gift", "kid@example.com", "Ana", "2026-12-25", "es", "Feliz Navidad"]);
   const forms: URLSearchParams[] = [];
   const keys: string[][] = [];
@@ -416,7 +433,8 @@ test("a second gift for the same user adds a year", async () => {
 });
 
 test("a refund before redeem voids the gift: no delivery and the code is refused", async () => {
-  assert.deepEqual(voidFromEvent(charge("charge.refunded")), { paymentIntent: "pi_1", reason: "refund" });
+  assert.deepEqual(voidFromEvent(charge("charge.refunded")), { paymentIntent: "pi_1", reason: "refund", gift: true });
+  assert.deepEqual(voidFromEvent(charge("charge.dispute.created")), { paymentIntent: "pi_1", reason: "dispute", gift: false });
   assert.equal(voidFromEvent(charge("charge.refunded", { refunded: false })), null);
   assert.equal(voidFromEvent(charge("charge.dispute.closed")), null);
   assert.equal(voidFromEvent(charge("charge.refunded", { payment_intent: null })), null);
@@ -549,7 +567,7 @@ test("recipient name, email and note go 30 days after redeem, expiry or void; th
 });
 
 function row(over: Partial<GiftRow> = {}): GiftRow {
-  return { id: "gift_1", eventId: "evt_1", sessionId: "cs_1", buyerEmail: "buyer@example.com", recipientEmail: "kid@example.com", recipientName: "Ana <3", note: "Enjoy <b>it</b>", deliverOn: "2026-12-25", locale: "en", paymentIntent: "pi_1", paidAt: "2026-12-01T15:00:00.000Z", amountSubtotal: 1234, amountTotal: 1234, currency: "usd", expiresAt: "2027-12-25T00:00:00.000Z", deliverAfter: "2026-12-25T00:00:00.000Z", receiptSentAt: null, deliveredAt: null, redeemedAt: null, voidedAt: null, voidReason: null, ...over };
+  return { id: "gift_1", eventId: "evt_1", sessionId: "cs_1", buyerEmail: "buyer@example.com", recipientEmail: "kid@example.com", recipientName: "Ana <3", note: "Enjoy <b>it</b>", deliverOn: "2026-12-25", locale: "en", paymentIntent: "pi_1", paidAt: "2026-12-01T15:00:00.000Z", amountSubtotal: 1234, amountTotal: 1234, currency: "usd", expiresAt: "2027-12-25T00:00:00.000Z", deliverAfter: "2026-12-25T00:00:00.000Z", receiptSentAt: null, deliveredAt: null, redeemedAt: null, voidedAt: null, voidReason: null, attentionReason: null, ...over };
 }
 
 test("the receipt names the recipient, the amount Stripe charged, the delivery date and the postal footer", () => {
@@ -624,4 +642,85 @@ test("the entitlement route falls back to the web row and survives a failed read
   assert.deepEqual([failed.status, (await failed.json()).active], [200, false]);
   const none = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW });
   assert.equal((await none.json()).active, false);
+});
+
+test("a paid session that cannot be fulfilled is recorded for attention and support is alerted", async () => {
+  const cases = [
+    [event({ payment_intent: null }), "no_payment_intent"],
+    [event({ customer_email: "nope", customer_details: null }), "bad_buyer_email"],
+    [event({}, { recipient_email: "x" }), "bad_recipient"],
+    [event({}, { recipient_name: "  " }), "bad_recipient"],
+  ] as const;
+  for (const [ev, reason] of cases) {
+    assert.equal(attentionFromEvent(ev, NOW)?.reason, reason);
+    const f = fulfil();
+    assert.deepEqual(await handleGiftEvent(f.deps, ev), { status: 200, body: { received: true, gift: "gift_1", issued: false, attention: reason } }, reason);
+    assert.deepEqual([f.rows.length, f.rows[0].attentionReason, f.rows[0].sessionId, f.rows[0].amountTotal], [1, reason, "cs_1", 1234]);
+    assert.deepEqual(f.alerts.map((a) => [a.subject, a.key]), [["Polingual gift needs attention", "polingual-gift/attention/cs_1"]]);
+    assert.ok(f.alerts[0].lines.some((l) => l.includes("cs_1")) && f.alerts[0].lines.some((l) => l.includes(reason)));
+    await handleGiftEvent(f.deps, ev);
+    assert.equal(f.rows.length, 1);
+    f.clock.now = NOW + 30 * 86_400_000 - 1;
+    assert.deepEqual(await deliverDueGifts(f.deps), { due: 0, sent: 0, failed: 0, purged: 0 });
+    assert.equal(f.sent.length, 0);
+    assert.deepEqual(await reconcileGifts({ ...f.deps, paidSessions: async () => ["cs_1"] }), { paid: 1, missing: [] });
+  }
+  assert.equal(attentionFromEvent(event(), NOW), null);
+  assert.equal(attentionFromEvent(event({ payment_status: "unpaid", payment_intent: null }), NOW), null);
+  const f = fulfil();
+  assert.equal((await handleGiftEvent({ ...f.deps, store: () => null }, cases[0][0]))?.status, 503);
+  const quiet = await handleGiftEvent({ ...f.deps, alert: async () => false }, cases[0][0]);
+  assert.deepEqual([quiet?.status, f.rows.length], [200, 1]);
+});
+
+test("the daily reconcile alerts on paid sessions with no gift row and issues nothing", async () => {
+  const f = fulfil();
+  await handleGiftEvent(f.deps, event());
+  await handleGiftEvent(f.deps, event({ id: "cs_void", payment_intent: "pi_v" }, {}, "evt_v"));
+  await handleGiftEvent(f.deps, charge("charge.refunded", { payment_intent: "pi_v" }));
+  const since: number[] = [];
+  const deps = { ...f.deps, paidSessions: async (s: number) => (since.push(s), f.stripe.paid) };
+  f.stripe.paid = ["cs_1", "cs_void"];
+  assert.deepEqual(await reconcileGifts(deps), { paid: 2, missing: [] });
+  assert.equal(since[0], Math.floor((NOW - 7 * 86_400_000) / 1000));
+  assert.equal(f.alerts.length, 0);
+  f.stripe.paid = ["cs_1", "cs_lost", "cs_gone"];
+  assert.deepEqual(await reconcileGifts(deps), { paid: 3, missing: ["cs_lost", "cs_gone"] });
+  assert.deepEqual([f.alerts.length, f.alerts[0].key, f.rows.length], [1, "polingual-gift/reconcile/2026-12-01", 2]);
+  assert.ok(f.alerts[0].lines.includes("Checkout session: cs_lost"));
+  f.stripe.paid = [];
+  assert.deepEqual(await reconcileGifts(deps), { paid: 0, missing: [] });
+  f.stripe.paid = null;
+  assert.equal(await reconcileGifts(deps), null);
+  assert.equal(await reconcileGifts({ ...deps, store: () => null }), null);
+  const pages = [
+    { has_more: true, data: [{ id: "cs_a", mode: "payment", payment_status: "paid", metadata: { product: "polingual_gift" } }, { id: "cs_sub", mode: "subscription", payment_status: "paid", metadata: { product: "polingual" } }] },
+    { has_more: false, data: [{ id: "cs_b", mode: "payment", payment_status: "paid", metadata: { product: "polingual_gift" } }, { id: "cs_unpaid", mode: "payment", payment_status: "unpaid", metadata: { product: "polingual_gift" } }] },
+  ];
+  const urls: string[] = [];
+  const stripe = (async (url: string) => (urls.push(url), new Response(JSON.stringify(pages[urls.length - 1])))) as unknown as typeof fetch;
+  assert.deepEqual(await fetchPaidGiftSessions("sk_test_x", 123, stripe), ["cs_a", "cs_b"]);
+  assert.match(urls[0], /\/v1\/checkout\/sessions\?status=complete&limit=100&created\[gte\]=123$/);
+  assert.match(urls[1], /&starting_after=cs_sub$/);
+  assert.equal(await fetchPaidGiftSessions("sk_test_x", 123, (async () => new Response("{}", { status: 500 })) as unknown as typeof fetch), null);
+});
+
+test("void events are stored only for gift payments", async () => {
+  const f = fulfil();
+  f.stripe.gift = false;
+  assert.deepEqual((await handleGiftEvent(f.deps, charge("charge.dispute.created", { payment_intent: "pi_sub" })))?.body, { received: true, ignored: true });
+  assert.deepEqual((await handleGiftEvent(f.deps, charge("charge.refunded", { payment_intent: "pi_sub", metadata: { product: "polingual" } })))?.body, { received: true, ignored: true });
+  assert.equal(f.voids.size, 0);
+  f.stripe.gift = null;
+  assert.deepEqual(await handleGiftEvent(f.deps, charge("charge.dispute.created")), { status: 502, body: { error: "payment_check_failed" } });
+  assert.equal(f.voids.size, 0);
+  assert.equal((await handleGiftEvent(f.deps, charge("charge.refunded")))?.body.void, "held");
+  f.stripe.gift = true;
+  assert.equal((await handleGiftEvent(f.deps, charge("charge.dispute.created", { payment_intent: "pi_2" })))?.body.void, "held");
+  assert.deepEqual(Array.from(f.voids.keys()), ["pi_1", "pi_2"]);
+  const pi = (body: unknown) => (async () => new Response(JSON.stringify(body))) as unknown as typeof fetch;
+  assert.equal(await fetchIsGiftPayment("sk_test_x", "pi_1", pi({ id: "pi_1", metadata: { product: "polingual_gift" } })), true);
+  assert.equal(await fetchIsGiftPayment("sk_test_x", "pi_1", pi({ id: "pi_1", metadata: {} })), false);
+  assert.equal(await fetchIsGiftPayment("sk_test_x", "pi_1", pi({})), null);
+  assert.equal(await fetchIsGiftPayment("sk_test_x", "pi_1", (async () => { throw new Error("down"); }) as unknown as typeof fetch), null);
 });

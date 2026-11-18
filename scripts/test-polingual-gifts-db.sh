@@ -83,6 +83,8 @@ q "update bucket.polingual_gifts set redeemed_by = '$B', redeemed_at = '2026-12-
 [ "$(q "select bucket.purge_polingual_gift_pii('2026-12-10T00:00:00Z')")" = 0 ] || fail "purge runs once per gift"
 
 [ "$(q "insert into bucket.polingual_gifts (stripe_event_id, stripe_session_id, stripe_payment_intent, paid_at, buyer_email, deliver_on, deliver_after, expires_at) values ('evt_dupe', 'cs_1', 'pi_dupe', now(), 'b@x.co', '2026-12-25', now(), now()) on conflict (stripe_session_id) do nothing returning 1" | wc -l | tr -d ' ')" = 0 ] || fail "one gift per checkout session"
+q "insert into bucket.polingual_gifts (stripe_event_id, stripe_session_id, paid_at, deliver_on, deliver_after, expires_at, attention_reason) values ('evt_att1', 'cs_att1', now(), '2026-12-25', now(), now(), 'no_payment_intent'), ('evt_att2', 'cs_att2', now(), '2026-12-25', now(), now(), 'bad_buyer_email')"
+[ "$(q "select count(*) from bucket.polingual_gifts where attention_reason is not null and stripe_payment_intent is null and voided_at is null")" = 2 ] || fail "rows with no payment intent insert through the trigger"
 [ "$(q "select count(*) from information_schema.columns where table_schema = 'bucket' and table_name = 'polingual_gifts' and column_name = 'code'")" = 0 ] || fail "no plaintext code column"
 [ "$(q "select has_table_privilege('anon', 'bucket.polingual_gifts', 'select') or has_table_privilege('authenticated', 'bucket.polingual_gifts', 'select')")" = f ] || fail "table closed to anon and authenticated"
 echo "polingual gifts: ok"
