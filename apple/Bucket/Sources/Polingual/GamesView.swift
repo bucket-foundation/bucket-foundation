@@ -30,6 +30,13 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
+    var dailySeeded: Bool {
+        switch self {
+        case .daily, .mini, .wordGroups, .voice, .letters, .polyword, .flagTiles, .shift, .atlas: true
+        case .same, .match, .flags, .babel, .snake, .forehead, .ispy, .duel, .tiles: false
+        }
+    }
+
     var detail: String {
         switch self {
         case .daily: String(localized: "Six words. The same six for everyone on your languages today.")
@@ -589,7 +596,14 @@ extension LangStore {
 
 extension LangStore {
     func shareText(_ kind: GameKind, _ shape: GameShare.Shape) -> String {
-        GameShare(title: kind.title, dayKey: dayKey(Date().timeIntervalSince1970 * 1000), shape: shape, streak: gameStreak).text
+        let seeded = kind.dailySeeded && (kind != .voice || dailySystem != nil)
+        return GameShare(
+            title: "\(Feedback.appName) \(kind.title)",
+            dayKey: seeded ? dayKey(Date().timeIntervalSince1970 * 1000) : nil,
+            shape: shape,
+            streak: gameStreak,
+            link: Feedback.isPolingual ? "https://polingual.com/play" : "https://bucket.foundation"
+        ).text
     }
 }
 

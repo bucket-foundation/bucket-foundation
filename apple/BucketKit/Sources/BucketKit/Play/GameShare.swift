@@ -9,24 +9,30 @@ public struct GameShare: Sendable, Equatable {
         case points(Int, marks: [Bool])
     }
 
-    public static let link = "https://polingual.com/play"
     static let groupSquares = ["🟨", "🟩", "🟦", "🟪"]
     static let groupSize = 4
 
     public let title: String
-    public let day: Int
+    public let day: Int?
     public let shape: Shape
     public let streak: Int
+    public let link: String
 
-    public init(title: String, day: Int, shape: Shape, streak: Int = 0) {
+    public init(title: String, day: Int?, shape: Shape, streak: Int = 0, link: String) {
         self.title = title
         self.day = day
         self.shape = shape
         self.streak = streak
+        self.link = link
     }
 
-    public init(title: String, dayKey: String, shape: Shape, streak: Int = 0) {
-        self.init(title: title, day: DailySeed.dayNumber(dayKey) ?? 1, shape: shape, streak: streak)
+    public init(title: String, dayKey: String?, shape: Shape, streak: Int = 0, link: String) {
+        self.init(title: title, day: dayKey.flatMap(DailySeed.dayNumber), shape: shape, streak: streak, link: link)
+    }
+
+    public static func groupOrder(solved: [String], groups: [String]) -> [Int] {
+        let found = solved.compactMap { groups.firstIndex(of: $0) }
+        return found.count == solved.count ? found : Array(solved.indices)
     }
 
     public static func clock(_ seconds: Int) -> String {
@@ -61,9 +67,9 @@ public struct GameShare: Sendable, Equatable {
     }
 
     public var text: String {
-        var lines = ["\(title) #\(day) \(score)"] + grid
+        var lines = [([title] + (day.map { ["#\($0)"] } ?? []) + [score]).joined(separator: " ")] + grid
         if streak > 0 { lines.append("🔥 \(streak)") }
-        lines.append(Self.link)
+        lines.append(link)
         return lines.joined(separator: "\n")
     }
 }
@@ -72,6 +78,7 @@ extension DailySeed {
     public static func dayNumber(_ day: String) -> Int? {
         let parts = day.split(separator: "-").compactMap { Int($0) }
         guard parts.count == 3, (1...12).contains(parts[1]), (1...31).contains(parts[2]) else { return nil }
-        return Polyword.dayNumber(PolyDate(parts[0], parts[1], parts[2]))
+        let n = Polyword.dayNumber(PolyDate(parts[0], parts[1], parts[2]))
+        return n >= 1 ? n : nil
     }
 }
