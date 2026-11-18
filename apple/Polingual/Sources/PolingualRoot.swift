@@ -26,7 +26,7 @@ struct PolingualRoot: View {
                 Studio(access: subs.access)
             }
         }
-        .task { if subs.access == .checking { await subs.refresh() } }
+        .task { if subs.store == .checking { await subs.refresh() } }
         .onChange(of: subs.access, initial: true) { _, access in
             LobbyAds.shared.allowed = Monetization.showsAds(access)
             DailyLedger.shared.capped = Monetization.capped(access)
@@ -152,7 +152,7 @@ struct Studio: View {
                 }
                 .environment(\.learnUpsell, upsell)
             } label: { Label { Text("Play") } icon: { PLArt.blocks.image(height: 24) } }
-            Tab(value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
+            Tab(value: AppTab.account) { AccountView(subscription: manageAction, memberLine: memberLine, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
         }
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()
@@ -184,6 +184,13 @@ struct Studio: View {
     var limitPaywall: (@MainActor () -> Void)? {
         guard Monetization.capped(subs.access) else { return nil }
         return { paywall = true }
+    }
+
+    var memberLine: String? { subs.webMember.map { Entitlement.memberLine($0) } }
+
+    var manageAction: (() -> Void)? {
+        guard subs.webMember == nil else { return nil }
+        return { manage() }
     }
 
     var upsell: (@MainActor () -> Void)? {

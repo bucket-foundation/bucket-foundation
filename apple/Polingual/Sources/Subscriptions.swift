@@ -1,3 +1,4 @@
+import BucketKit
 import Foundation
 import Observation
 import StoreKit
@@ -15,16 +16,21 @@ extension Notification.Name {
 @MainActor
 @Observable
 final class Subscriptions {
-    private(set) var access = Access.checking
+    private(set) var store = Access.checking
+    let web: WebMembership
     private(set) var trialEligible = true
     private(set) var current: String?
     private(set) var epoch = 0
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private var resets: Task<Void, Never>?
 
-    init(forced: Access? = nil) {
+    var access: Access { Entitlement.merged(store, web: web.cached, userId: web.userId, now: .now) }
+    var webMember: WebEntitlement? { Entitlement.webMember(store, web: web.cached, userId: web.userId, now: .now) }
+
+    init(forced: Access? = nil, web: WebMembership = WebMembership(vault: MemoryWebEntitlementVault()) { _, _ in .failed }) {
+        self.web = web
         if let forced {
-            access = forced
+            store = forced
             if case .subscribed(let id, _) = forced { current = id }
             return
         }
@@ -63,7 +69,7 @@ final class Subscriptions {
         for await result in Transaction.all {
             if case .verified(let t) = result { history.append(EntitlementRecord(t)) }
         }
-        access = Entitlement.access(current, now: .now, beta: await Self.testFlight())
+        store = Entitlement.access(current, now: .now, beta: await Self.testFlight())
         self.current = Entitlement.current(current, now: .now)
         trialEligible = Entitlement.trialEligible(history: history)
         if let product = try? await Product.products(for: Plan.all).first, let sub = product.subscription {
@@ -107,7 +113,7 @@ final class Subscriptions {
     #if DEBUG
     func grantDevPass() {
         UserDefaults.standard.set(true, forKey: "polingual.devPass")
-        access = .subscribed(productID: Plan.yearly, until: nil)
+        store = .subscribed(productID: Plan.yearly, until: nil)
         current = Plan.yearly
     }
     #endif
