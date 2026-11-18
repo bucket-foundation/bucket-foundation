@@ -188,6 +188,90 @@ struct PlayTests {
         #expect(FlagTilesRules.step(s, .end).phase == .over)
     }
 
+    @Test func babelHintNamesALegalNeighbourSwap() {
+        for seed in Int32(1)..<30 {
+            var d = F.deal(seed)
+            let b = Babel.playable(&d)
+            let h = Babel.hint(b)
+            #expect(h?.count == 2)
+            if let h, h.count == 2 {
+                #expect(Babel.adjacent(h[0], h[1]))
+                #expect(!Babel.matches(Babel.swapped(b, h[0], h[1])).isEmpty)
+            }
+        }
+        let names = ["dog", "cat", "sun"]
+        let dead = (0..<(Babel.size * Babel.size)).map { i in Cell(key: i, meaning: names[(i / Babel.size + i) % 3], lang: "es") }
+        #expect(Babel.hint(dead) == nil)
+        #expect(Babel.hint([]) == nil)
+    }
+
+    @Test func babelMarksMeaningsOnTheFirstTwoLevels() {
+        #expect(Babel.marksShown(level: 1))
+        #expect(Babel.marksShown(level: 2))
+        #expect(!Babel.marksShown(level: 3))
+    }
+
+    @Test func flagStreamKeepsSeveralWordsFallingInOrder() {
+        let s = FlagStream(count: 240)
+        #expect(s.spawns.count == 240)
+        #expect(s.spawns[0] == 0)
+        #expect(s.spawns[1] == 1360)
+        #expect(s.clock(placing: 0, at: 1) == 3400)
+        let mid = s.rows(from: 0, clockMs: 3000)
+        #expect(mid.map(\.index) == [0, 1, 2])
+        #expect(mid[0].progress > mid[1].progress && mid[1].progress > mid[2].progress)
+        #expect(s.rows(from: 0, clockMs: 0).map(\.index) == [0])
+        #expect(s.rows(from: 240, clockMs: 0).isEmpty)
+        #expect(s.rows(from: 238, clockMs: s.clock(placing: 239, at: 0.5)).map(\.index) == [238, 239])
+        for i in 0..<239 {
+            let landing = s.clock(placing: i, at: 1)
+            #expect(s.progress(i + 1, clockMs: landing) < 1)
+            #expect(s.progress(i + 1, clockMs: landing) > 0)
+        }
+    }
+
+    @Test func flagStreamPullsTheNextWordDownAfterAFastTap() {
+        let s = FlagStream(count: 240)
+        let early = s.caughtUp(100, next: 1)
+        #expect(s.progress(1, clockMs: early) == FlagStream.lead)
+        let late = s.clock(placing: 1, at: 0.6)
+        #expect(s.caughtUp(late, next: 1) == late)
+        #expect(s.caughtUp(500, next: 240) == 500)
+        #expect(s.landsInMs(1, clockMs: early) == Double(FlagTilesRules.fallMs(1)) * (1 - FlagStream.lead))
+        #expect(s.landsInMs(0, clockMs: 9000) == 0)
+        #expect(FlagStream(count: 0).rows(from: 0, clockMs: 0).isEmpty)
+    }
+
+    @Test func flagClockEasesTheCatchUpWithoutAJump() {
+        let s = FlagStream(count: 240)
+        let start = FlagClock(offset: s.clock(placing: 0, at: 0))
+        #expect(start.at(250) == 250)
+        #expect(start.landsInMs(0, in: s, sinceMs: 400) == 3000)
+        let fast = start.caughtUp(250, next: 1, in: s)
+        #expect(fast.at(0) == 250)
+        #expect(fast.jump > 0)
+        #expect(fast.at(FlagClock.easeMs) == s.clock(placing: 1, at: FlagStream.lead) + FlagClock.easeMs)
+        #expect(fast.at(90) > fast.at(0) && fast.at(90) < fast.at(FlagClock.easeMs))
+        #expect(fast.landsInMs(1, in: s, sinceMs: 0) == Int((3400 * (1 - FlagStream.lead)).rounded(.up)))
+        let slow = start.caughtUp(3300, next: 1, in: s)
+        #expect(slow.jump == 0 && slow.at(0) == 3300)
+        #expect(slow.landsInMs(1, in: s, sinceMs: 0) == 1360 + 3400 - 3300)
+        #expect(start.landsInMs(0, in: s, sinceMs: 5000) < 0)
+    }
+
+    @Test func flagBoardFitsShortScreensAndLandsWordsAboveTheFlags() {
+        #expect(FlagBoard.compact(FlagBoard.least))
+        #expect(!FlagBoard.compact(440))
+        #expect(FlagBoard.foot(260) >= 44)
+        #expect(FlagBoard.tileY(0, height: 440) == FlagBoard.tile / 2)
+        #expect(FlagBoard.tileY(1, height: 440) + FlagBoard.tile / 2 == 440 - FlagBoard.foot(440))
+        #expect(FlagBoard.tileY(1, height: 260) + FlagBoard.tile / 2 == 260 - FlagBoard.foot(260))
+        #expect(FlagBoard.tileY(2, height: 260) == FlagBoard.tileY(1, height: 260))
+        #expect(FlagBoard.tileY(1, height: 260) - FlagBoard.tileY(0, height: 260) >= 150)
+        #expect(PlayBoard.height(room: 340, chrome: 150, least: FlagBoard.least) == FlagBoard.least)
+        #expect(PlayBoard.height(room: 760, chrome: 150, least: FlagBoard.least) == 610)
+    }
+
     @Test func flagTilesFallSpeedsUpEveryTenWordsToAFloor() {
         #expect(FlagTilesRules.fallMs(0) == 3400)
         #expect(FlagTilesRules.fallMs(9) == 3400)

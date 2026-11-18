@@ -15,6 +15,11 @@ struct BabelGame: View {
     @State private var root = "en"
     @State private var set: [String] = []
     @State private var recorded = false
+    @State private var order: [String] = []
+    @State private var hint: [Int] = []
+
+    static let marks: [Color] = [PL.vermilion, PL.lapis, PL.ochre, PL.malachite, PL.tyrian]
+    var marked: Bool { Babel.marksShown(level: level.number) }
 
     var done: Bool { RevealRules.babel(cleared: cleared.count, goal: level.goal, movesLeft: moves) || PlayLaunch.endGame }
 
@@ -38,24 +43,65 @@ struct BabelGame: View {
                 Spacer()
                 PlayLabel(text: "\(moves) moves")
             }
-            Text("Swap two neighbours. Three words in a row that mean the same thing clear.").font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.9))
+            Text(pickedLine ?? "Swap two neighbours. Three words in a row that mean the same thing clear.")
+                .font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.9)).lineLimit(2, reservesSpace: true)
+                .accessibilityIdentifier("babelLine")
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: PL.Space.s1), count: Babel.size), spacing: PL.Space.s1) {
                 ForEach(Array(board.enumerated()), id: \.element.key) { i, cell in
                     Button { tap(i) } label: {
                         VStack(spacing: 2) {
                             Text(meanings[cell.meaning]?.forms[cell.lang] ?? cell.meaning)
                                 .font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.5)
-                            PlayLabel(text: cell.lang, onDark: false)
+                            HStack(spacing: 3) {
+                                if marked, let n = order.firstIndex(of: cell.meaning) { mark(n, size: 14) }
+                                PlayLabel(text: cell.lang, onDark: false)
+                            }
                         }
                         .frame(maxWidth: .infinity, minHeight: 52)
                         .padding(2)
                         .background(picked == i ? PL.maya : PL.card, in: .rect(cornerRadius: 8))
+                        .overlay { if hint.contains(i) { RoundedRectangle(cornerRadius: 8).stroke(PL.ochre, lineWidth: 3) } }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel(cellLabel(cell))
                 }
             }
             .gameShake(shake)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 64), spacing: PL.Space.s2, alignment: .leading)], alignment: .leading, spacing: PL.Space.s1) {
+                ForEach(Array(order.enumerated()), id: \.element) { n, id in
+                    HStack(spacing: 4) {
+                        if marked { mark(n, size: 16) }
+                        Text(meanings[id]?.meaning ?? "").font(PL.small.font()).foregroundStyle(PL.paper).lineLimit(1).minimumScaleFactor(0.6)
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(marked ? "\(n + 1), \(meanings[id]?.meaning ?? "")" : meanings[id]?.meaning ?? "")
+                }
+            }
+            .accessibilityIdentifier("babelKey")
+            Button("Show a move") { hint = Babel.hint(board) ?? [] }
+                .buttonStyle(.pl(.ghost, size: .sm))
+                .accessibilityIdentifier("babelHint")
         }
+    }
+
+    func cellLabel(_ cell: Cell) -> String {
+        let form = meanings[cell.meaning]?.forms[cell.lang] ?? cell.meaning
+        guard marked, let n = order.firstIndex(of: cell.meaning) else { return "\(form), \(Lang.name(cell.lang))" }
+        return "\(form), \(Lang.name(cell.lang)), meaning \(n + 1)"
+    }
+
+    var pickedLine: String? {
+        guard let p = picked, board.indices.contains(p), let m = meanings[board[p].meaning], let form = m.forms[board[p].lang] else { return nil }
+        return "\(form) is \(Lang.name(board[p].lang)) for \(m.meaning)."
+    }
+
+    func mark(_ n: Int, size: CGFloat) -> some View {
+        Text("\(n + 1)")
+            .font(.system(size: size * 0.7, weight: .bold, design: .rounded))
+            .foregroundStyle(PL.paper)
+            .frame(width: size, height: size)
+            .background(Self.marks[n % Self.marks.count], in: .circle)
+            .accessibilityHidden(true)
     }
 
     var results: some View {
@@ -94,6 +140,8 @@ struct BabelGame: View {
             list = Babel.meanings(corpus.items, langs: set, level: level.number, root: root)
         }
         meanings = Dictionary(uniqueKeysWithValues: list.map { ($0.id, $0) })
+        order = list.map(\.id)
+        hint = []
         var d = Dealer(list, set, XorRng(ISpy.hash(DealSeeds.fresh())))
         board = Babel.playable(&d)
         dealer = d
@@ -105,6 +153,7 @@ struct BabelGame: View {
     }
 
     func tap(_ i: Int) {
+        hint = []
         guard let p = picked else { picked = i; return }
         picked = nil
         guard p != i, Babel.adjacent(p, i), var d = dealer else { return }
