@@ -79,18 +79,71 @@ import Testing
         #expect(b.adGrants == 0)
     }
 
-    @Test func clockMovedBackKeepsTheHighWaterDay() {
+    @Test func clockMovedBackOneDayKeepsTheHighWaterDay() {
         var b = Self.spentBudget()
         b.grantCards(day: Self.day)
         b.grantCards(day: Self.day)
         let back = b.on("2026-11-17")
         #expect(back == b)
-        b.charge(cards: 5, day: "2026-11-10")
+        b.charge(cards: 5, day: "2026-11-17")
         #expect(b.day == Self.day)
         #expect(b.cards == 65)
-        let again = b.grantCards(day: "2026-11-10")
+        let again = b.grantCards(day: "2026-11-17")
         #expect(!again)
         #expect(b.on("garbage") == b)
+    }
+
+    @Test func clockSetFarForwardOnceDoesNotPinTheLedger() {
+        let future = "2027-03-01"
+        var b = DailyBudget(day: future)
+        b.charge(newWords: 12, cards: 60, day: future)
+        b.grantCards(day: future)
+        b.grantCards(day: future)
+        b.markPlayed("atlas", deck: future)
+        b.grantRetry("atlas", deck: future, capped: true)
+        b.grantRetry("atlas", deck: future, capped: true)
+        let back = b.on(Self.day)
+        #expect(back == DailyBudget(day: Self.day))
+        #expect(!back.spent(Self.limits, capped: true))
+        #expect(back.cardGrantsLeft == 2)
+        #expect(!back.hasPlayed("atlas", deck: Self.day))
+        #expect(back.retriesLeft("atlas", deck: Self.day) == 2)
+        #expect(b.on("2026-11-20").day == "2026-11-20")
+        #expect(DailyBudget(day: "2026-11-20").on(Self.day) == DailyBudget(day: Self.day))
+    }
+
+    @Test func attemptFromAFarFutureDeckDoesNotBlockToday() {
+        var b = DailyBudget(day: Self.day)
+        b.markPlayed("shift", deck: "2027-03-01")
+        b.grantRetry("shift", deck: "2027-03-01", capped: true)
+        b.grantRetry("shift", deck: "2027-03-01", capped: true)
+        #expect(!b.hasPlayed("shift", deck: Self.day))
+        #expect(b.retriesLeft("shift", deck: Self.day) == 2)
+        b.markPlayed("shift", deck: Self.day, title: "2 of 4 found")
+        #expect(b.first("shift", deck: Self.day)?.title == "2 of 4 found")
+    }
+
+    @Test func oneDayAheadAcrossTimeZonesKeepsTheLedger() throws {
+        let tokyo = try #require(TimeZone(identifier: "Asia/Tokyo"))
+        let honolulu = try #require(TimeZone(identifier: "Pacific/Honolulu"))
+        let moment = Date(timeIntervalSince1970: 1_795_042_800)
+        let ahead = dayKey(moment.timeIntervalSince1970 * 1000, tz: tokyo)
+        let behind = dayKey(moment.timeIntervalSince1970 * 1000, tz: honolulu)
+        #expect(ahead == "2026-11-19")
+        #expect(behind == "2026-11-18")
+        #expect(!DailyDeck.tooFarAhead(ahead, of: behind))
+        var b = DailyBudget(day: ahead)
+        b.charge(newWords: 12, cards: 60, day: ahead)
+        b.markPlayed("daily", deck: ahead)
+        b.grantRetry("daily", deck: ahead, capped: true)
+        let landed = b.on(behind)
+        #expect(landed == b)
+        #expect(landed.spent(Self.limits, capped: true))
+        #expect(landed.hasPlayed("daily", deck: behind))
+        #expect(landed.retriesLeft("daily", deck: behind) == 0)
+        #expect(DailyDeck.tooFarAhead("2026-11-20", of: behind))
+        #expect(!DailyDeck.tooFarAhead("2027-01-01", of: "2026-12-31"))
+        #expect(!DailyDeck.tooFarAhead("garbage", of: behind))
     }
 
     @Test func clockMovedBackNeverReopensAnAttemptOrRetries() {
@@ -382,12 +435,47 @@ import Testing
         #expect(l.now.cards == 0)
     }
 
-    @Test func clockMovedBackDoesNotReopenTheBudget() {
+    @Test func clockMovedBackOneDayDoesNotReopenTheBudget() {
         let w = World()
         let l = w.ledger()
         l.charge(cards: 60)
-        w.now = w.now.addingTimeInterval(-3 * 86_400)
+        w.now = w.now.addingTimeInterval(-86_400)
         #expect(l.spent)
+        #expect(w.ledger().spent)
+    }
+
+    @Test func clockSetFarForwardThenCorrectedFreesTheLearner() async {
+        let w = World()
+        let real = w.now
+        w.now = real.addingTimeInterval(90 * 86_400)
+        let l = w.ledger()
+        l.charge(newWords: 12, cards: 60)
+        l.markPlayed("atlas", title: "9000 points")
+        _ = await l.retry("atlas")
+        _ = await l.retry("atlas")
+        #expect(l.spent)
+        w.now = real
+        #expect(!l.spent)
+        #expect(l.now.cards == 0)
+        #expect(!l.hasPlayed("atlas"))
+        #expect(l.retryOffer("atlas") == .ad(left: 2))
+        let reloaded = w.ledger()
+        #expect(!reloaded.spent)
+        reloaded.charge(cards: 4)
+        #expect(w.vault.load()?.day == reloaded.today)
+        #expect(w.vault.load()?.cards == 4)
+    }
+
+    @Test func travelOneDayBackAcrossTimeZonesKeepsTheCap() {
+        let w = World()
+        w.tz = TimeZone(identifier: "Asia/Tokyo")!
+        let l = w.ledger()
+        l.charge(cards: 60)
+        let day = l.today
+        w.tz = TimeZone(identifier: "Pacific/Honolulu")!
+        #expect(l.today != day)
+        #expect(l.spent)
+        #expect(l.now.day == day)
         #expect(w.ledger().spent)
     }
 

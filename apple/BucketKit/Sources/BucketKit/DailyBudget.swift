@@ -55,6 +55,13 @@ public enum DailyDeck {
         return PolyDate(parts[0], parts[1], parts[2]).ordinal
     }
 
+    public static let maxDaysAhead = 1
+
+    public static func tooFarAhead(_ stored: String, of today: String) -> Bool {
+        guard let x = ordinal(stored), let y = ordinal(today) else { return false }
+        return x - y > maxDaysAhead
+    }
+
     public static func later(_ a: String, than b: String) -> Bool {
         guard let x = ordinal(a) else { return false }
         guard let y = ordinal(b) else { return true }
@@ -82,6 +89,7 @@ public struct DailyBudget: Codable, Sendable, Equatable {
     public init(day: String) { self.day = day }
 
     public func on(_ today: String) -> DailyBudget {
+        if DailyDeck.tooFarAhead(day, of: today) { return DailyBudget(day: today) }
         guard DailyDeck.later(today, than: day) else { return self }
         var next = DailyBudget(day: today)
         next.attempts = attempts
@@ -133,12 +141,12 @@ public struct DailyBudget: Codable, Sendable, Equatable {
     }
 
     func current(_ game: String, deck: String) -> DailyAttempt? {
-        guard let a = attempts[game], !DailyDeck.later(deck, than: a.deck) else { return nil }
+        guard let a = attempts[game], !DailyDeck.later(deck, than: a.deck), !DailyDeck.tooFarAhead(a.deck, of: deck) else { return nil }
         return a
     }
 
     func stale(_ game: String, deck: String) -> Bool {
-        attempts[game].map { DailyDeck.later($0.deck, than: deck) } ?? false
+        attempts[game].map { DailyDeck.later($0.deck, than: deck) && !DailyDeck.tooFarAhead($0.deck, of: deck) } ?? false
     }
 
     public func hasPlayed(_ game: String, deck: String) -> Bool { current(game, deck: deck)?.played ?? false }
