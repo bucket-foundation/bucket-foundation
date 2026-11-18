@@ -17,7 +17,7 @@ struct DuelGame: View {
     var prompt: GamePrompt? { index < prompts.count ? prompts[index] : nil }
 
     var body: some View {
-        PlayScene(game: .duel, stickers: playStickers(.seal, .kente)) {
+        PlayScene(game: .duel) {
             if prompts.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let prompt, !PlayLaunch.endGame {

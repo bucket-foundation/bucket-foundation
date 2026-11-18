@@ -21,7 +21,7 @@ struct ISpyGame: View {
     var round: SpyRound? { index < rounds.count ? rounds[index] : nil }
 
     var body: some View {
-        PlayScene(game: .ispy, stickers: playStickers(.star, .calligraphyAin)) {
+        PlayScene(game: .ispy) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let round, !PlayLaunch.endGame {

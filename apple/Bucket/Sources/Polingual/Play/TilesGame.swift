@@ -3,6 +3,8 @@ import SwiftUI
 
 struct TilesGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.playRoom) private var playRoom
+    @ScaledMetric private var chrome: CGFloat = 250
     @State private var rounds: [TileRound] = []
     @State private var index = 0
     @State private var startedAt: Date?
@@ -19,7 +21,7 @@ struct TilesGame: View {
     var round: TileRound? { index < rounds.count && lives > 0 ? rounds[index] : nil }
 
     var body: some View {
-        PlayScene(game: .tiles, stickers: playStickers(.azulejoGrid, .scriptHe)) {
+        PlayScene(game: .tiles) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let round, !PlayLaunch.endGame {
@@ -82,7 +84,7 @@ struct TilesGame: View {
                 }
             }
         }
-        .frame(height: 380)
+        .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 380))
     }
 
     var results: some View {
