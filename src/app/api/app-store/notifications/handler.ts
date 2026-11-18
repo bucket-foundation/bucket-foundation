@@ -4,6 +4,7 @@ import { JwsError, type VerifyOptions } from "@/lib/app-store/jws";
 import { decodeNotification } from "@/lib/app-store/notifications";
 import type { AppStoreEventStore } from "@/lib/app-store/store";
 import { entitlementFrom } from "@/lib/app-store/entitlement";
+import { withWebEntitlement, type WebEntitlementRow } from "@/lib/billing/web-entitlement";
 
 export const MAX_NOTIFICATION_BYTES = 65_536;
 const NO_STORE = { "cache-control": "no-store" };
@@ -76,13 +77,19 @@ export async function handleAccountToken(req: NextRequest, deps: TokenDeps): Pro
 
 export const POLINGUAL_BUNDLE_ID = "com.polingual.app";
 
-export async function handleEntitlement(req: NextRequest, deps: TokenDeps & { now?: () => number }): Promise<NextResponse> {
+export async function handleEntitlement(
+  req: NextRequest,
+  deps: TokenDeps & { now?: () => number; web?: (userId: string) => Promise<WebEntitlementRow | null | undefined> },
+): Promise<NextResponse> {
   const store = deps.store();
   if (!store?.eventsFor) return reply({ error: "unavailable" }, 503);
   const user = await deps.verifyUser(req);
   if (!user) return reply({ error: "unauthorized" }, 401);
   try {
-    return reply(entitlementFrom(await store.eventsFor(user.id, POLINGUAL_BUNDLE_ID), (deps.now ?? Date.now)()) as unknown as Record<string, unknown>, 200);
+    const now = (deps.now ?? Date.now)();
+    const appStore = entitlementFrom(await store.eventsFor(user.id, POLINGUAL_BUNDLE_ID), now);
+    const web = appStore.active || !deps.web ? null : await deps.web(user.id).catch(() => undefined);
+    return reply(withWebEntitlement(appStore, web, now) as unknown as Record<string, unknown>, 200);
   } catch (err) {
     console.error("[academy/entitlement] failed:", err instanceof Error ? err.message : err);
     return reply({ error: "read_failed" }, 502);

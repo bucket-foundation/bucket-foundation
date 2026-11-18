@@ -1,5 +1,7 @@
 import { jsonResponse } from "@/lib/academy/device-server";
 import { handleWebhook } from "@/lib/billing/polingual-checkout";
+import { giftFulfilDeps } from "@/lib/billing/gift-store";
+import { handleGiftEvent } from "@/lib/billing/polingual-gift";
 import { entitlementStoreConfigured, recordEntitlement } from "@/lib/billing/entitlement-store";
 
 export const runtime = "nodejs";
@@ -13,6 +15,7 @@ export async function POST(req: Request): Promise<Response> {
         secret: () => (entitlementStoreConfigured() ? (process.env.STRIPE_WEBHOOK_SECRET ?? null) : null),
         now: Date.now,
         record: recordEntitlement,
+        gift: (event) => handleGiftEvent(giftFulfilDeps(), event),
       },
       payload,
       req.headers.get("stripe-signature"),

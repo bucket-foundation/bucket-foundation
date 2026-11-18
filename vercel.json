@@ -46,6 +46,10 @@
       "schedule": "47 4 * * *"
     },
     {
+      "path": "/api/cron/gift-delivery",
+      "schedule": "5 13 * * *"
+    },
+    {
       "path": "/api/cron/whats-new-daily?slot=0",
       "schedule": "0 6 * * *"
     },

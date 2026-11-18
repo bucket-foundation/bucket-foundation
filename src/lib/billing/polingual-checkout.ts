@@ -158,6 +158,7 @@ export interface WebhookDeps {
   secret: () => string | null;
   now: () => number;
   record: (e: Entitlement) => Promise<boolean>;
+  gift?: (event: unknown) => Promise<HandlerResult | null>;
 }
 
 export async function handleWebhook(deps: WebhookDeps, payload: string, signature: string | null): Promise<HandlerResult> {
@@ -170,6 +171,8 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   } catch {
     return { status: 400, body: { error: "bad_payload" } };
   }
+  const gift = await deps.gift?.(event);
+  if (gift) return gift;
   const ent = entitlementFromEvent(event);
   if (!ent) return { status: 200, body: { received: true, ignored: true } };
   if (!(await deps.record(ent))) return { status: 500, body: { error: "record_failed" } };
