@@ -8,9 +8,9 @@ import FOOTER_LINKS from "@/lib/footer-links.json";
 const SITE_FONTS =
   "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Hebrew:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+Tamil:wght@700&family=Noto+Sans+Thai:wght@700&family=Noto+Sans+JP:wght@700&family=Noto+Sans+KR:wght@700&display=swap";
 
-export type SiteLocale = { code: string; rtl: boolean; words: string; labels: { app: string; support: string; privacy: string; terms: string; play: string; guides: string }; footer: { tagline: string; data: string; published: string } };
+export type SiteLocale = { code: string; rtl: boolean; words: string; labels: { app: string; support: string; privacy: string; terms: string; play: string; guides: string; teachers: string }; footer: { tagline: string; data: string; published: string } };
 
-const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { app: "Get the app", support: "Support", privacy: "Privacy", terms: "Terms", play: "Play", guides: "Guides" }, footer: { tagline: "Polingual · for iPhone and iPad", data: "Word data:", published: "Published by AGFarms LLC." } };
+const EN_SITE: SiteLocale = { code: "en", rtl: false, words: "Words", labels: { app: "Get the app", support: "Support", privacy: "Privacy", terms: "Terms", play: "Play", guides: "Guides", teachers: "Teachers" }, footer: { tagline: "Polingual · for iPhone and iPad", data: "Word data:", published: "Published by AGFarms LLC." } };
 
 function home(code: string): string {
   return code === "en" ? "/" : `/${code}`;
@@ -20,11 +20,11 @@ function wordsHref(code: string): string {
   return code === "en" ? "/word" : `/${code}/word`;
 }
 
-type FooterKey = "play" | "words" | "guides" | "privacy" | "terms" | "support" | "appstore";
+type FooterKey = "play" | "words" | "guides" | "teachers" | "privacy" | "terms" | "support" | "appstore";
 
 export function footerLinks(loc: SiteLocale): { key: string; href: string; label: string }[] {
   const labels: Record<FooterKey, string> = { ...loc.labels, words: loc.words, appstore: "App Store" };
-  return FOOTER_LINKS.map((l) => ({ key: l.key, href: l.key === "words" ? wordsHref(loc.code) : l.href, label: labels[l.key as FooterKey] }));
+  return FOOTER_LINKS.map((l) => ({ key: l.key, href: l.key === "words" ? wordsHref(loc.code) : l.key === "teachers" && loc.code === "es" ? "/es/teachers" : l.href, label: labels[l.key as FooterKey] }));
 }
 
 function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {

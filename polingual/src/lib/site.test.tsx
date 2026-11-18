@@ -28,7 +28,7 @@ test("the shared shell renders the Po logo, the App Store CTA and the flag foote
   assert.ok(html.includes(FLAG_STRIPE.slice(0, 40)), "flag stripe");
   assert.match(html, /href="\/play"[^>]*data-testid="nav-play"|data-testid="nav-play"[^>]*href="\/play"/);
   const footer = html.slice(html.indexOf("<footer"));
-  for (const href of ["/play", "/word", "/learn", "/privacy", "/terms", "/support", APP_STORE_URL]) assert.ok(footer.includes(`href="${href}"`), href);
+  for (const href of ["/play", "/word", "/learn", "/teachers", "/privacy", "/terms", "/support", APP_STORE_URL]) assert.ok(footer.includes(`href="${href}"`), href);
   assert.match(html, /Wiktionary/);
   assert.match(html, /<p>body<\/p>/);
 });

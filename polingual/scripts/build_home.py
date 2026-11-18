@@ -70,6 +70,8 @@ def localize(code, lang):
         html = html.replace("</head>", "<style>#app .band{min-height:clamp(150px,25dvh,260px);height:auto;padding-top:clamp(64px,11.5dvh,120px)}</style></head>", 1)
     if code in RTL:
         html = html.replace("</head>", "<style>h1,h2,p,small,b,span,a,.pill,.btn{unicode-bidi:plaintext}</style></head>", 1)
+    if code == "es":
+        html = html.replace('href="/teachers"', 'href="/es/teachers"')
     html = html.replace('href="/word"', f'href="/{code}/word"').replace("__HW__", browse(code, lang["strip"]))
     tr = json.dumps(lang["modal"], ensure_ascii=False).replace("</", "<\\/")
     return html.replace('<script src="/d8/beta.js">', f"<script>window.PL_TR={tr}</script>\n<script src=\"/d8/beta.js\">", 1)

@@ -53,8 +53,8 @@ for (const { code, file, base } of pages) {
 
   test(`${file} carries the shared footer links in every layout`, () => {
     assert.equal(p.footers.length, 4);
-    const want = footerLinks.map((l) => (l.key === "words" ? `${base}/word` : l.href));
-    assert.deepEqual(footerLinks.map((l) => l.key), ["play", "words", "guides", "privacy", "terms", "support", "appstore"]);
+    const want = footerLinks.map((l) => (l.key === "words" ? `${base}/word` : l.key === "teachers" && code === "es" ? "/es/teachers" : l.href));
+    assert.deepEqual(footerLinks.map((l) => l.key), ["play", "words", "guides", "teachers", "privacy", "terms", "support", "appstore"]);
     for (const links of p.footers) {
       const hrefs = links.map((a) => a.attrs.href);
       for (const href of want) assert.ok(hrefs.includes(href), `${file} footer lacks ${href}`);
