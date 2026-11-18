@@ -187,6 +187,16 @@ public enum LobbyRaceSeed {
     public static func dayKey(_ seed: UInt64) -> String { "race-\(seed)" }
     public static func dayNumber(_ seed: UInt64) -> Int { 1_000_000 + Int(seed % 1_000_000) }
     public static func deal(_ seed: UInt64) -> String { String(1 + seed % 1_000_000_000_000) }
+    public static func deckDay(_ seed: UInt64?, now: Date = Date()) -> String { seed.map(dayKey) ?? PlayDecks.deckDay(now) }
+}
+
+public struct RaceRandom: RandomNumberGenerator, Sendable {
+    var seeded: SeededRandom?
+    var system = SystemRandomNumberGenerator()
+
+    public init(seed: UInt64?) { seeded = seed.map(SeededRandom.init(seed:)) }
+
+    public mutating func next() -> UInt64 { seeded?.next() ?? system.next() }
 }
 
 @MainActor

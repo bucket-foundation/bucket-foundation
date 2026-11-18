@@ -15,6 +15,7 @@ struct FlagTilesGame: View {
     @State private var entered = false
     @State private var round = PracticeRound()
     @State private var day = PlayDecks.deckDay()
+    @State private var racing = false
 
     var tile: FlagRunTile? { deck.flatMap { run.index < $0.tiles.count ? $0.tiles[run.index] : nil } }
     var answer: Int { tile.flatMap { t in deck?.langs.firstIndex(of: t.lang) } ?? -1 }
@@ -35,10 +36,13 @@ struct FlagTilesGame: View {
             }
         }
         .task {
+            let race = LobbyRace.seed
             await langs.load()
             guard deck == nil, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
-            entered = !DailyLedger.shared.hasPlayed(.flagTiles, deck: day)
+            racing = race != nil
+            day = LobbyRaceSeed.deckDay(race)
+            entered = racing || !DailyLedger.shared.hasPlayed(.flagTiles, deck: day)
             let dealt = FlagTilesRules.deck(corpus.items, date: day, root: root)
             stream = FlagStream(count: dealt.tiles.count)
             deck = dealt
@@ -150,7 +154,7 @@ struct FlagTilesGame: View {
             root: root,
             board: Boards.fromGhosts(FlagTilesRules.ghosts(date: deck.date), you: run.score),
             share: round.practicing ? nil : (.flagTiles, shape),
-            retry: round.practicing ? nil : (.flagTiles, day, { retry() }),
+            retry: round.practicing || racing ? nil : (.flagTiles, day, { retry() }),
             again: nil
         )
         .onAppear {
@@ -158,7 +162,7 @@ struct FlagTilesGame: View {
             let record = round.finish(score: title)
             if practicing { entered = false }
             guard record else { return }
-            DailyLedger.shared.markPlayed(.flagTiles, deck: day, title: title, shape: shape)
+            if !racing { DailyLedger.shared.markPlayed(.flagTiles, deck: day, title: title, shape: shape) }
             let words = seen.enumerated().map { i, t in PlayedWord(itemId: t.itemId, lang: t.lang, form: t.form, gloss: t.meaning, right: i != missedIndex) }
             langs.recordPlay(.flagTiles, words, points: run.score)
         }

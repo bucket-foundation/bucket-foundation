@@ -49,6 +49,7 @@ struct AtlasGame: View {
     @State private var entered = false
     @State private var practice = PracticeRound()
     @State private var day = PlayDecks.deckDay()
+    @State private var racing = false
     @State private var zoom = AtlasZoom()
     @State private var pinchFrom: AtlasZoom?
     @State private var dragFrom: AtlasZoom?
@@ -71,10 +72,13 @@ struct AtlasGame: View {
             }
         }
         .task {
+            let race = LobbyRace.seed
             await langs.load()
             guard rounds.isEmpty, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
-            entered = !DailyLedger.shared.hasPlayed(.atlas, deck: day)
+            racing = race != nil
+            day = LobbyRaceSeed.deckDay(race)
+            entered = racing || !DailyLedger.shared.hasPlayed(.atlas, deck: day)
             rounds = Array(Atlas.rounds(corpus.items, date: day, root: root).prefix(Atlas.rounds))
         }
         .task(id: index) {
@@ -232,7 +236,7 @@ struct AtlasGame: View {
             root: root,
             board: Boards.fromGhosts(Atlas.ghosts(date: day), you: total),
             share: practice.practicing ? nil : (.atlas, shape),
-            retry: practice.practicing ? nil : (.atlas, day, { retry() }),
+            retry: practice.practicing || racing ? nil : (.atlas, day, { retry() }),
             again: nil
         )
         .onAppear {
@@ -240,7 +244,7 @@ struct AtlasGame: View {
             let record = practice.finish(score: title)
             if practicing { entered = false }
             guard record else { return }
-            DailyLedger.shared.markPlayed(.atlas, deck: day, title: title, shape: shape)
+            if !racing { DailyLedger.shared.markPlayed(.atlas, deck: day, title: title, shape: shape) }
             let words = zip(rounds, scores).map { r, s in PlayedWord(itemId: r.itemId, lang: r.lang, form: r.form, gloss: r.meaning, right: s > Atlas.max / 2) }
             langs.recordPlay(.atlas, words, points: total)
         }

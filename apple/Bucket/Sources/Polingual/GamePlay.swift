@@ -141,7 +141,7 @@ struct QuizGame: View {
 
     func deal() {
         guard let corpus = langs.corpus else { return }
-        var rng = SystemRandomNumberGenerator()
+        var rng = LobbyRace.dealRandom()
         pause?.cancel()
         best = false
         replayed = false
@@ -494,7 +494,7 @@ struct SpeedMatchGame: View {
         if let s = langs.dailySystem {
             fresh = DailySeed.speedBoard(GameDeck(corpus, root: s.root, targets: s.targets), day: playDayKey(), slots: slots)
         } else {
-            var rng = SystemRandomNumberGenerator()
+            var rng = LobbyRace.dealRandom()
             let deck = GameWords.balanced(GameWords.ordered(langs.freshGameWords(corpus), using: &rng))
             fresh = SpeedBoard(deck: deck, slots: slots, seed: rng.next())
         }

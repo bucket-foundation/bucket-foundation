@@ -60,6 +60,7 @@ enum LobbyRace {
     }
 
     static func dealSeed() -> String { seed.map(LobbyRaceSeed.deal) ?? DealSeeds.fresh() }
+    static func dealRandom() -> RaceRandom { RaceRandom(seed: seed) }
 }
 
 @MainActor
@@ -75,7 +76,7 @@ func playDayNumber() -> Int {
 struct RaceGameHost: View, Equatable {
     let kind: GameKind
 
-    var body: some View { kind.screen }
+    var body: some View { kind.board }
 }
 
 struct LobbyRaceView: View {

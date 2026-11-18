@@ -380,3 +380,34 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
     }
     #endif
 }
+
+@Suite struct LobbyRaceDeckTests {
+    @Test func raceDeckDayIsTheSeedKeyAndNeverACalendarDay() {
+        let now = Date(timeIntervalSince1970: 1_795_000_000)
+        #expect(LobbyRaceSeed.deckDay(nil, now: now) == PlayDecks.deckDay(now))
+        #expect(LobbyRaceSeed.deckDay(42, now: now) == "race-42")
+        #expect(LobbyRaceSeed.deckDay(42, now: now) != PlayDecks.deckDay(now))
+    }
+
+    @Test func racersWithOneSeedDrawTheSameNumbers() {
+        var a = RaceRandom(seed: 7)
+        var b = RaceRandom(seed: 7)
+        var c = RaceRandom(seed: 8)
+        let xs = (0..<20).map { _ in a.next() }
+        #expect(xs == (0..<20).map { _ in b.next() })
+        #expect(xs != (0..<20).map { _ in c.next() })
+        #expect([1, 2, 3, 4, 5, 6].shuffled(using: &a) == [1, 2, 3, 4, 5, 6].shuffled(using: &b))
+    }
+
+    @Test func soloPlayDrawsFromTheSystem() {
+        var a = RaceRandom(seed: nil)
+        var b = RaceRandom(seed: nil)
+        #expect((0..<8).map { _ in a.next() } != (0..<8).map { _ in b.next() })
+    }
+
+    @Test func raceGhostsAndDailyGhostsDiffer() {
+        let day = PlayDecks.deckDay(Date(timeIntervalSince1970: 1_795_000_000))
+        #expect(FlagTilesRules.ghosts(date: LobbyRaceSeed.deckDay(42)).map(\.score) != FlagTilesRules.ghosts(date: day).map(\.score) || FlagTilesRules.ghosts(date: LobbyRaceSeed.deckDay(42)).map(\.name) != FlagTilesRules.ghosts(date: day).map(\.name))
+        #expect(FlagTilesRules.ghosts(date: LobbyRaceSeed.deckDay(42)).map(\.score) == FlagTilesRules.ghosts(date: "race-42").map(\.score))
+    }
+}
