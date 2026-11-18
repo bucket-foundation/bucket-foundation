@@ -368,6 +368,7 @@ enum TodayRoute: Hashable {
 #if DEBUG
 enum TodayDemo {
     static var name: String? { Launch.value("-todayDemo") }
+    static var uncountedDay: Double? { Launch.value("-uncountedDay").flatMap(Double.init).map { max(0, $0 - 1) } }
 
     static func status(_ real: TodayStatus, now: Date) -> TodayStatus {
         let left = TimeLeft(until: Calendar.current.startOfDay(for: now).addingTimeInterval(86_400), from: now)

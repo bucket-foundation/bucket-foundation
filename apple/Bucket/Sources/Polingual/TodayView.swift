@@ -272,6 +272,15 @@ struct TodayView: View {
             .accessibilityIdentifier("today.widget.\(item.id)")
     }
 
+    func goalCard(done: Int, later: Bool) -> StreakGoalCard {
+        #if DEBUG
+        if let days = TodayDemo.uncountedDay {
+            return StreakGoalCard(streak: days, pending: days > 0, share: later, expected: expectedLearning(days))
+        }
+        #endif
+        return StreakGoalCard(streak: streak, pending: live.pending && done == 0, share: later, expected: expectedLearning(streak))
+    }
+
     func hero(_ date: Date, studied: Bool, pending: [Item], planned: [Item], now: Double) -> some View {
         let real = TodayStatus.evaluate(streak: StreakGoal(streak: streak).day, studiedToday: studied, items: planned.count, itemsLeft: pending.count, now: date)
         #if DEBUG
@@ -304,7 +313,7 @@ struct TodayView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     PLScreenTop(title: "Today", stickers: Stickers.today)
-                    StreakGoalCard(streak: streak, pending: live.pending && done == 0, share: later, expected: expectedLearning(streak)).todayCard()
+                    goalCard(done: done, later: later).todayCard()
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
                             hero(context.date, studied: done > 0 || live.countsToday, pending: pending, planned: planned, now: now)
