@@ -21,6 +21,7 @@ struct StudyView: View {
     @State private var cardStart = Date()
     @State private var chorus: [VoiceLine] = []
     @State private var introduced: Set<String> = []
+    @State private var limited = false
     @AppStorage("bucket.lang.readings") private var readings = true
     @AppStorage(SoundPolicy.silentKey) private var silent = false
     @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
@@ -47,6 +48,12 @@ struct StudyView: View {
             await store.load()
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
+        .onChange(of: DailyLedger.shared.spent) { _, spent in
+            guard limited, !spent else { return }
+            limited = false
+            queue = nil
+            startIfReady()
+        }
         .onDisappear { LangVoice.shared.hush() }
     }
 
@@ -77,10 +84,18 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
+        queue = budgeted(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), state, now: now)
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+    }
+
+    func budgeted(_ planned: [QueueEntry], _ state: EngineState, now: Double) -> [QueueEntry] {
+        let isNew: (QueueEntry) -> Bool = { !state.cards.started(cardId($0.lang, $0.itemId)) }
+        let isDue: (QueueEntry) -> Bool = { e in state.cards[cardId(e.lang, e.itemId)]?.due.map { $0 <= now } ?? false }
+        let gate = DailyLedger.shared.gate(dueReviews: planned.filter { !isNew($0) && isDue($0) }.count)
+        limited = gate == .limit
+        return LessonTrim.queue(planned, gate: gate, isNew: isNew, isDue: isDue)
     }
 
     func frequency(_ system: LangSystem) -> FrequencyRank {
@@ -169,6 +184,10 @@ struct StudyView: View {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
             if let sid = sentenceId { for r in results { store.grade(systemId, lang: r.lang, itemId: SessionMix.sentenceItemId(sid), rating: r.rating, counted: false) } }
         }
+        if !results.isEmpty {
+            let before = store.state(systemId)
+            DailyLedger.shared.charge(newWords: results.filter { !before.cards.started(cardId($0.lang, entry.itemId)) }.count, cards: results.count)
+        }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
         let streak = langStreak(store)
         for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "", streak: streak) }
@@ -189,7 +208,9 @@ struct StudyView: View {
     @ViewBuilder
     func content(_ system: LangSystem, _ corpus: LangCorpus, _ queue: [QueueEntry]) -> some View {
         let state = store.state(systemId)
-        if queue.isEmpty {
+        if limited {
+            ScrollView { DailyLimitCard(place: "lesson").padding(PL.Space.s4).frame(maxWidth: 520) }.frame(maxWidth: .infinity)
+        } else if queue.isEmpty {
             StateMessage(title: "Nothing due", detail: "You have met today's new words in every language of this set. Come back tomorrow.", retry: nil)
         } else if (i >= queue.count || current == nil) && SilentDeck.onlySound(graded: graded, deferred: deferred) {
             VStack(spacing: PL.Space.s4) {
@@ -235,7 +256,7 @@ struct StudyView: View {
                         }
                         Button("Next lesson") {
                             let now = Date().timeIntervalSince1970 * 1000
-                            self.queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
+                            self.queue = budgeted(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), state, now: now)
                             tally = SoundTally()
                             i = 0
                             graded = 0

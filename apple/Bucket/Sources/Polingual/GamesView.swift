@@ -30,6 +30,13 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
+    var oncePerDay: Bool {
+        switch self {
+        case .daily, .mini, .wordGroups, .polyword, .flagTiles, .shift, .atlas: true
+        case .same, .match, .voice, .flags, .letters, .babel, .snake, .forehead, .ispy, .duel, .tiles: false
+        }
+    }
+
     var dailySeeded: Bool {
         switch self {
         case .daily, .mini, .wordGroups, .voice, .letters, .polyword, .flagTiles, .shift, .atlas: true
@@ -121,7 +128,9 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
-    @MainActor @ViewBuilder var screen: some View {
+    @MainActor var screen: some View { DailyLimitGate(kind: self) { board } }
+
+    @MainActor @ViewBuilder var board: some View {
         switch self {
         case .daily, .same, .voice, .flags: QuizGame(kind: self).fullHeightSession()
         case .match: SpeedMatchGame().fullHeightSession()
@@ -212,6 +221,7 @@ extension LangStore {
     func recordGame(_ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true) -> Bool {
         let before = gameBest(kind.rawValue)
         GameTally.finished += 1
+        DailyLedger.shared.charge(cards: played.count)
         let touched = kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
@@ -646,6 +656,7 @@ struct GameEnd: View {
     var sharing = true
     var share: AnyView?
     var shareObject: ShareObject?
+    var retry: (() -> Void)?
     let again: (() -> Void)?
 
     var brag: String { langs.shareText(kind, shape ?? .marks(results ?? [])) }
@@ -692,7 +703,14 @@ struct GameEnd: View {
             if sharing { GameShareButton(kind: kind, text: brag, style: D8Primary()) }
             if let share { share }
             if let shareObject { ShareObjectButton(shareObject, wide: true) }
-            if let again { Button("Play again", action: again).buttonStyle(D8Primary(compact: true)) }
+            if let retry { TryAgainOffer(kind: kind, start: retry) }
+            if let again {
+                if DailyLedger.shared.spent {
+                    DailyLimitCard(place: "game:\(kind.rawValue)")
+                } else {
+                    Button("Play again", action: again).buttonStyle(D8Primary(compact: true))
+                }
+            }
             LearnUpsell()
         }
         .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }

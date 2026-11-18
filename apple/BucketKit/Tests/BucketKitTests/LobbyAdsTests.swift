@@ -11,7 +11,7 @@ struct LobbyAdsTests {
 
     @Test func testModeUsesGoogleTestUnits() {
         let u = LobbyAdUnits.from(["PolingualAds": " Test ", "GADApplicationIdentifier": LobbyAdUnits.testApp, "PolingualAdBanner": ""])
-        #expect(u == LobbyAdUnits(mode: .test, banner: LobbyAdUnits.testBanner, interstitial: LobbyAdUnits.testInterstitial))
+        #expect(u == LobbyAdUnits(mode: .test, banner: LobbyAdUnits.testBanner, interstitial: LobbyAdUnits.testInterstitial, rewarded: LobbyAdUnits.testRewarded))
     }
 
     @Test func testModeNeedsTheGoogleTestApp() {
@@ -30,6 +30,19 @@ struct LobbyAdsTests {
         #expect(LobbyAdUnits.from(["PolingualAds": "live", "GADApplicationIdentifier": LobbyAdUnits.testApp, "PolingualAdBanner": banner, "PolingualAdInterstitial": inter]) == nil)
         #expect(LobbyAdUnits.from(["PolingualAds": "live", "GADApplicationIdentifier": "ca-app-pub-6543210987654321~1111111111", "PolingualAdBanner": banner, "PolingualAdInterstitial": inter]) == nil)
         #expect(LobbyAdUnits.from(["PolingualAds": "live", "GADApplicationIdentifier": app, "PolingualAdBanner": banner, "PolingualAdInterstitial": inter]) == LobbyAdUnits(mode: .live, banner: banner, interstitial: inter))
+    }
+
+    @Test func liveRewardedUnitIsOptionalAndChecked() {
+        let app = "ca-app-pub-1234567890123456~1111111111"
+        let banner = "ca-app-pub-1234567890123456/1234567890"
+        let inter = "ca-app-pub-1234567890123456/0987654321"
+        let base: [String: Any] = ["PolingualAds": "live", "GADApplicationIdentifier": app, "PolingualAdBanner": banner, "PolingualAdInterstitial": inter]
+        #expect(LobbyAdUnits.from(base)?.rewarded == nil)
+        #expect(LobbyAdUnits.from(base.merging(["PolingualAdRewarded": ""]) { $1 })?.rewarded == nil)
+        #expect(LobbyAdUnits.from(base.merging(["PolingualAdRewarded": LobbyAdUnits.testRewarded]) { $1 })?.rewarded == nil)
+        #expect(LobbyAdUnits.from(base.merging(["PolingualAdRewarded": "ca-app-pub-6543210987654321/5555555555"]) { $1 })?.rewarded == nil)
+        let rewarded = "ca-app-pub-1234567890123456/5555555555"
+        #expect(LobbyAdUnits.from(base.merging(["PolingualAdRewarded": rewarded]) { $1 })?.rewarded == rewarded)
     }
 
     @Test func releaseAndDebugSettingsFromTheProjectResolve() throws {

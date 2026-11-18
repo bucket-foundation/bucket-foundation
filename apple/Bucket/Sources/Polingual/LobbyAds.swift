@@ -19,6 +19,35 @@ final class LobbyAds {
     @ObservationIgnored private var pacer = InterstitialPacer()
     @ObservationIgnored private var interstitial: InterstitialAd?
     @ObservationIgnored private var loading = false
+    @ObservationIgnored private var reward: RewardWatch?
+    @ObservationIgnored private var rewarded: RewardedAd?
+    @ObservationIgnored private var loadingRewarded = false
+    private(set) var rewardedReady = false
+
+    func preloadRewarded() {
+        guard allowed, ready, let unit = units?.rewarded, rewarded == nil, !loadingRewarded else { return }
+        loadingRewarded = true
+        Task {
+            rewarded = try? await RewardedAd.load(with: unit, request: Request())
+            rewardedReady = rewarded != nil
+            loadingRewarded = false
+        }
+    }
+
+    func showRewarded() async -> AdOutcome {
+        guard allowed, ready, let ad = rewarded, let root = Self.topController() else { return .unavailable }
+        rewarded = nil
+        rewardedReady = false
+        let outcome: AdOutcome = await withCheckedContinuation { done in
+            let watch = RewardWatch { done.resume(returning: $0) }
+            reward = watch
+            ad.fullScreenContentDelegate = watch
+            ad.present(from: root) { watch.earned = true }
+        }
+        reward = nil
+        preloadRewarded()
+        return outcome
+    }
 
     func start() {
         guard allowed, units != nil, !started else { return }
@@ -44,13 +73,18 @@ final class LobbyAds {
         _ = await MobileAds.shared.start()
         ready = true
         preload()
+        preloadRewarded()
     }
 
     func showPrivacyOptions() {
         guard let root = Self.topController() else { return }
         Task {
             try? await ConsentForm.presentPrivacyOptionsForm(from: root)
-            if !ConsentInformation.shared.canRequestAds { ready = false }
+            if !ConsentInformation.shared.canRequestAds {
+                ready = false
+                rewarded = nil
+                rewardedReady = false
+            }
         }
     }
 
@@ -81,6 +115,23 @@ final class LobbyAds {
         while let next = top?.presentedViewController { top = next }
         return top
     }
+}
+
+@MainActor
+final class RewardWatch: NSObject, @preconcurrency FullScreenContentDelegate {
+    var earned = false
+    private var finish: ((AdOutcome) -> Void)?
+
+    init(finish: @escaping (AdOutcome) -> Void) { self.finish = finish }
+
+    private func end(_ outcome: AdOutcome) {
+        finish?(outcome)
+        finish = nil
+    }
+
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) { end(earned ? .earned : .skipped) }
+
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) { end(.unavailable) }
 }
 
 struct LobbyBanner: View {
@@ -125,6 +176,9 @@ final class LobbyAds {
     var allowed = false
     func start() {}
     func leftRoom(finishedGame: Bool) {}
+    var rewardedReady: Bool { false }
+    func preloadRewarded() {}
+    func showRewarded() async -> AdOutcome { .unavailable }
 }
 
 struct LobbyBanner: View {
