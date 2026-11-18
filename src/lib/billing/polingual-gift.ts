@@ -71,8 +71,19 @@ function email(v: unknown): string | null {
   return s.length <= 254 && EMAIL_RE.test(s) ? s : null;
 }
 
+function isControl(code: number): boolean {
+  return code <= 0x1f || code === 0x7f;
+}
+
 function line(v: unknown): string {
-  return typeof v === "string" ? v.replace(/[\u0000-\u001f\u007f]+/g, " ").trim() : "";
+  if (typeof v !== "string") return "";
+  let out = "";
+  for (let i = 0; i < v.length; i++) {
+    const control = isControl(v.charCodeAt(i));
+    if (!control) out += v[i];
+    else if (i === 0 || !isControl(v.charCodeAt(i - 1))) out += " ";
+  }
+  return out.trim();
 }
 
 function validDay(v: string): boolean {

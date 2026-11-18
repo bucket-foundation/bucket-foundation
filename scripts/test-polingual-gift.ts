@@ -207,6 +207,8 @@ test("parseGiftRequest validates emails, name, note, date and locale", () => {
   assert.equal(err({ locale: "fr" }), "bad_locale");
   const today = parseGiftRequest({ ...BODY, deliverOn: "", note: "", locale: undefined }, NOW);
   assert.ok(today.ok && today.req.deliverOn === "2026-12-01" && today.req.note === null && today.req.locale === "en");
+  const dirty = parseGiftRequest({ ...BODY, recipientName: "\u0000Ana\n\r\tMaria\u007f", note: "a  b\u001fc" }, NOW);
+  assert.ok(dirty.ok && dirty.req.recipientName === "Ana Maria" && dirty.req.note === "a  b c");
   const yesterday = parseGiftRequest({ ...BODY, deliverOn: "2026-11-30" }, NOW);
   assert.ok(yesterday.ok && yesterday.req.deliverOn === "2026-12-01");
 });
