@@ -38,27 +38,36 @@ struct TilesGame: View {
 
     func prompt(_ r: TileRound) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s3) {
-            HStack {
-                PlayLabel(text: "Round \(index + 1) · \(points) points")
-                Spacer()
-                PlayLabel(text: String(repeating: "♥ ", count: lives))
+            ViewThatFits(in: .horizontal) {
+                HStack {
+                    status
+                    Spacer()
+                    hearts
+                }
+                VStack(alignment: .leading, spacing: PL.Space.s1) {
+                    status
+                    hearts
+                }
             }
             PLCard(.lapis) {
                 VStack(alignment: .leading, spacing: PL.Space.s1) {
                     PlayLabel(text: Lang.name(root))
-                    Text(r.gloss).font(PL.heading.font()).foregroundStyle(PL.paper)
+                    Text(r.gloss).font(PL.heading.font()).foregroundStyle(PL.paper).minimumScaleFactor(0.6).accessibilityIdentifier("tilesGloss")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
 
+    var status: some View { PlayLabel(text: "Round \(index + 1) · \(points) points").lineLimit(1).minimumScaleFactor(0.7) }
+
+    var hearts: some View { PlayLabel(text: String(repeating: "♥ ", count: lives)).lineLimit(1) }
+
+    static let lanesLeast: CGFloat = 316
+
     @ViewBuilder func play(_ r: TileRound) -> some View {
         if wide, outcome == nil, let startedAt {
-            HStack(alignment: .top, spacing: PL.Space.s4) {
-                prompt(r).frame(width: 240)
-                field(r, startedAt)
-            }
+            PlaySplit(board: Self.lanesLeast) { prompt(r) } main: { field(r, startedAt) }
         } else {
             stacked(r)
         }
