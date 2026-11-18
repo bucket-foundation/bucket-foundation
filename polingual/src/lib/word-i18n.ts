@@ -44,7 +44,7 @@ type WordStrings = {
 };
 
 type LocaleInfo = { code: string; name: string; locale: string; hreflang: string; rtl: boolean; labels: SiteLabels };
-type SiteLabels = { app: string; support: string; privacy: string; terms: string };
+type SiteLabels = { app: string; support: string; privacy: string; terms: string; play: string; guides: string };
 
 const PLACEHOLDER = /\{(\w+)\}/g;
 const RTL_LOCALES = new Set(["ar", "fa", "he"]);
@@ -115,7 +115,7 @@ function bareHreflang(tag: string): string {
 }
 
 export function localeInfo(code: string): LocaleInfo {
-  if (code === "en") return { code, name: "English", locale: "en_US", hreflang: "en", rtl: false, labels: { app: "Get the app", support: "Support", privacy: "Privacy", terms: "Terms" } };
+  if (code === "en") return { code, name: "English", locale: "en_US", hreflang: "en", rtl: false, labels: { app: "Get the app", support: "Support", privacy: "Privacy", terms: "Terms", play: "Play", guides: "Guides" } };
   const b = SITE_BUNDLES[code] as { name: string; locale: string; hreflang: string; page: Record<string, string> };
   return {
     code,
@@ -123,7 +123,7 @@ export function localeInfo(code: string): LocaleInfo {
     locale: b.locale,
     hreflang: bareHreflang(b.hreflang),
     rtl: RTL_LOCALES.has(code),
-    labels: { app: stripTag(b.page[">Get the app<"]), support: stripTag(b.page[">Support<"]), privacy: stripTag(b.page[">Privacy<"]), terms: stripTag(b.page[">Terms<"]) },
+    labels: { app: stripTag(b.page[">Get the app<"]), support: stripTag(b.page[">Support<"]), privacy: stripTag(b.page[">Privacy<"]), terms: stripTag(b.page[">Terms<"]), play: stripTag(b.page[">Play<"]), guides: stripTag(b.page[">Guides<"]) },
   };
 }
 
