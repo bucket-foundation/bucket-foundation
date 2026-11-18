@@ -45,3 +45,4 @@
 .chipsPlain li{padding:6px 14px;border-radius:999px;background:var(--blue);color:var(--pl-paper);font-weight:800;font-size:15px}
 .code{font-family:var(--pl-font-mono);letter-spacing:2px}
 .bare{flex:1;width:100%}
+@media print{.hd,.ft{display:none}.site{background:none;min-height:0;display:block}.main,.mainWide{padding:0;max-width:none}}
