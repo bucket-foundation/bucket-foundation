@@ -3,6 +3,7 @@ import SwiftUI
 
 struct TilesGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.playRoom) private var playRoom
     @State private var rounds: [TileRound] = []
     @State private var index = 0
     @State private var startedAt: Date?
@@ -82,7 +83,7 @@ struct TilesGame: View {
                 }
             }
         }
-        .frame(height: 380)
+        .frame(height: PlayBoard.height(room: playRoom, chrome: 250, least: 380))
     }
 
     var results: some View {

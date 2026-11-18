@@ -3,6 +3,7 @@ import SwiftUI
 
 struct FlagTilesGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.playRoom) private var playRoom
     @State private var deck: FlagTilesDeck?
     @State private var run = RunState()
     @State private var drop = false
@@ -68,7 +69,7 @@ struct FlagTilesGame: View {
                     }
                 }
             }
-            .frame(height: 360)
+            .frame(height: PlayBoard.height(room: playRoom, chrome: 240, least: 360))
             HStack(spacing: PL.Space.s2) {
                 ForEach(Array(deck.langs.enumerated()), id: \.offset) { i, l in
                     Button { tap(i) } label: {

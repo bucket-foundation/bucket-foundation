@@ -48,34 +48,47 @@ struct StartLearningButton: View {
     }
 }
 
+extension EnvironmentValues {
+    @Entry var playRoom: CGFloat = 0
+}
+
 struct PlayScene<Content: View>: View {
     let game: GameKind
     let stickers: [PLSticker]
     @ViewBuilder let content: () -> Content
 
-    var headerStickers: [PLSticker] {
-        [PLSticker(game.art ?? .seal, .topTrailing, width: 64, x: -8, y: 4, angle: 8),
-         PLSticker(.star, .bottomTrailing, width: 36, x: -84, y: -2, angle: -10),
-         PLSticker(.scriptRu, .bottomTrailing, width: 46, x: -4, y: 0, angle: -6, shadow: false)]
-    }
-
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: PL.Space.s4) {
-                PLScreenTop(title: game.title, subtitle: game.detail, stickers: headerStickers, onDark: true)
-                StartLearningButton(size: .sm, full: false)
-                content()
-            }
-            .padding(.horizontal, PL.Space.s4)
-            .padding(.bottom, PL.Space.s6)
+        GeometryReader { geo in
+            page.environment(\.playRoom, geo.size.height)
         }
-        .scrollContentBackground(.hidden)
         .plGround(.lattice, band: true)
         .navigationTitle(game.title)
         .plChrome()
         .fullHeightSession()
         .onDisappear { LangVoice.shared.hush() }
         .accessibilityIdentifier("play-\(game.rawValue)")
+    }
+
+    var page: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: PL.Space.s4) {
+                HStack(spacing: PL.Space.s3) {
+                    Text(game.title)
+                        .font(PL.heading.font())
+                        .foregroundStyle(PL.paper)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                        .accessibilityAddTraits(.isHeader)
+                        .accessibilityIdentifier("playTitle")
+                    Spacer(minLength: PL.Space.s2)
+                    StartLearningButton(size: .sm, full: false)
+                }
+                content()
+            }
+            .padding(.horizontal, PL.Space.s4)
+            .padding(.bottom, PL.Space.s6)
+        }
+        .scrollContentBackground(.hidden)
     }
 }
 
