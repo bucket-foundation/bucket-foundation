@@ -63,6 +63,8 @@ test("redeem sends the bearer token and maps each outcome", async () => {
   assert.match((await redeemGift("x", "tok", "en", stub(409, { outcome: "used" })) as { error: string }).error, /already redeemed/);
   assert.match((await redeemGift("x", "tok", "es", stub(410, { outcome: "expired" })) as { error: string }).error, /venció/);
   assert.match((await redeemGift("x", "tok", "en", stub(400, { error: "bad_code" })) as { error: string }).error, /16 characters/);
+  assert.match((await redeemGift("x", "tok", "en", stub(410, { outcome: "void" })) as { error: string }).error, /refunded/);
+  assert.match((await redeemGift("x", "tok", "es", stub(429, { error: "too_many_requests" })) as { error: string }).error, /Demasiados/);
   assert.equal(giftDay("2027-12-01T15:00:00.000Z", "en"), "December 1, 2027");
   assert.equal(giftDay("2027-12-01T15:00:00.000Z", "es"), "1 de diciembre de 2027");
   assert.equal(giftDay(null, "en"), "");

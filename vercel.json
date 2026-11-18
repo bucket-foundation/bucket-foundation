@@ -47,7 +47,7 @@
     },
     {
       "path": "/api/cron/gift-delivery",
-      "schedule": "5 13 * * *"
+      "schedule": "5 * * * *"
     },
     {
       "path": "/api/cron/whats-new-daily?slot=0",

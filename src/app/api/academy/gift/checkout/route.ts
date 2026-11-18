@@ -1,13 +1,14 @@
 import type { NextRequest } from "next/server";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { entitlementStoreConfigured } from "@/lib/billing/entitlement-store";
-import { giftConfig, giftMailConfig, handleGiftCheckout, WindowLimiter } from "@/lib/billing/polingual-gift";
+import { giftLimiter } from "@/lib/billing/gift-store";
+import { giftConfig, giftMailConfig, handleGiftCheckout } from "@/lib/billing/polingual-gift";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const STRIPE_API = process.env.STRIPE_API_BASE ?? "https://api.stripe.com";
-const limiter = new WindowLimiter(10, 3_600_000);
+const limited = giftLimiter("gift-checkout", 10, 3_600_000);
 
 export async function POST(req: NextRequest): Promise<Response> {
   try {
@@ -17,7 +18,8 @@ export async function POST(req: NextRequest): Promise<Response> {
         config: () => giftConfig(process.env),
         ready: () => entitlementStoreConfigured() && giftMailConfig(process.env) !== null,
         now: Date.now,
-        allow: () => limiter.take(ip, Date.now()),
+        limited,
+        ip,
         createSession: async (cfg, form) => {
           const res = await fetch(`${STRIPE_API}/v1/checkout/sessions`, {
             method: "POST",

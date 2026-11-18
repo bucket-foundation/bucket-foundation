@@ -5,7 +5,10 @@ export type GiftLocale = "en" | "es";
 export const GIFT_LOCALES: readonly GiftLocale[] = ["en", "es"];
 export const GIFT_PRODUCT = "polingual_gift";
 export const GIFT_PLAN = "gift_yearly";
-export const GIFT_LIMITS = { name: 80, note: 300, maxDaysAhead: 365, codeValidDays: 365, deliverBatch: 50 } as const;
+export const GIFT_LIMITS = { name: 80, note: 300, maxDaysAhead: 365, codeValidDays: 365, deliverBatch: 50, holdMs: 3_600_000, retentionDays: 30 } as const;
+export const GIFT_PAID_EVENTS = ["checkout.session.completed", "checkout.session.async_payment_succeeded"] as const;
+export const GIFT_VOID_EVENTS = ["charge.refunded", "charge.dispute.created", "charge.dispute.funds_withdrawn"] as const;
+export const GIFT_WEBHOOK_EVENTS = [...GIFT_PAID_EVENTS, "checkout.session.async_payment_failed", ...GIFT_VOID_EVENTS] as const;
 export const GIFT_ENV = ["STRIPE_SECRET_KEY", "STRIPE_PRICE_POLINGUAL_GIFT_YEARLY", "STRIPE_WEBHOOK_SECRET", "POLINGUAL_GIFT_PRICE_DISPLAY", "RESEND_API_KEY", "INVITE_POSTAL_ADDRESS"] as const;
 
 const DAY_MS = 86_400_000;
@@ -120,6 +123,9 @@ export function giftForm(cfg: GiftConfig, req: GiftRequest): URLSearchParams {
 export interface GiftPurchase extends GiftRequest {
   eventId: string;
   sessionId: string;
+  paymentIntent: string | null;
+  paidAt: string;
+  amountSubtotal: number | null;
   amountTotal: number | null;
   currency: string | null;
 }
@@ -127,20 +133,26 @@ export interface GiftPurchase extends GiftRequest {
 type Obj = Record<string, unknown>;
 const str = (v: unknown) => (typeof v === "string" && v ? v : null);
 
-export function isGiftEvent(event: unknown): boolean {
+const int = (v: unknown) => (typeof v === "number" && Number.isInteger(v) ? v : null);
+
+function eventParts(event: unknown): { type: string | null; id: string | null; created: number | null; object: Obj; meta: Obj } {
   const e = (event && typeof event === "object" ? event : {}) as Obj;
-  const o = ((e.data as Obj | undefined)?.object ?? {}) as Obj;
-  return e.type === "checkout.session.completed" && ((o.metadata ?? {}) as Obj).product === GIFT_PRODUCT;
+  const object = ((e.data as Obj | undefined)?.object ?? {}) as Obj;
+  return { type: str(e.type), id: str(e.id), created: int(e.created), object, meta: (object.metadata && typeof object.metadata === "object" ? object.metadata : {}) as Obj };
+}
+
+export function isGiftEvent(event: unknown): boolean {
+  const e = eventParts(event);
+  return (e.type ?? "").startsWith("checkout.session.") && e.meta.product === GIFT_PRODUCT;
 }
 
 export function giftFromEvent(event: unknown, now: number): GiftPurchase | null {
-  if (!isGiftEvent(event)) return null;
-  const e = event as Obj;
-  const o = (e.data as Obj).object as Obj;
-  const meta = o.metadata as Obj;
-  const eventId = str(e.id);
+  const e = eventParts(event);
+  if (!isGiftEvent(event) || !(GIFT_PAID_EVENTS as readonly string[]).includes(e.type ?? "")) return null;
+  const o = e.object;
+  const meta = e.meta;
   const sessionId = str(o.id);
-  if (!eventId || !sessionId || o.mode !== "payment" || o.payment_status !== "paid") return null;
+  if (!e.id || !sessionId || o.mode !== "payment" || o.payment_status !== "paid") return null;
   const details = (o.customer_details ?? {}) as Obj;
   const buyerEmail = email(o.customer_email) ?? email(details.email);
   const recipientEmail = email(meta.recipient_email);
@@ -148,17 +160,49 @@ export function giftFromEvent(event: unknown, now: number): GiftPurchase | null 
   const deliverOn = typeof meta.deliver_on === "string" && validDay(meta.deliver_on) ? meta.deliver_on : utcDay(now);
   if (!buyerEmail || !recipientEmail || !recipientName) return null;
   return {
-    eventId,
+    eventId: e.id,
     sessionId,
+    paymentIntent: str(o.payment_intent),
+    paidAt: new Date(e.created !== null ? e.created * 1000 : now).toISOString(),
     buyerEmail,
     recipientEmail,
     recipientName,
     note: line(meta.note).slice(0, GIFT_LIMITS.note) || null,
     deliverOn,
     locale: meta.locale === "es" ? "es" : "en",
-    amountTotal: typeof o.amount_total === "number" && Number.isInteger(o.amount_total) ? o.amount_total : null,
+    amountSubtotal: int(o.amount_subtotal),
+    amountTotal: int(o.amount_total),
     currency: str(o.currency)?.toLowerCase() ?? null,
   };
+}
+
+export type VoidReason = "refund" | "dispute" | "price_mismatch";
+
+export function voidFromEvent(event: unknown): { paymentIntent: string; reason: VoidReason } | null {
+  const e = eventParts(event);
+  const paymentIntent = str(e.object.payment_intent);
+  if (!paymentIntent) return null;
+  if (e.type === "charge.refunded") return e.object.refunded === true ? { paymentIntent, reason: "refund" } : null;
+  if (e.type === "charge.dispute.created" || e.type === "charge.dispute.funds_withdrawn") return { paymentIntent, reason: "dispute" };
+  return null;
+}
+
+export interface LineItem {
+  priceId: string | null;
+  quantity: number | null;
+  unitAmount: number | null;
+  currency: string | null;
+}
+
+export function priceMatches(price: string, purchase: GiftPurchase, items: LineItem[]): boolean {
+  if (items.length !== 1) return false;
+  const [item] = items;
+  if (item.priceId !== price || item.quantity !== 1 || item.unitAmount === null || !item.currency) return false;
+  return purchase.amountSubtotal === item.unitAmount && purchase.currency === item.currency.toLowerCase();
+}
+
+export function deliverAfter(purchase: GiftPurchase): string {
+  return new Date(Math.max(Date.parse(`${purchase.deliverOn}T00:00:00Z`), Date.parse(purchase.paidAt) + GIFT_LIMITS.holdMs)).toISOString();
 }
 
 export function newGiftCode(random: (n: number) => Uint8Array = randomBytes): string {
@@ -184,23 +228,31 @@ export function giftCodeHash(code: string): string {
   return createHash("sha256").update(`polingual-gift:v1:${code}`).digest("hex");
 }
 
-export interface GiftRow extends GiftPurchase {
+export interface GiftRow extends Omit<GiftPurchase, "recipientEmail" | "recipientName"> {
   id: string;
-  code: string | null;
+  recipientEmail: string | null;
+  recipientName: string | null;
   expiresAt: string;
+  deliverAfter: string;
   receiptSentAt: string | null;
   deliveredAt: string | null;
   redeemedAt: string | null;
+  voidedAt: string | null;
+  voidReason: VoidReason | null;
 }
 
-export type RedeemOutcome = "redeemed" | "already" | "used" | "expired" | "invalid" | "subscribed";
+export type RedeemOutcome = "redeemed" | "already" | "used" | "expired" | "invalid" | "subscribed" | "void";
+export type VoidOutcome = { outcome: "voided" | "already" | "unknown"; revoked: boolean };
 
 export interface GiftStore {
-  record(purchase: GiftPurchase, code: string, expiresAt: string): Promise<GiftRow>;
+  record(purchase: GiftPurchase, expiresAt: string, deliverAfter: string, voidReason: VoidReason | null): Promise<GiftRow>;
+  setCodeHash(id: string, codeHash: string): Promise<void>;
   markReceipt(id: string, at: string): Promise<void>;
   markDelivered(id: string, at: string): Promise<void>;
-  due(day: string, limit: number): Promise<GiftRow[]>;
+  due(at: string, limit: number): Promise<GiftRow[]>;
   redeem(codeHash: string, userId: string, at: string): Promise<{ outcome: RedeemOutcome; until: string | null }>;
+  voidByPayment(paymentIntent: string, reason: VoidReason, at: string): Promise<VoidOutcome>;
+  purge(cutoff: string, at: string): Promise<number>;
 }
 
 export interface GiftEmail {
@@ -269,6 +321,7 @@ function footer(why: string, postalAddress: string): { text: string; html: strin
 }
 
 export function renderReceipt(gift: GiftRow, postalAddress: string): GiftEmail {
+  if (!gift.recipientEmail || !gift.recipientName) throw new Error("gift has no recipient");
   const c = COPY[gift.locale];
   const amount = giftAmount(gift.amountTotal, gift.currency, gift.locale);
   const lines = [c.receiptLead(gift.recipientName), ...(amount ? [c.paid(amount)] : []), c.arrives(gift.recipientEmail, longDay(gift.deliverOn, gift.locale)), c.help];
@@ -285,11 +338,11 @@ export function redeemUrl(site: string, locale: GiftLocale, code: string): strin
   return `${site}${giftPath(locale, "/redeem")}?code=${formatGiftCode(code)}`;
 }
 
-export function renderGiftEmail(gift: GiftRow, site: string, postalAddress: string): GiftEmail {
-  if (!gift.code) throw new Error("gift has no code to send");
+export function renderGiftEmail(gift: GiftRow, rawCode: string, site: string, postalAddress: string): GiftEmail {
+  if (!gift.recipientEmail || !gift.recipientName) throw new Error("gift has no recipient");
   const c = COPY[gift.locale];
-  const code = formatGiftCode(gift.code);
-  const link = redeemUrl(site, gift.locale, gift.code);
+  const code = formatGiftCode(rawCode);
+  const link = redeemUrl(site, gift.locale, rawCode);
   const expires = c.expires(longDay(gift.expiresAt.slice(0, 10), gift.locale));
   const lead = c.giftLead(gift.recipientName, gift.buyerEmail);
   const foot = footer(c.giftWhy(gift.buyerEmail), postalAddress);
@@ -306,15 +359,16 @@ export interface GiftCheckoutDeps {
   config: () => GiftConfig | null;
   ready: () => boolean;
   now: () => number;
-  allow: () => boolean;
+  limited: (keys: string[]) => Promise<boolean>;
+  ip: string;
   createSession: (cfg: GiftConfig, form: URLSearchParams) => Promise<{ url: string | null; id: string | null }>;
 }
 
 export async function handleGiftCheckout(deps: GiftCheckoutDeps, body: unknown): Promise<HandlerResult> {
   const cfg = deps.config();
   if (!cfg || !deps.ready()) return { status: 503, body: { error: "gifts_unavailable" } };
-  if (!deps.allow()) return { status: 429, body: { error: "too_many_requests" } };
   const parsed = parseGiftRequest(body, deps.now());
+  if (await deps.limited([`ip:${deps.ip}`, ...(parsed.ok ? [`buyer:${parsed.req.buyerEmail}`] : [])])) return { status: 429, body: { error: "too_many_requests" } };
   if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   const s = await deps.createSession(cfg, giftForm(cfg, parsed.req));
   if (!s.url) return { status: 502, body: { error: "checkout_failed" } };
@@ -325,52 +379,75 @@ export interface GiftFulfilDeps {
   store: () => GiftStore | null;
   site: () => string;
   postalAddress: () => string | null;
+  price: () => string | null;
+  lineItems: (sessionId: string) => Promise<LineItem[] | null>;
   send: (email: GiftEmail, idempotencyKey: string) => Promise<boolean>;
   now: () => number;
   code?: () => string;
 }
 
 async function sendReceipt(deps: GiftFulfilDeps, store: GiftStore, gift: GiftRow, postal: string): Promise<boolean> {
-  if (gift.receiptSentAt) return true;
+  if (gift.receiptSentAt || gift.voidedAt) return true;
   if (!(await deps.send(renderReceipt(gift, postal), `polingual-gift/receipt/${gift.id}`))) return false;
   await store.markReceipt(gift.id, new Date(deps.now()).toISOString());
   return true;
 }
 
 async function deliver(deps: GiftFulfilDeps, store: GiftStore, gift: GiftRow, postal: string): Promise<boolean> {
-  if (gift.deliveredAt || gift.redeemedAt) return true;
-  if (!(await deps.send(renderGiftEmail(gift, deps.site(), postal), `polingual-gift/deliver/${gift.id}`))) return false;
+  if (gift.deliveredAt || gift.redeemedAt || gift.voidedAt || !gift.recipientEmail) return true;
+  const code = (deps.code ?? newGiftCode)();
+  const hash = giftCodeHash(code);
+  await store.setCodeHash(gift.id, hash);
+  if (!(await deps.send(renderGiftEmail(gift, code, deps.site(), postal), `polingual-gift/deliver/${gift.id}/${hash.slice(0, 12)}`))) return false;
   await store.markDelivered(gift.id, new Date(deps.now()).toISOString());
   return true;
 }
 
+async function handleVoid(deps: GiftFulfilDeps, v: { paymentIntent: string; reason: VoidReason }): Promise<HandlerResult> {
+  const store = deps.store();
+  if (!store) return { status: 503, body: { error: "gifts_unavailable" } };
+  const r = await store.voidByPayment(v.paymentIntent, v.reason, new Date(deps.now()).toISOString());
+  if (r.outcome === "voided") console.warn("[polingual-gift] voided", v.reason, r.revoked ? "entitlement ended" : "before redeem");
+  return { status: 200, body: { received: true, void: r.outcome, revoked: r.revoked } };
+}
+
 export async function handleGiftEvent(deps: GiftFulfilDeps, event: unknown): Promise<HandlerResult | null> {
+  const voided = voidFromEvent(event);
+  if (voided) return handleVoid(deps, voided);
   if (!isGiftEvent(event)) return null;
-  const now = deps.now();
-  const purchase = giftFromEvent(event, now);
+  const purchase = giftFromEvent(event, deps.now());
   if (!purchase) return { status: 200, body: { received: true, ignored: true } };
   const store = deps.store();
   const postal = deps.postalAddress();
-  if (!store || !postal) return { status: 503, body: { error: "gifts_unavailable" } };
+  const price = deps.price();
+  if (!store || !postal || !price) return { status: 503, body: { error: "gifts_unavailable" } };
+  const items = await deps.lineItems(purchase.sessionId);
+  if (!items) return { status: 502, body: { error: "price_check_failed" } };
+  const matches = priceMatches(price, purchase, items);
   const expiresAt = new Date(Date.parse(`${purchase.deliverOn}T00:00:00Z`) + GIFT_LIMITS.codeValidDays * DAY_MS).toISOString();
-  const gift = await store.record(purchase, (deps.code ?? newGiftCode)(), expiresAt);
+  const gift = await store.record(purchase, expiresAt, deliverAfter(purchase), matches ? null : "price_mismatch");
+  if (!matches) {
+    console.error("[polingual-gift] price mismatch, nothing issued:", gift.id);
+    return { status: 200, body: { received: true, gift: gift.id, issued: false } };
+  }
   if (!(await sendReceipt(deps, store, gift, postal))) return { status: 500, body: { error: "receipt_failed" } };
-  if (gift.deliverOn <= utcDay(now) && !(await deliver(deps, store, gift, postal))) return { status: 500, body: { error: "delivery_failed" } };
-  return { status: 200, body: { received: true, gift: gift.id } };
+  return { status: 200, body: { received: true, gift: gift.id, issued: !gift.voidedAt } };
 }
 
 export interface DeliveryReport {
   due: number;
   sent: number;
   failed: number;
+  purged: number;
 }
 
 export async function deliverDueGifts(deps: GiftFulfilDeps): Promise<DeliveryReport | null> {
   const store = deps.store();
   const postal = deps.postalAddress();
   if (!store || !postal) return null;
-  const due = await store.due(utcDay(deps.now()), GIFT_LIMITS.deliverBatch);
-  const report: DeliveryReport = { due: due.length, sent: 0, failed: 0 };
+  const now = deps.now();
+  const due = await store.due(new Date(now).toISOString(), GIFT_LIMITS.deliverBatch);
+  const report: DeliveryReport = { due: due.length, sent: 0, failed: 0, purged: 0 };
   for (const gift of due) {
     try {
       if (await deliver(deps, store, gift, postal)) report.sent++;
@@ -380,40 +457,28 @@ export async function deliverDueGifts(deps: GiftFulfilDeps): Promise<DeliveryRep
       console.error("[polingual-gift] delivery failed:", gift.id, err instanceof Error ? err.message : "unknown");
     }
   }
+  report.purged = await store.purge(new Date(now - GIFT_LIMITS.retentionDays * DAY_MS).toISOString(), new Date(now).toISOString());
   return report;
 }
 
 export interface RedeemDeps {
   store: () => GiftStore | null;
   userId: () => Promise<string | null>;
+  limited: (keys: string[]) => Promise<boolean>;
+  ip: string;
   now: () => number;
 }
 
-const REDEEM_STATUS: Record<RedeemOutcome, number> = { redeemed: 200, already: 200, used: 409, expired: 410, invalid: 404, subscribed: 409 };
+const REDEEM_STATUS: Record<RedeemOutcome, number> = { redeemed: 200, already: 200, used: 409, expired: 410, invalid: 404, subscribed: 409, void: 410 };
 
 export async function handleRedeem(deps: RedeemDeps, body: unknown): Promise<HandlerResult> {
   const store = deps.store();
   if (!store) return { status: 503, body: { error: "gifts_unavailable" } };
   const uid = await deps.userId();
+  if (await deps.limited([`ip:${deps.ip}`, ...(uid ? [`user:${uid}`] : [])])) return { status: 429, body: { error: "too_many_requests" } };
   if (!uid) return { status: 401, body: { error: "unauthorized" } };
   const code = normalizeGiftCode((body as { code?: unknown } | null)?.code);
   if (!code) return { status: 400, body: { error: "bad_code" } };
   const r = await store.redeem(giftCodeHash(code), uid, new Date(deps.now()).toISOString());
   return { status: REDEEM_STATUS[r.outcome], body: { outcome: r.outcome, until: r.until } };
-}
-
-export class WindowLimiter {
-  private hits = new Map<string, number[]>();
-  constructor(private max: number, private windowMs: number) {}
-  take(key: string, now: number): boolean {
-    const recent = (this.hits.get(key) ?? []).filter((t) => now - t < this.windowMs);
-    if (recent.length >= this.max) {
-      this.hits.set(key, recent);
-      return false;
-    }
-    recent.push(now);
-    this.hits.set(key, recent);
-    if (this.hits.size > 5000) this.hits.clear();
-    return true;
-  }
 }
