@@ -26,6 +26,12 @@ import Testing
         #expect(!StreakGoal(streak: 98, pending: true).todayReached)
     }
 
+    @Test func theFlameLightsOnlyAfterTodayCounts() {
+        #expect(!StreakGoal(streak: 28, pending: true).lit)
+        #expect(StreakGoal(streak: 29).lit)
+        #expect(!StreakGoal(streak: 0).lit && !StreakGoal(streak: 0, pending: true).lit)
+    }
+
     @Test func yesterdaysStreakIsPendingUntilTodayCounts() {
         let before = LiveStreak([state(27, last: now - day)], now: now, tz: utc)
         #expect(before.days == 27 && !before.countsToday && before.pending)
