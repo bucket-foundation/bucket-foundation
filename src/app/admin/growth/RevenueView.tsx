@@ -33,7 +33,7 @@ export function RevenueFigures({ revenue }: { revenue: RevenueReport }) {
   const window = revenue.windowDays ? `last ${revenue.windowDays} days` : "App Store Connect";
   return (
     <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-      <Figure label="proceeds" value={cash(revenue.proceeds)} detail={`${window}, ${revenue.units ?? 0} purchases`} />
+      <Figure label="proceeds" value={cash(revenue.proceeds)} detail={revenue.units === null ? `${window}, purchases: ${NONE}` : `${window}, ${revenue.units} purchases`} />
       <Figure label="active subscriptions" value={fig(revenue.activeSubscriptions)} detail={revenue.activeAsOf ? `as of ${revenue.activeAsOf}` : "subscription report"} />
       <Figure
         label="trials started"
@@ -86,8 +86,9 @@ export function RevenueProducts({ revenue }: { revenue: RevenueReport }) {
 export function RevenueDaily({ revenue }: { revenue: RevenueReport }) {
   const extra = revenue.products.map((p) => p.sku).filter((s) => !(REVENUE_PRODUCTS as readonly string[]).includes(s));
   const skus = [...REVENUE_PRODUCTS, ...extra];
-  const purchases = (d: RevenueReport["daily"][number]) => (d.units ? Object.values(d.units).reduce((a, b) => a + b, 0) : 0);
-  const top = Math.max(0, ...revenue.daily.map(purchases));
+  const main = [...(revenue.proceeds ?? [])].sort((a, b) => b.amount - a.amount)[0]?.currency;
+  const amount = (d: RevenueReport["daily"][number]) => d.proceeds?.find((m) => m.currency === main)?.amount ?? 0;
+  const top = Math.max(0, ...revenue.daily.map(amount));
   return (
     <>
       <div>
@@ -114,7 +115,7 @@ export function RevenueDaily({ revenue }: { revenue: RevenueReport }) {
                     ))}
                     <td className={TD + " min-w-[140px]"}>
                       {cash(d.proceeds)}
-                      {top > 0 && purchases(d) > 0 ? <div className="mt-1 h-[6px] bg-[color:var(--gold)]" style={{ width: `${Math.max(2, (purchases(d) / top) * 100)}%` }} /> : null}
+                      {top > 0 && amount(d) > 0 ? <div className="mt-1 h-[6px] bg-[color:var(--gold)]" title={`${main} share of the best day`} style={{ width: `${Math.max(2, (amount(d) / top) * 100)}%` }} /> : null}
                     </td>
                     <td className={TD}>{fig(d.trialsStarted)}</td>
                     <td className={TD}>{fig(d.trialsConverted)}</td>

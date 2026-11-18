@@ -169,6 +169,29 @@ export function parseRevenue(v: unknown): SnapshotRevenue | null | undefined {
   return out;
 }
 
+type DayRows<T> = { days: string[]; rows: T[] };
+
+function mergeDays<T extends { day: string }>(prev: DayRows<T> | null | undefined, next: DayRows<T> | null, cutoff: string): DayRows<T> | null {
+  const fresh = new Set(next?.days ?? []);
+  const keep = (d: string) => d >= cutoff && !fresh.has(d);
+  const kept = prev ? { days: prev.days.filter(keep), rows: prev.rows.filter((r) => keep(r.day)) } : null;
+  if (!next) return kept && kept.days.length ? kept : null;
+  if (!kept) return next;
+  return { days: [...kept.days, ...next.days].sort().slice(-REVENUE_LIMITS.maxDays), rows: [...kept.rows, ...next.rows].slice(-REVENUE_LIMITS.maxRows) };
+}
+
+export function mergeRevenue(prev: SnapshotRevenue | null | undefined, next: SnapshotRevenue | null | undefined, takenAt: string): SnapshotRevenue | null {
+  if (!next) return prev ?? null;
+  if (!prev) return next;
+  const cutoff = new Date(Date.parse(takenAt) - next.days * 86_400_000).toISOString().slice(0, 10);
+  return {
+    ...next,
+    sales: mergeDays(prev.sales, next.sales, cutoff),
+    events: mergeDays(prev.events, next.events, cutoff),
+    subscriptions: next.subscriptions ?? prev.subscriptions,
+  };
+}
+
 function addMoney(into: Map<string, number>, r: SalesRow) {
   if (r.proceeds === 0 && !r.currency) return;
   into.set(r.currency || "unknown currency", (into.get(r.currency || "unknown currency") ?? 0) + r.proceeds);

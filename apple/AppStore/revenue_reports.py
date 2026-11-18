@@ -4,6 +4,8 @@ import io
 import json
 import os
 import re
+import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -27,6 +29,9 @@ SUBSCRIPTION_COLUMNS = {
 SKU_RE = re.compile(r"^[A-Za-z0-9._-]{1,80}$")
 MAX_NOTE = 200
 SUBSCRIPTION_LOOKBACK = 5
+REPORT_DELAY_DAYS = 2
+RETRY_STATUS = {429, 500, 502, 503, 504}
+RETRY_WAITS = [2, 6, 18]
 
 
 class ReportError(Exception):
@@ -99,24 +104,28 @@ def parse_events(text, day, names, app=POLINGUAL_APP):
     return [{"day": day, "sku": sku, "event": event, "offer": offer, "quantity": q} for (sku, event, offer), q in sorted(totals.items())]
 
 
-def fetch(api, vendor, report_type, day):
+def fetch(api, vendor, report_type, day, opener=urllib.request.urlopen, sleep=time.sleep):
     q = urllib.parse.urlencode({
         "filter[frequency]": "DAILY", "filter[reportType]": report_type, "filter[reportSubType]": "SUMMARY",
         "filter[vendorNumber]": vendor, "filter[reportDate]": day, "filter[version]": VERSIONS[report_type],
     })
-    req = urllib.request.Request(f"{BASE}/v1/salesReports?{q}", headers={"Authorization": "Bearer " + api.token(), "Accept": "application/a-gzip, application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return "ok", gzip.decompress(r.read()).decode("utf-8")
-    except urllib.error.HTTPError as e:
-        raw = e.read().decode(errors="replace")
+    for wait in [*RETRY_WAITS, None]:
+        req = urllib.request.Request(f"{BASE}/v1/salesReports?{q}", headers={"Authorization": "Bearer " + api.token(), "Accept": "application/a-gzip, application/json"})
         try:
-            detail = " ".join(str(x.get("detail") or x.get("title") or "") for x in json.loads(raw).get("errors", []))
-        except ValueError:
-            detail = raw
-        if e.code == 404:
-            return ("empty" if "no sales" in detail.lower() else "missing"), None
-        raise ReportError(f"HTTP {e.code} {detail}".strip())
+            with opener(req, timeout=60) as r:
+                return "ok", gzip.decompress(r.read()).decode("utf-8")
+        except urllib.error.HTTPError as e:
+            raw = e.read().decode(errors="replace")
+            if e.code == 404:
+                return "absent", None
+            if e.code in RETRY_STATUS and wait is not None:
+                sleep(wait)
+                continue
+            try:
+                detail = " ".join(str(x.get("detail") or x.get("title") or "") for x in json.loads(raw).get("errors", []))
+            except ValueError:
+                detail = raw
+            raise ReportError(f"HTTP {e.code} {detail}".strip())
 
 
 def product_names(api, app=POLINGUAL_APP):
@@ -134,16 +143,20 @@ def vendor_number():
     return v if re.fullmatch(r"[0-9]{6,12}", v) else None
 
 
-def daily(api, vendor, report_type, days, parse):
-    answered, rows = [], []
+def daily(api, vendor, report_type, days, parse, stored=(), pending=()):
+    fetched, absent, rows = [], [], []
     for day in days:
-        status, text = fetch(api, vendor, report_type, day)
-        if status == "missing":
+        if day in stored:
             continue
-        answered.append(day)
+        status, text = fetch(api, vendor, report_type, day)
         if status == "ok":
+            fetched.append(day)
             rows += parse(text, day)
-    return {"days": answered, "rows": rows} if answered else None
+        elif day not in pending:
+            absent.append(day)
+    if not fetched and not stored:
+        return None
+    return {"days": sorted(fetched + absent), "rows": rows}
 
 
 def latest_subscriptions(api, vendor, days, names):
@@ -151,14 +164,33 @@ def latest_subscriptions(api, vendor, days, names):
         status, text = fetch(api, vendor, "SUBSCRIPTION", day)
         if status == "ok":
             return {"day": day, "rows": parse_subscriptions(text, names)}
-        if status == "empty":
-            return {"day": day, "rows": []}
     return None
 
 
-def collect(api, days=30, today=None, vendor=None):
+def stored_days(report):
+    daily_rows = ((report or {}).get("revenue") or {}).get("daily") or []
+    return {
+        "sales": {d["day"] for d in daily_rows if d.get("appUnits") is not None},
+        "events": {d["day"] for d in daily_rows if d.get("trialsStarted") is not None},
+    }
+
+
+def read_stored(snapshot_url, key, opener=urllib.request.urlopen):
+    url = snapshot_url.rstrip("/")
+    url = url[: -len("/snapshot")] if url.endswith("/snapshot") else url
+    try:
+        with opener(urllib.request.Request(url, headers={"Authorization": "Bearer " + key}), timeout=30) as r:
+            return stored_days(json.loads(r.read()))
+    except (OSError, ValueError) as e:
+        print(f"stored revenue days unreadable, reading the full window: {getattr(e, 'code', type(e).__name__)}", file=sys.stderr)
+        return stored_days(None)
+
+
+def collect(api, days=30, today=None, vendor=None, stored=None):
     today = today or date.today()
+    stored = stored or stored_days(None)
     window = [(today - timedelta(days=n)).isoformat() for n in range(days, 0, -1)]
+    pending = set(window[-REPORT_DELAY_DAYS:])
     out = {"days": days, "known": [], "sales": None, "subscriptions": None, "events": None, "notes": []}
     names = product_names(api)
     out["known"] = sorted(n for n in set(names.values()) if SKU_RE.match(n))
@@ -167,15 +199,15 @@ def collect(api, days=30, today=None, vendor=None):
         out["notes"].append("ASC_VENDOR_NUMBER is not set, so no Sales and Trends report was requested")
         return out
     sections = {
-        "sales": lambda: daily(api, vendor, "SALES", window, parse_sales),
+        "sales": lambda: daily(api, vendor, "SALES", window, parse_sales, stored["sales"], pending),
         "subscriptions": lambda: latest_subscriptions(api, vendor, window, names),
-        "events": lambda: daily(api, vendor, "SUBSCRIPTION_EVENT", window, lambda text, day: parse_events(text, day, names)),
+        "events": lambda: daily(api, vendor, "SUBSCRIPTION_EVENT", window, lambda text, day: parse_events(text, day, names), stored["events"], pending),
     }
     for name, load in sections.items():
         try:
             out[name] = load()
             if out[name] is None:
-                out["notes"].append(f"{name}: Apple has no report for the last {days} days")
+                out["notes"].append(f"{name}: Apple returned no report in the last {days} days")
         except (ReportError, OSError, ValueError) as e:
             out["notes"].append(f"{name}: {e}"[:MAX_NOTE])
     return out

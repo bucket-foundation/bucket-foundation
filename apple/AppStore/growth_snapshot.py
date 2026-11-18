@@ -96,7 +96,9 @@ def main():
     for app, app_id in APPS.items():
         snap["testers"] += testers(api, app_id, app)
         snap["builds"] += builds(api, app_id, app)
-    snap["revenue"] = revenue_reports.collect(api, days=max(1, min(90, args.revenue_days)))
+    url, key = os.environ.get("GROWTH_SNAPSHOT_URL", ""), os.environ.get("WAITLIST_ADMIN_KEY", "")
+    stored = revenue_reports.read_stored(url, key) if url and key else None
+    snap["revenue"] = revenue_reports.collect(api, days=max(1, min(90, args.revenue_days)), stored=stored)
     if args.dry_run:
         rev = snap["revenue"]
         print("revenue " + " ".join(f"{k} {'no data yet' if rev[k] is None else len(rev[k]['rows'])}" for k in ("sales", "subscriptions", "events")) + f" known {rev['known']} notes {rev['notes']}")
@@ -106,7 +108,8 @@ def main():
     req = urllib.request.Request(url, method="POST", data=json.dumps(snap).encode(),
                                  headers={"Authorization": "Bearer " + os.environ["WAITLIST_ADMIN_KEY"], "Content-Type": "application/json"})
     with urllib.request.urlopen(req) as r:
-        print(f"snapshot sent: {r.status}")
+        warning = json.loads(r.read() or b"{}").get("warning")
+        print(f"snapshot sent: {r.status}" + (f", warning {warning}: revenue was dropped" if warning else ""))
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { NextRequest } from "next/server";
-import { buildRevenueReport, parseRevenue, REVENUE_PRODUCTS } from "../src/lib/growth/revenue";
+import { buildRevenueReport, mergeRevenue, parseRevenue, REVENUE_PRODUCTS } from "../src/lib/growth/revenue";
 import { parseSnapshot, type GrowthSnapshot } from "../src/lib/growth/snapshot";
 import type { SnapshotStore } from "../src/lib/growth/store";
 import { handleGrowthReport, handleGrowthSnapshot, type GrowthDeps } from "../src/app/api/admin/growth/handler";
@@ -49,7 +49,7 @@ test("each product row shows its own figures and absent products stay empty", ()
 
 test("daily rows list newest first and a day Apple reports as empty counts zero", () => {
   const r = buildRevenueReport(parseRevenue(REVENUE));
-  assert.deepEqual(r.daily.map((d) => d.day), ["2026-11-15", "2026-11-14"]);
+  assert.deepEqual(r.daily.map((d) => d.day), ["2026-11-15", "2026-11-14", "2026-11-13"]);
   assert.deepEqual(r.daily[0].units, { "com.polingual.monthly": 4, "com.polingual.yearly": 1 });
   assert.deepEqual([r.daily[0].appUnits, r.daily[0].trialsStarted, r.daily[0].trialsConverted, r.daily[0].offerCodeRedemptions], [15, 6, 2, 3]);
   assert.deepEqual([r.daily[1].appUnits, r.daily[1].units, r.daily[1].proceeds, r.daily[1].trialsStarted], [0, {}, [], 0]);
@@ -78,7 +78,27 @@ test("parseRevenue refuses malformed rows", () => {
   assert.equal(parseRevenue({ ...REVENUE, sales: { days: [], rows: [{ ...REVENUE.sales.rows[0], currency: "dollars" }] } }), undefined);
   assert.equal(parseRevenue({ ...REVENUE, subscriptions: { day: "2026-11-15", rows: [{ sku: "com.polingual.yearly", standard: -1 }] } }), undefined);
   assert.equal(parseRevenue({ ...REVENUE, events: { days: [], rows: [{ day: "2026-11-15", sku: "x y", event: "Cancel", offer: "", quantity: 1 }] } }), undefined);
-  assert.equal(parseSnapshot({ ...SNAPSHOT, revenue: { days: 30 } }).ok, false);
+  const kept = parseSnapshot({ ...SNAPSHOT, revenue: { days: 30 } });
+  assert.ok(kept.ok);
+  if (kept.ok) assert.deepEqual([kept.warning, kept.value.revenue, kept.value.testers.length], ["bad_revenue", null, 6]);
+  const clean = parseSnapshot({ ...SNAPSHOT, revenue: REVENUE });
+  assert.ok(clean.ok && clean.warning === undefined);
+});
+
+test("mergeRevenue keeps stored days the new snapshot did not read and drops days outside the window", () => {
+  const prev = parseRevenue(REVENUE);
+  const row = { day: "2026-11-16", sku: "com.polingual.yearly", kind: "product", units: 2, proceeds: 101.98, currency: "USD" };
+  const next = parseRevenue({ ...REVENUE, sales: { days: ["2026-11-15", "2026-11-16"], rows: [row] }, events: { days: [], rows: [] }, subscriptions: null });
+  const merged = mergeRevenue(prev, next, "2026-11-18T06:00:00Z");
+  assert.deepEqual(merged?.sales?.days, ["2026-11-13", "2026-11-14", "2026-11-15", "2026-11-16"]);
+  assert.deepEqual(merged?.sales?.rows, [row]);
+  assert.deepEqual(merged?.events, prev?.events);
+  assert.equal(merged?.subscriptions?.day, "2026-11-15");
+  assert.deepEqual(mergeRevenue(prev, next, "2026-11-20T06:00:00Z")?.sales?.days, ["2026-11-15", "2026-11-16"]);
+  assert.deepEqual(mergeRevenue(prev, null, "2026-11-18T06:00:00Z"), prev);
+  assert.deepEqual(mergeRevenue(null, next, "2026-11-18T06:00:00Z"), next);
+  const failed = mergeRevenue(prev, parseRevenue({ days: 5, known: [], sales: null, subscriptions: null, events: null, notes: ["sales: HTTP 500"] }), "2026-11-18T06:00:00Z");
+  assert.deepEqual([failed?.sales?.days.length, failed?.notes], [3, ["sales: HTTP 500"]]);
 });
 
 test("the growth handler stores revenue with the snapshot and reports it", async () => {
@@ -86,16 +106,20 @@ test("the growth handler stores revenue with the snapshot and reports it", async
   const before = await (await handleGrowthReport(req("GET"), d)).json();
   assert.equal(before.revenue.proceeds, null);
   assert.equal(before.revenue.products.length, 4);
-  assert.equal((await handleGrowthSnapshot(req("POST", { ...SNAPSHOT, revenue: { days: 30 } }), d)).status, 400);
-  assert.equal((await handleGrowthSnapshot(req("POST", { ...SNAPSHOT, revenue: REVENUE }), d)).status, 200);
-  assert.deepEqual(d.saved[0].revenue, REVENUE);
+  const dropped = await handleGrowthSnapshot(req("POST", { ...SNAPSHOT, revenue: { days: 30 } }), d);
+  assert.equal(dropped.status, 200);
+  assert.deepEqual(await dropped.json(), { ok: true, testers: 6, builds: 4, warning: "bad_revenue" });
+  assert.equal(d.saved[0].revenue, null);
+  const saved = await handleGrowthSnapshot(req("POST", { ...SNAPSHOT, revenue: REVENUE }), d);
+  assert.deepEqual(await saved.json(), { ok: true, testers: 6, builds: 4 });
+  assert.deepEqual(d.saved[1].revenue, REVENUE);
   const body = await (await handleGrowthReport(req("GET"), d)).json();
   assert.equal(body.revenue.activeSubscriptions, 17);
   assert.deepEqual(body.revenue.proceeds, [{ currency: "EUR", amount: 7.2 }, { currency: "USD", amount: 76.46 }]);
   assert.equal(body.funnel.length, 5);
   assert.equal((await handleGrowthSnapshot(req("POST", SNAPSHOT), d)).status, 200);
-  const old = await (await handleGrowthReport(req("GET"), d)).json();
-  assert.equal(old.revenue.proceeds, null);
+  const carried = await (await handleGrowthReport(req("GET"), d)).json();
+  assert.equal(carried.revenue.activeSubscriptions, 17);
 });
 
 test("polingual.com/admin and admin.polingual.com redirect to the growth report", async () => {
