@@ -1,0 +1,119 @@
+{
+ "days": 5,
+ "known": [
+  "com.polingual.monthly",
+  "com.polingual.yearly"
+ ],
+ "sales": {
+  "days": [
+   "2026-11-13",
+   "2026-11-14",
+   "2026-11-15"
+  ],
+  "rows": [
+   {
+    "day": "2026-11-15",
+    "sku": "app",
+    "kind": "app",
+    "units": 3,
+    "proceeds": 0.0,
+    "currency": "EUR"
+   },
+   {
+    "day": "2026-11-15",
+    "sku": "app",
+    "kind": "app",
+    "units": 12,
+    "proceeds": 0.0,
+    "currency": "USD"
+   },
+   {
+    "day": "2026-11-15",
+    "sku": "com.polingual.monthly",
+    "kind": "product",
+    "units": 1,
+    "proceeds": 7.2,
+    "currency": "EUR"
+   },
+   {
+    "day": "2026-11-15",
+    "sku": "com.polingual.monthly",
+    "kind": "product",
+    "units": 3,
+    "proceeds": 25.47,
+    "currency": "USD"
+   },
+   {
+    "day": "2026-11-15",
+    "sku": "com.polingual.yearly",
+    "kind": "product",
+    "units": 1,
+    "proceeds": 50.99,
+    "currency": "USD"
+   }
+  ]
+ },
+ "subscriptions": {
+  "day": "2026-11-15",
+  "rows": [
+   {
+    "sku": "com.polingual.monthly",
+    "standard": 3,
+    "trial": 0,
+    "introPaid": 0,
+    "promo": 0,
+    "offerCode": 0,
+    "billingRetry": 0,
+    "grace": 1
+   },
+   {
+    "sku": "com.polingual.yearly",
+    "standard": 5,
+    "trial": 7,
+    "introPaid": 0,
+    "promo": 0,
+    "offerCode": 2,
+    "billingRetry": 1,
+    "grace": 0
+   }
+  ]
+ },
+ "events": {
+  "days": [
+   "2026-11-13",
+   "2026-11-14",
+   "2026-11-15"
+  ],
+  "rows": [
+   {
+    "day": "2026-11-15",
+    "sku": "com.polingual.monthly",
+    "event": "Cancel",
+    "offer": "",
+    "quantity": 1
+   },
+   {
+    "day": "2026-11-15",
+    "sku": "com.polingual.yearly",
+    "event": "Paid Subscription from Introductory Offer",
+    "offer": "",
+    "quantity": 2
+   },
+   {
+    "day": "2026-11-15",
+    "sku": "com.polingual.yearly",
+    "event": "Start Introductory Offer",
+    "offer": "Free Trial",
+    "quantity": 6
+   },
+   {
+    "day": "2026-11-15",
+    "sku": "com.polingual.yearly",
+    "event": "Start Offer Code",
+    "offer": "Free Trial",
+    "quantity": 3
+   }
+  ]
+ },
+ "notes": []
+}

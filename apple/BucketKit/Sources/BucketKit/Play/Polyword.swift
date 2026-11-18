@@ -1,6 +1,6 @@
 import Foundation
 
-public enum PolyMark: Int, Sendable, Comparable {
+public enum PolyMark: Int, Codable, Sendable, Comparable {
     case miss = 1, near, hit
 
     public static func < (a: PolyMark, b: PolyMark) -> Bool { a.rawValue < b.rawValue }

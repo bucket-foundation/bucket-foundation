@@ -1,10 +1,11 @@
 import { GUIDES } from "./guides";
+import { teachersPaths } from "./teachers";
 import { WORDS, wordPath } from "./words";
 import SITE_LANGS from "./site-langs.json";
 import { localWordPaths } from "./word-i18n";
 
 export function sitemapPaths(): string[] {
-  return ["/", ...SITE_LANGS.map((l) => `/${l}`), "/compare/duolingo-three-languages", "/privacy", "/terms", "/support", "/research", ...GUIDES.map((g) => `/learn/${g.slug}`), "/word", ...WORDS.map(wordPath), ...localWordPaths()];
+  return ["/", ...SITE_LANGS.map((l) => `/${l}`), "/compare/duolingo-three-languages", "/privacy", "/terms", "/support", "/research", "/learn", ...teachersPaths(), ...GUIDES.map((g) => `/learn/${g.slug}`), "/word", ...WORDS.map(wordPath), ...localWordPaths()];
 }
 
 export const SITEMAP_MAX_URLS = 45_000;

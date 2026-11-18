@@ -48,34 +48,69 @@ struct StartLearningButton: View {
     }
 }
 
+extension EnvironmentValues {
+    @Entry var playRoom: CGFloat = 0
+}
+
+struct PlayBoardFrame: ViewModifier {
+    @Environment(\.playRoom) private var room
+    @Environment(\.verticalSizeClass) private var vertical
+    let chrome: CGFloat
+    let least: CGFloat
+
+    func body(content: Content) -> some View {
+        content.frame(height: PlayBoard.height(room: room, chrome: chrome + PlayFoot.pad(vertical), least: least))
+    }
+}
+
+enum PlayFoot {
+    static func pad(_ vertical: UserInterfaceSizeClass?) -> CGFloat { vertical == .compact ? PL.Space.s2 : PL.Space.s6 }
+}
+
+extension View {
+    func playBoard(chrome: CGFloat, least: CGFloat) -> some View { modifier(PlayBoardFrame(chrome: chrome, least: least)) }
+}
+
 struct PlayScene<Content: View>: View {
+    @Environment(\.verticalSizeClass) private var vertical
     let game: GameKind
-    let stickers: [PLSticker]
     @ViewBuilder let content: () -> Content
 
-    var headerStickers: [PLSticker] {
-        [PLSticker(game.art ?? .seal, .topTrailing, width: 64, x: -8, y: 4, angle: 8),
-         PLSticker(.star, .bottomTrailing, width: 36, x: -84, y: -2, angle: -10),
-         PLSticker(.scriptRu, .bottomTrailing, width: 46, x: -4, y: 0, angle: -6, shadow: false)]
-    }
-
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: PL.Space.s4) {
-                PLScreenTop(title: game.title, subtitle: game.detail, stickers: headerStickers, onDark: true)
-                StartLearningButton(size: .sm, full: false)
-                content()
-            }
-            .padding(.horizontal, PL.Space.s4)
-            .padding(.bottom, PL.Space.s6)
+        GeometryReader { geo in
+            page.environment(\.playRoom, geo.size.height)
         }
-        .scrollContentBackground(.hidden)
         .plGround(.lattice, band: true)
         .navigationTitle(game.title)
-        .plChrome()
+        .inlineTitle()
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(game.title)
+                    .font(PL.heading.font())
+                    .foregroundStyle(PL.paper)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityIdentifier("playTitle")
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                StartLearningButton(size: .sm, full: false)
+            }
+        }
         .fullHeightSession()
         .onDisappear { LangVoice.shared.hush() }
         .accessibilityIdentifier("play-\(game.rawValue)")
+    }
+
+    var page: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: PL.Space.s4) {
+                content()
+            }
+            .padding(.horizontal, PL.Space.s4)
+            .padding(.bottom, PlayFoot.pad(vertical))
+        }
+        .scrollContentBackground(.hidden)
     }
 }
 
@@ -135,7 +170,10 @@ struct PlayResults: View {
     let root: String
     var board: [BoardRow] = []
     var againLabel = "Play again"
+    var share: (kind: GameKind, shape: GameShare.Shape)?
+    var retry: (kind: GameKind, deck: String?, start: () -> Void)?
     let again: (() -> Void)?
+    @Environment(LangStore.self) private var langs
 
     var body: some View {
         VStack(alignment: .leading, spacing: PL.Space.s4) {
@@ -159,7 +197,15 @@ struct PlayResults: View {
                 }
             }
             ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
-            if let again { Button(LocalizedStringKey(againLabel), action: again).buttonStyle(.pl(.primary, size: .lg)) }
+            if let share { GameShareButton(kind: share.kind, text: langs.shareText(share.kind, share.shape), style: .pl(.primary, size: .lg)) }
+            if let retry { TryAgainOffer(kind: retry.kind, deck: retry.deck, start: retry.start) }
+            if let again {
+                if let kind = share?.kind, DailyLedger.shared.spent {
+                    DailyLimitCard(place: "game:\(kind.rawValue)")
+                } else {
+                    Button(LocalizedStringKey(againLabel), action: again).buttonStyle(.pl(.primary, size: .lg))
+                }
+            }
             StartLearningButton()
         }
     }
@@ -204,14 +250,6 @@ enum PlaySound {
         GameSound.play(right: right, combo: combo)
         haptic(right)
     }
-}
-
-func playStickers(_ main: PLArt, _ second: PLArt = .seal) -> [PLSticker] {
-    [
-        PLSticker(main, .bottomTrailing, width: 92, x: -10, y: -6, angle: 8),
-        PLSticker(second, .topTrailing, width: 48, x: -4, y: 0, angle: -9),
-        PLSticker(.pebble, .bottomTrailing, width: 22, x: -2, y: -2, angle: 12),
-    ]
 }
 
 func playWords(_ items: [PlayRevealItem]) -> [PlayRevealItem] {

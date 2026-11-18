@@ -103,6 +103,7 @@ struct QuizGame: View {
     @State private var run: GameRun?
     @State private var best = false
     @State private var replayed = false
+    @State private var round = PracticeRound()
     @State private var shake = 0
     @State private var pause: Task<Void, Never>?
 
@@ -193,6 +194,14 @@ struct QuizGame: View {
         r.advance()
         run = r
         guard r.done else { return }
+        if round.practicing {
+            _ = round.finish(score: String(localized: "\(r.hits) of \(r.results.count)"))
+            if let s = langs.dailySystem, let done = langs.gameDaily(s.id) {
+                replayed = true
+                run = GameRun(r.prompts, replaying: done)
+            }
+            return
+        }
         let points = kind == .daily ? nil : r.hits
         best = langs.recordGame(kind, played: r.prompts.map(\.word), hits: r.hits, points: points, missed: r.missed, pattern: kind == .daily ? r.pattern : nil)
         reminders.noteStudy()
@@ -260,13 +269,21 @@ struct QuizGame: View {
     func end(_ r: GameRun) -> some View {
         GameEnd(kind: kind,
                 score: String(localized: "\(r.hits) of \(r.results.count)"),
-                line: kind == .daily ? String(localized: "New set tomorrow.") : nil,
+                line: kind == .daily ? round.score.map(PracticeLine.text) ?? String(localized: "New set tomorrow.") : nil,
                 best: best,
                 results: r.results,
                 missed: r.missed,
-                share: kind == .daily ? AnyView(DailyShare(prompts: r.prompts, results: r.results)) : nil,
+                share: kind == .daily ? AnyView(DailyShare(prompts: r.prompts, results: r.results, message: langs.shareText(kind, .marks(r.results)))) : nil,
                 shareObject: kind == .daily ? nil : langs.gameScore(kind.title, right: r.hits, total: r.results.count),
+                retry: kind == .daily ? { retry(r.prompts) } : nil,
                 again: kind == .daily ? nil : { deal() })
+    }
+
+    func retry(_ prompts: [GamePrompt]) {
+        pause?.cancel()
+        round.begin()
+        replayed = false
+        run = GameRun(prompts)
     }
 }
 
@@ -372,11 +389,8 @@ struct DailyShareCard: View {
 struct DailyShare: View {
     let prompts: [GamePrompt]
     let results: [Bool]
+    let message: String
     @State private var image: Image?
-
-    var message: String {
-        String(localized: "Daily Set: \(results.filter { $0 }.count) of \(results.count) on \(Feedback.appName). Same words for everyone today. \(Share.appLink.absoluteString)")
-    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -386,6 +400,7 @@ struct DailyShare: View {
                     Label("Share the card", systemImage: "photo")
                 }
                 .buttonStyle(D8Option(align: .center))
+                .modifier(GameShareLog(kind: .daily, form: "image"))
             }
         }
         .task { if image == nil { image = render() } }
@@ -451,6 +466,7 @@ struct SpeedMatchGame: View {
                         GameEnd(kind: .match, score: String(localized: "\(board.points) points"),
                                 line: String(localized: "\(board.hits) pairs. Longest run \(board.bestCombo)."),
                                 best: best, missed: board.missed,
+                                shape: .points(board.points, marks: []),
                                 shareObject: langs.gameScore(GameKind.match.title, right: board.hits, total: board.hits + board.missed.count),
                                 again: { deal() })
                     } else {

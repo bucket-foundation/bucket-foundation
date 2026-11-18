@@ -9,6 +9,7 @@ export const metadata: Metadata = { title: "Admin", robots: { index: false, foll
 const LINKS = [
   { href: "/admin/users", label: "Users", body: "Search learners, open a profile, disable or delete an account." },
   { href: "/admin/revenue", label: "Revenue", body: "MRR, trials, refunds and plan mix from App Store notifications." },
+  { href: "/admin/growth", label: "Growth", body: "Funnel beside App Store units, proceeds, subscriptions and trials. Opens with the admin key." },
   { href: "/admin/tracking", label: "Tracking", body: "Event funnels, experiment readouts and pixel consent." },
   { href: "/admin/activity", label: "Activity", body: "DAU, WAU, reviews a day and retention cohorts." },
   { href: "/admin/waitlist", label: "Launch list", body: "Signups and invites." },

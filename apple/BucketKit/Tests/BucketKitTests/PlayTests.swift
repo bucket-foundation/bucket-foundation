@@ -188,6 +188,91 @@ struct PlayTests {
         #expect(FlagTilesRules.step(s, .end).phase == .over)
     }
 
+    @Test func babelHintNamesALegalNeighbourSwap() {
+        for seed in Int32(1)..<30 {
+            var d = F.deal(seed)
+            let b = Babel.playable(&d)
+            let h = Babel.hint(b)
+            #expect(h?.count == 2)
+            if let h, h.count == 2 {
+                #expect(Babel.adjacent(h[0], h[1]))
+                #expect(!Babel.matches(Babel.swapped(b, h[0], h[1])).isEmpty)
+            }
+        }
+        let names = ["dog", "cat", "sun"]
+        let dead = (0..<(Babel.size * Babel.size)).map { i in Cell(key: i, meaning: names[(i / Babel.size + i) % 3], lang: "es") }
+        #expect(Babel.hint(dead) == nil)
+        #expect(Babel.hint([]) == nil)
+    }
+
+    @Test func babelMarksMeaningsOnTheFirstTwoLevels() {
+        #expect(Babel.marksShown(level: 1))
+        #expect(Babel.marksShown(level: 2))
+        #expect(!Babel.marksShown(level: 3))
+    }
+
+    @Test func flagStreamKeepsSeveralWordsFallingInOrder() {
+        let s = FlagStream(count: 240)
+        #expect(s.spawns.count == 240)
+        #expect(s.spawns[0] == 0)
+        #expect(s.spawns[1] == 1360)
+        #expect(s.clock(placing: 0, at: 1) == 3400)
+        let mid = s.rows(from: 0, clockMs: 3000)
+        #expect(mid.map(\.index) == [0, 1, 2])
+        #expect(mid[0].progress > mid[1].progress && mid[1].progress > mid[2].progress)
+        #expect(s.rows(from: 0, clockMs: 0).map(\.index) == [0])
+        #expect(s.rows(from: 240, clockMs: 0).isEmpty)
+        #expect(s.rows(from: 238, clockMs: s.clock(placing: 239, at: 0.5)).map(\.index) == [238, 239])
+        for i in 0..<239 {
+            let landing = s.clock(placing: i, at: 1)
+            #expect(s.progress(i + 1, clockMs: landing) < 1)
+            #expect(s.progress(i + 1, clockMs: landing) > 0)
+        }
+    }
+
+    @Test func flagStreamPullsTheNextWordDownAfterAFastTap() {
+        let s = FlagStream(count: 240)
+        let early = s.caughtUp(100, next: 1)
+        #expect(s.progress(1, clockMs: early) == FlagStream.lead)
+        let late = s.clock(placing: 1, at: 0.6)
+        #expect(s.caughtUp(late, next: 1) == late)
+        #expect(s.caughtUp(500, next: 240) == 500)
+        #expect(s.landsInMs(1, clockMs: early) == Double(FlagTilesRules.fallMs(1)) * (1 - FlagStream.lead))
+        #expect(s.landsInMs(0, clockMs: 9000) == 0)
+        #expect(FlagStream(count: 0).rows(from: 0, clockMs: 0).isEmpty)
+    }
+
+    @Test func flagClockEasesTheCatchUpWithoutAJump() {
+        let s = FlagStream(count: 240)
+        let start = FlagClock(offset: s.clock(placing: 0, at: 0))
+        #expect(start.at(250) == 250)
+        #expect(start.landsInMs(0, in: s, sinceMs: 400) == 3000)
+        let fast = start.caughtUp(250, next: 1, in: s)
+        #expect(fast.at(0) == 250)
+        #expect(fast.jump > 0)
+        #expect(fast.at(FlagClock.easeMs) == s.clock(placing: 1, at: FlagStream.lead) + FlagClock.easeMs)
+        #expect(fast.at(90) > fast.at(0) && fast.at(90) < fast.at(FlagClock.easeMs))
+        #expect(fast.landsInMs(1, in: s, sinceMs: 0) == Int((3400 * (1 - FlagStream.lead)).rounded(.up)))
+        let slow = start.caughtUp(3300, next: 1, in: s)
+        #expect(slow.jump == 0 && slow.at(0) == 3300)
+        #expect(slow.landsInMs(1, in: s, sinceMs: 0) == 1360 + 3400 - 3300)
+        #expect(start.landsInMs(0, in: s, sinceMs: 5000) < 0)
+    }
+
+    @Test func flagBoardFitsShortScreensAndLandsWordsAboveTheFlags() {
+        #expect(FlagBoard.compact(FlagBoard.least))
+        #expect(!FlagBoard.compact(440))
+        #expect(FlagBoard.foot(260) >= 44)
+        #expect(FlagBoard.tileY(0, height: 440) == FlagBoard.tile / 2)
+        #expect(FlagBoard.tileY(1, height: 440) + FlagBoard.tile / 2 == 440 - FlagBoard.foot(440))
+        #expect(FlagBoard.tileY(1, height: 260) + FlagBoard.tile / 2 == 260 - FlagBoard.foot(260))
+        #expect(FlagBoard.tileY(2, height: 260) == FlagBoard.tileY(1, height: 260))
+        #expect(FlagBoard.tileY(1, height: 260) - FlagBoard.tileY(0, height: 260) >= 150)
+        #expect(FlagBoard.tileY(1, height: FlagBoard.least) - FlagBoard.tileY(0, height: FlagBoard.least) >= 140)
+        #expect(PlayBoard.height(room: 340, chrome: 150, least: FlagBoard.least) == FlagBoard.least)
+        #expect(PlayBoard.height(room: 760, chrome: 150, least: FlagBoard.least) == 610)
+    }
+
     @Test func flagTilesFallSpeedsUpEveryTenWordsToAFloor() {
         #expect(FlagTilesRules.fallMs(0) == 3400)
         #expect(FlagTilesRules.fallMs(9) == 3400)
@@ -432,6 +517,87 @@ struct PlayTests {
     }
 
     static let snakeDeck = SnakeDeck(lang: "es", good: [SnakeWord(form: "perro", lang: "es", meaning: "dog")], decoys: [SnakeWord(form: "chien", lang: "fr", meaning: "dog")])
+
+    @Test func snakeViewFollowsTheHeadAtOnePointPerUnit() {
+        let v = Snakes.view(head: Pt(800, 500), width: 360, height: 420)
+        #expect(v == SnakeView(x: 620, y: 290, w: 360, h: 420))
+        #expect(Snakes.eatR >= 22)
+    }
+
+    @Test func snakeViewStopsAtTheWorldEdges() {
+        #expect(Snakes.view(head: Pt(10, 10), width: 360, height: 420) == SnakeView(x: 0, y: 0, w: 360, h: 420))
+        #expect(Snakes.view(head: Pt(1595, 990), width: 360, height: 420) == SnakeView(x: 1240, y: 580, w: 360, h: 420))
+        #expect(Snakes.view(head: Pt(800, 500), width: 4000, height: 3000) == SnakeView(x: 0, y: 0, w: Snakes.worldW, h: Snakes.worldH))
+        #expect(Snakes.view(head: Pt(800, 500), width: 0, height: 0).w == 1)
+    }
+
+    @Test func snakeViewTellsWhatIsOnScreen() {
+        let v = Snakes.view(head: Pt(800, 500), width: 360, height: 420)
+        #expect(v.shows(Pt(700, 400), margin: 0))
+        #expect(!v.shows(Pt(500, 400), margin: 80))
+        #expect(v.shows(Pt(560, 400), margin: 80))
+    }
+
+    @Test func snakeAimPointsFromTheHeadToTheTouch() {
+        let head = Pt(800, 500)
+        let v = Snakes.view(head: head, width: 360, height: 420)
+        #expect(abs(Snakes.aim(head: head, view: v, touch: Pt(300, 210))) < 0.0001)
+        #expect(abs(Snakes.aim(head: head, view: v, touch: Pt(180, 400)) - .pi / 2) < 0.0001)
+        let corner = Pt(5, 5)
+        let edge = Snakes.view(head: corner, width: 360, height: 420)
+        #expect(abs(Snakes.aim(head: corner, view: edge, touch: Pt(105, 5))) < 0.0001)
+    }
+
+    @Test func snakeHeldFingerKeepsSteeringAsTheViewMoves() {
+        let touch = Pt(300, 210)
+        let first = Snakes.heldAim(head: Pt(800, 500), width: 360, height: 420, touch: touch, current: nil)
+        #expect(abs((first ?? 9) - 0) < 0.0001)
+        let below = Snakes.heldAim(head: Pt(5, 5), width: 360, height: 420, touch: Pt(5, 300), current: first)
+        #expect(abs((below ?? 9) - .pi / 2) < 0.0001)
+        #expect(Snakes.heldAim(head: Pt(800, 500), width: 360, height: 420, touch: Pt(181, 211), current: 1.25) == 1.25)
+    }
+
+    @Test func snakeShieldKeepsThePlayerAliveAtTheStart() {
+        var big = Snakes.make(id: "big", name: "Big", bot: true, skill: 1, at: Pt(300, 300), angle: 0, color: 0)
+        big.length = 20
+        let me = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(291, 300), angle: .pi, color: 0)
+        let arena = Arena(snakes: [big, me], words: [], nextWord: 0)
+        #expect(Snakes.collide(arena, shield: true).died.isEmpty)
+        #expect(Snakes.collide(arena).died == ["me"])
+        #expect(Snakes.shielded(elapsedMs: 0))
+        #expect(Snakes.shielded(elapsedMs: Snakes.graceMs - 1))
+        #expect(!Snakes.shielded(elapsedMs: Snakes.graceMs))
+    }
+
+    @Test func snakeShieldAlsoSparesBotsFromTheShieldedPlayer() {
+        var me = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(300, 300), angle: 0, color: 0)
+        me.length = 20
+        let bot = Snakes.make(id: "b", name: "B", bot: true, skill: 1, at: Pt(291, 300), angle: .pi, color: 0)
+        #expect(Snakes.collide(Arena(snakes: [me, bot], words: [], nextWord: 0), shield: true).died.isEmpty)
+        #expect(Snakes.collide(Arena(snakes: [me, bot], words: [], nextWord: 0)).died == ["b"])
+    }
+
+    @Test func snakeBotsStartAwayFromThePlayer() {
+        let me = Pt(800, 500)
+        var seq = [0.5, 0.5, 0.1, 0.1].makeIterator()
+        let p = Snakes.botStart(away: me) { seq.next() ?? 0.1 }
+        #expect(Snakes.dist(p, me) >= Snakes.clearR)
+        let stuck = Snakes.botStart(away: me) { 0.5 }
+        #expect(Snakes.dist(stuck, me) >= Snakes.clearR)
+        for corner in [Pt(200, 150), Pt(1400, 850), Pt(200, 850), Pt(1400, 150)] {
+            #expect(Snakes.dist(Snakes.botStart(away: corner) { 0 }, corner) >= Snakes.clearR)
+        }
+    }
+
+    @Test func snakeTickRespawnsDeadBotsClearOfThePlayer() {
+        var me = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(800, 500), angle: 0, color: 0)
+        me.length = 30
+        let bot = Snakes.make(id: "b", name: "B", bot: true, skill: 1, at: Pt(795, 500), angle: .pi, color: 1)
+        let out = Snakes.tick(Arena(snakes: [me, bot], words: [], nextWord: 0), aim: nil, deck: Self.snakeDeck, rand: { 0.5 }, dt: 0.001)
+        let b = out.snakes[1]
+        #expect(b.alive)
+        #expect(Snakes.dist(b.body[0], out.snakes[0].body[0]) >= Snakes.clearR)
+    }
 
     @Test func snakesMoveTurnCappedAndKeepLength() {
         let s = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(500, 500), angle: 0, color: 0)

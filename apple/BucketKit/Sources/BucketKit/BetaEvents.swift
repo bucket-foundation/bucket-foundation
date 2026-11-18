@@ -19,6 +19,13 @@ public struct BetaEvent: Codable, Sendable, Equatable {
         self.sessionId = sessionId
         self.props = props
     }
+
+    public static let heldAgeLimit = 29.0 * 86_400
+
+    public func restamped(at now: Date) -> BetaEvent {
+        guard let then = ISO8601DateFormatter().date(from: ts), now.timeIntervalSince(then) > Self.heldAgeLimit else { return self }
+        return BetaEvent(id: id, name: name, at: now, sessionId: sessionId, props: props)
+    }
 }
 
 public enum JSONScalar: Codable, Sendable, Equatable {
@@ -50,6 +57,7 @@ public actor BetaEvents {
     public static let optOutKey = "beta.optedOut"
     public static let pendingKey = "beta.optOutPending"
     public static let ownerKey = "beta.queueOwner"
+    public static let heldKey = "beta.heldForSignIn"
 
     let app: String
     let base: URL
@@ -84,11 +92,29 @@ public actor BetaEvents {
         save()
     }
 
+    public var held: [BetaEvent] {
+        defaults.data(forKey: Self.heldKey).flatMap { try? JSONDecoder().decode([BetaEvent].self, from: $0) } ?? []
+    }
+
+    public func hold(_ event: BetaEvent) {
+        guard !optedOut else { return }
+        let next = held.filter { $0.name != event.name } + [event]
+        defaults.set(try? JSONEncoder().encode(next), forKey: Self.heldKey)
+    }
+
+    func adoptHeld(owner: String, now: Date) {
+        let waiting = held
+        guard !waiting.isEmpty else { return }
+        defaults.removeObject(forKey: Self.heldKey)
+        for event in waiting { log(event.restamped(at: now), owner: owner) }
+    }
+
     public var pendingOptOut: Bool? { defaults.object(forKey: Self.pendingKey) as? Bool }
 
-    public func flush(token: String?, owner: String?) async -> BetaFlush {
+    public func flush(token: String?, owner: String?, now: Date = .now) async -> BetaFlush {
         if let token, let pending = pendingOptOut { await sendOptOut(pending, token: token) }
-        if let owner, self.owner != nil, self.owner != owner { clearQueue() }
+        if let owner, self.owner != nil, self.owner != owner { dropQueue() }
+        if let owner { adoptHeld(owner: owner, now: now) }
         guard let token, owner != nil, !flushing, !queue.isEmpty, !optedOut else { return BetaFlush(sent: 0, kept: queue.count) }
         flushing = true
         defer { flushing = false }
@@ -112,6 +138,7 @@ public actor BetaEvents {
         defaults.set(out, forKey: Self.pendingKey)
         if out {
             queue = []
+            defaults.removeObject(forKey: Self.heldKey)
             save()
         }
         if let token { await sendOptOut(out, token: token) }
@@ -127,7 +154,20 @@ public actor BetaEvents {
         if pendingOptOut == out { defaults.removeObject(forKey: Self.pendingKey) }
     }
 
+    public func record(_ event: BetaEvent, route: BetaRoute) {
+        switch route {
+        case .log(let owner): log(event, owner: owner)
+        case .hold: hold(event)
+        case .drop: break
+        }
+    }
+
     public func clearQueue() {
+        defaults.removeObject(forKey: Self.heldKey)
+        dropQueue()
+    }
+
+    func dropQueue() {
         queue = []
         defaults.removeObject(forKey: Self.ownerKey)
         save()
@@ -165,9 +205,51 @@ extension BetaEvent {
         ["lang": .string(lang), "item": .string(itemId), "stage": .string(stage)].merging(streakProps(streak)) { $1 }
     }
 
+    public static func knownProps(_ known: KnownLanguages, source: KnownSource) -> [String: JSONScalar]? {
+        guard !known.isBlank else { return nil }
+        return ["count": .number(Double(min(known.codes.count, 40))), "codes": .string(known.eventCodes), "source": .string(source.rawValue)]
+    }
+
+    public static func known(_ known: KnownLanguages, source: KnownSource, sessionId: String?) -> BetaEvent? {
+        knownProps(known, source: source).map { BetaEvent(name: knownName, sessionId: sessionId, props: $0) }
+    }
+
+    public static let knownName = "known_languages_set"
+
     public static func streakProps(_ day: Int) -> [String: JSONScalar] {
         ["streak_day": .number(Double(max(0, day))), "streak_band": .string(StreakBand.of(day).rawValue)]
     }
+}
+
+public enum BetaRoute: Equatable, Sendable {
+    case log(String), hold, drop
+
+    public static func of(owner: String?, signedIn: Bool) -> BetaRoute {
+        if let owner { return .log(owner) }
+        return signedIn ? .drop : .hold
+    }
+}
+
+@MainActor
+public final class OrderedTasks {
+    private var tail: Task<Void, Never>?
+
+    public init() {}
+
+    public func run(_ work: @escaping @Sendable () async -> Void) {
+        let before = tail
+        tail = Task {
+            await before?.value
+            await work()
+        }
+    }
+
+    public func drain() async { await tail?.value }
+}
+
+public enum KnownSource: String, CaseIterable, Sendable {
+    case onboarding, settings
+    case updateSheet = "update_sheet"
 }
 
 public enum StreakBand: String, CaseIterable, Sendable {

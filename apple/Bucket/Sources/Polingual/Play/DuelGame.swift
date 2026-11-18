@@ -17,7 +17,7 @@ struct DuelGame: View {
     var prompt: GamePrompt? { index < prompts.count ? prompts[index] : nil }
 
     var body: some View {
-        PlayScene(game: .duel, stickers: playStickers(.seal, .kente)) {
+        PlayScene(game: .duel) {
             if prompts.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let prompt, !PlayLaunch.endGame {
@@ -67,6 +67,7 @@ struct DuelGame: View {
             line: "\(marks.filter { $0 }.count) of \(marks.count) rounds right on both questions.",
             reveals: Array(zip(prompts, marks).filter { !$0.1 }.map { PlayRevealItem(lang: $0.0.word.lang, form: $0.0.word.form, meaning: $0.0.word.gloss) }.prefix(6)),
             root: langs.playRoot,
+            share: (.duel, .points(points, marks: marks)),
             again: { deal() }
         )
         .onAppear {

@@ -234,6 +234,14 @@ import Testing
         #expect(streak == 12 && left.hours == 4 && left.minutes == 0)
     }
 
+    @Test func dayInPlayIsTheDayAfterTheStreakUntilStudy() {
+        let keep = TodayStatus.evaluate(streak: 27, studiedToday: false, items: 2, itemsLeft: 2, now: at(9), calendar: cal)
+        let risk = TodayStatus.evaluate(streak: 27, studiedToday: false, items: 2, itemsLeft: 2, now: at(21), calendar: cal)
+        let safe = TodayStatus.evaluate(streak: 28, studiedToday: true, items: 2, itemsLeft: 1, now: at(21), calendar: cal)
+        #expect(keep.dayInPlay == 28 && risk.dayInPlay == 28)
+        #expect(safe.dayInPlay == nil && TodayStatus.start.dayInPlay == nil)
+    }
+
     @Test func aMarkedListDoesNotSaveTheStreak() {
         let s = TodayStatus.evaluate(streak: 3, studiedToday: false, items: 1, itemsLeft: 0, now: at(21), calendar: cal)
         if case .atRisk = s {} else { Issue.record("expected at risk") }

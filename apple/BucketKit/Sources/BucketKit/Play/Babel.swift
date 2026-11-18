@@ -173,6 +173,20 @@ public enum Babel {
         return false
     }
 
+    public static func hint(_ board: [Cell]) -> [Int]? {
+        guard board.count == size * size else { return nil }
+        for i in 0..<(size * size) {
+            for j in [i + 1, i + size] where j < size * size && adjacent(i, j) {
+                if !matches(swapped(board, i, j)).isEmpty { return [i, j] }
+            }
+        }
+        return nil
+    }
+
+    public static let markedLevels = 2
+
+    public static func marksShown(level: Int) -> Bool { level <= markedLevels }
+
     public static func playable(_ deal: inout Dealer, start: [Cell]? = nil) -> [Cell] {
         var board = start ?? fresh(&deal)
         for _ in 0..<50 {

@@ -13,6 +13,7 @@ struct AccountView: View {
     @State private var signingIn = false
     @State private var emailing = false
     var subscription: (() -> Void)?
+    var memberLine: String?
     var trialDaysLeft: Int?
     var trialReminderOff = false
     var betaFree = false
@@ -31,6 +32,7 @@ struct AccountView: View {
                 #if !BUCKET
                 PLScreenTop(title: "Account", stickers: Stickers.account).plListTop()
                 #endif
+                LexiconMapSection()
                 switch account.stage {
                 case .signedOut, .codeSent:
                     Section {
@@ -52,6 +54,13 @@ struct AccountView: View {
                         }
                     } header: {
                         Eyebrow(text: "Account")
+                    }
+                }
+                if let memberLine {
+                    Section {
+                        Text(memberLine).accessibilityIdentifier("memberLine")
+                    } header: {
+                        Eyebrow(text: "Subscription")
                     }
                 }
                 if let subscription {

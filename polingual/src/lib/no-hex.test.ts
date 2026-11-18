@@ -4,7 +4,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 
 const APP = path.join(__dirname, "../app");
-const OWNED = ["app/globals.css", "app/site.module.css", "app/site.tsx", "app/tile.tsx", "app/legal.tsx", "app/signup.tsx", "app/search.tsx", "app/(site)/app", "app/(site)/word", "app/(site)/learn", "app/(site)/join", "app/(site)/live", "app/(site)/s", "app/(site)/compare", "app/(site)/archive", "app/(site)/research", "app/(site)/photon", "app/(site)/privacy", "app/(site)/terms", "app/(site)/support", "app/(intl)"];
+const OWNED = ["app/globals.css", "app/site.module.css", "app/site.tsx", "app/tile.tsx", "app/legal.tsx", "app/signup.tsx", "app/search.tsx", "app/(site)/app", "app/(site)/word", "app/(site)/learn", "app/(site)/join", "app/(site)/live", "app/(site)/s", "app/(site)/compare", "app/(site)/archive", "app/(site)/research", "app/(site)/photon", "app/(site)/privacy", "app/(site)/terms", "app/(site)/support", "app/(site)/teachers", "app/(intl)"];
 const ALLOWED = ["/og/", "api/"];
 const HEX = /#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b(?![-\w])/g;
 
