@@ -28,4 +28,9 @@ struct PlayBoardTests {
     @Test func boardHonoursALeastAboveTheCap() {
         #expect(PlayBoard.height(room: 2000, chrome: 0, least: 700) == 700)
     }
+
+    @Test(arguments: [(718.0, 240.0, 240.0), (718.0, 420.0, 402.0), (603.0, 420.0, 287.0), (603.0, 240.0, 240.0), (480.0, 420.0, 200.0), (0.0, 240.0, 200.0)])
+    func sideColumnGrowsWithTypeAndLeavesTheBoardItsLanes(width: Double, wanted: Double, want: Double) {
+        #expect(Double(PlayBoard.side(width: CGFloat(width), wanted: CGFloat(wanted), board: 316)) == want)
+    }
 }

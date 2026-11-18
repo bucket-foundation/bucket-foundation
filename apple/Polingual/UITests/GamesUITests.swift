@@ -158,6 +158,24 @@ final class GamesUITests: XCTestCase {
         }
     }
 
+    func testTilesLandscapeKeepsLanesAtLargeType() {
+        let app = launch(["-openGame", "tiles", "-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityL"], orientation: "landscape")
+        XCTAssertTrue(app.buttons["Go"].waitForExistence(timeout: 60))
+        app.buttons["Go"].tap()
+        let board = app.descendants(matching: .any).matching(identifier: "tilesBoard").firstMatch
+        let gloss = app.staticTexts["tilesGloss"]
+        XCTAssertTrue(board.waitForExistence(timeout: 20))
+        XCTAssertTrue(gloss.waitForExistence(timeout: 5))
+        let screen = app.windows.firstMatch.frame
+        shot("tiles-landscape-large-type")
+        XCTAssertGreaterThanOrEqual(board.frame.width, 316, "The lanes lose their width at large type")
+        XCTAssertLessThanOrEqual(board.frame.maxY, screen.maxY)
+        XCTAssertLessThanOrEqual(gloss.frame.maxX, board.frame.minX, "The prompt runs under the board")
+        XCTAssertGreaterThanOrEqual(gloss.frame.minX, screen.minX)
+        XCTAssertGreaterThanOrEqual(board.frame.minX - screen.minX, 264, "The prompt column stays at its small-type width")
+        XCTAssertGreaterThanOrEqual(gloss.frame.minY, screen.minY)
+    }
+
     func testLearnListsNoGames() {
         let app = launch(["-learnScroll", "content"])
         let content = app.staticTexts["Content"]

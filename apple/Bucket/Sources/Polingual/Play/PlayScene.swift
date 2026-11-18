@@ -50,6 +50,7 @@ struct StartLearningButton: View {
 
 extension EnvironmentValues {
     @Entry var playRoom: CGFloat = 0
+    @Entry var playSpan: CGFloat = 0
 }
 
 struct PlayBoardFrame: ViewModifier {
@@ -71,6 +72,21 @@ extension View {
     func playBoard(chrome: CGFloat, least: CGFloat) -> some View { modifier(PlayBoardFrame(chrome: chrome, least: least)) }
 }
 
+struct PlaySplit<Side: View, Main: View>: View {
+    @Environment(\.playSpan) private var span
+    @ScaledMetric private var wanted: CGFloat = 240
+    let board: CGFloat
+    @ViewBuilder let side: () -> Side
+    @ViewBuilder let main: () -> Main
+
+    var body: some View {
+        HStack(alignment: .top, spacing: PL.Space.s4) {
+            side().frame(width: PlayBoard.side(width: span - PL.Space.s4 * 3, wanted: wanted, board: board))
+            main()
+        }
+    }
+}
+
 struct PlayScene<Content: View>: View {
     @Environment(\.verticalSizeClass) private var vertical
     let game: GameKind
@@ -78,7 +94,7 @@ struct PlayScene<Content: View>: View {
 
     var body: some View {
         GeometryReader { geo in
-            page.environment(\.playRoom, geo.size.height)
+            page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
         }
         .plGround(.lattice, band: true)
         .navigationTitle(game.title)
