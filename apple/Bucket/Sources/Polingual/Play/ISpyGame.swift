@@ -123,7 +123,7 @@ struct ISpyGame: View {
     func deal() {
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
-        seed = DealSeeds.fresh()
+        seed = LobbyRace.dealSeed()
         let targets = langs.playTargets.filter { $0 != root }
         rounds = ISpy.rounds(corpus.items, seed: seed, root: root, targets: targets.isEmpty ? ISpy.sets[0].targets : targets, rounds: ISpy.rounds)
         var names: [String: String] = [:]

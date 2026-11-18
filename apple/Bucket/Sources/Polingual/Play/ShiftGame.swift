@@ -12,6 +12,7 @@ struct ShiftGame: View {
     @State private var entered = false
     @State private var round = PracticeRound()
     @State private var day = PlayDecks.deckDay()
+    @State private var racing = false
 
     var word: String { board.map { Shift.centerWord($0.columns, offsets) } ?? "" }
     var done: Bool { gaveUp || PlayLaunch.endGame || board.map { RevealRules.shift(found: found, targets: $0.targets) } ?? false }
@@ -31,10 +32,13 @@ struct ShiftGame: View {
             }
         }
         .task {
+            let race = LobbyRace.seed
             await langs.load()
             guard board == nil, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
-            entered = !DailyLedger.shared.hasPlayed(.shift, deck: day)
+            racing = race != nil
+            day = LobbyRaceSeed.deckDay(race)
+            entered = racing || !DailyLedger.shared.hasPlayed(.shift, deck: day)
             board = Shift.board(corpus.items, date: day, root: root)
             offsets = Array(repeating: 0, count: board?.length ?? 0)
         }
@@ -109,7 +113,7 @@ struct ShiftGame: View {
             reveals: b.targets.map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) },
             root: root,
             share: round.practicing ? nil : (.shift, shape),
-            retry: round.practicing ? nil : (.shift, day, { retry(b) }),
+            retry: round.practicing || racing ? nil : (.shift, day, { retry(b) }),
             again: nil
         )
         .onAppear {
@@ -117,7 +121,7 @@ struct ShiftGame: View {
             let record = round.finish(score: title)
             if practicing { entered = false }
             guard record else { return }
-            DailyLedger.shared.markPlayed(.shift, deck: day, title: title, shape: shape)
+            if !racing { DailyLedger.shared.markPlayed(.shift, deck: day, title: title, shape: shape) }
             let corpus = langs.corpus
             let words = b.targets.map { t in PlayedWord(itemId: corpus?.items.first { $0.form(t.lang)?.lowercased() == t.form }?.id ?? t.meaning, lang: t.lang, form: t.form, gloss: t.meaning, right: found.contains(t.form)) }
             langs.recordPlay(.shift, words, points: hit)

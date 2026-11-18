@@ -10,7 +10,7 @@ enum WordGroupsCache {
 
 extension LangStore {
     var wordGroupsKey: String? {
-        dailySystem.map { WordGroupsPuzzle.boardKey(day: dayKey(Date().timeIntervalSince1970 * 1000), root: $0.root, targets: gameLangs) }
+        dailySystem.map { WordGroupsPuzzle.boardKey(day: playDayKey(), root: $0.root, targets: gameLangs) }
     }
 
     var wordGroupsPuzzle: WordGroupsPuzzle? {
@@ -20,7 +20,7 @@ extension LangStore {
         let words = gameWords
         let tried = "\(board)#\(GameWordCache.key)"
         if tried == WordGroupsCache.skipped { return nil }
-        let day = dayKey(Date().timeIntervalSince1970 * 1000)
+        let day = playDayKey()
         guard let puzzle = WordGroupsPuzzle.daily(words, day: day, root: system.root, targets: gameLangs, theme: { corpus.byId[$0.itemId]?.category }, sameForm: { w, l in corpus.byId[w.itemId]?.form(l)?.lowercased() == w.form.lowercased() }) else {
             WordGroupsCache.skipped = tried
             return nil

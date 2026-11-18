@@ -12,10 +12,125 @@ extension LobbyGame {
         case .duel: String(localized: "Flag Duel")
         case .spy: String(localized: "I Spy")
         case .other: String(localized: "Game")
+        default: raceKind?.title ?? String(localized: "Game")
+        }
+    }
+
+    var raceKind: GameKind? {
+        switch self {
+        case .mini: .mini
+        case .wordGroups: .wordGroups
+        case .match: .match
+        case .voice: .voice
+        case .letters: .letters
+        case .polyword: .polyword
+        case .flagTiles: .flagTiles
+        case .babel: .babel
+        case .shift: .shift
+        case .snake: .snake
+        case .atlas: .atlas
+        case .forehead: .forehead
+        case .ispy: .ispy
+        case .flagDuel: .duel
+        default: nil
         }
     }
 
     func fits(_ targets: [String]) -> Bool { self != .sameWord || targets.count >= 2 }
+}
+
+@MainActor
+enum LobbyRace {
+    static weak var store: LobbyStore?
+    static let gate = LobbyRaceGate()
+
+    static var seed: UInt64? {
+        guard gate.isOpen, let lobby = store?.current, lobby.game.isRace, lobby.status == .playing else { return nil }
+        return lobby.seedValue
+    }
+
+    static func begin(_ store: LobbyStore, hold: LobbyRaceGate.Hold) {
+        self.store = store
+        gate.open(hold)
+    }
+
+    static func finished(_ kind: GameKind, score: Int) {
+        guard seed != nil, let store, store.current?.game.raceKind == kind else { return }
+        Task { await store.postScore(score) }
+    }
+
+    static func dealSeed() -> String { seed.map(LobbyRaceSeed.deal) ?? DealSeeds.fresh() }
+    static func dealRandom() -> RaceRandom { RaceRandom(seed: seed) }
+}
+
+@MainActor
+func playDayKey() -> String {
+    LobbyRace.seed.map(LobbyRaceSeed.dayKey) ?? dayKey(Date().timeIntervalSince1970 * 1000)
+}
+
+@MainActor
+func playDayNumber() -> Int {
+    LobbyRace.seed.map(LobbyRaceSeed.dayNumber) ?? Polyword.dayNumber(localPolyDate())
+}
+
+struct RaceGameHost: View, Equatable {
+    let kind: GameKind
+
+    var body: some View { kind.board }
+}
+
+struct LobbyRaceView: View {
+    let lobby: Lobby
+    let remaining: Double
+    @Environment(LobbyStore.self) private var lobbies
+    @State private var armed = false
+    @State private var hold = LobbyRaceGate.Hold()
+
+    var clock: String {
+        let s = Int(remaining.rounded(.up))
+        return "\(s / 60):" + (s % 60 < 10 ? "0" : "") + "\(s % 60)"
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            header
+            if armed, let kind = lobby.game.raceKind {
+                RaceGameHost(kind: kind).equatable()
+            } else {
+                Spacer(minLength: 0)
+            }
+        }
+        .onAppear {
+            LobbyRace.begin(lobbies, hold: hold)
+            armed = true
+        }
+    }
+
+    var header: some View {
+        VStack(spacing: 6) {
+            HStack {
+                Text(lobby.game.title).font(.headline).foregroundStyle(Palette.ink)
+                Spacer()
+                Text(clock).font(.headline.monospacedDigit()).foregroundStyle(remaining < 30 ? D8.vermilion : Palette.ink)
+                    .accessibilityIdentifier("lobbyRaceClock")
+            }
+            ProgressView(value: min(max(0, remaining), lobby.playSeconds), total: max(1, lobby.playSeconds)).tint(PL.tyrian)
+            HStack {
+                Text("\(lobby.raceFinishers.count) of \(lobby.players.count) finished")
+                Spacer()
+                if let score = lobbies.raceScore {
+                    Text("Your score: \(score)").accessibilityIdentifier("lobbyRaceScore")
+                } else {
+                    Text("Highest score wins")
+                }
+            }
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(Palette.muted)
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(Palette.card)
+    }
 }
 
 struct LobbiesTile: View {
@@ -83,7 +198,7 @@ struct LobbiesScreen: View {
             }
             Section("New lobby") {
                 Picker("Game", selection: $game) {
-                    ForEach(LobbyGame.hostable) { Text($0.title).tag($0) }
+                    ForEach(lobbies.hostable) { Text($0.title).tag($0) }
                 }
                 .accessibilityIdentifier("lobbyGame")
                 ForEach(langs.systems.filter { game.fits($0.targets) }) { s in
@@ -203,6 +318,15 @@ struct LobbyRoom: View {
 
     @ViewBuilder
     func content(_ l: Lobby, _ phase: LobbyPhase) -> some View {
+        if l.game.isRace, phase.playing {
+            LobbyRaceView(lobby: l, remaining: l.raceRemaining(at: lobbies.now))
+        } else {
+            rounds(l, phase)
+        }
+    }
+
+    @ViewBuilder
+    func rounds(_ l: Lobby, _ phase: LobbyPhase) -> some View {
         switch phase {
         case .waiting: waiting(l)
         case .countdown(let s):
@@ -228,7 +352,11 @@ struct LobbyRoom: View {
                         ShareLink(item: String(localized: "Join my Polingual lobby with code \(l.code): https://polingual.com/play/\(l.code)")) { Image(systemName: "square.and.arrow.up") }
                     }
                     HStack(spacing: -6) { ForEach(l.targets, id: \.self) { FlagTile(lang: $0, size: 28) } }
-                    Text("\(l.game.title), \(l.rounds) rounds, \(l.roundSeconds) seconds each").font(.footnote).foregroundStyle(Palette.muted)
+                    if l.game.isRace {
+                        Text("\(l.game.title), highest score in \(Int(l.playSeconds) / 60) minutes wins").font(.footnote).foregroundStyle(Palette.muted)
+                    } else {
+                        Text("\(l.game.title), \(l.rounds) rounds, \(l.roundSeconds) seconds each").font(.footnote).foregroundStyle(Palette.muted)
+                    }
                 }
                 Section("Players") {
                     ForEach(l.players) { p in
@@ -569,7 +697,7 @@ struct LobbyRoom: View {
                     .foregroundStyle(Palette.ink)
                 }
             }
-            Section("Words") {
+            if !l.prompts.isEmpty { Section("Words") {
                 ForEach(l.prompts) { p in
                     let n = p.round
                     HStack {
@@ -582,7 +710,7 @@ struct LobbyRoom: View {
                         }
                     }
                 }
-            }
+            } }
             Section("Chat") { chatLog(l) }
         }
         .safeAreaInset(edge: .bottom) { chatBar }

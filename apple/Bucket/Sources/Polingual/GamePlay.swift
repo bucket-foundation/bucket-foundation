@@ -141,7 +141,7 @@ struct QuizGame: View {
 
     func deal() {
         guard let corpus = langs.corpus else { return }
-        var rng = SystemRandomNumberGenerator()
+        var rng = LobbyRace.dealRandom()
         pause?.cancel()
         best = false
         replayed = false
@@ -162,7 +162,7 @@ struct QuizGame: View {
             prompts = GameRounds.sameWord(GameDeck(corpus, root: s.root, targets: s.targets), words: words, using: &rng)
         case .voice:
             if let s = langs.dailySystem {
-                let daily = DailySeed.voice(GameDeck(corpus, root: s.root, targets: s.targets), corpus: corpus, day: dayKey(Date().timeIntervalSince1970 * 1000))
+                let daily = DailySeed.voice(GameDeck(corpus, root: s.root, targets: s.targets), corpus: corpus, day: playDayKey())
                 prompts = daily.filter { LangVoice.shared.canSpeak($0.word.form, $0.word.lang) }
             } else {
                 let heard = words.filter { LangVoice.shared.canSpeak($0.form, $0.lang) }
@@ -492,9 +492,9 @@ struct SpeedMatchGame: View {
         let slots = vertical == .compact ? 4 : 5
         let fresh: SpeedBoard
         if let s = langs.dailySystem {
-            fresh = DailySeed.speedBoard(GameDeck(corpus, root: s.root, targets: s.targets), day: dayKey(Date().timeIntervalSince1970 * 1000), slots: slots)
+            fresh = DailySeed.speedBoard(GameDeck(corpus, root: s.root, targets: s.targets), day: playDayKey(), slots: slots)
         } else {
-            var rng = SystemRandomNumberGenerator()
+            var rng = LobbyRace.dealRandom()
             let deck = GameWords.balanced(GameWords.ordered(langs.freshGameWords(corpus), using: &rng))
             fresh = SpeedBoard(deck: deck, slots: slots, seed: rng.next())
         }
@@ -668,7 +668,7 @@ struct LetterSprintGame: View {
 
     func deal() {
         let root = langs.dailySystem?.root ?? "en"
-        prompts = DailySeed.letters(day: dayKey(Date().timeIntervalSince1970 * 1000), targets: langs.dailySystem?.targets ?? [])
+        prompts = DailySeed.letters(day: playDayKey(), targets: langs.dailySystem?.targets ?? [])
         words = prompts.map { GameWord(itemId: LangScript.letterItemId($0.ch), lang: $0.lang, form: $0.ch, gloss: $0.sound, root: root) }
         i = 0
         results = []

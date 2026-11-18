@@ -129,7 +129,7 @@ struct ForeheadGame: View {
     func start() {
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
-        cards = ForeheadDeck.deck(corpus.items, langs: picked.filter { $0 != root }, seed: DealSeeds.fresh(), root: root)
+        cards = ForeheadDeck.deck(corpus.items, langs: picked.filter { $0 != root }, seed: LobbyRace.dealSeed(), root: root)
         index = 0
         marks = []
         recorded = false

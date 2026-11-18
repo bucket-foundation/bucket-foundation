@@ -4,7 +4,7 @@ import SwiftUI
 extension LangStore {
     var miniPuzzle: MiniPuzzle? {
         guard let system = dailySystem else { return nil }
-        return MiniPuzzle.daily(gameWords, day: dayKey(Date().timeIntervalSince1970 * 1000), root: system.root, targets: gameLangs)
+        return MiniPuzzle.daily(gameWords, day: playDayKey(), root: system.root, targets: gameLangs)
     }
 }
 
@@ -32,7 +32,7 @@ struct MiniGame: View {
     @State private var showed = false
     @State private var round = PracticeRound()
 
-    var day: String { dayKey(Date().timeIntervalSince1970 * 1000) }
+    var day: String { playDayKey() }
     var entry: MiniEntry? { puzzle?.entries.first { $0.id == entryId } }
 
     func solved(_ e: MiniEntry) -> Bool { zip(e.cells, e.letters).allSatisfy { filled[$0] == $1 } }

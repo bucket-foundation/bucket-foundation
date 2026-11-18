@@ -187,7 +187,7 @@ struct BabelGame: View {
         meanings = Dictionary(uniqueKeysWithValues: list.map { ($0.id, $0) })
         order = list.map(\.id)
         hint = []
-        var d = Dealer(list, set, XorRng(ISpy.hash(DealSeeds.fresh())))
+        var d = Dealer(list, set, XorRng(ISpy.hash(LobbyRace.dealSeed())))
         board = Babel.playable(&d)
         dealer = d
         cleared = []

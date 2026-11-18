@@ -34,6 +34,10 @@ import {
   generateSeed,
   AUTO_START_MS,
   gameEndMs,
+  isRace,
+  raceDecision,
+  raceOver,
+  type RaceDecision,
 } from "./lobbies";
 
 export const LOBBIES = "lobbies";
@@ -144,6 +148,10 @@ export async function settle(lobby: LobbyRow, now: number): Promise<LobbyRow> {
 export type StartResult = { ok: true; lobby: LobbyRow } | { ok: false; error: "no_words" | "lobby_started" };
 
 export async function startLobby(lobby: LobbyRow, now: number): Promise<StartResult> {
+  if (isRace(lobby.game)) {
+    const raced = check(await service().from(LOBBIES).update({ status: "playing", started_at: new Date(now + LEAD_MS).toISOString(), ...(setupEnabled() ? { start_at: null } : {}) }).eq("id", lobby.id).eq("status", "lobby").select(LOBBY_COLS), "start race") as LobbyRow[];
+    return raced[0] ? { ok: true, lobby: raced[0] } : { ok: false, error: "lobby_started" };
+  }
   const prompts = buildPrompts(langCorpus()?.items ?? [], lobby, LANG_CODES);
   if (prompts.length < 3) return { ok: false, error: "no_words" };
   check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "prompts clear");
@@ -172,6 +180,26 @@ export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, 
   if (res.data === "not_member") return { ok: false, error: "not_member" };
   if (res.data === "already") return { ok: false, error: "already_answered" };
   return decision;
+}
+
+export type RaceResult = { ok: true; score: number; lobby: LobbyRow } | { ok: false; error: "not_playing" | "bad_score" | "not_member" | "already_answered" };
+
+export async function submitRaceScore(lobby: LobbyRow, uid: string, score: unknown, now: number): Promise<RaceResult> {
+  const decision: RaceDecision = raceDecision(lobby, score, now);
+  if (!decision.ok) return decision;
+  const res = await service().rpc("lobby_answer", { p_lobby: lobby.id, p_user: uid, p_round: 0, p_choice: "score", p_correct: true, p_ms: decision.ms, p_points: decision.score });
+  if (res.error) throw new Error(res.error.message);
+  if (res.data === "not_member") return { ok: false, error: "not_member" };
+  if (res.data === "already") return { ok: false, error: "already_answered" };
+  return { ok: true, score: decision.score, lobby: await closeRace(lobby) };
+}
+
+export async function closeRace(lobby: LobbyRow): Promise<LobbyRow> {
+  if (!isRace(lobby.game) || lobby.status !== "playing") return lobby;
+  const [players, answers] = await Promise.all([playersOf([lobby.id]), service().from(ANSWERS).select("user_id").eq("lobby_id", lobby.id)]);
+  if (!raceOver(players, check(answers, "race answers") as { user_id: string }[])) return lobby;
+  const rows = check(await service().from(LOBBIES).update({ status: "done" }).eq("id", lobby.id).eq("status", "playing").select(LOBBY_COLS), "race done") as LobbyRow[];
+  return rows[0] ?? { ...lobby, status: "done" };
 }
 
 export async function lobbyState(lobby: LobbyRow, uid: string, now: number, blocks?: BlockRow[]): Promise<LobbyState> {
