@@ -89,6 +89,10 @@ export async function handleEntitlement(
     const now = (deps.now ?? Date.now)();
     const appStore = entitlementFrom(await store.eventsFor(user.id, POLINGUAL_BUNDLE_ID), now);
     const web = appStore.active || !deps.web ? null : await deps.web(user.id).catch(() => undefined);
+    if (web === undefined) {
+      console.error("[academy/entitlement] web entitlement read failed");
+      return reply({ error: "read_failed" }, 503);
+    }
     return reply(withWebEntitlement(appStore, web, now) as unknown as Record<string, unknown>, 200);
   } catch (err) {
     console.error("[academy/entitlement] failed:", err instanceof Error ? err.message : err);

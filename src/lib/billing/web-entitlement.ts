@@ -16,3 +16,7 @@ export function withWebEntitlement(appStore: Entitlement, row: WebEntitlementRow
   if (row.current_period_end !== null && !(Date.parse(row.current_period_end) > now)) return appStore;
   return { active: true, productId: webProductId(row.plan), expiresAt: row.current_period_end, trial: row.status === "trialing" };
 }
+
+export function webEntitlementsOn(env: Record<string, string | undefined>, storeReady: boolean): boolean {
+  return storeReady && Boolean(env.STRIPE_SECRET_KEY?.trim());
+}

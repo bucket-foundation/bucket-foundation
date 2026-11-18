@@ -38,7 +38,7 @@ import { fetchIsGiftPayment, fetchLineItems, fetchPaidGiftSessions, fetchPayment
 import { layeredLimiter } from "../src/lib/capture/handler";
 import { rateLimiter } from "../src/lib/download/handler";
 import { sharedRateLimiter, type MarkStore } from "../src/lib/download/marks";
-import { withWebEntitlement } from "../src/lib/billing/web-entitlement";
+import { webEntitlementsOn, withWebEntitlement } from "../src/lib/billing/web-entitlement";
 import { NO_ENTITLEMENT } from "../src/lib/app-store/entitlement";
 import { NextRequest } from "next/server";
 import { handleEntitlement } from "../src/app/api/app-store/notifications/handler";
@@ -629,7 +629,7 @@ test("a redeemed gift opens the entitlement the web app reads, until it ends", (
   assert.equal(withWebEntitlement(NO_ENTITLEMENT, { status: "active", plan: "yearly", current_period_end: null }, NOW).productId, "web.polingual.yearly");
 });
 
-test("the entitlement route falls back to the web row and survives a failed read", async () => {
+test("the entitlement route returns 503 when the web read fails and active false only when it found nothing", async () => {
   const store = { save: async () => "recorded" as const, tokenFor: async () => "t", since: async () => [], eventsFor: async () => [] };
   const verifyUser = async () => ({ id: "u1", email: null });
   const req = () => new NextRequest("http://localhost/api/academy/entitlement");
@@ -638,8 +638,18 @@ test("the entitlement route falls back to the web row and survives a failed read
   const open = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW, web: async (u) => (asked.push(u), gift) });
   assert.deepEqual(await open.json(), { active: true, productId: "web.polingual.gift.yearly", expiresAt: "2027-12-01T15:00:00.000Z", trial: false });
   assert.deepEqual(asked, ["u1"]);
-  const failed = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW, web: async () => { throw new Error("no table yet"); } });
-  assert.deepEqual([failed.status, (await failed.json()).active], [200, false]);
+  const thrown = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW, web: async () => { throw new Error("db down"); } });
+  assert.deepEqual([thrown.status, await thrown.json()], [503, { error: "read_failed" }]);
+  const failed = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW, web: async () => undefined });
+  assert.deepEqual([failed.status, await failed.json()], [503, { error: "read_failed" }]);
+  const empty = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW, web: async () => null });
+  assert.deepEqual([empty.status, (await empty.json()).active], [200, false]);
+  const voided = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW, web: async () => ({ status: "canceled", plan: "gift_yearly", current_period_end: new Date(NOW - 1000).toISOString() }) });
+  assert.deepEqual([voided.status, (await voided.json()).active], [200, false]);
+  const paying = { ...store, eventsFor: async () => [{ kind: "renew" as const, productId: "com.polingual.yearly", originalTransactionId: "1", signedAt: "2026-11-01T00:00:00Z", expiresAt: "2027-11-01T00:00:00Z" }] };
+  const apple = await handleEntitlement(req(), { store: () => paying, verifyUser, now: () => NOW, web: async () => undefined });
+  assert.deepEqual([apple.status, (await apple.json()).active], [200, true]);
+  assert.deepEqual([webEntitlementsOn({}, true), webEntitlementsOn({ STRIPE_SECRET_KEY: "sk_test_x" }, false), webEntitlementsOn({ STRIPE_SECRET_KEY: "sk_test_x" }, true)], [false, false, true]);
   const none = await handleEntitlement(req(), { store: () => store, verifyUser, now: () => NOW });
   assert.equal((await none.json()).active, false);
 });
