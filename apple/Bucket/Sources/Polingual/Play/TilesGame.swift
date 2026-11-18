@@ -91,6 +91,7 @@ struct TilesGame: View {
             line: "\(played.filter(\.1).count) perfect rounds of \(played.count).",
             reveals: Array(played.flatMap { r, _ in r.answer.prefix(1).map { PlayRevealItem(lang: r.tiles[$0].lang, form: r.tiles[$0].form, meaning: r.gloss) } }.prefix(6)),
             root: root,
+            share: (.tiles, .points(points, marks: played.map(\.1))),
             again: { deal() }
         )
         .onAppear {

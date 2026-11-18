@@ -30,6 +30,13 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
+    var dailySeeded: Bool {
+        switch self {
+        case .daily, .mini, .wordGroups, .voice, .letters, .polyword, .flagTiles, .shift, .atlas: true
+        case .same, .match, .flags, .babel, .snake, .forehead, .ispy, .duel, .tiles: false
+        }
+    }
+
     var detail: String {
         switch self {
         case .daily: String(localized: "Six words. The same six for everyone on your languages today.")
@@ -587,6 +594,45 @@ extension LangStore {
     }
 }
 
+extension LangStore {
+    func shareText(_ kind: GameKind, _ shape: GameShare.Shape) -> String {
+        let seeded = kind.dailySeeded && (kind != .voice || dailySystem != nil)
+        return GameShare(
+            title: "\(Feedback.appName) \(kind.title)",
+            dayKey: seeded ? dayKey(Date().timeIntervalSince1970 * 1000) : nil,
+            shape: shape,
+            streak: gameStreak,
+            link: Feedback.isPolingual ? "https://polingual.com/play" : "https://bucket.foundation"
+        ).text
+    }
+}
+
+struct GameShareLog: ViewModifier {
+    let kind: GameKind
+    let form: String
+
+    func body(content: Content) -> some View {
+        content.simultaneousGesture(TapGesture().onEnded {
+            Beta.shared.log("game_share", ["game": .string(kind.rawValue), "form": .string(form)])
+        })
+    }
+}
+
+struct GameShareButton<S: ButtonStyle>: View {
+    let kind: GameKind
+    let text: String
+    let style: S
+
+    var body: some View {
+        ShareLink(item: text, preview: SharePreview(kind.title)) {
+            Label("Share your result", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
+        }
+        .buttonStyle(style)
+        .modifier(GameShareLog(kind: kind, form: "text"))
+        .accessibilityIdentifier("game-share")
+    }
+}
+
 struct GameEnd: View {
     @Environment(LangStore.self) private var langs
     @Environment(Account.self) private var account
@@ -596,16 +642,13 @@ struct GameEnd: View {
     var best = false
     var results: [Bool]?
     let missed: [GameWord]
-    var cells: [[Bool]]?
+    var shape: GameShare.Shape?
     var sharing = true
     var share: AnyView?
     var shareObject: ShareObject?
     let again: (() -> Void)?
 
-    var brag: String {
-        let date = Date.now.formatted(.dateTime.month(.defaultDigits).day())
-        return GameBrag.text(title: "\(Feedback.appName) \(kind.title)", day: date, score: score, results: results, cells: cells, link: Feedback.isPolingual ? "polingual.com" : "bucket.foundation")
-    }
+    var brag: String { langs.shareText(kind, shape ?? .marks(results ?? [])) }
 
     var body: some View {
         VStack(spacing: 16) {
@@ -646,12 +689,7 @@ struct GameEnd: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Palette.card, in: .rect(cornerRadius: 14))
             }
-            if sharing {
-                ShareLink(item: brag, preview: SharePreview(kind.title)) {
-                    Label("Share your result", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
-                }
-                .buttonStyle(D8Primary())
-            }
+            if sharing { GameShareButton(kind: kind, text: brag, style: D8Primary()) }
             if let share { share }
             if let shareObject { ShareObjectButton(shareObject, wide: true) }
             if let again { Button("Play again", action: again).buttonStyle(D8Primary(compact: true)) }

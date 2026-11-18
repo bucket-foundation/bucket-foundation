@@ -107,6 +107,7 @@ struct FlagTilesGame: View {
             reveals: playWords(seen.suffix(4).reversed().map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) }),
             root: root,
             board: Boards.fromGhosts(FlagTilesRules.ghosts(date: deck.date), you: run.score),
+            share: (.flagTiles, .points(run.score, marks: [])),
             again: { run = FlagTilesRules.step(RunState(), .start) }
         )
         .onAppear {

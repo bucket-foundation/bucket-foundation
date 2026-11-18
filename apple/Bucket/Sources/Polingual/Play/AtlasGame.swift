@@ -214,6 +214,7 @@ struct AtlasGame: View {
             reveals: rounds.prefix(max(scores.count, 1)).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) },
             root: root,
             board: Boards.fromGhosts(Atlas.ghosts(date: PlayDecks.deckDay()), you: total),
+            share: (.atlas, .points(total, marks: scores.map { $0 > Atlas.max / 2 })),
             again: nil
         )
         .onAppear {

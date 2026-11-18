@@ -69,6 +69,7 @@ struct BabelGame: View {
             reveals: Array(reveals.prefix(6)),
             root: root,
             againLabel: won ? "Next level" : "Try again",
+            share: (.babel, .points(points, marks: [])),
             again: {
                 if won { level = Babel.level(level.number + 1) }
                 deal()

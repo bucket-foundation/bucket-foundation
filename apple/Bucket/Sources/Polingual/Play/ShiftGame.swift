@@ -89,6 +89,7 @@ struct ShiftGame: View {
             line: "\(found.count) words spelled. A new board arrives tomorrow.",
             reveals: b.targets.map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) },
             root: root,
+            share: (.shift, .marks(b.targets.map { found.contains($0.form) })),
             again: nil
         )
         .onAppear {

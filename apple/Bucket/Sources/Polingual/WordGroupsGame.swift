@@ -198,7 +198,7 @@ struct WordGroupsGame: View {
                 }
                 .padding([.horizontal, .top])
             }
-            GameEnd(kind: .wordGroups, score: score, line: save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow."), results: save.results, missed: round?.unsolved.flatMap(\.words) ?? [], shareObject: langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), again: nil)
+            GameEnd(kind: .wordGroups, score: score, line: save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow."), results: save.results, missed: round?.unsolved.flatMap(\.words) ?? [], shape: .groups(order: GameShare.groupOrder(solved: save.solved, groups: round?.puzzle.groups.map(\.id) ?? []), attempts: save.results, total: total), shareObject: langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), again: nil)
         }
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
