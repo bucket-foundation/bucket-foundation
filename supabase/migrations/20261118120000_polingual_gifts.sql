@@ -2,7 +2,7 @@ create table if not exists bucket.polingual_gifts (
   id                    uuid        primary key default gen_random_uuid(),
   stripe_event_id       text        not null unique,
   stripe_session_id     text        not null unique,
-  stripe_payment_intent text        unique,
+  stripe_payment_intent text        not null unique,
   paid_at               timestamptz not null,
   buyer_email           text        not null check (length(buyer_email) <= 254),
   recipient_email       text        check (recipient_email is null or length(recipient_email) <= 254),
@@ -29,11 +29,42 @@ create table if not exists bucket.polingual_gifts (
 
 create index if not exists polingual_gifts_due_idx on bucket.polingual_gifts (deliver_after) where delivered_at is null and redeemed_at is null and voided_at is null;
 
+create table if not exists bucket.polingual_gift_voids (
+  stripe_payment_intent text        primary key,
+  reason                text        not null check (reason in ('refund', 'dispute')),
+  voided_at             timestamptz not null
+);
+
 alter table bucket.polingual_gifts enable row level security;
 alter table bucket.polingual_gifts force row level security;
+alter table bucket.polingual_gift_voids enable row level security;
+alter table bucket.polingual_gift_voids force row level security;
 
-revoke all on bucket.polingual_gifts from public, anon, authenticated;
+revoke all on bucket.polingual_gifts, bucket.polingual_gift_voids from public, anon, authenticated;
 grant select, insert, update on bucket.polingual_gifts to service_role;
+grant select, insert on bucket.polingual_gift_voids to service_role;
+
+create or replace function bucket.polingual_gift_apply_void()
+returns trigger
+language plpgsql
+set search_path = bucket, pg_temp
+as $$
+declare
+  v bucket.polingual_gift_voids%rowtype;
+begin
+  perform pg_advisory_xact_lock(hashtextextended('polingual-gift:' || new.stripe_payment_intent, 0));
+  select * into v from bucket.polingual_gift_voids where stripe_payment_intent = new.stripe_payment_intent;
+  if found and new.voided_at is null then
+    new.voided_at := v.voided_at;
+    new.void_reason := v.reason;
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists polingual_gift_apply_void on bucket.polingual_gifts;
+create trigger polingual_gift_apply_void before insert on bucket.polingual_gifts
+  for each row execute function bucket.polingual_gift_apply_void();
 
 create or replace function bucket.redeem_polingual_gift(p_code_hash text, p_user_id uuid, p_now timestamptz default now())
 returns table (outcome text, access_until timestamptz)
@@ -93,9 +124,12 @@ declare
   e bucket.academy_entitlements%rowtype;
   new_end timestamptz;
 begin
+  perform pg_advisory_xact_lock(hashtextextended('polingual-gift:' || p_payment_intent, 0));
+  insert into bucket.polingual_gift_voids (stripe_payment_intent, reason, voided_at) values (p_payment_intent, p_reason, p_now)
+    on conflict (stripe_payment_intent) do nothing;
   select * into g from bucket.polingual_gifts where stripe_payment_intent = p_payment_intent for update;
   if not found then
-    return query select 'unknown'::text, false;
+    return query select 'held'::text, false;
     return;
   end if;
   if g.voided_at is not null then

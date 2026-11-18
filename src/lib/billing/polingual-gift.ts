@@ -123,7 +123,7 @@ export function giftForm(cfg: GiftConfig, req: GiftRequest): URLSearchParams {
 export interface GiftPurchase extends GiftRequest {
   eventId: string;
   sessionId: string;
-  paymentIntent: string | null;
+  paymentIntent: string;
   paidAt: string;
   amountSubtotal: number | null;
   amountTotal: number | null;
@@ -152,7 +152,8 @@ export function giftFromEvent(event: unknown, now: number): GiftPurchase | null 
   const o = e.object;
   const meta = e.meta;
   const sessionId = str(o.id);
-  if (!e.id || !sessionId || o.mode !== "payment" || o.payment_status !== "paid") return null;
+  const paymentIntent = str(o.payment_intent);
+  if (!e.id || !sessionId || !paymentIntent || o.mode !== "payment" || o.payment_status !== "paid") return null;
   const details = (o.customer_details ?? {}) as Obj;
   const buyerEmail = email(o.customer_email) ?? email(details.email);
   const recipientEmail = email(meta.recipient_email);
@@ -162,7 +163,7 @@ export function giftFromEvent(event: unknown, now: number): GiftPurchase | null 
   return {
     eventId: e.id,
     sessionId,
-    paymentIntent: str(o.payment_intent),
+    paymentIntent,
     paidAt: new Date(e.created !== null ? e.created * 1000 : now).toISOString(),
     buyerEmail,
     recipientEmail,
@@ -199,6 +200,17 @@ export function priceMatches(price: string, purchase: GiftPurchase, items: LineI
   const [item] = items;
   if (item.priceId !== price || item.quantity !== 1 || item.unitAmount === null || !item.currency) return false;
   return purchase.amountSubtotal === item.unitAmount && purchase.currency === item.currency.toLowerCase();
+}
+
+export type PaymentState = "clear" | "refunded" | "disputed";
+
+export function paymentStateFrom(body: unknown): PaymentState | null {
+  const pi = (body && typeof body === "object" ? body : null) as { status?: unknown; latest_charge?: unknown } | null;
+  const charge = (pi?.latest_charge && typeof pi.latest_charge === "object" ? pi.latest_charge : null) as { refunded?: unknown; disputed?: unknown; amount_refunded?: unknown; amount?: unknown } | null;
+  if (!pi || typeof pi.status !== "string" || !charge) return null;
+  if (charge.disputed === true) return "disputed";
+  if (charge.refunded === true || (typeof charge.amount_refunded === "number" && typeof charge.amount === "number" && charge.amount > 0 && charge.amount_refunded >= charge.amount)) return "refunded";
+  return pi.status === "succeeded" ? "clear" : null;
 }
 
 export function deliverAfter(purchase: GiftPurchase): string {
@@ -242,7 +254,7 @@ export interface GiftRow extends Omit<GiftPurchase, "recipientEmail" | "recipien
 }
 
 export type RedeemOutcome = "redeemed" | "already" | "used" | "expired" | "invalid" | "subscribed" | "void";
-export type VoidOutcome = { outcome: "voided" | "already" | "unknown"; revoked: boolean };
+export type VoidOutcome = { outcome: "voided" | "already" | "held"; revoked: boolean };
 
 export interface GiftStore {
   record(purchase: GiftPurchase, expiresAt: string, deliverAfter: string, voidReason: VoidReason | null): Promise<GiftRow>;
@@ -381,6 +393,7 @@ export interface GiftFulfilDeps {
   postalAddress: () => string | null;
   price: () => string | null;
   lineItems: (sessionId: string) => Promise<LineItem[] | null>;
+  paymentState: (paymentIntent: string) => Promise<PaymentState | null>;
   send: (email: GiftEmail, idempotencyKey: string) => Promise<boolean>;
   now: () => number;
   code?: () => string;
@@ -423,15 +436,17 @@ export async function handleGiftEvent(deps: GiftFulfilDeps, event: unknown): Pro
   if (!store || !postal || !price) return { status: 503, body: { error: "gifts_unavailable" } };
   const items = await deps.lineItems(purchase.sessionId);
   if (!items) return { status: 502, body: { error: "price_check_failed" } };
-  const matches = priceMatches(price, purchase, items);
+  const state = await deps.paymentState(purchase.paymentIntent);
+  if (!state) return { status: 502, body: { error: "payment_check_failed" } };
+  const refused: VoidReason | null = !priceMatches(price, purchase, items) ? "price_mismatch" : state === "refunded" ? "refund" : state === "disputed" ? "dispute" : null;
   const expiresAt = new Date(Date.parse(`${purchase.deliverOn}T00:00:00Z`) + GIFT_LIMITS.codeValidDays * DAY_MS).toISOString();
-  const gift = await store.record(purchase, expiresAt, deliverAfter(purchase), matches ? null : "price_mismatch");
-  if (!matches) {
-    console.error("[polingual-gift] price mismatch, nothing issued:", gift.id);
+  const gift = await store.record(purchase, expiresAt, deliverAfter(purchase), refused);
+  if (gift.voidedAt) {
+    console.error("[polingual-gift] nothing issued:", gift.id, gift.voidReason);
     return { status: 200, body: { received: true, gift: gift.id, issued: false } };
   }
   if (!(await sendReceipt(deps, store, gift, postal))) return { status: 500, body: { error: "receipt_failed" } };
-  return { status: 200, body: { received: true, gift: gift.id, issued: !gift.voidedAt } };
+  return { status: 200, body: { received: true, gift: gift.id, issued: true } };
 }
 
 export interface DeliveryReport {

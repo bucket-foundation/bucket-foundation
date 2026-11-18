@@ -2,6 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { footerLinks, giftFooterLink } from "../app/site";
+import { siteLocale } from "../app/(site)/word/views";
 import { GIFT_CLOSED, GIFT_LANGS, giftCopy, giftDay, giftError, giftMeta, giftPath, loadGiftStatus, redeemGift, startGiftCheckout } from "./gift";
 
 type Call = { url: string; init: RequestInit };
@@ -80,4 +82,18 @@ test("both languages have a gift page and a redeem page with paired alternates",
   const form = readFileSync(join(app, "(site)/gift/GiftForm.tsx"), "utf8");
   assert.match(form, /disabled=\{!status\.open \|\| busy\}/);
   assert.match(form, /!status\.open \? c\.soon/);
+});
+
+test("the footer shows Gift only while the gift price env var is set", () => {
+  assert.equal(giftFooterLink("en", {}), null);
+  assert.equal(giftFooterLink("en", { STRIPE_PRICE_POLINGUAL_GIFT_YEARLY: "  " }), null);
+  const on = { STRIPE_PRICE_POLINGUAL_GIFT_YEARLY: "price_gift" };
+  assert.deepEqual(giftFooterLink("en", on), { key: "gift", href: "/gift", label: "Gift" });
+  assert.deepEqual(giftFooterLink("es", on), { key: "gift", href: "/es/gift", label: "Regalo" });
+  assert.equal(giftFooterLink("fr", on)?.href, "/gift");
+  const es = siteLocale("es");
+  const off = footerLinks(es, {}).map((l) => l.key);
+  assert.deepEqual(off, ["play", "words", "guides", "teachers", "privacy", "terms", "support", "appstore"]);
+  assert.deepEqual(footerLinks(es, on).map((l) => l.key), ["play", "words", "guides", "teachers", "gift", "privacy", "terms", "support", "appstore"]);
+  assert.equal(footerLinks(es, on).find((l) => l.key === "gift")?.href, "/es/gift");
 });

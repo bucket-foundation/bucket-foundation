@@ -29,8 +29,10 @@ import {
   type RedeemOutcome,
   type LineItem,
   type VoidReason,
+  type PaymentState,
+  paymentStateFrom,
 } from "../src/lib/billing/polingual-gift";
-import { fetchLineItems, sendGiftEmail } from "../src/lib/billing/gift-store";
+import { fetchLineItems, fetchPaymentState, sendGiftEmail } from "../src/lib/billing/gift-store";
 import { layeredLimiter } from "../src/lib/capture/handler";
 import { rateLimiter } from "../src/lib/download/handler";
 import { sharedRateLimiter, type MarkStore } from "../src/lib/download/marks";
@@ -78,6 +80,7 @@ type Grant = { until: string; active: boolean; source: "gift" | "stripe" };
 function memoryStore() {
   const rows: (GiftRow & { codeHash: string | null; redeemedBy: string | null; purgedAt: string | null })[] = [];
   const access = new Map<string, Grant>();
+  const voids = new Map<string, { reason: VoidReason; at: string }>();
   const year = (iso: string, n: number) => {
     const d = new Date(iso);
     d.setUTCFullYear(d.getUTCFullYear() + n);
@@ -87,7 +90,9 @@ function memoryStore() {
     record: async (p, expiresAt, after, voidReason) => {
       const have = rows.find((r) => r.sessionId === p.sessionId);
       if (have) return { ...have };
-      const row = { ...p, id: `gift_${rows.length + 1}`, codeHash: null, expiresAt, deliverAfter: after, receiptSentAt: null, deliveredAt: null, redeemedAt: null, redeemedBy: null, voidedAt: voidReason ? p.paidAt : null, voidReason, purgedAt: null };
+      const held = voids.get(p.paymentIntent);
+      const reason = voidReason ?? held?.reason ?? null;
+      const row = { ...p, id: `gift_${rows.length + 1}`, codeHash: null, expiresAt, deliverAfter: after, receiptSentAt: null, deliveredAt: null, redeemedAt: null, redeemedBy: null, voidedAt: reason ? (held?.at ?? p.paidAt) : null, voidReason: reason, purgedAt: null };
       rows.push(row);
       return { ...row };
     },
@@ -110,8 +115,9 @@ function memoryStore() {
       return out("redeemed", year(base, 1));
     },
     voidByPayment: async (pi, reason: VoidReason, at) => {
+      if (!voids.has(pi)) voids.set(pi, { reason, at });
       const g = rows.find((r) => r.paymentIntent === pi);
-      if (!g) return { outcome: "unknown", revoked: false };
+      if (!g) return { outcome: "held", revoked: false };
       if (g.voidedAt) return { outcome: "already", revoked: false };
       Object.assign(g, { voidedAt: at, voidReason: reason });
       const mine = g.redeemedBy ? access.get(g.redeemedBy) : undefined;
@@ -129,7 +135,7 @@ function memoryStore() {
   return { rows, store, access };
 }
 
-function fulfil(now = NOW, ok: (e: GiftEmail) => boolean = () => true, items: LineItem[] | null = [ITEM]) {
+function fulfil(now = NOW, ok: (e: GiftEmail) => boolean = () => true, items: LineItem[] | null = [ITEM], state: PaymentState | null = "clear") {
   const mem = memoryStore();
   const sent: { email: GiftEmail; key: string }[] = [];
   const clock = { now };
@@ -141,6 +147,7 @@ function fulfil(now = NOW, ok: (e: GiftEmail) => boolean = () => true, items: Li
     postalAddress: () => POSTAL,
     price: () => "price_gift",
     lineItems: async (id) => (asked.push(id), items),
+    paymentState: async (pi) => (asked.push(pi), state),
     send: async (email, key) => {
       if (!ok(email)) return false;
       sent.push({ email, key });
@@ -296,7 +303,7 @@ test("a price, amount or currency mismatch records the event and issues nothing"
   assert.equal(priceMatches("price_gift", purchase, []), false);
   const f = fulfil(NOW, () => true, [{ ...ITEM, priceId: "price_cheap" }]);
   assert.deepEqual(await handleGiftEvent(f.deps, event({}, { deliver_on: "2026-12-01" })), { status: 200, body: { received: true, gift: "gift_1", issued: false } });
-  assert.deepEqual(f.asked, ["cs_1"]);
+  assert.deepEqual(f.asked, ["cs_1", "pi_1"]);
   assert.deepEqual([f.rows.length, f.rows[0].voidReason, f.rows[0].codeHash], [1, "price_mismatch", null]);
   f.clock.now += 2 * HOUR;
   assert.deepEqual(await deliverDueGifts(f.deps), { due: 0, sent: 0, failed: 0, purged: 0 });
@@ -427,8 +434,53 @@ test("a refund before redeem voids the gift: no delivery and the code is refused
   assert.deepEqual(await f.redeem("ABCD-EFGH-JKMN-PQRS", "u1"), { status: 410, body: { outcome: "void", until: null } });
   assert.equal(f.access.has("u1"), false);
   assert.deepEqual((await handleGiftEvent(f.deps, charge("charge.refunded")))?.body, { received: true, void: "already", revoked: false });
-  assert.deepEqual((await handleGiftEvent(f.deps, charge("charge.refunded", { payment_intent: "pi_other" })))?.body, { received: true, void: "unknown", revoked: false });
+  assert.deepEqual((await handleGiftEvent(f.deps, charge("charge.refunded", { payment_intent: "pi_other" })))?.body, { received: true, void: "held", revoked: false });
   assert.equal((await handleGiftEvent({ ...f.deps, store: () => null }, charge("charge.refunded")))?.status, 503);
+});
+
+test("a refund or dispute that lands before the gift row exists still stops the gift", async () => {
+  for (const [type, reason] of [["charge.refunded", "refund"], ["charge.dispute.created", "dispute"]] as const) {
+    let stripeUp = false;
+    const f = fulfil(NOW, () => true, [ITEM]);
+    const flaky = { ...f.deps, lineItems: async () => (stripeUp ? [ITEM] : null) };
+    assert.equal((await handleGiftEvent(flaky, event({}, { deliver_on: "2026-12-01" })))?.status, 502);
+    assert.equal(f.rows.length, 0);
+    assert.deepEqual((await handleGiftEvent(flaky, charge(type)))?.body, { received: true, void: "held", revoked: false }, type);
+    stripeUp = true;
+    assert.deepEqual(await handleGiftEvent(flaky, event({}, { deliver_on: "2026-12-01" })), { status: 200, body: { received: true, gift: "gift_1", issued: false } });
+    assert.deepEqual([f.rows.length, f.rows[0].voidReason, f.rows[0].voidedAt !== null], [1, reason, true]);
+    f.clock.now = NOW + 2 * HOUR;
+    assert.equal((await deliverDueGifts(f.deps))?.due, 0);
+    assert.equal(f.sent.length, 0);
+  }
+});
+
+test("the payment is read from Stripe before issuing: refunded or disputed issues nothing, unreachable retries", async () => {
+  for (const [state, reason] of [["refunded", "refund"], ["disputed", "dispute"]] as const) {
+    const f = fulfil(NOW, () => true, [ITEM], state);
+    assert.deepEqual(await handleGiftEvent(f.deps, event({}, { deliver_on: "2026-12-01" })), { status: 200, body: { received: true, gift: "gift_1", issued: false } });
+    assert.equal(f.rows[0].voidReason, reason);
+    assert.equal(f.sent.length, 0);
+  }
+  const down = fulfil(NOW, () => true, [ITEM], null);
+  assert.deepEqual(await handleGiftEvent(down.deps, event()), { status: 502, body: { error: "payment_check_failed" } });
+  assert.equal(down.rows.length, 0);
+  assert.equal(giftFromEvent(event({ payment_intent: null }), NOW), null);
+  const pi = (charge: Record<string, unknown> | null, status = "succeeded") => paymentStateFrom({ status, latest_charge: charge });
+  assert.equal(pi({ refunded: false, disputed: false, amount: 1234, amount_refunded: 0 }), "clear");
+  assert.equal(pi({ refunded: true, disputed: false }), "refunded");
+  assert.equal(pi({ refunded: false, disputed: false, amount: 1234, amount_refunded: 1234 }), "refunded");
+  assert.equal(pi({ refunded: false, disputed: false, amount: 1234, amount_refunded: 100 }), "clear");
+  assert.equal(pi({ refunded: false, disputed: true }), "disputed");
+  assert.equal(pi({ refunded: false, disputed: false }, "processing"), null);
+  assert.equal(pi(null), null);
+  assert.equal(paymentStateFrom({ status: "succeeded", latest_charge: "ch_1" }), null);
+  const calls: string[] = [];
+  const ok = (async (url: string) => (calls.push(url), new Response(JSON.stringify({ status: "succeeded", latest_charge: { refunded: true } })))) as unknown as typeof fetch;
+  assert.equal(await fetchPaymentState("sk_test_x", "pi_1", ok), "refunded");
+  assert.match(calls[0], /\/v1\/payment_intents\/pi_1\?expand\[\]=latest_charge$/);
+  assert.equal(await fetchPaymentState("sk_test_x", "pi_1", (async () => new Response("{}", { status: 500 })) as unknown as typeof fetch), null);
+  assert.equal(await fetchPaymentState("sk_test_x", "pi_1", (async () => { throw new Error("down"); }) as unknown as typeof fetch), null);
 });
 
 test("a refund after redeem ends that grant and leaves other entitlements alone", async () => {

@@ -3,7 +3,7 @@ import { entitlementStoreConfigured } from "./entitlement-store";
 import { layeredLimiter } from "../capture/handler";
 import { rateLimiter } from "../download/handler";
 import { getMarkStore, sharedRateLimiter } from "../download/marks";
-import { giftConfig, giftMailConfig, type GiftEmail, type GiftLocale, type GiftMailConfig, type GiftRow, type GiftStore, type LineItem, type RedeemOutcome, type VoidReason } from "./polingual-gift";
+import { giftConfig, giftMailConfig, paymentStateFrom, type PaymentState, type GiftEmail, type GiftLocale, type GiftMailConfig, type GiftRow, type GiftStore, type LineItem, type RedeemOutcome, type VoidReason } from "./polingual-gift";
 
 let bucket: SupabaseClient | null = null;
 
@@ -21,7 +21,7 @@ interface DbGift {
   id: string;
   stripe_event_id: string;
   stripe_session_id: string;
-  stripe_payment_intent: string | null;
+  stripe_payment_intent: string;
   paid_at: string;
   buyer_email: string;
   recipient_email: string | null;
@@ -68,7 +68,7 @@ export function giftFromDb(r: DbGift): GiftRow {
 }
 
 const OUTCOMES: readonly RedeemOutcome[] = ["redeemed", "already", "used", "expired", "invalid", "subscribed", "void"];
-const VOID_OUTCOMES = ["voided", "already", "unknown"] as const;
+const VOID_OUTCOMES = ["voided", "already", "held"] as const;
 
 export function supabaseGiftStore(): GiftStore | null {
   if (!entitlementStoreConfigured()) return null;
@@ -180,6 +180,16 @@ export async function fetchLineItems(secretKey: string, sessionId: string, fetch
   }
 }
 
+export async function fetchPaymentState(secretKey: string, paymentIntent: string, fetcher: typeof fetch = fetch): Promise<PaymentState | null> {
+  try {
+    const res = await fetcher(`${STRIPE_API}/v1/payment_intents/${encodeURIComponent(paymentIntent)}?expand[]=latest_charge`, { headers: { authorization: `Bearer ${secretKey}` } });
+    if (!res.ok) return null;
+    return paymentStateFrom(await res.json());
+  } catch {
+    return null;
+  }
+}
+
 export function giftLimiter(name: string, max: number, windowMs: number): (keys: string[]) => Promise<boolean> {
   const local = rateLimiter(max, windowMs);
   let limited: ((key: string) => Promise<boolean>) | null = null;
@@ -202,6 +212,7 @@ export function giftFulfilDeps(env: Record<string, string | undefined> = process
     postalAddress: () => mail?.postalAddress ?? null,
     price: () => cfg?.price ?? null,
     lineItems: async (sessionId: string) => (cfg ? fetchLineItems(cfg.secretKey, sessionId) : null),
+    paymentState: async (paymentIntent: string) => (cfg ? fetchPaymentState(cfg.secretKey, paymentIntent) : null),
     send: async (email: GiftEmail, key: string) => (mail ? sendGiftEmail(mail, email, key) : false),
     now: Date.now,
   };

@@ -22,9 +22,18 @@ function wordsHref(code: string): string {
 
 type FooterKey = "play" | "words" | "guides" | "teachers" | "privacy" | "terms" | "support" | "appstore";
 
-export function footerLinks(loc: SiteLocale): { key: string; href: string; label: string }[] {
+const GIFT: Record<string, { href: string; label: string }> = { en: { href: "/gift", label: "Gift" }, es: { href: "/es/gift", label: "Regalo" } };
+
+export function giftFooterLink(code: string, env: Record<string, string | undefined> = process.env): { key: string; href: string; label: string } | null {
+  return env.STRIPE_PRICE_POLINGUAL_GIFT_YEARLY?.trim() ? { key: "gift", ...(GIFT[code] ?? GIFT.en) } : null;
+}
+
+export function footerLinks(loc: SiteLocale, env: Record<string, string | undefined> = process.env): { key: string; href: string; label: string }[] {
   const labels: Record<FooterKey | "app" | "nav" | "footerNav", string> = { ...loc.labels, words: loc.words, appstore: "App Store" };
-  return FOOTER_LINKS.map((l) => ({ key: l.key, href: l.key === "words" ? wordsHref(loc.code) : l.key === "teachers" && loc.code === "es" ? "/es/teachers" : l.href, label: labels[l.key as FooterKey] }));
+  const links = FOOTER_LINKS.map((l) => ({ key: l.key, href: l.key === "words" ? wordsHref(loc.code) : l.key === "teachers" && loc.code === "es" ? "/es/teachers" : l.href, label: labels[l.key as FooterKey] }));
+  const gift = giftFooterLink(loc.code, env);
+  const at = links.findIndex((l) => l.key === "privacy");
+  return gift ? [...links.slice(0, at), gift, ...links.slice(at)] : links;
 }
 
 function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
