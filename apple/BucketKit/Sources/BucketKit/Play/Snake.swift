@@ -82,6 +82,26 @@ public struct Arena: Sendable, Equatable {
     }
 }
 
+public struct SnakeView: Sendable, Equatable {
+    public let x: Double
+    public let y: Double
+    public let w: Double
+    public let h: Double
+
+    public init(x: Double, y: Double, w: Double, h: Double) {
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+    }
+
+    public func world(_ p: Pt) -> Pt { Pt(x + p.x, y + p.y) }
+
+    public func shows(_ p: Pt, margin: Double) -> Bool {
+        p.x >= x - margin && p.x <= x + w + margin && p.y >= y - margin && p.y <= y + h + margin
+    }
+}
+
 public struct Collision: Sendable, Equatable {
     public let arena: Arena
     public let died: [String]
@@ -103,6 +123,8 @@ public enum Snakes {
     public static let goodShare = 0.55
     public static let botMax = 30
     public static let roundMs = 120_000
+    public static let graceMs = 3_000
+    public static let clearR = 260.0
     public static let skill = ["easy": 0.55, "medium": 0.8, "hard": 0.95]
     public static let langChoices = ["es", "fr", "it", "pt", "de", "nl", "sv", "ja", "zh", "ko", "ru", "el", "ar", "hi", "tr"]
 
@@ -116,6 +138,30 @@ public enum Snakes {
 
     public static func make(id: String, name: String, bot: Bool, skill: Double, at: Pt, angle: Double, color: Int) -> Snake {
         Snake(id: id, name: name, bot: bot, skill: skill, angle: angle, body: (0..<startLen).map { i in Pt(at.x - cos(angle) * seg * Double(i), at.y - sin(angle) * seg * Double(i)) }, length: startLen, alive: true, color: color)
+    }
+
+    public static func view(head: Pt, width: Double, height: Double) -> SnakeView {
+        let w = min(worldW, max(1, width))
+        let h = min(worldH, max(1, height))
+        return SnakeView(x: min(max(head.x - w / 2, 0), worldW - w), y: min(max(head.y - h / 2, 0), worldH - h), w: w, h: h)
+    }
+
+    public static func aim(head: Pt, view: SnakeView, touch: Pt) -> Double {
+        let t = view.world(touch)
+        return atan2(t.y - head.y, t.x - head.x)
+    }
+
+    public static func shielded(elapsedMs: Int) -> Bool { elapsedMs < graceMs }
+
+    public static func botStart(away from: Pt, rand: () -> Double) -> Pt {
+        var p = Pt(200 + rand() * 1200, 150 + rand() * 700)
+        var tries = 0
+        while dist(p, from) < clearR && tries < 12 {
+            p = Pt(200 + rand() * 1200, 150 + rand() * 700)
+            tries += 1
+        }
+        if dist(p, from) < clearR { p = Pt(from.x < worldW / 2 ? worldW - 200 : 200, from.y < worldH / 2 ? worldH - 150 : 150) }
+        return p
     }
 
     public static func dist(_ a: Pt, _ b: Pt) -> Double { hypot(a.x - b.x, a.y - b.y) }
@@ -203,25 +249,25 @@ public enum Snakes {
         return Arena(snakes: snakes, words: words, nextWord: nextWord, eaten: eaten, bad: bad)
     }
 
-    public static func tick(_ a0: Arena, aim: Double?, deck: SnakeDeck, rand: () -> Double, dt: Double) -> Arena {
+    public static func tick(_ a0: Arena, aim: Double?, deck: SnakeDeck, rand: () -> Double, dt: Double, shield: Bool = false) -> Arena {
         var a = a0
         a.snakes = a0.snakes.map { s in s.alive ? advance(s, target: s.bot ? botTarget(s, words: a0.words, rand: rand) : aim ?? s.angle, dt: dt) : s }
         a = eat(a, deck: deck, rand: rand)
-        var out = collide(a).arena
+        var out = collide(a, shield: shield).arena
+        let player = out.snakes.first { !$0.bot && $0.alive }?.body.first
         out.snakes = out.snakes.map { s in
             guard s.bot && !s.alive else { return s }
-            let x = 100 + rand() * 1400
-            let y = 100 + rand() * 800
-            return make(id: s.id, name: s.name, bot: true, skill: s.skill, at: Pt(x, y), angle: rand() * 6.28, color: s.color)
+            let at = player.map { botStart(away: $0, rand: rand) } ?? Pt(100 + rand() * 1400, 100 + rand() * 800)
+            return make(id: s.id, name: s.name, bot: true, skill: s.skill, at: at, angle: rand() * 6.28, color: s.color)
         }
         return out
     }
 
-    public static func collide(_ arena: Arena) -> Collision {
+    public static func collide(_ arena: Arena, shield: Bool = false) -> Collision {
         var died: [String] = []
         let snakes = arena.snakes.map { s -> Snake in
-            guard s.alive else { return s }
-            for o in arena.snakes where o.id != s.id && o.alive {
+            guard s.alive, s.bot || !shield else { return s }
+            for o in arena.snakes where o.id != s.id && o.alive && (o.bot || !shield) {
                 if o.body.contains(where: { dist(s.body[0], $0) < hitR }) && s.length <= o.length {
                     died.append(s.id)
                     var n = s

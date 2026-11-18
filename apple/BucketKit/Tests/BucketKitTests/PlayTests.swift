@@ -517,6 +517,78 @@ struct PlayTests {
 
     static let snakeDeck = SnakeDeck(lang: "es", good: [SnakeWord(form: "perro", lang: "es", meaning: "dog")], decoys: [SnakeWord(form: "chien", lang: "fr", meaning: "dog")])
 
+    @Test func snakeViewFollowsTheHeadAtOnePointPerUnit() {
+        let v = Snakes.view(head: Pt(800, 500), width: 360, height: 420)
+        #expect(v == SnakeView(x: 620, y: 290, w: 360, h: 420))
+        #expect(Snakes.eatR >= 22)
+    }
+
+    @Test func snakeViewStopsAtTheWorldEdges() {
+        #expect(Snakes.view(head: Pt(10, 10), width: 360, height: 420) == SnakeView(x: 0, y: 0, w: 360, h: 420))
+        #expect(Snakes.view(head: Pt(1595, 990), width: 360, height: 420) == SnakeView(x: 1240, y: 580, w: 360, h: 420))
+        #expect(Snakes.view(head: Pt(800, 500), width: 4000, height: 3000) == SnakeView(x: 0, y: 0, w: Snakes.worldW, h: Snakes.worldH))
+        #expect(Snakes.view(head: Pt(800, 500), width: 0, height: 0).w == 1)
+    }
+
+    @Test func snakeViewTellsWhatIsOnScreen() {
+        let v = Snakes.view(head: Pt(800, 500), width: 360, height: 420)
+        #expect(v.shows(Pt(700, 400), margin: 0))
+        #expect(!v.shows(Pt(500, 400), margin: 80))
+        #expect(v.shows(Pt(560, 400), margin: 80))
+    }
+
+    @Test func snakeAimPointsFromTheHeadToTheTouch() {
+        let head = Pt(800, 500)
+        let v = Snakes.view(head: head, width: 360, height: 420)
+        #expect(abs(Snakes.aim(head: head, view: v, touch: Pt(300, 210))) < 0.0001)
+        #expect(abs(Snakes.aim(head: head, view: v, touch: Pt(180, 400)) - .pi / 2) < 0.0001)
+        let corner = Pt(5, 5)
+        let edge = Snakes.view(head: corner, width: 360, height: 420)
+        #expect(abs(Snakes.aim(head: corner, view: edge, touch: Pt(105, 5))) < 0.0001)
+    }
+
+    @Test func snakeShieldKeepsThePlayerAliveAtTheStart() {
+        var big = Snakes.make(id: "big", name: "Big", bot: true, skill: 1, at: Pt(300, 300), angle: 0, color: 0)
+        big.length = 20
+        let me = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(291, 300), angle: .pi, color: 0)
+        let arena = Arena(snakes: [big, me], words: [], nextWord: 0)
+        #expect(Snakes.collide(arena, shield: true).died.isEmpty)
+        #expect(Snakes.collide(arena).died == ["me"])
+        #expect(Snakes.shielded(elapsedMs: 0))
+        #expect(Snakes.shielded(elapsedMs: Snakes.graceMs - 1))
+        #expect(!Snakes.shielded(elapsedMs: Snakes.graceMs))
+    }
+
+    @Test func snakeShieldAlsoSparesBotsFromTheShieldedPlayer() {
+        var me = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(300, 300), angle: 0, color: 0)
+        me.length = 20
+        let bot = Snakes.make(id: "b", name: "B", bot: true, skill: 1, at: Pt(291, 300), angle: .pi, color: 0)
+        #expect(Snakes.collide(Arena(snakes: [me, bot], words: [], nextWord: 0), shield: true).died.isEmpty)
+        #expect(Snakes.collide(Arena(snakes: [me, bot], words: [], nextWord: 0)).died == ["b"])
+    }
+
+    @Test func snakeBotsStartAwayFromThePlayer() {
+        let me = Pt(800, 500)
+        var seq = [0.5, 0.5, 0.1, 0.1].makeIterator()
+        let p = Snakes.botStart(away: me) { seq.next() ?? 0.1 }
+        #expect(Snakes.dist(p, me) >= Snakes.clearR)
+        let stuck = Snakes.botStart(away: me) { 0.5 }
+        #expect(Snakes.dist(stuck, me) >= Snakes.clearR)
+        for corner in [Pt(200, 150), Pt(1400, 850), Pt(200, 850), Pt(1400, 150)] {
+            #expect(Snakes.dist(Snakes.botStart(away: corner) { 0 }, corner) >= Snakes.clearR)
+        }
+    }
+
+    @Test func snakeTickRespawnsDeadBotsClearOfThePlayer() {
+        var me = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(800, 500), angle: 0, color: 0)
+        me.length = 30
+        let bot = Snakes.make(id: "b", name: "B", bot: true, skill: 1, at: Pt(795, 500), angle: .pi, color: 1)
+        let out = Snakes.tick(Arena(snakes: [me, bot], words: [], nextWord: 0), aim: nil, deck: Self.snakeDeck, rand: { 0.5 }, dt: 0.001)
+        let b = out.snakes[1]
+        #expect(b.alive)
+        #expect(Snakes.dist(b.body[0], out.snakes[0].body[0]) >= Snakes.clearR)
+    }
+
     @Test func snakesMoveTurnCappedAndKeepLength() {
         let s = Snakes.make(id: "me", name: "You", bot: false, skill: 1, at: Pt(500, 500), angle: 0, color: 0)
         let moved = Snakes.advance(s, target: .pi / 2, dt: 0.1)
