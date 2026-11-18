@@ -57,7 +57,7 @@ struct ForeheadGame: View {
     var card: ForeheadCard? { index < cards.count ? cards[index] : nil }
 
     var body: some View {
-        PlayScene(game: .forehead, stickers: playStickers(.ticket, .star)) {
+        PlayScene(game: .forehead) {
             if over || PlayLaunch.endGame {
                 results
             } else if endsAt != nil, let card {

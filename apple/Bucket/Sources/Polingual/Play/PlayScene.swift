@@ -54,7 +54,6 @@ extension EnvironmentValues {
 
 struct PlayScene<Content: View>: View {
     let game: GameKind
-    let stickers: [PLSticker]
     @ViewBuilder let content: () -> Content
 
     var body: some View {
@@ -228,14 +227,6 @@ enum PlaySound {
         GameSound.play(right: right, combo: combo)
         haptic(right)
     }
-}
-
-func playStickers(_ main: PLArt, _ second: PLArt = .seal) -> [PLSticker] {
-    [
-        PLSticker(main, .bottomTrailing, width: 92, x: -10, y: -6, angle: 8),
-        PLSticker(second, .topTrailing, width: 48, x: -4, y: 0, angle: -9),
-        PLSticker(.pebble, .bottomTrailing, width: 22, x: -2, y: -2, angle: 12),
-    ]
 }
 
 func playWords(_ items: [PlayRevealItem]) -> [PlayRevealItem] {

@@ -4,6 +4,7 @@ import SwiftUI
 struct FlagTilesGame: View {
     @Environment(LangStore.self) private var langs
     @Environment(\.playRoom) private var playRoom
+    @ScaledMetric private var chrome: CGFloat = 240
     @State private var deck: FlagTilesDeck?
     @State private var run = RunState()
     @State private var drop = false
@@ -16,7 +17,7 @@ struct FlagTilesGame: View {
     var answer: Int { tile.flatMap { t in deck?.langs.firstIndex(of: t.lang) } ?? -1 }
 
     var body: some View {
-        PlayScene(game: .flagTiles, stickers: playStickers(.kente, .bunting)) {
+        PlayScene(game: .flagTiles) {
             if deck != nil, !entered, !round.practicing {
                 RecordedRound(kind: .flagTiles, deck: day, practice: round.score, root: root) { retry() }
             } else if let deck {
@@ -69,7 +70,7 @@ struct FlagTilesGame: View {
                     }
                 }
             }
-            .frame(height: PlayBoard.height(room: playRoom, chrome: 240, least: 360))
+            .frame(height: PlayBoard.height(room: playRoom, chrome: chrome, least: 360))
             HStack(spacing: PL.Space.s2) {
                 ForEach(Array(deck.langs.enumerated()), id: \.offset) { i, l in
                     Button { tap(i) } label: {

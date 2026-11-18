@@ -42,7 +42,7 @@ struct PolywordGame: View {
 
     var body: some View {
         ScrollViewReader { proxy in
-            PlayScene(game: .polyword, stickers: playStickers(.streakFlame, .ticket)) {
+            PlayScene(game: .polyword) {
                 if let bank, let puzzle {
                     langPicker(bank)
                     if playing == nil { results(bank, puzzle) } else { board(puzzle) }
