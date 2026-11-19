@@ -31,8 +31,7 @@ struct PolingualRoot: View {
             LobbyAds.shared.allowed = Monetization.showsAds(access)
             DailyLedger.shared.capped = Monetization.capped(access)
         }
-        .modifier(VoiceNoticeCaption())
-        .task { LangVoice.shared.preload() }
+        .voiceNotices()
         #if DEBUG
         .task {
             guard Launch.flag("-voiceProbe") else { return }
