@@ -71,7 +71,7 @@ One line: Polingual teaches one word across up to six related languages at once,
 
 Problem: most language learners already speak two languages, yet every app teaches one language at a time and ignores what they know. Classroom quiz tools have no language content.
 
-Product: one word shown across the learner's languages with native audio, each script and the roots that link them; spaced review across every language; daily multilingual games; a live team lobby on a shared screen. iPhone, iPad, Apple Watch and web; Android in build.
+Product: one word shown across the learner's languages with audio in each language, each script and the roots that link them; spaced review across every language; daily multilingual games; a live team lobby on a shared screen. iPhone, iPad, Apple Watch and web; Android in build.
 
 Traction: App Store 1.0 live since November 2026; 48 TestFlight testers; 748 feedback notes; 112 builds; 103 schools, clubs, teacher groups, creators and press contacted; 14 creator referral codes live. Revenue zero; $9.99 a month or $59.99 a year.
 
