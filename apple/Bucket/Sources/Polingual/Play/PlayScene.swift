@@ -150,7 +150,7 @@ struct PlayReveal: View {
             VStack(alignment: .leading, spacing: PL.Space.s2) {
                 HStack(alignment: .firstTextBaseline, spacing: PL.Space.s3) {
                     Text(form).font(PL.word.font(scale: 0.8)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.6)
-                    PlayLabel(text: Lang.name(lang), onDark: false)
+                    PlayLabel(text: langName(lang), onDark: false)
                     Spacer(minLength: 0)
                     Button {
                         LangVoice.shared.speak(form, lang)
@@ -164,7 +164,7 @@ struct PlayReveal: View {
                     Text(sound).font(PL.small.font()).foregroundStyle(PL.inkDim)
                 }
                 HStack(spacing: PL.Space.s2) {
-                    PlayLabel(text: Lang.name(root), onDark: false)
+                    PlayLabel(text: langName(root), onDark: false)
                     Text(meaning).font(PL.body.font()).foregroundStyle(PL.ink)
                 }
             }

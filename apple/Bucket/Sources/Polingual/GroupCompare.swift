@@ -65,7 +65,7 @@ struct StandingTile: View {
                 .minimumScaleFactor(0.7)
             VStack(alignment: .leading, spacing: 3) {
                 stat("checkmark.circle.fill", String(localized: "\(member.weekReviews) this week"))
-                stat("flame.fill", String(localized: "\(member.streak) day streak"))
+                stat("flame.fill", dayStreak(member.streak))
                 stat("star.fill", String(localized: "\(member.wordsMastered) mastered"))
             }
             HStack(spacing: 3) {

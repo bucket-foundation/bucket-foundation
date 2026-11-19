@@ -602,6 +602,10 @@ let gameEndForced = ProcessInfo.processInfo.arguments.contains("-endGame")
 let gameEndForced = false
 #endif
 
+func dayStreak(_ days: Int) -> String {
+    days == 1 ? String(localized: "1 day streak") : String(localized: "\(days) day streak")
+}
+
 extension LangStore {
     func gameScore(_ source: String, right: Int, total: Int) -> ShareObject {
         .score(ShareScore(source: source, right: right, total: total, langs: gameLangs, root: gameSystems.first?.root ?? "en", streak: langStreak(self)))
@@ -684,7 +688,7 @@ struct GameEnd: View {
                     .transition(.scale.combined(with: .opacity))
             }
             if langs.gameStreak > 0 {
-                Label("\(langs.gameStreak) day streak", systemImage: "flame.fill")
+                Label(dayStreak(langs.gameStreak), systemImage: "flame.fill")
                     .font(.headline).foregroundStyle(D8.vermilion)
             }
             if !missed.isEmpty {

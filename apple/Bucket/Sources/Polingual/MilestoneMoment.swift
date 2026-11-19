@@ -13,7 +13,7 @@ struct MilestoneMoment: View {
         switch milestone.kind {
         case .mastered(_, 1): String(localized: "First word mastered")
         case .mastered(_, let count): String(localized: "\(count) words mastered")
-        case .streak(let days): String(localized: "\(days) day streak")
+        case .streak(let days): dayStreak(days)
         }
     }
 

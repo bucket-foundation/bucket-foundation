@@ -147,7 +147,7 @@ struct LocalizationTests {
     static func sourceKeys() throws -> Set<String> {
         let fm = FileManager.default
         var keys = Set<String>()
-        let call = /(?:\bText|\bButton|\bLabel|\bToggle|\bSection|navigationTitle|String\(localized:|Eyebrow\(text:)\(?\s*"((?:[^"\\\n]|\\[^(])*)"/
+        let call = /(?:\bText|\bButton|\bLabel|\bToggle|\bSection|navigationTitle|String\(localized:|Eyebrow\(text:|subtitle:)\(?\s*"((?:[^"\\\n]|\\[^(])*)"/
         for dir in ["Bucket/Sources", "Polingual/Sources", "ShareExtension/Sources", "Clip/Sources"] {
             let root = appleRoot.appendingPathComponent(dir)
             guard let walk = fm.enumerator(at: root, includingPropertiesForKeys: nil) else { continue }
