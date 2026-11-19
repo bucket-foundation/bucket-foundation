@@ -49,6 +49,11 @@ enum LobbyRace {
         return lobby.seedValue
     }
 
+    static var system: LangSystem? {
+        guard seed != nil else { return nil }
+        return store?.current?.raceSystem
+    }
+
     static func begin(_ store: LobbyStore, hold: LobbyRaceGate.Hold) {
         self.store = store
         gate.open(hold)
