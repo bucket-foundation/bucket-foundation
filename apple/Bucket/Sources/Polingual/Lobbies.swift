@@ -164,7 +164,7 @@ struct StagedLobbyHook: ViewModifier {
             .navigationDestination(isPresented: $open) { LobbyRoom() }
             .task {
                 guard !lobbies.staged, let players = Launch.value("-lobbyStage").flatMap(Int.init) else { return }
-                lobbies.stage(players: players, mode: Launch.value("-lobbyStageMode").flatMap(LobbyPromptMode.init(rawValue:)) ?? .form)
+                lobbies.stage(players: players, mode: Launch.value("-lobbyStageMode").flatMap(LobbyPromptMode.init(rawValue:)) ?? .form, race: Launch.value("-lobbyStageRace").flatMap(LobbyGame.init(rawValue:)))
                 open = true
             }
         #else

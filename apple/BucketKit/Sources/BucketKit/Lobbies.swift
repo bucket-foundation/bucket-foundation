@@ -570,7 +570,7 @@ public final class LobbyStore {
 
     @discardableResult
     func sendScore() async -> Bool {
-        guard let lobby = current, lobby.game.isRace, lobby.status == .playing, let score = raceScore, !raceScoreSent, let t = await anyToken() else { return false }
+        guard !staged, let lobby = current, lobby.game.isRace, lobby.status == .playing, let score = raceScore, !raceScoreSent, let t = await anyToken() else { return false }
         do {
             let fresh = try await api.raceScore(token: t, lobbyId: lobby.id, score: score)
             raceScoreSent = true
@@ -606,11 +606,12 @@ public final class LobbyStore {
     }
 
     #if DEBUG
-    public func stage(players: Int, mode: LobbyPromptMode = .form) {
+    public func stage(players: Int, mode: LobbyPromptMode = .form, race: LobbyGame? = nil) {
         staged = true
         picks = [:]
         marks = [:]
-        current = Lobby.staged(players: players, mode: mode, now: now)
+        clearRaceScore()
+        current = Lobby.staged(players: players, mode: mode, race: race, now: now)
     }
     #endif
 
@@ -654,7 +655,7 @@ public final class LobbyStore {
 extension Lobby {
     static let stagedNames = ["Alexandria", "Maximilian", "Bernadette", "Christopher", "Evangeline", "Sebastian", "Wilhelmina", "Bartholomew"]
 
-    static func staged(players: Int, mode: LobbyPromptMode, now: Date) -> Lobby {
+    static func staged(players: Int, mode: LobbyPromptMode, race: LobbyGame? = nil, now: Date) -> Lobby {
         let count = min(max(players, 1), LobbyRules.cap)
         let stamp = ISO8601DateFormatter()
         let seconds = 600
@@ -673,7 +674,7 @@ extension Lobby {
         }
         let start = now.addingTimeInterval(-Double(seconds) - 5)
         return Lobby(
-            id: "staged", code: "STAGED", name: "Staged lobby", game: mode == .tiles ? .tiles : .daily, root: "en", targets: ["es", "fr", "it", "pt", "de", "nl"],
+            id: "staged", code: "STAGED", name: "Staged lobby", game: race.flatMap { $0.isRace ? $0 : nil } ?? (mode == .tiles ? .tiles : .daily), root: "en", targets: ["es", "fr", "it", "pt", "de", "nl"],
             seed: "staged", status: .playing, listed: false, rounds: 8, roundSeconds: seconds, revealSeconds: 0, startedAt: stamp.string(from: start),
             version: 1, now: stamp.string(from: now), isHost: true, players: people, messages: [],
             round: LobbyRound(index: 1, startsAt: stamp.string(from: now.addingTimeInterval(-5)), endsAt: stamp.string(from: now.addingTimeInterval(Double(seconds) - 5)), reveal: false),

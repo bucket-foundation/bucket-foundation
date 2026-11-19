@@ -693,7 +693,9 @@ struct GameEnd: View {
             }
             if !missed.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("These come back in your next session").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                    if LobbyRace.system == nil {
+                        Text("These come back in your next session").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                    }
                     ForEach(missed.prefix(5)) { w in
                         HStack(spacing: 8) {
                             FlagTile(lang: w.lang, size: 22)

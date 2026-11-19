@@ -378,6 +378,24 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         await store.leave()
         #expect(calls.value == 0 && store.current == nil && !store.staged)
     }
+
+    @MainActor @Test func stagedRaceKeepsItsScoreOffTheNetwork() async {
+        let calls = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { _ in
+            calls.mutate { $0 += 1 }
+            return (404, Data())
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        store.stage(players: 2, race: .voice)
+        #expect(store.current?.game == .voice && store.phase.playing)
+        #expect(store.current?.raceSystem.targets == ["es", "fr", "it", "pt", "de", "nl"])
+        await store.postScore(700)
+        await store.postScore(900)
+        await store.poll()
+        #expect(store.raceScore == 700 && !store.raceScoreSent && calls.value == 0)
+        store.stage(players: 2, race: .daily)
+        #expect(store.current?.game == .daily && store.raceScore == nil)
+    }
     #endif
 }
 
