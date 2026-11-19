@@ -87,6 +87,16 @@ struct PlaySplit<Side: View, Main: View>: View {
     }
 }
 
+@MainActor
+@Observable
+final class PlayActivity {
+    static let shared = PlayActivity()
+    private(set) var scenes = 0
+    var playing: Bool { scenes > 0 }
+    func enter() { scenes += 1 }
+    func leave() { scenes = max(0, scenes - 1) }
+}
+
 struct PlayScene<Content: View>: View {
     @Environment(\.verticalSizeClass) private var vertical
     let game: GameKind
@@ -97,6 +107,8 @@ struct PlayScene<Content: View>: View {
             page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
         }
         .plGround(.lattice, band: true)
+        .onAppear { PlayActivity.shared.enter() }
+        .onDisappear { PlayActivity.shared.leave() }
         .navigationTitle(game.title)
         .inlineTitle()
         .toolbar {

@@ -63,7 +63,7 @@ struct PolingualRoot: View {
             SaveProgressSheet()
                 .presentationDetents([.large])
         }
-        .knownLanguagesPrompt(busy: !onboarded || gate.asking || SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
+        .knownLanguagesPrompt(busy: !onboarded || gate.asking || PlayActivity.shared.playing || SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
         #if DEBUG
         .task { if ProcessInfo.processInfo.arguments.contains("-saveProgress") { savePending = true } }
         .task { if let link = Launch.value("-openLink").flatMap(URL.init(string:)) { DeepLink.shared.open(link) } }

@@ -99,6 +99,8 @@ struct KnownLanguagesPrompt: ViewModifier {
         content
             .task(id: Offer(due: due, active: phase == .active)) {
                 var attempts = 0
+                try? await Task.sleep(for: .seconds(KnownPrompt.settleSeconds))
+                if Task.isCancelled { return }
                 while due, phase == .active, !shown, !Task.isCancelled, KnownPrompt.retries(after: attempts) {
                     attempts += 1
                     open = true
