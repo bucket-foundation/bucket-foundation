@@ -113,7 +113,6 @@ struct PlayScene<Content: View>: View {
             page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
         }
         .plGround(.lattice, band: true)
-        .playActivity()
         .navigationTitle(game.title)
         .inlineTitle()
         .toolbar {
