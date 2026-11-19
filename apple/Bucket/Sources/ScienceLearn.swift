@@ -129,7 +129,7 @@ struct DeckView: View {
             deck = await library.prepared(entry)
             await science.load(library.scienceDecks.map(\.id))
         }
-        .sheet(item: $studying) { StudySession(entry: $0.entry, deck: $0.deck) }
+        .sheet(item: $studying) { StudySession(entry: $0.entry, deck: $0.deck).playActivity() }
     }
 
     func atomRow(_ atom: Atom, _ state: EngineState) -> some View {
@@ -200,7 +200,7 @@ struct AtomView: View {
         .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
         .shareObjects([.content(ShareMoment(title: atom.title, source: route.deck.title, branch: route.deck.id, quote: atom.summary, deck: route.deck.id, atom: atom.id))])
         .sheet(isPresented: $practicing) {
-            if let deck = library.prepared[route.deck.id] { AtomDrillSheet(deck: deck, atom: deck.byId[atom.id] ?? atom) }
+            if let deck = library.prepared[route.deck.id] { AtomDrillSheet(deck: deck, atom: deck.byId[atom.id] ?? atom).playActivity() }
         }
         .task { _ = await library.prepared(route.deck) }
     }
@@ -345,7 +345,7 @@ struct ScienceSubjects: Subjects {
 
     func prepared(_ entry: DeckEntry) async -> PreparedDeck? { await library.prepared(entry) }
 
-    func study(_ launch: StudyLaunch) -> AnyView { AnyView(StudySession(entry: launch.entry, deck: launch.deck)) }
+    func study(_ launch: StudyLaunch) -> AnyView { AnyView(StudySession(entry: launch.entry, deck: launch.deck).playActivity()) }
 
     func section(open: @escaping (DeckEntry) -> Void, search: @escaping () -> Void) -> AnyView { AnyView(SubjectsSection(open: open, search: search)) }
 
