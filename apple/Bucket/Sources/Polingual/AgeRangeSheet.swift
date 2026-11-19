@@ -95,7 +95,12 @@ struct AgeRangePrompt: ViewModifier {
             .sheet(isPresented: $open) { AgeRangeSheet() }
             .rootSheet(.ageRange, open: open)
             #if DEBUG
-            .task { if Launch.flag("-ageRange") { open = true } }
+            .task {
+                guard Launch.flag("-ageRange") else { return }
+                try? await Task.sleep(for: .seconds(Launch.value("-ageRangeDelay").flatMap(Double.init) ?? 0))
+                queued = true
+                present()
+            }
             #endif
     }
 

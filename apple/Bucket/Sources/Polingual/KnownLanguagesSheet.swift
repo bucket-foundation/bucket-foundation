@@ -88,9 +88,16 @@ struct KnownLanguagesPrompt: ViewModifier {
 
     var owner: String? { account.session?.userId }
 
+    var known: KnownLanguages {
+        #if DEBUG
+        if Launch.flag("-knownBlank") { return KnownLanguages([]) }
+        #endif
+        return store.known
+    }
+
     var due: Bool {
         KnownPrompt.due(
-            known: store.known, systems: store.systems, ready: store.status == .ready, signedIn: account.stage == .signedIn, pulled: store.pulled,
+            known: known, systems: store.systems, ready: store.status == .ready, signedIn: account.stage == .signedIn, pulled: store.pulled,
             asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy || RootSheets.shared.covered(besides: .knownLanguages)
         )
     }
