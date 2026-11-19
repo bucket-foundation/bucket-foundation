@@ -20,6 +20,10 @@ final class RootSheets {
         return true
     }
 
+    static func attempts(_ spent: Int, claimed: Bool) -> Int {
+        claimed ? spent + 1 : spent
+    }
+
     func covered(besides sheet: RootSheet) -> Bool {
         !open.subtracting([sheet]).isEmpty
     }

@@ -102,8 +102,9 @@ struct KnownLanguagesPrompt: ViewModifier {
                 try? await Task.sleep(for: .seconds(KnownPrompt.settleSeconds))
                 if Task.isCancelled { return }
                 while due, phase == .active, !shown, !Task.isCancelled, KnownPrompt.retries(after: attempts) {
-                    attempts += 1
-                    if RootSheets.shared.claim(.knownLanguages) {
+                    let claimed = RootSheets.shared.claim(.knownLanguages)
+                    attempts = RootSheets.attempts(attempts, claimed: claimed)
+                    if claimed {
                         open = true
                         try? await Task.sleep(for: .seconds(KnownPrompt.offerSeconds))
                         if shown { return }

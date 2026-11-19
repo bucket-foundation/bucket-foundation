@@ -62,6 +62,21 @@ struct RootSheetsTests {
         }
     }
 
+    @Test func aRefusedClaimSpendsNoRetry() {
+        #expect(RootSheets.attempts(3, claimed: false) == 3)
+        #expect(RootSheets.attempts(3, claimed: true) == 4)
+    }
+
+    @Test func aQueuedSheetOpensOnceTheRootClears() {
+        let sheets = RootSheets()
+        sheets.set(.knownLanguages, true)
+        #expect(!sheets.claim(.ageRange))
+        #expect(!sheets.claim(.inviteJoin))
+        sheets.set(.knownLanguages, false)
+        #expect(sheets.claim(.ageRange))
+        #expect(!sheets.claim(.inviteJoin))
+    }
+
     @Test func theNamePromptWaitsForAGameAndForOtherSheets() {
         #expect(MemberName.offer(due: true, playing: false, covered: false))
         #expect(!MemberName.offer(due: true, playing: true, covered: false))
