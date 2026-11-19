@@ -62,6 +62,27 @@ struct RootSheetsTests {
         }
     }
 
+    @Test func aHeldSheetIsNamedUntilItOpens() {
+        let sheets = RootSheets()
+        sheets.set(.ageRange, true)
+        #expect(!sheets.claim(.knownLanguages))
+        sheets.hold(.knownLanguages, true)
+        #expect(sheets.held == [.knownLanguages])
+        sheets.set(.ageRange, false)
+        #expect(sheets.claim(.knownLanguages))
+        #expect(sheets.held.isEmpty)
+    }
+
+    @Test func anOpenSheetIsNeverHeld() {
+        let sheets = RootSheets()
+        sheets.set(.ageRange, true)
+        sheets.hold(.ageRange, true)
+        #expect(sheets.held.isEmpty)
+        sheets.hold(.memberName, true)
+        sheets.hold(.memberName, false)
+        #expect(sheets.held.isEmpty)
+    }
+
     @Test func aRefusedClaimSpendsNoRetry() {
         #expect(RootSheets.attempts(3, claimed: false) == 3)
         #expect(RootSheets.attempts(3, claimed: true) == 4)

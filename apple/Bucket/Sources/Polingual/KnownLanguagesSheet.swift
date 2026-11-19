@@ -60,9 +60,11 @@ struct KnownLanguagesSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(mode == .update ? "Later" : "Cancel") { dismiss() }
+                        .accessibilityIdentifier("knownLanguagesLater")
                 }
             }
         }
+        .rootSheetProbe()
         .presentationDetents([.large])
     }
 
@@ -95,12 +97,16 @@ struct KnownLanguagesPrompt: ViewModifier {
         return store.known
     }
 
-    var due: Bool {
+    var covered: Bool { RootSheets.shared.covered(besides: .knownLanguages) }
+
+    var wanted: Bool {
         KnownPrompt.due(
             known: known, systems: store.systems, ready: store.status == .ready, signedIn: account.stage == .signedIn, pulled: store.pulled,
-            asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy || RootSheets.shared.covered(besides: .knownLanguages)
+            asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy
         )
     }
+
+    var due: Bool { wanted && !covered }
 
     func body(content: Content) -> some View {
         content
@@ -129,6 +135,7 @@ struct KnownLanguagesPrompt: ViewModifier {
                     .onAppear { shown = true }
             }
             .rootSheet(.knownLanguages, open: open)
+            .onChange(of: wanted && covered, initial: true) { _, waiting in RootSheets.shared.hold(.knownLanguages, waiting) }
             #if DEBUG
             .task { if Launch.flag("-knownLanguages") { open = true } }
             #endif
