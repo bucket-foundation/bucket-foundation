@@ -573,12 +573,13 @@ extension BucketAPI {
         let _: Ignored = try await groupCall("api/academy/groups/unblock", token: token, body: ["blockId": .text(blockId)])
     }
 
-    func groupCall<T: Decodable>(_ path: String, query: [String: String] = [:], token: String?, body: [String: Field]? = nil) async throws -> T {
+    func groupCall<T: Decodable>(_ path: String, query: [String: String] = [:], token: String?, body: [String: Field]? = nil, headers: [String: String] = [:]) async throws -> T {
         var c = URLComponents(url: base.appending(path: path), resolvingAgainstBaseURL: false)!
         if !query.isEmpty { c.queryItems = query.keys.sorted().map { URLQueryItem(name: $0, value: query[$0]) } }
         var r = URLRequest(url: c.url!)
         r.cachePolicy = .reloadIgnoringLocalCacheData
         if let token { r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization") }
+        for (name, value) in headers { r.setValue(value, forHTTPHeaderField: name) }
         if let body {
             r.httpMethod = "POST"
             r.setValue("application/json", forHTTPHeaderField: "content-type")

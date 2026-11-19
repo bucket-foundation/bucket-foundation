@@ -14,7 +14,7 @@ struct PolywordGame: View {
     @State private var practiceScore: [String: String] = [:]
 
     var bank: PolywordBank? { PlayAssets.bank }
-    var day: Int { Polyword.dayNumber(localPolyDate()) }
+    var day: Int { playDayNumber() }
     var puzzle: PolyPuzzle? { bank.flatMap { Polyword.puzzleFor($0, lang: lang, day: day) } }
     var key: String { "\(lang)#\(day)" }
 

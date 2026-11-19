@@ -1,5 +1,5 @@
 import { parseTile, tappedChoice, tileKnown, TILE_ROUND_SECONDS } from "./lobby-tiles";
-import { gameEndMs, LOBBY_CAP, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
+import { gameEndMs, isRace, LOBBY_CAP, RACE_ROUND_SECONDS, RACE_ROUNDS, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
 
 export type BotSkill = "easy" | "medium" | "hard";
 
@@ -23,6 +23,7 @@ export interface StandingSlot {
 }
 
 export function gameTiming(game: LobbyGame): { rounds: number; roundSeconds: number } {
+  if (isRace(game)) return { rounds: RACE_ROUNDS, roundSeconds: RACE_ROUND_SECONDS };
   if (game === "tiles") return { rounds: 8, roundSeconds: TILE_ROUND_SECONDS };
   if (game === "live") return { rounds: 7, roundSeconds: 7 };
   if (game === "duel") return { rounds: 10, roundSeconds: 8 };

@@ -79,12 +79,12 @@ struct DuelGame: View {
 
     func deal() {
         guard let corpus = langs.corpus else { return }
-        var rng = SystemRandomNumberGenerator()
+        var rng = LobbyRace.dealRandom()
         let words = GameWords.ordered(langs.freshGameWords(corpus), using: &rng)
         let clash: (GameWord, String) -> Bool = { w, l in l != w.lang && corpus.byId[w.itemId]?.form(l)?.lowercased() == w.form.lowercased() }
         prompts = GameRounds.flags(words, own: langs.gameLangs, mode: .flag, count: Self.rounds, sameForm: clash, using: &rng)
-        let glosses = Array(Set(words.map(\.gloss)))
-        meanings = prompts.map { p in ([p.word.gloss] + glosses.filter { $0.lowercased() != p.word.gloss.lowercased() }.shuffled().prefix(3)).shuffled() }
+        let glosses = Set(words.map(\.gloss)).sorted()
+        meanings = prompts.map { p in ([p.word.gloss] + glosses.filter { $0.lowercased() != p.word.gloss.lowercased() }.shuffled(using: &rng).prefix(3)).shuffled(using: &rng) }
         index = 0
         step = 0
         pickedLang = nil
