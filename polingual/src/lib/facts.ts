@@ -5,6 +5,8 @@ export const FACTS = {
   name: "Polingual",
   platforms: "iPhone and iPad",
   languageCount: 29,
+  setLimit: 6,
+  price: "$9.99 a month or $59.99 a year, each with a 3-day free trial",
   publisher: "AGFarms LLC",
   appStore: APP_STORE_URL,
 };
