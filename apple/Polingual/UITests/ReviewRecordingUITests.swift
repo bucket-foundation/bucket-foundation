@@ -80,7 +80,7 @@ final class ReviewRecordingUITests: XCTestCase {
         let walk = launch([])
         onboarding(walk)
         paywall(walk)
-        let inside = ReviewWalk.onDevice ? walk : launch(["-polingual.onboarded", "YES", "-polingualOpen", "-demoGroup", "joined"])
+        let inside = ReviewWalk.onDevice ? walk : launch(["-polingual.onboarded", "YES", "-polingualOpen", "-demoGroup", "joined", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", "guest"])
         let app = inside.app
         home(inside, timeout: 60)
         inside.tap(app.buttons["Account"].firstMatch)
