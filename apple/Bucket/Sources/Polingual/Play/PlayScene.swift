@@ -97,6 +97,12 @@ final class PlayActivity {
     func leave() { scenes = max(0, scenes - 1) }
 }
 
+extension View {
+    func playActivity() -> some View {
+        onAppear { PlayActivity.shared.enter() }.onDisappear { PlayActivity.shared.leave() }
+    }
+}
+
 struct PlayScene<Content: View>: View {
     @Environment(\.verticalSizeClass) private var vertical
     let game: GameKind
@@ -107,8 +113,7 @@ struct PlayScene<Content: View>: View {
             page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
         }
         .plGround(.lattice, band: true)
-        .onAppear { PlayActivity.shared.enter() }
-        .onDisappear { PlayActivity.shared.leave() }
+        .playActivity()
         .navigationTitle(game.title)
         .inlineTitle()
         .toolbar {
