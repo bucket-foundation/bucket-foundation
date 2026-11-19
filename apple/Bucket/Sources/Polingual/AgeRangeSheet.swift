@@ -81,14 +81,28 @@ struct AgeRangeSheet: View {
 
 struct AgeRangePrompt: ViewModifier {
     @State private var open = false
+    @State private var queued = false
 
     func body(content: Content) -> some View {
         content
-            .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in open = true }
+            .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in
+                queued = true
+                present()
+            }
+            .onChange(of: RootSheets.shared.covered(besides: .ageRange)) { _, covered in
+                if !covered { present() }
+            }
             .sheet(isPresented: $open) { AgeRangeSheet() }
+            .rootSheet(.ageRange, open: open)
             #if DEBUG
             .task { if Launch.flag("-ageRange") { open = true } }
             #endif
+    }
+
+    func present() {
+        guard queued, RootSheets.shared.claim(.ageRange) else { return }
+        queued = false
+        open = true
     }
 }
 

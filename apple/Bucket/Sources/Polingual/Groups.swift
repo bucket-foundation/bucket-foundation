@@ -715,31 +715,47 @@ struct GroupInviteFlow: ViewModifier {
     @State private var waiting: String?
     @State private var signingIn = false
     @State private var joining: InviteCode?
+    @State private var queued: String?
 
     func body(content: Content) -> some View {
         content
             .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
                 guard case .group(let code) = link else { return }
                 DeepLink.shared.pending = nil
-                if account.stage == .signedIn {
-                    joining = InviteCode(id: code)
-                } else {
-                    waiting = code
-                    signingIn = true
-                }
+                queued = code
+                present()
+            }
+            .onChange(of: RootSheets.shared.covered(besides: .inviteJoin)) { _, covered in
+                if !covered { present() }
             }
             .onChange(of: account.stage) { _, stage in
                 guard stage == .signedIn, let code = waiting else { return }
                 waiting = nil
                 Task {
                     try? await Task.sleep(for: .milliseconds(600))
-                    joining = InviteCode(id: code)
+                    queued = code
+                    present()
                 }
             }
             .sheet(isPresented: $signingIn, onDismiss: {
                 if account.stage != .signedIn { waiting = nil }
             }) { SignInSheet() }
             .sheet(item: $joining) { JoinGroupSheet(code: $0.id) }
+            .rootSheet(.inviteSignIn, open: signingIn)
+            .rootSheet(.inviteJoin, open: joining != nil)
+    }
+
+    func present() {
+        guard let code = queued else { return }
+        if account.stage == .signedIn {
+            guard RootSheets.shared.claim(.inviteJoin) else { return }
+            joining = InviteCode(id: code)
+        } else {
+            guard RootSheets.shared.claim(.inviteSignIn) else { return }
+            waiting = code
+            signingIn = true
+        }
+        queued = nil
     }
 }
 

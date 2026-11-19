@@ -91,7 +91,7 @@ struct KnownLanguagesPrompt: ViewModifier {
     var due: Bool {
         KnownPrompt.due(
             known: store.known, systems: store.systems, ready: store.status == .ready, signedIn: account.stage == .signedIn, pulled: store.pulled,
-            asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy
+            asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy || RootSheets.shared.covered(besides: .knownLanguages)
         )
     }
 
@@ -102,11 +102,14 @@ struct KnownLanguagesPrompt: ViewModifier {
                 try? await Task.sleep(for: .seconds(KnownPrompt.settleSeconds))
                 if Task.isCancelled { return }
                 while due, phase == .active, !shown, !Task.isCancelled, KnownPrompt.retries(after: attempts) {
-                    attempts += 1
-                    open = true
-                    try? await Task.sleep(for: .seconds(KnownPrompt.offerSeconds))
-                    if shown { return }
-                    open = false
+                    let claimed = RootSheets.shared.claim(.knownLanguages)
+                    attempts = RootSheets.attempts(attempts, claimed: claimed)
+                    if claimed {
+                        open = true
+                        try? await Task.sleep(for: .seconds(KnownPrompt.offerSeconds))
+                        if shown { return }
+                        open = false
+                    }
                     if Task.isCancelled { return }
                     try? await Task.sleep(for: .seconds(KnownPrompt.retrySeconds))
                 }
@@ -118,6 +121,7 @@ struct KnownLanguagesPrompt: ViewModifier {
                 KnownLanguagesSheet(mode: .update, picks: KnownPrompt.seed(systems: store.systems, device: InterfaceLanguage.deviceRoot))
                     .onAppear { shown = true }
             }
+            .rootSheet(.knownLanguages, open: open)
             #if DEBUG
             .task { if Launch.flag("-knownLanguages") { open = true } }
             #endif
