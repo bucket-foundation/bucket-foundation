@@ -42,7 +42,10 @@ final class RootSheets {
 extension View {
     func rootSheet(_ sheet: RootSheet, open: Bool) -> some View {
         onChange(of: open, initial: true) { _, on in RootSheets.shared.set(sheet, on) }
-            .onDisappear { RootSheets.shared.set(sheet, false) }
+            .onDisappear {
+                RootSheets.shared.set(sheet, false)
+                RootSheets.shared.hold(sheet, false)
+            }
     }
 
     func rootSheetProbe() -> some View {
