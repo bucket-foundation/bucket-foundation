@@ -189,13 +189,23 @@ final class VoiceNotice {
     var message: String?
     @ObservationIgnored private var clear: Task<Void, Never>?
 
-    func missing(_ lang: String) {
+    func missing(_ lang: String, hold: Duration = .seconds(4)) {
         message = String(localized: "No \(Lang.name(lang)) voice on this device. Add one in Settings, Accessibility, Spoken Content, Voices.")
         clear?.cancel()
         clear = Task { @MainActor in
-            try? await Task.sleep(for: .seconds(4))
+            try? await Task.sleep(for: hold)
             if !Task.isCancelled { self.message = nil }
         }
+    }
+}
+
+extension View {
+    func voiceNotices() -> some View {
+        modifier(VoiceNoticeCaption())
+            .task { LangVoice.shared.preload() }
+            #if DEBUG
+            .task { if let lang = Launch.value("-voiceNotice") { VoiceNotice.shared.missing(lang, hold: .seconds(60)) } }
+            #endif
     }
 }
 
@@ -212,6 +222,7 @@ struct VoiceNoticeCaption: ViewModifier {
                     .background(PL.ink, in: .rect(cornerRadius: PL.Radius.md))
                     .padding(.horizontal, PL.Space.s4)
                     .transition(.move(edge: .top).combined(with: .opacity))
+                    .accessibilityIdentifier("voiceNotice")
             }
         }
         .animation(.easeOut(duration: PL.Motion.pop), value: notice.message)

@@ -121,6 +121,7 @@ struct RootView: View {
     @Environment(ScienceStore.self) private var science
     @Environment(Gate.self) private var gate
     @Environment(Account.self) private var account
+    @Environment(LobbyStore.self) private var lobbies
     @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
 
     var subjects: ScienceSubjects { ScienceSubjects(library: library, science: science) }
@@ -134,6 +135,7 @@ struct RootView: View {
         .tabViewStyle(.sidebarAdaptable)
         .audioAccessory()
         .modifier(ScreenshotShare())
+        .voiceNotices()
         .groupInvites()
         .groupsOnToday()
         .memberNamePrompt()
@@ -141,7 +143,7 @@ struct RootView: View {
         .onOpenURL { DeepLink.shared.open($0) }
         .inviteShareOnLink()
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
-        .onChange(of: DeepLink.shared.pending) { _, link in
+        .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
             guard let link else { return }
             tab = link.tab
             if link == .home { DeepLink.shared.pending = nil }
@@ -154,6 +156,7 @@ struct RootView: View {
             if new == .signedIn && old != .signedIn {
                 Task { await langs.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
                 Task { await science.syncAfterSignIn() }
+                Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }
             if new == .signedOut && old == .signedIn && account.endedByUser {
