@@ -153,7 +153,7 @@ struct Studio: View {
                         .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
                 }
                 .environment(\.learnUpsell, upsell)
-            } label: { Label { Text("Play") } icon: { PLArt.blocks.image(height: 24) } }
+            } label: { Label { Text(String(localized: "Play tab", defaultValue: "Play", bundle: InterfaceLanguage.bundle)) } icon: { PLArt.blocks.image(height: 24) } }
             Tab(value: AppTab.account) { AccountView(subscription: manageAction, memberLine: memberLine, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
         }
         .tabViewStyle(.sidebarAdaptable)

@@ -379,7 +379,7 @@ struct MemberRow: View {
                             Text(member.streak, format: .number)
                         }
                         .foregroundStyle(member.streak > 0 ? D8.vermilion : Palette.muted)
-                        .accessibilityLabel(Text("\(member.streak) day streak"))
+                        .accessibilityLabel(Text(dayStreak(member.streak)))
                         Text("\(member.todayReviews) today")
                             .foregroundStyle(Palette.muted)
                     }

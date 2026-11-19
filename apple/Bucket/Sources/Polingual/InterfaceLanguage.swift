@@ -109,9 +109,12 @@ extension View {
 }
 
 extension InterfaceLanguage {
+    static var bundle: Bundle {
+        active.flatMap { Bundle.main.path(forResource: $0, ofType: "lproj") }.flatMap(Bundle.init(path:)) ?? .main
+    }
+
     static func string(_ key: String) -> String {
-        let lproj = active.flatMap { Bundle.main.path(forResource: $0, ofType: "lproj") }.flatMap(Bundle.init(path:))
-        return (lproj ?? .main).localizedString(forKey: key, value: key, table: nil)
+        bundle.localizedString(forKey: key, value: key, table: nil)
     }
 }
 
