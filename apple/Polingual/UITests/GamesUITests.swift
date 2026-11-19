@@ -120,14 +120,14 @@ final class GamesUITests: XCTestCase {
     }
 
     func testLanguagesSheetStaysOffAGame() {
-        let app = launch(["-openGame", "babel"], asked: "none")
+        let app = launch(["-openGame", "babel", "-knownBlank"], asked: "none")
         XCTAssertTrue(app.buttons.matching(identifier: "babelCell").firstMatch.waitForExistence(timeout: 60))
         XCTAssertFalse(app.staticTexts["Which languages do you speak?"].waitForExistence(timeout: 12))
         XCTAssertTrue(app.buttons["babelHint"].isHittable)
     }
 
     func testLanguagesSheetStaysOffADailyGame() {
-        let app = launch(["-openGame", "mini"], asked: "none")
+        let app = launch(["-openGame", "mini", "-knownBlank"], asked: "none")
         let square = app.buttons.matching(NSPredicate(format: "label == %@", "Empty square")).firstMatch
         XCTAssertTrue(square.waitForExistence(timeout: 60))
         XCTAssertFalse(app.staticTexts["Which languages do you speak?"].waitForExistence(timeout: 12))
