@@ -75,8 +75,43 @@ import Testing
         let ids = Milestones.earned(mastered: [:], streak: 0, feats: feats).map(\.id)
         #expect(ids == ["skill:count:de", "skill:count:es", "skill:introduce:es", "skill:order:es", "hello:2", "hello:3"])
         let earned = Milestones.earned(mastered: ["es": 5], streak: 3, feats: feats)
+        #expect(Milestones.next(earned, seen: [])?.id == "skill:count:de")
         #expect(Milestones.next(earned, seen: ["skill:count:de"])?.id == "skill:count:es")
-        #expect(Milestones.next(earned, seen: ["skill:count:es", "skill:count:de"])?.id == "mastered:es:5")
+        #expect(Milestones.next(earned, seen: ["skill:count:es", "skill:count:de"])?.id == "skill:introduce:es")
+    }
+
+    @Test func eachFamilyGetsItsOwnMoment() throws {
+        let earned = Milestones.earned(mastered: ["es": 5], streak: 30, feats: Feats(skills: ["es": [.introduce, .count]], hello: ["es", "de"]))
+        var seen: Set<String> = []
+        var shown: [String] = []
+        while let next = Milestones.next(earned, seen: seen) {
+            shown.append(next.id)
+            seen.formUnion(Milestones.settled(next, earned))
+        }
+        #expect(shown == ["skill:count:es", "hello:2", "mastered:es:5", "streak:30"])
+        #expect(seen == Set(earned.map(\.id)))
+    }
+
+    @Test func anUpgradeShowsOneSkillAndOneHello() {
+        let before = Milestones.earned(mastered: ["es": 50, "de": 10], streak: 14)
+        var seen = Set(before.map(\.id))
+        let earned = Milestones.earned(mastered: ["es": 50, "de": 10], streak: 14, feats: Feats(skills: ["es": [.count, .order], "de": [.count]], hello: ["es", "de", "fr"]))
+        var shown: [String] = []
+        while let next = Milestones.next(earned, seen: seen) {
+            shown.append(next.id)
+            seen.formUnion(Milestones.settled(next, earned))
+        }
+        #expect(shown == ["skill:count:de", "hello:3"])
+    }
+
+    @Test func aPlacedCardEarnsNothingUntilStudied() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+        var state = EngineState()
+        var card = Card(state: "new")
+        card.stability = 400
+        state.cards[cardId("es", Milestones.helloItem)] = card
+        #expect(Milestones.feats(system, corpus, state) == Feats())
     }
 
     @Test func helloNamesTheLanguagesInOrder() throws {

@@ -58,6 +58,15 @@ public struct Milestone: Hashable, Identifiable, Sendable {
         case .hello(let langs): langs.count
         }
     }
+
+    public var family: Int {
+        switch kind {
+        case .streak: 0
+        case .mastered: 1
+        case .hello: 2
+        case .skill: 3
+        }
+    }
 }
 
 public enum Milestones {
@@ -83,8 +92,8 @@ public enum Milestones {
     public static func feats(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState) -> Feats {
         let byId = Dictionary(corpus.items.map { ($0.id, $0) }) { a, _ in a }
         func knows(_ id: String, _ lang: String) -> Bool {
-            guard let item = byId[id], usable(item, system.root, lang) else { return false }
-            return SessionMix.mastered(state, lang, id, bar: LexiconMap.masteredAt)
+            guard let item = byId[id], usable(item, system.root, lang), let card = state.cards[cardId(lang, id)], isStarted(card) else { return false }
+            return FSRS().mastery(card) >= LexiconMap.masteredAt
         }
         var out = Feats()
         for lang in system.targets {
@@ -109,6 +118,10 @@ public enum Milestones {
     }
 
     public static func next(_ earned: [Milestone], seen: Set<String>) -> Milestone? {
-        earned.filter { !seen.contains($0.id) }.max { $0.size < $1.size }
+        earned.filter { !seen.contains($0.id) }.max { ($0.family, $0.size, $1.id) < ($1.family, $1.size, $0.id) }
+    }
+
+    public static func settled(_ shown: Milestone, _ earned: [Milestone]) -> [String] {
+        earned.filter { $0.family == shown.family }.map(\.id)
     }
 }

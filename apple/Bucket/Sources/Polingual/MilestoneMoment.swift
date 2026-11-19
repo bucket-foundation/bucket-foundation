@@ -93,7 +93,7 @@ struct MilestoneMoments: ViewModifier {
         let earned = Milestones.earned(mastered: mastered, streak: Int(langStreak(store)), feats: feats)
         let seen = Set(UserDefaults.standard.stringArray(forKey: Self.key) ?? [])
         guard let next = Milestones.next(earned, seen: seen) else { return }
-        UserDefaults.standard.set(Array(seen.union(earned.map(\.id))), forKey: Self.key)
+        UserDefaults.standard.set(Array(seen.union(Milestones.settled(next, earned))), forKey: Self.key)
         moment = next
     }
 
