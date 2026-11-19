@@ -146,6 +146,7 @@ struct BabelGame: View {
             .foregroundStyle(PL.paper)
             .frame(width: size, height: size)
             .background(Self.marks[n % Self.marks.count], in: .circle)
+            .overlay(Circle().strokeBorder(PL.paper.opacity(0.8), lineWidth: 1))
             .accessibilityHidden(true)
     }
 

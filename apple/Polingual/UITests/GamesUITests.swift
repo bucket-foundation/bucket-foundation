@@ -4,7 +4,7 @@ import XCTest
 final class GamesUITests: XCTestCase {
     private func launch(_ extra: [String], orientation: String? = nil) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO"] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", "guest"] + extra
         app.launch()
         return app
     }
