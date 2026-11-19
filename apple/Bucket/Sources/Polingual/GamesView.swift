@@ -184,7 +184,7 @@ enum GameWordCache {
 extension LangStore {
     var gameWords: [GameWord] {
         guard let corpus else { return [] }
-        let key = systems.map { "\($0.id):\($0.targets.joined(separator: ","))" }.joined(separator: "|") + "#" + String(states.values.reduce(0) { $0 + $1.cards.count }) + "#" + String(corpus.items.count)
+        let key = gameSystems.map { "\($0.id):\($0.targets.joined(separator: ","))" }.joined(separator: "|") + "#" + String(states.values.reduce(0) { $0 + $1.cards.count }) + "#" + String(corpus.items.count)
         if key == GameWordCache.key { return GameWordCache.words }
         let words = freshGameWords(corpus)
         GameWordCache.key = key
@@ -192,7 +192,10 @@ extension LangStore {
         return words
     }
 
+    var gameSystems: [LangSystem] { LobbyRace.system.map { [$0] } ?? systems }
+
     func freshGameWords(_ corpus: LangCorpus) -> [GameWord] {
+        if let race = LobbyRace.system { return LobbyRacePool.words(race, corpus: corpus) }
         let learned = GameWords.learned(systems, states: states, corpus: corpus, now: Date().timeIntervalSince1970 * 1000)
         if learned.count >= 8 { return learned }
         let have = Set(learned.map(\.id))
@@ -201,11 +204,11 @@ extension LangStore {
 
     var gameLangs: [String] {
         var seen = Set<String>()
-        return systems.flatMap(\.targets).filter { seen.insert($0).inserted }
+        return gameSystems.flatMap(\.targets).filter { seen.insert($0).inserted }
     }
 
-    var dailySystem: LangSystem? { systems.first }
-    var sameWordSystem: LangSystem? { systems.first { $0.targets.count >= 2 } }
+    var dailySystem: LangSystem? { gameSystems.first }
+    var sameWordSystem: LangSystem? { gameSystems.first { $0.targets.count >= 2 } }
 
     var gameStreak: Int {
         let now = Date().timeIntervalSince1970 * 1000

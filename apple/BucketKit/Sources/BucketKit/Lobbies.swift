@@ -190,6 +190,24 @@ public enum LobbyRaceSeed {
     public static func deckDay(_ seed: UInt64?, now: Date = Date()) -> String { seed.map(dayKey) ?? PlayDecks.deckDay(now) }
 }
 
+public enum LobbyRacePool {
+    public static let spareTargets = ["es", "fr", "de"]
+
+    public static func system(id: String, root: String, targets: [String]) -> LangSystem {
+        var seen: Set<String> = [root]
+        let own = targets.filter { seen.insert($0).inserted }
+        return LangSystem(id: "race-\(id)", name: "", root: root, targets: own.isEmpty ? spareTargets.filter { $0 != root } : own, createdAt: 0)
+    }
+
+    public static func words(_ system: LangSystem, corpus: LangCorpus) -> [GameWord] {
+        GameWords.starter([system], corpus: corpus)
+    }
+}
+
+public extension Lobby {
+    var raceSystem: LangSystem { LobbyRacePool.system(id: id, root: root, targets: targets) }
+}
+
 public struct RaceRandom: RandomNumberGenerator, Sendable {
     var seeded: SeededRandom?
     var system = SystemRandomNumberGenerator()

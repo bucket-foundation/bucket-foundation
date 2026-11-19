@@ -389,6 +389,37 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(LobbyRaceSeed.deckDay(42, now: now) != PlayDecks.deckDay(now))
     }
 
+    @Test func racePoolComesFromTheLobbyLanguagesAlone() throws {
+        let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+        let system = LobbyRacePool.system(id: "L1", root: "en", targets: ["es", "fr"])
+        let pool = LobbyRacePool.words(system, corpus: corpus)
+        #expect(system.id == "race-L1")
+        #expect(!pool.isEmpty)
+        #expect(Set(pool.map(\.lang)).isSubset(of: ["es", "fr"]))
+        #expect(pool.allSatisfy { $0.root == "en" })
+        #expect(pool == LobbyRacePool.words(LobbyRacePool.system(id: "L1", root: "en", targets: ["es", "fr"]), corpus: corpus))
+    }
+
+    @Test func twoRacersDealTheSameFlagRounds() throws {
+        let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+        func deal() -> [GamePrompt] {
+            let system = LobbyRacePool.system(id: "L1", root: "en", targets: ["es", "fr"])
+            var rng = RaceRandom(seed: 99)
+            let words = GameWords.ordered(LobbyRacePool.words(system, corpus: corpus), using: &rng)
+            return GameRounds.flags(words, own: system.targets, mode: .flag, using: &rng)
+        }
+        let first = deal()
+        #expect(!first.isEmpty)
+        #expect(first.map(\.word) == deal().map(\.word))
+        #expect(first.map(\.answer) == deal().map(\.answer))
+    }
+
+    @Test func racePoolDropsTheRootAndRepeatsAndFallsBackWhenEmpty() {
+        #expect(LobbyRacePool.system(id: "a", root: "es", targets: ["es", "fr", "fr", "it"]).targets == ["fr", "it"])
+        #expect(LobbyRacePool.system(id: "a", root: "en", targets: []).targets == ["es", "fr", "de"])
+        #expect(LobbyRacePool.system(id: "a", root: "es", targets: ["es"]).targets == ["fr", "de"])
+    }
+
     @Test func racersWithOneSeedDrawTheSameNumbers() {
         var a = RaceRandom(seed: 7)
         var b = RaceRandom(seed: 7)
