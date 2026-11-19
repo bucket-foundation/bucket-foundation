@@ -103,10 +103,12 @@ struct KnownLanguagesPrompt: ViewModifier {
                 if Task.isCancelled { return }
                 while due, phase == .active, !shown, !Task.isCancelled, KnownPrompt.retries(after: attempts) {
                     attempts += 1
-                    open = true
-                    try? await Task.sleep(for: .seconds(KnownPrompt.offerSeconds))
-                    if shown { return }
-                    open = false
+                    if RootSheets.shared.claim(.knownLanguages) {
+                        open = true
+                        try? await Task.sleep(for: .seconds(KnownPrompt.offerSeconds))
+                        if shown { return }
+                        open = false
+                    }
                     if Task.isCancelled { return }
                     try? await Task.sleep(for: .seconds(KnownPrompt.retrySeconds))
                 }
@@ -118,7 +120,7 @@ struct KnownLanguagesPrompt: ViewModifier {
                 KnownLanguagesSheet(mode: .update, picks: KnownPrompt.seed(systems: store.systems, device: InterfaceLanguage.deviceRoot))
                     .onAppear { shown = true }
             }
-            .rootSheet(.knownLanguages, open: shown)
+            .rootSheet(.knownLanguages, open: open)
             #if DEBUG
             .task { if Launch.flag("-knownLanguages") { open = true } }
             #endif

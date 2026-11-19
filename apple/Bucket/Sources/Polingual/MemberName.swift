@@ -4,6 +4,7 @@ import SwiftUI
 enum MemberName {
     static let storedKey = "groups.displayName"
     static let askedKey = "groups.nameAsked"
+    static let settleSeconds = 0.6
 
     static func ask(signedIn: Bool, loaded: Bool, unchosen: Bool, asked: Bool) -> Bool {
         signedIn && loaded && unchosen && !asked
@@ -157,8 +158,10 @@ struct MemberNamePrompt: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .onChange(of: offer, initial: true) { _, now in
-                if now { open = true }
+            .task(id: offer) {
+                guard offer else { return }
+                try? await Task.sleep(for: .seconds(MemberName.settleSeconds))
+                if !Task.isCancelled, offer, RootSheets.shared.claim(.memberName) { open = true }
             }
             .sheet(isPresented: $open) { MemberNameSheet(title: "What should your group call you?").onAppear { asked = true } }
             .rootSheet(.memberName, open: open)

@@ -84,7 +84,7 @@ struct AgeRangePrompt: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in open = true }
+            .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in if RootSheets.shared.claim(.ageRange) { open = true } }
             .sheet(isPresented: $open) { AgeRangeSheet() }
             .rootSheet(.ageRange, open: open)
             #if DEBUG

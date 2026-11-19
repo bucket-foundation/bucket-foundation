@@ -163,6 +163,7 @@ struct Studio: View {
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
         .sheet(isPresented: $paywall) { Paywall() }
+        .rootSheet(.paywall, open: paywall)
         .environment(\.limitPaywall, limitPaywall)
         .modifier(GrantNoticeToast())
         #if DEBUG

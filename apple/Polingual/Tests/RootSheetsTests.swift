@@ -38,6 +38,30 @@ struct RootSheetsTests {
         #expect(!sheets.covered(besides: .memberName))
     }
 
+    @Test func twoPromptsInOnePassGetOneClaim() {
+        let sheets = RootSheets()
+        #expect(sheets.claim(.memberName))
+        #expect(!sheets.claim(.knownLanguages))
+        #expect(sheets.open == [.memberName])
+        sheets.set(.memberName, false)
+        #expect(sheets.claim(.knownLanguages))
+    }
+
+    @Test func aSheetCanClaimAgainWhileItIsOpen() {
+        let sheets = RootSheets()
+        #expect(sheets.claim(.ageRange))
+        #expect(sheets.claim(.ageRange))
+        #expect(!sheets.claim(.inviteJoin))
+    }
+
+    @Test func aRegisteredSheetBlocksEveryClaim() {
+        for held in RootSheet.allCases {
+            let sheets = RootSheets()
+            sheets.set(held, true)
+            for other in RootSheet.allCases where other != held { #expect(!sheets.claim(other)) }
+        }
+    }
+
     @Test func theNamePromptWaitsForAGameAndForOtherSheets() {
         #expect(MemberName.offer(due: true, playing: false, covered: false))
         #expect(!MemberName.offer(due: true, playing: true, covered: false))
