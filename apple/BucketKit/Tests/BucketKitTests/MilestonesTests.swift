@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import BucketKit
 
@@ -15,5 +16,82 @@ import Testing
 
     @Test func noMasteryNoMoment() {
         #expect(Milestones.next(Milestones.earned(mastered: ["es": 0], streak: 1), seen: []) == nil)
+    }
+
+    func corpus() throws -> LangCorpus {
+        buildLangCorpus(core: PlayFixtures.corpusJSON("lang-core.json"), cognates: PlayFixtures.corpusJSON("lang-cognates.json"),
+                        phrases: PlayFixtures.corpusJSON("lang-phrases.json"), layers: PlayFixtures.corpusJSON("lang-layers.json"))
+    }
+
+    func master(_ state: EngineState, _ lang: String, _ ids: [String]) -> EngineState {
+        var out = state
+        var now = 1_800_000_000_000.0
+        for round in 0..<8 {
+            for id in ids { out = gradeCard(out, lang, id, 4, now: now) }
+            now += 86_400_000.0 * Double(1 << round)
+        }
+        return out
+    }
+
+    @Test func everySkillItemIsInTheCorpus() throws {
+        let corpus = try corpus()
+        let ids = Set(corpus.items.map(\.id))
+        for skill in Skill.allCases {
+            #expect(skill.items.allSatisfy(ids.contains), "\(skill)")
+            #expect(Milestones.words(skill, lang: "es", root: "en", corpus).count == skill.items.count)
+        }
+        #expect(ids.contains(Milestones.helloItem))
+    }
+
+    @Test func aSkillNeedsEveryItemMastered() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es", "de"], createdAt: 0)
+        let nine = master(EngineState(), "es", Array(Skill.count.items.dropLast()))
+        #expect(Milestones.feats(system, corpus, nine) == Feats())
+        let seen = gradeCard(nine, "es", "ten", 3, now: 1_800_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, seen) == Feats())
+        let ten = master(nine, "es", ["ten"])
+        #expect(Milestones.feats(system, corpus, ten) == Feats(skills: ["es": [.count]]))
+    }
+
+    @Test func introducingYourselfAlsoCountsAsHello() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es", "de"], createdAt: 0)
+        var state = master(EngineState(), "es", Skill.introduce.items)
+        state = master(state, "de", [Milestones.helloItem])
+        #expect(Milestones.feats(system, corpus, state) == Feats(skills: ["es": [.introduce]], hello: ["es", "de"]))
+    }
+
+    @Test func aLanguageWithoutTheWordsEarnsNoSkill() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "la", root: "en", targets: ["la"], createdAt: 0)
+        let state = master(EngineState(), "la", Skill.order.items + [Milestones.helloItem])
+        #expect(Milestones.feats(system, corpus, state) == Feats())
+    }
+
+    @Test func featsBecomeMilestones() {
+        var feats = Feats(skills: ["es": [.order, .count]], hello: ["es", "de"])
+        feats.merge(Feats(skills: ["es": [.introduce], "de": [.count]], hello: ["fr"]))
+        let ids = Milestones.earned(mastered: [:], streak: 0, feats: feats).map(\.id)
+        #expect(ids == ["skill:count:de", "skill:count:es", "skill:introduce:es", "skill:order:es", "hello:2", "hello:3"])
+        let earned = Milestones.earned(mastered: ["es": 5], streak: 3, feats: feats)
+        #expect(Milestones.next(earned, seen: ["skill:count:de"])?.id == "skill:count:es")
+        #expect(Milestones.next(earned, seen: ["skill:count:es", "skill:count:de"])?.id == "mastered:es:5")
+    }
+
+    @Test func helloNamesTheLanguagesInOrder() throws {
+        let earned = Milestones.earned(mastered: [:], streak: 0, feats: Feats(hello: ["sv", "de", "es"]))
+        #expect(earned.map(\.kind) == [.hello(langs: ["de", "es"]), .hello(langs: ["de", "es", "sv"])])
+        let forms = Milestones.hello(langs: ["de", "es", "xx"], try corpus())
+        #expect(forms == [ShareForm(lang: "de", form: "hallo"), ShareForm(lang: "es", form: "hola")])
+    }
+
+    @Test func skillSharesStayDistinct() {
+        let a = ShareObject.skill(.count, lang: "es", root: "en", words: [])
+        let b = ShareObject.skill(.order, lang: "es", root: "en", words: [])
+        #expect(a.id != b.id)
+        #expect(a.route == ShareObject.language("es", root: "en").route)
+        #expect(a.styles == [.banner])
+        #expect(ShareObject.skill(.count, lang: "es", root: "en", words: [MasteredWord(form: "uno", meaning: "one")]).styles == [.list, .banner])
     }
 }

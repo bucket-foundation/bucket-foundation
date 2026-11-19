@@ -4,6 +4,24 @@ import SwiftUI
 import UIKit
 #endif
 
+extension Skill {
+    var title: String {
+        switch self {
+        case .count: String(localized: "Count to 10")
+        case .introduce: String(localized: "Introduce yourself")
+        case .order: String(localized: "Order food")
+        }
+    }
+
+    func boast(_ lang: String) -> String {
+        switch self {
+        case .count: String(localized: "I can count to 10 in \(langName(lang)) on \(Feedback.appName)")
+        case .introduce: String(localized: "I can introduce myself in \(langName(lang)) on \(Feedback.appName)")
+        case .order: String(localized: "I can order food in \(langName(lang)) on \(Feedback.appName)")
+        }
+    }
+}
+
 extension ShareObject {
     var text: String {
         switch self {
@@ -16,6 +34,7 @@ extension ShareObject {
         case .masteredAll(let sets, _):
             String(localized: "\(sets.total) words mastered in \(sets.langs.map(langName).joined(separator: ", ")) on \(Feedback.appName)")
                 + sets.filter { !$0.words.isEmpty }.map { "\n\(langName($0.lang)): " + $0.words.map(\.form).joined(separator: ", ") }.joined()
+        case .skill(let skill, let lang, _, let words): skill.boast(lang) + (words.isEmpty ? "" : ": " + words.map(\.form).joined(separator: ", "))
         case .word(_, let gloss, let forms): "\(gloss): " + forms.prefix(6).map(\.form).joined(separator: " · ")
         case .tile(let form, let gloss, _): form.form == gloss ? form.form : "\(form.form): \(gloss)"
         case .score(let s): String(localized: "\(s.right) of \(s.total) right in \(s.source) on \(Feedback.appName)")
@@ -31,6 +50,7 @@ extension ShareObject {
         case .system: String(localized: "Share your language system")
         case .language: String(localized: "Share this language")
         case .mastered, .masteredAll: String(localized: "Share your words")
+        case .skill: String(localized: "Share your milestone")
         case .word: String(localized: "Share this word")
         case .tile: String(localized: "Share this tile")
         case .flag: String(localized: "Share this flag")
@@ -47,6 +67,7 @@ extension ShareObject {
         case .language(let lang, _): langName(lang)
         case .mastered(let lang, let count, _, _): String(localized: "\(count) \(langName(lang)) words")
         case .masteredAll(let sets, _): String(localized: "\(sets.total) words mastered")
+        case .skill(let skill, _, _, _): skill.title
         case .word(_, let gloss, _): gloss
         case .tile(let form, _, _): form.form
         case .flag(let lang, _): String(localized: "\(langName(lang)) flag")
@@ -146,6 +167,8 @@ struct ShareCardView: View {
             }
         case .masteredAll(let sets, _):
             if style == .list { MasteredAllCard(sets: sets) } else { MasteredTotalCard(sets: sets) }
+        case .skill(let skill, let lang, _, let words):
+            if style == .list { MasteredListCard(lang: lang, count: words.count, words: words, title: skill.title) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: skill.title) }
         case .flag(let lang, _):
             if style == .plate { FlagPlateCard(lang: lang, dark: true) } else { FlagBannerCard(lang: lang, word: nil, reading: nil, line: nil) }
         case .word(_, let gloss, let forms):
@@ -427,6 +450,7 @@ struct MasteredListCard: View {
     let lang: String
     let count: Int
     let words: [MasteredWord]
+    var title: String?
 
     var body: some View {
         let big = words.count <= 5
@@ -434,7 +458,7 @@ struct MasteredListCard: View {
             HStack(spacing: 14) {
                 FlagTile(lang: lang, size: 56)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(count == 1 ? String(localized: "First word mastered") : String(localized: "\(count) words mastered"))
+                    Text(title ?? (count == 1 ? String(localized: "First word mastered") : String(localized: "\(count) words mastered")))
                         .font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
                     Text(langName(lang)).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8))
                 }
@@ -443,6 +467,10 @@ struct MasteredListCard: View {
             if words.count > Self.shown {
                 MasteredWordFlow(sets: [MasteredSet(lang: lang, count: count, words: words)], flags: false)
                     .frame(maxHeight: .infinity, alignment: .topLeading)
+            } else if big, title != nil {
+                Spacer(minLength: 0)
+                phrases
+                Spacer(minLength: 0)
             } else {
                 if big { Spacer(minLength: 0) }
                 rows(big: big)
@@ -453,6 +481,17 @@ struct MasteredListCard: View {
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background(D8.malachite)
+    }
+
+    var phrases: some View {
+        VStack(alignment: .leading, spacing: 22) {
+            ForEach(Array(words.enumerated()), id: \.offset) { _, w in
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(w.form).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(2).minimumScaleFactor(0.6)
+                    Text(w.meaning).font(.system(size: 22, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
+                }
+            }
+        }
     }
 
     func rows(big: Bool) -> some View {
