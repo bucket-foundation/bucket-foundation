@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { Metadata } from "next";
 import { SITE_BUNDLES, WORD_BUNDLES } from "../i18n";
-import { GUIDES } from "./guides";
+import { comparePaths } from "./compare";
+import { GUIDES, LOCAL_GUIDES } from "./guides";
 import { WORDS, word, wordPath } from "./words";
 import { OG_DESCRIPTION_MAX } from "./meta";
 import { SITE_LANGS, WORD_LOCALES, assertBundles, localWordCopy, localeInfo, orderedForms, rootMates, scriptCount, strings, validateBundles, wordBody } from "./word-i18n";
@@ -102,7 +103,7 @@ test("each locale has a self canonical and its own og:locale", () => {
 
 test("the sitemap lists localized word urls only for the indexed rollout locales", () => {
   const paths = sitemapPaths();
-  const base = 1 + SITE_LANGS.length + 6 + teachersPaths().length + GUIDES.length + 1 + WORDS.length;
+  const base = 1 + SITE_LANGS.length + 6 + comparePaths().length + teachersPaths().length + GUIDES.length + LOCAL_GUIDES.length + 1 + WORDS.length;
   assert.deepEqual(INDEXED_WORD_LOCALES, ["es", "fr", "de", "pt", "it", "ja", "ar", "hi"]);
   assert.equal(paths.length, base + INDEXED_WORD_LOCALES.length * (WORDS.length + 1));
   assert.equal(new Set(paths).size, paths.length);

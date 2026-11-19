@@ -1,4 +1,12 @@
-import { FACTS, type Faq } from "./facts";
+import { FACTS, SITE, type Faq } from "./facts";
+import { ES_GUIDES } from "./guides-es";
+import { LONG_GUIDES } from "./guides-long";
+
+export type Cell = string | { text: string; href: string };
+export type GuideTable = { caption: string; head: string[]; rows: Cell[][] };
+export type GuideLink = { href: string; label: string };
+export type Source = { label: string; url: string; checked: string };
+export type GuideSection = { h: string; p: string; more?: string[]; table?: GuideTable };
 
 export type Guide = {
   slug: string;
@@ -6,7 +14,10 @@ export type Guide = {
   title: string;
   description: string;
   lede: string;
-  sections: { h: string; p: string }[];
+  sections: GuideSection[];
+  links?: GuideLink[];
+  sources?: Source[];
+  pair?: string;
   faq: Faq[];
   cta: string;
 };
@@ -79,8 +90,38 @@ export const GUIDES: Guide[] = [
     ],
     cta: "Descárgala en el App Store",
   },
+  ...LONG_GUIDES,
 ];
+
+export const LOCAL_GUIDES: Guide[] = ES_GUIDES;
 
 export function guide(slug: string): Guide | undefined {
   return GUIDES.find((g) => g.slug === slug);
+}
+
+export function localGuide(lang: string, slug: string): Guide | undefined {
+  return LOCAL_GUIDES.find((g) => g.lang === lang && g.slug === slug);
+}
+
+export function guidePath(g: Guide): string {
+  return LOCAL_GUIDES.includes(g) ? `/${g.lang}/learn/${g.slug}` : `/learn/${g.slug}`;
+}
+
+export function guidePair(g: Guide): Guide | undefined {
+  if (!g.pair) return undefined;
+  return LOCAL_GUIDES.includes(g) ? guide(g.pair) : LOCAL_GUIDES.find((x) => x.slug === g.pair);
+}
+
+export function guideAlternates(g: Guide): Record<string, string> | undefined {
+  const other = guidePair(g);
+  if (!other) return undefined;
+  const en = g.lang === "en" ? g : other;
+  const es = g.lang === "es" ? g : other;
+  return { en: `${SITE}${guidePath(en)}`, es: `${SITE}${guidePath(es)}`, "x-default": `${SITE}${guidePath(en)}` };
+}
+
+export function guideWordCount(g: Guide): number {
+  const cells = g.sections.flatMap((s) => (s.table ? [s.table.caption, ...s.table.head, ...s.table.rows.flat().map((c) => (typeof c === "string" ? c : c.text))] : []));
+  const text = [g.title, g.lede, ...g.sections.flatMap((s) => [s.h, s.p, ...(s.more ?? [])]), ...cells, ...g.faq.flatMap((f) => [f.q, f.a])];
+  return text.join(" ").split(/\s+/).filter(Boolean).length;
 }
