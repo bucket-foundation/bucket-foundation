@@ -35,6 +35,7 @@ struct RaceRecordTests {
         #expect(lobbies.raceScore == LobbyRules.raceScore(points: 3, hits: 3))
         #expect(langs.gameBest(GameKind.voice.rawValue) == nil)
         #expect(langs.state(system.id).cards.count == 0)
+        withExtendedLifetime(hold) {}
     }
 
     @Test func aRaceInAnotherGamePostsNoScore() async throws {
