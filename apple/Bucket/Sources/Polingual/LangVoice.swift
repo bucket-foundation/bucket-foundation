@@ -191,6 +191,7 @@ final class VoiceNotice {
 
     func missing(_ lang: String, hold: Duration = .seconds(4)) {
         message = String(localized: "No \(Lang.name(lang)) voice on this device. Add one in Settings, Accessibility, Spoken Content, Voices.")
+        if let message { AccessibilityNotification.Announcement(message).post() }
         clear?.cancel()
         clear = Task { @MainActor in
             try? await Task.sleep(for: hold)
@@ -213,7 +214,19 @@ struct VoiceNoticeCaption: ViewModifier {
     @State private var notice = VoiceNotice.shared
 
     func body(content: Content) -> some View {
-        content.overlay(alignment: .top) {
+        #if os(iOS)
+        content.onChange(of: notice.message, initial: true) { _, m in VoiceNoticeWindow.shared.show(m != nil) }
+        #else
+        content.overlay(alignment: .top) { VoiceNoticeLayer() }
+        #endif
+    }
+}
+
+struct VoiceNoticeLayer: View {
+    @State private var notice = VoiceNotice.shared
+
+    var body: some View {
+        VStack(spacing: 0) {
             if let m = notice.message {
                 Text(m)
                     .font(PL.small.font())
@@ -224,10 +237,45 @@ struct VoiceNoticeCaption: ViewModifier {
                     .transition(.move(edge: .top).combined(with: .opacity))
                     .accessibilityIdentifier("voiceNotice")
             }
+            Spacer(minLength: 0)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(.easeOut(duration: PL.Motion.pop), value: notice.message)
     }
 }
+
+#if os(iOS)
+@MainActor
+final class VoiceNoticeWindow {
+    static let shared = VoiceNoticeWindow()
+    private(set) var window: UIWindow?
+    private var hide: Task<Void, Never>?
+
+    func show(_ on: Bool) {
+        hide?.cancel()
+        guard on else {
+            hide = Task { @MainActor in
+                try? await Task.sleep(for: .milliseconds(400))
+                guard !Task.isCancelled else { return }
+                self.window?.isHidden = true
+                self.window = nil
+            }
+            return
+        }
+        guard window == nil else { return }
+        let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        guard let scene = scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first else { return }
+        let host = UIHostingController(rootView: VoiceNoticeLayer())
+        host.view.backgroundColor = .clear
+        let w = UIWindow(windowScene: scene)
+        w.windowLevel = .alert + 1
+        w.isUserInteractionEnabled = false
+        w.rootViewController = host
+        w.isHidden = false
+        window = w
+    }
+}
+#endif
 
 @MainActor
 @Observable

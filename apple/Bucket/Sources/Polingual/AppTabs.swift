@@ -1,5 +1,5 @@
 import BucketKit
-import Foundation
+import SwiftUI
 
 enum AppTab: String, Hashable { case today, learn, games, account }
 
@@ -10,6 +10,37 @@ extension SharedLink {
         case .langs, .deck, .atom, .content, .voice: .learn
         case .group: .account
         }
+    }
+}
+
+extension AppTab {
+    static func following(_ link: SharedLink?, current: AppTab) -> AppTab {
+        link?.tab ?? current
+    }
+}
+
+extension View {
+    func linkTabs(_ tab: Binding<AppTab>) -> some View {
+        onChange(of: DeepLink.shared.pending, initial: true) { _, link in
+            tab.wrappedValue = AppTab.following(link, current: tab.wrappedValue)
+            if link == .home { DeepLink.shared.pending = nil }
+        }
+    }
+}
+
+enum SessionChange: Equatable {
+    case signedIn, endedByUser, none
+
+    static func of(old: Account.Stage, new: Account.Stage, endedByUser: Bool) -> SessionChange {
+        if new == .signedIn && old != .signedIn { return .signedIn }
+        if new == .signedOut && old == .signedIn && endedByUser { return .endedByUser }
+        return .none
+    }
+
+    @MainActor @discardableResult
+    func mergeGuest(_ lobbies: LobbyStore) -> Task<Void, Never>? {
+        guard self == .signedIn else { return nil }
+        return Task { await lobbies.mergeGuest() }
     }
 }
 

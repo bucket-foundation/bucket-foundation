@@ -70,13 +70,14 @@ struct PolingualRoot: View {
         .task { if let link = Launch.value("-openLink").flatMap(URL.init(string:)) { DeepLink.shared.open(link) } }
         #endif
         .onChange(of: account.stage) { old, new in
-            if new == .signedIn && old != .signedIn {
+            let change = SessionChange.of(old: old, new: new, endedByUser: account.endedByUser)
+            change.mergeGuest(lobbies)
+            if change == .signedIn {
                 savePending = false
                 Task { await store.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
-                Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }
-            if new == .signedOut && old == .signedIn && account.endedByUser {
+            if change == .endedByUser {
                 store.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
             }
@@ -115,7 +116,7 @@ enum LaunchRouting {
     }
 
     static func tab(for link: SharedLink?, current: AppTab) -> AppTab {
-        link?.tab ?? current
+        AppTab.following(link, current: current)
     }
 }
 
@@ -168,10 +169,7 @@ struct Studio: View {
         #if DEBUG
         .task { if Launch.flag("-showPaywall") { paywall = true } }
         #endif
-        .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
-            tab = LaunchRouting.tab(for: link, current: tab)
-            if link == .home { DeepLink.shared.pending = nil }
-        }
+        .linkTabs($tab)
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
         .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG && os(iOS)
