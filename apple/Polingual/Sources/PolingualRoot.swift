@@ -66,6 +66,7 @@ struct PolingualRoot: View {
         .knownLanguagesPrompt(busy: !onboarded || gate.asking || SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
         #if DEBUG
         .task { if ProcessInfo.processInfo.arguments.contains("-saveProgress") { savePending = true } }
+        .task { if let link = Launch.value("-openLink").flatMap(URL.init(string:)) { DeepLink.shared.open(link) } }
         #endif
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {

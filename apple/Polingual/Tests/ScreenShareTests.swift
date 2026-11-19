@@ -22,6 +22,15 @@ struct ScreenShareTests {
         #expect(SharedLink.share.tab == .today)
     }
 
+    @Test func inviteWaitsForAClearActiveWindow() {
+        #expect(InviteWait.next(onboarded: true, hasWindow: true, covered: false, tries: 0) == .present)
+        #expect(InviteWait.next(onboarded: true, hasWindow: false, covered: false, tries: 0) == .wait)
+        #expect(InviteWait.next(onboarded: true, hasWindow: true, covered: true, tries: InviteWait.tries - 1) == .wait)
+        #expect(InviteWait.next(onboarded: true, hasWindow: true, covered: true, tries: InviteWait.tries) == .drop)
+        #expect(InviteWait.next(onboarded: true, hasWindow: false, covered: false, tries: InviteWait.tries) == .drop)
+        #expect(InviteWait.next(onboarded: false, hasWindow: true, covered: false, tries: 0) == .drop)
+    }
+
     @Test func langsAtomAndDeckLinksParse() {
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/l?l=fr.es.it&r=en")!) == .langs(root: "en", targets: ["fr", "es", "it"]))
         #expect(SharedLink(URL(string: "https://www.bucket.foundation/s/a?d=physics&id=newton-2")!) == .atom(deck: "physics", atom: "newton-2"))

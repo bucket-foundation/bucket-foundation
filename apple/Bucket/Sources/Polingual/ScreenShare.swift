@@ -69,12 +69,12 @@ final class ScreenShare {
 
     #if os(iOS)
     func presentInvite() {
-        guard let top = Self.top(Self.keyWindow?.rootViewController), !(top is UIActivityViewController) else { return }
-        let page = SharePage.app
-        let sheet = UIActivityViewController(activityItems: [InviteItem(page: page)], applicationActivities: nil)
-        sheet.popoverPresentationController?.sourceView = top.view
-        sheet.popoverPresentationController?.sourceRect = CGRect(x: top.view.bounds.midX, y: top.view.bounds.maxY - 80, width: 1, height: 1)
-        top.present(sheet, animated: true)
+        guard let root = Self.keyWindow?.rootViewController, root.presentedViewController == nil else { return }
+        let sheet = UIActivityViewController(activityItems: [InviteItem(page: SharePage.app)], applicationActivities: nil)
+        sheet.popoverPresentationController?.sourceView = root.view
+        sheet.popoverPresentationController?.sourceRect = CGRect(x: root.view.bounds.midX, y: root.view.bounds.midY, width: 1, height: 1)
+        sheet.popoverPresentationController?.permittedArrowDirections = []
+        root.present(sheet, animated: true)
     }
     #endif
 
@@ -207,11 +207,37 @@ struct InviteShareOnLink: ViewModifier {
             DeepLink.shared.pending = nil
             #if os(iOS)
             Task {
-                try? await Task.sleep(for: .milliseconds(600))
-                ScreenShare.shared.presentInvite()
+                try? await Task.sleep(for: InviteWait.step)
+                var tries = 0
+                while true {
+                    try? await Task.sleep(for: InviteWait.step)
+                    let root = ScreenShare.keyWindow?.rootViewController
+                    switch InviteWait.next(onboarded: InviteWait.onboarded, hasWindow: root != nil, covered: root?.presentedViewController != nil, tries: tries) {
+                    case .present:
+                        ScreenShare.shared.presentInvite()
+                        return
+                    case .drop: return
+                    case .wait: tries += 1
+                    }
+                }
             }
             #endif
         }
+    }
+}
+
+enum InviteWait {
+    enum Step: Equatable { case present, wait, drop }
+
+    static let step: Duration = .milliseconds(300)
+    static let tries = 10
+
+    static var onboarded: Bool { !Feedback.isPolingual || UserDefaults.standard.bool(forKey: "polingual.onboarded") }
+
+    static func next(onboarded: Bool, hasWindow: Bool, covered: Bool, tries: Int) -> Step {
+        guard onboarded else { return .drop }
+        if hasWindow && !covered { return .present }
+        return tries < Self.tries ? .wait : .drop
     }
 }
 
