@@ -54,8 +54,9 @@ struct AgeRangeSheet: View {
             }
             .padding()
             .navigationTitle("Your age range")
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Later") { dismiss() } } }
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Later") { dismiss() }.accessibilityIdentifier("ageRangeLater") } }
         }
+        .rootSheetProbe()
         .presentationDetents([.medium])
     }
 
@@ -97,7 +98,12 @@ struct AgeRangePrompt: ViewModifier {
             #if DEBUG
             .task {
                 guard Launch.flag("-ageRange") else { return }
-                try? await Task.sleep(for: .seconds(Launch.value("-ageRangeDelay").flatMap(Double.init) ?? 0))
+                if let first = Launch.value("-ageRangeAfter").flatMap(RootSheet.init(rawValue:)) {
+                    while !RootSheets.shared.open.contains(first) {
+                        try? await Task.sleep(for: .seconds(0.2))
+                        if Task.isCancelled { return }
+                    }
+                }
                 queued = true
                 present()
             }
@@ -105,7 +111,11 @@ struct AgeRangePrompt: ViewModifier {
     }
 
     func present() {
-        guard queued, RootSheets.shared.claim(.ageRange) else { return }
+        guard queued else { return }
+        guard RootSheets.shared.claim(.ageRange) else {
+            RootSheets.shared.hold(.ageRange, true)
+            return
+        }
         queued = false
         open = true
     }
