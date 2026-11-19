@@ -6,7 +6,7 @@ enum AppTab: String, Hashable { case today, learn, games, account }
 extension SharedLink {
     var tab: AppTab {
         switch self {
-        case .word, .home: .today
+        case .word, .home, .share: .today
         case .langs, .deck, .atom, .content, .voice: .learn
         case .group: .account
         }
