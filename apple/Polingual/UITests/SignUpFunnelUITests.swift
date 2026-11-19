@@ -54,7 +54,7 @@ final class SignUpFunnelUITests: XCTestCase {
     }
 
     func testLockedTodayOpensPaywall() throws {
-        let app = launch(["-polingual.onboarded", "YES"])
+        let app = launch(["-polingual.onboarded", "YES", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", "guest"])
         guard app.navigationBars["Games"].waitForExistence(timeout: 60) else { throw XCTSkip("Subscribed on this simulator") }
         passConsent(app)
         app.buttons["Today"].firstMatch.tap()
