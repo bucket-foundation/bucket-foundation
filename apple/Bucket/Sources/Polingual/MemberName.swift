@@ -154,11 +154,9 @@ struct MemberNamePrompt: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onChange(of: due, initial: true) { _, now in
-                guard now else { return }
-                asked = true
-                open = true
+                if now { open = true }
             }
-            .sheet(isPresented: $open) { MemberNameSheet(title: "What should your group call you?") }
+            .sheet(isPresented: $open) { MemberNameSheet(title: "What should your group call you?").onAppear { asked = true } }
     }
 
     var due: Bool {

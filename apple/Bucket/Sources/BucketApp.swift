@@ -136,6 +136,7 @@ struct RootView: View {
         .modifier(ScreenshotShare())
         .groupInvites()
         .groupsOnToday()
+        .memberNamePrompt()
         .ageRangePrompt()
         .onOpenURL { DeepLink.shared.open($0) }
         .inviteShareOnLink()
@@ -147,6 +148,7 @@ struct RootView: View {
         }
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
+        .knownLanguagesPrompt(busy: gate.asking || PlayActivity.shared.playing)
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {
                 Task { await langs.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
