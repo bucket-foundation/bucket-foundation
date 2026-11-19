@@ -2,9 +2,9 @@ import XCTest
 
 @MainActor
 final class GamesUITests: XCTestCase {
-    private func launch(_ extra: [String], orientation: String? = nil) -> XCUIApplication {
+    private func launch(_ extra: [String], orientation: String? = nil, asked: String = "guest") -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO"] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", asked] + extra
         app.launch()
         return app
     }
@@ -117,6 +117,13 @@ final class GamesUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["playTitle"].isHittable)
         XCTAssertTrue(app.buttons["startLearning"].isHittable)
         shot(name)
+    }
+
+    func testLanguagesSheetStaysOffAGame() {
+        let app = launch(["-openGame", "babel"], asked: "none")
+        XCTAssertTrue(app.buttons.matching(identifier: "babelCell").firstMatch.waitForExistence(timeout: 60))
+        XCTAssertFalse(app.staticTexts["Which languages do you speak?"].waitForExistence(timeout: 12))
+        XCTAssertTrue(app.buttons["babelHint"].isHittable)
     }
 
     func testBabelBoardFitsTheScreen() {

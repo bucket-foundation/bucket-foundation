@@ -141,6 +141,7 @@ public struct KnownPicks: Sendable, Equatable {
 public enum KnownPrompt {
     public static let askedKey = "polingual.knownAskedOwners"
     public static let guest = "guest"
+    public static let settleSeconds = 1.5
     public static let offerSeconds = 2.0
     public static let retrySeconds = 4.0
     public static let retryLimit = 15
