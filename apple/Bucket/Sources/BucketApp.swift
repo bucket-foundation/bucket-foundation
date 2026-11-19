@@ -148,6 +148,7 @@ struct RootView: View {
         }
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
+        .rootSheet(.gate, open: gate.asking)
         .knownLanguagesPrompt(busy: gate.asking || PlayActivity.shared.playing)
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn {

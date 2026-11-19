@@ -91,7 +91,7 @@ struct KnownLanguagesPrompt: ViewModifier {
     var due: Bool {
         KnownPrompt.due(
             known: store.known, systems: store.systems, ready: store.status == .ready, signedIn: account.stage == .signedIn, pulled: store.pulled,
-            asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy
+            asked: KnownPrompt.asked(askedOwners, owner: owner), busy: busy || RootSheets.shared.covered(besides: .knownLanguages)
         )
     }
 
@@ -118,6 +118,7 @@ struct KnownLanguagesPrompt: ViewModifier {
                 KnownLanguagesSheet(mode: .update, picks: KnownPrompt.seed(systems: store.systems, device: InterfaceLanguage.deviceRoot))
                     .onAppear { shown = true }
             }
+            .rootSheet(.knownLanguages, open: shown)
             #if DEBUG
             .task { if Launch.flag("-knownLanguages") { open = true } }
             #endif

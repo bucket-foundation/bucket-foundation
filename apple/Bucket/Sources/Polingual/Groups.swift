@@ -740,6 +740,8 @@ struct GroupInviteFlow: ViewModifier {
                 if account.stage != .signedIn { waiting = nil }
             }) { SignInSheet() }
             .sheet(item: $joining) { JoinGroupSheet(code: $0.id) }
+            .rootSheet(.inviteSignIn, open: signingIn)
+            .rootSheet(.inviteJoin, open: joining != nil)
     }
 }
 

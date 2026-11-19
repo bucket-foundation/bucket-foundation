@@ -86,6 +86,7 @@ struct AgeRangePrompt: ViewModifier {
         content
             .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in open = true }
             .sheet(isPresented: $open) { AgeRangeSheet() }
+            .rootSheet(.ageRange, open: open)
             #if DEBUG
             .task { if Launch.flag("-ageRange") { open = true } }
             #endif

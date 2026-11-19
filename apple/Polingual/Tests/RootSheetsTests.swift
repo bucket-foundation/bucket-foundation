@@ -1,0 +1,47 @@
+import Testing
+@testable import Polingual
+
+@MainActor
+struct RootSheetsTests {
+    @Test func aClearRootIsNotCovered() {
+        for sheet in RootSheet.allCases { #expect(!RootSheets().covered(besides: sheet)) }
+    }
+
+    @Test func aSheetDoesNotCoverItself() {
+        let sheets = RootSheets()
+        sheets.set(.memberName, true)
+        #expect(!sheets.covered(besides: .memberName))
+        #expect(sheets.covered(besides: .knownLanguages))
+    }
+
+    @Test func everyOtherSheetCoversThePrompts() {
+        for other in RootSheet.allCases where other != .knownLanguages {
+            let sheets = RootSheets()
+            sheets.set(other, true)
+            #expect(sheets.covered(besides: .knownLanguages))
+        }
+        for other in RootSheet.allCases where other != .memberName {
+            let sheets = RootSheets()
+            sheets.set(other, true)
+            #expect(sheets.covered(besides: .memberName))
+        }
+    }
+
+    @Test func closingTheLastSheetClearsTheRoot() {
+        let sheets = RootSheets()
+        sheets.set(.ageRange, true)
+        sheets.set(.gate, true)
+        sheets.set(.ageRange, false)
+        #expect(sheets.covered(besides: .memberName))
+        sheets.set(.gate, false)
+        sheets.set(.gate, false)
+        #expect(!sheets.covered(besides: .memberName))
+    }
+
+    @Test func theNamePromptWaitsForAGameAndForOtherSheets() {
+        #expect(MemberName.offer(due: true, playing: false, covered: false))
+        #expect(!MemberName.offer(due: true, playing: true, covered: false))
+        #expect(!MemberName.offer(due: true, playing: false, covered: true))
+        #expect(!MemberName.offer(due: false, playing: false, covered: false))
+    }
+}

@@ -9,6 +9,10 @@ enum MemberName {
         signedIn && loaded && unchosen && !asked
     }
 
+    static func offer(due: Bool, playing: Bool, covered: Bool) -> Bool {
+        due && !playing && !covered
+    }
+
     static func prefill(stored: String, current: String?) -> String {
         let saved = clean(stored)
         return saved.isEmpty ? clean(current ?? "") : saved
@@ -153,10 +157,15 @@ struct MemberNamePrompt: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .onChange(of: due, initial: true) { _, now in
+            .onChange(of: offer, initial: true) { _, now in
                 if now { open = true }
             }
             .sheet(isPresented: $open) { MemberNameSheet(title: "What should your group call you?").onAppear { asked = true } }
+            .rootSheet(.memberName, open: open)
+    }
+
+    var offer: Bool {
+        MemberName.offer(due: due, playing: PlayActivity.shared.playing, covered: RootSheets.shared.covered(besides: .memberName))
     }
 
     var due: Bool {

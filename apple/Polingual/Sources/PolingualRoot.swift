@@ -59,6 +59,8 @@ struct PolingualRoot: View {
         .memberNamePrompt()
         .ageRangePrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
+        .rootSheet(.gate, open: gate.asking)
+        .rootSheet(.saveProgress, open: onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
         .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn) }, set: { if !$0 { savePending = false } })) {
             SaveProgressSheet()
                 .presentationDetents([.large])
