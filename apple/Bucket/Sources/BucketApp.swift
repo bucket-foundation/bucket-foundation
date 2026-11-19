@@ -143,23 +143,20 @@ struct RootView: View {
         .onOpenURL { DeepLink.shared.open($0) }
         .inviteShareOnLink()
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
-        .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
-            guard let link else { return }
-            tab = link.tab
-            if link == .home { DeepLink.shared.pending = nil }
-        }
+        .linkTabs($tab)
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .rootSheet(.gate, open: gate.asking)
         .knownLanguagesPrompt(busy: gate.asking || PlayActivity.shared.playing)
         .onChange(of: account.stage) { old, new in
-            if new == .signedIn && old != .signedIn {
+            let change = SessionChange.of(old: old, new: new, endedByUser: account.endedByUser)
+            change.mergeGuest(lobbies)
+            if change == .signedIn {
                 Task { await langs.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
                 Task { await science.syncAfterSignIn() }
-                Task { await lobbies.mergeGuest() }
                 Task { await PushRegistry.shared.refresh() }
             }
-            if new == .signedOut && old == .signedIn && account.endedByUser {
+            if change == .endedByUser {
                 science.clearLocal()
                 langs.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()

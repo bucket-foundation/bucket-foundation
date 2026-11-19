@@ -300,6 +300,12 @@ final class DeepLink {
     var translate: String?
     var listen = false
 
+    #if DEBUG
+    init() {
+        if let link = Launch.value("-launchLink").flatMap(URL.init(string:)) { open(link) }
+    }
+    #endif
+
     func open(_ url: URL) {
         guard let link = SharedLink(url) else { return }
         if case .word(let g) = link { translate = g }

@@ -6,19 +6,10 @@ final class VoiceNoticeUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testMissingVoiceNoticeShowsInBucket() {
+    func testMissingVoiceNoticeShowsOverASheetInBucket() {
         let app = XCUIApplication()
-        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-voiceNotice", "de"]
+        app.launchArguments = ["-AppleLanguages", "(en)", "-AppleLocale", "en_US", "-voiceNotice", "de", "-knownBlank", "-polingual.knownAskedOwners", "none"]
         app.launch()
-        let notice = app.descendants(matching: .any)["voiceNotice"]
-        XCTAssertTrue(notice.waitForExistence(timeout: 60))
-        XCTAssertTrue(notice.label.contains("German"))
-        let later = app.buttons["knownLanguagesLater"]
-        if later.waitForExistence(timeout: 5) { later.tap() }
-        XCTAssertTrue(notice.waitForExistence(timeout: 10))
-        XCTAssertTrue(notice.isHittable)
-        if let dir = ProcessInfo.processInfo.environment["GAME_SHOTS"] {
-            try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: dir).appendingPathComponent("bucket-voice-notice.png"))
-        }
+        VoiceNoticeCheck.overTheLanguagesSheet(app, shot: "bucket-voice-notice-over-sheet")
     }
 }
