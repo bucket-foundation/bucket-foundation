@@ -31,9 +31,9 @@ extension View {
     @ViewBuilder
     func fullHeightSession() -> some View {
         #if os(iOS)
-        toolbar(.hidden, for: .tabBar)
+        toolbar(.hidden, for: .tabBar).playActivity()
         #else
-        self
+        playActivity()
         #endif
     }
 }
