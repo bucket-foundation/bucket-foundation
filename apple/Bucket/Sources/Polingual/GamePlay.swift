@@ -163,7 +163,7 @@ struct QuizGame: View {
         case .voice:
             if let s = langs.dailySystem {
                 let daily = DailySeed.voice(GameDeck(corpus, root: s.root, targets: s.targets), corpus: corpus, day: playDayKey())
-                prompts = daily.filter { LangVoice.shared.canSpeak($0.word.form, $0.word.lang) }
+                prompts = LobbyRace.system == nil ? daily.filter { LangVoice.shared.canSpeak($0.word.form, $0.word.lang) } : daily
             } else {
                 let heard = words.filter { LangVoice.shared.canSpeak($0.form, $0.lang) }
                 prompts = GameRounds.flags(heard, own: langs.gameLangs, mode: .voice, sameForm: clash, using: &rng)
@@ -306,7 +306,7 @@ struct PromptCard: View {
                     .minimumScaleFactor(0.5)
                 Text("in \(langName(prompt.word.lang))").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
             } else {
-                if prompt.mode == .voice && !answered {
+                if prompt.mode == .voice && !answered && LangVoice.shared.canSpeak(prompt.word.form, prompt.word.lang) {
                     Button { LangVoice.shared.speak(prompt.word.form, prompt.word.lang) } label: {
                         Image(systemName: "speaker.wave.3.fill")
                             .font(.system(size: 34, weight: .bold))

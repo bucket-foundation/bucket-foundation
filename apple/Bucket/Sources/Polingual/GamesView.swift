@@ -226,7 +226,7 @@ extension LangStore {
         GameTally.finished += 1
         LobbyRace.finished(kind, score: LobbyRules.raceScore(points: points, hits: hits))
         DailyLedger.shared.charge(cards: played.count)
-        let touched = kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
+        let touched = LobbyRace.system != nil ? [] : kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
             let carded = mine.filter { state(s.id).cards.started($0.id) }
@@ -604,7 +604,7 @@ let gameEndForced = false
 
 extension LangStore {
     func gameScore(_ source: String, right: Int, total: Int) -> ShareObject {
-        .score(ShareScore(source: source, right: right, total: total, langs: gameLangs, root: systems.first?.root ?? "en", streak: langStreak(self)))
+        .score(ShareScore(source: source, right: right, total: total, langs: gameLangs, root: gameSystems.first?.root ?? "en", streak: langStreak(self)))
     }
 }
 
