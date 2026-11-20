@@ -62,6 +62,25 @@ import Testing
         #expect(SessionMix.stage(word, state, "es") == .sentence)
     }
 
+    @Test func askedWordsFinishBeforeAnyWritingCard() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["ru", "es", "fr"], now: 0)
+        let state = EngineState()
+        let writing = ScriptCourse.queue(sys, state, now: now)
+        #expect(!writing.isEmpty)
+        let lead = corpus.items.filter { isVocab($0) && $0.form("ru") != nil }.prefix(2).flatMap { [QueueEntry(itemId: $0.id, lang: "ru", stage: .intro), QueueEntry(itemId: $0.id, lang: "ru", stage: .check)] }
+        let main = SessionMix.queue(sys, corpus, state, now: now, freq: try freq(sys.targets), tz: utc)
+        let replay = Array(main.filter { $0.lang == "fr" }.prefix(1))
+        #expect(!replay.isEmpty)
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: try freq(sys.targets), lead: Array(lead), replay: replay, writing: writing, tz: utc)
+        let opening = Set(lead.filter { $0.stage == .intro } + replay)
+        let lastAsked = try #require(q.lastIndex { opening.contains($0) })
+        #expect((lead + replay).allSatisfy { e in q.filter { $0 == e }.count == 1 })
+        #expect(!q.prefix(lastAsked).contains { writing.contains($0) })
+        #expect(writing.allSatisfy { q.contains($0) })
+        #expect(q.last.map { !writing.contains($0) } ?? false)
+    }
+
     @Test func soundCapHoldsAcrossTheRealSessionBuilder() throws {
         let corpus = try corpus()
         let sys = try createSystem("en", ["ru", "es", "fr"], now: 0)
