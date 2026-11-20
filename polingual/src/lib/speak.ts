@@ -155,6 +155,27 @@ function drop(): void {
   p?.resolve();
 }
 
+const SILENCE = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+
+export function unlockSpeech(): void {
+  if (typeof window === "undefined" || state.id !== null) return;
+  try {
+    const a = sharedAudio();
+    if (a.paused && !a.src) {
+      a.src = SILENCE;
+      void a.play().then(() => a.pause(), () => undefined);
+    }
+    const s = synth();
+    if (s && !s.speaking && !s.pending) {
+      const u = new SpeechSynthesisUtterance("");
+      u.volume = 0;
+      s.speak(u);
+    }
+  } catch {
+    return;
+  }
+}
+
 export function cancelSpeech(): void {
   drop();
   stop();

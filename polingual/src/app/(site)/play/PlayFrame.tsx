@@ -8,6 +8,8 @@ import Ad from "./Ad";
 import { AdsPauseProvider, AdsProvider } from "./AdsContext";
 import Consent from "./Consent";
 import { SpeechGuard } from "@/ui";
+import { unlockSound } from "@/lib/lobby/sound";
+import { unlockSpeech } from "@/lib/speak";
 import styles from "./play.module.css";
 import { SheetPeek, StageStickers } from "./Stickers";
 import { artDataUrl } from "@/ui/art";
@@ -25,8 +27,44 @@ function useAdLayout(): AdLayout | null {
   return layout;
 }
 
+const UNLOCK_EVENTS = ["touchend", "click", "keydown"] as const;
+
+function useAudioUnlock() {
+  useEffect(() => {
+    const unlock = () => {
+      unlockSound();
+      unlockSpeech();
+      for (const e of UNLOCK_EVENTS) window.removeEventListener(e, unlock, true);
+    };
+    for (const e of UNLOCK_EVENTS) window.addEventListener(e, unlock, true);
+    return () => {
+      for (const e of UNLOCK_EVENTS) window.removeEventListener(e, unlock, true);
+    };
+  }, []);
+}
+
+const NO_KEYBOARD = new Set(["checkbox", "radio", "range", "button", "submit", "color", "file"]);
+
+function useKeyboardReveal() {
+  useEffect(() => {
+    const onFocus = (e: FocusEvent) => {
+      const el = e.target;
+      if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement)) return;
+      if (el instanceof HTMLInputElement && NO_KEYBOARD.has(el.type)) return;
+      if (!window.matchMedia?.("(pointer: coarse)").matches) return;
+      window.setTimeout(() => {
+        if (document.activeElement === el) el.scrollIntoView({ block: "center", behavior: "smooth" });
+      }, 300);
+    };
+    document.addEventListener("focusin", onFocus);
+    return () => document.removeEventListener("focusin", onFocus);
+  }, []);
+}
+
 export default function PlayFrame({ header, consentRequired, children }: { header: React.ReactNode; consentRequired: boolean; children: React.ReactNode }) {
   const layout = useAdLayout();
+  useAudioUnlock();
+  useKeyboardReveal();
   const entitlement = useEntitlement();
   const [paused, setPaused] = useState(false);
   const visible = showsAds(ADS, entitlement) && layout !== null && !paused;

@@ -27,6 +27,27 @@ export function writeMuted(storage: () => Storage | null, muted: boolean): void 
 
 let ctx: AudioContext | null = null;
 
+function context(): AudioContext | null {
+  const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!Ctor) return null;
+  ctx ??= new Ctor();
+  if (ctx.state === "suspended") void ctx.resume().catch(() => undefined);
+  return ctx;
+}
+
+export function unlockSound(): void {
+  if (typeof window === "undefined") return;
+  try {
+    const c = context();
+    if (!c) return;
+    const src = c.createBufferSource();
+    src.buffer = c.createBuffer(1, 1, 22050);
+    src.connect(c.destination);
+    src.start(0);
+  } catch {
+  }
+}
+
 export function play(cue: Cue, muted: boolean): void {
   if (muted || typeof window === "undefined") return;
   try {
@@ -34,10 +55,9 @@ export function play(cue: Cue, muted: boolean): void {
   } catch {
     return;
   }
-  const Ctor = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-  if (!Ctor) return;
   try {
-    ctx ??= new Ctor();
+    const ctx = context();
+    if (!ctx) return;
     let t = ctx.currentTime;
     for (const [freq, len] of NOTES[cue]) {
       const osc = ctx.createOscillator();
