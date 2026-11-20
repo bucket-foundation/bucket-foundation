@@ -1,10 +1,13 @@
 import Foundation
 
 public enum Skill: String, CaseIterable, Sendable {
-    case count, introduce, order
+    case count, introduce, order, sentence
+
+    public static let phrases: [Skill] = allCases.filter { !$0.items.isEmpty }
 
     public var items: [String] {
         switch self {
+        case .sentence: []
         case .count: ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
         case .introduce: ["ph-hello", "ph-my-name-is", "ph-i-am-from", "ph-nice-to-meet-you"]
         case .order: ["ph-menu-please", "ph-water-please", "ph-i-would-like", "ph-the-check-please"]
@@ -15,15 +18,18 @@ public enum Skill: String, CaseIterable, Sendable {
 public struct Feats: Sendable, Equatable {
     public var skills: [String: Set<Skill>]
     public var hello: Set<String>
+    public var sentences: [String: String]
 
-    public init(skills: [String: Set<Skill>] = [:], hello: Set<String> = []) {
+    public init(skills: [String: Set<Skill>] = [:], hello: Set<String> = [], sentences: [String: String] = [:]) {
         self.skills = skills
         self.hello = hello
+        self.sentences = sentences
     }
 
     public mutating func merge(_ other: Feats) {
         skills.merge(other.skills) { $0.union($1) }
         hello.formUnion(other.hello)
+        sentences.merge(other.sentences) { min($0, $1) }
     }
 }
 
@@ -64,6 +70,7 @@ public struct Milestone: Hashable, Identifiable, Sendable {
         case .streak: 0
         case .mastered: 1
         case .hello: 2
+        case .skill(.sentence, _): 4
         case .skill: 3
         }
     }
@@ -97,11 +104,32 @@ public enum Milestones {
         }
         var out = Feats()
         for lang in system.targets {
-            let skills = Set(Skill.allCases.filter { $0.items.allSatisfy { knows($0, lang) } })
+            var skills = Set(Skill.phrases.filter { $0.items.allSatisfy { knows($0, lang) } })
+            if let first = firstSentence(lang, root: system.root, corpus, state) {
+                skills.insert(.sentence)
+                out.sentences[lang] = first
+            }
             if !skills.isEmpty { out.skills[lang] = skills }
             if knows(helloItem, lang) { out.hello.insert(lang) }
         }
         return out
+    }
+
+    public static func firstSentence(_ lang: String, root: String, _ corpus: LangCorpus, _ state: EngineState) -> String? {
+        let fsrs = FSRS()
+        return state.cards.entries.compactMap { e -> (id: String, at: Double)? in
+            let p = parseCardId(e.key)
+            guard p.lang == lang, isSentenceCard(e.key), e.value.placed != true, isStarted(e.value),
+                  fsrs.mastery(e.value) >= LexiconMap.masteredAt else { return nil }
+            let id = String(p.itemId.dropFirst("sent:".count))
+            guard let s = corpus.pool[id], s.text(lang) != nil, s.text(root) != nil else { return nil }
+            return (id, e.value.lastReview ?? .infinity)
+        }.min { ($0.at, $0.id) < ($1.at, $1.id) }?.id
+    }
+
+    public static func sentence(_ id: String, lang: String, root: String, _ corpus: LangCorpus) -> [MasteredWord] {
+        guard let s = corpus.pool[id], let form = s.text(lang) else { return [] }
+        return [MasteredWord(form: form, meaning: s.text(root) ?? "")]
     }
 
     public static func words(_ skill: Skill, lang: String, root: String, _ corpus: LangCorpus) -> [MasteredWord] {
