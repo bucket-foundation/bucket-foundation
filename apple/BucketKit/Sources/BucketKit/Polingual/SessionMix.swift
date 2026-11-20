@@ -189,11 +189,11 @@ public enum SessionMix {
     }
 
     public static func session(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, freq: FrequencyRank, lead: [QueueEntry] = [], replay: [QueueEntry] = [], writing: [QueueEntry] = [], tz: TimeZone = .current, heritage: Bool = false) -> [QueueEntry] {
-        let main = queue(system, corpus, state, now: now, freq: freq, tz: tz, heritage: heritage).filter { !replay.contains($0) }
+        let main = queue(system, corpus, state, now: now, freq: freq, tz: tz, heritage: heritage).filter { !replay.contains($0) && !lead.contains($0) }
         let planned = lead + replay + writing + main
         let extra = core(system, corpus, state, now: now, freq: freq, taken: Set(planned.map { cardId($0.lang, $0.itemId) }), limit: max(coreFloor, roundSize - planned.count), tz: tz)
         let ordered = alternate(spacedChecks(lead + replay + main + extra))
-        let held = Set(lead + replay)
+        let held = Set(lead.filter { $0.stage != .check } + replay)
         let opening = ordered.lastIndex { held.contains($0) }.map { $0 + 1 } ?? 0
         return wordFirst(Array(ordered.prefix(opening)) + disperse(writing, into: Array(ordered.dropFirst(opening))))
     }
