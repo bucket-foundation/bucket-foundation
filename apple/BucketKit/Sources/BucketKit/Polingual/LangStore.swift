@@ -3,6 +3,8 @@ import Observation
 
 public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, offline, failed, needsProfile, refused }
 
+public enum ProgressKeep: String, Sendable { case both, device, account }
+
 public protocol LangDisk: Sendable {
     func read(_ name: String) -> Data?
     func write(_ name: String, _ data: Data)
@@ -77,6 +79,7 @@ public final class LangStore {
     public static let heldTTL: Double = 30 * 24 * 3600 * 1000
     public static let unknownOwner = "unknown-owner"
     @ObservationIgnored private var reloadAfter = false
+    @ObservationIgnored private(set) var replacing: Set<String> = []
 
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
@@ -342,6 +345,20 @@ public final class LangStore {
             if let local, local != stored { writeLocal(branch, local) }
             return local ?? EngineState()
         }
+        if replacing.contains(branch), let local {
+            if stored != local { writeLocal(branch, local) }
+            if let server, let t = await token() {
+                guard epoch == mine else { return nil }
+                let status = await send(t, branch, local.js, over: server, epoch: mine)
+                guard epoch == mine else { return nil }
+                if (200..<300).contains(status) {
+                    replacing.remove(branch)
+                    pending[branch] = nil
+                    savePending()
+                }
+            }
+            return local
+        }
         let remote = EngineState(js: remoteJS)
         let merged = mergeState(local, spreadingUntouchedPlaced(remote, now: now()))
         if stored != merged { writeLocal(branch, merged) }
@@ -528,7 +545,7 @@ public final class LangStore {
             return false
         }
         let mine = state(systemId)
-        let merged = server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
+        let merged = replacing.contains(branch) ? mine : server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
         if merged != mine {
             states[systemId] = merged
             writeLocal(branch, merged)
@@ -544,6 +561,7 @@ public final class LangStore {
         }
         if (200..<300).contains(status) {
             refusedUntil[branch] = nil
+            replacing.remove(branch)
             let settled = generation[branch, default: 0] == gen
             if settled && pending[branch] == systemId {
                 pending[branch] = nil
@@ -628,9 +646,52 @@ public final class LangStore {
         dropHeld(account)
     }
 
-    public func syncAfterSignIn(account: String) async {
+    func deviceBranches() -> [String: (system: String, state: EngineState)] {
+        var out: [String: (system: String, state: EngineState)] = [:]
+        for s in readLocalSystems().systems {
+            let b = progressBranch(s)
+            if let st = readLocal(b), st.cards.count > 0 { out[b] = (s.id, st) }
+        }
+        return out
+    }
+
+    public func deviceCards(account: String) -> Int {
+        let owner = disk.read("owner.json").flatMap { String(data: $0, encoding: .utf8) } ?? ""
+        guard owner != account else { return 0 }
+        return deviceBranches().values.reduce(0) { $0 + $1.state.cards.count }
+    }
+
+    public func accountCards() async -> Int? {
+        guard let server = await pull() else { return nil }
+        return SystemsDoc(js: server[Self.systemsBranch]?["data"]).systems.reduce(0) { n, s in
+            n + (server[progressBranch(s)]?["data"].map { EngineState(js: $0).cards.count } ?? 0)
+        }
+    }
+
+    func dropDeviceProgress() {
+        for s in readLocalSystems().systems {
+            let b = progressBranch(s)
+            disk.remove("branch-\(b).json")
+            pending[b] = nil
+        }
+        disk.remove("systems.json")
+        pending[Self.systemsBranch] = nil
+        savePending()
+        systems = []
+        states = [:]
+    }
+
+    public func syncAfterSignIn(account: String, keep: ProgressKeep = .both) async {
         let ep = epoch
+        let device = keep == .device ? deviceBranches() : [:]
+        if keep == .account { dropDeviceProgress() }
         restoreHeld(account)
+        for (b, d) in device {
+            writeLocal(b, d.state)
+            pending[b] = d.system
+            replacing.insert(b)
+        }
+        if !device.isEmpty { savePending() }
         setOwner(account)
         if hasLocalSystems { await persistSystems(epoch: ep) }
         guard epoch == ep else { return }
@@ -666,7 +727,7 @@ public final class LangStore {
             let branch = progressBranch(s)
             let stored = readLocal(branch)
             let remote = server[branch].map { spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now()) }
-            let merged = remote.map { mergeState(states[s.id] ?? stored, $0) } ?? states[s.id] ?? stored ?? EngineState()
+            let merged = replacing.contains(branch) ? states[s.id] ?? stored ?? EngineState() : remote.map { mergeState(states[s.id] ?? stored, $0) } ?? states[s.id] ?? stored ?? EngineState()
             states[s.id] = merged
             if stored != merged { writeLocal(branch, merged) }
             if server[branch].map({ EngineState(js: $0["data"]) }) != merged {
@@ -679,6 +740,7 @@ public final class LangStore {
                     refusedUntil[branch] = (now() + wait, wait)
                 } else if (200..<300).contains(status) {
                     refusedUntil[branch] = nil
+                    replacing.remove(branch)
                     if generation[branch, default: 0] == gen { pending[branch] = nil } else { await push(s.id, branch) }
                 }
             } else {
@@ -726,6 +788,7 @@ public final class LangStore {
         epoch += 1
         inFlight = [:]
         refusedUntil = [:]
+        replacing = []
         pulled = false
         status = .idle
     }

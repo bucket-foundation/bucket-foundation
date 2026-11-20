@@ -140,6 +140,7 @@ struct RootView: View {
         .groupsOnToday()
         .memberNamePrompt()
         .ageRangePrompt()
+        .progressChoicePrompt()
         .onOpenURL { DeepLink.shared.open($0) }
         .inviteShareOnLink()
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
@@ -152,11 +153,12 @@ struct RootView: View {
             let change = SessionChange.of(old: old, new: new, endedByUser: account.endedByUser)
             change.mergeGuest(lobbies)
             if change == .signedIn {
-                Task { await langs.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
+                ProgressChoice.shared.signedIn(langs, account: account.session?.userId ?? LangStore.unknownOwner)
                 Task { await science.syncAfterSignIn() }
                 Task { await PushRegistry.shared.refresh() }
             }
             if change == .endedByUser {
+                ProgressChoice.shared.cancel()
                 science.clearLocal()
                 langs.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
@@ -180,8 +182,10 @@ struct RootView: View {
             reminders.reset()
         }
         #endif
+        .task {
+            if let id = account.session?.userId, !ProgressChoice.shared.inFlight { langs.setOwner(id) }
+        }
         .task(id: account.session?.userId) {
-            if let id = account.session?.userId { langs.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
                 await science.flush()

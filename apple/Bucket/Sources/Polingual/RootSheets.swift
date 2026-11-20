@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum RootSheet: String, CaseIterable {
-    case gate, saveProgress, paywall, ageRange, memberName, inviteSignIn, inviteJoin, knownLanguages
+    case gate, saveProgress, paywall, ageRange, memberName, inviteSignIn, inviteJoin, knownLanguages, progressChoice
 }
 
 @MainActor
