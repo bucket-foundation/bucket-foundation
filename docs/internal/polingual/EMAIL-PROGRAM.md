@@ -109,3 +109,38 @@ Get Polingual: {app_store_link}
 The science decks, the canon and the Research OS stay in Bucket.
 
 build the past. build history. bucket is the new renaissance.
+
+## Updates Newsletter
+
+Bead bkt-pgr05.7. A monthly update for beta testers, creators, teachers, clubs and press who ask for it. Founder question: how many outreach contacts and testers want a monthly update, and do updates bring testers back?
+
+Prediction: 15% of contacts who receive follow-up 2 subscribe, and testers who subscribe open the app 20% more in the week after each issue. Test: opt-ins per follow-up 2 sent from `bucket.outreach_contacts`, and app opens from beta events in the 7 days after a send against non-subscribers.
+
+### Who Gets It
+
+Only people who confirm. Cold outreach contacts are never added on their own: under CAN-SPAM and GDPR a list built from cold email needs the person's opt-in. Ways in:
+
+- A form at `polingual.com/updates`: email, role (learner, teacher, creator, school or club, press), languages spoken. Double opt-in through the founding-spot confirm flow in `polingual/src/lib/founding.ts`, which already sends a Resend confirmation link, hashes the token and limits claims per IP.
+- A line in outreach follow-up 2: "Want a short monthly update instead? polingual.com/updates?utm_source=outreach". The CRM row moves to status `subscribed` when that email confirms.
+- An "Email me product updates" toggle in the app's Account screen for signed-in testers, off by default.
+- A checkbox on the founding-spot form.
+
+### Storage
+
+A table `public.polingual_subscribers` with RLS on and no anon or authenticated grants, written only through a security-definer function like `record_polingual_web_events`: email, role, languages, source, confirmed_at, unsubscribed_at, token hash. Resend Audiences holds a copy for sending, synced on confirm and unsubscribe.
+
+### Sending
+
+Resend Broadcasts from `Polingual <hello@mail.polingual.com>`, with `RESEND_API_KEY` from the existing founding-spot setup. Every issue carries one-click `List-Unsubscribe` headers, a visible unsubscribe link and the AGFarms LLC postal address. Unsubscribes write back to the table and to the CRM.
+
+### Issue Format
+
+Monthly, first Tuesday. Under 200 words: one new feature with a GIF, the TestFlight link for early builds, the App Store link, one teacher or creator story, and for creators their code and redemption count. Plain short sentences, the voice rules in CLAUDE.md.
+
+### Build Steps
+
+1. Migration for `polingual_subscribers` and its write function, with SQL tests.
+2. `/updates` page and API route reusing the founding confirm flow, with unit tests.
+3. Follow-up 2 template gains the subscribe line once the page is live.
+4. Account toggle on iOS, then web and Android.
+5. First issue drafted for founder approval before any send.
