@@ -83,3 +83,15 @@ public enum AdGate {
         allowed && consented && unit?.isEmpty == false
     }
 }
+
+public struct ResultVisibility: Sendable, Equatable {
+    public private(set) var visible: Set<UUID> = []
+
+    public init() {}
+
+    public var showsBanner: Bool { !visible.isEmpty }
+
+    public mutating func appeared(_ id: UUID) { visible.insert(id) }
+
+    public mutating func disappeared(_ id: UUID) { visible.remove(id) }
+}

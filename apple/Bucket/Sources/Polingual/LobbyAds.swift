@@ -35,7 +35,7 @@ final class LobbyAds {
     }
 
     func showRewarded() async -> AdOutcome {
-        guard allowed, ready, let ad = rewarded, let root = Self.topController() else { return .unavailable }
+        guard AdGate.rewarded(allowed: allowed, consented: ready, unit: units?.rewarded), let ad = rewarded, let root = Self.topController() else { return .unavailable }
         rewarded = nil
         rewardedReady = false
         let outcome: AdOutcome = await withCheckedContinuation { done in
@@ -203,24 +203,41 @@ struct AdPrivacyButton: View {
 
 @MainActor
 @Observable
-final class ResultScreen {
-    static let shared = ResultScreen()
-    private(set) var open = 0
+final class ResultSlot {
+    private(set) var visibility = ResultVisibility()
 
-    func appeared() { open += 1 }
-    func disappeared() { open = max(0, open - 1) }
+    var showsBanner: Bool { visibility.showsBanner }
+    func appeared(_ id: UUID) { visibility.appeared(id) }
+    func disappeared(_ id: UUID) { visibility.disappeared(id) }
+}
+
+extension EnvironmentValues {
+    @Entry var resultSlot: ResultSlot?
 }
 
 struct ResultBannerSlot: ViewModifier {
+    @State private var slot = ResultSlot()
+
     func body(content: Content) -> some View {
-        content.safeAreaInset(edge: .bottom, spacing: 0) {
-            if ResultScreen.shared.open > 0 { AdBanner(surface: .gameResult) }
-        }
+        content
+            .environment(\.resultSlot, slot)
+            .safeAreaInset(edge: .bottom, spacing: PL.Space.s4) {
+                if slot.showsBanner { AdBanner(surface: .gameResult) }
+            }
+    }
+}
+
+private struct ResultScreenMark: ViewModifier {
+    @Environment(\.resultSlot) private var slot
+    @State private var id = UUID()
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear { slot?.appeared(id) }
+            .onDisappear { slot?.disappeared(id) }
     }
 }
 
 extension View {
-    func resultScreen() -> some View {
-        onAppear { ResultScreen.shared.appeared() }.onDisappear { ResultScreen.shared.disappeared() }
-    }
+    func resultScreen() -> some View { modifier(ResultScreenMark()) }
 }

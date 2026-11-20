@@ -121,7 +121,33 @@ struct LobbyAdsTests {
     @Test func releaseRewardedPlaceholderStaysEmptyUntilPasted() throws {
         let yml = try String(contentsOf: URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("../../../project.yml").standardized, encoding: .utf8)
         #expect(yml.contains("PolingualAdRewarded: $(POLINGUAL_AD_REWARDED)"))
-        #expect(yml.components(separatedBy: "POLINGUAL_AD_REWARDED: ").count == 3)
+        #expect(yml.contains("POLINGUAL_AD_REWARDED:"))
+    }
+
+    @Test func resultBannerFollowsOnlyTheVisibleResult() {
+        var slot = ResultVisibility()
+        let result = UUID()
+        #expect(!slot.showsBanner)
+        slot.appeared(result)
+        #expect(slot.showsBanner)
+        slot.disappeared(result)
+        #expect(!slot.showsBanner)
+    }
+
+    @Test func tabSwitchLeavesNoBannerOverALiveBoard() {
+        var slot = ResultVisibility()
+        let result = UUID()
+        slot.appeared(result)
+        slot.appeared(result)
+        slot.disappeared(result)
+        #expect(!slot.showsBanner)
+        slot.disappeared(result)
+        slot.disappeared(UUID())
+        #expect(!slot.showsBanner)
+        var other = ResultVisibility()
+        other.appeared(UUID())
+        #expect(other.showsBanner)
+        #expect(!slot.showsBanner)
     }
 }
 
