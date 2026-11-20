@@ -20,6 +20,7 @@ public final class ProgressChoice {
 
     @discardableResult
     public func signedIn(_ store: LangStore, account: String) -> Task<Void, Never> {
+        if answer != nil { cancel() }
         let device = store.deviceCards(account: account)
         round += 1
         let mine = round

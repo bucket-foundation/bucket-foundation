@@ -139,3 +139,19 @@ extension LangStoreProgressChoiceTests {
         #expect(stored?.cards.has(Self.hola) == false)
     }
 }
+
+extension ProgressChoiceTests {
+    @Test func aSecondSignInAsksAgain() async {
+        let (_, s) = setup()
+        let c = ProgressChoice()
+        let first = c.signedIn(s, account: "user-a")
+        await waitForAsk(c)
+        let second = c.signedIn(s, account: "user-a")
+        await first.value
+        await waitForAsk(c)
+        #expect(c.ask != nil)
+        c.choose(.account)
+        await second.value
+        #expect(!s.state("s1").cards.has(LangStoreProgressChoiceTests.adios))
+    }
+}
