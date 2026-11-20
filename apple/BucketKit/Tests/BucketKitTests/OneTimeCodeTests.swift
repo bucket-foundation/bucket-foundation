@@ -14,6 +14,8 @@ import Testing
 @Test func oneTimeCodeJoinsSpacedGroups() {
     #expect(OneTimeCode.extract(from: "482 913") == "482913")
     #expect(OneTimeCode.extract(from: "482-913") == "482913")
+    #expect(OneTimeCode.extract(from: "Your code is 482 913.") == "482913")
+    #expect(OneTimeCode.extract(from: "Code: 4829-1375, valid 1 hour") == "48291375")
 }
 
 @Test func oneTimeCodeRejectsTextWithoutACode() {

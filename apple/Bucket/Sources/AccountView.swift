@@ -249,7 +249,10 @@ struct SignInSheet: View {
                             .codeField()
                         #if os(iOS)
                         PasteButton(payloadType: String.self) { strings in
-                            guard let found = strings.lazy.compactMap(OneTimeCode.extract).first else { return }
+                            guard let found = strings.lazy.compactMap(OneTimeCode.extract).first else {
+                                Task { @MainActor in account.error = String(localized: "No code in the pasted text.") }
+                                return
+                            }
                             Task { @MainActor in
                                 code = found
                                 if !account.busy { await account.verify(code: found) }

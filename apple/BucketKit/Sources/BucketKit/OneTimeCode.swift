@@ -11,6 +11,11 @@ public enum OneTimeCode {
         if lengths.contains(joined.count), separators.allSatisfy({ $0 == " " || $0 == "-" || $0.isNewline }) {
             return joined
         }
+        for match in text.matches(of: /[0-9]{2,5}(?:[ -][0-9]{2,5})+/) {
+            let groups = match.output.split(whereSeparator: { $0 == " " || $0 == "-" })
+            let digits = groups.joined()
+            if Set(groups.map(\.count)).count == 1, lengths.contains(digits.count) { return digits }
+        }
         return nil
     }
 }
