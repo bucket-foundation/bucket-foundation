@@ -5,9 +5,9 @@ import { PARAM_LIMITS, SHARE_KINDS, appSiteAssociation, clampParams, ogParams, o
 import { SAMPLE_SHARES } from "./share-samples";
 import { scriptFamilies } from "./og-fonts";
 import { WORDS } from "./words";
-import { wordOgAlt } from "./word-og";
+import { wordOgAlt, wordOgImage, wordOgVersion } from "./word-og";
 import { shapeArabic, visualOrder } from "./rtl-shape";
-import { OG_CACHE_FAIL, OG_CACHE_OK, renderOg } from "./og-render";
+import { OG_CACHE_FAIL, OG_CACHE_IMMUTABLE, OG_CACHE_MISSING, OG_CACHE_OK, renderOg } from "./og-render";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { GET as shareOg } from "../app/api/share/og/route";
@@ -85,6 +85,20 @@ test("word og images are 1200x630 pngs under 300 KB and name the word", async ()
     await checkPng(await wordOg(new Request(`https://www.polingual.com/word/${w.slug}/og`), { params: Promise.resolve({ slug: w.slug }) }));
     assert.match(wordOgAlt(w), new RegExp(w.en, "i"));
   }
+});
+
+test("word og urls carry a content version and cache forever when it matches", async () => {
+  const w = WORDS[0];
+  assert.ok(wordOgImage(w).url.endsWith(`/og?v=${wordOgVersion(w)}`));
+  assert.notEqual(wordOgVersion(w), wordOgVersion({ ...w, forms: w.forms.slice(1) }));
+  const ctx = { params: Promise.resolve({ slug: w.slug }) };
+  const keyed = await wordOg(new Request(`https://www.polingual.com${wordOgImage(w).url}`), ctx);
+  assert.ok([OG_CACHE_IMMUTABLE, OG_CACHE_FAIL].includes(keyed.headers.get("cache-control")!));
+  const stale = await wordOg(new Request(`https://www.polingual.com/word/${w.slug}/og?v=old`), { params: Promise.resolve({ slug: w.slug }) });
+  assert.ok([OG_CACHE_OK, OG_CACHE_FAIL].includes(stale.headers.get("cache-control")!));
+  const missing = await wordOg(new Request("https://www.polingual.com/word/nope/og"), { params: Promise.resolve({ slug: "nope" }) });
+  assert.equal(missing.status, 404);
+  assert.equal(missing.headers.get("cache-control"), OG_CACHE_MISSING);
 });
 
 test("apple-app-site-association lists the Polingual app for share and word links", async () => {
