@@ -49,7 +49,7 @@ Give both app signing values to the agent. Google sign-in OAuth clients and `ass
 ## 5. Fill the Store Listing and App Content
 
 1. Grow users, Store presence, Main store listing: paste the three text files, upload the icon, feature graphic and the five screenshots.
-2. Policy, App content: answer every section from `DATA-SAFETY.md`. Privacy policy URL `https://polingual.com/privacy`.
+2. Policy, App content: answer every section from `DATA-SAFETY.md`. Privacy policy URL `https://polingual.com/privacy`. Delete account URL `https://polingual.com/delete-account`, live once PR #1293 deploys.
 3. Store settings: category Education, contact email from `DATA-SAFETY.md`.
 
 ## 6. Create the Subscription Products

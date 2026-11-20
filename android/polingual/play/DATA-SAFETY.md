@@ -7,7 +7,7 @@ Answers for `com.polingual.app` version 1.0.2. They describe the production buil
 - [ ] Does your app collect or share any of the required user data types? **Yes**
 - [ ] Is all of the user data collected by your app encrypted in transit? **Yes**, every request goes over HTTPS
 - [ ] Do you provide a way for users to request that their data is deleted? **Yes**
-- [ ] Delete account URL: `https://polingual.com/privacy`. Play wants a page where people request deletion without the app. `/delete-account` does not exist on dev, so this URL points to the privacy page section that names Account, Delete account in the app and the address privacy@polingual.com. Swap in a dedicated page once one ships
+- [ ] Delete account URL: `https://polingual.com/delete-account`, added in PR #1293 and live once #1293 deploys. It names Account, Delete account in the app and the address privacy@polingual.com
 - [ ] Account creation methods: **Username and other authentication**, a one-time email code. Sign-in is optional; guests can play games and live rooms
 
 ## Data Types
