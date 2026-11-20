@@ -231,6 +231,7 @@ struct PlayResults: View {
             ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
             if let share { GameShareButton(kind: share.kind, text: langs.shareText(share.kind, share.shape), style: .pl(.primary, size: .lg)) }
             if let retry { TryAgainOffer(kind: retry.kind, deck: retry.deck, start: retry.start) }
+            if let kind = share?.kind ?? retry?.kind { LiveResultActions(kind: kind) }
             if let again {
                 if let kind = share?.kind, DailyLedger.shared.spent {
                     DailyLimitCard(place: "game:\(kind.rawValue)")
