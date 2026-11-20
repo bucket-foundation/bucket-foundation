@@ -86,3 +86,22 @@ For a warm introduction to Accel (Ben Quazzo, Speak board), Blossom (Praktika), 
 Subject: Intro to {investor} for Polingual
 
 Hi {connector}, could you introduce me to {investor}? Polingual teaches one word across up to six related languages at once, for people who already speak two and learn a third, with a live team quiz on a TV or projector. It is live on the App Store with 48 testers. {investor} backed {portfolio}, the closest company to what I'm building. A 20-minute call is the ask. Thanks, Giany
+
+## DevSpot
+
+Warm lead, 2026-11-19: Nneoma, ex Protocol Labs, now running DevSpot (devspot.app), a founder-investor matching platform with angel investors and venture studios onboarded. She invited Polingual to list. The founder signs up at devspot.app/sign-up and creates the startup at devspot.app/my/startups/new; the form renders only after login, so the fields below follow the directory cards: name, tagline, tags, stage, customers, founders.
+
+| Field | Value |
+|---|---|
+| Name | Polingual |
+| Tagline | Learn a third language alongside the two you know |
+| Description | Polingual teaches one word across up to six related languages at once, with audio in each language, each script and the roots that link them. A live team quiz runs on a projector or TV while players answer from their phones. Live on the App Store; Android in build. |
+| Industry and tags | Education, consumer, language learning, games |
+| Stage | Pre-seed, raising |
+| Customers | 48 TestFlight testers; 103 schools, clubs and creators contacted |
+| Founders | 1, Gianangelo Dichio, New Jersey |
+| Links | https://polingual.com , https://apps.apple.com/us/app/polingual/id6825177856 , https://testflight.apple.com/join/B1ctUxn5 |
+
+Reply to Nneoma on Telegram, for the founder to paste:
+
+> Thanks Nneoma, that's great news on Franklin Templeton. I'll list Polingual on DevSpot this week. Raising a pre-seed now. If any of your angels or studios back consumer learning or games, I'd love an intro once the listing is up.
