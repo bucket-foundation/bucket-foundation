@@ -165,6 +165,34 @@ extension LangStoreProgressChoiceTests {
         #expect(disk.read("replacing.json") == nil)
         #expect(store(server, disk).replacing.isEmpty)
     }
+
+    @Test func thePhoneChoiceComesBackWithTheSameAccount() async {
+        let server = LangStoreSyncTests().seeded()
+        server.postStatus.mutate { $0 = 500 }
+        let disk = guestDisk()
+        let s = store(server, disk)
+        await s.syncAfterSignIn(account: "user-a", keep: .device)
+        s.clearLocal()
+        server.postStatus.mutate { $0 = nil }
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(!s.state("s1").cards.has(Self.hola))
+        let stored = server.branches.value[Self.branch].map { EngineState(js: $0) }
+        #expect(stored?.cards.has(Self.adios) == true)
+        #expect(stored?.cards.has(Self.hola) == false)
+        #expect(s.replacing.isEmpty)
+    }
+
+    @Test func anotherAccountDoesNotInheritThePhoneChoice() async {
+        let server = LangStoreSyncTests().seeded()
+        server.postStatus.mutate { $0 = 500 }
+        let s = store(server, guestDisk())
+        await s.syncAfterSignIn(account: "user-a", keep: .device)
+        s.clearLocal()
+        server.postStatus.mutate { $0 = nil }
+        await s.syncAfterSignIn(account: "user-b")
+        #expect(s.replacing.isEmpty)
+        #expect(s.state("s1").cards.has(Self.hola))
+    }
 }
 
 extension ProgressChoiceTests {
