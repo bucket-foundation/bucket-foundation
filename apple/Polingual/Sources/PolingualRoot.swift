@@ -57,6 +57,7 @@ struct PolingualRoot: View {
         .groupsOnToday()
         .memberNamePrompt()
         .ageRangePrompt()
+        .progressChoicePrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .rootSheet(.gate, open: gate.asking)
         .rootSheet(.saveProgress, open: onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
@@ -74,7 +75,7 @@ struct PolingualRoot: View {
             change.mergeGuest(lobbies)
             if change == .signedIn {
                 savePending = false
-                Task { await store.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
+                ProgressChoice.shared.signedIn(store, account: account.session?.userId ?? LangStore.unknownOwner)
                 Task { await PushRegistry.shared.refresh() }
             }
             if change == .endedByUser {

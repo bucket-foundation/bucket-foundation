@@ -140,6 +140,7 @@ struct RootView: View {
         .groupsOnToday()
         .memberNamePrompt()
         .ageRangePrompt()
+        .progressChoicePrompt()
         .onOpenURL { DeepLink.shared.open($0) }
         .inviteShareOnLink()
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
@@ -152,7 +153,7 @@ struct RootView: View {
             let change = SessionChange.of(old: old, new: new, endedByUser: account.endedByUser)
             change.mergeGuest(lobbies)
             if change == .signedIn {
-                Task { await langs.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
+                ProgressChoice.shared.signedIn(langs, account: account.session?.userId ?? LangStore.unknownOwner)
                 Task { await science.syncAfterSignIn() }
                 Task { await PushRegistry.shared.refresh() }
             }
