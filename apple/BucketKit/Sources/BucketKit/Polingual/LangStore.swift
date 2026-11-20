@@ -79,7 +79,7 @@ public final class LangStore {
     public static let heldTTL: Double = 30 * 24 * 3600 * 1000
     public static let unknownOwner = "unknown-owner"
     @ObservationIgnored private var reloadAfter = false
-    @ObservationIgnored private(set) var replacing: Set<String> = []
+    @ObservationIgnored private(set) var replacing: Set<String> = [] { didSet { if replacing != oldValue { saveReplacing() } } }
 
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
@@ -89,6 +89,7 @@ public final class LangStore {
         self.token = token
         self.now = now
         self.pending = Self.readPending(disk)
+        self.replacing = Self.readReplacing(disk)
     }
 
     static func readPending(_ disk: LangDisk) -> [String: String] {
@@ -96,6 +97,15 @@ public final class LangStore {
         var out: [String: String] = [:]
         for (k, v) in o.entries { if let id = v.string { out[k] = id } }
         return out
+    }
+
+    static func readReplacing(_ disk: LangDisk) -> Set<String> {
+        guard let d = disk.read("replacing.json"), let a = (try? JSON.parse(d))?.array else { return [] }
+        return Set(a.compactMap(\.string))
+    }
+
+    func saveReplacing() {
+        if replacing.isEmpty { disk.remove("replacing.json") } else { disk.write("replacing.json", JSON.data(.array(replacing.sorted().map(JSValue.string)))) }
     }
 
     func savePending() {
@@ -605,7 +615,8 @@ public final class LangStore {
         for (k, v) in pending { pend[k] = .string(v) }
         let systems = mergeSystems(SystemsDoc(js: prior?["systems"]), readLocalSystems())
         let heldKnown = KnownLanguages.merged(KnownLanguages(js: prior?["known"]), pending[KnownLanguages.branch] == nil ? KnownLanguages([]) : readLocalKnown())
-        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend)), ("known", heldKnown.js), ("at", .number(now()))])))
+        let heldReplacing = Set((prior?["replacing"]?.array ?? []).compactMap(\.string)).union(replacing)
+        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend)), ("known", heldKnown.js), ("replacing", .array(heldReplacing.sorted().map(JSValue.string))), ("at", .number(now()))])))
         kept.removeAll { $0.0 == "held-\(owner).json" }
         kept.append(("held-\(owner).json", blob))
         return kept
@@ -643,6 +654,7 @@ public final class LangStore {
         if !heldKnown.isBlank { writeLocalKnown(heldKnown) }
         for (b, v) in j["pending"]?.object?.entries ?? [] { if let id = v.string { pending[b] = id } }
         savePending()
+        replacing.formUnion((j["replacing"]?.array ?? []).compactMap(\.string))
         dropHeld(account)
     }
 
