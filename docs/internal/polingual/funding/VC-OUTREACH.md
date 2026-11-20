@@ -105,3 +105,11 @@ Warm lead, 2026-11-19: Nneoma, ex Protocol Labs, now running DevSpot (devspot.ap
 Reply to Nneoma on Telegram, for the founder to paste:
 
 > Thanks Nneoma, that's great news on Franklin Templeton. I'll list Polingual on DevSpot this week. Raising a pre-seed now. If any of your angels or studios back consumer learning or games, I'd love an intro once the listing is up.
+
+## Testimonials
+
+Bead bkt-pgr04.4. Quotes live in private Supabase `bucket.testimonials` with a consent state, never in git. Only `granted` rows from people who used the app are published, under the name they choose.
+
+Ask after a week of use, on the channel they used, sent by the founder:
+
+> Thank you, that means a lot. After you've played for a few days, would you send me one or two sentences on what you like or what's missing? If you're happy for me to quote you on polingual.com and to investors, tell me how you'd like your name shown.
