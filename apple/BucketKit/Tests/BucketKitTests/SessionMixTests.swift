@@ -62,6 +62,19 @@ import Testing
         #expect(SessionMix.stage(word, state, "es") == .sentence)
     }
 
+    @Test func askedWordsFinishBeforeAnyWritingCard() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["ru", "es", "fr"], now: 0)
+        let state = EngineState()
+        let writing = ScriptCourse.queue(sys, state, now: now)
+        #expect(!writing.isEmpty)
+        let lead = corpus.items.filter { isVocab($0) && $0.form("ru") != nil }.prefix(2).flatMap { [QueueEntry(itemId: $0.id, lang: "ru", stage: .intro), QueueEntry(itemId: $0.id, lang: "ru", stage: .check)] }
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: try freq(sys.targets), lead: Array(lead), writing: writing, tz: utc)
+        let lastAsked = try #require(q.lastIndex { lead.contains($0) })
+        #expect(lead.allSatisfy { q.contains($0) })
+        #expect(!q.prefix(lastAsked).contains { writing.contains($0) })
+    }
+
     @Test func soundCapHoldsAcrossTheRealSessionBuilder() throws {
         let corpus = try corpus()
         let sys = try createSystem("en", ["ru", "es", "fr"], now: 0)

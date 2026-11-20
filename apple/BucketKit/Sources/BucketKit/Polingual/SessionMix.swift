@@ -193,7 +193,8 @@ public enum SessionMix {
         let planned = lead + replay + writing + main
         let extra = core(system, corpus, state, now: now, freq: freq, taken: Set(planned.map { cardId($0.lang, $0.itemId) }), limit: max(coreFloor, roundSize - planned.count), tz: tz)
         let ordered = alternate(spacedChecks(lead + replay + main + extra))
-        let opening = lead.count + replay.count
+        let held = Set(lead + replay)
+        let opening = ordered.lastIndex { held.contains($0) }.map { $0 + 1 } ?? 0
         return wordFirst(Array(ordered.prefix(opening)) + disperse(writing, into: Array(ordered.dropFirst(opening))))
     }
 
