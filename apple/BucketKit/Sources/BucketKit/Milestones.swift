@@ -15,12 +15,26 @@ public enum Skill: String, CaseIterable, Sendable {
     }
 }
 
+public struct FirstSentence: Sendable, Hashable, Comparable {
+    public var id: String
+    public var introduced: String
+
+    public init(id: String, introduced: String) {
+        self.id = id
+        self.introduced = introduced
+    }
+
+    public static func < (a: FirstSentence, b: FirstSentence) -> Bool {
+        (a.introduced, a.id) < (b.introduced, b.id)
+    }
+}
+
 public struct Feats: Sendable, Equatable {
     public var skills: [String: Set<Skill>]
     public var hello: Set<String>
-    public var sentences: [String: String]
+    public var sentences: [String: FirstSentence]
 
-    public init(skills: [String: Set<Skill>] = [:], hello: Set<String> = [], sentences: [String: String] = [:]) {
+    public init(skills: [String: Set<Skill>] = [:], hello: Set<String> = [], sentences: [String: FirstSentence] = [:]) {
         self.skills = skills
         self.hello = hello
         self.sentences = sentences
@@ -115,16 +129,16 @@ public enum Milestones {
         return out
     }
 
-    public static func firstSentence(_ lang: String, root: String, _ corpus: LangCorpus, _ state: EngineState) -> String? {
+    public static func firstSentence(_ lang: String, root: String, _ corpus: LangCorpus, _ state: EngineState) -> FirstSentence? {
         let fsrs = FSRS()
-        return state.cards.entries.compactMap { e -> (id: String, at: Double)? in
+        return state.cards.entries.compactMap { e -> FirstSentence? in
             let p = parseCardId(e.key)
             guard p.lang == lang, isSentenceCard(e.key), e.value.placed != true, isStarted(e.value),
                   fsrs.mastery(e.value) >= LexiconMap.masteredAt else { return nil }
             let id = String(p.itemId.dropFirst("sent:".count))
             guard let s = corpus.pool[id], s.text(lang) != nil, s.text(root) != nil else { return nil }
-            return (id, e.value.lastReview ?? .infinity)
-        }.min { ($0.at, $0.id) < ($1.at, $1.id) }?.id
+            return FirstSentence(id: id, introduced: e.value.introduced ?? "~")
+        }.min()
     }
 
     public static func sentence(_ id: String, lang: String, root: String, _ corpus: LangCorpus) -> [MasteredWord] {

@@ -141,7 +141,9 @@ import Testing
         let seen = gradeCard(EngineState(), "es", SessionMix.sentenceItemId(id), 3, now: 1_800_000_000_000.0)
         #expect(Milestones.feats(system, corpus, seen) == Feats())
         let state = master(EngineState(), "es", [SessionMix.sentenceItemId(id)])
-        #expect(Milestones.feats(system, corpus, state) == Feats(skills: ["es": [.sentence]], sentences: ["es": id]))
+        let feats = Milestones.feats(system, corpus, state)
+        #expect(feats.skills == ["es": [.sentence]])
+        #expect(feats.sentences["es"]?.id == id)
         let pool = try #require(corpus.pool[id])
         #expect(Milestones.sentence(id, lang: "es", root: "en", corpus) == [MasteredWord(form: pool.text("es")!, meaning: pool.text("en")!)])
         #expect(Milestones.earned(mastered: [:], streak: 0, feats: Milestones.feats(system, corpus, state)).map(\.id) == ["skill:sentence:es"])
@@ -154,7 +156,17 @@ import Testing
         try #require(ids.count == 2)
         var state = master(EngineState(), "es", [SessionMix.sentenceItemId(ids[1])])
         state = master(state, "es", [SessionMix.sentenceItemId(ids[0])], from: 1_900_000_000_000.0)
-        #expect(Milestones.feats(system, corpus, state).sentences == ["es": ids[1]])
+        #expect(Milestones.feats(system, corpus, state).sentences["es"]?.id == ids[1])
+        state = master(state, "es", [SessionMix.sentenceItemId(ids[0])], from: 2_000_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, state).sentences["es"]?.id == ids[1])
+    }
+
+    @Test func systemsAgreeOnTheEarliestSentence() {
+        var feats = Feats(skills: ["es": [.sentence]], sentences: ["es": FirstSentence(id: "1", introduced: "2026-11-02")])
+        feats.merge(Feats(skills: ["es": [.sentence]], sentences: ["es": FirstSentence(id: "9", introduced: "2026-11-01")]))
+        #expect(feats.sentences["es"]?.id == "9")
+        feats.merge(Feats(sentences: ["es": FirstSentence(id: "5", introduced: "2026-11-01")]))
+        #expect(feats.sentences["es"]?.id == "5")
     }
 
     @Test func aPlacedSentenceEarnsNothing() throws {
@@ -167,7 +179,7 @@ import Testing
     }
 
     @Test func theFirstSentenceGetsItsOwnMoment() {
-        let feats = Feats(skills: ["es": [.count, .sentence], "de": [.sentence]], sentences: ["es": "1", "de": "2"])
+        let feats = Feats(skills: ["es": [.count, .sentence], "de": [.sentence]], sentences: ["es": FirstSentence(id: "1", introduced: "2026-11-01"), "de": FirstSentence(id: "2", introduced: "2026-11-01")])
         let earned = Milestones.earned(mastered: [:], streak: 0, feats: feats)
         var seen: Set<String> = []
         var shown: [String] = []

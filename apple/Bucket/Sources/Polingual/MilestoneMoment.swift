@@ -108,7 +108,7 @@ struct MilestoneMoments: ViewModifier {
     func words(_ milestone: Milestone) -> [MasteredWord] {
         guard case .skill(let skill, let lang) = milestone.kind, let corpus = store.corpus else { return [] }
         guard skill == .sentence else { return Milestones.words(skill, lang: lang, root: root, corpus) }
-        var first = store.systems.lazy.compactMap { Milestones.firstSentence(lang, root: $0.root, corpus, store.state($0.id)) }.first
+        var first = store.systems.compactMap { Milestones.firstSentence(lang, root: $0.root, corpus, store.state($0.id)) }.min()?.id
         #if DEBUG
         if first == nil { first = corpus.poolKeys.sorted().first { corpus.pool[$0]?.text(lang) != nil && corpus.pool[$0]?.text(root) != nil } }
         #endif
