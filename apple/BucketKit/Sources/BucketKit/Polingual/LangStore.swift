@@ -3,6 +3,8 @@ import Observation
 
 public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, offline, failed, needsProfile, refused }
 
+public enum ProgressKeep: String, Sendable { case both, device, account }
+
 public protocol LangDisk: Sendable {
     func read(_ name: String) -> Data?
     func write(_ name: String, _ data: Data)
@@ -628,11 +630,56 @@ public final class LangStore {
         dropHeld(account)
     }
 
-    public func syncAfterSignIn(account: String) async {
+    func deviceBranches() -> [String: EngineState] {
+        var out: [String: EngineState] = [:]
+        for s in readLocalSystems().systems {
+            let b = progressBranch(s)
+            if let st = readLocal(b), st.cards.count > 0 { out[b] = st }
+        }
+        return out
+    }
+
+    public func deviceCards(account: String) -> Int {
+        let owner = disk.read("owner.json").flatMap { String(data: $0, encoding: .utf8) } ?? ""
+        guard owner != account else { return 0 }
+        return deviceBranches().values.reduce(0) { $0 + $1.cards.count }
+    }
+
+    public func accountCards() async -> Int? {
+        guard let server = await pull() else { return nil }
+        return SystemsDoc(js: server[Self.systemsBranch]?["data"]).systems.reduce(0) { n, s in
+            n + (server[progressBranch(s)]?["data"].map { EngineState(js: $0).cards.count } ?? 0)
+        }
+    }
+
+    func dropDeviceProgress() {
+        for s in readLocalSystems().systems {
+            let b = progressBranch(s)
+            disk.remove("branch-\(b).json")
+            pending[b] = nil
+        }
+        disk.remove("systems.json")
+        pending[Self.systemsBranch] = nil
+        savePending()
+        systems = []
+        states = [:]
+    }
+
+    public func syncAfterSignIn(account: String, keep: ProgressKeep = .both) async {
         let ep = epoch
+        let device = keep == .device ? deviceBranches() : [:]
+        if keep == .account { dropDeviceProgress() }
         restoreHeld(account)
+        for (b, st) in device { writeLocal(b, st) }
         setOwner(account)
         if hasLocalSystems { await persistSystems(epoch: ep) }
+        guard epoch == ep else { return }
+        if !device.isEmpty, let server = await pull(), let t = await token() {
+            for b in device.keys.sorted() {
+                guard epoch == ep, let st = device[b] else { return }
+                _ = await send(t, b, st.js, over: server, epoch: ep)
+            }
+        }
         guard epoch == ep else { return }
         await waitForLoad()
         guard epoch == ep else { return }
