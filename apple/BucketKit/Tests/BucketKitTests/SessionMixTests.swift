@@ -84,6 +84,58 @@ import Testing
         #expect(Double(round.tally.sounds) <= SessionMix.soundShare(started: 0) * Double(round.tally.asked))
     }
 
+    @Test func disperseSpreadsExtrasAfterTheFirstBodyEntry() {
+        let body = (0..<9).map { QueueEntry(itemId: "w\($0)", lang: "es", stage: .review) }
+        let extras = (0..<5).map { QueueEntry(itemId: "l\($0)", lang: "es", stage: .letter) }
+        let out = SessionMix.disperse(extras, into: body)
+        #expect(out.count == 14)
+        #expect(out.filter { $0.stage == .letter }.map(\.itemId) == extras.map(\.itemId))
+        #expect(out.filter { $0.stage == .review }.map(\.itemId) == body.map(\.itemId))
+        #expect(out.first?.stage == .review)
+        let at = out.indices.filter { out[$0].stage == .letter }
+        #expect(zip(at, at.dropFirst()).allSatisfy { $1 - $0 >= 2 })
+        #expect(SessionMix.disperse(extras, into: []) == extras)
+        #expect(SessionMix.disperse([], into: body) == body)
+    }
+
+    @Test func soundContrastCardsDoNotOpenTheLesson() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["es"], now: 0)
+        let state = EngineState()
+        let writing = ScriptCourse.queue(sys, state, now: now)
+        #expect(writing.contains { ScriptCourse.letter("es", "en", $0.itemId).flatMap { SoundContrasts.lookup("es", $0.ch) } != nil })
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: try freq(sys.targets), writing: writing, tz: utc)
+        let at = q.indices.filter { q[$0].stage == .letter }
+        #expect(at.count == writing.count)
+        #expect(q.first?.stage != .letter)
+        #expect(zip(at, at.dropFirst()).allSatisfy { $1 - $0 >= 2 })
+    }
+
+    @Test func wordFirstMovesTheFirstWordAheadOfALeadingLetter() {
+        let q = [
+            QueueEntry(itemId: "l0", lang: "ru", stage: .letter),
+            QueueEntry(itemId: "w0", lang: "ru", stage: .check),
+            QueueEntry(itemId: "w1", lang: "es", stage: .review),
+            QueueEntry(itemId: "l1", lang: "ru", stage: .letter),
+        ]
+        let out = SessionMix.wordFirst(q)
+        #expect(out.map(\.itemId) == ["w1", "l0", "w0", "l1"])
+        let letters = q.filter { $0.stage == .letter }
+        #expect(SessionMix.wordFirst(letters) == letters)
+        #expect(SessionMix.wordFirst(Array(q.dropFirst())) == Array(q.dropFirst()))
+    }
+
+    @Test func letterCardsDoNotOpenAMultiLanguageLesson() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["ru", "es"], now: 0)
+        let state = EngineState()
+        let writing = ScriptCourse.queue(sys, state, now: now)
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: try freq(sys.targets), writing: writing, tz: utc)
+        #expect(q.contains { $0.stage == .letter })
+        #expect(q.first?.stage != .letter)
+        #expect(q.filter { $0.stage == .letter }.count == writing.count)
+    }
+
     @Test func cappedSoundSkipsAContrastPairInsteadOfAskingForItsLetter() throws {
         let sys = try createSystem("en", ["es"], now: 0)
         let entry = QueueEntry(itemId: LangScript.letterItemId("pero/perro"), lang: "es", stage: .letter)
