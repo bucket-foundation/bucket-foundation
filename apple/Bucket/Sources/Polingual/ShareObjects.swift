@@ -10,6 +10,7 @@ extension Skill {
         case .count: String(localized: "Count to 10")
         case .introduce: String(localized: "Introduce yourself")
         case .order: String(localized: "Order food")
+        case .sentence: String(localized: "First sentence")
         }
     }
 
@@ -18,6 +19,7 @@ extension Skill {
         case .count: String(localized: "I can count to 10 in \(langName(lang)) on \(Feedback.appName)")
         case .introduce: String(localized: "I can introduce myself in \(langName(lang)) on \(Feedback.appName)")
         case .order: String(localized: "I can order food in \(langName(lang)) on \(Feedback.appName)")
+        case .sentence: String(localized: "I mastered my first sentence in \(langName(lang)) on \(Feedback.appName)")
         }
     }
 }
@@ -487,8 +489,8 @@ struct MasteredListCard: View {
         VStack(alignment: .leading, spacing: 22) {
             ForEach(Array(words.enumerated()), id: \.offset) { _, w in
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(w.form).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(2).minimumScaleFactor(0.6)
-                    Text(w.meaning).font(.system(size: 22, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(w.form).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(words.count == 1 ? 4 : 2).minimumScaleFactor(0.6)
+                    Text(w.meaning).font(.system(size: 22, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(words.count == 1 ? 3 : 1).minimumScaleFactor(0.6)
                 }
             }
         }

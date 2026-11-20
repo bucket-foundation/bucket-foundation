@@ -31,6 +31,7 @@ struct ShareCardTests {
         .skill(.order, lang: "de", root: "en", words: [("die Speisekarte, bitte", "the menu, please"), ("Wasser, bitte", "water, please"), ("ich möchte", "I would like"), ("die Rechnung, bitte", "the check, please")].map { MasteredWord(form: $0.0, meaning: $0.1) }),
         .skill(.introduce, lang: "ru", root: "en", words: [("привет", "hello"), ("меня зовут", "my name is"), ("я из", "I am from"), ("приятно познакомиться", "nice to meet you")].map { MasteredWord(form: $0.0, meaning: $0.1) }),
         .skill(.introduce, lang: "ja", root: "en", words: []),
+        .skill(.sentence, lang: "fr", root: "en", words: [MasteredWord(form: "Je voudrais un café, s'il vous plaît.", meaning: "I would like a coffee, please.")]),
         .score(ShareScore(source: "Match", right: 9, total: 12, langs: ["fr", "es"], root: "en", streak: 37)),
         .content(ShareMoment(title: "Gravity", source: "Spanish Wikipedia", branch: "02", lang: "es", quote: "La gravedad es la fuerza de atracción entre todas las cosas que tienen masa, desde las manzanas hasta las galaxias más lejanas.")),
         .content(ShareMoment(title: "Radio Nacional", source: "Spain", branch: "00", lang: "es")),

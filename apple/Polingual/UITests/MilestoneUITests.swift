@@ -49,4 +49,14 @@ final class MilestoneUITests: XCTestCase {
         XCTAssertTrue(text(app, "Share this word").waitForExistence(timeout: 20))
         shot("hello-3-share")
     }
+
+    func testFirstSentenceShowsTheSentence() {
+        let app = launch("skill:sentence:es")
+        XCTAssertTrue(text(app, "First sentence").waitForExistence(timeout: 60))
+        XCTAssertFalse(text(app, "in Spanish").exists)
+        shot("skill-sentence-es")
+        app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Share")).firstMatch.tap()
+        XCTAssertTrue(text(app, "Share your milestone").waitForExistence(timeout: 20))
+        shot("skill-sentence-es-share")
+    }
 }
