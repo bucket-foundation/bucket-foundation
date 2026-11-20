@@ -18,7 +18,7 @@ val uploadKeyAlias = releaseSetting("polingualUploadKeyAlias", "POLINGUAL_UPLOAD
 val uploadKeyPassword = releaseSetting("polingualUploadKeyPassword", "POLINGUAL_UPLOAD_KEY_PASSWORD")
 val canSignRelease = listOf(uploadStoreFile, uploadStorePassword, uploadKeyAlias, uploadKeyPassword).all { !it.isNullOrBlank() }
 
-val polingualVersionCode = providers.gradleProperty("polingualVersionCode").orNull?.toInt()
+val releaseVersionCode = providers.gradleProperty("polingualVersionCode").orNull?.toInt()
     ?: LocalDateTime.now(ZoneOffset.UTC)
         .format(DateTimeFormatter.ofPattern("yyDDDHHmm")).toInt()
 
@@ -35,7 +35,7 @@ android {
         applicationId = "com.polingual.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = polingualVersionCode
+        versionCode = 1
         versionName = "1.0.2"
         buildConfigField("String", "BUCKET_BASE", "\"https://www.bucket.foundation\"")
         manifestPlaceholders["admobAppId"] = TEST_ADMOB_APP
@@ -84,6 +84,12 @@ android {
     }
     sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("corpusAssets").get().asFile)
     testOptions { unitTests.isReturnDefaultValues = true }
+}
+
+androidComponents {
+    onVariants(selector().withBuildType("release")) { variant ->
+        variant.outputs.forEach { it.versionCode.set(releaseVersionCode) }
+    }
 }
 
 tasks.named("preBuild") { dependsOn(syncCorpus) }

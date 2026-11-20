@@ -4,7 +4,7 @@ Upload files sit in `~/agfarms/polingual-play/` on charizard. The same text and 
 
 | File | Use |
 |---|---|
-| `polingual-1.0.2.aab` | signed upload bundle, versionCode 263240547 |
+| `polingual-1.0.2.aab` | signed upload bundle, versionCode 263240615 |
 | `title.txt`, `short-description.txt`, `full-description.txt` | store listing text |
 | `graphics/icon-512.png`, `graphics/feature-graphic-1024x500.png` | listing graphics |
 | `screenshots/phone-0*.png` | five phone screenshots, 1080x1920 |
@@ -73,7 +73,7 @@ Monetize with Play, Products. Use the iOS ids so the server entitlement map cove
 ## Before Production
 
 - [ ] Real AdMob ids. Release builds turn ads off until they are set; pass `-PpolingualAdmobAppId=...`, `-PpolingualBannerUnit=...` and `-PpolingualInterstitialUnit=...`.
-- [ ] Update https://polingual.com/privacy. It says the app has no advertising SDK, which stops being true once AdMob is on.
+- [ ] Merge PR #1293, which updates https://polingual.com/privacy for AdMob.
 - [ ] Server purchase check `/api/play/verify` and Real-time developer notifications (plan critic C4).
 - [ ] Back up `~/.config/polingual/upload.jks` and `upload.env` to the password manager. If the upload key is lost, Play support can reset it, which takes days.
 
@@ -86,4 +86,4 @@ set -a; . ~/.config/polingual/upload.env; set +a
 ./gradlew :polingual:bundleRelease -PfreeBeta=false
 ```
 
-The versionCode comes from the UTC time, so each build uploads as a new version. Pass `-PpolingualVersionCode=N` to pin it. Without the `POLINGUAL_UPLOAD_*` variables the bundle builds unsigned.
+The versionCode comes from the UTC time, so each release build uploads as a new version. Debug builds keep versionCode 1. Pass `-PpolingualVersionCode=N` to pin it. Without the `POLINGUAL_UPLOAD_*` variables the bundle builds unsigned.

@@ -1,13 +1,13 @@
 # Polingual Play Console Answers
 
-Answers for `com.polingual.app` version 1.0.2. They describe the production build with AdMob turned on. Privacy policy: https://polingual.com/privacy
+Answers for `com.polingual.app` version 1.0.2. They describe the production build with AdMob turned on. Privacy policy: https://polingual.com/privacy, updated for AdMob in PR #1293
 
 ## Data Safety Overview
 
 - [ ] Does your app collect or share any of the required user data types? **Yes**
 - [ ] Is all of the user data collected by your app encrypted in transit? **Yes**, every request goes over HTTPS
 - [ ] Do you provide a way for users to request that their data is deleted? **Yes**
-- [ ] Delete account URL: `https://polingual.com/privacy`, which names the in-app path Account, Delete account and the address privacy@polingual.com
+- [ ] Delete account URL: `https://polingual.com/privacy`. Play wants a page where people request deletion without the app. `/delete-account` does not exist on dev, so this URL points to the privacy page section that names Account, Delete account in the app and the address privacy@polingual.com. Swap in a dedicated page once one ships
 - [ ] Account creation methods: **Username and other authentication**, a one-time email code. Sign-in is optional; guests can play games and live rooms
 
 ## Data Types
@@ -18,7 +18,8 @@ Answers for `com.polingual.app` version 1.0.2. They describe the production buil
 | Personal info: Name | Yes | No | Yes | App functionality, Account management | display name on the profile |
 | Personal info: User IDs | Yes | No | Yes | App functionality, Account management | account id and @username |
 | App activity: App interactions | Yes | No | No | App functionality | study progress, game scores, language systems |
-| App activity: Other user-generated content | Yes | No | Yes | App functionality | live room chat, up to 200 characters, and translation reports |
+| Messages: Other in-app messages | Yes | No | Yes | App functionality | live room chat, up to 200 characters |
+| App activity: Other user-generated content | Yes | No | Yes | App functionality | translation reports |
 | App activity: App interactions, AdMob | Yes | Yes | No | Advertising or marketing, Analytics, Fraud prevention, security, and compliance | Google Mobile Ads SDK |
 | Location: Approximate location | Yes | Yes | No | Advertising or marketing, Analytics, Fraud prevention, security, and compliance | AdMob derives it from the IP address |
 | App info and performance: Crash logs, Diagnostics | Yes | Yes | No | Analytics, Fraud prevention, security, and compliance | Google Mobile Ads SDK |
@@ -30,7 +31,7 @@ Paid subscribers see no ads, but the form asks about the app as a whole, so keep
 
 - [ ] Financial info: Google Play Billing takes the payment. Polingual receives no card data. Purchase history stays on the device until `/api/play/verify` ships; when it does, add **Financial info: Purchase history** as collected for App functionality, with sharing off
 - [ ] Health, fitness, messages, photos, video, audio, files, calendar, contacts, web browsing, precise location
-- [ ] Beta test events: this build sends none. iOS TestFlight feedback has no Android counterpart yet. Add **App activity: Other actions** as collected for Analytics, with sharing off, the day a beta event logger ships
+- [ ] Beta test events: the Android code has no events endpoint and no analytics calls, so leave them off the form. Add **App activity: Other actions** as collected for Analytics, with sharing off, the day a beta event logger ships
 
 ## Data Handling Questions
 
