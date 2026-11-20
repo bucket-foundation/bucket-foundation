@@ -23,6 +23,7 @@ struct MilestoneMoment: View {
 
     var detail: String {
         switch milestone.kind {
+        case .skill(.sentence, let lang): words.first?.form ?? String(localized: "in \(langName(lang))")
         case .mastered(let lang, _), .skill(_, let lang): String(localized: "in \(langName(lang))")
         case .streak: String(localized: "Keep it going.")
         case .hello: hellos.map(\.form).joined(separator: " · ")
@@ -106,7 +107,12 @@ struct MilestoneMoments: ViewModifier {
 
     func words(_ milestone: Milestone) -> [MasteredWord] {
         guard case .skill(let skill, let lang) = milestone.kind, let corpus = store.corpus else { return [] }
-        return Milestones.words(skill, lang: lang, root: root, corpus)
+        guard skill == .sentence else { return Milestones.words(skill, lang: lang, root: root, corpus) }
+        var first = store.systems.compactMap { Milestones.firstSentence(lang, root: $0.root, corpus, store.state($0.id)) }.min()?.id
+        #if DEBUG
+        if first == nil { first = corpus.poolKeys.sorted().first { corpus.pool[$0]?.text(lang) != nil && corpus.pool[$0]?.text(root) != nil } }
+        #endif
+        return first.map { Milestones.sentence($0, lang: lang, root: root, corpus) } ?? []
     }
 
     func hellos(_ milestone: Milestone) -> [ShareForm] {

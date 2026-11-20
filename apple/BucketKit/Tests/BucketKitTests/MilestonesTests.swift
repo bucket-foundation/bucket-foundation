@@ -23,9 +23,9 @@ import Testing
                         phrases: PlayFixtures.corpusJSON("lang-phrases.json"), layers: PlayFixtures.corpusJSON("lang-layers.json"))
     }
 
-    func master(_ state: EngineState, _ lang: String, _ ids: [String]) -> EngineState {
+    func master(_ state: EngineState, _ lang: String, _ ids: [String], from start: Double = 1_800_000_000_000.0) -> EngineState {
         var out = state
-        var now = 1_800_000_000_000.0
+        var now = start
         for round in 0..<8 {
             for id in ids { out = gradeCard(out, lang, id, 4, now: now) }
             now += 86_400_000.0 * Double(1 << round)
@@ -128,5 +128,66 @@ import Testing
         #expect(a.route == ShareObject.language("es", root: "en").route)
         #expect(a.styles == [.banner])
         #expect(ShareObject.skill(.count, lang: "es", root: "en", words: [MasteredWord(form: "uno", meaning: "one")]).styles == [.list, .banner])
+    }
+
+    func sentences(_ corpus: LangCorpus, _ n: Int) -> [String] {
+        Array(corpus.poolKeys.filter { corpus.pool[$0]?.text("es") != nil && corpus.pool[$0]?.text("en") != nil }.sorted().prefix(n))
+    }
+
+    @Test func aMasteredSentenceEarnsTheFirstSentence() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es", "de"], createdAt: 0)
+        let id = try #require(sentences(corpus, 1).first)
+        let seen = gradeCard(EngineState(), "es", SessionMix.sentenceItemId(id), 3, now: 1_800_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, seen) == Feats())
+        let state = master(EngineState(), "es", [SessionMix.sentenceItemId(id)])
+        let feats = Milestones.feats(system, corpus, state)
+        #expect(feats.skills == ["es": [.sentence]])
+        #expect(feats.sentences["es"]?.id == id)
+        let pool = try #require(corpus.pool[id])
+        #expect(Milestones.sentence(id, lang: "es", root: "en", corpus) == [MasteredWord(form: pool.text("es")!, meaning: pool.text("en")!)])
+        #expect(Milestones.earned(mastered: [:], streak: 0, feats: Milestones.feats(system, corpus, state)).map(\.id) == ["skill:sentence:es"])
+    }
+
+    @Test func theFirstSentenceIsTheEarliestMastered() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+        let ids = sentences(corpus, 2)
+        try #require(ids.count == 2)
+        var state = master(EngineState(), "es", [SessionMix.sentenceItemId(ids[1])])
+        state = master(state, "es", [SessionMix.sentenceItemId(ids[0])], from: 1_900_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, state).sentences["es"]?.id == ids[1])
+        state = master(state, "es", [SessionMix.sentenceItemId(ids[0])], from: 2_000_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, state).sentences["es"]?.id == ids[1])
+    }
+
+    @Test func systemsAgreeOnTheEarliestSentence() {
+        var feats = Feats(skills: ["es": [.sentence]], sentences: ["es": FirstSentence(id: "1", introduced: "2026-11-02")])
+        feats.merge(Feats(skills: ["es": [.sentence]], sentences: ["es": FirstSentence(id: "9", introduced: "2026-11-01")]))
+        #expect(feats.sentences["es"]?.id == "9")
+        feats.merge(Feats(sentences: ["es": FirstSentence(id: "5", introduced: "2026-11-01")]))
+        #expect(feats.sentences["es"]?.id == "5")
+    }
+
+    @Test func aPlacedSentenceEarnsNothing() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+        let id = try #require(sentences(corpus, 1).first)
+        var state = master(EngineState(), "es", [SessionMix.sentenceItemId(id)])
+        state.cards[cardId("es", SessionMix.sentenceItemId(id))]?.placed = true
+        #expect(Milestones.feats(system, corpus, state) == Feats())
+    }
+
+    @Test func theFirstSentenceGetsItsOwnMoment() {
+        let feats = Feats(skills: ["es": [.count, .sentence], "de": [.sentence]], sentences: ["es": FirstSentence(id: "1", introduced: "2026-11-01"), "de": FirstSentence(id: "2", introduced: "2026-11-01")])
+        let earned = Milestones.earned(mastered: [:], streak: 0, feats: feats)
+        var seen: Set<String> = []
+        var shown: [String] = []
+        while let next = Milestones.next(earned, seen: seen) {
+            shown.append(next.id)
+            seen.formUnion(Milestones.settled(next, earned))
+        }
+        #expect(shown == ["skill:sentence:de", "skill:count:es"])
+        #expect(Skill.phrases == [.count, .introduce, .order])
     }
 }
