@@ -51,4 +51,43 @@ struct LiveGamesTests {
         #expect(LiveGames.hits(r, me: nil) == 0)
         #expect(LiveGames.recordKey(id: "l", startedAt: "t") != LiveGames.recordKey(id: "l", startedAt: "u"))
     }
+
+    func ledger() -> (LobbyCreditLedger, UserDefaults) {
+        let d = UserDefaults(suiteName: "lobby-credit-\(UUID().uuidString)")!
+        return (LobbyCreditLedger(defaults: d), d)
+    }
+
+    @Test func lobbyCreditCountsOnceAcrossRelaunch() {
+        let (first, store) = ledger()
+        let r = [LobbyResult(round: 1, userId: "me", correct: true, ms: 1, points: 1), LobbyResult(round: 2, userId: "me", correct: true, ms: 1, points: 1)]
+        #expect(first.claim(id: "l", startedAt: "t1", results: r, me: "me") == 2)
+        #expect(first.claim(id: "l", startedAt: "t1", results: r, me: "me") == nil)
+        let relaunched = LobbyCreditLedger(defaults: store)
+        #expect(relaunched.claim(id: "l", startedAt: "t1", results: r, me: "me") == nil)
+        #expect(relaunched.claim(id: "l", startedAt: "t2", results: r, me: "me") == 2)
+    }
+
+    @Test func membersWithNoAnswersEarnNoCredit() {
+        let (l, _) = ledger()
+        let others = [LobbyResult(round: 1, userId: "x", correct: true, ms: 1, points: 1)]
+        #expect(l.claim(id: "l", startedAt: "t", results: others, me: "me") == nil)
+        #expect(l.claim(id: "l", startedAt: "t", results: [], me: "me") == nil)
+        #expect(l.claim(id: "l", startedAt: "t", results: others, me: nil) == nil)
+        #expect(l.keys.isEmpty)
+        #expect(l.claim(id: "l", startedAt: "t", results: others + [LobbyResult(round: 1, userId: "me", correct: false, ms: 1, points: 0)], me: "me") == 0)
+    }
+
+    @Test func creditLedgerStaysCapped() {
+        let (l, _) = ledger()
+        let r = [LobbyResult(round: 1, userId: "me", correct: true, ms: 1, points: 1)]
+        for i in 0..<(LobbyCreditLedger.cap + 5) { _ = l.claim(id: "l\(i)", startedAt: nil, results: r, me: "me") }
+        #expect(l.keys.count == LobbyCreditLedger.cap)
+    }
+
+    @Test func raceGamesCreditProgressWithoutTouchingSoloBestOrDaily() {
+        let race = LiveGames.result("mini", points: 90, hits: 4, missed: ["a"], pattern: "p", race: true, countsForGroup: true)
+        #expect(race == GameResult(game: "mini", points: nil, hits: 4, missed: ["a"], dailyPattern: nil, countsForGroup: true))
+        let solo = LiveGames.result("mini", points: 90, hits: 4, missed: [], pattern: "p", race: false, countsForGroup: false)
+        #expect(solo.points == 90 && solo.dailyPattern == "p")
+    }
 }

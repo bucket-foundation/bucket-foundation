@@ -231,7 +231,7 @@ extension LangStore {
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
             let carded = mine.filter { state(s.id).cards.started($0.id) }
-            finishGame(s.id, GameResult(game: kind.rawValue, points: race == nil ? points : nil, hits: hits, missed: carded.map(\.id), dailyPattern: race == nil ? pattern : nil, countsForGroup: s.id == touched.first?.id))
+            finishGame(s.id, LiveGames.result(kind.rawValue, points: points, hits: hits, missed: carded.map(\.id), pattern: pattern, race: race != nil, countsForGroup: s.id == touched.first?.id))
             for w in mine where !carded.contains(w) && !w.itemId.hasPrefix("abc:") { WantedWords.add(w.itemId, to: s.id) }
         }
         Beta.shared.studyEnded("game:\(kind.rawValue)", graded: hits + missed.count, correct: hits)

@@ -185,14 +185,13 @@ struct LiveStartScreen: View {
         guard let s = langs.systems.first(where: { game.fits($0.targets) }) else {
             throw NoLanguageSet()
         }
-        try await lobbies.create(name: String(localized: "\(name)'s lobby"), game: game, root: s.root, targets: s.targets, listed: listed, displayName: name)
+        try await lobbies.create(name: "\(name)'s lobby", game: game, root: s.root, targets: s.targets, listed: listed, displayName: name)
     }
 }
 
 extension LangStore {
-    func recordLobby(_ lobby: Lobby) {
-        guard !lobby.game.isRace, LobbyRecords.mark(LiveGames.recordKey(id: lobby.id, startedAt: lobby.startedAt)) else { return }
-        let hits = LiveGames.hits(lobby.results, me: lobby.me?.userId)
+    func recordLobby(_ lobby: Lobby, ledger: LobbyCreditLedger = LobbyCreditLedger()) {
+        guard !lobby.game.isRace, let hits = ledger.claim(id: lobby.id, startedAt: lobby.startedAt, results: lobby.results, me: lobby.me?.userId) else { return }
         let credited = LiveGames.credited(systems, root: lobby.root, targets: lobby.targets)
         GameTally.finished += 1
         for s in credited {
@@ -203,10 +202,3 @@ extension LangStore {
 }
 
 struct NoLanguageSet: Error {}
-
-@MainActor
-enum LobbyRecords {
-    static var done: Set<String> = []
-
-    static func mark(_ key: String) -> Bool { done.insert(key).inserted }
-}

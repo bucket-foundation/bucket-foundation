@@ -42,4 +42,28 @@ public enum LiveGames {
     }
 
     public static func recordKey(id: String, startedAt: String?) -> String { "\(id)#\(startedAt ?? "")" }
+
+    public static func result(_ game: String, points: Int?, hits: Int, missed: [String], pattern: String?, race: Bool, countsForGroup: Bool) -> GameResult {
+        GameResult(game: game, points: race ? nil : points, hits: hits, missed: missed, dailyPattern: race ? nil : pattern, countsForGroup: countsForGroup)
+    }
+}
+
+public struct LobbyCreditLedger {
+    public static let key = "polingual.lobbyCredits"
+    public static let cap = 200
+    let defaults: UserDefaults
+
+    public init(defaults: UserDefaults = .standard) { self.defaults = defaults }
+
+    public var keys: [String] { defaults.stringArray(forKey: Self.key) ?? [] }
+
+    public func claim(id: String, startedAt: String?, results: [LobbyResult], me: String?) -> Int? {
+        guard let me, results.contains(where: { $0.userId == me }) else { return nil }
+        let key = LiveGames.recordKey(id: id, startedAt: startedAt)
+        var seen = keys
+        guard !seen.contains(key) else { return nil }
+        seen.append(key)
+        defaults.set(Array(seen.suffix(Self.cap)), forKey: Self.key)
+        return LiveGames.hits(results, me: me)
+    }
 }
