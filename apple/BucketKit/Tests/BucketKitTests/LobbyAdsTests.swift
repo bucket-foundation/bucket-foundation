@@ -69,14 +69,85 @@ struct LobbyAdsTests {
         #expect(release.interstitial == "ca-app-pub-9735211554999350/4047833788")
     }
 
-    @Test func interstitialWaitsForAFinishedGameAndThreeMinutes() {
+    @Test func interstitialWaitsForTheSecondFinishedGameAndThreeMinutes() {
         let t0 = Date(timeIntervalSince1970: 1_000)
         var pacer = InterstitialPacer()
-        #expect(!pacer.due(finishedGame: false, at: t0))
-        #expect(pacer.due(finishedGame: true, at: t0))
+        #expect(!pacer.due(finishedGame: false, gamesThisSession: 5, at: t0))
+        #expect(!pacer.due(finishedGame: true, gamesThisSession: 0, at: t0))
+        #expect(!pacer.due(finishedGame: true, gamesThisSession: 1, at: t0))
+        #expect(pacer.due(finishedGame: true, gamesThisSession: 2, at: t0))
         pacer.shown(at: t0)
-        #expect(!pacer.due(finishedGame: true, at: t0.addingTimeInterval(179)))
-        #expect(pacer.due(finishedGame: true, at: t0.addingTimeInterval(180)))
+        #expect(!pacer.due(finishedGame: true, gamesThisSession: 3, at: t0.addingTimeInterval(179)))
+        #expect(pacer.due(finishedGame: true, gamesThisSession: 3, at: t0.addingTimeInterval(180)))
+        #expect(!pacer.due(finishedGame: false, gamesThisSession: 9, at: t0.addingTimeInterval(600)))
+    }
+
+    @Test func oneSharedPacerCoversLobbiesAndSoloGames() {
+        let t0 = Date(timeIntervalSince1970: 1_000)
+        var pacer = InterstitialPacer()
+        #expect(pacer.due(finishedGame: true, gamesThisSession: 2, at: t0))
+        pacer.shown(at: t0)
+        #expect(!pacer.due(finishedGame: true, gamesThisSession: 3, at: t0.addingTimeInterval(60)))
+    }
+
+    @Test func noAdsWithoutConsentOrForSubscribers() {
+        for surface in AdSurface.allCases {
+            #expect(!AdGate.banner(on: surface, allowed: false, consented: true))
+            #expect(!AdGate.banner(on: surface, allowed: true, consented: false))
+            #expect(!AdGate.interstitial(from: surface, allowed: false, consented: true))
+            #expect(!AdGate.interstitial(from: surface, allowed: true, consented: false))
+        }
+        #expect(!AdGate.rewarded(allowed: false, consented: true, unit: LobbyAdUnits.testRewarded))
+        #expect(!AdGate.rewarded(allowed: true, consented: false, unit: LobbyAdUnits.testRewarded))
+    }
+
+    @Test func todayLearnAndActiveBoardsStayAdFree() {
+        for surface in [AdSurface.today, .learn, .gameBoard] {
+            #expect(!AdGate.banner(on: surface, allowed: true, consented: true))
+            #expect(!AdGate.interstitial(from: surface, allowed: true, consented: true))
+        }
+        #expect(AdGate.banner(on: .gamesHub, allowed: true, consented: true))
+        #expect(AdGate.banner(on: .gameResult, allowed: true, consented: true))
+        #expect(AdGate.interstitial(from: .gamesHub, allowed: true, consented: true))
+        #expect(AdGate.interstitial(from: .lobby, allowed: true, consented: true))
+    }
+
+    @Test func rewardedRetryHidesWhileTheUnitIsEmpty() {
+        #expect(!AdGate.rewarded(allowed: true, consented: true, unit: nil))
+        #expect(!AdGate.rewarded(allowed: true, consented: true, unit: ""))
+        #expect(AdGate.rewarded(allowed: true, consented: true, unit: LobbyAdUnits.testRewarded))
+    }
+
+    @Test func releaseRewardedPlaceholderStaysEmptyUntilPasted() throws {
+        let yml = try String(contentsOf: URL(fileURLWithPath: #filePath).deletingLastPathComponent().appendingPathComponent("../../../project.yml").standardized, encoding: .utf8)
+        #expect(yml.contains("PolingualAdRewarded: $(POLINGUAL_AD_REWARDED)"))
+        #expect(yml.contains("POLINGUAL_AD_REWARDED:"))
+    }
+
+    @Test func resultBannerFollowsOnlyTheVisibleResult() {
+        var slot = ResultVisibility()
+        let result = UUID()
+        #expect(!slot.showsBanner)
+        slot.appeared(result)
+        #expect(slot.showsBanner)
+        slot.disappeared(result)
+        #expect(!slot.showsBanner)
+    }
+
+    @Test func tabSwitchLeavesNoBannerOverALiveBoard() {
+        var slot = ResultVisibility()
+        let result = UUID()
+        slot.appeared(result)
+        slot.appeared(result)
+        slot.disappeared(result)
+        #expect(!slot.showsBanner)
+        slot.disappeared(result)
+        slot.disappeared(UUID())
+        #expect(!slot.showsBanner)
+        var other = ResultVisibility()
+        other.appeared(UUID())
+        #expect(other.showsBanner)
+        #expect(!slot.showsBanner)
     }
 }
 
