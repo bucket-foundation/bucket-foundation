@@ -37,6 +37,7 @@ export default function Page() {
       <p>To leave the beta list or give up a founding spot, email privacy@polingual.com and we remove your address from Resend and our database. Delete your account and all progress in the app: Account, Delete account. You can also email <a href="mailto:privacy@polingual.com">privacy@polingual.com</a> from the address on the account. Unsubscribe from email with the link in any message.</p>
       <h2>Children</h2>
       <p>Polingual is rated 13+ and collects no data from anyone who does not sign in or join the beta. We do not knowingly collect data from children under 13 without a parent&rsquo;s consent.</p>
+      <p>To delete your account without the app, see <a href="/delete-account">Delete your account</a>.</p>
       <p>Contact: <a href="mailto:privacy@polingual.com">privacy@polingual.com</a></p>
     </Legal>
   );
