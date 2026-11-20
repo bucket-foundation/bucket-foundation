@@ -83,3 +83,43 @@ export function buildActivity(testers: BetaTester[], events: StoredBetaEvent[], 
     }));
   return { days, cohorts };
 }
+
+export interface AppPulse {
+  dau: number;
+  wau: number;
+  mau: number;
+  enrolled: number;
+  testflight: Record<"total" | "installed" | "accepted" | "invited", number> | null;
+}
+
+export function buildPulse(
+  app: StoredBetaEvent["app"],
+  testers: BetaTester[],
+  events: StoredBetaEvent[],
+  flight: { app: string; state: string }[] | null,
+  now: Date = new Date(),
+): AppPulse {
+  const today = utcDay(now.toISOString());
+  const within = (days: number) => {
+    const users = new Set<string>();
+    for (const e of events) {
+      if (e.app !== app) continue;
+      const d = utcDay(e.ts);
+      if (Number.isFinite(d) && d > today - days && d <= today) users.add(e.userId);
+    }
+    return users.size;
+  };
+  const mine = flight?.filter((t) => t.app === app && t.state !== "NOT_INVITED" && t.state !== "REVOKED") ?? null;
+  return {
+    dau: within(1),
+    wau: within(7),
+    mau: within(30),
+    enrolled: testers.filter((t) => t.firstApp === app && !t.optedOut).length,
+    testflight: mine && {
+      total: mine.length,
+      installed: mine.filter((t) => t.state === "INSTALLED").length,
+      accepted: mine.filter((t) => t.state === "ACCEPTED").length,
+      invited: mine.filter((t) => t.state === "INVITED").length,
+    },
+  };
+}
