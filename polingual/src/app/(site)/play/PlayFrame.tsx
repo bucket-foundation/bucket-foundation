@@ -9,6 +9,7 @@ import { AdsPauseProvider, AdsProvider } from "./AdsContext";
 import Consent from "./Consent";
 import { SpeechGuard } from "@/ui";
 import { unlockSound } from "@/lib/lobby/sound";
+import { installAudioUnlock } from "@/lib/lobby/unlock";
 import { unlockSpeech } from "@/lib/speak";
 import styles from "./play.module.css";
 import { SheetPeek, StageStickers } from "./Stickers";
@@ -27,37 +28,35 @@ function useAdLayout(): AdLayout | null {
   return layout;
 }
 
-const UNLOCK_EVENTS = ["touchend", "click", "keydown"] as const;
-
 function useAudioUnlock() {
-  useEffect(() => {
-    const unlock = () => {
-      unlockSound();
-      unlockSpeech();
-      for (const e of UNLOCK_EVENTS) window.removeEventListener(e, unlock, true);
-    };
-    for (const e of UNLOCK_EVENTS) window.addEventListener(e, unlock, true);
-    return () => {
-      for (const e of UNLOCK_EVENTS) window.removeEventListener(e, unlock, true);
-    };
-  }, []);
+  useEffect(() => installAudioUnlock(window, () => {
+    unlockSpeech();
+    return unlockSound();
+  }), []);
 }
 
 const NO_KEYBOARD = new Set(["checkbox", "radio", "range", "button", "submit", "color", "file"]);
 
+function typing(el: EventTarget | null): el is HTMLInputElement | HTMLTextAreaElement {
+  if (el instanceof HTMLTextAreaElement) return true;
+  return el instanceof HTMLInputElement && !NO_KEYBOARD.has(el.type);
+}
+
 function useKeyboardReveal() {
   useEffect(() => {
-    const onFocus = (e: FocusEvent) => {
-      const el = e.target;
-      if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement)) return;
-      if (el instanceof HTMLInputElement && NO_KEYBOARD.has(el.type)) return;
-      if (!window.matchMedia?.("(pointer: coarse)").matches) return;
-      window.setTimeout(() => {
-        if (document.activeElement === el) el.scrollIntoView({ block: "center", behavior: "smooth" });
-      }, 300);
+    const vv = window.visualViewport;
+    if (!vv || !window.matchMedia?.("(pointer: coarse)").matches) return;
+    const reveal = () => {
+      const el = document.activeElement;
+      if (!typing(el)) return;
+      const box = el.getBoundingClientRect();
+      const top = vv.offsetTop;
+      const bottom = top + vv.height;
+      if (box.top >= top && box.bottom <= bottom) return;
+      el.scrollIntoView({ block: "center", behavior: "smooth" });
     };
-    document.addEventListener("focusin", onFocus);
-    return () => document.removeEventListener("focusin", onFocus);
+    vv.addEventListener("resize", reveal);
+    return () => vv.removeEventListener("resize", reveal);
   }, []);
 }
 

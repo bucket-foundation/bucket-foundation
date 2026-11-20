@@ -35,17 +35,24 @@ function context(): AudioContext | null {
   return ctx;
 }
 
-export function unlockSound(): void {
-  if (typeof window === "undefined") return;
+export function unlockSound(): Promise<boolean> {
+  if (typeof window === "undefined") return Promise.resolve(false);
   try {
     const c = context();
-    if (!c) return;
+    if (!c) return Promise.resolve(true);
     const src = c.createBufferSource();
     src.buffer = c.createBuffer(1, 1, 22050);
     src.connect(c.destination);
     src.start(0);
+    if (c.state === "running") return Promise.resolve(true);
+    return c.resume().then(() => (c.state as AudioContextState) === "running", () => false);
   } catch {
+    return Promise.resolve(false);
   }
+}
+
+export function resetSound(): void {
+  ctx = null;
 }
 
 export function play(cue: Cue, muted: boolean): void {
@@ -56,17 +63,17 @@ export function play(cue: Cue, muted: boolean): void {
     return;
   }
   try {
-    const ctx = context();
-    if (!ctx) return;
-    let t = ctx.currentTime;
+    const audio = context();
+    if (!audio) return;
+    let t = audio.currentTime;
     for (const [freq, len] of NOTES[cue]) {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      const osc = audio.createOscillator();
+      const gain = audio.createGain();
       osc.type = cue === "miss" ? "sawtooth" : "triangle";
       osc.frequency.value = freq;
       gain.gain.setValueAtTime(0.12, t);
       gain.gain.exponentialRampToValueAtTime(0.0001, t + len);
-      osc.connect(gain).connect(ctx.destination);
+      osc.connect(gain).connect(audio.destination);
       osc.start(t);
       osc.stop(t + len);
       t += len * 0.8;

@@ -353,7 +353,7 @@
 .hubHeading{font:var(--pl-type-heading);color:var(--pl-tyrian);margin:var(--pl-space-2) 0 0}
 .headTools{display:inline-flex;align-items:center;gap:8px}
 .revealRoot{font-family:var(--pl-font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--pl-ink-dim)}
-.playStage,.playStage .frame{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.playStage,.playStage .frame{touch-action:manipulation}
 @media (max-width:1799px){
 .playBar{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
 .playStage .frame{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:calc(40px + env(safe-area-inset-bottom))}

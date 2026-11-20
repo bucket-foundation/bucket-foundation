@@ -42,6 +42,7 @@ function sharedAudio(): HTMLAudioElement {
 export function resetPlayer() {
   stop();
   shared = null;
+  primed = false;
 }
 
 let station: HTMLAudioElement | null = null;
@@ -157,13 +158,18 @@ function drop(): void {
 
 const SILENCE = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
 
+let primed = false;
+
 export function unlockSpeech(): void {
-  if (typeof window === "undefined" || state.id !== null) return;
+  if (primed || typeof window === "undefined" || state.id !== null) return;
   try {
     const a = sharedAudio();
-    if (a.paused && !a.src) {
+    if (a.paused && (!a.src || a.src === SILENCE)) {
       a.src = SILENCE;
-      void a.play().then(() => a.pause(), () => undefined);
+      void a.play().then(() => {
+        primed = true;
+        if (state.id === null) a.pause();
+      }, () => undefined);
     }
     const s = synth();
     if (s && !s.speaking && !s.pending) {
