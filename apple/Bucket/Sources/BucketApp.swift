@@ -158,6 +158,7 @@ struct RootView: View {
                 Task { await PushRegistry.shared.refresh() }
             }
             if change == .endedByUser {
+                ProgressChoice.shared.cancel()
                 science.clearLocal()
                 langs.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
@@ -181,8 +182,10 @@ struct RootView: View {
             reminders.reset()
         }
         #endif
+        .task {
+            if let id = account.session?.userId, !ProgressChoice.shared.inFlight { langs.setOwner(id) }
+        }
         .task(id: account.session?.userId) {
-            if let id = account.session?.userId { langs.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
                 await science.flush()

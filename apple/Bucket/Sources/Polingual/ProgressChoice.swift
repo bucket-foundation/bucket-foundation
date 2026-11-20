@@ -1,71 +1,38 @@
 import BucketKit
 import SwiftUI
 
-@MainActor
-@Observable
-final class ProgressChoice {
-    static let shared = ProgressChoice()
-    static let claimTries = 60
-
-    struct Ask: Equatable {
-        let device: Int
-        let account: Int
-    }
-
-    private(set) var ask: Ask?
-    @ObservationIgnored private var answer: CheckedContinuation<ProgressKeep, Never>?
-
-    var deciding: Bool { answer != nil }
-
-    func signedIn(_ store: LangStore, account: String) {
-        let device = store.deviceCards(account: account)
-        Task {
-            let keep = await decide(store, device: device)
-            await store.syncAfterSignIn(account: account, keep: keep)
-        }
-    }
-
-    func resync(_ store: LangStore, account: String) async {
-        guard !deciding else { return }
-        await store.syncAfterSignIn(account: account)
-    }
-
-    func decide(_ store: LangStore, device: Int) async -> ProgressKeep {
-        guard device > 0, answer == nil, let held = await store.accountCards(), held > 0 else { return .both }
-        return await withCheckedContinuation { c in
-            answer = c
-            ask = Ask(device: device, account: held)
-        }
-    }
-
-    func choose(_ keep: ProgressKeep) {
-        ask = nil
-        answer?.resume(returning: keep)
-        answer = nil
-    }
-}
-
 struct ProgressChoicePrompt: ViewModifier {
+    static let showSeconds = 2.0
+    static let maxMisses = 30
     @State private var open = false
+    @State private var shown = false
     private var choice: ProgressChoice { .shared }
 
     func body(content: Content) -> some View {
         content
             .task(id: choice.ask) {
                 guard choice.ask != nil else { return }
-                for _ in 0..<ProgressChoice.claimTries {
-                    if Task.isCancelled { return }
-                    if RootSheets.shared.claim(.progressChoice) { open = true; return }
+                var misses = 0
+                while !Task.isCancelled, choice.ask != nil {
+                    if RootSheets.shared.claim(.progressChoice) {
+                        shown = false
+                        open = true
+                        try? await Task.sleep(for: .seconds(ProgressChoicePrompt.showSeconds))
+                        if shown || Task.isCancelled { return }
+                        open = false
+                        misses += 1
+                        if misses >= ProgressChoicePrompt.maxMisses { choice.choose(.both); return }
+                    }
                     try? await Task.sleep(for: .milliseconds(500))
                 }
-                choice.choose(.both)
             }
-            .sheet(isPresented: $open, onDismiss: { choice.choose(.both) }) {
+            .sheet(isPresented: $open, onDismiss: { if shown { choice.choose(.both) } }) {
                 if let ask = choice.ask {
                     ProgressChoiceSheet(ask: ask) { keep in
                         choice.choose(keep)
                         open = false
                     }
+                    .onAppear { shown = true }
                 }
             }
             .rootSheet(.progressChoice, open: open)

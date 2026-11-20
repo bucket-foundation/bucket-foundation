@@ -79,12 +79,15 @@ struct PolingualRoot: View {
                 Task { await PushRegistry.shared.refresh() }
             }
             if change == .endedByUser {
+                ProgressChoice.shared.cancel()
                 store.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
             }
         }
+        .task {
+            if let id = account.session?.userId, !ProgressChoice.shared.inFlight { store.setOwner(id) }
+        }
         .task(id: account.session?.userId) {
-            if let id = account.session?.userId { store.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
                 await store.flush()
