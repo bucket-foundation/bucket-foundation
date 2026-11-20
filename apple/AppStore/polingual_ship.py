@@ -40,8 +40,11 @@ def set_beta_notes(api, build, notes):
 def external(api, build, notes):
     if notes:
         set_beta_notes(api, build, notes)
-    api.write("add build to Polingual Beta Learners", "POST", f"/v1/betaGroups/{EXTERNAL_GROUP}/relationships/builds",
-              {"data": [{"type": "builds", "id": build["id"]}]})
+    if api.apply:
+        s, d = api.call("POST", f"/v1/betaGroups/{EXTERNAL_GROUP}/relationships/builds", {"data": [{"type": "builds", "id": build["id"]}]})
+        print(f"  {'done' if s < 300 else 'FAIL'}  add build to Polingual Beta Learners" + ("" if s < 300 else f": {s} {[(e.get('code'), e.get('detail')) for e in d.get('errors', [])]}"))
+    else:
+        print("  would add build to Polingual Beta Learners")
     s, d = api.call("GET", f"/v1/builds/{build['id']}/betaAppReviewSubmission")
     if s < 300 and d.get("data"):
         print(f"  beta review already {d['data']['attributes']['betaReviewState']}")
