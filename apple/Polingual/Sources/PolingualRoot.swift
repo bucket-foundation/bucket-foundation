@@ -155,10 +155,12 @@ struct Studio: View {
                         .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
                 }
                 .environment(\.learnUpsell, upsell)
+                .tint(PL.tyrian)
             } label: { Label { Text(String(localized: "Play tab", defaultValue: "Play", bundle: InterfaceLanguage.bundle)) } icon: { PLArt.blocks.image(height: 24) } }
             Tab(value: AppTab.account) { AccountView(subscription: manageAction, memberLine: memberLine, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .tint(TabTint.selected(tab))
         .audioAccessory()
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
@@ -270,4 +272,8 @@ struct LockedPreview<Content: View>: View {
                 .padding()
             }
     }
+}
+
+enum TabTint {
+    static func selected(_ tab: AppTab) -> Color { tab == .games ? PL.ochre : PL.tyrian }
 }
