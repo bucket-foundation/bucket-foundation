@@ -12,6 +12,7 @@ struct StudyView: View {
     @State private var tally = SoundTally()
     @State private var i = 0
     @State private var graded = 0
+    @State private var met = 0
     @State private var deferred = 0
     @State private var correct = 0
     @State private var xpStart = 0.0
@@ -136,7 +137,8 @@ struct StudyView: View {
             return
         }
         guard let item = corpus.byId[entry.itemId] else {
-            current = nil
+            i += 1
+            makeExercise()
             return
         }
         let state = store.state(systemId)
@@ -198,6 +200,7 @@ struct StudyView: View {
         for r in results where r.rating == 1 {
             next = requeueAfterMiss(next, i, QueueEntry(itemId: entry.itemId, lang: r.lang, stage: entry.stage == .letter ? .letter : .review))
         }
+        met += SessionTally.met(answered: results.count, kind: current?.kind)
         graded += results.count
         correct += results.filter { $0.rating > 1 }.count
         queue = next
@@ -240,7 +243,7 @@ struct StudyView: View {
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
                             }
                         Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
-                        Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
+                        SessionTally(correct: correct, graded: graded, met: met, xp: Int(state.xp - xpStart), streak: Int(state.streak))
                             .foregroundStyle(Palette.muted)
                             .monospacedDigit()
                         if vertical == .compact {
@@ -260,6 +263,7 @@ struct StudyView: View {
                             tally = SoundTally()
                             i = 0
                             graded = 0
+                            met = 0
                             correct = 0
                             xpStart = state.xp
                             makeExercise()
@@ -414,4 +418,34 @@ struct StudyView: View {
         return nil
     }
     #endif
+}
+
+struct SessionTally: View {
+    let correct: Int
+    let graded: Int
+    let met: Int
+    let xp: Int
+    let streak: Int
+
+    var body: some View {
+        line
+    }
+
+    enum Kind: Equatable { case score, met, streak }
+
+    static func met(answered: Int, kind: ExerciseKind?) -> Int {
+        answered == 0 && kind == .intro ? 1 : 0
+    }
+
+    static func kind(graded: Int, met: Int) -> Kind {
+        graded > 0 ? .score : met > 0 ? .met : .streak
+    }
+
+    var line: Text {
+        switch Self.kind(graded: graded, met: met) {
+        case .score: Text("\(correct) of \(graded) right · +\(xp) xp · \(streak) day streak")
+        case .met: Text("New words met: \(met) · \(streak) day streak")
+        case .streak: Text("\(streak) day streak")
+        }
+    }
 }
