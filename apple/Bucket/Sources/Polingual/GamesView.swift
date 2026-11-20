@@ -226,11 +226,12 @@ extension LangStore {
         GameTally.finished += 1
         LobbyRace.finished(kind, score: LobbyRules.raceScore(points: points, hits: hits))
         DailyLedger.shared.charge(cards: played.count)
-        let touched = LobbyRace.system != nil ? [] : kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
+        let race = LobbyRace.system
+        let touched = race.map { LiveGames.credited(systems, root: $0.root, targets: $0.targets) } ?? (kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } })
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
             let carded = mine.filter { state(s.id).cards.started($0.id) }
-            finishGame(s.id, GameResult(game: kind.rawValue, points: points, hits: hits, missed: carded.map(\.id), dailyPattern: pattern, countsForGroup: s.id == touched.first?.id))
+            finishGame(s.id, LiveGames.result(kind.rawValue, points: points, hits: hits, missed: carded.map(\.id), pattern: pattern, race: race != nil, countsForGroup: s.id == touched.first?.id))
             for w in mine where !carded.contains(w) && !w.itemId.hasPrefix("abc:") { WantedWords.add(w.itemId, to: s.id) }
         }
         Beta.shared.studyEnded("game:\(kind.rawValue)", graded: hits + missed.count, correct: hits)
@@ -305,11 +306,15 @@ struct GamesBoard: View {
             } else {
                 DailyHero(open: { open(.daily) })
                 LobbiesTile()
+                LiveNowRow()
                 ForEach(groups.groups.compactMap { GroupQuest($0) }, id: \.group.id) { QuestCard(quest: $0) }
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 14)], spacing: 14) {
                     ForEach(GameKind.allCases.filter { $0 != .daily }) { kind in
                         if available(kind) || kind == .same {
-                            GameTile(kind: kind, enabled: available(kind), open: { open(kind) })
+                            VStack(spacing: 6) {
+                                GameTile(kind: kind, enabled: available(kind), open: { open(kind) })
+                                if available(kind) { PlayLiveLink(kind: kind) }
+                            }
                         }
                     }
                 }
@@ -714,6 +719,7 @@ struct GameEnd: View {
             if let share { share }
             if let shareObject { ShareObjectButton(shareObject, wide: true) }
             if let retry { TryAgainOffer(kind: kind, start: retry) }
+            LiveResultActions(kind: kind)
             if let again {
                 if DailyLedger.shared.spent {
                     DailyLimitCard(place: "game:\(kind.rawValue)")

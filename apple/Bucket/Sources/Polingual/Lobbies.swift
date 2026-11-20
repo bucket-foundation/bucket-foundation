@@ -290,6 +290,7 @@ struct LobbyRoom: View {
     @Environment(LobbyStore.self) private var lobbies
     @Environment(\.dismiss) private var dismiss
     @Environment(Account.self) private var account
+    @Environment(LangStore.self) private var langs
     @State private var draft = ""
     @State private var problem: String?
     @State private var sawFinish = false
@@ -721,6 +722,7 @@ struct LobbyRoom: View {
         .safeAreaInset(edge: .bottom) { chatBar }
         .onAppear {
             sawFinish = true
+            langs.recordLobby(l)
             SaveNudge.gameEnded(signedIn: account.stage == .signedIn)
         }
     }
