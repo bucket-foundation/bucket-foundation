@@ -200,7 +200,7 @@ struct StudyView: View {
         for r in results where r.rating == 1 {
             next = requeueAfterMiss(next, i, QueueEntry(itemId: entry.itemId, lang: r.lang, stage: entry.stage == .letter ? .letter : .review))
         }
-        if results.isEmpty && current?.kind == .intro { met += 1 }
+        met += SessionTally.met(answered: results.count, kind: current?.kind)
         graded += results.count
         correct += results.filter { $0.rating > 1 }.count
         queue = next
@@ -432,6 +432,10 @@ struct SessionTally: View {
     }
 
     enum Kind: Equatable { case score, met, streak }
+
+    static func met(answered: Int, kind: ExerciseKind?) -> Int {
+        answered == 0 && kind == .intro ? 1 : 0
+    }
 
     static func kind(graded: Int, met: Int) -> Kind {
         graded > 0 ? .score : met > 0 ? .met : .streak
