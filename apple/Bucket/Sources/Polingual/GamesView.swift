@@ -272,11 +272,11 @@ struct GamesView: View {
         .plGround(.lattice, band: true)
         .navigationTitle("Games")
         .plChrome()
-        .navigationDestination(item: $open) { $0.screen }
+        .navigationDestination(item: $open) { $0.screen.modifier(ResultBannerSlot()) }
         .modifier(StagedLobbyHook())
         .onChange(of: open) { old, new in
             if new != nil { finishedAtOpen = GameTally.finished }
-            if old != nil, new == nil { LobbyAds.shared.leftRoom(finishedGame: GameTally.finished > finishedAtOpen) }
+            if old != nil, new == nil { LobbyAds.shared.left(.gamesHub, finishedGame: GameTally.finished > finishedAtOpen) }
         }
         .task {
             await langs.load()
@@ -724,6 +724,7 @@ struct GameEnd: View {
             LearnUpsell()
         }
         .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }
+        .resultScreen()
         .padding()
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)

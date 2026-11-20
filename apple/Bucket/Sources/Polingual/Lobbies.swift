@@ -251,7 +251,7 @@ struct LobbiesScreen: View {
             }
         }
         .navigationDestination(isPresented: $inRoom) { LobbyRoom() }
-        .safeAreaInset(edge: .bottom) { LobbyBanner() }
+        .safeAreaInset(edge: .bottom) { AdBanner(surface: .lobby) }
         .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
     }
 
@@ -318,7 +318,7 @@ struct LobbyRoom: View {
             }
         }
         .task { await lobbies.follow() }
-        .onDisappear { LobbyAds.shared.leftRoom(finishedGame: sawFinish) }
+        .onDisappear { LobbyAds.shared.left(.lobby, finishedGame: sawFinish) }
     }
 
     @ViewBuilder

@@ -240,6 +240,7 @@ struct PlayResults: View {
             }
             StartLearningButton()
         }
+        .resultScreen()
     }
 }
 

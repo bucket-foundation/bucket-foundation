@@ -50,15 +50,36 @@ public struct LobbyAdUnits: Equatable, Sendable {
 
 public struct InterstitialPacer: Sendable {
     public static let minimumGap: TimeInterval = 180
+    public static let minimumGames = 2
     public private(set) var lastShown: Date?
 
     public init(lastShown: Date? = nil) { self.lastShown = lastShown }
 
-    public func due(finishedGame: Bool, at now: Date) -> Bool {
-        guard finishedGame else { return false }
+    public func due(finishedGame: Bool, gamesThisSession: Int, at now: Date) -> Bool {
+        guard finishedGame, gamesThisSession >= Self.minimumGames else { return false }
         guard let lastShown else { return true }
         return now.timeIntervalSince(lastShown) >= Self.minimumGap
     }
 
     public mutating func shown(at now: Date) { lastShown = now }
+}
+
+public enum AdSurface: Sendable, CaseIterable {
+    case today, learn, gamesHub, gameBoard, gameResult, lobby
+}
+
+public enum AdGate {
+    public static func banner(on surface: AdSurface, allowed: Bool, consented: Bool) -> Bool {
+        guard allowed, consented else { return false }
+        return surface == .gamesHub || surface == .gameResult || surface == .lobby
+    }
+
+    public static func interstitial(from surface: AdSurface, allowed: Bool, consented: Bool) -> Bool {
+        guard allowed, consented else { return false }
+        return surface == .gamesHub || surface == .lobby
+    }
+
+    public static func rewarded(allowed: Bool, consented: Bool, unit: String?) -> Bool {
+        allowed && consented && unit?.isEmpty == false
+    }
 }

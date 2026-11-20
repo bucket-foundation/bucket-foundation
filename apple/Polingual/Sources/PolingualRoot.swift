@@ -151,7 +151,7 @@ struct Studio: View {
             Tab(value: AppTab.games) {
                 NavigationStack {
                     GamesView(embedded: true)
-                        .safeAreaInset(edge: .bottom) { LobbyBanner() }
+                        .safeAreaInset(edge: .bottom) { AdBanner(surface: .gamesHub) }
                         .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
                 }
                 .environment(\.learnUpsell, upsell)
