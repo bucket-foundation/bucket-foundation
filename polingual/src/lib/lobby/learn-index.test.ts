@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { WORDS } from "@/lib/words";
 import { buildLearnIndex, learnEntry, learnHref, LEARN_FALLBACK, rootFor } from "./learn-index";
 
 const index = buildLearnIndex([
@@ -19,4 +22,9 @@ test("rootFor and learnHref link a word to its lesson", () => {
   assert.equal(rootFor(e, "ja"), null);
   assert.equal(learnHref(e), "/word/hundred?from=play");
   assert.equal(learnHref(null), LEARN_FALLBACK);
+});
+
+test("public/play/roots.json matches the word list", () => {
+  const file = JSON.parse(readFileSync(join(process.cwd(), "public/play/roots.json"), "utf8"));
+  assert.deepEqual(file, buildLearnIndex(WORDS), "run npm run roots");
 });
