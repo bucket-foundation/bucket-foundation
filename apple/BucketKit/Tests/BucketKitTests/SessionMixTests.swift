@@ -111,6 +111,31 @@ import Testing
         #expect(zip(at, at.dropFirst()).allSatisfy { $1 - $0 >= 2 })
     }
 
+    @Test func wordFirstMovesTheFirstWordAheadOfALeadingLetter() {
+        let q = [
+            QueueEntry(itemId: "l0", lang: "ru", stage: .letter),
+            QueueEntry(itemId: "w0", lang: "ru", stage: .check),
+            QueueEntry(itemId: "w1", lang: "es", stage: .review),
+            QueueEntry(itemId: "l1", lang: "ru", stage: .letter),
+        ]
+        let out = SessionMix.wordFirst(q)
+        #expect(out.map(\.itemId) == ["w1", "l0", "w0", "l1"])
+        let letters = q.filter { $0.stage == .letter }
+        #expect(SessionMix.wordFirst(letters) == letters)
+        #expect(SessionMix.wordFirst(Array(q.dropFirst())) == Array(q.dropFirst()))
+    }
+
+    @Test func letterCardsDoNotOpenAMultiLanguageLesson() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["ru", "es"], now: 0)
+        let state = EngineState()
+        let writing = ScriptCourse.queue(sys, state, now: now)
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: try freq(sys.targets), writing: writing, tz: utc)
+        #expect(q.contains { $0.stage == .letter })
+        #expect(q.first?.stage != .letter)
+        #expect(q.filter { $0.stage == .letter }.count == writing.count)
+    }
+
     @Test func cappedSoundSkipsAContrastPairInsteadOfAskingForItsLetter() throws {
         let sys = try createSystem("en", ["es"], now: 0)
         let entry = QueueEntry(itemId: LangScript.letterItemId("pero/perro"), lang: "es", stage: .letter)

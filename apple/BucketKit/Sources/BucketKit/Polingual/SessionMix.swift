@@ -192,7 +192,14 @@ public enum SessionMix {
         let main = queue(system, corpus, state, now: now, freq: freq, tz: tz, heritage: heritage).filter { !replay.contains($0) }
         let planned = lead + replay + writing + main
         let extra = core(system, corpus, state, now: now, freq: freq, taken: Set(planned.map { cardId($0.lang, $0.itemId) }), limit: max(coreFloor, roundSize - planned.count), tz: tz)
-        return alternate(spacedChecks(lead + replay + disperse(writing, into: main + extra)))
+        return wordFirst(alternate(spacedChecks(lead + replay + disperse(writing, into: main + extra))))
+    }
+
+    public static func wordFirst(_ queue: [QueueEntry]) -> [QueueEntry] {
+        guard queue.first?.stage == .letter, let at = queue.firstIndex(where: { $0.stage != .letter && $0.stage != .check }) else { return queue }
+        var out = queue
+        out.insert(out.remove(at: at), at: 0)
+        return out
     }
 
     public static func disperse(_ extras: [QueueEntry], into body: [QueueEntry]) -> [QueueEntry] {
