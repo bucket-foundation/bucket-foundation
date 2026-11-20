@@ -113,3 +113,13 @@ Bead bkt-pgr04.4. Quotes live in private Supabase `bucket.testimonials` with a c
 Ask after a week of use, on the channel they used, sent by the founder:
 
 > Thank you, that means a lot. After you've played for a few days, would you send me one or two sentences on what you like or what's missing? If you're happy for me to quote you on polingual.com and to investors, tell me how you'd like your name shown.
+
+## Reviews
+
+Bead bkt-pgr04.5. TestFlight users cannot rate on the App Store and never see the review prompt, which is why Polingual has zero ratings. Move testers to the App Store build, then ask once, personally, for an honest rating. No rewards for reviews and no filtering to happy users (Guideline 5.6). Reply to every review in App Store Connect.
+
+Message for the founder to send each tester:
+
+> Quick favor: Polingual is on the App Store now and has no ratings yet, so new people can't find it. Could you install the App Store version and leave an honest rating? Code POLYGLOTBETA gives you three months free: https://apps.apple.com/redeem?ctx=offercodes&id=6825177856&code=POLYGLOTBETA (it renews after that unless you cancel in Settings, Subscriptions). Then rate it here: https://apps.apple.com/app/id6825177856?action=write-review . Thank you!
+
+Once PR #1254 merges, beta testers get lifetime access on the App Store build and the line about renewing goes away.
