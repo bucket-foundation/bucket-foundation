@@ -62,3 +62,5 @@
 .stickerLayer{position:absolute;inset:0;z-index:0;pointer-events:none}
 .banner{position:relative}
 @media (max-width:899px){.slot:nth-child(n+5){display:none}}
+@media (max-width:1799px){.caption{font-size:12px}}
+@media (max-width:400px){.sheet{padding-left:10px;padding-right:10px}.stage{padding-left:4px;padding-right:4px}}

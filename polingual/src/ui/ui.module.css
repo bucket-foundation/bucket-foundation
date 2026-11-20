@@ -47,3 +47,4 @@
 .badge[data-tone=ink]{background:var(--pl-ink);color:var(--pl-paper)}
 .badge[data-size=lg]{font-size:13px;padding:5px 12px}
 .tag{cursor:default}
+@media (pointer:coarse){.sm,.pill,.pill[data-size=sm]{min-height:44px;min-width:44px;justify-content:center}}
