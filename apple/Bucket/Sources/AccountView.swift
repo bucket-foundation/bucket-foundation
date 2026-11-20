@@ -247,6 +247,20 @@ struct SignInSheet: View {
                             .textContentType(.oneTimeCode)
                             .focused($focused)
                             .codeField()
+                        #if os(iOS)
+                        PasteButton(payloadType: String.self) { strings in
+                            guard let found = strings.lazy.compactMap(OneTimeCode.extract).first else {
+                                Task { @MainActor in account.error = String(localized: "No code in the pasted text.") }
+                                return
+                            }
+                            Task { @MainActor in
+                                code = found
+                                if !account.busy { await account.verify(code: found) }
+                            }
+                        }
+                        .labelStyle(.titleAndIcon)
+                        .accessibilityIdentifier("paste-code")
+                        #endif
                         Button("Verify") { Task { await account.verify(code: code) } }
                             .buttonStyle(D8Primary())
                             .disabled(account.busy || code.filter(\.isNumber).count < 6)
