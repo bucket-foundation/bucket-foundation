@@ -192,7 +192,21 @@ public enum SessionMix {
         let main = queue(system, corpus, state, now: now, freq: freq, tz: tz, heritage: heritage).filter { !replay.contains($0) }
         let planned = lead + replay + writing + main
         let extra = core(system, corpus, state, now: now, freq: freq, taken: Set(planned.map { cardId($0.lang, $0.itemId) }), limit: max(coreFloor, roundSize - planned.count), tz: tz)
-        return alternate(spacedChecks(planned + extra))
+        return alternate(spacedChecks(lead + replay + disperse(writing, into: main + extra)))
+    }
+
+    public static func disperse(_ extras: [QueueEntry], into body: [QueueEntry]) -> [QueueEntry] {
+        guard !extras.isEmpty, !body.isEmpty else { return body + extras }
+        var out: [QueueEntry] = []
+        var next = 0
+        for (placed, e) in body.enumerated() {
+            out.append(e)
+            while next < extras.count, max(1, (next + 1) * body.count / (extras.count + 1)) <= placed + 1 {
+                out.append(extras[next])
+                next += 1
+            }
+        }
+        return out + extras[next...]
     }
 
     public static let coreFloor = 4
