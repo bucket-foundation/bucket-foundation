@@ -14,4 +14,4 @@ build=$(sed -n 's/^archived Polingual \([0-9.]*\) .*/\1/p' "$out/archive.log")
 ~/code/.wt/buildq sudo launchctl asuser 501 sudo -u g env PATH=/opt/homebrew/bin:/usr/bin:/bin HOME=/Users/g LANG=en_US.UTF-8 \
   xcodebuild -exportArchive -archivePath "$out/Polingual.xcarchive" \
   -exportOptionsPlist "$here/exportOptions.plist" -exportPath "$out/export" -allowProvisioningUpdates
-python3 "$here/../AppStore/polingual_ship.py" "$push" --build "$build" --notes "$notes" --apply
+python3 "$here/../AppStore/polingual_ship.py" "$push" --build "$build" --notes "$notes" --apply "${@:3}"

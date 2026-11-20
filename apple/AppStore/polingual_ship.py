@@ -53,7 +53,7 @@ def external(api, build, notes):
               {"data": {"type": "betaAppReviewSubmissions", "relationships": {"build": {"data": {"type": "builds", "id": build["id"]}}}}})
 
 
-def release(api, build, version, notes):
+def release(api, build, version, notes, keywords=None):
     versions = api.all(f"/v1/apps/{APP}/appStoreVersions?filter[platform]=IOS&limit=20")
     v = next((x for x in versions if x["attributes"]["versionString"] == version), None)
     if v is None:
@@ -69,8 +69,11 @@ def release(api, build, version, notes):
     api.write(f"attach build {build['attributes']['version']}", "PATCH", f"/v1/appStoreVersions/{v['id']}/relationships/build",
               {"data": {"type": "builds", "id": build["id"]}})
     for loc in api.all(f"/v1/appStoreVersions/{v['id']}/appStoreVersionLocalizations?limit=50"):
+        attrs = {"whatsNew": notes}
+        if keywords and loc["attributes"]["locale"] in keywords:
+            attrs["keywords"] = keywords[loc["attributes"]["locale"]]
         api.write(f"what's new {loc['attributes']['locale']}", "PATCH", f"/v1/appStoreVersionLocalizations/{loc['id']}",
-                  {"data": {"type": "appStoreVersionLocalizations", "id": loc["id"], "attributes": {"whatsNew": notes}}})
+                  {"data": {"type": "appStoreVersionLocalizations", "id": loc["id"], "attributes": attrs}})
     sub = api.write("open review submission", "POST", "/v1/reviewSubmissions",
                     {"data": {"type": "reviewSubmissions", "attributes": {"platform": "IOS"},
                               "relationships": {"app": {"data": {"type": "apps", "id": APP}}}}})
@@ -94,6 +97,7 @@ def main():
     p.add_argument("--build", default="", help="build number, default the newest upload")
     p.add_argument("--notes", default="", help="tester notes or App Store what's new text")
     p.add_argument("--wait", type=int, default=1800, help="seconds to wait for processing")
+    p.add_argument("--keywords", action="append", default=[], help="locale=comma,list, at most 100 characters")
     p.add_argument("--apply", action="store_true", help="write to App Store Connect, otherwise dry run")
     a = p.parse_args()
     api = ASC(a.apply)
@@ -112,7 +116,11 @@ def main():
     else:
         if not a.notes:
             raise SystemExit("release needs --notes for What's New")
-        release(api, b, pre, a.notes)
+        kw = dict(k.split("=", 1) for k in a.keywords)
+        too_long = [loc for loc, v in kw.items() if len(v) > 100]
+        if too_long:
+            raise SystemExit(f"keywords over 100 characters: {too_long}")
+        release(api, b, pre, a.notes, kw)
 
 
 if __name__ == "__main__":
