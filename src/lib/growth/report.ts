@@ -1,6 +1,6 @@
 import type { BetaReport, CohortSummary, RetentionDay } from "@/lib/beta/metrics";
 import type { BetaTester, StoredBetaEvent } from "@/lib/beta/store";
-import { buildActivity, type ActivityReport } from "./activity";
+import { buildActivity, buildPulse, type ActivityReport, type AppPulse } from "./activity";
 import { buildRevenueReport, type RevenueReport } from "./revenue";
 import type { WaitlistEntry } from "@/lib/waitlist/core";
 import { GROWTH_APPS, type GrowthApp, type GrowthSnapshot, type SnapshotBuild } from "./snapshot";
@@ -28,6 +28,7 @@ export interface GrowthReport {
   cadence: Record<GrowthApp, CadenceBuild[]>;
   medianDaysBetweenBuilds: Record<GrowthApp, number | null>;
   activity: ActivityReport;
+  pulse: Record<GrowthApp, AppPulse>;
   revenue: RevenueReport;
 }
 
@@ -99,6 +100,7 @@ export function buildGrowthReport(input: {
     cadence,
     medianDaysBetweenBuilds: medianDays,
     activity: buildActivity(input.testers ?? [], input.events ?? [], now),
+    pulse: Object.fromEntries(GROWTH_APPS.map((app) => [app, buildPulse(app, input.testers ?? [], input.events ?? [], snap?.testers ?? null, now)])) as Record<GrowthApp, AppPulse>,
     revenue: buildRevenueReport(snap?.revenue),
   };
 }

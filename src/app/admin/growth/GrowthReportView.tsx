@@ -1,3 +1,4 @@
+import type { AppPulse } from "@/lib/growth/activity";
 import type { GrowthReport } from "@/lib/growth/report";
 import { RevenueDaily, RevenueFigures, RevenueProducts } from "./RevenueView";
 
@@ -9,6 +10,36 @@ function pct(v: number | null): string {
   return v === null ? "-" : `${Math.round(v * 100)}%`;
 }
 
+function Figure({ n, label }: { n: number | null | undefined; label: string }) {
+  return (
+    <div className="flex flex-col">
+      <span className="font-display text-[28px] leading-none text-[color:var(--basalt)]">{n ?? "-"}</span>
+      <span className="mt-1 small-caps text-[10px] tracking-[0.14em] text-[color:var(--basalt-3)]">{label}</span>
+    </div>
+  );
+}
+
+function Pulse({ app, p }: { app: string; p: AppPulse }) {
+  return (
+    <div className="border border-[color:var(--hairline)] p-4">
+      <h2 className={H2}>{app}</h2>
+      <div className="grid grid-cols-3 gap-4">
+        <Figure n={p.dau} label="DAU today" />
+        <Figure n={p.wau} label="WAU 7 days" />
+        <Figure n={p.mau} label="MAU 30 days" />
+        <Figure n={p.testflight?.total} label="TestFlight testers" />
+        <Figure n={p.testflight?.installed} label="Installed" />
+        <Figure n={p.enrolled} label="Enrolled in app" />
+      </div>
+      {p.testflight && (
+        <p className="mt-3 text-[12px] text-[color:var(--basalt-3)]">
+          {p.testflight.accepted} accepted, {p.testflight.invited} invited and not opened yet.
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function GrowthReportView({ data }: { data: GrowthReport & { truncated?: boolean } }) {
   const top = data.funnel.find((s) => s.count !== null && s.count > 0)?.count ?? null;
 
@@ -18,6 +49,12 @@ export default function GrowthReportView({ data }: { data: GrowthReport & { trun
         Generated {data.generatedAt.slice(0, 16).replace("T", " ")} UTC. App Store Connect snapshot {data.snapshotAt ? data.snapshotAt.slice(0, 16).replace("T", " ") + " UTC" : "not taken yet"}.
         {data.truncated ? " Event cap reached: counts are partial." : ""}
       </p>
+      {data.pulse && (
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Pulse app="Polingual" p={data.pulse.polingual} />
+          <Pulse app="Bucket" p={data.pulse.bucket} />
+        </div>
+      )}
       {data.revenue && <RevenueFigures revenue={data.revenue} />}
       <div className="grid gap-10 lg:grid-cols-2">
       <div>
