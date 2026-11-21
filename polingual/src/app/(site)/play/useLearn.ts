@@ -6,7 +6,7 @@ import type { LearnIndex } from "@/lib/lobby/learn-index";
 let cached: Promise<LearnIndex | null> | null = null;
 
 function load(): Promise<LearnIndex | null> {
-  cached ??= fetch("/play/roots").then((r) => (r.ok ? (r.json() as Promise<LearnIndex>) : null)).catch(() => null);
+  cached ??= fetch("/play/roots.json").then((r) => (r.ok ? (r.json() as Promise<LearnIndex>) : null)).catch(() => null);
   return cached;
 }
 

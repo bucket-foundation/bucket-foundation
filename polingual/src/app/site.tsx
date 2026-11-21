@@ -62,7 +62,7 @@ export function SiteFooter({ loc = EN_SITE }: { loc?: SiteLocale }) {
       <FlagBand flags />
       <div className={styles.ftrow}>
         <nav className={styles.fl} aria-label={loc.labels.footerNav} data-testid="footer-links">
-          {footerLinks(loc).map((l) => (l.href.startsWith("/") ? <Link key={l.key} href={l.href}>{l.label}</Link> : <a key={l.key} href={l.href} rel="noopener">{l.label}</a>))}
+          {footerLinks(loc).map((l) => (l.href.startsWith("/") ? <Link key={l.key} prefetch={false} href={l.href}>{l.label}</Link> : <a key={l.key} href={l.href} rel="noopener">{l.label}</a>))}
         </nav>
         <span className={styles.credit}>
           {loc.footer.tagline} · {loc.footer.data} <a href="https://en.wiktionary.org">Wiktionary</a> · <a href="https://kaikki.org">Kaikki</a> · <a href="https://commons.wikimedia.org">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. <span dir="auto">{loc.footer.published}</span>
