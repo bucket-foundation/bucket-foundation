@@ -1,6 +1,7 @@
 {{ if eq .RedirectTo "https://polingual.com/" }}<!doctype html>
 <html>
 <body style="margin:0;padding:0;background:#F6EEDC;">
+<div style="display:none;max-height:0;overflow:hidden;">Your Polingual code is {{ .Token }}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F6EEDC;">
 <tr><td align="center" style="padding:36px 16px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;">
@@ -11,7 +12,7 @@
 </tr></table>
 </td></tr>
 <tr><td style="font-family:Nunito,Arial,sans-serif;font-size:28px;font-weight:800;line-height:1.2;color:#231F20;padding-bottom:10px;">Your Polingual code</td></tr>
-<tr><td style="font-family:Nunito,Arial,sans-serif;font-size:16px;line-height:1.5;color:#5d5650;padding-bottom:20px;">Enter it in the Polingual app to sign in. It expires in one hour.</td></tr>
+<tr><td style="font-family:Nunito,Arial,sans-serif;font-size:16px;line-height:1.5;color:#5d5650;padding-bottom:20px;">Your Polingual code is {{ .Token }}. Enter it in the Polingual app to sign in. It expires in one hour.</td></tr>
 <tr><td style="background:#FFFDF7;border:2px solid #E3D6B8;border-radius:14px;padding:22px;text-align:center;">
 <span style="font-family:Menlo,'Space Mono',monospace;font-size:34px;font-weight:700;letter-spacing:0.25em;color:#D9381E;">{{ .Token }}</span>
 </td></tr>

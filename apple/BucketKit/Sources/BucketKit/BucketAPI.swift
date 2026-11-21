@@ -22,6 +22,10 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case handleTaken
     case handleInvalid
 
+    static func serverDown(_ status: Int) -> Bool {
+        status == 0 || status == 402 || status >= 500
+    }
+
     public var errorDescription: String? {
         switch self {
         case .badEmail: "Enter a valid email address."
@@ -29,7 +33,7 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .rateLimited(let m): m ?? "Too many tries. Wait ten minutes and try again."
         case .revoked: "Your session ended. Sign in again."
         case .unavailable: "Sign-in is unavailable right now."
-        case .server(let s, let m): m ?? "Bucket answered \(s)."
+        case .server(let s, let m): m ?? (Self.serverDown(s) ? "Bucket is not answering right now. Try again in a few minutes." : "Bucket answered \(s).")
         case .decoding: "Bucket sent a reply this version cannot read."
         case .groupNotFound: "That invite link no longer works. Ask for a new one."
         case .groupFull: "This group is full."
