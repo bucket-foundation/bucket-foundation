@@ -26,6 +26,8 @@ struct AccountView: View {
         return URL(string: polingual ? "https://polingual.com/privacy" : "https://www.bucket.foundation/privacy")!
     }
 
+    private var statusSlot: AccountStatusSlot { .slot(stage: account.stage, emailing: emailing) }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -40,10 +42,10 @@ struct AccountView: View {
                         Button("Sign in with email") { emailing = true }
                             .buttonStyle(D8Option(align: .center))
                             .disabled(account.busy)
-                        if account.busy && !emailing {
+                        if account.busy && statusSlot == .signInSection {
                             ProgressView().frame(maxWidth: .infinity)
                         }
-                        if let error = account.error, !emailing {
+                        if let error = account.error, statusSlot == .signInSection {
                             Text(error).foregroundStyle(.red).accessibilityIdentifier("signInError")
                         }
                     } footer: {
@@ -100,7 +102,7 @@ struct AccountView: View {
                     Eyebrow(text: "Developer")
                 }
                 #endif
-                if account.stage == .signedIn {
+                if statusSlot == .page {
                     if let error = account.error {
                         Section { Text(error).foregroundStyle(.red) }
                     }
