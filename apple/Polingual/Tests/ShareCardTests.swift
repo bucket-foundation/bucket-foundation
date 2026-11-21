@@ -92,6 +92,11 @@ struct ShareCardTests {
         #expect(shown.flatMap(\.words).map(\.form) == ["a", "b", "c", "d"])
     }
 
+    @Test func masteredFlowKeepsAThousandWords() {
+        let sets = [MasteredSet(lang: "de", count: 1000, words: (0..<1000).map { MasteredWord(form: "wort\($0)", meaning: "") })]
+        #expect(MasteredWordFlow.shown(sets, cap: MasteredWordFlow.cap).flatMap(\.words).count == 1000)
+    }
+
     @Test func scoreLinksOpenTheLanguages() {
         let page = ShareObject.score(ShareScore(source: "Match", right: 9, total: 12, langs: ["fr", "es"], root: "en")).page
         #expect(SharedLink(page.url) == .langs(root: "en", targets: ["fr", "es"]))
