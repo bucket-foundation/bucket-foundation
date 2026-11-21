@@ -513,7 +513,7 @@ struct MasteredListCard: View {
 }
 
 struct MasteredWordFlow: View {
-    static let cap = 240
+    static let cap = 1000
     let sets: [MasteredSet]
     var flags = true
 
@@ -526,7 +526,11 @@ struct MasteredWordFlow: View {
             block(16)
             block(13)
             block(11)
-            block(9, cap: Self.cap)
+            block(9)
+            block(7)
+            block(6)
+            block(5)
+            block(4, cap: Self.cap)
         }
     }
 
