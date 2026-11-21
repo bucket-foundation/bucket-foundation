@@ -69,6 +69,16 @@ func bodyAction(_ r: URLRequest) -> String? {
         #expect(BucketAPI.sessionError(status: status, data: json(["error": code])) == expected)
     }
 
+    @Test(arguments: [0, 402, 500, 503])
+    func serverDownReadsAsTryLater(status: Int) {
+        #expect(BucketError.server(status, nil).errorDescription == "Bucket is not answering right now. Try again in a few minutes.")
+    }
+
+    @Test func otherStatusesKeepTheirNumber() {
+        #expect(BucketError.server(418, nil).errorDescription == "Bucket answered 418.")
+        #expect(BucketError.server(502, "Held.").errorDescription == "Held.")
+    }
+
     @Test func keepsRateLimitMessage() {
         let e = BucketAPI.sessionError(status: 429, data: json(["error": "too_many_requests", "message": "Wait."]))
         #expect(e == .rateLimited("Wait."))

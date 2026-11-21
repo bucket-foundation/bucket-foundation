@@ -40,6 +40,12 @@ struct AccountView: View {
                         Button("Sign in with email") { emailing = true }
                             .buttonStyle(D8Option(align: .center))
                             .disabled(account.busy)
+                        if account.busy && !emailing {
+                            ProgressView().frame(maxWidth: .infinity)
+                        }
+                        if let error = account.error, !emailing {
+                            Text(error).foregroundStyle(.red).accessibilityIdentifier("signInError")
+                        }
                     } footer: {
                         Text("Sign in with Apple or your email. The same account works on bucket.foundation.")
                     }
@@ -94,11 +100,13 @@ struct AccountView: View {
                     Eyebrow(text: "Developer")
                 }
                 #endif
-                if let error = account.error {
-                    Section { Text(error).foregroundStyle(.red) }
-                }
-                if account.busy {
-                    Section { ProgressView() }
+                if account.stage == .signedIn {
+                    if let error = account.error {
+                        Section { Text(error).foregroundStyle(.red) }
+                    }
+                    if account.busy {
+                        Section { ProgressView() }
+                    }
                 }
                 Section {
                     Link("Privacy and data", destination: Self.privacyURL)
