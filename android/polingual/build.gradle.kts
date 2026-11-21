@@ -63,12 +63,11 @@ android {
             buildConfigField("boolean", "FAKE_PLANS", providers.gradleProperty("fakePlans").orNull ?: "false")
         }
         release {
-            val admob = providers.gradleProperty("polingualAdmobAppId").orNull
-            manifestPlaceholders["admobAppId"] = admob ?: TEST_ADMOB_APP
-            buildConfigField("boolean", "ADS_ENABLED", if (admob != null) "true" else "false")
+            manifestPlaceholders["admobAppId"] = providers.gradleProperty("polingualAdmobAppId").orNull ?: "ca-app-pub-9735211554999350~5629228945"
+            buildConfigField("boolean", "ADS_ENABLED", "true")
             buildConfigField("boolean", "TEST_ADS", "false")
-            buildConfigField("String", "BANNER_UNIT", "\"${providers.gradleProperty("polingualBannerUnit").orNull ?: ""}\"")
-            buildConfigField("String", "INTERSTITIAL_UNIT", "\"${providers.gradleProperty("polingualInterstitialUnit").orNull ?: ""}\"")
+            buildConfigField("String", "BANNER_UNIT", "\"${(providers.gradleProperty("polingualBannerUnit").orNull ?: "ca-app-pub-9735211554999350/4698244474")}\"")
+            buildConfigField("String", "INTERSTITIAL_UNIT", "\"${(providers.gradleProperty("polingualInterstitialUnit").orNull ?: "ca-app-pub-9735211554999350/1693853361")}\"")
             if (canSignRelease) signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
