@@ -14,10 +14,15 @@ const COUNT = `${ASC}/betaGroups/${BETA_GROUP_ID}/betaTesters?limit=1`;
 
 type Reply = { status: number; body?: unknown };
 
-function fake(replies: Reply[], opts: { human?: unknown; total?: number } = {}) {
+function fake(replies: Reply[], opts: { human?: unknown; total?: number; rpc?: Reply } = {}) {
   const calls: { method: string; url: string; body: unknown; auth: string }[] = [];
   const checks: string[] = [];
+  const rpcs: { url: string; body: Record<string, string>; headers: Record<string, string> }[] = [];
   const send = async (url: string, init: RequestInit) => {
+    if (url.includes("/rest/v1/rpc/")) {
+      rpcs.push({ url, body: JSON.parse(String(init.body)), headers: init.headers as Record<string, string> });
+      return new Response(JSON.stringify(opts.rpc?.body ?? true), { status: opts.rpc?.status ?? 200 });
+    }
     if (url.includes("turnstile/v0/siteverify")) {
       checks.push(String(init.body));
       return new Response(JSON.stringify(opts.human ?? { success: true, hostname: "beta.polingual.com" }), { status: 200 });
@@ -28,7 +33,7 @@ function fake(replies: Reply[], opts: { human?: unknown; total?: number } = {}) 
     const r = replies[calls.length - 1] ?? { status: 200 };
     return new Response(r.status === 204 ? null : JSON.stringify(r.body ?? {}), { status: r.status });
   };
-  return { calls, checks, send };
+  return { calls, checks, rpcs, send };
 }
 
 const invite = (f: ReturnType<typeof fake>, e: Record<string, string> = env, req: { origin?: string; ip?: string; token?: string } = site, limits = fresh()) =>
@@ -171,4 +176,35 @@ test("the honeypot answers success without calling Apple", async () => {
   const r = await inviteTester({ email: "a@b.co", website: "spam" }, env, f.send, site, fresh());
   assert.equal(r.status, 200);
   assert.equal(f.calls.length + f.checks.length, 0);
+});
+
+test("the shared database limit decides when POLINGUAL_DB is set", async () => {
+  const db = { ...env, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc" };
+  const limits = { ...fresh(), global: new RateLimiter(0, 3_600_000) };
+  const allowed = fake([{ status: 201 }], { rpc: { status: 200, body: true } });
+  assert.equal((await invite(allowed, db, site, limits)).status, 200);
+  assert.equal(allowed.rpcs.length, 1);
+  assert.equal(allowed.rpcs[0].url, "https://db.example/rest/v1/rpc/record_testflight_attempt");
+  assert.equal(allowed.rpcs[0].headers["Content-Profile"], "polingual");
+  assert.equal(allowed.rpcs[0].headers.apikey, "svc");
+  assert.match(allowed.rpcs[0].body.p_ip_hash, /^[0-9a-f]{64}$/);
+  assert.match(allowed.rpcs[0].body.p_email_hash, /^[0-9a-f]{64}$/);
+  assert.equal(JSON.stringify(allowed.rpcs[0].body).includes("example.com"), false);
+  assert.equal(JSON.stringify(allowed.rpcs[0].body).includes("1.2.3.4"), false);
+
+  const denied = fake([{ status: 201 }], { rpc: { status: 200, body: false } });
+  assert.equal((await invite(denied, db, site, fresh())).status, 429);
+  assert.equal(denied.calls.length, 0);
+
+  const original = console.error;
+  console.error = () => {};
+  try {
+    const broken = fake([{ status: 201 }], { rpc: { status: 500 } });
+    assert.equal((await invite(broken, db, site, fresh())).status, 200);
+    const brokenAndLocalFull = fake([{ status: 201 }], { rpc: { status: 500 } });
+    assert.equal((await invite(brokenAndLocalFull, db, site, limits)).status, 429);
+    assert.equal(brokenAndLocalFull.calls.length, 0);
+  } finally {
+    console.error = original;
+  }
 });

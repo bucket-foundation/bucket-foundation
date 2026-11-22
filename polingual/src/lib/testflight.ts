@@ -1,4 +1,4 @@
-import { createPrivateKey, sign } from "node:crypto";
+import { createHash, createPrivateKey, sign } from "node:crypto";
 import { allowedSource, verifyHuman, RateLimiter, type BetaEnv, type BetaRequest, type Fetcher } from "./beta";
 import { parseSignup } from "./signup";
 
@@ -16,6 +16,39 @@ export const tfIpLimiter = new RateLimiter(5, 10 * 60_000);
 export const tfEmailLimiter = new RateLimiter(3, 60 * 60_000);
 export const tfGlobalLimiter = new RateLimiter(60, 60 * 60_000);
 const DEFAULT_MAX_TESTERS = 9000;
+const DB_TIMEOUT_MS = 3000;
+type Limits = { ip: RateLimiter; email: RateLimiter; global: RateLimiter };
+
+function hashed(kind: string, value: string, env: BetaEnv): string {
+  return createHash("sha256").update(`${env.FOUNDING_IP_SALT?.trim() || "polingual-testflight"}:${kind}:${value}`).digest("hex");
+}
+
+export async function sharedLimit(ip: string, email: string, env: BetaEnv, send: Fetcher): Promise<boolean | null> {
+  const url = env.POLINGUAL_DB_URL?.trim();
+  const key = env.POLINGUAL_DB_SERVICE_KEY?.trim();
+  if (!url || !key) return null;
+  try {
+    const r = await send(`${url}/rest/v1/rpc/record_testflight_attempt`, {
+      method: "POST",
+      headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Content-Profile": "polingual", "Accept-Profile": "polingual" },
+      body: JSON.stringify({ p_ip_hash: hashed("ip", ip, env), p_email_hash: hashed("email", email, env) }),
+      signal: AbortSignal.timeout(DB_TIMEOUT_MS),
+    });
+    if (!r.ok) {
+      console.error("[testflight] limit rpc failed", r.status);
+      return null;
+    }
+    const allowed = await r.json().catch(() => null);
+    return typeof allowed === "boolean" ? allowed : null;
+  } catch {
+    console.error("[testflight] limit rpc unreachable");
+    return null;
+  }
+}
+
+function localLimit(ip: string, email: string, limits: Limits, now?: number): boolean {
+  return limits.ip.take(ip, now) && limits.email.take(email, now) && limits.global.take("all", now);
+}
 
 const TOO_MANY: TestflightResult = { status: 429, body: { error: "Too many signups. Try again later." } };
 const FULL: TestflightResult = { status: 503, body: { error: "The beta is full for now. Use the public link below." } };
@@ -93,18 +126,18 @@ export async function inviteTester(
   env: BetaEnv,
   send: Fetcher = fetch,
   req: BetaRequest = {},
-  limits = { ip: tfIpLimiter, email: tfEmailLimiter, global: tfGlobalLimiter },
+  limits: Limits = { ip: tfIpLimiter, email: tfEmailLimiter, global: tfGlobalLimiter },
 ): Promise<TestflightResult> {
   if (!allowedSource(req.origin, req.referer)) return { status: 403, body: { error: "Sign up from beta.polingual.com." } };
-  if (!limits.ip.take(req.ip || "unknown", req.now)) return TOO_MANY;
   const parsed = parseSignup(body);
   if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   if (parsed.suspect) return SENT;
-  if (!limits.email.take(parsed.signup.email, req.now)) return TOO_MANY;
   const creds = ascCreds(env);
   if (!creds || !env.TURNSTILE_SECRET_KEY?.trim()) return OFFLINE;
   if (!(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
-  if (!limits.global.take("all", req.now)) return TOO_MANY;
+  const ip = req.ip || "unknown";
+  const shared = await sharedLimit(ip, parsed.signup.email, env, send);
+  if (!(shared ?? localLimit(ip, parsed.signup.email, limits, req.now))) return TOO_MANY;
   let token: string;
   try {
     token = ascToken(creds, req.now);
