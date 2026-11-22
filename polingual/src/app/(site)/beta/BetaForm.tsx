@@ -25,7 +25,7 @@ async function request(form: HTMLFormElement): Promise<State> {
   }
 }
 
-export default function BetaForm({ siteKey }: { siteKey: string | null }) {
+export default function BetaForm({ siteKey, fallback }: { siteKey: string | null; fallback: string }) {
   const [state, setState] = useState<State>({ kind: "idle" });
 
   useEffect(() => {
@@ -49,6 +49,13 @@ export default function BetaForm({ siteKey }: { siteKey: string | null }) {
     }
   }
 
+  if (!siteKey) {
+    return (
+      <p className={styles.done} data-testid="testflight-offline">
+        Email invites are offline right now. Open <a href={fallback} rel="noopener">the public TestFlight link</a> on your iPhone.
+      </p>
+    );
+  }
   if (state.kind === "done") {
     return (
       <p className={styles.done} role="status" data-testid="testflight-sent">
@@ -62,7 +69,7 @@ export default function BetaForm({ siteKey }: { siteKey: string | null }) {
         <Input type="email" name="email" autoComplete="email" required placeholder="you@example.com" />
       </Field>
       <input className={styles.hp} tabIndex={-1} autoComplete="off" name="website" aria-hidden="true" />
-      {siteKey ? <div className="cf-turnstile" data-sitekey={siteKey} /> : null}
+      <div className="cf-turnstile" data-sitekey={siteKey} data-testid="turnstile" />
       <Button type="submit" variant="accent" size="md" disabled={state.kind === "sending"}>
         {state.kind === "sending" ? "Sending" : "Send my invite"}
       </Button>

@@ -25,7 +25,7 @@ export default function Page() {
         <li>Open the email from Apple on your iPhone and tap View in TestFlight.</li>
       </ol>
       <Sheet className={styles.sheet}>
-        <BetaForm siteKey={process.env.TURNSTILE_SITE_KEY?.trim() || null} />
+        <BetaForm siteKey={process.env.TURNSTILE_SITE_KEY?.trim() || null} fallback={TESTFLIGHT_JOIN_URL} />
       </Sheet>
       <p className={styles.fallback}>
         No email after ten minutes? Open <a href={TESTFLIGHT_JOIN_URL} rel="noopener">the public TestFlight link</a> on your iPhone.

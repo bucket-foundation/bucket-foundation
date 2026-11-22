@@ -6,25 +6,34 @@ import { APP_ID, ascToken, BETA_GROUP_ID, inviteTester, TESTFLIGHT_JOIN_URL } fr
 
 const { privateKey, publicKey } = generateKeyPairSync("ec", { namedCurve: "P-256" });
 const pem = privateKey.export({ type: "pkcs8", format: "pem" }).toString();
-const env = { ASC_KEY_ID: "KEY123", ASC_ISSUER_ID: "issuer-1", ASC_PRIVATE_KEY: pem.replace(/\n/g, "\\n") };
-const site = { origin: "https://beta.polingual.com", ip: "1.2.3.4" };
-const fresh = () => ({ ip: new RateLimiter(5, 600_000), email: new RateLimiter(3, 3_600_000) });
+const env: Record<string, string> = { ASC_KEY_ID: "KEY123", ASC_ISSUER_ID: "issuer-1", ASC_PRIVATE_KEY: pem.replace(/\n/g, "\\n"), TURNSTILE_SECRET_KEY: "ts" };
+const site = { origin: "https://beta.polingual.com", ip: "1.2.3.4", token: "tok" };
+const fresh = () => ({ ip: new RateLimiter(5, 600_000), email: new RateLimiter(3, 3_600_000), global: new RateLimiter(60, 3_600_000) });
+const ASC = "https://api.appstoreconnect.apple.com/v1";
+const COUNT = `${ASC}/betaGroups/${BETA_GROUP_ID}/betaTesters?limit=1`;
 
 type Reply = { status: number; body?: unknown };
 
-function fake(replies: Reply[]) {
+function fake(replies: Reply[], opts: { human?: unknown; total?: number } = {}) {
   const calls: { method: string; url: string; body: unknown; auth: string }[] = [];
+  const checks: string[] = [];
   const send = async (url: string, init: RequestInit) => {
+    if (url.includes("turnstile/v0/siteverify")) {
+      checks.push(String(init.body));
+      return new Response(JSON.stringify(opts.human ?? { success: true, hostname: "beta.polingual.com" }), { status: 200 });
+    }
+    if (url === COUNT) return new Response(JSON.stringify({ data: [], meta: { paging: { total: opts.total ?? 10, limit: 1 } } }), { status: 200 });
     const headers = init.headers as Record<string, string>;
     calls.push({ method: String(init.method), url, body: init.body ? JSON.parse(String(init.body)) : null, auth: headers?.Authorization ?? "" });
     const r = replies[calls.length - 1] ?? { status: 200 };
     return new Response(r.status === 204 ? null : JSON.stringify(r.body ?? {}), { status: r.status });
   };
-  return { calls, send };
+  return { calls, checks, send };
 }
 
-const invite = (f: ReturnType<typeof fake>, e: Record<string, string> = env, req: { origin?: string; ip?: string } = site) =>
-  inviteTester({ email: "Ana@Example.com" }, e, f.send, req, fresh());
+const invite = (f: ReturnType<typeof fake>, e: Record<string, string> = env, req: { origin?: string; ip?: string; token?: string } = site, limits = fresh()) =>
+  inviteTester({ email: "Ana@Example.com" }, e, f.send, req, limits);
+const emailQ = `filter[email]=${encodeURIComponent("ana@example.com")}`;
 
 test("ascToken signs an ES256 JWT Apple accepts", () => {
   const now = 1_800_000_000_000;
@@ -42,49 +51,103 @@ test("ascToken signs an ES256 JWT Apple accepts", () => {
   assert.equal(verify("sha256", Buffer.from(`${h}.${c}`), { key: publicKey, dsaEncoding: "ieee-p1363" }, sig), true);
 });
 
-test("a new tester is created in the beta group with one call", async () => {
+test("a new tester is created in the beta group after the Turnstile check and group count", async () => {
   const f = fake([{ status: 201 }]);
   const r = await invite(f);
   assert.equal(r.status, 200);
   assert.equal(r.body.join, TESTFLIGHT_JOIN_URL);
+  assert.equal(f.checks.length, 1);
+  const form = new URLSearchParams(f.checks[0]);
+  assert.equal(form.get("secret"), "ts");
+  assert.equal(form.get("response"), "tok");
   assert.equal(f.calls.length, 1);
-  assert.equal(f.calls[0].url, "https://api.appstoreconnect.apple.com/v1/betaTesters");
+  assert.equal(f.calls[0].url, `${ASC}/betaTesters`);
   assert.match(f.calls[0].auth, /^Bearer [\w-]+\.[\w-]+\.[\w-]+$/);
   const data = (f.calls[0].body as { data: { attributes: { email: string }; relationships: { betaGroups: { data: { id: string }[] } } } }).data;
   assert.equal(data.attributes.email, "ana@example.com");
   assert.equal(data.relationships.betaGroups.data[0].id, BETA_GROUP_ID);
 });
 
-test("an existing tester is looked up, added to the group and sent a fresh invite", async () => {
-  const f = fake([{ status: 409, body: { errors: [{ code: "ENTITY_ERROR" }] } }, { status: 200, body: { data: [{ id: "tester-9" }] } }, { status: 204 }, { status: 201 }]);
+test("an existing tester already in the group gets success without a resend", async () => {
+  const f = fake([{ status: 409 }, { status: 200, body: { data: [{ id: "tester-9" }] } }]);
   const r = await invite(f);
   assert.equal(r.status, 200);
-  assert.deepEqual(f.calls.map((c) => c.method), ["POST", "GET", "POST", "POST"]);
-  assert.equal(f.calls[1].url, `https://api.appstoreconnect.apple.com/v1/betaTesters?filter[email]=${encodeURIComponent("ana@example.com")}&limit=1`);
-  assert.equal(f.calls[2].url, `https://api.appstoreconnect.apple.com/v1/betaGroups/${BETA_GROUP_ID}/relationships/betaTesters`);
-  assert.deepEqual(f.calls[2].body, { data: [{ type: "betaTesters", id: "tester-9" }] });
-  assert.equal(f.calls[3].url, "https://api.appstoreconnect.apple.com/v1/betaTesterInvitations");
-  assert.deepEqual(f.calls[3].body, { data: { type: "betaTesterInvitations", relationships: { app: { data: { type: "apps", id: APP_ID } }, betaTester: { data: { type: "betaTesters", id: "tester-9" } } } } });
+  assert.equal(f.calls.length, 2);
+  assert.equal(f.calls[1].url, `${ASC}/betaTesters?${emailQ}&filter[betaGroups]=${BETA_GROUP_ID}&limit=1`);
+  assert.equal(f.calls.some((c) => c.url.endsWith("/betaTesterInvitations")), false);
 });
 
-test("an already invited tester counts as success", async () => {
-  const f = fake([{ status: 409 }, { status: 200, body: { data: [{ id: "t" }] } }, { status: 409 }, { status: 422, body: { errors: [{ detail: "Tester has already been invited" }] } }]);
+test("an existing tester missing from the group is added and sent a fresh invite", async () => {
+  const f = fake([{ status: 409 }, { status: 200, body: { data: [] } }, { status: 200, body: { data: [{ id: "tester-9" }] } }, { status: 204 }, { status: 201 }]);
+  const r = await invite(f);
+  assert.equal(r.status, 200);
+  assert.deepEqual(f.calls.map((c) => c.method), ["POST", "GET", "GET", "POST", "POST"]);
+  assert.equal(f.calls[2].url, `${ASC}/betaTesters?${emailQ}&limit=1`);
+  assert.equal(f.calls[3].url, `${ASC}/betaGroups/${BETA_GROUP_ID}/relationships/betaTesters`);
+  assert.deepEqual(f.calls[3].body, { data: [{ type: "betaTesters", id: "tester-9" }] });
+  assert.equal(f.calls[4].url, `${ASC}/betaTesterInvitations`);
+  assert.deepEqual(f.calls[4].body, { data: { type: "betaTesterInvitations", relationships: { app: { data: { type: "apps", id: APP_ID } }, betaTester: { data: { type: "betaTesters", id: "tester-9" } } } } });
+});
+
+test("an already invited reply on resend counts as success", async () => {
+  const f = fake([{ status: 409 }, { status: 200, body: { data: [] } }, { status: 200, body: { data: [{ id: "t" }] } }, { status: 409 }, { status: 422, body: { errors: [{ detail: "Tester has already been invited" }] } }]);
   assert.equal((await invite(f)).status, 200);
 });
 
-test("missing ASC env returns 503 and calls nothing", async () => {
-  const f = fake([]);
-  const r = await invite(f, { ASC_KEY_ID: "k" });
-  assert.equal(r.status, 503);
-  assert.ok(r.body.error);
-  assert.equal(f.calls.length, 0);
+test("missing ASC or Turnstile env returns 503 and calls nothing", async () => {
+  for (const e of [{ ASC_KEY_ID: "k", TURNSTILE_SECRET_KEY: "ts" }, { ...env, TURNSTILE_SECRET_KEY: "" }]) {
+    const f = fake([]);
+    const r = await invite(f, e);
+    assert.equal(r.status, 503);
+    assert.ok(r.body.error);
+    assert.equal(f.calls.length + f.checks.length, 0);
+  }
 });
 
-test("a bad origin is refused before any Apple call", async () => {
+test("a missing or failed Turnstile token is refused before Apple", async () => {
+  const none = fake([]);
+  assert.equal((await invite(none, env, { origin: site.origin, ip: "1" })).status, 403);
+  assert.equal(none.calls.length, 0);
+  const failed = fake([], { human: { success: false } });
+  assert.equal((await invite(failed)).status, 403);
+  assert.equal(failed.calls.length, 0);
+  const foreign = fake([], { human: { success: true, hostname: "evil.example" } });
+  assert.equal((await invite(foreign)).status, 403);
+  assert.equal(foreign.calls.length, 0);
+});
+
+test("a bad origin is refused before any call", async () => {
   const f = fake([]);
-  assert.equal((await invite(f, env, { origin: "https://evil.example", ip: "1" })).status, 403);
-  assert.equal((await invite(f, env, { ip: "2" })).status, 403);
+  assert.equal((await invite(f, env, { origin: "https://evil.example", ip: "1", token: "tok" })).status, 403);
+  assert.equal((await invite(f, env, { ip: "2", token: "tok" })).status, 403);
+  assert.equal(f.calls.length + f.checks.length, 0);
+});
+
+test("per-IP, per-email and global limits return 429", async () => {
+  const limits = fresh();
+  const ip = fake([]);
+  for (let i = 0; i < 3; i++) assert.equal((await inviteTester({ email: `a${i}@b.co` }, env, ip.send, site, limits)).status, 200);
+  assert.equal((await invite(ip, env, site, limits)).status, 200);
+  assert.equal((await invite(ip, env, site, limits)).status, 200);
+  assert.equal((await inviteTester({ email: "z@b.co" }, env, ip.send, site, limits)).status, 429);
+
+  const mail = fresh();
+  for (let i = 0; i < 3; i++) assert.equal((await invite(fake([]), env, { ...site, ip: `m${i}` }, mail)).status, 200);
+  assert.equal((await invite(fake([]), env, { ...site, ip: "m9" }, mail)).status, 429);
+
+  const global = { ...fresh(), global: new RateLimiter(1, 3_600_000) };
+  assert.equal((await inviteTester({ email: "g1@b.co" }, env, fake([]).send, { ...site, ip: "g1" }, global)).status, 200);
+  const blocked = fake([]);
+  assert.equal((await inviteTester({ email: "g2@b.co" }, env, blocked.send, { ...site, ip: "g2" }, global)).status, 429);
+  assert.equal(blocked.calls.length, 0);
+});
+
+test("a full beta group stops new testers before Apple creates one", async () => {
+  const f = fake([], { total: 9000 });
+  assert.equal((await invite(f)).status, 503);
   assert.equal(f.calls.length, 0);
+  const custom = fake([{ status: 201 }], { total: 9000 });
+  assert.equal((await invite(custom, { ...env, TESTFLIGHT_MAX_TESTERS: "9500" })).status, 200);
 });
 
 test("an Apple error returns 502 and logs only the status", async () => {
@@ -92,17 +155,14 @@ test("an Apple error returns 502 and logs only the status", async () => {
   const original = console.error;
   console.error = (...args: unknown[]) => void logged.push(args);
   try {
-    const r = await invite(fake([{ status: 500 }]));
-    assert.equal(r.status, 502);
-    assert.ok(r.body.error);
-    const lookup = await invite(fake([{ status: 409 }, { status: 200, body: { data: [] } }]));
-    assert.equal(lookup.status, 502);
-    const resend = await invite(fake([{ status: 409 }, { status: 200, body: { data: [{ id: "t" }] } }, { status: 204 }, { status: 403 }]));
-    assert.equal(resend.status, 502);
+    assert.equal((await invite(fake([{ status: 500 }]))).status, 502);
+    assert.equal((await invite(fake([{ status: 409 }, { status: 500 }]))).status, 502);
+    assert.equal((await invite(fake([{ status: 409 }, { status: 200, body: { data: [] } }, { status: 200, body: { data: [] } }]))).status, 502);
+    assert.equal((await invite(fake([{ status: 409 }, { status: 200, body: { data: [] } }, { status: 200, body: { data: [{ id: "t" }] } }, { status: 204 }, { status: 403 }]))).status, 502);
   } finally {
     console.error = original;
   }
-  assert.ok(logged.length >= 3);
+  assert.ok(logged.length >= 4);
   assert.equal(JSON.stringify(logged).includes("example.com"), false);
 });
 
@@ -110,5 +170,5 @@ test("the honeypot answers success without calling Apple", async () => {
   const f = fake([]);
   const r = await inviteTester({ email: "a@b.co", website: "spam" }, env, f.send, site, fresh());
   assert.equal(r.status, 200);
-  assert.equal(f.calls.length, 0);
+  assert.equal(f.calls.length + f.checks.length, 0);
 });
