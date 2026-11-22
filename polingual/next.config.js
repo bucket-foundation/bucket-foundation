@@ -6,7 +6,7 @@ const SYNC_BASE = (process.env.POLINGUAL_SYNC_BASE || "https://www.bucket.founda
 const nextConfig = {
   async rewrites() {
     return {
-      beforeFiles: [{ source: "/", destination: "/d8/index.html" }, ...SITE_LANGS.map((l) => ({ source: `/${l}`, destination: `/d8/${l}.html` }))],
+      beforeFiles: [{ source: "/", has: [{ type: "host", value: "beta.polingual.com" }], destination: "/beta" }, { source: "/", destination: "/d8/index.html" }, ...SITE_LANGS.map((l) => ({ source: `/${l}`, destination: `/d8/${l}.html` }))],
       afterFiles: [
         { source: "/api/academy/:path*", destination: `${SYNC_BASE}/api/academy/:path*` },
         { source: "/academy-app/:path*", destination: `${SYNC_BASE}/academy-app/:path*` },

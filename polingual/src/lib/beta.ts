@@ -7,7 +7,7 @@ type BetaResult = { status: number; body: { ok?: true; error?: string; appStore?
 
 const API = "https://api.resend.com";
 export const UNSUBSCRIBE = "To leave the beta list, email privacy@polingual.com and we remove your address.";
-const ALLOWED_HOSTS = new Set(["polingual.com", "www.polingual.com"]);
+const ALLOWED_HOSTS = new Set(["polingual.com", "www.polingual.com", "beta.polingual.com"]);
 
 export type BetaRequest = { origin?: string | null; referer?: string | null; ip?: string | null; now?: number; token?: string | null };
 const HUMAN_TIMEOUT_MS = 3000;
@@ -42,7 +42,7 @@ export class RateLimiter {
 
 export const ipLimiter = new RateLimiter(5, 10 * 60_000);
 export const emailLimiter = new RateLimiter(2, 60 * 60_000);
-const TOO_MANY: BetaResult = { status: 429, body: { error: "Too many signups. Try again later." } };
+export const TOO_MANY: BetaResult = { status: 429, body: { error: "Too many signups. Try again later." } };
 
 export function welcomeEmail(to: string, from: string) {
   return {
@@ -67,7 +67,7 @@ export async function verifyHuman(token: string | null | undefined, ip: string |
     const r = await send("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form, signal: AbortSignal.timeout(HUMAN_TIMEOUT_MS) });
     if (!r.ok) return false;
     const j = (await r.json()) as { success?: boolean; hostname?: string };
-    return j.success === true && (!j.hostname || j.hostname === "polingual.com" || j.hostname === "www.polingual.com");
+    return j.success === true && (!j.hostname || ALLOWED_HOSTS.has(j.hostname));
   } catch {
     return false;
   }
