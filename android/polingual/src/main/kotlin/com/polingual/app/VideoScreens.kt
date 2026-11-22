@@ -63,8 +63,8 @@ class VideoRepo(private val context: Context, private val base: String = BASE) {
     suspend fun video(id: String): VideoDoc = withContext(Dispatchers.IO) {
         val safe = id.filter { it.isLetterOrDigit() || it == '-' || it == '_' }
         runCatching { VideoLogic.parseDoc(fetch("$base/videos/$safe.json")) }.getOrNull()?.takeIf { it.cues.isNotEmpty() }
-            ?: runCatching { VideoLogic.parseDoc(asset("videos/$safe.json")) }.getOrNull()
-            ?: VideoLogic.parseDoc(asset("videos/sample.json"))
+            ?: VideoLogic.parseDoc(asset("videos/sample.json")).takeIf { it.id == safe }
+            ?: throw NoSuchElementException("video $safe")
     }
 
     private fun asset(path: String): String = context.assets.open(path).bufferedReader().use { it.readText() }
@@ -132,6 +132,22 @@ class PlayerBridge {
     fun ready() { onReady() }
 }
 
+object PlayerHosts {
+    private val allowed = listOf("youtube.com", "youtube-nocookie.com", "ytimg.com", "googlevideo.com", "polingual.com")
+
+    fun allows(url: String): Boolean {
+        if (url == "about:blank") return true
+        val uri = runCatching { java.net.URI(url) }.getOrNull() ?: return false
+        if (uri.scheme != "https") return false
+        val host = uri.host?.lowercase() ?: return false
+        return allowed.any { host == it || host.endsWith(".$it") }
+    }
+}
+
+class PlayerClient : android.webkit.WebViewClient() {
+    override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest): Boolean = !PlayerHosts.allows(request.url.toString())
+}
+
 fun playerHtml(videoId: String): String = """
 <!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>html,body{margin:0;height:100%;background:#000}#p{width:100%;height:100%}</style></head>
@@ -149,6 +165,10 @@ fun YouTubePlayer(videoId: String, seek: Pair<Int, Double>?, onTime: (Double) ->
     val bridge = remember { PlayerBridge() }
     bridge.onTime = onTime
     var web by remember { mutableStateOf<WebView?>(null) }
+    var ready by remember { mutableStateOf(false) }
+    val host = androidx.compose.ui.platform.LocalView.current
+    bridge.onReady = { host.post { ready = true } }
+    val owner = androidx.lifecycle.compose.LocalLifecycleOwner.current
     AndroidView(
         modifier = modifier,
         factory = { ctx ->
@@ -157,14 +177,35 @@ fun YouTubePlayer(videoId: String, seek: Pair<Int, Double>?, onTime: (Double) ->
                 settings.mediaPlaybackRequiresUserGesture = false
                 settings.domStorageEnabled = true
                 webChromeClient = WebChromeClient()
+                webViewClient = PlayerClient()
                 addJavascriptInterface(bridge, "Android")
                 loadDataWithBaseURL(VideoRepo.BASE, playerHtml(videoId.filter { it.isLetterOrDigit() || it == '-' || it == '_' }), "text/html", "utf-8", null)
                 web = this
             }
         },
     )
-    LaunchedEffect(seek) { seek?.let { (_, t) -> web?.evaluateJavascript("seekTo($t)", null) } }
-    DisposableEffect(Unit) { onDispose { web?.destroy() } }
+    LaunchedEffect(seek, ready) { if (ready) seek?.let { (_, t) -> web?.evaluateJavascript("seekTo($t)", null) } }
+    DisposableEffect(owner) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            when (event) {
+                androidx.lifecycle.Lifecycle.Event.ON_PAUSE -> web?.let { it.evaluateJavascript("if(player&&player.pauseVideo){player.pauseVideo()}", null); it.onPause() }
+                androidx.lifecycle.Lifecycle.Event.ON_RESUME -> web?.onResume()
+                else -> Unit
+            }
+        }
+        owner.lifecycle.addObserver(observer)
+        onDispose {
+            owner.lifecycle.removeObserver(observer)
+            web?.let { w ->
+                w.stopLoading()
+                w.removeJavascriptInterface("Android")
+                (w.parent as? android.view.ViewGroup)?.removeView(w)
+                w.loadUrl("about:blank")
+                w.destroy()
+            }
+            web = null
+        }
+    }
 }
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalFoundationApi::class)
@@ -229,11 +270,14 @@ fun VideoScreen(graph: Graph, id: String, back: () -> Unit) {
                                         onClick = { seeks += 1; seek = seeks to cue.start },
                                         onLongClick = {
                                             val w = VideoLogic.clean(token)
-                                            saved = VideoLogic.addSaved(saved, SavedWord(w, l, d.id, cue.start))
-                                            storeSaved(graph, saved)
-                                            graph.rewards.addXp(2)
-                                            graph.rewards.tap(view)
-                                            toast = "Saved $w"
+                                            val next = VideoLogic.addSaved(saved, SavedWord(w, l, d.id, cue.start))
+                                            if (next.size > saved.size) {
+                                                saved = next
+                                                storeSaved(graph, saved)
+                                                graph.rewards.addXp(SAVE_XP)
+                                                graph.rewards.tap(view)
+                                                toast = "Saved $w"
+                                            } else if (w.isNotBlank()) toast = "$w is saved"
                                         },
                                     ),
                                 )
@@ -255,3 +299,4 @@ fun storeSaved(graph: Graph, list: List<SavedWord>) {
 }
 
 const val SAVED_KEY = "video.saved"
+const val SAVE_XP = 2

@@ -48,14 +48,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlin.math.cos
 import kotlin.math.sin
 
-class Rewards(private val kv: KeyValue) {
+class Rewards(private val kv: KeyValue, private val day: () -> String = ::today) {
     private val _muted = MutableStateFlow(kv.get(MUTE) == "1")
     val muted: StateFlow<Boolean> = _muted
     private val _streak = MutableStateFlow(kv.get(STREAK)?.toIntOrNull() ?: 0)
     val streak: StateFlow<Int> = _streak
     private val _xp = MutableStateFlow(kv.get(XP)?.toIntOrNull() ?: 0)
     val xp: StateFlow<Int> = _xp
-    private val tones = runCatching { ToneGenerator(AudioManager.STREAM_MUSIC, 60) }.getOrNull()
+    private var tones: ToneGenerator? = null
 
     fun toggleMute() {
         _muted.value = !_muted.value
@@ -65,11 +65,11 @@ class Rewards(private val kv: KeyValue) {
     fun addXp(gain: Int) {
         _xp.value += gain
         kv.set(XP, _xp.value.toString())
-        val day = today()
-        val next = DayStreak.next(kv.get(STREAK_DAY), _streak.value, day)
+        val d = day()
+        val next = DayStreak.next(kv.get(STREAK_DAY), _streak.value, d)
         _streak.value = next
         kv.set(STREAK, next.toString())
-        kv.set(STREAK_DAY, day)
+        kv.set(STREAK_DAY, d)
     }
 
     fun correct(view: View, combo: Int) {
@@ -93,7 +93,16 @@ class Rewards(private val kv: KeyValue) {
     }
 
     private fun tone(kind: Int, ms: Int) {
-        if (!_muted.value) runCatching { tones?.startTone(kind, ms) }
+        if (_muted.value) return
+        runCatching {
+            val t = tones ?: ToneGenerator(AudioManager.STREAM_MUSIC, 60).also { tones = it }
+            t.startTone(kind, ms)
+        }
+    }
+
+    fun release() {
+        tones?.release()
+        tones = null
     }
 
     companion object {

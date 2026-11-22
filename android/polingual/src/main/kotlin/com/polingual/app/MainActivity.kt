@@ -21,6 +21,11 @@ class MainActivity : ComponentActivity() {
         setContent { PolingualTheme { androidx.compose.runtime.CompositionLocalProvider(LocalGraph provides graph) { Root(graph, link.value) { link.value = null } } } }
     }
 
+    override fun onStop() {
+        super.onStop()
+        (application as PolingualApp).graph.rewards.release()
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         link.value = Link.from(intent)
