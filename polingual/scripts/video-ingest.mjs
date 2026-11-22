@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildVideo, cuesFrom, indexEntry, mergeTranslations, parseJsonArray, validateVideo, VIDEO_LANGS } from "./video-lib.mjs";
+import { buildVideo, isCreativeCommons, cuesFrom, indexEntry, mergeTranslations, parseJsonArray, validateVideo, VIDEO_LANGS } from "./video-lib.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(here, "..", "public", "videos");
@@ -57,6 +57,7 @@ async function translate(api, lines, from, to) {
 
 async function ingest(dir, o, api) {
   const meta = JSON.parse(readFileSync(path.join(dir, "metadata.json"), "utf8"));
+  if (!isCreativeCommons(meta)) throw new Error(`${meta.id}: license "${meta.license ?? "unknown"}" is not Creative Commons, refusing`);
   const chunks = JSON.parse(readFileSync(path.join(dir, "transcript.json"), "utf8"));
   let cues = cuesFrom(chunks, o.source);
   const lines = cues.map((c) => c.text[o.source]);

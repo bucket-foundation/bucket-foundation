@@ -10,6 +10,8 @@ export interface Video {
   channel: string;
   duration: number;
   source_lang: string;
+  license: string;
+  source_url: string;
   langs: string[];
   cues: VideoCue[];
 }
@@ -21,6 +23,8 @@ export interface VideoSummary {
   duration: number;
   langs: string[];
   thumb: string;
+  license: string;
+  source_url: string;
 }
 
 export interface SavedWord {
@@ -102,6 +106,10 @@ export function writeJson(key: string, value: unknown): void {
   } catch {
     return;
   }
+}
+
+export function licenseLabel(license: string): string {
+  return /creative commons attribution/i.test(license) ? "CC BY" : license.replace(/\s*\(.*\)$/, "");
 }
 
 export function clock(sec: number): string {

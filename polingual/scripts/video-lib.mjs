@@ -18,6 +18,10 @@ export function mergeTranslations(cues, lang, lines) {
   return cues.map((c, i) => ({ ...c, text: { ...c.text, [lang]: String(lines[i]).trim() } }));
 }
 
+export function isCreativeCommons(meta) {
+  return /creative commons/i.test(String(meta?.license ?? ""));
+}
+
 export function buildVideo({ meta, cues, sourceLang, langs }) {
   const have = langs.filter((l) => cues.every((c) => c.text[l]));
   return {
@@ -26,18 +30,22 @@ export function buildVideo({ meta, cues, sourceLang, langs }) {
     channel: meta.channel ?? meta.uploader ?? "",
     duration: Math.round(Number(meta.duration) || (cues.at(-1)?.end ?? 0)),
     source_lang: sourceLang,
+    license: meta.license ?? "",
+    source_url: meta.webpage_url ?? `https://www.youtube.com/watch?v=${meta.id}`,
     langs: have,
     cues,
   };
 }
 
 export function indexEntry(video, thumb) {
-  return { id: video.id, title: video.title, channel: video.channel, duration: video.duration, langs: video.langs, thumb };
+  return { id: video.id, title: video.title, channel: video.channel, duration: video.duration, langs: video.langs, thumb, license: video.license, source_url: video.source_url };
 }
 
 export function validateVideo(v) {
   const errors = [];
-  for (const k of ["id", "title", "channel", "duration", "source_lang", "langs", "cues"]) if (!(k in v)) errors.push(`missing ${k}`);
+  for (const k of ["id", "title", "channel", "duration", "source_lang", "license", "source_url", "langs", "cues"]) if (!(k in v)) errors.push(`missing ${k}`);
+  if (!isCreativeCommons(v)) errors.push("license is not Creative Commons");
+  if (!/^https:\/\/(www\.)?youtube\.com\//.test(String(v.source_url ?? ""))) errors.push("missing source_url");
   if (!Array.isArray(v.cues) || v.cues.length === 0) errors.push("no cues");
   else
     v.cues.forEach((c, i) => {

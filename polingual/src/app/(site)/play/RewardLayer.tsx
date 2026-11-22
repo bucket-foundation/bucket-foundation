@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { StreakFlame } from "@/ui";
+import { SilentSwitch, StreakFlame } from "@/ui";
 import { play, type Cue } from "@/lib/lobby/sound";
 import { applyReward, dayKey, EMPTY_REWARD, readReward, REWARD_EVENT, writeReward, type RewardKind, type RewardState } from "@/lib/reward";
 import s from "./reward.module.css";
@@ -77,8 +77,9 @@ export default function RewardLayer() {
         ) : null}
         <span className={s.xp} data-testid="xp-total">{state.xp} XP</span>
         {state.streak > 0 ? <StreakFlame days={state.streak} caption="day" onDark size={26} /> : null}
+        <span className={s.mute}><SilentSwitch onDark compact /></span>
       </div>
-      <div className={s.pops} aria-live="polite">
+      <div className={s.pops} aria-hidden="true">
         {pops.map((p) => (
           <span key={p.id} className={s.pop} data-testid="xp-pop">
             +{p.gained} XP

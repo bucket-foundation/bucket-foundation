@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Pill, ProgressRing } from "@/ui";
 import { learnEntry, learnHref } from "@/lib/lobby/learn-index";
-import { cleanTitle, clock, toggleLang, words, type SavedWord, type Video } from "@/lib/video";
+import { cleanTitle, clock, licenseLabel, toggleLang, words, type SavedWord, type Video } from "@/lib/video";
 import { FlagSquare } from "../LearnWord";
 import { langName } from "../langs";
 import { useLearnIndex } from "../useLearn";
@@ -110,7 +110,7 @@ function Transcript({ video, failed, langs, setLangs, active, seek, saved, onWor
 
 export default function VideoRoom({ id }: { id: string }) {
   const host = useRef<HTMLDivElement>(null);
-  const { time, seek, ready } = useYouTube(host, id);
+  const { time, seek, ready, failed: playerFailed } = useYouTube(host, id);
   const { video, failed, langs, setLangs } = useVideoData(id);
   const { active, pct, addWord } = useVideoProgress(id, video, time);
   const { mine, keys, save } = useSavedWords(id, addWord);
@@ -126,12 +126,15 @@ export default function VideoRoom({ id }: { id: string }) {
           <ProgressRing value={pct} size={48} label={`${Math.round(pct * 100)} percent watched`}>{Math.round(pct * 100)}%</ProgressRing>
           <div className={s.metaText}>
             <h1 className={s.title}>{title}</h1>
-            <p className={s.channel}>{video ? `${video.channel} · ${clock(video.duration)} · CC BY` : ""}</p>
+            <p className={s.channel}>
+              {video ? `${video.channel} · ${clock(video.duration)} · ` : null}
+              {video ? <a href={video.source_url} target="_blank" rel="noopener noreferrer" data-testid="video-license">{licenseLabel(video.license)}</a> : null}
+            </p>
           </div>
         </header>
         <SavedStrip mine={mine} />
       </section>
-      <Transcript video={video} failed={failed} langs={langs} setLangs={setLangs} active={active} seek={seek} saved={keys} onWord={onWord} />
+      <Transcript video={video} failed={failed || playerFailed} langs={langs} setLangs={setLangs} active={active} seek={seek} saved={keys} onWord={onWord} />
     </div>
   );
 }

@@ -9,3 +9,4 @@
 @keyframes bump{0%{transform:scale(.6)}100%{transform:scale(1)}}
 @keyframes fall{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(var(--drift),105vh) rotate(var(--spin));opacity:.9}}
 @media (prefers-reduced-motion:reduce){.pop,.combo,.confetti i{animation-duration:.01ms}.confetti{display:none}}
+.mute{pointer-events:auto;display:inline-flex}

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildVideo, cuesFrom, indexEntry, mergeTranslations, parseJsonArray, toSeconds, validateVideo, VIDEO_LANGS } from "./video-lib.mjs";
+import { buildVideo, isCreativeCommons, cuesFrom, indexEntry, mergeTranslations, parseJsonArray, toSeconds, validateVideo, VIDEO_LANGS } from "./video-lib.mjs";
 
 const videos = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "public", "videos");
 
@@ -19,11 +19,11 @@ test("chunks become cues with translations merged", () => {
   const merged = mergeTranslations(cues, "en", ["Hello"]);
   assert.deepEqual(merged[0].text, { es: "Hola", en: "Hello" });
   assert.throws(() => mergeTranslations(cues, "fr", []));
-  const v = buildVideo({ meta: { id: "abc", title: "T", channel: "C", duration: 9.6 }, cues: merged, sourceLang: "es", langs: ["es", "en", "fr"] });
+  const v = buildVideo({ meta: { id: "abc", title: "T", channel: "C", duration: 9.6, license: "Creative Commons Attribution license (reuse allowed)", webpage_url: "https://www.youtube.com/watch?v=abc" }, cues: merged, sourceLang: "es", langs: ["es", "en", "fr"] });
   assert.deepEqual(v.langs, ["es", "en"]);
   assert.equal(v.duration, 10);
   assert.deepEqual(validateVideo(v), []);
-  assert.deepEqual(Object.keys(indexEntry(v, "/videos/abc.jpg")), ["id", "title", "channel", "duration", "langs", "thumb"]);
+  assert.deepEqual(Object.keys(indexEntry(v, "/videos/abc.jpg")), ["id", "title", "channel", "duration", "langs", "thumb", "license", "source_url"]);
 });
 
 test("json arrays parse out of chatty replies", () => {
@@ -40,4 +40,11 @@ test("seeded videos match the shared schema in every required language", () => {
     for (const l of VIDEO_LANGS) assert.ok(v.langs.includes(l), `${f} lacks ${l}`);
     assert.ok(index.some((e) => e.id === v.id), `${f} missing from index`);
   }
+});
+
+test("only Creative Commons videos pass", () => {
+  assert.equal(isCreativeCommons({ license: "Creative Commons Attribution license (reuse allowed)" }), true);
+  assert.equal(isCreativeCommons({ license: "Standard YouTube License" }), false);
+  assert.equal(isCreativeCommons({}), false);
+  assert.ok(validateVideo({ id: "a", title: "t", channel: "c", duration: 1, source_lang: "es", license: "Standard", source_url: "x", langs: [], cues: [{ start: 0, end: 1, text: {} }] }).includes("license is not Creative Commons"));
 });

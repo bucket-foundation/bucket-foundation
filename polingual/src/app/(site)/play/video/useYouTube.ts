@@ -24,16 +24,25 @@ let loading: Promise<YTApi> | null = null;
 
 function loadApi(): Promise<YTApi> {
   if (window.YT?.Player) return Promise.resolve(window.YT);
-  loading ??= new Promise((resolve) => {
+  loading ??= new Promise<YTApi>((resolve, reject) => {
+    const timer = window.setTimeout(() => reject(new Error("YouTube player timed out")), 15000);
     const prev = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = () => {
       prev?.();
+      window.clearTimeout(timer);
       if (window.YT) resolve(window.YT);
     };
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     tag.async = true;
+    tag.onerror = () => {
+      window.clearTimeout(timer);
+      reject(new Error("YouTube player failed to load"));
+    };
     document.head.appendChild(tag);
+  });
+  loading.catch(() => {
+    loading = null;
   });
   return loading;
 }
@@ -42,6 +51,7 @@ export function useYouTube(host: RefObject<HTMLDivElement | null>, videoId: stri
   const player = useRef<YTPlayer | null>(null);
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     let live = true;
@@ -62,7 +72,7 @@ export function useYouTube(host: RefObject<HTMLDivElement | null>, videoId: stri
         const t = player.current?.getCurrentTime?.();
         if (typeof t === "number") setTime(t);
       }, 200);
-    });
+    }, () => live && setFailed(true));
     return () => {
       live = false;
       window.clearInterval(timer);
@@ -78,5 +88,5 @@ export function useYouTube(host: RefObject<HTMLDivElement | null>, videoId: stri
     player.current?.playVideo();
   }, []);
 
-  return { time, seek, ready };
+  return { time, seek, ready, failed };
 }
