@@ -36,9 +36,10 @@ public final class FileRefreshLock: RefreshLock, @unchecked Sendable {
     let suspension: SuspensionGuard?
     private let state = NSLock()
     private var held = false
+    private var expired = false
     private var endHold: (@Sendable () -> Void)?
 
-    public init?(path: URL, wait: Duration = .seconds(10), suspension: SuspensionGuard? = ExpiringActivityGuard()) {
+    public init?(path: URL, wait: Duration = .seconds(BucketAPI.refreshTimeout + 5), suspension: SuspensionGuard? = ExpiringActivityGuard()) {
         try? FileManager.default.createDirectory(at: path.deletingLastPathComponent(), withIntermediateDirectories: true)
         let fd = open(path.path, O_RDWR | O_CREAT | O_CLOEXEC, 0o600)
         guard fd >= 0 else { return nil }
@@ -60,26 +61,54 @@ public final class FileRefreshLock: RefreshLock, @unchecked Sendable {
     public var isHeld: Bool { state.withLock { held } }
 
     public func acquire() async {
+        state.withLock { expired = false }
+        let end = suspension?.hold { [weak self] in self?.expire() }
+        let gone = state.withLock { () -> Bool in
+            if !expired { endHold = end }
+            return expired
+        }
+        if gone {
+            end?()
+            return
+        }
         let deadline = ContinuousClock.now.advanced(by: wait)
-        while flock(fd, LOCK_EX | LOCK_NB) != 0 {
-            guard errno == EWOULDBLOCK || errno == EINTR, ContinuousClock.now < deadline else { return }
+        while true {
+            let busy = state.withLock { () -> Bool in
+                if expired { return false }
+                if flock(fd, LOCK_EX | LOCK_NB) == 0 {
+                    held = true
+                    return false
+                }
+                return errno == EWOULDBLOCK || errno == EINTR
+            }
+            guard busy, ContinuousClock.now < deadline, !Task.isCancelled else { break }
             try? await Task.sleep(for: .milliseconds(50))
         }
-        state.withLock { held = true }
-        let end = suspension?.hold { [weak self] in self?.release() }
-        let stale = state.withLock { () -> Bool in
-            guard held else { return true }
-            endHold = end
-            return false
-        }
-        if stale { end?() }
+        if !isHeld { finishHold() }
     }
 
     public func release() {
-        let end = state.withLock { () -> (@Sendable () -> Void)? in
-            guard held else { return nil }
+        state.withLock {
+            guard held else { return }
             held = false
             flock(fd, LOCK_UN)
+        }
+        finishHold()
+    }
+
+    func expire() {
+        state.withLock {
+            expired = true
+            if held {
+                held = false
+                flock(fd, LOCK_UN)
+            }
+        }
+        finishHold()
+    }
+
+    private func finishHold() {
+        let end = state.withLock { () -> (@Sendable () -> Void)? in
             defer { endHold = nil }
             return endHold
         }

@@ -169,7 +169,7 @@ public struct BucketAPI: Sendable {
     }
 
     public func refresh(_ s: Session) async throws -> Session {
-        let data = try await session(["action": "refresh", "refresh_token": s.refreshToken])
+        let data = try await session(["action": "refresh", "refresh_token": s.refreshToken], timeout: Self.refreshTimeout)
         return try decodeBody(data)
     }
 
@@ -226,8 +226,11 @@ public struct BucketAPI: Sendable {
         return try decode(data, http)
     }
 
-    func session(_ body: [String: String], token: String? = nil) async throws -> Data {
+    public static let refreshTimeout: TimeInterval = 20
+
+    func session(_ body: [String: String], token: String? = nil, timeout: TimeInterval? = nil) async throws -> Data {
         var r = URLRequest(url: base.appending(path: "api/academy/session"))
+        if let timeout { r.timeoutInterval = timeout }
         r.httpMethod = "POST"
         if let token { r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization") }
         r.setValue("application/json", forHTTPHeaderField: "content-type")
