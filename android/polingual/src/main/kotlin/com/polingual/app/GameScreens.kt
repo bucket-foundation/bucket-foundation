@@ -88,7 +88,7 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    Page(kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }) {
+    PlayPage(kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, trailing = { RewardBar(graph.rewards) }) {
         val c = ctx
         if (c == null) Text("Start a language set in Learn. The games use the words you study.", color = LocalPalette.current.muted) else content(c)
     }
@@ -123,6 +123,10 @@ fun GameScreen(graph: Graph, kind: GameKind, back: () -> Unit) {
 @Composable
 fun Finished(title: String, line: String, results: List<Boolean>, total: Int, again: (() -> Unit)?) {
     val p = LocalPalette.current
+    val fx = LocalPlayFx.current
+    val view = rememberHost()
+    val graph = LocalGraph.current
+    LaunchedEffect(title) { fx.burst(); graph?.rewards?.finish(view) }
     Text(title, style = Type.display, color = p.ink)
     ResultDots(results, total)
     Text(line, color = p.muted)
@@ -133,6 +137,10 @@ fun Finished(title: String, line: String, results: List<Boolean>, total: Int, ag
 fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePrompt>) {
     var seed by remember { mutableIntStateOf(0) }
     val round = remember(seed) { QuizRound(build()) }
+    val combo = remember(seed) { Combo() }
+    var gain by remember { mutableIntStateOf(0) }
+    var pops by remember { mutableIntStateOf(0) }
+    val view = rememberHost()
     var tick by remember { mutableIntStateOf(0) }
     val scope = rememberCoroutineScope()
     val p = LocalPalette.current
@@ -144,7 +152,11 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         return
     }
     val prompt = round.current!!
-    ResultDots(round.results, round.prompts.size)
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        androidx.compose.foundation.layout.Box(Modifier.weight(1f)) { ResultDots(round.results, round.prompts.size) }
+        if (combo.streak >= 2) ComboBadge(combo.streak)
+    }
+    XpPop(gain, pops)
     when (prompt.mode) {
         PromptMode.Form -> {
             Text("Which is ${Lang.name(prompt.word.lang)} for", color = p.muted)
@@ -174,6 +186,15 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         }
         ChoiceButton(label, state) {
             round.answer(choice)
+            if (choice == prompt.answer) {
+                gain = combo.hit()
+                pops += 1
+                graph.rewards.addXp(gain)
+                graph.rewards.correct(view, combo.streak)
+            } else {
+                combo.miss()
+                graph.rewards.wrong(view)
+            }
             tick += 1
             if (prompt.mode == PromptMode.Form) graph.voice.speak(prompt.word.form, prompt.word.lang)
             scope.launch { delay(if (choice == prompt.answer) 700 else 1500); round.advance(); tick += 1 }

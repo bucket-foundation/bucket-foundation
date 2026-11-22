@@ -26,6 +26,8 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
         val kind = GameKind.entries.firstOrNull { it.route == e.arguments?.getString("kind") }
         if (kind == null) androidx.compose.runtime.LaunchedEffect(Unit) { nav.popBackStack() } else GameScreen(graph, kind) { nav.popBackStack() }
     }
+    composable("videos") { VideoListScreen(graph, nav) }
+    composable("video/{id}") { e -> VideoScreen(graph, e.arguments?.getString("id").orEmpty()) { nav.popBackStack() } }
     composable("word/{id}") { e -> WordDetailScreen(graph, e.arguments?.getString("id").orEmpty()) { nav.popBackStack() } }
     composable("translate?text={text}", arguments = listOf(navArgument("text") { type = NavType.StringType; defaultValue = "" })) { e ->
         TranslateScreen(graph, e.arguments?.getString("text").orEmpty()) { nav.popBackStack() }
@@ -52,6 +54,8 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
     }
     TodayMore(graph, nav)
     SectionTitle("Daily games")
+    RewardBar(graph.rewards)
+    VideoTile { nav.navigate("videos") }
     GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> foundation.bucket.core.model.Lang.info[l]?.latin == false } }.forEach { k ->
         val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
         GameTile(k, played) { nav.navigate("game/${k.route}") }
