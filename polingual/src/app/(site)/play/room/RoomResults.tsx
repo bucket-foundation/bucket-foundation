@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { emitReward } from "@/lib/reward";
 import { LEARN_HREF, myScore, standings } from "@/lib/lobby/client";
 import { secondsUntil } from "@/lib/lobby/room";
 import { Button, ButtonLink } from "@/ui";
@@ -15,6 +17,7 @@ import type { LiveRoom } from "./useRoomGame";
 export function RoomResults({ g }: { g: LiveRoom }) {
   const { lobby, breaks } = g;
   const board = standings(lobby);
+  useEffect(() => emitReward("round-end"), []);
   const guest = g.state.status === "ready" && g.state.identity.kind === "guest";
   return (
     <div className={app.stack} data-testid="results">

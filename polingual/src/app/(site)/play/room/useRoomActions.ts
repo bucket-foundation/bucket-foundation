@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import { answeredRound, LobbyError, shareUrl, type LobbyApi, type WebLobbyState } from "@/lib/lobby/client";
 import type { Picked } from "@/lib/lobby/room";
-import { play, writeMuted } from "@/lib/lobby/sound";
+import { writeMuted } from "@/lib/lobby/sound";
+import { emitReward } from "@/lib/reward";
 import type { usePlay } from "../usePlay";
 import { errorOf } from "./useRoomSync";
 
@@ -58,7 +59,7 @@ async function answer(d: Deps, round: number, choice: string) {
   try {
     const res = await d.api.answer(lobby.id, round, choice);
     d.setPicked({ game, round, choice, correct: res.correct, points: res.points });
-    play(res.correct ? "hit" : "miss", d.muted);
+    emitReward(res.correct ? "hit" : "miss");
     d.take(res.lobby, sentAt);
   } catch (err) {
     if (!(err instanceof LobbyError && err.code === "already_answered")) d.setPicked((p) => (p?.round === round ? null : p));

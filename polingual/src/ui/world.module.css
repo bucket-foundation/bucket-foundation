@@ -82,3 +82,5 @@
 .toned[data-pattern=tile]::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;pointer-events:none;background-image:var(--ground-tile);background-size:110px auto}
 .toned[data-pattern=kente]{background-image:repeating-linear-gradient(90deg,transparent 0 46px,color-mix(in srgb,var(--pl-ochre) 40%,transparent) 46px 58px,color-mix(in srgb,var(--pl-malachite) 40%,transparent) 58px 66px,color-mix(in srgb,var(--pl-vermilion) 40%,transparent) 66px 72px,transparent 72px 118px)}
 .toned[data-pattern=stripes]{background-image:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--pl-white) 10%,transparent) 0 22px,transparent 22px 44px)}
+
+.ring{position:relative;display:inline-grid;place-items:center;flex:none}.ring svg{position:absolute;inset:0}.ring circle{transition:stroke-dashoffset var(--pl-motion-pop)}.ringIn{position:relative;font:var(--pl-type-label);font-size:11px;color:var(--pl-paper)}

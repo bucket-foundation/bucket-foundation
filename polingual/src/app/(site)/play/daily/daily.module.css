@@ -1,4 +1,4 @@
-.card{position:relative;z-index:2;max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:var(--pl-space-4)}
+.card{position:relative;z-index:2;max-width:min(1040px,100%);margin:0 auto;display:flex;flex-direction:column;gap:var(--pl-space-4)}
 .blurb{font:var(--pl-type-body);color:var(--pl-ink-dim);margin:0}
 .row{display:flex;flex-wrap:wrap;gap:var(--pl-space-3);align-items:center}
 .pips{display:flex;gap:6px}
