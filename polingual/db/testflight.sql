@@ -22,7 +22,7 @@ create or replace function polingual.record_testflight_attempt(
 returns boolean
 language plpgsql
 security definer
-set search_path = polingual
+set search_path = polingual, pg_temp
 as $$
 begin
   perform pg_advisory_xact_lock(hashtext('testflight-attempts'));
