@@ -371,3 +371,10 @@
 .revealRoot{font-size:12px}
 @media (pointer:coarse){.revealLearn{display:inline-flex;align-items:center;min-height:44px;padding:0 6px}.learnMissed a{min-height:44px}.missed li{padding:0 4px}.missed a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px}.learnMissed a span{font-size:12px}}
 @media (max-width:400px){.bmCell span{font-size:clamp(10px,calc(170cqw / var(--len,6)),17px);max-width:100%;letter-spacing:-.02em}}
+.playStage{--play-bar:48px;min-height:100dvh}
+.playStage .playBar{max-width:none;height:var(--play-bar);padding-inline:max(12px,env(safe-area-inset-left)) max(12px,env(safe-area-inset-right))}
+.playStage .playBar img{width:26px;height:26px}
+.playStage .frame,.playStage .frame[data-rails]{max-width:none;padding-top:4px;padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right));gap:12px}
+.playStage .center{margin-top:6px;min-height:calc(100dvh - var(--play-bar) - 40px);box-sizing:border-box;padding:clamp(12px,1.6vw,24px)}
+.playStage .center:has([data-testid=video-room]){padding:clamp(8px,1vw,14px)}
+@media (max-width:640px){.playStage .center{margin-top:2px;border-radius:18px;min-height:calc(100dvh - var(--play-bar) - 20px)}.playStage .frame,.playStage .frame[data-rails]{padding-left:6px;padding-right:6px}}
