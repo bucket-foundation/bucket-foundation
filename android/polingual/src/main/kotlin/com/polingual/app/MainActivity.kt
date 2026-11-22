@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         val graph = (application as PolingualApp).graph
         graph.activity = java.lang.ref.WeakReference(this)
         graph.ads.gather(this)
-        setContent { PolingualTheme { Root(graph, link.value) { link.value = null } } }
+        setContent { PolingualTheme { androidx.compose.runtime.CompositionLocalProvider(LocalGraph provides graph) { Root(graph, link.value) { link.value = null } } } }
     }
 
     override fun onNewIntent(intent: Intent) {

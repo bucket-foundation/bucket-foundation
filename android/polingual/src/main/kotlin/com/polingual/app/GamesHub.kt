@@ -46,7 +46,7 @@ enum class GameKind(val route: String, val title: String, val blurb: String, val
 @Composable
 fun GameTile(kind: GameKind, played: String?, onClick: () -> Unit) {
     Row(
-        Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(kind.color).clickable(role = Role.Button, onClick = onClick).padding(16.dp),
+        Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(kind.color).clickable(role = Role.Button, onClick = onClick).padding(horizontal = 12.dp, vertical = 10.dp),
         horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(Modifier.size(44.dp).clip(RoundedCornerShape(12.dp)).background(D8.parchment.copy(alpha = 0.18f)), contentAlignment = Alignment.Center) {

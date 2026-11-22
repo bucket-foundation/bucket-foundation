@@ -56,7 +56,9 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
         runCatching { nav.navigate(route) }
         consumed()
     }
+    val playing = route != null && (route.startsWith("game/") || route.startsWith("video"))
     NavigationSuiteScaffold(
+        layoutType = if (playing) androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType.None else androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(androidx.compose.material3.adaptive.currentWindowAdaptiveInfo()),
         navigationSuiteItems = {
             Tab.entries.forEach { t ->
                 item(
