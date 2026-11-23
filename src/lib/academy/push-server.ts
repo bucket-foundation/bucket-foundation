@@ -1,5 +1,5 @@
 import { service } from "./groups-server";
-import { apnsConfig, pushCheer, pushStreak, withBudget, type CheerPushKind, type PushDevice, type PushEnv, type PushStore, type SendResult } from "./apns";
+import { apnsConfig, pushCheer, pushStreak, withBudget, type CheerPushKind, type PushDevice, type PushEnv, type PushPlatform, type PushStore, type SendResult } from "./apns";
 
 export const PUSH_DEVICES = "push_devices";
 
@@ -24,8 +24,17 @@ export async function registerDevice(userId: string, token: string, env: PushEnv
   if (res.error) throw new Error(`push register: ${res.error.message}`);
 }
 
-export async function unregisterDevice(userId: string, token: string): Promise<void> {
-  const res = await service().from(PUSH_DEVICES).delete().eq("user_id", userId).eq("token", token);
+export const PUSH_DEVICES_FCM = "push_devices_fcm";
+
+export async function registerFcmDevice(userId: string, token: string, bundleId: string): Promise<void> {
+  const res = await service()
+    .from(PUSH_DEVICES_FCM)
+    .upsert({ token, user_id: userId, bundle_id: bundleId, updated_at: new Date().toISOString() }, { onConflict: "token" });
+  if (res.error) throw new Error(`push register fcm: ${res.error.message}`);
+}
+
+export async function unregisterDevice(userId: string, token: string, platform: PushPlatform = "ios"): Promise<void> {
+  const res = await service().from(platform === "android" ? PUSH_DEVICES_FCM : PUSH_DEVICES).delete().eq("user_id", userId).eq("token", token);
   if (res.error) throw new Error(`push unregister: ${res.error.message}`);
 }
 
