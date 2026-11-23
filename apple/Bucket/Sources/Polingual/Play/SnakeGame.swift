@@ -21,7 +21,7 @@ struct SnakeGame: View {
     var me: Snake? { arena?.snakes.first { !$0.bot } }
 
     var body: some View {
-        PlayScene(game: .snake, feel: feel) {
+        PlayScene(game: .snake, feel: feel, burst: false) {
             if over || PlayLaunch.endGame {
                 results
             } else if let arena, let deck {
@@ -54,7 +54,6 @@ struct SnakeGame: View {
         VStack(spacing: PL.Space.s2) {
             HStack {
                 PlayLabel(text: "\(Lang.name(d.lang)) · length \(me?.length ?? 0)").lineLimit(1).minimumScaleFactor(0.6)
-                ComboChip(streak: feel.streak, multiplier: false)
                 Spacer()
                 PlayLabel(text: "\(left)s")
                 Button("End round") { over = true }.buttonStyle(.pl(.ghost, size: .sm, full: false))
@@ -75,6 +74,11 @@ struct SnakeGame: View {
                     .accessibilityElement()
                     .accessibilityLabel("Steer with your finger. Eat words in your language to grow. Decoys from other languages shrink you.")
                     .accessibilityIdentifier("snakeArena")
+                    .overlay(alignment: .top) {
+                        ComboChip(streak: feel.streak, multiplier: false)
+                            .padding(.top, PL.Space.s2)
+                            .allowsHitTesting(false)
+                    }
             }
             .playBoard(chrome: chrome, least: 200)
         }

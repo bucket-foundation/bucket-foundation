@@ -364,6 +364,20 @@ final class GamesUITests: XCTestCase {
         }
     }
 
+    func testRealTimeChipsShowMidPlay() {
+        for game in ["snake", "shift", "atlas"] {
+            let app = launch(["-openGame", game, "-demoCombo", "5"])
+            XCTAssertTrue(app.staticTexts["playTitle"].waitForExistence(timeout: 60))
+            let start = app.buttons["Start"]
+            let again = app.buttons["Try again"].firstMatch
+            if start.waitForExistence(timeout: 3) { start.tap() } else if again.exists { again.tap() }
+            XCTAssertTrue(app.descendants(matching: .any)["game-combo"].waitForExistence(timeout: 10), "\(game) shows no chip")
+            sleep(2)
+            shot("\(game)-midplay")
+            app.terminate()
+        }
+    }
+
     func testShiftComboChipStaysOffUntilAStreak() {
         let app = launch(["-openGame", "shift"])
         XCTAssertTrue(app.staticTexts["playTitle"].waitForExistence(timeout: 60))

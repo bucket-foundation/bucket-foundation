@@ -61,7 +61,7 @@ struct AtlasGame: View {
     var total: Int { scores.reduce(0, +) }
 
     var body: some View {
-        PlayScene(game: .atlas, feel: feel) {
+        PlayScene(game: .atlas, feel: feel, burst: false) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if !entered && !practice.practicing {

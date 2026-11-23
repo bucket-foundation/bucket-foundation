@@ -19,7 +19,7 @@ struct ShiftGame: View {
     var done: Bool { gaveUp || PlayLaunch.endGame || board.map { RevealRules.shift(found: found, targets: $0.targets) } ?? false }
 
     var body: some View {
-        PlayScene(game: .shift, feel: feel) {
+        PlayScene(game: .shift, feel: feel, burst: false) {
             if let board {
                 if !entered && !round.practicing {
                     RecordedRound(kind: .shift, deck: day, practice: round.score, root: root) { retry(board) }

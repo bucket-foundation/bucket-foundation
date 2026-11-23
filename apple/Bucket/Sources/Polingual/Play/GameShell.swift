@@ -26,15 +26,24 @@ final class GameFeel {
     private(set) var wrongs = 0
     private(set) var climbs = 0
     private(set) var gain = 0
-    private(set) var streak = ComboCount()
+    private(set) var streak = GameFeel.demoStreak()
     @ObservationIgnored var sound: @MainActor (Bool, ComboCount) -> Void = GameFeel.play
 
+    static func demoStreak(arguments: [String] = ProcessInfo.processInfo.arguments) -> ComboCount {
+        var streak = ComboCount()
+        #if DEBUG
+        if let i = arguments.firstIndex(of: "-demoCombo"), i + 1 < arguments.count, let n = Int(arguments[i + 1]) {
+            for _ in 0..<n { streak.hit() }
+        }
+        #endif
+        return streak
+    }
     func record(_ right: Bool, points: Int = 1) {
         streak.record(right)
         if right { self.right(streak, points: points) } else { wrong(streak) }
     }
 
-    func reset() { streak = ComboCount() }
+    func reset() { streak = GameFeel.demoStreak() }
     func right(_ streak: ComboCount, points: Int = 1) {
         gain = points * streak.multiplier
         rights += 1

@@ -68,6 +68,12 @@ struct GameFeelTests {
         #expect(feel.streak.current == 1)
     }
 
+    @Test func demoStreakOnlyFromTheLaunchFlag() {
+        #expect(GameFeel.demoStreak(arguments: []) == ComboCount())
+        #expect(GameFeel.demoStreak(arguments: ["-demoCombo", "5"]).current == 5)
+        #expect(GameFeel.demoStreak(arguments: ["-demoCombo"]) == ComboCount())
+    }
+
     @Test func reduceMotionFollowsTheSystemAndTheTestFlag() {
         #expect(GameMotion.reduced(system: true, arguments: []))
         #expect(!GameMotion.reduced(system: false, arguments: []))
