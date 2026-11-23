@@ -56,12 +56,12 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
         val strings = rememberStrings()
         var student by remember { mutableStateOf(false) }
         Text(PaywallCopy.headline(strings, trial), style = Type.display, color = p.ink)
-        Text("Daily sessions, every language set, and your words on every device. Games and live rooms stay free.", color = p.muted)
+        Text(androidx.compose.ui.res.stringResource(R.string.s_daily_sessions_every_language_set_and), color = p.muted)
         if (access.unlocked) {
-            Pill(if (access is Access.Beta) "Free beta access" else "You have access", D8.malachite)
-            if (access is Access.Beta) Text("Test builds open everything for free.", color = p.muted)
+            Pill(if (access is Access.Beta) androidx.compose.ui.res.stringResource(R.string.s_free_beta_access) else androidx.compose.ui.res.stringResource(R.string.s_you_have_access), D8.malachite)
+            if (access is Access.Beta) Text(androidx.compose.ui.res.stringResource(R.string.s_test_builds_open_everything_for_free), color = p.muted)
         }
-        if (products.isEmpty()) Text("The plans did not load. Check your connection and Google Play, then try again.", color = p.muted)
+        if (products.isEmpty()) Text(androidx.compose.ui.res.stringResource(R.string.s_the_plans_did_not_load_check), color = p.muted)
         products.forEach { product ->
             val on = product.productId == chosen
             Column(
@@ -69,11 +69,11 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
                     .clickable(role = Role.RadioButton) { chosen = product.productId }.padding(16.dp),
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(Plan.title(product.productId), style = Type.title.copy(fontSize = 17.sp()), color = p.ink)
-                    if (product.productId == Plan.YEARLY) Pill("Best value", D8.malachite)
+                    Text(androidx.compose.ui.res.stringResource(Plan.title(product.productId)), style = Type.title.copy(fontSize = 17.sp()), color = p.ink)
+                    if (product.productId == Plan.YEARLY) Pill(androidx.compose.ui.res.stringResource(R.string.s_best_value), D8.malachite)
                 }
                 Text(product.priceText(), style = Type.title, color = p.ink)
-                Text("per ${Plan.period(product.productId)}", color = p.muted)
+                Text(androidx.compose.ui.res.stringResource(Plan.per(product.productId)), color = p.muted)
             }
         }
         products.firstOrNull { it.productId == chosen }?.let { product ->
@@ -83,11 +83,11 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
         message?.let { Text(it, color = D8.lapis) }
         PlainLink(androidx.compose.ui.res.stringResource(R.string.student_plan)) { student = true }
         if (student) StudentPlanSheet(products.firstOrNull { it.productId == Plan.YEARLY }?.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.lastOrNull()?.priceCurrencyCode) { student = false }
-        PlainLink("Restore purchases") { scope.launch { graph.billing.restore() } }
-        PlainLink("Manage subscription") { context.startActivity(Intent(Intent.ACTION_VIEW, "https://play.google.com/store/account/subscriptions?package=${context.packageName}".toUri())) }
+        PlainLink(androidx.compose.ui.res.stringResource(R.string.s_restore_purchases)) { scope.launch { graph.billing.restore() } }
+        PlainLink(androidx.compose.ui.res.stringResource(R.string.s_manage_subscription)) { context.startActivity(Intent(Intent.ACTION_VIEW, "https://play.google.com/store/account/subscriptions?package=${context.packageName}".toUri())) }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            PlainLink("Terms") { context.startActivity(Intent(Intent.ACTION_VIEW, Plan.TERMS.toUri())) }
-            PlainLink("Privacy") { context.startActivity(Intent(Intent.ACTION_VIEW, Plan.PRIVACY.toUri())) }
+            PlainLink(androidx.compose.ui.res.stringResource(R.string.s_terms)) { context.startActivity(Intent(Intent.ACTION_VIEW, Plan.TERMS.toUri())) }
+            PlainLink(androidx.compose.ui.res.stringResource(R.string.s_privacy)) { context.startActivity(Intent(Intent.ACTION_VIEW, Plan.PRIVACY.toUri())) }
         }
     }
 }

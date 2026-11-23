@@ -26,16 +26,16 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
     Page {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Column(Modifier1) {
-                Text("Today", style = Type.display, color = p.ink)
-                Text(system?.name ?: "No language set yet", color = p.muted)
+                Text(androidx.compose.ui.res.stringResource(R.string.s_today), style = Type.display, color = p.ink)
+                Text(system?.name ?: androidx.compose.ui.res.stringResource(R.string.s_no_language_set_yet), color = p.muted)
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text("${Streak.count(study?.days.orEmpty(), today())}", style = Type.title.copy(color = D8.vermilion))
-                Text("STREAK", style = Type.caps, color = p.muted)
+                Text(androidx.compose.ui.res.stringResource(R.string.s_streak), style = Type.caps, color = p.muted)
             }
         }
         if (system != null) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { system.targets.forEach { FlagTile(it, 44.dp) } }
-        if (system == null) PrimaryButton("Pick languages", color = D8.lapis) { nav.navigate("system/new") }
+        if (system == null) PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_pick_languages), color = D8.lapis) { nav.navigate("system/new") }
         TodayPlanCard(graph, nav)
         SaveProgressGate(graph)
         TodayExtras(graph, nav)

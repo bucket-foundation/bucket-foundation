@@ -62,7 +62,7 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
         val langs = (system?.targets.orEmpty() + listOfNotNull(system?.root)).ifEmpty { listOf("en") }
         Text(i.form(system?.root ?: "en") ?: i.gloss, style = Type.display, color = p.ink)
         Text(i.gloss, color = p.muted)
-        if (i.root != null) Pill("Shared root: ${i.root}", D8.malachite)
+        if (i.root != null) Pill(androidx.compose.ui.res.stringResource(R.string.s_shared_root_x, i.root.orEmpty()), D8.malachite)
         langs.forEach { l ->
             val f = i.form(l) ?: return@forEach
             Card {
@@ -79,7 +79,7 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
         }
         val others = i.forms.keys.filter { it !in langs && it in Lang.info }
         if (others.isNotEmpty()) {
-            SectionTitle("In other languages")
+            SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_in_other_languages))
             others.forEach { l -> Text("${Lang.flag(l)}  ${i.form(l)}", color = p.ink) }
         }
         i.note?.let { Text(it, color = p.muted) }
@@ -96,8 +96,8 @@ fun LearnedWords(graph: Graph, nav: NavHostController) {
     val system = app?.system ?: return
     val ids = app?.study?.get(system.id)?.cards?.keys.orEmpty().map { it.substringAfter(':') }.distinct()
     val c = corpus ?: return
-    SectionTitle("Words you study")
-    if (ids.isEmpty()) Text("Words show up here after your first session.", color = p.muted)
+    SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_words_you_study))
+    if (ids.isEmpty()) Text(androidx.compose.ui.res.stringResource(R.string.s_words_show_up_here_after_your), color = p.muted)
     ids.take(60).mapNotNull { c.byId[it] }.forEach { item ->
         Row(Modifier.fillMaxWidth().clickable { nav.navigate("word/${item.id}") }.padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(item.form(system.root) ?: item.gloss, color = p.ink, modifier = Modifier.weight(1f))
@@ -131,19 +131,19 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
         graph.store.update { s -> s.copy(recents = (listOf(q.trim()) + s.recents.filter { it != q.trim() }).take(12)) }
     }
     LaunchedEffect(initial, corpus) { if (initial.isNotBlank() && corpus != null) run(initial) }
-    Page("Translate", back = back) {
+    Page(androidx.compose.ui.res.stringResource(R.string.q_type), back = back) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedButton(onClick = { picking = "from" }, modifier = Modifier.weight(1f)) { Text(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "Detect") }
+            OutlinedButton(onClick = { picking = "from" }, modifier = Modifier.weight(1f)) { Text(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: androidx.compose.ui.res.stringResource(R.string.s_detect)) }
             IconButton(onClick = { scope.launch { graph.store.update { it.copy(translateFrom = it.translateTo, translateTo = it.translateFrom) } } }, enabled = from != null || to != null) {
-                Icon(Icons.Filled.SwapHoriz, "Swap languages")
+                Icon(Icons.Filled.SwapHoriz, androidx.compose.ui.res.stringResource(R.string.s_swap_languages))
             }
             OutlinedButton(onClick = { picking = "to" }, modifier = Modifier.weight(1f)) { Text(to?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "My languages") }
         }
         OutlinedTextField(
-            text, { text = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Type a word or phrase") },
+            text, { text = it }, modifier = Modifier.fillMaxWidth(), label = { Text(androidx.compose.ui.res.stringResource(R.string.s_type_a_word_or_phrase)) },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search), keyboardActions = KeyboardActions(onSearch = { run(text) }),
         )
-        foundation.bucket.core.ui.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
+        foundation.bucket.core.ui.PrimaryButton(androidx.compose.ui.res.stringResource(R.string.q_type), enabled = text.isNotBlank()) { run(text) }
         val a = answer
         if (a != null) {
             Text("${Lang.flag(a.source)} ${a.headword}", style = Type.word, color = p.ink, )
@@ -154,14 +154,14 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
                             Text("${Lang.flag(l)} ${Lang.name(l)}", style = Type.caps, color = p.muted)
                             Text(f, style = Type.word.copy(fontSize = 22.sp()), color = p.ink)
                         }
-                        IconButton(onClick = { graph.voice.speak(f, l) }) { Icon(Icons.AutoMirrored.Outlined.VolumeUp, "Speak") }
+                        IconButton(onClick = { graph.voice.speak(f, l) }) { Icon(Icons.AutoMirrored.Outlined.VolumeUp, androidx.compose.ui.res.stringResource(R.string.s_speak)) }
                     }
                 }
             }
-        } else if (searched) Text("No translation found. Try one word, or pick the source language.", color = p.muted)
+        } else if (searched) Text(androidx.compose.ui.res.stringResource(R.string.s_no_translation_found_try_one_word), color = p.muted)
         val recents = app?.recents.orEmpty()
         if (recents.isNotEmpty()) {
-            SectionTitle("Recent")
+            SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_recent))
             recents.forEach { r -> Text(r, color = p.ink, modifier = Modifier.fillMaxWidth().clickable { text = r; run(r) }.padding(vertical = 6.dp)) }
         }
     }
@@ -170,7 +170,7 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
             options = corpus?.let { translateSources(it, mine) } ?: Lang.codes,
             recents = mine,
             allowAny = true,
-            anyLabel = if (side == "from") "Detect" else "My languages",
+            anyLabel = if (side == "from") androidx.compose.ui.res.stringResource(R.string.s_detect) else androidx.compose.ui.res.stringResource(R.string.s_my_languages),
             dismiss = { picking = null },
         ) { choice -> scope.launch { graph.store.update { if (side == "from") it.copy(translateFrom = choice) else it.copy(translateTo = choice) } }; picking = null }
     }
@@ -182,19 +182,19 @@ fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boole
     val p = LocalPalette.current
     AlertDialog(
         onDismissRequest = dismiss,
-        confirmButton = { TextButton(onClick = dismiss) { Text("Close") } },
-        title = { Text("Language") },
+        confirmButton = { TextButton(onClick = dismiss) { Text(androidx.compose.ui.res.stringResource(R.string.s_close)) } },
+        title = { Text(androidx.compose.ui.res.stringResource(R.string.s_language)) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                OutlinedTextField(query, { query = it }, singleLine = true, label = { Text("Search") }, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(query, { query = it }, singleLine = true, label = { Text(androidx.compose.ui.res.stringResource(R.string.s_search)) }, modifier = Modifier.fillMaxWidth())
                 if (query.isBlank()) {
                     if (allowAny) Text(anyLabel, color = D8.vermilion, modifier = Modifier.fillMaxWidth().clickable { pick(null) }.padding(vertical = 10.dp))
-                    SectionTitle("Yours")
+                    SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_yours))
                     recents.forEach { l -> PickerRow(l) { pick(l) } }
-                    SectionTitle("All")
+                    SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_all))
                 }
                 options.filter { l -> query.isBlank() || Lang.name(l).contains(query, true) || l.startsWith(query.lowercase()) }.forEach { l -> PickerRow(l) { pick(l) } }
-                if (options.none { Lang.name(it).contains(query, true) }) Text("No match", color = p.muted)
+                if (options.none { Lang.name(it).contains(query, true) }) Text(androidx.compose.ui.res.stringResource(R.string.s_no_match), color = p.muted)
             }
         },
     )

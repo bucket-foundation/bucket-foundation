@@ -35,7 +35,7 @@ fun Page(title: String? = null, back: (() -> Unit)? = null, scroll: Boolean = tr
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             if (title != null || back != null) Row(verticalAlignment = Alignment.CenterVertically) {
-                if (back != null) IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = LocalPalette.current.ink) }
+                if (back != null) IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = androidx.compose.ui.res.stringResource(R.string.s_back), tint = LocalPalette.current.ink) }
                 if (title != null) Text(title, style = Type.title, color = LocalPalette.current.ink, modifier = Modifier.fillMaxWidth())
             }
             content()
@@ -73,7 +73,7 @@ fun PlayPage(title: String, back: () -> Unit, scroll: Boolean = true, trailing: 
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().heightIn(max = 44.dp)) {
-                    IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = LocalPalette.current.ink) }
+                    IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = androidx.compose.ui.res.stringResource(R.string.s_back), tint = LocalPalette.current.ink) }
                     Text(title, style = Type.title.copy(fontSize = 16.sp()), color = LocalPalette.current.ink, maxLines = 1, modifier = Modifier.weight(1f))
                     Box(Modifier.weight(1.4f)) { trailing() }
                 }

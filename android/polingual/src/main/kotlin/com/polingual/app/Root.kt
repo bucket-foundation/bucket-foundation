@@ -25,10 +25,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import foundation.bucket.core.ui.LocalPalette
 
-enum class Tab(val route: String, val label: String, val icon: ImageVector) {
-    Today("today", "Today", Icons.Outlined.WbSunny),
-    Learn("learn", "Learn", Icons.Outlined.MenuBook),
-    Account("account", "Account", Icons.Outlined.AccountCircle),
+enum class Tab(val route: String, val label: Int, val icon: ImageVector) {
+    Today("today", R.string.tab_today, Icons.Outlined.WbSunny),
+    Learn("learn", R.string.tab_learn, Icons.Outlined.MenuBook),
+    Account("account", R.string.tab_account, Icons.Outlined.AccountCircle),
 }
 
 @Composable
@@ -65,7 +65,7 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
                     selected = route == t.route,
                     onClick = { nav.navigate(t.route) { popUpTo(Tab.Today.route) { saveState = true }; launchSingleTop = true; restoreState = true } },
                     icon = { Icon(t.icon, contentDescription = null) },
-                    label = { Text(t.label) },
+                    label = { Text(androidx.compose.ui.res.stringResource(t.label)) },
                 )
             }
         },
