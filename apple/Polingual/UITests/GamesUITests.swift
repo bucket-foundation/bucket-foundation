@@ -410,6 +410,13 @@ final class GamesUITests: XCTestCase {
         XCTAssertFalse(app.buttons["Join"].isEnabled)
         sleep(2)
         shot("lobbies")
+        let code = app.textFields["lobbyCode"]
+        code.tap()
+        code.typeText("ABCDEF")
+        sleep(1)
+        XCTAssertTrue(code.isHittable)
+        XCTAssertTrue(app.buttons["Join"].isHittable)
+        shot("lobbies-keyboard")
         app.terminate()
         let letters = launch(["-openGame", "letters"])
         XCTAssertTrue(letters.staticTexts["playTitle"].waitForExistence(timeout: 60))

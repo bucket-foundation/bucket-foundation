@@ -264,9 +264,15 @@ struct LobbiesScreen: View {
             .padding(PL.Space.s4)
         }
         .scrollContentBackground(.hidden)
+        .scrollDismissesKeyboard(.interactively)
         .plGround(.lattice, band: true)
         .lightStatusBar()
         .inlineTitle()
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Live Lobbies").font(PL.heading.font()).foregroundStyle(PL.paper).accessibilityAddTraits(.isHeader)
+            }
+        }
         .navigationTitle("Live Lobbies")
         .refreshable { await lobbies.refresh() }
         .task {
