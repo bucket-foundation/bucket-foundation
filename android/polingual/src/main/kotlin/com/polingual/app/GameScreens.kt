@@ -23,6 +23,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -127,10 +128,21 @@ fun Finished(title: String, line: String, results: List<Boolean>, total: Int, ag
     val view = rememberHost()
     val graph = LocalGraph.current
     LaunchedEffect(title) { fx.burst(); graph?.rewards?.finish(view) }
-    Text(title, style = Type.display, color = D8.tyrian)
-    ResultDots(results, total)
-    Text(line, color = p.muted)
-    if (again != null) PrimaryButton("Play again", color = D8.malachite, onClick = again)
+    val xp = graph?.rewards?.xp?.collectAsState()?.value ?: 0
+    val streak = graph?.rewards?.streak?.collectAsState()?.value ?: 0
+    com.polingual.brand.PopIn(title) {
+        com.polingual.brand.Hero {
+            com.polingual.brand.Label("Round done", color = D8.ochre)
+            Text(title, style = Type.display.copy(fontSize = 52.sp()), color = D8.parchment)
+            ResultDots(results, total)
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                com.polingual.brand.Counter("%,d".format(xp), "Total XP", Modifier.weight(1f))
+                com.polingual.brand.Counter("$streak", "Day streak", Modifier.weight(1f))
+            }
+            Text(line, style = Type.body, color = D8.parchment.copy(alpha = 0.9f))
+            if (again != null) PrimaryButton("Play again", color = D8.ochre, onClick = again)
+        }
+    }
 }
 
 @Composable

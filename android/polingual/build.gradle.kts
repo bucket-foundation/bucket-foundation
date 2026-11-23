@@ -38,6 +38,7 @@ android {
             manifestPlaceholders["admobAppId"] = admob ?: TEST_ADMOB_APP
             buildConfigField("boolean", "ADS_ENABLED", if (admob != null) "true" else "false")
             buildConfigField("boolean", "TEST_ADS", "false")
+            buildConfigField("boolean", "FREE_BETA", providers.gradleProperty("freeBeta").orNull ?: "false")
             buildConfigField("String", "BANNER_UNIT", "\"${providers.gradleProperty("polingualBannerUnit").orNull ?: ""}\"")
             buildConfigField("String", "INTERSTITIAL_UNIT", "\"${providers.gradleProperty("polingualInterstitialUnit").orNull ?: ""}\"")
             isMinifyEnabled = true
