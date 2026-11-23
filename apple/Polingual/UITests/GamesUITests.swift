@@ -2,9 +2,9 @@ import XCTest
 
 @MainActor
 final class GamesUITests: XCTestCase {
-    private func launch(_ extra: [String], orientation: String? = nil, asked: String = "guest") -> XCUIApplication {
+    private func launch(_ extra: [String], orientation: String? = nil, asked: String = "guest", motion: Bool = false) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", asked, "-reduceMotion"] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", asked] + (motion ? [] : ["-reduceMotion"]) + extra
         app.launch()
         return app
     }
@@ -228,6 +228,23 @@ final class GamesUITests: XCTestCase {
         }
         XCTAssertTrue(combo.waitForExistence(timeout: 3))
         shot("flags-combo")
+    }
+
+    func testAnswerFeedbackLeavesTheNextPromptTappable() {
+        let app = launch(["-openGame", "flags", "-revealAnswer"], motion: true)
+        let choice = app.buttons["game-choice"].firstMatch
+        XCTAssertTrue(choice.waitForExistence(timeout: 60))
+        let right = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value == %@", "game-choice", "answer")).firstMatch
+        right.tap()
+        shot("burst")
+        let wrong = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value != %@", "game-choice", "answer")).firstMatch
+        expectation(for: NSPredicate(format: "isEnabled == true"), evaluatedWith: wrong)
+        waitForExpectations(timeout: 10)
+        XCTAssertTrue(wrong.isHittable)
+        wrong.tap()
+        usleep(400_000)
+        shot("wrong")
+        XCTAssertFalse(app.descendants(matching: .any)["game-combo"].exists)
     }
 
     func testWhichVoiceAndLetterSprintOpen() {

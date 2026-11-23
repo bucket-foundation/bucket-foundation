@@ -67,6 +67,7 @@ struct GameBurst: View {
     let reduce: Bool
     @State private var out = false
     @State private var shown = false
+    @State private var fade: Task<Void, Never>?
     private let colors = [PL.ochre, PL.malachite, PL.vermilion, PL.maya, PL.paper]
 
     var body: some View {
@@ -88,14 +89,21 @@ struct GameBurst: View {
         .allowsHitTesting(false)
         .accessibilityHidden(true)
         .onChange(of: feel.rights) { fire() }
+        .onDisappear { fade?.cancel() }
     }
 
     func fire() {
-        out = false
-        shown = true
+        fade?.cancel()
+        var reset = Transaction()
+        reset.disablesAnimations = true
+        withTransaction(reset) {
+            out = false
+            shown = true
+        }
         withAnimation(GameMotion.pop(reduce)) { out = true }
-        Task {
+        fade = Task {
             try? await Task.sleep(for: .seconds(PL.Motion.settle))
+            guard !Task.isCancelled else { return }
             withAnimation(.easeOut(duration: PL.Motion.pop)) { shown = false }
         }
     }
@@ -170,6 +178,35 @@ struct GameAnswerStyle: ButtonStyle {
     var lip: Color { state == .right ? PL.malachiteDeep : state == .wrong ? PL.vermilionDeep : PL.paper3 }
 }
 
+@MainActor
+enum GameStatusBar {
+    private static var scenes = 0
+
+    static func enter() {
+        scenes += 1
+        apply()
+    }
+
+    static func leave() {
+        scenes = max(0, scenes - 1)
+        apply()
+    }
+
+    static var light: Bool { scenes > 0 }
+
+    private static func apply() {
+        #if os(iOS)
+        UIApplication.shared.setStatusBarStyle(light ? .lightContent : .darkContent, animated: true)
+        #endif
+    }
+}
+
+extension View {
+    func lightStatusBar() -> some View {
+        onAppear { GameStatusBar.enter() }.onDisappear { GameStatusBar.leave() }
+    }
+}
+
 struct GameShell<Content: View>: View {
     @Environment(\.verticalSizeClass) private var vertical
     @Environment(\.accessibilityReduceMotion) private var systemReduce
@@ -204,6 +241,7 @@ struct GameShell<Content: View>: View {
                 StartLearningButton(size: .sm, full: false)
             }
         }
+        .lightStatusBar()
         .fullHeightSession()
         .onDisappear { LangVoice.shared.hush() }
         .accessibilityIdentifier("play-\(game.rawValue)")

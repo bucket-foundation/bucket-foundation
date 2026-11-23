@@ -48,3 +48,17 @@ struct GameFeelTests {
         #expect(GameSound.chordData(.hot) != GameSound.chordData(.blazing))
     }
 }
+
+@MainActor
+struct GameStatusBarTests {
+    @Test func lightWhileAnyGameIsOnScreen() {
+        #expect(!GameStatusBar.light)
+        GameStatusBar.enter()
+        GameStatusBar.enter()
+        GameStatusBar.leave()
+        #expect(GameStatusBar.light)
+        GameStatusBar.leave()
+        GameStatusBar.leave()
+        #expect(!GameStatusBar.light)
+    }
+}
