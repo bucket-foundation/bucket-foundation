@@ -217,6 +217,7 @@ fun TodayPlanCard(graph: Graph, nav: NavHostController) {
         if (sys != null && streak == 0 && sys.targets.none { graph.kv.get("placement.${sys.id}.$it") != null }) {
             foundation.bucket.core.ui.PlainLink(stringResource(R.string.placement_test)) { nav.navigate("placement") }
         }
+        sys?.targets?.firstOrNull()?.let { l -> foundation.bucket.core.ui.PlainLink("${stringResource(R.string.sounds)} · ${Lang.name(l)}") { nav.navigate("sounds/$l") } }
     }
 }
 

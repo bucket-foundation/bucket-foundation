@@ -75,6 +75,20 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             Text(Lang.name(ex.word.lang), style = Type.caps, color = p.muted)
             if (ex.isNew) Pill("New", D8.lapis)
         }
+        val mixed = remember(ex) { StudyMix.question(ex, s.state.cards[ex.word.id]?.reps ?: 0, speech = true, root = graph.state.value?.system?.root ?: "en") }
+        if (mixed != null) {
+            val started = remember(ex) { System.currentTimeMillis() }
+            QuestionView(graph, mixed) { ok ->
+                graph.beta.answered(graph.state.value?.system?.id.orEmpty(), ok, (System.currentTimeMillis() - started).toInt(), mixed.kind.name.lowercase())
+                scope.launch {
+                    s.answer(if (ok) ex.answer else "")
+                    val sys = graph.store.current().system
+                    if (sys != null) graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
+                    tick += 1
+                }
+            }
+            return@Page
+        }
         Card {
             Text(if (ex.kind == ExerciseKind.Recognize) "What does this mean?" else "Pick the ${Lang.name(ex.word.lang)} word", color = p.muted)
             Row(verticalAlignment = Alignment.CenterVertically) {
