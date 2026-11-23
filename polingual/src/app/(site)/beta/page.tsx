@@ -21,7 +21,12 @@ export default function Page() {
   const siteKey = process.env.TURNSTILE_SITE_KEY?.trim() || null;
   return (
     <Legal>
-      <h1 className={styles.title}>Play the beta</h1>
+      <h1 className={styles.title}>Become a beta tester</h1>
+      <p className={styles.lede}>Get new Polingual builds before they reach the App Store, and tell us what to fix.</p>
+      <ul className={styles.perks}>
+        <li>🎮 New games first</li>
+        <li>💬 Your feedback shapes the app</li>
+      </ul>
       <div className={styles.shots}>
         {SHOTS.map((s) => (
           <img key={s.src} src={s.src} alt={s.alt} width={300} height={652} className={styles.shot} />
