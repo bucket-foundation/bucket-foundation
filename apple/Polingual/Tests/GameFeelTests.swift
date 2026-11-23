@@ -95,3 +95,32 @@ struct GameResultsTests {
         #expect(CreditedRunStore(defaults: defaults).claim("run-0"))
     }
 }
+
+@MainActor
+struct SaveNudgeTests {
+    @Test func onlyGuestsGetTheNudge() throws {
+        let name = "nudge-\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: name))
+        defer { defaults.removePersistentDomain(forName: name) }
+        SaveNudge.gameEnded(signedIn: true, defaults: defaults)
+        #expect(!defaults.bool(forKey: SaveNudge.key))
+        SaveNudge.gameEnded(signedIn: false, defaults: defaults)
+        #expect(defaults.bool(forKey: SaveNudge.key))
+    }
+}
+
+struct MiniLayoutTests {
+    @Test func cellsShrinkToFitAShortScreen() {
+        let tall = MiniLayout(room: 780, width: 370, rows: 6, cols: 6, keys: 19)
+        let short = MiniLayout(room: 560, width: 343, rows: 6, cols: 6, keys: 19)
+        #expect(tall.columns == 6)
+        #expect(short.columns == 7)
+        #expect(short.cell < tall.cell)
+        #expect(short.cell >= MiniLayout.minCell)
+        #expect(tall.cell <= MiniLayout.maxCell)
+    }
+
+    @Test func widthStillCapsTheCell() {
+        #expect(MiniLayout(room: 2000, width: 200, rows: 4, cols: 5, keys: 19).cell == (200.0 - 16) / 5)
+    }
+}

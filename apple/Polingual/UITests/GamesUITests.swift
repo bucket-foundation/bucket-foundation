@@ -307,13 +307,20 @@ final class GamesUITests: XCTestCase {
         shot("groups-board")
         let deselect = app.buttons["Deselect"]
         let shuffle = app.buttons["Shuffle"]
+        let left = app.descendants(matching: .any).matching(NSPredicate(format: "label ENDSWITH %@", "mistakes left")).firstMatch
         for _ in 0..<24 where !results.exists {
             guard tiles.count >= 4 else { break }
             if deselect.isEnabled { deselect.tap() }
             shuffle.tap()
             for i in 0..<4 { tiles.element(boundBy: i).tap() }
-            if submit.isEnabled { submit.tap() }
-            usleep(600_000)
+            guard submit.isEnabled else { continue }
+            let count = tiles.count
+            let mistakes = left.exists ? left.label : ""
+            submit.tap()
+            let moved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                results.exists || tiles.count < count || (left.exists && left.label != mistakes) || app.staticTexts["Already tried"].exists
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [moved], timeout: 5), .completed, "The guess did not land")
         }
         XCTAssertTrue(results.waitForExistence(timeout: 10))
         XCTAssertTrue(app.descendants(matching: .any)["game-stars"].exists)

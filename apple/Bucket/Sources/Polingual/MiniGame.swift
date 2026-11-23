@@ -45,7 +45,7 @@ struct MiniGame: View {
             if let time, let puzzle {
                 end(time, puzzle)
             } else if let puzzle {
-                board(puzzle)
+                PlayRoomReader { room in board(puzzle, room: room) }
             } else {
                 PLCard { Text("Study a few more words and tomorrow's Mini opens.").font(PL.body.font()).foregroundStyle(PL.ink) }
             }
@@ -80,28 +80,28 @@ struct MiniGame: View {
                            again: nil)
     }
 
-    func board(_ p: MiniPuzzle) -> some View {
-        VStack(spacing: PL.Space.s4) {
-            HStack {
+    func board(_ p: MiniPuzzle, room: CGFloat) -> some View {
+        let layout = MiniLayout(room: room, width: UIScreenWidth.value - PL.Space.s4 * 2, rows: p.rows, cols: p.cols, keys: p.keys.count + 1)
+        return VStack(spacing: PL.Space.s3) {
+            HStack(spacing: PL.Space.s2) {
                 TimelineView(.periodic(from: started, by: 1)) { c in
                     Text(MiniRecord.clock(Int(c.date.timeIntervalSince(started)))).font(PL.heading.font()).foregroundStyle(PL.paper).monospacedDigit()
                 }
-                Spacer()
                 ComboChip(streak: streak, multiplier: false)
+                Spacer(minLength: 0)
+                Button("Show answers") { reveal(p) }.buttonStyle(.pl(.ghost, size: .sm, full: false))
             }
-            grid(p)
+            grid(p, size: layout.cell)
             if let entry { clue(entry) }
-            keyboard(p)
-            Button("Show answers") { reveal(p) }.buttonStyle(.pl(.ghost, size: .sm, full: false))
+            keyboard(p, columns: layout.columns)
         }
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
     }
 
-    func grid(_ p: MiniPuzzle) -> some View {
+    func grid(_ p: MiniPuzzle, size: CGFloat) -> some View {
         let answers = p.answers
         let numbers = p.numbers
-        let size = min(56, (UIScreenWidth.value - 48) / CGFloat(max(p.cols, 1)))
         return VStack(spacing: 4) {
             ForEach(0..<p.rows, id: \.self) { r in
                 HStack(spacing: 4) {
@@ -156,8 +156,8 @@ struct MiniGame: View {
         .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
     }
 
-    func keyboard(_ p: MiniPuzzle) -> some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 6), spacing: 6) {
+    func keyboard(_ p: MiniPuzzle, columns: Int) -> some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: columns), spacing: 6) {
             ForEach(p.keys, id: \.self) { key in
                 Button { type(key, p) } label: {
                     Text(key).font(.system(size: 20, weight: .heavy, design: .rounded))
@@ -256,4 +256,32 @@ enum UIScreenWidth {
         480
         #endif
     }
+}
+
+struct MiniLayout: Equatable {
+    static let maxCell: CGFloat = 56
+    static let minCell: CGFloat = 28
+    static let gap: CGFloat = 4
+    static let keyRow: CGFloat = 54
+    static let chrome: CGFloat = 44 + 84 + PL.Space.s3 * 3 + PL.Space.s6 + PL.Space.s5
+
+    let cell: CGFloat
+    let columns: Int
+
+    init(room: CGFloat, width: CGFloat, rows: Int, cols: Int, keys: Int) {
+        let wide = (width - Self.gap * CGFloat(max(cols - 1, 0))) / CGFloat(max(cols, 1))
+        let short = room > 0 && room < 760
+        columns = short ? 7 : 6
+        let keyRows = CGFloat((keys + columns - 1) / columns)
+        let left = room > 0 ? room - Self.chrome - keyRows * Self.keyRow : .infinity
+        let high = (left - Self.gap * CGFloat(max(rows - 1, 0))) / CGFloat(max(rows, 1))
+        cell = max(Self.minCell, min(Self.maxCell, wide, high))
+    }
+}
+
+struct PlayRoomReader<Content: View>: View {
+    @Environment(\.playRoom) private var room
+    @ViewBuilder let content: (CGFloat) -> Content
+
+    var body: some View { content(room) }
 }
