@@ -82,6 +82,7 @@ object GoogleSignIn {
 fun GoogleSignInButton(graph: Graph, onError: (String?) -> Unit) {
     if (!GoogleSignIn.available()) return
     val context = LocalContext.current
+    val resources = androidx.compose.ui.platform.LocalResources.current
     val scope = rememberCoroutineScope()
     var busy by remember { mutableStateOf(false) }
     PrimaryButton(stringResource(R.string.save_google), enabled = !busy) {
@@ -91,7 +92,7 @@ fun GoogleSignInButton(graph: Graph, onError: (String?) -> Unit) {
             onError(null)
             try { GoogleSignIn.signIn(activity, graph) } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                onError(context.getString(SignInErrors.message(e)))
+                onError(resources.getString(SignInErrors.message(e)))
             } finally { busy = false }
         }
     }

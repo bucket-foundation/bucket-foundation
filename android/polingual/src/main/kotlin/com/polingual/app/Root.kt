@@ -49,15 +49,9 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val stage by graph.onboard.stage.collectAsState()
-    LaunchedEffect(stage) {
-        when (stage) {
-            OnboardStage.Lesson -> runCatching { nav.navigate("game/${GameKind.Daily.route}") }
-            OnboardStage.Paywall -> {
-                kotlinx.coroutines.delay(2600)
-                runCatching { nav.navigate("paywall") { popUpTo(Tab.Today.route) } }
-            }
-            OnboardStage.Done -> Unit
-        }
+    LaunchedEffect(stage, route) {
+        if (route == null) return@LaunchedEffect
+        OnboardNav.target(stage, route)?.let { target -> nav.navigate(target) { popUpTo(Tab.Today.route); launchSingleTop = true } }
     }
     LaunchedEffect(link) {
         val route = when (link) {

@@ -1,7 +1,7 @@
 package com.polingual.app
 
 import android.content.Context
-import androidx.compose.ui.graphics.Color
+import com.polingual.brand.D8
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
@@ -33,14 +33,15 @@ import foundation.bucket.core.data.PrefsKeyValue
 data class WidgetModel(val streak: Int, val freezes: Int, val playedToday: Boolean, val xp: Int)
 
 object WidgetData {
-    fun read(context: Context): WidgetModel {
-        val kv = PrefsKeyValue(context)
+    fun read(context: Context): WidgetModel = read(PrefsKeyValue(context), today())
+
+    fun read(kv: foundation.bucket.core.auth.KeyValue, today: String): WidgetModel {
         val day = kv.get(Rewards.STREAK_DAY)
         val freezes = kv.get(Rewards.FREEZES)?.toIntOrNull() ?: 0
         return WidgetModel(
-            streak = StreakRules.alive(day, kv.get(Rewards.STREAK)?.toIntOrNull() ?: 0, freezes, today()),
+            streak = StreakRules.alive(day, kv.get(Rewards.STREAK)?.toIntOrNull() ?: 0, freezes, today),
             freezes = freezes,
-            playedToday = day == today(),
+            playedToday = day == today,
             xp = kv.get(Rewards.XP)?.toIntOrNull() ?: 0,
         )
     }
@@ -56,10 +57,10 @@ class StreakWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val m = WidgetData.read(context)
         provideContent {
-            val parchment = ColorProvider(Color(0xFFF6EEDC), Color(0xFFF6EEDC))
-            val ochre = ColorProvider(Color(0xFFE9A23B), Color(0xFFE9A23B))
+            val parchment = ColorProvider(D8.parchment, D8.parchment)
+            val ochre = ColorProvider(D8.ochre, D8.ochre)
             Column(
-                GlanceModifier.fillMaxSize().background(Color(0xFF5B1A4A)).cornerRadius(24.dp).padding(14.dp).clickable(actionStartActivity<MainActivity>()),
+                GlanceModifier.fillMaxSize().background(D8.tyrian).cornerRadius(24.dp).padding(14.dp).clickable(actionStartActivity<MainActivity>()),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

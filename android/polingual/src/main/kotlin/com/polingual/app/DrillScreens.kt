@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import androidx.compose.runtime.collectAsState
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
@@ -79,7 +80,7 @@ fun SoundDrillScreen(graph: Graph, lang: String, back: () -> Unit) {
     LaunchedEffect(Unit) { corpus = graph.corpus.load() }
     Page(stringResource(R.string.sounds), back = back) {
         val c = corpus ?: return@Page
-        val app = graph.state.value
+        val app = graph.state.collectAsState().value
         val sys = app?.system ?: return@Page
         if (round >= ROUNDS) {
             Text(stringResource(R.string.sounds_right), style = Type.display, color = D8.tyrian)

@@ -165,7 +165,7 @@ function seekTo(t){if(player){player.seekTo(t,true);player.playVideo()}}
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun YouTubePlayer(videoId: String, seek: Pair<Int, Double>?, onTime: (Double) -> Unit, modifier: Modifier = Modifier) {
-    val bridge = remember { PlayerBridge() }
+    val bridge: PlayerBridge = remember { PlayerBridge() }
     bridge.onTime = onTime
     var web by remember { mutableStateOf<WebView?>(null) }
     var ready by remember { mutableStateOf(false) }
@@ -181,7 +181,7 @@ fun YouTubePlayer(videoId: String, seek: Pair<Int, Double>?, onTime: (Double) ->
                 settings.domStorageEnabled = true
                 webChromeClient = WebChromeClient()
                 webViewClient = PlayerClient()
-                addJavascriptInterface(bridge, "Android")
+                addJavascriptInterface(bridge as PlayerBridge, "Android")
                 loadDataWithBaseURL(VideoRepo.BASE, playerHtml(videoId.filter { it.isLetterOrDigit() || it == '-' || it == '_' }), "text/html", "utf-8", null)
                 web = this
             }

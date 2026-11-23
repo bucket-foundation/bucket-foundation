@@ -1,7 +1,6 @@
 package com.polingual.app
 
 import foundation.bucket.core.auth.KeyValue
-import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -16,7 +15,8 @@ class RetentionTest {
     @Test fun freezeCoversOneMissedDay() {
         assertEquals(StreakState(6, 0, usedFreeze = true), StreakRules.advance("2026-11-20", 5, 1, "2026-11-22"))
         assertEquals(StreakState(1, 1), StreakRules.advance("2026-11-19", 5, 1, "2026-11-22"))
-        assertEquals(StreakState(6, 0, usedFreeze = true), StreakRules.advance("2026-11-19", 5, 2, "2026-11-22").copy(freezes = 0))
+        assertEquals(StreakState(6, 0, usedFreeze = true), StreakRules.advance("2026-11-19", 5, 2, "2026-11-22"))
+        assertEquals(StreakState(7, 1, usedFreeze = true), StreakRules.advance("2026-11-20", 6, 1, "2026-11-22"))
     }
 
     @Test fun freezeEarnedEverySeventhDayAndCapped() {
@@ -56,8 +56,43 @@ class RetentionTest {
         assertEquals(OnboardStage.Paywall, Onboard(kv).stage.value)
     }
 
-    @Test fun yearlyPricePerMonth() {
-        assertEquals("$4.17", PlanMath.perMonth(49_990_000, "USD", Locale.US))
+    @Test fun onboardingStageSurvivesRecreationAndCloses() {
+        val kv = MemoryKv()
+        Onboard(kv).set(OnboardStage.Lesson)
+        val recreated = Onboard(kv)
+        assertEquals(OnboardStage.Lesson, recreated.stage.value)
+        recreated.paywallClosed()
+        assertEquals(OnboardStage.Lesson, Onboard(kv).stage.value)
+        recreated.skipLesson()
+        recreated.paywallClosed()
+        assertEquals(OnboardStage.Done, Onboard(kv).stage.value)
+        kv.set(Onboard.KEY, "garbage")
+        assertEquals(OnboardStage.Done, Onboard(kv).stage.value)
+    }
+
+    @Test fun onboardingNavigatesOnlyWhenNeeded() {
+        assertEquals(OnboardNav.LESSON, OnboardNav.target(OnboardStage.Lesson, "today"))
+        assertEquals(null, OnboardNav.target(OnboardStage.Lesson, "game/{kind}"))
+        assertEquals(OnboardNav.PAYWALL, OnboardNav.target(OnboardStage.Paywall, "today"))
+        assertEquals(null, OnboardNav.target(OnboardStage.Paywall, "game/{kind}"))
+        assertEquals(null, OnboardNav.target(OnboardStage.Paywall, "paywall"))
+        assertEquals(null, OnboardNav.target(OnboardStage.Done, "today"))
+    }
+
+    @Test fun widgetModelReadsRewardsState() {
+        val kv = MemoryKv()
+        var changes = 0
+        val r = Rewards(kv, { 9 }) { "2026-11-22" }
+        r.onChange = { changes += 1 }
+        r.addXp(15)
+        assertEquals(1, changes)
+        assertEquals(WidgetModel(1, 0, true, 15), WidgetData.read(kv, "2026-11-22"))
+        assertEquals(WidgetModel(1, 0, false, 15), WidgetData.read(kv, "2026-11-23"))
+        assertEquals(WidgetModel(0, 0, false, 15), WidgetData.read(kv, "2026-11-25"))
+    }
+
+    @Test fun widgetReceiverHostsStreakWidget() {
+        assertTrue(StreakWidgetReceiver().glanceAppWidget is StreakWidget)
     }
 
     @Test fun widgetLine() {

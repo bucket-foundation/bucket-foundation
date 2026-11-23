@@ -18,7 +18,22 @@ class Onboard(private val kv: KeyValue) {
 
     fun lessonFinished() { if (_stage.value == OnboardStage.Lesson) set(OnboardStage.Paywall) }
 
+    fun skipLesson() = lessonFinished()
+
+    fun paywallClosed() { if (_stage.value == OnboardStage.Paywall) set(OnboardStage.Done) }
+
     companion object { const val KEY = "onboard.stage" }
+}
+
+object OnboardNav {
+    const val LESSON = "game/daily"
+    const val PAYWALL = "paywall"
+
+    fun target(stage: OnboardStage, current: String?): String? = when (stage) {
+        OnboardStage.Lesson -> LESSON.takeIf { current != "game/{kind}" && current != LESSON }
+        OnboardStage.Paywall -> PAYWALL.takeIf { current != PAYWALL && current != "game/{kind}" }
+        OnboardStage.Done -> null
+    }
 }
 
 data class StreakState(val count: Int, val freezes: Int, val usedFreeze: Boolean = false)

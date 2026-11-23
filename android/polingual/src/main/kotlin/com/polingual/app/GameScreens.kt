@@ -89,7 +89,7 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    PlayPage(androidx.compose.ui.res.stringResource(kind.title), back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, trailing = { RewardBar(graph.rewards) }) {
+    PlayPage(androidx.compose.ui.res.stringResource(kind.title), back = { graph.ads.leftFinishedGame(graph.activity?.get()); if (kind == GameKind.Daily) graph.onboard.skipLesson(); back() }, trailing = { RewardBar(graph.rewards) }) {
         val c = ctx
         if (c == null) Text(androidx.compose.ui.res.stringResource(R.string.s_start_a_language_set_in_learn), color = LocalPalette.current.muted) else content(c)
     }
@@ -161,8 +161,9 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     if (round.finished) {
         LaunchedEffect(round) {
             graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" })
-            if (kind == GameKind.Daily) graph.onboard.lessonFinished()
         }
+        val lesson = kind == GameKind.Daily && graph.onboard.stage.collectAsState().value == OnboardStage.Lesson
+        if (lesson) PrimaryButton(androidx.compose.ui.res.stringResource(R.string.q_next)) { graph.onboard.lessonFinished() }
         Finished(androidx.compose.ui.res.stringResource(R.string.s_x_of_x, round.score, round.prompts.size), androidx.compose.ui.res.stringResource(R.string.s_a_finished_game_keeps_your_streak), round.results, round.prompts.size, if (kind == GameKind.Daily) null else ({ seed += 1 }))
         return
     }

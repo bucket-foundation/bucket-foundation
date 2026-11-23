@@ -14,7 +14,7 @@ import androidx.compose.runtime.setValue
 
 fun NavGraphBuilder.milestoneRoutes(graph: Graph, nav: NavHostController) {
     composable("listen") { ListenScreen(graph) { nav.popBackStack() } }
-    composable("paywall") { PaywallScreen(graph) { graph.onboard.set(OnboardStage.Done); nav.popBackStack() } }
+    composable("paywall") { PaywallScreen(graph) { graph.onboard.paywallClosed(); nav.popBackStack() } }
     composable("lobbies?code={code}", arguments = listOf(androidx.navigation.navArgument("code") { type = androidx.navigation.NavType.StringType; defaultValue = "" })) { e ->
         LobbiesScreen(graph, e.arguments?.getString("code").orEmpty()) { nav.popBackStack() }
     }

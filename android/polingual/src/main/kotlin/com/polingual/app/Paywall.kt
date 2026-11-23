@@ -47,13 +47,6 @@ fun ProductDetails.perMonthText(): String? {
     return PlanMath.perMonth(phase.priceAmountMicros, phase.priceCurrencyCode)
 }
 
-object PlanMath {
-    fun perMonth(yearMicros: Long, currency: String, locale: java.util.Locale = java.util.Locale.getDefault()): String {
-        val f = java.text.NumberFormat.getCurrencyInstance(locale)
-        runCatching { f.currency = java.util.Currency.getInstance(currency) }
-        return f.format(yearMicros / 12.0 / 1_000_000.0)
-    }
-}
 
 fun ProductDetails.priceText(): String =
     oneTimePurchaseOfferDetails?.formattedPrice
@@ -63,6 +56,7 @@ fun ProductDetails.priceText(): String =
 
 @Composable
 fun PaywallScreen(graph: Graph, back: () -> Unit) {
+    androidx.activity.compose.BackHandler(onBack = back)
     val p = LocalPalette.current
     val products by graph.billing.products.collectAsState()
     val access by graph.billing.access.collectAsState()

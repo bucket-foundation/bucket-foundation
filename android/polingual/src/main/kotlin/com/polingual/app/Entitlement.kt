@@ -7,7 +7,7 @@ object Plan {
     const val LIFETIME = "com.polingual.lifetime"
     val subscriptions = listOf(YEARLY, MONTHLY, FAMILY)
     val paid = subscriptions + LIFETIME
-    const val TRIAL_DAYS = 7
+    const val TRIAL_DAYS = 3
     const val TERMS = "https://polingual.com/terms"
     const val PRIVACY = "https://polingual.com/privacy"
 
