@@ -16,7 +16,7 @@ class RustParityTest {
     private val dir = File(System.getProperty("corpusDir"))
     private fun read(name: String) = File(dir, name).takeIf { it.exists() }?.readText()
     private val corpus = CorpusLoader.parse(read("lang-core.json"), read("lang-cognates.json"), read("lang-phrases.json"), read("lang-layers.json"))
-    private val targets = listOf("es", "pt", "it", "nl")
+    private val targets = listOf("es", "pt", "it", "nl", "hi", "th", "ta", "sa")
     private val deck = GameDeck(corpus, "en", targets)
     private val rust = assertNotNull(RustKernel.load())
     private val words = targets.flatMap { l -> deck.pool(l).mapIndexed { i, e -> GameWord(e.itemId, l, e.form, e.gloss, "en", i % 4) } }
@@ -56,5 +56,6 @@ class RustParityTest {
             assertEquals(KotlinKernel.wordGroups(words, day, "en", targets, theme, sameForm), rust.wordGroups(words, day, "en", targets, theme, sameForm))
             assertEquals(KotlinKernel.mini(words, day, "en", targets), rust.mini(words, day, "en", targets))
         }
+        assertEquals(0, RustKernel.failures)
     }
 }

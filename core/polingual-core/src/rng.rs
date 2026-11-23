@@ -23,6 +23,10 @@ impl Rng {
 
     pub fn below(&mut self, upper: usize) -> usize {
         let bound = upper as u64;
+        if bound == 0 {
+            self.next_u64();
+            return 0;
+        }
         let mut m = (self.next_u64() as u128) * (bound as u128);
         if (m as u64) < bound {
             let threshold = bound.wrapping_neg() % bound;
@@ -83,4 +87,18 @@ pub fn sorted_join(targets: &[String]) -> String {
 
 pub fn daily_seed(day: &str, root: &str, targets: &[String]) -> u64 {
     hash(&format!("{day}|{root}|{}", sorted_join(targets)))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Rng;
+
+    #[test]
+    fn below_zero_returns_zero_and_advances() {
+        let mut a = Rng::new(9);
+        let mut b = Rng::new(9);
+        assert_eq!(a.below(0), 0);
+        b.next_u64();
+        assert_eq!(a, b);
+    }
 }

@@ -7,11 +7,12 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import java.io.File
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class GoldenFixtures {
     private val k = KotlinKernel
     private val root = "en"
-    private val targets = listOf("fr", "es", "it", "de")
+    private val targets = listOf("fr", "es", "it", "de", "hi", "th", "ta", "sa")
     private val deck = GameDeck(CorpusFixture.corpus, root, targets)
     private val days = listOf("2026-01-01", "2026-03-14", "2026-07-04", "2026-11-12", "2026-11-23", "2027-02-28")
 
@@ -83,7 +84,8 @@ class GoldenFixtures {
 
     @Test
     fun writeGoldens() {
-        val out = System.getenv("POLINGUAL_GOLDEN_OUT") ?: return
+        val committed = File(CorpusFixture.dir, "../../../core/polingual-core/tests/fixtures/kotlin-golden.json")
+        val out = System.getenv("POLINGUAL_GOLDEN_OUT")
         Kernels.override = KotlinKernel
         try {
             val pools = arr(targets.map { l -> obj("lang" to s(l), "entries" to arr(deck.pool(l).map { e -> obj("item_id" to s(e.itemId), "form" to s(e.form), "gloss" to s(e.gloss), "category" to s(e.category)) })) })
@@ -146,7 +148,8 @@ class GoldenFixtures {
                 "word_groups" to obj("words" to groupWords, "cases" to arr(groups)),
                 "mini" to obj("words" to words(allWords), "cases" to arr(minis)),
             )
-            File(out).apply { parentFile.mkdirs() }.writeText(fixture.toString())
+            if (out != null) File(out).apply { parentFile.mkdirs() }.writeText(fixture.toString())
+            else assertEquals(committed.readText(), fixture.toString(), "kotlin-golden.json is stale; regenerate with POLINGUAL_GOLDEN_OUT")
         } finally {
             Kernels.override = null
         }

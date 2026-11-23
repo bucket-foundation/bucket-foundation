@@ -42,11 +42,11 @@ object KotlinKernel : CoreKernel {
             val category = deck.entry(word.itemId, word.lang)?.category
             val form = word.form.lowercase()
             val gloss = word.gloss.lowercase()
-            val size = word.form.length
-            val first = word.form.firstOrNull()
+            val size = Graphemes.count(word.form)
+            val first = Graphemes.first(word.form)
             val close = pool.asSequence()
                 .filter { it.gloss.lowercase() != gloss && it.form.lowercase() != form }
-                .map { e -> ((if (e.category == category) 0 else 4) + minOf(3, kotlin.math.abs(e.form.length - size)) + (if (e.form.firstOrNull() == first) 0 else 1)) to e }
+                .map { e -> ((if (e.category == category) 0 else 4) + minOf(3, kotlin.math.abs(Graphemes.count(e.form) - size)) + (if (Graphemes.first(e.form) == first) 0 else 1)) to e }
                 .sortedWith(compareBy<Pair<Int, GameDeck.Entry>> { it.first }.thenBy { it.second.itemId })
                 .take(16).map { it.second }.toList()
             val taken = (listOf(form) + also.map { it.lowercase() }).toMutableSet()
@@ -150,7 +150,7 @@ object KotlinKernel : CoreKernel {
         return null
     }
 
-    private fun fitsGroup(w: GameWord) = w.form.length <= WordGroupsPuzzle.LONGEST_FORM && ' ' !in w.form
+    private fun fitsGroup(w: GameWord) = Graphemes.count(w.form) <= WordGroupsPuzzle.LONGEST_FORM && ' ' !in w.form
 
     private fun link(w: GameWord, partition: Partition, theme: (GameWord) -> String?): GroupLink? {
         if (partition == Partition.Language) return GroupLink.Language(w.lang)
@@ -185,9 +185,9 @@ object KotlinKernel : CoreKernel {
     }
 
     fun letters(form: String): List<String>? {
-        val chars = form.codePoints().toArray().map { String(Character.toChars(it)) }
-        if (chars.size !in 3..MiniPuzzle.SIDE || !chars.all { Character.isLetter(it.codePointAt(0)) }) return null
-        return chars.map { c -> c.uppercase().let { if (it.codePointCount(0, it.length) == 1) it else c } }
+        val chars = Graphemes.split(form)
+        if (chars.size !in 3..MiniPuzzle.SIDE || !chars.all { Character.isAlphabetic(it.codePointAt(0)) }) return null
+        return chars.map { c -> c.uppercase().let { if (Graphemes.count(it) == 1) it else c } }
     }
 
     override fun mini(words: List<GameWord>, day: String, root: String, targets: List<String>): MiniPuzzle? {

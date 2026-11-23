@@ -5,6 +5,9 @@ plugins {
 val crateDir = rootProject.file("../core/polingual-core")
 val rustJniLibs = layout.buildDirectory.dir("rustJniLibs")
 val kotlinCore = providers.gradleProperty("polingualKotlinCore").orNull == "true"
+val prebuiltJniLibs = file("src/main/jniLibs")
+val hasPrebuilt = listOf("arm64-v8a", "armeabi-v7a", "x86_64", "x86").all { prebuiltJniLibs.resolve("$it/libpolingual_core.so").exists() }
+val buildRust = !kotlinCore && !hasPrebuilt
 
 val cargoNdk by tasks.registering(Exec::class) {
     inputs.dir(crateDir.resolve("src"))
@@ -34,11 +37,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    sourceSets["main"].jniLibs.srcDir(rustJniLibs.get().asFile)
+    if (buildRust) sourceSets["main"].jniLibs.srcDir(rustJniLibs.get().asFile)
     testOptions { unitTests.isReturnDefaultValues = true }
 }
 
-tasks.named("preBuild") { dependsOn(cargoNdk) }
+if (buildRust) tasks.named("preBuild") { dependsOn(cargoNdk) }
 
 tasks.withType<Test>().configureEach {
     dependsOn(cargoHost)
