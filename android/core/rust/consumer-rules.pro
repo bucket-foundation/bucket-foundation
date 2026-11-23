@@ -1,0 +1,5 @@
+-keep class com.sun.jna.** { *; }
+-keep class * implements com.sun.jna.** { *; }
+-keep class uniffi.polingual_core.** { *; }
+-keep class foundation.bucket.core.rust.RustKernelProvider { <init>(); }
+-dontwarn java.awt.**
