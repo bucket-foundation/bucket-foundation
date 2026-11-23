@@ -5,6 +5,7 @@ struct PolywordGame: View {
     @Environment(LangStore.self) private var langs
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AppStorage("polingual.polyword.games") private var saved = ""
+    @State private var feel = GameFeel()
     @State private var lang = ""
     @State private var typed = ""
     @State private var problem: String?
@@ -42,7 +43,7 @@ struct PolywordGame: View {
 
     var body: some View {
         ScrollViewReader { proxy in
-            PlayScene(game: .polyword) {
+            PlayScene(game: .polyword, feel: feel) {
                 if let bank, let puzzle {
                     langPicker(bank)
                     if playing == nil { results(bank, puzzle) } else { board(puzzle) }
@@ -158,7 +159,7 @@ struct PolywordGame: View {
                 practice[key] = next
             }
             typed = ""
-            PlaySound.effect(g == answer)
+            feel.record(g == answer)
         }
     }
 

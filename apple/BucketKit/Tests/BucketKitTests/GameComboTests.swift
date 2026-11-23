@@ -87,3 +87,40 @@ import Testing
         #expect(run.stars == 3)
     }
 }
+
+@Suite struct GameCreditTests {
+    @Test func creditIsTheLedgerGain() {
+        #expect(GameCredit.between(before: 4, after: 9, hits: 5) == GameCredit(earned: 5, capped: false))
+        #expect(GameCredit.between(before: 0, after: 0, hits: 0) == GameCredit(earned: 0, capped: false))
+    }
+
+    @Test func capShowsWhenHitsEarnNothing() {
+        #expect(GameCredit.between(before: 30, after: 30, hits: 6) == GameCredit(earned: 0, capped: true))
+        #expect(GameCredit.between(before: 27, after: 30, hits: 6) == GameCredit(earned: 3, capped: true))
+        #expect(GameCredit.between(before: 2, after: 2, hits: 6) == GameCredit(earned: 0, capped: false))
+    }
+
+    @Test func aRunIsClaimedOnce() {
+        var runs = CreditedRuns()
+        let c1 = runs.claim("a")
+        #expect(c1)
+        let c2 = runs.claim("a")
+        #expect(!c2)
+        var reloaded = CreditedRuns(runs.ids)
+        let c3 = reloaded.claim("a")
+        #expect(!c3)
+        let c4 = reloaded.claim("b")
+        #expect(c4)
+    }
+
+    @Test func claimsKeepTheNewestTwenty() {
+        var runs = CreditedRuns()
+        for i in 0..<25 { _ = runs.claim("r\(i)") }
+        #expect(runs.ids.count == CreditedRuns.keep)
+        #expect(runs.ids.first == "r5")
+        let c5 = runs.claim("r0")
+        #expect(c5)
+        let c6 = runs.claim("r24")
+        #expect(!c6)
+    }
+}

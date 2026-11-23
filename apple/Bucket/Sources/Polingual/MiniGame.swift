@@ -31,30 +31,33 @@ struct MiniGame: View {
     @State private var time: Int?
     @State private var showed = false
     @State private var round = PracticeRound()
-
+    @State private var feel = GameFeel()
+    @State private var streak = ComboCount()
+    @State private var credit: GameCredit?
+    @State private var runId = UUID().uuidString
     var day: String { playDayKey() }
     var entry: MiniEntry? { puzzle?.entries.first { $0.id == entryId } }
 
     func solved(_ e: MiniEntry) -> Bool { zip(e.cells, e.letters).allSatisfy { filled[$0] == $1 } }
 
     var body: some View {
-        ScrollView {
+        GameShell(game: .mini, feel: feel) {
             if let time, let puzzle {
-                GameEnd(kind: .mini, score: MiniRecord.clock(time), line: round.score.map(PracticeLine.text) ?? (showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow.")), missed: showed ? puzzle.entries.map(\.word) : [], shape: .time(seconds: time, cells: GameBrag.miniCells(puzzle)), sharing: !showed, shareObject: showed ? nil : langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: puzzle.entries.count, total: puzzle.entries.count), retry: { retry(puzzle) }, again: nil)
+                end(time, puzzle)
             } else if let puzzle {
-                board(puzzle)
+                PlayRoomReader { room in board(puzzle, room: room) }
             } else {
-                Text("Study a few more words and tomorrow's Mini opens.").foregroundStyle(Palette.muted).padding(.top, 60)
+                PLCard { Text("Study a few more words and tomorrow's Mini opens.").font(PL.body.font()).foregroundStyle(PL.ink) }
             }
         }
-        .gameChrome(GameKind.mini.title, sideways: false)
+        .screenShareQuiet()
         .task {
             guard puzzle == nil else { return }
             await langs.load()
             let p = langs.miniPuzzle
             puzzle = p
-            time = MiniRecord.seconds(day)
-            showed = UserDefaults.standard.bool(forKey: MiniRecord.shownKey(day))
+            time = GameLaunch.freshDaily ? nil : MiniRecord.seconds(day)
+            showed = GameLaunch.freshDaily ? false : UserDefaults.standard.bool(forKey: MiniRecord.shownKey(day))
             guard time == nil, let first = p?.entries.first else { return }
             entryId = first.id
             cursor = first.cells.first
@@ -63,25 +66,42 @@ struct MiniGame: View {
         }
     }
 
-    func board(_ p: MiniPuzzle) -> some View {
-        VStack(spacing: 16) {
-            TimelineView(.periodic(from: started, by: 1)) { c in
-                Text(MiniRecord.clock(Int(c.date.timeIntervalSince(started)))).font(D8.word(22)).foregroundStyle(Palette.ink).monospacedDigit()
+    func end(_ time: Int, _ puzzle: MiniPuzzle) -> some View {
+        let words = puzzle.entries.map(\.word)
+        return GameResults(title: MiniRecord.clock(time),
+                           line: round.score.map(PracticeLine.text) ?? (showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow.")),
+                           reveals: (showed ? words : []).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                           root: words.first?.root ?? langs.playRoot,
+                           share: showed ? nil : (.mini, .time(seconds: time, cells: GameBrag.miniCells(puzzle))),
+                           retry: (.mini, nil, { retry(puzzle) }),
+                           stars: GameStars.rating(hits: showed ? 0 : words.count, total: words.count),
+                           credit: credit,
+                           extra: showed ? nil : AnyView(ShareObjectButton(langs.gameScore(String(localized: "Mini in \(MiniRecord.clock(time))"), right: words.count, total: words.count), wide: true)),
+                           again: nil)
+    }
+
+    func board(_ p: MiniPuzzle, room: CGFloat) -> some View {
+        let layout = MiniLayout(room: room, width: UIScreenWidth.value - PL.Space.s4 * 2, rows: p.rows, cols: p.cols, keys: p.keys.count + 1)
+        return VStack(spacing: PL.Space.s3) {
+            HStack(spacing: PL.Space.s2) {
+                TimelineView(.periodic(from: started, by: 1)) { c in
+                    Text(MiniRecord.clock(Int(c.date.timeIntervalSince(started)))).font(PL.heading.font()).foregroundStyle(PL.paper).monospacedDigit()
+                }
+                ComboChip(streak: streak, multiplier: false)
+                Spacer(minLength: 0)
+                Button("Show answers") { reveal(p) }.buttonStyle(.pl(.ghost, size: .sm, full: false))
             }
-            grid(p)
+            grid(p, size: layout.cell)
             if let entry { clue(entry) }
-            keyboard(p)
-            Button("Show answers") { reveal(p) }.buttonStyle(.borderless).font(.subheadline.weight(.semibold)).tint(Palette.muted)
+            keyboard(p, columns: layout.columns)
         }
-        .padding()
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
     }
 
-    func grid(_ p: MiniPuzzle) -> some View {
+    func grid(_ p: MiniPuzzle, size: CGFloat) -> some View {
         let answers = p.answers
         let numbers = p.numbers
-        let size = min(56, (UIScreenWidth.value - 48) / CGFloat(max(p.cols, 1)))
         return VStack(spacing: 4) {
             ForEach(0..<p.rows, id: \.self) { r in
                 HStack(spacing: 4) {
@@ -101,20 +121,20 @@ struct MiniGame: View {
     func tile(_ cell: MiniCell, _ p: MiniPuzzle, number: Int?, size: CGFloat) -> some View {
         let done = p.entries.contains { $0.cells.contains(cell) && solved($0) }
         let inWord = entry?.cells.contains(cell) == true
-        let fill: Color = done ? D8.malachite : inWord ? Color(hex: 0xF3D98B) : D8.face
-        let ink: Color = done ? D8.parchment : inWord ? D8.ink : Palette.ink
-        let mark: Color = done ? D8.parchment : inWord ? D8.ink.opacity(0.6) : Palette.muted
+        let fill: Color = done ? PL.malachite : inWord ? PL.lapisSoft : PL.card
+        let ink: Color = done ? PL.paper : PL.ink
+        let mark: Color = done ? PL.paper : PL.inkDim
         return Button { select(cell, p) } label: {
             ZStack(alignment: .topLeading) {
-                Text(filled[cell] ?? "").font(.system(size: size * 0.5, weight: .heavy, design: .rounded))
+                Text(filled[cell] ?? "").font(PL.heading.font(scale: size * 0.5 / PL.heading.size))
                     .foregroundStyle(ink)
                     .frame(width: size, height: size)
                 if let number {
-                    Text("\(number)").font(.system(size: 10, weight: .bold)).foregroundStyle(mark).padding(3)
+                    Text("\(number)").font(PL.label.font(scale: 0.9)).foregroundStyle(mark).padding(3)
                 }
             }
-            .background(fill, in: .rect(cornerRadius: 8))
-            .overlay { RoundedRectangle(cornerRadius: 8).strokeBorder(cursor == cell ? D8.vermilion : D8.edge, lineWidth: cursor == cell ? 3 : 2) }
+            .background(fill, in: .rect(cornerRadius: PL.Radius.sm))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.sm).strokeBorder(cursor == cell ? PL.vermilion : PL.paper3, lineWidth: cursor == cell ? 3 : 2) }
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text(filled[cell] ?? String(localized: "Empty square")))
@@ -125,34 +145,31 @@ struct MiniGame: View {
             FlagTile(lang: e.word.lang, size: 28)
             VStack(alignment: .leading, spacing: 2) {
                 Text(verbatim: langName(e.word.lang) + " · " + (e.across ? String(localized: "\(e.number) across · \(e.letters.count) letters") : String(localized: "\(e.number) down · \(e.letters.count) letters")))
-                    .font(.caption.weight(.bold)).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
-                Text(e.word.gloss).font(.headline).foregroundStyle(Palette.ink).lineLimit(2)
+                    .font(PL.label.font()).textCase(.uppercase).foregroundStyle(PL.inkDim).lineLimit(1).minimumScaleFactor(0.7)
+                Text(e.word.gloss).font(PL.heading.font(scale: 0.8)).foregroundStyle(PL.ink).lineLimit(2)
             }
             Spacer(minLength: 0)
             PlayButton(text: e.word.form, lang: e.word.lang)
         }
-        .padding(12)
+        .padding(PL.Space.s3)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Palette.card, in: .rect(cornerRadius: 14))
+        .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
     }
 
-    func keyboard(_ p: MiniPuzzle) -> some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 6), spacing: 6) {
+    func keyboard(_ p: MiniPuzzle, columns: Int) -> some View {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: columns), spacing: 6) {
             ForEach(p.keys, id: \.self) { key in
                 Button { type(key, p) } label: {
-                    Text(key).font(.system(size: 20, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                    Text(key).font(PL.script(20))
                         .frame(maxWidth: .infinity, minHeight: 44)
-                        .background(D8.face, in: .rect(cornerRadius: 10))
-                        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.edge, lineWidth: 2) }
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(GameAnswerStyle(state: .other))
             }
             Button { erase() } label: {
-                Image(systemName: "delete.left.fill").font(.title3).foregroundStyle(D8.parchment)
+                Image(systemName: "delete.left.fill").font(PL.icon(20))
                     .frame(maxWidth: .infinity, minHeight: 44)
-                    .background(D8.vermilion, in: .rect(cornerRadius: 10))
             }
-            .buttonStyle(.plain)
+            .buttonStyle(GameAnswerStyle(state: .wrong))
             .accessibilityLabel(Text("Delete"))
         }
     }
@@ -174,7 +191,8 @@ struct MiniGame: View {
         filled[cursor] = key
         if p.answers.allSatisfy({ filled[$0.key] == $0.value }) { return finish(p) }
         if solved(e) {
-            haptic(true)
+            streak.hit()
+            feel.right(streak, points: e.letters.count)
             if let next = p.entries.first(where: { !solved($0) }) {
                 entryId = next.id
                 self.cursor = next.cells.first { filled[$0] == nil } ?? next.cells.first
@@ -205,6 +223,7 @@ struct MiniGame: View {
         round.begin()
         showed = false
         filled = [:]
+        streak = ComboCount()
         entryId = first.id
         cursor = first.cells.first
         started = .now
@@ -224,9 +243,8 @@ struct MiniGame: View {
         if showed { UserDefaults.standard.set(true, forKey: MiniRecord.shownKey(day)) }
         MiniRecord.save(seconds, day)
         let words = p.entries.map(\.word)
-        langs.recordGame(.mini, played: words, hits: showed ? 0 : words.count, points: nil, missed: showed ? words : [], earned: !showed)
+        credit = langs.recordRun(runId, .mini, played: words, hits: showed ? 0 : words.count, points: nil, missed: showed ? words : [], earned: !showed)?.credit
         if !showed { reminders.noteStudy() }
-        haptic(!showed)
     }
 }
 
@@ -238,4 +256,32 @@ enum UIScreenWidth {
         480
         #endif
     }
+}
+
+struct MiniLayout: Equatable {
+    static let maxCell: CGFloat = 56
+    static let minCell: CGFloat = 28
+    static let gap: CGFloat = 4
+    static let keyRow: CGFloat = 54
+    static let chrome: CGFloat = 44 + 84 + PL.Space.s3 * 3 + PL.Space.s6 + PL.Space.s5
+
+    let cell: CGFloat
+    let columns: Int
+
+    init(room: CGFloat, width: CGFloat, rows: Int, cols: Int, keys: Int) {
+        let wide = (width - Self.gap * CGFloat(max(cols - 1, 0))) / CGFloat(max(cols, 1))
+        let short = room > 0 && room < 760
+        columns = short ? 7 : 6
+        let keyRows = CGFloat((keys + columns - 1) / columns)
+        let left = room > 0 ? room - Self.chrome - keyRows * Self.keyRow : .infinity
+        let high = (left - Self.gap * CGFloat(max(rows - 1, 0))) / CGFloat(max(rows, 1))
+        cell = max(Self.minCell, min(Self.maxCell, wide, high))
+    }
+}
+
+struct PlayRoomReader<Content: View>: View {
+    @Environment(\.playRoom) private var room
+    @ViewBuilder let content: (CGFloat) -> Content
+
+    var body: some View { content(room) }
 }

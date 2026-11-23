@@ -20,17 +20,17 @@ struct LearnUpsell: View {
         if let upsell {
             Button(action: upsell) {
                 HStack(spacing: 12) {
-                    Image(systemName: "book.fill").font(.title3).foregroundStyle(D8.parchment)
-                        .frame(width: 40, height: 40).background(D8.lapis, in: .rect(cornerRadius: 10))
+                    Image(systemName: "book.fill").font(PL.heading.font(scale: 0.85)).foregroundStyle(PL.paper)
+                        .frame(width: 40, height: 40).background(PL.lapis, in: .rect(cornerRadius: 10))
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("Learn these words for good").font(.headline).foregroundStyle(Palette.ink)
-                        Text("Lessons and courses bring every word back at the right time.").font(.footnote).foregroundStyle(Palette.muted)
+                        Text("Learn these words for good").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
+                        Text("Lessons and courses bring every word back at the right time.").font(PL.small.font()).foregroundStyle(PL.inkDim)
                     }
                     Spacer(minLength: 0)
-                    Image(systemName: "chevron.right").foregroundStyle(Palette.muted)
+                    Image(systemName: "chevron.right").foregroundStyle(PL.inkDim)
                 }
                 .padding(14)
-                .background(Palette.card, in: .rect(cornerRadius: 14))
+                .background(PL.card, in: .rect(cornerRadius: 14))
             }
             .buttonStyle(.plain)
             .accessibilityIdentifier("learnUpsell")

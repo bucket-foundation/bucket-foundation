@@ -42,6 +42,7 @@ final class TiltReader {
 
 struct ForeheadGame: View {
     @Environment(LangStore.self) private var langs
+    @State private var feel = GameFeel()
     @State private var picked: [String] = []
     @State private var cards: [ForeheadCard] = []
     @State private var index = 0
@@ -57,7 +58,7 @@ struct ForeheadGame: View {
     var card: ForeheadCard? { index < cards.count ? cards[index] : nil }
 
     var body: some View {
-        PlayScene(game: .forehead) {
+        PlayScene(game: .forehead, feel: feel, burst: false) {
             if over || PlayLaunch.endGame {
                 results
             } else if endsAt != nil, let card {
@@ -142,7 +143,7 @@ struct ForeheadGame: View {
     func mark(_ ok: Bool) {
         guard endsAt != nil, !over else { return }
         marks.append(ok)
-        PlaySound.effect(ok, combo: marks.filter { $0 }.count)
+        feel.record(ok)
         index += 1
         if RevealRules.forehead(cardsLeft: cards.count - index, secondsLeft: left) { finish() }
     }
