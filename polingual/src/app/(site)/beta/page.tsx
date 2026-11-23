@@ -22,11 +22,6 @@ export default function Page() {
   return (
     <Legal>
       <h1 className={styles.title}>Become a beta tester</h1>
-      <div className={styles.lede}>Get new Polingual builds before they reach the App Store, and tell us what to fix.</div>
-      <ul className={styles.perks}>
-        <li>🎮 New games first</li>
-        <li>💬 Your feedback shapes the app</li>
-      </ul>
       <div className={styles.shots}>
         {SHOTS.map((s) => (
           <img key={s.src} src={s.src} alt={s.alt} width={300} height={652} className={styles.shot} />
@@ -36,7 +31,7 @@ export default function Page() {
         Join on iPhone
       </ButtonLink>
       <div className={styles.need}>
-        iPhone · iOS 26 · <a href={TESTFLIGHT_APP_URL} rel="noopener">TestFlight app</a>
+        iOS 26 · <a href={TESTFLIGHT_APP_URL} rel="noopener">TestFlight</a>
       </div>
       {siteKey ? <BetaForm siteKey={siteKey} /> : null}
     </Legal>
