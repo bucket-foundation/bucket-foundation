@@ -15,6 +15,34 @@ struct EntitlementTests {
         WebEntitlement(userId: user, productId: "web.polingual.gift.year", expires: now.addingTimeInterval(expiresIn), fetched: now.addingTimeInterval(-fetchedAgo))
     }
 
+    @Test func lapsedReportsTheLatestEndedPaidPlan() {
+        let older = record(Plan.monthly, expiresIn: -5 * 86_400)
+        let newer = record(Plan.yearly, expiresIn: -86_400)
+        #expect(Entitlement.lapsed(history: [older, newer], now: now) == now.addingTimeInterval(-86_400))
+        #expect(Entitlement.access([], now: now) == .locked)
+    }
+
+    @Test func lapsedIsNilWhileAnyPlanIsLiveOrNoneWasBought() {
+        #expect(Entitlement.lapsed(history: [], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [record(expiresIn: -86_400), record(Plan.yearly)], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [record(Plan.lifetime, expiresIn: nil)], now: now) == nil)
+    }
+
+    @Test func lapsedSkipsRevokedAndUnknownProducts() {
+        #expect(Entitlement.lapsed(history: [record(expiresIn: -86_400, revoked: true)], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [record("com.other.app", expiresIn: -86_400)], now: now) == nil)
+    }
+
+    @Test func lapsedCopyAddsTheTestFlightLineInTheSandbox() {
+        let ended = now.addingTimeInterval(-86_400)
+        let plain = PaywallCopy.lapsed(ended, sandbox: false)
+        let beta = PaywallCopy.lapsed(ended, sandbox: true)
+        #expect(plain.contains(ended.formatted(date: .long, time: .omitted)))
+        #expect(beta.hasPrefix(plain))
+        #expect(beta.contains("TestFlight"))
+        #expect(!plain.contains("TestFlight"))
+    }
+
     @Test func webGrantOpensLockedAndBetaAccess() {
         let w = web()
         let subscribed = Access.subscribed(productID: w.productId, until: w.expires)
