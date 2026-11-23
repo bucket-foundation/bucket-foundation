@@ -30,9 +30,9 @@ export default function Page() {
       <ButtonLink href={TESTFLIGHT_JOIN_URL} variant="accent" size="lg" block rel="noopener" data-testid="testflight-join">
         Join on iPhone
       </ButtonLink>
-      <p className={styles.need}>
+      <div className={styles.need}>
         iPhone · iOS 26 · <a href={TESTFLIGHT_APP_URL} rel="noopener">TestFlight app</a>
-      </p>
+      </div>
       {siteKey ? <BetaForm siteKey={siteKey} /> : null}
     </Legal>
   );
