@@ -5,6 +5,7 @@ struct TilesGame: View {
     @Environment(LangStore.self) private var langs
     @Environment(\.verticalSizeClass) private var vertical
     @ScaledMetric private var chrome: CGFloat = 132
+    @State private var feel = GameFeel()
     @State private var rounds: [TileRound] = []
     @State private var index = 0
     @State private var startedAt: Date?
@@ -21,7 +22,7 @@ struct TilesGame: View {
     var round: TileRound? { index < rounds.count && lives > 0 ? rounds[index] : nil }
 
     var body: some View {
-        PlayScene(game: .tiles) {
+        PlayScene(game: .tiles, feel: feel) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let round, !PlayLaunch.endGame {
@@ -41,6 +42,7 @@ struct TilesGame: View {
             ViewThatFits(in: .horizontal) {
                 HStack {
                     status
+                    ComboChip(streak: feel.streak, multiplier: false)
                     Spacer()
                     hearts
                 }
@@ -139,6 +141,7 @@ struct TilesGame: View {
     }
 
     func deal() {
+        feel.reset()
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
         let targets = langs.playTargets.filter { $0 != root }
@@ -165,7 +168,7 @@ struct TilesGame: View {
         points += LobbyTiles.score(o, combo: combo)
         played.append((r, o.perfect))
         outcome = o
-        PlaySound.effect(o.perfect, combo: combo)
+        feel.record(o.perfect, points: LobbyTiles.score(o, combo: combo))
     }
 
     func next() {

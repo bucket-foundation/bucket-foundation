@@ -114,9 +114,9 @@ struct LobbyRaceView: View {
     var header: some View {
         VStack(spacing: 6) {
             HStack {
-                Text(lobby.game.title).font(.headline).foregroundStyle(Palette.ink)
+                Text(lobby.game.title).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                 Spacer()
-                Text(clock).font(.headline.monospacedDigit()).foregroundStyle(remaining < 30 ? D8.vermilion : Palette.ink)
+                Text(clock).font(PL.heading.font(scale: 0.75)).monospacedDigit().foregroundStyle(remaining < 30 ? PL.vermilion : PL.ink)
                     .accessibilityIdentifier("lobbyRaceClock")
             }
             ProgressView(value: min(max(0, remaining), lobby.playSeconds), total: max(1, lobby.playSeconds)).tint(PL.tyrian)
@@ -129,12 +129,12 @@ struct LobbyRaceView: View {
                     Text("Highest score wins")
                 }
             }
-            .font(.caption.weight(.semibold))
-            .foregroundStyle(Palette.muted)
+            .font(PL.label.font())
+            .foregroundStyle(PL.inkDim)
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
-        .background(Palette.card)
+        .background(PL.card)
     }
 }
 
@@ -143,9 +143,9 @@ struct LobbiesTile: View {
         NavigationLink {
             LobbiesScreen()
         } label: {
-            TileRow(symbol: "person.3.fill", title: String(localized: "Live Lobbies"), detail: String(localized: "Play the same round with friends, live."), color: D8.malachite)
+            TileRow(symbol: "person.3.fill", title: String(localized: "Live Lobbies"), detail: String(localized: "Play the same round with friends, live."), color: PL.malachite)
                 .padding(12)
-                .background(Palette.card, in: .rect(cornerRadius: 18))
+                .background(PL.card, in: .rect(cornerRadius: 18))
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("lobbiesTile")
@@ -185,62 +185,94 @@ struct LobbiesScreen: View {
     var name: String { String(displayName.trimmingCharacters(in: .whitespacesAndNewlines).prefix(40)) }
 
     var body: some View {
-        List {
-            Section("You") {
-                TextField("Name others see", text: $displayName).accessibilityIdentifier("lobbyName")
-            }
-            Section("Join by code") {
-                HStack {
-                    TextField("6 letter code", text: $code)
-                        #if os(iOS)
-                        .textInputAutocapitalization(.characters)
-                        #endif
-                        .autocorrectionDisabled()
-                        .accessibilityIdentifier("lobbyCode")
-                    Button("Join") { act { try await lobbies.join(code: code, displayName: name) } }
-                        .disabled(name.isEmpty || code.count < 6 || lobbies.busy)
+        ScrollView {
+            VStack(alignment: .leading, spacing: PL.Space.s4) {
+                PlayLabel(text: "You")
+                PLCard {
+                    TextField("Name others see", text: $displayName).lobbyField().accessibilityIdentifier("lobbyName")
                 }
-            }
-            Section("New lobby") {
-                Picker("Game", selection: $game) {
-                    ForEach(lobbies.hostable) { Text($0.title).tag($0) }
-                }
-                .accessibilityIdentifier("lobbyGame")
-                ForEach(langs.systems.filter { game.fits($0.targets) }) { s in
-                    Button {
-                        act { try await lobbies.create(name: "\(name)'s lobby", game: game, root: s.root, targets: s.targets, displayName: name) }
-                    } label: {
-                        HStack(spacing: -6) {
-                            ForEach(s.targets.prefix(5), id: \.self) { FlagTile(lang: $0, size: 30) }
-                            Text(s.name).padding(.leading, 14).foregroundStyle(Palette.ink)
-                        }
+                PlayLabel(text: "Join by code")
+                PLCard {
+                    HStack(spacing: PL.Space.s3) {
+                        TextField("6 letter code", text: $code)
+                            #if os(iOS)
+                            .textInputAutocapitalization(.characters)
+                            #endif
+                            .autocorrectionDisabled()
+                            .lobbyField()
+                            .accessibilityIdentifier("lobbyCode")
+                        Button("Join") { act { try await lobbies.join(code: code, displayName: name) } }
+                            .buttonStyle(.pl(.primary, size: .md, full: false))
+                            .disabled(name.isEmpty || code.count < 6 || lobbies.busy)
                     }
-                    .disabled(name.isEmpty || lobbies.busy)
                 }
-                if langs.systems.isEmpty { Text("Start a language set in Learn first.").foregroundStyle(Palette.muted) }
-            }
-            Section("Open lobbies") {
-                if lobbies.open.isEmpty { Text("No open lobbies right now. Start one and share the code.").foregroundStyle(Palette.muted) }
-                ForEach(lobbies.open) { l in
-                    Button { act { try await lobbies.join(l, displayName: name) } } label: {
+                PlayLabel(text: "New lobby")
+                PLCard {
+                    VStack(alignment: .leading, spacing: PL.Space.s3) {
                         HStack {
-                            HStack(spacing: -6) { ForEach(l.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
-                            VStack(alignment: .leading) {
-                                Text(l.name).font(.headline).foregroundStyle(Palette.ink)
-                                Text("\(l.game.title) · \(l.host) · \(l.players) of \(LobbyRules.cap)").font(.footnote).foregroundStyle(Palette.muted)
-                            }
-                            .padding(.leading, 10)
+                            Text("Game").font(PL.body.font()).foregroundStyle(PL.ink)
                             Spacer()
-                            if l.isMember { Text("Rejoin").font(.caption.weight(.heavy)).foregroundStyle(D8.malachite) }
+                            Picker("Game", selection: $game) {
+                                ForEach(lobbies.hostable) { Text($0.title).tag($0) }
+                            }
+                            .tint(PL.tyrian)
+                            .accessibilityIdentifier("lobbyGame")
+                        }
+                        ForEach(langs.systems.filter { game.fits($0.targets) }) { s in
+                            Button {
+                                act { try await lobbies.create(name: "\(name)'s lobby", game: game, root: s.root, targets: s.targets, displayName: name) }
+                            } label: {
+                                HStack(spacing: -6) {
+                                    ForEach(s.targets.prefix(5), id: \.self) { FlagTile(lang: $0, size: 30) }
+                                    Text(s.name).font(PL.body.font()).lineLimit(2).padding(.leading, PL.Space.s4)
+                                    Spacer(minLength: 0)
+                                }
+                                .padding(PL.Space.s3)
+                            }
+                            .buttonStyle(GameAnswerStyle(state: .other))
+                            .disabled(name.isEmpty || lobbies.busy)
+                        }
+                        if langs.systems.isEmpty { Text("Start a language set in Learn first.").font(PL.body.font()).foregroundStyle(PL.inkDim) }
+                    }
+                }
+                PlayLabel(text: "Open lobbies")
+                PLCard {
+                    VStack(alignment: .leading, spacing: PL.Space.s3) {
+                        if lobbies.open.isEmpty { Text("No open lobbies right now. Start one and share the code.").font(PL.body.font()).foregroundStyle(PL.inkDim) }
+                        ForEach(lobbies.open) { l in
+                            Button { act { try await lobbies.join(l, displayName: name) } } label: {
+                                HStack {
+                                    HStack(spacing: -6) { ForEach(l.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
+                                    VStack(alignment: .leading) {
+                                        Text(l.name).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
+                                        Text("\(l.game.title) · \(l.host) · \(l.players) of \(LobbyRules.cap)").font(PL.small.font()).foregroundStyle(PL.inkDim)
+                                    }
+                                    .padding(.leading, PL.Space.s2)
+                                    Spacer()
+                                    if l.isMember { Text("Rejoin").font(PL.label.font()).foregroundStyle(PL.malachite) }
+                                }
+                                .padding(PL.Space.s3)
+                            }
+                            .buttonStyle(GameAnswerStyle(state: .other))
+                            .disabled(name.isEmpty && !l.isMember)
                         }
                     }
-                    .disabled(name.isEmpty && !l.isMember)
                 }
+                if let problem { Text(problem).font(PL.body.font()).foregroundStyle(PL.ochre) }
+                AdPrivacyButton().buttonStyle(.pl(.ghost, size: .sm, full: false))
             }
-            if let problem { Section { Text(problem).foregroundStyle(D8.vermilion) } }
-            Section { AdPrivacyButton() }
+            .padding(PL.Space.s4)
         }
-        .paper()
+        .scrollContentBackground(.hidden)
+        .scrollDismissesKeyboard(.interactively)
+        .plGround(.lattice, band: true)
+        .lightStatusBar()
+        .inlineTitle()
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Live Lobbies").font(PL.heading.font()).foregroundStyle(PL.paper).accessibilityAddTraits(.isHeader)
+            }
+        }
         .navigationTitle("Live Lobbies")
         .refreshable { await lobbies.refresh() }
         .task {
@@ -268,6 +300,15 @@ struct LobbiesScreen: View {
                 problem = String(localized: "Something went wrong.")
             }
         }
+    }
+}
+
+extension View {
+    func lobbyField() -> some View {
+        font(PL.body.font())
+            .foregroundStyle(PL.ink)
+            .padding(PL.Space.s3)
+            .background(PL.paper, in: .rect(cornerRadius: PL.Radius.sm))
     }
 }
 
@@ -337,8 +378,8 @@ struct LobbyRoom: View {
         case .waiting: waiting(l)
         case .countdown(let s):
             VStack(spacing: 12) {
-                Text("Get ready").font(D8.word(26)).foregroundStyle(Palette.ink)
-                Text("\(Int(s.rounded(.up)))").font(.system(size: 96, weight: .heavy, design: .rounded)).foregroundStyle(D8.vermilion)
+                Text("Get ready").font(PL.wordFont(26)).foregroundStyle(PL.ink)
+                Text("\(Int(s.rounded(.up)))").font(PL.script(96)).foregroundStyle(PL.vermilion)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .round(let i, let remaining): round(l, i, remaining)
@@ -352,26 +393,26 @@ struct LobbyRoom: View {
             List {
                 Section {
                     HStack {
-                        Text("Code").foregroundStyle(Palette.muted)
-                        Text(l.code).font(.system(.title2, design: .monospaced).weight(.heavy)).textSelection(.enabled)
+                        Text("Code").foregroundStyle(PL.inkDim)
+                        Text(l.code).font(PL.capsFont(22)).textSelection(.enabled)
                         Spacer()
                         ShareLink(item: String(localized: "Join my Polingual lobby with code \(l.code): https://polingual.com/play/\(l.code)")) { Image(systemName: "square.and.arrow.up") }
                     }
                     HStack(spacing: -6) { ForEach(l.targets, id: \.self) { FlagTile(lang: $0, size: 28) } }
                     if l.game.isRace {
-                        Text("\(l.game.title), highest score in \(Int(l.playSeconds) / 60) minutes wins").font(.footnote).foregroundStyle(Palette.muted)
+                        Text("\(l.game.title), highest score in \(Int(l.playSeconds) / 60) minutes wins").font(PL.small.font()).foregroundStyle(PL.inkDim)
                     } else {
-                        Text("\(l.game.title), \(l.rounds) rounds, \(l.roundSeconds) seconds each").font(.footnote).foregroundStyle(Palette.muted)
+                        Text("\(l.game.title), \(l.rounds) rounds, \(l.roundSeconds) seconds each").font(PL.small.font()).foregroundStyle(PL.inkDim)
                     }
                 }
                 Section("Players") {
                     ForEach(l.players) { p in
                         HStack {
-                            Circle().fill(p.online ? D8.malachite : Palette.rule).frame(width: 8, height: 8)
-                            Text(p.name).foregroundStyle(Palette.ink)
-                            if p.isHost { Image(systemName: "crown.fill").foregroundStyle(D8.vermilion).font(.caption) }
+                            Circle().fill(p.online ? PL.malachite : PL.paper3).frame(width: 8, height: 8)
+                            Text(p.name).foregroundStyle(PL.ink)
+                            if p.isHost { Image(systemName: "crown.fill").foregroundStyle(PL.vermilion).font(PL.label.font()) }
                             Spacer()
-                            Text(p.ready ? "Ready" : "Waiting").font(.caption.weight(.heavy)).foregroundStyle(p.ready ? D8.malachite : Palette.muted)
+                            Text(p.ready ? "Ready" : "Waiting").font(PL.label.font()).foregroundStyle(p.ready ? PL.malachite : PL.inkDim)
                         }
                     }
                 }
@@ -384,9 +425,9 @@ struct LobbyRoom: View {
                         Button("Start game") { act { try await lobbies.start() } }
                             .disabled(!l.canStart)
                             .accessibilityIdentifier("lobbyStart")
-                        if !l.canStart { Text("Two ready players start the game.").font(.footnote).foregroundStyle(Palette.muted) }
+                        if !l.canStart { Text("Two ready players start the game.").font(PL.small.font()).foregroundStyle(PL.inkDim) }
                     }
-                    if let problem { Text(problem).foregroundStyle(D8.vermilion) }
+                    if let problem { Text(problem).foregroundStyle(PL.vermilion) }
                 }
                 Section("Chat") { chatLog(l) }
             }
@@ -397,8 +438,8 @@ struct LobbyRoom: View {
     func chatLog(_ l: Lobby) -> some View {
         ForEach(l.messages.suffix(30)) { m in
             VStack(alignment: .leading, spacing: 2) {
-                Text(m.name).font(.caption.weight(.heavy)).foregroundStyle(m.from == l.me?.userId ? D8.lapis : Palette.muted)
-                Text(m.body).foregroundStyle(Palette.ink)
+                Text(m.name).font(PL.label.font()).foregroundStyle(m.from == l.me?.userId ? PL.lapis : PL.inkDim)
+                Text(m.body).foregroundStyle(PL.ink)
             }
         }
     }
@@ -413,7 +454,7 @@ struct LobbyRoom: View {
                 .disabled(draft.trimmingCharacters(in: .whitespaces).isEmpty)
         }
         .padding()
-        .background(Palette.card)
+        .background(PL.card)
     }
 
     func sendChat() {
@@ -432,15 +473,15 @@ struct LobbyRoom: View {
             let picked = lobbies.picks[i]
             FitPage { VStack(spacing: 16) {
                 HStack {
-                    Text("Round \(i + 1) of \(l.rounds)").font(.headline).foregroundStyle(Palette.ink)
+                    Text("Round \(i + 1) of \(l.rounds)").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                     Spacer()
-                    Text("\(Int(remaining.rounded(.up)))s").font(.headline.monospacedDigit()).foregroundStyle(remaining < 3 ? D8.vermilion : Palette.ink)
+                    Text("\(Int(remaining.rounded(.up)))s").font(PL.heading.font(scale: 0.75)).monospacedDigit().foregroundStyle(remaining < 3 ? PL.vermilion : PL.ink)
                 }
-                ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(D8.malachite)
+                ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(PL.malachite)
                 VStack(spacing: 6) {
                     if let lang = p.lang, p.mode != .flag { FlagTile(lang: lang, size: 40) }
-                    Text(p.mode == .flag ? String(localized: "Which language?") : "").font(.subheadline).foregroundStyle(Palette.muted)
-                    Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                    Text(p.mode == .flag ? String(localized: "Which language?") : "").font(PL.small.font()).foregroundStyle(PL.inkDim)
+                    Text(p.gloss).font(PL.wordFont(30)).foregroundStyle(PL.ink).multilineTextAlignment(.center)
                 }
                 .padding(.vertical, 8)
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
@@ -451,7 +492,7 @@ struct LobbyRoom: View {
                             Task { await lobbies.pick(c, round: i) }
                         } label: {
                             Group {
-                                if p.mode == .flag { FlagTile(lang: c, size: 64) } else { Text(c).font(D8.word(22)).lineLimit(2).minimumScaleFactor(0.5) }
+                                if p.mode == .flag { FlagTile(lang: c, size: 64) } else { Text(c).font(PL.wordFont(22)).lineLimit(2).minimumScaleFactor(0.5) }
                             }
                                 .padding(10).frame(maxWidth: .infinity, minHeight: 100)
                         }
@@ -473,11 +514,11 @@ struct LobbyRoom: View {
     func roundHeader(_ l: Lobby, _ i: Int, _ remaining: Double) -> some View {
         VStack(spacing: 10) {
             HStack {
-                Text("Round \(i + 1) of \(l.rounds)").font(.headline).foregroundStyle(Palette.ink)
+                Text("Round \(i + 1) of \(l.rounds)").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                 Spacer()
-                Text("\(Int(remaining.rounded(.up)))s").font(.headline.monospacedDigit()).foregroundStyle(remaining < 3 ? D8.vermilion : Palette.ink)
+                Text("\(Int(remaining.rounded(.up)))s").font(PL.heading.font(scale: 0.75)).monospacedDigit().foregroundStyle(remaining < 3 ? PL.vermilion : PL.ink)
             }
-            ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(D8.malachite)
+            ProgressView(value: max(0, remaining), total: Double(l.roundSeconds)).tint(PL.malachite)
         }
     }
 
@@ -488,7 +529,7 @@ struct LobbyRoom: View {
         let sent = lobbies.picks[i] != nil
         return FitPage { VStack(spacing: 14) {
             roundHeader(l, i, remaining)
-            Text("Tap every word for \(p.gloss)").font(D8.word(24)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+            Text("Tap every word for \(p.gloss)").font(PL.wordFont(24)).foregroundStyle(PL.ink).multilineTextAlignment(.center)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), spacing: 10)], spacing: 10) {
                 ForEach(Array(tiles.enumerated()), id: \.offset) { n, t in
                     let on = mine.contains(n)
@@ -499,7 +540,7 @@ struct LobbyRoom: View {
                     } label: {
                         HStack(spacing: 8) {
                             if !t.lang.isEmpty { FlagTile(lang: t.lang, size: 24) }
-                            Text(t.form).font(D8.word(19)).lineLimit(2).minimumScaleFactor(0.5)
+                            Text(t.form).font(PL.wordFont(19)).lineLimit(2).minimumScaleFactor(0.5)
                         }
                         .padding(8).frame(maxWidth: .infinity, minHeight: 56)
                     }
@@ -510,7 +551,7 @@ struct LobbyRoom: View {
             }
             Button("Done") { submitTiles(i) }
                 .buttonStyle(.borderedProminent)
-                .tint(D8.malachite)
+                .tint(PL.malachite)
                 .disabled(sent)
                 .accessibilityIdentifier("lobby-tiles-done")
             if i > 0 { lastRound(l, i - 1) }
@@ -531,12 +572,12 @@ struct LobbyRoom: View {
     func onWeb(_ l: Lobby, _ p: LobbyPrompt, _ remaining: Double) -> some View {
         VStack(spacing: 16) {
             roundHeader(l, p.round, remaining)
-            Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
-            Text("This round plays on polingual.com.").foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+            Text(p.gloss).font(PL.wordFont(30)).foregroundStyle(PL.ink).multilineTextAlignment(.center)
+            Text("This round plays on polingual.com.").foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
             if let url = URL(string: "https://polingual.com/play/\(l.code)") {
                 Link("Open polingual.com", destination: url)
                     .buttonStyle(.borderedProminent)
-                    .tint(D8.malachite)
+                    .tint(PL.malachite)
             }
             Spacer(minLength: 0)
         }
@@ -546,10 +587,10 @@ struct LobbyRoom: View {
     func reveal(_ l: Lobby, _ i: Int, _ remaining: Double) -> some View {
         VStack(spacing: 16) {
             HStack {
-                Text("Round \(i + 1) of \(l.rounds)").font(.headline).foregroundStyle(Palette.ink)
+                Text("Round \(i + 1) of \(l.rounds)").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                 Spacer()
-                Text("Next round").font(.subheadline).foregroundStyle(Palette.muted)
-                Text("\(Int(remaining.rounded(.up)))s").font(.headline.monospacedDigit()).foregroundStyle(Palette.ink)
+                Text("Next round").font(PL.small.font()).foregroundStyle(PL.inkDim)
+                Text("\(Int(remaining.rounded(.up)))s").font(PL.heading.font(scale: 0.75)).monospacedDigit().foregroundStyle(PL.ink)
             }
             if let p = l.prompt(i) {
                 if !p.revealOrdered.isEmpty {
@@ -558,13 +599,13 @@ struct LobbyRoom: View {
                 } else {
                     VStack(spacing: 6) {
                         if let lang = p.lang, p.mode != .flag { FlagTile(lang: lang, size: 40) }
-                        Text(p.gloss).font(D8.word(30)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
+                        Text(p.gloss).font(PL.wordFont(30)).foregroundStyle(PL.ink).multilineTextAlignment(.center)
                         if p.mode == .flag, let a = p.answer { FlagTile(lang: a, size: 56) }
-                        else if p.mode.choosesText, let a = p.answer { Text(a).font(D8.word(24)).foregroundStyle(D8.malachite) }
+                        else if p.mode.choosesText, let a = p.answer { Text(a).font(PL.wordFont(24)).foregroundStyle(PL.malachite) }
                         else if p.mode == .tiles, let right = LobbyTilePicks.answer(p) {
                             let tiles = LobbyTilePicks.tiles(p)
                             ForEach(right.sorted().filter { $0 < tiles.count }, id: \.self) { n in
-                                Text(tiles[n].form).font(D8.word(20)).foregroundStyle(D8.malachite)
+                                Text(tiles[n].form).font(PL.wordFont(20)).foregroundStyle(PL.malachite)
                             }
                         }
                     }
@@ -583,7 +624,7 @@ struct LobbyRoom: View {
             let right = pick.map { $0 == answer }
             VStack(alignment: .leading, spacing: 4) {
                 Text(right == true ? String(localized: "You got it") : right == false ? String(localized: "Not this time") : String(localized: "Time is up"))
-                    .font(.headline).foregroundStyle(right == true ? D8.malachite : right == false ? D8.vermilion : Palette.ink)
+                    .font(PL.heading.font(scale: 0.75)).foregroundStyle(right == true ? PL.malachite : right == false ? PL.vermilion : PL.ink)
                 choiceLine(String(localized: "Answer"), p.label(answer))
                 if let pick, pick != answer { choiceLine(String(localized: "You picked"), p.label(pick)) }
             }
@@ -594,10 +635,10 @@ struct LobbyRoom: View {
 
     func choiceLine(_ key: String, _ label: LobbyChoiceLabel) -> some View {
         HStack(spacing: 6) {
-            Text(key).font(.caption.weight(.heavy)).foregroundStyle(Palette.muted)
+            Text(key).font(PL.label.font()).foregroundStyle(PL.inkDim)
             if let lang = label.lang { FlagTile(lang: lang, size: 18) }
-            if let word = label.word { Text(word).font(.subheadline.weight(.bold)).foregroundStyle(Palette.ink) }
-            if let lang = label.lang { Text(langName(lang)).font(.subheadline).foregroundStyle(Palette.muted) }
+            if let word = label.word { Text(word).font(PL.small.font()).foregroundStyle(PL.ink) }
+            if let lang = label.lang { Text(langName(lang)).font(PL.small.font()).foregroundStyle(PL.inkDim) }
         }
     }
 
@@ -605,7 +646,7 @@ struct LobbyRoom: View {
         let entries = p.revealOrdered
         return VStack(alignment: .leading, spacing: 6) {
             Text(p.mode == .flag ? entries.first(where: \.correct)?.meaning ?? p.gloss : p.gloss)
-                .font(D8.word(22)).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.6)
+                .font(PL.wordFont(22)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.6)
             ViewThatFits(in: .vertical) {
                 revealGrid(entries)
                 ScrollView { revealGrid(entries) }
@@ -620,20 +661,20 @@ struct LobbyRoom: View {
                 HStack(alignment: .top, spacing: 8) {
                     FlagTile(lang: e.lang, size: 28)
                     VStack(alignment: .leading, spacing: 1) {
-                        Text(e.word).font(D8.word(18)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
+                        Text(e.word).font(PL.wordFont(18)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.6)
                         if let roman = e.roman, !roman.isEmpty, roman != e.word {
-                            Text(roman).font(.caption).foregroundStyle(Palette.muted).lineLimit(1)
+                            Text(roman).font(PL.label.font()).foregroundStyle(PL.inkDim).lineLimit(1)
                         }
-                        Text(langName(e.lang)).font(.caption2.weight(.heavy)).foregroundStyle(Palette.muted).lineLimit(1)
-                        Text(e.meaning).font(.caption).foregroundStyle(Palette.ink).lineLimit(2)
+                        Text(langName(e.lang)).font(PL.label.font()).foregroundStyle(PL.inkDim).lineLimit(1)
+                        Text(e.meaning).font(PL.label.font()).foregroundStyle(PL.ink).lineLimit(2)
                     }
                     Spacer(minLength: 0)
-                    if e.correct { Image(systemName: "checkmark.circle.fill").foregroundStyle(D8.malachite) }
+                    if e.correct { Image(systemName: "checkmark.circle.fill").foregroundStyle(PL.malachite) }
                 }
                 .padding(8)
                 .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                .background(Palette.card, in: .rect(cornerRadius: 10))
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(e.correct ? D8.malachite : .clear, lineWidth: 2))
+                .background(PL.card, in: .rect(cornerRadius: 10))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(e.correct ? PL.malachite : .clear, lineWidth: 2))
                 .accessibilityElement(children: .combine)
             }
         }
@@ -644,23 +685,23 @@ struct LobbyRoom: View {
             HStack(spacing: 8) {
                 ForEach(l.standings) { pl in
                     Label(pl.name, systemImage: pl.answered ? "checkmark.circle.fill" : "circle")
-                        .font(.caption.weight(.semibold))
+                        .font(PL.label.font())
                         .lineLimit(1)
                         .fixedSize()
-                        .foregroundStyle(pl.answered ? D8.malachite : Palette.muted)
+                        .foregroundStyle(pl.answered ? PL.malachite : PL.inkDim)
                         .accessibilityValue(pl.answered ? String(localized: "Answered") : String(localized: "Waiting"))
                 }
             }
             HStack(spacing: 6) {
                 ForEach(l.standings) { pl in
                     Image(systemName: pl.answered ? "checkmark.circle.fill" : "circle")
-                        .foregroundStyle(pl.answered ? D8.malachite : Palette.muted)
+                        .foregroundStyle(pl.answered ? PL.malachite : PL.inkDim)
                         .accessibilityLabel(pl.name)
                         .accessibilityValue(pl.answered ? String(localized: "Answered") : String(localized: "Waiting"))
                 }
                 Text(verbatim: "\(l.standings.filter(\.answered).count)/\(l.standings.count)")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.label.font())
+                    .foregroundStyle(PL.inkDim)
             }
         }
     }
@@ -668,20 +709,20 @@ struct LobbyRoom: View {
     func lastRound(_ l: Lobby, _ i: Int) -> some View {
         let results = l.results(for: i)
         return VStack(alignment: .leading, spacing: 4) {
-            Text("Last round").font(.caption.weight(.heavy)).foregroundStyle(Palette.muted)
+            Text("Last round").font(PL.label.font()).foregroundStyle(PL.inkDim)
             ForEach(l.standings) { pl in
                 let r = results.first { $0.userId == pl.userId }
                 HStack {
                     Text(pl.name)
                     Spacer()
                     Text(r.map { $0.correct ? "+\($0.points)" : "miss" } ?? "no answer").monospacedDigit()
-                        .foregroundStyle(r?.correct == true ? D8.malachite : Palette.muted)
+                        .foregroundStyle(r?.correct == true ? PL.malachite : PL.inkDim)
                 }
-                .font(.footnote)
+                .font(PL.small.font())
             }
         }
         .padding(12)
-        .background(Palette.card, in: .rect(cornerRadius: 12))
+        .background(PL.card, in: .rect(cornerRadius: 12))
     }
 
     func board(_ l: Lobby) -> some View {
@@ -692,13 +733,13 @@ struct LobbyRoom: View {
             Section("Final scores") {
                 ForEach(Array(l.standings.enumerated()), id: \.element.id) { n, p in
                     HStack {
-                        Text("\(n + 1)").font(.headline.monospacedDigit()).frame(width: 28)
-                        Text(p.name).font(n == 0 ? .headline : .body)
-                        if n == 0 { Image(systemName: "trophy.fill").foregroundStyle(D8.vermilion) }
+                        Text("\(n + 1)").font(PL.heading.font(scale: 0.75)).monospacedDigit().frame(width: 28)
+                        Text(p.name).font(n == 0 ? PL.heading.font(scale: 0.75) : PL.body.font())
+                        if n == 0 { Image(systemName: "trophy.fill").foregroundStyle(PL.vermilion) }
                         Spacer()
-                        Text("\(p.score)").font(.headline.monospacedDigit())
+                        Text("\(p.score)").font(PL.heading.font(scale: 0.75)).monospacedDigit()
                     }
-                    .foregroundStyle(Palette.ink)
+                    .foregroundStyle(PL.ink)
                 }
             }
             if !l.prompts.isEmpty { Section("Words") {
@@ -706,11 +747,11 @@ struct LobbyRoom: View {
                     let n = p.round
                     HStack {
                         if let lang = p.lang { FlagTile(lang: lang, size: 22) }
-                        Text(p.mode == .flag ? p.gloss : p.answer ?? "").font(.headline)
-                        Text(p.mode == .flag ? "" : p.gloss).foregroundStyle(Palette.muted)
+                        Text(p.mode == .flag ? p.gloss : p.answer ?? "").font(PL.heading.font(scale: 0.75))
+                        Text(p.mode == .flag ? "" : p.gloss).foregroundStyle(PL.inkDim)
                         Spacer()
                         if let mine = l.results.first(where: { $0.round == n && $0.userId == l.me?.userId }) {
-                            Image(systemName: mine.correct ? "checkmark" : "xmark").foregroundStyle(mine.correct ? D8.malachite : D8.vermilion)
+                            Image(systemName: mine.correct ? "checkmark" : "xmark").foregroundStyle(mine.correct ? PL.malachite : PL.vermilion)
                         }
                     }
                 }

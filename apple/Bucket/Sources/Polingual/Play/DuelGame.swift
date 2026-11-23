@@ -10,6 +10,7 @@ struct DuelGame: View {
     @State private var pickedLang: String?
     @State private var pickedMeaning: String?
     @State private var points = 0
+    @State private var feel = GameFeel()
     @State private var marks: [Bool] = []
     @State private var recorded = false
 
@@ -17,7 +18,7 @@ struct DuelGame: View {
     var prompt: GamePrompt? { index < prompts.count ? prompts[index] : nil }
 
     var body: some View {
-        PlayScene(game: .duel) {
+        PlayScene(game: .duel, feel: feel) {
             if prompts.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let prompt, !PlayLaunch.endGame {
@@ -31,26 +32,24 @@ struct DuelGame: View {
 
     func play(_ p: GamePrompt) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s3) {
-            PlayLabel(text: String(localized: "Round \(index + 1) of \(prompts.count) · \(points) points"))
+            HStack {
+                PlayLabel(text: String(localized: "Round \(index + 1) of \(prompts.count) · \(points) points"))
+                Spacer(minLength: 0)
+                ComboChip(streak: feel.streak, multiplier: false)
+            }
             PLCard {
                 Text(p.word.form).font(PL.word.font(scale: 0.9)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.5).frame(maxWidth: .infinity)
             }
             if step == 0 {
                 PlayLabel(text: "Which language?")
                 ForEach(p.choices, id: \.self) { l in
-                    Button { pickLang(l, p) } label: {
-                        HStack(spacing: PL.Space.s3) {
-                            PlayFlag(lang: l, size: 32)
-                            Text(langName(l))
-                        }
-                    }
-                    .buttonStyle(.pl(pickedLang == nil ? .ghost : l == p.answer ? .success : l == pickedLang ? .accent : .quiet, size: .md))
-                    .disabled(pickedLang != nil)
+                    GameAnswer(text: langName(l), flag: l, state: Self.state(l, picked: pickedLang, answer: p.answer), answer: l == p.answer) { pickLang(l, p) }
+                        .disabled(pickedLang != nil)
                 }
             } else {
                 PlayLabel(text: String(localized: "What does it mean in \(langName(p.word.root))?"))
                 ForEach(meanings[index], id: \.self) { m in
-                    PlayChoice(text: m, state: pickedMeaning == nil ? nil : m == p.word.gloss ? true : m == pickedMeaning ? false : nil) { pickMeaning(m, p) }
+                    GameAnswer(text: m, state: Self.state(m, picked: pickedMeaning, answer: p.word.gloss), answer: m == p.word.gloss) { pickMeaning(m, p) }
                         .disabled(pickedMeaning != nil)
                 }
             }
@@ -93,13 +92,19 @@ struct DuelGame: View {
         points = 0
         marks = []
         recorded = false
+        feel.reset()
+    }
+
+    static func state(_ option: String, picked: String?, answer: String) -> RowState {
+        guard let picked else { return .other }
+        return option == answer ? .right : option == picked ? .wrong : .other
     }
 
     func pickLang(_ l: String, _ p: GamePrompt) {
         pickedLang = l
         let ok = l == p.answer
         if ok { points += 1 }
-        PlaySound.effect(ok, combo: points)
+        feel.record(ok)
         Task {
             try? await Task.sleep(for: .milliseconds(600))
             step = 1
@@ -111,7 +116,7 @@ struct DuelGame: View {
         let ok = m == p.word.gloss
         if ok { points += 1 }
         marks.append(ok && pickedLang == p.answer)
-        PlaySound.effect(ok, combo: points)
+        feel.record(ok)
     }
 
     func next() {
