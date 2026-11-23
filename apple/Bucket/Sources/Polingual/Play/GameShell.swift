@@ -249,6 +249,7 @@ struct GameShell<Content: View>: View {
     let game: GameKind
     var feel: GameFeel?
     var fit = false
+    var burst = true
     @ViewBuilder let content: () -> Content
 
     var reduce: Bool { GameMotion.reduced(system: systemReduce) }
@@ -257,7 +258,7 @@ struct GameShell<Content: View>: View {
         GeometryReader { geo in
             page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
         }
-        .overlay { if let feel { GameBurst(feel: feel, reduce: reduce) } }
+        .overlay { if let feel, burst { GameBurst(feel: feel, reduce: reduce) } }
         .gameFeedback(feel)
         .environment(\.gameReduceMotion, reduce)
         .plGround(.lattice, band: true)
