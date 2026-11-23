@@ -264,7 +264,7 @@ struct GamesView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: PL.Space.s4) {
                 PLScreenTop(title: "Games", subtitle: "Free to play, every day", stickers: Stickers.games, onDark: true)
-                GamesBoard(onDark: true) { open = $0 }
+                GamesBoard(onDark: true, startsSet: true) { open = $0 }
             }
             .padding(.horizontal, PL.Space.s4)
             .padding(.bottom, PL.Space.s4)
@@ -293,14 +293,19 @@ struct GamesBoard: View {
     @Environment(LangStore.self) private var langs
     @Environment(GroupStore.self) private var groups
     var onDark = false
+    var startsSet = false
     let open: (GameKind) -> Void
 
     var body: some View {
         VStack(spacing: 16) {
             if langs.systems.isEmpty && (langs.status == .idle || langs.status == .loading) {
                 ProgressView().frame(maxWidth: .infinity).padding(.top, 60)
-            } else if langs.systems.isEmpty {
+            } else if langs.systems.isEmpty && startsSet {
                 GamesSetStart(onDark: onDark)
+            } else if langs.systems.isEmpty {
+                Text("Start a language set in Learn. The games use the words you study.")
+                    .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
+                    .padding(.top, 60)
             } else {
                 DailyHero(open: { open(.daily) })
                 LobbiesTile()
@@ -754,6 +759,7 @@ struct GamesSetStart: View {
     @State private var root = InterfaceLanguage.deviceRoot
     @State private var speaking = false
     @State private var creating = false
+    @State private var failure: SystemError?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -767,7 +773,9 @@ struct GamesSetStart: View {
             } label: {
                 LabeledContent("Languages I speak") {
                     Text(KnownPrompt.summary(store.known, device: InterfaceLanguage.deviceRoot, name: langName))
+                        .foregroundStyle(Palette.muted)
                 }
+                .foregroundStyle(PL.ink)
                 .padding(.horizontal, 14)
                 .frame(minHeight: 48)
                 .background(D8.face, in: .rect(cornerRadius: 12))
@@ -779,6 +787,11 @@ struct GamesSetStart: View {
                     PresetCard(name: p.name, langs: p.targets) { create(p.targets) }
                         .disabled(creating)
                 }
+            }
+            if let failure {
+                Text(LocalizedStringKey(failure.message))
+                    .font(.footnote)
+                    .foregroundStyle(onDark ? PL.paper : PL.ink)
             }
         }
         .padding(.top, PL.Space.s4)
@@ -799,11 +812,17 @@ struct GamesSetStart: View {
     func create(_ picked: [String]) {
         guard !creating, store.systems.isEmpty else { return }
         creating = true
+        failure = nil
         let r = root
         Task {
             defer { creating = false }
-            guard (try? await store.create(root: r, targets: picked)) != nil else { return }
-            haptic(true)
+            do {
+                _ = try await store.create(root: r, targets: picked)
+                haptic(true)
+            } catch {
+                failure = error as? SystemError ?? .noTargets
+                haptic(false)
+            }
         }
     }
 }
