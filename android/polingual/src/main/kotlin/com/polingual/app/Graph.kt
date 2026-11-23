@@ -48,6 +48,7 @@ class Graph(val context: Context) {
     val billing = Billing(context, this)
     val ads = Ads(context, this)
     val beta = Beta(this)
+    val todayPlan = TodayPlanStore(kv)
     val reminders = Reminders(context, kv)
     val push = PushRegistry({ m, p, t, b -> api.send(m, p, t, b) }, kv)
     val pushOn = PushRegistry.start(context, PushConfig.of(BuildConfig.FIREBASE_APP_ID, BuildConfig.FIREBASE_API_KEY, BuildConfig.FIREBASE_PROJECT_ID, BuildConfig.FIREBASE_SENDER_ID))
