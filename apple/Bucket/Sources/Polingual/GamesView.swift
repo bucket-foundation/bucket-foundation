@@ -300,9 +300,7 @@ struct GamesBoard: View {
             if langs.systems.isEmpty && (langs.status == .idle || langs.status == .loading) {
                 ProgressView().frame(maxWidth: .infinity).padding(.top, 60)
             } else if langs.systems.isEmpty {
-                Text("Start a language set in Learn. The games use the words you study.")
-                    .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
-                    .padding(.top, 60)
+                GamesSetStart(onDark: onDark)
             } else {
                 DailyHero(open: { open(.daily) })
                 LobbiesTile()
@@ -746,6 +744,66 @@ struct SymbolArt: View {
             PLArtView(art).frame(width: size * 1.3, height: size)
         } else {
             Image(systemName: name).font(.system(size: size, weight: .bold))
+        }
+    }
+}
+
+struct GamesSetStart: View {
+    @Environment(LangStore.self) private var store
+    var onDark = false
+    @State private var root = InterfaceLanguage.deviceRoot
+    @State private var speaking = false
+    @State private var creating = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Eyebrow(text: "Start a set").environment(\.plOnDark, onDark)
+            Text("Pick the languages your games use.")
+                .font(PL.title.font(scale: 0.8))
+                .foregroundStyle(onDark ? PL.paper : PL.ink)
+                .fixedSize(horizontal: false, vertical: true)
+            Button {
+                speaking = true
+            } label: {
+                LabeledContent("Languages I speak") {
+                    Text(KnownPrompt.summary(store.known, device: InterfaceLanguage.deviceRoot, name: langName))
+                }
+                .padding(.horizontal, 14)
+                .frame(minHeight: 48)
+                .background(D8.face, in: .rect(cornerRadius: 12))
+            }
+            .tint(Palette.ink)
+            .accessibilityIdentifier("games.speak")
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
+                ForEach(GamesSetStart.presets(root: root), id: \.name) { p in
+                    PresetCard(name: p.name, langs: p.targets) { create(p.targets) }
+                        .disabled(creating)
+                }
+            }
+        }
+        .padding(.top, PL.Space.s4)
+        .onChange(of: store.known, initial: true) { _, known in
+            root = KnownPrompt.root(current: root, known: known, device: InterfaceLanguage.deviceRoot)
+        }
+        .sheet(isPresented: $speaking) {
+            KnownLanguagesSheet(mode: .settings, picks: KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known)) { root = $0 }
+        }
+    }
+
+    static func presets(root: String) -> [(name: String, targets: [String])] {
+        LanguageSections.presets
+            .map { (name: $0.name, targets: $0.targets.filter { $0 != root }) }
+            .filter { !$0.targets.isEmpty }
+    }
+
+    func create(_ picked: [String]) {
+        guard !creating, store.systems.isEmpty else { return }
+        creating = true
+        let r = root
+        Task {
+            defer { creating = false }
+            guard (try? await store.create(root: r, targets: picked)) != nil else { return }
+            haptic(true)
         }
     }
 }
