@@ -40,6 +40,7 @@ final class GamesSetStartUITests: XCTestCase {
         shot("games-start-\(orientation)")
         romance.tap()
         XCTAssertTrue(prompt.waitForNonExistence(timeout: 30), "Picking a preset left the set start on screen")
+        XCTAssertTrue(app.buttons["lobbiesTile"].waitForExistence(timeout: 30), "The games board did not appear after the set was made")
         shot("games-start-\(orientation)-made")
     }
 
