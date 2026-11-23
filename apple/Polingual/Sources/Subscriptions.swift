@@ -20,6 +20,8 @@ final class Subscriptions {
     let web: WebMembership
     private(set) var trialEligible = true
     private(set) var current: String?
+    private(set) var lapsed: Date?
+    private(set) var sandbox = false
     private(set) var epoch = 0
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private var resets: Task<Void, Never>?
@@ -72,6 +74,8 @@ final class Subscriptions {
         store = Entitlement.access(current, now: .now, beta: await Self.testFlight())
         self.current = Entitlement.current(current, now: .now)
         trialEligible = Entitlement.trialEligible(history: history)
+        lapsed = Entitlement.lapsed(history: history, now: .now)
+        sandbox = await Self.sandboxed()
         if let product = try? await Product.products(for: Plan.all).first, let sub = product.subscription {
             trialEligible = await sub.isEligibleForIntroOffer
         }
@@ -79,6 +83,11 @@ final class Subscriptions {
 
     static func testFlight() async -> Bool {
         guard freeBetaBuild(Bundle.main.object(forInfoDictionaryKey: "PolingualFreeBeta") as? String) else { return false }
+        guard case .verified(let app) = try? await AppTransaction.shared else { return false }
+        return app.environment == .sandbox
+    }
+
+    static func sandboxed() async -> Bool {
         guard case .verified(let app) = try? await AppTransaction.shared else { return false }
         return app.environment == .sandbox
     }
