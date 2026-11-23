@@ -71,6 +71,7 @@ struct GameResults: View {
     var extra: AnyView?
     let again: (() -> Void)?
     @Environment(LangStore.self) private var langs
+    @Environment(Account.self) private var account
     @State private var landed = 0
 
     var body: some View {
@@ -115,7 +116,10 @@ struct GameResults: View {
             StartLearningButton()
         }
         .sensoryFeedback(.levelChange, trigger: landed)
-        .onAppear { if stars != nil { landed += 1 } }
+        .onAppear {
+            if stars != nil { landed += 1 }
+            SaveNudge.gameEnded(signedIn: account.stage == .signedIn)
+        }
         .resultScreen()
     }
 }

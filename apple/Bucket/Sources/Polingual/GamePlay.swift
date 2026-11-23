@@ -72,19 +72,6 @@ enum GameSound {
 }
 
 extension View {
-    func gameChrome(_ title: String, sideways: Bool) -> some View {
-        safeAreaPadding(.top, sideways ? 12 : 0)
-            .paper()
-            .navigationTitle(sideways ? "" : title)
-            .inlineTitle()
-            .toolbar { ToolbarItem(placement: .principal) { Text(sideways ? "" : title).font(.headline).foregroundStyle(D8.ink).accessibilityAddTraits(.isHeader) } }
-            .environment(\.colorScheme, .light)
-            #if os(iOS)
-            .toolbarColorScheme(.light, for: .navigationBar)
-            #endif
-            .screenShareQuiet()
-    }
-
     @ViewBuilder
     func screenShareQuiet() -> some View {
         #if os(iOS)

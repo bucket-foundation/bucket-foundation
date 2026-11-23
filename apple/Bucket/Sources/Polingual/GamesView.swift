@@ -240,10 +240,10 @@ extension LangStore {
         return points > before
     }
 
-    func recordRun(_ id: String, _ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, runs: CreditedRunStore = .shared) -> GameOutcome? {
+    func recordRun(_ id: String, _ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true, runs: CreditedRunStore = .shared) -> GameOutcome? {
         guard runs.claim(id) else { return nil }
         let before = gameDayCredit()
-        let best = recordGame(kind, played: played, hits: hits, points: points, missed: missed, pattern: pattern)
+        let best = recordGame(kind, played: played, hits: hits, points: points, missed: missed, pattern: pattern, earned: earned)
         return GameOutcome(best: best, credit: .between(before: before, after: gameDayCredit(), hits: hits))
     }
 }
@@ -687,87 +687,6 @@ struct GameShareButton<S: ButtonStyle>: View {
         .buttonStyle(style)
         .modifier(GameShareLog(kind: kind, form: "text"))
         .accessibilityIdentifier("game-share")
-    }
-}
-
-struct GameEnd: View {
-    @Environment(LangStore.self) private var langs
-    @Environment(Account.self) private var account
-    let kind: GameKind
-    let score: String
-    var line: String?
-    var best = false
-    var results: [Bool]?
-    let missed: [GameWord]
-    var shape: GameShare.Shape?
-    var sharing = true
-    var share: AnyView?
-    var shareObject: ShareObject?
-    var retry: (() -> Void)?
-    let again: (() -> Void)?
-
-    var brag: String { langs.shareText(kind, shape ?? .marks(results ?? [])) }
-
-    var body: some View {
-        VStack(spacing: 16) {
-            VStack(spacing: 10) {
-                Text(score).font(D8.word(44)).foregroundStyle(D8.parchment).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
-                if let line { Text(line).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9)).multilineTextAlignment(.center) }
-                if let results { GamePips(total: results.count, results: results) }
-            }
-            .padding(20)
-            .frame(maxWidth: .infinity)
-            .modifier(GameLip(face: kind.color, lip: kind.lip))
-            if best {
-                Label("New best", systemImage: "trophy.fill")
-                    .font(.subheadline.weight(.heavy))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 14).padding(.vertical, 7)
-                    .background(D8.vermilion, in: .capsule)
-                    .transition(.scale.combined(with: .opacity))
-            }
-            if langs.gameStreak > 0 {
-                Label(dayStreak(langs.gameStreak), systemImage: "flame.fill")
-                    .font(.headline).foregroundStyle(D8.vermilion)
-            }
-            if !missed.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    if LobbyRace.system == nil {
-                        Text("These come back in your next session").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
-                    }
-                    ForEach(missed.prefix(5)) { w in
-                        HStack(spacing: 8) {
-                            FlagTile(lang: w.lang, size: 22)
-                            Text(w.form).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
-                            Text(w.gloss).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1)
-                            Spacer(minLength: 0)
-                            PlayButton(text: w.form, lang: w.lang)
-                        }
-                    }
-                }
-                .padding(14)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Palette.card, in: .rect(cornerRadius: 14))
-            }
-            if sharing { GameShareButton(kind: kind, text: brag, style: D8Primary()) }
-            if let share { share }
-            if let shareObject { ShareObjectButton(shareObject, wide: true) }
-            if let retry { TryAgainOffer(kind: kind, start: retry) }
-            LiveResultActions(kind: kind)
-            if let again {
-                if DailyLedger.shared.spent {
-                    DailyLimitCard(place: "game:\(kind.rawValue)")
-                } else {
-                    Button("Play again", action: again).buttonStyle(D8Primary(compact: true))
-                }
-            }
-            LearnUpsell()
-        }
-        .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }
-        .resultScreen()
-        .padding()
-        .frame(maxWidth: 520)
-        .frame(maxWidth: .infinity)
     }
 }
 

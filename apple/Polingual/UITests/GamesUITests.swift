@@ -51,7 +51,7 @@ final class GamesUITests: XCTestCase {
     }
 
     func testMiniKeyFillsTheActiveSquare() {
-        let app = launch(["-openGame", "mini"])
+        let app = launch(["-openGame", "mini", "-freshDaily"])
         let empty = app.buttons.matching(NSPredicate(format: "label == %@", "Empty square"))
         XCTAssertTrue(empty.firstMatch.waitForExistence(timeout: 60))
         let before = empty.count
@@ -285,6 +285,39 @@ final class GamesUITests: XCTestCase {
         newSet.tap()
         sleep(2)
         shot("statusbar-sheet-after-game")
+    }
+
+    func testMiniShowAnswersEndsOnResults() {
+        let app = launch(["-openGame", "mini", "-freshDaily"])
+        let show = app.buttons["Show answers"]
+        XCTAssertTrue(show.waitForExistence(timeout: 60))
+        shot("mini-board")
+        show.tap()
+        XCTAssertTrue(app.staticTexts["playResults"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.descendants(matching: .any)["game-stars"].label, "0 of 3 stars")
+        shot("mini-end")
+    }
+
+    func testWordGroupsRoundEndsOnResults() {
+        let app = launch(["-openGame", "wordGroups", "-freshDaily"])
+        let tiles = app.buttons.matching(identifier: "groups.tile")
+        let submit = app.buttons["groups.submit"]
+        let results = app.staticTexts["playResults"]
+        XCTAssertTrue(tiles.firstMatch.waitForExistence(timeout: 60))
+        shot("groups-board")
+        let deselect = app.buttons["Deselect"]
+        let shuffle = app.buttons["Shuffle"]
+        for _ in 0..<24 where !results.exists {
+            guard tiles.count >= 4 else { break }
+            if deselect.isEnabled { deselect.tap() }
+            shuffle.tap()
+            for i in 0..<4 { tiles.element(boundBy: i).tap() }
+            if submit.isEnabled { submit.tap() }
+            usleep(600_000)
+        }
+        XCTAssertTrue(results.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["game-stars"].exists)
+        shot("groups-end")
     }
 
     func testWhichVoiceAndLetterSprintOpen() {
