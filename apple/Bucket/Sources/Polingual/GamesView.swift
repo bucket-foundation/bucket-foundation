@@ -108,9 +108,9 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
 
     var color: Color {
         switch self {
-        case .daily, .voice, .wordGroups: D8.lapis
-        case .same, .letters, .mini: D8.vermilion
-        case .match, .flags: D8.malachite
+        case .daily, .voice, .wordGroups: PL.lapis
+        case .same, .letters, .mini: PL.vermilion
+        case .match, .flags: PL.malachite
         case .polyword, .babel, .forehead, .tiles: PL.tyrian
         case .flagTiles, .snake, .duel: PL.vermilion
         case .shift, .atlas, .ispy: PL.lapis
@@ -119,9 +119,9 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
 
     var lip: Color {
         switch self {
-        case .daily, .voice, .wordGroups: Color(hex: 0x12326A)
-        case .same, .letters, .mini: D8.vermilionLip
-        case .match, .flags: D8.malachiteLip
+        case .daily, .voice, .wordGroups: PL.lapisDeep
+        case .same, .letters, .mini: PL.vermilionDeep
+        case .match, .flags: PL.malachiteDeep
         case .polyword, .babel, .forehead, .tiles: PL.tyrianDeep
         case .flagTiles, .snake, .duel: PL.vermilionDeep
         case .shift, .atlas, .ispy: PL.lapisDeep
@@ -155,18 +155,18 @@ struct TileRow: View {
     let symbol: String
     let title: String
     let detail: String
-    var color = D8.lapis
+    var color = PL.lapis
 
     var body: some View {
         HStack(spacing: 14) {
             SymbolArt(name: symbol, size: 26)
-                .font(.title2)
-                .foregroundStyle(D8.parchment)
+                .font(PL.icon(22))
+                .foregroundStyle(PL.paper)
                 .frame(width: 48, height: 48)
                 .background(color, in: .rect(cornerRadius: 12))
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.headline).foregroundStyle(Palette.ink)
-                Text(detail).font(.footnote).foregroundStyle(Palette.muted)
+                Text(title).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
+                Text(detail).font(PL.small.font()).foregroundStyle(PL.inkDim)
             }
         }
         .padding(.vertical, 4)
@@ -240,10 +240,10 @@ extension LangStore {
         return points > before
     }
 
-    func recordRun(_ id: String, _ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, runs: CreditedRunStore = .shared) -> GameOutcome? {
+    func recordRun(_ id: String, _ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true, runs: CreditedRunStore = .shared) -> GameOutcome? {
         guard runs.claim(id) else { return nil }
         let before = gameDayCredit()
-        let best = recordGame(kind, played: played, hits: hits, points: points, missed: missed, pattern: pattern)
+        let best = recordGame(kind, played: played, hits: hits, points: points, missed: missed, pattern: pattern, earned: earned)
         return GameOutcome(best: best, credit: .between(before: before, after: gameDayCredit(), hits: hits))
     }
 }
@@ -353,7 +353,7 @@ struct GamesBoard: View {
                     }
                 }
                 Text("\(langs.gameWords.count) words from your reviews. A finished game keeps your streak. Misses come back in study.")
-                    .font(.footnote)
+                    .font(PL.small.font())
                     .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -401,8 +401,8 @@ struct LearnTile<Mark: View>: View {
         Button(action: open) {
             VStack(alignment: .leading, spacing: 6) {
                 mark().frame(height: 34)
-                Text(title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
-                Text(detail).font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                Text(title).font(PL.wordFont(19)).foregroundStyle(PL.paper).lineLimit(1).minimumScaleFactor(0.7)
+                Text(detail).font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                     .lineLimit(2, reservesSpace: true)
                     .multilineTextAlignment(.leading)
             }
@@ -412,7 +412,7 @@ struct LearnTile<Mark: View>: View {
         }
         .buttonStyle(.plain)
         .overlay(alignment: .topTrailing) {
-            if let item { AddToToday(item: item, look: .icon, color: D8.parchment).padding(8) }
+            if let item { AddToToday(item: item, look: .icon, color: PL.paper).padding(8) }
         }
     }
 }
@@ -421,7 +421,7 @@ struct LearnSymbol: View {
     let name: String
 
     var body: some View {
-        Image(systemName: name).font(.system(size: 26, weight: .bold)).foregroundStyle(D8.parchment)
+        Image(systemName: name).font(PL.icon(26)).foregroundStyle(PL.paper)
     }
 }
 
@@ -432,15 +432,15 @@ struct VoiceTile: View {
         Button(action: open) {
             HStack(spacing: 16) {
                 PLGlyphView(.mic, size: 34).foregroundStyle(PL.vermilion)
-                    .frame(width: 68, height: 68).background(D8.parchment, in: .circle)
+                    .frame(width: 68, height: 68).background(PL.paper, in: .circle)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Translate").font(D8.word(24)).foregroundStyle(D8.parchment)
-                    Text("Tap and speak").font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9))
+                    Text("Translate").font(PL.wordFont(24)).foregroundStyle(PL.paper)
+                    Text("Tap and speak").font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.9))
                 }
                 Spacer(minLength: 0)
             }
             .padding(14)
-            .modifier(GameLip(face: D8.vermilion, lip: D8.vermilionLip))
+            .modifier(GameLip(face: PL.vermilion, lip: PL.vermilionDeep))
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("voiceTile")
@@ -491,19 +491,19 @@ struct DailyHero: View {
                     ForEach(system?.targets.prefix(6) ?? [], id: \.self) { FlagTile(lang: $0, size: 44) }
                     Spacer(minLength: 0)
                 }
-                Text(GameKind.daily.title).font(D8.word(30)).foregroundStyle(D8.parchment)
+                Text(GameKind.daily.title).font(PL.wordFont(30)).foregroundStyle(PL.paper)
                 if let played {
                     GamePips(total: GameRounds.dailyLength, results: played.map { $0 == "1" })
                     Text("\(played.filter { $0 == "1" }.count) of \(GameRounds.dailyLength) today. See your result.")
-                        .font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.85))
+                        .font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                 } else {
-                    Text(GameKind.daily.detail).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.85))
+                    Text(GameKind.daily.detail).font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                         .fixedSize(horizontal: false, vertical: true)
                     Text("Play today's set")
-                        .font(.system(size: 17, weight: .heavy, design: .rounded))
-                        .foregroundStyle(D8.lapis)
+                        .font(PL.heading.font(scale: 17.0 / 24))
+                        .foregroundStyle(PL.lapis)
                         .padding(.horizontal, 18).padding(.vertical, 10)
-                        .background(D8.parchment, in: .capsule)
+                        .background(PL.paper, in: .capsule)
                 }
             }
             .padding(18)
@@ -512,7 +512,7 @@ struct DailyHero: View {
         }
         .buttonStyle(.plain)
         .overlay(alignment: .topTrailing) {
-            AddToToday(item: .game(.daily), look: .icon, color: D8.parchment).padding(10)
+            AddToToday(item: .game(.daily), look: .icon, color: PL.paper).padding(10)
         }
     }
 }
@@ -531,18 +531,18 @@ struct GameTile: View {
                         PLArtView(art, shadow: true).frame(width: 44, height: 34)
                     } else {
                         Image(systemName: kind.symbol)
-                            .font(.system(size: 26, weight: .bold))
-                            .foregroundStyle(D8.parchment)
+                            .font(PL.icon(26))
+                            .foregroundStyle(PL.paper)
                     }
                 }
                 .frame(height: 34)
-                Text(kind.title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
+                Text(kind.title).font(PL.wordFont(19)).foregroundStyle(PL.paper).lineLimit(1).minimumScaleFactor(0.7)
                 Text(enabled ? kind.detail : String(localized: "Add a second language to play."))
-                    .font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                    .font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                     .lineLimit(3, reservesSpace: true)
                     .multilineTextAlignment(.leading)
                 Text(langs.gameBest(kind.rawValue).flatMap { $0 > 0 ? String(localized: "Best \($0)") : nil } ?? " ")
-                    .font(.caption.weight(.heavy).monospacedDigit()).foregroundStyle(D8.parchment)
+                    .font(PL.label.font()).monospacedDigit().foregroundStyle(PL.paper)
             }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -551,8 +551,9 @@ struct GameTile: View {
         }
         .buttonStyle(.plain)
         .disabled(!enabled)
+        .accessibilityIdentifier("lobby-\(kind.rawValue)")
         .overlay(alignment: .topTrailing) {
-            AddToToday(item: .game(kind), look: .icon, color: D8.parchment).padding(8)
+            AddToToday(item: .game(kind), look: .icon, color: PL.paper).padding(8)
         }
     }
 }
@@ -565,18 +566,18 @@ struct QuestCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
-                Image(systemName: quest.complete ? "checkmark.seal.fill" : "person.2.fill").foregroundStyle(quest.complete ? D8.malachite : D8.vermilion)
-                Text("\(quest.group.name) quest").font(.headline).foregroundStyle(Palette.ink)
+                Image(systemName: quest.complete ? "checkmark.seal.fill" : "person.2.fill").foregroundStyle(quest.complete ? PL.malachite : PL.vermilion)
+                Text("\(quest.group.name) quest").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                 Spacer(minLength: 0)
-                Text("\(quest.shownDone) of \(quest.target)").font(.subheadline.weight(.heavy).monospacedDigit()).foregroundStyle(Palette.ink)
+                Text("\(quest.shownDone) of \(quest.target)").font(PL.small.font()).monospacedDigit().foregroundStyle(PL.ink)
             }
-            ProgressView(value: quest.progress).tint(quest.complete ? D8.malachite : D8.vermilion)
+            ProgressView(value: quest.progress).tint(quest.complete ? PL.malachite : PL.vermilion)
             Text(quest.complete ? String(localized: "Quest done. New one Monday.") : String(localized: "Words this week. \(quest.active.count) of \(quest.group.members.count) playing."))
-                .font(.footnote).foregroundStyle(Palette.muted)
+                .font(PL.small.font()).foregroundStyle(PL.inkDim)
             if !quest.complete {
                 ForEach(quest.nudgeable.prefix(3)) { m in
                     HStack {
-                        Text(m.name).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink).lineLimit(1)
+                        Text(m.name).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1)
                         Spacer(minLength: 8)
                         Button(sent.contains(m.userId) ? String(localized: "Nudged") : String(localized: "Nudge")) { nudge(m) }
                             .buttonStyle(D8Option(align: .center, compact: true))
@@ -587,7 +588,7 @@ struct QuestCard: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .modifier(GameLip(face: D8.face, lip: D8.edge))
+        .modifier(GameLip(face: PL.card, lip: PL.paper3))
     }
 
     func nudge(_ m: GroupMember) {
@@ -601,13 +602,13 @@ struct QuestCard: View {
 struct GamePips: View {
     let total: Int
     let results: [Bool]
-    var empty: Color = D8.parchment.opacity(0.3)
+    var empty: Color = PL.paper.opacity(0.3)
 
     var body: some View {
         HStack(spacing: 6) {
             ForEach(0..<total, id: \.self) { i in
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(i < results.count ? (results[i] ? D8.malachite : D8.vermilion) : empty)
+                    .fill(i < results.count ? (results[i] ? PL.malachite : PL.vermilion) : empty)
                     .overlay { RoundedRectangle(cornerRadius: 4).strokeBorder(.white.opacity(i < results.count ? 0.4 : 0), lineWidth: 1) }
                     .frame(height: 12)
             }
@@ -624,7 +625,7 @@ struct GameWaiting: View {
     var body: some View {
         Group {
             if langs.status == .ready || langs.status == .error {
-                Text(message).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                Text(message).foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
             } else {
                 ProgressView()
             }
@@ -690,87 +691,6 @@ struct GameShareButton<S: ButtonStyle>: View {
     }
 }
 
-struct GameEnd: View {
-    @Environment(LangStore.self) private var langs
-    @Environment(Account.self) private var account
-    let kind: GameKind
-    let score: String
-    var line: String?
-    var best = false
-    var results: [Bool]?
-    let missed: [GameWord]
-    var shape: GameShare.Shape?
-    var sharing = true
-    var share: AnyView?
-    var shareObject: ShareObject?
-    var retry: (() -> Void)?
-    let again: (() -> Void)?
-
-    var brag: String { langs.shareText(kind, shape ?? .marks(results ?? [])) }
-
-    var body: some View {
-        VStack(spacing: 16) {
-            VStack(spacing: 10) {
-                Text(score).font(D8.word(44)).foregroundStyle(D8.parchment).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
-                if let line { Text(line).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9)).multilineTextAlignment(.center) }
-                if let results { GamePips(total: results.count, results: results) }
-            }
-            .padding(20)
-            .frame(maxWidth: .infinity)
-            .modifier(GameLip(face: kind.color, lip: kind.lip))
-            if best {
-                Label("New best", systemImage: "trophy.fill")
-                    .font(.subheadline.weight(.heavy))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 14).padding(.vertical, 7)
-                    .background(D8.vermilion, in: .capsule)
-                    .transition(.scale.combined(with: .opacity))
-            }
-            if langs.gameStreak > 0 {
-                Label(dayStreak(langs.gameStreak), systemImage: "flame.fill")
-                    .font(.headline).foregroundStyle(D8.vermilion)
-            }
-            if !missed.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    if LobbyRace.system == nil {
-                        Text("These come back in your next session").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
-                    }
-                    ForEach(missed.prefix(5)) { w in
-                        HStack(spacing: 8) {
-                            FlagTile(lang: w.lang, size: 22)
-                            Text(w.form).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
-                            Text(w.gloss).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1)
-                            Spacer(minLength: 0)
-                            PlayButton(text: w.form, lang: w.lang)
-                        }
-                    }
-                }
-                .padding(14)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Palette.card, in: .rect(cornerRadius: 14))
-            }
-            if sharing { GameShareButton(kind: kind, text: brag, style: D8Primary()) }
-            if let share { share }
-            if let shareObject { ShareObjectButton(shareObject, wide: true) }
-            if let retry { TryAgainOffer(kind: kind, start: retry) }
-            LiveResultActions(kind: kind)
-            if let again {
-                if DailyLedger.shared.spent {
-                    DailyLimitCard(place: "game:\(kind.rawValue)")
-                } else {
-                    Button("Play again", action: again).buttonStyle(D8Primary(compact: true))
-                }
-            }
-            LearnUpsell()
-        }
-        .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }
-        .resultScreen()
-        .padding()
-        .frame(maxWidth: 520)
-        .frame(maxWidth: .infinity)
-    }
-}
-
 struct SymbolArt: View {
     let name: String
     var size: CGFloat = 20
@@ -779,7 +699,7 @@ struct SymbolArt: View {
         if name.hasPrefix("art:"), let art = PLArt(rawValue: String(name.dropFirst(4))) {
             PLArtView(art).frame(width: size * 1.3, height: size)
         } else {
-            Image(systemName: name).font(.system(size: size, weight: .bold))
+            Image(systemName: name).font(PL.icon(size))
         }
     }
 }

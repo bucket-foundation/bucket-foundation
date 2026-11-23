@@ -10,7 +10,7 @@ struct StarRow: View {
         HStack(spacing: PL.Space.s2) {
             ForEach(0..<GameStars.max, id: \.self) { i in
                 Image(systemName: i < stars ? "star.fill" : "star")
-                    .font(.system(size: 34, weight: .heavy))
+                    .font(PL.icon(34, .heavy))
                     .foregroundStyle(i < stars ? PL.ochre : PL.paper.opacity(0.35))
                     .scaleEffect(reduce || landed || i >= stars ? 1 : 0.3)
                     .animation(GameMotion.pop(reduce).delay(Double(i) * PL.Motion.pop), value: landed)
@@ -71,6 +71,7 @@ struct GameResults: View {
     var extra: AnyView?
     let again: (() -> Void)?
     @Environment(LangStore.self) private var langs
+    @Environment(Account.self) private var account
     @State private var landed = 0
 
     var body: some View {
@@ -115,7 +116,10 @@ struct GameResults: View {
             StartLearningButton()
         }
         .sensoryFeedback(.levelChange, trigger: landed)
-        .onAppear { if stars != nil { landed += 1 } }
+        .onAppear {
+            if stars != nil { landed += 1 }
+            SaveNudge.gameEnded(signedIn: account.stage == .signedIn)
+        }
         .resultScreen()
     }
 }

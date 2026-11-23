@@ -4,6 +4,7 @@ import SwiftUI
 struct BabelGame: View {
     @Environment(LangStore.self) private var langs
     @Environment(\.verticalSizeClass) private var vertical
+    @State private var feel = GameFeel()
     @State private var meanings: [String: Meaning] = [:]
     @State private var dealer: Dealer?
     @State private var board: [Cell] = []
@@ -26,7 +27,7 @@ struct BabelGame: View {
     var done: Bool { RevealRules.babel(cleared: cleared.count, goal: level.goal, movesLeft: moves) || PlayLaunch.endGame }
 
     var body: some View {
-        PlayScene(game: .babel) {
+        PlayScene(game: .babel, feel: feel) {
             if board.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if done {
@@ -66,6 +67,7 @@ struct BabelGame: View {
     var status: some View {
         HStack {
             PlayLabel(text: "Cleared \(cleared.count) of \(level.goal)")
+            ComboChip(streak: feel.streak, multiplier: false)
             Spacer()
             PlayLabel(text: "\(moves) moves")
         }
@@ -142,7 +144,7 @@ struct BabelGame: View {
 
     func mark(_ n: Int, size: CGFloat) -> some View {
         Text("\(n + 1)")
-            .font(.system(size: size * 0.7, weight: .bold, design: .rounded))
+            .font(PL.script(size * 0.7, .bold))
             .foregroundStyle(PL.paper)
             .frame(width: size, height: size)
             .background(Self.marks[n % Self.marks.count], in: .circle)
@@ -176,6 +178,7 @@ struct BabelGame: View {
     }
 
     func deal() {
+        feel.reset()
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
         let own = PlayDecks.langsWithoutRoot(Array(langs.playTargets.prefix(4)), root: root, min: 2, max: 4)
@@ -206,14 +209,14 @@ struct BabelGame: View {
         let swapped = Babel.swapped(board, p, i)
         guard !Babel.matches(swapped).isEmpty else {
             shake += 1
-            PlaySound.effect(false)
+            feel.record(false)
             return
         }
         let out = Babel.resolve(swapped, &d)
         moves -= 1
         cleared += out.cleared
         points += Babel.points(cleared: out.cleared.count, cascades: out.cascades)
-        PlaySound.effect(true, combo: out.cascades)
+        feel.record(true, points: max(1, out.cascades))
         board = Babel.hasMove(out.board) ? out.board : Babel.playable(&d)
         dealer = d
     }

@@ -26,8 +26,24 @@ final class GameFeel {
     private(set) var wrongs = 0
     private(set) var climbs = 0
     private(set) var gain = 0
+    private(set) var streak = GameFeel.demoStreak()
     @ObservationIgnored var sound: @MainActor (Bool, ComboCount) -> Void = GameFeel.play
 
+    static func demoStreak(arguments: [String] = ProcessInfo.processInfo.arguments) -> ComboCount {
+        var streak = ComboCount()
+        #if DEBUG
+        if let i = arguments.firstIndex(of: "-demoCombo"), i + 1 < arguments.count, let n = Int(arguments[i + 1]) {
+            for _ in 0..<n { streak.hit() }
+        }
+        #endif
+        return streak
+    }
+    func record(_ right: Bool, points: Int = 1) {
+        streak.record(right)
+        if right { self.right(streak, points: points) } else { wrong(streak) }
+    }
+
+    func reset() { streak = GameFeel.demoStreak() }
     func right(_ streak: ComboCount, points: Int = 1) {
         gain = points * streak.multiplier
         rights += 1
@@ -159,6 +175,28 @@ struct GameHeader: View {
     }
 }
 
+struct GameAnswer: View {
+    let text: String
+    var flag: String?
+    var state: RowState = .other
+    var answer = false
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: PL.Space.s3) {
+                if let flag { PlayFlag(lang: flag, size: 32) }
+                Text(text).font(PL.heading.font(scale: 0.75)).lineLimit(2).minimumScaleFactor(0.6)
+            }
+            .padding(.horizontal, PL.Space.s4)
+            .frame(maxWidth: .infinity, minHeight: 52)
+        }
+        .buttonStyle(GameAnswerStyle(state: state))
+        .accessibilityIdentifier("game-answer")
+        .accessibilityValue(GameLaunch.revealAnswer && answer ? "answer" : "")
+    }
+}
+
 struct GameAnswerStyle: ButtonStyle {
     let state: RowState
 
@@ -220,6 +258,7 @@ struct GameShell<Content: View>: View {
     let game: GameKind
     var feel: GameFeel?
     var fit = false
+    var burst = true
     @ViewBuilder let content: () -> Content
 
     var reduce: Bool { GameMotion.reduced(system: systemReduce) }
@@ -228,7 +267,7 @@ struct GameShell<Content: View>: View {
         GeometryReader { geo in
             page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
         }
-        .overlay { if let feel { GameBurst(feel: feel, reduce: reduce) } }
+        .overlay { if let feel, burst { GameBurst(feel: feel, reduce: reduce) } }
         .gameFeedback(feel)
         .environment(\.gameReduceMotion, reduce)
         .plGround(.lattice, band: true)

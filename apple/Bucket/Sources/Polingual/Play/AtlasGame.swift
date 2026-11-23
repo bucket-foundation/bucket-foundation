@@ -39,6 +39,7 @@ enum LandPath {
 
 struct AtlasGame: View {
     @Environment(LangStore.self) private var langs
+    @State private var feel = GameFeel()
     @State private var rounds: [AtlasRound] = []
     @State private var index = 0
     @State private var pin: LatLon?
@@ -60,7 +61,7 @@ struct AtlasGame: View {
     var total: Int { scores.reduce(0, +) }
 
     var body: some View {
-        PlayScene(game: .atlas) {
+        PlayScene(game: .atlas, feel: feel, burst: false) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if !entered && !practice.practicing {
@@ -90,7 +91,11 @@ struct AtlasGame: View {
 
     func play(_ r: AtlasRound) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s3) {
-            PlayLabel(text: "Word \(index + 1) of \(rounds.count) · \(total) points")
+            HStack {
+                PlayLabel(text: "Word \(index + 1) of \(rounds.count) · \(total) points")
+                Spacer(minLength: 0)
+                ComboChip(streak: feel.streak, multiplier: false)
+            }
             if silent { PlayNote(text: "Sound is off, so each word shows in writing. Turn sound on to play by ear.", art: .ticket) }
             HStack(spacing: PL.Space.s3) {
                 if silent || locked != nil || heard {
@@ -205,7 +210,7 @@ struct AtlasGame: View {
         locked = n
         let pts = Atlas.points(n.km)
         scores.append(pts)
-        PlaySound.effect(pts > Atlas.max / 2, combo: scores.count)
+        feel.record(pts > Atlas.max / 2, points: max(1, pts / 100))
     }
 
     func next() {
@@ -217,6 +222,7 @@ struct AtlasGame: View {
     }
 
     func retry() {
+        feel.reset()
         practice.begin()
         scores = []
         index = 0
