@@ -25,7 +25,7 @@ async function request(form: HTMLFormElement): Promise<State> {
   }
 }
 
-export default function BetaForm({ siteKey, fallback }: { siteKey: string | null; fallback: string }) {
+export default function BetaForm({ siteKey }: { siteKey: string }) {
   const [state, setState] = useState<State>({ kind: "idle" });
 
   useEffect(() => {
@@ -49,29 +49,23 @@ export default function BetaForm({ siteKey, fallback }: { siteKey: string | null
     }
   }
 
-  if (!siteKey) {
-    return (
-      <p className={styles.done} data-testid="testflight-offline">
-        Email invites are offline right now. Open <a href={fallback} rel="noopener">the public TestFlight link</a> on your iPhone.
-      </p>
-    );
-  }
   if (state.kind === "done") {
     return (
       <p className={styles.done} role="status" data-testid="testflight-sent">
-        Check your email on your iPhone for the TestFlight invite from Apple.
+        Invite sent. Open the Apple email on your iPhone.
       </p>
     );
   }
   return (
     <form className={styles.form} onSubmit={submit} noValidate data-testid="testflight-form">
+      <p className={styles.or}>Or get the invite by email</p>
       <Field label="Email">
         <Input type="email" name="email" autoComplete="email" required placeholder="you@example.com" />
       </Field>
       <input className={styles.hp} tabIndex={-1} autoComplete="off" name="website" aria-hidden="true" />
       <div className="cf-turnstile" data-sitekey={siteKey} data-testid="turnstile" />
-      <Button type="submit" variant="accent" size="md" disabled={state.kind === "sending"}>
-        {state.kind === "sending" ? "Sending" : "Send my invite"}
+      <Button type="submit" variant="primary" size="md" disabled={state.kind === "sending"}>
+        {state.kind === "sending" ? "Sending" : "Email me"}
       </Button>
       {state.kind === "error" ? <p className={styles.error} role="alert">{state.message}</p> : null}
     </form>
