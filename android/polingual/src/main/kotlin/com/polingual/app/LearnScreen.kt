@@ -30,10 +30,10 @@ fun LearnScreen(graph: Graph, nav: NavHostController) {
     val app by graph.state.collectAsState()
     val p = LocalPalette.current
     val scope = rememberCoroutineScope()
-    Page("Learn") {
-        SectionTitle("Your language sets")
+    Page(androidx.compose.ui.res.stringResource(R.string.s_learn)) {
+        SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_your_language_sets))
         val systems = app?.systems.orEmpty()
-        if (systems.isEmpty()) Text("Start a language set. The games use the words you study.", color = p.muted)
+        if (systems.isEmpty()) Text(androidx.compose.ui.res.stringResource(R.string.s_start_a_language_set_the_games), color = p.muted)
         systems.forEach { s ->
             val active = s.id == app?.system?.id
             Card(onClick = { scope.launch { graph.store.update { it.copy(activeSystem = s.id) } } }) {
@@ -42,12 +42,12 @@ fun LearnScreen(graph: Graph, nav: NavHostController) {
                 }
                 Text(s.name, style = Type.title.copy(fontSize = 20.sp()), color = p.ink)
                 val learned = app?.study?.get(s.id)?.cards?.size ?: 0
-                Text(if (learned == 1) "1 word started" else "$learned words started", color = p.muted)
-                if (active) Pill("Active", D8.malachite)
-                PlainLink("Remove") { scope.launch { graph.removeSystem(s.id) } }
+                Text(if (learned == 1) androidx.compose.ui.res.stringResource(R.string.s_1_word_started) else androidx.compose.ui.res.stringResource(R.string.s_x_words_started, learned), color = p.muted)
+                if (active) Pill(androidx.compose.ui.res.stringResource(R.string.s_active), D8.malachite)
+                PlainLink(androidx.compose.ui.res.stringResource(R.string.s_remove)) { scope.launch { graph.removeSystem(s.id) } }
             }
         }
-        PrimaryButton("New language set", color = D8.lapis) { nav.navigate("system/new") }
+        PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_new_language_set), color = D8.lapis) { nav.navigate("system/new") }
         LearnExtras(graph, nav)
     }
 }
@@ -63,7 +63,7 @@ fun NewSystemScreen(graph: Graph, done: () -> Unit) {
         Languages(root, targets) { targets = it }
         val problem = validateSystem(root, targets)
         if (targets.isNotEmpty() && problem != null) Text(problem.message, color = D8.vermilion)
-        Text("Learning from ${Lang.name(root)}", color = LocalPalette.current.muted)
-        PrimaryButton("Create", enabled = problem == null) { scope.launch { graph.createSystem(root, targets); done() } }
+        Text(androidx.compose.ui.res.stringResource(R.string.s_learning_from_x, Lang.name(root)), color = LocalPalette.current.muted)
+        PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_create), enabled = problem == null) { scope.launch { graph.createSystem(root, targets); done() } }
     }
 }

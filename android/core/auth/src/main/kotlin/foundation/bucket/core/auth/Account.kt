@@ -55,6 +55,15 @@ class Account(
         _stage.value = Stage.SignedIn
     }
 
+    suspend fun signInWithGoogle(idToken: String, nonce: String) {
+        val s = api.signInWithGoogle(idToken, nonce)
+        lock.withLock {
+            session = s
+            vault.save(s)
+        }
+        _stage.value = Stage.SignedIn
+    }
+
     fun editEmail() {
         if (_stage.value == Stage.CodeSent) _stage.value = Stage.SignedOut
     }

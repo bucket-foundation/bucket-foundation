@@ -12,7 +12,8 @@ object Plan {
     const val PRIVACY = "https://polingual.com/privacy"
 
     fun hasTrial(id: String) = id == YEARLY || id == MONTHLY
-    fun title(id: String) = when (id) { YEARLY -> "Yearly"; MONTHLY -> "Monthly"; FAMILY -> "Family"; LIFETIME -> "Lifetime"; else -> id }
+    fun title(id: String) = when (id) { MONTHLY -> R.string.plan_monthly; FAMILY -> R.string.plan_family; LIFETIME -> R.string.plan_lifetime; else -> R.string.plan_yearly }
+    fun per(id: String) = when (id) { MONTHLY -> R.string.per_month; LIFETIME -> R.string.per_once; else -> R.string.per_year }
     fun period(id: String) = when (id) { MONTHLY -> "month"; LIFETIME -> "once"; else -> "year" }
 }
 
@@ -47,14 +48,6 @@ object Entitlement {
     }
 
     fun trialEligible(history: List<String>) = history.none { it in Plan.subscriptions }
-
-    fun disclosure(trial: Boolean, price: String, period: String, family: Boolean = false): String {
-        if (period == "once") return "$price once. Charged to your Google Play account. No subscription and no renewal."
-        val per = if (period == "year") "$price a year" else "$price a month"
-        val lead = if (trial) "${Plan.TRIAL_DAYS} days free, then $per." else "$per."
-        val share = if (family) " Share it with up to 5 family members through your Google family group." else ""
-        return "$lead Charged to your Google Play account. Renews automatically until you cancel in Google Play subscriptions.$share"
-    }
 }
 
 data class ServerEntitlement(val active: Boolean, val productId: String?, val expiresMs: Long?, val trial: Boolean)

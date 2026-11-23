@@ -32,15 +32,15 @@ import androidx.compose.ui.unit.dp
 import foundation.bucket.core.ui.D8
 import foundation.bucket.core.ui.Type
 
-enum class GameKind(val route: String, val title: String, val blurb: String, val icon: ImageVector, val color: Color) {
-    Daily("daily", "Daily Set", "Six words. The same six for everyone on your languages today.", Icons.Filled.CalendarMonth, D8.lapis),
-    Mini("mini", "Mini", "A small crossword in your language. New every day.", Icons.Filled.GridOn, D8.vermilion),
-    WordGroups("groups", "Word Groups", "Sort sixteen of your words into four groups. New every day.", Icons.Filled.GridView, D8.lapis),
-    Same("same", "Same Word", "One meaning across your languages.", Icons.Filled.Layers, D8.vermilion),
-    Match("match", "Speed Match", "Pair words against a 60 second clock.", Icons.Filled.Bolt, D8.malachite),
-    Voice("voice", "Which Voice", "Listen, then pick the flag.", Icons.Filled.GraphicEq, D8.lapis),
-    Flags("flags", "Flags", "Read a word, then pick its flag.", Icons.Filled.Flag, D8.malachite),
-    Letters("letters", "Letter Sprint", "Hear a sound, then find its letter.", Icons.Filled.TextFields, D8.vermilion),
+enum class GameKind(val route: String, val title: Int, val blurb: Int, val icon: ImageVector, val color: Color) {
+    Daily("daily", R.string.game_daily, R.string.game_daily_blurb, Icons.Filled.CalendarMonth, D8.lapis),
+    Mini("mini", R.string.game_mini, R.string.game_mini_blurb, Icons.Filled.GridOn, D8.vermilion),
+    WordGroups("groups", R.string.game_groups, R.string.game_groups_blurb, Icons.Filled.GridView, D8.lapis),
+    Same("same", R.string.game_same, R.string.game_same_blurb, Icons.Filled.Layers, D8.vermilion),
+    Match("match", R.string.game_match, R.string.game_match_blurb, Icons.Filled.Bolt, D8.malachite),
+    Voice("voice", R.string.game_voice, R.string.game_voice_blurb, Icons.Filled.GraphicEq, D8.lapis),
+    Flags("flags", R.string.game_flags, R.string.game_flags_blurb, Icons.Filled.Flag, D8.malachite),
+    Letters("letters", R.string.game_letters, R.string.game_letters_blurb, Icons.Filled.TextFields, D8.vermilion),
 }
 
 @Composable
@@ -53,8 +53,8 @@ fun GameTile(kind: GameKind, played: String?, onClick: () -> Unit) {
             Icon(kind.icon, contentDescription = null, tint = D8.parchment)
         }
         Column(Modifier.weight(1f)) {
-            Text(kind.title, style = Type.title.copy(fontSize = 19.sp()), color = D8.parchment)
-            Text(played ?: kind.blurb, color = D8.parchment.copy(alpha = 0.9f))
+            Text(androidx.compose.ui.res.stringResource(kind.title), style = Type.title.copy(fontSize = 19.sp()), color = D8.parchment)
+            Text(played ?: androidx.compose.ui.res.stringResource(kind.blurb), color = D8.parchment.copy(alpha = 0.9f))
         }
     }
 }

@@ -9,5 +9,6 @@ class PolingualApp : Application() {
     override fun onCreate() {
         super.onCreate()
         graph = Graph(this)
+        Reminders.channel(this)
     }
 }

@@ -30,6 +30,8 @@ ump = { module = "com.google.android.ump:user-messaging-platform", version = "4.
 credentials = { module = "androidx.credentials:credentials", version = "1.6.0" }
 credentials-play = { module = "androidx.credentials:credentials-play-services-auth", version = "1.6.0" }
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version = "1.2.1" }
+work-runtime = { module = "androidx.work:work-runtime-ktx", version = "2.10.1" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging", version = "24.1.0" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }

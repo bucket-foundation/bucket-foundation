@@ -70,34 +70,34 @@ fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
     val name = nick.trim()
     fun act(block: suspend () -> Unit) = scope.launch {
         error = null
-        if (!signedIn && name.isEmpty()) { error = "Pick a name to play live."; return@launch }
+        if (!signedIn && name.isEmpty()) { error = graph.context.getString(R.string.s_pick_a_name_to_play_live); return@launch }
         if (name != app?.nickname) graph.store.update { it.copy(nickname = name) }
         try { block() } catch (e: BucketError) { error = e.message }
     }
     LaunchedEffect(Unit) { graph.lobbies.refresh() }
     LaunchedEffect(code) { if (code.isNotBlank() && (signedIn || name.isNotEmpty()) && state.current == null) act { graph.lobbies.join(code, name.ifEmpty { "Player" }) } }
     if (state.current != null) { RoomScreen(graph) { scope.launch { graph.lobbies.leave() } }; return }
-    Page("Live rooms", back = back) {
-        Text("Play the same round with friends, live. Web and iPhone players join with the same code.", color = p.muted)
-        OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, label = { Text(if (signedIn) "Display name" else "Your name") }, modifier = Modifier.fillMaxWidth())
+    Page(androidx.compose.ui.res.stringResource(R.string.s_live_rooms), back = back) {
+        Text(androidx.compose.ui.res.stringResource(R.string.s_play_the_same_round_with_friends), color = p.muted)
+        OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, label = { Text(if (signedIn) androidx.compose.ui.res.stringResource(R.string.s_display_name) else androidx.compose.ui.res.stringResource(R.string.s_your_name)) }, modifier = Modifier.fillMaxWidth())
         Card {
-            Text("Join with a code", style = Type.caps, color = p.muted)
-            OutlinedTextField(joinCode, { joinCode = it.filter(Char::isLetterOrDigit).uppercase().take(LobbyRules.CODE_LENGTH) }, singleLine = true, label = { Text("Room code") },
+            Text(androidx.compose.ui.res.stringResource(R.string.s_join_with_a_code), style = Type.caps, color = p.muted)
+            OutlinedTextField(joinCode, { joinCode = it.filter(Char::isLetterOrDigit).uppercase().take(LobbyRules.CODE_LENGTH) }, singleLine = true, label = { Text(androidx.compose.ui.res.stringResource(R.string.s_room_code)) },
                 keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Characters), modifier = Modifier.fillMaxWidth())
-            PrimaryButton("Join", enabled = joinCode.length == LobbyRules.CODE_LENGTH && !state.busy, color = D8.malachite) { act { graph.lobbies.join(joinCode, name.ifEmpty { "Player" }) } }
+            PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_join), enabled = joinCode.length == LobbyRules.CODE_LENGTH && !state.busy, color = D8.malachite) { act { graph.lobbies.join(joinCode, name.ifEmpty { "Player" }) } }
         }
         val system = app?.system
         Card {
-            Text("Start a room", style = Type.caps, color = p.muted)
+            Text(androidx.compose.ui.res.stringResource(R.string.s_start_a_room), style = Type.caps, color = p.muted)
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 nativeLobbyGames.forEach { g -> FilterChip(selected = g == game, onClick = { game = g }, label = { Text(g.title) }) }
             }
             if (state.botsEnabled) Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Fill empty seats with bots", color = p.ink, modifier = Modifier.weight(1f))
+                Text(androidx.compose.ui.res.stringResource(R.string.s_fill_empty_seats_with_bots), color = p.ink, modifier = Modifier.weight(1f))
                 Switch(bots, { bots = it })
             }
-            if (system == null) Text("Start a language set in Learn first.", color = p.muted)
-            PrimaryButton("Create room", enabled = system != null && !state.busy) {
+            if (system == null) Text(androidx.compose.ui.res.stringResource(R.string.s_start_a_language_set_in_learn_2), color = p.muted)
+            PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_create_room), enabled = system != null && !state.busy) {
                 val s = system ?: return@PrimaryButton
                 act {
                     graph.lobbies.create("${name.ifEmpty { "Polingual" }}'s room", game, s.root, s.targets, name.ifEmpty { "Host" })
@@ -106,9 +106,9 @@ fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
             }
         }
         error?.let { Text(it, color = D8.vermilion) }
-        SectionTitle("Open rooms")
+        SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_open_rooms))
         val open = state.open.filter { it.game in nativeLobbyGames }
-        if (open.isEmpty()) Text("No open rooms right now. Start one and share the code.", color = p.muted)
+        if (open.isEmpty()) Text(androidx.compose.ui.res.stringResource(R.string.s_no_open_rooms_right_now_start), color = p.muted)
         open.forEach { l ->
             Card(onClick = { act { graph.lobbies.join(l, name.ifEmpty { "Player" }) } }) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -117,11 +117,11 @@ fun LobbiesScreen(graph: Graph, code: String, back: () -> Unit) {
                         Text("${l.game.title} · ${l.host} · ${l.players} of ${LobbyRules.CAP}${if (l.bots > 0) " · ${l.bots} bots" else ""}", color = p.muted)
                         Text(l.targets.joinToString(" ") { Lang.flag(it) })
                     }
-                    if (l.isMember) Pill("Rejoin", D8.malachite)
+                    if (l.isMember) Pill(androidx.compose.ui.res.stringResource(R.string.s_rejoin), D8.malachite)
                 }
             }
         }
-        PlainLink("Refresh") { scope.launch { graph.lobbies.refresh() } }
+        PlainLink(androidx.compose.ui.res.stringResource(R.string.s_refresh)) { scope.launch { graph.lobbies.refresh() } }
         AdBanner(graph)
     }
 }
@@ -144,16 +144,16 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
     fun act(block: suspend () -> Unit) = scope.launch { error = null; try { block() } catch (e: BucketError) { error = e.message } }
     Page(lobby.name, back = { if (phase is LobbyPhase.Round || phase is LobbyPhase.Reveal || phase is LobbyPhase.Countdown) confirmLeave = true else exit() }) {
         if (confirmLeave) {
-            Text("Leave this game? Your score stays where it is.", color = p.ink)
+            Text(androidx.compose.ui.res.stringResource(R.string.s_leave_this_game_your_score_stays), color = p.ink)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                PlainLink("Leave") { exit() }
-                PlainLink("Keep playing") { confirmLeave = false }
+                PlainLink(androidx.compose.ui.res.stringResource(R.string.s_leave)) { exit() }
+                PlainLink(androidx.compose.ui.res.stringResource(R.string.s_keep_playing)) { confirmLeave = false }
             }
         }
         when (phase) {
             LobbyPhase.Waiting -> Waiting(graph, lobby) { act(it) }
             is LobbyPhase.Countdown -> {
-                Text("Get ready", style = Type.word, color = p.ink)
+                Text(androidx.compose.ui.res.stringResource(R.string.s_get_ready), style = Type.word, color = p.ink)
                 Text("${kotlin.math.ceil(phase.seconds).toInt()}", style = Type.display.copy(fontSize = 96.sp), color = D8.vermilion)
             }
             is LobbyPhase.Round -> Round(graph, lobby, phase.index, phase.remaining, reveal = false)
@@ -169,18 +169,18 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
 private fun Waiting(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) {
     val p = LocalPalette.current
     Card(color = D8.ink) {
-        Text("Code", color = D8.parchment.copy(alpha = 0.7f), style = Type.caps)
+        Text(androidx.compose.ui.res.stringResource(R.string.s_code), color = D8.parchment.copy(alpha = 0.7f), style = Type.caps)
         Text(lobby.code, style = Type.display.copy(letterSpacing = 6.sp), color = D8.parchment)
         Text("bucket.foundation/play/${lobby.code}", color = D8.parchment.copy(alpha = 0.8f))
     }
-    Text("${lobby.game.title}, ${lobby.rounds} rounds, ${lobby.roundSeconds} seconds each", color = p.muted)
+    Text(androidx.compose.ui.res.stringResource(R.string.s_x_x_rounds_x_seconds_each, lobby.game.title, lobby.rounds, lobby.roundSeconds), color = p.muted)
     Players(lobby)
     val me = lobby.me
-    PrimaryButton(if (me?.ready == true) "Not ready" else "I'm ready", color = if (me?.ready == true) D8.lapis else D8.malachite) { act { graph.lobbies.setReady(me?.ready != true) } }
+    PrimaryButton(if (me?.ready == true) androidx.compose.ui.res.stringResource(R.string.s_not_ready) else androidx.compose.ui.res.stringResource(R.string.s_i_m_ready), color = if (me?.ready == true) D8.lapis else D8.malachite) { act { graph.lobbies.setReady(me?.ready != true) } }
     if (lobby.isHost) {
-        PrimaryButton("Start game", enabled = lobby.canStart) { act { graph.lobbies.start() } }
-        if (!lobby.canStart) Text("Two ready players start the game.", color = p.muted)
-        if (lobby.botsEnabled && !lobby.botFill) PlainLink("Fill empty seats with bots") { act { graph.lobbies.fillBots() } }
+        PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_start_game), enabled = lobby.canStart) { act { graph.lobbies.start() } }
+        if (!lobby.canStart) Text(androidx.compose.ui.res.stringResource(R.string.s_two_ready_players_start_the_game), color = p.muted)
+        if (lobby.botsEnabled && !lobby.botFill) PlainLink(androidx.compose.ui.res.stringResource(R.string.s_fill_empty_seats_with_bots)) { act { graph.lobbies.fillBots() } }
     }
 }
 
@@ -191,9 +191,9 @@ private fun Players(lobby: Lobby) {
         Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(p.card).padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Box(Modifier.size(10.dp).clip(RoundedCornerShape(50)).background(if (pl.online || pl.bot) D8.malachite else p.rule))
             Text(listOfNotNull(pl.flag?.let(Lang::flag), pl.name).joinToString(" "), color = p.ink, fontWeight = if (pl.isMe) FontWeight.ExtraBold else FontWeight.Normal, modifier = Modifier.weight(1f))
-            if (pl.bot) Pill("Bot", D8.lapis)
-            if (pl.isHost) Pill("Host", D8.vermilion)
-            if (lobby.status == LobbyStatus.Lobby) Text(if (pl.ready) "Ready" else "Waiting", color = if (pl.ready) D8.malachite else p.muted)
+            if (pl.bot) Pill(androidx.compose.ui.res.stringResource(R.string.s_bot), D8.lapis)
+            if (pl.isHost) Pill(androidx.compose.ui.res.stringResource(R.string.s_host), D8.vermilion)
+            if (lobby.status == LobbyStatus.Lobby) Text(if (pl.ready) androidx.compose.ui.res.stringResource(R.string.s_ready) else androidx.compose.ui.res.stringResource(R.string.s_waiting), color = if (pl.ready) D8.malachite else p.muted)
             else Text("${pl.score}", fontWeight = FontWeight.Bold, color = p.ink)
         }
     }
@@ -205,16 +205,16 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     val state by graph.lobbies.state.collectAsState()
     val scope = rememberCoroutineScope()
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Round ${index + 1} of ${lobby.rounds}", style = Type.title.copy(fontSize = 18.sp), color = p.ink, modifier = Modifier.weight(1f))
+        Text(androidx.compose.ui.res.stringResource(R.string.s_round_x_of_x, index + 1, lobby.rounds), style = Type.title.copy(fontSize = 18.sp), color = p.ink, modifier = Modifier.weight(1f))
         Text("${kotlin.math.ceil(remaining).toInt()}s", style = Type.title.copy(fontSize = 18.sp), color = if (remaining < 3 && !reveal) D8.vermilion else p.ink)
     }
     val prompt = lobby.prompt(index)
-    if (prompt == null) { Text("Loading the round", color = p.muted); return }
+    if (prompt == null) { Text(androidx.compose.ui.res.stringResource(R.string.s_loading_the_round), color = p.muted); return }
     if (prompt.mode == LobbyPromptMode.Flag) {
-        Text("Which language?", color = p.muted)
+        Text(androidx.compose.ui.res.stringResource(R.string.s_which_language), color = p.muted)
         Text(prompt.gloss, style = Type.word, color = p.ink)
     } else {
-        Text(prompt.lang?.let { "Which is ${Lang.name(it)} for" } ?: "Which word means", color = p.muted)
+        Text(prompt.lang?.let { androidx.compose.ui.res.stringResource(R.string.s_which_is_x_for, Lang.name(it)) } ?: androidx.compose.ui.res.stringResource(R.string.s_which_word_means), color = p.muted)
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             prompt.lang?.let { Text(Lang.flag(it), fontSize = 30.sp) }
             Text(prompt.gloss, style = Type.word, color = p.ink)
@@ -236,9 +236,9 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
         }
     }
     when {
-        picked != null && mark == null -> Text("Checking", color = p.muted)
-        mark == true -> Text("Right", color = D8.malachite, fontWeight = FontWeight.Bold)
-        mark == false -> Text("Not this time.", color = D8.vermilion, fontWeight = FontWeight.Bold)
+        picked != null && mark == null -> Text(androidx.compose.ui.res.stringResource(R.string.s_checking), color = p.muted)
+        mark == true -> Text(androidx.compose.ui.res.stringResource(R.string.q_right), color = D8.malachite, fontWeight = FontWeight.Bold)
+        mark == false -> Text(androidx.compose.ui.res.stringResource(R.string.s_not_this_time), color = D8.vermilion, fontWeight = FontWeight.Bold)
     }
     if (reveal) prompt.reveal.forEach { r -> Text("${Lang.flag(r.lang)} ${r.word}${r.roman?.let { " ($it)" } ?: ""}: ${r.meaning}", color = if (r.correct) D8.malachite else p.muted) }
     Players(lobby)
@@ -247,7 +247,7 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
 @Composable
 private fun Results(lobby: Lobby, again: () -> Unit) {
     val p = LocalPalette.current
-    Text("Results", style = Type.display, color = p.ink)
+    Text(androidx.compose.ui.res.stringResource(R.string.s_results), style = Type.display, color = p.ink)
     lobby.standings.forEachIndexed { i, pl ->
         Row(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
             Text("${i + 1}", fontWeight = FontWeight.Bold, color = if (i == 0) D8.vermilion else p.ink, modifier = Modifier.padding(end = 12.dp))
@@ -255,19 +255,19 @@ private fun Results(lobby: Lobby, again: () -> Unit) {
             Text("${pl.score}", fontWeight = FontWeight.Bold, color = p.ink)
         }
     }
-    SectionTitle("Words")
+    SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_words))
     lobby.prompts.forEach { pr -> Text(if (pr.mode == LobbyPromptMode.Flag) "${pr.gloss}: ${pr.answer?.let(Lang::name).orEmpty()}" else "${pr.answer.orEmpty()}: ${pr.gloss}", color = p.ink) }
-    PrimaryButton("Leave room", color = D8.lapis, onClick = again)
+    PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_leave_room), color = D8.lapis, onClick = again)
 }
 
 @Composable
 private fun Chat(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) {
     val p = LocalPalette.current
     var text by remember { mutableStateOf("") }
-    SectionTitle("Chat")
+    SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_chat))
     lobby.messages.takeLast(20).forEach { m -> Text("${m.name}: ${m.body}", color = p.ink) }
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedTextField(text, { text = it.take(200) }, singleLine = true, label = { Text("Message") }, modifier = Modifier.weight(1f))
-        PlainLink("Send") { val t = text; text = ""; act { graph.lobbies.send(t) } }
+        OutlinedTextField(text, { text = it.take(200) }, singleLine = true, label = { Text(androidx.compose.ui.res.stringResource(R.string.s_message)) }, modifier = Modifier.weight(1f))
+        PlainLink(androidx.compose.ui.res.stringResource(R.string.s_send)) { val t = text; text = ""; act { graph.lobbies.send(t) } }
     }
 }
