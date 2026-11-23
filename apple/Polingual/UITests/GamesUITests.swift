@@ -44,6 +44,8 @@ final class GamesUITests: XCTestCase {
         let back = launch(["-openGame", "daily"])
         XCTAssertTrue(back.staticTexts["New set tomorrow."].waitForExistence(timeout: 60))
         XCTAssertTrue(back.buttons["Share your result"].waitForExistence(timeout: 10))
+        XCTAssertTrue(back.descendants(matching: .any)["game-stars"].exists)
+        XCTAssertFalse(back.descendants(matching: .any)["game-credit"].exists, "A held daily result credits again")
         XCTAssertFalse(back.buttons["game-choice"].exists)
         XCTAssertFalse(back.buttons["Play again"].exists)
     }
@@ -265,6 +267,22 @@ final class GamesUITests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any)["game-credit"].exists)
         XCTAssertTrue(app.buttons["Play again"].exists)
         shot("flags-zero")
+    }
+
+    func testStatusBarReturnsAfterAGame() {
+        let app = launch(["-openGame", "flags", "-showPaywall"])
+        XCTAssertTrue(app.buttons["Restore"].waitForExistence(timeout: 60))
+        shot("statusbar-paywall-over-game")
+        app.swipeDown(velocity: .fast)
+        let choice = app.buttons["game-choice"].firstMatch
+        XCTAssertTrue(choice.waitForExistence(timeout: 20))
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        let newSet = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "New set")).firstMatch
+        XCTAssertTrue(newSet.waitForExistence(timeout: 20))
+        shot("statusbar-learn-after-game")
+        newSet.tap()
+        sleep(2)
+        shot("statusbar-sheet-after-game")
     }
 
     func testWhichVoiceAndLetterSprintOpen() {

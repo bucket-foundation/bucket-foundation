@@ -181,8 +181,14 @@ struct GameAnswerStyle: ButtonStyle {
 @MainActor
 enum GameStatusBar {
     private static var scenes = 0
+    #if os(iOS)
+    private static var before: UIStatusBarStyle?
+    #endif
 
     static func enter() {
+        #if os(iOS)
+        if scenes == 0 { before = UIApplication.shared.statusBarStyle }
+        #endif
         scenes += 1
         apply()
     }
@@ -196,7 +202,7 @@ enum GameStatusBar {
 
     private static func apply() {
         #if os(iOS)
-        UIApplication.shared.setStatusBarStyle(light ? .lightContent : .darkContent, animated: true)
+        UIApplication.shared.setStatusBarStyle(light ? .lightContent : before ?? .default, animated: true)
         #endif
     }
 }

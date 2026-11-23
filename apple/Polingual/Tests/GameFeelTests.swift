@@ -80,4 +80,18 @@ struct GameResultsTests {
         #expect(!CreditedRunStore(defaults: defaults).claim("run-1"))
         #expect(CreditedRunStore(defaults: defaults).claim("run-2"))
     }
+
+    @Test func claimedRunsPersistNewestTwenty() throws {
+        let name = "credited-\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: name))
+        defer { defaults.removePersistentDomain(forName: name) }
+        let store = CreditedRunStore(defaults: defaults)
+        for i in 0..<25 { _ = store.claim("run-\(i)") }
+        let saved = defaults.stringArray(forKey: CreditedRunStore.key)
+        #expect(saved?.count == CreditedRuns.keep)
+        #expect(saved?.first == "run-5")
+        #expect(saved?.last == "run-24")
+        #expect(!CreditedRunStore(defaults: defaults).claim("run-24"))
+        #expect(CreditedRunStore(defaults: defaults).claim("run-0"))
+    }
 }
