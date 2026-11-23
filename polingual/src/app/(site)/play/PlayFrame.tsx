@@ -7,6 +7,7 @@ import app from "../app/app.module.css";
 import Ad from "./Ad";
 import { AdsPauseProvider, AdsProvider } from "./AdsContext";
 import Consent from "./Consent";
+import RewardLayer from "./RewardLayer";
 import { SpeechGuard } from "@/ui";
 import { unlockSound } from "@/lib/lobby/sound";
 import { installAudioUnlock } from "@/lib/lobby/unlock";
@@ -78,6 +79,7 @@ export default function PlayFrame({ header, consentRequired, children }: { heade
         <StageStickers />
         {header}
         <SpeechGuard />
+        <RewardLayer />
         <div className={styles.frame} data-rails={rail ? layout : undefined} data-testid="play-scroll">
           {rail ? (
             <div className={styles.rail}>

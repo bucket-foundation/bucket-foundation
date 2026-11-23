@@ -108,3 +108,4 @@
 .deferred ul{margin:6px 0 0;padding-left:18px}
 .deferred li span{font:var(--pl-type-label);letter-spacing:.1em;text-transform:uppercase;color:var(--pl-ink-faint)}
 :global(body[data-sheet=open]) .mini{display:none}
+.shell[data-testid=play-frame] .stack,.shell[data-testid=play-frame] .wide,.shell[data-testid=play-frame] .session{max-width:none}
