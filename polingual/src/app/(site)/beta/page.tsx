@@ -22,7 +22,7 @@ export default function Page() {
   return (
     <Legal>
       <h1 className={styles.title}>Become a beta tester</h1>
-      <p className={styles.lede}>Get new Polingual builds before they reach the App Store, and tell us what to fix.</p>
+      <div className={styles.lede}>Get new Polingual builds before they reach the App Store, and tell us what to fix.</div>
       <ul className={styles.perks}>
         <li>🎮 New games first</li>
         <li>💬 Your feedback shapes the app</li>
