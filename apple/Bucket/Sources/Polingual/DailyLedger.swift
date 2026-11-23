@@ -112,7 +112,7 @@ struct TryAgainOffer: View {
     }
 
     func caption(_ text: String) -> some View {
-        Text(text).font(PL.small.font()).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+        Text(text).font(PL.small.font()).foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
     }
 }
 

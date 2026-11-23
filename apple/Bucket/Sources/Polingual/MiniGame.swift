@@ -160,13 +160,13 @@ struct MiniGame: View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: columns), spacing: 6) {
             ForEach(p.keys, id: \.self) { key in
                 Button { type(key, p) } label: {
-                    Text(key).font(.system(size: 20, weight: .heavy, design: .rounded))
+                    Text(key).font(PL.script(20))
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .buttonStyle(GameAnswerStyle(state: .other))
             }
             Button { erase() } label: {
-                Image(systemName: "delete.left.fill").font(.system(size: 20, weight: .bold))
+                Image(systemName: "delete.left.fill").font(PL.icon(20))
                     .frame(maxWidth: .infinity, minHeight: 44)
             }
             .buttonStyle(GameAnswerStyle(state: .wrong))

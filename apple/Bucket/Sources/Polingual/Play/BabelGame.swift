@@ -144,7 +144,7 @@ struct BabelGame: View {
 
     func mark(_ n: Int, size: CGFloat) -> some View {
         Text("\(n + 1)")
-            .font(.system(size: size * 0.7, weight: .bold, design: .rounded))
+            .font(PL.script(size * 0.7, .bold))
             .foregroundStyle(PL.paper)
             .frame(width: size, height: size)
             .background(Self.marks[n % Self.marks.count], in: .circle)

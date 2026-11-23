@@ -355,6 +355,101 @@ final class GamesUITests: XCTestCase {
         shot("duel-combo")
     }
 
+    func testRealTimeGamesEndOnResults() {
+        for game in ["snake", "shift", "atlas", "forehead"] {
+            let app = launch(["-openGame", game, "-endGame"])
+            XCTAssertTrue(app.staticTexts["playResults"].waitForExistence(timeout: 60), "\(game) did not reach results")
+            shot("\(game)-end")
+            app.terminate()
+        }
+    }
+
+    func testRealTimeChipsShowMidPlay() {
+        for game in ["snake", "shift", "atlas"] {
+            let app = launch(["-openGame", game, "-demoCombo", "5"])
+            XCTAssertTrue(app.staticTexts["playTitle"].waitForExistence(timeout: 60))
+            let start = app.buttons["Start"]
+            let again = app.buttons["Try again"].firstMatch
+            if start.waitForExistence(timeout: 3) { start.tap() } else if again.exists { again.tap() }
+            XCTAssertTrue(app.descendants(matching: .any)["game-combo"].waitForExistence(timeout: 10), "\(game) shows no chip")
+            sleep(2)
+            shot("\(game)-midplay")
+            app.terminate()
+        }
+    }
+
+    func testShiftComboChipStaysOffUntilAStreak() {
+        let app = launch(["-openGame", "shift"])
+        XCTAssertTrue(app.staticTexts["playTitle"].waitForExistence(timeout: 60))
+        XCTAssertFalse(app.descendants(matching: .any)["game-combo"].exists)
+        shot("shift-board")
+    }
+
+    func testLiveStartOpensFromResults() {
+        let app = launch(["-openGame", "flags", "-endGame"])
+        let live = app.buttons["Play live"]
+        XCTAssertTrue(live.waitForExistence(timeout: 60))
+        live.tap()
+        XCTAssertTrue(app.textFields["liveName"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.buttons["liveGo"].exists)
+        shot("live-start")
+    }
+
+    func testLiveLobbiesAndLettersOpen() {
+        let app = launch([])
+        let play = app.buttons["Play"].firstMatch
+        XCTAssertTrue(play.waitForExistence(timeout: 60))
+        play.tap()
+        let live = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Live Lobbies")).firstMatch
+        XCTAssertTrue(live.waitForExistence(timeout: 20))
+        live.tap()
+        let name = app.textFields["lobbyName"]
+        XCTAssertTrue(name.waitForExistence(timeout: 20))
+        XCTAssertTrue(app.textFields["lobbyCode"].exists)
+        XCTAssertTrue(app.buttons["Join"].exists)
+        XCTAssertFalse(app.buttons["Join"].isEnabled)
+        sleep(2)
+        shot("lobbies")
+        let code = app.textFields["lobbyCode"]
+        code.tap()
+        code.typeText("ABCDEF")
+        sleep(1)
+        XCTAssertTrue(code.isHittable)
+        XCTAssertTrue(app.buttons["Join"].isHittable)
+        shot("lobbies-keyboard")
+        app.terminate()
+        let letters = launch(["-openGame", "letters"])
+        XCTAssertTrue(letters.staticTexts["playTitle"].waitForExistence(timeout: 60))
+        sleep(2)
+        shot("letters")
+    }
+
+    func testLobbyOpensEveryGame() {
+        let app = launch(["-reduceMotion"])
+        let play = app.buttons["Play"].firstMatch
+        XCTAssertTrue(play.waitForExistence(timeout: 60))
+        play.tap()
+        let tiles = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "lobby-"))
+        XCTAssertTrue(tiles.firstMatch.waitForExistence(timeout: 20))
+        shot("lobby")
+        let ids = tiles.allElementsBoundByIndex.map(\.identifier)
+        XCTAssertGreaterThanOrEqual(ids.count, 10)
+        for id in ids {
+            let tile = app.buttons[id]
+            var tries = 0
+            while !tile.isHittable && tries < 12 {
+                app.swipeUp(velocity: .slow)
+                tries += 1
+            }
+            guard tile.isEnabled else { continue }
+            tile.tap()
+            XCTAssertTrue(app.staticTexts["playTitle"].waitForExistence(timeout: 20), "\(id) did not open")
+            app.navigationBars.buttons.element(boundBy: 0).tap()
+            XCTAssertTrue(tiles.firstMatch.waitForExistence(timeout: 10))
+            for _ in 0..<12 where !app.buttons[ids[0]].isHittable { app.swipeDown(velocity: .fast) }
+        }
+    }
+
     func testWhichVoiceAndLetterSprintOpen() {
         let voice = launch(["-openGame", "voice"])
         XCTAssertTrue(voice.buttons.matching(identifier: "game-choice").firstMatch.waitForExistence(timeout: 60))

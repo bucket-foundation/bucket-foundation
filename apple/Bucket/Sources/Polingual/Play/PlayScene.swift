@@ -180,10 +180,6 @@ struct PlayFlag: View {
 
 enum PlaySound {
     @MainActor static func auto(_ text: String, _ lang: String) { LangVoice.shared.speak(text, lang, kind: .auto) }
-    @MainActor static func effect(_ right: Bool, combo: Int = 0) {
-        GameSound.play(right: right, combo: combo)
-        haptic(right)
-    }
 }
 
 func playWords(_ items: [PlayRevealItem]) -> [PlayRevealItem] {

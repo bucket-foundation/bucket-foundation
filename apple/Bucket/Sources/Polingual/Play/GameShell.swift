@@ -26,15 +26,24 @@ final class GameFeel {
     private(set) var wrongs = 0
     private(set) var climbs = 0
     private(set) var gain = 0
-    private(set) var streak = ComboCount()
+    private(set) var streak = GameFeel.demoStreak()
     @ObservationIgnored var sound: @MainActor (Bool, ComboCount) -> Void = GameFeel.play
 
+    static func demoStreak(arguments: [String] = ProcessInfo.processInfo.arguments) -> ComboCount {
+        var streak = ComboCount()
+        #if DEBUG
+        if let i = arguments.firstIndex(of: "-demoCombo"), i + 1 < arguments.count, let n = Int(arguments[i + 1]) {
+            for _ in 0..<n { streak.hit() }
+        }
+        #endif
+        return streak
+    }
     func record(_ right: Bool, points: Int = 1) {
         streak.record(right)
         if right { self.right(streak, points: points) } else { wrong(streak) }
     }
 
-    func reset() { streak = ComboCount() }
+    func reset() { streak = GameFeel.demoStreak() }
     func right(_ streak: ComboCount, points: Int = 1) {
         gain = points * streak.multiplier
         rights += 1
@@ -249,6 +258,7 @@ struct GameShell<Content: View>: View {
     let game: GameKind
     var feel: GameFeel?
     var fit = false
+    var burst = true
     @ViewBuilder let content: () -> Content
 
     var reduce: Bool { GameMotion.reduced(system: systemReduce) }
@@ -257,7 +267,7 @@ struct GameShell<Content: View>: View {
         GeometryReader { geo in
             page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
         }
-        .overlay { if let feel { GameBurst(feel: feel, reduce: reduce) } }
+        .overlay { if let feel, burst { GameBurst(feel: feel, reduce: reduce) } }
         .gameFeedback(feel)
         .environment(\.gameReduceMotion, reduce)
         .plGround(.lattice, band: true)
