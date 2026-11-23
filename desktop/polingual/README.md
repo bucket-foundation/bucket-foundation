@@ -2,10 +2,12 @@
 
 Tauri 2 shell for polingual.com. Menu: Play, Watch, Learn, Reload, Quit. Links: `polingual://learn`, `polingual://play/video`.
 
+Builds are unsigned and ship no updater. Install new versions by hand.
+
 ## Linux
 
 ```bash
-sudo dnf install webkit2gtk4.1-devel libappindicator-gtk3-devel librsvg2-devel rpm-build
+sudo dnf install webkit2gtk4.1-devel libappindicator-gtk3-devel librsvg2-devel openssl-devel libxdo-devel rpm-build
 bun install
 NO_STRIP=true bunx tauri build --bundles deb,rpm,appimage
 ```

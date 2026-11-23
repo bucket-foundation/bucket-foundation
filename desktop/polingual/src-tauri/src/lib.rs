@@ -1,11 +1,10 @@
-use std::net::{TcpStream, ToSocketAddrs};
-use std::path::PathBuf;
 use std::sync::Mutex;
 use std::time::Duration;
 use tauri::webview::NewWindowResponse;
 use tauri::{Manager, Url, WebviewWindowBuilder};
 use tauri_plugin_opener::OpenerExt;
 use tauri_plugin_deep_link::DeepLinkExt;
+use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 
 pub const DEFAULT_APP_URL: &str = "https://polingual.com";
 pub const SCHEME: &str = "polingual";
@@ -59,6 +58,13 @@ impl LinkState {
         }
     }
 
+    pub fn went_offline(&mut self, current: Option<&Url>) {
+        self.online = false;
+        if self.pending.is_none() {
+            self.pending = current.filter(|u| stays_inside(u) && INSIDE_HOSTS.contains(&u.host_str().unwrap_or(""))).map(|u| u.path().to_string()).filter(|p| link_route(&format!("{SCHEME}:/{p}")).is_some());
+        }
+    }
+
     pub fn went_online(&mut self, base: &Url) -> Url {
         self.online = true;
         match self.pending.take() {
@@ -70,7 +76,6 @@ impl LinkState {
 
 pub const INSIDE_HOSTS: &[&str] = &["polingual.com", "www.polingual.com"];
 pub const EMBED_HOSTS: &[&str] = &["www.youtube.com", "youtube.com", "www.youtube-nocookie.com", "youtube-nocookie.com"];
-pub const AUTH_HOST_SUFFIX: &str = ".supabase.co";
 
 pub const MENU: &[(&str, &str, &str)] = &[("play", "Play", "/play"), ("watch", "Watch", "/play/video"), ("learn", "Learn", "/learn")];
 
@@ -83,7 +88,7 @@ pub fn stays_inside(url: &Url) -> bool {
         "tauri" => url.host_str() == Some("localhost"),
         "http" => url.host_str() == Some("tauri.localhost"),
         "about" => url.as_str() == "about:blank",
-        "https" => url.host_str().is_some_and(|h| INSIDE_HOSTS.contains(&h) || youtube_embed(h, url.path()) || (h.ends_with(AUTH_HOST_SUFFIX) && h.len() > AUTH_HOST_SUFFIX.len())),
+        "https" => url.port_or_known_default() == Some(443) && url.host_str().is_some_and(|h| INSIDE_HOSTS.contains(&h) || youtube_embed(h, url.path())),
         _ => false,
     }
 }
@@ -92,14 +97,39 @@ pub fn opens_outside(url: &Url) -> bool {
     !stays_inside(url) && matches!(url.scheme(), "https" | "http" | "mailto")
 }
 
+fn open_in_browser(app: &tauri::AppHandle, url: &Url) {
+    if let Err(e) = app.opener().open_url(url.as_str(), None::<&str>) {
+        eprintln!("polingual could not open {url} in the browser: {e}");
+    }
+}
+
 fn send_out(app: &tauri::AppHandle, url: &Url) {
     if opens_outside(url) {
-        if let Err(e) = app.opener().open_url(url.as_str(), None::<&str>) {
-            eprintln!("polingual could not open {url} in the browser: {e}");
-        }
+        open_in_browser(app, url);
     } else {
         eprintln!("polingual refused {url}");
     }
+}
+
+fn ask_send_out(app: &tauri::AppHandle, url: &Url) {
+    if !opens_outside(url) {
+        eprintln!("polingual refused {url}");
+        return;
+    }
+    let app = app.clone();
+    let url = url.clone();
+    std::thread::spawn(move || {
+        let host = url.host_str().unwrap_or(url.scheme()).to_string();
+        let open = app
+            .dialog()
+            .message(format!("Open {host} in your browser?"))
+            .title("Polingual")
+            .buttons(MessageDialogButtons::OkCancelCustom("Open".into(), "Stay".into()))
+            .blocking_show();
+        if open {
+            open_in_browser(&app, &url);
+        }
+    });
 }
 
 fn main_window(app: &tauri::App) -> tauri::Result<()> {
@@ -110,7 +140,7 @@ fn main_window(app: &tauri::App) -> tauri::Result<()> {
         .on_navigation(move |url| {
             let inside = stays_inside(url);
             if !inside {
-                send_out(&nav, url);
+                ask_send_out(&nav, url);
             }
             inside
         })
@@ -126,41 +156,21 @@ fn main_window(app: &tauri::App) -> tauri::Result<()> {
     Ok(())
 }
 
+pub fn landed_home(end: &str) -> bool {
+    Url::parse(end).is_ok_and(|u| u.scheme() == "https" && u.host_str().is_some_and(|h| INSIDE_HOSTS.contains(&h)))
+}
+
 pub fn reachable(url: &Url) -> bool {
-    let (Some(host), Some(port)) = (url.host_str(), url.port_or_known_default()) else {
-        return false;
-    };
-    match (host, port).to_socket_addrs() {
-        Ok(addrs) => addrs.into_iter().any(|a| TcpStream::connect_timeout(&a, PROBE_TIMEOUT).is_ok()),
+    let agent = ureq::AgentBuilder::new().timeout(PROBE_TIMEOUT).redirects(5).build();
+    match agent.head(url.as_str()).call() {
+        Ok(resp) => landed_home(resp.get_url()),
+        Err(ureq::Error::Status(code, resp)) => code < 500 && landed_home(resp.get_url()),
         Err(_) => false,
     }
 }
 
 struct Link(Mutex<LinkState>);
 
-struct SmokeRecord(Option<PathBuf>);
-
-impl SmokeRecord {
-    fn write(&self, routes: &[String], online: bool) {
-        let Some(path) = &self.0 else { return };
-        let body = serde_json::json!({ "pid": std::process::id(), "routes": routes, "online": online });
-        if let Err(e) = std::fs::write(path, body.to_string()) {
-            eprintln!("polingual could not write {}: {e}", path.display());
-        }
-    }
-}
-
-struct Routes(Mutex<Vec<String>>);
-
-fn note(app: &tauri::AppHandle, route: Option<&str>) {
-    let state = app.state::<Routes>();
-    let mut routes = state.0.lock().unwrap();
-    if let Some(r) = route {
-        routes.push(r.to_string());
-    }
-    let online = app.state::<Link>().0.lock().unwrap().online;
-    app.state::<SmokeRecord>().write(&routes, online);
-}
 
 fn raise(app: &tauri::AppHandle) {
     if let Some(w) = app.get_webview_window("main") {
@@ -187,7 +197,6 @@ fn open_route(app: &tauri::AppHandle, route: String) {
     if let Some(url) = target {
         navigate(app, url);
     }
-    note(app, Some(&route));
     raise(app);
 }
 
@@ -198,22 +207,39 @@ fn set_status(app: &tauri::AppHandle, text: &str) {
     }
 }
 
+pub const WATCH: Duration = Duration::from_secs(15);
+
+struct Splash(Url);
+
+fn wait_online(app: &tauri::AppHandle, base: &Url) {
+    let mut tries = 0u32;
+    while !reachable(base) {
+        tries += 1;
+        if tries == 1 {
+            eprintln!("polingual is offline, retrying every {}s", RETRY.as_secs());
+        }
+        set_status(app, "You are offline. Retrying.");
+        std::thread::sleep(RETRY);
+    }
+}
+
 fn connect(app: tauri::AppHandle) {
     let base = app_url();
-    std::thread::spawn(move || {
-        let mut tries = 0u32;
-        while !reachable(&base) {
-            tries += 1;
-            if tries == 1 {
-                eprintln!("polingual is offline, retrying every {}s", RETRY.as_secs());
-            }
-            set_status(&app, "You are offline. Retrying.");
-            std::thread::sleep(RETRY);
-        }
+    std::thread::spawn(move || loop {
+        wait_online(&app, &base);
         let target = app.state::<Link>().0.lock().unwrap().went_online(&base);
         eprintln!("polingual loading {target}");
         navigate(&app, target);
-        note(&app, None);
+        let mut misses = 0u32;
+        while misses < 2 {
+            std::thread::sleep(WATCH);
+            misses = if reachable(&base) { 0 } else { misses + 1 };
+        }
+        eprintln!("polingual lost its connection");
+        let current = app.get_webview_window("main").and_then(|w| w.url().ok());
+        app.state::<Link>().0.lock().unwrap().went_offline(current.as_ref());
+        navigate(&app, app.state::<Splash>().0.clone());
+        std::thread::sleep(Duration::from_secs(1));
     });
 }
 
@@ -245,7 +271,6 @@ fn menu(app: &tauri::App) -> tauri::Result<()> {
 }
 
 pub fn run() {
-    let record = SmokeRecord(std::env::var_os("POLINGUAL_SMOKE_RECORD").map(PathBuf::from));
     let app = tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| match route_in(&args) {
             Some(route) => open_route(app, route),
@@ -253,11 +278,12 @@ pub fn run() {
         }))
         .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_dialog::init())
         .manage(Link(Mutex::new(LinkState::default())))
-        .manage(Routes(Mutex::new(Vec::new())))
-        .manage(record)
         .setup(|app| {
             main_window(app)?;
+            let splash = app.get_webview_window("main").ok_or(tauri::Error::WindowNotFound)?.url()?;
+            app.manage(Splash(splash));
             menu(app)?;
             #[cfg(target_os = "linux")]
             if let Ok(data) = app.path().data_dir() {
@@ -282,7 +308,6 @@ pub fn run() {
             if let Some(route) = &first {
                 handle.state::<Link>().0.lock().unwrap().request(&app_url(), route.clone());
             }
-            note(&handle, first.as_deref());
             connect(handle);
             Ok(())
         })
@@ -364,14 +389,14 @@ mod tests {
 
     #[test]
     fn app_hosts_stay_in_the_window() {
-        for s in ["https://polingual.com/app/learn", "https://www.polingual.com/", "https://www.youtube-nocookie.com/embed/abc", "https://www.youtube.com/embed/abc?rel=0", "https://abcd.supabase.co/auth/v1/verify", "tauri://localhost/index.html", "http://tauri.localhost/index.html", "about:blank"] {
+        for s in ["https://polingual.com/app/learn", "https://www.polingual.com/", "https://www.youtube-nocookie.com/embed/abc", "https://www.youtube.com/embed/abc?rel=0", "tauri://localhost/index.html", "http://tauri.localhost/index.html", "about:blank"] {
             assert!(stays_inside(&u(s)), "{s}");
         }
     }
 
     #[test]
     fn other_hosts_leave_for_the_browser() {
-        for s in ["https://en.wiktionary.org/wiki/x", "https://www.youtube.com/watch?v=abc", "https://bucket.foundation/", "https://polingual.com.evil.com/", "https://evilpolingual.com/", "https://supabase.co/", "https://x.supabase.co.evil.com/", "http://polingual.com/", "mailto:hi@polingual.com"] {
+        for s in ["https://en.wiktionary.org/wiki/x", "https://www.youtube.com/watch?v=abc", "https://bucket.foundation/", "https://polingual.com.evil.com/", "https://evilpolingual.com/", "https://abcd.supabase.co/auth/v1/verify", "http://polingual.com/", "mailto:hi@polingual.com"] {
             assert!(!stays_inside(&u(s)), "{s}");
             assert!(opens_outside(&u(s)), "{s}");
         }
@@ -383,6 +408,33 @@ mod tests {
             assert!(!stays_inside(&u(s)), "{s}");
             assert!(!opens_outside(&u(s)), "{s}");
         }
+    }
+
+    #[test]
+    fn dropped_connection_returns_to_the_same_page() {
+        let mut s = LinkState::default();
+        s.went_online(&base());
+        s.went_offline(Some(&u("https://polingual.com/learn/la")));
+        assert_eq!(s.request(&base(), "/x".into()), None);
+        let mut t = LinkState::default();
+        t.went_offline(Some(&u("https://polingual.com/learn/la")));
+        assert_eq!(t.went_online(&u("https://polingual.com")).as_str(), "https://polingual.com/learn/la");
+        let mut v = LinkState::default();
+        v.went_offline(Some(&u("https://www.youtube.com/embed/x")));
+        assert_eq!(v.went_online(&base()), base());
+    }
+
+    #[test]
+    fn captive_portals_are_offline() {
+        assert!(landed_home("https://www.polingual.com/"));
+        assert!(!landed_home("https://portal.hotel.example/login"));
+        assert!(!landed_home("http://polingual.com/"));
+    }
+
+    #[test]
+    fn non_standard_ports_leave() {
+        assert!(!stays_inside(&u("https://polingual.com:8443/")));
+        assert!(stays_inside(&u("https://polingual.com:443/")));
     }
 
     #[test]

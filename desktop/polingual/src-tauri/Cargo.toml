@@ -19,6 +19,8 @@ tauri-plugin-deep-link = "2"
 tauri-plugin-opener = "2"
 url = "2"
 ctrlc = { version = "3", features = ["termination"] }
+ureq = { version = "2", default-features = false, features = ["tls"] }
+tauri-plugin-dialog = "2"
 serde_json = "1"
 
 [profile.release]
