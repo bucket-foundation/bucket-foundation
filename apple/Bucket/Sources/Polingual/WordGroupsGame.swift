@@ -92,26 +92,31 @@ struct WordGroupsGame: View {
     @State private var rng = SeededRandom(seed: UInt64(Date().timeIntervalSince1970))
 
     @State private var board: String?
+    @State private var feel = GameFeel()
+    @State private var streak = ComboCount()
+    @State private var credit: GameCredit?
+    @State private var runId = UUID().uuidString
+    @Environment(\.accessibilityReduceMotion) private var systemReduce
 
-    static let colors = [D8.malachite, D8.lapis, D8.vermilion, Color(hex: 0xB0761A)]
+    static let colors = [PL.malachite, PL.lapis, PL.vermilion, PL.ochreDeep]
 
     var body: some View {
-        ScrollView {
+        GameShell(game: .wordGroups, feel: feel) {
             if let closed {
                 end(closed)
             } else if let round {
                 board(round)
             } else {
-                GameWaiting(message: String(localized: "Study a few more words and tomorrow's Word Groups opens."))
+                PLCard { GameWaiting(message: String(localized: "Study a few more words and tomorrow's Word Groups opens.")) }
             }
         }
-        .gameChrome(GameKind.wordGroups.title, sideways: false)
+        .screenShareQuiet()
         .task(id: langs.status) {
             await langs.load()
             guard round == nil, closed == nil else { return }
             guard let key = langs.wordGroupsKey else { return }
             board = key
-            let saved = WordGroupsRecord.load(key)
+            let saved = GameLaunch.freshDaily ? nil : WordGroupsRecord.load(key)
             if let saved, saved.finished {
                 closed = saved
                 round = langs.wordGroupsPuzzle.map { WordGroupsRound($0, resuming: saved) }
@@ -123,24 +128,27 @@ struct WordGroupsGame: View {
     }
 
     func board(_ r: WordGroupsRound) -> some View {
-        VStack(spacing: 12) {
-            Text(note ?? String(localized: "Pick four that belong together."))
-                .font(.subheadline.weight(.semibold)).foregroundStyle(note == nil ? Palette.muted : D8.vermilion)
-                .accessibilityIdentifier("groups.note")
+        VStack(spacing: PL.Space.s3) {
+            HStack {
+                Text(note ?? String(localized: "Pick four that belong together."))
+                    .font(PL.small.font()).foregroundStyle(note == nil ? PL.paper.opacity(0.85) : PL.ochre)
+                    .accessibilityIdentifier("groups.note")
+                Spacer(minLength: 0)
+                ComboChip(streak: streak, multiplier: false)
+            }
             ForEach(r.solved) { banner($0, r.puzzle) }
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
                 ForEach(r.tiles) { tile($0, on: r.selected.contains($0.id)) }
             }
             .gameShake(shakes)
             mistakes(r)
-            HStack(spacing: 8) {
-                Button("Shuffle") { shuffle() }.buttonStyle(D8Option(align: .center, compact: true))
-                Button("Deselect") { round?.clear() }.buttonStyle(D8Option(align: .center, compact: true)).disabled(r.selected.isEmpty)
-                Button("Submit") { submit() }.buttonStyle(D8Primary(compact: true)).disabled(!r.canSubmit).accessibilityIdentifier("groups.submit")
+            HStack(spacing: PL.Space.s2) {
+                Button("Shuffle") { shuffle() }.buttonStyle(.pl(.ghost, size: .md))
+                Button("Deselect") { round?.clear() }.buttonStyle(.pl(.ghost, size: .md)).disabled(r.selected.isEmpty)
+                Button("Submit") { submit() }.buttonStyle(.pl(.primary, size: .md)).disabled(!r.canSubmit).accessibilityIdentifier("groups.submit")
             }
             .lineLimit(1).minimumScaleFactor(0.7)
         }
-        .padding()
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
     }
@@ -151,15 +159,13 @@ struct WordGroupsGame: View {
             note = nil
             round?.toggle(word.id)
         } label: {
-            Text(word.form).font(.system(size: 16, weight: .heavy, design: .rounded))
-                .foregroundStyle(on ? D8.parchment : Palette.ink)
+            Text(word.form).font(PL.script(16))
+                .foregroundStyle(on ? PL.paper : PL.ink)
                 .lineLimit(1).minimumScaleFactor(0.45)
                 .padding(.horizontal, 4)
                 .frame(maxWidth: .infinity, minHeight: 68)
-                .background(on ? D8.lapis : D8.face, in: .rect(cornerRadius: 10))
-                .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(on ? D8.lapis : D8.edge, lineWidth: 2) }
         }
-        .buttonStyle(.plain)
+        .buttonStyle(D8Option(selected: on, align: .center, compact: true))
         .accessibilityAddTraits(on ? .isSelected : [])
         .accessibilityIdentifier("groups.tile")
     }
@@ -167,21 +173,21 @@ struct WordGroupsGame: View {
     func banner(_ group: WordGroup, _ puzzle: WordGroupsPuzzle) -> some View {
         let index = puzzle.groups.firstIndex(of: group) ?? 0
         return VStack(spacing: 2) {
-            Text(group.label).font(.headline).foregroundStyle(D8.parchment)
-            Text(group.words.map(\.form).joined(separator: ", ")).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9))
+            Text(group.label).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.paper)
+            Text(group.words.map(\.form).joined(separator: ", ")).font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.9))
                 .lineLimit(2).minimumScaleFactor(0.6).multilineTextAlignment(.center)
         }
         .padding(10)
         .frame(maxWidth: .infinity)
-        .background(Self.colors[index % Self.colors.count], in: .rect(cornerRadius: 10))
+        .background(Self.colors[index % Self.colors.count], in: .rect(cornerRadius: PL.Radius.md))
         .accessibilityElement(children: .combine)
     }
 
     func mistakes(_ r: WordGroupsRound) -> some View {
         HStack(spacing: 6) {
-            Text("Mistakes left").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+            Text("Mistakes left").font(PL.label.font()).textCase(.uppercase).foregroundStyle(PL.paper.opacity(0.85))
             ForEach(0..<WordGroupsPuzzle.mistakes, id: \.self) { i in
-                Circle().fill(i < r.mistakesLeft ? D8.vermilion : Palette.rule).frame(width: 10, height: 10)
+                Circle().fill(i < r.mistakesLeft ? PL.vermilion : PL.paper.opacity(0.25)).frame(width: 10, height: 10)
             }
         }
         .accessibilityElement()
@@ -192,14 +198,24 @@ struct WordGroupsGame: View {
         let total = WordGroupsPuzzle.groupCount
         let solved = save.solved.count
         let score = String(localized: "\(solved) of \(total) groups")
-        return VStack(spacing: 12) {
+        let missed = round?.unsolved.flatMap(\.words) ?? []
+        return VStack(spacing: PL.Space.s3) {
             if let round, Set(round.solved.map(\.id)) == Set(save.solved) {
-                VStack(spacing: 8) {
+                VStack(spacing: PL.Space.s2) {
                     ForEach(round.solved + round.unsolved) { banner($0, round.puzzle) }
                 }
-                .padding([.horizontal, .top])
             }
-            GameEnd(kind: .wordGroups, score: score, line: practice.score.map(PracticeLine.text) ?? (save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow.")), results: save.results, missed: round?.unsolved.flatMap(\.words) ?? [], shape: .groups(order: GameShare.groupOrder(solved: save.solved, groups: round?.puzzle.groups.map(\.id) ?? []), attempts: save.results, total: total), shareObject: langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), retry: round.map { r in { retry(r.puzzle) } }, again: nil)
+            GameResults(title: score,
+                        line: practice.score.map(PracticeLine.text) ?? (save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow.")),
+                        reveals: missed.prefix(5).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                        root: missed.first?.root ?? langs.playRoot,
+                        share: (.wordGroups, .groups(order: GameShare.groupOrder(solved: save.solved, groups: round?.puzzle.groups.map(\.id) ?? []), attempts: save.results, total: total)),
+                        retry: round.map { r in (.wordGroups, nil, { retry(r.puzzle) }) },
+                        results: save.results,
+                        stars: GameStars.rating(hits: solved, total: total),
+                        credit: credit,
+                        extra: AnyView(ShareObjectButton(langs.gameScore(GameKind.wordGroups.title, right: solved, total: total), wide: true)),
+                        again: nil)
         }
         .frame(maxWidth: 520)
         .frame(maxWidth: .infinity)
@@ -217,7 +233,9 @@ struct WordGroupsGame: View {
         round = r
         note = nil
         switch outcome {
-        case .solved: haptic(true)
+        case .solved:
+            streak.hit()
+            feel.right(streak, points: 4)
         case .oneAway:
             note = String(localized: "One away")
             miss()
@@ -230,12 +248,14 @@ struct WordGroupsGame: View {
     }
 
     func miss() {
-        haptic(false)
-        shakes += 1
+        streak.miss()
+        feel.wrong(streak)
+        if !GameMotion.reduced(system: systemReduce) { shakes += 1 }
     }
 
     func retry(_ puzzle: WordGroupsPuzzle) {
         practice.begin()
+        streak = ComboCount()
         note = nil
         round = WordGroupsRound(puzzle)
         closed = nil
@@ -250,7 +270,7 @@ struct WordGroupsGame: View {
             return
         }
         let solved = r.solved.flatMap(\.words)
-        langs.recordGame(.wordGroups, played: r.puzzle.tiles, hits: solved.count, points: nil, missed: r.unsolved.flatMap(\.words))
+        credit = langs.recordRun(runId, .wordGroups, played: r.puzzle.tiles, hits: solved.count, points: nil, missed: r.unsolved.flatMap(\.words))?.credit
         reminders.noteStudy()
         withAnimation(.spring(duration: 0.35)) { closed = r.save }
     }

@@ -4,6 +4,7 @@ import SwiftUI
 struct FlagTilesGame: View {
     @Environment(LangStore.self) private var langs
     @ScaledMetric private var chrome: CGFloat = 32
+    @State private var feel = GameFeel()
     @State private var deck: FlagTilesDeck?
     @State private var run = RunState()
     @State private var stream = FlagStream(count: 0)
@@ -21,7 +22,7 @@ struct FlagTilesGame: View {
     var answer: Int { tile.flatMap { t in deck?.langs.firstIndex(of: t.lang) } ?? -1 }
 
     var body: some View {
-        PlayScene(game: .flagTiles) {
+        PlayScene(game: .flagTiles, feel: feel) {
             if deck != nil, !entered, !round.practicing {
                 RecordedRound(kind: .flagTiles, deck: day, practice: round.score, root: root) { retry() }
             } else if let deck {
@@ -70,6 +71,7 @@ struct FlagTilesGame: View {
         VStack(spacing: PL.Space.s3) {
             HStack {
                 PlayLabel(text: "Score \(run.score)")
+                ComboChip(streak: feel.streak, multiplier: false)
                 Spacer()
                 PlayLabel(text: "Word \(run.index + 1)")
             }
@@ -171,6 +173,7 @@ struct FlagTilesGame: View {
     func since(_ now: Date) -> Double { now.timeIntervalSince(origin) * 1000 }
 
     func begin(_ event: RunEvent) {
+        if event == .start { feel.reset() }
         run = FlagTilesRules.step(run, event)
         guard run.phase == .running else { return }
         origin = Date()
@@ -185,7 +188,7 @@ struct FlagTilesGame: View {
         run = FlagTilesRules.step(run, .tap(lane: lane, answer: answer))
         flash = lane
         flashes += 1
-        PlaySound.effect(right, combo: run.score)
+        feel.record(right)
         guard run.phase == .running else { return }
         if run.index >= (deck?.tiles.count ?? 0) {
             run = FlagTilesRules.step(FlagTilesRules.step(run, .timeout), .end)
@@ -201,7 +204,7 @@ struct FlagTilesGame: View {
         let wait = clock.landsInMs(index, in: stream, sinceMs: since(Date()))
         if wait > 0 { try? await Task.sleep(for: .milliseconds(wait)) }
         guard !Task.isCancelled, run.phase == .running, run.index == index else { return }
-        PlaySound.effect(false)
+        feel.record(false)
         run = FlagTilesRules.step(run, .timeout)
     }
 }
