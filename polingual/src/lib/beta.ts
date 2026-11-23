@@ -1,5 +1,7 @@
 import { APP_STORE_URL } from "./facts";
 import { parseSignup } from "./signup";
+import { betaLink } from "./beta-link";
+import { TESTFLIGHT_APP_URL } from "./testflight-links";
 
 export type BetaEnv = Record<string, string | undefined>;
 export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
@@ -9,7 +11,7 @@ const API = "https://api.resend.com";
 export const UNSUBSCRIBE = "To leave the beta list, email privacy@polingual.com and we remove your address.";
 const ALLOWED_HOSTS = new Set(["polingual.com", "www.polingual.com", "beta.polingual.com"]);
 
-export type BetaRequest = { origin?: string | null; referer?: string | null; ip?: string | null; now?: number; token?: string | null };
+export type BetaRequest = { origin?: string | null; referer?: string | null; ip?: string | null; now?: number; token?: string | null; human?: boolean };
 const HUMAN_TIMEOUT_MS = 3000;
 
 export function allowedSource(origin?: string | null, referer?: string | null): boolean {
@@ -54,6 +56,21 @@ export function welcomeEmail(to: string, from: string) {
   };
 }
 
+export function testflightEmail(to: string, from: string, link: string) {
+  const href = link.replace(/&/g, "&amp;");
+  return {
+    from,
+    to: [to],
+    subject: "Your Polingual beta invite",
+    text: `You're in. Open this on your iPhone (iOS 26) to join the Polingual beta:\n${link}\n\nNo TestFlight yet? Get it first: ${TESTFLIGHT_APP_URL}\n\nApple may also send you a TestFlight email.\n\nFull access is free while you test. Reply with anything that feels off.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>You're in. Open this on your iPhone to join the Polingual beta.</p><p><a href="${href}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Join the beta</a></p><p>Needs iOS 26 and the <a href="${TESTFLIGHT_APP_URL}">TestFlight app</a>.</p><p>Apple may also send you a TestFlight email.</p><p>Full access is free while you test. Reply with anything that feels off.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+  };
+}
+
+export function wantsTestflight(body: unknown): boolean {
+  return Boolean(body && typeof body === "object" && (body as { kind?: unknown }).kind === "testflight");
+}
+
 function needsHuman(token: string | null | undefined, env: BetaEnv): boolean {
   return Boolean(token) || env.BETA_REQUIRE_TURNSTILE?.trim() === "1";
 }
@@ -89,19 +106,27 @@ export async function joinBeta(
   const key = env.RESEND_API_KEY?.trim();
   const audience = env.RESEND_BETA_AUDIENCE_ID?.trim();
   if (!key || !audience) return { status: 503, body: { error: "Signups are offline. Try again soon." } };
-  if (needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
+  if (!req.human && needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
-  const existing = await send(`${API}/audiences/${audience}/contacts/${encodeURIComponent(parsed.signup.email)}`, { method: "GET", headers });
-  if (existing.ok) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
-  const contact = await send(`${API}/audiences/${audience}/contacts`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ email: parsed.signup.email, unsubscribed: false }),
-  });
-  if (contact.status === 409) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
-  if (!contact.ok) return { status: 502, body: { error: "Your signup did not save. Try again in a minute." } };
   const from = env.BETA_FROM?.trim() || "Polingual <hello@bucket.foundation>";
-  const mail = await send(`${API}/emails`, { method: "POST", headers, body: JSON.stringify(welcomeEmail(parsed.signup.email, from)) });
-  if (!mail.ok) console.error("[beta] welcome email failed", mail.status);
+  const testflight = wantsTestflight(body);
+  const existing = await send(`${API}/audiences/${audience}/contacts/${encodeURIComponent(parsed.signup.email)}`, { method: "GET", headers });
+  if (!existing.ok) {
+    const contact = await send(`${API}/audiences/${audience}/contacts`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ email: parsed.signup.email, unsubscribed: false }),
+    });
+    if (!contact.ok && contact.status !== 409) return { status: 502, body: { error: "Your signup did not save. Try again in a minute." } };
+    if (contact.status === 409 && !testflight) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
+  } else if (!testflight) {
+    return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
+  }
+  const letter = testflight ? testflightEmail(parsed.signup.email, from, betaLink(parsed.signup.email, env, req.now)) : welcomeEmail(parsed.signup.email, from);
+  const mail = await send(`${API}/emails`, { method: "POST", headers, body: JSON.stringify(letter) });
+  if (!mail.ok) {
+    console.error("[beta] email failed", mail.status);
+    if (testflight) return { status: 502, body: { error: "The email did not send. Try again in a minute." } };
+  }
   return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
 }

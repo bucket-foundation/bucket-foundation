@@ -7,6 +7,7 @@ import { langName } from "@academy/lang-systems";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { fetchAccess, type Access } from "@/lib/app/plans";
+import { accessStep, track } from "@/lib/funnel";
 import Paywall from "./Paywall";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
@@ -73,7 +74,11 @@ function Shell({ children }: { children: React.ReactNode }) {
   const signedIn = auth.status === "signed-in";
   const check = useCallback(() => {
     setAccess({ status: "checking" });
-    void fetchAccess().then(setAccess);
+    void fetchAccess().then((a) => {
+      const step = accessStep(a);
+      if (step) track(step);
+      setAccess(a);
+    });
   }, []);
   useEffect(() => {
     if (signedIn) check();

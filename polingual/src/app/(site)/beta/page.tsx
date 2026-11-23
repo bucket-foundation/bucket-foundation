@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Legal from "@/app/legal";
-import { Sheet } from "@/ui";
 import { TESTFLIGHT_APP_URL, TESTFLIGHT_JOIN_URL } from "@/lib/testflight";
-import BetaForm from "./BetaForm";
+import InviteForm from "./InviteForm";
 import styles from "./beta.module.css";
 
 export const metadata: Metadata = {
@@ -11,25 +10,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://beta.polingual.com/" },
 };
 
+const SHOTS = [
+  { src: "/beta/learn.webp", alt: "Learn screen with Spanish, French and German together" },
+  { src: "/beta/polyword.webp", alt: "Polyword game" },
+  { src: "/beta/translate.webp", alt: "One word in five languages" },
+];
+
 export default function Page() {
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || process.env.TURNSTILE_SITE_KEY?.trim() || null;
   return (
     <Legal>
-      <h1>Polingual beta</h1>
-      <p className="lede">Try the next Polingual build on your iPhone before it reaches the App Store. Apple sends the invite through TestFlight.</p>
-      <p className={styles.need}>You need an iPhone on iOS 26 or later.</p>
-      <ol className={styles.steps}>
-        <li>
-          Get <a href={TESTFLIGHT_APP_URL} rel="noopener">TestFlight</a> from the App Store.
-        </li>
-        <li>Enter your email below.</li>
-        <li>Open the email from Apple on your iPhone and tap View in TestFlight.</li>
-      </ol>
-      <Sheet className={styles.sheet}>
-        <BetaForm siteKey={process.env.TURNSTILE_SITE_KEY?.trim() || null} fallback={TESTFLIGHT_JOIN_URL} />
-      </Sheet>
-      <p className={styles.fallback}>
-        No email after ten minutes? Open <a href={TESTFLIGHT_JOIN_URL} rel="noopener">the public TestFlight link</a> on your iPhone.
-      </p>
+      <h1 className={styles.title}>Become a beta tester</h1>
+      <div className={styles.sub}>Get full access free. Your feedback shapes what we build next.</div>
+      <div className={styles.shots}>
+        {SHOTS.map((s) => (
+          <img key={s.src} src={s.src} alt={s.alt} width={300} height={652} className={styles.shot} />
+        ))}
+      </div>
+      <InviteForm siteKey={siteKey} />
+      <div className={styles.need}>
+        iOS 26 · <a href={TESTFLIGHT_APP_URL} rel="noopener">TestFlight</a> · <a href={TESTFLIGHT_JOIN_URL} rel="noopener">On your iPhone? Join now</a>
+      </div>
     </Legal>
   );
 }

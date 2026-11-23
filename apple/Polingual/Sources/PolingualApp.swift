@@ -24,8 +24,16 @@ struct PolingualApp: App {
         #else
         let api = BucketAPI()
         #endif
-        let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
-        let store = LangStore(api: api, token: { await account.freshToken() })
+        #if DEBUG
+        let fresh = Launch.flag("-freshGuest")
+        let sessions: SessionStore = fresh ? MemorySessionStore() : KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared")
+        let disk = fresh ? FileLangDisk(root: FileManager.default.temporaryDirectory.appending(path: "langs-\(UUID().uuidString)", directoryHint: .isDirectory)) : FileLangDisk()
+        #else
+        let sessions: SessionStore = KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared")
+        let disk = FileLangDisk()
+        #endif
+        let account = Account(api: api, store: sessions, lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
+        let store = LangStore(api: api, disk: disk, token: { await account.freshToken() })
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }

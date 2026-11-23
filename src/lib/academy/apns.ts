@@ -67,6 +67,43 @@ export function normalizeDeviceToken(v: unknown): string | null {
   return /^[0-9a-f]{64,200}$/.test(t) ? t : null;
 }
 
+export type PushPlatform = "ios" | "android";
+
+export type PushRegistration =
+  | { platform: "ios"; token: string; env: PushEnv; bundleId: string }
+  | { platform: "android"; token: string; bundleId: string };
+
+export function normalizePlatform(v: unknown): PushPlatform | null {
+  if (v === undefined || v === null || v === "ios") return "ios";
+  return v === "android" ? "android" : null;
+}
+
+export function normalizeFcmToken(v: unknown): string | null {
+  if (typeof v !== "string") return null;
+  const t = v.trim();
+  return /^[A-Za-z0-9_:-]{100,4096}$/.test(t) ? t : null;
+}
+
+export function parseRegistration(body: Record<string, unknown> | null | undefined): PushRegistration | null {
+  const platform = normalizePlatform(body?.platform);
+  const bundleId = normalizeBundleId(body?.bundleId);
+  if (!platform || !bundleId) return null;
+  if (platform === "android") {
+    const token = normalizeFcmToken(body?.token);
+    return token ? { platform, token, bundleId } : null;
+  }
+  const token = normalizeDeviceToken(body?.token);
+  const env = normalizePushEnv(body?.env);
+  return token && env ? { platform, token, env, bundleId } : null;
+}
+
+export function normalizeAnyToken(v: unknown): { platform: PushPlatform; token: string } | null {
+  const apns = normalizeDeviceToken(v);
+  if (apns) return { platform: "ios", token: apns };
+  const fcm = normalizeFcmToken(v);
+  return fcm ? { platform: "android", token: fcm } : null;
+}
+
 function b64url(input: Buffer | string): string {
   return Buffer.from(input).toString("base64url");
 }

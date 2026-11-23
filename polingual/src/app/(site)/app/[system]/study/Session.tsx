@@ -9,7 +9,8 @@ import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
 import WordCard, { QuizCard } from "./WordCard";
 import styles from "../../app.module.css";
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+import { track } from "@/lib/funnel";
 import { deferredCards, subscribeDeferred } from "@academy/lang-deferred";
 import { langName } from "@academy/lang-systems";
 import { Button, ButtonLink, Card, Meter, SilentSwitch, Stage } from "@/ui";
@@ -35,6 +36,7 @@ function DeferredCards() {
 }
 
 function SessionDone({ s, system, state }: { s: Run; system: NonNullable<Lang["system"]>; state: Lang["state"] }) {
+  useEffect(() => track("first_lesson"), []);
   return (
     <Stage ground="paper">
       <Card as="section" className={styles.card} data-testid="session-done">

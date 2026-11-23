@@ -1,6 +1,7 @@
+import { FUNNEL_STEPS } from "./funnel-steps";
 import { allowedSource, RateLimiter, type BetaEnv, type Fetcher } from "./beta";
 
-const EVENT_NAMES = ["page_view", "beta_open", "beta_signup", "founding_claim", "testflight_open", "share"] as const;
+const EVENT_NAMES = ["page_view", "beta_open", "beta_signup", "founding_claim", "testflight_open", "share", ...FUNNEL_STEPS] as const;
 type EventName = (typeof EVENT_NAMES)[number];
 export const MAX_EVENTS = 20;
 const EVENTS_TIMEOUT_MS = 1500;

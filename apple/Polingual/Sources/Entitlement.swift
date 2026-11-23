@@ -100,6 +100,11 @@ enum Entitlement {
         records.filter { live($0, now: now) }.max(by: { ($0.expires ?? .distantFuture) < ($1.expires ?? .distantFuture) })?.productID
     }
 
+    static func lapsed(history: [EntitlementRecord], now: Date) -> Date? {
+        guard !history.contains(where: { live($0, now: now) }) else { return nil }
+        return history.filter { Plan.paid.contains($0.productID) && $0.revoked == nil }.compactMap(\.expires).filter { $0 <= now }.max()
+    }
+
     static func trialEligible(history: [EntitlementRecord]) -> Bool {
         !history.contains { Plan.all.contains($0.productID) }
     }

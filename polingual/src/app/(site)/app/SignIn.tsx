@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { appAuth, signInError } from "@/lib/app/auth";
+import { track } from "@/lib/funnel";
 import styles from "./app.module.css";
 import { Button, Field, FlagBand, Input, Sheet, StreakFlame } from "@/ui";
 
@@ -53,7 +54,10 @@ export default function SignIn({ onSignedIn, copy = LEARN, flame = true }: { onS
     setError(null);
     const r = await appAuth().mobile.verifyCode(email.trim(), code.trim());
     setBusy(false);
-    if (r.ok) onSignedIn();
+    if (r.ok) {
+      track("signup");
+      onSignedIn();
+    }
     else setError(signInError(r.error));
   }
 
