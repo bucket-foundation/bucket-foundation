@@ -33,6 +33,7 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
         TranslateScreen(graph, e.arguments?.getString("text").orEmpty()) { nav.popBackStack() }
     }
     milestoneRoutes(graph, nav)
+    parityRoutes(graph, nav)
 }
 
 @Composable

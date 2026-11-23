@@ -213,6 +213,10 @@ fun TodayPlanCard(graph: Graph, nav: NavHostController) {
             else -> next?.let { stringResource(R.string.today_start_item, it.title) }
         }
         if (action != null) PrimaryButton(action) { if (next != null) open(next) else nav.navigate("system/new") }
+        val sys = app?.system
+        if (sys != null && streak == 0 && sys.targets.none { graph.kv.get("placement.${sys.id}.$it") != null }) {
+            foundation.bucket.core.ui.PlainLink(stringResource(R.string.placement_test)) { nav.navigate("placement") }
+        }
     }
 }
 
