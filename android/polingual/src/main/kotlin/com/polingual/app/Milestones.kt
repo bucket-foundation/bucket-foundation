@@ -35,6 +35,7 @@ fun TodayMore(graph: Graph, nav: NavHostController) {
 
 @Composable
 fun AccountExtras(graph: Graph, nav: NavHostController) {
+    BetaSharing(graph)
     val access by graph.billing.access.collectAsState()
     val activity = graph.activity?.get()
     if (activity != null && graph.ads.shouldShow(access) && graph.ads.privacyOptionsRequired(activity)) {

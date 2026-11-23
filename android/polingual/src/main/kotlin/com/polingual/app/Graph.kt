@@ -47,6 +47,7 @@ class Graph(val context: Context) {
     val radio = Radio(context)
     val billing = Billing(context, this)
     val ads = Ads(context, this)
+    val beta = Beta(this)
     var activity: java.lang.ref.WeakReference<android.app.Activity>? = null
 
     private val syncLock = kotlinx.coroutines.sync.Mutex()
@@ -69,6 +70,7 @@ class Graph(val context: Context) {
         account.beforeSignOut = { force ->
             if (!force && !syncSystems()) throw foundation.bucket.core.model.BucketError.SyncPending
             store.clearLocal()
+            beta.signedOut()
         }
     }
 

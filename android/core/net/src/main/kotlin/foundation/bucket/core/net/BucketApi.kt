@@ -9,6 +9,7 @@ import foundation.bucket.core.model.Profile
 import foundation.bucket.core.model.Session
 import io.ktor.client.HttpClient
 import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.request
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.parameter
@@ -120,6 +121,18 @@ class BucketApi(
 
     suspend fun reportTranslation(token: String?, body: JsonObject) {
         call("api/academy/translation-report", token, body)
+    }
+
+    suspend fun send(method: String, path: String, token: String, body: JsonElement): Int? = try {
+        client.request("${base.trimEnd('/')}/$path") {
+            this.method = io.ktor.http.HttpMethod.parse(method)
+            header("authorization", "Bearer $token")
+            contentType(ContentType.Application.Json)
+            setBody(body.toString())
+        }.status.value
+    } catch (e: Exception) {
+        if (e is kotlinx.coroutines.CancellationException) throw e
+        null
     }
 
     suspend fun raw(path: String): String = call(path, null)

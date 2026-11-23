@@ -48,6 +48,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         val system = app.system ?: return@LaunchedEffect
         val corpus = graph.corpus.load()
         session = StudySession(corpus, system.root, system.targets, app.study[system.id] ?: StudyState(), today(), System.currentTimeMillis(), SeededRandom(System.nanoTime().toULong()))
+        graph.beta.studyStarted(system.id)
     }
     val s = session
     Page(back = done) {
@@ -55,6 +56,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         tick.let { }
         val ex = s.current
         if (ex == null) {
+            LaunchedEffect(s) { if (s.answered > 0) graph.beta.studyEnded(graph.store.current().system?.id.orEmpty(), s.answered, s.correct) }
             Text(if (s.total == 0) "Nothing due" else "Session done", style = Type.display, color = p.ink)
             Text(if (s.total == 0) "Come back tomorrow for new words, or play a game." else "${s.correct} of ${s.answered} right. Misses come back in your next session.", color = p.muted)
             PrimaryButton("Back to Today") { done() }
@@ -73,6 +75,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
                 if (ex.kind == ExerciseKind.Recognize) IconButton(onClick = { graph.voice.speak(ex.word.form, ex.word.lang) }) { Icon(Icons.AutoMirrored.Outlined.VolumeUp, "Speak") }
             }
         }
+        val shownAt = remember(ex) { System.currentTimeMillis() }
         LaunchedEffect(ex) { if (ex.kind == ExerciseKind.Recognize) graph.voice.speak(ex.word.form, ex.word.lang) }
         ex.options.forEach { o ->
             val state = when {
@@ -83,6 +86,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             }
             ChoiceButton(o, state) {
                 picked = o
+                graph.beta.answered(graph.state.value?.system?.id.orEmpty(), o == ex.answer, (System.currentTimeMillis() - shownAt).toInt(), ex.kind.name.lowercase())
                 scope.launch {
                     delay(if (o == ex.answer) 600 else 1400)
                     s.answer(o)
