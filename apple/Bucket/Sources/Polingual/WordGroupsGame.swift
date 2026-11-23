@@ -159,7 +159,7 @@ struct WordGroupsGame: View {
             note = nil
             round?.toggle(word.id)
         } label: {
-            Text(word.form).font(.system(size: 16, weight: .heavy, design: .rounded))
+            Text(word.form).font(PL.script(16))
                 .foregroundStyle(on ? PL.paper : PL.ink)
                 .lineLimit(1).minimumScaleFactor(0.45)
                 .padding(.horizontal, 4)

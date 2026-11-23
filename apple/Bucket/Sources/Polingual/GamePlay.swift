@@ -238,7 +238,7 @@ struct QuizGame: View {
             Group {
                 if p.mode == .form {
                     Text(c)
-                        .font(D8.word(sideways ? 19 : 22))
+                        .font(PL.wordFont(sideways ? 19 : 22))
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
@@ -307,7 +307,7 @@ struct PromptCard: View {
             if prompt.mode == .form {
                 if rail.count > 1 { family } else { FlagTile(lang: prompt.word.lang, size: 48) }
                 Text(prompt.word.gloss)
-                    .font(D8.word(sideways ? 28 : 36))
+                    .font(PL.wordFont(sideways ? 28 : 36))
                     .foregroundStyle(PL.ink)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
@@ -317,18 +317,18 @@ struct PromptCard: View {
                 if prompt.mode == .voice && !answered && LangVoice.shared.canSpeak(prompt.word.form, prompt.word.lang) {
                     Button { LangVoice.shared.speak(prompt.word.form, prompt.word.lang) } label: {
                         Image(systemName: "speaker.wave.3.fill")
-                            .font(.system(size: 34, weight: .bold))
+                            .font(PL.icon(34))
                             .foregroundStyle(.white)
                             .frame(width: 92, height: 92)
-                            .background(D8.vermilion, in: .circle)
-                            .background(D8.vermilionLip, in: .circle.offset(y: 5))
+                            .background(PL.vermilion, in: .circle)
+                            .background(PL.vermilionDeep, in: .circle.offset(y: 5))
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel("Hear it")
                     Text("Which language is this?").font(PL.small.font()).foregroundStyle(PL.inkDim)
                 } else {
                     Text(prompt.word.form)
-                        .font(D8.word(sideways ? 30 : 40))
+                        .font(PL.wordFont(sideways ? 30 : 40))
                         .foregroundStyle(PL.ink)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
@@ -340,7 +340,7 @@ struct PromptCard: View {
         }
         .padding(18)
         .frame(maxWidth: .infinity, minHeight: sideways ? 120 : 230)
-        .modifier(GameLip(face: D8.face, lip: D8.edge))
+        .modifier(GameLip(face: PL.card, lip: PL.paper3))
         .wrongTranslation(ReportSubject(lang: prompt.word.lang, root: prompt.word.root, itemId: prompt.word.itemId, text: prompt.word.form, shown: prompt.word.gloss, context: "game:quiz"),
                           visible: answered, alignment: .bottomTrailing, inset: 6)
     }
@@ -356,10 +356,10 @@ struct PromptCard: View {
                 VStack(spacing: 4) {
                     FlagTile(lang: p.word.lang, size: 46)
                         .padding(3)
-                        .overlay { if p.id == prompt.id { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.vermilion, lineWidth: 3) } }
+                        .overlay { if p.id == prompt.id { RoundedRectangle(cornerRadius: 14).strokeBorder(PL.vermilion, lineWidth: 3) } }
                     Text(solved ? p.word.form : "?")
                         .font(PL.small.font())
-                        .foregroundStyle(solved ? D8.malachite : D8.label)
+                        .foregroundStyle(solved ? PL.malachite : PL.inkDim)
                         .lineLimit(1).minimumScaleFactor(0.5)
                 }
                 .frame(maxWidth: .infinity)
@@ -374,22 +374,22 @@ struct DailyShareCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("DAILY SET").font(D8.caps(20)).tracking(2).foregroundStyle(PL.inkDim)
-            Text("\(results.filter { $0 }.count) of \(results.count)").font(.system(size: 64, weight: .heavy, design: .rounded)).foregroundStyle(D8.lapis)
+            Text("DAILY SET").font(PL.capsFont(20)).tracking(2).foregroundStyle(PL.inkDim)
+            Text("\(results.filter { $0 }.count) of \(results.count)").font(PL.script(64)).foregroundStyle(PL.lapis)
             HStack(spacing: 10) {
                 ForEach(Array(zip(prompts, results).enumerated()), id: \.offset) { _, pair in
                     VStack(spacing: 8) {
                         FlagTile(lang: pair.0.word.lang, size: 62)
-                        RoundedRectangle(cornerRadius: 5).fill(pair.1 ? D8.malachite : D8.vermilion).frame(width: 62, height: 14)
+                        RoundedRectangle(cornerRadius: 5).fill(pair.1 ? PL.malachite : PL.vermilion).frame(width: 62, height: 14)
                     }
                 }
             }
             Text(Feedback.isPolingual ? String(localized: "One word, every language. polingual.com") : String(localized: "One word, every language. bucket.foundation"))
-                .font(D8.caps(15)).tracking(1.2).foregroundStyle(PL.tyrian)
+                .font(PL.capsFont(15)).tracking(1.2).foregroundStyle(PL.tyrian)
         }
         .padding(48)
         .frame(width: 1080 / 2, alignment: .leading)
-        .background(D8.parchment)
+        .background(PL.paper)
         .overlay(alignment: .bottom) { Rectangle().fill(PL.tyrian).frame(height: 18) }
     }
 }
@@ -574,7 +574,7 @@ struct SpeedMatchGame: View {
             }
             .buttonStyle(D8Option(selected: b.pickedMeaning == w.id, align: .center))
             .accessibilityIdentifier("game-meaning")
-            .overlay { if wrong.contains(w.id) { RoundedRectangle(cornerRadius: 12).stroke(D8.vermilion, lineWidth: 3).padding(.bottom, 4) } }
+            .overlay { if wrong.contains(w.id) { RoundedRectangle(cornerRadius: 12).stroke(PL.vermilion, lineWidth: 3).padding(.bottom, 4) } }
             .gameShake(wrong.contains(w.id) ? shake : 0)
             .transition(.scale(scale: 0.7).combined(with: .opacity))
         } else {

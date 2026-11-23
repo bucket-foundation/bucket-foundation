@@ -395,6 +395,23 @@ final class GamesUITests: XCTestCase {
         shot("live-start")
     }
 
+    func testLiveLobbiesAndLettersOpen() {
+        let app = launch([])
+        let play = app.buttons["Play"].firstMatch
+        XCTAssertTrue(play.waitForExistence(timeout: 60))
+        play.tap()
+        let live = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Live Lobbies")).firstMatch
+        XCTAssertTrue(live.waitForExistence(timeout: 20))
+        live.tap()
+        sleep(3)
+        shot("lobbies")
+        app.terminate()
+        let letters = launch(["-openGame", "letters"])
+        XCTAssertTrue(letters.staticTexts["playTitle"].waitForExistence(timeout: 60))
+        sleep(2)
+        shot("letters")
+    }
+
     func testLobbyOpensEveryGame() {
         let app = launch(["-reduceMotion"])
         let play = app.buttons["Play"].firstMatch
