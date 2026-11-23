@@ -185,62 +185,88 @@ struct LobbiesScreen: View {
     var name: String { String(displayName.trimmingCharacters(in: .whitespacesAndNewlines).prefix(40)) }
 
     var body: some View {
-        List {
-            Section("You") {
-                TextField("Name others see", text: $displayName).accessibilityIdentifier("lobbyName")
-            }
-            Section("Join by code") {
-                HStack {
-                    TextField("6 letter code", text: $code)
-                        #if os(iOS)
-                        .textInputAutocapitalization(.characters)
-                        #endif
-                        .autocorrectionDisabled()
-                        .accessibilityIdentifier("lobbyCode")
-                    Button("Join") { act { try await lobbies.join(code: code, displayName: name) } }
-                        .disabled(name.isEmpty || code.count < 6 || lobbies.busy)
+        ScrollView {
+            VStack(alignment: .leading, spacing: PL.Space.s4) {
+                PlayLabel(text: "You")
+                PLCard {
+                    TextField("Name others see", text: $displayName).lobbyField().accessibilityIdentifier("lobbyName")
                 }
-            }
-            Section("New lobby") {
-                Picker("Game", selection: $game) {
-                    ForEach(lobbies.hostable) { Text($0.title).tag($0) }
-                }
-                .accessibilityIdentifier("lobbyGame")
-                ForEach(langs.systems.filter { game.fits($0.targets) }) { s in
-                    Button {
-                        act { try await lobbies.create(name: "\(name)'s lobby", game: game, root: s.root, targets: s.targets, displayName: name) }
-                    } label: {
-                        HStack(spacing: -6) {
-                            ForEach(s.targets.prefix(5), id: \.self) { FlagTile(lang: $0, size: 30) }
-                            Text(s.name).padding(.leading, 14).foregroundStyle(PL.ink)
-                        }
+                PlayLabel(text: "Join by code")
+                PLCard {
+                    HStack(spacing: PL.Space.s3) {
+                        TextField("6 letter code", text: $code)
+                            #if os(iOS)
+                            .textInputAutocapitalization(.characters)
+                            #endif
+                            .autocorrectionDisabled()
+                            .lobbyField()
+                            .accessibilityIdentifier("lobbyCode")
+                        Button("Join") { act { try await lobbies.join(code: code, displayName: name) } }
+                            .buttonStyle(.pl(.primary, size: .md, full: false))
+                            .disabled(name.isEmpty || code.count < 6 || lobbies.busy)
                     }
-                    .disabled(name.isEmpty || lobbies.busy)
                 }
-                if langs.systems.isEmpty { Text("Start a language set in Learn first.").foregroundStyle(PL.inkDim) }
-            }
-            Section("Open lobbies") {
-                if lobbies.open.isEmpty { Text("No open lobbies right now. Start one and share the code.").foregroundStyle(PL.inkDim) }
-                ForEach(lobbies.open) { l in
-                    Button { act { try await lobbies.join(l, displayName: name) } } label: {
+                PlayLabel(text: "New lobby")
+                PLCard {
+                    VStack(alignment: .leading, spacing: PL.Space.s3) {
                         HStack {
-                            HStack(spacing: -6) { ForEach(l.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
-                            VStack(alignment: .leading) {
-                                Text(l.name).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
-                                Text("\(l.game.title) · \(l.host) · \(l.players) of \(LobbyRules.cap)").font(PL.small.font()).foregroundStyle(PL.inkDim)
-                            }
-                            .padding(.leading, 10)
+                            Text("Game").font(PL.body.font()).foregroundStyle(PL.ink)
                             Spacer()
-                            if l.isMember { Text("Rejoin").font(PL.label.font()).foregroundStyle(PL.malachite) }
+                            Picker("Game", selection: $game) {
+                                ForEach(lobbies.hostable) { Text($0.title).tag($0) }
+                            }
+                            .tint(PL.tyrian)
+                            .accessibilityIdentifier("lobbyGame")
+                        }
+                        ForEach(langs.systems.filter { game.fits($0.targets) }) { s in
+                            Button {
+                                act { try await lobbies.create(name: "\(name)'s lobby", game: game, root: s.root, targets: s.targets, displayName: name) }
+                            } label: {
+                                HStack(spacing: -6) {
+                                    ForEach(s.targets.prefix(5), id: \.self) { FlagTile(lang: $0, size: 30) }
+                                    Text(s.name).font(PL.body.font()).lineLimit(2).padding(.leading, PL.Space.s4)
+                                    Spacer(minLength: 0)
+                                }
+                                .padding(PL.Space.s3)
+                            }
+                            .buttonStyle(GameAnswerStyle(state: .other))
+                            .disabled(name.isEmpty || lobbies.busy)
+                        }
+                        if langs.systems.isEmpty { Text("Start a language set in Learn first.").font(PL.body.font()).foregroundStyle(PL.inkDim) }
+                    }
+                }
+                PlayLabel(text: "Open lobbies")
+                PLCard {
+                    VStack(alignment: .leading, spacing: PL.Space.s3) {
+                        if lobbies.open.isEmpty { Text("No open lobbies right now. Start one and share the code.").font(PL.body.font()).foregroundStyle(PL.inkDim) }
+                        ForEach(lobbies.open) { l in
+                            Button { act { try await lobbies.join(l, displayName: name) } } label: {
+                                HStack {
+                                    HStack(spacing: -6) { ForEach(l.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
+                                    VStack(alignment: .leading) {
+                                        Text(l.name).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
+                                        Text("\(l.game.title) · \(l.host) · \(l.players) of \(LobbyRules.cap)").font(PL.small.font()).foregroundStyle(PL.inkDim)
+                                    }
+                                    .padding(.leading, PL.Space.s2)
+                                    Spacer()
+                                    if l.isMember { Text("Rejoin").font(PL.label.font()).foregroundStyle(PL.malachite) }
+                                }
+                                .padding(PL.Space.s3)
+                            }
+                            .buttonStyle(GameAnswerStyle(state: .other))
+                            .disabled(name.isEmpty && !l.isMember)
                         }
                     }
-                    .disabled(name.isEmpty && !l.isMember)
                 }
+                if let problem { Text(problem).font(PL.body.font()).foregroundStyle(PL.ochre) }
+                AdPrivacyButton().buttonStyle(.pl(.ghost, size: .sm, full: false))
             }
-            if let problem { Section { Text(problem).foregroundStyle(PL.vermilion) } }
-            Section { AdPrivacyButton() }
+            .padding(PL.Space.s4)
         }
-        .paper()
+        .scrollContentBackground(.hidden)
+        .plGround(.lattice, band: true)
+        .lightStatusBar()
+        .inlineTitle()
         .navigationTitle("Live Lobbies")
         .refreshable { await lobbies.refresh() }
         .task {
@@ -268,6 +294,15 @@ struct LobbiesScreen: View {
                 problem = String(localized: "Something went wrong.")
             }
         }
+    }
+}
+
+extension View {
+    func lobbyField() -> some View {
+        font(PL.body.font())
+            .foregroundStyle(PL.ink)
+            .padding(PL.Space.s3)
+            .background(PL.paper, in: .rect(cornerRadius: PL.Radius.sm))
     }
 }
 

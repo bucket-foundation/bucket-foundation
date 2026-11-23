@@ -403,7 +403,12 @@ final class GamesUITests: XCTestCase {
         let live = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Live Lobbies")).firstMatch
         XCTAssertTrue(live.waitForExistence(timeout: 20))
         live.tap()
-        sleep(3)
+        let name = app.textFields["lobbyName"]
+        XCTAssertTrue(name.waitForExistence(timeout: 20))
+        XCTAssertTrue(app.textFields["lobbyCode"].exists)
+        XCTAssertTrue(app.buttons["Join"].exists)
+        XCTAssertFalse(app.buttons["Join"].isEnabled)
+        sleep(2)
         shot("lobbies")
         app.terminate()
         let letters = launch(["-openGame", "letters"])
