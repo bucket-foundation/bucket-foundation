@@ -62,7 +62,7 @@ struct Paywall: View {
                     VStack(alignment: .leading, spacing: 0) {
                         header
                         art
-                            .frame(height: min(260, h * (lapsedLine == nil ? 0.34 : 0.27)))
+                            .frame(height: min(260, h * (lapsedLine == nil ? 0.34 : 0.22)))
                             .padding(.top, h * 0.06)
                         Spacer(minLength: 8)
                         purchase
@@ -417,7 +417,7 @@ enum PaywallCopy {
 
     static func lapsed(_ ended: Date, sandbox: Bool) -> String {
         let line = String(localized: "Your subscription ended on \(ended.formatted(date: .long, time: .omitted)).")
-        return sandbox ? line + " " + String(localized: "TestFlight test subscriptions end after a few days. Subscribing again here costs nothing.") : line
+        return sandbox ? line + " " + String(localized: "Test plans end within days, and test purchases are free.") : line
     }
 
     static func disclosure(trial: Bool, days: Int = Plan.trialDays, price: String, period: String, family: Bool = false) -> String {

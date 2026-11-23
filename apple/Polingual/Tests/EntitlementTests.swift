@@ -28,6 +28,12 @@ struct EntitlementTests {
         #expect(Entitlement.lapsed(history: [record(Plan.lifetime, expiresIn: nil)], now: now) == nil)
     }
 
+    @Test func lapsedIgnoresAnUpgradedRecordWhenTheNewPlanIsLive() {
+        let upgraded = record(Plan.monthly, expiresIn: -86_400, upgraded: true)
+        #expect(Entitlement.lapsed(history: [upgraded, record(Plan.yearly)], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [upgraded, record(Plan.yearly, expiresIn: -3_600)], now: now) == now.addingTimeInterval(-3_600))
+    }
+
     @Test func lapsedSkipsRevokedAndUnknownProducts() {
         #expect(Entitlement.lapsed(history: [record(expiresIn: -86_400, revoked: true)], now: now) == nil)
         #expect(Entitlement.lapsed(history: [record("com.other.app", expiresIn: -86_400)], now: now) == nil)
@@ -39,8 +45,8 @@ struct EntitlementTests {
         let beta = PaywallCopy.lapsed(ended, sandbox: true)
         #expect(plain.contains(ended.formatted(date: .long, time: .omitted)))
         #expect(beta.hasPrefix(plain))
-        #expect(beta.contains("TestFlight"))
-        #expect(!plain.contains("TestFlight"))
+        #expect(beta.count > plain.count)
+        #expect(beta.hasSuffix(String(localized: "Test plans end within days, and test purchases are free.")))
     }
 
     @Test func webGrantOpensLockedAndBetaAccess() {
