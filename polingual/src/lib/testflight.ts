@@ -138,39 +138,53 @@ export async function inviteTester(
   const ip = req.ip || "unknown";
   const shared = await sharedLimit(ip, parsed.signup.email, env, send);
   if (!(shared ?? localLimit(ip, parsed.signup.email, limits, req.now))) return TOO_MANY;
+  return OUTCOME[await addTester(parsed.signup.email, creds, env, send, req.now)];
+}
+
+export type AddOutcome = "sent" | "full" | "failed" | "offline";
+const OUTCOME: Record<AddOutcome, TestflightResult> = { sent: SENT, full: FULL, failed: APPLE_FAILED, offline: OFFLINE };
+
+export async function addTester(email: string, creds: AscCreds, env: BetaEnv, send: Fetcher = fetch, nowMs = Date.now()): Promise<AddOutcome> {
   let token: string;
   try {
-    token = ascToken(creds, req.now);
+    token = ascToken(creds, nowMs);
   } catch {
     console.error("[testflight] ASC_PRIVATE_KEY did not load");
-    return OFFLINE;
+    return "offline";
   }
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
-  const email = parsed.signup.email;
   const max = Number(env.TESTFLIGHT_MAX_TESTERS?.trim()) || DEFAULT_MAX_TESTERS;
   try {
     const total = await groupTotal(headers, send);
     if (total === null) {
       console.error("[testflight] group count failed");
-      return APPLE_FAILED;
+      return "failed";
     }
-    if (total >= max) return FULL;
+    if (total >= max) return "full";
     const created = await send(`${ASC_API}/betaTesters`, {
       method: "POST",
       headers,
       body: JSON.stringify({ data: { type: "betaTesters", attributes: { email }, relationships: { betaGroups: { data: [{ type: "betaGroups", id: BETA_GROUP_ID }] } } } }),
     });
-    if (created.ok) return SENT;
+    if (created.ok) return "sent";
     if (created.status !== 409) {
       console.error("[testflight] create tester failed", created.status);
-      return APPLE_FAILED;
+      return "failed";
     }
     const again = await rejoin(email, headers, send);
-    if (again.ok) return SENT;
+    if (again.ok) return "sent";
     console.error(`[testflight] ${again.reason}`, again.status ?? "");
-    return APPLE_FAILED;
+    return "failed";
   } catch {
     console.error("[testflight] Apple unreachable");
-    return APPLE_FAILED;
+    return "failed";
   }
+}
+
+export async function enrollAfterEmail(email: string, ip: string, env: BetaEnv, send: Fetcher = fetch, limits: Limits = { ip: tfIpLimiter, email: tfEmailLimiter, global: tfGlobalLimiter }, nowMs?: number): Promise<AddOutcome | "skipped"> {
+  const creds = ascCreds(env);
+  if (!creds) return "skipped";
+  const shared = await sharedLimit(ip, email, env, send);
+  if (!(shared ?? localLimit(ip, email, limits, nowMs))) return "skipped";
+  return addTester(email, creds, env, send, nowMs);
 }

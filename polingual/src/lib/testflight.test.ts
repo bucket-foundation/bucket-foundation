@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { generateKeyPairSync, verify } from "node:crypto";
 import { test } from "node:test";
 import { RateLimiter } from "./beta";
-import { APP_ID, ascToken, BETA_GROUP_ID, inviteTester, TESTFLIGHT_JOIN_URL } from "./testflight";
+import { APP_ID, ascToken, BETA_GROUP_ID, enrollAfterEmail, inviteTester, TESTFLIGHT_JOIN_URL } from "./testflight";
 
 const { privateKey, publicKey } = generateKeyPairSync("ec", { namedCurve: "P-256" });
 const pem = privateKey.export({ type: "pkcs8", format: "pem" }).toString();
@@ -207,4 +207,24 @@ test("the shared database limit decides when POLINGUAL_DB is set", async () => {
   } finally {
     console.error = original;
   }
+});
+
+test("email signup enrolls the tester in the group without Turnstile", async () => {
+  const f = fake([{ status: 201 }]);
+  assert.equal(await enrollAfterEmail("ana@example.com", "1.2.3.4", { ASC_KEY_ID: env.ASC_KEY_ID, ASC_ISSUER_ID: env.ASC_ISSUER_ID, ASC_PRIVATE_KEY: env.ASC_PRIVATE_KEY }, f.send, fresh()), "sent");
+  assert.equal(f.checks.length, 0);
+  assert.equal(f.calls[0].url, `${ASC}/betaTesters`);
+});
+
+test("email signup skips enrollment when the Apple key is missing", async () => {
+  const f = fake([]);
+  assert.equal(await enrollAfterEmail("ana@example.com", "1.2.3.4", {}, f.send, fresh()), "skipped");
+  assert.equal(f.calls.length, 0);
+});
+
+test("email signup enrollment respects the rate limit", async () => {
+  const f = fake([]);
+  const limits = { ip: new RateLimiter(0, 600_000), email: new RateLimiter(3, 3_600_000), global: new RateLimiter(60, 3_600_000) };
+  assert.equal(await enrollAfterEmail("ana@example.com", "1.2.3.4", env, f.send, limits), "skipped");
+  assert.equal(f.calls.length, 0);
 });
