@@ -45,7 +45,7 @@ fun ProfileCard(graph: Graph, onShare: (() -> Unit)? = null) {
     val app by graph.state.collectAsState()
     val xp by graph.rewards.xp.collectAsState()
     val streak by graph.rewards.streak.collectAsState()
-    val name = app?.nickname?.ifBlank { null } ?: "player"
+    val name = app?.nickname?.ifBlank { null } ?: androidx.compose.ui.res.stringResource(R.string.d_player)
     val langs = app?.systems.orEmpty().flatMap { listOf(it.root) + it.targets }.distinct()
     val games = app?.played?.size ?: 0
     PopIn {
@@ -58,24 +58,24 @@ fun ProfileCard(graph: Graph, onShare: (() -> Unit)? = null) {
                 .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            Pill("Level ${Level.of(xp)}", D8.malachite)
+            Pill(androidx.compose.ui.res.stringResource(R.string.d_level_x, Level.of(xp)), D8.malachite)
             Box(
                 Modifier.size(120.dp).clip(CircleShape).background(D8.maya).border(6.dp, D8.ochre, CircleShape),
                 contentAlignment = Alignment.Center,
             ) { Text(name.take(1).uppercase(), style = Type.display.copy(fontSize = 56.dp.value.let { androidx.compose.ui.unit.TextUnit(it, androidx.compose.ui.unit.TextUnitType.Sp) }), color = D8.tyrianDeep) }
             Text(name, style = Type.title.copy(fontSize = 28.sp()), color = D8.parchment)
-            Label("Level ${Level.of(xp)}, ${(Level.progress(xp) * 100).toInt()}% to next", color = D8.parchment)
+            Label(androidx.compose.ui.res.stringResource(R.string.d_level_x_progress, Level.of(xp), (Level.progress(xp) * 100).toInt()), color = D8.parchment)
             Meter(Level.progress(xp), Modifier.fillMaxWidth(), color = D8.ochre, track = D8.parchment.copy(alpha = 0.18f), height = 12.dp)
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Stat(games, "games", Modifier.weight(1f))
-                Stat(xp, "XP", Modifier.weight(1f))
-                Stat(streak, "day streak", Modifier.weight(1f))
+                Stat(games, androidx.compose.ui.res.stringResource(R.string.d_games), Modifier.weight(1f))
+                Stat(xp, androidx.compose.ui.res.stringResource(R.string.d_xp), Modifier.weight(1f))
+                Stat(streak, androidx.compose.ui.res.stringResource(R.string.d_day_streak_lower), Modifier.weight(1f))
             }
             if (langs.isNotEmpty()) {
-                Label("Flag passport", color = D8.parchment)
+                Label(androidx.compose.ui.res.stringResource(R.string.d_flag_passport), color = D8.parchment)
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) { langs.take(7).forEach { FlagTile(it, 32.dp) } }
             }
-            if (onShare != null) BrandButton("Share card", onClick = onShare)
+            if (onShare != null) BrandButton(androidx.compose.ui.res.stringResource(R.string.d_share_card), onClick = onShare)
         }
     }
 }

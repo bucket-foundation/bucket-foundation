@@ -71,7 +71,7 @@ fun Onboarding(graph: Graph) {
                 }
             }
             PrimaryButton(
-                text = if (step == 0) "Get started" else if (busy) "Setting up" else "Continue",
+                text = if (step == 0) androidx.compose.ui.res.stringResource(R.string.s_get_started) else if (busy) androidx.compose.ui.res.stringResource(R.string.s_setting_up) else androidx.compose.ui.res.stringResource(R.string.q_next),
                 enabled = !(step == 1 && targets.isEmpty()) && !busy,
             ) {
                 if (step == 0) step = 1 else scope.launch {
@@ -82,7 +82,7 @@ fun Onboarding(graph: Graph) {
                     busy = false
                 }
             }
-            if (step == 1) PlainLink("Skip for now", Modifier.align(Alignment.CenterHorizontally)) { scope.launch { graph.store.update { it.copy(onboarded = true) } } }
+            if (step == 1) PlainLink(androidx.compose.ui.res.stringResource(R.string.s_skip_for_now), Modifier.align(Alignment.CenterHorizontally)) { scope.launch { graph.store.update { it.copy(onboarded = true) } } }
         }
     }
 }
@@ -96,7 +96,7 @@ private fun Welcome() {
     }
     Text(
         buildAnnotatedString {
-            append("Language learning for ")
+            append(androidx.compose.ui.res.stringResource(R.string.s_language_learning_for))
             withStyle(SpanStyle(color = D8.vermilion)) { append("multilingual") }
             append(" learners.")
         },
@@ -106,13 +106,13 @@ private fun Welcome() {
         listOf("fr" to "cent", "ja" to "百", "grc" to "ἑκατόν").forEach { (l, w) ->
             Column(Modifier.clip(RoundedCornerShape(16.dp)).background(p.card).padding(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(Lang.flag(l), fontSize = 26.sp)
-                Text(w, style = Type.word.copy(fontSize = 22.sp), color = p.ink)
+                Text(w, style = Type.word.copy(fontSize = 22.sp), color = D8.tyrian)
             }
         }
     }
     Column(Modifier.clip(RoundedCornerShape(16.dp)).background(p.card).padding(16.dp)) {
         Text("100", style = Type.display.copy(color = D8.vermilion))
-        Text("DAY STREAK", style = Type.caps, color = p.muted)
+        Text(androidx.compose.ui.res.stringResource(R.string.s_day_streak), style = Type.caps, color = p.muted)
     }
 }
 
@@ -120,10 +120,10 @@ private fun Welcome() {
 @Composable
 fun Languages(root: String, targets: List<String>, onChange: (List<String>) -> Unit) {
     val p = LocalPalette.current
-    Text("Which languages?", style = Type.display, color = D8.tyrian)
-    Text("Each word comes back in every language you pick.", color = p.muted)
+    Text(androidx.compose.ui.res.stringResource(R.string.s_which_languages), style = Type.display, color = D8.tyrian)
+    Text(androidx.compose.ui.res.stringResource(R.string.s_each_word_comes_back_in_every), color = p.muted)
     Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(p.card).padding(14.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        if (targets.isEmpty()) Text("Pick at least one.", color = p.muted, modifier = Modifier.height(76.dp))
+        if (targets.isEmpty()) Text(androidx.compose.ui.res.stringResource(R.string.s_pick_at_least_one), color = p.muted, modifier = Modifier.height(76.dp))
         targets.forEach { l ->
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 FlagTile(l)
@@ -138,7 +138,7 @@ fun Languages(root: String, targets: List<String>, onChange: (List<String>) -> U
         }
     }
     Spacer(Modifier.height(4.dp))
-    Text("Or pick your own, up to ${Lang.MAX_TARGETS}", style = Type.caps, color = p.muted)
+    Text(androidx.compose.ui.res.stringResource(R.string.s_or_pick_your_own_up_to, Lang.MAX_TARGETS), style = Type.caps, color = p.muted)
     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Lang.codes.filter { it != root && it in setOf("es", "fr", "it", "pt", "de", "nl", "sv", "ru", "ja", "ar", "el", "fi", "hi", "ko", "pl") }.forEach { l ->
             val on = l in targets

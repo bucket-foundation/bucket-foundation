@@ -41,26 +41,28 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
             Hero {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     Pulse()
-                    Label(system?.name ?: "Today", color = D8.parchment)
+                    Label(system?.name ?: androidx.compose.ui.res.stringResource(R.string.s_today), color = D8.parchment)
                 }
-                Heading(if (system == null) "Pick your languages." else "Play in ${system.targets.size + 1} languages.", color = D8.parchment, size = 30)
+                Heading(if (system == null) androidx.compose.ui.res.stringResource(R.string.d_pick_your_languages) else androidx.compose.ui.res.stringResource(R.string.d_play_in_x_languages, system.targets.size + 1), color = D8.parchment, size = 30)
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Counter("$streak", "Day streak", Modifier.weight(1f))
-                    Counter("%,d".format(xp), "XP", Modifier.weight(1f))
+                    Counter("$streak", androidx.compose.ui.res.stringResource(R.string.d_day_streak), Modifier.weight(1f))
+                    Counter("%,d".format(xp), androidx.compose.ui.res.stringResource(R.string.d_xp), Modifier.weight(1f))
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Counter("$due", "Due reviews", Modifier.weight(1f))
-                    Counter("${study?.cards?.size ?: 0}", "Words", Modifier.weight(1f))
+                    Counter("$due", androidx.compose.ui.res.stringResource(R.string.d_due_reviews), Modifier.weight(1f))
+                    Counter("${study?.cards?.size ?: 0}", androidx.compose.ui.res.stringResource(R.string.d_words), Modifier.weight(1f))
                 }
-                if (system == null) PrimaryButton("Pick languages") { nav.navigate("system/new") }
+                if (system == null) PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_pick_languages)) { nav.navigate("system/new") }
                 else Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
-                    BrandButton("Quick play") { nav.navigate("game/${GameKind.Daily.route}") }
+                    BrandButton(androidx.compose.ui.res.stringResource(R.string.d_quick_play)) { nav.navigate("game/${GameKind.Daily.route}") }
                     Row(Modifier.weight(1f), horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.End)) {
                         (listOf(system.root) + system.targets).take(4).forEach { FlagTile(it, 30.dp) }
                     }
                 }
             }
         }
+        TodayPlanCard(graph, nav)
+        SaveProgressGate(graph)
         TodayExtras(graph, nav)
     }
 }

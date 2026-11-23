@@ -33,6 +33,7 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
         TranslateScreen(graph, e.arguments?.getString("text").orEmpty()) { nav.popBackStack() }
     }
     milestoneRoutes(graph, nav)
+    parityRoutes(graph, nav)
 }
 
 @Composable
@@ -43,15 +44,15 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
     if (system == null) { TodayMore(graph, nav); return }
     val due = app?.study?.get(system.id)?.cards?.values?.count { it.due <= System.currentTimeMillis() } ?: 0
     Card(color = D8.tyrianDeep) {
-        com.polingual.brand.Label("Daily session", color = D8.ochre)
-        Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", style = Type.title.copy(fontSize = 21.sp()), color = D8.parchment)
+        com.polingual.brand.Label(androidx.compose.ui.res.stringResource(R.string.s_daily_session), color = D8.ochre)
+        Text(if (due > 0) androidx.compose.ui.res.stringResource(R.string.s_x_reviews_and_new_words, due) else androidx.compose.ui.res.stringResource(R.string.s_new_words_in_x_languages, system.targets.size), style = Type.title.copy(fontSize = 21.sp()), color = D8.parchment)
         val access by graph.billing.access.collectAsState()
-        PrimaryButton(if (access.unlocked || access == Access.Checking) "Start" else "Unlock learning") { nav.navigate(if (access.unlocked) "study" else "paywall") }
+        PrimaryButton(if (access.unlocked || access == Access.Checking) androidx.compose.ui.res.stringResource(R.string.s_start) else androidx.compose.ui.res.stringResource(R.string.s_unlock_learning)) { nav.navigate(if (access.unlocked) "study" else "paywall") }
     }
-    SectionTitle("Daily games")
+    SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_daily_games))
     val games = GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> foundation.bucket.core.model.Lang.info[l]?.latin == false } }
     TwoUp(games) { k, m ->
-        val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today" }
+        val played = app?.played(k, system)?.let { r -> androidx.compose.ui.res.stringResource(R.string.d_x_of_x_today, r.count { it == '1' }, r.length) }
         GameTile(k, played, m) { nav.navigate("game/${k.route}") }
     }
     SectionTitle("More ways to play")
@@ -71,9 +72,9 @@ fun LearnExtras(graph: Graph, nav: NavHostController) {
 @Composable
 fun LockedPreview(nav: NavHostController) {
     Card(color = D8.ink) {
-        Text("LEARNING", style = Type.caps, color = D8.parchment.copy(alpha = 0.7f))
-        Text("Daily sessions, every word you miss, all your languages", style = Type.title.copy(fontSize = 20.sp()), color = D8.parchment)
-        Text("Games and live rooms stay free. Polingual Pro opens learning and removes ads.", color = D8.parchment.copy(alpha = 0.85f))
-        PrimaryButton("See plans") { nav.navigate("paywall") }
+        Text(androidx.compose.ui.res.stringResource(R.string.s_learning), style = Type.caps, color = D8.parchment.copy(alpha = 0.7f))
+        Text(androidx.compose.ui.res.stringResource(R.string.s_daily_sessions_every_word_you_miss), style = Type.title.copy(fontSize = 20.sp()), color = D8.parchment)
+        Text(androidx.compose.ui.res.stringResource(R.string.s_games_and_live_rooms_stay_free), color = D8.parchment.copy(alpha = 0.85f))
+        PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_see_plans)) { nav.navigate("paywall") }
     }
 }

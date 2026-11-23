@@ -97,8 +97,8 @@ fun VideoTile(onClick: () -> Unit) {
     ) {
         Icon(Icons.Filled.PlayCircle, contentDescription = null, tint = D8.parchment, modifier = Modifier.size(44.dp))
         Column(Modifier.weight(1f)) {
-            Text("Watch", style = Type.title.copy(fontSize = 19.sp()), color = D8.parchment)
-            Text("Videos with live subtitles in up to four languages.", color = D8.parchment.copy(alpha = 0.9f))
+            Text(androidx.compose.ui.res.stringResource(R.string.s_watch), style = Type.title.copy(fontSize = 19.sp()), color = D8.parchment)
+            Text(androidx.compose.ui.res.stringResource(R.string.s_videos_with_live_subtitles_in_up), color = D8.parchment.copy(alpha = 0.9f))
         }
     }
 }
@@ -109,11 +109,11 @@ fun VideoListScreen(graph: Graph, nav: NavHostController, selected: String? = nu
     var failed by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { runCatching { graph.videos.index() }.onSuccess { index = it }.onFailure { failed = true } }
     val p = LocalPalette.current
-    PlayPage("Watch", back = { nav.popBackStack() }, trailing = { RewardBar(graph.rewards) }) {
+    PlayPage(androidx.compose.ui.res.stringResource(R.string.s_watch), back = { nav.popBackStack() }, trailing = { RewardBar(graph.rewards) }) {
         val list = index?.videos
         when {
-            failed -> Text("Videos could not load. Check your connection.", color = p.muted)
-            list == null -> Text("Loading videos", color = p.muted)
+            failed -> Text(androidx.compose.ui.res.stringResource(R.string.s_videos_could_not_load_check_your), color = p.muted)
+            list == null -> Text(androidx.compose.ui.res.stringResource(R.string.s_loading_videos), color = p.muted)
             else -> list.forEach { v ->
                 com.polingual.brand.Card(color = if (v.id == selected) D8.parchment2 else D8.white, onClick = { onPick(v.id) }) {
                     Text(v.title, style = Type.title.copy(fontSize = 19.sp()), color = D8.tyrian)
@@ -221,9 +221,9 @@ fun VideoScreen(graph: Graph, id: String, back: () -> Unit) {
     val p = LocalPalette.current
     val view = rememberHost()
     val d = doc
-    PlayPage(d?.title ?: "Watch", back = back, scroll = false, trailing = { RewardBar(graph.rewards) }) {
+    PlayPage(d?.title ?: androidx.compose.ui.res.stringResource(R.string.s_watch), back = back, scroll = false, trailing = { RewardBar(graph.rewards) }) {
         if (d == null) {
-            Text(if (failed) "This video could not load." else "Loading", color = p.muted)
+            Text(if (failed) androidx.compose.ui.res.stringResource(R.string.s_this_video_could_not_load) else androidx.compose.ui.res.stringResource(R.string.s_loading), color = p.muted)
             return@PlayPage
         }
         val preferred = app?.system?.let { listOf(it.root) + it.targets }.orEmpty()
@@ -271,8 +271,8 @@ fun VideoScreen(graph: Graph, id: String, back: () -> Unit) {
                                                 storeSaved(graph, saved)
                                                 graph.rewards.addXp(SAVE_XP)
                                                 graph.rewards.tap(view)
-                                                toast = "Saved $w"
-                                            } else if (w.isNotBlank()) toast = "$w is saved"
+                                                toast = view.context.getString(R.string.d_saved_x, w)
+                                            } else if (w.isNotBlank()) toast = view.context.getString(R.string.d_x_is_saved, w)
                                         },
                                     ),
                                 )
@@ -319,7 +319,7 @@ fun WatchPanes(graph: Graph, nav: NavHostController) {
                 if (id != null) androidx.compose.runtime.key(id) {
                     VideoScreen(graph, id) { if (two) nav.popBackStack() else scope.launch { navigator.navigateBack() } }
                 } else Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                    Text("Pick a video", style = Type.title.copy(fontSize = 20.sp()), color = D8.ink2)
+                    Text(androidx.compose.ui.res.stringResource(R.string.d_pick_a_video), style = Type.title.copy(fontSize = 20.sp()), color = D8.ink2)
                 }
             }
         },

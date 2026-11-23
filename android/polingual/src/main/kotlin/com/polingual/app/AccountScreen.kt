@@ -35,16 +35,16 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
         ProfileCard(graph)
         when (stage) {
             Stage.SignedIn -> SignedInSection(graph, nav)
-            else -> SignInCard(graph, stage)
+            else -> { GoogleSignInButton(graph) { }; SignInCard(graph, stage) }
         }
-        SectionTitle("Guest play")
+        SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_guest_play))
         Card {
-            Text("Nickname for live rooms", color = p.ink, style = Type.caps)
+            Text(androidx.compose.ui.res.stringResource(R.string.s_nickname_for_live_rooms), color = p.ink, style = Type.caps)
             var nick by remember(app?.nickname) { mutableStateOf(app?.nickname.orEmpty()) }
             val scope = rememberCoroutineScope()
-            OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, modifier = Modifier.fillMaxWidth(), label = { Text("Nickname") })
-            PlainLink("Save nickname") { scope.launch { graph.store.update { it.copy(nickname = nick.trim()) } } }
-            Text("Games and live rooms work without an account. An account saves your streak and progress on every device.", color = p.muted)
+            OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, modifier = Modifier.fillMaxWidth(), label = { Text(androidx.compose.ui.res.stringResource(R.string.s_nickname)) })
+            PlainLink(androidx.compose.ui.res.stringResource(R.string.s_save_nickname)) { scope.launch { graph.store.update { it.copy(nickname = nick.trim()) } } }
+            Text(androidx.compose.ui.res.stringResource(R.string.s_games_and_live_rooms_work_without), color = p.muted)
         }
         AccountExtras(graph, nav)
     }
@@ -64,18 +64,18 @@ fun SignInCard(graph: Graph, stage: Stage) {
         try { block() } catch (e: BucketError) { error = e.message } finally { busy = false }
     }
     Card {
-        Text("Sign in", style = Type.title, color = D8.tyrian)
+        Text(androidx.compose.ui.res.stringResource(R.string.s_sign_in), style = Type.title, color = D8.tyrian)
         if (stage == Stage.CodeSent) {
-            Text("We sent a code to ${graph.account.email}.", color = p.muted)
-            OutlinedTextField(code, { code = it.filter(Char::isDigit).take(8) }, singleLine = true, label = { Text("Code") },
+            Text(androidx.compose.ui.res.stringResource(R.string.s_we_sent_a_code_to_x, graph.account.email), color = p.muted)
+            OutlinedTextField(code, { code = it.filter(Char::isDigit).take(8) }, singleLine = true, label = { Text(androidx.compose.ui.res.stringResource(R.string.s_code)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword), modifier = Modifier.fillMaxWidth())
-            PrimaryButton(if (busy) "Checking" else "Sign in", enabled = code.length >= 6 && !busy) { run { graph.account.verify(code) } }
-            PlainLink("Use another email") { graph.account.editEmail() }
+            PrimaryButton(if (busy) androidx.compose.ui.res.stringResource(R.string.s_checking) else androidx.compose.ui.res.stringResource(R.string.s_sign_in), enabled = code.length >= 6 && !busy) { run { graph.account.verify(code) } }
+            PlainLink(androidx.compose.ui.res.stringResource(R.string.s_use_another_email)) { graph.account.editEmail() }
         } else {
-            Text("Get a code by email. No password.", color = p.muted)
-            OutlinedTextField(email, { email = it }, singleLine = true, label = { Text("Email") },
+            Text(androidx.compose.ui.res.stringResource(R.string.s_get_a_code_by_email_no), color = p.muted)
+            OutlinedTextField(email, { email = it }, singleLine = true, label = { Text(androidx.compose.ui.res.stringResource(R.string.s_email)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
-            PrimaryButton(if (busy) "Sending" else "Email me a code", enabled = email.contains("@") && !busy) { run { graph.account.requestCode(email) } }
+            PrimaryButton(if (busy) androidx.compose.ui.res.stringResource(R.string.s_sending) else androidx.compose.ui.res.stringResource(R.string.s_email_me_a_code), enabled = email.contains("@") && !busy) { run { graph.account.requestCode(email) } }
         }
         error?.let { Text(it, color = D8.vermilion) }
     }

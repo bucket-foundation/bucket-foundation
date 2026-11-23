@@ -26,10 +26,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import foundation.bucket.core.ui.LocalPalette
 
-enum class Tab(val route: String, val label: String, val icon: ImageVector) {
-    Today("today", "Today", Icons.Outlined.WbSunny),
-    Learn("learn", "Learn", Icons.Outlined.MenuBook),
-    Account("account", "Account", Icons.Outlined.AccountCircle),
+enum class Tab(val route: String, val label: Int, val icon: ImageVector) {
+    Today("today", R.string.tab_today, Icons.Outlined.WbSunny),
+    Learn("learn", R.string.tab_learn, Icons.Outlined.MenuBook),
+    Account("account", R.string.tab_account, Icons.Outlined.AccountCircle),
 }
 
 @Composable
@@ -49,8 +49,6 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val stage by graph.onboard.stage.collectAsState()
-    val notify = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
-    var lastStage by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(stage) }
     LaunchedEffect(stage) {
         when (stage) {
             OnboardStage.Lesson -> runCatching { nav.navigate("game/${GameKind.Daily.route}") }
@@ -58,12 +56,8 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
                 kotlinx.coroutines.delay(2600)
                 runCatching { nav.navigate("paywall") { popUpTo(Tab.Today.route) } }
             }
-            OnboardStage.Done -> if (lastStage == OnboardStage.Paywall && android.os.Build.VERSION.SDK_INT >= 33 && graph.kv.get("notify.asked") == null) {
-                graph.kv.set("notify.asked", "1")
-                notify.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-            }
+            OnboardStage.Done -> Unit
         }
-        lastStage = stage
     }
     LaunchedEffect(link) {
         val route = when (link) {
@@ -89,7 +83,7 @@ fun Main(graph: Graph, link: Link?, consumed: () -> Unit) {
                     selected = route == t.route,
                     onClick = { nav.navigate(t.route) { popUpTo(Tab.Today.route) { saveState = true }; launchSingleTop = true; restoreState = true } },
                     icon = { Icon(t.icon, contentDescription = null) },
-                    label = { Text(t.label.uppercase(), style = com.polingual.brand.Type.caps.copy(fontSize = 11.sp())) },
+                    label = { Text(androidx.compose.ui.res.stringResource(t.label).uppercase(), style = com.polingual.brand.Type.caps.copy(fontSize = 11.sp())) },
                     colors = itemColors,
                 )
             }

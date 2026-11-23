@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import java.security.MessageDigest
 
 class Billing(context: Context, private val graph: Graph) {
+    private val app = context.applicationContext
     private val _access = MutableStateFlow<Access>(Access.Checking)
     val access: StateFlow<Access> = _access
     private val _products = MutableStateFlow<List<ProductDetails>>(emptyList())
@@ -30,6 +31,8 @@ class Billing(context: Context, private val graph: Graph) {
     val message: StateFlow<String?> = _message
     var trialEligible = true
         private set
+    private var trialProduct: String? = null
+    private var trialLength: Int? = null
 
     private val client = BillingClient.newBuilder(context)
         .setListener { result, purchases -> graph.scope.launch { onPurchases(result, purchases.orEmpty()) } }
@@ -84,15 +87,24 @@ class Billing(context: Context, private val graph: Graph) {
     }
 
     suspend fun restore(silent: Boolean = false) {
-        if (!connect()) { if (!silent) _message.value = "Google Play is not available on this device."; return }
+        if (!connect()) { if (!silent) _message.value = app.getString(R.string.billing_unavailable); return }
         val subs = client.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build()).purchasesList
         val once = client.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build()).purchasesList
         handle(subs + once)
-        if (!silent) _message.value = if (_access.value.unlocked) "Purchases restored." else "No purchases found for this Google account."
+        if (!silent) _message.value = app.getString(if (_access.value.unlocked) R.string.billing_restored else R.string.billing_none)
     }
 
+    private fun trialOffer(product: ProductDetails) = if (!trialEligible) null else product.subscriptionOfferDetails?.firstNotNullOfOrNull { o ->
+        TrialOffer.days(o.pricingPhases.pricingPhaseList.map { PricePhase(it.priceAmountMicros, it.billingPeriod) })?.let { o to it }
+    }
+
+    fun trialDays(product: ProductDetails): Int? = trialOffer(product)?.second
+
     fun buy(activity: Activity, product: ProductDetails) {
-        val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
+        val trial = trialOffer(product)
+        val offer = trial?.first ?: product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId == null } ?: offers.first() }
+        trialProduct = trial?.let { product.productId }
+        trialLength = trial?.second
         val params = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(product).apply { offer?.let { setOfferToken(it.offerToken) } }.build()
         val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).apply { graph.account.userId?.let { setObfuscatedAccountId(accountHash(it)) } }.build()
         client.launchBillingFlow(activity, flow)
@@ -100,10 +112,19 @@ class Billing(context: Context, private val graph: Graph) {
 
     private suspend fun onPurchases(result: BillingResult, purchases: List<Purchase>) {
         when (result.responseCode) {
-            BillingClient.BillingResponseCode.OK -> handle(purchases)
+            BillingClient.BillingResponseCode.OK -> {
+                purchases.filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }.forEach { p ->
+                    when (TrialReminder.action(p.products, trialProduct)) {
+                        TrialReminder.Action.Schedule -> graph.reminders.scheduleTrial(PaywallCopy.trialEnd(p.purchaseTime, trialLength ?: 0))
+                        TrialReminder.Action.Cancel -> graph.reminders.cancelTrial()
+                    }
+                }
+                trialProduct = null
+                handle(purchases)
+            }
             BillingClient.BillingResponseCode.USER_CANCELED -> Unit
             BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED -> restore(silent = true)
-            else -> _message.value = "The purchase did not finish. ${result.debugMessage}".trim()
+            else -> _message.value = app.getString(R.string.billing_failed, result.debugMessage).trim()
         }
     }
 
@@ -117,7 +138,7 @@ class Billing(context: Context, private val graph: Graph) {
         trialEligible = Entitlement.trialEligible(records.map { it.productId })
         _access.value = Entitlement.access(records, BuildConfig.FREE_BETA)
         remember(_access.value)
-        if (records.any { it.pending }) _message.value = "Your purchase is pending. Access opens when Google Play confirms it."
+        if (records.any { it.pending }) _message.value = app.getString(R.string.billing_pending)
     }
 
     fun clearMessage() { _message.value = null }

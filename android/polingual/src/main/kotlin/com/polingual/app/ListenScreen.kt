@@ -47,14 +47,14 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
         error = null
         try { stations = graph.radioApi.stations(lang) } catch (e: BucketError) { error = e.message; stations = emptyList() }
     }
-    Page("Listen", back = back) {
-        Text("Live radio in the languages you study. It keeps playing when you leave the app.", color = p.muted)
+    Page(androidx.compose.ui.res.stringResource(R.string.s_listen), back = back) {
+        Text(androidx.compose.ui.res.stringResource(R.string.s_live_radio_in_the_languages_you), color = p.muted)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             langs.forEach { l -> FilterChip(selected = l == lang, onClick = { lang = l }, label = { Text("${Lang.flag(l)} ${Lang.name(l)}") }) }
         }
         now.station?.let { s ->
             Card(color = D8.ink, onClick = { scope.launch { graph.radio.play(s) } }) {
-                Text("NOW PLAYING", style = Type.caps, color = D8.parchment.copy(alpha = 0.7f))
+                Text(androidx.compose.ui.res.stringResource(R.string.s_now_playing), style = Type.caps, color = D8.parchment.copy(alpha = 0.7f))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(s.name, style = Type.title.copy(fontSize = 20.sp()), color = D8.parchment, modifier = Modifier.weight(1f))
                     if (now.buffering) CircularProgressIndicator(color = D8.parchment) else Icon(if (now.playing) Icons.Filled.Pause else Icons.Filled.PlayArrow, if (now.playing) "Pause" else "Play", tint = D8.parchment)
@@ -65,7 +65,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
         val list = stations
         when {
             list == null -> CircularProgressIndicator(color = D8.vermilion)
-            list.isEmpty() -> Text(error ?: "No stations found for ${Lang.name(lang)}.", color = p.muted)
+            list.isEmpty() -> Text(error ?: androidx.compose.ui.res.stringResource(R.string.s_no_stations_found_for_x, Lang.name(lang)), color = p.muted)
             else -> list.forEach { s ->
                 val active = now.station?.stationuuid == s.stationuuid
                 Card(onClick = { scope.launch { graph.radio.play(s) } }) {
@@ -79,6 +79,6 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
                 }
             }
         }
-        Text("Stations from radio-browser.info", style = Type.caps, color = p.muted, modifier = Modifier.fillMaxWidth())
+        Text(androidx.compose.ui.res.stringResource(R.string.s_stations_from_radio_browser_info), style = Type.caps, color = p.muted, modifier = Modifier.fillMaxWidth())
     }
 }

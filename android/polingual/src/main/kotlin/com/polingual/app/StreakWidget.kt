@@ -45,10 +45,10 @@ object WidgetData {
         )
     }
 
-    fun line(m: WidgetModel): String = when {
-        m.playedToday -> "Done for today"
-        m.streak > 0 -> "Play to keep it"
-        else -> "Start a streak"
+    fun line(m: WidgetModel): Int = when {
+        m.playedToday -> R.string.w_done_today
+        m.streak > 0 -> R.string.w_keep_it
+        else -> R.string.w_start
     }
 }
 
@@ -67,8 +67,8 @@ class StreakWidget : GlanceAppWidget() {
                     Spacer(GlanceModifier.width(6.dp))
                     Text("${m.streak}", style = TextStyle(color = ochre, fontSize = 34.sp, fontWeight = FontWeight.Bold))
                 }
-                Text("day streak", style = TextStyle(color = parchment, fontSize = 13.sp, fontWeight = FontWeight.Bold))
-                Text(WidgetData.line(m) + if (m.freezes > 0) ", ${m.freezes} freeze${if (m.freezes > 1) "s" else ""}" else "", style = TextStyle(color = parchment, fontSize = 12.sp))
+                Text(context.getString(R.string.d_day_streak_lower), style = TextStyle(color = parchment, fontSize = 13.sp, fontWeight = FontWeight.Bold))
+                Text(context.getString(WidgetData.line(m)) + when (m.freezes) { 0 -> ""; 1 -> ", " + context.getString(R.string.w_freeze); else -> ", " + context.getString(R.string.w_freezes, m.freezes) }, style = TextStyle(color = parchment, fontSize = 12.sp))
             }
         }
     }

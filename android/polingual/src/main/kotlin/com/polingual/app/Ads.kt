@@ -97,8 +97,9 @@ fun AdBanner(graph: Graph) {
     val access by graph.billing.access.collectAsState()
     val ready by graph.ads.ready.collectAsState()
     if (!ready || !graph.ads.shouldShow(access)) return
+    val adLabel = androidx.compose.ui.res.stringResource(R.string.s_advertisement)
     AndroidView(
-        modifier = Modifier.fillMaxWidth().height(50.dp).semantics { contentDescription = "Advertisement" },
+        modifier = Modifier.fillMaxWidth().height(50.dp).semantics { contentDescription = adLabel },
         factory = { ctx -> AdView(ctx).apply { setAdSize(AdSize.BANNER); adUnitId = BuildConfig.BANNER_UNIT; loadAd(AdRequest.Builder().build()) } },
     )
 }

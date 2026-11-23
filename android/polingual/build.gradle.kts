@@ -27,6 +27,12 @@ android {
         buildConfigField("String", "BANNER_UNIT", "\"ca-app-pub-3940256099942544/9214589741\"")
         buildConfigField("String", "INTERSTITIAL_UNIT", "\"ca-app-pub-3940256099942544/1033173712\"")
         buildConfigField("boolean", "FREE_BETA", "false")
+        fun prop(name: String) = "\"${providers.gradleProperty(name).orNull.orEmpty()}\""
+        buildConfigField("String", "FIREBASE_APP_ID", prop("polingualFirebaseAppId"))
+        buildConfigField("String", "FIREBASE_API_KEY", prop("polingualFirebaseApiKey"))
+        buildConfigField("String", "FIREBASE_PROJECT_ID", prop("polingualFirebaseProjectId"))
+        buildConfigField("String", "FIREBASE_SENDER_ID", prop("polingualFirebaseSenderId"))
+        buildConfigField("String", "GOOGLE_CLIENT_ID", prop("polingualGoogleClientId"))
     }
     buildTypes {
         debug {
@@ -75,7 +81,11 @@ dependencies {
     implementation(libs.billing)
     implementation(libs.ads)
     implementation(libs.ump)
-    implementation(libs.work)
+    implementation(libs.work.runtime)
+    implementation(libs.firebase.messaging)
+    implementation(libs.credentials)
+    implementation(libs.credentials.play)
+    implementation(libs.googleid)
     implementation(libs.glance)
     implementation(libs.glance.material3)
     implementation(libs.profileinstaller)
@@ -84,4 +94,5 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.coroutines.test)
+    testImplementation(libs.ktor.mock)
 }

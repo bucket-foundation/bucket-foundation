@@ -266,19 +266,19 @@ fun FlagTile(lang: String, size: Dp = 56.dp, selected: Boolean = false, onClick:
 
 @Composable
 fun Mark(size: Dp = 36.dp, dark: Boolean = false) {
-    Image(painterResource(if (dark) R.drawable.brand_mark_dark else R.drawable.brand_mark), contentDescription = "Polingual", modifier = Modifier.size(size))
+    Image(painterResource(if (dark) R.drawable.brand_mark_dark else R.drawable.brand_mark), contentDescription = androidx.compose.ui.res.stringResource(R.string.brand_name), modifier = Modifier.size(size))
 }
 
 @Composable
 fun Wordmark(height: Dp = 28.dp, dark: Boolean = false) {
-    Image(painterResource(if (dark) R.drawable.brand_wordmark_dark else R.drawable.brand_wordmark), contentDescription = "Polingual", modifier = Modifier.height(height))
+    Image(painterResource(if (dark) R.drawable.brand_wordmark_dark else R.drawable.brand_wordmark), contentDescription = androidx.compose.ui.res.stringResource(R.string.brand_name), modifier = Modifier.height(height))
 }
 
 @Composable
 fun BrandBar(modifier: Modifier = Modifier, trailing: @Composable RowScope.() -> Unit = {}) {
     Row(modifier.fillMaxWidth().heightIn(min = 52.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Mark(34.dp)
-        Text("polingual play", style = Type.title.copy(fontSize = 19.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold), color = D8.tyrian, modifier = Modifier.weight(1f), maxLines = 1)
+        Text(androidx.compose.ui.res.stringResource(R.string.brand_play), style = Type.title.copy(fontSize = 19.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold), color = D8.tyrian, modifier = Modifier.weight(1f), maxLines = 1)
         trailing()
     }
 }

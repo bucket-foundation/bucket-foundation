@@ -89,9 +89,9 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, GameWordPool.words(system, app, corpus))
     }
-    PlayPage(kind.title, back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, trailing = { RewardBar(graph.rewards) }) {
+    PlayPage(androidx.compose.ui.res.stringResource(kind.title), back = { graph.ads.leftFinishedGame(graph.activity?.get()); back() }, trailing = { RewardBar(graph.rewards) }) {
         val c = ctx
-        if (c == null) Text("Start a language set in Learn. The games use the words you study.", color = LocalPalette.current.muted) else content(c)
+        if (c == null) Text(androidx.compose.ui.res.stringResource(R.string.s_start_a_language_set_in_learn), color = LocalPalette.current.muted) else content(c)
     }
 }
 
@@ -132,15 +132,15 @@ fun Finished(title: String, line: String, results: List<Boolean>, total: Int, ag
     val streak = graph?.rewards?.streak?.collectAsState()?.value ?: 0
     com.polingual.brand.PopIn(title) {
         com.polingual.brand.Hero {
-            com.polingual.brand.Label("Round done", color = D8.ochre)
+            com.polingual.brand.Label(androidx.compose.ui.res.stringResource(R.string.d_round_done), color = D8.ochre)
             Text(title, style = Type.display.copy(fontSize = 52.sp()), color = D8.parchment)
             ResultDots(results, total)
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                com.polingual.brand.Counter("%,d".format(xp), "Total XP", Modifier.weight(1f))
-                com.polingual.brand.Counter("$streak", "Day streak", Modifier.weight(1f))
+                com.polingual.brand.Counter("%,d".format(xp), androidx.compose.ui.res.stringResource(R.string.d_total_xp), Modifier.weight(1f))
+                com.polingual.brand.Counter("$streak", androidx.compose.ui.res.stringResource(R.string.d_day_streak), Modifier.weight(1f))
             }
             Text(line, style = Type.body, color = D8.parchment.copy(alpha = 0.9f))
-            if (again != null) PrimaryButton("Play again", color = D8.ochre, onClick = again)
+            if (again != null) PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_play_again), color = D8.ochre, onClick = again)
         }
     }
 }
@@ -157,13 +157,13 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     val scope = rememberCoroutineScope()
     val p = LocalPalette.current
     tick.let { }
-    if (round.prompts.isEmpty()) { Text("Learn a few more words first.", color = p.muted); return }
+    if (round.prompts.isEmpty()) { Text(androidx.compose.ui.res.stringResource(R.string.s_learn_a_few_more_words_first), color = p.muted); return }
     if (round.finished) {
         LaunchedEffect(round) {
             graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" })
             if (kind == GameKind.Daily) graph.onboard.lessonFinished()
         }
-        Finished("${round.score} of ${round.prompts.size}", "A finished game keeps your streak. Misses come back in study.", round.results, round.prompts.size, if (kind == GameKind.Daily) null else ({ seed += 1 }))
+        Finished(androidx.compose.ui.res.stringResource(R.string.s_x_of_x, round.score, round.prompts.size), androidx.compose.ui.res.stringResource(R.string.s_a_finished_game_keeps_your_streak), round.results, round.prompts.size, if (kind == GameKind.Daily) null else ({ seed += 1 }))
         return
     }
     val prompt = round.current!!
@@ -176,20 +176,20 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         com.polingual.brand.Card(color = D8.tyrianDeep) {
             when (prompt.mode) {
                 PromptMode.Form -> {
-                    com.polingual.brand.Label("Which is ${Lang.name(prompt.word.lang)} for", color = D8.ochre)
+                    com.polingual.brand.Label(androidx.compose.ui.res.stringResource(R.string.s_which_is_x_for, Lang.name(prompt.word.lang)), color = D8.ochre)
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         FlagTile(prompt.word.lang, 48.dp)
                         Text(prompt.word.gloss, style = Type.word.copy(fontSize = 40.sp()), color = D8.parchment)
                     }
                 }
                 PromptMode.Flag -> {
-                    com.polingual.brand.Label("Which language is this?", color = D8.ochre)
+                    com.polingual.brand.Label(androidx.compose.ui.res.stringResource(R.string.s_which_language_is_this), color = D8.ochre)
                     Text(prompt.word.form, style = Type.word.copy(fontSize = 44.sp()), color = D8.parchment)
                 }
                 PromptMode.Voice -> {
-                    com.polingual.brand.Label("Listen. Which language is it?", color = D8.ochre)
+                    com.polingual.brand.Label(androidx.compose.ui.res.stringResource(R.string.s_listen_which_language_is_it), color = D8.ochre)
                     LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
-                    PrimaryButton("Play again", color = D8.ochre) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+                    PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_play_again), color = D8.ochre) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
                 }
             }
         }
@@ -219,7 +219,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
             scope.launch { delay(if (choice == prompt.answer) 700 else 1500); round.advance(); tick += 1 }
         }
     }
-    if (picked != null && prompt.mode != PromptMode.Form) Text("${prompt.word.form} means ${prompt.word.gloss}", color = p.muted)
+    if (picked != null && prompt.mode != PromptMode.Form) Text(androidx.compose.ui.res.stringResource(R.string.s_x_means_x, prompt.word.form, prompt.word.gloss), color = p.muted)
 }
 
 @Composable
@@ -236,11 +236,11 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
     }
     val remaining = maxOf(0.0, left - board.penalty)
     if (remaining <= 0 || board.done) {
-        Finished("${board.matched} pairs", "${board.missed} misses. ${if (board.combo >= SpeedBoard.HOT_COMBO) "Hot streak." else ""}", emptyList(), 0) { seed += 1 }
+        Finished(androidx.compose.ui.res.stringResource(R.string.match_pairs, board.matched), androidx.compose.ui.res.stringResource(if (board.combo >= SpeedBoard.HOT_COMBO) R.string.match_misses_hot else R.string.match_misses, board.missed), emptyList(), 0) { seed += 1 }
         return
     }
     LinearProgressIndicator(progress = { (remaining / SpeedBoard.SECONDS).toFloat() }, modifier = Modifier.fillMaxWidth(), color = D8.malachite)
-    Text("${remaining.toInt()} s   ${board.matched} pairs", color = p.muted)
+    Text(androidx.compose.ui.res.stringResource(R.string.s_x_s_x_pairs, remaining.toInt(), board.matched), color = p.muted)
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             board.meanings.forEach { w -> MatchTile(w.gloss, board.selectedMeaning == w.id) { board.tapMeaning(w.id); tick += 1 } }
@@ -265,7 +265,7 @@ fun MatchTile(text: String, selected: Boolean, onClick: () -> Unit) {
 fun Groups(graph: Graph, c: GameContext) {
     val p = LocalPalette.current
     val puzzle = remember { WordGroupsPuzzle.daily(c.puzzleWords, today(), c.system.root, c.system.targets, theme = { c.corpus.byId[it.itemId]?.category }, sameForm = GameWordPool.sameForm(c.corpus)) }
-    if (puzzle == null) { Text("Learn a few more words to unlock today's board.", color = p.muted); return }
+    if (puzzle == null) { Text(androidx.compose.ui.res.stringResource(R.string.s_learn_a_few_more_words_to), color = p.muted); return }
     val round = remember { WordGroupsRound(puzzle) }
     var tick by remember { mutableIntStateOf(0) }
     var note by remember { mutableStateOf("") }
@@ -280,7 +280,7 @@ fun Groups(graph: Graph, c: GameContext) {
     if (round.finished) {
         if (!round.won) round.unsolved.forEach { g -> Text("${groupTitle(g.link)}: ${g.words.joinToString(", ") { it.form }}", color = p.muted) }
         LaunchedEffect(Unit) { graph.markPlayed(GameKind.WordGroups, c.system, round.results.joinToString("") { if (it) "1" else "0" }) }
-        Finished(if (round.won) "Solved" else "Out of tries", "${round.mistakes} mistakes. New board tomorrow.", round.results, round.results.size, null)
+        Finished(if (round.won) androidx.compose.ui.res.stringResource(R.string.s_solved) else androidx.compose.ui.res.stringResource(R.string.s_out_of_tries), androidx.compose.ui.res.stringResource(R.string.s_x_mistakes_new_board_tomorrow, round.mistakes), round.results, round.results.size, null)
         return
     }
     round.tiles.chunked(4).forEach { row ->
@@ -296,17 +296,17 @@ fun Groups(graph: Graph, c: GameContext) {
             }
         }
     }
-    Text("Mistakes left: ${"●".repeat(round.mistakesLeft)}", color = p.muted)
+    Text(androidx.compose.ui.res.stringResource(R.string.groups_mistakes_left, "●".repeat(round.mistakesLeft)), color = p.muted)
     if (note.isNotEmpty()) Text(note, color = D8.vermilion)
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        PlainLink("Shuffle") { round.shuffle(SeededRandom(System.nanoTime().toULong())); tick += 1 }
-        PlainLink("Deselect") { round.selected.forEach(round::toggle); tick += 1 }
+        PlainLink(androidx.compose.ui.res.stringResource(R.string.s_shuffle)) { round.shuffle(SeededRandom(System.nanoTime().toULong())); tick += 1 }
+        PlainLink(androidx.compose.ui.res.stringResource(R.string.s_deselect)) { round.selected.forEach(round::toggle); tick += 1 }
     }
-    PrimaryButton("Submit", enabled = round.canSubmit) {
+    PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_submit), enabled = round.canSubmit) {
         note = when (round.submit()) {
-            WordGroupsRound.Outcome.OneAway -> "One away"
-            WordGroupsRound.Outcome.Repeated -> "Already tried"
-            WordGroupsRound.Outcome.Miss -> "Not a group"
+            WordGroupsRound.Outcome.OneAway -> graph.context.getString(R.string.s_one_away)
+            WordGroupsRound.Outcome.Repeated -> graph.context.getString(R.string.s_already_tried)
+            WordGroupsRound.Outcome.Miss -> graph.context.getString(R.string.s_not_a_group)
             else -> ""
         }
         tick += 1
@@ -324,7 +324,7 @@ fun groupTitle(link: foundation.bucket.core.engine.GroupLink): String = when (li
 fun Mini(graph: Graph, c: GameContext) {
     val p = LocalPalette.current
     val puzzle = remember { MiniPuzzle.daily(c.puzzleWords, today(), c.system.root, c.system.targets) }
-    if (puzzle == null) { Text("Learn a few more words to unlock today's crossword.", color = p.muted); return }
+    if (puzzle == null) { Text(androidx.compose.ui.res.stringResource(R.string.s_learn_a_few_more_words_to_2), color = p.muted); return }
     val filled = remember { mutableStateMapOf<MiniCell, String>() }
     var entry by remember { mutableStateOf(puzzle.entries.first()) }
     var cursor by remember { mutableIntStateOf(0) }
@@ -355,7 +355,7 @@ fun Mini(graph: Graph, c: GameContext) {
         }
     }
     Text("${entry.number}${if (entry.across) " across" else " down"}: ${entry.word.gloss}", color = p.ink, fontWeight = FontWeight.Bold)
-    if (solved) { Finished("Solved", "New crossword tomorrow.", listOf(true), 1, null); return }
+    if (solved) { Finished(androidx.compose.ui.res.stringResource(R.string.s_solved), androidx.compose.ui.res.stringResource(R.string.s_new_crossword_tomorrow), listOf(true), 1, null); return }
     FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         (puzzle.keys + "⌫").forEach { k ->
             Box(Modifier.size(44.dp).clip(RoundedCornerShape(8.dp)).background(p.card).border(1.dp, p.rule, RoundedCornerShape(8.dp)).clickable(role = Role.Button) {
@@ -372,7 +372,7 @@ fun Mini(graph: Graph, c: GameContext) {
             }, contentAlignment = Alignment.Center) { Text(k, fontWeight = FontWeight.Bold, color = p.ink) }
         }
     }
-    PlainLink("Reveal word") { entry.cells.zip(entry.letters).forEach { (cell, l) -> filled[cell] = l } }
+    PlainLink(androidx.compose.ui.res.stringResource(R.string.s_reveal_word)) { entry.cells.zip(entry.letters).forEach { (cell, l) -> filled[cell] = l } }
 }
 
 @Composable
@@ -380,21 +380,21 @@ fun Letters(graph: Graph, c: GameContext) {
     val p = LocalPalette.current
     var seed by remember { mutableIntStateOf(0) }
     val prompts = remember(seed) { LetterSprint.prompts(c.words, SeededRandom(GameSeed.hash("letters|${today()}|$seed"))) }
-    if (prompts.isEmpty()) { Text("Letter Sprint needs a language with its own letters, like Greek, Russian or Japanese.", color = p.muted); return }
+    if (prompts.isEmpty()) { Text(androidx.compose.ui.res.stringResource(R.string.s_letter_sprint_needs_a_language_with), color = p.muted); return }
     var index by remember(seed) { mutableIntStateOf(0) }
     val results = remember(seed) { mutableStateOf(listOf<Boolean>()) }
     var picked by remember(seed) { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
     if (index >= prompts.size) {
         LaunchedEffect(seed) { graph.markPlayed(GameKind.Letters, c.system, results.value.joinToString("") { if (it) "1" else "0" }) }
-        Finished("${results.value.count { it }} of ${prompts.size}", "Letters come from words you study.", results.value, prompts.size) { seed += 1 }
+        Finished(androidx.compose.ui.res.stringResource(R.string.s_x_of_x, results.value.count { it }, prompts.size), androidx.compose.ui.res.stringResource(R.string.s_letters_come_from_words_you_study), results.value, prompts.size) { seed += 1 }
         return
     }
     val q = prompts[index]
     LaunchedEffect(q) { graph.voice.speak(q.word.form, q.word.lang) }
     ResultDots(results.value, prompts.size)
-    Text("Listen to the word. Which letter does it start with?", color = p.muted)
-    PrimaryButton("Play again", color = D8.lapis) { graph.voice.speak(q.word.form, q.word.lang) }
+    Text(androidx.compose.ui.res.stringResource(R.string.s_listen_to_the_word_which_letter), color = p.muted)
+    PrimaryButton(androidx.compose.ui.res.stringResource(R.string.s_play_again), color = D8.lapis) { graph.voice.speak(q.word.form, q.word.lang) }
     q.choices.forEach { ch ->
         val state = when { picked == null -> ChoiceState.Idle; ch == q.answer -> ChoiceState.Right; ch == picked -> ChoiceState.Wrong; else -> ChoiceState.Dim }
         ChoiceButton(ch, state) {
@@ -403,7 +403,7 @@ fun Letters(graph: Graph, c: GameContext) {
             scope.launch { delay(900); picked = null; index += 1 }
         }
     }
-    if (picked != null) Text("${q.word.form} means ${q.word.gloss}", color = p.muted)
+    if (picked != null) Text(androidx.compose.ui.res.stringResource(R.string.s_x_means_x, q.word.form, q.word.gloss), color = p.muted)
 }
 
 object LetterSprint {

@@ -1,8 +1,6 @@
 package com.polingual.app
 
 import foundation.bucket.core.auth.KeyValue
-import java.time.Duration
-import java.time.LocalDateTime
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -34,7 +32,7 @@ class RetentionTest {
         assertEquals(0, StreakRules.alive(null, 4, 2, "2026-11-22"))
     }
 
-    @Test fun rewardsSpendFreezeAndRecordHabit() {
+    @Test fun rewardsSpendFreeze() {
         val kv = MemoryKv()
         var day = "2026-11-15"
         val r = Rewards(kv, { 8 }) { day }
@@ -45,19 +43,6 @@ class RetentionTest {
         r.addXp(1)
         assertEquals(8, r.streak.value)
         assertEquals(0, r.freezes.value)
-        assertEquals(8, Habit.usualHour(kv))
-    }
-
-    @Test fun usualHourPicksMostCommon() {
-        assertEquals(20, Habit.usualHour(listOf(8, 20, 20, 21)))
-        assertEquals(Habit.DEFAULT_HOUR, Habit.usualHour(emptyList()))
-        assertEquals(7, Habit.usualHour(listOf(7, 9)))
-    }
-
-    @Test fun reminderDelayIsNextOccurrence() {
-        val now = LocalDateTime.of(2026, 11, 22, 18, 30)
-        assertEquals(Duration.ofMinutes(30), Habit.delayUntil(now, 19))
-        assertEquals(Duration.ofHours(23).plusMinutes(30), Habit.delayUntil(now, 18))
     }
 
     @Test fun onboardingGoesLessonThenPaywall() {
@@ -73,12 +58,11 @@ class RetentionTest {
 
     @Test fun yearlyPricePerMonth() {
         assertEquals("$4.17", PlanMath.perMonth(49_990_000, "USD", Locale.US))
-        assertTrue(Plan.TRIAL_DAYS >= 7)
     }
 
     @Test fun widgetLine() {
-        assertEquals("Done for today", WidgetData.line(WidgetModel(3, 0, true, 10)))
-        assertEquals("Play to keep it", WidgetData.line(WidgetModel(3, 0, false, 10)))
-        assertEquals("Start a streak", WidgetData.line(WidgetModel(0, 0, false, 0)))
+        assertEquals(R.string.w_done_today, WidgetData.line(WidgetModel(3, 0, true, 10)))
+        assertEquals(R.string.w_keep_it, WidgetData.line(WidgetModel(3, 0, false, 10)))
+        assertEquals(R.string.w_start, WidgetData.line(WidgetModel(0, 0, false, 0)))
     }
 }

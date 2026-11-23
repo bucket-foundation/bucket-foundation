@@ -72,14 +72,12 @@ class Rewards(private val kv: KeyValue, private val hour: () -> Int = { java.tim
         _xp.value += gain
         kv.set(XP, _xp.value.toString())
         val d = day()
-        val first = kv.get(STREAK_DAY) != d
         val next = StreakRules.advance(kv.get(STREAK_DAY), kv.get(STREAK)?.toIntOrNull() ?: 0, _freezes.value, d)
         _streak.value = next.count
         _freezes.value = next.freezes
         kv.set(STREAK, next.count.toString())
         kv.set(FREEZES, next.freezes.toString())
         kv.set(STREAK_DAY, d)
-        if (first) Habit.record(kv, hour())
         onChange()
     }
 
@@ -134,14 +132,14 @@ fun RewardBar(rewards: Rewards, combo: Int = 0) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
         val flame = remember { Animatable(1f) }
         LaunchedEffect(streak) { flame.snapTo(1.4f); flame.animateTo(1f, com.polingual.brand.Motion.slide()) }
-        Icon(Icons.Filled.LocalFireDepartment, contentDescription = "Day streak", tint = if (streak > 0) D8.vermilion else p.muted, modifier = Modifier.scale(flame.value))
+        Icon(Icons.Filled.LocalFireDepartment, contentDescription = androidx.compose.ui.res.stringResource(R.string.d_day_streak), tint = if (streak > 0) D8.vermilion else p.muted, modifier = Modifier.scale(flame.value))
         Text("$streak", style = Type.title.copy(fontSize = 16.sp()), color = p.ink)
-        Text("$xp XP", color = p.muted)
+        Text(androidx.compose.ui.res.stringResource(R.string.d_x_xp, xp), color = p.muted)
         Box(Modifier.weight(1f))
         if (combo >= 2) ComboBadge(combo)
         Icon(
             if (muted) Icons.AutoMirrored.Filled.VolumeOff else Icons.AutoMirrored.Filled.VolumeUp,
-            contentDescription = if (muted) "Sound off" else "Sound on",
+            contentDescription = androidx.compose.ui.res.stringResource(if (muted) R.string.d_sound_off else R.string.d_sound_on),
             tint = p.muted,
             modifier = Modifier.clip(RoundedCornerShape(8.dp)).clickable { rewards.toggleMute() }.padding(4.dp),
         )
@@ -153,7 +151,7 @@ fun ComboBadge(combo: Int) {
     val pop = remember { Animatable(1f) }
     LaunchedEffect(combo) { pop.snapTo(1.25f); pop.animateTo(1f, com.polingual.brand.Motion.pop()) }
     Text(
-        "x$combo combo",
+        androidx.compose.ui.res.stringResource(R.string.d_x_combo, combo),
         style = Type.title.copy(fontSize = 14.sp()),
         color = D8.parchment,
         modifier = Modifier.scale(pop.value).clip(RoundedCornerShape(10.dp)).background(if (combo >= 5) D8.vermilion else D8.malachite).padding(horizontal = 8.dp, vertical = 3.dp),
@@ -171,7 +169,7 @@ fun XpPop(gain: Int, key: Int) {
     }
     Box(Modifier.fillMaxWidth().height(0.dp).wrapContentHeight(Alignment.Top, unbounded = true).zIndex(2f), contentAlignment = Alignment.Center) {
         Text(
-            "+$gain XP",
+            androidx.compose.ui.res.stringResource(R.string.d_plus_x_xp, gain),
             style = com.polingual.brand.Type.mono.copy(fontSize = 24.sp()),
             color = D8.parchment,
             modifier = Modifier

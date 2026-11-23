@@ -40,7 +40,7 @@ fun BackButton(onClick: () -> Unit) {
         Modifier.size(40.dp).clip(androidx.compose.foundation.shape.CircleShape).background(com.polingual.brand.D8.white)
             .border(2.dp, com.polingual.brand.D8.hair, androidx.compose.foundation.shape.CircleShape).clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
-    ) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = com.polingual.brand.D8.tyrian) }
+    ) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = androidx.compose.ui.res.stringResource(R.string.s_back), tint = com.polingual.brand.D8.tyrian) }
 }
 
 @Composable

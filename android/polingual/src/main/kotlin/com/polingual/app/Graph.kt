@@ -48,18 +48,34 @@ class Graph(val context: Context) {
     val radio = Radio(context)
     val billing = Billing(context, this)
     val ads = Ads(context, this)
+    val beta = Beta(this)
+    val todayPlan = TodayPlanStore(kv)
+    val reminders = Reminders(context, kv)
+    val push = PushRegistry({ m, p, t, b -> api.send(m, p, t, b) }, kv)
+    val pushOn = PushRegistry.start(context, PushConfig.of(BuildConfig.FIREBASE_APP_ID, BuildConfig.FIREBASE_API_KEY, BuildConfig.FIREBASE_PROJECT_ID, BuildConfig.FIREBASE_SENDER_ID))
+
+    fun refreshReminders() {
+        scope.launch {
+            val app = store.current()
+            val st = app.system?.let { app.study[it.id] }
+            reminders.noteProgress(st?.streak ?: 0, ReminderPlan.studied(st))
+            reminders.rescheduleWord()
+        }
+    }
+
+    fun refreshPush() {
+        if (!pushOn || !reminders.allowed()) return
+        scope.launch {
+            push.retryPending(account.userId, account.token())
+            PushRegistry.token()?.let { push.received(it, account.token()) }
+        }
+    }
     var activity: java.lang.ref.WeakReference<android.app.Activity>? = null
 
     private val syncLock = kotlinx.coroutines.sync.Mutex()
 
     init {
-        rewards.onChange = {
-            scope.launch {
-                StreakWidget.refresh(context)
-                runCatching { Reminders.schedule(context, kv) }
-            }
-        }
-        scope.launch { runCatching { Reminders.schedule(context, kv) } }
+        rewards.onChange = { scope.launch { StreakWidget.refresh(context) } }
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
@@ -70,13 +86,16 @@ class Graph(val context: Context) {
                     store.update { it.copy(savePrompt = false) }
                     lobbies.mergeGuest()
                     syncSystems()
+                    refreshPush()
                 }
                 last = stage
             }
         }
         account.beforeSignOut = { force ->
             if (!force && !syncSystems()) throw foundation.bucket.core.model.BucketError.SyncPending
+            if (pushOn) push.unregister(account.userId, account.token())
             store.clearLocal()
+            beta.signedOut()
         }
     }
 
