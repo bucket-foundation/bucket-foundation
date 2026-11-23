@@ -56,9 +56,37 @@ public enum GameStars {
 
     public static func rating(hits: Int, total: Int) -> Int {
         guard total > 0, hits > 0 else { return 0 }
-        let share = Double(min(hits, total)) / Double(total)
-        if share >= 0.9 { return 3 }
-        if share >= 0.6 { return 2 }
+        let tenths = min(hits, total) * 10
+        if tenths >= total * 9 { return 3 }
+        if tenths >= total * 6 { return 2 }
         return 1
+    }
+}
+
+public struct GameCredit: Sendable, Equatable {
+    public let earned: Int
+    public let capped: Bool
+
+    public init(earned: Int, capped: Bool) {
+        self.earned = earned
+        self.capped = capped
+    }
+
+    public static func between(before: Int, after: Int, hits: Int, cap: Int = GameLedger.dayCredit) -> GameCredit {
+        let earned = max(0, after - before)
+        return GameCredit(earned: earned, capped: hits > earned && after >= cap)
+    }
+}
+
+public struct CreditedRuns: Sendable, Equatable {
+    public static let keep = 20
+    public private(set) var ids: [String]
+
+    public init(_ ids: [String] = []) { self.ids = Array(ids.suffix(Self.keep)) }
+
+    public mutating func claim(_ id: String) -> Bool {
+        guard !ids.contains(id) else { return false }
+        ids = Array((ids + [id]).suffix(Self.keep))
+        return true
     }
 }

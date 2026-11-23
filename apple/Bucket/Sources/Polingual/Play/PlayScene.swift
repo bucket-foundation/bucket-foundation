@@ -103,48 +103,7 @@ extension View {
     }
 }
 
-struct PlayScene<Content: View>: View {
-    @Environment(\.verticalSizeClass) private var vertical
-    let game: GameKind
-    @ViewBuilder let content: () -> Content
-
-    var body: some View {
-        GeometryReader { geo in
-            page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
-        }
-        .plGround(.lattice, band: true)
-        .navigationTitle(game.title)
-        .inlineTitle()
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(game.title)
-                    .font(PL.heading.font())
-                    .foregroundStyle(PL.paper)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityIdentifier("playTitle")
-            }
-            ToolbarItem(placement: .confirmationAction) {
-                StartLearningButton(size: .sm, full: false)
-            }
-        }
-        .fullHeightSession()
-        .onDisappear { LangVoice.shared.hush() }
-        .accessibilityIdentifier("play-\(game.rawValue)")
-    }
-
-    var page: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: PL.Space.s4) {
-                content()
-            }
-            .padding(.horizontal, PL.Space.s4)
-            .padding(.bottom, PlayFoot.pad(vertical))
-        }
-        .scrollContentBackground(.hidden)
-    }
-}
+typealias PlayScene = GameShell
 
 struct PlayLabel: View {
     let text: String
@@ -195,55 +154,7 @@ struct PlayRevealItem: Identifiable, Hashable {
     var id: String { "\(lang):\(form)" }
 }
 
-struct PlayResults: View {
-    let title: String
-    let line: String
-    var reveals: [PlayRevealItem] = []
-    let root: String
-    var board: [BoardRow] = []
-    var againLabel = "Play again"
-    var share: (kind: GameKind, shape: GameShare.Shape)?
-    var retry: (kind: GameKind, deck: String?, start: () -> Void)?
-    let again: (() -> Void)?
-    @Environment(LangStore.self) private var langs
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: PL.Space.s4) {
-            PLCard(.tyrian) {
-                VStack(alignment: .leading, spacing: PL.Space.s2) {
-                    Text(LocalizedStringKey(title)).font(PL.title.font()).foregroundStyle(PL.paper).accessibilityIdentifier("playResults")
-                    Text(LocalizedStringKey(line)).font(PL.body.font()).foregroundStyle(PL.paper.opacity(0.9))
-                }
-            }
-            if !board.isEmpty {
-                PLCard {
-                    VStack(spacing: PL.Space.s2) {
-                        ForEach(Array(board.enumerated()), id: \.offset) { i, r in
-                            HStack {
-                                Text("\(i + 1)  \(r.name)").font(PL.body.font()).foregroundStyle(r.me ? PL.vermilion : PL.ink)
-                                Spacer()
-                                Text("\(r.score)").font(PL.body.font()).monospacedDigit().foregroundStyle(PL.ink)
-                            }
-                        }
-                    }
-                }
-            }
-            ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
-            if let share { GameShareButton(kind: share.kind, text: langs.shareText(share.kind, share.shape), style: .pl(.primary, size: .lg)) }
-            if let retry { TryAgainOffer(kind: retry.kind, deck: retry.deck, start: retry.start) }
-            if let kind = share?.kind ?? retry?.kind { LiveResultActions(kind: kind) }
-            if let again {
-                if let kind = share?.kind, DailyLedger.shared.spent {
-                    DailyLimitCard(place: "game:\(kind.rawValue)")
-                } else {
-                    Button(LocalizedStringKey(againLabel), action: again).buttonStyle(.pl(.primary, size: .lg))
-                }
-            }
-            StartLearningButton()
-        }
-        .resultScreen()
-    }
-}
+typealias PlayResults = GameResults
 
 struct PlayNote: View {
     let text: String
@@ -258,17 +169,6 @@ struct PlayNote: View {
     }
 }
 
-struct PlayChoice: View {
-    let text: String
-    var state: Bool? = nil
-    let action: () -> Void
-
-    var body: some View {
-        Button(text, action: action)
-            .buttonStyle(.pl(state == true ? .success : state == false ? .accent : .ghost, size: .md))
-    }
-}
-
 struct PlayFlag: View {
     let lang: String
     var size: CGFloat = 36
@@ -280,10 +180,6 @@ struct PlayFlag: View {
 
 enum PlaySound {
     @MainActor static func auto(_ text: String, _ lang: String) { LangVoice.shared.speak(text, lang, kind: .auto) }
-    @MainActor static func effect(_ right: Bool, combo: Int = 0) {
-        GameSound.play(right: right, combo: combo)
-        haptic(right)
-    }
 }
 
 func playWords(_ items: [PlayRevealItem]) -> [PlayRevealItem] {

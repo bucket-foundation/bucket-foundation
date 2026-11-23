@@ -51,6 +51,21 @@ import Testing
         #expect(GameStars.rating(hits: 12, total: 10) == 3)
     }
 
+    @Test func starEdgesUseExactCutoffs() {
+        #expect(GameStars.rating(hits: 4, total: 10) == 1)
+        #expect(GameStars.rating(hits: 4, total: 5) == 2)
+        #expect(GameStars.rating(hits: 4, total: 4) == 3)
+        #expect(GameStars.rating(hits: 11, total: 10) == 3)
+        #expect(GameStars.rating(hits: 11, total: 12) == 3)
+        #expect(GameStars.rating(hits: 11, total: 13) == 2)
+        #expect(GameStars.rating(hits: 59, total: 100) == 1)
+        #expect(GameStars.rating(hits: 60, total: 100) == 2)
+        #expect(GameStars.rating(hits: 89, total: 100) == 2)
+        #expect(GameStars.rating(hits: 90, total: 100) == 3)
+        #expect(GameStars.rating(hits: 3, total: 5) == 2)
+        #expect(GameStars.rating(hits: 2, total: 3) == 2)
+    }
+
     @Test func runTracksComboTierAndStars() {
         let prompts = words(10).enumerated().map { GamePrompt(id: $0.offset, mode: .form, word: $0.element, choices: [$0.element.form, "x"], answer: $0.element.form) }
         var run = GameRun(prompts)
@@ -70,5 +85,42 @@ import Testing
         let run = GameRun(prompts, replaying: "1111")
         #expect(run.combo == 0)
         #expect(run.stars == 3)
+    }
+}
+
+@Suite struct GameCreditTests {
+    @Test func creditIsTheLedgerGain() {
+        #expect(GameCredit.between(before: 4, after: 9, hits: 5) == GameCredit(earned: 5, capped: false))
+        #expect(GameCredit.between(before: 0, after: 0, hits: 0) == GameCredit(earned: 0, capped: false))
+    }
+
+    @Test func capShowsWhenHitsEarnNothing() {
+        #expect(GameCredit.between(before: 30, after: 30, hits: 6) == GameCredit(earned: 0, capped: true))
+        #expect(GameCredit.between(before: 27, after: 30, hits: 6) == GameCredit(earned: 3, capped: true))
+        #expect(GameCredit.between(before: 2, after: 2, hits: 6) == GameCredit(earned: 0, capped: false))
+    }
+
+    @Test func aRunIsClaimedOnce() {
+        var runs = CreditedRuns()
+        let c1 = runs.claim("a")
+        #expect(c1)
+        let c2 = runs.claim("a")
+        #expect(!c2)
+        var reloaded = CreditedRuns(runs.ids)
+        let c3 = reloaded.claim("a")
+        #expect(!c3)
+        let c4 = reloaded.claim("b")
+        #expect(c4)
+    }
+
+    @Test func claimsKeepTheNewestTwenty() {
+        var runs = CreditedRuns()
+        for i in 0..<25 { _ = runs.claim("r\(i)") }
+        #expect(runs.ids.count == CreditedRuns.keep)
+        #expect(runs.ids.first == "r5")
+        let c5 = runs.claim("r0")
+        #expect(c5)
+        let c6 = runs.claim("r24")
+        #expect(!c6)
     }
 }
