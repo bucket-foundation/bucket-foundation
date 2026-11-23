@@ -1,0 +1,16 @@
+{
+  "name": "@bucket/polingual-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "icons": "tauri icon ../../polingual/public/brand/kit/app-icon-1024.png -o src-tauri/icons",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "build:windows": "tauri build --runner cargo-xwin --target x86_64-pc-windows-msvc --bundles nsis",
+    "test": "cd src-tauri && cargo test"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.9.6"
+  }
+}
