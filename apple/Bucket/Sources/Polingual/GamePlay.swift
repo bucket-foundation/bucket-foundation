@@ -71,22 +71,6 @@ enum GameSound {
     }
 }
 
-struct GameChoiceStyle: ButtonStyle {
-    let state: RowState
-
-    func makeBody(configuration: Configuration) -> some View {
-        let face: Color = state == .right ? D8.malachite : state == .wrong ? D8.wrongFace : D8.face
-        let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.edge
-        configuration.label
-            .environment(\.colorScheme, .light)
-            .background(face, in: .rect(cornerRadius: 16))
-            .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(lip, lineWidth: 2) }
-            .background(lip, in: .rect(cornerRadius: 16).offset(y: configuration.isPressed ? 1 : 4))
-            .offset(y: configuration.isPressed ? 3 : 0)
-            .padding(.bottom, 4)
-    }
-}
-
 extension View {
     func gameChrome(_ title: String, sideways: Bool) -> some View {
         safeAreaPadding(.top, sideways ? 12 : 0)
@@ -313,8 +297,7 @@ struct QuizGame: View {
 
     func endLine(_ r: GameRun) -> String {
         if kind == .daily { return round.score.map(PracticeLine.text) ?? String(localized: "New set tomorrow.") }
-        if langs.gameStreak > 0 { return dayStreak(langs.gameStreak) }
-        return String(localized: "\(r.bestCombo) in a row")
+        return langs.gameLine(bestRun: r.bestCombo)
     }
 
     func retry(_ prompts: [GamePrompt]) {
@@ -462,15 +445,15 @@ struct GameClock: View {
     var body: some View {
         TimelineView(.periodic(from: .now, by: 0.1)) { ctx in
             let left = max(0, ends.timeIntervalSince(ctx.date))
-            HStack(spacing: 10) {
+            HStack(spacing: PL.Space.s3) {
                 GeometryReader { g in
                     ZStack(alignment: .leading) {
-                        Capsule().fill(Palette.rule)
-                        Capsule().fill(left < 10 ? D8.vermilion : D8.malachite).frame(width: g.size.width * min(1, left / total))
+                        Capsule().fill(PL.paper.opacity(0.25))
+                        Capsule().fill(left < 10 ? PL.vermilion : PL.malachite).frame(width: g.size.width * min(1, left / total))
                     }
                 }
-                .frame(height: 12)
-                Text("\(Int(left.rounded(.up)))").font(.headline.weight(.heavy).monospacedDigit()).foregroundStyle(left < 10 ? D8.vermilion : Palette.ink)
+                .frame(height: PL.Space.s3)
+                Text("\(Int(left.rounded(.up)))").font(PL.heading.font()).monospacedDigit().foregroundStyle(left < 10 ? PL.ochre : PL.paper)
                     .frame(minWidth: 30, alignment: .trailing)
             }
         }
@@ -495,34 +478,44 @@ struct SpeedMatchGame: View {
     @State private var best = false
     @State private var wrong: Set<String> = []
     @State private var shake = 0
+    @State private var feel = GameFeel()
+    @State private var credit: GameCredit?
+    @State private var runId = UUID().uuidString
+    @Environment(\.accessibilityReduceMotion) private var systemReduce
+
+    var reduce: Bool { GameMotion.reduced(system: systemReduce) }
 
     var body: some View {
-        FitPage {
+        GameShell(game: .match, feel: feel, fit: true) {
             Group {
                 if let board {
                     if over || gameEndForced {
-                        GameEnd(kind: .match, score: String(localized: "\(board.points) points"),
-                                line: String(localized: "\(board.hits) pairs. Longest run \(board.bestCombo)."),
-                                best: best, missed: board.missed,
-                                shape: .points(board.points, marks: []),
-                                shareObject: langs.gameScore(GameKind.match.title, right: board.hits, total: board.hits + board.missed.count),
-                                again: { deal() })
+                        GameResults(title: String(localized: "\(board.points) points"),
+                                    line: String(localized: "\(board.hits) pairs. Longest run \(board.bestCombo)."),
+                                    reveals: board.missed.prefix(5).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                                    root: board.missed.first?.root ?? langs.playRoot,
+                                    share: (.match, .points(board.points, marks: [])),
+                                    stars: GameStars.rating(hits: board.hits, total: board.hits + board.missed.count),
+                                    credit: credit,
+                                    best: best,
+                                    extra: AnyView(ShareObjectButton(langs.gameScore(GameKind.match.title, right: board.hits, total: board.hits + board.missed.count), wide: true)),
+                                    again: { deal() })
+                            .padding(PL.Space.s4)
                     } else {
                         play(board)
                     }
                 } else {
-                    GameWaiting()
+                    PLCard { GameWaiting() }.padding(PL.Space.s4)
                 }
             }
         }
-        .gameChrome(GameKind.match.title, sideways: vertical == .compact)
+        .screenShareQuiet()
         .task(id: langs.status) {
             LangVoice.shared.warm()
             await langs.load()
             if board == nil { deal() }
         }
         .task(id: ends) { await tick() }
-        .onDisappear { LangVoice.shared.hush() }
     }
 
     func deal() {
@@ -538,6 +531,8 @@ struct SpeedMatchGame: View {
         }
         over = false
         best = false
+        credit = nil
+        runId = UUID().uuidString
         board = fresh.playable ? fresh : nil
         ends = fresh.playable ? Date.now.addingTimeInterval(Self.clock) : nil
         if fresh.playable { Beta.shared.studyStarted("game:match") }
@@ -557,9 +552,10 @@ struct SpeedMatchGame: View {
     func finish() {
         guard let board, !over else { return }
         over = true
-        best = langs.recordGame(.match, played: board.seen, hits: board.hits, points: board.points, missed: board.missed)
+        guard let outcome = langs.recordRun(runId, .match, played: board.seen, hits: board.hits, points: board.points, missed: board.missed) else { return }
+        best = outcome.best
+        credit = outcome.credit
         reminders.noteStudy()
-        haptic(true)
     }
 
     func play(_ b: SpeedBoard) -> some View {
@@ -567,14 +563,9 @@ struct SpeedMatchGame: View {
             if vertical != .compact, let ends { GameClock(ends: ends, total: Self.clock) }
             HStack {
                 if vertical == .compact, let ends { GameClock(ends: ends, total: Self.clock) }
-                Text("\(b.points)").font(D8.word(vertical == .compact ? 22 : 30)).foregroundStyle(Palette.ink).monospacedDigit().contentTransition(.numericText())
+                Text("\(b.points)").font(PL.word.font(scale: vertical == .compact ? 0.5 : 0.7)).foregroundStyle(PL.paper).monospacedDigit().contentTransition(.numericText())
                 if vertical != .compact { Spacer() }
-                if b.combo >= SpeedBoard.hotCombo {
-                    Label("Double points", systemImage: "bolt.fill").font(.subheadline.weight(.heavy)).foregroundStyle(D8.vermilion)
-                        .transition(.scale.combined(with: .opacity))
-                } else if b.combo >= 2 {
-                    Text("\(b.combo) in a row").font(.subheadline.weight(.heavy)).foregroundStyle(D8.malachite)
-                }
+                ComboChip(streak: b.streak, multiplier: false)
             }
             HStack(alignment: .top, spacing: 12) {
                 VStack(spacing: vertical == .compact ? 4 : 10) {
@@ -633,13 +624,11 @@ struct SpeedMatchGame: View {
         guard let out else { return }
         switch out {
         case .matched:
-            haptic(true)
-            GameSound.play(right: true, combo: board?.combo ?? 0)
+            if let streak = board?.streak { feel.right(streak, points: streak.current >= SpeedBoard.hotCombo ? 2 : 1) }
         case .missed(let word):
-            haptic(false)
-            GameSound.play(right: false)
+            if let streak = board?.streak { feel.wrong(streak) }
             ends = ends?.addingTimeInterval(-SpeedBoard.missPenalty)
-            shake += 1
+            if !reduce { shake += 1 }
             wrong = [word.id]
             Task {
                 try? await Task.sleep(for: .milliseconds(450))
@@ -662,29 +651,45 @@ struct LetterSprintGame: View {
     @State private var ends: Date?
     @State private var over = false
     @State private var best = false
+    @State private var streak = ComboCount()
+    @State private var feel = GameFeel()
+    @State private var credit: GameCredit?
+    @State private var runId = UUID().uuidString
+
+    var hits: Int { results.filter { $0 }.count }
 
     var body: some View {
-        FitPage {
+        GameShell(game: .letters, feel: feel, fit: true) {
             Group {
                 if over || (gameEndForced && !words.isEmpty) {
-                    GameEnd(kind: .letters, score: String(localized: "\(results.filter { $0 }.count) of \(results.count)"),
-                            best: best, results: results, missed: missed,
-                            shareObject: langs.gameScore(GameKind.letters.title, right: results.filter { $0 }.count, total: results.count),
-                            again: { deal() })
+                    GameResults(title: String(localized: "\(hits) of \(results.count)"),
+                                line: langs.gameLine(bestRun: streak.best),
+                                reveals: missed.prefix(5).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                                root: langs.playRoot,
+                                share: (.letters, .marks(results)),
+                                results: results,
+                                stars: GameStars.rating(hits: hits, total: words.count),
+                                credit: credit,
+                                best: best,
+                                extra: AnyView(ShareObjectButton(langs.gameScore(GameKind.letters.title, right: hits, total: results.count), wide: true)),
+                                again: { deal() })
+                        .padding(PL.Space.s4)
                 } else if let quiz, let sound = LetterSounds.lookup(quiz.lang, quiz.answer), let ends {
                     VStack(spacing: vertical == .compact ? 6 : 14) {
                         GameClock(ends: ends, total: GameLetters.seconds)
-                        GamePips(total: words.count, results: results, empty: Palette.rule)
-                        LetterQuiz(ex: quiz, sound: sound, say: LetterSounds.spoken(quiz.lang, sound)) { right, _ in advance(right) }
-                            .id(i)
+                        GameHeader(total: words.count, results: results, streak: streak)
+                        PLCard {
+                            LetterQuiz(ex: quiz, sound: sound, say: LetterSounds.spoken(quiz.lang, sound), onDone: { right, _ in advance(right) }, onPick: pick)
+                                .id(i)
+                        }
                     }
                     .padding()
                 } else {
-                    GameWaiting()
+                    PLCard { GameWaiting() }.padding(PL.Space.s4)
                 }
             }
         }
-        .gameChrome(GameKind.letters.title, sideways: vertical == .compact)
+        .screenShareQuiet()
         .task(id: langs.status) {
             LangVoice.shared.warm()
             await langs.load()
@@ -712,6 +717,9 @@ struct LetterSprintGame: View {
         results = []
         over = false
         best = false
+        streak = ComboCount()
+        credit = nil
+        runId = UUID().uuidString
         show()
         ends = quiz == nil ? nil : Date.now.addingTimeInterval(GameLetters.seconds)
         if quiz != nil { Beta.shared.studyStarted("game:letters") }
@@ -732,6 +740,11 @@ struct LetterSprintGame: View {
         if let quiz, let s = LetterSounds.lookup(quiz.lang, quiz.answer) { LangVoice.shared.speak(LetterSounds.spoken(quiz.lang, s), quiz.lang) }
     }
 
+    func pick(_ right: Bool) {
+        streak.record(right)
+        if right { feel.right(streak) } else { feel.wrong(streak) }
+    }
+
     func advance(_ right: Bool) {
         results.append(right)
         i += 1
@@ -745,10 +758,10 @@ struct LetterSprintGame: View {
     func finish() {
         guard !over else { return }
         over = true
-        let hits = results.filter { $0 }.count
-        best = langs.recordGame(.letters, played: Array(words.prefix(results.count)), hits: hits, points: hits, missed: missed)
+        guard let outcome = langs.recordRun(runId, .letters, played: Array(words.prefix(results.count)), hits: hits, points: hits, missed: missed) else { return }
+        best = outcome.best
+        credit = outcome.credit
         reminders.noteStudy()
-        haptic(true)
     }
 }
 

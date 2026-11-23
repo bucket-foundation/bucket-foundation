@@ -111,6 +111,7 @@ struct GameBurst: View {
 
 struct ComboChip: View {
     let streak: ComboCount
+    var multiplier = true
     @Environment(\.gameReduceMotion) private var reduce
 
     var body: some View {
@@ -118,7 +119,7 @@ struct ComboChip: View {
             HStack(spacing: PL.Space.s2) {
                 Image(systemName: "bolt.fill")
                 Text("\(streak.current) in a row")
-                if streak.multiplier > 1 { Text("x\(streak.multiplier)") }
+                if multiplier && streak.multiplier > 1 { Text("x\(streak.multiplier)") }
             }
             .font(PL.label.font(scale: 1.3))
             .textCase(.uppercase)

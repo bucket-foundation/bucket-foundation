@@ -266,6 +266,7 @@ struct LetterQuiz: View {
     let sound: LetterSound
     let say: String
     let onDone: (_ right: Bool, _ helped: Bool) -> Void
+    var onPick: ((Bool) -> Void)?
     @State private var plays = 0
     @State private var picked: String?
     @State private var hinted = false
@@ -330,7 +331,7 @@ struct LetterQuiz: View {
         return Button {
             if picked == nil {
                 picked = o
-                haptic(o == ex.answer)
+                if let onPick { onPick(o == ex.answer) } else { haptic(o == ex.answer) }
                 if o == ex.answer {
                     LangVoice.shared.speak(say, ex.lang)
                 } else {

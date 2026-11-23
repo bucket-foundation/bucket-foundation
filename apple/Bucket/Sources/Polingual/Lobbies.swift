@@ -454,9 +454,8 @@ struct LobbyRoom: View {
                                 if p.mode == .flag { FlagTile(lang: c, size: 64) } else { Text(c).font(D8.word(22)).lineLimit(2).minimumScaleFactor(0.5) }
                             }
                                 .padding(10).frame(maxWidth: .infinity, minHeight: 100)
-                                .foregroundStyle(state == .right ? .white : Palette.ink)
                         }
-                        .buttonStyle(GameChoiceStyle(state: state))
+                        .buttonStyle(GameAnswerStyle(state: state))
                         .disabled(picked != nil)
                         .accessibilityIdentifier("lobby-choice")
                     }
@@ -503,9 +502,8 @@ struct LobbyRoom: View {
                             Text(t.form).font(D8.word(19)).lineLimit(2).minimumScaleFactor(0.5)
                         }
                         .padding(8).frame(maxWidth: .infinity, minHeight: 56)
-                        .foregroundStyle(state == .right ? .white : Palette.ink)
                     }
-                    .buttonStyle(GameChoiceStyle(state: state))
+                    .buttonStyle(GameAnswerStyle(state: state))
                     .disabled(sent)
                     .accessibilityIdentifier("lobby-tile")
                 }

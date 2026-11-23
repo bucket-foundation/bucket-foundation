@@ -225,8 +225,8 @@ final class GamesUITests: XCTestCase {
             expectation(for: NSPredicate(format: "isEnabled == true"), evaluatedWith: right)
             waitForExpectations(timeout: 10)
             right.tap()
-            expectation(for: NSPredicate(format: "isEnabled == false"), evaluatedWith: choice)
-            waitForExpectations(timeout: 5)
+            let settled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isEnabled == false"), object: choice)
+            _ = XCTWaiter.wait(for: [settled], timeout: 3)
         }
         XCTAssertTrue(combo.waitForExistence(timeout: 3))
         shot("flags-combo")
@@ -305,6 +305,16 @@ final class GamesUITests: XCTestCase {
         forms.element(boundBy: 0).tap()
         shot("match-play")
         XCTAssertTrue(app.buttons["Play again"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.staticTexts["playResults"].exists)
+        XCTAssertTrue(app.descendants(matching: .any)["game-stars"].exists)
         shot("match-end")
+    }
+
+    func testLetterSprintEndsOnResults() {
+        let app = launch(["-openGame", "letters", "-endGame"])
+        XCTAssertTrue(app.staticTexts["playResults"].waitForExistence(timeout: 60))
+        XCTAssertTrue(app.descendants(matching: .any)["game-stars"].exists)
+        XCTAssertTrue(app.buttons["Play again"].exists)
+        shot("letters-end")
     }
 }

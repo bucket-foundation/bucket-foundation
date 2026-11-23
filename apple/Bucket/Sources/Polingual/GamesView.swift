@@ -248,6 +248,12 @@ extension LangStore {
     }
 }
 
+extension LangStore {
+    func gameLine(bestRun: Int) -> String {
+        gameStreak > 0 ? dayStreak(gameStreak) : String(localized: "\(bestRun) in a row")
+    }
+}
+
 struct GameOutcome: Equatable {
     let best: Bool
     let credit: GameCredit
