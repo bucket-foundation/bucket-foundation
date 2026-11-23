@@ -24,6 +24,8 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         (application as PolingualApp).graph.beta.foreground()
+        (application as PolingualApp).graph.refreshReminders()
+        (application as PolingualApp).graph.refreshPush()
     }
 
     override fun onStop() {

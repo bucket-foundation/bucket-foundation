@@ -24,6 +24,30 @@ fun SettingRow(title: String, on: Boolean, change: (Boolean) -> Unit) {
 }
 
 @Composable
+fun AskNotificationsOnce(graph: Graph) {
+    val launcher = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { ok ->
+        if (ok) { graph.reminders.reschedule(); graph.refreshPush() }
+    }
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        if (graph.reminders.asked) return@LaunchedEffect
+        graph.reminders.markAsked()
+        if (android.os.Build.VERSION.SDK_INT >= 33 && !graph.reminders.allowed()) launcher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+    }
+}
+
+@Composable
+fun NotificationSettings(graph: Graph) {
+    var word by remember { mutableStateOf(graph.reminders.wordOfDay) }
+    var risk by remember { mutableStateOf(graph.reminders.streakRisk) }
+    SectionTitle(stringResource(R.string.notify_section))
+    Card {
+        SettingRow(stringResource(R.string.notify_word_toggle), word) { word = it; graph.reminders.wordOfDay = it }
+        SettingRow(stringResource(R.string.notify_risk_toggle), risk) { risk = it; graph.reminders.streakRisk = it }
+        if (!graph.reminders.allowed()) Text(stringResource(R.string.notify_denied), color = LocalPalette.current.muted)
+    }
+}
+
+@Composable
 fun BetaSharing(graph: Graph) {
     var share by remember { mutableStateOf(!graph.beta.events.optedOut) }
     SectionTitle(stringResource(R.string.beta_testing))

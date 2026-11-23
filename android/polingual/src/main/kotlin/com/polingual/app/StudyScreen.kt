@@ -56,7 +56,14 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         tick.let { }
         val ex = s.current
         if (ex == null) {
-            LaunchedEffect(s) { if (s.answered > 0) graph.beta.studyEnded(graph.store.current().system?.id.orEmpty(), s.answered, s.correct) }
+            LaunchedEffect(s) {
+                if (s.answered > 0) {
+                    graph.beta.studyEnded(graph.store.current().system?.id.orEmpty(), s.answered, s.correct)
+                    graph.reminders.noteStudy()
+                    graph.reminders.noteProgress(s.state.streak, studiedToday = true)
+                }
+            }
+            if (s.answered > 0) AskNotificationsOnce(graph)
             Text(if (s.total == 0) "Nothing due" else "Session done", style = Type.display, color = p.ink)
             Text(if (s.total == 0) "Come back tomorrow for new words, or play a game." else "${s.correct} of ${s.answered} right. Misses come back in your next session.", color = p.muted)
             PrimaryButton("Back to Today") { done() }
