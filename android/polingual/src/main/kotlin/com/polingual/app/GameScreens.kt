@@ -59,15 +59,15 @@ import foundation.bucket.core.engine.WordGroupsRound
 import foundation.bucket.core.engine.mixed
 import foundation.bucket.core.model.Lang
 import foundation.bucket.core.model.LangSystem
-import foundation.bucket.core.ui.ChoiceButton
+import com.polingual.brand.ChoiceButton
 import foundation.bucket.core.ui.ChoiceState
-import foundation.bucket.core.ui.D8
-import foundation.bucket.core.ui.FlagTile
+import com.polingual.brand.D8
+import com.polingual.brand.FlagTile
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.ResultDots
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.PlainLink
+import com.polingual.brand.PrimaryButton
+import com.polingual.brand.ResultDots
+import com.polingual.brand.Type
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -127,7 +127,7 @@ fun Finished(title: String, line: String, results: List<Boolean>, total: Int, ag
     val view = rememberHost()
     val graph = LocalGraph.current
     LaunchedEffect(title) { fx.burst(); graph?.rewards?.finish(view) }
-    Text(title, style = Type.display, color = p.ink)
+    Text(title, style = Type.display, color = D8.tyrian)
     ResultDots(results, total)
     Text(line, color = p.muted)
     if (again != null) PrimaryButton("Play again", color = D8.malachite, onClick = again)
@@ -147,36 +147,43 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     tick.let { }
     if (round.prompts.isEmpty()) { Text("Learn a few more words first.", color = p.muted); return }
     if (round.finished) {
-        LaunchedEffect(round) { graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" }) }
+        LaunchedEffect(round) {
+            graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" })
+            if (kind == GameKind.Daily) graph.onboard.lessonFinished()
+        }
         Finished("${round.score} of ${round.prompts.size}", "A finished game keeps your streak. Misses come back in study.", round.results, round.prompts.size, if (kind == GameKind.Daily) null else ({ seed += 1 }))
         return
     }
     val prompt = round.current!!
     Row(verticalAlignment = Alignment.CenterVertically) {
-        androidx.compose.foundation.layout.Box(Modifier.weight(1f)) { ResultDots(round.results, round.prompts.size) }
+        androidx.compose.foundation.layout.Box(Modifier.weight(1f)) { ResultDots(round.results.toList(), round.prompts.size) }
         if (combo.streak >= 2) ComboBadge(combo.streak)
     }
     XpPop(gain, pops)
-    when (prompt.mode) {
-        PromptMode.Form -> {
-            Text("Which is ${Lang.name(prompt.word.lang)} for", color = p.muted)
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                FlagTile(prompt.word.lang, 44.dp)
-                Text(prompt.word.gloss, style = Type.word, color = p.ink)
+    com.polingual.brand.PopIn(prompt) {
+        com.polingual.brand.Card(color = D8.tyrianDeep) {
+            when (prompt.mode) {
+                PromptMode.Form -> {
+                    com.polingual.brand.Label("Which is ${Lang.name(prompt.word.lang)} for", color = D8.ochre)
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        FlagTile(prompt.word.lang, 48.dp)
+                        Text(prompt.word.gloss, style = Type.word.copy(fontSize = 40.sp()), color = D8.parchment)
+                    }
+                }
+                PromptMode.Flag -> {
+                    com.polingual.brand.Label("Which language is this?", color = D8.ochre)
+                    Text(prompt.word.form, style = Type.word.copy(fontSize = 44.sp()), color = D8.parchment)
+                }
+                PromptMode.Voice -> {
+                    com.polingual.brand.Label("Listen. Which language is it?", color = D8.ochre)
+                    LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+                    PrimaryButton("Play again", color = D8.ochre) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
+                }
             }
-        }
-        PromptMode.Flag -> {
-            Text("Which language is this?", color = p.muted)
-            Text(prompt.word.form, style = Type.word, color = p.ink)
-        }
-        PromptMode.Voice -> {
-            Text("Listen. Which language is it?", color = p.muted)
-            LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
-            PrimaryButton("Play again", color = D8.lapis) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
         }
     }
     val picked = round.picked
-    prompt.choices.forEach { choice ->
+    prompt.choices.forEachIndexed { i, choice ->
         val label = if (prompt.mode == PromptMode.Form) choice else "${Lang.flag(choice)}  ${Lang.name(choice)}"
         val state = when {
             picked == null -> ChoiceState.Idle
@@ -184,7 +191,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
             choice == picked -> ChoiceState.Wrong
             else -> ChoiceState.Dim
         }
-        ChoiceButton(label, state) {
+        ChoiceButton(label, state, color = AnswerColors[i % AnswerColors.size]) {
             round.answer(choice)
             if (choice == prompt.answer) {
                 gain = combo.hit()
@@ -400,3 +407,5 @@ object LetterSprint {
         }.take(count)
     }
 }
+
+val AnswerColors = listOf(D8.vermilion, D8.lapis, D8.ochre, D8.malachite)

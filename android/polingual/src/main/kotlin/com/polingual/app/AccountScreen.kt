@@ -16,13 +16,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.navigation.NavHostController
 import foundation.bucket.core.auth.Stage
 import foundation.bucket.core.model.BucketError
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
+import com.polingual.brand.Card
+import com.polingual.brand.D8
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.SectionTitle
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.PlainLink
+import com.polingual.brand.PrimaryButton
+import com.polingual.brand.SectionTitle
+import com.polingual.brand.Type
 import kotlinx.coroutines.launch
 
 @Composable
@@ -30,7 +30,9 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
     val stage by graph.account.stage.collectAsState()
     val app by graph.state.collectAsState()
     val p = LocalPalette.current
-    Page("Account") {
+    Page {
+        com.polingual.brand.BrandBar { XpChip(graph.rewards.xp.collectAsState().value) }
+        ProfileCard(graph)
         when (stage) {
             Stage.SignedIn -> SignedInSection(graph, nav)
             else -> SignInCard(graph, stage)
@@ -62,7 +64,7 @@ fun SignInCard(graph: Graph, stage: Stage) {
         try { block() } catch (e: BucketError) { error = e.message } finally { busy = false }
     }
     Card {
-        Text("Sign in", style = Type.title, color = p.ink)
+        Text("Sign in", style = Type.title, color = D8.tyrian)
         if (stage == Stage.CodeSent) {
             Text("We sent a code to ${graph.account.email}.", color = p.muted)
             OutlinedTextField(code, { code = it.filter(Char::isDigit).take(8) }, singleLine = true, label = { Text("Code") },

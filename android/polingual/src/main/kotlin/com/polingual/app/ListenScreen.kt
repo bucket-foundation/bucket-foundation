@@ -26,10 +26,10 @@ import foundation.bucket.core.model.BucketError
 import foundation.bucket.core.model.Lang
 import foundation.bucket.core.net.RadioApi
 import foundation.bucket.core.net.RadioStation
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
+import com.polingual.brand.Card
+import com.polingual.brand.D8
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.Type
 import kotlinx.coroutines.launch
 
 @Composable

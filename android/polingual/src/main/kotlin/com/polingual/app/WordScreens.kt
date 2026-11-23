@@ -39,12 +39,12 @@ import foundation.bucket.core.engine.TranslateAnswer
 import foundation.bucket.core.engine.TranslateEngine
 import foundation.bucket.core.engine.translateSources
 import foundation.bucket.core.model.Lang
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
+import com.polingual.brand.Card
+import com.polingual.brand.D8
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Pill
-import foundation.bucket.core.ui.SectionTitle
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.Pill
+import com.polingual.brand.SectionTitle
+import com.polingual.brand.Type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -60,7 +60,7 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
         val i = item ?: return@Page
         val system = app?.system
         val langs = (system?.targets.orEmpty() + listOfNotNull(system?.root)).ifEmpty { listOf("en") }
-        Text(i.form(system?.root ?: "en") ?: i.gloss, style = Type.display, color = p.ink)
+        Text(i.form(system?.root ?: "en") ?: i.gloss, style = Type.display, color = D8.tyrian)
         Text(i.gloss, color = p.muted)
         if (i.root != null) Pill("Shared root: ${i.root}", D8.malachite)
         langs.forEach { l ->
@@ -143,7 +143,7 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
             text, { text = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Type a word or phrase") },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search), keyboardActions = KeyboardActions(onSearch = { run(text) }),
         )
-        foundation.bucket.core.ui.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
+        com.polingual.brand.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
         val a = answer
         if (a != null) {
             Text("${Lang.flag(a.source)} ${a.headword}", style = Type.word, color = p.ink, )

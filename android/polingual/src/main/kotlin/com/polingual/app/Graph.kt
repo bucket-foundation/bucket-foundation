@@ -42,6 +42,7 @@ class Graph(val context: Context) {
     val lobbies = LobbyStore(api, userToken = { account.token() }, guest = guest)
     val voice = Voice(context)
     val rewards = Rewards(kv)
+    val onboard = Onboard(kv)
     val videos = VideoRepo(context)
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
     val radio = Radio(context)
@@ -52,6 +53,13 @@ class Graph(val context: Context) {
     private val syncLock = kotlinx.coroutines.sync.Mutex()
 
     init {
+        rewards.onChange = {
+            scope.launch {
+                StreakWidget.refresh(context)
+                runCatching { Reminders.schedule(context, kv) }
+            }
+        }
+        scope.launch { runCatching { Reminders.schedule(context, kv) } }
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()

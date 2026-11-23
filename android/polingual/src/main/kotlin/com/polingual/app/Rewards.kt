@@ -16,6 +16,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.ui.zIndex
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -40,19 +43,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import foundation.bucket.core.auth.KeyValue
-import foundation.bucket.core.ui.D8
+import com.polingual.brand.D8
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.Type
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.math.cos
 import kotlin.math.sin
 
-class Rewards(private val kv: KeyValue, private val day: () -> String = ::today) {
+class Rewards(private val kv: KeyValue, private val hour: () -> Int = { java.time.LocalTime.now().hour }, private val day: () -> String = ::today) {
+    var onChange: () -> Unit = {}
     private val _muted = MutableStateFlow(kv.get(MUTE) == "1")
     val muted: StateFlow<Boolean> = _muted
-    private val _streak = MutableStateFlow(kv.get(STREAK)?.toIntOrNull() ?: 0)
+    private val _streak = MutableStateFlow(StreakRules.alive(kv.get(STREAK_DAY), kv.get(STREAK)?.toIntOrNull() ?: 0, kv.get(FREEZES)?.toIntOrNull() ?: 0, day()))
     val streak: StateFlow<Int> = _streak
+    private val _freezes = MutableStateFlow(kv.get(FREEZES)?.toIntOrNull() ?: 0)
+    val freezes: StateFlow<Int> = _freezes
     private val _xp = MutableStateFlow(kv.get(XP)?.toIntOrNull() ?: 0)
     val xp: StateFlow<Int> = _xp
     private var tones: ToneGenerator? = null
@@ -66,10 +72,15 @@ class Rewards(private val kv: KeyValue, private val day: () -> String = ::today)
         _xp.value += gain
         kv.set(XP, _xp.value.toString())
         val d = day()
-        val next = DayStreak.next(kv.get(STREAK_DAY), _streak.value, d)
-        _streak.value = next
-        kv.set(STREAK, next.toString())
+        val first = kv.get(STREAK_DAY) != d
+        val next = StreakRules.advance(kv.get(STREAK_DAY), kv.get(STREAK)?.toIntOrNull() ?: 0, _freezes.value, d)
+        _streak.value = next.count
+        _freezes.value = next.freezes
+        kv.set(STREAK, next.count.toString())
+        kv.set(FREEZES, next.freezes.toString())
         kv.set(STREAK_DAY, d)
+        if (first) Habit.record(kv, hour())
+        onChange()
     }
 
     fun correct(view: View, combo: Int) {
@@ -110,6 +121,7 @@ class Rewards(private val kv: KeyValue, private val day: () -> String = ::today)
         const val STREAK = "fx.streak"
         const val STREAK_DAY = "fx.streakDay"
         const val XP = "fx.xp"
+        const val FREEZES = "fx.freezes"
     }
 }
 
@@ -121,7 +133,7 @@ fun RewardBar(rewards: Rewards, combo: Int = 0) {
     val p = LocalPalette.current
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
         val flame = remember { Animatable(1f) }
-        LaunchedEffect(streak) { flame.snapTo(1.4f); flame.animateTo(1f, tween(400)) }
+        LaunchedEffect(streak) { flame.snapTo(1.4f); flame.animateTo(1f, com.polingual.brand.Motion.slide()) }
         Icon(Icons.Filled.LocalFireDepartment, contentDescription = "Day streak", tint = if (streak > 0) D8.vermilion else p.muted, modifier = Modifier.scale(flame.value))
         Text("$streak", style = Type.title.copy(fontSize = 16.sp()), color = p.ink)
         Text("$xp XP", color = p.muted)
@@ -139,7 +151,7 @@ fun RewardBar(rewards: Rewards, combo: Int = 0) {
 @Composable
 fun ComboBadge(combo: Int) {
     val pop = remember { Animatable(1f) }
-    LaunchedEffect(combo) { pop.snapTo(1.35f); pop.animateTo(1f, tween(250)) }
+    LaunchedEffect(combo) { pop.snapTo(1.25f); pop.animateTo(1f, com.polingual.brand.Motion.pop()) }
     Text(
         "x$combo combo",
         style = Type.title.copy(fontSize = 14.sp()),
@@ -151,14 +163,22 @@ fun ComboBadge(combo: Int) {
 @Composable
 fun XpPop(gain: Int, key: Int) {
     if (gain <= 0) return
-    val t = remember(key) { Animatable(0f) }
-    LaunchedEffect(key) { t.animateTo(1f, tween(800)) }
-    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+    val pop = remember(key) { Animatable(0f) }
+    val rise = remember(key) { Animatable(0f) }
+    LaunchedEffect(key) {
+        pop.animateTo(1f, com.polingual.brand.Motion.pop())
+        rise.animateTo(1f, com.polingual.brand.Motion.count())
+    }
+    Box(Modifier.fillMaxWidth().height(0.dp).wrapContentHeight(Alignment.Top, unbounded = true).zIndex(2f), contentAlignment = Alignment.Center) {
         Text(
             "+$gain XP",
-            style = Type.title.copy(fontSize = 22.sp()),
-            color = D8.malachite,
-            modifier = Modifier.offset(y = (-36 * t.value).dp).scale(1f + 0.3f * (1 - t.value)).alpha(1f - t.value),
+            style = com.polingual.brand.Type.mono.copy(fontSize = 24.sp()),
+            color = D8.parchment,
+            modifier = Modifier
+                .offset(y = (4 * (1 - pop.value) - 28 * rise.value).dp)
+                .scale(0.96f + 0.04f * pop.value)
+                .alpha(pop.value * (1f - rise.value))
+                .clip(RoundedCornerShape(999.dp)).background(D8.malachite).padding(horizontal = 14.dp, vertical = 4.dp),
         )
     }
 }

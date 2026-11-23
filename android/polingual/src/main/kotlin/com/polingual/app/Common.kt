@@ -24,19 +24,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.draw.clip
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.Type
+import com.polingual.brand.Heading
+import com.polingual.brand.dotGrid
+
+@Composable
+fun BackButton(onClick: () -> Unit) {
+    Box(
+        Modifier.size(40.dp).clip(androidx.compose.foundation.shape.CircleShape).background(com.polingual.brand.D8.white)
+            .border(2.dp, com.polingual.brand.D8.hair, androidx.compose.foundation.shape.CircleShape).clickable(onClick = onClick),
+        contentAlignment = Alignment.Center,
+    ) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = com.polingual.brand.D8.tyrian) }
+}
 
 @Composable
 fun Page(title: String? = null, back: (() -> Unit)? = null, scroll: Boolean = true, content: @Composable ColumnScope.() -> Unit) {
-    Box(Modifier.fillMaxSize().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
+    Box(Modifier.fillMaxSize().dotGrid().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
         Column(
-            Modifier.widthIn(max = 720.dp).fillMaxSize().then(if (scroll) Modifier.verticalScroll(rememberScrollState()) else Modifier).padding(horizontal = 20.dp, vertical = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
+            Modifier.widthIn(max = 720.dp).fillMaxSize().then(if (scroll) Modifier.verticalScroll(rememberScrollState()) else Modifier).padding(horizontal = 16.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             if (title != null || back != null) Row(verticalAlignment = Alignment.CenterVertically) {
-                if (back != null) IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = LocalPalette.current.ink) }
-                if (title != null) Text(title, style = Type.title, color = LocalPalette.current.ink, modifier = Modifier.fillMaxWidth())
+                if (back != null) BackButton(back)
+                if (title != null) Heading(title, Modifier.fillMaxWidth().padding(start = if (back != null) 8.dp else 0.dp))
             }
             content()
         }
@@ -66,16 +82,17 @@ fun PlayPage(title: String, back: () -> Unit, scroll: Boolean = true, trailing: 
         ctl?.hide(androidx.core.view.WindowInsetsCompat.Type.systemBars())
         onDispose { ctl?.show(androidx.core.view.WindowInsetsCompat.Type.systemBars()) }
     }
+    androidx.activity.compose.BackHandler(onBack = back)
     androidx.compose.runtime.CompositionLocalProvider(LocalPlayFx provides fx) {
-        Box(Modifier.fillMaxSize().safeDrawingPadding()) {
+        Box(Modifier.fillMaxSize().dotGrid().safeDrawingPadding()) {
             Column(
-                Modifier.fillMaxSize().then(if (scroll) Modifier.verticalScroll(rememberScrollState()) else Modifier).padding(horizontal = 8.dp, vertical = 2.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                Modifier.fillMaxSize().then(if (scroll) Modifier.verticalScroll(rememberScrollState()) else Modifier).padding(horizontal = 10.dp, vertical = 4.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().heightIn(max = 44.dp)) {
-                    IconButton(onClick = back) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = LocalPalette.current.ink) }
-                    Text(title, style = Type.title.copy(fontSize = 16.sp()), color = LocalPalette.current.ink, maxLines = 1, modifier = Modifier.weight(1f))
-                    Box(Modifier.weight(1.4f)) { trailing() }
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().heightIn(min = 44.dp)) {
+                    BackButton(back)
+                    Text(title, style = Type.title.copy(fontSize = 18.sp()), color = com.polingual.brand.D8.tyrian, maxLines = 1, modifier = Modifier.weight(1f))
+                    Box(Modifier.weight(1.5f)) { trailing() }
                 }
                 content()
             }

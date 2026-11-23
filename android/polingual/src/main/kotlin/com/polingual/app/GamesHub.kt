@@ -29,32 +29,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import foundation.bucket.core.ui.D8
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.D8
+import com.polingual.brand.Type
 
 enum class GameKind(val route: String, val title: String, val blurb: String, val icon: ImageVector, val color: Color) {
-    Daily("daily", "Daily Set", "Six words. The same six for everyone on your languages today.", Icons.Filled.CalendarMonth, D8.lapis),
-    Mini("mini", "Mini", "A small crossword in your language. New every day.", Icons.Filled.GridOn, D8.vermilion),
-    WordGroups("groups", "Word Groups", "Sort sixteen of your words into four groups. New every day.", Icons.Filled.GridView, D8.lapis),
-    Same("same", "Same Word", "One meaning across your languages.", Icons.Filled.Layers, D8.vermilion),
-    Match("match", "Speed Match", "Pair words against a 60 second clock.", Icons.Filled.Bolt, D8.malachite),
-    Voice("voice", "Which Voice", "Listen, then pick the flag.", Icons.Filled.GraphicEq, D8.lapis),
-    Flags("flags", "Flags", "Read a word, then pick its flag.", Icons.Filled.Flag, D8.malachite),
-    Letters("letters", "Letter Sprint", "Hear a sound, then find its letter.", Icons.Filled.TextFields, D8.vermilion),
+    Daily("daily", "Daily words", "Today's set", Icons.Filled.CalendarMonth, D8.ochre),
+    Mini("mini", "Mini", "A small crossword", Icons.Filled.GridOn, D8.vermilion),
+    WordGroups("groups", "Word groups", "Sixteen words, four groups", Icons.Filled.GridView, D8.lapis),
+    Same("same", "Same word", "One meaning, many tongues", Icons.Filled.Layers, D8.tyrian),
+    Match("match", "Speed match", "Pairs against the clock", Icons.Filled.Bolt, D8.malachite),
+    Voice("voice", "Which voice", "Listen, pick the flag", Icons.Filled.GraphicEq, D8.maya),
+    Flags("flags", "Flags", "Name the language", Icons.Filled.Flag, D8.vermilion),
+    Letters("letters", "Letter sprint", "Hear it, find the letter", Icons.Filled.TextFields, D8.malachite),
 }
 
 @Composable
-fun GameTile(kind: GameKind, played: String?, onClick: () -> Unit) {
-    Row(
-        Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(kind.color).clickable(role = Role.Button, onClick = onClick).padding(horizontal = 12.dp, vertical = 10.dp),
-        horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Box(Modifier.size(44.dp).clip(RoundedCornerShape(12.dp)).background(D8.parchment.copy(alpha = 0.18f)), contentAlignment = Alignment.Center) {
-            Icon(kind.icon, contentDescription = null, tint = D8.parchment)
-        }
-        Column(Modifier.weight(1f)) {
-            Text(kind.title, style = Type.title.copy(fontSize = 19.sp()), color = D8.parchment)
-            Text(played ?: kind.blurb, color = D8.parchment.copy(alpha = 0.9f))
-        }
-    }
+fun GameTile(kind: GameKind, played: String?, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    com.polingual.brand.GameCard(kind.title, played ?: kind.blurb, kind.color, modifier, icon = {
+        Icon(kind.icon, contentDescription = null, tint = com.polingual.brand.D8.on(kind.color).copy(alpha = 0.85f))
+    }, onClick = onClick)
 }

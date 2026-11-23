@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import androidx.compose.material3.adaptive.layout.AnimatedPane
 import android.annotation.SuppressLint
 import android.content.Context
 import android.webkit.JavascriptInterface
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -46,11 +48,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
 import foundation.bucket.core.model.Lang
-import foundation.bucket.core.ui.D8
+import com.polingual.brand.D8
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.Type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -101,7 +104,7 @@ fun VideoTile(onClick: () -> Unit) {
 }
 
 @Composable
-fun VideoListScreen(graph: Graph, nav: NavHostController) {
+fun VideoListScreen(graph: Graph, nav: NavHostController, selected: String? = null, onPick: (String) -> Unit = { nav.navigate("video/$it") }) {
     var index by remember { mutableStateOf<VideoIndex?>(null) }
     var failed by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { runCatching { graph.videos.index() }.onSuccess { index = it }.onFailure { failed = true } }
@@ -112,8 +115,8 @@ fun VideoListScreen(graph: Graph, nav: NavHostController) {
             failed -> Text("Videos could not load. Check your connection.", color = p.muted)
             list == null -> Text("Loading videos", color = p.muted)
             else -> list.forEach { v ->
-                Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(p.card).clickable { nav.navigate("video/${v.id}") }.padding(12.dp)) {
-                    Text(v.title, style = Type.title.copy(fontSize = 17.sp()), color = p.ink)
+                com.polingual.brand.Card(color = if (v.id == selected) D8.parchment2 else D8.white, onClick = { onPick(v.id) }) {
+                    Text(v.title, style = Type.title.copy(fontSize = 19.sp()), color = D8.tyrian)
                     Text("${v.channel}  ${VideoLogic.clock(v.duration)}  ${v.langs.joinToString(" ") { Lang.flag(it) }}", color = p.muted)
                 }
             }
@@ -236,18 +239,10 @@ fun VideoScreen(graph: Graph, id: String, back: () -> Unit) {
         LaunchedEffect(toast) { if (toast != null) { kotlinx.coroutines.delay(1500); toast = null } }
 
         YouTubePlayer(d.id, seek, onTime = { t -> view.post { now = t } }, modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f).clip(RoundedCornerShape(10.dp)))
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-            d.langs.forEach { l ->
-                val on = l in langs
-                Text(
-                    "${Lang.flag(l)} ${l.uppercase()}",
-                    color = if (on) D8.parchment else p.ink,
-                    modifier = Modifier.clip(RoundedCornerShape(10.dp)).background(if (on) D8.lapis else p.card).clickable { langs = VideoLogic.toggleLang(langs, l) }.padding(horizontal = 8.dp, vertical = 4.dp),
-                )
-            }
-            Box(Modifier.weight(1f))
-            toast?.let { Text(it, color = D8.malachite, style = Type.title.copy(fontSize = 14.sp())) }
+        Row(Modifier.fillMaxWidth().horizontalScroll(androidx.compose.foundation.rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
+            d.langs.forEach { l -> com.polingual.brand.Chip("${Lang.flag(l)} ${l.uppercase()}", l in langs) { langs = VideoLogic.toggleLang(langs, l) } }
         }
+        toast?.let { Text(it, color = D8.malachite, style = Type.title.copy(fontSize = 14.sp())) }
         LazyColumn(state = list, modifier = Modifier.weight(1f).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             itemsIndexed(d.cues) { i, cue ->
                 val on = i == active
@@ -300,3 +295,33 @@ fun storeSaved(graph: Graph, list: List<SavedWord>) {
 
 const val SAVED_KEY = "video.saved"
 const val SAVE_XP = 2
+
+@OptIn(androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi::class)
+@Composable
+fun WatchPanes(graph: Graph, nav: NavHostController) {
+    val navigator = androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator<String>()
+    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    val two = navigator.scaffoldValue[androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole.List] == androidx.compose.material3.adaptive.layout.PaneAdaptedValue.Expanded &&
+        navigator.scaffoldValue[androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole.Detail] == androidx.compose.material3.adaptive.layout.PaneAdaptedValue.Expanded
+    val current = navigator.currentDestination?.contentKey
+    androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold(
+        navigator = navigator,
+        listPane = {
+            AnimatedPane {
+                VideoListScreen(graph, nav, selected = current) { id ->
+                    scope.launch { navigator.navigateTo(androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole.Detail, id) }
+                }
+            }
+        },
+        detailPane = {
+            AnimatedPane {
+                val id = current
+                if (id != null) androidx.compose.runtime.key(id) {
+                    VideoScreen(graph, id) { if (two) nav.popBackStack() else scope.launch { navigator.navigateBack() } }
+                } else Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Text("Pick a video", style = Type.title.copy(fontSize = 20.sp()), color = D8.ink2)
+                }
+            }
+        },
+    )
+}

@@ -14,15 +14,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import foundation.bucket.core.model.Lang
 import foundation.bucket.core.model.validateSystem
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
-import foundation.bucket.core.ui.FlagTile
+import com.polingual.brand.Card
+import com.polingual.brand.D8
+import com.polingual.brand.FlagTile
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Pill
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.SectionTitle
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.Pill
+import com.polingual.brand.PlainLink
+import com.polingual.brand.PrimaryButton
+import com.polingual.brand.SectionTitle
+import com.polingual.brand.Type
 import kotlinx.coroutines.launch
 
 @Composable

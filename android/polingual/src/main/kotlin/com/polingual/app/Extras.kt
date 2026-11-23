@@ -10,13 +10,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.D8
+import com.polingual.brand.Card
+import com.polingual.brand.D8
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.SectionTitle
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.PlainLink
+import com.polingual.brand.PrimaryButton
+import com.polingual.brand.SectionTitle
+import com.polingual.brand.Type
 import kotlinx.coroutines.launch
 import androidx.compose.ui.draw.alpha
 
@@ -26,7 +26,7 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
         val kind = GameKind.entries.firstOrNull { it.route == e.arguments?.getString("kind") }
         if (kind == null) androidx.compose.runtime.LaunchedEffect(Unit) { nav.popBackStack() } else GameScreen(graph, kind) { nav.popBackStack() }
     }
-    composable("videos") { VideoListScreen(graph, nav) }
+    composable("videos") { WatchPanes(graph, nav) }
     composable("video/{id}") { e -> VideoScreen(graph, e.arguments?.getString("id").orEmpty()) { nav.popBackStack() } }
     composable("word/{id}") { e -> WordDetailScreen(graph, e.arguments?.getString("id").orEmpty()) { nav.popBackStack() } }
     composable("translate?text={text}", arguments = listOf(navArgument("text") { type = NavType.StringType; defaultValue = "" })) { e ->
@@ -42,24 +42,20 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
     val system = app?.system
     if (system == null) { TodayMore(graph, nav); return }
     val due = app?.study?.get(system.id)?.cards?.values?.count { it.due <= System.currentTimeMillis() } ?: 0
-    Card(color = D8.ink) {
-        Text("Daily session", style = Type.title, color = D8.parchment)
-        Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", color = D8.parchment.copy(alpha = 0.85f))
+    Card(color = D8.tyrianDeep) {
+        com.polingual.brand.Label("Daily session", color = D8.ochre)
+        Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", style = Type.title.copy(fontSize = 21.sp()), color = D8.parchment)
         val access by graph.billing.access.collectAsState()
         PrimaryButton(if (access.unlocked || access == Access.Checking) "Start" else "Unlock learning") { nav.navigate(if (access.unlocked) "study" else "paywall") }
     }
-    Card(color = D8.vermilion, onClick = { nav.navigate("translate") }) {
-        Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = D8.parchment)
-        Text("Any word, every language you study", color = D8.parchment.copy(alpha = 0.9f))
-    }
-    TodayMore(graph, nav)
     SectionTitle("Daily games")
-    RewardBar(graph.rewards)
-    VideoTile { nav.navigate("videos") }
-    GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> foundation.bucket.core.model.Lang.info[l]?.latin == false } }.forEach { k ->
-        val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today. Play again." }
-        GameTile(k, played) { nav.navigate("game/${k.route}") }
+    val games = GameKind.entries.filter { it != GameKind.Letters || system.targets.any { l -> foundation.bucket.core.model.Lang.info[l]?.latin == false } }
+    TwoUp(games) { k, m ->
+        val played = app?.played(k, system)?.let { r -> "${r.count { it == '1' }} of ${r.length} today" }
+        GameTile(k, played, m) { nav.navigate("game/${k.route}") }
     }
+    SectionTitle("More ways to play")
+    TodayMore(graph, nav)
     AdBanner(graph)
 }
 

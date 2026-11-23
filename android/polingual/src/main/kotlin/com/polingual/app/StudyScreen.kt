@@ -25,14 +25,14 @@ import foundation.bucket.core.engine.SeededRandom
 import foundation.bucket.core.engine.StudySession
 import foundation.bucket.core.engine.StudyState
 import foundation.bucket.core.model.Lang
-import foundation.bucket.core.ui.Card
-import foundation.bucket.core.ui.ChoiceButton
+import com.polingual.brand.Card
+import com.polingual.brand.ChoiceButton
 import foundation.bucket.core.ui.ChoiceState
-import foundation.bucket.core.ui.D8
+import com.polingual.brand.D8
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.Pill
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.Pill
+import com.polingual.brand.PrimaryButton
+import com.polingual.brand.Type
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -55,7 +55,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         tick.let { }
         val ex = s.current
         if (ex == null) {
-            Text(if (s.total == 0) "Nothing due" else "Session done", style = Type.display, color = p.ink)
+            Text(if (s.total == 0) "Nothing due" else "Session done", style = Type.display, color = D8.tyrian)
             Text(if (s.total == 0) "Come back tomorrow for new words, or play a game." else "${s.correct} of ${s.answered} right. Misses come back in your next session.", color = p.muted)
             PrimaryButton("Back to Today") { done() }
             return@Page

@@ -1,5 +1,6 @@
 package com.polingual.app
 
+import com.polingual.brand.dotGrid
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -36,12 +37,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import foundation.bucket.core.model.Lang
-import foundation.bucket.core.ui.D8
-import foundation.bucket.core.ui.FlagTile
+import com.polingual.brand.D8
+import com.polingual.brand.FlagTile
 import foundation.bucket.core.ui.LocalPalette
-import foundation.bucket.core.ui.PlainLink
-import foundation.bucket.core.ui.PrimaryButton
-import foundation.bucket.core.ui.Type
+import com.polingual.brand.PlainLink
+import com.polingual.brand.PrimaryButton
+import com.polingual.brand.Type
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -57,7 +58,7 @@ fun Onboarding(graph: Graph) {
     var busy by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val p = LocalPalette.current
-    Box(Modifier.fillMaxSize().background(p.paper).safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
+    Box(Modifier.fillMaxSize().dotGrid().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
         Column(Modifier.widthIn(max = 560.dp).fillMaxSize().padding(24.dp)) {
             AnimatedContent(step, modifier = Modifier.weight(1f), label = "step") { s ->
                 Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(18.dp)) {
@@ -76,6 +77,7 @@ fun Onboarding(graph: Graph) {
                 if (step == 0) step = 1 else scope.launch {
                     busy = true
                     graph.createSystem(root, targets)
+                    graph.onboard.set(OnboardStage.Lesson)
                     graph.store.update { it.copy(onboarded = true) }
                     busy = false
                 }
@@ -89,10 +91,8 @@ fun Onboarding(graph: Graph) {
 private fun Welcome() {
     val p = LocalPalette.current
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-        Box(Modifier.size(44.dp).clip(RoundedCornerShape(12.dp)).background(D8.vermilion), contentAlignment = Alignment.Center) {
-            Text("Po", color = D8.parchment, style = Type.title.copy(fontSize = 20.sp))
-        }
-        Text("polingual", style = Type.title, color = p.ink)
+        com.polingual.brand.Mark(44.dp)
+        Text("polingual", style = Type.title, color = D8.tyrian)
     }
     Text(
         buildAnnotatedString {
@@ -100,7 +100,7 @@ private fun Welcome() {
             withStyle(SpanStyle(color = D8.vermilion)) { append("multilingual") }
             append(" learners.")
         },
-        style = Type.display, color = p.ink,
+        style = Type.display, color = D8.tyrian,
     )
     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         listOf("fr" to "cent", "ja" to "百", "grc" to "ἑκατόν").forEach { (l, w) ->
@@ -120,7 +120,7 @@ private fun Welcome() {
 @Composable
 fun Languages(root: String, targets: List<String>, onChange: (List<String>) -> Unit) {
     val p = LocalPalette.current
-    Text("Which languages?", style = Type.display, color = p.ink)
+    Text("Which languages?", style = Type.display, color = D8.tyrian)
     Text("Each word comes back in every language you pick.", color = p.muted)
     Row(Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(p.card).padding(14.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         if (targets.isEmpty()) Text("Pick at least one.", color = p.muted, modifier = Modifier.height(76.dp))

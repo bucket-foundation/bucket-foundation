@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableStateOf
-import foundation.bucket.core.ui.PolingualTheme
+import com.polingual.brand.PolingualTheme
 
 class MainActivity : ComponentActivity() {
     private val link = mutableStateOf<Link?>(null)
