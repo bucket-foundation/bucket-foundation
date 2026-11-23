@@ -22,6 +22,7 @@ export default function Page() {
   return (
     <Legal>
       <h1 className={styles.title}>Become a beta tester</h1>
+      <div className={styles.sub}>Get full access free. Your feedback shapes what we build next.</div>
       <div className={styles.shots}>
         {SHOTS.map((s) => (
           <img key={s.src} src={s.src} alt={s.alt} width={300} height={652} className={styles.shot} />
