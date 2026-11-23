@@ -344,7 +344,7 @@ struct LetterQuiz: View {
             }
         } label: {
             VStack(spacing: 0) {
-                Text(o).font(.system(size: sideways ? 28 : 32, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
+                Text(o).font(PL.heading.font(scale: (sideways ? 28 : 32) / PL.heading.size)).lineLimit(1).minimumScaleFactor(0.5)
                     .overlay(alignment: .trailing) {
                         Image(systemName: "speaker.wave.2.fill").font(.subheadline.weight(.bold))
                             .fixedSize().alignmentGuide(.trailing) { $0[.leading] - 6 }
@@ -353,16 +353,15 @@ struct LetterQuiz: View {
                     }
                 if let s = LetterSounds.lookup(ex.lang, o) {
                     Text(Self.example(s))
-                        .font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : Palette.muted).lineLimit(1).minimumScaleFactor(0.6)
+                        .font(PL.small.font()).foregroundStyle(state == .other ? PL.inkDim : PL.paper.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
                         .opacity(picked == nil ? 0 : 1)
                         .accessibilityHidden(picked == nil)
                 }
             }
             .padding(.vertical, 6)
             .frame(maxWidth: .infinity, minHeight: sideways ? 48 : 56)
-            .foregroundStyle(state == .right ? .white : Palette.ink)
         }
-        .buttonStyle(LetterTileStyle(state: state))
+        .buttonStyle(GameAnswerStyle(state: state))
         .keyframeAnimator(initialValue: 0.0, trigger: state == .wrong ? shake : 0) { v, x in v.offset(x: x) } keyframes: { _ in
             LinearKeyframe(-8, duration: 0.06)
             LinearKeyframe(8, duration: 0.08)
@@ -375,16 +374,4 @@ struct LetterQuiz: View {
     }
 }
 
-struct LetterTileStyle: ButtonStyle {
-    let state: RowState
 
-    func makeBody(configuration: Configuration) -> some View {
-        let face: Color = state == .right ? D8.malachite : state == .wrong ? D8.wrongFace : D8.face
-        let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.edge
-        configuration.label
-            .background(face, in: .rect(cornerRadius: 16))
-            .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(lip, lineWidth: 2) }
-            .background(lip, in: .rect(cornerRadius: 16).offset(y: configuration.isPressed ? 1 : 4))
-            .offset(y: configuration.isPressed ? 3 : 0)
-    }
-}

@@ -219,14 +219,16 @@ final class GamesUITests: XCTestCase {
         let choice = app.buttons["game-choice"].firstMatch
         let combo = app.descendants(matching: .any)["game-combo"]
         XCTAssertTrue(choice.waitForExistence(timeout: 60))
-        XCTAssertTrue(app.descendants(matching: .any)["game-header"].exists)
+        let header = app.descendants(matching: .any)["game-header"]
+        XCTAssertTrue(header.exists)
         for _ in 0..<8 where !combo.exists {
             let right = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value == %@", "game-choice", "answer")).firstMatch
             expectation(for: NSPredicate(format: "isEnabled == true"), evaluatedWith: right)
             waitForExpectations(timeout: 10)
+            let before = header.label
             right.tap()
-            let settled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isEnabled == false"), object: choice)
-            _ = XCTWaiter.wait(for: [settled], timeout: 3)
+            expectation(for: NSPredicate(format: "label != %@", before), evaluatedWith: header)
+            waitForExpectations(timeout: 5)
         }
         XCTAssertTrue(combo.waitForExistence(timeout: 3))
         shot("flags-combo")

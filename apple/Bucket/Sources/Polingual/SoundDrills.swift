@@ -15,17 +15,16 @@ struct SpokenTile: View {
         Button(action: action) {
             VStack(spacing: 2) {
                 if let symbol { Image(systemName: symbol).font(.system(size: 20, weight: .bold)) }
-                Text(text).font(.system(size: vertical == .compact ? 20 : 24, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
+                Text(text).font(PL.heading.font(scale: (vertical == .compact ? 20 : 24) / PL.heading.size)).lineLimit(1).minimumScaleFactor(0.5)
                 if let detail {
-                    Text(detail).font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : Palette.muted).lineLimit(2).minimumScaleFactor(0.7).multilineTextAlignment(.center)
+                    Text(detail).font(PL.small.font()).foregroundStyle(state == .other ? PL.inkDim : PL.paper.opacity(0.85)).lineLimit(2).minimumScaleFactor(0.7).multilineTextAlignment(.center)
                 }
             }
             .padding(.horizontal, 6).padding(.vertical, 6)
             .frame(maxWidth: .infinity, minHeight: vertical == .compact ? 52 : 68)
-            .foregroundStyle(state == .right ? .white : Palette.ink)
         }
-        .buttonStyle(LetterTileStyle(state: state))
-        .overlay { if selected { RoundedRectangle(cornerRadius: 16).strokeBorder(D8.lapis, lineWidth: 3) } }
+        .buttonStyle(GameAnswerStyle(state: state))
+        .overlay { if selected { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.lapis, lineWidth: 3).padding(.bottom, PL.Lip.md) } }
         .accessibilityAddTraits(selected ? .isSelected : [])
         .accessibilityLabel(detail.map { "\(text), \($0)" } ?? text)
     }
