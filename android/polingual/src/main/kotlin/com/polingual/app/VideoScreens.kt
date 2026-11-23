@@ -260,7 +260,7 @@ fun VideoScreen(graph: Graph, id: String, back: () -> Unit) {
                                 Text(
                                     token,
                                     color = if (on) p.ink else p.ink.copy(alpha = 0.75f),
-                                    style = if (on && l == langs.first()) Type.title.copy(fontSize = 17.sp()) else androidx.compose.ui.text.TextStyle(fontSize = 16.sp()),
+                                    style = if (on && l == langs.first()) Type.title.copy(fontSize = 17.sp()) else com.polingual.brand.Type.body,
                                     modifier = Modifier.combinedClickable(
                                         onClick = { seeks += 1; seek = seeks to cue.start },
                                         onLongClick = {
