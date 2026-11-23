@@ -63,6 +63,14 @@ final class GamesUITests: XCTestCase {
         shot("mini-typed")
     }
 
+    private func polywordSize(_ app: XCUIApplication) -> Int {
+        let label = app.staticTexts.matching(NSPredicate(format: "label CONTAINS[c] %@", " letters")).firstMatch
+        guard label.waitForExistence(timeout: 10) else { return 0 }
+        let words = label.label.lowercased().components(separatedBy: " ")
+        guard let at = words.firstIndex(of: "letters"), at > 0 else { return 0 }
+        return Int(words[at - 1]) ?? 0
+    }
+
     private func checkPolywordBoard(_ app: XCUIApplication, shot name: String) {
         let keys = app.buttons.matching(identifier: "polyword.key")
         XCTAssertTrue(keys.firstMatch.waitForExistence(timeout: 60))
@@ -76,15 +84,18 @@ final class GamesUITests: XCTestCase {
             XCTAssertLessThanOrEqual(key.frame.maxY, screen.maxY)
             XCTAssertTrue(key.isHittable)
         }
-        let typed = app.staticTexts.matching(NSPredicate(format: "label IN %@", ["Q", "W", "E", "R", "T"]))
+        let size = polywordSize(app)
+        XCTAssertGreaterThan(size, 0, "The board does not show its word length")
+        let letters = Array("QWERTYUIOPASDFGHJKLZ".prefix(size)).map(String.init)
+        let typed = app.staticTexts.matching(NSPredicate(format: "label IN %@", letters))
         XCTAssertFalse(enter.isEnabled)
-        for letter in ["Q", "W", "E", "R", "T"] { keys.matching(NSPredicate(format: "label == %@", letter)).firstMatch.tap() }
-        XCTAssertEqual(typed.count, 5)
+        for letter in letters { keys.matching(NSPredicate(format: "label == %@", letter)).firstMatch.tap() }
+        XCTAssertEqual(typed.count, size)
         XCTAssertTrue(typed.firstMatch.isHittable, "The active row is hidden")
         XCTAssertTrue(enter.isEnabled)
         shot(name)
         delete.tap()
-        XCTAssertEqual(typed.count, 4)
+        XCTAssertEqual(typed.count, size - 1)
         XCTAssertFalse(enter.isEnabled)
     }
 
