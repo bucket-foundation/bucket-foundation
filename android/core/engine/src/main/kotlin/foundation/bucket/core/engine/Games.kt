@@ -33,23 +33,13 @@ object GameWords {
             .take(perLang).toList()
     }
 
-    fun balanced(words: List<GameWord>): List<GameWord> {
-        val langs = mutableListOf<String>()
-        val queues = linkedMapOf<String, ArrayDeque<GameWord>>()
-        for (w in words) {
-            if (w.lang !in queues) langs += w.lang
-            queues.getOrPut(w.lang) { ArrayDeque() }.addLast(w)
-        }
-        val turns = mutableListOf<GameWord>()
-        while (turns.size < words.size) for (l in langs) queues[l]?.removeFirstOrNull()?.let(turns::add)
-        return turns.withIndex().sortedWith(compareBy<IndexedValue<GameWord>> { minOf(it.value.rank, HELD_RANK) }.thenBy { it.index }).map { it.value }
-    }
+    fun balanced(words: List<GameWord>): List<GameWord> = Kernels.active.balanced(words)
 }
 
 class GameDeck(corpus: LangCorpus, val root: String, val targets: List<String>) {
     data class Entry(val itemId: String, val form: String, val gloss: String, val category: String)
 
-    private val pools: Map<String, List<Entry>>
+    val pools: Map<String, List<Entry>>
     private val index: Map<String, Map<String, Entry>>
 
     init {
@@ -74,49 +64,17 @@ class GameDeck(corpus: LangCorpus, val root: String, val targets: List<String>) 
 
     fun word(itemId: String, lang: String): GameWord? = index[lang]?.get(itemId)?.let { GameWord(it.itemId, lang, it.form, it.gloss, root) }
 
-    fun foils(word: GameWord, also: List<String> = emptyList(), count: Int = 3, rng: SeededRandom): List<String> {
-        val pool = pools[word.lang].orEmpty()
-        val category = index[word.lang]?.get(word.itemId)?.category
-        val form = word.form.lowercase()
-        val gloss = word.gloss.lowercase()
-        val size = word.form.length
-        val first = word.form.firstOrNull()
-        val close = pool.asSequence()
-            .filter { it.gloss.lowercase() != gloss && it.form.lowercase() != form }
-            .map { e -> ((if (e.category == category) 0 else 4) + minOf(3, kotlin.math.abs(e.form.length - size)) + (if (e.form.firstOrNull() == first) 0 else 1)) to e }
-            .sortedWith(compareBy<Pair<Int, Entry>> { it.first }.thenBy { it.second.itemId })
-            .take(16).map { it.second }.toList()
-        val taken = (listOf(form) + also.map { it.lowercase() }).toMutableSet()
-        val out = also.filter { it.lowercase() != form }.toMutableList()
-        for (e in mixed(close, rng)) {
-            if (out.size >= count) break
-            if (taken.add(e.form.lowercase())) out += e.form
-        }
-        return out.take(count)
-    }
+    private val kernel: DeckKernel by lazy { Kernels.active.deck(this) }
 
-    fun daily(count: Int, rng: SeededRandom): List<GameWord> {
-        val langs = targets.sorted()
-        if (langs.isEmpty()) return emptyList()
-        val used = mutableSetOf<String>()
-        val out = mutableListOf<GameWord>()
-        var i = 0
-        val common = langs.map { l -> mixed(pools[l].orEmpty().take(GameRounds.DAILY_POOL), rng) }
-        val cursors = IntArray(langs.size)
-        while (out.size < count && cursors.indices.any { cursors[it] < common[it].size }) {
-            val k = i % langs.size
-            i += 1
-            while (cursors[k] < common[k].size) {
-                val e = common[k][cursors[k]]
-                cursors[k] += 1
-                if (used.add(e.itemId)) {
-                    out += GameWord(e.itemId, langs[k], e.form, e.gloss, root)
-                    break
-                }
-            }
-        }
-        return out
-    }
+    fun entry(itemId: String, lang: String): Entry? = index[lang]?.get(itemId)
+
+    fun foils(word: GameWord, also: List<String> = emptyList(), count: Int = 3, rng: SeededRandom): List<String> = kernel.foils(word, also, count, rng)
+
+    fun daily(count: Int, rng: SeededRandom): List<GameWord> = kernel.daily(count, rng)
+
+    fun dailyRound(day: String): List<GamePrompt> = kernel.dailyRound(day)
+
+    fun sameWordRound(words: List<GameWord>, rng: SeededRandom): List<GamePrompt> = kernel.sameWord(words, rng)
 
     fun shared(): List<String> = targets.firstOrNull()?.let { pools[it].orEmpty().map(Entry::itemId) }.orEmpty()
 }
@@ -140,19 +98,10 @@ object GameFamilies {
         listOf("hi", "sa", "ta", "th"),
         listOf("ja", "zh", "ko"),
     )
-    private val classical = setOf("la", "ang", "grc", "sa")
-
     fun family(lang: String) = groups.firstOrNull { lang in it } ?: listOf(lang)
 
-    fun distractors(lang: String, own: List<String>, excluding: Set<String> = emptySet(), count: Int = 3, rng: SeededRandom): List<String> {
-        val blocked = excluding + lang + (classical - own.toSet())
-        val kin = family(lang).filter { it !in blocked }
-        val near = mixed(kin.filter { it in own }, rng) + mixed(kin.filter { it !in own }, rng)
-        if (near.size >= 2) return near.take(count)
-        val far = mixed(own.filter { it !in blocked && it !in near }, rng) +
-            mixed(Lang.codes.filter { it !in blocked && it !in near && it !in own }, rng)
-        return (near + far).take(count)
-    }
+    fun distractors(lang: String, own: List<String>, excluding: Set<String> = emptySet(), count: Int = 3, rng: SeededRandom): List<String> =
+        Kernels.active.distractors(lang, own, excluding, count, rng)
 }
 
 object GameRounds {
@@ -162,44 +111,12 @@ object GameRounds {
     const val SAME_WORD_LANGS = 3
     const val DAILY_POOL = 400
 
-    private fun formPrompt(id: Int, word: GameWord, deck: GameDeck, also: List<String> = emptyList(), group: Int = 0, rng: SeededRandom): GamePrompt {
-        val foils = deck.foils(word, also, rng = rng)
-        return GamePrompt(id, PromptMode.Form, word, mixed(listOf(word.form) + foils, rng), word.form, group)
-    }
+    fun daily(deck: GameDeck, day: String): List<GamePrompt> = deck.dailyRound(day)
 
-    fun daily(deck: GameDeck, day: String): List<GamePrompt> {
-        val rng = SeededRandom(GameSeed.daily(day, deck.root, deck.targets))
-        return deck.daily(DAILY_LENGTH, rng).mapIndexed { i, w -> formPrompt(i, w, deck, rng = rng) }
-    }
+    fun sameWord(deck: GameDeck, words: List<GameWord>, rng: SeededRandom): List<GamePrompt> = deck.sameWordRound(words, rng)
 
-    fun sameWord(deck: GameDeck, words: List<GameWord>, rng: SeededRandom): List<GamePrompt> {
-        val ids = LinkedHashSet<String>()
-        words.filter { it.root == deck.root }.forEach { ids += it.itemId }
-        deck.shared().forEach { ids += it }
-        val out = mutableListOf<GamePrompt>()
-        var group = 0
-        for (id in ids) {
-            if (group >= SAME_WORD_MEANINGS) break
-            val family = deck.targets.mapNotNull { deck.word(id, it) }.take(SAME_WORD_LANGS)
-            if (family.size < 2 || family.map { it.form }.toSet().size != family.size) continue
-            for (w in family) {
-                val other = family.firstOrNull { it.lang != w.lang }?.form
-                out += formPrompt(out.size, w, deck, listOfNotNull(other), group, rng)
-            }
-            group += 1
-        }
-        return out
-    }
-
-    fun flags(words: List<GameWord>, own: List<String>, mode: PromptMode, count: Int = QUIZ_LENGTH, sameForm: (GameWord, String) -> Boolean = { _, _ -> false }, rng: SeededRandom): List<GamePrompt> {
-        val seen = mutableSetOf<String>()
-        val unique = GameWords.balanced(words).filter { seen.add(it.form.lowercase()) }
-        return unique.take(count).mapIndexed { i, w ->
-            val clash = Lang.codes.filter { sameForm(w, it) }.toSet()
-            val wrong = GameFamilies.distractors(w.lang, own, clash, rng = rng)
-            GamePrompt(i, mode, w, mixed(listOf(w.lang) + wrong, rng), w.lang)
-        }
-    }
+    fun flags(words: List<GameWord>, own: List<String>, mode: PromptMode, count: Int = QUIZ_LENGTH, sameForm: (GameWord, String) -> Boolean = { _, _ -> false }, rng: SeededRandom): List<GamePrompt> =
+        Kernels.active.flags(words, own, mode, count, sameForm, rng)
 }
 
 class QuizRound(val prompts: List<GamePrompt>) {

@@ -54,6 +54,7 @@ android {
     }
     sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("corpusAssets").get().asFile)
     testOptions { unitTests.isReturnDefaultValues = true }
+    packaging { jniLibs { excludes += listOf("lib/mips/**", "lib/mips64/**", "lib/armeabi/**") } }
 }
 
 tasks.named("preBuild") { dependsOn(syncCorpus) }
@@ -62,6 +63,7 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:ui"))
     implementation(project(":core:brand"))
+    implementation(project(":core:rust"))
     implementation(libs.activity.compose)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycle.runtime.compose)
