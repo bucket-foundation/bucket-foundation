@@ -285,7 +285,7 @@ test("beta.js loads Vercel analytics once and sends launch events only on succes
   assert.match(js, /querySelector\('script\[src="\/_vercel\/insights\/script\.js"\]'\)/);
   assert.match(js, /UTM=T0\.s\|\|"direct"/);
   assert.match(js, /sendBeacon\("\/api\/events",b\)/);
-  assert.match(js, /if\(top===self\)ev\("page_view"\)/);
+  assert.match(js, /if\(top===self\)\{ev\("page_view"\);ev\("landing_view"\)\}/);
   assert.match(js, /a\[href\^="https:\/\/apps\.apple\.com\/app\/id6825177856"\]'\)\)ev\("testflight_open"\)/);
   assert.doesNotMatch(js, /testflight\.apple\.com/);
 });
