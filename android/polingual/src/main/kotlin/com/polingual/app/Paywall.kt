@@ -53,7 +53,9 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
     LaunchedEffect(Unit) { graph.billing.refresh() }
     val trial = graph.billing.trialEligible
     Page(back = back) {
-        Text(if (trial) "${Plan.TRIAL_DAYS} days free" else "Keep learning", style = Type.display, color = p.ink)
+        val strings = rememberStrings()
+        var student by remember { mutableStateOf(false) }
+        Text(PaywallCopy.headline(strings, trial), style = Type.display, color = p.ink)
         Text("Daily sessions, every language set, and your words on every device. Games and live rooms stay free.", color = p.muted)
         if (access.unlocked) {
             Pill(if (access is Access.Beta) "Free beta access" else "You have access", D8.malachite)
@@ -75,10 +77,12 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
             }
         }
         products.firstOrNull { it.productId == chosen }?.let { product ->
-            Text(Entitlement.disclosure(trial && Plan.hasTrial(product.productId), product.priceText(), Plan.period(product.productId), product.productId == Plan.FAMILY), color = p.muted)
-            PrimaryButton(if (trial && Plan.hasTrial(product.productId)) "Start free trial" else "Continue") { (context as? Activity)?.let { graph.billing.buy(it, product) } }
+            Text(PaywallCopy.disclosure(strings, trial && Plan.hasTrial(product.productId), product.priceText(), Plan.period(product.productId), product.productId == Plan.FAMILY), color = p.muted)
+            PrimaryButton(PaywallCopy.button(strings, product.productId, trial, buying = false)) { (context as? Activity)?.let { graph.billing.buy(it, product) } }
         }
         message?.let { Text(it, color = D8.lapis) }
+        PlainLink(androidx.compose.ui.res.stringResource(R.string.student_plan)) { student = true }
+        if (student) StudentPlanSheet(products.firstOrNull { it.productId == Plan.YEARLY }?.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.lastOrNull()?.priceCurrencyCode) { student = false }
         PlainLink("Restore purchases") { scope.launch { graph.billing.restore() } }
         PlainLink("Manage subscription") { context.startActivity(Intent(Intent.ACTION_VIEW, "https://play.google.com/store/account/subscriptions?package=${context.packageName}".toUri())) }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

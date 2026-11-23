@@ -30,6 +30,7 @@ class Billing(context: Context, private val graph: Graph) {
     val message: StateFlow<String?> = _message
     var trialEligible = true
         private set
+    private var trialProduct: String? = null
 
     private val client = BillingClient.newBuilder(context)
         .setListener { result, purchases -> graph.scope.launch { onPurchases(result, purchases.orEmpty()) } }
@@ -93,6 +94,7 @@ class Billing(context: Context, private val graph: Graph) {
 
     fun buy(activity: Activity, product: ProductDetails) {
         val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
+        trialProduct = if (offer?.offerId != null && trialEligible && Plan.hasTrial(product.productId)) product.productId else null
         val params = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(product).apply { offer?.let { setOfferToken(it.offerToken) } }.build()
         val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).apply { graph.account.userId?.let { setObfuscatedAccountId(accountHash(it)) } }.build()
         client.launchBillingFlow(activity, flow)
@@ -100,7 +102,16 @@ class Billing(context: Context, private val graph: Graph) {
 
     private suspend fun onPurchases(result: BillingResult, purchases: List<Purchase>) {
         when (result.responseCode) {
-            BillingClient.BillingResponseCode.OK -> handle(purchases)
+            BillingClient.BillingResponseCode.OK -> {
+                purchases.filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }.forEach { p ->
+                    when (TrialReminder.action(p.products, trialProduct)) {
+                        TrialReminder.Action.Schedule -> graph.reminders.scheduleTrial(PaywallCopy.trialEnd(p.purchaseTime))
+                        TrialReminder.Action.Cancel -> graph.reminders.cancelTrial()
+                    }
+                }
+                trialProduct = null
+                handle(purchases)
+            }
             BillingClient.BillingResponseCode.USER_CANCELED -> Unit
             BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED -> restore(silent = true)
             else -> _message.value = "The purchase did not finish. ${result.debugMessage}".trim()
