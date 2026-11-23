@@ -247,6 +247,22 @@ final class GamesUITests: XCTestCase {
         XCTAssertFalse(app.descendants(matching: .any)["game-combo"].exists)
     }
 
+    func testStatusBarReturnsAfterAGame() {
+        let app = launch(["-openGame", "flags", "-showPaywall"])
+        XCTAssertTrue(app.buttons["Restore"].waitForExistence(timeout: 60))
+        shot("statusbar-paywall-over-game")
+        app.swipeDown(velocity: .fast)
+        let choice = app.buttons["game-choice"].firstMatch
+        XCTAssertTrue(choice.waitForExistence(timeout: 20))
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        let newSet = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "New set")).firstMatch
+        XCTAssertTrue(newSet.waitForExistence(timeout: 20))
+        shot("statusbar-learn-after-game")
+        newSet.tap()
+        sleep(2)
+        shot("statusbar-sheet-after-game")
+    }
+
     func testWhichVoiceAndLetterSprintOpen() {
         let voice = launch(["-openGame", "voice"])
         XCTAssertTrue(voice.buttons.matching(identifier: "game-choice").firstMatch.waitForExistence(timeout: 60))
