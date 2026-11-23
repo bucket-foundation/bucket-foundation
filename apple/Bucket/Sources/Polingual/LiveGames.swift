@@ -85,13 +85,13 @@ struct LiveRoomChip: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: -6) { ForEach(room.targets.prefix(3), id: \.self) { FlagTile(lang: $0, size: 22) } }
-            Text(room.game.title).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
+            Text(room.game.title).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink).lineLimit(1)
             Text(room.status == .playing ? String(localized: "\(room.players) playing, in a game") : String(localized: "\(room.players) of \(LobbyRules.cap) waiting"))
-                .font(.footnote).foregroundStyle(Palette.muted).lineLimit(1)
+                .font(PL.small.font()).foregroundStyle(PL.inkDim).lineLimit(1)
         }
-        .padding(12)
+        .padding(PL.Space.s3)
         .frame(minWidth: 150, minHeight: 44, alignment: .leading)
-        .background(Palette.card, in: .rect(cornerRadius: 16))
+        .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
     }
 }
 
@@ -110,20 +110,32 @@ struct LiveStartScreen: View {
         if entered {
             LobbyRoom()
         } else {
-            Form {
-                Section("You") {
-                    TextField("Name others see", text: $displayName).accessibilityIdentifier("liveName")
-                }
-                Section {
+            ScrollView {
+                VStack(alignment: .leading, spacing: PL.Space.s4) {
+                    PLCard {
+                        VStack(alignment: .leading, spacing: PL.Space.s2) {
+                            PlayLabel(text: "You", onDark: false)
+                            TextField("Name others see", text: $displayName)
+                                .font(PL.body.font())
+                                .foregroundStyle(PL.ink)
+                                .padding(PL.Space.s3)
+                                .background(PL.paper, in: .rect(cornerRadius: PL.Radius.sm))
+                                .accessibilityIdentifier("liveName")
+                        }
+                    }
                     Button(action: go) { Text(goLabel) }
+                        .buttonStyle(.pl(.primary, size: .lg))
                         .disabled(name.isEmpty || working)
                         .accessibilityIdentifier("liveGo")
-                    if working { ProgressView() }
+                    if working { ProgressView().tint(PL.paper).frame(maxWidth: .infinity) }
+                    if let problem { Text(problem).font(PL.body.font()).foregroundStyle(PL.ochre) }
                 }
-                if let problem { Section { Text(problem).foregroundStyle(D8.vermilion) } }
+                .padding(PL.Space.s4)
             }
-            .paper()
+            .plGround(.lattice, band: true)
+            .lightStatusBar()
             .navigationTitle(title)
+            .inlineTitle()
             .task {
                 await langs.load()
                 if !name.isEmpty { go() }

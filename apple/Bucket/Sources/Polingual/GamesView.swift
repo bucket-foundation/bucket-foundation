@@ -119,7 +119,7 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
 
     var lip: Color {
         switch self {
-        case .daily, .voice, .wordGroups: Color(hex: 0x12326A)
+        case .daily, .voice, .wordGroups: PL.lapisDeep
         case .same, .letters, .mini: D8.vermilionLip
         case .match, .flags: D8.malachiteLip
         case .polyword, .babel, .forehead, .tiles: PL.tyrianDeep
@@ -160,13 +160,13 @@ struct TileRow: View {
     var body: some View {
         HStack(spacing: 14) {
             SymbolArt(name: symbol, size: 26)
-                .font(.title2)
+                .font(.system(size: 22, weight: .bold))
                 .foregroundStyle(D8.parchment)
                 .frame(width: 48, height: 48)
                 .background(color, in: .rect(cornerRadius: 12))
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.headline).foregroundStyle(Palette.ink)
-                Text(detail).font(.footnote).foregroundStyle(Palette.muted)
+                Text(title).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
+                Text(detail).font(PL.small.font()).foregroundStyle(PL.inkDim)
             }
         }
         .padding(.vertical, 4)
@@ -353,7 +353,7 @@ struct GamesBoard: View {
                     }
                 }
                 Text("\(langs.gameWords.count) words from your reviews. A finished game keeps your streak. Misses come back in study.")
-                    .font(.footnote)
+                    .font(PL.small.font())
                     .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -402,7 +402,7 @@ struct LearnTile<Mark: View>: View {
             VStack(alignment: .leading, spacing: 6) {
                 mark().frame(height: 34)
                 Text(title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
-                Text(detail).font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                Text(detail).font(PL.small.font()).foregroundStyle(D8.parchment.opacity(0.85))
                     .lineLimit(2, reservesSpace: true)
                     .multilineTextAlignment(.leading)
             }
@@ -435,7 +435,7 @@ struct VoiceTile: View {
                     .frame(width: 68, height: 68).background(D8.parchment, in: .circle)
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Translate").font(D8.word(24)).foregroundStyle(D8.parchment)
-                    Text("Tap and speak").font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9))
+                    Text("Tap and speak").font(PL.small.font()).foregroundStyle(D8.parchment.opacity(0.9))
                 }
                 Spacer(minLength: 0)
             }
@@ -495,12 +495,12 @@ struct DailyHero: View {
                 if let played {
                     GamePips(total: GameRounds.dailyLength, results: played.map { $0 == "1" })
                     Text("\(played.filter { $0 == "1" }.count) of \(GameRounds.dailyLength) today. See your result.")
-                        .font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.85))
+                        .font(PL.small.font()).foregroundStyle(D8.parchment.opacity(0.85))
                 } else {
-                    Text(GameKind.daily.detail).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.85))
+                    Text(GameKind.daily.detail).font(PL.small.font()).foregroundStyle(D8.parchment.opacity(0.85))
                         .fixedSize(horizontal: false, vertical: true)
                     Text("Play today's set")
-                        .font(.system(size: 17, weight: .heavy, design: .rounded))
+                        .font(PL.heading.font(scale: 17.0 / 24))
                         .foregroundStyle(D8.lapis)
                         .padding(.horizontal, 18).padding(.vertical, 10)
                         .background(D8.parchment, in: .capsule)
@@ -538,11 +538,11 @@ struct GameTile: View {
                 .frame(height: 34)
                 Text(kind.title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
                 Text(enabled ? kind.detail : String(localized: "Add a second language to play."))
-                    .font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                    .font(PL.small.font()).foregroundStyle(D8.parchment.opacity(0.85))
                     .lineLimit(3, reservesSpace: true)
                     .multilineTextAlignment(.leading)
                 Text(langs.gameBest(kind.rawValue).flatMap { $0 > 0 ? String(localized: "Best \($0)") : nil } ?? " ")
-                    .font(.caption.weight(.heavy).monospacedDigit()).foregroundStyle(D8.parchment)
+                    .font(PL.label.font()).monospacedDigit().foregroundStyle(D8.parchment)
             }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -551,6 +551,7 @@ struct GameTile: View {
         }
         .buttonStyle(.plain)
         .disabled(!enabled)
+        .accessibilityIdentifier("lobby-\(kind.rawValue)")
         .overlay(alignment: .topTrailing) {
             AddToToday(item: .game(kind), look: .icon, color: D8.parchment).padding(8)
         }
@@ -566,17 +567,17 @@ struct QuestCard: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
                 Image(systemName: quest.complete ? "checkmark.seal.fill" : "person.2.fill").foregroundStyle(quest.complete ? D8.malachite : D8.vermilion)
-                Text("\(quest.group.name) quest").font(.headline).foregroundStyle(Palette.ink)
+                Text("\(quest.group.name) quest").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                 Spacer(minLength: 0)
-                Text("\(quest.shownDone) of \(quest.target)").font(.subheadline.weight(.heavy).monospacedDigit()).foregroundStyle(Palette.ink)
+                Text("\(quest.shownDone) of \(quest.target)").font(PL.small.font()).monospacedDigit().foregroundStyle(PL.ink)
             }
             ProgressView(value: quest.progress).tint(quest.complete ? D8.malachite : D8.vermilion)
             Text(quest.complete ? String(localized: "Quest done. New one Monday.") : String(localized: "Words this week. \(quest.active.count) of \(quest.group.members.count) playing."))
-                .font(.footnote).foregroundStyle(Palette.muted)
+                .font(PL.small.font()).foregroundStyle(PL.inkDim)
             if !quest.complete {
                 ForEach(quest.nudgeable.prefix(3)) { m in
                     HStack {
-                        Text(m.name).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink).lineLimit(1)
+                        Text(m.name).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1)
                         Spacer(minLength: 8)
                         Button(sent.contains(m.userId) ? String(localized: "Nudged") : String(localized: "Nudge")) { nudge(m) }
                             .buttonStyle(D8Option(align: .center, compact: true))
@@ -624,7 +625,7 @@ struct GameWaiting: View {
     var body: some View {
         Group {
             if langs.status == .ready || langs.status == .error {
-                Text(message).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                Text(message).foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
             } else {
                 ProgressView()
             }

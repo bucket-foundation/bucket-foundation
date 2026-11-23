@@ -308,7 +308,7 @@ struct PromptCard: View {
                 if rail.count > 1 { family } else { FlagTile(lang: prompt.word.lang, size: 48) }
                 Text(prompt.word.gloss)
                     .font(D8.word(sideways ? 28 : 36))
-                    .foregroundStyle(Palette.ink)
+                    .foregroundStyle(PL.ink)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
@@ -329,7 +329,7 @@ struct PromptCard: View {
                 } else {
                     Text(prompt.word.form)
                         .font(D8.word(sideways ? 30 : 40))
-                        .foregroundStyle(Palette.ink)
+                        .foregroundStyle(PL.ink)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
@@ -374,7 +374,7 @@ struct DailyShareCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("DAILY SET").font(D8.caps(20)).tracking(2).foregroundStyle(Color(hex: 0x5d5650))
+            Text("DAILY SET").font(D8.caps(20)).tracking(2).foregroundStyle(PL.inkDim)
             Text("\(results.filter { $0 }.count) of \(results.count)").font(.system(size: 64, weight: .heavy, design: .rounded)).foregroundStyle(D8.lapis)
             HStack(spacing: 10) {
                 ForEach(Array(zip(prompts, results).enumerated()), id: \.offset) { _, pair in
@@ -385,12 +385,12 @@ struct DailyShareCard: View {
                 }
             }
             Text(Feedback.isPolingual ? String(localized: "One word, every language. polingual.com") : String(localized: "One word, every language. bucket.foundation"))
-                .font(D8.caps(15)).tracking(1.2).foregroundStyle(Color(hex: 0x5B1A4A))
+                .font(D8.caps(15)).tracking(1.2).foregroundStyle(PL.tyrian)
         }
         .padding(48)
         .frame(width: 1080 / 2, alignment: .leading)
         .background(D8.parchment)
-        .overlay(alignment: .bottom) { Rectangle().fill(Color(hex: 0x5B1A4A)).frame(height: 18) }
+        .overlay(alignment: .bottom) { Rectangle().fill(PL.tyrian).frame(height: 18) }
     }
 }
 
