@@ -17,6 +17,7 @@ const SHOTS = [
 ];
 
 export default function Page() {
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || process.env.TURNSTILE_SITE_KEY?.trim() || null;
   return (
     <Legal>
       <h1 className={styles.title}>Become a beta tester</h1>
@@ -26,7 +27,7 @@ export default function Page() {
           <img key={s.src} src={s.src} alt={s.alt} width={300} height={652} className={styles.shot} />
         ))}
       </div>
-      <InviteForm />
+      <InviteForm siteKey={siteKey} />
       <div className={styles.need}>
         iOS 26 · <a href={TESTFLIGHT_APP_URL} rel="noopener">TestFlight</a> · <a href={TESTFLIGHT_JOIN_URL} rel="noopener">On your iPhone? Join now</a>
       </div>

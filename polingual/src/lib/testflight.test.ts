@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { generateKeyPairSync, verify } from "node:crypto";
 import { test } from "node:test";
 import { RateLimiter } from "./beta";
-import { APP_ID, ascToken, BETA_GROUP_ID, enrollAfterEmail, inviteTester, TESTFLIGHT_JOIN_URL } from "./testflight";
+import { betaLink, LINK_TTL_MS, linkKey, signLink, verifyLink } from "./beta-link";
+import { APP_ID, ascToken, BETA_GROUP_ID, confirmJoin, enrollAfterEmail, inviteTester, requestInvite, TESTFLIGHT_JOIN_URL } from "./testflight";
 
 const { privateKey, publicKey } = generateKeyPairSync("ec", { namedCurve: "P-256" });
 const pem = privateKey.export({ type: "pkcs8", format: "pem" }).toString();
@@ -100,7 +101,7 @@ test("an already invited reply on resend counts as success", async () => {
 });
 
 test("missing ASC or Turnstile env returns 503 and calls nothing", async () => {
-  for (const e of [{ ASC_KEY_ID: "k", TURNSTILE_SECRET_KEY: "ts" }, { ...env, TURNSTILE_SECRET_KEY: "" }]) {
+  for (const e of [{ ASC_KEY_ID: "k", TURNSTILE_SECRET_KEY: "ts" }, { ...env, TURNSTILE_SECRET_KEY: "" }] as Record<string, string>[]) {
     const f = fake([]);
     const r = await invite(f, e);
     assert.equal(r.status, 503);
@@ -226,5 +227,102 @@ test("email signup enrollment respects the rate limit", async () => {
   const f = fake([]);
   const limits = { ip: new RateLimiter(0, 600_000), email: new RateLimiter(3, 3_600_000), global: new RateLimiter(60, 3_600_000) };
   assert.equal(await enrollAfterEmail("ana@example.com", "1.2.3.4", env, f.send, limits), "skipped");
+  assert.equal(f.calls.length, 0);
+});
+
+const NOW = 1_800_000_000_000;
+
+test("a signed join link verifies for its email until it expires", () => {
+  const t = signLink("ana@example.com", "secret", NOW);
+  assert.equal(verifyLink("ana@example.com", t, "secret", NOW + LINK_TTL_MS - 1000), true);
+  assert.equal(verifyLink("ana@example.com", t, "secret", NOW + LINK_TTL_MS + 1000), false);
+  assert.equal(verifyLink("bob@example.com", t, "secret", NOW), false);
+  assert.equal(verifyLink("ana@example.com", t, "other", NOW), false);
+  assert.equal(verifyLink("ana@example.com", `${t}x`, "secret", NOW), false);
+  assert.equal(verifyLink("ana@example.com", "garbage", "secret", NOW), false);
+});
+
+test("the link key prefers BETA_LINK_SECRET, derives from the service key, and falls back to the public link", () => {
+  assert.equal(linkKey({ BETA_LINK_SECRET: "s" }), "s");
+  assert.ok(linkKey({ POLINGUAL_DB_SERVICE_KEY: "svc" }));
+  assert.notEqual(linkKey({ POLINGUAL_DB_SERVICE_KEY: "svc" }), "svc");
+  assert.equal(linkKey({}), null);
+  assert.equal(betaLink("ana@example.com", {}), TESTFLIGHT_JOIN_URL);
+  assert.match(betaLink("ana@example.com", { BETA_LINK_SECRET: "s" }, NOW), /\/api\/beta\/join\?e=ana%40example\.com&t=\d+\./);
+});
+
+test("a confirmed join link enrolls the tester", async () => {
+  const f = fake([{ status: 201 }]);
+  const e = { ...env, BETA_LINK_SECRET: "s" };
+  assert.equal(await confirmJoin("ana@example.com", signLink("ana@example.com", "s", NOW), "1.2.3.4", e, f.send, fresh(), NOW), "sent");
+  assert.equal(f.calls[0].url, `${ASC}/betaTesters`);
+});
+
+test("a bad or missing join token enrolls nobody", async () => {
+  const f = fake([]);
+  const e = { ...env, BETA_LINK_SECRET: "s" };
+  assert.equal(await confirmJoin("ana@example.com", signLink("ana@example.com", "wrong", NOW), "1.2.3.4", e, f.send, fresh(), NOW), "skipped");
+  assert.equal(await confirmJoin("ana@example.com", null, "1.2.3.4", e, f.send, fresh(), NOW), "skipped");
+  assert.equal(await confirmJoin("ana@example.com", signLink("ana@example.com", "s", NOW), "1.2.3.4", env, f.send, fresh(), NOW), "skipped");
+  assert.equal(f.calls.length + f.rpcs.length, 0);
+});
+
+async function hitJoin(query: string, e: Record<string, string>, f: ReturnType<typeof fake>) {
+  const { GET } = await import("../app/api/beta/join/route");
+  const { NextRequest } = await import("next/server");
+  const saved = { env: { ...process.env }, fetch: globalThis.fetch };
+  Object.assign(process.env, e);
+  globalThis.fetch = f.send as typeof fetch;
+  try {
+    return await GET(new NextRequest(`https://www.polingual.com/api/beta/join?${query}`, { headers: { "x-real-ip": "9.9.9.9" } }));
+  } finally {
+    for (const k of Object.keys(e)) if (!(k in saved.env)) delete process.env[k];
+    Object.assign(process.env, saved.env);
+    globalThis.fetch = saved.fetch;
+  }
+}
+
+test("the join route enrolls a valid link and redirects to TestFlight", async () => {
+  const f = fake([{ status: 201 }]);
+  const t = signLink("ana@example.com", "s");
+  const r = await hitJoin(`e=ana%40example.com&t=${encodeURIComponent(t)}`, { ...env, BETA_LINK_SECRET: "s" }, f);
+  assert.equal(r.status, 302);
+  assert.equal(r.headers.get("location"), TESTFLIGHT_JOIN_URL);
+  assert.equal(f.calls[0].url, `${ASC}/betaTesters`);
+});
+
+test("the join route redirects a bad token without enrolling", async () => {
+  const f = fake([]);
+  const r = await hitJoin("e=ana%40example.com&t=1.bad", { ...env, BETA_LINK_SECRET: "s" }, f);
+  assert.equal(r.status, 302);
+  assert.equal(r.headers.get("location"), TESTFLIGHT_JOIN_URL);
+  assert.equal(f.calls.length, 0);
+});
+
+const mailEnv = { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud", TURNSTILE_SECRET_KEY: "ts" };
+const mailFresh = () => ({ ip: new RateLimiter(5, 600_000), email: new RateLimiter(2, 3_600_000), global: new RateLimiter(60, 3_600_000) });
+
+test("an email invite without Turnstile is refused when the secret is set", async () => {
+  const f = fake([]);
+  const r = await requestInvite({ email: "ana@example.com", kind: "testflight" }, mailEnv, f.send, { origin: "https://beta.polingual.com", ip: "1.2.3.4" }, mailFresh());
+  assert.equal(r.status, 403);
+  assert.equal(f.calls.length, 0);
+});
+
+test("an email invite passes Turnstile once and sends without enrolling", async () => {
+  const f = fake([{ status: 404 }, { status: 200 }, { status: 200 }]);
+  const r = await requestInvite({ email: "ana@example.com", kind: "testflight" }, mailEnv, f.send, site, mailFresh());
+  assert.equal(r.status, 200);
+  assert.equal(f.checks.length, 1);
+  assert.equal(f.calls.length, 3);
+  assert.ok(f.calls.every((c) => c.url.startsWith("https://api.resend.com")));
+});
+
+test("email invites use the shared limit under their own scope", async () => {
+  const f = fake([], { rpc: { status: 200, body: false } });
+  const e = { ...mailEnv, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc" };
+  const r = await requestInvite({ email: "ana@example.com", kind: "testflight" }, e, f.send, site, mailFresh());
+  assert.equal(r.status, 429);
+  assert.equal(f.rpcs.length, 1);
   assert.equal(f.calls.length, 0);
 });

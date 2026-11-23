@@ -1,11 +1,12 @@
 import { createHash, createPrivateKey, sign } from "node:crypto";
-import { allowedSource, verifyHuman, RateLimiter, type BetaEnv, type BetaRequest, type Fetcher } from "./beta";
+import { allowedSource, joinBeta, verifyHuman, RateLimiter, type BetaEnv, type BetaRequest, type Fetcher } from "./beta";
+import { linkKey, verifyLink } from "./beta-link";
 import { parseSignup } from "./signup";
+import { TESTFLIGHT_JOIN_URL } from "./testflight-links";
 
 export const ASC_API = "https://api.appstoreconnect.apple.com/v1";
 export const BETA_GROUP_ID = "24c75263-401b-4914-834f-94cfeac0d346";
 export const APP_ID = "6825177856";
-import { TESTFLIGHT_JOIN_URL } from "./testflight-links";
 export { TESTFLIGHT_JOIN_URL, TESTFLIGHT_APP_URL } from "./testflight-links";
 const TOKEN_TTL_S = 15 * 60;
 
@@ -15,15 +16,18 @@ type AscCreds = { keyId: string; issuerId: string; privateKey: string };
 export const tfIpLimiter = new RateLimiter(5, 10 * 60_000);
 export const tfEmailLimiter = new RateLimiter(3, 60 * 60_000);
 export const tfGlobalLimiter = new RateLimiter(60, 60 * 60_000);
+export const mailIpLimiter = new RateLimiter(5, 10 * 60_000);
+export const mailEmailLimiter = new RateLimiter(2, 60 * 60_000);
+export const mailGlobalLimiter = new RateLimiter(60, 60 * 60_000);
 const DEFAULT_MAX_TESTERS = 9000;
 const DB_TIMEOUT_MS = 3000;
-type Limits = { ip: RateLimiter; email: RateLimiter; global: RateLimiter };
+export type Limits = { ip: RateLimiter; email: RateLimiter; global: RateLimiter };
 
 function hashed(kind: string, value: string, env: BetaEnv): string {
   return createHash("sha256").update(`${env.FOUNDING_IP_SALT?.trim() || "polingual-testflight"}:${kind}:${value}`).digest("hex");
 }
 
-export async function sharedLimit(ip: string, email: string, env: BetaEnv, send: Fetcher): Promise<boolean | null> {
+export async function sharedLimit(ip: string, email: string, env: BetaEnv, send: Fetcher, scope = ""): Promise<boolean | null> {
   const url = env.POLINGUAL_DB_URL?.trim();
   const key = env.POLINGUAL_DB_SERVICE_KEY?.trim();
   if (!url || !key) return null;
@@ -31,7 +35,7 @@ export async function sharedLimit(ip: string, email: string, env: BetaEnv, send:
     const r = await send(`${url}/rest/v1/rpc/record_testflight_attempt`, {
       method: "POST",
       headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Content-Profile": "polingual", "Accept-Profile": "polingual" },
-      body: JSON.stringify({ p_ip_hash: hashed("ip", ip, env), p_email_hash: hashed("email", email, env) }),
+      body: JSON.stringify({ p_ip_hash: hashed(`${scope}ip`, ip, env), p_email_hash: hashed(`${scope}email`, email, env) }),
       signal: AbortSignal.timeout(DB_TIMEOUT_MS),
     });
     if (!r.ok) {
@@ -187,4 +191,44 @@ export async function enrollAfterEmail(email: string, ip: string, env: BetaEnv, 
   const shared = await sharedLimit(ip, email, env, send);
   if (!(shared ?? localLimit(ip, email, limits, nowMs))) return "skipped";
   return addTester(email, creds, env, send, nowMs);
+}
+
+export async function requestInvite(
+  body: unknown,
+  env: BetaEnv,
+  send: Fetcher = fetch,
+  req: BetaRequest = {},
+  limits: Limits = { ip: mailIpLimiter, email: mailEmailLimiter, global: mailGlobalLimiter },
+) {
+  if (!allowedSource(req.origin, req.referer)) return { status: 403, body: { error: "Sign up from polingual.com." } };
+  const parsed = parseSignup(body);
+  if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
+  if (parsed.suspect) return { status: 200, body: { ok: true as const } };
+  const human = Boolean(env.TURNSTILE_SECRET_KEY?.trim());
+  if (human && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
+  const ip = req.ip || "unknown";
+  const shared = await sharedLimit(ip, parsed.signup.email, env, send, "mail:");
+  if (!(shared ?? localLimit(ip, parsed.signup.email, limits, req.now))) return TOO_MANY;
+  return joinBeta(body, env, send, { ...req, human });
+}
+
+export async function confirmJoin(
+  email: string | null,
+  token: string | null,
+  ip: string,
+  env: BetaEnv,
+  send: Fetcher = fetch,
+  limits: Limits = { ip: tfIpLimiter, email: tfEmailLimiter, global: tfGlobalLimiter },
+  nowMs = Date.now(),
+): Promise<AddOutcome | "skipped"> {
+  const key = linkKey(env);
+  if (!key || !email || !token || email.length > 320 || token.length > 200) return "skipped";
+  const parsed = parseSignup({ email });
+  if (!parsed.ok || parsed.signup.email !== email || !verifyLink(email, token, key, nowMs)) return "skipped";
+  try {
+    return await enrollAfterEmail(email, ip, env, send, limits, nowMs);
+  } catch {
+    console.error("[testflight] join enroll failed");
+    return "failed";
+  }
 }
