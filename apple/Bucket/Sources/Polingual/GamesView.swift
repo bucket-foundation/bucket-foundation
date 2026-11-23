@@ -727,14 +727,14 @@ struct GamesSetStart: View {
             } label: {
                 LabeledContent("Languages I speak") {
                     Text(KnownPrompt.summary(store.known, device: InterfaceLanguage.deviceRoot, name: langName))
-                        .foregroundStyle(Palette.muted)
+                        .foregroundStyle(PL.inkDim)
                 }
                 .foregroundStyle(PL.ink)
                 .padding(.horizontal, 14)
                 .frame(minHeight: 48)
-                .background(D8.face, in: .rect(cornerRadius: 12))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
             }
-            .tint(Palette.ink)
+            .tint(PL.ink)
             .accessibilityIdentifier("games.speak")
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
                 ForEach(GamesSetStart.presets(root: root), id: \.name) { p in
@@ -744,7 +744,7 @@ struct GamesSetStart: View {
             }
             if let failure {
                 Text(LocalizedStringKey(failure.message))
-                    .font(.footnote)
+                    .font(PL.small.font())
                     .foregroundStyle(onDark ? PL.paper : PL.ink)
             }
         }
