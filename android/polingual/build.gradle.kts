@@ -85,4 +85,5 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     testImplementation(libs.kotlin.test)
     testImplementation(libs.coroutines.test)
+    testImplementation(libs.ktor.mock)
 }

@@ -33,7 +33,7 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
     Page("Account") {
         when (stage) {
             Stage.SignedIn -> SignedInSection(graph, nav)
-            else -> SignInCard(graph, stage)
+            else -> { GoogleSignInButton(graph) { }; SignInCard(graph, stage) }
         }
         SectionTitle("Guest play")
         Card {

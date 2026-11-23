@@ -44,6 +44,9 @@ class BucketApi(
     suspend fun verify(email: String, code: String): Session =
         decode(session(buildJsonObject { put("action", "verify"); put("email", email); put("code", code) }))
 
+    suspend fun signInWithGoogle(idToken: String, nonce: String): Session =
+        decode(session(buildJsonObject { put("action", "google"); put("id_token", idToken); put("nonce", nonce); put("app", app) }))
+
     suspend fun refresh(s: Session): Session =
         decode(session(buildJsonObject { put("action", "refresh"); put("refresh_token", s.refreshToken) }))
 
