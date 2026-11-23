@@ -18,15 +18,7 @@ data class StudyState(
 }
 
 object Streak {
-    fun count(days: List<String>, today: String? = null): Int {
-        if (days.isEmpty()) return 0
-        val set = days.toSet()
-        var d = java.time.LocalDate.parse(today ?: days.max())
-        if (d.toString() !in set) d = d.minusDays(1)
-        var n = 0
-        while (d.toString() in set) { n += 1; d = d.minusDays(1) }
-        return n
-    }
+    fun count(days: List<String>, today: String? = null): Int = Kernels.active.streak(days, today)
 }
 
 enum class ExerciseKind { Recognize, Produce }
@@ -37,12 +29,7 @@ object Scheduler {
     const val DAY_MS = 86_400_000L
     const val RELEARN_MS = 10 * 60_000L
 
-    fun grade(state: CardState, correct: Boolean, now: Long): CardState = if (correct) {
-        val interval = if (state.reps == 0) 1.0 else maxOf(1.0, state.intervalDays * (if (state.lapses > 2) 1.8 else 2.5))
-        state.copy(reps = state.reps + 1, intervalDays = interval, due = now + (interval * DAY_MS).toLong(), last = now)
-    } else {
-        state.copy(lapses = state.lapses + 1, intervalDays = 0.0, due = now + RELEARN_MS, last = now)
-    }
+    fun grade(state: CardState, correct: Boolean, now: Long): CardState = Kernels.active.grade(state, correct, now)
 }
 
 class StudySession(
