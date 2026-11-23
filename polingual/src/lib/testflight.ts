@@ -5,8 +5,8 @@ import { parseSignup } from "./signup";
 export const ASC_API = "https://api.appstoreconnect.apple.com/v1";
 export const BETA_GROUP_ID = "24c75263-401b-4914-834f-94cfeac0d346";
 export const APP_ID = "6825177856";
-export const TESTFLIGHT_JOIN_URL = "https://testflight.apple.com/join/B1ctUxn5";
-export const TESTFLIGHT_APP_URL = "https://apps.apple.com/app/testflight/id899247664";
+import { TESTFLIGHT_JOIN_URL } from "./testflight-links";
+export { TESTFLIGHT_JOIN_URL, TESTFLIGHT_APP_URL } from "./testflight-links";
 const TOKEN_TTL_S = 15 * 60;
 
 export type TestflightResult = { status: number; body: { ok?: true; error?: string; join?: string } };
