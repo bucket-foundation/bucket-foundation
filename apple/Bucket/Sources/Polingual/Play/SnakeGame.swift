@@ -3,6 +3,7 @@ import SwiftUI
 
 struct SnakeGame: View {
     @Environment(LangStore.self) private var langs
+    @State private var feel = GameFeel()
     @State private var lang = ""
     @State private var deck: SnakeDeck?
     @State private var arena: Arena?
@@ -20,7 +21,7 @@ struct SnakeGame: View {
     var me: Snake? { arena?.snakes.first { !$0.bot } }
 
     var body: some View {
-        PlayScene(game: .snake) {
+        PlayScene(game: .snake, feel: feel, burst: false) {
             if over || PlayLaunch.endGame {
                 results
             } else if let arena, let deck {
@@ -73,6 +74,11 @@ struct SnakeGame: View {
                     .accessibilityElement()
                     .accessibilityLabel("Steer with your finger. Eat words in your language to grow. Decoys from other languages shrink you.")
                     .accessibilityIdentifier("snakeArena")
+                    .overlay(alignment: .top) {
+                        ComboChip(streak: feel.streak, multiplier: false)
+                            .padding(.top, PL.Space.s2)
+                            .allowsHitTesting(false)
+                    }
             }
             .playBoard(chrome: chrome, least: 200)
         }
@@ -130,6 +136,7 @@ struct SnakeGame: View {
     }
 
     func start() {
+        feel.reset()
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
         let d = Snakes.deck(corpus.items, lang: lang, others: Snakes.langChoices, seed: LobbyRace.dealSeed(), root: root)
@@ -165,8 +172,8 @@ struct SnakeGame: View {
             let shield = Snakes.shielded(elapsedMs: Int(now.timeIntervalSince(startedAt) * 1000))
             if shield != shielded { shielded = shield }
             let next = Snakes.tick(a, aim: aim, deck: d, rand: { Double.random(in: 0..<1) }, dt: dt, shield: shield)
-            if next.eaten.count > before.0 { PlaySound.effect(true, combo: next.eaten.count) }
-            if next.bad.count > before.1 { PlaySound.effect(false) }
+            for _ in before.0..<max(before.0, next.eaten.count) { feel.record(true) }
+            if next.bad.count > before.1 { feel.record(false) }
             arena = next
             left = max(0, Snakes.roundMs / 1000 - Int(now.timeIntervalSince(startedAt)))
             if RevealRules.snake(alive: next.snakes.first { !$0.bot }?.alive ?? false, secondsLeft: left) { over = true }

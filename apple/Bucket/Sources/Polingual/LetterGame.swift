@@ -14,7 +14,7 @@ struct SoundButtons: View {
             buttons
             if voiceless {
                 Text("No \(langName(lang)) voice on this device")
-                    .font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+                    .font(PL.label.font()).foregroundStyle(PL.inkDim)
             }
         }
     }
@@ -23,21 +23,21 @@ struct SoundButtons: View {
         HStack(spacing: 14) {
             Button { play(slow: false) } label: {
                 Image(systemName: "speaker.wave.3.fill")
-                    .font(.system(size: size * 0.4, weight: .bold))
+                    .font(PL.icon(size * 0.4))
                     .foregroundStyle(.white)
                     .symbolEffect(.variableColor.iterative, isActive: playing)
                     .frame(width: size, height: size)
-                    .background(D8.vermilion, in: .circle)
-                    .background(D8.vermilionLip, in: .circle.offset(y: 4))
+                    .background(PL.vermilion, in: .circle)
+                    .background(PL.vermilionDeep, in: .circle.offset(y: 4))
             }
             .buttonStyle(.plain)
             .accessibilityLabel("Hear it")
             Button { play(slow: true) } label: {
                 Image(systemName: "tortoise.fill")
-                    .font(.system(size: size * 0.3, weight: .bold))
-                    .foregroundStyle(D8.vermilion)
+                    .font(PL.icon(size * 0.3))
+                    .foregroundStyle(PL.vermilion)
                     .frame(width: size * 0.7, height: size * 0.7)
-                    .background(D8.vermilion.opacity(0.12), in: .circle)
+                    .background(PL.vermilion.opacity(0.12), in: .circle)
             }
             .buttonStyle(.plain)
             .accessibilityLabel("Hear it slowly")
@@ -62,13 +62,13 @@ struct LetterInWord: View {
     let letter: String
     let lang: String
     let shown: Bool
-    var tint: Color = D8.vermilion
+    var tint: Color = PL.vermilion
     var size: CGFloat = 46
-    var ink: Color = Palette.ink
+    var ink: Color = PL.ink
 
     var body: some View {
         Text(attributed)
-            .font(D8.word(size))
+            .font(PL.wordFont(size))
             .foregroundStyle(ink)
             .lineLimit(1)
             .minimumScaleFactor(0.4)
@@ -91,24 +91,24 @@ struct SoundWord: View {
     let letter: String
     let lang: String
     var shown = true
-    var tint: Color = D8.vermilion
+    var tint: Color = PL.vermilion
     var size: CGFloat = 44
 
     var body: some View {
         let card = LetterSounds.card(sound, letter: letter)
         VStack(spacing: 4) {
             if card.phoneticHoldsLetter {
-                Text(card.word).font(D8.word(size)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.5)
+                Text(card.word).font(PL.wordFont(size)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
                     .opacity(shown ? 1 : 0).accessibilityHidden(!shown)
                 LetterInWord(sound: sound, letter: letter, lang: lang, shown: shown, tint: tint, size: size * 0.6)
             } else {
                 LetterInWord(sound: sound, letter: letter, lang: lang, shown: shown, tint: tint, size: size)
                 if let phonetic = card.phonetic {
-                    Text(phonetic).font(D8.word(size * 0.5)).foregroundStyle(D8.lapis).lineLimit(1).minimumScaleFactor(0.5)
+                    Text(phonetic).font(PL.wordFont(size * 0.5)).foregroundStyle(PL.lapis).lineLimit(1).minimumScaleFactor(0.5)
                         .opacity(shown ? 1 : 0).accessibilityHidden(!shown)
                 }
             }
-            Text(card.meaning).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
+            Text(card.meaning).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.7)
                 .opacity(shown || !card.phoneticHoldsLetter ? 1 : 0).accessibilityHidden(!shown && card.phoneticHoldsLetter)
         }
         .frame(maxWidth: .infinity)
@@ -129,16 +129,16 @@ struct SoundHint: View {
         VStack(alignment: .leading, spacing: 6) {
             if let flag = sound.flag {
                 Label(flag, systemImage: "exclamationmark.triangle.fill")
-                    .font(.subheadline.weight(.bold)).foregroundStyle(D8.vermilion)
+                    .font(PL.small.font()).foregroundStyle(PL.vermilion)
                     .fixedSize(horizontal: false, vertical: true)
             }
             HStack(alignment: .firstTextBaseline, spacing: 10) {
                 if let capsule {
                     Text(capsule)
-                        .font(.system(size: 17, weight: .bold, design: .rounded))
-                        .foregroundStyle(D8.lapis)
+                        .font(PL.script(17, .bold))
+                        .foregroundStyle(PL.lapis)
                 }
-                Text(sound.hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink)
+                Text(sound.hint).font(PL.small.font()).foregroundStyle(PL.ink)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
@@ -169,8 +169,8 @@ struct SayItButton: View {
                 Text(result == true ? Self.cheer(tries) : String(localized: "Close. Tap play, listen once more, then try again."))
                     .lineLimit(1).minimumScaleFactor(0.7)
             }
-            .font(.subheadline.weight(.bold))
-            .foregroundStyle(result == true ? D8.malachite : D8.lapis)
+            .font(PL.small.font())
+            .foregroundStyle(result == true ? PL.malachite : PL.lapis)
             .opacity(result == nil ? 0 : 1)
             .accessibilityHidden(result == nil)
         }
@@ -232,23 +232,23 @@ struct LetterMeet: View {
         let width: CGFloat = sideways ? 190 : 250
         return ZStack {
             FlagFace(flag: D8Flag.of(ex.lang), emblem: false)
-            RoundedRectangle(cornerRadius: 8).fill(D8.panel).padding(width * 0.05)
+            RoundedRectangle(cornerRadius: 8).fill(PL.paper.opacity(0.8)).padding(width * 0.05)
             VStack(spacing: 2) {
                 HStack {
-                    Text(langName(ex.lang).uppercased()).font(D8.caps(11)).tracking(0.8).foregroundStyle(D8.label)
+                    Text(langName(ex.lang).uppercased()).font(PL.capsFont(11)).tracking(0.8).foregroundStyle(PL.inkDim)
                     Spacer(minLength: 0)
-                    Image(systemName: "speaker.wave.2.fill").font(.system(size: 18, weight: .bold)).foregroundStyle(D8.ink.opacity(0.6))
+                    Image(systemName: "speaker.wave.2.fill").font(PL.icon(18)).foregroundStyle(PL.ink.opacity(0.6))
                 }
                 Spacer(minLength: 0)
                 Text(card.phoneticHoldsLetter ? card.word : ex.answer)
-                    .font(D8.word(sideways ? 64 : 84)).foregroundStyle(D8.ink)
+                    .font(PL.wordFont(sideways ? 64 : 84)).foregroundStyle(PL.ink)
                     .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
                 if let reading = characterReading {
-                    Text(reading).font(D8.word(sideways ? 32 : 40)).foregroundStyle(D8.vermilion)
-                    Text(sound.example == ex.answer ? card.meaning : "\(sound.example) \(card.meaning)").font(D8.word(sideways ? 20 : 26)).foregroundStyle(D8.ink)
+                    Text(reading).font(PL.wordFont(sideways ? 32 : 40)).foregroundStyle(PL.vermilion)
+                    Text(sound.example == ex.answer ? card.meaning : "\(sound.example) \(card.meaning)").font(PL.wordFont(sideways ? 20 : 26)).foregroundStyle(PL.ink)
                 } else {
-                    LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 32 : 40, ink: D8.ink)
-                    Text(card.meaning).font(D8.word(sideways ? 20 : 26)).foregroundStyle(D8.ink)
+                    LetterInWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: true, size: sideways ? 32 : 40, ink: PL.ink)
+                    Text(card.meaning).font(PL.wordFont(sideways ? 20 : 26)).foregroundStyle(PL.ink)
                 }
                 Spacer(minLength: 0)
             }
@@ -266,6 +266,7 @@ struct LetterQuiz: View {
     let sound: LetterSound
     let say: String
     let onDone: (_ right: Bool, _ helped: Bool) -> Void
+    var onPick: ((Bool) -> Void)?
     @State private var plays = 0
     @State private var picked: String?
     @State private var hinted = false
@@ -283,11 +284,11 @@ struct LetterQuiz: View {
         (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 10))) {
             VStack(spacing: 10) {
                 Text(question)
-                    .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                    .font(PL.small.font()).foregroundStyle(PL.inkDim)
                     .frame(maxWidth: .infinity)
                 (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 12)) : AnyLayout(VStackLayout(spacing: 10))) {
                     SoundButtons(text: say, lang: ex.lang, size: sideways ? 52 : 64, plays: $plays)
-                    SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? D8.vermilion : D8.malachite, size: sideways ? 36 : 44)
+                    SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? PL.vermilion : PL.malachite, size: sideways ? 36 : 44)
                 }
                 ZStack {
                     SoundHint(sound: sound, reading: false).opacity(hinted || picked != nil ? 1 : 0).accessibilityHidden(!hinted && picked == nil)
@@ -330,7 +331,7 @@ struct LetterQuiz: View {
         return Button {
             if picked == nil {
                 picked = o
-                haptic(o == ex.answer)
+                if let onPick { onPick(o == ex.answer) } else { haptic(o == ex.answer) }
                 if o == ex.answer {
                     LangVoice.shared.speak(say, ex.lang)
                 } else {
@@ -343,25 +344,24 @@ struct LetterQuiz: View {
             }
         } label: {
             VStack(spacing: 0) {
-                Text(o).font(.system(size: sideways ? 28 : 32, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
+                Text(o).font(PL.script(sideways ? 28 : 32)).lineLimit(1).minimumScaleFactor(0.5)
                     .overlay(alignment: .trailing) {
-                        Image(systemName: "speaker.wave.2.fill").font(.subheadline.weight(.bold))
+                        Image(systemName: "speaker.wave.2.fill").font(PL.small.font())
                             .fixedSize().alignmentGuide(.trailing) { $0[.leading] - 6 }
                             .opacity(picked == nil ? 0 : 1)
                             .accessibilityHidden(true)
                     }
                 if let s = LetterSounds.lookup(ex.lang, o) {
                     Text(Self.example(s))
-                        .font(.caption.weight(.semibold)).foregroundStyle(state == .right ? .white.opacity(0.85) : Palette.muted).lineLimit(1).minimumScaleFactor(0.6)
+                        .font(PL.small.font()).foregroundStyle(state == .other ? PL.inkDim : PL.paper.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
                         .opacity(picked == nil ? 0 : 1)
                         .accessibilityHidden(picked == nil)
                 }
             }
             .padding(.vertical, 6)
             .frame(maxWidth: .infinity, minHeight: sideways ? 48 : 56)
-            .foregroundStyle(state == .right ? .white : Palette.ink)
         }
-        .buttonStyle(LetterTileStyle(state: state))
+        .buttonStyle(GameAnswerStyle(state: state))
         .keyframeAnimator(initialValue: 0.0, trigger: state == .wrong ? shake : 0) { v, x in v.offset(x: x) } keyframes: { _ in
             LinearKeyframe(-8, duration: 0.06)
             LinearKeyframe(8, duration: 0.08)
@@ -374,16 +374,4 @@ struct LetterQuiz: View {
     }
 }
 
-struct LetterTileStyle: ButtonStyle {
-    let state: RowState
 
-    func makeBody(configuration: Configuration) -> some View {
-        let face: Color = state == .right ? D8.malachite : state == .wrong ? D8.wrongFace : D8.face
-        let lip: Color = state == .right ? D8.malachiteLip : state == .wrong ? D8.vermilion : D8.edge
-        configuration.label
-            .background(face, in: .rect(cornerRadius: 16))
-            .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(lip, lineWidth: 2) }
-            .background(lip, in: .rect(cornerRadius: 16).offset(y: configuration.isPressed ? 1 : 4))
-            .offset(y: configuration.isPressed ? 3 : 0)
-    }
-}

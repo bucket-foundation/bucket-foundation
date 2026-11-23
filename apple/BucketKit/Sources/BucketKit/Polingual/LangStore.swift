@@ -490,6 +490,10 @@ public final class LangStore {
         systems.compactMap { GameLedger(state($0.id)).best[game] }.max()
     }
 
+    public func gameDayCredit() -> Int {
+        systems.map { GameLedger(state($0.id)).days[dayKey(now())] ?? 0 }.max() ?? 0
+    }
+
     public func gameDaily(_ systemId: String) -> String? {
         GameLedger(state(systemId)).daily[dayKey(now())]
     }

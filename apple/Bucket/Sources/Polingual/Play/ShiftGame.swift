@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ShiftGame: View {
     @Environment(LangStore.self) private var langs
+    @State private var feel = GameFeel()
     @State private var board: ShiftBoard?
     @State private var offsets: [Int] = []
     @State private var found: [String] = []
@@ -18,7 +19,7 @@ struct ShiftGame: View {
     var done: Bool { gaveUp || PlayLaunch.endGame || board.map { RevealRules.shift(found: found, targets: $0.targets) } ?? false }
 
     var body: some View {
-        PlayScene(game: .shift) {
+        PlayScene(game: .shift, feel: feel, burst: false) {
             if let board {
                 if !entered && !round.practicing {
                     RecordedRound(kind: .shift, deck: day, practice: round.score, root: root) { retry(board) }
@@ -46,7 +47,11 @@ struct ShiftGame: View {
 
     func play(_ b: ShiftBoard) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s4) {
-            PlayLabel(text: b.langs.map(Lang.name).joined(separator: " · "))
+            HStack {
+                PlayLabel(text: b.langs.map(Lang.name).joined(separator: " · "))
+                Spacer(minLength: 0)
+                ComboChip(streak: feel.streak, multiplier: false)
+            }
             HStack(spacing: PL.Space.s2) {
                 ForEach(0..<b.length, id: \.self) { i in
                     VStack(spacing: PL.Space.s1) {
@@ -89,13 +94,14 @@ struct ShiftGame: View {
 
     func check(_ b: ShiftBoard) {
         let w = word
-        guard let ls = b.valid[w], !found.contains(w) else { PlaySound.effect(false); return }
+        guard let ls = b.valid[w], !found.contains(w) else { feel.record(false); return }
         found.append(w)
-        PlaySound.effect(true, combo: found.count)
+        feel.record(true)
         if let l = ls.first { LangVoice.shared.speak(w, l) }
     }
 
     func retry(_ b: ShiftBoard) {
+        feel.reset()
         round.begin()
         found = []
         hints = [:]
