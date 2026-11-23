@@ -132,6 +132,8 @@ struct QuizGame: View {
     @State private var shake = 0
     @State private var pause: Task<Void, Never>?
     @State private var feel = GameFeel()
+    @State private var credit: GameCredit?
+    @State private var runId = UUID().uuidString
     @Environment(\.accessibilityReduceMotion) private var systemReduce
 
     var sideways: Bool { vertical == .compact }
@@ -172,6 +174,8 @@ struct QuizGame: View {
         var rng = LobbyRace.dealRandom()
         pause?.cancel()
         best = false
+        credit = nil
+        runId = UUID().uuidString
         replayed = false
         let words = GameWords.ordered(langs.freshGameWords(corpus), using: &rng)
         let clash: (GameWord, String) -> Bool = { w, l in l != w.lang && corpus.byId[w.itemId]?.form(l) == w.form }
@@ -230,9 +234,10 @@ struct QuizGame: View {
             return
         }
         let points = kind == .daily ? nil : r.hits
-        best = langs.recordGame(kind, played: r.prompts.map(\.word), hits: r.hits, points: points, missed: r.missed, pattern: kind == .daily ? r.pattern : nil)
+        guard let outcome = langs.recordRun(runId, kind, played: r.prompts.map(\.word), hits: r.hits, points: points, missed: r.missed, pattern: kind == .daily ? r.pattern : nil) else { return }
+        best = outcome.best
+        credit = outcome.credit
         reminders.noteStudy()
-        haptic(true)
     }
 
     func play(_ r: GameRun, _ p: GamePrompt) -> some View {
@@ -289,16 +294,27 @@ struct QuizGame: View {
     }
 
     func end(_ r: GameRun) -> some View {
-        GameEnd(kind: kind,
-                score: String(localized: "\(r.hits) of \(r.results.count)"),
-                line: kind == .daily ? round.score.map(PracticeLine.text) ?? String(localized: "New set tomorrow.") : nil,
-                best: best,
-                results: r.results,
-                missed: r.missed,
-                share: kind == .daily ? AnyView(DailyShare(prompts: r.prompts, results: r.results, message: langs.shareText(kind, .marks(r.results)))) : nil,
-                shareObject: kind == .daily ? nil : langs.gameScore(kind.title, right: r.hits, total: r.results.count),
-                retry: kind == .daily ? { retry(r.prompts) } : nil,
-                again: kind == .daily ? nil : { deal() })
+        GameResults(title: String(localized: "\(r.hits) of \(r.results.count)"),
+                    line: endLine(r),
+                    reveals: r.missed.prefix(5).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                    root: r.missed.first?.root ?? langs.playRoot,
+                    share: (kind, .marks(r.results)),
+                    retry: kind == .daily ? (kind, nil, { retry(r.prompts) }) : nil,
+                    results: r.results,
+                    stars: r.stars,
+                    credit: credit,
+                    best: best,
+                    extra: kind == .daily
+                        ? AnyView(DailyShare(prompts: r.prompts, results: r.results, message: langs.shareText(kind, .marks(r.results))))
+                        : AnyView(ShareObjectButton(langs.gameScore(kind.title, right: r.hits, total: r.results.count), wide: true)),
+                    again: kind == .daily ? nil : { deal() })
+            .padding(PL.Space.s4)
+    }
+
+    func endLine(_ r: GameRun) -> String {
+        if kind == .daily { return round.score.map(PracticeLine.text) ?? String(localized: "New set tomorrow.") }
+        if langs.gameStreak > 0 { return dayStreak(langs.gameStreak) }
+        return String(localized: "\(r.bestCombo) in a row")
     }
 
     func retry(_ prompts: [GamePrompt]) {

@@ -1,3 +1,4 @@
+import Foundation
 import BucketKit
 import Testing
 @testable import Polingual
@@ -60,5 +61,23 @@ struct GameStatusBarTests {
         GameStatusBar.leave()
         GameStatusBar.leave()
         #expect(!GameStatusBar.light)
+    }
+}
+
+@MainActor
+struct GameResultsTests {
+    @Test func capReplacesZeroXP() {
+        #expect(CreditLine.text(GameCredit(earned: 0, capped: true), shown: 0) == "Daily cap reached")
+        #expect(CreditLine.text(GameCredit(earned: 0, capped: false), shown: 0) == "+0 XP")
+        #expect(CreditLine.text(GameCredit(earned: 4, capped: true), shown: 4) == "+4 XP")
+    }
+
+    @Test func aRunCreditsOnceAcrossARelaunch() throws {
+        let name = "credited-\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: name))
+        defer { defaults.removePersistentDomain(forName: name) }
+        #expect(CreditedRunStore(defaults: defaults).claim("run-1"))
+        #expect(!CreditedRunStore(defaults: defaults).claim("run-1"))
+        #expect(CreditedRunStore(defaults: defaults).claim("run-2"))
     }
 }

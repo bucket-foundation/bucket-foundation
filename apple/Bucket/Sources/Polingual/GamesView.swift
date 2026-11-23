@@ -239,6 +239,34 @@ extension LangStore {
         guard let points, let before else { return false }
         return points > before
     }
+
+    func recordRun(_ id: String, _ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, runs: CreditedRunStore = .shared) -> GameOutcome? {
+        guard runs.claim(id) else { return nil }
+        let before = gameDayCredit()
+        let best = recordGame(kind, played: played, hits: hits, points: points, missed: missed, pattern: pattern)
+        return GameOutcome(best: best, credit: .between(before: before, after: gameDayCredit(), hits: hits))
+    }
+}
+
+struct GameOutcome: Equatable {
+    let best: Bool
+    let credit: GameCredit
+}
+
+@MainActor
+final class CreditedRunStore {
+    static let shared = CreditedRunStore()
+    static let key = "polingual.creditedRuns"
+    private let defaults: UserDefaults
+
+    init(defaults: UserDefaults = .standard) { self.defaults = defaults }
+
+    func claim(_ id: String) -> Bool {
+        var runs = CreditedRuns(defaults.stringArray(forKey: Self.key) ?? [])
+        guard runs.claim(id) else { return false }
+        defaults.set(runs.ids, forKey: Self.key)
+        return true
+    }
 }
 
 @MainActor

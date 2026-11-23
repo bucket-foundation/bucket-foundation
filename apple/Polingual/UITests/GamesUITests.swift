@@ -247,6 +247,26 @@ final class GamesUITests: XCTestCase {
         XCTAssertFalse(app.descendants(matching: .any)["game-combo"].exists)
     }
 
+    func testZeroHitRunStillGetsResults() {
+        let app = launch(["-openGame", "flags", "-revealAnswer"])
+        let choice = app.buttons["game-choice"].firstMatch
+        let results = app.staticTexts["playResults"]
+        XCTAssertTrue(choice.waitForExistence(timeout: 60))
+        for _ in 0..<20 where !results.exists {
+            let wrong = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value != %@ AND isEnabled == true", "game-choice", "answer")).firstMatch
+            guard wrong.waitForExistence(timeout: 5) else { continue }
+            wrong.tap()
+            expectation(for: NSPredicate(format: "isEnabled == false OR exists == false"), evaluatedWith: choice)
+            waitForExpectations(timeout: 5)
+        }
+        XCTAssertTrue(results.waitForExistence(timeout: 10))
+        XCTAssertEqual(results.label, "0 of 10")
+        XCTAssertEqual(app.descendants(matching: .any)["game-stars"].label, "0 of 3 stars")
+        XCTAssertTrue(app.descendants(matching: .any)["game-credit"].exists)
+        XCTAssertTrue(app.buttons["Play again"].exists)
+        shot("flags-zero")
+    }
+
     func testWhichVoiceAndLetterSprintOpen() {
         let voice = launch(["-openGame", "voice"])
         XCTAssertTrue(voice.buttons.matching(identifier: "game-choice").firstMatch.waitForExistence(timeout: 60))
