@@ -26,8 +26,15 @@ final class GameFeel {
     private(set) var wrongs = 0
     private(set) var climbs = 0
     private(set) var gain = 0
+    private(set) var streak = ComboCount()
     @ObservationIgnored var sound: @MainActor (Bool, ComboCount) -> Void = GameFeel.play
 
+    func record(_ right: Bool, points: Int = 1) {
+        streak.record(right)
+        if right { self.right(streak, points: points) } else { wrong(streak) }
+    }
+
+    func reset() { streak = ComboCount() }
     func right(_ streak: ComboCount, points: Int = 1) {
         gain = points * streak.multiplier
         rights += 1
@@ -156,6 +163,28 @@ struct GameHeader: View {
                 .accessibilityIdentifier("game-header")
             ComboChip(streak: streak).frame(minHeight: PL.Space.s6)
         }
+    }
+}
+
+struct GameAnswer: View {
+    let text: String
+    var flag: String?
+    var state: RowState = .other
+    var answer = false
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: PL.Space.s3) {
+                if let flag { PlayFlag(lang: flag, size: 32) }
+                Text(text).font(PL.heading.font(scale: 0.75)).lineLimit(2).minimumScaleFactor(0.6)
+            }
+            .padding(.horizontal, PL.Space.s4)
+            .frame(maxWidth: .infinity, minHeight: 52)
+        }
+        .buttonStyle(GameAnswerStyle(state: state))
+        .accessibilityIdentifier("game-answer")
+        .accessibilityValue(GameLaunch.revealAnswer && answer ? "answer" : "")
     }
 }
 

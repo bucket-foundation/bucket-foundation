@@ -327,6 +327,23 @@ final class GamesUITests: XCTestCase {
         shot("groups-end")
     }
 
+    func testDuelShowsTheComboChip() {
+        let app = launch(["-openGame", "duel", "-revealAnswer"])
+        let combo = app.descendants(matching: .any)["game-combo"]
+        let right = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value == %@ AND isEnabled == true", "game-answer", "answer")).firstMatch
+        let next = app.buttons["Next round"]
+        XCTAssertTrue(right.waitForExistence(timeout: 60))
+        for _ in 0..<6 where !combo.exists {
+            if right.waitForExistence(timeout: 5) { right.tap() }
+            if next.waitForExistence(timeout: 2) {
+                shot("duel-reveal")
+                next.tap()
+            }
+        }
+        XCTAssertTrue(combo.waitForExistence(timeout: 3))
+        shot("duel-combo")
+    }
+
     func testWhichVoiceAndLetterSprintOpen() {
         let voice = launch(["-openGame", "voice"])
         XCTAssertTrue(voice.buttons.matching(identifier: "game-choice").firstMatch.waitForExistence(timeout: 60))

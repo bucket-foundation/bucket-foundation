@@ -169,17 +169,6 @@ struct PlayNote: View {
     }
 }
 
-struct PlayChoice: View {
-    let text: String
-    var state: Bool? = nil
-    let action: () -> Void
-
-    var body: some View {
-        Button(text, action: action)
-            .buttonStyle(.pl(state == true ? .success : state == false ? .accent : .ghost, size: .md))
-    }
-}
-
 struct PlayFlag: View {
     let lang: String
     var size: CGFloat = 36
