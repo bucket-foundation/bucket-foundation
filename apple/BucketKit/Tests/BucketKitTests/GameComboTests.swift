@@ -51,6 +51,21 @@ import Testing
         #expect(GameStars.rating(hits: 12, total: 10) == 3)
     }
 
+    @Test func starEdgesUseExactCutoffs() {
+        #expect(GameStars.rating(hits: 4, total: 10) == 1)
+        #expect(GameStars.rating(hits: 4, total: 5) == 2)
+        #expect(GameStars.rating(hits: 4, total: 4) == 3)
+        #expect(GameStars.rating(hits: 11, total: 10) == 3)
+        #expect(GameStars.rating(hits: 11, total: 12) == 3)
+        #expect(GameStars.rating(hits: 11, total: 13) == 2)
+        #expect(GameStars.rating(hits: 59, total: 100) == 1)
+        #expect(GameStars.rating(hits: 60, total: 100) == 2)
+        #expect(GameStars.rating(hits: 89, total: 100) == 2)
+        #expect(GameStars.rating(hits: 90, total: 100) == 3)
+        #expect(GameStars.rating(hits: 3, total: 5) == 2)
+        #expect(GameStars.rating(hits: 2, total: 3) == 2)
+    }
+
     @Test func runTracksComboTierAndStars() {
         let prompts = words(10).enumerated().map { GamePrompt(id: $0.offset, mode: .form, word: $0.element, choices: [$0.element.form, "x"], answer: $0.element.form) }
         var run = GameRun(prompts)

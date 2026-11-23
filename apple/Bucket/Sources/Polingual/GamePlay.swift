@@ -45,10 +45,27 @@ enum GameSound {
         return made
     }
 
+    static func chordData(_ tier: ComboTier) -> Data {
+        let key = 100 + tier.rawValue
+        if let hit = cache[key] { return hit }
+        let base = 523.25 * pow(2, Double(min(tier.rawValue, 12)) / 12)
+        let made = wave([(base, 0.07), (base * 1.26, 0.07), (base * 1.5, 0.07), (base * 2, 0.22)])
+        cache[key] = made
+        return made
+    }
+
     static func play(right: Bool, combo: Int = 0) {
+        emit(data(right: right, combo: combo))
+    }
+
+    static func chord(_ tier: ComboTier) {
+        emit(chordData(tier))
+    }
+
+    private static func emit(_ data: Data) {
         guard LangVoice.shared.allows(.effect) else { return }
         LangVoice.shared.activate(.effect)
-        player = try? AVAudioPlayer(data: data(right: right, combo: combo))
+        player = try? AVAudioPlayer(data: data)
         player?.volume = 0.35
         player?.play()
     }
@@ -80,9 +97,17 @@ extension View {
             .environment(\.colorScheme, .light)
             #if os(iOS)
             .toolbarColorScheme(.light, for: .navigationBar)
-            .onAppear { ScreenShare.shared.quiet += 1 }
-            .onDisappear { ScreenShare.shared.quiet -= 1 }
             #endif
+            .screenShareQuiet()
+    }
+
+    @ViewBuilder
+    func screenShareQuiet() -> some View {
+        #if os(iOS)
+        onAppear { ScreenShare.shared.quiet += 1 }.onDisappear { ScreenShare.shared.quiet -= 1 }
+        #else
+        self
+        #endif
     }
 
     func gameShake(_ trigger: Int) -> some View {
@@ -106,11 +131,14 @@ struct QuizGame: View {
     @State private var round = PracticeRound()
     @State private var shake = 0
     @State private var pause: Task<Void, Never>?
+    @State private var feel = GameFeel()
+    @Environment(\.accessibilityReduceMotion) private var systemReduce
 
     var sideways: Bool { vertical == .compact }
+    var reduce: Bool { GameMotion.reduced(system: systemReduce) }
 
     var body: some View {
-        FitPage(center: sideways) {
+        GameShell(game: kind, feel: feel, fit: true) {
             Group {
                 if let run {
                     if run.done || gameEndForced {
@@ -119,11 +147,11 @@ struct QuizGame: View {
                         play(run, p)
                     }
                 } else {
-                    GameWaiting(message: waitingMessage)
+                    PLCard { GameWaiting(message: waitingMessage) }.padding(PL.Space.s4)
                 }
             }
         }
-        .gameChrome(kind.title, sideways: vertical == .compact)
+        .screenShareQuiet()
         .task(id: langs.status) {
             LangVoice.shared.warm()
             await langs.load()
@@ -178,8 +206,7 @@ struct QuizGame: View {
     func answer(_ choice: String) {
         guard var r = run, let p = r.current, let right = r.answer(choice) else { return }
         run = r
-        haptic(right)
-        GameSound.play(right: right, combo: r.combo)
+        if right { feel.right(r.streak) } else { feel.wrong(r.streak) }
         if !right { shake += 1 }
         LangVoice.shared.speak(p.word.form, p.word.lang, kind: .auto)
         pause = Task {
@@ -211,7 +238,7 @@ struct QuizGame: View {
     func play(_ r: GameRun, _ p: GamePrompt) -> some View {
         let columns = sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 18))
         return VStack(spacing: sideways ? 8 : 16) {
-            GamePips(total: r.prompts.count, results: r.results, empty: Palette.rule)
+            GameHeader(total: r.prompts.count, results: r.results, streak: r.streak)
             columns {
                 PromptCard(run: r, prompt: p, sideways: sideways)
                     .frame(maxWidth: .infinity)
@@ -219,11 +246,6 @@ struct QuizGame: View {
                     ForEach(p.choices, id: \.self) { c in choice(c, p, r.answered) }
                 }
                 .frame(maxWidth: .infinity)
-            }
-            if r.combo >= 3 {
-                Label("\(r.combo) in a row", systemImage: "bolt.fill")
-                    .font(.subheadline.weight(.heavy)).foregroundStyle(D8.vermilion)
-                    .transition(.scale.combined(with: .opacity))
             }
             if kind == .flags, r.answered != nil { ShareObjectButton(.flag(p.word.lang, root: p.word.root)) }
         }
@@ -248,20 +270,20 @@ struct QuizGame: View {
                 } else {
                     VStack(spacing: 6) {
                         FlagTile(lang: c, size: sideways ? 54 : 76)
-                        if answered != nil { Text(langName(c)).font(.caption.weight(.heavy)).lineLimit(1).minimumScaleFactor(0.7) }
+                        if answered != nil { Text(langName(c)).font(PL.label.font(scale: 1.2)).lineLimit(1).minimumScaleFactor(0.7) }
                     }
                 }
             }
             .padding(10)
             .frame(maxWidth: .infinity, minHeight: sideways ? 64 : 124)
-            .foregroundStyle(state == .right ? .white : Palette.ink)
             .contentShape(.rect)
         }
-        .buttonStyle(GameChoiceStyle(state: state))
+        .buttonStyle(GameAnswerStyle(state: state))
         .disabled(answered != nil)
         .accessibilityIdentifier("game-choice")
-        .gameShake(state == .wrong ? shake : 0)
-        .scaleEffect(state == .right ? 1.04 : 1)
+        .accessibilityValue(GameLaunch.revealAnswer && c == p.answer ? "answer" : "")
+        .gameShake(state == .wrong && !reduce ? shake : 0)
+        .scaleEffect(state == .right && !reduce ? 1.04 : 1)
         .opacity(answered != nil && state == .other ? 0.5 : 1)
         .accessibilityLabel(p.mode == .form ? c : langName(c))
     }
@@ -304,7 +326,7 @@ struct PromptCard: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
-                Text("in \(langName(prompt.word.lang))").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                Text("in \(langName(prompt.word.lang))").font(PL.small.font()).foregroundStyle(PL.inkDim)
             } else {
                 if prompt.mode == .voice && !answered && LangVoice.shared.canSpeak(prompt.word.form, prompt.word.lang) {
                     Button { LangVoice.shared.speak(prompt.word.form, prompt.word.lang) } label: {
@@ -317,7 +339,7 @@ struct PromptCard: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel("Hear it")
-                    Text("Which language is this?").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                    Text("Which language is this?").font(PL.small.font()).foregroundStyle(PL.inkDim)
                 } else {
                     Text(prompt.word.form)
                         .font(D8.word(sideways ? 30 : 40))
@@ -326,7 +348,7 @@ struct PromptCard: View {
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
                     Text(answered ? prompt.word.gloss : String(localized: "Which language is this?"))
-                        .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                        .font(PL.small.font()).foregroundStyle(PL.inkDim)
                 }
             }
         }
@@ -350,7 +372,7 @@ struct PromptCard: View {
                         .padding(3)
                         .overlay { if p.id == prompt.id { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.vermilion, lineWidth: 3) } }
                     Text(solved ? p.word.form : "?")
-                        .font(.system(size: 15, weight: .heavy, design: .rounded))
+                        .font(PL.small.font())
                         .foregroundStyle(solved ? D8.malachite : D8.label)
                         .lineLimit(1).minimumScaleFactor(0.5)
                 }
@@ -715,6 +737,14 @@ struct LetterSprintGame: View {
 }
 
 enum GameLaunch {
+    static var revealAnswer: Bool {
+        #if DEBUG
+        Launch.flag("-revealAnswer")
+        #else
+        false
+        #endif
+    }
+
     static var freshDaily: Bool {
         #if DEBUG
         Launch.flag("-freshDaily")

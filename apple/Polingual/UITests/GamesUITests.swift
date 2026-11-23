@@ -4,7 +4,7 @@ import XCTest
 final class GamesUITests: XCTestCase {
     private func launch(_ extra: [String], orientation: String? = nil, asked: String = "guest") -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", asked] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", asked, "-reduceMotion"] + extra
         app.launch()
         return app
     }
@@ -210,6 +210,24 @@ final class GamesUITests: XCTestCase {
         let app = launch(["-openGame", "flags"])
         playQuiz(app, until: app.buttons["Play again"], name: "flags")
         shot("flags-end")
+    }
+
+    func testComboChipShowsAfterThreeRight() {
+        let app = launch(["-openGame", "flags", "-revealAnswer"])
+        let choice = app.buttons["game-choice"].firstMatch
+        let combo = app.descendants(matching: .any)["game-combo"]
+        XCTAssertTrue(choice.waitForExistence(timeout: 60))
+        XCTAssertTrue(app.descendants(matching: .any)["game-header"].exists)
+        for _ in 0..<8 where !combo.exists {
+            let right = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value == %@", "game-choice", "answer")).firstMatch
+            expectation(for: NSPredicate(format: "isEnabled == true"), evaluatedWith: right)
+            waitForExpectations(timeout: 10)
+            right.tap()
+            expectation(for: NSPredicate(format: "isEnabled == false"), evaluatedWith: choice)
+            waitForExpectations(timeout: 5)
+        }
+        XCTAssertTrue(combo.waitForExistence(timeout: 3))
+        shot("flags-combo")
     }
 
     func testWhichVoiceAndLetterSprintOpen() {

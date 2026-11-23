@@ -103,48 +103,7 @@ extension View {
     }
 }
 
-struct PlayScene<Content: View>: View {
-    @Environment(\.verticalSizeClass) private var vertical
-    let game: GameKind
-    @ViewBuilder let content: () -> Content
-
-    var body: some View {
-        GeometryReader { geo in
-            page.environment(\.playRoom, geo.size.height).environment(\.playSpan, geo.size.width)
-        }
-        .plGround(.lattice, band: true)
-        .navigationTitle(game.title)
-        .inlineTitle()
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(game.title)
-                    .font(PL.heading.font())
-                    .foregroundStyle(PL.paper)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityIdentifier("playTitle")
-            }
-            ToolbarItem(placement: .confirmationAction) {
-                StartLearningButton(size: .sm, full: false)
-            }
-        }
-        .fullHeightSession()
-        .onDisappear { LangVoice.shared.hush() }
-        .accessibilityIdentifier("play-\(game.rawValue)")
-    }
-
-    var page: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: PL.Space.s4) {
-                content()
-            }
-            .padding(.horizontal, PL.Space.s4)
-            .padding(.bottom, PlayFoot.pad(vertical))
-        }
-        .scrollContentBackground(.hidden)
-    }
-}
+typealias PlayScene = GameShell
 
 struct PlayLabel: View {
     let text: String

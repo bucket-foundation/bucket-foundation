@@ -56,9 +56,9 @@ public enum GameStars {
 
     public static func rating(hits: Int, total: Int) -> Int {
         guard total > 0, hits > 0 else { return 0 }
-        let share = Double(min(hits, total)) / Double(total)
-        if share >= 0.9 { return 3 }
-        if share >= 0.6 { return 2 }
+        let tenths = min(hits, total) * 10
+        if tenths >= total * 9 { return 3 }
+        if tenths >= total * 6 { return 2 }
         return 1
     }
 }
