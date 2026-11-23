@@ -1,7 +1,7 @@
 package foundation.bucket.core.engine
 
 class SeededRandom(seed: ULong) {
-    private var state: ULong = if (seed == 0uL) 0x9E3779B97F4A7C15uL else seed
+    var state: ULong = if (seed == 0uL) 0x9E3779B97F4A7C15uL else seed
 
     fun next(): ULong {
         state = state xor (state shl 13)
