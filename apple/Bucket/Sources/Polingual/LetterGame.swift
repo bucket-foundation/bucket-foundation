@@ -344,7 +344,7 @@ struct LetterQuiz: View {
             }
         } label: {
             VStack(spacing: 0) {
-                Text(o).font(PL.heading.font(scale: (sideways ? 28 : 32) / PL.heading.size)).lineLimit(1).minimumScaleFactor(0.5)
+                Text(o).font(.system(size: sideways ? 28 : 32, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
                     .overlay(alignment: .trailing) {
                         Image(systemName: "speaker.wave.2.fill").font(.subheadline.weight(.bold))
                             .fixedSize().alignmentGuide(.trailing) { $0[.leading] - 6 }

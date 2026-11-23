@@ -15,7 +15,7 @@ struct SpokenTile: View {
         Button(action: action) {
             VStack(spacing: 2) {
                 if let symbol { Image(systemName: symbol).font(.system(size: 20, weight: .bold)) }
-                Text(text).font(PL.heading.font(scale: (vertical == .compact ? 20 : 24) / PL.heading.size)).lineLimit(1).minimumScaleFactor(0.5)
+                Text(text).font(.system(size: vertical == .compact ? 20 : 24, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
                 if let detail {
                     Text(detail).font(PL.small.font()).foregroundStyle(state == .other ? PL.inkDim : PL.paper.opacity(0.85)).lineLimit(2).minimumScaleFactor(0.7).multilineTextAlignment(.center)
                 }
