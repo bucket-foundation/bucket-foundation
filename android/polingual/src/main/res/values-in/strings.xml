@@ -326,8 +326,15 @@
     <string name="billing_none">Tidak ada pembelian untuk akun Google ini.</string>
     <string name="billing_failed">Pembelian tidak selesai. %1$s</string>
     <string name="billing_pending">Pembelian Anda tertunda. Akses terbuka setelah Google Play mengonfirmasinya.</string>
+    <string name="signin_offline">Tidak ada koneksi. Periksa jaringan Anda dan coba lagi.</string>
+    <string name="signin_rate_limited">Terlalu banyak percobaan. Tunggu sepuluh menit lalu coba lagi.</string>
+    <string name="signin_unavailable">Masuk sedang tidak tersedia.</string>
+    <string name="signin_revoked">Sesi Anda berakhir. Masuk lagi.</string>
+    <string name="signin_no_google">Tidak ada akun Google di perangkat ini. Tambahkan di Pengaturan atau gunakan email.</string>
+    <string name="signin_failed">Proses masuk tidak selesai. Coba lagi.</string>
+    <string name="notify_open_settings">Buka pengaturan notifikasi</string>
     <plurals name="today_items_left">
-        <item quantity="one">1 item lagi di daftarmu.</item>
+        <item quantity="one">%1$d item lagi di daftarmu.</item>
         <item quantity="zero">%1$d item lagi di daftarmu.</item>
         <item quantity="two">%1$d item lagi di daftarmu.</item>
         <item quantity="few">%1$d item lagi di daftarmu.</item>

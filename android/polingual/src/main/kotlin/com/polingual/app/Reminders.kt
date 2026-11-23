@@ -25,10 +25,10 @@ import java.util.concurrent.TimeUnit
 class Reminders(private val context: Context, private val kv: KeyValue) {
     var wordOfDay: Boolean
         get() = kv.get(WORD_KEY) != "0"
-        set(v) { kv.set(WORD_KEY, if (v) "1" else "0"); reschedule() }
+        set(v) { kv.set(WORD_KEY, if (v) "1" else "0"); rescheduleWord() }
     var streakRisk: Boolean
         get() = kv.get(RISK_KEY) != "0"
-        set(v) { kv.set(RISK_KEY, if (v) "1" else "0"); reschedule() }
+        set(v) { kv.set(RISK_KEY, if (v) "1" else "0"); rescheduleRisk() }
 
     val asked: Boolean get() = kv.get(ASKED_KEY) == "1"
     fun markAsked() = kv.set(ASKED_KEY, "1")
@@ -41,12 +41,21 @@ class Reminders(private val context: Context, private val kv: KeyValue) {
     fun noteStudy(now: LocalTime = LocalTime.now()) {
         val list = kv.get(MINUTES_KEY).orEmpty().split(',').mapNotNull { it.toIntOrNull() } + (now.hour * 60 + now.minute)
         kv.set(MINUTES_KEY, list.takeLast(14).joinToString(","))
-        reschedule()
+        rescheduleRisk()
     }
 
     fun reschedule(nowMs: Long = System.currentTimeMillis()) {
+        rescheduleWord(nowMs)
+        rescheduleRisk(nowMs)
+    }
+
+    fun rescheduleWord(nowMs: Long = System.currentTimeMillis()) {
         val wm = WorkManager.getInstance(context)
         if (wordOfDay) enqueue(wm, WORD_WORK, KIND_WORD, ReminderPlan.nextWordOfDay(nowMs) - nowMs) else wm.cancelUniqueWork(WORD_WORK)
+    }
+
+    fun rescheduleRisk(nowMs: Long = System.currentTimeMillis()) {
+        val wm = WorkManager.getInstance(context)
         val streak = (kv.get(STREAK_CACHE)?.toIntOrNull() ?: 0)
         val studied = kv.get(STUDIED_CACHE) == java.time.LocalDate.now().toString()
         val risk = if (streakRisk) ReminderPlan.riskFire(nowMs, usualMinute, streak, studied) else null
@@ -56,7 +65,7 @@ class Reminders(private val context: Context, private val kv: KeyValue) {
     fun noteProgress(streak: Int, studiedToday: Boolean) {
         kv.set(STREAK_CACHE, streak.toString())
         kv.set(STUDIED_CACHE, if (studiedToday) java.time.LocalDate.now().toString() else null)
-        reschedule()
+        rescheduleRisk()
     }
 
     fun scheduleTrial(trialEndMs: Long, nowMs: Long = System.currentTimeMillis()) {
@@ -106,7 +115,16 @@ class Reminders(private val context: Context, private val kv: KeyValue) {
 }
 
 class ReminderWorker(context: Context, params: WorkerParameters) : CoroutineWorker(context, params) {
-    override suspend fun doWork(): Result {
+    override suspend fun doWork(): Result = try {
+        run()
+        Result.success()
+    } catch (e: kotlinx.coroutines.CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        if (runAttemptCount < 3) Result.retry() else Result.failure()
+    }
+
+    private suspend fun run() {
         val graph = (applicationContext as PolingualApp).graph
         val ctx = applicationContext
         when (inputData.getString("kind")) {
@@ -122,16 +140,17 @@ class ReminderWorker(context: Context, params: WorkerParameters) : CoroutineWork
                         Reminders.post(ctx, 9001, ctx.getString(R.string.notify_word_title, gloss), body)
                     }
                 }
-                graph.reminders.reschedule()
+                graph.reminders.rescheduleWord()
             }
             Reminders.KIND_RISK -> {
                 val app = graph.store.current()
                 val state = app.system?.let { app.study[it.id] }
                 val streak = state?.streak ?: 0
-                if (streak > 0 && !ReminderPlan.studied(state)) Reminders.post(ctx, 9002, ctx.getString(R.string.notify_risk_title, streak), ctx.getString(R.string.notify_risk_body))
+                val studied = ReminderPlan.studied(state)
+                if (streak > 0 && !studied) Reminders.post(ctx, 9002, ctx.getString(R.string.notify_risk_title, streak), ctx.getString(R.string.notify_risk_body))
+                graph.reminders.noteProgress(streak, studied)
             }
             Reminders.KIND_TRIAL -> Reminders.post(ctx, 9003, ctx.getString(R.string.notify_trial_title), ctx.getString(R.string.notify_trial_body))
         }
-        return Result.success()
     }
 }

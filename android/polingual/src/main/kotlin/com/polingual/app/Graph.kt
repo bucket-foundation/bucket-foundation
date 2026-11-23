@@ -58,6 +58,7 @@ class Graph(val context: Context) {
             val app = store.current()
             val st = app.system?.let { app.study[it.id] }
             reminders.noteProgress(st?.streak ?: 0, ReminderPlan.studied(st))
+            reminders.rescheduleWord()
         }
     }
 

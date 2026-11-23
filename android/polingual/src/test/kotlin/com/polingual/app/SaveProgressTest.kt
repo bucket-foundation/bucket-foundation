@@ -51,4 +51,12 @@ class SaveProgressTest {
         assertEquals(Stage.SignedIn, account.stage.value)
         assertTrue(body.contains("\"action\":\"google\"") && body.contains("\"id_token\":\"tok\"") && body.contains("\"nonce\":\"raw\""))
     }
+
+    @Test
+    fun signInErrorsMapToLocalizedStrings() {
+        assertEquals(R.string.signin_offline, SignInErrors.message(foundation.bucket.core.model.BucketError.Offline))
+        assertEquals(R.string.signin_unavailable, SignInErrors.message(foundation.bucket.core.model.BucketError.Server(500, "boom")))
+        assertEquals(R.string.signin_rate_limited, SignInErrors.message(foundation.bucket.core.model.BucketError.RateLimited(null)))
+        assertEquals(R.string.signin_failed, SignInErrors.message(IllegalStateException("x")))
+    }
 }

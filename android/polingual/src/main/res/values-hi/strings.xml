@@ -326,8 +326,15 @@
     <string name="billing_none">इस Google खाते के लिए कोई खरीदारी नहीं मिली।</string>
     <string name="billing_failed">खरीदारी पूरी नहीं हुई। %1$s</string>
     <string name="billing_pending">आपकी खरीदारी लंबित है। Google Play की पुष्टि के बाद एक्सेस खुलेगा।</string>
+    <string name="signin_offline">कनेक्शन नहीं है। अपना नेटवर्क जांचें और फिर कोशिश करें।</string>
+    <string name="signin_rate_limited">बहुत ज़्यादा कोशिशें। दस मिनट रुकें और फिर कोशिश करें।</string>
+    <string name="signin_unavailable">साइन-इन अभी उपलब्ध नहीं है।</string>
+    <string name="signin_revoked">आपका सत्र समाप्त हो गया। फिर से साइन इन करें।</string>
+    <string name="signin_no_google">इस डिवाइस पर कोई Google खाता नहीं है। सेटिंग्स में जोड़ें या ईमेल का उपयोग करें।</string>
+    <string name="signin_failed">साइन-इन पूरा नहीं हुआ। फिर कोशिश करें।</string>
+    <string name="notify_open_settings">सूचना सेटिंग्स खोलें</string>
     <plurals name="today_items_left">
-        <item quantity="one">आपकी सूची में 1 आइटम बाकी है।</item>
+        <item quantity="one">आपकी सूची में %1$d आइटम बाकी है।</item>
         <item quantity="zero">आपकी सूची में %1$d आइटम बाकी हैं।</item>
         <item quantity="two">आपकी सूची में %1$d आइटम बाकी हैं।</item>
         <item quantity="few">आपकी सूची में %1$d आइटम बाकी हैं।</item>

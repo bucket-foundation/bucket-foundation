@@ -326,8 +326,15 @@
     <string name="billing_none">このGoogleアカウントの購入は見つかりませんでした。</string>
     <string name="billing_failed">購入が完了しませんでした。%1$s</string>
     <string name="billing_pending">購入は保留中です。Google Playが確認すると利用できるようになります。</string>
+    <string name="signin_offline">接続がありません。ネットワークを確認して、もう一度お試しください。</string>
+    <string name="signin_rate_limited">試行回数が多すぎます。10分待ってからもう一度お試しください。</string>
+    <string name="signin_unavailable">現在サインインできません。</string>
+    <string name="signin_revoked">セッションが終了しました。もう一度サインインしてください。</string>
+    <string name="signin_no_google">この端末に Google アカウントがありません。設定で追加するか、メールを使用してください。</string>
+    <string name="signin_failed">サインインが完了しませんでした。もう一度お試しください。</string>
+    <string name="notify_open_settings">通知設定を開く</string>
     <plurals name="today_items_left">
-        <item quantity="one">リストに残り 1 件あります。</item>
+        <item quantity="one">リストに残り %1$d 件あります。</item>
         <item quantity="zero">リストに残り %1$d 件あります。</item>
         <item quantity="two">リストに残り %1$d 件あります。</item>
         <item quantity="few">リストに残り %1$d 件あります。</item>

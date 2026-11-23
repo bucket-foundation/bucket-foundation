@@ -44,6 +44,17 @@ object SaveProgress {
     fun shown(pending: Boolean, signedIn: Boolean) = pending && !signedIn
 }
 
+object SignInErrors {
+    fun message(e: Throwable): Int = when (e) {
+        BucketError.Offline -> R.string.signin_offline
+        is BucketError.RateLimited -> R.string.signin_rate_limited
+        BucketError.Unavailable, is BucketError.Server -> R.string.signin_unavailable
+        BucketError.Revoked -> R.string.signin_revoked
+        is androidx.credentials.exceptions.NoCredentialException -> R.string.signin_no_google
+        else -> R.string.signin_failed
+    }
+}
+
 object GoogleSignIn {
     fun available(clientId: String = BuildConfig.GOOGLE_CLIENT_ID) = clientId.isNotBlank()
 
@@ -78,7 +89,10 @@ fun GoogleSignInButton(graph: Graph, onError: (String?) -> Unit) {
         scope.launch {
             busy = true
             onError(null)
-            try { GoogleSignIn.signIn(activity, graph) } catch (e: BucketError) { onError(e.message) } catch (e: androidx.credentials.exceptions.GetCredentialException) { onError(e.message) } finally { busy = false }
+            try { GoogleSignIn.signIn(activity, graph) } catch (e: Exception) {
+                if (e is kotlinx.coroutines.CancellationException) throw e
+                onError(context.getString(SignInErrors.message(e)))
+            } finally { busy = false }
         }
     }
 }

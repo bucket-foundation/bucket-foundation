@@ -51,11 +51,11 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     LaunchedEffect(Unit) { graph.billing.refresh() }
-    val trial = graph.billing.trialEligible
+    val days = products.firstOrNull { it.productId == chosen }?.let(graph.billing::trialDays) ?: products.firstNotNullOfOrNull(graph.billing::trialDays)
     Page(back = back) {
         val strings = rememberStrings()
         var student by remember { mutableStateOf(false) }
-        Text(PaywallCopy.headline(strings, trial), style = Type.display, color = p.ink)
+        Text(PaywallCopy.headline(strings, days), style = Type.display, color = p.ink)
         Text(androidx.compose.ui.res.stringResource(R.string.s_daily_sessions_every_language_set_and), color = p.muted)
         if (access.unlocked) {
             Pill(if (access is Access.Beta) androidx.compose.ui.res.stringResource(R.string.s_free_beta_access) else androidx.compose.ui.res.stringResource(R.string.s_you_have_access), D8.malachite)
@@ -77,8 +77,8 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
             }
         }
         products.firstOrNull { it.productId == chosen }?.let { product ->
-            Text(PaywallCopy.disclosure(strings, trial && Plan.hasTrial(product.productId), product.priceText(), Plan.period(product.productId), product.productId == Plan.FAMILY), color = p.muted)
-            PrimaryButton(PaywallCopy.button(strings, product.productId, trial, buying = false)) { (context as? Activity)?.let { graph.billing.buy(it, product) } }
+            Text(PaywallCopy.disclosure(strings, graph.billing.trialDays(product), product.priceText(), Plan.period(product.productId), product.productId == Plan.FAMILY), color = p.muted)
+            PrimaryButton(PaywallCopy.button(strings, product.productId, graph.billing.trialDays(product), buying = false)) { (context as? Activity)?.let { graph.billing.buy(it, product) } }
         }
         message?.let { Text(it, color = D8.lapis) }
         PlainLink(androidx.compose.ui.res.stringResource(R.string.student_plan)) { student = true }

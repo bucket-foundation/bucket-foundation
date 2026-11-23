@@ -326,8 +326,15 @@
     <string name="billing_none">No se encontraron compras para esta cuenta de Google.</string>
     <string name="billing_failed">La compra no se completó. %1$s</string>
     <string name="billing_pending">Tu compra está pendiente. El acceso se abre cuando Google Play la confirme.</string>
+    <string name="signin_offline">Sin conexión. Revisa tu red e inténtalo de nuevo.</string>
+    <string name="signin_rate_limited">Demasiados intentos. Espera diez minutos e inténtalo de nuevo.</string>
+    <string name="signin_unavailable">El inicio de sesión no está disponible ahora.</string>
+    <string name="signin_revoked">Tu sesión terminó. Inicia sesión de nuevo.</string>
+    <string name="signin_no_google">No hay ninguna cuenta de Google en este dispositivo. Añade una en Ajustes o usa el correo.</string>
+    <string name="signin_failed">El inicio de sesión no se completó. Inténtalo de nuevo.</string>
+    <string name="notify_open_settings">Abrir ajustes de notificaciones</string>
     <plurals name="today_items_left">
-        <item quantity="one">Queda 1 elemento en tu lista.</item>
+        <item quantity="one">Queda %1$d elemento en tu lista.</item>
         <item quantity="zero">Quedan %1$d elementos en tu lista.</item>
         <item quantity="two">Quedan %1$d elementos en tu lista.</item>
         <item quantity="few">Quedan %1$d elementos en tu lista.</item>

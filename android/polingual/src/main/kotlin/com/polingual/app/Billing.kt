@@ -32,6 +32,7 @@ class Billing(context: Context, private val graph: Graph) {
     var trialEligible = true
         private set
     private var trialProduct: String? = null
+    private var trialLength: Int? = null
 
     private val client = BillingClient.newBuilder(context)
         .setListener { result, purchases -> graph.scope.launch { onPurchases(result, purchases.orEmpty()) } }
@@ -93,9 +94,17 @@ class Billing(context: Context, private val graph: Graph) {
         if (!silent) _message.value = app.getString(if (_access.value.unlocked) R.string.billing_restored else R.string.billing_none)
     }
 
+    private fun trialOffer(product: ProductDetails) = if (!trialEligible) null else product.subscriptionOfferDetails?.firstNotNullOfOrNull { o ->
+        TrialOffer.days(o.pricingPhases.pricingPhaseList.map { PricePhase(it.priceAmountMicros, it.billingPeriod) })?.let { o to it }
+    }
+
+    fun trialDays(product: ProductDetails): Int? = trialOffer(product)?.second
+
     fun buy(activity: Activity, product: ProductDetails) {
-        val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
-        trialProduct = if (offer?.offerId != null && trialEligible && Plan.hasTrial(product.productId)) product.productId else null
+        val trial = trialOffer(product)
+        val offer = trial?.first ?: product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId == null } ?: offers.first() }
+        trialProduct = trial?.let { product.productId }
+        trialLength = trial?.second
         val params = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(product).apply { offer?.let { setOfferToken(it.offerToken) } }.build()
         val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).apply { graph.account.userId?.let { setObfuscatedAccountId(accountHash(it)) } }.build()
         client.launchBillingFlow(activity, flow)
@@ -106,7 +115,7 @@ class Billing(context: Context, private val graph: Graph) {
             BillingClient.BillingResponseCode.OK -> {
                 purchases.filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }.forEach { p ->
                     when (TrialReminder.action(p.products, trialProduct)) {
-                        TrialReminder.Action.Schedule -> graph.reminders.scheduleTrial(PaywallCopy.trialEnd(p.purchaseTime))
+                        TrialReminder.Action.Schedule -> graph.reminders.scheduleTrial(PaywallCopy.trialEnd(p.purchaseTime, trialLength ?: 0))
                         TrialReminder.Action.Cancel -> graph.reminders.cancelTrial()
                     }
                 }

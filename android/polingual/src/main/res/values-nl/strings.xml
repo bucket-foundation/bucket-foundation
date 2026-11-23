@@ -326,8 +326,15 @@
     <string name="billing_none">Geen aankopen gevonden voor dit Google-account.</string>
     <string name="billing_failed">De aankoop is niet voltooid. %1$s</string>
     <string name="billing_pending">Je aankoop is in behandeling. Toegang opent zodra Google Play dit bevestigt.</string>
+    <string name="signin_offline">Geen verbinding. Controleer je netwerk en probeer het opnieuw.</string>
+    <string name="signin_rate_limited">Te veel pogingen. Wacht tien minuten en probeer het opnieuw.</string>
+    <string name="signin_unavailable">Inloggen is nu niet beschikbaar.</string>
+    <string name="signin_revoked">Je sessie is beëindigd. Log opnieuw in.</string>
+    <string name="signin_no_google">Geen Google-account op dit apparaat. Voeg er een toe in Instellingen of gebruik e-mail.</string>
+    <string name="signin_failed">Inloggen is niet voltooid. Probeer het opnieuw.</string>
+    <string name="notify_open_settings">Meldingsinstellingen openen</string>
     <plurals name="today_items_left">
-        <item quantity="one">Nog 1 item op je lijst.</item>
+        <item quantity="one">Nog %1$d item op je lijst.</item>
         <item quantity="zero">Nog %1$d items op je lijst.</item>
         <item quantity="two">Nog %1$d items op je lijst.</item>
         <item quantity="few">Nog %1$d items op je lijst.</item>

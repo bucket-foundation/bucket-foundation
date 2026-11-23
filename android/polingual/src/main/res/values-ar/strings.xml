@@ -326,8 +326,15 @@
     <string name="billing_none">لم يتم العثور على مشتريات لحساب Google هذا.</string>
     <string name="billing_failed">لم تكتمل عملية الشراء. %1$s</string>
     <string name="billing_pending">عملية الشراء قيد الانتظار. يُفتح الوصول عندما يؤكدها Google Play.</string>
+    <string name="signin_offline">لا يوجد اتصال. تحقق من الشبكة وحاول مرة أخرى.</string>
+    <string name="signin_rate_limited">محاولات كثيرة جدًا. انتظر عشر دقائق وحاول مرة أخرى.</string>
+    <string name="signin_unavailable">تسجيل الدخول غير متاح الآن.</string>
+    <string name="signin_revoked">انتهت جلستك. سجّل الدخول مرة أخرى.</string>
+    <string name="signin_no_google">لا يوجد حساب Google على هذا الجهاز. أضف حسابًا في الإعدادات أو استخدم البريد الإلكتروني.</string>
+    <string name="signin_failed">لم يكتمل تسجيل الدخول. حاول مرة أخرى.</string>
+    <string name="notify_open_settings">افتح إعدادات الإشعارات</string>
     <plurals name="today_items_left">
-        <item quantity="one">بقي عنصر واحد في قائمتك.</item>
+        <item quantity="one">بقي %1$d عنصر في قائمتك.</item>
         <item quantity="zero">بقي %1$d عنصر في قائمتك.</item>
         <item quantity="two">بقي %1$d عنصر في قائمتك.</item>
         <item quantity="few">بقي %1$d عنصر في قائمتك.</item>

@@ -326,8 +326,15 @@
     <string name="billing_none">Bu Google hesabı için satın alım bulunamadı.</string>
     <string name="billing_failed">Satın alım tamamlanmadı. %1$s</string>
     <string name="billing_pending">Satın alımın beklemede. Google Play onayladığında erişim açılır.</string>
+    <string name="signin_offline">Bağlantı yok. Ağınızı kontrol edip tekrar deneyin.</string>
+    <string name="signin_rate_limited">Çok fazla deneme. On dakika bekleyip tekrar deneyin.</string>
+    <string name="signin_unavailable">Giriş şu anda kullanılamıyor.</string>
+    <string name="signin_revoked">Oturumunuz sona erdi. Tekrar giriş yapın.</string>
+    <string name="signin_no_google">Bu cihazda Google hesabı yok. Ayarlar\'dan ekleyin veya e-posta kullanın.</string>
+    <string name="signin_failed">Giriş tamamlanamadı. Tekrar deneyin.</string>
+    <string name="notify_open_settings">Bildirim ayarlarını aç</string>
     <plurals name="today_items_left">
-        <item quantity="one">Listende 1 öğe kaldı.</item>
+        <item quantity="one">Listende %1$d öğe kaldı.</item>
         <item quantity="zero">Listende %1$d öğe kaldı.</item>
         <item quantity="two">Listende %1$d öğe kaldı.</item>
         <item quantity="few">Listende %1$d öğe kaldı.</item>

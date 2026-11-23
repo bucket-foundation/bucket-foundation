@@ -37,8 +37,8 @@ class EntitlementTest {
 
     @Test
     fun disclosureNamesGooglePlayAndRenewal() {
-        assertEquals("3 days free, then $9.99 a year. Charged to your Google Play account. Renews automatically until you cancel in Google Play subscriptions.", PaywallCopy.disclosure(EnglishStrings, true, "$9.99", "year"))
-        assertTrue(PaywallCopy.disclosure(EnglishStrings, false, "$49", "once").contains("No subscription"))
+        assertEquals("3 days free, then $9.99 a year. Charged to your Google Play account. Renews automatically until you cancel in Google Play subscriptions.", PaywallCopy.disclosure(EnglishStrings, 3, "$9.99", "year"))
+        assertTrue(PaywallCopy.disclosure(EnglishStrings, null, "$49", "once").contains("No subscription"))
     }
 }
 

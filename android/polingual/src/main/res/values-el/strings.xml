@@ -326,8 +326,15 @@
     <string name="billing_none">Δεν βρέθηκαν αγορές για αυτόν τον λογαριασμό Google.</string>
     <string name="billing_failed">Η αγορά δεν ολοκληρώθηκε. %1$s</string>
     <string name="billing_pending">Η αγορά σου εκκρεμεί. Η πρόσβαση ανοίγει όταν την επιβεβαιώσει το Google Play.</string>
+    <string name="signin_offline">Δεν υπάρχει σύνδεση. Ελέγξτε το δίκτυο και δοκιμάστε ξανά.</string>
+    <string name="signin_rate_limited">Πάρα πολλές προσπάθειες. Περιμένετε δέκα λεπτά και δοκιμάστε ξανά.</string>
+    <string name="signin_unavailable">Η σύνδεση δεν είναι διαθέσιμη αυτή τη στιγμή.</string>
+    <string name="signin_revoked">Η συνεδρία σας έληξε. Συνδεθείτε ξανά.</string>
+    <string name="signin_no_google">Δεν υπάρχει λογαριασμός Google σε αυτή τη συσκευή. Προσθέστε έναν στις Ρυθμίσεις ή χρησιμοποιήστε email.</string>
+    <string name="signin_failed">Η σύνδεση δεν ολοκληρώθηκε. Δοκιμάστε ξανά.</string>
+    <string name="notify_open_settings">Άνοιγμα ρυθμίσεων ειδοποιήσεων</string>
     <plurals name="today_items_left">
-        <item quantity="one">Απομένει 1 στοιχείο στη λίστα σου.</item>
+        <item quantity="one">Απομένει %1$d στοιχείο στη λίστα σου.</item>
         <item quantity="zero">Απομένουν %1$d στοιχεία στη λίστα σου.</item>
         <item quantity="two">Απομένουν %1$d στοιχεία στη λίστα σου.</item>
         <item quantity="few">Απομένουν %1$d στοιχεία στη λίστα σου.</item>

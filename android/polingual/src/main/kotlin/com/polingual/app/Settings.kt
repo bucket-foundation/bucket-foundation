@@ -43,7 +43,16 @@ fun NotificationSettings(graph: Graph) {
     Card {
         SettingRow(stringResource(R.string.notify_word_toggle), word) { word = it; graph.reminders.wordOfDay = it }
         SettingRow(stringResource(R.string.notify_risk_toggle), risk) { risk = it; graph.reminders.streakRisk = it }
-        if (!graph.reminders.allowed()) Text(stringResource(R.string.notify_denied), color = LocalPalette.current.muted)
+        if (!graph.reminders.allowed()) {
+            val context = androidx.compose.ui.platform.LocalContext.current
+            Text(stringResource(R.string.notify_denied), color = LocalPalette.current.muted)
+            foundation.bucket.core.ui.PlainLink(stringResource(R.string.notify_open_settings)) {
+                runCatching {
+                    context.startActivity(android.content.Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                        .putExtra(android.provider.Settings.EXTRA_APP_PACKAGE, context.packageName).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK))
+                }
+            }
+        }
     }
 }
 

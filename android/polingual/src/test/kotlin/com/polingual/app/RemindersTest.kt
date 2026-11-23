@@ -106,4 +106,24 @@ class RemindersTest {
         assertNull(PushConfig.of("a", "", "c", "d"))
         assertNotNull(PushConfig.of("a", "b", "c", "d"))
     }
+
+    @Test
+    fun registrationBacksOffExponentiallyUpToADay() = runTest {
+        assertEquals(60_000L, PushRegistry.backoff(1))
+        assertEquals(240_000L, PushRegistry.backoff(3))
+        assertEquals(86_400_000L, PushRegistry.backoff(30))
+        val t = Fake(500)
+        val r = PushRegistry(t, MemoryKeyValue())
+        r.received("tok", "b", nowMs = 0)
+        r.received("tok", "b", nowMs = 30_000)
+        assertEquals(1, t.calls.size)
+        r.received("tok", "b", nowMs = 60_000)
+        assertEquals(2, t.calls.size)
+        assertEquals(2, r.failures)
+        t.status = 200
+        r.received("tok2", "b", nowMs = 60_001)
+        assertEquals(0, r.failures)
+        assertEquals("android", (t.calls.last().third as JsonObject)["platform"]!!.jsonPrimitive.content)
+        assertNull((t.calls.last().third as JsonObject)["env"])
+    }
 }

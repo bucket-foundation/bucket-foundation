@@ -326,8 +326,15 @@
     <string name="billing_none">לא נמצאו רכישות בחשבון Google הזה.</string>
     <string name="billing_failed">הרכישה לא הושלמה. %1$s</string>
     <string name="billing_pending">הרכישה ממתינה. הגישה תיפתח כש-Google Play יאשר אותה.</string>
+    <string name="signin_offline">אין חיבור. בדקו את הרשת ונסו שוב.</string>
+    <string name="signin_rate_limited">יותר מדי ניסיונות. המתינו עשר דקות ונסו שוב.</string>
+    <string name="signin_unavailable">ההתחברות אינה זמינה כרגע.</string>
+    <string name="signin_revoked">ההתחברות שלכם פגה. התחברו שוב.</string>
+    <string name="signin_no_google">אין חשבון Google במכשיר הזה. הוסיפו אחד בהגדרות או השתמשו באימייל.</string>
+    <string name="signin_failed">ההתחברות לא הושלמה. נסו שוב.</string>
+    <string name="notify_open_settings">פתיחת הגדרות ההתראות</string>
     <plurals name="today_items_left">
-        <item quantity="one">נשאר פריט אחד ברשימה שלך.</item>
+        <item quantity="one">נשארו %1$d פריטים ברשימה שלך.</item>
         <item quantity="zero">נשארו %1$d פריטים ברשימה שלך.</item>
         <item quantity="two">נשארו %1$d פריטים ברשימה שלך.</item>
         <item quantity="few">נשארו %1$d פריטים ברשימה שלך.</item>

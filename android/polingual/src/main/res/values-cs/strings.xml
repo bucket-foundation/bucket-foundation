@@ -326,12 +326,17 @@
     <string name="billing_none">Pro tento účet Google nebyly nalezeny žádné nákupy.</string>
     <string name="billing_failed">Nákup se nedokončil. %1$s</string>
     <string name="billing_pending">Tvůj nákup čeká na vyřízení. Přístup se otevře, až ho Google Play potvrdí.</string>
+    <string name="signin_offline">Bez připojení. Zkontrolujte síť a zkuste to znovu.</string>
+    <string name="signin_rate_limited">Příliš mnoho pokusů. Počkejte deset minut a zkuste to znovu.</string>
+    <string name="signin_unavailable">Přihlášení teď není dostupné.</string>
+    <string name="signin_revoked">Vaše relace skončila. Přihlaste se znovu.</string>
+    <string name="signin_no_google">V tomto zařízení není účet Google. Přidejte ho v Nastavení nebo použijte e-mail.</string>
+    <string name="signin_failed">Přihlášení se nedokončilo. Zkuste to znovu.</string>
+    <string name="notify_open_settings">Otevřít nastavení oznámení</string>
     <plurals name="today_items_left">
-        <item quantity="one">Na seznamu zbývá 1 položka.</item>
-        <item quantity="zero">Zbývá na seznamu: %1$d.</item>
-        <item quantity="two">Zbývá na seznamu: %1$d.</item>
-        <item quantity="few">Zbývá na seznamu: %1$d.</item>
-        <item quantity="many">Zbývá na seznamu: %1$d.</item>
-        <item quantity="other">Zbývá na seznamu: %1$d.</item>
+        <item quantity="one">Zbývá %1$d položka na seznamu.</item>
+        <item quantity="few">Zbývají %1$d položky na seznamu.</item>
+        <item quantity="many">Zbývá %1$d položky na seznamu.</item>
+        <item quantity="other">Zbývá %1$d položek na seznamu.</item>
     </plurals>
 </resources>

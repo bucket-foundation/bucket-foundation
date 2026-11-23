@@ -326,8 +326,15 @@
     <string name="billing_none">Tälle Google-tilille ei löytynyt ostoksia.</string>
     <string name="billing_failed">Osto ei valmistunut. %1$s</string>
     <string name="billing_pending">Ostosi on odottamassa. Pääsy avautuu, kun Google Play vahvistaa sen.</string>
+    <string name="signin_offline">Ei yhteyttä. Tarkista verkko ja yritä uudelleen.</string>
+    <string name="signin_rate_limited">Liian monta yritystä. Odota kymmenen minuuttia ja yritä uudelleen.</string>
+    <string name="signin_unavailable">Kirjautuminen ei ole nyt käytettävissä.</string>
+    <string name="signin_revoked">Istuntosi päättyi. Kirjaudu uudelleen.</string>
+    <string name="signin_no_google">Laitteella ei ole Google-tiliä. Lisää tili asetuksissa tai käytä sähköpostia.</string>
+    <string name="signin_failed">Kirjautuminen ei valmistunut. Yritä uudelleen.</string>
+    <string name="notify_open_settings">Avaa ilmoitusasetukset</string>
     <plurals name="today_items_left">
-        <item quantity="one">Listallasi on vielä 1 kohde.</item>
+        <item quantity="one">Listallasi on vielä %1$d kohde.</item>
         <item quantity="zero">Listallasi on vielä %1$d kohdetta.</item>
         <item quantity="two">Listallasi on vielä %1$d kohdetta.</item>
         <item quantity="few">Listallasi on vielä %1$d kohdetta.</item>

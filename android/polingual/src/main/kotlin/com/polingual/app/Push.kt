@@ -31,18 +31,34 @@ class PushRegistry(private val transport: BetaTransport, private val kv: KeyValu
 
     fun body(device: String) = buildJsonObject {
         put("token", device)
-        put("env", "production")
         put("bundleId", bundleId)
         put("platform", "android")
     }
 
-    suspend fun received(token: String, bearer: String?) {
+    val failures: Int get() = kv.get(FAILURES_KEY)?.toIntOrNull() ?: 0
+
+    fun canTry(nowMs: Long): Boolean = nowMs >= (kv.get(NEXT_KEY)?.toLongOrNull() ?: 0L)
+
+    suspend fun received(token: String, bearer: String?, nowMs: Long = System.currentTimeMillis()) {
+        val fresh = token != device
         device = token
         kv.set(DEVICE_KEY, token)
-        if (bearer != null && register(token, bearer)) kv.set(PENDING_KEY, null)
+        if (bearer == null || (!fresh && !canTry(nowMs))) return
+        if (register(token, bearer, nowMs)) kv.set(PENDING_KEY, null)
     }
 
-    suspend fun register(device: String, bearer: String): Boolean = transport.send("POST", PATH, bearer, body(device)) in 200..299
+    suspend fun register(device: String, bearer: String, nowMs: Long = System.currentTimeMillis()): Boolean {
+        val ok = transport.send("POST", PATH, bearer, body(device)) in 200..299
+        if (ok) {
+            kv.set(FAILURES_KEY, null)
+            kv.set(NEXT_KEY, null)
+        } else {
+            val n = failures + 1
+            kv.set(FAILURES_KEY, n.toString())
+            kv.set(NEXT_KEY, (nowMs + backoff(n)).toString())
+        }
+        return ok
+    }
 
     suspend fun unregister(user: String?, bearer: String?) {
         val d = device ?: return
@@ -70,6 +86,12 @@ class PushRegistry(private val transport: BetaTransport, private val kv: KeyValu
         const val PATH = "api/academy/push/register"
         const val DEVICE_KEY = "push.device"
         const val PENDING_KEY = "push.pendingUnregister"
+        const val FAILURES_KEY = "push.failures"
+        const val NEXT_KEY = "push.nextTry"
+        const val BASE_MS = 60_000L
+        const val MAX_MS = 86_400_000L
+
+        fun backoff(failures: Int): Long = if (failures <= 0) 0 else minOf(MAX_MS, BASE_MS shl minOf(failures - 1, 20))
 
         fun start(context: Context, config: PushConfig?): Boolean {
             config ?: return false

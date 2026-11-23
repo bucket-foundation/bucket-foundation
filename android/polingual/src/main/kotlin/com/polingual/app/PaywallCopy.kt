@@ -25,19 +25,19 @@ object PaywallCopy {
     const val SUPPORT = "support@polingual.com"
     const val STUDENT_USD = "$29.99"
 
-    fun headline(s: Strings, trial: Boolean) = if (trial) s.get(R.string.paywall_days_free, Plan.TRIAL_DAYS) else s.get(R.string.paywall_keep_learning)
+    fun headline(s: Strings, days: Int?) = if (days != null) s.get(R.string.paywall_days_free, days) else s.get(R.string.paywall_keep_learning)
 
-    fun button(s: Strings, productId: String, trial: Boolean, buying: Boolean) = when {
+    fun button(s: Strings, productId: String, days: Int?, buying: Boolean) = when {
         buying -> s.get(R.string.paywall_one_moment)
         productId == Plan.LIFETIME -> s.get(R.string.paywall_buy_once)
-        trial && Plan.hasTrial(productId) -> s.get(R.string.paywall_start_free, Plan.TRIAL_DAYS)
+        days != null && productId != Plan.LIFETIME -> s.get(R.string.paywall_start_free, days)
         else -> s.get(R.string.paywall_subscribe)
     }
 
-    fun disclosure(s: Strings, trial: Boolean, price: String, period: String, family: Boolean = false): String {
+    fun disclosure(s: Strings, days: Int?, price: String, period: String, family: Boolean = false): String {
         if (period == "once") return s.get(R.string.paywall_once, price)
         val per = if (period == "year") s.get(R.string.paywall_a_year, price) else s.get(R.string.paywall_a_month, price)
-        val lead = if (trial) s.get(R.string.paywall_trial_then, Plan.TRIAL_DAYS, per) else s.get(R.string.paywall_period, per)
+        val lead = if (days != null) s.get(R.string.paywall_trial_then, days, per) else s.get(R.string.paywall_period, per)
         val share = if (family) " " + s.get(R.string.paywall_family_share) else ""
         return lead + " " + s.get(R.string.paywall_renews) + share
     }
@@ -48,14 +48,29 @@ object PaywallCopy {
 
     private fun enc(v: String) = java.net.URLEncoder.encode(v, "UTF-8").replace("+", "%20")
 
-    fun trialEnd(purchasedMs: Long) = purchasedMs + Plan.TRIAL_DAYS * ReminderPlan.DAY_MS
+    fun trialEnd(purchasedMs: Long, days: Int) = purchasedMs + days * ReminderPlan.DAY_MS
 }
 
 object TrialReminder {
     enum class Action { Schedule, Cancel }
 
     fun action(products: List<String>, trialProduct: String?): Action =
-        if (trialProduct != null && trialProduct in products && Plan.hasTrial(trialProduct)) Action.Schedule else Action.Cancel
+        if (trialProduct != null && trialProduct in products) Action.Schedule else Action.Cancel
+}
+
+data class PricePhase(val priceMicros: Long, val period: String)
+
+object TrialOffer {
+    private val iso = Regex("""^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)W)?(?:(\d+)D)?$""")
+
+    fun periodDays(period: String): Int? {
+        val m = iso.matchEntire(period) ?: return null
+        val (y, mo, w, d) = m.destructured
+        val days = (y.toIntOrNull() ?: 0) * 365 + (mo.toIntOrNull() ?: 0) * 30 + (w.toIntOrNull() ?: 0) * 7 + (d.toIntOrNull() ?: 0)
+        return days.takeIf { it > 0 }
+    }
+
+    fun days(phases: List<PricePhase>): Int? = phases.firstOrNull { it.priceMicros == 0L }?.let { periodDays(it.period) }
 }
 
 @Composable

@@ -39,4 +39,16 @@ class LocalizationTest {
             }
         }
     }
+
+    @Test
+    fun pluralsUseCountAndSlavicQuantities() {
+        val item = Regex("""<item quantity="(\w+)">(.*?)</item>""")
+        res.listFiles()!!.filter { it.name.startsWith("values") && File(it, "strings.xml").exists() }.forEach { dir ->
+            item.findAll(File(dir, "strings.xml").readText()).forEach { assertTrue("%1\$d" in it.groupValues[2], "${dir.name} ${it.groupValues[1]}") }
+        }
+        listOf("ru", "pl", "cs").forEach { l ->
+            val q = item.findAll(File(res, "values-$l/strings.xml").readText()).map { it.groupValues[1] }.toSet()
+            assertTrue(q.containsAll(setOf("one", "few", "many", "other")), l)
+        }
+    }
 }

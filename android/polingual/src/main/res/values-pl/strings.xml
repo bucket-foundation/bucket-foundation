@@ -326,12 +326,17 @@
     <string name="billing_none">Nie znaleziono zakupów dla tego konta Google.</string>
     <string name="billing_failed">Zakup nie został ukończony. %1$s</string>
     <string name="billing_pending">Zakup oczekuje na potwierdzenie. Dostęp otworzy się, gdy Google Play go potwierdzi.</string>
+    <string name="signin_offline">Brak połączenia. Sprawdź sieć i spróbuj ponownie.</string>
+    <string name="signin_rate_limited">Zbyt wiele prób. Poczekaj dziesięć minut i spróbuj ponownie.</string>
+    <string name="signin_unavailable">Logowanie jest teraz niedostępne.</string>
+    <string name="signin_revoked">Sesja wygasła. Zaloguj się ponownie.</string>
+    <string name="signin_no_google">Na tym urządzeniu nie ma konta Google. Dodaj je w Ustawieniach lub użyj e-maila.</string>
+    <string name="signin_failed">Logowanie nie zostało ukończone. Spróbuj ponownie.</string>
+    <string name="notify_open_settings">Otwórz ustawienia powiadomień</string>
     <plurals name="today_items_left">
-        <item quantity="one">Na liście została 1 pozycja.</item>
-        <item quantity="zero">Zostało na liście: %1$d.</item>
-        <item quantity="two">Zostało na liście: %1$d.</item>
-        <item quantity="few">Zostało na liście: %1$d.</item>
-        <item quantity="many">Zostało na liście: %1$d.</item>
-        <item quantity="other">Zostało na liście: %1$d.</item>
+        <item quantity="one">Został %1$d punkt na liście.</item>
+        <item quantity="few">Zostały %1$d punkty na liście.</item>
+        <item quantity="many">Zostało %1$d punktów na liście.</item>
+        <item quantity="other">Zostało %1$d punktu na liście.</item>
     </plurals>
 </resources>
