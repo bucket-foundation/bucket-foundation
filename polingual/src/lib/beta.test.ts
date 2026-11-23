@@ -146,3 +146,37 @@ test("welcome email carries the unsubscribe line in text and html", () => {
   assert.ok(m.text.includes(UNSUBSCRIBE));
   assert.ok(m.html.includes(UNSUBSCRIBE));
 });
+
+test("a TestFlight request emails the beta link to a new contact", async () => {
+  const sent: string[] = [];
+  const f = fake([404, 200, 200]);
+  const send = async (url: string, init: RequestInit) => {
+    if (url.endsWith("/emails")) sent.push(String(init.body));
+    return f.send(url, init);
+  };
+  const r = await joinBeta({ email: "a@b.co", kind: "testflight" }, env, send, site, fresh());
+  assert.equal(r.status, 200);
+  assert.equal(f.calls.length, 3);
+  assert.match(sent[0], /testflight\.apple\.com\/join\/B1ctUxn5/);
+  assert.match(sent[0], /Your Polingual beta invite/);
+});
+
+test("a TestFlight request still emails a contact who signed up before", async () => {
+  const f = fake([200, 200]);
+  const r = await join({ email: "a@b.co", kind: "testflight" }, f);
+  assert.equal(r.status, 200);
+  assert.equal(f.calls.length, 2);
+  assert.equal(f.calls[1], "POST https://api.resend.com/emails");
+});
+
+test("a returning App Store signup gets no second email", async () => {
+  const f = fake([200]);
+  assert.equal((await join({ email: "a@b.co" }, f)).status, 200);
+  assert.equal(f.calls.length, 1);
+});
+
+test("a TestFlight email that fails to send reports an error", async () => {
+  const f = fake([200, 500]);
+  const r = await join({ email: "a@b.co", kind: "testflight" }, f);
+  assert.equal(r.status, 502);
+});
