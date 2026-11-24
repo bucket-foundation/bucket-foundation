@@ -10,6 +10,25 @@ import kotlinx.serialization.json.intOrNull
 import kotlinx.serialization.json.longOrNull
 
 object StudySync {
+    data class Remote(val data: JsonElement?, val version: String?)
+
+    enum class Outcome { Saved, Stale, Failed }
+
+    suspend fun settle(local: StudyState, pull: suspend () -> Remote?, push: suspend (JsonObject, String?) -> Outcome, tries: Int = 3): JsonObject? {
+        repeat(tries) {
+            val remote = pull() ?: return null
+            if (remote.data == null && local.cards.isEmpty()) return JsonObject(emptyMap())
+            val merged = merge(remote.data, local)
+            if (merged == remote.data) return merged
+            when (push(merged, remote.version)) {
+                Outcome.Saved -> return merged
+                Outcome.Failed -> return null
+                Outcome.Stale -> Unit
+            }
+        }
+        return null
+    }
+
     fun branch(systemId: String): String = "lang-sys-$systemId".take(64)
 
     private fun num(o: JsonObject?, k: String): Double? = (o?.get(k) as? JsonPrimitive)?.doubleOrNull
@@ -34,13 +53,21 @@ object StudySync {
         last = lastReview(o),
     )
 
+    fun localWins(c: CardState, theirs: JsonObject?): Boolean {
+        if (theirs == null) return true
+        val mine = listOf(c.reps.toDouble(), c.last.toDouble(), c.lapses.toDouble(), c.due.toDouble())
+        val other = listOf(num(theirs, "reps") ?: 0.0, num(theirs, "lastReview") ?: 0.0, num(theirs, "lapses") ?: 0.0, num(theirs, "due") ?: 0.0)
+        for (i in mine.indices) if (mine[i] != other[i]) return mine[i] > other[i]
+        return false
+    }
+
     fun merge(remote: JsonElement?, local: StudyState): JsonObject {
         val r = remote as? JsonObject ?: JsonObject(emptyMap())
         val remoteCards = r["cards"] as? JsonObject ?: JsonObject(emptyMap())
         val cards = remoteCards.toMutableMap()
         local.cards.forEach { (id, c) ->
             val theirs = remoteCards[id] as? JsonObject
-            if (theirs == null || c.last > lastReview(theirs)) cards[id] = JsonObject(theirs.orEmpty() + cardJson(c))
+            if (localWins(c, theirs)) cards[id] = JsonObject(theirs.orEmpty() + cardJson(c))
         }
         val stats = r["stats"] as? JsonObject ?: JsonObject(emptyMap())
         val history = (stats["history"] as? JsonObject)?.toMutableMap() ?: mutableMapOf()

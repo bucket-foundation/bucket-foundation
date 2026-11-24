@@ -51,6 +51,22 @@ class BucketApiTest {
     }
 
     @Test
+    fun progressPushSendsVersionAndReportsStale() = runTest {
+        val seen = mutableListOf<String>()
+        val r = api(409, """{"error":"stale","stale":["x"]}""", seen).progressPush("t", "x", JsonPrimitive(1), "2026-11-24T10:00:00.123456+00:00")
+        assertEquals(PushResult.Stale, r)
+        assertTrue(!r.settled)
+        assertEquals("""POST /api/academy/progress? {"branch":"x","data":1,"version":"2026-11-24T10:00:00.123456+00:00"}""", seen.single())
+    }
+
+    @Test
+    fun aGuardedFirstPushSendsVersionNull() = runTest {
+        val seen = mutableListOf<String>()
+        api(200, "{}", seen).progressPush("t", "x", JsonPrimitive(1), null, guarded = true)
+        assertEquals("""POST /api/academy/progress? {"branch":"x","data":1,"version":null}""", seen.single())
+    }
+
+    @Test
     fun progressPushReportsBlankOverwriteAsRefusedAndSettled() = runTest {
         val r = api(409, """{"error":"blank_overwrite","branches":["x"]}""").progressPush("t", "x", JsonPrimitive(1))
         assertEquals(PushResult.Refused, r)

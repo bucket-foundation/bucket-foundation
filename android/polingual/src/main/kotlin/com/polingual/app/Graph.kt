@@ -152,16 +152,22 @@ class Graph(val context: Context) {
 
     suspend fun syncStudy(): Boolean = syncLock.withLock {
         val t = account.token() ?: return@withLock false
-        val branches = api.progressPull(t) ?: return@withLock false
         var ok = true
         for (sys in store.current().systems) {
             val branch = StudySync.branch(sys.id)
-            val remote = (branches[branch] as? JsonObject)?.get("data")
             val local = store.current().study[sys.id] ?: foundation.bucket.core.engine.StudyState()
-            if (remote == null && local.cards.isEmpty()) continue
-            val merged = StudySync.merge(remote, local)
+            val pull: suspend () -> StudySync.Remote? = {
+                api.progressPull(t)?.let { b -> (b[branch] as? JsonObject).let { row -> StudySync.Remote(row?.get("data"), (row?.get("updated_at") as? kotlinx.serialization.json.JsonPrimitive)?.content) } }
+            }
+            val merged = StudySync.settle(local, pull, { data, version ->
+                when (api.progressPush(t, branch, data, version, guarded = true)) {
+                    foundation.bucket.core.net.PushResult.Written, foundation.bucket.core.net.PushResult.Refused -> StudySync.Outcome.Saved
+                    foundation.bucket.core.net.PushResult.Stale -> StudySync.Outcome.Stale
+                    foundation.bucket.core.net.PushResult.Failed -> StudySync.Outcome.Failed
+                }
+            })
+            if (merged == null) { ok = false; continue }
             store.update { it.copy(study = it.study + (sys.id to (it.study[sys.id] ?: local).let { now -> StudySync.state(StudySync.merge(merged, now), now) })) }
-            if (merged != remote) ok = api.progressPush(t, branch, merged).settled && ok
         }
         ok
     }

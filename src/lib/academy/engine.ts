@@ -1,4 +1,5 @@
 import { FSRS, DAY_MS, type Card, type Rating } from "./fsrs";
+import { laterCard } from "./card-merge";
 import { fusedConceptMastery, type ProficiencyState, type StoredEngineState } from "./mastery";
 
 export interface QuizItem {
@@ -373,7 +374,7 @@ export function mergeState(a: EngineState | null, b: EngineState | null): Engine
     const cb = b.cards[id];
     if (!ca) out.cards[id] = cb;
     else if (!cb) out.cards[id] = ca;
-    else out.cards[id] = (cb.lastReview || 0) >= (ca.lastReview || 0) ? cb : ca;
+    else out.cards[id] = laterCard(ca, cb)!;
   });
   const pids = new Set([...Object.keys(a.prof ?? {}), ...Object.keys(b.prof ?? {})]);
   pids.forEach((id) => {

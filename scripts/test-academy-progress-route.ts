@@ -4,9 +4,9 @@ import type { NextRequest } from "next/server";
 import { progressDeps } from "../src/lib/academy/progress-server";
 import { POST } from "../src/app/api/academy/progress/route";
 
-type Rpc = { fn: string; args: { p_user: string; p_rows: { branch: string; data: unknown }[]; p_reset: boolean } };
+type Rpc = { fn: string; args: { p_user: string; p_rows: { branch: string; data: unknown; version?: string | null }[]; p_reset: boolean } };
 
-function stub(reply: (args: Rpc["args"]) => { written: string[]; refused: string[] }): Rpc[] {
+function stub(reply: (args: Rpc["args"]) => { written: string[]; refused: string[]; stale?: string[] }): Rpc[] {
   const calls: Rpc[] = [];
   const deps = progressDeps as unknown as Record<string, unknown>;
   deps.configured = () => true;
@@ -87,4 +87,35 @@ test("a write that answers with no result returns 500 write_failed", async () =>
   assert.equal(res.status, 500);
   assert.deepEqual(await res.json(), { error: "write_failed" });
   assert.deepEqual(logged, ["[academy/progress] write returned no result"]);
+});
+
+test("a push on an old version returns 409 stale and passes the version to the database", async () => {
+  const calls = stub((a) => ({ written: [], refused: [], stale: a.p_rows.map((r) => r.branch) }));
+  const res = await POST(post({ branch: "lang-sys-s1", data: studied, version: "2026-11-24T10:00:00.123456+00:00" }));
+  assert.equal(res.status, 409);
+  assert.deepEqual(await res.json(), { error: "stale", stale: ["lang-sys-s1"] });
+  assert.equal(calls[0].args.p_rows[0].version, "2026-11-24T10:00:00.123456+00:00");
+});
+
+test("a first write sends version null and an unversioned push sends none", async () => {
+  const calls = stub((a) => ({ written: a.p_rows.map((r) => r.branch), refused: [], stale: [] }));
+  assert.equal((await POST(post({ branch: "lang-sys-s1", data: studied, version: null }))).status, 200);
+  assert.ok("version" in calls[0].args.p_rows[0]);
+  assert.equal(calls[0].args.p_rows[0].version, null);
+  assert.equal((await POST(post({ branch: "lang-sys-s1", data: studied }))).status, 200);
+  assert.ok(!("version" in calls[1].args.p_rows[0]));
+});
+
+test("a batch with one stale branch and one written branch returns 200 with both lists", async () => {
+  stub(() => ({ written: ["b2"], refused: [], stale: ["b1"] }));
+  const res = await POST(post({ branches: { b1: { data: studied, version: "2026-01-01T00:00:00Z" }, b2: { data: studied } } }));
+  assert.equal(res.status, 200);
+  const j = await res.json();
+  assert.equal(j.written, 1);
+  assert.deepEqual(j.stale, ["b1"]);
+});
+
+test("a version that is not a timestamp is a bad request", async () => {
+  stub(() => ({ written: [], refused: [], stale: [] }));
+  assert.equal((await POST(post({ branch: "lang-sys-s1", data: studied, version: "yesterday" }))).status, 400);
 });

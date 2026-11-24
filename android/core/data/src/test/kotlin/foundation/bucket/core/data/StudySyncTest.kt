@@ -5,6 +5,7 @@ import foundation.bucket.core.engine.StudyState
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlin.test.Test
@@ -60,5 +61,53 @@ class StudySyncTest {
         val merged = StudySync.merge(null, StudyState(cards = mapOf("fr:x" to CardState(1, 0, 1.0, 10, 5))))
         assertEquals(JsonPrimitive("review"), merged["cards"]!!.jsonObject["fr:x"]!!.jsonObject["state"])
         assertEquals(JsonObject(emptyMap()), merged["stats"]!!.jsonObject["history"])
+    }
+
+    @Test
+    fun aStaleOfflineReviewNeverLowersWebReps() {
+        val stale = StudyState(cards = mapOf("fr:chat" to CardState(reps = 2, intervalDays = 1.0, due = 1, last = 99_000)))
+        val chat = StudySync.merge(web, stale)["cards"]!!.jsonObject["fr:chat"]!!.jsonObject
+        assertEquals(3, chat["reps"]!!.jsonPrimitive.content.toInt())
+        assertEquals(9.5, chat["stability"]!!.jsonPrimitive.content.toDouble())
+        val ahead = StudyState(cards = mapOf("fr:chat" to CardState(reps = 4, intervalDays = 12.0, due = 1, last = 1_000)))
+        assertEquals(4, StudySync.merge(web, ahead)["cards"]!!.jsonObject["fr:chat"]!!.jsonObject["reps"]!!.jsonPrimitive.content.toInt())
+    }
+
+    @Test
+    fun aStalePushIsRejectedThenRemergedOnTheNewerVersion() = kotlinx.coroutines.test.runTest {
+        val local = StudyState(cards = mapOf("de:hund" to CardState(reps = 1, intervalDays = 1.0, due = 1, last = 5_000)))
+        val newer = JsonObject(web + mapOf("cards" to JsonObject(web["cards"]!!.jsonObject + ("it:cane" to JsonObject(mapOf("reps" to JsonPrimitive(1), "lastReview" to JsonPrimitive(6_000)))))))
+        val versions = mutableListOf<String?>()
+        var server: Pair<JsonObject, String> = web to "v1"
+        var raced = false
+        val out = StudySync.settle(local, { StudySync.Remote(server.first, server.second) }, { data, version ->
+            versions += version
+            if (!raced) { raced = true; server = newer to "v2"; StudySync.Outcome.Stale } else { server = data to "v3"; StudySync.Outcome.Saved }
+        })
+        assertEquals(listOf<String?>("v1", "v2"), versions)
+        val cards = assertNotNull(out)["cards"]!!.jsonObject
+        assertNotNull(cards["it:cane"])
+        assertNotNull(cards["de:hund"])
+    }
+
+    @Test
+    fun settleGivesUpAfterRepeatedStalePushes() = kotlinx.coroutines.test.runTest {
+        val local = StudyState(cards = mapOf("de:hund" to CardState(reps = 1, intervalDays = 1.0, due = 1, last = 5_000)))
+        var pushes = 0
+        assertEquals(null, StudySync.settle(local, { StudySync.Remote(web, "v") }, { _, _ -> pushes++; StudySync.Outcome.Stale }))
+        assertEquals(3, pushes)
+    }
+
+    @Test
+    fun androidPicksTheSharedFixtureWinnerInEitherOrder() {
+        val cases = Json.parseToJsonElement(java.io.File("../../../scripts/fixtures/card-merge-cases.json").readText()).jsonArray
+        for (c in cases) {
+            val o = c.jsonObject
+            val winner = o["winner"]!!.jsonPrimitive.content
+            for ((mine, theirs) in listOf("a" to "b", "b" to "a")) {
+                val local = StudySync.card(o[mine]!!.jsonObject)
+                assertEquals(winner == mine, StudySync.localWins(local, o[theirs]!!.jsonObject), "case $c local $mine")
+            }
+        }
     }
 }
