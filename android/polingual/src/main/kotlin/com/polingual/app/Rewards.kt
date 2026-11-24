@@ -35,36 +35,8 @@ import foundation.bucket.core.ui.pl.StreakFlame
 import foundation.bucket.core.ui.pl.plSurface
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
-
-data class StreakState(val count: Int, val freezes: Int, val usedFreeze: Boolean = false)
-
-object StreakRules {
-    const val MAX_FREEZES = 2
-    const val EARN_EVERY = 7
-
-    fun advance(lastDay: String?, count: Int, freezes: Int, today: String): StreakState {
-        if (lastDay == today) return StreakState(count.coerceAtLeast(1), freezes)
-        val t = runCatching { LocalDate.parse(today) }.getOrNull() ?: return StreakState(1, freezes)
-        val last = lastDay?.let { runCatching { LocalDate.parse(it) }.getOrNull() }
-        val gap = last?.let { ChronoUnit.DAYS.between(it, t) } ?: Long.MAX_VALUE
-        val (next, left, used) = when {
-            gap == 1L -> Triple(count + 1, freezes, false)
-            gap >= 2L && gap - 1 <= freezes && count > 0 -> Triple(count + 1, freezes - (gap - 1).toInt(), true)
-            else -> Triple(1, freezes, false)
-        }
-        val earned = if (next % EARN_EVERY == 0) 1 else 0
-        return StreakState(next, (left + earned).coerceAtMost(MAX_FREEZES), used)
-    }
-
-    fun alive(lastDay: String?, count: Int, freezes: Int, today: String): Int {
-        val t = runCatching { LocalDate.parse(today) }.getOrNull() ?: return 0
-        val last = lastDay?.let { runCatching { LocalDate.parse(it) }.getOrNull() } ?: return 0
-        val gap = ChronoUnit.DAYS.between(last, t)
-        return if (gap <= 1 || gap - 1 <= freezes) count else 0
-    }
-}
+import foundation.bucket.core.engine.Streak
+import foundation.bucket.core.engine.StudyState
 
 class Combo {
     var streak = 0
@@ -86,13 +58,9 @@ class Combo {
     }
 }
 
-class Rewards(private val kv: KeyValue, private val day: () -> String = ::today) {
+class Rewards(private val kv: KeyValue) {
     private val _muted = MutableStateFlow(kv.get(MUTE) == "1")
     val muted: StateFlow<Boolean> = _muted
-    private val _streak = MutableStateFlow(StreakRules.alive(kv.get(STREAK_DAY), kv.get(STREAK)?.toIntOrNull() ?: 0, kv.get(FREEZES)?.toIntOrNull() ?: 0, day()))
-    val streak: StateFlow<Int> = _streak
-    private val _freezes = MutableStateFlow(kv.get(FREEZES)?.toIntOrNull() ?: 0)
-    val freezes: StateFlow<Int> = _freezes
     private val _xp = MutableStateFlow(kv.get(XP)?.toIntOrNull() ?: 0)
     val xp: StateFlow<Int> = _xp
     private var tones: ToneGenerator? = null
@@ -105,13 +73,6 @@ class Rewards(private val kv: KeyValue, private val day: () -> String = ::today)
     fun addXp(gain: Int) {
         _xp.value += gain
         kv.set(XP, _xp.value.toString())
-        val d = day()
-        val next = StreakRules.advance(kv.get(STREAK_DAY), kv.get(STREAK)?.toIntOrNull() ?: 0, _freezes.value, d)
-        _streak.value = next.count
-        _freezes.value = next.freezes
-        kv.set(STREAK, next.count.toString())
-        kv.set(FREEZES, next.freezes.toString())
-        kv.set(STREAK_DAY, d)
     }
 
     fun correct(view: View, combo: Int) {
@@ -136,18 +97,14 @@ class Rewards(private val kv: KeyValue, private val day: () -> String = ::today)
 
     companion object {
         const val MUTE = "fx.muted"
-        const val STREAK = "fx.streak"
-        const val STREAK_DAY = "fx.streakDay"
         const val XP = "fx.xp"
-        const val FREEZES = "fx.freezes"
     }
 }
 
 private val popEase = CubicBezierEasing(PLMotion.ease[0], PLMotion.ease[1], PLMotion.ease[2], PLMotion.ease[3])
 
 @Composable
-fun RewardBar(rewards: Rewards, combo: Int = 0) {
-    val streak by rewards.streak.collectAsState()
+fun RewardBar(rewards: Rewards, streak: Int, combo: Int = 0) {
     val xp by rewards.xp.collectAsState()
     val muted by rewards.muted.collectAsState()
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -170,4 +127,13 @@ fun ComboBadge(combo: Int) {
         stringResource(R.string.d_x_combo, combo), style = Type.caps, color = PL.Paper,
         modifier = Modifier.scale(pop.value).plSurface(if (combo >= 5) PL.Vermilion else PL.Malachite, PLRadius.pill).padding(horizontal = 10.dp, vertical = 4.dp),
     )
+}
+
+fun syncedStreak(study: StudyState?, day: String = today()): Int = Streak.count(study?.days.orEmpty(), day)
+
+@Composable
+fun rememberSyncedStreak(graph: Graph): Int {
+    val app by graph.state.collectAsState()
+    val system = app?.system
+    return syncedStreak(system?.let { app?.study?.get(it.id) })
 }

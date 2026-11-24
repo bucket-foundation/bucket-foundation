@@ -32,6 +32,7 @@ fun AskNotificationsOnce(graph: Graph) {
     androidx.compose.runtime.LaunchedEffect(Unit) {
         if (graph.reminders.asked) return@LaunchedEffect
         graph.reminders.markAsked()
+        graph.reminders.reschedule()
         if (android.os.Build.VERSION.SDK_INT >= 33 && !graph.reminders.allowed()) launcher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
     }
 }

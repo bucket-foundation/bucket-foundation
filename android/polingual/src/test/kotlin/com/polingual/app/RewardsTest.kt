@@ -15,27 +15,24 @@ class RewardsTest {
 
     @Test fun xpAccumulatesAndPersists() {
         val kv = MemoryKv()
-        val r = Rewards(kv) { "2026-11-22" }
+        val r = Rewards(kv)
         r.addXp(10)
         r.addXp(15)
         assertEquals(25, r.xp.value)
-        assertEquals(25, Rewards(kv) { "2026-11-22" }.xp.value)
+        assertEquals(25, Rewards(kv).xp.value)
     }
 
-    @Test fun streakGrowsOnNextDayAndResetsAfterGap() {
+    @Test fun flameUsesSyncedStudyStreakAfterMissedDay() {
+        val study = foundation.bucket.core.engine.StudyState(days = listOf("2026-11-19", "2026-11-20", "2026-11-21"))
+        assertEquals(3, syncedStreak(study, "2026-11-22"))
+        assertEquals(0, syncedStreak(study, "2026-11-23"))
+        assertEquals(0, syncedStreak(null, "2026-11-23"))
+    }
+
+    @Test fun xpLeavesNoLocalStreakKeys() {
         val kv = MemoryKv()
-        var day = "2026-11-20"
-        val r = Rewards(kv) { day }
-        r.addXp(1)
-        r.addXp(1)
-        assertEquals(1, r.streak.value)
-        day = "2026-11-21"
-        r.addXp(1)
-        assertEquals(2, r.streak.value)
-        day = "2026-11-24"
-        r.addXp(1)
-        assertEquals(1, r.streak.value)
-        assertEquals("2026-11-24", kv.get(Rewards.STREAK_DAY))
+        Rewards(kv).addXp(10)
+        assertEquals(setOf(Rewards.XP), kv.map.keys)
     }
 
     @Test fun muteTogglesAndPersists() {
@@ -48,7 +45,7 @@ class RewardsTest {
 
     @Test fun comboResetFeedsBaseXp() {
         val kv = MemoryKv()
-        val r = Rewards(kv) { "2026-11-22" }
+        val r = Rewards(kv)
         val c = Combo()
         r.addXp(c.hit())
         r.addXp(c.hit())

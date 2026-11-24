@@ -87,7 +87,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         return
     }
     val prompt = round.current!!
-    RewardBar(graph.rewards, combo.streak)
+    RewardBar(graph.rewards, rememberSyncedStreak(graph), combo.streak)
     ResultDots(round.results, round.prompts.size)
     when (prompt.mode) {
         PromptMode.Form -> {
