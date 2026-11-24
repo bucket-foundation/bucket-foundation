@@ -13,7 +13,7 @@ export default function GameResults({ title, words, rootLang, missed, ad = false
   return (
     <>
       <WordReveal rootLang={rootLang} title={title} words={words} />
-      <LearnPanel missed={missed} />
+      <LearnPanel missed={missed} rootLang={rootLang} />
       {ad && readBreaks(local).games >= 2 ? <Ad placement="results" /> : null}
     </>
   );
