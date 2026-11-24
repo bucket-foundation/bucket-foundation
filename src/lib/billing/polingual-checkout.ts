@@ -294,6 +294,13 @@ export interface WebhookDeps {
   gift?: (event: unknown) => Promise<HandlerResult | null>;
   trialEnding?: (t: TrialEnding) => Promise<boolean>;
   funnel?: (visitor: string, name: FunnelBillingStep) => Promise<void>;
+  claimPaid?: (userId: string) => Promise<boolean>;
+}
+
+async function emitPaid(deps: WebhookDeps, event: unknown, ent: Pick<Entitlement, "user_id">): Promise<void> {
+  if (!deps.funnel) return;
+  if (deps.claimPaid && !(await deps.claimPaid(ent.user_id))) return;
+  await deps.funnel(funnelVisitor(event, ent), "paid");
 }
 
 export type FunnelBillingStep = "trial_cancel_d0" | "trial_start" | "paid";
@@ -317,7 +324,7 @@ async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent, event: u
   if (isStale(current, ce.patch)) return { status: 200, body: { received: true, stale: true } };
   if (ce.patch.status === "past_due" && !ACTIVE_STATUSES.has(current.status)) return { status: 200, body: { received: true, ignored: true } };
   if (!(await deps.patch(current.user_id, ce.patch))) return { status: 500, body: { error: "record_failed" } };
-  if (ce.patch.status === "active" && current.status !== "active" && deps.funnel) await deps.funnel(funnelVisitor(event, current), "paid").catch(() => undefined);
+  if (ce.patch.status === "active" && current.status !== "active") await emitPaid(deps, event, current).catch(() => undefined);
   return { status: 200, body: { received: true, status: ce.patch.status } };
 }
 
@@ -351,7 +358,8 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   if (isStale(prev, ent, fromCheckout)) return { status: 200, body: { received: true, stale: true } };
   if (!(await deps.record(ent))) return { status: 500, body: { error: "record_failed" } };
   const step = billingStep(prev, ent);
-  if (step && deps.funnel) await deps.funnel(funnelVisitor(event, ent), step).catch(() => undefined);
+  if (step === "paid") await emitPaid(deps, event, ent).catch(() => undefined);
+  else if (step && deps.funnel) await deps.funnel(funnelVisitor(event, ent), step).catch(() => undefined);
   return { status: 200, body: { received: true, status: ent.status } };
 }
 

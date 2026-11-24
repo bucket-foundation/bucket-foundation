@@ -239,3 +239,16 @@ test("verify of a shorter plan keeps the longer live plan", async () => {
   assert.equal(w.ents.get("u1")?.plan, "lifetime");
   assert.equal(w.ents.get("u1")?.current_period_end, null);
 });
+
+test("play paid reaches the funnel once per user after expiry and a new purchase", async () => {
+  const w = world({ tok1: sub({}, { offerPhase: { basePrice: {} } }) });
+  const claimed = new Set<string>();
+  w.deps.claimPaid = async (u) => (claimed.has(u) ? false : (claimed.add(u), true));
+  await handleVerify(w.deps, "u1", body());
+  w.google.tok1 = sub({ subscriptionState: "SUBSCRIPTION_STATE_EXPIRED" });
+  await handleRtdn(w.deps, true, rtdn({ subscriptionNotification: { notificationType: 13, purchaseToken: "tok1", subscriptionId: YEARLY } }));
+  w.google.tok2 = sub({}, { offerPhase: { basePrice: {} } });
+  await handleVerify(w.deps, "u1", body("tok2"));
+  assert.equal(w.ents.get("u1")?.status, "active");
+  assert.deepEqual(w.events.filter((e) => e.startsWith("paid")), ["paid:u1"]);
+});

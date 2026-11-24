@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHmac } from "node:crypto";
+import { funnelSender, paidClaimer } from "../src/lib/billing/funnel-send";
 import {
   billingStep,
   funnelVisitor,
@@ -323,4 +324,40 @@ test("trial_start and paid reach the funnel once per user from billing records",
   assert.equal(billingStep({ user_id: "u1", status: "active", stripe_subscription: null, last_event_id: null, last_event_at: null }, { ...h.recorded[0], status: "active" }), null);
   assert.equal(billingStep({ user_id: "u1", status: "trialing", stripe_subscription: null, last_event_id: null, last_event_at: null }, { ...h.recorded[0], status: "active" }), "paid");
   assert.equal(funnelVisitor({ data: { object: { metadata: {} } } }, { user_id: "U-2" }), "u-2");
+});
+
+test("paid reaches the funnel once per user across past_due recovery and resubscribe", async () => {
+  const h = harness(null);
+  const sent: string[] = [];
+  const claimed = new Set<string>();
+  const deps: WebhookDeps = {
+    ...h.deps,
+    funnel: async (_v, n) => void sent.push(n),
+    claimPaid: async (uid) => (claimed.has(uid) ? false : (claimed.add(uid), true)),
+  };
+  const go = (p: string) => handleWebhook(deps, p, sign(p, "whsec", 1000));
+  await go(evt("evt_1", 10, "checkout.session.completed", { metadata: META, payment_status: "paid", customer: "cus_1", subscription: "sub_1" }));
+  await go(evt("evt_2", 20, "invoice.payment_failed", { customer: "cus_1" }));
+  await go(evt("evt_3", 30, "customer.subscription.updated", { id: "sub_1", status: "active", metadata: META }));
+  await go(evt("evt_4", 40, "customer.subscription.deleted", { id: "sub_1", status: "canceled", metadata: META }));
+  await go(evt("evt_5", 50, "checkout.session.completed", { metadata: META, payment_status: "paid", customer: "cus_1", subscription: "sub_2" }));
+  assert.equal(h.row()?.status, "active");
+  assert.deepEqual(sent, ["paid"]);
+});
+
+test("funnel sender logs failures and a missing key once", async () => {
+  const logs: string[] = [];
+  const send = funnelSender({ site: "https://p.test/", key: null, post: async () => new Response("", { status: 401 }), log: (m) => void logs.push(m) });
+  await send("v1", "paid");
+  await send("v1", "trial_start");
+  assert.equal(logs.filter((m) => m.includes("POLINGUAL_FUNNEL_KEY")).length, 1);
+  assert.equal(logs.filter((m) => m.includes("answered 401")).length, 2);
+  const boom = funnelSender({ site: "https://p.test", key: "k", post: async () => { throw new Error("offline"); }, log: (m) => void logs.push(m) });
+  await boom("v1", "paid");
+  assert.ok(logs.some((m) => m.includes("paid send failed")));
+  const claimLogs: string[] = [];
+  const claim = paidClaimer(async () => { throw new Error("no table"); }, (m) => void claimLogs.push(m));
+  assert.equal(await claim("u1"), true);
+  assert.equal(await claim("u1"), true);
+  assert.equal(claimLogs.length, 1);
 });
