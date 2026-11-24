@@ -1,6 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { markTrialUsed, readEntitlementState } from "./entitlement-store";
-import type { PlayDeps, PlayEntitlement, PlayFunnelStep, PlayGoogle, PlayRow, PlayStore } from "./play";
+import type { PlayDeps, PlayEntitlement, PlayGoogle, PlayRow, PlayStore } from "./play";
+import { sendBillingFunnel } from "./funnel-send";
 import { googlePlayClient, serviceAccount } from "./play-google";
 
 let bucket: SupabaseClient | null = null;
@@ -40,17 +41,6 @@ function playGoogle(): PlayGoogle | null {
   return google;
 }
 
-async function funnel(visitor: string, name: PlayFunnelStep): Promise<void> {
-  const site = (process.env.POLINGUAL_SITE_URL ?? "https://www.polingual.com").replace(/\/$/, "");
-  const key = process.env.POLINGUAL_FUNNEL_KEY?.trim();
-  await fetch(`${site}/api/events`, {
-    method: "POST",
-    headers: { "content-type": "application/json", origin: "https://www.polingual.com", ...(key ? { "x-polingual-funnel-key": key } : {}) },
-    body: JSON.stringify({ visitor, events: [{ name, path: "/billing" }] }),
-    signal: AbortSignal.timeout(1500),
-  });
-}
-
 export function playDeps(): PlayDeps {
   return {
     google: playGoogle,
@@ -58,7 +48,7 @@ export function playDeps(): PlayDeps {
     current: (uid) => readEntitlementState(uid, "polingual"),
     record: recordPlayEntitlement,
     markTrial: (uid) => markTrialUsed(uid, "play"),
-    funnel,
+    funnel: sendBillingFunnel,
     now: Date.now,
   };
 }

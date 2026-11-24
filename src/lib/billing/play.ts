@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { ACTIVE_STATUSES, type EntitlementState } from "./polingual-checkout";
+import { ACTIVE_STATUSES, type EntitlementState, type FunnelBillingStep } from "./polingual-checkout";
 
 export const PLAY_PACKAGE = "com.polingual.app";
 export const PLAY_PLANS: Record<string, string> = {
@@ -59,7 +59,7 @@ export interface PlayEntitlement {
   last_event_at: string;
 }
 
-export type PlayFunnelStep = "trial_start" | "paid" | "trial_cancel_d0";
+export type PlayFunnelStep = FunnelBillingStep;
 
 export interface PlayDeps {
   google: () => PlayGoogle | null;
