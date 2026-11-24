@@ -26,7 +26,7 @@ export default function PricingPage() {
             {p.id === "yearly" ? ` (${perWeek(59.99)}), ${TRIAL_DAYS} days free` : ""}
           </p>
           {p.note && p.id !== "yearly" ? <p>{p.note}</p> : null}
-          {p.productId ? null : <p>Coming soon</p>}
+          {p.id === "family" ? <p>In the iPhone and Android apps</p> : p.productId ? null : <p>Coming soon</p>}
         </Card>
       ))}
       <ButtonLink href="/app" data-testid="pricing-start">Start {TRIAL_DAYS} days free</ButtonLink>

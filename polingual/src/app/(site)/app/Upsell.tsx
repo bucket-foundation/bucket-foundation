@@ -6,7 +6,7 @@ import { startCheckout, type WebPlan } from "@/lib/app/billing";
 import styles from "./app.module.css";
 import { Button } from "@/ui";
 
-const OFFERS = PLANS.filter((p) => p.id === "family" || p.id === "lifetime");
+const OFFERS = PLANS.filter((p) => p.id === "lifetime");
 
 export default function Upsell({ access }: { access: Access }) {
   const [show, setShow] = useState(false);
@@ -35,7 +35,7 @@ export default function Upsell({ access }: { access: Access }) {
   return (
     <section className={styles.stack} data-testid="post-purchase-upsell">
       <p className={styles.label}>Your trial has started</p>
-      <p className={styles.body}>Learning with others at home, or keeping Polingual for good? Switch now and your trial ends with no charge.</p>
+      <p className={styles.body}>Keeping Polingual for good? Switch to Lifetime now and your trial ends with no charge.</p>
       <ul className={styles.plans}>
         {OFFERS.map((p) => (
           <li key={p.id} className={styles.plan}>

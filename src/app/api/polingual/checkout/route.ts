@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { checkoutConfig, handleCheckout } from "@/lib/billing/polingual-checkout";
-import { entitlementStoreConfigured, readEntitlementState, readStripeCustomer } from "@/lib/billing/entitlement-store";
+import { entitlementStoreConfigured, offerUsed, readEntitlementState, readStripeCustomer } from "@/lib/billing/entitlement-store";
 import { trialSources } from "@/lib/billing/trial-sources";
 import { trialUsed } from "@/lib/billing/trial-used";
 
@@ -24,6 +24,11 @@ export async function POST(req: NextRequest): Promise<Response> {
         config: () => (entitlementStoreConfigured() ? checkoutConfig(process.env) : null),
         userId: async () => (await user)?.id ?? null,
         currentStatus: async (uid) => (await readEntitlementState(uid, "polingual"))?.status ?? null,
+        trialSubscription: async (uid) => {
+          const row = await readEntitlementState(uid, "polingual");
+          return row?.status === "trialing" ? row.stripe_subscription : null;
+        },
+        offerUsed,
         trialHistory: async (uid) => {
           return { used: await trialUsed(trialSources(uid)), customer: await readStripeCustomer(uid, "polingual") };
         },

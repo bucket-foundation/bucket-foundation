@@ -77,3 +77,14 @@ export async function claimFunnelPaid(userId: string): Promise<boolean> {
   if (error) throw new Error(`polingual_funnel_paid write failed: ${error.message}`);
   return Array.isArray(data) && data.length > 0;
 }
+
+export async function offerUsed(userId: string, offer: "winback"): Promise<boolean> {
+  const { data, error } = await client().from("polingual_offer_used").select("offer").eq("user_id", userId).eq("offer", offer).maybeSingle();
+  if (error) throw new Error(`polingual_offer_used read failed: ${error.message}`);
+  return data !== null;
+}
+
+export async function markOfferUsed(userId: string, offer: "winback"): Promise<void> {
+  const { error } = await client().from("polingual_offer_used").upsert({ user_id: userId, offer }, { onConflict: "user_id,offer", ignoreDuplicates: true });
+  if (error) throw new Error(`polingual_offer_used write failed: ${error.message}`);
+}

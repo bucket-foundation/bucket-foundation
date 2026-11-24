@@ -363,8 +363,8 @@ test("funnel sender logs failures and a missing key once", async () => {
   assert.equal(claimLogs.length, 1);
 });
 
-test("family, lifetime and win-back plans check out with their own rules", async () => {
-  const cfg = checkoutConfig({ ...ENV, STRIPE_PRICE_POLINGUAL_FAMILY: "price_f", STRIPE_PRICE_POLINGUAL_LIFETIME: "price_l", STRIPE_COUPON_POLINGUAL_WINBACK: "co_25" }) as CheckoutConfig;
+test("lifetime and win-back plans check out with their own rules; family waits for seats", async () => {
+  const cfg = checkoutConfig({ ...ENV, STRIPE_PRICE_POLINGUAL_LIFETIME: "price_l", STRIPE_COUPON_POLINGUAL_WINBACK: "co_25" }) as CheckoutConfig;
   const req = (plan: string) => ({ plan: plan as "yearly", referral: null, network: null, email: "a@b.co" });
   const life = checkoutForm(cfg, req("lifetime"), "u1");
   assert.equal(life.get("mode"), "payment");
@@ -373,38 +373,82 @@ test("family, lifetime and win-back plans check out with their own rules", async
   assert.equal(life.get("subscription_data[metadata][plan]"), null);
   assert.equal(life.get("metadata[plan]"), "lifetime");
   assert.equal(life.get("customer_creation"), "always");
-  const fam = checkoutForm(cfg, req("family"), "u1");
-  assert.equal(fam.get("line_items[0][price]"), "price_f");
-  assert.equal(fam.get("subscription_data[trial_period_days]"), null);
   const back = checkoutForm(cfg, req("winback"), "u1", { used: true, customer: "cus_1" });
   assert.equal(back.get("line_items[0][price]"), "price_y");
   assert.equal(back.get("discounts[0][coupon]"), "co_25");
   assert.equal(back.get("allow_promotion_codes"), null);
   assert.equal(back.get("subscription_data[trial_period_days]"), null);
 
-  const run = (plan: string, status: string | null, used: boolean, c = cfg) =>
-    handleCheckout({ config: () => c, userId: async () => "u1", currentStatus: async () => status, trialHistory: async () => ({ used, customer: null }), createSession: async () => ({ url: "https://s", id: "cs" }) }, { plan });
+  let form: URLSearchParams | null = null;
+  const run = (plan: string, status: string | null, used: boolean, c = cfg, winbackUsed = false) =>
+    handleCheckout({ config: () => c, userId: async () => "u1", currentStatus: async () => status, trialHistory: async () => ({ used, customer: null }), trialSubscription: async () => (status === "trialing" ? "sub_t" : null), offerUsed: async () => winbackUsed, createSession: async (_c, f) => ((form = f), { url: "https://s", id: "cs" }) }, { plan });
   assert.equal((await run("lifetime", "trialing", true)).status, 200);
-  assert.equal((await run("family", "trialing", true)).status, 200);
+  assert.equal((form as URLSearchParams | null)?.get("metadata[replaces]"), "sub_t");
+  assert.equal((await run("lifetime", null, true)).status, 200);
+  assert.equal((form as URLSearchParams | null)?.get("metadata[replaces]"), null);
+  assert.equal((await run("family", "trialing", true)).body.error, "bad_plan");
+  assert.equal((await run("winback", "canceled", true, cfg, true)).body.error, "not_eligible");
   assert.equal((await run("monthly", "trialing", true)).status, 409);
   assert.equal((await run("lifetime", "active", true)).status, 409);
   assert.equal((await run("winback", null, false)).body.error, "not_eligible");
   assert.equal((await run("winback", "canceled", true)).status, 200);
-  assert.equal((await run("family", null, false, checkoutConfig(ENV) as CheckoutConfig)).body.error, "plan_unavailable");
+  assert.equal((await run("lifetime", null, false, checkoutConfig(ENV) as CheckoutConfig)).body.error, "plan_unavailable");
   assert.equal((await run("student", null, false)).body.error, "bad_plan");
 });
 
 test("lifetime bought during a trial cancels the trial and outlives its events", async () => {
   const h = harness({ user_id: "u1", status: "trialing", stripe_subscription: "sub_t", last_event_id: "evt_0", last_event_at: new Date(50_000).toISOString() });
   const canceled: string[] = [];
-  const deps = { ...h.deps, cancelSubscription: async (s: string) => (canceled.push(s), true) };
-  const done = evt("evt_l", 100, "checkout.session.completed", { id: "cs_l", metadata: { ...META, plan: "lifetime" }, payment_status: "paid", subscription: null, customer: "cus_1" });
-  assert.equal((await handleWebhook(deps, done, sign(done, "whsec", 1000))).status, 200);
-  assert.deepEqual(canceled, ["sub_t"]);
+  let failing = true;
+  const deps = { ...h.deps, cancelSubscription: async (s: string) => (canceled.push(s), !failing) };
+  const done = evt("evt_l", 100, "checkout.session.completed", { id: "cs_l", metadata: { ...META, plan: "lifetime", replaces: "sub_t" }, payment_status: "paid", subscription: null, customer: "cus_1" });
+  assert.equal((await handleWebhook(deps, done, sign(done, "whsec", 1000))).status, 500);
+  assert.equal(h.row()?.status, "active");
+  failing = false;
+  const retry = await handleWebhook(deps, done, sign(done, "whsec", 1000));
+  assert.equal(retry.status, 200);
+  assert.deepEqual(canceled, ["sub_t", "sub_t"]);
   assert.equal(h.row()?.status, "active");
   assert.equal(h.row()?.stripe_subscription, "lifetime:cs_l");
   assert.ok(isLifetime({ stripe_subscription: "lifetime:cs_l" }) && !isLifetime({ stripe_subscription: "sub_t" }));
   const gone = evt("evt_d", 101, "customer.subscription.deleted", { id: "sub_t", status: "canceled", metadata: META, customer: "cus_1" });
   assert.equal((await handleWebhook(deps, gone, sign(gone, "whsec", 1000))).body.stale, true);
   assert.equal(h.row()?.status, "active");
+});
+
+test("a delayed lifetime payment opens access when it clears, and win-back is marked used", async () => {
+  const h = harness(null);
+  const marked: string[] = [];
+  const deps = { ...h.deps, markOffer: async (u: string, o: "winback") => void marked.push(`${u}:${o}`) };
+  const pending = evt("evt_p", 100, "checkout.session.completed", { id: "cs_a", metadata: { ...META, plan: "lifetime" }, payment_status: "unpaid", customer: "cus_1" });
+  assert.equal((await handleWebhook(deps, pending, sign(pending, "whsec", 1000))).body.ignored, true);
+  const cleared = evt("evt_q", 200, "checkout.session.async_payment_succeeded", { id: "cs_a", metadata: { ...META, plan: "lifetime" }, payment_status: "paid", customer: "cus_1" });
+  assert.equal((await handleWebhook(deps, cleared, sign(cleared, "whsec", 1000))).status, 200);
+  assert.equal(h.row()?.stripe_subscription, "lifetime:cs_a");
+  const back = evt("evt_w", 300, "checkout.session.completed", { id: "cs_w", metadata: { ...META, plan: "winback" }, payment_status: "paid", subscription: "sub_w", customer: "cus_1" });
+  await handleWebhook(deps, back, sign(back, "whsec", 1000));
+  assert.deepEqual(marked, ["u1:winback"]);
+});
+
+test("a lifetime cancel retry and the paid claim emit paid once", async () => {
+  const h = harness({ user_id: "u1", status: "trialing", stripe_subscription: "sub_t", last_event_id: "evt_0", last_event_at: new Date(50_000).toISOString() });
+  const sent: string[] = [];
+  const claimed = new Set<string>();
+  const canceled: string[] = [];
+  let failing = true;
+  const deps: WebhookDeps = {
+    ...h.deps,
+    funnel: async (_v, n) => void sent.push(n),
+    claimPaid: async (uid) => (claimed.has(uid) ? false : (claimed.add(uid), true)),
+    cancelSubscription: async (s) => (canceled.push(s), !failing),
+  };
+  const done = evt("evt_l", 100, "checkout.session.completed", { id: "cs_l", metadata: { ...META, plan: "lifetime", replaces: "sub_t" }, payment_status: "paid", subscription: null, customer: "cus_1" });
+  assert.equal((await handleWebhook(deps, done, sign(done, "whsec", 1000))).status, 500);
+  failing = false;
+  assert.equal((await handleWebhook(deps, done, sign(done, "whsec", 1000))).status, 200);
+  const again = evt("evt_l2", 300, "checkout.session.completed", { id: "cs_l2", metadata: { ...META, plan: "lifetime" }, payment_status: "paid", subscription: null, customer: "cus_1" });
+  await handleWebhook({ ...deps, current: async () => ({ ...(h.row() as EntitlementState), status: "canceled" }) }, again, sign(again, "whsec", 1000));
+  assert.deepEqual(canceled, ["sub_t", "sub_t"]);
+  assert.equal(h.row()?.status, "active");
+  assert.deepEqual(sent, ["paid"]);
 });

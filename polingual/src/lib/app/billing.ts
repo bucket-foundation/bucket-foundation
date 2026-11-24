@@ -1,5 +1,5 @@
 import { visitor } from "@/lib/funnel";
-export type WebPlan = "monthly" | "yearly" | "family" | "lifetime" | "winback";
+export type WebPlan = "monthly" | "yearly" | "lifetime" | "winback";
 
 export type BillingResult = { ok: true; url: string } | { ok: false; error: string };
 

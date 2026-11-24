@@ -15,7 +15,7 @@ import { DEFAULT_PLAN, perWeek, TRIAL_DAYS, trialDays, trialTimeline } from "@/l
 import styles from "./app.module.css";
 import { Button, ButtonLink, Stage } from "@/ui";
 
-const WEB_PLANS: readonly string[] = ["monthly", "yearly", "family", "lifetime"];
+const WEB_PLANS: readonly string[] = ["monthly", "yearly", "lifetime"];
 
 function PlanList({
   busy,
