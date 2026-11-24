@@ -14,6 +14,7 @@ const SECTIONS = [
   { href: "/admin/revenue", label: "revenue" },
   { href: "/admin/growth", label: "growth" },
   { href: "/admin/tracking", label: "tracking" },
+  { href: "/admin/polingual-ops", label: "polingual ops" },
   { href: "/admin/activity", label: "activity" },
 ];
 
