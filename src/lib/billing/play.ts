@@ -69,6 +69,7 @@ export interface PlayDeps {
   record: (e: PlayEntitlement) => Promise<boolean>;
   markTrial: (userId: string) => Promise<void>;
   funnel?: (visitor: string, name: PlayFunnelStep) => Promise<void>;
+  claimPaid?: (userId: string) => Promise<boolean>;
   now: () => number;
 }
 
@@ -205,6 +206,7 @@ async function applyEntitlement(deps: PlayDeps, userId: string, rec: PlayRecord,
   if (!ok) return false;
   if (chosen.trial) await deps.markTrial(userId).catch(() => undefined);
   const step = funnelStep(prev, status);
+  if (step === "paid" && deps.claimPaid && !(await deps.claimPaid(userId).catch(() => true))) return true;
   if (step) await funnel(step);
   return true;
 }

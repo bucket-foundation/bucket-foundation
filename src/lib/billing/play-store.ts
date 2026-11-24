@@ -1,7 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { markTrialUsed, readEntitlementState } from "./entitlement-store";
 import type { PlayDeps, PlayEntitlement, PlayGoogle, PlayRow, PlayStore } from "./play";
-import { sendBillingFunnel } from "./funnel-send";
+import { claimPaidOnce, sendBillingFunnel } from "./funnel-send";
 import { googlePlayClient, serviceAccount } from "./play-google";
 
 let bucket: SupabaseClient | null = null;
@@ -54,6 +54,7 @@ export function playDeps(): PlayDeps {
     record: recordPlayEntitlement,
     markTrial: (uid) => markTrialUsed(uid, "play"),
     funnel: sendBillingFunnel,
+    claimPaid: claimPaidOnce,
     now: Date.now,
   };
 }

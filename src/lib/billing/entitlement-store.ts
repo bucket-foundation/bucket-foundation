@@ -71,3 +71,9 @@ export async function markTrialUsed(userId: string, store: "web" | "app_store" |
   const { error } = await client().from("polingual_trial_used").upsert({ user_id: userId, store }, { onConflict: "user_id", ignoreDuplicates: true });
   if (error) throw new Error(`polingual_trial_used write failed: ${error.message}`);
 }
+
+export async function claimFunnelPaid(userId: string): Promise<boolean> {
+  const { data, error } = await client().from("polingual_funnel_paid").upsert({ user_id: userId }, { onConflict: "user_id", ignoreDuplicates: true }).select("user_id");
+  if (error) throw new Error(`polingual_funnel_paid write failed: ${error.message}`);
+  return Array.isArray(data) && data.length > 0;
+}

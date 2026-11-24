@@ -1,6 +1,6 @@
 import { jsonResponse } from "@/lib/academy/device-server";
 import { handleWebhook, trialEndingEmail, type TrialEnding } from "@/lib/billing/polingual-checkout";
-import { sendBillingFunnel } from "@/lib/billing/funnel-send";
+import { claimPaidOnce, sendBillingFunnel } from "@/lib/billing/funnel-send";
 import { giftFulfilDeps, sendGiftEmail } from "@/lib/billing/gift-store";
 import { giftMailConfig, handleGiftEvent } from "@/lib/billing/polingual-gift";
 import { entitlementStoreConfigured, patchEntitlement, readEntitlementByCustomer, readEntitlementState, recordEntitlement } from "@/lib/billing/entitlement-store";
@@ -47,6 +47,7 @@ export async function POST(req: Request): Promise<Response> {
         gift: (event) => handleGiftEvent(giftFulfilDeps(), event),
         trialEnding: remindTrialEnding,
         funnel: sendBillingFunnel,
+        claimPaid: claimPaidOnce,
       },
       payload,
       req.headers.get("stripe-signature"),
