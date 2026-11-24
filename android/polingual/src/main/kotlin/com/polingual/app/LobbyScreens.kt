@@ -271,7 +271,10 @@ private fun Chat(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) 
     val p = LocalPalette.current
     var text by remember { mutableStateOf("") }
     SectionTitle(androidx.compose.ui.res.stringResource(R.string.s_chat))
-    lobby.messages.takeLast(20).forEach { m -> Text("${m.name}: ${m.body}", color = p.ink) }
+    val blocked by graph.chatBlocks.blocked.collectAsState()
+    graph.chatBlocks.visible(lobby.messages, blocked).takeLast(20).forEach { m ->
+        ChatLine(m, lobby.me?.userId, report = { id, r -> graph.lobbies.report(id, r) }, block = graph.chatBlocks::block, act = act)
+    }
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         OutlinedTextField(text, { text = it.take(200) }, singleLine = true, label = { Text(androidx.compose.ui.res.stringResource(R.string.s_message)) }, modifier = Modifier.weight(1f))
         PlainLink(androidx.compose.ui.res.stringResource(R.string.s_send)) { val t = text; text = ""; act { graph.lobbies.send(t) } }

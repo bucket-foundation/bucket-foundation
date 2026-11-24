@@ -1,6 +1,7 @@
 package foundation.bucket.core.auth
 
 import foundation.bucket.core.model.BucketError
+import foundation.bucket.core.model.ChatReportReason
 import foundation.bucket.core.model.Lobby
 import foundation.bucket.core.model.LobbyClock
 import foundation.bucket.core.model.LobbyGame
@@ -91,6 +92,11 @@ class LobbyStore(
         val id = _state.value.current?.id ?: return
         if (body.isEmpty()) return
         apply(run { api.chat(it, id, body.take(200)) })
+    }
+
+    suspend fun report(messageId: Int, reason: ChatReportReason) {
+        val id = _state.value.current?.id ?: return
+        run { api.reportLobbyMessage(it, id, messageId, reason.wire) }
     }
 
     suspend fun pick(choice: String, round: Int): Boolean? {
