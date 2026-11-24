@@ -111,8 +111,8 @@ public enum LangReference {
         return 1 - Double(editDistance(x, y)) / Double(n)
     }
 
-    public static func lookupBatches(lang: String, mine: [String], all: Bool, size: Int) -> [[String]] {
-        var seen: Set<String> = [lang]
+    public static func lookupBatches(lang: String, mine: [String], all: Bool, size: Int, asked: Set<String> = []) -> [[String]] {
+        var seen: Set<String> = asked.union([lang])
         let order = (mine + ["en"] + (all ? Lang.codes : [])).filter { Lang.codes.contains($0) && seen.insert($0).inserted }
         let step = max(1, size)
         return stride(from: 0, to: order.count, by: step).map { Array(order[$0..<min($0 + step, order.count)]) }
