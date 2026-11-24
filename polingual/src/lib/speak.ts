@@ -140,7 +140,8 @@ function playOne(item: SpeakItem, onStart: () => void = () => undefined): Promis
 
 export const FINISH_MS = 1500;
 export const CUT_GAP_MS = 60;
-export const SETTLE_MS = 4000;
+export const SETTLE_MS = 150;
+export const NO_SOUND = "That word did not play. Tap it again.";
 
 type Speaking = { t: number; startedAt: number | null; est: number };
 let speaking: Speaking | null = null;
@@ -195,7 +196,8 @@ export function play(item: SpeakItem): Promise<void> {
     subscribeSilent(() => isSilent() && cancelSpeech());
   }
   const now = Date.now();
-  if (speaking?.startedAt != null && speaking.est - (now - speaking.startedAt) <= FINISH_MS) {
+  const left = speaking?.startedAt != null ? speaking.est - (now - speaking.startedAt) : Infinity;
+  if (left <= FINISH_MS) {
     drop();
     return new Promise<void>((resolve) => {
       pending = { item, resolve };
@@ -208,7 +210,7 @@ export function play(item: SpeakItem): Promise<void> {
         synth()?.cancel();
         release();
         void start(waiting.item, CUT_GAP_MS).then(resolve);
-      }, SETTLE_MS);
+      }, Math.max(0, left) + SETTLE_MS);
     });
   }
   drop();
@@ -256,7 +258,8 @@ async function start(item: SpeakItem, gap: number): Promise<void> {
     next.resolve();
     return;
   }
-  if (t === token) set(state.notice ? { id: null, all: false, notice: state.notice } : IDLE);
+  if (t === token && !began) set({ id: null, all: false, notice: NO_SOUND });
+  else if (t === token) set(state.notice ? { id: null, all: false, notice: state.notice } : IDLE);
 }
 
 export function say(text: string, lang: string, opts: { auto?: boolean; silent?: boolean; id?: string; src?: string } = {}): string | null {
@@ -281,7 +284,7 @@ export async function playAll(items: SpeakItem[]) {
 }
 
 export function toggle(item: SpeakItem, playing: boolean) {
-  if (playing) stop();
+  if (playing && speaking?.startedAt != null) stop();
   else void play(item);
 }
 

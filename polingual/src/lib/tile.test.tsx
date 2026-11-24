@@ -54,7 +54,7 @@ test("the resting tilt and hover lift match the landing tiles", () => {
   assert.match(rule(".snd svg"), /width:22px;height:22px/);
 });
 
-test("the play button covers the whole tile and a tap plays or stops", () => {
+test("the play button covers the whole tile and a tap plays or restarts before sound", () => {
   assert.match(rule(".play"), /^position:absolute;inset:0;z-index:3;width:100%;height:100%/);
   const html = renderToStaticMarkup(<WordView w={word("brown")!} code="en" />);
   assert.match(html, /<li[^>]*>(?:(?!<\/li>).)*<button type="button" class="play"[^>]*aria-label="Listen to brown"/s);
@@ -63,6 +63,8 @@ test("the play button covers the whole tile and a tap plays or stops", () => {
   toggle(item, false);
   assert.equal(snapshot().id, "en");
   toggle(item, true);
+  assert.equal(snapshot().id, "en");
+  stop();
   assert.equal(snapshot().id, null);
 });
 
