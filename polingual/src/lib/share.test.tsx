@@ -167,7 +167,7 @@ test("params are clamped to the app limits by grapheme", () => {
 test("og renders cache for a day when fonts load and send no-store otherwise", async () => {
   const ok = await renderOg(<div style={{ display: "flex" }}>ok</div>, { fonts: [], complete: true });
   assert.equal(ok.headers.get("cache-control"), OG_CACHE_OK);
-  assert.match(OG_CACHE_OK, /s-maxage=86400/);
+  assert.match(OG_CACHE_OK, /s-maxage=2592000/);
   assert.match(OG_CACHE_OK, /stale-while-revalidate=/);
   const partial = await renderOg(<div style={{ display: "flex" }}>ok</div>, { fonts: [], complete: false });
   assert.equal(partial.headers.get("cache-control"), OG_CACHE_FAIL);

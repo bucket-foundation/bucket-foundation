@@ -15,6 +15,13 @@ const nextConfig = {
       ],
     };
   },
+  async headers() {
+    return [
+      { source: "/academy-app/corpus/:path*", headers: [{ key: "cache-control", value: "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800" }] },
+      { source: "/academy-app/polingual/:path*", headers: [{ key: "cache-control", value: "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800" }] },
+      { source: "/academy-app/audio/:path*", headers: [{ key: "cache-control", value: "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=2592000" }] },
+    ];
+  },
   async redirects() {
     return [
       { source: "/word/:id(photon.*)", destination: "/photon/:id", permanent: true },
