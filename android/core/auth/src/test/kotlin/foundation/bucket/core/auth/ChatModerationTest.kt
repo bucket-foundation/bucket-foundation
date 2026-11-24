@@ -17,11 +17,15 @@ class ChatModerationTest {
         val f = Fake()
         val lists = mutableMapOf<String, MutableSet<String>>()
         var down = false
+        val reject = mutableSetOf<String>()
+        val names = mutableListOf<String>()
         init {
             f.routes = { _, body ->
                 val who = f.auth.last()?.removePrefix("Bearer ").orEmpty()
                 val set = lists.getOrPut(who) { mutableSetOf() }
-                if (down) 503 to "{}" else {
+                val target = Regex("\"userId\":\"([^\"]+)\"").find(body)?.groupValues?.get(1)
+                Regex("\"name\":\"([^\"]+)\"").find(body)?.groupValues?.get(1)?.let { names += it }
+                if (down) 503 to "{}" else if (target in reject) 400 to """{"error":"bad_user"}""" else {
                     Regex("\"userId\":\"([^\"]+)\"").find(body)?.groupValues?.get(1)?.let { id ->
                         if ("\"blocked\":true" in body) set += id else set -= id
                     }
@@ -94,6 +98,58 @@ class ChatModerationTest {
         blocks.sync()
         assertEquals<Set<String>?>(setOf("third"), s.lists["t-a"])
         assertEquals(setOf("third"), blocks.blocked.value)
+    }
+
+    @Test
+    fun rejectedQueuedOpIsDroppedAndTheServerListStillWins() = runTest {
+        val kv = MemoryKeyValue()
+        val s = Server()
+        val blocks = ChatBlocks(kv, s.f.api, Who("a").identity)
+        s.down = true
+        blocks.block("ghost", "Ghost")
+        blocks.block("troll", "Troll")
+        s.down = false
+        s.reject += "ghost"
+        s.lists.getOrPut("t-a") { mutableSetOf() } += "web"
+        blocks.sync()
+        assertEquals(setOf("troll", "web"), blocks.blocked.value)
+        assertEquals(null, kv.get(ChatBlocks.pendingKey("a")))
+        blocks.sync()
+        assertEquals(setOf("troll", "web"), blocks.blocked.value)
+    }
+
+    @Test
+    fun replayKeepsTheBlockedPlayersName() = runTest {
+        val s = Server()
+        val blocks = ChatBlocks(MemoryKeyValue(), s.f.api, Who("a").identity)
+        s.down = true
+        blocks.block("troll", "Troll")
+        s.down = false
+        s.names.clear()
+        blocks.sync()
+        assertEquals(listOf("Troll"), s.names)
+    }
+
+    @Test
+    fun queuedBlockStaysHiddenAfterAnOnlineBlock() = runTest {
+        val s = Server()
+        val blocks = ChatBlocks(MemoryKeyValue(), s.f.api, Who("a").identity)
+        s.down = true
+        blocks.block("first", "F")
+        s.down = false
+        blocks.block("second", "S")
+        assertEquals(setOf("first", "second"), blocks.blocked.value)
+    }
+
+    @Test
+    fun rejectedOnlineBlockIsRolledBack() = runTest {
+        val kv = MemoryKeyValue()
+        val s = Server()
+        val blocks = ChatBlocks(kv, s.f.api, Who("a").identity)
+        s.reject += "ghost"
+        blocks.block("ghost", "Ghost")
+        assertEquals(emptySet<String>(), blocks.blocked.value)
+        assertEquals(null, kv.get(ChatBlocks.pendingKey("a")))
     }
 
     @Test

@@ -34,6 +34,12 @@ val ChatReportReason.label: Int
         ChatReportReason.Other -> R.string.s_report_other
     }
 
+fun reportFailure(e: BucketError): Int = when (e) {
+    is BucketError.RateLimited -> R.string.s_report_failed_rate
+    is BucketError.NotFound -> R.string.s_report_failed_gone
+    else -> R.string.s_report_failed
+}
+
 fun canModerate(message: LobbyMessage, myId: String?, bots: Set<String> = emptySet()): Boolean = myId != null && message.from != myId && message.from !in bots
 
 private sealed interface ChatSheet {
@@ -47,7 +53,7 @@ fun ChatLine(message: LobbyMessage, myId: String?, bots: Set<String>, report: su
     val p = LocalPalette.current
     val scope = rememberCoroutineScope()
     var sheet by remember { mutableStateOf<ChatSheet?>(null) }
-    var failure by remember { mutableStateOf<String?>(null) }
+    var failure by remember { mutableStateOf<Int?>(null) }
     var busy by remember { mutableStateOf(false) }
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Text("${message.name}: ${message.body}", color = p.ink, modifier = Modifier.weight(1f))
@@ -72,14 +78,14 @@ fun ChatLine(message: LobbyMessage, myId: String?, bots: Set<String>, report: su
                                     report(s.m.id, r)
                                     sheet = ChatSheet.Sent(s.m)
                                 } catch (e: BucketError) {
-                                    failure = e.message
+                                    failure = reportFailure(e)
                                 } finally {
                                     busy = false
                                 }
                             }
                         }
                     }
-                    failure?.let { Text(stringResource(R.string.s_report_failed, it), color = PL.Vermilion, modifier = Modifier.testTag("chatReportError")) }
+                    failure?.let { Text(stringResource(it), color = PL.Vermilion, modifier = Modifier.testTag("chatReportError")) }
                 }
             },
         )
