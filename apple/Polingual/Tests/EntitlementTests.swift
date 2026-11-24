@@ -1,3 +1,4 @@
+import BucketKit
 import Foundation
 import StoreKit
 import Testing
@@ -8,6 +9,86 @@ struct EntitlementTests {
 
     func record(_ id: String = Plan.monthly, expiresIn: TimeInterval? = 86_400, revoked: Bool = false, intro: Bool = false, upgraded: Bool = false) -> EntitlementRecord {
         EntitlementRecord(productID: id, purchased: now.addingTimeInterval(-3_600), expires: expiresIn.map { now.addingTimeInterval($0) }, revoked: revoked ? now : nil, introductory: intro, upgraded: upgraded)
+    }
+
+    func web(_ user: String = "u1", expiresIn: TimeInterval = 300 * 86_400, fetchedAgo: TimeInterval = 60) -> WebEntitlement {
+        WebEntitlement(userId: user, productId: "web.polingual.gift.year", expires: now.addingTimeInterval(expiresIn), fetched: now.addingTimeInterval(-fetchedAgo))
+    }
+
+    @Test func lapsedReportsTheLatestEndedPaidPlan() {
+        let older = record(Plan.monthly, expiresIn: -5 * 86_400)
+        let newer = record(Plan.yearly, expiresIn: -86_400)
+        #expect(Entitlement.lapsed(history: [older, newer], now: now) == now.addingTimeInterval(-86_400))
+        #expect(Entitlement.access([], now: now) == .locked)
+    }
+
+    @Test func lapsedIsNilWhileAnyPlanIsLiveOrNoneWasBought() {
+        #expect(Entitlement.lapsed(history: [], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [record(expiresIn: -86_400), record(Plan.yearly)], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [record(Plan.lifetime, expiresIn: nil)], now: now) == nil)
+    }
+
+    @Test func lapsedIgnoresAnUpgradedRecordWhenTheNewPlanIsLive() {
+        let upgraded = record(Plan.monthly, expiresIn: -86_400, upgraded: true)
+        #expect(Entitlement.lapsed(history: [upgraded, record(Plan.yearly)], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [upgraded, record(Plan.yearly, expiresIn: -3_600)], now: now) == now.addingTimeInterval(-3_600))
+    }
+
+    @Test func lapsedSkipsRevokedAndUnknownProducts() {
+        #expect(Entitlement.lapsed(history: [record(expiresIn: -86_400, revoked: true)], now: now) == nil)
+        #expect(Entitlement.lapsed(history: [record("com.other.app", expiresIn: -86_400)], now: now) == nil)
+    }
+
+    @Test func lapsedCopyAddsTheTestFlightLineInTheSandbox() {
+        let ended = now.addingTimeInterval(-86_400)
+        let plain = PaywallCopy.lapsed(ended, sandbox: false)
+        let beta = PaywallCopy.lapsed(ended, sandbox: true)
+        #expect(plain.contains(ended.formatted(date: .long, time: .omitted)))
+        #expect(beta.hasPrefix(plain))
+        #expect(beta.count > plain.count)
+        #expect(beta.hasSuffix(String(localized: "Test plans end within days, and test purchases are free.")))
+    }
+
+    @Test func webGrantOpensLockedAndBetaAccess() {
+        let w = web()
+        let subscribed = Access.subscribed(productID: w.productId, until: w.expires)
+        #expect(Entitlement.merged(.locked, web: w, userId: "u1", now: now) == subscribed)
+        #expect(Entitlement.merged(.beta, web: w, userId: "u1", now: now) == subscribed)
+        #expect(Entitlement.merged(.checking, web: w, userId: "u1", now: now) == subscribed)
+        #expect(Entitlement.webMember(.locked, web: w, userId: "u1", now: now) == w)
+        #expect(!Monetization.showsAds(subscribed))
+        #expect(!Monetization.capped(subscribed))
+        #expect(!Monetization.locked(.learn, access: subscribed))
+    }
+
+    @Test func storeKitStateIsNeverReplacedByAWebGrant() {
+        let w = web()
+        let trial = Access.trial(until: now.addingTimeInterval(86_400))
+        let paid = Access.subscribed(productID: Plan.yearly, until: now.addingTimeInterval(86_400))
+        #expect(Entitlement.merged(trial, web: w, userId: "u1", now: now) == trial)
+        #expect(Entitlement.merged(paid, web: w, userId: "u1", now: now) == paid)
+        #expect(Entitlement.webMember(paid, web: w, userId: "u1", now: now) == nil)
+    }
+
+    @Test func noWebGrantLeavesStoreKitAccessAlone() {
+        for store in [Access.checking, .locked, .beta, .trial(until: now.addingTimeInterval(60)), .subscribed(productID: Plan.monthly, until: nil)] {
+            #expect(Entitlement.merged(store, web: nil, userId: "u1", now: now) == store)
+        }
+    }
+
+    @Test func expiredStaleOrForeignWebGrantIsIgnored() {
+        #expect(Entitlement.merged(.locked, web: web(expiresIn: -60), userId: "u1", now: now) == .locked)
+        #expect(Entitlement.merged(.locked, web: web(fetchedAgo: 8 * 86_400), userId: "u1", now: now) == .locked)
+        #expect(Entitlement.merged(.locked, web: web(fetchedAgo: -3_600), userId: "u1", now: now) == .locked)
+        #expect(Entitlement.merged(.locked, web: web(), userId: "u2", now: now) == .locked)
+        #expect(Entitlement.merged(.locked, web: web(), userId: nil, now: now) == .locked)
+        #expect(Monetization.showsAds(Entitlement.merged(.locked, web: web(expiresIn: -60), userId: "u1", now: now)))
+    }
+
+    @Test func memberLineNamesTheDateAndNothingElse() {
+        let line = Entitlement.memberLine(web())
+        #expect(line.contains(web().expires!.formatted(date: .long, time: .omitted)))
+        #expect(Entitlement.memberLine(WebEntitlement(userId: "u1", productId: "web.polingual.membership", expires: nil, fetched: now)) == String(localized: "Membership active"))
     }
 
     @Test func noRecordsLocks() {

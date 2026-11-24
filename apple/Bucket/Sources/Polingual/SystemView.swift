@@ -52,7 +52,7 @@ struct SystemView: View {
                 AddToToday(item: .system(system))
                 HStack(spacing: 18) {
                     Text("\(Int(sum.xp)) xp")
-                    Text("\(StreakGoal(streak: liveStreak(state, now: now)).day) day streak")
+                    Text(dayStreak(StreakGoal(streak: liveStreak(state, now: now)).day))
                 }
                 .font(.subheadline)
                 .foregroundStyle(Palette.muted)

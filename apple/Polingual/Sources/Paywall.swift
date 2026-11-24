@@ -32,6 +32,7 @@ struct Paywall: View {
     var switching: Bool { subs.current != nil && subs.access.open }
 
     var trialDays: Int { TrialLength.shown(products, chosen: chosen) }
+    var lapsedLine: String? { subs.access.open ? nil : subs.lapsed.map { PaywallCopy.lapsed($0, sandbox: subs.sandbox) } }
 
     var body: some View {
         GeometryReader { g in
@@ -61,7 +62,7 @@ struct Paywall: View {
                     VStack(alignment: .leading, spacing: 0) {
                         header
                         art
-                            .frame(height: min(260, h * 0.34))
+                            .frame(height: min(260, h * (lapsedLine == nil ? 0.34 : 0.22)))
                             .padding(.top, h * 0.06)
                         Spacer(minLength: 8)
                         purchase
@@ -157,6 +158,14 @@ struct Paywall: View {
                 .buttonStyle(D8Primary())
                 .disabled(product == nil || buying)
             }
+            if let lapsedLine, note == nil {
+                Text(lapsedLine)
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(D8.parchment)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityIdentifier("lapsedLine")
+            }
             if freeBeta {
                 Text(FreeBeta.note)
                     .font(.footnote)
@@ -247,7 +256,7 @@ struct Paywall: View {
         do {
             try await AppStore.sync()
             await subs.refresh()
-            if case .locked = subs.access { note = "No Polingual subscription found on this Apple Account." }
+            if case .locked = subs.access { note = lapsedLine ?? String(localized: "No Polingual subscription found on this Apple Account.") }
         } catch {
             note = "Restore did not finish. Check your connection and try again."
         }
@@ -404,6 +413,11 @@ enum FreeBeta {
 enum PaywallCopy {
     static func headline(trial: Bool, days: Int = Plan.trialDays) -> String {
         trial ? String(localized: "\(days) days free") : String(localized: "Keep learning")
+    }
+
+    static func lapsed(_ ended: Date, sandbox: Bool) -> String {
+        let line = String(localized: "Your subscription ended on \(ended.formatted(date: .long, time: .omitted)).")
+        return sandbox ? line + " " + String(localized: "Test plans end within days, and test purchases are free.") : line
     }
 
     static func disclosure(trial: Bool, days: Int = Plan.trialDays, price: String, period: String, family: Bool = false) -> String {

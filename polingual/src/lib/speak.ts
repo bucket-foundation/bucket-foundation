@@ -42,6 +42,7 @@ function sharedAudio(): HTMLAudioElement {
 export function resetPlayer() {
   stop();
   shared = null;
+  primed = false;
 }
 
 let station: HTMLAudioElement | null = null;
@@ -153,6 +154,32 @@ function drop(): void {
   const p = pending;
   pending = null;
   p?.resolve();
+}
+
+const SILENCE = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+
+let primed = false;
+
+export function unlockSpeech(): void {
+  if (primed || typeof window === "undefined" || state.id !== null) return;
+  try {
+    const a = sharedAudio();
+    if (a.paused && (!a.src || a.src === SILENCE)) {
+      a.src = SILENCE;
+      void a.play().then(() => {
+        primed = true;
+        if (state.id === null) a.pause();
+      }, () => undefined);
+    }
+    const s = synth();
+    if (s && !s.speaking && !s.pending) {
+      const u = new SpeechSynthesisUtterance("");
+      u.volume = 0;
+      s.speak(u);
+    }
+  } catch {
+    return;
+  }
 }
 
 export function cancelSpeech(): void {

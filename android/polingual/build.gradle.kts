@@ -1,3 +1,7 @@
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -5,6 +9,19 @@ plugins {
 }
 
 val TEST_ADMOB_APP = "ca-app-pub-3940256099942544~3347511713"
+fun releaseSetting(prop: String, env: String): String? =
+    providers.gradleProperty(prop).orNull ?: providers.environmentVariable(env).orNull
+
+val uploadStoreFile = releaseSetting("polingualUploadStoreFile", "POLINGUAL_UPLOAD_STORE_FILE")
+val uploadStorePassword = releaseSetting("polingualUploadStorePassword", "POLINGUAL_UPLOAD_STORE_PASSWORD")
+val uploadKeyAlias = releaseSetting("polingualUploadKeyAlias", "POLINGUAL_UPLOAD_KEY_ALIAS")
+val uploadKeyPassword = releaseSetting("polingualUploadKeyPassword", "POLINGUAL_UPLOAD_KEY_PASSWORD")
+val canSignRelease = listOf(uploadStoreFile, uploadStorePassword, uploadKeyAlias, uploadKeyPassword).all { !it.isNullOrBlank() }
+
+val releaseVersionCode = providers.gradleProperty("polingualVersionCode").orNull?.toInt()
+    ?: LocalDateTime.now(ZoneOffset.UTC)
+        .format(DateTimeFormatter.ofPattern("yyDDDHHmm")).toInt()
+
 val corpusAssets = layout.buildDirectory.dir("corpusAssets")
 val syncCorpus by tasks.registering(Sync::class) {
     from(rootProject.file("../apple/Shared/Corpus"))
@@ -19,7 +36,7 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = "1.0.2"
         buildConfigField("String", "BUCKET_BASE", "\"https://www.bucket.foundation\"")
         manifestPlaceholders["admobAppId"] = TEST_ADMOB_APP
         buildConfigField("boolean", "ADS_ENABLED", "true")
@@ -29,6 +46,16 @@ android {
         buildConfigField("boolean", "FREE_BETA", "false")
         buildConfigField("boolean", "FAKE_PLANS", "false")
     }
+    signingConfigs {
+        if (canSignRelease) {
+            create("release") {
+                storeFile = file(uploadStoreFile!!)
+                storePassword = uploadStorePassword
+                keyAlias = uploadKeyAlias
+                keyPassword = uploadKeyPassword
+            }
+        }
+    }
     buildTypes {
         debug {
             providers.gradleProperty("bucketBase").orNull?.let { buildConfigField("String", "BUCKET_BASE", "\"$it\"") }
@@ -36,12 +63,12 @@ android {
             buildConfigField("boolean", "FAKE_PLANS", providers.gradleProperty("fakePlans").orNull ?: "false")
         }
         release {
-            val admob = providers.gradleProperty("polingualAdmobAppId").orNull
-            manifestPlaceholders["admobAppId"] = admob ?: TEST_ADMOB_APP
-            buildConfigField("boolean", "ADS_ENABLED", if (admob != null) "true" else "false")
+            manifestPlaceholders["admobAppId"] = providers.gradleProperty("polingualAdmobAppId").orNull ?: "ca-app-pub-9735211554999350~5629228945"
+            buildConfigField("boolean", "ADS_ENABLED", "true")
             buildConfigField("boolean", "TEST_ADS", "false")
-            buildConfigField("String", "BANNER_UNIT", "\"${providers.gradleProperty("polingualBannerUnit").orNull ?: ""}\"")
-            buildConfigField("String", "INTERSTITIAL_UNIT", "\"${providers.gradleProperty("polingualInterstitialUnit").orNull ?: ""}\"")
+            buildConfigField("String", "BANNER_UNIT", "\"${(providers.gradleProperty("polingualBannerUnit").orNull ?: "ca-app-pub-9735211554999350/4698244474")}\"")
+            buildConfigField("String", "INTERSTITIAL_UNIT", "\"${(providers.gradleProperty("polingualInterstitialUnit").orNull ?: "ca-app-pub-9735211554999350/1693853361")}\"")
+            if (canSignRelease) signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -56,6 +83,12 @@ android {
     }
     sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("corpusAssets").get().asFile)
     testOptions { unitTests.isReturnDefaultValues = true }
+}
+
+androidComponents {
+    onVariants(selector().withBuildType("release")) { variant ->
+        variant.outputs.forEach { it.versionCode.set(releaseVersionCode) }
+    }
 }
 
 tasks.named("preBuild") { dependsOn(syncCorpus) }

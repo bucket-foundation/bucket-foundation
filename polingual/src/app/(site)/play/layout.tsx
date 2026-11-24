@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
+import { preconnect } from "react-dom";
 import { needsConsent } from "@/lib/lobby/ads";
 import { tokens } from "@/ui/tokens";
 import styles from "../app/app.module.css";
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: tokens.color.tyrian, viewportFit: "cover" };
 
 export default async function PlayLayout({ children }: { children: React.ReactNode }) {
+  preconnect("https://fonts.googleapis.com");
+  preconnect("https://fonts.gstatic.com", { crossOrigin: "anonymous" });
   const country = (await headers()).get("x-vercel-ip-country");
   const header = (
     <header className={`${styles.bar} ${play.playBar}`}>

@@ -22,6 +22,10 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case handleTaken
     case handleInvalid
 
+    static func serverDown(_ status: Int) -> Bool {
+        status == 0 || status == 402 || status >= 500
+    }
+
     public var errorDescription: String? {
         switch self {
         case .badEmail: "Enter a valid email address."
@@ -29,7 +33,7 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .rateLimited(let m): m ?? "Too many tries. Wait ten minutes and try again."
         case .revoked: "Your session ended. Sign in again."
         case .unavailable: "Sign-in is unavailable right now."
-        case .server(let s, let m): m ?? "Bucket answered \(s)."
+        case .server(let s, let m): m ?? (Self.serverDown(s) ? "Bucket is not answering right now. Try again in a few minutes." : "Bucket answered \(s).")
         case .decoding: "Bucket sent a reply this version cannot read."
         case .groupNotFound: "That invite link no longer works. Ask for a new one."
         case .groupFull: "This group is full."
@@ -165,7 +169,7 @@ public struct BucketAPI: Sendable {
     }
 
     public func refresh(_ s: Session) async throws -> Session {
-        let data = try await session(["action": "refresh", "refresh_token": s.refreshToken])
+        let data = try await session(["action": "refresh", "refresh_token": s.refreshToken], timeout: Self.refreshTimeout)
         return try decodeBody(data)
     }
 
@@ -222,8 +226,11 @@ public struct BucketAPI: Sendable {
         return try decode(data, http)
     }
 
-    func session(_ body: [String: String], token: String? = nil) async throws -> Data {
+    public static let refreshTimeout: TimeInterval = 20
+
+    func session(_ body: [String: String], token: String? = nil, timeout: TimeInterval? = nil) async throws -> Data {
         var r = URLRequest(url: base.appending(path: "api/academy/session"))
+        if let timeout { r.timeoutInterval = timeout }
         r.httpMethod = "POST"
         if let token { r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization") }
         r.setValue("application/json", forHTTPHeaderField: "content-type")

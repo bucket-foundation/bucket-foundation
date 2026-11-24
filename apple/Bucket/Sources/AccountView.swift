@@ -13,6 +13,7 @@ struct AccountView: View {
     @State private var signingIn = false
     @State private var emailing = false
     var subscription: (() -> Void)?
+    var memberLine: String?
     var trialDaysLeft: Int?
     var trialReminderOff = false
     var betaFree = false
@@ -25,12 +26,15 @@ struct AccountView: View {
         return URL(string: polingual ? "https://polingual.com/privacy" : "https://www.bucket.foundation/privacy")!
     }
 
+    private var statusSlot: AccountStatusSlot { .slot(stage: account.stage, emailing: emailing) }
+
     var body: some View {
         NavigationStack {
             Form {
                 #if !BUCKET
-                PLScreenTop(title: "Account", subtitle: "Your progress, saved", stickers: Stickers.account).plListTop()
+                PLScreenTop(title: "Account", stickers: Stickers.account).plListTop()
                 #endif
+                LexiconMapSection()
                 switch account.stage {
                 case .signedOut, .codeSent:
                     Section {
@@ -38,6 +42,12 @@ struct AccountView: View {
                         Button("Sign in with email") { emailing = true }
                             .buttonStyle(D8Option(align: .center))
                             .disabled(account.busy)
+                        if account.busy && statusSlot == .signInSection {
+                            ProgressView().frame(maxWidth: .infinity)
+                        }
+                        if let error = account.error, statusSlot == .signInSection {
+                            Text(error).foregroundStyle(.red).accessibilityIdentifier("signInError")
+                        }
                     } footer: {
                         Text("Sign in with Apple or your email. The same account works on bucket.foundation.")
                     }
@@ -52,6 +62,13 @@ struct AccountView: View {
                         }
                     } header: {
                         Eyebrow(text: "Account")
+                    }
+                }
+                if let memberLine {
+                    Section {
+                        Text(memberLine).accessibilityIdentifier("memberLine")
+                    } header: {
+                        Eyebrow(text: "Subscription")
                     }
                 }
                 if let subscription {
@@ -85,11 +102,13 @@ struct AccountView: View {
                     Eyebrow(text: "Developer")
                 }
                 #endif
-                if let error = account.error {
-                    Section { Text(error).foregroundStyle(.red) }
-                }
-                if account.busy {
-                    Section { ProgressView() }
+                if statusSlot == .page {
+                    if let error = account.error {
+                        Section { Text(error).foregroundStyle(.red) }
+                    }
+                    if account.busy {
+                        Section { ProgressView() }
+                    }
                 }
                 Section {
                     Link("Privacy and data", destination: Self.privacyURL)
@@ -238,6 +257,20 @@ struct SignInSheet: View {
                             .textContentType(.oneTimeCode)
                             .focused($focused)
                             .codeField()
+                        #if os(iOS)
+                        PasteButton(payloadType: String.self) { strings in
+                            guard let found = strings.lazy.compactMap(OneTimeCode.extract).first else {
+                                Task { @MainActor in account.error = String(localized: "No code in the pasted text.") }
+                                return
+                            }
+                            Task { @MainActor in
+                                code = found
+                                if !account.busy { await account.verify(code: found) }
+                            }
+                        }
+                        .labelStyle(.titleAndIcon)
+                        .accessibilityIdentifier("paste-code")
+                        #endif
                         Button("Verify") { Task { await account.verify(code: code) } }
                             .buttonStyle(D8Primary())
                             .disabled(account.busy || code.filter(\.isNumber).count < 6)

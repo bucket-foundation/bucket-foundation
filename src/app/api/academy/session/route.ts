@@ -5,7 +5,8 @@ import { appleTokenDeps } from "@/lib/academy/apple-token-store";
 import { vercelDefer } from "@/lib/capture/legs";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
-import { findUserByEmail, mintReviewSession, reviewDemoConfig } from "@/lib/academy/review-demo";
+import { GOOGLE_SUB_KEY, googleClientId, googleKeys, mintGoogleSession, verifyGoogleIdToken } from "@/lib/academy/google-token";
+import { findUserByEmail, isMissingRpc, mintReviewSession, reviewDemoConfig, rpcLookupWithFallback } from "@/lib/academy/review-demo";
 import { appleAudiences, bearerToken, createSessionHandler, sessionClientIp } from "@/lib/academy/session-server";
 
 export const runtime = "nodejs";
@@ -21,6 +22,20 @@ const bucketClient = () => (bucket ??= createClient(URL_(), process.env.SUPABASE
 const adminClient = () => createClient(URL_(), process.env.SUPABASE_SERVICE_ROLE_KEY ?? "", opts);
 
 const appleTokens = appleTokenDeps();
+
+const lookupUser = (label: string) =>
+  rpcLookupWithFallback(
+    async (email) => {
+      const { data, error } = await bucketClient().rpc("auth_user_by_email", { p_email: email });
+      return { data, error: error ? { code: error.code, message: error.message } : null };
+    },
+    async (page, perPage) => {
+      const { data, error } = await adminClient().auth.admin.listUsers({ page, perPage });
+      if (error) throw new Error(`${label} user list failed with status ${error.status}`);
+      return data.users;
+    },
+    label,
+  );
 
 const deleteAccountFor = (accessToken: string) =>
   deleteAccount(
@@ -70,17 +85,39 @@ const handle = createSessionHandler({
   },
   defer: vercelDefer,
   appleAudiences: () => appleAudiences(process.env.APPLE_AUDIENCES),
+  google: {
+    clientId: () => googleClientId(process.env.POLINGUAL_GOOGLE_WEB_CLIENT_ID),
+    verify: (token, nonce, clientId) => verifyGoogleIdToken(token, nonce, { clientId, keys: googleKeys(), now: Date.now() }),
+    signIn: (who) =>
+      mintGoogleSession(who, {
+        findUser: (address) => findUserByEmail(lookupUser("google"), address),
+        createUser: async (address, sub) => {
+          const { error } = await adminClient().auth.admin.createUser({ email: address, email_confirm: true, app_metadata: { [GOOGLE_SUB_KEY]: sub } });
+          return { status: error ? (error.status ?? 500) : null };
+        },
+        bindSub: async (userId, sub) => {
+          const { data, error } = await bucketClient().rpc("bind_google_sub", { p_user: userId, p_sub: sub });
+          if (!error) return { bound: typeof data === "string" ? data : null, status: null };
+          if (!isMissingRpc({ code: error.code, message: error.message })) return { bound: null, status: 500 };
+          const updated = await adminClient().auth.admin.updateUserById(userId, { app_metadata: { [GOOGLE_SUB_KEY]: sub } });
+          return { bound: updated.error ? null : sub, status: updated.error ? (updated.error.status ?? 500) : null };
+        },
+        generateLink: async (address) => {
+          const { data, error } = await adminClient().auth.admin.generateLink({ type: "magiclink", email: address });
+          return error ? { link: null, status: error.status ?? 500 } : { link: { tokenHash: data.properties.hashed_token, type: data.properties.verification_type }, status: null };
+        },
+        verifyToken: async (tokenHash, type) => {
+          const { data, error } = await anonClient().auth.verifyOtp({ token_hash: tokenHash, type: type as EmailOtpType });
+          return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
+        },
+      }),
+  },
   deleteAccount: deleteAccountFor,
   reviewDemo: {
     config: () => reviewDemoConfig(process.env.REVIEW_DEMO_EMAIL, process.env.REVIEW_DEMO_CODE, process.env.REVIEW_DEMO_UNTIL, Date.now()),
     signIn: (email) =>
       mintReviewSession(email, {
-        findUser: (address) =>
-          findUserByEmail(async (page, perPage) => {
-            const { data, error } = await adminClient().auth.admin.listUsers({ page, perPage });
-            if (error) throw new Error(`review demo user lookup failed with status ${error.status}`);
-            return data.users;
-          }, address),
+        findUser: (address) => findUserByEmail(lookupUser("review demo"), address),
         generateLink: async (address) => {
           const { data, error } = await adminClient().auth.admin.generateLink({ type: "magiclink", email: address });
           return error ? { link: null, status: error.status ?? 500 } : { link: { tokenHash: data.properties.hashed_token, type: data.properties.verification_type }, status: null };

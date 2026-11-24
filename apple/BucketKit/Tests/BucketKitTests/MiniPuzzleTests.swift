@@ -35,6 +35,26 @@ import Testing
         }
     }
 
+    @Test func dailyLanguageRotatesAcrossTargets() throws {
+        let targets = ["de", "es", "fr", "it", "nl", "sv"]
+        let pool = targets.flatMap { l in Self.forms.enumerated().map { GameWord(itemId: "\(l)\($0.offset)", lang: l, form: $0.element, gloss: "g\($0.offset)", root: "en", rank: $0.offset) } }
+        var days: [String: Int] = [:]
+        var run = 0
+        var longest = 0
+        var last = ""
+        for d in 1...60 {
+            let day = String(format: "2026-%02d-%02d", 11 + (d - 1) / 30, (d - 1) % 30 + 1)
+            let lang = try #require(MiniPuzzle.daily(pool, day: day, root: "en", targets: targets)).lang
+            days[lang, default: 0] += 1
+            run = lang == last ? run + 1 : 1
+            longest = max(longest, run)
+            last = lang
+        }
+        #expect(Set(days.keys) == Set(targets))
+        #expect(longest <= 3)
+        #expect((days.values.max() ?? 60) <= 20)
+    }
+
     @Test func tooFewWordsGivesNothing() {
         #expect(MiniPuzzle.daily(Array(words.prefix(4)), day: "d", root: "en", targets: ["de"]) == nil)
         let han = ["水", "火", "山", "人", "日", "月", "木", "金", "土", "天"].enumerated().map { GameWord(itemId: "z\($0.offset)", lang: "zh", form: $0.element, gloss: "g", root: "en", rank: 0) }

@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient, type User } from "@supabase/supabase-js";
-import { findUserByEmail, isReviewDemoUser } from "../src/lib/academy/review-demo";
+import { isReviewDemoUser } from "../src/lib/academy/review-demo";
 import { REVIEW_DISPLAY_NAME, REVIEW_GROUP_KIND, REVIEW_GROUP_NAME, REVIEW_PEER_NAME, reviewInviteCode, reviewPeerEmail, reviewProgressRows } from "../src/lib/academy/review-demo-seed";
 
 const PEER_WORDS = ["one", "two", "three", "red"];
@@ -11,11 +11,13 @@ function required(name: string): string {
 }
 
 async function findUser(auth: SupabaseClient["auth"]["admin"], email: string): Promise<User | null> {
-  return findUserByEmail(async (page, perPage) => {
-    const { data, error } = await auth.listUsers({ page, perPage });
+  for (let page = 1; ; page++) {
+    const { data, error } = await auth.listUsers({ page, perPage: 1000 });
     if (error) throw new Error(`list users failed with status ${error.status}`);
-    return data.users;
-  }, email);
+    const found = data.users.find((u) => u.email?.toLowerCase() === email.toLowerCase());
+    if (found) return found;
+    if (data.users.length < 1000) return null;
+  }
 }
 
 async function ensureUser(auth: SupabaseClient["auth"]["admin"], email: string): Promise<string> {

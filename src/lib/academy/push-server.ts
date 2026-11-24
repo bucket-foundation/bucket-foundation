@@ -1,5 +1,6 @@
 import { service } from "./groups-server";
-import { apnsConfig, pushCheer, pushStreak, withBudget, type CheerPushKind, type PushDevice, type PushEnv, type PushStore, type SendResult } from "./apns";
+import { fcmConfig, mergeResults, pushFcmCheer, pushFcmStreak, type FcmDevice, type FcmStore } from "./fcm";
+import { apnsConfig, pushCheer, pushStreak, withBudget, type CheerPushKind, type PushDevice, type PushEnv, type PushPlatform, type PushStore, type SendResult } from "./apns";
 
 export const PUSH_DEVICES = "push_devices";
 
@@ -24,17 +25,49 @@ export async function registerDevice(userId: string, token: string, env: PushEnv
   if (res.error) throw new Error(`push register: ${res.error.message}`);
 }
 
-export async function unregisterDevice(userId: string, token: string): Promise<void> {
-  const res = await service().from(PUSH_DEVICES).delete().eq("user_id", userId).eq("token", token);
+export const PUSH_DEVICES_FCM = "push_devices_fcm";
+
+export async function registerFcmDevice(userId: string, token: string, bundleId: string): Promise<void> {
+  const res = await service()
+    .from(PUSH_DEVICES_FCM)
+    .upsert({ token, user_id: userId, bundle_id: bundleId, updated_at: new Date().toISOString() }, { onConflict: "token" });
+  if (res.error) throw new Error(`push register fcm: ${res.error.message}`);
+}
+
+export const supabaseFcmStore: FcmStore = {
+  async devices(userId) {
+    const res = await service().from(PUSH_DEVICES_FCM).select("token,bundle_id").eq("user_id", userId);
+    if (res.error) throw new Error(`push fcm devices read: ${res.error.message}`);
+    return (res.data ?? []) as FcmDevice[];
+  },
+  async prune(token) {
+    await service().from(PUSH_DEVICES_FCM).delete().eq("token", token);
+  },
+};
+
+export async function unregisterDevice(userId: string, token: string, platform: PushPlatform = "ios"): Promise<void> {
+  const res = await service().from(platform === "android" ? PUSH_DEVICES_FCM : PUSH_DEVICES).delete().eq("user_id", userId).eq("token", token);
   if (res.error) throw new Error(`push unregister: ${res.error.message}`);
 }
 
 export const PUSH_BUDGET_MS = 3000;
 
 export function pushCheerToDevices(cheer: { group_id: string; to_id: string; kind: CheerPushKind }, fromName: string): Promise<SendResult | null> {
-  return withBudget(pushCheer(cheer, fromName, { cfg: apnsConfig(), store: supabasePushStore }), PUSH_BUDGET_MS);
+  return withBudget(
+    Promise.all([
+      pushCheer(cheer, fromName, { cfg: apnsConfig(), store: supabasePushStore }),
+      pushFcmCheer(cheer, fromName, { cfg: fcmConfig(), store: supabaseFcmStore }),
+    ]).then(([a, b]) => mergeResults(a, b)),
+    PUSH_BUDGET_MS,
+  );
 }
 
 export function pushStreakToDevices(userId: string, streak: number): Promise<SendResult | null> {
-  return withBudget(pushStreak(userId, streak, { cfg: apnsConfig(), store: supabasePushStore }), PUSH_BUDGET_MS);
+  return withBudget(
+    Promise.all([
+      pushStreak(userId, streak, { cfg: apnsConfig(), store: supabasePushStore }),
+      pushFcmStreak(userId, streak, { cfg: fcmConfig(), store: supabaseFcmStore }),
+    ]).then(([a, b]) => mergeResults(a, b)),
+    PUSH_BUDGET_MS,
+  );
 }

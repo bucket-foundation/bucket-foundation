@@ -49,7 +49,7 @@ extension View {
         navigationDestination(for: LangRoute.self) { route in
             switch route {
             case .system(let id): SystemView(path: path, systemId: id)
-            case .study(let id): StudyView(path: path, systemId: id).fullHeightSession()
+            case .study(let id): StudyView(path: path, systemId: id).fullHeightSession().id(id)
             case .place(let id, let lang): PlacementView(path: path, systemId: id, requested: lang).fullHeightSession()
             case .alphabet(let id, let lang): AlphabetStudy(systemId: id, lang: lang).fullHeightSession()
             case .reference(let lang): LanguageReference(lang: lang)

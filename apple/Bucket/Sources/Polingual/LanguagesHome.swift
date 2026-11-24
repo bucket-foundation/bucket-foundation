@@ -98,8 +98,9 @@ struct LanguageSections: View {
     @Binding var path: NavigationPath
     let corpus: LangCorpus
     let proxy: ScrollViewProxy
-    @State private var root = "en"
+    @State private var root = InterfaceLanguage.deviceRoot
     @State private var targets: [String] = []
+    @State private var speaking = false
 
     var err: SystemError? { validateSystem(root, targets, store.systems) }
     var pickable: [String] { Lang.codes.filter { $0 != root } }
@@ -117,10 +118,21 @@ struct LanguageSections: View {
         .listRowBackground(Color.clear)
         Section {
             chips
-            Picker("I already speak", selection: $root) {
-                ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
+            Button {
+                speaking = true
+            } label: {
+                LabeledContent("Languages I speak") {
+                    Text(KnownPrompt.summary(store.known, device: InterfaceLanguage.deviceRoot, name: langName))
+                }
+            }
+            .tint(Palette.ink)
+            .onChange(of: store.known, initial: true) { _, known in
+                root = KnownPrompt.root(current: root, known: known, device: InterfaceLanguage.deviceRoot)
             }
             .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
+            .sheet(isPresented: $speaking) {
+                KnownLanguagesSheet(mode: .settings, picks: KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known)) { root = $0 }
+            }
             Button("Create my set") { create(targets, proxy) }
                 .buttonStyle(D8Primary(compact: true))
                 .disabled(err != nil || targets.isEmpty)

@@ -1,16 +1,17 @@
 import { LANGS, capitalize, word } from "@/lib/words";
 import { OG_FONT_STACK, loadOgFonts } from "@/lib/og-fonts";
-import { renderOg } from "@/lib/og-render";
-import { wordOgForms } from "@/lib/word-og";
+import { OG_CACHE_IMMUTABLE, OG_CACHE_MISSING, OG_CACHE_OK, renderOg } from "@/lib/og-render";
+import { wordOgForms, wordOgVersion } from "@/lib/word-og";
 import { visualOrder } from "@/lib/rtl-shape";
 
 export const dynamic = "force-dynamic";
 
 const TILES = ["#5B1A4A", "#26428B", "#1E7A5A", "#D9381E", "#E9A23B", "#3A0F2F"];
 
-export async function GET(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
+export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const w = word((await params).slug);
-  if (!w) return new Response("Not found", { status: 404 });
+  if (!w) return new Response("Not found", { status: 404, headers: { "cache-control": OG_CACHE_MISSING } });
+  const keyed = new URL(req.url).searchParams.get("v") === wordOgVersion(w);
   const name = capitalize(w.en);
   const forms = wordOgForms(w).map((f) => ({ ...f, word: visualOrder(f.word) }));
   const text = ["polingual.com One word in every language you learn", `${w.forms.length} languages`, ...forms.flatMap((f) => [f.word, LANGS[f.lang]?.name ?? ""])].join(" ");
@@ -37,5 +38,6 @@ export async function GET(_req: Request, { params }: { params: Promise<{ slug: s
       </div>
     ),
     fontSet,
+    keyed ? OG_CACHE_IMMUTABLE : OG_CACHE_OK,
   );
 }

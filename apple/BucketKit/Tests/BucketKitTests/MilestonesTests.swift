@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import BucketKit
 
@@ -15,5 +16,178 @@ import Testing
 
     @Test func noMasteryNoMoment() {
         #expect(Milestones.next(Milestones.earned(mastered: ["es": 0], streak: 1), seen: []) == nil)
+    }
+
+    func corpus() throws -> LangCorpus {
+        buildLangCorpus(core: PlayFixtures.corpusJSON("lang-core.json"), cognates: PlayFixtures.corpusJSON("lang-cognates.json"),
+                        phrases: PlayFixtures.corpusJSON("lang-phrases.json"), layers: PlayFixtures.corpusJSON("lang-layers.json"))
+    }
+
+    func master(_ state: EngineState, _ lang: String, _ ids: [String], from start: Double = 1_800_000_000_000.0) -> EngineState {
+        var out = state
+        var now = start
+        for round in 0..<8 {
+            for id in ids { out = gradeCard(out, lang, id, 4, now: now) }
+            now += 86_400_000.0 * Double(1 << round)
+        }
+        return out
+    }
+
+    @Test func everySkillItemIsInTheCorpus() throws {
+        let corpus = try corpus()
+        let ids = Set(corpus.items.map(\.id))
+        for skill in Skill.allCases {
+            #expect(skill.items.allSatisfy(ids.contains), "\(skill)")
+            #expect(Milestones.words(skill, lang: "es", root: "en", corpus).count == skill.items.count)
+        }
+        #expect(ids.contains(Milestones.helloItem))
+    }
+
+    @Test func aSkillNeedsEveryItemMastered() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es", "de"], createdAt: 0)
+        let nine = master(EngineState(), "es", Array(Skill.count.items.dropLast()))
+        #expect(Milestones.feats(system, corpus, nine) == Feats())
+        let seen = gradeCard(nine, "es", "ten", 3, now: 1_800_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, seen) == Feats())
+        let ten = master(nine, "es", ["ten"])
+        #expect(Milestones.feats(system, corpus, ten) == Feats(skills: ["es": [.count]]))
+    }
+
+    @Test func introducingYourselfAlsoCountsAsHello() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es", "de"], createdAt: 0)
+        var state = master(EngineState(), "es", Skill.introduce.items)
+        state = master(state, "de", [Milestones.helloItem])
+        #expect(Milestones.feats(system, corpus, state) == Feats(skills: ["es": [.introduce]], hello: ["es", "de"]))
+    }
+
+    @Test func aLanguageWithoutTheWordsEarnsNoSkill() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "la", root: "en", targets: ["la"], createdAt: 0)
+        let state = master(EngineState(), "la", Skill.order.items + [Milestones.helloItem])
+        #expect(Milestones.feats(system, corpus, state) == Feats())
+    }
+
+    @Test func featsBecomeMilestones() {
+        var feats = Feats(skills: ["es": [.order, .count]], hello: ["es", "de"])
+        feats.merge(Feats(skills: ["es": [.introduce], "de": [.count]], hello: ["fr"]))
+        let ids = Milestones.earned(mastered: [:], streak: 0, feats: feats).map(\.id)
+        #expect(ids == ["skill:count:de", "skill:count:es", "skill:introduce:es", "skill:order:es", "hello:2", "hello:3"])
+        let earned = Milestones.earned(mastered: ["es": 5], streak: 3, feats: feats)
+        #expect(Milestones.next(earned, seen: [])?.id == "skill:count:de")
+        #expect(Milestones.next(earned, seen: ["skill:count:de"])?.id == "skill:count:es")
+        #expect(Milestones.next(earned, seen: ["skill:count:es", "skill:count:de"])?.id == "skill:introduce:es")
+    }
+
+    @Test func eachFamilyGetsItsOwnMoment() throws {
+        let earned = Milestones.earned(mastered: ["es": 5], streak: 30, feats: Feats(skills: ["es": [.introduce, .count]], hello: ["es", "de"]))
+        var seen: Set<String> = []
+        var shown: [String] = []
+        while let next = Milestones.next(earned, seen: seen) {
+            shown.append(next.id)
+            seen.formUnion(Milestones.settled(next, earned))
+        }
+        #expect(shown == ["skill:count:es", "hello:2", "mastered:es:5", "streak:30"])
+        #expect(seen == Set(earned.map(\.id)))
+    }
+
+    @Test func anUpgradeShowsOneSkillAndOneHello() {
+        let before = Milestones.earned(mastered: ["es": 50, "de": 10], streak: 14)
+        var seen = Set(before.map(\.id))
+        let earned = Milestones.earned(mastered: ["es": 50, "de": 10], streak: 14, feats: Feats(skills: ["es": [.count, .order], "de": [.count]], hello: ["es", "de", "fr"]))
+        var shown: [String] = []
+        while let next = Milestones.next(earned, seen: seen) {
+            shown.append(next.id)
+            seen.formUnion(Milestones.settled(next, earned))
+        }
+        #expect(shown == ["skill:count:de", "hello:3"])
+    }
+
+    @Test func aPlacedCardEarnsNothingUntilStudied() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+        var state = EngineState()
+        var card = Card(state: "new")
+        card.stability = 400
+        state.cards[cardId("es", Milestones.helloItem)] = card
+        #expect(Milestones.feats(system, corpus, state) == Feats())
+    }
+
+    @Test func helloNamesTheLanguagesInOrder() throws {
+        let earned = Milestones.earned(mastered: [:], streak: 0, feats: Feats(hello: ["sv", "de", "es"]))
+        #expect(earned.map(\.kind) == [.hello(langs: ["de", "es"]), .hello(langs: ["de", "es", "sv"])])
+        let forms = Milestones.hello(langs: ["de", "es", "xx"], try corpus())
+        #expect(forms == [ShareForm(lang: "de", form: "hallo"), ShareForm(lang: "es", form: "hola")])
+    }
+
+    @Test func skillSharesStayDistinct() {
+        let a = ShareObject.skill(.count, lang: "es", root: "en", words: [])
+        let b = ShareObject.skill(.order, lang: "es", root: "en", words: [])
+        #expect(a.id != b.id)
+        #expect(a.route == ShareObject.language("es", root: "en").route)
+        #expect(a.styles == [.banner])
+        #expect(ShareObject.skill(.count, lang: "es", root: "en", words: [MasteredWord(form: "uno", meaning: "one")]).styles == [.list, .banner])
+    }
+
+    func sentences(_ corpus: LangCorpus, _ n: Int) -> [String] {
+        Array(corpus.poolKeys.filter { corpus.pool[$0]?.text("es") != nil && corpus.pool[$0]?.text("en") != nil }.sorted().prefix(n))
+    }
+
+    @Test func aMasteredSentenceEarnsTheFirstSentence() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es", "de"], createdAt: 0)
+        let id = try #require(sentences(corpus, 1).first)
+        let seen = gradeCard(EngineState(), "es", SessionMix.sentenceItemId(id), 3, now: 1_800_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, seen) == Feats())
+        let state = master(EngineState(), "es", [SessionMix.sentenceItemId(id)])
+        let feats = Milestones.feats(system, corpus, state)
+        #expect(feats.skills == ["es": [.sentence]])
+        #expect(feats.sentences["es"]?.id == id)
+        let pool = try #require(corpus.pool[id])
+        #expect(Milestones.sentence(id, lang: "es", root: "en", corpus) == [MasteredWord(form: pool.text("es")!, meaning: pool.text("en")!)])
+        #expect(Milestones.earned(mastered: [:], streak: 0, feats: Milestones.feats(system, corpus, state)).map(\.id) == ["skill:sentence:es"])
+    }
+
+    @Test func theFirstSentenceIsTheEarliestMastered() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+        let ids = sentences(corpus, 2)
+        try #require(ids.count == 2)
+        var state = master(EngineState(), "es", [SessionMix.sentenceItemId(ids[1])])
+        state = master(state, "es", [SessionMix.sentenceItemId(ids[0])], from: 1_900_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, state).sentences["es"]?.id == ids[1])
+        state = master(state, "es", [SessionMix.sentenceItemId(ids[0])], from: 2_000_000_000_000.0)
+        #expect(Milestones.feats(system, corpus, state).sentences["es"]?.id == ids[1])
+    }
+
+    @Test func systemsAgreeOnTheEarliestSentence() {
+        var feats = Feats(skills: ["es": [.sentence]], sentences: ["es": FirstSentence(id: "1", introduced: "2026-11-02")])
+        feats.merge(Feats(skills: ["es": [.sentence]], sentences: ["es": FirstSentence(id: "9", introduced: "2026-11-01")]))
+        #expect(feats.sentences["es"]?.id == "9")
+        feats.merge(Feats(sentences: ["es": FirstSentence(id: "5", introduced: "2026-11-01")]))
+        #expect(feats.sentences["es"]?.id == "5")
+    }
+
+    @Test func aPlacedSentenceEarnsNothing() throws {
+        let corpus = try corpus()
+        let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
+        let id = try #require(sentences(corpus, 1).first)
+        var state = master(EngineState(), "es", [SessionMix.sentenceItemId(id)])
+        state.cards[cardId("es", SessionMix.sentenceItemId(id))]?.placed = true
+        #expect(Milestones.feats(system, corpus, state) == Feats())
+    }
+
+    @Test func theFirstSentenceGetsItsOwnMoment() {
+        let feats = Feats(skills: ["es": [.count, .sentence], "de": [.sentence]], sentences: ["es": FirstSentence(id: "1", introduced: "2026-11-01"), "de": FirstSentence(id: "2", introduced: "2026-11-01")])
+        let earned = Milestones.earned(mastered: [:], streak: 0, feats: feats)
+        var seen: Set<String> = []
+        var shown: [String] = []
+        while let next = Milestones.next(earned, seen: seen) {
+            shown.append(next.id)
+            seen.formUnion(Milestones.settled(next, earned))
+        }
+        #expect(shown == ["skill:sentence:de", "skill:count:es"])
+        #expect(Skill.phrases == [.count, .introduce, .order])
     }
 }

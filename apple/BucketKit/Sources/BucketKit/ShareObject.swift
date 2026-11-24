@@ -244,6 +244,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
     case language(String, root: String)
     case mastered(lang: String, count: Int, root: String, words: [MasteredWord] = [])
     case masteredAll(sets: [MasteredSet], root: String)
+    case skill(Skill, lang: String, root: String, words: [MasteredWord])
     case word(id: String, gloss: String, forms: [ShareForm])
     case tile(form: ShareForm, gloss: String, reading: String?)
     case flag(String, root: String)
@@ -260,6 +261,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .language: "language"
         case .mastered: "mastered"
         case .masteredAll: "mastered-all"
+        case .skill(let skill, _, _, _): "skill-\(skill.rawValue)"
         case .word: "word"
         case .tile: "tile"
         case .flag: "flag"
@@ -273,7 +275,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         switch self {
         case .streak(let days, let langs, let root): .langs(langs, root: root, streak: days)
         case .system(_, let root, let targets, let streak, _): .langs(targets, root: root, streak: streak)
-        case .language(let lang, let root), .flag(let lang, let root), .mastered(let lang, _, let root, _): .langs([lang], root: root)
+        case .language(let lang, let root), .flag(let lang, let root), .mastered(let lang, _, let root, _), .skill(_, let lang, let root, _): .langs([lang], root: root)
         case .masteredAll(let sets, let root): .langs(sets.langs, root: root)
         case .word(let id, let gloss, let forms): .word(id: id, gloss: gloss, forms: forms)
         case .tile(let form, let gloss, _): .word(id: form.form, gloss: gloss, forms: [form])
@@ -290,6 +292,7 @@ public enum ShareObject: Sendable, Hashable, Identifiable {
         case .language: [.banner, .plate]
         case .mastered(_, _, _, let words): words.isEmpty ? [.number, .banner] : [.list, .number, .banner]
         case .masteredAll(let sets, _): sets.allSatisfy(\.words.isEmpty) ? [.number] : [.list, .number]
+        case .skill(_, _, _, let words): words.isEmpty ? [.banner] : [.list, .banner]
         case .word(_, _, let forms): forms.count > 1 ? [.stack, .wall, .tile] : [.tile, .stack]
         case .tile: [.tile, .banner]
         case .flag: [.banner, .plate]

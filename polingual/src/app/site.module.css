@@ -26,7 +26,8 @@
 .stripe{height:18px}
 .ftrow{max-width:1180px;margin:0 auto;padding:18px 24px 22px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px 24px}
 .ft a{color:var(--pl-paper);text-decoration:none;font-weight:700}
-.fl{display:flex;gap:20px}
+.fl{display:flex;flex-wrap:wrap;gap:6px 20px;flex:1 0 100%}
+.credit{color:var(--pl-paper-dim)}
 .site :global(.lede){font-size:19px;color:var(--pl-ink)}
 .eyebrow{font-family:var(--pl-font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
 .ctaRow{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:28px 0}
@@ -39,9 +40,11 @@
 .wide{display:none}
 .link{font-size:15px}
 .main,.mainWide{padding:28px 16px 56px}
-.ftrow{flex-direction:column;align-items:flex-start;padding:18px 16px}
+.ftrow{padding:18px 16px}
 }
 .chipsPlain{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0!important;margin:16px 0}
 .chipsPlain li{padding:6px 14px;border-radius:999px;background:var(--blue);color:var(--pl-paper);font-weight:800;font-size:15px}
 .code{font-family:var(--pl-font-mono);letter-spacing:2px}
 .bare{flex:1;width:100%}
+@media print{.hd,.ft{display:none}.site{background:none;min-height:0;display:block}.main,.mainWide{padding:0;max-width:none}}
+@media (max-width:420px){.wordmark{display:none}.nav{gap:10px;padding:10px 12px}.link{font-size:14px;white-space:nowrap}.nav .btnP{font-size:13px;padding-inline:10px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}}

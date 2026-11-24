@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { findUserByEmail, isReviewDemoEmail, isReviewDemoUser, mintReviewSession, reviewCodeMatches, reviewDemoConfig, type ReviewDemoAuth, type ReviewDemoUser } from "../src/lib/academy/review-demo";
+import { findUserByEmail, isMissingRpc, rpcLookupWithFallback, isReviewDemoEmail, isReviewDemoUser, mintReviewSession, reviewCodeMatches, reviewDemoConfig, type ReviewDemoAuth, type ReviewDemoUser } from "../src/lib/academy/review-demo";
 import { reviewPeerEmail, reviewProgressRows, reviewSystem, reviewSystemsDoc } from "../src/lib/academy/review-demo-seed";
 import { createSessionHandler, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 import { memberSummary, normalizeInviteCode } from "../src/lib/academy/groups";
@@ -180,13 +180,15 @@ test("a link failure passes through without a verify", async () => {
   assert.deepEqual(a.seen, ["link"]);
 });
 
-test("the user lookup walks every page and stops at the last one", async () => {
-  const pages: { email: string }[][] = [Array.from({ length: 1000 }, (_, i) => ({ email: `u${i}@b.co` })), [{ email: EMAIL.toUpperCase() }]];
-  const asked: number[] = [];
-  const list = async (page: number) => (asked.push(page), pages[page - 1] ?? []);
-  assert.deepEqual(await findUserByEmail(list, EMAIL), { email: EMAIL.toUpperCase() });
-  assert.deepEqual(asked, [1, 2]);
-  assert.equal(await findUserByEmail(list, "absent@b.co"), null);
+test("the user lookup asks once by the normalized email and parses the row", async () => {
+  const asked: string[] = [];
+  const rows: Record<string, unknown> = { [EMAIL]: { id: "u1", email: EMAIL, app_metadata: { review_demo: true } } };
+  const lookup = async (e: string) => (asked.push(e), rows[e] ?? null);
+  assert.deepEqual(await findUserByEmail(lookup, ` ${EMAIL.toUpperCase()} `), { id: "u1", email: EMAIL, app_metadata: { review_demo: true } });
+  assert.equal(await findUserByEmail(lookup, "absent@b.co"), null);
+  assert.deepEqual(asked, [EMAIL, "absent@b.co"]);
+  assert.equal(await findUserByEmail(async () => ({ email: EMAIL }), EMAIL), null);
+  assert.deepEqual(await findUserByEmail(async () => ({ id: "u2", app_metadata: [1] }), EMAIL), { id: "u2", app_metadata: {} });
 });
 
 test("seed rows read back as a language set and a live group summary", () => {
@@ -204,4 +206,20 @@ test("seed helpers give a separate peer address and a valid invite code", async 
   assert.equal(reviewPeerEmail(EMAIL), "review+peer@bucket.example");
   const { reviewInviteCode } = await import("../src/lib/academy/review-demo-seed");
   assert.notEqual(normalizeInviteCode(reviewInviteCode()), null);
+});
+
+test("a missing lookup function falls back to paging users; other RPC errors throw", async () => {
+  const pages = [Array.from({ length: 1000 }, (_, i) => ({ email: `u${i}@b.co` })), [{ id: "u9", email: EMAIL.toUpperCase() }]];
+  const asked: number[] = [];
+  const list = async (page: number) => (asked.push(page), pages[page - 1] ?? []);
+  const missing = rpcLookupWithFallback(async () => ({ data: null, error: { code: "PGRST202", message: "Could not find the function bucket.auth_user_by_email" } }), list, "t");
+  assert.deepEqual(await findUserByEmail(missing, EMAIL), { id: "u9", email: EMAIL.toUpperCase(), app_metadata: {} });
+  assert.deepEqual(asked, [1, 2]);
+  const ok = rpcLookupWithFallback(async () => ({ data: { id: "u1" }, error: null }), async () => assert.fail("no paging"), "t");
+  assert.deepEqual(await findUserByEmail(ok, EMAIL), { id: "u1", app_metadata: {} });
+  const broken = rpcLookupWithFallback(async () => ({ data: null, error: { code: "57014", message: "timeout" } }), list, "t");
+  await assert.rejects(findUserByEmail(broken, EMAIL), /t user lookup failed: timeout/);
+  assert.equal(isMissingRpc({ code: "42883", message: "x" }), true);
+  assert.equal(isMissingRpc({ message: "function bucket.auth_user_by_email(text) does not exist" }), true);
+  assert.equal(isMissingRpc({ code: "42501", message: "permission denied" }), false);
 });

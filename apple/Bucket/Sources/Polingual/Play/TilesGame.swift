@@ -3,6 +3,9 @@ import SwiftUI
 
 struct TilesGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.verticalSizeClass) private var vertical
+    @ScaledMetric private var chrome: CGFloat = 132
+    @State private var feel = GameFeel()
     @State private var rounds: [TileRound] = []
     @State private var index = 0
     @State private var startedAt: Date?
@@ -19,7 +22,7 @@ struct TilesGame: View {
     var round: TileRound? { index < rounds.count && lives > 0 ? rounds[index] : nil }
 
     var body: some View {
-        PlayScene(game: .tiles, stickers: playStickers(.azulejoGrid, .scriptHe)) {
+        PlayScene(game: .tiles, feel: feel) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let round, !PlayLaunch.endGame {
@@ -32,20 +35,49 @@ struct TilesGame: View {
         .task(id: "\(index)-\(startedAt?.timeIntervalSince1970 ?? 0)") { await clock() }
     }
 
-    func play(_ r: TileRound) -> some View {
+    var wide: Bool { vertical == .compact }
+
+    func prompt(_ r: TileRound) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s3) {
-            HStack {
-                PlayLabel(text: "Round \(index + 1) · \(points) points")
-                Spacer()
-                PlayLabel(text: String(repeating: "♥ ", count: lives))
+            ViewThatFits(in: .horizontal) {
+                HStack {
+                    status
+                    ComboChip(streak: feel.streak, multiplier: false)
+                    Spacer()
+                    hearts
+                }
+                VStack(alignment: .leading, spacing: PL.Space.s1) {
+                    status
+                    hearts
+                }
             }
             PLCard(.lapis) {
                 VStack(alignment: .leading, spacing: PL.Space.s1) {
                     PlayLabel(text: Lang.name(root))
-                    Text(r.gloss).font(PL.heading.font()).foregroundStyle(PL.paper)
+                    Text(r.gloss).font(PL.heading.font()).foregroundStyle(PL.paper).minimumScaleFactor(0.6).accessibilityIdentifier("tilesGloss")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
+        }
+    }
+
+    var status: some View { PlayLabel(text: "Round \(index + 1) · \(points) points").lineLimit(1).minimumScaleFactor(0.7) }
+
+    var hearts: some View { PlayLabel(text: String(repeating: "♥ ", count: lives)).lineLimit(1) }
+
+    static let lanesLeast: CGFloat = 316
+
+    @ViewBuilder func play(_ r: TileRound) -> some View {
+        if wide, outcome == nil, let startedAt {
+            PlaySplit(board: Self.lanesLeast) { prompt(r) } main: { field(r, startedAt) }
+        } else {
+            stacked(r)
+        }
+    }
+
+    func stacked(_ r: TileRound) -> some View {
+        VStack(alignment: .leading, spacing: PL.Space.s3) {
+            prompt(r)
             if let outcome {
                 Text(outcome.perfect ? "Perfect" : "\(outcome.hits) right, \(outcome.wrong) wrong, \(outcome.missed) missed")
                     .font(PL.heading.font()).foregroundStyle(outcome.perfect ? PL.malachite : PL.ochre)
@@ -82,7 +114,13 @@ struct TilesGame: View {
                 }
             }
         }
-        .frame(height: 380)
+        .playBoard(chrome: wide ? 4 : chrome, least: wide ? 220 : 380)
+        .background {
+            RoundedRectangle(cornerRadius: 12).fill(PL.paper.opacity(0.08))
+                .accessibilityElement()
+                .accessibilityLabel("Falling words")
+                .accessibilityIdentifier("tilesBoard")
+        }
     }
 
     var results: some View {
@@ -91,6 +129,7 @@ struct TilesGame: View {
             line: "\(played.filter(\.1).count) perfect rounds of \(played.count).",
             reveals: Array(played.flatMap { r, _ in r.answer.prefix(1).map { PlayRevealItem(lang: r.tiles[$0].lang, form: r.tiles[$0].form, meaning: r.gloss) } }.prefix(6)),
             root: root,
+            share: (.tiles, .points(points, marks: played.map(\.1))),
             again: { deal() }
         )
         .onAppear {
@@ -102,6 +141,7 @@ struct TilesGame: View {
     }
 
     func deal() {
+        feel.reset()
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
         let targets = langs.playTargets.filter { $0 != root }
@@ -128,7 +168,7 @@ struct TilesGame: View {
         points += LobbyTiles.score(o, combo: combo)
         played.append((r, o.perfect))
         outcome = o
-        PlaySound.effect(o.perfect, combo: combo)
+        feel.record(o.perfect, points: LobbyTiles.score(o, combo: combo))
     }
 
     func next() {

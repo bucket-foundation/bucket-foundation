@@ -1,4 +1,4 @@
-.card{position:relative;z-index:2;max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:var(--pl-space-4)}
+.card{position:relative;z-index:2;max-width:min(1040px,100%);margin:0 auto;display:flex;flex-direction:column;gap:var(--pl-space-4)}
 .blurb{font:var(--pl-type-body);color:var(--pl-ink-dim);margin:0}
 .row{display:flex;flex-wrap:wrap;gap:var(--pl-space-3);align-items:center}
 .pips{display:flex;gap:6px}
@@ -11,14 +11,14 @@
 .hero>div{width:min(100%,260px)}
 .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--pl-space-3)}
 .clock{font:var(--pl-type-label);font-size:14px;letter-spacing:.12em;color:var(--pl-ink-dim)}
-.grid{display:grid;grid-template-columns:repeat(var(--cols,5),auto);gap:4px;justify-content:center;margin:0 auto}
-.cell{width:clamp(34px,10.5vw,48px);height:clamp(34px,10.5vw,48px);border-radius:8px;border:2px solid var(--pl-ink);background:var(--pl-white);display:grid;place-items:center;position:relative;font:var(--pl-type-heading);color:var(--pl-ink);cursor:pointer;padding:0}
+.grid{--cell:min(48px,max(44px,12.4vw),calc((100vw - 76px - (var(--cols,5) - 1) * 4px) / var(--cols,5)));display:grid;grid-template-columns:repeat(var(--cols,5),auto);gap:4px;justify-content:center;margin:0 auto}
+.cell{width:var(--cell);height:var(--cell);border-radius:8px;border:2px solid var(--pl-ink);background:var(--pl-white);display:grid;place-items:center;position:relative;font:var(--pl-type-heading);color:var(--pl-ink);cursor:pointer;padding:0}
 .cell[data-on=true]{background:var(--pl-ochre)}
 .cell[data-word=true]{background:var(--pl-lapis-soft)}
 .cell[data-right=true]{background:var(--pl-malachite);color:var(--pl-paper)}
 .cell[data-wrong=true]{background:var(--pl-vermilion);color:var(--pl-paper)}
-.cell sup{position:absolute;top:2px;left:4px;font:var(--pl-type-label);font-size:9px}
-.block{width:clamp(34px,10.5vw,48px);height:clamp(34px,10.5vw,48px);border-radius:8px;background:var(--pl-tyrian-deep)}
+.cell sup{position:absolute;top:2px;left:4px;font:var(--pl-type-label);font-size:10px}
+.block{width:var(--cell);height:var(--cell);border-radius:8px;background:var(--pl-tyrian-deep)}
 .clues{margin:0;padding:0;list-style:none;display:grid;gap:6px;font:var(--pl-type-small)}
 .clues li[data-active=true]{color:var(--pl-vermilion)}
 .keys{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
@@ -39,7 +39,7 @@
 .letter{font-size:40px!important;min-height:88px}
 @media (min-width:1800px){.card{max-width:900px}.cell,.block{width:68px;height:68px}}
 .stack{display:flex;flex-direction:column;gap:var(--pl-space-4)}
-.clueBtn{background:none;border:0;padding:6px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;min-height:36px}
+.clueBtn{background:none;border:0;padding:6px 0;font:inherit;color:inherit;text-align:left;cursor:pointer;min-height:44px}
 .sheet{position:relative;min-height:min(70dvh,760px);padding:var(--pl-space-4) var(--pl-space-7);display:flex;flex-direction:column;justify-content:center}
 @media (max-width:719px){.sheet{padding:var(--pl-space-3) var(--pl-space-2);min-height:0}}
 .intro{display:flex;align-items:center;justify-content:center;gap:var(--pl-space-6);flex-wrap:wrap;padding:var(--pl-space-4) 0}

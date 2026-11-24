@@ -42,6 +42,7 @@ final class TiltReader {
 
 struct ForeheadGame: View {
     @Environment(LangStore.self) private var langs
+    @State private var feel = GameFeel()
     @State private var picked: [String] = []
     @State private var cards: [ForeheadCard] = []
     @State private var index = 0
@@ -57,7 +58,7 @@ struct ForeheadGame: View {
     var card: ForeheadCard? { index < cards.count ? cards[index] : nil }
 
     var body: some View {
-        PlayScene(game: .forehead, stickers: playStickers(.ticket, .star)) {
+        PlayScene(game: .forehead, feel: feel, burst: false) {
             if over || PlayLaunch.endGame {
                 results
             } else if endsAt != nil, let card {
@@ -116,6 +117,7 @@ struct ForeheadGame: View {
             line: "\(marks.filter { !$0 }.count) passed. Hand the phone to the next player.",
             reveals: Array(shown.map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) }.prefix(8)),
             root: root,
+            share: (.forehead, .marks(marks)),
             again: { over = false; start() }
         )
         .onAppear {
@@ -128,7 +130,7 @@ struct ForeheadGame: View {
     func start() {
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
-        cards = ForeheadDeck.deck(corpus.items, langs: picked.filter { $0 != root }, seed: DealSeeds.fresh(), root: root)
+        cards = ForeheadDeck.deck(corpus.items, langs: picked.filter { $0 != root }, seed: LobbyRace.dealSeed(), root: root)
         index = 0
         marks = []
         recorded = false
@@ -141,7 +143,7 @@ struct ForeheadGame: View {
     func mark(_ ok: Bool) {
         guard endsAt != nil, !over else { return }
         marks.append(ok)
-        PlaySound.effect(ok, combo: marks.filter { $0 }.count)
+        feel.record(ok)
         index += 1
         if RevealRules.forehead(cardsLeft: cards.count - index, secondsLeft: left) { finish() }
     }

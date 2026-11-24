@@ -37,6 +37,7 @@ struct TranslateCard: View {
     @State private var speechDenied = false
     @State private var answer: TranslateAnswer?
     @State private var loadingLexicon = false
+    @State private var answered = ""
     @FocusState private var focused: Bool
 
     nonisolated static let lexicons = LexiconShelf()
@@ -129,6 +130,7 @@ struct TranslateCard: View {
             let text = active
             let hits = translateSearch(corpus, text, langs: searchIn, limit: 6)
             let guess = from ?? SentenceLanguage.detect(text, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
+            let settled = answered == answerKey
             let answer = text.isEmpty ? nil : answer
             let found = answer.map { $0.layer != .gloss } ?? false
             let sentence = !text.isEmpty && picked == nil && !found && (SentenceLanguage.isSentence(text) || hits.isEmpty)
@@ -221,7 +223,7 @@ struct TranslateCard: View {
                 }
                 statusLine
                 if sentence {
-                    SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:], soft: soft)
+                    SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:], waiting: !settled, soft: soft)
                 } else if picked == nil, let answer, answer.layer != .deck {
                     LexiconAnswerView(answer: answer, shown: shown, withSource: false, soft: soft)
                 } else if !text.isEmpty {
@@ -248,25 +250,30 @@ struct TranslateCard: View {
                             }
                         }
                         if !unmet.isEmpty, let source {
-                            SentenceTranslations(text: text, source: source, targets: unmet, fallback: lexicon, soft: soft)
+                            SentenceTranslations(text: text, source: source, targets: unmet, fallback: lexicon, waiting: !settled, soft: soft)
                                 .id(unmet.joined(separator: ","))
                         }
-                        HStack(spacing: 10) {
-                            if added.contains(id) {
-                                Label("Added to your next session", systemImage: "checkmark.circle.fill")
-                                    .font(.subheadline.weight(.semibold))
-                                    .foregroundStyle(D8.malachite)
-                            } else {
-                                Button("Add to my deck") { add(id, corpus) }
-                                    .buttonStyle(D8Option(align: .center, compact: true))
+                        let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
+                        let report = ReportSubject(lang: source ?? from ?? langs.first ?? "en", itemId: id, text: text,
+                                                   shown: words.filter { $0.lang != source }.map { "\($0.lang): \($0.form)" }.joined(separator: "; "), context: "translate:word")
+                        let share = ShareObjectButton(.word(id: id, gloss: text, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
+                        ViewThatFits(in: .horizontal) {
+                            HStack(spacing: 10) {
+                                deckControl(id, corpus).fixedSize()
+                                share
+                                Spacer(minLength: 0)
+                                WrongTranslationLink(subject: report)
                             }
-                            let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
-                            ShareObjectButton(.word(id: id, gloss: text, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
-                            Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: text, forms: words))
-                            Spacer(minLength: 0)
-                            WrongTranslationLink(subject: ReportSubject(lang: source ?? from ?? langs.first ?? "en", itemId: id, text: text,
-                                                                        shown: words.filter { $0.lang != source }.map { "\($0.lang): \($0.form)" }.joined(separator: "; "), context: "translate:word"))
+                            VStack(alignment: .leading, spacing: 8) {
+                                deckControl(id, corpus)
+                                HStack(spacing: 10) {
+                                    share
+                                    Spacer(minLength: 0)
+                                    WrongTranslationLink(subject: report)
+                                }
+                            }
                         }
+                        .background { Color.clear.frame(width: 0, height: 0).sharePage(.word(id: id, gloss: text, forms: words)) }
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
                         if !similar.isEmpty {
@@ -312,6 +319,7 @@ struct TranslateCard: View {
             .environment(\.colorScheme, .light)
             .task(id: langs) { sources = translateSources(corpus, mine: langs) }
             .task(id: answerKey) { await refresh(corpus, guess: guess) }
+            .onDisappear { TranslateCard.lexicons.release() }
             .onChange(of: DeepLink.shared.listen, initial: true) { _, on in
                 guard on, !today else { return }
                 DeepLink.shared.listen = false
@@ -333,14 +341,17 @@ struct TranslateCard: View {
 
     func refresh(_ corpus: LangCorpus, guess: String) async {
         let q = active
+        let key = answerKey
         guard !q.isEmpty else {
             answer = nil
+            answered = key
             return
         }
         try? await Task.sleep(for: .milliseconds(180))
         guard !Task.isCancelled else { return }
         let order = from.map { [$0] } ?? ([guess] + langs.filter { $0 != guess })
         let targets = shown
+        TranslateCard.lexicons.reserve(Set(order + targets).count)
         let warm = Set(TranslateCard.lexicons.loaded)
         loadingLexicon = (order + targets).contains { !warm.contains($0) }
         let result = await Task.detached(priority: .userInitiated) {
@@ -349,6 +360,7 @@ struct TranslateCard: View {
         loadingLexicon = false
         guard !Task.isCancelled, q == active else { return }
         answer = result
+        answered = key
     }
 
     func listen() async {
@@ -464,6 +476,17 @@ struct TranslateCard: View {
             .buttonStyle(.plain)
             .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
             .accessibilityIdentifier("translate.mic")
+        }
+    }
+
+    @ViewBuilder func deckControl(_ id: String, _ corpus: LangCorpus) -> some View {
+        if added.contains(id) {
+            Label("Added to your next session", systemImage: "checkmark.circle.fill")
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(D8.malachite)
+        } else {
+            Button("Add to my deck") { add(id, corpus) }
+                .buttonStyle(D8Option(align: .center, compact: true))
         }
     }
 

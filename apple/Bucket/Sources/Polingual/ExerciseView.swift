@@ -122,7 +122,7 @@ struct ExerciseView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
-            if !compactTyping { CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 26 : 44) }
+            if !compactTyping { CardHeader(lang: ex.kind == .match ? nil : ex.lang, text: headerText, flagSize: sideways ? 34 : 64) }
             if completed, !RootGloss.letterKinds.contains(ex.kind), let gloss = RootGloss.text(ex, langs.corpus) {
                 RootGlossLine(lang: ex.root, text: gloss)
             }

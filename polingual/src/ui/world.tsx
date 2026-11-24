@@ -175,3 +175,18 @@ export function Banner({ children, stickers = BANNER_STICKERS, testId }: { child
     </header>
   );
 }
+
+export function ProgressRing({ value, size = 44, stroke = 5, label, children }: { value: number; size?: number; stroke?: number; label: string; children?: ReactNode }) {
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const v = Math.min(Math.max(value, 0), 1);
+  return (
+    <span className={s.ring} style={{ width: size, height: size }} role="img" aria-label={label} data-testid="progress-ring" data-value={Math.round(v * 100)}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--pl-tyrian-deep)" strokeWidth={stroke} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={v >= 1 ? "var(--pl-malachite)" : "var(--pl-ochre)"} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - v)} transform={`rotate(-90 ${size / 2} ${size / 2})`} />
+      </svg>
+      {children ? <span className={s.ringIn}>{children}</span> : null}
+    </span>
+  );
+}

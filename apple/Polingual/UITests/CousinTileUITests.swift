@@ -3,7 +3,7 @@ import XCTest
 final class CousinTileUITests: XCTestCase {
     private func launch(_ extra: [String]) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", "portrait", "-startTab", "learn", "-openLang", "en:de,sv:study", "-forceKind", "cognate", "-forceItem", "nose"] + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", "portrait", "-startTab", "learn", "-openLang", "en:de,sv:study", "-forceKind", "cognate", "-forceItem", "nose", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", "guest"] + extra
         app.launch()
         return app
     }

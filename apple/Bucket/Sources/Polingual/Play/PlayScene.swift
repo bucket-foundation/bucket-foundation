@@ -48,36 +48,62 @@ struct StartLearningButton: View {
     }
 }
 
-struct PlayScene<Content: View>: View {
-    let game: GameKind
-    let stickers: [PLSticker]
-    @ViewBuilder let content: () -> Content
+extension EnvironmentValues {
+    @Entry var playRoom: CGFloat = 0
+    @Entry var playSpan: CGFloat = 0
+}
 
-    var headerStickers: [PLSticker] {
-        [PLSticker(game.art ?? .seal, .topTrailing, width: 64, x: -8, y: 4, angle: 8),
-         PLSticker(.star, .bottomTrailing, width: 36, x: -84, y: -2, angle: -10),
-         PLSticker(.scriptRu, .bottomTrailing, width: 46, x: -4, y: 0, angle: -6, shadow: false)]
-    }
+struct PlayBoardFrame: ViewModifier {
+    @Environment(\.playRoom) private var room
+    @Environment(\.verticalSizeClass) private var vertical
+    let chrome: CGFloat
+    let least: CGFloat
 
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: PL.Space.s4) {
-                PLScreenTop(title: game.title, subtitle: game.detail, stickers: headerStickers, onDark: true)
-                StartLearningButton(size: .sm, full: false)
-                content()
-            }
-            .padding(.horizontal, PL.Space.s4)
-            .padding(.bottom, PL.Space.s6)
-        }
-        .scrollContentBackground(.hidden)
-        .plGround(.lattice, band: true)
-        .navigationTitle(game.title)
-        .plChrome()
-        .fullHeightSession()
-        .onDisappear { LangVoice.shared.hush() }
-        .accessibilityIdentifier("play-\(game.rawValue)")
+    func body(content: Content) -> some View {
+        content.frame(height: PlayBoard.height(room: room, chrome: chrome + PlayFoot.pad(vertical), least: least))
     }
 }
+
+enum PlayFoot {
+    static func pad(_ vertical: UserInterfaceSizeClass?) -> CGFloat { vertical == .compact ? PL.Space.s2 : PL.Space.s6 }
+}
+
+extension View {
+    func playBoard(chrome: CGFloat, least: CGFloat) -> some View { modifier(PlayBoardFrame(chrome: chrome, least: least)) }
+}
+
+struct PlaySplit<Side: View, Main: View>: View {
+    @Environment(\.playSpan) private var span
+    @ScaledMetric private var wanted: CGFloat = 240
+    let board: CGFloat
+    @ViewBuilder let side: () -> Side
+    @ViewBuilder let main: () -> Main
+
+    var body: some View {
+        HStack(alignment: .top, spacing: PL.Space.s4) {
+            side().frame(width: PlayBoard.side(width: span - PL.Space.s4 * 3, wanted: wanted, board: board))
+            main()
+        }
+    }
+}
+
+@MainActor
+@Observable
+final class PlayActivity {
+    static let shared = PlayActivity()
+    private(set) var scenes = 0
+    var playing: Bool { scenes > 0 }
+    func enter() { scenes += 1 }
+    func leave() { scenes = max(0, scenes - 1) }
+}
+
+extension View {
+    func playActivity() -> some View {
+        onAppear { PlayActivity.shared.enter() }.onDisappear { PlayActivity.shared.leave() }
+    }
+}
+
+typealias PlayScene = GameShell
 
 struct PlayLabel: View {
     let text: String
@@ -99,7 +125,7 @@ struct PlayReveal: View {
             VStack(alignment: .leading, spacing: PL.Space.s2) {
                 HStack(alignment: .firstTextBaseline, spacing: PL.Space.s3) {
                     Text(form).font(PL.word.font(scale: 0.8)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.6)
-                    PlayLabel(text: Lang.name(lang), onDark: false)
+                    PlayLabel(text: langName(lang), onDark: false)
                     Spacer(minLength: 0)
                     Button {
                         LangVoice.shared.speak(form, lang)
@@ -113,7 +139,7 @@ struct PlayReveal: View {
                     Text(sound).font(PL.small.font()).foregroundStyle(PL.inkDim)
                 }
                 HStack(spacing: PL.Space.s2) {
-                    PlayLabel(text: Lang.name(root), onDark: false)
+                    PlayLabel(text: langName(root), onDark: false)
                     Text(meaning).font(PL.body.font()).foregroundStyle(PL.ink)
                 }
             }
@@ -128,42 +154,7 @@ struct PlayRevealItem: Identifiable, Hashable {
     var id: String { "\(lang):\(form)" }
 }
 
-struct PlayResults: View {
-    let title: String
-    let line: String
-    var reveals: [PlayRevealItem] = []
-    let root: String
-    var board: [BoardRow] = []
-    var againLabel = "Play again"
-    let again: (() -> Void)?
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: PL.Space.s4) {
-            PLCard(.tyrian) {
-                VStack(alignment: .leading, spacing: PL.Space.s2) {
-                    Text(LocalizedStringKey(title)).font(PL.title.font()).foregroundStyle(PL.paper).accessibilityIdentifier("playResults")
-                    Text(LocalizedStringKey(line)).font(PL.body.font()).foregroundStyle(PL.paper.opacity(0.9))
-                }
-            }
-            if !board.isEmpty {
-                PLCard {
-                    VStack(spacing: PL.Space.s2) {
-                        ForEach(Array(board.enumerated()), id: \.offset) { i, r in
-                            HStack {
-                                Text("\(i + 1)  \(r.name)").font(PL.body.font()).foregroundStyle(r.me ? PL.vermilion : PL.ink)
-                                Spacer()
-                                Text("\(r.score)").font(PL.body.font()).monospacedDigit().foregroundStyle(PL.ink)
-                            }
-                        }
-                    }
-                }
-            }
-            ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
-            if let again { Button(LocalizedStringKey(againLabel), action: again).buttonStyle(.pl(.primary, size: .lg)) }
-            StartLearningButton()
-        }
-    }
-}
+typealias PlayResults = GameResults
 
 struct PlayNote: View {
     let text: String
@@ -178,17 +169,6 @@ struct PlayNote: View {
     }
 }
 
-struct PlayChoice: View {
-    let text: String
-    var state: Bool? = nil
-    let action: () -> Void
-
-    var body: some View {
-        Button(text, action: action)
-            .buttonStyle(.pl(state == true ? .success : state == false ? .accent : .ghost, size: .md))
-    }
-}
-
 struct PlayFlag: View {
     let lang: String
     var size: CGFloat = 36
@@ -200,18 +180,6 @@ struct PlayFlag: View {
 
 enum PlaySound {
     @MainActor static func auto(_ text: String, _ lang: String) { LangVoice.shared.speak(text, lang, kind: .auto) }
-    @MainActor static func effect(_ right: Bool, combo: Int = 0) {
-        GameSound.play(right: right, combo: combo)
-        haptic(right)
-    }
-}
-
-func playStickers(_ main: PLArt, _ second: PLArt = .seal) -> [PLSticker] {
-    [
-        PLSticker(main, .bottomTrailing, width: 92, x: -10, y: -6, angle: 8),
-        PLSticker(second, .topTrailing, width: 48, x: -4, y: 0, angle: -9),
-        PLSticker(.pebble, .bottomTrailing, width: 22, x: -2, y: -2, angle: 12),
-    ]
 }
 
 func playWords(_ items: [PlayRevealItem]) -> [PlayRevealItem] {

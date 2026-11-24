@@ -24,8 +24,16 @@ struct PolingualApp: App {
         #else
         let api = BucketAPI()
         #endif
-        let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
-        let store = LangStore(api: api, token: { await account.freshToken() })
+        #if DEBUG
+        let fresh = Launch.flag("-freshGuest")
+        let sessions: SessionStore = fresh ? MemorySessionStore() : KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared")
+        let disk = fresh ? FileLangDisk(root: FileManager.default.temporaryDirectory.appending(path: "langs-\(UUID().uuidString)", directoryHint: .isDirectory)) : FileLangDisk()
+        #else
+        let sessions: SessionStore = KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared")
+        let disk = FileLangDisk()
+        #endif
+        let account = Account(api: api, store: sessions, lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
+        let store = LangStore(api: api, disk: disk, token: { await account.freshToken() })
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
@@ -40,7 +48,8 @@ struct PolingualApp: App {
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
         _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }, guest: GuestPass(api: api) { UserDefaults.standard.string(forKey: "groups.displayName") ?? "" }))
-        _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
+        let web = WebMembership(vault: KeychainWebEntitlementVault(), userId: account.session?.userId) { token, user in await api.webEntitlement(token: token, userId: user) }
+        _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride(), web: web))
     }
 
     var body: some Scene {
@@ -57,6 +66,7 @@ struct PolingualApp: App {
                 .environment(groups)
                 .environment(lobbies)
                 .interfaceLanguage(store)
+                .preferredColorScheme(.light)
                 .task { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
@@ -64,6 +74,7 @@ struct PolingualApp: App {
                     backgroundSafe {
                         if p == .active {
                             await store.retryPending()
+                            await subs.web.refresh(userId: account.session?.userId) { await account.freshToken() }
                             await NetworkWatch.shared.resync().value
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
@@ -83,6 +94,9 @@ struct PolingualApp: App {
                         #endif
                         await WordOfDayReminder.schedule(store, enabled: reminders.wordOfDay)
                     }
+                }
+                .task(id: account.session?.userId) {
+                    await subs.web.refresh(userId: account.session?.userId) { await account.freshToken() }
                 }
                 .onChange(of: subs.access) {
                     #if os(iOS)

@@ -19,6 +19,35 @@ final class LobbyAds {
     @ObservationIgnored private var pacer = InterstitialPacer()
     @ObservationIgnored private var interstitial: InterstitialAd?
     @ObservationIgnored private var loading = false
+    @ObservationIgnored private var reward: RewardWatch?
+    @ObservationIgnored private var rewarded: RewardedAd?
+    @ObservationIgnored private var loadingRewarded = false
+    private(set) var rewardedReady = false
+
+    func preloadRewarded() {
+        guard AdGate.rewarded(allowed: allowed, consented: ready, unit: units?.rewarded), let unit = units?.rewarded, rewarded == nil, !loadingRewarded else { return }
+        loadingRewarded = true
+        Task {
+            rewarded = try? await RewardedAd.load(with: unit, request: Request())
+            rewardedReady = rewarded != nil
+            loadingRewarded = false
+        }
+    }
+
+    func showRewarded() async -> AdOutcome {
+        guard AdGate.rewarded(allowed: allowed, consented: ready, unit: units?.rewarded), let ad = rewarded, let root = Self.topController() else { return .unavailable }
+        rewarded = nil
+        rewardedReady = false
+        let outcome: AdOutcome = await withCheckedContinuation { done in
+            let watch = RewardWatch { done.resume(returning: $0) }
+            reward = watch
+            ad.fullScreenContentDelegate = watch
+            ad.present(from: root) { watch.earned = true }
+        }
+        reward = nil
+        preloadRewarded()
+        return outcome
+    }
 
     func start() {
         guard allowed, units != nil, !started else { return }
@@ -44,13 +73,18 @@ final class LobbyAds {
         _ = await MobileAds.shared.start()
         ready = true
         preload()
+        preloadRewarded()
     }
 
     func showPrivacyOptions() {
         guard let root = Self.topController() else { return }
         Task {
             try? await ConsentForm.presentPrivacyOptionsForm(from: root)
-            if !ConsentInformation.shared.canRequestAds { ready = false }
+            if !ConsentInformation.shared.canRequestAds {
+                ready = false
+                rewarded = nil
+                rewardedReady = false
+            }
         }
     }
 
@@ -63,8 +97,13 @@ final class LobbyAds {
         }
     }
 
-    func leftRoom(finishedGame: Bool) {
-        guard allowed, ready, pacer.due(finishedGame: finishedGame, at: .now) else { return }
+    func showsBanner(on surface: AdSurface) -> Bool {
+        units != nil && AdGate.banner(on: surface, allowed: allowed, consented: ready)
+    }
+
+    func left(_ surface: AdSurface, finishedGame: Bool) {
+        guard AdGate.interstitial(from: surface, allowed: allowed, consented: ready),
+              pacer.due(finishedGame: finishedGame, gamesThisSession: GameTally.finished, at: .now) else { return }
         guard let ad = interstitial, let root = Self.topController() else {
             preload()
             return
@@ -83,14 +122,36 @@ final class LobbyAds {
     }
 }
 
-struct LobbyBanner: View {
+@MainActor
+final class RewardWatch: NSObject, @preconcurrency FullScreenContentDelegate {
+    var earned = false
+    private var finish: ((AdOutcome) -> Void)?
+
+    init(finish: @escaping (AdOutcome) -> Void) { self.finish = finish }
+
+    private func end(_ outcome: AdOutcome) {
+        finish?(outcome)
+        finish = nil
+    }
+
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) { end(earned ? .earned : .skipped) }
+
+    func ad(_ ad: FullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) { end(.unavailable) }
+}
+
+struct AdBanner: View {
+    let surface: AdSurface
+    @State private var width: CGFloat = 320
+
     var body: some View {
-        if LobbyAds.shared.allowed, LobbyAds.shared.ready, let units = LobbyAds.shared.units {
-            GeometryReader { geo in
-                BannerRepresentable(unit: units.banner, width: geo.size.width)
-            }
-            .frame(height: 50)
-            .accessibilityIdentifier("lobbyBanner")
+        if LobbyAds.shared.showsBanner(on: surface), let units = LobbyAds.shared.units {
+            let size = currentOrientationAnchoredAdaptiveBanner(width: max(width, 320))
+            Color.clear
+                .frame(maxWidth: .infinity)
+                .frame(height: size.size.height)
+                .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { width = $0 }
+                .overlay { BannerRepresentable(unit: units.banner, size: size).id(Int(size.size.width)) }
+                .accessibilityIdentifier("adBanner")
         }
     }
 }
@@ -106,10 +167,10 @@ struct AdPrivacyButton: View {
 
 private struct BannerRepresentable: UIViewRepresentable {
     let unit: String
-    let width: CGFloat
+    let size: AdSize
 
     func makeUIView(context: Context) -> BannerView {
-        let view = BannerView(adSize: currentOrientationAnchoredAdaptiveBanner(width: max(width, 320)))
+        let view = BannerView(adSize: size)
         view.adUnitID = unit
         view.rootViewController = LobbyAds.topController()
         view.load(Request())
@@ -124,10 +185,14 @@ final class LobbyAds {
     static let shared = LobbyAds()
     var allowed = false
     func start() {}
-    func leftRoom(finishedGame: Bool) {}
+    func left(_ surface: AdSurface, finishedGame: Bool) {}
+    var rewardedReady: Bool { false }
+    func preloadRewarded() {}
+    func showRewarded() async -> AdOutcome { .unavailable }
 }
 
-struct LobbyBanner: View {
+struct AdBanner: View {
+    let surface: AdSurface
     var body: some View { EmptyView() }
 }
 
@@ -135,3 +200,44 @@ struct AdPrivacyButton: View {
     var body: some View { EmptyView() }
 }
 #endif
+
+@MainActor
+@Observable
+final class ResultSlot {
+    private(set) var visibility = ResultVisibility()
+
+    var showsBanner: Bool { visibility.showsBanner }
+    func appeared(_ id: UUID) { visibility.appeared(id) }
+    func disappeared(_ id: UUID) { visibility.disappeared(id) }
+}
+
+extension EnvironmentValues {
+    @Entry var resultSlot: ResultSlot?
+}
+
+struct ResultBannerSlot: ViewModifier {
+    @State private var slot = ResultSlot()
+
+    func body(content: Content) -> some View {
+        content
+            .environment(\.resultSlot, slot)
+            .safeAreaInset(edge: .bottom, spacing: PL.Space.s4) {
+                if slot.showsBanner { AdBanner(surface: .gameResult) }
+            }
+    }
+}
+
+private struct ResultScreenMark: ViewModifier {
+    @Environment(\.resultSlot) private var slot
+    @State private var id = UUID()
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear { slot?.appeared(id) }
+            .onDisappear { slot?.disappeared(id) }
+    }
+}
+
+extension View {
+    func resultScreen() -> some View { modifier(ResultScreenMark()) }
+}

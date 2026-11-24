@@ -29,4 +29,19 @@ import Testing
         #expect(FitScale.scale(content: 0, available: 400) == 1)
         #expect(FitScale.scale(content: 400, available: 0) == 1)
     }
+
+    @Test func subPointMeasurementFlipsDoNotMoveTheHeight() {
+        var height = FitScale.settled(0, 324.66666666666663)
+        #expect(height == 324.66666666666663)
+        for measured in [324.3333333333333, 324.66666666666663, 324.3333333333333] {
+            height = FitScale.settled(height, measured)
+        }
+        #expect(height == 324.66666666666663)
+    }
+
+    @Test func aWholePointChangeIsTaken() {
+        #expect(FitScale.settled(324.5, 326) == 326)
+        #expect(FitScale.settled(324.5, 0) == 0)
+        #expect(FitScale.settled(0.4, 0) == 0)
+    }
 }

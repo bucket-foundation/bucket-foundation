@@ -14,6 +14,7 @@ import styles from "./play.module.css";
 type HubGame = { key: string; name: string; blurb: string; world: WorldId; testId: string } & ({ href: string } | { lobby: GameId });
 
 const HUB: HubGame[] = [
+  { key: "video", world: "voice-atlas", name: "Watch", blurb: "Short stories with live captions in four languages. Tap words to keep them.", testId: "hub-video", href: "/play/video" },
   { key: "duel", world: "duel", name: "Flag Duel", blurb: "Ten rounds. Name the language, then the meaning.", testId: "hub-duel", lobby: "duel" },
   { key: "flag-tiles", world: "flag-tiles", name: "Flag Tiles", blurb: "Solo daily run. A word falls; tap the flag of its language.", testId: "solo-flag-tiles", href: "/play/flag-tiles" },
   { key: "voice-atlas", world: "voice-atlas", name: "Voice Atlas", blurb: "Five words a day. Hear one, pin where its language is spoken.", testId: "solo-voice-atlas", href: "/play/voice-atlas" },

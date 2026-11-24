@@ -26,10 +26,12 @@ struct PolingualRoot: View {
                 Studio(access: subs.access)
             }
         }
-        .task { if subs.access == .checking { await subs.refresh() } }
-        .onChange(of: subs.access, initial: true) { _, access in LobbyAds.shared.allowed = Monetization.showsAds(access) }
-        .modifier(VoiceNoticeCaption())
-        .task { LangVoice.shared.preload() }
+        .task { if subs.store == .checking { await subs.refresh() } }
+        .onChange(of: subs.access, initial: true) { _, access in
+            LobbyAds.shared.allowed = Monetization.showsAds(access)
+            DailyLedger.shared.capped = Monetization.capped(access)
+        }
+        .voiceNotices()
         #if DEBUG
         .task {
             guard Launch.flag("-voiceProbe") else { return }
@@ -49,33 +51,43 @@ struct PolingualRoot: View {
         }
         #endif
         .onOpenURL { DeepLink.shared.open($0) }
+        .inviteShareOnLink()
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { a in if let u = a.webpageURL { DeepLink.shared.open(u) } }
         .groupInvites()
         .groupsOnToday()
         .memberNamePrompt()
         .ageRangePrompt()
+        .progressChoicePrompt()
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
+        .rootSheet(.gate, open: gate.asking)
+        .rootSheet(.saveProgress, open: onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
         .sheet(isPresented: Binding(get: { onboarded && SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn) }, set: { if !$0 { savePending = false } })) {
             SaveProgressSheet()
                 .presentationDetents([.large])
         }
+        .knownLanguagesPrompt(busy: !onboarded || gate.asking || PlayActivity.shared.playing || SaveProgress.shown(pending: savePending, signedIn: account.stage == .signedIn))
         #if DEBUG
         .task { if ProcessInfo.processInfo.arguments.contains("-saveProgress") { savePending = true } }
+        .task { if let link = Launch.value("-openLink").flatMap(URL.init(string:)) { DeepLink.shared.open(link) } }
         #endif
         .onChange(of: account.stage) { old, new in
-            if new == .signedIn && old != .signedIn {
+            let change = SessionChange.of(old: old, new: new, endedByUser: account.endedByUser)
+            change.mergeGuest(lobbies)
+            if change == .signedIn {
                 savePending = false
-                Task { await store.syncAfterSignIn(account: account.session?.userId ?? LangStore.unknownOwner) }
-                Task { await lobbies.mergeGuest() }
+                ProgressChoice.shared.signedIn(store, account: account.session?.userId ?? LangStore.unknownOwner)
                 Task { await PushRegistry.shared.refresh() }
             }
-            if new == .signedOut && old == .signedIn && account.endedByUser {
+            if change == .endedByUser {
+                ProgressChoice.shared.cancel()
                 store.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
             }
         }
+        .task {
+            if let id = account.session?.userId, !ProgressChoice.shared.inFlight { store.setOwner(id) }
+        }
         .task(id: account.session?.userId) {
-            if let id = account.session?.userId { store.setOwner(id) }
             account.beforeSignOut = {
                 await PushRegistry.shared.unregister()
                 await store.flush()
@@ -108,7 +120,7 @@ enum LaunchRouting {
     }
 
     static func tab(for link: SharedLink?, current: AppTab) -> AppTab {
-        link?.tab ?? current
+        AppTab.following(link, current: current)
     }
 }
 
@@ -139,29 +151,31 @@ struct Studio: View {
             Tab(value: AppTab.today) {
                 gated(.today) { TodayView(opening: { await place($0) }) }
             } label: { Label { Text("Today") } icon: { PLArt.streakFlame.image(height: 26) } }
-            Tab(value: AppTab.learn) { gated(.learn) { LearnView() } } label: { Label { Text("Learn") } icon: { PLArt.seal.image(height: 24) } }
+            Tab(value: AppTab.learn) { gated(.learn) { LearnView(games: false) } } label: { Label { Text("Learn") } icon: { PLArt.seal.image(height: 24) } }
             Tab(value: AppTab.games) {
                 NavigationStack {
                     GamesView(embedded: true)
-                        .safeAreaInset(edge: .bottom) { LobbyBanner() }
+                        .safeAreaInset(edge: .bottom) { AdBanner(surface: .gamesHub) }
                         .task(id: LobbyAds.shared.allowed) { LobbyAds.shared.start() }
                 }
                 .environment(\.learnUpsell, upsell)
-            } label: { Label { Text("Play") } icon: { PLArt.blocks.image(height: 24) } }
-            Tab(value: AppTab.account) { AccountView(subscription: manage, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
+                .tint(PL.tyrian)
+            } label: { Label { Text(String(localized: "Play tab", defaultValue: "Play", bundle: InterfaceLanguage.bundle)) } icon: { PLArt.blocks.image(height: 24) } }
+            Tab(value: AppTab.account) { AccountView(subscription: manageAction, memberLine: memberLine, trialDaysLeft: Entitlement.trialDaysLeft(subs.access, now: .now), trialReminderOff: trialReminder == .notAllowed, betaFree: subs.access == .beta) } label: { Label { Text("Account") } icon: { PLArt.azulejo.image(height: 24) } }
         }
         .tabViewStyle(.sidebarAdaptable)
+        .tint(TabTint.selected(tab))
         .audioAccessory()
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
         .sheet(isPresented: $paywall) { Paywall() }
+        .rootSheet(.paywall, open: paywall)
+        .environment(\.limitPaywall, limitPaywall)
+        .modifier(GrantNoticeToast())
         #if DEBUG
         .task { if Launch.flag("-showPaywall") { paywall = true } }
         #endif
-        .onChange(of: DeepLink.shared.pending, initial: true) { _, link in
-            tab = LaunchRouting.tab(for: link, current: tab)
-            if link == .home { DeepLink.shared.pending = nil }
-        }
+        .linkTabs($tab)
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
         .onReceive(NotificationCenter.default.publisher(for: .openToday)) { _ in tab = .today }
         #if DEBUG && os(iOS)
@@ -173,6 +187,18 @@ struct Studio: View {
             }
         }
         #endif
+    }
+
+    var limitPaywall: (@MainActor () -> Void)? {
+        guard Monetization.capped(subs.access) else { return nil }
+        return { paywall = true }
+    }
+
+    var memberLine: String? { subs.webMember.map { Entitlement.memberLine($0) } }
+
+    var manageAction: (() -> Void)? {
+        guard subs.webMember == nil else { return nil }
+        return { manage() }
     }
 
     var upsell: (@MainActor () -> Void)? {
@@ -250,4 +276,8 @@ struct LockedPreview<Content: View>: View {
                 .padding()
             }
     }
+}
+
+enum TabTint {
+    static func selected(_ tab: AppTab) -> Color { tab == .games ? PL.ochre : PL.tyrian }
 }

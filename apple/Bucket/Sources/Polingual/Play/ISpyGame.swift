@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ISpyGame: View {
     @Environment(LangStore.self) private var langs
+    @State private var feel = GameFeel()
     @State private var rounds: [SpyRound] = []
     @State private var index = 0
     @State private var startedAt = Date()
@@ -21,7 +22,7 @@ struct ISpyGame: View {
     var round: SpyRound? { index < rounds.count ? rounds[index] : nil }
 
     var body: some View {
-        PlayScene(game: .ispy, stickers: playStickers(.star, .calligraphyAin)) {
+        PlayScene(game: .ispy, feel: feel) {
             if rounds.isEmpty {
                 ProgressView().tint(PL.paper)
             } else if let round, !PlayLaunch.endGame {
@@ -40,7 +41,11 @@ struct ISpyGame: View {
     func play(_ r: SpyRound) -> some View {
         let scene = ISpy.scene(r.scene)
         return VStack(alignment: .leading, spacing: PL.Space.s3) {
-            PlayLabel(text: "\(scene?.name ?? "") · round \(index + 1) of \(rounds.count) · \(me.score)")
+            HStack {
+                PlayLabel(text: "\(scene?.name ?? "") · round \(index + 1) of \(rounds.count) · \(me.score)")
+                Spacer(minLength: 0)
+                ComboChip(streak: feel.streak, multiplier: false)
+            }
             HStack(spacing: PL.Space.s2) {
                 PlayLabel(text: Lang.name(r.lang))
                 Text(r.gloss).font(PL.heading.font()).foregroundStyle(PL.paper)
@@ -110,6 +115,7 @@ struct ISpyGame: View {
             reveals: Array(zip(rounds, results).map { r, _ in PlayRevealItem(lang: r.lang, form: r.gloss, meaning: labels[r.answer] ?? r.answer) }.prefix(6)),
             root: root,
             board: Boards.withYou(rows, you: me.score),
+            share: (.ispy, .points(me.score, marks: results)),
             again: { deal() }
         )
         .onAppear {
@@ -120,9 +126,10 @@ struct ISpyGame: View {
     }
 
     func deal() {
+        feel.reset()
         guard let corpus = langs.corpus else { return }
         root = langs.deckRoot(corpus)
-        seed = DealSeeds.fresh()
+        seed = LobbyRace.dealSeed()
         let targets = langs.playTargets.filter { $0 != root }
         rounds = ISpy.rounds(corpus.items, seed: seed, root: root, targets: targets.isEmpty ? ISpy.sets[0].targets : targets, rounds: ISpy.rounds)
         var names: [String: String] = [:]
@@ -157,7 +164,7 @@ struct ISpyGame: View {
         for t in ISpy.botTurns(seed: seed, round: index, roundSeconds: ISpy.roundSeconds) where t.correct {
             bots[t.botId, default: 0] += ISpy.points(correct: true, ms: t.atMs, roundSeconds: ISpy.roundSeconds, streak: 0)
         }
-        PlaySound.effect(ok, combo: me.streak)
+        feel.record(ok)
     }
 
     func next() {

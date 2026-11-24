@@ -189,8 +189,49 @@ public enum SessionMix {
     }
 
     public static func session(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, freq: FrequencyRank, lead: [QueueEntry] = [], replay: [QueueEntry] = [], writing: [QueueEntry] = [], tz: TimeZone = .current, heritage: Bool = false) -> [QueueEntry] {
-        let main = queue(system, corpus, state, now: now, freq: freq, tz: tz, heritage: heritage).filter { !replay.contains($0) }
-        return alternate(spacedChecks(lead + replay + writing + main))
+        let main = queue(system, corpus, state, now: now, freq: freq, tz: tz, heritage: heritage).filter { !replay.contains($0) && !lead.contains($0) }
+        let planned = lead + replay + writing + main
+        let extra = core(system, corpus, state, now: now, freq: freq, taken: Set(planned.map { cardId($0.lang, $0.itemId) }), limit: max(coreFloor, roundSize - planned.count), tz: tz)
+        let ordered = alternate(spacedChecks(lead + replay + main + extra))
+        let held = Set(lead.filter { $0.stage != .check } + replay)
+        let opening = ordered.lastIndex { held.contains($0) }.map { $0 + 1 } ?? 0
+        return wordFirst(Array(ordered.prefix(opening)) + disperse(writing, into: Array(ordered.dropFirst(opening))))
+    }
+
+    public static func wordFirst(_ queue: [QueueEntry]) -> [QueueEntry] {
+        guard queue.first?.stage == .letter, let at = queue.firstIndex(where: { $0.stage != .letter && $0.stage != .check }) else { return queue }
+        var out = queue
+        out.insert(out.remove(at: at), at: 0)
+        return out
+    }
+
+    public static func disperse(_ extras: [QueueEntry], into body: [QueueEntry]) -> [QueueEntry] {
+        guard !extras.isEmpty, !body.isEmpty else { return body + extras }
+        var out: [QueueEntry] = []
+        var next = 0
+        for (placed, e) in body.enumerated() {
+            out.append(e)
+            while next < extras.count, max(1, (next + 1) * body.count / (extras.count + 1)) <= placed + 1 {
+                out.append(extras[next])
+                next += 1
+            }
+        }
+        return out + extras[next...]
+    }
+
+    public static let coreFloor = 4
+    public static let roundSize = 14
+
+    public static func core(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, freq: FrequencyRank, taken: Set<String> = [], limit: Int = coreFloor, tz: TimeZone = .current) -> [QueueEntry] {
+        let today = dayKey(now, tz: tz)
+        let found = state.cards.entries.compactMap { e -> (entry: QueueEntry, rank: Int)? in
+            let p = parseCardId(e.key)
+            guard system.targets.contains(p.lang), !taken.contains(e.key), isStarted(e.value), let item = corpus.byId[p.itemId], isVocab(item), usable(item, system.root, p.lang) else { return nil }
+            guard FSRS().mastery(e.value) < masteryBar, let due = e.value.due, due > now else { return nil }
+            if let last = e.value.lastReview, dayKey(last, tz: tz) == today { return nil }
+            return (QueueEntry(itemId: p.itemId, lang: p.lang, stage: .review), freq.rank(item, p.lang))
+        }
+        return found.stableSorted { $0.rank < $1.rank }.prefix(max(0, limit)).map(\.entry)
     }
 
     public static func exerciseMix(_ system: LangSystem, _ item: LangItem, _ lang: String, _ state: EngineState, tally: SoundTally) -> ExerciseMix {

@@ -3,6 +3,8 @@ import Observation
 
 public enum SaveResult: String, Sendable { case idle, saving, synced, localOnly, offline, failed, needsProfile, refused }
 
+public enum ProgressKeep: String, Sendable { case both, device, account }
+
 public protocol LangDisk: Sendable {
     func read(_ name: String) -> Data?
     func write(_ name: String, _ data: Data)
@@ -56,6 +58,8 @@ public final class LangStore {
         return try? JSONDecoder().decode([TopWord].self, from: data)
     }
     public private(set) var systems: [LangSystem] = []
+    public private(set) var known = KnownLanguages([])
+    public private(set) var pulled = false
     public private(set) var states: [String: EngineState] = [:]
     public private(set) var saveState = SaveResult.idle
     public private(set) var clips: [String: Set<String>] = [:]
@@ -75,6 +79,7 @@ public final class LangStore {
     public static let heldTTL: Double = 30 * 24 * 3600 * 1000
     public static let unknownOwner = "unknown-owner"
     @ObservationIgnored private var reloadAfter = false
+    @ObservationIgnored private(set) var replacing: Set<String> = [] { didSet { if replacing != oldValue { saveReplacing() } } }
 
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
@@ -84,6 +89,7 @@ public final class LangStore {
         self.token = token
         self.now = now
         self.pending = Self.readPending(disk)
+        self.replacing = Self.readReplacing(disk)
     }
 
     static func readPending(_ disk: LangDisk) -> [String: String] {
@@ -91,6 +97,15 @@ public final class LangStore {
         var out: [String: String] = [:]
         for (k, v) in o.entries { if let id = v.string { out[k] = id } }
         return out
+    }
+
+    static func readReplacing(_ disk: LangDisk) -> Set<String> {
+        guard let d = disk.read("replacing.json"), let a = (try? JSON.parse(d))?.array else { return [] }
+        return Set(a.compactMap(\.string))
+    }
+
+    func saveReplacing() {
+        if replacing.isEmpty { disk.remove("replacing.json") } else { disk.write("replacing.json", JSON.data(.array(replacing.sorted().map(JSValue.string)))) }
     }
 
     func savePending() {
@@ -105,6 +120,7 @@ public final class LangStore {
             let doc = SystemsDoc(js: data)
             return doc.systems.isEmpty && doc.removed.isEmpty
         }
+        if branch == KnownLanguages.branch { return KnownLanguages(js: data).isBlank }
         let s = EngineState(js: data)
         return s.cards.count + s.prof.count + s.history.count == 0 && s.xp == 0
     }
@@ -136,6 +152,7 @@ public final class LangStore {
         let server = await pull()
         guard epoch == mine else { return }
         let list = loadSystems(server)
+        known = loadKnown(server)
         var st: [String: EngineState] = [:]
         for s in list {
             guard epoch == mine, let state = await loadBranch(progressBranch(s), server, epoch: mine) else { return }
@@ -148,6 +165,7 @@ public final class LangStore {
         clips = loadedClips
         systems = list
         states = st
+        pulled = pulled || server != nil
         status = corpus == nil ? .error : .ready
         if server != nil {
             await healPlacements(epoch: mine)
@@ -172,7 +190,9 @@ public final class LangStore {
     }
 
     func deliver(_ systemId: String, _ branch: String, epoch ep: Int) async {
-        if branch == Self.systemsBranch { await persistSystems(epoch: ep) } else { await push(systemId, branch) }
+        if branch == Self.systemsBranch { await persistSystems(epoch: ep) }
+        else if branch == KnownLanguages.branch { await persistKnown(epoch: ep) }
+        else { await push(systemId, branch) }
     }
 
     func waitForLoad() async {
@@ -249,6 +269,77 @@ public final class LangStore {
         return merged.systems
     }
 
+    func readLocalKnown() -> KnownLanguages { KnownLanguages(js: disk.read("known.json").flatMap { try? JSON.parse($0) }) }
+    func writeLocalKnown(_ k: KnownLanguages) { disk.write("known.json", JSON.data(k.js)) }
+
+    func loadKnown(_ server: JSObject?) -> KnownLanguages {
+        let stored = readLocalKnown()
+        let remote = KnownLanguages(js: server?[KnownLanguages.branch]?["data"])
+        let merged = KnownLanguages.merged(stored, remote)
+        if merged != stored { writeLocalKnown(merged) }
+        if server != nil, !merged.isBlank, merged != remote, pending[KnownLanguages.branch] == nil {
+            pending[KnownLanguages.branch] = KnownLanguages.branch
+            savePending()
+        }
+        return merged
+    }
+
+    public func setKnown(_ codes: [String]) async {
+        let next = KnownLanguages(codes, at: now())
+        guard !next.isBlank, next.codes != known.codes else { return }
+        known = next
+        writeLocalKnown(next)
+        let branch = KnownLanguages.branch
+        pending[branch] = branch
+        generation[branch, default: 0] += 1
+        savePending()
+        if let r = refusedUntil[branch], now() < r.at { return }
+        await persistKnown()
+    }
+
+    func persistKnown(epoch given: Int? = nil) async {
+        let mine = given ?? epoch
+        let branch = KnownLanguages.branch
+        guard epoch == mine, inFlight[branch] == nil else { return }
+        inFlight[branch] = mine
+        defer { if inFlight[branch] == mine { inFlight[branch] = nil } }
+        while epoch == mine {
+            let gen = generation[branch, default: 0]
+            let server = await pull()
+            let t = await token()
+            guard epoch == mine else { return }
+            guard let server, let t else {
+                saveState = t == nil ? .localOnly : .offline
+                return
+            }
+            let remote = KnownLanguages(js: server[branch]?["data"])
+            let merged = KnownLanguages.merged(readLocalKnown(), remote)
+            if merged != known {
+                known = merged
+                writeLocalKnown(merged)
+            }
+            let status = merged == remote ? 200 : await send(t, branch, merged.js, over: server, epoch: mine)
+            guard epoch == mine else { return }
+            if status == 409 {
+                let wait = min((refusedUntil[branch]?.wait ?? 15_000) * 2, 3_600_000)
+                refusedUntil[branch] = (now() + wait, wait)
+                saveState = .refused
+                return
+            }
+            guard (200..<300).contains(status) else {
+                saveState = Self.failure(status)
+                return
+            }
+            refusedUntil[branch] = nil
+            saveState = .synced
+            if generation[branch, default: 0] == gen {
+                pending[branch] = nil
+                savePending()
+                return
+            }
+        }
+    }
+
     func readLocal(_ branch: String) -> EngineState? {
         guard let d = disk.read("branch-\(branch).json"), let j = try? JSON.parse(d) else { return nil }
         return EngineState(js: j)
@@ -263,6 +354,20 @@ public final class LangStore {
         guard let remoteJS = server?[branch]?["data"] else {
             if let local, local != stored { writeLocal(branch, local) }
             return local ?? EngineState()
+        }
+        if replacing.contains(branch), let local {
+            if stored != local { writeLocal(branch, local) }
+            if let server, let t = await token() {
+                guard epoch == mine else { return nil }
+                let status = await send(t, branch, local.js, over: server, epoch: mine)
+                guard epoch == mine else { return nil }
+                if (200..<300).contains(status) {
+                    replacing.remove(branch)
+                    pending[branch] = nil
+                    savePending()
+                }
+            }
+            return local
         }
         let remote = EngineState(js: remoteJS)
         let merged = mergeState(local, spreadingUntouchedPlaced(remote, now: now()))
@@ -385,6 +490,10 @@ public final class LangStore {
         systems.compactMap { GameLedger(state($0.id)).best[game] }.max()
     }
 
+    public func gameDayCredit() -> Int {
+        systems.map { GameLedger(state($0.id)).days[dayKey(now())] ?? 0 }.max() ?? 0
+    }
+
     public func gameDaily(_ systemId: String) -> String? {
         GameLedger(state(systemId)).daily[dayKey(now())]
     }
@@ -450,7 +559,7 @@ public final class LangStore {
             return false
         }
         let mine = state(systemId)
-        let merged = server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
+        let merged = replacing.contains(branch) ? mine : server[branch].map { mergeState(mine, spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now())) } ?? mine
         if merged != mine {
             states[systemId] = merged
             writeLocal(branch, merged)
@@ -466,6 +575,7 @@ public final class LangStore {
         }
         if (200..<300).contains(status) {
             refusedUntil[branch] = nil
+            replacing.remove(branch)
             let settled = generation[branch, default: 0] == gen
             if settled && pending[branch] == systemId {
                 pending[branch] = nil
@@ -501,14 +611,16 @@ public final class LangStore {
         guard !pending.isEmpty else { return kept }
         let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }).flatMap { $0.isEmpty ? nil : $0 } ?? Self.unknownOwner
         var branches = JSObject()
-        for b in pending.keys.sorted() { if let st = readLocal(b) { branches[b] = st.js } }
+        for b in pending.keys.sorted() where b != KnownLanguages.branch { if let st = readLocal(b) { branches[b] = st.js } }
         let prior = disk.read("held-\(owner).json").flatMap { try? JSON.parse($0) }
         var priorBranches = prior?["branches"]?.object ?? JSObject()
         for (k, v) in branches.entries { priorBranches[k] = mergeState(EngineState(js: priorBranches[k]), EngineState(js: v)).js }
         var pend = prior?["pending"]?.object ?? JSObject()
         for (k, v) in pending { pend[k] = .string(v) }
         let systems = mergeSystems(SystemsDoc(js: prior?["systems"]), readLocalSystems())
-        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend)), ("at", .number(now()))])))
+        let heldKnown = KnownLanguages.merged(KnownLanguages(js: prior?["known"]), pending[KnownLanguages.branch] == nil ? KnownLanguages([]) : readLocalKnown())
+        let heldReplacing = Set((prior?["replacing"]?.array ?? []).compactMap(\.string)).union(replacing)
+        let blob = JSON.data(.object(JSObject([("systems", systems.js), ("branches", .object(priorBranches)), ("pending", .object(pend)), ("known", heldKnown.js), ("replacing", .array(heldReplacing.sorted().map(JSValue.string))), ("at", .number(now()))])))
         kept.removeAll { $0.0 == "held-\(owner).json" }
         kept.append(("held-\(owner).json", blob))
         return kept
@@ -542,14 +654,60 @@ public final class LangStore {
         guard let d = disk.read("held-\(account).json"), let j = try? JSON.parse(d) else { return }
         writeLocalSystems(mergeSystems(readLocalSystems(), SystemsDoc(js: j["systems"])))
         for (b, v) in j["branches"]?.object?.entries ?? [] { writeLocal(b, mergeState(readLocal(b), EngineState(js: v))) }
+        let heldKnown = KnownLanguages.merged(readLocalKnown(), KnownLanguages(js: j["known"]))
+        if !heldKnown.isBlank { writeLocalKnown(heldKnown) }
         for (b, v) in j["pending"]?.object?.entries ?? [] { if let id = v.string { pending[b] = id } }
         savePending()
+        replacing.formUnion((j["replacing"]?.array ?? []).compactMap(\.string))
         dropHeld(account)
     }
 
-    public func syncAfterSignIn(account: String) async {
+    func deviceBranches() -> [String: (system: String, state: EngineState)] {
+        var out: [String: (system: String, state: EngineState)] = [:]
+        for s in readLocalSystems().systems {
+            let b = progressBranch(s)
+            if let st = readLocal(b), st.cards.count > 0 { out[b] = (s.id, st) }
+        }
+        return out
+    }
+
+    public func deviceCards(account: String) -> Int {
+        let owner = disk.read("owner.json").flatMap { String(data: $0, encoding: .utf8) } ?? ""
+        guard owner != account else { return 0 }
+        return deviceBranches().values.reduce(0) { $0 + $1.state.cards.count }
+    }
+
+    public func accountCards() async -> Int? {
+        guard let server = await pull() else { return nil }
+        return SystemsDoc(js: server[Self.systemsBranch]?["data"]).systems.reduce(0) { n, s in
+            n + (server[progressBranch(s)]?["data"].map { EngineState(js: $0).cards.count } ?? 0)
+        }
+    }
+
+    func dropDeviceProgress() {
+        for s in readLocalSystems().systems {
+            let b = progressBranch(s)
+            disk.remove("branch-\(b).json")
+            pending[b] = nil
+        }
+        disk.remove("systems.json")
+        pending[Self.systemsBranch] = nil
+        savePending()
+        systems = []
+        states = [:]
+    }
+
+    public func syncAfterSignIn(account: String, keep: ProgressKeep = .both) async {
         let ep = epoch
+        let device = keep == .device ? deviceBranches() : [:]
+        if keep == .account { dropDeviceProgress() }
         restoreHeld(account)
+        for (b, d) in device {
+            writeLocal(b, d.state)
+            pending[b] = d.system
+            replacing.insert(b)
+        }
+        if !device.isEmpty { savePending() }
         setOwner(account)
         if hasLocalSystems { await persistSystems(epoch: ep) }
         guard epoch == ep else { return }
@@ -585,7 +743,7 @@ public final class LangStore {
             let branch = progressBranch(s)
             let stored = readLocal(branch)
             let remote = server[branch].map { spreadingUntouchedPlaced(EngineState(js: $0["data"]), now: now()) }
-            let merged = remote.map { mergeState(states[s.id] ?? stored, $0) } ?? states[s.id] ?? stored ?? EngineState()
+            let merged = replacing.contains(branch) ? states[s.id] ?? stored ?? EngineState() : remote.map { mergeState(states[s.id] ?? stored, $0) } ?? states[s.id] ?? stored ?? EngineState()
             states[s.id] = merged
             if stored != merged { writeLocal(branch, merged) }
             if server[branch].map({ EngineState(js: $0["data"]) }) != merged {
@@ -598,12 +756,16 @@ public final class LangStore {
                     refusedUntil[branch] = (now() + wait, wait)
                 } else if (200..<300).contains(status) {
                     refusedUntil[branch] = nil
+                    replacing.remove(branch)
                     if generation[branch, default: 0] == gen { pending[branch] = nil } else { await push(s.id, branch) }
                 }
             } else {
                 pending[branch] = nil
             }
         }
+        guard epoch == mine else { return }
+        known = loadKnown(server)
+        if pending[KnownLanguages.branch] != nil { await persistKnown(epoch: mine) }
         guard epoch == mine else { return }
         if statuses.allSatisfy({ (200..<300).contains($0) }) { pending[Self.systemsBranch] = nil }
         savePending()
@@ -635,12 +797,15 @@ public final class LangStore {
         for (name, data) in held { disk.write(name, data) }
         if !held.isEmpty { writeHeldOwners(held.map { String($0.0.dropFirst(5).dropLast(5)) }) }
         systems = []
+        known = KnownLanguages([])
         states = [:]
         saveState = .idle
         reloadAfter = false
         epoch += 1
         inFlight = [:]
         refusedUntil = [:]
+        replacing = []
+        pulled = false
         status = .idle
     }
 

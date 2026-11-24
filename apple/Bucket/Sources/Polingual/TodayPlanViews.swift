@@ -22,8 +22,8 @@ struct TodayHero: View {
         switch status {
         case .empty: String(localized: "Choose what to learn")
         case .start: String(localized: "Start your streak today")
-        case .keep(let n, _): String(localized: "Keep your \(n)-day streak")
-        case .atRisk(let n, _): String(localized: "Your \(n)-day streak ends at midnight")
+        case .keep: String(localized: "Day \(status.dayInPlay ?? 1): keep your streak")
+        case .atRisk: String(localized: "Day \(status.dayInPlay ?? 1): your streak ends at midnight")
         case .secured(let n, _): String(localized: "Day \(n) is safe")
         case .done: String(localized: "Done for today")
         }
@@ -113,6 +113,7 @@ struct TodayTileSkin: ViewModifier {
             content.modifier(GameLip(face: face, lip: look.lip ?? face, radius: radius))
         } else {
             content
+                .environment(\.colorScheme, .light)
                 .background(D8.face, in: .rect(cornerRadius: radius))
                 .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(D8.edge, lineWidth: 2) }
                 .background(D8.edge, in: .rect(cornerRadius: radius).offset(y: 5))
@@ -367,6 +368,7 @@ enum TodayRoute: Hashable {
 #if DEBUG
 enum TodayDemo {
     static var name: String? { Launch.value("-todayDemo") }
+    static var uncountedDay: Double? { Launch.value("-uncountedDay").flatMap(Double.init).map { max(0, $0 - 1) } }
 
     static func status(_ real: TodayStatus, now: Date) -> TodayStatus {
         let left = TimeLeft(until: Calendar.current.startOfDay(for: now).addingTimeInterval(86_400), from: now)

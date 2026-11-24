@@ -166,6 +166,135 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(sent["round"] as? Int == 0 && sent["correct"] == nil && sent["choice"] as? String == "perro")
     }
 
+    @Test func raceGamesDecodeAndRunOnOneClock() throws {
+        #expect(LobbyGame.race.count == 14 && LobbyGame.race.allSatisfy(\.isRace))
+        #expect(!LobbyGame.daily.isRace && !LobbyGame.tiles.isRace && !LobbyGame.other.isRace)
+        #expect(Set(LobbyGame.race.map(\.rawValue)).isSuperset(of: ["word-groups", "flag-tiles", "flag-duel", "polyword"]))
+        var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00.000Z")
+        raw["game"] = "word-groups"
+        raw["rounds"] = 10
+        raw["roundSeconds"] = 30
+        raw["prompts"] = [[String: Any]]()
+        let l = try JSONDecoder().decode(Lobby.self, from: json(raw))
+        let s = try #require(l.start)
+        #expect(l.game == .wordGroups && l.game.isRace)
+        #expect(l.raceRemaining(at: s.addingTimeInterval(100)) == 200)
+        #expect(l.raceRemaining(at: s.addingTimeInterval(400)) == 0)
+        #expect(l.raceFinishers == ["u2"])
+        #expect(LobbyClock.phase(l, at: s.addingTimeInterval(45)).playing)
+        #expect(!LobbyClock.phase(l, at: s.addingTimeInterval(-1)).playing && !LobbyClock.phase(l, at: s.addingTimeInterval(300)).playing)
+    }
+
+    @Test func equalRaceScoresRankByTheFasterFinish() throws {
+        var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00.000Z")
+        raw["game"] = "mini"
+        raw["players"] = ["ana", "bo", "cy"].map { ["userId": $0, "name": $0, "ready": true, "score": $0 == "cy" ? 0 : 500, "isHost": false, "isMe": false, "online": true, "answered": $0 != "cy"] as [String: Any] }
+        raw["results"] = [["round": 0, "userId": "ana", "correct": true, "ms": 90_000, "points": 500], ["round": 0, "userId": "bo", "correct": true, "ms": 40_000, "points": 500]]
+        let l = try JSONDecoder().decode(Lobby.self, from: json(raw))
+        #expect(l.standings.map(\.userId) == ["bo", "ana", "cy"])
+        raw["game"] = "daily"
+        #expect(try JSONDecoder().decode(Lobby.self, from: json(raw)).standings.map(\.userId) == ["ana", "bo", "cy"])
+    }
+
+    @MainActor @Test func aRefusedScoreIsNotSentAgain() async throws {
+        let hits = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { r in
+            var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")
+            raw["game"] = "snake"
+            if r.url!.path.hasSuffix("/score") {
+                hits.mutate { $0 += 1 }
+                return (409, json(["error": "already_answered"]))
+            }
+            if r.url!.path.hasSuffix("/state") { return (200, json(["changed": false, "version": 3, "now": "2026-11-12T10:00:00Z"])) }
+            return (200, json(["lobby": raw]))
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(await store.postScore(7) == false && store.raceScoreSent)
+        await store.poll()
+        #expect(hits.value == 1)
+    }
+
+    @MainActor @Test(arguments: [408, 425, 429]) func aTimedOutOrThrottledScoreIsSentAgain(_ status: Int) async throws {
+        let hits = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { r in
+            var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")
+            raw["game"] = "snake"
+            if r.url!.path.hasSuffix("/score") {
+                hits.mutate { $0 += 1 }
+                return hits.value == 1 ? (status, json(["error": "busy"])) : (200, json(["score": 7, "lobby": raw]))
+            }
+            if r.url!.path.hasSuffix("/state") { return (200, json(["changed": false, "version": 3, "now": "2026-11-12T10:00:00Z"])) }
+            return (200, json(["lobby": raw]))
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(await store.postScore(7) == false && !store.raceScoreSent)
+        await store.poll()
+        #expect(hits.value == 2 && store.raceScoreSent && store.raceScore == 7)
+    }
+
+    @Test func scoreRefusalsEndOnClientErrorsExceptTimeoutsAndThrottles() {
+        #expect(LobbyRules.scoreRefusalIsFinal(409) && LobbyRules.scoreRefusalIsFinal(400))
+        #expect(!LobbyRules.scoreRefusalIsFinal(408) && !LobbyRules.scoreRefusalIsFinal(429))
+        #expect(!LobbyRules.scoreRefusalIsFinal(500) && !LobbyRules.scoreRefusalIsFinal(0))
+    }
+
+    @Test func raceScoreFallsBackToHitsAndStaysInRange() {
+        #expect(LobbyRules.raceScore(points: 420, hits: 3) == 420)
+        #expect(LobbyRules.raceScore(points: nil, hits: 3) == 300)
+        #expect(LobbyRules.raceScore(points: -5, hits: 3) == 0)
+        #expect(LobbyRules.raceScore(points: 9_999_999, hits: 0) == LobbyRules.raceScoreMax)
+    }
+
+    @MainActor @Test func aRacePostsOneScoreAndListsRaceGamesFromTheServer() async throws {
+        let calls = LockedBox<[(String, [String: Any], String?)]>([])
+        let api = BucketAPI(transport: StubTransport { r in
+            let body = r.httpBody.flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] } ?? [:]
+            calls.mutate { $0.append((r.url!.path, body, r.value(forHTTPHeaderField: "x-polingual-race"))) }
+            var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")
+            raw["game"] = "polyword"
+            if r.url!.path.hasSuffix("/score") { return (200, json(["score": 420, "lobby": raw])) }
+            if r.httpMethod != "POST" { return (200, json(["lobbies": [[String: Any]](), "race": ["polyword", "snake", "daily", "pinball"]])) }
+            return (200, json(["lobby": raw]))
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        #expect(store.hostable == LobbyGame.hostable)
+        await store.refresh()
+        #expect(store.hostable == LobbyGame.hostable + [.polyword, .snake])
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(await store.postScore(420))
+        #expect(await store.postScore(900) == false)
+        #expect(store.raceScore == 420)
+        let scores = calls.value.filter { $0.0.hasSuffix("/score") }
+        #expect(scores.count == 1 && scores.first?.1["score"] as? Int == 420 && scores.first?.1["lobbyId"] as? String == "L1")
+        #expect(calls.value.first { $0.0.hasSuffix("/lobbies") }?.2 == "1")
+        #expect(calls.value.first { $0.0.hasSuffix("/join") }?.2 == "1")
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(store.raceScore == nil)
+    }
+
+    @MainActor @Test func aFailedScoreCanBeSentAgainAndPromptLobbiesTakeNone() async throws {
+        let fail = LockedBox(true)
+        let game = LockedBox("snake")
+        let api = BucketAPI(transport: StubTransport { r in
+            var raw = lobbyJSON(status: "playing", startedAt: "2026-11-12T10:00:00Z")
+            raw["game"] = game.value
+            if r.url!.path.hasSuffix("/score") { return fail.value ? (500, json(["error": "server"])) : (200, json(["score": 7, "lobby": raw])) }
+            return (200, json(["lobby": raw]))
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(await store.postScore(7) == false && store.raceScore == 7 && !store.raceScoreSent)
+        #expect(await store.postScore(9) == false && store.raceScore == 7)
+        fail.mutate { $0 = false }
+        await store.poll()
+        #expect(store.raceScore == 7 && store.raceScoreSent)
+        game.mutate { $0 = "daily" }
+        try await store.join(code: "ABC123", displayName: "Gia")
+        #expect(await store.postScore(7) == false && store.raceScore == nil)
+    }
+
     @MainActor @Test func serverErrorsSurface() async throws {
         let api = BucketAPI(transport: StubTransport { _ in (409, json(["error": "lobby_full"])) }, cacheDir: nil)
         let store = LobbyStore(api: api, token: { "t" })
@@ -205,5 +334,129 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         let api = BucketAPI(transport: StubTransport { _ in (500, Data()) }, cacheDir: nil)
         let pass = GuestPass(api: api, defaults: UserDefaults(suiteName: "guest-\(UUID().uuidString)")!) { "  " }
         #expect(await pass.token() == nil)
+    }
+
+    @MainActor @Test func raceGateStaysOpenWhileItsHoldLives() {
+        let gate = LobbyRaceGate()
+        #expect(!gate.isOpen)
+        var hold: LobbyRaceGate.Hold? = LobbyRaceGate.Hold()
+        gate.open(hold!)
+        #expect(gate.isOpen)
+        hold = nil
+        #expect(!gate.isOpen)
+    }
+
+    @MainActor @Test func raceGateFollowsTheNewestHold() {
+        let gate = LobbyRaceGate()
+        var first: LobbyRaceGate.Hold? = LobbyRaceGate.Hold()
+        let second = LobbyRaceGate.Hold()
+        gate.open(first!)
+        gate.open(second)
+        first = nil
+        #expect(gate.isOpen)
+    }
+
+    #if DEBUG
+    @MainActor @Test func stagedLobbySitsInRoundTwoAndNeverPolls() async {
+        let calls = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { _ in
+            calls.mutate { $0 += 1 }
+            return (404, Data())
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        store.stage(players: 6, mode: .tiles)
+        await store.poll()
+        #expect(calls.value == 0)
+        #expect(store.current?.standings.count == 6)
+        #expect(store.current?.results(for: 0).count == 5)
+        #expect(store.current?.prompt(1)?.mode == .tiles)
+        guard case .round(let index, let remaining) = store.phase else {
+            Issue.record("staged lobby is outside a round")
+            return
+        }
+        #expect(index == 1 && remaining > 500)
+        await store.leave()
+        #expect(calls.value == 0 && store.current == nil && !store.staged)
+    }
+
+    @MainActor @Test func stagedRaceKeepsItsScoreOffTheNetwork() async {
+        let calls = LockedBox(0)
+        let api = BucketAPI(transport: StubTransport { _ in
+            calls.mutate { $0 += 1 }
+            return (404, Data())
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" })
+        store.stage(players: 2, race: .voice)
+        #expect(store.current?.game == .voice && store.phase.playing)
+        #expect(store.current?.raceSystem.targets == ["es", "fr", "it", "pt", "de", "nl"])
+        await store.postScore(700)
+        await store.postScore(900)
+        await store.poll()
+        #expect(store.raceScore == 700 && !store.raceScoreSent && calls.value == 0)
+        store.stage(players: 2, race: .daily)
+        #expect(store.current?.game == .daily && store.raceScore == nil)
+    }
+    #endif
+}
+
+@Suite struct LobbyRaceDeckTests {
+    @Test func raceDeckDayIsTheSeedKeyAndNeverACalendarDay() {
+        let now = Date(timeIntervalSince1970: 1_795_000_000)
+        #expect(LobbyRaceSeed.deckDay(nil, now: now) == PlayDecks.deckDay(now))
+        #expect(LobbyRaceSeed.deckDay(42, now: now) == "race-42")
+        #expect(LobbyRaceSeed.deckDay(42, now: now) != PlayDecks.deckDay(now))
+    }
+
+    @Test func racePoolComesFromTheLobbyLanguagesAlone() throws {
+        let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+        let system = LobbyRacePool.system(id: "L1", root: "en", targets: ["es", "fr"])
+        let pool = LobbyRacePool.words(system, corpus: corpus)
+        #expect(system.id == "race-L1")
+        #expect(!pool.isEmpty)
+        #expect(Set(pool.map(\.lang)).isSubset(of: ["es", "fr"]))
+        #expect(pool.allSatisfy { $0.root == "en" })
+        #expect(pool == LobbyRacePool.words(LobbyRacePool.system(id: "L1", root: "en", targets: ["es", "fr"]), corpus: corpus))
+    }
+
+    @Test func twoRacersDealTheSameFlagRounds() throws {
+        let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+        func deal() -> [GamePrompt] {
+            let system = LobbyRacePool.system(id: "L1", root: "en", targets: ["es", "fr"])
+            var rng = RaceRandom(seed: 99)
+            let words = GameWords.ordered(LobbyRacePool.words(system, corpus: corpus), using: &rng)
+            return GameRounds.flags(words, own: system.targets, mode: .flag, using: &rng)
+        }
+        let first = deal()
+        #expect(!first.isEmpty)
+        #expect(first.map(\.word) == deal().map(\.word))
+        #expect(first.map(\.answer) == deal().map(\.answer))
+    }
+
+    @Test func racePoolDropsTheRootAndRepeatsAndFallsBackWhenEmpty() {
+        #expect(LobbyRacePool.system(id: "a", root: "es", targets: ["es", "fr", "fr", "it"]).targets == ["fr", "it"])
+        #expect(LobbyRacePool.system(id: "a", root: "en", targets: []).targets == ["es", "fr", "de"])
+        #expect(LobbyRacePool.system(id: "a", root: "es", targets: ["es"]).targets == ["fr", "de"])
+    }
+
+    @Test func racersWithOneSeedDrawTheSameNumbers() {
+        var a = RaceRandom(seed: 7)
+        var b = RaceRandom(seed: 7)
+        var c = RaceRandom(seed: 8)
+        let xs = (0..<20).map { _ in a.next() }
+        #expect(xs == (0..<20).map { _ in b.next() })
+        #expect(xs != (0..<20).map { _ in c.next() })
+        #expect([1, 2, 3, 4, 5, 6].shuffled(using: &a) == [1, 2, 3, 4, 5, 6].shuffled(using: &b))
+    }
+
+    @Test func soloPlayDrawsFromTheSystem() {
+        var a = RaceRandom(seed: nil)
+        var b = RaceRandom(seed: nil)
+        #expect((0..<8).map { _ in a.next() } != (0..<8).map { _ in b.next() })
+    }
+
+    @Test func raceGhostsAndDailyGhostsDiffer() {
+        let day = PlayDecks.deckDay(Date(timeIntervalSince1970: 1_795_000_000))
+        #expect(FlagTilesRules.ghosts(date: LobbyRaceSeed.deckDay(42)).map(\.score) != FlagTilesRules.ghosts(date: day).map(\.score) || FlagTilesRules.ghosts(date: LobbyRaceSeed.deckDay(42)).map(\.name) != FlagTilesRules.ghosts(date: day).map(\.name))
+        #expect(FlagTilesRules.ghosts(date: LobbyRaceSeed.deckDay(42)).map(\.score) == FlagTilesRules.ghosts(date: "race-42").map(\.score))
     }
 }

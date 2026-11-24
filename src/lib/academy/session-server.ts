@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import type { GoogleIdentity } from "./google-token";
 import { forwardedClientIp, proxyVerdict, verifiedProxyIp } from "./proxy-ip";
 import { isReviewDemoEmail, reviewCodeMatches, type ReviewDemo, type ReviewDemoOutcome } from "./review-demo";
 
@@ -14,6 +15,8 @@ export const SESSION_LIMITS = {
   refreshIp: 120,
   deleteIp: 10,
   appleIp: 40,
+  googleIp: 40,
+  googleEmail: 10,
 } as const;
 
 export interface AuthSession {
@@ -35,6 +38,11 @@ export interface SessionDeps {
   refresh: (refreshToken: string) => Promise<AuthResult>;
   signInWithApple: (token: string, nonce: string) => Promise<AuthResult>;
   appleAudiences?: () => string[];
+  google?: {
+    clientId: () => string | null;
+    verify: (idToken: string, rawNonce: string, clientId: string) => Promise<GoogleIdentity | null>;
+    signIn: (identity: GoogleIdentity) => Promise<AuthResult>;
+  };
   linkAppleCode?: (userId: string, app: string, code: string) => Promise<void>;
   defer?: (work: Promise<unknown>) => void;
   linkBudgetMs?: number;
@@ -66,10 +74,12 @@ export function sessionClientIp(headers: Headers, proxy: { secret?: string; now?
 export const APPLE_SIGNIN_REPLY_BUDGET_MS = 3000;
 
 export const OTP_LOCKOUT_MESSAGE = "Bucket sent several codes to this email. Wait ten minutes and try again.";
+export const GOOGLE_MISMATCH_MESSAGE = "This email belongs to a different Google account. Sign in with that Google account or use an email code.";
 export const RATE_MESSAGE = "Too many tries from here. Wait ten minutes and try again.";
 
 export const DEFAULT_APPLE_AUDIENCES = ["foundation.bucket.app", "com.polingual.app"];
 export const APPLE_APPS = ["bucket", "polingual"];
+export const GOOGLE_APPS = ["polingual"];
 
 export function appleAudiences(raw: string | undefined): string[] {
   const list = (raw ?? "").split(",").map((v) => v.trim()).filter(Boolean);
@@ -188,6 +198,24 @@ export function createSessionHandler(deps: SessionDeps) {
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       if (r.status === null || r.status >= 500) return { status: 502, body: { error: "apple_failed" } };
       return { status: 401, body: { error: "bad_token" } };
+    }
+
+    if (b.action === "google") {
+      const token = typeof b.id_token === "string" ? b.id_token : "";
+      const nonce = typeof b.nonce === "string" ? b.nonce : "";
+      const app = b.app === undefined ? "polingual" : b.app;
+      if (!token || token.length > 8192 || !nonce || nonce.length > 512 || typeof app !== "string" || !GOOGLE_APPS.includes(app)) return { status: 400, body: { error: "bad_request" } };
+      const clientId = deps.google?.clientId() ?? null;
+      if (!deps.google || !clientId) return { status: 503, body: { error: "google_unavailable" } };
+      if (!(await within([[`google:ip:${ip}`, SESSION_LIMITS.googleIp]]))) return { status: 429, body: { error: "too_many_requests" } };
+      const who = await deps.google.verify(token, nonce, clientId);
+      if (!who) return { status: 401, body: { error: "bad_token" } };
+      if (!(await within([[`google:email:${hashed(who.email)}`, SESSION_LIMITS.googleEmail]]))) return { status: 429, body: { error: "too_many_requests", message: RATE_MESSAGE } };
+      const r = await deps.google.signIn(who);
+      if (r.session) return { status: 200, body: tokens(r.session) };
+      if (r.status === 409) return { status: 409, body: { error: "google_account_mismatch", message: GOOGLE_MISMATCH_MESSAGE } };
+      if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
+      return { status: 502, body: { error: "google_failed" } };
     }
 
     if (b.action === "refresh") {

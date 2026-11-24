@@ -2,13 +2,14 @@ import BucketKit
 import SwiftUI
 
 struct Onboarding: View {
-    enum Step: Int, CaseIterable { case welcome, languages }
+    enum Step: Int, CaseIterable { case welcome, speak, languages }
 
     @Environment(LangStore.self) private var store
+    @Environment(\.accessibilityReduceMotion) private var still
     let finish: (String?) -> Void
+    @State private var knownSent = false
     @State private var step = PolingualLaunch.value("-onboardingStep").flatMap(Int.init).flatMap(Step.init(rawValue:)) ?? .welcome
-    @State private var root = InterfaceLanguage.deviceRoot
-    @State private var targets: [String] = ["fr", "es", "it", "de"].filter { $0 != InterfaceLanguage.deviceRoot }.prefix(3).map(\.self)
+    @State private var picks = KnownPicks(device: InterfaceLanguage.deviceRoot)
     @State private var creating = false
     @State private var failed: String?
 
@@ -32,13 +33,20 @@ struct Onboarding: View {
             footer
         }
         .background(Backdrop().ignoresSafeArea())
-        .task { await store.load() }
+        .task {
+            await store.load()
+            if !store.known.isBlank, !picks.touched { picks = KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known) }
+        }
     }
+
+    var root: String { picks.root }
+    var targets: [String] { picks.targets }
 
     @ViewBuilder
     func page(_ s: Step) -> some View {
         switch s {
         case .welcome: welcome
+        case .speak: speak
         case .languages: languages
         }
     }
@@ -72,6 +80,48 @@ struct Onboarding: View {
         }
     }
 
+    var speak: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Which languages do you speak?")
+                .font(PL.title.font(scale: 0.94))
+                .foregroundStyle(PL.ink)
+                .accessibilityAddTraits(.isHeader)
+                .minimumScaleFactor(0.6)
+                .fixedSize(horizontal: false, vertical: true)
+            Text("Pick every one you can hold a conversation in.")
+                .font(PL.body.font())
+                .foregroundStyle(PL.inkDim)
+                .fixedSize(horizontal: false, vertical: true)
+            ScrollView {
+                FlowLayout(spacing: 8) {
+                    ForEach(KnownLanguages.speakable(device: picks.device), id: \.self) { l in
+                        Chip(title: langName(l), langs: [l], on: picks.known.codes.contains(l)) {
+                            picks.toggle(l, at: Date.now.timeIntervalSince1970 * 1000)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical, 2)
+            }
+            if picks.bases.count > 1 {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Base language").font(.caption.weight(.bold)).foregroundStyle(PL.inkDim)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(picks.bases, id: \.self) { l in
+                                Chip(title: langName(l), langs: [l], on: l == root) { picks.choose(base: l) }
+                                    .accessibilityLabel(Text("Base language") + Text(verbatim: ", \(langName(l))"))
+                            }
+                        }
+                        .padding(.vertical, 2)
+                    }
+                }
+                .transition(.opacity)
+            }
+        }
+        .animation(still ? nil : .spring(duration: 0.3), value: picks.bases)
+    }
+
     var languages: some View {
         VStack(alignment: .leading, spacing: 18) {
             PLStickerLayer(Array(Stickers.onboarding.prefix(3))).frame(height: 96)
@@ -98,8 +148,8 @@ struct Onboarding: View {
             .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
             .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.hairline2, lineWidth: 2) }
             FlowLayout(spacing: 8) {
-                ForEach(Lang.presets, id: \.name) { p in
-                    Chip(title: p.name, langs: p.targets, on: Set(p.targets.filter { $0 != root }) == Set(targets)) { targets = p.targets.filter { $0 != root } }
+                ForEach(picks.presets(Lang.presets), id: \.name) { p in
+                    Chip(title: p.name, langs: p.targets, on: Set(p.targets) == Set(targets)) { picks.pick(p.targets) }
                 }
             }
             if let failed {
@@ -125,7 +175,7 @@ struct Onboarding: View {
                 }
             }
             .buttonStyle(D8Primary())
-            .disabled((step == .languages && targets.isEmpty) || creating)
+            .disabled((step == .languages && targets.isEmpty) || (step == .speak && !picks.ready) || creating)
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 20)
@@ -135,6 +185,7 @@ struct Onboarding: View {
     var label: String {
         switch step {
         case .welcome: "Get started"
+        case .speak: "Continue"
         case .languages: creating ? "Setting up" : failed == nil ? "Continue" : "Try again"
         }
     }
@@ -150,6 +201,11 @@ struct Onboarding: View {
         creating = true
         defer { creating = false }
         await store.load()
+        if let codes = picks.codesToSave(over: store.known) { await store.setKnown(codes) }
+        if !knownSent {
+            knownSent = true
+            Beta.shared.knownLanguagesSet(store.known, source: .onboarding)
+        }
         let existing = store.systems.first { $0.root == root && Set($0.targets) == Set(targets) }
         if let existing { finish(existing.id); return }
         do {
@@ -214,14 +270,17 @@ struct PlayfulTiles: View {
 
     var body: some View {
         GeometryReader { g in
-            let side = compact ? min((g.size.width - 48) / 4, g.size.height - 16, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
+            let fit = NightTiles.fit(width: g.size.width, height: g.size.height, compact: compact)
+            let side = fit.side
             VStack(spacing: 12) {
                 if !compact {
                     Text(accented("One word, **night**, in every language", D8.lapis))
                         .font(PL.heading.font(scale: 0.75))
                         .foregroundStyle(PL.inkDim)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
                 }
-                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
+                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: fit.row ? 12 : 16), count: fit.row ? 4 : 2), spacing: 16) {
                     ForEach(0..<4, id: \.self) { i in
                         let w = Self.night[slots[i]]
                         WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) {

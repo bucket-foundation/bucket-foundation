@@ -5,6 +5,7 @@ import { DEFAULT_OG_IMAGE, OG_DESCRIPTION_MAX, OG_TITLE_MAX, THEME_COLOR, clip, 
 import { bakedSearch } from "./baked";
 import { GUIDES } from "./guides";
 import { WORDS } from "./words";
+import { wordOgVersion } from "./word-og";
 import { SHARE_KINDS } from "./share";
 import { SAMPLE_SHARES } from "./share-samples";
 import * as root from "../app/(site)/layout";
@@ -100,7 +101,7 @@ test("every word page names the word in its image", async () => {
     const m = await wordPage.generateMetadata({ params: Promise.resolve({ slug: w.slug }) });
     checkPage(m, `${SITE}/word/${w.slug}`);
     const img = (m.openGraph as Og).images![0];
-    assert.equal(img.url, `${SITE}/word/${w.slug}/og`);
+    assert.equal(img.url, `${SITE}/word/${w.slug}/og?v=${wordOgVersion(w)}`);
     assert.ok(img.alt!.toLowerCase().includes(w.en.toLowerCase()), img.alt);
   }
 });

@@ -12,6 +12,7 @@ struct StudyView: View {
     @State private var tally = SoundTally()
     @State private var i = 0
     @State private var graded = 0
+    @State private var met = 0
     @State private var deferred = 0
     @State private var correct = 0
     @State private var xpStart = 0.0
@@ -21,6 +22,7 @@ struct StudyView: View {
     @State private var cardStart = Date()
     @State private var chorus: [VoiceLine] = []
     @State private var introduced: Set<String> = []
+    @State private var limited = false
     @AppStorage("bucket.lang.readings") private var readings = true
     @AppStorage(SoundPolicy.silentKey) private var silent = false
     @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
@@ -47,6 +49,12 @@ struct StudyView: View {
             await store.load()
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
+        .onChange(of: DailyLedger.shared.spent) { _, spent in
+            guard limited, !spent else { return }
+            limited = false
+            queue = nil
+            startIfReady()
+        }
         .onDisappear { LangVoice.shared.hush() }
     }
 
@@ -63,6 +71,10 @@ struct StudyView: View {
         return .word(item, system)
     }
 
+    #if DEBUG
+    static var tappedNextSet = false
+    #endif
+
     func startIfReady() {
         guard queue == nil, store.status == .ready, let system = store.system(systemId), let corpus = store.corpus else { return }
         let state = store.state(systemId)
@@ -73,10 +85,18 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
+        queue = budgeted(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), state, now: now)
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+    }
+
+    func budgeted(_ planned: [QueueEntry], _ state: EngineState, now: Double) -> [QueueEntry] {
+        let isNew: (QueueEntry) -> Bool = { !state.cards.started(cardId($0.lang, $0.itemId)) }
+        let isDue: (QueueEntry) -> Bool = { e in state.cards[cardId(e.lang, e.itemId)]?.due.map { $0 <= now } ?? false }
+        let gate = DailyLedger.shared.gate(dueReviews: planned.filter { !isNew($0) && isDue($0) }.count)
+        limited = gate == .limit
+        return LessonTrim.queue(planned, gate: gate, isNew: isNew, isDue: isDue)
     }
 
     func frequency(_ system: LangSystem) -> FrequencyRank {
@@ -117,7 +137,8 @@ struct StudyView: View {
             return
         }
         guard let item = corpus.byId[entry.itemId] else {
-            current = nil
+            i += 1
+            makeExercise()
             return
         }
         let state = store.state(systemId)
@@ -165,6 +186,10 @@ struct StudyView: View {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
             if let sid = sentenceId { for r in results { store.grade(systemId, lang: r.lang, itemId: SessionMix.sentenceItemId(sid), rating: r.rating, counted: false) } }
         }
+        if !results.isEmpty {
+            let before = store.state(systemId)
+            DailyLedger.shared.charge(newWords: results.filter { !before.cards.started(cardId($0.lang, entry.itemId)) }.count, cards: results.count)
+        }
         let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
         let streak = langStreak(store)
         for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "", streak: streak) }
@@ -175,6 +200,7 @@ struct StudyView: View {
         for r in results where r.rating == 1 {
             next = requeueAfterMiss(next, i, QueueEntry(itemId: entry.itemId, lang: r.lang, stage: entry.stage == .letter ? .letter : .review))
         }
+        met += SessionTally.met(answered: results.count, kind: current?.kind)
         graded += results.count
         correct += results.filter { $0.rating > 1 }.count
         queue = next
@@ -185,7 +211,9 @@ struct StudyView: View {
     @ViewBuilder
     func content(_ system: LangSystem, _ corpus: LangCorpus, _ queue: [QueueEntry]) -> some View {
         let state = store.state(systemId)
-        if queue.isEmpty {
+        if limited {
+            ScrollView { DailyLimitCard(place: "lesson").padding(PL.Space.s4).frame(maxWidth: 520) }.frame(maxWidth: .infinity)
+        } else if queue.isEmpty {
             StateMessage(title: "Nothing due", detail: "You have met today's new words in every language of this set. Come back tomorrow.", retry: nil)
         } else if (i >= queue.count || current == nil) && SilentDeck.onlySound(graded: graded, deferred: deferred) {
             VStack(spacing: PL.Space.s4) {
@@ -204,9 +232,10 @@ struct StudyView: View {
             .padding(PL.Space.s5)
         } else if i >= queue.count || current == nil {
             FitPage(center: true) {
-                let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: 16))
+                let gap = vertical == .compact ? 10.0 : 16.0
+                let columns = vertical == .compact ? AnyLayout(HStackLayout(alignment: .center, spacing: 24)) : AnyLayout(VStackLayout(spacing: gap))
                 columns {
-                    VStack(spacing: 16) {
+                    VStack(spacing: gap) {
                         PLGlyphView(.check, size: 44).foregroundStyle(PL.malachite)
                             .frame(width: 76, height: 76)
                             .onAppear {
@@ -214,34 +243,58 @@ struct StudyView: View {
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
                             }
                         Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
-                        Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
+                        SessionTally(correct: correct, graded: graded, met: met, xp: Int(state.xp - xpStart), streak: Int(state.streak))
                             .foregroundStyle(Palette.muted)
                             .monospacedDigit()
+                        if vertical == .compact {
+                            FeedbackLink()
+                            ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
+                        }
                     }
                     .frame(maxWidth: .infinity)
-                    VStack(spacing: 16) {
-                        FeedbackLink()
-                        ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
-                        Button("See progress") {
-                            path.replaceTop(with: LangRoute.system(system.id))
+                    VStack(spacing: gap) {
+                        if vertical != .compact {
+                            FeedbackLink()
+                            ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
                         }
-                        .buttonStyle(D8Primary())
-                        Button("Another round") {
+                        Button("Next lesson") {
                             let now = Date().timeIntervalSince1970 * 1000
-                            self.queue = SessionMix.session(system, corpus, state, now: now, freq: frequency(system), writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId))
+                            self.queue = budgeted(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), state, now: now)
                             tally = SoundTally()
                             i = 0
                             graded = 0
+                            met = 0
                             correct = 0
                             xpStart = state.xp
                             makeExercise()
+                        }
+                        .buttonStyle(D8Primary())
+                        ForEach(NextLesson.otherSets(after: system.id, systems: store.systems, lastStudyDay: { store.state($0).lastStudyDay })) { other in
+                            Button {
+                                path.replaceTop(with: LangRoute.study(other.id))
+                            } label: {
+                                Label(other.title, systemImage: "arrow.right").lineLimit(1).minimumScaleFactor(0.7)
+                            }
+                            .buttonStyle(D8Option(align: .center))
+                        }
+                        Button("See progress") {
+                            path.replaceTop(with: LangRoute.system(system.id))
                         }
                         .buttonStyle(D8Option(align: .center))
                     }
                     .frame(maxWidth: .infinity)
                 }
-                .padding(vertical == .compact ? 12 : 24)
+                .padding(vertical == .compact ? 8 : 24)
             }
+            #if DEBUG
+            .task {
+                guard ProcessInfo.processInfo.arguments.contains("-tapNextSet"), !Self.tappedNextSet else { return }
+                guard let other = NextLesson.otherSets(after: system.id, systems: store.systems, lastStudyDay: { store.state($0).lastStudyDay }).first else { return }
+                Self.tappedNextSet = true
+                try? await Task.sleep(for: .seconds(3))
+                path.replaceTop(with: LangRoute.study(other.id))
+            }
+            #endif
             .modifier(AskForReview(streak: Int(state.streak), graded: graded, correct: correct))
         } else if let ex = current {
             let maps = readingMaps(ex, corpus)
@@ -365,4 +418,34 @@ struct StudyView: View {
         return nil
     }
     #endif
+}
+
+struct SessionTally: View {
+    let correct: Int
+    let graded: Int
+    let met: Int
+    let xp: Int
+    let streak: Int
+
+    var body: some View {
+        line
+    }
+
+    enum Kind: Equatable { case score, met, streak }
+
+    static func met(answered: Int, kind: ExerciseKind?) -> Int {
+        answered == 0 && kind == .intro ? 1 : 0
+    }
+
+    static func kind(graded: Int, met: Int) -> Kind {
+        graded > 0 ? .score : met > 0 ? .met : .streak
+    }
+
+    var line: Text {
+        switch Self.kind(graded: graded, met: met) {
+        case .score: Text("\(correct) of \(graded) right · +\(xp) xp · \(streak) day streak")
+        case .met: Text("New words met: \(met) · \(streak) day streak")
+        case .streak: Text("\(streak) day streak")
+        }
+    }
 }

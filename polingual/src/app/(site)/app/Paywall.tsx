@@ -1,10 +1,13 @@
 "use client";
 
 import { APP_STORE_URL, PLANS, type Access } from "@/lib/app/plans";
+import { useEffect } from "react";
+import { track } from "@/lib/funnel";
 import styles from "./app.module.css";
 import { Button, ButtonLink, Stage } from "@/ui";
 
 export default function Paywall({ access, retry }: { access: Access; retry: () => void }) {
+  useEffect(() => track("paywall_view"), []);
   return (
     <Stage ground="lattice">
       <section className={styles.stack} data-testid="paywall">

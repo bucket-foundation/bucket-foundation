@@ -115,3 +115,30 @@ test("site visits come from the snapshot and stay empty when Vercel is unreachab
   assert.equal(parseSnapshot({ ...FIXTURE, visits: { days: 7, byApp: { bucket: -1 } } }).ok, false);
   assert.equal(parseSnapshot({ ...FIXTURE, visits: { days: 400, byApp: {} } }).ok, false);
 });
+
+test("pulse splits DAU, WAU, MAU and TestFlight testers by app", async () => {
+  const { buildPulse } = await import("../src/lib/growth/activity");
+  const now = new Date("2026-11-19T15:00:00Z");
+  const ev = (userId: string, app: "bucket" | "polingual", ts: string) => ({ userId, app, name: "app_open" as const, sessionId: null, ts, props: {} });
+  const events = [
+    ev("a", "polingual", "2026-11-19T01:00:00Z"),
+    ev("a", "polingual", "2026-11-19T09:00:00Z"),
+    ev("b", "polingual", "2026-11-15T09:00:00Z"),
+    ev("c", "polingual", "2026-10-25T09:00:00Z"),
+    ev("d", "polingual", "2026-10-01T09:00:00Z"),
+    ev("e", "bucket", "2026-11-19T09:00:00Z"),
+  ];
+  const tester = (userId: string, firstApp: "bucket" | "polingual", optedOut = false) => ({ userId, cohort: "default", firstApp, optedOut, enrolledAt: "2026-10-01T00:00:00Z" });
+  const flight = [
+    { app: "polingual", state: "INSTALLED" },
+    { app: "polingual", state: "INSTALLED" },
+    { app: "polingual", state: "ACCEPTED" },
+    { app: "polingual", state: "INVITED" },
+    { app: "polingual", state: "REVOKED" },
+    { app: "bucket", state: "INSTALLED" },
+  ];
+  const p = buildPulse("polingual", [tester("a", "polingual"), tester("b", "polingual", true), tester("e", "bucket")], events, flight, now);
+  assert.deepEqual(p, { dau: 1, wau: 2, mau: 3, enrolled: 1, testflight: { total: 4, installed: 2, accepted: 1, invited: 1 } });
+  assert.equal(buildPulse("polingual", [], events, null, now).testflight, null);
+  assert.equal(buildPulse("bucket", [], events, flight, now).dau, 1);
+});

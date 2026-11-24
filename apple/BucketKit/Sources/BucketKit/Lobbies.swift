@@ -6,9 +6,14 @@ public enum LobbyStatus: String, Codable, Sendable {
 }
 
 public enum LobbyGame: String, Codable, Sendable, CaseIterable, Identifiable {
-    case daily, sameWord = "same-word", flags, live, tiles, duel, spy, other
+    case daily, sameWord = "same-word", flags, live, tiles, duel, spy
+    case mini, wordGroups = "word-groups", match, voice, letters, polyword, flagTiles = "flag-tiles"
+    case babel, shift, snake, atlas, forehead, ispy, flagDuel = "flag-duel"
+    case other
     public var id: String { rawValue }
     public static let hostable: [LobbyGame] = [.daily, .sameWord, .flags, .live, .tiles]
+    public static let race: [LobbyGame] = [.mini, .wordGroups, .match, .voice, .letters, .polyword, .flagTiles, .babel, .shift, .snake, .atlas, .forehead, .ispy, .flagDuel]
+    public var isRace: Bool { Self.race.contains(self) }
 
     public init(from decoder: Decoder) throws {
         self = LobbyGame(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .other
@@ -142,12 +147,21 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var canStart: Bool { isHost && status == .lobby && readyCount >= LobbyRules.minReady }
     public var seedValue: UInt64 { UInt64(seed) ?? GameSeed.hash(seed) }
     public var start: Date? { startedAt.flatMap(parseInstant) }
-    public var standings: [LobbyPlayer] { players.sorted { ($0.score, $1.name) > ($1.score, $0.name) } }
+    public var standings: [LobbyPlayer] {
+        guard game.isRace else { return players.sorted { ($0.score, $1.name) > ($1.score, $0.name) } }
+        let ms = Dictionary(results.map { ($0.userId, $0.ms) }, uniquingKeysWith: { a, _ in a })
+        return players.sorted { ($0.score, ms[$1.userId] ?? .max, $1.name) > ($1.score, ms[$0.userId] ?? .max, $0.name) }
+    }
     public var revealGap: Double { Double(max(0, revealSeconds ?? 0)) }
     public var slotSeconds: Double { Double(roundSeconds) + revealGap }
     public var playSeconds: Double { Double(rounds * roundSeconds) + Double(max(0, rounds - 1)) * revealGap }
 
     public func results(for round: Int) -> [LobbyResult] { results.filter { $0.round == round } }
+    public func raceRemaining(at now: Date) -> Double {
+        guard let start else { return 0 }
+        return max(0, playSeconds - now.timeIntervalSince(start))
+    }
+    public var raceFinishers: Set<String> { Set(results.map(\.userId)) }
     public func prompt(_ round: Int) -> LobbyPrompt? { prompts.first { $0.round == round } }
 }
 
@@ -155,6 +169,67 @@ public enum LobbyRules {
     public static let minReady = 2
     public static let cap = 8
     public static let pollSeconds = 1.0
+    public static let raceHeader = ["x-polingual-race": "1"]
+    public static let raceScoreMax = 100_000
+
+    public static let retryableRefusals: Set<Int> = [408, 425, 429]
+
+    public static func scoreRefusalIsFinal(_ status: Int) -> Bool {
+        (400..<500).contains(status) && !retryableRefusals.contains(status)
+    }
+
+    public static func raceScore(points: Int?, hits: Int) -> Int {
+        min(max(0, points ?? hits * 100), raceScoreMax)
+    }
+}
+
+public enum LobbyRaceSeed {
+    public static func dayKey(_ seed: UInt64) -> String { "race-\(seed)" }
+    public static func dayNumber(_ seed: UInt64) -> Int { 1_000_000 + Int(seed % 1_000_000) }
+    public static func deal(_ seed: UInt64) -> String { String(1 + seed % 1_000_000_000_000) }
+    public static func deckDay(_ seed: UInt64?, now: Date = Date()) -> String { seed.map(dayKey) ?? PlayDecks.deckDay(now) }
+}
+
+public enum LobbyRacePool {
+    public static let spareTargets = ["es", "fr", "de"]
+
+    public static func system(id: String, root: String, targets: [String]) -> LangSystem {
+        var seen: Set<String> = [root]
+        let own = targets.filter { seen.insert($0).inserted }
+        return LangSystem(id: "race-\(id)", name: "", root: root, targets: own.isEmpty ? spareTargets.filter { $0 != root } : own, createdAt: 0)
+    }
+
+    public static func words(_ system: LangSystem, corpus: LangCorpus) -> [GameWord] {
+        GameWords.starter([system], corpus: corpus)
+    }
+}
+
+public extension Lobby {
+    var raceSystem: LangSystem { LobbyRacePool.system(id: id, root: root, targets: targets) }
+}
+
+public struct RaceRandom: RandomNumberGenerator, Sendable {
+    var seeded: SeededRandom?
+    var system = SystemRandomNumberGenerator()
+
+    public init(seed: UInt64?) { seeded = seed.map(SeededRandom.init(seed:)) }
+
+    public mutating func next() -> UInt64 { seeded?.next() ?? system.next() }
+}
+
+@MainActor
+public final class LobbyRaceGate {
+    public final class Hold {
+        public init() {}
+    }
+
+    private weak var hold: Hold?
+
+    public init() {}
+
+    public var isOpen: Bool { hold != nil }
+
+    public func open(_ hold: Hold) { self.hold = hold }
 }
 
 public enum LobbyPhase: Equatable, Sendable {
@@ -163,6 +238,13 @@ public enum LobbyPhase: Equatable, Sendable {
     case round(index: Int, remaining: Double)
     case reveal(index: Int, remaining: Double)
     case finished
+
+    public var playing: Bool {
+        switch self {
+        case .round, .reveal: true
+        default: false
+        }
+    }
 }
 
 public enum LobbyClock {
@@ -275,7 +357,14 @@ struct AnswerReply: Decodable {
     let correct: Bool
     let lobby: Lobby
 }
-struct LobbiesReply: Decodable { let lobbies: [LobbySummary] }
+struct LobbiesReply: Decodable {
+    let lobbies: [LobbySummary]
+    let race: [LobbyGame]?
+}
+struct ScoreReply: Decodable {
+    let score: Int
+    let lobby: Lobby
+}
 struct LobbyPoll: Decodable {
     let changed: Bool
     let lobby: Lobby?
@@ -293,15 +382,23 @@ extension BucketAPI {
     }
 
     public func lobbies(token: String) async throws -> [LobbySummary] {
-        let r: LobbiesReply = try await groupCall("api/academy/lobbies", token: token)
-        return r.lobbies
+        try await lobbyList(token: token).lobbies
+    }
+
+    func lobbyList(token: String) async throws -> LobbiesReply {
+        try await groupCall("api/academy/lobbies", token: token, headers: LobbyRules.raceHeader)
+    }
+
+    public func raceScore(token: String, lobbyId: String, score: Int) async throws -> Lobby {
+        let r: ScoreReply = try await groupCall("api/academy/lobbies/score", token: token, body: ["lobbyId": .text(lobbyId), "score": .number(score)])
+        return r.lobby
     }
 
     public func createLobby(token: String, name: String, game: LobbyGame = .daily, root: String, targets: [String], rounds: Int, roundSeconds: Int, listed: Bool, displayName: String) async throws -> Lobby {
         let r: LobbyReply = try await groupCall("api/academy/lobbies", token: token, body: [
             "name": .text(name), "game": .text(game.rawValue), "root": .text(root), "targets": .list(targets), "rounds": .number(rounds),
             "roundSeconds": .number(roundSeconds), "listed": .flag(listed), "displayName": .text(displayName),
-        ])
+        ], headers: LobbyRules.raceHeader)
         return r.lobby
     }
 
@@ -309,7 +406,7 @@ extension BucketAPI {
         var body: [String: Field] = ["displayName": .text(displayName)]
         if let code { body["code"] = .text(code) }
         if let lobbyId { body["lobbyId"] = .text(lobbyId) }
-        let r: LobbyReply = try await groupCall("api/academy/lobbies/join", token: token, body: body)
+        let r: LobbyReply = try await groupCall("api/academy/lobbies/join", token: token, body: body, headers: LobbyRules.raceHeader)
         return r.lobby
     }
 
@@ -356,6 +453,12 @@ public final class LobbyStore {
     public private(set) var busy = false
     public private(set) var error: BucketError?
     public private(set) var offset: TimeInterval = 0
+    public private(set) var staged = false
+    public private(set) var raceGames: [LobbyGame] = []
+    public private(set) var raceScore: Int?
+    public private(set) var raceScoreSent = false
+
+    public var hostable: [LobbyGame] { LobbyGame.hostable + raceGames.filter(\.isRace) }
 
     let api: BucketAPI
     let token: @MainActor () async -> String?
@@ -386,7 +489,9 @@ public final class LobbyStore {
     public func refresh() async {
         guard let t = await anyToken() else { return }
         do {
-            open = try await api.lobbies(token: t)
+            let list = try await api.lobbyList(token: t)
+            open = list.lobbies
+            raceGames = list.race ?? []
             error = nil
         } catch {
             self.error = error as? BucketError ?? .server(0, nil)
@@ -411,6 +516,12 @@ public final class LobbyStore {
     public func leave() async {
         guard let id = current?.id else { return }
         current = nil
+        if staged {
+            staged = false
+            picks = [:]
+            marks = [:]
+            return
+        }
         picks = [:]
         marks = [:]
         open.removeAll { $0.id == id }
@@ -449,8 +560,31 @@ public final class LobbyStore {
         return r.correct
     }
 
+    @discardableResult
+    public func postScore(_ score: Int) async -> Bool {
+        guard let lobby = current, lobby.game.isRace, lobby.status == .playing, raceScore == nil else { return false }
+        raceScore = score
+        raceScoreSent = false
+        return await sendScore()
+    }
+
+    @discardableResult
+    func sendScore() async -> Bool {
+        guard !staged, let lobby = current, lobby.game.isRace, lobby.status == .playing, let score = raceScore, !raceScoreSent, let t = await anyToken() else { return false }
+        do {
+            let fresh = try await api.raceScore(token: t, lobbyId: lobby.id, score: score)
+            raceScoreSent = true
+            if fresh.id == current?.id { apply(fresh) }
+            return true
+        } catch {
+            if let e = error as? BucketError, case .server(let status, _) = e, LobbyRules.scoreRefusalIsFinal(status) { raceScoreSent = true }
+            return false
+        }
+    }
+
     public func poll() async {
-        guard let lobby = current, let t = await anyToken() else { return }
+        guard !staged, let lobby = current, let t = await anyToken() else { return }
+        await sendScore()
         do {
             let r = try await api.lobbyState(token: t, lobbyId: lobby.id, since: lobby.version)
             if let s = r.now.flatMap(parseInstant) { sync(s) }
@@ -471,9 +605,20 @@ public final class LobbyStore {
         }
     }
 
+    #if DEBUG
+    public func stage(players: Int, mode: LobbyPromptMode = .form, race: LobbyGame? = nil) {
+        staged = true
+        picks = [:]
+        marks = [:]
+        clearRaceScore()
+        current = Lobby.staged(players: players, mode: mode, race: race, now: now)
+    }
+    #endif
+
     func enter(_ lobby: Lobby) -> Lobby {
         picks = [:]
         marks = [:]
+        clearRaceScore()
         current = nil
         apply(lobby)
         return lobby
@@ -481,7 +626,13 @@ public final class LobbyStore {
 
     func apply(_ lobby: Lobby) {
         if let s = parseInstant(lobby.now) { sync(s) }
+        if lobby.status == .lobby { clearRaceScore() }
         current = lobby
+    }
+
+    func clearRaceScore() {
+        raceScore = nil
+        raceScoreSent = false
     }
 
     func sync(_ server: Date) {
@@ -499,3 +650,36 @@ public final class LobbyStore {
         }
     }
 }
+
+#if DEBUG
+extension Lobby {
+    static let stagedNames = ["Alexandria", "Maximilian", "Bernadette", "Christopher", "Evangeline", "Sebastian", "Wilhelmina", "Bartholomew"]
+
+    static func staged(players: Int, mode: LobbyPromptMode, race: LobbyGame? = nil, now: Date) -> Lobby {
+        let count = min(max(players, 1), LobbyRules.cap)
+        let stamp = ISO8601DateFormatter()
+        let seconds = 600
+        let people = (0..<count).map { n in
+            LobbyPlayer(userId: "staged-\(n)", name: stagedNames[n], ready: true, score: (count - n) * 120, isHost: n == 0, isMe: n == 0, online: true, answered: n % 2 == 1)
+        }
+        let tiles = ["es:agua", "fr:eau", "it:acqua", "pt:água", "de:Wasser", "nl:water", "es:fuego", "fr:feu", "it:fuoco", "pt:fogo", "de:Feuer", "nl:vuur"]
+        let words = ["mariposa", "mantequilla", "marinero", "mariscos"]
+        let prompts = (0..<2).map { r in
+            mode == .tiles
+                ? LobbyPrompt(round: r, mode: .tiles, lang: nil, gloss: "water", choices: tiles, answer: r == 0 ? "0,1,2,3,4,5" : nil, reveal: nil)
+                : LobbyPrompt(round: r, mode: mode, lang: "es", gloss: "the butterfly", choices: words, answer: r == 0 ? words[0] : nil, reveal: nil)
+        }
+        let results = people.enumerated().filter { $0.offset != count - 1 }.map { n, p in
+            LobbyResult(round: 0, userId: p.userId, correct: n % 3 != 2, ms: 1200 + n * 400, points: n % 3 != 2 ? 120 - n * 10 : 0)
+        }
+        let start = now.addingTimeInterval(-Double(seconds) - 5)
+        return Lobby(
+            id: "staged", code: "STAGED", name: "Staged lobby", game: race.flatMap { $0.isRace ? $0 : nil } ?? (mode == .tiles ? .tiles : .daily), root: "en", targets: ["es", "fr", "it", "pt", "de", "nl"],
+            seed: "staged", status: .playing, listed: false, rounds: 8, roundSeconds: seconds, revealSeconds: 0, startedAt: stamp.string(from: start),
+            version: 1, now: stamp.string(from: now), isHost: true, players: people, messages: [],
+            round: LobbyRound(index: 1, startsAt: stamp.string(from: now.addingTimeInterval(-5)), endsAt: stamp.string(from: now.addingTimeInterval(Double(seconds) - 5)), reveal: false),
+            prompts: prompts, results: results
+        )
+    }
+}
+#endif

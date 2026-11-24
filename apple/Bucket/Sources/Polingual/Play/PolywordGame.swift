@@ -3,15 +3,19 @@ import SwiftUI
 
 struct PolywordGame: View {
     @Environment(LangStore.self) private var langs
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AppStorage("polingual.polyword.games") private var saved = ""
+    @State private var feel = GameFeel()
     @State private var lang = ""
     @State private var typed = ""
     @State private var problem: String?
     @State private var shake = 0
     @State private var recorded = false
+    @State private var practice: [String: [String]] = [:]
+    @State private var practiceScore: [String: String] = [:]
 
     var bank: PolywordBank? { PlayAssets.bank }
-    var day: Int { Polyword.dayNumber(localPolyDate()) }
+    var day: Int { playDayNumber() }
     var puzzle: PolyPuzzle? { bank.flatMap { Polyword.puzzleFor($0, lang: lang, day: day) } }
     var key: String { "\(lang)#\(day)" }
 
@@ -24,7 +28,7 @@ struct PolywordGame: View {
         return out
     }
 
-    var guesses: [String] { store[key] ?? [] }
+    var guesses: [String] { practice[key] ?? store[key] ?? [] }
 
     func save(_ g: [String]) {
         var s = store
@@ -32,13 +36,31 @@ struct PolywordGame: View {
         saved = s.keys.sorted().suffix(60).map { "\($0)=\(s[$0]!.joined(separator: ","))" }.joined(separator: "\n")
     }
 
+    var playing: PolyPuzzle? {
+        guard let p = puzzle, !Polyword.finished(guesses, p.answer), !PlayLaunch.endGame else { return nil }
+        return p
+    }
+
     var body: some View {
-        PlayScene(game: .polyword, stickers: playStickers(.streakFlame, .ticket)) {
-            if let bank, let puzzle {
-                langPicker(bank)
-                if Polyword.finished(guesses, puzzle.answer) || PlayLaunch.endGame { results(bank, puzzle) } else { board(puzzle) }
-            } else {
-                PlayNote(text: "Polyword has no word for your languages yet.")
+        ScrollViewReader { proxy in
+            PlayScene(game: .polyword, feel: feel) {
+                if let bank, let puzzle {
+                    langPicker(bank)
+                    if playing == nil { results(bank, puzzle) } else { board(puzzle) }
+                } else {
+                    PlayNote(text: "Polyword has no word for your languages yet.")
+                }
+            }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                if let p = playing {
+                    keyboard(Polyword.keyMarks(guesses, p.answer), size: p.answer.count, answer: p.answer)
+                        .padding(.horizontal, PL.Space.s4)
+                        .padding(.vertical, PL.Space.s2)
+                        .background(PL.tyrian.ignoresSafeArea(edges: .bottom))
+                }
+            }
+            .onChange(of: PolywordFocus(key: key, row: guesses.count), initial: true) { _, focus in
+                withAnimation(reduceMotion ? nil : .default) { proxy.scrollTo(focus.row, anchor: .center) }
             }
         }
         .task {
@@ -58,9 +80,8 @@ struct PolywordGame: View {
     }
 
     func board(_ p: PolyPuzzle) -> some View {
-        let marks = Polyword.keyMarks(guesses, p.answer)
         let size = p.answer.count
-        return VStack(alignment: .leading, spacing: PL.Space.s3) {
+        return VStack(alignment: .leading, spacing: PL.Space.s2) {
             PlayLabel(text: "\(Lang.name(lang)) · #\(day) · \(size) letters")
             ForEach(0..<Polyword.maxGuesses, id: \.self) { row in
                 HStack(spacing: PL.Space.s1) {
@@ -71,11 +92,13 @@ struct PolywordGame: View {
                         Text(i < chars.count ? String(chars[i]).uppercased() : " ")
                             .font(PL.heading.font())
                             .foregroundStyle(i < score.count ? PL.paper : PL.ink)
-                            .frame(maxWidth: .infinity, minHeight: 48)
+                            .lineLimit(1).minimumScaleFactor(0.5)
+                            .frame(maxWidth: .infinity, minHeight: 44)
                             .background(i < score.count ? color(score[i]) : PL.card, in: .rect(cornerRadius: 8))
                     }
                 }
                 .modifier(row == guesses.count ? AnyShake(trigger: shake) : AnyShake(trigger: 0))
+                .id(row)
             }
             ForEach(Polyword.revealedHints(p.hints, answer: p.answer, guesses: guesses), id: \.lang) { h in
                 HStack(spacing: PL.Space.s2) {
@@ -84,25 +107,38 @@ struct PolywordGame: View {
                     if let r = h.roman { Text(r).font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.8)) }
                 }
             }
-            if let problem { Text(problem).font(PL.small.font()).foregroundStyle(PL.ochre) }
-            keyboard(marks, size: size, answer: p.answer)
         }
     }
 
     func keyboard(_ marks: [Character: PolyMark], size: Int, answer: String) -> some View {
-        let rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
-        return VStack(spacing: PL.Space.s1) {
-            ForEach(rows, id: \.self) { row in
-                HStack(spacing: PL.Space.s1) {
-                    ForEach(Array(row), id: \.self) { ch in
-                        Button(String(ch).uppercased()) { if typed.count < size { typed.append(ch); problem = nil } }
-                            .buttonStyle(.pl(variant(marks[ch]), size: .sm, full: true))
-                    }
-                }
+        VStack(spacing: PL.Space.s1) {
+            if let problem { Text(problem).font(PL.small.font()).foregroundStyle(PL.ochre).frame(maxWidth: .infinity, alignment: .leading).accessibilityIdentifier("polyword.problem") }
+            keyRow("qwertyuiop", marks, size)
+            keyRow("asdfghjkl", marks, size)
+            HStack(spacing: PL.Space.s1) {
+                Button("Enter") { submit(answer) }
+                    .buttonStyle(.pl(.primary, size: .sm, full: true, pad: 0))
+                    .lineLimit(1).minimumScaleFactor(0.6)
+                    .frame(width: 58)
+                    .disabled(typed.count != size)
+                    .accessibilityIdentifier("polyword.enter")
+                keyRow("zxcvbnm", marks, size)
+                Button("Delete") { if !typed.isEmpty { typed.removeLast() } }
+                    .buttonStyle(.pl(.ghost, size: .sm, full: true, pad: 0))
+                    .lineLimit(1).minimumScaleFactor(0.6)
+                    .frame(width: 58)
+                    .accessibilityIdentifier("polyword.delete")
             }
-            HStack(spacing: PL.Space.s2) {
-                Button("Delete") { if !typed.isEmpty { typed.removeLast() } }.buttonStyle(.pl(.quiet, size: .md))
-                Button("Enter") { submit(answer) }.buttonStyle(.pl(.primary, size: .md)).disabled(typed.count != size)
+        }
+    }
+
+    func keyRow(_ row: String, _ marks: [Character: PolyMark], _ size: Int) -> some View {
+        HStack(spacing: PL.Space.s1) {
+            ForEach(Array(row), id: \.self) { ch in
+                Button(String(ch).uppercased()) { if typed.count < size { typed.append(ch); problem = nil } }
+                    .buttonStyle(.pl(variant(marks[ch]), size: .sm, full: true, pad: 0))
+                    .lineLimit(1).minimumScaleFactor(0.6)
+                    .accessibilityIdentifier("polyword.key")
             }
         }
     }
@@ -113,9 +149,17 @@ struct PolywordGame: View {
             problem = why == "repeat" ? "You tried that word already." : why == "short" ? "Fill every letter first." : "Use letters only."
             shake += 1
         case .ok(let g):
-            save(guesses + [g])
+            let next = guesses + [g]
+            if practice[key] == nil {
+                save(next)
+            } else if Polyword.finished(next, answer) {
+                practice[key] = nil
+                practiceScore[key] = "\(Polyword.solved(next, answer) ? String(next.count) : "X")/\(Polyword.maxGuesses)"
+            } else {
+                practice[key] = next
+            }
             typed = ""
-            PlaySound.effect(g == answer)
+            feel.record(g == answer)
         }
     }
 
@@ -124,9 +168,11 @@ struct PolywordGame: View {
         let meaning = Polyword.meaningIn(bank, slug: p.slug, gloss: p.gloss, root: langs.playRoot)
         return PlayResults(
             title: won ? "Solved in \(guesses.count)" : "Out of guesses",
-            line: "A new word arrives tomorrow.",
+            line: practiceScore[key].map(PracticeLine.text) ?? "A new word arrives tomorrow.",
             reveals: [PlayRevealItem(lang: p.lang, form: p.word, meaning: meaning.text)],
             root: meaning.lang,
+            share: (.polyword, .guesses(rows: guesses.map { Polyword.score($0, p.answer) }, solved: won, limit: Polyword.maxGuesses)),
+            retry: (.polyword, nil, { practice[key] = []; typed = "" }),
             again: nil
         )
         .onAppear {
@@ -152,6 +198,11 @@ struct PolywordGame: View {
         case nil: .ghost
         }
     }
+}
+
+struct PolywordFocus: Equatable {
+    let key: String
+    let row: Int
 }
 
 struct AnyShake: ViewModifier {

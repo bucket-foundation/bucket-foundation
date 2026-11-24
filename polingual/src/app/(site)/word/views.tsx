@@ -11,7 +11,7 @@ import { LANGS, WORDS, breadcrumbJsonLd, ctaHref, relatedWords, wordJsonLd, word
 import { capitalizeIn, fill, langLabel, localIndexCopy, localPath, localWordCopy, localeInfo, orderedForms, strings, wordLocalPath } from "@/lib/word-i18n";
 import { ButtonLink } from "@/ui";
 
-function siteLocale(code: string): SiteLocale {
+export function siteLocale(code: string): SiteLocale {
   const info = localeInfo(code);
   const s = strings(code);
   return { code, rtl: info.rtl, words: s.words, labels: info.labels, footer: { tagline: s.footerTagline, data: s.footerData, published: s.footerPublished } };
@@ -81,7 +81,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(ld) }} />
       <Banner testId="word-banner">
         <p className={styles.crumbs}>
-          <Link href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
+          <Link prefetch={false} href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
         </p>
         <h1>{copy.h1}</h1>
         {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
@@ -109,7 +109,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
       <ul className={styles.chips}>
         {related.map((r) => (
           <li key={r.slug}>
-            <Link href={wordLocalPath(code, r)}>{capitalizeIn(r.forms.find((f) => f.lang === code)?.word ?? r.en, code)}</Link>
+            <Link prefetch={false} href={wordLocalPath(code, r)}>{capitalizeIn(r.forms.find((f) => f.lang === code)?.word ?? r.en, code)}</Link>
           </li>
         ))}
       </ul>
@@ -118,7 +118,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
           <h2>Guides</h2>
           <ul>
             {guides.map((g) => (
-              <li key={g.slug}><Link href={`/learn/${g.slug}`}>{g.title}</Link></li>
+              <li key={g.slug}><Link prefetch={false} href={`/learn/${g.slug}`}>{g.title}</Link></li>
             ))}
           </ul>
         </>
@@ -161,7 +161,7 @@ export function WordIndexView({ code }: { code: string }) {
           <ul className={styles.chips}>
             {t.words.map((w) => (
               <li key={w.slug}>
-                <Link href={wordLocalPath(code, w)}>{capitalizeIn(w.forms.find((f) => f.lang === code)?.word ?? w.en, code)}</Link>
+                <Link prefetch={false} href={wordLocalPath(code, w)}>{capitalizeIn(w.forms.find((f) => f.lang === code)?.word ?? w.en, code)}</Link>
               </li>
             ))}
           </ul>

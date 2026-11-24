@@ -152,12 +152,15 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UIBackgroundModes: [audio]
+        UIUserInterfaceStyle: Light
+        UIViewControllerBasedStatusBarAppearance: false
         NSUserActivityTypes: [INSendMessageIntent]
         PolingualFreeBeta: $(POLINGUAL_FREE_BETA)
         GADApplicationIdentifier: $(POLINGUAL_GAD_APP_ID)
         PolingualAds: $(POLINGUAL_ADS)
         PolingualAdBanner: $(POLINGUAL_AD_BANNER)
         PolingualAdInterstitial: $(POLINGUAL_AD_INTERSTITIAL)
+        PolingualAdRewarded: $(POLINGUAL_AD_REWARDED)
         NSUserTrackingUsageDescription: Polingual uses this to show ads that fit you better between games. Ads keep the games free. You can say no and still play every game.
         SKAdNetworkItems:
           - SKAdNetworkIdentifier: cstr6suwn9.skadnetwork
@@ -231,7 +234,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app
         PRODUCT_NAME: Polingual
         POLINGUAL_FREE_BETA: "NO"
-        MARKETING_VERSION: "1.0.2"
+        MARKETING_VERSION: "1.0.4"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -258,11 +261,13 @@ targets:
           POLINGUAL_GAD_APP_ID: ca-app-pub-3940256099942544~1458002511
           POLINGUAL_AD_BANNER: ""
           POLINGUAL_AD_INTERSTITIAL: ""
+          POLINGUAL_AD_REWARDED: ""
         Release:
           POLINGUAL_ADS: live
           POLINGUAL_GAD_APP_ID: ca-app-pub-9735211554999350~3234425502
           POLINGUAL_AD_BANNER: ca-app-pub-9735211554999350/3274128968
           POLINGUAL_AD_INTERSTITIAL: ca-app-pub-9735211554999350/4047833788
+          POLINGUAL_AD_REWARDED: ca-app-pub-9735211554999350/9507718028
   BucketWidgets:
     type: app-extension
     supportedDestinations: [iOS, macOS]
@@ -281,6 +286,8 @@ targets:
       path: Bucket/Widget/Info.plist
       properties:
         CFBundleDisplayName: Bucket
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -311,6 +318,8 @@ targets:
       path: Polingual/Widget/Info.plist
       properties:
         CFBundleDisplayName: Polingual
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -324,7 +333,7 @@ targets:
         IPHONEOS_DEPLOYMENT_TARGET: "26.0"
         MACOSX_DEPLOYMENT_TARGET: "26.0"
         CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: Polingual/Widget/WidgetMac.entitlements
-        MARKETING_VERSION: "1.0.2"
+        MARKETING_VERSION: "1.0.4"
         SKIP_INSTALL: YES
   BucketShare:
     type: app-extension
@@ -406,7 +415,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.share
         IPHONEOS_DEPLOYMENT_TARGET: "26.0"
         TARGETED_DEVICE_FAMILY: "1,2"
-        MARKETING_VERSION: "1.0.2"
+        MARKETING_VERSION: "1.0.4"
         SKIP_INSTALL: YES
   BucketWatch:
     type: application
@@ -437,7 +446,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.watchkitapp
         PRODUCT_NAME: PolingualWatch
-        MARKETING_VERSION: "1.0.2"
+        MARKETING_VERSION: "1.0.4"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Polingual
         INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.polingual.app

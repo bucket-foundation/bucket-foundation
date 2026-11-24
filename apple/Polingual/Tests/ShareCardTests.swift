@@ -27,6 +27,11 @@ struct ShareCardTests {
             MasteredSet(lang: "ja", count: 2, words: [MasteredWord(form: "夜", meaning: "night"), MasteredWord(form: "水", meaning: "water")]),
         ], root: "en"),
         .masteredAll(sets: (0..<6).map { k in MasteredSet(lang: ["sv", "de", "nl", "fr", "es", "it"][k], count: 90, words: (0..<90).map { MasteredWord(form: "w\(k)x\($0)", meaning: "") }) }, root: "en"),
+        .skill(.count, lang: "es", root: "en", words: ["uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"].enumerated().map { MasteredWord(form: $0.element, meaning: "\($0.offset + 1)") }),
+        .skill(.order, lang: "de", root: "en", words: [("die Speisekarte, bitte", "the menu, please"), ("Wasser, bitte", "water, please"), ("ich möchte", "I would like"), ("die Rechnung, bitte", "the check, please")].map { MasteredWord(form: $0.0, meaning: $0.1) }),
+        .skill(.introduce, lang: "ru", root: "en", words: [("привет", "hello"), ("меня зовут", "my name is"), ("я из", "I am from"), ("приятно познакомиться", "nice to meet you")].map { MasteredWord(form: $0.0, meaning: $0.1) }),
+        .skill(.introduce, lang: "ja", root: "en", words: []),
+        .skill(.sentence, lang: "fr", root: "en", words: [MasteredWord(form: "Je voudrais un café, s'il vous plaît.", meaning: "I would like a coffee, please.")]),
         .score(ShareScore(source: "Match", right: 9, total: 12, langs: ["fr", "es"], root: "en", streak: 37)),
         .content(ShareMoment(title: "Gravity", source: "Spanish Wikipedia", branch: "02", lang: "es", quote: "La gravedad es la fuerza de atracción entre todas las cosas que tienen masa, desde las manzanas hasta las galaxias más lejanas.")),
         .content(ShareMoment(title: "Radio Nacional", source: "Spain", branch: "00", lang: "es")),
@@ -85,6 +90,11 @@ struct ShareCardTests {
         let shown = MasteredWordFlow.shown(sets, cap: 4)
         #expect(shown.map(\.lang) == ["sv", "de"])
         #expect(shown.flatMap(\.words).map(\.form) == ["a", "b", "c", "d"])
+    }
+
+    @Test func masteredFlowKeepsAThousandWords() {
+        let sets = [MasteredSet(lang: "de", count: 1000, words: (0..<1000).map { MasteredWord(form: "wort\($0)", meaning: "") })]
+        #expect(MasteredWordFlow.shown(sets, cap: MasteredWordFlow.cap).flatMap(\.words).count == 1000)
     }
 
     @Test func scoreLinksOpenTheLanguages() {

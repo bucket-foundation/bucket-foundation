@@ -3,37 +3,55 @@ import SwiftUI
 
 struct ShiftGame: View {
     @Environment(LangStore.self) private var langs
+    @State private var feel = GameFeel()
     @State private var board: ShiftBoard?
     @State private var offsets: [Int] = []
     @State private var found: [String] = []
     @State private var hints: [String: Int] = [:]
     @State private var gaveUp = false
     @State private var root = "en"
-    @State private var recorded = false
+    @State private var entered = false
+    @State private var round = PracticeRound()
+    @State private var day = PlayDecks.deckDay()
+    @State private var racing = false
 
     var word: String { board.map { Shift.centerWord($0.columns, offsets) } ?? "" }
     var done: Bool { gaveUp || PlayLaunch.endGame || board.map { RevealRules.shift(found: found, targets: $0.targets) } ?? false }
 
     var body: some View {
-        PlayScene(game: .shift, stickers: playStickers(.tornLabel, .scriptRu)) {
+        PlayScene(game: .shift, feel: feel, burst: false) {
             if let board {
-                if done { results(board) } else { play(board) }
+                if !entered && !round.practicing {
+                    RecordedRound(kind: .shift, deck: day, practice: round.score, root: root) { retry(board) }
+                } else if done {
+                    results(board)
+                } else {
+                    play(board)
+                }
             } else {
                 ProgressView().tint(PL.paper)
             }
         }
         .task {
+            let race = LobbyRace.seed
             await langs.load()
             guard board == nil, let corpus = langs.corpus else { return }
             root = langs.deckRoot(corpus)
-            board = Shift.board(corpus.items, date: PlayDecks.deckDay(), root: root)
+            racing = race != nil
+            day = LobbyRaceSeed.deckDay(race)
+            entered = racing || !DailyLedger.shared.hasPlayed(.shift, deck: day)
+            board = Shift.board(corpus.items, date: day, root: root)
             offsets = Array(repeating: 0, count: board?.length ?? 0)
         }
     }
 
     func play(_ b: ShiftBoard) -> some View {
         VStack(alignment: .leading, spacing: PL.Space.s4) {
-            PlayLabel(text: b.langs.map(Lang.name).joined(separator: " · "))
+            HStack {
+                PlayLabel(text: b.langs.map(Lang.name).joined(separator: " · "))
+                Spacer(minLength: 0)
+                ComboChip(streak: feel.streak, multiplier: false)
+            }
             HStack(spacing: PL.Space.s2) {
                 ForEach(0..<b.length, id: \.self) { i in
                     VStack(spacing: PL.Space.s1) {
@@ -76,24 +94,40 @@ struct ShiftGame: View {
 
     func check(_ b: ShiftBoard) {
         let w = word
-        guard let ls = b.valid[w], !found.contains(w) else { PlaySound.effect(false); return }
+        guard let ls = b.valid[w], !found.contains(w) else { feel.record(false); return }
         found.append(w)
-        PlaySound.effect(true, combo: found.count)
+        feel.record(true)
         if let l = ls.first { LangVoice.shared.speak(w, l) }
+    }
+
+    func retry(_ b: ShiftBoard) {
+        feel.reset()
+        round.begin()
+        found = []
+        hints = [:]
+        gaveUp = false
+        offsets = Array(repeating: 0, count: b.length)
     }
 
     func results(_ b: ShiftBoard) -> some View {
         let hit = b.targets.filter { found.contains($0.form) }.count
+        let title = "\(hit) of \(b.targets.count) found"
+        let shape = GameShare.Shape.marks(b.targets.map { found.contains($0.form) })
         return PlayResults(
-            title: "\(hit) of \(b.targets.count) found",
+            title: title,
             line: "\(found.count) words spelled. A new board arrives tomorrow.",
             reveals: b.targets.map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.meaning) },
             root: root,
+            share: round.practicing ? nil : (.shift, shape),
+            retry: round.practicing || racing ? nil : (.shift, day, { retry(b) }),
             again: nil
         )
         .onAppear {
-            guard !recorded else { return }
-            recorded = true
+            let practicing = round.practicing
+            let record = round.finish(score: title)
+            if practicing { entered = false }
+            guard record else { return }
+            if !racing { DailyLedger.shared.markPlayed(.shift, deck: day, title: title, shape: shape) }
             let corpus = langs.corpus
             let words = b.targets.map { t in PlayedWord(itemId: corpus?.items.first { $0.form(t.lang)?.lowercased() == t.form }?.id ?? t.meaning, lang: t.lang, form: t.form, gloss: t.meaning, right: found.contains(t.form)) }
             langs.recordPlay(.shift, words, points: hit)
