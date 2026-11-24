@@ -48,7 +48,7 @@ struct WordTapHost: ViewModifier {
             .environment(\.wordTapsHosted, true)
             .sheet(item: $shown) { d in
                 WordCard(detail: d, reveal: reveal)
-                    .presentationDetents([.height(230)])
+                    .presentationDetents([.height(260)])
                     .presentationBackgroundInteraction(.enabled)
                     .presentationBackground(Palette.card)
             }
@@ -56,8 +56,10 @@ struct WordTapHost: ViewModifier {
 }
 
 struct WordCard: View {
+    static let stripCount = 6
     let detail: WordDetail
     let reveal: Bool
+    @Environment(LangStore.self) private var store: LangStore?
     @State private var full = false
 
     var body: some View {
@@ -79,6 +81,7 @@ struct WordCard: View {
                 case .noEntry:
                     Text("No entry for this word yet.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
+                if reveal { strip }
                 if reveal {
                     HStack {
                         Button("Full detail") { full = true }.buttonStyle(.borderless)
@@ -100,6 +103,25 @@ struct WordCard: View {
                         }
                     }
             }
+        }
+    }
+
+    @ViewBuilder var strip: some View {
+        let forms = LangReference.web(detail, corpus: store?.corpus, mine: store?.gameLangs ?? []).forms.prefix(Self.stripCount)
+        if !forms.isEmpty {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(Array(forms)) { f in
+                        HStack(spacing: 4) {
+                            FlagTile(lang: f.lang, size: 18)
+                            Text(f.word).font(.subheadline).foregroundStyle(Palette.ink).lineLimit(1)
+                        }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("\(Lang.name(f.lang)): \(f.word)")
+                    }
+                }
+            }
+            .accessibilityIdentifier("word-strip")
         }
     }
 }

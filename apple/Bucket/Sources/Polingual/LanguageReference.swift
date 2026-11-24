@@ -143,9 +143,12 @@ struct WordFactsView: View {
     @Environment(LangStore.self) private var store: LangStore?
     let detail: WordDetail
     @State private var next: WordDetail?
+    @State private var found: [String: String] = [:]
 
     var body: some View {
-        let f = LangReference.facts(detail, corpus: store?.corpus, others: store?.gameLangs ?? [])
+        let mine = store?.gameLangs ?? []
+        let f = LangReference.facts(detail, corpus: store?.corpus, others: mine)
+        let web = LangReference.web(detail, corpus: store?.corpus, mine: mine, found: found)
         List {
             Section {
                 HStack(spacing: 10) {
@@ -189,21 +192,38 @@ struct WordFactsView: View {
                 }
                 .listRowBackground(Palette.card)
             }
-            if !f.relatives.isEmpty {
+            if !web.forms.isEmpty {
                 Section {
-                    ForEach(f.relatives) { r in
-                        HStack(spacing: 10) {
-                            FlagTile(lang: r.lang, size: 24)
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text(r.word).foregroundStyle(Palette.ink)
-                                if let t = readingText(r.reading) { Text(t).font(.caption).foregroundStyle(Palette.muted) }
-                            }
-                            Spacer(minLength: 0)
-                            PlayButton(text: r.word, lang: r.lang)
-                        }
+                    ForEach(web.forms) { form in
+                        Button { next = form.detail } label: { formRow(form) }
+                            .buttonStyle(.plain)
+                            .accessibilityIdentifier("word-web-\(form.lang)")
                     }
                 } header: {
-                    Eyebrow(text: "In your other languages")
+                    Eyebrow(text: "In every language")
+                } footer: {
+                    if web.alikeCount > 0 {
+                        Text("Sounds alike: spelled close to \(detail.word) once written in Latin letters, or shares its root.").font(.caption).foregroundStyle(Palette.muted)
+                    }
+                }
+                .listRowBackground(Palette.card)
+            }
+            if !web.kin.isEmpty {
+                Section {
+                    ForEach(web.kin) { k in
+                        Button { next = k.detail } label: {
+                            HStack(spacing: 10) {
+                                FlagTile(lang: k.detail.lang, size: 24)
+                                Text(k.word).foregroundStyle(Palette.ink)
+                                Spacer(minLength: 8)
+                                Text(k.gloss).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                } header: {
+                    Eyebrow(text: web.root.map { "Same root \($0)" } ?? "Same root")
                 }
                 .listRowBackground(Palette.card)
             }
@@ -229,6 +249,41 @@ struct WordFactsView: View {
             return .handled
         })
         .navigationDestination(item: $next) { WordFactsView(detail: $0) }
+        .task(id: detail) { await lookUp(mine) }
+        .onDisappear { TranslateCard.lexicons.release() }
+    }
+
+    func formRow(_ form: WordWeb.Form) -> some View {
+        HStack(spacing: 10) {
+            FlagTile(lang: form.lang, size: 24)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(form.word).foregroundStyle(Palette.ink)
+                Text([readingText(form.reading), "\(Lang.name(form.lang)) · \(form.script)"].compactMap { $0 }.joined(separator: "  "))
+                    .font(.caption).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
+            }
+            Spacer(minLength: 6)
+            if form.soundsAlike {
+                Text("Sounds alike").font(.caption2.weight(.bold)).foregroundStyle(Palette.green)
+                    .padding(.horizontal, 6).padding(.vertical, 2)
+                    .background(Palette.green.opacity(0.12), in: Capsule())
+            }
+            PlayButton(text: form.word, lang: form.lang)
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        .contentShape(Rectangle())
+    }
+
+    func lookUp(_ mine: [String]) async {
+        guard detail.itemId == nil else { return }
+        let targets = Array(Set(mine + ["en"]).subtracting([detail.lang])).sorted()
+        guard !targets.isEmpty else { return }
+        let word = detail.word, lang = detail.lang, corpus = store?.corpus
+        TranslateCard.lexicons.reserve(targets.count + 1)
+        let rows = await Task.detached(priority: .userInitiated) {
+            TranslateEngine.answer(word, from: [lang], to: targets, corpus: corpus, shelf: TranslateCard.lexicons)?.rows ?? [:]
+        }.value
+        guard !Task.isCancelled else { return }
+        found = rows
     }
 
     func line(_ label: LocalizedStringKey, _ value: String) -> some View {

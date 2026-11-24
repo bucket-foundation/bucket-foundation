@@ -47,8 +47,82 @@ public struct WordFacts: Sendable, Equatable {
     public let falseFriend: FalseFriend?
 }
 
+public struct WordWeb: Sendable, Equatable {
+    public struct Form: Sendable, Equatable, Identifiable {
+        public let lang: String
+        public let word: String
+        public let reading: Reading?
+        public let script: String
+        public let mine: Bool
+        public let cognate: Bool
+        public let likeness: Double
+        public let detail: WordDetail
+
+        public var id: String { lang }
+        public var soundsAlike: Bool { cognate || likeness >= WordWeb.alike }
+    }
+
+    public struct Kin: Sendable, Equatable, Identifiable {
+        public let word: String
+        public let gloss: String
+        public let detail: WordDetail
+
+        public var id: String { detail.itemId ?? detail.id }
+    }
+
+    public static let alike = 0.5
+    public static let maxKin = 8
+
+    public let root: String?
+    public let forms: [Form]
+    public let kin: [Kin]
+
+    public var alikeCount: Int { forms.filter(\.soundsAlike).count }
+}
+
 public enum LangReference {
     static let maxSentences = 5
+    static let writingNames = ["zh": "Chinese characters", "ja": "Kanji and kana", "ko": "Hangul"]
+
+    public static func scriptName(_ lang: String) -> String {
+        writingNames[lang] ?? LangScript.scripts[lang]?.title ?? "Latin alphabet"
+    }
+
+    public static func likeness(_ a: String, _ b: String) -> Double {
+        let x = Lexicon.romanKey(a), y = Lexicon.romanKey(b)
+        let n = max(x.count, y.count)
+        guard n > 0 else { return 0 }
+        return 1 - Double(editDistance(x, y)) / Double(n)
+    }
+
+    public static func web(_ detail: WordDetail, corpus: LangCorpus?, mine: [String], found: [String: String] = [:]) -> WordWeb {
+        let item = detail.itemId.flatMap { corpus?.byId[$0] }
+        let own = item?.form(detail.lang) ?? detail.word
+        let forms = Lang.codes.filter { $0 != detail.lang }.compactMap { l -> WordWeb.Form? in
+            guard let w = item?.form(l) ?? found[l].flatMap({ $0.isEmpty ? nil : $0 }) else { return nil }
+            let reading = item?.readings[l]
+            return WordWeb.Form(
+                lang: l, word: w, reading: reading, script: scriptName(l), mine: mine.contains(l),
+                cognate: item.map { $0.cognateLangs.contains(l) && $0.cognateLangs.contains(detail.lang) } ?? false,
+                likeness: likeness(own, reading?.roman ?? w),
+                detail: WordDetail(word: w, lang: l, gloss: item?.gloss ?? detail.gloss, reading: reading, itemId: item?.id))
+        }
+        let rank = { (f: WordWeb.Form, i: Int) -> (Int, Int, Double, Int) in
+            f.mine ? (0, mine.firstIndex(of: f.lang) ?? 0, 0, i) : (1, f.soundsAlike ? 0 : 1, -f.likeness, i)
+        }
+        let ordered = forms.enumerated().sorted { rank($0.element, $0.offset) < rank($1.element, $1.offset) }.map(\.element)
+        return WordWeb(root: item?.root, forms: ordered, kin: item.map { kin($0, lang: detail.lang, corpus: corpus) } ?? [])
+    }
+
+    static func kin(_ item: LangItem, lang: String, corpus: LangCorpus?) -> [WordWeb.Kin] {
+        guard let root = item.root, !root.isEmpty, let corpus else { return [] }
+        var seen: Set<String> = [item.gloss]
+        return corpus.items.filter { $0.kind == .word && $0.id != item.id && $0.root == root }.compactMap { other -> WordWeb.Kin? in
+            let (l, w) = other.form(lang).map { (lang, $0) } ?? other.forms.keys.sorted().first.flatMap { k in other.form(k).map { (k, $0) } } ?? ("", "")
+            guard !w.isEmpty, seen.insert(other.gloss).inserted else { return nil }
+            return WordWeb.Kin(word: w, gloss: other.gloss, detail: WordDetail(word: w, lang: l, gloss: other.gloss, reading: other.readings[l], itemId: other.id))
+        }.prefix(WordWeb.maxKin).map { $0 }
+    }
     static let signLetters = ["hard-sign": "hard sign", "soft-sign": "soft sign"]
     static let defaultPersons = ["1sg", "2sg", "3sg", "1pl", "2pl", "3pl"]
 

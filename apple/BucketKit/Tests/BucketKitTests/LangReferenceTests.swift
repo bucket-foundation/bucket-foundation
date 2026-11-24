@@ -114,4 +114,67 @@ struct LangReferenceTests {
         #expect(f.relatives.isEmpty)
         #expect(f.withArticle == nil)
     }
+
+    static func webCorpus() -> LangCorpus {
+        func word(_ id: String, _ gloss: String, _ forms: [String: String], root: String?, cognates: [String] = [], readings: [String: Reading] = [:]) -> LangItem {
+            LangItem(id: id, kind: .word, baseId: id, tier: 1, unit: 0, category: "noun", gloss: gloss, forms: forms, readings: readings, root: root, cognateLangs: cognates,
+                     note: nil, example: [:], sentences: [:], gender: OrderedMap(), conj: [:], conjPast: [:], falseFriends: [:])
+        }
+        let night = word("night", "night", ["en": "night", "de": "Nacht", "es": "noche", "fr": "nuit", "ja": "夜", "ru": "ночь", "nl": "nacht"],
+                         root: "*nókʷts", cognates: ["en", "de", "nl"], readings: ["ja": Reading(roman: "yoru"), "ru": Reading(roman: "noch")])
+        let nocturnal = word("nocturnal", "of the night", ["en": "nocturnal", "es": "nocturno"], root: "*nókʷts")
+        let twin = word("night-2", "night", ["en": "nighttime"], root: "*nókʷts")
+        let cat = word("cat", "cat", ["en": "cat"], root: nil)
+        let items = [night, nocturnal, twin, cat]
+        return LangCorpus(items: items, byId: Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) }), attribution: "", sources: [], pool: [:], poolKeys: [], persons: [:], falseFriends: [], units: [])
+    }
+
+    @Test func webListsEveryLanguageWithMineFirstThenLookAlikes() {
+        let d = WordDetail(word: "night", lang: "en", gloss: "night", reading: nil, itemId: "night")
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: ["ru", "es"])
+        #expect(web.forms.map(\.lang) == ["ru", "es", "de", "nl", "fr", "ja"])
+        #expect(web.forms.allSatisfy { $0.lang != "en" })
+        #expect(web.forms.first { $0.lang == "de" }?.cognate == true)
+        #expect(web.forms.first { $0.lang == "ja" }?.soundsAlike == false)
+        #expect(web.forms.first { $0.lang == "ru" }?.script == "Cyrillic alphabet")
+        #expect(web.forms.first { $0.lang == "ja" }?.script == "Kanji and kana")
+        #expect(web.forms.first { $0.lang == "fr" }?.script == "Latin alphabet")
+        #expect(web.forms.first { $0.lang == "es" }?.detail == WordDetail(word: "noche", lang: "es", gloss: "night", reading: nil, itemId: "night"))
+        #expect(web.root == "*nókʷts")
+    }
+
+    @Test func webJoinsWordsThatShareTheRootOncePerMeaning() {
+        let d = WordDetail(word: "noche", lang: "es", gloss: "night", reading: nil, itemId: "night")
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: [])
+        #expect(web.kin.map(\.word) == ["nocturno"])
+        #expect(web.kin.first?.detail.lang == "es")
+    }
+
+    @Test func kinFallsBackToAnyFormWhenTheLanguageHasNone() {
+        let d = WordDetail(word: "Nacht", lang: "de", gloss: "night", reading: nil, itemId: "night")
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: [])
+        #expect(web.kin.map(\.word) == ["nocturnal"])
+        #expect(web.kin.first?.detail.lang == "en")
+    }
+
+    @Test func likenessComparesRomanizedSpelling() {
+        #expect(LangReference.likeness("night", "Nacht") >= WordWeb.alike)
+        #expect(LangReference.likeness("night", "ночь") < WordWeb.alike)
+        #expect(LangReference.likeness("Nacht", "nacht") == 1)
+        #expect(LangReference.likeness("", "") == 0)
+    }
+
+    @Test func webForAWordOutsideTheCourseIsEmpty() {
+        let d = WordDetail(word: "zzz", lang: "en", gloss: nil, reading: nil)
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: ["es"])
+        #expect(web.forms.isEmpty && web.kin.isEmpty && web.root == nil)
+    }
+
+    @Test func webUsesLookedUpFormsForAWordOutsideTheCourse() {
+        let d = WordDetail(word: "you", lang: "en", gloss: nil, reading: nil)
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: ["es", "de"], found: ["de": "du", "es": "tú", "en": "you", "fr": ""])
+        #expect(web.forms.map(\.word) == ["tú", "du"])
+        #expect(web.forms.allSatisfy { $0.mine && !$0.cognate && $0.detail.itemId == nil })
+        #expect(web.kin.isEmpty)
+    }
 }
