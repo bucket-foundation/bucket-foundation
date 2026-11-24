@@ -22,9 +22,9 @@ object ReminderPlan {
         if (streak <= 0) return null
         val m = riskTime(dailyMinute)
         val now = ZonedDateTime.ofInstant(java.time.Instant.ofEpochMilli(nowMs), zone)
-        val day = now.toLocalDate().plusDays(if (studiedToday) 1 else 0)
-        val fire = day.atTime(m / 60, m % 60).atZone(zone).toInstant().toEpochMilli()
-        return fire.takeIf { it > nowMs }
+        fun fireOn(day: LocalDate) = day.atTime(m / 60, m % 60).atZone(zone).toInstant().toEpochMilli()
+        val tonight = fireOn(now.toLocalDate())
+        return if (!studiedToday && tonight > nowMs) tonight else fireOn(now.toLocalDate().plusDays(1))
     }
 
     fun nextWordOfDay(nowMs: Long, zone: ZoneId = ZoneId.systemDefault()): Long {
