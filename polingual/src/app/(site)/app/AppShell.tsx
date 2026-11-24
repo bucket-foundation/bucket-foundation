@@ -14,6 +14,7 @@ import { fetchAccess, type Access } from "@/lib/app/plans";
 import { accessStep, track } from "@/lib/funnel";
 import { appGate, firstLessonDone, subscribeFirstLesson } from "@/lib/app/first-lesson";
 import Paywall from "./Paywall";
+import Upsell from "./Upsell";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
 import { AppNav, Button, SpeechGuard, Stage, type NavItem } from "@/ui";
@@ -141,6 +142,7 @@ function Shell({ children }: { children: React.ReactNode }) {
         {!open && auth.status === "signed-out" ? <Stage testId="sign-in-stage"><SignIn onSignedIn={afterSignIn} /></Stage> : null}
         {!open && auth.status === "signed-in" && gate === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
         {!open && auth.status === "signed-in" && gate === "paywall" ? <Paywall access={access} retry={check} /> : null}
+        {!open && auth.status === "signed-in" && gate === "app" && access.status === "open" ? <Upsell access={access} /> : null}
         {!open && auth.status === "signed-in" && gate === "app" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
       </main>
       <MiniPlayer />

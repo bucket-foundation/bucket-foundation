@@ -17,6 +17,7 @@ import {
   ACTIVE_STATUSES,
   FRESH,
   dayZeroCancel,
+  isLifetime,
   trialEndingEmail,
   trialEndingFrom,
   type CheckoutConfig,
@@ -360,4 +361,50 @@ test("funnel sender logs failures and a missing key once", async () => {
   assert.equal(await claim("u1"), true);
   assert.equal(await claim("u1"), true);
   assert.equal(claimLogs.length, 1);
+});
+
+test("family, lifetime and win-back plans check out with their own rules", async () => {
+  const cfg = checkoutConfig({ ...ENV, STRIPE_PRICE_POLINGUAL_FAMILY: "price_f", STRIPE_PRICE_POLINGUAL_LIFETIME: "price_l", STRIPE_COUPON_POLINGUAL_WINBACK: "co_25" }) as CheckoutConfig;
+  const req = (plan: string) => ({ plan: plan as "yearly", referral: null, network: null, email: "a@b.co" });
+  const life = checkoutForm(cfg, req("lifetime"), "u1");
+  assert.equal(life.get("mode"), "payment");
+  assert.equal(life.get("line_items[0][price]"), "price_l");
+  assert.equal(life.get("subscription_data[trial_period_days]"), null);
+  assert.equal(life.get("subscription_data[metadata][plan]"), null);
+  assert.equal(life.get("metadata[plan]"), "lifetime");
+  assert.equal(life.get("customer_creation"), "always");
+  const fam = checkoutForm(cfg, req("family"), "u1");
+  assert.equal(fam.get("line_items[0][price]"), "price_f");
+  assert.equal(fam.get("subscription_data[trial_period_days]"), null);
+  const back = checkoutForm(cfg, req("winback"), "u1", { used: true, customer: "cus_1" });
+  assert.equal(back.get("line_items[0][price]"), "price_y");
+  assert.equal(back.get("discounts[0][coupon]"), "co_25");
+  assert.equal(back.get("allow_promotion_codes"), null);
+  assert.equal(back.get("subscription_data[trial_period_days]"), null);
+
+  const run = (plan: string, status: string | null, used: boolean, c = cfg) =>
+    handleCheckout({ config: () => c, userId: async () => "u1", currentStatus: async () => status, trialHistory: async () => ({ used, customer: null }), createSession: async () => ({ url: "https://s", id: "cs" }) }, { plan });
+  assert.equal((await run("lifetime", "trialing", true)).status, 200);
+  assert.equal((await run("family", "trialing", true)).status, 200);
+  assert.equal((await run("monthly", "trialing", true)).status, 409);
+  assert.equal((await run("lifetime", "active", true)).status, 409);
+  assert.equal((await run("winback", null, false)).body.error, "not_eligible");
+  assert.equal((await run("winback", "canceled", true)).status, 200);
+  assert.equal((await run("family", null, false, checkoutConfig(ENV) as CheckoutConfig)).body.error, "plan_unavailable");
+  assert.equal((await run("student", null, false)).body.error, "bad_plan");
+});
+
+test("lifetime bought during a trial cancels the trial and outlives its events", async () => {
+  const h = harness({ user_id: "u1", status: "trialing", stripe_subscription: "sub_t", last_event_id: "evt_0", last_event_at: new Date(50_000).toISOString() });
+  const canceled: string[] = [];
+  const deps = { ...h.deps, cancelSubscription: async (s: string) => (canceled.push(s), true) };
+  const done = evt("evt_l", 100, "checkout.session.completed", { id: "cs_l", metadata: { ...META, plan: "lifetime" }, payment_status: "paid", subscription: null, customer: "cus_1" });
+  assert.equal((await handleWebhook(deps, done, sign(done, "whsec", 1000))).status, 200);
+  assert.deepEqual(canceled, ["sub_t"]);
+  assert.equal(h.row()?.status, "active");
+  assert.equal(h.row()?.stripe_subscription, "lifetime:cs_l");
+  assert.ok(isLifetime({ stripe_subscription: "lifetime:cs_l" }) && !isLifetime({ stripe_subscription: "sub_t" }));
+  const gone = evt("evt_d", 101, "customer.subscription.deleted", { id: "sub_t", status: "canceled", metadata: META, customer: "cus_1" });
+  assert.equal((await handleWebhook(deps, gone, sign(gone, "whsec", 1000))).body.stale, true);
+  assert.equal(h.row()?.status, "active");
 });

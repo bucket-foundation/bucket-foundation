@@ -101,6 +101,7 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
             }
             if (trial && Plan.hasTrial(product.productId)) Text("No payment now", style = Type.small, color = PL.Paper)
         }
+        PlanOffers(graph, products)
         message?.let { Text(it, color = PL.Maya) }
         PlainLink("Restore purchases", onDark = true) { scope.launch { graph.billing.restore() } }
         PlainLink("Manage subscription", onDark = true) { context.startActivity(Intent(Intent.ACTION_VIEW, "https://play.google.com/store/account/subscriptions?package=${context.packageName}".toUri())) }
@@ -109,4 +110,22 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
             PlainLink("Privacy", onDark = true) { context.startActivity(Intent(Intent.ACTION_VIEW, Plan.PRIVACY.toUri())) }
         }
     }
+}
+
+@Composable
+private fun PlanOffers(graph: Graph, products: List<PlanOffer>) {
+    val p = LocalPalette.current
+    val context = LocalContext.current
+    val upsell by graph.billing.upsell.collectAsState()
+    if (upsell) Card {
+        Text("Your trial has started", style = Type.title, color = p.ink)
+        Text("Learning with others at home, or keeping Polingual for good?", color = p.ink)
+        products.filter { it.productId in Offers.upsell }.forEach { o ->
+            PrimaryButton("${Plan.title(o.productId)}, ${o.price}") { val d = o.details; if (d != null) (context as? Activity)?.let { graph.billing.buy(it, d) } }
+            if (o.productId == Plan.LIFETIME) Text("After buying Lifetime, cancel the yearly trial in Google Play and you pay nothing for it.", style = Type.small, color = p.muted)
+        }
+        PlainLink("Keep yearly") { graph.billing.dismissUpsell() }
+    }
+    if (graph.billing.returning && products.any { it.productId == Plan.YEARLY && it.details?.subscriptionOfferDetails?.any { o -> o.offerId == Offers.WINBACK } == true })
+        Text("Welcome back: 25% off your first year on Yearly.", style = Type.title, color = PL.Paper)
 }

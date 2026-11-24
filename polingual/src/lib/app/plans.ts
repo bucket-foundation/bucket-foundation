@@ -10,10 +10,18 @@ export interface Plan {
 export const PLANS: Plan[] = [
   { id: "monthly", name: "Monthly", price: "$9.99", cadence: "a month", productId: "com.polingual.monthly" },
   { id: "yearly", name: "Yearly", price: "$59.99", cadence: "a year", note: "7 days free, then $59.99 a year", productId: "com.polingual.yearly" },
-  { id: "family", name: "Family", price: "$89.99", cadence: "a year", note: "Up to 6 people", productId: null },
-  { id: "lifetime", name: "Lifetime", price: "$149.99", cadence: "once", productId: null },
+  { id: "family", name: "Family", price: "$89.99", cadence: "a year", note: "Up to 6 people", productId: "com.polingual.family.yearly" },
+  { id: "lifetime", name: "Lifetime", price: "$149.99", cadence: "once", note: "Pay once, keep it for good", productId: "com.polingual.lifetime" },
   { id: "student", name: "Student", price: "$29.99", cadence: "a year", productId: null },
 ];
+
+export const WINBACK = { id: "winback", name: "Welcome back", price: "$44.99", cadence: "for your first year", note: "25% off, then $59.99 a year" } as const;
+
+export const UPSELL_KEY = "polingual-web/upsell-shown/v1";
+
+export function upsellDue(search: string, access: Access, seen: boolean): boolean {
+  return !seen && new URLSearchParams(search).get("checkout") === "done" && access.status === "open" && access.trial === true;
+}
 
 export { APP_STORE_URL } from "../facts";
 

@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { Entitlement, EntitlementPatch, EntitlementState } from "./polingual-checkout";
+import { isLifetime, type Entitlement, type EntitlementPatch, type EntitlementState } from "./polingual-checkout";
 
 let bucket: SupabaseClient | null = null;
 
@@ -16,7 +16,7 @@ function client(): SupabaseClient {
 
 export async function recordEntitlement(e: Entitlement): Promise<boolean> {
   const row: Record<string, unknown> = { ...e, updated_at: new Date().toISOString() };
-  if (e.current_period_end === null) delete row.current_period_end;
+  if (e.current_period_end === null && !isLifetime(e)) delete row.current_period_end;
   if (e.stripe_subscription === null) delete row.stripe_subscription;
   if (e.last_event_id === null) delete row.last_event_id;
   if (e.last_event_at === null) delete row.last_event_at;

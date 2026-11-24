@@ -32,6 +32,13 @@ async function remindTrialEnding(t: TrialEnding): Promise<boolean> {
   return sendGiftEmail(mail, { to: j.email, subject: m.subject, text: m.text, html: `<p>${m.text}</p>` }, `trial-ending-${t.eventId}`);
 }
 
+async function cancelSubscription(subscription: string): Promise<boolean> {
+  const key = process.env.STRIPE_SECRET_KEY?.trim();
+  if (!key) return false;
+  const res = await fetch(`${STRIPE_API}/v1/subscriptions/${encodeURIComponent(subscription)}`, { method: "DELETE", headers: { authorization: `Bearer ${key}` } });
+  return res.ok || res.status === 404;
+}
+
 export async function POST(req: Request): Promise<Response> {
   try {
     const payload = await req.text();
@@ -48,6 +55,7 @@ export async function POST(req: Request): Promise<Response> {
         trialEnding: remindTrialEnding,
         funnel: sendBillingFunnel,
         claimPaid: claimPaidOnce,
+        cancelSubscription,
       },
       payload,
       req.headers.get("stripe-signature"),
