@@ -13,6 +13,7 @@ import {
   subscriptionStatus,
   ACTIVE_STATUSES,
   FRESH,
+  dayZeroCancel,
   trialEndingEmail,
   trialEndingFrom,
   type CheckoutConfig,
@@ -287,4 +288,23 @@ test("trial_will_end for a live polingual trial becomes a reminder", async () =>
   assert.deepEqual([ok.status, reminded], [200, ["evt_t"]]);
   const bad = await handleWebhook({ ...h.deps, trialEnding: async () => false }, payload, sign(payload, "whsec", 1000));
   assert.equal(bad.status, 500);
+});
+
+test("a cancel on the trial's first day reaches the funnel with the visitor", async () => {
+  const VIS = "0b6f1d2e-8a4c-4f3e-9d2a-1c5b7e9f0a12";
+  const cfg = checkoutConfig(ENV) as CheckoutConfig;
+  const parsed = parseCheckoutRequest({ plan: "yearly", visitor: VIS.toUpperCase() });
+  assert.ok(parsed.ok);
+  const f = checkoutForm(cfg, parsed.ok ? parsed.req : (null as never), "u1");
+  assert.equal(f.get("subscription_data[metadata][visitor]"), VIS);
+  assert.equal(parseCheckoutRequest({ visitor: "x" }).ok && (parseCheckoutRequest({ visitor: "x" }) as { req: { visitor?: string } }).req.visitor, undefined);
+  const obj = (at: number) => ({ id: "sub_1", status: "trialing", cancel_at_period_end: true, trial_start: 1_000, canceled_at: at, metadata: { ...META, visitor: VIS } });
+  assert.equal(dayZeroCancel({ type: "customer.subscription.updated", data: { object: obj(1_000 + 3_600) } }), VIS);
+  assert.equal(dayZeroCancel({ type: "customer.subscription.updated", data: { object: obj(1_000 + 90_000) } }), null);
+  assert.equal(dayZeroCancel({ type: "customer.subscription.updated", data: { object: { ...obj(1_100), cancel_at_period_end: false } } }), null);
+  const h = harness(null);
+  const sent: string[] = [];
+  const payload = evt("evt_c", 1, "customer.subscription.updated", obj(1_100));
+  await handleWebhook({ ...h.deps, funnel: async (v, n) => void sent.push(`${n}:${v}`) }, payload, sign(payload, "whsec", 1000));
+  assert.deepEqual(sent, [`trial_cancel_d0:${VIS}`]);
 });

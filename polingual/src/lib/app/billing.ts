@@ -1,3 +1,4 @@
+import { visitor } from "@/lib/funnel";
 export type WebPlan = "monthly" | "yearly";
 
 export type BillingResult = { ok: true; url: string } | { ok: false; error: string };
@@ -33,7 +34,8 @@ async function post(f: typeof fetch, path: string, body: unknown): Promise<Billi
 }
 
 export async function startCheckout(plan: WebPlan, f: typeof fetch = fetch): Promise<BillingResult> {
-  const r = await post(f, "/api/polingual/checkout", { plan, return_to: "app" });
+  const vid = visitor();
+  const r = await post(f, "/api/polingual/checkout", vid ? { plan, return_to: "app", visitor: vid } : { plan, return_to: "app" });
   return !r.ok && r.error === "already_subscribed" ? openPortal(f) : r;
 }
 

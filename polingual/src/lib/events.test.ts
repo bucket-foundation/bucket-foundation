@@ -20,12 +20,25 @@ test("parseEvents keeps known names, cleans tags and strips query strings", () =
     { name: "page_view", path: "/es?utm_source=x", utm_source: "Reddit!", utm_campaign: "beta", referrer: "https://www.reddit.com/r/polyglot", lang: "es" },
     { name: "drop_table" },
   ] });
-  assert.deepEqual(out, [{ visitor: V, name: "page_view", path: "/es", utm_source: "reddit", utm_medium: null, utm_campaign: "beta", referrer_host: "www.reddit.com", lang: "es" }]);
+  assert.deepEqual(out, [{ visitor: V, name: "page_view", path: "/es", utm_source: "reddit", utm_medium: null, utm_campaign: "beta", referrer_host: "www.reddit.com", lang: "es", detail: null }]);
 });
 
 test("parseEvents rejects a bad visitor id and caps the batch", () => {
   assert.equal(parseEvents({ visitor: "nope", events: [] }), null);
   assert.equal(parseEvents({ visitor: V, events: Array(50).fill({ name: "share" }) })!.length, MAX_EVENTS);
+});
+
+test("onboarding screens, the heard-about answer and day-0 cancels pass through", () => {
+  const out = parseEvents({ visitor: V, events: [{ name: "onboarding_view", detail: "languages" }, { name: "heard_about", detail: "TikTok" }, { name: "trial_cancel_d0" }] })!;
+  assert.deepEqual(out.map((e) => [e.name, e.detail]), [["onboarding_view", "languages"], ["heard_about", "tiktok"], ["trial_cancel_d0", null]]);
+});
+
+test("the Android and iOS apps post without an origin; browsers still need one", async () => {
+  const body = { visitor: V, events: [{ name: "onboarding_view", detail: "languages" }] };
+  assert.equal((await recordEvents(body, env, fake().send, { client: "android" })).status, 200);
+  assert.equal((await recordEvents(body, env, fake().send, { client: "ios" })).status, 200);
+  assert.equal((await recordEvents(body, env, fake().send, { client: "desktop" })).status, 403);
+  assert.equal((await recordEvents(body, env, fake().send, { client: "android", origin: "https://evil.example" })).status, 403);
 });
 
 test("recordEvents refuses other origins", async () => {

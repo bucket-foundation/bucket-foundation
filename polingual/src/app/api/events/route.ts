@@ -14,6 +14,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const ip = req.headers.get("x-real-ip") || req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || null;
   const result = await recordEvents(body, process.env, fetch, {
     origin: req.headers.get("origin"),
+    client: req.headers.get("x-polingual-client"),
     referer: req.headers.get("referer"),
     ip,
     country: req.headers.get("x-vercel-ip-country"),

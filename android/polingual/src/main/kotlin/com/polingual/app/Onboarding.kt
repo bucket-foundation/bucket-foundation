@@ -24,6 +24,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -58,33 +59,45 @@ fun Onboarding(graph: Graph) {
     var busy by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val p = LocalPalette.current
+    LaunchedEffect(step) { graph.track("onboarding_view", Funnel.SCREENS[step]) }
+    fun next() { step += 1 }
     GroundBox(Ground.Diagonal, Modifier.fillMaxSize()) { Column(Modifier.fillMaxSize()) { Box(Modifier.weight(1f).fillMaxWidth().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
         Column(Modifier.widthIn(max = 560.dp).fillMaxSize().padding(PLSpace.s4)) {
             AnimatedContent(step, modifier = Modifier.weight(1f), label = "step") { s ->
                 Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(18.dp)) {
-                    if (s == 0) Welcome() else Languages(root, targets) { targets = it }
+                    when (s) {
+                        0 -> Welcome()
+                        1 -> HeardAbout { key -> graph.track("heard_about", key); next() }
+                        else -> Languages(root, targets) { targets = it }
+                    }
                 }
             }
             Row(Modifier.fillMaxWidth().padding(vertical = 12.dp), horizontalArrangement = Arrangement.Center) {
-                repeat(2) { i ->
+                repeat(3) { i ->
                     Box(Modifier.padding(4.dp).size(if (i == step) 22.dp else 8.dp, 8.dp).plSurface(if (i == step) PL.Vermilion else p.rule, foundation.bucket.core.ui.pl.PLRadius.pill))
                 }
             }
             PrimaryButton(
-                text = if (step == 0) "Get started" else if (busy) "Setting up" else "Continue",
-                enabled = !(step == 1 && targets.isEmpty()) && !busy,
+                text = if (step == 0) "Get started" else if (step == 1) "Skip" else if (busy) "Setting up" else "Continue",
+                enabled = !(step == 2 && targets.isEmpty()) && !busy,
             ) {
-                if (step == 0) step = 1 else scope.launch {
+                if (step < 2) next() else scope.launch {
                     busy = true
                     graph.createSystem(root, targets)
                     graph.store.update { it.copy(onboarded = true) }
                     busy = false
                 }
             }
-            if (step == 1) PlainLink("Skip for now", Modifier.align(Alignment.CenterHorizontally), onDark = true) { scope.launch { graph.store.update { it.copy(onboarded = true) } } }
+            if (step == 2) PlainLink("Skip for now", Modifier.align(Alignment.CenterHorizontally), onDark = true) { scope.launch { graph.store.update { it.copy(onboarded = true) } } }
         }
     }
     FlagBand() } }
+}
+
+@Composable
+private fun HeardAbout(answer: (String) -> Unit) {
+    Text("How did you hear about Polingual?", style = Type.display, color = PL.Paper)
+    Funnel.HEARD.forEach { (key, label) -> PrimaryButton(label, color = PL.Lapis) { answer(key) } }
 }
 
 @Composable

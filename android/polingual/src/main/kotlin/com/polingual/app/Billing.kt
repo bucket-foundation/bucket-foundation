@@ -117,7 +117,9 @@ class Billing(context: Context, private val graph: Graph) {
             if (!pending && !p.isAcknowledged) client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build())
             p.products.forEach { id -> records += PurchaseRecord(id, p.purchaseTime, p.isAcknowledged, pending, p.isAutoRenewing) }
         }
-        records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()) }
+        records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()); graph.track("trial_start") }
+        val trialStart = graph.kv.get(TrialReminder.START_KEY)?.toLongOrNull()
+        if (Funnel.dayZeroCancel(records.firstOrNull { it.productId == Plan.YEARLY && it.purchasedMs == trialStart }, trialStart, System.currentTimeMillis())) graph.track("trial_cancel_d0")
         TrialReminder.sync(graph.context, TrialReminder.plan(records, graph.kv.get(TrialReminder.START_KEY)?.toLongOrNull(), System.currentTimeMillis()))
         reportTrial()
         trialEligible = Entitlement.trialEligible(records.map { it.productId }, serverTrialUsed)

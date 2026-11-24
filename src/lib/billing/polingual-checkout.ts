@@ -37,10 +37,12 @@ export interface CheckoutRequest {
   network: AffiliateNetwork | null;
   email: string | null;
   returnTo?: "app";
+  visitor?: string;
 }
 
 const REF_RE = /^[A-Za-z0-9_.-]{1,128}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const VISITOR_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export function parseCheckoutRequest(body: unknown): { ok: true; req: CheckoutRequest } | { ok: false; error: string } {
   const b = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
@@ -53,6 +55,7 @@ export function parseCheckoutRequest(body: unknown): { ok: true; req: CheckoutRe
   const email = typeof b.email === "string" && EMAIL_RE.test(b.email.trim()) ? b.email.trim().toLowerCase() : null;
   const req: CheckoutRequest = { plan, referral: rawRef || null, network: rawRef ? network : null, email };
   if (b.return_to === "app") req.returnTo = "app";
+  if (typeof b.visitor === "string" && VISITOR_RE.test(b.visitor)) req.visitor = b.visitor.toLowerCase();
   return { ok: true, req };
 }
 
@@ -80,6 +83,10 @@ export function checkoutForm(cfg: CheckoutConfig, req: CheckoutRequest, userId: 
   else if (req.email) f.set("customer_email", req.email);
   f.set("metadata[user_id]", userId);
   f.set("subscription_data[metadata][user_id]", userId);
+  if (req.visitor) {
+    f.set("metadata[visitor]", req.visitor);
+    f.set("subscription_data[metadata][visitor]", req.visitor);
+  }
   if (req.referral && req.network) {
     if (req.network === "rewardful") f.set("client_reference_id", req.referral);
     f.set("metadata[referral]", req.referral);
@@ -262,6 +269,20 @@ export function trialEndingEmail(trialEnd: number, site: string): { subject: str
   };
 }
 
+export const DAY_S = 86_400;
+
+export function dayZeroCancel(event: unknown): string | null {
+  const e = (event && typeof event === "object" ? event : {}) as Obj;
+  if (e.type !== "customer.subscription.updated") return null;
+  const o = ((e.data as Obj | undefined)?.object ?? {}) as Obj;
+  const meta = (o.metadata ?? {}) as Obj;
+  const visitor = str(meta.visitor);
+  const at = typeof o.canceled_at === "number" ? o.canceled_at : typeof e.created === "number" ? e.created : null;
+  if (meta.product !== "polingual" || !visitor || !VISITOR_RE.test(visitor) || o.status !== "trialing" || o.cancel_at_period_end !== true) return null;
+  if (typeof o.trial_start !== "number" || at === null || at - o.trial_start >= DAY_S) return null;
+  return visitor.toLowerCase();
+}
+
 export interface WebhookDeps {
   secret: () => string | null;
   now: () => number;
@@ -272,6 +293,7 @@ export interface WebhookDeps {
   patch: (userId: string, p: EntitlementPatch) => Promise<boolean>;
   gift?: (event: unknown) => Promise<HandlerResult | null>;
   trialEnding?: (t: TrialEnding) => Promise<boolean>;
+  funnel?: (visitor: string, name: "trial_cancel_d0") => Promise<void>;
 }
 
 async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent): Promise<HandlerResult> {
@@ -299,6 +321,8 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
     if (deps.trialEnding && !(await deps.trialEnding(ending))) return { status: 500, body: { error: "reminder_failed" } };
     return { status: 200, body: { received: true, reminded: !!deps.trialEnding } };
   }
+  const d0 = dayZeroCancel(event);
+  if (d0 && deps.funnel) await deps.funnel(d0, "trial_cancel_d0").catch(() => undefined);
   const ce = customerEventFrom(event);
   const sub = ce ? await applyCustomerEvent(deps, ce) : null;
   if (sub && sub.status !== 200) return sub;

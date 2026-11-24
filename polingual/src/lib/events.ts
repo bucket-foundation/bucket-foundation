@@ -1,4 +1,4 @@
-import { FUNNEL_STEPS } from "./funnel-steps";
+import { APP_CLIENTS, FUNNEL_STEPS } from "./funnel-steps";
 import { allowedSource, RateLimiter, type BetaEnv, type Fetcher } from "./beta";
 
 const EVENT_NAMES = ["page_view", "beta_open", "beta_signup", "founding_claim", "testflight_open", "share", ...FUNNEL_STEPS] as const;
@@ -15,9 +15,10 @@ type WebEvent = {
   utm_campaign: string | null;
   referrer_host: string | null;
   lang: string | null;
+  detail: string | null;
 };
 
-type EventsRequest = { origin?: string | null; referer?: string | null; ip?: string | null; country?: string | null; now?: number };
+type EventsRequest = { origin?: string | null; referer?: string | null; client?: string | null; ip?: string | null; country?: string | null; now?: number };
 type EventsResult = { status: number; body: { ok?: true; stored?: number; error?: string } };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -62,6 +63,7 @@ export function parseEvents(body: unknown): WebEvent[] | null {
       utm_campaign: tag(e.utm_campaign, 80),
       referrer_host: host(e.referrer),
       lang: tag(e.lang, 8),
+      detail: tag(e.detail, 40),
     });
   }
   return out;
@@ -72,7 +74,8 @@ function eventsConfigured(env: BetaEnv): boolean {
 }
 
 export async function recordEvents(body: unknown, env: BetaEnv, send: Fetcher, req: EventsRequest): Promise<EventsResult> {
-  if (!allowedSource(req.origin, req.referer)) return { status: 403, body: { error: "Events come from polingual.com." } };
+  const app = !req.origin && (APP_CLIENTS as readonly unknown[]).includes(req.client);
+  if (!app && !allowedSource(req.origin, req.referer)) return { status: 403, body: { error: "Events come from polingual.com." } };
   if (!eventsLimiter.take(req.ip || "unknown", req.now)) return { status: 429, body: { error: "Too many events." } };
   const events = parseEvents(body);
   if (!events) return { status: 400, body: { error: "Send a visitor id and an events list." } };

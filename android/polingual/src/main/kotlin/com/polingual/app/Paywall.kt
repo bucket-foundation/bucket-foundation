@@ -62,7 +62,7 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val askNotify = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
-    LaunchedEffect(Unit) { graph.billing.refresh() }
+    LaunchedEffect(Unit) { graph.billing.refresh(); graph.track("paywall_view") }
     val trial = graph.billing.trialEligible
     Page(back = back, ground = Ground.Lattice, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 60.dp, 10f), Sticker("kente", Alignment.BottomEnd, 80.dp, -5f, dx = (-8).dp))) {
         Text(if (trial) "${Plan.TRIAL_DAYS} days free" else "Keep learning", style = Type.display, color = PL.Paper)

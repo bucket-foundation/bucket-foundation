@@ -74,6 +74,6 @@ test("the events api accepts every funnel step", () => {
 
 test("the landing page sends landing_view and the migration allows every step", () => {
   assert.match(readFileSync(join(__dirname, "../../public/d8/beta.js"), "utf8"), /ev\("landing_view"\)/);
-  const sql = readFileSync(join(__dirname, "../../../supabase/migrations/20261123120000_polingual_funnel_events.sql"), "utf8");
+  const sql = readFileSync(join(__dirname, "../../../supabase/migrations/20261124230000_polingual_funnel_onboarding.sql"), "utf8");
   for (const s of FUNNEL_STEPS) assert.ok(sql.split(`'${s}'`).length >= 3, s);
 });
