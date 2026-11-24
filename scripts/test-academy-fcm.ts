@@ -84,7 +84,7 @@ test("sendFcm posts one v1 message per device with a cached bearer token", async
   assert.equal(f.calls.filter((c) => c.url.includes("oauth2")).length, 1);
 });
 
-test("sendFcm prunes UNREGISTERED and INVALID_ARGUMENT and keeps tokens on other errors", async () => {
+test("sendFcm prunes UNREGISTERED only and keeps tokens on other errors", async () => {
   resetAccessTokenCache();
   const f = mockFetch((body) => {
     const t = JSON.parse(body).message.token as string;
@@ -101,7 +101,7 @@ test("sendFcm prunes UNREGISTERED and INVALID_ARGUMENT and keeps tokens on other
   );
   assert.equal(r.sent, 0);
   assert.equal(r.failed, 4);
-  assert.deepEqual(pruned.sort(), [tok("a"), tok("b")]);
+  assert.deepEqual(pruned.sort(), [tok("a")]);
 });
 
 test("fcmErrorCode prefers the FcmError detail and falls back to status", () => {

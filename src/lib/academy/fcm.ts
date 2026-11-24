@@ -24,7 +24,7 @@ export interface FcmMessage {
   data: Record<string, string>;
 }
 
-export type FetchLike = (url: string, init: { method: string; headers: Record<string, string>; body: string }) => Promise<{
+export type FetchLike = (url: string, init: { method: string; headers: Record<string, string>; body: string; signal?: AbortSignal }) => Promise<{
   status: number;
   ok: boolean;
   text(): Promise<string>;
@@ -79,6 +79,7 @@ export async function accessToken(cfg: FcmConfig, fetchFn: FetchLike, nowMs: num
   const res = await fetchFn(cfg.tokenUri, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },
+    signal: AbortSignal.timeout(2500),
     body,
   });
   if (!res.ok) throw new Error(`fcm oauth: ${res.status}`);
@@ -99,7 +100,7 @@ export function fcmErrorCode(status: number, text: string): string | null {
 }
 
 export function shouldPruneFcm(code: string | null): boolean {
-  return code === "UNREGISTERED" || code === "INVALID_ARGUMENT";
+  return code === "UNREGISTERED";
 }
 
 export function fcmBody(token: string, msg: FcmMessage): string {
@@ -129,6 +130,7 @@ export async function sendFcm(
         const res = await fetchFn(url, {
           method: "POST",
           headers: { authorization: `Bearer ${bearer}`, "content-type": "application/json" },
+          signal: AbortSignal.timeout(2500),
           body: fcmBody(d.token, msg),
         });
         if (res.ok) {
