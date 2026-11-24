@@ -1,5 +1,5 @@
 const HANDLE_RE = /^[a-z0-9](?:[a-z0-9_-]{1,30}[a-z0-9])$/;
-const RESERVED = new Set(["admin", "api", "academy", "canon", "about", "login", "signin", "settings", "me", "new", "null", "undefined", "bucket", "foundation", "www"]);
+const RESERVED = new Set(["admin", "api", "academy", "canon", "about", "login", "signin", "settings", "me", "new", "null", "undefined", "bucket", "foundation", "www", "polingual", "support", "help", "staff", "official", "moderator", "mod", "team", "root", "system"]);
 
 export function normalizeHandle(input: string): string | null {
   const h = input.trim().toLowerCase();
@@ -47,6 +47,7 @@ export async function loadProfile(deps: ProfileDeps): Promise<ProfileLoad> {
 const SAVE_ERRORS: Record<string, string> = {
   invalid_handle: "That username is not allowed. Use letters, numbers, dashes or underscores.",
   handle_taken: "Someone already has that username. Try another.",
+  name_not_allowed: "Pick a different name. That one is not allowed.",
 };
 
 export async function saveProfile(p: Profile, deps: ProfileDeps): Promise<ProfileSave> {
