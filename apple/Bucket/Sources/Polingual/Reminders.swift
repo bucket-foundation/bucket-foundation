@@ -24,11 +24,12 @@ func backgroundSafe(_ work: @escaping @MainActor () async -> Void) {
 @MainActor
 func langDue(_ store: LangStore) -> [(due: Double, label: String?)] {
     var out: [(due: Double, label: String?)] = []
+    var seen = Set<String>()
     for sys in store.systems {
         for (id, card) in store.state(sys.id).cards.entries {
             guard let due = card.due, !isSentenceCard(id) else { continue }
             let p = parseCardId(id)
-            guard sys.targets.contains(p.lang) else { continue }
+            guard sys.targets.contains(p.lang), seen.insert(id).inserted else { continue }
             out.append((due, store.corpus?.byId[p.itemId]?.form(p.lang)))
         }
     }
