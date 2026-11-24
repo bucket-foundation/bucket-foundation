@@ -156,7 +156,12 @@ struct WordFactsView: View {
                 }
                 .environment(\.layoutDirection, Lang.isRTL(detail.lang) ? .rightToLeft : .leftToRight)
                 if let r = readingText(detail.reading) { Text(r).foregroundStyle(Palette.muted) }
-                if let g = detail.gloss { Text(g).font(.serif(.body)) }
+                if let g = detail.gloss {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text(langName(detail.rootLang).uppercased()).font(.caption2.monospaced()).foregroundStyle(Palette.muted)
+                        Text(g).font(.serif(.body))
+                    }
+                }
                 let tags = [detail.pos, detail.band].compactMap { $0 }
                 if !tags.isEmpty { Text(tags.joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted) }
                 if let a = f.withArticle { line("With its article", a) }
@@ -224,7 +229,7 @@ struct WordFactsView: View {
             guard let p = WordTaps.parse(url) else { return .systemAction }
             if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
             if detail.leadsTo(p.word, lang: p.lang) {
-                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store.playRoot)
+                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.playRoot ?? "en")
             }
             return .handled
         })
