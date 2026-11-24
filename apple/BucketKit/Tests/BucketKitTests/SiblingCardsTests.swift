@@ -24,6 +24,41 @@ import Testing
         #expect(adoptSiblingCards(newer, langs: ["nl"], from: [older]) == newer)
     }
 
+    func placedOnly(_ lang: String, _ itemId: String, at now: Double) -> EngineState {
+        var s = gradeCard(EngineState(), lang, itemId, 3, now: now, tz: "UTC")
+        var c = s.cards[cardId(lang, itemId)]!
+        c.placed = true
+        c.reps = 1
+        c.spread = nil
+        s.cards[cardId(lang, itemId)] = c
+        s.prof = OrderedMap()
+        return s
+    }
+
+    @Test func newerPlacementNeverReplacesAReviewedCard() {
+        var reviewed = gradeCard(EngineState(), "nl", "wife", 3, now: 1_000, tz: "UTC")
+        reviewed = gradeCard(reviewed, "nl", "wife", 3, now: 2_000, tz: "UTC")
+        let placed = placedOnly("nl", "wife", at: 9_000)
+        #expect(adoptSiblingCards(reviewed, langs: ["nl"], from: [placed]) == reviewed)
+    }
+
+    @Test func reviewedCardReplacesANewerPlacement() {
+        let reviewed = gradeCard(EngineState(), "nl", "wife", 3, now: 1_000, tz: "UTC")
+        let placed = placedOnly("nl", "wife", at: 9_000)
+        let id = cardId("nl", "wife")
+        let next = adoptSiblingCards(placed, langs: ["nl"], from: [reviewed])
+        #expect(next.cards[id] == reviewed.cards[id])
+        #expect(next.prof[id] == reviewed.prof[id])
+    }
+
+    @Test func adoptedCardBringsItsProficiencyOrNone() {
+        var mine = gradeCard(EngineState(), "nl", "wife", 3, now: 1_000, tz: "UTC")
+        mine.prof[cardId("nl", "wife")] = Proficiency(theta: 2, n: 5)
+        var other = gradeCard(EngineState(), "nl", "wife", 4, now: 5_000, tz: "UTC")
+        other.prof = OrderedMap()
+        #expect(adoptSiblingCards(mine, langs: ["nl"], from: [other]).prof[cardId("nl", "wife")] == nil)
+    }
+
     @Test func leavesStatsAndHistoryOfTheSetAlone() {
         var other = EngineState()
         other = gradeCard(other, "nl", "wife", 3, now: 1_000, tz: "UTC")
