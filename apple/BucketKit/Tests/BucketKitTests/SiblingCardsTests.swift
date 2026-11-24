@@ -90,6 +90,39 @@ import Testing
         #expect(s.state(a.id).cards[cardId("nl", "wife")] == s.state(b.id).cards[cardId("nl", "wife")])
     }
 
+    @Test func adoptedWordsReachTheServerAndAFreshInstall() async throws {
+        let server = LangServer()
+        let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
+        await s.load()
+        let first = try await s.create(root: "en", targets: ["nl"])
+        s.grade(first.id, lang: "nl", itemId: "wife", rating: 3)
+        let second = try await s.create(root: "en", targets: ["nl", "it"])
+        await s.flush()
+        #expect(!s.hasUnsyncedWork)
+        let id = cardId("nl", "wife")
+        #expect(EngineState(js: server.branches.value[progressBranch(second)]).cards.started(id))
+        let reinstalled = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
+        await reinstalled.load()
+        #expect(reinstalled.state(second.id).cards[id] == s.state(second.id).cards[id])
+    }
+
+    @Test func guestNewSetCarriesWordsToTheAccountAfterSignIn() async throws {
+        let server = LangServer()
+        let signedIn = LockedBox(false)
+        let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { signedIn.value ? "t" : nil }, now: { 2_000 })
+        await s.load()
+        let first = try await s.create(root: "en", targets: ["nl"])
+        s.grade(first.id, lang: "nl", itemId: "wife", rating: 3)
+        let second = try await s.create(root: "en", targets: ["nl", "de"])
+        #expect(s.state(second.id).cards.started(cardId("nl", "wife")))
+        await s.flush()
+        #expect(server.posts.value.isEmpty)
+        signedIn.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(!s.hasUnsyncedWork)
+        #expect(EngineState(js: server.branches.value[progressBranch(second)]).cards.started(cardId("nl", "wife")))
+    }
+
     @Test func addingALanguageBringsItsProgress() async throws {
         let server = LangServer()
         let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
