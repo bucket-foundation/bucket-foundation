@@ -60,8 +60,17 @@ export async function foundingStatus(env: BetaEnv, send: Fetcher = fetch): Promi
   return { body: { ...(spots ?? { open: false as const }), ...(siteKey ? { siteKey } : {}) }, cache: spots ? "s-maxage=30" : "no-store" };
 }
 
-export function ipHash(ip: string | null, env: BetaEnv): string {
-  return createHash("sha256").update(`${env.FOUNDING_IP_SALT?.trim() || "polingual-founding"}:${ip || "unknown"}`).digest("hex");
+const DEV_SALT = randomBytes(16).toString("hex");
+
+export function ipSalt(env: BetaEnv): string | null {
+  const salt = env.FOUNDING_IP_SALT?.trim();
+  if (salt) return salt;
+  return env.VERCEL_ENV === "production" || env.NODE_ENV === "production" ? null : DEV_SALT;
+}
+
+export function ipHash(ip: string | null, env: BetaEnv): string | null {
+  const salt = ipSalt(env);
+  return salt && createHash("sha256").update(`${salt}:${ip || "unknown"}`).digest("hex");
 }
 
 export function familyKey(email: string): string {
@@ -141,10 +150,11 @@ export async function claimFounding(
   const base = rpcBase(env);
   const db = env.POLINGUAL_DB_SERVICE_KEY?.trim();
   const resend = env.RESEND_API_KEY?.trim();
-  if (!base || !db || !resend || !foundingConfigured(env)) return OFFLINE;
+  const ip = ipHash(req.ip ?? null, env);
+  if (!base || !db || !resend || !ip || !foundingConfigured(env)) return OFFLINE;
   if (!(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check above the button, then try again." } };
   const token = randomBytes(32).toString("hex");
-  const args = { p_email: email, p_address: parsed.signup.email, p_token_hash: tokenHash(token), p_ip_hash: ipHash(req.ip ?? null, env) };
+  const args = { p_email: email, p_address: parsed.signup.email, p_token_hash: tokenHash(token), p_ip_hash: ip };
   const row = await rpc<{ outcome: Outcome; spots_left: number }>("claim_founding_family", args, db, base, send);
   if (!row) return UNSAVED;
   const left = Number(row.spots_left);

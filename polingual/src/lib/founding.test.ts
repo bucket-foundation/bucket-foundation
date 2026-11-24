@@ -185,7 +185,19 @@ test("founding status answers 200 and keeps the Turnstile key when spots are off
 test("ip hash is salted and stable", () => {
   assert.equal(ipHash("1.2.3.4", env), ipHash("1.2.3.4", env));
   assert.notEqual(ipHash("1.2.3.4", env), ipHash("1.2.3.4", { FOUNDING_IP_SALT: "other" }));
-  assert.ok(!ipHash("1.2.3.4", env).includes("1.2.3.4"));
+  assert.ok(!ipHash("1.2.3.4", env)?.includes("1.2.3.4"));
+});
+
+test("production without FOUNDING_IP_SALT hashes nothing and keeps signups offline", async () => {
+  for (const prod of [{ VERCEL_ENV: "production" }, { NODE_ENV: "production" }]) {
+    assert.equal(ipHash("1.2.3.4", { ...env, ...prod }), null);
+    const calls: string[] = [];
+    const send = async (url: string) => (calls.push(url), new Response("{}"));
+    const r = await claimFounding({ email: "ana@example.com" }, { ...env, ...prod }, send, { origin: "https://polingual.com", ip: "1.2.3.4", token: "tok" }, { ip: new RateLimiter(5, 60_000), email: new RateLimiter(5, 60_000) });
+    assert.equal(r.status, 503);
+    assert.equal(calls.length, 0);
+  }
+  assert.match(ipHash("1.2.3.4", { VERCEL_ENV: "production", FOUNDING_IP_SALT: "s" }) ?? "", /^[0-9a-f]{64}$/);
 });
 
 test("parseCodes trims, uppercases and dedupes", () => {
