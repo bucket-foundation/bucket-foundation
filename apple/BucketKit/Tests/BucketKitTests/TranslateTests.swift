@@ -183,3 +183,12 @@ func lexiconShelf() -> LexiconShelf {
     #expect(ids.count == Set(ids).count)
     #expect(TranslateEngine.deckWords("zzqx vvbn", source: "en", corpus: corpus).isEmpty)
 }
+
+@Test func deckWordsSkipsShortTokensAndPhrasesAndCapsTheCount() throws {
+    let corpus = try translateCorpus()
+    #expect(TranslateEngine.deckWords("a is up", source: "en", corpus: corpus).isEmpty)
+    let long = corpus.items.filter { i in i.kind == .word && (i.form("en").map { !$0.contains(" ") && $0.count > 3 } ?? false) }.prefix(9)
+    let ids = TranslateEngine.deckWords(long.map { $0.form("en")! }.joined(separator: " "), source: "en", corpus: corpus)
+    #expect(ids.count <= 6)
+    #expect(ids.allSatisfy { corpus.byId[$0]?.kind == .word })
+}
