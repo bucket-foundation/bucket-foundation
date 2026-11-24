@@ -279,6 +279,20 @@ test("migration keeps lobby tables private and limits joins in the database", ()
   assert.match(sql, /check \(answer = any \(choices\)\)/);
 });
 
+test("a merged guest token stops working", async () => {
+  const g = await import("../src/lib/academy/lobby-guests");
+  const secret = "s".repeat(40);
+  const t = g.issueGuestToken("merged_guest-id-123456", "Ana", secret, 1_000);
+  const revoked = new Set<string>();
+  assert.equal((await g.liveGuest(t.token, secret, 2_000, async (s) => revoked.has(s)))?.sub, t.userId);
+  revoked.add(t.userId);
+  assert.equal(await g.liveGuest(t.token, secret, 2_000, async (s) => revoked.has(s)), null);
+  const merge = readFileSync(join(__dirname, "..", "src/app/api/academy/lobbies/guest/merge/route.ts"), "utf8");
+  assert.ok(merge.indexOf("revokeGuest(claims.sub)") > merge.indexOf("merge_lobby_guest"));
+  const sql = readFileSync(join(__dirname, "..", "supabase/migrations/20261124200000_polingual_lobby_guest_revoked.sql"), "utf8");
+  assert.match(sql, /revoke all on bucket.lobby_guest_revoked from public, anon, authenticated/);
+});
+
 test("guest tokens sign a stable user id and refuse tampering or expiry", async () => {
   const g = await import("../src/lib/academy/lobby-guests");
   const secret = "s".repeat(40);
