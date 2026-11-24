@@ -56,20 +56,28 @@ export function parseCheckoutRequest(body: unknown): { ok: true; req: CheckoutRe
   return { ok: true, req };
 }
 
-export function checkoutForm(cfg: CheckoutConfig, req: CheckoutRequest, userId: string): URLSearchParams {
+export interface TrialHistory {
+  used: boolean;
+  customer: string | null;
+}
+
+export const FRESH: TrialHistory = { used: false, customer: null };
+
+export function checkoutForm(cfg: CheckoutConfig, req: CheckoutRequest, userId: string, history: TrialHistory = FRESH): URLSearchParams {
   const f = new URLSearchParams();
   f.set("mode", "subscription");
   f.set("line_items[0][price]", cfg.prices[req.plan]);
   f.set("line_items[0][quantity]", "1");
   f.set("success_url", req.returnTo === "app" ? `${cfg.site}/app?checkout=done` : cfg.successUrl);
   f.set("cancel_url", req.returnTo === "app" ? `${cfg.site}/app` : cfg.cancelUrl);
-  if (TRIAL_PLANS.includes(req.plan)) f.set("subscription_data[trial_period_days]", String(TRIAL_DAYS));
+  if (TRIAL_PLANS.includes(req.plan) && !history.used) f.set("subscription_data[trial_period_days]", String(TRIAL_DAYS));
   f.set("allow_promotion_codes", "true");
   f.set("metadata[product]", "polingual");
   f.set("metadata[plan]", req.plan);
   f.set("subscription_data[metadata][product]", "polingual");
   f.set("subscription_data[metadata][plan]", req.plan);
-  if (req.email) f.set("customer_email", req.email);
+  if (history.customer) f.set("customer", history.customer);
+  else if (req.email) f.set("customer_email", req.email);
   f.set("metadata[user_id]", userId);
   f.set("subscription_data[metadata][user_id]", userId);
   if (req.referral && req.network) {
@@ -209,6 +217,7 @@ export interface CheckoutDeps {
   config: () => CheckoutConfig | null;
   userId: () => Promise<string | null>;
   currentStatus: (userId: string) => Promise<string | null>;
+  trialHistory: (userId: string) => Promise<TrialHistory>;
   createSession: (cfg: CheckoutConfig, form: URLSearchParams) => Promise<{ url: string | null; id: string | null }>;
 }
 
@@ -223,9 +232,34 @@ export async function handleCheckout(deps: CheckoutDeps, body: unknown): Promise
   if (!uid) return { status: 401, body: { error: "unauthorized" } };
   const current = await deps.currentStatus(uid);
   if (current && ACTIVE_STATUSES.has(current)) return { status: 409, body: { error: "already_subscribed", portal: true } };
-  const s = await deps.createSession(cfg, checkoutForm(cfg, parsed.req, uid));
+  const s = await deps.createSession(cfg, checkoutForm(cfg, parsed.req, uid, await deps.trialHistory(uid)));
   if (!s.url) return { status: 502, body: { error: "checkout_failed" } };
   return { status: 200, body: { url: s.url, id: s.id } };
+}
+
+export interface TrialEnding {
+  eventId: string;
+  customer: string;
+  trialEnd: number;
+}
+
+export function trialEndingFrom(event: unknown): TrialEnding | null {
+  const e = (event && typeof event === "object" ? event : {}) as Obj;
+  if (e.type !== "customer.subscription.trial_will_end") return null;
+  const o = ((e.data as Obj | undefined)?.object ?? {}) as Obj;
+  const meta = (o.metadata ?? {}) as Obj;
+  const eventId = str(e.id);
+  const customer = str(o.customer);
+  if (!eventId || !customer || meta.product !== "polingual" || typeof o.trial_end !== "number" || o.cancel_at_period_end === true) return null;
+  return { eventId, customer, trialEnd: o.trial_end };
+}
+
+export function trialEndingEmail(trialEnd: number, site: string): { subject: string; text: string } {
+  const day = new Date(trialEnd * 1000).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", timeZone: "UTC" });
+  return {
+    subject: "Your Polingual trial ends in 3 days",
+    text: `Your free trial ends on ${day}, when your yearly plan starts at $59.99. To cancel and pay nothing, open ${site}/app/account before then.`,
+  };
 }
 
 export interface WebhookDeps {
@@ -237,6 +271,7 @@ export interface WebhookDeps {
   chargeCustomer: (charge: string) => Promise<string | null>;
   patch: (userId: string, p: EntitlementPatch) => Promise<boolean>;
   gift?: (event: unknown) => Promise<HandlerResult | null>;
+  trialEnding?: (t: TrialEnding) => Promise<boolean>;
 }
 
 async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent): Promise<HandlerResult> {
@@ -258,6 +293,11 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
     event = JSON.parse(payload);
   } catch {
     return { status: 400, body: { error: "bad_payload" } };
+  }
+  const ending = trialEndingFrom(event);
+  if (ending) {
+    if (deps.trialEnding && !(await deps.trialEnding(ending))) return { status: 500, body: { error: "reminder_failed" } };
+    return { status: 200, body: { received: true, reminded: !!deps.trialEnding } };
   }
   const ce = customerEventFrom(event);
   const sub = ce ? await applyCustomerEvent(deps, ce) : null;

@@ -503,7 +503,7 @@ enum TrialReminder {
         let result = outcome(await center.notificationSettings().authorizationStatus, until: until, now: now)
         guard result == .scheduled, let at = fireDate(until: until, now: now) else { return result }
         let content = UNMutableNotificationContent()
-        content.title = String(localized: "Your Polingual trial ends in 2 days")
+        content.title = String(localized: "Your Polingual trial ends in \(Plan.reminderDaysBefore) days")
         content.body = String(localized: "Keep learning, or cancel in Settings before tomorrow and pay nothing.")
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at), repeats: false)
         do {

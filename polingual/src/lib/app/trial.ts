@@ -1,5 +1,5 @@
 export const TRIAL_DAYS = 7;
-export const REMINDER_DAYS_BEFORE = 2;
+export const REMINDER_DAYS_BEFORE = 3;
 export const DEFAULT_PLAN = "yearly";
 export const TRIAL_PLANS: readonly string[] = ["yearly"];
 
@@ -25,7 +25,7 @@ export function trialTimeline(start: Date, price: string): TimelineStep[] {
   const remind = TRIAL_DAYS - REMINDER_DAYS_BEFORE;
   return [
     { day: 0, at: at(0), title: "Today", body: "Every language opens. No payment now." },
-    { day: remind, at: at(remind), title: `Day ${remind}`, body: "We remind you that your trial ends in 2 days." },
+    { day: remind, at: at(remind), title: `Day ${remind}`, body: `We email you that your trial ends in ${REMINDER_DAYS_BEFORE} days.` },
     { day: TRIAL_DAYS, at: at(TRIAL_DAYS), title: `Day ${TRIAL_DAYS}`, body: `Your plan starts at ${price}. Cancel before then and you pay nothing.` },
   ];
 }

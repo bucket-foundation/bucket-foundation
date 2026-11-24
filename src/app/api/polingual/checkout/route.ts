@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { checkoutConfig, handleCheckout } from "@/lib/billing/polingual-checkout";
-import { entitlementStoreConfigured, readEntitlementState } from "@/lib/billing/entitlement-store";
+import { entitlementStoreConfigured, readEntitlementState, readStripeCustomer } from "@/lib/billing/entitlement-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,6 +16,10 @@ export async function POST(req: NextRequest): Promise<Response> {
         config: () => (entitlementStoreConfigured() ? checkoutConfig(process.env) : null),
         userId: async () => (await verifyRequestUser(req))?.id ?? null,
         currentStatus: async (uid) => (await readEntitlementState(uid, "polingual"))?.status ?? null,
+        trialHistory: async (uid) => {
+          const row = await readEntitlementState(uid, "polingual");
+          return { used: row !== null, customer: row ? await readStripeCustomer(uid, "polingual") : null };
+        },
         createSession: async (cfg, form) => {
           const res = await fetch(`${STRIPE_API}/v1/checkout/sessions`, {
             method: "POST",

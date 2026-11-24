@@ -17,7 +17,7 @@ for (const width of [1280, 390]) {
     await expect(page.getByTestId("plan")).toHaveCount(1);
     await expect(page.getByTestId("per-week")).toHaveText("$1.15 a week");
     await expect(page.getByTestId("no-payment")).toHaveText("No payment now");
-    await expect(page.getByTestId("trial-timeline")).toContainText("Day 5");
+    await expect(page.getByTestId("trial-timeline")).toContainText("Day 4");
     await page.getByTestId("see-all-plans").click();
     await expect(page.getByTestId("plan")).toHaveCount(5);
     for (const price of ["$9.99", "$59.99", "$89.99", "$149.99", "$29.99"]) await expect(page.getByTestId("paywall")).toContainText(price);
