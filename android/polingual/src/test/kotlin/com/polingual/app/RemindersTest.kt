@@ -27,7 +27,8 @@ class RemindersTest {
     fun riskFiresTonightOrTomorrow() {
         assertEquals(at(20), ReminderPlan.riskFire(at(10), 8 * 60, 3, false, utc))
         assertEquals(at(20, day = 2), ReminderPlan.riskFire(at(10), 8 * 60, 3, true, utc))
-        assertNull(ReminderPlan.riskFire(at(21), 8 * 60, 3, false, utc))
+        assertEquals(at(20, day = 2), ReminderPlan.riskFire(at(21), 8 * 60, 3, false, utc))
+        assertEquals(at(20, day = 2), ReminderPlan.riskFire(at(20), 8 * 60, 3, false, utc))
         assertNull(ReminderPlan.riskFire(at(10), 8 * 60, 0, false, utc))
     }
 
