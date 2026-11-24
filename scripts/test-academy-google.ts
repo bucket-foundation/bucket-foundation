@@ -87,7 +87,7 @@ test("the google action returns the same token pair as the code flow", async () 
   });
   const r = await handle({ action: "google", id_token: await f.sign({}), nonce: RAW, app: "polingual" }, "1.1.1.1");
   assert.equal(r.status, 200);
-  assert.deepEqual(r.body, { access_token: "at", refresh_token: "rt", expires_at: NOW / 1000 + 3600, user_id: "u1" });
+  assert.deepEqual(r.body, { access_token: "at", refresh_token: "rt", expires_at: NOW / 1000 + 3600, user_id: "u1", new_account: false });
   assert.deepEqual(signedIn, ["learner@example.com"]);
   const bad = await handle({ action: "google", id_token: await f.sign({}, f.rogue), nonce: RAW }, "1.1.1.1");
   assert.deepEqual(bad, { status: 401, body: { error: "bad_token" } });

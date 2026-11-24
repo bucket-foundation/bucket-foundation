@@ -44,9 +44,12 @@ export function funnelBody(step: FunnelStep, ctx: { store: Store | null; search:
   });
 }
 
+const PAID_PRODUCTS: readonly string[] = ["com.polingual.monthly", "com.polingual.yearly", "web.polingual.monthly", "web.polingual.yearly"];
+
 export function accessStep(access: Access): FunnelStep | null {
-  if (access.status === "open") return access.trial ? "trial_start" : "paid";
-  return null;
+  if (access.status !== "open") return null;
+  if (access.trial) return "trial_start";
+  return access.productId && PAID_PRODUCTS.includes(access.productId) ? "paid" : null;
 }
 
 function beacon(body: string): void {

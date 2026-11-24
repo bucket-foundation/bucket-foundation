@@ -55,7 +55,7 @@ export default function SignIn({ onSignedIn, copy = LEARN, flame = true }: { onS
     const r = await appAuth().mobile.verifyCode(email.trim(), code.trim());
     setBusy(false);
     if (r.ok) {
-      track("signup");
+      if (r.newAccount) track("signup");
       onSignedIn();
     }
     else setError(signInError(r.error));

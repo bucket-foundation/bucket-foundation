@@ -23,7 +23,7 @@ export interface MobileSync {
   sync: ReviewSync;
   accessToken(): Promise<string | null>;
   sendCode(email: string): Promise<{ ok: boolean; error?: string }>;
-  verifyCode(email: string, code: string): Promise<{ ok: boolean; error?: string }>;
+  verifyCode(email: string, code: string): Promise<{ ok: boolean; error?: string; newAccount?: boolean }>;
   logout(): Promise<void>;
   route(path: string, method: string, body: string | null): Promise<Response | null>;
 }
@@ -109,14 +109,14 @@ export function createMobileSync(deps: MobileSyncDeps): MobileSync {
     return r.ok ? { ok: true } : { ok: false, error: String(r.body.error ?? "send_failed") };
   }
 
-  async function verifyCode(email: string, code: string): Promise<{ ok: boolean; error?: string }> {
+  async function verifyCode(email: string, code: string): Promise<{ ok: boolean; error?: string; newAccount?: boolean }> {
     if (!EMAIL_RE.test(email) || !/^\d{6,10}$/.test(code)) return { ok: false, error: "bad_code" };
     const r = await session({ action: "verify", email, code });
     const stored = r.ok ? toStored(r.body, null) : null;
     if (!stored) return { ok: false, error: String(r.body.error ?? "bad_code") };
     await deps.vault.set(stored);
     sync.setUser(stored.user_id);
-    return { ok: true };
+    return { ok: true, newAccount: r.body.new_account === true };
   }
 
   async function logout(): Promise<void> {

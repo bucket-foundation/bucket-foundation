@@ -1,7 +1,7 @@
 import test from "node:test";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
-import { APPLE_SIGNIN_REPLY_BUDGET_MS, appleAudiences, bearerToken, clientIp, sessionClientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
+import { APPLE_SIGNIN_REPLY_BUDGET_MS, appleAudiences, bearerToken, clientIp, sessionClientIp, createSessionHandler, firstSignIn, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 import { PROXY_IP_HEADER, PROXY_TS_HEADER, signClientIp, verifiedProxyIp } from "../src/lib/academy/proxy-ip";
 
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "u1" } };
@@ -122,7 +122,7 @@ test("apple id token with a matching nonce returns the verify session shape", as
   const tok = appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") });
   const ok = await w.handle({ action: "apple", id_token: tok, nonce: "n1" }, "1.1.1.1");
   assert.equal(ok.status, 200);
-  assert.deepEqual(ok.body, { access_token: "at", refresh_token: "rt", expires_at: 1_760_000_000 + 3600, user_id: "u1" });
+  assert.deepEqual(ok.body, { access_token: "at", refresh_token: "rt", expires_at: 1_760_000_000 + 3600, user_id: "u1", new_account: false });
   assert.deepEqual(w.calls, [`apple ${tok} n1`]);
 });
 
@@ -153,8 +153,8 @@ test("contract: the app half of #987 posts this exact apple request and gets the
     const w = world();
     const r = await w.handle({ action: "apple", id_token: appleToken({ aud, nonce: sha("raw-nonce") }), nonce: "raw-nonce", app }, "1.1.1.1");
     assert.equal(r.status, 200);
-    assert.deepEqual(Object.keys(r.body).sort(), ["access_token", "expires_at", "refresh_token", "user_id"]);
-    assert.deepEqual(r.body, { access_token: "at", refresh_token: "rt", expires_at: 1_760_000_000 + 3600, user_id: "u1" });
+    assert.deepEqual(Object.keys(r.body).sort(), ["access_token", "expires_at", "new_account", "refresh_token", "user_id"]);
+    assert.deepEqual(r.body, { access_token: "at", refresh_token: "rt", expires_at: 1_760_000_000 + 3600, user_id: "u1", new_account: false });
   }
 });
 
@@ -278,4 +278,16 @@ test("sessionClientIp rejects any x-polingual header set that fails verification
   assert.deepEqual(sessionClientIp(new Headers({ ...base, [PROXY_IP_HEADER]: "198.51.100.1" }), { secret: "s3cret", now }), bad);
   assert.deepEqual(sessionClientIp(new Headers({ ...base, ...signClientIp("203.0.113.9", "s3cret", now) }), { now }), bad);
   assert.deepEqual(sessionClientIp(new Headers({ ...base, ...signClientIp("203.0.113.9", "s3cret", now) }), { secret: "s3cret", now: now + 301_000 }), bad);
+});
+
+test("firstSignIn marks a verify as a new account only when confirmation and sign-in coincide", async () => {
+  assert.equal(firstSignIn({ id: "u", email_confirmed_at: "2026-11-23T10:00:00Z", last_sign_in_at: "2026-11-23T10:00:01Z" }), true);
+  assert.equal(firstSignIn({ id: "u", email_confirmed_at: "2026-01-01T00:00:00Z", last_sign_in_at: "2026-11-23T10:00:00Z" }), false);
+  assert.equal(firstSignIn({ id: "u" }), false);
+  assert.equal(firstSignIn(undefined), false);
+  const fresh = { ...SESSION, user: { id: "u1", email_confirmed_at: "2026-11-23T10:00:00Z", last_sign_in_at: "2026-11-23T10:00:00Z" } };
+  const w = world({ verifyOtp: async () => ({ session: fresh, status: null }) });
+  const r = await w.handle({ action: "verify", email: "a@b.co", code: "123456" }, "1.1.1.1");
+  assert.equal(r.status, 200);
+  assert.equal(r.body.new_account, true);
 });

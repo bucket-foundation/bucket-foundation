@@ -48,9 +48,23 @@ test("funnelBody survives missing storage and bad stored utm", () => {
 
 test("accessStep maps subscription access to trial or paid", () => {
   assert.equal(accessStep({ status: "open", trial: true }), "trial_start");
-  assert.equal(accessStep({ status: "open", trial: false }), "paid");
+  assert.equal(accessStep({ status: "open", trial: false, productId: "com.polingual.yearly" }), "paid");
+  assert.equal(accessStep({ status: "open", trial: false, productId: "web.polingual.monthly" }), "paid");
   assert.equal(accessStep({ status: "locked" }), null);
   assert.equal(accessStep({ status: "unknown" }), null);
+});
+
+test("granted access never counts as paid", () => {
+  for (const productId of ["web.polingual.gift.yearly", "web.polingual.founding", "web.polingual.comp", "web.polingual.membership", null]) {
+    assert.equal(accessStep({ status: "open", trial: false, productId }), null, String(productId));
+  }
+});
+
+test("the dedupe migration makes once-only steps unique per visitor and inserts idempotent", () => {
+  const sql = readFileSync(join(__dirname, "../../../supabase/migrations/20261123200000_polingual_funnel_once.sql"), "utf8");
+  assert.match(sql, /create unique index if not exists polingual_web_events_once\s+on public\.polingual_web_events \(visitor, name\)/);
+  for (const s of ["signup", "first_lesson", "trial_start", "paid"]) assert.ok(sql.includes(`'${s}'`), s);
+  assert.match(sql, /on conflict \(visitor, name\) where name in \([^)]*\) do nothing/);
 });
 
 test("the events api accepts every funnel step", () => {
