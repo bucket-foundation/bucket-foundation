@@ -15,11 +15,13 @@ public enum PL {
         "tyrian-deep": 0x3A0F2F,
         "vermilion": 0xD9381E,
         "vermilion-deep": 0x8E2312,
+        "vermilion-ink": 0xBB301A,
         "lapis": 0x26428B,
         "lapis-deep": 0x172A5C,
         "lapis-soft": 0xC9D3EA,
         "ochre": 0xE9A23B,
         "ochre-deep": 0xA9701F,
+        "ochre-ink": 0x895B19,
         "malachite": 0x1E7A5A,
         "malachite-deep": 0x124B37,
         "maya": 0x6FB7C2,
@@ -48,11 +50,13 @@ public enum PL {
         "tyrian-deep": 1,
         "vermilion": 1,
         "vermilion-deep": 1,
+        "vermilion-ink": 1,
         "lapis": 1,
         "lapis-deep": 1,
         "lapis-soft": 1,
         "ochre": 1,
         "ochre-deep": 1,
+        "ochre-ink": 1,
         "malachite": 1,
         "malachite-deep": 1,
         "maya": 1,
@@ -80,11 +84,13 @@ public enum PL {
     public static let tyrianDeep = Color(plHex: 0x3A0F2F, alpha: 1)
     public static let vermilion = Color(plHex: 0xD9381E, alpha: 1)
     public static let vermilionDeep = Color(plHex: 0x8E2312, alpha: 1)
+    public static let vermilionInk = Color(plHex: 0xBB301A, alpha: 1)
     public static let lapis = Color(plHex: 0x26428B, alpha: 1)
     public static let lapisDeep = Color(plHex: 0x172A5C, alpha: 1)
     public static let lapisSoft = Color(plHex: 0xC9D3EA, alpha: 1)
     public static let ochre = Color(plHex: 0xE9A23B, alpha: 1)
     public static let ochreDeep = Color(plHex: 0xA9701F, alpha: 1)
+    public static let ochreInk = Color(plHex: 0x895B19, alpha: 1)
     public static let malachite = Color(plHex: 0x1E7A5A, alpha: 1)
     public static let malachiteDeep = Color(plHex: 0x124B37, alpha: 1)
     public static let maya = Color(plHex: 0x6FB7C2, alpha: 1)
