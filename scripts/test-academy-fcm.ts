@@ -10,14 +10,16 @@ import {
   resetAccessTokenCache,
   sendFcm,
   signAssertion,
-  type FcmConfig,
+  vercelOidcToken,
+  type FcmKeyConfig,
+  type FcmOidcConfig,
   type FetchLike,
 } from "../src/lib/academy/fcm";
 
 const { privateKey, publicKey } = generateKeyPairSync("rsa", { modulusLength: 2048 });
 const pem = privateKey.export({ type: "pkcs8", format: "pem" }).toString();
 const account = { type: "service_account", project_id: "polingual-test", client_email: "push@polingual-test.iam.gserviceaccount.com", private_key: pem, token_uri: "https://oauth2.googleapis.com/token" };
-const cfg = fcmConfig({ FCM_SERVICE_ACCOUNT_JSON: JSON.stringify(account) }) as FcmConfig;
+const cfg = fcmConfig({ FCM_SERVICE_ACCOUNT_JSON: JSON.stringify(account) }) as FcmKeyConfig;
 const tok = (c: string) => c.repeat(140);
 
 interface Call {
@@ -44,6 +46,7 @@ const fcmError = (status: number, code: string, errorCode?: string) =>
 
 test("fcmConfig fails closed when unset, empty, malformed or incomplete", () => {
   assert.equal(fcmConfig({}), null);
+  assert.equal(fcmConfig({ VERCEL: "1", FCM_SERVICE_ACCOUNT_JSON: "{not json" }), null);
   assert.equal(fcmConfig({ FCM_SERVICE_ACCOUNT_JSON: "  " }), null);
   assert.equal(fcmConfig({ FCM_SERVICE_ACCOUNT_JSON: "{not json" }), null);
   assert.equal(fcmConfig({ FCM_SERVICE_ACCOUNT_JSON: JSON.stringify({ ...account, private_key: "" }) }), null);
@@ -52,7 +55,7 @@ test("fcmConfig fails closed when unset, empty, malformed or incomplete", () => 
 });
 
 test("fcmConfig unescapes literal newlines and rejects a non-https token_uri", () => {
-  const c = fcmConfig({ FCM_SERVICE_ACCOUNT_JSON: JSON.stringify({ ...account, private_key: pem.replace(/\n/g, "\\n"), token_uri: "http://evil" }) });
+  const c = fcmConfig({ FCM_SERVICE_ACCOUNT_JSON: JSON.stringify({ ...account, private_key: pem.replace(/\n/g, "\\n"), token_uri: "http://evil" }) }) as FcmKeyConfig | null;
   assert.ok(c);
   assert.equal(c.privateKey, pem.trim());
   assert.equal(c.tokenUri, "https://oauth2.googleapis.com/token");
@@ -139,4 +142,93 @@ test("mergeResults sums both platforms and passes through a single side", () => 
   assert.deepEqual(mergeResults(a, b), { sent: 3, pruned: ["x"], moved: ["y"], failed: 1 });
   assert.equal(mergeResults(null, b), b);
   assert.equal(mergeResults(null, null), null);
+});
+
+const audience = "//iam.googleapis.com/projects/201543151655/locations/global/workloadIdentityPools/vercel/providers/vercel";
+const saEmail = "firebase-adminsdk-fbsvc@bucket-foundation.iam.gserviceaccount.com";
+
+function oidcFetch(opts: { sts?: number; iam?: number; expireTime?: string } = {}): FetchLike & { calls: Call[] } {
+  const calls: Call[] = [];
+  const fn = (async (url: string, init: { headers: Record<string, string>; body: string }) => {
+    calls.push({ url, headers: init.headers, body: init.body });
+    const reply = (status: number, body: unknown) => ({ status, ok: status < 300, text: async () => JSON.stringify(body) });
+    if (url.startsWith("https://sts.googleapis.com")) return reply(opts.sts ?? 200, { access_token: "sts.fed", expires_in: 3600 });
+    if (url.startsWith("https://iamcredentials.googleapis.com")) return reply(opts.iam ?? 200, { accessToken: "ya29.sa", expireTime: opts.expireTime ?? "2027-01-15T09:00:00Z" });
+    return reply(200, {});
+  }) as unknown as FetchLike & { calls: Call[] };
+  fn.calls = calls;
+  return fn;
+}
+
+const t0 = Date.parse("2027-01-15T08:00:00Z");
+
+test("fcmConfig picks OIDC defaults on Vercel without a key and reads env overrides", () => {
+  assert.equal(fcmConfig({ VERCEL_OIDC_TOKEN: "" }), null);
+  const d = fcmConfig({ VERCEL: "1" }) as FcmOidcConfig;
+  assert.deepEqual(d, { auth: "oidc", projectId: "bucket-foundation", audience, serviceAccountEmail: saEmail });
+  const o = fcmConfig({ FCM_AUTH: "oidc", GCP_PROJECT_NUMBER: "9", GCP_WIF_POOL_ID: "p", GCP_WIF_PROVIDER_ID: "q", FCM_SERVICE_ACCOUNT_EMAIL: "x@y", FCM_PROJECT_ID: "z" }) as FcmOidcConfig;
+  assert.equal(o.audience, "//iam.googleapis.com/projects/9/locations/global/workloadIdentityPools/p/providers/q");
+  assert.equal(o.serviceAccountEmail, "x@y");
+  assert.equal(o.projectId, "z");
+  assert.equal((fcmConfig({ VERCEL: "1", FCM_SERVICE_ACCOUNT_JSON: JSON.stringify(account) }) as FcmKeyConfig).auth, "key");
+});
+
+test("vercelOidcToken prefers the request header and falls back to env", () => {
+  const sym = Symbol.for("@vercel/request-context");
+  const g = globalThis as Record<symbol, unknown>;
+  assert.equal(vercelOidcToken({ VERCEL_OIDC_TOKEN: "env.jwt" }), "env.jwt");
+  g[sym] = { get: () => ({ headers: { "x-vercel-oidc-token": "hdr.jwt" } }) };
+  try {
+    assert.equal(vercelOidcToken({ VERCEL_OIDC_TOKEN: "env.jwt" }), "hdr.jwt");
+  } finally {
+    delete g[sym];
+  }
+  assert.equal(vercelOidcToken({}), null);
+});
+
+test("OIDC path exchanges at STS, impersonates the SA, sends to FCM, and caches until 60s before expiry", async () => {
+  resetAccessTokenCache();
+  const cfg: FcmOidcConfig = { ...(fcmConfig({ VERCEL: "1" }) as FcmOidcConfig), oidcToken: () => "vercel.jwt" };
+  const f = oidcFetch();
+  const devices = [{ token: tok("a"), bundle_id: "com.polingual.app" }];
+  const msg = { body: "hi", tag: "g", data: {} };
+  const r = await sendFcm(devices, msg, { cfg, prune: async () => undefined, fetch: f, now: t0 });
+  assert.equal(r.sent, 1);
+  const [sts, iam, send] = f.calls;
+  assert.equal(sts.url, "https://sts.googleapis.com/v1/token");
+  const sb = JSON.parse(sts.body);
+  assert.equal(sb.grantType, "urn:ietf:params:oauth:grant-type:token-exchange");
+  assert.equal(sb.audience, audience);
+  assert.equal(sb.subjectToken, "vercel.jwt");
+  assert.equal(sb.subjectTokenType, "urn:ietf:params:oauth:token-type:jwt");
+  assert.equal(sb.scope, "https://www.googleapis.com/auth/cloud-platform");
+  assert.equal(iam.url, `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${encodeURIComponent(saEmail)}:generateAccessToken`);
+  assert.equal(iam.headers.authorization, "Bearer sts.fed");
+  assert.deepEqual(JSON.parse(iam.body).scope, ["https://www.googleapis.com/auth/firebase.messaging"]);
+  assert.equal(send.url, "https://fcm.googleapis.com/v1/projects/bucket-foundation/messages:send");
+  assert.equal(send.headers.authorization, "Bearer ya29.sa");
+  await sendFcm(devices, msg, { cfg, prune: async () => undefined, fetch: f, now: t0 + 3600_000 - 61_000 });
+  assert.equal(f.calls.filter((c) => c.url.includes("sts")).length, 1);
+  await sendFcm(devices, msg, { cfg, prune: async () => undefined, fetch: f, now: t0 + 3600_000 - 59_000 });
+  assert.equal(f.calls.filter((c) => c.url.includes("sts")).length, 2);
+});
+
+test("OIDC path fails closed with no token, STS or IAM errors, or a bad expiry", async () => {
+  const base = fcmConfig({ VERCEL: "1" }) as FcmOidcConfig;
+  const devices = [{ token: tok("a"), bundle_id: "com.polingual.app" }];
+  const msg = { body: "hi", tag: "g", data: {} };
+  const cases: [FcmOidcConfig, FetchLike & { calls: Call[] }, RegExp][] = [
+    [{ ...base, oidcToken: () => null }, oidcFetch(), /no vercel oidc token/],
+    [{ ...base, oidcToken: () => "j" }, oidcFetch({ sts: 403 }), /sts: 403/],
+    [{ ...base, oidcToken: () => "j" }, oidcFetch({ iam: 403 }), /impersonate: 403/],
+    [{ ...base, oidcToken: () => "j" }, oidcFetch({ expireTime: "soon" }), /bad expireTime/],
+  ];
+  for (const [c, f, re] of cases) {
+    resetAccessTokenCache();
+    await assert.rejects(sendFcm(devices, msg, { cfg: c, prune: async () => undefined, fetch: f, now: t0 }), re);
+    assert.equal(f.calls.filter((x) => x.url.includes("fcm.googleapis.com")).length, 0);
+  }
+  resetAccessTokenCache();
+  const store = { devices: async () => devices, prune: async () => undefined };
+  assert.equal(await pushFcmStreak("u", 2, { cfg: { ...base, oidcToken: () => null }, store, fetch: oidcFetch(), now: t0 }), null);
 });
