@@ -11,7 +11,7 @@ export default function Page() {
       <p>Effective at launch.</p>
       <p>These terms cover your use of the Polingual app and polingual.com, published by AGFarms LLC. Apple&rsquo;s Licensed Application End User License Agreement also applies to the app.</p>
       <h2>Subscription</h2>
-      <p>Polingual Monthly and Polingual Yearly are auto-renewable subscriptions sold through the App Store. New subscribers get a 3-day free trial. Payment is charged to your Apple Account when you confirm the purchase. The subscription renews at the same price unless you cancel at least 24 hours before the end of the current period. Manage or cancel in Settings, Apple Account, Subscriptions. Refunds go through Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+      <p>Polingual Monthly and Polingual Yearly are auto-renewable subscriptions sold through the App Store. Polingual Yearly starts with a 7-day free trial. Payment is charged to your Apple Account when you confirm the purchase. The subscription renews at the same price unless you cancel at least 24 hours before the end of the current period. Manage or cancel in Settings, Apple Account, Subscriptions. Refunds go through Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
       <h2>Your account</h2>
       <p>You sign in with Apple or with an email code. Keep access to your email secure. One account works in Polingual, Bucket and bucket.foundation.</p>
       <h2>Content</h2>

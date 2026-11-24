@@ -57,6 +57,22 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function useAccess(signedIn: boolean) {
+  const [access, setAccess] = useState<Access>({ status: "checking" });
+  const check = useCallback(() => {
+    setAccess({ status: "checking" });
+    void fetchAccess().then((a) => {
+      const step = accessStep(a);
+      if (step) track(step);
+      setAccess(a);
+    });
+  }, []);
+  useEffect(() => {
+    if (signedIn) check();
+  }, [signedIn, check]);
+  return { access, check };
+}
+
 function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname() ?? "/app";
   const open = OPEN.some((p) => path.startsWith(p));
@@ -71,20 +87,7 @@ function Shell({ children }: { children: React.ReactNode }) {
     void refresh();
   }, [refresh]);
 
-  const [access, setAccess] = useState<Access>({ status: "checking" });
-  const signedIn = auth.status === "signed-in";
-  const check = useCallback(() => {
-    setAccess({ status: "checking" });
-    void fetchAccess().then((a) => {
-      const step = accessStep(a);
-      if (step) track(step);
-      setAccess(a);
-    });
-  }, []);
-  useEffect(() => {
-    if (signedIn) check();
-  }, [signedIn, check]);
-
+  const { access, check } = useAccess(auth.status === "signed-in");
   const lessonDone = useSyncExternalStore(subscribeFirstLesson, () => firstLessonDone(), () => false);
   const gate = appGate(access.status, lessonDone);
 

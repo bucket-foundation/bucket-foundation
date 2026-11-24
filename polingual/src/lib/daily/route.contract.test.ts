@@ -20,6 +20,8 @@ mock.module("@supabase/supabase-js", { namedExports: { createClient: () => ({ rp
 
 test("the progress route accepts the polingual-daily branch at a full book's size", async () => {
   const { POST } = await import(at("app/api/academy/progress/route.ts"));
+  const { progressDeps } = await import(at("lib/academy/progress-server.ts"));
+  progressDeps.service = () => ({ rpc: async (_fn: string, args: (typeof writes)[number]) => (writes.push(args), { data: { written: args.p_rows.map((r) => r.branch), refused: [] }, error: null }) }) as never;
   const results: DailyBook = {};
   for (let d = 0; d < 120; d++) {
     const day = `2026-${1 + (d % 12)}-${1 + (d % 28)}`;
