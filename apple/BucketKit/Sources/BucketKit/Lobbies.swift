@@ -611,13 +611,13 @@ public final class LobbyStore {
     }
 
     #if DEBUG
-    public func stage(players: Int, mode: LobbyPromptMode = .form, race: LobbyGame? = nil) {
+    public func stage(players: Int, mode: LobbyPromptMode = .form, race: LobbyGame? = nil, chat: Bool = false) {
         staged = true
         picks = [:]
         marks = [:]
         clearRaceScore()
         blocks = nil
-        current = Lobby.staged(players: players, mode: mode, race: race, now: now)
+        current = Lobby.staged(players: players, mode: mode, race: race, chat: chat, now: now)
     }
     #endif
 
@@ -663,7 +663,7 @@ public final class LobbyStore {
 extension Lobby {
     static let stagedNames = ["Alexandria", "Maximilian", "Bernadette", "Christopher", "Evangeline", "Sebastian", "Wilhelmina", "Bartholomew"]
 
-    static func staged(players: Int, mode: LobbyPromptMode, race: LobbyGame? = nil, now: Date) -> Lobby {
+    static func staged(players: Int, mode: LobbyPromptMode, race: LobbyGame? = nil, chat: Bool = false, now: Date) -> Lobby {
         let count = min(max(players, 1), LobbyRules.cap)
         let stamp = ISO8601DateFormatter()
         let seconds = 600
@@ -681,10 +681,14 @@ extension Lobby {
             LobbyResult(round: 0, userId: p.userId, correct: n % 3 != 2, ms: 1200 + n * 400, points: n % 3 != 2 ? 120 - n * 10 : 0)
         }
         let start = now.addingTimeInterval(-Double(seconds) - 5)
+        let lines = ["¿Listos?", "Ready when you are", "Let's go", "Bonne chance"]
+        let messages = chat ? people.indices.reversed().enumerated().map { n, p in
+            LobbyMessage(id: n + 1, from: people[p].userId, name: people[p].name, body: lines[n % lines.count], at: stamp.string(from: now.addingTimeInterval(Double(n - 10))))
+        } : []
         return Lobby(
             id: "staged", code: "STAGED", name: "Staged lobby", game: race.flatMap { $0.isRace ? $0 : nil } ?? (mode == .tiles ? .tiles : .daily), root: "en", targets: ["es", "fr", "it", "pt", "de", "nl"],
-            seed: "staged", status: .playing, listed: false, rounds: 8, roundSeconds: seconds, revealSeconds: 0, startedAt: stamp.string(from: start),
-            version: 1, now: stamp.string(from: now), isHost: true, players: people, messages: [],
+            seed: "staged", status: chat ? .lobby : .playing, listed: false, rounds: 8, roundSeconds: seconds, revealSeconds: 0, startedAt: stamp.string(from: start),
+            version: 1, now: stamp.string(from: now), isHost: true, players: people, messages: messages,
             round: LobbyRound(index: 1, startsAt: stamp.string(from: now.addingTimeInterval(-5)), endsAt: stamp.string(from: now.addingTimeInterval(Double(seconds) - 5)), reveal: false),
             prompts: prompts, results: results
         )
