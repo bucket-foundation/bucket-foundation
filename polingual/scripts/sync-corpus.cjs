@@ -12,6 +12,7 @@ const COPIES = [
 ];
 
 const VERSIONED = ["corpus", "polingual/top1000"];
+const VERSIONED_FILES = ["audio/index.json"];
 
 function files(dir) {
   return readdirSync(dir).sort().flatMap((n) => {
@@ -31,9 +32,13 @@ function syncCorpus(src = LEARNING, dest = OUT) {
   }
   const h = createHash("sha256");
   for (const v of VERSIONED) for (const f of files(join(dest, v))) h.update(f.slice(dest.length)).update(readFileSync(f));
+  for (const v of VERSIONED_FILES) {
+    const f = join(dest, v);
+    if (existsSync(f)) h.update(f.slice(dest.length)).update(readFileSync(f));
+  }
   return h.digest("hex").slice(0, 12);
 }
 
-module.exports = { COPIES, VERSIONED, syncCorpus };
+module.exports = { COPIES, VERSIONED, VERSIONED_FILES, syncCorpus };
 
 if (require.main === module) console.log(syncCorpus());

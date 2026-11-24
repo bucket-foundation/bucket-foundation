@@ -32,6 +32,15 @@ test("the corpus version changes when a corpus file changes", () => {
   assert.notEqual(syncCorpus(src, mkdtempSync(join(tmpdir(), "pl-out-"))), a);
 });
 
+test("the corpus version changes when the clip index changes", () => {
+  const src = fixture();
+  writeFileSync(join(src, "audio", "index.json"), "{}");
+  const a = syncCorpus(src, mkdtempSync(join(tmpdir(), "pl-out-")));
+  writeFileSync(join(src, "audio", "index.json"), '{"es":["hola"]}');
+  assert.notEqual(syncCorpus(src, mkdtempSync(join(tmpdir(), "pl-out-"))), a);
+  assert.ok(readFileSync(join(__dirname, "../../src/lib/academy/lang-client.ts"), "utf8").includes("CLIP_INDEX = `${AUDIO_BASE}/index.json${CORPUS_QUERY}`"));
+});
+
 test("a missing source fails the build", () => {
   assert.throws(() => syncCorpus(mkdtempSync(join(tmpdir(), "pl-empty-")), mkdtempSync(join(tmpdir(), "pl-out-"))), /missing/);
 });
