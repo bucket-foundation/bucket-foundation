@@ -3,22 +3,27 @@
 import { useEffect, useState } from "react";
 import type { LobbyMessage } from "@academy/lobbies";
 import { LobbyError, lobbyError, type LobbyApi } from "@/lib/lobby/client";
-import { CHAT_REPORT_REASONS, type ChatBlock } from "@/lib/lobby/moderation";
+import { CHAT_REPORT_REASONS, readBlockCache, writeBlockCache, type ChatBlock } from "@/lib/lobby/moderation";
 import { Button, Sheet } from "@/ui";
 import app from "../app/app.module.css";
 
 export type ChatSheet = { kind: "reasons" | "sent" | "block"; m: LobbyMessage } | null;
 
 export function useChatModeration(api: LobbyApi, lobbyId: string) {
-  const [blocked, setBlocked] = useState<ChatBlock[]>([]);
+  const [blocked, setBlockedState] = useState<ChatBlock[] | null>(null);
+  const [blocksFailed, setBlocksFailed] = useState(false);
   const [sheet, setSheet] = useState<ChatSheet>(null);
   const [busy, setBusy] = useState(false);
   const [failure, setFailure] = useState<string | null>(null);
   useEffect(() => {
     let live = true;
-    api.blocks().then((b) => { if (live) setBlocked(b); }, () => undefined);
+    api.blocks().then(
+      (b) => { if (live) { setBlockedState(b); writeBlockCache(b); } },
+      () => { if (live) { setBlockedState(readBlockCache() ?? []); setBlocksFailed(true); } },
+    );
     return () => { live = false; };
   }, [api]);
+  const setBlocked = (b: ChatBlock[]) => { setBlockedState(b); writeBlockCache(b); };
   const open = (next: ChatSheet) => { setFailure(null); setSheet(next); };
   const run = async (fn: () => Promise<void>) => {
     setBusy(true);
@@ -31,7 +36,7 @@ export function useChatModeration(api: LobbyApi, lobbyId: string) {
       setBusy(false);
     }
   };
-  return { api, lobbyId, blocked, setBlocked, sheet, setSheet, busy, failure, open, run };
+  return { api, lobbyId, blocked, blocksFailed, setBlocked, sheet, setSheet, busy, failure, open, run };
 }
 
 export function ChatSheetPanel({ mod }: { mod: ReturnType<typeof useChatModeration> }) {

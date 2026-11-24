@@ -13,6 +13,7 @@ import world from "./world.module.css";
 export function RoomChat({ lobby, api, chat, setChat, onSend }: { lobby: WebLobbyState; api: LobbyApi; chat: string; setChat: (v: string) => void; onSend: (body: string) => void }) {
   const myId = lobby.players.find((p) => p.isMe)?.userId;
   const mod = useChatModeration(api, lobby.id);
+  const bots = lobby.players.filter((p) => p.bot).map((p) => p.userId);
   return (
     <section className={styles.chat} aria-label="Chat">
       <ul className={styles.messages} data-testid="messages">
@@ -22,7 +23,7 @@ export function RoomChat({ lobby, api, chat, setChat, onSend }: { lobby: WebLobb
               <b>{m.name}</b>
               {lobby.players.some((p) => p.userId === m.from && p.bot) ? <span className={styles.tag}> bot</span> : null} {m.body}
             </span>
-            {canModerate(m, myId) ? (
+            {canModerate(m, myId, bots) ? (
               <span className={styles.chatActions}>
                 <Button variant="quiet" size="sm" onClick={() => mod.open({ kind: "reasons", m })} data-testid="chat-report">Report</Button>
                 <Button variant="quiet" size="sm" onClick={() => mod.open({ kind: "block", m })} data-testid="chat-block">Block</Button>
@@ -31,6 +32,7 @@ export function RoomChat({ lobby, api, chat, setChat, onSend }: { lobby: WebLobb
           </li>
         ))}
       </ul>
+      {mod.blocksFailed ? <p className={app.small} data-testid="chat-blocks-notice">Your block list could not load. Using the copy saved on this device.</p> : null}
       <ChatSheetPanel mod={mod} />
       <form
         className={styles.chatForm}

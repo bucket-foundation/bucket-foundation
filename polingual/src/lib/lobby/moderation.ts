@@ -14,11 +14,32 @@ export interface ChatBlock {
   at: string;
 }
 
-export function canModerate(message: Pick<LobbyMessage, "from">, myId: string | null | undefined): boolean {
-  return !!myId && message.from !== myId;
+export const BLOCK_CACHE_KEY = "polingual-web/chat-blocks/v1";
+
+export function canModerate(message: Pick<LobbyMessage, "from">, myId: string | null | undefined, bots: readonly string[] = []): boolean {
+  return !!myId && message.from !== myId && !bots.includes(message.from);
 }
 
-export function visibleMessages<M extends Pick<LobbyMessage, "from">>(messages: readonly M[], blocked: readonly ChatBlock[]): M[] {
+export function readBlockCache(): ChatBlock[] | null {
+  try {
+    const raw = globalThis.localStorage?.getItem(BLOCK_CACHE_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : null;
+    return Array.isArray(parsed) ? parsed.filter((b): b is ChatBlock => typeof b?.userId === "string") : null;
+  } catch {
+    return null;
+  }
+}
+
+export function writeBlockCache(blocks: readonly ChatBlock[]): void {
+  try {
+    globalThis.localStorage?.setItem(BLOCK_CACHE_KEY, JSON.stringify(blocks));
+  } catch {
+    return;
+  }
+}
+
+export function visibleMessages<M extends Pick<LobbyMessage, "from">>(messages: readonly M[], blocked: readonly ChatBlock[] | null): M[] {
+  if (!blocked) return [];
   const ids = new Set(blocked.map((b) => b.userId));
   return messages.filter((m) => !ids.has(m.from));
 }
