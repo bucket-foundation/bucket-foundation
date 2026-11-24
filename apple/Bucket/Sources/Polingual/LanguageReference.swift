@@ -200,10 +200,12 @@ struct WordFactsView: View {
                 } header: {
                     Eyebrow(text: "In every language")
                 } footer: {
-                    VStack(alignment: .leading, spacing: 2) {
-                        ForEach(Self.legend.filter { web.bonds.contains($0.bond) }, id: \.bond) { Text($0.line) }
+                    if !web.bonds.isEmpty {
+                        VStack(alignment: .leading, spacing: 2) {
+                            ForEach(Self.legend.filter { web.bonds.contains($0.bond) }, id: \.bond) { Text($0.line) }
+                        }
+                        .font(.caption).foregroundStyle(Palette.muted)
                     }
-                    .font(.caption).foregroundStyle(Palette.muted)
                 }
                 .listRowBackground(Palette.card)
             }
