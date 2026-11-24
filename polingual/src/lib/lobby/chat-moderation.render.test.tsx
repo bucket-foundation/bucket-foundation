@@ -4,7 +4,7 @@ import { act, createElement } from "react";
 import { JSDOM } from "jsdom";
 import type { LobbyApi, WebLobbyState } from "./client";
 import { LobbyError } from "./client";
-import { BLOCK_CACHE_KEY } from "./moderation";
+import { blockCacheKey } from "./moderation";
 
 const dom = new JSDOM("<!doctype html><html><body></body></html>", { url: "https://polingual.com/" });
 const g = globalThis as Record<string, unknown>;
@@ -58,12 +58,12 @@ test("report and block failures show errors and bots have no actions", async () 
   await click(host.querySelector("[data-testid=chat-block]"));
   await click(host.querySelector("[data-testid=chat-block-confirm]"));
   assert.equal(host.querySelector("[data-testid=chat-sheet-error]")?.textContent, "Block failed: No connection. Check your network.");
-  assert.deepEqual(JSON.parse(localStorage.getItem(BLOCK_CACHE_KEY) ?? "[]").map((b: { userId: string }) => b.userId), ["u3"]);
+  assert.deepEqual(JSON.parse(localStorage.getItem(blockCacheKey("me")) ?? "[]").map((b: { userId: string }) => b.userId), ["u3"]);
   await unmount();
 });
 
 test("a block hides messages and a failed block list falls back to the saved copy", async () => {
-  localStorage.setItem(BLOCK_CACHE_KEY, JSON.stringify([{ userId: "u2", name: "Bo", at: "" }]));
+  localStorage.setItem(blockCacheKey("me"), JSON.stringify([{ userId: "u2", name: "Bo", at: "" }]));
   const failing = await mount({ blocks: async () => { throw new LobbyError("offline", 0); } });
   assert.deepEqual(lines(failing.host), ["Ama", "Cy"]);
   assert.ok(failing.host.querySelector("[data-testid=chat-blocks-notice]"));

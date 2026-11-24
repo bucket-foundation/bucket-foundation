@@ -12,10 +12,11 @@ import world from "./world.module.css";
 
 export function RoomChat({ lobby, api, chat, setChat, onSend }: { lobby: WebLobbyState; api: LobbyApi; chat: string; setChat: (v: string) => void; onSend: (body: string) => void }) {
   const myId = lobby.players.find((p) => p.isMe)?.userId;
-  const mod = useChatModeration(api, lobby.id);
+  const mod = useChatModeration(api, lobby.id, myId ?? "");
   const bots = lobby.players.filter((p) => p.bot).map((p) => p.userId);
   return (
     <section className={styles.chat} aria-label="Chat">
+      {mod.blocked ? null : <p className={app.small} data-testid="chat-loading">Loading chat…</p>}
       <ul className={styles.messages} data-testid="messages">
         {visibleMessages(lobby.messages, mod.blocked).map((m) => (
           <li key={m.id} className={styles.chatLine}>

@@ -9,7 +9,7 @@ import app from "../app/app.module.css";
 
 export type ChatSheet = { kind: "reasons" | "sent" | "block"; m: LobbyMessage } | null;
 
-export function useChatModeration(api: LobbyApi, lobbyId: string) {
+export function useChatModeration(api: LobbyApi, lobbyId: string, userId: string) {
   const [blocked, setBlockedState] = useState<ChatBlock[] | null>(null);
   const [blocksFailed, setBlocksFailed] = useState(false);
   const [sheet, setSheet] = useState<ChatSheet>(null);
@@ -18,12 +18,12 @@ export function useChatModeration(api: LobbyApi, lobbyId: string) {
   useEffect(() => {
     let live = true;
     api.blocks().then(
-      (b) => { if (live) { setBlockedState(b); writeBlockCache(b); } },
-      () => { if (live) { setBlockedState(readBlockCache() ?? []); setBlocksFailed(true); } },
+      (b) => { if (live) { setBlockedState(b); writeBlockCache(userId, b); } },
+      () => { if (live) { setBlockedState(readBlockCache(userId) ?? []); setBlocksFailed(true); } },
     );
     return () => { live = false; };
-  }, [api]);
-  const setBlocked = (b: ChatBlock[]) => { setBlockedState(b); writeBlockCache(b); };
+  }, [api, userId]);
+  const setBlocked = (b: ChatBlock[]) => { setBlockedState(b); writeBlockCache(userId, b); };
   const open = (next: ChatSheet) => { setFailure(null); setSheet(next); };
   const run = async (fn: () => Promise<void>) => {
     setBusy(true);

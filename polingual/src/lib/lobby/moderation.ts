@@ -20,9 +20,13 @@ export function canModerate(message: Pick<LobbyMessage, "from">, myId: string | 
   return !!myId && message.from !== myId && !bots.includes(message.from);
 }
 
-export function readBlockCache(): ChatBlock[] | null {
+export function blockCacheKey(userId: string): string {
+  return `${BLOCK_CACHE_KEY}:${userId}`;
+}
+
+export function readBlockCache(userId: string): ChatBlock[] | null {
   try {
-    const raw = globalThis.localStorage?.getItem(BLOCK_CACHE_KEY);
+    const raw = globalThis.localStorage?.getItem(blockCacheKey(userId));
     const parsed: unknown = raw ? JSON.parse(raw) : null;
     return Array.isArray(parsed) ? parsed.filter((b): b is ChatBlock => typeof b?.userId === "string") : null;
   } catch {
@@ -30,9 +34,9 @@ export function readBlockCache(): ChatBlock[] | null {
   }
 }
 
-export function writeBlockCache(blocks: readonly ChatBlock[]): void {
+export function writeBlockCache(userId: string, blocks: readonly ChatBlock[]): void {
   try {
-    globalThis.localStorage?.setItem(BLOCK_CACHE_KEY, JSON.stringify(blocks));
+    globalThis.localStorage?.setItem(blockCacheKey(userId), JSON.stringify(blocks));
   } catch {
     return;
   }
