@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PlayerProvider, usePlayer } from "@/lib/listen/player";
 import { langName } from "@academy/lang-systems";
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState, useSyncExternalStore } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { fetchAccess, type Access } from "@/lib/app/plans";
 import { accessStep, track } from "@/lib/funnel";
+import { appGate, firstLessonDone, subscribeFirstLesson } from "@/lib/app/first-lesson";
 import Paywall from "./Paywall";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
@@ -84,6 +85,9 @@ function Shell({ children }: { children: React.ReactNode }) {
     if (signedIn) check();
   }, [signedIn, check]);
 
+  const lessonDone = useSyncExternalStore(subscribeFirstLesson, () => firstLessonDone(), () => false);
+  const gate = appGate(access.status, lessonDone);
+
   const signOut = useCallback(() => {
     void appAuth().mobile.logout().then(refresh);
   }, [refresh]);
@@ -106,9 +110,9 @@ function Shell({ children }: { children: React.ReactNode }) {
         {open && auth.status !== "loading" ? <SessionContext.Provider value={{ userId: auth.status === "signed-in" ? auth.userId : "", signOut }}>{children}</SessionContext.Provider> : null}
         {!open && auth.status === "loading" ? <p className={styles.muted} aria-busy="true">Loading</p> : null}
         {!open && auth.status === "signed-out" ? <Stage testId="sign-in-stage"><SignIn onSignedIn={refresh} /></Stage> : null}
-        {!open && auth.status === "signed-in" && access.status === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
-        {!open && auth.status === "signed-in" && (access.status === "locked" || access.status === "unknown") ? <Paywall access={access} retry={check} /> : null}
-        {!open && auth.status === "signed-in" && access.status === "open" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
+        {!open && auth.status === "signed-in" && gate === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
+        {!open && auth.status === "signed-in" && gate === "paywall" ? <Paywall access={access} retry={check} /> : null}
+        {!open && auth.status === "signed-in" && gate === "app" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
       </main>
       <MiniPlayer />
       <SpeechGuard />

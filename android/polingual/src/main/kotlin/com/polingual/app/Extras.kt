@@ -20,7 +20,12 @@ import kotlinx.coroutines.launch
 import androidx.compose.ui.draw.alpha
 
 fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
-    composable("study") { StudyScreen(graph) { nav.popBackStack() } }
+    composable("study") {
+        StudyScreen(graph) {
+            nav.popBackStack()
+            if (FirstLesson.paywallAfter(graph.billing.access.value, FirstLesson.done(graph.kv::get))) nav.navigate("paywall")
+        }
+    }
     composable("game/{kind}", arguments = listOf(navArgument("kind") { type = NavType.StringType })) { e ->
         val kind = GameKind.entries.firstOrNull { it.route == e.arguments?.getString("kind") }
         if (kind == null) androidx.compose.runtime.LaunchedEffect(Unit) { nav.popBackStack() } else GameScreen(graph, kind) { nav.popBackStack() }
@@ -44,7 +49,8 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
         Text("Daily session", style = Type.title, color = PL.Paper)
         Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", color = PL.Paper.copy(alpha = 0.85f))
         val access by graph.billing.access.collectAsState()
-        PrimaryButton(if (access.unlocked || access == Access.Checking) "Start" else "Unlock learning") { nav.navigate(if (access.unlocked) "study" else "paywall") }
+        val lessonDone = FirstLesson.done(graph.kv::get)
+        PrimaryButton(FirstLesson.startLabel(access, lessonDone)) { nav.navigate(FirstLesson.startRoute(access, FirstLesson.done(graph.kv::get))) }
     }
     Card(color = PL.Vermilion, onClick = { nav.navigate("translate") }) {
         Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = PL.Paper)
