@@ -78,7 +78,10 @@ class BucketApi(
     suspend fun mergeGuest(token: String, guestToken: String): Int =
         json.parseToJsonElement(call("api/academy/lobbies/guest/merge", token, buildJsonObject { put("guestToken", guestToken) })).jsonObject["merged"]?.jsonPrimitive?.contentOrNull?.toIntOrNull() ?: 0
 
-    suspend fun lobbies(token: String): LobbiesReply = decode(call("api/academy/lobbies", token))
+    suspend fun lobbies(token: String): LobbiesReply = decode(call("api/academy/lobbies", token, headers = RACE))
+
+    suspend fun raceScore(token: String, lobbyId: String, score: Int): Lobby =
+        lobbyCall("api/academy/lobbies/score", token, buildJsonObject { put("lobbyId", lobbyId); put("score", score) })
 
     suspend fun fillBots(token: String, lobbyId: String): Lobby =
         lobbyCall("api/academy/lobbies/bots", token, buildJsonObject { put("lobbyId", lobbyId) })
@@ -88,14 +91,14 @@ class BucketApi(
             put("name", name); put("game", game.wire); put("root", root)
             put("targets", kotlinx.serialization.json.JsonArray(targets.map(::JsonPrimitive)))
             put("rounds", rounds); put("roundSeconds", roundSeconds); put("listed", listed); put("displayName", displayName); put("reveal", true)
-        })
+        }, RACE)
 
     suspend fun joinLobby(token: String, code: String? = null, lobbyId: String? = null, displayName: String): Lobby =
         lobbyCall("api/academy/lobbies/join", token, buildJsonObject {
             put("displayName", displayName)
             if (code != null) put("code", code)
             if (lobbyId != null) put("lobbyId", lobbyId)
-        })
+        }, RACE)
 
     suspend fun leaveLobby(token: String, lobbyId: String) {
         call("api/academy/lobbies/leave", token, buildJsonObject { put("lobbyId", lobbyId) })
@@ -134,7 +137,9 @@ class BucketApi(
     suspend fun canonSearch(query: String, topK: Int = 20): foundation.bucket.core.model.CanonSearch =
         decode(call("api/canon/search", null, query = mapOf("q" to query, "top_k" to topK.toString())))
 
-    private suspend fun lobbyCall(path: String, token: String, body: JsonObject): Lobby = decode<LobbyReply>(call(path, token, body)).lobby
+    private suspend fun lobbyCall(path: String, token: String, body: JsonObject, headers: Map<String, String> = emptyMap()): Lobby = decode<LobbyReply>(call(path, token, body, headers = headers)).lobby
+
+    private val RACE = mapOf(foundation.bucket.core.model.LobbyRace.HEADER to "1")
 
     private suspend fun session(body: JsonObject, token: String? = null): String = call("api/academy/session", token, body, mapper = ::sessionError)
 
@@ -144,12 +149,14 @@ class BucketApi(
         body: JsonObject? = null,
         query: Map<String, String> = emptyMap(),
         mapper: (Int, String) -> BucketError = ::groupError,
+        headers: Map<String, String> = emptyMap(),
     ): String {
         val url = "${base.trimEnd('/')}/$path"
         val build: HttpRequestBuilder.() -> Unit = {
             if (token != null) header("authorization", "Bearer $token")
             query.toSortedMap().forEach { (k, v) -> parameter(k, v) }
             header("cache-control", "no-cache")
+            headers.forEach { (k, v) -> header(k, v) }
             if (body != null) {
                 contentType(ContentType.Application.Json)
                 setBody(body.toString())
@@ -183,7 +190,7 @@ class BucketApi(
 data class LobbyReply(val lobby: Lobby)
 
 @Serializable
-data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false, val games: List<String> = emptyList())
+data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false, val games: List<String> = emptyList(), val race: List<String> = emptyList())
 
 @Serializable
 data class AnswerReply(val correct: Boolean, val lobby: Lobby)

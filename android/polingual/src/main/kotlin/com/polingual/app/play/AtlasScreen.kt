@@ -49,7 +49,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
     var pin by remember { mutableStateOf<LatLon?>(null) }
     var peek by remember { mutableStateOf(false) }
     var guesses by remember { mutableStateOf<List<AtlasGuess>>(emptyList()) }
-    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); rounds = com.polingual.app.offMain { Atlas.rounds(items, date, root = deckRoot) } }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(com.polingual.app.RaceSession.root ?: graph.state.value?.system?.root, items); rounds = com.polingual.app.offMain { Atlas.rounds(items, date, root = deckRoot) } }
     val rs = rounds
     GameFrame(graph, WebGame.Atlas, back, soundOnly = true) {
         val silentNow by graph.silent.collectAsState()
@@ -58,6 +58,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
         val limit = minOf(Atlas.ROUNDS, rs.size)
         val total = guesses.sumOf { it.points }
         if (index >= limit) {
+            LaunchedEffect(Unit) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Atlas, points = total) }
             Results(graph, "$total points", "Five voices a day. New ones tomorrow.", again = null) { AtlasWords(graph, guesses, deckRoot, Boards.fromGhosts(Atlas.ghosts(date), total)) }
             return@GameFrame
         }
