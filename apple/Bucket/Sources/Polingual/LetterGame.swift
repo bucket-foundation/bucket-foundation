@@ -267,6 +267,7 @@ struct LetterQuiz: View {
     let say: String
     let onDone: (_ right: Bool, _ helped: Bool) -> Void
     var onPick: ((Bool) -> Void)?
+    var asks = true
     @State private var plays = 0
     @State private var picked: String?
     @State private var hinted = false
@@ -283,12 +284,14 @@ struct LetterQuiz: View {
     var body: some View {
         (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 20)) : AnyLayout(VStackLayout(spacing: 10))) {
             VStack(spacing: 10) {
-                Text(question)
-                    .font(PL.small.font()).foregroundStyle(PL.inkDim)
-                    .frame(maxWidth: .infinity)
-                (sideways ? AnyLayout(HStackLayout(alignment: .center, spacing: 12)) : AnyLayout(VStackLayout(spacing: 10))) {
-                    SoundButtons(text: say, lang: ex.lang, size: sideways ? 52 : 64, plays: $plays)
-                    SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? PL.vermilion : PL.malachite, size: sideways ? 36 : 44)
+                if asks {
+                    Text(question)
+                        .font(PL.small.font()).foregroundStyle(PL.inkDim)
+                        .frame(maxWidth: .infinity)
+                }
+                HStack(alignment: .center, spacing: 12) {
+                    SoundButtons(text: say, lang: ex.lang, size: 52, plays: $plays)
+                    SoundWord(sound: sound, letter: ex.answer, lang: ex.lang, shown: picked != nil, tint: picked == nil ? PL.vermilion : PL.malachite, size: sideways ? 36 : 40)
                 }
                 ZStack {
                     SoundHint(sound: sound, reading: false).opacity(hinted || picked != nil ? 1 : 0).accessibilityHidden(!hinted && picked == nil)
@@ -343,7 +346,7 @@ struct LetterQuiz: View {
                 LangVoice.shared.speak(o == ex.answer ? say : mine, ex.lang)
             }
         } label: {
-            VStack(spacing: 0) {
+            VStack(spacing: 2) {
                 Text(o).font(PL.script(sideways ? 28 : 32)).lineLimit(1).minimumScaleFactor(0.5)
                     .overlay(alignment: .trailing) {
                         Image(systemName: "speaker.wave.2.fill").font(PL.small.font())
@@ -351,15 +354,13 @@ struct LetterQuiz: View {
                             .opacity(picked == nil ? 0 : 1)
                             .accessibilityHidden(true)
                     }
-                if let s = LetterSounds.lookup(ex.lang, o) {
+                if picked != nil, let s = LetterSounds.lookup(ex.lang, o) {
                     Text(Self.example(s))
                         .font(PL.small.font()).foregroundStyle(state == .other ? PL.inkDim : PL.paper.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
-                        .opacity(picked == nil ? 0 : 1)
-                        .accessibilityHidden(picked == nil)
                 }
             }
             .padding(.vertical, 6)
-            .frame(maxWidth: .infinity, minHeight: sideways ? 48 : 56)
+            .frame(maxWidth: .infinity, minHeight: sideways ? 52 : 64)
         }
         .buttonStyle(GameAnswerStyle(state: state))
         .keyframeAnimator(initialValue: 0.0, trigger: state == .wrong ? shake : 0) { v, x in v.offset(x: x) } keyframes: { _ in
