@@ -138,10 +138,7 @@ function playOne(item: SpeakItem, onStart: (durationMs?: number) => void = () =>
   });
 }
 
-export function audioMs(audio: { duration?: number } | null): number | undefined {
-  const d = audio?.duration;
-  return typeof d === "number" && Number.isFinite(d) && d > 0 ? Math.round(d * 1000) : undefined;
-}
+export const audioMs = (a: { duration?: number } | null): number | undefined => (a?.duration && Number.isFinite(a.duration) && a.duration > 0 ? Math.round(a.duration * 1000) : undefined);
 
 export const FINISH_MS = 1500;
 export const CUT_GAP_MS = 60;
@@ -247,10 +244,7 @@ async function start(item: SpeakItem, gap: number): Promise<void> {
   try {
     const ended = await playOne(item, (durationMs) => {
       began = true;
-      if (speaking?.t === t) {
-        speaking.startedAt = Date.now();
-        if (durationMs !== undefined) speaking.est = durationMs;
-      }
+      if (speaking?.t === t) speaking = { ...speaking, startedAt: Date.now(), est: durationMs ?? speaking.est };
       if (t === token && state.notice) set({ ...state, notice: null });
     });
     if (ended) began = true;
