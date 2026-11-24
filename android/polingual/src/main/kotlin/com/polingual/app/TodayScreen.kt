@@ -31,6 +31,7 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
         }
         if (system != null) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { system.targets.forEach { FlagTile(it, 44.dp) } }
         if (system == null) PrimaryButton("Pick languages", color = PL.Lapis) { nav.navigate("system/new") }
+        if (system != null) TodayPlanCard(graph, nav)
         TodayExtras(graph, nav)
     }
 }
