@@ -6,13 +6,14 @@ import { AUDIO_BASE, audioKey, audioUrl, pickVoice } from "./lang-audio";
 import { pullServer, type ServerBranches } from "./progress-store";
 
 const BASE = "/academy-app/corpus";
+export const CORPUS_QUERY = process.env.NEXT_PUBLIC_CORPUS_V ? `?v=${process.env.NEXT_PUBLIC_CORPUS_V}` : "";
 export const SYSTEMS_KEY = "bucket-academy-lang/v1/systems";
 export const SYSTEMS_BRANCH = "lang-systems";
 
 let corpusPromise: Promise<LangCorpus | null> | null = null;
 
 async function getJson(file: string): Promise<unknown> {
-  const r = await fetch(`${BASE}/${file}`, { cache: "force-cache" });
+  const r = await fetch(`${BASE}/${file}${CORPUS_QUERY}`, { cache: "force-cache" });
   if (!r.ok) throw new Error(`${file} ${r.status}`);
   return r.json();
 }
@@ -23,7 +24,7 @@ export function loadTopWords(lang: string): Promise<TopWord[] | null> {
   if (!topCache.has(lang)) {
     topCache.set(
       lang,
-      fetch(`/academy-app/polingual/top1000/${lang}.json`, { cache: "force-cache" })
+      fetch(`/academy-app/polingual/top1000/${lang}.json${CORPUS_QUERY}`, { cache: "force-cache" })
         .then((r) => (r.ok ? r.json() : null))
         .then((d) => (Array.isArray(d) ? (d as TopWord[]) : null))
         .catch(() => null)
