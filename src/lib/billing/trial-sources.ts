@@ -9,7 +9,7 @@ export function trialSources(userId: string): TrialSources {
     webRow: async () => (await readEntitlementState(userId, "polingual")) !== null,
     appStoreEvents: async () => {
       const store = supabaseAppStoreEventStore();
-      return store?.eventsFor ? store.eventsFor(userId, POLINGUAL_BUNDLE_ID) : [];
+      return store?.eventsFor ? store.eventsFor(userId, POLINGUAL_BUNDLE_ID) : null;
     },
   };
 }
