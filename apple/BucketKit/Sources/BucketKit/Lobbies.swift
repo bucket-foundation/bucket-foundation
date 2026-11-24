@@ -39,6 +39,7 @@ public struct LobbyPlayer: Codable, Equatable, Sendable, Identifiable {
     public var isMe: Bool
     public var online: Bool
     public var answered: Bool
+    public var bot: Bool? = nil
     public var id: String { userId }
 }
 
@@ -457,17 +458,21 @@ public final class LobbyStore {
     public private(set) var raceGames: [LobbyGame] = []
     public private(set) var raceScore: Int?
     public private(set) var raceScoreSent = false
+    public internal(set) var blocks: [ChatBlock]?
+    public internal(set) var blocksFailed = false
 
     public var hostable: [LobbyGame] { LobbyGame.hostable + raceGames.filter(\.isRace) }
 
     let api: BucketAPI
     let token: @MainActor () async -> String?
     let clock: @MainActor () -> Date
+    let blockDefaults: UserDefaults
     public let guest: GuestPass?
 
-    public init(api: BucketAPI, token: @escaping @MainActor () async -> String?, guest: GuestPass? = nil, clock: @escaping @MainActor () -> Date = { Date() }) {
+    public init(api: BucketAPI, token: @escaping @MainActor () async -> String?, guest: GuestPass? = nil, blockDefaults: UserDefaults = .standard, clock: @escaping @MainActor () -> Date = { Date() }) {
         self.api = api
         self.token = token
+        self.blockDefaults = blockDefaults
         self.guest = guest
         self.clock = clock
     }
@@ -611,6 +616,7 @@ public final class LobbyStore {
         picks = [:]
         marks = [:]
         clearRaceScore()
+        blocks = nil
         current = Lobby.staged(players: players, mode: mode, race: race, now: now)
     }
     #endif
@@ -618,6 +624,8 @@ public final class LobbyStore {
     func enter(_ lobby: Lobby) -> Lobby {
         picks = [:]
         marks = [:]
+        blocks = nil
+        blocksFailed = false
         clearRaceScore()
         current = nil
         apply(lobby)

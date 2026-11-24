@@ -312,6 +312,15 @@ extension View {
     }
 }
 
+func chatReportLabel(_ r: ChatReportReason) -> String {
+    switch r {
+    case .offensiveName: String(localized: "Offensive name")
+    case .harassment: String(localized: "Harassment")
+    case .spam: String(localized: "Spam")
+    case .other: String(localized: "Something else")
+    }
+}
+
 func lobbyProblem(_ e: BucketError) -> String {
     switch e {
     case .groupNotFound: String(localized: "No lobby with that code.")
@@ -336,6 +345,8 @@ struct LobbyRoom: View {
     @State private var problem: String?
     @State private var sawFinish = false
     @State private var tapped: [Int: Set<Int>] = [:]
+    @State private var blockTarget: LobbyMessage?
+    @State private var reportSent: LobbyMessage?
 
     var body: some View {
         Group {
@@ -360,6 +371,19 @@ struct LobbyRoom: View {
             }
         }
         .task { await lobbies.follow() }
+        .task(id: lobbies.current?.me?.userId) { await lobbies.loadBlocks() }
+        .confirmationDialog(Text("Block \(blockTarget?.name ?? "")?"), isPresented: Binding(get: { blockTarget != nil }, set: { if !$0 { blockTarget = nil } }), titleVisibility: .visible, presenting: blockTarget) { m in
+            Button("Block", role: .destructive) { block(m) }
+            Button("Cancel", role: .cancel) {}
+        } message: { _ in
+            Text("You will stop seeing their messages.")
+        }
+        .alert(Text("Report sent"), isPresented: Binding(get: { reportSent != nil }, set: { if !$0 { reportSent = nil } }), presenting: reportSent) { m in
+            Button("Block \(m.name)", role: .destructive) { block(m) }
+            Button("Done", role: .cancel) {}
+        } message: { _ in
+            Text("We will review this report within 24 hours and act on it.")
+        }
         .onDisappear { LobbyAds.shared.left(.lobby, finishedGame: sawFinish) }
     }
 
@@ -435,12 +459,57 @@ struct LobbyRoom: View {
         }
     }
 
+    @ViewBuilder
     func chatLog(_ l: Lobby) -> some View {
-        ForEach(l.messages.suffix(30)) { m in
-            VStack(alignment: .leading, spacing: 2) {
-                Text(m.name).font(PL.label.font()).foregroundStyle(m.from == l.me?.userId ? PL.lapis : PL.inkDim)
-                Text(m.body).foregroundStyle(PL.ink)
+        if lobbies.blocks == nil {
+            Text("Loading chat…").font(PL.small.font()).foregroundStyle(PL.inkDim)
+        }
+        ForEach(lobbies.visibleMessages(l).suffix(30)) { m in
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(m.name).font(PL.label.font()).foregroundStyle(m.from == l.me?.userId ? PL.lapis : PL.inkDim)
+                    Text(m.body).foregroundStyle(PL.ink)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                if ChatModeration.canModerate(m, in: l) { moderationMenu(m) }
             }
+        }
+    }
+
+    func moderationMenu(_ m: LobbyMessage) -> some View {
+        Menu {
+            Menu("Report") {
+                ForEach(ChatReportReason.allCases) { reason in
+                    Button(chatReportLabel(reason)) { report(m, reason) }
+                }
+            }
+            Button("Block \(m.name)", role: .destructive) { blockTarget = m }
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundStyle(PL.inkDim)
+                .frame(width: 44, height: 44)
+                .contentShape(.rect)
+        }
+        .accessibilityLabel(Text("Report or block \(m.name)"))
+        .accessibilityIdentifier("chatModerate")
+    }
+
+    func report(_ m: LobbyMessage, _ reason: ChatReportReason) {
+        problem = nil
+        Task {
+            do {
+                try await lobbies.report(m, reason: reason)
+                reportSent = m
+            } catch {
+                problem = String(localized: "Report not sent: \(lobbyProblem(error))")
+            }
+        }
+    }
+
+    func block(_ m: LobbyMessage) {
+        problem = nil
+        Task {
+            do { try await lobbies.block(m) } catch { problem = String(localized: "Block failed: \(lobbyProblem(error))") }
         }
     }
 
