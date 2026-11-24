@@ -118,6 +118,12 @@ class BucketApi(
         call("api/academy/lobbies/report", token, buildJsonObject { put("lobbyId", lobbyId); put("messageId", messageId); put("reason", reason) })
     }
 
+    suspend fun chatBlocks(token: String): List<foundation.bucket.core.model.ChatBlock> =
+        decode<foundation.bucket.core.model.ChatBlocksReply>(call("api/academy/lobbies/blocks", token)).blocks
+
+    suspend fun setChatBlock(token: String, userId: String, name: String, blocked: Boolean): List<foundation.bucket.core.model.ChatBlock> =
+        decode<foundation.bucket.core.model.ChatBlocksReply>(call("api/academy/lobbies/blocks", token, buildJsonObject { put("userId", userId); put("name", name); put("blocked", blocked) })).blocks
+
     suspend fun answer(token: String, lobbyId: String, round: Int, choice: String): AnswerReply =
         decode(call("api/academy/lobbies/answer", token, buildJsonObject { put("lobbyId", lobbyId); put("round", round); put("choice", choice) }))
 

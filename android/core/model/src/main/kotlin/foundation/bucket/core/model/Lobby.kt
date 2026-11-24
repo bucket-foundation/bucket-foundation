@@ -158,3 +158,9 @@ object InterstitialPacer {
 }
 
 enum class ChatReportReason(val wire: String) { OffensiveName("offensive_name"), Harassment("harassment"), Spam("spam"), Other("other") }
+
+@Serializable
+data class ChatBlock(val userId: String, val name: String, val at: String = "")
+
+@Serializable
+data class ChatBlocksReply(val blocks: List<ChatBlock>)

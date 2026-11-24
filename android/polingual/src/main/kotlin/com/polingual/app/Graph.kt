@@ -40,7 +40,7 @@ class Graph(val context: Context) {
     val state: StateFlow<AppState?> = store.state.stateIn(scope, SharingStarted.Eagerly, null)
     val guest = GuestPass(api, kv, nickname = { state.value?.nickname.orEmpty() })
     val lobbies = LobbyStore(api, userToken = { account.token() }, guest = guest)
-    val chatBlocks = foundation.bucket.core.auth.ChatBlocks(kv)
+    val chatBlocks = foundation.bucket.core.auth.ChatBlocks(kv, api) { account.token() ?: guest.token() }
     val voice = Voice(context)
     val rewards = Rewards(kv)
     val onboard = Onboard(kv)
