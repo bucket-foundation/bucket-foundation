@@ -1,3 +1,4 @@
+import type { ChatBlock, ChatReportReason } from "./moderation";
 import type { LobbyPrompt, LobbyState, LobbySummary } from "@academy/lobbies";
 
 export type { LobbyPrompt, LobbyState, LobbySummary };
@@ -171,6 +172,18 @@ export class LobbyApi {
 
   async chat(lobbyId: string, body: string): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/chat", { body: { lobbyId, body } })).lobby;
+  }
+
+  async report(lobbyId: string, messageId: number, reason: ChatReportReason): Promise<void> {
+    await this.call("/report", { body: { lobbyId, messageId, reason } });
+  }
+
+  async blocks(): Promise<ChatBlock[]> {
+    return (await this.call<{ blocks: ChatBlock[] }>("/blocks")).blocks;
+  }
+
+  async block(userId: string, name: string, blocked: boolean): Promise<ChatBlock[]> {
+    return (await this.call<{ blocks: ChatBlock[] }>("/blocks", { body: { userId, name, blocked } })).blocks;
   }
 
   async answer(lobbyId: string, round: number, choice: string): Promise<AnswerResult> {
