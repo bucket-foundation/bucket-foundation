@@ -1,18 +1,12 @@
 "use client";
 
+import { local } from "@/lib/storage";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { browserGuestStore, cleanNickname, LobbyApi, LobbyError, lobbyError, resolveIdentity, type Identity } from "@/lib/lobby/client";
 
-export const NICK_KEY = "polingual-web/lobby-nick/v1";
+const NICK_KEY = "polingual-web/lobby-nick/v1";
 
-function local(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null;
-  }
-}
 
 export function savedNickname(): string {
   try {
@@ -22,7 +16,7 @@ export function savedNickname(): string {
   }
 }
 
-export type PlayIdentity = { status: "loading" } | { status: "needs-name" } | { status: "ready"; identity: Identity; nickname: string } | { status: "error"; message: string };
+type PlayIdentity = { status: "loading" } | { status: "needs-name" } | { status: "ready"; identity: Identity; nickname: string } | { status: "error"; message: string };
 
 export function usePlay() {
   const [state, setState] = useState<PlayIdentity>({ status: "loading" });

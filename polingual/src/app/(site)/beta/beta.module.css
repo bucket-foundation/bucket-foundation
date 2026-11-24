@@ -1,0 +1,12 @@
+.title{text-align:center;margin-bottom:10px}
+.shots{display:flex;gap:12px;justify-content:center;margin:0 0 28px}
+.shot{width:31%;max-width:220px;height:auto;border-radius:22px;box-shadow:0 10px 28px rgb(0 0 0 / .18)}
+.shot:nth-child(2){transform:translateY(-14px)}
+.need{text-align:center;font-size:15px;margin:14px 0 28px}
+.form{display:flex;flex-direction:column;gap:12px}
+.hp{position:absolute;left:-9999px}
+.done{font-weight:800;margin:0;text-align:center}
+.error{color:var(--pl-vermilion);font-weight:700;margin:0}
+.or{text-align:center;font-size:15px;margin:0}
+.sub{width:100%;text-align:center;font-size:clamp(18px,4.6vw,24px);font-weight:700;line-height:1.35;margin:0 0 26px}
+.invite{display:flex;flex-direction:column;gap:12px}

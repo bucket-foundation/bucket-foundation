@@ -304,11 +304,11 @@ test("on a shared phone /join starts clean, Leave game clears the seat, and 401 
 test("the screens keep D8 tokens, self-hosted fonts, RTL-safe tiles and the QR on the host only", () => {
   const app = join(__dirname, "../../app/(site)");
   const css = readFileSync(join(app, "live/stoa.module.css"), "utf8");
-  for (const token of ["--lapis:#1F4E9A", "--malachite:#1E7A5A", "--malachite-lip:#135440", "--vermilion:#D9381E", "--parchment:#F6EEDC", "--ink:#231F20", "--hair:#E3D6B8"]) assert.ok(css.includes(token), token);
+  for (const token of ["--lapis:var(--pl-lapis)", "--malachite:var(--pl-malachite)", "--malachite-lip:var(--pl-malachite-deep)", "--vermilion:var(--pl-vermilion)", "--parchment:var(--pl-paper)", "--ink:var(--pl-ink)", "--hair:var(--pl-paper-3)"]) assert.ok(css.includes(token), token);
   assert.ok(!/\.tiles\{[^}]*direction/.test(css), "phone tiles follow the page direction");
   assert.ok(/\.tiles\.grid\{direction:ltr/.test(css), "the board grid keeps A to D in place");
-  assert.match(readFileSync(join(app, "live/Host.tsx"), "utf8"), /variant="quiet" size="md" iconOnly/);
+  assert.match(readFileSync(join(app, "live/host/Board.tsx"), "utf8"), /variant="quiet" size="md" iconOnly/);
   for (const f of ["live/layout.tsx", "join/layout.tsx", "join/Phone.tsx", "live/parts.tsx"]) assert.ok(!readFileSync(join(app, f), "utf8").includes("googleapis"), f);
   for (const f of ["join/Phone.tsx", "live/parts.tsx"]) assert.ok(!readFileSync(join(app, f), "utf8").includes("qrcode-generator"), f);
-  assert.match(readFileSync(join(app, "live/Host.tsx"), "utf8"), /dynamic\(\(\) => import\("\.\/Qr"\)/);
+  assert.match(readFileSync(join(app, "live/host/Board.tsx"), "utf8"), /dynamic\(\(\) => import\("\.\.\/Qr"\)/);
 });

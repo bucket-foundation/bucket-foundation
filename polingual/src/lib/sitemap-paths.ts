@@ -1,18 +1,20 @@
-import { GUIDES } from "./guides";
+import { comparePaths } from "./compare";
+import { GUIDES, LOCAL_GUIDES, guidePath } from "./guides";
+import { teachersPaths } from "./teachers";
 import { WORDS, wordPath } from "./words";
 import SITE_LANGS from "./site-langs.json";
 import { localWordPaths } from "./word-i18n";
 
 export function sitemapPaths(): string[] {
-  return ["/", ...SITE_LANGS.map((l) => `/${l}`), "/compare/duolingo-three-languages", "/privacy", "/terms", "/support", "/research", ...GUIDES.map((g) => `/learn/${g.slug}`), "/word", ...WORDS.map(wordPath), ...localWordPaths()];
+  return ["/", ...SITE_LANGS.map((l) => `/${l}`), ...comparePaths(), "/compare/duolingo-three-languages", "/privacy", "/terms", "/support", "/research", "/learn", ...teachersPaths(), ...[...GUIDES, ...LOCAL_GUIDES].map(guidePath), "/word", ...WORDS.map(wordPath), ...localWordPaths()];
 }
 
 export const SITEMAP_MAX_URLS = 45_000;
-export const SITEMAP_MAX_BYTES = 45_000_000;
+const SITEMAP_MAX_BYTES = 45_000_000;
 const URLSET_OVERHEAD = 200;
 const ENTRY_OVERHEAD = 160;
 
-export function entryBytes(url: string): number {
+function entryBytes(url: string): number {
   return Buffer.byteLength(url, "utf8") + ENTRY_OVERHEAD;
 }
 

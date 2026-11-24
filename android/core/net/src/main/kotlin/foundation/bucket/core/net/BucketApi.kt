@@ -68,9 +68,9 @@ class BucketApi(
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()
 
-    suspend fun progressPush(token: String, branch: String, data: JsonElement): Boolean = runCatching {
+    suspend fun progressPush(token: String, branch: String, data: JsonElement): PushResult = runCatching {
         call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data) }, mapper = ::groupError)
-    }.isSuccess
+    }.fold(onSuccess = { PushResult.Written }, onFailure = { e -> if (e is BucketError.Server && e.status == 409) PushResult.Refused else PushResult.Failed })
 
     suspend fun guestTicket(nickname: String, guestId: String): GuestTicket =
         decode(call("api/academy/lobbies/guest", null, buildJsonObject { put("nickname", nickname); put("guestId", guestId) }))
@@ -87,7 +87,7 @@ class BucketApi(
         lobbyCall("api/academy/lobbies", token, buildJsonObject {
             put("name", name); put("game", game.wire); put("root", root)
             put("targets", kotlinx.serialization.json.JsonArray(targets.map(::JsonPrimitive)))
-            put("rounds", rounds); put("roundSeconds", roundSeconds); put("listed", listed); put("displayName", displayName)
+            put("rounds", rounds); put("roundSeconds", roundSeconds); put("listed", listed); put("displayName", displayName); put("reveal", true)
         })
 
     suspend fun joinLobby(token: String, code: String? = null, lobbyId: String? = null, displayName: String): Lobby =
@@ -109,6 +109,9 @@ class BucketApi(
 
     suspend fun chat(token: String, lobbyId: String, body: String): Lobby =
         lobbyCall("api/academy/lobbies/chat", token, buildJsonObject { put("lobbyId", lobbyId); put("body", body) })
+
+    suspend fun power(token: String, lobbyId: String, kind: foundation.bucket.core.model.PowerKind): Lobby =
+        lobbyCall("api/academy/lobbies/power", token, buildJsonObject { put("lobbyId", lobbyId); put("kind", if (kind == foundation.bucket.core.model.PowerKind.Double) "double" else "fifty") })
 
     suspend fun answer(token: String, lobbyId: String, round: Int, choice: String): AnswerReply =
         decode(call("api/academy/lobbies/answer", token, buildJsonObject { put("lobbyId", lobbyId); put("round", round); put("choice", choice) }))
@@ -180,7 +183,7 @@ class BucketApi(
 data class LobbyReply(val lobby: Lobby)
 
 @Serializable
-data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false)
+data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false, val games: List<String> = emptyList())
 
 @Serializable
 data class AnswerReply(val correct: Boolean, val lobby: Lobby)
@@ -227,4 +230,10 @@ fun profileError(status: Int, text: String): BucketError {
         "invalid_handle" -> BucketError.Server(status, body["message"] ?: "Usernames are 3 to 32 lowercase letters, numbers, - or _.")
         else -> groupError(status, text)
     }
+}
+
+enum class PushResult {
+    Written, Refused, Failed;
+
+    val settled: Boolean get() = this != Failed
 }

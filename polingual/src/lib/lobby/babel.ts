@@ -52,7 +52,7 @@ export function matches(board: Board): Set<number> {
     for (let c = 0; c < SIZE; c++) {
       for (const [dr, dc] of [[0, 1], [1, 0]]) {
         const run = [r * SIZE + c];
-        while (true) {
+        for (;;) {
           const prev = board[run[run.length - 1]];
           const nr = Math.floor(run[run.length - 1] / SIZE) + dr;
           const nc = (run[run.length - 1] % SIZE) + dc;
@@ -106,7 +106,7 @@ export function collapse(board: Board, gone: ReadonlySet<number>, deal: Deal): B
   return out;
 }
 
-export interface Resolve {
+interface Resolve {
   board: Board;
   cleared: Cell[];
   cascades: number;
@@ -157,4 +157,17 @@ export function level(n: number): Level {
 
 export function points(cleared: number, cascades: number): number {
   return cleared * 10 * Math.max(1, cascades);
+}
+
+export type Tap = { pick: number | null } | { swap: [number, number] };
+
+export function tapStep(picked: number | null, i: number): Tap {
+  if (picked === null) return { pick: i };
+  if (picked === i) return { pick: null };
+  if (!adjacent(picked, i)) return { pick: i };
+  return { swap: [picked, i] };
+}
+
+export function seenMeanings(cleared: readonly Cell[]): Cell[] {
+  return Array.from(new Map(cleared.map((c) => [`${c.meaning}`, c])).values());
 }

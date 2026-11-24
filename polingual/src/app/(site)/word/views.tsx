@@ -1,3 +1,4 @@
+import { Banner } from "@/ui";
 import Link from "next/link";
 import Site, { type SiteLocale } from "@/app/site";
 import { Tile, Tiles } from "@/app/tile";
@@ -16,6 +17,57 @@ export function siteLocale(code: string): SiteLocale {
   return { code, rtl: info.rtl, words: s.words, labels: info.labels, footer: { tagline: s.footerTagline, data: s.footerData, published: s.footerPublished } };
 }
 
+type Strings = ReturnType<typeof strings>;
+
+function AudioCredit({ forms, s }: { forms: ReturnType<typeof orderedForms>; s: Strings }) {
+  const recorded = forms.filter((f) => f.audio);
+  if (recorded.length === 0) return null;
+  return (
+    <p className={styles.audioCredit}>
+      {s.audioCredit}{" "}
+      {recorded.map(({ lang, word: text, audio }, i) => (
+        <span key={lang}>
+          {i > 0 && s.sep}
+          <a href={commonsFileUrl(audio!.file)} lang={lang}>
+            <bdi>{text}</bdi>
+          </a>{" "}
+          ({audio!.by && (
+            <>
+              <bdi>{audio!.by}</bdi>,{" "}
+            </>
+          )}
+          {audio!.licenseUrl ? <a href={audio!.licenseUrl}>{audio!.license}</a> : audio!.license})
+        </span>
+      ))}
+    </p>
+  );
+}
+
+function Roots({ w, code, s }: { w: Word; code: string; s: Strings }) {
+  if (!w.note && !w.roots) return null;
+  return (
+    <section>
+      <h2>{s.roots}</h2>
+      {code === "en" && w.note && <p>{w.note}</p>}
+      {w.roots && (
+        <ul className={styles.roots}>
+          {w.roots.map((r) => (
+            <li key={r.root}>
+              <span className={styles.root}>{r.root}</span>{" "}
+              {r.langs
+                .map((lc) => {
+                  const f = w.forms.find((x) => x.lang === lc);
+                  return f ? `${langLabel(lc, code)} ${f.word}` : langLabel(lc, code);
+                })
+                .join(s.sep)}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
 export function WordView({ w, code }: { w: Word; code: string }) {
   const s = strings(code);
   const copy = localWordCopy(code, w);
@@ -23,17 +75,18 @@ export function WordView({ w, code }: { w: Word; code: string }) {
   const guides = code === "en" ? GUIDES.filter((g) => g.lang === "en") : [];
   const forms = orderedForms(w, code);
   const items: SpeakItem[] = forms.map((f) => ({ id: f.lang, text: f.word, lang: bcp47(f.lang), src: f.audio?.src }));
-  const recorded = forms.filter((f) => f.audio);
   const ld = code === "en" ? [wordJsonLd(w), breadcrumbJsonLd(w), appJsonLd()] : [appJsonLd()];
   return (
     <Site wide loc={siteLocale(code)}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(ld) }} />
-      <p className={styles.crumbs}>
-        <Link href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
-      </p>
-      <h1>{copy.h1}</h1>
-      {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
-      <p className="lede">{copy.intro}</p>
+      <Banner testId="word-banner">
+        <p className={styles.crumbs}>
+          <Link prefetch={false} href={localPath(code, "/word")}>{s.words}</Link> / {s.themes[w.category] ?? w.category}
+        </p>
+        <h1>{copy.h1}</h1>
+        {code === "en" && w.gloss !== w.en && <p className={styles.gloss}>{capitalizeIn(w.gloss, "en")}</p>}
+        <p className="lede">{copy.intro}</p>
+      </Banner>
       <p>{copy.body.join(" ")}</p>
       <div className={styles.legendRow}>
         <p className={styles.legend}>
@@ -47,46 +100,8 @@ export function WordView({ w, code }: { w: Word; code: string }) {
           return <Tile key={f.lang} lang={f.lang} code={f.lang} label={langLabel(f.lang, code)} word={f.word} reading={reading} rtl={LANGS[f.lang]?.rtl} index={i} play={<PlayTile item={items[i]} label={fill(s.listen, { word: f.word })} />} />;
         })}
       </Tiles>
-      {recorded.length > 0 && (
-        <p className={styles.audioCredit}>
-          {s.audioCredit}{" "}
-          {recorded.map(({ lang, word: text, audio }, i) => (
-            <span key={lang}>
-              {i > 0 && s.sep}
-              <a href={commonsFileUrl(audio!.file)} lang={lang}>
-                <bdi>{text}</bdi>
-              </a>{" "}
-              ({audio!.by && (
-                <>
-                  <bdi>{audio!.by}</bdi>,{" "}
-                </>
-              )}
-              {audio!.licenseUrl ? <a href={audio!.licenseUrl}>{audio!.license}</a> : audio!.license})
-            </span>
-          ))}
-        </p>
-      )}
-      {(w.note || w.roots) && (
-        <section>
-          <h2>{s.roots}</h2>
-          {code === "en" && w.note && <p>{w.note}</p>}
-          {w.roots && (
-            <ul className={styles.roots}>
-              {w.roots.map((r) => (
-                <li key={r.root}>
-                  <span className={styles.root}>{r.root}</span>{" "}
-                  {r.langs
-                    .map((lc) => {
-                      const f = w.forms.find((x) => x.lang === lc);
-                      return f ? `${langLabel(lc, code)} ${f.word}` : langLabel(lc, code);
-                    })
-                    .join(s.sep)}
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      )}
+      <AudioCredit forms={forms} s={s} />
+      <Roots w={w} code={code} s={s} />
       <div className={styles.ctaRow}>
         <ButtonLink href={code === "en" ? ctaHref(w) : `/${code}?utm_source=seo&utm_campaign=word_${w.slug}`}>{copy.cta}</ButtonLink>
       </div>
@@ -94,7 +109,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
       <ul className={styles.chips}>
         {related.map((r) => (
           <li key={r.slug}>
-            <Link href={wordLocalPath(code, r)}>{capitalizeIn(r.forms.find((f) => f.lang === code)?.word ?? r.en, code)}</Link>
+            <Link prefetch={false} href={wordLocalPath(code, r)}>{capitalizeIn(r.forms.find((f) => f.lang === code)?.word ?? r.en, code)}</Link>
           </li>
         ))}
       </ul>
@@ -103,7 +118,7 @@ export function WordView({ w, code }: { w: Word; code: string }) {
           <h2>Guides</h2>
           <ul>
             {guides.map((g) => (
-              <li key={g.slug}><Link href={`/learn/${g.slug}`}>{g.title}</Link></li>
+              <li key={g.slug}><Link prefetch={false} href={`/learn/${g.slug}`}>{g.title}</Link></li>
             ))}
           </ul>
         </>
@@ -129,8 +144,10 @@ export function WordIndexView({ code }: { code: string }) {
   return (
     <Site wide loc={siteLocale(code)}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript([setLd, appJsonLd()]) }} />
-      <h1>{copy.title}</h1>
-      <p className="lede">{copy.description}</p>
+      <Banner testId="word-banner">
+        <h1>{copy.title}</h1>
+        <p className="lede">{copy.description}</p>
+      </Banner>
       <nav>
         <ul className={styles.chips}>
           {themes.map((t) => (
@@ -144,7 +161,7 @@ export function WordIndexView({ code }: { code: string }) {
           <ul className={styles.chips}>
             {t.words.map((w) => (
               <li key={w.slug}>
-                <Link href={wordLocalPath(code, w)}>{capitalizeIn(w.forms.find((f) => f.lang === code)?.word ?? w.en, code)}</Link>
+                <Link prefetch={false} href={wordLocalPath(code, w)}>{capitalizeIn(w.forms.find((f) => f.lang === code)?.word ?? w.en, code)}</Link>
               </li>
             ))}
           </ul>

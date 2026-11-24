@@ -5,8 +5,8 @@ import Testing
 
 @MainActor
 struct SignUpFunnelTests {
-    @Test func onboardingIsTwoSteps() {
-        #expect(Onboarding.Step.allCases == [.welcome, .languages])
+    @Test func onboardingIsThreeSteps() {
+        #expect(Onboarding.Step.allCases == [.welcome, .speak, .languages])
     }
 
     @Test func purchaseOffersSaveOnlyWhenSignedOut() {

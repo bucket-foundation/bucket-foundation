@@ -1,13 +1,14 @@
-import { TESTFLIGHT_URL } from "./beta";
-
 export const SITE = "https://www.polingual.com";
+export const APP_STORE_URL = "https://apps.apple.com/app/id6825177856";
 
 export const FACTS = {
   name: "Polingual",
   platforms: "iPhone and iPad",
   languageCount: 29,
+  setLimit: 6,
+  price: "$9.99 a month or $59.99 a year, each with a 3-day free trial",
   publisher: "AGFarms LLC",
-  testflight: TESTFLIGHT_URL,
+  appStore: APP_STORE_URL,
 };
 
 export type Faq = { q: string; a: string };
@@ -17,7 +18,7 @@ export const FAQ: Faq[] = [
   { q: "How many languages does Polingual teach?", a: `${FACTS.languageCount}, from Spanish and Japanese to Latin, Sanskrit and Old English.` },
   { q: "Can I study three languages at the same time?", a: "Yes. Pick a set such as Spanish, French and Italian. Placement runs once per language, then the words from all three share one spaced review queue." },
   { q: "How does Polingual check pronunciation?", a: "You hear each word and say it back. Apple speech recognition checks it." },
-  { q: "How do I get Polingual?", a: "Polingual is in a free beta on TestFlight for iPhone and iPad. Join from polingual.com. The App Store release follows Apple review." },
+  { q: "How do I get Polingual?", a: `Polingual is on the App Store for ${FACTS.platforms}. Download it at ${APP_STORE_URL}. New subscribers get a 3-day free trial.` },
   { q: "Does Polingual work with Bucket?", a: "Yes. Sign in with the same email in both apps and your language progress syncs." },
 ];
 
@@ -30,6 +31,7 @@ export function appJsonLd() {
     applicationCategory: "EducationalApplication",
     description: `Polingual teaches several languages at once on ${FACTS.platforms}. ${FACTS.languageCount} languages, one spaced review queue, spoken words with pronunciation checks.`,
     url: `${SITE}/`,
+    installUrl: APP_STORE_URL,
     image: `${SITE}/d8/icon-512.png`,
     publisher: { "@type": "Organization", name: FACTS.publisher },
     inLanguage: "en",

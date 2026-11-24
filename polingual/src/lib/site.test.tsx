@@ -4,8 +4,11 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import Site from "../app/site";
+import LearnPage, { metadata as learnMeta } from "../app/(site)/learn/page";
+import { GUIDES } from "./guides";
+import { siteLocale } from "../app/(site)/word/views";
 import { Tile, Tiles } from "../app/tile";
-import { TESTFLIGHT_URL } from "./beta";
+import { APP_STORE_URL, SITE } from "./facts";
 import { FLAG_STRIPE } from "./flags";
 
 const APP = join(__dirname, "../app");
@@ -17,17 +20,40 @@ function files(dir: string): string[] {
   });
 }
 
-test("the shared shell renders the Po logo, the beta CTA and the flag footer", () => {
+test("the shared shell renders the Po logo, the App Store CTA and the flag footer", () => {
   const html = renderToStaticMarkup(<Site><p>body</p></Site>);
   assert.match(html, /<img src="\/d8\/mark-pl\.svg"/);
   assert.match(html, />polingual</);
-  assert.ok(html.includes(`href="${TESTFLIGHT_URL}"`), "beta CTA");
-  assert.match(html, />Join the beta</);
+  assert.ok(html.includes(`href="${APP_STORE_URL}"`), "App Store CTA");
+  assert.match(html, />Get the app</);
+  assert.doesNotMatch(html, /testflight|Join the beta/i);
   assert.ok(html.includes("<footer"));
   assert.ok(html.includes(FLAG_STRIPE.slice(0, 40)), "flag stripe");
-  for (const href of ["/privacy", "/terms", "/support", "/word"]) assert.ok(html.includes(`href="${href}"`), href);
+  assert.match(html, /href="\/play"[^>]*data-testid="nav-play"|data-testid="nav-play"[^>]*href="\/play"/);
+  const footer = html.slice(html.indexOf("<footer"));
+  for (const href of ["/play", "/word", "/learn", "/teachers", "/privacy", "/terms", "/support", APP_STORE_URL]) assert.ok(footer.includes(`href="${href}"`), href);
   assert.match(html, /Wiktionary/);
   assert.match(html, /<p>body<\/p>/);
+});
+
+test("the header and footer navs carry distinct labels in the page language", () => {
+  const en = renderToStaticMarkup(<Site><p>body</p></Site>);
+  assert.match(en, /<nav[^>]*aria-label="Main"/);
+  assert.match(en, /<nav[^>]*aria-label="Footer"/);
+  const es = renderToStaticMarkup(<Site loc={siteLocale("es")}><p>body</p></Site>);
+  assert.match(es, /<nav[^>]*aria-label="Principal"/);
+  assert.match(es, /<nav[^>]*aria-label="Pie de página"/);
+  assert.match(es, /href="\/es\/teachers"[^>]*>Docentes</);
+});
+
+test("the guides index lists every guide and has its own canonical", () => {
+  const html = renderToStaticMarkup(<LearnPage />);
+  assert.match(html, /<h1>Guides<\/h1>/);
+  for (const g of GUIDES) {
+    assert.ok(html.includes(`href="/learn/${g.slug}"`), g.slug);
+    assert.ok(html.includes(g.title), g.title);
+  }
+  assert.equal(learnMeta.alternates?.canonical, `${SITE}/learn`);
 });
 
 test("tiles carry the language code, the word and an ltr reading", () => {

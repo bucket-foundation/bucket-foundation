@@ -1,0 +1,128 @@
+import BucketKit
+import SwiftUI
+
+struct DuelGame: View {
+    @Environment(LangStore.self) private var langs
+    @State private var prompts: [GamePrompt] = []
+    @State private var meanings: [[String]] = []
+    @State private var index = 0
+    @State private var step = 0
+    @State private var pickedLang: String?
+    @State private var pickedMeaning: String?
+    @State private var points = 0
+    @State private var feel = GameFeel()
+    @State private var marks: [Bool] = []
+    @State private var recorded = false
+
+    static let rounds = 10
+    var prompt: GamePrompt? { index < prompts.count ? prompts[index] : nil }
+
+    var body: some View {
+        PlayScene(game: .duel, feel: feel) {
+            if prompts.isEmpty {
+                ProgressView().tint(PL.paper)
+            } else if let prompt, !PlayLaunch.endGame {
+                play(prompt)
+            } else {
+                results
+            }
+        }
+        .task { await langs.load(); if prompts.isEmpty { deal() } }
+    }
+
+    func play(_ p: GamePrompt) -> some View {
+        VStack(alignment: .leading, spacing: PL.Space.s3) {
+            HStack {
+                PlayLabel(text: String(localized: "Round \(index + 1) of \(prompts.count) · \(points) points"))
+                Spacer(minLength: 0)
+                ComboChip(streak: feel.streak, multiplier: false)
+            }
+            PLCard {
+                Text(p.word.form).font(PL.word.font(scale: 0.9)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.5).frame(maxWidth: .infinity)
+            }
+            if step == 0 {
+                PlayLabel(text: "Which language?")
+                ForEach(p.choices, id: \.self) { l in
+                    GameAnswer(text: langName(l), flag: l, state: Self.state(l, picked: pickedLang, answer: p.answer), answer: l == p.answer) { pickLang(l, p) }
+                        .disabled(pickedLang != nil)
+                }
+            } else {
+                PlayLabel(text: String(localized: "What does it mean in \(langName(p.word.root))?"))
+                ForEach(meanings[index], id: \.self) { m in
+                    GameAnswer(text: m, state: Self.state(m, picked: pickedMeaning, answer: p.word.gloss), answer: m == p.word.gloss) { pickMeaning(m, p) }
+                        .disabled(pickedMeaning != nil)
+                }
+            }
+            if pickedMeaning != nil {
+                PlayReveal(lang: p.word.lang, form: p.word.form, meaning: p.word.gloss, root: p.word.root)
+                Button(index + 1 < prompts.count ? "Next round" : "See results") { next() }.buttonStyle(.pl(.primary, size: .lg))
+            }
+        }
+    }
+
+    var results: some View {
+        let right = marks.filter { $0 }.count
+        return PlayResults(
+            title: String(localized: "\(points) points"),
+            line: String(localized: "\(right) of \(marks.count) rounds right on both questions."),
+            reveals: Array(zip(prompts, marks).filter { !$0.1 }.map { PlayRevealItem(lang: $0.0.word.lang, form: $0.0.word.form, meaning: $0.0.word.gloss) }.prefix(6)),
+            root: langs.playRoot,
+            share: (.duel, .points(points, marks: marks)),
+            again: { deal() }
+        )
+        .onAppear {
+            guard !recorded else { return }
+            recorded = true
+            langs.recordPlay(.duel, zip(prompts, marks).map { p, ok in PlayedWord(itemId: p.word.itemId, lang: p.word.lang, form: p.word.form, gloss: p.word.gloss, right: ok) }, points: points)
+        }
+    }
+
+    func deal() {
+        guard let corpus = langs.corpus else { return }
+        var rng = LobbyRace.dealRandom()
+        let words = GameWords.ordered(langs.freshGameWords(corpus), using: &rng)
+        let clash: (GameWord, String) -> Bool = { w, l in l != w.lang && corpus.byId[w.itemId]?.form(l)?.lowercased() == w.form.lowercased() }
+        prompts = GameRounds.flags(words, own: langs.gameLangs, mode: .flag, count: Self.rounds, sameForm: clash, using: &rng)
+        let glosses = Set(words.map(\.gloss)).sorted()
+        meanings = prompts.map { p in ([p.word.gloss] + glosses.filter { $0.lowercased() != p.word.gloss.lowercased() }.shuffled(using: &rng).prefix(3)).shuffled(using: &rng) }
+        index = 0
+        step = 0
+        pickedLang = nil
+        pickedMeaning = nil
+        points = 0
+        marks = []
+        recorded = false
+        feel.reset()
+    }
+
+    static func state(_ option: String, picked: String?, answer: String) -> RowState {
+        guard let picked else { return .other }
+        return option == answer ? .right : option == picked ? .wrong : .other
+    }
+
+    func pickLang(_ l: String, _ p: GamePrompt) {
+        pickedLang = l
+        let ok = l == p.answer
+        if ok { points += 1 }
+        feel.record(ok)
+        Task {
+            try? await Task.sleep(for: .milliseconds(600))
+            step = 1
+        }
+    }
+
+    func pickMeaning(_ m: String, _ p: GamePrompt) {
+        pickedMeaning = m
+        let ok = m == p.word.gloss
+        if ok { points += 1 }
+        marks.append(ok && pickedLang == p.answer)
+        feel.record(ok)
+    }
+
+    func next() {
+        index += 1
+        step = 0
+        pickedLang = nil
+        pickedMeaning = nil
+    }
+}

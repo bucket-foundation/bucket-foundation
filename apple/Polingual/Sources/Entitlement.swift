@@ -1,3 +1,4 @@
+import BucketKit
 import Foundation
 
 enum Plan {
@@ -10,6 +11,16 @@ enum Plan {
     static let paid = all + extra
 
     static func shown(extra on: Bool) -> [String] { on ? [yearly, family, monthly, lifetime] : all }
+
+    static func offered(_ shown: [String], current: String?, family wanted: Bool = false) -> [String] {
+        switch current {
+        case nil: shown
+        case yearly: shown.filter { $0 == family }
+        case family: wanted ? [] : shown.filter { $0 == yearly }
+        case monthly: shown.filter { $0 == yearly || $0 == family }
+        default: []
+        }
+    }
 
     static func hasTrial(_ id: String) -> Bool { all.contains(id) }
     static let trialDays = 3
@@ -34,12 +45,29 @@ enum Access: Equatable, Sendable {
     case subscribed(productID: String, until: Date?)
     case beta
 
-    var open: Bool {
+    var tier: MemberTier {
         switch self {
-        case .trial, .subscribed, .beta: true
-        case .checking, .locked: false
+        case .checking: .checking
+        case .locked: .locked
+        case .trial: .trial
+        case .subscribed: .subscribed
+        case .beta: .beta
         }
     }
+
+    var open: Bool { tier.open }
+}
+
+enum Monetization {
+    static func showsAds(_ access: Access) -> Bool { access.tier.showsAds }
+
+    static func capped(_ access: Access) -> Bool { access.tier.capped }
+
+    static func locked(_ tab: AppTab, access: Access) -> Bool {
+        !access.open && (tab == .today || tab == .learn)
+    }
+
+    static func startTab(access: Access) -> AppTab { access.open ? .today : .games }
 }
 
 enum Entitlement {
@@ -52,6 +80,29 @@ enum Entitlement {
         guard let best = live.max(by: { ($0.expires ?? .distantFuture) < ($1.expires ?? .distantFuture) }) else { return beta ? .beta : .locked }
         if best.introductory, let until = best.expires { return .trial(until: until) }
         return .subscribed(productID: best.productID, until: best.expires)
+    }
+
+    static func webMember(_ store: Access, web: WebEntitlement?, userId: String?, now: Date) -> WebEntitlement? {
+        MemberTier.merged(store: store.tier, web: web, userId: userId, now: now).web
+    }
+
+    static func merged(_ store: Access, web: WebEntitlement?, userId: String?, now: Date) -> Access {
+        guard let member = webMember(store, web: web, userId: userId, now: now) else { return store }
+        return .subscribed(productID: member.productId, until: member.expires)
+    }
+
+    static func memberLine(_ member: WebEntitlement) -> String {
+        guard let until = member.expires else { return String(localized: "Membership active") }
+        return String(localized: "Membership active until \(until.formatted(date: .long, time: .omitted))")
+    }
+
+    static func current(_ records: [EntitlementRecord], now: Date) -> String? {
+        records.filter { live($0, now: now) }.max(by: { ($0.expires ?? .distantFuture) < ($1.expires ?? .distantFuture) })?.productID
+    }
+
+    static func lapsed(history: [EntitlementRecord], now: Date) -> Date? {
+        guard !history.contains(where: { live($0, now: now) }) else { return nil }
+        return history.filter { Plan.paid.contains($0.productID) && $0.revoked == nil }.compactMap(\.expires).filter { $0 <= now }.max()
     }
 
     static func trialEligible(history: [EntitlementRecord]) -> Bool {

@@ -198,10 +198,15 @@ public struct GameRun: Sendable, Equatable {
     public private(set) var index = 0
     public private(set) var answered: String?
     public private(set) var results: [Bool] = []
-    public private(set) var combo = 0
-    public private(set) var bestCombo = 0
+    public private(set) var streak = ComboCount()
 
     public init(_ prompts: [GamePrompt]) { self.prompts = prompts }
+
+    public var combo: Int { streak.current }
+    public var bestCombo: Int { streak.best }
+    public var tier: ComboTier { streak.tier }
+    public var multiplier: Int { streak.multiplier }
+    public var stars: Int { GameStars.rating(hits: hits, total: prompts.count) }
 
     public init(_ prompts: [GamePrompt], replaying pattern: String) {
         self.prompts = prompts
@@ -224,8 +229,7 @@ public struct GameRun: Sendable, Equatable {
         let right = choice == current.answer
         answered = choice
         results.append(right)
-        combo = right ? combo + 1 : 0
-        bestCombo = max(bestCombo, combo)
+        streak.record(right)
         return right
     }
 
@@ -328,7 +332,7 @@ public struct SpeedBoard: Sendable, Equatable {
 
     public static let seconds = 60.0
     public static let missPenalty = 2.0
-    public static let hotCombo = 5
+    public static let hotCombo = ComboTier.hot.rawValue
 
     public private(set) var meanings: [GameWord?]
     public private(set) var forms: [GameWord?]
@@ -336,8 +340,7 @@ public struct SpeedBoard: Sendable, Equatable {
     public private(set) var pickedForm: String?
     public private(set) var points = 0
     public private(set) var hits = 0
-    public private(set) var combo = 0
-    public private(set) var bestCombo = 0
+    public private(set) var streak = ComboCount()
     public private(set) var missed: [GameWord] = []
     public private(set) var seen: [GameWord] = []
     let deck: [GameWord]
@@ -351,6 +354,9 @@ public struct SpeedBoard: Sendable, Equatable {
         forms = Array(repeating: nil, count: slots)
         refill(force: true)
     }
+
+    public var combo: Int { streak.current }
+    public var bestCombo: Int { streak.best }
 
     public var playable: Bool { meanings.compactMap { $0 }.count >= 3 }
 
@@ -402,13 +408,12 @@ public struct SpeedBoard: Sendable, Equatable {
         pickedForm = nil
         guard let word = meanings.compactMap({ $0 }).first(where: { $0.id == m }) else { return .ignored }
         guard m == f else {
-            combo = 0
+            streak.miss()
             if !missed.contains(word) { missed.append(word) }
             return .missed(word)
         }
         hits += 1
-        combo += 1
-        bestCombo = max(bestCombo, combo)
+        streak.hit()
         points += combo >= Self.hotCombo ? 2 : 1
         meanings[meanings.firstIndex { $0?.id == m }!] = nil
         forms[forms.firstIndex { $0?.id == m }!] = nil
@@ -465,6 +470,7 @@ public struct GroupQuest: Sendable, Equatable {
 
     public var progress: Double { target > 0 ? min(1, Double(done) / Double(target)) : 0 }
     public var complete: Bool { done >= target }
+    public var shownDone: Int { min(done, target) }
     public var nudgeable: [GroupMember] { group.members.filter { !$0.isMe && !$0.studiedToday } }
 }
 

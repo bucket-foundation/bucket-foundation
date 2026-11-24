@@ -19,6 +19,7 @@ import kotlinx.coroutines.isActive
 data class LobbyState(
     val open: List<LobbySummary> = emptyList(),
     val botsEnabled: Boolean = false,
+    val games: List<String> = emptyList(),
     val current: Lobby? = null,
     val picks: Map<Int, String> = emptyMap(),
     val marks: Map<Int, Boolean> = emptyMap(),
@@ -50,7 +51,7 @@ class LobbyStore(
         val t = anyToken() ?: return
         try {
             val reply = api.lobbies(t)
-            _state.update { it.copy(open = reply.lobbies, botsEnabled = reply.bots, error = null) }
+            _state.update { it.copy(open = reply.lobbies, botsEnabled = reply.bots, games = reply.games, error = null) }
         } catch (e: BucketError) {
             _state.update { it.copy(error = e) }
         }
@@ -91,6 +92,11 @@ class LobbyStore(
         val id = _state.value.current?.id ?: return
         if (body.isEmpty()) return
         apply(run { api.chat(it, id, body.take(200)) })
+    }
+
+    suspend fun power(kind: foundation.bucket.core.model.PowerKind) {
+        val id = _state.value.current?.id ?: return
+        apply(run { api.power(it, id, kind) })
     }
 
     suspend fun pick(choice: String, round: Int): Boolean? {

@@ -19,6 +19,12 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
     case textNotAllowed
     case imageTooLarge
     case imageNotAllowed
+    case handleTaken
+    case handleInvalid
+
+    static func serverDown(_ status: Int) -> Bool {
+        status == 0 || status == 402 || status >= 500
+    }
 
     public var errorDescription: String? {
         switch self {
@@ -27,7 +33,7 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .rateLimited(let m): m ?? "Too many tries. Wait ten minutes and try again."
         case .revoked: "Your session ended. Sign in again."
         case .unavailable: "Sign-in is unavailable right now."
-        case .server(let s, let m): m ?? "Bucket answered \(s)."
+        case .server(let s, let m): m ?? (Self.serverDown(s) ? "Bucket is not answering right now. Try again in a few minutes." : "Bucket answered \(s).")
         case .decoding: "Bucket sent a reply this version cannot read."
         case .groupNotFound: "That invite link no longer works. Ask for a new one."
         case .groupFull: "This group is full."
@@ -40,6 +46,8 @@ public enum BucketError: Error, Equatable, LocalizedError, Sendable {
         case .textNotAllowed: "That text is not allowed. Try other words."
         case .imageTooLarge: "That image is too large to share."
         case .imageNotAllowed: "This image may be sensitive, so it was not sent."
+        case .handleTaken: "That username is taken. Try another."
+        case .handleInvalid: "Usernames are 3 to 32 lowercase letters, numbers, - or _."
         }
     }
 }
@@ -93,7 +101,26 @@ public struct BucketAPI: Sendable {
     }
 
     public func questionDeck(_ branch: String) async throws -> QuestionDeck {
-        try await cached("academy-app/corpus/questions/\(branch).json")
+        try await questions(at: "corpus/questions/\(branch).json")
+    }
+
+    public func questions(at file: String) async throws -> QuestionDeck {
+        try await cached("academy-app/\(file)")
+    }
+
+    @discardableResult
+    public func saveOffline(_ entries: [DeckEntry]) async -> Int {
+        var saved = 0
+        for entry in entries where !entry.isLanguage {
+            for file in [entry.file, entry.questionsFile] {
+                let path = "academy-app/\(file)"
+                guard let url = cacheURL(path), !FileManager.default.fileExists(atPath: url.path) else { continue }
+                guard let data = try? await raw(path) else { continue }
+                try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+                if (try? data.write(to: url, options: .atomic)) != nil { saved += 1 }
+            }
+        }
+        return saved
     }
 
     func cacheURL(_ path: String) -> URL? {
@@ -142,7 +169,7 @@ public struct BucketAPI: Sendable {
     }
 
     public func refresh(_ s: Session) async throws -> Session {
-        let data = try await session(["action": "refresh", "refresh_token": s.refreshToken])
+        let data = try await session(["action": "refresh", "refresh_token": s.refreshToken], timeout: Self.refreshTimeout)
         return try decodeBody(data)
     }
 
@@ -199,8 +226,11 @@ public struct BucketAPI: Sendable {
         return try decode(data, http)
     }
 
-    func session(_ body: [String: String], token: String? = nil) async throws -> Data {
+    public static let refreshTimeout: TimeInterval = 20
+
+    func session(_ body: [String: String], token: String? = nil, timeout: TimeInterval? = nil) async throws -> Data {
         var r = URLRequest(url: base.appending(path: "api/academy/session"))
+        if let timeout { r.timeoutInterval = timeout }
         r.httpMethod = "POST"
         if let token { r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization") }
         r.setValue("application/json", forHTTPHeaderField: "content-type")

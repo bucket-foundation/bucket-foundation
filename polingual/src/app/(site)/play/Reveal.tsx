@@ -1,19 +1,23 @@
 "use client";
 
 import { parseTile } from "@academy/lobby-tiles";
+import type { RevealEntry } from "@academy/lobbies";
 import { revealOrder, type LobbyPrompt } from "@/lib/lobby/client";
+import { learnEntry, learnHref, LEARN_FALLBACK } from "@/lib/lobby/learn-index";
+import { ButtonLink } from "@/ui";
+import { useLearnIndex } from "./useLearn";
 import { FlagSquare, RevealCard } from "./LearnWord";
 import { langName } from "./langs";
 import styles from "./play.module.css";
 
-export interface PickLabel {
+interface PickLabel {
   word: string | null;
   lang: string | null;
 }
 
-export function choiceLabel(prompt: Pick<LobbyPrompt, "mode" | "lang">, choice: string): PickLabel {
+function choiceLabel(prompt: Pick<LobbyPrompt, "mode" | "lang">, choice: string): PickLabel {
   if (prompt.mode === "flag") return { word: null, lang: choice };
-  if (prompt.mode === "meaning") return { word: choice, lang: null };
+  if (prompt.mode === "meaning" || prompt.mode === "spy") return { word: choice, lang: null };
   if (prompt.mode === "mixed") {
     const t = parseTile(choice);
     return { word: t.form, lang: t.lang };
@@ -51,7 +55,7 @@ export function RevealBanner({ prompt, pick }: { prompt: LobbyPrompt; pick: { ch
   );
 }
 
-export default function Reveal({ prompt, answersOnly = false }: { prompt: LobbyPrompt; answersOnly?: boolean }) {
+export default function Reveal({ prompt, rootLang, answersOnly = false }: { prompt: LobbyPrompt; rootLang: string; answersOnly?: boolean }) {
   const all = revealOrder(prompt.reveal ?? []);
   const entries = answersOnly ? all.filter((e) => e.correct) : all;
   const title = prompt.mode === "flag" ? all.find((e) => e.correct)?.meaning || prompt.gloss : prompt.gloss;
@@ -62,9 +66,55 @@ export default function Reveal({ prompt, answersOnly = false }: { prompt: LobbyP
       </p>
       <ul className={styles.revealGrid} data-answers-only={answersOnly}>
         {entries.map((e, i) => (
-          <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} />
+          <RevealCard key={`${e.lang}:${e.word}:${i}`} entry={e} index={i} rootLang={rootLang} />
         ))}
       </ul>
+    </section>
+  );
+}
+
+type RevealWord = { lang: string; word: string; meaning: string; gloss?: string; roman?: string | null; reading?: RevealEntry["reading"]; correct?: boolean };
+
+function toEntry(w: RevealWord): RevealEntry {
+  return { lang: w.lang, word: w.word, roman: w.roman ?? null, reading: w.reading ?? null, meaning: w.meaning, gloss: w.gloss ?? w.meaning, correct: w.correct ?? true };
+}
+
+export function WordReveal({ title, words, rootLang, testId = "word-reveal" }: { title: React.ReactNode; words: RevealWord[]; rootLang: string; testId?: string }) {
+  if (words.length === 0) return null;
+  return (
+    <section className={styles.wordReveal} data-testid={testId}>
+      <p className={styles.revealHead}>{title}</p>
+      <ul className={styles.revealGrid}>
+        {words.map((w, i) => (
+          <RevealCard key={`${w.lang}:${w.word}:${i}`} entry={toEntry(w)} index={i} rootLang={rootLang} />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function LearnPanel({ missed, cta = true }: { missed: RevealWord[]; cta?: boolean }) {
+  const index = useLearnIndex();
+  const seen = new Set<string>();
+  const unique = missed.filter((m) => (seen.has(`${m.lang}:${m.word}`) ? false : (seen.add(`${m.lang}:${m.word}`), true))).slice(0, 8);
+  return (
+    <section className={styles.learnPanel} data-testid="learn-panel">
+      <h2>Keep these words</h2>
+      <p>{unique.length ? "Each missed word has a lesson with its sound, root and cousins." : "Turn today's run into a streak with a few minutes of Learn."}</p>
+      {unique.length ? (
+        <ul className={styles.learnMissed}>
+          {unique.map((m) => (
+            <li key={`${m.lang}:${m.word}`}>
+              <a href={learnHref(learnEntry(index, m.lang, m.word, m.meaning))} data-testid="learn-missed">
+                <FlagSquare lang={m.lang} size={16} />
+                {m.word}
+                <span>{m.meaning}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {cta ? <ButtonLink href={LEARN_FALLBACK} data-testid="results-start-learning">Start learning</ButtonLink> : null}
     </section>
   );
 }

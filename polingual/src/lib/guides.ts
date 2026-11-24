@@ -1,4 +1,12 @@
-import { FACTS, type Faq } from "./facts";
+import { FACTS, SITE, type Faq } from "./facts";
+import { ES_GUIDES } from "./guides-es";
+import { LONG_GUIDES } from "./guides-long";
+
+export type Cell = string | { text: string; href: string };
+export type GuideTable = { caption: string; head: string[]; rows: Cell[][] };
+export type GuideLink = { href: string; label: string };
+export type Source = { label: string; url: string; checked: string };
+export type GuideSection = { h: string; p: string; more?: string[]; table?: GuideTable };
 
 export type Guide = {
   slug: string;
@@ -6,7 +14,10 @@ export type Guide = {
   title: string;
   description: string;
   lede: string;
-  sections: { h: string; p: string }[];
+  sections: GuideSection[];
+  links?: GuideLink[];
+  sources?: Source[];
+  pair?: string;
   faq: Faq[];
   cta: string;
 };
@@ -28,7 +39,7 @@ export const GUIDES: Guide[] = [
       { q: "Is it bad to learn two languages at once?", a: "It works when the daily load stays small and review covers every language. Pairing related languages, such as Spanish and Portuguese, lets each one reinforce the other." },
       { q: "How many languages can I study in Polingual?", a: "Up to six in one language set, from a list of 29." },
     ],
-    cta: "Join the free beta",
+    cta: "Download on the App Store",
   },
   {
     slug: "learn-spanish-and-french-together",
@@ -61,13 +72,13 @@ export const GUIDES: Guide[] = [
       { q: "Is a third language easier for bilinguals?", a: "Bilinguals can link new words to two known languages, and related languages share many words." },
       { q: "Is there a Spanish version?", a: "Yes. The app and polingual.com/es are in Spanish." },
     ],
-    cta: "Join the free beta",
+    cta: "Download on the App Store",
   },
   {
     slug: "aprender-frances-sabiendo-espanol",
     lang: "es",
     title: "Aprende francés e italiano desde el español",
-    description: "Si hablas español e inglés, aprende un tercer idioma con las palabras que ya conoces. Beta gratis para iPhone.",
+    description: "Si hablas español e inglés, aprende un tercer idioma con las palabras que ya conoces. Para iPhone y iPad.",
     lede: "El español comparte raíces con el francés, el italiano y el portugués. Polingual te muestra cada palabra en todos tus idiomas a la vez.",
     sections: [
       { h: "Una palabra en todos tus idiomas", p: "Ves cada significado con su palabra en español, inglés y el idioma nuevo, con audio para cada una." },
@@ -77,10 +88,40 @@ export const GUIDES: Guide[] = [
       { q: "¿Es más fácil el francés si hablo español?", a: "Sí, muchas palabras vienen del latín en los dos idiomas, como cien y cent." },
       { q: "¿La app está en español?", a: "Sí. Toda la app está en español y en inglés." },
     ],
-    cta: "Únete a la beta gratis",
+    cta: "Descárgala en el App Store",
   },
+  ...LONG_GUIDES,
 ];
+
+export const LOCAL_GUIDES: Guide[] = ES_GUIDES;
 
 export function guide(slug: string): Guide | undefined {
   return GUIDES.find((g) => g.slug === slug);
+}
+
+export function localGuide(lang: string, slug: string): Guide | undefined {
+  return LOCAL_GUIDES.find((g) => g.lang === lang && g.slug === slug);
+}
+
+export function guidePath(g: Guide): string {
+  return LOCAL_GUIDES.includes(g) ? `/${g.lang}/learn/${g.slug}` : `/learn/${g.slug}`;
+}
+
+export function guidePair(g: Guide): Guide | undefined {
+  if (!g.pair) return undefined;
+  return LOCAL_GUIDES.includes(g) ? guide(g.pair) : LOCAL_GUIDES.find((x) => x.slug === g.pair);
+}
+
+export function guideAlternates(g: Guide): Record<string, string> | undefined {
+  const other = guidePair(g);
+  if (!other) return undefined;
+  const en = g.lang === "en" ? g : other;
+  const es = g.lang === "es" ? g : other;
+  return { en: `${SITE}${guidePath(en)}`, es: `${SITE}${guidePath(es)}`, "x-default": `${SITE}${guidePath(en)}` };
+}
+
+export function guideWordCount(g: Guide): number {
+  const cells = g.sections.flatMap((s) => (s.table ? [s.table.caption, ...s.table.head, ...s.table.rows.flat().map((c) => (typeof c === "string" ? c : c.text))] : []));
+  const text = [g.title, g.lede, ...g.sections.flatMap((s) => [s.h, s.p, ...(s.more ?? [])]), ...cells, ...g.faq.flatMap((f) => [f.q, f.a])];
+  return text.join(" ").split(/\s+/).filter(Boolean).length;
 }

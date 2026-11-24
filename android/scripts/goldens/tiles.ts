@@ -1,0 +1,2 @@
+import { tileSchedule, tileCount, tileOutcome, parseTapped, tappedChoice } from "@academy/lobby-tiles";
+console.log(JSON.stringify({ s0: tileSchedule(6, 0, 8, 9), s7: tileSchedule(9, 7, 8, 9), counts: [0,3,7].map((r) => tileCount(r, 8)), out: tileOutcome("1,3", [1, 2]), pt: [parseTapped("3,1,1", 5), parseTapped("-", 5), parseTapped("7", 5), parseTapped("a", 5)], tc: [tappedChoice([3, 1, 3]), tappedChoice([])] }));

@@ -3,6 +3,7 @@ import SwiftUI
 
 enum GameKind: String, CaseIterable, Identifiable, Hashable {
     case daily, mini, wordGroups, same, match, voice, flags, letters
+    case polyword, flagTiles, babel, shift, snake, atlas, forehead, ispy, duel, tiles
 
     var id: String { rawValue }
 
@@ -16,6 +17,30 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .voice: String(localized: "Which Voice")
         case .flags: String(localized: "Flags")
         case .letters: String(localized: "Letter Sprint")
+        case .polyword: String(localized: "Polyword")
+        case .flagTiles: String(localized: "Flag Tiles")
+        case .babel: String(localized: "Babel Match")
+        case .shift: String(localized: "Shift")
+        case .snake: String(localized: "Word Snake")
+        case .atlas: String(localized: "Voice Atlas")
+        case .forehead: String(localized: "Forehead")
+        case .ispy: String(localized: "I Spy")
+        case .duel: String(localized: "Flag Duel")
+        case .tiles: String(localized: "Tiles")
+        }
+    }
+
+    var oncePerDay: Bool {
+        switch self {
+        case .daily, .mini, .wordGroups, .polyword, .flagTiles, .shift, .atlas: true
+        case .same, .match, .voice, .flags, .letters, .babel, .snake, .forehead, .ispy, .duel, .tiles: false
+        }
+    }
+
+    var dailySeeded: Bool {
+        switch self {
+        case .daily, .mini, .wordGroups, .voice, .letters, .polyword, .flagTiles, .shift, .atlas: true
+        case .same, .match, .flags, .babel, .snake, .forehead, .ispy, .duel, .tiles: false
         }
     }
 
@@ -29,10 +54,22 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .voice: String(localized: "Listen, then pick the flag.")
         case .flags: String(localized: "Read a word, then pick its flag.")
         case .letters: String(localized: "Hear a sound, then find its letter.")
+        case .polyword: String(localized: "One word a day. Every miss shows its meaning in another language.")
+        case .flagTiles: String(localized: "Solo daily run. A word falls; tap the flag of its language.")
+        case .babel: String(localized: "Match-3 with words. Three that mean the same thing clear.")
+        case .shift: String(localized: "Daily letter board. Slide columns to spell words in two languages.")
+        case .snake: String(localized: "Arena with bot snakes. Eat words in your language, dodge the decoys.")
+        case .atlas: String(localized: "Five words a day. Hear one, pin where its language is spoken.")
+        case .forehead: String(localized: "Party mode on one phone. Friends give clues, you tilt to score.")
+        case .ispy: String(localized: "Spot the thing, say it in the language of the round.")
+        case .duel: String(localized: "Ten rounds. Name the language, then the meaning.")
+        case .tiles: String(localized: "Words fall. Tap every one that means the word on top.")
         }
     }
 
-    var symbol: String {
+    var symbol: String { art.map { "art:\($0.rawValue)" } ?? legacySymbol }
+
+    var legacySymbol: String {
         switch self {
         case .daily: "calendar"
         case .mini: "square.grid.3x3.fill"
@@ -42,32 +79,74 @@ enum GameKind: String, CaseIterable, Identifiable, Hashable {
         case .voice: "waveform"
         case .flags: "flag.fill"
         case .letters: "character"
+        default: "gamecontroller.fill"
+        }
+    }
+
+    var art: PLArt? {
+        switch self {
+        case .polyword: .streakFlame
+        case .flagTiles: .kente
+        case .babel: .blocks
+        case .shift: .tornLabel
+        case .snake: .brush
+        case .atlas: .azulejo
+        case .forehead: .ticket
+        case .ispy: .star
+        case .duel: .seal
+        case .tiles: .azulejoGrid
+        case .daily: .skSeal
+        case .mini: .skAzulejo
+        case .wordGroups: .skGirih
+        case .same: .skKente
+        case .match: .skPaisley
+        case .voice: .objectBird
+        case .flags: .bunting
+        case .letters: .skMudcloth
         }
     }
 
     var color: Color {
         switch self {
-        case .daily, .voice, .wordGroups: D8.lapis
-        case .same, .letters, .mini: D8.vermilion
-        case .match, .flags: D8.malachite
+        case .daily, .voice, .wordGroups: PL.lapis
+        case .same, .letters, .mini: PL.vermilion
+        case .match, .flags: PL.malachite
+        case .polyword, .babel, .forehead, .tiles: PL.tyrian
+        case .flagTiles, .snake, .duel: PL.vermilion
+        case .shift, .atlas, .ispy: PL.lapis
         }
     }
 
     var lip: Color {
         switch self {
-        case .daily, .voice, .wordGroups: Color(hex: 0x12326A)
-        case .same, .letters, .mini: D8.vermilionLip
-        case .match, .flags: D8.malachiteLip
+        case .daily, .voice, .wordGroups: PL.lapisDeep
+        case .same, .letters, .mini: PL.vermilionDeep
+        case .match, .flags: PL.malachiteDeep
+        case .polyword, .babel, .forehead, .tiles: PL.tyrianDeep
+        case .flagTiles, .snake, .duel: PL.vermilionDeep
+        case .shift, .atlas, .ispy: PL.lapisDeep
         }
     }
 
-    @MainActor @ViewBuilder var screen: some View {
+    @MainActor var screen: some View { DailyLimitGate(kind: self) { board } }
+
+    @MainActor @ViewBuilder var board: some View {
         switch self {
         case .daily, .same, .voice, .flags: QuizGame(kind: self).fullHeightSession()
         case .match: SpeedMatchGame().fullHeightSession()
         case .letters: LetterSprintGame().fullHeightSession()
         case .mini: MiniGame().fullHeightSession()
         case .wordGroups: WordGroupsGame().fullHeightSession()
+        case .polyword: PolywordGame()
+        case .flagTiles: FlagTilesGame()
+        case .babel: BabelGame()
+        case .shift: ShiftGame()
+        case .snake: SnakeGame()
+        case .atlas: AtlasGame()
+        case .forehead: ForeheadGame()
+        case .ispy: ISpyGame()
+        case .duel: DuelGame()
+        case .tiles: TilesGame()
         }
     }
 }
@@ -76,18 +155,18 @@ struct TileRow: View {
     let symbol: String
     let title: String
     let detail: String
-    var color = D8.lapis
+    var color = PL.lapis
 
     var body: some View {
         HStack(spacing: 14) {
-            Image(systemName: symbol)
-                .font(.title2)
-                .foregroundStyle(D8.parchment)
+            SymbolArt(name: symbol, size: 26)
+                .font(PL.icon(22))
+                .foregroundStyle(PL.paper)
                 .frame(width: 48, height: 48)
                 .background(color, in: .rect(cornerRadius: 12))
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.headline).foregroundStyle(Palette.ink)
-                Text(detail).font(.footnote).foregroundStyle(Palette.muted)
+                Text(title).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
+                Text(detail).font(PL.small.font()).foregroundStyle(PL.inkDim)
             }
         }
         .padding(.vertical, 4)
@@ -105,7 +184,7 @@ enum GameWordCache {
 extension LangStore {
     var gameWords: [GameWord] {
         guard let corpus else { return [] }
-        let key = systems.map { "\($0.id):\($0.targets.joined(separator: ","))" }.joined(separator: "|") + "#" + String(states.values.reduce(0) { $0 + $1.cards.count }) + "#" + String(corpus.items.count)
+        let key = gameSystems.map { "\($0.id):\($0.targets.joined(separator: ","))" }.joined(separator: "|") + "#" + String(states.values.reduce(0) { $0 + $1.cards.count }) + "#" + String(corpus.items.count)
         if key == GameWordCache.key { return GameWordCache.words }
         let words = freshGameWords(corpus)
         GameWordCache.key = key
@@ -113,7 +192,10 @@ extension LangStore {
         return words
     }
 
+    var gameSystems: [LangSystem] { LobbyRace.system.map { [$0] } ?? systems }
+
     func freshGameWords(_ corpus: LangCorpus) -> [GameWord] {
+        if let race = LobbyRace.system { return LobbyRacePool.words(race, corpus: corpus) }
         let learned = GameWords.learned(systems, states: states, corpus: corpus, now: Date().timeIntervalSince1970 * 1000)
         if learned.count >= 8 { return learned }
         let have = Set(learned.map(\.id))
@@ -122,11 +204,11 @@ extension LangStore {
 
     var gameLangs: [String] {
         var seen = Set<String>()
-        return systems.flatMap(\.targets).filter { seen.insert($0).inserted }
+        return gameSystems.flatMap(\.targets).filter { seen.insert($0).inserted }
     }
 
-    var dailySystem: LangSystem? { systems.first }
-    var sameWordSystem: LangSystem? { systems.first { $0.targets.count >= 2 } }
+    var dailySystem: LangSystem? { gameSystems.first }
+    var sameWordSystem: LangSystem? { gameSystems.first { $0.targets.count >= 2 } }
 
     var gameStreak: Int {
         let now = Date().timeIntervalSince1970 * 1000
@@ -141,11 +223,15 @@ extension LangStore {
     @discardableResult
     func recordGame(_ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true) -> Bool {
         let before = gameBest(kind.rawValue)
-        let touched = kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } }
+        GameTally.finished += 1
+        LobbyRace.finished(kind, score: LobbyRules.raceScore(points: points, hits: hits))
+        DailyLedger.shared.charge(cards: played.count)
+        let race = LobbyRace.system
+        let touched = race.map { LiveGames.credited(systems, root: $0.root, targets: $0.targets) } ?? (kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } })
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
             let carded = mine.filter { state(s.id).cards.started($0.id) }
-            finishGame(s.id, GameResult(game: kind.rawValue, points: points, hits: hits, missed: carded.map(\.id), dailyPattern: pattern, countsForGroup: s.id == touched.first?.id))
+            finishGame(s.id, LiveGames.result(kind.rawValue, points: points, hits: hits, missed: carded.map(\.id), pattern: pattern, race: race != nil, countsForGroup: s.id == touched.first?.id))
             for w in mine where !carded.contains(w) && !w.itemId.hasPrefix("abc:") { WantedWords.add(w.itemId, to: s.id) }
         }
         Beta.shared.studyEnded("game:\(kind.rawValue)", graded: hits + missed.count, correct: hits)
@@ -153,12 +239,52 @@ extension LangStore {
         guard let points, let before else { return false }
         return points > before
     }
+
+    func recordRun(_ id: String, _ kind: GameKind, played: [GameWord], hits: Int, points: Int?, missed: [GameWord], pattern: String? = nil, earned: Bool = true, runs: CreditedRunStore = .shared) -> GameOutcome? {
+        guard runs.claim(id) else { return nil }
+        let before = gameDayCredit()
+        let best = recordGame(kind, played: played, hits: hits, points: points, missed: missed, pattern: pattern, earned: earned)
+        return GameOutcome(best: best, credit: .between(before: before, after: gameDayCredit(), hits: hits))
+    }
+}
+
+extension LangStore {
+    func gameLine(bestRun: Int) -> String {
+        gameStreak > 0 ? dayStreak(gameStreak) : String(localized: "\(bestRun) in a row")
+    }
+}
+
+struct GameOutcome: Equatable {
+    let best: Bool
+    let credit: GameCredit
+}
+
+@MainActor
+final class CreditedRunStore {
+    static let shared = CreditedRunStore()
+    static let key = "polingual.creditedRuns"
+    private let defaults: UserDefaults
+
+    init(defaults: UserDefaults = .standard) { self.defaults = defaults }
+
+    func claim(_ id: String) -> Bool {
+        var runs = CreditedRuns(defaults.stringArray(forKey: Self.key) ?? [])
+        guard runs.claim(id) else { return false }
+        defaults.set(runs.ids, forKey: Self.key)
+        return true
+    }
+}
+
+@MainActor
+enum GameTally {
+    static var finished = 0
 }
 
 struct GamesView: View {
     @Environment(LangStore.self) private var langs
     var embedded = false
     @State private var open: GameKind?
+    @State private var finishedAtOpen = 0
 
     var body: some View {
         if embedded {
@@ -170,11 +296,23 @@ struct GamesView: View {
 
     var page: some View {
         ScrollView {
-            GamesBoard { open = $0 }.padding()
+            VStack(alignment: .leading, spacing: PL.Space.s4) {
+                PLScreenTop(title: "Games", subtitle: "Free to play, every day", stickers: Stickers.games, onDark: true)
+                GamesBoard(onDark: true, startsSet: true) { open = $0 }
+            }
+            .padding(.horizontal, PL.Space.s4)
+            .padding(.bottom, PL.Space.s4)
         }
-        .paper()
+        .scrollContentBackground(.hidden)
+        .plGround(.lattice, band: true)
         .navigationTitle("Games")
-        .navigationDestination(item: $open) { $0.screen }
+        .plChrome()
+        .navigationDestination(item: $open) { $0.screen.modifier(ResultBannerSlot()) }
+        .modifier(StagedLobbyHook())
+        .onChange(of: open) { old, new in
+            if new != nil { finishedAtOpen = GameTally.finished }
+            if old != nil, new == nil { LobbyAds.shared.left(.gamesHub, finishedGame: GameTally.finished > finishedAtOpen) }
+        }
         .task {
             await langs.load()
             #if DEBUG
@@ -188,30 +326,38 @@ struct GamesView: View {
 struct GamesBoard: View {
     @Environment(LangStore.self) private var langs
     @Environment(GroupStore.self) private var groups
+    var onDark = false
+    var startsSet = false
     let open: (GameKind) -> Void
 
     var body: some View {
         VStack(spacing: 16) {
             if langs.systems.isEmpty && (langs.status == .idle || langs.status == .loading) {
                 ProgressView().frame(maxWidth: .infinity).padding(.top, 60)
+            } else if langs.systems.isEmpty && startsSet {
+                GamesSetStart(onDark: onDark)
             } else if langs.systems.isEmpty {
                 Text("Start a language set in Learn. The games use the words you study.")
-                    .foregroundStyle(Palette.muted)
+                    .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
                     .padding(.top, 60)
             } else {
                 DailyHero(open: { open(.daily) })
                 LobbiesTile()
+                LiveNowRow()
                 ForEach(groups.groups.compactMap { GroupQuest($0) }, id: \.group.id) { QuestCard(quest: $0) }
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 14)], spacing: 14) {
                     ForEach(GameKind.allCases.filter { $0 != .daily }) { kind in
                         if available(kind) || kind == .same {
-                            GameTile(kind: kind, enabled: available(kind), open: { open(kind) })
+                            VStack(spacing: 6) {
+                                GameTile(kind: kind, enabled: available(kind), open: { open(kind) })
+                                if available(kind) { PlayLiveLink(kind: kind) }
+                            }
                         }
                     }
                 }
                 Text("\(langs.gameWords.count) words from your reviews. A finished game keeps your streak. Misses come back in study.")
-                    .font(.footnote)
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.small.font())
+                    .foregroundStyle(onDark ? PL.paper.opacity(0.85) : PL.inkDim)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
@@ -236,6 +382,7 @@ struct GameLip: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .environment(\.colorScheme, .light)
             .background(face, in: .rect(cornerRadius: radius))
             .background(lip, in: .rect(cornerRadius: radius).offset(y: 5))
             .padding(.bottom, 5)
@@ -257,8 +404,8 @@ struct LearnTile<Mark: View>: View {
         Button(action: open) {
             VStack(alignment: .leading, spacing: 6) {
                 mark().frame(height: 34)
-                Text(title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
-                Text(detail).font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                Text(title).font(PL.wordFont(19)).foregroundStyle(PL.paper).lineLimit(1).minimumScaleFactor(0.7)
+                Text(detail).font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                     .lineLimit(2, reservesSpace: true)
                     .multilineTextAlignment(.leading)
             }
@@ -268,7 +415,7 @@ struct LearnTile<Mark: View>: View {
         }
         .buttonStyle(.plain)
         .overlay(alignment: .topTrailing) {
-            if let item { AddToToday(item: item, look: .icon, color: D8.parchment).padding(8) }
+            if let item { AddToToday(item: item, look: .icon, color: PL.paper).padding(8) }
         }
     }
 }
@@ -277,7 +424,7 @@ struct LearnSymbol: View {
     let name: String
 
     var body: some View {
-        Image(systemName: name).font(.system(size: 26, weight: .bold)).foregroundStyle(D8.parchment)
+        Image(systemName: name).font(PL.icon(26)).foregroundStyle(PL.paper)
     }
 }
 
@@ -287,16 +434,16 @@ struct VoiceTile: View {
     var body: some View {
         Button(action: open) {
             HStack(spacing: 16) {
-                Image(systemName: "mic.fill").font(.system(size: 34, weight: .bold)).foregroundStyle(D8.vermilion)
-                    .frame(width: 68, height: 68).background(D8.parchment, in: .circle)
+                PLGlyphView(.mic, size: 34).foregroundStyle(PL.vermilion)
+                    .frame(width: 68, height: 68).background(PL.paper, in: .circle)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Translate").font(D8.word(24)).foregroundStyle(D8.parchment)
-                    Text("Tap and speak").font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9))
+                    Text("Translate").font(PL.wordFont(24)).foregroundStyle(PL.paper)
+                    Text("Tap and speak").font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.9))
                 }
                 Spacer(minLength: 0)
             }
             .padding(14)
-            .modifier(GameLip(face: D8.vermilion, lip: D8.vermilionLip))
+            .modifier(GameLip(face: PL.vermilion, lip: PL.vermilionDeep))
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("voiceTile")
@@ -304,14 +451,33 @@ struct VoiceTile: View {
 }
 
 struct TranslateScreen: View {
+    @Environment(LangStore.self) private var langs
+
     var body: some View {
         List {
-            Section { TranslateCard() }
-                .listRowBackground(Palette.card)
+            PLScreenTop(title: "Translate", subtitle: "Any word, every language you study", stickers: Stickers.translate).plListTop()
+            if langs.status == .ready && langs.systems.isEmpty {
+                Section {
+                    HStack(spacing: 12) {
+                        PLArtView(.tornLabel).frame(width: 64)
+                        Text("Start a language set in Learn to translate between your languages.")
+                            .font(PL.body.font())
+                            .foregroundStyle(PL.inkDim)
+                    }
+                }
+                .listRowBackground(PL.card)
+            } else if langs.corpus == nil {
+                Section { ProgressView().frame(maxWidth: .infinity) }.listRowBackground(Color.clear)
+            } else {
+                Section { TranslateCard() }
+                    .listRowBackground(PL.card)
+            }
         }
+        .task { await langs.load() }
         .paper()
         .navigationTitle("Translate")
-        .inlineTitle()
+        .plChrome()
+        .environment(\.colorScheme, .light)
     }
 }
 
@@ -328,19 +494,19 @@ struct DailyHero: View {
                     ForEach(system?.targets.prefix(6) ?? [], id: \.self) { FlagTile(lang: $0, size: 44) }
                     Spacer(minLength: 0)
                 }
-                Text(GameKind.daily.title).font(D8.word(30)).foregroundStyle(D8.parchment)
+                Text(GameKind.daily.title).font(PL.wordFont(30)).foregroundStyle(PL.paper)
                 if let played {
                     GamePips(total: GameRounds.dailyLength, results: played.map { $0 == "1" })
                     Text("\(played.filter { $0 == "1" }.count) of \(GameRounds.dailyLength) today. See your result.")
-                        .font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.85))
+                        .font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                 } else {
-                    Text(GameKind.daily.detail).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.85))
+                    Text(GameKind.daily.detail).font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                         .fixedSize(horizontal: false, vertical: true)
                     Text("Play today's set")
-                        .font(.system(size: 17, weight: .heavy, design: .rounded))
-                        .foregroundStyle(D8.lapis)
+                        .font(PL.heading.font(scale: 17.0 / 24))
+                        .foregroundStyle(PL.lapis)
                         .padding(.horizontal, 18).padding(.vertical, 10)
-                        .background(D8.parchment, in: .capsule)
+                        .background(PL.paper, in: .capsule)
                 }
             }
             .padding(18)
@@ -349,7 +515,7 @@ struct DailyHero: View {
         }
         .buttonStyle(.plain)
         .overlay(alignment: .topTrailing) {
-            AddToToday(item: .game(.daily), look: .icon, color: D8.parchment).padding(10)
+            AddToToday(item: .game(.daily), look: .icon, color: PL.paper).padding(10)
         }
     }
 }
@@ -363,17 +529,23 @@ struct GameTile: View {
     var body: some View {
         Button(action: open) {
             VStack(alignment: .leading, spacing: 6) {
-                Image(systemName: kind.symbol)
-                    .font(.system(size: 26, weight: .bold))
-                    .foregroundStyle(D8.parchment)
-                    .frame(height: 34)
-                Text(kind.title).font(D8.word(19)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.7)
+                Group {
+                    if let art = kind.art {
+                        PLArtView(art, shadow: true).frame(width: 44, height: 34)
+                    } else {
+                        Image(systemName: kind.symbol)
+                            .font(PL.icon(26))
+                            .foregroundStyle(PL.paper)
+                    }
+                }
+                .frame(height: 34)
+                Text(kind.title).font(PL.wordFont(19)).foregroundStyle(PL.paper).lineLimit(1).minimumScaleFactor(0.7)
                 Text(enabled ? kind.detail : String(localized: "Add a second language to play."))
-                    .font(.footnote.weight(.medium)).foregroundStyle(D8.parchment.opacity(0.85))
+                    .font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                     .lineLimit(3, reservesSpace: true)
                     .multilineTextAlignment(.leading)
                 Text(langs.gameBest(kind.rawValue).flatMap { $0 > 0 ? String(localized: "Best \($0)") : nil } ?? " ")
-                    .font(.caption.weight(.heavy).monospacedDigit()).foregroundStyle(D8.parchment)
+                    .font(PL.label.font()).monospacedDigit().foregroundStyle(PL.paper)
             }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -382,8 +554,9 @@ struct GameTile: View {
         }
         .buttonStyle(.plain)
         .disabled(!enabled)
+        .accessibilityIdentifier("lobby-\(kind.rawValue)")
         .overlay(alignment: .topTrailing) {
-            AddToToday(item: .game(kind), look: .icon, color: D8.parchment).padding(8)
+            AddToToday(item: .game(kind), look: .icon, color: PL.paper).padding(8)
         }
     }
 }
@@ -396,18 +569,18 @@ struct QuestCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
-                Image(systemName: quest.complete ? "checkmark.seal.fill" : "person.2.fill").foregroundStyle(quest.complete ? D8.malachite : D8.vermilion)
-                Text("\(quest.group.name) quest").font(.headline).foregroundStyle(Palette.ink)
+                Image(systemName: quest.complete ? "checkmark.seal.fill" : "person.2.fill").foregroundStyle(quest.complete ? PL.malachite : PL.vermilion)
+                Text("\(quest.group.name) quest").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                 Spacer(minLength: 0)
-                Text("\(quest.done) of \(quest.target)").font(.subheadline.weight(.heavy).monospacedDigit()).foregroundStyle(Palette.ink)
+                Text("\(quest.shownDone) of \(quest.target)").font(PL.small.font()).monospacedDigit().foregroundStyle(PL.ink)
             }
-            ProgressView(value: quest.progress).tint(quest.complete ? D8.malachite : D8.vermilion)
+            ProgressView(value: quest.progress).tint(quest.complete ? PL.malachite : PL.vermilion)
             Text(quest.complete ? String(localized: "Quest done. New one Monday.") : String(localized: "Words this week. \(quest.active.count) of \(quest.group.members.count) playing."))
-                .font(.footnote).foregroundStyle(Palette.muted)
+                .font(PL.small.font()).foregroundStyle(PL.inkDim)
             if !quest.complete {
                 ForEach(quest.nudgeable.prefix(3)) { m in
                     HStack {
-                        Text(m.name).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink).lineLimit(1)
+                        Text(m.name).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1)
                         Spacer(minLength: 8)
                         Button(sent.contains(m.userId) ? String(localized: "Nudged") : String(localized: "Nudge")) { nudge(m) }
                             .buttonStyle(D8Option(align: .center, compact: true))
@@ -418,7 +591,7 @@ struct QuestCard: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .modifier(GameLip(face: D8.face, lip: D8.edge))
+        .modifier(GameLip(face: PL.card, lip: PL.paper3))
     }
 
     func nudge(_ m: GroupMember) {
@@ -432,13 +605,13 @@ struct QuestCard: View {
 struct GamePips: View {
     let total: Int
     let results: [Bool]
-    var empty: Color = D8.parchment.opacity(0.3)
+    var empty: Color = PL.paper.opacity(0.3)
 
     var body: some View {
         HStack(spacing: 6) {
             ForEach(0..<total, id: \.self) { i in
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(i < results.count ? (results[i] ? D8.malachite : D8.vermilion) : empty)
+                    .fill(i < results.count ? (results[i] ? PL.malachite : PL.vermilion) : empty)
                     .overlay { RoundedRectangle(cornerRadius: 4).strokeBorder(.white.opacity(i < results.count ? 0.4 : 0), lineWidth: 1) }
                     .frame(height: 12)
             }
@@ -455,7 +628,7 @@ struct GameWaiting: View {
     var body: some View {
         Group {
             if langs.status == .ready || langs.status == .error {
-                Text(message).foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                Text(message).foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
             } else {
                 ProgressView()
             }
@@ -472,85 +645,138 @@ let gameEndForced = ProcessInfo.processInfo.arguments.contains("-endGame")
 let gameEndForced = false
 #endif
 
+func dayStreak(_ days: Int) -> String {
+    days == 1 ? String(localized: "1 day streak") : String(localized: "\(days) day streak")
+}
+
 extension LangStore {
     func gameScore(_ source: String, right: Int, total: Int) -> ShareObject {
-        .score(ShareScore(source: source, right: right, total: total, langs: gameLangs, root: systems.first?.root ?? "en", streak: langStreak(self)))
+        .score(ShareScore(source: source, right: right, total: total, langs: gameLangs, root: gameSystems.first?.root ?? "en", streak: langStreak(self)))
     }
 }
 
-struct GameEnd: View {
-    @Environment(LangStore.self) private var langs
-    @Environment(Account.self) private var account
-    let kind: GameKind
-    let score: String
-    var line: String?
-    var best = false
-    var results: [Bool]?
-    let missed: [GameWord]
-    var cells: [[Bool]]?
-    var sharing = true
-    var share: AnyView?
-    var shareObject: ShareObject?
-    let again: (() -> Void)?
-
-    var brag: String {
-        let date = Date.now.formatted(.dateTime.month(.defaultDigits).day())
-        return GameBrag.text(title: "\(Feedback.appName) \(kind.title)", day: date, score: score, results: results, cells: cells, link: Feedback.isPolingual ? "polingual.com" : "bucket.foundation")
+extension LangStore {
+    func shareText(_ kind: GameKind, _ shape: GameShare.Shape) -> String {
+        let seeded = kind.dailySeeded && (kind != .voice || dailySystem != nil)
+        return GameShare(
+            title: "\(Feedback.appName) \(kind.title)",
+            dayKey: seeded ? dayKey(Date().timeIntervalSince1970 * 1000) : nil,
+            shape: shape,
+            streak: gameStreak,
+            link: Feedback.isPolingual ? "https://polingual.com/play" : "https://bucket.foundation"
+        ).text
     }
+}
+
+struct GameShareLog: ViewModifier {
+    let kind: GameKind
+    let form: String
+
+    func body(content: Content) -> some View {
+        content.simultaneousGesture(TapGesture().onEnded {
+            Beta.shared.log("game_share", ["game": .string(kind.rawValue), "form": .string(form)])
+        })
+    }
+}
+
+struct GameShareButton<S: ButtonStyle>: View {
+    let kind: GameKind
+    let text: String
+    let style: S
 
     var body: some View {
-        VStack(spacing: 16) {
-            VStack(spacing: 10) {
-                Text(score).font(D8.word(44)).foregroundStyle(D8.parchment).monospacedDigit().minimumScaleFactor(0.6).lineLimit(1)
-                if let line { Text(line).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment.opacity(0.9)).multilineTextAlignment(.center) }
-                if let results { GamePips(total: results.count, results: results) }
-            }
-            .padding(20)
-            .frame(maxWidth: .infinity)
-            .modifier(GameLip(face: kind.color, lip: kind.lip))
-            if best {
-                Label("New best", systemImage: "trophy.fill")
-                    .font(.subheadline.weight(.heavy))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 14).padding(.vertical, 7)
-                    .background(D8.vermilion, in: .capsule)
-                    .transition(.scale.combined(with: .opacity))
-            }
-            if langs.gameStreak > 0 {
-                Label("\(langs.gameStreak) day streak", systemImage: "flame.fill")
-                    .font(.headline).foregroundStyle(D8.vermilion)
-            }
-            if !missed.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("These come back in your next session").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
-                    ForEach(missed.prefix(5)) { w in
-                        HStack(spacing: 8) {
-                            FlagTile(lang: w.lang, size: 22)
-                            Text(w.form).font(.headline).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
-                            Text(w.gloss).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1)
-                            Spacer(minLength: 0)
-                            PlayButton(text: w.form, lang: w.lang)
-                        }
-                    }
-                }
-                .padding(14)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Palette.card, in: .rect(cornerRadius: 14))
-            }
-            if sharing {
-                ShareLink(item: brag, preview: SharePreview(kind.title)) {
-                    Label("Share your result", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
-                }
-                .buttonStyle(D8Primary())
-            }
-            if let share { share }
-            if let shareObject { ShareObjectButton(shareObject, wide: true) }
-            if let again { Button("Play again", action: again).buttonStyle(D8Primary(compact: true)) }
-            LearnUpsell()
+        ShareLink(item: text, preview: SharePreview(kind.title)) {
+            Label("Share your result", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity)
         }
-        .onAppear { SaveNudge.gameEnded(signedIn: account.stage == .signedIn) }
-        .padding()
-        .frame(maxWidth: 520)
-        .frame(maxWidth: .infinity)
+        .buttonStyle(style)
+        .modifier(GameShareLog(kind: kind, form: "text"))
+        .accessibilityIdentifier("game-share")
+    }
+}
+
+struct SymbolArt: View {
+    let name: String
+    var size: CGFloat = 20
+
+    var body: some View {
+        if name.hasPrefix("art:"), let art = PLArt(rawValue: String(name.dropFirst(4))) {
+            PLArtView(art).frame(width: size * 1.3, height: size)
+        } else {
+            Image(systemName: name).font(PL.icon(size))
+        }
+    }
+}
+
+struct GamesSetStart: View {
+    @Environment(LangStore.self) private var store
+    var onDark = false
+    @State private var root = InterfaceLanguage.deviceRoot
+    @State private var speaking = false
+    @State private var creating = false
+    @State private var failure: SystemError?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Eyebrow(text: "Start a set").environment(\.plOnDark, onDark)
+            Text("Pick the languages your games use.")
+                .font(PL.title.font(scale: 0.8))
+                .foregroundStyle(onDark ? PL.paper : PL.ink)
+                .fixedSize(horizontal: false, vertical: true)
+            Button {
+                speaking = true
+            } label: {
+                LabeledContent("Languages I speak") {
+                    Text(KnownPrompt.summary(store.known, device: InterfaceLanguage.deviceRoot, name: langName))
+                        .foregroundStyle(PL.inkDim)
+                }
+                .foregroundStyle(PL.ink)
+                .padding(.horizontal, 14)
+                .frame(minHeight: 48)
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
+            }
+            .tint(PL.ink)
+            .accessibilityIdentifier("games.speak")
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
+                ForEach(GamesSetStart.presets(root: root), id: \.name) { p in
+                    PresetCard(name: p.name, langs: p.targets) { create(p.targets) }
+                        .disabled(creating)
+                }
+            }
+            if let failure {
+                Text(LocalizedStringKey(failure.message))
+                    .font(PL.small.font())
+                    .foregroundStyle(onDark ? PL.paper : PL.ink)
+            }
+        }
+        .padding(.top, PL.Space.s4)
+        .onChange(of: store.known, initial: true) { _, known in
+            root = KnownPrompt.root(current: root, known: known, device: InterfaceLanguage.deviceRoot)
+        }
+        .sheet(isPresented: $speaking) {
+            KnownLanguagesSheet(mode: .settings, picks: KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known)) { root = $0 }
+        }
+    }
+
+    static func presets(root: String) -> [(name: String, targets: [String])] {
+        LanguageSections.presets
+            .map { (name: $0.name, targets: $0.targets.filter { $0 != root }) }
+            .filter { !$0.targets.isEmpty }
+    }
+
+    func create(_ picked: [String]) {
+        guard !creating, store.systems.isEmpty else { return }
+        creating = true
+        failure = nil
+        let r = root
+        Task {
+            defer { creating = false }
+            do {
+                _ = try await store.create(root: r, targets: picked)
+                haptic(true)
+            } catch {
+                failure = error as? SystemError ?? .noTargets
+                haptic(false)
+            }
+        }
     }
 }

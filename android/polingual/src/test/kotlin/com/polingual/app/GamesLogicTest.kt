@@ -20,24 +20,6 @@ class GamesLogicTest {
     }
 
     @Test
-    fun letterSprintAsksForTheFirstLetterOfNonLatinWords() {
-        val words = GameWords.starter("en", listOf("ru", "el"), corpus, perLang = 30)
-        val prompts = LetterSprint.prompts(words, SeededRandom(1uL))
-        assertTrue(prompts.isNotEmpty())
-        prompts.forEach { p ->
-            assertEquals(p.word.form.first().toString(), p.answer)
-            assertEquals(4, p.choices.toSet().size)
-            assertTrue(p.answer in p.choices)
-        }
-    }
-
-    @Test
-    fun letterSprintSkipsLatinScripts() {
-        val words = listOf(GameWord("a", "es", "casa", "house", "en"))
-        assertTrue(LetterSprint.prompts(words, SeededRandom(1uL)).isEmpty())
-    }
-
-    @Test
     fun gamePoolPutsStudiedWordsFirstWithMissRanks() {
         val system = LangSystem("s", "Romance", "en", listOf("fr"), 0.0)
         val study = StudyState(cards = mapOf("fr:eight" to CardState(lapses = 1, intervalDays = 0.0, due = Long.MAX_VALUE)))

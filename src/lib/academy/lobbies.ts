@@ -1,18 +1,38 @@
 import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
 import type { LangItem, Reading } from "./lang-systems";
+import { spyRounds } from "./ispy";
 import { buildTilePrompts, parseTapped, tileKey, tileHistory, tileOutcome, tilePoints } from "./lobby-tiles";
 
 export type LobbyStatus = "lobby" | "playing" | "done";
-export const LOBBY_GAMES = ["daily", "same-word", "flags", "live", "tiles", "duel"] as const;
+export const PROMPT_GAMES = ["daily", "same-word", "flags", "live", "tiles", "duel", "spy"] as const;
+export const RACE_GAMES = ["mini", "word-groups", "match", "voice", "letters", "polyword", "flag-tiles", "babel", "shift", "snake", "atlas", "forehead", "ispy", "flag-duel"] as const;
+export const LOBBY_GAMES = [...PROMPT_GAMES, ...RACE_GAMES] as const;
 export type LobbyGame = (typeof LOBBY_GAMES)[number];
-export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning";
+export type RaceGame = (typeof RACE_GAMES)[number];
+export const RACE_ROUNDS = 10;
+export const RACE_ROUND_SECONDS = 30;
+export const RACE_SCORE_MAX = 100_000;
+export const RACE_CLIENT_HEADER = "x-polingual-race";
+
+export function isRace(game: LobbyGame | null | undefined): game is RaceGame {
+  return (RACE_GAMES as readonly unknown[]).includes(game);
+}
+
+export function raceEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return env.POLINGUAL_LOBBY_RACE === "on";
+}
+
+export function raceGames(env: Record<string, string | undefined> = process.env): RaceGame[] {
+  return raceEnabled(env) ? [...RACE_GAMES] : [];
+}
+export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning" | "spy";
 export type PowerKind = "double" | "fifty";
 export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
 export const DUEL_ROUNDS = 10;
 export type LobbySetup = "single" | "sequence" | "mix";
 export const AUTO_START_MS = 15_000;
 export function setupGames(env: Record<string, string | undefined> = process.env): LobbyGame[] {
-  const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles"];
+  const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles", "spy"];
   return duelEnabled(env) ? [...base, "duel"] : base;
 }
 
@@ -312,6 +332,10 @@ export function normalizeLobbyConfig(body: Record<string, unknown> | null): Lobb
   if (name.length > 40) return null;
   const game = body.game === undefined ? "daily" : (LOBBY_GAMES as readonly unknown[]).includes(body.game) ? (body.game as LobbyGame) : null;
   if (!game || (game === "duel" && !duelEnabled())) return null;
+  if (isRace(game)) {
+    if (!raceEnabled()) return null;
+    return { name: name || "Polingual lobby", game, root, targets, rounds: RACE_ROUNDS, roundSeconds: RACE_ROUND_SECONDS, revealSeconds: 0, listed: body.listed !== false, playlist: null, mix: false };
+  }
   if (game === "same-word" && targets.length < 2) return null;
   const setup = normalizeSetup(body, game, targets);
   if (!setup) return null;
@@ -347,9 +371,11 @@ function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
 }
 
 export function buildPrompts(items: readonly LangItem[], lobby: Pick<LobbyRow, "id" | "seed" | "root" | "targets" | "rounds"> & { game?: LobbyGame; playlist?: LobbyGame[] | null }, flagPool: readonly string[] = []): LobbyPromptRow[] {
+  if (isRace(lobby.game)) return [];
   if (lobby.game === "same-word") return sameWordPrompts(items, lobby);
   if (lobby.game === "tiles") return buildTilePrompts(items, lobby, flagPool, seededRandom(`${lobby.seed}7`));
   if (lobby.game === "duel") return duelPrompts(items, lobby, flagPool);
+  if (lobby.game === "spy") return spyRounds(items, lobby).map((r) => ({ lobby_id: lobby.id, round: r.round, lang: r.lang, item_id: r.item_id, mode: r.mode, gloss: r.gloss, choices: r.choices, answer: r.answer }));
   const forms = formPrompts(items, lobby);
   if (lobby.game !== "flags") return lobby.playlist && lobby.targets.length >= 2 ? mixedPrompts(items, forms, lobby) : forms;
   const rand = seededRandom(`${lobby.seed}1`);
@@ -639,6 +665,30 @@ export function joinedRound(lobby: Clock, joinedAt: string | null | undefined): 
   return Date.parse(joinedAt) < Date.parse(lobby.started_at) ? 0 : lobby.rounds;
 }
 
+export type RaceDecision = { ok: true; score: number; ms: number } | { ok: false; error: "not_playing" | "bad_score" };
+
+export function raceDecision(lobby: Clock & Pick<LobbyRow, "status" | "game">, score: unknown, now: number): RaceDecision {
+  if (!isRace(lobby.game) || lobby.status !== "playing" || !lobby.started_at) return { ok: false, error: "not_playing" };
+  const start = Date.parse(lobby.started_at);
+  if (now < start || now >= gameEndMs({ ...lobby, started_at: lobby.started_at })) return { ok: false, error: "not_playing" };
+  if (typeof score !== "number" || !Number.isInteger(score) || score < 0) return { ok: false, error: "bad_score" };
+  return { ok: true, score: Math.min(score, RACE_SCORE_MAX), ms: now - start };
+}
+
+export function raceOver(players: readonly Pick<LobbyPlayerRow, "user_id" | "is_bot">[], answers: readonly Pick<LobbyAnswerRow, "user_id">[]): boolean {
+  const people = players.filter((p) => !p.is_bot);
+  const done = new Set(answers.map((a) => a.user_id));
+  return people.length > 0 && people.every((p) => done.has(p.user_id));
+}
+
+export function raceMs(answers: readonly Pick<LobbyAnswerRow, "user_id" | "ms">[], uid: string): number {
+  return answers.find((a) => a.user_id === uid)?.ms ?? Number.MAX_SAFE_INTEGER;
+}
+
+export function raceVisible(lobby: Pick<LobbyRow, "game">, raceClient: boolean): boolean {
+  return !isRace(lobby.game) || raceClient;
+}
+
 export function nextHost(players: readonly Pick<LobbyPlayerRow, "user_id" | "joined_at">[], leaving: string): string | null {
   const rest = players.filter((p) => p.user_id !== leaving).sort((a, b) => a.joined_at.localeCompare(b.joined_at));
   return rest[0]?.user_id ?? null;
@@ -661,8 +711,9 @@ export function assembleLobby(
   const hidden = hiddenUsers(blocks, uid);
   const names = new Map(players.map((p) => [p.user_id, p.display_name]));
   const round = lobby.status === "playing" ? roundAt(lobby, now) : null;
-  const answeredNow = new Set(answers.filter((a) => round && !round.reveal && a.round === round.index).map((a) => a.user_id));
-  const revealed = answers.filter((a) => !round || a.round < round.index || (round.reveal && a.round === round.index) || a.user_id === uid);
+  const race = isRace(lobby.game);
+  const answeredNow = new Set(answers.filter((a) => race || (round && !round.reveal && a.round === round.index)).map((a) => a.user_id));
+  const revealed = answers.filter((a) => race || !round || a.round < round.index || (round.reveal && a.round === round.index) || a.user_id === uid);
   return {
     id: lobby.id,
     code: lobby.code,
@@ -698,7 +749,7 @@ export function assembleLobby(
         firstRound: joinedRound(lobby, p.joined_at),
         continues: p.continues ?? 0,
       }))
-      .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)),
+      .sort((a, b) => b.score - a.score || (race ? raceMs(answers, a.userId) - raceMs(answers, b.userId) : 0) || a.name.localeCompare(b.name)),
     messages: messages
       .filter((m) => !hidden.has(m.user_id))
       .slice(-MESSAGE_LIMIT)
@@ -759,6 +810,7 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
 
 const NATIVE_GAMES: readonly LobbyGame[] = ["daily", "same-word", "flags", "live"];
 
-export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">): boolean {
+export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">, raceClient = false): boolean {
+  if (isRace(lobby.game)) return raceClient;
   return NATIVE_GAMES.includes(lobby.game ?? "daily") && !lobby.reveal_seconds && !lobby.playlist;
 }

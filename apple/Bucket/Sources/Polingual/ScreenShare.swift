@@ -67,6 +67,17 @@ final class ScreenShare {
 
     func remove(_ id: UUID) { stack.removeAll { $0.id == id } }
 
+    #if os(iOS)
+    func presentInvite() {
+        guard let root = Self.keyWindow?.rootViewController, root.presentedViewController == nil else { return }
+        let sheet = UIActivityViewController(activityItems: [InviteItem(page: SharePage.app)], applicationActivities: nil)
+        sheet.popoverPresentationController?.sourceView = root.view
+        sheet.popoverPresentationController?.sourceRect = CGRect(x: root.view.bounds.midX, y: root.view.bounds.midY, width: 1, height: 1)
+        sheet.popoverPresentationController?.permittedArrowDirections = []
+        root.present(sheet, animated: true)
+    }
+    #endif
+
     private var sets: [(id: UUID, objects: [ShareObject])] = []
 
     func pushObjects(_ id: UUID, _ objects: [ShareObject]) {
@@ -120,6 +131,29 @@ final class ScreenShare {
 #if os(iOS)
 final class ShareHost: UIHostingController<AnyView> {}
 
+final class InviteItem: NSObject, UIActivityItemSource {
+    let page: SharePage
+
+    init(page: SharePage) { self.page = page }
+
+    func activityViewControllerPlaceholderItem(_ controller: UIActivityViewController) -> Any { page.url }
+
+    func activityViewController(_ controller: UIActivityViewController, itemForActivityType type: UIActivity.ActivityType?) -> Any? {
+        guard let type, !ShareLinkItem.linkPreviewTargets.contains(type) else { return page.url }
+        return "\(page.title)\n\(page.url.absoluteString)"
+    }
+
+    func activityViewController(_ controller: UIActivityViewController, subjectForActivityType type: UIActivity.ActivityType?) -> String { page.title }
+
+    func activityViewControllerLinkMetadata(_ controller: UIActivityViewController) -> LPLinkMetadata? {
+        let m = LPLinkMetadata()
+        m.originalURL = page.url
+        m.url = page.url
+        m.title = page.title
+        return m
+    }
+}
+
 final class ShareLinkItem: NSObject, UIActivityItemSource {
     let page: SharePage
     let image: UIImage
@@ -166,7 +200,49 @@ struct SharePageTag: ViewModifier {
     }
 }
 
+struct InviteShareOnLink: ViewModifier {
+    func body(content: Content) -> some View {
+        content.onChange(of: DeepLink.shared.pending, initial: true) { _, link in
+            guard link == .share else { return }
+            DeepLink.shared.pending = nil
+            #if os(iOS)
+            Task {
+                try? await Task.sleep(for: InviteWait.step)
+                var tries = 0
+                while true {
+                    try? await Task.sleep(for: InviteWait.step)
+                    let root = ScreenShare.keyWindow?.rootViewController
+                    switch InviteWait.next(onboarded: InviteWait.onboarded, hasWindow: root != nil, covered: root?.presentedViewController != nil, tries: tries) {
+                    case .present:
+                        ScreenShare.shared.presentInvite()
+                        return
+                    case .drop: return
+                    case .wait: tries += 1
+                    }
+                }
+            }
+            #endif
+        }
+    }
+}
+
+enum InviteWait {
+    enum Step: Equatable { case present, wait, drop }
+
+    static let step: Duration = .milliseconds(300)
+    static let tries = 10
+
+    static var onboarded: Bool { !Feedback.isPolingual || UserDefaults.standard.bool(forKey: "polingual.onboarded") }
+
+    static func next(onboarded: Bool, hasWindow: Bool, covered: Bool, tries: Int) -> Step {
+        guard onboarded else { return .drop }
+        if hasWindow && !covered { return .present }
+        return tries < Self.tries ? .wait : .drop
+    }
+}
+
 extension View {
+    func inviteShareOnLink() -> some View { modifier(InviteShareOnLink()) }
     func sharePage(_ page: SharePage) -> some View { modifier(SharePageTag(page: page)) }
     func sharePage(_ page: SharePage?) -> some View { modifier(SharePageTag(page: page ?? .app)) }
 }
@@ -179,12 +255,13 @@ enum SharedLink: Equatable {
     case content(topic: String, lang: String?, fallback: ContentKind)
     case group(String)
     case voice
+    case share
     case home
 
     init?(_ url: URL) {
-        if url.host() == "voice", url.scheme == "bucket" || url.scheme == "polingual" {
-            self = .voice
-            return
+        if url.scheme == "bucket" || url.scheme == "polingual" {
+            if url.host() == "voice" { self = .voice; return }
+            if url.host() == "share" { self = .share; return }
         }
         guard ShareRoute.hosts.contains(url.host() ?? ""), let c = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         let q = Dictionary((c.queryItems ?? []).compactMap { i in i.value.map { (i.name, $0) } }, uniquingKeysWith: { a, _ in a })
@@ -207,6 +284,7 @@ enum SharedLink: Equatable {
             let fallback: ContentKind = q["at"] != nil ? .watch : q["q"] != nil ? .read : .listen
             self = topic.isEmpty ? .home : .content(topic: topic, lang: lang, fallback: fallback)
         case "g": self = GroupInvite.code(from: url).map { .group($0) } ?? .home
+        case "share": self = .share
         case "a":
             if let d = q["d"], let a = q["id"] { self = .atom(deck: d, atom: a) } else { self = q["d"].map { .deck($0) } ?? .home }
         default: self = .home
@@ -221,6 +299,12 @@ final class DeepLink {
     var pending: SharedLink?
     var translate: String?
     var listen = false
+
+    #if DEBUG
+    init() {
+        if let link = Launch.value("-launchLink").flatMap(URL.init(string:)) { open(link) }
+    }
+    #endif
 
     func open(_ url: URL) {
         guard let link = SharedLink(url) else { return }

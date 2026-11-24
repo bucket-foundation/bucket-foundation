@@ -18,9 +18,46 @@ struct StoreKitTests {
         return s
     }
 
+    func product(_ id: String) async throws -> Product {
+        try await products([id])[0]
+    }
+
+    func products(_ ids: [String]) async throws -> [Product] {
+        for attempt in 0..<5 {
+            let found = await withTaskGroup(of: [Product]?.self) { group in
+                group.addTask {
+                    guard let list = try? await Product.products(for: ids), Set(list.map(\.id)) == Set(ids) else { return nil }
+                    return ids.compactMap { id in list.first { $0.id == id } }
+                }
+                group.addTask {
+                    try? await Task.sleep(for: .seconds(4))
+                    return nil
+                }
+                let first = await group.next() ?? nil
+                group.cancelAll()
+                return first
+            }
+            if let found { return found }
+            try await Task.sleep(for: .milliseconds(200 * (attempt + 1)))
+        }
+        throw ProductMissing(ids: ids)
+    }
+
+    struct ProductMissing: Error {
+        let ids: [String]
+    }
+
+    func settle(_ subs: Subscriptions) async {
+        for _ in 0..<40 {
+            await subs.refresh()
+            if subs.access != .locked { return }
+            try? await Task.sleep(for: .milliseconds(100))
+        }
+    }
+
     @Test func productsCarryAThreeDayFreeTrial() async throws {
         _ = try session()
-        let products = try await Product.products(for: Plan.all)
+        let products = try await self.products(Plan.all)
         #expect(Set(products.map(\.id)) == Set(Plan.all))
         for p in products {
             let offer = try #require(p.subscription?.introductoryOffer)
@@ -37,9 +74,9 @@ struct StoreKitTests {
         await subs.refresh()
         #expect(subs.access == .locked)
         #expect(subs.trialEligible)
-        let monthly = try #require(try await Product.products(for: [Plan.monthly]).first)
-        _ = try await monthly.purchase()
-        await subs.refresh()
+        let monthly = try await product(Plan.monthly)
+        _ = try await Self.shared!.buyProduct(identifier: monthly.id)
+        await settle(subs)
         guard case .trial = subs.access else {
             Issue.record("expected trial, got \(subs.access)")
             return
@@ -50,9 +87,9 @@ struct StoreKitTests {
     @Test func expiredSubscriptionLocks() async throws {
         let s = try session()
         let subs = Subscriptions()
-        let yearly = try #require(try await Product.products(for: [Plan.yearly]).first)
-        _ = try await yearly.purchase()
-        await subs.refresh()
+        let yearly = try await product(Plan.yearly)
+        _ = try await Self.shared!.buyProduct(identifier: yearly.id)
+        await settle(subs)
         #expect(subs.access.open)
         try s.expireSubscription(productIdentifier: Plan.yearly)
         for _ in 0..<20 where subs.access != .locked {
@@ -67,11 +104,11 @@ struct StoreKitTests {
         let subs = Subscriptions()
         await subs.refresh()
         #expect(subs.access == .locked)
-        let family = try #require(try await Product.products(for: [Plan.family]).first)
+        let family = try await product(Plan.family)
         #expect(family.subscription != nil)
         #expect(family.isFamilyShareable)
-        _ = try await family.purchase()
-        await subs.refresh()
+        _ = try await Self.shared!.buyProduct(identifier: family.id)
+        await settle(subs)
         guard case .subscribed(let id, let until) = subs.access else {
             Issue.record("expected subscribed, got \(subs.access)")
             return
@@ -85,10 +122,10 @@ struct StoreKitTests {
         let subs = Subscriptions()
         await subs.refresh()
         #expect(subs.access == .locked)
-        let lifetime = try #require(try await Product.products(for: [Plan.lifetime]).first)
+        let lifetime = try await product(Plan.lifetime)
         #expect(lifetime.type == .nonConsumable)
-        _ = try await lifetime.purchase()
-        await subs.refresh()
+        _ = try await Self.shared!.buyProduct(identifier: lifetime.id)
+        await settle(subs)
         #expect(subs.access == .subscribed(productID: Plan.lifetime, until: nil))
         #expect(subs.access.open)
     }
@@ -99,8 +136,8 @@ struct StoreKitTests {
         NotificationCenter.default.post(name: .polingualStoreReset, object: nil)
         try await Task.sleep(for: .seconds(25))
         if ProcessInfo.processInfo.environment["POLINGUAL_SHOTS"] == "buy" {
-            let yearly = try #require(try await Product.products(for: [Plan.yearly]).first)
-            _ = try await yearly.purchase()
+            let yearly = try await product(Plan.yearly)
+            _ = try await Self.shared!.buyProduct(identifier: yearly.id)
             NotificationCenter.default.post(name: .polingualStoreReset, object: nil)
             try await Task.sleep(for: .seconds(25))
         }

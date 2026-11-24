@@ -10,7 +10,7 @@ import { OG_DESCRIPTION_MAX } from "./meta";
 export const SITE_LANGS = SITE_LANGS_JSON as string[];
 export const WORD_LOCALES = ["en", ...SITE_LANGS];
 
-export type WordStrings = {
+type WordStrings = {
   sep: string;
   words: string;
   title: string;
@@ -43,8 +43,8 @@ export type WordStrings = {
   themes: Record<string, string>;
 };
 
-export type LocaleInfo = { code: string; name: string; locale: string; hreflang: string; rtl: boolean; labels: SiteLabels };
-export type SiteLabels = { beta: string; support: string; privacy: string; terms: string };
+type LocaleInfo = { code: string; name: string; locale: string; hreflang: string; rtl: boolean; labels: SiteLabels };
+type SiteLabels = { app: string; support: string; privacy: string; terms: string; play: string; guides: string; teachers: string; nav: string; footerNav: string };
 
 const PLACEHOLDER = /\{(\w+)\}/g;
 const RTL_LOCALES = new Set(["ar", "fa", "he"]);
@@ -80,7 +80,7 @@ export function validateBundles(bundles: Record<string, unknown>, locales: strin
   return problems;
 }
 
-export function validateSiteBundles(bundles: Record<string, unknown>, locales: string[]): string[] {
+function validateSiteBundles(bundles: Record<string, unknown>, locales: string[]): string[] {
   const problems: string[] = [];
   for (const code of locales) {
     const b = bundles[code] as { name?: string; locale?: string; hreflang?: string; page?: Record<string, string> } | undefined;
@@ -89,7 +89,7 @@ export function validateSiteBundles(bundles: Record<string, unknown>, locales: s
       continue;
     }
     for (const k of ["name", "locale", "hreflang"] as const) if (!b[k]) problems.push(`${code}: missing key ${k}`);
-    for (const k of [">Join the beta<", ">Support<", ">Privacy<", ">Terms<"]) if (!b.page?.[k]) problems.push(`${code}: missing key page.${k}`);
+    for (const k of [">Get the app<", ">Support<", ">Privacy<", ">Terms<"]) if (!b.page?.[k]) problems.push(`${code}: missing key page.${k}`);
   }
   return problems;
 }
@@ -109,13 +109,17 @@ function stripTag(s: string): string {
   return s.replace(/^>|<$/g, "");
 }
 
-export function bareHreflang(tag: string): string {
+function ariaLabel(s: string): string {
+  return s.replace(/^aria-label="|"$/g, "");
+}
+
+function bareHreflang(tag: string): string {
   const [lang, sub] = tag.split("-");
   return sub && sub.length === 4 ? `${lang}-${sub}` : lang;
 }
 
 export function localeInfo(code: string): LocaleInfo {
-  if (code === "en") return { code, name: "English", locale: "en_US", hreflang: "en", rtl: false, labels: { beta: "Join the beta", support: "Support", privacy: "Privacy", terms: "Terms" } };
+  if (code === "en") return { code, name: "English", locale: "en_US", hreflang: "en", rtl: false, labels: { app: "Get the app", support: "Support", privacy: "Privacy", terms: "Terms", play: "Play", guides: "Guides", teachers: "Teachers", nav: "Main", footerNav: "Footer" } };
   const b = SITE_BUNDLES[code] as { name: string; locale: string; hreflang: string; page: Record<string, string> };
   return {
     code,
@@ -123,7 +127,7 @@ export function localeInfo(code: string): LocaleInfo {
     locale: b.locale,
     hreflang: bareHreflang(b.hreflang),
     rtl: RTL_LOCALES.has(code),
-    labels: { beta: stripTag(b.page[">Join the beta<"]), support: stripTag(b.page[">Support<"]), privacy: stripTag(b.page[">Privacy<"]), terms: stripTag(b.page[">Terms<"]) },
+    labels: { app: stripTag(b.page[">Get the app<"]), support: stripTag(b.page[">Support<"]), privacy: stripTag(b.page[">Privacy<"]), terms: stripTag(b.page[">Terms<"]), play: stripTag(b.page[">Play<"]), guides: stripTag(b.page[">Guides<"]), teachers: stripTag(b.page[">Teachers<"]), nav: ariaLabel(b.page['aria-label="Main"']), footerNav: ariaLabel(b.page['aria-label="Footer"']) },
   };
 }
 
@@ -157,7 +161,7 @@ export function wordLocalPath(code: string, w: Word): string {
   return localPath(code, wordPath(w));
 }
 
-export function formIn(w: Word, code: string): WordForm | undefined {
+function formIn(w: Word, code: string): WordForm | undefined {
   return w.forms.find((f) => f.lang === code);
 }
 

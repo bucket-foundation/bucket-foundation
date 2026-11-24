@@ -10,9 +10,26 @@ function roman(item: Word | null | undefined, lang: string): string | null {
   return r?.roman ?? r?.kana ?? null;
 }
 
-function entry(lang: string, word: string, root: string, lookup: Lookup, correct: boolean, own?: Word | null): RevealEntry {
-  const item = own ?? lookup(lang, word)[0] ?? null;
-  return { lang, word, roman: roman(item, lang), reading: item?.readings?.[lang] ?? null, meaning: item?.forms[root] ?? "", gloss: item?.gloss ?? "", correct };
+const SENSE_LIMIT = 3;
+
+function joined(values: (string | undefined)[]): string {
+  return Array.from(new Set(values.filter((v): v is string => !!v))).slice(0, SENSE_LIMIT).join("; ");
+}
+
+function foilSenses(lang: string, word: string, root: string, lookup: Lookup, answer: Word | null): readonly Word[] {
+  const all = lookup(lang, word);
+  if (!answer) return all;
+  const apart = all.filter((w) => w !== answer && w.forms[root] !== answer.forms[root]);
+  return apart.length ? apart : all;
+}
+
+function entry(lang: string, word: string, root: string, lookup: Lookup, correct: boolean, own?: Word | null, answer: Word | null = null): RevealEntry {
+  if (own) return { lang, word, roman: roman(own, lang), reading: own.readings?.[lang] ?? null, meaning: own.forms[root] ?? "", gloss: own.gloss ?? "", correct };
+  const senses = foilSenses(lang, word, root, lookup, answer);
+  const first = senses[0] ?? null;
+  const reading = first?.readings?.[lang] ?? null;
+  const oneReading = senses.every((w) => JSON.stringify(w.readings?.[lang] ?? null) === JSON.stringify(reading));
+  return { lang, word, roman: oneReading ? roman(first, lang) : null, reading: oneReading ? reading : null, meaning: joined(senses.map((w) => w.forms[root])), gloss: joined(senses.map((w) => w.gloss)), correct };
 }
 
 export function revealEntries(row: Pick<LobbyPromptRow, "mode" | "lang" | "choices" | "answer">, root: string, item: Word | null, lookup: Lookup): RevealEntry[] {
@@ -23,17 +40,22 @@ export function revealEntries(row: Pick<LobbyPromptRow, "mode" | "lang" | "choic
     const right = new Set(row.answer.split(",").map(Number));
     return row.choices.map((key, i) => {
       const t = parseTile(key);
-      return entry(t.lang, t.form, root, lookup, right.has(i), right.has(i) ? item : null);
+      return entry(t.lang, t.form, root, lookup, right.has(i), right.has(i) ? item : null, item);
     });
   }
   if (row.mode === "meaning") {
-    return [entry(row.lang, item?.forms[row.lang] ?? row.choices[0], root, lookup, true, item), ...row.choices.filter((c) => c !== row.answer).map((c) => entry(root, c, root, lookup, false))];
+    return [entry(row.lang, item?.forms[row.lang] ?? row.choices[0], root, lookup, true, item), ...row.choices.filter((c) => c !== row.answer).map((c) => entry(root, c, root, lookup, false, null, item))];
+  }
+  if (row.mode === "spy") {
+    const word = item?.forms[row.lang] ?? row.answer;
+    const own = entry(row.lang, word, root, lookup, true, item);
+    return item?.forms[root] && root !== row.lang ? [own, entry(root, item.forms[root], root, lookup, false, item)] : [own];
   }
   if (row.mode === "mixed") {
     return row.choices.map((key) => {
       const t = parseTile(key);
-      return entry(t.lang, t.form, root, lookup, key === row.answer, key === row.answer ? item : null);
+      return entry(t.lang, t.form, root, lookup, key === row.answer, key === row.answer ? item : null, item);
     });
   }
-  return row.choices.map((c) => entry(row.lang, c, root, lookup, c === row.answer, c === row.answer ? item : null));
+  return row.choices.map((c) => entry(row.lang, c, root, lookup, c === row.answer, c === row.answer ? item : null, item));
 }

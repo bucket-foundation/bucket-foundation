@@ -20,7 +20,7 @@ C. A potential ownership or investment interest in, or compensation arrangement 
 
 Compensation includes direct and indirect remuneration as well as gifts or favors that are not insubstantial.
 
-**2.3 Related Entity.** Any entity in which an Interested Person holds equity, a board seat, or compensated employment. **AGFarms LLC** is hereby identified as a Related Entity by virtue of the founding maintainer's ownership interest in it.
+**2.3 Related Entity.** Any entity in which an Interested Person holds equity, a board seat, or compensated employment. **AGFarms LLC** is hereby identified as a Related Entity by virtue of the founding maintainer's ownership interest in it. Every for-profit company the founding maintainer owns, including the company formed to sell Polingual, is a Related Entity.
 
 A Financial Interest is not necessarily a conflict of interest. Under Article 3, a person with a Financial Interest may have a conflict of interest only if the appropriate governing body decides that a conflict of interest exists.
 
@@ -82,6 +82,8 @@ The founding maintainer's interest in **AGFarms LLC** is a standing disclosure t
 3. **Any commercial relationship in which AGFarms is a paying customer of the Foundation** must be on the same terms offered to any other consumer of equivalent volume, must be documented in writing, and must be disclosed in the Foundation's next quarterly report.
 4. **The founding maintainer recuses** from any vote, decision thread, or merge action whose direct effect is a transaction with AGFarms.
 5. **Annual disclosure** of the founding maintainer's role at AGFarms, the rough percentage of their working hours allocated to AGFarms vs. the Foundation, and any material changes to the AGFarms ownership structure, shall be published in the Foundation's annual report.
+6. **Other founder-owned companies.** Rules 1 to 5 apply to every for-profit company the founding maintainer owns, including the company formed to sell Polingual. The licence between the Foundation and that company follows `11-FOR-PROFIT-LICENCE-TERMS.md`, and disinterested directors alone approve it.
+7. **Marketplace grants.** No director, officer, founder, family member of one, or company one of them owns may receive a grant from the research donation marketplace.
 
 ---
 

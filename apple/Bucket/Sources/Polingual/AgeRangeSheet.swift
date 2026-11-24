@@ -54,8 +54,9 @@ struct AgeRangeSheet: View {
             }
             .padding()
             .navigationTitle("Your age range")
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Later") { dismiss() } } }
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Later") { dismiss() }.accessibilityIdentifier("ageRangeLater") } }
         }
+        .rootSheetProbe()
         .presentationDetents([.medium])
     }
 
@@ -64,7 +65,7 @@ struct AgeRangeSheet: View {
         defer { saving = false }
         guard await account.setAgeBand(band) else { failed = true; return }
         if band == .child { askParent = true; return }
-        await langs.syncAfterSignIn()
+        await ProgressChoice.shared.resync(langs, account: account.session?.userId ?? LangStore.unknownOwner)
         await langs.flush()
         await groups.load()
         dismiss()
@@ -81,14 +82,42 @@ struct AgeRangeSheet: View {
 
 struct AgeRangePrompt: ViewModifier {
     @State private var open = false
+    @State private var queued = false
 
     func body(content: Content) -> some View {
         content
-            .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in open = true }
+            .onReceive(NotificationCenter.default.publisher(for: .askAgeRange)) { _ in
+                queued = true
+                present()
+            }
+            .onChange(of: RootSheets.shared.covered(besides: .ageRange)) { _, covered in
+                if !covered { present() }
+            }
             .sheet(isPresented: $open) { AgeRangeSheet() }
+            .rootSheet(.ageRange, open: open)
             #if DEBUG
-            .task { if Launch.flag("-ageRange") { open = true } }
+            .task {
+                guard Launch.flag("-ageRange") else { return }
+                if let first = Launch.value("-ageRangeAfter").flatMap(RootSheet.init(rawValue:)) {
+                    while !RootSheets.shared.open.contains(first) {
+                        try? await Task.sleep(for: .seconds(0.2))
+                        if Task.isCancelled { return }
+                    }
+                }
+                queued = true
+                present()
+            }
             #endif
+    }
+
+    func present() {
+        guard queued else { return }
+        guard RootSheets.shared.claim(.ageRange) else {
+            RootSheets.shared.hold(.ageRange, true)
+            return
+        }
+        queued = false
+        open = true
     }
 }
 

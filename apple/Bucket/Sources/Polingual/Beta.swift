@@ -10,6 +10,7 @@ final class Beta {
     private var sessionId = UUID().uuidString.lowercased()
     private var sessionStarted: Date?
     weak var account: Account?
+    private let ordered = OrderedTasks()
 
     init() {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -19,7 +20,13 @@ final class Beta {
     func log(_ name: String, _ props: [String: JSONScalar] = [:]) {
         guard let owner = account?.session?.userId else { return }
         let event = BetaEvent(name: name, sessionId: sessionId, props: props)
-        Task { await events.log(event, owner: owner) }
+        ordered.run { [events] in await events.log(event, owner: owner) }
+    }
+
+    func knownLanguagesSet(_ known: KnownLanguages, source: KnownSource) {
+        guard let event = BetaEvent.known(known, source: source, sessionId: sessionId) else { return }
+        let route = BetaRoute.of(owner: account?.session?.userId, signedIn: account?.stage == .signedIn)
+        ordered.run { [events] in await events.record(event, route: route) }
     }
 
     func foreground(_ account: Account) {
@@ -27,20 +34,31 @@ final class Beta {
         sessionId = UUID().uuidString.lowercased()
         log("app_open")
         Task {
+            let owner = account.session?.userId
             let token = await account.freshToken()
             flags = await BetaFlags.fetch(app: BucketAPI.appName, token: token)
-            _ = await events.flush(token: token, owner: account.session?.userId)
+            guard account.session?.userId == owner else { return }
+            flush(token: token, owner: owner)
         }
         TranslationReporter.shared.flush()
     }
 
+    private func flush(token: String?, owner: String?) {
+        ordered.run { [events] in _ = await events.flush(token: token, owner: owner) }
+    }
+
     func signedOut() {
-        Task { await events.clearQueue() }
+        ordered.run { [events] in await events.clearQueue() }
     }
 
     func background(_ account: Account) {
         self.account = account
-        Task { _ = await events.flush(token: await account.freshToken(), owner: account.session?.userId) }
+        Task {
+            let owner = account.session?.userId
+            let token = await account.freshToken()
+            guard account.session?.userId == owner else { return }
+            flush(token: token, owner: owner)
+        }
     }
 
     func studyStarted(_ deck: String) {
@@ -48,8 +66,16 @@ final class Beta {
         log("session_start", ["deck": .string(deck)])
     }
 
-    func answered(_ deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil) {
-        log("card_answered", BetaEvent.answeredProps(deck: deck, correct: correct, ms: ms, kind: kind, question: question))
+    func answered(_ deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil, streak: Int? = nil) {
+        log("card_answered", BetaEvent.answeredProps(deck: deck, correct: correct, ms: ms, kind: kind, question: question, streak: streak))
+    }
+
+    func wordSeen(_ lang: String, _ itemId: String, stage: String, streak: Int) {
+        log("word_seen", BetaEvent.wordProps(lang: lang, itemId: itemId, stage: stage, streak: streak))
+    }
+
+    func wordsHeard(_ langs: [String], _ itemId: String, stage: String, streak: Int) {
+        for lang in Set(langs).sorted() { log("word_heard", BetaEvent.wordProps(lang: lang, itemId: itemId, stage: stage, streak: streak)) }
     }
 
     func studyEnded(_ deck: String, graded: Int, correct: Int) {

@@ -13,8 +13,10 @@ struct AccountView: View {
     @State private var signingIn = false
     @State private var emailing = false
     var subscription: (() -> Void)?
+    var memberLine: String?
     var trialDaysLeft: Int?
     var trialReminderOff = false
+    var betaFree = false
     #if DEBUG
     @State private var demoShown = false
     #endif
@@ -24,9 +26,15 @@ struct AccountView: View {
         return URL(string: polingual ? "https://polingual.com/privacy" : "https://www.bucket.foundation/privacy")!
     }
 
+    private var statusSlot: AccountStatusSlot { .slot(stage: account.stage, emailing: emailing) }
+
     var body: some View {
         NavigationStack {
             Form {
+                #if !BUCKET
+                PLScreenTop(title: "Account", stickers: Stickers.account).plListTop()
+                #endif
+                LexiconMapSection()
                 switch account.stage {
                 case .signedOut, .codeSent:
                     Section {
@@ -34,6 +42,12 @@ struct AccountView: View {
                         Button("Sign in with email") { emailing = true }
                             .buttonStyle(D8Option(align: .center))
                             .disabled(account.busy)
+                        if account.busy && statusSlot == .signInSection {
+                            ProgressView().frame(maxWidth: .infinity)
+                        }
+                        if let error = account.error, statusSlot == .signInSection {
+                            Text(error).foregroundStyle(.red).accessibilityIdentifier("signInError")
+                        }
                     } footer: {
                         Text("Sign in with Apple or your email. The same account works on bucket.foundation.")
                     }
@@ -41,7 +55,7 @@ struct AccountView: View {
                     Section {
                         LabeledContent("Status", value: "Signed in")
                         if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
-                        if !groups.groups.isEmpty { MemberNameRow() }
+                        MemberNameRow()
                         Button("Sign out", role: .destructive) {
                             Beta.shared.signedOut()
                             Task { await account.signOutAfterSync() }
@@ -50,15 +64,27 @@ struct AccountView: View {
                         Eyebrow(text: "Account")
                     }
                 }
+                if let memberLine {
+                    Section {
+                        Text(memberLine).accessibilityIdentifier("memberLine")
+                    } header: {
+                        Eyebrow(text: "Subscription")
+                    }
+                }
                 if let subscription {
                     Section {
+                        if betaFree {
+                            Label(String(localized: "You're a beta tester. Polingual is free for you, and stays free for life after launch."), systemImage: "gift.fill")
+                                .font(.subheadline.weight(.bold))
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                         if let trialDaysLeft {
                             LabeledContent("Free trial", value: trialDaysLeft == 1 ? String(localized: "1 day left") : String(localized: "\(trialDaysLeft) days left"))
                             if trialReminderOff {
                                 Text("Notifications are off, so no reminder comes before the trial ends.").font(.footnote).foregroundStyle(Palette.muted)
                             }
                         }
-                        Button("Manage subscription", systemImage: "creditcard", action: subscription)
+                        Button(action: subscription) { Label { Text("Manage subscription") } icon: { PLArtView(.seal).frame(width: 22) } }
                     } header: {
                         Eyebrow(text: "Subscription")
                     }
@@ -66,6 +92,7 @@ struct AccountView: View {
                 FamilyAndFriends(signingIn: $signingIn)
                 MyStrength()
                 ReminderSettings()
+                SoundSettings()
                 BetaSharing()
                 FeedbackSettings()
                 #if DEBUG
@@ -75,11 +102,13 @@ struct AccountView: View {
                     Eyebrow(text: "Developer")
                 }
                 #endif
-                if let error = account.error {
-                    Section { Text(error).foregroundStyle(.red) }
-                }
-                if account.busy {
-                    Section { ProgressView() }
+                if statusSlot == .page {
+                    if let error = account.error {
+                        Section { Text(error).foregroundStyle(.red) }
+                    }
+                    if account.busy {
+                        Section { ProgressView() }
+                    }
                 }
                 Section {
                     Link("Privacy and data", destination: Self.privacyURL)
@@ -100,6 +129,9 @@ struct AccountView: View {
             .listRowBackground(Palette.card)
             .paper()
             .navigationTitle("Account")
+            #if !BUCKET
+            .plChrome()
+            #endif
             .navigationDestination(item: $openGroup) { GroupView(groupId: $0) }
             .navigationDestination(item: $openMember) { id in
                 if let g = groups.groups.first(where: { $0.members.contains { $0.userId == id } }), let m = g.members.first(where: { $0.userId == id }) {
@@ -125,6 +157,9 @@ struct AccountView: View {
                 if account.stage == .signedIn { await groups.load() } else { groups.clear() }
             }
             .sheet(isPresented: $signingIn) { SignInSheet() }
+            #if DEBUG
+            .task { if ProcessInfo.processInfo.arguments.contains("-showSignIn") { signingIn = true } }
+            #endif
             .sheet(isPresented: $emailing) { SignInSheet(emailOnly: true) }
             .sheet(isPresented: $confirmingDelete) {
                 DeleteAccountSheet {
@@ -192,6 +227,9 @@ struct SignInSheet: View {
     var body: some View {
         NavigationStack {
             Form {
+                #if !BUCKET
+                PLScreenTop(title: "Sign in", subtitle: "Save your streak on every device", stickers: Stickers.signIn).plListTop()
+                #endif
                 switch account.stage {
                 case .signedOut:
                     if !emailOnly {
@@ -219,6 +257,20 @@ struct SignInSheet: View {
                             .textContentType(.oneTimeCode)
                             .focused($focused)
                             .codeField()
+                        #if os(iOS)
+                        PasteButton(payloadType: String.self) { strings in
+                            guard let found = strings.lazy.compactMap(OneTimeCode.extract).first else {
+                                Task { @MainActor in account.error = String(localized: "No code in the pasted text.") }
+                                return
+                            }
+                            Task { @MainActor in
+                                code = found
+                                if !account.busy { await account.verify(code: found) }
+                            }
+                        }
+                        .labelStyle(.titleAndIcon)
+                        .accessibilityIdentifier("paste-code")
+                        #endif
                         Button("Verify") { Task { await account.verify(code: code) } }
                             .buttonStyle(D8Primary())
                             .disabled(account.busy || code.filter(\.isNumber).count < 6)
@@ -232,7 +284,7 @@ struct SignInSheet: View {
                         Text("Code sent to \(to).")
                     }
                 case .signedIn:
-                    Section { Label("Signed in", systemImage: "checkmark.circle.fill") }
+                    Section { Label { Text("Signed in") } icon: { PLGlyphView(.check, size: 18).foregroundStyle(PL.malachite) } }
                 }
                 if let error = account.error {
                     Section { Text(error).foregroundStyle(.red) }
@@ -242,7 +294,13 @@ struct SignInSheet: View {
                 }
             }
             .listRowBackground(Palette.card)
+            #if BUCKET
             .paper()
+            #else
+            .scrollContentBackground(.hidden)
+            .plGround(.cut(0.78, 0.5))
+            .plChrome()
+            #endif
             .navigationTitle("Sign in")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
@@ -354,6 +412,21 @@ struct BetaSharing: View {
             Eyebrow(text: "Beta testing")
         } footer: {
             Text("Sessions, cards answered and completions help us improve the app. No location, contacts or device ids. Turning this off deletes what we hold.")
+        }
+    }
+}
+
+struct SoundSettings: View {
+    @AppStorage(SoundPolicy.silentKey) private var silent = false
+
+    var body: some View {
+        Section {
+            Toggle("Silent mode", isOn: $silent)
+                .accessibilityIdentifier("silentMode")
+        } header: {
+            Eyebrow(text: "Sound")
+        } footer: {
+            Text("Stops sound effects and words that play on their own. A tap on a speaker still plays the word.")
         }
     }
 }

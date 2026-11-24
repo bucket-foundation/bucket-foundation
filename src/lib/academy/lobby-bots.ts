@@ -1,5 +1,5 @@
 import { parseTile, tappedChoice, tileKnown, TILE_ROUND_SECONDS } from "./lobby-tiles";
-import { gameEndMs, LOBBY_CAP, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
+import { gameEndMs, isRace, LOBBY_CAP, RACE_ROUND_SECONDS, RACE_ROUNDS, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
 
 export type BotSkill = "easy" | "medium" | "hard";
 
@@ -23,6 +23,7 @@ export interface StandingSlot {
 }
 
 export function gameTiming(game: LobbyGame): { rounds: number; roundSeconds: number } {
+  if (isRace(game)) return { rounds: RACE_ROUNDS, roundSeconds: RACE_ROUND_SECONDS };
   if (game === "tiles") return { rounds: 8, roundSeconds: TILE_ROUND_SECONDS };
   if (game === "live") return { rounds: 7, roundSeconds: 7 };
   if (game === "duel") return { rounds: 10, roundSeconds: 8 };
@@ -152,6 +153,13 @@ export function knownChoice(prompt: Pick<LobbyPrompt, "mode" | "lang" | "gloss" 
     if (!prompt.lang) return null;
     const lang = prompt.lang;
     const hits = prompt.choices.filter((c) => lookup(lang, prompt.gloss).some((i) => i.forms[root] === c));
+    return hits.length === 1 ? hits[0] : null;
+  }
+  if (prompt.mode === "spy") {
+    if (!prompt.lang) return null;
+    const lang = prompt.lang;
+    const known = lookup(lang, prompt.gloss).map((i) => i.forms.en);
+    const hits = prompt.choices.filter((c, i, all) => all.indexOf(c) === i && known.includes(c));
     return hits.length === 1 ? hits[0] : null;
   }
   if (prompt.mode === "mixed") {

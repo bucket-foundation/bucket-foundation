@@ -1,4 +1,5 @@
 import { LANGS } from "@academy/lang-systems";
+import { SPY_ROUND_SECONDS } from "@academy/ispy";
 import { TILE_ROUND_SECONDS } from "@academy/lobby-tiles";
 
 export interface LangSet {
@@ -22,6 +23,7 @@ export const GAMES = [
   { id: "flags", name: "Flags", blurb: "Name the language of each word." },
   { id: "tiles", name: "Tiles", blurb: "Words fall. Tap every one that means the word on top." },
   { id: "live", name: "Live", blurb: "Fast rounds with a leaderboard after each." },
+  { id: "spy", name: "I Spy", blurb: "A word appears. Tap it in the picture first." },
   { id: "duel", name: "Flag Duel", blurb: "Ten rounds. Name the language, then the meaning. Spend coins on power-ups." },
 ] as const;
 
@@ -41,7 +43,7 @@ export function langName(code: string): string {
 }
 
 export function roundSecondsFor(game: string): number {
-  return game === "tiles" ? TILE_ROUND_SECONDS : game === "live" ? 7 : 8;
+  return game === "tiles" ? TILE_ROUND_SECONDS : game === "spy" ? SPY_ROUND_SECONDS : game === "live" ? 7 : 8;
 }
 
 export function roundsFor(game: string, chosen: number): number {

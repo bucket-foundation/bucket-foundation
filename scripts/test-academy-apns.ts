@@ -4,7 +4,9 @@ import { generateKeyPairSync, verify } from "node:crypto";
 import {
   apnsConfig,
   cheerPayload,
+  normalizeAnyToken,
   normalizeBundleId,
+  parseRegistration,
   normalizeDeviceToken,
   normalizePushEnv,
   providerToken,
@@ -187,4 +189,24 @@ test("withBudget caps slow work and swallows errors", async () => {
   assert.equal(await withBudget(Promise.resolve(5), 50), 5);
   assert.equal(await withBudget(new Promise((r) => setTimeout(() => r(1), 200)), 20), null);
   assert.equal(await withBudget(Promise.reject(new Error("x")), 50), null);
+});
+
+const fcm = "dGVzdA:APA91b" + "x".repeat(140);
+
+test("parseRegistration keeps iOS as the default platform", () => {
+  assert.deepEqual(parseRegistration({ token: tok("a"), env: "production", bundleId: "com.polingual.app" }), { platform: "ios", token: tok("a"), env: "production", bundleId: "com.polingual.app" });
+  assert.equal(parseRegistration({ token: fcm, env: "production", bundleId: "com.polingual.app" }), null);
+});
+
+test("parseRegistration accepts Android FCM tokens without env", () => {
+  assert.deepEqual(parseRegistration({ platform: "android", token: fcm, bundleId: "com.polingual.app" }), { platform: "android", token: fcm, bundleId: "com.polingual.app" });
+  assert.equal(parseRegistration({ platform: "android", token: "short", bundleId: "com.polingual.app" }), null);
+  assert.equal(parseRegistration({ platform: "android", token: fcm, bundleId: "other.app" }), null);
+  assert.equal(parseRegistration({ platform: "web", token: fcm, bundleId: "com.polingual.app" }), null);
+});
+
+test("normalizeAnyToken routes deletes to the right store", () => {
+  assert.deepEqual(normalizeAnyToken(tok("b")), { platform: "ios", token: tok("b") });
+  assert.deepEqual(normalizeAnyToken(fcm), { platform: "android", token: fcm });
+  assert.equal(normalizeAnyToken("x y"), null);
 });

@@ -134,10 +134,11 @@ struct TodayView: View {
         }
     }
 
-    var streak: Double {
-        let now = Date().timeIntervalSince1970 * 1000
-        return (deckStates.map { liveStreak($0, now: now) } + langs.systems.map { liveStreak(langs.state($0.id), now: now) }).max() ?? 0
+    var live: LiveStreak {
+        LiveStreak(deckStates + langs.systems.map { langs.state($0.id) }, now: Date().timeIntervalSince1970 * 1000)
     }
+
+    var streak: Double { live.days }
 
     func startNext() {
         guard let next = nextUp(Date().timeIntervalSince1970 * 1000) ?? items.first else { return }
@@ -159,6 +160,10 @@ struct TodayView: View {
     func hasWork(_ item: Item, _ now: Double) -> Bool {
         if resting(item, now) { return false }
         return cards(item, now).map { $0.due + $0.new > 0 } ?? !plan.isDone(item.id)
+    }
+
+    func expectedLearning(_ streak: Double) -> ExpectedLearning {
+        ExpectedLearning(streak: StreakGoal(streak: streak).day, languages: langs.systems.map { .init(langs.state($0.id), languages: $0.targets.count) }, decks: deckStates.map { .init($0) })
     }
 
     func resting(_ item: Item, _ now: Double) -> Bool {
@@ -267,6 +272,15 @@ struct TodayView: View {
             .accessibilityIdentifier("today.widget.\(item.id)")
     }
 
+    func goalCard(done: Int, later: Bool) -> StreakGoalCard {
+        #if DEBUG
+        if let days = TodayDemo.uncountedDay {
+            return StreakGoalCard(streak: days, pending: days > 0, share: later, expected: expectedLearning(days))
+        }
+        #endif
+        return StreakGoalCard(streak: streak, pending: live.pending && done == 0, share: later, expected: expectedLearning(streak))
+    }
+
     func hero(_ date: Date, studied: Bool, pending: [Item], planned: [Item], now: Double) -> some View {
         let real = TodayStatus.evaluate(streak: StreakGoal(streak: streak).day, studiedToday: studied, items: planned.count, itemsLeft: pending.count, now: date)
         #if DEBUG
@@ -298,10 +312,11 @@ struct TodayView: View {
             } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    StreakGoalCard(streak: streak, share: later).todayCard()
+                    PLScreenTop(title: "Today", stickers: Stickers.today)
+                    goalCard(done: done, later: later).todayCard()
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
-                            hero(context.date, studied: done > 0, pending: pending, planned: planned, now: now)
+                            hero(context.date, studied: done > 0 || live.countsToday, pending: pending, planned: planned, now: now)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         Divider().overlay(Palette.rule)
@@ -339,8 +354,10 @@ struct TodayView: View {
             }
             }
             .animation(.easeOut(duration: 0.35), value: loaded)
-            .paper()
+            .scrollContentBackground(.hidden)
+            .plGround(.cut(0.7, 0.42))
             .navigationTitle("Today")
+            .plChrome()
             .toolbar { ToolbarItem(placement: .primaryAction) { ScreenShareButton() } }
             .sheet(item: $session) { subjects?.study($0) }
             .sheet(isPresented: $picking) { TodayPicker(subjects: subjects?.decks) }
@@ -368,6 +385,9 @@ struct TodayView: View {
                 guard p == .active else { return }
                 WatchDwell.returned()
                 Task { await plan.pull() }
+            }
+            .onChange(of: NetworkWatch.shared.online) { _, up in
+                if up { Task { await plan.pull() } }
             }
             .onChange(of: account.stage) { old, new in
                 if new == .signedOut && old == .signedIn && account.endedByUser { plan.clearLocal() }

@@ -6,10 +6,10 @@ export type Target = (typeof TARGETS)[number];
 
 export const REVEAL_ORDER = ["en", "es", "fr", "de", "ja", "it", "ru", "zh", "pt", "ar", "ko", "hi", "el", "nl", "sv", "tr"] as const;
 
-export const LENGTHS = [5, 6];
+const LENGTHS = [5, 6];
 
 export type HintForm = { word: string; roman?: string };
-export interface BankWord {
+interface BankWord {
   gloss: string;
   forms: Record<string, HintForm>;
 }

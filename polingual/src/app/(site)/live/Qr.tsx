@@ -17,7 +17,7 @@ export default function Qr({ text }: { text: string }) {
   return (
     <div className={styles.qr} data-testid="qr">
       <svg viewBox={`-2 -2 ${size + 4} ${size + 4}`} role="img" aria-label={`QR code for ${text}`} shapeRendering="crispEdges">
-        <path d={cells} fill="#231F20" />
+        <path d={cells} fill="var(--pl-ink)" />
       </svg>
     </div>
   );

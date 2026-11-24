@@ -22,8 +22,8 @@ struct TodayHero: View {
         switch status {
         case .empty: String(localized: "Choose what to learn")
         case .start: String(localized: "Start your streak today")
-        case .keep(let n, _): String(localized: "Keep your \(n)-day streak")
-        case .atRisk(let n, _): String(localized: "Your \(n)-day streak ends at midnight")
+        case .keep: String(localized: "Day \(status.dayInPlay ?? 1): keep your streak")
+        case .atRisk: String(localized: "Day \(status.dayInPlay ?? 1): your streak ends at midnight")
         case .secured(let n, _): String(localized: "Day \(n) is safe")
         case .done: String(localized: "Done for today")
         }
@@ -113,6 +113,7 @@ struct TodayTileSkin: ViewModifier {
             content.modifier(GameLip(face: face, lip: look.lip ?? face, radius: radius))
         } else {
             content
+                .environment(\.colorScheme, .light)
                 .background(D8.face, in: .rect(cornerRadius: radius))
                 .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(D8.edge, lineWidth: 2) }
                 .background(D8.edge, in: .rect(cornerRadius: radius).offset(y: 5))
@@ -144,11 +145,11 @@ struct TodayWidgetFace: View {
                     Circle().stroke(vivid ? D8.parchment.opacity(0.3) : Palette.rule, lineWidth: 5)
                     Circle().trim(from: 0, to: progress).stroke(vivid ? D8.parchment : D8.malachite, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
                     if done {
-                        Image(systemName: "checkmark").font(.subheadline.weight(.heavy)).foregroundStyle(D8.malachite)
+                        PLGlyphView(.check, size: 16).foregroundStyle(PL.malachite)
                     } else if let left {
                         Text("\(left)").font(.system(size: 15, weight: .heavy, design: .rounded)).foregroundStyle(ink).monospacedDigit().minimumScaleFactor(0.6).padding(6)
                     } else if let symbol {
-                        Image(systemName: symbol).font(.subheadline.weight(.bold)).foregroundStyle(ink)
+                        SymbolArt(name: symbol, size: 15).foregroundStyle(ink)
                     }
                 }
                 .frame(width: 48, height: 48)
@@ -199,7 +200,7 @@ struct TodayAddWidget: View {
     var body: some View {
         Button(action: open) {
             VStack(spacing: 8) {
-                Image(systemName: "plus").font(.system(size: 26, weight: .bold))
+                PLGlyphView(.plus, size: 26)
                 Text("Add to Today").font(.subheadline.weight(.bold))
             }
             .foregroundStyle(Palette.muted)
@@ -241,9 +242,10 @@ struct TodayPickTile: View {
         } label: {
             TodayWidgetFace(symbol: entry.symbol, branch: entry.branch, flags: entry.flags, title: entry.title, detail: entry.detail, left: nil, progress: 0, done: false, look: entry.look, badgeRoom: 26)
                 .overlay(alignment: .bottomTrailing) {
-                    Image(systemName: on ? "checkmark.circle.fill" : "plus.circle.fill")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundStyle(on ? D8.malachite : Palette.muted, D8.face)
+                    PLGlyphView(on ? .check : .plus, size: 14)
+                        .foregroundStyle(PL.paper)
+                        .frame(width: 26, height: 26)
+                        .background(on ? PL.malachite : PL.inkDim, in: .circle)
                         .padding(10)
                         .padding(.bottom, 5)
                 }
@@ -366,6 +368,7 @@ enum TodayRoute: Hashable {
 #if DEBUG
 enum TodayDemo {
     static var name: String? { Launch.value("-todayDemo") }
+    static var uncountedDay: Double? { Launch.value("-uncountedDay").flatMap(Double.init).map { max(0, $0 - 1) } }
 
     static func status(_ real: TodayStatus, now: Date) -> TodayStatus {
         let left = TimeLeft(until: Calendar.current.startOfDay(for: now).addingTimeInterval(86_400), from: now)

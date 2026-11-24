@@ -1,13 +1,18 @@
-import { Art } from "@/ui/art";
+import { Sticker } from "@/ui";
 import styles from "../live/stoa.module.css";
 
 export default function JoinStickers() {
   return (
     <div className={styles.playStickers} aria-hidden="true">
-      <span style={{ left: "-18px", top: "70px", rotate: "-8deg" }}><Art name="ticket" size={120} shadow /></span>
-      <span style={{ right: "-10px", top: "64px", rotate: "10deg" }}><Art name="seal" size={64} shadow /></span>
-      <span style={{ right: "-30px", bottom: "40px", rotate: "-18deg" }}><Art name="kente" size={150} shadow /></span>
-      <span style={{ left: "-10px", bottom: "60px", rotate: "14deg" }}><Art name="pebble" size={60} shadow /></span>
+      <Sticker name="ticket" x="-18px" y="70px" size={120} rotate={-8} />
+      <Sticker name="seal" side="right" x="-10px" y="64px" size={64} rotate={10} />
+      <Sticker name="kente" side="right" anchor="bottom" x="-30px" y="40px" size={150} rotate={-12} />
+      <Sticker name="pebble" anchor="bottom" x="-10px" y="60px" size={60} rotate={14} />
+      <div className={styles.wideStickers}>
+        <Sticker name="azulejo" x="16%" y="30%" size={150} rotate={-8} />
+        <Sticker name="script-ko" side="right" x="20%" y="40%" size={64} shadow={false} />
+        <Sticker name="torn-label" x="14%" y="62%" size={170} rotate={6} />
+      </div>
     </div>
   );
 }
