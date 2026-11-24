@@ -39,7 +39,7 @@ export default async function PolingualOpsPage({ searchParams }: { searchParams:
   const now = new Date();
   const since = (days: number) => new Date(now.getTime() - days * DAY_MS).toISOString();
   const [posts, metrics, outreach, events] = source
-    ? await Promise.all([source.posts(since(SOCIAL_DAYS)), source.metrics(since(SOCIAL_DAYS)), source.outreach(), source.funnelEvents(since(FUNNEL_DAYS))])
+    ? await Promise.all([source.posts(since(SOCIAL_DAYS)), source.metrics(since(SOCIAL_DAYS)), source.outreach(), source.funnel(since(FUNNEL_DAYS))])
     : [[], [], [], []];
   const today = todayQueue(posts, now);
   const pipeline = outreachSummary(outreach, now);
@@ -52,7 +52,7 @@ export default async function PolingualOpsPage({ searchParams }: { searchParams:
       {!source && <Unavailable />}
       {searchParams.result && (
         <p role="status" className="text-[13px] text-[color:var(--basalt-2)]">
-          Result: {searchParams.result.replace(/_/g, " ")}
+          Result: {searchParams.result.replaceAll("_", " ")}
         </p>
       )}
 
@@ -65,7 +65,7 @@ export default async function PolingualOpsPage({ searchParams }: { searchParams:
               <div className="flex flex-wrap justify-between gap-2 text-[12px] text-[color:var(--basalt-3)]">
                 <span className="small-caps tracking-[0.14em]">{p.platform}</span>
                 <span>{when(p.scheduled_for)}</span>
-                <span className="small-caps tracking-[0.14em]">{p.status.replace("_", " ")}</span>
+                <span className="small-caps tracking-[0.14em]">{p.status.replaceAll("_", " ")}</span>
               </div>
               <p className="text-[14px] text-[color:var(--basalt)] break-words">{p.caption || p.slug}</p>
               {p.preview_url && (
@@ -74,12 +74,14 @@ export default async function PolingualOpsPage({ searchParams }: { searchParams:
                 </a>
               )}
               {p.approved_by && <p className="text-[12px] text-[color:var(--basalt-3)]">Approved by {p.approved_by}</p>}
-              {p.status !== "posted" && (
+              {p.status !== "posted" && p.status !== "skipped" && (
                 <div className="flex gap-3">
-                  <form action={approvePost}>
-                    <input type="hidden" name="postId" value={p.id} />
-                    <button type="submit" className={BUTTON}>approve</button>
-                  </form>
+                  {!p.approved_at && (
+                    <form action={approvePost}>
+                      <input type="hidden" name="postId" value={p.id} />
+                      <button type="submit" className={BUTTON}>approve</button>
+                    </form>
+                  )}
                   <form action={skipPost}>
                     <input type="hidden" name="postId" value={p.id} />
                     <button type="submit" className={`${BUTTON} bg-transparent border border-[color:var(--hairline)]`}>skip</button>
@@ -95,7 +97,7 @@ export default async function PolingualOpsPage({ searchParams }: { searchParams:
         <h2 className={H2}>Outreach pipeline</h2>
         <div className="flex flex-wrap gap-6">
           {Object.entries(pipeline.byStatus).map(([s, n]) => (
-            <Stat key={s} label={s.replace("_", " ")} value={n} />
+            <Stat key={s} label={s.replaceAll("_", " ")} value={n} />
           ))}
         </div>
         <Table
@@ -104,7 +106,7 @@ export default async function PolingualOpsPage({ searchParams }: { searchParams:
             r.thread_url ? <a key="c" href={r.thread_url} target="_blank" rel="noreferrer" className="underline underline-offset-4">{r.contact}{r.org ? `, ${r.org}` : ""}</a> : `${r.contact}${r.org ? `, ${r.org}` : ""}`,
             r.kind,
             r.channel,
-            r.status.replace("_", " "),
+            r.status.replaceAll("_", " "),
             when(r.next_touch),
           ])}
         />

@@ -34,3 +34,6 @@ revoke all on bucket.polingual_social_posts from public, anon, authenticated;
 revoke all on bucket.polingual_social_metrics from public, anon, authenticated;
 grant select, insert, update on bucket.polingual_social_posts to service_role;
 grant select, insert on bucket.polingual_social_metrics to service_role;
+
+create trigger polingual_social_posts_touch before update on bucket.polingual_social_posts
+  for each row execute function bucket.touch_updated_at();

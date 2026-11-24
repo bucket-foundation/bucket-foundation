@@ -40,30 +40,20 @@ export interface OutreachRow {
   thread_url: string | null;
 }
 
-export interface FunnelEvent {
-  visitor: string;
-  name: string;
-  utm_source: string | null;
-  at: string;
+export interface FunnelRow {
+  day: string | null;
+  source: string | null;
+  visits: number;
+  signup: number;
+  trial: number;
+  paid: number;
 }
 
 export const FUNNEL_STEPS = ["visits", "signup", "trial", "paid"] as const;
 export type FunnelStepKey = (typeof FUNNEL_STEPS)[number];
 export type FunnelCounts = Record<FunnelStepKey, number>;
 
-const STEP_OF: Record<string, FunnelStepKey> = {
-  page_view: "visits",
-  landing_view: "visits",
-  signup: "signup",
-  trial_start: "trial",
-  paid: "paid",
-};
-
 const DAY_MS = 86_400_000;
-
-function empty(): FunnelCounts {
-  return { visits: 0, signup: 0, trial: 0, paid: 0 };
-}
 
 export function dayOf(iso: string): string {
   return new Date(iso).toISOString().slice(0, 10);
@@ -95,39 +85,16 @@ export interface FunnelReport {
   totals: FunnelCounts;
 }
 
-export function funnelReport(events: FunnelEvent[]): FunnelReport {
-  const sorted = [...events].sort((a, b) => Date.parse(a.at) - Date.parse(b.at));
-  const sourceOf = new Map<string, string>();
-  const seen = new Set<string>();
-  const byDay = new Map<string, FunnelCounts>();
-  const bySource = new Map<string, FunnelCounts>();
-  const totals = empty();
-  for (const e of sorted) {
-    if (!sourceOf.has(e.visitor)) sourceOf.set(e.visitor, e.utm_source?.trim() || "direct");
-    const step = STEP_OF[e.name];
-    if (!step) continue;
-    const day = dayOf(e.at);
-    const dayKey = `${step}|${e.visitor}|${day}`;
-    const allKey = `${step}|${e.visitor}`;
-    if (!seen.has(dayKey)) {
-      seen.add(dayKey);
-      const d = byDay.get(day) ?? empty();
-      d[step] += 1;
-      byDay.set(day, d);
-    }
-    if (!seen.has(allKey)) {
-      seen.add(allKey);
-      const source = sourceOf.get(e.visitor)!;
-      const s = bySource.get(source) ?? empty();
-      s[step] += 1;
-      bySource.set(source, s);
-      totals[step] += 1;
-    }
-  }
+function counts(r: FunnelRow): FunnelCounts {
+  return { visits: Number(r.visits), signup: Number(r.signup), trial: Number(r.trial), paid: Number(r.paid) };
+}
+
+export function funnelReport(rows: FunnelRow[]): FunnelReport {
+  const total = rows.find((r) => r.day === null && r.source === null);
   return {
-    byDay: Array.from(byDay.entries()).sort(([a], [b]) => b.localeCompare(a)).map(([day, c]) => ({ day, ...c })),
-    bySource: Array.from(bySource.entries()).sort(([, a], [, b]) => b.visits - a.visits).map(([source, c]) => ({ source, ...c })),
-    totals,
+    byDay: rows.filter((r) => r.day !== null && r.source === null).map((r) => ({ day: r.day!, ...counts(r) })).sort((a, b) => b.day.localeCompare(a.day)),
+    bySource: rows.filter((r) => r.source !== null && r.day === null).map((r) => ({ source: r.source!, ...counts(r) })).sort((a, b) => b.visits - a.visits),
+    totals: total ? counts(total) : { visits: 0, signup: 0, trial: 0, paid: 0 },
   };
 }
 
@@ -161,23 +128,21 @@ export type PostDecision = (typeof POST_DECISIONS)[number];
 
 export interface PostDecisionDeps {
   find: (id: string) => Promise<SocialPost | null>;
-  update: (id: string, patch: Partial<Pick<SocialPost, "status" | "approved_at" | "approved_by" | "updated_at">>) => Promise<void>;
+  update: (id: string, patch: Partial<Pick<SocialPost, "status" | "approved_at" | "approved_by">>) => Promise<boolean>;
 }
 
-export type PostDecisionResult = { ok: true } | { ok: false; error: "bad_decision" | "not_found" | "already_posted" | "update_failed" };
+export type PostDecisionResult = { ok: true } | { ok: false; error: "forbidden" | "bad_decision" | "not_found" | "already_posted" | "already_skipped" | "conflict" | "update_failed" };
 
-export async function decidePost(deps: PostDecisionDeps, staff: Staff, postId: string, decision: string, now: Date = new Date()): Promise<PostDecisionResult> {
+export async function decidePost(deps: PostDecisionDeps, staff: Staff | null, postId: string, decision: string, now: Date = new Date()): Promise<PostDecisionResult> {
+  if (!staff) return { ok: false, error: "forbidden" };
   if (!(POST_DECISIONS as readonly string[]).includes(decision)) return { ok: false, error: "bad_decision" };
   const post = await deps.find(postId);
   if (!post) return { ok: false, error: "not_found" };
   if (post.status === "posted") return { ok: false, error: "already_posted" };
-  const stamp = now.toISOString();
-  const patch =
-    decision === "approve"
-      ? { status: "ready" as const, approved_at: stamp, approved_by: staff.email, updated_at: stamp }
-      : { status: "skipped" as const, approved_at: null, approved_by: null, updated_at: stamp };
+  if (decision === "approve" && post.status === "skipped") return { ok: false, error: "already_skipped" };
+  const patch = decision === "approve" ? { approved_at: now.toISOString(), approved_by: staff.email } : { status: "skipped" as const, approved_at: null, approved_by: null };
   try {
-    await deps.update(postId, patch);
+    if (!(await deps.update(postId, patch))) return { ok: false, error: "conflict" };
   } catch (err) {
     console.error("[admin] polingual post decision failed", postId, decision, err instanceof Error ? err.message : err);
     return { ok: false, error: "update_failed" };

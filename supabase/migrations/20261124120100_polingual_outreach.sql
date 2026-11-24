@@ -17,3 +17,6 @@ alter table bucket.polingual_outreach enable row level security;
 alter table bucket.polingual_outreach force row level security;
 revoke all on bucket.polingual_outreach from public, anon, authenticated;
 grant select, insert, update on bucket.polingual_outreach to service_role;
+
+create trigger polingual_outreach_touch before update on bucket.polingual_outreach
+  for each row execute function bucket.touch_updated_at();

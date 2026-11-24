@@ -1,13 +1,13 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { configured } from "@/lib/research-os/db";
 import { fixturesEnabled } from "./gate";
-import type { FunnelEvent, OutreachRow, PostDecisionDeps, SocialMetric, SocialPost } from "./polingual-ops";
+import type { FunnelRow, OutreachRow, PostDecisionDeps, SocialMetric, SocialPost } from "./polingual-ops";
 
 export interface PolingualOpsSource {
   posts: (sinceIso: string) => Promise<SocialPost[]>;
   metrics: (sinceIso: string) => Promise<SocialMetric[]>;
   outreach: () => Promise<OutreachRow[]>;
-  funnelEvents: (sinceIso: string) => Promise<FunnelEvent[]>;
+  funnel: (sinceIso: string) => Promise<FunnelRow[]>;
   decisions: PostDecisionDeps;
 }
 
@@ -30,11 +30,7 @@ function supabaseOps(): PolingualOpsSource | null {
     posts: async (since) => must<SocialPost[]>("polingual_social_posts list", await bucket().from("polingual_social_posts").select(POST_COLUMNS).gte("scheduled_for", since).order("scheduled_for").limit(2000)),
     metrics: async (since) => must<SocialMetric[]>("polingual_social_metrics list", await bucket().from("polingual_social_metrics").select("post_id, captured_at, views").gte("captured_at", since).order("captured_at").limit(20_000)),
     outreach: async () => must<OutreachRow[]>("polingual_outreach list", await bucket().from("polingual_outreach").select("id, contact, org, channel, kind, status, last_touch, next_touch, thread_url").order("next_touch", { ascending: true, nullsFirst: false }).limit(1000)),
-    funnelEvents: async (since) =>
-      must<FunnelEvent[]>(
-        "polingual_web_events list",
-        await pub().from("polingual_web_events").select("visitor, name, utm_source, at").gte("at", since).in("name", ["page_view", "landing_view", "signup", "trial_start", "paid"]).order("at").limit(50_000),
-      ),
+    funnel: async (since) => must<FunnelRow[]>("polingual_funnel_daily", await pub().rpc("polingual_funnel_daily", { p_since: since })),
     decisions: {
       find: async (id) => {
         const r = await bucket().from("polingual_social_posts").select(POST_COLUMNS).eq("id", id).maybeSingle();
@@ -42,8 +38,11 @@ function supabaseOps(): PolingualOpsSource | null {
         return (r.data as SocialPost | null) ?? null;
       },
       update: async (id, patch) => {
-        const r = await bucket().from("polingual_social_posts").update(patch).eq("id", id);
+        let q = bucket().from("polingual_social_posts").update(patch).eq("id", id).neq("status", "posted");
+        if (patch.status !== "skipped") q = q.neq("status", "skipped");
+        const r = await q.select("id");
         if (r.error) throw new Error(`polingual_social_posts update: ${r.error.message}`);
+        return (r.data ?? []).length > 0;
       },
     },
   };
@@ -65,26 +64,25 @@ export function fixtureOps(now: Date = new Date()): PolingualOpsSource {
     { id: "o1", contact: "Lena", org: "Berlin Language Club", channel: "email", kind: "club", status: "followup_due", last_touch: day(-6), next_touch: day(-1), thread_url: null },
     { id: "o2", contact: "Mateo", org: null, channel: "tiktok dm", kind: "creator", status: "sent", last_touch: day(-1), next_touch: day(3), thread_url: null },
   ];
-  const funnelEvents: FunnelEvent[] = [];
-  for (let i = 0; i < 40; i++) {
-    const visitor = `00000000-0000-4000-9000-${String(i).padStart(12, "0")}`;
-    const source = ["tiktok", "instagram", null][i % 3];
-    const at = day(-(i % 7), 10);
-    funnelEvents.push({ visitor, name: "landing_view", utm_source: source, at });
-    if (i % 3 === 0) funnelEvents.push({ visitor, name: "signup", utm_source: source, at });
-    if (i % 6 === 0) funnelEvents.push({ visitor, name: "trial_start", utm_source: source, at });
-    if (i % 12 === 0) funnelEvents.push({ visitor, name: "paid", utm_source: source, at });
-  }
+  const funnelRows: FunnelRow[] = [
+    { day: null, source: null, visits: 40, signup: 14, trial: 7, paid: 4 },
+    { day: null, source: "tiktok", visits: 14, signup: 5, trial: 3, paid: 2 },
+    { day: null, source: "direct", visits: 13, signup: 5, trial: 2, paid: 1 },
+    { day: null, source: "instagram", visits: 13, signup: 4, trial: 2, paid: 1 },
+    ...[0, 1, 2, 3, 4, 5, 6].map((i) => ({ day: day(-i).slice(0, 10), source: null, visits: 6 - (i % 2), signup: 2, trial: 1, paid: i % 2 })),
+  ];
   return {
     posts: async () => posts,
     metrics: async () => metrics,
     outreach: async () => outreach,
-    funnelEvents: async () => funnelEvents,
+    funnel: async () => funnelRows,
     decisions: {
       find: async (id) => posts.find((p) => p.id === id) ?? null,
       update: async (id, patch) => {
         const p = posts.find((x) => x.id === id);
-        if (p) Object.assign(p, patch);
+        if (!p || p.status === "posted" || (patch.status !== "skipped" && p.status === "skipped")) return false;
+        Object.assign(p, patch);
+        return true;
       },
     },
   };
