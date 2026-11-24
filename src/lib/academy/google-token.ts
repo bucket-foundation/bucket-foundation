@@ -29,7 +29,7 @@ export interface GoogleSessionUser {
 export interface GoogleSessionAuth {
   findUser: (email: string) => Promise<GoogleSessionUser | null>;
   createUser: (email: string, sub: string) => Promise<{ status: number | null }>;
-  bindSub: (userId: string, sub: string) => Promise<{ status: number | null }>;
+  bindSub: (userId: string, sub: string) => Promise<{ bound: string | null; status: number | null }>;
   generateLink: (email: string) => Promise<{ link: { tokenHash: string; type: string } | null; status: number | null }>;
   verifyToken: (tokenHash: string, type: string) => Promise<AuthResult>;
 }
@@ -45,7 +45,9 @@ async function claimUser(who: GoogleIdentity, auth: GoogleSessionAuth): Promise<
   }
   const bound = user.app_metadata?.[GOOGLE_SUB_KEY];
   if (typeof bound === "string" && bound) return bound === who.sub ? null : GOOGLE_MISMATCH_STATUS;
-  return (await auth.bindSub(user.id, who.sub)).status;
+  const bind = await auth.bindSub(user.id, who.sub);
+  if (bind.status !== null) return bind.status;
+  return bind.bound === who.sub ? null : GOOGLE_MISMATCH_STATUS;
 }
 
 export async function mintGoogleSession(who: GoogleIdentity, auth: GoogleSessionAuth): Promise<AuthResult> {

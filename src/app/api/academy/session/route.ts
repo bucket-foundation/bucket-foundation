@@ -6,7 +6,7 @@ import { vercelDefer } from "@/lib/capture/legs";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { GOOGLE_SUB_KEY, googleClientId, googleKeys, mintGoogleSession, verifyGoogleIdToken } from "@/lib/academy/google-token";
-import { findUserByEmail, mintReviewSession, reviewDemoConfig } from "@/lib/academy/review-demo";
+import { findUserByEmail, isMissingRpc, mintReviewSession, reviewDemoConfig, rpcLookupWithFallback } from "@/lib/academy/review-demo";
 import { appleAudiences, bearerToken, createSessionHandler, sessionClientIp } from "@/lib/academy/session-server";
 
 export const runtime = "nodejs";
@@ -23,11 +23,19 @@ const adminClient = () => createClient(URL_(), process.env.SUPABASE_SERVICE_ROLE
 
 const appleTokens = appleTokenDeps();
 
-const lookupUser = (label: string) => async (email: string) => {
-  const { data, error } = await bucketClient().rpc("auth_user_by_email", { p_email: email });
-  if (error) throw new Error(`${label} user lookup failed: ${error.message}`);
-  return data;
-};
+const lookupUser = (label: string) =>
+  rpcLookupWithFallback(
+    async (email) => {
+      const { data, error } = await bucketClient().rpc("auth_user_by_email", { p_email: email });
+      return { data, error: error ? { code: error.code, message: error.message } : null };
+    },
+    async (page, perPage) => {
+      const { data, error } = await adminClient().auth.admin.listUsers({ page, perPage });
+      if (error) throw new Error(`${label} user list failed with status ${error.status}`);
+      return data.users;
+    },
+    label,
+  );
 
 const deleteAccountFor = (accessToken: string) =>
   deleteAccount(
@@ -88,8 +96,11 @@ const handle = createSessionHandler({
           return { status: error ? (error.status ?? 500) : null };
         },
         bindSub: async (userId, sub) => {
-          const { error } = await adminClient().auth.admin.updateUserById(userId, { app_metadata: { [GOOGLE_SUB_KEY]: sub } });
-          return { status: error ? (error.status ?? 500) : null };
+          const { data, error } = await bucketClient().rpc("bind_google_sub", { p_user: userId, p_sub: sub });
+          if (!error) return { bound: typeof data === "string" ? data : null, status: null };
+          if (!isMissingRpc({ code: error.code, message: error.message })) return { bound: null, status: 500 };
+          const updated = await adminClient().auth.admin.updateUserById(userId, { app_metadata: { [GOOGLE_SUB_KEY]: sub } });
+          return { bound: updated.error ? null : sub, status: updated.error ? (updated.error.status ?? 500) : null };
         },
         generateLink: async (address) => {
           const { data, error } = await adminClient().auth.admin.generateLink({ type: "magiclink", email: address });

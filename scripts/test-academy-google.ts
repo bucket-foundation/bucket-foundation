@@ -115,15 +115,18 @@ test("google sign-ins are capped per IP and Supabase failures map to 502", async
 
 const WHO = { sub: "g-123", email: "n@b.co" };
 
-function auth(user: { id: string; app_metadata?: Record<string, unknown> } | null, createStatus: number | null = null, after: typeof user = null) {
+type U = { id: string; app_metadata?: Record<string, unknown> } | null;
+
+function auth(user: U, createStatus: number | null = null, ...later: U[]) {
   const calls: string[] = [];
+  const reads = [user, ...later];
   let finds = 0;
   return {
     calls,
     deps: {
-      findUser: async (e: string) => (calls.push(`find ${e}`), finds++ === 0 ? user : after),
+      findUser: async (e: string) => (calls.push(`find ${e}`), reads[Math.min(finds++, reads.length - 1)]),
       createUser: async (e: string, sub: string) => (calls.push(`create ${e} ${sub}`), { status: createStatus }),
-      bindSub: async (id: string, sub: string) => (calls.push(`bind ${id} ${sub}`), { status: null }),
+      bindSub: async (id: string, sub: string) => (calls.push(`bind ${id} ${sub}`), { bound: sub, status: null }),
       generateLink: async (e: string) => (calls.push(`link ${e}`), { link: { tokenHash: "h", type: "magiclink" }, status: null }),
       verifyToken: async (h: string, t: string): Promise<AuthResult> => (calls.push(`verify ${h} ${t}`), { session: SESSION, status: null }),
     },
@@ -140,6 +143,26 @@ test("an existing email with no Google sub binds the sub on first Google sign-in
   const a = auth({ id: "u1", app_metadata: {} });
   assert.equal((await mintGoogleSession(WHO, a.deps)).session, SESSION);
   assert.deepEqual(a.calls, ["find n@b.co", "bind u1 g-123", "link n@b.co", "verify h magiclink"]);
+});
+
+test("two concurrent first binds: the sign-in whose sub lost the compare-and-set is rejected", async () => {
+  let stored: string | undefined;
+  const links: string[] = [];
+  const deps = {
+    findUser: async () => ({ id: "u1", app_metadata: {} }),
+    createUser: async () => ({ status: null }),
+    bindSub: async (_: string, sub: string) => {
+      await new Promise((r) => setTimeout(r, sub === "g-a" ? 1 : 5));
+      stored ??= sub;
+      return { bound: stored, status: null };
+    },
+    generateLink: async (e: string) => (links.push(e), { link: { tokenHash: "h", type: "magiclink" }, status: null }),
+    verifyToken: async (): Promise<AuthResult> => ({ session: SESSION, status: null }),
+  };
+  const [a, b] = await Promise.all([mintGoogleSession({ sub: "g-a", email: "n@b.co" }, deps), mintGoogleSession({ sub: "g-b", email: "n@b.co" }, deps)]);
+  assert.equal(a.session, SESSION);
+  assert.deepEqual(b, { session: null, status: 409 });
+  assert.deepEqual(links, ["n@b.co"]);
 });
 
 test("a matching Google sub signs in without rebinding", async () => {

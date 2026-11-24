@@ -25,6 +25,33 @@ export interface AuthUser {
 
 export type LookupUser = (email: string) => Promise<unknown>;
 
+export type RpcResult = { data: unknown; error: { code?: string; message: string } | null };
+export type ListUsers = (page: number, perPage: number) => Promise<{ email?: string }[]>;
+
+const USER_PAGE_SIZE = 1000;
+
+export function isMissingRpc(error: { code?: string; message: string }): boolean {
+  return error.code === "PGRST202" || error.code === "42883" || /could not find the function|function .* does not exist/i.test(error.message);
+}
+
+export async function pageUsersByEmail(list: ListUsers, email: string): Promise<unknown> {
+  for (let page = 1; ; page++) {
+    const users = await list(page, USER_PAGE_SIZE);
+    const found = users.find((u) => u.email?.toLowerCase() === email);
+    if (found) return found;
+    if (users.length < USER_PAGE_SIZE) return null;
+  }
+}
+
+export function rpcLookupWithFallback(rpc: (email: string) => Promise<RpcResult>, list: ListUsers, label: string): LookupUser {
+  return async (email) => {
+    const { data, error } = await rpc(email);
+    if (!error) return data;
+    if (isMissingRpc(error)) return pageUsersByEmail(list, email);
+    throw new Error(`${label} user lookup failed: ${error.message}`);
+  };
+}
+
 export interface ReviewDemoLink {
   tokenHash: string;
   type: string;
