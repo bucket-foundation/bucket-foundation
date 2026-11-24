@@ -68,7 +68,7 @@ test("the dedupe migration makes once-only steps unique per visitor and inserts 
 });
 
 test("the events api accepts every funnel step", () => {
-  const out = parseEvents({ visitor: V, events: FUNNEL_STEPS.map((name) => ({ name })) })!;
+  const out = parseEvents({ visitor: V, events: FUNNEL_STEPS.map((name) => ({ name })) }, true)!;
   assert.deepEqual(out.map((e) => e.name), [...FUNNEL_STEPS]);
 });
 
