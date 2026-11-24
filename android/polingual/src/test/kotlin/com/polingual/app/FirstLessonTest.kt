@@ -31,6 +31,14 @@ class FirstLessonTest {
     }
 
     @Test
+    fun checkingNeverOpensThePaywall() {
+        assertEquals(null, FirstLesson.startRoute(Access.Checking, done = true))
+        assertEquals("Checking your plan", FirstLesson.startLabel(Access.Checking, done = true))
+        assertFalse(FirstLesson.paywallAfter(Access.Checking, done = true))
+        assertEquals("study", FirstLesson.startRoute(Access.Checking, done = false))
+    }
+
+    @Test
     fun theFlagReadsFromStorage() {
         assertTrue(FirstLesson.done { if (it == FirstLesson.KEY) "1" else null })
         assertFalse(FirstLesson.done { null })

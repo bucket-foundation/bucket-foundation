@@ -293,6 +293,13 @@ test("a merged guest token stops working", async () => {
   assert.match(sql, /revoke all on bucket.lobby_guest_revoked from public, anon, authenticated/);
 });
 
+test("revoking a guest twice inserts once and needs no update grant", () => {
+  const server = readFileSync(join(__dirname, "..", "src/lib/academy/lobbies-server.ts"), "utf8");
+  assert.match(server, /from\(GUEST_REVOKED\)\.upsert\(\{ guest_id: sub \}, \{ onConflict: "guest_id", ignoreDuplicates: true \}\)/);
+  const grant = readFileSync(join(__dirname, "..", "supabase/migrations/20261124220000_polingual_lobby_guest_revoked_update.sql"), "utf8");
+  assert.match(grant, /grant select, insert, update, delete on bucket\.lobby_guest_revoked to service_role;/);
+});
+
 test("guest tokens sign a stable user id and refuse tampering or expiry", async () => {
   const g = await import("../src/lib/academy/lobby-guests");
   const secret = "s".repeat(40);

@@ -300,7 +300,7 @@ export async function guestRevoked(sub: string): Promise<boolean> {
 }
 
 export async function revokeGuest(sub: string): Promise<void> {
-  check(await service().from(GUEST_REVOKED).upsert({ guest_id: sub }, { onConflict: "guest_id" }), "revoke");
+  check(await service().from(GUEST_REVOKED).upsert({ guest_id: sub }, { onConflict: "guest_id", ignoreDuplicates: true }), "revoke");
 }
 
 export async function lobbyUser(req: NextRequest): Promise<string | null> {

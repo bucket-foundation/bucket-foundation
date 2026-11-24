@@ -50,7 +50,7 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
         Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", color = PL.Paper.copy(alpha = 0.85f))
         val access by graph.billing.access.collectAsState()
         val lessonDone = FirstLesson.done(graph.kv::get)
-        PrimaryButton(FirstLesson.startLabel(access, lessonDone)) { nav.navigate(FirstLesson.startRoute(access, FirstLesson.done(graph.kv::get))) }
+        PrimaryButton(FirstLesson.startLabel(access, lessonDone), enabled = FirstLesson.startRoute(access, lessonDone) != null) { FirstLesson.startRoute(access, FirstLesson.done(graph.kv::get))?.let { nav.navigate(it) } }
     }
     Card(color = PL.Vermilion, onClick = { nav.navigate("translate") }) {
         Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = PL.Paper)
