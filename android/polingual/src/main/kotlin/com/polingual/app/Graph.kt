@@ -52,6 +52,7 @@ class Graph(val context: Context) {
     fun track(name: String, detail: String? = null) { scope.launch { funnel.send(name, detail) } }
     val todayPlan = TodayPlanStore(kv)
     val reminders = Reminders(context, kv)
+    val rewards = Rewards(kv)
     val state: StateFlow<AppState?> = store.state.stateIn(scope, SharingStarted.Eagerly, null)
     val guest = GuestPass(api, kv, nickname = { state.value?.nickname.orEmpty() })
     val lobbies = LobbyStore(api, userToken = { account.token() }, guest = guest)
