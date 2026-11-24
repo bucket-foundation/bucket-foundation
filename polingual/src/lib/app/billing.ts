@@ -40,3 +40,15 @@ export async function startCheckout(plan: WebPlan, f: typeof fetch = fetch): Pro
 export function openPortal(f: typeof fetch = fetch): Promise<BillingResult> {
   return post(f, "/api/polingual/portal", {});
 }
+
+export type TrialState = { used: boolean; reminderEmail: boolean };
+
+export async function fetchTrial(f: typeof fetch = fetch): Promise<TrialState> {
+  try {
+    const r = await f("/api/polingual/trial-used", { cache: "no-store" });
+    const b = (await r.json().catch(() => null)) as { used?: unknown; reminderEmail?: unknown } | null;
+    return { used: r.ok && b?.used === true, reminderEmail: r.ok && b?.reminderEmail === true };
+  } catch {
+    return { used: false, reminderEmail: false };
+  }
+}

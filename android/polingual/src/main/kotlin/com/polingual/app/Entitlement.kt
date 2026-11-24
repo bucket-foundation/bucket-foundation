@@ -55,7 +55,7 @@ object Entitlement {
         return if (best.trial) Access.Trial(best.productId) else Access.Subscribed(best.productId)
     }
 
-    fun trialEligible(history: List<String>) = history.none { it in Plan.subscriptions }
+    fun trialEligible(history: List<String>, serverUsed: Boolean = false) = !serverUsed && history.none { it in Plan.subscriptions }
 
     fun disclosure(trial: Boolean, price: String, period: String, family: Boolean = false): String {
         if (period == "once") return "$price once. Charged to your Google Play account. No subscription and no renewal."

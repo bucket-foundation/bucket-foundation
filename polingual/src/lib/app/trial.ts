@@ -20,12 +20,13 @@ export interface TimelineStep {
   body: string;
 }
 
-export function trialTimeline(start: Date, price: string): TimelineStep[] {
+export function trialTimeline(start: Date, price: string, reminderEmail = false): TimelineStep[] {
   const at = (day: number) => new Date(start.getTime() + day * DAY_MS);
   const remind = TRIAL_DAYS - REMINDER_DAYS_BEFORE;
-  return [
+  const steps: TimelineStep[] = [
     { day: 0, at: at(0), title: "Today", body: "Every language opens. No payment now." },
     { day: remind, at: at(remind), title: `Day ${remind}`, body: `We email you that your trial ends in ${REMINDER_DAYS_BEFORE} days.` },
     { day: TRIAL_DAYS, at: at(TRIAL_DAYS), title: `Day ${TRIAL_DAYS}`, body: `Your plan starts at ${price}. Cancel before then and you pay nothing.` },
   ];
+  return reminderEmail ? steps : steps.filter((s) => s.day !== remind);
 }

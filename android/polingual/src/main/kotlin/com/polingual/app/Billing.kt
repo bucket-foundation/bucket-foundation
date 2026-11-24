@@ -30,6 +30,7 @@ class Billing(context: Context, private val graph: Graph) {
     val message: StateFlow<String?> = _message
     var trialEligible = true
         private set
+    private var serverTrialUsed = false
 
     private val client = BillingClient.newBuilder(context)
         .setListener { result, purchases -> graph.scope.launch { onPurchases(result, purchases.orEmpty()) } }
@@ -69,6 +70,7 @@ class Billing(context: Context, private val graph: Graph) {
             if (_access.value == Access.Checking) _access.value = if (BuildConfig.FREE_BETA) Access.Beta else Access.Locked
             return
         }
+        graph.account.token()?.let { t -> runCatching { graph.api.trialUsed(t) }.onSuccess { serverTrialUsed = it } }
         loadProducts()
         restore(silent = true)
     }
@@ -117,12 +119,19 @@ class Billing(context: Context, private val graph: Graph) {
         }
         records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()) }
         TrialReminder.sync(graph.context, TrialReminder.plan(records, graph.kv.get(TrialReminder.START_KEY)?.toLongOrNull(), System.currentTimeMillis()))
-        trialEligible = Entitlement.trialEligible(records.map { it.productId })
+        reportTrial()
+        trialEligible = Entitlement.trialEligible(records.map { it.productId }, serverTrialUsed)
         _access.value = Entitlement.access(records, BuildConfig.FREE_BETA)
         remember(_access.value)
         if (records.any { it.pending }) _message.value = "Your purchase is pending. Access opens when Google Play confirms it."
     }
 
+
+    private suspend fun reportTrial() {
+        if (graph.kv.get(TrialReminder.START_KEY) == null || graph.kv.get(TrialReminder.MARKED_KEY) != null) return
+        val t = graph.account.token() ?: return
+        runCatching { graph.api.markTrialUsed(t, "play") }.onSuccess { graph.kv.set(TrialReminder.MARKED_KEY, "1"); serverTrialUsed = true }
+    }
 
     companion object {
         const val CACHE_KEY = "polingual.access"

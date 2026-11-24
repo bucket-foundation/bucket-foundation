@@ -3,6 +3,8 @@
 import { APP_STORE_URL, PLANS, type Access } from "@/lib/app/plans";
 import {
   billingMessage,
+  fetchTrial,
+  type TrialState,
   isAppleDevice,
   startCheckout,
   type WebPlan,
@@ -19,10 +21,12 @@ function PlanList({
   busy,
   buy,
   all,
+  trialOk,
 }: {
   busy: WebPlan | null;
   buy: (plan: WebPlan) => Promise<void>;
   all: boolean;
+  trialOk: boolean;
 }) {
   return (
     <ul className={styles.plans}>
@@ -49,7 +53,7 @@ function PlanList({
               >
                 {busy === p.id ? "Opening checkout" : "Continue"}
               </Button>
-              {trialDays(p.id) > 0 ? <span className={styles.small} data-testid="no-payment">No payment now</span> : null}
+              {trialOk && trialDays(p.id) > 0 ? <span className={styles.small} data-testid="no-payment">No payment now</span> : null}
               </>
             ) : (
               <span className={styles.soon} data-testid="coming-soon">
@@ -91,6 +95,10 @@ export default function Paywall({
   const [error, setError] = useState<string | null>(null);
   const [all, setAll] = useState(false);
   const [start] = useState(() => new Date());
+  const [trial, setTrial] = useState<TrialState>({ used: false, reminderEmail: false });
+  useEffect(() => {
+    void fetchTrial().then(setTrial);
+  }, []);
   useEffect(
     () =>
       setApple(isAppleDevice(navigator.userAgent, navigator.maxTouchPoints)),
@@ -114,22 +122,22 @@ export default function Paywall({
       <section className={styles.stack} data-testid="paywall">
         <div>
           <p className={styles.label}>Polingual plans</p>
-          <h1 className={styles.title}>{TRIAL_DAYS} days free</h1>
+          <h1 className={styles.title}>{trial.used ? "Keep learning" : `${TRIAL_DAYS} days free`}</h1>
           <p className={styles.body}>
-            One subscription opens Polingual on the web, iPhone and iPad. The
-            yearly plan starts with {TRIAL_DAYS} days free. Cancel any time before
-            the trial ends and you pay nothing.
+            {trial.used
+              ? "One subscription opens Polingual on the web, iPhone and iPad."
+              : `One subscription opens Polingual on the web, iPhone and iPad. The yearly plan starts with ${TRIAL_DAYS} days free. Cancel any time before the trial ends and you pay nothing.`}
           </p>
         </div>
-        <ol className={styles.stack} data-testid="trial-timeline">
-          {trialTimeline(start, "$59.99 a year").map((s) => (
+        {trial.used ? null : <ol className={styles.stack} data-testid="trial-timeline">
+          {trialTimeline(start, "$59.99 a year", trial.reminderEmail).map((s) => (
             <li key={s.day}>
               <b>{s.title}</b>
               <p className={styles.small}>{s.body}</p>
             </li>
           ))}
-        </ol>
-        <PlanList busy={busy} buy={buy} all={all} />
+        </ol>}
+        <PlanList busy={busy} buy={buy} all={all} trialOk={!trial.used} />
         {all ? null : (
           <Button variant="quiet" size="sm" onDark onClick={() => setAll(true)} data-testid="see-all-plans">
             See all plans

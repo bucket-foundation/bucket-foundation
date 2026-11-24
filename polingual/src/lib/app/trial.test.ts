@@ -14,7 +14,8 @@ test("the yearly price reads as $1.15 a week", () => {
 
 test("the timeline emails 3 days before billing on day 7", () => {
   const start = new Date("2026-12-01T12:00:00Z");
-  const steps = trialTimeline(start, "$59.99 a year");
+  assert.deepEqual(trialTimeline(start, "$59.99 a year").map((s) => s.day), [0, 7]);
+  const steps = trialTimeline(start, "$59.99 a year", true);
   assert.deepEqual(steps.map((s) => s.day), [0, 4, 7]);
   assert.equal(steps[1].at.toISOString(), "2026-12-05T12:00:00.000Z");
   assert.match(steps[1].body, /email you/);

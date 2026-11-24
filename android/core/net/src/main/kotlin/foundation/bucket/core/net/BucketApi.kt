@@ -127,6 +127,13 @@ class BucketApi(
 
     suspend fun raw(path: String): String = call(path, null)
 
+    suspend fun trialUsed(token: String): Boolean =
+        (kotlinx.serialization.json.Json.parseToJsonElement(call("api/polingual/trial-used", token)) as? JsonObject)?.get("used")?.let { it.toString() == "true" } == true
+
+    suspend fun markTrialUsed(token: String, store: String) {
+        call("api/polingual/trial-used", token, JsonObject(mapOf("store" to kotlinx.serialization.json.JsonPrimitive(store))))
+    }
+
     suspend fun deckIndex(): foundation.bucket.core.model.DeckIndex = decode(call("academy-app/corpus/index.json", null))
 
     suspend fun deck(entry: foundation.bucket.core.model.DeckEntry): foundation.bucket.core.model.Deck = decode(call("academy-app/${entry.file}", null))

@@ -31,6 +31,28 @@ class TrialReminderTest {
     }
 
     @Test
+    fun firingRechecksPlayAndDropsWhenUnknownOrCancelled() {
+        assertTrue(TrialReminder.shouldPost(listOf(yearly()), start, start + 5 * day))
+        assertFalse(TrialReminder.shouldPost(null, start, start + 5 * day))
+        assertFalse(TrialReminder.shouldPost(listOf(yearly(renewing = false)), start, start + 5 * day))
+        assertFalse(TrialReminder.shouldPost(emptyList(), start, start + 5 * day))
+        assertFalse(TrialReminder.shouldPost(listOf(yearly()), start, start + 8 * day))
+    }
+
+    @Test
+    fun bootReschedulesOnlyAFutureReminder() {
+        assertEquals(start + 5 * day, TrialReminder.rescheduleAt(start + 5 * day, start + day))
+        assertNull(TrialReminder.rescheduleAt(start + 5 * day, start + 6 * day))
+        assertNull(TrialReminder.rescheduleAt(null, start))
+    }
+
+    @Test
+    fun aTrialUsedOnAnotherStoreEndsAndroidEligibility() {
+        assertTrue(Entitlement.trialEligible(emptyList()))
+        assertFalse(Entitlement.trialEligible(emptyList(), serverUsed = true))
+    }
+
+    @Test
     fun onlyANewEligibleYearlyPurchaseStartsATrial() {
         assertTrue(TrialReminder.startedTrial(yearly(), wasEligible = true, fromPurchase = true))
         assertFalse(TrialReminder.startedTrial(yearly(), wasEligible = false, fromPurchase = true))
