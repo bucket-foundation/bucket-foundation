@@ -129,13 +129,18 @@ function playOne(item: SpeakItem, onStart: (durationMs?: number) => void = () =>
     audio = sharedAudio();
     audio.src = source.src;
     audio.onended = () => done(true);
-    audio.onplaying = () => started();
+    audio.onplaying = () => started(audioMs(audio));
     audio.onerror = () => {
       if (audio) audio.onerror = null;
       fallback();
     };
     audio.play().catch(fallback);
   });
+}
+
+export function audioMs(audio: { duration?: number } | null): number | undefined {
+  const d = audio?.duration;
+  return typeof d === "number" && Number.isFinite(d) && d > 0 ? Math.round(d * 1000) : undefined;
 }
 
 export const FINISH_MS = 1500;
@@ -240,9 +245,12 @@ async function start(item: SpeakItem, gap: number): Promise<void> {
   }, START_MS);
   const ducking = duck(true);
   try {
-    const ended = await playOne(item, () => {
+    const ended = await playOne(item, (durationMs) => {
       began = true;
-      if (speaking?.t === t) speaking.startedAt = Date.now();
+      if (speaking?.t === t) {
+        speaking.startedAt = Date.now();
+        if (durationMs !== undefined) speaking.est = durationMs;
+      }
       if (t === token && state.notice) set({ ...state, notice: null });
     });
     if (ended) began = true;
