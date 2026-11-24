@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { canModerate, CHAT_REPORT_REASONS, visibleMessages } from "./moderation";
 import { answeredRound, botLabel, flagEmoji, cleanNickname, gameProgress, gameSeconds, langFlag, livesLeft, ranked, revealOrder, streakOf, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
 
 test("phase follows the server clock", () => {
