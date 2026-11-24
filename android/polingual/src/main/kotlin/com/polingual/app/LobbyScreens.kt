@@ -142,7 +142,7 @@ fun RoomScreen(graph: Graph, go: (String) -> Unit = {}, leave: () -> Unit) {
             phase == LobbyPhase.Waiting -> Waiting(graph, lobby) { act(it) }
             phase is LobbyPhase.Countdown -> {
                 Text("Get ready", style = Type.word, color = p.ink)
-                Text("${kotlin.math.ceil((phase as LobbyPhase.Countdown).seconds).toInt()}", style = Type.display.copy(fontSize = 96.sp), color = PL.Vermilion)
+                Text("${kotlin.math.ceil((phase as LobbyPhase.Countdown).seconds).toInt()}", style = Type.count, color = PL.Vermilion)
             }
             phase is LobbyPhase.Round -> Round(graph, lobby, phase.index, phase.remaining, reveal = false)
             phase is LobbyPhase.Reveal -> Round(graph, lobby, phase.index, phase.remaining, reveal = true)
@@ -338,8 +338,8 @@ private fun OpenRooms(open: List<foundation.bucket.core.model.LobbySummary>, onJ
 @Composable
 private fun RoundHeader(lobby: Lobby, index: Int, remaining: Double, reveal: Boolean) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Round ${index + 1} of ${lobby.rounds}", style = Type.title.copy(fontSize = 18.sp), color = PL.Ink, modifier = Modifier.weight(1f))
-        Text("${kotlin.math.ceil(remaining).toInt()}s", style = Type.title.copy(fontSize = 18.sp), color = if (remaining < 3 && !reveal) PL.Vermilion else PL.Ink)
+        Text("Round ${index + 1} of ${lobby.rounds}", style = Type.subhead, color = PL.Ink, modifier = Modifier.weight(1f))
+        Text("${kotlin.math.ceil(remaining).toInt()}s", style = Type.subhead, color = if (remaining < 3 && !reveal) PL.Vermilion else PL.Ink)
     }
     if (lobby.game == LobbyGame.Duel) {
         Row(verticalAlignment = Alignment.CenterVertically) {

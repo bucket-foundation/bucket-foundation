@@ -103,7 +103,7 @@ fun Groups(graph: Graph, c: GameContext) {
                 foundation.bucket.core.ui.pl.PLTile(
                     on, Modifier.weight(1f).aspectRatio(1.1f).semantics { contentDescription = "${w.form}, ${Lang.name(w.lang)}" }, selectedColor = PL.Ink,
                     onClick = { round.toggle(w.id); tick += 1 },
-                ) { Text(w.form, color = if (on) PL.Paper else PL.Ink, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, fontSize = 14.sp, maxLines = 2, modifier = Modifier.padding(4.dp)) }
+                ) { Text(w.form, color = if (on) PL.Paper else PL.Ink, style = Type.small.copy(fontWeight = FontWeight.Bold), textAlign = TextAlign.Center, maxLines = 2, modifier = Modifier.padding(4.dp)) }
             }
         }
     }

@@ -53,7 +53,7 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
         PrimaryButton(FirstLesson.startLabel(access, lessonDone), enabled = FirstLesson.startRoute(access, lessonDone) != null) { FirstLesson.startRoute(access, FirstLesson.done(graph.kv::get))?.let { nav.navigate(it) } }
     }
     Card(color = PL.Vermilion, onClick = { nav.navigate("translate") }) {
-        Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = PL.Paper)
+        Text("Translate", style = Type.title, color = PL.Paper)
         Text("Any word, every language you study", color = PL.Paper.copy(alpha = 0.9f))
     }
     TodayMore(graph, nav)
@@ -78,7 +78,7 @@ fun LearnExtras(graph: Graph, nav: NavHostController) {
 fun LockedPreview(nav: NavHostController) {
     Card(color = PL.Ink) {
         Text("LEARNING", style = Type.caps, color = PL.Paper.copy(alpha = 0.7f))
-        Text("Daily sessions, every word you miss, all your languages", style = Type.title.copy(fontSize = 20.sp()), color = PL.Paper)
+        Text("Daily sessions, every word you miss, all your languages", style = Type.subhead, color = PL.Paper)
         Text("Games and live rooms stay free. Polingual Pro opens learning and removes ads.", color = PL.Paper.copy(alpha = 0.85f))
         PrimaryButton("See plans") { nav.navigate("paywall") }
     }

@@ -45,7 +45,7 @@ fun AccountExtras(graph: Graph, nav: NavHostController) {
     if (activity != null && graph.ads.shouldShow(access) && graph.ads.privacyOptionsRequired(activity)) {
         foundation.bucket.core.ui.pl.SectionTitle("Ads")
         Card(onClick = { graph.ads.showPrivacyOptions(activity) }) {
-            androidx.compose.material3.Text("Privacy choices", style = Type.title.copy(fontSize = 18.sp()))
+            androidx.compose.material3.Text("Privacy choices", style = Type.subhead)
             androidx.compose.material3.Text("Change how ads use your data", color = foundation.bucket.core.ui.LocalPalette.current.muted)
         }
     }
@@ -57,7 +57,7 @@ fun AccountExtras(graph: Graph, nav: NavHostController) {
             Access.Beta -> "Free beta access"
             Access.Checking -> "Checking"
             Access.Locked -> "Learning is locked. Games stay free."
-        }, style = Type.title.copy(fontSize = 18.sp()))
+        }, style = Type.subhead)
         androidx.compose.material3.Text("Plans, restore and manage", color = foundation.bucket.core.ui.LocalPalette.current.muted)
     }
 }
