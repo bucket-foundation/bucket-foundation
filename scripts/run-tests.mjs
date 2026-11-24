@@ -100,6 +100,7 @@ const SUITES = {
       "scripts/test-growth-dashboard.ts",
       "scripts/test-growth-revenue.ts",
       "scripts/test-admin-dashboard.ts",
+      "scripts/test-admin-polingual-ops.ts",
       "scripts/test-beta-readout.ts",
     ],
     commands: [
