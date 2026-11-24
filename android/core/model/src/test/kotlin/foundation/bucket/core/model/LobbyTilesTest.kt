@@ -133,4 +133,12 @@ class LobbyRaceTest {
         assertEquals(LobbyRace.SCORE_MAX, LobbyRace.score(5_000_000, 0))
         assertEquals(0, LobbyRace.score(-5, 0))
     }
+
+    @Test
+    fun androidDeclaresDuelTilesAndRevealToTheServer() {
+        assertEquals("x-polingual-plays", LobbyGames.PLAYS_HEADER)
+        assertEquals("tiles,duel,reveal", LobbyGames.plays)
+        assertTrue(LobbyGames.nativeExtras.all { LobbyGames.playable(it) })
+        assertEquals(true, LobbyGame.Duel in LobbyGames.offered(listOf("daily", "duel")))
+    }
 }
