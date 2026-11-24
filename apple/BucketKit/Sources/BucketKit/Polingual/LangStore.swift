@@ -435,8 +435,17 @@ public final class LangStore {
         let s = try createSystem(root, targets, systems, now: now())
         systems.append(s)
         states[s.id] = EngineState()
+        adoptSiblings(s.id)
         await persistSystems(upsert: s)
         return s
+    }
+
+    public func adoptSiblings(_ systemId: String) {
+        guard let s = system(systemId) else { return }
+        let siblings = systems.filter { $0.id != systemId }.compactMap { states[$0.id] }
+        let mine = state(systemId)
+        let next = adoptSiblingCards(mine, langs: s.targets, from: siblings)
+        if next != mine { commit(s, next) }
     }
 
     public func remove(_ id: String) async {
@@ -448,6 +457,7 @@ public final class LangStore {
         guard let s = system(id) else { return }
         let next = try editSystem(s, targets, now: now())
         replace(next)
+        adoptSiblings(id)
         await persistSystems(upsert: next)
     }
 
