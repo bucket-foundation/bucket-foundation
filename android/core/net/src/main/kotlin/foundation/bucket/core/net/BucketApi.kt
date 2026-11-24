@@ -143,6 +143,13 @@ class BucketApi(
         call("api/polingual/trial-used", token, JsonObject(mapOf("store" to kotlinx.serialization.json.JsonPrimitive(store))))
     }
 
+    suspend fun playVerify(token: String, packageName: String, productId: String, purchaseToken: String): Boolean =
+        (kotlinx.serialization.json.Json.parseToJsonElement(call("api/play/verify", token, JsonObject(mapOf(
+            "packageName" to kotlinx.serialization.json.JsonPrimitive(packageName),
+            "productId" to kotlinx.serialization.json.JsonPrimitive(productId),
+            "purchaseToken" to kotlinx.serialization.json.JsonPrimitive(purchaseToken),
+        )))) as? JsonObject)?.get("ok")?.toString() == "true"
+
     suspend fun deckIndex(): foundation.bucket.core.model.DeckIndex = decode(call("academy-app/corpus/index.json", null))
 
     suspend fun deck(entry: foundation.bucket.core.model.DeckEntry): foundation.bucket.core.model.Deck = decode(call("academy-app/${entry.file}", null))
