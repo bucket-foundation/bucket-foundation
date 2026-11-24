@@ -103,6 +103,58 @@ import Testing
         #expect(s.state(a.id).cards[cardId("nl", "wife")] == s.state(b.id).cards[cardId("nl", "wife")])
     }
 
+    @Test func gradingInOneSetReachesSiblingSetsAtOnce() async throws {
+        let server = LangServer()
+        let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })
+        let a = try await s.create(root: "en", targets: ["nl"])
+        let b = try await s.create(root: "en", targets: ["nl", "de"])
+        let c = try await s.create(root: "en", targets: ["it"])
+        s.grade(b.id, lang: "nl", itemId: "wife", rating: 3)
+        let id = cardId("nl", "wife")
+        #expect(s.state(a.id).cards[id] == s.state(b.id).cards[id])
+        #expect(s.state(a.id).cards.started(id))
+        #expect(s.state(c.id) == EngineState())
+        await s.flush()
+        #expect(EngineState(js: server.branches.value[progressBranch(a)]).cards[id] == s.state(b.id).cards[id])
+    }
+
+    @Test func cardsMergedFromTheServerReachSiblingSets() async throws {
+        let server = LangServer()
+        let clock = LockedBox<Double>(2_000)
+        let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { clock.value })
+        await s.load()
+        let a = try await s.create(root: "en", targets: ["nl"])
+        let b = try await s.create(root: "en", targets: ["nl", "de"])
+        s.grade(b.id, lang: "nl", itemId: "wife", rating: 3)
+        await s.flush()
+        let id = cardId("nl", "wife")
+        let remote = gradeCard(s.state(b.id), "nl", "wife", 3, now: 90_000, tz: "UTC")
+        server.branches.mutate { $0[progressBranch(b)] = remote.js }
+        clock.mutate { $0 = 95_000 }
+        s.grade(b.id, lang: "de", itemId: "wife", rating: 3)
+        await s.flush()
+        #expect(s.state(b.id).cards[id] == remote.cards[id])
+        #expect(s.state(a.id).cards[id] == remote.cards[id])
+    }
+
+    @Test func dayTotalsCountASharedCardAndItsLanguageBudgetOnce() throws {
+        let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+        let a = try createSystem("en", ["fr", "es"], [], now: 0)
+        let b = try createSystem("en", ["fr", "it"], [], now: 0)
+        let item = try #require(corpus.items.first { i in isVocab(i) && ["fr", "es", "it"].allSatisfy { usable(i, "en", $0) } })
+        let now = 1_000_000.0
+        let graded = gradeCard(EngineState(), "fr", item.id, 1, now: now, tz: "UTC")
+        let shared = adoptSiblingCards(EngineState(), langs: b.targets, from: [graded])
+        let utc = TimeZone(identifier: "UTC")!
+        let budget = Int(graded.newPerDay)
+        let today = langDayTotals([(a, graded), (b, shared)], corpus, now: now, tz: utc)
+        #expect(today.new == (budget - 1) + budget + budget)
+        let later = langDayTotals([(a, graded), (b, shared)], corpus, now: now + 86_400_000, tz: utc)
+        #expect(later.due == 1)
+        #expect(later.due == langDayTotals([(a, graded)], corpus, now: now + 86_400_000, tz: utc).due)
+        #expect(later.new == 3 * budget)
+    }
+
     @Test func adoptedWordsReachTheServerAndAFreshInstall() async throws {
         let server = LangServer()
         let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { 2_000 })

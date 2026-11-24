@@ -1492,6 +1492,32 @@ public func langProgress(_ system: LangSystem, _ corpus: LangCorpus, _ state: En
     }
 }
 
+public struct LangDayTotals: Sendable, Equatable {
+    public let due: Int
+    public let new: Int
+}
+
+public func langDayTotals(_ sets: [(system: LangSystem, state: EngineState)], _ corpus: LangCorpus, now: Double, tz: TimeZone = .current) -> LangDayTotals {
+    let dk = dayKey(now, tz: tz)
+    var due = Set<String>()
+    var budget: [String: Int] = [:]
+    var introduced: [String: Set<String>] = [:]
+    for (system, state) in sets {
+        for lang in system.targets {
+            budget[lang] = max(budget[lang] ?? 0, Int(state.newPerDay))
+            for i in corpus.items where usable(i, system.root, lang) {
+                let id = cardId(lang, i.id)
+                if let c = state.cards[id], isStarted(c), let d = c.due, d <= now { due.insert(id) }
+            }
+        }
+        for (id, c) in state.cards.entries where c.introduced == dk && !(c.placed ?? false) && !isSentenceCard(id) {
+            let lang = parseCardId(id).lang
+            if system.targets.contains(lang) { introduced[lang, default: []].insert(id) }
+        }
+    }
+    return LangDayTotals(due: due.count, new: budget.reduce(0) { $0 + max(0, $1.value - (introduced[$1.key]?.count ?? 0)) })
+}
+
 public func masteredWords(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, lang: String) -> [MasteredWord] {
     let fsrs = FSRS()
     let scored: [(word: MasteredWord, mastery: Double)] = corpus.items.compactMap { i in

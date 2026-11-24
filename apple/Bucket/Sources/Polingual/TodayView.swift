@@ -125,13 +125,8 @@ struct TodayView: View {
         (langs.systems.map(Item.lang) + startedWork.map(Item.deck)).filter { hasWork($0, Date().timeIntervalSince1970 * 1000) }
     }
 
-    var langDue: [(system: LangSystem, due: Int)] {
-        guard let corpus = langs.corpus else { return [] }
-        let now = Date().timeIntervalSince1970 * 1000
-        return items.compactMap { item in
-            guard case .lang(let s) = item else { return nil }
-            return (s, systemSummary(s, corpus, langs.state(s.id), now: now).due)
-        }
+    var langSets: [LangSystem] {
+        items.compactMap { if case .lang(let s) = $0 { s } else { nil } }
     }
 
     var live: LiveStreak {
@@ -297,8 +292,9 @@ struct TodayView: View {
         let idle = all.filter { resting($0, now) }
         let planned = all.filter { !resting($0, now) }
         let w = planned.compactMap { if case .deck(let w) = $0 { w } else { nil } }
-        let due = w.reduce(0) { $0 + $1.due } + langDue.reduce(0) { $0 + $1.due }
-        let new = w.reduce(0) { $0 + $1.new } + langDue.reduce(0) { $0 + langNewLeft($1.system, langs.state($1.system.id), now: now) }
+        let langTotals = langs.corpus.map { corpus in langDayTotals(langSets.map { ($0, langs.state($0.id)) }, corpus, now: now) }
+        let due = w.reduce(0) { $0 + $1.due } + (langTotals?.due ?? 0)
+        let new = w.reduce(0) { $0 + $1.new } + (langTotals?.new ?? 0)
         let today = dayKey(now)
         let done = deckStates.reduce(0) { t, state in t + state.history[today].map { Int($0.new + $0.reviews) }.orZero }
             + langs.systems.reduce(0) { t, s in t + langs.state(s.id).history[today].map { Int($0.new + $0.reviews) }.orZero }

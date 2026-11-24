@@ -36,12 +36,11 @@ enum WidgetSync {
         var newToday = extra.newToday
         var newTomorrow = extra.newTomorrow
         if let corpus = store.corpus {
-            for s in store.systems {
-                let state = store.state(s.id)
-                dueNow += systemSummary(s, corpus, state, now: ms).due
-                newToday += langNewLeft(s, state, now: ms)
-                newTomorrow += langNewLeft(s, state, now: tomorrowMs)
-            }
+            let sets = store.systems.map { ($0, store.state($0.id)) }
+            let today = langDayTotals(sets, corpus, now: ms)
+            dueNow += today.due
+            newToday += today.new
+            newTomorrow += langDayTotals(sets, corpus, now: tomorrowMs).new
             dueLater += langDue(store).map(\.due).filter { $0 > ms }
         }
         let c = WidgetPlan.counts(dueNow: dueNow, dueLater: dueLater, newToday: newToday, newTomorrow: newTomorrow,
