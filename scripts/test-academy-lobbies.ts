@@ -17,6 +17,7 @@ import {
   visiblePrompts,
   gameEndMs,
   nativePlayable,
+  nativePlays,
   REVEAL_SECONDS,
   revealEnabled,
   finished,
@@ -136,6 +137,12 @@ test("native clients list only games they can play on the plain clock", () => {
   assert.equal(nativePlayable(lobby()), true);
   assert.equal(nativePlayable(lobby({ game: "tiles" })), false);
   assert.equal(nativePlayable(lobby({ reveal_seconds: 3 })), false);
+  const plays = nativePlays("tiles, duel,reveal");
+  assert.equal(nativePlayable(lobby({ game: "duel", reveal_seconds: 3 }), false, plays), true);
+  assert.equal(nativePlayable(lobby({ game: "tiles" }), false, plays), true);
+  assert.equal(nativePlayable(lobby({ game: "duel", reveal_seconds: 3 }), false, nativePlays("duel")), false);
+  assert.equal(nativePlayable(lobby({ game: "spy" }), false, plays), false);
+  assert.deepEqual([...nativePlays(null)], []);
 });
 
 test("points reward speed and give nothing for a miss", () => {

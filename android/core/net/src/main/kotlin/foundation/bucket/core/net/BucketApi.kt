@@ -146,7 +146,7 @@ class BucketApi(
 
     private suspend fun lobbyCall(path: String, token: String, body: JsonObject, headers: Map<String, String> = emptyMap()): Lobby = decode<LobbyReply>(call(path, token, body, headers = headers)).lobby
 
-    private val RACE = mapOf(foundation.bucket.core.model.LobbyRace.HEADER to "1")
+    private val RACE = mapOf(foundation.bucket.core.model.LobbyRace.HEADER to "1", foundation.bucket.core.model.LobbyGames.PLAYS_HEADER to foundation.bucket.core.model.LobbyGames.plays)
 
     private suspend fun session(body: JsonObject, token: String? = null): String = call("api/academy/session", token, body, mapper = ::sessionError)
 
