@@ -178,7 +178,7 @@ function Done({ g }: { g: Game }) {
   );
 }
 
-function Reveal({ g, current, scene, correct }: { g: Game; current: Round; scene: NonNullable<Game["scene"]>; correct: boolean }) {
+function SpyReveal({ g, current, scene, correct }: { g: Game; current: Round; scene: NonNullable<Game["scene"]>; correct: boolean }) {
   const obj = scene.objects.find((o) => o.id === current.answer);
   return (
     <div className={styles.reveal} data-testid="spy-reveal">
@@ -217,7 +217,7 @@ function Room({ g, current, scene }: { g: Game; current: Round; scene: NonNullab
             <span className={app.small}>{langName(current.lang)}</span>
           </div>
           <Scene scene={scene} marks={g.marks} locked={g.locked} onTap={g.tap} />
-          {phase.kind === "reveal" ? <Reveal g={g} current={current} scene={scene} correct={phase.correct} /> : null}
+          {phase.kind === "reveal" ? <SpyReveal g={g} current={current} scene={scene} correct={phase.correct} /> : null}
         </div>
         <aside className={playStyles.side}>
           <LiveBoard players={g.players} live={phase.kind === "round"} />

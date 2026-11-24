@@ -88,7 +88,7 @@ export default function Results(p: ResultsProps) {
         </p>
       ) : null}
       <Ctas account={account} word={puzzle.word} openSignIn={p.openSignIn} />
-      <LearnPanel cta={!ctas.length} missed={won ? [] : [{ lang, word: puzzle.word, meaning: puzzle.gloss }]} />
+      <LearnPanel rootLang={p.rootMeaning.lang} cta={!ctas.length} missed={won ? [] : [{ lang, word: puzzle.word, meaning: p.rootMeaning.text }]} />
       {resultsAd(phase, first, account) ? <Ad placement="results" testId="pw-ad-results" /> : null}
     </section>
   );
