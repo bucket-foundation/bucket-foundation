@@ -23,19 +23,28 @@ const DEFAULT_MAX_TESTERS = 9000;
 const DB_TIMEOUT_MS = 3000;
 export type Limits = { ip: RateLimiter; email: RateLimiter; global: RateLimiter };
 
-function hashed(kind: string, value: string, env: BetaEnv): string {
-  return createHash("sha256").update(`${env.FOUNDING_IP_SALT?.trim() || "polingual-testflight"}:${kind}:${value}`).digest("hex");
+export function hashSalt(env: BetaEnv): string | null {
+  return env.FOUNDING_IP_SALT?.trim() || null;
+}
+
+export function saltMissingInProduction(env: BetaEnv): boolean {
+  return !hashSalt(env) && (env.VERCEL_ENV === "production" || env.NODE_ENV === "production");
+}
+
+function hashed(salt: string, kind: string, value: string): string {
+  return createHash("sha256").update(`${salt}:${kind}:${value}`).digest("hex");
 }
 
 export async function sharedLimit(ip: string, email: string, env: BetaEnv, send: Fetcher, scope = ""): Promise<boolean | null> {
   const url = env.POLINGUAL_DB_URL?.trim();
   const key = env.POLINGUAL_DB_SERVICE_KEY?.trim();
-  if (!url || !key) return null;
+  const salt = hashSalt(env);
+  if (!url || !key || !salt) return null;
   try {
     const r = await send(`${url}/rest/v1/rpc/record_testflight_attempt`, {
       method: "POST",
       headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Content-Profile": "polingual", "Accept-Profile": "polingual" },
-      body: JSON.stringify({ p_ip_hash: hashed(`${scope}ip`, ip, env), p_email_hash: hashed(`${scope}email`, email, env) }),
+      body: JSON.stringify({ p_ip_hash: hashed(salt, `${scope}ip`, ip), p_email_hash: hashed(salt, `${scope}email`, email) }),
       signal: AbortSignal.timeout(DB_TIMEOUT_MS),
     });
     if (!r.ok) {
@@ -54,6 +63,7 @@ function localLimit(ip: string, email: string, limits: Limits, now?: number): bo
   return limits.ip.take(ip, now) && limits.email.take(email, now) && limits.global.take("all", now);
 }
 
+const NOT_HUMAN: TestflightResult = { status: 403, body: { error: "Finish the check below your email, then try again." } };
 const TOO_MANY: TestflightResult = { status: 429, body: { error: "Too many signups. Try again later." } };
 const FULL: TestflightResult = { status: 503, body: { error: "The beta is full for now. Use the public link below." } };
 const OFFLINE: TestflightResult = { status: 503, body: { error: "TestFlight signups are offline. Use the public link below for now." } };
@@ -137,11 +147,12 @@ export async function inviteTester(
   if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   if (parsed.suspect) return SENT;
   const creds = ascCreds(env);
-  if (!creds || !env.TURNSTILE_SECRET_KEY?.trim()) return OFFLINE;
-  if (!(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
+  if (!creds || !env.TURNSTILE_SECRET_KEY?.trim() || saltMissingInProduction(env)) return OFFLINE;
   const ip = req.ip || "unknown";
+  if (!req.token) return NOT_HUMAN;
   const shared = await sharedLimit(ip, parsed.signup.email, env, send);
   if (!(shared ?? localLimit(ip, parsed.signup.email, limits, req.now))) return TOO_MANY;
+  if (!(await verifyHuman(req.token, req.ip ?? null, env, send))) return NOT_HUMAN;
   return OUTCOME[await addTester(parsed.signup.email, creds, env, send, req.now)];
 }
 
@@ -187,7 +198,7 @@ export async function addTester(email: string, creds: AscCreds, env: BetaEnv, se
 
 export async function enrollAfterEmail(email: string, ip: string, env: BetaEnv, send: Fetcher = fetch, limits: Limits = { ip: tfIpLimiter, email: tfEmailLimiter, global: tfGlobalLimiter }, nowMs?: number): Promise<AddOutcome | "skipped"> {
   const creds = ascCreds(env);
-  if (!creds) return "skipped";
+  if (!creds || saltMissingInProduction(env)) return "skipped";
   const shared = await sharedLimit(ip, email, env, send);
   if (!(shared ?? localLimit(ip, email, limits, nowMs))) return "skipped";
   return addTester(email, creds, env, send, nowMs);
@@ -204,11 +215,13 @@ export async function requestInvite(
   const parsed = parseSignup(body);
   if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   if (parsed.suspect) return { status: 200, body: { ok: true as const } };
+  if (saltMissingInProduction(env)) return OFFLINE;
   const human = Boolean(env.TURNSTILE_SECRET_KEY?.trim());
-  if (human && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
+  if (human && !req.token) return NOT_HUMAN;
   const ip = req.ip || "unknown";
   const shared = await sharedLimit(ip, parsed.signup.email, env, send, "mail:");
   if (!(shared ?? localLimit(ip, parsed.signup.email, limits, req.now))) return TOO_MANY;
+  if (human && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return NOT_HUMAN;
   return joinBeta(body, env, send, { ...req, human });
 }
 
