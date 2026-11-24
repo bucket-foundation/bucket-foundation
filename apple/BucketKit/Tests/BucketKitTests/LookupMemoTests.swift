@@ -5,11 +5,12 @@ struct LookupMemoTests {
     @Test func recordsAskedLanguagesAndFoundForms() {
         var memo = LookupMemo(capacity: 4)
         memo.record(word: "Haus", lang: "de", asked: ["es", "en"], rows: ["es": "casa", "en": "house"])
-        memo.record(word: "haus", lang: "de", asked: ["fr", "ja"], rows: ["fr": "maison"])
+        memo.record(word: "Haus", lang: "de", asked: ["fr", "ja"], rows: ["fr": "maison"])
         let entry = memo.entry(word: "Haus", lang: "de")
         #expect(entry.asked == ["es", "en", "fr", "ja"])
         #expect(entry.found == ["es": "casa", "en": "house", "fr": "maison"])
         #expect(memo.entry(word: "Haus", lang: "nl") == LookupMemo.Entry())
+        #expect(memo.entry(word: "haus", lang: "de") == LookupMemo.Entry())
     }
 
     @Test func keepsTheFirstFormFound() {

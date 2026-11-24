@@ -23,7 +23,7 @@ enum WordWebLoader {
                 TranslateEngine.answer(word, from: [lang], to: batch, corpus: corpus, shelf: shelf)?.rows
             }
             let rows = await lookup.value
-            if let rows { memo.record(word: word, lang: lang, asked: batch, rows: rows) }
+            if let rows, !rows.isEmpty { memo.record(word: word, lang: lang, asked: Array(rows.keys), rows: rows) }
             if Task.isCancelled { return }
             update(LangReference.web(detail, corpus: corpus, mine: mine, found: memo.entry(word: word, lang: lang).found))
         }

@@ -34,6 +34,6 @@ public struct LookupMemo: Sendable {
     }
 
     private static func key(_ word: String, _ lang: String) -> String {
-        lang + "\u{1F}" + word.lowercased()
+        lang + "\u{1F}" + word
     }
 }
