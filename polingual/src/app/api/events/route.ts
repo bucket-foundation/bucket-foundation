@@ -18,6 +18,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     referer: req.headers.get("referer"),
     ip,
     country: req.headers.get("x-vercel-ip-country"),
+    funnelKey: req.headers.get("x-polingual-funnel-key"),
   });
   return NextResponse.json(result.body, { status: result.status, headers: { "cache-control": "no-store" } });
 }

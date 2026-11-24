@@ -1,5 +1,5 @@
 import { jsonResponse } from "@/lib/academy/device-server";
-import { handleWebhook, trialEndingEmail, type TrialEnding } from "@/lib/billing/polingual-checkout";
+import { handleWebhook, trialEndingEmail, type TrialEnding, type FunnelBillingStep } from "@/lib/billing/polingual-checkout";
 import { giftFulfilDeps, sendGiftEmail } from "@/lib/billing/gift-store";
 import { giftMailConfig, handleGiftEvent } from "@/lib/billing/polingual-gift";
 import { entitlementStoreConfigured, patchEntitlement, readEntitlementByCustomer, readEntitlementState, recordEntitlement } from "@/lib/billing/entitlement-store";
@@ -31,11 +31,12 @@ async function remindTrialEnding(t: TrialEnding): Promise<boolean> {
   return sendGiftEmail(mail, { to: j.email, subject: m.subject, text: m.text, html: `<p>${m.text}</p>` }, `trial-ending-${t.eventId}`);
 }
 
-async function funnel(visitor: string, name: "trial_cancel_d0"): Promise<void> {
+async function funnel(visitor: string, name: FunnelBillingStep): Promise<void> {
   const site = (process.env.POLINGUAL_SITE_URL ?? "https://www.polingual.com").replace(/\/$/, "");
+  const key = process.env.POLINGUAL_FUNNEL_KEY?.trim();
   await fetch(`${site}/api/events`, {
     method: "POST",
-    headers: { "content-type": "application/json", origin: "https://www.polingual.com" },
+    headers: { "content-type": "application/json", origin: "https://www.polingual.com", ...(key ? { "x-polingual-funnel-key": key } : {}) },
     body: JSON.stringify({ visitor, events: [{ name, path: "/billing" }] }),
     signal: AbortSignal.timeout(1500),
   });

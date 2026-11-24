@@ -293,16 +293,31 @@ export interface WebhookDeps {
   patch: (userId: string, p: EntitlementPatch) => Promise<boolean>;
   gift?: (event: unknown) => Promise<HandlerResult | null>;
   trialEnding?: (t: TrialEnding) => Promise<boolean>;
-  funnel?: (visitor: string, name: "trial_cancel_d0") => Promise<void>;
+  funnel?: (visitor: string, name: FunnelBillingStep) => Promise<void>;
 }
 
-async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent): Promise<HandlerResult> {
+export type FunnelBillingStep = "trial_cancel_d0" | "trial_start" | "paid";
+
+export function billingStep(prev: EntitlementState | null, ent: Entitlement): "trial_start" | "paid" | null {
+  if (ent.status === "trialing") return prev ? null : "trial_start";
+  if (ent.status === "active") return prev?.status === "active" ? null : "paid";
+  return null;
+}
+
+export function funnelVisitor(event: unknown, ent: Pick<Entitlement, "user_id">): string {
+  const o = (((event as Obj)?.data as Obj | undefined)?.object ?? {}) as Obj;
+  const v = str(((o.metadata ?? {}) as Obj).visitor);
+  return (v && VISITOR_RE.test(v) ? v : ent.user_id).toLowerCase();
+}
+
+async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent, event: unknown): Promise<HandlerResult> {
   const customer = ce.customer ?? (ce.charge ? await deps.chargeCustomer(ce.charge) : null);
   const current = customer ? await deps.byCustomer(customer) : null;
   if (!current) return { status: 200, body: { received: true, ignored: true } };
   if (isStale(current, ce.patch)) return { status: 200, body: { received: true, stale: true } };
   if (ce.patch.status === "past_due" && !ACTIVE_STATUSES.has(current.status)) return { status: 200, body: { received: true, ignored: true } };
   if (!(await deps.patch(current.user_id, ce.patch))) return { status: 500, body: { error: "record_failed" } };
+  if (ce.patch.status === "active" && current.status !== "active" && deps.funnel) await deps.funnel(funnelVisitor(event, current), "paid").catch(() => undefined);
   return { status: 200, body: { received: true, status: ce.patch.status } };
 }
 
@@ -324,7 +339,7 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   const d0 = dayZeroCancel(event);
   if (d0 && deps.funnel) await deps.funnel(d0, "trial_cancel_d0").catch(() => undefined);
   const ce = customerEventFrom(event);
-  const sub = ce ? await applyCustomerEvent(deps, ce) : null;
+  const sub = ce ? await applyCustomerEvent(deps, ce, event) : null;
   if (sub && sub.status !== 200) return sub;
   const gift = await deps.gift?.(event);
   if (gift) return gift;
@@ -332,8 +347,11 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   const ent = entitlementFromEvent(event);
   if (!ent) return { status: 200, body: { received: true, ignored: true } };
   const fromCheckout = (event as Obj).type === "checkout.session.completed";
-  if (isStale(await deps.current(ent.user_id), ent, fromCheckout)) return { status: 200, body: { received: true, stale: true } };
+  const prev = await deps.current(ent.user_id);
+  if (isStale(prev, ent, fromCheckout)) return { status: 200, body: { received: true, stale: true } };
   if (!(await deps.record(ent))) return { status: 500, body: { error: "record_failed" } };
+  const step = billingStep(prev, ent);
+  if (step && deps.funnel) await deps.funnel(funnelVisitor(event, ent), step).catch(() => undefined);
   return { status: 200, body: { received: true, status: ent.status } };
 }
 

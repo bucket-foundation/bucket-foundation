@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createHmac } from "node:crypto";
 import {
+  billingStep,
+  funnelVisitor,
   checkoutConfig,
   checkoutForm,
   entitlementFromEvent,
@@ -306,5 +308,19 @@ test("a cancel on the trial's first day reaches the funnel with the visitor", as
   const sent: string[] = [];
   const payload = evt("evt_c", 1, "customer.subscription.updated", obj(1_100));
   await handleWebhook({ ...h.deps, funnel: async (v, n) => void sent.push(`${n}:${v}`) }, payload, sign(payload, "whsec", 1000));
-  assert.deepEqual(sent, [`trial_cancel_d0:${VIS}`]);
+  assert.deepEqual(sent, [`trial_cancel_d0:${VIS}`, `trial_start:${VIS}`]);
+});
+
+test("trial_start and paid reach the funnel once per user from billing records", async () => {
+  const VIS = "0b6f1d2e-8a4c-4f3e-9d2a-1c5b7e9f0a12";
+  const h = harness(null);
+  const sent: string[] = [];
+  const deps = { ...h.deps, funnel: async (v: string, n: string) => void sent.push(`${n}:${v}`) };
+  const go = (p: string) => handleWebhook(deps, p, sign(p, "whsec", 1000));
+  await go(evt("evt_1", 10, "checkout.session.completed", { metadata: { ...META, visitor: VIS }, payment_status: "no_payment_required", customer: "cus_1", subscription: "sub_1" }));
+  await go(evt("evt_2", 20, "checkout.session.completed", { metadata: { ...META, visitor: VIS }, payment_status: "no_payment_required", customer: "cus_1", subscription: "sub_1" }));
+  assert.deepEqual(sent, [`trial_start:${VIS}`]);
+  assert.equal(billingStep({ user_id: "u1", status: "active", stripe_subscription: null, last_event_id: null, last_event_at: null }, { ...h.recorded[0], status: "active" }), null);
+  assert.equal(billingStep({ user_id: "u1", status: "trialing", stripe_subscription: null, last_event_id: null, last_event_at: null }, { ...h.recorded[0], status: "active" }), "paid");
+  assert.equal(funnelVisitor({ data: { object: { metadata: {} } } }, { user_id: "U-2" }), "u-2");
 });

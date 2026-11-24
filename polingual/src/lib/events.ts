@@ -18,7 +18,17 @@ type WebEvent = {
   detail: string | null;
 };
 
-type EventsRequest = { origin?: string | null; referer?: string | null; client?: string | null; ip?: string | null; country?: string | null; now?: number };
+type EventsRequest = { origin?: string | null; referer?: string | null; client?: string | null; ip?: string | null; country?: string | null; now?: number; funnelKey?: string | null };
+
+export const BILLING_STEPS: readonly EventName[] = ["trial_start", "paid", "trial_cancel_d0"];
+
+export function fromBilling(env: BetaEnv & { POLINGUAL_FUNNEL_KEY?: string }, key: string | null | undefined): boolean {
+  const want = env.POLINGUAL_FUNNEL_KEY?.trim();
+  if (!want || !key || key.length !== want.length) return false;
+  let diff = 0;
+  for (let i = 0; i < want.length; i++) diff |= want.charCodeAt(i) ^ key.charCodeAt(i);
+  return diff === 0;
+}
 type EventsResult = { status: number; body: { ok?: true; stored?: number; error?: string } };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -46,7 +56,7 @@ function host(v: unknown): string | null {
   }
 }
 
-export function parseEvents(body: unknown): WebEvent[] | null {
+export function parseEvents(body: unknown, billing = false): WebEvent[] | null {
   const b = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
   if (typeof b.visitor !== "string" || !UUID.test(b.visitor) || !Array.isArray(b.events)) return null;
   const visitor = b.visitor.toLowerCase();
@@ -54,6 +64,7 @@ export function parseEvents(body: unknown): WebEvent[] | null {
   for (const raw of b.events.slice(0, MAX_EVENTS)) {
     const e = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
     if (!(EVENT_NAMES as readonly unknown[]).includes(e.name)) continue;
+    if (!billing && BILLING_STEPS.includes(e.name as EventName)) continue;
     out.push({
       visitor,
       name: e.name as EventName,
@@ -77,7 +88,7 @@ export async function recordEvents(body: unknown, env: BetaEnv, send: Fetcher, r
   const app = !req.origin && (APP_CLIENTS as readonly unknown[]).includes(req.client);
   if (!app && !allowedSource(req.origin, req.referer)) return { status: 403, body: { error: "Events come from polingual.com." } };
   if (!eventsLimiter.take(req.ip || "unknown", req.now)) return { status: 429, body: { error: "Too many events." } };
-  const events = parseEvents(body);
+  const events = parseEvents(body, fromBilling(env, req.funnelKey));
   if (!events) return { status: 400, body: { error: "Send a visitor id and an events list." } };
   if (!events.length) return { status: 200, body: { ok: true, stored: 0 } };
   if (!eventsConfigured(env)) return { status: 503, body: { error: "Event storage is offline." } };
