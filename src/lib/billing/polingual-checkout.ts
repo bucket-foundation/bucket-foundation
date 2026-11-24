@@ -109,10 +109,49 @@ export interface Entitlement {
   referral: string | null;
   affiliate_network: string | null;
   current_period_end: string | null;
+  last_event_id: string | null;
+  last_event_at: string | null;
+}
+
+export interface EntitlementState {
+  user_id: string;
+  status: string;
+  stripe_subscription: string | null;
+  last_event_id: string | null;
+  last_event_at: string | null;
+}
+
+export interface EntitlementPatch {
+  status: string;
+  last_event_id: string | null;
+  last_event_at: string | null;
 }
 
 type Obj = Record<string, unknown>;
 const str = (v: unknown) => (typeof v === "string" && v ? v : null);
+
+export const ACTIVE_STATUSES = new Set(["active", "trialing", "past_due"]);
+export const REVOKED_STATUSES = new Set(["canceled", "unpaid", "incomplete_expired", "refunded", "disputed"]);
+
+export function subscriptionStatus(stripeStatus: unknown): string {
+  switch (stripeStatus) {
+    case "active":
+    case "trialing":
+    case "past_due":
+    case "unpaid":
+    case "incomplete":
+    case "incomplete_expired":
+    case "paused":
+    case "canceled":
+      return stripeStatus;
+    default:
+      return "unknown";
+  }
+}
+
+function eventStamp(e: Obj): { last_event_id: string | null; last_event_at: string | null } {
+  return { last_event_id: str(e.id), last_event_at: typeof e.created === "number" ? new Date(e.created * 1000).toISOString() : null };
+}
 
 export function entitlementFromEvent(event: unknown): Entitlement | null {
   const e = (event && typeof event === "object" ? event : {}) as Obj;
@@ -127,6 +166,7 @@ export function entitlementFromEvent(event: unknown): Entitlement | null {
     stripe_customer: str(o.customer),
     referral: str(meta.referral),
     affiliate_network: str(meta.affiliate_network),
+    ...eventStamp(e),
   };
   if (e.type === "checkout.session.completed") {
     if (o.payment_status !== "paid" && o.payment_status !== "no_payment_required") return null;
@@ -134,17 +174,40 @@ export function entitlementFromEvent(event: unknown): Entitlement | null {
   }
   if (e.type === "customer.subscription.updated" || e.type === "customer.subscription.created" || e.type === "customer.subscription.deleted") {
     const end = typeof o.current_period_end === "number" ? new Date(o.current_period_end * 1000).toISOString() : null;
-    const status = e.type === "customer.subscription.deleted" ? "canceled" : (str(o.status) ?? "unknown");
+    const status = e.type === "customer.subscription.deleted" ? "canceled" : subscriptionStatus(o.status);
     return { ...base, status, stripe_subscription: str(o.id), current_period_end: end };
   }
   return null;
 }
 
-export const ACTIVE_STATUSES = new Set(["active", "trialing", "past_due"]);
+export interface CustomerEvent {
+  customer: string | null;
+  charge: string | null;
+  patch: EntitlementPatch;
+}
+
+export function customerEventFrom(event: unknown): CustomerEvent | null {
+  const e = (event && typeof event === "object" ? event : {}) as Obj;
+  const o = ((e.data as Obj | undefined)?.object ?? {}) as Obj;
+  const stamp = eventStamp(e);
+  if (e.type === "charge.refunded") return o.refunded === true ? { customer: str(o.customer), charge: null, patch: { status: "refunded", ...stamp } } : null;
+  if (e.type === "charge.dispute.created") return { customer: null, charge: str(o.charge), patch: { status: "disputed", ...stamp } };
+  if (e.type === "invoice.payment_failed") return { customer: str(o.customer), charge: null, patch: { status: "past_due", ...stamp } };
+  return null;
+}
+
+export function isStale(current: EntitlementState | null, next: { status: string; stripe_subscription?: string | null; last_event_id: string | null; last_event_at: string | null }, fromCheckout = false): boolean {
+  if (!current) return false;
+  if (current.last_event_id && current.last_event_id === next.last_event_id) return true;
+  if (current.last_event_at && next.last_event_at && Date.parse(next.last_event_at) < Date.parse(current.last_event_at)) return true;
+  if (fromCheckout && REVOKED_STATUSES.has(current.status) && current.stripe_subscription !== null && current.stripe_subscription === next.stripe_subscription) return true;
+  return false;
+}
 
 export interface CheckoutDeps {
   config: () => CheckoutConfig | null;
   userId: () => Promise<string | null>;
+  currentStatus: (userId: string) => Promise<string | null>;
   createSession: (cfg: CheckoutConfig, form: URLSearchParams) => Promise<{ url: string | null; id: string | null }>;
 }
 
@@ -157,6 +220,8 @@ export async function handleCheckout(deps: CheckoutDeps, body: unknown): Promise
   if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   const uid = await deps.userId();
   if (!uid) return { status: 401, body: { error: "unauthorized" } };
+  const current = await deps.currentStatus(uid);
+  if (current && ACTIVE_STATUSES.has(current)) return { status: 409, body: { error: "already_subscribed", portal: true } };
   const s = await deps.createSession(cfg, checkoutForm(cfg, parsed.req, uid));
   if (!s.url) return { status: 502, body: { error: "checkout_failed" } };
   return { status: 200, body: { url: s.url, id: s.id } };
@@ -166,7 +231,21 @@ export interface WebhookDeps {
   secret: () => string | null;
   now: () => number;
   record: (e: Entitlement) => Promise<boolean>;
+  current: (userId: string) => Promise<EntitlementState | null>;
+  byCustomer: (customer: string) => Promise<EntitlementState | null>;
+  chargeCustomer: (charge: string) => Promise<string | null>;
+  patch: (userId: string, p: EntitlementPatch) => Promise<boolean>;
   gift?: (event: unknown) => Promise<HandlerResult | null>;
+}
+
+async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent): Promise<HandlerResult> {
+  const customer = ce.customer ?? (ce.charge ? await deps.chargeCustomer(ce.charge) : null);
+  const current = customer ? await deps.byCustomer(customer) : null;
+  if (!current) return { status: 200, body: { received: true, ignored: true } };
+  if (isStale(current, ce.patch)) return { status: 200, body: { received: true, stale: true } };
+  if (ce.patch.status === "past_due" && !ACTIVE_STATUSES.has(current.status)) return { status: 200, body: { received: true, ignored: true } };
+  if (!(await deps.patch(current.user_id, ce.patch))) return { status: 500, body: { error: "record_failed" } };
+  return { status: 200, body: { received: true, status: ce.patch.status } };
 }
 
 export async function handleWebhook(deps: WebhookDeps, payload: string, signature: string | null): Promise<HandlerResult> {
@@ -179,10 +258,16 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   } catch {
     return { status: 400, body: { error: "bad_payload" } };
   }
+  const ce = customerEventFrom(event);
+  const sub = ce ? await applyCustomerEvent(deps, ce) : null;
+  if (sub && sub.status !== 200) return sub;
   const gift = await deps.gift?.(event);
   if (gift) return gift;
+  if (sub) return sub;
   const ent = entitlementFromEvent(event);
   if (!ent) return { status: 200, body: { received: true, ignored: true } };
+  const fromCheckout = (event as Obj).type === "checkout.session.completed";
+  if (isStale(await deps.current(ent.user_id), ent, fromCheckout)) return { status: 200, body: { received: true, stale: true } };
   if (!(await deps.record(ent))) return { status: 500, body: { error: "record_failed" } };
   return { status: 200, body: { received: true, status: ent.status } };
 }

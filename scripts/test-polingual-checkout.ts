@@ -10,11 +10,22 @@ import {
   handleWebhook,
   parseCheckoutRequest,
   verifyStripeSignature,
+  subscriptionStatus,
+  ACTIVE_STATUSES,
   type CheckoutConfig,
   type Entitlement,
+  type EntitlementState,
+  type WebhookDeps,
 } from "../src/lib/billing/polingual-checkout";
+import { withWebEntitlement } from "../src/lib/billing/web-entitlement";
 
 const ENV = { STRIPE_SECRET_KEY: "sk_test_x", STRIPE_PRICE_POLINGUAL_MONTHLY: "price_m", STRIPE_PRICE_POLINGUAL_YEARLY: "price_y" };
+const NO_STATE = {
+  current: async () => null,
+  byCustomer: async () => null,
+  chargeCustomer: async () => null,
+  patch: async () => true,
+};
 const sign = (payload: string, secret: string, t: number) => `t=${t},v1=${createHmac("sha256", secret).update(`${t}.${payload}`).digest("hex")}`;
 
 test("checkoutConfig is null until every required env var is set", () => {
@@ -51,13 +62,13 @@ test("checkoutForm passes the referral into client_reference_id and metadata", (
 
 test("handleCheckout returns 503 unset, 401 signed out, 502 on Stripe failure, url on success", async () => {
   const ok = async () => ({ url: "https://checkout.stripe.test/s", id: "cs_1" });
-  assert.equal((await handleCheckout({ config: () => null, userId: async () => "u1", createSession: ok }, {})).status, 503);
+  assert.equal((await handleCheckout({ config: () => null, userId: async () => "u1", createSession: ok, currentStatus: async () => null }, {})).status, 503);
   const cfg = () => checkoutConfig(ENV);
-  assert.equal((await handleCheckout({ config: cfg, userId: async () => null, createSession: ok }, {})).status, 401);
-  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: ok }, { plan: "x" })).status, 400);
-  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async () => ({ url: null, id: null }) }, {})).status, 502);
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => null, createSession: ok, currentStatus: async () => null }, {})).status, 401);
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: ok, currentStatus: async () => null }, { plan: "x" })).status, 400);
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async () => ({ url: null, id: null }), currentStatus: async () => null }, {})).status, 502);
   let sent: URLSearchParams | null = null;
-  const r = await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async (_c, f) => ((sent = f), ok()) }, { referral: "rw-9" });
+  const r = await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async (_c, f) => ((sent = f), ok()), currentStatus: async () => null }, { referral: "rw-9" });
   assert.deepEqual(r, { status: 200, body: { url: "https://checkout.stripe.test/s", id: "cs_1" } });
   assert.equal((sent as URLSearchParams | null)?.get("client_reference_id"), "rw-9");
 });
@@ -90,7 +101,7 @@ test("entitlementFromEvent maps checkout and subscription events", () => {
 
 test("handleWebhook gates on secret and signature and records entitlements", async () => {
   const recorded: Entitlement[] = [];
-  const deps = { secret: () => "whsec", now: () => 1_000_000, record: async (e: Entitlement) => (recorded.push(e), true) };
+  const deps = { ...NO_STATE, secret: () => "whsec", now: () => 1_000_000, record: async (e: Entitlement) => (recorded.push(e), true) };
   const payload = JSON.stringify({ type: "checkout.session.completed", data: { object: { metadata: { product: "polingual", user_id: "u1" }, payment_status: "paid" } } });
   assert.equal((await handleWebhook({ ...deps, secret: () => null }, payload, null)).status, 503);
   assert.equal((await handleWebhook(deps, payload, sign(payload, "nope", 1000))).status, 400);
@@ -129,4 +140,114 @@ test("handlePortal fails closed and opens a session for a web customer", async (
   const r = await handlePortal({ ...base, createPortal: async (_k, f) => ((sent = f), "https://billing.stripe.test/p") });
   assert.deepEqual(r, { status: 200, body: { url: "https://billing.stripe.test/p" } });
   assert.equal((sent as URLSearchParams | null)?.get("customer"), "cus_1");
+});
+
+const META = { product: "polingual", user_id: "u1", plan: "yearly" };
+const evt = (id: string, created: number, type: string, object: Record<string, unknown>) => JSON.stringify({ id, created, type, data: { object } });
+
+function harness(state: EntitlementState | null, customers: Record<string, string> = {}) {
+  const recorded: Entitlement[] = [];
+  const patched: { uid: string; status: string; id: string | null }[] = [];
+  let row = state;
+  const deps: WebhookDeps = {
+    secret: () => "whsec",
+    now: () => 1_000_000,
+    record: async (e) => {
+      recorded.push(e);
+      row = { user_id: e.user_id, status: e.status, stripe_subscription: e.stripe_subscription ?? row?.stripe_subscription ?? null, last_event_id: e.last_event_id, last_event_at: e.last_event_at };
+      return true;
+    },
+    current: async () => row,
+    byCustomer: async (c) => (c === "cus_1" ? row : null),
+    chargeCustomer: async (ch) => customers[ch] ?? null,
+    patch: async (uid, p) => {
+      patched.push({ uid, status: p.status, id: p.last_event_id });
+      if (row) row = { ...row, ...p };
+      return true;
+    },
+  };
+  const send = (payload: string) => handleWebhook(deps, payload, sign(payload, "whsec", 1000));
+  return { deps, send, recorded, patched, row: () => row };
+}
+
+test("a late checkout.session.completed never overwrites canceled", async () => {
+  const h = harness(null);
+  await h.send(evt("evt_del", 200, "customer.subscription.deleted", { id: "sub_1", status: "canceled", metadata: META }));
+  assert.equal(h.row()?.status, "canceled");
+  const late = await h.send(evt("evt_co", 100, "checkout.session.completed", { metadata: META, payment_status: "paid", customer: "cus_1", subscription: "sub_1" }));
+  assert.equal(late.body.stale, true);
+  const sameSecond = await h.send(evt("evt_co2", 200, "checkout.session.completed", { metadata: META, payment_status: "paid", customer: "cus_1", subscription: "sub_1" }));
+  assert.equal(sameSecond.body.stale, true);
+  assert.equal(h.row()?.status, "canceled");
+  assert.equal(h.recorded.length, 1);
+});
+
+test("stale and duplicate subscription events are skipped", async () => {
+  const h = harness(null);
+  await h.send(evt("evt_2", 200, "customer.subscription.updated", { id: "sub_1", status: "active", metadata: META }));
+  assert.equal((await h.send(evt("evt_1", 100, "customer.subscription.updated", { id: "sub_1", status: "trialing", metadata: META }))).body.stale, true);
+  assert.equal((await h.send(evt("evt_2", 200, "customer.subscription.updated", { id: "sub_1", status: "active", metadata: META }))).body.stale, true);
+  assert.equal(h.recorded.length, 1);
+  assert.equal(h.recorded[0].last_event_id, "evt_2");
+  assert.equal(h.recorded[0].last_event_at, new Date(200_000).toISOString());
+  await h.send(evt("evt_3", 300, "customer.subscription.updated", { id: "sub_1", status: "past_due", metadata: META }));
+  assert.equal(h.row()?.status, "past_due");
+});
+
+test("refunds and disputes revoke, a failed invoice marks past_due", async () => {
+  const active: EntitlementState = { user_id: "u1", status: "active", stripe_subscription: "sub_1", last_event_id: "evt_0", last_event_at: new Date(100_000).toISOString() };
+  const h = harness(active, { ch_9: "cus_1" });
+  const failed = await h.send(evt("evt_f", 150, "invoice.payment_failed", { customer: "cus_1" }));
+  assert.equal(failed.body.status, "past_due");
+  assert.equal((await h.send(evt("evt_pr", 160, "charge.refunded", { customer: "cus_1", refunded: false }))).body.ignored, true);
+  assert.equal((await h.send(evt("evt_r", 170, "charge.refunded", { customer: "cus_1", refunded: true }))).body.status, "refunded");
+  assert.equal(h.row()?.status, "refunded");
+  assert.equal((await h.send(evt("evt_f2", 180, "invoice.payment_failed", { customer: "cus_1" }))).body.ignored, true);
+  assert.equal(h.row()?.status, "refunded");
+  const d = harness({ ...active }, { ch_9: "cus_1" });
+  assert.equal((await d.send(evt("evt_d", 150, "charge.dispute.created", { charge: "ch_9" }))).body.status, "disputed");
+  assert.deepEqual(d.patched, [{ uid: "u1", status: "disputed", id: "evt_d" }]);
+  const stale = harness({ ...active, last_event_at: new Date(500_000).toISOString() });
+  assert.equal((await stale.send(evt("evt_old", 150, "charge.refunded", { customer: "cus_1", refunded: true }))).body.stale, true);
+  const stranger = harness({ ...active });
+  assert.equal((await stranger.send(evt("evt_x", 150, "charge.refunded", { customer: "cus_other", refunded: true }))).body.ignored, true);
+});
+
+test("subscriptionStatus maps every Stripe status explicitly", () => {
+  for (const s of ["active", "trialing", "past_due", "unpaid", "incomplete", "incomplete_expired", "paused", "canceled"]) assert.equal(subscriptionStatus(s), s);
+  assert.equal(subscriptionStatus("weird"), "unknown");
+  assert.deepEqual(["active", "trialing", "past_due"].filter((s) => ACTIVE_STATUSES.has(s)), ["active", "trialing", "past_due"]);
+  for (const s of ["unpaid", "incomplete", "incomplete_expired", "paused", "canceled", "refunded", "disputed", "unknown"]) assert.equal(ACTIVE_STATUSES.has(s), false, s);
+});
+
+test("past_due keeps access until the period ends, then revokes", () => {
+  const appStore = { active: false, productId: null, expiresAt: null, trial: false };
+  const now = Date.parse("2026-11-23T00:00:00Z");
+  assert.equal(withWebEntitlement(appStore, { status: "past_due", plan: "yearly", current_period_end: "2026-11-30T00:00:00Z" }, now).active, true);
+  assert.equal(withWebEntitlement(appStore, { status: "past_due", plan: "yearly", current_period_end: "2026-11-20T00:00:00Z" }, now).active, false);
+  for (const status of ["unpaid", "incomplete_expired", "paused", "refunded", "disputed"]) assert.equal(withWebEntitlement(appStore, { status, plan: "yearly", current_period_end: "2026-11-30T00:00:00Z" }, now).active, false, status);
+});
+
+test("a second checkout goes to the portal while a web plan is live", async () => {
+  const cfg = () => checkoutConfig(ENV);
+  const ok = async () => ({ url: "https://checkout.stripe.test/s", id: "cs_1" });
+  for (const status of ["active", "trialing", "past_due"]) {
+    const r = await handleCheckout({ config: cfg, userId: async () => "u1", currentStatus: async () => status, createSession: ok }, {});
+    assert.deepEqual(r, { status: 409, body: { error: "already_subscribed", portal: true } });
+  }
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", currentStatus: async () => "canceled", createSession: ok }, {})).status, 200);
+});
+
+test("the portal only opens the signed-in user's own customer", async () => {
+  const looked: string[] = [];
+  const customers: Record<string, string> = { owner: "cus_owner" };
+  const r = await handlePortal({
+    secretKey: () => "sk",
+    userId: async () => "intruder",
+    customer: async (uid) => (looked.push(uid), customers[uid] ?? null),
+    createPortal: async () => "https://billing.stripe.test/p",
+    returnUrl: "https://p.test/app/account",
+  });
+  assert.deepEqual(looked, ["intruder"]);
+  assert.deepEqual(r, { status: 404, body: { error: "no_web_subscription" } });
 });

@@ -32,8 +32,9 @@ async function post(f: typeof fetch, path: string, body: unknown): Promise<Billi
   }
 }
 
-export function startCheckout(plan: WebPlan, f: typeof fetch = fetch): Promise<BillingResult> {
-  return post(f, "/api/polingual/checkout", { plan, return_to: "app" });
+export async function startCheckout(plan: WebPlan, f: typeof fetch = fetch): Promise<BillingResult> {
+  const r = await post(f, "/api/polingual/checkout", { plan, return_to: "app" });
+  return !r.ok && r.error === "already_subscribed" ? openPortal(f) : r;
 }
 
 export function openPortal(f: typeof fetch = fetch): Promise<BillingResult> {

@@ -24,6 +24,18 @@ test("startCheckout fails closed on errors, bad urls and the network", async () 
   assert.deepEqual(await startCheckout("yearly", down), { ok: false, error: "offline" });
 });
 
+test("startCheckout sends an existing web subscriber to the portal", async () => {
+  const paths: string[] = [];
+  const f = (async (u: RequestInfo | URL) => {
+    paths.push(String(u));
+    return String(u).endsWith("/checkout")
+      ? new Response(JSON.stringify({ error: "already_subscribed", portal: true }), { status: 409 })
+      : new Response(JSON.stringify({ url: "https://billing.stripe.com/p/1" }));
+  }) as typeof fetch;
+  assert.deepEqual(await startCheckout("yearly", f), { ok: true, url: "https://billing.stripe.com/p/1" });
+  assert.deepEqual(paths, ["/api/polingual/checkout", "/api/polingual/portal"]);
+});
+
 test("openPortal reports an App Store subscriber", async () => {
   const r = await openPortal(reply(404, { error: "no_web_subscription" }));
   assert.deepEqual(r, { ok: false, error: "no_web_subscription" });

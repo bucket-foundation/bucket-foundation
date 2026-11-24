@@ -56,6 +56,21 @@ function PlanList({
   );
 }
 
+function Actions({ apple, retry }: { apple: boolean; retry: () => void }) {
+  return (
+    <div className={styles.row}>
+      {apple ? (
+        <ButtonLink variant="secondary" href={APP_STORE_URL} target="_blank" rel="noreferrer" data-testid="app-store-link">
+          Subscribe in the app
+        </ButtonLink>
+      ) : null}
+      <Button variant="quiet" size="sm" onDark onClick={retry} data-testid="recheck">
+        I subscribed, check again
+      </Button>
+    </div>
+  );
+}
+
 export default function Paywall({
   access,
   retry,
@@ -102,28 +117,7 @@ export default function Paywall({
             {error}
           </p>
         ) : null}
-        <div className={styles.row}>
-          {apple ? (
-            <ButtonLink
-              variant="secondary"
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noreferrer"
-              data-testid="app-store-link"
-            >
-              Subscribe in the app
-            </ButtonLink>
-          ) : null}
-          <Button
-            variant="quiet"
-            size="sm"
-            onDark
-            onClick={retry}
-            data-testid="recheck"
-          >
-            I subscribed, check again
-          </Button>
-        </div>
+        <Actions apple={apple} retry={retry} />
         {access.status === "unknown" ? (
           <p className={styles.error} data-testid="access-unknown">
             Your subscription could not be checked. Try again in a minute.

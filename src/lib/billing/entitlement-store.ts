@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { Entitlement } from "./polingual-checkout";
+import type { Entitlement, EntitlementPatch, EntitlementState } from "./polingual-checkout";
 
 let bucket: SupabaseClient | null = null;
 
@@ -18,6 +18,8 @@ export async function recordEntitlement(e: Entitlement): Promise<boolean> {
   const row: Record<string, unknown> = { ...e, updated_at: new Date().toISOString() };
   if (e.current_period_end === null) delete row.current_period_end;
   if (e.stripe_subscription === null) delete row.stripe_subscription;
+  if (e.last_event_id === null) delete row.last_event_id;
+  if (e.last_event_at === null) delete row.last_event_at;
   const { error } = await client().from("academy_entitlements").upsert(row, { onConflict: "user_id,product" });
   return !error;
 }
@@ -38,4 +40,23 @@ export async function readStripeCustomer(userId: string, product: string): Promi
   if (error) throw new Error(`academy_entitlements read failed: ${error.message}`);
   const c = (data as { stripe_customer?: unknown } | null)?.stripe_customer;
   return typeof c === "string" && c ? c : null;
+}
+
+const STATE_COLUMNS = "user_id,status,stripe_subscription,last_event_id,last_event_at";
+
+export async function readEntitlementState(userId: string, product: string): Promise<EntitlementState | null> {
+  const { data, error } = await client().from("academy_entitlements").select(STATE_COLUMNS).eq("user_id", userId).eq("product", product).maybeSingle();
+  if (error) throw new Error(`academy_entitlements read failed: ${error.message}`);
+  return (data as EntitlementState | null) ?? null;
+}
+
+export async function readEntitlementByCustomer(customer: string, product: string): Promise<EntitlementState | null> {
+  const { data, error } = await client().from("academy_entitlements").select(STATE_COLUMNS).eq("stripe_customer", customer).eq("product", product).limit(1).maybeSingle();
+  if (error) throw new Error(`academy_entitlements read failed: ${error.message}`);
+  return (data as EntitlementState | null) ?? null;
+}
+
+export async function patchEntitlement(userId: string, product: string, p: EntitlementPatch): Promise<boolean> {
+  const { error } = await client().from("academy_entitlements").update({ ...p, updated_at: new Date().toISOString() }).eq("user_id", userId).eq("product", product);
+  return !error;
 }
