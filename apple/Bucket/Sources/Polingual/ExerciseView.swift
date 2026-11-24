@@ -112,7 +112,7 @@ struct ExerciseView: View {
         let letter = ex.itemId == LangScript.letterItemId(ex.answer)
         let character = letter && ScriptCourse.isCharacter(ex.lang, ex.answer)
         let label = switch ex.kind {
-        case .letter: character ? String(localized: "find the character") : String(localized: String.LocalizationValue(ex.kind.label))
+        case .letter: character ? String(localized: "find the character") : ScriptCourse.isTone(ex.lang, ex.answer) ? String(localized: "find the tone") : String(localized: String.LocalizationValue(ex.kind.label))
         case .intro where ex.spoken != nil: String(localized: "hear the difference")
         case .intro where letter: character ? String(localized: "new character") : ex.lang == "zh" ? String(localized: "new sound") : String(localized: "new letter")
         default: String(localized: String.LocalizationValue(ex.kind.label))
@@ -129,7 +129,7 @@ struct ExerciseView: View {
             switch ex.kind {
             case .intro where ex.spoken != nil: PairMeet(ex: ex) { onDone([]) }
             case .intro: intro
-            case .letter where letterSound != nil: LetterQuiz(ex: ex, sound: letterSound!, say: letterSay!, onDone: drillDone)
+            case .letter where letterSound != nil: LetterQuiz(ex: ex, sound: letterSound!, say: letterSay!, onDone: drillDone, asks: false)
             case .letterSound where letterSound != nil: LetterSoundDrill(ex: ex, sound: letterSound!, say: letterSay!, onDone: drillDone)
             case .minimalPair: PairDrill(ex: ex, onDone: drillDone)
             case .blend: BlendDrill(ex: ex, onDone: drillDone)
