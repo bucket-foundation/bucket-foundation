@@ -1,5 +1,6 @@
 "use client";
 
+import { signInToSave } from "@/lib/app/return-to";
 import type { ReactNode } from "react";
 import type { RevealEntry } from "@academy/lobbies";
 import { LEARN_HREF } from "@/lib/lobby/client";
@@ -15,7 +16,6 @@ import Ad from "../Ad";
 import { RevealCard } from "../LearnWord";
 import styles from "./daily.module.css";
 
-export const SIGN_IN_TO_SAVE = "/app?from=daily";
 
 export function DailyWorld({ id, children }: { id: DailyGame; children: ReactNode }) {
   return (
@@ -65,7 +65,7 @@ export function Results({ title, result, url, saved, onRetry, rootLang = "en" }:
       ) : null}
       <p className={styles.blurb} role="status" data-testid="daily-saved" data-state={saved ?? "saving"}>
         {saved === "account" ? "Saved to your account." : saved === "device" ? "Saved on this device. Sign in to keep it." : saved === "failed" ? "Could not save. " : "Saving."}
-        {saved === "device" ? <ButtonLink variant="quiet" size="sm" href={SIGN_IN_TO_SAVE} data-testid="daily-sign-in">Sign in</ButtonLink> : null}
+        {saved === "device" ? <ButtonLink variant="quiet" size="sm" href={signInToSave(result.game)} data-testid="daily-sign-in">Sign in</ButtonLink> : null}
         {saved === "failed" && onRetry ? <Button variant="quiet" size="sm" onClick={onRetry} data-testid="daily-retry">Retry</Button> : null}
       </p>
       {readBreaks(local).games >= 2 ? <Ad placement="results" testId="daily-ad-results" /> : null}

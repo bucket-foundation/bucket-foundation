@@ -811,8 +811,10 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
 
 const NATIVE_GAMES: readonly LobbyGame[] = ["daily", "same-word", "flags", "live"];
 
+export const NATIVE_DECLARABLE = ["tiles", "duel", "reveal"] as const;
+
 export function nativePlays(header: string | null | undefined): Set<string> {
-  return new Set((header ?? "").split(",").map((s) => s.trim()).filter(Boolean));
+  return new Set((header ?? "").split(",").map((s) => s.trim().toLowerCase()).filter((s) => (NATIVE_DECLARABLE as readonly string[]).includes(s)));
 }
 
 export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">, raceClient = false, plays: ReadonlySet<string> = new Set()): boolean {

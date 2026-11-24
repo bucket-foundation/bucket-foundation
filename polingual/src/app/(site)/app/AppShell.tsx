@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { adoptDeviceBook } from "@/lib/daily/store";
+import { returnTo } from "@/lib/app/return-to";
 import { syncDeps } from "@/lib/daily/browser-sync";
 import { local } from "@/lib/storage";
 import { usePathname } from "next/navigation";
@@ -110,6 +111,12 @@ function Shell({ children }: { children: React.ReactNode }) {
   const lessonDone = useSyncExternalStore(subscribeFirstLesson, () => firstLessonDone(), () => false);
   const gate = appGate(access.status, lessonDone);
 
+  const afterSignIn = useCallback(async () => {
+    const back = returnTo(window.location.search);
+    if (back) window.location.assign(back);
+    else await refresh();
+  }, [refresh]);
+
   const signOut = useCallback(() => {
     void appAuth().mobile.logout().then(refresh);
   }, [refresh]);
@@ -131,7 +138,7 @@ function Shell({ children }: { children: React.ReactNode }) {
       <main className={styles.main}>
         {open && auth.status !== "loading" ? <SessionContext.Provider value={{ userId: auth.status === "signed-in" ? auth.userId : "", signOut }}>{children}</SessionContext.Provider> : null}
         {!open && auth.status === "loading" ? <p className={styles.muted} aria-busy="true">Loading</p> : null}
-        {!open && auth.status === "signed-out" ? <Stage testId="sign-in-stage"><SignIn onSignedIn={refresh} /></Stage> : null}
+        {!open && auth.status === "signed-out" ? <Stage testId="sign-in-stage"><SignIn onSignedIn={afterSignIn} /></Stage> : null}
         {!open && auth.status === "signed-in" && gate === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
         {!open && auth.status === "signed-in" && gate === "paywall" ? <Paywall access={access} retry={check} /> : null}
         {!open && auth.status === "signed-in" && gate === "app" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
