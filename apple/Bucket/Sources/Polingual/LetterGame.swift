@@ -36,7 +36,7 @@ struct SoundButtons: View {
                 Image(systemName: "tortoise.fill")
                     .font(PL.icon(size * 0.3))
                     .foregroundStyle(PL.vermilion)
-                    .frame(width: size * 0.7, height: size * 0.7)
+                    .frame(width: max(44, size * 0.7), height: max(44, size * 0.7))
                     .background(PL.vermilion.opacity(0.12), in: .circle)
             }
             .buttonStyle(.plain)
