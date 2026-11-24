@@ -48,14 +48,53 @@ function sources(dir: string): string[] {
   });
 }
 
+const REVEAL_TAGS = ["GameResults", "WordReveal", "RevealCard", "Reveal", "LearnPanel", "Results"];
+
+function openingTags(src: string, names: readonly string[]): { name: string; text: string }[] {
+  const out: { name: string; text: string }[] = [];
+  const start = new RegExp(`<(${names.join("|")})(?=[\\s/>])`, "g");
+  for (const m of src.matchAll(start)) {
+    let depth = 0;
+    let quote: string | null = null;
+    let i = (m.index ?? 0) + m[0].length;
+    for (; i < src.length; i++) {
+      const c = src[i];
+      if (quote) {
+        if (c === quote && src[i - 1] !== "\\") quote = null;
+      } else if (c === '"' || c === "'" || c === "`") quote = c;
+      else if (c === "{") depth++;
+      else if (c === "}") depth--;
+      else if (c === ">" && depth === 0) break;
+    }
+    out.push({ name: m[1], text: src.slice(m.index ?? 0, i + 1) });
+  }
+  return out;
+}
+
+test("the tag scanner reads self-closing, child-bearing and spread tags", () => {
+  const src = `
+    <Reveal rootLang={r} words={w.map((x) => x)} />
+    <WordReveal title="a > b" {...props}>
+      <p>child</p>
+    </WordReveal>
+    <LearnPanel missed={m} onDone={() => { go(); }}>x</LearnPanel>
+    <RevealCardish />
+  `;
+  const tags = openingTags(src, REVEAL_TAGS);
+  assert.deepEqual(tags.map((t) => t.name), ["Reveal", "WordReveal", "LearnPanel"]);
+  assert.match(tags[0].text, /rootLang=/);
+  assert.match(tags[1].text, /\{\.\.\.props\}>$/);
+  assert.match(tags[2].text, /onDone=\{\(\) => \{ go\(\); \}\}>$/);
+  assert.doesNotMatch(tags[2].text, /rootLang/);
+});
+
 test("every reveal surface in Play passes a root language", () => {
-  const tags = /<(GameResults|WordReveal|RevealCard|Reveal|LearnPanel|Results)\b[^>]*?\/>/gs;
   let seen = 0;
   for (const file of sources(PLAY)) {
-    for (const m of readFileSync(file, "utf8").matchAll(tags)) {
-      if (m[1] === "Results" && !/result=/.test(m[0])) continue;
+    for (const t of openingTags(readFileSync(file, "utf8"), REVEAL_TAGS)) {
+      if (t.name === "Results" && !/result=/.test(t.text)) continue;
       seen++;
-      assert.match(m[0], /rootLang=/, `${file}: ${m[0].slice(0, 80)}`);
+      assert.match(t.text, /rootLang[=}\s,]/, `${file}: ${t.text.slice(0, 80)}`);
     }
   }
   assert.ok(seen >= 12, `found ${seen} reveal surfaces`);
