@@ -51,6 +51,19 @@ import Testing
         #expect(next.prof[id] == reviewed.prof[id])
     }
 
+    @Test func adoptedWordsKeepTheirDayAndShareTheLanguageBudget() {
+        let now = 1_000_000.0
+        var other = gradeCard(EngineState(), "nl", "wife", 3, now: now, tz: "UTC")
+        other = gradeCard(other, "nl", "man", 3, now: now, tz: "UTC")
+        let next = adoptSiblingCards(EngineState(), langs: ["nl", "es"], from: [other])
+        let utc = TimeZone(identifier: "UTC")!
+        #expect(next.cards[cardId("nl", "wife")]?.introduced == other.cards[cardId("nl", "wife")]?.introduced)
+        #expect(newToday(next, "nl", now: now, tz: utc) == newToday(other, "nl", now: now, tz: utc))
+        #expect(newToday(next, "nl", now: now, tz: utc) == 2)
+        #expect(newToday(next, "es", now: now, tz: utc) == 0)
+        #expect(newToday(next, "nl", now: now + 86_400_000, tz: utc) == 0)
+    }
+
     @Test func adoptedCardBringsItsProficiencyOrNone() {
         var mine = gradeCard(EngineState(), "nl", "wife", 3, now: 1_000, tz: "UTC")
         mine.prof[cardId("nl", "wife")] = Proficiency(theta: 2, n: 5)
