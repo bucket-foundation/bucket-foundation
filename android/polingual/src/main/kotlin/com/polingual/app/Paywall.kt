@@ -84,7 +84,7 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
                     .clickable(role = Role.RadioButton) { chosen = product.productId }.padding(16.dp),
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(Plan.title(product.productId), style = Type.title.copy(fontSize = 17.sp()), color = p.ink)
+                    Text(Plan.title(product.productId), style = Type.subhead, color = p.ink)
                     if (product.productId == Plan.YEARLY) Pill("Best value", PL.Malachite)
                 }
                 Text(product.price, style = Type.title, color = p.ink)

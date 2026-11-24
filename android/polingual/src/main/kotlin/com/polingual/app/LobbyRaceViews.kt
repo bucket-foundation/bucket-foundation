@@ -65,8 +65,8 @@ internal fun RaceRoom(graph: Graph, lobby: Lobby, remaining: Double, score: Int?
     Column(Modifier.fillMaxSize().background(p.paper)) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(lobby.game.title, style = Type.title.copy(fontSize = 18.sp), color = p.ink, modifier = Modifier.weight(1f))
-                Text(RaceClock.text(remaining), style = Type.title.copy(fontSize = 18.sp), color = if (remaining < 30) PL.Vermilion else p.ink, modifier = Modifier.testTag("lobbyRaceClock"))
+                Text(lobby.game.title, style = Type.subhead, color = p.ink, modifier = Modifier.weight(1f))
+                Text(RaceClock.text(remaining), style = Type.subhead, color = if (remaining < 30) PL.Vermilion else p.ink, modifier = Modifier.testTag("lobbyRaceClock"))
             }
             Row {
                 Text("${lobby.raceFinishers.size} of ${lobby.players.size} finished", style = Type.small, color = p.muted, modifier = Modifier.weight(1f))

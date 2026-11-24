@@ -13,9 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -134,8 +133,8 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
             }
             PLButton(to?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "My languages", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Sm) { picking = "to" }
         }
-        OutlinedTextField(
-            text, { text = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Type a word or phrase") },
+        PLField(
+            text, { text = it }, "Type a word or phrase",
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search), keyboardActions = KeyboardActions(onSearch = { run(text) }),
         )
         foundation.bucket.core.ui.pl.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
@@ -163,14 +162,9 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
 fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boolean, anyLabel: String, dismiss: () -> Unit, pick: (String?) -> Unit) {
     var query by remember { mutableStateOf("") }
     val p = LocalPalette.current
-    AlertDialog(
-        onDismissRequest = dismiss,
-        confirmButton = { PlainLink("Close", onClick = dismiss) },
-        containerColor = PL.Card,
-        title = { Text("Language", style = Type.title, color = PL.Tyrian) },
-        text = {
-            Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                OutlinedTextField(query, { query = it }, singleLine = true, label = { Text("Search") }, modifier = Modifier.fillMaxWidth())
+    PLDialog("Language", dismiss) {
+            PLField(query, { query = it }, "Search")
+            Column(Modifier.heightIn(max = 420.dp).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 if (query.isBlank()) {
                     if (allowAny) Text(anyLabel, color = PL.Vermilion, modifier = Modifier.fillMaxWidth().clickable { pick(null) }.padding(vertical = 10.dp))
                     SectionTitle("Yours")
@@ -180,8 +174,7 @@ fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boole
                 options.filter { l -> query.isBlank() || Lang.name(l).contains(query, true) || l.startsWith(query.lowercase()) }.forEach { l -> PickerRow(l) { pick(l) } }
                 if (options.none { Lang.name(it).contains(query, true) }) Text("No match", color = p.muted)
             }
-        },
-    )
+    }
 }
 
 @Composable
@@ -197,7 +190,7 @@ private fun TranslationRows(source: String, headword: String, rows: Map<String, 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text("${Lang.flag(l)} ${Lang.name(l)}", style = Type.caps, color = PL.InkDim)
-                    Text(f, style = Type.word.copy(fontSize = 22.sp()), color = PL.Ink)
+                    Text(f, style = Type.subhead, color = PL.Ink)
                 }
                 IconButton(onClick = { speak(f, l) }) { Glyph("speaker", "Speak", PL.Lapis, Modifier.size(24.dp)) }
             }

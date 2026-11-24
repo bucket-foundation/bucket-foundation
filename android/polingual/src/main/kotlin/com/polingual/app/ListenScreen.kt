@@ -53,7 +53,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
             Card(color = PL.Ink, onClick = { scope.launch { graph.radio.play(s) } }) {
                 Text("NOW PLAYING", style = Type.caps, color = PL.Paper.copy(alpha = 0.7f))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(s.name, style = Type.title.copy(fontSize = 20.sp()), color = PL.Paper, modifier = Modifier.weight(1f))
+                    Text(s.name, style = Type.subhead, color = PL.Paper, modifier = Modifier.weight(1f))
                     if (now.buffering) CircularProgressIndicator(color = PL.Paper) else Glyph(if (now.playing) "pause" else "play", if (now.playing) "Pause" else "Play", PL.Paper, Modifier.size(28.dp))
                 }
                 now.error?.let { Text(it, color = PL.Paper) }
@@ -68,7 +68,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
                 Card(onClick = { scope.launch { graph.radio.play(s) } }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
-                            Text(s.name, color = p.ink, style = Type.caps.copy(fontSize = 15.sp()))
+                            Text(s.name, color = p.ink, style = Type.small)
                             Text(listOf(s.country, s.tags.split(",").take(2).joinToString(", ")).filter { it.isNotBlank() }.joinToString(" · "), color = p.muted)
                         }
                         Glyph(if (active && now.playing) "pause" else "play", if (active && now.playing) "Pause ${s.name}" else "Play ${s.name}", PL.Vermilion, Modifier.size(28.dp))

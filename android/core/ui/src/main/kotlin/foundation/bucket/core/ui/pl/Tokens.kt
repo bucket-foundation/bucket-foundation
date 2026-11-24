@@ -113,9 +113,11 @@ object PLTypeSpecs {
     val hero = PLTypeSpec("display", 52, 700, 1.05f)
     val title = PLTypeSpec("display", 36, 700, 1.1f)
     val heading = PLTypeSpec("display", 24, 600, 1.15f)
+    val subhead = PLTypeSpec("display", 20, 600, 1.2f)
     val body = PLTypeSpec("body", 17, 500, 1.5f)
     val small = PLTypeSpec("body", 14, 600, 1.4f)
     val label = PLTypeSpec("mono", 11, 700, 1.3f)
     val word = PLTypeSpec("display", 44, 600, 1f)
-    val all: Map<String, PLTypeSpec> = mapOf("hero" to hero, "title" to title, "heading" to heading, "body" to body, "small" to small, "label" to label, "word" to word)
+    val count = PLTypeSpec("display", 96, 700, 1f)
+    val all: Map<String, PLTypeSpec> = mapOf("hero" to hero, "title" to title, "heading" to heading, "subhead" to subhead, "body" to body, "small" to small, "label" to label, "word" to word, "count" to count)
 }

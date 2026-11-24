@@ -98,8 +98,8 @@ fun Mini(graph: Graph, c: GameContext) {
                     contentAlignment = Alignment.Center,
                 ) {
                     if (live) {
-                        puzzle.numbers[cell]?.let { Text("$it", fontSize = 9.sp, color = p.muted, modifier = Modifier.align(Alignment.TopStart).padding(2.dp)) }
-                        Text(filled[cell].orEmpty(), fontWeight = FontWeight.Bold, color = if (solved) PL.Malachite else p.ink, fontSize = 20.sp)
+                        puzzle.numbers[cell]?.let { Text("$it", style = Type.caps, color = p.muted, modifier = Modifier.align(Alignment.TopStart).padding(2.dp)) }
+                        Text(filled[cell].orEmpty(), style = Type.subhead, color = if (solved) PL.Malachite else p.ink)
                     }
                 }
             }
