@@ -169,6 +169,9 @@ struct Studio: View {
         .modifier(ScreenshotShare())
         .manageSubscriptions(isPresented: $managing)
         .sheet(isPresented: $paywall) { Paywall() }
+        .onReceive(NotificationCenter.default.publisher(for: FirstLesson.finished)) { _ in
+            if FirstLesson.paywallAfter(open: subs.access.open, done: FirstLesson.done()) { paywall = true }
+        }
         .rootSheet(.paywall, open: paywall)
         .environment(\.limitPaywall, limitPaywall)
         .modifier(GrantNoticeToast())

@@ -242,6 +242,7 @@ struct StudyView: View {
                             .onAppear {
                                 haptic(true)
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
+                                FirstLesson.mark(graded: graded)
                             }
                         Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
                         SessionTally(correct: correct, graded: graded, met: met, xp: Int(state.xp - xpStart), streak: Int(state.streak))

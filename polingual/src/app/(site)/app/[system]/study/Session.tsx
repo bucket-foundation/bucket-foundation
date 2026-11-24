@@ -14,6 +14,7 @@ import { track } from "@/lib/funnel";
 import { deferredCards, subscribeDeferred } from "@academy/lang-deferred";
 import { langName } from "@academy/lang-systems";
 import { Button, ButtonLink, Card, Meter, SilentSwitch, Stage } from "@/ui";
+import { markFirstLesson, notifyFirstLesson } from "@/lib/app/first-lesson";
 
 type Lang = ReturnType<typeof useLangSystem>;
 type Run = ReturnType<typeof useLangSession>;
@@ -36,7 +37,10 @@ function DeferredCards() {
 }
 
 function SessionDone({ s, system, state }: { s: Run; system: NonNullable<Lang["system"]>; state: Lang["state"] }) {
-  useEffect(() => track("first_lesson"), []);
+  useEffect(() => {
+    track("first_lesson");
+    markFirstLesson(undefined, null);
+  }, []);
   return (
     <Stage ground="paper">
       <Card as="section" className={styles.card} data-testid="session-done">
@@ -47,7 +51,7 @@ function SessionDone({ s, system, state }: { s: Run; system: NonNullable<Lang["s
         </p>
         <StreakCard card={streakCard([state], Date.now())} />
         <div className={`${styles.row} ${styles.gapTop}`}>
-          <Button onClick={s.restart}>Another round</Button>
+          <Button onClick={() => { notifyFirstLesson(); s.restart(); }}>Another round</Button>
           <ButtonLink variant="ghost" size="md" href={appHref.home}>
             Your systems
           </ButtonLink>
