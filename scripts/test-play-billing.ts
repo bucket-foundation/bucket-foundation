@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { generateKeyPair, exportJWK, SignJWT, createLocalJWKSet } from "jose";
 import { accountHash, handleRtdn, handleVerify, parseRtdn, type PlayDeps, type PlayEntitlement, type PlayGoogle, type PlayRow } from "../src/lib/billing/play";
-import { googlePlayClient, serviceAccount, verifyPubSubToken } from "../src/lib/billing/play-google";
+import { googlePlayClient, rtdnConfig, serviceAccount, verifyPubSubToken } from "../src/lib/billing/play-google";
 import type { EntitlementState } from "../src/lib/billing/polingual-checkout";
 
 const PKG = "com.polingual.app";
@@ -37,6 +37,7 @@ function world(google: Partial<Record<string, Record<string, unknown> | null>> =
     store: {
       row: async (t) => rows.get(t) ?? null,
       save: async (r) => (rows.set(r.purchase_token, { ...r }), true),
+      forUser: async (u) => Array.from(rows.values()).filter((r) => r.user_id === u),
       replace: async (t) => void (rows.has(t) && rows.set(t, { ...(rows.get(t) as PlayRow), state: "replaced" })),
     },
     current: async (u) => ents.get(u) ?? null,
@@ -75,8 +76,10 @@ test("verify refuses bad input, missing user, foreign hash and token bound to an
   assert.equal((await handleVerify(w.deps, "u2", body())).status, 409);
   await handleVerify(w.deps, "u1", body());
   const w2 = world({ tok1: sub({ externalAccountIdentifiers: {} }) });
-  await handleVerify(w2.deps, "u1", body());
-  assert.equal((await handleVerify(w2.deps, "u2", body())).status, 409);
+  const unbound = await handleVerify(w2.deps, "u1", body());
+  assert.equal(unbound.status, 409);
+  assert.equal(unbound.body.error, "account_unbound");
+  assert.equal(w2.rows.size, 0);
   assert.equal((await handleVerify(world().deps, "u1", body())).status, 400);
 });
 
@@ -181,6 +184,7 @@ test("pubsub token check: audience, issuer, email", async () => {
   assert.equal(await verifyPubSubToken(`Bearer ${await sign(opts.audience, "evil@x")}`, opts), false);
   assert.equal(await verifyPubSubToken(null, opts), false);
   assert.equal(await verifyPubSubToken(`Bearer ${await sign(opts.audience, opts.email)}`, { ...opts, audience: "" }), false);
+  assert.equal(await verifyPubSubToken(`Bearer ${await sign(opts.audience, opts.email)}`, { ...opts, email: "" }), false);
 });
 
 test("google client signs a service-account grant and calls androidpublisher", async () => {
@@ -206,4 +210,32 @@ test("google client signs a service-account grant and calls androidpublisher", a
     "GET https://ap.test/androidpublisher/v3/applications/com.polingual.app/purchases/subscriptionsv2/tokens/missing",
     "POST https://ap.test/androidpublisher/v3/applications/com.polingual.app/purchases/subscriptions/com.polingual.yearly/tokens/t:acknowledge",
   ]);
+});
+
+test("rtdn config fails closed without audience or sender", () => {
+  assert.equal(rtdnConfig({}), null);
+  assert.equal(rtdnConfig({ PLAY_RTDN_AUDIENCE: "https://x" }), null);
+  assert.equal(rtdnConfig({ PLAY_RTDN_SERVICE_ACCOUNT: "a@b" }), null);
+  assert.deepEqual(rtdnConfig({ PLAY_RTDN_AUDIENCE: " https://x ", PLAY_RTDN_SERVICE_ACCOUNT: "a@b" }), { audience: "https://x", email: "a@b" });
+});
+
+test("late rtdn for an old token keeps the live entitlement from another token", async () => {
+  const w = world({ old: sub({}, { offerPhase: { basePrice: {} }, productId: "com.polingual.monthly" }), cur: sub({}, { offerPhase: { basePrice: {} }, expiryTime: iso(NOW + 300 * 86400_000) }) });
+  await handleVerify(w.deps, "u1", body("old", "com.polingual.monthly"));
+  await handleVerify(w.deps, "u1", body("cur"));
+  w.google.old = sub({ subscriptionState: "SUBSCRIPTION_STATE_EXPIRED" }, { productId: "com.polingual.monthly" });
+  await handleRtdn(w.deps, true, rtdn({ subscriptionNotification: { notificationType: 13, purchaseToken: "old", subscriptionId: "com.polingual.monthly" } }));
+  assert.equal(w.ents.get("u1")?.status, "active");
+  assert.equal(w.ents.get("u1")?.plan, "yearly");
+  assert.equal(w.rows.get("old")?.state, "canceled");
+  await handleRtdn(w.deps, true, rtdn({ voidedPurchaseNotification: { purchaseToken: "old", productType: 1 } }));
+  assert.equal(w.ents.get("u1")?.status, "active");
+});
+
+test("verify of a shorter plan keeps the longer live plan", async () => {
+  const w = world({ life: { purchaseState: 0, acknowledgementState: 1, purchaseTimeMillis: String(NOW), obfuscatedExternalAccountId: accountHash("u1") }, m: sub({}, { offerPhase: { basePrice: {} }, productId: "com.polingual.monthly" }) });
+  await handleVerify(w.deps, "u1", body("life", "com.polingual.lifetime"));
+  await handleVerify(w.deps, "u1", body("m", "com.polingual.monthly"));
+  assert.equal(w.ents.get("u1")?.plan, "lifetime");
+  assert.equal(w.ents.get("u1")?.current_period_end, null);
 });

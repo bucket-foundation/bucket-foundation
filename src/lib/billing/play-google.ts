@@ -73,10 +73,10 @@ export function googlePlayClient(sa: ServiceAccount, apiBase: string, fetcher: t
 
 export async function verifyPubSubToken(
   authorization: string | null,
-  opts: { audience: string; email: string | null; keys: JWTVerifyGetKey; now: number },
+  opts: { audience: string; email: string; keys: JWTVerifyGetKey; now: number },
 ): Promise<boolean> {
   const m = authorization?.match(/^Bearer\s+(.+)$/i);
-  if (!m || !opts.audience) return false;
+  if (!m || !opts.audience || !opts.email) return false;
   try {
     const { payload } = await jwtVerify(m[1].trim(), opts.keys, {
       issuer: GOOGLE_ISSUERS,
@@ -84,9 +84,20 @@ export async function verifyPubSubToken(
       algorithms: ["RS256"],
       currentDate: new Date(opts.now),
     });
-    if (opts.email && (payload.email !== opts.email || payload.email_verified !== true)) return false;
+    if (payload.email !== opts.email || payload.email_verified !== true) return false;
     return true;
   } catch {
     return false;
   }
+}
+
+export interface RtdnConfig {
+  audience: string;
+  email: string;
+}
+
+export function rtdnConfig(env: Record<string, string | undefined>): RtdnConfig | null {
+  const audience = env.PLAY_RTDN_AUDIENCE?.trim() ?? "";
+  const email = env.PLAY_RTDN_SERVICE_ACCOUNT?.trim() ?? "";
+  return audience && email ? { audience, email } : null;
 }

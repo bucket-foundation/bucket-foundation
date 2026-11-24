@@ -48,6 +48,7 @@ export interface PlayStore {
   row: (token: string) => Promise<PlayRow | null>;
   save: (row: PlayRow) => Promise<boolean>;
   replace: (token: string) => Promise<void>;
+  forUser: (userId: string) => Promise<PlayRow[]>;
 }
 
 export interface PlayEntitlement {
@@ -165,13 +166,29 @@ function entitled(status: string): boolean {
   return ACTIVE_STATUSES.has(status);
 }
 
+function live(row: Pick<PlayRow, "state" | "expiry">, now: number): boolean {
+  return entitled(row.state) && (row.expiry === null || Date.parse(row.expiry) > now);
+}
+
+function rank(row: Pick<PlayRow, "expiry">): number {
+  return row.expiry === null ? Number.POSITIVE_INFINITY : Date.parse(row.expiry);
+}
+
+export async function bestRow(store: PlayStore, userId: string, current: PlayRow, now: number): Promise<PlayRow> {
+  const others = (await store.forUser(userId)).filter((r) => r.purchase_token !== current.purchase_token && live(r, now));
+  const candidates = live(current, now) ? [current, ...others] : others;
+  if (!candidates.length) return current;
+  return candidates.reduce((a, b) => (rank(b) > rank(a) ? b : a));
+}
+
 function stripeHolds(current: EntitlementState | null): boolean {
   return Boolean(current?.stripe_subscription) && entitled(current?.status ?? "");
 }
 
 async function applyEntitlement(deps: PlayDeps, userId: string, rec: PlayRecord, eventId: string, d0: boolean): Promise<boolean> {
   const prev = await deps.current(userId);
-  const status = rec.row.state;
+  const chosen = await bestRow(deps.store, userId, { ...rec.row, user_id: userId }, deps.now());
+  const status = chosen.state;
   const funnel = (name: PlayFunnelStep) => (deps.funnel ? deps.funnel(userId.toLowerCase(), name).catch(() => undefined) : Promise.resolve());
   if (d0) await funnel("trial_cancel_d0");
   if (stripeHolds(prev)) return true;
@@ -180,13 +197,13 @@ async function applyEntitlement(deps: PlayDeps, userId: string, rec: PlayRecord,
   const ok = await deps.record({
     user_id: userId,
     status,
-    plan: PLAY_PLANS[rec.row.product_id] ?? rec.row.product_id,
-    current_period_end: rec.row.expiry,
+    plan: PLAY_PLANS[chosen.product_id] ?? chosen.product_id,
+    current_period_end: chosen.expiry,
     last_event_id: eventId,
     last_event_at: new Date(deps.now()).toISOString(),
   });
   if (!ok) return false;
-  if (rec.row.trial) await deps.markTrial(userId).catch(() => undefined);
+  if (chosen.trial) await deps.markTrial(userId).catch(() => undefined);
   const step = funnelStep(prev, status);
   if (step) await funnel(step);
   return true;
@@ -211,7 +228,7 @@ export async function handleVerify(deps: PlayDeps, userId: string | null, body: 
   const kind: PlayKind = productId === PLAY_LIFETIME ? "inapp" : "subs";
   const rec = await fetchRecord(google, pkg, kind, productId, token);
   if (!rec) return { status: 400, body: { error: "unknown_purchase" } };
-  if (rec.row.account_hash && rec.row.account_hash !== accountHash(userId)) return { status: 409, body: { error: "token_bound" } };
+  if (rec.row.account_hash !== accountHash(userId)) return { status: 409, body: { error: rec.row.account_hash ? "token_bound" : "account_unbound" } };
   if (before?.state === "refunded") rec.row.state = "refunded";
   const d0 = dayZeroCancel(rec, before);
   const row: PlayRow = { ...rec.row, user_id: userId };

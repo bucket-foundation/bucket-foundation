@@ -21,6 +21,11 @@ export const supabasePlayStore: PlayStore = {
     const { error } = await client().from("play_purchases").upsert({ ...row, updated_at: new Date().toISOString() }, { onConflict: "purchase_token" });
     return !error;
   },
+  forUser: async (userId) => {
+    const { data, error } = await client().from("play_purchases").select("*").eq("user_id", userId);
+    if (error) throw new Error(`play_purchases read failed: ${error.message}`);
+    return (data as PlayRow[] | null) ?? [];
+  },
   replace: async (token) => {
     await client().from("play_purchases").update({ state: "replaced", updated_at: new Date().toISOString() }).eq("purchase_token", token);
   },

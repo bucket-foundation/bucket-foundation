@@ -28,4 +28,11 @@ class PlayVerifyTest {
         assertTrue(PlayVerify.clientAck(pending = false, acknowledged = false, verified = false, signedIn = true, purchasedMs = now - PlayVerify.SERVER_WINDOW_MS, nowMs = now))
         assertTrue(PlayVerify.clientAck(pending = false, acknowledged = false, verified = false, signedIn = false, purchasedMs = now, nowMs = now))
     }
+
+    @Test
+    fun purchaseNeedsAccountForObfuscatedId() {
+        assertFalse(PlayVerify.canBuy(null))
+        assertFalse(PlayVerify.canBuy(" "))
+        assertTrue(PlayVerify.canBuy("u1"))
+    }
 }

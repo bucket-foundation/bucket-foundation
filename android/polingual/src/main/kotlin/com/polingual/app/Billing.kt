@@ -94,9 +94,11 @@ class Billing(context: Context, private val graph: Graph) {
     }
 
     fun buy(activity: Activity, product: ProductDetails) {
+        val userId = graph.account.userId
+        if (!PlayVerify.canBuy(userId)) { _message.value = "Sign in before you subscribe so your purchase follows your account."; return }
         val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible && Plan.hasTrial(product.productId) } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
         val params = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(product).apply { offer?.let { setOfferToken(it.offerToken) } }.build()
-        val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).apply { graph.account.userId?.let { setObfuscatedAccountId(accountHash(it)) } }.build()
+        val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).setObfuscatedAccountId(accountHash(userId!!)).build()
         client.launchBillingFlow(activity, flow)
     }
 
