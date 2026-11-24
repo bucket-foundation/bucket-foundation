@@ -315,6 +315,7 @@ struct TranslateCard: View {
                 speechDenied = false
             }
             .onChange(of: from) { picked = nil }
+            .onChange(of: answerKey) { phrases = [:] }
             .sheet(isPresented: $picking) {
                 TranslateLanguageSheet(chosen: chosen, recent: recent, suggested: langs, all: sources.isEmpty ? Lang.codes : sources, toggle: toggleTarget)
                     .environment(\.colorScheme, .light)
