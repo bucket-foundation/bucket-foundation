@@ -18,7 +18,7 @@ object Plan {
     fun shown(ids: List<String>, all: Boolean): List<String> = if (all) ids else ids.filter { it == YEARLY }.ifEmpty { ids }
     fun timeline(price: String): List<Pair<String, String>> = listOf(
         "Today" to "Every language opens. No payment now.",
-        "Day ${TRIAL_DAYS - REMINDER_DAYS_BEFORE}" to "Your trial ends in $REMINDER_DAYS_BEFORE days. Cancel in Google Play any time before then.",
+        "Day ${TRIAL_DAYS - REMINDER_DAYS_BEFORE}" to "We remind you that your trial ends in $REMINDER_DAYS_BEFORE days.",
         "Day $TRIAL_DAYS" to "Your plan starts at $price. Cancel before then and you pay nothing.",
     )
     fun title(id: String) = when (id) { YEARLY -> "Yearly"; MONTHLY -> "Monthly"; FAMILY -> "Family"; LIFETIME -> "Lifetime"; else -> id }

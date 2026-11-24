@@ -100,20 +100,23 @@ class Billing(context: Context, private val graph: Graph) {
 
     private suspend fun onPurchases(result: BillingResult, purchases: List<Purchase>) {
         when (result.responseCode) {
-            BillingClient.BillingResponseCode.OK -> handle(purchases)
+            BillingClient.BillingResponseCode.OK -> handle(purchases, fromPurchase = true)
             BillingClient.BillingResponseCode.USER_CANCELED -> Unit
             BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED -> restore(silent = true)
             else -> _message.value = "The purchase did not finish. ${result.debugMessage}".trim()
         }
     }
 
-    private suspend fun handle(purchases: List<Purchase>) {
+    private suspend fun handle(purchases: List<Purchase>, fromPurchase: Boolean = false) {
+        val wasEligible = trialEligible
         val records = mutableListOf<PurchaseRecord>()
         for (p in purchases) {
             val pending = p.purchaseState != Purchase.PurchaseState.PURCHASED
             if (!pending && !p.isAcknowledged) client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build())
             p.products.forEach { id -> records += PurchaseRecord(id, p.purchaseTime, p.isAcknowledged, pending, p.isAutoRenewing) }
         }
+        records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()) }
+        TrialReminder.sync(graph.context, TrialReminder.plan(records, graph.kv.get(TrialReminder.START_KEY)?.toLongOrNull(), System.currentTimeMillis()))
         trialEligible = Entitlement.trialEligible(records.map { it.productId })
         _access.value = Entitlement.access(records, BuildConfig.FREE_BETA)
         remember(_access.value)

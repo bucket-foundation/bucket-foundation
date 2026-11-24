@@ -49,6 +49,7 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <receiver android:name=".TrialReminderReceiver" android:exported="false" />
         <service
             android:name=".RadioService"
             android:exported="true"

@@ -61,6 +61,7 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
     var all by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    val askNotify = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
     LaunchedEffect(Unit) { graph.billing.refresh() }
     val trial = graph.billing.trialEligible
     Page(back = back, ground = Ground.Lattice, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 60.dp, 10f), Sticker("kente", Alignment.BottomEnd, 80.dp, -5f, dx = (-8).dp))) {
@@ -94,7 +95,10 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
         if (!all && ids.size < products.size) PlainLink("See all plans", onDark = true) { all = true }
         products.firstOrNull { it.productId == chosen }?.let { product ->
             Text(Entitlement.disclosure(trial && Plan.hasTrial(product.productId), product.price, Plan.period(product.productId), product.productId == Plan.FAMILY), style = Type.small, color = PL.Paper.copy(alpha = 0.85f))
-            PrimaryButton("Continue") { val d = product.details; if (d != null) (context as? Activity)?.let { graph.billing.buy(it, d) } }
+            PrimaryButton("Continue") {
+                if (trial && Plan.hasTrial(product.productId) && android.os.Build.VERSION.SDK_INT >= 33 && !TrialReminder.allowed(context)) askNotify.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                val d = product.details; if (d != null) (context as? Activity)?.let { graph.billing.buy(it, d) }
+            }
             if (trial && Plan.hasTrial(product.productId)) Text("No payment now", style = Type.small, color = PL.Paper)
         }
         message?.let { Text(it, color = PL.Maya) }
