@@ -26,7 +26,6 @@ set search_path = polingual, pg_temp
 as $$
 begin
   perform pg_advisory_xact_lock(hashtext('testflight-attempts'));
-  delete from testflight_attempts a where a.at < now() - interval '1 day';
   if (select count(*) from testflight_attempts a where a.at > now() - interval '1 hour') >= p_global_limit
     or (select count(*) from testflight_attempts a where a.ip_hash = p_ip_hash and a.at > now() - interval '1 hour') >= p_ip_limit
     or (select count(*) from testflight_attempts a where a.email_hash = p_email_hash and a.at > now() - interval '1 day') >= p_email_limit then
@@ -37,6 +36,26 @@ begin
 end;
 $$;
 
+create or replace function polingual.prune_testflight_attempts()
+returns int
+language sql
+security definer
+set search_path = polingual, pg_temp
+as $$
+  with gone as (delete from testflight_attempts a where a.at < now() - interval '1 day' returning 1)
+  select count(*)::int from gone;
+$$;
+
+do $$
+begin
+  if exists (select 1 from pg_extension where extname = 'pg_cron') then
+    perform cron.schedule('prune-testflight-attempts', '17 * * * *', 'select polingual.prune_testflight_attempts()');
+  end if;
+end;
+$$;
+
 revoke all on polingual.testflight_attempts from public, anon, authenticated;
 revoke all on function polingual.record_testflight_attempt(text, text, int, int, int) from public, anon, authenticated;
 grant execute on function polingual.record_testflight_attempt(text, text, int, int, int) to service_role;
+revoke all on function polingual.prune_testflight_attempts() from public, anon, authenticated;
+grant execute on function polingual.prune_testflight_attempts() to service_role;
