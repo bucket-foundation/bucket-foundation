@@ -74,3 +74,8 @@ test("the trial-used routes need a user and a known store", async () => {
   await handleTrialUsedPost(w.deps("u1"), { store: "web" });
   assert.equal(w.flags.get("u1"), "play");
 });
+
+test("an unconfigured App Store event store counts the trial as used", async () => {
+  assert.equal(await trialUsed({ flag: async () => null, webRow: async () => false, appStoreEvents: async () => null }), true);
+  assert.equal(await trialUsed({ flag: async () => null, webRow: async () => false, appStoreEvents: async () => [] }), false);
+});

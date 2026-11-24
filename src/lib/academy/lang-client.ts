@@ -121,7 +121,7 @@ export function speechSupported(): boolean {
   return typeof window !== "undefined" && "speechSynthesis" in window && typeof window.SpeechSynthesisUtterance === "function";
 }
 
-const CLIP_INDEX = `${AUDIO_BASE}/index.json`;
+export const CLIP_INDEX = `${AUDIO_BASE}/index.json${CORPUS_QUERY}`;
 let clipIndex: Map<string, Set<string>> | null = null;
 let clipPromise: Promise<void> | null = null;
 

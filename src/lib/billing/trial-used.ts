@@ -6,7 +6,7 @@ export const TRIAL_STORES: readonly TrialStore[] = ["web", "app_store", "play"];
 export interface TrialSources {
   flag: () => Promise<TrialStore | null>;
   webRow: () => Promise<boolean>;
-  appStoreEvents: () => Promise<EntitlementEvent[]>;
+  appStoreEvents: () => Promise<EntitlementEvent[] | null>;
 }
 
 const PAID_KINDS = new Set(["trial", "subscribe", "renew", "cancel", "uncancel", "expire", "refund", "revoke", "billing_issue"]);
@@ -14,7 +14,8 @@ const PAID_KINDS = new Set(["trial", "subscribe", "renew", "cancel", "uncancel",
 export async function trialUsed(src: TrialSources): Promise<boolean> {
   if (await src.flag()) return true;
   if (await src.webRow()) return true;
-  return (await src.appStoreEvents()).some((e) => PAID_KINDS.has(e.kind));
+  const events = await src.appStoreEvents();
+  return events === null || events.some((e) => PAID_KINDS.has(e.kind));
 }
 
 export interface TrialUsedDeps {

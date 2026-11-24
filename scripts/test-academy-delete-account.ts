@@ -18,6 +18,7 @@ test("rows go before the auth user, for the token's own id", async () => {
   const w = world();
   assert.deepEqual(await deleteAccount(w.clients, "good"), { status: null });
   assert.deepEqual(w.log, ["user good", "lobbies u1", ...PERSONAL_TABLES.map((t) => `rows ${t} u1`), "auth u1"]);
+  assert.ok(w.log.includes("rows polingual_trial_used u1"));
 });
 
 test("an unknown token deletes nothing", async () => {

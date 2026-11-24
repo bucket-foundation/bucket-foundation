@@ -375,3 +375,31 @@ test("a tap on a word stuck before sound starts plays it again", async () => {
   toggle(item, true);
   assert.equal(snapshot().id, null);
 });
+
+test("an engine that ends a word without a start event counts as played", async () => {
+  installFakes();
+  resetPlayer();
+  const run = play({ id: "q", text: "uno", lang: "es-ES" });
+  await tick();
+  spoken[spoken.length - 1].onend?.();
+  await run;
+  assert.notEqual(snapshot().notice, NO_SOUND);
+  assert.equal(snapshot().id, null);
+});
+
+test("a queued word waits for the recorded length of a long clip", async () => {
+  installFakes();
+  resetPlayer();
+  const long: SpeakItem = { id: "l", text: "sí", lang: "es-ES", src: "https://upload.wikimedia.org/si.mp3" };
+  void play(long);
+  await tick();
+  const el = audios[audios.length - 1] as unknown as { duration: number; onplaying: (() => void) | null; src: string };
+  el.duration = 1.4;
+  el.onplaying?.();
+  void play(noche);
+  await new Promise((r) => setTimeout(r, estimateMs("sí") + SETTLE_MS + CUT_GAP_MS + 50));
+  assert.equal(el.src, long.src);
+  await new Promise((r) => setTimeout(r, 1400 - estimateMs("sí") + 100));
+  assert.equal(el.src, noche.src);
+  stop();
+});
