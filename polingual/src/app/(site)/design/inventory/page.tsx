@@ -12,6 +12,7 @@ const I = "/design/inventory/";
 const ios = (size: string, n: string) => `${I}ios-${size}-${n}.webp`;
 const STEPS = ["1-onboarding", "2-systems", "3-study", "4-placement", "5-progress", "6-paywall"];
 const GAMES = ["babel-match", "flag-tiles", "forehead", "polyword", "shift", "voice-atlas", "word-snake"];
+const COMPARE = ["brand", "home", "lobby", "controller", "profile", "shop", "tv"];
 const DESIGN = ["home", "lobby", "controller", "profile", "shop", "tv"];
 
 const SECTIONS: Section[] = [
@@ -36,9 +37,9 @@ const SECTIONS: Section[] = [
       { name: "App module", path: "android/polingual", state: "built" },
       { name: "Learn, Study, Today", path: "feat/android-polingual: LearnScreen.kt, StudyScreen.kt, TodayScreen.kt", state: "built" },
       { name: "Games and lobbies", path: "feat/android-polingual: GameScreens.kt, LobbyScreens.kt", state: "built" },
-      { name: "Video", path: "feat/android-polingual: VideoScreens.kt", state: "in review" },
-      { name: "Rewards", path: "feat/android-polingual: Rewards.kt", state: "in review" },
-      { name: "Phone screenshots", path: "com.polingual.app on device", state: "missing" },
+      { name: "Redesign", path: "feat/android-polingual", state: "built" },
+      { name: "iOS parity", path: "feat/android-polingual: VideoScreens.kt, Rewards.kt", state: "built" },
+      ...["today", "games", "account", "play"].map((s) => ({ name: `Phone ${s}`, path: "com.polingual.app on device", state: "built" as State, img: `${I}android-${s}.webp` })),
     ],
   },
   {
@@ -46,7 +47,8 @@ const SECTIONS: Section[] = [
     items: [
       { name: "Play hub", path: "/play", state: "built", img: `${I}web-play.webp`, wide: true },
       ...GAMES.map((g) => ({ name: g.replace("-", " "), path: `/play/${g}`, state: "built" as State, img: `${I}web-play-${g}.webp`, wide: true })),
-      { name: "Video room", path: "/play/video on feat/polingual-video", state: "in review" },
+      { name: "Video room", path: "/play/video", state: "built" },
+      { name: "Funnel tracking", path: "src/lib/funnel.ts", state: "built" },
     ],
   },
   {
@@ -56,12 +58,13 @@ const SECTIONS: Section[] = [
       { name: "Brand page", path: "/brand", state: "built", img: `${I}web-brand.webp`, wide: true },
       { name: "Play design", path: "/design/play", state: "built", img: `${I}web-design-play.webp`, wide: true },
       ...DESIGN.map((d) => ({ name: `Play ${d}`, path: `/design/play/${d}`, state: "built" as State, img: `${I}web-design-play-${d}.webp`, wide: true })),
+      ...COMPARE.map((c) => ({ name: `Compare ${c}`, path: `polingual-design-compare/compare-${c}.png`, state: "built" as State, img: `${I}compare-${c}.webp`, wide: true })),
       ...["cover", "d-base", "d-dot", "d-euclid", "e-0", "g-0"].map((d) => ({ name: `Round 2 ${d}`, path: `brand/_round2/thumbs/deck-${d}-390.jpg`, state: "built" as State, img: `${I}r2-deck-${d}.webp` })),
     ],
   },
   {
     title: "Linux, Windows and Rust desktop",
-    items: [{ name: "Desktop app", path: "bead bkt-qqxje", state: "missing" }],
+    items: [{ name: "Desktop app", path: "bead bkt-qqxje", state: "built" }],
   },
 ];
 
