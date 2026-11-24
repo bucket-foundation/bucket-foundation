@@ -111,6 +111,7 @@ private suspend fun saveStudy(graph: Graph, s: StudySession) {
     val sys = graph.store.current().system ?: return
     graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
     graph.syncStudySoon()
+    graph.reminders.noteStudy(s.state.streak)
 }
 
 @Composable
