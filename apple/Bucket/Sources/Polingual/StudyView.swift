@@ -77,6 +77,7 @@ struct StudyView: View {
 
     func startIfReady() {
         guard queue == nil, store.status == .ready, let system = store.system(systemId), let corpus = store.corpus else { return }
+        store.adoptSiblings(systemId)
         let state = store.state(systemId)
         xpStart = state.xp
         let wanted = WantedWords.take(systemId, carded: { id in system.targets.contains { state.cards.has(cardId($0, id)) } })

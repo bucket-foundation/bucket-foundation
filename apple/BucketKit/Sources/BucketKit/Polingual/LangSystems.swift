@@ -509,6 +509,20 @@ public func progressBranch(_ s: LangSystem) -> String { String("lang-sys-\(s.id)
 public func cardId(_ lang: String, _ itemId: String) -> String { "\(lang):\(itemId)" }
 public func isSentenceCard(_ id: String) -> Bool { parseCardId(id).itemId.hasPrefix("sent:") }
 
+public func adoptSiblingCards(_ state: EngineState, langs: [String], from siblings: [EngineState]) -> EngineState {
+    let wanted = Set(langs)
+    var next = state
+    for sibling in siblings {
+        for (id, card) in sibling.cards.entries where isStarted(card) && wanted.contains(parseCardId(id).lang) {
+            let mine = next.cards[id]
+            guard !isStarted(mine) || or(card.lastReview, 0) > or(mine?.lastReview, 0) else { continue }
+            next.cards[id] = card
+            if let p = sibling.prof[id] { next.prof[id] = p }
+        }
+    }
+    return next
+}
+
 public func parseCardId(_ id: String) -> (lang: String, itemId: String) {
     guard let i = id.firstIndex(of: ":") else { return ("", id) }
     return (String(id[..<i]), String(id[id.index(after: i)...]))
