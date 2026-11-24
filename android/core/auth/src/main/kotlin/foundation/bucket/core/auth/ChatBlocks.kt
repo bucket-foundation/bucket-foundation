@@ -6,52 +6,70 @@ import foundation.bucket.core.net.BucketApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+data class ChatIdentity(val userId: String, val token: String)
+
 class ChatBlocks(
     private val store: KeyValue,
-    private val api: BucketApi? = null,
-    private val token: suspend () -> String? = { null },
+    private val api: BucketApi,
+    private val identity: suspend () -> ChatIdentity?,
 ) {
-    private val _blocked = MutableStateFlow(read())
+    private var owner: String? = null
+    private val _blocked = MutableStateFlow<Set<String>>(emptySet())
     val blocked: StateFlow<Set<String>> = _blocked
 
-    private fun read(): Set<String> = store.get(KEY)?.split('\n')?.filter { it.isNotBlank() }?.toSet().orEmpty()
-
     suspend fun sync() {
-        val a = api ?: return
-        val t = token() ?: return
+        val me = switch() ?: return
         try {
-            val remote = a.chatBlocks(t).map { it.userId }.toSet()
-            (_blocked.value - remote).forEach { a.setChatBlock(t, it, "Player", true) }
-            save(remote + _blocked.value)
+            pending(me.userId).forEach { (id, on) -> api.setChatBlock(me.token, id, "Player", on) }
+            store.set(pendingKey(me.userId), null)
+            save(me.userId, api.chatBlocks(me.token).map { it.userId }.toSet())
         } catch (_: BucketError) {
         }
     }
 
-    suspend fun block(userId: String, name: String) {
-        save(_blocked.value + userId)
-        remote { a, t -> a.setChatBlock(t, userId, name.take(60).ifBlank { "Player" }, true) }
-    }
+    suspend fun block(userId: String, name: String) = set(userId, name.take(60).ifBlank { "Player" }, true)
 
-    suspend fun unblock(userId: String) {
-        save(_blocked.value - userId)
-        remote { a, t -> a.setChatBlock(t, userId, "Player", false) }
-    }
+    suspend fun unblock(userId: String) = set(userId, "Player", false)
 
     fun visible(messages: List<LobbyMessage>, blocked: Set<String> = _blocked.value): List<LobbyMessage> =
         messages.filterNot { it.from in blocked }
 
-    private suspend fun remote(op: suspend (BucketApi, String) -> Unit) {
-        val a = api ?: return
-        val t = token() ?: return
-        try { op(a, t) } catch (_: BucketError) { }
+    private suspend fun set(userId: String, name: String, on: Boolean) {
+        val me = switch() ?: return
+        save(me.userId, if (on) _blocked.value + userId else _blocked.value - userId)
+        try {
+            save(me.userId, api.setChatBlock(me.token, userId, name, on).map { it.userId }.toSet())
+        } catch (_: BucketError) {
+            store.set(pendingKey(me.userId), encodePending(pending(me.userId) + (userId to on)))
+        }
     }
 
-    private fun save(next: Set<String>) {
-        store.set(KEY, next.sorted().joinToString("\n").ifEmpty { null })
-        _blocked.value = next
+    private suspend fun switch(): ChatIdentity? {
+        val me = identity()
+        if (me?.userId != owner) {
+            owner = me?.userId
+            _blocked.value = me?.let { read(it.userId) }.orEmpty()
+        }
+        return me
+    }
+
+    private fun read(owner: String): Set<String> =
+        store.get(cacheKey(owner))?.split('\n')?.filter { it.isNotBlank() }?.toSet().orEmpty()
+
+    private fun pending(owner: String): Map<String, Boolean> =
+        store.get(pendingKey(owner))?.split('\n')?.filter { it.length > 1 }?.associate { it.drop(1) to (it[0] == '+') }.orEmpty()
+
+    private fun encodePending(ops: Map<String, Boolean>): String? =
+        ops.entries.joinToString("\n") { (id, on) -> (if (on) "+" else "-") + id }.ifEmpty { null }
+
+    private fun save(owner: String, next: Set<String>) {
+        store.set(cacheKey(owner), next.sorted().joinToString("\n").ifEmpty { null })
+        if (owner == this.owner) _blocked.value = next
     }
 
     companion object {
         const val KEY = "lobby.blockedPlayers"
+        fun cacheKey(owner: String) = "$KEY.$owner"
+        fun pendingKey(owner: String) = "$KEY.pending.$owner"
     }
 }

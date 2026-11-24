@@ -296,7 +296,7 @@ private fun Chat(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) 
     val blocked by graph.chatBlocks.blocked.collectAsState()
     LaunchedEffect(Unit) { graph.chatBlocks.sync() }
     graph.chatBlocks.visible(lobby.messages, blocked).takeLast(20).forEach { m ->
-        ChatLine(m, lobby.me?.userId, report = { id, r -> graph.lobbies.report(id, r) }, block = { id, name -> graph.chatBlocks.block(id, name) })
+        ChatLine(m, lobby.me?.userId, lobby.players.filter { it.bot }.map { it.userId }.toSet(), report = { id, r -> graph.lobbies.report(id, r) }, block = { id, name -> graph.chatBlocks.block(id, name) })
     }
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         OutlinedTextField(text, { text = it.take(200) }, singleLine = true, label = { Text("Message") }, modifier = Modifier.weight(1f))

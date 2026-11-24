@@ -13,16 +13,87 @@ import kotlin.test.assertTrue
 class ChatModerationTest {
     private fun msg(id: Int, from: String) = LobbyMessage(id, from, from, "hi $id", "2026-11-12T10:00:00Z")
 
+    private class Server {
+        val f = Fake()
+        val lists = mutableMapOf<String, MutableSet<String>>()
+        var down = false
+        init {
+            f.routes = { _, body ->
+                val who = f.auth.last()?.removePrefix("Bearer ").orEmpty()
+                val set = lists.getOrPut(who) { mutableSetOf() }
+                if (down) 503 to "{}" else {
+                    Regex("\"userId\":\"([^\"]+)\"").find(body)?.groupValues?.get(1)?.let { id ->
+                        if ("\"blocked\":true" in body) set += id else set -= id
+                    }
+                    200 to set.joinToString(",", """{"blocks":[""", "]}") { """{"userId":"$it","name":"P"}""" }
+                }
+            }
+        }
+    }
+
+    private class Who(var id: String?) {
+        val identity: suspend () -> ChatIdentity? = { id?.let { ChatIdentity(it, "t-$it") } }
+    }
+
     @Test
     fun blockHidesMessagesAndSurvivesARestart() = runTest {
         val kv = MemoryKeyValue()
-        val blocks = ChatBlocks(kv)
+        val s = Server()
+        val who = Who("a")
+        val blocks = ChatBlocks(kv, s.f.api, who.identity)
         blocks.block("troll", "Troll")
         val messages = listOf(msg(1, "ana"), msg(2, "troll"), msg(3, "ana"))
         assertEquals(listOf(1, 3), blocks.visible(messages).map { it.id })
-        assertEquals(setOf("troll"), ChatBlocks(kv).blocked.value)
+        s.down = true
+        val again = ChatBlocks(kv, s.f.api, who.identity)
+        again.sync()
+        assertEquals(setOf("troll"), again.blocked.value)
+        s.down = false
         blocks.unblock("troll")
-        assertEquals(3, ChatBlocks(kv).visible(messages).size)
+        assertEquals(3, blocks.visible(messages).size)
+    }
+
+    @Test
+    fun secondAccountOnTheSameDeviceStartsWithItsOwnBlocks() = runTest {
+        val kv = MemoryKeyValue()
+        val s = Server()
+        val who = Who("a")
+        val blocks = ChatBlocks(kv, s.f.api, who.identity)
+        blocks.block("troll", "Troll")
+        who.id = "b"
+        blocks.sync()
+        assertEquals(emptySet<String>(), blocks.blocked.value)
+        assertEquals(emptySet<String>(), s.lists["t-b"].orEmpty())
+        assertEquals<Set<String>?>(setOf("troll"), s.lists["t-a"])
+        who.id = "a"
+        blocks.sync()
+        assertEquals(setOf("troll"), blocks.blocked.value)
+    }
+
+    @Test
+    fun unblockOnWebWinsOnTheNextSync() = runTest {
+        val kv = MemoryKeyValue()
+        val s = Server()
+        val blocks = ChatBlocks(kv, s.f.api, Who("a").identity)
+        blocks.block("troll", "Troll")
+        s.lists["t-a"]!!.remove("troll")
+        blocks.sync()
+        assertEquals(emptySet<String>(), blocks.blocked.value)
+        assertEquals(emptySet<String>(), s.lists["t-a"].orEmpty())
+    }
+
+    @Test
+    fun offlineBlockIsQueuedAndSentOnSync() = runTest {
+        val kv = MemoryKeyValue()
+        val s = Server()
+        val blocks = ChatBlocks(kv, s.f.api, Who("a").identity)
+        s.down = true
+        blocks.block("third", "T")
+        assertEquals(setOf("third"), blocks.blocked.value)
+        s.down = false
+        blocks.sync()
+        assertEquals<Set<String>?>(setOf("third"), s.lists["t-a"])
+        assertEquals(setOf("third"), blocks.blocked.value)
     }
 
     @Test
@@ -42,21 +113,6 @@ class ChatModerationTest {
         val (path, body) = f.calls.last()
         assertTrue(path.endsWith("api/academy/lobbies/report"), path)
         assertTrue("\"messageId\":42" in body && "\"reason\":\"harassment\"" in body, body)
-    }
-
-    @Test
-    fun blocksSyncWithTheAccountAndKeepTheCacheWhenOffline() = runTest {
-        val f = Fake()
-        f.routes = { _, body -> if (body.isEmpty()) 200 to """{"blocks":[{"userId":"remote","name":"R"}]}""" else 200 to """{"blocks":[]}""" }
-        val kv = MemoryKeyValue()
-        val blocks = ChatBlocks(kv, f.api) { "user" }
-        blocks.block("local", "L")
-        assertTrue(f.calls.last().second.contains("\"blocked\":true"))
-        blocks.sync()
-        assertEquals(setOf("local", "remote"), ChatBlocks(kv).blocked.value)
-        f.routes = { _, _ -> 503 to "{}" }
-        blocks.block("third", "T")
-        assertTrue("third" in ChatBlocks(kv).blocked.value)
     }
 
     @Test

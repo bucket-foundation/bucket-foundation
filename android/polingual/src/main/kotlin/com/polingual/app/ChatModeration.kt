@@ -17,9 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.polingual.brand.D8
-import com.polingual.brand.PlainLink
-import com.polingual.brand.PrimaryButton
+import foundation.bucket.core.ui.pl.PL
+import foundation.bucket.core.ui.pl.PlainLink
+import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.model.BucketError
 import foundation.bucket.core.model.ChatReportReason
 import foundation.bucket.core.model.LobbyMessage
@@ -34,7 +34,7 @@ val ChatReportReason.label: Int
         ChatReportReason.Other -> R.string.s_report_other
     }
 
-fun canModerate(message: LobbyMessage, myId: String?): Boolean = myId != null && message.from != myId
+fun canModerate(message: LobbyMessage, myId: String?, bots: Set<String> = emptySet()): Boolean = myId != null && message.from != myId && message.from !in bots
 
 private sealed interface ChatSheet {
     data class Reasons(val m: LobbyMessage) : ChatSheet
@@ -43,7 +43,7 @@ private sealed interface ChatSheet {
 }
 
 @Composable
-fun ChatLine(message: LobbyMessage, myId: String?, report: suspend (Int, ChatReportReason) -> Unit, block: suspend (String, String) -> Unit) {
+fun ChatLine(message: LobbyMessage, myId: String?, bots: Set<String>, report: suspend (Int, ChatReportReason) -> Unit, block: suspend (String, String) -> Unit) {
     val p = LocalPalette.current
     val scope = rememberCoroutineScope()
     var sheet by remember { mutableStateOf<ChatSheet?>(null) }
@@ -51,7 +51,7 @@ fun ChatLine(message: LobbyMessage, myId: String?, report: suspend (Int, ChatRep
     var busy by remember { mutableStateOf(false) }
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Text("${message.name}: ${message.body}", color = p.ink, modifier = Modifier.weight(1f))
-        if (canModerate(message, myId)) {
+        if (canModerate(message, myId, bots)) {
             PlainLink(stringResource(R.string.s_report), Modifier.testTag("chatReport")) { failure = null; sheet = ChatSheet.Reasons(message) }
             PlainLink(stringResource(R.string.s_block), Modifier.testTag("chatBlock")) { sheet = ChatSheet.Block(message) }
         }
@@ -64,7 +64,7 @@ fun ChatLine(message: LobbyMessage, myId: String?, report: suspend (Int, ChatRep
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     ChatReportReason.entries.forEach { r ->
-                        PrimaryButton(stringResource(r.label), Modifier.fillMaxWidth(), enabled = !busy, color = D8.lapis) {
+                        PrimaryButton(stringResource(r.label), Modifier.fillMaxWidth(), enabled = !busy, color = PL.Lapis) {
                             busy = true
                             failure = null
                             scope.launch {
@@ -79,7 +79,7 @@ fun ChatLine(message: LobbyMessage, myId: String?, report: suspend (Int, ChatRep
                             }
                         }
                     }
-                    failure?.let { Text(stringResource(R.string.s_report_failed, it), color = D8.vermilion, modifier = Modifier.testTag("chatReportError")) }
+                    failure?.let { Text(stringResource(R.string.s_report_failed, it), color = PL.Vermilion, modifier = Modifier.testTag("chatReportError")) }
                 }
             },
         )
