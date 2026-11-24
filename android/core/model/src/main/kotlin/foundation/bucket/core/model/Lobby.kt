@@ -231,3 +231,5 @@ object InterstitialPacer {
     fun due(finishedGame: Boolean, lastShownMs: Long?, gamesFinished: Int, nowMs: Long): Boolean =
         finishedGame && gamesFinished >= 2 && (lastShownMs == null || nowMs - lastShownMs >= MIN_GAP_MS)
 }
+
+enum class ChatReportReason(val wire: String) { OffensiveName("offensive_name"), Harassment("harassment"), Spam("spam"), Other("other") }

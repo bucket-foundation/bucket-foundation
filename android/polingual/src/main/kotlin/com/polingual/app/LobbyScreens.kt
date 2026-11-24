@@ -293,7 +293,10 @@ private fun Chat(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) 
     val p = LocalPalette.current
     var text by remember { mutableStateOf("") }
     SectionTitle("Chat")
-    lobby.messages.takeLast(20).forEach { m -> Text("${m.name}: ${m.body}", color = p.ink) }
+    val blocked by graph.chatBlocks.blocked.collectAsState()
+    graph.chatBlocks.visible(lobby.messages, blocked).takeLast(20).forEach { m ->
+        ChatLine(m, lobby.me?.userId, report = { id, r -> graph.lobbies.report(id, r) }, block = graph.chatBlocks::block, act = act)
+    }
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         OutlinedTextField(text, { text = it.take(200) }, singleLine = true, label = { Text("Message") }, modifier = Modifier.weight(1f))
         PlainLink("Send") { val t = text; text = ""; act { graph.lobbies.send(t) } }

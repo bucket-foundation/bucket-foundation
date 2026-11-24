@@ -1,6 +1,7 @@
 package foundation.bucket.core.auth
 
 import foundation.bucket.core.model.BucketError
+import foundation.bucket.core.model.ChatReportReason
 import foundation.bucket.core.model.Lobby
 import foundation.bucket.core.model.LobbyClock
 import foundation.bucket.core.model.LobbyGame
@@ -120,6 +121,11 @@ class LobbyStore(
             if (scoreFinal(e)) _state.update { it.copy(raceScoreSent = true) }
             false
         }
+    }
+
+    suspend fun report(messageId: Int, reason: ChatReportReason) {
+        val id = _state.value.current?.id ?: return
+        run { api.reportLobbyMessage(it, id, messageId, reason.wire) }
     }
 
     suspend fun pick(choice: String, round: Int): Boolean? {
