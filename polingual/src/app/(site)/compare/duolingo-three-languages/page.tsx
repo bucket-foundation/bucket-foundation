@@ -15,7 +15,7 @@ const ROWS: [string, string, string][] = [
   ["Review queue", "One spaced review queue mixes every language in the set", "Practice runs inside each course"],
   ["Word presentation", "A meaning appears once with its word in each of your languages", "Words appear in the lessons of one course"],
   ["Platforms", FACTS.platforms, "Android, iOS and iPadOS apps"],
-  ["Price", "$9.99 a month or $59.99 a year, with a 3-day free trial", "Free with ads; a subscription removes ads"],
+  ["Price", FACTS.price, "Free with ads; a subscription removes ads"],
 ];
 
 export default function Page() {

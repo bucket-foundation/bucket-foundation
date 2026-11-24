@@ -82,19 +82,11 @@ function Actions({ apple, retry }: { apple: boolean; retry: () => void }) {
   );
 }
 
-export default function Paywall({
-  access,
-  retry,
-}: {
-  access: Access;
-  retry: () => void;
-}) {
+function usePaywall() {
   useEffect(() => track("paywall_view"), []);
   const [apple, setApple] = useState(false);
   const [busy, setBusy] = useState<WebPlan | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [all, setAll] = useState(false);
-  const [start] = useState(() => new Date());
   const [trial, setTrial] = useState<TrialState>({ used: false, reminderEmail: false });
   useEffect(() => {
     void fetchTrial().then(setTrial);
@@ -117,26 +109,48 @@ export default function Paywall({
     setError(billingMessage(r.error));
   }
 
+  return { apple, busy, error, trial, buy };
+}
+
+function TrialIntro({ trial }: { trial: TrialState }) {
+  const [start] = useState(() => new Date());
+  return (
+    <>
+      <div>
+        <p className={styles.label}>Polingual plans</p>
+        <h1 className={styles.title}>{trial.used ? "Keep learning" : `${TRIAL_DAYS} days free`}</h1>
+        <p className={styles.body}>
+          {trial.used
+            ? "One subscription opens Polingual on the web, iPhone and iPad."
+            : `One subscription opens Polingual on the web, iPhone and iPad. The yearly plan starts with ${TRIAL_DAYS} days free. Cancel any time before the trial ends and you pay nothing.`}
+        </p>
+      </div>
+      {trial.used ? null : <ol className={styles.stack} data-testid="trial-timeline">
+        {trialTimeline(start, "$59.99 a year", trial.reminderEmail).map((s) => (
+          <li key={s.day}>
+            <b>{s.title}</b>
+            <p className={styles.small}>{s.body}</p>
+          </li>
+        ))}
+      </ol>}
+    </>
+  );
+}
+
+export default function Paywall({
+  access,
+  retry,
+}: {
+  access: Access;
+  retry: () => void;
+}) {
+  const { apple, busy, error, trial, buy } = usePaywall();
+  const [all, setAll] = useState(false);
+
   return (
     <Stage ground="lattice">
       <section className={styles.stack} data-testid="paywall">
-        <div>
-          <p className={styles.label}>Polingual plans</p>
-          <h1 className={styles.title}>{trial.used ? "Keep learning" : `${TRIAL_DAYS} days free`}</h1>
-          <p className={styles.body}>
-            {trial.used
-              ? "One subscription opens Polingual on the web, iPhone and iPad."
-              : `One subscription opens Polingual on the web, iPhone and iPad. The yearly plan starts with ${TRIAL_DAYS} days free. Cancel any time before the trial ends and you pay nothing.`}
-          </p>
-        </div>
-        {trial.used ? null : <ol className={styles.stack} data-testid="trial-timeline">
-          {trialTimeline(start, "$59.99 a year", trial.reminderEmail).map((s) => (
-            <li key={s.day}>
-              <b>{s.title}</b>
-              <p className={styles.small}>{s.body}</p>
-            </li>
-          ))}
-        </ol>}
+        <TrialIntro trial={trial} />
         <PlanList busy={busy} buy={buy} all={all} trialOk={!trial.used} />
         {all ? null : (
           <Button variant="quiet" size="sm" onDark onClick={() => setAll(true)} data-testid="see-all-plans">
