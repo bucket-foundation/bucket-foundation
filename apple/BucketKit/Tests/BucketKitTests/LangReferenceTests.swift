@@ -115,7 +115,7 @@ struct LangReferenceTests {
         #expect(f.withArticle == nil)
     }
 
-    static func webCorpus() -> LangCorpus {
+    static func webCorpus(extraKin: Int = 0) -> LangCorpus {
         func word(_ id: String, _ gloss: String, _ forms: [String: String], root: String?, cognates: [String] = [], readings: [String: Reading] = [:]) -> LangItem {
             LangItem(id: id, kind: .word, baseId: id, tier: 1, unit: 0, category: "noun", gloss: gloss, forms: forms, readings: readings, root: root, cognateLangs: cognates,
                      note: nil, example: [:], sentences: [:], gender: OrderedMap(), conj: [:], conjPast: [:], falseFriends: [:])
@@ -125,22 +125,48 @@ struct LangReferenceTests {
         let nocturnal = word("nocturnal", "of the night", ["en": "nocturnal", "es": "nocturno"], root: "*nókʷts")
         let twin = word("night-2", "night", ["en": "nighttime"], root: "*nókʷts")
         let cat = word("cat", "cat", ["en": "cat"], root: nil)
-        let items = [night, nocturnal, twin, cat]
+        let water = word("water", "water", ["en": "water", "sv": "vatten", "pl": "woda", "fi": "vesi"], root: nil,
+                         readings: ["en": Reading(ipa: "ˈwɔːtə"), "sv": Reading(ipa: "ˈvatːɛn"), "pl": Reading(ipa: "ˈvɔːtə")])
+        let more = (0..<extraKin).map { word("nk\($0)", "night word \($0)", ["en": "nk\($0)"], root: "*nókʷts") }
+        let items = [night, nocturnal, twin, cat, water] + more
         return LangCorpus(items: items, byId: Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) }), attribution: "", sources: [], pool: [:], poolKeys: [], persons: [:], falseFriends: [], units: [])
     }
 
-    @Test func webListsEveryLanguageWithMineFirstThenLookAlikes() {
+    @Test func webListsEveryLanguageWithMineFirstThenRelatedForms() {
         let d = WordDetail(word: "night", lang: "en", gloss: "night", reading: nil, itemId: "night")
         let web = LangReference.web(d, corpus: Self.webCorpus(), mine: ["ru", "es"])
         #expect(web.forms.map(\.lang) == ["ru", "es", "de", "nl", "fr", "ja"])
         #expect(web.forms.allSatisfy { $0.lang != "en" })
-        #expect(web.forms.first { $0.lang == "de" }?.cognate == true)
-        #expect(web.forms.first { $0.lang == "ja" }?.soundsAlike == false)
+        #expect(web.forms.first { $0.lang == "de" }?.bond == .root)
+        #expect(web.forms.first { $0.lang == "ja" }?.bond == nil)
         #expect(web.forms.first { $0.lang == "ru" }?.script == "Cyrillic alphabet")
         #expect(web.forms.first { $0.lang == "ja" }?.script == "Kanji and kana")
         #expect(web.forms.first { $0.lang == "fr" }?.script == "Latin alphabet")
         #expect(web.forms.first { $0.lang == "es" }?.detail == WordDetail(word: "noche", lang: "es", gloss: "night", reading: nil, itemId: "night"))
         #expect(web.root == "*nókʷts")
+        #expect(web.bonds == [.root])
+    }
+
+    @Test func soundBondComparesIPAWhenBothSidesHaveIt() {
+        let d = WordDetail(word: "water", lang: "en", gloss: "water", reading: nil, itemId: "water")
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: [])
+        #expect(web.forms.first { $0.lang == "pl" }?.bond == .sound)
+        #expect(web.forms.first { $0.lang == "sv" }?.bond == nil)
+        #expect(LangReference.likeness("water", "vatten") >= WordWeb.alike)
+        #expect(web.forms.first { $0.lang == "fi" }?.bond == nil)
+        #expect(LangReference.soundLikeness("ˈwɔːtə", "ˈvɔda") < WordWeb.alike)
+        #expect(LangReference.soundLikeness("/ju/", "ju") == 1)
+    }
+
+    @Test func spellingBondNamesLookAlikesWithoutIPA() {
+        let d = WordDetail(word: "Nacht", lang: "de", gloss: "night", reading: nil, itemId: "night")
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: [])
+        #expect(web.forms.first { $0.lang == "fr" }?.bond == nil)
+        #expect(web.forms.first { $0.lang == "es" }?.bond == .spelling)
+        #expect(web.forms.first { $0.lang == "nl" }?.bond == .root)
+        let fresh = LangReference.web(WordDetail(word: "nacht", lang: "nl", gloss: nil, reading: nil), corpus: nil, mine: [], found: ["de": "Nacht", "fr": "nuit"])
+        #expect(fresh.forms.first { $0.lang == "de" }?.bond == .spelling)
+        #expect(fresh.forms.first { $0.lang == "fr" }?.bond == nil)
     }
 
     @Test func webJoinsWordsThatShareTheRootOncePerMeaning() {
@@ -157,6 +183,12 @@ struct LangReferenceTests {
         #expect(web.kin.first?.detail.lang == "en")
     }
 
+    @Test func kinStopsAtTheCap() {
+        let d = WordDetail(word: "night", lang: "en", gloss: "night", reading: nil, itemId: "night")
+        let web = LangReference.web(d, corpus: Self.webCorpus(extraKin: 20), mine: [])
+        #expect(web.kin.count == WordWeb.maxKin)
+    }
+
     @Test func likenessComparesRomanizedSpelling() {
         #expect(LangReference.likeness("night", "Nacht") >= WordWeb.alike)
         #expect(LangReference.likeness("night", "ночь") < WordWeb.alike)
@@ -167,14 +199,40 @@ struct LangReferenceTests {
     @Test func webForAWordOutsideTheCourseIsEmpty() {
         let d = WordDetail(word: "zzz", lang: "en", gloss: nil, reading: nil)
         let web = LangReference.web(d, corpus: Self.webCorpus(), mine: ["es"])
-        #expect(web.forms.isEmpty && web.kin.isEmpty && web.root == nil)
+        #expect(web == WordWeb.empty)
     }
 
     @Test func webUsesLookedUpFormsForAWordOutsideTheCourse() {
         let d = WordDetail(word: "you", lang: "en", gloss: nil, reading: nil)
-        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: ["es", "de"], found: ["de": "du", "es": "tú", "en": "you", "fr": ""])
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: ["es", "de"], found: ["de": "du", "es": "tú", "en": "you", "fr": "", "xx": "?"])
         #expect(web.forms.map(\.word) == ["tú", "du"])
-        #expect(web.forms.allSatisfy { $0.mine && !$0.cognate && $0.detail.itemId == nil })
+        #expect(web.forms.allSatisfy { $0.mine && $0.detail.itemId == nil })
         #expect(web.kin.isEmpty)
+    }
+
+    @Test func courseFormsWinOverLookedUpForms() {
+        let d = WordDetail(word: "night", lang: "en", gloss: "night", reading: nil, itemId: "night")
+        let web = LangReference.web(d, corpus: Self.webCorpus(), mine: [], found: ["es": "nocturnidad", "it": "notte"])
+        #expect(web.forms.first { $0.lang == "es" }?.word == "noche")
+        #expect(web.forms.first { $0.lang == "it" }?.word == "notte")
+    }
+
+    @Test func scriptNameFallsBackToLatin() {
+        #expect(LangReference.scriptName("ko") == "Hangul")
+        #expect(LangReference.scriptName("he") == "Hebrew alef-bet")
+        #expect(LangReference.scriptName("tr") == "Latin alphabet")
+    }
+
+    @Test func lookupBatchesPutMineAndEnglishFirstAndSkipTheSource() {
+        let few = LangReference.lookupBatches(lang: "en", mine: ["es", "de", "en"], all: false, size: 11)
+        #expect(few == [["es", "de"]])
+        let one = LangReference.lookupBatches(lang: "fr", mine: ["es"], all: false, size: 11)
+        #expect(one == [["es", "en"]])
+        let all = LangReference.lookupBatches(lang: "en", mine: ["ru"], all: true, size: 11)
+        #expect(all.first?.first == "ru")
+        #expect(all.allSatisfy { $0.count <= 11 })
+        #expect(all.flatMap { $0 }.count == Lang.codes.count - 1)
+        #expect(Set(all.flatMap { $0 }) == Set(Lang.codes).subtracting(["en"]))
+        #expect(LangReference.lookupBatches(lang: "en", mine: ["xx"], all: false, size: 0) == [])
     }
 }

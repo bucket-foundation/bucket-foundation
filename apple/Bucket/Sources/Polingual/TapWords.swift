@@ -61,6 +61,7 @@ struct WordCard: View {
     let reveal: Bool
     @Environment(LangStore.self) private var store: LangStore?
     @State private var full = false
+    @State private var web = WordWeb.empty
 
     var body: some View {
         ScrollView {
@@ -81,8 +82,8 @@ struct WordCard: View {
                 case .noEntry:
                     Text("No entry for this word yet.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
-                if reveal { strip }
                 if reveal {
+                    strip
                     HStack {
                         Button("Full detail") { full = true }.buttonStyle(.borderless)
                         Spacer(minLength: 8)
@@ -94,6 +95,10 @@ struct WordCard: View {
             .frame(maxWidth: .infinity, alignment: .topLeading)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .task(id: detail) {
+            guard reveal else { return }
+            await WordWebLoader.load(detail, mine: store?.gameLangs ?? [], corpus: store?.corpus, all: false) { web = $0 }
+        }
         .sheet(isPresented: $full) {
             NavigationStack {
                 WordFactsView(detail: detail)
@@ -107,7 +112,7 @@ struct WordCard: View {
     }
 
     @ViewBuilder var strip: some View {
-        let forms = LangReference.web(detail, corpus: store?.corpus, mine: store?.gameLangs ?? []).forms.prefix(Self.stripCount)
+        let forms = web.forms.prefix(Self.stripCount)
         if !forms.isEmpty {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {

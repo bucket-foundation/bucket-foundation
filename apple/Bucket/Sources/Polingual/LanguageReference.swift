@@ -143,12 +143,10 @@ struct WordFactsView: View {
     @Environment(LangStore.self) private var store: LangStore?
     let detail: WordDetail
     @State private var next: WordDetail?
-    @State private var found: [String: String] = [:]
+    @State private var web = WordWeb.empty
 
     var body: some View {
-        let mine = store?.gameLangs ?? []
-        let f = LangReference.facts(detail, corpus: store?.corpus, others: mine)
-        let web = LangReference.web(detail, corpus: store?.corpus, mine: mine, found: found)
+        let f = LangReference.facts(detail, corpus: store?.corpus, others: store?.gameLangs ?? [])
         List {
             Section {
                 HStack(spacing: 10) {
@@ -202,9 +200,10 @@ struct WordFactsView: View {
                 } header: {
                     Eyebrow(text: "In every language")
                 } footer: {
-                    if web.alikeCount > 0 {
-                        Text("Sounds alike: spelled close to \(detail.word) once written in Latin letters, or shares its root.").font(.caption).foregroundStyle(Palette.muted)
+                    VStack(alignment: .leading, spacing: 2) {
+                        ForEach(Self.legend.filter { web.bonds.contains($0.bond) }, id: \.bond) { Text($0.line) }
                     }
+                    .font(.caption).foregroundStyle(Palette.muted)
                 }
                 .listRowBackground(Palette.card)
             }
@@ -249,8 +248,9 @@ struct WordFactsView: View {
             return .handled
         })
         .navigationDestination(item: $next) { WordFactsView(detail: $0) }
-        .task(id: detail) { await lookUp(mine) }
-        .onDisappear { TranslateCard.lexicons.release() }
+        .task(id: detail) {
+            await WordWebLoader.load(detail, mine: store?.gameLangs ?? [], corpus: store?.corpus, all: true) { web = $0 }
+        }
     }
 
     func formRow(_ form: WordWeb.Form) -> some View {
@@ -262,8 +262,8 @@ struct WordFactsView: View {
                     .font(.caption).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
             }
             Spacer(minLength: 6)
-            if form.soundsAlike {
-                Text("Sounds alike").font(.caption2.weight(.bold)).foregroundStyle(Palette.green)
+            if let bond = form.bond {
+                Text(Self.bondTitle(bond)).font(.caption2.weight(.bold)).foregroundStyle(Palette.green)
                     .padding(.horizontal, 6).padding(.vertical, 2)
                     .background(Palette.green.opacity(0.12), in: Capsule())
             }
@@ -273,18 +273,19 @@ struct WordFactsView: View {
         .contentShape(Rectangle())
     }
 
-    func lookUp(_ mine: [String]) async {
-        guard detail.itemId == nil else { return }
-        let targets = Array(Set(mine + ["en"]).subtracting([detail.lang])).sorted()
-        guard !targets.isEmpty else { return }
-        let word = detail.word, lang = detail.lang, corpus = store?.corpus
-        TranslateCard.lexicons.reserve(targets.count + 1)
-        let rows = await Task.detached(priority: .userInitiated) {
-            TranslateEngine.answer(word, from: [lang], to: targets, corpus: corpus, shelf: TranslateCard.lexicons)?.rows ?? [:]
-        }.value
-        guard !Task.isCancelled else { return }
-        found = rows
+    static func bondTitle(_ bond: WordWeb.Bond) -> LocalizedStringKey {
+        switch bond {
+        case .root: "Shared root"
+        case .sound: "Sounds alike"
+        case .spelling: "Spelled alike"
+        }
     }
+
+    static let legend: [(bond: WordWeb.Bond, line: LocalizedStringKey)] = [
+        (.root, "Shared root: comes from the same older word."),
+        (.sound, "Sounds alike: close pronunciation in IPA."),
+        (.spelling, "Spelled alike: close spelling in Latin letters."),
+    ]
 
     func line(_ label: LocalizedStringKey, _ value: String) -> some View {
         HStack {
