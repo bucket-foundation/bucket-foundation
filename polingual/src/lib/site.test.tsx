@@ -36,6 +36,24 @@ test("the shared shell renders the Po logo, the App Store CTA and the flag foote
   assert.match(html, /<p>body<\/p>/);
 });
 
+test("the site header keeps the App Store link quiet so the page owns the one primary", () => {
+  const html = renderToStaticMarkup(<Site><p>body</p></Site>);
+  const header = html.slice(html.indexOf("<header"), html.indexOf("</header>"));
+  const cta = header.match(/<a[^>]*data-testid="nav-app"[^>]*>/)?.[0] ?? "";
+  assert.ok(cta, "header CTA");
+  assert.doesNotMatch(cta, /primary/);
+});
+
+test("every landing page header carries no gold primary button", () => {
+  const dir = join(process.cwd(), "public/d8");
+  for (const f of readdirSync(dir).filter((n) => n.endsWith(".html"))) {
+    const html = readFileSync(join(dir, f), "utf8");
+    const at = html.indexOf('<header class="hd"');
+    if (at < 0) continue;
+    assert.doesNotMatch(html.slice(at, html.indexOf("</header>", at)), /btn-p/, f);
+  }
+});
+
 test("the header and footer navs carry distinct labels in the page language", () => {
   const en = renderToStaticMarkup(<Site><p>body</p></Site>);
   assert.match(en, /<nav[^>]*aria-label="Main"/);
