@@ -16,6 +16,7 @@ export const SESSION_LIMITS = {
   deleteIp: 10,
   appleIp: 40,
   googleIp: 40,
+  googleEmail: 10,
 } as const;
 
 export interface AuthSession {
@@ -73,6 +74,7 @@ export function sessionClientIp(headers: Headers, proxy: { secret?: string; now?
 export const APPLE_SIGNIN_REPLY_BUDGET_MS = 3000;
 
 export const OTP_LOCKOUT_MESSAGE = "Bucket sent several codes to this email. Wait ten minutes and try again.";
+export const GOOGLE_MISMATCH_MESSAGE = "This email belongs to a different Google account. Sign in with that Google account or use an email code.";
 export const RATE_MESSAGE = "Too many tries from here. Wait ten minutes and try again.";
 
 export const DEFAULT_APPLE_AUDIENCES = ["foundation.bucket.app", "com.polingual.app"];
@@ -208,8 +210,10 @@ export function createSessionHandler(deps: SessionDeps) {
       if (!(await within([[`google:ip:${ip}`, SESSION_LIMITS.googleIp]]))) return { status: 429, body: { error: "too_many_requests" } };
       const who = await deps.google.verify(token, nonce, clientId);
       if (!who) return { status: 401, body: { error: "bad_token" } };
+      if (!(await within([[`google:email:${hashed(who.email)}`, SESSION_LIMITS.googleEmail]]))) return { status: 429, body: { error: "too_many_requests", message: RATE_MESSAGE } };
       const r = await deps.google.signIn(who);
       if (r.session) return { status: 200, body: tokens(r.session) };
+      if (r.status === 409) return { status: 409, body: { error: "google_account_mismatch", message: GOOGLE_MISMATCH_MESSAGE } };
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return { status: 502, body: { error: "google_failed" } };
     }

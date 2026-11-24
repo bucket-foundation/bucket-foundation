@@ -106,39 +106,76 @@ test("the google action fails closed without a client id and rejects bad input",
   assert.deepEqual(called, []);
 });
 
-test("google sign-ins are capped per address and Supabase failures map to 502", async () => {
-  const h = world({ clientId: () => CLIENT, verify: async () => ({ sub: "s", email: "a@b.co" }), signIn: async () => ({ session: null, status: 500 }) });
+test("google sign-ins are capped per IP and Supabase failures map to 502", async () => {
+  let n = 0;
+  const h = world({ clientId: () => CLIENT, verify: async () => ({ sub: "s", email: `a${n++}@b.co` }), signIn: async () => ({ session: null, status: 500 }) });
   for (let i = 0; i < SESSION_LIMITS.googleIp; i++) assert.equal((await h({ action: "google", id_token: "a.b.c", nonce: RAW }, "9.9.9.9")).status, 502);
   assert.equal((await h({ action: "google", id_token: "a.b.c", nonce: RAW }, "9.9.9.9")).status, 429);
 });
 
-function auth(existing: boolean, createStatus: number | null = null) {
+const WHO = { sub: "g-123", email: "n@b.co" };
+
+function auth(user: { id: string; app_metadata?: Record<string, unknown> } | null, createStatus: number | null = null, after: typeof user = null) {
   const calls: string[] = [];
+  let finds = 0;
   return {
     calls,
     deps: {
-      findUser: async (e: string) => (calls.push(`find ${e}`), existing ? { email: e } : null),
-      createUser: async (e: string) => (calls.push(`create ${e}`), { status: createStatus }),
+      findUser: async (e: string) => (calls.push(`find ${e}`), finds++ === 0 ? user : after),
+      createUser: async (e: string, sub: string) => (calls.push(`create ${e} ${sub}`), { status: createStatus }),
+      bindSub: async (id: string, sub: string) => (calls.push(`bind ${id} ${sub}`), { status: null }),
       generateLink: async (e: string) => (calls.push(`link ${e}`), { link: { tokenHash: "h", type: "magiclink" }, status: null }),
       verifyToken: async (h: string, t: string): Promise<AuthResult> => (calls.push(`verify ${h} ${t}`), { session: SESSION, status: null }),
     },
   };
 }
 
-test("a new Google email creates a confirmed user, then mints a session", async () => {
-  const a = auth(false);
-  assert.equal((await mintGoogleSession("n@b.co", a.deps)).session, SESSION);
-  assert.deepEqual(a.calls, ["find n@b.co", "create n@b.co", "link n@b.co", "verify h magiclink"]);
+test("a new Google email creates a confirmed user carrying the sub, then mints a session", async () => {
+  const a = auth(null);
+  assert.equal((await mintGoogleSession(WHO, a.deps)).session, SESSION);
+  assert.deepEqual(a.calls, ["find n@b.co", "create n@b.co g-123", "link n@b.co", "verify h magiclink"]);
 });
 
-test("an existing email links to the same user without creating one", async () => {
-  const a = auth(true);
-  assert.equal((await mintGoogleSession("o@b.co", a.deps)).session, SESSION);
-  assert.deepEqual(a.calls, ["find o@b.co", "link o@b.co", "verify h magiclink"]);
+test("an existing email with no Google sub binds the sub on first Google sign-in", async () => {
+  const a = auth({ id: "u1", app_metadata: {} });
+  assert.equal((await mintGoogleSession(WHO, a.deps)).session, SESSION);
+  assert.deepEqual(a.calls, ["find n@b.co", "bind u1 g-123", "link n@b.co", "verify h magiclink"]);
+});
+
+test("a matching Google sub signs in without rebinding", async () => {
+  const a = auth({ id: "u1", app_metadata: { google_sub: "g-123" } });
+  assert.equal((await mintGoogleSession(WHO, a.deps)).session, SESSION);
+  assert.deepEqual(a.calls, ["find n@b.co", "link n@b.co", "verify h magiclink"]);
+});
+
+test("a different Google sub for the same email is rejected before minting", async () => {
+  const a = auth({ id: "u1", app_metadata: { google_sub: "g-other" } });
+  assert.deepEqual(await mintGoogleSession(WHO, a.deps), { session: null, status: 409 });
+  assert.deepEqual(a.calls, ["find n@b.co"]);
+});
+
+test("a create race re-reads the user and still enforces the sub", async () => {
+  const a = auth(null, 422, { id: "u1", app_metadata: { google_sub: "g-other" } });
+  assert.deepEqual(await mintGoogleSession(WHO, a.deps), { session: null, status: 409 });
+  assert.deepEqual(a.calls, ["find n@b.co", "create n@b.co g-123", "find n@b.co"]);
 });
 
 test("a failed user create stops before minting", async () => {
-  const a = auth(false, 500);
-  assert.deepEqual(await mintGoogleSession("n@b.co", a.deps), { session: null, status: 500 });
-  assert.deepEqual(a.calls, ["find n@b.co", "create n@b.co"]);
+  const a = auth(null, 500);
+  assert.deepEqual(await mintGoogleSession(WHO, a.deps), { session: null, status: 500 });
+  assert.deepEqual(a.calls, ["find n@b.co", "create n@b.co g-123"]);
+});
+
+test("a sub mismatch maps to a clear 409 from the google action", async () => {
+  const h = world({ clientId: () => CLIENT, verify: async () => ({ sub: "s", email: "a@b.co" }), signIn: async () => ({ session: null, status: 409 }) });
+  const r = await h({ action: "google", id_token: "a.b.c", nonce: RAW }, "ip");
+  assert.equal(r.status, 409);
+  assert.equal(r.body.error, "google_account_mismatch");
+  assert.equal(typeof r.body.message, "string");
+});
+
+test("google sign-ins are capped per email across addresses", async () => {
+  const h = world({ clientId: () => CLIENT, verify: async () => ({ sub: "s", email: "same@b.co" }), signIn: async () => ({ session: SESSION, status: null }) });
+  for (let i = 0; i < SESSION_LIMITS.googleEmail; i++) assert.equal((await h({ action: "google", id_token: "a.b.c", nonce: RAW }, `10.0.0.${i}`)).status, 200);
+  assert.equal((await h({ action: "google", id_token: "a.b.c", nonce: RAW }, "10.0.1.1")).status, 429);
 });

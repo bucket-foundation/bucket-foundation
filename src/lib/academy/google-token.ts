@@ -18,19 +18,40 @@ export function googleClientId(raw: string | undefined): string | null {
   return id ? id : null;
 }
 
+export const GOOGLE_SUB_KEY = "google_sub";
+export const GOOGLE_MISMATCH_STATUS = 409;
+
+export interface GoogleSessionUser {
+  id: string;
+  app_metadata?: Record<string, unknown>;
+}
+
 export interface GoogleSessionAuth {
-  findUser: (email: string) => Promise<{ email?: string } | null>;
-  createUser: (email: string) => Promise<{ status: number | null }>;
+  findUser: (email: string) => Promise<GoogleSessionUser | null>;
+  createUser: (email: string, sub: string) => Promise<{ status: number | null }>;
+  bindSub: (userId: string, sub: string) => Promise<{ status: number | null }>;
   generateLink: (email: string) => Promise<{ link: { tokenHash: string; type: string } | null; status: number | null }>;
   verifyToken: (tokenHash: string, type: string) => Promise<AuthResult>;
 }
 
-export async function mintGoogleSession(email: string, auth: GoogleSessionAuth): Promise<AuthResult> {
-  if (!(await auth.findUser(email))) {
-    const created = await auth.createUser(email);
-    if (created.status !== null && created.status !== 422) return { session: null, status: created.status };
+async function claimUser(who: GoogleIdentity, auth: GoogleSessionAuth): Promise<number | null> {
+  let user = await auth.findUser(who.email);
+  if (!user) {
+    const created = await auth.createUser(who.email, who.sub);
+    if (created.status === null) return null;
+    if (created.status !== 422) return created.status;
+    user = await auth.findUser(who.email);
+    if (!user) return 500;
   }
-  const { link, status } = await auth.generateLink(email);
+  const bound = user.app_metadata?.[GOOGLE_SUB_KEY];
+  if (typeof bound === "string" && bound) return bound === who.sub ? null : GOOGLE_MISMATCH_STATUS;
+  return (await auth.bindSub(user.id, who.sub)).status;
+}
+
+export async function mintGoogleSession(who: GoogleIdentity, auth: GoogleSessionAuth): Promise<AuthResult> {
+  const claimed = await claimUser(who, auth);
+  if (claimed !== null) return { session: null, status: claimed };
+  const { link, status } = await auth.generateLink(who.email);
   if (!link) return { session: null, status };
   return auth.verifyToken(link.tokenHash, link.type);
 }

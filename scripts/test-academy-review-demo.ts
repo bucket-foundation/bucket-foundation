@@ -180,13 +180,15 @@ test("a link failure passes through without a verify", async () => {
   assert.deepEqual(a.seen, ["link"]);
 });
 
-test("the user lookup walks every page and stops at the last one", async () => {
-  const pages: { email: string }[][] = [Array.from({ length: 1000 }, (_, i) => ({ email: `u${i}@b.co` })), [{ email: EMAIL.toUpperCase() }]];
-  const asked: number[] = [];
-  const list = async (page: number) => (asked.push(page), pages[page - 1] ?? []);
-  assert.deepEqual(await findUserByEmail(list, EMAIL), { email: EMAIL.toUpperCase() });
-  assert.deepEqual(asked, [1, 2]);
-  assert.equal(await findUserByEmail(list, "absent@b.co"), null);
+test("the user lookup asks once by the normalized email and parses the row", async () => {
+  const asked: string[] = [];
+  const rows: Record<string, unknown> = { [EMAIL]: { id: "u1", email: EMAIL, app_metadata: { review_demo: true } } };
+  const lookup = async (e: string) => (asked.push(e), rows[e] ?? null);
+  assert.deepEqual(await findUserByEmail(lookup, ` ${EMAIL.toUpperCase()} `), { id: "u1", email: EMAIL, app_metadata: { review_demo: true } });
+  assert.equal(await findUserByEmail(lookup, "absent@b.co"), null);
+  assert.deepEqual(asked, [EMAIL, "absent@b.co"]);
+  assert.equal(await findUserByEmail(async () => ({ email: EMAIL }), EMAIL), null);
+  assert.deepEqual(await findUserByEmail(async () => ({ id: "u2", app_metadata: [1] }), EMAIL), { id: "u2", app_metadata: {} });
 });
 
 test("seed rows read back as a language set and a live group summary", () => {
