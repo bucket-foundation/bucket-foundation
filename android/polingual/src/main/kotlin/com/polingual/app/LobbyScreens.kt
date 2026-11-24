@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,6 +27,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -52,7 +54,6 @@ import foundation.bucket.core.ui.pl.SectionTitle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-val nativeLobbyGames = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Duel, LobbyGame.Tiles)
 
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
@@ -65,7 +66,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", go: (String) 
     var error by remember { mutableStateOf<String?>(null) }
     var joinCode by remember { mutableStateOf(code) }
     var nick by remember(app?.nickname) { mutableStateOf(app?.nickname.orEmpty()) }
-    var game by remember { mutableStateOf(nativeLobbyGames.firstOrNull { it.wire == preset } ?: LobbyGame.Daily) }
+    var game by remember { mutableStateOf(LobbyGame.entries.firstOrNull { it.wire == preset && foundation.bucket.core.model.LobbyGames.playable(it) } ?: LobbyGame.Daily) }
     var bots by remember { mutableStateOf(false) }
     val signedIn = stage == Stage.SignedIn
     val name = nick.trim()
@@ -86,14 +87,16 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", go: (String) 
         Card {
             Text("Start a room", style = Type.caps, color = p.muted)
             androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                foundation.bucket.core.model.LobbyGames.offered(state.games).forEach { g -> PLPill(g.title, active = g == game) { game = g } }
+                foundation.bucket.core.model.LobbyGames.offered(state.games, state.race).forEach { g -> PLPill(g.title, active = g == game) { game = g } }
             }
+            if (!foundation.bucket.core.model.LobbyGames.playable(game)) Text("${game.title} races play on the web and iPhone. Pick another game to host from Android.", color = p.muted)
+            else if (game.isRace) Text("Race: everyone plays the same deck, highest score wins.", color = p.muted)
             if (state.botsEnabled) Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("Fill empty seats with bots", color = p.ink, modifier = Modifier.weight(1f))
                 Switch(bots, { bots = it })
             }
             if (system == null) Text("Start a language set in Learn first.", color = p.muted)
-            PrimaryButton("Create room", enabled = system != null && !state.busy) {
+            PrimaryButton("Create room", enabled = system != null && !state.busy && foundation.bucket.core.model.LobbyGames.playable(game)) {
                 val s = system ?: return@PrimaryButton
                 act {
                     graph.lobbies.create("${name.ifEmpty { "Polingual" }}'s room", game, s.root, s.targets, name.ifEmpty { "Host" })
@@ -102,7 +105,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", go: (String) 
             }
         }
         error?.let { Text(it, color = PL.Vermilion) }
-        OpenRooms(state.open.filter { it.game in nativeLobbyGames }) { l -> act { graph.lobbies.join(l, name.ifEmpty { "Player" }) } }
+        OpenRooms(state.open.filter { foundation.bucket.core.model.LobbyGames.playable(it.game) }) { l -> act { graph.lobbies.join(l, name.ifEmpty { "Player" }) } }
         PlainLink("Refresh") { scope.launch { graph.lobbies.refresh() } }
         AdBanner(graph)
     }
@@ -123,6 +126,10 @@ fun RoomScreen(graph: Graph, go: (String) -> Unit = {}, leave: () -> Unit) {
     LaunchedEffect(lobby.id, finished) { if (finished) graph.ads.gameFinished() }
     var confirmLeave by remember { mutableStateOf(false) }
     fun exit() { graph.ads.leftFinishedGame(graph.activity?.get()); leave() }
+    if (lobby.game.isRace && (phase is LobbyPhase.Round || phase is LobbyPhase.Reveal)) {
+        RaceRoom(graph, lobby, lobby.raceRemaining(now), state.raceScore) { exit() }
+        return
+    }
     fun act(block: suspend () -> Unit) = scope.launch { error = null; try { block() } catch (e: BucketError) { error = LobbyErrors.text(e) } }
     Page(lobby.name, ground = Ground.Lattice, panel = true, stickers = listOf(Sticker("pebble", Alignment.CenterStart, 60.dp, -12f), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 90.dp, -4f, dx = (-8).dp)), back = { if (phase is LobbyPhase.Round || phase is LobbyPhase.Reveal || phase is LobbyPhase.Countdown) confirmLeave = true else exit() }) {
         if (confirmLeave) {
@@ -132,15 +139,15 @@ fun RoomScreen(graph: Graph, go: (String) -> Unit = {}, leave: () -> Unit) {
                 PlainLink("Keep playing") { confirmLeave = false }
             }
         }
-        when (phase) {
-            LobbyPhase.Waiting -> Waiting(graph, lobby) { act(it) }
-            is LobbyPhase.Countdown -> {
+        when {
+            phase == LobbyPhase.Waiting -> Waiting(graph, lobby) { act(it) }
+            phase is LobbyPhase.Countdown -> {
                 Text("Get ready", style = Type.word, color = p.ink)
-                Text("${kotlin.math.ceil(phase.seconds).toInt()}", style = Type.display.copy(fontSize = 96.sp), color = PL.Vermilion)
+                Text("${kotlin.math.ceil((phase as LobbyPhase.Countdown).seconds).toInt()}", style = Type.display.copy(fontSize = 96.sp), color = PL.Vermilion)
             }
-            is LobbyPhase.Round -> Round(graph, lobby, phase.index, phase.remaining, reveal = false)
-            is LobbyPhase.Reveal -> Round(graph, lobby, phase.index, phase.remaining, reveal = true)
-            LobbyPhase.Finished -> Results(graph, lobby, go, again = { exit() })
+            phase is LobbyPhase.Round -> Round(graph, lobby, phase.index, phase.remaining, reveal = false)
+            phase is LobbyPhase.Reveal -> Round(graph, lobby, phase.index, phase.remaining, reveal = true)
+            phase == LobbyPhase.Finished -> Results(graph, lobby, go, again = { exit() })
         }
         error?.let { Text(it, color = PL.Vermilion) }
         if (phase == LobbyPhase.Waiting || phase == LobbyPhase.Finished) Chat(graph, lobby) { act(it) }
@@ -191,6 +198,11 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     if (prompt == null) { Text("Loading the round", color = p.muted); return }
     if (prompt.mode == LobbyPromptMode.Tiles) {
         TileRound(graph, lobby, prompt, index, remaining, reveal)
+        Players(lobby)
+        return
+    }
+    if (prompt.mode == LobbyPromptMode.Spy) {
+        SpyRound(graph, prompt, index, reveal)
         Players(lobby)
         return
     }
@@ -337,3 +349,4 @@ private fun RoundHeader(lobby: Lobby, index: Int, remaining: Double, reveal: Boo
         }
     }
 }
+

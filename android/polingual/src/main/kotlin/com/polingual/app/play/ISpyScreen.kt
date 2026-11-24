@@ -127,7 +127,7 @@ private fun Board(me: Tally, bots: Map<String, Tally>) {
 }
 
 @Composable
-private fun SpyStage(scene: SpyScene, marks: Map<String, androidx.compose.ui.graphics.Color>, enabled: Boolean, onTap: (String) -> Unit) {
+internal fun SpyStage(scene: SpyScene, marks: Map<String, androidx.compose.ui.graphics.Color>, enabled: Boolean, onTap: (String) -> Unit) {
                 BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).plSurface(PL.Tyrian, 20.dp).drawBehind {
                     drawPath(Path().apply { moveTo(0f, 0f); lineTo(size.width * 0.38f, 0f); lineTo(size.width * 0.22f, size.height); lineTo(0f, size.height); close() }, PL.TyrianDeep)
                 }) {
