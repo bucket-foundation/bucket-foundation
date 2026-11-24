@@ -375,3 +375,14 @@ test("a tap on a word stuck before sound starts plays it again", async () => {
   toggle(item, true);
   assert.equal(snapshot().id, null);
 });
+
+test("an engine that ends a word without a start event counts as played", async () => {
+  installFakes();
+  resetPlayer();
+  const run = play({ id: "q", text: "uno", lang: "es-ES" });
+  await tick();
+  spoken[spoken.length - 1].onend?.();
+  await run;
+  assert.notEqual(snapshot().notice, NO_SOUND);
+  assert.equal(snapshot().id, null);
+});

@@ -86,7 +86,7 @@ export function stop() {
   set(IDLE);
 }
 
-function speakWith(text: string, lang: string, voice: SpeechSynthesisVoice, done: () => void, started: () => void) {
+function speakWith(text: string, lang: string, voice: SpeechSynthesisVoice, done: (ended?: boolean) => void, started: () => void) {
   const s = synth();
   if (!s) return done();
   const u = new SpeechSynthesisUtterance(text);
@@ -94,20 +94,20 @@ function speakWith(text: string, lang: string, voice: SpeechSynthesisVoice, done
   u.voice = voice;
   u.rate = 0.85;
   u.onstart = started;
-  u.onend = done;
-  u.onerror = done;
+  u.onend = () => done(true);
+  u.onerror = () => done();
   if (s.paused) s.resume();
   s.speak(u);
 }
 
-function playOne(item: SpeakItem, onStart: () => void = () => undefined): Promise<void> {
+function playOne(item: SpeakItem, onStart: (durationMs?: number) => void = () => undefined): Promise<boolean> {
   const source = pickSource(item, installedVoices());
-  return new Promise<void>((resolve) => {
-    if (!source) return resolve();
+  return new Promise<boolean>((resolve) => {
+    if (!source) return resolve(false);
     const started = onStart;
     let audio: HTMLAudioElement | null = null;
     let settled = false;
-    const done = () => {
+    const done = (ended = false) => {
       if (settled) return;
       settled = true;
       if (audio) {
@@ -115,7 +115,7 @@ function playOne(item: SpeakItem, onStart: () => void = () => undefined): Promis
         audio.pause();
       }
       if (finish === done) finish = null;
-      resolve();
+      resolve(ended);
     };
     finish = done;
     let fellBack = false;
@@ -128,8 +128,8 @@ function playOne(item: SpeakItem, onStart: () => void = () => undefined): Promis
     if (source.kind === "voice") return speakWith(item.text, item.lang, source.voice, done, started);
     audio = sharedAudio();
     audio.src = source.src;
-    audio.onended = done;
-    audio.onplaying = started;
+    audio.onended = () => done(true);
+    audio.onplaying = () => started();
     audio.onerror = () => {
       if (audio) audio.onerror = null;
       fallback();
@@ -240,11 +240,12 @@ async function start(item: SpeakItem, gap: number): Promise<void> {
   }, START_MS);
   const ducking = duck(true);
   try {
-    await playOne(item, () => {
+    const ended = await playOne(item, () => {
       began = true;
       if (speaking?.t === t) speaking.startedAt = Date.now();
       if (t === token && state.notice) set({ ...state, notice: null });
     });
+    if (ended) began = true;
   } finally {
     if (ducking) duck(false);
     clearTimeout(watch);
