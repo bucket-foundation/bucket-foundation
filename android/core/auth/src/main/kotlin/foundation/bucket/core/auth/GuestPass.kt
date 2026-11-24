@@ -41,7 +41,13 @@ class GuestPass(
         }
         val nick = nickname().trim()
         if (nick.isEmpty()) return null
-        val fresh = runCatching { api.guestTicket(nick.take(40), guestId) }.getOrNull() ?: return null
+        val first = runCatching { api.guestTicket(nick.take(40), guestId) }
+        val fresh = if (merged(first.exceptionOrNull())) {
+            forget()
+            store.set(ID_KEY, null)
+            runCatching { api.guestTicket(nick.take(40), guestId) }.getOrNull()
+        } else first.getOrNull()
+        if (fresh == null) return null
         ticket = fresh
         store.set(TICKET_KEY, api.json.encodeToString(GuestTicket.serializer(), fresh))
         return fresh.token
@@ -49,13 +55,18 @@ class GuestPass(
 
     suspend fun merge(userToken: String) {
         val t = ticket ?: return
-        if (runCatching { api.mergeGuest(userToken, t.token) }.isSuccess) {
-            ticket = null
-            store.set(TICKET_KEY, null)
-        }
+        val r = runCatching { api.mergeGuest(userToken, t.token) }
+        if (r.isSuccess || merged(r.exceptionOrNull())) forget()
+    }
+
+    private fun forget() {
+        ticket = null
+        store.set(TICKET_KEY, null)
     }
 
     companion object {
+        fun merged(e: Throwable?): Boolean = e is foundation.bucket.core.model.BucketError.Server && e.status == 409 && e.text == "guest_merged"
+
         const val ID_KEY = "polingual.guestId"
         const val TICKET_KEY = "polingual.guestTicket"
     }

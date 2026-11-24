@@ -4,7 +4,12 @@ import { DEFAULT_OG_IMAGE, pageMeta } from "./meta";
 const ROOM_CODE = /^[A-Z0-9]{4,8}$/;
 
 export function roomCode(raw: string): string | null {
-  const code = decodeURIComponent(raw).trim().toUpperCase();
+  let code: string;
+  try {
+    code = decodeURIComponent(raw).trim().toUpperCase();
+  } catch {
+    return null;
+  }
   return ROOM_CODE.test(code) ? code : null;
 }
 

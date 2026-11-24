@@ -60,8 +60,10 @@ class LobbyStore(
         }
     }
 
-    suspend fun create(name: String, game: LobbyGame, root: String, targets: List<String>, displayName: String, rounds: Int = 8, roundSeconds: Int = 10, listed: Boolean = true): Lobby =
-        enter(run { api.createLobby(it, name, game, root, targets, rounds, roundSeconds, listed, displayName) })
+    suspend fun create(name: String, game: LobbyGame, root: String, targets: List<String>, displayName: String, rounds: Int = 8, roundSeconds: Int = 10, listed: Boolean = true): Lobby {
+        if (!foundation.bucket.core.model.LobbyGames.playable(game)) throw BucketError.Server(409, UNPLAYABLE)
+        return enter(run { api.createLobby(it, name, game, root, targets, rounds, roundSeconds, listed, displayName) })
+    }
 
     suspend fun join(code: String, displayName: String): Lobby =
         enter(run { api.joinLobby(it, code = normalizeCode(code), displayName = displayName) })
@@ -115,7 +117,7 @@ class LobbyStore(
             _state.update { it.copy(raceScoreSent = true) }
             true
         } catch (e: BucketError) {
-            if (e is BucketError.Server && e.status in 400..499 && e.status !in setOf(408, 425, 429)) _state.update { it.copy(raceScoreSent = true) }
+            if (scoreFinal(e)) _state.update { it.copy(raceScoreSent = true) }
             false
         }
     }
@@ -187,6 +189,10 @@ class LobbyStore(
     }
 
     companion object {
+        const val UNPLAYABLE = "This race plays on the web and iPhone. Pick another game to host from Android."
+
+        fun scoreFinal(e: BucketError): Boolean = e == BucketError.Revoked || e == BucketError.NotFound || (e is BucketError.Server && e.status in 400..499 && e.status !in setOf(408, 425, 429))
+
         fun normalizeCode(code: String) = code.filter { it.isLetterOrDigit() }.uppercase().take(LobbyRules.CODE_LENGTH)
     }
 }
