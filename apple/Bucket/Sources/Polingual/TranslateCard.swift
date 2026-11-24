@@ -499,7 +499,7 @@ struct TranslateCard: View {
     }
 
     func addWords(_ text: String, _ source: String, _ corpus: LangCorpus, only: String? = nil) {
-        let ids = only.map { [$0] } ?? TranslateEngine.deckWords(text, source: source, corpus: corpus)
+        let ids = (only.map { [$0] } ?? TranslateEngine.deckWords(text, source: source, corpus: corpus)).filter { corpus.byId[$0] != nil }
         let queued = ids.filter { queue($0, corpus) }
         phrases[text] = ids.isEmpty ? PhraseActions.Deck.none : queued.isEmpty ? .known : .added
         haptic(!queued.isEmpty)

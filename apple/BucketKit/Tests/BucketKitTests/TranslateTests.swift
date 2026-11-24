@@ -192,3 +192,10 @@ func lexiconShelf() -> LexiconShelf {
     #expect(ids.count <= 6)
     #expect(ids.allSatisfy { corpus.byId[$0]?.kind == .word })
 }
+
+@Test func deckWordsKeepsShortWordsInCJKScripts() throws {
+    let corpus = try translateCorpus()
+    let item = try #require(corpus.items.first { $0.id == "eight" })
+    #expect(item.form("ja") == "八")
+    #expect(TranslateEngine.deckWords("八", source: "ja", corpus: corpus) == ["eight"])
+}
