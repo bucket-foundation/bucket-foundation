@@ -110,6 +110,7 @@ private fun TypedAnswer(ex: foundation.bucket.core.engine.Exercise, typed: Strin
 private suspend fun saveStudy(graph: Graph, s: StudySession) {
     val sys = graph.store.current().system ?: return
     graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
+    graph.syncStudySoon()
 }
 
 @Composable

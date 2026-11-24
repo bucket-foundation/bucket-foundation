@@ -10,6 +10,7 @@ import foundation.bucket.core.data.AppStore
 import foundation.bucket.core.data.CorpusRepo
 import foundation.bucket.core.data.KeystoreVault
 import foundation.bucket.core.data.PrefsKeyValue
+import foundation.bucket.core.data.StudySync
 import foundation.bucket.core.data.SystemsSync
 import foundation.bucket.core.model.LangSystem
 import foundation.bucket.core.net.BucketApi
@@ -95,13 +96,14 @@ class Graph(val context: Context) {
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
-            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncDaily() }
+            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily() }
             var last = account.stage.value
             account.stage.collect { stage ->
                 if (stage == Stage.SignedIn && last != Stage.SignedIn) {
                     store.update { it.copy(savePrompt = false) }
                     lobbies.mergeGuest()
                     syncSystems()
+                    syncStudy()
                     syncDaily()
                 }
                 last = stage
@@ -136,5 +138,28 @@ class Graph(val context: Context) {
         val systems = SystemsSync.systems(merged)
         store.update { it.copy(systems = systems, activeSystem = it.activeSystem?.takeIf { id -> systems.any { s -> s.id == id } } ?: systems.firstOrNull()?.id) }
         if (merged != remote) api.progressPush(t, SystemsSync.BRANCH, merged).also { if (it == foundation.bucket.core.net.PushResult.Refused) android.util.Log.w("polingual", "server refused a blank systems overwrite") }.settled else true
+    }
+
+    private var studyPush: kotlinx.coroutines.Job? = null
+
+    fun syncStudySoon() {
+        studyPush?.cancel()
+        studyPush = scope.launch { kotlinx.coroutines.delay(5_000); syncStudy() }
+    }
+
+    suspend fun syncStudy(): Boolean = syncLock.withLock {
+        val t = account.token() ?: return@withLock false
+        val branches = api.progressPull(t) ?: return@withLock false
+        var ok = true
+        for (sys in store.current().systems) {
+            val branch = StudySync.branch(sys.id)
+            val remote = (branches[branch] as? JsonObject)?.get("data")
+            val local = store.current().study[sys.id] ?: foundation.bucket.core.engine.StudyState()
+            if (remote == null && local.cards.isEmpty()) continue
+            val merged = StudySync.merge(remote, local)
+            store.update { it.copy(study = it.study + (sys.id to (it.study[sys.id] ?: local).let { now -> StudySync.state(StudySync.merge(merged, now), now) })) }
+            if (merged != remote) ok = api.progressPush(t, branch, merged).settled && ok
+        }
+        ok
     }
 }
