@@ -33,7 +33,9 @@ struct SharePage: Equatable {
     }
 
     static func word(_ item: LangItem, _ system: LangSystem) -> SharePage {
-        word(id: item.id, gloss: item.form(system.root) ?? item.gloss, forms: system.targets.compactMap { l in item.form(l).map { (l, $0) } })
+        let gloss = item.form(system.root) ?? item.gloss
+        let forms = ShareForm.leading(system.root, gloss, system.targets.compactMap { l in item.form(l).map { ShareForm(lang: l, form: $0) } })
+        return word(id: item.id, gloss: gloss, forms: forms.map { ($0.lang, $0.form) })
     }
 
     static func langs(_ system: LangSystem, streak: Int = 0) -> SharePage {

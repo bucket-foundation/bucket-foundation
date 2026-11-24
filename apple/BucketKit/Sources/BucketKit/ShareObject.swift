@@ -133,6 +133,14 @@ public struct ShareForm: Sendable, Hashable {
     }
 }
 
+public extension ShareForm {
+    static func leading(_ lang: String, _ form: String, _ forms: [ShareForm]) -> [ShareForm] {
+        let own = forms.first { $0.lang == lang }?.form ?? form
+        guard !own.isEmpty else { return forms }
+        return [ShareForm(lang: lang, form: own)] + forms.filter { $0.lang != lang }
+    }
+}
+
 public struct ShareScore: Sendable, Hashable {
     public var source: String
     public var right: Int

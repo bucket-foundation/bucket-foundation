@@ -9,6 +9,8 @@ struct SentenceTranslations: View {
     var fallback: [String: String] = [:]
     var waiting = false
     var soft = Palette.muted
+    var deck: PhraseActions.Deck?
+    var addWords: (() -> Void)?
     @State private var results: [String: String] = [:]
     @State private var needsDownload: Set<String> = []
     @State private var missing: Set<String> = []
@@ -66,6 +68,9 @@ struct SentenceTranslations: View {
             if targets.contains(where: { fallback[$0] != nil && results[$0] == nil }) {
                 TranslateCredit(soft: soft)
             }
+            if let deck, let addWords, !shared.isEmpty {
+                PhraseActions(text: text, forms: ShareForm.leading(source, text, shared), deck: deck, add: addWords)
+            }
             WrongTranslationLink(subject: report, visible: !results.isEmpty)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -82,6 +87,12 @@ struct SentenceTranslations: View {
             download = nil
             downloading = nil
             round += 1
+        }
+    }
+
+    var shared: [ShareForm] {
+        targets.compactMap { l in
+            (results[l] ?? (needsDownload.contains(l) || missing.contains(l) ? fallback[l] : nil)).map { ShareForm(lang: l, form: $0) }
         }
     }
 

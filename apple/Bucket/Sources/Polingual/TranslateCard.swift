@@ -30,6 +30,7 @@ struct TranslateCard: View {
     @State private var query = TranslateCard.debugQuery
     @State private var picked: String?
     @State private var added: Set<String> = []
+    @State private var phrases: [String: PhraseActions.Deck] = [:]
     @State private var from: String?
     @State private var sources: [String] = []
     @State private var listening = false
@@ -223,9 +224,12 @@ struct TranslateCard: View {
                 }
                 statusLine
                 if sentence {
-                    SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:], waiting: !settled, soft: soft)
+                    SentenceTranslations(text: text, source: sentenceSource, targets: shown.filter { $0 != sentenceSource }, fallback: answer?.rows ?? [:], waiting: !settled, soft: soft,
+                                         deck: wordsState(text), addWords: { addWords(text, sentenceSource, corpus) })
                 } else if picked == nil, let answer, answer.layer != .deck {
                     LexiconAnswerView(answer: answer, shown: shown, withSource: false, soft: soft)
+                    PhraseActions(text: text, forms: ShareForm.leading(answer.source, text, shown.compactMap { l in answer.rows[l].map { ShareForm(lang: l, form: $0) } }),
+                                  deck: wordsState(text)) { addWords(text, answer.source, corpus, only: answer.itemId) }
                 } else if !text.isEmpty {
                     if let id = picked ?? answer?.itemId ?? hits.first?.itemId, let item = corpus.byId[id] {
                         let source = from ?? answer?.source ?? hits.first(where: { $0.itemId == id })?.matchedLang
@@ -253,7 +257,7 @@ struct TranslateCard: View {
                             SentenceTranslations(text: text, source: source, targets: unmet, fallback: lexicon, waiting: !settled, soft: soft)
                                 .id(unmet.joined(separator: ","))
                         }
-                        let words = shown.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
+                        let words = ShareForm.leading(source ?? guess, item.form(source ?? guess) ?? text, shown.compactMap { l in item.form(l).map { ShareForm(lang: l, form: $0) } }).map { (lang: $0.lang, form: $0.form) }
                         let report = ReportSubject(lang: source ?? from ?? langs.first ?? "en", itemId: id, text: text,
                                                    shown: words.filter { $0.lang != source }.map { "\($0.lang): \($0.form)" }.joined(separator: "; "), context: "translate:word")
                         let share = ShareObjectButton(.word(id: id, gloss: text, forms: words.map { ShareForm(lang: $0.lang, form: $0.form) }))
@@ -490,18 +494,72 @@ struct TranslateCard: View {
         }
     }
 
-    func add(_ itemId: String, _ corpus: LangCorpus) {
-        guard let item = corpus.byId[itemId] else { return }
+    func wordsState(_ text: String) -> PhraseActions.Deck {
+        phrases[text] ?? .open
+    }
+
+    func addWords(_ text: String, _ source: String, _ corpus: LangCorpus, only: String? = nil) {
+        let ids = (only.map { [$0] } ?? TranslateEngine.deckWords(text, source: source, corpus: corpus)).filter { corpus.byId[$0] != nil }
+        let queued = ids.filter { queue($0, corpus) }
+        phrases[text] = ids.isEmpty ? PhraseActions.Deck.none : queued.isEmpty ? .known : .added
+        haptic(!queued.isEmpty)
+    }
+
+    @discardableResult func queue(_ itemId: String, _ corpus: LangCorpus) -> Bool {
+        guard let item = corpus.byId[itemId] else { return false }
+        var queued = false
         for s in store.systems where s.targets.contains(where: { item.form($0) != nil }) {
             let state = store.state(s.id)
             let carded = s.targets.contains { state.cards.has(cardId($0, itemId)) }
-            if !carded { WantedWords.add(itemId, to: s.id) }
+            if !carded {
+                WantedWords.add(itemId, to: s.id)
+                queued = true
+            }
         }
+        return queued
+    }
+
+    func add(_ itemId: String, _ corpus: LangCorpus) {
+        queue(itemId, corpus)
         added.insert(itemId)
         haptic(true)
     }
 }
 
+
+struct PhraseActions: View {
+    enum Deck { case open, added, known, none }
+
+    let text: String
+    let forms: [ShareForm]
+    var deck = Deck.open
+    let add: () -> Void
+
+    var body: some View {
+        HStack(spacing: 10) {
+            switch deck {
+            case .open:
+                Button("Add its words to my deck", action: add)
+                    .buttonStyle(D8Option(align: .center, compact: true))
+                    .fixedSize()
+                    .accessibilityIdentifier("translate.addWords")
+            case .added:
+                Label("Added to your next session", systemImage: "checkmark.circle.fill")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(D8.malachite)
+            case .known:
+                Text("These words are already in your deck").font(.subheadline).foregroundStyle(Palette.muted)
+            case .none:
+                Text("No deck words in this phrase yet").font(.subheadline).foregroundStyle(Palette.muted)
+            }
+            if forms.count > 1 {
+                ShareObjectButton(.word(id: ShareRoute.clip(text, 80), gloss: text, forms: forms))
+                    .accessibilityIdentifier("translate.share")
+            }
+            Spacer(minLength: 0)
+        }
+    }
+}
 
 struct TrailingIcon: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
