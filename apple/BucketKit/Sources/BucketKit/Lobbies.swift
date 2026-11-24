@@ -337,7 +337,18 @@ public final class GuestPass {
     public func token(now: Date = Date()) async -> String? {
         let nick = nickname().trimmingCharacters(in: .whitespacesAndNewlines)
         if let t = ticket, let exp = parseInstant(t.expiresAt), exp.timeIntervalSince(now) > 3600 { return t.token }
-        guard !nick.isEmpty, let fresh = try? await api.guestTicket(nickname: String(nick.prefix(40)), guestId: guestId) else { return nil }
+        guard !nick.isEmpty else { return nil }
+        let name = String(nick.prefix(40))
+        let fresh: GuestTicket
+        do {
+            fresh = try await api.guestTicket(nickname: name, guestId: guestId)
+        } catch {
+            guard Self.merged(error) else { return nil }
+            forget()
+            defaults.removeObject(forKey: Self.idKey)
+            guard let again = try? await api.guestTicket(nickname: name, guestId: guestId) else { return nil }
+            fresh = again
+        }
         ticket = fresh
         defaults.set(try? JSONEncoder().encode(fresh), forKey: Self.ticketKey)
         return fresh.token
@@ -345,10 +356,22 @@ public final class GuestPass {
 
     public func merge(into userToken: String) async {
         guard let t = ticket else { return }
-        if (try? await api.mergeGuest(token: userToken, guestToken: t.token)) != nil {
-            ticket = nil
-            defaults.removeObject(forKey: Self.ticketKey)
+        do {
+            _ = try await api.mergeGuest(token: userToken, guestToken: t.token)
+            forget()
+        } catch {
+            if Self.merged(error) { forget() }
         }
+    }
+
+    func forget() {
+        ticket = nil
+        defaults.removeObject(forKey: Self.ticketKey)
+    }
+
+    nonisolated static func merged(_ error: Error) -> Bool {
+        if case BucketError.server(409, "guest_merged") = error { return true }
+        return false
     }
 }
 

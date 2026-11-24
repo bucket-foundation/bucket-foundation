@@ -330,6 +330,35 @@ let t0 = Date(timeIntervalSince1970: 1_793_268_000)
         #expect(pass.userId == nil)
     }
 
+    @MainActor @Test func aMergedGuestIdIsReplacedWithAFreshOne() async throws {
+        let defaults = try #require(UserDefaults(suiteName: "guest-\(UUID().uuidString)"))
+        defaults.set("oldid", forKey: "polingual.guestId")
+        let ids = LockedBox<[String]>([])
+        let api = BucketAPI(transport: StubTransport { r in
+            let body = String(data: r.httpBody ?? Data(), encoding: .utf8) ?? ""
+            ids.mutate { $0.append(body.contains("oldid") ? "old" : "new") }
+            if body.contains("oldid") { return (409, json(["error": "guest_merged"])) }
+            return (200, json(["token": "g2.abc.def", "userId": "u-new", "expiresAt": "2099-01-01T00:00:00Z"]))
+        }, cacheDir: nil)
+        let pass = GuestPass(api: api, defaults: defaults) { "Gia" }
+        #expect(await pass.token() == "g2.abc.def")
+        #expect(ids.value == ["old", "new"])
+        #expect(pass.guestId != "oldid")
+    }
+
+    @MainActor @Test func signingInWithAMergedGuestDropsTheTicket() async throws {
+        let defaults = try #require(UserDefaults(suiteName: "guest-\(UUID().uuidString)"))
+        let api = BucketAPI(transport: StubTransport { r in
+            if r.url!.path.hasSuffix("/merge") { return (409, json(["error": "guest_merged"])) }
+            return (200, json(["token": "g1.abc.def", "userId": "u-guest", "expiresAt": "2099-01-01T00:00:00Z"]))
+        }, cacheDir: nil)
+        let pass = GuestPass(api: api, defaults: defaults) { "Gia" }
+        _ = await pass.token()
+        await pass.merge(into: "user")
+        #expect(pass.userId == nil)
+        #expect(defaults.data(forKey: "polingual.guestTicket") == nil)
+    }
+
     @MainActor @Test func noNameMeansNoGuestToken() async {
         let api = BucketAPI(transport: StubTransport { _ in (500, Data()) }, cacheDir: nil)
         let pass = GuestPass(api: api, defaults: UserDefaults(suiteName: "guest-\(UUID().uuidString)")!) { "  " }

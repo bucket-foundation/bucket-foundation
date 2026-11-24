@@ -262,6 +262,10 @@ interface IdentityDeps {
   now: () => number;
 }
 
+export function guestMerged(e: unknown): boolean {
+  return e instanceof LobbyError && e.status === 409 && e.code === "guest_merged";
+}
+
 export async function resolveIdentity(deps: IdentityDeps, nickname?: string): Promise<Identity | null> {
   const account = await deps.account();
   const saved = deps.store.read();
@@ -271,7 +275,8 @@ export async function resolveIdentity(deps: IdentityDeps, nickname?: string): Pr
         const token = tokenFresh(saved, deps.now()) ? (saved.token as string) : (await deps.api.guest(saved.guestId, saved.nickname)).token;
         await deps.api.merge(token);
         deps.store.clear();
-      } catch {
+      } catch (e) {
+        if (guestMerged(e)) deps.store.clear();
       }
     }
     return { token: account, kind: "account" };
@@ -279,8 +284,16 @@ export async function resolveIdentity(deps: IdentityDeps, nickname?: string): Pr
   const name = nickname ? cleanNickname(nickname) : saved?.nickname ?? null;
   if (!name) return null;
   if (saved && saved.nickname === name && tokenFresh(saved, deps.now())) return { token: saved.token as string, kind: "guest" };
-  const guestId = saved?.guestId ?? newGuestId();
-  const got = await deps.api.guest(guestId, name);
+  let guestId = saved?.guestId ?? newGuestId();
+  let got: Awaited<ReturnType<IdentityDeps["api"]["guest"]>>;
+  try {
+    got = await deps.api.guest(guestId, name);
+  } catch (e) {
+    if (!guestMerged(e)) throw e;
+    deps.store.clear();
+    guestId = newGuestId();
+    got = await deps.api.guest(guestId, name);
+  }
   deps.store.write({ guestId, nickname: name, token: got.token, userId: got.userId, expiresAt: got.expiresAt });
   return { token: got.token, kind: "guest" };
 }

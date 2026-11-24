@@ -24,3 +24,13 @@ test("a bad code falls back to the lobby page", () => {
   assert.equal(roomCode("<script>"), null);
   assert.equal(roomMeta("play", "%3Cx%3E").alternates?.canonical, `${SITE}/play`);
 });
+
+test("a malformed percent escape falls back to the default room metadata", () => {
+  for (const raw of ["%", "AB%ZZ", "%E0%A4%A"]) {
+    assert.equal(roomCode(raw), null);
+    const meta = roomMeta("play", raw);
+    assert.deepEqual(meta.title, { absolute: "Play Polingual with friends · Polingual" });
+    const live = roomMeta("join", raw);
+    assert.deepEqual(live.title, { absolute: "Join a live Polingual quiz · Polingual" });
+  }
+});
