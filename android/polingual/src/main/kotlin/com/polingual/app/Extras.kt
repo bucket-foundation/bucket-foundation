@@ -36,6 +36,7 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
     }
     com.polingual.app.play.playRoutes(this, graph, nav)
     milestoneRoutes(graph, nav)
+    portRoutes(graph, nav)
 }
 
 @Composable

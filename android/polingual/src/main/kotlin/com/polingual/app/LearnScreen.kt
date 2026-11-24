@@ -50,6 +50,7 @@ fun LearnScreen(graph: Graph, nav: NavHostController) {
             }
         }
         PrimaryButton("New language set", color = PL.Lapis) { nav.navigate("system/new") }
+        if (app?.system != null) PlainLink(androidx.compose.ui.res.stringResource(R.string.placement_test)) { nav.navigate("placement") }
         LearnExtras(graph, nav)
     }
 }
