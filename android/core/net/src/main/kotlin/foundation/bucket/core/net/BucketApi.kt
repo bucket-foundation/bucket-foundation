@@ -68,9 +68,15 @@ class BucketApi(
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()
 
-    suspend fun progressPush(token: String, branch: String, data: JsonElement): PushResult = runCatching {
-        call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data) }, mapper = ::groupError)
-    }.fold(onSuccess = { PushResult.Written }, onFailure = { e -> if (e is BucketError.Server && e.status == 409) PushResult.Refused else PushResult.Failed })
+    suspend fun progressPush(token: String, branch: String, data: JsonElement, version: String? = null): PushResult = runCatching {
+        call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data); if (version != null) put("version", version) }, mapper = ::groupError)
+    }.fold(onSuccess = { PushResult.Written }, onFailure = { e ->
+        when {
+            e is BucketError.Server && e.status == 409 && e.text == "stale" -> PushResult.Stale
+            e is BucketError.Server && e.status == 409 -> PushResult.Refused
+            else -> PushResult.Failed
+        }
+    })
 
     suspend fun guestTicket(nickname: String, guestId: String): GuestTicket =
         decode(call("api/academy/lobbies/guest", null, buildJsonObject { put("nickname", nickname); put("guestId", guestId) }))
@@ -247,7 +253,7 @@ fun profileError(status: Int, text: String): BucketError {
 }
 
 enum class PushResult {
-    Written, Refused, Failed;
+    Written, Refused, Stale, Failed;
 
-    val settled: Boolean get() = this != Failed
+    val settled: Boolean get() = this == Written || this == Refused
 }

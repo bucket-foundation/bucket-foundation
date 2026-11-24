@@ -18,4 +18,5 @@ dependencies {
     api(libs.datastore)
     api(libs.coroutines.android)
     testImplementation(libs.kotlin.test)
+    testImplementation(libs.coroutines.test)
 }

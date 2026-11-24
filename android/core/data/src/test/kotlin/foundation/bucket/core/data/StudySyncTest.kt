@@ -61,4 +61,39 @@ class StudySyncTest {
         assertEquals(JsonPrimitive("review"), merged["cards"]!!.jsonObject["fr:x"]!!.jsonObject["state"])
         assertEquals(JsonObject(emptyMap()), merged["stats"]!!.jsonObject["history"])
     }
+
+    @Test
+    fun aStaleOfflineReviewNeverLowersWebReps() {
+        val stale = StudyState(cards = mapOf("fr:chat" to CardState(reps = 2, intervalDays = 1.0, due = 1, last = 99_000)))
+        val chat = StudySync.merge(web, stale)["cards"]!!.jsonObject["fr:chat"]!!.jsonObject
+        assertEquals(3, chat["reps"]!!.jsonPrimitive.content.toInt())
+        assertEquals(9.5, chat["stability"]!!.jsonPrimitive.content.toDouble())
+        val ahead = StudyState(cards = mapOf("fr:chat" to CardState(reps = 4, intervalDays = 12.0, due = 1, last = 1_000)))
+        assertEquals(4, StudySync.merge(web, ahead)["cards"]!!.jsonObject["fr:chat"]!!.jsonObject["reps"]!!.jsonPrimitive.content.toInt())
+    }
+
+    @Test
+    fun aStalePushIsRejectedThenRemergedOnTheNewerVersion() = kotlinx.coroutines.test.runTest {
+        val local = StudyState(cards = mapOf("de:hund" to CardState(reps = 1, intervalDays = 1.0, due = 1, last = 5_000)))
+        val newer = JsonObject(web + mapOf("cards" to JsonObject(web["cards"]!!.jsonObject + ("it:cane" to JsonObject(mapOf("reps" to JsonPrimitive(1), "lastReview" to JsonPrimitive(6_000)))))))
+        val versions = mutableListOf<String?>()
+        var server: Pair<JsonObject, String> = web to "v1"
+        var raced = false
+        val out = StudySync.settle(local, { StudySync.Remote(server.first, server.second) }, { data, version ->
+            versions += version
+            if (!raced) { raced = true; server = newer to "v2"; StudySync.Outcome.Stale } else { server = data to "v3"; StudySync.Outcome.Saved }
+        })
+        assertEquals(listOf<String?>("v1", "v2"), versions)
+        val cards = assertNotNull(out)["cards"]!!.jsonObject
+        assertNotNull(cards["it:cane"])
+        assertNotNull(cards["de:hund"])
+    }
+
+    @Test
+    fun settleGivesUpAfterRepeatedStalePushes() = kotlinx.coroutines.test.runTest {
+        val local = StudyState(cards = mapOf("de:hund" to CardState(reps = 1, intervalDays = 1.0, due = 1, last = 5_000)))
+        var pushes = 0
+        assertEquals(null, StudySync.settle(local, { StudySync.Remote(web, "v") }, { _, _ -> pushes++; StudySync.Outcome.Stale }))
+        assertEquals(3, pushes)
+    }
 }

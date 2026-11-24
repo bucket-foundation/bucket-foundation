@@ -75,17 +75,21 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return json({ error: "bad_request" }, 400);
   }
 
-  const b = body as { branch?: unknown; data?: unknown; branches?: unknown; reset?: unknown };
+  const b = body as { branch?: unknown; data?: unknown; branches?: unknown; reset?: unknown; version?: unknown };
   const updates: Record<string, unknown> = {};
+  const versions: Record<string, string | null> = {};
+  const version = (v: unknown) => (typeof v === "string" || v === null ? v : undefined);
 
   if (typeof b.branch === "string") {
     updates[b.branch] = b.data ?? {};
+    const v = version(b.version);
+    if (v !== undefined) versions[b.branch] = v;
   } else if (b.branches && typeof b.branches === "object") {
     for (const [k, v] of Object.entries(b.branches as Record<string, unknown>)) {
-      updates[k] =
-        v && typeof v === "object" && "data" in (v as object)
-          ? (v as { data: unknown }).data
-          : v;
+      const wrapped = v && typeof v === "object" && "data" in (v as object);
+      updates[k] = wrapped ? (v as { data: unknown }).data : v;
+      const ver = wrapped ? version((v as { version?: unknown }).version) : undefined;
+      if (ver !== undefined) versions[k] = ver;
     }
   } else {
     return json({ error: "bad_request" }, 400);
@@ -99,8 +103,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (!BRANCH_RE.test(branch)) return json({ error: "bad_request" }, 400);
   }
 
-  const result = await writeProgress(uid, updates, b.reset === true);
+  for (const v of Object.values(versions)) if (v !== null && Number.isNaN(Date.parse(v))) return json({ error: "bad_request" }, 400);
+
+  const result = await writeProgress(uid, updates, b.reset === true, versions);
   if (!result) return json({ error: "write_failed" }, 500);
+  if (result.written.length === 0 && result.stale.length > 0) return json({ error: "stale", stale: result.stale }, 409);
   if (result.written.length === 0) return json({ error: "blank_overwrite", branches: result.refused }, 409);
 
   let advanced = 0;
@@ -111,5 +118,5 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
   }
 
-  return json({ ok: true, written: result.written.length, refused: result.refused, advanced });
+  return json({ ok: true, written: result.written.length, refused: result.refused, stale: result.stale, advanced });
 }
