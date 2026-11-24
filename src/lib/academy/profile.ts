@@ -138,3 +138,7 @@ export function normalizeHandle(input: unknown): string | null {
 export function profileNamesAllowed(handle: string | null | undefined, displayName: string | null | undefined, allowed: (name: string) => boolean): boolean {
   return (!handle || allowed(handle.replace(/[-_]+/g, " "))) && (!displayName || allowed(displayName));
 }
+
+export function unchangedHandle(submitted: unknown, stored: string | null | undefined): boolean {
+  return typeof submitted === "string" && !!stored && submitted.trim().toLowerCase() === stored.toLowerCase();
+}

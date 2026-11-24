@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { normalizeHandle, profileNamesAllowed } from "../src/lib/academy/profile";
+import { normalizeHandle, profileNamesAllowed, unchangedHandle } from "../src/lib/academy/profile";
 import { nameAllowed } from "../src/lib/academy/groups-names";
 
 test("usernames refuse reserved words in any case", () => {
@@ -32,4 +32,26 @@ test("the polingual client reserves the same words as the server", () => {
   const list = client.match(/const RESERVED = new Set\(\[([^\]]+)\]\)/)?.[1] ?? "";
   for (const w of list.match(/"([^"]+)"/g)!.map((x) => x.slice(1, -1))) assert.equal(normalizeHandle(w), null, w);
   assert.match(client, /name_not_allowed:/);
+});
+
+test("the name filter catches lookalike letters, hidden characters and split words", () => {
+  const bypasses = ["fuсk", "ѕhit", "bitсh", "fυck", "sh​it", "s.h.i.t", "c u n t", "bi_tch", "s-h-i-t", "ＦＵＣＫ", "sh­it", "Сunt"];
+  for (const b of bypasses) assert.equal(nameAllowed(b), false, JSON.stringify(b));
+  assert.equal(profileNamesAllowed("bi_tch", null, nameAllowed), false);
+  assert.equal(profileNamesAllowed("s-h-i-t", null, nameAllowed), false);
+});
+
+test("ordinary names stay allowed", () => {
+  for (const ok of ["Ana L", "Ana Lopez", "Therapist", "Scunthorpe", "Grape Juice", "Анна", "Σοφία", "Mia K.", "Jo Ann", "Pakistan fan", "Nikolai"]) assert.equal(nameAllowed(ok), true, ok);
+});
+
+test("saving an unchanged handle or display name skips the checks", () => {
+  assert.equal(unchangedHandle("Support", "support"), true);
+  assert.equal(unchangedHandle(" support ", "support"), true);
+  assert.equal(unchangedHandle("support2", "support"), false);
+  assert.equal(unchangedHandle("support", null), false);
+  const route = readFileSync(join(__dirname, "..", "src/app/api/academy/profile/route.ts"), "utf8");
+  assert.match(route, /if \(b\.handle !== undefined && !sameHandle\) \{\n    const h = normalizeHandle\(b\.handle\);/);
+  assert.match(route, /const checkHandle = b\.handle !== undefined && !sameHandle \? nextHandle : null;/);
+  assert.match(route, /nextDisplay !== \(current\?\.display_name \?\? null\) \? nextDisplay : null/);
 });
