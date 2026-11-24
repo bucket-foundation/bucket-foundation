@@ -68,6 +68,25 @@ struct WordLookupsTests {
         #expect(tally.releases == 2)
     }
 
+    @Test func eachBatchSkipsLanguagesAnotherViewStartedMeanwhile() async {
+        let lookups = WordLookups(capacity: 4)
+        let gate = Gate(), log = AskLog()
+        let ask: WordLookups.Ask = { batch in
+            await log.add(batch)
+            await gate.wait()
+            return Self.forms(batch)
+        }
+        let card = Task { await lookups.load(word: "Haus", lang: "de", batches: Self.order([["es"], ["fr", "ja"]]), ask: ask, found: { _ in }) }
+        await Self.waitFor(1, in: log)
+        let detail = Task { await lookups.load(word: "Haus", lang: "de", batches: Self.order([["fr"]]), ask: ask, found: { _ in }) }
+        await Self.waitFor(2, in: log)
+        await gate.open()
+        await card.value
+        await detail.value
+        #expect(await log.asks == [["es"], ["fr"], ["ja"]])
+        #expect(lookups.entry(word: "Haus", lang: "de").found.count == 3)
+    }
+
     @Test func aViewOpenedLaterReusesTheMemo() async {
         let lookups = WordLookups(capacity: 4)
         let log = AskLog()
