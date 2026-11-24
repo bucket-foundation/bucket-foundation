@@ -14,7 +14,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -93,7 +92,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", go: (String) 
             else if (game.isRace) Text("Race: everyone plays the same deck, highest score wins.", color = p.muted)
             if (state.botsEnabled) Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("Fill empty seats with bots", color = p.ink, modifier = Modifier.weight(1f))
-                Switch(bots, { bots = it })
+                foundation.bucket.core.ui.pl.PLToggle(bots, { bots = it }, "Fill empty seats with bots")
             }
             if (system == null) Text("Start a language set in Learn first.", color = p.muted)
             PrimaryButton("Create room", enabled = system != null && !state.busy && foundation.bucket.core.model.LobbyGames.playable(game)) {
