@@ -5,6 +5,7 @@ import foundation.bucket.core.engine.StudyState
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlin.test.Test
@@ -95,5 +96,18 @@ class StudySyncTest {
         var pushes = 0
         assertEquals(null, StudySync.settle(local, { StudySync.Remote(web, "v") }, { _, _ -> pushes++; StudySync.Outcome.Stale }))
         assertEquals(3, pushes)
+    }
+
+    @Test
+    fun androidPicksTheSharedFixtureWinnerInEitherOrder() {
+        val cases = Json.parseToJsonElement(java.io.File("../../../scripts/fixtures/card-merge-cases.json").readText()).jsonArray
+        for (c in cases) {
+            val o = c.jsonObject
+            val winner = o["winner"]!!.jsonPrimitive.content
+            for ((mine, theirs) in listOf("a" to "b", "b" to "a")) {
+                val local = StudySync.card(o[mine]!!.jsonObject)
+                assertEquals(winner == mine, StudySync.localWins(local, o[theirs]!!.jsonObject), "case $c local $mine")
+            }
+        }
     }
 }

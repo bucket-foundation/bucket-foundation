@@ -1,4 +1,5 @@
 import { dayKey } from "./engine";
+import { laterCard } from "./card-merge";
 import { nameAllowed } from "./groups-names";
 import { memoryState, normalizeMemory } from "./lang-memory";
 import { normalizeSystemsDoc, parseCardId } from "./lang-systems";
@@ -366,7 +367,7 @@ function langMemoryState(lang: string, data: unknown): StoredEngineState {
 type LangCardRef = StoredCard & { introduced?: string };
 
 function newer(a: LangCardRef | undefined, b: LangCardRef): LangCardRef {
-  return !a || (b.lastReview || 0) > (a.lastReview || 0) ? b : a;
+  return laterCard(a, b)!;
 }
 
 interface ParsedRows {

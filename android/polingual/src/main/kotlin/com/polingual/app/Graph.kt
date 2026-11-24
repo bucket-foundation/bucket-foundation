@@ -157,7 +157,7 @@ class Graph(val context: Context) {
                 api.progressPull(t)?.let { b -> (b[branch] as? JsonObject).let { row -> StudySync.Remote(row?.get("data"), (row?.get("updated_at") as? kotlinx.serialization.json.JsonPrimitive)?.content) } }
             }
             val merged = StudySync.settle(local, pull, { data, version ->
-                when (api.progressPush(t, branch, data, version)) {
+                when (api.progressPush(t, branch, data, version, guarded = true)) {
                     foundation.bucket.core.net.PushResult.Written, foundation.bucket.core.net.PushResult.Refused -> StudySync.Outcome.Saved
                     foundation.bucket.core.net.PushResult.Stale -> StudySync.Outcome.Stale
                     foundation.bucket.core.net.PushResult.Failed -> StudySync.Outcome.Failed

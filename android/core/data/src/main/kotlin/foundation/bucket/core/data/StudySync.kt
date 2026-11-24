@@ -55,9 +55,10 @@ object StudySync {
 
     fun localWins(c: CardState, theirs: JsonObject?): Boolean {
         if (theirs == null) return true
-        val reps = (theirs["reps"] as? JsonPrimitive)?.intOrNull ?: 0
-        if (c.reps != reps) return c.reps > reps
-        return c.last > lastReview(theirs)
+        val mine = listOf(c.reps.toDouble(), c.last.toDouble(), c.lapses.toDouble(), c.due.toDouble())
+        val other = listOf(num(theirs, "reps") ?: 0.0, num(theirs, "lastReview") ?: 0.0, num(theirs, "lapses") ?: 0.0, num(theirs, "due") ?: 0.0)
+        for (i in mine.indices) if (mine[i] != other[i]) return mine[i] > other[i]
+        return false
     }
 
     fun merge(remote: JsonElement?, local: StudyState): JsonObject {

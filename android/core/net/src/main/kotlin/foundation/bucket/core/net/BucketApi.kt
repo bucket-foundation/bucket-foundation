@@ -68,8 +68,8 @@ class BucketApi(
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()
 
-    suspend fun progressPush(token: String, branch: String, data: JsonElement, version: String? = null): PushResult = runCatching {
-        call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data); if (version != null) put("version", version) }, mapper = ::groupError)
+    suspend fun progressPush(token: String, branch: String, data: JsonElement, version: String? = null, guarded: Boolean = version != null): PushResult = runCatching {
+        call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data); if (guarded) put("version", version) }, mapper = ::groupError)
     }.fold(onSuccess = { PushResult.Written }, onFailure = { e ->
         when {
             e is BucketError.Server && e.status == 409 && e.text == "stale" -> PushResult.Stale
