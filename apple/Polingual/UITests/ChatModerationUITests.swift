@@ -17,6 +17,9 @@ final class ChatModerationUITests: XCTestCase {
         app.launch()
         let other = app.staticTexts["¿Listos?"]
         XCTAssertTrue(other.waitForExistence(timeout: 60), "The staged chat did not show")
+        let mine = app.staticTexts["Let's go"]
+        for _ in 0..<6 where !(mine.exists && mine.isHittable) { app.swipeUp() }
+        XCTAssertTrue(mine.isHittable, "My own message did not scroll into view")
         let menus = app.buttons.matching(identifier: "chatModerate")
         XCTAssertEqual(menus.count, 2, "Each message from another player gets one menu, my own gets none")
         shot("chat-log")
