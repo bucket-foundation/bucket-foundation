@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { adoptDeviceBook } from "@/lib/daily/store";
+import { syncDeps } from "@/lib/daily/browser-sync";
+import { local } from "@/lib/storage";
 import { usePathname } from "next/navigation";
 import { PlayerProvider, usePlayer } from "@/lib/listen/player";
 import { langName } from "@academy/lang-systems";
-import { createContext, useCallback, useContext, useEffect, useState, useSyncExternalStore } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { fetchAccess, type Access } from "@/lib/app/plans";
 import { accessStep, track } from "@/lib/funnel";
@@ -57,6 +60,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function useAdoptDeviceProgress(signedIn: boolean, path: string) {
+  const done = useRef(false);
+  useEffect(() => {
+    if (!signedIn || done.current) return;
+    void adoptDeviceBook(local(), syncDeps()).then((r) => { done.current = r !== "device"; }, () => undefined);
+  }, [signedIn, path]);
+}
+
 function useAccess(signedIn: boolean) {
   const [access, setAccess] = useState<Access>({ status: "checking" });
   const check = useCallback(() => {
@@ -88,6 +99,7 @@ function Shell({ children }: { children: React.ReactNode }) {
   }, [refresh]);
 
   const { access, check } = useAccess(auth.status === "signed-in");
+  useAdoptDeviceProgress(auth.status === "signed-in", path);
   const lessonDone = useSyncExternalStore(subscribeFirstLesson, () => firstLessonDone(), () => false);
   const gate = appGate(access.status, lessonDone);
 

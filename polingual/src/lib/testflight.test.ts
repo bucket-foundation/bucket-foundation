@@ -357,7 +357,7 @@ test("without FOUNDING_IP_SALT the shared limit is skipped and production signup
   const local = fake([{ status: 201 }]);
   assert.equal((await invite(local, db)).status, 200);
   assert.equal(local.rpcs.length, 0);
-  for (const prod of [{ VERCEL_ENV: "production" }, { NODE_ENV: "production" }]) {
+  for (const prod of [{ VERCEL_ENV: "production" }, { NODE_ENV: "production" }] as Record<string, string>[]) {
     const f = fake([]);
     assert.equal((await invite(f, { ...db, ...prod })).status, 503);
     assert.equal(f.calls.length + f.checks.length + f.rpcs.length, 0);

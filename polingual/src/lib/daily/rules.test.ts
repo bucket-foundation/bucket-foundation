@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { dailyGroups, emptyGroups, groupId, submitGroup, toggleTile } from "./groups";
 import { dailyLetters, LETTER_ROUND } from "./letters";
 import { Speed, SPEED_HOT_COMBO } from "./speed";
-import { bookKey, DAILY_BRANCH, loadBook, mergeBooks, recordResult, shareText, type DailyBook, type DailyResult } from "./store";
+import { adoptDeviceBook, bookKey, DAILY_BRANCH, loadBook, mergeBooks, recordResult, shareText, type DailyBook, type DailyResult } from "./store";
 import { balanced, flags, GameDeck, starter, wordId } from "./words";
 import { SeededRandom } from "./rng";
 import { nativeCorpus } from "./fixture";
@@ -143,4 +143,18 @@ test("letters are counted after NFC normalization", async () => {
   const decomposed = "número";
   assert.equal(decomposed.length, 7);
   assert.deepEqual(miniLetters(decomposed), ["N", "Ú", "M", "E", "R", "O"]);
+});
+
+test("sign-in adopts device results into the account and skips an empty device", async () => {
+  const acct = fakeAccount({});
+  assert.equal(await adoptDeviceBook(memory(), acct.deps), "empty");
+  assert.equal(acct.posts.length, 0);
+  const store = memory();
+  await recordResult(res("daily-set", "2026-11-24", 10), store, null);
+  assert.equal(await adoptDeviceBook(store, acct.deps), "account");
+  assert.ok(acct.remote()[bookKey("daily-set", "2026-11-24")]);
+  const refused = memory();
+  await recordResult(res("mini", "2026-11-24", 10), refused, null);
+  assert.equal(await adoptDeviceBook(refused, fakeAccount({}, { failPosts: 9 }).deps), "device");
+  assert.equal(await adoptDeviceBook(refused, fakeAccount({}, { token: null }).deps), "device");
 });

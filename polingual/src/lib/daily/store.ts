@@ -128,3 +128,13 @@ export function shareText(title: string, r: DailyResult, url: string): string {
   const row = [...r.pattern].map((c) => (c === "1" ? "🟩" : "🟥")).join("");
   return `Polingual ${title} ${r.day}: ${r.score} of ${r.total}\n${row}\n${url}`;
 }
+
+export async function adoptDeviceBook(storage: Storage | null, deps: SyncDeps): Promise<"empty" | "account" | "device"> {
+  const local = readLocal(storage);
+  if (Object.keys(local).length === 0) return "empty";
+  if (!(await deps.token())) return "device";
+  const synced = await syncBook(deps, local);
+  if (!synced) return "device";
+  writeLocal(storage, synced);
+  return "account";
+}

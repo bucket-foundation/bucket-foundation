@@ -189,7 +189,7 @@ test("ip hash is salted and stable", () => {
 });
 
 test("production without FOUNDING_IP_SALT hashes nothing and keeps signups offline", async () => {
-  for (const prod of [{ VERCEL_ENV: "production" }, { NODE_ENV: "production" }]) {
+  for (const prod of [{ VERCEL_ENV: "production" }, { NODE_ENV: "production" }] as Record<string, string>[]) {
     assert.equal(ipHash("1.2.3.4", { ...env, ...prod }), null);
     const calls: string[] = [];
     const send = async (url: string) => (calls.push(url), new Response("{}"));
