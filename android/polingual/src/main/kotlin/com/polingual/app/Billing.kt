@@ -94,9 +94,11 @@ class Billing(context: Context, private val graph: Graph) {
     }
 
     fun buy(activity: Activity, product: ProductDetails) {
+        val userId = graph.account.userId
+        if (!PlayVerify.canBuy(userId)) { _message.value = "Sign in before you subscribe so your purchase follows your account."; return }
         val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible && Plan.hasTrial(product.productId) } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
         val params = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(product).apply { offer?.let { setOfferToken(it.offerToken) } }.build()
-        val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).apply { graph.account.userId?.let { setObfuscatedAccountId(accountHash(it)) } }.build()
+        val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).setObfuscatedAccountId(accountHash(userId!!)).build()
         client.launchBillingFlow(activity, flow)
     }
 
@@ -114,12 +116,13 @@ class Billing(context: Context, private val graph: Graph) {
         val records = mutableListOf<PurchaseRecord>()
         for (p in purchases) {
             val pending = p.purchaseState != Purchase.PurchaseState.PURCHASED
-            if (!pending && !p.isAcknowledged) client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build())
+            val verified = !pending && verify(p)
+            if (PlayVerify.clientAck(pending, p.isAcknowledged, verified, graph.account.userId != null, p.purchaseTime, System.currentTimeMillis())) {
+                client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build())
+            }
             p.products.forEach { id -> records += PurchaseRecord(id, p.purchaseTime, p.isAcknowledged, pending, p.isAutoRenewing) }
         }
-        records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()); graph.track("trial_start") }
-        val trialStart = graph.kv.get(TrialReminder.START_KEY)?.toLongOrNull()
-        if (Funnel.dayZeroCancel(records.firstOrNull { it.productId == Plan.YEARLY && it.purchasedMs == trialStart }, trialStart, System.currentTimeMillis())) graph.track("trial_cancel_d0")
+        records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()) }
         TrialReminder.sync(graph.context, TrialReminder.plan(records, graph.kv.get(TrialReminder.START_KEY)?.toLongOrNull(), System.currentTimeMillis()))
         reportTrial()
         trialEligible = Entitlement.trialEligible(records.map { it.productId }, serverTrialUsed)
@@ -128,6 +131,15 @@ class Billing(context: Context, private val graph: Graph) {
         if (records.any { it.pending }) _message.value = "Your purchase is pending. Access opens when Google Play confirms it."
     }
 
+    private suspend fun verify(p: Purchase): Boolean {
+        val done = graph.kv.get(VERIFIED_KEY).orEmpty().split("\n")
+        if (p.purchaseToken in done) return true
+        val t = graph.account.token() ?: return false
+        val productId = p.products.firstOrNull() ?: return false
+        val ok = runCatching { graph.api.playVerify(t, graph.context.packageName, productId, p.purchaseToken) }.getOrDefault(false)
+        if (ok) graph.kv.set(VERIFIED_KEY, (done.filter { it.isNotBlank() }.takeLast(20) + p.purchaseToken).joinToString("\n"))
+        return ok
+    }
 
     private suspend fun reportTrial() {
         if (graph.kv.get(TrialReminder.START_KEY) == null || graph.kv.get(TrialReminder.MARKED_KEY) != null) return
@@ -137,6 +149,7 @@ class Billing(context: Context, private val graph: Graph) {
 
     companion object {
         const val CACHE_KEY = "polingual.access"
+        const val VERIFIED_KEY = "polingual.play.verified"
         const val GRACE_MS = 3L * 24 * 3600 * 1000
         fun accountHash(userId: String): String = MessageDigest.getInstance("SHA-256").digest(userId.toByteArray()).joinToString("") { "%02x".format(it) }
     }

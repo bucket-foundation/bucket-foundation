@@ -86,6 +86,17 @@ class BucketApiTest {
     fun undecodableReplyIsDecodingError() = runTest {
         assertFailsWith<BucketError.Decoding> { api(200, "<html>").verify("a@b.co", "123456") }
     }
+    @Test
+    fun playVerifySendsPurchase() = runTest {
+        val seen = mutableListOf<String>()
+        assertTrue(api(200, """{"ok":true,"state":"trialing"}""", seen).playVerify("t", "com.polingual.app", "com.polingual.yearly", "tok"))
+        assertEquals("""POST /api/play/verify? {"packageName":"com.polingual.app","productId":"com.polingual.yearly","purchaseToken":"tok"}""", seen.single())
+    }
+
+    @Test
+    fun playVerifyRefusalThrows() = runTest {
+        assertFailsWith<BucketError> { api(409, """{"error":"token_bound"}""").playVerify("t", "p", "x", "tok") }
+    }
 }
 
 class ScienceApiTest {
@@ -110,5 +121,6 @@ class ScienceApiTest {
         assertTrue(seen.last().contains("q=entropy") && seen.last().contains("top_k=20"))
         assertEquals("/academy-app/corpus/physics.json?", seen[1])
     }
+
 
 }
