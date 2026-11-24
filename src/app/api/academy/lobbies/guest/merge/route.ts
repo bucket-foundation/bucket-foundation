@@ -1,7 +1,7 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { configured, json, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 import { verifyGuestToken } from "@/lib/academy/lobby-guests";
-import { guestSecret, lobbyFail } from "@/lib/academy/lobbies-server";
+import { guestSecret, lobbyFail, revokeGuest } from "@/lib/academy/lobbies-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,6 +21,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const res = await service().rpc("merge_lobby_guest", { p_guest: claims.sub, p_user: uid });
     if (res.error) throw new Error(res.error.message);
+    await revokeGuest(claims.sub);
     return json({ ok: true, merged: res.data ?? 0 });
   } catch (err) {
     return lobbyFail(err, "merge");

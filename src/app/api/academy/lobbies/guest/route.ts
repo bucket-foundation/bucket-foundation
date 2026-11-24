@@ -2,8 +2,8 @@ import type { NextRequest, NextResponse } from "next/server";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import { normalizeDisplayName } from "@/lib/academy/groups";
 import { clientIp, configured, json, NAME_NOT_ALLOWED, preflight, readBody } from "@/lib/academy/groups-server";
-import { GUEST_PER_MINUTE, issueGuestToken, normalizeGuestId } from "@/lib/academy/lobby-guests";
-import { guestSecret, limited, lobbyFail } from "@/lib/academy/lobbies-server";
+import { GUEST_PER_MINUTE, guestUserId, issueGuestToken, normalizeGuestId } from "@/lib/academy/lobby-guests";
+import { guestRevoked, guestSecret, limited, lobbyFail } from "@/lib/academy/lobbies-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -22,6 +22,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!nameAllowed(nickname)) return json({ error: NAME_NOT_ALLOWED }, 422);
   try {
     if ((await limited(`guest:ip:${clientIp(req)}`, GUEST_PER_MINUTE * 4)) || (await limited(`guest:id:${guestId}`, GUEST_PER_MINUTE))) return json({ error: "rate_limited" }, 429);
+    if (await guestRevoked(guestUserId(guestId))) return json({ error: "guest_merged" }, 409);
     return json(issueGuestToken(guestId, nickname, secret, Date.now()));
   } catch (err) {
     return lobbyFail(err, "guest");
