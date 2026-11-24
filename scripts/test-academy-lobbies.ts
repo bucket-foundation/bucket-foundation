@@ -145,6 +145,14 @@ test("native clients list only games they can play on the plain clock", () => {
   assert.deepEqual(Array.from(nativePlays(null)), []);
 });
 
+test("a native header naming an unlisted game is refused", () => {
+  const declared = nativePlays("spy, SPY, Tiles, made-up");
+  assert.deepEqual(Array.from(declared).sort(), ["tiles"]);
+  assert.equal(nativePlayable(lobby({ game: "spy" }), false, declared), false);
+  assert.equal(nativePlayable(lobby({ game: "spy" }), false, nativePlays("spy")), false);
+  assert.equal(nativePlayable(lobby({ game: "tiles" }), false, declared), true);
+});
+
 test("points reward speed and give nothing for a miss", () => {
   assert.equal(points(true, 0, 10), 200);
   assert.equal(points(true, 5000, 10), 150);
