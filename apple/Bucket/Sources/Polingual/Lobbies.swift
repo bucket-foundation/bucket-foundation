@@ -164,7 +164,7 @@ struct StagedLobbyHook: ViewModifier {
             .navigationDestination(isPresented: $open) { LobbyRoom() }
             .task {
                 guard !lobbies.staged, let players = Launch.value("-lobbyStage").flatMap(Int.init) else { return }
-                lobbies.stage(players: players, mode: Launch.value("-lobbyStageMode").flatMap(LobbyPromptMode.init(rawValue:)) ?? .form, race: Launch.value("-lobbyStageRace").flatMap(LobbyGame.init(rawValue:)))
+                lobbies.stage(players: players, mode: Launch.value("-lobbyStageMode").flatMap(LobbyPromptMode.init(rawValue:)) ?? .form, race: Launch.value("-lobbyStageRace").flatMap(LobbyGame.init(rawValue:)), chat: Launch.value("-lobbyStageChat") == "1")
                 open = true
             }
         #else
@@ -500,7 +500,7 @@ struct LobbyRoom: View {
     func report(_ m: LobbyMessage, _ reason: ChatReportReason) {
         problem = nil
         Task {
-            do {
+            do throws(BucketError) {
                 try await lobbies.report(m, reason: reason)
                 reportSent = m
             } catch {
@@ -512,7 +512,7 @@ struct LobbyRoom: View {
     func block(_ m: LobbyMessage) {
         problem = nil
         Task {
-            do { try await lobbies.block(m) } catch { problem = String(localized: "Block failed: \(lobbyProblem(error))") }
+            do throws(BucketError) { try await lobbies.block(m) } catch { problem = String(localized: "Block failed: \(lobbyProblem(error))") }
         }
     }
 
