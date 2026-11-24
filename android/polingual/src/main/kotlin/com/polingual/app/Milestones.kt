@@ -19,7 +19,7 @@ fun NavGraphBuilder.milestoneRoutes(graph: Graph, nav: NavHostController) {
         androidx.navigation.navArgument("code") { type = androidx.navigation.NavType.StringType; defaultValue = "" },
         androidx.navigation.navArgument("game") { type = androidx.navigation.NavType.StringType; defaultValue = "" },
     )) { e ->
-        LobbiesScreen(graph, e.arguments?.getString("code").orEmpty(), e.arguments?.getString("game").orEmpty()) { nav.popBackStack() }
+        LobbiesScreen(graph, e.arguments?.getString("code").orEmpty(), e.arguments?.getString("game").orEmpty(), go = { nav.navigate(it) }) { nav.popBackStack() }
     }
 }
 

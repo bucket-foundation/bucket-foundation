@@ -56,7 +56,7 @@ val nativeLobbyGames = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Fla
 
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
-fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> Unit) {
+fun LobbiesScreen(graph: Graph, code: String, preset: String = "", go: (String) -> Unit = {}, back: () -> Unit) {
     val p = LocalPalette.current
     val state by graph.lobbies.state.collectAsState()
     val app by graph.state.collectAsState()
@@ -77,7 +77,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> U
     }
     LaunchedEffect(Unit) { graph.lobbies.refresh() }
     LaunchedEffect(code) { if (code.isNotBlank() && (signedIn || name.isNotEmpty()) && state.current == null) act { graph.lobbies.join(code, name.ifEmpty { "Player" }) } }
-    if (state.current != null) { RoomScreen(graph) { scope.launch { graph.lobbies.leave() } }; return }
+    if (state.current != null) { RoomScreen(graph, go) { scope.launch { graph.lobbies.leave() } }; return }
     Page("Live rooms", back = back, ground = Ground.Lattice, panel = true, stickers = listOf(Sticker("pebble", Alignment.CenterStart, 60.dp, -12f), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 90.dp, -4f, dx = (-8).dp))) {
         Text("Play the same round with friends, live. Web and iPhone players join with the same code.", color = p.muted)
         OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, label = { Text(if (signedIn) "Display name" else "Your name") }, modifier = Modifier.fillMaxWidth())
@@ -109,7 +109,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", back: () -> U
 }
 
 @Composable
-fun RoomScreen(graph: Graph, leave: () -> Unit) {
+fun RoomScreen(graph: Graph, go: (String) -> Unit = {}, leave: () -> Unit) {
     val p = LocalPalette.current
     val state by graph.lobbies.state.collectAsState()
     val lobby = state.current ?: return
@@ -140,7 +140,7 @@ fun RoomScreen(graph: Graph, leave: () -> Unit) {
             }
             is LobbyPhase.Round -> Round(graph, lobby, phase.index, phase.remaining, reveal = false)
             is LobbyPhase.Reveal -> Round(graph, lobby, phase.index, phase.remaining, reveal = true)
-            LobbyPhase.Finished -> Results(lobby, again = { exit() })
+            LobbyPhase.Finished -> Results(graph, lobby, go, again = { exit() })
         }
         error?.let { Text(it, color = PL.Vermilion) }
         if (phase == LobbyPhase.Waiting || phase == LobbyPhase.Finished) Chat(graph, lobby) { act(it) }
@@ -249,8 +249,11 @@ private fun DuelPowers(graph: Graph, lobby: Lobby, next: Int) {
 }
 
 @Composable
-private fun Results(lobby: Lobby, again: () -> Unit) {
+private fun Results(graph: Graph, lobby: Lobby, go: (String) -> Unit, again: () -> Unit) {
     val p = LocalPalette.current
+    val stage by graph.account.stage.collectAsState()
+    val access by graph.billing.access.collectAsState()
+    val cta = ResultsUpsell.of(stage, access)
     Text("Results", style = Type.display, color = p.ink)
     lobby.standings.forEachIndexed { i, pl ->
         Row(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
@@ -261,6 +264,16 @@ private fun Results(lobby: Lobby, again: () -> Unit) {
     }
     SectionTitle("Words")
     lobby.prompts.forEach { pr -> Text(resultLine(pr), color = p.ink) }
+    if (cta.save) Card {
+        Text("Save your progress", style = Type.title, color = p.ink)
+        Text("You scored ${lobby.standings.firstOrNull { it.isMe }?.score ?: 0} points. Sign in to keep your streak, stats and game history. Your guest games come with you.", color = p.ink)
+        PrimaryButton("Sign in to save", color = PL.Malachite, onClick = { go(ResultsUpsell.SIGN_IN) })
+    }
+    if (cta.learn) Card {
+        Text("Learn these words", style = Type.title, color = p.ink)
+        Text("Lessons turn the words from this game into words you keep.", color = p.ink)
+        PrimaryButton("Start learning", color = PL.Vermilion, onClick = { go(ResultsUpsell.PAYWALL) })
+    }
     PrimaryButton("Leave room", color = PL.Lapis, onClick = again)
 }
 
