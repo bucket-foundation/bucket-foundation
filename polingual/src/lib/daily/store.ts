@@ -36,24 +36,31 @@ function sameBook(a: DailyBook, b: DailyBook): boolean {
   return ka.length === Object.keys(b).length && ka.every((k) => b[k] && b[k].savedAt === a[k].savedAt && b[k].pattern === a[k].pattern);
 }
 
-export function readLocal(storage: Storage | null): DailyBook {
+export const ownedKey = (owner: string | null) => (owner ? `${LOCAL_KEY}@${owner}` : LOCAL_KEY);
+
+export function readLocal(storage: Storage | null, owner: string | null = null): DailyBook {
   try {
-    const raw = storage?.getItem(LOCAL_KEY);
+    const raw = storage?.getItem(ownedKey(owner));
     return raw ? (JSON.parse(raw) as DailyBook) : {};
   } catch {
     return {};
   }
 }
 
-export function writeLocal(storage: Storage | null, book: DailyBook): void {
+export function writeLocal(storage: Storage | null, book: DailyBook, owner: string | null = null): void {
   try {
-    storage?.setItem(LOCAL_KEY, JSON.stringify(book));
+    storage?.setItem(ownedKey(owner), JSON.stringify(book));
   } catch {
     return;
   }
 }
 
-export type SyncDeps = { fetch: typeof fetch; token: () => Promise<string | null> };
+export type SyncDeps = { fetch: typeof fetch; token: () => Promise<string | null>; user: () => Promise<string | null> };
+
+async function owner(deps: SyncDeps | null): Promise<string | null> {
+  if (!deps || !(await deps.token())) return null;
+  return deps.user();
+}
 
 async function call(deps: SyncDeps, init?: RequestInit): Promise<Response | null> {
   const t = await deps.token();
@@ -101,26 +108,34 @@ async function syncBook(deps: SyncDeps, local: DailyBook, tries = 3): Promise<Da
 }
 
 export async function recordResult(result: DailyResult, storage: Storage | null, deps: SyncDeps | null): Promise<{ book: DailyBook; saved: SaveState }> {
-  let book = mergeBooks(readLocal(storage), { [bookKey(result.game, result.day)]: result });
-  writeLocal(storage, book);
-  if (!deps || !(await deps.token())) return { book, saved: "device" };
+  const who = await owner(deps);
+  let book = mergeBooks(readLocal(storage, who), { [bookKey(result.game, result.day)]: result });
+  writeLocal(storage, book, who);
+  if (!deps || !who) return { book, saved: "device" };
   const synced = await syncBook(deps, book);
   if (!synced) return { book, saved: "failed" };
   book = synced;
-  writeLocal(storage, book);
+  writeLocal(storage, book, who);
   return { book, saved: "account" };
 }
 
 type LoadedBook = { book: DailyBook; source: "account" | "device" };
 
 export async function loadBook(storage: Storage | null, deps: SyncDeps | null): Promise<LoadedBook> {
-  const local = readLocal(storage);
-  if (!deps || !(await deps.token())) return { book: local, source: "device" };
+  const who = await owner(deps);
+  if (!deps || !who) return { book: readLocal(storage), source: "device" };
+  const guest = readLocal(storage);
+  const local = mergeBooks(readLocal(storage, who), guest);
   const remote = await pullBook(deps);
   if (!remote) return { book: local, source: "device" };
   let book = mergeBooks(local, remote);
-  if (!sameBook(book, remote)) book = (await syncBook(deps, book)) ?? book;
-  writeLocal(storage, book);
+  let saved = sameBook(book, remote);
+  if (!saved) {
+    const synced = await syncBook(deps, book);
+    if (synced) { book = synced; saved = true; }
+  }
+  writeLocal(storage, book, who);
+  if (saved && Object.keys(guest).length > 0) writeLocal(storage, {});
   return { book, source: "account" };
 }
 
@@ -130,11 +145,13 @@ export function shareText(title: string, r: DailyResult, url: string): string {
 }
 
 export async function adoptDeviceBook(storage: Storage | null, deps: SyncDeps): Promise<"empty" | "account" | "device"> {
-  const local = readLocal(storage);
-  if (Object.keys(local).length === 0) return "empty";
-  if (!(await deps.token())) return "device";
-  const synced = await syncBook(deps, local);
+  const guest = readLocal(storage);
+  if (Object.keys(guest).length === 0) return "empty";
+  const who = await owner(deps);
+  if (!who) return "device";
+  const synced = await syncBook(deps, mergeBooks(readLocal(storage, who), guest));
   if (!synced) return "device";
-  writeLocal(storage, synced);
+  writeLocal(storage, synced, who);
+  writeLocal(storage, {});
   return "account";
 }

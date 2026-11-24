@@ -62,9 +62,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
 function useAdoptDeviceProgress(signedIn: boolean, path: string) {
   const done = useRef(false);
+  const busy = useRef(false);
+  const tries = useRef(0);
   useEffect(() => {
-    if (!signedIn || done.current) return;
-    void adoptDeviceBook(local(), syncDeps()).then((r) => { done.current = r !== "device"; }, () => undefined);
+    if (!signedIn) { done.current = false; tries.current = 0; return; }
+    if (done.current || busy.current || tries.current >= 5) return;
+    busy.current = true;
+    tries.current += 1;
+    void adoptDeviceBook(local(), syncDeps())
+      .then((r) => { done.current = r !== "device"; }, () => undefined)
+      .finally(() => { busy.current = false; });
   }, [signedIn, path]);
 }
 

@@ -75,12 +75,13 @@ test("the first result per game and day wins every merge", () => {
   assert.deepEqual(Object.keys(mergeBooks({ [k]: later }, { [bookKey("daily-set", "2026-11-12")]: other })).sort(), ["daily-set|2026-11-12", "mini|2026-11-12"]);
 });
 
-function fakeAccount(initial: DailyBook, opts: { failPosts?: number; token?: string | null } = {}) {
+function fakeAccount(initial: DailyBook, opts: { failPosts?: number; token?: string | null; user?: string } = {}) {
   let remote: DailyBook = initial;
   let fails = opts.failPosts ?? 0;
   const posts: DailyBook[] = [];
   const deps = {
     token: async () => (opts.token === undefined ? "t" : opts.token),
+    user: async () => opts.user ?? "user-a",
     fetch: (async (_u: string, init?: RequestInit) => {
       if (init?.method === "POST") {
         if (fails-- > 0) return new Response("{}", { status: 500 });
@@ -157,4 +158,19 @@ test("sign-in adopts device results into the account and skips an empty device",
   await recordResult(res("mini", "2026-11-24", 10), refused, null);
   assert.equal(await adoptDeviceBook(refused, fakeAccount({}, { failPosts: 9 }).deps), "device");
   assert.equal(await adoptDeviceBook(refused, fakeAccount({}, { token: null }).deps), "device");
+});
+
+test("a second account on the same browser never receives the first account's results", async () => {
+  const store = memory();
+  await recordResult(res("daily-set", "2026-11-23", 10), store, null);
+  const a = fakeAccount({}, { user: "user-a" });
+  assert.equal(await adoptDeviceBook(store, a.deps), "account");
+  await recordResult(res("mini", "2026-11-24", 20), store, a.deps);
+  assert.equal(Object.keys(a.remote()).length, 2);
+  const b = fakeAccount({}, { user: "user-b" });
+  assert.equal(await adoptDeviceBook(store, b.deps), "empty");
+  assert.deepEqual((await loadBook(store, b.deps)).book, {});
+  await recordResult(res("mini", "2026-11-25", 30), store, b.deps);
+  assert.deepEqual(Object.keys(b.remote()), [bookKey("mini", "2026-11-25")]);
+  assert.equal((await loadBook(store, a.deps)).book[bookKey("mini", "2026-11-25")], undefined);
 });
