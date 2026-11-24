@@ -328,13 +328,28 @@ test("email invites use the shared limit under their own scope", async () => {
 });
 
 test("a throttled signup never reaches the Turnstile check", async () => {
-  const limits = { ...fresh(), global: new RateLimiter(0, 3_600_000) };
-  const f = fake([]);
-  assert.equal((await invite(f, env, site, limits)).status, 429);
-  assert.equal(f.checks.length, 0);
-  const db = fake([], { rpc: { status: 200, body: false } });
-  assert.equal((await invite(db, { ...env, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc", FOUNDING_IP_SALT: "salt" })).status, 429);
-  assert.equal(db.checks.length, 0);
+  const ipFull = { ...fresh(), ip: new RateLimiter(0, 600_000) };
+  const blocked = fake([]);
+  assert.equal((await invite(blocked, env, site, ipFull)).status, 429);
+  assert.equal(blocked.checks.length, 0);
+});
+
+test("a failed Turnstile check spends no shared, email or global quota", async () => {
+  const limits = { ip: new RateLimiter(100, 600_000), email: new RateLimiter(1, 3_600_000), global: new RateLimiter(1, 3_600_000) };
+  const db = { ...env, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc", FOUNDING_IP_SALT: "salt" };
+  for (let i = 0; i < 20; i++) {
+    const junk = fake([], { human: { success: false } });
+    assert.equal((await invite(junk, db, { ...site, ip: `r${i}` }, limits)).status, 403);
+    assert.equal(junk.rpcs.length, 0);
+  }
+  const real = fake([{ status: 201 }], { rpc: { status: 500 } });
+  const original = console.error;
+  console.error = () => {};
+  try {
+    assert.equal((await invite(real, db, site, limits)).status, 200);
+  } finally {
+    console.error = original;
+  }
 });
 
 test("without FOUNDING_IP_SALT the shared limit is skipped and production signups go offline", async () => {

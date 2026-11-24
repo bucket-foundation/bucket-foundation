@@ -28,7 +28,9 @@ export function hashSalt(env: BetaEnv): string | null {
 }
 
 export function saltMissingInProduction(env: BetaEnv): boolean {
-  return !hashSalt(env) && (env.VERCEL_ENV === "production" || env.NODE_ENV === "production");
+  const missing = !hashSalt(env) && (env.VERCEL_ENV === "production" || env.NODE_ENV === "production");
+  if (missing) console.error("[testflight] FOUNDING_IP_SALT is not set; signups are offline");
+  return missing;
 }
 
 function hashed(salt: string, kind: string, value: string): string {
@@ -60,7 +62,11 @@ export async function sharedLimit(ip: string, email: string, env: BetaEnv, send:
 }
 
 function localLimit(ip: string, email: string, limits: Limits, now?: number): boolean {
-  return limits.ip.take(ip, now) && limits.email.take(email, now) && limits.global.take("all", now);
+  return limits.ip.take(ip, now) && afterHumanLimit(email, limits, now);
+}
+
+function afterHumanLimit(email: string, limits: Limits, now?: number): boolean {
+  return limits.email.take(email, now) && limits.global.take("all", now);
 }
 
 const NOT_HUMAN: TestflightResult = { status: 403, body: { error: "Finish the check below your email, then try again." } };
@@ -150,9 +156,10 @@ export async function inviteTester(
   if (!creds || !env.TURNSTILE_SECRET_KEY?.trim() || saltMissingInProduction(env)) return OFFLINE;
   const ip = req.ip || "unknown";
   if (!req.token) return NOT_HUMAN;
-  const shared = await sharedLimit(ip, parsed.signup.email, env, send);
-  if (!(shared ?? localLimit(ip, parsed.signup.email, limits, req.now))) return TOO_MANY;
+  if (!limits.ip.take(ip, req.now)) return TOO_MANY;
   if (!(await verifyHuman(req.token, req.ip ?? null, env, send))) return NOT_HUMAN;
+  const shared = await sharedLimit(ip, parsed.signup.email, env, send);
+  if (!(shared ?? afterHumanLimit(parsed.signup.email, limits, req.now))) return TOO_MANY;
   return OUTCOME[await addTester(parsed.signup.email, creds, env, send, req.now)];
 }
 
@@ -219,9 +226,10 @@ export async function requestInvite(
   const human = Boolean(env.TURNSTILE_SECRET_KEY?.trim());
   if (human && !req.token) return NOT_HUMAN;
   const ip = req.ip || "unknown";
-  const shared = await sharedLimit(ip, parsed.signup.email, env, send, "mail:");
-  if (!(shared ?? localLimit(ip, parsed.signup.email, limits, req.now))) return TOO_MANY;
+  if (!limits.ip.take(ip, req.now)) return TOO_MANY;
   if (human && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return NOT_HUMAN;
+  const shared = await sharedLimit(ip, parsed.signup.email, env, send, "mail:");
+  if (!(shared ?? afterHumanLimit(parsed.signup.email, limits, req.now))) return TOO_MANY;
   return joinBeta(body, env, send, { ...req, human });
 }
 
