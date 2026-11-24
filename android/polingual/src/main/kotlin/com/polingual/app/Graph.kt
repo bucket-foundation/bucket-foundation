@@ -60,7 +60,7 @@ class Graph(val context: Context) {
     val silent: StateFlow<Boolean> = silentSetting.on
     fun setSilent(on: Boolean) = silentSetting.set(on)
     val voice = Voice(context) { silentSetting.on.value }
-    val chatBlocks = foundation.bucket.core.auth.ChatBlocks(kv)
+    val chatBlocks = foundation.bucket.core.auth.ChatBlocks(kv, api) { account.token() ?: guest.token() }
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
     val radio = Radio(context)
     val billing = Billing(context, this)
