@@ -30,4 +30,26 @@ struct LookupMemoTests {
         #expect(memo.entry(word: "b", lang: "en").asked.isEmpty)
         #expect(memo.entry(word: "c", lang: "en").asked == ["es"])
     }
+
+    @Test func aSecondViewJoinsLanguagesAlreadyBeingLookedUp() {
+        var runs = LookupRuns<Int>()
+        runs.start(1, word: "Haus", lang: "de", targets: ["es", "fr"])
+        runs.start(2, word: "Haus", lang: "de", targets: ["ja"])
+        #expect(runs.running(word: "Haus", lang: "de") == ["es": 1, "fr": 1, "ja": 2])
+        #expect(runs.running(word: "Haus", lang: "nl").isEmpty)
+        let batches = LangReference.lookupBatches(lang: "de", mine: ["es", "fr", "ja", "it"], all: false, size: 8, asked: Set(runs.running(word: "Haus", lang: "de").keys))
+        #expect(batches.flatMap { $0 } == ["it", "en"])
+    }
+
+    @Test func finishingARunFreesOnlyItsLanguages() {
+        var runs = LookupRuns<Int>()
+        runs.start(1, word: "Haus", lang: "de", targets: ["es", "fr"])
+        runs.start(2, word: "Haus", lang: "de", targets: ["ja"])
+        runs.finish(1, word: "Haus", lang: "de")
+        #expect(runs.running(word: "Haus", lang: "de") == ["ja": 2])
+        runs.finish(2, word: "Haus", lang: "de")
+        #expect(runs.running(word: "Haus", lang: "de").isEmpty)
+        runs.finish(2, word: "Haus", lang: "de")
+        #expect(runs.running(word: "Haus", lang: "de").isEmpty)
+    }
 }

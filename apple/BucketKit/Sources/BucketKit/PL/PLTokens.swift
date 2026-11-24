@@ -108,10 +108,12 @@ public enum PL {
         "hero": PLTypeSpec(family: .display, size: 52, weight: 700, line: 1.05),
         "title": PLTypeSpec(family: .display, size: 36, weight: 700, line: 1.1),
         "heading": PLTypeSpec(family: .display, size: 24, weight: 600, line: 1.15),
+        "subhead": PLTypeSpec(family: .display, size: 20, weight: 600, line: 1.2),
         "body": PLTypeSpec(family: .body, size: 17, weight: 500, line: 1.5),
         "small": PLTypeSpec(family: .body, size: 14, weight: 600, line: 1.4),
         "label": PLTypeSpec(family: .mono, size: 11, weight: 700, line: 1.3),
         "word": PLTypeSpec(family: .display, size: 44, weight: 600, line: 1),
+        "count": PLTypeSpec(family: .display, size: 96, weight: 700, line: 1),
     ]
 
     public static let hero = type["hero"]!
@@ -121,6 +123,8 @@ public enum PL {
     public static let small = type["small"]!
     public static let label = type["label"]!
     public static let word = type["word"]!
+    public static let subhead = type["subhead"]!
+    public static let count = type["count"]!
 
     public enum Radius {
         public static let all: [String: CGFloat] = ["sm": 10, "md": 14, "lg": 20, "xl": 24, "pill": 999]

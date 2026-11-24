@@ -6,27 +6,20 @@ enum WordWebLoader {
     nonisolated static let shelf = LexiconShelf(capacity: 2)
     nonisolated static let batchSize = LexiconShelf.ceiling - 1
     private static var holders = 0
-    private static var memo = LookupMemo(capacity: 24)
+    private static let lookups = WordLookups(capacity: 24, hold: hold, release: letGo)
 
     static func load(_ detail: WordDetail, mine: [String], corpus: LangCorpus?, all: Bool, update: (WordWeb) -> Void) async {
         let word = detail.word, lang = detail.lang
-        let known = detail.itemId == nil ? memo.entry(word: word, lang: lang) : LookupMemo.Entry()
+        let known = detail.itemId == nil ? lookups.entry(word: word, lang: lang) : LookupMemo.Entry()
         update(LangReference.web(detail, corpus: corpus, mine: mine, found: known.found))
         guard detail.itemId == nil else { return }
-        let batches = LangReference.lookupBatches(lang: lang, mine: mine, all: all, size: batchSize, asked: known.asked)
-        guard !batches.isEmpty else { return }
-        hold()
-        defer { letGo() }
-        for batch in batches {
-            if Task.isCancelled { return }
-            let lookup = Task.detached(priority: .userInitiated) {
-                TranslateEngine.answer(word, from: [lang], to: batch, corpus: corpus, shelf: shelf)?.rows
-            }
-            let rows = await lookup.value
-            if let rows, !rows.isEmpty { memo.record(word: word, lang: lang, asked: Array(rows.keys), rows: rows) }
-            if Task.isCancelled { return }
-            update(LangReference.web(detail, corpus: corpus, mine: mine, found: memo.entry(word: word, lang: lang).found))
-        }
+        await lookups.load(word: word, lang: lang, batches: { skip in
+            LangReference.lookupBatches(lang: lang, mine: mine, all: all, size: batchSize, asked: skip)
+        }, ask: { batch in
+            TranslateEngine.answer(word, from: [lang], to: batch, corpus: corpus, shelf: shelf)?.rows
+        }, found: { found in
+            update(LangReference.web(detail, corpus: corpus, mine: mine, found: found))
+        })
     }
 
     private static func hold() {
