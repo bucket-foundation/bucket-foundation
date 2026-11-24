@@ -247,4 +247,13 @@ struct LangReferenceTests {
         #expect(Set(all.flatMap { $0 }) == Set(Lang.codes).subtracting(["en"]))
         #expect(LangReference.lookupBatches(lang: "en", mine: ["xx"], all: false, size: 0) == [])
     }
+
+    @Test func lookupBatchesSkipLanguagesAlreadyAsked() {
+        let card = LangReference.lookupBatches(lang: "en", mine: ["es", "de"], all: false, size: 11)
+        let rest = LangReference.lookupBatches(lang: "en", mine: ["es", "de"], all: true, size: 11, asked: Set(card.flatMap { $0 }))
+        #expect(!rest.flatMap { $0 }.contains("es"))
+        #expect(!rest.flatMap { $0 }.contains("de"))
+        #expect(Set(rest.flatMap { $0 }) == Set(Lang.codes).subtracting(["en", "es", "de"]))
+        #expect(LangReference.lookupBatches(lang: "en", mine: ["es"], all: false, size: 11, asked: ["es"]) == [])
+    }
 }
