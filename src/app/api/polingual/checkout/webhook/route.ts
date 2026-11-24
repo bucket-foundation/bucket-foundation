@@ -31,6 +31,16 @@ async function remindTrialEnding(t: TrialEnding): Promise<boolean> {
   return sendGiftEmail(mail, { to: j.email, subject: m.subject, text: m.text, html: `<p>${m.text}</p>` }, `trial-ending-${t.eventId}`);
 }
 
+async function funnel(visitor: string, name: "trial_cancel_d0"): Promise<void> {
+  const site = (process.env.POLINGUAL_SITE_URL ?? "https://www.polingual.com").replace(/\/$/, "");
+  await fetch(`${site}/api/events`, {
+    method: "POST",
+    headers: { "content-type": "application/json", origin: "https://www.polingual.com" },
+    body: JSON.stringify({ visitor, events: [{ name, path: "/billing" }] }),
+    signal: AbortSignal.timeout(1500),
+  });
+}
+
 export async function POST(req: Request): Promise<Response> {
   try {
     const payload = await req.text();
@@ -45,6 +55,7 @@ export async function POST(req: Request): Promise<Response> {
         patch: (uid, p) => patchEntitlement(uid, "polingual", p),
         gift: (event) => handleGiftEvent(giftFulfilDeps(), event),
         trialEnding: remindTrialEnding,
+        funnel,
       },
       payload,
       req.headers.get("stripe-signature"),

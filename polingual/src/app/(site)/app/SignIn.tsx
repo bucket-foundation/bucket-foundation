@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { appAuth, signInError } from "@/lib/app/auth";
-import { track } from "@/lib/funnel";
+import { onboarding, track } from "@/lib/funnel";
 import styles from "./app.module.css";
 import { Button, Field, FlagBand, Input, Sheet, StreakFlame } from "@/ui";
 
@@ -33,6 +33,7 @@ function CodeForm({ email, code, setCode, busy, onSubmit, onBack }: { email: str
 
 export default function SignIn({ onSignedIn, copy = LEARN, flame = true }: { onSignedIn: () => void; copy?: SignInCopy; flame?: boolean }) {
   const [step, setStep] = useState<"email" | "code">("email");
+  useEffect(() => onboarding("sign_in"), []);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);

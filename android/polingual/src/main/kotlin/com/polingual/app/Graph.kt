@@ -14,6 +14,10 @@ import foundation.bucket.core.data.SystemsSync
 import foundation.bucket.core.model.LangSystem
 import foundation.bucket.core.net.BucketApi
 import io.ktor.client.HttpClient
+import io.ktor.client.request.header
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.http.contentType
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +41,14 @@ class Graph(val context: Context) {
     val corpus = CorpusRepo(context)
     val account = Account(api, KeystoreVault(context))
     val kv = PrefsKeyValue(context)
+    val funnel = Funnel(kv, { UUID.randomUUID().toString() }) { body ->
+        http.post(Funnel.EVENTS_URL) {
+            header("x-polingual-client", Funnel.CLIENT)
+            contentType(io.ktor.http.ContentType.Application.Json)
+            setBody(body)
+        }
+    }
+    fun track(name: String, detail: String? = null) { scope.launch { funnel.send(name, detail) } }
     val state: StateFlow<AppState?> = store.state.stateIn(scope, SharingStarted.Eagerly, null)
     val guest = GuestPass(api, kv, nickname = { state.value?.nickname.orEmpty() })
     val lobbies = LobbyStore(api, userToken = { account.token() }, guest = guest)

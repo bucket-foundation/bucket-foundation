@@ -62,7 +62,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             return@Page
         }
         val ex = s.current
-        if (ex == null) { SessionDone(s, { if (FirstLesson.counts(s.answered)) graph.kv.set(FirstLesson.KEY, "1") }, done); return@Page }
+        if (ex == null) { SessionDone(s, { if (FirstLesson.counts(s.answered)) { graph.kv.set(FirstLesson.KEY, "1"); graph.track("first_lesson") } }, done); return@Page }
         SilentSwitch(graph, compact = true)
         LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         ExerciseHeader(ex)
