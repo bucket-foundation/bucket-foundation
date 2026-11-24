@@ -1,4 +1,4 @@
-import { CROCKFORD, hiddenUsers, type BlockRow } from "./groups";
+import { CROCKFORD, hiddenUsers, normalizeReportReason, uuidOrNull, type BlockRow, type ReportReason } from "./groups";
 import type { LangItem, Reading } from "./lang-systems";
 import { spyRounds } from "./ispy";
 import { buildTilePrompts, parseTapped, tileKey, tileHistory, tileOutcome, tilePoints } from "./lobby-tiles";
@@ -813,4 +813,25 @@ const NATIVE_GAMES: readonly LobbyGame[] = ["daily", "same-word", "flags", "live
 export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">, raceClient = false): boolean {
   if (isRace(lobby.game)) return raceClient;
   return NATIVE_GAMES.includes(lobby.game ?? "daily") && !lobby.reveal_seconds && !lobby.playlist;
+}
+
+export const MESSAGE_REPORTS = "lobby_message_reports";
+
+export interface MessageReport {
+  lobbyId: string;
+  messageId: number;
+  reason: ReportReason;
+}
+
+export function normalizeMessageReport(body: Record<string, unknown> | null | undefined): MessageReport | null {
+  const lobbyId = uuidOrNull(body?.lobbyId);
+  const messageId = body?.messageId;
+  const reason = normalizeReportReason(body?.reason);
+  if (!lobbyId || !reason || typeof messageId !== "number" || !Number.isSafeInteger(messageId) || messageId <= 0) return null;
+  return { lobbyId, messageId, reason };
+}
+
+export function messageReportDecision(uid: string, report: MessageReport, message: Pick<LobbyMessageRow, "lobby_id" | "user_id"> | null): "ok" | "not_found" | "self" {
+  if (!message || message.lobby_id !== report.lobbyId) return "not_found";
+  return message.user_id === uid ? "self" : "ok";
 }
