@@ -1,7 +1,7 @@
 import { jsonResponse } from "@/lib/academy/device-server";
-import { handleWebhook } from "@/lib/billing/polingual-checkout";
-import { giftFulfilDeps } from "@/lib/billing/gift-store";
-import { handleGiftEvent } from "@/lib/billing/polingual-gift";
+import { handleWebhook, trialEndingEmail, type TrialEnding } from "@/lib/billing/polingual-checkout";
+import { giftFulfilDeps, sendGiftEmail } from "@/lib/billing/gift-store";
+import { giftMailConfig, handleGiftEvent } from "@/lib/billing/polingual-gift";
 import { entitlementStoreConfigured, patchEntitlement, readEntitlementByCustomer, readEntitlementState, recordEntitlement } from "@/lib/billing/entitlement-store";
 
 export const runtime = "nodejs";
@@ -18,6 +18,19 @@ async function chargeCustomer(charge: string): Promise<string | null> {
   return typeof j.customer === "string" && j.customer ? j.customer : null;
 }
 
+async function remindTrialEnding(t: TrialEnding): Promise<boolean> {
+  const key = process.env.STRIPE_SECRET_KEY?.trim();
+  const mail = giftMailConfig(process.env);
+  if (!key || !mail) return true;
+  const res = await fetch(`${STRIPE_API}/v1/customers/${encodeURIComponent(t.customer)}`, { headers: { authorization: `Bearer ${key}` } });
+  if (!res.ok) return false;
+  const j = (await res.json().catch(() => ({}))) as { email?: unknown };
+  if (typeof j.email !== "string" || !j.email) return true;
+  const site = (process.env.POLINGUAL_SITE_URL ?? "https://www.polingual.com").replace(/\/$/, "");
+  const m = trialEndingEmail(t.trialEnd, site);
+  return sendGiftEmail(mail, { to: j.email, subject: m.subject, text: m.text, html: `<p>${m.text}</p>` }, `trial-ending-${t.eventId}`);
+}
+
 export async function POST(req: Request): Promise<Response> {
   try {
     const payload = await req.text();
@@ -31,6 +44,7 @@ export async function POST(req: Request): Promise<Response> {
         chargeCustomer,
         patch: (uid, p) => patchEntitlement(uid, "polingual", p),
         gift: (event) => handleGiftEvent(giftFulfilDeps(), event),
+        trialEnding: remindTrialEnding,
       },
       payload,
       req.headers.get("stripe-signature"),

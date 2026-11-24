@@ -152,11 +152,11 @@ struct EntitlementTests {
     }
 
     @Test func paywallCopyStatesTrialAndRenewal() {
-        #expect(PaywallCopy.headline(trial: true) == "3 days free")
-        #expect(PaywallCopy.renewal(trial: true).contains("3 days free"))
+        #expect(PaywallCopy.headline(trial: true) == "7 days free")
+        #expect(PaywallCopy.renewal(trial: true).contains("7 days free"))
         #expect(PaywallCopy.renewal(trial: true).contains("renews automatically"))
         #expect(!PaywallCopy.renewal(trial: false).contains("days free"))
-        #expect(PaywallCopy.disclosure(trial: true, price: "$59.99", period: "year").hasPrefix("3 days free, then $59.99 a year."))
+        #expect(PaywallCopy.disclosure(trial: true, price: "$59.99", period: "year").hasPrefix("7 days free, then $59.99 a year."))
         #expect(PaywallCopy.disclosure(trial: false, price: "$9.99", period: "month").contains("24 hours"))
     }
 
@@ -170,10 +170,10 @@ struct EntitlementTests {
 
     @Test func trialLengthPrefersTheChosenPlan() {
         let offers: [(id: String, days: Int?)] = [(Plan.yearly, 7), (Plan.monthly, 3), (Plan.lifetime, 14)]
-        #expect(TrialLength.pick(offers, chosen: Plan.monthly) == 3)
+        #expect(TrialLength.pick(offers, chosen: Plan.monthly) == 7)
         #expect(TrialLength.pick(offers, chosen: Plan.yearly) == 7)
         #expect(TrialLength.pick(offers, chosen: Plan.lifetime) == 7)
-        #expect(TrialLength.pick([(Plan.yearly, nil), (Plan.monthly, 3)], chosen: Plan.yearly) == 3)
+        #expect(TrialLength.pick([(Plan.yearly, nil), (Plan.monthly, 3)], chosen: Plan.yearly) == Plan.trialDays)
         #expect(TrialLength.pick([], chosen: Plan.yearly) == Plan.trialDays)
         #expect(TrialLength.pick([(Plan.lifetime, 14)], chosen: Plan.lifetime) == Plan.trialDays)
     }
@@ -193,7 +193,7 @@ struct EntitlementTests {
     @Test func extraPlansShowOnlyBehindTheFlag() {
         #expect(Plan.shown(extra: false) == [Plan.yearly, Plan.monthly])
         #expect(Plan.shown(extra: true) == [Plan.yearly, Plan.family, Plan.monthly, Plan.lifetime])
-        #expect(!Plan.hasTrial(Plan.lifetime) && !Plan.hasTrial(Plan.family) && Plan.hasTrial(Plan.yearly))
+        #expect(!Plan.hasTrial(Plan.lifetime) && !Plan.hasTrial(Plan.family) && !Plan.hasTrial(Plan.monthly) && Plan.hasTrial(Plan.yearly))
     }
 
     @Test func lifetimeAndFamilyDisclosures() {

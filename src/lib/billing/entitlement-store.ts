@@ -60,3 +60,14 @@ export async function patchEntitlement(userId: string, product: string, p: Entit
   const { error } = await client().from("academy_entitlements").update({ ...p, updated_at: new Date().toISOString() }).eq("user_id", userId).eq("product", product);
   return !error;
 }
+
+export async function readTrialFlag(userId: string): Promise<"web" | "app_store" | "play" | null> {
+  const { data, error } = await client().from("polingual_trial_used").select("store").eq("user_id", userId).maybeSingle();
+  if (error) throw new Error(`polingual_trial_used read failed: ${error.message}`);
+  return ((data as { store?: "web" | "app_store" | "play" } | null)?.store ?? null);
+}
+
+export async function markTrialUsed(userId: string, store: "web" | "app_store" | "play"): Promise<void> {
+  const { error } = await client().from("polingual_trial_used").upsert({ user_id: userId, store }, { onConflict: "user_id", ignoreDuplicates: true });
+  if (error) throw new Error(`polingual_trial_used write failed: ${error.message}`);
+}

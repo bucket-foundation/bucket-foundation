@@ -12,6 +12,9 @@ import {
   verifyStripeSignature,
   subscriptionStatus,
   ACTIVE_STATUSES,
+  FRESH,
+  trialEndingEmail,
+  trialEndingFrom,
   type CheckoutConfig,
   type Entitlement,
   type EntitlementState,
@@ -62,13 +65,13 @@ test("checkoutForm passes the referral into client_reference_id and metadata", (
 
 test("handleCheckout returns 503 unset, 401 signed out, 502 on Stripe failure, url on success", async () => {
   const ok = async () => ({ url: "https://checkout.stripe.test/s", id: "cs_1" });
-  assert.equal((await handleCheckout({ config: () => null, userId: async () => "u1", createSession: ok, currentStatus: async () => null }, {})).status, 503);
+  assert.equal((await handleCheckout({ config: () => null, userId: async () => "u1", createSession: ok, currentStatus: async () => null, trialHistory: async () => FRESH }, {})).status, 503);
   const cfg = () => checkoutConfig(ENV);
-  assert.equal((await handleCheckout({ config: cfg, userId: async () => null, createSession: ok, currentStatus: async () => null }, {})).status, 401);
-  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: ok, currentStatus: async () => null }, { plan: "x" })).status, 400);
-  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async () => ({ url: null, id: null }), currentStatus: async () => null }, {})).status, 502);
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => null, createSession: ok, currentStatus: async () => null, trialHistory: async () => FRESH }, {})).status, 401);
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: ok, currentStatus: async () => null, trialHistory: async () => FRESH }, { plan: "x" })).status, 400);
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async () => ({ url: null, id: null }), currentStatus: async () => null, trialHistory: async () => FRESH }, {})).status, 502);
   let sent: URLSearchParams | null = null;
-  const r = await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async (_c, f) => ((sent = f), ok()), currentStatus: async () => null }, { referral: "rw-9" });
+  const r = await handleCheckout({ config: cfg, userId: async () => "u1", createSession: async (_c, f) => ((sent = f), ok()), currentStatus: async () => null, trialHistory: async () => FRESH }, { referral: "rw-9" });
   assert.deepEqual(r, { status: 200, body: { url: "https://checkout.stripe.test/s", id: "cs_1" } });
   assert.equal((sent as URLSearchParams | null)?.get("client_reference_id"), "rw-9");
 });
@@ -114,10 +117,11 @@ test("handleWebhook gates on secret and signature and records entitlements", asy
   assert.equal((await handleWebhook({ ...deps, record: async () => false }, payload, sign(payload, "whsec", 1000))).status, 500);
 });
 
-test("checkoutForm adds the 3-day trial and app return urls", () => {
+test("checkoutForm gives yearly the 7-day trial, monthly none, and app return urls", () => {
   const cfg = checkoutConfig({ ...ENV, POLINGUAL_SITE_URL: "https://p.test" }) as CheckoutConfig;
   const f = checkoutForm(cfg, { plan: "monthly", referral: null, network: null, email: null, returnTo: "app" }, "u1");
-  assert.equal(f.get("subscription_data[trial_period_days]"), "3");
+  assert.equal(f.get("subscription_data[trial_period_days]"), null);
+  assert.equal(checkoutForm(cfg, { plan: "yearly", referral: null, network: null, email: null }, "u1").get("subscription_data[trial_period_days]"), "7");
   assert.equal(f.get("success_url"), "https://p.test/app?checkout=done");
   assert.equal(f.get("cancel_url"), "https://p.test/app");
   const parsed = parseCheckoutRequest({ plan: "monthly", return_to: "app" });
@@ -232,10 +236,10 @@ test("a second checkout goes to the portal while a web plan is live", async () =
   const cfg = () => checkoutConfig(ENV);
   const ok = async () => ({ url: "https://checkout.stripe.test/s", id: "cs_1" });
   for (const status of ["active", "trialing", "past_due"]) {
-    const r = await handleCheckout({ config: cfg, userId: async () => "u1", currentStatus: async () => status, createSession: ok }, {});
+    const r = await handleCheckout({ config: cfg, userId: async () => "u1", currentStatus: async () => status, trialHistory: async () => FRESH, createSession: ok }, {});
     assert.deepEqual(r, { status: 409, body: { error: "already_subscribed", portal: true } });
   }
-  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", currentStatus: async () => "canceled", createSession: ok }, {})).status, 200);
+  assert.equal((await handleCheckout({ config: cfg, userId: async () => "u1", currentStatus: async () => "canceled", trialHistory: async () => FRESH, createSession: ok }, {})).status, 200);
 });
 
 test("the portal only opens the signed-in user's own customer", async () => {
@@ -250,4 +254,37 @@ test("the portal only opens the signed-in user's own customer", async () => {
   });
   assert.deepEqual(looked, ["intruder"]);
   assert.deepEqual(r, { status: 404, body: { error: "no_web_subscription" } });
+});
+
+test("a returning user gets no second trial and keeps their Stripe customer", async () => {
+  const cfg = checkoutConfig(ENV) as CheckoutConfig;
+  const req = { plan: "yearly" as const, referral: null, network: null, email: "a@b.co" };
+  const fresh = checkoutForm(cfg, req, "u1");
+  assert.equal(fresh.get("subscription_data[trial_period_days]"), "7");
+  assert.equal(fresh.get("customer_email"), "a@b.co");
+  const back = checkoutForm(cfg, req, "u1", { used: true, customer: "cus_9" });
+  assert.equal(back.get("subscription_data[trial_period_days]"), null);
+  assert.equal(back.get("customer"), "cus_9");
+  assert.equal(back.get("customer_email"), null);
+  for (const prior of ["canceled", "incomplete_expired", "refunded"]) {
+    let sent: URLSearchParams | null = null;
+    const r = await handleCheckout({ config: () => cfg, userId: async () => "u1", currentStatus: async () => prior, trialHistory: async () => ({ used: true, customer: "cus_9" }), createSession: async (_c, f) => ((sent = f), { url: "https://s", id: "cs" }) }, { plan: "yearly" });
+    assert.equal(r.status, 200);
+    assert.equal((sent as URLSearchParams | null)?.get("subscription_data[trial_period_days]"), null);
+  }
+});
+
+test("trial_will_end for a live polingual trial becomes a reminder", async () => {
+  const object = { customer: "cus_1", trial_end: 1_800_000_000, metadata: META, cancel_at_period_end: false };
+  assert.deepEqual(trialEndingFrom(JSON.parse(evt("evt_t", 1, "customer.subscription.trial_will_end", object))), { eventId: "evt_t", customer: "cus_1", trialEnd: 1_800_000_000 });
+  assert.equal(trialEndingFrom(JSON.parse(evt("evt_t", 1, "customer.subscription.trial_will_end", { ...object, cancel_at_period_end: true }))), null);
+  assert.equal(trialEndingFrom(JSON.parse(evt("evt_t", 1, "customer.subscription.trial_will_end", { ...object, metadata: { product: "other" } }))), null);
+  assert.match(trialEndingEmail(1_800_000_000, "https://p.test").text, /\$59\.99.*https:\/\/p\.test\/app\/account/);
+  const h = harness(null);
+  const reminded: string[] = [];
+  const payload = evt("evt_t", 1, "customer.subscription.trial_will_end", object);
+  const ok = await handleWebhook({ ...h.deps, trialEnding: async (t) => (reminded.push(t.eventId), true) }, payload, sign(payload, "whsec", 1000));
+  assert.deepEqual([ok.status, reminded], [200, ["evt_t"]]);
+  const bad = await handleWebhook({ ...h.deps, trialEnding: async () => false }, payload, sign(payload, "whsec", 1000));
+  assert.equal(bad.status, 500);
 });

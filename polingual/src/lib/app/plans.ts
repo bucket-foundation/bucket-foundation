@@ -9,7 +9,7 @@ export interface Plan {
 
 export const PLANS: Plan[] = [
   { id: "monthly", name: "Monthly", price: "$9.99", cadence: "a month", productId: "com.polingual.monthly" },
-  { id: "yearly", name: "Yearly", price: "$59.99", cadence: "a year", note: "3 days free, then $59.99 a year", productId: "com.polingual.yearly" },
+  { id: "yearly", name: "Yearly", price: "$59.99", cadence: "a year", note: "7 days free, then $59.99 a year", productId: "com.polingual.yearly" },
   { id: "family", name: "Family", price: "$89.99", cadence: "a year", note: "Up to 6 people", productId: null },
   { id: "lifetime", name: "Lifetime", price: "$149.99", cadence: "once", productId: null },
   { id: "student", name: "Student", price: "$29.99", cadence: "a year", productId: null },

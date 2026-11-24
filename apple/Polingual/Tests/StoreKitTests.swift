@@ -55,17 +55,16 @@ struct StoreKitTests {
         }
     }
 
-    @Test func productsCarryAThreeDayFreeTrial() async throws {
+    @Test func onlyYearlyCarriesASevenDayFreeTrial() async throws {
         _ = try session()
         let products = try await self.products(Plan.all)
         #expect(Set(products.map(\.id)) == Set(Plan.all))
-        for p in products {
-            let offer = try #require(p.subscription?.introductoryOffer)
-            #expect(offer.paymentMode == .freeTrial)
-            #expect(offer.period.value == 3)
-            #expect(offer.period.unit == .day)
-            #expect(await p.subscription?.isEligibleForIntroOffer == true)
-        }
+        for p in products where p.id != Plan.yearly { #expect(p.subscription?.introductoryOffer == nil) }
+        let yearly = try #require(products.first { $0.id == Plan.yearly })
+        let offer = try #require(yearly.subscription?.introductoryOffer)
+        #expect(offer.paymentMode == .freeTrial)
+        #expect(TrialLength.days(offer) == Plan.trialDays)
+        #expect(await yearly.subscription?.isEligibleForIntroOffer == true)
     }
 
     @Test func purchaseOpensTrialThenEligibilityEnds() async throws {
@@ -74,8 +73,8 @@ struct StoreKitTests {
         await subs.refresh()
         #expect(subs.access == .locked)
         #expect(subs.trialEligible)
-        let monthly = try await product(Plan.monthly)
-        _ = try await Self.shared!.buyProduct(identifier: monthly.id)
+        let yearly = try await product(Plan.yearly)
+        _ = try await Self.shared!.buyProduct(identifier: yearly.id)
         await settle(subs)
         guard case .trial = subs.access else {
             Issue.record("expected trial, got \(subs.access)")

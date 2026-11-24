@@ -58,8 +58,10 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
     val access by graph.billing.access.collectAsState()
     val message by graph.billing.message.collectAsState()
     var chosen by remember { mutableStateOf(Plan.YEARLY) }
+    var all by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    val askNotify = androidx.activity.compose.rememberLauncherForActivityResult(androidx.activity.result.contract.ActivityResultContracts.RequestPermission()) { }
     LaunchedEffect(Unit) { graph.billing.refresh() }
     val trial = graph.billing.trialEligible
     Page(back = back, ground = Ground.Lattice, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 60.dp, 10f), Sticker("kente", Alignment.BottomEnd, 80.dp, -5f, dx = (-8).dp))) {
@@ -70,7 +72,12 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
             if (access is Access.Beta) Text("Test builds open everything for free.", color = PL.Paper)
         }
         if (products.isEmpty()) EmptyState("pebble", "The plans did not load. Check your connection and Google Play, then try again.", onDark = true)
-        products.forEach { product ->
+        if (trial) Plan.timeline("$" + Plan.YEARLY_USD + " a year").forEach { (title, body) ->
+            Text(title, style = Type.title, color = PL.Paper)
+            Text(body, style = Type.small, color = PL.Paper.copy(alpha = 0.85f))
+        }
+        val ids = Plan.shown(products.map { it.productId }, all)
+        products.filter { it.productId in ids }.forEach { product ->
             val on = product.productId == chosen
             Column(
                 Modifier.fillMaxWidth().plSurface(PL.Card, PLRadius.lg).border(if (on) 4.dp else 2.dp, if (on) PL.Ochre else PL.Hairline2, RoundedCornerShape(PLRadius.lg))
@@ -82,11 +89,17 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
                 }
                 Text(product.price, style = Type.title, color = p.ink)
                 Text("per ${Plan.period(product.productId)}", color = p.muted)
+                if (product.productId == Plan.YEARLY) Text(Plan.perWeek(Plan.YEARLY_USD), color = p.muted)
             }
         }
+        if (!all && ids.size < products.size) PlainLink("See all plans", onDark = true) { all = true }
         products.firstOrNull { it.productId == chosen }?.let { product ->
             Text(Entitlement.disclosure(trial && Plan.hasTrial(product.productId), product.price, Plan.period(product.productId), product.productId == Plan.FAMILY), style = Type.small, color = PL.Paper.copy(alpha = 0.85f))
-            PrimaryButton(if (trial && Plan.hasTrial(product.productId)) "Start free trial" else "Continue") { val d = product.details; if (d != null) (context as? Activity)?.let { graph.billing.buy(it, d) } }
+            PrimaryButton("Continue") {
+                if (trial && Plan.hasTrial(product.productId) && android.os.Build.VERSION.SDK_INT >= 33 && !TrialReminder.allowed(context)) askNotify.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                val d = product.details; if (d != null) (context as? Activity)?.let { graph.billing.buy(it, d) }
+            }
+            if (trial && Plan.hasTrial(product.productId)) Text("No payment now", style = Type.small, color = PL.Paper)
         }
         message?.let { Text(it, color = PL.Maya) }
         PlainLink("Restore purchases", onDark = true) { scope.launch { graph.billing.restore() } }
