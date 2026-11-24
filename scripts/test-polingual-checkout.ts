@@ -114,10 +114,11 @@ test("handleWebhook gates on secret and signature and records entitlements", asy
   assert.equal((await handleWebhook({ ...deps, record: async () => false }, payload, sign(payload, "whsec", 1000))).status, 500);
 });
 
-test("checkoutForm adds the 3-day trial and app return urls", () => {
+test("checkoutForm gives yearly the 7-day trial, monthly none, and app return urls", () => {
   const cfg = checkoutConfig({ ...ENV, POLINGUAL_SITE_URL: "https://p.test" }) as CheckoutConfig;
   const f = checkoutForm(cfg, { plan: "monthly", referral: null, network: null, email: null, returnTo: "app" }, "u1");
-  assert.equal(f.get("subscription_data[trial_period_days]"), "3");
+  assert.equal(f.get("subscription_data[trial_period_days]"), null);
+  assert.equal(checkoutForm(cfg, { plan: "yearly", referral: null, network: null, email: null }, "u1").get("subscription_data[trial_period_days]"), "7");
   assert.equal(f.get("success_url"), "https://p.test/app?checkout=done");
   assert.equal(f.get("cancel_url"), "https://p.test/app");
   const parsed = parseCheckoutRequest({ plan: "monthly", return_to: "app" });

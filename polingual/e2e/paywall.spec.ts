@@ -14,6 +14,11 @@ for (const width of [1280, 390]) {
     await mockApi(page, { entitled: false });
     await signIn(page);
     await expect(page.getByTestId("paywall")).toBeVisible();
+    await expect(page.getByTestId("plan")).toHaveCount(1);
+    await expect(page.getByTestId("per-week")).toHaveText("$1.15 a week");
+    await expect(page.getByTestId("no-payment")).toHaveText("No payment now");
+    await expect(page.getByTestId("trial-timeline")).toContainText("Day 5");
+    await page.getByTestId("see-all-plans").click();
     await expect(page.getByTestId("plan")).toHaveCount(5);
     for (const price of ["$9.99", "$59.99", "$89.99", "$149.99", "$29.99"]) await expect(page.getByTestId("paywall")).toContainText(price);
     await expect(page.getByTestId("coming-soon")).toHaveCount(3);
@@ -55,6 +60,7 @@ test("closed web checkout shows the reason", async ({ page }) => {
   await mockApi(page, { entitled: false });
   await page.route("**/api/polingual/checkout", (route) => route.fulfill({ status: 503, json: { error: "checkout_unavailable" } }));
   await signIn(page);
+  await page.getByTestId("see-all-plans").click();
   await page.getByTestId("checkout-monthly").click();
   await expect(page.getByTestId("checkout-error")).toContainText("not open yet");
 });

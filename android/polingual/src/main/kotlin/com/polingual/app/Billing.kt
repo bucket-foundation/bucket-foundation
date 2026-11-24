@@ -92,7 +92,7 @@ class Billing(context: Context, private val graph: Graph) {
     }
 
     fun buy(activity: Activity, product: ProductDetails) {
-        val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
+        val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible && Plan.hasTrial(product.productId) } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
         val params = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(product).apply { offer?.let { setOfferToken(it.offerToken) } }.build()
         val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).apply { graph.account.userId?.let { setObfuscatedAccountId(accountHash(it)) } }.build()
         client.launchBillingFlow(activity, flow)

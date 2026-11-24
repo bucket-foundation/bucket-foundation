@@ -6,7 +6,7 @@ export const FACTS = {
   platforms: "iPhone and iPad",
   languageCount: 29,
   setLimit: 6,
-  price: "$9.99 a month or $59.99 a year, each with a 3-day free trial",
+  price: "$9.99 a month, or $59.99 a year with a 7-day free trial",
   publisher: "AGFarms LLC",
   appStore: APP_STORE_URL,
 };
@@ -18,7 +18,7 @@ export const FAQ: Faq[] = [
   { q: "How many languages does Polingual teach?", a: `${FACTS.languageCount}, from Spanish and Japanese to Latin, Sanskrit and Old English.` },
   { q: "Can I study three languages at the same time?", a: "Yes. Pick a set such as Spanish, French and Italian. Placement runs once per language, then the words from all three share one spaced review queue." },
   { q: "How does Polingual check pronunciation?", a: "You hear each word and say it back. Apple speech recognition checks it." },
-  { q: "How do I get Polingual?", a: `Polingual is on the App Store for ${FACTS.platforms}. Download it at ${APP_STORE_URL}. New subscribers get a 3-day free trial.` },
+  { q: "How do I get Polingual?", a: `Polingual is on the App Store for ${FACTS.platforms}. Download it at ${APP_STORE_URL}. The yearly plan starts with a 7-day free trial.` },
   { q: "Does Polingual work with Bucket?", a: "Yes. Sign in with the same email in both apps and your language progress syncs." },
 ];
 

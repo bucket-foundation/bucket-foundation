@@ -11,7 +11,8 @@ export interface CheckoutConfig {
   site: string;
 }
 
-export const TRIAL_DAYS = 3;
+export const TRIAL_DAYS = 7;
+export const TRIAL_PLANS: readonly Plan[] = ["yearly"];
 
 type Env = Record<string, string | undefined>;
 
@@ -62,7 +63,7 @@ export function checkoutForm(cfg: CheckoutConfig, req: CheckoutRequest, userId: 
   f.set("line_items[0][quantity]", "1");
   f.set("success_url", req.returnTo === "app" ? `${cfg.site}/app?checkout=done` : cfg.successUrl);
   f.set("cancel_url", req.returnTo === "app" ? `${cfg.site}/app` : cfg.cancelUrl);
-  f.set("subscription_data[trial_period_days]", String(TRIAL_DAYS));
+  if (TRIAL_PLANS.includes(req.plan)) f.set("subscription_data[trial_period_days]", String(TRIAL_DAYS));
   f.set("allow_promotion_codes", "true");
   f.set("metadata[product]", "polingual");
   f.set("metadata[plan]", req.plan);

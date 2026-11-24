@@ -22,8 +22,9 @@ enum Plan {
         }
     }
 
-    static func hasTrial(_ id: String) -> Bool { all.contains(id) }
-    static let trialDays = 3
+    static func hasTrial(_ id: String) -> Bool { id == yearly }
+    static let trialDays = 7
+    static let reminderDaysBefore = 2
     static let terms = URL(string: "https://polingual.com/terms")!
     static let privacy = URL(string: "https://polingual.com/privacy")!
     static let support = URL(string: "https://polingual.com/support")!
