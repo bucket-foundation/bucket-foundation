@@ -8,7 +8,10 @@ export interface CheckoutConfig {
   prices: Record<Plan, string>;
   successUrl: string;
   cancelUrl: string;
+  site: string;
 }
+
+export const TRIAL_DAYS = 3;
 
 type Env = Record<string, string | undefined>;
 
@@ -23,6 +26,7 @@ export function checkoutConfig(env: Env): CheckoutConfig | null {
     prices: { monthly, yearly },
     successUrl: `${site}/welcome?session_id={CHECKOUT_SESSION_ID}`,
     cancelUrl: `${site}/pricing`,
+    site,
   };
 }
 
@@ -31,6 +35,7 @@ export interface CheckoutRequest {
   referral: string | null;
   network: AffiliateNetwork | null;
   email: string | null;
+  returnTo?: "app";
 }
 
 const REF_RE = /^[A-Za-z0-9_.-]{1,128}$/;
@@ -45,7 +50,9 @@ export function parseCheckoutRequest(body: unknown): { ok: true; req: CheckoutRe
   const network = b.affiliate_network ?? (rawRef ? "rewardful" : null);
   if (network !== null && network !== "rewardful" && network !== "impact") return { ok: false, error: "bad_affiliate_network" };
   const email = typeof b.email === "string" && EMAIL_RE.test(b.email.trim()) ? b.email.trim().toLowerCase() : null;
-  return { ok: true, req: { plan, referral: rawRef || null, network: rawRef ? network : null, email } };
+  const req: CheckoutRequest = { plan, referral: rawRef || null, network: rawRef ? network : null, email };
+  if (b.return_to === "app") req.returnTo = "app";
+  return { ok: true, req };
 }
 
 export function checkoutForm(cfg: CheckoutConfig, req: CheckoutRequest, userId: string): URLSearchParams {
@@ -53,8 +60,9 @@ export function checkoutForm(cfg: CheckoutConfig, req: CheckoutRequest, userId: 
   f.set("mode", "subscription");
   f.set("line_items[0][price]", cfg.prices[req.plan]);
   f.set("line_items[0][quantity]", "1");
-  f.set("success_url", cfg.successUrl);
-  f.set("cancel_url", cfg.cancelUrl);
+  f.set("success_url", req.returnTo === "app" ? `${cfg.site}/app?checkout=done` : cfg.successUrl);
+  f.set("cancel_url", req.returnTo === "app" ? `${cfg.site}/app` : cfg.cancelUrl);
+  f.set("subscription_data[trial_period_days]", String(TRIAL_DAYS));
   f.set("allow_promotion_codes", "true");
   f.set("metadata[product]", "polingual");
   f.set("metadata[plan]", req.plan);
@@ -122,7 +130,7 @@ export function entitlementFromEvent(event: unknown): Entitlement | null {
   };
   if (e.type === "checkout.session.completed") {
     if (o.payment_status !== "paid" && o.payment_status !== "no_payment_required") return null;
-    return { ...base, status: "active", stripe_subscription: str(o.subscription), current_period_end: null };
+    return { ...base, status: o.payment_status === "paid" ? "active" : "trialing", stripe_subscription: str(o.subscription), current_period_end: null };
   }
   if (e.type === "customer.subscription.updated" || e.type === "customer.subscription.created" || e.type === "customer.subscription.deleted") {
     const end = typeof o.current_period_end === "number" ? new Date(o.current_period_end * 1000).toISOString() : null;
@@ -177,4 +185,27 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   if (!ent) return { status: 200, body: { received: true, ignored: true } };
   if (!(await deps.record(ent))) return { status: 500, body: { error: "record_failed" } };
   return { status: 200, body: { received: true, status: ent.status } };
+}
+
+export interface PortalDeps {
+  secretKey: () => string | null;
+  userId: () => Promise<string | null>;
+  customer: (userId: string) => Promise<string | null>;
+  createPortal: (secretKey: string, form: URLSearchParams) => Promise<string | null>;
+  returnUrl: string;
+}
+
+export async function handlePortal(deps: PortalDeps): Promise<HandlerResult> {
+  const key = deps.secretKey();
+  if (!key) return { status: 503, body: { error: "portal_unavailable" } };
+  const uid = await deps.userId();
+  if (!uid) return { status: 401, body: { error: "unauthorized" } };
+  const customer = await deps.customer(uid);
+  if (!customer) return { status: 404, body: { error: "no_web_subscription" } };
+  const f = new URLSearchParams();
+  f.set("customer", customer);
+  f.set("return_url", deps.returnUrl);
+  const url = await deps.createPortal(key, f);
+  if (!url) return { status: 502, body: { error: "portal_failed" } };
+  return { status: 200, body: { url } };
 }

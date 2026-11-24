@@ -32,3 +32,10 @@ export async function readEntitlement(userId: string, product: string): Promise<
   if (error) throw new Error(`academy_entitlements read failed: ${error.message}`);
   return (data as Entitlement | null) ?? null;
 }
+
+export async function readStripeCustomer(userId: string, product: string): Promise<string | null> {
+  const { data, error } = await client().from("academy_entitlements").select("stripe_customer").eq("user_id", userId).eq("product", product).maybeSingle();
+  if (error) throw new Error(`academy_entitlements read failed: ${error.message}`);
+  const c = (data as { stripe_customer?: unknown } | null)?.stripe_customer;
+  return typeof c === "string" && c ? c : null;
+}

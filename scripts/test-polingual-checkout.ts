@@ -6,6 +6,7 @@ import {
   checkoutForm,
   entitlementFromEvent,
   handleCheckout,
+  handlePortal,
   handleWebhook,
   parseCheckoutRequest,
   verifyStripeSignature,
@@ -100,4 +101,32 @@ test("handleWebhook gates on secret and signature and records entitlements", asy
   const other = JSON.stringify({ type: "invoice.paid", data: { object: {} } });
   assert.equal((await handleWebhook(deps, other, sign(other, "whsec", 1000))).body.ignored, true);
   assert.equal((await handleWebhook({ ...deps, record: async () => false }, payload, sign(payload, "whsec", 1000))).status, 500);
+});
+
+test("checkoutForm adds the 3-day trial and app return urls", () => {
+  const cfg = checkoutConfig({ ...ENV, POLINGUAL_SITE_URL: "https://p.test" }) as CheckoutConfig;
+  const f = checkoutForm(cfg, { plan: "monthly", referral: null, network: null, email: null, returnTo: "app" }, "u1");
+  assert.equal(f.get("subscription_data[trial_period_days]"), "3");
+  assert.equal(f.get("success_url"), "https://p.test/app?checkout=done");
+  assert.equal(f.get("cancel_url"), "https://p.test/app");
+  const parsed = parseCheckoutRequest({ plan: "monthly", return_to: "app" });
+  assert.equal(parsed.ok && parsed.req.returnTo, "app");
+  assert.equal(checkoutForm(cfg, { plan: "yearly", referral: null, network: null, email: null }, "u1").get("success_url"), cfg.successUrl);
+});
+
+test("a checkout with no payment due records a trial", () => {
+  const meta = { product: "polingual", user_id: "u1", plan: "yearly" };
+  assert.equal(entitlementFromEvent({ type: "checkout.session.completed", data: { object: { metadata: meta, payment_status: "no_payment_required", subscription: "sub_1" } } })?.status, "trialing");
+});
+
+test("handlePortal fails closed and opens a session for a web customer", async () => {
+  const base = { secretKey: () => "sk", userId: async () => "u1", customer: async () => "cus_1", createPortal: async () => "https://billing.stripe.test/p", returnUrl: "https://p.test/app/account" };
+  assert.equal((await handlePortal({ ...base, secretKey: () => null })).status, 503);
+  assert.equal((await handlePortal({ ...base, userId: async () => null })).status, 401);
+  assert.equal((await handlePortal({ ...base, customer: async () => null })).status, 404);
+  assert.equal((await handlePortal({ ...base, createPortal: async () => null })).status, 502);
+  let sent: URLSearchParams | null = null;
+  const r = await handlePortal({ ...base, createPortal: async (_k, f) => ((sent = f), "https://billing.stripe.test/p") });
+  assert.deepEqual(r, { status: 200, body: { url: "https://billing.stripe.test/p" } });
+  assert.equal((sent as URLSearchParams | null)?.get("customer"), "cus_1");
 });

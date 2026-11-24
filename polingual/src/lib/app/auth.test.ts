@@ -17,6 +17,9 @@ test("needsBearer covers academy APIs on this origin and skips the session route
   assert.equal(needsBearer(new URL("/api/academy/progress", ORIGIN), ORIGIN), true);
   assert.equal(needsBearer(new URL("/api/academy/review-log?since=0", ORIGIN), ORIGIN), true);
   assert.equal(needsBearer(new URL("/api/academy/session", ORIGIN), ORIGIN), false);
+  assert.equal(needsBearer(new URL("/api/polingual/checkout", ORIGIN), ORIGIN), true);
+  assert.equal(needsBearer(new URL("/api/polingual/portal", ORIGIN), ORIGIN), true);
+  assert.equal(needsBearer(new URL("/api/polingual/checkout/webhook", ORIGIN), ORIGIN), false);
   assert.equal(needsBearer(new URL("/academy-app/corpus/lang-core.json", ORIGIN), ORIGIN), false);
   assert.equal(needsBearer(new URL("https://evil.example/api/academy/progress"), ORIGIN), false);
 });

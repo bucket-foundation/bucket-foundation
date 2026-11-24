@@ -2,6 +2,8 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { appAuth } from "@/lib/app/auth";
+import { billingMessage, isWebProduct, openPortal } from "@/lib/app/billing";
+import { fetchAccess } from "@/lib/app/plans";
 import { cleanHandle, loadProfile, saveProfile, type Profile, type ProfileDeps } from "@/lib/app/profile";
 import { Avatar, lookFromSeed } from "@/ui/avatar";
 import { useSession } from "../AppShell";
@@ -109,6 +111,36 @@ function ProfileStatus({ state, signOut }: { state: ReturnType<typeof useProfile
   return null;
 }
 
+function Billing() {
+  const [web, setWeb] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    void fetchAccess().then((a) => setWeb(a.status === "open" && isWebProduct(a.productId)));
+  }, []);
+  if (!web) return null;
+  async function manage() {
+    setBusy(true);
+    setError(null);
+    const r = await openPortal();
+    if (r.ok) return window.location.assign(r.url);
+    setBusy(false);
+    setError(billingMessage(r.error));
+  }
+  return (
+    <div className={styles.silentRow}>
+      <div>
+        <p className={styles.label}>Subscription</p>
+        <p className={styles.small}>Change plan, update your card or cancel.</p>
+        {error ? <p role="alert" className={styles.error} data-testid="portal-error">{error}</p> : null}
+      </div>
+      <Button variant="secondary" size="sm" disabled={busy} onClick={() => void manage()} data-testid="manage-subscription">
+        {busy ? "Opening" : "Manage"}
+      </Button>
+    </div>
+  );
+}
+
 export default function Account() {
   const { signOut } = useSession();
   const p = useProfile();
@@ -135,6 +167,7 @@ export default function Account() {
           </div>
           <SilentSwitch />
         </div>
+        <Billing />
         <Button variant="secondary" size="md" onClick={signOut} data-testid="account-sign-out">
           Sign out
         </Button>
