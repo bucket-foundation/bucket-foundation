@@ -14,10 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -130,11 +128,11 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
     LaunchedEffect(initial, corpus) { if (initial.isNotBlank() && corpus != null) run(initial) }
     Page("Translate", back = back, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("calligraphy-ain", Alignment.TopEnd, 52.dp, 10f), Sticker("script-ru", Alignment.BottomEnd, 70.dp, -5f, dx = (-8).dp))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedButton(onClick = { picking = "from" }, modifier = Modifier.weight(1f)) { Text(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "Detect") }
+            PLButton(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "Detect", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Sm) { picking = "from" }
             IconButton(onClick = { scope.launch { graph.store.update { it.copy(translateFrom = it.translateTo, translateTo = it.translateFrom) } } }, enabled = from != null || to != null) {
                 Glyph("swap", "Swap languages", PL.Ink, Modifier.size(24.dp))
             }
-            OutlinedButton(onClick = { picking = "to" }, modifier = Modifier.weight(1f)) { Text(to?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "My languages") }
+            PLButton(to?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "My languages", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Sm) { picking = "to" }
         }
         OutlinedTextField(
             text, { text = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Type a word or phrase") },
@@ -167,8 +165,9 @@ fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boole
     val p = LocalPalette.current
     AlertDialog(
         onDismissRequest = dismiss,
-        confirmButton = { TextButton(onClick = dismiss) { Text("Close") } },
-        title = { Text("Language") },
+        confirmButton = { PlainLink("Close", onClick = dismiss) },
+        containerColor = PL.Card,
+        title = { Text("Language", style = Type.title, color = PL.Tyrian) },
         text = {
             Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 OutlinedTextField(query, { query = it }, singleLine = true, label = { Text("Search") }, modifier = Modifier.fillMaxWidth())

@@ -57,7 +57,7 @@ fun Page(
                             if (back != null) Box(Modifier.size(44.dp).clickable(role = Role.Button, onClickLabel = "Back", onClick = back), contentAlignment = Alignment.Center) {
                                 Glyph("back", "Back", if (onDark) PL.Paper else PL.Ink, Modifier.size(24.dp))
                             }
-                            if (title != null) Text(title, style = Type.display, color = if (onDark) PL.Paper else PL.Ink)
+                            if (title != null) Text(title, style = Type.display, color = if (onDark) PL.Paper else PL.Tyrian)
                         }
                     }
                     if (panel) PLCard(content = content) else content()

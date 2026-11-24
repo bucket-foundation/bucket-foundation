@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
@@ -269,3 +270,26 @@ fun PLTile(selected: Boolean, modifier: Modifier = Modifier, selectedColor: Colo
 }
 
 fun Modifier.plSurface(color: Color, radius: Dp = PLRadius.md): Modifier = this.clip(RoundedCornerShape(radius)).background(color)
+
+data class ToggleColors(val bg: Color, val fg: Color, val line: Color)
+
+object PLToggleStyle {
+    fun of(checked: Boolean, onDark: Boolean) = when {
+        onDark && checked -> ToggleColors(PL.Paper, PL.Tyrian, PL.Paper)
+        onDark -> ToggleColors(Color.Transparent, PL.Paper, PL.PaperDim)
+        checked -> ToggleColors(PL.Ink, PL.Paper, PL.Ink)
+        else -> ToggleColors(PL.White, PL.Ink, PL.Hairline2)
+    }
+}
+
+@Composable
+fun PLToggle(checked: Boolean, onCheckedChange: (Boolean) -> Unit, label: String, modifier: Modifier = Modifier, onLabel: String = "On", offLabel: String = "Off", onDark: Boolean = false) {
+    val c = PLToggleStyle.of(checked, onDark)
+    val shape = RoundedCornerShape(PLRadius.pill)
+    Box(
+        modifier.heightIn(min = 44.dp).clip(shape).background(c.bg).border(2.dp, c.line, shape)
+            .toggleable(checked, role = Role.Switch, onValueChange = onCheckedChange)
+            .semantics { contentDescription = label }.padding(horizontal = PLSpace.s3),
+        contentAlignment = Alignment.Center,
+    ) { Text(if (checked) onLabel else offLabel, color = c.fg, style = PLType.small.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold)) }
+}
