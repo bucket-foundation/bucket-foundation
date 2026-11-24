@@ -62,7 +62,7 @@ struct StudyView: View {
         guard let system = store.system(systemId), let ex = current, let item = store.corpus?.byId[ex.itemId] else { return [] }
         let forms = system.targets.compactMap { l in item.form(l).map { ShareForm(lang: l, form: $0) } }
         let gloss = item.form(system.root) ?? item.gloss
-        return [.word(id: item.id, gloss: gloss, forms: forms)] + forms.map { .tile(form: $0, gloss: gloss, reading: nil) }
+        return [.word(id: item.id, gloss: gloss, forms: ShareForm.leading(system.root, gloss, forms))] + forms.map { .tile(form: $0, gloss: gloss, reading: nil) }
     }
 
     var sharePage: SharePage? {

@@ -36,7 +36,7 @@ struct MilestoneMoment: View {
         case .streak(let days): [.streak(days: days, langs: langs, root: root)]
         case .skill(let skill, let lang): [.skill(skill, lang: lang, root: root, words: words)]
         case .hello(let langs):
-            hellos.isEmpty ? langs.map { .language($0, root: root) } : [.word(id: Milestones.helloItem, gloss: hellos.first { $0.lang == root }?.form ?? "hello", forms: hellos.filter { $0.lang != root })]
+            hellos.isEmpty ? langs.map { .language($0, root: root) } : [.word(id: Milestones.helloItem, gloss: hellos.first { $0.lang == root }?.form ?? "hello", forms: ShareForm.leading(root, "hello", hellos))]
         }
     }
 

@@ -103,6 +103,14 @@ public enum TranslateEngine {
         return nil
     }
 
+    public static func deckWords(_ text: String, source: String, corpus: LangCorpus) -> [String] {
+        var seen: Set<String> = []
+        return tokens(text, lang: source).compactMap { t in
+            guard let hit = translateSearch(corpus, t, langs: [source], limit: 1).first, hit.exact, seen.insert(hit.itemId).inserted else { return nil }
+            return hit.itemId
+        }
+    }
+
     public static func tokens(_ text: String, lang: String) -> [String] {
         let tokenizer = NLTokenizer(unit: .word)
         tokenizer.string = text
