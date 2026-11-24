@@ -50,7 +50,10 @@ test("every landing page header carries no gold primary button", () => {
     const html = readFileSync(join(dir, f), "utf8");
     const at = html.indexOf('<header class="hd"');
     if (at < 0) continue;
-    assert.doesNotMatch(html.slice(at, html.indexOf("</header>", at)), /btn-p/, f);
+    const header = html.slice(at, html.indexOf("</header>", at));
+    assert.doesNotMatch(header, /btn-p/, f);
+    assert.match(header, new RegExp(`<a class="l q" href="${APP_STORE_URL.replace(/[.?]/g, "\\$&")}" data-slot="appstore"`), f);
+    assert.match(html, /\.hd a\.q\{[^}]*text-decoration:underline/, f);
   }
 });
 
