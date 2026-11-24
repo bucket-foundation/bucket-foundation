@@ -371,7 +371,7 @@ struct LobbyRoom: View {
             }
         }
         .task { await lobbies.follow() }
-        .task(id: lobbies.current?.me?.userId) { await lobbies.loadBlocks() }
+        .task(id: "\(lobbies.current?.id ?? "")|\(lobbies.current?.me?.userId ?? "")|\(lobbies.blocks == nil)") { if lobbies.blocks == nil { await lobbies.loadBlocks() } }
         .confirmationDialog(Text("Block \(blockTarget?.name ?? "")?"), isPresented: Binding(get: { blockTarget != nil }, set: { if !$0 { blockTarget = nil } }), titleVisibility: .visible, presenting: blockTarget) { m in
             Button("Block", role: .destructive) { block(m) }
             Button("Cancel", role: .cancel) {}
@@ -463,6 +463,9 @@ struct LobbyRoom: View {
     func chatLog(_ l: Lobby) -> some View {
         if lobbies.blocks == nil {
             Text("Loading chat…").font(PL.small.font()).foregroundStyle(PL.inkDim)
+        }
+        if lobbies.blocksFailed {
+            Text("Your block list did not load. Blocked players may show.").font(PL.small.font()).foregroundStyle(PL.vermilion)
         }
         ForEach(lobbies.visibleMessages(l).suffix(30)) { m in
             HStack(alignment: .top) {

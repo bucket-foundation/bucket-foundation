@@ -108,4 +108,33 @@ func chatLobbyJSON() -> [String: Any] {
         await #expect(throws: BucketError.self) { try await store.report(ana, reason: .spam) }
         #expect(store.visibleMessages(try #require(store.current)).count == 3)
     }
+
+    @Test func aFailedBlockKeepsTheListAndThrows() async throws {
+        let api = BucketAPI(transport: StubTransport { r in
+            switch r.url!.path {
+            case let p where p.hasSuffix("/blocks"): return r.httpMethod == "POST" ? (503, json(["error": "sync_unavailable"])) : (200, json(["blocks": []]))
+            default: return (200, json(["lobby": chatLobbyJSON()]))
+            }
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" }, blockDefaults: defaults())
+        try await store.join(code: "ABC123", displayName: "Gia")
+        await store.loadBlocks()
+        let ana = try #require(store.current?.messages.first)
+        await #expect(throws: BucketError.self) { try await store.block(ana) }
+        let lobby = try #require(store.current)
+        #expect(store.blocks == [] && store.visibleMessages(lobby).count == 3)
+    }
+
+    @Test func rejoiningClearsTheListUntilItLoadsAgain() async throws {
+        let api = BucketAPI(transport: StubTransport { r in
+            r.url!.path.hasSuffix("/blocks") ? (200, json(["blocks": [["userId": "u2", "name": "Ana", "at": ""]]])) : (200, json(["lobby": chatLobbyJSON()]))
+        }, cacheDir: nil)
+        let store = LobbyStore(api: api, token: { "t" }, blockDefaults: defaults())
+        try await store.join(code: "ABC123", displayName: "Gia")
+        await store.loadBlocks()
+        #expect(store.blocks?.count == 1)
+        try await store.join(code: "ABC123", displayName: "Gia")
+        let rejoined = try #require(store.current)
+        #expect(store.blocks == nil && store.visibleMessages(rejoined).isEmpty)
+    }
 }
