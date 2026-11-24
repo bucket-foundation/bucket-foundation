@@ -599,6 +599,9 @@ public final class LangStore {
         if merged != mine {
             states[systemId] = merged
             writeLocal(branch, merged)
+            if let s = system(systemId) {
+                for (sibling, shared) in sharedCards(from: s, before: mine, next: merged) { store(sibling, shared) }
+            }
         }
         let status = await send(t, branch, merged.js, over: server, epoch: ep)
         guard epoch == ep else { return false }

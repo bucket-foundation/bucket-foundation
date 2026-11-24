@@ -118,6 +118,25 @@ import Testing
         #expect(EngineState(js: server.branches.value[progressBranch(a)]).cards[id] == s.state(b.id).cards[id])
     }
 
+    @Test func cardsMergedFromTheServerReachSiblingSets() async throws {
+        let server = LangServer()
+        let clock = LockedBox<Double>(2_000)
+        let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { clock.value })
+        await s.load()
+        let a = try await s.create(root: "en", targets: ["nl"])
+        let b = try await s.create(root: "en", targets: ["nl", "de"])
+        s.grade(b.id, lang: "nl", itemId: "wife", rating: 3)
+        await s.flush()
+        let id = cardId("nl", "wife")
+        let remote = gradeCard(s.state(b.id), "nl", "wife", 3, now: 90_000, tz: "UTC")
+        server.branches.mutate { $0[progressBranch(b)] = remote.js }
+        clock.mutate { $0 = 95_000 }
+        s.grade(b.id, lang: "de", itemId: "wife", rating: 3)
+        await s.flush()
+        #expect(s.state(b.id).cards[id] == remote.cards[id])
+        #expect(s.state(a.id).cards[id] == remote.cards[id])
+    }
+
     @Test func dayTotalsCountASharedCardAndItsLanguageBudgetOnce() throws {
         let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
         let a = try createSystem("en", ["fr", "es"], [], now: 0)
