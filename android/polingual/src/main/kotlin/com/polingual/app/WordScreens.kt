@@ -153,16 +153,17 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
     picking?.let { side ->
         LanguagePicker(
             options = corpus?.let { translateSources(it, mine) } ?: Lang.codes,
+            recent = PickerRecents.read(graph.kv::get),
             recents = mine,
             allowAny = true,
             anyLabel = if (side == "from") "Detect" else "My languages",
             dismiss = { picking = null },
-        ) { choice -> scope.launch { graph.store.update { if (side == "from") it.copy(translateFrom = choice) else it.copy(translateTo = choice) } }; picking = null }
+        ) { choice -> choice?.let { PickerRecents.push(it, graph.kv::get, graph.kv::set) }; scope.launch { graph.store.update { if (side == "from") it.copy(translateFrom = choice) else it.copy(translateTo = choice) } }; picking = null }
     }
 }
 
 @Composable
-fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boolean, anyLabel: String, dismiss: () -> Unit, pick: (String?) -> Unit) {
+fun LanguagePicker(options: List<String>, recent: List<String> = emptyList(), recents: List<String>, allowAny: Boolean, anyLabel: String, dismiss: () -> Unit, pick: (String?) -> Unit) {
     var query by remember { mutableStateOf("") }
     val p = LocalPalette.current
     AlertDialog(
@@ -174,8 +175,11 @@ fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boole
                 OutlinedTextField(query, { query = it }, singleLine = true, label = { Text("Search") }, modifier = Modifier.fillMaxWidth())
                 if (query.isBlank()) {
                     if (allowAny) Text(anyLabel, color = PL.Vermilion, modifier = Modifier.fillMaxWidth().clickable { pick(null) }.padding(vertical = 10.dp))
-                    SectionTitle("Yours")
-                    recents.forEach { l -> PickerRow(l) { pick(l) } }
+                    val groups = PickerRecents.groups(recent, recents)
+                    if (groups.first.isNotEmpty()) SectionTitle("Recent")
+                    groups.first.forEach { l -> PickerRow(l) { pick(l) } }
+                    if (groups.second.isNotEmpty()) SectionTitle("Yours")
+                    groups.second.forEach { l -> PickerRow(l) { pick(l) } }
                     SectionTitle("All")
                 }
                 options.filter { l -> query.isBlank() || Lang.name(l).contains(query, true) || l.startsWith(query.lowercase()) }.forEach { l -> PickerRow(l) { pick(l) } }
@@ -204,4 +208,17 @@ private fun TranslationRows(source: String, headword: String, rows: Map<String, 
             }
         }
     }
+}
+
+object PickerRecents {
+    const val KEY = "polingual.translate.recentLangs"
+    const val MAX = 6
+
+    fun read(get: (String) -> String?): List<String> = get(KEY)?.split(',')?.filter { it.isNotBlank() }.orEmpty()
+
+    fun next(current: List<String>, lang: String): List<String> = (listOf(lang) + current.filter { it != lang }).take(MAX)
+
+    fun push(lang: String, get: (String) -> String?, set: (String, String?) -> Unit): List<String> = next(read(get), lang).also { set(KEY, it.joinToString(",")) }
+
+    fun groups(recent: List<String>, mine: List<String>): Pair<List<String>, List<String>> = recent to mine.filter { it !in recent }
 }

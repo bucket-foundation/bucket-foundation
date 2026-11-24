@@ -4,8 +4,10 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import {
   assemblePublicProfile,
   normalizeHandle,
+  profileNamesAllowed,
   type ProgressRow,
 } from "@/lib/academy/profile";
+import { nameAllowed } from "@/lib/academy/groups-names";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -189,6 +191,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     } else {
       return json({ error: "bad_request" }, 400);
     }
+  }
+
+  if ((b.handle !== undefined || b.display_name !== undefined) && !profileNamesAllowed(b.handle !== undefined ? nextHandle : null, b.display_name !== undefined ? nextDisplay : null, nameAllowed)) {
+    return json({ error: "name_not_allowed" }, 422);
   }
 
   let nextPublic = current?.is_public ?? false;
