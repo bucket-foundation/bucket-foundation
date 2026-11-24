@@ -107,6 +107,18 @@ struct LangReferenceTests {
         #expect(f.relatives.map(\.lang) == ["fr"])
     }
 
+    @Test func tappedWordMeaningUsesTheLearnersRoot() {
+        let c = Self.corpus()
+        let fr = c.items.first { $0.form("es") == "beber" }?.form("fr")
+        let d = WordLookup.detail("beber", lang: "es", corpus: c, top: [], root: "fr")
+        #expect(fr != nil)
+        #expect(d.gloss == fr)
+        #expect(d.rootLang == "fr")
+        let en = WordLookup.detail("beber", lang: "es", corpus: c, top: [])
+        #expect(en.rootLang == "en")
+        #expect(en.gloss != nil)
+    }
+
     @Test func factsForAnUnknownWordStayEmpty() {
         let d = WordLookup.detail("zzz", lang: "es", corpus: Self.corpus(), top: [])
         let f = LangReference.facts(d, corpus: Self.corpus(), others: ["fr"])

@@ -42,7 +42,7 @@ struct WordTapHost: ViewModifier {
             .environment(\.openURL, OpenURLAction { url in
                 guard let p = WordTaps.parse(url) else { return .systemAction }
                 if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
-                shown = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [])
+                shown = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.playRoot ?? "en")
                 return .handled
             })
             .environment(\.wordTapsHosted, true)
@@ -73,7 +73,10 @@ struct WordCard: View {
                 if let r = readingText(detail.reading) { Text(r).font(.subheadline).foregroundStyle(Palette.muted) }
                 switch detail.cardLine(reveal: reveal) {
                 case .meaning(let gloss):
-                    Text(gloss).font(.body).foregroundStyle(Palette.ink)
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text(langName(detail.rootLang).uppercased()).font(.caption2.monospaced()).foregroundStyle(Palette.muted).accessibilityLabel("\(langName(detail.rootLang)) meaning")
+                        Text(gloss).font(.body).foregroundStyle(Palette.ink)
+                    }
                 case .afterAnswer:
                     Text("The meaning shows after you answer.").font(.subheadline).foregroundStyle(Palette.muted)
                 case .noEntry:
