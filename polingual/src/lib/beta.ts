@@ -76,9 +76,17 @@ export function androidEmail(to: string, from: string) {
     from,
     to: [to],
     subject: "Your Polingual Android beta",
-    text: `You're in. Two steps on your Android phone, both with the same Google account:\n\n${text}\n\nFull access is free while you test. Reply with anything that feels off.\n\n${UNSUBSCRIBE}\n\nPolingual`,
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>You're in. Two steps on your Android phone, both with the same Google account.</p>${html}<p>Full access is free while you test. Reply with anything that feels off.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+    text: `You're in. Two steps on your Android phone, both with the same Google account:\n\n${text}\n\nReply with anything that feels off.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>You're in. Two steps on your Android phone, both with the same Google account.</p>${html}<p>Reply with anything that feels off.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
   };
+}
+
+export const ANDROID_MARK = "android";
+let warnedAndroid = false;
+function warnNoAndroidAudience() {
+  if (warnedAndroid) return;
+  warnedAndroid = true;
+  console.error("[beta] RESEND_ANDROID_AUDIENCE_ID is not set; Android signups are marked by last_name in the beta audience");
 }
 
 export function wantsTestflight(body: unknown): boolean {
@@ -119,7 +127,9 @@ export async function joinBeta(
   if (!limits.email.take(parsed.signup.email, req.now)) return TOO_MANY;
   const key = env.RESEND_API_KEY?.trim();
   const android = wantsTestflight(body) && parsePlatform(body) === "android";
-  const audience = (android && env.RESEND_ANDROID_AUDIENCE_ID?.trim()) || env.RESEND_BETA_AUDIENCE_ID?.trim();
+  const androidAudience = android ? env.RESEND_ANDROID_AUDIENCE_ID?.trim() : undefined;
+  if (android && !androidAudience) warnNoAndroidAudience();
+  const audience = androidAudience || env.RESEND_BETA_AUDIENCE_ID?.trim();
   if (!key || !audience) return { status: 503, body: { error: "Signups are offline. Try again soon." } };
   if (!req.human && needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
@@ -130,7 +140,7 @@ export async function joinBeta(
     const contact = await send(`${API}/audiences/${audience}/contacts`, {
       method: "POST",
       headers,
-      body: JSON.stringify({ email: parsed.signup.email, unsubscribed: false }),
+      body: JSON.stringify({ email: parsed.signup.email, unsubscribed: false, ...(android ? { last_name: ANDROID_MARK } : {}) }),
     });
     if (!contact.ok && contact.status !== 409) return { status: 502, body: { error: "Your signup did not save. Try again in a minute." } };
     if (contact.status === 409 && !testflight) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
