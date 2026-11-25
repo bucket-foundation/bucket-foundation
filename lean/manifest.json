@@ -1125,6 +1125,177 @@
   "type": "{α : Type} → (α → Prop) → List α → α → Prop"
  },
  {
+  "name": "BucketMath.Learning.Capacity.capacity_bound",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 72,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (held : List ι) {m B : Nat},\n  0 < m → (∀ (i : ι), i ∈ held → m ≤ cost i) → BucketMath.Learning.Capacity.load cost held ≤ B → held.length ≤ B / m"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.capacity_bound_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 104,
+  "type": "∀ {m m' : Nat} (B : Nat), 0 < m' → m' ≤ m → B / m ≤ B / m'"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.capacity_rises",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 108,
+  "type": "∀ {ι : Type} (R : Nat → Nat → Nat) (r n c W B : Nat),\n  (∀ (t S S' : Nat), S ≤ S' → R t S ≤ R t S') →\n    ∀ (stab : Nat → ι → Nat) (held : List ι) {w w' : Nat},\n      (∀ (i : ι), i ∈ held → stab w i ≤ stab w' i) →\n        (∀ (i : ι), i ∈ held → 0 < BucketMath.Learning.Capacity.lastHold R r (stab w i) n) →\n          BucketMath.Learning.Capacity.load (fun i => BucketMath.Learning.Capacity.upkeep R r n c W (stab w i)) held ≤\n              B →\n            BucketMath.Learning.Capacity.load (fun i => BucketMath.Learning.Capacity.upkeep R r n c W (stab w' i))\n                held ≤\n              B"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.capacity_tight",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 86,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (pool : List ι) {m B : Nat},\n  B / m ≤ pool.length →\n    (∀ (i : ι), i ∈ pool → cost i = m) →\n      (List.take (B / m) pool).length = B / m ∧ BucketMath.Learning.Capacity.load cost (List.take (B / m) pool) ≤ B"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.held_retention",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 40,
+  "type": "∀ (R : Nat → Nat → Nat) (r S n t : Nat),\n  (∀ (t t' S : Nat), t ≤ t' → R t' S ≤ R t S) →\n    0 < BucketMath.Learning.Capacity.lastHold R r S n → t ≤ BucketMath.Learning.Capacity.lastHold R r S n → r ≤ R t S"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 7,
+  "type": "(Nat → Nat → Nat) → Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold_holds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 16,
+  "type": "∀ (R : Nat → Nat → Nat) (r S n : Nat),\n  0 < BucketMath.Learning.Capacity.lastHold R r S n → r ≤ R (BucketMath.Learning.Capacity.lastHold R r S n) S"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold_le",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 11,
+  "type": "∀ (R : Nat → Nat → Nat) (r S n : Nat), BucketMath.Learning.Capacity.lastHold R r S n ≤ n"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold_mono_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 26,
+  "type": "∀ (R : Nat → Nat → Nat) (r n : Nat),\n  (∀ (t S S' : Nat), S ≤ S' → R t S ≤ R t S') →\n    ∀ {S S' : Nat},\n      S ≤ S' → BucketMath.Learning.Capacity.lastHold R r S n ≤ BucketMath.Learning.Capacity.lastHold R r S' n"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.length_mul_le_load",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 62,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (m : Nat) (held : List ι),\n  (∀ (i : ι), i ∈ held → m ≤ cost i) → held.length * m ≤ BucketMath.Learning.Capacity.load cost held"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.load",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 60,
+  "type": "{ι : Type} → (ι → Nat) → List ι → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.load_const",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 76,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (m : Nat) (held : List ι),\n  (∀ (i : ι), i ∈ held → cost i = m) → BucketMath.Learning.Capacity.load cost held = held.length * m"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.load_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 94,
+  "type": "∀ {ι : Type} (cost cost' : ι → Nat) (held : List ι),\n  (∀ (i : ι), i ∈ held → cost' i ≤ cost i) →\n    BucketMath.Learning.Capacity.load cost' held ≤ BucketMath.Learning.Capacity.load cost held"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.maintenance",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 45,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.maintenance_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 47,
+  "type": "∀ (c W : Nat) {I I' : Nat},\n  0 < I → I ≤ I' → BucketMath.Learning.Capacity.maintenance c W I' ≤ BucketMath.Learning.Capacity.maintenance c W I"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.powerRetention",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 117,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.powerRetention_antitone_time",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 119,
+  "type": "∀ (U S : Nat) {t t' : Nat},\n  0 < S →\n    t ≤ t' → BucketMath.Learning.Capacity.powerRetention U t' S ≤ BucketMath.Learning.Capacity.powerRetention U t S"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.upkeep",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 51,
+  "type": "(Nat → Nat → Nat) → Nat → Nat → Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.upkeep_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 54,
+  "type": "∀ (R : Nat → Nat → Nat) (r n c W : Nat),\n  (∀ (t S S' : Nat), S ≤ S' → R t S ≤ R t S') →\n    ∀ {S S' : Nat},\n      0 < BucketMath.Learning.Capacity.lastHold R r S n →\n        S ≤ S' → BucketMath.Learning.Capacity.upkeep R r n c W S' ≤ BucketMath.Learning.Capacity.upkeep R r n c W S"
+ },
+ {
   "name": "BucketMath.Learning.Closed",
   "kind": "def",
   "status": "def",
@@ -1213,6 +1384,231 @@
   "source": "lean/BucketMath/Learning.lean",
   "line": 24,
   "type": "{α : Type} → (α → α → Prop) → α → (α → Prop) → α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.Ultra",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 40,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.Ultra.symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 41,
+  "type": "∀ {α : Type} {sim : α → α → Nat}, BucketMath.Learning.Sequencing.Ultra sim → ∀ (a b : α), sim a b = sim b a"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.Ultra.ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 42,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim → ∀ (a b c : α), min (sim a b) (sim b c) ≤ sim a c"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budgetCluster",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 110,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budgetGreedy",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 108,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budgetHeld",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 106,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budget_greedy_is_greedy",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 112,
+  "type": "BucketMath.Learning.Sequencing.isGreedy BucketMath.Learning.Sequencing.lcp BucketMath.Learning.Sequencing.budgetHeld\n    BucketMath.Learning.Sequencing.budgetGreedy =\n  true"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budget_same_pool",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 114,
+  "type": "BucketMath.Learning.Sequencing.budgetGreedy.Perm BucketMath.Learning.Sequencing.budgetCluster"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.depthBase",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 104,
+  "type": "List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.greedy_fails_under_budget",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 116,
+  "type": "BucketMath.Learning.Sequencing.prefixCost BucketMath.Learning.Sequencing.depthBase\n    BucketMath.Learning.Sequencing.budgetHeld BucketMath.Learning.Sequencing.budgetCluster 3 <\n  BucketMath.Learning.Sequencing.prefixCost BucketMath.Learning.Sequencing.depthBase\n    BucketMath.Learning.Sequencing.budgetHeld BucketMath.Learning.Sequencing.budgetGreedy 3"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.greedy_optimal",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 96,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (base : α → Nat) (held : List α) {g l : List α},\n      BucketMath.Learning.Sequencing.isGreedy sim held g = true →\n        g.Perm l →\n          BucketMath.Learning.Sequencing.totalCost sim base held g ≤\n            BucketMath.Learning.Sequencing.totalCost sim base held l"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.isGreedy",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 92,
+  "type": "{α : Type} → (α → α → Nat) → List α → List α → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 7,
+  "type": "List Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp_isUltra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 44,
+  "type": "BucketMath.Learning.Sequencing.Ultra BucketMath.Learning.Sequencing.lcp"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 11,
+  "type": "∀ (a b : List Nat), BucketMath.Learning.Sequencing.lcp a b = BucketMath.Learning.Sequencing.lcp b a"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 21,
+  "type": "∀ (a b c : List Nat),\n  min (BucketMath.Learning.Sequencing.lcp a b) (BucketMath.Learning.Sequencing.lcp b c) ≤\n    BucketMath.Learning.Sequencing.lcp a c"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.prefixCost",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 101,
+  "type": "(List Nat → Nat) → List (List Nat) → List (List Nat) → Nat → Int"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.shared",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 30,
+  "type": "{α : Type} → (α → α → Nat) → α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.shared_ge_min",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 46,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (a b : α) (held : List α),\n      min (sim a b) (BucketMath.Learning.Sequencing.shared sim b held) ≤\n        BucketMath.Learning.Sequencing.shared sim a held"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.shared_swap",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 55,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (a b : α) (held : List α),\n      BucketMath.Learning.Sequencing.shared sim a held + BucketMath.Learning.Sequencing.shared sim b (a :: held) =\n        BucketMath.Learning.Sequencing.shared sim b held + BucketMath.Learning.Sequencing.shared sim a (b :: held)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalCost",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 37,
+  "type": "{α : Type} → (α → α → Nat) → (α → Nat) → List α → List α → Int"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalCost_perm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 87,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (base : α → Nat) (held : List α) {l l' : List α},\n      l.Perm l' →\n        BucketMath.Learning.Sequencing.totalCost sim base held l =\n          BucketMath.Learning.Sequencing.totalCost sim base held l'"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalShared",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 33,
+  "type": "{α : Type} → (α → α → Nat) → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalShared_congr",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 63,
+  "type": "∀ {α : Type} (sim : α → α → Nat) (order held held' : List α),\n  (∀ (d : α), BucketMath.Learning.Sequencing.shared sim d held = BucketMath.Learning.Sequencing.shared sim d held') →\n    BucketMath.Learning.Sequencing.totalShared sim held order =\n      BucketMath.Learning.Sequencing.totalShared sim held' order"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalShared_perm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 73,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ {l l' : List α},\n      l.Perm l' →\n        ∀ (held : List α),\n          BucketMath.Learning.Sequencing.totalShared sim held l = BucketMath.Learning.Sequencing.totalShared sim held l'"
  },
  {
   "name": "BucketMath.Learning.SquaredExtent",

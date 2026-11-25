@@ -7,6 +7,8 @@ import BucketMath.Graph
 import BucketMath.Discovery
 import BucketMath.Learning
 import BucketMath.Learning.Diamond
+import BucketMath.Learning.Capacity
+import BucketMath.Learning.Sequencing
 import BucketMath.Open
 import BucketMath.Helix
 import BucketMath.Marketing
