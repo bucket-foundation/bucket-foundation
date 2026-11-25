@@ -1063,6 +1063,10 @@ public func newToday(_ state: EngineState, _ lang: String, now: Double, tz: Time
     return state.cards.entries.filter { parseCardId($0.key).lang == lang && !isSentenceCard($0.key) && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
 }
 
+public func langNewLeft(_ system: LangSystem, _ state: EngineState, now: Double, tz: TimeZone = .current) -> Int {
+    system.targets.reduce(0) { $0 + max(0, Lang.newPerLangPerDay - newToday(state, $1, now: now, tz: tz)) }
+}
+
 public struct UnitStatus: Sendable, Identifiable {
     public let unit: LangUnit
     public let total: Int
@@ -1504,7 +1508,7 @@ public func langDayTotals(_ sets: [(system: LangSystem, state: EngineState)], _ 
     var introduced: [String: Set<String>] = [:]
     for (system, state) in sets {
         for lang in system.targets {
-            budget[lang] = max(budget[lang] ?? 0, Int(state.newPerDay))
+            budget[lang] = Lang.newPerLangPerDay
             for i in corpus.items where usable(i, system.root, lang) {
                 let id = cardId(lang, i.id)
                 if let c = state.cards[id], isStarted(c), let d = c.due, d <= now { due.insert(id) }
