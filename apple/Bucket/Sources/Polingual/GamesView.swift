@@ -227,6 +227,11 @@ extension LangStore {
         LobbyRace.finished(kind, score: LobbyRules.raceScore(points: points, hits: hits))
         DailyLedger.shared.charge(cards: played.count)
         let race = LobbyRace.system
+        if race == nil, let wire = DailyBook.wire[kind.rawValue] {
+            let entry = DailyEntry.result(game: wire, day: playDayKey(), score: hits, total: played.count, pattern: pattern ?? "", savedAt: Date().timeIntervalSince1970 * 1000)
+            DailyDone.shared.note(entry)
+            Task { DailyDone.shared.book = await recordDaily(entry) }
+        }
         let touched = race.map { LiveGames.credited(systems, root: $0.root, targets: $0.targets) } ?? (kind == .daily ? [dailySystem].compactMap { $0 } : systems.filter { s in played.contains { $0.root == s.root && s.targets.contains($0.lang) } })
         for s in touched {
             let mine = missed.filter { $0.root == s.root && s.targets.contains($0.lang) }
@@ -473,7 +478,10 @@ struct TranslateScreen: View {
                     .listRowBackground(PL.card)
             }
         }
-        .task { await langs.load() }
+        .task {
+            await langs.load()
+            DailyDone.shared.book = await langs.loadDailyBook()
+        }
         .paper()
         .navigationTitle("Translate")
         .plChrome()
@@ -544,7 +552,7 @@ struct GameTile: View {
                     .font(PL.small.font()).foregroundStyle(PL.paper.opacity(0.85))
                     .lineLimit(3, reservesSpace: true)
                     .multilineTextAlignment(.leading)
-                Text(langs.gameBest(kind.rawValue).flatMap { $0 > 0 ? String(localized: "Best \($0)") : nil } ?? " ")
+                Text(DailyDone.shared.played(kind.rawValue, day: playDayKey()) ? String(localized: "Done today") : langs.gameBest(kind.rawValue).flatMap { $0 > 0 ? String(localized: "Best \($0)") : nil } ?? " ")
                     .font(PL.label.font()).monospacedDigit().foregroundStyle(PL.paper)
             }
             .padding(14)
@@ -778,5 +786,19 @@ struct GamesSetStart: View {
                 haptic(false)
             }
         }
+    }
+}
+
+@MainActor
+@Observable
+final class DailyDone {
+    static let shared = DailyDone()
+    var book: DailyBook.Book = DailyBook.readLocal()
+
+    func note(_ entry: DailyEntry) { book = DailyBook.merge(book, [DailyBook.key(entry.game, entry.day): entry]) }
+
+    func played(_ kind: String, day: String) -> Bool {
+        guard let wire = DailyBook.wire[kind] else { return false }
+        return DailyBook.played(book, game: wire, day: day)
     }
 }
