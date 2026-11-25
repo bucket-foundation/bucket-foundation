@@ -9,6 +9,7 @@ import BucketMath.Learning
 import BucketMath.Learning.Diamond
 import BucketMath.Learning.Capacity
 import BucketMath.Learning.Sequencing
+import BucketMath.Learning.Coverage
 import BucketMath.Open
 import BucketMath.Helix
 import BucketMath.Marketing

@@ -1314,6 +1314,114 @@
   "type": "{α : Type} → (α → α → Prop) → (α → Prop) → Prop"
  },
  {
+  "name": "BucketMath.Learning.Cognate.CognateCoverage",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 16,
+  "type": "{L W : Type} → (L → W → Bool) → List L → List (W × Nat) → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.CoveredMass",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 10,
+  "type": "{L W : Type} → (L → W → Bool) → List L → List (W × Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.Recognized",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 7,
+  "type": "{L W : Type} → (L → W → Bool) → List L → W → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.TotalMass",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 13,
+  "type": "{W : Type} → List (W × Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_empty",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 91,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (text : List (W × Nat)),\n  BucketMath.Learning.Cognate.CognateCoverage cognate [] text = 0"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 71,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) (text : List (W × Nat)),\n  BucketMath.Learning.Cognate.CognateCoverage cognate held text ≤ 1"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 62,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CognateCoverage cognate small text ≤\n        BucketMath.Learning.Cognate.CognateCoverage cognate large text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 85,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) (text : List (W × Nat)),\n  0 ≤ BucketMath.Learning.Cognate.CognateCoverage cognate held text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coveredMass_le_total",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 44,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) (text : List (W × Nat)),\n  BucketMath.Learning.Cognate.CoveredMass cognate held text ≤ BucketMath.Learning.Cognate.TotalMass text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coveredMass_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 27,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass cognate small text ≤\n        BucketMath.Learning.Cognate.CoveredMass cognate large text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.natCast_inv_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 56,
+  "type": "∀ (n : Nat), 0 ≤ (↑n)⁻¹"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.recognized_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 19,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ (w : W),\n      BucketMath.Learning.Cognate.Recognized cognate small w = true →\n        BucketMath.Learning.Cognate.Recognized cognate large w = true"
+ },
+ {
   "name": "BucketMath.Learning.CoordinateGrowth",
   "kind": "inductive",
   "status": "def",

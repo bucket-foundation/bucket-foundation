@@ -1,0 +1,320 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
+\addbibresource{bib/refs.bib}
+
+\usepackage{hyperref}
+
+\usepackage{bucket}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = bucketblue,
+  citecolor  = bucketblue,
+  urlcolor   = bucketblue,
+}
+
+\newcommand{\emp}[1]{{\small[empirical: #1]}}
+\newcommand{\bm}[1]{{\small[bm:#1]}}
+\newcommand{\covrun}{data/coverage.json, 2026-11-25, python3 scripts/coverage.py}
+\newcommand{\regrun}{data/regression.json, 2026-11-25, python3 scripts/regress.py}
+
+\glossentry{coverage}{cognate coverage}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/lean/BucketMath/Learning/Coverage.lean}%
+  {The token-weighted share of running text in a target language whose
+   words a learner can link to a word in a language they hold, through a
+   shared etymological ancestor or a close spelling; see \Cref{def:coverage}.}
+\glossentry{held}{held set}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/lean/BucketMath/Learning/Coverage.lean}%
+  {The set of languages a learner already reads, written $S$.}
+\glossentry{closure}{ancestor closure}%
+  {https://github.com/gianyrox/bucket-foundation/tree/dev/papers/cognate-coverage/scripts/coverage.py}%
+  {The set of forms reachable from a word by following inheritance,
+   derivation and reconstructed-root edges in the Wiktionary etymology
+   graph, up to eight steps; see \Cref{def:closure}.}
+\glossentry{fsi}{FSI class hours}%
+  {https://www.state.gov/foreign-language-training}%
+  {The class hours the US Foreign Service Institute reports for a native
+   English speaker to reach professional working proficiency.}
+
+\title{Cognate Coverage: How Much of a Target Language a Learner Already Reads}
+\author{Bucket Foundation}
+\date{2026-11-25}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We define \term{coverage}{cognate coverage} $C(S,t)$, the share of running
+text in a target language $t$ whose words have a cognate or close form in
+some language of a learner's \term{held}{held set} $S$, and prove in Lean
+that it lies in $[0,1]$ and never drops when $S$ grows
+\bm{BucketMath.Learning.Cognate.coverage\_mono}. We measure it over 23
+targets and 27 held languages from a Wiktionary etymology and translation
+index, weighted by open word frequencies. The best single held language
+covers a mean of 0.268 of target tokens, and the best set of four covers
+0.368 \emp{\covrun}.
+Coverage from English alone explains 28\% of the variance in \term{fsi}{FSI class hours} across 23 languages, 42\% on a log scale, and 65\% once the four 2200-hour languages are set aside [empirical: data/regression.json, 2026-11-25, python3 scripts/regress.py].
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+A Spanish speaker who opens a Portuguese newspaper reads much of it on
+the first day. A Spanish speaker who opens a Finnish one reads almost
+none of it. Course designers and placement tests treat this gap as
+folklore. We give it a definition, prove the two properties any
+reasonable definition needs, and measure it.
+
+The question has a set-valued input. Learners hold more than one
+language, and a second held language can cover words the first misses: an
+English speaker who also reads Latin recognizes Italian words English
+lost. We compute $C(S,t)$ for every held set of size one to four over the
+available languages and report the gain each added language brings.
+
+\section{Related Work}
+\label{sec:related}
+
+Chiswick and Miller turned FSI-style learning scores into a quantitative
+distance between English and other languages \cite{chiswick2005distance}.
+Their measure is an outcome; ours is a lexical predictor of that outcome,
+built from etymology and frequency. Token weights come from the
+\texttt{wordfreq} package \cite{speer2018wordfreq}. The proofs use Lean 4
+\cite{demoura2021lean4}.
+
+\section{Preliminaries}
+\label{sec:prelim}
+
+Let $\mathcal{L}$ be a finite set of languages and $V_t$ the analyzable
+vocabulary of a target $t$: the top 5000 words of $t$ by frequency that
+have at least one entry in the translation table. Each $w\in V_t$ carries
+a weight $f_t(w)$, its relative frequency in running text.
+
+\begin{definition}[Ancestor closure]
+\label{def:closure}
+For a word $w$ of language $l$, the \term{closure}{ancestor closure}
+$A(l,w)$ is the set of (language, form) pairs reachable from $(l,w)$ in at
+most eight steps along Wiktionary etymology edges of kind inherited,
+derived, form-of, or reconstructed root. For a target word the edges also
+include borrowings; for a held-language word they do not.
+\end{definition}
+
+\begin{definition}[Recognition]
+\label{def:recognition}
+Let $E(w)$ be the English glosses of $w$ in the translation table, and
+let $R_s(w)$ be the renderings of those glosses in a held language $s$,
+restricted to the 10000 most frequent words of $s$ where \texttt{wordfreq}
+covers $s$. Then $s$ \emph{recognizes} $w$, written $\kappa(s,w)=1$, when
+some $u\in R_s(w)$ satisfies
+\[
+  A(t,w)\cap A(s,u)\neq\emptyset
+  \quad\text{or}\quad
+  \frac{d(\phi(w),\phi(u))}{\max(|\phi(w)|,|\phi(u)|)}\le 0.25,
+\]
+where $\phi$ lowercases, romanizes from the table, and strips diacritics,
+and $d$ is Levenshtein distance. Exact matches need three letters and
+near matches need four.
+\end{definition}
+
+\begin{definition}[Cognate coverage]
+\label{def:coverage}
+For a held set $S\subseteq\mathcal{L}$ with $t\notin S$,
+\[
+  C(S,t)=\frac{\sum_{w\in V_t} f_t(w)\,\max_{s\in S}\kappa(s,w)}
+              {\sum_{w\in V_t} f_t(w)},
+\]
+with $\max_{s\in\emptyset}=0$.
+\end{definition}
+
+\begin{lemma}[Bounds]
+\label{lem:bounds}
+$0\le C(S,t)\le 1$ and $C(\emptyset,t)=0$
+\bm{BucketMath.Learning.Cognate.coverage\_le\_one},
+\bm{BucketMath.Learning.Cognate.coverage\_nonneg},
+\bm{BucketMath.Learning.Cognate.coverage\_empty}.
+\end{lemma}
+
+\begin{theorem}[Monotonicity]
+\label{thm:mono}
+If $S\subseteq S'$ then $C(S,t)\le C(S',t)$
+\bm{BucketMath.Learning.Cognate.coverage\_mono}.
+\end{theorem}
+
+\begin{proof}
+Recognition is an existential over $S$, so a word recognized under $S$ is
+recognized under $S'$ \bm{BucketMath.Learning.Cognate.recognized\_mono}.
+The covered mass is a sum of nonnegative weights over the recognized
+words, so it does not drop \bm{BucketMath.Learning.Cognate.coveredMass\_mono},
+and dividing by the same nonnegative total keeps the order.
+\end{proof}
+
+The Lean model takes $\kappa$ as an arbitrary Boolean relation and the
+text as a list of weighted words, so both results hold for any choice of
+cognate test, including the one in \Cref{def:recognition}.
+
+\section{Method}
+\label{sec:method}
+
+The data are the Bucket photon index: a Wiktionary extraction with
+5.9 million etymology edges and translation rows for every language in
+the study \emp{\_intake/photons/roots.sqlite, 2026-11-25, sqlite3 roots.sqlite "select count(*) from etym"}.
+Wiktionary content comes through Kaikki and is CC-BY-SA. The pgvector
+index and the phonetic vectors were not used; the phonetic test is the
+spelling distance of \Cref{def:recognition}.
+
+Targets are the 23 study languages that \texttt{wordfreq} covers, plus
+English. Held languages are those 23 plus Latin, Sanskrit, Thai and
+English, 27 in all. For each target we compute $\kappa(s,\cdot)$ as a
+Boolean vector over $V_t$ for each held $s$, then take unions for every
+held set of size one to four that excludes $t$: 17550 sets for a size of
+four. We report the best set of each size, the mean over all sets of
+each size, and two greedy chains: one free, and one that starts from
+English.
+
+For the regression we take FSI class hours for the 23 targets that FSI
+lists: 600 for Category I, 750 for French, 900 for German and Indonesian,
+1100 for Category III, and 2200 for Arabic, Chinese, Japanese and Korean
+\emp{data/fsi\_hours.json, 2026-11-25, FSI language categories}. We fit
+ordinary least squares of hours and of log hours on $C(\{\mathrm{en}\},t)$.
+
+\section{Results}
+\label{sec:results}
+
+\Cref{fig:pairs} shows $C(\{s\},t)$ for every pair. The largest pairs sit
+inside Romance: Portuguese covers 0.756 of Spanish tokens, Italian 0.647
+of Spanish, Spanish 0.621 of Portuguese, and Latin 0.569 of Italian
+\emp{\covrun}. Inside Germanic, Dutch covers 0.48 of German and English
+covers 0.389 of Swedish. English covers under 0.05 of Japanese, Chinese,
+Finnish, Czech and Greek tokens \emp{\covrun}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_pairs.png}
+\caption{Single-language coverage $C(\{s\},t)$. Rows are targets, columns
+held languages; the diagonal is undefined.}
+\label{fig:pairs}
+\end{figure}
+
+\Cref{tab:sizes} and \Cref{fig:sizes} give coverage by set size, averaged
+over the 23 non-English targets. The best set gains 0.062 from its second
+language and 0.038 more from the next two. In the chain that starts from
+English, the second language adds more than English did, 0.167 against
+0.151, because it is a close relative of the target; the third and fourth
+add 0.035 and 0.016 \emp{\covrun}.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+$|S|$ & 1 & 2 & 3 & 4 \\
+\midrule
+mean over all sets & 0.055 & 0.098 & 0.133 & 0.162 \\
+best set & 0.268 & 0.330 & 0.356 & 0.368 \\
+greedy gain & 0.268 & 0.061 & 0.026 & 0.012 \\
+gain, chain from English & 0.151 & 0.167 & 0.035 & 0.016 \\
+\bottomrule
+\end{tabular}
+\caption{Coverage by held-set size, mean over 23 targets
+\emp{\covrun}.}
+\label{tab:sizes}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/fig_sizes.png}
+\caption{$C(S,t)$ against $|S|$ for each target. Each curve rises or stays
+flat, as \Cref{thm:mono} requires.}
+\label{fig:sizes}
+\end{figure}
+
+\Cref{fig:fsi} plots FSI hours against English coverage. The linear fit
+has slope $-2605$ hours per unit coverage, standard error 901, $R^2=0.285$,
+$p=0.0087$, $n=23$. On log hours $R^2=0.418$. Spearman's $\rho=-0.676$.
+Without the four 2200-hour languages, $R^2=0.650$ on $n=19$ with slope
+$-1596$ \emp{\regrun}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.55\textwidth]{figures/fig_fsi.png}
+\caption{FSI class hours against $C(\{\mathrm{en}\},t)$, with the least
+squares line.}
+\label{fig:fsi}
+\end{figure}
+
+\section{Calibration}
+\label{sec:calibration}
+
+The bounds and monotonicity are derivations, proved in
+\Cref{app:lean}. The measured values have no gold standard to calibrate
+against; we checked them three ways. Every curve in \Cref{fig:sizes} is
+nondecreasing, which a bug in the union step would break. Known close
+pairs rank first (\Cref{fig:pairs}). Hand inspection of matched words
+during development found two false-positive sources, which the method
+now blocks: held-language loanwords that point back to the target through
+English, such as Japanese \emph{za} for German \emph{die}, and rare
+translation renderings. Blocking them lowered German coverage from
+Japanese from 0.158 to under 0.03 on a 300-word sample
+\emp{data/coverage.json, 2026-11-25, TOP\_N=300 TGT=de python3 scripts/coverage.py}.
+
+\section{Limitations}
+\label{sec:limits}
+
+The regression has 23 points and FSI hours take five values, so the fit
+measures rank agreement more than a curve. Hours also reflect grammar,
+script and tones, which $C$ ignores; the 2200-hour languages all use
+non-Latin scripts and sit far from the line.
+
+$V_t$ holds 1325 to 3464 analyzable words per target, carrying 0.42 to
+0.94 of the top-5000 token mass \emp{\covrun}. Many function words lack
+translation rows and drop out.
+
+The etymology graph is incomplete, so root matches undercount. Shared
+roots also include Proto-Indo-European ones a learner cannot see: for
+Russian, coverage from English falls from 0.152 to 0.042 once matches
+through Proto-Indo-European alone are dropped \emp{\covrun}. Chinese
+characters shared by Chinese, Japanese and Korean are not modeled, so
+Sino-Xenic coverage reads near zero. The spelling test credits chance
+resemblance between unrelated words. Held-language borrowings are not
+credited at all. The FSI hours were transcribed from the State
+Department page, which refused automated fetches on 2026-11-25.
+
+\printbibliography
+
+\appendix
+
+\section{Glossary}
+\label{app:glossary}
+
+\printglossaryentry{coverage}
+\printglossaryentry{held}
+\printglossaryentry{closure}
+\printglossaryentry{fsi}
+
+\section{Lean Listings}
+\label{app:lean}
+
+Source: \texttt{lean/BucketMath/Learning/Coverage.lean}, imported by
+\texttt{BucketMath} and so by \texttt{BucketMathAll}. It defines
+\texttt{Recognized}, \texttt{CoveredMass}, \texttt{TotalMass} and
+\texttt{CognateCoverage} over $\mathbb{Q}$ and proves
+\texttt{recognized\_mono}, \texttt{coveredMass\_mono},
+\texttt{coveredMass\_le\_total}, \texttt{coverage\_mono},
+\texttt{coverage\_le\_one}, \texttt{coverage\_nonneg} and
+\texttt{coverage\_empty} with core Lean 4.33.1 only. Output of
+\texttt{make lean}:
+
+% voice-ignore-next 6
+\begin{verbatim}
+Built BucketMath.Learning.Coverage
+Built BucketMath
+Built BucketMathAll
+Build completed successfully (31 jobs).
+\end{verbatim}
+
+\end{document}
