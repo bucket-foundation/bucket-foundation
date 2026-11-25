@@ -158,6 +158,44 @@ The Lean model takes $\kappa$ as an arbitrary Boolean relation and the
 text as a list of weighted words, so both results hold for any choice of
 cognate test, including the one in \Cref{def:recognition}.
 
+\section{Preregistration}
+\label{sec:prereg}
+
+Committed on 2026-11-25 before the rerun that produced every number in
+\Cref{sec:results}. The headline coverage $C$ counts a root match only
+when the shared ancestor lies above Proto-Indo-European; $C_{\mathrm{PIE}}$
+also counts matches that meet only at Proto-Indo-European and serves as a
+sensitivity row. All resampling uses seed 20261125. Alpha is 0.05 for
+every test.
+
+\paragraph{H1, English coverage and FSI hours.}
+H0: Spearman $\rho(C(\{\mathrm{en}\},t), h_t)\ge 0$. H1: $\rho<0$.
+Test: one-sided permutation test, 10000 permutations of $h$ over the
+targets FSI lists. Effect: $\rho$ with a 95\% percentile bootstrap
+interval over languages, 10000 resamples, plus the OLS slope with its
+bootstrap interval. Power: the smallest $|\rho|$ detectable at 80\% power,
+by simulation from a bivariate normal at $n$. Secondary in the same family:
+OLS of $\log h_t$ on $C$, slope tested by permutation. Holm correction
+over the two.
+
+\paragraph{H2, single-pair coverage.}
+For each ordered pair $(s,t)$, H0: $C(\{s\},t)\le 0.05$. H1:
+$C(\{s\},t)>0.05$. Test: one-sided $z$ test with the standard error from
+1000 bootstrap resamples of $V_t$, each word carrying its weight.
+Effect: $C(\{s\},t)-0.05$ with a 95\% bootstrap interval. Benjamini and
+Hochberg at $q=0.05$ across all pairs. Power: the minimum detectable
+excess $(z_{0.95}+z_{0.80})\cdot\mathrm{SE}$, reported as its median over
+pairs.
+
+\paragraph{H3, gain from a second held language.}
+For each non-English target, split $V_t$ by frequency rank into odd and
+even halves. On the odd half choose the $s\ne\mathrm{en}$ that maximizes
+$C(\{\mathrm{en},s\},t)$. On the even half, H0: the gain
+$C(\{\mathrm{en},s\},t)-C(\{\mathrm{en}\},t)\le 0.02$. H1: gain $>0.02$.
+Test: one-sided bootstrap, 2000 resamples of the even half. Effect: the
+gain with a 95\% interval. Holm correction across targets. Power: minimum
+detectable gain as in H2.
+
 \section{Method}
 \label{sec:method}
 
