@@ -1,0 +1,290 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+
+\usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{hyperref}
+
+\usepackage{bucket}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = bucketblue,
+  citecolor  = bucketblue,
+  urlcolor   = bucketblue,
+}
+
+\glossentry{halflife}{half-life}%
+  {https://github.com/gianyrox/bucket-foundation/tree/dev/papers/retention-cognates/scripts/hlr.py}%
+  {The lag $h$ after which the modeled recall probability of a word falls
+   to one half; see \Cref{def:hlr}.}
+\glossentry{ned}{normalized edit distance}%
+  {https://github.com/gianyrox/bucket-foundation/tree/dev/papers/retention-cognates/lean/Bucket/Retention.lean}%
+  {Levenshtein distance between two strings divided by the length of the
+   longer one; see \Cref{def:ned}.}
+\glossentry{cognate}{cognate}%
+  {https://github.com/gianyrox/bucket-foundation/tree/dev/papers/retention-cognates/scripts/features.py}%
+  {A word whose Wiktionary etymology shares an ancestor form with a
+   translation of it in the learner's interface language; see
+   \Cref{def:cognate}.}
+
+\title{Cognates and Forgetting: Do Words Close to a Known Language Last Longer in Memory?}
+\author{Bucket Foundation}
+\date{2026-11-25}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{results/abstract.tex}
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+A spaced repetition scheduler predicts when a learner will forget a word
+and schedules the next review shortly before. Half-life regression
+\autocite{settles2016hlr} models that forgetting from practice history
+plus one indicator per word, so a new word starts with no word-level
+information. If a word's closeness to the learner's interface language
+predicts its \term{halflife}{half-life}, a scheduler can use that closeness
+from the first review. Laboratory work found that \term{cognate}{cognates}
+are learned faster and forgotten less \autocite{degroot2000hard}. We test
+the same question on the public Duolingo traces
+\autocite{settles2016data}: 12.9 million practice events from 115,222
+learners across eight language pairs.
+
+\section{Related work}
+\label{sec:related}
+
+Settles and Meeder introduced half-life regression and released the
+traces we use \autocite{settles2016hlr,settles2016data}. Their model
+reached its lowest error with lexeme indicator features, which absorb
+any fixed property of a word, cognate status included, and so cannot
+say which property matters. FSRS \autocite{ye2022fsrs} models memory
+stability per card and is the scheduler Polingual runs; it carries no
+word-level prior either. De Groot and Keijzer measured cognate status,
+concreteness and frequency in a paired-associate study with Dutch
+speakers and found cognates both easier to learn and slower to forget
+\autocite{degroot2000hard}.
+
+\section{Preliminaries}
+\label{sec:prelim}
+
+\begin{definition}[Half-life model]
+\label{def:hlr}
+For a practice event with lag $\Delta$ days since the last practice and a
+feature vector $x$, the predicted recall is $\hat p = 2^{-\Delta/\hat h}$
+with $\hat h = 2^{\theta^\top x}$, the \term{halflife}{half-life}. A
+coefficient $\theta_j$ is the change in $\log_2 \hat h$ per unit of
+feature $j$.
+\end{definition}
+
+\begin{definition}[Normalized edit distance]
+\label{def:ned}
+For strings $a, b$, $\mathrm{ned}(a,b) = \mathrm{lev}(a,b)/\max(|a|,|b|)$,
+with $\mathrm{lev}$ the Levenshtein distance. Similarity is
+$1-\mathrm{ned}$.
+\end{definition}
+
+\begin{definition}[Cognate features]
+\label{def:cognate}
+Let $T(w)$ be the Wiktionary translations of a lemma $w$ into the
+interface language. Spelling similarity is
+$\max_{t\in T(w)} 1-\mathrm{ned}(\mathrm{fold}(w),\mathrm{fold}(t))$, where
+$\mathrm{fold}$ lowercases and removes diacritics. IPA similarity is the
+same maximum over the first Wiktionary IPA transcription of each word.
+The word is a \term{cognate}{cognate} when some $t \in T(w)$ shares an
+etymological ancestor form with $w$, Proto-Indo-European roots excluded,
+or one word lists the other as its source.
+\end{definition}
+
+\section{Method}
+\label{sec:method}
+
+\paragraph{Data.} The Duolingo half-life regression traces
+\autocite{settles2016data} hold one row per word per session: recall
+rate in that session, lag since the word was last seen, and counts of
+prior correct and incorrect recalls. The dataset is released under
+CC BY-NC 4.0 at
+\url{https://doi.org/10.7910/DVN/N8XJME}; it permits nonprofit research
+and publication of derived results with attribution. The raw file stays
+out of the repository; \texttt{scripts/download.sh} fetches it and checks
+its size.
+
+\paragraph{Features.} \texttt{scripts/features.py} parses each lexeme tag
+to a lemma and looks it up in a Wiktionary extract (Kaikki, CC BY-SA):
+3.5 million translation rows, 5.9 million etymology rows and IPA for
+words in the six languages. English-interface pairs look up translations
+of the learned word into English; the three English-learning pairs look
+up translations of the English word into the interface language. Words
+with no translation get zero similarity and a missing indicator
+(\texttt{trans\_missing}); words with no IPA get the same treatment
+(\texttt{phon\_missing}).
+
+\paragraph{Models.} Both models share the base features of
+\autocite{settles2016hlr} without lexeme indicators: a bias,
+$\sqrt{1+\text{correct}}$, $\sqrt{1+\text{incorrect}}$, plus
+$\log_2(1+\text{lemma length})$ as a control, since cognates in this data
+run longer. The cognate model adds spelling similarity, IPA similarity,
+the shared-etymon indicator and the two missing indicators. The loss is
+the one in \autocite{settles2016hlr}: squared recall error plus $0.01$
+times squared half-life error, half-life clipped to
+$[15\,\text{min}, 274\,\text{days}]$, with an L2 penalty of $10^{-4}$,
+minimized by L-BFGS. Events are sorted by time; the first 90\% train and
+the last 10\% test. AUC uses the rounded session recall as the label.
+
+\paragraph{Uncertainty.} Confidence intervals are 95\% percentile
+intervals from a learner-clustered Poisson bootstrap with
+\input{results/boot.tex} replicates: each replicate reweights every
+learner's events by one Poisson(1) draw and refits from the point
+estimate. The MAE difference between the models uses the same scheme on
+the test set without refitting.
+
+\section{Results}
+\label{sec:results}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Held-out fit per language pair, interface language first.
+    $\Delta$MAE is cognate minus base, $\times 10^{3}$, with its 95\%
+    interval.}
+  \label{tab:fit}
+  \begin{tabular}{@{}lrrrrrrrl@{}}
+    \toprule
+    Pair & Events & Learners & Lexemes & MAE base & MAE cog. & AUC base & AUC cog. & $\Delta$MAE \\
+    \midrule
+    \input{results/table_fit.tex}
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Pooled coefficients in $\log_2$ half-life, 95\% intervals.}
+  \label{tab:coef}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Feature & Base model & Cognate model \\
+    \midrule
+    \input{results/table_coef.tex}
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fig_coef.png}
+  \caption{Cognate coefficients per language pair with 95\% intervals,
+    from \texttt{figures/fig\_results.py}.}
+  \label{fig:coef}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fig_mae.png}
+  \caption{Change in held-out MAE from adding cognate features. Below
+    zero means the cognate model predicts recall better.}
+  \label{fig:mae}
+\end{figure}
+
+\input{results/results.tex}
+
+\paragraph{Polingual logs.} The local Polingual store
+(\texttt{bucket.academy\_progress}) holds
+\input{results/polingual.tex}
+That is too small for this analysis, and the store keeps card snapshots
+without per-review history, so the study uses the Duolingo traces alone
+[empirical: local supabase\_db\_bucket-foundation, 2026-11-25,
+\texttt{make polingual}].
+
+\paragraph{Scheduling consequence.} In BucketMath the review interval at
+a target retention grows with stability
+[bm:BucketMath.Learning.Capacity.lastHold\_mono\_stability] and weekly
+upkeep falls as stability rises
+[bm:BucketMath.Learning.Capacity.upkeep\_antitone]. A positive cognate
+coefficient therefore translates into longer first intervals and lower
+upkeep for cognates; \Cref{lem:mono} states the same for the fitted
+linear score.
+
+\begin{lemma}[Monotone score]
+\label{lem:mono}
+If $\theta_c \ge 0$ and $x_c \le y_c$ with other features fixed, then
+$\log_2 \hat h(x) \le \log_2 \hat h(y)$.
+\end{lemma}
+
+\begin{proof}
+$\theta^\top y - \theta^\top x = \theta_c (y_c - x_c) \ge 0$. The Lean
+form is \texttt{logHalfLife\_mono} in \Cref{app:lean}.
+\end{proof}
+
+\section{Calibration}
+\label{sec:calibration}
+
+The base model reproduces the setting of \autocite{settles2016hlr}
+without lexeme indicators, and its held-out MAE sits near the value they
+report for that variant, which checks the loss and the split. The
+cognate features were checked by hand on 12 random English-interface
+lemmas: \textit{instrument} and \textit{operación} score spelling
+similarity above 0.88 and a shared etymon; \textit{schlafen} shares the
+Proto-Germanic ancestor of \textit{sleep}; \textit{leche} and
+\textit{cebola} score near zero. Every reported number is regenerated by
+\texttt{make analysis figures} [empirical: Duolingo HLR traces
+doi:10.7910/DVN/N8XJME, 2026-11-25, \texttt{make analysis}].
+
+\section{Limitations}
+\label{sec:limitations}
+
+The study is observational. Cognates differ from other words in
+frequency, part of speech and course position; the length control covers
+one of these. The etymology table is incomplete: German \textit{Wasser}
+lists only its Middle High German ancestor, so the shared-etymon flag
+misses some true cognates and the spelling score carries part of their
+signal. IPA strings from different language editions use different
+conventions, which compresses IPA similarity toward zero. The base model
+omits lexeme indicators; with them, the cognate coefficients would be
+unidentified. Function words dominate event counts, so the pooled
+estimates weight them most.
+
+\printbibliography
+
+\appendix
+
+\section{Glossary}
+\label{app:glossary}
+
+\printglossaryentry{halflife}
+\printglossaryentry{ned}
+\printglossaryentry{cognate}
+
+\section{Lean listings}
+\label{app:lean}
+
+\texttt{lean/Bucket/Retention.lean} defines Levenshtein distance
+(\Cref{def:ned}), the cognate threshold test and the linear log
+half-life (\Cref{def:hlr}), and proves \Cref{lem:mono}:
+
+\begin{lstlisting}[style=bucketlean]
+def logHalfLife (base c x : Int) : Int := base + c * x
+
+theorem logHalfLife_mono {base c x y : Int} (hc : 0 <= c) (hxy : x <= y) :
+    logHalfLife base c x <= logHalfLife base c y :=
+  Int.add_le_add_left (Int.mul_le_mul_of_nonneg_left hxy hc) base
+\end{lstlisting}
+
+\texttt{lake build} output, quoted verbatim.
+% voice-ignore-next 5
+\begin{verbatim}
+Built Bucket.Retention
+Built Bucket
+Build completed successfully (4 jobs).
+\end{verbatim}
+
+\end{document}
