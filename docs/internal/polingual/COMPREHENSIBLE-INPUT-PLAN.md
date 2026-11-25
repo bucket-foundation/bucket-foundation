@@ -30,7 +30,7 @@ Per language L, `known(L, lemma)` gives a probability:
 
 `coverage(U) = Σ known(token) / |U|` over a unit U, using cognate-adjusted values.
 
-- **Eligible:** text between 0.95 and 0.98, audio and video at 0.90 or more, with 1 to 3 target lemmas, which fits a unit of 40 to 60 tokens (hu-2000, schmitt-2011, vanzeeland-2013). Unknown non-target words get a gloss before playback and then count as known. Glossing is the normal path for short Tatoeba sets until graded sentences (bkt-opcrr) arrive.
+- **Eligible:** text between 0.95 and 0.98, audio and video at 0.90 or more, with 1 to 3 target lemmas; at 0.95 that allows 2 new words in a 40-token unit and 3 in a 60-token unit (hu-2000, schmitt-2011, vanzeeland-2013). Unknown non-target words get a gloss before playback and then count as known. Glossing is the normal path for short Tatoeba sets until graded sentences (bkt-opcrr) arrive.
 - **New words:** 1 to 3 target lemmas with known below 0.5.
 
 Score each eligible item by:
@@ -56,17 +56,17 @@ This sits beside `soundShare` as `inputShare(known)` in `SessionMix`, and keeps 
 
 **Tap.** No change to stability. The card is introduced, or its due date is set to now and it is flagged unknown in the learner model. A tap tells us the learner did not know the word. It does not measure forgetting the way a lapse does.
 
-**Cognate.** Multiply the initial half-life by 1.027 when a shared etymon is held at R ≥ 0.9 (retention-cognates, CI 1.023 to 1.031). Under the FSRS curve stability is proportional to half-life, so S₀ ← 1.027·S₀ applies the same ratio. The weight is fixed, since the paper finds the feature adds no recall prediction.
+**Cognate.** Multiply the initial half-life by 1.027 when a shared etymon is held at R ≥ 0.9 (retention-cognates, CI 1.023 to 1.031). Under the FSRS curve stability is proportional to half-life, so S₀ ← 1.027·S₀ applies the same ratio. The factor is a fixed prior: the paper finds it lengthens half-life and adds no recall prediction.
 
 **Lean rules** (extending `lean/BucketMath/Fsrs.lean` and `Learning.Cognate`):
 
 - E1: if R < 0.6 or the card is new, `exposure(S) = S`; otherwise `S ≤ exposure(S) ≤ 1.15·S`.
 - E2: n exposure rows on one day replay to the same state as one row.
-- E3: due' ≥ due and lastReview' = lastReview.
+- E3: an exposure row with no taps gives due' ≥ due and lastReview' = lastReview. A tap overrides E3 and sets due to now.
 - E4: a tap leaves S unchanged.
 - E5: replay gives the same state for any order of rows with equal timestamps.
 - C1: coverage lies in [0,1] and never drops as known or held sets grow (extends `coverage_mono`).
-- C2: any selected unit has |U| ≥ 40, glossed coverage in the band, and 1 to 3 unglossed new words.
+- C2: any selected unit has |U| ≥ 40, glossed coverage in the band, and k unglossed new words with 1 ≤ k ≤ 3 and k ≤ 0.05·|U|.
 - M1: the realized input share stays within ±1 item of the target.
 
 ## 6. Progress metric
@@ -79,6 +79,7 @@ The review log gains a typed union `review | exposure | session`, the default on
 
 - `review {card, rating, elapsedDays, S_before, S_after, D}`
 - `exposure {item, unit, lemmas_seen, taps: lemma[], seconds, coverage_pred, completed}`; taps ride in the exposure row, with no event per tap
+- `session {id, started, ended, share_target, share_real, arm, units, cards}`
 - `session_mix {share_target, share_real, arm}`
 
 Every write passes the `events-server` gates; on `under_age` or `no_consent` nothing uploads and the local log runs replay-only. `events.ts` validates fields with `parseProps` (lemmas ≤ 200, seconds ≤ 3,600). Daily caps: `exposure` 300, `session_mix` 60. Golden replay vectors, log to card state, run in TS, Kotlin and Swift CI.
