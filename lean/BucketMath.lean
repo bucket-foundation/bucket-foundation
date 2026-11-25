@@ -17,3 +17,14 @@ import BucketMath.Atom
 import BucketMath.Grade
 import BucketMath.Fsrs
 import BucketMath.Split
+import BucketMath.Literature.Forgetting
+import BucketMath.Literature.HalfLife
+import BucketMath.Literature.FsrsLink
+import BucketMath.Literature.Ridgeline
+import BucketMath.Literature.PracticeLaw
+import BucketMath.Literature.Bkt
+import BucketMath.Literature.Rasch
+import BucketMath.Literature.KnowledgeSpace
+import BucketMath.Literature.Coverage
+import BucketMath.Literature.Actr
+import BucketMath.Literature.Permastore
