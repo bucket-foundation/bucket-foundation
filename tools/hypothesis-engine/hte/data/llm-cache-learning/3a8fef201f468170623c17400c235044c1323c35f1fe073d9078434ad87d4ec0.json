@@ -1,0 +1,100 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "9f1c10a027cfb0403222552e86f92bda30381d07b723e58138b609c03f552ef8",
+  "response": {
+    "items": [
+      {
+        "id": "work:lariviere-2015-long-distance-interdisciplinarity",
+        "mechanism": "breadth_of_domains",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:ellis-2002-frequency-effects",
+        "mechanism": "comprehensible_input",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:study-technique-utility-tiering",
+        "mechanism": "retrieval_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:study-technique-utility-tiering",
+        "mechanism": "spacing",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:study-technique-utility-tiering",
+        "mechanism": "elaboration",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:study-technique-utility-tiering",
+        "mechanism": "interleaving",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:retrieval-practice-testing-effect",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:roediger-karpicke-2006-crossover",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "\u2248.56 vs .42 recall at 1 week (testing vs restudy); restudy \u2248.81 vs .75 at 5 minutes"
+      },
+      {
+        "id": "claim:core:karpicke-roediger-2008-retrieval-critical",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "\u224880% vs \u224833-36% recall at 1 week when testing continued vs dropped"
+      },
+      {
+        "id": "claim:core:feedback-mandatory-with-retrieval",
+        "mechanism": "corrective_feedback",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:forgetting-curve",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:spacing-effect",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:cepeda-2008-optimal-gap",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

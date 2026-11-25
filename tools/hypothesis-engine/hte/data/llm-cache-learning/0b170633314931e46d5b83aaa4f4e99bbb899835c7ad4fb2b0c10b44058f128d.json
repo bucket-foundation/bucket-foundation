@@ -1,0 +1,30 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "494a640d9ae6ce2f382001ee1758c25c37ba591591d42ea13bae408763f184d8",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:retrieval-is-not-education-outcome",
+        "mechanism": "retrieval_practice",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "about 2.4x retention for users with 7+ day streaks; about 21% churn reduction for at-risk users with Streak Freeze"
+      },
+      {
+        "id": "claim:core:value-led-notifications",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "guilt framing tested 5-8% more effective at Duolingo (rejected for use)"
+      }
+    ]
+  }
+}

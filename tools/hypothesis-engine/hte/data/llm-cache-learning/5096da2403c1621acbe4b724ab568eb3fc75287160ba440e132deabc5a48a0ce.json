@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "53ec2daf8036fff5c4b1d29625dfe3467f4975111e51168e12c165420d5c78ed",
+  "response": {
+    "items": [
+      {
+        "id": "claim:epistemics-impact:mastery-shrinks-required-set",
+        "mechanism": "mastery_learning",
+        "outcome": "time_to_proficiency",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:human-ai-combination-meta-analysis",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:complementary-team-performance",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:jagged-frontier",
+        "mechanism": "ai_assistance",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:jagged-frontier",
+        "mechanism": "ai_assistance",
+        "outcome": "expert_performance",
+        "direction": "negative",
+        "effect_size": null
+      }
+    ]
+  }
+}

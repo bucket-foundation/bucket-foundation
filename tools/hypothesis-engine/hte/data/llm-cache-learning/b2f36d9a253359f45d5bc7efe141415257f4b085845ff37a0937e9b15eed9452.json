@@ -1,0 +1,79 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "3cab498d0989bfe27ffc8c629177bef1b4b6d25df3178dbbf34db86f7f8351e8",
+  "response": {
+    "items": [
+      {
+        "id": "work:august-2023-paper-plain-making-medical",
+        "mechanism": "ai_assistance",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bahrick-1993-foreign-vocabulary-spacing-9-years",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "halved sessions needed for same retention"
+      },
+      {
+        "id": "work:bangert-drowns-hurley-wilkinson-2004-writing-to-learn-meta-analysis",
+        "mechanism": "output_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small (no value stated)"
+      },
+      {
+        "id": "work:bangert-drowns-hurley-wilkinson-2004-writing-to-learn-meta-analysis",
+        "mechanism": "metacognition",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bansal-et-al-2021-ai-explanations-complementary-team-performance",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:barbieri-2023-worked-examples-math-meta",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "medium (no value stated)"
+      },
+      {
+        "id": "work:barnett-ceci-2002-far-transfer-taxonomy",
+        "mechanism": "explicit_instruction",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bastani-et-al-2025-generative-ai-can-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:becker-2025-ai-experienced-open-source-developers",
+        "mechanism": "ai_assistance",
+        "outcome": "expert_performance",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:bennett-2011-formative-assessment-critical-review",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      }
+    ]
+  }
+}

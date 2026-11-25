@@ -1,0 +1,37 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "3e192d8745aa2d3b272493e58f47caf6ce774f6b60a16883b60ab2fc3029631d",
+  "response": {
+    "items": [
+      {
+        "id": "work:adesope-2017-practice-testing-meta",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:alfieri-2013-case-comparison-meta",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:anseel-2013-feedback-seeking-meta",
+        "mechanism": "metacognition",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small"
+      },
+      {
+        "id": "work:atkinson-1975-keyword-method-russian",
+        "mechanism": "elaboration",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

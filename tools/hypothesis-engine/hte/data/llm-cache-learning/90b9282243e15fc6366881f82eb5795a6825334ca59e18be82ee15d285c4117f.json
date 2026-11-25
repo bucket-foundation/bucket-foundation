@@ -1,0 +1,51 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "62d98b35c1d9fc36d2dd1d45410506f9c863685f4599792883e3642a06657ab3",
+  "response": {
+    "items": [
+      {
+        "id": "work:kulik-1988-feedback-timing-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:kulik-fletcher-2016-intelligent-tutoring-meta-analysis",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kulik-kulik-bangert-drowns-1990-mastery-learning-meta-analysis",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about half a standard deviation"
+      },
+      {
+        "id": "work:kumar-et-al-2024-llms-novel-scientific-research-ideas",
+        "mechanism": "ai_assistance",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:latimier-2021-spaced-retrieval-meta",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:laufer-2001-involvement-load",
+        "mechanism": "elaboration",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

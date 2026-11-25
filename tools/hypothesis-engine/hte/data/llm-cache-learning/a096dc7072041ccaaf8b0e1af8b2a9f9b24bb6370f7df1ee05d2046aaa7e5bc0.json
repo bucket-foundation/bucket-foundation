@@ -1,0 +1,72 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "710aa3ae0fcc4b2f348d8a21ac812c1208d5de9e59d6172d9e47654d5ad5260c",
+  "response": {
+    "items": [
+      {
+        "id": "work:paper-plain-2023",
+        "mechanism": "ai_assistance",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bahrick-1993-foreign-vocabulary-spacing-9-years",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bangert-drowns-hurley-wilkinson-2004-writing-to-learn-meta-analysis",
+        "mechanism": "output_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small"
+      },
+      {
+        "id": "work:bangert-drowns-hurley-wilkinson-2004-writing-to-learn-meta-analysis",
+        "mechanism": "metacognition",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bansal-et-al-2021-ai-explanations-complementary-team-performance",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:barbieri-2023-worked-examples-math-meta",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "medium"
+      },
+      {
+        "id": "work:barnett-ceci-2002-far-transfer-taxonomy",
+        "mechanism": "explicit_instruction",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bastani-et-al-2025-generative-ai-can-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:bastani-et-al-2025-generative-ai-can-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      }
+    ]
+  }
+}

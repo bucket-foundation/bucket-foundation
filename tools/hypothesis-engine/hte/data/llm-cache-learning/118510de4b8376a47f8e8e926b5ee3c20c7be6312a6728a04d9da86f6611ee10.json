@@ -1,0 +1,72 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "1a89ae0669f3f02bbe2b506d079bb2c7b1b32634d7b64a42610b4893f73eda27",
+  "response": {
+    "items": [
+      {
+        "id": "work:stadler-et-al-2024-cognitive-ease-at-a-cost",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:steenbergen-hu-2013-k-12-mathematical-learning",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:steenbergen-hu-2014-college-students-academic-learning",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:stukas-snyder-clary-1999-mandatory-volunteerism",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:suh-2023-sensecape-enabling-multilevel-exploration",
+        "mechanism": "ai_assistance",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:swanson-2025-virtual-lab-ai-agents",
+        "mechanism": "ai_assistance",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:sweller-1988-cognitive-load-problem-solving",
+        "mechanism": "worked_examples",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:szulanski-1996-internal-stickiness",
+        "mechanism": "motivation",
+        "outcome": "transfer",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:tannenbaum-2012-debriefs-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 25% improvement in effectiveness"
+      }
+    ]
+  }
+}

@@ -10,6 +10,7 @@ from typing import Iterable
 
 from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from . import Corpus, RetrievalEnvelope
+from .learning_extract import LLM_WORKERS, Extraction, ExtractionReport, Record, extract
 
 _REPO_ROOT = Path(__file__).resolve().parents[4]
 
@@ -33,6 +34,7 @@ TIER_BY_STUDY_TYPE: dict[str, Tier] = {
 }
 DEFAULT_WORK_TIER = Tier.T6
 TALK_TIER = Tier.T6
+DEFAULT_EXTRACT_CACHE = Path(__file__).resolve().parents[1] / "data" / "llm-cache-learning"
 
 MECHANISMS: dict[str, tuple[str, ...]] = {
     "lexical_proximity": (r"cognate", r"lexical similarit", r"related[- ]language", r"typolog", r"linguistic distance", r"mutual(ly)? intelligib", r"language distance", r"romance language"),
@@ -44,7 +46,8 @@ MECHANISMS: dict[str, tuple[str, ...]] = {
     "retrieval_practice": (r"retrieval practice", r"testing effect", r"practice test", r"self-test", r"\bquizz"),
     "interleaving": (r"interleav",),
     "deliberate_practice": (r"deliberate practice", r"practice hours", r"hours of practice", r"10,000"),
-    "aptitude": (r"aptitude", r"\bmlat\b", r"working memory", r"\biq\b", r"general intelligence", r"talent"),
+    "cognitive_training": (r"working[- ]memory training", r"brain training", r"cognitive training", r"chess", r"music(al)? training"),
+    "aptitude": (r"aptitude", r"\bmlat\b", r"working[- ]memory capacity", r"\biq\b", r"general intelligence", r"talent"),
     "age_of_onset": (r"age of onset", r"age of acquisition", r"critical period", r"sensitive period", r"early start", r"late learner"),
     "motivation": (r"motivat", r"grit", r"interest", r"self-determination"),
     "anxiety": (r"anxiety", r"affective filter", r"\bstress\b"),
@@ -79,7 +82,8 @@ TOPIC_OUTCOME_FALLBACK: dict[str, str] = {
 NEGATION_RE = re.compile(
     r"\b(no (significant |reliable |measurable |clear )?(effect|difference|advantage|benefit|evidence|gain)s?"
     r"|did not|does not|do not|failed to|null result|no better|unrelated|not predict|not improve|little evidence"
-    r"|almost no|contradicts?)\b",
+    r"|almost no|contradicts?|null|rarely|no convincing|not convincing|shrinks?|vanish(es|ed)?|did not replicate"
+    r"|no (far |near )?transfer|little or no|not supported)\b",
     re.IGNORECASE,
 )
 
@@ -130,6 +134,9 @@ class LearningCorpus:
     mechanisms: list[dict] = field(default_factory=list)
     talk_claims: list[TalkClaim] = field(default_factory=list)
     skipped: dict[str, int] = field(default_factory=dict)
+    effects: dict[str, str] = field(default_factory=dict)
+    extraction: ExtractionReport | None = None
+    records: int = 0
 
 def read_jsonl(path: Path) -> list[dict]:
     rows: list[dict] = []
@@ -158,22 +165,38 @@ def _span(doc_id: str, locator: str, quote: str) -> EvidenceSpan:
     quote = quote[:400]
     return EvidenceSpan(doc_id=doc_id, locator=locator, quote=quote, char_start=0, char_end=len(quote), doc_length=len(quote))
 
-def _pair_items(
-    *, base_id: str, kind: EvidenceKind, tier: Tier, source_id: str, locator: str, quote: str,
-    provenance: str, mechanisms: list[str], outcomes: list[str], stance: Stance,
-) -> list[EvidenceItem]:
-    pairs = [(m, o) for m in mechanisms for o in outcomes]
-    share = 1.0 / len(pairs) if pairs else 0.0
-    return [
-        EvidenceItem(
-            id=f"{base_id}#{m}>{o}", kind=kind, tier=tier, source_id=source_id,
-            span=_span(source_id, locator, quote), provenance=provenance,
-            views={"pair_share": share}, mechanism=m, object=o, stance=stance,
-        )
-        for m, o in pairs
-    ]
+def _flip(stance: Stance) -> Stance:
+    return Stance.NEGATIVE if stance is Stance.POSITIVE else Stance.POSITIVE
 
-def load(root: str | Path | None = None, *, include_talks: bool = True) -> LearningCorpus:
+def _items(
+    *, base_id: str, kind: EvidenceKind, tier: Tier, source_id: str, locator: str, quote: str,
+    provenance: str, extractions: list[Extraction], flip: bool, effects: dict[str, str],
+) -> list[EvidenceItem]:
+    share = 1.0 / len(extractions) if extractions else 0.0
+    out: list[EvidenceItem] = []
+    for x in extractions:
+        stance = Stance.NEGATIVE if x.opposes else Stance.POSITIVE
+        if flip:
+            stance = _flip(stance)
+        eid = f"{base_id}#{x.mechanism}>{x.outcome}:{x.direction}"
+        if x.effect_size:
+            effects[eid] = x.effect_size
+        out.append(EvidenceItem(
+            id=eid, kind=kind, tier=tier, source_id=source_id, span=_span(source_id, locator, quote),
+            provenance=provenance, views={"pair_share": share}, mechanism=x.mechanism, object=x.outcome, stance=stance,
+        ))
+    return out
+
+def _work_text(w: dict) -> str:
+    return " ".join(filter(None, [w.get("title"), w.get("finding")]))
+
+def _claim_text(c: dict) -> str:
+    return " ".join(filter(None, [c.get("name"), c.get("statement")]))
+
+def load(
+    root: str | Path | None = None, *, include_talks: bool = True, mode: str | None = "fake",
+    cache_dir: str | Path | None = None, replay_only: bool = False,
+) -> LearningCorpus:
     base = resolve_root(root)
     works: dict[str, dict] = {}
     found_paths: list[str] = []
@@ -193,76 +216,83 @@ def load(root: str | Path | None = None, *, include_talks: bool = True) -> Learn
     talk_file = base / TALK_CLAIMS_PATH
     talk_claims = parse_talk_claims(talk_file.read_text(encoding="utf-8")) if include_talks and talk_file.is_file() else []
 
+    live_works = {wid: w for wid, w in works.items() if not w.get("withdrawn")}
+    records = [Record(f"work:{wid}", _work_text(w)) for wid, w in live_works.items() if w.get("finding")]
+    records += [Record(f"claim:{c['id']}", _claim_text(c)) for c in claims]
+    records += [Record(f"talk:{t.number}", t.claim) for t in talk_claims]
+    report = extract(records, mode=mode, cache_dir=cache_dir or DEFAULT_EXTRACT_CACHE, replay_only=replay_only)
+
     corpus = Corpus()
-    skipped = {"withdrawn": 0, "untagged_work": 0, "untagged_claim": 0, "dangling_work_ref": 0, "untagged_talk": 0}
+    effects: dict[str, str] = {}
+    skipped = {
+        "withdrawn": len(works) - len(live_works), "no_finding": 0, "untagged_work": 0, "untagged_claim": 0,
+        "dangling_work_ref": 0, "untagged_talk": 0, "untested_talk": 0,
+    }
     fetched_at = datetime.now(timezone.utc).isoformat()
 
-    for wid, w in works.items():
-        if w.get("withdrawn"):
-            skipped["withdrawn"] += 1
-            continue
-        authors = w.get("authors") or []
+    for wid, w in live_works.items():
         corpus.sources[wid] = Source(
             id=wid, kind=EvidenceKind.TEXTUAL, date=str(w["year"]) if w.get("year") else None,
-            authors=list(authors), method=w.get("study_type"),
+            authors=list(w.get("authors") or []), method=w.get("study_type"),
         )
         corpus.provenance.append(RetrievalEnvelope(
             retrieval_run_id="learning-corpus", doc_id=wid, source_path=w["_path"], fetched_at=fetched_at, fixture=False,
         ))
-        finding = w.get("finding") or ""
-        text = " ".join(filter(None, [w.get("title"), finding]))
-        mechs = tag_mechanisms(text)
-        outs = tag_outcomes(text, w.get("topics") or [])
-        if not finding or not mechs or not outs:
+        if not w.get("finding"):
+            skipped["no_finding"] += 1
+            continue
+        exts = report.by_id.get(f"work:{wid}", [])
+        if not exts:
             skipped["untagged_work"] += 1
             continue
-        corpus.evidence.extend(_pair_items(
-            base_id=f"work:{wid}", kind=EvidenceKind.TEXTUAL, tier=work_tier(w.get("study_type")),
-            source_id=wid, locator=w["_path"], quote=finding, provenance=f"works.jsonl:{wid}",
-            mechanisms=mechs, outcomes=outs, stance=text_stance(finding),
+        corpus.evidence.extend(_items(
+            base_id=f"work:{wid}", kind=EvidenceKind.TEXTUAL, tier=work_tier(w.get("study_type")), source_id=wid,
+            locator=w["_path"], quote=w["finding"], provenance=f"works.jsonl:{wid}", extractions=exts, flip=False,
+            effects=effects,
         ))
 
     for c in claims:
-        text = " ".join(filter(None, [c.get("name"), c.get("statement")]))
-        mechs = tag_mechanisms(text)
-        outs = tag_outcomes(text, c.get("topics") or [])
-        if not mechs or not outs:
+        exts = report.by_id.get(f"claim:{c['id']}", [])
+        if not exts:
             skipped["untagged_claim"] += 1
             continue
-        for stance, refs in ((Stance.POSITIVE, c.get("supports") or []), (Stance.NEGATIVE, c.get("contradicted_by") or [])):
+        for flip, refs in ((False, c.get("supports") or []), (True, c.get("contradicted_by") or [])):
             for wid in refs:
                 if wid not in corpus.sources:
                     skipped["dangling_work_ref"] += 1
                     continue
-                corpus.evidence.extend(_pair_items(
+                corpus.evidence.extend(_items(
                     base_id=f"claim:{c['id']}@{wid}", kind=EvidenceKind.TEXTUAL,
-                    tier=work_tier(works.get(wid, {}).get("study_type")), source_id=wid,
-                    locator=CLAIMS_PATH, quote=c.get("statement") or "", provenance=f"claims.jsonl:{c['id']}",
-                    mechanisms=mechs, outcomes=outs, stance=stance,
+                    tier=work_tier(works.get(wid, {}).get("study_type")), source_id=wid, locator=CLAIMS_PATH,
+                    quote=c.get("statement") or "", provenance=f"claims.jsonl:{c['id']}", extractions=exts,
+                    flip=flip, effects=effects,
                 ))
 
     for t in talk_claims:
         sid = f"talk:{t.number}"
-        mechs = tag_mechanisms(t.claim)
-        outs = tag_outcomes(t.claim + " " + t.research)
-        if not mechs or not outs:
+        exts = report.by_id.get(sid, [])
+        if not exts:
             skipped["untagged_talk"] += 1
             continue
+        flips = {"CONFIRMS": [False], "CONTRADICTS": [True], "MIXED": [False, True]}.get(t.verdict, [])
+        if not flips:
+            skipped["untested_talk"] += 1
+            continue
         corpus.sources[sid] = Source(id=sid, kind=EvidenceKind.MODEL_PRIOR, method="practitioner-talk")
-        stances = {"CONFIRMS": [Stance.POSITIVE], "CONTRADICTS": [Stance.NEGATIVE], "MIXED": [Stance.POSITIVE, Stance.NEGATIVE]}.get(t.verdict, [])
-        for stance in stances:
-            corpus.evidence.extend(_pair_items(
-                base_id=f"{sid}:{stance.value}", kind=EvidenceKind.MODEL_PRIOR, tier=TALK_TIER, source_id=sid,
-                locator=f"{TALK_CLAIMS_PATH}#{t.number}", quote=f"{t.claim} {t.research}", provenance=f"CLAIMS.md:{t.number}",
-                mechanisms=mechs, outcomes=outs, stance=stance,
+        for flip in flips:
+            corpus.evidence.extend(_items(
+                base_id=f"{sid}:{'contra' if flip else 'pro'}", kind=EvidenceKind.MODEL_PRIOR, tier=TALK_TIER,
+                source_id=sid, locator=f"{TALK_CLAIMS_PATH}#{t.number}", quote=f"{t.claim} {t.research}",
+                provenance=f"CLAIMS.md:{t.number}", extractions=exts, flip=flip, effects=effects,
             ))
 
     return LearningCorpus(
         corpus=corpus, works=works, claims=claims, mechanisms=mechanisms, talk_claims=talk_claims, skipped=skipped,
+        effects=effects, extraction=report, records=len(records),
     )
 
-def load_corpus(root: str | Path | None = None) -> Corpus:
-    return load(root).corpus
+def load_corpus(root: str | Path | None = None, **kwargs) -> Corpus:
+    return load(root, **kwargs).corpus
 
 __all__ = [
     "LearningCorpus", "TalkClaim", "load", "load_corpus", "parse_talk_claims", "read_jsonl", "resolve_root",

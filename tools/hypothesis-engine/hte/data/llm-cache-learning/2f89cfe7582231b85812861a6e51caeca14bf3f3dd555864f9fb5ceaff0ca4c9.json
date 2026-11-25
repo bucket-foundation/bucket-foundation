@@ -1,0 +1,79 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "94bd51b30e0e1a48682380cab96ae138ebea1529ed441e8e2b585b8d06076a60",
+  "response": {
+    "items": [
+      {
+        "id": "work:gooskens-2018-mutual-intelligibility-between-closely",
+        "mechanism": "lexical_proximity",
+        "outcome": "comprehension",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:gooskens-2018-mutual-intelligibility-between-closely",
+        "mechanism": "comprehensible_input",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:swarte-2015-does-german-help-speakers",
+        "mechanism": "multilingual_transfer",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:vanhove-2015-lifespan-development-cognate-guessing",
+        "mechanism": "multilingual_transfer",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:vanhove-2015-lifespan-development-cognate-guessing",
+        "mechanism": "aptitude",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:berthele-2011-abduction-receptive-multilingualism-evidence",
+        "mechanism": "lexical_proximity",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kurschner-2008-linguistic-determinants-intelligibility-swedish",
+        "mechanism": "lexical_proximity",
+        "outcome": "comprehension",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:schuppert-2012-role-extra-linguistic-factors",
+        "mechanism": "comprehensible_input",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:cenoz-2013-influence-bilingualism-third-language",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:cenoz-2003-additive-effect-bilingualism-third",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

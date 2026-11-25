@@ -1,0 +1,16 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "b1b315b0b134a9c3ba84bbd651c2d26fd016e2d0694110810156674eba50721b",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:multi-turn-pedagogical-harm",
+        "mechanism": "ai_assistance",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": "harm rate 17.7% single-turn vs 77.8% multi-turn"
+      }
+    ]
+  }
+}

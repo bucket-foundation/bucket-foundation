@@ -1,0 +1,23 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "9e24901ef65885910968c0aa687db5f1dc34657d293a7a8068b7af2e191ad19c",
+  "response": {
+    "items": [
+      {
+        "id": "claim:epistemics-impact:ai-without-guardrails-harms-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:cognitive-load-theory",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

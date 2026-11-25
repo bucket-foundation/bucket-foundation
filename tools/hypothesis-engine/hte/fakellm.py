@@ -224,7 +224,13 @@ def _learning_judge(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
     confidence = abs(pos - neg) / (pos + neg) if pos + neg else 0.0
     return {"verdict": verdict, "confidence": confidence, "rationale": f"fake stand-in: {pos} positive, {neg} negative items"}
 
+def _learning_extract(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
+    from .corpus.learning_extract import fake_extract
+    return fake_extract(prompt)
+
 _DISPATCH = {
+    "learning_extractor": _learning_extract,
+    "learning_escalation": _learning_extract,
     "learning_judge": _learning_judge,
     "generator": _generator,
     "critic": _critic,

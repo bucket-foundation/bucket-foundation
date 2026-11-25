@@ -1,0 +1,30 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "b4b4e62ecc882b1f83894646ea51b4ddf99690f141f139dbc4d645d6d97c63cf",
+  "response": {
+    "items": [
+      {
+        "id": "work:kecskes-2000-foreign-language-mother-tongue",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:munoz-2006-age-rate-foreign-language",
+        "mechanism": "age_of_onset",
+        "outcome": "time_to_proficiency",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:gibson-2003-investigating-role-prior-foreign",
+        "mechanism": "multilingual_transfer",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

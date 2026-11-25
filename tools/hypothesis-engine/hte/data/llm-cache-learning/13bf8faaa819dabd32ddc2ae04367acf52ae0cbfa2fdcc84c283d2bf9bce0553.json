@@ -1,0 +1,86 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "b8205d2c49fa75bc9abbe44c2ea9ee9f3b988747ee6fe31eb0cf3a05ea66267d",
+  "response": {
+    "items": [
+      {
+        "id": "work:watson-2009-tprs",
+        "mechanism": "comprehensible_input",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:watson-2009-tprs",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:webb-2007-repetitions",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": "large (qualitative, no value stated)"
+      },
+      {
+        "id": "work:webb-2009-tv-coverage",
+        "mechanism": "vocabulary_coverage",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:webb-2015-er-listening",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:webb-2020-incidental-meta",
+        "mechanism": "explicit_instruction",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": "large (qualitative, immediate gains only)"
+      },
+      {
+        "id": "work:webb-rodgers-2009b-tv",
+        "mechanism": "vocabulary_coverage",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:winke-2013-enhancement-eye",
+        "mechanism": "explicit_instruction",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:klein-2000-eurocomrom-sieben-siebe-romanische",
+        "mechanism": "lexical_proximity",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bonvino-2011-eurom5-leggere-e-capire",
+        "mechanism": "lexical_proximity",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": "about 40 hours to reading comprehension (no comparison group)"
+      },
+      {
+        "id": "work:gooskens-2007-contribution-linguistic-factors-intelligibility",
+        "mechanism": "lexical_proximity",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "e3406e7b6c3e8c3d005d7885e64aad47037ab59e7f033e99e3a282b605d3454a",
+  "response": {
+    "items": [
+      {
+        "id": "work:paap-2015-bilingual-advantage-absent",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:lehtonen-2018-bilingualism-executive-meta",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:bialystok-2012-bilingualism-mind-brain",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bastani-2024-generative-ai-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "practice scores raised 48%"
+      },
+      {
+        "id": "work:bastani-2024-generative-ai-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": "exam scores lowered 17%"
+      },
+      {
+        "id": "work:bastani-2024-generative-ai-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:kestin-2024-ai-tutoring-outperforms-active-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "doubled learning gains"
+      },
+      {
+        "id": "work:wang-2024-tutor-copilot",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "+4 points topic mastery; +9 points for weaker tutors"
+      },
+      {
+        "id": "work:de-simone-2025-nigeria-ai-tutoring",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:vanlehn-2011-tutoring-effectiveness",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kulik-2016-its-meta",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bloom-1984-two-sigma",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "2 SD"
+      },
+      {
+        "id": "work:bloom-1984-two-sigma",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "2 SD"
+      },
+      {
+        "id": "work:lehmann-2024-ai-meets-classroom",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:lehmann-2024-ai-meets-classroom",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:fan-2024-metacognitive-laziness-chatgpt",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:fan-2024-metacognitive-laziness-chatgpt",
+        "mechanism": "ai_assistance",
+        "outcome": "transfer",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:kosmyna-2025-your-brain-on-chatgpt",
+        "mechanism": "ai_assistance",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:settles-2016-trainable-spaced-repetition",
+        "mechanism": "spacing",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "40a064c8f400de3b30d92150ed102f130885e653906f41f3e0c139e1f5c9d6e3",
+  "response": {
+    "items": [
+      {
+        "id": "work:kirschner-sweller-clark-2006-minimal-guidance-does-not-work",
+        "mechanism": "explicit_instruction",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kluger-1996-feedback-interventions-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kobayashi-2019-learning-by-teaching-meta",
+        "mechanism": "elaboration",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kobayashi-2019-learning-by-teaching-meta",
+        "mechanism": "elaboration",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kornell-2008-spacing-induction",
+        "mechanism": "spacing",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kornell-2009-flashcards-spacing",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kosmyna-et-al-2025-brain-on-chatgpt-cognitive-debt",
+        "mechanism": "ai_assistance",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:kraft-2026-tutoring-at-scale-meta",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kraft-blazar-hogan-2018-teacher-coaching-meta-analysis",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

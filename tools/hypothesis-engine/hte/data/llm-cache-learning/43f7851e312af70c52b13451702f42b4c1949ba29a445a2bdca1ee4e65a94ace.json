@@ -1,0 +1,72 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "95a92aa7bb73a48eef0d97e718820f398cc3951372228415ab8b5d91c285c29e",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:spacing-10-30-percent-claim",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "about 10-30% (as stated in the Data pillar document, attributed to Cepeda et al. 2006)"
+      },
+      {
+        "id": "claim:core:retrieval-50-percent-claim",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "about 50% over restudy (as stated, attributed to Roediger & Karpicke 2006)"
+      },
+      {
+        "id": "claim:core:fsrs-benchmark-efficiency",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "20-30% fewer reviews than SM-2 for equal retention; +12.6% over prior schedulers (KDD '22, MaiMemo logs)"
+      },
+      {
+        "id": "claim:core:half-life-regression",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "retention lifted about 9.5% (Duolingo)"
+      },
+      {
+        "id": "claim:core:interleaving",
+        "mechanism": "interleaving",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:rohrer-2015-classroom-interleaving",
+        "mechanism": "interleaving",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "surprise test about 1 month later: \u224880% interleaved vs \u224838% blocked"
+      },
+      {
+        "id": "claim:core:desirable-difficulties",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:desirable-difficulties",
+        "mechanism": "interleaving",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:desirable-difficulties",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

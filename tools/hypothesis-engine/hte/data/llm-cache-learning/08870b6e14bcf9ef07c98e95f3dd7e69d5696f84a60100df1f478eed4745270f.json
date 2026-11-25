@@ -1,0 +1,86 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "de87f72f98811ec25f873df3a859f3229a85d39c375fc25d852150a835991301",
+  "response": {
+    "items": [
+      {
+        "id": "work:kang-et-al-2009-curiosity-memory",
+        "mechanism": "motivation",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kapur-2008-productive-failure",
+        "mechanism": "elaboration",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kapur-2014-productive-failure-learning-math",
+        "mechanism": "elaboration",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:karpicke-2011-retrieval-vs-concept-mapping",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kazemitabaar-2023-studying-effect-ai-code",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:keiser-2021-after-action-review-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:keith-2008-error-management-training-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kestin-et-al-2025-ai-tutoring-outperforms-active-learning",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "median learning gain more than double the classroom group's"
+      },
+      {
+        "id": "work:kim-2022-spaced-practice-l2-meta",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "medium to large"
+      },
+      {
+        "id": "work:kingston-2011-formative-assessment-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": "claimed 0.40 to 0.70; unsupported by usable studies"
+      },
+      {
+        "id": "work:kang-2023-synergi-mixed-initiative-system",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

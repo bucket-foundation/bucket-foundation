@@ -1,0 +1,37 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "25ef871a1374715cde1f0341a943e54888e29858e5318422dfc34217c5188f54",
+  "response": {
+    "items": [
+      {
+        "id": "work:zeng-2019-topic-switching",
+        "mechanism": "breadth_of_domains",
+        "outcome": "expert_performance",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:fsrs-memory-laws",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:fsrs-benchmark-efficiency",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "20-30% fewer reviews than SM-2 for equal retention"
+      },
+      {
+        "id": "claim:core:bastani-unguarded-llm-harm",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": "-17% unassisted exam"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "b13f1a62139943b9fd5c44db8c3567e0d6dfc6371f6add461686e189a810bf4e",
+  "response": {
+    "items": [
+      {
+        "id": "work:doshi-hauser-2024-generative-ai-creativity-diversity",
+        "mechanism": "ai_assistance",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:dratsch-2023-automation-bias-mammography",
+        "mechanism": "ai_assistance",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:dunlosky-2013-improving-students-learning-effective",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:dunlosky-2013-improving-students-learning-effective",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:ellis-2005-after-event-reviews-success-failure",
+        "mechanism": "metacognition",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:ericsson-2019-deliberate-practice-reanalysis",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "29% of variance explained (61% after correction for attenuation)"
+      },
+      {
+        "id": "work:evans-2020-making-sense-k-12",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      }
+    ]
+  }
+}

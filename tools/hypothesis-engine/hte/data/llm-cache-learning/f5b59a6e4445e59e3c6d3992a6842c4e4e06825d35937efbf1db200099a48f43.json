@@ -1,0 +1,93 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "eb6898fb59237baf04373715c9cb11e1b05e49cbd1c357858e215438b4d2736d",
+  "response": {
+    "items": [
+      {
+        "id": "work:ecke-2014-parasitic-model-l2-l3",
+        "mechanism": "multilingual_transfer",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:cenoz-2001-effect-linguistic-distance-l2",
+        "mechanism": "lexical_proximity",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:cenoz-2001-effect-linguistic-distance-l2",
+        "mechanism": "age_of_onset",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:tremblay-2006-cross-linguistic-influence-third",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:lindqvist-2009-use-l1-l2-french",
+        "mechanism": "lexical_proximity",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:lindqvist-2009-use-l1-l2-french",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:sanchez-2015-l2-activation-blending-third",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:neuser-2017-source-language-lexical-transfer",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kecskes-2000-foreign-language-mother-tongue",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:festman-2010-individual-differences-control-language",
+        "mechanism": "aptitude",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:munoz-2006-age-rate-foreign-language",
+        "mechanism": "age_of_onset",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:gibson-2003-investigating-role-prior-foreign",
+        "mechanism": "multilingual_transfer",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

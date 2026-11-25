@@ -1,0 +1,23 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "8001596d09fb7748dbfed56a5ec22ca08ff7972d55fe4628ea876a482df1b6ef",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "users with 7+ day streaks retain at about 2.4\u00d7; 7-day streak with about 90% day-30 retention vs about 20%; Streak Freeze cut churn about 21% for at-risk users"
+      },
+      {
+        "id": "claim:core:value-led-notifications",
+        "mechanism": "anxiety",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "guilt framing tested 5-8% more effective at Duolingo (reported, then rejected)"
+      }
+    ]
+  }
+}

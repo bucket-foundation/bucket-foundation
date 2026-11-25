@@ -1,0 +1,65 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "bf28efc7312c649f176bd929daa32f76130402250db4579f9118dff3e93d5152",
+  "response": {
+    "items": [
+      {
+        "id": "work:flynn-2004-cumulative-enhancement-model-language",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bialystok-2017-bilingual-adaptation-minds-accommodate",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:montrul-2016-acquisition-heritage-languages",
+        "mechanism": "comprehensible_input",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:festman-2010-individual-differences-control-language",
+        "mechanism": "aptitude",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:biedron-2012-working-memory-short-term",
+        "mechanism": "aptitude",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:huneke-2015-interlat-interkomprehension-latein",
+        "mechanism": "lexical_proximity",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:nakata-2019-effects-massing-spacing-learning",
+        "mechanism": "spacing",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:berthele-2017-heritage-school-language-literacy",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      }
+    ]
+  }
+}

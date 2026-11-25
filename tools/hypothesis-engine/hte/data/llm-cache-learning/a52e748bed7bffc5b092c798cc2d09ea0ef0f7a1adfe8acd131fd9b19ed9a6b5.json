@@ -1,0 +1,51 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "41d5aa3457b09aeb116946ed69e7cb944f8794e44ab217ac4ec923d8a18b96ee",
+  "response": {
+    "items": [
+      {
+        "id": "claim:epistemics-impact:epistemic-beliefs-predict-comprehension",
+        "mechanism": "metacognition",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:ai-holding-capability-back",
+        "mechanism": "ai_assistance",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "talk:1",
+        "mechanism": "comprehensible_input",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "talk:2",
+        "mechanism": "comprehensible_input",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "talk:3",
+        "mechanism": "vocabulary_coverage",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "talk:4",
+        "mechanism": "anxiety",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": null
+      }
+    ]
+  }
+}

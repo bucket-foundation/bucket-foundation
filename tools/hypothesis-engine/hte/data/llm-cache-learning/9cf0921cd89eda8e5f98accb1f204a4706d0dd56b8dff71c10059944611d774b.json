@@ -1,0 +1,58 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "c6fb0f2382595682e9397944d097bb4e5ca8ff79dec90337da665d5224ae1a55",
+  "response": {
+    "items": [
+      {
+        "id": "work:stoehr-2017-second-language-attainment-first",
+        "mechanism": "comprehensible_input",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:dornyei-2017-motivational-foundation-learning-languages",
+        "mechanism": "multilingual_transfer",
+        "outcome": "persistence",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:thompson-2015-multilingualism-perceived-positive-language",
+        "mechanism": "multilingual_transfer",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:llama-2010-influence-language-distance-language",
+        "mechanism": "lexical_proximity",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:wrembel-2010-l2-accented-speech-l3",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:ericsson-1993-deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "roughly 2x accumulated practice hours (about 10,000 by age 20)"
+      },
+      {
+        "id": "work:ericsson-2008-deliberate-practice-expert",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

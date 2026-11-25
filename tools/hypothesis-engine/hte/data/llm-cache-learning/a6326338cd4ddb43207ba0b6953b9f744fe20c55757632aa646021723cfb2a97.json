@@ -1,0 +1,51 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "5485f3a126b0324a63131a1323c8ae479281f2f3db462a35f874b4a46fbe6533",
+  "response": {
+    "items": [
+      {
+        "id": "work:abrami-2015-teaching-critical-thinking-meta",
+        "mechanism": "explicit_instruction",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:choudhry-2005-clinical-experience-quality",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:eskreis-winkler-2019-not-learning-from-failure",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:feldon-2011-teaching-improves-research-skills",
+        "mechanism": "deliberate_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:feldon-2019-cascading-mentorship",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:feldon-2019-cascading-mentorship",
+        "mechanism": "output_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

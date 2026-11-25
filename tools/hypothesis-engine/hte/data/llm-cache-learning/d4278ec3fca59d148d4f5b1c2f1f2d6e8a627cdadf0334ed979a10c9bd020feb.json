@@ -1,0 +1,65 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "fdc6292e9e5f42ef59c14aa486d07b41e16859e0ae1f3dff8e907f1eb2e57f14",
+  "response": {
+    "items": [
+      {
+        "id": "work:taylor-2005-behavior-modeling-training-meta",
+        "mechanism": "motivation",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:taylor-2005-behavior-modeling-training-meta",
+        "mechanism": "elaboration",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:uchihara-2019-repetition-incidental-vocabulary-meta",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": "medium"
+      },
+      {
+        "id": "work:unesco-2025-generative-ai-foundational-learning-sub-saharan-africa",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:van-der-kleij-2015-computer-feedback-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:vanlehn-2011-relative-effectiveness-tutoring",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:vesselinov-2012-duolingo-effectiveness",
+        "mechanism": "deliberate_practice",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:von-hippel-2024-two-sigma-tutoring",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about one-third of a standard deviation (~0.33 SD)"
+      }
+    ]
+  }
+}

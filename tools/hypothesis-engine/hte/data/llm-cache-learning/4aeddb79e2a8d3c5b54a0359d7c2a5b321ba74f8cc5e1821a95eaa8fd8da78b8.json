@@ -1,0 +1,156 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "46cc0241c338e61cc86903eeea8b341e78ca3b843c7a595eea834bc565f4ceb2",
+  "response": {
+    "items": [
+      {
+        "id": "claim:epistemics-impact:generative-ai-at-work",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:ai-without-guardrails-harms-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:testing-effect",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:ironies-of-automation",
+        "mechanism": "ai_assistance",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:cognitive-debt-eeg",
+        "mechanism": "ai_assistance",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:ai-use-and-critical-thinking-correlation",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": "strong negative correlation (no coefficient stated)"
+      },
+      {
+        "id": "claim:epistemics-impact:offloading-burden-of-proof",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:two-sigma-problem",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 2 SD (as reported)"
+      },
+      {
+        "id": "claim:epistemics-impact:mastery-learning-meta-analysis",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.5 SD"
+      },
+      {
+        "id": "claim:epistemics-impact:step-based-tutoring",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.75-1 SD (step-based); about 0.3 SD (answer-based)"
+      },
+      {
+        "id": "claim:epistemics-impact:intelligent-tutoring-systems-meta",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.66 SD (median)"
+      },
+      {
+        "id": "claim:epistemics-impact:tutoring-meta-analysis-2024",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.37 SD pooled; about 0.25 SD at 500-7,000 students"
+      },
+      {
+        "id": "claim:epistemics-impact:metacognition-eef-seven-months",
+        "mechanism": "metacognition",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about +7 months (EEF Toolkit)"
+      },
+      {
+        "id": "claim:epistemics-impact:nigeria-ai-tutor-rct",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.31 SD combined; 0.23 SD English"
+      },
+      {
+        "id": "claim:epistemics-impact:ai-tutor-vs-active-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:ai-tutor-vs-active-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:tutor-copilot",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:khanmigo-evidence-borrowing",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:study-technique-utility",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:study-technique-utility",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:study-technique-utility",
+        "mechanism": "elaboration",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

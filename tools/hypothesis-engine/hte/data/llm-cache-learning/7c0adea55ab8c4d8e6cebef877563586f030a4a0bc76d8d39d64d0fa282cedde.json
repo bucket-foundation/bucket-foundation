@@ -1,0 +1,58 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "b3ce1f9362f3a88b254ab7812690435ece34a2c79d68c85a43f1b3329f7661a1",
+  "response": {
+    "items": [
+      {
+        "id": "work:ringbom-2007-cross-linguistic-similarity-foreign",
+        "mechanism": "lexical_proximity",
+        "outcome": "time_to_proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:hirosh-2018-direct-indirect-effects-multilingualism",
+        "mechanism": "multilingual_transfer",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kaushanskaya-2009-bilingual-advantage-novel-word",
+        "mechanism": "multilingual_transfer",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kaushanskaya-2009-bilingualism-reduces-native-language",
+        "mechanism": "multilingual_transfer",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kaushanskaya-2012-cognitive-mechanisms-word-learning",
+        "mechanism": "multilingual_transfer",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:flynn-2004-cumulative-enhancement-model-language",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:westergaard-2017-crosslinguistic-influence-acquisition-third",
+        "mechanism": "multilingual_transfer",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "f29b8eafc4a357b757b98004f8bd0b7b2d31adb90cd00273585a05d892a7d0eb",
+  "response": {
+    "items": [
+      {
+        "id": "work:kuo-2010-beyond-cross-language-transfer",
+        "mechanism": "multilingual_transfer",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:barth-2020-predictors-junior-senior-success",
+        "mechanism": "breadth_of_domains",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:leahey-2017-interdisciplinarity-productivity",
+        "mechanism": "breadth_of_domains",
+        "outcome": "expert_performance",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:uzzi-2013-atypical-combinations",
+        "mechanism": "breadth_of_domains",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:rothman-2011-typological-primacy-model",
+        "mechanism": "lexical_proximity",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:westergaard-2017-linguistic-proximity-model",
+        "mechanism": "lexical_proximity",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:bastani-2024-generative-ai-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": "-17%"
+      },
+      {
+        "id": "work:bastani-2024-generative-ai-harm-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "+48%"
+      },
+      {
+        "id": "work:gagne-1962-acquisition-knowledge-hierarchy",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:kalyuga-2003-expertise-reversal",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:sweller-1988-cognitive-load",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      }
+    ]
+  }
+}

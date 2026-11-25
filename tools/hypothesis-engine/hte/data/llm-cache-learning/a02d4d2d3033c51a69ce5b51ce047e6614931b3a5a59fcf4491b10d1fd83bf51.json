@@ -1,0 +1,58 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "ece63d4c182c80db6b1c0c38a10c28eda04b820f39adaac4c84b6bdf81a175c0",
+  "response": {
+    "items": [
+      {
+        "id": "work:mcgaghie-2011-simulation-deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:mcgrew-2020-learning-evaluate-intervention-civic",
+        "mechanism": "explicit_instruction",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:mekler-et-al-2017-gamification-elements-motivation",
+        "mechanism": "motivation",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:mekler-et-al-2017-gamification-elements-motivation",
+        "mechanism": "motivation",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:melby-lervag-2016-working-memory-training-far-transfer",
+        "mechanism": "cognitive_training",
+        "outcome": "transfer",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:menekse-2013-differentiated-overt-learning-activities",
+        "mechanism": "output_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:messeri-crockett-2024-illusions-of-understanding",
+        "mechanism": "ai_assistance",
+        "outcome": "comprehension",
+        "direction": "negative",
+        "effect_size": null
+      }
+    ]
+  }
+}

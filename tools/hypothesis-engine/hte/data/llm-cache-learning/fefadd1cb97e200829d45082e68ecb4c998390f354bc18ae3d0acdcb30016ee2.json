@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "673e97669d50f75812ba8fca06bad8769ea37c37371631fb8498e00869951144",
+  "response": {
+    "items": [
+      {
+        "id": "claim:epistemics-impact:spacing-illusion",
+        "mechanism": "spacing",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:critical-thinking-domain-specific",
+        "mechanism": "explicit_instruction",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": "g = 0.30"
+      },
+      {
+        "id": "claim:epistemics-impact:curiosity-information-gap",
+        "mechanism": "motivation",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:epistemics-impact:guidance-in-inquiry",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "d = 0.50"
+      },
+      {
+        "id": "claim:epistemics-impact:guidance-in-inquiry",
+        "mechanism": "explicit_instruction",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.40 SD"
+      }
+    ]
+  }
+}

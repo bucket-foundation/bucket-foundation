@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "638744d9eacd84d0a80e13889e99703a833d7dbab7d06f33492eeb3bce62fb62",
+  "response": {
+    "items": [
+      {
+        "id": "work:abrami-2015-teaching-critical-thinking-meta",
+        "mechanism": "explicit_instruction",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:adesope-2017-practice-testing-meta",
+        "mechanism": "retrieval_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:alfieri-2013-case-comparison-meta",
+        "mechanism": "elaboration",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:anseel-2013-feedback-seeking-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small"
+      },
+      {
+        "id": "work:atkinson-1975-keyword-method-russian",
+        "mechanism": "elaboration",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

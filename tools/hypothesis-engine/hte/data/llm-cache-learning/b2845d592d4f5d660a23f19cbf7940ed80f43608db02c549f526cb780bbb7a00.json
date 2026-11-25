@@ -1,0 +1,93 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "9f058a73470efefc67c556b1f6918720f80b51a68aa2c7333fd5bd267cae17ff",
+  "response": {
+    "items": [
+      {
+        "id": "claim:career-work:modality-depth-reach-model",
+        "mechanism": "tutoring",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:career-work:modality-depth-reach-model",
+        "mechanism": "ai_assistance",
+        "outcome": "expert_performance",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:career-work:apprenticeship-transfers-tacit-knowledge",
+        "mechanism": "tutoring",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:career-work:hidden-apprenticeship-in-autodidacts",
+        "mechanism": "tutoring",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 2 standard deviations (Bloom's original one-to-one mastery tutoring report)"
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.5 sigma (later reviews)"
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.25 to 0.37 sigma (later reviews, tutoring at scale)"
+      },
+      {
+        "id": "claim:career-work:research-apprenticeship-review-sadler-2010",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:career-work:research-apprenticeship-review-sadler-2010",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice-variance-explained",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "explained about 26% of performance variance in games, 21% in music and 4% in education"
+      },
+      {
+        "id": "claim:career-work:expertise-reversal",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      }
+    ]
+  }
+}

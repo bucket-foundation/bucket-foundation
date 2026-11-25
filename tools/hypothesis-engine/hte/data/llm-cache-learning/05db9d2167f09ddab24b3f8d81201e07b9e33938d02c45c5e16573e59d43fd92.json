@@ -1,0 +1,51 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "73193b6b94976c9a78ce6fef264fc2cbab397bfe64450c0ffea1e0d01d48d3ec",
+  "response": {
+    "items": [
+      {
+        "id": "work:howard-2021-sdt-student-motivation-meta",
+        "mechanism": "motivation",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:howard-2021-sdt-student-motivation-meta",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:ivers-2012-audit-feedback-cochrane",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:johnson-2018-70-20-10-transfer",
+        "mechanism": "comprehensible_input",
+        "outcome": "transfer",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:kalyuga-2003-expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:kang-2022-threddy-interactive-system-personalized",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null
+      }
+    ]
+  }
+}

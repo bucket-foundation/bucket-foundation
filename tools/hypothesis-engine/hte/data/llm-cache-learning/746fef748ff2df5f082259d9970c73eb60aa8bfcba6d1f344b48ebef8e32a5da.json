@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "e2c268366a4d987cd1dee4ad4542d12fe4d7c22d496619a8bc770b459d700b67",
+  "response": {
+    "items": [
+      {
+        "id": "work:howard-2021-sdt-student-motivation-meta",
+        "mechanism": "motivation",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:howard-2021-sdt-student-motivation-meta",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:howard-2021-sdt-student-motivation-meta",
+        "mechanism": "motivation",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:howard-2021-sdt-student-motivation-meta",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:kalyuga-2003-expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      }
+    ]
+  }
+}

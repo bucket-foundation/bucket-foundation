@@ -1,0 +1,107 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "0c491fecc8d8d8ce26005634699cf3089322d06322aa04bf13566a58eeca0de3",
+  "response": {
+    "items": [
+      {
+        "id": "work:nation-2006-vocab-size",
+        "mechanism": "vocabulary_coverage",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:nation-2020-er-book",
+        "mechanism": "comprehensible_input",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:norris-2000-meta",
+        "mechanism": "explicit_instruction",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:papi-2010-l2mss",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:paradis-2009-declarative",
+        "mechanism": "explicit_instruction",
+        "outcome": "proficiency",
+        "direction": "null",
+        "effect_size": null
+      },
+      {
+        "id": "work:peters-2018-tv-vocab",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:peters-2019-captions-tv",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:pigada-2006-er-vocab",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:postovsky-1974-listening",
+        "mechanism": "output_practice",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "work:renandya-2011-extensive-listening",
+        "mechanism": "comprehensible_input",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:robb-1989-er",
+        "mechanism": "comprehensible_input",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:rodgers-2011-narrow-viewing",
+        "mechanism": "comprehensible_input",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:rodgers-2013-tv-comprehension",
+        "mechanism": "comprehensible_input",
+        "outcome": "comprehension",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "work:rogers-2017-spacing-grammar",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "null",
+        "effect_size": null
+      }
+    ]
+  }
+}

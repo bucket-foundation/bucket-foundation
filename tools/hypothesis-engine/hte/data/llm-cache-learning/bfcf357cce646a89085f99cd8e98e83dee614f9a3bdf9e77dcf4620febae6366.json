@@ -1,0 +1,121 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "87ab89e4a7a3cadd4f3f9076c6caa02d75a3bd1c0c3f5529730ebfeb89b1c345",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:seductive-details-effect",
+        "mechanism": "worked_examples",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": "d=-0.30"
+      },
+      {
+        "id": "claim:core:seductive-details-effect",
+        "mechanism": "worked_examples",
+        "outcome": "transfer",
+        "direction": "negative",
+        "effect_size": "d=-0.48"
+      },
+      {
+        "id": "claim:core:expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:self-explanation",
+        "mechanism": "elaboration",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:productive-failure",
+        "mechanism": "elaboration",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:bloom-two-sigma",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "2\u03c3"
+      },
+      {
+        "id": "claim:core:bloom-two-sigma",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "1\u03c3"
+      },
+      {
+        "id": "claim:core:two-sigma-did-not-replicate",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "mean \u22480.37\u03c3; high-dosage \u22480.3\u20130.5\u03c3"
+      },
+      {
+        "id": "claim:core:mastery-learning-effect",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "\u22480.5\u03c3"
+      },
+      {
+        "id": "claim:core:its-interaction-plateau",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "d\u22480.79 (human tutoring); d\u22480.76 (intelligent tutoring systems)"
+      },
+      {
+        "id": "claim:core:its-interaction-plateau",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null
+      },
+      {
+        "id": "claim:core:its-effects-shrink-at-scale",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "median \u22480.66\u03c3; Cognitive Tutor Algebra I +0.21\u03c3 in year 2"
+      },
+      {
+        "id": "claim:core:k12-math-its-near-zero",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": "g\u22480.09"
+      },
+      {
+        "id": "claim:core:feedback-power-and-variance",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "\u22480.79\u03c3"
+      },
+      {
+        "id": "claim:core:kestin-ai-tutor-rct",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "learning gains more than doubled vs active lecture"
+      }
+    ]
+  }
+}
