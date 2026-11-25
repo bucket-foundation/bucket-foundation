@@ -1,0 +1,786 @@
+{
+ "palettes": [
+  {
+   "id": "bucket",
+   "name": "Bucket original",
+   "source": "production through 2026-11",
+   "colors": {
+    "bg": "#EFE8D4",
+    "card": "#F6F1E3",
+    "surface": "#E4DCC4",
+    "surface-2": "#D3C9AB",
+    "surface-warm": "#E4D5A8",
+    "text": "#1F1C16",
+    "text-2": "#2A261E",
+    "text-3": "#3A3529",
+    "text-4": "#2E2A22",
+    "muted": "#5E5646",
+    "muted-2": "#4A4238",
+    "muted-3": "#4A4A42",
+    "faint": "#6F6A5E",
+    "accent": "#B8861E",
+    "accent-bright": "#D9A43A",
+    "accent-deep": "#8A641A",
+    "accent-text": "#74520F",
+    "accent-pale": "#F2CF7E",
+    "accent-sand": "#C9A863",
+    "on-accent": "#1F1C16",
+    "on-accent-deep": "#F6F1E3",
+    "link": "#2E6B6B",
+    "link-deep": "#1F4F4F",
+    "link-dark": "#123838",
+    "link-pale": "#5FB5B5",
+    "success": "#5A7A3A",
+    "success-deep": "#3E5A2A",
+    "sage": "#8A9668",
+    "teal": "#4A8A7A",
+    "warning": "#B8863A",
+    "warning-text": "#7A5313",
+    "copper": "#B86A3A",
+    "danger": "#9E3A24",
+    "line": "rgba(31, 28, 22, 0.14)",
+    "line-inverse": "rgba(239, 232, 212, 0.12)",
+    "line-strong": "rgba(31, 28, 22, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap",
+    "display": "\"Cinzel\", \"Trajan Pro\", \"Cormorant Garamond\", Georgia, serif",
+    "body": "\"Fraunces\", \"Söhne\", Georgia, serif",
+    "accent": "\"Instrument Serif\", \"Fraunces\", Georgia, serif",
+    "mono": "\"JetBrains Mono\", \"Berkeley Mono\", \"IBM Plex Mono\", ui-monospace, Menlo, monospace"
+   }
+  },
+  {
+   "id": "d1",
+   "name": "Grid",
+   "source": "Swiss International Style x IBM Carbon",
+   "colors": {
+    "bg": "#FFFFFF",
+    "card": "#FFFFFF",
+    "surface": "#F4F4F4",
+    "surface-2": "#D9D9D9",
+    "surface-warm": "#D2DEF6",
+    "text": "#161616",
+    "text-2": "#2D2D2D",
+    "text-3": "#454545",
+    "text-4": "#2D2D2D",
+    "muted": "#525252",
+    "muted-2": "#404040",
+    "muted-3": "#525252",
+    "faint": "#7D7D7D",
+    "accent": "#0F62FE",
+    "accent-bright": "#4B89FE",
+    "accent-deep": "#0A45B2",
+    "accent-text": "#0F62FE",
+    "accent-pale": "#9FC0FF",
+    "accent-sand": "#6399FE",
+    "on-accent": "#FFFFFF",
+    "on-accent-deep": "#FFFFFF",
+    "link": "#DA1E28",
+    "link-deep": "#1244A1",
+    "link-dark": "#133473",
+    "link-pale": "#7BA9FE",
+    "success": "#2F7D4F",
+    "success-deep": "#285E3E",
+    "sage": "#78AA8D",
+    "teal": "#1F70A6",
+    "warning": "#B8863A",
+    "warning-text": "#8B6730",
+    "copper": "#C95231",
+    "danger": "#DA1E28",
+    "line": "rgba(22, 22, 22, 0.14)",
+    "line-inverse": "rgba(255, 255, 255, 0.12)",
+    "line-strong": "rgba(22, 22, 22, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap",
+    "display": "\"IBM Plex Sans\", serif",
+    "body": "\"IBM Plex Sans\", system-ui, sans-serif",
+    "accent": "\"IBM Plex Sans\", serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "d2",
+   "name": "Kamon",
+   "source": "Japanese mon crests and ukiyo-e x Apple Human Interface Guidelines",
+   "colors": {
+    "bg": "#F4EFE4",
+    "card": "#F8F5ED",
+    "surface": "#FBF8F1",
+    "surface-2": "#E0DED7",
+    "surface-warm": "#DADCDB",
+    "text": "#1C1C1C",
+    "text-2": "#323130",
+    "text-3": "#474644",
+    "text-4": "#323130",
+    "muted": "#5A5148",
+    "muted-2": "#47413B",
+    "muted-3": "#5A5148",
+    "faint": "#80786F",
+    "accent": "#1F3A5F",
+    "accent-bright": "#576B87",
+    "accent-deep": "#162942",
+    "accent-text": "#1F3A5F",
+    "accent-pale": "#9FA7AF",
+    "accent-sand": "#6A798E",
+    "on-accent": "#F4EFE4",
+    "on-accent-deep": "#F4EFE4",
+    "link": "#1F3A5F",
+    "link-deep": "#1E2E44",
+    "link-dark": "#1D2837",
+    "link-pale": "#7F8B9B",
+    "success": "#2C6E47",
+    "success-deep": "#296040",
+    "sage": "#74A583",
+    "teal": "#275C57",
+    "warning": "#B8863A",
+    "warning-text": "#7C5D2F",
+    "copper": "#B85D2A",
+    "danger": "#B8341B",
+    "line": "rgba(28, 28, 28, 0.14)",
+    "line-inverse": "rgba(244, 239, 228, 0.12)",
+    "line-strong": "rgba(28, 28, 28, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap",
+    "display": "\"Shippori Mincho\", serif",
+    "body": "\"Zen Kaku Gothic New\", system-ui, sans-serif",
+    "accent": "\"Shippori Mincho\", serif",
+    "mono": "\"Zen Kaku Gothic New\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "d3",
+   "name": "Squiggle",
+   "source": "Memphis Group x Duolingo design system",
+   "colors": {
+    "bg": "#FFF8E7",
+    "card": "#FFFAEF",
+    "surface": "#FFFFFF",
+    "surface-2": "#E6E6E6",
+    "surface-warm": "#E6F7D9",
+    "text": "#2B2B2B",
+    "text-2": "#40403E",
+    "text-3": "#555451",
+    "text-4": "#40403E",
+    "muted": "#5E5A52",
+    "muted-2": "#4F4C46",
+    "muted-3": "#5E5A52",
+    "faint": "#868277",
+    "accent": "#58CC02",
+    "accent-bright": "#82D941",
+    "accent-deep": "#3E8F01",
+    "accent-text": "#427F16",
+    "accent-pale": "#BCE68B",
+    "accent-sand": "#92DB52",
+    "on-accent": "#173600",
+    "on-accent-deep": "#FFF8E7",
+    "link": "#C44275",
+    "link-deep": "#427D16",
+    "link-dark": "#3D6B1B",
+    "link-pale": "#A3E069",
+    "success": "#2F7D4F",
+    "success-deep": "#2E6444",
+    "sage": "#78A884",
+    "teal": "#44A428",
+    "warning": "#B8863A",
+    "warning-text": "#916C36",
+    "copper": "#DC6866",
+    "danger": "#C44275",
+    "line": "rgba(43, 43, 43, 0.14)",
+    "line-inverse": "rgba(255, 248, 231, 0.12)",
+    "line-strong": "rgba(43, 43, 43, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;800&display=swap",
+    "display": "\"Fredoka\", serif",
+    "body": "\"Nunito\", system-ui, sans-serif",
+    "accent": "\"Fredoka\", serif",
+    "mono": "\"Nunito\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "d4",
+   "name": "Wedge",
+   "source": "Soviet constructivism x Material Design 3",
+   "colors": {
+    "bg": "#141414",
+    "card": "#0D0D0D",
+    "surface": "#222222",
+    "surface-2": "#3B3A37",
+    "surface-warm": "#3F2223",
+    "text": "#EFE6D2",
+    "text-2": "#D9D1BF",
+    "text-3": "#C3BCAC",
+    "text-4": "#D9D1BF",
+    "muted": "#B5AC9A",
+    "muted-2": "#C6BDAB",
+    "muted-3": "#B5AC9A",
+    "faint": "#8D8678",
+    "accent": "#E3242B",
+    "accent-bright": "#EA5B60",
+    "accent-deep": "#9F191E",
+    "accent-text": "#E54144",
+    "accent-pale": "#671A1D",
+    "accent-sand": "#9B1E23",
+    "on-accent": "#FFFFFF",
+    "on-accent-deep": "#141414",
+    "link": "#EFE6D2",
+    "link-deep": "#E8726E",
+    "link-dark": "#EA988F",
+    "link-pale": "#861D21",
+    "success": "#4C8D63",
+    "success-deep": "#699C76",
+    "sage": "#26583A",
+    "teal": "#89503D",
+    "warning": "#B8863A",
+    "warning-text": "#B8863A",
+    "copper": "#D4B686",
+    "danger": "#EFE6D2",
+    "line": "rgba(239, 230, 210, 0.14)",
+    "line-inverse": "rgba(20, 20, 20, 0.12)",
+    "line-strong": "rgba(239, 230, 210, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto+Flex:wght@400;600&display=swap",
+    "display": "\"Oswald\", serif",
+    "body": "\"Roboto Flex\", system-ui, sans-serif",
+    "accent": "\"Oswald\", serif",
+    "mono": "\"Roboto Flex\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "d5",
+   "name": "Girih",
+   "source": "Islamic geometric tiling x Microsoft Fluent 2",
+   "colors": {
+    "bg": "#0B2A5B",
+    "card": "#071B3B",
+    "surface": "#123873",
+    "surface-2": "#2D4F83",
+    "surface-warm": "#194D80",
+    "text": "#F5F7FA",
+    "text-2": "#DEE2EA",
+    "text-3": "#C6CEDA",
+    "text-4": "#DEE2EA",
+    "muted": "#C3CEE2",
+    "muted-2": "#D2DAE9",
+    "muted-3": "#C3CEE2",
+    "faint": "#95A5C0",
+    "accent": "#3FC1C9",
+    "accent-bright": "#6FD0D6",
+    "accent-deep": "#2C878D",
+    "accent-text": "#3FC1C9",
+    "accent-pale": "#206687",
+    "accent-sand": "#2D8CA2",
+    "on-accent": "#062027",
+    "on-accent-deep": "#0B2A5B",
+    "link": "#F2C14E",
+    "link-deep": "#88D7DD",
+    "link-dark": "#ACE1E6",
+    "link-pale": "#287D98",
+    "success": "#669F7F",
+    "success-deep": "#6AA282",
+    "sage": "#226053",
+    "teal": "#379F8C",
+    "warning": "#B8863A",
+    "warning-text": "#C19757",
+    "copper": "#D5A444",
+    "danger": "#F2C14E",
+    "line": "rgba(245, 247, 250, 0.14)",
+    "line-inverse": "rgba(11, 42, 91, 0.12)",
+    "line-strong": "rgba(245, 247, 250, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Noto+Sans:wght@400;600&display=swap",
+    "display": "\"Reem Kufi\", serif",
+    "body": "\"Noto Sans\", system-ui, sans-serif",
+    "accent": "\"Reem Kufi\", serif",
+    "mono": "\"Noto Sans\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "d6",
+   "name": "Primitive",
+   "source": "Bauhaus x Teenage Engineering",
+   "colors": {
+    "bg": "#D9D6CF",
+    "card": "#E6E4E0",
+    "surface": "#EDEBE6",
+    "surface-2": "#D3D1CC",
+    "surface-warm": "#F0D6C4",
+    "text": "#111111",
+    "text-2": "#252524",
+    "text-3": "#393837",
+    "text-4": "#252524",
+    "muted": "#3F3D39",
+    "muted-2": "#31302D",
+    "muted-3": "#3F3D39",
+    "faint": "#66635E",
+    "accent": "#FF5F00",
+    "accent-bright": "#FF8740",
+    "accent-deep": "#B24200",
+    "accent-text": "#8D3A08",
+    "accent-pale": "#E8A67C",
+    "accent-sand": "#F28948",
+    "on-accent": "#111111",
+    "on-accent-deep": "#D9D6CF",
+    "link": "#1D4ED8",
+    "link-deep": "#8B3908",
+    "link-dark": "#70300A",
+    "link-pale": "#EE955D",
+    "success": "#265F3E",
+    "success-deep": "#265D3C",
+    "sage": "#6A9C7C",
+    "teal": "#976E28",
+    "warning": "#B8863A",
+    "warning-text": "#694D26",
+    "copper": "#6A6A89",
+    "danger": "#1D4ED8",
+    "line": "rgba(17, 17, 17, 0.14)",
+    "line-inverse": "rgba(217, 214, 207, 0.12)",
+    "line-strong": "rgba(17, 17, 17, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=Jost:wght@400;700&family=Space+Mono:wght@400;700&display=swap",
+    "display": "\"Jost\", serif",
+    "body": "\"Jost\", system-ui, sans-serif",
+    "accent": "\"Jost\", serif",
+    "mono": "\"Space Mono\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "d7",
+   "name": "Euclid",
+   "source": "Classical Greek: Attic red-figure, stoichedon inscriptions and Byrne's Euclid x Wikimedia Codex",
+   "colors": {
+    "bg": "#F3EEE3",
+    "card": "#F7F4ED",
+    "surface": "#FBF8F1",
+    "surface-2": "#E0DDD6",
+    "surface-warm": "#EEDDD3",
+    "text": "#1A1714",
+    "text-2": "#302C29",
+    "text-3": "#45423D",
+    "text-4": "#302C29",
+    "muted": "#5B5148",
+    "muted-2": "#484038",
+    "muted-3": "#5B5148",
+    "faint": "#81786F",
+    "accent": "#A6442A",
+    "accent-bright": "#BC735F",
+    "accent-deep": "#74301D",
+    "accent-text": "#A6442A",
+    "accent-pale": "#D4AA99",
+    "accent-sand": "#C1806B",
+    "on-accent": "#FFFFFF",
+    "on-accent-deep": "#F3EEE3",
+    "link": "#1E4F94",
+    "link-deep": "#6E3221",
+    "link-dark": "#52291D",
+    "link-pale": "#C9907D",
+    "success": "#2C6E46",
+    "success-deep": "#295E3D",
+    "sage": "#74A583",
+    "teal": "#6A603C",
+    "warning": "#B8863A",
+    "warning-text": "#7B5B2B",
+    "copper": "#6B6A67",
+    "danger": "#1E4F94",
+    "line": "rgba(26, 23, 20, 0.14)",
+    "line-inverse": "rgba(243, 238, 227, 0.12)",
+    "line-strong": "rgba(26, 23, 20, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=GFS+Didot&family=Gentium+Book+Plus:wght@400;700&family=Noto+Sans+Mono&display=swap",
+    "display": "\"GFS Didot\", serif",
+    "body": "\"Gentium Book Plus\", system-ui, sans-serif",
+    "accent": "\"GFS Didot\", serif",
+    "mono": "\"Noto Sans Mono\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "d8",
+   "name": "Global Squiggle",
+   "source": "D8, shared with Polingual",
+   "colors": {
+    "bg": "#F6EEDC",
+    "card": "#F9F4E8",
+    "surface": "#EFE3C8",
+    "surface-2": "#D7CBB4",
+    "surface-warm": "#ECC9AE",
+    "text": "#231F20",
+    "text-2": "#383433",
+    "text-3": "#4D4846",
+    "text-4": "#383433",
+    "muted": "#5D5650",
+    "muted-2": "#4C4642",
+    "muted-3": "#5D5650",
+    "faint": "#837C73",
+    "accent": "#D9381E",
+    "accent-bright": "#E26A56",
+    "accent-deep": "#982715",
+    "accent-text": "#BB301A",
+    "accent-pale": "#EAA590",
+    "accent-sand": "#E37860",
+    "on-accent": "#F6EEDC",
+    "on-accent-deep": "#F6EEDC",
+    "link": "#5B1A4A",
+    "link-deep": "#902E1F",
+    "link-dark": "#6C291F",
+    "link-pale": "#E68A74",
+    "success": "#1E7A5A",
+    "success-deep": "#205F49",
+    "sage": "#6AA388",
+    "teal": "#7C593C",
+    "warning": "#E9A23B",
+    "warning-text": "#8B632E",
+    "copper": "#887263",
+    "danger": "#26428B",
+    "line": "rgba(35, 31, 32, 0.14)",
+    "line-inverse": "rgba(246, 238, 220, 0.12)",
+    "line-strong": "rgba(35, 31, 32, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap",
+    "display": "Fredoka, Nunito, sans-serif",
+    "body": "Nunito, system-ui, sans-serif",
+    "accent": "Fredoka, sans-serif",
+    "mono": "\"Space Mono\", ui-monospace, monospace"
+   }
+  },
+  {
+   "id": "stonepunk",
+   "name": "Stonepunk",
+   "source": "carved stone, bkt-ui quiz styling",
+   "colors": {
+    "bg": "#f4eddf",
+    "card": "#F8F3EA",
+    "surface": "#e8dfcd",
+    "surface-2": "#D0C7B7",
+    "surface-warm": "#EADAB9",
+    "text": "#1f1b16",
+    "text-2": "#34302A",
+    "text-3": "#4A453E",
+    "text-4": "#34302A",
+    "muted": "#574f44",
+    "muted-2": "#463F36",
+    "muted-3": "#574f44",
+    "faint": "#7E766B",
+    "accent": "#f2bd47",
+    "accent-bright": "#F5CE75",
+    "accent-deep": "#A98432",
+    "accent-text": "#7C622C",
+    "accent-pale": "#F3DAA2",
+    "accent-sand": "#F3CE7C",
+    "on-accent": "#3b2905",
+    "on-accent-deep": "#F4EDDF",
+    "link": "#245a52",
+    "link-deep": "#7B612B",
+    "link-dark": "#735C2A",
+    "link-pale": "#F3D38B",
+    "success": "#445d24",
+    "success-deep": "#394920",
+    "sage": "#828F65",
+    "teal": "#9B8D36",
+    "warning": "#a8761b",
+    "warning-text": "#825C19",
+    "copper": "#666836",
+    "danger": "#245a52",
+    "line": "rgba(31, 27, 22, 0.14)",
+    "line-inverse": "rgba(244, 237, 223, 0.12)",
+    "line-strong": "rgba(31, 27, 22, 0.40)"
+   },
+   "fonts": {
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap",
+    "display": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, Georgia, serif",
+    "body": "ui-sans-serif, system-ui, sans-serif",
+    "accent": "\"Iowan Old Style\", Palatino, serif",
+    "mono": "\"IBM Plex Mono\", ui-monospace, monospace"
+   }
+  }
+ ],
+ "logos": [
+  {
+   "src": "/brand/logo.svg",
+   "label": "current",
+   "group": "current"
+  },
+  {
+   "src": "/brand/directions/logos/d1-glyph.svg",
+   "label": "d1-glyph",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d1-goat.svg",
+   "label": "d1-goat",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d1-lyre.svg",
+   "label": "d1-lyre",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d1-mascot.svg",
+   "label": "d1-mascot",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d1-mho-construction.svg",
+   "label": "d1-mho-construction",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d1-mho.svg",
+   "label": "d1-mho",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d1-symbol.svg",
+   "label": "d1-symbol",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d1-vessel.svg",
+   "label": "d1-vessel",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-glyph.svg",
+   "label": "d2-glyph",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-goat.svg",
+   "label": "d2-goat",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-lyre.svg",
+   "label": "d2-lyre",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-mascot.svg",
+   "label": "d2-mascot",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-mho-construction.svg",
+   "label": "d2-mho-construction",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-mho.svg",
+   "label": "d2-mho",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-symbol.svg",
+   "label": "d2-symbol",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d2-vessel.svg",
+   "label": "d2-vessel",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-glyph.svg",
+   "label": "d3-glyph",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-goat.svg",
+   "label": "d3-goat",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-lyre.svg",
+   "label": "d3-lyre",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-mascot.svg",
+   "label": "d3-mascot",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-mho-construction.svg",
+   "label": "d3-mho-construction",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-mho.svg",
+   "label": "d3-mho",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-symbol.svg",
+   "label": "d3-symbol",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d3-vessel.svg",
+   "label": "d3-vessel",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-glyph.svg",
+   "label": "d4-glyph",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-goat.svg",
+   "label": "d4-goat",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-lyre.svg",
+   "label": "d4-lyre",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-mascot.svg",
+   "label": "d4-mascot",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-mho-construction.svg",
+   "label": "d4-mho-construction",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-mho.svg",
+   "label": "d4-mho",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-symbol.svg",
+   "label": "d4-symbol",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d4-vessel.svg",
+   "label": "d4-vessel",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-glyph.svg",
+   "label": "d5-glyph",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-goat.svg",
+   "label": "d5-goat",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-lyre.svg",
+   "label": "d5-lyre",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-mascot.svg",
+   "label": "d5-mascot",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-mho-construction.svg",
+   "label": "d5-mho-construction",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-mho.svg",
+   "label": "d5-mho",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-symbol.svg",
+   "label": "d5-symbol",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d5-vessel.svg",
+   "label": "d5-vessel",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-glyph.svg",
+   "label": "d6-glyph",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-goat.svg",
+   "label": "d6-goat",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-lyre.svg",
+   "label": "d6-lyre",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-mascot.svg",
+   "label": "d6-mascot",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-mho-construction.svg",
+   "label": "d6-mho-construction",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-mho.svg",
+   "label": "d6-mho",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-symbol.svg",
+   "label": "d6-symbol",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d6-vessel.svg",
+   "label": "d6-vessel",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d7-glyph.svg",
+   "label": "d7-glyph",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d7-goat.svg",
+   "label": "d7-goat",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d7-lyre.svg",
+   "label": "d7-lyre",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d7-mascot.svg",
+   "label": "d7-mascot",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d7-mho-construction.svg",
+   "label": "d7-mho-construction",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d7-mho.svg",
+   "label": "d7-mho",
+   "group": "directions"
+  },
+  {
+   "src": "/brand/directions/logos/d7-vessel.svg",
+   "label": "d7-vessel",
+   "group": "directions"
+  }
+ ]
+}
