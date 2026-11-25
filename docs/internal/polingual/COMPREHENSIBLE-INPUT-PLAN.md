@@ -10,7 +10,7 @@ Per language L, `known(L, lemma)` gives a probability:
 
 - **Studied word:** the FSRS card's retrievability R(t, S) at today. If R is at least 0.9, the word counts as known.
 - **Tapped word:** a tap within the last 7 days sets the word to unknown, whatever the card says.
-- **Exposed word:** each meeting in input adds evidence. Words met 8 or more times count as known at 0.5 (waring-2003; uchihara-2019, r .34).
+- **Exposed word:** the probability of knowing it rises with the number of times met, as `1 − exp(−λ·n)`. λ is fitted from the exposure and review rows (§7). Until about 1,000 learners have logged data, λ = 0 and exposure counts for nothing. The literature bounds the rate only: gains are slow and depend on encounter count (uchihara-2019, r .34; webb-2007).
 - **Unseen word:** a prior from frequency rank (bkt-08oii) and the placement tier.
 
 `knownCount(L)` is the sum of these probabilities.
@@ -24,12 +24,13 @@ Per language L, `known(L, lemma)` gives a probability:
 - A video segment is one cue span from `public/videos/*.json`.
 - A sentence comes from Tatoeba (`apple/scripts/translate/tatoeba_sets.py`), and later from graded sentences (bkt-opcrr).
 - Lemmas are computed at build time and shipped as one JSON bundle per language, so all three clients read the same file.
+- An input unit is one item of 40 or more tokens, or a group of items totalling 40 or more: a video episode of consecutive cues, a passage, or a set of 4 to 6 Tatoeba sentences that share target lemmas (narrow reading, kang-2015). A single short sentence is never scored alone.
 
 ## 3. Selection
 
-`coverage(item) = Σ known(token) / tokens`, using cognate-adjusted values.
+`coverage(U) = Σ known(token) / |U|` over a unit U, using cognate-adjusted values.
 
-- **Eligible:** text coverage between 0.95 and 0.98, audio and video at 0.90 or more (hu-2000, schmitt-2011, vanzeeland-2013).
+- **Eligible:** text between 0.95 and 0.98, audio and video at 0.90 or more, with 1 to 3 target lemmas, which fits a unit of 40 to 60 tokens (hu-2000, schmitt-2011, vanzeeland-2013). Unknown non-target words get a gloss before playback and then count as known. Glossing is the normal path for short Tatoeba sets until graded sentences (bkt-opcrr) arrive.
 - **New words:** 1 to 3 target lemmas with known below 0.5.
 
 Score each eligible item by:
@@ -45,30 +46,27 @@ If no item qualifies, fall back to the item with the highest coverage and gloss 
 
 Input items enter the same queue as `QueueEntry` with `stage: Input`. The share is counted in seconds of session time.
 
-| Level (from knownCount) | Input share | Rule |
-|---|---|---|
-| Below 300 words | 30% | Cards first, because coverage can't reach 95% |
-| 300 to A2 (about 2,000) | 70% | PATH-MODEL step 9 starting point |
-| Past A2 | 60%, with output and explicit cards rising | Step 9: "rising output after A2" |
+`inputShare = min(target(level), eligibleSeconds / sessionSeconds)`. The target comes from the placement tier: 70% up to A2, 60% past A2, with output and explicit cards rising after A2. As learning brings more units into the band the share rises on its own, and it falls to zero when nothing qualifies. This follows the coverage threshold (hu-2000; laufer-1989-coverage) and puts PATH-MODEL step 9 into practice. Step 9 is grade C; its 70:30 split is the starting point §9 tests.
 
 This sits beside `soundShare` as `inputShare(known)` in `SessionMix`, and keeps the `alternate` and `CHECK_GAP` rules. A new target word from an input item becomes a card: the sentence is shown first, then the card comes 3 or more items later in the same session.
 
 ## 5. Evidence update
 
-**Exposure without a tap.** If the word has a started card that has not been reviewed today, take the Good-review stability S_g and set `S' = S + α(S_g − S)` with α = 0.1. The due date never moves earlier. Credit is capped at once per card per day. This reuses the `firedCredit` field and the existing `fireCredits` pattern in `adaptive.js`. The weight is small because incidental gains are slow and need about 10 encounters (webb-2007, waring-2003), while intentional study gains more (webb-2020).
+**Exposure without a tap.** An exposure is a typed row `{kind: exposure, card, at, item, tapped: false}` in the review log, and card state is always replayed from the log. On replay the update keeps the `fireCredits` guards: it skips new cards and cards with R below FIRE_MIN_RETRIEVABILITY (0.6); gain is `min(FIRE_MAX_STABILITY_GAIN 0.15, α·0.15)` with α fitted and 0 until data exists; `S' = S·(1+gain)`; due is the later of the old due and `lastReview + interval(S')`; at most once per card per day. `lastReview` stays the last graded review; studies read S_before and S_after from the rows, so past R estimates are never rewritten.
 
 **Tap.** No change to stability. The card is introduced, or its due date is set to now and it is flagged unknown in the learner model. A tap tells us the learner did not know the word. It does not measure forgetting the way a lapse does.
 
-**Cognate.** Initial stability × 1.027 when a shared etymon is held (retention-cognates, CI 1.023 to 1.031). Nothing more: the paper finds the feature adds no recall prediction.
+**Cognate.** Multiply the initial half-life by 1.027 when a shared etymon is held at R ≥ 0.9 (retention-cognates, CI 1.023 to 1.031). Under the FSRS curve stability is proportional to half-life, so S₀ ← 1.027·S₀ applies the same ratio. The weight is fixed, since the paper finds the feature adds no recall prediction.
 
 **Lean rules** (extending `lean/BucketMath/Fsrs.lean` and `Learning.Cognate`):
 
-- E1: `S ≤ exposure(S) ≤ S_good`.
-- E2: n exposures in one day give the same S as one exposure.
-- E3: exposure never makes a card due earlier.
+- E1: if R < 0.6 or the card is new, `exposure(S) = S`; otherwise `S ≤ exposure(S) ≤ 1.15·S`.
+- E2: n exposure rows on one day replay to the same state as one row.
+- E3: due' ≥ due and lastReview' = lastReview.
 - E4: a tap leaves S unchanged.
+- E5: replay gives the same state for any order of rows with equal timestamps.
 - C1: coverage lies in [0,1] and never drops as known or held sets grow (extends `coverage_mono`).
-- C2: any selected item meets the coverage band and has 1 to 3 new words.
+- C2: any selected unit has |U| ≥ 40, glossed coverage in the band, and 1 to 3 unglossed new words.
 - M1: the realized input share stays within ±1 item of the target.
 
 ## 6. Progress metric
@@ -77,15 +75,13 @@ Two numbers per language: **input hours** (the sum of watched or read seconds on
 
 ## 7. Event logging
 
-Make the review log the default on every platform, and add these events:
+The review log gains a typed union `review | exposure | session`, the default on every platform:
 
-- `review {card, rating, elapsedDays, S_before, S_after, D, source: card|input}`
-- `input_exposure {item, lemmas_seen, seconds, coverage_pred, completed}`
-- `word_tap {item, lemma, known_pred}`
-- `input_skip`
+- `review {card, rating, elapsedDays, S_before, S_after, D}`
+- `exposure {item, unit, lemmas_seen, taps: lemma[], seconds, coverage_pred, completed}`; taps ride in the exposure row, with no event per tap
 - `session_mix {share_target, share_real, arm}`
 
-Each event carries a uuid, device id, timezone and `arm`. Add these names to `LEARN_EVENT_NAMES`, with daily caps.
+Every write passes the `events-server` gates; on `under_age` or `no_consent` nothing uploads and the local log runs replay-only. `events.ts` validates fields with `parseProps` (lemmas ≤ 200, seconds ≤ 3,600). Daily caps: `exposure` 300, `session_mix` 60. Golden replay vectors, log to card state, run in TS, Kotlin and Swift CI.
 
 ## 8. Parity
 
@@ -95,10 +91,10 @@ Each event carries a uuid, device id, timezone and `arm`. Add these names to `LE
 
 ## 9. Preregistered experiment
 
-- **Design:** arms with input share 50/70/90 among learners past 300 known words. Assign by user hash, stratified by placement tier. Write PREREG.md before launch.
+- **Design:** arms with input share 50/70/90 among learners whose eligible input can fill the target share. Assign by user hash, stratified by placement tier. Write PREREG.md before launch.
 - **Primary outcome:** known words at day 28, measured by a held-out yes/no test with pseudowords.
 - **Secondary outcomes:** input hours, day-28 retention, lapse rate.
-- **Power:** at d = 0.3 this needs about 175 users per arm. Run it until each arm has that many.
+- **Power:** two primary comparisons, 50 vs 70 and 90 vs 70, Holm-corrected at α 0.05. At d = 0.3 and power 0.8 that is about 211 per arm; with 40% loss by day 28, enrol 352 per arm, about 1,060 in total. Intention to treat, with multiple imputation as a sensitivity check.
 - **Second study:** α (exposure weight) at 0 vs 0.1, scored by log-loss of the next card review.
 
 ## 10. Beads, in order
@@ -109,10 +105,10 @@ Each event carries a uuid, device id, timezone and `arm`. Add these names to `LE
 | 2 | InputItem schema and lemma bundle builder (Tatoeba sentences, cues from the 3 videos) | M | none | Yes |
 | 3 | Learner model `known` and `knownCount` from FSRS, taps and exposures | M | 1 | Yes |
 | 4 | Coverage selector with i+1 and golden vectors | M | 2, 3 | Yes (sentences) |
-| 5 | Input stage in the session: sentence card and video-segment card, word tap on web | L | 4 | Yes |
-| 6 | Exposure and tap update with E1 to E4 in Lean | M | 3 | Yes |
-| 7 | `inputShare` by level in SessionMix (TS, Kotlin, Swift) and M1 proof | M | 5 | Yes |
-| 8 | iOS and Android input stage parity | L | 5, 7 | Yes |
+| 5 | Exposure and tap rows, replay, E1 to E5 in Lean | M | 1, 3 | Yes |
+| 6 | Input stage on web: sentence-set and video-episode units, word tap | L | 4, 5 | Yes |
+| 7 | `inputShare` in SessionMix (TS, Kotlin, Swift), tap UI spec, golden vectors, M1 proof | M | 6 | Yes |
+| 8 | iOS and Android input stage with tap UI | L | 6, 7 | Yes |
 | 9 | Input hours and known words on Home and streak | S | 1, 3 | Yes |
 | 10 | Cognate-adjusted coverage and C1 proof | M | 4, bkt-6ge9k | Partly (Wiktionary) |
 | 11 | Frequency priors for unseen words | S | bkt-08oii | No |
@@ -120,4 +116,4 @@ Each event carries a uuid, device id, timezone and `arm`. Add these names to `LE
 | 13 | Listen: map radio time to input hours only (no lemmas); add captioned audio clips | M | 2 | Clips no |
 | 14 | 50/70/90 experiment PREREG and launch | M | 1, 7, 8 | After parity |
 
-Beads 1 to 5 make the first release: Tatoeba sentences and the 3 videos as input cards inside the session, on the web first. Three videos are too few for the 95% coverage band to choose among, so the video arm is a demo until more licensed videos arrive.
+Beads 1 to 6 make the first release: Tatoeba sentences and the 3 videos as input cards inside the session, on the web first. Three videos are too few for the 95% coverage band to choose among, so the video arm is a demo until more licensed videos arrive.
