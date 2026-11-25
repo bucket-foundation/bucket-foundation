@@ -336,9 +336,40 @@ def _build_response(
         },
     }
 
+DEFAULT_DOMAIN = "history"
+DOMAINS = frozenset({"history", "learning"})
+
+def _hypothesize_learning(request: dict[str, Any]) -> dict[str, Any]:
+    from . import learning
+    mode = request.get("llm_mode") or os.environ.get("HTE_LLM_MODE") or "claude"
+    if mode not in _LLM_MODES:
+        raise RequestValidationError(f"llm_mode must be one of {sorted(_LLM_MODES)}, got {mode!r}")
+    judge_top = request.get("judge_top", learning.DEFAULT_JUDGE_TOP)
+    if not isinstance(judge_top, int) or isinstance(judge_top, bool) or judge_top < 0:
+        raise RequestValidationError(f"judge_top must be a non-negative integer, got {judge_top!r}")
+    replay_only = request.get("replay_only", False)
+    if not isinstance(replay_only, bool):
+        raise RequestValidationError(f"replay_only must be a boolean, got {replay_only!r}")
+    started = time.monotonic()
+    try:
+        result = learning.run_campaign(mode=mode, judge_top=judge_top, replay_only=replay_only)
+    except FileNotFoundError as exc:
+        raise CampaignError(f"learning corpus missing: {type(exc).__name__}") from exc
+    except Exception as exc:
+        raise CampaignError(f"{type(exc).__name__}: {exc}") from exc
+    result["ranked_markdown"] = learning.render_markdown(result)
+    result["elapsed_s"] = time.monotonic() - started
+    return result
+
 def hypothesize(request: dict[str, Any], *, config: dict[str, Any] | None = None) -> dict[str, Any]:
     if not isinstance(request, dict):
         raise RequestValidationError(f"request must be an object, got {type(request).__name__}")
+
+    domain = request.get("domain", DEFAULT_DOMAIN)
+    if domain not in DOMAINS:
+        raise RequestValidationError(f"domain must be one of {sorted(DOMAINS)}, got {domain!r}")
+    if domain == "learning":
+        return _hypothesize_learning(request)
 
     errors: list[str] = []
     raw_list = _normalize_productions_field(request, errors)

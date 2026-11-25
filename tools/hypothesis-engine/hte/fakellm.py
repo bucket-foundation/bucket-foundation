@@ -208,7 +208,24 @@ def _extract(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
         })
     return {"items": items}
 
+_LEARNING_COUNTS_RE = re.compile(r"positive=(?P<pos>\d+) negative=(?P<neg>\d+)")
+
+def _learning_judge(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
+    m = _LEARNING_COUNTS_RE.search(prompt)
+    pos, neg = (int(m.group("pos")), int(m.group("neg"))) if m else (0, 0)
+    if pos == 0 and neg == 0:
+        verdict = "insufficient"
+    elif pos > 2 * neg:
+        verdict = "supports"
+    elif neg > 2 * pos:
+        verdict = "refutes"
+    else:
+        verdict = "mixed"
+    confidence = abs(pos - neg) / (pos + neg) if pos + neg else 0.0
+    return {"verdict": verdict, "confidence": confidence, "rationale": f"fake stand-in: {pos} positive, {neg} negative items"}
+
 _DISPATCH = {
+    "learning_judge": _learning_judge,
     "generator": _generator,
     "critic": _critic,
     "unknown_unknown": _unknown_unknown,
