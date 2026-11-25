@@ -47,3 +47,16 @@ Bead `bkt-kkvf0`. A `claim_*` definition states an empirical claim as a hypothes
 | Items with unequal 2PL slopes swap order between some pair of abilities | [bm:BucketMath.Literature.Rasch.unequal_slopes_cross] |
 | If correct rate rises with mastery, guess plus slip is below one | [bm:BucketMath.Literature.Bkt.corbett_identifiable] |
 | ACT-R trace strength falls with age and with the decay exponent; need odds that match it fall with time since use | [bm:BucketMath.Literature.Actr.strength_antitone_decay], [bm:BucketMath.Literature.Actr.environment_need_falls] |
+
+## Similarity Systems
+
+Bead `bkt-ziwld`. Paper `papers/similarity-systems/`.
+
+| Claim | Tag |
+|---|---|
+| Hamming distance is a metric; edit reachability is symmetric, composes and separates at zero | [bm:BucketMath.Similarity.hamming_metric], [bm:BucketMath.Similarity.within_trans], [bm:BucketMath.Similarity.within_symm], [bm:BucketMath.Similarity.within_zero] |
+| Distance after transliteration is a pseudometric that can merge distinct words | [bm:BucketMath.Similarity.transliterated_pseudo], [bm:BucketMath.Similarity.transliterated_not_separating] |
+| Cosine distance fails the triangle inequality; Manhattan distance is a pseudometric | [bm:BucketMath.Similarity.cosine_triangle_fails], [bm:BucketMath.Similarity.manhattan_pseudo] |
+| Shared prefix and suffix depth are ultrametric similarities; morpheme distance is an ultrametric | [bm:BucketMath.Similarity.sharedPrefix_isUltra], [bm:BucketMath.Similarity.sharedSuffix_isUltra], [bm:BucketMath.Similarity.morphemeDistance_ultra] |
+| A weighted sum keeps pseudometric axioms, separation and bounds, and loses the ultrametric property | [bm:BucketMath.Similarity.combined_pseudo], [bm:BucketMath.Similarity.combined_metric], [bm:BucketMath.Similarity.combined_bounded], [bm:BucketMath.Similarity.combined_ultra_fails] |
+| A cognate held word adds the mass of its text word to coverage; looser thresholds never lower coverage | [bm:BucketMath.Similarity.cognate_axes_contribute], [bm:BucketMath.Similarity.looser_coverage] |

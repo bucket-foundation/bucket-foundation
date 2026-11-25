@@ -1,0 +1,202 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{hyperref}
+
+\usepackage{bucket}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = bucketblue,
+  citecolor  = bucketblue,
+  urlcolor   = bucketblue,
+}
+
+\newcommand{\tg}[1]{{\small\ttfamily #1}}
+\newcommand{\run}{[empirical: data/tests.json, 2026-11-25, python3 scripts/pairs.py then python3 scripts/tests.py]}
+
+\glossentry{pseudometric}{pseudometric}%
+  {https://bucket.foundation/canon/01-mathematics/pseudometric}%
+  {A distance $d$ with $d(a,a)=0$, symmetry and the triangle inequality. Distinct points may sit at distance zero.}
+\glossentry{metric}{metric}%
+  {https://bucket.foundation/canon/01-mathematics/metric}%
+  {A pseudometric with $d(a,b)=0$ only when $a=b$.}
+\glossentry{ultrametric}{ultrametric}%
+  {https://bucket.foundation/canon/01-mathematics/ultrametric}%
+  {A distance with $d(a,c)\le\max(d(a,b),d(b,c))$; every ultrametric satisfies the triangle inequality.}
+\glossentry{cognate}{cognate}%
+  {https://bucket.foundation/canon/07-mind/cognate}%
+  {Two words whose etymological ancestor sets in Wiktionary intersect.}
+\glossentry{coverage}{coverage}%
+  {https://bucket.foundation/canon/07-mind/coverage}%
+  {The share of token mass in a text recognized through a held language.}
+
+\title{Similarity Systems for Polingual: Axioms and a Test of the Subword Level}
+\author{Bucket Foundation}
+\date{2026-11-25}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Polingual compares words along meaning, sound and spelling. We state each comparison as a distance, prove in Lean which axioms it satisfies, add a subword level with letter, affix and character n-gram parts, and test two preregistered hypotheses on 61,775 translation pairs across 32 language pairs. Edit distance and Hamming distance are \term{metric}{metrics}; cosine distance fails the triangle inequality; shared prefix and suffix depth give \term{ultrametric}{ultrametrics}; transliteration and fixed-depth morpheme distance give \term{pseudometric}{pseudometrics}. A weighted sum keeps the pseudometric axioms and boundedness, keeps separation when one positive-weight part is a metric, and loses the ultrametric property. A cognate predicate built from the axes adds the full mass of each cognate token to \term{coverage}{coverage}. In the data, five of six axis pairs are distinct at the preregistered rank correlation bound of 0.8; script and subword are not, at $\rho=0.831$. Subword levels raise held-out AUC for known cognates over script alone by 0.0032, 95\% CI 0.0018 to 0.0048 \tg{\run}.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Polingual scores word pairs on several axes and combines them. The three-way embeddings work built meaning, phonetic and script vectors and fitted a joint score. Two questions stayed open. What does each score obey as a distance, so that indexes and proofs that assume the triangle inequality are used only where it holds. And does a level between the letter and the word, prefixes, suffixes and character n-grams, carry information about shared descent that whole-word spelling misses.
+
+\section{Related work}
+\label{sec:related}
+
+LaBSE places translations near each other in a shared 768-d space \autocite{feng2020labse}. Subword n-grams extend word vectors to unseen spellings \autocite{bojanowski2016fasttext}. Phonetic word embeddings have a benchmark \autocite{zouhar2023pwesuite}, and phonetic features help find cognates \autocite{rama2016siamese}. Edit distance counts insertions, deletions and substitutions \autocite{levenshtein1966binary}. The lexicon and etymologies come from Wiktionary \autocite{meyer2012wiktionary} through Wiktextract \autocite{ylonen2022wiktextract}. Proofs are checked in Lean 4 \autocite{demoura2021lean4}.
+
+\section{Preliminaries}
+\label{sec:prelim}
+
+\begin{definition}[Distance axioms]
+\label{def:axioms}
+A map $d:A\times A\to\mathbb{N}$ is a \term{pseudometric}{pseudometric} when $d(a,a)=0$, $d(a,b)=d(b,a)$ and $d(a,c)\le d(a,b)+d(b,c)$; a \term{metric}{metric} when also $d(a,b)=0$ implies $a=b$; an \term{ultrametric}{ultrametric} when $d(a,c)\le\max(d(a,b),d(b,c))$; bounded by $B$ when $d\le B$. Lean: \texttt{Pseudometric}, \texttt{Metric}, \texttt{Ultrametric}, \texttt{Bounded}; \texttt{ultra\_triangle} proves an ultrametric meets the triangle inequality.
+\end{definition}
+
+Real-valued scores are quantized to naturals or integers in Lean; core Lean has no real numbers, and every axiom here is stable under scaling by a positive constant.
+
+\begin{definition}[Axes]
+\label{def:axes}
+Meaning $M$ is the cosine of LaBSE vectors. Phonetic $P$ is the cosine of 64-d IPA vectors. Script $S$ is one minus normalized edit distance on the transliterated form. Subword $W$ is the mean of three levels on the same form: letter, the Dice overlap of letter multisets; affix, the longer shared prefix or suffix over the longer length; n-gram, the Jaccard overlap of boundary-marked character trigrams.
+\end{definition}
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Axioms}
+
+\begin{theorem}[Script]
+\label{thm:script}
+Hamming distance with padding is a metric on strings over any alphabet (\texttt{hamming\_metric}). Edit reachability $\mathrm{Within}(n,a,b)$, true when $b$ follows from $a$ by at most $n$ single edits, satisfies $\mathrm{Within}(0,a,b)\Rightarrow a=b$, symmetry and composition $\mathrm{Within}(m,a,b)\wedge\mathrm{Within}(n,b,c)\Rightarrow\mathrm{Within}(m+n,a,c)$ (\texttt{within\_zero}, \texttt{within\_symm}, \texttt{within\_trans}); the least such $n$ is edit distance, so edit distance is a metric. Distance after a transliteration $t$ is a pseudometric (\texttt{transliterated\_pseudo}) and fails separation when $t$ merges letters: Russian \emph{yo} and \emph{ye}, both folded to \emph{ye} (\texttt{transliterated\_not\_separating}).
+\end{theorem}
+
+\begin{theorem}[Vectors]
+\label{thm:vectors}
+Cosine distance $r^2-\langle a,b\rangle$ on vectors of norm $r$ is symmetric and zero on the diagonal (\texttt{cosine\_symm}, \texttt{cosine\_self}) and fails the triangle inequality: for $a=(5,0)$, $b=(3,4)$, $c=(0,5)$ it gives $25>10+5$ (\texttt{cosine\_triangle\_fails}). Manhattan distance on phonetic vectors is a pseudometric and separates vectors of equal length (\texttt{manhattan\_pseudo}, \texttt{manhattan\_separate}). Squared Euclidean distance fails the triangle inequality (\texttt{squaredEuclid\_triangle\_fails}).
+\end{theorem}
+
+\begin{theorem}[Subword]
+\label{thm:subword}
+Shared prefix length and shared suffix length are ultrametric similarities, $\min(s(a,b),s(b,c))\le s(a,c)$ (\texttt{sharedPrefix\_isUltra}, \texttt{sharedSuffix\_isUltra}); they are the depth of the lowest common node in a prefix tree. Morpheme distance at depth $k$, $k-\min(k,s(a,b))$, is an ultrametric (\texttt{morphemeDistance\_ultra}) with zero diagonal on words of length at least $k$ and no separation (\texttt{morphemeDistance\_not\_separating}). The n-gram profile distance is a metric (\texttt{ngram\_metric}), and n-gram overlap never exceeds the union (\texttt{overlap\_le\_union}), so the Jaccard ratio lies in $[0,1]$.
+\end{theorem}
+
+\begin{theorem}[Weighted sum]
+\label{thm:combined}
+For $d=w_1d_1+w_2d_2$: if $d_1,d_2$ are pseudometrics so is $d$ (\texttt{combined\_pseudo}); if $d_1$ is a metric and $w_1>0$ then $d$ is a metric (\texttt{combined\_metric}); bounds add as $w_1B_1+w_2B_2$ (\texttt{combined\_bounded}). Two ultrametrics can sum to a non-ultrametric (\texttt{combined\_ultra\_fails}, with parts \texttt{combined\_ultra\_components}). Iterating covers any finite sum.
+\end{theorem}
+
+\begin{theorem}[Cognates and coverage]
+\label{thm:cognate}
+Let a pair be \term{cognate}{cognate} when meaning similarity clears a threshold and script distance, phonetic distance or subword similarity clears its own. If a held word $l$ is cognate to a text word $w$ of mass $k$, the covered mass is at least $k$ (\texttt{cognate\_axes\_contribute}). Looser thresholds never lower coverage (\texttt{looser\_coverage}). Removing the subword axis never raises it (\texttt{subword\_adds\_coverage}).
+\end{theorem}
+
+\subsection{Data and tests}
+
+The preregistration (\texttt{PREREGISTRATION.md}) was committed before any similarity was computed. Pairs come from the Wiktionary translation table joined to the photon index; English with 26 languages and six non-English pairs through a shared English sense, at most 2,000 pairs each, seed 20261125. Vectors are read through memory maps. Transliteration is the diacritic fold for Latin script and the Wiktionary romanization otherwise. Cognate labels use the ancestor closure, depth 8, over inheritance, derivation and borrowing; the label is defined when both words have an etymology row.
+
+H1: for each of six axis pairs, H0 $|\rho|\ge0.8$ against H1 $|\rho|<0.8$, Spearman, cluster bootstrap over language pairs with 2,000 resamples, Holm correction \autocite{holm1979simple}. H2: logistic regression on $S$ against $S$ plus the three subword levels, leave one language pair out, pooled AUC; H0 gain $\le0$, cluster bootstrap; per language pair, Benjamini--Hochberg at $q=0.05$ \autocite{benjamini1995controlling}.
+
+\section{Results}
+\label{sec:results}
+
+The run produced 61,775 pairs; $P$ is defined on 54,916, $S$ and $W$ on 59,701, and the cognate label on 47,134, of which 5,809 are cognates \tg{\run}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{H1. Spearman $\rho$ with cluster-bootstrap 95\% CI and Holm-adjusted $p$ for H0 $|\rho|\ge0.8$ \tg{\run}.}
+  \label{tab:h1}
+  \begin{tabular}{@{}lrccc@{}}
+    \toprule
+    Axes & $n$ & $\rho$ & 95\% CI & $p_{\mathrm{Holm}}$ \\
+    \midrule
+    meaning, phonetic & 54,916 & 0.143 & 0.094 to 0.192 & $<0.001$ \\
+    meaning, script & 59,701 & 0.227 & 0.156 to 0.302 & $<0.001$ \\
+    meaning, subword & 59,701 & 0.243 & 0.174 to 0.313 & $<0.001$ \\
+    phonetic, script & 52,920 & 0.374 & 0.317 to 0.426 & $<0.001$ \\
+    phonetic, subword & 52,920 & 0.370 & 0.313 to 0.426 & $<0.001$ \\
+    script, subword & 59,701 & 0.831 & 0.800 to 0.859 & 0.97 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Five pairs reject H0. Script and subword do not: on these data they rank pairs alike (\Cref{tab:h1}, \Cref{fig:corr}). The first principal component of the four-axis rank correlation holds 55\% of the variance and the last 4.2\%, on 52,920 complete pairs \tg{\run}; the last is the script and subword overlap.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/fig_corr.png}
+  \caption{Rank correlation of the four axes, 52,920 pairs with all four defined \tg{\run}.}
+  \label{fig:corr}
+\end{figure}
+
+For H2, script alone gives held-out AUC 0.9222 on 47,013 labeled pairs with 5,774 cognates; adding the subword levels gives 0.9254, a gain of 0.0032, 95\% CI 0.0018 to 0.0048, bootstrap $p<0.0005$ \tg{\run}. H0 is rejected. Of 29 language pairs with at least 30 cognates and 30 non-cognates, three show a gain at BH $q<0.05$: English with Japanese, 0.0109; English with Russian, 0.0115; English with Portuguese, 0.0057 \tg{\run}. Two of the three pass through romanization, where whole-word edit distance on a romanized form misses shared stems the affix level keeps (\Cref{fig:delta}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figures/fig_delta.png}
+  \caption{AUC gain from the subword levels per language pair with 95\% bootstrap CI; blue marks BH $q<0.05$ \tg{\run}.}
+  \label{fig:delta}
+\end{figure}
+
+Exploratory: adding meaning and phonetic to the subword model on 42,649 pairs moves AUC from 0.9250 to 0.9278 \tg{\run}.
+
+\section{Calibration}
+\label{sec:calibration}
+
+The axiom results are proofs, checked by \texttt{lake build BucketMath} with no \texttt{sorry}; \Cref{app:lean} lists them. The tests were fixed in the preregistration before the run, ran once, and report every preregistered quantity. The bootstrap resamples whole language pairs, so its intervals absorb between-pair variation; with 32 clusters the smallest nonzero $p$ is $1/2000$.
+
+\section{Limitations}
+\label{sec:limitations}
+
+Cognate labels depend on Wiktionary etymology coverage; a pair without an etymology row is unlabeled, and missing links count as non-cognates. Romanization is missing for some non-Latin words, which drops them from $S$ and $W$. Script and subword share one transliteration, which explains part of their correlation; a subword level on IPA would test separation from script directly. The Lean edit-distance result is relational and does not compute the dynamic program. The cosine counterexample uses norm 5 vectors with integer coordinates; the angular distance $\arccos$ of cosine is a metric on the sphere and is outside core Lean. The phonetic vectors here are the 64-d photon vectors, distinct from the 96-d PanPhon vectors of the three-way embeddings work.
+
+\printbibliography
+
+\appendix
+
+\section{Glossary}
+\label{app:glossary}
+
+\printglossaryentry{pseudometric}
+\printglossaryentry{metric}
+\printglossaryentry{ultrametric}
+\printglossaryentry{cognate}
+\printglossaryentry{coverage}
+
+\section{Lean listings}
+\label{app:lean}
+
+Files under \texttt{lean/BucketMath/Similarity/}: \texttt{Axioms.lean}, \texttt{Script.lean}, \texttt{Vector.lean}, \texttt{Subword.lean}, \texttt{Combined.lean}, \texttt{Cognate.lean}.
+
+\begin{lstlisting}[style=bucketlean]
+theorem cosine_triangle_fails : Not Triangle (cosineDistance 5)
+theorem hamming_metric [DecidableEq A] : Metric (hamming (A := A))
+theorem within_trans {m n : Nat} {a b c : List A}
+    (h1 : Within m a b) (h2 : Within n b c) : Within (m + n) a c
+theorem sharedPrefix_isUltra [DecidableEq A] : Ultra (sharedPrefix (A := A))
+theorem combined_metric {d1 d2 : A -> A -> Nat} {w1 : Nat} (w2 : Nat)
+    (hw : 0 < w1) (h1 : Metric d1) (h2 : Pseudometric d2) :
+    Metric (combined w1 w2 d1 d2)
+theorem combined_ultra_fails : Not Ultrametric (combined 1 1
+    (fun a b : Nat x Nat => discrete a.1 b.1)
+    (fun a b : Nat x Nat => discrete a.2 b.2))
+theorem cognate_axes_contribute (ax : Axes L W) (th : Thresholds)
+    (hl : l in held) (hw : (w, k) in text)
+    (hc : cognate ax th l w = true) : k <= CoveredMass (cognate ax th) held text
+\end{lstlisting}
+
+\end{document}
