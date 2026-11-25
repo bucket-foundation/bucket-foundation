@@ -17,7 +17,7 @@ ROOTS = os.environ.get(
     "PHOTONS_ROOTS",
     "/home/gian/agfarms/bucket-foundation/_intake/photons/roots.sqlite",
 )
-TOP_N = int(os.environ.get("TOP_N", 2000))
+TOP_N = int(os.environ.get("TOP_N", 5000))
 MAX_SET = 4
 PHON_THRESHOLD = 0.25
 KNOWN_N = 10000
@@ -197,6 +197,7 @@ def pair_mask(t, s, words, cons, romans):
 
 
 def main() -> None:
+    arrays: dict = {}
     result = {"top_n": TOP_N, "phon_threshold": PHON_THRESHOLD, "targets": {}}
     for t in TARGETS:
         words, wts, cons, romans, total = target_vocab(t)
@@ -207,12 +208,12 @@ def main() -> None:
             if s == t:
                 continue
             root, shallow, phon = pair_mask(t, s, words, cons, romans)
-            m = root | phon
+            m = shallow | phon
             masks[s] = m
             pairs[s] = {
                 "C": float(norm @ m),
-                "C_root": float(norm @ root),
-                "C_shallow": float(norm @ (shallow | phon)),
+                "C_pie": float(norm @ (root | phon)),
+                "C_root": float(norm @ shallow),
                 "C_phon": float(norm @ phon),
             }
         others = [s for s in HELD if s != t]
@@ -258,6 +259,9 @@ def main() -> None:
                 )
                 cur = new
                 chosen.append(s_star)
+        arrays[f"{t}__weight"] = norm
+        for s_, m_ in masks.items():
+            arrays[f"{t}__{s_}"] = m_
         result["targets"][t] = {
             "vocab": len(words),
             "analyzable_mass": float(wts.sum() / total),
@@ -271,6 +275,7 @@ def main() -> None:
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w") as fh:
         json.dump(result, fh, indent=1, sort_keys=True)
+    np.savez_compressed(os.path.join(os.path.dirname(OUT), "masks.npz"), **arrays)
 
 
 if __name__ == "__main__":

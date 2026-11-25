@@ -15,6 +15,7 @@ figures:
 data:
 	$(PYTHON) scripts/coverage.py
 	$(PYTHON) scripts/regress.py
+	$(PYTHON) scripts/tests.py
 
 lean:
 	cd ../../lean && lake build

@@ -26,25 +26,25 @@ def main() -> None:
     hours = json.load(open(os.path.join(DATA, "fsi_hours.json")))["hours"]
     langs = sorted(l for l in hours if l in cov)
     c = np.array([cov[l]["pairs"]["en"]["C"] for l in langs])
-    cs = np.array([cov[l]["pairs"]["en"]["C_shallow"] for l in langs])
+    cs = np.array([cov[l]["pairs"]["en"]["C_pie"] for l in langs])
     h = np.array([hours[l] for l in langs], float)
     keep = h < 2200
     out = {
         "n": len(langs),
         "langs": langs,
         "C": c.tolist(),
-        "C_shallow": cs.tolist(),
+        "C_pie": cs.tolist(),
         "hours": h.tolist(),
         "linear": fit(c, h),
         "log_hours": fit(c, np.log(h)),
-        "linear_shallow": fit(cs, h),
+        "linear_pie": fit(cs, h),
         "spearman": dict(zip(("rho", "p"), map(float, stats.spearmanr(c, h)))),
         "without_cat4": fit(c[keep], h[keep]),
         "n_without_cat4": int(keep.sum()),
     }
     with open(os.path.join(DATA, "regression.json"), "w") as fh:
         json.dump(out, fh, indent=1)
-    print(json.dumps({k: v for k, v in out.items() if k not in ("C", "C_shallow", "hours", "langs")}, indent=1))
+    print(json.dumps({k: v for k, v in out.items() if k not in ("C", "C_pie", "hours", "langs")}, indent=1))
 
 
 if __name__ == "__main__":

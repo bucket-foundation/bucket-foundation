@@ -57,10 +57,11 @@ some language of a learner's \term{held}{held set} $S$, and prove in Lean
 that it lies in $[0,1]$ and never drops when $S$ grows
 \bm{BucketMath.Learning.Cognate.coverage\_mono}. We measure it over 23
 targets and 27 held languages from a Wiktionary etymology and translation
-index, weighted by open word frequencies. The best single held language
-covers a mean of 0.268 of target tokens, and the best set of four covers
-0.368 \emp{\covrun}.
-Coverage from English alone explains 28\% of the variance in \term{fsi}{FSI class hours} across 23 languages, 42\% on a log scale, and 65\% once the four 2200-hour languages are set aside [empirical: data/regression.json, 2026-11-25, python3 scripts/regress.py].
+index, weighted by open word frequencies, counting only matches that
+meet above Proto-Indo-European. The best single held language covers a
+mean of 0.260 of target tokens, and the best set of four covers 0.351
+\emp{\covrun}.
+English coverage ranks \term{fsi}{FSI class hours} with Spearman $\rho=-0.669$, 95\% CI $[-0.865,-0.269]$, permutation $p=0.0003$, $n=23$; the linear fit explains 22\% of the variance and 72\% once the four 2200-hour languages are set aside [empirical: data/tests.json, 2026-11-25, python3 scripts/tests.py].
 \end{abstract}
 
 \section{Introduction}
@@ -113,13 +114,15 @@ restricted to the 10000 most frequent words of $s$ where \texttt{wordfreq}
 covers $s$. Then $s$ \emph{recognizes} $w$, written $\kappa(s,w)=1$, when
 some $u\in R_s(w)$ satisfies
 \[
-  A(t,w)\cap A(s,u)\neq\emptyset
+  \bigl(A(t,w)\cap A(s,u)\bigr)\setminus P\neq\emptyset
   \quad\text{or}\quad
   \frac{d(\phi(w),\phi(u))}{\max(|\phi(w)|,|\phi(u)|)}\le 0.25,
 \]
 where $\phi$ lowercases, romanizes from the table, and strips diacritics,
-and $d$ is Levenshtein distance. Exact matches need three letters and
-near matches need four.
+$P$ is the set of Proto-Indo-European forms, and $d$ is Levenshtein
+distance. Exact matches need three letters and near matches need four.
+Removing $P$ keeps matches a learner can see. The sensitivity variant
+$\kappa_{\mathrm{PIE}}$ and $C_{\mathrm{PIE}}$ drop the $\setminus P$.
 \end{definition}
 
 \begin{definition}[Cognate coverage]
@@ -216,20 +219,22 @@ each size, and two greedy chains: one free, and one that starts from
 English.
 
 For the regression we take FSI class hours for the 23 targets that FSI
-lists: 600 for Category I, 750 for French, 900 for German and Indonesian,
+lists: 600 for Category I, 750 for French and Spanish, 900 for German and Indonesian,
 1100 for Category III, and 2200 for Arabic, Chinese, Japanese and Korean
-\emp{data/fsi\_hours.json, 2026-11-25, FSI language categories}. We fit
+\emp{data/fsi\_hours.json, 2026-11-25, Internet Archive snapshot 20241229203515 of state.gov/foreign-language-training}.
+That page gives weeks per language; hours are weeks times 25 [empirical: data/fsi\_hours.json, 2026-11-25, Internet Archive snapshot 20241229203515]. It lists
+Spanish at 30 weeks, so Spanish takes 750 hours. We fit
 ordinary least squares of hours and of log hours on $C(\{\mathrm{en}\},t)$.
 
 \section{Results}
 \label{sec:results}
 
 \Cref{fig:pairs} shows $C(\{s\},t)$ for every pair. The largest pairs sit
-inside Romance: Portuguese covers 0.756 of Spanish tokens, Italian 0.647
-of Spanish, Spanish 0.621 of Portuguese, and Latin 0.569 of Italian
-\emp{\covrun}. Inside Germanic, Dutch covers 0.48 of German and English
-covers 0.389 of Swedish. English covers under 0.05 of Japanese, Chinese,
-Finnish, Czech and Greek tokens \emp{\covrun}.
+inside Romance: Portuguese covers 0.739 of Spanish tokens, Italian 0.645
+of Spanish, Spanish 0.619 of Portuguese, and Latin 0.568 of Italian
+\emp{\covrun}. Inside Germanic, Dutch covers 0.476 of German and English
+covers 0.364 of Swedish. English covers under 0.05 of Czech, Greek,
+Finnish, Japanese, Russian and Chinese tokens \emp{\covrun}.
 
 \begin{figure}[t]
 \centering
@@ -240,11 +245,11 @@ held languages; the diagonal is undefined.}
 \end{figure}
 
 \Cref{tab:sizes} and \Cref{fig:sizes} give coverage by set size, averaged
-over the 23 non-English targets. The best set gains 0.062 from its second
-language and 0.038 more from the next two. In the chain that starts from
-English, the second language adds more than English did, 0.167 against
-0.151, because it is a close relative of the target; the third and fourth
-add 0.035 and 0.016 \emp{\covrun}.
+over the 23 non-English targets. The best set gains 0.057 from its second
+language and 0.034 more from the next two. In the chain that starts from
+English, the second language adds more than English did, 0.173 against
+0.131, because it is a close relative of the target; the third and fourth
+add 0.033 and 0.014 \emp{\covrun}.
 
 \begin{table}[t]
 \centering
@@ -252,10 +257,14 @@ add 0.035 and 0.016 \emp{\covrun}.
 \toprule
 $|S|$ & 1 & 2 & 3 & 4 \\
 \midrule
-mean over all sets & 0.055 & 0.098 & 0.133 & 0.162 \\
-best set & 0.268 & 0.330 & 0.356 & 0.368 \\
-greedy gain & 0.268 & 0.061 & 0.026 & 0.012 \\
-gain, chain from English & 0.151 & 0.167 & 0.035 & 0.016 \\
+mean over all sets & 0.043 & 0.079 & 0.109 & 0.135 \\
+best set & 0.260 & 0.317 & 0.340 & 0.351 \\
+greedy gain & 0.260 & 0.057 & 0.024 & 0.011 \\
+gain, chain from English & 0.131 & 0.173 & 0.033 & 0.014 \\
+\midrule
+best single, $C_{\mathrm{PIE}}$ & 0.268 & & & \\
+English alone, $C$ & 0.131 & & & \\
+English alone, $C_{\mathrm{PIE}}$ & 0.151 & & & \\
 \bottomrule
 \end{tabular}
 \caption{Coverage by held-set size, mean over 23 targets
@@ -272,10 +281,51 @@ flat, as \Cref{thm:mono} requires.}
 \end{figure}
 
 \Cref{fig:fsi} plots FSI hours against English coverage. The linear fit
-has slope $-2605$ hours per unit coverage, standard error 901, $R^2=0.285$,
-$p=0.0087$, $n=23$. On log hours $R^2=0.418$. Spearman's $\rho=-0.676$.
-Without the four 2200-hour languages, $R^2=0.650$ on $n=19$ with slope
-$-1596$ \emp{\regrun}.
+has slope $-2322$ hours per unit coverage, standard error 954, $R^2=0.220$,
+$n=23$; on log hours $R^2=0.358$. Without the four 2200-hour languages,
+$R^2=0.716$ on $n=19$ with slope $-1611$. With $C_{\mathrm{PIE}}$ in place
+of $C$, $R^2=0.281$ \emp{\regrun}.
+
+\subsection{Hypothesis Tests}
+\label{sec:tests}
+
+All results follow \Cref{sec:prereg} \emp{data/tests.json, 2026-11-25, python3 scripts/tests.py}.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Hypothesis & Statistic and effect & $p$, corrected & Decision \\
+\midrule
+H1, $\rho<0$ & $\rho=-0.669$, CI $[-0.865,-0.269]$ & $0.0003$, Holm & reject H0 \\
+H1, log slope $<0$ & $-2.32$; OLS slope $-2322$ h, CI $[-3682,-965]$ & $0.0006$, Holm & reject H0 \\
+H2, $C(\{s\},t)>0.05$ & 48 of 624 pairs & BH $q=0.05$ & reject for 48 \\
+H3, gain $>0.02$ & 12 of 23 targets & Holm & reject for 12 \\
+\bottomrule
+\end{tabular}
+\caption{Preregistered tests. CI is the 95\% bootstrap interval.}
+\label{tab:tests}
+\end{table}
+
+\textbf{H1.} The one-sided permutation test rejects H0 for both
+statistics after Holm correction. At $n=23$ the smallest $|\rho|$ the test
+detects with 80\% power is 0.55, and the observed $|\rho|$ exceeds it [empirical: data/tests.json, 2026-11-25, python3 scripts/tests.py].
+
+\textbf{H2.} Benjamini and Hochberg reject H0 for 48 of 624 ordered pairs.
+The smallest rejected coverage is 0.076 and the largest unrejected is
+0.220, a pair with wide bootstrap error. English as held language passes
+for eight targets: German, Spanish, French, Indonesian, Italian, Dutch,
+Portuguese and Swedish. The median minimum detectable excess over 0.05 is
+0.0087.
+
+\textbf{H3.} The second language chosen on the odd half adds more than
+0.02 on the even half for 12 targets after Holm: Czech, German, Spanish,
+Persian, French, Hindi, Italian, Dutch, Polish, Portuguese, Russian and
+Swedish. Spanish gains most from Portuguese, 0.730, CI $[0.599,0.811]$.
+H0 stands for Arabic, Greek, Finnish, Hebrew, Indonesian, Japanese,
+Korean, Tamil, Turkish, Vietnamese and Chinese; Tamil comes closest, gain
+0.031 from Sanskrit, uncorrected $p=0.063$.
 
 \begin{figure}[t]
 \centering
@@ -313,14 +363,15 @@ $V_t$ holds 1325 to 3464 analyzable words per target, carrying 0.42 to
 translation rows and drop out.
 
 The etymology graph is incomplete, so root matches undercount. Shared
-roots also include Proto-Indo-European ones a learner cannot see: for
-Russian, coverage from English falls from 0.152 to 0.042 once matches
-through Proto-Indo-European alone are dropped \emp{\covrun}. Chinese
+roots that meet only at Proto-Indo-European are excluded from $C$; for
+Russian that moves English coverage from 0.152 to 0.042 \emp{\covrun}.
+Matches through other reconstructed stages, such as Proto-Germanic, stay
+in. Chinese
 characters shared by Chinese, Japanese and Korean are not modeled, so
 Sino-Xenic coverage reads near zero. The spelling test credits chance
 resemblance between unrelated words. Held-language borrowings are not
-credited at all. The FSI hours were transcribed from the State
-Department page, which refused automated fetches on 2026-11-25.
+credited at all. The FSI hours come from a December 2024
+archive snapshot; the live page refused automated fetches on 2026-11-25.
 
 \printbibliography
 
