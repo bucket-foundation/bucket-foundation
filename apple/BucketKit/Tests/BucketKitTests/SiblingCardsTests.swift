@@ -171,6 +171,31 @@ import Testing
         #expect(reinstalled.state(second.id).cards[id] == s.state(second.id).cards[id])
     }
 
+    @Test func loadAdoptsSiblingCardsWhenStoredSetsDisagree() async throws {
+        let server = LangServer()
+        let clock = LockedBox<Double>(2_000)
+        let s = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { clock.value })
+        await s.load()
+        let a = try await s.create(root: "en", targets: ["nl"])
+        let b = try await s.create(root: "en", targets: ["nl", "de"])
+        let c = try await s.create(root: "en", targets: ["it"])
+        s.grade(b.id, lang: "nl", itemId: "wife", rating: 3)
+        clock.mutate { $0 = 90_000 }
+        s.grade(b.id, lang: "nl", itemId: "man", rating: 3)
+        await s.flush()
+        let wife = cardId("nl", "wife")
+        let man = cardId("nl", "man")
+        let stale = gradeCard(EngineState(), "nl", "man", 1, now: 1_000, tz: "UTC")
+        server.branches.mutate { $0[progressBranch(a)] = stale.js }
+        let reinstalled = LangStore(api: server.api, disk: MemoryLangDisk(), cache: MemoryLangDisk(), seed: { _ in nil }, token: { "t" }, now: { clock.value })
+        await reinstalled.load()
+        #expect(reinstalled.state(a.id).cards[wife] == s.state(b.id).cards[wife])
+        #expect(reinstalled.state(a.id).cards[man] == s.state(b.id).cards[man])
+        #expect(reinstalled.state(a.id).prof[man] == s.state(b.id).prof[man])
+        #expect(reinstalled.state(b.id).cards[man] == s.state(b.id).cards[man])
+        #expect(!reinstalled.state(c.id).cards.has(wife))
+    }
+
     @Test func guestNewSetCarriesWordsToTheAccountAfterSignIn() async throws {
         let server = LangServer()
         let signedIn = LockedBox(false)
