@@ -146,7 +146,7 @@ import Testing
         let graded = gradeCard(EngineState(), "fr", item.id, 1, now: now, tz: "UTC")
         let shared = adoptSiblingCards(EngineState(), langs: b.targets, from: [graded])
         let utc = TimeZone(identifier: "UTC")!
-        let budget = Int(graded.newPerDay)
+        let budget = Lang.newPerLangPerDay
         let today = langDayTotals([(a, graded), (b, shared)], corpus, now: now, tz: utc)
         #expect(today.new == (budget - 1) + budget + budget)
         let later = langDayTotals([(a, graded), (b, shared)], corpus, now: now + 86_400_000, tz: utc)
