@@ -83,8 +83,10 @@ export async function verifyHuman(token: string | null | undefined, ip: string |
     if (ip) form.set("remoteip", ip);
     const r = await send("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form, signal: AbortSignal.timeout(HUMAN_TIMEOUT_MS) });
     if (!r.ok) return false;
-    const j = (await r.json()) as { success?: boolean; hostname?: string };
-    return j.success === true && (!j.hostname || ALLOWED_HOSTS.has(j.hostname));
+    const j = (await r.json()) as { success?: boolean; hostname?: string; "error-codes"?: string[] };
+    const ok = j.success === true && (!j.hostname || ALLOWED_HOSTS.has(j.hostname));
+    if (!ok) console.error("[beta] turnstile rejected", (j["error-codes"] ?? []).join(",") || j.hostname || "unknown");
+    return ok;
   } catch {
     return false;
   }
