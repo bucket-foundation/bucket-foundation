@@ -117,6 +117,21 @@ import Testing
         #expect(SessionMix.disperse([], into: body) == body)
     }
 
+    @Test func writingCardsAlternateLanguagesAcrossTheLesson() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["ru", "es", "fr"], now: 0)
+        let state = EngineState()
+        let writing = ScriptCourse.queue(sys, state, now: now)
+        #expect(Set(writing.map(\.lang)).count == 3)
+        let wanted = corpus.items.filter { item in isVocab(item) && sys.targets.allSatisfy { item.form($0) != nil } }.prefix(3).map(\.id)
+        let lead = wanted.flatMap { id in sys.targets.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] } }
+        let q = SessionMix.session(sys, corpus, state, now: now, freq: try freq(sys.targets), lead: lead, writing: writing, tz: utc)
+        let letters = q.filter { $0.stage == .letter }
+        #expect(letters.count == writing.count)
+        #expect(SessionMix.longestRun(letters) == 1)
+        for l in sys.targets { #expect(letters.filter { $0.lang == l } == writing.filter { $0.lang == l }) }
+    }
+
     @Test func soundContrastCardsDoNotOpenTheLesson() throws {
         let corpus = try corpus()
         let sys = try createSystem("en", ["es"], now: 0)
