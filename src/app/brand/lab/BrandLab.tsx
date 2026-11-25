@@ -4,9 +4,9 @@ import { useEffect, useMemo, useState, type CSSProperties } from "react";
 
 type Colors = Record<string, string>;
 type Fonts = Record<string, string>;
-type Kit = { source: string; logo: string; fonts: Fonts; shape: Record<string, string>; light: Colors; dark: Colors };
-type Palette = { id: string; name: string; source: string; colors: Colors; fonts: Fonts };
-type Logo = { src: string; label: string; group: string };
+export type Kit = { source: string; logo: string; fonts: Fonts; shape: Record<string, string>; light: Colors; dark: Colors };
+export type Palette = { id: string; name: string; source: string; colors: Colors; fonts: Fonts };
+export type Logo = { src: string; label: string; group: string };
 type DialItem = { kind: string; src: string; label: string; cat: string; meta: string };
 
 const SWATCH = ["bg", "surface", "text", "muted", "accent", "on-accent", "link", "danger", "success"];
@@ -21,7 +21,7 @@ function vars(colors: Colors, fonts: Fonts, shape: Record<string, string>): CSSP
   return out as CSSProperties;
 }
 
-function Preview({ draft, logo }: { draft: Kit; logo: string }) {
+export function Preview({ draft, logo }: { draft: Kit; logo: string }) {
   return (
     <div style={{ ...vars(draft.light, draft.fonts, draft.shape), background: "var(--bk-bg)", color: "var(--bk-text)", fontFamily: "var(--bk-font-body)" }} className="rounded-lg overflow-hidden border border-black/20">
       <div style={{ borderBottom: "1px solid var(--bk-line)" }} className="flex items-center justify-between px-5 py-3">
@@ -97,6 +97,7 @@ export default function BrandLab({ kit, palettes, logos }: { kit: Kit; palettes:
       <link rel="stylesheet" href={draft.fonts.href} />
       <div className="flex flex-wrap items-center gap-4 mb-6 sticky top-0 bg-white z-10 py-3 border-b">
         <h1 className="text-2xl font-bold">Brand Lab</h1>
+        <a href="/brand/lab/gallery" className="text-sm underline">Gallery</a>
         <span className="text-sm text-gray-600">{draft.source}</span>
         <button onClick={() => { setDraft(kit); setLogo(kit.logo); }} className="ml-auto px-4 py-2 border rounded">Reset</button>
         <button onClick={save} className="px-4 py-2 rounded bg-black text-white">Save to site</button>
