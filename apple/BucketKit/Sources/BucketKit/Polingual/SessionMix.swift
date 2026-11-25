@@ -195,7 +195,7 @@ public enum SessionMix {
         let ordered = alternate(spacedChecks(lead + replay + main + extra))
         let held = Set(lead.filter { $0.stage != .check } + replay)
         let opening = ordered.lastIndex { held.contains($0) }.map { $0 + 1 } ?? 0
-        return wordFirst(Array(ordered.prefix(opening)) + disperse(writing, into: Array(ordered.dropFirst(opening))))
+        return wordFirst(Array(ordered.prefix(opening)) + disperse(alternate(writing), into: Array(ordered.dropFirst(opening))))
     }
 
     public static func wordFirst(_ queue: [QueueEntry]) -> [QueueEntry] {
