@@ -15,7 +15,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "data", "coverage.json")
 ROOTS = os.environ.get(
     "PHOTONS_ROOTS",
-    "/home/gian/agfarms/bucket-foundation/_intake/photons/roots.sqlite",
+    os.path.join(HERE, "..", "..", "..", "_intake", "photons", "roots.sqlite"),
 )
 TOP_N = int(os.environ.get("TOP_N", 5000))
 MAX_SET = 4

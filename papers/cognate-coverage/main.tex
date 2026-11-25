@@ -57,7 +57,9 @@ some language of a learner's \term{held}{held set} $S$, and prove in Lean
 that it lies in $[0,1]$ and never drops when $S$ grows
 \bm{BucketMath.Learning.Cognate.coverage\_mono}. We measure it over 23
 targets and 27 held languages from a Wiktionary etymology and translation
-index, weighted by open word frequencies, counting only matches that
+index, over the analyzable words among each target's 5000 most frequent,
+which carry 0.42 to 0.94 of their frequency mass \emp{\covrun}, weighted
+by open word frequencies, counting only matches that
 meet above Proto-Indo-European. The best single held language covers a
 mean of 0.260 of target tokens, and the best set of four covers 0.351
 \emp{\covrun}.
@@ -165,7 +167,11 @@ cognate test, including the one in \Cref{def:recognition}.
 \label{sec:prereg}
 
 Committed on 2026-11-25 before the rerun that produced every number in
-\Cref{sec:results}. The headline coverage $C$ counts a root match only
+\Cref{sec:results}. The FSI regression behind H1 had already been run once,
+in commit 6575d95155, before this section was written, so H1 is
+confirmatory only for the rerun with corrected FSI hours and
+Proto-Indo-European matches excluded. H2 and H3 were specified before any
+of their statistics were computed. The headline coverage $C$ counts a root match only
 when the shared ancestor lies above Proto-Indo-European; $C_{\mathrm{PIE}}$
 also counts matches that meet only at Proto-Indo-European and serves as a
 sensitivity row. All resampling uses seed 20261125. Alpha is 0.05 for
@@ -213,7 +219,7 @@ Targets are the 23 study languages that \texttt{wordfreq} covers, plus
 English. Held languages are those 23 plus Latin, Sanskrit, Thai and
 English, 27 in all. For each target we compute $\kappa(s,\cdot)$ as a
 Boolean vector over $V_t$ for each held $s$, then take unions for every
-held set of size one to four that excludes $t$: 17550 sets for a size of
+held set of size one to four that excludes $t$: $\binom{26}{4}=14950$ sets for a size of
 four. We report the best set of each size, the mean over all sets of
 each size, and two greedy chains: one free, and one that starts from
 English.
@@ -298,10 +304,10 @@ All results follow \Cref{sec:prereg} \emp{data/tests.json, 2026-11-25, python3 s
 \toprule
 Hypothesis & Statistic and effect & $p$, corrected & Decision \\
 \midrule
-H1, $\rho<0$ & $\rho=-0.669$, CI $[-0.865,-0.269]$ & $0.0003$, Holm & reject H0 \\
-H1, log slope $<0$ & $-2.32$; OLS slope $-2322$ h, CI $[-3682,-965]$ & $0.0006$, Holm & reject H0 \\
-H2, $C(\{s\},t)>0.05$ & 48 of 624 pairs & BH $q=0.05$ & reject for 48 \\
-H3, gain $>0.02$ & 12 of 23 targets & Holm & reject for 12 \\
+H1, $\rho<0$ & $\rho=-0.669$, CI $[-0.865,-0.269]$ & $0.0006$, Holm-adjusted & reject H0 \\
+H1, log slope $<0$ & $-2.32$; OLS slope $-2322$ h, CI $[-3682,-965]$ & $0.0006$, Holm-adjusted & reject H0 \\
+H2, $C(\{s\},t)>0.05$ & 48 of 624 pairs, 24 targets & BH-adjusted $\le 0.035$ & reject for 48 \\
+H3, gain $>0.02$ & 12 of 23 targets & Holm-adjusted $\le 0.012$ & reject for 12 \\
 \bottomrule
 \end{tabular}
 \caption{Preregistered tests. CI is the 95\% bootstrap interval.}
@@ -312,7 +318,7 @@ H3, gain $>0.02$ & 12 of 23 targets & Holm & reject for 12 \\
 statistics after Holm correction. At $n=23$ the smallest $|\rho|$ the test
 detects with 80\% power is 0.55, and the observed $|\rho|$ exceeds it [empirical: data/tests.json, 2026-11-25, python3 scripts/tests.py].
 
-\textbf{H2.} Benjamini and Hochberg reject H0 for 48 of 624 ordered pairs.
+\textbf{H2.} Benjamini and Hochberg reject H0 for 48 of 624 ordered pairs over 24 targets, English included.
 The smallest rejected coverage is 0.076 and the largest unrejected is
 0.220, a pair with wide bootstrap error. English as held language passes
 for eight targets: German, Spanish, French, Indonesian, Italian, Dutch,
@@ -347,8 +353,10 @@ during development found two false-positive sources, which the method
 now blocks: held-language loanwords that point back to the target through
 English, such as Japanese \emph{za} for German \emph{die}, and rare
 translation renderings. Blocking them lowered German coverage from
-Japanese from 0.158 to under 0.03 on a 300-word sample
-\emp{data/coverage.json, 2026-11-25, TOP\_N=300 TGT=de python3 scripts/coverage.py}.
+Japanese from 0.158 to under 0.03 on a development sample of the 300 most
+frequent German words, run with \texttt{TOP\_N=300 TGT=de}; that sample
+was not committed, and the current script with those settings reproduces
+only the post-fix value.
 
 \section{Limitations}
 \label{sec:limits}
@@ -391,7 +399,9 @@ archive snapshot; the live page refused automated fetches on 2026-11-25.
 Source: \texttt{lean/BucketMath/Learning/Coverage.lean}, imported by
 \texttt{BucketMath} and so by \texttt{BucketMathAll}. It defines
 \texttt{Recognized}, \texttt{CoveredMass}, \texttt{TotalMass} and
-\texttt{CognateCoverage} over $\mathbb{Q}$ and proves
+\texttt{CognateCoverage} over $\mathbb{Q}$, with word weights as natural
+numbers; the measured frequencies are rationals, and scaling them by a
+common denominator turns them into such weights without changing $C$. It proves
 \texttt{recognized\_mono}, \texttt{coveredMass\_mono},
 \texttt{coveredMass\_le\_total}, \texttt{coverage\_mono},
 \texttt{coverage\_le\_one}, \texttt{coverage\_nonneg} and
