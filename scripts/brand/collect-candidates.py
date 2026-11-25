@@ -102,6 +102,77 @@ def original():
     return {"id": "bucket", "name": "Bucket original", "source": "production through 2026-11", "colors": kit["light"], "fonts": kit["fonts"]}
 
 
+FONT_SETS = [
+    (("swiss", "blueprint", "topographic", "neo-brutal", "letterpress", "risograph"), "family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600", '"IBM Plex Sans"', '"IBM Plex Sans"', '"IBM Plex Mono"'),
+    (("bauhaus", "swedish", "nordic", "claymorphism", "enamel", "glassmorphism"), "family=Jost:wght@400;600;800&family=Space+Mono:wght@400;700", "Jost", "Jost", '"Space Mono"'),
+    (("greek", "marble", "carved", "stonepunk", "tyrian", "byzantine", "illuminated", "celtic", "solar-temple", "vintage"), "family=Cinzel:wght@600;800&family=Cormorant+Garamond:wght@500;700&family=JetBrains+Mono", "Cinzel", '"Cormorant Garamond"', '"JetBrains Mono"'),
+    (("art-deco", "art-nouveau", "kintsugi", "jade", "persian", "indonesian", "tibetan", "stained"), "family=Poiret+One&family=Lora:wght@400;600&family=DM+Mono", '"Poiret One"', "Lora", '"DM Mono"'),
+    (("8bit", "arcade", "handheld", "voxel", "rpg", "boss", "viking-arcade"), "family=Press+Start+2P&family=Space+Grotesk:wght@400;600&family=Space+Mono", '"Press Start 2P"', '"Space Grotesk"', '"Space Mono"'),
+    (("cyber", "synthwave", "vaporwave", "y2k", "neon", "mecha", "nebula", "cosmos", "space", "cosmic", "bioluminescent"), "family=Orbitron:wght@600;800&family=Exo+2:wght@400;600&family=Share+Tech+Mono", "Orbitron", '"Exo 2"', '"Share Tech Mono"'),
+    (("ukiyo", "sumi", "wabi", "samurai"), "family=Shippori+Mincho:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;700&family=DM+Mono", '"Shippori Mincho"', '"Zen Kaku Gothic New"', '"DM Mono"'),
+    (("viking", "norse", "medieval", "gothic", "industrial", "halloween", "potion"), "family=Pirata+One&family=Alegreya+Sans:wght@400;700&family=JetBrains+Mono", '"Pirata One"', '"Alegreya Sans"', '"JetBrains Mono"'),
+    (("solarpunk", "cyber-forest", "spring", "summer", "autumn", "winter", "holiday", "dune", "zulu", "maori", "african", "kaleidoscope", "embroidery", "pride", "cel-shaded"), "family=Fredoka:wght@500;700&family=Nunito:wght@400;700&family=Space+Mono", "Fredoka", "Nunito", '"Space Mono"'),
+]
+
+PREFERENCE = {"bauhaus": 3, "swiss": 2.5, "swiss-mono": 2.5, "neo-brutal": 2, "solarpunk": 2.5, "stonepunk": 2, "cosmic-metallurgy": 2, "greek-red-figure": 2, "greek-black-figure": 2, "carved-marble": 1.5, "tyrian-classic": 1.5, "blueprint": 1.5, "claymorphism": 1, "enamel-pin": 1, "letterpress": 1, "risograph": 1.5, "topographic": 1.5, "kintsugi-omega": 1, "cyber-renaissance": 1.5, "neon-renaissance": 1}
+
+
+def sat(h):
+    r, g, b = [x / 255 for x in rgb(h)]
+    mx, mn = max(r, g, b), min(r, g, b)
+    return 0 if mx == 0 else (mx - mn) / mx
+
+
+def svg_colors(text):
+    found = [c.upper() for c in re.findall(r"#[0-9a-fA-F]{6}\b", text)]
+    return [c for c, _ in __import__("collections").Counter(found).most_common()]
+
+
+def omega_auto():
+    dial = ROOT / "public/brand/omega-dial/data.json"
+    if not dial.exists():
+        return []
+    seen, out = set(), []
+    for item in json.loads(dial.read_text()):
+        style = item["src"].split("/")[1]
+        if not item["src"].endswith(".svg") or style == "emoji" or style in seen:
+            continue
+        cols = svg_colors((dial.parent / item["src"]).read_text(errors="ignore"))
+        if len(cols) < 2:
+            continue
+        seen.add(style)
+        light = sorted(cols, key=lum, reverse=True)
+        bg_seed = light[0]
+        dark_mode = lum(bg_seed) < 0.35
+        bg = mix(bg_seed, "#FFFFFF", 0.55) if not dark_mode else mix(light[-1], "#000000", 0.6)
+        text = mix(light[-1], "#000000", 0.55) if not dark_mode else mix(light[0], "#FFFFFF", 0.7)
+        if contrast(text, bg) < 7:
+            text = "#1A1A1A" if lum(bg) > 0.4 else "#F5F2EA"
+        chroma = sorted(cols, key=sat, reverse=True)
+        acc = chroma[0]
+        hl = chroma[1] if len(chroma) > 1 else acc
+        onacc = "#FFFFFF" if contrast("#FFFFFF", acc) >= contrast("#111111", acc) else "#111111"
+        surf = mix(bg, acc, 0.07)
+        muted = mix(text, bg, 0.35)
+        fonts = next((f for f in FONT_SETS if any(k in style for k in f[0])), FONT_SETS[0])
+        colors = roles(bg, surf, text, muted, acc, onacc, hl)
+        score = (
+            min(contrast(colors["text"], bg), 12) / 12 * 3
+            + min(contrast(acc, bg), 4.5) / 4.5 * 2
+            + min(contrast(onacc, acc), 7) / 7 * 1.5
+            + sat(acc) * 1
+            + PREFERENCE.get(style, 0)
+            - (1.5 if dark_mode else 0)
+        )
+        out.append({
+            "id": f"omega-{style}", "name": style.replace("-", " ").title(), "source": f"auto from omega dial {item['src']}",
+            "logo": f"/brand/omega-dial/{item['src']}", "score": round(score, 2),
+            "colors": colors,
+            "fonts": {"href": f"https://fonts.googleapis.com/css2?{fonts[1]}&display=swap", "display": f"{fonts[2]}, serif", "body": f"{fonts[3]}, system-ui, sans-serif", "accent": f"{fonts[2]}, serif", "mono": f"{fonts[4]}, ui-monospace, monospace"},
+        })
+    return sorted(out, key=lambda p: -p["score"])
+
+
 def logos():
     out = [{"src": "/brand/logo.svg", "label": "current", "group": "current"}]
     for p in sorted((ROOT / "public/brand/directions/logos").glob("*.svg")):
@@ -110,6 +181,6 @@ def logos():
 
 
 if __name__ == "__main__":
-    data = {"palettes": [original(), *directions(), d8(), stonepunk()], "logos": logos()}
+    data = {"palettes": [original(), *directions(), d8(), stonepunk()], "auto": omega_auto(), "logos": logos()}
     (ROOT / "brand/bucket/candidates.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
-    print(len(data["palettes"]), len(data["logos"]))
+    print(len(data["palettes"]), len(data["auto"]), len(data["logos"]))

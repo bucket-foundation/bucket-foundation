@@ -14,13 +14,14 @@ export default function BrandPreview() {
     const logo = params.get("logo");
     if (!id) return;
     import("../../brand/bucket/candidates.json").then(({ default: data }) => {
-      const p = (data.palettes as Palette[]).find((x) => x.id === id);
+      const p = ([...data.palettes, ...data.auto] as Palette[]).find((x) => x.id === id);
       if (!p) return;
       const lines = [
         ...Object.entries(p.colors).map(([k, v]) => `--bk-${k}: ${v};`),
         ...Object.entries(p.fonts).filter(([k]) => k !== "href").map(([k, v]) => `--bk-font-${k}: ${v};`),
       ];
-      setCss({ style: `:root, :root[data-scheme] { ${lines.join(" ")} }`, href: p.fonts.href });
+      const flat = id === "bucket" ? "" : " html, body { background-image: none !important; background-color: var(--bk-bg) !important; } [data-hero], .stone-bone { background-image: none !important; } .chisel, .chisel-bone, .chisel-gold, .engraved, .inlay-gold { text-shadow: none !important; }";
+      setCss({ style: `:root, :root[data-scheme] { ${lines.join(" ")} }${flat}`, href: p.fonts.href });
       if (logo) document.querySelectorAll<HTMLImageElement>('img[src="/brand/logo.svg"]').forEach((img) => (img.src = logo));
       document.querySelectorAll("a[href^='/']").forEach((a) => {
         const u = new URL((a as HTMLAnchorElement).href);

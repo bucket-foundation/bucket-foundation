@@ -8,5 +8,5 @@ export const metadata: Metadata = { title: "Brand Gallery", robots: { index: fal
 
 export default function Page() {
   if (process.env.NODE_ENV === "production") notFound();
-  return <Gallery kit={kit} palettes={candidates.palettes} logos={candidates.logos} />;
+  return <Gallery kit={kit} palettes={candidates.palettes} auto={candidates.auto} logos={candidates.logos} />;
 }
