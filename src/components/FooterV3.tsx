@@ -1,5 +1,6 @@
 import Link from "next/link";
-import InverseOmega from "./InverseOmega";
+import { POLINGUAL_URL } from "@/lib/brand";
+import Logo from "./Logo";
 import FooterVersion from "./FooterVersion";
 import { CANON_BRANCHES } from "@/lib/contribute";
 
@@ -8,7 +9,7 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
     <footer className="relative z-[2] mt-0 stone-basalt border-t-4 border-[color:var(--gold)]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-10 text-[color:var(--bone-3)]">
         <div className="flex flex-col gap-4">
-          <InverseOmega size={48} variant="inlay" />
+          <Logo size={48} />
           <div className="font-display uppercase text-lg text-[color:var(--bone)] tracking-[0.06em]">
             bucket.foundation
           </div>
@@ -40,7 +41,7 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Explore</div>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/download" className="hover:text-[color:var(--bone)] transition">Download</Link></li>
+            <li><a href={POLINGUAL_URL} className="hover:text-[color:var(--bone)] transition">Polingual</a></li>
             <li><Link href="/research-os" className="hover:text-[color:var(--bone)] transition">Research OS</Link></li>
             <li><Link href="/canon" className="hover:text-[color:var(--bone)] transition">Canon</Link></li>
             <li><Link href="/whats-new" className="hover:text-[color:var(--bone)] transition">What&rsquo;s new</Link></li>
@@ -70,7 +71,7 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
             <li><Link href="/research/education/knowledge-access-gradient" className="hover:text-[color:var(--bone)] transition">Knowledge-Access Gradient</Link></li>
             <li><Link href="/research/tools" className="hover:text-[color:var(--bone)] transition">Research tools</Link></li>
             <li><Link href="/research/figures" className="hover:text-[color:var(--bone)] transition">Figures</Link></li>
-            <li><Link href={signInClosed ? "/download" : "/sign-in"} className="hover:text-[color:var(--bone)] transition">{signInClosed ? "Download" : launchList ? "Launch list" : "Sign in"}</Link></li>
+            <li><Link href={signInClosed ? POLINGUAL_URL : "/sign-in"} className="hover:text-[color:var(--bone)] transition">{signInClosed ? "Polingual" : launchList ? "Launch list" : "Sign in"}</Link></li>
           </ul>
         </div>
 

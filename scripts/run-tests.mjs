@@ -120,6 +120,7 @@ const SUITES = {
       ["python3", "-m", "unittest", "tools/learning-corpus/test_build.py", "tools/learning-corpus/test_check_refs.py"],
       ["python3", "-m", "unittest", "services/photon-api/test_server.py", "services/photon-api/test_pg_migration.py"],
       ["node", "--test", "polingual/scripts/render_pins.test.mjs"],
+      ["node", "--test", "scripts/brand/build-tokens.test.mjs"],
     ],
   },
   db: {

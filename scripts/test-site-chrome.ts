@@ -25,8 +25,8 @@ test("footer keeps the links the header dropped", () => {
   }
 });
 
-test("footer links Download and drops the dead links", () => {
-  assert.match(FOOTER, /href="\/download"/);
+test("footer links Polingual and drops the dead links", () => {
+  assert.match(FOOTER, /href=\{POLINGUAL_URL\}/);
   assert.doesNotMatch(FOOTER, /canon\/timeline/);
   assert.doesNotMatch(FOOTER, /\/kruse/);
   assert.doesNotMatch(FOOTER, /v0\.\d+\.\d+/);
@@ -41,15 +41,15 @@ test("the layout uses the V3 chrome and one branch count", () => {
   assert.equal(CANON_BRANCHES.length, 7);
 });
 
-test("the home hero holds one action and the slim footer links Download", () => {
+test("the home hero holds one action and the slim footer links Polingual", () => {
   assert.equal((PRESENTATION.match(/href=/g) ?? []).length, 1);
-  assert.match(read("src/components/SiteFooter.tsx"), /href="\/download"/);
+  assert.match(read("src/components/SiteFooter.tsx"), /href=\{POLINGUAL_URL\}/);
 });
 
-test("originals stay untouched", () => {
-  assert.ok(fs.existsSync(path.join(root, "src/components/Header.tsx")));
-  assert.ok(fs.existsSync(path.join(root, "src/components/Footer.tsx")));
-  assert.match(read("src/components/Footer.tsx"), /v0\.2\.0/);
+test("one logo source and no legacy chrome", () => {
+  for (const f of ["Header.tsx", "HeaderV2.tsx", "Footer.tsx", "FooterV2.tsx", "InverseOmega.tsx", "Shield.tsx"]) assert.ok(!fs.existsSync(path.join(root, "src/components", f)), f);
+  for (const f of ["logo.svg", "logo-512.png", "logo-180.png"]) assert.ok(fs.existsSync(path.join(root, "public/brand", f)), f);
+  assert.ok(fs.existsSync(path.join(root, "public/favicon.ico")));
 });
 
 test("siteVersion prefers the release tag and falls back to package.json", () => {
