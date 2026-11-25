@@ -16,6 +16,7 @@ import BucketMath.Similarity.Vector
 import BucketMath.Similarity.Subword
 import BucketMath.Similarity.Combined
 import BucketMath.Similarity.Cognate
+import BucketMath.Etymology.Forest
 import BucketMath.Open
 import BucketMath.Helix
 import BucketMath.Marketing
