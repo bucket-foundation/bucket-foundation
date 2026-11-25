@@ -36,10 +36,15 @@ theorem correct_raises_belief {L s g : Rat} (h0 : 0 ≤ L) (hL : L ≤ 1) (hg : 
   have h1 : 0 ≤ L * (1 - L) * ((1 - s) - g) := Rat.mul_nonneg (Rat.mul_nonneg h0 (by grind)) (by grind)
   grind
 
-def claim_corbett_1994_knowledge_tracing (g s : Rat) : Prop := g + s < 1
+def claim_corbett_1994_knowledge_tracing (s g : Rat) : Prop :=
+  evidenceDen 0 s g < evidenceDen 1 s g
 
-theorem identifiable_correct_raises {L s g : Rat} (h0 : 0 ≤ L) (hL : L ≤ 1)
-    (h : claim_corbett_1994_knowledge_tracing g s) : L * evidenceDen L s g ≤ evidenceNum L s :=
-  correct_raises_belief h0 hL (by unfold claim_corbett_1994_knowledge_tracing at h; grind)
+theorem corbett_identifiable {s g : Rat} (h : claim_corbett_1994_knowledge_tracing s g) : g + s < 1 := by
+  unfold claim_corbett_1994_knowledge_tracing evidenceDen at h
+  grind
+
+theorem corbett_correct_raises {L s g : Rat} (h0 : 0 ≤ L) (hL : L ≤ 1)
+    (h : claim_corbett_1994_knowledge_tracing s g) : L * evidenceDen L s g ≤ evidenceNum L s :=
+  correct_raises_belief h0 hL (by have := corbett_identifiable h; grind)
 
 end BucketMath.Literature.Bkt

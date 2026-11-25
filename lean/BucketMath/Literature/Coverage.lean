@@ -17,7 +17,7 @@ theorem covered_le_total (known : W → Bool) (text : List (W × Nat)) : covered
   | nil => simp [covered, total]
   | cons p rest ih =>
       unfold covered total at *
-      by_cases h : known p.1 = true <;> simp [h, List.filter_cons] <;> omega
+      by_cases h : known p.1 = true <;> simp [h] <;> omega
 
 theorem covered_mono {small large : W → Bool} (sub : ∀ w, small w = true → large w = true)
     (text : List (W × Nat)) : covered small text ≤ covered large text := by
@@ -27,10 +27,10 @@ theorem covered_mono {small large : W → Bool} (sub : ∀ w, small w = true →
       unfold covered at *
       by_cases hs : small p.1 = true
       · have hl := sub p.1 hs
-        simp [hs, hl, List.filter_cons]; omega
+        simp [hs, hl]; omega
       · by_cases hl : large p.1 = true
-        · simp [hs, hl, List.filter_cons]; omega
-        · simp [hs, hl, List.filter_cons]; omega
+        · simp [hs, hl]; omega
+        · simp [hs, hl]; omega
 
 theorem threshold_mono_known {pct : Nat} {small large : W → Bool} (sub : ∀ w, small w = true → large w = true)
     {text : List (W × Nat)} (h : MeetsThreshold pct small text) : MeetsThreshold pct large text :=

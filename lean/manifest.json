@@ -1809,13 +1809,22 @@
   "type": "∀ {small large : List Nat},\n  BucketMath.Learning.CoordinateGrowth small large →\n    BucketMath.Learning.SquaredExtent small ≤ BucketMath.Learning.SquaredExtent large"
  },
  {
-  "name": "BucketMath.Literature.Actr.claim_anderson_schooler_base_level",
+  "name": "BucketMath.Literature.Actr.claim_anderson_1991_reflections_environment_memory",
   "kind": "def",
   "status": "def",
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
-  "line": 34,
-  "type": "Nat → List Nat → (Nat → Prop) → Prop"
+  "line": 45,
+  "type": "(Nat → Nat) → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.environment_need_falls",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 48,
+  "type": "∀ {needOdds : Nat → Nat} {U : Nat},\n  BucketMath.Literature.Actr.claim_anderson_1991_reflections_environment_memory needOdds U →\n    ∀ {a a' : Nat}, a ≤ a' → needOdds a' ≤ needOdds a"
  },
  {
   "name": "BucketMath.Literature.Actr.strength",
@@ -1824,7 +1833,16 @@
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
   "line": 7,
-  "type": "Nat → List Nat → Nat"
+  "type": "Nat → Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.strength_antitone_decay",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 37,
+  "type": "∀ (U : Nat) {dec dec' : Nat},\n  dec ≤ dec' →\n    ∀ (ages : List Nat),\n      BucketMath.Literature.Actr.strength U dec' ages ≤ BucketMath.Literature.Actr.strength U dec ages"
  },
  {
   "name": "BucketMath.Literature.Actr.strength_decays",
@@ -1832,17 +1850,8 @@
   "status": "proved",
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
-  "line": 23,
-  "type": "∀ (U Δ : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U (BucketMath.Literature.Actr.wait Δ ages) ≤\n    BucketMath.Literature.Actr.strength U ages"
- },
- {
-  "name": "BucketMath.Literature.Actr.strength_mono_count",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Literature.Actr",
-  "source": "lean/BucketMath/Literature/Actr.lean",
-  "line": 31,
-  "type": "∀ (U : Nat) (ages more : List Nat),\n  BucketMath.Literature.Actr.strength U ages ≤ BucketMath.Literature.Actr.strength U (more ++ ages)"
+  "line": 28,
+  "type": "∀ (U dec Δ : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U dec (BucketMath.Literature.Actr.wait Δ ages) ≤\n    BucketMath.Literature.Actr.strength U dec ages"
  },
  {
   "name": "BucketMath.Literature.Actr.strength_practice",
@@ -1850,8 +1859,8 @@
   "status": "proved",
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
-  "line": 16,
-  "type": "∀ (U a : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U ages ≤ BucketMath.Literature.Actr.strength U (a :: ages)"
+  "line": 24,
+  "type": "∀ (U dec a : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U dec ages ≤ BucketMath.Literature.Actr.strength U dec (a :: ages)"
  },
  {
   "name": "BucketMath.Literature.Actr.strength_practice_adds",
@@ -1859,8 +1868,8 @@
   "status": "proved",
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
-  "line": 19,
-  "type": "∀ (U a : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U (a :: ages) =\n    BucketMath.Literature.Actr.trace U a + BucketMath.Literature.Actr.strength U ages"
+  "line": 20,
+  "type": "∀ (U dec a : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U dec (a :: ages) =\n    BucketMath.Literature.Actr.trace U dec a + BucketMath.Literature.Actr.strength U dec ages"
  },
  {
   "name": "BucketMath.Literature.Actr.trace",
@@ -1869,7 +1878,7 @@
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
   "line": 5,
-  "type": "Nat → Nat → Nat"
+  "type": "Nat → Nat → Nat → Nat"
  },
  {
   "name": "BucketMath.Literature.Actr.trace_antitone_age",
@@ -1878,7 +1887,16 @@
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
   "line": 11,
-  "type": "∀ (U : Nat) {a a' : Nat}, a ≤ a' → BucketMath.Literature.Actr.trace U a' ≤ BucketMath.Literature.Actr.trace U a"
+  "type": "∀ (U dec : Nat) {a a' : Nat},\n  a ≤ a' → BucketMath.Literature.Actr.trace U dec a' ≤ BucketMath.Literature.Actr.trace U dec a"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.trace_antitone_decay",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 14,
+  "type": "∀ (U age : Nat) {dec dec' : Nat},\n  dec ≤ dec' → BucketMath.Literature.Actr.trace U dec' age ≤ BucketMath.Literature.Actr.trace U dec age"
  },
  {
   "name": "BucketMath.Literature.Actr.trace_fresh",
@@ -1886,8 +1904,8 @@
   "status": "proved",
   "module": "BucketMath.Literature.Actr",
   "source": "lean/BucketMath/Literature/Actr.lean",
-  "line": 14,
-  "type": "∀ (U : Nat), BucketMath.Literature.Actr.trace U 0 = U"
+  "line": 18,
+  "type": "∀ (U dec : Nat), BucketMath.Literature.Actr.trace U dec 0 = U"
  },
  {
   "name": "BucketMath.Literature.Actr.wait",
@@ -1906,6 +1924,24 @@
   "source": "lean/BucketMath/Literature/Bkt.lean",
   "line": 39,
   "type": "Rat → Rat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.corbett_correct_raises",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 46,
+  "type": "∀ {L s g : Rat},\n  0 ≤ L →\n    L ≤ 1 →\n      BucketMath.Literature.Bkt.claim_corbett_1994_knowledge_tracing s g →\n        L * BucketMath.Literature.Bkt.evidenceDen L s g ≤ BucketMath.Literature.Bkt.evidenceNum L s"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.corbett_identifiable",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 42,
+  "type": "∀ {s g : Rat}, BucketMath.Literature.Bkt.claim_corbett_1994_knowledge_tracing s g → g + s < 1"
  },
  {
   "name": "BucketMath.Literature.Bkt.correct_raises_belief",
@@ -1933,15 +1969,6 @@
   "source": "lean/BucketMath/Literature/Bkt.lean",
   "line": 29,
   "type": "Rat → Rat → Rat"
- },
- {
-  "name": "BucketMath.Literature.Bkt.identifiable_correct_raises",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Literature.Bkt",
-  "source": "lean/BucketMath/Literature/Bkt.lean",
-  "line": 41,
-  "type": "∀ {L s g : Rat},\n  0 ≤ L →\n    L ≤ 1 →\n      BucketMath.Literature.Bkt.claim_corbett_1994_knowledge_tracing g s →\n        L * BucketMath.Literature.Bkt.evidenceDen L s g ≤ BucketMath.Literature.Bkt.evidenceNum L s"
  },
  {
   "name": "BucketMath.Literature.Bkt.learn",
@@ -2133,12 +2160,12 @@
   "type": "(Nat → Nat) → (Nat → Nat) → Prop"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.claim_wixted_power_forgetting",
+  "name": "BucketMath.Literature.Forgetting.claim_wixted_1991_form_of_forgetting",
   "kind": "def",
   "status": "def",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
-  "line": 95,
+  "line": 130,
   "type": "(Nat → Nat) → (Nat → Nat) → Prop"
  },
  {
@@ -2178,13 +2205,22 @@
   "type": "∀ {p q : Nat},\n  p ≤ q →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.expNum p (t + 1) * BucketMath.Literature.Forgetting.expDen q t ≤\n        BucketMath.Literature.Forgetting.expNum p t * BucketMath.Literature.Forgetting.expDen q (t + 1)"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.exp_cannot_match_pow",
+  "name": "BucketMath.Literature.Forgetting.exp_cannot_match_hyp",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
   "line": 82,
-  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ {p q : Nat},\n      0 < q →\n        ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.powNum a)\n            (BucketMath.Literature.Forgetting.powDen a) (BucketMath.Literature.Forgetting.expNum p)\n            (BucketMath.Literature.Forgetting.expDen q)"
+  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ {p q : Nat},\n      0 < q →\n        ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.hypNum a)\n            (BucketMath.Literature.Forgetting.hypDen a) (BucketMath.Literature.Forgetting.expNum p)\n            (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.exp_cannot_match_power",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 126,
+  "type": "∀ {s e : Nat},\n  0 < s →\n    0 < e →\n      ∀ {p q : Nat},\n        0 < q →\n          ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.powerNum s e)\n              (BucketMath.Literature.Forgetting.powerDen s e) (BucketMath.Literature.Forgetting.expNum p)\n              (BucketMath.Literature.Forgetting.expDen q)"
  },
  {
   "name": "BucketMath.Literature.Forgetting.exp_logLinear",
@@ -2205,6 +2241,69 @@
   "type": "∀ {n d : Nat → Nat} {t : Nat},\n  BucketMath.Literature.Forgetting.StrictLogConvexAt n d t →\n    ∀ {p q : Nat},\n      0 < q →\n        ¬BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n            (BucketMath.Literature.Forgetting.expDen q)"
  },
  {
+  "name": "BucketMath.Literature.Forgetting.hypDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 17,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hypNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 15,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 38,
+  "type": "∀ (a t : Nat),\n  BucketMath.Literature.Forgetting.hypNum a (t + 1) * BucketMath.Literature.Forgetting.hypDen a t ≤\n    BucketMath.Literature.Forgetting.hypNum a t * BucketMath.Literature.Forgetting.hypDen a (t + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_half_at_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 48,
+  "type": "∀ (a : Nat), BucketMath.Literature.Forgetting.hypDen a a = 2 * BucketMath.Literature.Forgetting.hypNum a a"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_mono_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 42,
+  "type": "∀ {a a' : Nat},\n  a ≤ a' →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.hypNum a t * BucketMath.Literature.Forgetting.hypDen a' t ≤\n        BucketMath.Literature.Forgetting.hypNum a' t * BucketMath.Literature.Forgetting.hypDen a t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 24,
+  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.Forgetting.hypNum a)\n        (BucketMath.Literature.Forgetting.hypDen a) t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyperbolic_is_power_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 99,
+  "type": "∀ (s : Nat),\n  BucketMath.Literature.Forgetting.hypNum s = BucketMath.Literature.Forgetting.powerNum s 1 ∧\n    BucketMath.Literature.Forgetting.hypDen s = BucketMath.Literature.Forgetting.powerDen s 1"
+ },
+ {
   "name": "BucketMath.Literature.Forgetting.logLinear_of_matches_exp",
   "kind": "theorem",
   "status": "proved",
@@ -2214,58 +2313,58 @@
   "type": "∀ {n d : Nat → Nat} {p q : Nat},\n  0 < q →\n    BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n        (BucketMath.Literature.Forgetting.expDen q) →\n      ∀ (t : Nat), BucketMath.Literature.Forgetting.LogLinearAt n d t"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.powDen",
+  "name": "BucketMath.Literature.Forgetting.powerDen",
   "kind": "def",
   "status": "def",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
-  "line": 17,
-  "type": "Nat → Nat → Nat"
+  "line": 97,
+  "type": "Nat → Nat → Nat → Nat"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.powNum",
+  "name": "BucketMath.Literature.Forgetting.powerNum",
   "kind": "def",
   "status": "def",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
-  "line": 15,
-  "type": "Nat → Nat → Nat"
+  "line": 95,
+  "type": "Nat → Nat → Nat → Nat"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.pow_antitone",
+  "name": "BucketMath.Literature.Forgetting.power_antitone",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
-  "line": 38,
-  "type": "∀ (a t : Nat),\n  BucketMath.Literature.Forgetting.powNum a (t + 1) * BucketMath.Literature.Forgetting.powDen a t ≤\n    BucketMath.Literature.Forgetting.powNum a t * BucketMath.Literature.Forgetting.powDen a (t + 1)"
+  "line": 112,
+  "type": "∀ (s e t : Nat),\n  BucketMath.Literature.Forgetting.powerNum s e (t + 1) * BucketMath.Literature.Forgetting.powerDen s e t ≤\n    BucketMath.Literature.Forgetting.powerNum s e t * BucketMath.Literature.Forgetting.powerDen s e (t + 1)"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.pow_half_at_stability",
+  "name": "BucketMath.Literature.Forgetting.power_steeper_with_exponent",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
-  "line": 48,
-  "type": "∀ (a : Nat), BucketMath.Literature.Forgetting.powDen a a = 2 * BucketMath.Literature.Forgetting.powNum a a"
+  "line": 117,
+  "type": "∀ {s e e' t : Nat},\n  e ≤ e' →\n    BucketMath.Literature.Forgetting.powerNum s e' t * BucketMath.Literature.Forgetting.powerDen s e t ≤\n      BucketMath.Literature.Forgetting.powerNum s e t * BucketMath.Literature.Forgetting.powerDen s e' t"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.pow_mono_stability",
+  "name": "BucketMath.Literature.Forgetting.power_strictLogConvex",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
-  "line": 42,
-  "type": "∀ {a a' : Nat},\n  a ≤ a' →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.powNum a t * BucketMath.Literature.Forgetting.powDen a' t ≤\n        BucketMath.Literature.Forgetting.powNum a' t * BucketMath.Literature.Forgetting.powDen a t"
+  "line": 102,
+  "type": "∀ {s e : Nat},\n  0 < s →\n    0 < e →\n      ∀ (t : Nat),\n        BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.Forgetting.powerNum s e)\n          (BucketMath.Literature.Forgetting.powerDen s e) t"
  },
  {
-  "name": "BucketMath.Literature.Forgetting.pow_strictLogConvex",
+  "name": "BucketMath.Literature.Forgetting.wixted_data_not_exponential",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.Forgetting",
   "source": "lean/BucketMath/Literature/Forgetting.lean",
-  "line": 24,
-  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.Forgetting.powNum a)\n        (BucketMath.Literature.Forgetting.powDen a) t"
+  "line": 133,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.Forgetting.claim_wixted_1991_form_of_forgetting n d →\n    (∀ (t : Nat), 0 < d t) →\n      ∀ {p q : Nat},\n        0 < q →\n          ¬BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n              (BucketMath.Literature.Forgetting.expDen q)"
  },
  {
   "name": "BucketMath.Literature.FsrsLink.claim_ye_2022_fsrs_ssp_mmc",
@@ -2274,7 +2373,7 @@
   "module": "BucketMath.Literature.FsrsLink",
   "source": "lean/BucketMath/Literature/FsrsLink.lean",
   "line": 63,
-  "type": "Nat → Nat → Prop"
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
  },
  {
   "name": "BucketMath.Literature.FsrsLink.fsrs_stored_denominator_pos",
@@ -2313,13 +2412,13 @@
   "type": "∀ (U S : Nat), 0 < S → BucketMath.Learning.Capacity.powerRetention U (9 * S) S = U / 2"
  },
  {
-  "name": "BucketMath.Literature.FsrsLink.powerRetention_is_power",
+  "name": "BucketMath.Literature.FsrsLink.powerRetention_is_hyperbolic",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.FsrsLink",
   "source": "lean/BucketMath/Literature/FsrsLink.lean",
   "line": 45,
-  "type": "∀ (U t S : Nat),\n  BucketMath.Learning.Capacity.powerRetention U t S =\n    U * BucketMath.Literature.Forgetting.powNum (9 * S) t / BucketMath.Literature.Forgetting.powDen (9 * S) t"
+  "type": "∀ (U t S : Nat),\n  BucketMath.Learning.Capacity.powerRetention U t S =\n    U * BucketMath.Literature.Forgetting.hypNum (9 * S) t / BucketMath.Literature.Forgetting.hypDen (9 * S) t"
  },
  {
   "name": "BucketMath.Literature.FsrsLink.powerRetention_mono_stability",
@@ -2340,13 +2439,22 @@
   "type": "∀ (U r n c W : Nat) {S S' : Nat},\n  0 < BucketMath.Learning.Capacity.lastHold (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r S n →\n    S ≤ S' →\n      BucketMath.Learning.Capacity.upkeep (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r n c W S' ≤\n        BucketMath.Learning.Capacity.upkeep (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r n c W S"
  },
  {
+  "name": "BucketMath.Literature.FsrsLink.ye_data_not_exponential",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 66,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.FsrsLink.claim_ye_2022_fsrs_ssp_mmc n d →\n    (∀ (t : Nat), 0 < d t) →\n      ∀ {p q : Nat},\n        0 < q →\n          ¬BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n              (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
   "name": "BucketMath.Literature.HalfLife.claim_settles_2016_half_life_regression",
   "kind": "def",
   "status": "def",
   "module": "BucketMath.Literature.HalfLife",
   "source": "lean/BucketMath/Literature/HalfLife.lean",
   "line": 42,
-  "type": "Nat → Nat → Prop"
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
  },
  {
   "name": "BucketMath.Literature.HalfLife.hlrDen",
@@ -2367,13 +2475,13 @@
   "type": "Nat → Nat"
  },
  {
-  "name": "BucketMath.Literature.HalfLife.hlr_disagrees_with_power",
+  "name": "BucketMath.Literature.HalfLife.hlr_disagrees_with_hyperbolic",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.HalfLife",
   "source": "lean/BucketMath/Literature/HalfLife.lean",
   "line": 23,
-  "type": "∀ {a : Nat},\n  0 < a →\n    ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.powNum a)\n        (BucketMath.Literature.Forgetting.powDen a) BucketMath.Literature.HalfLife.hlrNum\n        BucketMath.Literature.HalfLife.hlrDen"
+  "type": "∀ {a : Nat},\n  0 < a →\n    ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.hypNum a)\n        (BucketMath.Literature.Forgetting.hypDen a) BucketMath.Literature.HalfLife.hlrNum\n        BucketMath.Literature.HalfLife.hlrDen"
  },
  {
   "name": "BucketMath.Literature.HalfLife.hlr_half_at_one_halfLife",
@@ -2437,6 +2545,24 @@
   "source": "lean/BucketMath/Literature/HalfLife.lean",
   "line": 30,
   "type": "∀ {θc : Int},\n  0 ≤ θc →\n    ∀ (θ0 θw w : Int) {c c' : Int},\n      c ≤ c' →\n        BucketMath.Literature.HalfLife.logHalfLife θ0 θc θw c w ≤\n          BucketMath.Literature.HalfLife.logHalfLife θ0 θc θw c' w"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.settles_data_logLinear",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 44,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.HalfLife.claim_settles_2016_half_life_regression n d →\n    ∀ (k : Nat), BucketMath.Literature.Forgetting.LogLinearAt n d k"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.settles_wixted_incompatible",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 49,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.HalfLife.claim_settles_2016_half_life_regression n d →\n    BucketMath.Literature.Forgetting.claim_wixted_1991_form_of_forgetting n d → (∀ (t : Nat), 0 < d t) → False"
  },
  {
   "name": "BucketMath.Literature.KnowledgeSpace.UnionClosed",
@@ -2565,6 +2691,15 @@
   "type": "∀ {p q : Nat},\n  0 < p →\n    p < q →\n      ∀ (T : Nat),\n        BucketMath.Literature.Forgetting.expNum p (T + 1) * BucketMath.Literature.Forgetting.expDen q T <\n          BucketMath.Literature.Forgetting.expNum p T * BucketMath.Literature.Forgetting.expDen q (T + 1)"
  },
  {
+  "name": "BucketMath.Literature.Permastore.hyp_never_flat",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 18,
+  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ (T : Nat),\n      BucketMath.Literature.Forgetting.hypNum a (T + 1) * BucketMath.Literature.Forgetting.hypDen a T <\n        BucketMath.Literature.Forgetting.hypNum a T * BucketMath.Literature.Forgetting.hypDen a (T + 1)"
+ },
+ {
   "name": "BucketMath.Literature.Permastore.lastHold_full",
   "kind": "theorem",
   "status": "proved",
@@ -2601,22 +2736,13 @@
   "type": "∀ {R : Nat → Nat → Nat} {S T r n c W : Nat},\n  BucketMath.Literature.Permastore.claim_bahrick_1984_permastore_spanish (fun t => R t S) T →\n    r ≤ R T S →\n      ∀ (S' : Nat),\n        BucketMath.Learning.Capacity.upkeep R r n c W S ≤ BucketMath.Learning.Capacity.upkeep R r n c W S' ∨\n          BucketMath.Learning.Capacity.lastHold R r S' n = 0"
  },
  {
-  "name": "BucketMath.Literature.Permastore.pow_never_flat",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Literature.Permastore",
-  "source": "lean/BucketMath/Literature/Permastore.lean",
-  "line": 18,
-  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ (T : Nat),\n      BucketMath.Literature.Forgetting.powNum a (T + 1) * BucketMath.Literature.Forgetting.powDen a T <\n        BucketMath.Literature.Forgetting.powNum a T * BucketMath.Literature.Forgetting.powDen a (T + 1)"
- },
- {
   "name": "BucketMath.Literature.PracticeLaw.averaging_yields_newell",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.PracticeLaw",
   "source": "lean/BucketMath/Literature/PracticeLaw.lean",
-  "line": 50,
-  "type": "∀ {x y : Nat},\n  0 < x →\n    x < y →\n      BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed\n          (BucketMath.Literature.Forgetting.expNum x) BucketMath.Literature.PracticeLaw.one ∧\n        BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed\n            (BucketMath.Literature.Forgetting.expNum y) BucketMath.Literature.PracticeLaw.one ∧\n          BucketMath.Literature.PracticeLaw.claim_newell_1981_power_law_practice\n            (BucketMath.Literature.PracticeLaw.mixNum x y) BucketMath.Literature.PracticeLaw.one"
+  "line": 73,
+  "type": "∀ {x y q : Nat},\n  0 < x →\n    x < y →\n      y ≤ q →\n        BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed\n            (BucketMath.Literature.Forgetting.expNum x) (BucketMath.Literature.Forgetting.expDen q) ∧\n          BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed\n              (BucketMath.Literature.Forgetting.expNum y) (BucketMath.Literature.Forgetting.expDen q) ∧\n            BucketMath.Literature.PracticeLaw.claim_newell_1981_power_law_practice\n              (BucketMath.Literature.PracticeLaw.mixNum x y) (BucketMath.Literature.PracticeLaw.mixDen q)"
  },
  {
   "name": "BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed",
@@ -2624,7 +2750,7 @@
   "status": "def",
   "module": "BucketMath.Literature.PracticeLaw",
   "source": "lean/BucketMath/Literature/PracticeLaw.lean",
-  "line": 42,
+  "line": 64,
   "type": "(Nat → Nat) → (Nat → Nat) → Prop"
  },
  {
@@ -2633,8 +2759,26 @@
   "status": "def",
   "module": "BucketMath.Literature.PracticeLaw",
   "source": "lean/BucketMath/Literature/PracticeLaw.lean",
-  "line": 40,
+  "line": 62,
   "type": "(Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.decaying_mixture_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 51,
+  "type": "∀ {x y q : Nat},\n  0 < x →\n    x < y →\n      0 < q →\n        ∀ (N : Nat),\n          BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.PracticeLaw.mixNum x y)\n            (BucketMath.Literature.PracticeLaw.mixDen q) N"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.exponential_learner_decays",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 69,
+  "type": "∀ {p q : Nat},\n  p ≤ q →\n    ∀ (N : Nat),\n      BucketMath.Literature.Forgetting.expNum p (N + 1) * BucketMath.Literature.Forgetting.expDen q N ≤\n        BucketMath.Literature.Forgetting.expNum p N * BucketMath.Literature.Forgetting.expDen q (N + 1)"
  },
  {
   "name": "BucketMath.Literature.PracticeLaw.heathcote_individuals",
@@ -2642,8 +2786,17 @@
   "status": "proved",
   "module": "BucketMath.Literature.PracticeLaw",
   "source": "lean/BucketMath/Literature/PracticeLaw.lean",
-  "line": 44,
-  "type": "∀ (x : Nat),\n  BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed (BucketMath.Literature.Forgetting.expNum x)\n    BucketMath.Literature.PracticeLaw.one"
+  "line": 66,
+  "type": "∀ (p q : Nat),\n  BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed (BucketMath.Literature.Forgetting.expNum p)\n    (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.mixDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 40,
+  "type": "Nat → Nat → Nat"
  },
  {
   "name": "BucketMath.Literature.PracticeLaw.mixNum",
@@ -2655,13 +2808,22 @@
   "type": "Nat → Nat → Nat → Nat"
  },
  {
+  "name": "BucketMath.Literature.PracticeLaw.mixture_decays",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 42,
+  "type": "∀ {x y q : Nat},\n  x ≤ y →\n    y ≤ q →\n      ∀ (N : Nat),\n        BucketMath.Literature.PracticeLaw.mixNum x y (N + 1) * BucketMath.Literature.PracticeLaw.mixDen q N ≤\n          BucketMath.Literature.PracticeLaw.mixNum x y N * BucketMath.Literature.PracticeLaw.mixDen q (N + 1)"
+ },
+ {
   "name": "BucketMath.Literature.PracticeLaw.mixture_not_exponential",
   "kind": "theorem",
   "status": "proved",
   "module": "BucketMath.Literature.PracticeLaw",
   "source": "lean/BucketMath/Literature/PracticeLaw.lean",
-  "line": 56,
-  "type": "∀ {x y : Nat},\n  0 < x →\n    x < y →\n      ∀ {p q : Nat},\n        0 < q →\n          ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.PracticeLaw.mixNum x y)\n              BucketMath.Literature.PracticeLaw.one (BucketMath.Literature.Forgetting.expNum p)\n              (BucketMath.Literature.Forgetting.expDen q)"
+  "line": 80,
+  "type": "∀ {x y q : Nat},\n  0 < x →\n    x < y →\n      0 < q →\n        ∀ {p r : Nat},\n          0 < r →\n            ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.PracticeLaw.mixNum x y)\n                (BucketMath.Literature.PracticeLaw.mixDen q) (BucketMath.Literature.Forgetting.expNum p)\n                (BucketMath.Literature.Forgetting.expDen r)"
  },
  {
   "name": "BucketMath.Literature.PracticeLaw.mixture_strictLogConvex",
@@ -2817,6 +2979,15 @@
   "type": "BucketMath.Literature.Rasch.twoPlLogit 1 0 0 > BucketMath.Literature.Rasch.twoPlLogit 2 0 1 ∧\n  BucketMath.Literature.Rasch.twoPlLogit 1 4 0 < BucketMath.Literature.Rasch.twoPlLogit 2 4 1"
  },
  {
+  "name": "BucketMath.Literature.Rasch.unequal_slopes_cross",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 44,
+  "type": "∀ {a1 a2 b1 b2 : Int},\n  BucketMath.Literature.Rasch.claim_lord_1980_applications_of_irt a1 a2 →\n    ∃ θ θ',\n      BucketMath.Literature.Rasch.twoPlLogit a1 θ b1 < BucketMath.Literature.Rasch.twoPlLogit a2 θ b2 ∧\n        BucketMath.Literature.Rasch.twoPlLogit a2 θ' b2 < BucketMath.Literature.Rasch.twoPlLogit a1 θ' b1"
+ },
+ {
   "name": "BucketMath.Literature.Ridgeline.InBand",
   "kind": "def",
   "status": "def",
@@ -2844,6 +3015,15 @@
   "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt → ∀ (g : Nat), opt (10 * g + 10) ≠ g"
  },
  {
+  "name": "BucketMath.Literature.Ridgeline.optimal_gap_at_least_tenth",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 15,
+  "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt →\n    ∀ {ri : Nat}, 0 < ri → ri ≤ 10 * opt ri"
+ },
+ {
   "name": "BucketMath.Literature.Ridgeline.optimal_gap_below_interval",
   "kind": "theorem",
   "status": "proved",
@@ -2851,15 +3031,6 @@
   "source": "lean/BucketMath/Literature/Ridgeline.lean",
   "line": 20,
   "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt →\n    ∀ {ri : Nat}, 0 < ri → 5 * opt ri ≤ ri"
- },
- {
-  "name": "BucketMath.Literature.Ridgeline.optimal_gap_grows",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Literature.Ridgeline",
-  "source": "lean/BucketMath/Literature/Ridgeline.lean",
-  "line": 15,
-  "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt →\n    ∀ {ri : Nat}, 0 < ri → ri ≤ 10 * opt ri"
  },
  {
   "name": "BucketMath.Literature.Ridgeline.ratio_band_shrinks_absolute",

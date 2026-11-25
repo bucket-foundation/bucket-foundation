@@ -15,9 +15,9 @@ theorem permastore_floor {R : Nat → Nat} {T : Nat} (h : claim_bahrick_1984_per
   · exact h.1 t T ht
   · rw [h.2 t (by omega)]; exact Nat.le_refl _
 
-theorem pow_never_flat {a : Nat} (ha : 0 < a) (T : Nat) :
-    powNum a (T + 1) * powDen a T < powNum a T * powDen a (T + 1) := by
-  unfold powNum powDen
+theorem hyp_never_flat {a : Nat} (ha : 0 < a) (T : Nat) :
+    hypNum a (T + 1) * hypDen a T < hypNum a T * hypDen a (T + 1) := by
+  unfold hypNum hypDen
   exact Nat.mul_lt_mul_of_pos_left (by omega) ha
 
 theorem exp_never_flat {p q : Nat} (hp : 0 < p) (hpq : p < q) (T : Nat) :

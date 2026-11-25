@@ -39,6 +39,23 @@ theorem prob_complement {w : Rat} (hw : 0 < w) : prob w + prob w⁻¹ = 1 := by
     grind
   grind
 
-def claim_lord_1980_applications_of_irt (a1 a2 : Int) : Prop := a1 ≠ a2
+def claim_lord_1980_applications_of_irt (a1 a2 : Int) : Prop := a1 < a2
+
+theorem unequal_slopes_cross {a1 a2 b1 b2 : Int} (h : claim_lord_1980_applications_of_irt a1 a2) :
+    ∃ θ θ', twoPlLogit a1 θ b1 < twoPlLogit a2 θ b2 ∧ twoPlLogit a2 θ' b2 < twoPlLogit a1 θ' b1 := by
+  unfold claim_lord_1980_applications_of_irt at h
+  unfold twoPlLogit
+  have hk : 1 ≤ a2 - a1 := by omega
+  let c := a2 * b2 - a1 * b1
+  let m := c.natAbs + 1
+  refine ⟨(m : Int), -(m : Int), ?_, ?_⟩
+  · have : (m : Int) ≤ (a2 - a1) * m := by
+      have := Int.mul_le_mul_of_nonneg_right hk (Int.natCast_nonneg m); grind
+    have : c < m := by omega
+    grind
+  · have : (m : Int) ≤ (a2 - a1) * m := by
+      have := Int.mul_le_mul_of_nonneg_right hk (Int.natCast_nonneg m); grind
+    have : -c < m := by omega
+    grind
 
 end BucketMath.Literature.Rasch

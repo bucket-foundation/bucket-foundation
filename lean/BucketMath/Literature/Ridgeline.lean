@@ -12,7 +12,7 @@ theorem fixed_gap_not_optimal {opt : Nat → Nat} (h : claim_cepeda_2008_spacing
   have := (h.1 (10 * g + 10) (by omega)).1
   omega
 
-theorem optimal_gap_grows {opt : Nat → Nat} (h : claim_cepeda_2008_spacing_temporal_ridgeline opt) {ri : Nat}
+theorem optimal_gap_at_least_tenth {opt : Nat → Nat} (h : claim_cepeda_2008_spacing_temporal_ridgeline opt) {ri : Nat}
     (hri : 0 < ri) : ri ≤ 10 * opt ri := by
   have := (h.1 ri hri).1
   omega

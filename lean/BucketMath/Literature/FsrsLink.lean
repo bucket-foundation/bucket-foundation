@@ -42,9 +42,9 @@ theorem powerRetention_half (U S : Nat) (hS : 0 < S) : powerRetention U (9 * S) 
   unfold powerRetention
   rw [show 9 * S + 9 * S = 9 * S * 2 by omega, Nat.mul_div_mul_left _ _ (by omega)]
 
-theorem powerRetention_is_power (U t S : Nat) :
-    powerRetention U t S = U * powNum (9 * S) t / powDen (9 * S) t := by
-  unfold powerRetention powNum powDen; rw [Nat.mul_comm U]
+theorem powerRetention_is_hyperbolic (U t S : Nat) :
+    powerRetention U t S = U * hypNum (9 * S) t / hypDen (9 * S) t := by
+  unfold powerRetention hypNum hypDen; rw [Nat.mul_comm U]
 
 theorem powerInterval_mono_stability (U r n : Nat) {S S' : Nat} (h : S ≤ S') :
     lastHold (fun t S => powerRetention U t S) r S n ≤ lastHold (fun t S => powerRetention U t S) r S' n :=
@@ -60,6 +60,13 @@ theorem fsrs_stored_denominator_pos (x t : Int) (ht : 0 ≤ t) : 0 < 9 * BucketM
   unfold BucketMath.Fsrs.stabilityFloor at this
   omega
 
-def claim_ye_2022_fsrs_ssp_mmc (errFsrs errBaseline : Nat) : Prop := errFsrs < errBaseline
+def claim_ye_2022_fsrs_ssp_mmc (n d : Nat → Nat) : Prop :=
+  ∃ S, 0 < S ∧ Matches n d (hypNum (9 * S)) (hypDen (9 * S))
+
+theorem ye_data_not_exponential {n d : Nat → Nat} (h : claim_ye_2022_fsrs_ssp_mmc n d)
+    (hd : ∀ t, 0 < d t) {p q : Nat} (hq : 0 < q) : ¬ Matches n d (expNum p) (expDen q) := by
+  obtain ⟨S, hS, hm⟩ := h
+  rw [(hyperbolic_is_power_one _).1, (hyperbolic_is_power_one _).2] at hm
+  exact wixted_data_not_exponential ⟨9 * S, 1, by omega, by decide, hm⟩ hd hq
 
 end BucketMath.Literature.FsrsLink
