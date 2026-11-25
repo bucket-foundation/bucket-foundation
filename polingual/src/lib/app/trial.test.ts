@@ -21,4 +21,5 @@ test("the timeline emails 3 days before billing on day 7", () => {
   assert.match(steps[1].body, /email you/);
   assert.match(steps[0].body, /No payment now/);
   assert.match(steps[2].body, /\$59\.99 a year/);
+  assert.match(steps[2].body, /You are charged .* Cancel anytime/);
 });

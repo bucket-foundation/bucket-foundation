@@ -32,5 +32,6 @@ class TrialOfferTest {
         val steps = Plan.timeline("$59.99 a year")
         assertEquals(listOf("Today", "Day 5", "Day 7"), steps.map { it.first })
         assertTrue(steps[0].second.contains("No payment now"))
+        assertTrue(steps[2].second.startsWith("You are charged \$59.99 a year. Cancel anytime"))
     }
 }
