@@ -120,7 +120,25 @@ export function normalizeHandle(input: unknown): string | null {
     "bucket",
     "foundation",
     "www",
+    "polingual",
+    "support",
+    "help",
+    "staff",
+    "official",
+    "moderator",
+    "mod",
+    "team",
+    "root",
+    "system",
   ]);
   if (RESERVED.has(h)) return null;
   return h;
+}
+
+export function profileNamesAllowed(handle: string | null | undefined, displayName: string | null | undefined, allowed: (name: string) => boolean): boolean {
+  return (!handle || allowed(handle.replace(/[-_]+/g, " "))) && (!displayName || allowed(displayName));
+}
+
+export function unchangedHandle(submitted: unknown, stored: string | null | undefined): boolean {
+  return typeof submitted === "string" && !!stored && submitted.trim().toLowerCase() === stored.toLowerCase();
 }

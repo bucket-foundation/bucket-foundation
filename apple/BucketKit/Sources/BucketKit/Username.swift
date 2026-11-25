@@ -4,6 +4,8 @@ public enum Username {
     static let reserved: Set<String> = [
         "admin", "api", "academy", "canon", "about", "login", "signin", "settings",
         "me", "new", "null", "undefined", "bucket", "foundation", "www",
+        "polingual", "support", "help", "staff", "official", "moderator", "mod",
+        "team", "root", "system",
     ]
 
     public static func normalize(_ input: String) -> String? {

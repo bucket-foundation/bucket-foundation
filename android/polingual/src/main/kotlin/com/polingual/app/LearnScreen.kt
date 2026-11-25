@@ -42,7 +42,7 @@ fun LearnScreen(graph: Graph, nav: NavHostController) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     s.targets.forEach { FlagTile(it, 40.dp) }
                 }
-                Text(s.name, style = Type.title.copy(fontSize = 20.sp()), color = p.ink)
+                Text(s.name, style = Type.subhead, color = p.ink)
                 val learned = app?.study?.get(s.id)?.cards?.size ?: 0
                 Text(if (learned == 1) "1 word started" else "$learned words started", color = p.muted)
                 if (active) Pill("Active", PL.Malachite)
@@ -50,6 +50,7 @@ fun LearnScreen(graph: Graph, nav: NavHostController) {
             }
         }
         PrimaryButton("New language set", color = PL.Lapis) { nav.navigate("system/new") }
+        if (app?.system != null) PlainLink(androidx.compose.ui.res.stringResource(R.string.placement_test)) { nav.navigate("placement") }
         LearnExtras(graph, nav)
     }
 }

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
-import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, reasonFor, resetPlayer, say, snapshot, START_MS, stationAudio, stop, CUT_GAP_MS, cancelSpeech, estimateMs, FINISH_MS, SETTLE_MS, type SpeakItem } from "./speak";
+import { BCP47, bcp47, commonsFileUrl, pickSource, pickVoice, play, playAll, playable, reasonFor, resetPlayer, say, snapshot, START_MS, stationAudio, stop, CUT_GAP_MS, cancelSpeech, estimateMs, FINISH_MS, SETTLE_MS, NO_SOUND, toggle, type SpeakItem } from "./speak";
 import { LANGS, WORDS, word } from "./words";
 import { graphemes, longestToken } from "./tile-fit";
 import { WordView } from "../app/(site)/word/views";
@@ -334,7 +334,7 @@ test("turning silent mode on cuts the word that is speaking", async () => {
   setSilent(false);
 });
 
-test("a queued word never waits more than the settle time on a stuck one", async () => {
+test("a queued word waits only for what is left of a stuck one", async () => {
   installFakes();
   resetPlayer();
   void play({ id: "a", text: "sí", lang: "es-ES" });
@@ -343,7 +343,63 @@ test("a queued word never waits more than the settle time on a stuck one", async
   void play({ id: "b", text: "luego", lang: "es-ES" });
   await tick();
   assert.notEqual(spoken[spoken.length - 1].text, "luego");
-  await new Promise((r) => setTimeout(r, SETTLE_MS + CUT_GAP_MS + 300));
+  await new Promise((r) => setTimeout(r, estimateMs("sí") + SETTLE_MS + CUT_GAP_MS + 50));
   assert.equal(spoken[spoken.length - 1].text, "luego");
+  stop();
+});
+
+test("a tap whose sound never starts ends with a reason to tap again", async () => {
+  installFakes();
+  resetPlayer();
+  const run = play({ id: "e", text: "uno", lang: "es-ES" });
+  await tick();
+  spoken[spoken.length - 1].onerror?.();
+  await run;
+  assert.equal(snapshot().notice, NO_SOUND);
+  assert.equal(snapshot().id, null);
+});
+
+test("a tap on a word stuck before sound starts plays it again", async () => {
+  installFakes();
+  resetPlayer();
+  const item = { id: "s", text: "uno", lang: "es-ES" };
+  void play(item);
+  await tick();
+  const cut = cancels;
+  toggle(item, true);
+  assert.equal(cancels, cut + 1);
+  await new Promise((r) => setTimeout(r, CUT_GAP_MS + 30));
+  assert.equal(spoken[spoken.length - 1].text, "uno");
+  assert.equal(snapshot().id, "s");
+  (spoken[spoken.length - 1] as { onstart?: () => void }).onstart?.();
+  toggle(item, true);
+  assert.equal(snapshot().id, null);
+});
+
+test("an engine that ends a word without a start event counts as played", async () => {
+  installFakes();
+  resetPlayer();
+  const run = play({ id: "q", text: "uno", lang: "es-ES" });
+  await tick();
+  spoken[spoken.length - 1].onend?.();
+  await run;
+  assert.notEqual(snapshot().notice, NO_SOUND);
+  assert.equal(snapshot().id, null);
+});
+
+test("a queued word waits for the recorded length of a long clip", async () => {
+  installFakes();
+  resetPlayer();
+  const long: SpeakItem = { id: "l", text: "sí", lang: "es-ES", src: "https://upload.wikimedia.org/si.mp3" };
+  void play(long);
+  await tick();
+  const el = audios[audios.length - 1] as unknown as { duration: number; onplaying: (() => void) | null; src: string };
+  el.duration = 1.4;
+  el.onplaying?.();
+  void play(noche);
+  await new Promise((r) => setTimeout(r, estimateMs("sí") + SETTLE_MS + CUT_GAP_MS + 50));
+  assert.equal(el.src, long.src);
+  await new Promise((r) => setTimeout(r, 1400 - estimateMs("sí") + 100));
+  assert.equal(el.src, noche.src);
   stop();
 });

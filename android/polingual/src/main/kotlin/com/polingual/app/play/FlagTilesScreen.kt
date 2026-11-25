@@ -47,7 +47,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
     var run by remember { mutableStateOf(RunState()) }
     var progress by remember { mutableFloatStateOf(0f) }
     var best by remember { mutableStateOf(graph.kv.get("flagtiles.best.$date")?.toIntOrNull() ?: 0) }
-    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); deck = com.polingual.app.offMain { FlagTilesRules.deck(items, date, root = deckRoot) } }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(com.polingual.app.RaceSession.root ?: graph.state.value?.system?.root, items); deck = com.polingual.app.offMain { FlagTilesRules.deck(items, date, root = deckRoot) } }
     val d = deck
     val tile = if (d != null && run.phase != RunPhase.Ready && d.tiles.isNotEmpty()) d.tiles[(run.missed ?: run.index) % d.tiles.size] else null
     val answer = if (tile != null && d != null) d.langs.indexOf(tile.lang) else -1
@@ -63,7 +63,7 @@ fun FlagTilesScreen(graph: Graph, back: () -> Unit) {
         }
     }
     LaunchedEffect(run.phase) {
-        if (run.phase == RunPhase.Over) { best = maxOf(best, run.score); graph.kv.set("flagtiles.best.$date", best.toString()) }
+        if (run.phase == RunPhase.Over) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.FlagTiles, hits = run.score); best = maxOf(best, run.score); graph.kv.set("flagtiles.best.$date", best.toString()) }
     }
     GameFrame(graph, WebGame.FlagTiles, back) {
         if (d == null) { EmptyState("kente", "Loading today's tiles."); return@GameFrame }

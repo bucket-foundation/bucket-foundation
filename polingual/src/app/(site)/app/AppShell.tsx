@@ -1,14 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { adoptDeviceBook } from "@/lib/daily/store";
+import { returnTo } from "@/lib/app/return-to";
+import { syncDeps } from "@/lib/daily/browser-sync";
+import { local } from "@/lib/storage";
 import { usePathname } from "next/navigation";
 import { PlayerProvider, usePlayer } from "@/lib/listen/player";
 import { langName } from "@academy/lang-systems";
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { fetchAccess, type Access } from "@/lib/app/plans";
 import { accessStep, track } from "@/lib/funnel";
+import { appGate, firstLessonDone, subscribeFirstLesson } from "@/lib/app/first-lesson";
 import Paywall from "./Paywall";
+import Upsell from "./Upsell";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
 import { AppNav, Button, SpeechGuard, Stage, type NavItem } from "@/ui";
@@ -56,6 +62,37 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+function useAdoptDeviceProgress(signedIn: boolean, path: string) {
+  const done = useRef(false);
+  const busy = useRef(false);
+  const tries = useRef(0);
+  useEffect(() => {
+    if (!signedIn) { done.current = false; tries.current = 0; return; }
+    if (done.current || busy.current || tries.current >= 5) return;
+    busy.current = true;
+    tries.current += 1;
+    void adoptDeviceBook(local(), syncDeps())
+      .then((r) => { done.current = r !== "device"; }, () => undefined)
+      .finally(() => { busy.current = false; });
+  }, [signedIn, path]);
+}
+
+function useAccess(signedIn: boolean) {
+  const [access, setAccess] = useState<Access>({ status: "checking" });
+  const check = useCallback(() => {
+    setAccess({ status: "checking" });
+    void fetchAccess().then((a) => {
+      const step = accessStep(a);
+      if (step) track(step);
+      setAccess(a);
+    });
+  }, []);
+  useEffect(() => {
+    if (signedIn) check();
+  }, [signedIn, check]);
+  return { access, check };
+}
+
 function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname() ?? "/app";
   const open = OPEN.some((p) => path.startsWith(p));
@@ -70,19 +107,16 @@ function Shell({ children }: { children: React.ReactNode }) {
     void refresh();
   }, [refresh]);
 
-  const [access, setAccess] = useState<Access>({ status: "checking" });
-  const signedIn = auth.status === "signed-in";
-  const check = useCallback(() => {
-    setAccess({ status: "checking" });
-    void fetchAccess().then((a) => {
-      const step = accessStep(a);
-      if (step) track(step);
-      setAccess(a);
-    });
-  }, []);
-  useEffect(() => {
-    if (signedIn) check();
-  }, [signedIn, check]);
+  const { access, check } = useAccess(auth.status === "signed-in");
+  useAdoptDeviceProgress(auth.status === "signed-in", path);
+  const lessonDone = useSyncExternalStore(subscribeFirstLesson, () => firstLessonDone(), () => false);
+  const gate = appGate(access.status, lessonDone);
+
+  const afterSignIn = useCallback(async () => {
+    const back = returnTo(window.location.search);
+    if (back) window.location.assign(back);
+    else await refresh();
+  }, [refresh]);
 
   const signOut = useCallback(() => {
     void appAuth().mobile.logout().then(refresh);
@@ -105,10 +139,11 @@ function Shell({ children }: { children: React.ReactNode }) {
       <main className={styles.main}>
         {open && auth.status !== "loading" ? <SessionContext.Provider value={{ userId: auth.status === "signed-in" ? auth.userId : "", signOut }}>{children}</SessionContext.Provider> : null}
         {!open && auth.status === "loading" ? <p className={styles.muted} aria-busy="true">Loading</p> : null}
-        {!open && auth.status === "signed-out" ? <Stage testId="sign-in-stage"><SignIn onSignedIn={refresh} /></Stage> : null}
-        {!open && auth.status === "signed-in" && access.status === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
-        {!open && auth.status === "signed-in" && (access.status === "locked" || access.status === "unknown") ? <Paywall access={access} retry={check} /> : null}
-        {!open && auth.status === "signed-in" && access.status === "open" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
+        {!open && auth.status === "signed-out" ? <Stage testId="sign-in-stage"><SignIn onSignedIn={afterSignIn} /></Stage> : null}
+        {!open && auth.status === "signed-in" && gate === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
+        {!open && auth.status === "signed-in" && gate === "paywall" ? <Paywall access={access} retry={check} /> : null}
+        {!open && auth.status === "signed-in" && gate === "app" && access.status === "open" ? <Upsell access={access} /> : null}
+        {!open && auth.status === "signed-in" && gate === "app" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
       </main>
       <MiniPlayer />
       <SpeechGuard />

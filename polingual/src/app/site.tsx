@@ -50,7 +50,7 @@ function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
         <Link className={styles.link} href={wordsHref(loc.code)}>{loc.words}</Link>
         <Link className={styles.link} href="/play" data-testid="nav-play">{loc.labels.play}</Link>
         <Link className={`${styles.link} ${styles.wide}`} href="/support">{loc.labels.support}</Link>
-        <ButtonLink size="sm" className={styles.btnP} href={APP_STORE_URL} rel="noopener">{loc.labels.app}</ButtonLink>
+        <ButtonLink variant="quiet" size="sm" className={styles.btnP} href={APP_STORE_URL} rel="noopener" data-testid="nav-app">{loc.labels.app}</ButtonLink>
       </nav>
     </header>
   );

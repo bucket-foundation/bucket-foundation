@@ -6,7 +6,7 @@ export interface DeleteAccountClients {
   revokeApple?: (userId: string) => Promise<{ failed: boolean }>;
 }
 
-export const PERSONAL_TABLES = ["academy_progress", "academy_profiles"];
+export const PERSONAL_TABLES = ["academy_progress", "academy_profiles", "polingual_trial_used"];
 
 export async function deleteAccount(clients: DeleteAccountClients, accessToken: string): Promise<{ status: number | null }> {
   const who = await clients.getUser(accessToken);

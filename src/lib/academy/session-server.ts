@@ -24,7 +24,7 @@ export interface AuthSession {
   refresh_token: string;
   expires_at?: number;
   expires_in?: number;
-  user?: { id: string };
+  user?: { id: string; email_confirmed_at?: string | null; last_sign_in_at?: string | null };
 }
 
 export type AuthResult = { session: AuthSession | null; status: number | null };
@@ -103,12 +103,21 @@ export const APP_REDIRECTS: Record<string, string> = { polingual: "https://polin
 
 const hashed = (v: string) => createHash("sha256").update(v.toLowerCase()).digest("hex").slice(0, 32);
 
+const FIRST_SIGN_IN_WINDOW_MS = 60_000;
+
+export function firstSignIn(user: AuthSession["user"]): boolean {
+  const confirmed = Date.parse(user?.email_confirmed_at ?? "");
+  const signedIn = Date.parse(user?.last_sign_in_at ?? "");
+  return Number.isFinite(confirmed) && Number.isFinite(signedIn) && Math.abs(signedIn - confirmed) <= FIRST_SIGN_IN_WINDOW_MS;
+}
+
 export function createSessionHandler(deps: SessionDeps) {
   const tokens = (s: AuthSession) => ({
     access_token: s.access_token,
     refresh_token: s.refresh_token,
     expires_at: s.expires_at ?? Math.floor(deps.now() / 1000) + (s.expires_in ?? 3600),
     user_id: s.user?.id ?? null,
+    new_account: firstSignIn(s.user),
   });
 
   async function within(keys: [string, number][]): Promise<boolean> {

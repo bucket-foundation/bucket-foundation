@@ -68,9 +68,15 @@ class BucketApi(
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()
 
-    suspend fun progressPush(token: String, branch: String, data: JsonElement): PushResult = runCatching {
-        call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data) }, mapper = ::groupError)
-    }.fold(onSuccess = { PushResult.Written }, onFailure = { e -> if (e is BucketError.Server && e.status == 409) PushResult.Refused else PushResult.Failed })
+    suspend fun progressPush(token: String, branch: String, data: JsonElement, version: String? = null, guarded: Boolean = version != null): PushResult = runCatching {
+        call("api/academy/progress", token, buildJsonObject { put("branch", branch); put("data", data); if (guarded) put("version", version) }, mapper = ::groupError)
+    }.fold(onSuccess = { PushResult.Written }, onFailure = { e ->
+        when {
+            e is BucketError.Server && e.status == 409 && e.text == "stale" -> PushResult.Stale
+            e is BucketError.Server && e.status == 409 -> PushResult.Refused
+            else -> PushResult.Failed
+        }
+    })
 
     suspend fun guestTicket(nickname: String, guestId: String): GuestTicket =
         decode(call("api/academy/lobbies/guest", null, buildJsonObject { put("nickname", nickname); put("guestId", guestId) }))
@@ -78,7 +84,10 @@ class BucketApi(
     suspend fun mergeGuest(token: String, guestToken: String): Int =
         json.parseToJsonElement(call("api/academy/lobbies/guest/merge", token, buildJsonObject { put("guestToken", guestToken) })).jsonObject["merged"]?.jsonPrimitive?.contentOrNull?.toIntOrNull() ?: 0
 
-    suspend fun lobbies(token: String): LobbiesReply = decode(call("api/academy/lobbies", token))
+    suspend fun lobbies(token: String): LobbiesReply = decode(call("api/academy/lobbies", token, headers = RACE))
+
+    suspend fun raceScore(token: String, lobbyId: String, score: Int): Lobby =
+        lobbyCall("api/academy/lobbies/score", token, buildJsonObject { put("lobbyId", lobbyId); put("score", score) })
 
     suspend fun fillBots(token: String, lobbyId: String): Lobby =
         lobbyCall("api/academy/lobbies/bots", token, buildJsonObject { put("lobbyId", lobbyId) })
@@ -88,14 +97,14 @@ class BucketApi(
             put("name", name); put("game", game.wire); put("root", root)
             put("targets", kotlinx.serialization.json.JsonArray(targets.map(::JsonPrimitive)))
             put("rounds", rounds); put("roundSeconds", roundSeconds); put("listed", listed); put("displayName", displayName); put("reveal", true)
-        })
+        }, RACE)
 
     suspend fun joinLobby(token: String, code: String? = null, lobbyId: String? = null, displayName: String): Lobby =
         lobbyCall("api/academy/lobbies/join", token, buildJsonObject {
             put("displayName", displayName)
             if (code != null) put("code", code)
             if (lobbyId != null) put("lobbyId", lobbyId)
-        })
+        }, RACE)
 
     suspend fun leaveLobby(token: String, lobbyId: String) {
         call("api/academy/lobbies/leave", token, buildJsonObject { put("lobbyId", lobbyId) })
@@ -113,6 +122,16 @@ class BucketApi(
     suspend fun power(token: String, lobbyId: String, kind: foundation.bucket.core.model.PowerKind): Lobby =
         lobbyCall("api/academy/lobbies/power", token, buildJsonObject { put("lobbyId", lobbyId); put("kind", if (kind == foundation.bucket.core.model.PowerKind.Double) "double" else "fifty") })
 
+    suspend fun reportLobbyMessage(token: String, lobbyId: String, messageId: Int, reason: String) {
+        call("api/academy/lobbies/report", token, buildJsonObject { put("lobbyId", lobbyId); put("messageId", messageId); put("reason", reason) })
+    }
+
+    suspend fun chatBlocks(token: String): List<foundation.bucket.core.model.ChatBlock> =
+        decode<foundation.bucket.core.model.ChatBlocksReply>(call("api/academy/lobbies/blocks", token)).blocks
+
+    suspend fun setChatBlock(token: String, userId: String, name: String, blocked: Boolean): List<foundation.bucket.core.model.ChatBlock> =
+        decode<foundation.bucket.core.model.ChatBlocksReply>(call("api/academy/lobbies/blocks", token, buildJsonObject { put("userId", userId); put("name", name); put("blocked", blocked) })).blocks
+
     suspend fun answer(token: String, lobbyId: String, round: Int, choice: String): AnswerReply =
         decode(call("api/academy/lobbies/answer", token, buildJsonObject { put("lobbyId", lobbyId); put("round", round); put("choice", choice) }))
 
@@ -127,6 +146,20 @@ class BucketApi(
 
     suspend fun raw(path: String): String = call(path, null)
 
+    suspend fun trialUsed(token: String): Boolean =
+        (kotlinx.serialization.json.Json.parseToJsonElement(call("api/polingual/trial-used", token)) as? JsonObject)?.get("used")?.let { it.toString() == "true" } == true
+
+    suspend fun markTrialUsed(token: String, store: String) {
+        call("api/polingual/trial-used", token, JsonObject(mapOf("store" to kotlinx.serialization.json.JsonPrimitive(store))))
+    }
+
+    suspend fun playVerify(token: String, packageName: String, productId: String, purchaseToken: String): Boolean =
+        (kotlinx.serialization.json.Json.parseToJsonElement(call("api/play/verify", token, JsonObject(mapOf(
+            "packageName" to kotlinx.serialization.json.JsonPrimitive(packageName),
+            "productId" to kotlinx.serialization.json.JsonPrimitive(productId),
+            "purchaseToken" to kotlinx.serialization.json.JsonPrimitive(purchaseToken),
+        )))) as? JsonObject)?.get("ok")?.toString() == "true"
+
     suspend fun deckIndex(): foundation.bucket.core.model.DeckIndex = decode(call("academy-app/corpus/index.json", null))
 
     suspend fun deck(entry: foundation.bucket.core.model.DeckEntry): foundation.bucket.core.model.Deck = decode(call("academy-app/${entry.file}", null))
@@ -134,7 +167,9 @@ class BucketApi(
     suspend fun canonSearch(query: String, topK: Int = 20): foundation.bucket.core.model.CanonSearch =
         decode(call("api/canon/search", null, query = mapOf("q" to query, "top_k" to topK.toString())))
 
-    private suspend fun lobbyCall(path: String, token: String, body: JsonObject): Lobby = decode<LobbyReply>(call(path, token, body)).lobby
+    private suspend fun lobbyCall(path: String, token: String, body: JsonObject, headers: Map<String, String> = emptyMap()): Lobby = decode<LobbyReply>(call(path, token, body, headers = headers)).lobby
+
+    private val RACE = mapOf(foundation.bucket.core.model.LobbyRace.HEADER to "1", foundation.bucket.core.model.LobbyGames.PLAYS_HEADER to foundation.bucket.core.model.LobbyGames.plays)
 
     private suspend fun session(body: JsonObject, token: String? = null): String = call("api/academy/session", token, body, mapper = ::sessionError)
 
@@ -144,12 +179,14 @@ class BucketApi(
         body: JsonObject? = null,
         query: Map<String, String> = emptyMap(),
         mapper: (Int, String) -> BucketError = ::groupError,
+        headers: Map<String, String> = emptyMap(),
     ): String {
         val url = "${base.trimEnd('/')}/$path"
         val build: HttpRequestBuilder.() -> Unit = {
             if (token != null) header("authorization", "Bearer $token")
             query.toSortedMap().forEach { (k, v) -> parameter(k, v) }
             header("cache-control", "no-cache")
+            headers.forEach { (k, v) -> header(k, v) }
             if (body != null) {
                 contentType(ContentType.Application.Json)
                 setBody(body.toString())
@@ -183,7 +220,7 @@ class BucketApi(
 data class LobbyReply(val lobby: Lobby)
 
 @Serializable
-data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false, val games: List<String> = emptyList())
+data class LobbiesReply(val lobbies: List<LobbySummary>, val bots: Boolean = false, val games: List<String> = emptyList(), val race: List<String> = emptyList())
 
 @Serializable
 data class AnswerReply(val correct: Boolean, val lobby: Lobby)
@@ -233,7 +270,7 @@ fun profileError(status: Int, text: String): BucketError {
 }
 
 enum class PushResult {
-    Written, Refused, Failed;
+    Written, Refused, Stale, Failed;
 
-    val settled: Boolean get() = this != Failed
+    val settled: Boolean get() = this == Written || this == Refused
 }

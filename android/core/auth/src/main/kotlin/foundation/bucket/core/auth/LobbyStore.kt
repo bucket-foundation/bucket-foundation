@@ -1,6 +1,7 @@
 package foundation.bucket.core.auth
 
 import foundation.bucket.core.model.BucketError
+import foundation.bucket.core.model.ChatReportReason
 import foundation.bucket.core.model.Lobby
 import foundation.bucket.core.model.LobbyClock
 import foundation.bucket.core.model.LobbyGame
@@ -20,6 +21,9 @@ data class LobbyState(
     val open: List<LobbySummary> = emptyList(),
     val botsEnabled: Boolean = false,
     val games: List<String> = emptyList(),
+    val race: List<String> = emptyList(),
+    val raceScore: Int? = null,
+    val raceScoreSent: Boolean = false,
     val current: Lobby? = null,
     val picks: Map<Int, String> = emptyMap(),
     val marks: Map<Int, Boolean> = emptyMap(),
@@ -51,14 +55,16 @@ class LobbyStore(
         val t = anyToken() ?: return
         try {
             val reply = api.lobbies(t)
-            _state.update { it.copy(open = reply.lobbies, botsEnabled = reply.bots, games = reply.games, error = null) }
+            _state.update { it.copy(open = reply.lobbies, botsEnabled = reply.bots, games = reply.games, race = reply.race, error = null) }
         } catch (e: BucketError) {
             _state.update { it.copy(error = e) }
         }
     }
 
-    suspend fun create(name: String, game: LobbyGame, root: String, targets: List<String>, displayName: String, rounds: Int = 8, roundSeconds: Int = 10, listed: Boolean = true): Lobby =
-        enter(run { api.createLobby(it, name, game, root, targets, rounds, roundSeconds, listed, displayName) })
+    suspend fun create(name: String, game: LobbyGame, root: String, targets: List<String>, displayName: String, rounds: Int = 8, roundSeconds: Int = 10, listed: Boolean = true): Lobby {
+        if (!foundation.bucket.core.model.LobbyGames.playable(game)) throw BucketError.Server(409, UNPLAYABLE)
+        return enter(run { api.createLobby(it, name, game, root, targets, rounds, roundSeconds, listed, displayName) })
+    }
 
     suspend fun join(code: String, displayName: String): Lobby =
         enter(run { api.joinLobby(it, code = normalizeCode(code), displayName = displayName) })
@@ -68,7 +74,7 @@ class LobbyStore(
 
     suspend fun leave() {
         val id = _state.value.current?.id ?: return
-        _state.update { s -> s.copy(current = null, picks = emptyMap(), marks = emptyMap(), open = s.open.filterNot { it.id == id }) }
+        _state.update { s -> s.copy(current = null, picks = emptyMap(), marks = emptyMap(), raceScore = null, raceScoreSent = false, open = s.open.filterNot { it.id == id }) }
         anyToken()?.let { t -> runCatching { api.leaveLobby(t, id) } }
     }
 
@@ -99,6 +105,29 @@ class LobbyStore(
         apply(run { api.power(it, id, kind) })
     }
 
+    suspend fun postScore(score: Int): Boolean {
+        val lobby = _state.value.current ?: return false
+        if (!lobby.game.isRace || lobby.status != foundation.bucket.core.model.LobbyStatus.Playing) return false
+        if (_state.value.raceScore == null) _state.update { it.copy(raceScore = score.coerceIn(0, foundation.bucket.core.model.LobbyRace.SCORE_MAX), raceScoreSent = false) }
+        val s = _state.value
+        val value = s.raceScore ?: return false
+        if (s.raceScoreSent) return true
+        val t = anyToken() ?: return false
+        return try {
+            apply(api.raceScore(t, lobby.id, value))
+            _state.update { it.copy(raceScoreSent = true) }
+            true
+        } catch (e: BucketError) {
+            if (scoreFinal(e)) _state.update { it.copy(raceScoreSent = true) }
+            false
+        }
+    }
+
+    suspend fun report(messageId: Int, reason: ChatReportReason) {
+        val id = _state.value.current?.id ?: return
+        run { api.reportLobbyMessage(it, id, messageId, reason.wire) }
+    }
+
     suspend fun pick(choice: String, round: Int): Boolean? {
         val id = _state.value.current?.id ?: return null
         if (_state.value.picks.containsKey(round)) return null
@@ -117,6 +146,7 @@ class LobbyStore(
 
     suspend fun poll() {
         val lobby = _state.value.current ?: return
+        _state.value.raceScore?.let { if (!_state.value.raceScoreSent) postScore(it) }
         val t = anyToken() ?: return
         try {
             val r = api.lobbyState(t, lobby.id, lobby.version)
@@ -142,7 +172,7 @@ class LobbyStore(
     }
 
     private fun enter(lobby: Lobby): Lobby {
-        _state.update { it.copy(current = lobby, picks = emptyMap(), marks = emptyMap()) }
+        _state.update { it.copy(current = lobby, picks = emptyMap(), marks = emptyMap(), raceScore = null, raceScoreSent = false) }
         parseInstantMs(lobby.now)?.let(::sync)
         return lobby
     }
@@ -165,6 +195,10 @@ class LobbyStore(
     }
 
     companion object {
+        const val UNPLAYABLE = "This race plays on the web and iPhone. Pick another game to host from Android."
+
+        fun scoreFinal(e: BucketError): Boolean = e == BucketError.Revoked || e == BucketError.NotFound || (e is BucketError.Server && e.status in 400..499 && e.status !in setOf(408, 425, 429))
+
         fun normalizeCode(code: String) = code.filter { it.isLetterOrDigit() }.uppercase().take(LobbyRules.CODE_LENGTH)
     }
 }

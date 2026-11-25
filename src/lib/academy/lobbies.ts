@@ -45,6 +45,7 @@ export const DEFAULT_ROUNDS = 6;
 export const DEFAULT_ROUND_SECONDS = 8;
 export const REVEAL_SECONDS = 4;
 export const WEB_CLIENT_HEADER = "x-polingual-client";
+export const NATIVE_PLAYS_HEADER = "x-polingual-plays";
 
 export function revealEnabled(env: Record<string, string | undefined> = process.env): boolean {
   return env.POLINGUAL_LOBBY_REVEAL === "on";
@@ -810,9 +811,16 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
 
 const NATIVE_GAMES: readonly LobbyGame[] = ["daily", "same-word", "flags", "live"];
 
-export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">, raceClient = false): boolean {
+export const NATIVE_DECLARABLE = ["tiles", "duel", "reveal"] as const;
+
+export function nativePlays(header: string | null | undefined): Set<string> {
+  return new Set((header ?? "").split(",").map((s) => s.trim().toLowerCase()).filter((s) => (NATIVE_DECLARABLE as readonly string[]).includes(s)));
+}
+
+export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">, raceClient = false, plays: ReadonlySet<string> = new Set()): boolean {
   if (isRace(lobby.game)) return raceClient;
-  return NATIVE_GAMES.includes(lobby.game ?? "daily") && !lobby.reveal_seconds && !lobby.playlist;
+  const game = lobby.game ?? "daily";
+  return (NATIVE_GAMES.includes(game) || plays.has(game)) && (!lobby.reveal_seconds || plays.has("reveal")) && !lobby.playlist;
 }
 
 export const MESSAGE_REPORTS = "lobby_message_reports";

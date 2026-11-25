@@ -1,8 +1,10 @@
+import type { ChatBlock, ChatReportReason } from "./moderation";
 import type { LobbyPrompt, LobbyState, LobbySummary } from "@academy/lobbies";
 
 export type { LobbyPrompt, LobbyState, LobbySummary };
 export type WebLobbyState = LobbyState;
 export { flagEmoji, langFlag, streakOf, livesLeft, LEARN_HREF, botLabel, myScore, standings, missedWords, promptFor, answeredRound, ranked, gameProgress, revealOrder } from "./standing";
+export { type Phase, gameSeconds, phaseAt, TALLY_WAIT_MS, tallyLate, serverOffset } from "./phase";
 type AnswerResult = { correct: boolean; points: number; ms: number; lobby: WebLobbyState };
 
 const GUEST_KEY = "polingual-web/guest/v1";
@@ -173,6 +175,18 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("/chat", { body: { lobbyId, body } })).lobby;
   }
 
+  async report(lobbyId: string, messageId: number, reason: ChatReportReason): Promise<void> {
+    await this.call("/report", { body: { lobbyId, messageId, reason } });
+  }
+
+  async blocks(): Promise<ChatBlock[]> {
+    return (await this.call<{ blocks: ChatBlock[] }>("/blocks")).blocks;
+  }
+
+  async block(userId: string, name: string, blocked: boolean): Promise<ChatBlock[]> {
+    return (await this.call<{ blocks: ChatBlock[] }>("/blocks", { body: { userId, name, blocked } })).blocks;
+  }
+
   async answer(lobbyId: string, round: number, choice: string): Promise<AnswerResult> {
     return this.call<AnswerResult>("/answer", { body: { lobbyId, round, choice } });
   }
@@ -190,43 +204,6 @@ export class LobbyApi {
   async merge(guestToken: string): Promise<void> {
     await this.call("/guest/merge", { body: { guestToken } });
   }
-}
-
-export type Phase =
-  | { kind: "waiting" }
-  | { kind: "countdown"; seconds: number }
-  | { kind: "round"; index: number; remaining: number }
-  | { kind: "reveal"; index: number; remaining: number }
-  | { kind: "finished" };
-
-type Clock = Pick<LobbyState, "startedAt" | "rounds" | "roundSeconds"> & { revealSeconds?: number };
-
-export function gameSeconds(lobby: Omit<Clock, "startedAt">): number {
-  return lobby.rounds * lobby.roundSeconds + Math.max(0, lobby.rounds - 1) * (lobby.revealSeconds ?? 0);
-}
-
-export function phaseAt(lobby: Clock & Pick<LobbyState, "status">, now: number): Phase {
-  if (lobby.status === "lobby") return { kind: "waiting" };
-  if (lobby.status === "done" || !lobby.startedAt) return lobby.status === "done" ? { kind: "finished" } : { kind: "waiting" };
-  const elapsed = (now - Date.parse(lobby.startedAt)) / 1000;
-  if (elapsed < 0) return { kind: "countdown", seconds: -elapsed };
-  if (elapsed >= gameSeconds(lobby)) return { kind: "finished" };
-  const slot = lobby.roundSeconds + (lobby.revealSeconds ?? 0);
-  const index = Math.floor(elapsed / slot);
-  const into = elapsed - index * slot;
-  if (into < lobby.roundSeconds) return { kind: "round", index, remaining: lobby.roundSeconds - into };
-  return { kind: "reveal", index, remaining: slot - into };
-}
-
-export const TALLY_WAIT_MS = 5000;
-
-export function tallyLate(lobby: Clock, now: number): boolean {
-  if (!lobby.startedAt) return false;
-  return now - (Date.parse(lobby.startedAt) + gameSeconds(lobby) * 1000) > TALLY_WAIT_MS;
-}
-
-export function serverOffset(serverNow: string, sentAt: number, receivedAt: number): number {
-  return Date.parse(serverNow) - (sentAt + receivedAt) / 2;
 }
 
 function joinHref(code: string): string {
@@ -249,6 +226,10 @@ interface IdentityDeps {
   now: () => number;
 }
 
+export function guestMerged(e: unknown): boolean {
+  return e instanceof LobbyError && e.status === 409 && e.code === "guest_merged";
+}
+
 export async function resolveIdentity(deps: IdentityDeps, nickname?: string): Promise<Identity | null> {
   const account = await deps.account();
   const saved = deps.store.read();
@@ -258,7 +239,8 @@ export async function resolveIdentity(deps: IdentityDeps, nickname?: string): Pr
         const token = tokenFresh(saved, deps.now()) ? (saved.token as string) : (await deps.api.guest(saved.guestId, saved.nickname)).token;
         await deps.api.merge(token);
         deps.store.clear();
-      } catch {
+      } catch (e) {
+        if (guestMerged(e)) deps.store.clear();
       }
     }
     return { token: account, kind: "account" };
@@ -266,8 +248,16 @@ export async function resolveIdentity(deps: IdentityDeps, nickname?: string): Pr
   const name = nickname ? cleanNickname(nickname) : saved?.nickname ?? null;
   if (!name) return null;
   if (saved && saved.nickname === name && tokenFresh(saved, deps.now())) return { token: saved.token as string, kind: "guest" };
-  const guestId = saved?.guestId ?? newGuestId();
-  const got = await deps.api.guest(guestId, name);
+  let guestId = saved?.guestId ?? newGuestId();
+  let got: Awaited<ReturnType<IdentityDeps["api"]["guest"]>>;
+  try {
+    got = await deps.api.guest(guestId, name);
+  } catch (e) {
+    if (!guestMerged(e)) throw e;
+    deps.store.clear();
+    guestId = newGuestId();
+    got = await deps.api.guest(guestId, name);
+  }
   deps.store.write({ guestId, nickname: name, token: got.token, userId: got.userId, expiresAt: got.expiresAt });
   return { token: got.token, kind: "guest" };
 }

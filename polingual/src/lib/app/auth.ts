@@ -4,6 +4,7 @@ import { parseSession, type StoredSession, type TokenVault } from "@academy/toke
 export const SESSION_KEY = "polingual-web/session/v1";
 const APP_ID = "polingual";
 const SESSION_PATH = "/api/academy/session";
+const BILLING_PATHS = ["/api/polingual/checkout", "/api/polingual/portal"];
 
 export class BrowserVault implements TokenVault {
   readonly kind = "browser-storage" as const;
@@ -30,7 +31,9 @@ export class BrowserVault implements TokenVault {
 }
 
 export function needsBearer(url: URL, origin: string): boolean {
-  return url.origin === origin && url.pathname.startsWith("/api/academy/") && !url.pathname.startsWith(SESSION_PATH);
+  if (url.origin !== origin) return false;
+  if (BILLING_PATHS.includes(url.pathname)) return true;
+  return url.pathname.startsWith("/api/academy/") && !url.pathname.startsWith(SESSION_PATH);
 }
 
 export function bearerFetch(inner: typeof fetch, token: () => Promise<string | null>, origin: string): typeof fetch {

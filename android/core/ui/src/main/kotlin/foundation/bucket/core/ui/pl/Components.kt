@@ -5,8 +5,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -269,3 +271,62 @@ fun PLTile(selected: Boolean, modifier: Modifier = Modifier, selectedColor: Colo
 }
 
 fun Modifier.plSurface(color: Color, radius: Dp = PLRadius.md): Modifier = this.clip(RoundedCornerShape(radius)).background(color)
+
+@Composable
+fun PLField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    modifier: Modifier = Modifier,
+    keyboardOptions: androidx.compose.foundation.text.KeyboardOptions = androidx.compose.foundation.text.KeyboardOptions.Default,
+    keyboardActions: androidx.compose.foundation.text.KeyboardActions = androidx.compose.foundation.text.KeyboardActions.Default,
+) {
+    val source = remember { MutableInteractionSource() }
+    val focused by source.collectIsFocusedAsState()
+    val shape = RoundedCornerShape(PLRadius.md)
+    Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Text(label, style = PLType.small, color = PL.Ink)
+        androidx.compose.foundation.text.BasicTextField(
+            value, onValueChange, singleLine = true, interactionSource = source,
+            keyboardOptions = keyboardOptions, keyboardActions = keyboardActions,
+            textStyle = PLType.body.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Normal, color = PL.Ink),
+            cursorBrush = androidx.compose.ui.graphics.SolidColor(PL.Lapis),
+            modifier = Modifier.fillMaxWidth().semantics { contentDescription = label }.clip(shape).background(PL.White)
+                .border(if (focused) 3.dp else 2.dp, if (focused) PL.Lapis else PL.Hairline2, shape).padding(horizontal = 14.dp, vertical = 12.dp),
+        )
+    }
+}
+
+@Composable
+fun PLDialog(title: String, onDismiss: () -> Unit, closeLabel: String = "Close", content: @Composable ColumnScope.() -> Unit) {
+    androidx.compose.ui.window.Dialog(onDismissRequest = onDismiss) {
+        PLCard {
+            Text(title, style = PLType.heading, color = PL.Tyrian)
+            content()
+            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) { PlainLink(closeLabel, onClick = onDismiss) }
+        }
+    }
+}
+
+data class ToggleColors(val bg: Color, val fg: Color, val line: Color)
+
+object PLToggleStyle {
+    fun of(checked: Boolean, onDark: Boolean) = when {
+        onDark && checked -> ToggleColors(PL.Paper, PL.Tyrian, PL.Paper)
+        onDark -> ToggleColors(Color.Transparent, PL.Paper, PL.PaperDim)
+        checked -> ToggleColors(PL.Ink, PL.Paper, PL.Ink)
+        else -> ToggleColors(PL.White, PL.Ink, PL.Hairline2)
+    }
+}
+
+@Composable
+fun PLToggle(checked: Boolean, onCheckedChange: (Boolean) -> Unit, label: String, modifier: Modifier = Modifier, onLabel: String = "On", offLabel: String = "Off", onDark: Boolean = false) {
+    val c = PLToggleStyle.of(checked, onDark)
+    val shape = RoundedCornerShape(PLRadius.pill)
+    Box(
+        modifier.heightIn(min = 44.dp).clip(shape).background(c.bg).border(2.dp, c.line, shape)
+            .toggleable(checked, role = Role.Switch, onValueChange = onCheckedChange)
+            .semantics { contentDescription = label }.padding(horizontal = PLSpace.s3),
+        contentAlignment = Alignment.Center,
+    ) { Text(if (checked) onLabel else offLabel, color = c.fg, style = PLType.small.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold)) }
+}

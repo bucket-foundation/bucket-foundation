@@ -7,11 +7,20 @@ object Plan {
     const val LIFETIME = "com.polingual.lifetime"
     val subscriptions = listOf(YEARLY, MONTHLY, FAMILY)
     val paid = subscriptions + LIFETIME
-    const val TRIAL_DAYS = 3
+    const val TRIAL_DAYS = 7
+    const val REMINDER_DAYS_BEFORE = 2
+    const val YEARLY_USD = 59.99
     const val TERMS = "https://polingual.com/terms"
     const val PRIVACY = "https://polingual.com/privacy"
 
-    fun hasTrial(id: String) = id == YEARLY || id == MONTHLY
+    fun hasTrial(id: String) = id == YEARLY
+    fun perWeek(yearly: Double): String = "$" + String.format(java.util.Locale.US, "%.2f", Math.round(yearly / 52 * 100) / 100.0) + " a week"
+    fun shown(ids: List<String>, all: Boolean): List<String> = if (all) ids else ids.filter { it == YEARLY }.ifEmpty { ids }
+    fun timeline(price: String): List<Pair<String, String>> = listOf(
+        "Today" to "Every language opens. No payment now.",
+        "Day ${TRIAL_DAYS - REMINDER_DAYS_BEFORE}" to "We remind you that your trial ends in $REMINDER_DAYS_BEFORE days.",
+        "Day $TRIAL_DAYS" to "You are charged $price. Cancel anytime before then and you pay nothing.",
+    )
     fun title(id: String) = when (id) { YEARLY -> "Yearly"; MONTHLY -> "Monthly"; FAMILY -> "Family"; LIFETIME -> "Lifetime"; else -> id }
     fun period(id: String) = when (id) { MONTHLY -> "month"; LIFETIME -> "once"; else -> "year" }
 }
@@ -46,7 +55,7 @@ object Entitlement {
         return if (best.trial) Access.Trial(best.productId) else Access.Subscribed(best.productId)
     }
 
-    fun trialEligible(history: List<String>) = history.none { it in Plan.subscriptions }
+    fun trialEligible(history: List<String>, serverUsed: Boolean = false) = !serverUsed && history.none { it in Plan.subscriptions }
 
     fun disclosure(trial: Boolean, price: String, period: String, family: Boolean = false): String {
         if (period == "once") return "$price once. Charged to your Google Play account. No subscription and no renewal."

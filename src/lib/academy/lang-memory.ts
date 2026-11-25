@@ -1,4 +1,5 @@
 import { mergeState, normalizeState, type EngineState } from "./engine";
+import { laterCard } from "./card-merge";
 import type { Card } from "./fsrs";
 import { parseCardId, progressBranch, type LangCard, type LangSystem } from "./lang-systems";
 import { LANG_ATOMS_VERSION, orderLog, replay, type ReviewRow } from "./replay";
@@ -87,7 +88,7 @@ export function withRows(m: LangMemory, rows: readonly LangRow[]): LangMemory {
 function pickCard(a: Card | undefined, b: Card | undefined): Card | undefined {
   if (!a) return b;
   if (!b) return a;
-  const newer = (b.lastReview || 0) > (a.lastReview || 0) ? b : a;
+  const newer = laterCard(a, b)!;
   const ia = (a as LangCard).introduced;
   const ib = (b as LangCard).introduced;
   const introduced = ia && ib ? (earlierDay(ia, ib) ? ia : ib) : ia ?? ib;

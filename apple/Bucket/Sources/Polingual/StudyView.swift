@@ -62,7 +62,7 @@ struct StudyView: View {
         guard let system = store.system(systemId), let ex = current, let item = store.corpus?.byId[ex.itemId] else { return [] }
         let forms = system.targets.compactMap { l in item.form(l).map { ShareForm(lang: l, form: $0) } }
         let gloss = item.form(system.root) ?? item.gloss
-        return [.word(id: item.id, gloss: gloss, forms: forms)] + forms.map { .tile(form: $0, gloss: gloss, reading: nil) }
+        return [.word(id: item.id, gloss: gloss, forms: ShareForm.leading(system.root, gloss, forms))] + forms.map { .tile(form: $0, gloss: gloss, reading: nil) }
     }
 
     var sharePage: SharePage? {
@@ -77,6 +77,7 @@ struct StudyView: View {
 
     func startIfReady() {
         guard queue == nil, store.status == .ready, let system = store.system(systemId), let corpus = store.corpus else { return }
+        store.adoptSiblings(systemId)
         let state = store.state(systemId)
         xpStart = state.xp
         let wanted = WantedWords.take(systemId, carded: { id in system.targets.contains { state.cards.has(cardId($0, id)) } })
@@ -241,6 +242,7 @@ struct StudyView: View {
                             .onAppear {
                                 haptic(true)
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
+                                FirstLesson.mark(graded: graded)
                             }
                         Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
                         SessionTally(correct: correct, graded: graded, met: met, xp: Int(state.xp - xpStart), streak: Int(state.streak))

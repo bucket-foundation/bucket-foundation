@@ -51,6 +51,22 @@ class BucketApiTest {
     }
 
     @Test
+    fun progressPushSendsVersionAndReportsStale() = runTest {
+        val seen = mutableListOf<String>()
+        val r = api(409, """{"error":"stale","stale":["x"]}""", seen).progressPush("t", "x", JsonPrimitive(1), "2026-11-24T10:00:00.123456+00:00")
+        assertEquals(PushResult.Stale, r)
+        assertTrue(!r.settled)
+        assertEquals("""POST /api/academy/progress? {"branch":"x","data":1,"version":"2026-11-24T10:00:00.123456+00:00"}""", seen.single())
+    }
+
+    @Test
+    fun aGuardedFirstPushSendsVersionNull() = runTest {
+        val seen = mutableListOf<String>()
+        api(200, "{}", seen).progressPush("t", "x", JsonPrimitive(1), null, guarded = true)
+        assertEquals("""POST /api/academy/progress? {"branch":"x","data":1,"version":null}""", seen.single())
+    }
+
+    @Test
     fun progressPushReportsBlankOverwriteAsRefusedAndSettled() = runTest {
         val r = api(409, """{"error":"blank_overwrite","branches":["x"]}""").progressPush("t", "x", JsonPrimitive(1))
         assertEquals(PushResult.Refused, r)
@@ -69,6 +85,17 @@ class BucketApiTest {
     @Test
     fun undecodableReplyIsDecodingError() = runTest {
         assertFailsWith<BucketError.Decoding> { api(200, "<html>").verify("a@b.co", "123456") }
+    }
+    @Test
+    fun playVerifySendsPurchase() = runTest {
+        val seen = mutableListOf<String>()
+        assertTrue(api(200, """{"ok":true,"state":"trialing"}""", seen).playVerify("t", "com.polingual.app", "com.polingual.yearly", "tok"))
+        assertEquals("""POST /api/play/verify? {"packageName":"com.polingual.app","productId":"com.polingual.yearly","purchaseToken":"tok"}""", seen.single())
+    }
+
+    @Test
+    fun playVerifyRefusalThrows() = runTest {
+        assertFailsWith<BucketError> { api(409, """{"error":"token_bound"}""").playVerify("t", "p", "x", "tok") }
     }
 }
 
@@ -94,5 +121,6 @@ class ScienceApiTest {
         assertTrue(seen.last().contains("q=entropy") && seen.last().contains("top_k=20"))
         assertEquals("/academy-app/corpus/physics.json?", seen[1])
     }
+
 
 }

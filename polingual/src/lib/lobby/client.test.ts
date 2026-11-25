@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { blockCacheKey, canModerate, CHAT_REPORT_REASONS, readBlockCache, visibleMessages, writeBlockCache } from "./moderation";
 import { answeredRound, botLabel, flagEmoji, cleanNickname, gameProgress, gameSeconds, langFlag, livesLeft, ranked, revealOrder, streakOf, LobbyApi, LobbyError, memoryGuestStore, missedWords, newGuestId, phaseAt, resolveIdentity, serverOffset, shareUrl, standings, tallyLate, TALLY_WAIT_MS, tokenFresh, type WebLobbyState } from "./client";
 
 test("phase follows the server clock", () => {
@@ -101,6 +102,24 @@ test("identity keeps the guest when merge fails so a retry can run", async () =>
   assert.equal(store.value?.token, "gt");
 });
 
+test("a merged guest is cleared when signed in and replaced when signed out", async () => {
+  const merged = () => { throw new LobbyError("guest_merged", 409); };
+  const signedIn = memoryGuestStore({ guestId: "aa", nickname: "Ana", token: "gt", expiresAt: new Date(1).toISOString() });
+  assert.deepEqual(await resolveIdentity({ api: { guest: async () => merged(), merge: async () => {} }, store: signedIn, account: async () => "acct", now: () => 0 }), { token: "acct", kind: "account" });
+  assert.equal(signedIn.value, null);
+  const ids: string[] = [];
+  const signedOut = memoryGuestStore({ guestId: "aa", nickname: "Ana", token: "gt", expiresAt: new Date(1).toISOString() });
+  const api = { guest: async (id: string, nick: string) => { ids.push(id); if (id === "aa") merged(); return { token: `gt-${id}`, userId: `g-${id}` }; }, merge: async () => {} };
+  const got = await resolveIdentity({ api, store: signedOut, account: async () => null, now: () => 0 });
+  assert.equal(got?.kind, "guest");
+  assert.equal(ids[0], "aa");
+  assert.notEqual(ids[1], "aa");
+  assert.equal(signedOut.value?.guestId, ids[1]);
+  const other = memoryGuestStore({ guestId: "bb", nickname: "Ana", token: "gt", expiresAt: new Date(1).toISOString() });
+  await assert.rejects(resolveIdentity({ api: { guest: async () => { throw new LobbyError("rate_limited", 429); }, merge: async () => {} }, store: other, account: async () => null, now: () => 0 }));
+  assert.equal(other.value?.guestId, "bb");
+});
+
 test("identity issues a guest token and reuses it until the nickname changes", async () => {
   const f = fakeApi();
   const store = memoryGuestStore();
@@ -171,4 +190,28 @@ test("bots render a flag and a skill label", () => {
   assert.equal(botLabel({ bot: true, skill: "hard" }), "bot · hard");
   assert.equal(botLabel({ bot: true, skill: null }), "bot");
   assert.equal(botLabel({ bot: false, skill: null }), null);
+});
+
+test("block cache is per account and survives bad storage", () => {
+  const store = new Map<string, string>();
+  const g = globalThis as Record<string, unknown>;
+  const prev = g.localStorage;
+  g.localStorage = { getItem: (k: string) => store.get(k) ?? null, setItem: (k: string, v: string) => void store.set(k, v) };
+  try {
+    assert.equal(blockCacheKey("u1"), "polingual-web/chat-blocks/v1:u1");
+    assert.equal(readBlockCache("u1"), null);
+    writeBlockCache("u1", [{ userId: "u2", name: "Bo", at: "" }]);
+    writeBlockCache("u1", [{ userId: "u3", name: "Cy", at: "" }]);
+    assert.deepEqual(readBlockCache("u1")?.map((b) => b.userId), ["u3"]);
+    assert.equal(readBlockCache("u9"), null);
+    store.set(blockCacheKey("u4"), "{bad");
+    assert.equal(readBlockCache("u4"), null);
+    store.set(blockCacheKey("u5"), JSON.stringify([{ userId: "u2" }, { nope: 1 }]));
+    assert.deepEqual(readBlockCache("u5")?.length, 1);
+    g.localStorage = { getItem: () => { throw new Error("denied"); }, setItem: () => { throw new Error("denied"); } };
+    assert.equal(readBlockCache("u1"), null);
+    writeBlockCache("u1", []);
+  } finally {
+    g.localStorage = prev;
+  }
 });

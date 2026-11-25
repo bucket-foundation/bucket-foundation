@@ -10,6 +10,10 @@ struct UsernameTests {
         #expect(Username.normalize("gia-") == nil)
         #expect(Username.normalize("gia rossi") == nil)
         #expect(Username.normalize("admin") == nil)
+        for h in ["polingual", "support", "help", "staff", "official", "moderator", "mod", "team", "root", "system"] {
+            #expect(Username.normalize(h) == nil)
+        }
+        #expect(Username.normalize("teamwork") == "teamwork")
         #expect(Username.normalize(String(repeating: "a", count: 32)) != nil)
         #expect(Username.normalize(String(repeating: "a", count: 33)) == nil)
     }

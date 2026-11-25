@@ -224,3 +224,21 @@ private let standings = ShareStandings(group: "Rossi family", rows: [
     #expect(MasteredWord.named(four, count: 4) == nil)
     #expect(MasteredWord.named(Array(four.prefix(2)), count: 9) == nil)
 }
+
+@Suite struct ShareFormLeadingTests {
+    @Test func rootFormLeadsWhenTargetsLeaveItOut() {
+        let forms = ShareForm.leading("en", "night", [spanish, ShareForm(lang: "fr", form: "nuit")])
+        #expect(forms.map(\.lang) == ["en", "es", "fr"])
+        #expect(forms.first?.form == "night")
+    }
+
+    @Test func rootAlreadyPresentMovesFirstAndKeepsItsForm() {
+        let forms = ShareForm.leading("en", "Night", [spanish, ShareForm(lang: "en", form: "night")])
+        #expect(forms.map(\.lang) == ["en", "es"])
+        #expect(forms.first?.form == "night")
+    }
+
+    @Test func emptyRootFormLeavesFormsAlone() {
+        #expect(ShareForm.leading("en", "", [spanish]) == [spanish])
+    }
+}

@@ -6,6 +6,8 @@ import { useLangSystem } from "@learn/languages/useLangSystem";
 import { useCefrPlacement } from "@learn/languages/useCefrPlacement";
 import LangExercise from "@learn/languages/LangExercise";
 import { appHref } from "@/lib/app/systems";
+import { onboarding } from "@/lib/funnel";
+import { useEffect } from "react";
 import styles from "../../app.module.css";
 import { Button, ButtonLink, Card, Stage } from "@/ui";
 
@@ -48,6 +50,7 @@ function PlacementDone({ h, system, lang, result, asked }: { h: ReturnType<typeo
 export default function Placement({ systemId, lang: requested }: { systemId: string; lang: string | null }) {
   const h = useLangSystem(systemId);
   const run = useCefrPlacement(h, requested);
+  useEffect(() => onboarding("placement"), []);
   const { system } = h;
 
   if (h.status === "loading") return <Stage ground="paper"><p className={styles.muted} aria-busy="true">Loading placement</p></Stage>;

@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
-import foundation.bucket.core.engine.Streak
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
 import foundation.bucket.core.ui.LocalPalette
@@ -27,10 +26,12 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
     Page("Today", ground = Ground.Diagonal, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 58.dp, 10f), Sticker("script-ru", Alignment.BottomEnd, 72.dp, -5f, dx = (-8).dp))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(system?.name ?: "No language set yet", style = Type.body, color = p.muted, modifier = Modifier.weight(1f))
-            StreakFlame(Streak.count(study?.days.orEmpty(), today()))
+            StreakFlame(syncedStreak(study))
         }
         if (system != null) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { system.targets.forEach { FlagTile(it, 44.dp) } }
         if (system == null) PrimaryButton("Pick languages", color = PL.Lapis) { nav.navigate("system/new") }
+        if (system != null) TodayPlanCard(graph, nav)
+        if (system != null) AskNotificationsOnce(graph)
         TodayExtras(graph, nav)
     }
 }

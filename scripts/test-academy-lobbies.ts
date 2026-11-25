@@ -17,6 +17,7 @@ import {
   visiblePrompts,
   gameEndMs,
   nativePlayable,
+  nativePlays,
   REVEAL_SECONDS,
   revealEnabled,
   finished,
@@ -136,6 +137,20 @@ test("native clients list only games they can play on the plain clock", () => {
   assert.equal(nativePlayable(lobby()), true);
   assert.equal(nativePlayable(lobby({ game: "tiles" })), false);
   assert.equal(nativePlayable(lobby({ reveal_seconds: 3 })), false);
+  const plays = nativePlays("tiles, duel,reveal");
+  assert.equal(nativePlayable(lobby({ game: "duel", reveal_seconds: 3 }), false, plays), true);
+  assert.equal(nativePlayable(lobby({ game: "tiles" }), false, plays), true);
+  assert.equal(nativePlayable(lobby({ game: "duel", reveal_seconds: 3 }), false, nativePlays("duel")), false);
+  assert.equal(nativePlayable(lobby({ game: "spy" }), false, plays), false);
+  assert.deepEqual(Array.from(nativePlays(null)), []);
+});
+
+test("a native header naming an unlisted game is refused", () => {
+  const declared = nativePlays("spy, SPY, Tiles, made-up");
+  assert.deepEqual(Array.from(declared).sort(), ["tiles"]);
+  assert.equal(nativePlayable(lobby({ game: "spy" }), false, declared), false);
+  assert.equal(nativePlayable(lobby({ game: "spy" }), false, nativePlays("spy")), false);
+  assert.equal(nativePlayable(lobby({ game: "tiles" }), false, declared), true);
 });
 
 test("points reward speed and give nothing for a miss", () => {
@@ -277,6 +292,27 @@ test("migration keeps lobby tables private and limits joins in the database", ()
   assert.match(sql, /primary key \(lobby_id, user_id, round\)/);
   assert.match(sql, /revoke all on bucket\.lobby_prompts, bucket\.lobby_limits from anon, authenticated/);
   assert.match(sql, /check \(answer = any \(choices\)\)/);
+});
+
+test("a merged guest token stops working", async () => {
+  const g = await import("../src/lib/academy/lobby-guests");
+  const secret = "s".repeat(40);
+  const t = g.issueGuestToken("merged_guest-id-123456", "Ana", secret, 1_000);
+  const revoked = new Set<string>();
+  assert.equal((await g.liveGuest(t.token, secret, 2_000, async (s) => revoked.has(s)))?.sub, t.userId);
+  revoked.add(t.userId);
+  assert.equal(await g.liveGuest(t.token, secret, 2_000, async (s) => revoked.has(s)), null);
+  const merge = readFileSync(join(__dirname, "..", "src/app/api/academy/lobbies/guest/merge/route.ts"), "utf8");
+  assert.ok(merge.indexOf("revokeGuest(claims.sub)") > merge.indexOf("merge_lobby_guest"));
+  const sql = readFileSync(join(__dirname, "..", "supabase/migrations/20261124200000_polingual_lobby_guest_revoked.sql"), "utf8");
+  assert.match(sql, /revoke all on bucket.lobby_guest_revoked from public, anon, authenticated/);
+});
+
+test("revoking a guest twice inserts once and needs no update grant", () => {
+  const server = readFileSync(join(__dirname, "..", "src/lib/academy/lobbies-server.ts"), "utf8");
+  assert.match(server, /from\(GUEST_REVOKED\)\.upsert\(\{ guest_id: sub \}, \{ onConflict: "guest_id", ignoreDuplicates: true \}\)/);
+  const grant = readFileSync(join(__dirname, "..", "supabase/migrations/20261124220000_polingual_lobby_guest_revoked_update.sql"), "utf8");
+  assert.match(grant, /grant select, insert, update, delete on bucket\.lobby_guest_revoked to service_role;/);
 });
 
 test("guest tokens sign a stable user id and refuse tampering or expiry", async () => {

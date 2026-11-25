@@ -267,7 +267,7 @@ test("the webhook checks the signature before a gift is recorded", async () => {
   const f = fulfil();
   const payload = JSON.stringify(event());
   const t = Math.floor(NOW / 1000);
-  const deps = { secret: () => "whsec_x", now: () => NOW, record: async () => true, gift: (e: unknown) => handleGiftEvent(f.deps, e) };
+  const deps = { secret: () => "whsec_x", now: () => NOW, record: async () => true, current: async () => null, byCustomer: async () => null, chargeCustomer: async () => null, patch: async () => true, gift: (e: unknown) => handleGiftEvent(f.deps, e) };
   assert.equal((await handleWebhook(deps, payload, sign(payload, "wrong", t))).status, 400);
   assert.equal((await handleWebhook(deps, payload, sign(payload, "whsec_x", t - 1000))).status, 400);
   assert.equal((await handleWebhook(deps, payload, null)).status, 400);

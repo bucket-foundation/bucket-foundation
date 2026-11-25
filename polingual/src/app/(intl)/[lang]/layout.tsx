@@ -7,7 +7,7 @@ import { SITE_LANGS, localeInfo } from "@/lib/word-i18n";
 
 type Props = { children: React.ReactNode; params: Promise<{ lang: string }> };
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return SITE_LANGS.map((lang) => ({ lang }));

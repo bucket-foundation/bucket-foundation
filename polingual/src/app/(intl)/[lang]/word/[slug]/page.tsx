@@ -4,13 +4,15 @@ import { WordView } from "@/app/(site)/word/views";
 import { WORDS, word } from "@/lib/words";
 import { SITE_LANGS } from "@/lib/word-i18n";
 import { wordMeta } from "@/lib/word-meta";
+import { INDEXED_WORD_LOCALES } from "@/lib/rollout";
 
 type Props = { params: Promise<{ lang: string; slug: string }> };
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 2592000;
 
 export function generateStaticParams() {
-  return SITE_LANGS.flatMap((lang) => WORDS.map((w) => ({ lang, slug: w.slug })));
+  return INDEXED_WORD_LOCALES.flatMap((lang) => WORDS.map((w) => ({ lang, slug: w.slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

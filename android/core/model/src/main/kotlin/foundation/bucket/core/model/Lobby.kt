@@ -15,6 +15,22 @@ enum class LobbyGame(val wire: String, val title: String) {
     @SerialName("tiles") Tiles("tiles", "Word Tiles"),
     @SerialName("duel") Duel("duel", "Flag Duel"),
     @SerialName("spy") Spy("spy", "I Spy"),
+    @SerialName("mini") Mini("mini", "Mini"),
+    @SerialName("word-groups") WordGroups("word-groups", "Word Groups"),
+    @SerialName("match") Match("match", "Speed Match"),
+    @SerialName("voice") Voice("voice", "Which Voice"),
+    @SerialName("letters") Letters("letters", "Letter Sprint"),
+    @SerialName("polyword") Polyword("polyword", "Polyword"),
+    @SerialName("flag-tiles") FlagTiles("flag-tiles", "Flag Tiles"),
+    @SerialName("babel") Babel("babel", "Babel Match"),
+    @SerialName("shift") Shift("shift", "Shift"),
+    @SerialName("snake") Snake("snake", "Word Snake"),
+    @SerialName("atlas") Atlas("atlas", "Voice Atlas"),
+    @SerialName("forehead") Forehead("forehead", "Forehead"),
+    @SerialName("ispy") ISpy("ispy", "I Spy Race"),
+    @SerialName("flag-duel") FlagDuel("flag-duel", "Flag Duel Race");
+
+    val isRace: Boolean get() = this in LobbyGames.race
 }
 
 @Serializable
@@ -116,7 +132,15 @@ data class Lobby(
     val me: LobbyPlayer? get() = players.firstOrNull { it.isMe }
     val readyCount: Int get() = players.count { it.ready }
     val canStart: Boolean get() = isHost && status == LobbyStatus.Lobby && readyCount >= LobbyRules.MIN_READY
-    val standings: List<LobbyPlayer> get() = players.sortedWith(compareByDescending<LobbyPlayer> { it.score }.thenBy { it.name })
+    val standings: List<LobbyPlayer> get() {
+        if (!game.isRace) return players.sortedWith(compareByDescending<LobbyPlayer> { it.score }.thenBy { it.name })
+        val ms = results.groupBy { it.userId }.mapValues { (_, r) -> r.first().ms }
+        return players.sortedWith(compareByDescending<LobbyPlayer> { it.score }.thenBy { ms[it.userId] ?: Int.MAX_VALUE }.thenBy { it.name })
+    }
+    val raceKey: String get() = LobbyRace.dayKey(seed)
+    val playSeconds: Double get() = rounds * roundSeconds + maxOf(0, rounds - 1) * revealSeconds.toDouble()
+    val raceFinishers: Set<String> get() = results.map { it.userId }.toSet()
+    fun raceRemaining(nowMs: Long): Double = startedAt?.let(::parseInstantMs)?.let { maxOf(0.0, playSeconds - (nowMs - it) / 1000.0) } ?: 0.0
     fun prompt(round: Int) = prompts.firstOrNull { it.round == round }
     fun results(round: Int) = results.filter { it.round == round }
     fun doubled(round: Int) = powers.any { it.round == round && it.kind == PowerKind.Double }
@@ -124,12 +148,40 @@ data class Lobby(
 }
 
 object LobbyGames {
-    val native = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Duel, LobbyGame.Tiles)
+    val prompt = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Duel, LobbyGame.Tiles, LobbyGame.Spy)
+    val race = listOf(LobbyGame.Mini, LobbyGame.WordGroups, LobbyGame.Match, LobbyGame.Voice, LobbyGame.Letters, LobbyGame.Polyword, LobbyGame.FlagTiles, LobbyGame.Babel, LobbyGame.Shift, LobbyGame.Snake, LobbyGame.Atlas, LobbyGame.Forehead, LobbyGame.ISpy, LobbyGame.FlagDuel)
+    val raceOnAndroid = setOf(LobbyGame.FlagTiles, LobbyGame.Shift, LobbyGame.Atlas)
+    const val PLAYS_HEADER = "x-polingual-plays"
+    val nativeExtras = listOf(LobbyGame.Tiles, LobbyGame.Duel)
+    val plays: String = (nativeExtras.map { it.wire } + "reveal").joinToString(",")
     private val fallback = setOf("daily", "same-word", "flags", "live", "tiles")
 
-    fun offered(server: List<String>): List<LobbyGame> {
+    fun offered(server: List<String>, raceServer: List<String> = emptyList()): List<LobbyGame> {
         val allowed = server.ifEmpty { fallback.toList() }.toSet()
-        return native.filter { it.wire in allowed }
+        val racing = raceServer.toSet()
+        return prompt.filter { it.wire in allowed } + race.filter { it.wire in racing }
+    }
+
+    fun playable(game: LobbyGame): Boolean = !game.isRace || game in raceOnAndroid
+}
+
+object LobbyRace {
+    const val SCORE_MAX = 100_000
+    const val HEADER = "x-polingual-race"
+
+    fun seedValue(seed: String): ULong = seed.toULongOrNull() ?: fnv(seed)
+
+    fun dayKey(seed: String): String = "race-${seedValue(seed)}"
+
+    fun score(points: Int?, hits: Int): Int = (points ?: (hits * 100)).coerceIn(0, SCORE_MAX)
+
+    private fun fnv(text: String): ULong {
+        var h = 0xcbf29ce484222325uL
+        for (b in text.encodeToByteArray()) {
+            h = h xor b.toUByte().toULong()
+            h *= 0x100000001b3uL
+        }
+        return h
     }
 }
 
@@ -179,3 +231,11 @@ object InterstitialPacer {
     fun due(finishedGame: Boolean, lastShownMs: Long?, gamesFinished: Int, nowMs: Long): Boolean =
         finishedGame && gamesFinished >= 2 && (lastShownMs == null || nowMs - lastShownMs >= MIN_GAP_MS)
 }
+
+enum class ChatReportReason(val wire: String) { OffensiveName("offensive_name"), Harassment("harassment"), Spam("spam"), Other("other") }
+
+@Serializable
+data class ChatBlock(val userId: String, val name: String, val at: String = "")
+
+@Serializable
+data class ChatBlocksReply(val blocks: List<ChatBlock>)

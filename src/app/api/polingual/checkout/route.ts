@@ -2,18 +2,39 @@ import type { NextRequest } from "next/server";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { checkoutConfig, handleCheckout } from "@/lib/billing/polingual-checkout";
+import { attachOffer, entitlementStoreConfigured, offerUsed, releaseOffer, reserveOffer, readEntitlementState, readStripeCustomer } from "@/lib/billing/entitlement-store";
+import { trialSources } from "@/lib/billing/trial-sources";
+import { trialUsed } from "@/lib/billing/trial-used";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const STRIPE_API = process.env.STRIPE_API_BASE ?? "https://api.stripe.com";
 
+function withEmail(body: unknown, email: string | null): unknown {
+  const b = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
+  return email && typeof b.email !== "string" ? { ...b, email } : body;
+}
+
 export async function POST(req: NextRequest): Promise<Response> {
+  const user = verifyRequestUser(req);
   try {
     const r = await handleCheckout(
       {
-        config: () => checkoutConfig(process.env),
-        userId: async () => (await verifyRequestUser(req))?.id ?? null,
+        config: () => (entitlementStoreConfigured() ? checkoutConfig(process.env) : null),
+        userId: async () => (await user)?.id ?? null,
+        currentStatus: async (uid) => (await readEntitlementState(uid, "polingual"))?.status ?? null,
+        trialSubscription: async (uid) => {
+          const row = await readEntitlementState(uid, "polingual");
+          return row?.status === "trialing" ? row.stripe_subscription : null;
+        },
+        offerUsed,
+        reserveOffer,
+        attachOffer,
+        releaseOffer,
+        trialHistory: async (uid) => {
+          return { used: await trialUsed(trialSources(uid)), customer: await readStripeCustomer(uid, "polingual") };
+        },
         createSession: async (cfg, form) => {
           const res = await fetch(`${STRIPE_API}/v1/checkout/sessions`, {
             method: "POST",
@@ -25,7 +46,7 @@ export async function POST(req: NextRequest): Promise<Response> {
           return { url: res.ok ? (j.url ?? null) : null, id: j.id ?? null };
         },
       },
-      await readJson(req),
+      withEmail(await readJson(req), (await user)?.email ?? null),
     );
     return jsonResponse(r.body, r.status);
   } catch (e) {

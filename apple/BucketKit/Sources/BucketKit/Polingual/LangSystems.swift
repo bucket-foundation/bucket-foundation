@@ -509,6 +509,27 @@ public func progressBranch(_ s: LangSystem) -> String { String("lang-sys-\(s.id)
 public func cardId(_ lang: String, _ itemId: String) -> String { "\(lang):\(itemId)" }
 public func isSentenceCard(_ id: String) -> Bool { parseCardId(id).itemId.hasPrefix("sent:") }
 
+public func adoptSiblingCards(_ state: EngineState, langs: [String], from siblings: [EngineState]) -> EngineState {
+    let wanted = Set(langs)
+    var next = state
+    for sibling in siblings {
+        for (id, card) in sibling.cards.entries where isStarted(card) && wanted.contains(parseCardId(id).lang) {
+            guard adopts(card, over: next.cards[id]) else { continue }
+            next.cards[id] = card
+            next.prof[id] = sibling.prof[id]
+        }
+    }
+    return next
+}
+
+func adopts(_ card: Card, over mine: Card?) -> Bool {
+    guard let mine, isStarted(mine) else { return true }
+    let placedOnly = untouchedPlaced(card)
+    let minePlacedOnly = untouchedPlaced(mine)
+    if placedOnly != minePlacedOnly { return minePlacedOnly }
+    return or(card.lastReview, 0) > or(mine.lastReview, 0)
+}
+
 public func parseCardId(_ id: String) -> (lang: String, itemId: String) {
     guard let i = id.firstIndex(of: ":") else { return ("", id) }
     return (String(id[..<i]), String(id[id.index(after: i)...]))
@@ -1042,6 +1063,10 @@ public func newToday(_ state: EngineState, _ lang: String, now: Double, tz: Time
     return state.cards.entries.filter { parseCardId($0.key).lang == lang && !isSentenceCard($0.key) && $0.value.introduced == dk && !($0.value.placed ?? false) }.count
 }
 
+public func langNewLeft(_ system: LangSystem, _ state: EngineState, now: Double, tz: TimeZone = .current) -> Int {
+    system.targets.reduce(0) { $0 + max(0, Lang.newPerLangPerDay - newToday(state, $1, now: now, tz: tz)) }
+}
+
 public struct UnitStatus: Sendable, Identifiable {
     public let unit: LangUnit
     public let total: Int
@@ -1469,6 +1494,32 @@ public func langProgress(_ system: LangSystem, _ corpus: LangCorpus, _ state: En
         return LangProgress(lang: lang, total: items.count, started: started, mastered: mastered, due: due, retention: started > 0 ? rSum / Double(started) : 0,
                             placedAt: system.placement[lang], grammarStarted: grammar.filter { state.cards.started(cardId(lang, $0.id)) }.count, grammarTotal: grammar.count)
     }
+}
+
+public struct LangDayTotals: Sendable, Equatable {
+    public let due: Int
+    public let new: Int
+}
+
+public func langDayTotals(_ sets: [(system: LangSystem, state: EngineState)], _ corpus: LangCorpus, now: Double, tz: TimeZone = .current) -> LangDayTotals {
+    let dk = dayKey(now, tz: tz)
+    var due = Set<String>()
+    var budget: [String: Int] = [:]
+    var introduced: [String: Set<String>] = [:]
+    for (system, state) in sets {
+        for lang in system.targets {
+            budget[lang] = Lang.newPerLangPerDay
+            for i in corpus.items where usable(i, system.root, lang) {
+                let id = cardId(lang, i.id)
+                if let c = state.cards[id], isStarted(c), let d = c.due, d <= now { due.insert(id) }
+            }
+        }
+        for (id, c) in state.cards.entries where c.introduced == dk && !(c.placed ?? false) && !isSentenceCard(id) {
+            let lang = parseCardId(id).lang
+            if system.targets.contains(lang) { introduced[lang, default: []].insert(id) }
+        }
+    }
+    return LangDayTotals(due: due.count, new: budget.reduce(0) { $0 + max(0, $1.value - (introduced[$1.key]?.count ?? 0)) })
 }
 
 public func masteredWords(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, lang: String) -> [MasteredWord] {

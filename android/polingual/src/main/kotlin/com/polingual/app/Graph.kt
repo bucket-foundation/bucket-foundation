@@ -10,10 +10,15 @@ import foundation.bucket.core.data.AppStore
 import foundation.bucket.core.data.CorpusRepo
 import foundation.bucket.core.data.KeystoreVault
 import foundation.bucket.core.data.PrefsKeyValue
+import foundation.bucket.core.data.StudySync
 import foundation.bucket.core.data.SystemsSync
 import foundation.bucket.core.model.LangSystem
 import foundation.bucket.core.net.BucketApi
 import io.ktor.client.HttpClient
+import io.ktor.client.request.header
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.http.contentType
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +42,17 @@ class Graph(val context: Context) {
     val corpus = CorpusRepo(context)
     val account = Account(api, KeystoreVault(context))
     val kv = PrefsKeyValue(context)
+    val funnel = Funnel(kv, { UUID.randomUUID().toString() }) { body ->
+        http.post(Funnel.EVENTS_URL) {
+            header("x-polingual-client", Funnel.CLIENT)
+            contentType(io.ktor.http.ContentType.Application.Json)
+            setBody(body)
+        }
+    }
+    fun track(name: String, detail: String? = null) { scope.launch { funnel.send(name, detail) } }
+    val todayPlan = TodayPlanStore(kv)
+    val reminders = Reminders(context, kv)
+    val rewards = Rewards(kv)
     val state: StateFlow<AppState?> = store.state.stateIn(scope, SharingStarted.Eagerly, null)
     val guest = GuestPass(api, kv, nickname = { state.value?.nickname.orEmpty() })
     val lobbies = LobbyStore(api, userToken = { account.token() }, guest = guest)
@@ -44,6 +60,10 @@ class Graph(val context: Context) {
     val silent: StateFlow<Boolean> = silentSetting.on
     fun setSilent(on: Boolean) = silentSetting.set(on)
     val voice = Voice(context) { silentSetting.on.value }
+    val chatBlocks = foundation.bucket.core.auth.ChatBlocks(kv, api) {
+        account.token()?.let { t -> account.userId?.let { foundation.bucket.core.auth.ChatIdentity(it, t) } }
+            ?: guest.token()?.let { t -> guest.userId?.let { foundation.bucket.core.auth.ChatIdentity(it, t) } }
+    }
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
     val radio = Radio(context)
     val billing = Billing(context, this)
@@ -83,13 +103,14 @@ class Graph(val context: Context) {
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
-            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncDaily() }
+            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily() }
             var last = account.stage.value
             account.stage.collect { stage ->
                 if (stage == Stage.SignedIn && last != Stage.SignedIn) {
                     store.update { it.copy(savePrompt = false) }
                     lobbies.mergeGuest()
                     syncSystems()
+                    syncStudy()
                     syncDaily()
                 }
                 last = stage
@@ -124,5 +145,34 @@ class Graph(val context: Context) {
         val systems = SystemsSync.systems(merged)
         store.update { it.copy(systems = systems, activeSystem = it.activeSystem?.takeIf { id -> systems.any { s -> s.id == id } } ?: systems.firstOrNull()?.id) }
         if (merged != remote) api.progressPush(t, SystemsSync.BRANCH, merged).also { if (it == foundation.bucket.core.net.PushResult.Refused) android.util.Log.w("polingual", "server refused a blank systems overwrite") }.settled else true
+    }
+
+    private var studyPush: kotlinx.coroutines.Job? = null
+
+    fun syncStudySoon() {
+        studyPush?.cancel()
+        studyPush = scope.launch { kotlinx.coroutines.delay(5_000); syncStudy() }
+    }
+
+    suspend fun syncStudy(): Boolean = syncLock.withLock {
+        val t = account.token() ?: return@withLock false
+        var ok = true
+        for (sys in store.current().systems) {
+            val branch = StudySync.branch(sys.id)
+            val local = store.current().study[sys.id] ?: foundation.bucket.core.engine.StudyState()
+            val pull: suspend () -> StudySync.Remote? = {
+                api.progressPull(t)?.let { b -> (b[branch] as? JsonObject).let { row -> StudySync.Remote(row?.get("data"), (row?.get("updated_at") as? kotlinx.serialization.json.JsonPrimitive)?.content) } }
+            }
+            val merged = StudySync.settle(local, pull, { data, version ->
+                when (api.progressPush(t, branch, data, version, guarded = true)) {
+                    foundation.bucket.core.net.PushResult.Written, foundation.bucket.core.net.PushResult.Refused -> StudySync.Outcome.Saved
+                    foundation.bucket.core.net.PushResult.Stale -> StudySync.Outcome.Stale
+                    foundation.bucket.core.net.PushResult.Failed -> StudySync.Outcome.Failed
+                }
+            })
+            if (merged == null) { ok = false; continue }
+            store.update { it.copy(study = it.study + (sys.id to (it.study[sys.id] ?: local).let { now -> StudySync.state(StudySync.merge(merged, now), now) })) }
+        }
+        ok
     }
 }

@@ -3,6 +3,7 @@ package foundation.bucket.core.model
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class LobbyTilesTest {
     @Test
@@ -41,8 +42,8 @@ class LobbyTilesTest {
 class LobbyGamesTest {
     @Test
     fun duelShowsOnlyWhenTheServerOffersIt() {
-        assertEquals(listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Tiles), LobbyGames.offered(listOf("daily", "same-word", "flags", "live", "tiles", "spy")))
-        assertEquals(LobbyGames.native, LobbyGames.offered(listOf("daily", "same-word", "flags", "live", "tiles", "spy", "duel")))
+        assertEquals(listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Tiles, LobbyGame.Spy), LobbyGames.offered(listOf("daily", "same-word", "flags", "live", "tiles", "spy")))
+        assertEquals(LobbyGames.prompt, LobbyGames.offered(listOf("daily", "same-word", "flags", "live", "tiles", "spy", "duel")))
         assertEquals(false, LobbyGame.Duel in LobbyGames.offered(emptyList()))
         assertEquals(true, LobbyGame.Tiles in LobbyGames.offered(emptyList()))
     }
@@ -89,5 +90,55 @@ class LobbyTilesFrameTest {
         assertEquals(setOf(0), LobbyTiles.shownTaps(null, setOf(0), 5))
         assertEquals(emptySet(), LobbyTiles.shownTaps("-", setOf(2), 5))
         assertEquals(setOf(2), LobbyTiles.shownTaps("9", setOf(2), 5))
+    }
+}
+
+class LobbyRaceTest {
+    private val server = listOf("mini", "word-groups", "match", "voice", "letters", "polyword", "flag-tiles", "babel", "shift", "snake", "atlas", "forehead", "ispy", "flag-duel")
+
+    @Test
+    fun everyServerGameHasAnAndroidEntry() {
+        val all = listOf("daily", "same-word", "flags", "live", "tiles", "duel", "spy") + server
+        assertEquals(21, all.size)
+        assertEquals(all.toSet(), LobbyGame.entries.map { it.wire }.toSet())
+        assertEquals(server, LobbyGames.race.map { it.wire })
+    }
+
+    @Test
+    fun raceGamesShowOnlyWhenTheServerReturnsThem() {
+        val prompt = listOf("daily", "same-word", "flags", "live", "tiles", "duel", "spy")
+        assertTrue(LobbyGames.offered(prompt).none { it.isRace })
+        val offered = LobbyGames.offered(prompt, server)
+        assertEquals(21, offered.size)
+        assertEquals(LobbyGames.race, offered.filter { it.isRace })
+    }
+
+    @Test
+    fun androidHostsPromptGamesAndItsThreeRaceScreens() {
+        assertTrue(LobbyGames.prompt.all(LobbyGames::playable))
+        assertEquals(setOf(LobbyGame.FlagTiles, LobbyGame.Shift, LobbyGame.Atlas), LobbyGames.race.filter(LobbyGames::playable).toSet())
+    }
+
+    @Test
+    fun theRaceDeckKeyMatchesIphone() {
+        assertEquals("race-18446744073709551615", LobbyRace.dayKey("18446744073709551615"))
+        assertEquals("race-42", LobbyRace.dayKey("42"))
+        assertEquals("race-${0xaf63dc4c8601ec8cuL}", LobbyRace.dayKey("a"))
+    }
+
+    @Test
+    fun raceScoresUsePointsOrHitsAndStayInRange() {
+        assertEquals(700, LobbyRace.score(null, 7))
+        assertEquals(1234, LobbyRace.score(1234, 7))
+        assertEquals(LobbyRace.SCORE_MAX, LobbyRace.score(5_000_000, 0))
+        assertEquals(0, LobbyRace.score(-5, 0))
+    }
+
+    @Test
+    fun androidDeclaresDuelTilesAndRevealToTheServer() {
+        assertEquals("x-polingual-plays", LobbyGames.PLAYS_HEADER)
+        assertEquals("tiles,duel,reveal", LobbyGames.plays)
+        assertTrue(LobbyGames.nativeExtras.all { LobbyGames.playable(it) })
+        assertEquals(true, LobbyGame.Duel in LobbyGames.offered(listOf("daily", "duel")))
     }
 }

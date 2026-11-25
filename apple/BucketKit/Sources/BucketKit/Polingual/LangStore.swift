@@ -167,6 +167,7 @@ public final class LangStore {
         states = st
         pulled = pulled || server != nil
         status = corpus == nil ? .error : .ready
+        adoptAllSiblings()
         if server != nil {
             await healPlacements(epoch: mine)
             guard epoch == mine else { return }
@@ -435,8 +436,17 @@ public final class LangStore {
         let s = try createSystem(root, targets, systems, now: now())
         systems.append(s)
         states[s.id] = EngineState()
+        adoptSiblings(s.id)
         await persistSystems(upsert: s)
         return s
+    }
+
+    public func adoptSiblings(_ systemId: String) {
+        guard let s = system(systemId) else { return }
+        let siblings = systems.filter { $0.id != systemId }.compactMap { states[$0.id] }
+        let mine = state(systemId)
+        let next = adoptSiblingCards(mine, langs: s.targets, from: siblings)
+        if next != mine { store(s, next) }
     }
 
     public func remove(_ id: String) async {
@@ -448,6 +458,7 @@ public final class LangStore {
         guard let s = system(id) else { return }
         let next = try editSystem(s, targets, now: now())
         replace(next)
+        adoptSiblings(id)
         await persistSystems(upsert: next)
     }
 
@@ -523,6 +534,31 @@ public final class LangStore {
     }
 
     func commit(_ s: LangSystem, _ next: EngineState) {
+        let before = states[s.id]
+        store(s, next)
+        for (sibling, shared) in sharedCards(from: s, before: before, next: next) { store(sibling, shared) }
+    }
+
+    func sharedCards(from s: LangSystem, before: EngineState?, next: EngineState) -> [(LangSystem, EngineState)] {
+        let changed = next.cards.entries.filter { isStarted($0.value) && before?.cards[$0.key] != $0.value }
+        guard !changed.isEmpty else { return [] }
+        return systems.filter { $0.id != s.id }.compactMap { sibling in
+            let langs = Set(sibling.targets)
+            let mine = state(sibling.id)
+            var out = mine
+            for (id, card) in changed where langs.contains(parseCardId(id).lang) && adopts(card, over: out.cards[id]) {
+                out.cards[id] = card
+                out.prof[id] = next.prof[id]
+            }
+            return out == mine ? nil : (sibling, out)
+        }
+    }
+
+    public func adoptAllSiblings() {
+        for s in systems { adoptSiblings(s.id) }
+    }
+
+    func store(_ s: LangSystem, _ next: EngineState) {
         let branch = progressBranch(s)
         states[s.id] = next
         writeLocal(branch, next)
@@ -563,6 +599,9 @@ public final class LangStore {
         if merged != mine {
             states[systemId] = merged
             writeLocal(branch, merged)
+            if let s = system(systemId) {
+                for (sibling, shared) in sharedCards(from: s, before: mine, next: merged) { store(sibling, shared) }
+            }
         }
         let status = await send(t, branch, merged.js, over: server, epoch: ep)
         guard epoch == ep else { return false }

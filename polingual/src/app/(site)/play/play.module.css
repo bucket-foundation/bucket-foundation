@@ -9,6 +9,8 @@
 .chat{display:flex;flex-direction:column;gap:8px}
 .messages{list-style:none;padding:8px;margin:0;display:flex;flex-direction:column;gap:4px;max-height:220px;overflow-y:auto;background:var(--pl-white);border:1px solid var(--hair);border-radius:12px;min-height:80px}
 .messages b{color:var(--tyrian)}
+.chatLine{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.chatActions{display:flex;gap:4px}
 .chatForm{display:flex;gap:8px}
 .chatForm input{flex:1;min-width:0;font:inherit;font-size:16px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--hair)}
 .split{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}

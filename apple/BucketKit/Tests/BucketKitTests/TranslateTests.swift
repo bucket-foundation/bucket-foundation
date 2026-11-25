@@ -170,3 +170,32 @@ func lexiconShelf() -> LexiconShelf {
     #expect(answer.glossed == [target])
     if let es = item.form("es") { #expect(answer.rows["es"] == es) }
 }
+
+@Test func deckWordsFindsEachKnownWordOfASentenceOnce() throws {
+    let corpus = try translateCorpus()
+    let words = corpus.items.filter { i in i.kind == .word && (i.form("en").map { !$0.contains(" ") && $0.count > 3 } ?? false) }.prefix(2)
+    try #require(words.count == 2)
+    let a = words.first!, b = words.last!
+    let sentence = "\(a.form("en")!) and \(b.form("en")!) then \(a.form("en")!)"
+    let ids = TranslateEngine.deckWords(sentence, source: "en", corpus: corpus)
+    #expect(ids.contains(a.id))
+    #expect(ids.contains(b.id))
+    #expect(ids.count == Set(ids).count)
+    #expect(TranslateEngine.deckWords("zzqx vvbn", source: "en", corpus: corpus).isEmpty)
+}
+
+@Test func deckWordsSkipsShortTokensAndPhrasesAndCapsTheCount() throws {
+    let corpus = try translateCorpus()
+    #expect(TranslateEngine.deckWords("a is up", source: "en", corpus: corpus).isEmpty)
+    let long = corpus.items.filter { i in i.kind == .word && (i.form("en").map { !$0.contains(" ") && $0.count > 3 } ?? false) }.prefix(9)
+    let ids = TranslateEngine.deckWords(long.map { $0.form("en")! }.joined(separator: " "), source: "en", corpus: corpus)
+    #expect(ids.count <= 6)
+    #expect(ids.allSatisfy { corpus.byId[$0]?.kind == .word })
+}
+
+@Test func deckWordsKeepsShortWordsInCJKScripts() throws {
+    let corpus = try translateCorpus()
+    let item = try #require(corpus.items.first { $0.id == "eight" })
+    #expect(item.form("ja") == "八")
+    #expect(TranslateEngine.deckWords("八", source: "ja", corpus: corpus) == ["eight"])
+}

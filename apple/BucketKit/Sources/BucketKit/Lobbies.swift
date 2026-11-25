@@ -39,6 +39,7 @@ public struct LobbyPlayer: Codable, Equatable, Sendable, Identifiable {
     public var isMe: Bool
     public var online: Bool
     public var answered: Bool
+    public var bot: Bool? = nil
     public var id: String { userId }
 }
 
@@ -336,7 +337,18 @@ public final class GuestPass {
     public func token(now: Date = Date()) async -> String? {
         let nick = nickname().trimmingCharacters(in: .whitespacesAndNewlines)
         if let t = ticket, let exp = parseInstant(t.expiresAt), exp.timeIntervalSince(now) > 3600 { return t.token }
-        guard !nick.isEmpty, let fresh = try? await api.guestTicket(nickname: String(nick.prefix(40)), guestId: guestId) else { return nil }
+        guard !nick.isEmpty else { return nil }
+        let name = String(nick.prefix(40))
+        let fresh: GuestTicket
+        do {
+            fresh = try await api.guestTicket(nickname: name, guestId: guestId)
+        } catch {
+            guard Self.merged(error) else { return nil }
+            forget()
+            defaults.removeObject(forKey: Self.idKey)
+            guard let again = try? await api.guestTicket(nickname: name, guestId: guestId) else { return nil }
+            fresh = again
+        }
         ticket = fresh
         defaults.set(try? JSONEncoder().encode(fresh), forKey: Self.ticketKey)
         return fresh.token
@@ -344,10 +356,22 @@ public final class GuestPass {
 
     public func merge(into userToken: String) async {
         guard let t = ticket else { return }
-        if (try? await api.mergeGuest(token: userToken, guestToken: t.token)) != nil {
-            ticket = nil
-            defaults.removeObject(forKey: Self.ticketKey)
+        do {
+            _ = try await api.mergeGuest(token: userToken, guestToken: t.token)
+            forget()
+        } catch {
+            if Self.merged(error) { forget() }
         }
+    }
+
+    func forget() {
+        ticket = nil
+        defaults.removeObject(forKey: Self.ticketKey)
+    }
+
+    nonisolated static func merged(_ error: Error) -> Bool {
+        if case BucketError.server(409, "guest_merged") = error { return true }
+        return false
     }
 }
 
@@ -457,17 +481,21 @@ public final class LobbyStore {
     public private(set) var raceGames: [LobbyGame] = []
     public private(set) var raceScore: Int?
     public private(set) var raceScoreSent = false
+    public internal(set) var blocks: [ChatBlock]?
+    public internal(set) var blocksFailed = false
 
     public var hostable: [LobbyGame] { LobbyGame.hostable + raceGames.filter(\.isRace) }
 
     let api: BucketAPI
     let token: @MainActor () async -> String?
     let clock: @MainActor () -> Date
+    let blockDefaults: UserDefaults
     public let guest: GuestPass?
 
-    public init(api: BucketAPI, token: @escaping @MainActor () async -> String?, guest: GuestPass? = nil, clock: @escaping @MainActor () -> Date = { Date() }) {
+    public init(api: BucketAPI, token: @escaping @MainActor () async -> String?, guest: GuestPass? = nil, blockDefaults: UserDefaults = .standard, clock: @escaping @MainActor () -> Date = { Date() }) {
         self.api = api
         self.token = token
+        self.blockDefaults = blockDefaults
         self.guest = guest
         self.clock = clock
     }
@@ -606,18 +634,21 @@ public final class LobbyStore {
     }
 
     #if DEBUG
-    public func stage(players: Int, mode: LobbyPromptMode = .form, race: LobbyGame? = nil) {
+    public func stage(players: Int, mode: LobbyPromptMode = .form, race: LobbyGame? = nil, chat: Bool = false) {
         staged = true
         picks = [:]
         marks = [:]
         clearRaceScore()
-        current = Lobby.staged(players: players, mode: mode, race: race, now: now)
+        blocks = nil
+        current = Lobby.staged(players: players, mode: mode, race: race, chat: chat, now: now)
     }
     #endif
 
     func enter(_ lobby: Lobby) -> Lobby {
         picks = [:]
         marks = [:]
+        blocks = nil
+        blocksFailed = false
         clearRaceScore()
         current = nil
         apply(lobby)
@@ -655,7 +686,7 @@ public final class LobbyStore {
 extension Lobby {
     static let stagedNames = ["Alexandria", "Maximilian", "Bernadette", "Christopher", "Evangeline", "Sebastian", "Wilhelmina", "Bartholomew"]
 
-    static func staged(players: Int, mode: LobbyPromptMode, race: LobbyGame? = nil, now: Date) -> Lobby {
+    static func staged(players: Int, mode: LobbyPromptMode, race: LobbyGame? = nil, chat: Bool = false, now: Date) -> Lobby {
         let count = min(max(players, 1), LobbyRules.cap)
         let stamp = ISO8601DateFormatter()
         let seconds = 600
@@ -673,10 +704,14 @@ extension Lobby {
             LobbyResult(round: 0, userId: p.userId, correct: n % 3 != 2, ms: 1200 + n * 400, points: n % 3 != 2 ? 120 - n * 10 : 0)
         }
         let start = now.addingTimeInterval(-Double(seconds) - 5)
+        let lines = ["¿Listos?", "Ready when you are", "Let's go", "Bonne chance"]
+        let messages = chat ? people.indices.reversed().enumerated().map { n, p in
+            LobbyMessage(id: n + 1, from: people[p].userId, name: people[p].name, body: lines[n % lines.count], at: stamp.string(from: now.addingTimeInterval(Double(n - 10))))
+        } : []
         return Lobby(
             id: "staged", code: "STAGED", name: "Staged lobby", game: race.flatMap { $0.isRace ? $0 : nil } ?? (mode == .tiles ? .tiles : .daily), root: "en", targets: ["es", "fr", "it", "pt", "de", "nl"],
-            seed: "staged", status: .playing, listed: false, rounds: 8, roundSeconds: seconds, revealSeconds: 0, startedAt: stamp.string(from: start),
-            version: 1, now: stamp.string(from: now), isHost: true, players: people, messages: [],
+            seed: "staged", status: chat ? .lobby : .playing, listed: false, rounds: 8, roundSeconds: seconds, revealSeconds: 0, startedAt: stamp.string(from: start),
+            version: 1, now: stamp.string(from: now), isHost: true, players: people, messages: messages,
             round: LobbyRound(index: 1, startsAt: stamp.string(from: now.addingTimeInterval(-5)), endsAt: stamp.string(from: now.addingTimeInterval(Double(seconds) - 5)), reveal: false),
             prompts: prompts, results: results
         )

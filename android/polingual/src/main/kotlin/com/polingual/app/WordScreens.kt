@@ -13,11 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -130,14 +127,14 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
     LaunchedEffect(initial, corpus) { if (initial.isNotBlank() && corpus != null) run(initial) }
     Page("Translate", back = back, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("calligraphy-ain", Alignment.TopEnd, 52.dp, 10f), Sticker("script-ru", Alignment.BottomEnd, 70.dp, -5f, dx = (-8).dp))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedButton(onClick = { picking = "from" }, modifier = Modifier.weight(1f)) { Text(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "Detect") }
+            PLButton(from?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "Detect", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Sm) { picking = "from" }
             IconButton(onClick = { scope.launch { graph.store.update { it.copy(translateFrom = it.translateTo, translateTo = it.translateFrom) } } }, enabled = from != null || to != null) {
                 Glyph("swap", "Swap languages", PL.Ink, Modifier.size(24.dp))
             }
-            OutlinedButton(onClick = { picking = "to" }, modifier = Modifier.weight(1f)) { Text(to?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "My languages") }
+            PLButton(to?.let { "${Lang.flag(it)} ${Lang.name(it)}" } ?: "My languages", Modifier.weight(1f), variant = ButtonVariant.Secondary, size = ButtonSize.Sm) { picking = "to" }
         }
-        OutlinedTextField(
-            text, { text = it }, modifier = Modifier.fillMaxWidth(), label = { Text("Type a word or phrase") },
+        PLField(
+            text, { text = it }, "Type a word or phrase",
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search), keyboardActions = KeyboardActions(onSearch = { run(text) }),
         )
         foundation.bucket.core.ui.pl.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
@@ -153,36 +150,35 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
     picking?.let { side ->
         LanguagePicker(
             options = corpus?.let { translateSources(it, mine) } ?: Lang.codes,
+            recent = PickerRecents.read(graph.kv::get),
             recents = mine,
             allowAny = true,
             anyLabel = if (side == "from") "Detect" else "My languages",
             dismiss = { picking = null },
-        ) { choice -> scope.launch { graph.store.update { if (side == "from") it.copy(translateFrom = choice) else it.copy(translateTo = choice) } }; picking = null }
+        ) { choice -> choice?.let { PickerRecents.push(it, graph.kv::get, graph.kv::set) }; scope.launch { graph.store.update { if (side == "from") it.copy(translateFrom = choice) else it.copy(translateTo = choice) } }; picking = null }
     }
 }
 
 @Composable
-fun LanguagePicker(options: List<String>, recents: List<String>, allowAny: Boolean, anyLabel: String, dismiss: () -> Unit, pick: (String?) -> Unit) {
+fun LanguagePicker(options: List<String>, recent: List<String> = emptyList(), recents: List<String>, allowAny: Boolean, anyLabel: String, dismiss: () -> Unit, pick: (String?) -> Unit) {
     var query by remember { mutableStateOf("") }
     val p = LocalPalette.current
-    AlertDialog(
-        onDismissRequest = dismiss,
-        confirmButton = { TextButton(onClick = dismiss) { Text("Close") } },
-        title = { Text("Language") },
-        text = {
-            Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                OutlinedTextField(query, { query = it }, singleLine = true, label = { Text("Search") }, modifier = Modifier.fillMaxWidth())
+    PLDialog("Language", dismiss) {
+            PLField(query, { query = it }, "Search")
+            Column(Modifier.heightIn(max = 420.dp).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 if (query.isBlank()) {
                     if (allowAny) Text(anyLabel, color = PL.Vermilion, modifier = Modifier.fillMaxWidth().clickable { pick(null) }.padding(vertical = 10.dp))
-                    SectionTitle("Yours")
-                    recents.forEach { l -> PickerRow(l) { pick(l) } }
+                    val groups = PickerRecents.groups(recent, recents)
+                    if (groups.first.isNotEmpty()) SectionTitle("Recent")
+                    groups.first.forEach { l -> PickerRow(l) { pick(l) } }
+                    if (groups.second.isNotEmpty()) SectionTitle("Yours")
+                    groups.second.forEach { l -> PickerRow(l) { pick(l) } }
                     SectionTitle("All")
                 }
                 options.filter { l -> query.isBlank() || Lang.name(l).contains(query, true) || l.startsWith(query.lowercase()) }.forEach { l -> PickerRow(l) { pick(l) } }
                 if (options.none { Lang.name(it).contains(query, true) }) Text("No match", color = p.muted)
             }
-        },
-    )
+    }
 }
 
 @Composable
@@ -198,10 +194,23 @@ private fun TranslationRows(source: String, headword: String, rows: Map<String, 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text("${Lang.flag(l)} ${Lang.name(l)}", style = Type.caps, color = PL.InkDim)
-                    Text(f, style = Type.word.copy(fontSize = 22.sp()), color = PL.Ink)
+                    Text(f, style = Type.subhead, color = PL.Ink)
                 }
                 IconButton(onClick = { speak(f, l) }) { Glyph("speaker", "Speak", PL.Lapis, Modifier.size(24.dp)) }
             }
         }
     }
+}
+
+object PickerRecents {
+    const val KEY = "polingual.translate.recentLangs"
+    const val MAX = 6
+
+    fun read(get: (String) -> String?): List<String> = get(KEY)?.split(',')?.filter { it.isNotBlank() }.orEmpty()
+
+    fun next(current: List<String>, lang: String): List<String> = (listOf(lang) + current.filter { it != lang }).take(MAX)
+
+    fun push(lang: String, get: (String) -> String?, set: (String, String?) -> Unit): List<String> = next(read(get), lang).also { set(KEY, it.joinToString(",")) }
+
+    fun groups(recent: List<String>, mine: List<String>): Pair<List<String>, List<String>> = recent to mine.filter { it !in recent }
 }

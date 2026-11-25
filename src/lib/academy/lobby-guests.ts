@@ -56,6 +56,11 @@ export function verifyGuestToken(token: string, secret: string, now: number): Gu
   }
 }
 
+export async function liveGuest(token: string, secret: string, now: number, revoked: (sub: string) => Promise<boolean>): Promise<GuestClaims | null> {
+  const c = verifyGuestToken(token, secret, now);
+  return c && !(await revoked(c.sub)) ? c : null;
+}
+
 export function bearer(header: string | null): string | null {
   const m = header?.match(/^Bearer\s+(.+)$/i);
   return m ? m[1].trim() : null;

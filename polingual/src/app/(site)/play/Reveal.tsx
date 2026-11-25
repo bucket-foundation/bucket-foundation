@@ -93,7 +93,7 @@ export function WordReveal({ title, words, rootLang, testId = "word-reveal" }: {
   );
 }
 
-export function LearnPanel({ missed, cta = true }: { missed: RevealWord[]; cta?: boolean }) {
+export function LearnPanel({ missed, rootLang, cta = true }: { missed: RevealWord[]; rootLang: string; cta?: boolean }) {
   const index = useLearnIndex();
   const seen = new Set<string>();
   const unique = missed.filter((m) => (seen.has(`${m.lang}:${m.word}`) ? false : (seen.add(`${m.lang}:${m.word}`), true))).slice(0, 8);
@@ -108,7 +108,8 @@ export function LearnPanel({ missed, cta = true }: { missed: RevealWord[]; cta?:
               <a href={learnHref(learnEntry(index, m.lang, m.word, m.meaning))} data-testid="learn-missed">
                 <FlagSquare lang={m.lang} size={16} />
                 {m.word}
-                <span>{m.meaning}</span>
+                <span data-testid="learn-missed-lang">{langName(m.lang)}</span>
+                <span data-testid="learn-missed-meaning">{langName(rootLang)}: {m.meaning}</span>
               </a>
             </li>
           ))}

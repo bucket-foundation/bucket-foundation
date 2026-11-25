@@ -42,13 +42,13 @@ struct WordTapHost: ViewModifier {
             .environment(\.openURL, OpenURLAction { url in
                 guard let p = WordTaps.parse(url) else { return .systemAction }
                 if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
-                shown = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [])
+                shown = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.playRoot ?? "en")
                 return .handled
             })
             .environment(\.wordTapsHosted, true)
             .sheet(item: $shown) { d in
                 WordCard(detail: d, reveal: reveal)
-                    .presentationDetents([.height(230)])
+                    .presentationDetents([.height(260)])
                     .presentationBackgroundInteraction(.enabled)
                     .presentationBackground(Palette.card)
             }
@@ -56,9 +56,12 @@ struct WordTapHost: ViewModifier {
 }
 
 struct WordCard: View {
+    static let stripCount = 6
     let detail: WordDetail
     let reveal: Bool
+    @Environment(LangStore.self) private var store: LangStore?
     @State private var full = false
+    @State private var web = WordWeb.empty
 
     var body: some View {
         ScrollView {
@@ -73,13 +76,17 @@ struct WordCard: View {
                 if let r = readingText(detail.reading) { Text(r).font(.subheadline).foregroundStyle(Palette.muted) }
                 switch detail.cardLine(reveal: reveal) {
                 case .meaning(let gloss):
-                    Text(gloss).font(.body).foregroundStyle(Palette.ink)
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text(langName(detail.rootLang).uppercased()).font(.caption2.monospaced()).foregroundStyle(Palette.muted).accessibilityLabel("\(langName(detail.rootLang)) meaning")
+                        Text(gloss).font(.body).foregroundStyle(Palette.ink)
+                    }
                 case .afterAnswer:
                     Text("The meaning shows after you answer.").font(.subheadline).foregroundStyle(Palette.muted)
                 case .noEntry:
                     Text("No entry for this word yet.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
                 if reveal {
+                    strip
                     HStack {
                         Button("Full detail") { full = true }.buttonStyle(.borderless)
                         Spacer(minLength: 8)
@@ -91,6 +98,10 @@ struct WordCard: View {
             .frame(maxWidth: .infinity, alignment: .topLeading)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .task(id: detail) {
+            guard reveal else { return }
+            await WordWebLoader.load(detail, mine: store?.gameLangs ?? [], corpus: store?.corpus, all: false) { web = $0 }
+        }
         .sheet(isPresented: $full) {
             NavigationStack {
                 WordFactsView(detail: detail)
@@ -100,6 +111,25 @@ struct WordCard: View {
                         }
                     }
             }
+        }
+    }
+
+    @ViewBuilder var strip: some View {
+        let forms = web.forms.prefix(Self.stripCount)
+        if !forms.isEmpty {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(Array(forms)) { f in
+                        HStack(spacing: 4) {
+                            FlagTile(lang: f.lang, size: 18)
+                            Text(f.word).font(.subheadline).foregroundStyle(Palette.ink).lineLimit(1)
+                        }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("\(Lang.name(f.lang)): \(f.word)")
+                    }
+                }
+            }
+            .accessibilityIdentifier("word-strip")
         }
     }
 }

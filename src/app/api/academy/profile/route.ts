@@ -4,8 +4,11 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import {
   assemblePublicProfile,
   normalizeHandle,
+  profileNamesAllowed,
+  unchangedHandle,
   type ProgressRow,
 } from "@/lib/academy/profile";
+import { nameAllowed } from "@/lib/academy/groups-names";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -162,7 +165,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const current = (existing as unknown as ProfileRecord) || null;
 
   let nextHandle = current?.handle;
-  if (b.handle !== undefined) {
+  const sameHandle = unchangedHandle(b.handle, current?.handle);
+  if (b.handle !== undefined && !sameHandle) {
     const h = normalizeHandle(b.handle);
     if (!h) {
       return json(
@@ -189,6 +193,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     } else {
       return json({ error: "bad_request" }, 400);
     }
+  }
+
+  const checkHandle = b.handle !== undefined && !sameHandle ? nextHandle : null;
+  const checkDisplay = b.display_name !== undefined && nextDisplay !== (current?.display_name ?? null) ? nextDisplay : null;
+  if (!profileNamesAllowed(checkHandle, checkDisplay, nameAllowed)) {
+    return json({ error: "name_not_allowed" }, 422);
   }
 
   let nextPublic = current?.is_public ?? false;

@@ -53,10 +53,11 @@ const SUITES = {
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
       "scripts/test-watch.ts",
-      "scripts/test-academy-{engine,question-types,locale-number,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,session-mix,placement-cefr,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted,groups,group-shares,group-name-route,lobbies,lobby-bots,lobby-tiles,lobby-duel,lobby-race,flag-tiles,forehead,voice-atlas,babel,shift,word-snake,lobby-handles,lobby-report,apns,fcm,streak-reminder,review-demo,translation-report,progress-guard,progress-route}.ts",
+      "scripts/test-academy-{engine,question-types,locale-number,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,session-mix,placement-cefr,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted,groups,group-shares,group-name-route,lobbies,lobby-bots,lobby-tiles,lobby-duel,lobby-race,flag-tiles,forehead,voice-atlas,babel,shift,word-snake,lobby-handles,lobby-report,apns,fcm,streak-reminder,review-demo,translation-report,progress-guard,progress-route,card-merge}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-academy-fsrs-fit.ts",
       "scripts/test-academy-delete-account.ts",
+      "scripts/test-academy-profile-names.ts",
       "scripts/test-academy-apple-token.ts",
       "scripts/test-academy-google.ts",
       "scripts/test-apple-requeue-route.ts",
@@ -91,6 +92,9 @@ const SUITES = {
       "scripts/test-polingual-deck.ts",
       "scripts/test-polingual-lookup.ts",
       "scripts/test-polingual-checkout.ts",
+      "scripts/test-polingual-lifetime-revoke.ts",
+      "scripts/test-polingual-trial-used.ts",
+      "scripts/test-play-billing.ts",
       "scripts/test-polingual-gift.ts",
       "scripts/test-deck-catalog-route.ts",
       "scripts/test-brand-pick.ts",
@@ -100,6 +104,7 @@ const SUITES = {
       "scripts/test-growth-dashboard.ts",
       "scripts/test-growth-revenue.ts",
       "scripts/test-admin-dashboard.ts",
+      "scripts/test-admin-polingual-ops.ts",
       "scripts/test-beta-readout.ts",
     ],
     commands: [
@@ -118,7 +123,7 @@ const SUITES = {
     ],
   },
   db: {
-    files: ["scripts/test-research-os-*-db.ts", "scripts/test-academy-review-log-db.ts", "scripts/test-academy-devices-db.ts", "scripts/test-academy-device-sync-db.ts", "scripts/test-academy-mobile-sync-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
+    files: ["scripts/test-research-os-*-db.ts", "scripts/test-academy-review-log-db.ts", "scripts/test-academy-devices-db.ts", "scripts/test-academy-device-sync-db.ts", "scripts/test-academy-mobile-sync-db.ts", "scripts/test-lobby-guest-revoked-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
   },
   "research-os": {
     files: [

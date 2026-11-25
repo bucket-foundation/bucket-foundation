@@ -37,6 +37,7 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
             Stage.SignedIn -> SignedInSection(graph, nav)
             else -> SignInCard(graph, stage)
         }
+        NotificationSettings(graph)
         SectionTitle("Guest play")
         Card {
             Text("Nickname for live rooms", color = p.ink, style = Type.caps)

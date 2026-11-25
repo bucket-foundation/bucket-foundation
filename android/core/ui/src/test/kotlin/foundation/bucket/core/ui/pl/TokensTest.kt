@@ -45,7 +45,7 @@ class TokensTest {
             val (name, font, size, weight, line) = m.destructured
             assertEquals(name, PLTypeSpec(font, size.toInt(), weight.toInt(), line.toFloat()), PLTypeSpecs.all[name])
         }
-        assertEquals(7, PLTypeSpecs.all.size)
+        assertEquals(9, PLTypeSpecs.all.size)
     }
 
     @Test

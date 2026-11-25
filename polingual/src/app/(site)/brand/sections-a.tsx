@@ -23,6 +23,8 @@ const TYPE_USE: Record<TypeToken, string> = {
   hero: "Language learning for multilingual learners.",
   title: "Four languages, one word",
   heading: "Today's deck",
+  subhead: "Round 2 of 10",
+  count: "3",
   body: "Hear every word said and see its roots.",
   small: "5 new words a day per language.",
   label: "SPANISH · 100 DAY STREAK",

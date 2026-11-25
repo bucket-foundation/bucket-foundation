@@ -8,6 +8,7 @@ public struct WordDetail: Sendable, Hashable, Identifiable {
     public var itemId: String? = nil
     public var pos: String? = nil
     public var band: String? = nil
+    public var rootLang: String = "en"
 
     public var id: String { "\(lang):\(word)" }
 
@@ -26,13 +27,14 @@ public struct WordDetail: Sendable, Hashable, Identifiable {
 }
 
 public enum WordLookup {
-    public static func detail(_ word: String, lang: String, corpus: LangCorpus?, top: [TopWord]) -> WordDetail {
+    public static func detail(_ word: String, lang: String, corpus: LangCorpus?, top: [TopWord], root: String = "en") -> WordDetail {
         let keys = candidates(word, lang)
         let item = corpus?.items.first { i in isVocab(i) && (i.form(lang).map { keys.contains(fold($0, lang)) } ?? false) }
         let ranked = top.first { keys.contains(fold($0.word, lang)) }
         let gloss = (item?.gloss ?? ranked?.meaning).flatMap { fold($0, lang) == fold(word, lang) ? nil : $0 }
         let reading = item?.readings[lang] ?? ranked?.ipa.map { Reading(ipa: $0.trimmingCharacters(in: CharacterSet(charactersIn: "/"))) }
-        return WordDetail(word: word, lang: lang, gloss: gloss, reading: reading, itemId: item?.id, pos: ranked?.pos, band: ranked?.band)
+        let rootForm = root == "en" || root == lang ? nil : item?.form(root)
+        return WordDetail(word: word, lang: lang, gloss: rootForm ?? gloss, reading: reading, itemId: item?.id, pos: ranked?.pos, band: ranked?.band, rootLang: rootForm == nil ? "en" : root)
     }
 
     static func fold(_ s: String, _ lang: String) -> String {

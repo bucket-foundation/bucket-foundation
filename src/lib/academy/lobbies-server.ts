@@ -1,6 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { blocksTouching, configured, GroupsError, json, readBody, requestUser, service } from "./groups-server";
-import { bearer, isGuestToken, verifyGuestToken } from "./lobby-guests";
+import { bearer, isGuestToken, liveGuest } from "./lobby-guests";
 import { uuidOrNull, type BlockRow } from "./groups";
 import { botsEnabled, gameTiming, STANDING_LOBBY_MS, STANDING_RESULTS_MS } from "./lobby-bots";
 import { revealEntries } from "./lobby-reveal";
@@ -292,11 +292,22 @@ export function guestSecret(): string | null {
   return s && s.length >= 32 ? s : null;
 }
 
+export const GUEST_REVOKED = "lobby_guest_revoked";
+
+export async function guestRevoked(sub: string): Promise<boolean> {
+  const rows = check(await service().from(GUEST_REVOKED).select("guest_id").eq("guest_id", sub).limit(1), "revoked") as unknown[];
+  return rows.length > 0;
+}
+
+export async function revokeGuest(sub: string): Promise<void> {
+  check(await service().from(GUEST_REVOKED).upsert({ guest_id: sub }, { onConflict: "guest_id", ignoreDuplicates: true }), "revoke");
+}
+
 export async function lobbyUser(req: NextRequest): Promise<string | null> {
   const token = bearer(req.headers.get("authorization"));
   if (token && isGuestToken(token)) {
     const secret = guestSecret();
-    return secret ? verifyGuestToken(token, secret, Date.now())?.sub ?? null : null;
+    return secret ? (await liveGuest(token, secret, Date.now(), guestRevoked))?.sub ?? null : null;
   }
   return requestUser(req);
 }

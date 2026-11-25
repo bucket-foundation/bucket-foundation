@@ -47,13 +47,14 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
     var offsets by remember { mutableStateOf<List<Int>>(emptyList()) }
     var found by remember { mutableStateOf<List<String>>(emptyList()) }
     var hints by remember { mutableStateOf<Map<String, Int>>(emptyMap()) }
-    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(graph.state.value?.system?.root, items); board = com.polingual.app.offMain { Shift.board(items, date, root = deckRoot) }; offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
+    LaunchedEffect(Unit) { val items = graph.corpus.load().items; deckRoot = PlayDecks.root(com.polingual.app.RaceSession.root ?: graph.state.value?.system?.root, items); board = com.polingual.app.offMain { Shift.board(items, date, root = deckRoot) }; offsets = board?.columns?.map { 0 }.orEmpty(); loaded = true }
     val b = board
     val word = if (b != null && offsets.isNotEmpty()) Shift.centerWord(b.columns, offsets) else ""
     LaunchedEffect(word) { if (b != null && b.valid[word] != null && word !in found) found = found + word }
     GameFrame(graph, WebGame.Shift, back) {
         if (b == null) { EmptyState("torn-label", if (loaded) "No board today." else "Loading today's board."); return@GameFrame }
         val left = b.targets.filter { it.form !in found }
+        LaunchedEffect(left.isEmpty()) { if (left.isEmpty()) com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Shift, hits = found.size) }
         if (left.isEmpty()) {
             Results(graph, "Board cleared", "${found.size} words found. A new board comes tomorrow.", again = null) {
                 b.targets.forEach { t ->

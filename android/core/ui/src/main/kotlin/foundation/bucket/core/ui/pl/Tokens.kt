@@ -17,11 +17,13 @@ object PL {
     val TyrianDeep = Color(0xFF3A0F2F)
     val Vermilion = Color(0xFFD9381E)
     val VermilionDeep = Color(0xFF8E2312)
+    val VermilionInk = Color(0xFFBB301A)
     val Lapis = Color(0xFF26428B)
     val LapisDeep = Color(0xFF172A5C)
     val LapisSoft = Color(0xFFC9D3EA)
     val Ochre = Color(0xFFE9A23B)
     val OchreDeep = Color(0xFFA9701F)
+    val OchreInk = Color(0xFF895B19)
     val Malachite = Color(0xFF1E7A5A)
     val MalachiteDeep = Color(0xFF124B37)
     val Maya = Color(0xFF6FB7C2)
@@ -48,11 +50,13 @@ object PL {
         "tyrian-deep" to TyrianDeep,
         "vermilion" to Vermilion,
         "vermilion-deep" to VermilionDeep,
+        "vermilion-ink" to VermilionInk,
         "lapis" to Lapis,
         "lapis-deep" to LapisDeep,
         "lapis-soft" to LapisSoft,
         "ochre" to Ochre,
         "ochre-deep" to OchreDeep,
+        "ochre-ink" to OchreInk,
         "malachite" to Malachite,
         "malachite-deep" to MalachiteDeep,
         "maya" to Maya,
@@ -109,9 +113,11 @@ object PLTypeSpecs {
     val hero = PLTypeSpec("display", 52, 700, 1.05f)
     val title = PLTypeSpec("display", 36, 700, 1.1f)
     val heading = PLTypeSpec("display", 24, 600, 1.15f)
+    val subhead = PLTypeSpec("display", 20, 600, 1.2f)
     val body = PLTypeSpec("body", 17, 500, 1.5f)
     val small = PLTypeSpec("body", 14, 600, 1.4f)
     val label = PLTypeSpec("mono", 11, 700, 1.3f)
     val word = PLTypeSpec("display", 44, 600, 1f)
-    val all: Map<String, PLTypeSpec> = mapOf("hero" to hero, "title" to title, "heading" to heading, "body" to body, "small" to small, "label" to label, "word" to word)
+    val count = PLTypeSpec("display", 96, 700, 1f)
+    val all: Map<String, PLTypeSpec> = mapOf("hero" to hero, "title" to title, "heading" to heading, "subhead" to subhead, "body" to body, "small" to small, "label" to label, "word" to word, "count" to count)
 }

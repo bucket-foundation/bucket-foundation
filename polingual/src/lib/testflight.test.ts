@@ -180,7 +180,7 @@ test("the honeypot answers success without calling Apple", async () => {
 });
 
 test("the shared database limit decides when POLINGUAL_DB is set", async () => {
-  const db = { ...env, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc" };
+  const db = { ...env, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc", FOUNDING_IP_SALT: "salt" };
   const limits = { ...fresh(), global: new RateLimiter(0, 3_600_000) };
   const allowed = fake([{ status: 201 }], { rpc: { status: 200, body: true } });
   assert.equal((await invite(allowed, db, site, limits)).status, 200);
@@ -320,9 +320,50 @@ test("an email invite passes Turnstile once and sends without enrolling", async 
 
 test("email invites use the shared limit under their own scope", async () => {
   const f = fake([], { rpc: { status: 200, body: false } });
-  const e = { ...mailEnv, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc" };
+  const e = { ...mailEnv, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc", FOUNDING_IP_SALT: "salt" };
   const r = await requestInvite({ email: "ana@example.com", kind: "testflight" }, e, f.send, site, mailFresh());
   assert.equal(r.status, 429);
   assert.equal(f.rpcs.length, 1);
   assert.equal(f.calls.length, 0);
+});
+
+test("a throttled signup never reaches the Turnstile check", async () => {
+  const ipFull = { ...fresh(), ip: new RateLimiter(0, 600_000) };
+  const blocked = fake([]);
+  assert.equal((await invite(blocked, env, site, ipFull)).status, 429);
+  assert.equal(blocked.checks.length, 0);
+});
+
+test("a failed Turnstile check spends no shared, email or global quota", async () => {
+  const limits = { ip: new RateLimiter(100, 600_000), email: new RateLimiter(1, 3_600_000), global: new RateLimiter(1, 3_600_000) };
+  const db = { ...env, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc", FOUNDING_IP_SALT: "salt" };
+  for (let i = 0; i < 20; i++) {
+    const junk = fake([], { human: { success: false } });
+    assert.equal((await invite(junk, db, { ...site, ip: `r${i}` }, limits)).status, 403);
+    assert.equal(junk.rpcs.length, 0);
+  }
+  const real = fake([{ status: 201 }], { rpc: { status: 500 } });
+  const original = console.error;
+  console.error = () => {};
+  try {
+    assert.equal((await invite(real, db, site, limits)).status, 200);
+  } finally {
+    console.error = original;
+  }
+});
+
+test("without FOUNDING_IP_SALT the shared limit is skipped and production signups go offline", async () => {
+  const db = { ...env, POLINGUAL_DB_URL: "https://db.example", POLINGUAL_DB_SERVICE_KEY: "svc" };
+  const local = fake([{ status: 201 }]);
+  assert.equal((await invite(local, db)).status, 200);
+  assert.equal(local.rpcs.length, 0);
+  for (const prod of [{ VERCEL_ENV: "production" }, { NODE_ENV: "production" }] as Record<string, string>[]) {
+    const f = fake([]);
+    assert.equal((await invite(f, { ...db, ...prod })).status, 503);
+    assert.equal(f.calls.length + f.checks.length + f.rpcs.length, 0);
+    assert.equal(await enrollAfterEmail("ana@example.com", "1.2.3.4", { ...env, ...prod }, f.send, fresh()), "skipped");
+  }
+  const salted = fake([{ status: 201 }], { rpc: { status: 200, body: true } });
+  assert.equal((await invite(salted, { ...db, VERCEL_ENV: "production", FOUNDING_IP_SALT: "salt" })).status, 200);
+  assert.equal(salted.rpcs.length, 1);
 });

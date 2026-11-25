@@ -17,6 +17,9 @@ test("needsBearer covers academy APIs on this origin and skips the session route
   assert.equal(needsBearer(new URL("/api/academy/progress", ORIGIN), ORIGIN), true);
   assert.equal(needsBearer(new URL("/api/academy/review-log?since=0", ORIGIN), ORIGIN), true);
   assert.equal(needsBearer(new URL("/api/academy/session", ORIGIN), ORIGIN), false);
+  assert.equal(needsBearer(new URL("/api/polingual/checkout", ORIGIN), ORIGIN), true);
+  assert.equal(needsBearer(new URL("/api/polingual/portal", ORIGIN), ORIGIN), true);
+  assert.equal(needsBearer(new URL("/api/polingual/checkout/webhook", ORIGIN), ORIGIN), false);
   assert.equal(needsBearer(new URL("/academy-app/corpus/lang-core.json", ORIGIN), ORIGIN), false);
   assert.equal(needsBearer(new URL("https://evil.example/api/academy/progress"), ORIGIN), false);
 });
@@ -63,13 +66,13 @@ test("sign-in sends the polingual app id and stores the verified session", async
     const b = JSON.parse(String(init?.body)) as Record<string, unknown>;
     bodies.push(b);
     if (b.action === "otp") return new Response(JSON.stringify({ ok: true }));
-    return new Response(JSON.stringify({ access_token: "at", refresh_token: "rt", expires_at: Math.floor(Date.now() / 1000) + 3600, user_id: "user-1" }));
+    return new Response(JSON.stringify({ access_token: "at", refresh_token: "rt", expires_at: Math.floor(Date.now() / 1000) + 3600, user_id: "user-1", new_account: true }));
   }) as typeof fetch;
   const auth = createAppAuth({ origin: ORIGIN, storage: () => asStorage(m), fetch: f });
   assert.equal(await auth.userId(), null);
   assert.deepEqual(await auth.mobile.sendCode("a@b.co"), { ok: true });
   assert.deepEqual(bodies[0], { action: "otp", email: "a@b.co", app: "polingual" });
-  assert.deepEqual(await auth.mobile.verifyCode("a@b.co", "123456"), { ok: true });
+  assert.deepEqual(await auth.mobile.verifyCode("a@b.co", "123456"), { ok: true, newAccount: true });
   assert.equal(await auth.userId(), "user-1");
   assert.equal(await auth.mobile.accessToken(), "at");
   await auth.mobile.logout();

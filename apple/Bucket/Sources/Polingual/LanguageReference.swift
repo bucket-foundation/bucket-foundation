@@ -143,6 +143,7 @@ struct WordFactsView: View {
     @Environment(LangStore.self) private var store: LangStore?
     let detail: WordDetail
     @State private var next: WordDetail?
+    @State private var web = WordWeb.empty
 
     var body: some View {
         let f = LangReference.facts(detail, corpus: store?.corpus, others: store?.gameLangs ?? [])
@@ -156,7 +157,12 @@ struct WordFactsView: View {
                 }
                 .environment(\.layoutDirection, Lang.isRTL(detail.lang) ? .rightToLeft : .leftToRight)
                 if let r = readingText(detail.reading) { Text(r).foregroundStyle(Palette.muted) }
-                if let g = detail.gloss { Text(g).font(.serif(.body)) }
+                if let g = detail.gloss {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text(langName(detail.rootLang).uppercased()).font(.caption2.monospaced()).foregroundStyle(Palette.muted)
+                        Text(g).font(.serif(.body))
+                    }
+                }
                 let tags = [detail.pos, detail.band].compactMap { $0 }
                 if !tags.isEmpty { Text(tags.joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted) }
                 if let a = f.withArticle { line("With its article", a) }
@@ -189,21 +195,41 @@ struct WordFactsView: View {
                 }
                 .listRowBackground(Palette.card)
             }
-            if !f.relatives.isEmpty {
+            if !web.forms.isEmpty {
                 Section {
-                    ForEach(f.relatives) { r in
-                        HStack(spacing: 10) {
-                            FlagTile(lang: r.lang, size: 24)
-                            VStack(alignment: .leading, spacing: 1) {
-                                Text(r.word).foregroundStyle(Palette.ink)
-                                if let t = readingText(r.reading) { Text(t).font(.caption).foregroundStyle(Palette.muted) }
-                            }
-                            Spacer(minLength: 0)
-                            PlayButton(text: r.word, lang: r.lang)
-                        }
+                    ForEach(web.forms) { form in
+                        Button { next = form.detail } label: { formRow(form) }
+                            .buttonStyle(.plain)
+                            .accessibilityIdentifier("word-web-\(form.lang)")
                     }
                 } header: {
-                    Eyebrow(text: "In your other languages")
+                    Eyebrow(text: "In every language")
+                } footer: {
+                    if !web.bonds.isEmpty {
+                        VStack(alignment: .leading, spacing: 2) {
+                            ForEach(Self.legend.filter { web.bonds.contains($0.bond) }, id: \.bond) { Text($0.line) }
+                        }
+                        .font(.caption).foregroundStyle(Palette.muted)
+                    }
+                }
+                .listRowBackground(Palette.card)
+            }
+            if !web.kin.isEmpty {
+                Section {
+                    ForEach(web.kin) { k in
+                        Button { next = k.detail } label: {
+                            HStack(spacing: 10) {
+                                FlagTile(lang: k.detail.lang, size: 24)
+                                Text(k.word).foregroundStyle(Palette.ink)
+                                Spacer(minLength: 8)
+                                Text(k.gloss).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                } header: {
+                    Eyebrow(text: web.root.map { "Same root \($0)" } ?? "Same root")
                 }
                 .listRowBackground(Palette.card)
             }
@@ -224,12 +250,49 @@ struct WordFactsView: View {
             guard let p = WordTaps.parse(url) else { return .systemAction }
             if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
             if detail.leadsTo(p.word, lang: p.lang) {
-                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [])
+                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.playRoot ?? "en")
             }
             return .handled
         })
         .navigationDestination(item: $next) { WordFactsView(detail: $0) }
+        .task(id: detail) {
+            await WordWebLoader.load(detail, mine: store?.gameLangs ?? [], corpus: store?.corpus, all: true) { web = $0 }
+        }
     }
+
+    func formRow(_ form: WordWeb.Form) -> some View {
+        HStack(spacing: 10) {
+            FlagTile(lang: form.lang, size: 24)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(form.word).foregroundStyle(Palette.ink)
+                Text([readingText(form.reading), "\(Lang.name(form.lang)) · \(form.script)"].compactMap { $0 }.joined(separator: "  "))
+                    .font(.caption).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
+            }
+            Spacer(minLength: 6)
+            if let bond = form.bond {
+                Text(Self.bondTitle(bond)).font(.caption2.weight(.bold)).foregroundStyle(Palette.green)
+                    .padding(.horizontal, 6).padding(.vertical, 2)
+                    .background(Palette.green.opacity(0.12), in: Capsule())
+            }
+            PlayButton(text: form.word, lang: form.lang)
+        }
+        .environment(\.layoutDirection, .leftToRight)
+        .contentShape(Rectangle())
+    }
+
+    static func bondTitle(_ bond: WordWeb.Bond) -> LocalizedStringKey {
+        switch bond {
+        case .root: "Shared root"
+        case .sound: "Sounds alike"
+        case .spelling: "Spelled alike"
+        }
+    }
+
+    static let legend: [(bond: WordWeb.Bond, line: LocalizedStringKey)] = [
+        (.root, "Shared root: comes from the same older word."),
+        (.sound, "Sounds alike: close pronunciation in IPA."),
+        (.spelling, "Spelled alike: close spelling in Latin letters."),
+    ]
 
     func line(_ label: LocalizedStringKey, _ value: String) -> some View {
         HStack {

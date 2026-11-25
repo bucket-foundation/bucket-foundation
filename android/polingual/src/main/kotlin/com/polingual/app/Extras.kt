@@ -20,7 +20,12 @@ import kotlinx.coroutines.launch
 import androidx.compose.ui.draw.alpha
 
 fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
-    composable("study") { StudyScreen(graph) { nav.popBackStack() } }
+    composable("study") {
+        StudyScreen(graph) {
+            nav.popBackStack()
+            if (FirstLesson.paywallAfter(graph.billing.access.value, FirstLesson.done(graph.kv::get))) nav.navigate("paywall")
+        }
+    }
     composable("game/{kind}", arguments = listOf(navArgument("kind") { type = NavType.StringType })) { e ->
         val kind = GameKind.entries.firstOrNull { it.route == e.arguments?.getString("kind") }
         if (kind == null) androidx.compose.runtime.LaunchedEffect(Unit) { nav.popBackStack() } else GameScreen(graph, kind) { nav.popBackStack() }
@@ -31,6 +36,7 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
     }
     com.polingual.app.play.playRoutes(this, graph, nav)
     milestoneRoutes(graph, nav)
+    portRoutes(graph, nav)
 }
 
 @Composable
@@ -44,10 +50,11 @@ fun TodayExtras(graph: Graph, nav: NavHostController) {
         Text("Daily session", style = Type.title, color = PL.Paper)
         Text(if (due > 0) "$due reviews and new words" else "New words in ${system.targets.size} languages", color = PL.Paper.copy(alpha = 0.85f))
         val access by graph.billing.access.collectAsState()
-        PrimaryButton(if (access.unlocked || access == Access.Checking) "Start" else "Unlock learning") { nav.navigate(if (access.unlocked) "study" else "paywall") }
+        val lessonDone = FirstLesson.done(graph.kv::get)
+        PrimaryButton(FirstLesson.startLabel(access, lessonDone), enabled = FirstLesson.startRoute(access, lessonDone) != null) { FirstLesson.startRoute(access, FirstLesson.done(graph.kv::get))?.let { nav.navigate(it) } }
     }
     Card(color = PL.Vermilion, onClick = { nav.navigate("translate") }) {
-        Text("Translate", style = Type.word.copy(fontSize = 24.sp()), color = PL.Paper)
+        Text("Translate", style = Type.title, color = PL.Paper)
         Text("Any word, every language you study", color = PL.Paper.copy(alpha = 0.9f))
     }
     TodayMore(graph, nav)
@@ -72,7 +79,7 @@ fun LearnExtras(graph: Graph, nav: NavHostController) {
 fun LockedPreview(nav: NavHostController) {
     Card(color = PL.Ink) {
         Text("LEARNING", style = Type.caps, color = PL.Paper.copy(alpha = 0.7f))
-        Text("Daily sessions, every word you miss, all your languages", style = Type.title.copy(fontSize = 20.sp()), color = PL.Paper)
+        Text("Daily sessions, every word you miss, all your languages", style = Type.subhead, color = PL.Paper)
         Text("Games and live rooms stay free. Polingual Pro opens learning and removes ads.", color = PL.Paper.copy(alpha = 0.85f))
         PrimaryButton("See plans") { nav.navigate("paywall") }
     }

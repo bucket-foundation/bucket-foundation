@@ -131,4 +131,20 @@ import Testing
         #expect(blendNew([], fresh) == fresh)
         #expect(blendNew(reviews, []) == reviews)
     }
+
+    @Test func newWordCountsMatchWhatTheSessionIntroduces() throws {
+        let corpus = try corpus()
+        let sys = try createSystem("en", ["fr", "es"], [], now: now)
+        var st = EngineState()
+        st.newPerDay = 2
+        let plan = planSession(sys, corpus, st, now: now, size: 40, tz: utc)
+        let introduced = plan.filter { isNew(st, $0) }.count
+        #expect(introduced == 2 * Lang.newPerLangPerDay)
+        #expect(langNewLeft(sys, st, now: now, tz: utc) == introduced)
+        #expect(langDayTotals([(sys, st)], corpus, now: now, tz: utc).new == introduced)
+        var spent = st
+        for card in plan where card.lang == "fr" { spent = gradeCard(spent, card.lang, card.itemId, 3, now: now, tz: "UTC") }
+        #expect(langNewLeft(sys, spent, now: now, tz: utc) == Lang.newPerLangPerDay)
+        #expect(langDayTotals([(sys, spent)], corpus, now: now, tz: utc).new == Lang.newPerLangPerDay)
+    }
 }

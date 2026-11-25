@@ -4,7 +4,7 @@ import { local } from "@/lib/storage";
 import { useCallback, useEffect, useState } from "react";
 import type { LangCorpus } from "@academy/lang-systems";
 import { loadLangCorpus } from "@academy/lang-client";
-import { appAuth } from "@/lib/app/auth";
+import { syncDeps } from "@/lib/daily/browser-sync";
 import { readBreaks, writeBreaks } from "@/lib/lobby/breaks";
 import { dayKey } from "@/lib/daily/rng";
 import { bookKey, loadBook, recordResult, type DailyBook, type DailyGame, type DailyResult, type SaveState, type SyncDeps } from "@/lib/daily/store";
@@ -14,9 +14,6 @@ const GUEST_SYSTEM = { root: "en", targets: ["es", "fr", "de"] };
 type DailySystem = { root: string; targets: string[] };
 
 
-function syncDeps(): SyncDeps {
-  return { fetch: window.fetch.bind(window), token: () => appAuth().mobile.accessToken().catch(() => null) };
-}
 
 async function accountSystem(d: SyncDeps): Promise<DailySystem | null> {
   try {

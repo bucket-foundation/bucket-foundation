@@ -31,6 +31,8 @@ object PLType {
     val hero = style(PLTypeSpecs.hero)
     val title = style(PLTypeSpecs.title)
     val heading = style(PLTypeSpecs.heading)
+    val subhead = style(PLTypeSpecs.subhead)
+    val count = style(PLTypeSpecs.count)
     val body = style(PLTypeSpecs.body)
     val small = style(PLTypeSpecs.small)
     val label = style(PLTypeSpecs.label, tracked = true)

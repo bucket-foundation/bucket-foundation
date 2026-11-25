@@ -62,7 +62,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             return@Page
         }
         val ex = s.current
-        if (ex == null) { SessionDone(s, done); return@Page }
+        if (ex == null) { SessionDone(s, { if (FirstLesson.counts(s.answered)) { graph.kv.set(FirstLesson.KEY, "1"); graph.track("first_lesson") } }, done); return@Page }
         SilentSwitch(graph, compact = true)
         LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         ExerciseHeader(ex)
@@ -110,6 +110,8 @@ private fun TypedAnswer(ex: foundation.bucket.core.engine.Exercise, typed: Strin
 private suspend fun saveStudy(graph: Graph, s: StudySession) {
     val sys = graph.store.current().system ?: return
     graph.store.update { it.copy(study = it.study + (sys.id to s.state)) }
+    graph.syncStudySoon()
+    graph.reminders.noteStudy(s.state.streak)
 }
 
 @Composable
@@ -119,7 +121,8 @@ private fun AnsweredNext(ex: foundation.bucket.core.engine.Exercise, corpus: fou
 }
 
 @Composable
-private fun SessionDone(s: StudySession, done: () -> Unit) {
+private fun SessionDone(s: StudySession, mark: () -> Unit, done: () -> Unit) {
+    LaunchedEffect(Unit) { mark() }
     EmptyState(if (s.total == 0) "pebble" else "streak-flame", if (s.total == 0) "Nothing due" else "Session done")
     Text(if (s.total == 0) "Come back tomorrow for new words, or play a game." else "${s.correct} of ${s.answered} right. Misses come back in your next session.", color = PL.InkDim)
     PrimaryButton("Back to Today", onClick = done)

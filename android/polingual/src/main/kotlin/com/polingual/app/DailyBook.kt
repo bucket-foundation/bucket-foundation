@@ -82,4 +82,4 @@ object DailyBook {
     }
 }
 
-fun deckDay(now: java.time.Instant = java.time.Instant.now()): String = now.toString().take(10)
+fun deckDay(now: java.time.Instant = java.time.Instant.now()): String = RaceSession.dayKey ?: now.toString().take(10)

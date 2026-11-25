@@ -27,10 +27,11 @@ struct SignUpFunnelTests {
 }
 
 struct TrialReminderPermissionTests {
-    @Test func trialReminderFiresTheDayBeforeTheTrialEnds() {
+    @Test func trialReminderFiresTwoDaysBeforeTheTrialEnds() {
         let now = Date(timeIntervalSince1970: 1_800_000_000)
-        let until = now.addingTimeInterval(3 * 86_400)
-        #expect(TrialReminder.fireDate(until: until, now: now) == now.addingTimeInterval(2 * 86_400))
+        let until = now.addingTimeInterval(7 * 86_400)
+        #expect(TrialReminder.fireDate(until: until, now: now) == now.addingTimeInterval(5 * 86_400))
+        #expect(TrialReminder.fireDate(until: now.addingTimeInterval(86_400), now: now) == nil)
         #expect(TrialReminder.fireDate(until: now.addingTimeInterval(3_600), now: now) == nil)
     }
 

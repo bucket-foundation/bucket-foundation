@@ -75,6 +75,8 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     var seed by remember { mutableIntStateOf(0) }
     val round = remember(seed) { QuizRound(build()) }
     var tick by remember { mutableIntStateOf(0) }
+    val combo = remember(seed) { Combo() }
+    val view = androidx.compose.ui.platform.LocalView.current
     val scope = rememberCoroutineScope()
     val p = LocalPalette.current
     tick.let { }
@@ -85,6 +87,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         return
     }
     val prompt = round.current!!
+    RewardBar(graph.rewards, rememberSyncedStreak(graph), combo.streak)
     ResultDots(round.results, round.prompts.size)
     when (prompt.mode) {
         PromptMode.Form -> {
@@ -112,6 +115,7 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
         }
         ChoiceButton(label, state) {
             round.answer(choice)
+            if (choice == prompt.answer) { graph.rewards.addXp(combo.hit()); graph.rewards.correct(view, combo.streak) } else { combo.miss(); graph.rewards.wrong(view) }
             tick += 1
             graph.voice.speak(prompt.word.form, prompt.word.lang, auto = true)
         }

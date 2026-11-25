@@ -31,7 +31,10 @@ struct SystemView: View {
                 }
             }
         }
-        .task { await store.load() }
+        .task {
+            await store.load()
+            store.adoptSiblings(systemId)
+        }
     }
 
     func content(_ system: LangSystem, _ corpus: LangCorpus) -> some View {

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseEvents, recordEvents, MAX_EVENTS } from "./events";
+import { fromBilling, parseEvents, recordEvents, MAX_EVENTS } from "./events";
 
 const V = "0b6f1d2e-8a4c-4f3e-9d2a-1c5b7e9f0a12";
 const env = { POLINGUAL_DB_URL: "https://db.test", POLINGUAL_DB_SERVICE_KEY: "svc" };
@@ -20,12 +20,25 @@ test("parseEvents keeps known names, cleans tags and strips query strings", () =
     { name: "page_view", path: "/es?utm_source=x", utm_source: "Reddit!", utm_campaign: "beta", referrer: "https://www.reddit.com/r/polyglot", lang: "es" },
     { name: "drop_table" },
   ] });
-  assert.deepEqual(out, [{ visitor: V, name: "page_view", path: "/es", utm_source: "reddit", utm_medium: null, utm_campaign: "beta", referrer_host: "www.reddit.com", lang: "es" }]);
+  assert.deepEqual(out, [{ visitor: V, name: "page_view", path: "/es", utm_source: "reddit", utm_medium: null, utm_campaign: "beta", referrer_host: "www.reddit.com", lang: "es", detail: null }]);
 });
 
 test("parseEvents rejects a bad visitor id and caps the batch", () => {
   assert.equal(parseEvents({ visitor: "nope", events: [] }), null);
   assert.equal(parseEvents({ visitor: V, events: Array(50).fill({ name: "share" }) })!.length, MAX_EVENTS);
+});
+
+test("onboarding screens, the heard-about answer and day-0 cancels pass through", () => {
+  const out = parseEvents({ visitor: V, events: [{ name: "onboarding_view", detail: "languages" }, { name: "heard_about", detail: "TikTok" }, { name: "trial_cancel_d0" }] }, true)!;
+  assert.deepEqual(out.map((e) => [e.name, e.detail]), [["onboarding_view", "languages"], ["heard_about", "tiktok"], ["trial_cancel_d0", null]]);
+});
+
+test("the Android and iOS apps post without an origin; browsers still need one", async () => {
+  const body = { visitor: V, events: [{ name: "onboarding_view", detail: "languages" }] };
+  assert.equal((await recordEvents(body, env, fake().send, { client: "android" })).status, 200);
+  assert.equal((await recordEvents(body, env, fake().send, { client: "ios" })).status, 200);
+  assert.equal((await recordEvents(body, env, fake().send, { client: "desktop" })).status, 403);
+  assert.equal((await recordEvents(body, env, fake().send, { client: "android", origin: "https://evil.example" })).status, 403);
 });
 
 test("recordEvents refuses other origins", async () => {
@@ -49,4 +62,17 @@ test("recordEvents sends the batch and country to the database function", async 
 test("recordEvents reports offline storage and database errors", async () => {
   assert.equal((await recordEvents({ visitor: V, events: [{ name: "share" }] }, {}, fake().send, { ...ok, ip: "2.2.2.2" })).status, 503);
   assert.equal((await recordEvents({ visitor: V, events: [{ name: "share" }] }, env, fake(500).send, { ...ok, ip: "3.3.3.3" })).status, 502);
+});
+
+test("trial_start, paid and day-0 cancels count only with the billing key", async () => {
+  const body = { visitor: V, events: [{ name: "trial_start" }, { name: "paid" }, { name: "trial_cancel_d0" }, { name: "signup" }] };
+  assert.deepEqual(parseEvents(body)!.map((e) => e.name), ["signup"]);
+  const keyed = { ...env, POLINGUAL_FUNNEL_KEY: "k-123" };
+  assert.equal(fromBilling(keyed, "k-123"), true);
+  assert.equal(fromBilling(keyed, "k-124"), false);
+  assert.equal(fromBilling(env, "k-123"), false);
+  assert.equal(fromBilling(keyed, null), false);
+  const f = fake();
+  await recordEvents(body, keyed, f.send, { origin: "https://www.polingual.com", funnelKey: "k-123" });
+  assert.deepEqual(JSON.parse(String(f.calls[0].init.body)).p_events.map((e: { name: string }) => e.name), ["trial_start", "paid", "trial_cancel_d0", "signup"]);
 });

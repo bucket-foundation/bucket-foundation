@@ -58,3 +58,20 @@ test("grading syncs progress and the session ends with a score", async ({ page }
   await expect(page.getByTestId("session-score")).toContainText("right");
   await expect.poll(() => api.posts.some((p) => p.branch === "lang-sys-en-es-fr"), { timeout: 10_000 }).toBe(true);
 });
+
+test("a learner without a subscription finishes the first lesson and then sees the paywall", async ({ page }) => {
+  await mockApi(page, { branches: seeded(), entitled: false });
+  await signIn(page);
+  await expect(page.getByTestId("paywall")).toHaveCount(0);
+  await page.goto("/app/en-es-fr/study");
+  await expect(page.getByTestId("session")).toBeVisible({ timeout: 60_000 });
+  for (let n = 0; n < 8; n++) await answerOne(page);
+  await expect(async () => {
+    const skip = page.getByTestId("skip-exercise");
+    if (await skip.isVisible()) await skip.click({ timeout: 1000 });
+    await expect(page.getByTestId("session-done")).toBeVisible({ timeout: 300 });
+  }).toPass({ timeout: 60_000 });
+  await page.goto("/app");
+  await expect(page.getByTestId("paywall")).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByTestId("new-system")).toHaveCount(0);
+});

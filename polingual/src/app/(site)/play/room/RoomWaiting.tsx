@@ -43,7 +43,7 @@ export function RoomWaiting({ g }: { g: LiveRoom }) {
           <StartsIn g={g} readyCount={readyCount} />
           {lobby.setup !== "single" ? <p className={app.small} data-testid="setup-line">{lobby.setup === "mix" ? "Random mix of games" : `Game set: ${lobby.playlist.map(gameName).join(", ")}`}</p> : null}
         </section>
-        <RoomChat lobby={lobby} chat={g.chat} setChat={g.setChat} onSend={(body) => void act(() => api.chat(lobby.id, body))} />
+        <RoomChat lobby={lobby} api={api} chat={g.chat} setChat={g.setChat} onSend={(body) => void act(() => api.chat(lobby.id, body))} />
       </div>
       {g.error ? <p className={app.error} role="alert">{g.error}</p> : null}
     </div>

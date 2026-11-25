@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
         val graph = (application as PolingualApp).graph
         graph.activity = java.lang.ref.WeakReference(this)
         graph.ads.gather(this)
+        graph.reminders.reschedule()
         setContent {
             PLTheme {
                 val problem by graph.voice.problem.collectAsState()

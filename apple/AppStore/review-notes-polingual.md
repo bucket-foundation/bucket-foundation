@@ -8,7 +8,7 @@ PURPOSE AND AUDIENCE
 Polingual teaches several languages at once. One deck shows each word in every language the learner picks, with spaced review, sentences, speaking practice, games and a Content section. It covers 29 languages. It is published by AGFarms LLC. The audience is adult and teen self-learners: [FOUNDER: confirm the audience and minimum age].
 
 PAID CONTENT
-The app needs a subscription after onboarding. Polingual Monthly (com.polingual.monthly) and Polingual Yearly (com.polingual.yearly) are auto-renewable and include a 3-day free trial for new subscribers. The paywall shows price, terms, privacy, Restore and offer code redemption. Please use a Sandbox account to start the trial.
+The app needs a subscription after onboarding. Polingual Monthly (com.polingual.monthly) and Polingual Yearly (com.polingual.yearly) are auto-renewable. Yearly includes a 7-day free trial for new subscribers. The paywall shows price, terms, privacy, Restore and offer code redemption. Please use a Sandbox account to start the trial.
 
 SETUP AND LOGIN
 No setup or special hardware. Finish onboarding, start the trial, then open the Account tab. An account is optional for study and required for sync and groups. There are two methods and no passwords: Sign in with Apple, or a one-time code sent to an email address. A first sign-in creates the account.
