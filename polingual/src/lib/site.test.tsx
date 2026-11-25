@@ -4,6 +4,16 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import Site from "../app/site";
+import { FrequencyCredit } from "../app/(site)/research/frequency-credit";
+
+test("the research page credits the frequency lists under CC BY-SA 4.0 with share-alike terms", () => {
+  const html = renderToStaticMarkup(<FrequencyCredit />);
+  assert.match(html, /wordfreq/);
+  assert.match(html, /FrequencyWords/);
+  assert.match(html, /creativecommons\.org\/licenses\/by-sa\/4\.0/);
+  assert.match(html, /same licence/);
+  assert.match(readFileSync(join(__dirname, "../app/(site)/research/page.tsx"), "utf8"), /<FrequencyCredit \/>/);
+});
 import LearnPage, { metadata as learnMeta } from "../app/(site)/learn/page";
 import { GUIDES } from "./guides";
 import { siteLocale } from "../app/(site)/word/views";

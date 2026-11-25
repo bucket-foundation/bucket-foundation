@@ -22,7 +22,7 @@ function load() {
   return cache;
 }
 
-function toPhoton(r: Row): Photon {
+export function toPhoton(r: Row): Photon {
   return { id: r[0], kind: "word", lang: r[1], surface: r[2], meaning_en: r[3], pos: r[4], ipa: r[5], tier: r[6], freq_rank: r[7] ?? null, branch: [] };
 }
 

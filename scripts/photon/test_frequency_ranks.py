@@ -14,6 +14,11 @@ class LemmaOf(unittest.TestCase):
         self.assertEqual(fr.lemma_of("first-person singular preterite indicative of hablar"), "hablar")
         self.assertEqual(fr.lemma_of("plural of casa."), "casa")
 
+    def test_multiword_targets(self):
+        self.assertEqual(fr.lemma_of("plural of año luz"), "año luz")
+        self.assertEqual(fr.lemma_of("plural of año luz (light year)"), "año luz")
+        self.assertEqual(fr.lemma_of("past participle of give up"), "give up")
+
     def test_plain_meanings(self):
         self.assertIsNone(fr.lemma_of("dog"))
         self.assertIsNone(fr.lemma_of("a piece of cake"))
@@ -27,13 +32,30 @@ class Ranks(unittest.TestCase):
     def test_inflection_folds_to_best_form(self):
         rank = {"perros": 5, "perro": 20, "hablé": 9}
         t = fr.lemma_ranks([("perro", None), ("Perros", "perro"), ("hablar", None), ("hablé", "hablar")], rank)
-        self.assertEqual(t["perro"], (20, "perro", 5))
-        self.assertEqual(t["perros"], (5, "perro", 5))
-        self.assertEqual(t["hablar"], (None, "hablar", 9))
-        self.assertEqual(t["hablé"], (9, "hablar", 9))
+        self.assertEqual(t["perro"], (20, "perro", 5, False))
+        self.assertEqual(t["perros"], (5, "perro", 5, False))
+        self.assertEqual(t["hablar"], (None, "hablar", 9, False))
+        self.assertEqual(t["hablé"], (9, "hablar", 9, False))
 
     def test_unranked_lemma(self):
-        self.assertEqual(fr.lemma_ranks([("xyz", None)], {})["xyz"], (None, "xyz", None))
+        self.assertEqual(fr.lemma_ranks([("xyz", None)], {})["xyz"], (None, "xyz", None, False))
+
+    def test_hyphen_compound_takes_rarest_part(self):
+        rank = {"well": 50, "known": 300}
+        t = fr.lemma_ranks([("well-known", None)], rank)
+        self.assertEqual(t["well-known"], (300, "well-known", 300, True))
+
+    def test_listed_compound_keeps_own_rank(self):
+        t = fr.lemma_ranks([("well-known", None)], {"well-known": 900, "well": 50, "known": 300})
+        self.assertEqual(t["well-known"], (900, "well-known", 900, False))
+
+    def test_compound_with_unranked_part_stays_unranked(self):
+        t = fr.lemma_ranks([("well-zzq", None)], {"well": 50})
+        self.assertEqual(t["well-zzq"], (None, "well-zzq", None, False))
+
+    def test_multiword_lemma_group(self):
+        t = fr.lemma_ranks([("año luz", None), ("años luz", "año luz")], {"año": 40, "luz": 200})
+        self.assertEqual(t["años luz"], (None, "año luz", 200, False))
 
 
 class Determinism(unittest.TestCase):
@@ -42,7 +64,7 @@ class Determinism(unittest.TestCase):
         self.assertEqual(fr.dump_shipped(rows), fr.dump_shipped([list(r) for r in rows]))
 
     def test_table_is_stable_under_input_order(self):
-        t = {"b": (2, "b", 2), "a": (None, "b", 2)}
+        t = {"b": (2, "b", 2, False), "a": (None, "b", 2, True)}
         with tempfile.TemporaryDirectory() as d:
             p = os.path.join(d, "x.tsv.gz")
             h1 = fr.write_table(p, t)

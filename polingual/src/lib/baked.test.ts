@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { bakedGet, bakedSearch, bakedStats } from "./baked";
+import { bakedGet, bakedSearch, bakedStats, toPhoton } from "./baked";
+
+test("toPhoton reads freq_rank from an 8-column row and null from a 7-column row", () => {
+  const eight = toPhoton(["photon:word:es:perro", "es", "perro", "dog", "noun", null, "functional", 1126]);
+  assert.equal(eight.freq_rank, 1126);
+  const seven = toPhoton(["photon:word:la:aqua", "la", "aqua", "water", "noun", null, "functional"]);
+  assert.equal(seven.freq_rank, null);
+});
 
 test("stats count every row", () => {
   const s = bakedStats();

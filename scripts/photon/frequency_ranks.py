@@ -17,7 +17,7 @@ from typing import Iterable, Iterator
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
-PACKS_DIR = os.path.expanduser("~/agfarms/.polingual-packs")
+PACKS_DIR = os.environ.get("POLINGUAL_PACKS")
 SHIPPED = os.path.join(REPO_ROOT, "polingual", "data", "photons.json.gz")
 MANIFEST = os.path.join(REPO_ROOT, "polingual", "data", "frequency-manifest.json")
 OUT_DIR = os.path.join(REPO_ROOT, "_intake", "polingual-frequency")
@@ -43,7 +43,7 @@ FORM_WORDS = (
     "aorist|optative|diminutive|augmentative|definite|indefinite|possessive|spelling|romanization|"
     "contraction|abbreviation|apocopic|obsolete|archaic|alternative|nonstandard|misspelling|clipping"
 )
-FORM_OF = re.compile(r"\b(?:" + FORM_WORDS + r")\b[^;:]*?\bof ([^\s,;:()]+)\s*$", re.IGNORECASE)
+FORM_OF = re.compile(r"\b(?:" + FORM_WORDS + r")\b[^;:]*?\bof ([^,;:()]+?)\s*(?:\([^)]*\))?\s*$", re.IGNORECASE)
 
 
 def fold(s: str) -> str:
@@ -65,21 +65,37 @@ def ranks_from_counts(pairs: Iterable[tuple[str, float]]) -> dict[str, int]:
     return {w: i + 1 for i, (w, _) in enumerate(order)}
 
 
-def lemma_ranks(surfaces: Iterable[tuple[str, str | None]], rank: dict[str, int]) -> dict[str, tuple[int | None, str, int | None]]:
+COMPOUND_SPLIT = re.compile(r"[-\s]+")
+
+
+def compound_rank(s: str, rank: dict[str, int]) -> int | None:
+    parts = [p for p in COMPOUND_SPLIT.split(s) if p]
+    if len(parts) < 2:
+        return None
+    ranks = [rank.get(p) for p in parts]
+    return None if any(r is None for r in ranks) else max(ranks)
+
+
+def lemma_ranks(surfaces: Iterable[tuple[str, str | None]], rank: dict[str, int]) -> dict[str, tuple[int | None, str, int | None, bool]]:
     lemma_for: dict[str, str] = {}
     group_best: dict[str, int] = {}
+    own: dict[str, tuple[int | None, bool]] = {}
     for surface, lemma in surfaces:
         s = fold(surface)
         lem = fold(lemma) if lemma else s
         if s not in lemma_for or (lemma_for[s] == s and lem != s):
             lemma_for[s] = lem
-        r = rank.get(s)
+        if s not in own:
+            direct = rank.get(s)
+            own[s] = (direct, False) if direct is not None else (compound_rank(s, rank), True)
+        r = own[s][0]
         for key in {s, lem}:
             if r is not None and r < group_best.get(key, 1 << 62):
                 group_best[key] = r
-    out: dict[str, tuple[int | None, str, int | None]] = {}
+    out: dict[str, tuple[int | None, str, int | None, bool]] = {}
     for s, lem in lemma_for.items():
-        out[s] = (rank.get(s), lem, group_best.get(lem))
+        r, derived = own[s]
+        out[s] = (r, lem, group_best.get(lem), derived and r is not None)
     return out
 
 
@@ -148,12 +164,12 @@ def pack_rows(lang: str, packs_dir: str, tmp: str) -> Iterator[tuple[str, str]]:
         os.remove(db)
 
 
-def write_table(path: str, table: dict[str, tuple[int | None, str, int | None]]) -> str:
+def write_table(path: str, table: dict[str, tuple[int | None, str, int | None, bool]]) -> str:
     buf = io.StringIO()
-    buf.write("folded\tsurface_rank\tlemma\tlemma_rank\n")
+    buf.write("folded\tsurface_rank\tlemma\tlemma_rank\tderived\n")
     for s in sorted(table):
-        sr, lem, lr = table[s]
-        buf.write(f"{s}\t{'' if sr is None else sr}\t{lem}\t{'' if lr is None else lr}\n")
+        sr, lem, lr, derived = table[s]
+        buf.write(f"{s}\t{'' if sr is None else sr}\t{lem}\t{'' if lr is None else lr}\t{int(derived)}\n")
     data = buf.getvalue().encode("utf-8")
     with open(path, "wb") as raw, gzip.GzipFile(fileobj=raw, mode="wb", mtime=0, filename="") as gz:
         gz.write(data)
@@ -177,6 +193,8 @@ def main() -> int:
     ap.add_argument("--hermitdave", default=None)
     ap.add_argument("--langs", default="")
     args = ap.parse_args()
+    if not args.packs:
+        ap.error("pass --packs or set POLINGUAL_PACKS")
 
     os.makedirs(args.out, exist_ok=True)
     langs = sorted(d for d in os.listdir(args.packs) if os.path.isdir(os.path.join(args.packs, d)))
@@ -188,7 +206,7 @@ def main() -> int:
     for r in shipped:
         by_lang.setdefault(r[1], []).append(r)
 
-    manifest = {"field": "freq_rank", "column": 7, "rule": "rank of the lemma group: the best rank among the lemma and every pack entry whose meaning names it as a form", "subtlex": SUBTLEX_NOTE, "languages": {}}
+    manifest = {"field": "freq_rank", "column": 7, "rule": "rank of the lemma group: the best rank among the lemma and every pack entry whose meaning names it as a form; an unlisted compound of hyphen or space separated parts takes its rarest part's rank and is marked derived", "subtlex": SUBTLEX_NOTE, "languages": {}}
     with tempfile.TemporaryDirectory(dir=args.out) as tmp:
         for lang in langs:
             src = wordfreq_source(lang) or hermitdave_source(lang, args.hermitdave)
@@ -212,11 +230,12 @@ def main() -> int:
             table = lemma_ranks(surfaces(), rank)
             table_sha = write_table(os.path.join(args.out, f"{lang}.tsv.gz"), table)
             shipped_rows = by_lang.get(lang, [])
-            hit_surface = hit_lemma = 0
+            hit_surface = hit_lemma = hit_derived = 0
             for r in shipped_rows:
                 t = table.get(fold(r[2]))
                 sr = rank.get(fold(r[2]))
                 lr = t[2] if t else sr
+                hit_derived += bool(t and t[3])
                 hit_surface += sr is not None
                 hit_lemma += lr is not None
                 r[7:] = [lr]
@@ -228,6 +247,7 @@ def main() -> int:
                 "table_sha256": table_sha,
                 "shipped_ranked": hit_lemma,
                 "shipped_surface_ranked": hit_surface,
+                "shipped_compound_derived": hit_derived,
                 "coverage": round(hit_lemma / len(shipped_rows), 4) if shipped_rows else None,
             })
             manifest["languages"][lang] = entry
